@@ -1,0 +1,53 @@
+{
+  "packName": "Example Clip Pack",
+  "createdAt": "2026-05-13T00:00:00.000Z",
+  "vocabCsvPath": "vocab.csv",
+  "sentencesCsvPath": "sentences.csv",
+  "clips": [
+    {
+      "id": "prompt:listen",
+      "type": "prompt",
+      "text": "Listen.",
+      "language": "en-US",
+      "path": "audio/prompts/listen.mp3",
+      "label": "listen",
+      "provider": "azure"
+    },
+    {
+      "id": "word:紧张",
+      "type": "word",
+      "text": "紧张",
+      "language": "zh-CN",
+      "path": "audio/words/紧张.mp3",
+      "linkedWordIds": ["word:紧张"],
+      "provider": "azure"
+    },
+    {
+      "id": "meaning:紧张",
+      "type": "meaning",
+      "text": "nervous",
+      "language": "en-US",
+      "path": "audio/meanings/nervous.mp3",
+      "linkedWordIds": ["word:紧张"],
+      "provider": "azure"
+    },
+    {
+      "id": "sentence:紧张",
+      "type": "sentence",
+      "text": "他有点紧张。",
+      "language": "zh-CN",
+      "path": "audio/sentences/他有点紧张。.mp3",
+      "linkedSentenceId": "sentence:8qg1bs",
+      "provider": "azure"
+    },
+    {
+      "id": "sentence-meaning:紧张",
+      "type": "sentenceMeaning",
+      "text": "He is a little nervous.",
+      "language": "en-US",
+      "path": "audio/sentence_meanings/He-is-a-little-nervous.mp3",
+      "linkedSentenceId": "sentence:8qg1bs",
+      "provider": "azure"
+    }
+  ]
+}

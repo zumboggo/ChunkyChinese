@@ -1,0 +1,25 @@
+audio/
+  prompts/
+    listen.mp3
+    again.mp3
+    meaning.mp3
+    translate.mp3
+    which-chinese-means.mp3
+    or.mp3
+    quick-meaning.mp3
+  words/
+    紧张.mp3
+    危险.mp3
+    荣耀.mp3
+  meanings/
+    nervous.mp3
+    danger.mp3
+    glory.mp3
+  sentences/
+    他有点紧张.mp3
+    这里很危险.mp3
+    他得到了荣耀.mp3
+  sentence_meanings/
+    he-is-a-little-nervous.mp3
+    this-place-is-dangerous.mp3
+    he-received-glory.mp3

@@ -1,0 +1,4 @@
+word,meaning,status,lessonNumber,tags,partOfSpeech,audioWordFilename,audioMeaningFilename,pinyin,source,notes
+紧张,nervous,new,1,emotion;LMS,adjective,words/紧张.mp3,meanings/nervous.mp3,jin zhang,example,Useful for character reactions.
+危险,danger,new,1,adventure;LMS,noun,words/危险.mp3,meanings/danger.mp3,wei xian,example,Useful for quest scenes.
+荣耀,glory,new,1,adventure;LMS,noun,words/荣耀.mp3,meanings/glory.mp3,rong yao,example,Useful for game achievement scenes.

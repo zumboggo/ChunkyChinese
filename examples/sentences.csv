@@ -1,0 +1,4 @@
+chinese,english,targetWords,audioSentenceFilename,audioEnglishFilename,tags,difficulty
+他有点紧张。,He is a little nervous.,紧张,audio/sentences/他有点紧张.mp3,audio/sentence_meanings/he-is-a-little-nervous.mp3,emotion;LMS,2
+这里很危险。,This place is dangerous.,危险,audio/sentences/这里很危险.mp3,audio/sentence_meanings/this-place-is-dangerous.mp3,adventure;LMS,2
+他得到了荣耀。,He received glory.,荣耀,audio/sentences/他得到了荣耀.mp3,audio/sentence_meanings/he-received-glory.mp3,adventure;LMS,3

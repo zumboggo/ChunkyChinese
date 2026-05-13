@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-label="Chunky Chinese Vocab">
+  <rect width="192" height="192" rx="34" fill="#167c80"/>
+  <circle cx="145" cy="48" r="20" fill="#f7c66b"/>
+  <path d="M48 126c18 14 44 14 62 0" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+  <text x="48" y="94" fill="#fff" font-family="Arial, sans-serif" font-size="54" font-weight="800">中</text>
+</svg>
