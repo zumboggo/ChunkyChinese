@@ -326,8 +326,8 @@ dt {
 
 .word-row-new,
 .word-row-learning {
-  background: #fff8d6;
-  border-color: #ecd46a;
+  background: #fff2ba;
+  border-color: #ddc558;
 }
 
 .word-row-familiar {
@@ -606,18 +606,22 @@ dt {
 .study-target-word small {
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .study-target-word strong {
   color: #08223d;
   font-size: clamp(1.1rem, 2vw, 1.45rem);
+  white-space: nowrap;
 }
 
 .study-target-word small {
   color: #31506d;
-  font-size: 0.74rem;
-  text-transform: capitalize;
+  display: -webkit-box;
+  min-height: 2.1em;
+  font-size: 0.72rem;
+  line-height: 1.05;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .play-hover-menu {

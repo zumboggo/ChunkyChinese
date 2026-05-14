@@ -12,6 +12,7 @@ import {
   importAudioFiles,
   importBackup,
   importClipPackFiles,
+  importHostedClipPack,
   importSentencesCsv,
   importVocabCsv,
   recordEvent,
@@ -43,6 +44,8 @@ const emptyStats: DashboardStats = {
   knownToday: 0,
 }
 
+const HOSTED_CLIP_PACK_URL = `${import.meta.env.BASE_URL}clip-packs/lms-188-azure`
+
 function App() {
   const [screen, setScreen] = useState<Screen>('dashboard')
   const [words, setWords] = useState<VocabWord[]>([])
@@ -69,6 +72,8 @@ function App() {
   const [playbackRate, setPlaybackRate] = useState(1)
   const [lastSummary, setLastSummary] = useState<string>('Ready.')
   const [seedMessage, setSeedMessage] = useState('Loading LMS vocabulary...')
+  const [hostedImporting, setHostedImporting] = useState(false)
+  const [hostedProgress, setHostedProgress] = useState('')
   const runToken = useRef(0)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const pocketAudioRef = useRef<HTMLAudioElement | null>(null)
@@ -413,6 +418,25 @@ function App() {
     await refresh()
   }
 
+  async function handleHostedClipPackImport() {
+    setHostedImporting(true)
+    setHostedProgress('Starting hosted clip pack download...')
+    try {
+      const summary = await importHostedClipPack(HOSTED_CLIP_PACK_URL, (completed, total, label) => {
+        setHostedProgress(`${completed} / ${total}: ${label}`)
+      })
+      setLastSummary(formatSummary(summary))
+      setHostedProgress('Hosted clip pack is ready offline in this browser.')
+      await refresh()
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Could not download hosted clip pack.'
+      setLastSummary(message)
+      setHostedProgress(message)
+    } finally {
+      setHostedImporting(false)
+    }
+  }
+
   return (
     <main className="app-shell">
       <header className="topbar">
@@ -484,6 +508,22 @@ function App() {
                 <div>
                   <dt>Words marked known</dt>
                   <dd>{stats.knownToday}</dd>
+                </div>
+              </dl>
+            </InfoPanel>
+            <InfoPanel title="Hotkeys">
+              <dl className="stat-list">
+                <div>
+                  <dt>Mark familiar</dt>
+                  <dd>F</dd>
+                </div>
+                <div>
+                  <dt>Mark known</dt>
+                  <dd>K</dd>
+                </div>
+                <div>
+                  <dt>Tap lesson words</dt>
+                  <dd>Cycle</dd>
                 </div>
               </dl>
             </InfoPanel>
@@ -662,6 +702,19 @@ function App() {
               webkitdirectory
               onChange={handleClipPackImport}
             />
+            <section className="panel hosted-pack">
+              <h2>Hosted LMS clip pack</h2>
+              <p>Download the Azure LMS 188 audio pack from GitHub into this browser for offline lessons.</p>
+              <button
+                className="primary"
+                type="button"
+                onClick={handleHostedClipPackImport}
+                disabled={hostedImporting}
+              >
+                {hostedImporting ? 'Downloading...' : 'Download hosted clip pack'}
+              </button>
+              {hostedProgress && <small>{hostedProgress}</small>}
+            </section>
             <FilePanel
               title="Vocab CSV"
               help="Imports app CSV, LMS full CSV, or Front/Back flashcard CSV. Reimports merge by word."
@@ -729,19 +782,6 @@ function App() {
           {lesson ? (
             <>
                 <section className="study-player" ref={playModeRef}>
-                  {studyWord && (
-                    <div className="study-status">
-                      <span>
-                        {studyWord.word} is <strong>{studyWord.status}</strong>
-                      </span>
-                      <button type="button" onClick={() => handleStatus([studyWord.id], 'familiar')}>
-                        Familiar <kbd>F</kbd>
-                      </button>
-                      <button type="button" onClick={() => handleStatus([studyWord.id], 'known')}>
-                        Known <kbd>K</kbd>
-                      </button>
-                    </div>
-                  )}
                   <div className="study-stage">
                     <div className="study-meta">
                       <span>{rendering ? 'Rendering local audio...' : renderedLesson?.title ?? lesson.title}</span>
@@ -777,7 +817,7 @@ function App() {
                             title="Click to cycle familiar / known"
                           >
                             <strong>{word.word}</strong>
-                            <small>{word.status}</small>
+                            <small>{word.meaning}</small>
                           </button>
                         ))}
                       </div>

@@ -398,6 +398,89 @@ export async function importClipPackFiles(files: FileList | File[]): Promise<Imp
   }
 }
 
+export async function importHostedClipPack(
+  baseUrl: string,
+  onProgress?: (completed: number, total: number, label: string) => void,
+): Promise<ImportSummary> {
+  const base = baseUrl.replace(/\/+$/, '')
+  const manifest = (await fetchJson(`${base}/clips_manifest.json`)) as ClipPackManifest
+  const warnings: string[] = []
+  let importedWords = 0
+  let importedSentences = 0
+
+  if (manifest.vocabCsvPath) {
+    const summary = await importVocabCsv(await fetchText(`${base}/${encodePath(manifest.vocabCsvPath)}`))
+    importedWords = summary.created + summary.updated
+  }
+  if (manifest.sentencesCsvPath) {
+    const summary = await importSentencesCsv(
+      await fetchText(`${base}/${encodePath(manifest.sentencesCsvPath)}`),
+    )
+    importedSentences = summary.created + summary.updated
+  }
+
+  const db = await getDB()
+  const existingClips = new Map((await db.getAll('audioClips')).map((clip) => [clip.id, clip]))
+  const preparedClips: Array<{ entry: ClipManifestEntry; clip: AudioClip; existed: boolean }> = []
+  const total = manifest.clips?.length ?? 0
+  let skipped = 0
+
+  for (const [index, entry] of (manifest.clips ?? []).entries()) {
+    const existing = existingClips.get(entry.id)
+    if (existing?.blob) {
+      preparedClips.push({
+        entry,
+        existed: true,
+        clip: manifestEntryToClip(entry, existing.blob, existing.createdAt),
+      })
+      onProgress?.(index + 1, total, entry.label || entry.text || entry.path)
+      continue
+    }
+
+    try {
+      const response = await fetch(`${base}/${encodePath(entry.path)}`)
+      if (!response.ok) throw new Error(`HTTP ${response.status}`)
+      preparedClips.push({
+        entry,
+        existed: false,
+        clip: manifestEntryToClip(entry, await response.blob()),
+      })
+    } catch (error) {
+      skipped += 1
+      warnings.push(
+        `Could not download ${entry.path}${error instanceof Error ? `: ${error.message}` : ''}`,
+      )
+    }
+    onProgress?.(index + 1, total, entry.label || entry.text || entry.path)
+  }
+
+  const words = await db.getAll('vocabWords')
+  const sentences = await db.getAll('sentences')
+  const tx = db.transaction(['audioClips', 'vocabWords', 'sentences'], 'readwrite')
+  let created = 0
+  let updated = 0
+  let linkedAudio = 0
+
+  for (const prepared of preparedClips) {
+    await tx.objectStore('audioClips').put(prepared.clip)
+    if (prepared.existed) updated += 1
+    else created += 1
+    linkedAudio += await linkClip(tx, prepared.clip, words, sentences, prepared.entry)
+  }
+
+  await tx.done
+  await db.put('settings', manifest, 'lastClipPackManifest')
+  return {
+    created,
+    updated,
+    skipped,
+    linkedAudio,
+    importedWords,
+    importedSentences,
+    warnings,
+  }
+}
+
 export async function getDashboardStats(): Promise<DashboardStats> {
   const db = await getDB()
   const words = await db.getAll('vocabWords')
@@ -603,6 +686,46 @@ function resolveManifestFile(files: Map<string, File>, path: string): File | und
     if (candidate.endsWith(`/${wanted}`)) return file
   }
   return undefined
+}
+
+async function fetchJson(url: string): Promise<unknown> {
+  const response = await fetch(url)
+  if (!response.ok) throw new Error(`Could not fetch ${url}: HTTP ${response.status}`)
+  return await response.json()
+}
+
+async function fetchText(url: string): Promise<string> {
+  const response = await fetch(url)
+  if (!response.ok) throw new Error(`Could not fetch ${url}: HTTP ${response.status}`)
+  return await response.text()
+}
+
+function encodePath(path: string): string {
+  return normalizeFilename(path).split('/').map(encodeURIComponent).join('/')
+}
+
+function manifestEntryToClip(
+  entry: ClipManifestEntry,
+  blob: Blob,
+  createdAt = new Date().toISOString(),
+): AudioClip {
+  const filename = entry.path.split('/').pop() || entry.id
+  return {
+    id: entry.id,
+    type: entry.type,
+    label: entry.label || entry.text || basenameWithoutExt(entry.path),
+    filename,
+    path: normalizeFilename(entry.path),
+    blob,
+    linkedWordIds: entry.linkedWordIds,
+    linkedSentenceId: entry.linkedSentenceId,
+    manifestId: entry.id,
+    text: entry.text,
+    language: entry.language,
+    provider: entry.provider,
+    voice: entry.voice,
+    createdAt,
+  }
 }
 
 function normalizePromptId(value: string): string {
