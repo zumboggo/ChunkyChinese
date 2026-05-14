@@ -403,6 +403,7 @@ dt {
 }
 
 .study-player {
+  position: relative;
   display: grid;
   gap: 14px;
 }
@@ -420,6 +421,48 @@ dt {
     linear-gradient(145deg, rgba(247, 252, 255, 0.94), rgba(190, 226, 255, 0.78)),
     linear-gradient(135deg, #095db3, #5fb3ff);
   box-shadow: 0 24px 70px rgba(26, 83, 145, 0.24);
+}
+
+.study-player:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  padding: clamp(12px, 2vw, 28px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.36), transparent 34rem),
+    linear-gradient(135deg, #064a98 0%, #238fe9 48%, #9bd8ff 100%);
+}
+
+.study-player:fullscreen .study-stage {
+  height: 100%;
+  min-height: 0;
+  border-radius: 0;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.study-player:fullscreen .study-status {
+  position: absolute;
+  z-index: 3;
+  top: clamp(10px, 2vw, 24px);
+  left: clamp(10px, 2vw, 24px);
+  right: clamp(10px, 2vw, 24px);
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(14px);
+}
+
+.study-player:fullscreen .study-chinese,
+.study-player:fullscreen .study-pinyin,
+.study-player:fullscreen .study-meaning,
+.study-player:fullscreen .study-meta span,
+.study-player:fullscreen .study-time {
+  color: #f5fbff;
+  text-shadow: 0 3px 18px rgba(0, 31, 73, 0.28);
+}
+
+.study-player:fullscreen .study-meta button {
+  background: rgba(255, 255, 255, 0.86);
 }
 
 .study-meta,
@@ -443,6 +486,12 @@ dt {
   min-height: 38px;
   padding: 8px 12px;
   background: rgba(255, 255, 255, 0.76);
+}
+
+.study-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .study-chinese {
@@ -486,6 +535,48 @@ dt {
 
 .study-status button {
   min-width: 110px;
+}
+
+.play-hover-menu {
+  position: absolute;
+  z-index: 4;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 18px 44px rgba(20, 82, 145, 0.18);
+  overflow: hidden;
+  max-height: 14px;
+  opacity: 0.16;
+  transform: translateY(4px);
+  transition:
+    max-height 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.play-hover-menu audio {
+  width: 100%;
+}
+
+.study-player:hover .play-hover-menu,
+.study-player:focus-within .play-hover-menu {
+  max-height: 260px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.study-player:fullscreen .play-hover-menu {
+  left: clamp(10px, 2vw, 24px);
+  right: clamp(10px, 2vw, 24px);
+  bottom: clamp(10px, 2vw, 24px);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
 }
 
 kbd {

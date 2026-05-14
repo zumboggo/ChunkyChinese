@@ -61,6 +61,8 @@ function App() {
   const [rendering, setRendering] = useState(false)
   const [pocketProgress, setPocketProgress] = useState({ current: 0, duration: 0 })
   const [showPinyin, setShowPinyin] = useState(false)
+  const [showEnglish, setShowEnglish] = useState(true)
+  const [isFullscreen, setIsFullscreen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [autoAdvance, setAutoAdvance] = useState(true)
   const [playbackRate, setPlaybackRate] = useState(1)
@@ -69,6 +71,7 @@ function App() {
   const runToken = useRef(0)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const pocketAudioRef = useRef<HTMLAudioElement | null>(null)
+  const playModeRef = useRef<HTMLElement | null>(null)
 
   const refresh = useCallback(async () => {
     const [nextWords, nextSentences, nextAudio, nextStats] = await Promise.all([
@@ -99,6 +102,14 @@ function App() {
       if (renderedUrl) URL.revokeObjectURL(renderedUrl)
     }
   }, [renderedUrl])
+
+  useEffect(() => {
+    function syncFullscreen() {
+      setIsFullscreen(document.fullscreenElement === playModeRef.current)
+    }
+    document.addEventListener('fullscreenchange', syncFullscreen)
+    return () => document.removeEventListener('fullscreenchange', syncFullscreen)
+  }, [])
 
   useEffect(() => {
     if (!renderedLesson || !('mediaSession' in navigator)) return
@@ -195,6 +206,14 @@ function App() {
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [lessonMode, screen, studyWord, handleStatus])
+
+  async function toggleFullscreen() {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen()
+    } else {
+      await playModeRef.current?.requestFullscreen()
+    }
+  }
 
   async function cycleWordStatus(word: VocabWord) {
     const nextStatus: WordStatus =
@@ -627,7 +646,7 @@ function App() {
               <h1>Import and Backup</h1>
               <p>Everything stays in this browser's local IndexedDB.</p>
             </div>
-            <a className="ghost-link" href="/seed/lms-vocab-188.csv" download>
+            <a className="ghost-link" href={`${import.meta.env.BASE_URL}seed/lms-vocab-188.csv`} download>
               Download LMS CSV
             </a>
           </div>
@@ -737,93 +756,7 @@ function App() {
               </div>
 
               {lessonMode === 'pocket' && (
-                <section className="study-player">
-                  <div className="study-stage">
-                    <div className="study-meta">
-                      <span>{rendering ? 'Rendering local audio...' : renderedLesson?.title ?? lesson.title}</span>
-                      <button type="button" onClick={() => setShowPinyin((value) => !value)}>
-                        Pinyin {showPinyin ? 'on' : 'off'}
-                      </button>
-                    </div>
-                    <div className={`study-chinese ${studyDisplay.kind}`}>
-                      {studyDisplay.chinese}
-                    </div>
-                    {showPinyin && studyDisplay.pinyin && (
-                      <div className="study-pinyin">{studyDisplay.pinyin}</div>
-                    )}
-                    <div className="study-meaning">{studyDisplay.english}</div>
-                    <div className="study-time">
-                      {renderedLesson
-                        ? `${formatTime(pocketProgress.current)} / ${formatTime(pocketProgress.duration)}`
-                        : 'Import a clip pack, then render a lesson for phone-style playback.'}
-                    </div>
-                  </div>
-
-                  {renderedUrl ? (
-                    <audio
-                      ref={pocketAudioRef}
-                      src={renderedUrl}
-                      controls
-                      preload="metadata"
-                      onPlay={() => {
-                        setIsPlaying(true)
-                        if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing'
-                      }}
-                      onPause={() => {
-                        setIsPlaying(false)
-                        if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused'
-                      }}
-                      onTimeUpdate={(event) => {
-                        const audio = event.currentTarget
-                        const current = audio.currentTime
-                        const segmentIndex =
-                          renderedLesson?.segments?.findIndex(
-                            (segment) =>
-                              current >= segment.startSeconds && current < segment.endSeconds,
-                          ) ?? -1
-                        if (segmentIndex >= 0 && segmentIndex !== currentStepIndex) {
-                          setCurrentStepIndex(segmentIndex)
-                        }
-                        setPocketProgress({
-                          current,
-                          duration: audio.duration || renderedLesson?.durationSeconds || 0,
-                        })
-                      }}
-                      onEnded={async () => {
-                        setIsPlaying(false)
-                        if (renderedLesson) {
-                          await recordEvent({
-                            type: 'complete',
-                            itemType: 'lesson',
-                            itemId: renderedLesson.id,
-                            seconds: renderedLesson.durationSeconds,
-                          })
-                          await refresh()
-                        }
-                      }}
-                    />
-                  ) : (
-                    <div className="audio-placeholder">Render a lesson to create the pocket audio track.</div>
-                  )}
-                  <div className="player-controls">
-                    <button
-                      type="button"
-                      onClick={() => pocketAudioRef.current?.play()}
-                      disabled={!renderedUrl || isPlaying}
-                    >
-                      Play
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => pocketAudioRef.current?.pause()}
-                      disabled={!renderedUrl || !isPlaying}
-                    >
-                      Pause
-                    </button>
-                    <button type="button" onClick={() => startPocketLesson(selectedWordIds)}>
-                      Re-render
-                    </button>
-                  </div>
+                <section className="study-player" ref={playModeRef}>
                   {studyWord && (
                     <div className="study-status">
                       <span>
@@ -837,10 +770,106 @@ function App() {
                       </button>
                     </div>
                   )}
-                  <div className="coverage-grid">
-                    <span>Ready words: {coverage.readyWords}</span>
-                    <span>Prompt clips: {coverage.promptClips}</span>
-                    <span>Rendered warnings: {renderedLesson?.warnings.length ?? 0}</span>
+                  <div className="study-stage">
+                    <div className="study-meta">
+                      <span>{rendering ? 'Rendering local audio...' : renderedLesson?.title ?? lesson.title}</span>
+                      <div className="study-toggles">
+                        <button type="button" onClick={() => setShowPinyin((value) => !value)}>
+                          Pinyin {showPinyin ? 'on' : 'off'}
+                        </button>
+                        <button type="button" onClick={() => setShowEnglish((value) => !value)}>
+                          English {showEnglish ? 'on' : 'off'}
+                        </button>
+                      </div>
+                    </div>
+                    <div className={`study-chinese ${studyDisplay.kind}`}>
+                      {studyDisplay.chinese}
+                    </div>
+                    {showPinyin && studyDisplay.pinyin && (
+                      <div className="study-pinyin">{studyDisplay.pinyin}</div>
+                    )}
+                    {showEnglish && <div className="study-meaning">{studyDisplay.english}</div>}
+                    <div className="study-time">
+                      {renderedLesson
+                        ? `${formatTime(pocketProgress.current)} / ${formatTime(pocketProgress.duration)}`
+                        : 'Import a clip pack, then render a lesson for phone-style playback.'}
+                    </div>
+                  </div>
+
+                  <div className="play-hover-menu">
+                    {renderedUrl ? (
+                      <audio
+                        ref={pocketAudioRef}
+                        src={renderedUrl}
+                        controls
+                        preload="metadata"
+                        onPlay={() => {
+                          setIsPlaying(true)
+                          if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing'
+                        }}
+                        onPause={() => {
+                          setIsPlaying(false)
+                          if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused'
+                        }}
+                        onTimeUpdate={(event) => {
+                          const audio = event.currentTarget
+                          const current = audio.currentTime
+                          const segmentIndex =
+                            renderedLesson?.segments?.findIndex(
+                              (segment) =>
+                                current >= segment.startSeconds && current < segment.endSeconds,
+                            ) ?? -1
+                          if (segmentIndex >= 0 && segmentIndex !== currentStepIndex) {
+                            setCurrentStepIndex(segmentIndex)
+                          }
+                          setPocketProgress({
+                            current,
+                            duration: audio.duration || renderedLesson?.durationSeconds || 0,
+                          })
+                        }}
+                        onEnded={async () => {
+                          setIsPlaying(false)
+                          if (renderedLesson) {
+                            await recordEvent({
+                              type: 'complete',
+                              itemType: 'lesson',
+                              itemId: renderedLesson.id,
+                              seconds: renderedLesson.durationSeconds,
+                            })
+                            await refresh()
+                          }
+                        }}
+                      />
+                    ) : (
+                      <div className="audio-placeholder">Render a lesson to create the pocket audio track.</div>
+                    )}
+                    <div className="player-controls">
+                      <button
+                        type="button"
+                        onClick={() => pocketAudioRef.current?.play()}
+                        disabled={!renderedUrl || isPlaying}
+                      >
+                        Play
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => pocketAudioRef.current?.pause()}
+                        disabled={!renderedUrl || !isPlaying}
+                      >
+                        Pause
+                      </button>
+                      <button type="button" onClick={() => startPocketLesson(selectedWordIds)}>
+                        Re-render
+                      </button>
+                      <button type="button" onClick={toggleFullscreen}>
+                        {isFullscreen ? 'Exit full screen' : 'Full screen'}
+                      </button>
+                    </div>
+                    <div className="coverage-grid">
+                      <span>Ready words: {coverage.readyWords}</span>
+                      <span>Prompt clips: {coverage.promptClips}</span>
+                      <span>Rendered warnings: {renderedLesson?.warnings.length ?? 0}</span>
+                    </div>
                   </div>
                 </section>
               )}
