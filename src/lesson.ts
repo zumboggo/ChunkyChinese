@@ -180,9 +180,9 @@ export function createPocketLesson(
 ): LessonPlan {
   const targetWords = selectTargetWords(words, manualIds, options)
   const steps: LessonStep[] = []
-  const targetEntries = targetWords.map((word) => ({
+  const targetEntries = targetWords.map((word, index) => ({
     word,
-    sentence: chooseSentenceForWord(word, sentences, targetWords),
+    sentence: chooseSentenceForWord(word, sentences, targetWords, index),
   }))
   const targetSentences = uniqueSentences(
     targetEntries
@@ -191,54 +191,12 @@ export function createPocketLesson(
   )
 
   addPrompt(steps, audioClips, 'listen', 'Listen')
-  addOpeningSentence(steps, sentences, audioClips, targetWords)
-
-  targetEntries.forEach(({ word, sentence }, index) => {
-    const prefix = `pocket-${index + 1}-${word.id}`
-
-    addPrompt(steps, audioClips, 'listen', 'Listen', word.id)
-    addWordAudio(steps, word, `${prefix}-word`)
-    addMeaningAudio(steps, word, `${prefix}-meaning`)
-    addPrompt(steps, audioClips, 'meaning', 'Meaning?', word.id)
-    addWordAudio(steps, word, `${prefix}-meaning-word`)
-    steps.push({ id: `${prefix}-pause`, kind: 'pause', seconds: 3, label: 'Think', wordId: word.id })
-    addMeaningAudio(steps, word, `${prefix}-meaning-answer`)
-    steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', wordId: word.id })
-
-    if (sentence) {
-      addPrompt(steps, audioClips, 'listen', 'Listen', word.id, sentence.id)
-      addSentenceAudio(steps, sentence, `${prefix}-sentence`)
-      addSentenceMeaningAudio(steps, sentence, `${prefix}-sentence-en`)
-      addPrompt(steps, audioClips, 'again', 'Again', word.id, sentence.id)
-      addSentenceAudio(steps, sentence, `${prefix}-sentence-again`)
-      addSentenceMeaningAudio(steps, sentence, `${prefix}-sentence-en-again`)
-      addPrompt(
-        steps,
-        audioClips,
-        ['understand', 'english', 'meaning', 'translate'][index % 4],
-        'Recall sentence',
-        word.id,
-        sentence.id,
-      )
-      addSentenceAudio(steps, sentence, `${prefix}-sentence-question`)
-      steps.push({
-        id: `${prefix}-sentence-pause`,
-        kind: 'pause',
-        seconds: 3,
-        label: 'Think',
-        wordId: word.id,
-        sentenceId: sentence.id,
-      })
-      addSentenceMeaningAudio(steps, sentence, `${prefix}-sentence-answer`)
-      steps.push({ id: `${prefix}-sentence-ding`, kind: 'ding', label: 'Ding', wordId: word.id })
-    }
+  targetWords.forEach((word, index) => {
+    addWordLearningBlock(steps, word, audioClips, `word-block-${index + 1}-${word.id}`)
   })
-
-  addRecognitionPass(steps, targetWords, audioClips)
-  addMeaningChoicePass(steps, targetWords, audioClips)
-  addSentenceChoicePass(steps, targetSentences, audioClips)
-  addStoryReviewPass(steps, targetSentences, audioClips)
-  addQuickMeaningPass(steps, targetWords, audioClips)
+  addMixedWordRecall(steps, targetWords, audioClips)
+  addSentenceSupport(steps, targetSentences.slice(0, 5), audioClips)
+  addQuickFinalPass(steps, targetWords, audioClips)
 
   return {
     id: `pocket:${Date.now()}`,
@@ -315,20 +273,34 @@ function selectionWeight(word: VocabWord): number {
   return Math.max(1, statusWeight - seenPenalty)
 }
 
+function shuffle<T>(items: T[]): T[] {
+  const output = [...items]
+  for (let index = output.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1))
+    const item = output[index]
+    output[index] = output[swapIndex]
+    output[swapIndex] = item
+  }
+  return output
+}
+
 function chooseSentenceForWord(
   word: VocabWord,
   sentences: Sentence[],
   targetWords: VocabWord[],
+  offset = 0,
 ): Sentence | undefined {
   const knownIds = new Set(targetWords.map((target) => target.word))
   return sentences
     .filter((sentence) => sentence.targetWords.includes(word.word))
-    .sort((a, b) => sentenceScore(a, knownIds) - sentenceScore(b, knownIds))[0]
+    .sort((a, b) => sentenceScore(a, knownIds, offset) - sentenceScore(b, knownIds, offset))[0]
 }
 
-function sentenceScore(sentence: Sentence, targetWords: Set<string>): number {
+function sentenceScore(sentence: Sentence, targetWords: Set<string>, offset = 0): number {
   const overlap = sentence.targetWords.filter((word) => targetWords.has(word)).length
-  return (sentence.difficulty ?? 5) - overlap
+  const lengthPenalty = sentence.chinese.length / 18
+  const multiTargetPenalty = overlap > 2 ? 12 : overlap > 1 ? 2 : 0
+  return (sentence.difficulty ?? 5) + lengthPenalty + multiTargetPenalty - overlap + offset / 100
 }
 
 function contrastPrompt(word: VocabWord, words: VocabWord[]): string {
@@ -342,84 +314,70 @@ function contrastPrompt(word: VocabWord, words: VocabWord[]): string {
   return `Which means ${word.meaning}? ${word.word} or ${distractor.word}?`
 }
 
-function addOpeningSentence(
+function addWordLearningBlock(
   steps: LessonStep[],
-  sentences: Sentence[],
+  word: VocabWord,
   audioClips: AudioClip[],
-  targetWords: VocabWord[],
+  prefix: string,
 ) {
-  const opener =
-    sentences.find((sentence) => sentence.audioSentenceId && sentence.audioEnglishId) ??
-    sentences.find((sentence) =>
-      sentence.targetWords.some((target) =>
-        targetWords.some((word) => word.word === target && word.status !== 'known'),
-      ),
-    )
-  if (!opener) return
-  addPrompt(steps, audioClips, 'listen', 'Listen', undefined, opener.id)
-  addSentenceAudio(steps, opener, 'opening-sentence')
-  addSentenceMeaningAudio(steps, opener, 'opening-english')
-  addPrompt(steps, audioClips, 'again', 'Again', undefined, opener.id)
-  addSentenceAudio(steps, opener, 'opening-sentence-again')
-  addSentenceMeaningAudio(steps, opener, 'opening-english-again')
+  addWordAudio(steps, word, `${prefix}-word-1`)
+  addMeaningAudio(steps, word, `${prefix}-meaning-1`)
+  addWordAudio(steps, word, `${prefix}-word-2`)
+  addMeaningAudio(steps, word, `${prefix}-meaning-2`)
+  addChineseToEnglishRecall(steps, word, audioClips, `${prefix}-zh-en`, 2.6)
+  addEnglishToChineseWordRecall(steps, word, audioClips, `${prefix}-en-zh`, 2.6)
+  addWordSpeakingPractice(steps, word, audioClips, `${prefix}-speak`, 1.8)
+  steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', wordId: word.id })
 }
 
-function addRecognitionPass(
+function addMixedWordRecall(
   steps: LessonStep[],
   words: VocabWord[],
   audioClips: AudioClip[],
 ) {
-  words.forEach((word, index) => {
-    const other = words[(index + 2) % words.length]
-    const prefix = `recognition-${index}-${word.id}`
-    addPrompt(steps, audioClips, 'which-chinese-means', 'Which Chinese means?', word.id)
-    addMeaningAudio(steps, word, `${prefix}-meaning`)
-    addWordAudio(steps, word, `${prefix}-option-a`)
-    if (other && other.id !== word.id) {
-      addPrompt(steps, audioClips, 'or', 'Or', word.id)
-      addWordAudio(steps, other, `${prefix}-option-b`)
-    }
-    steps.push({ id: `${prefix}-pause`, kind: 'pause', seconds: 3, label: 'Think', wordId: word.id })
-    addWordAudio(steps, word, `${prefix}-answer`)
-    steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', wordId: word.id })
+  for (let round = 1; round <= 2; round += 1) {
+    shuffle(words).forEach((word, index) => {
+      addChineseToEnglishRecall(
+        steps,
+        word,
+        audioClips,
+        `mixed-${round}-zh-en-${index}-${word.id}`,
+        round === 1 ? 2.2 : 2,
+      )
+    })
+    shuffle(words).forEach((word, index) => {
+      addEnglishToChineseWordRecall(
+        steps,
+        word,
+        audioClips,
+        `mixed-${round}-en-zh-${index}-${word.id}`,
+        round === 1 ? 2.2 : 2,
+      )
+    })
+  }
+  shuffle(words).forEach((word, index) => {
+    addWordSpeakingPractice(steps, word, audioClips, `mixed-speak-${index}-${word.id}`, 1.6)
+  })
+  buildContrastPairs(words).forEach(([word, other], index) => {
+    addContrastQuestion(steps, word, other, audioClips, `contrast-${index}-${word.id}`)
   })
 }
 
-function addMeaningChoicePass(
-  steps: LessonStep[],
-  words: VocabWord[],
-  audioClips: AudioClip[],
-) {
-  words.forEach((word, index) => {
-    const other =
-      words.find((candidate) => candidate.id !== word.id && candidate.meaning !== word.meaning) ??
-      words[(index + 1) % words.length]
-    if (!other || other.id === word.id) return
-    const prefix = `meaning-choice-${index}-${word.id}`
-    addPrompt(steps, audioClips, 'choose-the-meaning', 'Choose the meaning', word.id)
-    addWordAudio(steps, word, `${prefix}-word`)
-    addMeaningAudio(steps, other, `${prefix}-a`)
-    addMeaningAudio(steps, word, `${prefix}-b`)
-    steps.push({ id: `${prefix}-pause`, kind: 'pause', seconds: 3, label: 'Think', wordId: word.id })
-    addMeaningAudio(steps, word, `${prefix}-answer`)
-    steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', wordId: word.id })
-  })
-}
-
-function addSentenceChoicePass(
+function addSentenceSupport(
   steps: LessonStep[],
   sentences: Sentence[],
   audioClips: AudioClip[],
 ) {
-  sentences.slice(0, 3).forEach((sentence, index) => {
-    const other =
-      sentences.find((candidate) => candidate.id !== sentence.id) ?? sentences[(index + 1) % sentences.length]
-    if (!other || other.id === sentence.id) return
-    const prefix = `sentence-choice-${index}-${sentence.id}`
-    addPrompt(steps, audioClips, 'choose-the-meaning', 'Which sentence means?', undefined, sentence.id)
-    addSentenceMeaningAudio(steps, sentence, `${prefix}-meaning`)
-    addSentenceAudio(steps, sentence, `${prefix}-option-a`)
-    addSentenceAudio(steps, other, `${prefix}-option-b`)
+  if (sentences.length === 0) return
+  addPrompt(steps, audioClips, 'listen', 'Sentence listening')
+  sentences.forEach((sentence, index) => {
+    const prefix = `sentence-support-${index}-${sentence.id}`
+    addSentenceAudio(steps, sentence, `${prefix}-sentence-1`)
+    addSentenceMeaningAudio(steps, sentence, `${prefix}-meaning-1`)
+    addSentenceAudio(steps, sentence, `${prefix}-sentence-2`)
+    addSentenceMeaningAudio(steps, sentence, `${prefix}-meaning-2`)
+    addPrompt(steps, audioClips, 'meaning', 'What does it mean?', undefined, sentence.id)
+    addSentenceAudio(steps, sentence, `${prefix}-recall-sentence`)
     steps.push({
       id: `${prefix}-pause`,
       kind: 'pause',
@@ -427,9 +385,131 @@ function addSentenceChoicePass(
       label: 'Think',
       sentenceId: sentence.id,
     })
-    addSentenceAudio(steps, sentence, `${prefix}-answer`)
+    addSentenceMeaningAudio(steps, sentence, `${prefix}-answer`)
     steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', sentenceId: sentence.id })
   })
+}
+
+function addQuickFinalPass(
+  steps: LessonStep[],
+  words: VocabWord[],
+  audioClips: AudioClip[],
+) {
+  addPrompt(steps, audioClips, 'quick-meaning', 'Quick meaning')
+  for (let round = 1; round <= 2; round += 1) {
+    words.forEach((word, index) => {
+      const prefix = `quick-${round}-zh-en-${index}-${word.id}`
+      addWordAudio(steps, word, `${prefix}-word`)
+      steps.push({
+        id: `${prefix}-pause`,
+        kind: 'pause',
+        seconds: 0.8,
+        label: 'Think',
+        wordId: word.id,
+      })
+      addMeaningAudio(steps, word, `${prefix}-meaning`)
+    })
+    shuffle(words).forEach((word, index) => {
+      const prefix = `quick-${round}-en-zh-${index}-${word.id}`
+      addMeaningAudio(steps, word, `${prefix}-meaning`)
+      steps.push({
+        id: `${prefix}-pause`,
+        kind: 'pause',
+        seconds: 0.8,
+        label: 'Think',
+        wordId: word.id,
+      })
+      addWordAudio(steps, word, `${prefix}-word`)
+    })
+  }
+  steps.push({ id: 'quick-final-ding', kind: 'ding', label: 'Ding' })
+}
+
+function addChineseToEnglishRecall(
+  steps: LessonStep[],
+  word: VocabWord,
+  audioClips: AudioClip[],
+  prefix: string,
+  pauseSeconds: number,
+) {
+  addWhatDoesPrompt(steps, word, audioClips, `${prefix}-prompt`)
+  addWordAudio(steps, word, `${prefix}-word`)
+  steps.push({ id: `${prefix}-pause`, kind: 'pause', seconds: pauseSeconds, label: 'Think', wordId: word.id })
+  addMeaningAudio(steps, word, `${prefix}-meaning`)
+}
+
+function addEnglishToChineseWordRecall(
+  steps: LessonStep[],
+  word: VocabWord,
+  audioClips: AudioClip[],
+  prefix: string,
+  pauseSeconds: number,
+) {
+  addPrompt(steps, audioClips, 'which-chinese-means', 'Which word means this?', word.id)
+  addMeaningAudio(steps, word, `${prefix}-meaning`)
+  steps.push({ id: `${prefix}-pause`, kind: 'pause', seconds: pauseSeconds, label: 'Think', wordId: word.id })
+  addWordAudio(steps, word, `${prefix}-word`)
+}
+
+function addWordSpeakingPractice(
+  steps: LessonStep[],
+  word: VocabWord,
+  audioClips: AudioClip[],
+  prefix: string,
+  pauseSeconds: number,
+) {
+  addPrompt(steps, audioClips, 'again', 'Say it', word.id)
+  addWordAudio(steps, word, `${prefix}-word-1`)
+  steps.push({ id: `${prefix}-pause`, kind: 'pause', seconds: pauseSeconds, label: 'Say it', wordId: word.id })
+  addWordAudio(steps, word, `${prefix}-word-2`)
+}
+
+function addContrastQuestion(
+  steps: LessonStep[],
+  word: VocabWord,
+  other: VocabWord,
+  audioClips: AudioClip[],
+  prefix: string,
+) {
+  addPrompt(steps, audioClips, 'which-chinese-means', 'Which means?', word.id)
+  addMeaningAudio(steps, word, `${prefix}-meaning`)
+  addWordAudio(steps, word, `${prefix}-option-a`)
+  addPrompt(steps, audioClips, 'or', 'Or', word.id)
+  addWordAudio(steps, other, `${prefix}-option-b`)
+  steps.push({ id: `${prefix}-pause`, kind: 'pause', seconds: 2, label: 'Think', wordId: word.id })
+  addWordAudio(steps, word, `${prefix}-answer`)
+  steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', wordId: word.id })
+}
+
+function addWhatDoesPrompt(
+  steps: LessonStep[],
+  word: VocabWord,
+  audioClips: AudioClip[],
+  id: string,
+) {
+  const clip = findPrompt(audioClips, `what-does-${word.word}`)
+  if (clip) {
+    steps.push({
+      id,
+      kind: 'audio',
+      audioId: clip.id,
+      label: `What does ${word.word} mean?`,
+      wordId: word.id,
+    })
+    return
+  }
+  addPrompt(steps, audioClips, 'meaning', 'What does this mean?', word.id)
+}
+
+function buildContrastPairs(words: VocabWord[]): Array<[VocabWord, VocabWord]> {
+  if (words.length < 2) return []
+  return shuffle(words)
+    .map((word, index): [VocabWord, VocabWord] => [
+      word,
+      words[(index + 2) % words.length] ?? words[0] ?? word,
+    ])
+    .filter(([word, other]) => word.id !== other.id)
+    .slice(0, 2)
 }
 
 function uniqueSentences(sentences: Sentence[]): Sentence[] {
@@ -438,50 +518,6 @@ function uniqueSentences(sentences: Sentence[]): Sentence[] {
     if (seen.has(sentence.id)) return false
     seen.add(sentence.id)
     return true
-  })
-}
-
-function addStoryReviewPass(
-  steps: LessonStep[],
-  sentences: Sentence[],
-  audioClips: AudioClip[],
-) {
-  if (sentences.length === 0) return
-  addPrompt(steps, audioClips, 'listen', 'Listen')
-  sentences.forEach((sentence, index) => {
-    const prefix = `story-review-${index}-${sentence.id}`
-    addSentenceAudio(steps, sentence, `${prefix}-sentence`)
-    if (index % 2 === 0) {
-      steps.push({
-        id: `${prefix}-pause`,
-        kind: 'pause',
-        seconds: 3,
-        label: 'Think',
-        sentenceId: sentence.id,
-      })
-    }
-    addSentenceMeaningAudio(steps, sentence, `${prefix}-meaning`)
-    steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', sentenceId: sentence.id })
-    if (index % 2 === 1) {
-      addPrompt(steps, audioClips, 'again', 'Again', undefined, sentence.id)
-      addSentenceAudio(steps, sentence, `${prefix}-again`)
-      addSentenceMeaningAudio(steps, sentence, `${prefix}-again-meaning`)
-    }
-  })
-}
-
-function addQuickMeaningPass(
-  steps: LessonStep[],
-  words: VocabWord[],
-  audioClips: AudioClip[],
-) {
-  addPrompt(steps, audioClips, 'quick-meaning', 'Quick meaning')
-  words.forEach((word, index) => {
-    const prefix = `quick-${index}-${word.id}`
-    addWordAudio(steps, word, `${prefix}-word`)
-    steps.push({ id: `${prefix}-pause`, kind: 'pause', seconds: 3, label: 'Think', wordId: word.id })
-    addMeaningAudio(steps, word, `${prefix}-meaning`)
-    steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', wordId: word.id })
   })
 }
 
