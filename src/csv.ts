@@ -117,10 +117,11 @@ export function vocabFromCsvRows(rows: Record<string, string>[]): VocabWord[] {
         notes: readColumn(row, ['notes', 'Reason', 'Example']),
         createdAt: now,
         updatedAt: now,
-        seenCount: 0,
-        correctCount: 0,
-        wrongCount: 0,
-        listenedSeconds: 0,
+        lastReviewedAt: readColumn(row, ['lastReviewedAt']) || undefined,
+        seenCount: parseNumber(readColumn(row, ['seenCount'])) ?? 0,
+        correctCount: parseNumber(readColumn(row, ['correctCount'])) ?? 0,
+        wrongCount: parseNumber(readColumn(row, ['wrongCount'])) ?? 0,
+        listenedSeconds: parseNumber(readColumn(row, ['listenedSeconds'])) ?? 0,
       } satisfies VocabWord
     })
     .filter((word): word is VocabWord => Boolean(word))
