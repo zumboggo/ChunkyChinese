@@ -19,7 +19,7 @@ import {
   seedLmsWordsIfEmpty,
   updateWordStatus,
 } from './db'
-import { createLesson, createPocketLesson } from './lesson'
+import { createPocketLesson } from './lesson'
 import { renderLessonToWav } from './renderAudio'
 import type {
   AudioClip,
@@ -117,7 +117,7 @@ function App() {
     navigator.mediaSession.metadata = new MediaMetadata({
       title: renderedLesson.title,
       artist: 'Chunky Chinese Vocab',
-      album: 'Pocket Lesson',
+      album: '5 Word Lesson',
       artwork: [
         {
           src: `${import.meta.env.BASE_URL}pwa-192.svg`,
@@ -179,6 +179,12 @@ function App() {
     sentences,
     words,
   ])
+  const lessonWords = useMemo(
+    () =>
+      lesson?.targetWords
+        .map((target) => words.find((word) => word.id === target.id) ?? target) ?? [],
+    [lesson, words],
+  )
 
   const handleStatus = useCallback(async (ids: string[], status: WordStatus) => {
     if (ids.length === 0) return
@@ -194,7 +200,7 @@ function App() {
         target instanceof HTMLInputElement ||
         target instanceof HTMLSelectElement ||
         target instanceof HTMLTextAreaElement
-      if (isTyping || screen !== 'lesson' || lessonMode !== 'pocket' || !studyWord) return
+      if (isTyping || screen !== 'lesson' || !studyWord) return
       if (event.key.toLocaleLowerCase() === 'k') {
         event.preventDefault()
         void handleStatus([studyWord.id], 'known')
@@ -206,7 +212,7 @@ function App() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [lessonMode, screen, studyWord, handleStatus])
+  }, [screen, studyWord, handleStatus])
 
   async function toggleFullscreen() {
     if (document.fullscreenElement) {
@@ -220,19 +226,6 @@ function App() {
     const nextStatus: WordStatus =
       word.status === 'known' ? 'learning' : word.status === 'familiar' ? 'known' : 'familiar'
     await handleStatus([word.id], nextStatus)
-  }
-
-  function startLesson(manualIds: string[] = []) {
-    setLessonMode('live')
-    const nextLesson = createLesson(words, sentences, manualIds)
-    setLesson(nextLesson)
-    setCurrentStepIndex(0)
-    setScreen('lesson')
-    setLastSummary(
-      nextLesson.targetWords.length > 0
-        ? `Lesson ready: ${nextLesson.targetWords.map((word) => word.word).join(', ')}`
-        : 'No non-known target words are available.',
-    )
   }
 
   async function startPocketLesson(
@@ -259,11 +252,11 @@ function App() {
       setPocketProgress({ current: 0, duration: rendered.durationSeconds })
       setLastSummary(
         rendered.warnings.length > 0
-          ? `Pocket lesson rendered with ${rendered.warnings.length} warning(s).`
-          : 'Pocket lesson rendered and ready for background-style playback.',
+          ? `5 word lesson rendered with ${rendered.warnings.length} warning(s).`
+          : '5 word lesson rendered and ready for background-style playback.',
       )
     } catch (error) {
-      setLastSummary(error instanceof Error ? error.message : 'Could not render pocket lesson.')
+      setLastSummary(error instanceof Error ? error.message : 'Could not render 5 word lesson.')
     } finally {
       setRendering(false)
     }
@@ -454,7 +447,7 @@ function App() {
               <p>Hands-free active recall from your LMS target words.</p>
             </div>
             <button className="primary" type="button" onClick={() => startPocketLesson()}>
-              Start pocket lesson
+              Start 5 word lesson
             </button>
           </div>
 
@@ -519,9 +512,6 @@ function App() {
             <button type="button" onClick={() => setScreen('import')}>
               Import data/audio
             </button>
-            <button type="button" onClick={() => startLesson()}>
-              Live mode lesson
-            </button>
           </div>
         </section>
       )}
@@ -539,7 +529,7 @@ function App() {
               onClick={() => startPocketLesson(selectedWordIds)}
               disabled={selectedWordIds.length === 0}
             >
-              Pocket lesson from selected
+              5 word lesson from selected
             </button>
           </div>
 
@@ -738,27 +728,6 @@ function App() {
         <section className="screen lesson-screen">
           {lesson ? (
             <>
-              <div className="mode-row">
-                <button className="primary" type="button" onClick={() => startPocketLesson([], { randomize: true })}>
-                  Random lesson
-                </button>
-                <button
-                  type="button"
-                  className={lessonMode === 'pocket' ? 'active' : ''}
-                  onClick={() => setLessonMode('pocket')}
-                >
-                  Pocket Mode
-                </button>
-                <button
-                  type="button"
-                  className={lessonMode === 'live' ? 'active' : ''}
-                  onClick={() => setLessonMode('live')}
-                >
-                  Live Debug Mode
-                </button>
-              </div>
-
-              {lessonMode === 'pocket' && (
                 <section className="study-player" ref={playModeRef}>
                   {studyWord && (
                     <div className="study-status">
@@ -797,6 +766,22 @@ function App() {
                         ? `${formatTime(pocketProgress.current)} / ${formatTime(pocketProgress.duration)}`
                         : 'Import a clip pack, then render a lesson for phone-style playback.'}
                     </div>
+                    {lessonWords.length > 0 && (
+                      <div className="study-target-strip" aria-label="Lesson words">
+                        {lessonWords.map((word) => (
+                          <button
+                            key={word.id}
+                            type="button"
+                            className={`study-target-word word-row-${word.status}`}
+                            onClick={() => cycleWordStatus(word)}
+                            title="Click to cycle familiar / known"
+                          >
+                            <strong>{word.word}</strong>
+                            <small>{word.status}</small>
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   <div className="play-hover-menu">
@@ -844,7 +829,7 @@ function App() {
                         }}
                       />
                     ) : (
-                      <div className="audio-placeholder">Render a lesson to create the pocket audio track.</div>
+                      <div className="audio-placeholder">Render a lesson to create the audio track.</div>
                     )}
                     <div className="player-controls">
                       <button
@@ -861,11 +846,8 @@ function App() {
                       >
                         Pause
                       </button>
-                      <button type="button" onClick={() => startPocketLesson(selectedWordIds, { randomize: false })}>
+                      <button type="button" onClick={() => startPocketLesson(selectedWordIds)}>
                         Re-render
-                      </button>
-                      <button type="button" onClick={() => startPocketLesson(selectedWordIds, { randomize: true })}>
-                        Randomize
                       </button>
                       <button type="button" onClick={toggleFullscreen}>
                         {isFullscreen ? 'Exit full screen' : 'Full screen'}
@@ -878,7 +860,6 @@ function App() {
                     </div>
                   </div>
                 </section>
-              )}
 
               {lessonMode === 'live' && (
               <div className="lesson-card">
@@ -1009,7 +990,7 @@ function App() {
               <h2>No lesson loaded</h2>
               <p>Start a lesson from Dashboard or select up to five words in Word Manager.</p>
               <button className="primary" type="button" onClick={() => startPocketLesson()}>
-                Start pocket lesson
+                Start 5 word lesson
               </button>
             </section>
           )}

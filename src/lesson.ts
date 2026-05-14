@@ -242,7 +242,7 @@ export function createPocketLesson(
 
   return {
     id: `pocket:${Date.now()}`,
-    title: `${targetWords.length}-word pocket lesson`,
+    title: `${targetWords.length} word lesson`,
     targetWords,
     steps,
   }
