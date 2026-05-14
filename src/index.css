@@ -131,6 +131,13 @@ dt {
   text-align: left;
 }
 
+.manager-heading-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
 .brand-mark {
   position: relative;
   width: 54px;
@@ -662,6 +669,21 @@ dt {
   bottom: clamp(10px, 2vw, 24px);
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(14px);
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+}
+
+.compact-toggle {
+  justify-content: flex-start;
+}
+
+.end-actions {
+  justify-content: flex-end;
 }
 
 kbd {

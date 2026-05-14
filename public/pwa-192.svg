@@ -1,6 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-label="Chunky Chinese Vocab">
-  <rect width="192" height="192" rx="34" fill="#167c80"/>
-  <circle cx="145" cy="48" r="20" fill="#f7c66b"/>
-  <path d="M48 126c18 14 44 14 62 0" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
-  <text x="48" y="94" fill="#fff" font-family="Arial, sans-serif" font-size="54" font-weight="800">中</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-label="Chunky Chinese">
+  <defs>
+    <linearGradient id="bg" x1="24" y1="12" x2="168" y2="184" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffeaa8"/>
+      <stop offset=".52" stop-color="#f2b13a"/>
+      <stop offset="1" stop-color="#c94d34"/>
+    </linearGradient>
+    <linearGradient id="robe" x1="46" y1="112" x2="146" y2="182" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d7333f"/>
+      <stop offset=".48" stop-color="#b52035"/>
+      <stop offset=".5" stop-color="#f4c237"/>
+      <stop offset=".63" stop-color="#f4c237"/>
+      <stop offset=".65" stop-color="#9e2433"/>
+      <stop offset="1" stop-color="#7d1f30"/>
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="44" fill="url(#bg)"/>
+  <path d="M24 165c8-45 37-70 72-70s64 25 72 70c-21 16-123 16-144 0Z" fill="url(#robe)"/>
+  <ellipse cx="96" cy="136" rx="31" ry="34" fill="#ffe2b2"/>
+  <circle cx="62" cy="76" r="15" fill="#ffd7a0"/>
+  <circle cx="130" cy="76" r="15" fill="#ffd7a0"/>
+  <circle cx="96" cy="73" r="50" fill="#ffd7a0"/>
+  <path d="M66 40c9-22 51-22 60 0-5 14-55 14-60 0Z" fill="#8c321e"/>
+  <circle cx="96" cy="32" r="13" fill="#8c321e"/>
+  <path d="M73 79c7 6 14 6 21 0M98 79c7 6 14 6 21 0" fill="none" stroke="#4b2419" stroke-width="7" stroke-linecap="round"/>
+  <path d="M74 98c12 18 32 18 44 0" fill="none" stroke="#8c321e" stroke-width="9" stroke-linecap="round"/>
+  <path d="M42 163c31 15 78 15 108 0" fill="none" stroke="#f4c237" stroke-width="14" stroke-linecap="round"/>
 </svg>

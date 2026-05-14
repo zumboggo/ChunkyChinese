@@ -35,7 +35,7 @@ import type {
 } from './types'
 
 type Screen = 'dashboard' | 'words' | 'import' | 'lesson'
-type LessonStartOptions = { randomize?: boolean }
+type LessonStartOptions = { randomize?: boolean; playAfterRender?: boolean }
 
 const emptyStats: DashboardStats = {
   counts: { new: 0, learning: 0, familiar: 0, known: 0, review: 0 },
@@ -68,6 +68,7 @@ function App() {
   const [showEnglish, setShowEnglish] = useState(true)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [autoNextLesson, setAutoNextLesson] = useState(false)
   const [autoAdvance, setAutoAdvance] = useState(true)
   const [playbackRate, setPlaybackRate] = useState(1)
   const [lastSummary, setLastSummary] = useState<string>('Ready.')
@@ -241,7 +242,8 @@ function App() {
     setRendering(true)
     setScreen('lesson')
     try {
-      const nextLesson = createPocketLesson(words, sentences, audioClips, manualIds, options)
+      const { playAfterRender = false, ...selectionOptions } = options
+      const nextLesson = createPocketLesson(words, sentences, audioClips, manualIds, selectionOptions)
       setLesson(nextLesson)
       setCurrentStepIndex(0)
       if (nextLesson.steps.filter((step) => step.kind === 'audio').length === 0) {
@@ -255,6 +257,11 @@ function App() {
       setRenderedLesson(rendered)
       setRenderedUrl(url)
       setPocketProgress({ current: 0, duration: rendered.durationSeconds })
+      if (playAfterRender) {
+        window.setTimeout(() => {
+          void pocketAudioRef.current?.play()
+        }, 120)
+      }
       setLastSummary(
         rendered.warnings.length > 0
           ? `5 word lesson rendered with ${rendered.warnings.length} warning(s).`
@@ -563,14 +570,19 @@ function App() {
               <h1>Word Manager</h1>
               <p>{filteredWords.length} visible words. Pinyin is support text, not lesson-first.</p>
             </div>
-            <button
-              className="primary"
-              type="button"
-              onClick={() => startPocketLesson(selectedWordIds)}
-              disabled={selectedWordIds.length === 0}
-            >
-              5 word lesson from selected
-            </button>
+            <div className="manager-heading-actions">
+              <button type="button" onClick={handleWordsCsvExport}>
+                Export CSV
+              </button>
+              <button
+                className="primary"
+                type="button"
+                onClick={() => startPocketLesson(selectedWordIds)}
+                disabled={selectedWordIds.length === 0}
+              >
+                5 word lesson from selected
+              </button>
+            </div>
           </div>
 
           <div className="filters">
@@ -626,9 +638,6 @@ function App() {
             <button type="button" onClick={() => setSelectedWordIds([])}>
               Clear
             </button>
-            <button type="button" onClick={handleWordsCsvExport}>
-              Export CSV
-            </button>
           </div>
 
           <div className="word-list">
@@ -677,6 +686,12 @@ function App() {
                 </div>
               </article>
             ))}
+          </div>
+
+          <div className="button-row end-actions">
+            <button type="button" onClick={handleWordsCsvExport}>
+              Export CSV
+            </button>
           </div>
         </section>
       )}
@@ -865,6 +880,9 @@ function App() {
                               seconds: renderedLesson.durationSeconds,
                             })
                             await refresh()
+                            if (autoNextLesson) {
+                              await startPocketLesson([], { randomize: true, playAfterRender: true })
+                            }
                           }
                         }}
                       />
@@ -886,9 +904,18 @@ function App() {
                       >
                         Pause
                       </button>
-                      <button type="button" onClick={() => startPocketLesson(selectedWordIds)}>
-                        Re-render
+                      <button type="button" onClick={() => startPocketLesson()} disabled={rendering}>
+                        Next Lesson
                       </button>
+                      <label className="toggle compact-toggle">
+                        <input
+                          type="checkbox"
+                          aria-label="Auto advance to next lesson"
+                          checked={autoNextLesson}
+                          onChange={(event) => setAutoNextLesson(event.target.checked)}
+                        />
+                        Auto advance to next lesson
+                      </label>
                       <button type="button" onClick={toggleFullscreen}>
                         {isFullscreen ? 'Exit full screen' : 'Full screen'}
                       </button>
