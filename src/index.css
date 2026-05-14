@@ -1,11 +1,11 @@
 :root {
-  --bg: #f7f8fb;
+  --bg: #d7ecff;
   --surface: #ffffff;
-  --surface-2: #eef3f7;
+  --surface-2: #eef7ff;
   --text: #17202a;
   --muted: #667382;
   --border: #d9e0e8;
-  --accent: #167c80;
+  --accent: #176fc2;
   --accent-2: #d85831;
   --good: #1f8a4c;
   --warn: #bb7a14;
@@ -15,7 +15,9 @@
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   color: var(--text);
-  background: var(--bg);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.78), transparent 34rem),
+    linear-gradient(135deg, #e8f5ff 0%, #b9ddff 45%, #7fb4ef 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -28,6 +30,7 @@
 
 body {
   margin: 0;
+  min-height: 100svh;
 }
 
 button,
@@ -362,6 +365,91 @@ dt {
   width: 100%;
 }
 
+.study-player {
+  display: grid;
+  gap: 14px;
+}
+
+.study-stage {
+  min-height: min(70svh, 720px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: clamp(18px, 4vw, 44px);
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, rgba(247, 252, 255, 0.94), rgba(190, 226, 255, 0.78)),
+    linear-gradient(135deg, #095db3, #5fb3ff);
+  box-shadow: 0 24px 70px rgba(26, 83, 145, 0.24);
+}
+
+.study-meta,
+.study-status,
+.study-time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.study-meta span,
+.study-status span,
+.study-time {
+  color: #31506d;
+  font-weight: 800;
+}
+
+.study-meta button {
+  min-height: 38px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.study-chinese {
+  width: 100%;
+  color: #08223d;
+  font-weight: 950;
+  line-height: 1.08;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.study-chinese.word {
+  font-size: clamp(5.2rem, 20vw, 14rem);
+}
+
+.study-chinese.sentence {
+  font-size: clamp(3rem, 10vw, 8.5rem);
+}
+
+.study-pinyin {
+  color: #31506d;
+  font-size: clamp(1.4rem, 4vw, 2.5rem);
+  font-weight: 800;
+  text-align: center;
+}
+
+.study-meaning {
+  color: #20384e;
+  font-size: clamp(1.1rem, 3vw, 2rem);
+  font-weight: 800;
+  text-align: center;
+}
+
+.study-status {
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: var(--radius);
+}
+
+.study-status button {
+  min-width: 110px;
+}
+
 .audio-placeholder {
   border: 1px dashed var(--border);
   border-radius: 8px;
@@ -503,6 +591,15 @@ dt {
   .filters,
   .target-strip {
     grid-template-columns: 1fr;
+  }
+
+  .study-stage {
+    min-height: 62svh;
+    border-radius: 12px;
+  }
+
+  .study-status button {
+    flex: 1 1 120px;
   }
 
   .word-row {

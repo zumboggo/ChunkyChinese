@@ -105,6 +105,17 @@ export interface RenderedLesson {
   durationSeconds: number
   blob: Blob
   warnings: string[]
+  segments?: RenderedLessonSegment[]
+}
+
+export interface RenderedLessonSegment {
+  stepId: string
+  startSeconds: number
+  endSeconds: number
+  wordId?: string
+  sentenceId?: string
+  label: string
+  kind: LessonStep['kind']
 }
 
 export interface ListeningEvent {

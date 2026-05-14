@@ -95,7 +95,7 @@ export async function seedLmsWordsIfEmpty(): Promise<number> {
   const count = await db.count('vocabWords')
   if (count > 0) return 0
 
-  const response = await fetch('/seed/lms-vocab-188.csv')
+  const response = await fetch(`${import.meta.env.BASE_URL}seed/lms-vocab-188.csv`)
   if (!response.ok) return 0
   const rows = parseCsv(await response.text())
   const words = vocabFromCsvRows(rows)

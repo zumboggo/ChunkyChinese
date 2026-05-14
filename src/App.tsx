@@ -60,6 +60,7 @@ function App() {
   const [renderedUrl, setRenderedUrl] = useState('')
   const [rendering, setRendering] = useState(false)
   const [pocketProgress, setPocketProgress] = useState({ current: 0, duration: 0 })
+  const [showPinyin, setShowPinyin] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [autoAdvance, setAutoAdvance] = useState(true)
   const [playbackRate, setPlaybackRate] = useState(1)
@@ -106,8 +107,16 @@ function App() {
       artist: 'Chunky Chinese Vocab',
       album: 'Pocket Lesson',
       artwork: [
-        { src: '/pwa-192.svg', sizes: '192x192', type: 'image/svg+xml' },
-        { src: '/pwa-512.svg', sizes: '512x512', type: 'image/svg+xml' },
+        {
+          src: `${import.meta.env.BASE_URL}pwa-192.svg`,
+          sizes: '192x192',
+          type: 'image/svg+xml',
+        },
+        {
+          src: `${import.meta.env.BASE_URL}pwa-512.svg`,
+          sizes: '512x512',
+          type: 'image/svg+xml',
+        },
       ],
     })
     navigator.mediaSession.setActionHandler('play', () => {
@@ -138,9 +147,21 @@ function App() {
   )
 
   const currentStep = lesson?.steps[currentStepIndex]
+  const currentSegment = renderedLesson?.segments?.find(
+    (segment) =>
+      pocketProgress.current >= segment.startSeconds &&
+      pocketProgress.current < segment.endSeconds,
+  )
   const targetWord = currentStep?.wordId
     ? words.find((word) => word.id === currentStep.wordId)
     : undefined
+  const studyWord = currentSegment?.wordId
+    ? words.find((word) => word.id === currentSegment.wordId)
+    : targetWord
+  const studySentence = currentSegment?.sentenceId
+    ? sentences.find((sentence) => sentence.id === currentSegment.sentenceId)
+    : undefined
+  const studyDisplay = getStudyDisplay(studyWord, studySentence)
   const coverage = useMemo(() => getAudioCoverage(words, sentences, audioClips), [
     audioClips,
     sentences,
@@ -683,16 +704,28 @@ function App() {
               </div>
 
               {lessonMode === 'pocket' && (
-                <section className="lesson-card pocket-player">
-                  <div className="lesson-now">
-                    <span>{rendering ? 'Rendering local audio...' : 'Pocket audio track'}</span>
-                    <h2>{renderedLesson?.title ?? lesson.title}</h2>
-                    <p>
+                <section className="study-player">
+                  <div className="study-stage">
+                    <div className="study-meta">
+                      <span>{rendering ? 'Rendering local audio...' : renderedLesson?.title ?? lesson.title}</span>
+                      <button type="button" onClick={() => setShowPinyin((value) => !value)}>
+                        Pinyin {showPinyin ? 'on' : 'off'}
+                      </button>
+                    </div>
+                    <div className={`study-chinese ${studyDisplay.kind}`}>
+                      {studyDisplay.chinese}
+                    </div>
+                    {showPinyin && studyDisplay.pinyin && (
+                      <div className="study-pinyin">{studyDisplay.pinyin}</div>
+                    )}
+                    <div className="study-meaning">{studyDisplay.english}</div>
+                    <div className="study-time">
                       {renderedLesson
                         ? `${formatTime(pocketProgress.current)} / ${formatTime(pocketProgress.duration)}`
                         : 'Import a clip pack, then render a lesson for phone-style playback.'}
-                    </p>
+                    </div>
                   </div>
+
                   {renderedUrl ? (
                     <audio
                       ref={pocketAudioRef}
@@ -709,8 +742,17 @@ function App() {
                       }}
                       onTimeUpdate={(event) => {
                         const audio = event.currentTarget
+                        const current = audio.currentTime
+                        const segmentIndex =
+                          renderedLesson?.segments?.findIndex(
+                            (segment) =>
+                              current >= segment.startSeconds && current < segment.endSeconds,
+                          ) ?? -1
+                        if (segmentIndex >= 0 && segmentIndex !== currentStepIndex) {
+                          setCurrentStepIndex(segmentIndex)
+                        }
                         setPocketProgress({
-                          current: audio.currentTime,
+                          current,
                           duration: audio.duration || renderedLesson?.durationSeconds || 0,
                         })
                       }}
@@ -749,6 +791,22 @@ function App() {
                       Re-render
                     </button>
                   </div>
+                  {studyWord && (
+                    <div className="study-status">
+                      <span>
+                        {studyWord.word} is <strong>{studyWord.status}</strong>
+                      </span>
+                      <button type="button" onClick={() => handleStatus([studyWord.id], 'known')}>
+                        Known
+                      </button>
+                      <button type="button" onClick={() => handleStatus([studyWord.id], 'familiar')}>
+                        Familiar
+                      </button>
+                      <button type="button" onClick={() => handleStatus([studyWord.id], 'learning')}>
+                        Unknown
+                      </button>
+                    </div>
+                  )}
                   <div className="coverage-grid">
                     <span>Ready words: {coverage.readyWords}</span>
                     <span>Prompt clips: {coverage.promptClips}</span>
@@ -862,22 +920,24 @@ function App() {
               </div>
               )}
 
-              <ol className="playlist">
-                {lesson.steps.map((step, index) => (
-                  <li key={step.id} className={index === currentStepIndex ? 'active' : ''}>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        stopPlayback()
-                        setCurrentStepIndex(index)
-                      }}
-                    >
-                      <span>{step.kind}</span>
-                      {step.label}
-                    </button>
-                  </li>
-                ))}
-              </ol>
+              {lessonMode === 'live' && (
+                <ol className="playlist">
+                  {lesson.steps.map((step, index) => (
+                    <li key={step.id} className={index === currentStepIndex ? 'active' : ''}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          stopPlayback()
+                          setCurrentStepIndex(index)
+                        }}
+                      >
+                        <span>{step.kind}</span>
+                        {step.label}
+                      </button>
+                    </li>
+                  ))}
+                </ol>
+              )}
             </>
           ) : (
             <section className="panel empty-state">
@@ -957,6 +1017,31 @@ function formatSummary(summary: ImportSummary): string {
   if (summary.linkedAudio !== undefined) parts.push(`${summary.linkedAudio} audio links`)
   if (summary.warnings.length > 0) parts.push(`${summary.warnings.length} warnings`)
   return parts.join(', ')
+}
+
+function getStudyDisplay(word?: VocabWord, sentence?: Sentence) {
+  if (sentence) {
+    return {
+      kind: 'sentence',
+      chinese: sentence.chinese,
+      english: sentence.english,
+      pinyin: word?.pinyin ?? '',
+    }
+  }
+  if (word) {
+    return {
+      kind: 'word',
+      chinese: word.word,
+      english: word.meaning,
+      pinyin: word.pinyin ?? '',
+    }
+  }
+  return {
+    kind: 'word',
+    chinese: '准备',
+    english: 'Ready',
+    pinyin: 'zhun bei',
+  }
 }
 
 function formatTime(seconds: number): string {

@@ -1,4 +1,4 @@
-import type { AudioClip, LessonPlan, RenderedLesson } from './types'
+import type { AudioClip, LessonPlan, RenderedLesson, RenderedLessonSegment } from './types'
 
 const SAMPLE_RATE = 44100
 
@@ -8,9 +8,12 @@ export async function renderLessonToWav(
 ): Promise<RenderedLesson> {
   const audioContext = new AudioContext({ sampleRate: SAMPLE_RATE })
   const buffers: AudioBuffer[] = []
+  const segments: RenderedLessonSegment[] = []
   const warnings: string[] = []
+  let currentSeconds = 0
 
   for (const step of lesson.steps) {
+    let buffer: AudioBuffer | undefined
     if (step.kind === 'audio') {
       const clip = await getClip(step.audioId)
       if (!clip) {
@@ -19,14 +22,29 @@ export async function renderLessonToWav(
       }
       try {
         const data = await clip.blob.arrayBuffer()
-        buffers.push(await audioContext.decodeAudioData(data.slice(0)))
+        buffer = await audioContext.decodeAudioData(data.slice(0))
       } catch {
         warnings.push(`Could not decode clip: ${step.label}`)
       }
     } else if (step.kind === 'pause') {
-      buffers.push(makeSilence(audioContext, step.seconds))
+      buffer = makeSilence(audioContext, step.seconds)
     } else if (step.kind === 'ding') {
-      buffers.push(makeDing(audioContext))
+      buffer = makeDing(audioContext)
+    }
+
+    if (buffer) {
+      buffers.push(buffer)
+      const endSeconds = currentSeconds + buffer.duration
+      segments.push({
+        stepId: step.id,
+        startSeconds: currentSeconds,
+        endSeconds,
+        wordId: step.wordId,
+        sentenceId: step.sentenceId,
+        label: step.label,
+        kind: step.kind,
+      })
+      currentSeconds = endSeconds
     }
   }
 
@@ -42,6 +60,7 @@ export async function renderLessonToWav(
     durationSeconds: merged.duration,
     blob,
     warnings,
+    segments,
   }
 }
 
