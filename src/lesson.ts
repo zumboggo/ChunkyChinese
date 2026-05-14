@@ -1,11 +1,16 @@
 import type { AudioClip, LessonPlan, LessonStep, Sentence, VocabWord } from './types'
 
+interface TargetSelectionOptions {
+  randomize?: boolean
+}
+
 export function createLesson(
   words: VocabWord[],
   sentences: Sentence[],
   manualIds: string[] = [],
+  options: TargetSelectionOptions = {},
 ): LessonPlan {
-  const targetWords = selectTargetWords(words, manualIds)
+  const targetWords = selectTargetWords(words, manualIds, options)
   const steps: LessonStep[] = []
 
   targetWords.forEach((word, index) => {
@@ -171,8 +176,9 @@ export function createPocketLesson(
   sentences: Sentence[],
   audioClips: AudioClip[],
   manualIds: string[] = [],
+  options: TargetSelectionOptions = { randomize: true },
 ): LessonPlan {
-  const targetWords = selectTargetWords(words, manualIds)
+  const targetWords = selectTargetWords(words, manualIds, options)
   const steps: LessonStep[] = []
   const targetEntries = targetWords.map((word) => ({
     word,
@@ -242,19 +248,23 @@ export function createPocketLesson(
   }
 }
 
-export function selectTargetWords(words: VocabWord[], manualIds: string[] = []): VocabWord[] {
+export function selectTargetWords(
+  words: VocabWord[],
+  manualIds: string[] = [],
+  options: TargetSelectionOptions = {},
+): VocabWord[] {
   if (manualIds.length > 0) {
-    return manualIds
+    const selected = manualIds
       .map((id) => words.find((word) => word.id === id))
       .filter((word): word is VocabWord => Boolean(word))
       .filter((word) => word.status !== 'known')
-      .slice(0, 5)
+    return options.randomize ? weightedSampleWords(selected, 5) : selected.slice(0, 5)
   }
 
-  return [...words]
-    .filter((word) => word.status !== 'known')
-    .sort((a, b) => scoreWord(a) - scoreWord(b))
-    .slice(0, 5)
+  const candidates = words.filter((word) => word.status !== 'known')
+  return options.randomize
+    ? weightedSampleWords(candidates, 5)
+    : [...candidates].sort((a, b) => scoreWord(a) - scoreWord(b)).slice(0, 5)
 }
 
 function scoreWord(word: VocabWord): number {
@@ -266,6 +276,43 @@ function scoreWord(word: VocabWord): number {
     known: 999,
   }[word.status]
   return statusWeight + word.seenCount * 2 + (word.lessonNumber ?? 999) / 100
+}
+
+function weightedSampleWords(words: VocabWord[], count: number): VocabWord[] {
+  const remaining = [...words]
+  const selected: VocabWord[] = []
+
+  while (remaining.length > 0 && selected.length < count) {
+    const weights = remaining.map(selectionWeight)
+    const total = weights.reduce((sum, weight) => sum + weight, 0)
+    let cursor = Math.random() * total
+    let selectedIndex = 0
+
+    for (let index = 0; index < remaining.length; index += 1) {
+      cursor -= weights[index]
+      if (cursor <= 0) {
+        selectedIndex = index
+        break
+      }
+    }
+
+    selected.push(remaining[selectedIndex])
+    remaining.splice(selectedIndex, 1)
+  }
+
+  return selected
+}
+
+function selectionWeight(word: VocabWord): number {
+  const statusWeight = {
+    new: 100,
+    learning: 78,
+    review: 34,
+    familiar: 12,
+    known: 0,
+  }[word.status]
+  const seenPenalty = Math.min(word.seenCount * 6, statusWeight * 0.72)
+  return Math.max(1, statusWeight - seenPenalty)
 }
 
 function chooseSentenceForWord(

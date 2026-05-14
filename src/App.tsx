@@ -34,6 +34,7 @@ import type {
 } from './types'
 
 type Screen = 'dashboard' | 'words' | 'import' | 'lesson'
+type LessonStartOptions = { randomize?: boolean }
 
 const emptyStats: DashboardStats = {
   counts: { new: 0, learning: 0, familiar: 0, known: 0, review: 0 },
@@ -234,12 +235,15 @@ function App() {
     )
   }
 
-  async function startPocketLesson(manualIds: string[] = []) {
+  async function startPocketLesson(
+    manualIds: string[] = [],
+    options: LessonStartOptions = { randomize: true },
+  ) {
     setLessonMode('pocket')
     setRendering(true)
     setScreen('lesson')
     try {
-      const nextLesson = createPocketLesson(words, sentences, audioClips, manualIds)
+      const nextLesson = createPocketLesson(words, sentences, audioClips, manualIds, options)
       setLesson(nextLesson)
       setCurrentStepIndex(0)
       if (nextLesson.steps.filter((step) => step.kind === 'audio').length === 0) {
@@ -389,6 +393,11 @@ function App() {
     downloadText(`chunky-chinese-backup-${new Date().toISOString().slice(0, 10)}.json`, text)
   }
 
+  function handleWordsCsvExport() {
+    const text = wordsToProgressCsv(words)
+    downloadText(`chunky-chinese-progress-${new Date().toISOString().slice(0, 10)}.csv`, text)
+  }
+
   async function handleBackupImport(files: FileList | null) {
     const file = files?.[0]
     if (!file) return
@@ -417,7 +426,7 @@ function App() {
         <button className="brand-button" type="button" onClick={() => setScreen('dashboard')}>
           <span className="brand-mark">中</span>
           <span>
-            <strong>Chunky Chinese Vocab</strong>
+            <strong>Chunky Chinese</strong>
             <small>{seedMessage}</small>
           </span>
         </button>
@@ -587,6 +596,9 @@ function App() {
             <button type="button" onClick={() => setSelectedWordIds([])}>
               Clear
             </button>
+            <button type="button" onClick={handleWordsCsvExport}>
+              Export CSV
+            </button>
           </div>
 
           <div className="word-list">
@@ -724,21 +736,12 @@ function App() {
 
       {screen === 'lesson' && (
         <section className="screen lesson-screen">
-          <div className="screen-heading compact">
-            <div>
-              <h1>Micro Lesson Player</h1>
-              <p>
-                Pocket Mode renders one local audio track from imported clips.
-              </p>
-            </div>
-            <button className="primary" type="button" onClick={() => startPocketLesson()}>
-              Render pocket lesson
-            </button>
-          </div>
-
           {lesson ? (
             <>
               <div className="mode-row">
+                <button className="primary" type="button" onClick={() => startPocketLesson([], { randomize: true })}>
+                  Random lesson
+                </button>
                 <button
                   type="button"
                   className={lessonMode === 'pocket' ? 'active' : ''}
@@ -858,8 +861,11 @@ function App() {
                       >
                         Pause
                       </button>
-                      <button type="button" onClick={() => startPocketLesson(selectedWordIds)}>
+                      <button type="button" onClick={() => startPocketLesson(selectedWordIds, { randomize: false })}>
                         Re-render
+                      </button>
+                      <button type="button" onClick={() => startPocketLesson(selectedWordIds, { randomize: true })}>
+                        Randomize
                       </button>
                       <button type="button" onClick={toggleFullscreen}>
                         {isFullscreen ? 'Exit full screen' : 'Full screen'}
@@ -1076,6 +1082,49 @@ function formatSummary(summary: ImportSummary): string {
   if (summary.linkedAudio !== undefined) parts.push(`${summary.linkedAudio} audio links`)
   if (summary.warnings.length > 0) parts.push(`${summary.warnings.length} warnings`)
   return parts.join(', ')
+}
+
+function wordsToProgressCsv(words: VocabWord[]): string {
+  const columns = [
+    'word',
+    'pinyin',
+    'meaning',
+    'status',
+    'lessonNumber',
+    'tags',
+    'source',
+    'partOfSpeech',
+    'seenCount',
+    'correctCount',
+    'wrongCount',
+    'listenedSeconds',
+    'lastReviewedAt',
+    'notes',
+  ]
+  const rows = words.map((word) =>
+    [
+      word.word,
+      word.pinyin ?? '',
+      word.meaning,
+      word.status,
+      word.lessonNumber ?? '',
+      (word.tags ?? []).join(';'),
+      word.source ?? '',
+      word.partOfSpeech ?? '',
+      word.seenCount,
+      word.correctCount,
+      word.wrongCount,
+      word.listenedSeconds,
+      word.lastReviewedAt ?? '',
+      word.notes ?? '',
+    ].map(csvCell).join(','),
+  )
+  return [columns.join(','), ...rows].join('\n')
+}
+
+function csvCell(value: string | number): string {
+  const text = String(value)
+  return /[",\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text
 }
 
 function getStudyDisplay(word?: VocabWord, sentence?: Sentence) {

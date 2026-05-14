@@ -132,15 +132,55 @@ dt {
 }
 
 .brand-mark {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius);
-  background: var(--accent);
-  color: white;
+  position: relative;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  overflow: hidden;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 50% 82%, rgba(255, 255, 255, 0.45) 0 18px, transparent 19px),
+    linear-gradient(145deg, #49aaf7 0%, #176fc2 54%, #0d4f93 100%);
+  color: transparent;
   display: grid;
   place-items: center;
-  font-size: 1.5rem;
-  font-weight: 900;
+  font-size: 0;
+  box-shadow: 0 10px 24px rgba(21, 104, 186, 0.24);
+}
+
+.brand-mark::before,
+.brand-mark::after {
+  content: "";
+  position: absolute;
+}
+
+.brand-mark::before {
+  width: 28px;
+  height: 25px;
+  left: 14px;
+  top: 8px;
+  border-radius: 50% 50% 45% 45%;
+  background:
+    radial-gradient(circle at 34% 46%, #4b261b 0 1.6px, transparent 2px),
+    radial-gradient(circle at 66% 46%, #4b261b 0 1.6px, transparent 2px),
+    radial-gradient(ellipse at 50% 66%, transparent 0 5px, #8d3e25 5.5px 6.6px, transparent 7px),
+    #ffd9a8;
+  box-shadow:
+    -8px 5px 0 -5px #ffd9a8,
+    8px 5px 0 -5px #ffd9a8,
+    inset 0 -3px 0 rgba(164, 97, 44, 0.2);
+}
+
+.brand-mark::after {
+  width: 42px;
+  height: 29px;
+  left: 7px;
+  bottom: 5px;
+  border-radius: 50% 50% 42% 42%;
+  background:
+    radial-gradient(circle at 50% 48%, #ffd9a8 0 10px, transparent 11px),
+    linear-gradient(135deg, #d93d35 0 48%, #f0b22f 49% 58%, #b9282f 59% 100%);
+  box-shadow: inset 0 -5px 0 rgba(96, 28, 40, 0.22);
 }
 
 .tabs {
