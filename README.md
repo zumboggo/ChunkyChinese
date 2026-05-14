@@ -32,6 +32,27 @@ https://<your-github-name>.github.io/ChunkyChinese/
 
 The current LMS 188 Azure clip pack is intentionally committed under `public/clip-packs/lms-188-azure/` so GitHub Pages can serve it to your phone. Delete old hosted packs when they are no longer useful to avoid repository bloat. Do not commit local backups or unrelated generated audio.
 
+## PWA Installation
+
+Android Chrome testing steps:
+
+1. Open `https://zumboggo.github.io/ChunkyChinese/`.
+2. Tap the Chrome three-dot menu.
+3. Choose **Install app** or **Add to Home screen**.
+4. Launch Chunky from the home screen or app drawer.
+
+The app uses `public/manifest.webmanifest` and `public/service-worker.js`, both written for the GitHub Pages subpath `/ChunkyChinese/`. The manifest is linked from `index.html` with a relative link, and the service worker is registered with `navigator.serviceWorker.register("./service-worker.js")`.
+
+Troubleshooting:
+
+- If an old version keeps loading, clear site data for `zumboggo.github.io` in Chrome and reopen the app.
+- Visit `https://zumboggo.github.io/ChunkyChinese/?fresh=1` to force a fresh navigation while debugging cached state.
+- Confirm `https://zumboggo.github.io/ChunkyChinese/manifest.webmanifest` loads and contains `start_url` and `scope` set to `/ChunkyChinese/`.
+- Confirm `https://zumboggo.github.io/ChunkyChinese/service-worker.js` loads.
+- On desktop Chrome, check DevTools -> Application -> Manifest and Service Workers.
+
+To force users onto a new cached app shell after future updates, change `CACHE_VERSION` near the top of `public/service-worker.js`, commit, and deploy. The activate handler deletes older `chunky-chinese-*` caches.
+
 ## LMS Seed
 
 The app automatically seeds 188 target words on first run from:
