@@ -168,11 +168,38 @@ function App() {
     words,
   ])
 
-  async function handleStatus(ids: string[], status: WordStatus) {
+  const handleStatus = useCallback(async (ids: string[], status: WordStatus) => {
     if (ids.length === 0) return
     await updateWordStatus(ids, status)
     setLastSummary(`Marked ${ids.length} word${ids.length === 1 ? '' : 's'} ${status}.`)
     await refresh()
+  }, [refresh])
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      const target = event.target
+      const isTyping =
+        target instanceof HTMLInputElement ||
+        target instanceof HTMLSelectElement ||
+        target instanceof HTMLTextAreaElement
+      if (isTyping || screen !== 'lesson' || lessonMode !== 'pocket' || !studyWord) return
+      if (event.key.toLocaleLowerCase() === 'k') {
+        event.preventDefault()
+        void handleStatus([studyWord.id], 'known')
+      } else if (event.key.toLocaleLowerCase() === 'f') {
+        event.preventDefault()
+        void handleStatus([studyWord.id], 'familiar')
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [lessonMode, screen, studyWord, handleStatus])
+
+  async function cycleWordStatus(word: VocabWord) {
+    const nextStatus: WordStatus =
+      word.status === 'known' ? 'learning' : word.status === 'familiar' ? 'known' : 'familiar'
+    await handleStatus([word.id], nextStatus)
   }
 
   function startLesson(manualIds: string[] = []) {
@@ -532,6 +559,7 @@ function App() {
 
           <div className="bulk-row">
             <span>{selectedWordIds.length} selected</span>
+            <span>Click a word card to cycle: unknown to familiar to known.</span>
             {(['learning', 'familiar', 'known', 'review'] as WordStatus[]).map((status) => (
               <button key={status} type="button" onClick={() => handleStatus(selectedWordIds, status)}>
                 Mark {status}
@@ -544,7 +572,7 @@ function App() {
 
           <div className="word-list">
             {filteredWords.map((word) => (
-              <article className="word-row" key={word.id}>
+              <article className={`word-row word-row-${word.status}`} key={word.id}>
                 <label className="select-box">
                   <input
                     type="checkbox"
@@ -558,14 +586,19 @@ function App() {
                     }}
                   />
                 </label>
-                <div className="word-main">
+                <button
+                  className="word-main word-cycle"
+                  type="button"
+                  onClick={() => cycleWordStatus(word)}
+                  title="Cycle status"
+                >
                   <strong>{word.word}</strong>
                   <span>{word.meaning}</span>
                   <small>
                     {word.pinyin ? `${word.pinyin} · ` : ''}
                     Lesson {word.lessonNumber ?? '-'} · seen {word.seenCount}
                   </small>
-                </div>
+                </button>
                 <StatusPill status={word.status} />
                 <div className="row-actions">
                   <button
@@ -796,14 +829,11 @@ function App() {
                       <span>
                         {studyWord.word} is <strong>{studyWord.status}</strong>
                       </span>
-                      <button type="button" onClick={() => handleStatus([studyWord.id], 'known')}>
-                        Known
-                      </button>
                       <button type="button" onClick={() => handleStatus([studyWord.id], 'familiar')}>
-                        Familiar
+                        Familiar <kbd>F</kbd>
                       </button>
-                      <button type="button" onClick={() => handleStatus([studyWord.id], 'learning')}>
-                        Unknown
+                      <button type="button" onClick={() => handleStatus([studyWord.id], 'known')}>
+                        Known <kbd>K</kbd>
                       </button>
                     </div>
                   )}
