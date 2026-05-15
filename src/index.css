@@ -249,6 +249,10 @@ dt {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
+.today-grid {
+  grid-template-columns: 1.4fr repeat(3, minmax(0, 1fr));
+}
+
 .metric {
   display: grid;
   justify-items: start;
@@ -264,6 +268,20 @@ dt {
 
 .metric strong {
   font-size: 2rem;
+}
+
+.hero-metric {
+  background: linear-gradient(135deg, #174f8f, #238fe9);
+  border-color: rgba(23, 79, 143, 0.36);
+  color: #fff;
+}
+
+.hero-metric span {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.passive-metric {
+  background: rgba(255, 255, 255, 0.62);
 }
 
 .panel,
@@ -605,26 +623,14 @@ dt {
   align-self: end;
 }
 
-.study-target-card {
-  min-width: 0;
-  display: grid;
-  gap: 5px;
-  padding: 6px;
-  border: 1px solid rgba(23, 111, 194, 0.18);
-  border-radius: 12px;
-}
-
 .study-target-word {
   min-width: 0;
-  min-height: 46px;
-  padding: 6px;
+  min-height: 48px;
+  padding: 8px;
   display: grid;
   gap: 2px;
-  background: transparent;
-  border-color: transparent;
   border-color: rgba(23, 111, 194, 0.18);
   text-align: center;
-  box-shadow: none;
 }
 
 .study-target-word strong,
@@ -647,21 +653,6 @@ dt {
   line-height: 1.05;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-}
-
-.mems-button {
-  min-height: 28px;
-  padding: 4px 6px;
-  border-color: rgba(23, 111, 194, 0.12);
-  background: rgba(255, 255, 255, 0.92);
-  color: #31506d;
-  font-size: 0.72rem;
-  font-weight: 900;
-}
-
-.mems-button.has-mems {
-  background: #fff;
-  color: #174f8f;
 }
 
 .review-panel {
@@ -698,6 +689,13 @@ dt {
   font-size: 0.86rem;
 }
 
+.review-note {
+  margin: 0;
+  color: #31506d;
+  font-size: 0.88rem;
+  font-weight: 750;
+}
+
 .review-list {
   display: grid;
   gap: 6px;
@@ -731,32 +729,6 @@ dt {
   background: #174f8f;
   border-color: #174f8f;
   color: #fff;
-}
-
-.mem-editor-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 20;
-  display: grid;
-  place-items: center;
-  padding: 18px;
-  background: rgba(7, 29, 55, 0.34);
-}
-
-.mem-editor {
-  width: min(560px, 100%);
-  display: grid;
-  gap: 12px;
-  padding: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 24px 70px rgba(26, 83, 145, 0.28);
-}
-
-.mem-editor textarea {
-  min-height: 180px;
-  resize: vertical;
 }
 
 .quiz-panel {

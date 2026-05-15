@@ -81,7 +81,7 @@ The 5 word lesson mode is meant for earbuds and a sleeping phone. It uses only i
 
 Active mode pauses during optional recall questions. After the initial vocab learning blocks, Active mode hides pinyin and English hints automatically so you have to retrieve the word a little harder. At the end of each 5 word lesson, rate each word with Again, Hard, Good, or Easy; the app stores a simple Anki-style due date, interval, ease, repetitions, and lapses locally and uses those fields to choose future lessons.
 
-Each lesson word has a small **mems** button. Use it for plain-text memory aids such as mnemonics, radical notes, visual associations, or sound hints. Word Manager CSV export includes `mems` and the scheduler fields, so those notes and review state can be backed up or moved into your main vocabulary spreadsheet.
+The dashboard emphasizes the daily queue: due words first, then new words when the queue is light. Word Manager CSV export includes the scheduler fields, so review state can be backed up or moved into your main vocabulary spreadsheet.
 
 ## Generate a Clip Pack
 
@@ -193,7 +193,7 @@ The clip pack import reports coverage for word clips, meaning clips, sentence cl
 
 ## Screens
 
-- Dashboard: counts, daily listening stats, hotkey reminders, and quick 5 word lesson launch.
+- Dashboard: due-word queue, counts, daily listening stats, hotkey reminders, and quick "today's 5" lesson launch.
 - Word Manager: search/filter words, play word clips, and mark status individually or in bulk.
 - Import and Backup: hosted clip pack download, clip pack import, CSV import, MP3 import, JSON backup/export.
 - Lesson: 5 word continuous lesson rendering, pinyin/English toggles, and click-to-cycle lesson word status.

@@ -38,7 +38,6 @@ export interface VocabWord {
   pinyin?: string
   source?: string
   notes?: string
-  mems?: string
   fsrsDueAt?: string
   fsrsIntervalDays?: number
   fsrsEase?: number
@@ -199,6 +198,10 @@ export interface LessonPlan {
 
 export interface DashboardStats {
   counts: Record<WordStatus, number>
+  dueNow: number
+  dueSoon: number
+  newAvailable: number
+  scheduled: number
   minutesToday: number
   clipsCompletedToday: number
   knownToday: number

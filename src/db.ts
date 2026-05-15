@@ -162,7 +162,6 @@ export async function upsertWords(words: VocabWord[]): Promise<ImportSummary> {
         pinyin: word.pinyin || existing.pinyin,
         source: word.source || existing.source,
         notes: word.notes || existing.notes,
-        mems: word.mems || existing.mems,
         fsrsDueAt: word.fsrsDueAt || existing.fsrsDueAt,
         fsrsIntervalDays: word.fsrsIntervalDays ?? existing.fsrsIntervalDays,
         fsrsEase: word.fsrsEase ?? existing.fsrsEase,
@@ -251,17 +250,6 @@ export async function updateWordStatus(
     })
   }
   await tx.done
-}
-
-export async function updateWordMems(wordId: string, mems: string): Promise<void> {
-  const db = await getDB()
-  const word = await db.get('vocabWords', wordId)
-  if (!word) return
-  await db.put('vocabWords', {
-    ...word,
-    mems,
-    updatedAt: new Date().toISOString(),
-  })
 }
 
 export async function rateWordFsrs(wordId: string, rating: FsrsRating): Promise<void> {
@@ -587,6 +575,9 @@ export async function getDashboardStats(): Promise<DashboardStats> {
   const events = await db.getAll('listeningEvents')
   const start = startOfToday()
   const todayEvents = events.filter((event) => new Date(event.timestamp) >= start)
+  const now = Date.now()
+  const soon = now + 24 * 60 * 60 * 1000
+  const dueWords = words.filter((word) => isWordDueForReview(word, now))
 
   return {
     counts: {
@@ -596,6 +587,10 @@ export async function getDashboardStats(): Promise<DashboardStats> {
       known: words.filter((word) => word.status === 'known').length,
       review: words.filter((word) => word.status === 'review').length,
     },
+    dueNow: dueWords.length,
+    dueSoon: words.filter((word) => isWordDueSoon(word, now, soon)).length,
+    newAvailable: words.filter((word) => word.status === 'new' && !word.fsrsDueAt).length,
+    scheduled: words.filter((word) => Boolean(word.fsrsDueAt)).length,
     minutesToday:
       todayEvents.reduce((sum, event) => sum + (event.seconds ?? 0), 0) / 60,
     clipsCompletedToday: todayEvents.filter((event) => event.type === 'complete').length,
@@ -858,6 +853,20 @@ function hasImportedProgress(word: VocabWord): boolean {
       word.wrongCount ||
       word.listenedSeconds,
   )
+}
+
+function isWordDueForReview(word: VocabWord, now: number): boolean {
+  if (!word.fsrsDueAt) return word.status !== 'known'
+  const dueTime = Date.parse(word.fsrsDueAt)
+  if (!Number.isFinite(dueTime)) return word.status !== 'known'
+  if (word.status === 'known') return dueTime <= now
+  return dueTime <= now
+}
+
+function isWordDueSoon(word: VocabWord, now: number, soon: number): boolean {
+  if (!word.fsrsDueAt) return false
+  const dueTime = Date.parse(word.fsrsDueAt)
+  return Number.isFinite(dueTime) && dueTime > now && dueTime <= soon
 }
 
 function scheduleFsrsReview(
