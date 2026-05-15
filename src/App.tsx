@@ -47,10 +47,12 @@ type LessonStartOptions = {
 type AttentionMode = 'listening' | 'active'
 type LessonKind = 'main' | 'rescue'
 type QuizKind = 'zh-en' | 'en-zh' | 'contrast'
+type RecallStage = 'easy' | 'audio-first' | 'try-before-choices' | 'quick' | 'rescue'
 
 interface ActiveQuiz {
   id: string
   kind: QuizKind
+  stage: RecallStage
   prompt: string
   wordId: string
   correctValue: string
@@ -103,6 +105,7 @@ function App() {
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [attentionMode, setAttentionMode] = useState<AttentionMode>('listening')
+  const [minimalVisualMode, setMinimalVisualMode] = useState(false)
   const [pauseProfile, setPauseProfile] = useState<PauseProfile>('normal')
   const [quizResponses, setQuizResponses] = useState<Record<string, QuizResponse>>({})
   const [quizHints, setQuizHints] = useState<Record<string, number>>({})
@@ -119,6 +122,8 @@ function App() {
   const [hostedImporting, setHostedImporting] = useState(false)
   const [hostedProgress, setHostedProgress] = useState('')
   const runToken = useRef(0)
+  const activeAnswerLockRef = useRef<string | null>(null)
+  const autoContinueTimeoutRef = useRef<number | null>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const pocketAudioRef = useRef<HTMLAudioElement | null>(null)
   const playModeRef = useRef<HTMLElement | null>(null)
@@ -255,7 +260,7 @@ function App() {
   const effectiveShowEnglish = showEnglish && !activeRecallSupportHidden
   const allLessonWordsRated =
     ratingWords.length > 0 && ratingWords.every((word) => fsrsRatings[word.id])
-  const hideTargetStrip = focusedActiveQuiz
+  const hideTargetStrip = focusedActiveQuiz || minimalVisualMode
   const hideTargetMeanings = attentionMode === 'active' && hasPassedInitialVocabSection(currentSegment)
   const missedWords = useMemo(
     () =>
@@ -272,18 +277,39 @@ function App() {
     await refresh()
   }, [refresh])
 
+  const clearAutoContinueTimeout = useCallback(() => {
+    if (autoContinueTimeoutRef.current !== null) {
+      window.clearTimeout(autoContinueTimeoutRef.current)
+      autoContinueTimeoutRef.current = null
+    }
+  }, [])
+
   useEffect(() => {
     if (attentionMode !== 'active' || !currentQuiz || currentQuizResponse) return
     if (!pocketAudioRef.current || pocketAudioRef.current.paused) return
     pocketAudioRef.current.pause()
   }, [attentionMode, currentQuiz, currentQuizResponse])
 
+  useEffect(() => {
+    activeAnswerLockRef.current = null
+    clearAutoContinueTimeout()
+  }, [clearAutoContinueTimeout, currentQuiz?.id, renderedLesson?.id])
+
+  useEffect(() => clearAutoContinueTimeout, [clearAutoContinueTimeout])
+
   const rememberMissedWord = useCallback((wordId: string) => {
     setMissedWordIds((ids) => (ids.includes(wordId) ? ids : [...ids, wordId]))
   }, [])
 
   const handleQuizAnswer = useCallback(async (value: string) => {
-    if (!currentQuiz || quizResponses[currentQuiz.id]) return
+    if (
+      !currentQuiz ||
+      quizResponses[currentQuiz.id] ||
+      activeAnswerLockRef.current === currentQuiz.id
+    ) {
+      return
+    }
+    activeAnswerLockRef.current = currentQuiz.id
     const correct = value === currentQuiz.correctValue
     const hintCount = quizHints[currentQuiz.id] ?? 0
     setQuizResponses((responses) => ({
@@ -303,7 +329,14 @@ function App() {
   }, [attentionMode, currentQuiz, quizHints, quizResponses, refresh, rememberMissedWord])
 
   const revealCurrentQuiz = useCallback(async () => {
-    if (!currentQuiz || quizResponses[currentQuiz.id]) return
+    if (
+      !currentQuiz ||
+      quizResponses[currentQuiz.id] ||
+      activeAnswerLockRef.current === currentQuiz.id
+    ) {
+      return
+    }
+    activeAnswerLockRef.current = currentQuiz.id
     const hintCount = quizHints[currentQuiz.id] ?? 0
     setQuizResponses((responses) => ({
       ...responses,
@@ -317,8 +350,33 @@ function App() {
   }, [currentQuiz, quizHints, quizResponses, refresh, rememberMissedWord])
 
   const continueCurrentQuiz = useCallback(() => {
-    void pocketAudioRef.current?.play()
-  }, [])
+    clearAutoContinueTimeout()
+    const audio = pocketAudioRef.current
+    if (!audio) return
+    if (currentSegment?.kind === 'pause') {
+      audio.currentTime = Math.min(
+        audio.duration || currentSegment.endSeconds,
+        currentSegment.endSeconds + 0.01,
+      )
+    }
+    void audio.play()
+  }, [clearAutoContinueTimeout, currentSegment])
+
+  useEffect(() => {
+    if (attentionMode !== 'active' || !currentQuiz || !currentQuizResponse) return
+    clearAutoContinueTimeout()
+    autoContinueTimeoutRef.current = window.setTimeout(() => {
+      autoContinueTimeoutRef.current = null
+      continueCurrentQuiz()
+    }, 1000)
+    return clearAutoContinueTimeout
+  }, [
+    attentionMode,
+    clearAutoContinueTimeout,
+    continueCurrentQuiz,
+    currentQuiz,
+    currentQuizResponse,
+  ])
 
   const replayCurrentQuiz = useCallback(() => {
     if (!pocketAudioRef.current || !currentSegment) return
@@ -337,14 +395,30 @@ function App() {
     setQuizHints((hints) => ({ ...hints, [currentQuiz.id]: level + 1 }))
   }, [currentQuiz, currentQuizResponse, quizHints, replayCurrentQuiz, revealCurrentQuiz])
 
+  const replayCurrentSegment = useCallback(() => {
+    const audio = pocketAudioRef.current
+    if (!audio || !currentSegment) return
+    audio.currentTime = Math.max(0, currentSegment.startSeconds)
+    void audio.play()
+  }, [currentSegment])
+
+  async function handleMinimalMark(rating: FsrsRating, status: WordStatus) {
+    if (!studyWord) return
+    await rateWordFsrs(studyWord.id, rating)
+    await updateWordStatus([studyWord.id], status)
+    setLastSummary(rating === 'again' ? 'Marked for gentle review.' : 'Marked got it.')
+    await refresh()
+  }
+
   async function handleFsrsRating(wordId: string, rating: FsrsRating) {
     await rateWordFsrs(wordId, rating)
     const nextRatings = { ...fsrsRatings, [wordId]: rating }
     setFsrsRatings(nextRatings)
     setLastSummary(`Rated ${fsrsLabel(rating)}.`)
     await refresh()
-    const completeSet =
-      lessonWords.length > 0 && lessonWords.every((word) => nextRatings[word.id])
+    const ratingIds =
+      ratingWordIds.length > 0 ? ratingWordIds : lessonWords.map((word) => word.id)
+    const completeSet = ratingIds.length > 0 && ratingIds.every((id) => nextRatings[id])
     if (autoNextLesson && completeSet) {
       window.setTimeout(() => {
         setShowReviewPrompt(false)
@@ -1091,17 +1165,30 @@ function App() {
         <section className="screen lesson-screen">
           {lesson ? (
             <>
-                <section className="study-player" ref={playModeRef}>
-                  <div className={`study-stage ${focusedActiveQuiz ? 'active-focus' : ''}`}>
+                <section
+                  className={`study-player ${minimalVisualMode ? 'minimal-visual-player' : ''}`}
+                  ref={playModeRef}
+                >
+                  <div
+                    className={`study-stage ${focusedActiveQuiz ? 'active-focus' : ''} ${
+                      minimalVisualMode ? 'minimal-visual-stage' : ''
+                    }`}
+                  >
                     <div className="study-meta">
                       <span>
-                        {focusedActiveQuiz
+                        {minimalVisualMode
+                          ? 'Minimal mode'
+                          : focusedActiveQuiz
                           ? 'Active recall'
                           : rendering
                             ? 'Rendering local audio...'
                             : renderedLesson?.title ?? lesson.title}
                       </span>
-                      {focusedActiveQuiz ? (
+                      {minimalVisualMode ? (
+                        <button type="button" onClick={() => setMinimalVisualMode(false)}>
+                          Exit minimal
+                        </button>
+                      ) : focusedActiveQuiz ? (
                         <span className="mode-chip">Paused for answer</span>
                       ) : (
                         <div className="study-toggles">
@@ -1127,6 +1214,7 @@ function App() {
                     </div>
                     {focusedActiveQuiz && currentQuiz ? (
                       <ActiveRecallCard
+                        key={currentQuiz.id}
                         quiz={currentQuiz}
                         response={currentQuizResponse}
                         word={studyWord}
@@ -1163,6 +1251,46 @@ function App() {
                         </span>
                       )}
                     </div>
+                        {minimalVisualMode && (
+                          <div className="minimal-controls">
+                            <button
+                              type="button"
+                              className="primary"
+                              onClick={() => {
+                                const audio = pocketAudioRef.current
+                                if (!audio) return
+                                if (audio.paused) {
+                                  void audio.play()
+                                } else {
+                                  audio.pause()
+                                }
+                              }}
+                              disabled={!renderedUrl}
+                            >
+                              {isPlaying ? 'Pause' : 'Play'}
+                            </button>
+                            <button type="button" onClick={replayCurrentSegment} disabled={!currentSegment}>
+                              Replay
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleMinimalMark('again', 'review')}
+                              disabled={!studyWord}
+                            >
+                              Mark Again
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleMinimalMark('good', 'familiar')}
+                              disabled={!studyWord}
+                            >
+                              Mark Got It
+                            </button>
+                            <button type="button" onClick={() => setMinimalVisualMode(false)}>
+                              Exit Minimal Mode
+                            </button>
+                          </div>
+                        )}
                       </>
                     )}
                     {lessonWords.length > 0 && !hideTargetStrip && (
@@ -1185,7 +1313,7 @@ function App() {
                       <div className="rescue-panel" aria-live="polite">
                         <div className="review-heading">
                           <strong>Review missed words?</strong>
-                          <span>{missedWords.length} word{missedWords.length === 1 ? '' : 's'}</span>
+                          <span>About 45 seconds</span>
                         </div>
                         <p className="review-note">
                           Replay the tough ones gently before rating the set, or finish for now.
@@ -1197,7 +1325,7 @@ function App() {
                         </div>
                         <div className="button-row">
                           <button type="button" className="primary" onClick={startMissedRescue}>
-                            Review missed words
+                            Start rescue round
                           </button>
                           <button
                             type="button"
@@ -1261,7 +1389,10 @@ function App() {
                         )}
                       </div>
                     )}
-                    {currentQuiz && !currentQuizResponse?.skipped && attentionMode !== 'active' && (
+                    {currentQuiz &&
+                      !currentQuizResponse?.skipped &&
+                      attentionMode !== 'active' &&
+                      !minimalVisualMode && (
                       <div className="quiz-panel" aria-live="polite">
                         <div className="quiz-copy">
                           <strong>{currentQuiz.prompt}</strong>
@@ -1296,12 +1427,12 @@ function App() {
                     )}
                   </div>
 
-                  <div className="play-hover-menu">
+                  <div className={`play-hover-menu ${minimalVisualMode ? 'minimal-audio-host' : ''}`}>
                     {renderedUrl ? (
                       <audio
                         ref={pocketAudioRef}
                         src={renderedUrl}
-                        controls
+                        controls={!minimalVisualMode}
                         preload="metadata"
                         onPlay={() => {
                           setIsPlaying(true)
@@ -1348,7 +1479,7 @@ function App() {
                     ) : (
                       <div className="audio-placeholder">Render a lesson to create the audio track.</div>
                     )}
-                    {focusedActiveQuiz ? (
+                    {!minimalVisualMode && focusedActiveQuiz ? (
                       <div className="player-controls quiet-controls">
                         <button
                           type="button"
@@ -1365,7 +1496,7 @@ function App() {
                           Restart current word
                         </button>
                       </div>
-                    ) : (
+                    ) : !minimalVisualMode ? (
                       <div className="player-controls">
                         <button
                           type="button"
@@ -1433,9 +1564,12 @@ function App() {
                         <button type="button" onClick={toggleFullscreen}>
                           {isFullscreen ? 'Exit full screen' : 'Full screen'}
                         </button>
+                        <button type="button" onClick={() => setMinimalVisualMode(true)}>
+                          Minimal mode
+                        </button>
                       </div>
-                    )}
-                    {!focusedActiveQuiz && (
+                    ) : null}
+                    {!focusedActiveQuiz && !minimalVisualMode && (
                       <div className="coverage-grid">
                         <span>Ready words: {coverage.readyWords}</span>
                         <span>Prompt clips: {coverage.promptClips}</span>
@@ -1657,28 +1791,52 @@ function ActiveRecallCard({
   onReplay: () => void
   onReveal: () => void | Promise<void>
 }) {
+  const [choicesReady, setChoicesReady] = useState(() => getChoiceRevealDelay(quiz.stage) === 0)
   const cue = getActiveRecallCue(quiz, word, sentence)
+  const promptText = getActiveRecallPrompt(quiz)
   const correctLabel = getQuizAnswerLabel(quiz, word)
+  const selectedLabel = getSelectedAnswerLabel(quiz, response)
   const feedbackText = getQuizFeedbackText(quiz, word, correctLabel)
   const showPinyinHint = hintLevel >= 2 && Boolean(word?.pinyin)
   const answered = Boolean(response)
-  const canChoose = !answered && quiz.options.length > 1
+  const canChoose = !answered && choicesReady && quiz.options.length > 1
+  const revealDelay = getChoiceRevealDelay(quiz.stage)
+  const cueIsSoftened = !choicesReady && quiz.stage === 'audio-first'
+
+  useEffect(() => {
+    if (response) return
+    const delay = getChoiceRevealDelay(quiz.stage)
+    if (delay === 0) return
+    const timeout = window.setTimeout(() => setChoicesReady(true), delay)
+    return () => window.clearTimeout(timeout)
+  }, [quiz.id, quiz.stage, response])
 
   return (
-    <section className="active-recall-card" aria-live="polite">
+    <section className={`active-recall-card recall-stage-${quiz.stage}`} aria-live="polite">
       <div className="recall-prompt">
         <span>{quiz.kind === 'en-zh' ? 'Recall Chinese' : 'Recall meaning'}</span>
-        <strong>{quiz.prompt}</strong>
+        <strong>{promptText}</strong>
       </div>
-      <div className={`recall-cue ${cue.kind}`}>{cue.text}</div>
+      <div className={`recall-cue ${cue.kind} ${cueIsSoftened ? 'softened' : ''}`}>
+        {cueIsSoftened ? 'Listen first' : cue.text}
+      </div>
+      {!answered && !choicesReady && (
+        <div className="recall-think-first">
+          {revealDelay > 1000 ? 'Think first. Choices appear in a moment.' : 'Listen first.'}
+        </div>
+      )}
       {showPinyinHint && <div className="recall-hint">{word?.pinyin}</div>}
       {answered && (
         <div className={`recall-feedback ${response?.correct ? 'correct' : 'wrong'}`}>
           <strong>{response?.correct ? 'Correct' : response?.revealed ? 'Revealed' : 'Not quite'}</strong>
-          <span>{feedbackText}</span>
+          <span>
+            {response?.correct || response?.revealed || !selectedLabel
+              ? `Answer: ${feedbackText}`
+              : `You chose ${selectedLabel}. Answer: ${feedbackText}`}
+          </span>
         </div>
       )}
-      {!answered && (
+      {!answered && choicesReady && (
         <div className={`recall-options ${canChoose ? '' : 'single-reveal'}`}>
           {canChoose ? (
             quiz.options.map((option, index) => (
@@ -1818,11 +1976,36 @@ function getActiveRecallCue(
   return { text: word?.word ?? quiz.prompt, kind: 'chinese' }
 }
 
+function getActiveRecallPrompt(quiz: ActiveQuiz): string {
+  if (quiz.stage === 'audio-first' && quiz.kind === 'zh-en') {
+    return 'What did that word mean?'
+  }
+  if (quiz.stage === 'try-before-choices') {
+    return quiz.kind === 'en-zh' ? 'Try to recall it first.' : 'Think of the meaning first.'
+  }
+  return quiz.prompt
+}
+
 function getQuizAnswerLabel(quiz: ActiveQuiz, word?: VocabWord): string {
   const optionLabel = quiz.options.find((option) => option.value === quiz.correctValue)?.label
   if (optionLabel) return optionLabel
   if (quiz.kind === 'zh-en') return word?.meaning ?? quiz.correctValue
   return word?.word ?? quiz.correctValue
+}
+
+function getSelectedAnswerLabel(quiz: ActiveQuiz, response?: QuizResponse): string | undefined {
+  if (!response?.selected) return undefined
+  return quiz.options.find((option) => option.value === response.selected)?.label ?? response.selected
+}
+
+function getChoiceRevealDelay(stage: RecallStage): number {
+  return {
+    easy: 0,
+    rescue: 0,
+    'audio-first': 700,
+    'try-before-choices': 1400,
+    quick: 0,
+  }[stage]
 }
 
 function getQuizFeedbackText(quiz: ActiveQuiz, word: VocabWord | undefined, correctLabel: string): string {
@@ -1834,6 +2017,19 @@ function getQuizFeedbackText(quiz: ActiveQuiz, word: VocabWord | undefined, corr
     parts.push(word.meaning)
   }
   return parts.join(' · ')
+}
+
+function getRecallStage(stepId: string): RecallStage {
+  // Progression stays 2-choice throughout: the challenge comes from reducing
+  // visible support and adding a short think-first delay in later recall phases.
+  if (stepId.startsWith('rescue-')) return 'rescue'
+  if (stepId.startsWith('word-block-')) return 'easy'
+  if (stepId.startsWith('mixed-1-')) return 'audio-first'
+  if (stepId.startsWith('mixed-2-') || stepId.startsWith('contrast-')) {
+    return 'try-before-choices'
+  }
+  if (stepId.startsWith('quick-')) return 'quick'
+  return 'easy'
 }
 
 function buildActiveQuiz(
@@ -1856,6 +2052,7 @@ function buildActiveQuiz(
     return {
       id: segment.stepId,
       kind: 'contrast',
+      stage: getRecallStage(segment.stepId),
       prompt: `Which means ${word.meaning}?`,
       wordId: word.id,
       correctValue: word.id,
@@ -1871,6 +2068,7 @@ function buildActiveQuiz(
     return {
       id: segment.stepId,
       kind: 'zh-en',
+      stage: getRecallStage(segment.stepId),
       prompt: `What does ${word.word} mean?`,
       wordId: word.id,
       correctValue: word.meaning,
@@ -1882,6 +2080,7 @@ function buildActiveQuiz(
     return {
       id: segment.stepId,
       kind: 'en-zh',
+      stage: getRecallStage(segment.stepId),
       prompt: `Which word means ${word.meaning}?`,
       wordId: word.id,
       correctValue: word.id,

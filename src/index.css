@@ -543,6 +543,73 @@ dt {
   min-height: min(68svh, 640px);
 }
 
+.minimal-visual-stage {
+  min-height: min(76svh, 760px);
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  gap: clamp(18px, 4vw, 34px);
+  background:
+    linear-gradient(145deg, rgba(247, 252, 255, 0.86), rgba(160, 215, 255, 0.72)),
+    linear-gradient(135deg, #084c98, #3aa4f4);
+}
+
+.minimal-visual-stage .study-time,
+.minimal-visual-stage .study-target-strip {
+  display: none;
+}
+
+.minimal-visual-stage .study-meta {
+  align-self: start;
+}
+
+.minimal-visual-stage .study-chinese {
+  align-self: end;
+  font-size: clamp(3rem, 17vw, 10rem);
+}
+
+.minimal-visual-stage .study-chinese.sentence {
+  font-size: clamp(2.5rem, 11vw, 6.5rem);
+  line-height: 1.05;
+}
+
+.minimal-visual-stage .study-meaning {
+  font-size: clamp(1.4rem, 6vw, 3rem);
+}
+
+.minimal-visual-stage .study-pinyin {
+  font-size: clamp(1.2rem, 5vw, 2.6rem);
+}
+
+.minimal-controls {
+  width: min(680px, 100%);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  justify-self: center;
+  align-self: end;
+}
+
+.minimal-controls button {
+  min-height: 62px;
+  padding: 14px 16px;
+  font-size: clamp(1rem, 4vw, 1.28rem);
+}
+
+.minimal-controls button:last-child {
+  grid-column: 1 / -1;
+}
+
+.minimal-audio-host {
+  position: absolute;
+  width: 1px;
+  min-height: 1px;
+  max-height: 1px;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
 .study-player:fullscreen {
   width: 100vw;
   height: 100vh;
@@ -945,6 +1012,24 @@ dt {
   line-height: 1.05;
 }
 
+.recall-cue.softened {
+  color: #31506d;
+  font-size: clamp(1.8rem, 7vw, 3.4rem);
+}
+
+.recall-think-first {
+  min-height: 58px;
+  display: grid;
+  place-items: center;
+  border: 1px dashed rgba(23, 111, 194, 0.26);
+  border-radius: 14px;
+  background: rgba(23, 111, 194, 0.06);
+  color: #31506d;
+  font-size: clamp(1.05rem, 4vw, 1.45rem);
+  font-weight: 900;
+  text-align: center;
+}
+
 .recall-hint {
   color: #31506d;
   font-size: clamp(1.25rem, 5vw, 2.2rem);
@@ -1256,6 +1341,19 @@ kbd {
 
   .recall-options {
     grid-template-columns: 1fr;
+  }
+
+  .minimal-visual-stage {
+    min-height: 78svh;
+    border-radius: 12px;
+  }
+
+  .minimal-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .minimal-controls button:last-child {
+    grid-column: auto;
   }
 
   .active-recall-card {
