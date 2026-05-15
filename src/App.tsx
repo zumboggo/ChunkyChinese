@@ -1094,26 +1094,36 @@ function App() {
                 <section className="study-player" ref={playModeRef}>
                   <div className={`study-stage ${focusedActiveQuiz ? 'active-focus' : ''}`}>
                     <div className="study-meta">
-                      <span>{rendering ? 'Rendering local audio...' : renderedLesson?.title ?? lesson.title}</span>
-                      <div className="study-toggles">
-                        <button type="button" onClick={() => setShowPinyin((value) => !value)}>
-                          Pinyin {showPinyin ? 'on' : 'off'}
-                        </button>
-                        <button type="button" onClick={() => setShowEnglish((value) => !value)}>
-                          English {showEnglish ? 'on' : 'off'}
-                        </button>
-                        <button
-                          type="button"
-                          className={attentionMode === 'active' ? 'active' : ''}
-                          onClick={() =>
-                            setAttentionMode((mode) =>
-                              mode === 'active' ? 'listening' : 'active',
-                            )
-                          }
-                        >
-                          {attentionMode === 'active' ? 'Active' : 'Listening'}
-                        </button>
-                      </div>
+                      <span>
+                        {focusedActiveQuiz
+                          ? 'Active recall'
+                          : rendering
+                            ? 'Rendering local audio...'
+                            : renderedLesson?.title ?? lesson.title}
+                      </span>
+                      {focusedActiveQuiz ? (
+                        <span className="mode-chip">Paused for answer</span>
+                      ) : (
+                        <div className="study-toggles">
+                          <button type="button" onClick={() => setShowPinyin((value) => !value)}>
+                            Pinyin {showPinyin ? 'on' : 'off'}
+                          </button>
+                          <button type="button" onClick={() => setShowEnglish((value) => !value)}>
+                            English {showEnglish ? 'on' : 'off'}
+                          </button>
+                          <button
+                            type="button"
+                            className={attentionMode === 'active' ? 'active' : ''}
+                            onClick={() =>
+                              setAttentionMode((mode) =>
+                                mode === 'active' ? 'listening' : 'active',
+                              )
+                            }
+                          >
+                            {attentionMode === 'active' ? 'Active' : 'Listening'}
+                          </button>
+                        </div>
+                      )}
                     </div>
                     {focusedActiveQuiz && currentQuiz ? (
                       <ActiveRecallCard
@@ -1338,74 +1348,93 @@ function App() {
                     ) : (
                       <div className="audio-placeholder">Render a lesson to create the audio track.</div>
                     )}
-                    <div className="player-controls">
-                      <button
-                        type="button"
-                        onClick={() => pocketAudioRef.current?.play()}
-                        disabled={!renderedUrl || isPlaying}
-                      >
-                        Play
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => pocketAudioRef.current?.pause()}
-                        disabled={!renderedUrl || !isPlaying}
-                      >
-                        Pause
-                      </button>
-                      <button
-                        type="button"
-                        onClick={pauseAndSavePlace}
-                        disabled={!renderedUrl}
-                      >
-                        Pause & save place
-                      </button>
-                      <button
-                        type="button"
-                        onClick={resumeSavedPlace}
-                        disabled={!renderedUrl || savedResumeTime === null}
-                      >
-                        Resume lesson
-                      </button>
-                      <button
-                        type="button"
-                        onClick={restartCurrentWord}
-                        disabled={!renderedUrl || !currentSegment?.wordId}
-                      >
-                        Restart current word
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => startPocketLesson()}
-                        disabled={rendering || (showReviewPrompt && !allLessonWordsRated)}
-                      >
-                        Next today's 5
-                      </button>
-                      <label className="toggle compact-toggle">
-                        <input
-                          type="checkbox"
-                          aria-label="Auto advance to next lesson"
-                          checked={autoNextLesson}
-                          onChange={(event) => setAutoNextLesson(event.target.checked)}
-                        />
-                        Auto advance to next lesson
-                      </label>
-                      <label className="compact-field">
-                        Pause
-                        <select
-                          value={pauseProfile}
-                          onChange={(event) => setPauseProfile(event.target.value as PauseProfile)}
+                    {focusedActiveQuiz ? (
+                      <div className="player-controls quiet-controls">
+                        <button
+                          type="button"
+                          onClick={pauseAndSavePlace}
+                          disabled={!renderedUrl}
                         >
-                          <option value="gentle">Gentle</option>
-                          <option value="normal">Normal</option>
-                          <option value="fast">Fast</option>
-                          <option value="challenge">Challenge</option>
-                        </select>
-                      </label>
-                      <button type="button" onClick={toggleFullscreen}>
-                        {isFullscreen ? 'Exit full screen' : 'Full screen'}
-                      </button>
-                    </div>
+                          Pause & save place
+                        </button>
+                        <button
+                          type="button"
+                          onClick={restartCurrentWord}
+                          disabled={!renderedUrl || !currentSegment?.wordId}
+                        >
+                          Restart current word
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="player-controls">
+                        <button
+                          type="button"
+                          onClick={() => pocketAudioRef.current?.play()}
+                          disabled={!renderedUrl || isPlaying}
+                        >
+                          Play
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => pocketAudioRef.current?.pause()}
+                          disabled={!renderedUrl || !isPlaying}
+                        >
+                          Pause
+                        </button>
+                        <button
+                          type="button"
+                          onClick={pauseAndSavePlace}
+                          disabled={!renderedUrl}
+                        >
+                          Pause & save place
+                        </button>
+                        <button
+                          type="button"
+                          onClick={resumeSavedPlace}
+                          disabled={!renderedUrl || savedResumeTime === null}
+                        >
+                          Resume lesson
+                        </button>
+                        <button
+                          type="button"
+                          onClick={restartCurrentWord}
+                          disabled={!renderedUrl || !currentSegment?.wordId}
+                        >
+                          Restart current word
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => startPocketLesson()}
+                          disabled={rendering || (showReviewPrompt && !allLessonWordsRated)}
+                        >
+                          Next today's 5
+                        </button>
+                        <label className="toggle compact-toggle">
+                          <input
+                            type="checkbox"
+                            aria-label="Auto advance to next lesson"
+                            checked={autoNextLesson}
+                            onChange={(event) => setAutoNextLesson(event.target.checked)}
+                          />
+                          Auto advance to next lesson
+                        </label>
+                        <label className="compact-field">
+                          Pause
+                          <select
+                            value={pauseProfile}
+                            onChange={(event) => setPauseProfile(event.target.value as PauseProfile)}
+                          >
+                            <option value="gentle">Gentle</option>
+                            <option value="normal">Normal</option>
+                            <option value="fast">Fast</option>
+                            <option value="challenge">Challenge</option>
+                          </select>
+                        </label>
+                        <button type="button" onClick={toggleFullscreen}>
+                          {isFullscreen ? 'Exit full screen' : 'Full screen'}
+                        </button>
+                      </div>
+                    )}
                     {!focusedActiveQuiz && (
                       <div className="coverage-grid">
                         <span>Ready words: {coverage.readyWords}</span>

@@ -327,6 +327,14 @@ dt {
   border-color: var(--accent);
 }
 
+.quiet-controls {
+  justify-content: center;
+}
+
+.quiet-controls button {
+  min-height: 46px;
+}
+
 .mode-start-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(170px, 1fr));
@@ -604,6 +612,18 @@ dt {
   background: #174f8f;
   border-color: #174f8f;
   color: #fff;
+}
+
+.mode-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.26);
+  color: #f5fbff;
 }
 
 .study-toggles {
