@@ -248,6 +248,34 @@ export async function recordEvent(event: Omit<ListeningEvent, 'id' | 'timestamp'
   })
 }
 
+export async function recordQuizAnswer(wordId: string, correct: boolean): Promise<void> {
+  const db = await getDB()
+  const tx = db.transaction(['vocabWords', 'listeningEvents'], 'readwrite')
+  const word = await tx.objectStore('vocabWords').get(wordId)
+  if (!word) {
+    await tx.done
+    return
+  }
+
+  const now = new Date().toISOString()
+  await tx.objectStore('vocabWords').put({
+    ...word,
+    correctCount: word.correctCount + (correct ? 1 : 0),
+    wrongCount: word.wrongCount + (correct ? 0 : 1),
+    lastReviewedAt: now,
+    updatedAt: now,
+  })
+  await tx.objectStore('listeningEvents').put({
+    id: `event:${crypto.randomUUID()}`,
+    timestamp: now,
+    type: 'quiz_answer',
+    itemType: 'quiz',
+    itemId: wordId,
+    correct,
+  })
+  await tx.done
+}
+
 export async function completeWordExposure(wordId: string, seconds = 0): Promise<void> {
   const db = await getDB()
   const word = await db.get('vocabWords', wordId)

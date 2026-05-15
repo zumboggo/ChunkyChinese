@@ -17,6 +17,7 @@ export type ListeningEventType =
   | 'mark_familiar'
   | 'mark_learning'
   | 'mark_review'
+  | 'quiz_answer'
   | 'quiz_prompt'
 
 export interface VocabWord {

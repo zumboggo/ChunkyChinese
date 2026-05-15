@@ -16,6 +16,7 @@ import {
   importSentencesCsv,
   importVocabCsv,
   recordEvent,
+  recordQuizAnswer,
   saveRenderedLesson,
   seedLmsWordsIfEmpty,
   updateWordStatus,
@@ -29,6 +30,7 @@ import type {
   LessonPlan,
   LessonStep,
   RenderedLesson,
+  RenderedLessonSegment,
   Sentence,
   VocabWord,
   WordStatus,
@@ -36,6 +38,23 @@ import type {
 
 type Screen = 'dashboard' | 'words' | 'import' | 'lesson'
 type LessonStartOptions = { randomize?: boolean; playAfterRender?: boolean }
+type AttentionMode = 'listening' | 'active'
+type QuizKind = 'zh-en' | 'en-zh' | 'contrast'
+
+interface ActiveQuiz {
+  id: string
+  kind: QuizKind
+  prompt: string
+  wordId: string
+  correctValue: string
+  options: Array<{ value: string; label: string }>
+}
+
+interface QuizResponse {
+  selected?: string
+  correct: boolean
+  skipped?: boolean
+}
 
 const emptyStats: DashboardStats = {
   counts: { new: 0, learning: 0, familiar: 0, known: 0, review: 0 },
@@ -68,6 +87,8 @@ function App() {
   const [showEnglish, setShowEnglish] = useState(true)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [attentionMode, setAttentionMode] = useState<AttentionMode>('listening')
+  const [quizResponses, setQuizResponses] = useState<Record<string, QuizResponse>>({})
   const [autoNextLesson, setAutoNextLesson] = useState(false)
   const [autoAdvance, setAutoAdvance] = useState(true)
   const [playbackRate, setPlaybackRate] = useState(1)
@@ -191,6 +212,12 @@ function App() {
         .map((target) => words.find((word) => word.id === target.id) ?? target) ?? [],
     [lesson, words],
   )
+  const currentQuiz = useMemo(
+    () => buildActiveQuiz(currentSegment, renderedLesson, lessonWords, words),
+    [currentSegment, lessonWords, renderedLesson, words],
+  )
+  const currentQuizResponse = currentQuiz ? quizResponses[currentQuiz.id] : undefined
+  const answeredQuizStats = useMemo(() => getAnsweredQuizStats(quizResponses), [quizResponses])
 
   const handleStatus = useCallback(async (ids: string[], status: WordStatus) => {
     if (ids.length === 0) return
@@ -198,6 +225,42 @@ function App() {
     setLastSummary(`Marked ${ids.length} word${ids.length === 1 ? '' : 's'} ${status}.`)
     await refresh()
   }, [refresh])
+
+  useEffect(() => {
+    if (attentionMode !== 'active' || !currentQuiz || currentQuizResponse) return
+    if (!pocketAudioRef.current || pocketAudioRef.current.paused) return
+    pocketAudioRef.current.pause()
+  }, [attentionMode, currentQuiz, currentQuizResponse])
+
+  async function handleQuizAnswer(value: string) {
+    if (!currentQuiz || quizResponses[currentQuiz.id]) return
+    const correct = value === currentQuiz.correctValue
+    setQuizResponses((responses) => ({
+      ...responses,
+      [currentQuiz.id]: { selected: value, correct },
+    }))
+    await recordQuizAnswer(currentQuiz.wordId, correct)
+    setLastSummary(correct ? 'Correct.' : 'Not quite.')
+    await refresh()
+    if (attentionMode === 'active') {
+      window.setTimeout(() => {
+        void pocketAudioRef.current?.play()
+      }, 350)
+    }
+  }
+
+  function skipCurrentQuiz() {
+    if (!currentQuiz || quizResponses[currentQuiz.id]) return
+    setQuizResponses((responses) => ({
+      ...responses,
+      [currentQuiz.id]: { correct: false, skipped: true },
+    }))
+    if (attentionMode === 'active') {
+      window.setTimeout(() => {
+        void pocketAudioRef.current?.play()
+      }, 80)
+    }
+  }
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -246,6 +309,7 @@ function App() {
       const nextLesson = createPocketLesson(words, sentences, audioClips, manualIds, selectionOptions)
       setLesson(nextLesson)
       setCurrentStepIndex(0)
+      setQuizResponses({})
       if (nextLesson.steps.filter((step) => step.kind === 'audio').length === 0) {
         setLastSummary('No local clips are linked yet. Import a clip pack first.')
         return
@@ -807,6 +871,17 @@ function App() {
                         <button type="button" onClick={() => setShowEnglish((value) => !value)}>
                           English {showEnglish ? 'on' : 'off'}
                         </button>
+                        <button
+                          type="button"
+                          className={attentionMode === 'active' ? 'active' : ''}
+                          onClick={() =>
+                            setAttentionMode((mode) =>
+                              mode === 'active' ? 'listening' : 'active',
+                            )
+                          }
+                        >
+                          {attentionMode === 'active' ? 'Active' : 'Listening'}
+                        </button>
                       </div>
                     </div>
                     <div className={`study-chinese ${studyDisplay.kind}`}>
@@ -817,9 +892,17 @@ function App() {
                     )}
                     {showEnglish && <div className="study-meaning">{studyDisplay.english}</div>}
                     <div className="study-time">
-                      {renderedLesson
-                        ? `${formatTime(pocketProgress.current)} / ${formatTime(pocketProgress.duration)}`
-                        : 'Import a clip pack, then render a lesson for phone-style playback.'}
+                      <span>
+                        {renderedLesson
+                          ? `${formatTime(pocketProgress.current)} / ${formatTime(pocketProgress.duration)}`
+                          : 'Import a clip pack, then render a lesson for phone-style playback.'}
+                      </span>
+                      {lesson && (
+                        <span>
+                          Answered {answeredQuizStats.answered} · Correct{' '}
+                          {answeredQuizStats.correct}
+                        </span>
+                      )}
                     </div>
                     {lessonWords.length > 0 && (
                       <div className="study-target-strip" aria-label="Lesson words">
@@ -835,6 +918,43 @@ function App() {
                             <small>{word.meaning}</small>
                           </button>
                         ))}
+                      </div>
+                    )}
+                    {currentQuiz && !currentQuizResponse?.skipped && (
+                      <div className="quiz-panel" aria-live="polite">
+                        <div className="quiz-copy">
+                          <strong>{currentQuiz.prompt}</strong>
+                          <span>{attentionMode === 'active' ? 'Paused for answer' : 'Optional'}</span>
+                        </div>
+                        <div className="quiz-options">
+                          {currentQuiz.options.map((option) => {
+                            const isSelected = currentQuizResponse?.selected === option.value
+                            const isCorrect = option.value === currentQuiz.correctValue
+                            const stateClass = currentQuizResponse
+                              ? isCorrect
+                                ? 'correct'
+                                : isSelected
+                                  ? 'wrong'
+                                  : ''
+                              : ''
+                            return (
+                              <button
+                                key={option.value}
+                                type="button"
+                                className={stateClass}
+                                disabled={Boolean(currentQuizResponse)}
+                                onClick={() => handleQuizAnswer(option.value)}
+                              >
+                                {option.label}
+                              </button>
+                            )
+                          })}
+                          {attentionMode === 'active' && !currentQuizResponse && (
+                            <button type="button" className="ghost-answer" onClick={skipCurrentQuiz}>
+                              Skip
+                            </button>
+                          )}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -1173,6 +1293,131 @@ function wordsToProgressCsv(words: VocabWord[]): string {
 function csvCell(value: string | number): string {
   const text = String(value)
   return /[",\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text
+}
+
+function buildActiveQuiz(
+  segment: RenderedLessonSegment | undefined,
+  renderedLesson: RenderedLesson | null,
+  lessonWords: VocabWord[],
+  allWords: VocabWord[],
+): ActiveQuiz | undefined {
+  if (!segment || segment.kind !== 'pause' || !segment.wordId || segment.sentenceId) return undefined
+  const word = lessonWords.find((candidate) => candidate.id === segment.wordId)
+  if (!word) return undefined
+
+  if (segment.stepId.startsWith('contrast-') && segment.stepId.endsWith('-pause')) {
+    const prefix = segment.stepId.replace(/-pause$/, '')
+    const otherId = renderedLesson?.segments?.find(
+      (candidate) => candidate.stepId === `${prefix}-option-b`,
+    )?.wordId
+    const other = lessonWords.find((candidate) => candidate.id === otherId)
+    if (!other) return undefined
+    return {
+      id: segment.stepId,
+      kind: 'contrast',
+      prompt: `Which means ${word.meaning}?`,
+      wordId: word.id,
+      correctValue: word.id,
+      options: orderOptions(
+        [
+          { value: word.id, label: word.word },
+          { value: other.id, label: other.word },
+        ],
+        segment.stepId,
+      ),
+    }
+  }
+
+  if (segment.stepId.includes('-zh-en-') && !segment.stepId.startsWith('quick-')) {
+    return {
+      id: segment.stepId,
+      kind: 'zh-en',
+      prompt: `What does ${word.word} mean?`,
+      wordId: word.id,
+      correctValue: word.meaning,
+      options: buildMeaningOptions(word, lessonWords, allWords, segment.stepId),
+    }
+  }
+
+  if (segment.stepId.includes('-en-zh-') && !segment.stepId.startsWith('quick-')) {
+    return {
+      id: segment.stepId,
+      kind: 'en-zh',
+      prompt: `Which word means ${word.meaning}?`,
+      wordId: word.id,
+      correctValue: word.id,
+      options: buildWordOptions(word, lessonWords, allWords, segment.stepId),
+    }
+  }
+
+  return undefined
+}
+
+function buildMeaningOptions(
+  word: VocabWord,
+  lessonWords: VocabWord[],
+  allWords: VocabWord[],
+  quizId: string,
+): ActiveQuiz['options'] {
+  const seen = new Set([word.meaning.toLocaleLowerCase()])
+  const distractors = [...lessonWords, ...allWords]
+    .filter((candidate) => candidate.id !== word.id)
+    .filter((candidate) => {
+      const key = candidate.meaning.toLocaleLowerCase()
+      if (seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+    .map((candidate) => ({ value: candidate.meaning, label: candidate.meaning }))
+
+  return orderOptions(
+    [{ value: word.meaning, label: word.meaning }, ...distractors].slice(0, 4),
+    quizId,
+  )
+}
+
+function buildWordOptions(
+  word: VocabWord,
+  lessonWords: VocabWord[],
+  allWords: VocabWord[],
+  quizId: string,
+): ActiveQuiz['options'] {
+  const seen = new Set([word.id])
+  const distractors = [...lessonWords, ...allWords]
+    .filter((candidate) => {
+      if (seen.has(candidate.id)) return false
+      seen.add(candidate.id)
+      return true
+    })
+    .map((candidate) => ({ value: candidate.id, label: candidate.word }))
+
+  return orderOptions(
+    [{ value: word.id, label: word.word }, ...distractors].slice(0, 4),
+    quizId,
+  )
+}
+
+function orderOptions(options: ActiveQuiz['options'], seed: string): ActiveQuiz['options'] {
+  return [...options].sort(
+    (a, b) => stableSortValue(`${seed}:${a.value}`) - stableSortValue(`${seed}:${b.value}`),
+  )
+}
+
+function stableSortValue(value: string): number {
+  let hash = 2166136261
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index)
+    hash = Math.imul(hash, 16777619)
+  }
+  return hash >>> 0
+}
+
+function getAnsweredQuizStats(responses: Record<string, QuizResponse>) {
+  const answered = Object.values(responses).filter((response) => !response.skipped)
+  return {
+    answered: answered.length,
+    correct: answered.filter((response) => response.correct).length,
+  }
 }
 
 function getStudyDisplay(word?: VocabWord, sentence?: Sentence) {
