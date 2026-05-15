@@ -1039,7 +1039,7 @@ function App() {
                           <span>{attentionMode === 'active' ? 'Keys 1-4' : 'Optional keys 1-4'}</span>
                         </div>
                         <div className="quiz-options">
-                          {currentQuiz.options.slice(0, 4).map((option, index) => {
+                          {currentQuiz.options.map((option, index) => {
                             const isSelected = currentQuizResponse?.selected === option.value
                             const isCorrect = option.value === currentQuiz.correctValue
                             const stateClass = currentQuizResponse
@@ -1460,13 +1460,11 @@ function buildActiveQuiz(
       prompt: `Which means ${word.meaning}?`,
       wordId: word.id,
       correctValue: word.id,
-      options: limitQuizOptions(orderOptions(
-        [
-          { value: word.id, label: word.word },
-          { value: other.id, label: other.word },
-        ],
+      options: orderLimitedOptions(
+        { value: word.id, label: word.word },
+        [{ value: other.id, label: other.word }],
         segment.stepId,
-      )),
+      ),
     }
   }
 
@@ -1512,9 +1510,7 @@ function buildMeaningOptions(
     })
     .map((candidate) => ({ value: candidate.meaning, label: candidate.meaning }))
 
-  return limitQuizOptions(
-    orderOptions([{ value: word.meaning, label: word.meaning }, ...distractors], quizId),
-  )
+  return orderLimitedOptions({ value: word.meaning, label: word.meaning }, distractors, quizId)
 }
 
 function buildWordOptions(
@@ -1532,7 +1528,7 @@ function buildWordOptions(
     })
     .map((candidate) => ({ value: candidate.id, label: candidate.word }))
 
-  return limitQuizOptions(orderOptions([{ value: word.id, label: word.word }, ...distractors], quizId))
+  return orderLimitedOptions({ value: word.id, label: word.word }, distractors, quizId)
 }
 
 function orderOptions(options: ActiveQuiz['options'], seed: string): ActiveQuiz['options'] {
@@ -1541,8 +1537,12 @@ function orderOptions(options: ActiveQuiz['options'], seed: string): ActiveQuiz[
   )
 }
 
-function limitQuizOptions(options: ActiveQuiz['options']): ActiveQuiz['options'] {
-  return options.slice(0, 4)
+function orderLimitedOptions(
+  correct: ActiveQuiz['options'][number],
+  distractors: ActiveQuiz['options'],
+  seed: string,
+): ActiveQuiz['options'] {
+  return orderOptions([correct, ...distractors.slice(0, 3)], seed)
 }
 
 function stableSortValue(value: string): number {
