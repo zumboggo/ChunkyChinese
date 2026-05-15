@@ -13,6 +13,7 @@ import type {
   ClipManifestEntry,
   ClipPackManifest,
   DashboardStats,
+  FsrsRating,
   ImportSummary,
   ListeningEvent,
   RenderedLesson,
@@ -147,10 +148,12 @@ export async function upsertWords(words: VocabWord[]): Promise<ImportSummary> {
     const existing = await tx.store.get(word.id)
     if (existing) {
       updated += 1
+      const hasProgress = hasImportedProgress(word)
       await tx.store.put({
         ...existing,
         word: word.word,
         meaning: word.meaning,
+        status: hasProgress ? word.status : existing.status,
         lessonNumber: word.lessonNumber ?? existing.lessonNumber,
         tags: word.tags?.length ? word.tags : existing.tags,
         partOfSpeech: word.partOfSpeech || existing.partOfSpeech,
@@ -159,6 +162,17 @@ export async function upsertWords(words: VocabWord[]): Promise<ImportSummary> {
         pinyin: word.pinyin || existing.pinyin,
         source: word.source || existing.source,
         notes: word.notes || existing.notes,
+        mems: word.mems || existing.mems,
+        fsrsDueAt: word.fsrsDueAt || existing.fsrsDueAt,
+        fsrsIntervalDays: word.fsrsIntervalDays ?? existing.fsrsIntervalDays,
+        fsrsEase: word.fsrsEase ?? existing.fsrsEase,
+        fsrsRepetitions: word.fsrsRepetitions ?? existing.fsrsRepetitions,
+        fsrsLapses: word.fsrsLapses ?? existing.fsrsLapses,
+        lastReviewedAt: word.lastReviewedAt || existing.lastReviewedAt,
+        seenCount: hasProgress ? word.seenCount : existing.seenCount,
+        correctCount: hasProgress ? word.correctCount : existing.correctCount,
+        wrongCount: hasProgress ? word.wrongCount : existing.wrongCount,
+        listenedSeconds: hasProgress ? word.listenedSeconds : existing.listenedSeconds,
         updatedAt: new Date().toISOString(),
       })
     } else {
@@ -236,6 +250,64 @@ export async function updateWordStatus(
       itemId: id,
     })
   }
+  await tx.done
+}
+
+export async function updateWordMems(wordId: string, mems: string): Promise<void> {
+  const db = await getDB()
+  const word = await db.get('vocabWords', wordId)
+  if (!word) return
+  await db.put('vocabWords', {
+    ...word,
+    mems,
+    updatedAt: new Date().toISOString(),
+  })
+}
+
+export async function rateWordFsrs(wordId: string, rating: FsrsRating): Promise<void> {
+  const db = await getDB()
+  const tx = db.transaction(['vocabWords', 'listeningEvents'], 'readwrite')
+  const word = await tx.objectStore('vocabWords').get(wordId)
+  if (!word) {
+    await tx.done
+    return
+  }
+
+  const now = new Date()
+  const nowIso = now.toISOString()
+  const currentEase = word.fsrsEase ?? 2.5
+  const currentInterval = word.fsrsIntervalDays ?? 0
+  const currentRepetitions = word.fsrsRepetitions ?? 0
+  const currentLapses = word.fsrsLapses ?? 0
+  const next = scheduleFsrsReview(
+    rating,
+    currentEase,
+    currentInterval,
+    currentRepetitions,
+    currentLapses,
+    now,
+  )
+
+  await tx.objectStore('vocabWords').put({
+    ...word,
+    status: next.status,
+    fsrsDueAt: next.dueAt,
+    fsrsIntervalDays: next.intervalDays,
+    fsrsEase: next.ease,
+    fsrsRepetitions: next.repetitions,
+    fsrsLapses: next.lapses,
+    lastReviewedAt: nowIso,
+    updatedAt: nowIso,
+  })
+  await tx.objectStore('listeningEvents').put({
+    id: `event:${crypto.randomUUID()}`,
+    timestamp: nowIso,
+    type: 'fsrs_rating',
+    itemType: 'word',
+    itemId: wordId,
+    correct: rating !== 'again',
+    rating,
+  })
   await tx.done
 }
 
@@ -773,6 +845,79 @@ function statusToEvent(status: WordStatus): ListeningEvent['type'] {
   if (status === 'familiar') return 'mark_familiar'
   if (status === 'learning') return 'mark_learning'
   return 'mark_review'
+}
+
+function hasImportedProgress(word: VocabWord): boolean {
+  return Boolean(
+    word.lastReviewedAt ||
+      word.fsrsDueAt ||
+      word.fsrsRepetitions ||
+      word.fsrsIntervalDays ||
+      word.seenCount ||
+      word.correctCount ||
+      word.wrongCount ||
+      word.listenedSeconds,
+  )
+}
+
+function scheduleFsrsReview(
+  rating: FsrsRating,
+  ease: number,
+  intervalDays: number,
+  repetitions: number,
+  lapses: number,
+  now: Date,
+): {
+  dueAt: string
+  intervalDays: number
+  ease: number
+  repetitions: number
+  lapses: number
+  status: WordStatus
+} {
+  const nextRepetitions = rating === 'again' ? 0 : repetitions + 1
+  let nextEase = ease
+  let nextInterval: number
+  let nextLapses = lapses
+  let status: WordStatus
+
+  if (rating === 'again') {
+    nextEase = Math.max(1.3, ease - 0.2)
+    nextInterval = 0
+    nextLapses += 1
+    status = 'learning'
+  } else if (rating === 'hard') {
+    nextEase = Math.max(1.3, ease - 0.15)
+    nextInterval = repetitions <= 0 ? 1 : Math.max(1, Math.ceil(intervalDays * 1.25))
+    status = 'learning'
+  } else if (rating === 'good') {
+    nextInterval =
+      repetitions <= 0 ? 2 : Math.max(intervalDays + 1, Math.ceil(intervalDays * ease))
+    status = nextInterval >= 14 ? 'known' : 'familiar'
+  } else {
+    nextEase = Math.min(3.2, ease + 0.15)
+    nextInterval =
+      repetitions <= 0
+        ? 4
+        : Math.max(intervalDays + 2, Math.ceil(intervalDays * (ease + 0.35)))
+    status = nextInterval >= 7 ? 'known' : 'familiar'
+  }
+
+  const dueAt = new Date(now)
+  if (nextInterval === 0) {
+    dueAt.setMinutes(dueAt.getMinutes() + 10)
+  } else {
+    dueAt.setDate(dueAt.getDate() + nextInterval)
+  }
+
+  return {
+    dueAt: dueAt.toISOString(),
+    intervalDays: nextInterval,
+    ease: Number(nextEase.toFixed(2)),
+    repetitions: nextRepetitions,
+    lapses: nextLapses,
+    status,
+  }
 }
 
 function startOfToday(): Date {

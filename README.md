@@ -79,6 +79,10 @@ If IndexedDB already has words, the seed is not applied again. Use the Import sc
 
 The 5 word lesson mode is meant for earbuds and a sleeping phone. It uses only imported MP3 blobs plus generated silence/ding sounds. It also sets Media Session metadata and play/pause handlers where the browser supports them, which helps Android Chrome expose lock-screen and earbud controls.
 
+Active mode pauses during optional recall questions. After the initial vocab learning blocks, Active mode hides pinyin and English hints automatically so you have to retrieve the word a little harder. At the end of each 5 word lesson, rate each word with Again, Hard, Good, or Easy; the app stores a simple Anki-style due date, interval, ease, repetitions, and lapses locally and uses those fields to choose future lessons.
+
+Each lesson word has a small **mems** button. Use it for plain-text memory aids such as mnemonics, radical notes, visual associations, or sound hints. Word Manager CSV export includes `mems` and the scheduler fields, so those notes and review state can be backed up or moved into your main vocabulary spreadsheet.
+
 ## Generate a Clip Pack
 
 The LMS exporter lives here:

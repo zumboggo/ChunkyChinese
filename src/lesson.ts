@@ -215,14 +215,24 @@ export function selectTargetWords(
     const selected = manualIds
       .map((id) => words.find((word) => word.id === id))
       .filter((word): word is VocabWord => Boolean(word))
-      .filter((word) => word.status !== 'known')
+      .filter((word) => word.status !== 'known' || isFsrsDue(word))
     return options.randomize ? weightedSampleWords(selected, 5) : selected.slice(0, 5)
   }
 
-  const candidates = words.filter((word) => word.status !== 'known')
+  const candidates = dueCandidates(words)
+  const fallback =
+    candidates.length >= 5
+      ? candidates
+      : [
+          ...candidates,
+          ...words
+            .filter((word) => !candidates.some((candidate) => candidate.id === word.id))
+            .filter((word) => word.status !== 'known')
+            .sort((a, b) => futureDueSort(a) - futureDueSort(b)),
+        ]
   return options.randomize
-    ? weightedSampleWords(candidates, 5)
-    : [...candidates].sort((a, b) => scoreWord(a) - scoreWord(b)).slice(0, 5)
+    ? weightedSampleWords(fallback, 5)
+    : [...fallback].sort((a, b) => scoreWord(a) - scoreWord(b)).slice(0, 5)
 }
 
 function scoreWord(word: VocabWord): number {
@@ -231,9 +241,10 @@ function scoreWord(word: VocabWord): number {
     learning: 4,
     review: 12,
     familiar: 20,
-    known: 999,
+    known: 42,
   }[word.status]
-  return statusWeight + word.seenCount * 2 + (word.lessonNumber ?? 999) / 100
+  const dueWeight = isFsrsDue(word) ? -12 - overdueDays(word) : futureDueSort(word) / 1000
+  return statusWeight + word.seenCount * 2 + (word.lessonNumber ?? 999) / 100 + dueWeight
 }
 
 function weightedSampleWords(words: VocabWord[], count: number): VocabWord[] {
@@ -267,10 +278,39 @@ function selectionWeight(word: VocabWord): number {
     learning: 78,
     review: 34,
     familiar: 12,
-    known: 0,
+    known: 8,
   }[word.status]
+  if (word.fsrsDueAt && !isFsrsDue(word)) return 1
+  const dueBonus = isFsrsDue(word) ? Math.min(overdueDays(word) * 8, 48) : 0
   const seenPenalty = Math.min(word.seenCount * 6, statusWeight * 0.72)
-  return Math.max(1, statusWeight - seenPenalty)
+  return Math.max(1, statusWeight + dueBonus - seenPenalty)
+}
+
+function dueCandidates(words: VocabWord[]): VocabWord[] {
+  return words.filter((word) => {
+    if (!isFsrsDue(word)) return false
+    if (word.status === 'known') return Boolean(word.fsrsDueAt)
+    return true
+  })
+}
+
+function isFsrsDue(word: VocabWord): boolean {
+  if (!word.fsrsDueAt) return word.status !== 'known'
+  const dueTime = Date.parse(word.fsrsDueAt)
+  return !Number.isFinite(dueTime) || dueTime <= Date.now()
+}
+
+function futureDueSort(word: VocabWord): number {
+  if (!word.fsrsDueAt) return word.status === 'known' ? Number.MAX_SAFE_INTEGER : 0
+  const dueTime = Date.parse(word.fsrsDueAt)
+  return Number.isFinite(dueTime) ? dueTime : 0
+}
+
+function overdueDays(word: VocabWord): number {
+  if (!word.fsrsDueAt) return 0
+  const dueTime = Date.parse(word.fsrsDueAt)
+  if (!Number.isFinite(dueTime)) return 0
+  return Math.max(0, (Date.now() - dueTime) / 86_400_000)
 }
 
 function shuffle<T>(items: T[]): T[] {

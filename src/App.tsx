@@ -15,10 +15,12 @@ import {
   importHostedClipPack,
   importSentencesCsv,
   importVocabCsv,
+  rateWordFsrs,
   recordEvent,
   recordQuizAnswer,
   saveRenderedLesson,
   seedLmsWordsIfEmpty,
+  updateWordMems,
   updateWordStatus,
 } from './db'
 import { createPocketLesson } from './lesson'
@@ -26,6 +28,7 @@ import { renderLessonToWav } from './renderAudio'
 import type {
   AudioClip,
   DashboardStats,
+  FsrsRating,
   ImportSummary,
   LessonPlan,
   LessonStep,
@@ -89,6 +92,10 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [attentionMode, setAttentionMode] = useState<AttentionMode>('listening')
   const [quizResponses, setQuizResponses] = useState<Record<string, QuizResponse>>({})
+  const [fsrsRatings, setFsrsRatings] = useState<Record<string, FsrsRating>>({})
+  const [showReviewPrompt, setShowReviewPrompt] = useState(false)
+  const [memEditorWordId, setMemEditorWordId] = useState<string | null>(null)
+  const [memDraft, setMemDraft] = useState('')
   const [autoNextLesson, setAutoNextLesson] = useState(false)
   const [autoAdvance, setAutoAdvance] = useState(true)
   const [playbackRate, setPlaybackRate] = useState(1)
@@ -174,7 +181,7 @@ function App() {
       if (lessonFilter && word.lessonNumber !== lessonNumber) return false
       if (tagFilter && !(word.tags ?? []).includes(tagFilter)) return false
       if (!query) return true
-      return [word.word, word.meaning, word.pinyin, word.source]
+      return [word.word, word.meaning, word.pinyin, word.source, word.mems]
         .filter(Boolean)
         .some((value) => value!.toLocaleLowerCase().includes(query))
     })
@@ -218,6 +225,15 @@ function App() {
   )
   const currentQuizResponse = currentQuiz ? quizResponses[currentQuiz.id] : undefined
   const answeredQuizStats = useMemo(() => getAnsweredQuizStats(quizResponses), [quizResponses])
+  const activeRecallSupportHidden =
+    attentionMode === 'active' && hasPassedInitialVocabSection(currentSegment)
+  const effectiveShowPinyin = showPinyin && !activeRecallSupportHidden
+  const effectiveShowEnglish = showEnglish && !activeRecallSupportHidden
+  const memEditorWord = memEditorWordId
+    ? words.find((word) => word.id === memEditorWordId)
+    : undefined
+  const allLessonWordsRated =
+    lessonWords.length > 0 && lessonWords.every((word) => fsrsRatings[word.id])
 
   const handleStatus = useCallback(async (ids: string[], status: WordStatus) => {
     if (ids.length === 0) return
@@ -260,6 +276,36 @@ function App() {
         void pocketAudioRef.current?.play()
       }, 80)
     }
+  }
+
+  async function handleFsrsRating(wordId: string, rating: FsrsRating) {
+    await rateWordFsrs(wordId, rating)
+    const nextRatings = { ...fsrsRatings, [wordId]: rating }
+    setFsrsRatings(nextRatings)
+    setLastSummary(`Rated ${fsrsLabel(rating)}.`)
+    await refresh()
+    const completeSet =
+      lessonWords.length > 0 && lessonWords.every((word) => nextRatings[word.id])
+    if (autoNextLesson && completeSet) {
+      window.setTimeout(() => {
+        setShowReviewPrompt(false)
+        void startPocketLesson([], { randomize: true, playAfterRender: true })
+      }, 600)
+    }
+  }
+
+  function openMemEditor(word: VocabWord) {
+    setMemEditorWordId(word.id)
+    setMemDraft(word.mems ?? '')
+  }
+
+  async function saveMems() {
+    if (!memEditorWordId) return
+    await updateWordMems(memEditorWordId, memDraft)
+    setLastSummary('Saved mems.')
+    setMemEditorWordId(null)
+    setMemDraft('')
+    await refresh()
   }
 
   useEffect(() => {
@@ -310,6 +356,8 @@ function App() {
       setLesson(nextLesson)
       setCurrentStepIndex(0)
       setQuizResponses({})
+      setFsrsRatings({})
+      setShowReviewPrompt(false)
       if (nextLesson.steps.filter((step) => step.kind === 'audio').length === 0) {
         setLastSummary('No local clips are linked yet. Import a clip pack first.')
         return
@@ -887,16 +935,19 @@ function App() {
                     <div className={`study-chinese ${studyDisplay.kind}`}>
                       {studyDisplay.chinese}
                     </div>
-                    {showPinyin && studyDisplay.pinyin && (
+                    {effectiveShowPinyin && studyDisplay.pinyin && (
                       <div className="study-pinyin">{studyDisplay.pinyin}</div>
                     )}
-                    {showEnglish && <div className="study-meaning">{studyDisplay.english}</div>}
+                    {effectiveShowEnglish && <div className="study-meaning">{studyDisplay.english}</div>}
                     <div className="study-time">
                       <span>
                         {renderedLesson
                           ? `${formatTime(pocketProgress.current)} / ${formatTime(pocketProgress.duration)}`
                           : 'Import a clip pack, then render a lesson for phone-style playback.'}
                       </span>
+                      {activeRecallSupportHidden && (
+                        <span>Active recall: hints hidden</span>
+                      )}
                       {lesson && (
                         <span>
                           Answered {answeredQuizStats.answered} · Correct{' '}
@@ -907,17 +958,66 @@ function App() {
                     {lessonWords.length > 0 && (
                       <div className="study-target-strip" aria-label="Lesson words">
                         {lessonWords.map((word) => (
-                          <button
+                          <div
                             key={word.id}
-                            type="button"
-                            className={`study-target-word word-row-${word.status}`}
-                            onClick={() => cycleWordStatus(word)}
-                            title="Click to cycle familiar / known"
+                            className={`study-target-card word-row-${word.status}`}
                           >
-                            <strong>{word.word}</strong>
-                            <small>{word.meaning}</small>
-                          </button>
+                            <button
+                              type="button"
+                              className="study-target-word"
+                              onClick={() => cycleWordStatus(word)}
+                              title="Click to cycle familiar / known"
+                            >
+                              <strong>{word.word}</strong>
+                              <small>{word.meaning}</small>
+                            </button>
+                            <button
+                              type="button"
+                              className={`mems-button ${word.mems ? 'has-mems' : ''}`}
+                              onClick={() => openMemEditor(word)}
+                              title={word.mems ? word.mems : 'Add mems'}
+                            >
+                              mems
+                            </button>
+                          </div>
                         ))}
+                      </div>
+                    )}
+                    {showReviewPrompt && lessonWords.length > 0 && (
+                      <div className="review-panel" aria-live="polite">
+                        <div className="review-heading">
+                          <strong>How well do these feel right now?</strong>
+                          <span>{allLessonWordsRated ? 'Set scheduled' : 'Rate each word'}</span>
+                        </div>
+                        <div className="review-list">
+                          {lessonWords.map((word) => (
+                            <div key={word.id} className="review-word">
+                              <span>
+                                <strong>{word.word}</strong>
+                                <small>{word.meaning}</small>
+                              </span>
+                              <div className="review-buttons">
+                                {fsrsRatingsForUi.map((rating) => (
+                                  <button
+                                    key={rating.value}
+                                    type="button"
+                                    className={fsrsRatings[word.id] === rating.value ? 'active' : ''}
+                                    onClick={() => handleFsrsRating(word.id, rating.value)}
+                                  >
+                                    {rating.label}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <button
+                          type="button"
+                          className="ghost-answer"
+                          onClick={() => setShowReviewPrompt(false)}
+                        >
+                          Close
+                        </button>
                       </div>
                     )}
                     {currentQuiz && !currentQuizResponse?.skipped && (
@@ -1000,9 +1100,7 @@ function App() {
                               seconds: renderedLesson.durationSeconds,
                             })
                             await refresh()
-                            if (autoNextLesson) {
-                              await startPocketLesson([], { randomize: true, playAfterRender: true })
-                            }
+                            setShowReviewPrompt(true)
                           }
                         }}
                       />
@@ -1184,6 +1282,37 @@ function App() {
         </section>
       )}
 
+      {memEditorWord && (
+        <div className="mem-editor-backdrop" role="presentation">
+          <section className="mem-editor" aria-label={`Mems for ${memEditorWord.word}`}>
+            <div className="review-heading">
+              <strong>{memEditorWord.word}</strong>
+              <span>{memEditorWord.meaning}</span>
+            </div>
+            <textarea
+              value={memDraft}
+              onChange={(event) => setMemDraft(event.target.value)}
+              placeholder="Plain-text mems: mnemonic, radical clue, image idea, sound hint..."
+              autoFocus
+            />
+            <div className="button-row">
+              <button type="button" className="primary" onClick={saveMems}>
+                Save mems
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setMemEditorWordId(null)
+                  setMemDraft('')
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </section>
+        </div>
+      )}
+
       <footer className="status-bar" aria-live="polite">
         {lastSummary}
       </footer>
@@ -1252,6 +1381,28 @@ function formatSummary(summary: ImportSummary): string {
   return parts.join(', ')
 }
 
+const fsrsRatingsForUi: Array<{ value: FsrsRating; label: string }> = [
+  { value: 'again', label: 'Again' },
+  { value: 'hard', label: 'Hard' },
+  { value: 'good', label: 'Good' },
+  { value: 'easy', label: 'Easy' },
+]
+
+function fsrsLabel(rating: FsrsRating): string {
+  return fsrsRatingsForUi.find((item) => item.value === rating)?.label ?? rating
+}
+
+function hasPassedInitialVocabSection(segment: RenderedLessonSegment | undefined): boolean {
+  if (!segment) return false
+  return (
+    segment.stepId.startsWith('mixed-') ||
+    segment.stepId.startsWith('contrast-') ||
+    segment.stepId.startsWith('sentence-support-') ||
+    segment.stepId.startsWith('quick-') ||
+    segment.stepId === 'quick-final-ding'
+  )
+}
+
 function wordsToProgressCsv(words: VocabWord[]): string {
   const columns = [
     'word',
@@ -1268,6 +1419,12 @@ function wordsToProgressCsv(words: VocabWord[]): string {
     'listenedSeconds',
     'lastReviewedAt',
     'notes',
+    'mems',
+    'fsrsDueAt',
+    'fsrsIntervalDays',
+    'fsrsEase',
+    'fsrsRepetitions',
+    'fsrsLapses',
   ]
   const rows = words.map((word) =>
     [
@@ -1285,6 +1442,12 @@ function wordsToProgressCsv(words: VocabWord[]): string {
       word.listenedSeconds,
       word.lastReviewedAt ?? '',
       word.notes ?? '',
+      word.mems ?? '',
+      word.fsrsDueAt ?? '',
+      word.fsrsIntervalDays ?? '',
+      word.fsrsEase ?? '',
+      word.fsrsRepetitions ?? '',
+      word.fsrsLapses ?? '',
     ].map(csvCell).join(','),
   )
   return [columns.join(','), ...rows].join('\n')

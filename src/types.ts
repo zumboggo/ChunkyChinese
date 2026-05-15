@@ -19,6 +19,9 @@ export type ListeningEventType =
   | 'mark_review'
   | 'quiz_answer'
   | 'quiz_prompt'
+  | 'fsrs_rating'
+
+export type FsrsRating = 'again' | 'hard' | 'good' | 'easy'
 
 export interface VocabWord {
   id: string
@@ -35,6 +38,12 @@ export interface VocabWord {
   pinyin?: string
   source?: string
   notes?: string
+  mems?: string
+  fsrsDueAt?: string
+  fsrsIntervalDays?: number
+  fsrsEase?: number
+  fsrsRepetitions?: number
+  fsrsLapses?: number
   createdAt: string
   updatedAt: string
   lastReviewedAt?: string
@@ -127,6 +136,7 @@ export interface ListeningEvent {
   itemId: string
   seconds?: number
   correct?: boolean
+  rating?: FsrsRating
 }
 
 export interface ImportSummary {
