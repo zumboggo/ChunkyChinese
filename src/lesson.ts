@@ -1,7 +1,17 @@
 import type { AudioClip, LessonPlan, LessonStep, Sentence, VocabWord } from './types'
 
+export type PauseProfile = 'gentle' | 'normal' | 'fast' | 'challenge'
+
 interface TargetSelectionOptions {
   randomize?: boolean
+  pauseProfile?: PauseProfile
+}
+
+interface PauseTimings {
+  recall: number
+  speaking: number
+  quick: number
+  contrast: number
 }
 
 export function createLesson(
@@ -180,6 +190,7 @@ export function createPocketLesson(
 ): LessonPlan {
   const targetWords = selectTargetWords(words, manualIds, options)
   const steps: LessonStep[] = []
+  const pauses = getPauseTimings(options.pauseProfile)
   const targetEntries = targetWords.map((word, index) => ({
     word,
     sentence: chooseSentenceForWord(word, sentences, targetWords, index),
@@ -192,15 +203,52 @@ export function createPocketLesson(
 
   addPrompt(steps, audioClips, 'listen', 'Listen')
   targetWords.forEach((word, index) => {
-    addWordLearningBlock(steps, word, audioClips, `word-block-${index + 1}-${word.id}`)
+    addWordLearningBlock(steps, word, audioClips, `word-block-${index + 1}-${word.id}`, pauses)
   })
-  addMixedWordRecall(steps, targetWords, audioClips)
+  addMixedWordRecall(steps, targetWords, audioClips, pauses)
   addSentenceSupport(steps, targetSentences.slice(0, 5), audioClips)
-  addQuickFinalPass(steps, targetWords, audioClips)
+  addQuickFinalPass(steps, targetWords, audioClips, pauses)
 
   return {
     id: `pocket:${Date.now()}`,
     title: `${targetWords.length} word lesson`,
+    targetWords,
+    steps,
+  }
+}
+
+export function createRescueLesson(
+  words: VocabWord[],
+  audioClips: AudioClip[],
+  wordIds: string[],
+  options: TargetSelectionOptions = { pauseProfile: 'gentle' },
+): LessonPlan {
+  const pauses = getPauseTimings(options.pauseProfile ?? 'gentle')
+  const targetWords = wordIds
+    .map((id) => words.find((word) => word.id === id))
+    .filter((word): word is VocabWord => Boolean(word))
+    .slice(0, 5)
+  const steps: LessonStep[] = []
+
+  addPrompt(steps, audioClips, 'again', 'Again')
+  targetWords.forEach((word, index) => {
+    const prefix = `rescue-${index + 1}-${word.id}`
+    addWordAudio(steps, word, `${prefix}-word-1`)
+    addMeaningAudio(steps, word, `${prefix}-meaning-1`)
+    addWordAudio(steps, word, `${prefix}-word-2`)
+    addChineseToEnglishRecall(
+      steps,
+      word,
+      audioClips,
+      `${prefix}-zh-en`,
+      Math.max(pauses.recall, 3.5),
+    )
+    steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', wordId: word.id })
+  })
+
+  return {
+    id: `rescue:${Date.now()}`,
+    title: `${targetWords.length} missed word rescue`,
     targetWords,
     steps,
   }
@@ -359,14 +407,15 @@ function addWordLearningBlock(
   word: VocabWord,
   audioClips: AudioClip[],
   prefix: string,
+  pauses: PauseTimings,
 ) {
   addWordAudio(steps, word, `${prefix}-word-1`)
   addMeaningAudio(steps, word, `${prefix}-meaning-1`)
   addWordAudio(steps, word, `${prefix}-word-2`)
   addMeaningAudio(steps, word, `${prefix}-meaning-2`)
-  addChineseToEnglishRecall(steps, word, audioClips, `${prefix}-zh-en`, 2.6)
-  addEnglishToChineseWordRecall(steps, word, audioClips, `${prefix}-en-zh`, 2.6)
-  addWordSpeakingPractice(steps, word, audioClips, `${prefix}-speak`, 1.8)
+  addChineseToEnglishRecall(steps, word, audioClips, `${prefix}-zh-en`, pauses.recall)
+  addEnglishToChineseWordRecall(steps, word, audioClips, `${prefix}-en-zh`, pauses.recall)
+  addWordSpeakingPractice(steps, word, audioClips, `${prefix}-speak`, pauses.speaking)
   steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', wordId: word.id })
 }
 
@@ -374,6 +423,7 @@ function addMixedWordRecall(
   steps: LessonStep[],
   words: VocabWord[],
   audioClips: AudioClip[],
+  pauses: PauseTimings,
 ) {
   for (let round = 1; round <= 2; round += 1) {
     shuffle(words).forEach((word, index) => {
@@ -382,7 +432,7 @@ function addMixedWordRecall(
         word,
         audioClips,
         `mixed-${round}-zh-en-${index}-${word.id}`,
-        round === 1 ? 2.2 : 2,
+        round === 1 ? pauses.recall : Math.max(pauses.recall - 0.3, pauses.quick),
       )
     })
     shuffle(words).forEach((word, index) => {
@@ -391,15 +441,15 @@ function addMixedWordRecall(
         word,
         audioClips,
         `mixed-${round}-en-zh-${index}-${word.id}`,
-        round === 1 ? 2.2 : 2,
+        round === 1 ? pauses.recall : Math.max(pauses.recall - 0.3, pauses.quick),
       )
     })
   }
   shuffle(words).forEach((word, index) => {
-    addWordSpeakingPractice(steps, word, audioClips, `mixed-speak-${index}-${word.id}`, 1.6)
+    addWordSpeakingPractice(steps, word, audioClips, `mixed-speak-${index}-${word.id}`, pauses.speaking)
   })
   buildContrastPairs(words).forEach(([word, other], index) => {
-    addContrastQuestion(steps, word, other, audioClips, `contrast-${index}-${word.id}`)
+    addContrastQuestion(steps, word, other, audioClips, `contrast-${index}-${word.id}`, pauses)
   })
 }
 
@@ -434,6 +484,7 @@ function addQuickFinalPass(
   steps: LessonStep[],
   words: VocabWord[],
   audioClips: AudioClip[],
+  pauses: PauseTimings,
 ) {
   addPrompt(steps, audioClips, 'quick-meaning', 'Quick meaning')
   for (let round = 1; round <= 2; round += 1) {
@@ -443,7 +494,7 @@ function addQuickFinalPass(
       steps.push({
         id: `${prefix}-pause`,
         kind: 'pause',
-        seconds: 0.8,
+        seconds: pauses.quick,
         label: 'Think',
         wordId: word.id,
       })
@@ -455,7 +506,7 @@ function addQuickFinalPass(
       steps.push({
         id: `${prefix}-pause`,
         kind: 'pause',
-        seconds: 0.8,
+        seconds: pauses.quick,
         label: 'Think',
         wordId: word.id,
       })
@@ -510,15 +561,25 @@ function addContrastQuestion(
   other: VocabWord,
   audioClips: AudioClip[],
   prefix: string,
+  pauses: PauseTimings,
 ) {
   addPrompt(steps, audioClips, 'which-chinese-means', 'Which means?', word.id)
   addMeaningAudio(steps, word, `${prefix}-meaning`)
   addWordAudio(steps, word, `${prefix}-option-a`)
   addPrompt(steps, audioClips, 'or', 'Or', word.id)
   addWordAudio(steps, other, `${prefix}-option-b`)
-  steps.push({ id: `${prefix}-pause`, kind: 'pause', seconds: 2, label: 'Think', wordId: word.id })
+  steps.push({ id: `${prefix}-pause`, kind: 'pause', seconds: pauses.contrast, label: 'Think', wordId: word.id })
   addWordAudio(steps, word, `${prefix}-answer`)
   steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', wordId: word.id })
+}
+
+function getPauseTimings(profile: PauseProfile = 'normal'): PauseTimings {
+  return {
+    gentle: { recall: 3.5, speaking: 2.6, quick: 1.3, contrast: 3.2 },
+    normal: { recall: 2.5, speaking: 1.8, quick: 0.8, contrast: 2 },
+    fast: { recall: 1.5, speaking: 1.1, quick: 0.6, contrast: 1.3 },
+    challenge: { recall: 0.8, speaking: 0.7, quick: 0.4, contrast: 0.8 },
+  }[profile]
 }
 
 function addWhatDoesPrompt(

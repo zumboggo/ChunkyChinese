@@ -22,7 +22,7 @@ import {
   seedLmsWordsIfEmpty,
   updateWordStatus,
 } from './db'
-import { createPocketLesson } from './lesson'
+import { createPocketLesson, createRescueLesson, type PauseProfile } from './lesson'
 import { renderLessonToWav } from './renderAudio'
 import type {
   AudioClip,
@@ -39,8 +39,13 @@ import type {
 } from './types'
 
 type Screen = 'dashboard' | 'words' | 'import' | 'lesson'
-type LessonStartOptions = { randomize?: boolean; playAfterRender?: boolean }
+type LessonStartOptions = {
+  randomize?: boolean
+  playAfterRender?: boolean
+  pauseProfile?: PauseProfile
+}
 type AttentionMode = 'listening' | 'active'
+type LessonKind = 'main' | 'rescue'
 type QuizKind = 'zh-en' | 'en-zh' | 'contrast'
 
 interface ActiveQuiz {
@@ -56,6 +61,8 @@ interface QuizResponse {
   selected?: string
   correct: boolean
   skipped?: boolean
+  revealed?: boolean
+  hintCount?: number
 }
 
 const emptyStats: DashboardStats = {
@@ -83,6 +90,8 @@ function App() {
   const [tagFilter, setTagFilter] = useState('')
   const [selectedWordIds, setSelectedWordIds] = useState<string[]>([])
   const [lesson, setLesson] = useState<LessonPlan | null>(null)
+  const [lessonKind, setLessonKind] = useState<LessonKind>('main')
+  const [ratingWordIds, setRatingWordIds] = useState<string[]>([])
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
   const [lessonMode, setLessonMode] = useState<'pocket' | 'live'>('pocket')
   const [renderedLesson, setRenderedLesson] = useState<RenderedLesson | null>(null)
@@ -94,9 +103,14 @@ function App() {
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [attentionMode, setAttentionMode] = useState<AttentionMode>('listening')
+  const [pauseProfile, setPauseProfile] = useState<PauseProfile>('normal')
   const [quizResponses, setQuizResponses] = useState<Record<string, QuizResponse>>({})
+  const [quizHints, setQuizHints] = useState<Record<string, number>>({})
+  const [missedWordIds, setMissedWordIds] = useState<string[]>([])
+  const [showMissedRescue, setShowMissedRescue] = useState(false)
   const [fsrsRatings, setFsrsRatings] = useState<Record<string, FsrsRating>>({})
   const [showReviewPrompt, setShowReviewPrompt] = useState(false)
+  const [savedResumeTime, setSavedResumeTime] = useState<number | null>(null)
   const [autoNextLesson, setAutoNextLesson] = useState(false)
   const [autoAdvance, setAutoAdvance] = useState(true)
   const [playbackRate, setPlaybackRate] = useState(1)
@@ -220,18 +234,36 @@ function App() {
         .map((target) => words.find((word) => word.id === target.id) ?? target) ?? [],
     [lesson, words],
   )
+  const ratingWords = useMemo(
+    () =>
+      (ratingWordIds.length > 0 ? ratingWordIds : lesson?.targetWords.map((word) => word.id) ?? [])
+        .map((id) => words.find((word) => word.id === id))
+        .filter((word): word is VocabWord => Boolean(word)),
+    [lesson, ratingWordIds, words],
+  )
   const currentQuiz = useMemo(
     () => buildActiveQuiz(currentSegment, renderedLesson, lessonWords, words),
     [currentSegment, lessonWords, renderedLesson, words],
   )
   const currentQuizResponse = currentQuiz ? quizResponses[currentQuiz.id] : undefined
+  const currentQuizHintLevel = currentQuiz ? quizHints[currentQuiz.id] ?? 0 : 0
   const answeredQuizStats = useMemo(() => getAnsweredQuizStats(quizResponses), [quizResponses])
   const activeRecallSupportHidden =
     attentionMode === 'active' && hasPassedInitialVocabSection(currentSegment)
+  const focusedActiveQuiz = attentionMode === 'active' && Boolean(currentQuiz)
   const effectiveShowPinyin = showPinyin && !activeRecallSupportHidden
   const effectiveShowEnglish = showEnglish && !activeRecallSupportHidden
   const allLessonWordsRated =
-    lessonWords.length > 0 && lessonWords.every((word) => fsrsRatings[word.id])
+    ratingWords.length > 0 && ratingWords.every((word) => fsrsRatings[word.id])
+  const hideTargetStrip = focusedActiveQuiz
+  const hideTargetMeanings = attentionMode === 'active' && hasPassedInitialVocabSection(currentSegment)
+  const missedWords = useMemo(
+    () =>
+      missedWordIds
+        .map((id) => words.find((word) => word.id === id))
+        .filter((word): word is VocabWord => Boolean(word)),
+    [missedWordIds, words],
+  )
 
   const handleStatus = useCallback(async (ids: string[], status: WordStatus) => {
     if (ids.length === 0) return
@@ -246,22 +278,64 @@ function App() {
     pocketAudioRef.current.pause()
   }, [attentionMode, currentQuiz, currentQuizResponse])
 
+  const rememberMissedWord = useCallback((wordId: string) => {
+    setMissedWordIds((ids) => (ids.includes(wordId) ? ids : [...ids, wordId]))
+  }, [])
+
   const handleQuizAnswer = useCallback(async (value: string) => {
     if (!currentQuiz || quizResponses[currentQuiz.id]) return
     const correct = value === currentQuiz.correctValue
+    const hintCount = quizHints[currentQuiz.id] ?? 0
     setQuizResponses((responses) => ({
       ...responses,
-      [currentQuiz.id]: { selected: value, correct },
+      [currentQuiz.id]: { selected: value, correct, hintCount },
     }))
+    if (!correct) rememberMissedWord(currentQuiz.wordId)
+    // TODO: Persist richer recall analytics: correctWithoutHint, correctWithHint, wrong, revealed.
     await recordQuizAnswer(currentQuiz.wordId, correct)
     setLastSummary(correct ? 'Correct.' : 'Not quite.')
     await refresh()
-    if (attentionMode === 'active') {
+    if (attentionMode !== 'active') {
       window.setTimeout(() => {
         void pocketAudioRef.current?.play()
       }, 350)
     }
-  }, [attentionMode, currentQuiz, quizResponses, refresh])
+  }, [attentionMode, currentQuiz, quizHints, quizResponses, refresh, rememberMissedWord])
+
+  const revealCurrentQuiz = useCallback(async () => {
+    if (!currentQuiz || quizResponses[currentQuiz.id]) return
+    const hintCount = quizHints[currentQuiz.id] ?? 0
+    setQuizResponses((responses) => ({
+      ...responses,
+      [currentQuiz.id]: { correct: false, revealed: true, hintCount },
+    }))
+    rememberMissedWord(currentQuiz.wordId)
+    // TODO: Store revealed/skipped separately from wrong answers when quiz analytics grow.
+    await recordQuizAnswer(currentQuiz.wordId, false)
+    setLastSummary('Revealed. It will come back gently.')
+    await refresh()
+  }, [currentQuiz, quizHints, quizResponses, refresh, rememberMissedWord])
+
+  const continueCurrentQuiz = useCallback(() => {
+    void pocketAudioRef.current?.play()
+  }, [])
+
+  const replayCurrentQuiz = useCallback(() => {
+    if (!pocketAudioRef.current || !currentSegment) return
+    pocketAudioRef.current.currentTime = Math.max(0, currentSegment.startSeconds - 5)
+    void pocketAudioRef.current.play()
+  }, [currentSegment])
+
+  const handleQuizHint = useCallback(() => {
+    if (!currentQuiz || currentQuizResponse) return
+    const level = quizHints[currentQuiz.id] ?? 0
+    if (level === 0) replayCurrentQuiz()
+    if (level >= 2) {
+      void revealCurrentQuiz()
+      return
+    }
+    setQuizHints((hints) => ({ ...hints, [currentQuiz.id]: level + 1 }))
+  }, [currentQuiz, currentQuizResponse, quizHints, replayCurrentQuiz, revealCurrentQuiz])
 
   async function handleFsrsRating(wordId: string, rating: FsrsRating) {
     await rateWordFsrs(wordId, rating)
@@ -290,12 +364,19 @@ function App() {
       const optionIndex = Number(event.key) - 1
       if (
         currentQuiz &&
+        currentQuiz.options.length > 1 &&
         optionIndex >= 0 &&
         optionIndex < currentQuiz.options.length &&
         !currentQuizResponse
       ) {
         event.preventDefault()
         void handleQuizAnswer(currentQuiz.options[optionIndex].value)
+      } else if (currentQuiz && currentQuizResponse && event.key === 'Enter') {
+        event.preventDefault()
+        continueCurrentQuiz()
+      } else if (currentQuiz && !currentQuizResponse && event.key.toLocaleLowerCase() === 'h') {
+        event.preventDefault()
+        handleQuizHint()
       } else if (event.key.toLocaleLowerCase() === 'k') {
         event.preventDefault()
         void handleStatus([studyWord.id], 'known')
@@ -307,7 +388,16 @@ function App() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [currentQuiz, currentQuizResponse, handleQuizAnswer, handleStatus, screen, studyWord])
+  }, [
+    continueCurrentQuiz,
+    currentQuiz,
+    currentQuizResponse,
+    handleQuizAnswer,
+    handleQuizHint,
+    handleStatus,
+    screen,
+    studyWord,
+  ])
 
   async function toggleFullscreen() {
     if (document.fullscreenElement) {
@@ -323,47 +413,122 @@ function App() {
     await handleStatus([word.id], nextStatus)
   }
 
+  async function renderAndLoadLesson(
+    nextLesson: LessonPlan,
+    playAfterRender: boolean,
+    readyMessage: string,
+  ) {
+    setLesson(nextLesson)
+    setCurrentStepIndex(0)
+    setQuizResponses({})
+    setQuizHints({})
+    setShowReviewPrompt(false)
+    setShowMissedRescue(false)
+    if (nextLesson.steps.filter((step) => step.kind === 'audio').length === 0) {
+      setLastSummary('No local clips are linked yet. Import a clip pack first.')
+      return
+    }
+    const rendered = await renderLessonToWav(nextLesson, getAudioClip)
+    await saveRenderedLesson(rendered)
+    if (renderedUrl) URL.revokeObjectURL(renderedUrl)
+    const url = URL.createObjectURL(rendered.blob)
+    setRenderedLesson(rendered)
+    setRenderedUrl(url)
+    setPocketProgress({ current: 0, duration: rendered.durationSeconds })
+    setSavedResumeTime(null)
+    if (playAfterRender) {
+      window.setTimeout(() => {
+        void pocketAudioRef.current?.play()
+      }, 120)
+    }
+    setLastSummary(
+      rendered.warnings.length > 0
+        ? `${readyMessage} with ${rendered.warnings.length} warning(s).`
+        : readyMessage,
+    )
+  }
+
   async function startPocketLesson(
     manualIds: string[] = [],
     options: LessonStartOptions = { randomize: true },
   ) {
     setLessonMode('pocket')
+    setLessonKind('main')
     setRendering(true)
     setScreen('lesson')
     try {
       const { playAfterRender = false, ...selectionOptions } = options
-      const nextLesson = createPocketLesson(words, sentences, audioClips, manualIds, selectionOptions)
-      setLesson(nextLesson)
-      setCurrentStepIndex(0)
-      setQuizResponses({})
+      const nextLesson = createPocketLesson(words, sentences, audioClips, manualIds, {
+        pauseProfile,
+        ...selectionOptions,
+      })
+      setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
+      setMissedWordIds([])
       setFsrsRatings({})
-      setShowReviewPrompt(false)
-      if (nextLesson.steps.filter((step) => step.kind === 'audio').length === 0) {
-        setLastSummary('No local clips are linked yet. Import a clip pack first.')
-        return
-      }
-      const rendered = await renderLessonToWav(nextLesson, getAudioClip)
-      await saveRenderedLesson(rendered)
-      if (renderedUrl) URL.revokeObjectURL(renderedUrl)
-      const url = URL.createObjectURL(rendered.blob)
-      setRenderedLesson(rendered)
-      setRenderedUrl(url)
-      setPocketProgress({ current: 0, duration: rendered.durationSeconds })
-      if (playAfterRender) {
-        window.setTimeout(() => {
-          void pocketAudioRef.current?.play()
-        }, 120)
-      }
-      setLastSummary(
-        rendered.warnings.length > 0
-          ? `5 word lesson rendered with ${rendered.warnings.length} warning(s).`
-          : '5 word lesson rendered and ready for background-style playback.',
+      await renderAndLoadLesson(
+        nextLesson,
+        playAfterRender,
+        '5 word lesson rendered and ready for background-style playback.',
       )
     } catch (error) {
       setLastSummary(error instanceof Error ? error.message : 'Could not render 5 word lesson.')
     } finally {
       setRendering(false)
     }
+  }
+
+  async function startModeLesson(mode: AttentionMode) {
+    setAttentionMode(mode)
+    setShowEnglish(true)
+    setShowPinyin(false)
+    await startPocketLesson([], { randomize: true, playAfterRender: true, pauseProfile })
+  }
+
+  async function startMissedRescue() {
+    if (missedWordIds.length === 0) return
+    setLessonMode('pocket')
+    setLessonKind('rescue')
+    setRendering(true)
+    setScreen('lesson')
+    try {
+      const nextLesson = createRescueLesson(words, audioClips, missedWordIds, {
+        pauseProfile: 'gentle',
+      })
+      await renderAndLoadLesson(nextLesson, true, 'Missed word rescue round ready.')
+    } catch (error) {
+      setLastSummary(error instanceof Error ? error.message : 'Could not render rescue round.')
+    } finally {
+      setRendering(false)
+    }
+  }
+
+  function pauseAndSavePlace() {
+    const audio = pocketAudioRef.current
+    if (!audio) return
+    audio.pause()
+    setSavedResumeTime(audio.currentTime)
+    setLastSummary('Paused and saved your place for this session.')
+    // TODO: Persist resume state in IndexedDB so it survives a browser restart.
+  }
+
+  function resumeSavedPlace() {
+    const audio = pocketAudioRef.current
+    if (!audio || savedResumeTime === null) return
+    audio.currentTime = savedResumeTime
+    void audio.play()
+  }
+
+  function restartCurrentWord() {
+    const audio = pocketAudioRef.current
+    if (!audio || !renderedLesson?.segments || !currentSegment?.wordId) return
+    let startIndex = currentStepIndex
+    for (let index = currentStepIndex - 1; index >= 0; index -= 1) {
+      const segment = renderedLesson.segments[index]
+      if (segment?.wordId !== currentSegment.wordId) break
+      startIndex = index
+    }
+    audio.currentTime = Math.max(0, renderedLesson.segments[startIndex]?.startSeconds ?? 0)
+    void audio.play()
   }
 
   async function runFrom(index: number) {
@@ -569,21 +734,28 @@ function App() {
               <h1>Press play, think, keep moving.</h1>
               <p>Start with due words, add new ones only when the queue is light.</p>
             </div>
-            <button className="primary" type="button" onClick={() => startPocketLesson()}>
-              Start today's 5
-            </button>
+            <div className="mode-start-grid" aria-label="Choose study mode">
+              <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('listening')}>
+                <strong>Listen while busy</strong>
+                <span>Hands-free review with support text.</span>
+              </button>
+              <button className="mode-start active-start" type="button" onClick={() => startModeLesson('active')}>
+                <strong>Active recall</strong>
+                <span>Pause for calm 2-choice questions.</span>
+              </button>
+            </div>
           </div>
 
           <div className="metric-grid today-grid">
             <button
               type="button"
               className="metric hero-metric"
-              onClick={() => startPocketLesson()}
+              onClick={() => startModeLesson('active')}
             >
               <span>Due now</span>
               <strong>{stats.dueNow}</strong>
             </button>
-            <button type="button" className="metric" onClick={() => startPocketLesson()}>
+            <button type="button" className="metric" onClick={() => startModeLesson('listening')}>
               <span>New available</span>
               <strong>{stats.newAvailable}</strong>
             </button>
@@ -920,7 +1092,7 @@ function App() {
           {lesson ? (
             <>
                 <section className="study-player" ref={playModeRef}>
-                  <div className="study-stage">
+                  <div className={`study-stage ${focusedActiveQuiz ? 'active-focus' : ''}`}>
                     <div className="study-meta">
                       <span>{rendering ? 'Rendering local audio...' : renderedLesson?.title ?? lesson.title}</span>
                       <div className="study-toggles">
@@ -943,6 +1115,21 @@ function App() {
                         </button>
                       </div>
                     </div>
+                    {focusedActiveQuiz && currentQuiz ? (
+                      <ActiveRecallCard
+                        quiz={currentQuiz}
+                        response={currentQuizResponse}
+                        word={studyWord}
+                        sentence={studySentence}
+                        hintLevel={currentQuizHintLevel}
+                        onAnswer={handleQuizAnswer}
+                        onContinue={continueCurrentQuiz}
+                        onHint={handleQuizHint}
+                        onReplay={replayCurrentQuiz}
+                        onReveal={revealCurrentQuiz}
+                      />
+                    ) : (
+                      <>
                     <div className={`study-chinese ${studyDisplay.kind}`}>
                       {studyDisplay.chinese}
                     </div>
@@ -966,7 +1153,9 @@ function App() {
                         </span>
                       )}
                     </div>
-                    {lessonWords.length > 0 && (
+                      </>
+                    )}
+                    {lessonWords.length > 0 && !hideTargetStrip && (
                       <div className="study-target-strip" aria-label="Lesson words">
                         {lessonWords.map((word) => (
                           <button
@@ -977,12 +1166,42 @@ function App() {
                             title="Click to cycle familiar / known"
                           >
                             <strong>{word.word}</strong>
-                            <small>{word.meaning}</small>
+                            {!hideTargetMeanings && <small>{word.meaning}</small>}
                           </button>
                         ))}
                       </div>
                     )}
-                    {showReviewPrompt && lessonWords.length > 0 && (
+                    {showMissedRescue && missedWords.length > 0 && (
+                      <div className="rescue-panel" aria-live="polite">
+                        <div className="review-heading">
+                          <strong>Review missed words?</strong>
+                          <span>{missedWords.length} word{missedWords.length === 1 ? '' : 's'}</span>
+                        </div>
+                        <p className="review-note">
+                          Replay the tough ones gently before rating the set, or finish for now.
+                        </p>
+                        <div className="rescue-word-list">
+                          {missedWords.map((word) => (
+                            <span key={word.id}>{word.word}</span>
+                          ))}
+                        </div>
+                        <div className="button-row">
+                          <button type="button" className="primary" onClick={startMissedRescue}>
+                            Review missed words
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setShowMissedRescue(false)
+                              setShowReviewPrompt(true)
+                            }}
+                          >
+                            Finish for now
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                    {showReviewPrompt && ratingWords.length > 0 && (
                       <div className="review-panel" aria-live="polite">
                         <div className="review-heading">
                           <strong>How well do these feel right now?</strong>
@@ -993,7 +1212,7 @@ function App() {
                           are ignored; this is the main memory signal.
                         </p>
                         <div className="review-list">
-                          {lessonWords.map((word) => (
+                          {ratingWords.map((word) => (
                             <div key={word.id} className="review-word">
                               <span>
                                 <strong>{word.word}</strong>
@@ -1032,11 +1251,11 @@ function App() {
                         )}
                       </div>
                     )}
-                    {currentQuiz && !currentQuizResponse?.skipped && (
+                    {currentQuiz && !currentQuizResponse?.skipped && attentionMode !== 'active' && (
                       <div className="quiz-panel" aria-live="polite">
                         <div className="quiz-copy">
                           <strong>{currentQuiz.prompt}</strong>
-                          <span>{attentionMode === 'active' ? 'Keys 1-4' : 'Optional keys 1-4'}</span>
+                          <span>Optional keys 1-2</span>
                         </div>
                         <div className="quiz-options">
                           {currentQuiz.options.map((option, index) => {
@@ -1108,7 +1327,11 @@ function App() {
                               seconds: renderedLesson.durationSeconds,
                             })
                             await refresh()
-                            setShowReviewPrompt(true)
+                            if (lessonKind === 'main' && missedWordIds.length > 0) {
+                              setShowMissedRescue(true)
+                            } else {
+                              setShowReviewPrompt(true)
+                            }
                           }
                         }}
                       />
@@ -1132,6 +1355,27 @@ function App() {
                       </button>
                       <button
                         type="button"
+                        onClick={pauseAndSavePlace}
+                        disabled={!renderedUrl}
+                      >
+                        Pause & save place
+                      </button>
+                      <button
+                        type="button"
+                        onClick={resumeSavedPlace}
+                        disabled={!renderedUrl || savedResumeTime === null}
+                      >
+                        Resume lesson
+                      </button>
+                      <button
+                        type="button"
+                        onClick={restartCurrentWord}
+                        disabled={!renderedUrl || !currentSegment?.wordId}
+                      >
+                        Restart current word
+                      </button>
+                      <button
+                        type="button"
                         onClick={() => startPocketLesson()}
                         disabled={rendering || (showReviewPrompt && !allLessonWordsRated)}
                       >
@@ -1146,15 +1390,29 @@ function App() {
                         />
                         Auto advance to next lesson
                       </label>
+                      <label className="compact-field">
+                        Pause
+                        <select
+                          value={pauseProfile}
+                          onChange={(event) => setPauseProfile(event.target.value as PauseProfile)}
+                        >
+                          <option value="gentle">Gentle</option>
+                          <option value="normal">Normal</option>
+                          <option value="fast">Fast</option>
+                          <option value="challenge">Challenge</option>
+                        </select>
+                      </label>
                       <button type="button" onClick={toggleFullscreen}>
                         {isFullscreen ? 'Exit full screen' : 'Full screen'}
                       </button>
                     </div>
-                    <div className="coverage-grid">
-                      <span>Ready words: {coverage.readyWords}</span>
-                      <span>Prompt clips: {coverage.promptClips}</span>
-                      <span>Rendered warnings: {renderedLesson?.warnings.length ?? 0}</span>
-                    </div>
+                    {!focusedActiveQuiz && (
+                      <div className="coverage-grid">
+                        <span>Ready words: {coverage.readyWords}</span>
+                        <span>Prompt clips: {coverage.promptClips}</span>
+                        <span>Rendered warnings: {renderedLesson?.warnings.length ?? 0}</span>
+                      </div>
+                    )}
                   </div>
                 </section>
 
@@ -1347,6 +1605,90 @@ function FilePanel({
   )
 }
 
+function ActiveRecallCard({
+  quiz,
+  response,
+  word,
+  sentence,
+  hintLevel,
+  onAnswer,
+  onContinue,
+  onHint,
+  onReplay,
+  onReveal,
+}: {
+  quiz: ActiveQuiz
+  response?: QuizResponse
+  word?: VocabWord
+  sentence?: Sentence
+  hintLevel: number
+  onAnswer: (value: string) => void | Promise<void>
+  onContinue: () => void
+  onHint: () => void
+  onReplay: () => void
+  onReveal: () => void | Promise<void>
+}) {
+  const cue = getActiveRecallCue(quiz, word, sentence)
+  const correctLabel = getQuizAnswerLabel(quiz, word)
+  const feedbackText = getQuizFeedbackText(quiz, word, correctLabel)
+  const showPinyinHint = hintLevel >= 2 && Boolean(word?.pinyin)
+  const answered = Boolean(response)
+  const canChoose = !answered && quiz.options.length > 1
+
+  return (
+    <section className="active-recall-card" aria-live="polite">
+      <div className="recall-prompt">
+        <span>{quiz.kind === 'en-zh' ? 'Recall Chinese' : 'Recall meaning'}</span>
+        <strong>{quiz.prompt}</strong>
+      </div>
+      <div className={`recall-cue ${cue.kind}`}>{cue.text}</div>
+      {showPinyinHint && <div className="recall-hint">{word?.pinyin}</div>}
+      {answered && (
+        <div className={`recall-feedback ${response?.correct ? 'correct' : 'wrong'}`}>
+          <strong>{response?.correct ? 'Correct' : response?.revealed ? 'Revealed' : 'Not quite'}</strong>
+          <span>{feedbackText}</span>
+        </div>
+      )}
+      {!answered && (
+        <div className={`recall-options ${canChoose ? '' : 'single-reveal'}`}>
+          {canChoose ? (
+            quiz.options.map((option, index) => (
+              <button key={option.value} type="button" onClick={() => onAnswer(option.value)}>
+                <kbd>{index + 1}</kbd>
+                {option.label}
+              </button>
+            ))
+          ) : (
+            <button type="button" onClick={onReveal}>
+              Reveal answer
+            </button>
+          )}
+        </div>
+      )}
+      <div className="recall-support">
+        <button type="button" onClick={onReplay}>
+          Replay
+        </button>
+        {!answered && (
+          <button type="button" onClick={onHint}>
+            {hintLevel === 0 ? 'Hint' : hintLevel === 1 ? 'Show pinyin' : 'Reveal'}
+          </button>
+        )}
+        {!answered && (
+          <button type="button" onClick={onReveal}>
+            Reveal
+          </button>
+        )}
+        {answered && (
+          <button type="button" className="primary" onClick={onContinue}>
+            Continue
+          </button>
+        )}
+      </div>
+    </section>
+  )
+}
+
 function formatSummary(summary: ImportSummary): string {
   const parts = [
     `${summary.created} created`,
@@ -1435,6 +1777,34 @@ function wordsToProgressCsv(words: VocabWord[]): string {
 function csvCell(value: string | number): string {
   const text = String(value)
   return /[",\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text
+}
+
+function getActiveRecallCue(
+  quiz: ActiveQuiz,
+  word?: VocabWord,
+  sentence?: Sentence,
+): { text: string; kind: 'chinese' | 'english' } {
+  if (sentence) return { text: sentence.chinese, kind: 'chinese' }
+  if (quiz.kind === 'en-zh') return { text: word?.meaning ?? quiz.prompt, kind: 'english' }
+  return { text: word?.word ?? quiz.prompt, kind: 'chinese' }
+}
+
+function getQuizAnswerLabel(quiz: ActiveQuiz, word?: VocabWord): string {
+  const optionLabel = quiz.options.find((option) => option.value === quiz.correctValue)?.label
+  if (optionLabel) return optionLabel
+  if (quiz.kind === 'zh-en') return word?.meaning ?? quiz.correctValue
+  return word?.word ?? quiz.correctValue
+}
+
+function getQuizFeedbackText(quiz: ActiveQuiz, word: VocabWord | undefined, correctLabel: string): string {
+  const parts = [correctLabel]
+  if (word?.word && correctLabel !== word.word) parts.push(word.word)
+  if (word?.pinyin) parts.push(word.pinyin)
+  if (word?.meaning && correctLabel !== word.meaning) parts.push(word.meaning)
+  if (quiz.kind === 'contrast' && word?.meaning && !parts.includes(word.meaning)) {
+    parts.push(word.meaning)
+  }
+  return parts.join(' · ')
 }
 
 function buildActiveQuiz(
@@ -1542,7 +1912,7 @@ function orderLimitedOptions(
   distractors: ActiveQuiz['options'],
   seed: string,
 ): ActiveQuiz['options'] {
-  return orderOptions([correct, ...distractors.slice(0, 3)], seed)
+  return orderOptions([correct, ...distractors.slice(0, 1)], seed)
 }
 
 function stableSortValue(value: string): number {

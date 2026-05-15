@@ -327,6 +327,42 @@ dt {
   border-color: var(--accent);
 }
 
+.mode-start-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+.mode-start {
+  min-height: 86px;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 5px;
+  padding: 16px;
+  text-align: left;
+}
+
+.mode-start strong {
+  font-size: 1.12rem;
+}
+
+.mode-start span {
+  color: #31506d;
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.active-start {
+  background: linear-gradient(135deg, #174f8f, #238fe9);
+  border-color: rgba(23, 79, 143, 0.36);
+  color: #fff;
+}
+
+.active-start span {
+  color: rgba(255, 255, 255, 0.84);
+}
+
 .filters {
   display: grid;
   grid-template-columns: minmax(220px, 2fr) minmax(140px, 1fr) 120px minmax(140px, 1fr);
@@ -492,6 +528,11 @@ dt {
     linear-gradient(145deg, rgba(247, 252, 255, 0.94), rgba(190, 226, 255, 0.78)),
     linear-gradient(135deg, #095db3, #5fb3ff);
   box-shadow: 0 24px 70px rgba(26, 83, 145, 0.24);
+}
+
+.study-stage.active-focus {
+  grid-template-rows: auto 1fr;
+  min-height: min(68svh, 640px);
 }
 
 .study-player:fullscreen {
@@ -666,6 +707,32 @@ dt {
   background: rgba(255, 255, 255, 0.86);
 }
 
+.rescue-panel {
+  width: 100%;
+  display: grid;
+  gap: 10px;
+  align-self: end;
+  padding: 12px;
+  border: 1px solid rgba(23, 111, 194, 0.18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.rescue-word-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rescue-word-list span {
+  padding: 8px 11px;
+  border-radius: 10px;
+  background: rgba(23, 111, 194, 0.1);
+  color: #08223d;
+  font-size: 1.15rem;
+  font-weight: 950;
+}
+
 .review-heading,
 .review-word,
 .review-buttons {
@@ -764,19 +831,20 @@ dt {
 
 .quiz-options {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .quiz-options button {
   min-width: 0;
-  min-height: 44px;
-  padding: 8px;
+  min-height: 60px;
+  padding: 12px;
   overflow-wrap: anywhere;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  font-size: clamp(1.15rem, 3vw, 1.45rem);
 }
 
 .quiz-options kbd {
@@ -806,6 +874,123 @@ dt {
 
 .quiz-options .ghost-answer {
   background: rgba(255, 255, 255, 0.68);
+}
+
+.active-recall-card {
+  width: min(760px, 100%);
+  display: grid;
+  justify-self: center;
+  align-self: center;
+  gap: clamp(14px, 3vw, 24px);
+  padding: clamp(18px, 4vw, 34px);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 24px 70px rgba(26, 83, 145, 0.22);
+}
+
+.recall-prompt {
+  display: grid;
+  gap: 6px;
+  text-align: center;
+}
+
+.recall-prompt span {
+  color: #57738c;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.76rem;
+}
+
+.recall-prompt strong {
+  color: #20384e;
+  font-size: clamp(1.2rem, 4vw, 2rem);
+}
+
+.recall-cue {
+  color: #08223d;
+  font-weight: 950;
+  line-height: 1;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.recall-cue.chinese {
+  font-size: clamp(4.2rem, 18vw, 9rem);
+}
+
+.recall-cue.english {
+  font-size: clamp(2.2rem, 9vw, 4.8rem);
+  line-height: 1.05;
+}
+
+.recall-hint {
+  color: #31506d;
+  font-size: clamp(1.25rem, 5vw, 2.2rem);
+  font-weight: 900;
+  text-align: center;
+}
+
+.recall-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.recall-options.single-reveal {
+  grid-template-columns: 1fr;
+}
+
+.recall-options button {
+  min-height: 68px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: clamp(1.3rem, 5vw, 1.8rem);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.recall-feedback {
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  border-radius: 14px;
+  text-align: center;
+  font-weight: 850;
+}
+
+.recall-feedback.correct {
+  background: rgba(31, 157, 90, 0.12);
+  color: #137141;
+}
+
+.recall-feedback.wrong {
+  background: rgba(207, 59, 59, 0.12);
+  color: #9b2929;
+}
+
+.recall-feedback strong {
+  font-size: 1.1rem;
+}
+
+.recall-feedback span {
+  font-size: clamp(1rem, 3vw, 1.4rem);
+}
+
+.recall-support {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.recall-support button {
+  min-height: 48px;
+  padding-inline: 16px;
 }
 
 .play-hover-menu {
@@ -857,6 +1042,19 @@ dt {
 
 .compact-toggle {
   justify-content: flex-start;
+}
+
+.compact-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #31506d;
+  font-weight: 800;
+}
+
+.compact-field select {
+  min-height: 36px;
+  padding: 6px 9px;
 }
 
 .end-actions {
@@ -1011,6 +1209,7 @@ kbd {
   .action-grid,
   .import-grid,
   .filters,
+  .mode-start-grid,
   .target-strip {
     grid-template-columns: 1fr;
   }
@@ -1027,7 +1226,21 @@ kbd {
   }
 
   .quiz-options {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-options button {
+    min-height: 64px;
+    font-size: 1.28rem;
+  }
+
+  .recall-options {
+    grid-template-columns: 1fr;
+  }
+
+  .active-recall-card {
+    padding: 16px;
+    gap: 14px;
   }
 
   .study-status button {
