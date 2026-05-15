@@ -773,6 +773,23 @@ dt {
   min-height: 44px;
   padding: 8px;
   overflow-wrap: anywhere;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.quiz-options kbd {
+  min-width: 1.55rem;
+  min-height: 1.55rem;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid rgba(23, 111, 194, 0.22);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.74);
+  color: #174f8f;
+  font-family: inherit;
+  font-weight: 950;
 }
 
 .quiz-options button.correct {

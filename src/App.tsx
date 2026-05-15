@@ -246,7 +246,7 @@ function App() {
     pocketAudioRef.current.pause()
   }, [attentionMode, currentQuiz, currentQuizResponse])
 
-  async function handleQuizAnswer(value: string) {
+  const handleQuizAnswer = useCallback(async (value: string) => {
     if (!currentQuiz || quizResponses[currentQuiz.id]) return
     const correct = value === currentQuiz.correctValue
     setQuizResponses((responses) => ({
@@ -261,20 +261,7 @@ function App() {
         void pocketAudioRef.current?.play()
       }, 350)
     }
-  }
-
-  function skipCurrentQuiz() {
-    if (!currentQuiz || quizResponses[currentQuiz.id]) return
-    setQuizResponses((responses) => ({
-      ...responses,
-      [currentQuiz.id]: { correct: false, skipped: true },
-    }))
-    if (attentionMode === 'active') {
-      window.setTimeout(() => {
-        void pocketAudioRef.current?.play()
-      }, 80)
-    }
-  }
+  }, [attentionMode, currentQuiz, quizResponses, refresh])
 
   async function handleFsrsRating(wordId: string, rating: FsrsRating) {
     await rateWordFsrs(wordId, rating)
@@ -300,7 +287,16 @@ function App() {
         target instanceof HTMLSelectElement ||
         target instanceof HTMLTextAreaElement
       if (isTyping || screen !== 'lesson' || !studyWord) return
-      if (event.key.toLocaleLowerCase() === 'k') {
+      const optionIndex = Number(event.key) - 1
+      if (
+        currentQuiz &&
+        optionIndex >= 0 &&
+        optionIndex < currentQuiz.options.length &&
+        !currentQuizResponse
+      ) {
+        event.preventDefault()
+        void handleQuizAnswer(currentQuiz.options[optionIndex].value)
+      } else if (event.key.toLocaleLowerCase() === 'k') {
         event.preventDefault()
         void handleStatus([studyWord.id], 'known')
       } else if (event.key.toLocaleLowerCase() === 'f') {
@@ -311,7 +307,7 @@ function App() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [screen, studyWord, handleStatus])
+  }, [currentQuiz, currentQuizResponse, handleQuizAnswer, handleStatus, screen, studyWord])
 
   async function toggleFullscreen() {
     if (document.fullscreenElement) {
@@ -1040,10 +1036,10 @@ function App() {
                       <div className="quiz-panel" aria-live="polite">
                         <div className="quiz-copy">
                           <strong>{currentQuiz.prompt}</strong>
-                          <span>{attentionMode === 'active' ? 'Paused for answer' : 'Optional'}</span>
+                          <span>{attentionMode === 'active' ? 'Keys 1-4' : 'Optional keys 1-4'}</span>
                         </div>
                         <div className="quiz-options">
-                          {currentQuiz.options.map((option) => {
+                          {currentQuiz.options.slice(0, 4).map((option, index) => {
                             const isSelected = currentQuizResponse?.selected === option.value
                             const isCorrect = option.value === currentQuiz.correctValue
                             const stateClass = currentQuizResponse
@@ -1061,15 +1057,11 @@ function App() {
                                 disabled={Boolean(currentQuizResponse)}
                                 onClick={() => handleQuizAnswer(option.value)}
                               >
+                                <kbd>{index + 1}</kbd>
                                 {option.label}
                               </button>
                             )
                           })}
-                          {attentionMode === 'active' && !currentQuizResponse && (
-                            <button type="button" className="ghost-answer" onClick={skipCurrentQuiz}>
-                              Skip
-                            </button>
-                          )}
                         </div>
                       </div>
                     )}
@@ -1468,13 +1460,13 @@ function buildActiveQuiz(
       prompt: `Which means ${word.meaning}?`,
       wordId: word.id,
       correctValue: word.id,
-      options: orderOptions(
+      options: limitQuizOptions(orderOptions(
         [
           { value: word.id, label: word.word },
           { value: other.id, label: other.word },
         ],
         segment.stepId,
-      ),
+      )),
     }
   }
 
@@ -1520,9 +1512,8 @@ function buildMeaningOptions(
     })
     .map((candidate) => ({ value: candidate.meaning, label: candidate.meaning }))
 
-  return orderOptions(
-    [{ value: word.meaning, label: word.meaning }, ...distractors].slice(0, 4),
-    quizId,
+  return limitQuizOptions(
+    orderOptions([{ value: word.meaning, label: word.meaning }, ...distractors], quizId),
   )
 }
 
@@ -1541,16 +1532,17 @@ function buildWordOptions(
     })
     .map((candidate) => ({ value: candidate.id, label: candidate.word }))
 
-  return orderOptions(
-    [{ value: word.id, label: word.word }, ...distractors].slice(0, 4),
-    quizId,
-  )
+  return limitQuizOptions(orderOptions([{ value: word.id, label: word.word }, ...distractors], quizId))
 }
 
 function orderOptions(options: ActiveQuiz['options'], seed: string): ActiveQuiz['options'] {
   return [...options].sort(
     (a, b) => stableSortValue(`${seed}:${a.value}`) - stableSortValue(`${seed}:${b.value}`),
   )
+}
+
+function limitQuizOptions(options: ActiveQuiz['options']): ActiveQuiz['options'] {
+  return options.slice(0, 4)
 }
 
 function stableSortValue(value: string): number {
