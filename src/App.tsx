@@ -403,14 +403,6 @@ function App() {
     void audio.play()
   }, [currentSegment])
 
-  async function handleMinimalMark(rating: FsrsRating, status: WordStatus) {
-    if (!studyWord) return
-    await rateWordFsrs(studyWord.id, rating)
-    await updateWordStatus([studyWord.id], status)
-    setLastSummary(rating === 'again' ? 'Marked for gentle review.' : 'Marked got it.')
-    await refresh()
-  }
-
   async function handleFsrsRating(wordId: string, rating: FsrsRating) {
     await rateWordFsrs(wordId, rating)
     const nextRatings = { ...fsrsRatings, [wordId]: rating }
@@ -426,6 +418,16 @@ function App() {
         void startPocketLesson([], { randomize: true, playAfterRender: true })
       }, 600)
     }
+  }
+
+  function finishLessonAndReturnHome() {
+    pocketAudioRef.current?.pause()
+    setShowReviewPrompt(false)
+    setShowMissedRescue(false)
+    setMinimalVisualMode(false)
+    setSavedResumeTime(null)
+    setScreen('dashboard')
+    setLastSummary('Lesson finished. Your selected ratings were saved.')
   }
 
   useEffect(() => {
@@ -556,6 +558,7 @@ function App() {
     setAttentionMode(mode)
     setShowEnglish(true)
     setShowPinyin(true)
+    setMinimalVisualMode(mode === 'listening')
     await startPocketLesson([], { randomize: true, playAfterRender: true, pauseProfile })
   }
 
@@ -788,15 +791,19 @@ function App() {
         </button>
         <nav className="tabs" aria-label="Main screens">
           <button className={screen === 'dashboard' ? 'active' : ''} onClick={() => setScreen('dashboard')}>
+            <span className="nav-icon nav-dashboard" aria-hidden="true" />
             Dashboard
           </button>
           <button className={screen === 'words' ? 'active' : ''} onClick={() => setScreen('words')}>
+            <span className="nav-icon nav-words" aria-hidden="true" />
             Words
           </button>
           <button className={screen === 'import' ? 'active' : ''} onClick={() => setScreen('import')}>
+            <span className="nav-icon nav-import" aria-hidden="true" />
             Import
           </button>
           <button className={screen === 'lesson' ? 'active' : ''} onClick={() => setScreen('lesson')}>
+            <span className="nav-icon nav-lesson" aria-hidden="true" />
             Lesson
           </button>
         </nav>
@@ -811,8 +818,8 @@ function App() {
             </div>
             <div className="mode-start-grid" aria-label="Choose study mode">
               <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('listening')}>
-                <strong>Listen while busy</strong>
-                <span>Hands-free review with support text.</span>
+                <strong>Listening mode</strong>
+                <span>Big text, local audio, no quiz buttons.</span>
               </button>
               <button className="mode-start active-start" type="button" onClick={() => startModeLesson('active')}>
                 <strong>Active recall</strong>
@@ -1178,7 +1185,7 @@ function App() {
                     <div className="study-meta">
                       <span>
                         {minimalVisualMode
-                          ? 'Minimal mode'
+                          ? 'Listening mode'
                           : focusedActiveQuiz
                           ? 'Active recall'
                           : rendering
@@ -1186,9 +1193,17 @@ function App() {
                             : renderedLesson?.title ?? lesson.title}
                       </span>
                       {minimalVisualMode ? (
-                        <button type="button" onClick={() => setMinimalVisualMode(false)}>
-                          Exit minimal
-                        </button>
+                        <div className="study-toggles minimal-toggles">
+                          <button type="button" onClick={() => setShowPinyin((value) => !value)}>
+                            Pinyin {showPinyin ? 'on' : 'off'}
+                          </button>
+                          <button type="button" onClick={() => setShowEnglish((value) => !value)}>
+                            English {showEnglish ? 'on' : 'off'}
+                          </button>
+                          <button type="button" onClick={() => setMinimalVisualMode(false)}>
+                            Exit
+                          </button>
+                        </div>
                       ) : focusedActiveQuiz ? (
                         <span className="mode-chip">Paused for answer</span>
                       ) : (
@@ -1273,23 +1288,6 @@ function App() {
                             </button>
                             <button type="button" onClick={replayCurrentSegment} disabled={!currentSegment}>
                               Replay
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => handleMinimalMark('again', 'review')}
-                              disabled={!studyWord}
-                            >
-                              Mark Again
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => handleMinimalMark('good', 'familiar')}
-                              disabled={!studyWord}
-                            >
-                              Mark Got It
-                            </button>
-                            <button type="button" onClick={() => setMinimalVisualMode(false)}>
-                              Exit Minimal Mode
                             </button>
                           </div>
                         )}
@@ -1389,6 +1387,13 @@ function App() {
                             Next today's 5
                           </button>
                         )}
+                        <button
+                          type="button"
+                          className="primary"
+                          onClick={finishLessonAndReturnHome}
+                        >
+                          Done
+                        </button>
                       </div>
                     )}
                     {currentQuiz &&
@@ -1567,7 +1572,7 @@ function App() {
                           {isFullscreen ? 'Exit full screen' : 'Full screen'}
                         </button>
                         <button type="button" onClick={() => setMinimalVisualMode(true)}>
-                          Minimal mode
+                          Listening mode
                         </button>
                       </div>
                     ) : null}

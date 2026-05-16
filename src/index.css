@@ -44,9 +44,8 @@ body {
   margin: 0;
   min-height: 100svh;
   background:
-    radial-gradient(circle at 8% 18%, rgba(255, 206, 153, 0.42), transparent 32%),
-    radial-gradient(circle at 96% 30%, rgba(193, 228, 255, 0.72), transparent 34%),
-    linear-gradient(135deg, #fff3e2 0%, #fffaf1 38%, #e9f6ff 72%, #cbeaff 100%);
+    linear-gradient(135deg, rgba(255, 244, 225, 0.28), rgba(233, 246, 255, 0.22)),
+    url("./assets/chunky-background.png") center / cover fixed no-repeat;
 }
 
 body::before {
@@ -55,8 +54,7 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(120deg, rgba(249, 115, 22, 0.1), transparent 36%),
-    linear-gradient(300deg, rgba(29, 142, 216, 0.11), transparent 42%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 247, 237, 0.08));
   z-index: -1;
 }
 
@@ -314,6 +312,32 @@ dt {
   color: var(--navy);
   font-size: 1.02rem;
   box-shadow: 0 14px 32px rgba(16, 35, 63, 0.07);
+}
+
+.nav-icon {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
+  background: currentColor;
+  opacity: 0.95;
+  mask: var(--nav-icon) center / contain no-repeat;
+  -webkit-mask: var(--nav-icon) center / contain no-repeat;
+}
+
+.nav-dashboard {
+  --nav-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='black' stroke-width='2.2' stroke-linejoin='round'%3E%3Cpath d='M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.nav-words {
+  --nav-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 4.5h5.5c1.4 0 2.5 1.1 2.5 2.5v12.5c0-1.4-1.1-2.5-2.5-2.5H5z'/%3E%3Cpath d='M19 4.5h-5.5C12.1 4.5 11 5.6 11 7v12.5c0-1.4 1.1-2.5 2.5-2.5H19z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.nav-import {
+  --nav-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.5 18.5H8a4 4 0 0 1-.7-7.94A5.5 5.5 0 0 1 18 12h.5a3.25 3.25 0 0 1 0 6.5z'/%3E%3Cpath d='M12 15V6'/%3E%3Cpath d='m8.5 9.5 3.5-3.5 3.5 3.5'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.nav-lesson {
+  --nav-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9.5 12 5l9 4.5-9 4.5z'/%3E%3Cpath d='M7 12v4.5c2.9 2 7.1 2 10 0V12'/%3E%3Cpath d='M21 9.5v5'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 .tabs .active,
@@ -727,10 +751,6 @@ dt {
   min-height: 62px;
   padding: 14px 16px;
   font-size: clamp(1rem, 4vw, 1.28rem);
-}
-
-.minimal-controls button:last-child {
-  grid-column: 1 / -1;
 }
 
 .minimal-audio-host {
