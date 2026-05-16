@@ -46,7 +46,7 @@ type LessonStartOptions = {
 }
 type AttentionMode = 'listening' | 'active'
 type LessonKind = 'main' | 'rescue'
-type QuizKind = 'zh-en' | 'en-zh' | 'contrast' | 'sentence-zh-en'
+type QuizKind = 'zh-en' | 'en-zh' | 'audio-zh' | 'contrast' | 'sentence-zh-en'
 type RecallStage = 'easy' | 'audio-first' | 'try-before-choices' | 'quick' | 'rescue'
 
 interface ActiveQuiz {
@@ -1978,6 +1978,7 @@ function getActiveRecallCue(
   if (sentence) return { text: sentence.chinese, kind: 'chinese' }
   if (quiz.kind === 'contrast') return { text: word?.meaning ?? quiz.prompt, kind: 'english' }
   if (quiz.kind === 'en-zh') return { text: word?.meaning ?? quiz.prompt, kind: 'english' }
+  if (quiz.kind === 'audio-zh') return { text: 'Audio only', kind: 'english' }
   return { text: word?.word ?? quiz.prompt, kind: 'chinese' }
 }
 
@@ -1985,6 +1986,7 @@ function getQuizModeLabel(quiz: ActiveQuiz): string {
   return {
     'zh-en': 'Recall meaning',
     'en-zh': 'Recall Chinese',
+    'audio-zh': 'Audio only',
     contrast: 'Contrast choice',
     'sentence-zh-en': 'Read the sentence',
   }[quiz.kind]
@@ -1993,11 +1995,12 @@ function getQuizModeLabel(quiz: ActiveQuiz): string {
 function getActiveRecallPrompt(quiz: ActiveQuiz): string {
   if (quiz.kind === 'sentence-zh-en') return 'What does this sentence mean?'
   if (quiz.kind === 'contrast') return quiz.prompt
+  if (quiz.kind === 'audio-zh') return 'Which word did you hear?'
   if (quiz.stage === 'audio-first' && quiz.kind === 'zh-en') {
     return 'What did that word mean?'
   }
   if (quiz.stage === 'try-before-choices') {
-    return quiz.kind === 'en-zh' ? 'Try to recall it first.' : 'Think of the meaning first.'
+    return quiz.kind === 'en-zh' ? 'Try to recall it first.' : 'Think first. Choices appear soon.'
   }
   return quiz.prompt
 }
@@ -2006,6 +2009,7 @@ function getQuizAnswerLabel(quiz: ActiveQuiz, word?: VocabWord): string {
   const optionLabel = quiz.options.find((option) => option.value === quiz.correctValue)?.label
   if (optionLabel) return optionLabel
   if (quiz.kind === 'zh-en') return word?.meaning ?? quiz.correctValue
+  if (quiz.kind === 'sentence-zh-en') return quiz.correctValue
   return word?.word ?? quiz.correctValue
 }
 
@@ -2040,6 +2044,7 @@ function getRecallStage(stepId: string): RecallStage {
   // visible support and adding a short think-first delay in later recall phases.
   if (stepId.startsWith('rescue-')) return 'rescue'
   if (stepId.startsWith('word-block-')) return 'easy'
+  if (stepId.startsWith('mixed-audio-zh-')) return 'try-before-choices'
   if (stepId.startsWith('mixed-1-')) return 'audio-first'
   if (stepId.startsWith('mixed-2-') || stepId.startsWith('contrast-')) {
     return 'try-before-choices'
@@ -2099,6 +2104,18 @@ function buildActiveQuiz(
         [{ value: other.id, label: other.word }],
         segment.stepId,
       ),
+    }
+  }
+
+  if (segment.stepId.startsWith('mixed-audio-zh-')) {
+    return {
+      id: segment.stepId,
+      kind: 'audio-zh',
+      stage: getRecallStage(segment.stepId),
+      prompt: 'Which word did you hear?',
+      wordId: word.id,
+      correctValue: word.id,
+      options: buildWordOptions(word, lessonWords, allWords, segment.stepId),
     }
   }
 

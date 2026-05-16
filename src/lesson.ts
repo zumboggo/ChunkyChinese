@@ -206,7 +206,7 @@ export function createPocketLesson(
     addWordLearningBlock(steps, word, audioClips, `word-block-${index + 1}-${word.id}`, pauses)
   })
   addMixedWordRecall(steps, targetWords, audioClips, pauses)
-  addSentenceSupport(steps, targetSentences.slice(0, 5), audioClips)
+  addSentenceSupport(steps, targetSentences.slice(0, 2), audioClips)
   addQuickFinalPass(steps, targetWords, audioClips, pauses)
 
   return {
@@ -415,7 +415,6 @@ function addWordLearningBlock(
   addMeaningAudio(steps, word, `${prefix}-meaning-2`)
   addChineseToEnglishRecall(steps, word, audioClips, `${prefix}-zh-en`, pauses.recall)
   addEnglishToChineseWordRecall(steps, word, audioClips, `${prefix}-en-zh`, pauses.recall)
-  addWordSpeakingPractice(steps, word, audioClips, `${prefix}-speak`, pauses.speaking)
   steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', wordId: word.id })
 }
 
@@ -425,28 +424,34 @@ function addMixedWordRecall(
   audioClips: AudioClip[],
   pauses: PauseTimings,
 ) {
-  for (let round = 1; round <= 2; round += 1) {
-    shuffle(words).forEach((word, index) => {
-      addChineseToEnglishRecall(
-        steps,
-        word,
-        audioClips,
-        `mixed-${round}-zh-en-${index}-${word.id}`,
-        round === 1 ? pauses.recall : Math.max(pauses.recall - 0.3, pauses.quick),
-      )
-    })
-    shuffle(words).forEach((word, index) => {
-      addEnglishToChineseWordRecall(
-        steps,
-        word,
-        audioClips,
-        `mixed-${round}-en-zh-${index}-${word.id}`,
-        round === 1 ? pauses.recall : Math.max(pauses.recall - 0.3, pauses.quick),
-      )
-    })
-  }
   shuffle(words).forEach((word, index) => {
-    addWordSpeakingPractice(steps, word, audioClips, `mixed-speak-${index}-${word.id}`, pauses.speaking)
+    addChineseToEnglishRecall(
+      steps,
+      word,
+      audioClips,
+      `mixed-1-zh-en-${index}-${word.id}`,
+      pauses.recall,
+    )
+  })
+  shuffle(words).forEach((word, index) => {
+    addEnglishToChineseWordRecall(
+      steps,
+      word,
+      audioClips,
+      `mixed-1-en-zh-${index}-${word.id}`,
+      Math.max(pauses.recall - 0.3, pauses.quick),
+    )
+  })
+  shuffle(words)
+    .slice(0, Math.min(3, words.length))
+    .forEach((word, index) => {
+      addAudioToChineseWordRecall(
+        steps,
+        word,
+        audioClips,
+        `mixed-audio-zh-${index}-${word.id}`,
+        Math.max(pauses.recall - 0.2, pauses.quick + 0.5),
+      )
   })
   buildContrastPairs(words).forEach(([word, other], index) => {
     addContrastQuestion(steps, word, other, audioClips, `contrast-${index}-${word.id}`, pauses)
@@ -487,32 +492,18 @@ function addQuickFinalPass(
   pauses: PauseTimings,
 ) {
   addPrompt(steps, audioClips, 'quick-meaning', 'Quick meaning')
-  for (let round = 1; round <= 2; round += 1) {
-    words.forEach((word, index) => {
-      const prefix = `quick-${round}-zh-en-${index}-${word.id}`
-      addWordAudio(steps, word, `${prefix}-word`)
-      steps.push({
-        id: `${prefix}-pause`,
-        kind: 'pause',
-        seconds: pauses.quick,
-        label: 'Think',
-        wordId: word.id,
-      })
-      addMeaningAudio(steps, word, `${prefix}-meaning`)
+  shuffle(words).forEach((word, index) => {
+    const prefix = `quick-zh-en-${index}-${word.id}`
+    addWordAudio(steps, word, `${prefix}-word`)
+    steps.push({
+      id: `${prefix}-pause`,
+      kind: 'pause',
+      seconds: pauses.quick,
+      label: 'Think',
+      wordId: word.id,
     })
-    shuffle(words).forEach((word, index) => {
-      const prefix = `quick-${round}-en-zh-${index}-${word.id}`
-      addMeaningAudio(steps, word, `${prefix}-meaning`)
-      steps.push({
-        id: `${prefix}-pause`,
-        kind: 'pause',
-        seconds: pauses.quick,
-        label: 'Think',
-        wordId: word.id,
-      })
-      addWordAudio(steps, word, `${prefix}-word`)
-    })
-  }
+    addMeaningAudio(steps, word, `${prefix}-meaning`)
+  })
   steps.push({ id: 'quick-final-ding', kind: 'ding', label: 'Ding' })
 }
 
@@ -542,17 +533,24 @@ function addEnglishToChineseWordRecall(
   addWordAudio(steps, word, `${prefix}-word`)
 }
 
-function addWordSpeakingPractice(
+function addAudioToChineseWordRecall(
   steps: LessonStep[],
   word: VocabWord,
   audioClips: AudioClip[],
   prefix: string,
   pauseSeconds: number,
 ) {
-  addPrompt(steps, audioClips, 'again', 'Say it', word.id)
-  addWordAudio(steps, word, `${prefix}-word-1`)
-  steps.push({ id: `${prefix}-pause`, kind: 'pause', seconds: pauseSeconds, label: 'Say it', wordId: word.id })
-  addWordAudio(steps, word, `${prefix}-word-2`)
+  if (!word.audioWordId) return
+  addPrompt(steps, audioClips, 'listen', 'Listen', word.id)
+  addWordAudio(steps, word, `${prefix}-word`)
+  steps.push({
+    id: `${prefix}-pause`,
+    kind: 'pause',
+    seconds: pauseSeconds,
+    label: 'Which word?',
+    wordId: word.id,
+  })
+  addWordAudio(steps, word, `${prefix}-answer`)
 }
 
 function addContrastQuestion(
