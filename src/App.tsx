@@ -46,7 +46,7 @@ type LessonStartOptions = {
 }
 type AttentionMode = 'listening' | 'active'
 type LessonKind = 'main' | 'rescue'
-type QuizKind = 'zh-en' | 'en-zh' | 'contrast'
+type QuizKind = 'zh-en' | 'en-zh' | 'contrast' | 'sentence-zh-en'
 type RecallStage = 'easy' | 'audio-first' | 'try-before-choices' | 'quick' | 'rescue'
 
 interface ActiveQuiz {
@@ -55,6 +55,7 @@ interface ActiveQuiz {
   stage: RecallStage
   prompt: string
   wordId: string
+  sentenceId?: string
   correctValue: string
   options: Array<{ value: string; label: string }>
 }
@@ -100,7 +101,7 @@ function App() {
   const [renderedUrl, setRenderedUrl] = useState('')
   const [rendering, setRendering] = useState(false)
   const [pocketProgress, setPocketProgress] = useState({ current: 0, duration: 0 })
-  const [showPinyin, setShowPinyin] = useState(false)
+  const [showPinyin, setShowPinyin] = useState(true)
   const [showEnglish, setShowEnglish] = useState(true)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -247,8 +248,8 @@ function App() {
     [lesson, ratingWordIds, words],
   )
   const currentQuiz = useMemo(
-    () => buildActiveQuiz(currentSegment, renderedLesson, lessonWords, words),
-    [currentSegment, lessonWords, renderedLesson, words],
+    () => buildActiveQuiz(currentSegment, renderedLesson, lessonWords, words, sentences),
+    [currentSegment, lessonWords, renderedLesson, sentences, words],
   )
   const currentQuizResponse = currentQuiz ? quizResponses[currentQuiz.id] : undefined
   const currentQuizHintLevel = currentQuiz ? quizHints[currentQuiz.id] ?? 0 : 0
@@ -260,7 +261,7 @@ function App() {
   const effectiveShowEnglish = showEnglish && !activeRecallSupportHidden
   const allLessonWordsRated =
     ratingWords.length > 0 && ratingWords.every((word) => fsrsRatings[word.id])
-  const hideTargetStrip = focusedActiveQuiz || minimalVisualMode
+  const hideTargetStrip = true
   const hideTargetMeanings = attentionMode === 'active' && hasPassedInitialVocabSection(currentSegment)
   const missedWords = useMemo(
     () =>
@@ -554,7 +555,7 @@ function App() {
   async function startModeLesson(mode: AttentionMode) {
     setAttentionMode(mode)
     setShowEnglish(true)
-    setShowPinyin(false)
+    setShowPinyin(true)
     await startPocketLesson([], { randomize: true, playAfterRender: true, pauseProfile })
   }
 
@@ -894,8 +895,8 @@ function App() {
                   <dd>K</dd>
                 </div>
                 <div>
-                  <dt>Tap lesson words</dt>
-                  <dd>Cycle</dd>
+                  <dt>Answer choices</dt>
+                  <dd>1 / 2</dd>
                 </div>
                 <div>
                   <dt>End rating</dt>
@@ -1220,6 +1221,7 @@ function App() {
                         word={studyWord}
                         sentence={studySentence}
                         hintLevel={currentQuizHintLevel}
+                        showPinyin={showPinyin}
                         onAnswer={handleQuizAnswer}
                         onContinue={continueCurrentQuiz}
                         onHint={handleQuizHint}
@@ -1774,6 +1776,7 @@ function ActiveRecallCard({
   word,
   sentence,
   hintLevel,
+  showPinyin,
   onAnswer,
   onContinue,
   onHint,
@@ -1785,6 +1788,7 @@ function ActiveRecallCard({
   word?: VocabWord
   sentence?: Sentence
   hintLevel: number
+  showPinyin: boolean
   onAnswer: (value: string) => void | Promise<void>
   onContinue: () => void
   onHint: () => void
@@ -1797,7 +1801,7 @@ function ActiveRecallCard({
   const correctLabel = getQuizAnswerLabel(quiz, word)
   const selectedLabel = getSelectedAnswerLabel(quiz, response)
   const feedbackText = getQuizFeedbackText(quiz, word, correctLabel)
-  const showPinyinHint = hintLevel >= 2 && Boolean(word?.pinyin)
+  const showPinyinHint = ((showPinyin && quiz.stage === 'easy') || hintLevel >= 2) && Boolean(word?.pinyin)
   const answered = Boolean(response)
   const canChoose = !answered && choicesReady && quiz.options.length > 1
   const revealDelay = getChoiceRevealDelay(quiz.stage)
@@ -1814,7 +1818,7 @@ function ActiveRecallCard({
   return (
     <section className={`active-recall-card recall-stage-${quiz.stage}`} aria-live="polite">
       <div className="recall-prompt">
-        <span>{quiz.kind === 'en-zh' ? 'Recall Chinese' : 'Recall meaning'}</span>
+        <span>{getQuizModeLabel(quiz)}</span>
         <strong>{promptText}</strong>
       </div>
       <div className={`recall-cue ${cue.kind} ${cueIsSoftened ? 'softened' : ''}`}>
@@ -1972,11 +1976,23 @@ function getActiveRecallCue(
   sentence?: Sentence,
 ): { text: string; kind: 'chinese' | 'english' } {
   if (sentence) return { text: sentence.chinese, kind: 'chinese' }
+  if (quiz.kind === 'contrast') return { text: word?.meaning ?? quiz.prompt, kind: 'english' }
   if (quiz.kind === 'en-zh') return { text: word?.meaning ?? quiz.prompt, kind: 'english' }
   return { text: word?.word ?? quiz.prompt, kind: 'chinese' }
 }
 
+function getQuizModeLabel(quiz: ActiveQuiz): string {
+  return {
+    'zh-en': 'Recall meaning',
+    'en-zh': 'Recall Chinese',
+    contrast: 'Contrast choice',
+    'sentence-zh-en': 'Read the sentence',
+  }[quiz.kind]
+}
+
 function getActiveRecallPrompt(quiz: ActiveQuiz): string {
+  if (quiz.kind === 'sentence-zh-en') return 'What does this sentence mean?'
+  if (quiz.kind === 'contrast') return quiz.prompt
   if (quiz.stage === 'audio-first' && quiz.kind === 'zh-en') {
     return 'What did that word mean?'
   }
@@ -2037,8 +2053,30 @@ function buildActiveQuiz(
   renderedLesson: RenderedLesson | null,
   lessonWords: VocabWord[],
   allWords: VocabWord[],
+  allSentences: Sentence[],
 ): ActiveQuiz | undefined {
-  if (!segment || segment.kind !== 'pause' || !segment.wordId || segment.sentenceId) return undefined
+  if (!segment || segment.kind !== 'pause') return undefined
+
+  if (segment.sentenceId && segment.stepId.startsWith('sentence-support-')) {
+    const sentenceIndex = getSentenceSupportIndex(segment.stepId)
+    if (sentenceIndex > 1) return undefined
+    const sentence = allSentences.find((candidate) => candidate.id === segment.sentenceId)
+    if (!sentence) return undefined
+    const linkedWord = lessonWords.find((word) => sentence.targetWords.includes(word.word))
+    if (!linkedWord) return undefined
+    return {
+      id: segment.stepId,
+      kind: 'sentence-zh-en',
+      stage: 'try-before-choices',
+      prompt: 'What does this sentence mean?',
+      wordId: linkedWord.id,
+      sentenceId: sentence.id,
+      correctValue: sentence.english,
+      options: buildSentenceMeaningOptions(sentence, allSentences, segment.stepId),
+    }
+  }
+
+  if (!segment.wordId || segment.sentenceId) return undefined
   const word = lessonWords.find((candidate) => candidate.id === segment.wordId)
   if (!word) return undefined
 
@@ -2127,6 +2165,35 @@ function buildWordOptions(
     .map((candidate) => ({ value: candidate.id, label: candidate.word }))
 
   return orderLimitedOptions({ value: word.id, label: word.word }, distractors, quizId)
+}
+
+function buildSentenceMeaningOptions(
+  sentence: Sentence,
+  allSentences: Sentence[],
+  quizId: string,
+): ActiveQuiz['options'] {
+  const seen = new Set([sentence.english.toLocaleLowerCase()])
+  const distractors = allSentences
+    .filter((candidate) => candidate.id !== sentence.id)
+    .filter((candidate) => {
+      const key = candidate.english.toLocaleLowerCase()
+      if (!key || seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+    .sort((a, b) => Math.abs(a.chinese.length - sentence.chinese.length) - Math.abs(b.chinese.length - sentence.chinese.length))
+    .map((candidate) => ({ value: candidate.english, label: candidate.english }))
+
+  return orderLimitedOptions(
+    { value: sentence.english, label: sentence.english },
+    distractors,
+    quizId,
+  )
+}
+
+function getSentenceSupportIndex(stepId: string): number {
+  const match = /^sentence-support-(\d+)-/.exec(stepId)
+  return match ? Number(match[1]) : Number.MAX_SAFE_INTEGER
 }
 
 function orderOptions(options: ActiveQuiz['options'], seed: string): ActiveQuiz['options'] {
