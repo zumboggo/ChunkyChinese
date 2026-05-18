@@ -29,14 +29,10 @@ const DB_NAME = 'chunky-chinese-vocab'
 const DB_VERSION = 3
 
 export const DEFAULT_HOTKEYS: HotkeySettings = {
-  answerA: '1',
-  answerB: '2',
-  replay: 'r',
-  skip: 's',
-  ratingAgain: 'a',
-  ratingHard: 'h',
-  ratingGood: 'g',
-  ratingEasy: 'e',
+  choiceA: '3',
+  choiceB: '4',
+  choiceC: '5',
+  choiceD: '6',
 }
 
 interface ChunkyDB extends DBSchema {
@@ -173,9 +169,19 @@ export async function setActivePackId(packId: string | undefined): Promise<void>
 
 export async function getHotkeys(): Promise<HotkeySettings> {
   const saved = (await (await getDB()).get('settings', 'hotkeys')) as
-    | Partial<HotkeySettings>
+    | (Partial<HotkeySettings> & {
+        answerA?: string
+        answerB?: string
+        ratingGood?: string
+        ratingEasy?: string
+      })
     | undefined
-  return { ...DEFAULT_HOTKEYS, ...(saved ?? {}) }
+  return normalizeHotkeys({
+    choiceA: saved?.choiceA ?? saved?.answerA ?? DEFAULT_HOTKEYS.choiceA,
+    choiceB: saved?.choiceB ?? saved?.answerB ?? DEFAULT_HOTKEYS.choiceB,
+    choiceC: saved?.choiceC ?? saved?.ratingGood ?? DEFAULT_HOTKEYS.choiceC,
+    choiceD: saved?.choiceD ?? saved?.ratingEasy ?? DEFAULT_HOTKEYS.choiceD,
+  })
 }
 
 export async function saveHotkeys(hotkeys: HotkeySettings): Promise<void> {
@@ -1029,14 +1035,10 @@ function makePackId(name: string): string {
 
 function normalizeHotkeys(hotkeys: HotkeySettings): HotkeySettings {
   return {
-    answerA: normalizeKey(hotkeys.answerA, DEFAULT_HOTKEYS.answerA),
-    answerB: normalizeKey(hotkeys.answerB, DEFAULT_HOTKEYS.answerB),
-    replay: normalizeKey(hotkeys.replay, DEFAULT_HOTKEYS.replay),
-    skip: normalizeKey(hotkeys.skip, DEFAULT_HOTKEYS.skip),
-    ratingAgain: normalizeKey(hotkeys.ratingAgain, DEFAULT_HOTKEYS.ratingAgain),
-    ratingHard: normalizeKey(hotkeys.ratingHard, DEFAULT_HOTKEYS.ratingHard),
-    ratingGood: normalizeKey(hotkeys.ratingGood, DEFAULT_HOTKEYS.ratingGood),
-    ratingEasy: normalizeKey(hotkeys.ratingEasy, DEFAULT_HOTKEYS.ratingEasy),
+    choiceA: normalizeKey(hotkeys.choiceA, DEFAULT_HOTKEYS.choiceA),
+    choiceB: normalizeKey(hotkeys.choiceB, DEFAULT_HOTKEYS.choiceB),
+    choiceC: normalizeKey(hotkeys.choiceC, DEFAULT_HOTKEYS.choiceC),
+    choiceD: normalizeKey(hotkeys.choiceD, DEFAULT_HOTKEYS.choiceD),
   }
 }
 

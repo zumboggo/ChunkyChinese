@@ -23,17 +23,13 @@ export type ListeningEventType =
 
 export type FsrsRating = 'again' | 'hard' | 'good' | 'easy'
 
-export type StudyMode = 'audioHandsFree' | 'audioEyesFree' | 'activeRecall'
+export type StudyMode = 'audioHandsFree' | 'activeRecall'
 
 export interface HotkeySettings {
-  answerA: string
-  answerB: string
-  replay: string
-  skip: string
-  ratingAgain: string
-  ratingHard: string
-  ratingGood: string
-  ratingEasy: string
+  choiceA: string
+  choiceB: string
+  choiceC: string
+  choiceD: string
 }
 
 export interface ClipPack {

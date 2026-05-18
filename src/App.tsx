@@ -132,7 +132,6 @@ function App() {
   const [hotkeys, setHotkeys] = useState<HotkeySettings>(DEFAULT_HOTKEYS)
   const [csvPackName, setCsvPackName] = useState('My CSV Pack')
   const [csvPackLanguage, setCsvPackLanguage] = useState('zh-CN')
-  const [eyesFreeRatingIndex, setEyesFreeRatingIndex] = useState<number | null>(null)
   const [playbackRate, setPlaybackRate] = useState(1)
   const [lastSummary, setLastSummary] = useState<string>('Ready.')
   const [seedMessage, setSeedMessage] = useState('Loading LMS vocabulary...')
@@ -141,6 +140,9 @@ function App() {
   const runToken = useRef(0)
   const activeAnswerLockRef = useRef<string | null>(null)
   const autoContinueTimeoutRef = useRef<number | null>(null)
+  const spokenQuizIdRef = useRef<string | null>(null)
+  const startNextLessonRef = useRef<(() => void) | null>(null)
+  const runFromRef = useRef<((index: number, plan?: LessonPlan) => void) | null>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const pocketAudioRef = useRef<HTMLAudioElement | null>(null)
   const playModeRef = useRef<HTMLElement | null>(null)
@@ -292,15 +294,11 @@ function App() {
   const currentQuizResponse = currentQuiz ? quizResponses[currentQuiz.id] : undefined
   const currentQuizHintLevel = currentQuiz ? quizHints[currentQuiz.id] ?? 0 : 0
   const answeredQuizStats = useMemo(() => getAnsweredQuizStats(quizResponses), [quizResponses])
-  const isActiveLearningMode = studyMode === 'activeRecall' || studyMode === 'audioEyesFree'
+  const isActiveLearningMode = studyMode === 'activeRecall'
   const isHandsFreeMode = studyMode === 'audioHandsFree'
-  const isEyesFreeMode = studyMode === 'audioEyesFree'
   const activeRecallSupportHidden =
     isActiveLearningMode && hasPassedInitialVocabSection(currentSegment)
   const focusedActiveQuiz = studyMode === 'activeRecall' && Boolean(currentQuiz)
-  const eyesFreeQuizActive = isEyesFreeMode && Boolean(currentQuiz)
-  const eyesFreeRatingWord =
-    eyesFreeRatingIndex !== null ? ratingWords[eyesFreeRatingIndex] : undefined
   const effectiveShowPinyin = showPinyin && !activeRecallSupportHidden
   const effectiveShowEnglish = showEnglish && !activeRecallSupportHidden
   const allLessonWordsRated =
@@ -337,6 +335,7 @@ function App() {
 
   useEffect(() => {
     activeAnswerLockRef.current = null
+    spokenQuizIdRef.current = null
     clearAutoContinueTimeout()
   }, [clearAutoContinueTimeout, currentQuiz?.id, renderedLesson?.id])
 
@@ -407,20 +406,32 @@ function App() {
     void audio.play()
   }, [clearAutoContinueTimeout, currentSegment])
 
-  const skipCurrentQuiz = useCallback(async () => {
-    if (!currentQuiz || quizResponses[currentQuiz.id]) return
-    setQuizResponses((responses) => ({
-      ...responses,
-      [currentQuiz.id]: { correct: false, skipped: true },
-    }))
-    await recordEvent({
-      type: 'skip',
-      itemType: 'quiz',
-      itemId: currentQuiz.id,
+  const speakActiveQuiz = useCallback(async (quiz: ActiveQuiz) => {
+    if (!('speechSynthesis' in window)) return
+    const labels = ['A', 'B', 'C', 'D']
+    const keyValues = [hotkeys.choiceA, hotkeys.choiceB, hotkeys.choiceC, hotkeys.choiceD]
+    const optionsText = quiz.options
+      .slice(0, 4)
+      .map((option, index) => `${labels[index]}. ${option.label}. Press ${keyValues[index]}.`)
+      .join(' ')
+    const text = `${getActiveRecallPrompt(quiz)} ${optionsText}`
+    await new Promise<void>((resolve) => {
+      window.speechSynthesis.cancel()
+      const utterance = new SpeechSynthesisUtterance(text)
+      utterance.rate = playbackRate
+      utterance.lang = /[\u3400-\u9fff]/.test(text) ? 'zh-CN' : 'en-US'
+      utterance.onend = () => resolve()
+      utterance.onerror = () => resolve()
+      window.speechSynthesis.speak(utterance)
     })
-    setLastSummary('Skipped.')
-    continueCurrentQuiz()
-  }, [continueCurrentQuiz, currentQuiz, quizResponses])
+  }, [hotkeys, playbackRate])
+
+  useEffect(() => {
+    if (!focusedActiveQuiz || !currentQuiz || currentQuizResponse) return
+    if (spokenQuizIdRef.current === currentQuiz.id) return
+    spokenQuizIdRef.current = currentQuiz.id
+    void speakActiveQuiz(currentQuiz)
+  }, [currentQuiz, currentQuizResponse, focusedActiveQuiz, speakActiveQuiz])
 
   useEffect(() => {
     if (!isActiveLearningMode || !currentQuiz || !currentQuizResponse) return
@@ -462,7 +473,7 @@ function App() {
     void audio.play()
   }, [currentSegment])
 
-  async function handleFsrsRating(wordId: string, rating: FsrsRating) {
+  const handleFsrsRating = useCallback(async (wordId: string, rating: FsrsRating) => {
     await rateWordFsrs(wordId, rating)
     const nextRatings = { ...fsrsRatings, [wordId]: rating }
     setFsrsRatings(nextRatings)
@@ -473,54 +484,10 @@ function App() {
     const completeSet = ratingIds.length > 0 && ratingIds.every((id) => nextRatings[id])
     if (autoNextLesson && completeSet) {
       window.setTimeout(() => {
-        setShowReviewPrompt(false)
-        void startPocketLesson([], { randomize: true, playAfterRender: true })
+        startNextLessonRef.current?.()
       }, 600)
     }
-  }
-
-  const speakRatingPrompt = useCallback(async (word: VocabWord, keys: HotkeySettings) => {
-    const text = `${word.word}. ${word.meaning}. Rate it now. Again ${keys.ratingAgain}. Hard ${keys.ratingHard}. Good ${keys.ratingGood}. Easy ${keys.ratingEasy}.`
-    if (!('speechSynthesis' in window)) return
-    await new Promise<void>((resolve) => {
-      window.speechSynthesis.cancel()
-      const utterance = new SpeechSynthesisUtterance(text)
-      utterance.rate = playbackRate
-      utterance.lang = /[\u3400-\u9fff]/.test(word.word) ? 'zh-CN' : 'en-US'
-      utterance.onend = () => resolve()
-      utterance.onerror = () => resolve()
-      window.speechSynthesis.speak(utterance)
-    })
-  }, [playbackRate])
-
-  const handleEyesFreeRating = useCallback(async (rating: FsrsRating) => {
-    if (eyesFreeRatingIndex === null || !eyesFreeRatingWord) return
-    await rateWordFsrs(eyesFreeRatingWord.id, rating)
-    setFsrsRatings((ratings) => ({ ...ratings, [eyesFreeRatingWord.id]: rating }))
-    setLastSummary(`Rated ${fsrsLabel(rating)}.`)
-    await refresh()
-    const nextIndex = eyesFreeRatingIndex + 1
-    if (nextIndex < ratingWords.length) {
-      setEyesFreeRatingIndex(nextIndex)
-      void speakRatingPrompt(ratingWords[nextIndex], hotkeys)
-    } else {
-      setEyesFreeRatingIndex(null)
-      setShowReviewPrompt(false)
-      setLastSummary('Eyes-free ratings saved.')
-    }
-  }, [eyesFreeRatingIndex, eyesFreeRatingWord, hotkeys, ratingWords, refresh, speakRatingPrompt])
-
-  const skipEyesFreeRating = useCallback(() => {
-    if (eyesFreeRatingIndex === null) return
-    const nextIndex = eyesFreeRatingIndex + 1
-    if (nextIndex < ratingWords.length) {
-      setEyesFreeRatingIndex(nextIndex)
-      void speakRatingPrompt(ratingWords[nextIndex], hotkeys)
-    } else {
-      setEyesFreeRatingIndex(null)
-      setLastSummary('Eyes-free ratings finished.')
-    }
-  }, [eyesFreeRatingIndex, hotkeys, ratingWords, speakRatingPrompt])
+  }, [autoNextLesson, fsrsRatings, lessonWords, ratingWordIds, refresh])
 
   function finishLessonAndReturnHome() {
     pocketAudioRef.current?.pause()
@@ -539,41 +506,35 @@ function App() {
         target instanceof HTMLInputElement ||
         target instanceof HTMLSelectElement ||
         target instanceof HTMLTextAreaElement
-      if (isTyping || screen !== 'lesson' || !studyWord) return
-      const optionIndex = Number(event.key) - 1
+      if (isTyping || screen !== 'lesson') return
       const pressed = event.key.toLocaleLowerCase()
+      if (showReviewPrompt) {
+        const rating = hotkeyToRating(pressed, hotkeys)
+        if (rating && ratingWords.length > 0) {
+          event.preventDefault()
+          const nextWord = ratingWords.find((word) => !fsrsRatings[word.id])
+          if (nextWord) void handleFsrsRating(nextWord.id, rating)
+        }
+        return
+      }
+      if (!studyWord) return
+      const mappedIndex = choiceKeyIndex(pressed, hotkeys)
       if (
         currentQuiz &&
         currentQuiz.options.length > 1 &&
-        (pressed === hotkeys.answerA || pressed === hotkeys.answerB || (optionIndex >= 0 && optionIndex < currentQuiz.options.length)) &&
+        mappedIndex >= 0 &&
+        mappedIndex < currentQuiz.options.length &&
         !currentQuizResponse
       ) {
         event.preventDefault()
-        const mappedIndex =
-          pressed === hotkeys.answerA ? 0 : pressed === hotkeys.answerB ? 1 : optionIndex
         const option = currentQuiz.options[mappedIndex]
         if (option) void handleQuizAnswer(option.value)
       } else if (currentQuiz && currentQuizResponse && event.key === 'Enter') {
         event.preventDefault()
         continueCurrentQuiz()
-      } else if (currentQuiz && !currentQuizResponse && pressed === hotkeys.replay) {
-        event.preventDefault()
-        replayCurrentQuiz()
-      } else if (currentQuiz && !currentQuizResponse && pressed === hotkeys.skip) {
-        event.preventDefault()
-        void skipCurrentQuiz()
       } else if (currentQuiz && !currentQuizResponse && pressed === 'h') {
         event.preventDefault()
         handleQuizHint()
-      } else if (eyesFreeRatingWord) {
-        const rating = hotkeyToRating(pressed, hotkeys)
-        if (rating) {
-          event.preventDefault()
-          void handleEyesFreeRating(rating)
-        } else if (pressed === hotkeys.skip) {
-          event.preventDefault()
-          skipEyesFreeRating()
-        }
       } else if (pressed === 'k') {
         event.preventDefault()
         void handleStatus([studyWord.id], 'known')
@@ -589,16 +550,15 @@ function App() {
     continueCurrentQuiz,
     currentQuiz,
     currentQuizResponse,
-    eyesFreeRatingWord,
-    handleEyesFreeRating,
+    fsrsRatings,
+    handleFsrsRating,
     handleQuizAnswer,
     handleQuizHint,
     handleStatus,
     hotkeys,
-    replayCurrentQuiz,
+    ratingWords,
     screen,
-    skipCurrentQuiz,
-    skipEyesFreeRating,
+    showReviewPrompt,
     studyWord,
   ])
 
@@ -627,11 +587,10 @@ function App() {
     setQuizHints({})
     setShowReviewPrompt(false)
     setShowMissedRescue(false)
-    setEyesFreeRatingIndex(null)
     if (nextLesson.steps.filter((step) => step.kind === 'audio').length === 0) {
       setLessonMode('live')
       setLastSummary('No local clips are linked yet. Using browser TTS while the app stays open.')
-      if (playAfterRender) window.setTimeout(() => void runFrom(0, nextLesson), 120)
+      if (playAfterRender) window.setTimeout(() => runFromRef.current?.(0, nextLesson), 120)
       return
     }
     const rendered = await renderLessonToWav(nextLesson, getAudioClip)
@@ -688,6 +647,13 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    startNextLessonRef.current = () => {
+      setShowReviewPrompt(false)
+      void startPocketLesson([], { randomize: true, playAfterRender: true })
+    }
+  })
+
   async function startModeLesson(mode: StudyMode) {
     setStudyMode(mode)
     setShowEnglish(true)
@@ -742,36 +708,6 @@ function App() {
     }
     audio.currentTime = Math.max(0, renderedLesson.segments[startIndex]?.startSeconds ?? 0)
     void audio.play()
-  }
-
-  async function runFrom(index: number, plan = lesson) {
-    if (!plan || plan.steps.length === 0) return
-    const token = runToken.current + 1
-    runToken.current = token
-    setIsPlaying(true)
-
-    for (let stepIndex = index; stepIndex < plan.steps.length; stepIndex += 1) {
-      if (runToken.current !== token) break
-      setCurrentStepIndex(stepIndex)
-      const step = plan.steps[stepIndex]
-      await playStep(step, token)
-      if (runToken.current !== token) break
-      if (step.kind === 'audio') {
-        await recordEvent({
-          type: 'complete',
-          itemType: 'audio',
-          itemId: step.audioId,
-          seconds: 3,
-        })
-      }
-      if (step.wordId && (step.kind === 'ding' || step.kind === 'audio')) {
-        await completeWordExposure(step.wordId, step.kind === 'audio' ? 3 : 0)
-      }
-      if (!autoAdvance) break
-    }
-
-    setIsPlaying(false)
-    await refresh()
   }
 
   function stopPlayback() {
@@ -851,6 +787,42 @@ function App() {
       }, 80)
     })
   }
+
+  async function runFrom(index: number, plan = lesson) {
+    if (!plan || plan.steps.length === 0) return
+    const token = runToken.current + 1
+    runToken.current = token
+    setIsPlaying(true)
+
+    for (let stepIndex = index; stepIndex < plan.steps.length; stepIndex += 1) {
+      if (runToken.current !== token) break
+      setCurrentStepIndex(stepIndex)
+      const step = plan.steps[stepIndex]
+      await playStep(step, token)
+      if (runToken.current !== token) break
+      if (step.kind === 'audio') {
+        await recordEvent({
+          type: 'complete',
+          itemType: 'audio',
+          itemId: step.audioId,
+          seconds: 3,
+        })
+      }
+      if (step.wordId && (step.kind === 'ding' || step.kind === 'audio')) {
+        await completeWordExposure(step.wordId, step.kind === 'audio' ? 3 : 0)
+      }
+      if (!autoAdvance) break
+    }
+
+    setIsPlaying(false)
+    await refresh()
+  }
+
+  useEffect(() => {
+    runFromRef.current = (index: number, plan?: LessonPlan) => {
+      void runFrom(index, plan)
+    }
+  })
 
   async function handleFileText(
     files: FileList | null,
@@ -985,13 +957,9 @@ function App() {
                 <strong>Audio - hands free</strong>
                 <span>Continuous listening with auto-next on.</span>
               </button>
-              <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('audioEyesFree')}>
-                <strong>Audio - eyes free</strong>
-                <span>Answer A/B, replay, skip, and rate by hotkey.</span>
-              </button>
               <button className="mode-start active-start" type="button" onClick={() => startModeLesson('activeRecall')}>
                 <strong>Active recall</strong>
-                <span>Pause for calm 2-choice questions.</span>
+                <span>Pause for spoken 2-choice questions.</span>
               </button>
             </div>
           </div>
@@ -1078,25 +1046,23 @@ function App() {
             <InfoPanel title="Hotkeys">
               <dl className="stat-list">
                 <div>
-                  <dt>Answer A / B</dt>
-                  <dd>{hotkeys.answerA.toUpperCase()} / {hotkeys.answerB.toUpperCase()}</dd>
+                  <dt>A / B choices</dt>
+                  <dd>{hotkeys.choiceA.toUpperCase()} / {hotkeys.choiceB.toUpperCase()}</dd>
                 </div>
                 <div>
-                  <dt>Replay / skip</dt>
-                  <dd>{hotkeys.replay.toUpperCase()} / {hotkeys.skip.toUpperCase()}</dd>
-                </div>
-                <div>
-                  <dt>Rate</dt>
+                  <dt>C / D choices</dt>
                   <dd>
-                    {hotkeys.ratingAgain.toUpperCase()} {hotkeys.ratingHard.toUpperCase()}{' '}
-                    {hotkeys.ratingGood.toUpperCase()} {hotkeys.ratingEasy.toUpperCase()}
+                    {hotkeys.choiceC.toUpperCase()} / {hotkeys.choiceD.toUpperCase()}
                   </dd>
                 </div>
                 <div>
-                  <dt>Quick marks</dt>
-                  <dd>F / K</dd>
+                  <dt>At rating time</dt>
+                  <dd>A=Again, B=Hard, C=Good, D=Easy</dd>
                 </div>
               </dl>
+              <button type="button" className="ghost-answer" onClick={() => setScreen('import')}>
+                Edit hotkeys
+              </button>
             </InfoPanel>
             <InfoPanel title="Library">
               <dl className="stat-list">
@@ -1461,12 +1427,10 @@ function App() {
                         {minimalVisualMode
                           ? 'Audio - hands free'
                           : focusedActiveQuiz
-                          ? 'Active recall'
-                          : eyesFreeQuizActive
-                          ? 'Audio - eyes free'
-                          : rendering
-                            ? 'Rendering local audio...'
-                            : renderedLesson?.title ?? lesson.title}
+                            ? 'Active recall'
+                            : rendering
+                              ? 'Rendering local audio...'
+                              : renderedLesson?.title ?? lesson.title}
                       </span>
                       {minimalVisualMode ? (
                         <div className="study-toggles minimal-toggles">
@@ -1500,10 +1464,14 @@ function App() {
                           </button>
                           <button
                             type="button"
-                            className={isEyesFreeMode ? 'active' : ''}
-                            onClick={() => setStudyMode(isEyesFreeMode ? 'activeRecall' : 'audioEyesFree')}
+                            className={studyMode === 'activeRecall' ? 'active' : ''}
+                            onClick={() =>
+                              setStudyMode((mode) =>
+                                mode === 'activeRecall' ? 'audioHandsFree' : 'activeRecall',
+                              )
+                            }
                           >
-                            {isEyesFreeMode ? 'Eyes free' : 'Active'}
+                            {studyMode === 'activeRecall' ? 'Active' : 'Hands free'}
                           </button>
                         </div>
                       )}
@@ -1517,32 +1485,18 @@ function App() {
                         sentence={studySentence}
                         hintLevel={currentQuizHintLevel}
                         showPinyin={showPinyin}
+                        choiceKeys={[
+                          hotkeys.choiceA,
+                          hotkeys.choiceB,
+                          hotkeys.choiceC,
+                          hotkeys.choiceD,
+                        ]}
                         onAnswer={handleQuizAnswer}
                         onContinue={continueCurrentQuiz}
                         onHint={handleQuizHint}
                         onReplay={replayCurrentQuiz}
                         onReveal={revealCurrentQuiz}
                       />
-                    ) : eyesFreeQuizActive && currentQuiz ? (
-                      <section className="active-recall-card eyes-free-card" aria-live="polite">
-                        <div className="recall-prompt">
-                          <span>Audio - eyes free</span>
-                          <strong>
-                            {currentQuizResponse
-                              ? currentQuizResponse.correct
-                                ? 'Correct. Continuing...'
-                                : currentQuizResponse.skipped
-                                  ? 'Skipped.'
-                                  : 'Not quite. Continuing...'
-                              : `A or B. Replay ${hotkeys.replay.toUpperCase()}, skip ${hotkeys.skip.toUpperCase()}.`}
-                          </strong>
-                        </div>
-                        <div className="recall-cue english">
-                          {currentQuizResponse
-                            ? getQuizFeedbackText(currentQuiz, studyWord, getQuizAnswerLabel(currentQuiz, studyWord))
-                            : 'Listen, then choose.'}
-                        </div>
-                      </section>
                     ) : (
                       <>
                     <div className={`study-chinese ${studyDisplay.kind}`}>
@@ -1639,32 +1593,6 @@ function App() {
                         </div>
                       </div>
                     )}
-                    {eyesFreeRatingWord && (
-                      <div className="review-panel" aria-live="polite">
-                        <div className="review-heading">
-                          <strong>Eyes-free rating</strong>
-                          <span>
-                            {eyesFreeRatingIndex !== null ? eyesFreeRatingIndex + 1 : 1} / {ratingWords.length}
-                          </span>
-                        </div>
-                        <div className="review-word">
-                          <span>
-                            <strong>{eyesFreeRatingWord.word}</strong>
-                            <small>{eyesFreeRatingWord.meaning}</small>
-                          </span>
-                        </div>
-                        <p className="review-note">
-                          {hotkeys.ratingAgain.toUpperCase()} Again, {hotkeys.ratingHard.toUpperCase()} Hard,{' '}
-                          {hotkeys.ratingGood.toUpperCase()} Good, {hotkeys.ratingEasy.toUpperCase()} Easy.
-                        </p>
-                        <button
-                          type="button"
-                          onClick={skipEyesFreeRating}
-                        >
-                          Skip rating
-                        </button>
-                      </div>
-                    )}
                     {showReviewPrompt && ratingWords.length > 0 && (
                       <div className="review-panel" aria-live="polite">
                         <div className="review-heading">
@@ -1725,12 +1653,14 @@ function App() {
                     {currentQuiz &&
                       !currentQuizResponse?.skipped &&
                       studyMode !== 'activeRecall' &&
-                      studyMode !== 'audioEyesFree' &&
                       !minimalVisualMode && (
                       <div className="quiz-panel" aria-live="polite">
                         <div className="quiz-copy">
                           <strong>{currentQuiz.prompt}</strong>
-                          <span>Optional keys 1-2</span>
+                          <span>
+                            Optional keys {hotkeys.choiceA.toUpperCase()}-
+                            {hotkeys.choiceB.toUpperCase()}
+                          </span>
                         </div>
                         <div className="quiz-options">
                           {currentQuiz.options.map((option, index) => {
@@ -1751,7 +1681,7 @@ function App() {
                                 disabled={Boolean(currentQuizResponse)}
                                 onClick={() => handleQuizAnswer(option.value)}
                               >
-                                <kbd>{index + 1}</kbd>
+                                <kbd>{[hotkeys.choiceA, hotkeys.choiceB][index]?.toUpperCase() ?? index + 1}</kbd>
                                 {option.label}
                               </button>
                             )
@@ -1806,9 +1736,6 @@ function App() {
                               void startPocketLesson([], { randomize: true, playAfterRender: true })
                             } else if (isHandsFreeMode) {
                               setLastSummary('Hands-free lesson complete.')
-                            } else if (isEyesFreeMode && ratingWords.length > 0) {
-                              setEyesFreeRatingIndex(0)
-                              void speakRatingPrompt(ratingWords[0], hotkeys)
                             } else if (lessonKind === 'main' && missedWordIds.length > 0) {
                               setShowMissedRescue(true)
                             } else {
@@ -2133,6 +2060,7 @@ function ActiveRecallCard({
   sentence,
   hintLevel,
   showPinyin,
+  choiceKeys,
   onAnswer,
   onContinue,
   onHint,
@@ -2145,6 +2073,7 @@ function ActiveRecallCard({
   sentence?: Sentence
   hintLevel: number
   showPinyin: boolean
+  choiceKeys: string[]
   onAnswer: (value: string) => void | Promise<void>
   onContinue: () => void
   onHint: () => void
@@ -2201,7 +2130,7 @@ function ActiveRecallCard({
           {canChoose ? (
             quiz.options.map((option, index) => (
               <button key={option.value} type="button" onClick={() => onAnswer(option.value)}>
-                <kbd>{index + 1}</kbd>
+                <kbd>{choiceKeys[index]?.toUpperCase() ?? index + 1}</kbd>
                 {option.label}
               </button>
             ))
@@ -2263,23 +2192,22 @@ function fsrsLabel(rating: FsrsRating): string {
 }
 
 function hotkeyToRating(key: string, hotkeys: HotkeySettings): FsrsRating | undefined {
-  if (key === hotkeys.ratingAgain) return 'again'
-  if (key === hotkeys.ratingHard) return 'hard'
-  if (key === hotkeys.ratingGood) return 'good'
-  if (key === hotkeys.ratingEasy) return 'easy'
-  return undefined
+  const index = choiceKeyIndex(key, hotkeys)
+  return fsrsRatingsForUi[index]?.value
+}
+
+function choiceKeyIndex(key: string, hotkeys: HotkeySettings): number {
+  return [hotkeys.choiceA, hotkeys.choiceB, hotkeys.choiceC, hotkeys.choiceD].findIndex(
+    (candidate) => candidate === key,
+  )
 }
 
 function hotkeyLabel(key: keyof HotkeySettings): string {
   return {
-    answerA: 'Answer A',
-    answerB: 'Answer B',
-    replay: 'Replay',
-    skip: 'Skip',
-    ratingAgain: 'Rate again',
-    ratingHard: 'Rate hard',
-    ratingGood: 'Rate good',
-    ratingEasy: 'Rate easy',
+    choiceA: 'Choice A / Again',
+    choiceB: 'Choice B / Hard',
+    choiceC: 'Choice C / Good',
+    choiceD: 'Choice D / Easy',
   }[key]
 }
 
