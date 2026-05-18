@@ -12495,6 +12495,30 @@
       "linkedSentenceId": null,
       "provider": "azure",
       "voice": "zh-CN-XiaochenMultilingualNeural"
+    },
+    {
+      "id": "prompt:choice-a",
+      "type": "prompt",
+      "text": "A.",
+      "language": "en-US",
+      "path": "audio/prompts/choice-a.mp3",
+      "label": "choice-a",
+      "linkedWordIds": [],
+      "linkedSentenceId": null,
+      "provider": "azure",
+      "voice": "en-US-JennyNeural"
+    },
+    {
+      "id": "prompt:choice-b",
+      "type": "prompt",
+      "text": "B.",
+      "language": "en-US",
+      "path": "audio/prompts/choice-b.mp3",
+      "label": "choice-b",
+      "linkedWordIds": [],
+      "linkedSentenceId": null,
+      "provider": "azure",
+      "voice": "en-US-JennyNeural"
     }
   ]
 }

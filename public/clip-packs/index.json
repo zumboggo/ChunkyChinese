@@ -5,5 +5,12 @@
     "description": "Legendary Moonlight Sculptor target vocabulary with Azure MP3 clips.",
     "baseUrl": "clip-packs/lms-188-azure",
     "language": "zh-CN"
+  },
+  {
+    "id": "annas-reading-deck",
+    "name": "Anna's Reading Deck",
+    "description": "English reading practice words with Azure MP3 clips.",
+    "baseUrl": "clip-packs/annas-reading-deck",
+    "language": "en-US"
   }
 ]

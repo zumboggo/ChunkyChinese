@@ -14,6 +14,7 @@ import {
   getDashboardStats,
   getHostedClipPackIndex,
   getHotkeys,
+  getPromptClip,
   importAudioFiles,
   importBackup,
   importClipPackFiles,
@@ -143,6 +144,8 @@ function App() {
   const spokenQuizIdRef = useRef<string | null>(null)
   const startNextLessonRef = useRef<(() => void) | null>(null)
   const runFromRef = useRef<((index: number, plan?: LessonPlan) => void) | null>(null)
+  const activeChoiceAudioRef = useRef<HTMLAudioElement | null>(null)
+  const activeChoiceSpeechTokenRef = useRef(0)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const pocketAudioRef = useRef<HTMLAudioElement | null>(null)
   const playModeRef = useRef<HTMLElement | null>(null)
@@ -325,6 +328,13 @@ function App() {
     }
   }, [])
 
+  const stopActiveChoiceSpeech = useCallback(() => {
+    activeChoiceSpeechTokenRef.current += 1
+    activeChoiceAudioRef.current?.pause()
+    activeChoiceAudioRef.current = null
+    window.speechSynthesis?.cancel()
+  }, [])
+
   useEffect(() => {
     if (!isActiveLearningMode || !currentQuiz || currentQuizResponse) return
     if (!pocketAudioRef.current || pocketAudioRef.current.paused) return
@@ -334,8 +344,9 @@ function App() {
   useEffect(() => {
     activeAnswerLockRef.current = null
     spokenQuizIdRef.current = null
+    stopActiveChoiceSpeech()
     clearAutoContinueTimeout()
-  }, [clearAutoContinueTimeout, currentQuiz?.id, renderedLesson?.id])
+  }, [clearAutoContinueTimeout, currentQuiz?.id, renderedLesson?.id, stopActiveChoiceSpeech])
 
   useEffect(() => clearAutoContinueTimeout, [clearAutoContinueTimeout])
 
@@ -351,6 +362,7 @@ function App() {
     ) {
       return
     }
+    stopActiveChoiceSpeech()
     activeAnswerLockRef.current = currentQuiz.id
     const correct = value === currentQuiz.correctValue
     const hintCount = quizHints[currentQuiz.id] ?? 0
@@ -368,7 +380,7 @@ function App() {
         void pocketAudioRef.current?.play()
       }, 350)
     }
-  }, [currentQuiz, isActiveLearningMode, quizHints, quizResponses, refresh, rememberMissedWord])
+  }, [currentQuiz, isActiveLearningMode, quizHints, quizResponses, refresh, rememberMissedWord, stopActiveChoiceSpeech])
 
   const revealCurrentQuiz = useCallback(async () => {
     if (
@@ -378,6 +390,7 @@ function App() {
     ) {
       return
     }
+    stopActiveChoiceSpeech()
     activeAnswerLockRef.current = currentQuiz.id
     const hintCount = quizHints[currentQuiz.id] ?? 0
     setQuizResponses((responses) => ({
@@ -389,9 +402,10 @@ function App() {
     await recordQuizAnswer(currentQuiz.wordId, false)
     setLastSummary('Revealed. It will come back gently.')
     await refresh()
-  }, [currentQuiz, quizHints, quizResponses, refresh, rememberMissedWord])
+  }, [currentQuiz, quizHints, quizResponses, refresh, rememberMissedWord, stopActiveChoiceSpeech])
 
   const continueCurrentQuiz = useCallback(() => {
+    stopActiveChoiceSpeech()
     clearAutoContinueTimeout()
     const audio = pocketAudioRef.current
     if (!audio) return
@@ -402,25 +416,50 @@ function App() {
       )
     }
     void audio.play()
-  }, [clearAutoContinueTimeout, currentSegment])
+  }, [clearAutoContinueTimeout, currentSegment, stopActiveChoiceSpeech])
 
-  const speakActiveQuiz = useCallback(async (quiz: ActiveQuiz) => {
-    if (!('speechSynthesis' in window)) return
-    const keyValues = [hotkeys.choiceA, hotkeys.choiceB, hotkeys.choiceC, hotkeys.choiceD]
+  const playActiveChoiceClip = useCallback(async (audioId: string, token: number) => {
+    const clip = await getAudioClip(audioId)
+    if (!clip || activeChoiceSpeechTokenRef.current !== token) return
+    const url = URL.createObjectURL(clip.blob)
+    const audio = new Audio(url)
+    audio.playbackRate = playbackRate
+    activeChoiceAudioRef.current = audio
+    await new Promise<void>((resolve) => {
+      audio.addEventListener('ended', () => resolve(), { once: true })
+      audio.addEventListener('error', () => resolve(), { once: true })
+      audio.play().catch(() => resolve())
+    })
+    URL.revokeObjectURL(url)
+    if (activeChoiceAudioRef.current === audio) activeChoiceAudioRef.current = null
+  }, [playbackRate])
+
+  const playActiveChoiceText = useCallback(async (text: string, token: number, lang?: string) => {
+    if (activeChoiceSpeechTokenRef.current !== token || !('speechSynthesis' in window)) return
+    await speakUtterance(text, playbackRate, lang)
+  }, [playbackRate])
+
+  const playActiveQuizChoices = useCallback(async (quiz: ActiveQuiz) => {
+    stopActiveChoiceSpeech()
+    const token = activeChoiceSpeechTokenRef.current
     window.speechSynthesis.cancel()
-    await speakUtterance(getActiveRecallPrompt(quiz), playbackRate)
     for (const [index, option] of quiz.options.slice(0, 2).entries()) {
-      await speakUtterance(`${keyValues[index]}.`, playbackRate, 'en-US')
-      await speakUtterance(option.label, playbackRate)
+      if (activeChoiceSpeechTokenRef.current !== token) return
+      const promptClip = await getPromptClip(index === 0 ? 'choice-a' : 'choice-b')
+      if (promptClip) await playActiveChoiceClip(promptClip.id, token)
+      else await playActiveChoiceText(index === 0 ? 'A.' : 'B.', token, 'en-US')
+      const optionClipId = getActiveQuizOptionClipId(option, quiz, words, sentences)
+      if (optionClipId) await playActiveChoiceClip(optionClipId, token)
+      else await playActiveChoiceText(option.label, token)
     }
-  }, [hotkeys, playbackRate])
+  }, [playActiveChoiceClip, playActiveChoiceText, sentences, stopActiveChoiceSpeech, words])
 
   useEffect(() => {
     if (!focusedActiveQuiz || !currentQuiz || currentQuizResponse) return
     if (spokenQuizIdRef.current === currentQuiz.id) return
     spokenQuizIdRef.current = currentQuiz.id
-    void speakActiveQuiz(currentQuiz)
-  }, [currentQuiz, currentQuizResponse, focusedActiveQuiz, speakActiveQuiz])
+    void playActiveQuizChoices(currentQuiz)
+  }, [currentQuiz, currentQuizResponse, focusedActiveQuiz, playActiveQuizChoices])
 
   useEffect(() => {
     if (!isActiveLearningMode || !currentQuiz || !currentQuizResponse) return
@@ -703,6 +742,7 @@ function App() {
   }
 
   function stopPlayback() {
+    stopActiveChoiceSpeech()
     runToken.current += 1
     audioRef.current?.pause()
     pocketAudioRef.current?.pause()
@@ -1478,10 +1518,10 @@ function App() {
                         hintLevel={currentQuizHintLevel}
                         showPinyin={showPinyin}
                         choiceKeys={[
-                          hotkeys.choiceA,
-                          hotkeys.choiceB,
-                          hotkeys.choiceC,
-                          hotkeys.choiceD,
+                          'A',
+                          'B',
+                          'C',
+                          'D',
                         ]}
                         onAnswer={handleQuizAnswer}
                         onContinue={continueCurrentQuiz}
@@ -1634,8 +1674,7 @@ function App() {
                         <div className="quiz-copy">
                           <strong>{currentQuiz.prompt}</strong>
                           <span>
-                            Optional keys {hotkeys.choiceA.toUpperCase()}-
-                            {hotkeys.choiceB.toUpperCase()}
+                            Answer keys {hotkeys.choiceA.toUpperCase()} / {hotkeys.choiceB.toUpperCase()}
                           </span>
                         </div>
                         <div className="quiz-options">
@@ -1657,7 +1696,7 @@ function App() {
                                 disabled={Boolean(currentQuizResponse)}
                                 onClick={() => handleQuizAnswer(option.value)}
                               >
-                                <kbd>{[hotkeys.choiceA, hotkeys.choiceB][index]?.toUpperCase() ?? index + 1}</kbd>
+                                <kbd>{['A', 'B'][index] ?? index + 1}</kbd>
                                 {option.label}
                               </button>
                             )
@@ -2304,6 +2343,26 @@ function getQuizAnswerLabel(quiz: ActiveQuiz, word?: VocabWord): string {
   if (quiz.kind === 'zh-en') return word?.meaning ?? quiz.correctValue
   if (quiz.kind === 'sentence-zh-en') return quiz.correctValue
   return word?.word ?? quiz.correctValue
+}
+
+function getActiveQuizOptionClipId(
+  option: ActiveQuiz['options'][number],
+  quiz: ActiveQuiz,
+  words: VocabWord[],
+  sentences: Sentence[],
+): string | undefined {
+  if (quiz.kind === 'zh-en') {
+    return words.find((word) => word.meaning === option.value || word.meaning === option.label)
+      ?.audioMeaningId
+  }
+  if (quiz.kind === 'sentence-zh-en') {
+    return sentences.find(
+      (sentence) => sentence.english === option.value || sentence.english === option.label,
+    )?.audioEnglishId
+  }
+  return words.find(
+    (word) => word.id === option.value || word.word === option.value || word.word === option.label,
+  )?.audioWordId
 }
 
 function getSelectedAnswerLabel(quiz: ActiveQuiz, response?: QuizResponse): string | undefined {

@@ -30,7 +30,7 @@ Expected Pages URL:
 https://<your-github-name>.github.io/ChunkyChinese/
 ```
 
-The current LMS 188 Azure clip pack is intentionally committed under `public/clip-packs/lms-188-azure/` so GitHub Pages can serve it to your phone. Delete old hosted packs when they are no longer useful to avoid repository bloat. Do not commit local backups or unrelated generated audio.
+The LMS 188 Azure clip pack and Anna's Reading Deck are intentionally committed under `public/clip-packs/` so GitHub Pages can serve them to your phone. Delete old hosted packs when they are no longer useful to avoid repository bloat. Do not commit local backups or unrelated generated audio.
 
 ## PWA Installation
 
