@@ -117,7 +117,7 @@ function App() {
   const [showEnglish, setShowEnglish] = useState(true)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [studyMode, setStudyMode] = useState<StudyMode>('audioHandsFree')
+  const [studyMode, setStudyMode] = useState<StudyMode>('listeningMode')
   const [minimalVisualMode, setMinimalVisualMode] = useState(false)
   const [pauseProfile, setPauseProfile] = useState<PauseProfile>('normal')
   const [quizResponses, setQuizResponses] = useState<Record<string, QuizResponse>>({})
@@ -295,7 +295,7 @@ function App() {
   const currentQuizHintLevel = currentQuiz ? quizHints[currentQuiz.id] ?? 0 : 0
   const answeredQuizStats = useMemo(() => getAnsweredQuizStats(quizResponses), [quizResponses])
   const isActiveLearningMode = studyMode === 'activeRecall'
-  const isHandsFreeMode = studyMode === 'audioHandsFree'
+  const isListeningMode = studyMode === 'listeningMode'
   const activeRecallSupportHidden =
     isActiveLearningMode && hasPassedInitialVocabSection(currentSegment)
   const focusedActiveQuiz = studyMode === 'activeRecall' && Boolean(currentQuiz)
@@ -303,8 +303,6 @@ function App() {
   const effectiveShowEnglish = showEnglish && !activeRecallSupportHidden
   const allLessonWordsRated =
     ratingWords.length > 0 && ratingWords.every((word) => fsrsRatings[word.id])
-  const hideTargetStrip = true
-  const hideTargetMeanings = isActiveLearningMode && hasPassedInitialVocabSection(currentSegment)
   const missedWords = useMemo(
     () =>
       missedWordIds
@@ -408,22 +406,13 @@ function App() {
 
   const speakActiveQuiz = useCallback(async (quiz: ActiveQuiz) => {
     if (!('speechSynthesis' in window)) return
-    const labels = ['A', 'B', 'C', 'D']
     const keyValues = [hotkeys.choiceA, hotkeys.choiceB, hotkeys.choiceC, hotkeys.choiceD]
-    const optionsText = quiz.options
-      .slice(0, 4)
-      .map((option, index) => `${labels[index]}. ${option.label}. Press ${keyValues[index]}.`)
-      .join(' ')
-    const text = `${getActiveRecallPrompt(quiz)} ${optionsText}`
-    await new Promise<void>((resolve) => {
-      window.speechSynthesis.cancel()
-      const utterance = new SpeechSynthesisUtterance(text)
-      utterance.rate = playbackRate
-      utterance.lang = /[\u3400-\u9fff]/.test(text) ? 'zh-CN' : 'en-US'
-      utterance.onend = () => resolve()
-      utterance.onerror = () => resolve()
-      window.speechSynthesis.speak(utterance)
-    })
+    window.speechSynthesis.cancel()
+    await speakUtterance(getActiveRecallPrompt(quiz), playbackRate)
+    for (const [index, option] of quiz.options.slice(0, 2).entries()) {
+      await speakUtterance(`${keyValues[index]}.`, playbackRate, 'en-US')
+      await speakUtterance(option.label, playbackRate)
+    }
   }, [hotkeys, playbackRate])
 
   useEffect(() => {
@@ -517,7 +506,6 @@ function App() {
         }
         return
       }
-      if (!studyWord) return
       const mappedIndex = choiceKeyIndex(pressed, hotkeys)
       if (
         currentQuiz &&
@@ -535,10 +523,10 @@ function App() {
       } else if (currentQuiz && !currentQuizResponse && pressed === 'h') {
         event.preventDefault()
         handleQuizHint()
-      } else if (pressed === 'k') {
+      } else if (studyWord && pressed === 'k') {
         event.preventDefault()
         void handleStatus([studyWord.id], 'known')
-      } else if (pressed === 'f') {
+      } else if (studyWord && pressed === 'f') {
         event.preventDefault()
         void handleStatus([studyWord.id], 'familiar')
       }
@@ -627,9 +615,13 @@ function App() {
       const lessonSentences = scopedSentences.length > 0 ? scopedSentences : sentences
       const useBrowserTts = activePack?.browserTts
       const nextLesson = useBrowserTts
-        ? createLesson(lessonWords, lessonSentences, manualIds, selectionOptions)
+        ? createLesson(lessonWords, lessonSentences, manualIds, {
+            activeRecall: studyMode === 'activeRecall',
+            ...selectionOptions,
+          })
         : createPocketLesson(lessonWords, lessonSentences, audioClips, manualIds, {
             pauseProfile,
+            activeRecall: studyMode === 'activeRecall',
             ...selectionOptions,
           })
       setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
@@ -638,10 +630,10 @@ function App() {
       await renderAndLoadLesson(
         nextLesson,
         playAfterRender,
-        '5 word lesson rendered and ready for background-style playback.',
+        'Lesson rendered and ready for background-style playback.',
       )
     } catch (error) {
-      setLastSummary(error instanceof Error ? error.message : 'Could not render 5 word lesson.')
+      setLastSummary(error instanceof Error ? error.message : 'Could not render lesson.')
     } finally {
       setRendering(false)
     }
@@ -658,8 +650,8 @@ function App() {
     setStudyMode(mode)
     setShowEnglish(true)
     setShowPinyin(true)
-    setMinimalVisualMode(mode === 'audioHandsFree')
-    setAutoNextLesson(mode === 'audioHandsFree')
+    setMinimalVisualMode(mode === 'listeningMode')
+    setAutoNextLesson(mode === 'listeningMode')
     await startPocketLesson([], { randomize: true, playAfterRender: true, pauseProfile })
   }
 
@@ -953,8 +945,8 @@ function App() {
               <p>Start with due words, add new ones only when the queue is light.</p>
             </div>
             <div className="mode-start-grid" aria-label="Choose study mode">
-              <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('audioHandsFree')}>
-                <strong>Audio - hands free</strong>
+              <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('listeningMode')}>
+                <strong>Listening mode</strong>
                 <span>Continuous listening with auto-next on.</span>
               </button>
               <button className="mode-start active-start" type="button" onClick={() => startModeLesson('activeRecall')}>
@@ -973,7 +965,7 @@ function App() {
               <span>Due now</span>
               <strong>{stats.dueNow}</strong>
             </button>
-            <button type="button" className="metric" onClick={() => startModeLesson('audioHandsFree')}>
+            <button type="button" className="metric" onClick={() => startModeLesson('listeningMode')}>
               <span>New available</span>
               <strong>{stats.newAvailable}</strong>
             </button>
@@ -1110,7 +1102,7 @@ function App() {
                 onClick={() => startPocketLesson(selectedWordIds)}
                 disabled={selectedWordIds.length === 0}
               >
-                5 word lesson from selected
+                Lesson from selected
               </button>
             </div>
           </div>
@@ -1425,7 +1417,7 @@ function App() {
                     <div className="study-meta">
                       <span>
                         {minimalVisualMode
-                          ? 'Audio - hands free'
+                          ? 'Listening mode'
                           : focusedActiveQuiz
                             ? 'Active recall'
                             : rendering
@@ -1467,11 +1459,11 @@ function App() {
                             className={studyMode === 'activeRecall' ? 'active' : ''}
                             onClick={() =>
                               setStudyMode((mode) =>
-                                mode === 'activeRecall' ? 'audioHandsFree' : 'activeRecall',
+                                mode === 'activeRecall' ? 'listeningMode' : 'activeRecall',
                               )
                             }
                           >
-                            {studyMode === 'activeRecall' ? 'Active' : 'Hands free'}
+                            {studyMode === 'activeRecall' ? 'Active' : 'Listening'}
                           </button>
                         </div>
                       )}
@@ -1546,22 +1538,6 @@ function App() {
                           </div>
                         )}
                       </>
-                    )}
-                    {lessonWords.length > 0 && !hideTargetStrip && (
-                      <div className="study-target-strip" aria-label="Lesson words">
-                        {lessonWords.map((word) => (
-                          <button
-                            key={word.id}
-                            type="button"
-                            className={`study-target-word word-row-${word.status}`}
-                            onClick={() => cycleWordStatus(word)}
-                            title="Click to cycle familiar / known"
-                          >
-                            <strong>{word.word}</strong>
-                            {!hideTargetMeanings && <small>{word.meaning}</small>}
-                          </button>
-                        ))}
-                      </div>
                     )}
                     {showMissedRescue && missedWords.length > 0 && (
                       <div className="rescue-panel" aria-live="polite">
@@ -1638,7 +1614,7 @@ function App() {
                             className="primary"
                             onClick={() => startPocketLesson([], { randomize: true, playAfterRender: true })}
                           >
-                            Next today's 5
+                            Next Lesson
                           </button>
                         )}
                         <button
@@ -1732,10 +1708,10 @@ function App() {
                               seconds: renderedLesson.durationSeconds,
                             })
                             await refresh()
-                            if (isHandsFreeMode && autoNextLesson) {
+                            if (isListeningMode && autoNextLesson) {
                               void startPocketLesson([], { randomize: true, playAfterRender: true })
-                            } else if (isHandsFreeMode) {
-                              setLastSummary('Hands-free lesson complete.')
+                            } else if (isListeningMode) {
+                              setLastSummary('Listening mode lesson complete.')
                             } else if (lessonKind === 'main' && missedWordIds.length > 0) {
                               setShowMissedRescue(true)
                             } else {
@@ -1806,7 +1782,7 @@ function App() {
                           onClick={() => startPocketLesson()}
                           disabled={rendering || (showReviewPrompt && !allLessonWordsRated)}
                         >
-                          Next today's 5
+                          Next Lesson
                         </button>
                         <label className="toggle compact-toggle">
                           <input
@@ -2191,6 +2167,21 @@ function fsrsLabel(rating: FsrsRating): string {
   return fsrsRatingsForUi.find((item) => item.value === rating)?.label ?? rating
 }
 
+function speakUtterance(text: string, rate: number, lang = detectSpeechLanguage(text)): Promise<void> {
+  return new Promise((resolve) => {
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.rate = rate
+    utterance.lang = lang
+    utterance.onend = () => resolve()
+    utterance.onerror = () => resolve()
+    window.speechSynthesis.speak(utterance)
+  })
+}
+
+function detectSpeechLanguage(text: string): string {
+  return /[\u3400-\u9fff]/.test(text) ? 'zh-CN' : 'en-US'
+}
+
 function hotkeyToRating(key: string, hotkeys: HotkeySettings): FsrsRating | undefined {
   const index = choiceKeyIndex(key, hotkeys)
   return fsrsRatingsForUi[index]?.value
@@ -2304,9 +2295,6 @@ function getActiveRecallPrompt(quiz: ActiveQuiz): string {
   if (quiz.stage === 'audio-first' && quiz.kind === 'zh-en') {
     return 'What did that word mean?'
   }
-  if (quiz.stage === 'try-before-choices') {
-    return quiz.kind === 'en-zh' ? 'Try to recall it first.' : 'Think first. Choices appear soon.'
-  }
   return quiz.prompt
 }
 
@@ -2327,8 +2315,8 @@ function getChoiceRevealDelay(stage: RecallStage): number {
   return {
     easy: 0,
     rescue: 0,
-    'audio-first': 700,
-    'try-before-choices': 1400,
+    'audio-first': 0,
+    'try-before-choices': 0,
     quick: 0,
   }[stage]
 }
@@ -2345,8 +2333,8 @@ function getQuizFeedbackText(quiz: ActiveQuiz, word: VocabWord | undefined, corr
 }
 
 function getRecallStage(stepId: string): RecallStage {
-  // Progression stays 2-choice throughout: the challenge comes from reducing
-  // visible support and adding a short think-first delay in later recall phases.
+  // Progression stays 2-choice throughout: question types vary, but Active
+  // Recall no longer adds extra wait time before showing the choices.
   if (stepId.startsWith('rescue-')) return 'rescue'
   if (stepId.startsWith('word-block-')) return 'easy'
   if (stepId.startsWith('mixed-audio-zh-')) return 'try-before-choices'

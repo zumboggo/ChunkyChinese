@@ -5,6 +5,7 @@ export type PauseProfile = 'gentle' | 'normal' | 'fast' | 'challenge'
 interface TargetSelectionOptions {
   randomize?: boolean
   pauseProfile?: PauseProfile
+  activeRecall?: boolean
 }
 
 interface PauseTimings {
@@ -22,6 +23,7 @@ export function createLesson(
 ): LessonPlan {
   const targetWords = selectTargetWords(words, manualIds, options)
   const steps: LessonStep[] = []
+  const markerPause = options.activeRecall ? 0.05 : undefined
 
   targetWords.forEach((word, index) => {
     const sentence = chooseSentenceForWord(word, sentences, targetWords)
@@ -86,7 +88,7 @@ export function createLesson(
     steps.push({
       id: `${prefix}-recall-pause`,
       kind: 'pause',
-      seconds: 2,
+      seconds: markerPause ?? 2,
       label: 'Think',
       wordId: word.id,
     })
@@ -107,7 +109,7 @@ export function createLesson(
     steps.push({
       id: `${prefix}-contrast-pause`,
       kind: 'pause',
-      seconds: 2,
+      seconds: markerPause ?? 2,
       label: 'Think',
       wordId: word.id,
     })
@@ -150,7 +152,7 @@ export function createLesson(
       steps.push({
         id: `${prefix}-sentence-pause`,
         kind: 'pause',
-        seconds: 3,
+        seconds: markerPause ?? 3,
         label: 'Think',
         wordId: word.id,
         sentenceId: sentence.id,
@@ -190,7 +192,9 @@ export function createPocketLesson(
 ): LessonPlan {
   const targetWords = selectTargetWords(words, manualIds, options)
   const steps: LessonStep[] = []
-  const pauses = getPauseTimings(options.pauseProfile)
+  const pauses = options.activeRecall
+    ? getActiveRecallPauseTimings()
+    : getPauseTimings(options.pauseProfile)
   const targetEntries = targetWords.map((word, index) => ({
     word,
     sentence: chooseSentenceForWord(word, sentences, targetWords, index),
@@ -206,7 +210,12 @@ export function createPocketLesson(
     addWordLearningBlock(steps, word, audioClips, `word-block-${index + 1}-${word.id}`, pauses)
   })
   addMixedWordRecall(steps, targetWords, audioClips, pauses)
-  addSentenceSupport(steps, targetSentences.slice(0, 2), audioClips)
+  addSentenceSupport(
+    steps,
+    targetSentences.slice(0, 2),
+    audioClips,
+    options.activeRecall ? pauses.recall : 3,
+  )
   addQuickFinalPass(steps, targetWords, audioClips, pauses)
 
   return {
@@ -462,6 +471,7 @@ function addSentenceSupport(
   steps: LessonStep[],
   sentences: Sentence[],
   audioClips: AudioClip[],
+  pauseSeconds = 3,
 ) {
   if (sentences.length === 0) return
   addPrompt(steps, audioClips, 'listen', 'Sentence listening')
@@ -476,7 +486,7 @@ function addSentenceSupport(
     steps.push({
       id: `${prefix}-pause`,
       kind: 'pause',
-      seconds: 3,
+      seconds: pauseSeconds,
       label: 'Think',
       sentenceId: sentence.id,
     })
@@ -578,6 +588,12 @@ function getPauseTimings(profile: PauseProfile = 'normal'): PauseTimings {
     fast: { recall: 1.5, speaking: 1.1, quick: 0.6, contrast: 1.3 },
     challenge: { recall: 0.8, speaking: 0.7, quick: 0.4, contrast: 0.8 },
   }[profile]
+}
+
+function getActiveRecallPauseTimings(): PauseTimings {
+  // Active Recall pauses the player for questions, so these are only tiny
+  // marker segments that let the rendered audio timeline expose a quiz point.
+  return { recall: 0.05, speaking: 0.05, quick: 0.01, contrast: 0.05 }
 }
 
 function addWhatDoesPrompt(
