@@ -10,10 +10,13 @@ import {
 } from './csv'
 import type {
   AudioClip,
+  ClipPack,
   ClipManifestEntry,
   ClipPackManifest,
   DashboardStats,
   FsrsRating,
+  HostedClipPack,
+  HotkeySettings,
   ImportSummary,
   ListeningEvent,
   RenderedLesson,
@@ -23,7 +26,18 @@ import type {
 } from './types'
 
 const DB_NAME = 'chunky-chinese-vocab'
-const DB_VERSION = 2
+const DB_VERSION = 3
+
+export const DEFAULT_HOTKEYS: HotkeySettings = {
+  answerA: '1',
+  answerB: '2',
+  replay: 'r',
+  skip: 's',
+  ratingAgain: 'a',
+  ratingHard: 'h',
+  ratingGood: 'g',
+  ratingEasy: 'e',
+}
 
 interface ChunkyDB extends DBSchema {
   vocabWords: {
@@ -48,6 +62,10 @@ interface ChunkyDB extends DBSchema {
   renderedLessons: {
     key: string
     value: RenderedLesson
+  }
+  clipPacks: {
+    key: string
+    value: ClipPack
   }
   settings: {
     key: string
@@ -82,6 +100,9 @@ export function getDB(): Promise<IDBPDatabase<ChunkyDB>> {
         if (!db.objectStoreNames.contains('renderedLessons')) {
           db.createObjectStore('renderedLessons', { keyPath: 'id' })
         }
+        if (!db.objectStoreNames.contains('clipPacks')) {
+          db.createObjectStore('clipPacks', { keyPath: 'id' })
+        }
         if (!db.objectStoreNames.contains('settings')) {
           db.createObjectStore('settings')
         }
@@ -99,9 +120,20 @@ export async function seedLmsWordsIfEmpty(): Promise<number> {
   const response = await fetch(`${import.meta.env.BASE_URL}seed/lms-vocab-188.csv`)
   if (!response.ok) return 0
   const rows = parseCsv(await response.text())
-  const words = vocabFromCsvRows(rows)
+  const pack = makeClipPack({
+    id: 'lms-188-azure',
+    name: 'LMS 188 Azure',
+    source: 'hosted',
+    language: 'zh-CN',
+    description: 'Built-in Legendary Moonlight Sculptor target words.',
+    browserTts: false,
+  })
+  const words = vocabFromCsvRows(rows, pack.id)
+  pack.wordCount = words.length
+  await db.put('clipPacks', pack)
   await upsertWords(words)
   await db.put('settings', new Date().toISOString(), 'lmsSeededAt')
+  await db.put('settings', pack.id, 'activePackId')
   return words.length
 }
 
@@ -121,6 +153,52 @@ export async function getAllSentences(): Promise<Sentence[]> {
 
 export async function getAllAudioClips(): Promise<AudioClip[]> {
   return await (await getDB()).getAll('audioClips')
+}
+
+export async function getAllClipPacks(): Promise<ClipPack[]> {
+  return (await (await getDB()).getAll('clipPacks')).sort((a, b) =>
+    a.name.localeCompare(b.name),
+  )
+}
+
+export async function getActivePackId(): Promise<string | undefined> {
+  return (await (await getDB()).get('settings', 'activePackId')) as string | undefined
+}
+
+export async function setActivePackId(packId: string | undefined): Promise<void> {
+  const db = await getDB()
+  if (packId) await db.put('settings', packId, 'activePackId')
+  else await db.delete('settings', 'activePackId')
+}
+
+export async function getHotkeys(): Promise<HotkeySettings> {
+  const saved = (await (await getDB()).get('settings', 'hotkeys')) as
+    | Partial<HotkeySettings>
+    | undefined
+  return { ...DEFAULT_HOTKEYS, ...(saved ?? {}) }
+}
+
+export async function saveHotkeys(hotkeys: HotkeySettings): Promise<void> {
+  await (await getDB()).put('settings', normalizeHotkeys(hotkeys), 'hotkeys')
+}
+
+export async function getHostedClipPackIndex(): Promise<HostedClipPack[]> {
+  try {
+    const packs = (await fetchJson(`${import.meta.env.BASE_URL}clip-packs/index.json`)) as
+      | HostedClipPack[]
+      | { packs?: HostedClipPack[] }
+    return Array.isArray(packs) ? packs : packs.packs ?? []
+  } catch {
+    return [
+      {
+        id: 'lms-188-azure',
+        name: 'LMS 188 Azure',
+        description: 'Legendary Moonlight Sculptor target words with Azure clips.',
+        baseUrl: `${import.meta.env.BASE_URL}clip-packs/lms-188-azure`,
+        language: 'zh-CN',
+      },
+    ]
+  }
 }
 
 export async function getAudioClip(id: string): Promise<AudioClip | undefined> {
@@ -167,6 +245,7 @@ export async function upsertWords(words: VocabWord[]): Promise<ImportSummary> {
         fsrsEase: word.fsrsEase ?? existing.fsrsEase,
         fsrsRepetitions: word.fsrsRepetitions ?? existing.fsrsRepetitions,
         fsrsLapses: word.fsrsLapses ?? existing.fsrsLapses,
+        packIds: unique([...(existing.packIds ?? []), ...(word.packIds ?? [])]),
         lastReviewedAt: word.lastReviewedAt || existing.lastReviewedAt,
         seenCount: hasProgress ? word.seenCount : existing.seenCount,
         correctCount: hasProgress ? word.correctCount : existing.correctCount,
@@ -204,6 +283,7 @@ export async function upsertSentences(sentences: Sentence[]): Promise<ImportSumm
         audioSentenceFilename:
           sentence.audioSentenceFilename || existing.audioSentenceFilename,
         audioEnglishFilename: sentence.audioEnglishFilename || existing.audioEnglishFilename,
+        packIds: unique([...(existing.packIds ?? []), ...(sentence.packIds ?? [])]),
         updatedAt: new Date().toISOString(),
       })
     } else {
@@ -216,12 +296,40 @@ export async function upsertSentences(sentences: Sentence[]): Promise<ImportSumm
   return { created, updated, skipped: 0, warnings: [] }
 }
 
-export async function importVocabCsv(text: string): Promise<ImportSummary> {
-  return await upsertWords(vocabFromCsvRows(parseCsv(text)))
+export async function importVocabCsv(text: string, packId?: string): Promise<ImportSummary> {
+  return await upsertWords(vocabFromCsvRows(parseCsv(text), packId))
 }
 
-export async function importSentencesCsv(text: string): Promise<ImportSummary> {
-  return await upsertSentences(sentencesFromCsvRows(parseCsv(text)))
+export async function importSentencesCsv(text: string, packId?: string): Promise<ImportSummary> {
+  return await upsertSentences(sentencesFromCsvRows(parseCsv(text), packId))
+}
+
+export async function importCsvTtsPack(
+  text: string,
+  name: string,
+  language = 'zh-CN',
+): Promise<ImportSummary> {
+  const pack = makeClipPack({
+    id: makePackId(name),
+    name: name.trim() || 'CSV TTS Pack',
+    source: 'csv',
+    language,
+    browserTts: true,
+    description: 'CSV-only pack that uses browser text-to-speech when clips are missing.',
+  })
+  const summary = await importVocabCsv(text, pack.id)
+  const db = await getDB()
+  pack.wordCount = (await db.getAll('vocabWords')).filter((word) =>
+    word.packIds?.includes(pack.id),
+  ).length
+  pack.sentenceCount = 0
+  pack.audioCount = 0
+  await db.put('clipPacks', pack)
+  await db.put('settings', pack.id, 'activePackId')
+  summary.warnings.push(
+    'This CSV pack uses browser TTS for missing clips. It is best for foreground practice, not locked-phone background audio.',
+  )
+  return summary
 }
 
 export async function updateWordStatus(
@@ -349,7 +457,7 @@ export async function completeWordExposure(wordId: string, seconds = 0): Promise
   })
 }
 
-export async function importAudioFiles(files: FileList | File[]): Promise<ImportSummary> {
+export async function importAudioFiles(files: FileList | File[], packId?: string): Promise<ImportSummary> {
   const fileArray = Array.from(files).filter((file) =>
     file.name.toLocaleLowerCase().endsWith('.mp3'),
   )
@@ -376,6 +484,7 @@ export async function importAudioFiles(files: FileList | File[]): Promise<Import
       filename,
       path,
       blob: file,
+      packId,
       createdAt: existing?.createdAt ?? new Date().toISOString(),
       linkedWordIds: existing?.linkedWordIds,
       linkedSentenceId: existing?.linkedSentenceId,
@@ -413,13 +522,20 @@ export async function importClipPackFiles(files: FileList | File[]): Promise<Imp
   }
 
   const manifest = JSON.parse(await manifestFile.text()) as ClipPackManifest
+  const packId = makePackId(manifest.packName || 'Clip pack')
+  const pack = makeClipPack({
+    id: packId,
+    name: manifest.packName || packId,
+    source: 'folder',
+    browserTts: false,
+  })
   const warnings: string[] = []
   let importedWords = 0
   let importedSentences = 0
 
   const vocabFile = findPackFile(fileArray, manifest.vocabCsvPath ?? 'vocab.csv')
   if (vocabFile) {
-    const summary = await importVocabCsv(await vocabFile.text())
+    const summary = await importVocabCsv(await vocabFile.text(), packId)
     importedWords = summary.created + summary.updated
   } else {
     warnings.push('No vocab.csv found in clip pack.')
@@ -427,7 +543,7 @@ export async function importClipPackFiles(files: FileList | File[]): Promise<Imp
 
   const sentencesFile = findPackFile(fileArray, manifest.sentencesCsvPath ?? 'sentences.csv')
   if (sentencesFile) {
-    const summary = await importSentencesCsv(await sentencesFile.text())
+    const summary = await importSentencesCsv(await sentencesFile.text(), packId)
     importedSentences = summary.created + summary.updated
   } else {
     warnings.push('No sentences.csv found in clip pack.')
@@ -465,6 +581,7 @@ export async function importClipPackFiles(files: FileList | File[]): Promise<Imp
       language: entry.language,
       provider: entry.provider,
       voice: entry.voice,
+      packId,
       createdAt: existing?.createdAt ?? new Date().toISOString(),
     }
     await tx.objectStore('audioClips').put(clip)
@@ -474,7 +591,16 @@ export async function importClipPackFiles(files: FileList | File[]): Promise<Imp
   }
 
   await tx.done
+  pack.wordCount = (await db.getAll('vocabWords')).filter((word) =>
+    word.packIds?.includes(packId),
+  ).length
+  pack.sentenceCount = (await db.getAll('sentences')).filter((sentence) =>
+    sentence.packIds?.includes(packId),
+  ).length
+  pack.audioCount = created + updated
+  await db.put('clipPacks', pack)
   await db.put('settings', manifest, 'lastClipPackManifest')
+  await db.put('settings', packId, 'activePackId')
   return {
     created,
     updated,
@@ -489,20 +615,35 @@ export async function importClipPackFiles(files: FileList | File[]): Promise<Imp
 export async function importHostedClipPack(
   baseUrl: string,
   onProgress?: (completed: number, total: number, label: string) => void,
+  hosted?: Partial<HostedClipPack>,
 ): Promise<ImportSummary> {
   const base = baseUrl.replace(/\/+$/, '')
   const manifest = (await fetchJson(`${base}/clips_manifest.json`)) as ClipPackManifest
+  const packId = hosted?.id ?? makePackId(manifest.packName || base.split('/').pop() || 'Hosted pack')
+  const pack = makeClipPack({
+    id: packId,
+    name: hosted?.name ?? manifest.packName ?? packId,
+    source: 'hosted',
+    language: hosted?.language,
+    description: hosted?.description,
+    baseUrl,
+    browserTts: false,
+  })
   const warnings: string[] = []
   let importedWords = 0
   let importedSentences = 0
 
   if (manifest.vocabCsvPath) {
-    const summary = await importVocabCsv(await fetchText(`${base}/${encodePath(manifest.vocabCsvPath)}`))
+    const summary = await importVocabCsv(
+      await fetchText(`${base}/${encodePath(manifest.vocabCsvPath)}`),
+      packId,
+    )
     importedWords = summary.created + summary.updated
   }
   if (manifest.sentencesCsvPath) {
     const summary = await importSentencesCsv(
       await fetchText(`${base}/${encodePath(manifest.sentencesCsvPath)}`),
+      packId,
     )
     importedSentences = summary.created + summary.updated
   }
@@ -550,14 +691,23 @@ export async function importHostedClipPack(
   let linkedAudio = 0
 
   for (const prepared of preparedClips) {
-    await tx.objectStore('audioClips').put(prepared.clip)
+    await tx.objectStore('audioClips').put({ ...prepared.clip, packId })
     if (prepared.existed) updated += 1
     else created += 1
-    linkedAudio += await linkClip(tx, prepared.clip, words, sentences, prepared.entry)
+    linkedAudio += await linkClip(tx, { ...prepared.clip, packId }, words, sentences, prepared.entry)
   }
 
   await tx.done
+  pack.wordCount = (await db.getAll('vocabWords')).filter((word) =>
+    word.packIds?.includes(packId),
+  ).length
+  pack.sentenceCount = (await db.getAll('sentences')).filter((sentence) =>
+    sentence.packIds?.includes(packId),
+  ).length
+  pack.audioCount = created + updated
+  await db.put('clipPacks', pack)
   await db.put('settings', manifest, 'lastClipPackManifest')
+  await db.put('settings', packId, 'activePackId')
   return {
     created,
     updated,
@@ -615,8 +765,11 @@ export async function exportBackup(): Promise<string> {
     vocabWords: await db.getAll('vocabWords'),
     sentences: await db.getAll('sentences'),
     listeningEvents: await db.getAll('listeningEvents'),
+    clipPacks: await db.getAll('clipPacks'),
     settings: {
       lmsSeededAt: await db.get('settings', 'lmsSeededAt'),
+      activePackId: await db.get('settings', 'activePackId'),
+      hotkeys: await getHotkeys(),
     },
   }
   return JSON.stringify(backup, null, 2)
@@ -627,9 +780,11 @@ export async function importBackup(text: string): Promise<ImportSummary> {
     vocabWords?: VocabWord[]
     sentences?: Sentence[]
     listeningEvents?: ListeningEvent[]
+    clipPacks?: ClipPack[]
+    settings?: { activePackId?: string; hotkeys?: HotkeySettings; lmsSeededAt?: string }
   }
   const db = await getDB()
-  const tx = db.transaction(['vocabWords', 'sentences', 'listeningEvents'], 'readwrite')
+  const tx = db.transaction(['vocabWords', 'sentences', 'listeningEvents', 'clipPacks'], 'readwrite')
   let created = 0
   let updated = 0
 
@@ -645,8 +800,14 @@ export async function importBackup(text: string): Promise<ImportSummary> {
   for (const event of backup.listeningEvents ?? []) {
     await tx.objectStore('listeningEvents').put(event)
   }
+  for (const pack of backup.clipPacks ?? []) {
+    await tx.objectStore('clipPacks').put(pack)
+  }
 
   await tx.done
+  if (backup.settings?.activePackId) await db.put('settings', backup.settings.activePackId, 'activePackId')
+  if (backup.settings?.hotkeys) await saveHotkeys(backup.settings.hotkeys)
+  if (backup.settings?.lmsSeededAt) await db.put('settings', backup.settings.lmsSeededAt, 'lmsSeededAt')
   return { created, updated, skipped: 0, warnings: [] }
 }
 
@@ -699,6 +860,7 @@ async function linkClip(
           ...word,
           audioWordId: wordMatch ? clip.id : word.audioWordId,
           audioMeaningId: meaningMatch ? clip.id : word.audioMeaningId,
+          packIds: clip.packId ? unique([...(word.packIds ?? []), clip.packId]) : word.packIds,
           updatedAt: new Date().toISOString(),
         }
         await tx.objectStore('vocabWords').put(nextWord)
@@ -726,6 +888,9 @@ async function linkClip(
         const nextSentence = {
           ...sentence,
           audioSentenceId: clip.id,
+          packIds: clip.packId
+            ? unique([...(sentence.packIds ?? []), clip.packId])
+            : sentence.packIds,
           updatedAt: new Date().toISOString(),
         }
         await tx.objectStore('sentences').put(nextSentence)
@@ -735,6 +900,9 @@ async function linkClip(
         const nextSentence = {
           ...sentence,
           audioEnglishId: clip.id,
+          packIds: clip.packId
+            ? unique([...(sentence.packIds ?? []), clip.packId])
+            : sentence.packIds,
           updatedAt: new Date().toISOString(),
         }
         await tx.objectStore('sentences').put(nextSentence)
@@ -821,6 +989,64 @@ function manifestEntryToClip(
     voice: entry.voice,
     createdAt,
   }
+}
+
+function makeClipPack(input: {
+  id: string
+  name: string
+  source: ClipPack['source']
+  language?: string
+  description?: string
+  baseUrl?: string
+  browserTts?: boolean
+}): ClipPack {
+  const now = new Date().toISOString()
+  return {
+    id: input.id,
+    name: input.name,
+    source: input.source,
+    language: input.language,
+    description: input.description,
+    baseUrl: input.baseUrl,
+    browserTts: input.browserTts,
+    installedAt: now,
+    createdAt: now,
+    updatedAt: now,
+    wordCount: 0,
+    sentenceCount: 0,
+    audioCount: 0,
+  }
+}
+
+function makePackId(name: string): string {
+  const slug = name
+    .trim()
+    .toLocaleLowerCase()
+    .replace(/[^a-z0-9\u3400-\u9fff]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+  return slug || `pack-${stableHash(name)}`
+}
+
+function normalizeHotkeys(hotkeys: HotkeySettings): HotkeySettings {
+  return {
+    answerA: normalizeKey(hotkeys.answerA, DEFAULT_HOTKEYS.answerA),
+    answerB: normalizeKey(hotkeys.answerB, DEFAULT_HOTKEYS.answerB),
+    replay: normalizeKey(hotkeys.replay, DEFAULT_HOTKEYS.replay),
+    skip: normalizeKey(hotkeys.skip, DEFAULT_HOTKEYS.skip),
+    ratingAgain: normalizeKey(hotkeys.ratingAgain, DEFAULT_HOTKEYS.ratingAgain),
+    ratingHard: normalizeKey(hotkeys.ratingHard, DEFAULT_HOTKEYS.ratingHard),
+    ratingGood: normalizeKey(hotkeys.ratingGood, DEFAULT_HOTKEYS.ratingGood),
+    ratingEasy: normalizeKey(hotkeys.ratingEasy, DEFAULT_HOTKEYS.ratingEasy),
+  }
+}
+
+function normalizeKey(value: string | undefined, fallback: string): string {
+  const trimmed = value?.trim()
+  return trimmed ? trimmed.toLocaleLowerCase() : fallback
+}
+
+function unique(values: string[]): string[] {
+  return Array.from(new Set(values.filter(Boolean)))
 }
 
 function normalizePromptId(value: string): string {

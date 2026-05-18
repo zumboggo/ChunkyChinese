@@ -2,16 +2,22 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import {
   completeWordExposure,
+  DEFAULT_HOTKEYS,
   downloadText,
   exportBackup,
   getAllAudioClips,
+  getAllClipPacks,
   getAllSentences,
   getAllWords,
   getAudioClip,
+  getActivePackId,
   getDashboardStats,
+  getHostedClipPackIndex,
+  getHotkeys,
   importAudioFiles,
   importBackup,
   importClipPackFiles,
+  importCsvTtsPack,
   importHostedClipPack,
   importSentencesCsv,
   importVocabCsv,
@@ -20,20 +26,26 @@ import {
   recordQuizAnswer,
   saveRenderedLesson,
   seedLmsWordsIfEmpty,
+  saveHotkeys,
+  setActivePackId as persistActivePackId,
   updateWordStatus,
 } from './db'
-import { createPocketLesson, createRescueLesson, type PauseProfile } from './lesson'
+import { createLesson, createPocketLesson, createRescueLesson, type PauseProfile } from './lesson'
 import { renderLessonToWav } from './renderAudio'
 import type {
   AudioClip,
+  ClipPack,
   DashboardStats,
   FsrsRating,
+  HostedClipPack,
+  HotkeySettings,
   ImportSummary,
   LessonPlan,
   LessonStep,
   RenderedLesson,
   RenderedLessonSegment,
   Sentence,
+  StudyMode,
   VocabWord,
   WordStatus,
 } from './types'
@@ -44,7 +56,6 @@ type LessonStartOptions = {
   playAfterRender?: boolean
   pauseProfile?: PauseProfile
 }
-type AttentionMode = 'listening' | 'active'
 type LessonKind = 'main' | 'rescue'
 type QuizKind = 'zh-en' | 'en-zh' | 'audio-zh' | 'contrast' | 'sentence-zh-en'
 type RecallStage = 'easy' | 'audio-first' | 'try-before-choices' | 'quick' | 'rescue'
@@ -79,13 +90,14 @@ const emptyStats: DashboardStats = {
   knownToday: 0,
 }
 
-const HOSTED_CLIP_PACK_URL = `${import.meta.env.BASE_URL}clip-packs/lms-188-azure`
-
 function App() {
   const [screen, setScreen] = useState<Screen>('dashboard')
   const [words, setWords] = useState<VocabWord[]>([])
   const [sentences, setSentences] = useState<Sentence[]>([])
   const [audioClips, setAudioClips] = useState<AudioClip[]>([])
+  const [clipPacks, setClipPacks] = useState<ClipPack[]>([])
+  const [hostedPacks, setHostedPacks] = useState<HostedClipPack[]>([])
+  const [activePackId, setActivePackId] = useState<string | undefined>()
   const [stats, setStats] = useState<DashboardStats>(emptyStats)
   const [statusFilter, setStatusFilter] = useState<WordStatus | 'all'>('all')
   const [search, setSearch] = useState('')
@@ -105,7 +117,7 @@ function App() {
   const [showEnglish, setShowEnglish] = useState(true)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [attentionMode, setAttentionMode] = useState<AttentionMode>('listening')
+  const [studyMode, setStudyMode] = useState<StudyMode>('audioHandsFree')
   const [minimalVisualMode, setMinimalVisualMode] = useState(false)
   const [pauseProfile, setPauseProfile] = useState<PauseProfile>('normal')
   const [quizResponses, setQuizResponses] = useState<Record<string, QuizResponse>>({})
@@ -115,8 +127,12 @@ function App() {
   const [fsrsRatings, setFsrsRatings] = useState<Record<string, FsrsRating>>({})
   const [showReviewPrompt, setShowReviewPrompt] = useState(false)
   const [savedResumeTime, setSavedResumeTime] = useState<number | null>(null)
-  const [autoNextLesson, setAutoNextLesson] = useState(false)
+  const [autoNextLesson, setAutoNextLesson] = useState(true)
   const [autoAdvance, setAutoAdvance] = useState(true)
+  const [hotkeys, setHotkeys] = useState<HotkeySettings>(DEFAULT_HOTKEYS)
+  const [csvPackName, setCsvPackName] = useState('My CSV Pack')
+  const [csvPackLanguage, setCsvPackLanguage] = useState('zh-CN')
+  const [eyesFreeRatingIndex, setEyesFreeRatingIndex] = useState<number | null>(null)
   const [playbackRate, setPlaybackRate] = useState(1)
   const [lastSummary, setLastSummary] = useState<string>('Ready.')
   const [seedMessage, setSeedMessage] = useState('Loading LMS vocabulary...')
@@ -130,15 +146,19 @@ function App() {
   const playModeRef = useRef<HTMLElement | null>(null)
 
   const refresh = useCallback(async () => {
-    const [nextWords, nextSentences, nextAudio, nextStats] = await Promise.all([
+    const [nextWords, nextSentences, nextAudio, nextPacks, nextActivePackId, nextStats] = await Promise.all([
       getAllWords(),
       getAllSentences(),
       getAllAudioClips(),
+      getAllClipPacks(),
+      getActivePackId(),
       getDashboardStats(),
     ])
     setWords(nextWords)
     setSentences(nextSentences)
     setAudioClips(nextAudio)
+    setClipPacks(nextPacks)
+    setActivePackId(nextActivePackId)
     setStats(nextStats)
   }, [])
 
@@ -148,6 +168,12 @@ function App() {
       setSeedMessage(
         seeded > 0 ? `Seeded ${seeded} LMS target words.` : 'LMS vocabulary loaded.',
       )
+      const [nextHotkeys, nextHostedPacks] = await Promise.all([
+        getHotkeys(),
+        getHostedClipPackIndex(),
+      ])
+      setHotkeys(nextHotkeys)
+      setHostedPacks(nextHostedPacks)
       await refresh()
     }
     void start()
@@ -229,10 +255,22 @@ function App() {
     ? sentences.find((sentence) => sentence.id === currentSegment.sentenceId)
     : undefined
   const studyDisplay = getStudyDisplay(studyWord, studySentence)
-  const coverage = useMemo(() => getAudioCoverage(words, sentences, audioClips), [
+  const activePack = clipPacks.find((pack) => pack.id === activePackId)
+  const scopedWords = useMemo(
+    () => (activePackId ? words.filter((word) => word.packIds?.includes(activePackId)) : words),
+    [activePackId, words],
+  )
+  const scopedSentences = useMemo(
+    () =>
+      activePackId
+        ? sentences.filter((sentence) => sentence.packIds?.includes(activePackId))
+        : sentences,
+    [activePackId, sentences],
+  )
+  const coverage = useMemo(() => getAudioCoverage(scopedWords, scopedSentences, audioClips), [
     audioClips,
-    sentences,
-    words,
+    scopedSentences,
+    scopedWords,
   ])
   const lessonWords = useMemo(
     () =>
@@ -248,21 +286,27 @@ function App() {
     [lesson, ratingWordIds, words],
   )
   const currentQuiz = useMemo(
-    () => buildActiveQuiz(currentSegment, renderedLesson, lessonWords, words, sentences),
-    [currentSegment, lessonWords, renderedLesson, sentences, words],
+    () => buildActiveQuiz(currentSegment, renderedLesson, lessonWords, scopedWords, scopedSentences),
+    [currentSegment, lessonWords, renderedLesson, scopedSentences, scopedWords],
   )
   const currentQuizResponse = currentQuiz ? quizResponses[currentQuiz.id] : undefined
   const currentQuizHintLevel = currentQuiz ? quizHints[currentQuiz.id] ?? 0 : 0
   const answeredQuizStats = useMemo(() => getAnsweredQuizStats(quizResponses), [quizResponses])
+  const isActiveLearningMode = studyMode === 'activeRecall' || studyMode === 'audioEyesFree'
+  const isHandsFreeMode = studyMode === 'audioHandsFree'
+  const isEyesFreeMode = studyMode === 'audioEyesFree'
   const activeRecallSupportHidden =
-    attentionMode === 'active' && hasPassedInitialVocabSection(currentSegment)
-  const focusedActiveQuiz = attentionMode === 'active' && Boolean(currentQuiz)
+    isActiveLearningMode && hasPassedInitialVocabSection(currentSegment)
+  const focusedActiveQuiz = studyMode === 'activeRecall' && Boolean(currentQuiz)
+  const eyesFreeQuizActive = isEyesFreeMode && Boolean(currentQuiz)
+  const eyesFreeRatingWord =
+    eyesFreeRatingIndex !== null ? ratingWords[eyesFreeRatingIndex] : undefined
   const effectiveShowPinyin = showPinyin && !activeRecallSupportHidden
   const effectiveShowEnglish = showEnglish && !activeRecallSupportHidden
   const allLessonWordsRated =
     ratingWords.length > 0 && ratingWords.every((word) => fsrsRatings[word.id])
   const hideTargetStrip = true
-  const hideTargetMeanings = attentionMode === 'active' && hasPassedInitialVocabSection(currentSegment)
+  const hideTargetMeanings = isActiveLearningMode && hasPassedInitialVocabSection(currentSegment)
   const missedWords = useMemo(
     () =>
       missedWordIds
@@ -286,10 +330,10 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (attentionMode !== 'active' || !currentQuiz || currentQuizResponse) return
+    if (!isActiveLearningMode || !currentQuiz || currentQuizResponse) return
     if (!pocketAudioRef.current || pocketAudioRef.current.paused) return
     pocketAudioRef.current.pause()
-  }, [attentionMode, currentQuiz, currentQuizResponse])
+  }, [currentQuiz, currentQuizResponse, isActiveLearningMode])
 
   useEffect(() => {
     activeAnswerLockRef.current = null
@@ -322,12 +366,12 @@ function App() {
     await recordQuizAnswer(currentQuiz.wordId, correct)
     setLastSummary(correct ? 'Correct.' : 'Not quite.')
     await refresh()
-    if (attentionMode !== 'active') {
+    if (!isActiveLearningMode) {
       window.setTimeout(() => {
         void pocketAudioRef.current?.play()
       }, 350)
     }
-  }, [attentionMode, currentQuiz, quizHints, quizResponses, refresh, rememberMissedWord])
+  }, [currentQuiz, isActiveLearningMode, quizHints, quizResponses, refresh, rememberMissedWord])
 
   const revealCurrentQuiz = useCallback(async () => {
     if (
@@ -363,8 +407,23 @@ function App() {
     void audio.play()
   }, [clearAutoContinueTimeout, currentSegment])
 
+  const skipCurrentQuiz = useCallback(async () => {
+    if (!currentQuiz || quizResponses[currentQuiz.id]) return
+    setQuizResponses((responses) => ({
+      ...responses,
+      [currentQuiz.id]: { correct: false, skipped: true },
+    }))
+    await recordEvent({
+      type: 'skip',
+      itemType: 'quiz',
+      itemId: currentQuiz.id,
+    })
+    setLastSummary('Skipped.')
+    continueCurrentQuiz()
+  }, [continueCurrentQuiz, currentQuiz, quizResponses])
+
   useEffect(() => {
-    if (attentionMode !== 'active' || !currentQuiz || !currentQuizResponse) return
+    if (!isActiveLearningMode || !currentQuiz || !currentQuizResponse) return
     clearAutoContinueTimeout()
     autoContinueTimeoutRef.current = window.setTimeout(() => {
       autoContinueTimeoutRef.current = null
@@ -372,11 +431,11 @@ function App() {
     }, 1000)
     return clearAutoContinueTimeout
   }, [
-    attentionMode,
     clearAutoContinueTimeout,
     continueCurrentQuiz,
     currentQuiz,
     currentQuizResponse,
+    isActiveLearningMode,
   ])
 
   const replayCurrentQuiz = useCallback(() => {
@@ -420,6 +479,49 @@ function App() {
     }
   }
 
+  const speakRatingPrompt = useCallback(async (word: VocabWord, keys: HotkeySettings) => {
+    const text = `${word.word}. ${word.meaning}. Rate it now. Again ${keys.ratingAgain}. Hard ${keys.ratingHard}. Good ${keys.ratingGood}. Easy ${keys.ratingEasy}.`
+    if (!('speechSynthesis' in window)) return
+    await new Promise<void>((resolve) => {
+      window.speechSynthesis.cancel()
+      const utterance = new SpeechSynthesisUtterance(text)
+      utterance.rate = playbackRate
+      utterance.lang = /[\u3400-\u9fff]/.test(word.word) ? 'zh-CN' : 'en-US'
+      utterance.onend = () => resolve()
+      utterance.onerror = () => resolve()
+      window.speechSynthesis.speak(utterance)
+    })
+  }, [playbackRate])
+
+  const handleEyesFreeRating = useCallback(async (rating: FsrsRating) => {
+    if (eyesFreeRatingIndex === null || !eyesFreeRatingWord) return
+    await rateWordFsrs(eyesFreeRatingWord.id, rating)
+    setFsrsRatings((ratings) => ({ ...ratings, [eyesFreeRatingWord.id]: rating }))
+    setLastSummary(`Rated ${fsrsLabel(rating)}.`)
+    await refresh()
+    const nextIndex = eyesFreeRatingIndex + 1
+    if (nextIndex < ratingWords.length) {
+      setEyesFreeRatingIndex(nextIndex)
+      void speakRatingPrompt(ratingWords[nextIndex], hotkeys)
+    } else {
+      setEyesFreeRatingIndex(null)
+      setShowReviewPrompt(false)
+      setLastSummary('Eyes-free ratings saved.')
+    }
+  }, [eyesFreeRatingIndex, eyesFreeRatingWord, hotkeys, ratingWords, refresh, speakRatingPrompt])
+
+  const skipEyesFreeRating = useCallback(() => {
+    if (eyesFreeRatingIndex === null) return
+    const nextIndex = eyesFreeRatingIndex + 1
+    if (nextIndex < ratingWords.length) {
+      setEyesFreeRatingIndex(nextIndex)
+      void speakRatingPrompt(ratingWords[nextIndex], hotkeys)
+    } else {
+      setEyesFreeRatingIndex(null)
+      setLastSummary('Eyes-free ratings finished.')
+    }
+  }, [eyesFreeRatingIndex, hotkeys, ratingWords, speakRatingPrompt])
+
   function finishLessonAndReturnHome() {
     pocketAudioRef.current?.pause()
     setShowReviewPrompt(false)
@@ -439,25 +541,43 @@ function App() {
         target instanceof HTMLTextAreaElement
       if (isTyping || screen !== 'lesson' || !studyWord) return
       const optionIndex = Number(event.key) - 1
+      const pressed = event.key.toLocaleLowerCase()
       if (
         currentQuiz &&
         currentQuiz.options.length > 1 &&
-        optionIndex >= 0 &&
-        optionIndex < currentQuiz.options.length &&
+        (pressed === hotkeys.answerA || pressed === hotkeys.answerB || (optionIndex >= 0 && optionIndex < currentQuiz.options.length)) &&
         !currentQuizResponse
       ) {
         event.preventDefault()
-        void handleQuizAnswer(currentQuiz.options[optionIndex].value)
+        const mappedIndex =
+          pressed === hotkeys.answerA ? 0 : pressed === hotkeys.answerB ? 1 : optionIndex
+        const option = currentQuiz.options[mappedIndex]
+        if (option) void handleQuizAnswer(option.value)
       } else if (currentQuiz && currentQuizResponse && event.key === 'Enter') {
         event.preventDefault()
         continueCurrentQuiz()
-      } else if (currentQuiz && !currentQuizResponse && event.key.toLocaleLowerCase() === 'h') {
+      } else if (currentQuiz && !currentQuizResponse && pressed === hotkeys.replay) {
+        event.preventDefault()
+        replayCurrentQuiz()
+      } else if (currentQuiz && !currentQuizResponse && pressed === hotkeys.skip) {
+        event.preventDefault()
+        void skipCurrentQuiz()
+      } else if (currentQuiz && !currentQuizResponse && pressed === 'h') {
         event.preventDefault()
         handleQuizHint()
-      } else if (event.key.toLocaleLowerCase() === 'k') {
+      } else if (eyesFreeRatingWord) {
+        const rating = hotkeyToRating(pressed, hotkeys)
+        if (rating) {
+          event.preventDefault()
+          void handleEyesFreeRating(rating)
+        } else if (pressed === hotkeys.skip) {
+          event.preventDefault()
+          skipEyesFreeRating()
+        }
+      } else if (pressed === 'k') {
         event.preventDefault()
         void handleStatus([studyWord.id], 'known')
-      } else if (event.key.toLocaleLowerCase() === 'f') {
+      } else if (pressed === 'f') {
         event.preventDefault()
         void handleStatus([studyWord.id], 'familiar')
       }
@@ -469,10 +589,16 @@ function App() {
     continueCurrentQuiz,
     currentQuiz,
     currentQuizResponse,
+    eyesFreeRatingWord,
+    handleEyesFreeRating,
     handleQuizAnswer,
     handleQuizHint,
     handleStatus,
+    hotkeys,
+    replayCurrentQuiz,
     screen,
+    skipCurrentQuiz,
+    skipEyesFreeRating,
     studyWord,
   ])
 
@@ -501,8 +627,11 @@ function App() {
     setQuizHints({})
     setShowReviewPrompt(false)
     setShowMissedRescue(false)
+    setEyesFreeRatingIndex(null)
     if (nextLesson.steps.filter((step) => step.kind === 'audio').length === 0) {
-      setLastSummary('No local clips are linked yet. Import a clip pack first.')
+      setLessonMode('live')
+      setLastSummary('No local clips are linked yet. Using browser TTS while the app stays open.')
+      if (playAfterRender) window.setTimeout(() => void runFrom(0, nextLesson), 120)
       return
     }
     const rendered = await renderLessonToWav(nextLesson, getAudioClip)
@@ -535,10 +664,15 @@ function App() {
     setScreen('lesson')
     try {
       const { playAfterRender = false, ...selectionOptions } = options
-      const nextLesson = createPocketLesson(words, sentences, audioClips, manualIds, {
-        pauseProfile,
-        ...selectionOptions,
-      })
+      const lessonWords = scopedWords.length > 0 ? scopedWords : words
+      const lessonSentences = scopedSentences.length > 0 ? scopedSentences : sentences
+      const useBrowserTts = activePack?.browserTts
+      const nextLesson = useBrowserTts
+        ? createLesson(lessonWords, lessonSentences, manualIds, selectionOptions)
+        : createPocketLesson(lessonWords, lessonSentences, audioClips, manualIds, {
+            pauseProfile,
+            ...selectionOptions,
+          })
       setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
       setMissedWordIds([])
       setFsrsRatings({})
@@ -554,11 +688,12 @@ function App() {
     }
   }
 
-  async function startModeLesson(mode: AttentionMode) {
-    setAttentionMode(mode)
+  async function startModeLesson(mode: StudyMode) {
+    setStudyMode(mode)
     setShowEnglish(true)
     setShowPinyin(true)
-    setMinimalVisualMode(mode === 'listening')
+    setMinimalVisualMode(mode === 'audioHandsFree')
+    setAutoNextLesson(mode === 'audioHandsFree')
     await startPocketLesson([], { randomize: true, playAfterRender: true, pauseProfile })
   }
 
@@ -609,16 +744,16 @@ function App() {
     void audio.play()
   }
 
-  async function runFrom(index: number) {
-    if (!lesson || lesson.steps.length === 0) return
+  async function runFrom(index: number, plan = lesson) {
+    if (!plan || plan.steps.length === 0) return
     const token = runToken.current + 1
     runToken.current = token
     setIsPlaying(true)
 
-    for (let stepIndex = index; stepIndex < lesson.steps.length; stepIndex += 1) {
+    for (let stepIndex = index; stepIndex < plan.steps.length; stepIndex += 1) {
       if (runToken.current !== token) break
       setCurrentStepIndex(stepIndex)
-      const step = lesson.steps[stepIndex]
+      const step = plan.steps[stepIndex]
       await playStep(step, token)
       if (runToken.current !== token) break
       if (step.kind === 'audio') {
@@ -748,7 +883,15 @@ function App() {
 
   async function handleAudioImport(files: FileList | null) {
     if (!files) return
-    const summary = await importAudioFiles(files)
+    const summary = await importAudioFiles(files, activePackId)
+    setLastSummary(formatSummary(summary))
+    await refresh()
+  }
+
+  async function handleCsvTtsPackImport(files: FileList | null) {
+    const file = files?.[0]
+    if (!file) return
+    const summary = await importCsvTtsPack(await file.text(), csvPackName, csvPackLanguage)
     setLastSummary(formatSummary(summary))
     await refresh()
   }
@@ -760,15 +903,19 @@ function App() {
     await refresh()
   }
 
-  async function handleHostedClipPackImport() {
+  async function handleHostedClipPackImport(pack: HostedClipPack) {
     setHostedImporting(true)
-    setHostedProgress('Starting hosted clip pack download...')
+    setHostedProgress(`Starting ${pack.name} download...`)
     try {
-      const summary = await importHostedClipPack(HOSTED_CLIP_PACK_URL, (completed, total, label) => {
-        setHostedProgress(`${completed} / ${total}: ${label}`)
-      })
+      const summary = await importHostedClipPack(
+        pack.baseUrl,
+        (completed, total, label) => {
+          setHostedProgress(`${completed} / ${total}: ${label}`)
+        },
+        pack,
+      )
       setLastSummary(formatSummary(summary))
-      setHostedProgress('Hosted clip pack is ready offline in this browser.')
+      setHostedProgress(`${pack.name} is ready offline in this browser.`)
       await refresh()
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Could not download hosted clip pack.'
@@ -777,6 +924,23 @@ function App() {
     } finally {
       setHostedImporting(false)
     }
+  }
+
+  async function handleSetActivePack(packId: string | undefined) {
+    await persistActivePackId(packId)
+    setActivePackId(packId)
+    setLastSummary(
+      packId
+        ? `Active pack: ${clipPacks.find((pack) => pack.id === packId)?.name ?? packId}.`
+        : 'Active pack: All words.',
+    )
+  }
+
+  async function handleHotkeyChange(name: keyof HotkeySettings, value: string) {
+    const next = { ...hotkeys, [name]: value.trim().toLocaleLowerCase() || DEFAULT_HOTKEYS[name] }
+    setHotkeys(next)
+    await saveHotkeys(next)
+    setLastSummary('Hotkeys saved.')
   }
 
   return (
@@ -817,11 +981,15 @@ function App() {
               <p>Start with due words, add new ones only when the queue is light.</p>
             </div>
             <div className="mode-start-grid" aria-label="Choose study mode">
-              <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('listening')}>
-                <strong>Listening mode</strong>
-                <span>Big text, local audio, no quiz buttons.</span>
+              <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('audioHandsFree')}>
+                <strong>Audio - hands free</strong>
+                <span>Continuous listening with auto-next on.</span>
               </button>
-              <button className="mode-start active-start" type="button" onClick={() => startModeLesson('active')}>
+              <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('audioEyesFree')}>
+                <strong>Audio - eyes free</strong>
+                <span>Answer A/B, replay, skip, and rate by hotkey.</span>
+              </button>
+              <button className="mode-start active-start" type="button" onClick={() => startModeLesson('activeRecall')}>
                 <strong>Active recall</strong>
                 <span>Pause for calm 2-choice questions.</span>
               </button>
@@ -832,12 +1000,12 @@ function App() {
             <button
               type="button"
               className="metric hero-metric"
-              onClick={() => startModeLesson('active')}
+              onClick={() => startModeLesson('activeRecall')}
             >
               <span>Due now</span>
               <strong>{stats.dueNow}</strong>
             </button>
-            <button type="button" className="metric" onClick={() => startModeLesson('listening')}>
+            <button type="button" className="metric" onClick={() => startModeLesson('audioHandsFree')}>
               <span>New available</span>
               <strong>{stats.newAvailable}</strong>
             </button>
@@ -871,6 +1039,22 @@ function App() {
           </div>
 
           <div className="action-grid">
+            <InfoPanel title="Active pack">
+              <dl className="stat-list">
+                <div>
+                  <dt>Pack</dt>
+                  <dd>{activePack?.name ?? 'All words'}</dd>
+                </div>
+                <div>
+                  <dt>Words in scope</dt>
+                  <dd>{scopedWords.length}</dd>
+                </div>
+                <div>
+                  <dt>Audio mode</dt>
+                  <dd>{activePack?.browserTts ? 'Browser TTS' : 'MP3 clips'}</dd>
+                </div>
+              </dl>
+            </InfoPanel>
             <InfoPanel title="Today">
               <dl className="stat-list">
                 <div>
@@ -894,20 +1078,23 @@ function App() {
             <InfoPanel title="Hotkeys">
               <dl className="stat-list">
                 <div>
-                  <dt>Mark familiar</dt>
-                  <dd>F</dd>
+                  <dt>Answer A / B</dt>
+                  <dd>{hotkeys.answerA.toUpperCase()} / {hotkeys.answerB.toUpperCase()}</dd>
                 </div>
                 <div>
-                  <dt>Mark known</dt>
-                  <dd>K</dd>
+                  <dt>Replay / skip</dt>
+                  <dd>{hotkeys.replay.toUpperCase()} / {hotkeys.skip.toUpperCase()}</dd>
                 </div>
                 <div>
-                  <dt>Answer choices</dt>
-                  <dd>1 / 2</dd>
+                  <dt>Rate</dt>
+                  <dd>
+                    {hotkeys.ratingAgain.toUpperCase()} {hotkeys.ratingHard.toUpperCase()}{' '}
+                    {hotkeys.ratingGood.toUpperCase()} {hotkeys.ratingEasy.toUpperCase()}
+                  </dd>
                 </div>
                 <div>
-                  <dt>End rating</dt>
-                  <dd>Again / Good / Easy</dd>
+                  <dt>Quick marks</dt>
+                  <dd>F / K</dd>
                 </div>
               </dl>
             </InfoPanel>
@@ -1086,6 +1273,67 @@ function App() {
           </div>
 
           <div className="import-grid">
+            <section className="panel hosted-pack">
+              <h2>Installed packs</h2>
+              <p>Lessons use the active pack first. Progress is shared when the same word appears in multiple packs.</p>
+              <div className="pack-list">
+                <div className={`pack-row ${activePackId ? '' : 'active'}`}>
+                  <span>
+                    <strong>All words</strong>
+                    <small>{words.length} words across every installed/imported pack.</small>
+                  </span>
+                  <button
+                    type="button"
+                    className={activePackId ? '' : 'primary'}
+                    onClick={() => handleSetActivePack(undefined)}
+                  >
+                    {activePackId ? 'Set active' : 'Active'}
+                  </button>
+                </div>
+                {clipPacks.map((pack) => (
+                  <div key={pack.id} className={`pack-row ${pack.id === activePackId ? 'active' : ''}`}>
+                    <span>
+                      <strong>{pack.name}</strong>
+                      <small>
+                        {pack.wordCount} words · {pack.audioCount} clips ·{' '}
+                        {pack.browserTts ? 'browser TTS' : 'MP3'}
+                      </small>
+                    </span>
+                    <button
+                      type="button"
+                      className={pack.id === activePackId ? 'primary' : ''}
+                      onClick={() => handleSetActivePack(pack.id)}
+                    >
+                      {pack.id === activePackId ? 'Active' : 'Set active'}
+                    </button>
+                  </div>
+                ))}
+                {clipPacks.length === 0 && <small>No packs installed yet.</small>}
+              </div>
+            </section>
+            <section className="panel hosted-pack">
+              <h2>Available hosted packs</h2>
+              <p>Download a hosted pack into this browser for offline MP3 lessons.</p>
+              <div className="pack-list">
+                {hostedPacks.map((pack) => (
+                  <div key={pack.id} className="pack-row">
+                    <span>
+                      <strong>{pack.name}</strong>
+                      <small>{pack.description ?? pack.language ?? 'Hosted clip pack'}</small>
+                    </span>
+                    <button
+                      className="primary"
+                      type="button"
+                      onClick={() => handleHostedClipPackImport(pack)}
+                      disabled={hostedImporting}
+                    >
+                      {hostedImporting ? 'Downloading...' : 'Download'}
+                    </button>
+                  </div>
+                ))}
+              </div>
+              {hostedProgress && <small>{hostedProgress}</small>}
+            </section>
             <FilePanel
               title="Clip pack folder"
               help="Select the whole generated clip-pack folder: clips_manifest.json, vocab.csv, sentences.csv, and audio/."
@@ -1094,18 +1342,28 @@ function App() {
               webkitdirectory
               onChange={handleClipPackImport}
             />
-            <section className="panel hosted-pack">
-              <h2>Hosted LMS clip pack</h2>
-              <p>Download the Azure LMS 188 audio pack from GitHub into this browser for offline lessons.</p>
-              <button
-                className="primary"
-                type="button"
-                onClick={handleHostedClipPackImport}
-                disabled={hostedImporting}
-              >
-                {hostedImporting ? 'Downloading...' : 'Download hosted clip pack'}
-              </button>
-              {hostedProgress && <small>{hostedProgress}</small>}
+            <section className="panel">
+              <h2>CSV browser TTS pack</h2>
+              <p>Creates a pack from a CSV and uses browser speech when MP3 clips are missing. Best while the app stays open.</p>
+              <div className="filters">
+                <input
+                  value={csvPackName}
+                  onChange={(event) => setCsvPackName(event.target.value)}
+                  placeholder="Pack name"
+                  aria-label="CSV pack name"
+                />
+                <input
+                  value={csvPackLanguage}
+                  onChange={(event) => setCsvPackLanguage(event.target.value)}
+                  placeholder="Language, e.g. zh-CN"
+                  aria-label="CSV pack language"
+                />
+              </div>
+              <FileInputButton
+                label="Import CSV as TTS pack"
+                accept=".csv"
+                onChange={handleCsvTtsPackImport}
+              />
             </section>
             <FilePanel
               title="Vocab CSV"
@@ -1149,6 +1407,22 @@ function App() {
               </dl>
             </section>
             <section className="panel">
+              <h2>Hotkey settings</h2>
+              <p>Map these to whatever your 8BitDo sends. Use lowercase letters or numbers.</p>
+              <div className="hotkey-grid">
+                {(Object.keys(hotkeys) as Array<keyof HotkeySettings>).map((key) => (
+                  <label key={key}>
+                    {hotkeyLabel(key)}
+                    <input
+                      value={hotkeys[key]}
+                      maxLength={16}
+                      onChange={(event) => handleHotkeyChange(key, event.target.value)}
+                    />
+                  </label>
+                ))}
+              </div>
+            </section>
+            <section className="panel">
               <h2>JSON backup</h2>
               <p>Back up words, sentences, progress, and events. Audio blobs stay importable separately.</p>
               <div className="button-row">
@@ -1185,9 +1459,11 @@ function App() {
                     <div className="study-meta">
                       <span>
                         {minimalVisualMode
-                          ? 'Listening mode'
+                          ? 'Audio - hands free'
                           : focusedActiveQuiz
                           ? 'Active recall'
+                          : eyesFreeQuizActive
+                          ? 'Audio - eyes free'
                           : rendering
                             ? 'Rendering local audio...'
                             : renderedLesson?.title ?? lesson.title}
@@ -1203,6 +1479,14 @@ function App() {
                           <button type="button" onClick={() => setMinimalVisualMode(false)}>
                             Exit
                           </button>
+                          <label className="toggle compact-toggle">
+                            <input
+                              type="checkbox"
+                              checked={autoNextLesson}
+                              onChange={(event) => setAutoNextLesson(event.target.checked)}
+                            />
+                            Auto next
+                          </label>
                         </div>
                       ) : focusedActiveQuiz ? (
                         <span className="mode-chip">Paused for answer</span>
@@ -1216,14 +1500,10 @@ function App() {
                           </button>
                           <button
                             type="button"
-                            className={attentionMode === 'active' ? 'active' : ''}
-                            onClick={() =>
-                              setAttentionMode((mode) =>
-                                mode === 'active' ? 'listening' : 'active',
-                              )
-                            }
+                            className={isEyesFreeMode ? 'active' : ''}
+                            onClick={() => setStudyMode(isEyesFreeMode ? 'activeRecall' : 'audioEyesFree')}
                           >
-                            {attentionMode === 'active' ? 'Active' : 'Listening'}
+                            {isEyesFreeMode ? 'Eyes free' : 'Active'}
                           </button>
                         </div>
                       )}
@@ -1243,6 +1523,26 @@ function App() {
                         onReplay={replayCurrentQuiz}
                         onReveal={revealCurrentQuiz}
                       />
+                    ) : eyesFreeQuizActive && currentQuiz ? (
+                      <section className="active-recall-card eyes-free-card" aria-live="polite">
+                        <div className="recall-prompt">
+                          <span>Audio - eyes free</span>
+                          <strong>
+                            {currentQuizResponse
+                              ? currentQuizResponse.correct
+                                ? 'Correct. Continuing...'
+                                : currentQuizResponse.skipped
+                                  ? 'Skipped.'
+                                  : 'Not quite. Continuing...'
+                              : `A or B. Replay ${hotkeys.replay.toUpperCase()}, skip ${hotkeys.skip.toUpperCase()}.`}
+                          </strong>
+                        </div>
+                        <div className="recall-cue english">
+                          {currentQuizResponse
+                            ? getQuizFeedbackText(currentQuiz, studyWord, getQuizAnswerLabel(currentQuiz, studyWord))
+                            : 'Listen, then choose.'}
+                        </div>
+                      </section>
                     ) : (
                       <>
                     <div className={`study-chinese ${studyDisplay.kind}`}>
@@ -1339,6 +1639,32 @@ function App() {
                         </div>
                       </div>
                     )}
+                    {eyesFreeRatingWord && (
+                      <div className="review-panel" aria-live="polite">
+                        <div className="review-heading">
+                          <strong>Eyes-free rating</strong>
+                          <span>
+                            {eyesFreeRatingIndex !== null ? eyesFreeRatingIndex + 1 : 1} / {ratingWords.length}
+                          </span>
+                        </div>
+                        <div className="review-word">
+                          <span>
+                            <strong>{eyesFreeRatingWord.word}</strong>
+                            <small>{eyesFreeRatingWord.meaning}</small>
+                          </span>
+                        </div>
+                        <p className="review-note">
+                          {hotkeys.ratingAgain.toUpperCase()} Again, {hotkeys.ratingHard.toUpperCase()} Hard,{' '}
+                          {hotkeys.ratingGood.toUpperCase()} Good, {hotkeys.ratingEasy.toUpperCase()} Easy.
+                        </p>
+                        <button
+                          type="button"
+                          onClick={skipEyesFreeRating}
+                        >
+                          Skip rating
+                        </button>
+                      </div>
+                    )}
                     {showReviewPrompt && ratingWords.length > 0 && (
                       <div className="review-panel" aria-live="polite">
                         <div className="review-heading">
@@ -1398,7 +1724,8 @@ function App() {
                     )}
                     {currentQuiz &&
                       !currentQuizResponse?.skipped &&
-                      attentionMode !== 'active' &&
+                      studyMode !== 'activeRecall' &&
+                      studyMode !== 'audioEyesFree' &&
                       !minimalVisualMode && (
                       <div className="quiz-panel" aria-live="polite">
                         <div className="quiz-copy">
@@ -1475,7 +1802,14 @@ function App() {
                               seconds: renderedLesson.durationSeconds,
                             })
                             await refresh()
-                            if (lessonKind === 'main' && missedWordIds.length > 0) {
+                            if (isHandsFreeMode && autoNextLesson) {
+                              void startPocketLesson([], { randomize: true, playAfterRender: true })
+                            } else if (isHandsFreeMode) {
+                              setLastSummary('Hands-free lesson complete.')
+                            } else if (isEyesFreeMode && ratingWords.length > 0) {
+                              setEyesFreeRatingIndex(0)
+                              void speakRatingPrompt(ratingWords[0], hotkeys)
+                            } else if (lessonKind === 'main' && missedWordIds.length > 0) {
                               setShowMissedRescue(true)
                             } else {
                               setShowReviewPrompt(true)
@@ -1775,6 +2109,23 @@ function FilePanel({
   )
 }
 
+function FileInputButton({
+  label,
+  accept,
+  onChange,
+}: {
+  label: string
+  accept: string
+  onChange: (files: FileList | null) => void
+}) {
+  return (
+    <label className="file-button">
+      {label}
+      <input type="file" accept={accept} onChange={(event) => onChange(event.target.files)} />
+    </label>
+  )
+}
+
 function ActiveRecallCard({
   quiz,
   response,
@@ -1909,6 +2260,27 @@ const fsrsRatingsForUi: Array<{ value: FsrsRating; label: string }> = [
 
 function fsrsLabel(rating: FsrsRating): string {
   return fsrsRatingsForUi.find((item) => item.value === rating)?.label ?? rating
+}
+
+function hotkeyToRating(key: string, hotkeys: HotkeySettings): FsrsRating | undefined {
+  if (key === hotkeys.ratingAgain) return 'again'
+  if (key === hotkeys.ratingHard) return 'hard'
+  if (key === hotkeys.ratingGood) return 'good'
+  if (key === hotkeys.ratingEasy) return 'easy'
+  return undefined
+}
+
+function hotkeyLabel(key: keyof HotkeySettings): string {
+  return {
+    answerA: 'Answer A',
+    answerB: 'Answer B',
+    replay: 'Replay',
+    skip: 'Skip',
+    ratingAgain: 'Rate again',
+    ratingHard: 'Rate hard',
+    ratingGood: 'Rate good',
+    ratingEasy: 'Rate easy',
+  }[key]
 }
 
 function hasPassedInitialVocabSection(segment: RenderedLessonSegment | undefined): boolean {

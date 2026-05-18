@@ -532,6 +532,49 @@ dt {
   gap: 10px;
 }
 
+.pack-list,
+.hotkey-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.pack-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.pack-row.active {
+  border-color: rgba(249, 115, 22, 0.36);
+  box-shadow: 0 12px 30px rgba(249, 115, 22, 0.12);
+}
+
+.pack-row span {
+  display: grid;
+  gap: 3px;
+}
+
+.pack-row small {
+  color: var(--muted-navy);
+  font-weight: 750;
+}
+
+.hotkey-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hotkey-grid label {
+  display: grid;
+  gap: 5px;
+  color: var(--muted-navy);
+  font-weight: 850;
+}
+
 .word-list {
   display: grid;
   gap: 10px;
@@ -1535,6 +1578,7 @@ kbd {
   .action-grid,
   .import-grid,
   .filters,
+  .hotkey-grid,
   .mode-start-grid,
   .target-strip {
     grid-template-columns: 1fr;

@@ -23,6 +23,43 @@ export type ListeningEventType =
 
 export type FsrsRating = 'again' | 'hard' | 'good' | 'easy'
 
+export type StudyMode = 'audioHandsFree' | 'audioEyesFree' | 'activeRecall'
+
+export interface HotkeySettings {
+  answerA: string
+  answerB: string
+  replay: string
+  skip: string
+  ratingAgain: string
+  ratingHard: string
+  ratingGood: string
+  ratingEasy: string
+}
+
+export interface ClipPack {
+  id: string
+  name: string
+  source: 'hosted' | 'folder' | 'csv'
+  language?: string
+  description?: string
+  baseUrl?: string
+  browserTts?: boolean
+  installedAt?: string
+  createdAt: string
+  updatedAt: string
+  wordCount: number
+  sentenceCount: number
+  audioCount: number
+}
+
+export interface HostedClipPack {
+  id: string
+  name: string
+  description?: string
+  baseUrl: string
+  language?: string
+}
+
 export interface VocabWord {
   id: string
   word: string
@@ -43,6 +80,7 @@ export interface VocabWord {
   fsrsEase?: number
   fsrsRepetitions?: number
   fsrsLapses?: number
+  packIds?: string[]
   createdAt: string
   updatedAt: string
   lastReviewedAt?: string
@@ -62,6 +100,7 @@ export interface Sentence {
   audioEnglishId?: string
   audioSentenceFilename?: string
   audioEnglishFilename?: string
+  packIds?: string[]
   tags?: string[]
   createdAt: string
   updatedAt: string
@@ -82,6 +121,7 @@ export interface AudioClip {
   language?: 'zh-CN' | 'en-US' | string
   provider?: string
   voice?: string
+  packId?: string
   createdAt: string
 }
 

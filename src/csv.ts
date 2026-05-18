@@ -77,7 +77,7 @@ export function parseList(value?: string): string[] {
     .filter(Boolean)
 }
 
-export function vocabFromCsvRows(rows: Record<string, string>[]): VocabWord[] {
+export function vocabFromCsvRows(rows: Record<string, string>[], packId?: string): VocabWord[] {
   const now = new Date().toISOString()
   return rows
     .map((row, index): VocabWord | null => {
@@ -96,6 +96,7 @@ export function vocabFromCsvRows(rows: Record<string, string>[]): VocabWord[] {
         ...parseList(readColumn(row, ['tags'])),
         ...parseList(readColumn(row, ['Bucket'])),
       ]
+      const packIds = unique([...parseList(readColumn(row, ['packIds', 'packId'])), ...(packId ? [packId] : [])])
       const source = readColumn(row, ['source', 'Source'])
       if (source && !tags.includes(source)) tags.push(source)
 
@@ -120,6 +121,7 @@ export function vocabFromCsvRows(rows: Record<string, string>[]): VocabWord[] {
         fsrsEase: parseNumber(readColumn(row, ['fsrsEase', 'ease'])),
         fsrsRepetitions: parseNumber(readColumn(row, ['fsrsRepetitions', 'repetitions'])),
         fsrsLapses: parseNumber(readColumn(row, ['fsrsLapses', 'lapses'])),
+        packIds,
         createdAt: now,
         updatedAt: now,
         lastReviewedAt: readColumn(row, ['lastReviewedAt']) || undefined,
@@ -132,7 +134,7 @@ export function vocabFromCsvRows(rows: Record<string, string>[]): VocabWord[] {
     .filter((word): word is VocabWord => Boolean(word))
 }
 
-export function sentencesFromCsvRows(rows: Record<string, string>[]): Sentence[] {
+export function sentencesFromCsvRows(rows: Record<string, string>[], packId?: string): Sentence[] {
   const now = new Date().toISOString()
   return rows
     .map((row): Sentence | null => {
@@ -151,6 +153,7 @@ export function sentencesFromCsvRows(rows: Record<string, string>[]): Sentence[]
           'audioEnglishFilename',
           'audioSentenceMeaningFilename',
         ]),
+        packIds: unique([...parseList(readColumn(row, ['packIds', 'packId'])), ...(packId ? [packId] : [])]),
         tags: parseList(readColumn(row, ['tags'])),
         createdAt: now,
         updatedAt: now,
