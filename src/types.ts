@@ -241,4 +241,20 @@ export interface DashboardStats {
   minutesToday: number
   clipsCompletedToday: number
   knownToday: number
+  studyHeatmap: StudyDayStat[]
+  retentionSeries: RetentionPoint[]
+}
+
+export interface StudyDayStat {
+  date: string
+  studySeconds: number
+  activityCount: number
+}
+
+export interface RetentionPoint {
+  date: string
+  unknown: number
+  barelyKnown: number
+  familiar: number
+  wellKnown: number
 }

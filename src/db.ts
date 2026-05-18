@@ -111,7 +111,10 @@ export function getDB(): Promise<IDBPDatabase<ChunkyDB>> {
 export async function seedLmsWordsIfEmpty(): Promise<number> {
   const db = await getDB()
   const count = await db.count('vocabWords')
-  if (count > 0) return 0
+  if (count > 0) {
+    await ensureLmsPackForExistingWords()
+    return 0
+  }
 
   const response = await fetch(`${import.meta.env.BASE_URL}seed/lms-vocab-188.csv`)
   if (!response.ok) return 0
@@ -131,6 +134,32 @@ export async function seedLmsWordsIfEmpty(): Promise<number> {
   await db.put('settings', new Date().toISOString(), 'lmsSeededAt')
   await db.put('settings', pack.id, 'activePackId')
   return words.length
+}
+
+async function ensureLmsPackForExistingWords(): Promise<void> {
+  const db = await getDB()
+  const existingPack = await db.get('clipPacks', 'lms-188-azure')
+  const activePackId = (await db.get('settings', 'activePackId')) as string | undefined
+  if (existingPack && activePackId) return
+
+  const response = await fetch(`${import.meta.env.BASE_URL}seed/lms-vocab-188.csv`)
+  if (!response.ok) return
+  const rows = parseCsv(await response.text())
+  const pack = existingPack ?? makeClipPack({
+    id: 'lms-188-azure',
+    name: 'LMS 188 Azure',
+    source: 'hosted',
+    language: 'zh-CN',
+    description: 'Built-in Legendary Moonlight Sculptor target words.',
+    browserTts: false,
+  })
+  const words = vocabFromCsvRows(rows, pack.id)
+  pack.wordCount = words.length
+  await db.put('clipPacks', pack)
+  await upsertWords(words)
+  if (!activePackId) {
+    await db.put('settings', pack.id, 'activePackId')
+  }
 }
 
 export async function getAllWords(): Promise<VocabWord[]> {
@@ -729,28 +758,34 @@ export async function getDashboardStats(): Promise<DashboardStats> {
   const db = await getDB()
   const words = await db.getAll('vocabWords')
   const events = await db.getAll('listeningEvents')
+  const activePackId = (await db.get('settings', 'activePackId')) as string | undefined
+  const scopedWords = activePackId
+    ? words.filter((word) => word.packIds?.includes(activePackId))
+    : words
   const start = startOfToday()
   const todayEvents = events.filter((event) => new Date(event.timestamp) >= start)
   const now = Date.now()
   const soon = now + 24 * 60 * 60 * 1000
-  const dueWords = words.filter((word) => isWordDueForReview(word, now))
+  const dueWords = scopedWords.filter((word) => isWordDueForReview(word, now))
 
   return {
     counts: {
-      new: words.filter((word) => word.status === 'new').length,
-      learning: words.filter((word) => word.status === 'learning').length,
-      familiar: words.filter((word) => word.status === 'familiar').length,
-      known: words.filter((word) => word.status === 'known').length,
-      review: words.filter((word) => word.status === 'review').length,
+      new: scopedWords.filter((word) => word.status === 'new').length,
+      learning: scopedWords.filter((word) => word.status === 'learning').length,
+      familiar: scopedWords.filter((word) => word.status === 'familiar').length,
+      known: scopedWords.filter((word) => word.status === 'known').length,
+      review: scopedWords.filter((word) => word.status === 'review').length,
     },
     dueNow: dueWords.length,
-    dueSoon: words.filter((word) => isWordDueSoon(word, now, soon)).length,
-    newAvailable: words.filter((word) => word.status === 'new' && !word.fsrsDueAt).length,
-    scheduled: words.filter((word) => Boolean(word.fsrsDueAt)).length,
+    dueSoon: scopedWords.filter((word) => isWordDueSoon(word, now, soon)).length,
+    newAvailable: scopedWords.filter((word) => word.status === 'new' && !word.fsrsDueAt).length,
+    scheduled: scopedWords.filter((word) => Boolean(word.fsrsDueAt)).length,
     minutesToday:
       todayEvents.reduce((sum, event) => sum + (event.seconds ?? 0), 0) / 60,
     clipsCompletedToday: todayEvents.filter((event) => event.type === 'complete').length,
     knownToday: todayEvents.filter((event) => event.type === 'mark_known').length,
+    studyHeatmap: buildStudyHeatmap(events, 84),
+    retentionSeries: buildRetentionSeries(scopedWords, events, 12),
   }
 }
 
@@ -1160,6 +1195,123 @@ function scheduleFsrsReview(
 function startOfToday(): Date {
   const now = new Date()
   return new Date(now.getFullYear(), now.getMonth(), now.getDate())
+}
+
+function buildStudyHeatmap(events: ListeningEvent[], dayCount: number): DashboardStats['studyHeatmap'] {
+  const today = startOfToday()
+  const firstDay = new Date(today)
+  firstDay.setDate(today.getDate() - (dayCount - 1))
+  const byDay = new Map<string, { studySeconds: number; activityCount: number }>()
+
+  for (let offset = 0; offset < dayCount; offset += 1) {
+    const day = new Date(firstDay)
+    day.setDate(firstDay.getDate() + offset)
+    byDay.set(dateKey(day), { studySeconds: 0, activityCount: 0 })
+  }
+
+  for (const event of events) {
+    const date = new Date(event.timestamp)
+    if (Number.isNaN(date.getTime()) || date < firstDay) continue
+    const key = dateKey(date)
+    const day = byDay.get(key)
+    if (!day) continue
+    day.studySeconds += event.seconds ?? inferredStudySeconds(event)
+    day.activityCount += 1
+  }
+
+  return Array.from(byDay, ([date, value]) => ({ date, ...value }))
+}
+
+function buildRetentionSeries(
+  words: VocabWord[],
+  events: ListeningEvent[],
+  weekCount: number,
+): DashboardStats['retentionSeries'] {
+  const wordIds = new Set(words.map((word) => word.id))
+  const levelEvents = events
+    .filter((event) => wordIds.has(event.itemId))
+    .map((event) => ({ ...event, time: Date.parse(event.timestamp) }))
+    .filter((event) => Number.isFinite(event.time))
+    .sort((a, b) => a.time - b.time)
+  const currentLevelEvents = words
+    .filter((word) => word.status !== 'new')
+    .map((word) => ({
+      itemId: word.id,
+      time: Date.parse(word.lastReviewedAt || word.updatedAt || word.createdAt),
+      level: statusToRetentionLevel(word.status),
+    }))
+    .filter((event) => Number.isFinite(event.time))
+    .sort((a, b) => a.time - b.time)
+
+  const today = startOfToday()
+  const points: DashboardStats['retentionSeries'] = []
+
+  for (let offset = weekCount - 1; offset >= 0; offset -= 1) {
+    const pointDate = new Date(today)
+    pointDate.setDate(today.getDate() - offset * 7)
+    pointDate.setHours(23, 59, 59, 999)
+    const levels = new Map<string, 'barelyKnown' | 'familiar' | 'wellKnown'>()
+
+    for (const event of levelEvents) {
+      if (event.time > pointDate.getTime()) break
+      const level = eventToRetentionLevel(event)
+      if (level) levels.set(event.itemId, level)
+    }
+
+    // Backups can restore current word progress without older rating events. This keeps
+    // the chart useful by adding the saved status at its recorded review/update date.
+    for (const event of currentLevelEvents) {
+      if (event.time > pointDate.getTime()) break
+      levels.set(event.itemId, event.level)
+    }
+
+    const counts = {
+      unknown: Math.max(0, words.length - levels.size),
+      barelyKnown: 0,
+      familiar: 0,
+      wellKnown: 0,
+    }
+    for (const level of levels.values()) {
+      counts[level] += 1
+    }
+    points.push({ date: dateKey(pointDate), ...counts })
+  }
+
+  return points
+}
+
+function inferredStudySeconds(event: ListeningEvent): number {
+  if (event.type === 'complete') return 3
+  if (event.type === 'quiz_answer' || event.type === 'fsrs_rating') return 8
+  if (event.type === 'play' || event.type === 'quiz_prompt') return 2
+  return 1
+}
+
+function eventToRetentionLevel(
+  event: ListeningEvent,
+): 'barelyKnown' | 'familiar' | 'wellKnown' | undefined {
+  if (event.type === 'mark_known') return 'wellKnown'
+  if (event.type === 'mark_familiar') return 'familiar'
+  if (event.type === 'mark_learning' || event.type === 'mark_review') return 'barelyKnown'
+  if (event.type === 'fsrs_rating') {
+    if (event.rating === 'easy') return 'wellKnown'
+    if (event.rating === 'good') return 'familiar'
+    if (event.rating === 'hard' || event.rating === 'again') return 'barelyKnown'
+  }
+  return undefined
+}
+
+function statusToRetentionLevel(status: WordStatus): 'barelyKnown' | 'familiar' | 'wellKnown' {
+  if (status === 'known') return 'wellKnown'
+  if (status === 'familiar') return 'familiar'
+  return 'barelyKnown'
+}
+
+function dateKey(date: Date): string {
+  const year = date.getFullYear()
+  const month = `${date.getMonth() + 1}`.padStart(2, '0')
+  const day = `${date.getDate()}`.padStart(2, '0')
+  return `${year}-${month}-${day}`
 }
 
 export function downloadText(filename: string, text: string, type = 'application/json') {

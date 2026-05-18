@@ -30,7 +30,7 @@ Expected Pages URL:
 https://<your-github-name>.github.io/ChunkyChinese/
 ```
 
-The LMS 188 Azure clip pack and Anna's Reading Deck are intentionally committed under `public/clip-packs/` so GitHub Pages can serve them to your phone. Delete old hosted packs when they are no longer useful to avoid repository bloat. Do not commit local backups or unrelated generated audio.
+The LMS 188 Azure clip pack is intentionally committed under `public/clip-packs/` so GitHub Pages can serve it to your phone. Anna's Reading Deck MP3 files are still kept in the repo for now, but that pack is hidden from the app's hosted-pack list. Delete old hosted packs when they are no longer useful to avoid repository bloat. Do not commit local backups or unrelated generated audio.
 
 ## PWA Installation
 
@@ -193,7 +193,7 @@ The clip pack import reports coverage for word clips, meaning clips, sentence cl
 
 ## Screens
 
-- Dashboard: due-word queue, counts, daily listening stats, hotkey reminders, and quick "today's 5" lesson launch.
+- Dashboard: due-word queue, counts, progress charts, daily listening stats, hotkey reminders, and quick next-lesson launch.
 - Word Manager: search/filter words, play word clips, and mark status individually or in bulk.
 - Import and Backup: hosted clip pack download, clip pack import, CSV import, MP3 import, JSON backup/export.
 - Lesson: 5 word continuous lesson rendering, pinyin/English toggles, Listening mode, and Active Recall.

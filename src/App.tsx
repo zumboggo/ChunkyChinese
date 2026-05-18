@@ -89,7 +89,12 @@ const emptyStats: DashboardStats = {
   minutesToday: 0,
   clipsCompletedToday: 0,
   knownToday: 0,
+  studyHeatmap: [],
+  retentionSeries: [],
 }
+
+const DEFAULT_PACK_ID = 'lms-188-azure'
+const HIDDEN_PACK_IDS = new Set(['annas-reading-deck'])
 
 function App() {
   const [screen, setScreen] = useState<Screen>('dashboard')
@@ -151,19 +156,27 @@ function App() {
   const playModeRef = useRef<HTMLElement | null>(null)
 
   const refresh = useCallback(async () => {
-    const [nextWords, nextSentences, nextAudio, nextPacks, nextActivePackId, nextStats] = await Promise.all([
+    const [nextWords, nextSentences, nextAudio, nextPacks, nextActivePackId] = await Promise.all([
       getAllWords(),
       getAllSentences(),
       getAllAudioClips(),
       getAllClipPacks(),
       getActivePackId(),
-      getDashboardStats(),
     ])
     setWords(nextWords)
     setSentences(nextSentences)
+    const visiblePacks = nextPacks.filter((pack) => !HIDDEN_PACK_IDS.has(pack.id))
+    const defaultPack = visiblePacks.find((pack) => pack.id === DEFAULT_PACK_ID)
+    const shouldUseDefault =
+      !nextActivePackId || HIDDEN_PACK_IDS.has(nextActivePackId) || !visiblePacks.some((pack) => pack.id === nextActivePackId)
+    const resolvedActivePackId = shouldUseDefault ? defaultPack?.id : nextActivePackId
+    if (resolvedActivePackId !== nextActivePackId) {
+      await persistActivePackId(resolvedActivePackId)
+    }
+    const nextStats = await getDashboardStats()
     setAudioClips(nextAudio)
-    setClipPacks(nextPacks)
-    setActivePackId(nextActivePackId)
+    setClipPacks(visiblePacks)
+    setActivePackId(resolvedActivePackId)
     setStats(nextStats)
   }, [])
 
@@ -178,7 +191,7 @@ function App() {
         getHostedClipPackIndex(),
       ])
       setHotkeys(nextHotkeys)
-      setHostedPacks(nextHostedPacks)
+      setHostedPacks(nextHostedPacks.filter((pack) => !HIDDEN_PACK_IDS.has(pack.id)))
       await refresh()
     }
     void start()
@@ -1036,6 +1049,15 @@ function App() {
                 </button>
               ),
             )}
+          </div>
+
+          <div className="dashboard-progress-grid">
+            <InfoPanel title="Review heatmap">
+              <ProgressHeatmap days={stats.studyHeatmap} />
+            </InfoPanel>
+            <InfoPanel title="Retention graph">
+              <RetentionGraph points={stats.retentionSeries} />
+            </InfoPanel>
           </div>
 
           <div className="action-grid">
@@ -1991,7 +2013,7 @@ function App() {
               <h2>No lesson loaded</h2>
               <p>Start a lesson from Dashboard or select up to five words in Word Manager.</p>
               <button className="primary" type="button" onClick={() => startPocketLesson()}>
-                Start today's 5
+                Next Lesson
               </button>
             </section>
           )}
@@ -2011,6 +2033,84 @@ function InfoPanel({ title, children }: { title: string; children: ReactNode }) 
       <h2>{title}</h2>
       {children}
     </section>
+  )
+}
+
+function ProgressHeatmap({ days }: { days: DashboardStats['studyHeatmap'] }) {
+  const totalMinutes = days.reduce((sum, day) => sum + day.studySeconds, 0) / 60
+  const activeDays = days.filter((day) => day.activityCount > 0).length
+
+  return (
+    <div className="progress-visual">
+      <div className="heatmap-grid" aria-label="Recent study activity by day">
+        {days.map((day) => {
+          const minutes = day.studySeconds / 60
+          const level = heatLevel(minutes, day.activityCount)
+          return (
+            <span
+              key={day.date}
+              className={`heat-cell heat-${level}`}
+              title={`${friendlyDate(day.date)}: ${minutes.toFixed(1)} min, ${day.activityCount} events`}
+              aria-label={`${friendlyDate(day.date)}, ${minutes.toFixed(1)} study minutes`}
+            />
+          )
+        })}
+      </div>
+      <div className="progress-caption">
+        <span>{activeDays} study days</span>
+        <span>{totalMinutes.toFixed(0)} minutes tracked</span>
+      </div>
+    </div>
+  )
+}
+
+function RetentionGraph({ points }: { points: DashboardStats['retentionSeries'] }) {
+  const maxTotal = Math.max(
+    1,
+    ...points.map(
+      (point) => point.unknown + point.barelyKnown + point.familiar + point.wellKnown,
+    ),
+  )
+
+  return (
+    <div className="progress-visual">
+      <div className="retention-chart" aria-label="Word retention over time">
+        {points.map((point) => {
+          const segments = [
+            { key: 'unknown', value: point.unknown, label: 'Unknown' },
+            { key: 'barely', value: point.barelyKnown, label: 'Barely known' },
+            { key: 'familiar', value: point.familiar, label: 'Familiar' },
+            { key: 'well', value: point.wellKnown, label: 'Well known' },
+          ]
+          const total = segments.reduce((sum, segment) => sum + segment.value, 0)
+          return (
+            <div className="retention-bar-wrap" key={point.date}>
+              <div
+                className="retention-bar"
+                title={`${friendlyDate(point.date)}: ${point.wellKnown} well known, ${point.familiar} familiar, ${point.barelyKnown} barely known, ${point.unknown} unknown`}
+                aria-label={`${friendlyDate(point.date)}, ${total} words tracked`}
+              >
+                {segments.map((segment) => (
+                  <span
+                    key={segment.key}
+                    className={`retention-segment retention-${segment.key}`}
+                    style={{ height: `${(segment.value / maxTotal) * 100}%` }}
+                    aria-label={`${segment.label}: ${segment.value}`}
+                  />
+                ))}
+              </div>
+              <small>{shortMonthDay(point.date)}</small>
+            </div>
+          )
+        })}
+      </div>
+      <div className="retention-legend">
+        <span className="legend-unknown">Unknown</span>
+        <span className="legend-barely">Barely</span>
+        <span className="legend-familiar">Familiar</span>
+        <span className="legend-well">Well known</span>
+      </div>
+    </div>
   )
 }
 
@@ -2626,6 +2726,24 @@ function formatTime(seconds: number): string {
   const minutes = Math.floor(seconds / 60)
   const remaining = Math.floor(seconds % 60)
   return `${minutes}:${remaining.toString().padStart(2, '0')}`
+}
+
+function heatLevel(minutes: number, activityCount: number): number {
+  if (activityCount === 0) return 0
+  if (minutes >= 20) return 4
+  if (minutes >= 10) return 3
+  if (minutes >= 3) return 2
+  return 1
+}
+
+function friendlyDate(dateKey: string): string {
+  const date = new Date(`${dateKey}T12:00:00`)
+  return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
+function shortMonthDay(dateKey: string): string {
+  const date = new Date(`${dateKey}T12:00:00`)
+  return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
 }
 
 function getAudioCoverage(
