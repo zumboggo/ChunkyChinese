@@ -532,9 +532,11 @@ function App() {
   }, [autoNextLesson, fsrsRatings, lessonWords, ratingWordIds, refresh, showReviewPrompt])
 
   const cycleListeningRating = useCallback(async (wordId: string) => {
-    const current = fsrsRatings[wordId] ?? 'again'
+    const current = fsrsRatings[wordId]
     const nextRating: FsrsRating =
-      current === 'again'
+      !current
+        ? 'again'
+        : current === 'again'
         ? 'hard'
         : current === 'hard'
           ? 'good'
@@ -543,6 +545,16 @@ function App() {
             : 'hard'
     await handleFsrsRating(wordId, nextRating)
   }, [fsrsRatings, handleFsrsRating])
+
+  const togglePlayback = useCallback(() => {
+    const audio = pocketAudioRef.current
+    if (!audio || !renderedUrl) return
+    if (audio.paused) {
+      void audio.play()
+    } else {
+      audio.pause()
+    }
+  }, [renderedUrl])
 
   function finishLessonAndReturnHome() {
     pocketAudioRef.current?.pause()
@@ -563,6 +575,11 @@ function App() {
         target instanceof HTMLTextAreaElement
       if (isTyping || screen !== 'lesson') return
       const pressed = event.key.toLocaleLowerCase()
+      if (pressed === hotkeys.playPause) {
+        event.preventDefault()
+        togglePlayback()
+        return
+      }
       if (showReviewPrompt) {
         const rating = hotkeyToRating(pressed, hotkeys)
         if (rating && ratingWords.length > 0) {
@@ -614,6 +631,7 @@ function App() {
     screen,
     showReviewPrompt,
     studyWord,
+    togglePlayback,
   ])
 
   async function toggleFullscreen() {
@@ -1127,6 +1145,10 @@ function App() {
                 <div>
                   <dt>At rating time</dt>
                   <dd>A=Again, B=Hard, C=Good, D=Easy</dd>
+                </div>
+                <div>
+                  <dt>Play / pause</dt>
+                  <dd>{hotkeys.playPause.toUpperCase()}</dd>
                 </div>
               </dl>
               <button type="button" className="ghost-answer" onClick={() => setScreen('import')}>
@@ -1778,12 +1800,18 @@ function App() {
                               : -1
                           if (quizSegmentIndex >= 0 && renderedLesson?.segments) {
                             const segment = renderedLesson.segments[quizSegmentIndex]
+                            const markerTime =
+                              segment.startSeconds +
+                              Math.max(
+                                0.005,
+                                Math.min(0.02, (segment.endSeconds - segment.startSeconds) / 2),
+                              )
                             audio.pause()
-                            audio.currentTime = Math.max(0, segment.startSeconds)
-                            lastPocketTimeRef.current = audio.currentTime
+                            audio.currentTime = Math.max(0, markerTime)
+                            lastPocketTimeRef.current = markerTime
                             setCurrentStepIndex(quizSegmentIndex)
                             setPocketProgress({
-                              current: audio.currentTime,
+                              current: markerTime,
                               duration: audio.duration || renderedLesson.durationSeconds || 0,
                             })
                             return
@@ -2403,6 +2431,7 @@ function hotkeyLabel(key: keyof HotkeySettings): string {
     choiceB: 'Choice B / Hard',
     choiceC: 'Choice C / Good',
     choiceD: 'Choice D / Easy',
+    playPause: 'Play / Pause',
   }[key]
 }
 

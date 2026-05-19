@@ -30,6 +30,7 @@ export interface HotkeySettings {
   choiceB: string
   choiceC: string
   choiceD: string
+  playPause: string
 }
 
 export interface ClipPack {

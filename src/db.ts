@@ -33,6 +33,7 @@ export const DEFAULT_HOTKEYS: HotkeySettings = {
   choiceB: '4',
   choiceC: '5',
   choiceD: '6',
+  playPause: 'p',
 }
 
 interface ChunkyDB extends DBSchema {
@@ -210,6 +211,7 @@ export async function getHotkeys(): Promise<HotkeySettings> {
     choiceB: saved?.choiceB ?? saved?.answerB ?? DEFAULT_HOTKEYS.choiceB,
     choiceC: saved?.choiceC ?? saved?.ratingGood ?? DEFAULT_HOTKEYS.choiceC,
     choiceD: saved?.choiceD ?? saved?.ratingEasy ?? DEFAULT_HOTKEYS.choiceD,
+    playPause: saved?.playPause ?? DEFAULT_HOTKEYS.playPause,
   })
 }
 
@@ -1074,6 +1076,7 @@ function normalizeHotkeys(hotkeys: HotkeySettings): HotkeySettings {
     choiceB: normalizeKey(hotkeys.choiceB, DEFAULT_HOTKEYS.choiceB),
     choiceC: normalizeKey(hotkeys.choiceC, DEFAULT_HOTKEYS.choiceC),
     choiceD: normalizeKey(hotkeys.choiceD, DEFAULT_HOTKEYS.choiceD),
+    playPause: normalizeKey(hotkeys.playPause, DEFAULT_HOTKEYS.playPause),
   }
 }
 
