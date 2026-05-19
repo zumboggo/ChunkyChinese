@@ -1277,14 +1277,16 @@ dt {
 
 .quiz-options button {
   min-width: 0;
-  min-height: 70px;
-  padding: 12px;
+  min-height: 104px;
+  padding: 18px;
   overflow-wrap: anywhere;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: clamp(1.15rem, 3vw, 1.45rem);
+  font-size: clamp(2rem, 6vw, 2.9rem);
+  line-height: 1.05;
+  font-weight: 950;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.84);
 }
@@ -1406,19 +1408,25 @@ dt {
 }
 
 .recall-options button {
-  min-height: 76px;
-  padding: 16px;
+  min-height: 112px;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-size: clamp(1.3rem, 5vw, 1.8rem);
-  line-height: 1.1;
+  font-size: clamp(2.35rem, 8vw, 3.5rem);
+  line-height: 1.05;
+  font-weight: 950;
   overflow-wrap: anywhere;
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.9);
   border-color: rgba(16, 35, 63, 0.1);
   box-shadow: 0 16px 34px rgba(16, 35, 63, 0.08);
+}
+
+.recall-kind-sentence-zh-en .recall-options button {
+  font-size: clamp(1.75rem, 6vw, 2.7rem);
+  line-height: 1.08;
 }
 
 .recall-options button:hover {
@@ -1556,6 +1564,91 @@ kbd {
 .coverage-grid {
   color: var(--muted);
   font-weight: 700;
+}
+
+.listening-rating-strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  width: min(100%, 1040px);
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.64);
+  box-shadow: 0 18px 48px rgba(16, 35, 63, 0.1);
+  backdrop-filter: var(--blur);
+  overflow-x: auto;
+}
+
+.rating-chip {
+  min-width: 0;
+  min-height: 82px;
+  display: grid;
+  gap: 3px;
+  justify-items: center;
+  padding: 10px;
+  border-radius: 18px;
+  text-align: center;
+  color: var(--navy);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.rating-chip strong {
+  font-size: clamp(1.35rem, 4vw, 2.2rem);
+  line-height: 1;
+}
+
+.rating-chip span {
+  max-width: 100%;
+  color: var(--muted-navy);
+  font-size: 0.82rem;
+  font-weight: 850;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rating-chip small {
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: #94a3b8;
+}
+
+.rating-hard {
+  border-color: rgba(250, 204, 21, 0.54);
+  background: rgba(254, 243, 199, 0.88);
+}
+
+.rating-good {
+  border-color: rgba(56, 189, 248, 0.44);
+  background: rgba(224, 242, 254, 0.9);
+}
+
+.rating-easy {
+  border-color: rgba(22, 163, 74, 0.38);
+  background: rgba(220, 252, 231, 0.9);
+}
+
+.rating-again small {
+  background: #64748b;
+}
+
+.rating-hard small {
+  background: #ca8a04;
+}
+
+.rating-good small {
+  background: #0284c7;
+}
+
+.rating-easy small {
+  background: #16a34a;
 }
 
 .lesson-now {
@@ -1717,6 +1810,10 @@ kbd {
     grid-template-columns: 1fr;
   }
 
+  .listening-rating-strip {
+    grid-template-columns: repeat(5, minmax(92px, 1fr));
+  }
+
   .study-stage {
     min-height: 64svh;
     border-radius: 26px;
@@ -1734,8 +1831,8 @@ kbd {
   }
 
   .quiz-options button {
-    min-height: 64px;
-    font-size: 1.28rem;
+    min-height: 104px;
+    font-size: clamp(2rem, 8vw, 2.9rem);
   }
 
   .recall-options {

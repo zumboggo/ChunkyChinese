@@ -212,7 +212,7 @@ export function createPocketLesson(
   addMixedWordRecall(steps, targetWords, audioClips, pauses)
   addSentenceSupport(
     steps,
-    targetSentences.slice(0, 2),
+    targetSentences.slice(0, 4),
     audioClips,
     options.activeRecall ? pauses.recall : 3,
   )
@@ -602,7 +602,7 @@ function addWhatDoesPrompt(
   audioClips: AudioClip[],
   id: string,
 ) {
-  const clip = findPrompt(audioClips, `what-does-${word.word}`)
+  const clip = findWhatDoesPrompt(audioClips, word)
   if (clip) {
     steps.push({
       id,
@@ -705,6 +705,17 @@ function findPrompt(audioClips: AudioClip[], promptId: string): AudioClip | unde
     if (clip.type !== 'prompt') return false
     const candidates = [clip.id, clip.manifestId, clip.label, clip.path, clip.text].filter(Boolean)
     return candidates.some((candidate) => normalizePrompt(String(candidate)) === promptId)
+  })
+}
+
+function findWhatDoesPrompt(audioClips: AudioClip[], word: VocabWord): AudioClip | undefined {
+  return audioClips.find((clip) => {
+    if (clip.type !== 'prompt') return false
+    const linkedIds = clip.linkedWordIds ?? []
+    const linkedToWord = linkedIds.includes(word.id) || linkedIds.includes(word.word)
+    if (!linkedToWord) return false
+    const label = normalizePrompt(`${clip.id} ${clip.manifestId ?? ''} ${clip.label} ${clip.path}`)
+    return label.includes('what-does')
   })
 }
 

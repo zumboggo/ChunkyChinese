@@ -153,6 +153,7 @@ function App() {
   const activeChoiceSpeechTokenRef = useRef(0)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const pocketAudioRef = useRef<HTMLAudioElement | null>(null)
+  const lastPocketTimeRef = useRef(0)
   const playModeRef = useRef<HTMLElement | null>(null)
 
   const refresh = useCallback(async () => {
@@ -523,12 +524,25 @@ function App() {
     const ratingIds =
       ratingWordIds.length > 0 ? ratingWordIds : lessonWords.map((word) => word.id)
     const completeSet = ratingIds.length > 0 && ratingIds.every((id) => nextRatings[id])
-    if (autoNextLesson && completeSet) {
+    if (autoNextLesson && showReviewPrompt && completeSet) {
       window.setTimeout(() => {
         startNextLessonRef.current?.()
       }, 600)
     }
-  }, [autoNextLesson, fsrsRatings, lessonWords, ratingWordIds, refresh])
+  }, [autoNextLesson, fsrsRatings, lessonWords, ratingWordIds, refresh, showReviewPrompt])
+
+  const cycleListeningRating = useCallback(async (wordId: string) => {
+    const current = fsrsRatings[wordId] ?? 'again'
+    const nextRating: FsrsRating =
+      current === 'again'
+        ? 'hard'
+        : current === 'hard'
+          ? 'good'
+          : current === 'good'
+            ? 'easy'
+            : 'hard'
+    await handleFsrsRating(wordId, nextRating)
+  }, [fsrsRatings, handleFsrsRating])
 
   function finishLessonAndReturnHome() {
     pocketAudioRef.current?.pause()
@@ -640,6 +654,7 @@ function App() {
     setRenderedLesson(rendered)
     setRenderedUrl(url)
     setPocketProgress({ current: 0, duration: rendered.durationSeconds })
+    lastPocketTimeRef.current = 0
     setSavedResumeTime(null)
     if (playAfterRender) {
       window.setTimeout(() => {
@@ -1746,6 +1761,33 @@ function App() {
                         onTimeUpdate={(event) => {
                           const audio = event.currentTarget
                           const current = audio.currentTime
+                          const previous =
+                            current + 0.1 < lastPocketTimeRef.current
+                              ? 0
+                              : lastPocketTimeRef.current
+                          lastPocketTimeRef.current = current
+                          const quizSegmentIndex =
+                            studyMode === 'activeRecall'
+                              ? renderedLesson?.segments?.findIndex(
+                                  (segment) =>
+                                    isQuizPauseSegment(segment) &&
+                                    !quizResponses[segment.stepId] &&
+                                    segment.startSeconds > previous + 0.005 &&
+                                    segment.startSeconds <= current + 0.35,
+                                ) ?? -1
+                              : -1
+                          if (quizSegmentIndex >= 0 && renderedLesson?.segments) {
+                            const segment = renderedLesson.segments[quizSegmentIndex]
+                            audio.pause()
+                            audio.currentTime = Math.max(0, segment.startSeconds)
+                            lastPocketTimeRef.current = audio.currentTime
+                            setCurrentStepIndex(quizSegmentIndex)
+                            setPocketProgress({
+                              current: audio.currentTime,
+                              duration: audio.duration || renderedLesson.durationSeconds || 0,
+                            })
+                            return
+                          }
                           const segmentIndex =
                             renderedLesson?.segments?.findIndex(
                               (segment) =>
@@ -1882,6 +1924,26 @@ function App() {
                       </div>
                     )}
                   </div>
+                  {isListeningMode && lessonWords.length > 0 && (
+                    <div className="listening-rating-strip" aria-label="Rate lesson words">
+                      {lessonWords.map((word) => {
+                        const rating = fsrsRatings[word.id] ?? 'again'
+                        return (
+                          <button
+                            key={word.id}
+                            type="button"
+                            className={`rating-chip rating-${rating}`}
+                            onClick={() => cycleListeningRating(word.id)}
+                            title={`Click to cycle ${word.word}: Again, Hard, Good, Easy`}
+                          >
+                            <strong>{word.word}</strong>
+                            <span>{word.meaning}</span>
+                            <small>{fsrsLabel(rating)}</small>
+                          </button>
+                        )
+                      })}
+                    </div>
+                  )}
                 </section>
 
               {lessonMode === 'live' && (
@@ -2216,7 +2278,10 @@ function ActiveRecallCard({
   }, [quiz.id, quiz.stage, response])
 
   return (
-    <section className={`active-recall-card recall-stage-${quiz.stage}`} aria-live="polite">
+    <section
+      className={`active-recall-card recall-stage-${quiz.stage} recall-kind-${quiz.kind}`}
+      aria-live="polite"
+    >
       <div className="recall-prompt">
         <span>{getQuizModeLabel(quiz)}</span>
         <strong>{promptText}</strong>
@@ -2516,7 +2581,7 @@ function buildActiveQuiz(
 
   if (segment.sentenceId && segment.stepId.startsWith('sentence-support-')) {
     const sentenceIndex = getSentenceSupportIndex(segment.stepId)
-    if (sentenceIndex > 1) return undefined
+    if (sentenceIndex > 3) return undefined
     const sentence = allSentences.find((candidate) => candidate.id === segment.sentenceId)
     if (!sentence) return undefined
     const linkedWord = lessonWords.find((word) => sentence.targetWords.includes(word.word))
@@ -2596,6 +2661,17 @@ function buildActiveQuiz(
   }
 
   return undefined
+}
+
+function isQuizPauseSegment(segment: RenderedLessonSegment): boolean {
+  if (segment.kind !== 'pause') return false
+  if (segment.stepId.startsWith('sentence-support-')) return getSentenceSupportIndex(segment.stepId) <= 3
+  return (
+    segment.stepId.startsWith('word-block-') ||
+    segment.stepId.startsWith('mixed-') ||
+    segment.stepId.startsWith('contrast-') ||
+    segment.stepId.startsWith('rescue-')
+  )
 }
 
 function buildMeaningOptions(
