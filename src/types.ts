@@ -25,6 +25,15 @@ export type FsrsRating = 'again' | 'hard' | 'good' | 'easy'
 
 export type StudyMode = 'listeningMode' | 'activeRecall'
 
+export type FsrsStateName = 'New' | 'Learning' | 'Review' | 'Relearning'
+
+export type LessonQuizKind = 'zh-en' | 'en-zh' | 'audio-zh' | 'contrast' | 'sentence-zh-en'
+
+export interface LessonQuizMetadata {
+  kind: LessonQuizKind
+  otherWordId?: string
+}
+
 export interface HotkeySettings {
   choiceA: string
   choiceB: string
@@ -57,6 +66,94 @@ export interface HostedClipPack {
   language?: string
 }
 
+export interface HostedReaderPack {
+  id: string
+  name: string
+  description?: string
+  baseUrl: string
+  language?: string
+}
+
+export interface ReaderPack {
+  packId: string
+  name: string
+  description?: string
+  sourcePath?: string
+  baseUrl?: string
+  language?: string
+  createdAt: string
+  installedAt?: string
+  voice?: string
+  rate?: string
+  audioAvailable: boolean
+  synthesizedAudioCount: number
+  storyCount: number
+  sentenceCount: number
+  books: ReaderBookSummary[]
+}
+
+export interface ReaderBookSummary {
+  id: string
+  title: string
+  book: number
+  chapterStart: number
+  chapterEnd: number
+  storyCount: number
+  sentenceCount: number
+  path: string
+}
+
+export interface ReaderBook {
+  id: string
+  packId: string
+  title: string
+  book: number
+  chapterStart: number
+  chapterEnd: number
+  path?: string
+  stories: ReaderStory[]
+}
+
+export interface ReaderStory {
+  id: string
+  title: string
+  book: number
+  chapter: number
+  sourceInspiration?: string
+  newWords: Array<{ word: string; pinyin?: string; meaning: string }>
+  sentences: ReaderSentence[]
+}
+
+export interface ReaderSentence {
+  id: string
+  storyId: string
+  index: number
+  chinese: string
+  pinyin: string
+  english: string
+  targetWords: string[]
+  audioClipId: string
+  audioFilename: string
+  ssmlFilename: string
+}
+
+export interface ReaderProgress {
+  id: string
+  packId: string
+  bookId: string
+  sentenceIndex: number
+  updatedAt: string
+}
+
+export interface ReaderWordToken {
+  id: string
+  text: string
+  index: number
+  isChinese: boolean
+  pinyin?: string
+  word?: VocabWord
+}
+
 export interface VocabWord {
   id: string
   word: string
@@ -77,6 +174,10 @@ export interface VocabWord {
   fsrsEase?: number
   fsrsRepetitions?: number
   fsrsLapses?: number
+  fsrsState?: FsrsStateName
+  fsrsStability?: number
+  fsrsDifficulty?: number
+  fsrsLearningSteps?: number
   packIds?: string[]
   createdAt: string
   updatedAt: string
@@ -162,6 +263,7 @@ export interface RenderedLessonSegment {
   sentenceId?: string
   label: string
   kind: LessonStep['kind']
+  quiz?: LessonQuizMetadata
 }
 
 export interface ListeningEvent {
@@ -193,6 +295,7 @@ export type LessonStep =
       label: string
       wordId?: string
       sentenceId?: string
+      quiz?: LessonQuizMetadata
     }
   | {
       id: string
@@ -201,6 +304,7 @@ export type LessonStep =
       label: string
       wordId?: string
       sentenceId?: string
+      quiz?: LessonQuizMetadata
     }
   | {
       id: string
@@ -209,6 +313,7 @@ export type LessonStep =
       label: string
       wordId?: string
       sentenceId?: string
+      quiz?: LessonQuizMetadata
     }
   | {
       id: string
@@ -217,6 +322,7 @@ export type LessonStep =
       label: string
       wordId?: string
       sentenceId?: string
+      quiz?: LessonQuizMetadata
     }
   | {
       id: string
@@ -224,6 +330,7 @@ export type LessonStep =
       label: string
       wordId?: string
       sentenceId?: string
+      quiz?: LessonQuizMetadata
     }
 
 export interface LessonPlan {
@@ -242,6 +349,7 @@ export interface DashboardStats {
   minutesToday: number
   clipsCompletedToday: number
   knownToday: number
+  newWordsToday: number
   studyHeatmap: StudyDayStat[]
   retentionSeries: RetentionPoint[]
 }

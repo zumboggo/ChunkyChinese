@@ -43,6 +43,7 @@ export async function renderLessonToWav(
         sentenceId: step.sentenceId,
         label: step.label,
         kind: step.kind,
+        quiz: step.quiz,
       })
       currentSeconds = endSeconds
     }

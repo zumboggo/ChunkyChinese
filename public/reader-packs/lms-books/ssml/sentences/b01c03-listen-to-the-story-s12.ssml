@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="zh-CN">
+  <voice name="zh-CN-XiaochenNeural">
+    <prosody rate="-5%">他心里一直有一个想法：只有马上有用的东西，才值得花时间。</prosody>
+  </voice>
+</speak>

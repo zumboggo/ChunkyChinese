@@ -1,0 +1,9 @@
+[
+  {
+    "id": "lms-books",
+    "name": "LMS Reader Books",
+    "description": "Legendary Moonlight Sculptor LMS reader compilations from StoryEditor.",
+    "baseUrl": "reader-packs/lms-books",
+    "language": "zh-CN"
+  }
+]

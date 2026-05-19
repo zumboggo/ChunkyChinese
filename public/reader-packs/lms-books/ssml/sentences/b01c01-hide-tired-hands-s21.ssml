@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="zh-CN">
+  <voice name="zh-CN-XiaochenNeural">
+    <prosody rate="-5%">她小声说：“哥哥，你为什么不早说？”</prosody>
+  </voice>
+</speak>

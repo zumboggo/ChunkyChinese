@@ -6,6 +6,8 @@ interface TargetSelectionOptions {
   randomize?: boolean
   pauseProfile?: PauseProfile
   activeRecall?: boolean
+  newWordsLimit?: number
+  allowExtraNew?: boolean
 }
 
 interface PauseTimings {
@@ -277,15 +279,24 @@ export function selectTargetWords(
   }
 
   const candidates = dueCandidates(words)
+  const newWordLimit = options.allowExtraNew ? 5 : Math.max(0, options.newWordsLimit ?? 5)
+  const newCandidates = words
+    .filter((word) => word.status === 'new' && !word.fsrsDueAt)
+    .sort((a, b) => scoreWord(a) - scoreWord(b))
+    .slice(0, newWordLimit)
+  const supportCandidates = words
+    .filter((word) => !candidates.some((candidate) => candidate.id === word.id))
+    .filter((word) => !newCandidates.some((candidate) => candidate.id === word.id))
+    .filter((word) => word.status !== 'new')
+    .filter((word) => word.status !== 'known' || isFsrsDue(word))
+    .sort((a, b) => futureDueSort(a) - futureDueSort(b))
   const fallback =
     candidates.length >= 5
       ? candidates
       : [
           ...candidates,
-          ...words
-            .filter((word) => !candidates.some((candidate) => candidate.id === word.id))
-            .filter((word) => word.status !== 'known')
-            .sort((a, b) => futureDueSort(a) - futureDueSort(b)),
+          ...newCandidates,
+          ...supportCandidates,
         ]
   return options.randomize
     ? weightedSampleWords(fallback, 5)
@@ -345,6 +356,7 @@ function selectionWeight(word: VocabWord): number {
 
 function dueCandidates(words: VocabWord[]): VocabWord[] {
   return words.filter((word) => {
+    if (word.status === 'new' && !word.fsrsDueAt) return false
     if (!isFsrsDue(word)) return false
     if (word.status === 'known') return Boolean(word.fsrsDueAt)
     return true
@@ -489,6 +501,7 @@ function addSentenceSupport(
       seconds: pauseSeconds,
       label: 'Think',
       sentenceId: sentence.id,
+      quiz: { kind: 'sentence-zh-en' },
     })
     addSentenceMeaningAudio(steps, sentence, `${prefix}-answer`)
     steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', sentenceId: sentence.id })
@@ -526,7 +539,14 @@ function addChineseToEnglishRecall(
 ) {
   addWhatDoesPrompt(steps, word, audioClips, `${prefix}-prompt`)
   addWordAudio(steps, word, `${prefix}-word`)
-  steps.push({ id: `${prefix}-pause`, kind: 'pause', seconds: pauseSeconds, label: 'Think', wordId: word.id })
+  steps.push({
+    id: `${prefix}-pause`,
+    kind: 'pause',
+    seconds: pauseSeconds,
+    label: 'Think',
+    wordId: word.id,
+    quiz: { kind: 'zh-en' },
+  })
   addMeaningAudio(steps, word, `${prefix}-meaning`)
 }
 
@@ -539,7 +559,14 @@ function addEnglishToChineseWordRecall(
 ) {
   addPrompt(steps, audioClips, 'which-chinese-means', 'Which word means this?', word.id)
   addMeaningAudio(steps, word, `${prefix}-meaning`)
-  steps.push({ id: `${prefix}-pause`, kind: 'pause', seconds: pauseSeconds, label: 'Think', wordId: word.id })
+  steps.push({
+    id: `${prefix}-pause`,
+    kind: 'pause',
+    seconds: pauseSeconds,
+    label: 'Think',
+    wordId: word.id,
+    quiz: { kind: 'en-zh' },
+  })
   addWordAudio(steps, word, `${prefix}-word`)
 }
 
@@ -559,6 +586,7 @@ function addAudioToChineseWordRecall(
     seconds: pauseSeconds,
     label: 'Which word?',
     wordId: word.id,
+    quiz: { kind: 'audio-zh' },
   })
   addWordAudio(steps, word, `${prefix}-answer`)
 }
@@ -576,7 +604,14 @@ function addContrastQuestion(
   addWordAudio(steps, word, `${prefix}-option-a`)
   addPrompt(steps, audioClips, 'or', 'Or', word.id)
   addWordAudio(steps, other, `${prefix}-option-b`)
-  steps.push({ id: `${prefix}-pause`, kind: 'pause', seconds: pauses.contrast, label: 'Think', wordId: word.id })
+  steps.push({
+    id: `${prefix}-pause`,
+    kind: 'pause',
+    seconds: pauses.contrast,
+    label: 'Think',
+    wordId: word.id,
+    quiz: { kind: 'contrast', otherWordId: other.id },
+  })
   addWordAudio(steps, word, `${prefix}-answer`)
   steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', wordId: word.id })
 }

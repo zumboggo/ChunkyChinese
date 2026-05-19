@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
+import { pinyin } from 'pinyin-pro'
 import {
   completeWordExposure,
   DEFAULT_HOTKEYS,
@@ -7,14 +8,18 @@ import {
   exportBackup,
   getAllAudioClips,
   getAllClipPacks,
+  getAllReaderBooks,
+  getAllReaderPacks,
   getAllSentences,
   getAllWords,
   getAudioClip,
   getActivePackId,
   getDashboardStats,
   getHostedClipPackIndex,
+  getNewWordsPerDay,
   getHotkeys,
   getPromptClip,
+  getReaderProgress,
   importAudioFiles,
   importBackup,
   importClipPackFiles,
@@ -26,13 +31,17 @@ import {
   recordEvent,
   recordQuizAnswer,
   saveRenderedLesson,
+  saveNewWordsPerDay,
+  saveReaderProgress,
   seedLmsWordsIfEmpty,
+  seedReaderBooksIfEmpty,
   saveHotkeys,
   setActivePackId as persistActivePackId,
   updateWordStatus,
 } from './db'
 import { createLesson, createPocketLesson, createRescueLesson, type PauseProfile } from './lesson'
 import { renderLessonToWav } from './renderAudio'
+import { previewFsrsRatings } from './scheduler'
 import type {
   AudioClip,
   ClipPack,
@@ -43,6 +52,10 @@ import type {
   ImportSummary,
   LessonPlan,
   LessonStep,
+  ReaderBook,
+  ReaderPack,
+  ReaderSentence,
+  ReaderWordToken,
   RenderedLesson,
   RenderedLessonSegment,
   Sentence,
@@ -51,11 +64,13 @@ import type {
   WordStatus,
 } from './types'
 
-type Screen = 'dashboard' | 'words' | 'import' | 'lesson'
+type Screen = 'dashboard' | 'words' | 'reader' | 'import' | 'lesson'
 type LessonStartOptions = {
   randomize?: boolean
   playAfterRender?: boolean
   pauseProfile?: PauseProfile
+  newWordsLimit?: number
+  allowExtraNew?: boolean
 }
 type LessonKind = 'main' | 'rescue'
 type QuizKind = 'zh-en' | 'en-zh' | 'audio-zh' | 'contrast' | 'sentence-zh-en'
@@ -89,6 +104,7 @@ const emptyStats: DashboardStats = {
   minutesToday: 0,
   clipsCompletedToday: 0,
   knownToday: 0,
+  newWordsToday: 0,
   studyHeatmap: [],
   retentionSeries: [],
 }
@@ -102,9 +118,12 @@ function App() {
   const [sentences, setSentences] = useState<Sentence[]>([])
   const [audioClips, setAudioClips] = useState<AudioClip[]>([])
   const [clipPacks, setClipPacks] = useState<ClipPack[]>([])
+  const [readerPacks, setReaderPacks] = useState<ReaderPack[]>([])
+  const [readerBooks, setReaderBooks] = useState<ReaderBook[]>([])
   const [hostedPacks, setHostedPacks] = useState<HostedClipPack[]>([])
   const [activePackId, setActivePackId] = useState<string | undefined>()
   const [stats, setStats] = useState<DashboardStats>(emptyStats)
+  const [newWordsPerDay, setNewWordsPerDay] = useState(5)
   const [statusFilter, setStatusFilter] = useState<WordStatus | 'all'>('all')
   const [search, setSearch] = useState('')
   const [lessonFilter, setLessonFilter] = useState('')
@@ -132,6 +151,8 @@ function App() {
   const [showMissedRescue, setShowMissedRescue] = useState(false)
   const [fsrsRatings, setFsrsRatings] = useState<Record<string, FsrsRating>>({})
   const [showReviewPrompt, setShowReviewPrompt] = useState(false)
+  const [reviewCardIndex, setReviewCardIndex] = useState(0)
+  const [reviewAnswerShown, setReviewAnswerShown] = useState(false)
   const [savedResumeTime, setSavedResumeTime] = useState<number | null>(null)
   const [autoNextLesson, setAutoNextLesson] = useState(true)
   const [autoAdvance, setAutoAdvance] = useState(true)
@@ -143,6 +164,11 @@ function App() {
   const [seedMessage, setSeedMessage] = useState('Loading LMS vocabulary...')
   const [hostedImporting, setHostedImporting] = useState(false)
   const [hostedProgress, setHostedProgress] = useState('')
+  const [activeReaderBookId, setActiveReaderBookId] = useState<string | undefined>()
+  const [readerSentenceIndex, setReaderSentenceIndex] = useState(0)
+  const [readerShowPinyin, setReaderShowPinyin] = useState(true)
+  const [readerShowEnglish, setReaderShowEnglish] = useState(true)
+  const [selectedReaderToken, setSelectedReaderToken] = useState<ReaderWordToken | null>(null)
   const runToken = useRef(0)
   const activeAnswerLockRef = useRef<string | null>(null)
   const autoContinueTimeoutRef = useRef<number | null>(null)
@@ -157,12 +183,24 @@ function App() {
   const playModeRef = useRef<HTMLElement | null>(null)
 
   const refresh = useCallback(async () => {
-    const [nextWords, nextSentences, nextAudio, nextPacks, nextActivePackId] = await Promise.all([
+    const [
+      nextWords,
+      nextSentences,
+      nextAudio,
+      nextPacks,
+      nextReaderPacks,
+      nextReaderBooks,
+      nextActivePackId,
+      nextNewWordsPerDay,
+    ] = await Promise.all([
       getAllWords(),
       getAllSentences(),
       getAllAudioClips(),
       getAllClipPacks(),
+      getAllReaderPacks(),
+      getAllReaderBooks(),
       getActivePackId(),
+      getNewWordsPerDay(),
     ])
     setWords(nextWords)
     setSentences(nextSentences)
@@ -177,15 +215,23 @@ function App() {
     const nextStats = await getDashboardStats()
     setAudioClips(nextAudio)
     setClipPacks(visiblePacks)
+    setReaderPacks(nextReaderPacks)
+    setReaderBooks(nextReaderBooks)
     setActivePackId(resolvedActivePackId)
+    setNewWordsPerDay(nextNewWordsPerDay)
     setStats(nextStats)
   }, [])
 
   useEffect(() => {
     async function start() {
       const seeded = await seedLmsWordsIfEmpty()
+      const seededReaderSentences = await seedReaderBooksIfEmpty()
       setSeedMessage(
-        seeded > 0 ? `Seeded ${seeded} LMS target words.` : 'LMS vocabulary loaded.',
+        seeded > 0
+          ? `Seeded ${seeded} LMS target words.`
+          : seededReaderSentences > 0
+            ? `Loaded ${seededReaderSentences} reader sentences.`
+            : 'LMS vocabulary loaded.',
       )
       const [nextHotkeys, nextHostedPacks] = await Promise.all([
         getHotkeys(),
@@ -305,8 +351,8 @@ function App() {
     [lesson, ratingWordIds, words],
   )
   const currentQuiz = useMemo(
-    () => buildActiveQuiz(currentSegment, renderedLesson, lessonWords, scopedWords, scopedSentences),
-    [currentSegment, lessonWords, renderedLesson, scopedSentences, scopedWords],
+    () => buildActiveQuiz(currentSegment, lessonWords, scopedWords, scopedSentences),
+    [currentSegment, lessonWords, scopedSentences, scopedWords],
   )
   const currentQuizResponse = currentQuiz ? quizResponses[currentQuiz.id] : undefined
   const currentQuizHintLevel = currentQuiz ? quizHints[currentQuiz.id] ?? 0 : 0
@@ -327,6 +373,29 @@ function App() {
         .filter((word): word is VocabWord => Boolean(word)),
     [missedWordIds, words],
   )
+  const activeReaderBook = useMemo(
+    () => readerBooks.find((book) => book.id === activeReaderBookId),
+    [activeReaderBookId, readerBooks],
+  )
+  const readerSentences = useMemo(
+    () => activeReaderBook?.stories.flatMap((story) => story.sentences) ?? [],
+    [activeReaderBook],
+  )
+  const currentReaderSentence = readerSentences[readerSentenceIndex]
+  const readerTokens = useMemo(
+    () => tokenizeReaderText(currentReaderSentence?.chinese ?? '', scopedWords.length > 0 ? scopedWords : words),
+    [currentReaderSentence, scopedWords, words],
+  )
+  const remainingNewWordsToday = Math.max(0, newWordsPerDay - stats.newWordsToday)
+  const dueWordList = useMemo(
+    () =>
+      scopedWords
+        .filter((word) => isDueForDisplay(word))
+        .sort((a, b) => dueTimeForDisplay(a) - dueTimeForDisplay(b))
+        .slice(0, 6),
+    [scopedWords],
+  )
+  const currentReviewWord = ratingWords[reviewCardIndex]
 
   const handleStatus = useCallback(async (ids: string[], status: WordStatus) => {
     if (ids.length === 0) return
@@ -334,6 +403,56 @@ function App() {
     setLastSummary(`Marked ${ids.length} word${ids.length === 1 ? '' : 's'} ${status}.`)
     await refresh()
   }, [refresh])
+
+  const openReviewPrompt = useCallback(() => {
+    setReviewCardIndex(0)
+    setReviewAnswerShown(false)
+    setShowReviewPrompt(true)
+  }, [])
+
+  const openReaderBook = useCallback(async (book: ReaderBook) => {
+    const progress = await getReaderProgress(book.packId, book.id)
+    const sentenceCount = book.stories.reduce((sum, story) => sum + story.sentences.length, 0)
+    setActiveReaderBookId(book.id)
+    setReaderSentenceIndex(Math.min(Math.max(0, progress?.sentenceIndex ?? 0), Math.max(0, sentenceCount - 1)))
+    setSelectedReaderToken(null)
+    setScreen('reader')
+  }, [])
+
+  const moveReaderSentence = useCallback(async (delta: number) => {
+    if (!activeReaderBook || readerSentences.length === 0) return
+    const nextIndex = Math.min(
+      Math.max(readerSentenceIndex + delta, 0),
+      readerSentences.length - 1,
+    )
+    setReaderSentenceIndex(nextIndex)
+    setSelectedReaderToken(null)
+    await saveReaderProgress({
+      packId: activeReaderBook.packId,
+      bookId: activeReaderBook.id,
+      sentenceIndex: nextIndex,
+    })
+  }, [activeReaderBook, readerSentenceIndex, readerSentences.length])
+
+  async function playReaderSentence(sentence: ReaderSentence) {
+    const token = runToken.current + 1
+    runToken.current = token
+    const clip = await getAudioClip(sentence.audioClipId)
+    if (clip) {
+      await playAudioClip(clip.id, token)
+      return
+    }
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel()
+      await speakUtterance(sentence.chinese, playbackRate, 'zh-CN')
+    }
+  }
+
+  async function handleNewWordsPerDayChange(value: number) {
+    await saveNewWordsPerDay(value)
+    setNewWordsPerDay(Math.min(50, Math.max(0, Math.round(value))))
+    await refresh()
+  }
 
   const clearAutoContinueTimeout = useCallback(() => {
     if (autoContinueTimeoutRef.current !== null) {
@@ -524,12 +643,16 @@ function App() {
     const ratingIds =
       ratingWordIds.length > 0 ? ratingWordIds : lessonWords.map((word) => word.id)
     const completeSet = ratingIds.length > 0 && ratingIds.every((id) => nextRatings[id])
-    if (autoNextLesson && showReviewPrompt && completeSet) {
-      window.setTimeout(() => {
-        startNextLessonRef.current?.()
-      }, 600)
+    if (showReviewPrompt) {
+      setReviewAnswerShown(false)
+      if (completeSet) {
+        setReviewCardIndex(ratingWords.length)
+      } else {
+        const nextIndex = ratingWords.findIndex((word) => !nextRatings[word.id])
+        setReviewCardIndex(nextIndex >= 0 ? nextIndex : reviewCardIndex + 1)
+      }
     }
-  }, [autoNextLesson, fsrsRatings, lessonWords, ratingWordIds, refresh, showReviewPrompt])
+  }, [fsrsRatings, lessonWords, ratingWordIds, ratingWords, refresh, reviewCardIndex, showReviewPrompt])
 
   const cycleListeningRating = useCallback(async (wordId: string) => {
     const current = fsrsRatings[wordId]
@@ -581,11 +704,15 @@ function App() {
         return
       }
       if (showReviewPrompt) {
-        const rating = hotkeyToRating(pressed, hotkeys)
-        if (rating && ratingWords.length > 0) {
+        if (!reviewAnswerShown && (event.key === 'Enter' || event.key === ' ')) {
           event.preventDefault()
-          const nextWord = ratingWords.find((word) => !fsrsRatings[word.id])
-          if (nextWord) void handleFsrsRating(nextWord.id, rating)
+          setReviewAnswerShown(true)
+          return
+        }
+        const rating = hotkeyToRating(pressed, hotkeys)
+        if (rating && reviewAnswerShown && currentReviewWord) {
+          event.preventDefault()
+          void handleFsrsRating(currentReviewWord.id, rating)
         }
         return
       }
@@ -627,7 +754,9 @@ function App() {
     handleQuizHint,
     handleStatus,
     hotkeys,
+    currentReviewWord,
     ratingWords,
+    reviewAnswerShown,
     screen,
     showReviewPrompt,
     studyWord,
@@ -658,6 +787,8 @@ function App() {
     setQuizResponses({})
     setQuizHints({})
     setShowReviewPrompt(false)
+    setReviewCardIndex(0)
+    setReviewAnswerShown(false)
     setShowMissedRescue(false)
     if (nextLesson.steps.filter((step) => step.kind === 'audio').length === 0) {
       setLessonMode('live')
@@ -727,17 +858,27 @@ function App() {
   useEffect(() => {
     startNextLessonRef.current = () => {
       setShowReviewPrompt(false)
-      void startPocketLesson([], { randomize: true, playAfterRender: true })
+      void startPocketLesson([], {
+        randomize: true,
+        playAfterRender: true,
+        newWordsLimit: remainingNewWordsToday,
+      })
     }
   })
 
-  async function startModeLesson(mode: StudyMode) {
+  async function startModeLesson(mode: StudyMode, options: LessonStartOptions = {}) {
     setStudyMode(mode)
     setShowEnglish(true)
     setShowPinyin(true)
     setMinimalVisualMode(mode === 'listeningMode')
     setAutoNextLesson(mode === 'listeningMode')
-    await startPocketLesson([], { randomize: true, playAfterRender: true, pauseProfile })
+    await startPocketLesson([], {
+      randomize: true,
+      playAfterRender: true,
+      pauseProfile,
+      newWordsLimit: remainingNewWordsToday,
+      ...options,
+    })
   }
 
   async function startMissedRescue() {
@@ -1012,6 +1153,10 @@ function App() {
             <span className="nav-icon nav-words" aria-hidden="true" />
             Words
           </button>
+          <button className={screen === 'reader' ? 'active' : ''} onClick={() => setScreen('reader')}>
+            <span className="nav-icon nav-reader" aria-hidden="true" />
+            Reader
+          </button>
           <button className={screen === 'import' ? 'active' : ''} onClick={() => setScreen('import')}>
             <span className="nav-icon nav-import" aria-hidden="true" />
             Import
@@ -1128,7 +1273,56 @@ function App() {
                   <dt>FSRS ratings due</dt>
                   <dd>{stats.dueNow}</dd>
                 </div>
+                <div>
+                  <dt>New words today</dt>
+                  <dd>{stats.newWordsToday} / {newWordsPerDay}</dd>
+                </div>
               </dl>
+            </InfoPanel>
+            <InfoPanel title="Daily plan">
+              <div className="daily-plan">
+                <label>
+                  New words/day
+                  <input
+                    type="number"
+                    min={0}
+                    max={50}
+                    value={newWordsPerDay}
+                    onChange={(event) => handleNewWordsPerDayChange(Number(event.target.value))}
+                  />
+                </label>
+                <span>{remainingNewWordsToday} new word slots left today</span>
+              </div>
+              <div className="button-row compact-buttons">
+                <button type="button" onClick={() => startModeLesson('activeRecall')}>
+                  Study due
+                </button>
+                <button
+                  type="button"
+                  className="ghost-answer"
+                  onClick={() => startModeLesson('activeRecall', { allowExtraNew: true })}
+                >
+                  Learn extra new words
+                </button>
+              </div>
+            </InfoPanel>
+            <InfoPanel title="Due next">
+              <div className="due-list">
+                {dueWordList.map((word) => (
+                  <button
+                    key={word.id}
+                    type="button"
+                    onClick={() => {
+                      setSearch(word.word)
+                      setScreen('words')
+                    }}
+                  >
+                    <strong>{word.word}</strong>
+                    <span>{formatDueDate(word.fsrsDueAt)}</span>
+                  </button>
+                ))}
+                {dueWordList.length === 0 && <small>No scheduled reviews are due.</small>}
+              </div>
             </InfoPanel>
             <InfoPanel title="Hotkeys">
               <dl className="stat-list">
@@ -1169,13 +1363,23 @@ function App() {
                   <dt>Audio clips</dt>
                   <dd>{audioClips.length}</dd>
                 </div>
+                <div>
+                  <dt>Reader books</dt>
+                  <dd>{readerBooks.length}</dd>
+                </div>
               </dl>
+              <button type="button" className="ghost-answer" onClick={() => setScreen('reader')}>
+                Open reader mode
+              </button>
             </InfoPanel>
           </div>
 
           <div className="button-row">
             <button type="button" onClick={() => setScreen('words')}>
               Manage words
+            </button>
+            <button type="button" onClick={() => setScreen('reader')}>
+              Reader mode
             </button>
             <button type="button" onClick={() => setScreen('import')}>
               Import data/audio
@@ -1287,7 +1491,8 @@ function App() {
                   <span>{word.meaning}</span>
                   <small>
                     {word.pinyin ? `${word.pinyin} · ` : ''}
-                    Lesson {word.lessonNumber ?? '-'} · seen {word.seenCount}
+                    Lesson {word.lessonNumber ?? '-'} · seen {word.seenCount} · due{' '}
+                    {formatDueDate(word.fsrsDueAt)}
                   </small>
                 </button>
                 <StatusPill status={word.status} />
@@ -1315,6 +1520,29 @@ function App() {
             </button>
           </div>
         </section>
+      )}
+
+      {screen === 'reader' && (
+        <ReaderMode
+          readerPacks={readerPacks}
+          readerBooks={readerBooks}
+          activeBook={activeReaderBook}
+          sentence={currentReaderSentence}
+          sentenceIndex={readerSentenceIndex}
+          sentenceCount={readerSentences.length}
+          tokens={readerTokens}
+          selectedToken={selectedReaderToken}
+          showPinyin={readerShowPinyin}
+          showEnglish={readerShowEnglish}
+          onChooseBook={openReaderBook}
+          onPrevious={() => moveReaderSentence(-1)}
+          onNext={() => moveReaderSentence(1)}
+          onPlay={playReaderSentence}
+          onSelectToken={setSelectedReaderToken}
+          onTogglePinyin={() => setReaderShowPinyin((value) => !value)}
+          onToggleEnglish={() => setReaderShowEnglish((value) => !value)}
+          onMarkWord={async (word, status) => handleStatus([word.id], status)}
+        />
       )}
 
       {screen === 'import' && (
@@ -1660,7 +1888,7 @@ function App() {
                             type="button"
                             onClick={() => {
                               setShowMissedRescue(false)
-                              setShowReviewPrompt(true)
+                              openReviewPrompt()
                             }}
                           >
                             Finish for now
@@ -1671,35 +1899,30 @@ function App() {
                     {showReviewPrompt && ratingWords.length > 0 && (
                       <div className="review-panel" aria-live="polite">
                         <div className="review-heading">
-                          <strong>How well do these feel right now?</strong>
-                          <span>{allLessonWordsRated ? 'Set scheduled' : 'Rate each word'}</span>
+                          <strong>Active recall review</strong>
+                          <span>
+                            {allLessonWordsRated
+                              ? 'Set scheduled'
+                              : `Card ${Math.min(reviewCardIndex + 1, ratingWords.length)} / ${ratingWords.length}`}
+                          </span>
                         </div>
                         <p className="review-note">
                           These ratings decide when each word comes back. Unanswered quiz questions
                           are ignored; this is the main memory signal.
                         </p>
-                        <div className="review-list">
-                          {ratingWords.map((word) => (
-                            <div key={word.id} className="review-word">
-                              <span>
-                                <strong>{word.word}</strong>
-                                <small>{word.meaning}</small>
-                              </span>
-                              <div className="review-buttons">
-                                {fsrsRatingsForUi.map((rating) => (
-                                  <button
-                                    key={rating.value}
-                                    type="button"
-                                    className={fsrsRatings[word.id] === rating.value ? 'active' : ''}
-                                    onClick={() => handleFsrsRating(word.id, rating.value)}
-                                  >
-                                    {rating.label}
-                                  </button>
-                                ))}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
+                        {currentReviewWord && !fsrsRatings[currentReviewWord.id] ? (
+                          <FlashcardReview
+                            word={currentReviewWord}
+                            answerShown={reviewAnswerShown}
+                            onFlip={() => setReviewAnswerShown(true)}
+                            onRate={(rating) => handleFsrsRating(currentReviewWord.id, rating)}
+                          />
+                        ) : (
+                          <div className="review-complete">
+                            <strong>All five cards are scheduled.</strong>
+                            <span>Due dates are now visible across the dashboard, reader, and word list.</span>
+                          </div>
+                        )}
                         <button
                           type="button"
                           className="ghost-answer"
@@ -1711,7 +1934,13 @@ function App() {
                           <button
                             type="button"
                             className="primary"
-                            onClick={() => startPocketLesson([], { randomize: true, playAfterRender: true })}
+                            onClick={() =>
+                              startPocketLesson([], {
+                                randomize: true,
+                                playAfterRender: true,
+                                newWordsLimit: remainingNewWordsToday,
+                              })
+                            }
                           >
                             Next Lesson
                           </button>
@@ -1840,13 +2069,17 @@ function App() {
                             })
                             await refresh()
                             if (isListeningMode && autoNextLesson) {
-                              void startPocketLesson([], { randomize: true, playAfterRender: true })
+                              void startPocketLesson([], {
+                                randomize: true,
+                                playAfterRender: true,
+                                newWordsLimit: remainingNewWordsToday,
+                              })
                             } else if (isListeningMode) {
                               setLastSummary('Listening mode lesson complete.')
                             } else if (lessonKind === 'main' && missedWordIds.length > 0) {
                               setShowMissedRescue(true)
                             } else {
-                              setShowReviewPrompt(true)
+                              openReviewPrompt()
                             }
                           }
                         }}
@@ -2126,6 +2359,175 @@ function InfoPanel({ title, children }: { title: string; children: ReactNode }) 
   )
 }
 
+function ReaderMode({
+  readerPacks,
+  readerBooks,
+  activeBook,
+  sentence,
+  sentenceIndex,
+  sentenceCount,
+  tokens,
+  selectedToken,
+  showPinyin,
+  showEnglish,
+  onChooseBook,
+  onPrevious,
+  onNext,
+  onPlay,
+  onSelectToken,
+  onTogglePinyin,
+  onToggleEnglish,
+  onMarkWord,
+}: {
+  readerPacks: ReaderPack[]
+  readerBooks: ReaderBook[]
+  activeBook?: ReaderBook
+  sentence?: ReaderSentence
+  sentenceIndex: number
+  sentenceCount: number
+  tokens: ReaderWordToken[]
+  selectedToken: ReaderWordToken | null
+  showPinyin: boolean
+  showEnglish: boolean
+  onChooseBook: (book: ReaderBook) => void | Promise<void>
+  onPrevious: () => void | Promise<void>
+  onNext: () => void | Promise<void>
+  onPlay: (sentence: ReaderSentence) => void | Promise<void>
+  onSelectToken: (token: ReaderWordToken | null) => void
+  onTogglePinyin: () => void
+  onToggleEnglish: () => void
+  onMarkWord: (word: VocabWord, status: WordStatus) => void | Promise<void>
+}) {
+  return (
+    <section className="screen reader-screen">
+      <div className="screen-heading compact">
+        <div>
+          <h1>Reader Mode</h1>
+          <p>
+            {readerPacks[0]?.name ?? 'LMS Reader Books'} · {readerBooks.length} compilation books.
+          </p>
+        </div>
+        <div className="study-toggles">
+          <button type="button" className={showPinyin ? 'active' : ''} onClick={onTogglePinyin}>
+            Pinyin {showPinyin ? 'on' : 'off'}
+          </button>
+          <button type="button" className={showEnglish ? 'active' : ''} onClick={onToggleEnglish}>
+            English {showEnglish ? 'on' : 'off'}
+          </button>
+        </div>
+      </div>
+
+      <div className="reader-layout">
+        <aside className="reader-book-list" aria-label="Reader books">
+          {readerBooks.map((book) => (
+            <button
+              key={book.id}
+              type="button"
+              className={book.id === activeBook?.id ? 'active' : ''}
+              onClick={() => onChooseBook(book)}
+            >
+              <strong>{book.title}</strong>
+              <span>
+                Chapters {book.chapterStart}-{book.chapterEnd} · {book.stories.length} stories
+              </span>
+            </button>
+          ))}
+          {readerBooks.length === 0 && <small>No reader books are installed yet.</small>}
+        </aside>
+
+        <section className="reader-page">
+          {activeBook && sentence ? (
+            <>
+              <div className="reader-page-meta">
+                <span>{activeBook.title}</span>
+                <span>
+                  Sentence {sentenceIndex + 1} / {sentenceCount}
+                </span>
+              </div>
+              <div className="reader-sentence">
+                {tokens.map((token) =>
+                  token.isChinese ? (
+                    <button
+                      key={token.id}
+                      type="button"
+                      className={`reader-token ${token.word ? 'known-token' : ''} ${
+                        selectedToken?.id === token.id ? 'active' : ''
+                      }`}
+                      onClick={() => onSelectToken(token)}
+                    >
+                      <span>{token.text}</span>
+                      {showPinyin && <small>{token.pinyin}</small>}
+                    </button>
+                  ) : (
+                    <span key={token.id} className="reader-token-space">
+                      {token.text}
+                    </span>
+                  ),
+                )}
+              </div>
+              {showEnglish && <p className="reader-translation">{sentence.english}</p>}
+              <div className="reader-controls">
+                <button type="button" onClick={onPrevious} disabled={sentenceIndex <= 0}>
+                  Previous
+                </button>
+                <button type="button" className="primary" onClick={() => onPlay(sentence)}>
+                  Play sentence
+                </button>
+                <button type="button" onClick={onNext} disabled={sentenceIndex >= sentenceCount - 1}>
+                  Next
+                </button>
+              </div>
+              {selectedToken?.word && (
+                <div className="reader-word-popover" aria-live="polite">
+                  <button type="button" className="popover-close" onClick={() => onSelectToken(null)}>
+                    Close
+                  </button>
+                  <strong>{selectedToken.word.word}</strong>
+                  <span>{selectedToken.word.pinyin ?? selectedToken.pinyin}</span>
+                  <p>{selectedToken.word.meaning}</p>
+                  <dl className="stat-list compact-stats">
+                    <div>
+                      <dt>Status</dt>
+                      <dd>{selectedToken.word.status}</dd>
+                    </div>
+                    <div>
+                      <dt>Due</dt>
+                      <dd>{formatDueDate(selectedToken.word.fsrsDueAt)}</dd>
+                    </div>
+                  </dl>
+                  <div className="button-row compact-buttons">
+                    <button type="button" onClick={() => onMarkWord(selectedToken.word!, 'familiar')}>
+                      Mark familiar
+                    </button>
+                    <button type="button" onClick={() => onMarkWord(selectedToken.word!, 'known')}>
+                      Mark known
+                    </button>
+                  </div>
+                </div>
+              )}
+              {selectedToken && !selectedToken.word && selectedToken.isChinese && (
+                <div className="reader-word-popover" aria-live="polite">
+                  <button type="button" className="popover-close" onClick={() => onSelectToken(null)}>
+                    Close
+                  </button>
+                  <strong>{selectedToken.text}</strong>
+                  <span>{selectedToken.pinyin}</span>
+                  <p>No saved vocabulary entry yet.</p>
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="reader-empty">
+              <h2>Choose a book</h2>
+              <p>Open one of the LMS compilation books to read sentence by sentence.</p>
+            </div>
+          )}
+        </section>
+      </div>
+    </section>
+  )
+}
+
 function ProgressHeatmap({ days }: { days: DashboardStats['studyHeatmap'] }) {
   const totalMinutes = days.reduce((sum, day) => sum + day.studySeconds, 0) / 60
   const activeDays = days.filter((day) => day.activityCount > 0).length
@@ -2373,6 +2775,48 @@ function ActiveRecallCard({
   )
 }
 
+function FlashcardReview({
+  word,
+  answerShown,
+  onFlip,
+  onRate,
+}: {
+  word: VocabWord
+  answerShown: boolean
+  onFlip: () => void
+  onRate: (rating: FsrsRating) => void | Promise<void>
+}) {
+  const previews = previewFsrsRatings(word)
+  return (
+    <section className="flashcard-review">
+      <div className={`flashcard ${answerShown ? 'answer-side' : 'front-side'}`}>
+        <span>{answerShown ? 'Answer 1' : 'Front'}</span>
+        <strong>{word.word}</strong>
+        {answerShown ? (
+          <>
+            <small>{word.pinyin}</small>
+            <p>{word.meaning}</p>
+          </>
+        ) : (
+          <button type="button" className="primary" onClick={onFlip}>
+            Answer 1
+          </button>
+        )}
+      </div>
+      {answerShown && (
+        <div className="review-buttons fsrs-preview-buttons">
+          {fsrsRatingsForUi.map((rating) => (
+            <button key={rating.value} type="button" onClick={() => onRate(rating.value)}>
+              <strong>{rating.label}</strong>
+              <span>{formatDueDate(previews[rating.value].dueAt)}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </section>
+  )
+}
+
 function formatSummary(summary: ImportSummary): string {
   const parts = [
     `${summary.created} created`,
@@ -2397,6 +2841,99 @@ const fsrsRatingsForUi: Array<{ value: FsrsRating; label: string }> = [
 
 function fsrsLabel(rating: FsrsRating): string {
   return fsrsRatingsForUi.find((item) => item.value === rating)?.label ?? rating
+}
+
+function formatDueDate(value?: string): string {
+  if (!value) return 'Not scheduled'
+  const due = new Date(value)
+  if (!Number.isFinite(due.getTime())) return 'Invalid date'
+  const now = new Date()
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+  const dueDay = new Date(due.getFullYear(), due.getMonth(), due.getDate())
+  const dayDelta = Math.round((dueDay.getTime() - today.getTime()) / 86_400_000)
+  const time = due.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+  if (dayDelta === 0) return `Today ${time}`
+  if (dayDelta === 1) return `Tomorrow ${time}`
+  if (dayDelta === -1) return `Yesterday ${time}`
+  return due.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
+function isDueForDisplay(word: VocabWord): boolean {
+  if (!word.fsrsDueAt) return word.status !== 'new' && word.status !== 'known'
+  const due = Date.parse(word.fsrsDueAt)
+  return !Number.isFinite(due) || due <= Date.now()
+}
+
+function dueTimeForDisplay(word: VocabWord): number {
+  if (!word.fsrsDueAt) return 0
+  const due = Date.parse(word.fsrsDueAt)
+  return Number.isFinite(due) ? due : 0
+}
+
+function tokenizeReaderText(text: string, vocab: VocabWord[]): ReaderWordToken[] {
+  const wordMap = new Map(vocab.map((word) => [word.word, word]))
+  const maxWordLength = Math.max(1, ...[...wordMap.keys()].map((word) => word.length))
+  const segmenter =
+    typeof Intl.Segmenter === 'function'
+      ? new Intl.Segmenter('zh-CN', { granularity: 'word' })
+      : undefined
+  const tokens: ReaderWordToken[] = []
+  let index = 0
+  let tokenIndex = 0
+
+  while (index < text.length) {
+    if (!isChineseChar(text[index])) {
+      const start = index
+      while (index < text.length && !isChineseChar(text[index])) index += 1
+      tokens.push({
+        id: `token-${tokenIndex}`,
+        text: text.slice(start, index),
+        index: tokenIndex,
+        isChinese: false,
+      })
+      tokenIndex += 1
+      continue
+    }
+
+    const match = longestWordMatch(text, index, maxWordLength, wordMap)
+    const segment = match?.text ?? firstChineseSegment(text.slice(index), segmenter)
+    tokens.push({
+      id: `token-${tokenIndex}`,
+      text: segment,
+      index: tokenIndex,
+      isChinese: true,
+      pinyin: match?.word.pinyin ?? pinyin(segment, { type: 'string', separator: ' ' }),
+      word: match?.word,
+    })
+    index += segment.length
+    tokenIndex += 1
+  }
+
+  return tokens.filter((token) => token.text.length > 0)
+}
+
+function longestWordMatch(
+  text: string,
+  start: number,
+  maxWordLength: number,
+  wordMap: Map<string, VocabWord>,
+): { text: string; word: VocabWord } | undefined {
+  for (let length = Math.min(maxWordLength, text.length - start); length > 0; length -= 1) {
+    const candidate = text.slice(start, start + length)
+    const word = wordMap.get(candidate)
+    if (word) return { text: candidate, word }
+  }
+  return undefined
+}
+
+function firstChineseSegment(text: string, segmenter?: Intl.Segmenter): string {
+  const segment = segmenter ? Array.from(segmenter.segment(text))[0]?.segment : undefined
+  if (segment && isChineseChar(segment[0])) return segment
+  return text[0] ?? ''
+}
+
+function isChineseChar(char: string): boolean {
+  return /[\u3400-\u9fff]/u.test(char)
 }
 
 function speakUtterance(text: string, rate: number, lang = detectSpeechLanguage(text)): Promise<void> {
@@ -2467,6 +3004,10 @@ function wordsToProgressCsv(words: VocabWord[]): string {
     'fsrsEase',
     'fsrsRepetitions',
     'fsrsLapses',
+    'fsrsState',
+    'fsrsStability',
+    'fsrsDifficulty',
+    'fsrsLearningSteps',
   ]
   const rows = words.map((word) =>
     [
@@ -2489,6 +3030,10 @@ function wordsToProgressCsv(words: VocabWord[]): string {
       word.fsrsEase ?? '',
       word.fsrsRepetitions ?? '',
       word.fsrsLapses ?? '',
+      word.fsrsState ?? '',
+      word.fsrsStability ?? '',
+      word.fsrsDifficulty ?? '',
+      word.fsrsLearningSteps ?? '',
     ].map(csvCell).join(','),
   )
   return [columns.join(','), ...rows].join('\n')
@@ -2601,16 +3146,13 @@ function getRecallStage(stepId: string): RecallStage {
 
 function buildActiveQuiz(
   segment: RenderedLessonSegment | undefined,
-  renderedLesson: RenderedLesson | null,
   lessonWords: VocabWord[],
   allWords: VocabWord[],
   allSentences: Sentence[],
 ): ActiveQuiz | undefined {
-  if (!segment || segment.kind !== 'pause') return undefined
+  if (!segment || segment.kind !== 'pause' || !segment.quiz) return undefined
 
-  if (segment.sentenceId && segment.stepId.startsWith('sentence-support-')) {
-    const sentenceIndex = getSentenceSupportIndex(segment.stepId)
-    if (sentenceIndex > 3) return undefined
+  if (segment.quiz.kind === 'sentence-zh-en' && segment.sentenceId) {
     const sentence = allSentences.find((candidate) => candidate.id === segment.sentenceId)
     if (!sentence) return undefined
     const linkedWord = lessonWords.find((word) => sentence.targetWords.includes(word.word))
@@ -2631,12 +3173,8 @@ function buildActiveQuiz(
   const word = lessonWords.find((candidate) => candidate.id === segment.wordId)
   if (!word) return undefined
 
-  if (segment.stepId.startsWith('contrast-') && segment.stepId.endsWith('-pause')) {
-    const prefix = segment.stepId.replace(/-pause$/, '')
-    const otherId = renderedLesson?.segments?.find(
-      (candidate) => candidate.stepId === `${prefix}-option-b`,
-    )?.wordId
-    const other = lessonWords.find((candidate) => candidate.id === otherId)
+  if (segment.quiz.kind === 'contrast') {
+    const other = lessonWords.find((candidate) => candidate.id === segment.quiz?.otherWordId)
     if (!other) return undefined
     return {
       id: segment.stepId,
@@ -2653,7 +3191,7 @@ function buildActiveQuiz(
     }
   }
 
-  if (segment.stepId.startsWith('mixed-audio-zh-')) {
+  if (segment.quiz.kind === 'audio-zh') {
     return {
       id: segment.stepId,
       kind: 'audio-zh',
@@ -2665,7 +3203,7 @@ function buildActiveQuiz(
     }
   }
 
-  if (segment.stepId.includes('-zh-en-') && !segment.stepId.startsWith('quick-')) {
+  if (segment.quiz.kind === 'zh-en') {
     return {
       id: segment.stepId,
       kind: 'zh-en',
@@ -2677,7 +3215,7 @@ function buildActiveQuiz(
     }
   }
 
-  if (segment.stepId.includes('-en-zh-') && !segment.stepId.startsWith('quick-')) {
+  if (segment.quiz.kind === 'en-zh') {
     return {
       id: segment.stepId,
       kind: 'en-zh',
@@ -2693,14 +3231,7 @@ function buildActiveQuiz(
 }
 
 function isQuizPauseSegment(segment: RenderedLessonSegment): boolean {
-  if (segment.kind !== 'pause') return false
-  if (segment.stepId.startsWith('sentence-support-')) return getSentenceSupportIndex(segment.stepId) <= 3
-  return (
-    segment.stepId.startsWith('word-block-') ||
-    segment.stepId.startsWith('mixed-') ||
-    segment.stepId.startsWith('contrast-') ||
-    segment.stepId.startsWith('rescue-')
-  )
+  return segment.kind === 'pause' && Boolean(segment.quiz)
 }
 
 function buildMeaningOptions(
@@ -2763,11 +3294,6 @@ function buildSentenceMeaningOptions(
     distractors,
     quizId,
   )
-}
-
-function getSentenceSupportIndex(stepId: string): number {
-  const match = /^sentence-support-(\d+)-/.exec(stepId)
-  return match ? Number(match[1]) : Number.MAX_SAFE_INTEGER
 }
 
 function orderOptions(options: ActiveQuiz['options'], seed: string): ActiveQuiz['options'] {

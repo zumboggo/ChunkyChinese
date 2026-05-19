@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-chinese-v19'
+const CACHE_VERSION = 'chunky-chinese-v20'
 // Change CACHE_VERSION whenever the app shell changes and you want browsers to
 // discard old cached files. The activate handler below removes older versions.
 const APP_BASE = new URL('./', self.location.href).pathname
@@ -13,6 +13,8 @@ const APP_SHELL = [
   `${APP_BASE}pwa-512.svg`,
   `${APP_BASE}seed/lms-vocab-188.csv`,
   `${APP_BASE}clip-packs/index.json`,
+  `${APP_BASE}reader-packs/index.json`,
+  `${APP_BASE}reader-packs/lms-books/reader_manifest.json`,
 ]
 
 self.addEventListener('install', (event) => {
@@ -108,6 +110,7 @@ function isStaticAppAsset(url) {
     url.pathname.startsWith(`${APP_BASE}assets/`) ||
     url.pathname.startsWith(`${APP_BASE}icons/`) ||
     url.pathname.startsWith(`${APP_BASE}seed/`) ||
+    (url.pathname.startsWith(`${APP_BASE}reader-packs/`) && !url.pathname.endsWith('.mp3')) ||
     url.pathname.endsWith('/manifest.webmanifest') ||
     url.pathname.endsWith('/service-worker.js') ||
     url.pathname.endsWith('.svg')

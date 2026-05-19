@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="zh-CN">
+  <voice name="zh-CN-XiaochenNeural">
+    <prosody rate="-5%">这一次，他不再只想“快点结束”，而是开始认真听，认真问，也认真把每个人的话放在一起想。</prosody>
+  </voice>
+</speak>

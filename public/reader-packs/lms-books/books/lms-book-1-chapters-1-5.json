@@ -1,0 +1,4038 @@
+{
+  "id": "lms-book-1-chapters-1-5",
+  "title": "LMS Book 1 Chapters 1-5",
+  "book": 1,
+  "chapterStart": 1,
+  "chapterEnd": 5,
+  "path": "books/lms-book-1-chapters-1-5.json",
+  "stories": [
+    {
+      "id": "b01c01-sell-old-account",
+      "title": "卖掉旧账号",
+      "book": 1,
+      "chapter": 1,
+      "sourceInspiration": "Book 1 Chapter 1",
+      "newWords": [
+        {
+          "word": "照顾",
+          "pinyin": "zhào gù",
+          "meaning": "to take care of"
+        },
+        {
+          "word": "担心",
+          "pinyin": "dān xīn",
+          "meaning": "to worry"
+        },
+        {
+          "word": "舍不得",
+          "pinyin": "shě bu de",
+          "meaning": "unable to let go"
+        },
+        {
+          "word": "愣",
+          "pinyin": "lèng",
+          "meaning": "to freeze for a moment"
+        },
+        {
+          "word": "松一口气",
+          "pinyin": "sōng yì kǒu qì",
+          "meaning": "to feel relieved"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "b01c01-sell-old-account-s01",
+          "storyId": "b01c01-sell-old-account",
+          "index": 1,
+          "chinese": "李贤家里一直没有很多钱。",
+          "pinyin": "lǐ xián jiā lǐ yì zhí méi yǒu hěn duō qián 。",
+          "english": "Lee Hyun's family has not had much money for a long time.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s01",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s01.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s01.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s02",
+          "storyId": "b01c01-sell-old-account",
+          "index": 2,
+          "chinese": "白天，他在加油站工作。",
+          "pinyin": "bái tiān ， tā zài jiā yóu zhàn gōng zuò 。",
+          "english": "During the day, he works at a gas station.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s02",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s02.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s02.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s03",
+          "storyId": "b01c01-sell-old-account",
+          "index": 3,
+          "chinese": "晚上，他回家以后，还要照顾奶奶和妹妹。",
+          "pinyin": "wǎn shàng ， tā huí jiā yǐ hòu ， hái yào zhào gù nǎi nai hé mèi mei 。",
+          "english": "At night, after he goes home, he still has to take care of his grandma and younger sister.",
+          "targetWords": [
+            "照顾"
+          ],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s03",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s03.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s03.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s04",
+          "storyId": "b01c01-sell-old-account",
+          "index": 4,
+          "chinese": "奶奶身体不好，最近常常生病。",
+          "pinyin": "nǎi nai shēn tǐ bù hǎo ， zuì jìn cháng cháng shēng bìng 。",
+          "english": "His grandma is not in good health and has often been sick lately.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s04",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s04.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s04.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s05",
+          "storyId": "b01c01-sell-old-account",
+          "index": 5,
+          "chinese": "妹妹虽然不说，可是李贤看得出来，她每天都在担心家里的钱。",
+          "pinyin": "mèi mei suī rán bù shuō ， kě shì lǐ xián kàn dé chū lái ， tā měi tiān dōu zài dān xīn jiā lǐ de qián 。",
+          "english": "His younger sister does not say it, but Lee Hyun can tell that she worries about the family's money every day.",
+          "targetWords": [
+            "担心"
+          ],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s05",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s05.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s05.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s06",
+          "storyId": "b01c01-sell-old-account",
+          "index": 6,
+          "chinese": "李贤自己也很急，可是他不喜欢把“我很难”放在脸上。",
+          "pinyin": "lǐ xián zì jǐ yě hěn jí ， kě shì tā bù xǐ huan bǎ “ wǒ hěn nán ” fàng zài liǎn shàng 。",
+          "english": "Lee Hyun is worried too, but he does not like to show how hard things are on his face.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s06",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s06.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s06.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s07",
+          "storyId": "b01c01-sell-old-account",
+          "index": 7,
+          "chinese": "他总是说“没事”，然后一个人想办法。",
+          "pinyin": "tā zǒng shì shuō “ méi shì ” ， rán hòu yí gè rén xiǎng bàn fǎ 。",
+          "english": "He always says, 'It's okay,' and then thinks of a solution by himself.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s07",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s07.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s07.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s08",
+          "storyId": "b01c01-sell-old-account",
+          "index": 8,
+          "chinese": "他还有一个旧游戏账号。",
+          "pinyin": "tā hái yǒu yí gè jiù yóu xì zhàng hào 。",
+          "english": "He still has an old game account.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s08",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s08.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s08.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s09",
+          "storyId": "b01c01-sell-old-account",
+          "index": 9,
+          "chinese": "那个账号陪了他很久。",
+          "pinyin": "nà ge zhàng hào péi le tā hěn jiǔ 。",
+          "english": "That account has been with him for a long time.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s09",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s09.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s09.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s10",
+          "storyId": "b01c01-sell-old-account",
+          "index": 10,
+          "chinese": "以前他最难过的时候，他常常打开电脑，看着那个账号，心里会安静一点。",
+          "pinyin": "yǐ qián tā zuì nán guò de shí hòu ， tā cháng cháng dǎ kāi diàn nǎo ， kàn zhe nà ge zhàng hào ， xīn lǐ huì ān jìng yì diǎn 。",
+          "english": "When he felt the saddest before, he often opened the computer and felt a little calmer looking at that account.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s10",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s10.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s10.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s11",
+          "storyId": "b01c01-sell-old-account",
+          "index": 11,
+          "chinese": "所以在他心里，那个账号不只是钱，也是他最后一点希望。",
+          "pinyin": "suǒ yǐ zài tā xīn lǐ ， nà ge zhàng hào bù zhǐ shì qián ， yě shì tā zuì hòu yì diǎn xī wàng 。",
+          "english": "So in his heart, that account is not only money, but also his last little bit of hope.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s11",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s11.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s11.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s12",
+          "storyId": "b01c01-sell-old-account",
+          "index": 12,
+          "chinese": "他一直告诉自己，只要这个账号还在，他就不算什么都没有。",
+          "pinyin": "tā yì zhí gào sù zì jǐ ， zhǐ yào zhè ge zhàng hào hái zài ， tā jiù bú suàn shén me dōu méi yǒu 。",
+          "english": "He keeps telling himself that as long as the account still exists, he does not count as having nothing.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s12",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s12.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s12.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s13",
+          "storyId": "b01c01-sell-old-account",
+          "index": 13,
+          "chinese": "可是有一天晚上，奶奶又病了。",
+          "pinyin": "kě shì yǒu yì tiān wǎn shàng ， nǎi nai yòu bìng le 。",
+          "english": "But one night, his grandma gets sick again.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s13",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s13.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s13.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s14",
+          "storyId": "b01c01-sell-old-account",
+          "index": 14,
+          "chinese": "妹妹小声问他：“明天买药的钱在哪里？”",
+          "pinyin": "mèi mei xiǎo shēng wèn tā ： “ míng tiān mǎi yào de qián zài nǎ lǐ ？ ”",
+          "english": "His younger sister softly asks, 'Where is the money for tomorrow's medicine?'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s14",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s14.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s14.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s15",
+          "storyId": "b01c01-sell-old-account",
+          "index": 15,
+          "chinese": "李贤没有马上回答。",
+          "pinyin": "lǐ xián méi yǒu mǎ shàng huí dá 。",
+          "english": "Lee Hyun does not answer right away.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s15",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s15.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s15.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s16",
+          "storyId": "b01c01-sell-old-account",
+          "index": 16,
+          "chinese": "他看着桌子上的卡，又看着房间里的奶奶，心里很乱。",
+          "pinyin": "tā kàn zhe zhuō zi shàng de kǎ ， yòu kàn zhe fáng jiān lǐ de nǎi nai ， xīn lǐ hěn luàn 。",
+          "english": "He looks at the card on the table, then at his grandma in the room, and feels very mixed up inside.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s16",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s16.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s16.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s17",
+          "storyId": "b01c01-sell-old-account",
+          "index": 17,
+          "chinese": "一个声音说：“不能卖。",
+          "pinyin": "yí gè shēng yīn shuō ： “ bù néng mài 。",
+          "english": "One voice says, 'You cannot sell it.'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s17",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s17.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s17.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s18",
+          "storyId": "b01c01-sell-old-account",
+          "index": 18,
+          "chinese": "卖了以后，你就真的什么都没有了。”",
+          "pinyin": "mài le yǐ hòu ， nǐ jiù zhēn de shén me dōu méi yǒu le 。 ”",
+          "english": "It says, 'If you sell it, then you really will have nothing left.'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s18",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s18.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s18.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s19",
+          "storyId": "b01c01-sell-old-account",
+          "index": 19,
+          "chinese": "另一个声音说：“如果不卖，家里怎么办？”",
+          "pinyin": "lìng yí gè shēng yīn shuō ： “ rú guǒ bú mài ， jiā lǐ zěn me bàn ？ ”",
+          "english": "Another voice says, 'If you do not sell it, what will happen to the family?'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s19",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s19.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s19.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s20",
+          "storyId": "b01c01-sell-old-account",
+          "index": 20,
+          "chinese": "他坐了很久，才慢慢明白，自己一直舍不得的不是游戏本身，而是那个“我还没有输”的感觉。",
+          "pinyin": "tā zuò le hěn jiǔ ， cái màn màn míng bái ， zì jǐ yì zhí shè bù dé de bú shì yóu xì běn shēn ， ér shì nà ge “ wǒ hái méi yǒu shū ” de gǎn jué 。",
+          "english": "He sits for a long time and slowly understands that what he cannot let go of is not the game itself, but the feeling that he has not lost yet.",
+          "targetWords": [
+            "舍不得"
+          ],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s20",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s20.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s20.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s21",
+          "storyId": "b01c01-sell-old-account",
+          "index": 21,
+          "chinese": "第二天，他去把旧账号卖了，把钱带回家。",
+          "pinyin": "dì èr tiān ， tā qù bǎ jiù zhàng hào mài le ， bǎ qián dài huí jiā 。",
+          "english": "The next day, he goes to sell the old account and brings the money home.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s21",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s21.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s21.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s22",
+          "storyId": "b01c01-sell-old-account",
+          "index": 22,
+          "chinese": "奶奶先愣了一下，然后轻轻笑了。",
+          "pinyin": "nǎi nai xiān lèng le yí xià ， rán hòu qīng qīng xiào le 。",
+          "english": "His grandma freezes for a moment first, then smiles softly.",
+          "targetWords": [
+            "愣"
+          ],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s22",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s22.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s22.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s23",
+          "storyId": "b01c01-sell-old-account",
+          "index": 23,
+          "chinese": "妹妹也终于松了一口气。",
+          "pinyin": "mèi mei yě zhōng yú sōng le yì kǒu qì 。",
+          "english": "His younger sister finally feels relieved too.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s23",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s23.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s23.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s24",
+          "storyId": "b01c01-sell-old-account",
+          "index": 24,
+          "chinese": "李贤心里还是有点空，可是那种空没有让他更怕。",
+          "pinyin": "lǐ xián xīn lǐ hái shì yǒu diǎn kōng ， kě shì nà zhǒng kōng méi yǒu ràng tā gèng pà 。",
+          "english": "Lee Hyun still feels a little empty, but that emptiness does not make him more afraid.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s24",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s24.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s24.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s25",
+          "storyId": "b01c01-sell-old-account",
+          "index": 25,
+          "chinese": "相反，他第一次觉得自己更稳了。",
+          "pinyin": "xiāng fǎn ， tā dì yī cì jué de zì jǐ gèng wěn le 。",
+          "english": "Instead, for the first time, he feels steadier.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s25",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s25.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s25.ssml"
+        },
+        {
+          "id": "b01c01-sell-old-account-s26",
+          "storyId": "b01c01-sell-old-account",
+          "index": 26,
+          "chinese": "他知道，真正让人安心的，不是手里留着什么东西，而是自己愿意为了家里去做对的事。",
+          "pinyin": "tā zhī dào ， zhēn zhèng ràng rén ān xīn de ， bú shì shǒu lǐ liú zhe shén me dōng xī ， ér shì zì jǐ yuàn yì wèi le jiā lǐ qù zuò duì de shì 。",
+          "english": "He knows that what truly makes a person feel calm is not keeping something in your hand, but being willing to do the right thing for your family.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-sell-old-account-s26",
+          "audioFilename": "audio/sentences/b01c01-sell-old-account-s26.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-sell-old-account-s26.ssml"
+        }
+      ]
+    },
+    {
+      "id": "b01c01-hide-tired-hands",
+      "title": "不想让妹妹看见的手",
+      "book": 1,
+      "chapter": 1,
+      "sourceInspiration": "Book 1 Chapter 1",
+      "newWords": [
+        {
+          "word": "擦伤",
+          "pinyin": "cā shāng",
+          "meaning": "scrape; abrasion"
+        },
+        {
+          "word": "伤口",
+          "pinyin": "shāng kǒu",
+          "meaning": "wound"
+        },
+        {
+          "word": "逞强",
+          "pinyin": "chěng qiáng",
+          "meaning": "to act tough"
+        },
+        {
+          "word": "包扎",
+          "pinyin": "bāo zā",
+          "meaning": "to bandage"
+        },
+        {
+          "word": "放心",
+          "pinyin": "fàng xīn",
+          "meaning": "to feel at ease"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "b01c01-hide-tired-hands-s01",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 1,
+          "chinese": "那天晚上，李贤比平常更晚回家。",
+          "pinyin": "nà tiān wǎn shàng ， lǐ xián bǐ píng cháng gèng wǎn huí jiā 。",
+          "english": "That night, Lee Hyun comes home later than usual.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s01",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s01.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s01.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s02",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 2,
+          "chinese": "他一开门，就先把手放到背后。",
+          "pinyin": "tā yì kāi mén ， jiù xiān bǎ shǒu fàng dào bèi hòu 。",
+          "english": "As soon as he opens the door, he puts his hands behind his back.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s02",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s02.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s02.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s03",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 3,
+          "chinese": "妹妹马上看了他一眼。",
+          "pinyin": "mèi mei mǎ shàng kàn le tā yì yǎn 。",
+          "english": "His younger sister looks at him right away.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s03",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s03.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s03.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s04",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 4,
+          "chinese": "李贤笑着说：“我回来了。”",
+          "pinyin": "lǐ xián xiào zhe shuō ： “ wǒ huí lái le 。 ”",
+          "english": "Lee Hyun smiles and says, 'I'm home.'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s04",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s04.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s04.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s05",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 5,
+          "chinese": "妹妹没有笑。",
+          "pinyin": "mèi mei méi yǒu xiào 。",
+          "english": "His younger sister does not smile.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s05",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s05.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s05.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s06",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 6,
+          "chinese": "她只问：“今天很累吗？”",
+          "pinyin": "tā zhī wèn ： “ jīn tiān hěn lèi ma ？ ”",
+          "english": "She only asks, 'Was today very tiring?'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s06",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s06.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s06.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s07",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 7,
+          "chinese": "李贤还是说：“没事。”",
+          "pinyin": "lǐ xián hái shì shuō ： “ méi shì 。 ”",
+          "english": "Lee Hyun still says, 'It's okay.'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s07",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s07.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s07.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s08",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 8,
+          "chinese": "其实他今天搬了很多东西。",
+          "pinyin": "qí shí tā jīn tiān bān le hěn duō dōng xī 。",
+          "english": "Actually, he carried many things today.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s08",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s08.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s08.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s09",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 9,
+          "chinese": "手上有两处小小的擦伤。",
+          "pinyin": "shǒu shàng yǒu liǎng chù xiǎo xiǎo de cā shāng 。",
+          "english": "There are two small scrapes on his hands.",
+          "targetWords": [
+            "擦伤"
+          ],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s09",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s09.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s09.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s10",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 10,
+          "chinese": "右手还有一个新的伤口。",
+          "pinyin": "yòu shǒu hái yǒu yí gè xīn de shāng kǒu 。",
+          "english": "There is also a new wound on his right hand.",
+          "targetWords": [
+            "伤口"
+          ],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s10",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s10.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s10.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s11",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 11,
+          "chinese": "刚才回来的路上，他一直在想，不能让妹妹看见。",
+          "pinyin": "gāng cái huí lái de lù shang ， tā yì zhí zài xiǎng ， bù néng ràng mèi mei kàn jiàn 。",
+          "english": "On the way home, he keeps thinking that he cannot let his sister see it.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s11",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s11.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s11.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s12",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 12,
+          "chinese": "在他心里，家里已经很难了。",
+          "pinyin": "zài tā xīn lǐ ， jiā lǐ yǐ jīng hěn nán le 。",
+          "english": "In his mind, home life is already hard enough.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s12",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s12.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s12.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s13",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 13,
+          "chinese": "如果连他也看起来很累，妹妹一定会更怕。",
+          "pinyin": "rú guǒ lián tā yě kàn qǐ lái hěn lèi ， mèi mei yí dìng huì gèng pà 。",
+          "english": "If even he looks worn out, his sister will surely be more afraid.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s13",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s13.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s13.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s14",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 14,
+          "chinese": "所以他一直有一个习惯。",
+          "pinyin": "suǒ yǐ tā yì zhí yǒu yí gè xí guàn 。",
+          "english": "So he has one habit.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s14",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s14.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s14.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s15",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 15,
+          "chinese": "不管多痛，都先说“没事”。",
+          "pinyin": "bù guǎn duō tòng ， dōu xiān shuō “ méi shì ” 。",
+          "english": "No matter how much it hurts, he first says, 'It's okay.'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s15",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s15.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s15.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s16",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 16,
+          "chinese": "妹妹去拿水的时候，李贤想快点回房间。",
+          "pinyin": "mèi mei qù ná shuǐ de shí hòu ， lǐ xián xiǎng kuài diǎn huí fáng jiān 。",
+          "english": "When his sister goes to get water, Lee Hyun wants to hurry to his room.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s16",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s16.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s16.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s17",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 17,
+          "chinese": "可是他一转身，手还是碰到了门边。",
+          "pinyin": "kě shì tā yì zhuǎn shēn ， shǒu hái shì pèng dào le mén biān 。",
+          "english": "But when he turns around, his hand still bumps the side of the door.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s17",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s17.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s17.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s18",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 18,
+          "chinese": "他马上吸了一口气。",
+          "pinyin": "tā mǎ shàng xī le yì kǒu qì 。",
+          "english": "He immediately sucks in a breath.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s18",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s18.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s18.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s19",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 19,
+          "chinese": "妹妹听见声音，立刻走了过来。",
+          "pinyin": "mèi mei tīng jiàn shēng yīn ， lì kè zǒu le guò lái 。",
+          "english": "His younger sister hears the sound and comes over at once.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s19",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s19.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s19.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s20",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 20,
+          "chinese": "她看见他的手，脸一下子白了。",
+          "pinyin": "tā kàn jiàn tā de shǒu ， liǎn yí xià zǐ bái le 。",
+          "english": "She sees his hand, and her face goes pale at once.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s20",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s20.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s20.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s21",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 21,
+          "chinese": "她小声说：“哥哥，你为什么不早说？”",
+          "pinyin": "tā xiǎo shēng shuō ： “ gē ge ， nǐ wèi shén me bù zǎo shuō ？ ”",
+          "english": "She softly says, 'Brother, why didn't you say so earlier?'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s21",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s21.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s21.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s22",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 22,
+          "chinese": "李贤本来还想笑一下。",
+          "pinyin": "lǐ xián běn lái hái xiǎng xiào yí xià 。",
+          "english": "Lee Hyun still wants to smile it off.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s22",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s22.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s22.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s23",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 23,
+          "chinese": "可是他看见妹妹的眼睛，突然说不出话。",
+          "pinyin": "kě shì tā kàn jiàn mèi mei de yǎn jīng ， tū rán shuō bù chū huà 。",
+          "english": "But when he sees his sister's eyes, he suddenly cannot speak.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s23",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s23.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s23.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s24",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 24,
+          "chinese": "他第一次想到，也许自己一直这样逞强，并没有让妹妹放心。",
+          "pinyin": "tā dì yí cì xiǎng dào ， yě xǔ zì jǐ yì zhí zhè yàng chěng qiáng ， bìng méi yǒu ràng mèi mei fàng xīn 。",
+          "english": "For the first time, he thinks that maybe acting tough like this has not actually reassured his sister.",
+          "targetWords": [
+            "逞强",
+            "放心"
+          ],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s24",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s24.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s24.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s25",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 25,
+          "chinese": "也许妹妹最怕的，不是伤口。",
+          "pinyin": "yě xǔ mèi mei zuì pà de ， bú shì shāng kǒu 。",
+          "english": "Maybe what she fears most is not the wound.",
+          "targetWords": [
+            "伤口"
+          ],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s25",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s25.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s25.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s26",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 26,
+          "chinese": "妹妹最怕的是，哥哥什么都不说。",
+          "pinyin": "mèi mei zuì pà de shì ， gē ge shén me dōu bù shuō 。",
+          "english": "What she fears most is that her brother says nothing.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s26",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s26.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s26.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s27",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 27,
+          "chinese": "李贤慢慢坐下，把手伸出来。",
+          "pinyin": "lǐ xián màn màn zuò xià ， bǎ shǒu shēn chū lái 。",
+          "english": "Lee Hyun slowly sits down and holds out his hand.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s27",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s27.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s27.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s28",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 28,
+          "chinese": "他说：“今天真的有一点痛。”",
+          "pinyin": "tā shuō ： “ jīn tiān zhēn de yǒu yì diǎn tòng 。 ”",
+          "english": "He says, 'Today it really does hurt a little.'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s28",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s28.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s28.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s29",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 29,
+          "chinese": "妹妹没有哭。",
+          "pinyin": "mèi mei méi yǒu kū 。",
+          "english": "His younger sister does not cry.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s29",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s29.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s29.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s30",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 30,
+          "chinese": "她只是去拿药，又认真帮他包扎。",
+          "pinyin": "tā zhǐ shì qù ná yào ， yòu rèn zhēn bāng tā bāo zā 。",
+          "english": "She only goes to get medicine and carefully bandages him.",
+          "targetWords": [
+            "包扎"
+          ],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s30",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s30.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s30.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s31",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 31,
+          "chinese": "包扎完以后，她说：“下次早点告诉我。”",
+          "pinyin": "bāo zā wán yǐ hòu ， tā shuō ： “ xià cì zǎo diǎn gào sù wǒ 。 ”",
+          "english": "After bandaging him, she says, 'Tell me earlier next time.'",
+          "targetWords": [
+            "包扎"
+          ],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s31",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s31.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s31.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s32",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 32,
+          "chinese": "李贤点了点头。",
+          "pinyin": "lǐ xián diǎn le diǎn tóu 。",
+          "english": "Lee Hyun nods.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s32",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s32.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s32.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s33",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 33,
+          "chinese": "那天晚上，他还是很累。",
+          "pinyin": "nà tiān wǎn shàng ， tā hái shì hěn lèi 。",
+          "english": "That night, he is still very tired.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s33",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s33.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s33.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s34",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 34,
+          "chinese": "可是他的心比平常更安静。",
+          "pinyin": "kě shì tā de xīn bǐ píng cháng gèng ān jìng 。",
+          "english": "But his heart is quieter than usual.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s34",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s34.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s34.ssml"
+        },
+        {
+          "id": "b01c01-hide-tired-hands-s35",
+          "storyId": "b01c01-hide-tired-hands",
+          "index": 35,
+          "chinese": "他终于明白，保护家里的人，不一定是什么都自己藏起来。",
+          "pinyin": "tā zhōng yú míng bái ， bǎo hù jiā lǐ de rén ， bù yí dìng shì shén me dōu zì jǐ cáng qǐ lái 。",
+          "english": "He finally understands that protecting your family does not always mean hiding everything by yourself.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c01-hide-tired-hands-s35",
+          "audioFilename": "audio/sentences/b01c01-hide-tired-hands-s35.mp3",
+          "ssmlFilename": "ssml/sentences/b01c01-hide-tired-hands-s35.ssml"
+        }
+      ]
+    },
+    {
+      "id": "b01c02-hit-the-scarecrow",
+      "title": "一直打稻草人的人",
+      "book": 1,
+      "chapter": 2,
+      "sourceInspiration": "Book 1 Chapter 2",
+      "newWords": [
+        {
+          "word": "热闹",
+          "pinyin": "rè nào",
+          "meaning": "lively"
+        },
+        {
+          "word": "运气",
+          "pinyin": "yùn qi",
+          "meaning": "luck"
+        },
+        {
+          "word": "愣住",
+          "pinyin": "lèng zhù",
+          "meaning": "to be stunned"
+        },
+        {
+          "word": "稳",
+          "pinyin": "wěn",
+          "meaning": "steady"
+        },
+        {
+          "word": "特别",
+          "pinyin": "tè bié",
+          "meaning": "special"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "b01c02-hit-the-scarecrow-s01",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 1,
+          "chinese": "杂草进入皇家之路以后，没有先去找热闹的地方，也没有急着去做简单任务。",
+          "pinyin": "zá cǎo jìn rù huáng jiā zhī lù yǐ hòu ， méi yǒu xiān qù zhǎo rè nào de dì fāng ， yě méi yǒu jí zhe qù zuò jiǎn dān rèn wu 。",
+          "english": "After Weed enters Royal Road, he does not first look for lively places and does not hurry to do easy quests.",
+          "targetWords": [
+            "热闹"
+          ],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s01",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s01.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s01.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s02",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 2,
+          "chinese": "他一到塞拉堡城，就先走进训练场。",
+          "pinyin": "tā yí dào sāi lā bǎo chéng ， jiù xiān zǒu jìn xùn liàn chǎng 。",
+          "english": "As soon as he arrives in Serabourg, he first walks into the training hall.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s02",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s02.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s02.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s03",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 3,
+          "chinese": "别的新手看了一圈，打几下训练稻草人，很快就走了。",
+          "pinyin": "bié de xīn shǒu kàn le yì quān ， dǎ jǐ xià xùn liàn dào cǎo rén ， hěn kuài jiù zǒu le 。",
+          "english": "Other beginners look around, hit the training scarecrow a few times, and leave quickly.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s03",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s03.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s03.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s04",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 4,
+          "chinese": "有人去市场，有人去找队友，还有人笑杂草。",
+          "pinyin": "yǒu rén qù shì chǎng ， yǒu rén qù zhǎo duì yǒu ， hái yǒu rén xiào zá cǎo 。",
+          "english": "Some people go to the market, some go to find teammates, and some laugh at Weed.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s04",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s04.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s04.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s05",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 5,
+          "chinese": "他们问：“你一直打这个木头人，要打到什么时候？”",
+          "pinyin": "tā men wèn ： “ nǐ yì zhí dǎ zhè ge mù tou rén ， yào dǎ dào shén me shí hòu ？ ”",
+          "english": "They ask, 'You keep hitting this wooden man. How long are you going to do that?'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s05",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s05.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s05.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s06",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 6,
+          "chinese": "杂草没有回话，只是继续拿着木剑，一下一下地打。",
+          "pinyin": "zá cǎo méi yǒu huí huà ， zhǐ shì jì xù ná zhe mù jiàn ， yí xià yi xià dì dǎ 。",
+          "english": "Weed does not answer. He just keeps holding the wooden sword and hitting again and again.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s06",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s06.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s06.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s07",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 7,
+          "chinese": "在别人眼里，这很奇怪。",
+          "pinyin": "zài bié rén yǎn lǐ ， zhè hěn qí guài 。",
+          "english": "In other people's eyes, this is very strange.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s07",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s07.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s07.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s08",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 8,
+          "chinese": "在杂草心里，这却很重要。",
+          "pinyin": "zài zá cǎo xīn lǐ ， zhè què hěn zhòng yào 。",
+          "english": "But in Weed's heart, this is very important.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s08",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s08.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s08.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s09",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 9,
+          "chinese": "他一直有一个想法：自己开始得太晚，钱也不多，运气也不会特别好。",
+          "pinyin": "tā yì zhí yǒu yí gè xiǎng fǎ ： zì jǐ kāi shǐ dé tài wǎn ， qián yě bù duō ， yùn qì yě bú huì tè bié hǎo 。",
+          "english": "He keeps thinking that he started too late, does not have much money, and will not have especially good luck.",
+          "targetWords": [
+            "运气",
+            "特别"
+          ],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s09",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s09.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s09.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s10",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 10,
+          "chinese": "如果不比别人更苦、更久、更能忍，他以后一定还是弱的人。",
+          "pinyin": "rú guǒ bù bǐ bié rén gèng kǔ 、 gèng jiǔ 、 gèng néng rěn ， tā yǐ hòu yí dìng hái shì ruò de rén 。",
+          "english": "If he is not more enduring and works longer than others, he will still be weak later.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s10",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s10.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s10.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s11",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 11,
+          "chinese": "所以他不肯停。",
+          "pinyin": "suǒ yǐ tā bù kěn tíng 。",
+          "english": "So he refuses to stop.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s11",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s11.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s11.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s12",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 12,
+          "chinese": "手痛了，他继续。",
+          "pinyin": "shǒu tòng le ， tā jì xù 。",
+          "english": "His hands hurt, and he continues.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s12",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s12.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s12.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s13",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 13,
+          "chinese": "肚子饿了，他继续。",
+          "pinyin": "dù zǐ è le ， tā jì xù 。",
+          "english": "He gets hungry, and he continues.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s13",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s13.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s13.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s14",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 14,
+          "chinese": "天黑了，他还是继续。",
+          "pinyin": "tiān hēi le ， tā hái shì jì xù 。",
+          "english": "It gets dark, and he still continues.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s14",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s14.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s14.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s15",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 15,
+          "chinese": "可是打得越久，他心里越乱。",
+          "pinyin": "kě shì dǎ dé yuè jiǔ ， tā xīn lǐ yuè luàn 。",
+          "english": "But the longer he keeps hitting, the more confused he feels inside.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s15",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s15.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s15.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s16",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 16,
+          "chinese": "他开始想：“我是不是太慢了？”",
+          "pinyin": "tā kāi shǐ xiǎng ： “ wǒ shì bu shì tài màn le ？ ”",
+          "english": "He starts to think, 'Am I too slow?'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s16",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s16.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s16.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s17",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 17,
+          "chinese": "他又想：“我是不是再练也没有用？”",
+          "pinyin": "tā yòu xiǎng ： “ wǒ shì bu shì zài liàn yě méi yǒu yòng ？ ”",
+          "english": "He also thinks, 'Even if I keep training, is it useless?'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s17",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s17.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s17.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s18",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 18,
+          "chinese": "教官一直在旁边看。",
+          "pinyin": "jiào guān yì zhí zài páng biān kàn 。",
+          "english": "The instructor keeps watching from the side.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s18",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s18.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s18.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s19",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 19,
+          "chinese": "教官没有马上说话。",
+          "pinyin": "jiào guān méi yǒu mǎ shàng shuō huà 。",
+          "english": "The instructor does not speak right away.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s19",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s19.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s19.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s20",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 20,
+          "chinese": "只在杂草快没有力气的时候，教官问了一句：“你是在练，还是只是在生气？”",
+          "pinyin": "zhī zài zá cǎo kuài méi yǒu lì qi de shí hòu ， jiào guān wèn le yí jù ： “ nǐ shì zài liàn ， hái shì zhǐ shì zài shēng qì ？ ”",
+          "english": "Only when Weed is nearly out of strength does the instructor ask, 'Are you training, or are you only being angry?'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s20",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s20.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s20.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s21",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 21,
+          "chinese": "这句话让杂草愣住了。",
+          "pinyin": "zhè jù huà ràng zá cǎo lèng zhù le 。",
+          "english": "That sentence stuns Weed.",
+          "targetWords": [
+            "愣住"
+          ],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s21",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s21.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s21.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s22",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 22,
+          "chinese": "他第一次停下来，看着手里的木剑，又看着前面的稻草人。",
+          "pinyin": "tā dì yī cì tíng xià lái ， kàn zhuó shǒu lǐ de mù jiàn ， yòu kàn zhe qián miàn de dào cǎo rén 。",
+          "english": "For the first time, he stops and looks at the wooden sword in his hand, then at the scarecrow in front of him.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s22",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s22.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s22.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s23",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 23,
+          "chinese": "杂草突然明白，一直乱打，不等于真正变强。",
+          "pinyin": "zá cǎo tū rán míng bái ， yì zhí luàn dǎ ， bù děng yú zhēn zhèng biàn qiáng 。",
+          "english": "Weed suddenly understands that wildly hitting all the time does not mean truly becoming stronger.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s23",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s23.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s23.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s24",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 24,
+          "chinese": "他不是在跟稻草人练，而是在跟自己心里的怕打。",
+          "pinyin": "tā bú shì zài gēn dào cǎo rén liàn ， ér shì zài gēn zì jǐ xīn lǐ de pà dǎ 。",
+          "english": "He is not really training against the scarecrow. He is fighting the fear inside himself.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s24",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s24.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s24.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s25",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 25,
+          "chinese": "从那以后，杂草还是继续练，可是方法变了。",
+          "pinyin": "cóng nà yǐ hòu ， zá cǎo hái shì jì xù liàn ， kě shì fāng fǎ biàn le 。",
+          "english": "After that, Weed still keeps training, but his method changes.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s25",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s25.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s25.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s26",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 26,
+          "chinese": "他先看，再想，然后再打。",
+          "pinyin": "tā xiān kàn ， zài xiǎng ， rán hòu zài dǎ 。",
+          "english": "He first looks, then thinks, and only then hits.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s26",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s26.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s26.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s27",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 27,
+          "chinese": "每一下都更稳，也更安静。",
+          "pinyin": "měi yí xià dōu gèng wěn ， yě gèng ān jìng 。",
+          "english": "Each strike is steadier and calmer.",
+          "targetWords": [
+            "稳"
+          ],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s27",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s27.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s27.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s28",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 28,
+          "chinese": "没过多久，教官走过来，把一个特别任务交给了他。",
+          "pinyin": "méi guò duō jiǔ ， jiào guān zǒu guò lái ， bǎ yí gè tè bié rèn wu jiāo gěi le tā 。",
+          "english": "Not long later, the instructor walks over and gives him a special quest.",
+          "targetWords": [
+            "特别"
+          ],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s28",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s28.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s28.ssml"
+        },
+        {
+          "id": "b01c02-hit-the-scarecrow-s29",
+          "storyId": "b01c02-hit-the-scarecrow",
+          "index": 29,
+          "chinese": "那一刻，杂草才知道，真正让人变强的，不只是吃苦，也是愿意改自己。",
+          "pinyin": "nà yí kè ， zá cǎo cái zhī dào ， zhēn zhèng ràng rén biàn qiáng de ， bù zhǐ shì chī kǔ ， yě shì yuàn yì gǎi zì jǐ 。",
+          "english": "At that moment, Weed finally knows that what truly makes a person strong is not only enduring hardship, but also being willing to change yourself.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-hit-the-scarecrow-s29",
+          "audioFilename": "audio/sentences/b01c02-hit-the-scarecrow-s29.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-hit-the-scarecrow-s29.ssml"
+        }
+      ]
+    },
+    {
+      "id": "b01c02-last-one-in-the-yard",
+      "title": "训练场最后一个人",
+      "book": 1,
+      "chapter": 2,
+      "sourceInspiration": "Book 1 Chapter 2",
+      "newWords": [
+        {
+          "word": "动作",
+          "pinyin": "dòng zuò",
+          "meaning": "movement; action"
+        },
+        {
+          "word": "重复",
+          "pinyin": "chóng fù",
+          "meaning": "to repeat"
+        },
+        {
+          "word": "提醒",
+          "pinyin": "tí xǐng",
+          "meaning": "to remind"
+        },
+        {
+          "word": "开口",
+          "pinyin": "kāi kǒu",
+          "meaning": "to speak up"
+        },
+        {
+          "word": "合适",
+          "pinyin": "hé shì",
+          "meaning": "suitable"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "b01c02-last-one-in-the-yard-s01",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 1,
+          "chinese": "那一天，训练场里的人一个一个走了。",
+          "pinyin": "nà yì tiān ， xùn liàn chǎng lǐ de rén yí gè yi gè zǒu le 。",
+          "english": "That day, the people in the training yard leave one by one.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s01",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s01.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s01.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s02",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 2,
+          "chinese": "有人去吃饭，有人去接任务。",
+          "pinyin": "yǒu rén qù chī fàn ， yǒu rén qù jiē rèn wu 。",
+          "english": "Some go to eat, and some go to take quests.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s02",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s02.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s02.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s03",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 3,
+          "chinese": "最后只剩下杂草。",
+          "pinyin": "zuì hòu zhī shèng xià zá cǎo 。",
+          "english": "In the end, only Weed is left.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s03",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s03.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s03.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s04",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 4,
+          "chinese": "他站在木头人前面，反复练同一个动作。",
+          "pinyin": "tā zhàn zài mù tou rén qián miàn ， fǎn fù liàn tóng yí gè dòng zuò 。",
+          "english": "He stands in front of the wooden dummy and repeats the same movement.",
+          "targetWords": [
+            "动作"
+          ],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s04",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s04.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s04.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s05",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 5,
+          "chinese": "可是练了很久，还是不对。",
+          "pinyin": "kě shì liàn le hěn jiǔ ， hái shì bú duì 。",
+          "english": "But even after practicing for a long time, it is still not right.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s05",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s05.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s05.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s06",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 6,
+          "chinese": "木剑总是偏一点。",
+          "pinyin": "mù jiàn zǒng shì piān yì diǎn 。",
+          "english": "The wooden sword is always a little off.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s06",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s06.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s06.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s07",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 7,
+          "chinese": "脚也总是慢半步。",
+          "pinyin": "jiǎo yě zǒng shì màn bàn bù 。",
+          "english": "His foot is also always half a beat too slow.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s07",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s07.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s07.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s08",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 8,
+          "chinese": "教官在远处看着，没有马上过来。",
+          "pinyin": "jiào guān zài yuǎn chù kàn zhe ， méi yǒu mǎ shàng guò lái 。",
+          "english": "The instructor watches from far away and does not come over immediately.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s08",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s08.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s08.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s09",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 9,
+          "chinese": "杂草心里很急。",
+          "pinyin": "zá cǎo xīn lǐ hěn jí 。",
+          "english": "Weed feels very anxious inside.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s09",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s09.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s09.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s10",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 10,
+          "chinese": "他知道自己做得不对。",
+          "pinyin": "tā zhī dào zì jǐ zuò dé bú duì 。",
+          "english": "He knows he is doing it wrong.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s10",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s10.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s10.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s11",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 11,
+          "chinese": "可是他不想问。",
+          "pinyin": "kě shì tā bù xiǎng wèn 。",
+          "english": "But he does not want to ask.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s11",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s11.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s11.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s12",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 12,
+          "chinese": "在他心里，自己如果连这种事都要问，说明自己太弱。",
+          "pinyin": "zài tā xīn lǐ ， zì jǐ rú guǒ lián zhè zhǒng shì dōu yào wèn ， shuō míng zì jǐ tài ruò 。",
+          "english": "In his mind, if he has to ask even about this, it means he is too weak.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s12",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s12.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s12.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s13",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 13,
+          "chinese": "所以他只是一直重复。",
+          "pinyin": "suǒ yǐ tā zhǐ shì yì zhí chóng fù 。",
+          "english": "So he only keeps repeating it.",
+          "targetWords": [
+            "重复"
+          ],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s13",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s13.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s13.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s14",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 14,
+          "chinese": "一次不行，就再来一次。",
+          "pinyin": "yí cì bù xíng ， jiù zài lái yí cì 。",
+          "english": "If it does not work once, he tries again.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s14",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s14.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s14.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s15",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 15,
+          "chinese": "十次不行，就再来十次。",
+          "pinyin": "shí cì bù xíng ， jiù zài lái shí cì 。",
+          "english": "If it does not work ten times, he does ten more.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s15",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s15.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s15.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s16",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 16,
+          "chinese": "可是越这样，他的身体越硬。",
+          "pinyin": "kě shì yuè zhè yàng ， tā de shēn tǐ yuè yìng 。",
+          "english": "But the more he does this, the stiffer his body becomes.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s16",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s16.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s16.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s17",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 17,
+          "chinese": "心里也越烦。",
+          "pinyin": "xīn lǐ yě yuè fán 。",
+          "english": "His mind also becomes more irritated.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s17",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s17.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s17.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s18",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 18,
+          "chinese": "后来，教官终于走过来。",
+          "pinyin": "hòu lái ， jiào guān zhōng yú zǒu guò lái 。",
+          "english": "Later, the instructor finally walks over.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s18",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s18.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s18.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s19",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 19,
+          "chinese": "教官没有笑他。",
+          "pinyin": "jiào guān méi yǒu xiào tā 。",
+          "english": "The instructor does not laugh at him.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s19",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s19.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s19.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s20",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 20,
+          "chinese": "教官只是说：“你的手太紧了。”",
+          "pinyin": "jiào guān zhǐ shì shuō ： “ nǐ de shǒu tài jǐn le 。 ”",
+          "english": "The instructor only says, 'Your hand is too tight.'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s20",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s20.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s20.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s21",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 21,
+          "chinese": "杂草听见以后，脸一下子热了。",
+          "pinyin": "zá cǎo tīng jiàn yǐ hòu ， liǎn yí xià zǐ rè le 。",
+          "english": "After hearing that, Weed's face suddenly feels hot.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s21",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s21.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s21.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s22",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 22,
+          "chinese": "因为这句话很简单。",
+          "pinyin": "yīn wèi zhè jù huà hěn jiǎn dān 。",
+          "english": "Because the sentence is very simple.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s22",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s22.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s22.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s23",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 23,
+          "chinese": "简单得像他早一点开口就能得到。",
+          "pinyin": "jiǎn dān dé xiàng tā zǎo yì diǎn kāi kǒu jiù néng dé dào 。",
+          "english": "It is so simple that he could have gotten it earlier if he had spoken up.",
+          "targetWords": [
+            "开口"
+          ],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s23",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s23.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s23.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s24",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 24,
+          "chinese": "教官又提醒他说：“不是一直用力，就会更强。”",
+          "pinyin": "jiào guān yòu tí xǐng tā shuō ： “ bú shì yì zhí yòng lì ， jiù huì gèng qiáng 。 ”",
+          "english": "The instructor reminds him again, 'Using force all the time will not make you stronger.'",
+          "targetWords": [
+            "提醒"
+          ],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s24",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s24.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s24.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s25",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 25,
+          "chinese": "“合适的时候放松，动作才会对。”",
+          "pinyin": "“ hé shì de shí hòu fàng sōng ， dòng zuò cái huì duì 。 ”",
+          "english": "'Only when you relax at the right time will the movement be correct.'",
+          "targetWords": [
+            "动作",
+            "合适"
+          ],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s25",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s25.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s25.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s26",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 26,
+          "chinese": "杂草这一次没有装作没听见。",
+          "pinyin": "zá cǎo zhè yí cì méi yǒu zhuāng zuò méi tīng jiàn 。",
+          "english": "This time, Weed does not pretend he did not hear it.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s26",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s26.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s26.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s27",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 27,
+          "chinese": "他低声问：“那我应该先看哪里？”",
+          "pinyin": "tā dī shēng wèn ： “ nà wǒ yīng gāi xiān kàn nǎ lǐ ？ ”",
+          "english": "He quietly asks, 'Then where should I look first?'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s27",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s27.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s27.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s28",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 28,
+          "chinese": "教官指了指他的手，又指了指他的脚。",
+          "pinyin": "jiào guān zhǐ le zhǐ tā de shǒu ， yòu zhǐ le zhǐ tā de jiǎo 。",
+          "english": "The instructor points at his hand and then at his foot.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s28",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s28.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s28.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s29",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 29,
+          "chinese": "杂草再练一次的时候，真的比刚才顺了很多。",
+          "pinyin": "zá cǎo zài liàn yí cì de shí hòu ， zhēn de bǐ gāng cái shùn le hěn duō 。",
+          "english": "When Weed practices again, it really feels much smoother than before.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s29",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s29.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s29.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s30",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 30,
+          "chinese": "那一刻他才明白，自己刚才不是在坚持。",
+          "pinyin": "nà yí kè tā cái míng bái ， zì jǐ gāng cái bú shì zài jiān chí 。",
+          "english": "At that moment, he finally understands that what he was doing before was not real perseverance.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s30",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s30.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s30.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s31",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 31,
+          "chinese": "自己刚才只是不肯承认，别人也能帮他变强。",
+          "pinyin": "zì jǐ gāng cái zhǐ shì bù kěn chéng rèn ， bié rén yě néng bāng tā biàn qiáng 。",
+          "english": "Before, he simply refused to admit that other people could also help him become stronger.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s31",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s31.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s31.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s32",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 32,
+          "chinese": "训练场里还是只有他一个人。",
+          "pinyin": "xùn liàn chǎng lǐ hái shì zhǐ yǒu tā yí gè rén 。",
+          "english": "There is still only him in the training yard.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s32",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s32.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s32.ssml"
+        },
+        {
+          "id": "b01c02-last-one-in-the-yard-s33",
+          "storyId": "b01c02-last-one-in-the-yard",
+          "index": 33,
+          "chinese": "可是这一次，他不再觉得一个人就一定要什么都自己扛。",
+          "pinyin": "kě shì zhè yí cì ， tā bú zài jué de yí gè rén jiù yí dìng yào shén me dōu zì jǐ káng 。",
+          "english": "But this time, he no longer feels that being alone means carrying everything by himself.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c02-last-one-in-the-yard-s33",
+          "audioFilename": "audio/sentences/b01c02-last-one-in-the-yard-s33.mp3",
+          "ssmlFilename": "ssml/sentences/b01c02-last-one-in-the-yard-s33.ssml"
+        }
+      ]
+    },
+    {
+      "id": "b01c03-listen-to-the-story",
+      "title": "不想听故事的人",
+      "book": 1,
+      "chapter": 3,
+      "sourceInspiration": "Book 1 Chapter 3",
+      "newWords": [
+        {
+          "word": "浪费",
+          "pinyin": "làng fèi",
+          "meaning": "to waste"
+        },
+        {
+          "word": "忽然",
+          "pinyin": "hū rán",
+          "meaning": "suddenly"
+        },
+        {
+          "word": "清楚",
+          "pinyin": "qīng chu",
+          "meaning": "clear"
+        },
+        {
+          "word": "麻烦",
+          "pinyin": "má fan",
+          "meaning": "trouble"
+        },
+        {
+          "word": "安静",
+          "pinyin": "ān jìng",
+          "meaning": "quiet"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "b01c03-listen-to-the-story-s01",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 1,
+          "chinese": "杂草为了一个关于月光的任务，先去找雕刻店的店主，又去酒馆找吟游诗人，后来还去找旧女仆。",
+          "pinyin": "zá cǎo wèi le yí gè guān yú yuè guāng de rèn wu ， xiān qù zhǎo diāo kè diàn de diàn zhǔ ， yòu qù jiǔ guǎn zhǎo yín yóu shī rén ， hòu lái hái qù zhǎo jiù nǚ pú 。",
+          "english": "For a quest about moonlight, Weed first goes to the sculpture shop keeper, then to the tavern bard, and later to the old maid.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s01",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s01.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s01.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s02",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 2,
+          "chinese": "每个人都只说一点点，没有一个人把话一次说完。",
+          "pinyin": "měi gè rén dōu zhī shuō yì diǎn diǎn ， méi yǒu yí gè rén bǎ huà yí cì shuō wán 。",
+          "english": "Each person says only a little. No one says everything at once.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s02",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s02.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s02.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s03",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 3,
+          "chinese": "杂草本来就不是喜欢听故事的人。",
+          "pinyin": "zá cǎo běn lái jiù bú shì xǐ huan tīng gù shì de rén 。",
+          "english": "Weed was never a person who liked listening to stories.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s03",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s03.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s03.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s04",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 4,
+          "chinese": "他觉得故事太慢，也太远。",
+          "pinyin": "tā jué de gù shì tài màn ， yě tài yuǎn 。",
+          "english": "He feels stories are too slow and too far away.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s04",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s04.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s04.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s05",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 5,
+          "chinese": "故事不能马上变成钱，也不能马上让人变强。",
+          "pinyin": "gù shì bù néng mǎ shàng biàn chéng qián ， yě bù néng mǎ shàng ràng rén biàn qiáng 。",
+          "english": "Stories cannot immediately turn into money, and they cannot immediately make a person stronger.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s05",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s05.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s05.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s06",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 6,
+          "chinese": "所以他一开始只想快点听完，快点离开。",
+          "pinyin": "suǒ yǐ tā yì kāi shǐ zhī xiǎng kuài diǎn tīng wán ， kuài diǎn lí kāi 。",
+          "english": "So at first he only wants to hear it quickly and leave quickly.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s06",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s06.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s06.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s07",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 7,
+          "chinese": "可是事情没有那么简单。",
+          "pinyin": "kě shì shì qíng méi yǒu nà me jiǎn dān 。",
+          "english": "But things are not that simple.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s07",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s07.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s07.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s08",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 8,
+          "chinese": "店主只告诉他王宫里有一个旧传说。",
+          "pinyin": "diàn zhǔ zhī gào sù tā wáng gōng lǐ yǒu yí gè jiù chuán shuō 。",
+          "english": "The shopkeeper only tells him that there is an old legend in the royal palace.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s08",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s08.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s08.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s09",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 9,
+          "chinese": "吟游诗人只唱了几句歌。",
+          "pinyin": "yín yóu shī rén zhī chàng le jǐ jù gē 。",
+          "english": "The bard sings only a few lines.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s09",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s09.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s09.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s10",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 10,
+          "chinese": "旧女仆又一直说从前的事。",
+          "pinyin": "jiù nǚ pú yòu yì zhí shuō cóng qián de shì 。",
+          "english": "The old maid keeps talking about things from the past.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s10",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s10.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s10.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s11",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 11,
+          "chinese": "杂草越听越烦，差一点就想走。",
+          "pinyin": "zá cǎo yuè tīng yuè fán ， chà yì diǎn jiù xiǎng zǒu 。",
+          "english": "The more Weed listens, the more annoyed he gets, and he almost wants to leave.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s11",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s11.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s11.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s12",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 12,
+          "chinese": "他心里一直有一个想法：只有马上有用的东西，才值得花时间。",
+          "pinyin": "tā xīn lǐ yì zhí yǒu yí gè xiǎng fǎ ： zhǐ yǒu mǎ shàng yǒu yòng de dōng xī ， cái zhí dé huā shí jiān 。",
+          "english": "He keeps thinking that only things that are useful right away are worth spending time on.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s12",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s12.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s12.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s13",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 13,
+          "chinese": "听这些旧话，太浪费时间了。",
+          "pinyin": "tīng zhè xiē jiù huà ， tài làng fèi shí jiān le 。",
+          "english": "Listening to all these old words is too much of a waste of time.",
+          "targetWords": [
+            "浪费"
+          ],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s13",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s13.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s13.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s14",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 14,
+          "chinese": "但当他真的站起来准备离开时，他忽然想到自己在训练场的日子。",
+          "pinyin": "dàn dāng tā zhēn de zhàn qǐ lái zhǔn bèi lí kāi shí ， tā hū rán xiǎng dào zì jǐ zài xùn liàn chǎng de rì zi 。",
+          "english": "But when he really stands up to leave, he suddenly thinks about his days in the training hall.",
+          "targetWords": [
+            "忽然"
+          ],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s14",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s14.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s14.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s15",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 15,
+          "chinese": "那时候，别人也觉得打稻草人没有用。",
+          "pinyin": "nà shí hòu ， bié rén yě jué de dǎ dào cǎo rén méi yǒu yòng 。",
+          "english": "At that time, other people also thought hitting the scarecrow was useless.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s15",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s15.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s15.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s16",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 16,
+          "chinese": "可是正是那些看起来没用的时间，让他后来拿到了任务。",
+          "pinyin": "kě shì zhèng shì nà xiē kàn qǐ lái méi yòng de shí jiān ， ràng tā hòu lái ná dào le rèn wu 。",
+          "english": "But it was exactly that seemingly useless time that later got him the quest.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s16",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s16.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s16.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s17",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 17,
+          "chinese": "想到这里，他又坐下来了。",
+          "pinyin": "xiǎng dào zhè lǐ ， tā yòu zuò xià lái le 。",
+          "english": "When he thinks of this, he sits back down.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s17",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s17.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s17.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s18",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 18,
+          "chinese": "这一次，他不再只想“快点结束”，而是开始认真听，认真问，也认真把每个人的话放在一起想。",
+          "pinyin": "zhè yí cì ， tā bú zài zhī xiǎng “ kuài diǎn jié shù ” ， ér shì kāi shǐ rèn zhēn tīng ， rèn zhēn wèn ， yě rèn zhēn bǎ měi gè rén de huà fàng zài yì qǐ xiǎng 。",
+          "english": "This time, he no longer only wants it to end quickly. He starts to listen carefully, ask carefully, and think carefully about everyone's words together.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s18",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s18.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s18.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s19",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 19,
+          "chinese": "慢慢地，一条线在他眼前清楚起来。",
+          "pinyin": "màn màn dì ， yì tiáo xiàn zài tā yǎn qián qīng chǔ qǐ lái 。",
+          "english": "Slowly, one line becomes clear in front of him.",
+          "targetWords": [
+            "清楚"
+          ],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s19",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s19.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s19.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s20",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 20,
+          "chinese": "月光不是普通的名字，扎哈布也不是普通的雕刻家。",
+          "pinyin": "yuè guāng bú shì pǔ tōng de míng zì ， zhā hā bù yě bú shì pǔ tōng de diāo kè jiā 。",
+          "english": "Moonlight is not an ordinary name, and Zahab is not an ordinary sculptor.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s20",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s20.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s20.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s21",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 21,
+          "chinese": "那份约定、那个夜晚、那把像剑一样的雕刻刀，原来都连在一起。",
+          "pinyin": "nà fèn yuē dìng 、 nà ge yè wǎn 、 nà bǎ xiàng jiàn yí yàng de diāo kè dāo ， yuán lái dōu lián zài yì qǐ 。",
+          "english": "That promise, that night, and that sculpting knife like a sword all turn out to be connected.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s21",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s21.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s21.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s22",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 22,
+          "chinese": "最后，杂草得到了月光雕刻师的路。",
+          "pinyin": "zuì hòu ， zá cǎo dé dào le yuè guāng diāo kè shī de lù 。",
+          "english": "In the end, Weed finds the path of the Moonlight Sculptor.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s22",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s22.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s22.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s23",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 23,
+          "chinese": "以前的他也许会因为怕麻烦而转身就走，这一次他却没有。",
+          "pinyin": "yǐ qián de tā yě xǔ huì yīn wèi pà má fán ér zhuǎn shēn jiù zǒu ， zhè yí cì tā què méi yǒu 。",
+          "english": "In the past, he might have turned around and left because he feared trouble, but this time he does not.",
+          "targetWords": [
+            "麻烦"
+          ],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s23",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s23.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s23.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s24",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 24,
+          "chinese": "他终于明白，有些最好的东西，不会大声叫你过去。",
+          "pinyin": "tā zhōng yú míng bái ， yǒu xiē zuì hǎo de dōng xī ， bú huì dà shēng jiào nǐ guò qù 。",
+          "english": "He finally understands that some of the best things do not loudly call you over.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s24",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s24.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s24.ssml"
+        },
+        {
+          "id": "b01c03-listen-to-the-story-s25",
+          "storyId": "b01c03-listen-to-the-story",
+          "index": 25,
+          "chinese": "你要先安静下来，才会真的听见。",
+          "pinyin": "nǐ yào xiān ān jìng xià lái ， cái huì zhēn de tīng jiàn 。",
+          "english": "You have to become quiet first before you can really hear.",
+          "targetWords": [
+            "安静"
+          ],
+          "audioClipId": "reader-sentence:b01c03-listen-to-the-story-s25",
+          "audioFilename": "audio/sentences/b01c03-listen-to-the-story-s25.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-listen-to-the-story-s25.ssml"
+        }
+      ]
+    },
+    {
+      "id": "b01c03-last-old-sentence",
+      "title": "最后一句旧话",
+      "book": 1,
+      "chapter": 3,
+      "sourceInspiration": "Book 1 Chapter 3",
+      "newWords": [
+        {
+          "word": "线索",
+          "pinyin": "xiàn suǒ",
+          "meaning": "clue"
+        },
+        {
+          "word": "耐心",
+          "pinyin": "nài xīn",
+          "meaning": "patience"
+        },
+        {
+          "word": "提到",
+          "pinyin": "tí dào",
+          "meaning": "to mention"
+        },
+        {
+          "word": "记下",
+          "pinyin": "jì xià",
+          "meaning": "to write down"
+        },
+        {
+          "word": "差不多",
+          "pinyin": "chà bu duō",
+          "meaning": "almost; nearly"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "b01c03-last-old-sentence-s01",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 1,
+          "chinese": "杂草找到旧女仆的时候，天已经不早了。",
+          "pinyin": "zá cǎo zhǎo dào jiù nǚ pú de shí hòu ， tiān yǐ jīng bù zǎo le 。",
+          "english": "By the time Weed finds the old maid, it is already getting late.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s01",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s01.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s01.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s02",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 2,
+          "chinese": "旧女仆走得很慢，说话也很慢。",
+          "pinyin": "jiù nǚ pú zǒu dé hěn màn ， shuō huà yě hěn màn 。",
+          "english": "The old maid walks slowly and also speaks slowly.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s02",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s02.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s02.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s03",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 3,
+          "chinese": "她先说王宫的花。",
+          "pinyin": "tā xiān shuō wáng gōng de huā 。",
+          "english": "She first talks about the flowers in the palace.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s03",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s03.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s03.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s04",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 4,
+          "chinese": "后来又说以前的天气。",
+          "pinyin": "hòu lái yòu shuō yǐ qián de tiān qì 。",
+          "english": "Later she talks about the weather in the past.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s04",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s04.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s04.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s05",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 5,
+          "chinese": "再后来，她开始说一个很久以前的晚上。",
+          "pinyin": "zài hòu lái ， tā kāi shǐ shuō yí gè hěn jiǔ yǐ qián de wǎn shàng 。",
+          "english": "After that, she starts talking about a night from long ago.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s05",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s05.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s05.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s06",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 6,
+          "chinese": "杂草一开始还认真听。",
+          "pinyin": "zá cǎo yì kāi shǐ hái rèn zhēn tīng 。",
+          "english": "At first, Weed listens seriously.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s06",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s06.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s06.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s07",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 7,
+          "chinese": "可是听了一会儿以后，他心里又急了。",
+          "pinyin": "kě shì tīng le yí huì er yǐ hòu ， tā xīn lǐ yòu jí le 。",
+          "english": "But after listening for a while, he becomes impatient again.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s07",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s07.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s07.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s08",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 8,
+          "chinese": "他觉得真正的线索一定早就说完了。",
+          "pinyin": "tā jué de zhēn zhèng de xiàn suǒ yí dìng zǎo jiù shuō wán le 。",
+          "english": "He feels that the real clue must already have been said.",
+          "targetWords": [
+            "线索"
+          ],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s08",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s08.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s08.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s09",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 9,
+          "chinese": "后面这些旧话，只是在拖时间。",
+          "pinyin": "hòu miàn zhè xiē jiù huà ， zhǐ shì zài tuō shí jiān 。",
+          "english": "These old words afterward are only dragging out time.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s09",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s09.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s09.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s10",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 10,
+          "chinese": "他站起来一次。",
+          "pinyin": "tā zhàn qǐ lái yí cì 。",
+          "english": "He stands up once.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s10",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s10.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s10.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s11",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 11,
+          "chinese": "可是旧女仆没有看他。",
+          "pinyin": "kě shì jiù nǚ pú méi yǒu kàn tā 。",
+          "english": "But the old maid does not look at him.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s11",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s11.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s11.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s12",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 12,
+          "chinese": "她还是慢慢往下说。",
+          "pinyin": "tā hái shì màn màn wǎng xià shuō 。",
+          "english": "She simply keeps talking slowly.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s12",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s12.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s12.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s13",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 13,
+          "chinese": "杂草又坐下。",
+          "pinyin": "zá cǎo yòu zuò xià 。",
+          "english": "Weed sits down again.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s13",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s13.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s13.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s14",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 14,
+          "chinese": "他告诉自己，再听一点。",
+          "pinyin": "tā gào sù zì jǐ ， zài tīng yì diǎn 。",
+          "english": "He tells himself to listen a little longer.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s14",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s14.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s14.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s15",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 15,
+          "chinese": "可是再过一会儿，他又差不多想走。",
+          "pinyin": "kě shì zài guò yí huì er ， tā yòu chà bù duō xiǎng zǒu 。",
+          "english": "But after a little more time, he almost wants to leave again.",
+          "targetWords": [
+            "差不多"
+          ],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s15",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s15.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s15.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s16",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 16,
+          "chinese": "在他心里，耐心一直不是很有用的东西。",
+          "pinyin": "zài tā xīn lǐ ， nài xīn yì zhí bú shì hěn yǒu yòng de dōng xī 。",
+          "english": "In his mind, patience has never been a very useful thing.",
+          "targetWords": [
+            "耐心"
+          ],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s16",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s16.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s16.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s17",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 17,
+          "chinese": "他更相信快一点、准一点。",
+          "pinyin": "tā gèng xiāng xìn kuài yì diǎn 、 zhǔn yì diǎn 。",
+          "english": "He trusts speed and accuracy more.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s17",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s17.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s17.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s18",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 18,
+          "chinese": "可就在他准备第二次站起来的时候，旧女仆忽然提到了一把刀。",
+          "pinyin": "kě jiù zài tā zhǔn bèi dì èr cì zhàn qǐ lái de shí hòu ， jiù nǚ pú hū rán tí dào le yì bǎ dāo 。",
+          "english": "But just as he gets ready to stand up a second time, the old maid suddenly mentions a knife.",
+          "targetWords": [
+            "提到"
+          ],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s18",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s18.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s18.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s19",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 19,
+          "chinese": "那不是普通的刀。",
+          "pinyin": "nà bú shì pǔ tōng de dāo 。",
+          "english": "It is not an ordinary knife.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s19",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s19.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s19.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s20",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 20,
+          "chinese": "那把刀只在月亮很亮的晚上出现。",
+          "pinyin": "nà bǎ dāo zhī zài yuè liàng hěn liàng de wǎn shàng chū xiàn 。",
+          "english": "That knife appears only on nights when the moon is bright.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s20",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s20.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s20.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s21",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 21,
+          "chinese": "杂草一下子坐直了。",
+          "pinyin": "zá cǎo yí xià zǐ zuò zhí le 。",
+          "english": "Weed suddenly sits up straight.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s21",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s21.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s21.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s22",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 22,
+          "chinese": "旧女仆说得还是很慢。",
+          "pinyin": "jiù nǚ pú shuō dé hái shì hěn màn 。",
+          "english": "The old maid is still speaking slowly.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s22",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s22.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s22.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s23",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 23,
+          "chinese": "可是杂草这一次一句也不敢漏。",
+          "pinyin": "kě shì zá cǎo zhè yí cì yí jù yě bù gǎn lòu 。",
+          "english": "But this time, Weed does not dare miss a single sentence.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s23",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s23.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s23.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s24",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 24,
+          "chinese": "他甚至开始把几个重要的词记下。",
+          "pinyin": "tā shèn zhì kāi shǐ bǎ jǐ gè zhòng yào de cí jì xià 。",
+          "english": "He even begins to write down a few important words.",
+          "targetWords": [
+            "记下"
+          ],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s24",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s24.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s24.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s25",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 25,
+          "chinese": "旧女仆最后说完的时候，天已经黑了。",
+          "pinyin": "jiù nǚ pú zuì hòu shuō wán de shí hòu ， tiān yǐ jīng hēi le 。",
+          "english": "By the time the old maid finishes, it is already dark.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s25",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s25.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s25.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s26",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 26,
+          "chinese": "杂草却一点也不觉得浪费。",
+          "pinyin": "zá cǎo què yì diǎn yě bù jué de làng fèi 。",
+          "english": "But Weed does not feel that it was a waste at all.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s26",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s26.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s26.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s27",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 27,
+          "chinese": "他终于明白，重要的话不一定会在最前面。",
+          "pinyin": "tā zhōng yú míng bái ， zhòng yào de huà bù yí dìng huì zài zuì qián miàn 。",
+          "english": "He finally understands that important words do not always come first.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s27",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s27.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s27.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s28",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 28,
+          "chinese": "有时候，最关键的一句会躲在最后。",
+          "pinyin": "yǒu shí hòu ， zuì guān jiàn de yí jù huì duǒ zài zuì hòu 。",
+          "english": "Sometimes the most important sentence hides at the end.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s28",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s28.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s28.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s29",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 29,
+          "chinese": "他离开的时候，脚步比来的时候更快。",
+          "pinyin": "tā lí kāi de shí hòu ， jiǎo bù bǐ lái de shí hòu gèng kuài 。",
+          "english": "When he leaves, his steps are quicker than when he arrived.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s29",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s29.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s29.ssml"
+        },
+        {
+          "id": "b01c03-last-old-sentence-s30",
+          "storyId": "b01c03-last-old-sentence",
+          "index": 30,
+          "chinese": "可是他的心，比刚来的时候更稳。",
+          "pinyin": "kě shì tā de xīn ， bǐ gāng lái de shí hòu gèng wěn 。",
+          "english": "But his heart is steadier than when he first came.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c03-last-old-sentence-s30",
+          "audioFilename": "audio/sentences/b01c03-last-old-sentence-s30.mp3",
+          "ssmlFilename": "ssml/sentences/b01c03-last-old-sentence-s30.ssml"
+        }
+      ]
+    },
+    {
+      "id": "b01c04-useless-looking-job",
+      "title": "看起来没用的职业",
+      "book": 1,
+      "chapter": 4,
+      "sourceInspiration": "Book 1 Chapter 4",
+      "newWords": [
+        {
+          "word": "职业",
+          "pinyin": "zhí yè",
+          "meaning": "class; profession"
+        },
+        {
+          "word": "选择",
+          "pinyin": "xuǎn zé",
+          "meaning": "to choose"
+        },
+        {
+          "word": "表面",
+          "pinyin": "biǎo miàn",
+          "meaning": "surface; outward appearance"
+        },
+        {
+          "word": "长远",
+          "pinyin": "cháng yuǎn",
+          "meaning": "long-term"
+        },
+        {
+          "word": "笑话",
+          "pinyin": "xiào hua",
+          "meaning": "joke; laughingstock"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "b01c04-useless-looking-job-s01",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 1,
+          "chinese": "杂草终于走到了可以换职业的时候。",
+          "pinyin": "zá cǎo zhōng yú zǒu dào le kě yǐ huàn zhí yè de shí hòu 。",
+          "english": "Weed finally reaches the point where he can change class.",
+          "targetWords": [
+            "职业"
+          ],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s01",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s01.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s01.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s02",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 2,
+          "chinese": "很多人都很兴奋。",
+          "pinyin": "hěn duō rén dōu hěn xīng fèn 。",
+          "english": "Many people are excited.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s02",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s02.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s02.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s03",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 3,
+          "chinese": "有人想做骑士。",
+          "pinyin": "yǒu rén xiǎng zuò qí shì 。",
+          "english": "Some want to become knights.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s03",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s03.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s03.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s04",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 4,
+          "chinese": "有人想做魔法师。",
+          "pinyin": "yǒu rén xiǎng zuò mó fǎ shī 。",
+          "english": "Some want to become mages.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s04",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s04.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s04.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s05",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 5,
+          "chinese": "大家都在说什么职业最强。",
+          "pinyin": "dà jiā dōu zài shuō shén me zhí yè zuì qiáng 。",
+          "english": "Everyone is talking about which class is strongest.",
+          "targetWords": [
+            "职业"
+          ],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s05",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s05.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s05.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s06",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 6,
+          "chinese": "杂草没有马上说话。",
+          "pinyin": "zá cǎo méi yǒu mǎ shàng shuō huà 。",
+          "english": "Weed does not speak right away.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s06",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s06.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s06.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s07",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 7,
+          "chinese": "他站在一边，先看别人怎么选。",
+          "pinyin": "tā zhàn zài yì biān ， xiān kàn bié rén zěn me xuǎn 。",
+          "english": "He stands to the side and first watches how other people choose.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s07",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s07.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s07.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s08",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 8,
+          "chinese": "后来，他听见有人提到雕刻师。",
+          "pinyin": "hòu lái ， tā tīng jiàn yǒu rén tí dào diāo kè shī 。",
+          "english": "Later, he hears someone mention sculptor.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s08",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s08.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s08.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s09",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 9,
+          "chinese": "那个人一说完，旁边的人都笑了。",
+          "pinyin": "nà ge rén yì shuō wán ， páng biān de rén dōu xiào le 。",
+          "english": "As soon as that person finishes speaking, the people nearby all laugh.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s09",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s09.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s09.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s10",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 10,
+          "chinese": "有人说：“那种职业能做什么？”",
+          "pinyin": "yǒu rén shuō ： “ nà zhǒng zhí yè néng zuò shén me ？ ”",
+          "english": "Someone says, 'What can that class even do?'",
+          "targetWords": [
+            "职业"
+          ],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s10",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s10.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s10.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s11",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 11,
+          "chinese": "还有人说：“选那个，不如什么都不选。”",
+          "pinyin": "hái yǒu rén shuō ： “ xuǎn nà ge ， bù rú shén me dōu bù xuǎn 。 ”",
+          "english": "Another person says, 'Choosing that is almost the same as choosing nothing.'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s11",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s11.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s11.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s12",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 12,
+          "chinese": "杂草听见这些话，心里当然也动了一下。",
+          "pinyin": "zá cǎo tīng jiàn zhè xiē huà ， xīn lǐ dāng rán yě dòng le yí xià 。",
+          "english": "When Weed hears those words, his heart naturally wavers a little.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s12",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s12.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s12.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s13",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 13,
+          "chinese": "他最怕的，不是难。",
+          "pinyin": "tā zuì pà de ， bú shì nán 。",
+          "english": "What he fears most is not difficulty.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s13",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s13.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s13.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s14",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 14,
+          "chinese": "他最怕的是，自己花了很久，最后还是没有钱，也没有路。",
+          "pinyin": "tā zuì pà de shì ， zì jǐ huā le hěn jiǔ ， zuì hòu hái shì méi yǒu qián ， yě méi yǒu lù 。",
+          "english": "What he fears most is spending a long time and ending with no money and no path.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s14",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s14.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s14.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s15",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 15,
+          "chinese": "所以他的老想法又出来了。",
+          "pinyin": "suǒ yǐ tā de lǎo xiǎng fǎ yòu chū lái le 。",
+          "english": "So his old way of thinking appears again.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s15",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s15.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s15.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s16",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 16,
+          "chinese": "看起来强的，应该比较安全。",
+          "pinyin": "kàn qǐ lái qiáng de ， yīng gāi bǐ jiào ān quán 。",
+          "english": "What looks strong should be safer.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s16",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s16.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s16.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s17",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 17,
+          "chinese": "看起来有名的，应该比较容易走。",
+          "pinyin": "kàn qǐ lái yǒu míng de ， yīng gāi bǐ jiào róng yì zǒu 。",
+          "english": "What looks famous should be easier to follow.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s17",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s17.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s17.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s18",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 18,
+          "chinese": "可是他又想到一件事。",
+          "pinyin": "kě shì tā yòu xiǎng dào yí jiàn shì 。",
+          "english": "But then he thinks of something else.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s18",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s18.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s18.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s19",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 19,
+          "chinese": "真正有用的东西，不一定会在表面上写出来。",
+          "pinyin": "zhēn zhèng yǒu yòng de dōng xī ， bù yí dìng huì zài biǎo miàn shàng xiě chū lái 。",
+          "english": "Something truly useful is not always written on the surface.",
+          "targetWords": [
+            "表面"
+          ],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s19",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s19.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s19.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s20",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 20,
+          "chinese": "如果每个人都觉得一个职业没用，也许只是因为他们只看今天。",
+          "pinyin": "rú guǒ měi gè rén dōu jué de yí gè zhí yè méi yòng ， yě xǔ zhǐ shì yīn wèi tā men zhī kàn jīn tiān 。",
+          "english": "If everyone thinks a class is useless, maybe it is only because they are looking at today.",
+          "targetWords": [
+            "职业"
+          ],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s20",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s20.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s20.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s21",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 21,
+          "chinese": "杂草却总是看得更长远。",
+          "pinyin": "zá cǎo què zǒng shì kàn dé gèng cháng yuǎn 。",
+          "english": "But Weed always tries to look further ahead.",
+          "targetWords": [
+            "长远"
+          ],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s21",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s21.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s21.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s22",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 22,
+          "chinese": "他慢慢走过去。",
+          "pinyin": "tā màn màn zǒu guò qù 。",
+          "english": "He slowly walks over.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s22",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s22.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s22.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s23",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 23,
+          "chinese": "周围的人还在把雕刻师当笑话。",
+          "pinyin": "zhōu wéi de rén hái zài bǎ diāo kè shī dāng xiào huà 。",
+          "english": "The people around are still treating sculptor as a joke.",
+          "targetWords": [
+            "笑话"
+          ],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s23",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s23.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s23.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s24",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 24,
+          "chinese": "杂草听见了，可是没有回头。",
+          "pinyin": "zá cǎo tīng jiàn le ， kě shì méi yǒu huí tóu 。",
+          "english": "Weed hears them, but he does not turn back.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s24",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s24.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s24.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s25",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 25,
+          "chinese": "他做出了自己的选择。",
+          "pinyin": "tā zuò chū le zì jǐ de xuǎn zé 。",
+          "english": "He makes his own choice.",
+          "targetWords": [
+            "选择"
+          ],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s25",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s25.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s25.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s26",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 26,
+          "chinese": "那一刻，没有掌声。",
+          "pinyin": "nà yí kè ， méi yǒu zhǎng shēng 。",
+          "english": "At that moment, there is no applause.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s26",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s26.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s26.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s27",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 27,
+          "chinese": "也没有人觉得他很聪明。",
+          "pinyin": "yě méi yǒu rén jué de tā hěn cōng ming 。",
+          "english": "And no one thinks he is very clever.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s27",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s27.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s27.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s28",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 28,
+          "chinese": "可是杂草心里反而安静。",
+          "pinyin": "kě shì zá cǎo xīn lǐ fǎn ér ān jìng 。",
+          "english": "But inside, Weed actually feels calm.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s28",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s28.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s28.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s29",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 29,
+          "chinese": "因为他终于不是照着别人的眼睛选路。",
+          "pinyin": "yīn wèi tā zhōng yú bú shì zhào zhe bié rén de yǎn jīng xuǎn lù 。",
+          "english": "Because he is finally not choosing his path by other people's eyes.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s29",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s29.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s29.ssml"
+        },
+        {
+          "id": "b01c04-useless-looking-job-s30",
+          "storyId": "b01c04-useless-looking-job",
+          "index": 30,
+          "chinese": "他是在照着自己最清楚的地方走。",
+          "pinyin": "tā shì zài zhào zhe zì jǐ zuì qīng chǔ de dì fāng zǒu 。",
+          "english": "He is following the part he understands most clearly himself.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-useless-looking-job-s30",
+          "audioFilename": "audio/sentences/b01c04-useless-looking-job-s30.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-useless-looking-job-s30.ssml"
+        }
+      ]
+    },
+    {
+      "id": "b01c04-first-sculpting-knife",
+      "title": "第一把雕刻刀",
+      "book": 1,
+      "chapter": 4,
+      "sourceInspiration": "Book 1 Chapter 4",
+      "newWords": [
+        {
+          "word": "小心",
+          "pinyin": "xiǎo xīn",
+          "meaning": "careful"
+        },
+        {
+          "word": "手指",
+          "pinyin": "shǒu zhǐ",
+          "meaning": "finger"
+        },
+        {
+          "word": "锋利",
+          "pinyin": "fēng lì",
+          "meaning": "sharp"
+        },
+        {
+          "word": "轻轻",
+          "pinyin": "qīng qīng",
+          "meaning": "lightly"
+        },
+        {
+          "word": "珍惜",
+          "pinyin": "zhēn xī",
+          "meaning": "to treasure"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "b01c04-first-sculpting-knife-s01",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 1,
+          "chinese": "换了职业以后，杂草拿到了一把小小的雕刻刀。",
+          "pinyin": "huàn le zhí yè yǐ hòu ， zá cǎo ná dào le yì bǎ xiǎo xiǎo de diāo kè dāo 。",
+          "english": "After changing class, Weed receives a small sculpting knife.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s01",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s01.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s01.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s02",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 2,
+          "chinese": "那把刀不像剑。",
+          "pinyin": "nà bǎ dāo bú xiàng jiàn 。",
+          "english": "That knife does not look like a sword.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s02",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s02.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s02.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s03",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 3,
+          "chinese": "也不像别人的高级武器。",
+          "pinyin": "yě bú xiàng bié rén de gāo jí wǔ qì 。",
+          "english": "It also does not look like other people's high-level weapons.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s03",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s03.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s03.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s04",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 4,
+          "chinese": "它很短，也很安静。",
+          "pinyin": "tā hěn duǎn ， yě hěn ān jìng 。",
+          "english": "It is short and quiet.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s04",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s04.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s04.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s05",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 5,
+          "chinese": "杂草把它拿在手里，先没有说话。",
+          "pinyin": "zá cǎo bǎ tā ná zài shǒu lǐ ， xiān méi yǒu shuō huà 。",
+          "english": "Weed holds it in his hand and says nothing at first.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s05",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s05.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s05.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s06",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 6,
+          "chinese": "他本来以为，真正能改变人的东西，应该看起来更厉害一点。",
+          "pinyin": "tā běn lái yǐ wéi ， zhēn zhèng néng gǎi biàn rén de dōng xī ， yīng gāi kàn qǐ lái gèng lì hài yì diǎn 。",
+          "english": "He had thought that something truly able to change a person should look more impressive.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s06",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s06.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s06.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s07",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 7,
+          "chinese": "至少，也应该大一点。",
+          "pinyin": "zhì shǎo ， yě yīng gāi dà yì diǎn 。",
+          "english": "At least, it should be bigger.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s07",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s07.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s07.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s08",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 8,
+          "chinese": "可是现在，他手里只有这一把小刀。",
+          "pinyin": "kě shì xiàn zài ， tā shǒu lǐ zhǐ yǒu zhè yì bǎ xiǎo dāo 。",
+          "english": "But now, there is only this little knife in his hand.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s08",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s08.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s08.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s09",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 9,
+          "chinese": "旁边的人看见了，又有人笑。",
+          "pinyin": "páng biān de rén kàn jiàn le ， yòu yǒu rén xiào 。",
+          "english": "People nearby see it, and some laugh again.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s09",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s09.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s09.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s10",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 10,
+          "chinese": "有人说：“这也算武器吗？”",
+          "pinyin": "yǒu rén shuō ： “ zhè yě suàn wǔ qì ma ？ ”",
+          "english": "Someone says, 'Does that even count as a weapon?'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s10",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s10.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s10.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s11",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 11,
+          "chinese": "杂草这次没有理他们。",
+          "pinyin": "zá cǎo zhè cì méi yǒu lǐ tā men 。",
+          "english": "This time, Weed does not pay attention to them.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s11",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s11.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s11.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s12",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 12,
+          "chinese": "他只是低头看着刀。",
+          "pinyin": "tā zhǐ shì dī tóu kàn zhe dāo 。",
+          "english": "He only looks down at the knife.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s12",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s12.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s12.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s13",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 13,
+          "chinese": "刀口很锋利。",
+          "pinyin": "dāo kǒu hěn fēng lì 。",
+          "english": "The edge is very sharp.",
+          "targetWords": [
+            "锋利"
+          ],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s13",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s13.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s13.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s14",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 14,
+          "chinese": "他的手指刚碰上去，就马上收回来。",
+          "pinyin": "tā de shǒu zhǐ gāng pèng shàng qù ， jiù mǎ shàng shōu huí lái 。",
+          "english": "As soon as his finger touches it, he pulls back at once.",
+          "targetWords": [
+            "手指"
+          ],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s14",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s14.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s14.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s15",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 15,
+          "chinese": "他忽然明白，这种东西不是用来乱挥的。",
+          "pinyin": "tā hū rán míng bái ， zhè zhǒng dōng xī bú shì yòng lái luàn huī de 。",
+          "english": "He suddenly understands that this kind of thing is not for swinging around carelessly.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s15",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s15.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s15.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s16",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 16,
+          "chinese": "这种东西要小心。",
+          "pinyin": "zhè zhǒng dōng xī yào xiǎo xīn 。",
+          "english": "This kind of thing needs care.",
+          "targetWords": [
+            "小心"
+          ],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s16",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s16.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s16.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s17",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 17,
+          "chinese": "要轻轻地用。",
+          "pinyin": "yào qīng qīng dì yòng 。",
+          "english": "It has to be used lightly.",
+          "targetWords": [
+            "轻轻"
+          ],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s17",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s17.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s17.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s18",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 18,
+          "chinese": "也要认真地看。",
+          "pinyin": "yě yào rèn zhēn dì kàn 。",
+          "english": "And it has to be watched carefully.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s18",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s18.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s18.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s19",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 19,
+          "chinese": "杂草以前一直相信，力气大一点，就会更快。",
+          "pinyin": "zá cǎo yǐ qián yì zhí xiāng xìn ， lì qi dà yì diǎn ， jiù huì gèng kuài 。",
+          "english": "Weed used to believe that more force would make things faster.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s19",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s19.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s19.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s20",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 20,
+          "chinese": "可是这把刀给他的感觉完全不一样。",
+          "pinyin": "kě shì zhè bǎ dāo gěi tā de gǎn jué wán quán bù yí yàng 。",
+          "english": "But this knife gives him a completely different feeling.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s20",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s20.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s20.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s21",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 21,
+          "chinese": "这把刀像是在说，快没有用。",
+          "pinyin": "zhè bǎ dāo xiàng shì zài shuō ， kuài méi yǒu yòng 。",
+          "english": "The knife seems to say that speed is useless here.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s21",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s21.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s21.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s22",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 22,
+          "chinese": "乱也没有用。",
+          "pinyin": "luàn yě méi yǒu yòng 。",
+          "english": "Being careless is useless too.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s22",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s22.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s22.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s23",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 23,
+          "chinese": "如果真的想做出东西，就要先安静下来。",
+          "pinyin": "rú guǒ zhēn de xiǎng zuò chū dōng xī ， jiù yào xiān ān jìng xià lái 。",
+          "english": "If he truly wants to make something, he first has to become calm.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s23",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s23.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s23.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s24",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 24,
+          "chinese": "杂草把刀收好。",
+          "pinyin": "zá cǎo bǎ dāo shōu hǎo 。",
+          "english": "Weed puts the knife away carefully.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s24",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s24.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s24.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s25",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 25,
+          "chinese": "这一次，他没有把它当成一个小东西。",
+          "pinyin": "zhè yí cì ， tā méi yǒu bǎ tā dàng chéng yí gè xiǎo dōng xī 。",
+          "english": "This time, he does not treat it as something small.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s25",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s25.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s25.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s26",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 26,
+          "chinese": "他开始珍惜这把刀。",
+          "pinyin": "tā kāi shǐ zhēn xī zhè bǎ dāo 。",
+          "english": "He begins to treasure this knife.",
+          "targetWords": [
+            "珍惜"
+          ],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s26",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s26.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s26.ssml"
+        },
+        {
+          "id": "b01c04-first-sculpting-knife-s27",
+          "storyId": "b01c04-first-sculpting-knife",
+          "index": 27,
+          "chinese": "因为他觉得，也许真正大的改变，本来就不是从大东西开始。",
+          "pinyin": "yīn wèi tā jué de ， yě xǔ zhēn zhèng dà de gǎi biàn ， běn lái jiù bú shì cóng dà dōng xī kāi shǐ 。",
+          "english": "Because he feels that maybe truly big change does not begin with big things at all.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c04-first-sculpting-knife-s27",
+          "audioFilename": "audio/sentences/b01c04-first-sculpting-knife-s27.mp3",
+          "ssmlFilename": "ssml/sentences/b01c04-first-sculpting-knife-s27.ssml"
+        }
+      ]
+    },
+    {
+      "id": "b01c05-first-piece-of-wood",
+      "title": "第一块木头",
+      "book": 1,
+      "chapter": 5,
+      "sourceInspiration": "Book 1 Chapter 5",
+      "newWords": [
+        {
+          "word": "木头",
+          "pinyin": "mù tou",
+          "meaning": "wood"
+        },
+        {
+          "word": "歪",
+          "pinyin": "wāi",
+          "meaning": "crooked"
+        },
+        {
+          "word": "重新",
+          "pinyin": "chóng xīn",
+          "meaning": "again; from the start"
+        },
+        {
+          "word": "表情",
+          "pinyin": "biǎo qíng",
+          "meaning": "expression"
+        },
+        {
+          "word": "满意",
+          "pinyin": "mǎn yì",
+          "meaning": "satisfied"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "b01c05-first-piece-of-wood-s01",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 1,
+          "chinese": "杂草第一次正式练雕刻的时候，面前只放着一块普通木头。",
+          "pinyin": "zá cǎo dì yī cì zhèng shì liàn diāo kè de shí hòu ， miàn qián zhī fàng zhe yí kuài pǔ tōng mù tou 。",
+          "english": "The first time Weed formally practices sculpting, there is only an ordinary piece of wood in front of him.",
+          "targetWords": [
+            "木头"
+          ],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s01",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s01.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s01.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s02",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 2,
+          "chinese": "那块木头一点也不特别。",
+          "pinyin": "nà kuài mù tou yì diǎn yě bú tè bié 。",
+          "english": "That piece of wood is not special at all.",
+          "targetWords": [
+            "木头"
+          ],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s02",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s02.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s02.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s03",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 3,
+          "chinese": "又小，又旧。",
+          "pinyin": "yòu xiǎo ， yòu jiù 。",
+          "english": "It is small and worn.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s03",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s03.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s03.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s04",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 4,
+          "chinese": "杂草一开始有点失望。",
+          "pinyin": "zá cǎo yì kāi shǐ yǒu diǎn shī wàng 。",
+          "english": "At first, Weed feels a little disappointed.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s04",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s04.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s04.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s05",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 5,
+          "chinese": "他本来以为，第一件东西至少应该让人一看就觉得厉害。",
+          "pinyin": "tā běn lái yǐ wéi ， dì yī jiàn dōng xī zhì shǎo yīng gāi ràng rén yí kàn jiù jué de lì hài 。",
+          "english": "He had thought that the first thing should at least look impressive at a glance.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s05",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s05.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s05.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s06",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 6,
+          "chinese": "可是现在，他只好先低头做。",
+          "pinyin": "kě shì xiàn zài ， tā zhǐ hǎo xiān dī tóu zuò 。",
+          "english": "But now, he can only lower his head and start working.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s06",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s06.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s06.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s07",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 7,
+          "chinese": "第一刀下去的时候，他太快了。",
+          "pinyin": "dì yī dāo xià qù de shí hòu ， tā tài kuài le 。",
+          "english": "When the first cut goes down, he is too fast.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s07",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s07.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s07.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s08",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 8,
+          "chinese": "木头马上歪了一边。",
+          "pinyin": "mù tou mǎ shàng wāi le yì biān 。",
+          "english": "The wood immediately goes crooked on one side.",
+          "targetWords": [
+            "木头",
+            "歪"
+          ],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s08",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s08.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s08.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s09",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 9,
+          "chinese": "杂草看着那一块坏掉的地方，心里很不高兴。",
+          "pinyin": "zá cǎo kàn zhe nà yí kuài huài diào de dì fāng ， xīn lǐ hěn bù gāo xìng 。",
+          "english": "Weed looks at the damaged part and feels unhappy.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s09",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s09.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s09.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s10",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 10,
+          "chinese": "他又试一次。",
+          "pinyin": "tā yòu shì yí cì 。",
+          "english": "He tries again.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s10",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s10.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s10.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s11",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 11,
+          "chinese": "这一次慢一点。",
+          "pinyin": "zhè yí cì màn yì diǎn 。",
+          "english": "This time, he goes a little slower.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s11",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s11.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s11.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s12",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 12,
+          "chinese": "可是线还是不直。",
+          "pinyin": "kě shì xiàn hái shì bù zhí 。",
+          "english": "But the line is still not straight.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s12",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s12.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s12.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s13",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 13,
+          "chinese": "他本来以为，有决心就够了。",
+          "pinyin": "tā běn lái yǐ wéi ， yǒu jué xīn jiù gòu le 。",
+          "english": "He had thought that determination alone would be enough.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s13",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s13.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s13.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s14",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 14,
+          "chinese": "现在他才发现，手也要跟上。",
+          "pinyin": "xiàn zài tā cái fā xiàn ， shǒu yě yào gēn shàng 。",
+          "english": "Now he finds that his hands also have to catch up.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s14",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s14.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s14.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s15",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 15,
+          "chinese": "眼睛也要跟上。",
+          "pinyin": "yǎn jīng yě yào gēn shàng 。",
+          "english": "His eyes also have to catch up.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s15",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s15.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s15.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s16",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 16,
+          "chinese": "心也要跟上。",
+          "pinyin": "xīn yě yào gēn shàng 。",
+          "english": "And his mind also has to catch up.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s16",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s16.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s16.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s17",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 17,
+          "chinese": "杂草坐了一会儿，没有马上再下刀。",
+          "pinyin": "zá cǎo zuò le yí huì er ， méi yǒu mǎ shàng zài xià dāo 。",
+          "english": "Weed sits for a while and does not cut again right away.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s17",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s17.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s17.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s18",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 18,
+          "chinese": "他先看着那块木头。",
+          "pinyin": "tā xiān kàn zhe nà kuài mù tou 。",
+          "english": "He first looks at the piece of wood.",
+          "targetWords": [
+            "木头"
+          ],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s18",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s18.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s18.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s19",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 19,
+          "chinese": "后来又看着自己手里的刀。",
+          "pinyin": "hòu lái yòu kàn zhe zì jǐ shǒu lǐ de dāo 。",
+          "english": "Then he looks at the knife in his hand.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s19",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s19.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s19.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s20",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 20,
+          "chinese": "最后，他轻轻地呼了一口气。",
+          "pinyin": "zuì hòu ， tā qīng qīng dì hū le yì kǒu qì 。",
+          "english": "Finally, he lets out a soft breath.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s20",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s20.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s20.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s21",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 21,
+          "chinese": "这一次，他决定重新来。",
+          "pinyin": "zhè yí cì ， tā jué dìng chóng xīn lái 。",
+          "english": "This time, he decides to start again.",
+          "targetWords": [
+            "重新"
+          ],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s21",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s21.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s21.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s22",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 22,
+          "chinese": "不是为了快。",
+          "pinyin": "bú shì wèi le kuài 。",
+          "english": "Not for speed.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s22",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s22.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s22.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s23",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 23,
+          "chinese": "也不是为了马上做出很大的东西。",
+          "pinyin": "yě bú shì wèi le mǎ shàng zuò chū hěn dà de dōng xī 。",
+          "english": "And not to immediately make something grand.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s23",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s23.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s23.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s24",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 24,
+          "chinese": "他只想先把一个小小的表情做对。",
+          "pinyin": "tā zhī xiǎng xiān bǎ yí gè xiǎo xiǎo de biǎo qíng zuò duì 。",
+          "english": "He only wants to get one small expression right first.",
+          "targetWords": [
+            "表情"
+          ],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s24",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s24.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s24.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s25",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 25,
+          "chinese": "一点一点地，木头终于没有再乱掉。",
+          "pinyin": "yì diǎn yi diǎn dì ， mù tou zhōng yú méi yǒu zài luàn diào 。",
+          "english": "Bit by bit, the wood finally stops going wrong.",
+          "targetWords": [
+            "木头"
+          ],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s25",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s25.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s25.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s26",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 26,
+          "chinese": "做完以后，那东西还是很简单。",
+          "pinyin": "zuò wán yǐ hòu ， nà dōng xī hái shì hěn jiǎn dān 。",
+          "english": "After finishing, the thing is still very simple.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s26",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s26.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s26.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s27",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 27,
+          "chinese": "也说不上多好看。",
+          "pinyin": "yě shuō bú shàng duō hǎo kàn 。",
+          "english": "You could not call it very beautiful.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s27",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s27.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s27.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s28",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 28,
+          "chinese": "可是杂草看了很久。",
+          "pinyin": "kě shì zá cǎo kàn le hěn jiǔ 。",
+          "english": "But Weed looks at it for a long time.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s28",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s28.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s28.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s29",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 29,
+          "chinese": "这一次，他没有笑自己。",
+          "pinyin": "zhè yí cì ， tā méi yǒu xiào zì jǐ 。",
+          "english": "This time, he does not laugh at himself.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s29",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s29.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s29.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s30",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 30,
+          "chinese": "因为他第一次明白，不满意的时候，不一定要生气。",
+          "pinyin": "yīn wèi tā dì yī cì míng bái ， bù mǎn yì de shí hòu ， bù yí dìng yào shēng qì 。",
+          "english": "Because for the first time, he understands that when you are unsatisfied, you do not always have to get angry.",
+          "targetWords": [
+            "满意"
+          ],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s30",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s30.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s30.ssml"
+        },
+        {
+          "id": "b01c05-first-piece-of-wood-s31",
+          "storyId": "b01c05-first-piece-of-wood",
+          "index": 31,
+          "chinese": "有时候，你只要安静地再做一次。",
+          "pinyin": "yǒu shí hòu ， nǐ zhǐ yào ān jìng dì zài zuò yí cì 。",
+          "english": "Sometimes, you only need to quietly do it one more time.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-first-piece-of-wood-s31",
+          "audioFilename": "audio/sentences/b01c05-first-piece-of-wood-s31.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-first-piece-of-wood-s31.ssml"
+        }
+      ]
+    },
+    {
+      "id": "b01c05-no-one-laughed",
+      "title": "没有笑的人",
+      "book": 1,
+      "chapter": 5,
+      "sourceInspiration": "Book 1 Chapter 5",
+      "newWords": [
+        {
+          "word": "摊位",
+          "pinyin": "tān wèi",
+          "meaning": "stall"
+        },
+        {
+          "word": "取笑",
+          "pinyin": "qǔ xiào",
+          "meaning": "to mock"
+        },
+        {
+          "word": "认真",
+          "pinyin": "rèn zhēn",
+          "meaning": "serious"
+        },
+        {
+          "word": "点头",
+          "pinyin": "diǎn tóu",
+          "meaning": "to nod"
+        },
+        {
+          "word": "值得",
+          "pinyin": "zhí dé",
+          "meaning": "worth it"
+        }
+      ],
+      "sentences": [
+        {
+          "id": "b01c05-no-one-laughed-s01",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 1,
+          "chinese": "杂草做出第一件还算像样的东西以后，把它带到了市场。",
+          "pinyin": "zá cǎo zuò chū dì yī jiàn hái suàn xiàng yàng de dōng xī yǐ hòu ， bǎ tā dài dào le shì chǎng 。",
+          "english": "After making his first passable piece, Weed brings it to the market.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s01",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s01.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s01.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s02",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 2,
+          "chinese": "市场里有很多摊位。",
+          "pinyin": "shì chǎng lǐ yǒu hěn duō tān wèi 。",
+          "english": "There are many stalls in the market.",
+          "targetWords": [
+            "摊位"
+          ],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s02",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s02.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s02.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s03",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 3,
+          "chinese": "也有很多人在大声说话。",
+          "pinyin": "yě yǒu hěn duō rén zài dà shēng shuō huà 。",
+          "english": "There are also many people speaking loudly.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s03",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s03.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s03.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s04",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 4,
+          "chinese": "有人卖武器。",
+          "pinyin": "yǒu rén mài wǔ qì 。",
+          "english": "Some people are selling weapons.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s04",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s04.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s04.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s05",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 5,
+          "chinese": "有人卖衣服。",
+          "pinyin": "yǒu rén mài yī fu 。",
+          "english": "Some are selling clothes.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s05",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s05.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s05.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s06",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 6,
+          "chinese": "杂草手里拿着自己的小雕刻，看起来很不起眼。",
+          "pinyin": "zá cǎo shǒu lǐ ná zhe zì jǐ de xiǎo diāo kè ， kàn qǐ lái hěn bù qǐ yǎn 。",
+          "english": "Weed holds his small sculpture in his hand, and it does not stand out much.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s06",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s06.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s06.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s07",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 7,
+          "chinese": "他一开始站得很直。",
+          "pinyin": "tā yì kāi shǐ zhàn dé hěn zhí 。",
+          "english": "At first he stands very straight.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s07",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s07.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s07.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s08",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 8,
+          "chinese": "好像只要自己站得稳一点，别人就会觉得那东西也不错。",
+          "pinyin": "hǎo xiàng zhǐ yào zì jǐ zhàn dé wěn yì diǎn ， bié rén jiù huì jué de nà dōng xī yě bú cuò 。",
+          "english": "As if standing more firmly would make others think the piece is good too.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s08",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s08.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s08.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s09",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 9,
+          "chinese": "可是第一个看见的人笑了。",
+          "pinyin": "kě shì dì yī gè kàn jiàn de rén xiào le 。",
+          "english": "But the first person who sees it laughs.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s09",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s09.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s09.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s10",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 10,
+          "chinese": "第二个人也笑了。",
+          "pinyin": "dì èr gè rén yě xiào le 。",
+          "english": "The second person also laughs.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s10",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s10.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s10.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s11",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 11,
+          "chinese": "后来还有人直接取笑他。",
+          "pinyin": "hòu lái hái yǒu rén zhí jiē qǔ xiào tā 。",
+          "english": "Later, someone directly mocks him.",
+          "targetWords": [
+            "取笑"
+          ],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s11",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s11.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s11.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s12",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 12,
+          "chinese": "那个人说：“这个也有人要吗？”",
+          "pinyin": "nà ge rén shuō ： “ zhè ge yě yǒu rén yào ma ？ ”",
+          "english": "That person says, 'Would anyone even want this?'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s12",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s12.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s12.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s13",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 13,
+          "chinese": "杂草听见以后，手一下子冷了。",
+          "pinyin": "zá cǎo tīng jiàn yǐ hòu ， shǒu yí xià zǐ lěng le 。",
+          "english": "After hearing that, Weed's hand suddenly feels cold.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s13",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s13.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s13.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s14",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 14,
+          "chinese": "他差一点就想把东西收起来。",
+          "pinyin": "tā chà yì diǎn jiù xiǎng bǎ dōng xī shōu qǐ lái 。",
+          "english": "He almost wants to put the piece away.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s14",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s14.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s14.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s15",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 15,
+          "chinese": "在他心里，一个老想法又出来了。",
+          "pinyin": "zài tā xīn lǐ ， yí gè lǎo xiǎng fǎ yòu chū lái le 。",
+          "english": "In his heart, an old thought appears again.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s15",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s15.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s15.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s16",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 16,
+          "chinese": "如果大部分人都笑，说明这东西一定没有用。",
+          "pinyin": "rú guǒ dà bù fen rén dōu xiào ， shuō míng zhè dōng xī yí dìng méi yǒu yòng 。",
+          "english": "If most people laugh, then this thing must be useless.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s16",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s16.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s16.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s17",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 17,
+          "chinese": "可是就在这时候，一个老人走到了他面前。",
+          "pinyin": "kě shì jiù zài zhè shí hòu ， yí gè lǎo rén zǒu dào le tā miàn qián 。",
+          "english": "But at that moment, an old man walks up in front of him.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s17",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s17.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s17.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s18",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 18,
+          "chinese": "老人没有笑。",
+          "pinyin": "lǎo rén méi yǒu xiào 。",
+          "english": "The old man does not laugh.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s18",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s18.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s18.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s19",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 19,
+          "chinese": "老人只是低头看了很久。",
+          "pinyin": "lǎo rén zhǐ shì dī tóu kàn le hěn jiǔ 。",
+          "english": "He only lowers his head and looks for a long time.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s19",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s19.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s19.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s20",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 20,
+          "chinese": "后来，老人轻轻点头。",
+          "pinyin": "hòu lái ， lǎo rén qīng qīng diǎn tóu 。",
+          "english": "Later, the old man nods lightly.",
+          "targetWords": [
+            "点头"
+          ],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s20",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s20.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s20.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s21",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 21,
+          "chinese": "老人说：“这东西还不成熟。",
+          "pinyin": "lǎo rén shuō ： “ zhè dōng xī hái bù chéng shú 。",
+          "english": "The old man says, 'This piece is not mature yet.'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s21",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s21.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s21.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s22",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 22,
+          "chinese": "可是做它的人很认真。”",
+          "pinyin": "kě shì zuò tā de rén hěn rèn zhēn 。 ”",
+          "english": "'But the person who made it was serious.'",
+          "targetWords": [
+            "认真"
+          ],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s22",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s22.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s22.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s23",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 23,
+          "chinese": "杂草听见这句话，心里忽然一静。",
+          "pinyin": "zá cǎo tīng jiàn zhè jù huà ， xīn lǐ hū rán yí jìng 。",
+          "english": "When Weed hears that sentence, his heart suddenly becomes quiet.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s23",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s23.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s23.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s24",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 24,
+          "chinese": "因为老人看到的，不只是东西本身。",
+          "pinyin": "yīn wèi lǎo rén kàn dào de ， bù zhǐ shì dōng xī běn shēn 。",
+          "english": "Because the old man sees not only the object itself.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s24",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s24.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s24.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s25",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 25,
+          "chinese": "老人也看见了他花在上面的时间。",
+          "pinyin": "lǎo rén yě kàn jiàn le tā huā zài shàng miàn de shí jiān 。",
+          "english": "He also sees the time Weed put into it.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s25",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s25.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s25.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s26",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 26,
+          "chinese": "看见了他没有放弃的样子。",
+          "pinyin": "kàn jiàn le tā méi yǒu fàng qì de yàng zi 。",
+          "english": "He sees the way Weed did not give up.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s26",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s26.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s26.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s27",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 27,
+          "chinese": "杂草最后没有把那件东西丢掉。",
+          "pinyin": "zá cǎo zuì hòu méi yǒu bǎ nà jiàn dōng xī diū diào 。",
+          "english": "In the end, Weed does not throw the piece away.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s27",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s27.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s27.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s28",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 28,
+          "chinese": "他反而把它收得更好。",
+          "pinyin": "tā fǎn ér bǎ tā shōu dé gèng hǎo 。",
+          "english": "Instead, he puts it away more carefully.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s28",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s28.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s28.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s29",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 29,
+          "chinese": "他终于明白，不是每个人的笑声都一样重要。",
+          "pinyin": "tā zhōng yú míng bái ， bú shì měi gè rén de xiào shēng dōu yí yàng zhòng yào 。",
+          "english": "He finally understands that not everyone's laughter is equally important.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s29",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s29.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s29.ssml"
+        },
+        {
+          "id": "b01c05-no-one-laughed-s30",
+          "storyId": "b01c05-no-one-laughed",
+          "index": 30,
+          "chinese": "只要有一个人真的看见了，你做的事就值得继续。",
+          "pinyin": "zhǐ yào yǒu yí gè rén zhēn de kàn jiàn le ， nǐ zuò de shì jiù zhí dé jì xù 。",
+          "english": "As long as one person truly sees it, what you are doing is worth continuing.",
+          "targetWords": [
+            "值得"
+          ],
+          "audioClipId": "reader-sentence:b01c05-no-one-laughed-s30",
+          "audioFilename": "audio/sentences/b01c05-no-one-laughed-s30.mp3",
+          "ssmlFilename": "ssml/sentences/b01c05-no-one-laughed-s30.ssml"
+        }
+      ]
+    }
+  ]
+}

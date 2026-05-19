@@ -121,6 +121,10 @@ export function vocabFromCsvRows(rows: Record<string, string>[], packId?: string
         fsrsEase: parseNumber(readColumn(row, ['fsrsEase', 'ease'])),
         fsrsRepetitions: parseNumber(readColumn(row, ['fsrsRepetitions', 'repetitions'])),
         fsrsLapses: parseNumber(readColumn(row, ['fsrsLapses', 'lapses'])),
+        fsrsState: parseFsrsState(readColumn(row, ['fsrsState', 'state'])),
+        fsrsStability: parseNumber(readColumn(row, ['fsrsStability', 'stability'])),
+        fsrsDifficulty: parseNumber(readColumn(row, ['fsrsDifficulty', 'difficulty'])),
+        fsrsLearningSteps: parseNumber(readColumn(row, ['fsrsLearningSteps', 'learningSteps'])),
         packIds,
         createdAt: now,
         updatedAt: now,
@@ -199,6 +203,13 @@ function parseBack(back: string): { pinyin?: string; meaning?: string } {
 function parseNumber(value: string): number | undefined {
   const number = Number(value)
   return Number.isFinite(number) ? number : undefined
+}
+
+function parseFsrsState(value: string): VocabWord['fsrsState'] {
+  if (value === 'New' || value === 'Learning' || value === 'Review' || value === 'Relearning') {
+    return value
+  }
+  return undefined
 }
 
 function unique(values: string[]): string[] {

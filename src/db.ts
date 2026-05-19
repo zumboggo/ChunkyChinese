@@ -16,17 +16,22 @@ import type {
   DashboardStats,
   FsrsRating,
   HostedClipPack,
+  HostedReaderPack,
   HotkeySettings,
   ImportSummary,
   ListeningEvent,
+  ReaderBook,
+  ReaderPack,
+  ReaderProgress,
   RenderedLesson,
   Sentence,
   VocabWord,
   WordStatus,
 } from './types'
+import { applyFsrsRating } from './scheduler'
 
 const DB_NAME = 'chunky-chinese-vocab'
-const DB_VERSION = 3
+const DB_VERSION = 4
 
 export const DEFAULT_HOTKEYS: HotkeySettings = {
   choiceA: '3',
@@ -64,6 +69,20 @@ interface ChunkyDB extends DBSchema {
     key: string
     value: ClipPack
   }
+  readerPacks: {
+    key: string
+    value: ReaderPack
+  }
+  readerBooks: {
+    key: string
+    value: ReaderBook
+    indexes: { packId: string }
+  }
+  readerProgress: {
+    key: string
+    value: ReaderProgress
+    indexes: { bookId: string; packId: string }
+  }
   settings: {
     key: string
     value: unknown
@@ -99,6 +118,18 @@ export function getDB(): Promise<IDBPDatabase<ChunkyDB>> {
         }
         if (!db.objectStoreNames.contains('clipPacks')) {
           db.createObjectStore('clipPacks', { keyPath: 'id' })
+        }
+        if (!db.objectStoreNames.contains('readerPacks')) {
+          db.createObjectStore('readerPacks', { keyPath: 'packId' })
+        }
+        if (!db.objectStoreNames.contains('readerBooks')) {
+          const readerBooks = db.createObjectStore('readerBooks', { keyPath: 'id' })
+          readerBooks.createIndex('packId', 'packId')
+        }
+        if (!db.objectStoreNames.contains('readerProgress')) {
+          const readerProgress = db.createObjectStore('readerProgress', { keyPath: 'id' })
+          readerProgress.createIndex('bookId', 'bookId')
+          readerProgress.createIndex('packId', 'packId')
         }
         if (!db.objectStoreNames.contains('settings')) {
           db.createObjectStore('settings')
@@ -219,6 +250,15 @@ export async function saveHotkeys(hotkeys: HotkeySettings): Promise<void> {
   await (await getDB()).put('settings', normalizeHotkeys(hotkeys), 'hotkeys')
 }
 
+export async function getNewWordsPerDay(): Promise<number> {
+  const saved = (await (await getDB()).get('settings', 'newWordsPerDay')) as number | undefined
+  return normalizeNewWordsPerDay(saved)
+}
+
+export async function saveNewWordsPerDay(value: number): Promise<void> {
+  await (await getDB()).put('settings', normalizeNewWordsPerDay(value), 'newWordsPerDay')
+}
+
 export async function getHostedClipPackIndex(): Promise<HostedClipPack[]> {
   try {
     const packs = (await fetchJson(`${import.meta.env.BASE_URL}clip-packs/index.json`)) as
@@ -232,6 +272,25 @@ export async function getHostedClipPackIndex(): Promise<HostedClipPack[]> {
         name: 'LMS 188 Azure',
         description: 'Legendary Moonlight Sculptor target words with Azure clips.',
         baseUrl: `${import.meta.env.BASE_URL}clip-packs/lms-188-azure`,
+        language: 'zh-CN',
+      },
+    ]
+  }
+}
+
+export async function getHostedReaderPackIndex(): Promise<HostedReaderPack[]> {
+  try {
+    const packs = (await fetchJson(`${import.meta.env.BASE_URL}reader-packs/index.json`)) as
+      | HostedReaderPack[]
+      | { packs?: HostedReaderPack[] }
+    return Array.isArray(packs) ? packs : packs.packs ?? []
+  } catch {
+    return [
+      {
+        id: 'lms-books',
+        name: 'LMS Reader Books',
+        description: 'LMS Book 1 chapter compilation readers.',
+        baseUrl: `${import.meta.env.BASE_URL}reader-packs/lms-books`,
         language: 'zh-CN',
       },
     ]
@@ -408,27 +467,11 @@ export async function rateWordFsrs(wordId: string, rating: FsrsRating): Promise<
 
   const now = new Date()
   const nowIso = now.toISOString()
-  const currentEase = word.fsrsEase ?? 2.5
-  const currentInterval = word.fsrsIntervalDays ?? 0
-  const currentRepetitions = word.fsrsRepetitions ?? 0
-  const currentLapses = word.fsrsLapses ?? 0
-  const next = scheduleFsrsReview(
-    rating,
-    currentEase,
-    currentInterval,
-    currentRepetitions,
-    currentLapses,
-    now,
-  )
+  const next = applyFsrsRating(word, rating, now)
 
   await tx.objectStore('vocabWords').put({
     ...word,
-    status: next.status,
-    fsrsDueAt: next.dueAt,
-    fsrsIntervalDays: next.intervalDays,
-    fsrsEase: next.ease,
-    fsrsRepetitions: next.repetitions,
-    fsrsLapses: next.lapses,
+    ...next,
     lastReviewedAt: nowIso,
     updatedAt: nowIso,
   })
@@ -756,6 +799,131 @@ export async function importHostedClipPack(
   }
 }
 
+export async function seedReaderBooksIfEmpty(): Promise<number> {
+  const db = await getDB()
+  if ((await db.count('readerBooks')) > 0) return 0
+  const [firstPack] = await getHostedReaderPackIndex()
+  if (!firstPack) return 0
+  const summary = await importHostedReaderPack(firstPack.baseUrl, undefined, firstPack)
+  return summary.importedSentences ?? 0
+}
+
+export async function getAllReaderPacks(): Promise<ReaderPack[]> {
+  return (await (await getDB()).getAll('readerPacks')).sort((a, b) =>
+    a.name.localeCompare(b.name),
+  )
+}
+
+export async function getAllReaderBooks(): Promise<ReaderBook[]> {
+  return (await (await getDB()).getAll('readerBooks')).sort(
+    (a, b) => a.chapterStart - b.chapterStart || a.title.localeCompare(b.title),
+  )
+}
+
+export async function getReaderProgress(
+  packId: string,
+  bookId: string,
+): Promise<ReaderProgress | undefined> {
+  return await (await getDB()).get('readerProgress', readerProgressId(packId, bookId))
+}
+
+export async function saveReaderProgress(progress: Omit<ReaderProgress, 'id' | 'updatedAt'>): Promise<void> {
+  await (await getDB()).put(
+    'readerProgress',
+    {
+      ...progress,
+      id: readerProgressId(progress.packId, progress.bookId),
+      updatedAt: new Date().toISOString(),
+    },
+  )
+}
+
+export async function importHostedReaderPack(
+  baseUrl: string,
+  onProgress?: (completed: number, total: number, label: string) => void,
+  hosted?: Partial<HostedReaderPack>,
+): Promise<ImportSummary> {
+  const base = resolveHostedBaseUrl(baseUrl)
+  const manifest = (await fetchJson(`${base}/reader_manifest.json`)) as ReaderPack
+  const packId = hosted?.id ?? manifest.packId ?? makePackId(manifest.name || 'Reader pack')
+  const pack: ReaderPack = {
+    ...manifest,
+    packId,
+    name: hosted?.name ?? manifest.name ?? packId,
+    description: hosted?.description ?? manifest.description,
+    baseUrl,
+    language: hosted?.language ?? manifest.language ?? 'zh-CN',
+    installedAt: new Date().toISOString(),
+    audioAvailable: Boolean(manifest.audioAvailable),
+    synthesizedAudioCount: manifest.synthesizedAudioCount ?? 0,
+    storyCount: manifest.storyCount ?? 0,
+    sentenceCount: manifest.sentenceCount ?? 0,
+    books: manifest.books ?? [],
+  }
+  const books: ReaderBook[] = []
+  for (const summary of pack.books) {
+    const book = (await fetchJson(`${base}/${encodePath(summary.path)}`)) as Omit<ReaderBook, 'packId'>
+    books.push({
+      ...book,
+      id: book.id,
+      packId,
+      path: summary.path,
+    })
+  }
+
+  const db = await getDB()
+  const tx = db.transaction(['readerPacks', 'readerBooks'], 'readwrite')
+  await tx.objectStore('readerPacks').put(pack)
+  for (const book of books) {
+    await tx.objectStore('readerBooks').put(book)
+  }
+  await tx.done
+
+  const warnings: string[] = []
+  let created = 0
+  let updated = 0
+  let skipped = 0
+  const sentences = books.flatMap((book) => book.stories.flatMap((story) => story.sentences))
+  if (pack.audioAvailable) {
+    const existingClips = new Map((await db.getAll('audioClips')).map((clip) => [clip.id, clip]))
+    const prepared: AudioClip[] = []
+    for (const [index, sentence] of sentences.entries()) {
+      const existing = existingClips.get(sentence.audioClipId)
+      if (existing?.blob) {
+        prepared.push(readerSentenceToClip(sentence, existing.blob, packId, pack.voice, existing.createdAt))
+        updated += 1
+        onProgress?.(index + 1, sentences.length, sentence.chinese)
+        continue
+      }
+      try {
+        const response = await fetch(`${base}/${encodePath(sentence.audioFilename)}`)
+        if (!response.ok) throw new Error(`HTTP ${response.status}`)
+        prepared.push(readerSentenceToClip(sentence, await response.blob(), packId, pack.voice))
+        created += 1
+      } catch (error) {
+        skipped += 1
+        warnings.push(
+          `Could not download ${sentence.audioFilename}${error instanceof Error ? `: ${error.message}` : ''}`,
+        )
+      }
+      onProgress?.(index + 1, sentences.length, sentence.chinese)
+    }
+    const audioTx = db.transaction('audioClips', 'readwrite')
+    for (const clip of prepared) await audioTx.objectStore('audioClips').put(clip)
+    await audioTx.done
+  }
+
+  return {
+    created,
+    updated,
+    skipped,
+    linkedAudio: created + updated,
+    importedWords: uniqueReaderWordCount(books),
+    importedSentences: sentences.length,
+    warnings,
+  }
+}
+
 export async function getDashboardStats(): Promise<DashboardStats> {
   const db = await getDB()
   const words = await db.getAll('vocabWords')
@@ -786,6 +954,13 @@ export async function getDashboardStats(): Promise<DashboardStats> {
       todayEvents.reduce((sum, event) => sum + (event.seconds ?? 0), 0) / 60,
     clipsCompletedToday: todayEvents.filter((event) => event.type === 'complete').length,
     knownToday: todayEvents.filter((event) => event.type === 'mark_known').length,
+    newWordsToday: scopedWords.filter(
+      (word) =>
+        word.status !== 'new' &&
+        (word.fsrsRepetitions ?? 0) <= 1 &&
+        word.lastReviewedAt &&
+        new Date(word.lastReviewedAt) >= start,
+    ).length,
     studyHeatmap: buildStudyHeatmap(events, 84),
     retentionSeries: buildRetentionSeries(scopedWords, events, 12),
   }
@@ -809,10 +984,14 @@ export async function exportBackup(): Promise<string> {
     sentences: await db.getAll('sentences'),
     listeningEvents: await db.getAll('listeningEvents'),
     clipPacks: await db.getAll('clipPacks'),
+    readerPacks: await db.getAll('readerPacks'),
+    readerBooks: await db.getAll('readerBooks'),
+    readerProgress: await db.getAll('readerProgress'),
     settings: {
       lmsSeededAt: await db.get('settings', 'lmsSeededAt'),
       activePackId: await db.get('settings', 'activePackId'),
       hotkeys: await getHotkeys(),
+      newWordsPerDay: await getNewWordsPerDay(),
     },
   }
   return JSON.stringify(backup, null, 2)
@@ -824,10 +1003,21 @@ export async function importBackup(text: string): Promise<ImportSummary> {
     sentences?: Sentence[]
     listeningEvents?: ListeningEvent[]
     clipPacks?: ClipPack[]
-    settings?: { activePackId?: string; hotkeys?: HotkeySettings; lmsSeededAt?: string }
+    readerPacks?: ReaderPack[]
+    readerBooks?: ReaderBook[]
+    readerProgress?: ReaderProgress[]
+    settings?: {
+      activePackId?: string
+      hotkeys?: HotkeySettings
+      lmsSeededAt?: string
+      newWordsPerDay?: number
+    }
   }
   const db = await getDB()
-  const tx = db.transaction(['vocabWords', 'sentences', 'listeningEvents', 'clipPacks'], 'readwrite')
+  const tx = db.transaction(
+    ['vocabWords', 'sentences', 'listeningEvents', 'clipPacks', 'readerPacks', 'readerBooks', 'readerProgress'],
+    'readwrite',
+  )
   let created = 0
   let updated = 0
 
@@ -846,11 +1036,23 @@ export async function importBackup(text: string): Promise<ImportSummary> {
   for (const pack of backup.clipPacks ?? []) {
     await tx.objectStore('clipPacks').put(pack)
   }
+  for (const pack of backup.readerPacks ?? []) {
+    await tx.objectStore('readerPacks').put(pack)
+  }
+  for (const book of backup.readerBooks ?? []) {
+    await tx.objectStore('readerBooks').put(book)
+  }
+  for (const progress of backup.readerProgress ?? []) {
+    await tx.objectStore('readerProgress').put(progress)
+  }
 
   await tx.done
   if (backup.settings?.activePackId) await db.put('settings', backup.settings.activePackId, 'activePackId')
   if (backup.settings?.hotkeys) await saveHotkeys(backup.settings.hotkeys)
   if (backup.settings?.lmsSeededAt) await db.put('settings', backup.settings.lmsSeededAt, 'lmsSeededAt')
+  if (backup.settings?.newWordsPerDay !== undefined) {
+    await saveNewWordsPerDay(backup.settings.newWordsPerDay)
+  }
   return { created, updated, skipped: 0, warnings: [] }
 }
 
@@ -1034,6 +1236,52 @@ function manifestEntryToClip(
   }
 }
 
+function readerSentenceToClip(
+  sentence: ReaderBook['stories'][number]['sentences'][number],
+  blob: Blob,
+  packId: string,
+  voice?: string,
+  createdAt = new Date().toISOString(),
+): AudioClip {
+  const filename = sentence.audioFilename.split('/').pop() || `${sentence.id}.mp3`
+  return {
+    id: sentence.audioClipId,
+    type: 'sentence',
+    label: sentence.chinese,
+    filename,
+    path: normalizeFilename(sentence.audioFilename),
+    blob,
+    linkedSentenceId: sentence.id,
+    manifestId: sentence.audioClipId,
+    text: sentence.chinese,
+    language: 'zh-CN',
+    provider: 'azure',
+    voice,
+    packId,
+    createdAt,
+  }
+}
+
+function uniqueReaderWordCount(books: ReaderBook[]): number {
+  const words = new Set<string>()
+  for (const book of books) {
+    for (const story of book.stories) {
+      for (const word of story.newWords) words.add(word.word)
+    }
+  }
+  return words.size
+}
+
+function readerProgressId(packId: string, bookId: string): string {
+  return `reader-progress:${packId}:${bookId}`
+}
+
+function resolveHostedBaseUrl(baseUrl: string): string {
+  const cleaned = baseUrl.replace(/\/+$/, '')
+  if (/^(https?:|\/)/u.test(cleaned)) return cleaned
+  return `${import.meta.env.BASE_URL}${cleaned}`.replace(/([^:]\/)\/+/gu, '$1')
+}
+
 function makeClipPack(input: {
   id: string
   name: string
@@ -1078,6 +1326,12 @@ function normalizeHotkeys(hotkeys: HotkeySettings): HotkeySettings {
     choiceD: normalizeKey(hotkeys.choiceD, DEFAULT_HOTKEYS.choiceD),
     playPause: normalizeKey(hotkeys.playPause, DEFAULT_HOTKEYS.playPause),
   }
+}
+
+function normalizeNewWordsPerDay(value: unknown): number {
+  const number = Number(value)
+  if (!Number.isFinite(number)) return 5
+  return Math.min(50, Math.max(0, Math.round(number)))
 }
 
 function normalizeKey(value: string | undefined, fallback: string): string {
@@ -1133,66 +1387,6 @@ function isWordDueSoon(word: VocabWord, now: number, soon: number): boolean {
   if (!word.fsrsDueAt) return false
   const dueTime = Date.parse(word.fsrsDueAt)
   return Number.isFinite(dueTime) && dueTime > now && dueTime <= soon
-}
-
-function scheduleFsrsReview(
-  rating: FsrsRating,
-  ease: number,
-  intervalDays: number,
-  repetitions: number,
-  lapses: number,
-  now: Date,
-): {
-  dueAt: string
-  intervalDays: number
-  ease: number
-  repetitions: number
-  lapses: number
-  status: WordStatus
-} {
-  const nextRepetitions = rating === 'again' ? 0 : repetitions + 1
-  let nextEase = ease
-  let nextInterval: number
-  let nextLapses = lapses
-  let status: WordStatus
-
-  if (rating === 'again') {
-    nextEase = Math.max(1.3, ease - 0.2)
-    nextInterval = 0
-    nextLapses += 1
-    status = 'learning'
-  } else if (rating === 'hard') {
-    nextEase = Math.max(1.3, ease - 0.15)
-    nextInterval = repetitions <= 0 ? 1 : Math.max(1, Math.ceil(intervalDays * 1.25))
-    status = 'learning'
-  } else if (rating === 'good') {
-    nextInterval =
-      repetitions <= 0 ? 2 : Math.max(intervalDays + 1, Math.ceil(intervalDays * ease))
-    status = nextInterval >= 14 ? 'known' : 'familiar'
-  } else {
-    nextEase = Math.min(3.2, ease + 0.15)
-    nextInterval =
-      repetitions <= 0
-        ? 4
-        : Math.max(intervalDays + 2, Math.ceil(intervalDays * (ease + 0.35)))
-    status = nextInterval >= 7 ? 'known' : 'familiar'
-  }
-
-  const dueAt = new Date(now)
-  if (nextInterval === 0) {
-    dueAt.setMinutes(dueAt.getMinutes() + 10)
-  } else {
-    dueAt.setDate(dueAt.getDate() + nextInterval)
-  }
-
-  return {
-    dueAt: dueAt.toISOString(),
-    intervalDays: nextInterval,
-    ease: Number(nextEase.toFixed(2)),
-    repetitions: nextRepetitions,
-    lapses: nextLapses,
-    status,
-  }
 }
 
 function startOfToday(): Date {

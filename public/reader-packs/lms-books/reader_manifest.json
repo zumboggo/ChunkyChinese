@@ -1,0 +1,55 @@
+{
+  "packId": "lms-books",
+  "name": "LMS Reader Books",
+  "description": "Legendary Moonlight Sculptor LMS reader compilations from StoryEditor.",
+  "sourcePath": "C:\\Users\\LENOVO\\Documents\\LearnChinese\\LMS\\StoryEditor",
+  "createdAt": "2026-05-19T20:23:42.448Z",
+  "voice": "zh-CN-XiaochenNeural",
+  "rate": "-5%",
+  "audioAvailable": false,
+  "synthesizedAudioCount": 0,
+  "storyCount": 40,
+  "sentenceCount": 1114,
+  "books": [
+    {
+      "id": "lms-book-1-chapters-1-5",
+      "title": "LMS Book 1 Chapters 1-5",
+      "book": 1,
+      "chapterStart": 1,
+      "chapterEnd": 5,
+      "storyCount": 10,
+      "sentenceCount": 296,
+      "path": "books/lms-book-1-chapters-1-5.json"
+    },
+    {
+      "id": "lms-book-1-chapters-6-10",
+      "title": "LMS Book 1 Chapters 6-10",
+      "book": 1,
+      "chapterStart": 6,
+      "chapterEnd": 10,
+      "storyCount": 10,
+      "sentenceCount": 311,
+      "path": "books/lms-book-1-chapters-6-10.json"
+    },
+    {
+      "id": "lms-book-1-chapters-11-15",
+      "title": "LMS Book 1 Chapters 11-15",
+      "book": 1,
+      "chapterStart": 11,
+      "chapterEnd": 15,
+      "storyCount": 10,
+      "sentenceCount": 257,
+      "path": "books/lms-book-1-chapters-11-15.json"
+    },
+    {
+      "id": "lms-book-1-chapters-16-20",
+      "title": "LMS Book 1 Chapters 16-20",
+      "book": 1,
+      "chapterStart": 16,
+      "chapterEnd": 20,
+      "storyCount": 10,
+      "sentenceCount": 250,
+      "path": "books/lms-book-1-chapters-16-20.json"
+    }
+  ]
+}
