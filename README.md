@@ -120,6 +120,38 @@ For a small test pack:
 py export_clip_pack.py --targets input\target_words_full.csv --out clip_packs\test_5 --limit 5 --synthesize
 ```
 
+## Generate the LMS Reader Pack
+
+Reader Mode is built from the LMS StoryEditor source data:
+
+```text
+C:\Users\LENOVO\Documents\LearnChinese\LMS\StoryEditor\source-data
+```
+
+The hosted reader pack lives in:
+
+```text
+public/reader-packs/lms-books
+```
+
+To rebuild the four LMS reader books and synthesize per-sentence Azure MP3 clips:
+
+```powershell
+npm.cmd run generate:reader-pack -- --synthesize
+```
+
+The generator reads `AZURE_SPEECH_KEY` / `AZURE_SPEECH_REGION` when set, or falls back to:
+
+```text
+C:\Users\LENOVO\Documents\azure-tts-ssml\config.json
+```
+
+After generation, verify the expected 40 stories, 4 books, and 1114 sentences:
+
+```powershell
+npm.cmd run verify:reader-pack
+```
+
 ## Clip Pack Format
 
 ```text

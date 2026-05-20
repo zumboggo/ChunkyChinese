@@ -21,13 +21,23 @@ const DEFAULT_LMS_DIR = path.join(
 const DEFAULT_OUT_DIR = path.join(ROOT, 'public', 'reader-packs', 'lms-books')
 const DEFAULT_VOICE = process.env.AZURE_SPEECH_VOICE || 'zh-CN-XiaochenNeural'
 const DEFAULT_RATE = process.env.AZURE_SPEECH_RATE || '-5%'
+const DEFAULT_AZURE_CONFIG = path.join(
+  process.env.USERPROFILE ?? '',
+  'Documents',
+  'azure-tts-ssml',
+  'config.json',
+)
 const GROUP_SIZE = 5
+const SYNTH_RETRIES = 3
 
 const args = parseArgs(process.argv.slice(2))
 const sourceDir = path.resolve(args.lmsDir ?? DEFAULT_LMS_DIR)
 const sourceDataDir = path.join(sourceDir, 'source-data')
 const outDir = path.resolve(args.out ?? DEFAULT_OUT_DIR)
 const synthesize = Boolean(args.synthesize)
+const azureCredentials = synthesize
+  ? loadAzureCredentials(path.resolve(args.config ?? DEFAULT_AZURE_CONFIG))
+  : undefined
 
 if (!existsSync(sourceDataDir)) {
   throw new Error(`Could not find LMS StoryEditor source-data folder: ${sourceDataDir}`)
@@ -42,14 +52,19 @@ mkdirSync(path.join(outDir, 'ssml', 'sentences'), { recursive: true })
 mkdirSync(path.join(outDir, 'audio', 'sentences'), { recursive: true })
 
 let synthesizedAudioCount = 0
+let sentenceCount = 0
 for (const book of books) {
   for (const story of book.stories) {
     for (const sentence of story.sentences) {
+      sentenceCount += 1
       const ssml = sentenceSsml(sentence.chinese, DEFAULT_VOICE, DEFAULT_RATE)
       writeText(path.join(outDir, sentence.ssmlFilename), ssml)
       if (synthesize) {
         const audioPath = path.join(outDir, sentence.audioFilename)
-        if (await synthesizeAzure(ssml, audioPath)) synthesizedAudioCount += 1
+        if (await synthesizeAzure(ssml, audioPath, azureCredentials)) synthesizedAudioCount += 1
+        if (sentenceCount % 25 === 0) {
+          console.log(`Synthesized ${sentenceCount}/${manifestSentenceCount(books)} reader sentences...`)
+        }
       }
     }
   }
@@ -104,8 +119,26 @@ function parseArgs(values) {
     if (value === '--synthesize') parsed.synthesize = true
     else if (value === '--lms-dir') parsed.lmsDir = values[++index]
     else if (value === '--out') parsed.out = values[++index]
+    else if (value === '--config') parsed.config = values[++index]
   }
   return parsed
+}
+
+function loadAzureCredentials(configPath) {
+  const envKey = process.env.AZURE_SPEECH_KEY?.trim()
+  const envRegion = process.env.AZURE_SPEECH_REGION?.trim()
+  if (envKey && envRegion) return { key: envKey, region: envRegion }
+
+  if (existsSync(configPath)) {
+    const config = JSON.parse(readText(configPath))
+    const key = config.SubscriptionKey?.trim()
+    const region = config.ServiceRegion?.trim()
+    if (key && region) return { key, region }
+  }
+
+  throw new Error(
+    `Azure credentials are required with --synthesize. Set AZURE_SPEECH_KEY/AZURE_SPEECH_REGION or provide --config ${configPath}`,
+  )
 }
 
 function loadStories(dir) {
@@ -195,18 +228,14 @@ function sentenceSsml(chinese, voice, rate) {
   ].join('\n')
 }
 
-async function synthesizeAzure(ssml, outputPath) {
-  const speechKey = process.env.AZURE_SPEECH_KEY
-  const speechRegion = process.env.AZURE_SPEECH_REGION
-  if (!speechKey || !speechRegion) {
-    throw new Error('AZURE_SPEECH_KEY and AZURE_SPEECH_REGION are required with --synthesize')
-  }
-  const response = await fetch(
-    `https://${speechRegion}.tts.speech.microsoft.com/cognitiveservices/v1`,
+async function synthesizeAzure(ssml, outputPath, credentials) {
+  if (!credentials) throw new Error('Azure credentials were not loaded')
+  const response = await fetchWithRetry(
+    `https://${credentials.region}.tts.speech.microsoft.com/cognitiveservices/v1`,
     {
       method: 'POST',
       headers: {
-        'Ocp-Apim-Subscription-Key': speechKey,
+        'Ocp-Apim-Subscription-Key': credentials.key,
         'Content-Type': 'application/ssml+xml',
         'X-Microsoft-OutputFormat': 'audio-24khz-48kbitrate-mono-mp3',
         'User-Agent': 'chunky-chinese-reader-pack',
@@ -214,12 +243,36 @@ async function synthesizeAzure(ssml, outputPath) {
       body: ssml,
     },
   )
-  if (!response.ok) {
-    throw new Error(`Azure TTS failed: HTTP ${response.status} ${await response.text()}`)
-  }
   mkdirSync(path.dirname(outputPath), { recursive: true })
   writeFileSync(outputPath, Buffer.from(await response.arrayBuffer()))
   return true
+}
+
+async function fetchWithRetry(url, options) {
+  let lastError
+  for (let attempt = 1; attempt <= SYNTH_RETRIES; attempt += 1) {
+    try {
+      const response = await fetch(url, options)
+      if (response.ok) return response
+      lastError = new Error(`HTTP ${response.status} ${await response.text()}`)
+    } catch (error) {
+      lastError = error
+    }
+    await delay(600 * attempt)
+  }
+  throw new Error(`Azure TTS failed after ${SYNTH_RETRIES} attempts: ${lastError?.message ?? lastError}`)
+}
+
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+function manifestSentenceCount(books) {
+  return books.reduce(
+    (sum, book) =>
+      sum + book.stories.reduce((storySum, story) => storySum + story.sentences.length, 0),
+    0,
+  )
 }
 
 function readText(filePath) {

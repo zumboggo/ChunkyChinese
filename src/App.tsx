@@ -16,6 +16,7 @@ import {
   getActivePackId,
   getDashboardStats,
   getHostedClipPackIndex,
+  getHostedReaderPackIndex,
   getNewWordsPerDay,
   getHotkeys,
   getPromptClip,
@@ -25,6 +26,7 @@ import {
   importClipPackFiles,
   importCsvTtsPack,
   importHostedClipPack,
+  importHostedReaderPack,
   importSentencesCsv,
   importVocabCsv,
   rateWordFsrs,
@@ -48,6 +50,7 @@ import type {
   DashboardStats,
   FsrsRating,
   HostedClipPack,
+  HostedReaderPack,
   HotkeySettings,
   ImportSummary,
   LessonPlan,
@@ -121,6 +124,7 @@ function App() {
   const [readerPacks, setReaderPacks] = useState<ReaderPack[]>([])
   const [readerBooks, setReaderBooks] = useState<ReaderBook[]>([])
   const [hostedPacks, setHostedPacks] = useState<HostedClipPack[]>([])
+  const [hostedReaderPacks, setHostedReaderPacks] = useState<HostedReaderPack[]>([])
   const [activePackId, setActivePackId] = useState<string | undefined>()
   const [stats, setStats] = useState<DashboardStats>(emptyStats)
   const [newWordsPerDay, setNewWordsPerDay] = useState(5)
@@ -233,12 +237,14 @@ function App() {
             ? `Loaded ${seededReaderSentences} reader sentences.`
             : 'LMS vocabulary loaded.',
       )
-      const [nextHotkeys, nextHostedPacks] = await Promise.all([
+      const [nextHotkeys, nextHostedPacks, nextHostedReaderPacks] = await Promise.all([
         getHotkeys(),
         getHostedClipPackIndex(),
+        getHostedReaderPackIndex(),
       ])
       setHotkeys(nextHotkeys)
       setHostedPacks(nextHostedPacks.filter((pack) => !HIDDEN_PACK_IDS.has(pack.id)))
+      setHostedReaderPacks(nextHostedReaderPacks)
       await refresh()
     }
     void start()
@@ -410,13 +416,21 @@ function App() {
     setShowReviewPrompt(true)
   }, [])
 
-  const openReaderBook = useCallback(async (book: ReaderBook) => {
+  const openReaderBook = useCallback(async (book: ReaderBook, action: 'resume' | 'start' = 'resume') => {
     const progress = await getReaderProgress(book.packId, book.id)
     const sentenceCount = book.stories.reduce((sum, story) => sum + story.sentences.length, 0)
+    const sentenceIndex = action === 'start' ? 0 : progress?.sentenceIndex ?? 0
     setActiveReaderBookId(book.id)
-    setReaderSentenceIndex(Math.min(Math.max(0, progress?.sentenceIndex ?? 0), Math.max(0, sentenceCount - 1)))
+    setReaderSentenceIndex(Math.min(Math.max(0, sentenceIndex), Math.max(0, sentenceCount - 1)))
     setSelectedReaderToken(null)
     setScreen('reader')
+    if (action === 'start') {
+      await saveReaderProgress({
+        packId: book.packId,
+        bookId: book.id,
+        sentenceIndex: 0,
+      })
+    }
   }, [])
 
   const moveReaderSentence = useCallback(async (delta: number) => {
@@ -1117,6 +1131,30 @@ function App() {
     }
   }
 
+  async function handleHostedReaderPackImport(pack: HostedReaderPack) {
+    setHostedImporting(true)
+    setHostedProgress(`Starting ${pack.name} story download...`)
+    try {
+      const summary = await importHostedReaderPack(
+        pack.baseUrl,
+        (completed, total, label) => {
+          setHostedProgress(`${completed} / ${total}: ${label}`)
+        },
+        pack,
+        { downloadAudio: true },
+      )
+      setLastSummary(formatSummary(summary))
+      setHostedProgress(`${pack.name} stories are ready offline in this browser.`)
+      await refresh()
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Could not download hosted reader pack.'
+      setLastSummary(message)
+      setHostedProgress(message)
+    } finally {
+      setHostedImporting(false)
+    }
+  }
+
   async function handleSetActivePack(packId: string | undefined) {
     await persistActivePackId(packId)
     setActivePackId(packId)
@@ -1618,6 +1656,29 @@ function App() {
                 ))}
               </div>
               {hostedProgress && <small>{hostedProgress}</small>}
+            </section>
+            <section className="panel hosted-pack">
+              <h2>Available reader packs</h2>
+              <p>Download story sentence audio into this browser for offline Reader Mode playback.</p>
+              <div className="pack-list">
+                {hostedReaderPacks.map((pack) => (
+                  <div key={pack.id} className="pack-row">
+                    <span>
+                      <strong>{pack.name}</strong>
+                      <small>{pack.description ?? pack.language ?? 'Hosted reader pack'}</small>
+                    </span>
+                    <button
+                      className="primary"
+                      type="button"
+                      onClick={() => handleHostedReaderPackImport(pack)}
+                      disabled={hostedImporting}
+                    >
+                      {hostedImporting ? 'Downloading...' : 'Download stories'}
+                    </button>
+                  </div>
+                ))}
+              </div>
+              {hostedReaderPacks.length === 0 && <small>No hosted reader packs found.</small>}
             </section>
             <FilePanel
               title="Clip pack folder"
@@ -2389,7 +2450,7 @@ function ReaderMode({
   selectedToken: ReaderWordToken | null
   showPinyin: boolean
   showEnglish: boolean
-  onChooseBook: (book: ReaderBook) => void | Promise<void>
+  onChooseBook: (book: ReaderBook, action?: 'resume' | 'start') => void | Promise<void>
   onPrevious: () => void | Promise<void>
   onNext: () => void | Promise<void>
   onPlay: (sentence: ReaderSentence) => void | Promise<void>
@@ -2420,17 +2481,23 @@ function ReaderMode({
       <div className="reader-layout">
         <aside className="reader-book-list" aria-label="Reader books">
           {readerBooks.map((book) => (
-            <button
+            <div
               key={book.id}
-              type="button"
-              className={book.id === activeBook?.id ? 'active' : ''}
-              onClick={() => onChooseBook(book)}
+              className={`reader-book-card ${book.id === activeBook?.id ? 'active' : ''}`}
             >
               <strong>{book.title}</strong>
               <span>
                 Chapters {book.chapterStart}-{book.chapterEnd} · {book.stories.length} stories
               </span>
-            </button>
+              <div className="reader-book-actions">
+                <button type="button" className="primary" onClick={() => onChooseBook(book, 'resume')}>
+                  Resume
+                </button>
+                <button type="button" onClick={() => onChooseBook(book, 'start')}>
+                  Start from beginning
+                </button>
+              </div>
+            </div>
           ))}
           {readerBooks.length === 0 && <small>No reader books are installed yet.</small>}
         </aside>

@@ -25,6 +25,9 @@ audio/
 !public/clip-packs/**/*.mp3
 !public/clip-packs/**/audio/
 !public/clip-packs/**/audio/**
+!public/reader-packs/**/*.mp3
+!public/reader-packs/**/audio/
+!public/reader-packs/**/audio/**
 clips_manifest.local.json
 backup-*.json
 

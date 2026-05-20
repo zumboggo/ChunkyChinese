@@ -31,7 +31,7 @@ import type {
 import { applyFsrsRating } from './scheduler'
 
 const DB_NAME = 'chunky-chinese-vocab'
-const DB_VERSION = 4
+const DB_VERSION = 5
 
 export const DEFAULT_HOTKEYS: HotkeySettings = {
   choiceA: '3',
@@ -804,7 +804,9 @@ export async function seedReaderBooksIfEmpty(): Promise<number> {
   if ((await db.count('readerBooks')) > 0) return 0
   const [firstPack] = await getHostedReaderPackIndex()
   if (!firstPack) return 0
-  const summary = await importHostedReaderPack(firstPack.baseUrl, undefined, firstPack)
+  const summary = await importHostedReaderPack(firstPack.baseUrl, undefined, firstPack, {
+    downloadAudio: false,
+  })
   return summary.importedSentences ?? 0
 }
 
@@ -842,10 +844,13 @@ export async function importHostedReaderPack(
   baseUrl: string,
   onProgress?: (completed: number, total: number, label: string) => void,
   hosted?: Partial<HostedReaderPack>,
+  options: { downloadAudio?: boolean } = {},
 ): Promise<ImportSummary> {
   const base = resolveHostedBaseUrl(baseUrl)
   const manifest = (await fetchJson(`${base}/reader_manifest.json`)) as ReaderPack
   const packId = hosted?.id ?? manifest.packId ?? makePackId(manifest.name || 'Reader pack')
+  const downloadAudio = options.downloadAudio ?? true
+  const localAudioAvailable = Boolean(manifest.audioAvailable && downloadAudio)
   const pack: ReaderPack = {
     ...manifest,
     packId,
@@ -854,8 +859,8 @@ export async function importHostedReaderPack(
     baseUrl,
     language: hosted?.language ?? manifest.language ?? 'zh-CN',
     installedAt: new Date().toISOString(),
-    audioAvailable: Boolean(manifest.audioAvailable),
-    synthesizedAudioCount: manifest.synthesizedAudioCount ?? 0,
+    audioAvailable: localAudioAvailable,
+    synthesizedAudioCount: localAudioAvailable ? manifest.synthesizedAudioCount ?? 0 : 0,
     storyCount: manifest.storyCount ?? 0,
     sentenceCount: manifest.sentenceCount ?? 0,
     books: manifest.books ?? [],
@@ -884,7 +889,7 @@ export async function importHostedReaderPack(
   let updated = 0
   let skipped = 0
   const sentences = books.flatMap((book) => book.stories.flatMap((story) => story.sentences))
-  if (pack.audioAvailable) {
+  if (downloadAudio && manifest.audioAvailable) {
     const existingClips = new Map((await db.getAll('audioClips')).map((clip) => [clip.id, clip]))
     const prepared: AudioClip[] = []
     for (const [index, sentence] of sentences.entries()) {
