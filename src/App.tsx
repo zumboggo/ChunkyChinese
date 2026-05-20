@@ -2841,15 +2841,18 @@ function ActiveRecallCard({
       )}
       <div className="recall-support">
         <button type="button" onClick={onReplay}>
+          <span className="ui-icon icon-replay" aria-hidden="true" />
           Replay
         </button>
         {!answered && !isSentenceContinue && (
           <button type="button" onClick={onHint}>
+            <span className="ui-icon icon-hint" aria-hidden="true" />
             {hintLevel === 0 ? 'Hint' : hintLevel === 1 ? 'Show pinyin' : 'Reveal'}
           </button>
         )}
         {!answered && !isSentenceContinue && (
           <button type="button" onClick={onReveal}>
+            <span className="ui-icon icon-reveal" aria-hidden="true" />
             Reveal
           </button>
         )}
