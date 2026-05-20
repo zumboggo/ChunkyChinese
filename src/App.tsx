@@ -41,7 +41,7 @@ import {
   setActivePackId as persistActivePackId,
   updateWordStatus,
 } from './db'
-import { createLesson, createPocketLesson, createRescueLesson, type PauseProfile } from './lesson'
+import { createLesson, createPocketLesson, type PauseProfile } from './lesson'
 import { renderLessonToWav } from './renderAudio'
 import { previewFsrsRatings } from './scheduler'
 import type {
@@ -75,7 +75,6 @@ type LessonStartOptions = {
   newWordsLimit?: number
   allowExtraNew?: boolean
 }
-type LessonKind = 'main' | 'rescue'
 type QuizKind = 'zh-en' | 'en-zh' | 'audio-zh' | 'contrast' | 'sentence-zh-en'
 type RecallStage = 'easy' | 'audio-first' | 'try-before-choices' | 'quick' | 'rescue'
 
@@ -134,7 +133,6 @@ function App() {
   const [tagFilter, setTagFilter] = useState('')
   const [selectedWordIds, setSelectedWordIds] = useState<string[]>([])
   const [lesson, setLesson] = useState<LessonPlan | null>(null)
-  const [lessonKind, setLessonKind] = useState<LessonKind>('main')
   const [ratingWordIds, setRatingWordIds] = useState<string[]>([])
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
   const [lessonMode, setLessonMode] = useState<'pocket' | 'live'>('pocket')
@@ -151,8 +149,6 @@ function App() {
   const [pauseProfile, setPauseProfile] = useState<PauseProfile>('normal')
   const [quizResponses, setQuizResponses] = useState<Record<string, QuizResponse>>({})
   const [quizHints, setQuizHints] = useState<Record<string, number>>({})
-  const [missedWordIds, setMissedWordIds] = useState<string[]>([])
-  const [showMissedRescue, setShowMissedRescue] = useState(false)
   const [fsrsRatings, setFsrsRatings] = useState<Record<string, FsrsRating>>({})
   const [showReviewPrompt, setShowReviewPrompt] = useState(false)
   const [reviewCardIndex, setReviewCardIndex] = useState(0)
@@ -185,6 +181,7 @@ function App() {
   const pocketAudioRef = useRef<HTMLAudioElement | null>(null)
   const lastPocketTimeRef = useRef(0)
   const playModeRef = useRef<HTMLElement | null>(null)
+  const readerAutoPlayKeyRef = useRef<string | null>(null)
 
   const refresh = useCallback(async () => {
     const [
@@ -372,13 +369,6 @@ function App() {
   const effectiveShowEnglish = showEnglish && !activeRecallSupportHidden
   const allLessonWordsRated =
     ratingWords.length > 0 && ratingWords.every((word) => fsrsRatings[word.id])
-  const missedWords = useMemo(
-    () =>
-      missedWordIds
-        .map((id) => words.find((word) => word.id === id))
-        .filter((word): word is VocabWord => Boolean(word)),
-    [missedWordIds, words],
-  )
   const activeReaderBook = useMemo(
     () => readerBooks.find((book) => book.id === activeReaderBookId),
     [activeReaderBookId, readerBooks],
@@ -451,6 +441,8 @@ function App() {
   async function playReaderSentence(sentence: ReaderSentence) {
     const token = runToken.current + 1
     runToken.current = token
+    audioRef.current?.pause()
+    window.speechSynthesis?.cancel()
     const clip = await getAudioClip(sentence.audioClipId)
     if (clip) {
       await playAudioClip(clip.id, token)
@@ -461,6 +453,40 @@ function App() {
       await speakUtterance(sentence.chinese, playbackRate, 'zh-CN')
     }
   }
+
+  useEffect(() => {
+    if (screen !== 'reader' || !activeReaderBook || !currentReaderSentence) return
+    const key = `${activeReaderBook.id}:${readerSentenceIndex}:${currentReaderSentence.id}`
+    if (readerAutoPlayKeyRef.current === key) return
+    readerAutoPlayKeyRef.current = key
+    const token = runToken.current + 1
+    runToken.current = token
+    audioRef.current?.pause()
+    window.speechSynthesis?.cancel()
+
+    async function playCurrentReaderSentence() {
+      const sentence = currentReaderSentence
+      const clip = await getAudioClip(sentence.audioClipId)
+      if (clip && runToken.current === token) {
+        const url = URL.createObjectURL(clip.blob)
+        const audio = new Audio(url)
+        audio.playbackRate = playbackRate
+        audioRef.current = audio
+        await new Promise<void>((resolve) => {
+          audio.addEventListener('ended', () => resolve(), { once: true })
+          audio.addEventListener('error', () => resolve(), { once: true })
+          audio.play().catch(() => resolve())
+        })
+        URL.revokeObjectURL(url)
+        return
+      }
+      if ('speechSynthesis' in window && runToken.current === token) {
+        await speakUtterance(sentence.chinese, playbackRate, 'zh-CN')
+      }
+    }
+
+    void playCurrentReaderSentence()
+  }, [activeReaderBook, currentReaderSentence, playbackRate, readerSentenceIndex, screen])
 
   async function handleNewWordsPerDayChange(value: number) {
     await saveNewWordsPerDay(value)
@@ -497,10 +523,6 @@ function App() {
 
   useEffect(() => clearAutoContinueTimeout, [clearAutoContinueTimeout])
 
-  const rememberMissedWord = useCallback((wordId: string) => {
-    setMissedWordIds((ids) => (ids.includes(wordId) ? ids : [...ids, wordId]))
-  }, [])
-
   const handleQuizAnswer = useCallback(async (value: string) => {
     if (
       !currentQuiz ||
@@ -517,7 +539,6 @@ function App() {
       ...responses,
       [currentQuiz.id]: { selected: value, correct, hintCount },
     }))
-    if (!correct) rememberMissedWord(currentQuiz.wordId)
     // TODO: Persist richer recall analytics: correctWithoutHint, correctWithHint, wrong, revealed.
     await recordQuizAnswer(currentQuiz.wordId, correct)
     setLastSummary(correct ? 'Correct.' : 'Not quite.')
@@ -527,7 +548,7 @@ function App() {
         void pocketAudioRef.current?.play()
       }, 350)
     }
-  }, [currentQuiz, isActiveLearningMode, quizHints, quizResponses, refresh, rememberMissedWord, stopActiveChoiceSpeech])
+  }, [currentQuiz, isActiveLearningMode, quizHints, quizResponses, refresh, stopActiveChoiceSpeech])
 
   const revealCurrentQuiz = useCallback(async () => {
     if (
@@ -544,12 +565,11 @@ function App() {
       ...responses,
       [currentQuiz.id]: { correct: false, revealed: true, hintCount },
     }))
-    rememberMissedWord(currentQuiz.wordId)
     // TODO: Store revealed/skipped separately from wrong answers when quiz analytics grow.
     await recordQuizAnswer(currentQuiz.wordId, false)
-    setLastSummary('Revealed. It will come back gently.')
+    setLastSummary('Revealed.')
     await refresh()
-  }, [currentQuiz, quizHints, quizResponses, refresh, rememberMissedWord, stopActiveChoiceSpeech])
+  }, [currentQuiz, quizHints, quizResponses, refresh, stopActiveChoiceSpeech])
 
   const continueCurrentQuiz = useCallback(() => {
     stopActiveChoiceSpeech()
@@ -603,6 +623,7 @@ function App() {
 
   useEffect(() => {
     if (!focusedActiveQuiz || !currentQuiz || currentQuizResponse) return
+    if (currentQuiz.kind === 'sentence-zh-en') return
     if (spokenQuizIdRef.current === currentQuiz.id) return
     spokenQuizIdRef.current = currentQuiz.id
     void playActiveQuizChoices(currentQuiz)
@@ -696,7 +717,6 @@ function App() {
   function finishLessonAndReturnHome() {
     pocketAudioRef.current?.pause()
     setShowReviewPrompt(false)
-    setShowMissedRescue(false)
     setMinimalVisualMode(false)
     setSavedResumeTime(null)
     setScreen('dashboard')
@@ -710,8 +730,20 @@ function App() {
         target instanceof HTMLInputElement ||
         target instanceof HTMLSelectElement ||
         target instanceof HTMLTextAreaElement
-      if (isTyping || screen !== 'lesson') return
+      if (isTyping) return
       const pressed = event.key.toLocaleLowerCase()
+      const mappedIndex = choiceKeyIndex(pressed, hotkeys)
+      if (screen === 'reader') {
+        if (mappedIndex === 0) {
+          event.preventDefault()
+          void moveReaderSentence(1)
+        } else if (mappedIndex === 1) {
+          event.preventDefault()
+          void moveReaderSentence(-1)
+        }
+        return
+      }
+      if (screen !== 'lesson') return
       if (pressed === hotkeys.playPause) {
         event.preventDefault()
         togglePlayback()
@@ -730,7 +762,11 @@ function App() {
         }
         return
       }
-      const mappedIndex = choiceKeyIndex(pressed, hotkeys)
+      if (currentQuiz?.kind === 'sentence-zh-en' && mappedIndex === 0) {
+        event.preventDefault()
+        continueCurrentQuiz()
+        return
+      }
       if (
         currentQuiz &&
         currentQuiz.options.length > 1 &&
@@ -769,6 +805,7 @@ function App() {
     handleStatus,
     hotkeys,
     currentReviewWord,
+    moveReaderSentence,
     ratingWords,
     reviewAnswerShown,
     screen,
@@ -803,7 +840,6 @@ function App() {
     setShowReviewPrompt(false)
     setReviewCardIndex(0)
     setReviewAnswerShown(false)
-    setShowMissedRescue(false)
     if (nextLesson.steps.filter((step) => step.kind === 'audio').length === 0) {
       setLessonMode('live')
       setLastSummary('No local clips are linked yet. Using browser TTS while the app stays open.')
@@ -836,7 +872,6 @@ function App() {
     options: LessonStartOptions = { randomize: true },
   ) {
     setLessonMode('pocket')
-    setLessonKind('main')
     setRendering(true)
     setScreen('lesson')
     try {
@@ -855,7 +890,6 @@ function App() {
             ...selectionOptions,
           })
       setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
-      setMissedWordIds([])
       setFsrsRatings({})
       await renderAndLoadLesson(
         nextLesson,
@@ -893,24 +927,6 @@ function App() {
       newWordsLimit: remainingNewWordsToday,
       ...options,
     })
-  }
-
-  async function startMissedRescue() {
-    if (missedWordIds.length === 0) return
-    setLessonMode('pocket')
-    setLessonKind('rescue')
-    setRendering(true)
-    setScreen('lesson')
-    try {
-      const nextLesson = createRescueLesson(words, audioClips, missedWordIds, {
-        pauseProfile: 'gentle',
-      })
-      await renderAndLoadLesson(nextLesson, true, 'Missed word rescue round ready.')
-    } catch (error) {
-      setLastSummary(error instanceof Error ? error.message : 'Could not render rescue round.')
-    } finally {
-      setRendering(false)
-    }
   }
 
   function pauseAndSavePlace() {
@@ -1221,6 +1237,10 @@ function App() {
               <button className="mode-start active-start" type="button" onClick={() => startModeLesson('activeRecall')}>
                 <strong>Active recall</strong>
                 <span>Pause for spoken 2-choice questions.</span>
+              </button>
+              <button className="mode-start reader-start" type="button" onClick={() => setScreen('reader')}>
+                <strong>Reader mode</strong>
+                <span>Read the LMS stories sentence by sentence.</span>
               </button>
             </div>
           </div>
@@ -1927,36 +1947,6 @@ function App() {
                         )}
                       </>
                     )}
-                    {showMissedRescue && missedWords.length > 0 && (
-                      <div className="rescue-panel" aria-live="polite">
-                        <div className="review-heading">
-                          <strong>Review missed words?</strong>
-                          <span>About 45 seconds</span>
-                        </div>
-                        <p className="review-note">
-                          Replay the tough ones gently before rating the set, or finish for now.
-                        </p>
-                        <div className="rescue-word-list">
-                          {missedWords.map((word) => (
-                            <span key={word.id}>{word.word}</span>
-                          ))}
-                        </div>
-                        <div className="button-row">
-                          <button type="button" className="primary" onClick={startMissedRescue}>
-                            Start rescue round
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setShowMissedRescue(false)
-                              openReviewPrompt()
-                            }}
-                          >
-                            Finish for now
-                          </button>
-                        </div>
-                      </div>
-                    )}
                     {showReviewPrompt && ratingWords.length > 0 && (
                       <div className="review-panel" aria-live="polite">
                         <div className="review-heading">
@@ -2137,8 +2127,6 @@ function App() {
                               })
                             } else if (isListeningMode) {
                               setLastSummary('Listening mode lesson complete.')
-                            } else if (lessonKind === 'main' && missedWordIds.length > 0) {
-                              setShowMissedRescue(true)
                             } else {
                               openReviewPrompt()
                             }
@@ -2762,6 +2750,7 @@ function ActiveRecallCard({
   const feedbackText = getQuizFeedbackText(quiz, word, correctLabel)
   const showPinyinHint = ((showPinyin && quiz.stage === 'easy') || hintLevel >= 2) && Boolean(word?.pinyin)
   const answered = Boolean(response)
+  const isSentenceContinue = quiz.kind === 'sentence-zh-en'
   const canChoose = !answered && choicesReady && quiz.options.length > 1
   const revealDelay = getChoiceRevealDelay(quiz.stage)
   const cueIsSoftened = !choicesReady && quiz.stage === 'audio-first'
@@ -2802,7 +2791,15 @@ function ActiveRecallCard({
           </span>
         </div>
       )}
-      {!answered && choicesReady && (
+      {!answered && choicesReady && isSentenceContinue && (
+        <div className="recall-options single-reveal">
+          <button type="button" className="primary" onClick={onContinue}>
+            <kbd>{choiceKeys[0]?.toUpperCase() ?? 'A'}</kbd>
+            Continue
+          </button>
+        </div>
+      )}
+      {!answered && choicesReady && !isSentenceContinue && (
         <div className={`recall-options ${canChoose ? '' : 'single-reveal'}`}>
           {canChoose ? (
             quiz.options.map((option, index) => (
@@ -2822,12 +2819,12 @@ function ActiveRecallCard({
         <button type="button" onClick={onReplay}>
           Replay
         </button>
-        {!answered && (
+        {!answered && !isSentenceContinue && (
           <button type="button" onClick={onHint}>
             {hintLevel === 0 ? 'Hint' : hintLevel === 1 ? 'Show pinyin' : 'Reveal'}
           </button>
         )}
-        {!answered && (
+        {!answered && !isSentenceContinue && (
           <button type="button" onClick={onReveal}>
             Reveal
           </button>
@@ -3134,7 +3131,7 @@ function getQuizModeLabel(quiz: ActiveQuiz): string {
 }
 
 function getActiveRecallPrompt(quiz: ActiveQuiz): string {
-  if (quiz.kind === 'sentence-zh-en') return 'What does this sentence mean?'
+  if (quiz.kind === 'sentence-zh-en') return 'Press A to continue.'
   if (quiz.kind === 'contrast') return quiz.prompt
   if (quiz.kind === 'audio-zh') return 'Which word did you hear?'
   if (quiz.stage === 'audio-first' && quiz.kind === 'zh-en') {

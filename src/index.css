@@ -626,7 +626,7 @@ dt {
 
 .mode-start-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(170px, 1fr));
+  grid-template-columns: repeat(3, minmax(170px, 1fr));
   gap: 10px;
 }
 
@@ -660,6 +660,11 @@ dt {
 
 .active-start span {
   color: rgba(255, 255, 255, 0.84);
+}
+
+.reader-start {
+  border-color: rgba(29, 142, 216, 0.24);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.84), rgba(223, 241, 255, 0.88));
 }
 
 .filters {
@@ -1870,6 +1875,8 @@ kbd {
 }
 
 .reader-token {
+  display: inline-grid;
+  justify-items: center;
   min-height: 0;
   margin: 0 2px 10px;
   padding: 4px 7px 6px;
@@ -1898,7 +1905,8 @@ kbd {
 
 .reader-token small {
   display: block;
-  max-width: 11ch;
+  max-width: none;
+  text-align: center;
   overflow-wrap: anywhere;
   color: var(--accent-2);
   font-size: 0.28em;

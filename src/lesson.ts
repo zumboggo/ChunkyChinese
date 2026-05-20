@@ -228,43 +228,6 @@ export function createPocketLesson(
   }
 }
 
-export function createRescueLesson(
-  words: VocabWord[],
-  audioClips: AudioClip[],
-  wordIds: string[],
-  options: TargetSelectionOptions = { pauseProfile: 'gentle' },
-): LessonPlan {
-  const pauses = getPauseTimings(options.pauseProfile ?? 'gentle')
-  const targetWords = wordIds
-    .map((id) => words.find((word) => word.id === id))
-    .filter((word): word is VocabWord => Boolean(word))
-    .slice(0, 5)
-  const steps: LessonStep[] = []
-
-  addPrompt(steps, audioClips, 'again', 'Again')
-  targetWords.forEach((word, index) => {
-    const prefix = `rescue-${index + 1}-${word.id}`
-    addWordAudio(steps, word, `${prefix}-word-1`)
-    addMeaningAudio(steps, word, `${prefix}-meaning-1`)
-    addWordAudio(steps, word, `${prefix}-word-2`)
-    addChineseToEnglishRecall(
-      steps,
-      word,
-      audioClips,
-      `${prefix}-zh-en`,
-      Math.max(pauses.recall, 3.5),
-    )
-    steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', wordId: word.id })
-  })
-
-  return {
-    id: `rescue:${Date.now()}`,
-    title: `${targetWords.length} missed word rescue`,
-    targetWords,
-    steps,
-  }
-}
-
 export function selectTargetWords(
   words: VocabWord[],
   manualIds: string[] = [],
