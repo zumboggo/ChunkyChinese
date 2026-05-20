@@ -146,6 +146,7 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [studyMode, setStudyMode] = useState<StudyMode>('listeningMode')
   const [minimalVisualMode, setMinimalVisualMode] = useState(false)
+  const [lessonMenuOpen, setLessonMenuOpen] = useState(false)
   const [pauseProfile, setPauseProfile] = useState<PauseProfile>('normal')
   const [quizResponses, setQuizResponses] = useState<Record<string, QuizResponse>>({})
   const [quizHints, setQuizHints] = useState<Record<string, number>>({})
@@ -269,14 +270,14 @@ function App() {
       album: '5 Word Lesson',
       artwork: [
         {
-          src: `${import.meta.env.BASE_URL}pwa-192.svg`,
+          src: `${import.meta.env.BASE_URL}icons/icon-192.png`,
           sizes: '192x192',
-          type: 'image/svg+xml',
+          type: 'image/png',
         },
         {
-          src: `${import.meta.env.BASE_URL}pwa-512.svg`,
+          src: `${import.meta.env.BASE_URL}icons/icon-512.png`,
           sizes: '512x512',
-          type: 'image/svg+xml',
+          type: 'image/png',
         },
       ],
     })
@@ -1207,10 +1208,6 @@ function App() {
             <span className="nav-icon nav-words" aria-hidden="true" />
             Words
           </button>
-          <button className={screen === 'reader' ? 'active' : ''} onClick={() => setScreen('reader')}>
-            <span className="nav-icon nav-reader" aria-hidden="true" />
-            Reader
-          </button>
           <button className={screen === 'import' ? 'active' : ''} onClick={() => setScreen('import')}>
             <span className="nav-icon nav-import" aria-hidden="true" />
             Import
@@ -1820,7 +1817,7 @@ function App() {
                   <div
                     className={`study-stage ${focusedActiveQuiz ? 'active-focus' : ''} ${
                       minimalVisualMode ? 'minimal-visual-stage' : ''
-                    }`}
+                    } ${showReviewPrompt ? 'review-stage' : ''}`}
                   >
                     <div className="study-meta">
                       <span>
@@ -1876,7 +1873,66 @@ function App() {
                         </div>
                       )}
                     </div>
-                    {focusedActiveQuiz && currentQuiz ? (
+                    {showReviewPrompt && ratingWords.length > 0 ? (
+                      <div className="review-panel main-review-panel" aria-live="polite">
+                        <div className="review-heading">
+                          <strong>Active recall review</strong>
+                          <span>
+                            {allLessonWordsRated
+                              ? 'Set scheduled'
+                              : `Card ${Math.min(reviewCardIndex + 1, ratingWords.length)} / ${ratingWords.length}`}
+                          </span>
+                        </div>
+                        <p className="review-note">
+                          These ratings decide when each word comes back. Unanswered quiz questions
+                          are ignored; this is the main memory signal.
+                        </p>
+                        {currentReviewWord && !fsrsRatings[currentReviewWord.id] ? (
+                          <FlashcardReview
+                            word={currentReviewWord}
+                            answerShown={reviewAnswerShown}
+                            onFlip={() => setReviewAnswerShown(true)}
+                            onRate={(rating) => handleFsrsRating(currentReviewWord.id, rating)}
+                          />
+                        ) : (
+                          <div className="review-complete">
+                            <strong>All five cards are scheduled.</strong>
+                            <span>Due dates are now visible across the dashboard, reader, and word list.</span>
+                          </div>
+                        )}
+                        <div className="review-actions">
+                          <button
+                            type="button"
+                            className="ghost-answer"
+                            onClick={() => setShowReviewPrompt(false)}
+                          >
+                            Not now
+                          </button>
+                          {allLessonWordsRated && (
+                            <button
+                              type="button"
+                              className="primary"
+                              onClick={() =>
+                                startPocketLesson([], {
+                                  randomize: true,
+                                  playAfterRender: true,
+                                  newWordsLimit: remainingNewWordsToday,
+                                })
+                              }
+                            >
+                              Next Lesson
+                            </button>
+                          )}
+                          <button
+                            type="button"
+                            className="primary"
+                            onClick={finishLessonAndReturnHome}
+                          >
+                            Done
+                          </button>
+                        </div>
+                      </div>
+                    ) : focusedActiveQuiz && currentQuiz ? (
                       <ActiveRecallCard
                         key={currentQuiz.id}
                         quiz={currentQuiz}
@@ -1946,64 +2002,6 @@ function App() {
                           </div>
                         )}
                       </>
-                    )}
-                    {showReviewPrompt && ratingWords.length > 0 && (
-                      <div className="review-panel" aria-live="polite">
-                        <div className="review-heading">
-                          <strong>Active recall review</strong>
-                          <span>
-                            {allLessonWordsRated
-                              ? 'Set scheduled'
-                              : `Card ${Math.min(reviewCardIndex + 1, ratingWords.length)} / ${ratingWords.length}`}
-                          </span>
-                        </div>
-                        <p className="review-note">
-                          These ratings decide when each word comes back. Unanswered quiz questions
-                          are ignored; this is the main memory signal.
-                        </p>
-                        {currentReviewWord && !fsrsRatings[currentReviewWord.id] ? (
-                          <FlashcardReview
-                            word={currentReviewWord}
-                            answerShown={reviewAnswerShown}
-                            onFlip={() => setReviewAnswerShown(true)}
-                            onRate={(rating) => handleFsrsRating(currentReviewWord.id, rating)}
-                          />
-                        ) : (
-                          <div className="review-complete">
-                            <strong>All five cards are scheduled.</strong>
-                            <span>Due dates are now visible across the dashboard, reader, and word list.</span>
-                          </div>
-                        )}
-                        <button
-                          type="button"
-                          className="ghost-answer"
-                          onClick={() => setShowReviewPrompt(false)}
-                        >
-                          Not now
-                        </button>
-                        {allLessonWordsRated && (
-                          <button
-                            type="button"
-                            className="primary"
-                            onClick={() =>
-                              startPocketLesson([], {
-                                randomize: true,
-                                playAfterRender: true,
-                                newWordsLimit: remainingNewWordsToday,
-                              })
-                            }
-                          >
-                            Next Lesson
-                          </button>
-                        )}
-                        <button
-                          type="button"
-                          className="primary"
-                          onClick={finishLessonAndReturnHome}
-                        >
-                          Done
-                        </button>
-                      </div>
                     )}
                     {currentQuiz &&
                       !currentQuizResponse?.skipped &&
@@ -2136,101 +2134,127 @@ function App() {
                     ) : (
                       <div className="audio-placeholder">Render a lesson to create the audio track.</div>
                     )}
-                    {!minimalVisualMode && focusedActiveQuiz ? (
-                      <div className="player-controls quiet-controls">
+                    {!minimalVisualMode && (
+                      <div className="lesson-menu-shell">
                         <button
                           type="button"
-                          onClick={pauseAndSavePlace}
-                          disabled={!renderedUrl}
+                          className="lesson-menu-trigger"
+                          onClick={() => setLessonMenuOpen((open) => !open)}
+                          aria-expanded={lessonMenuOpen}
+                          aria-controls="lesson-action-sheet"
                         >
-                          Pause & save place
+                          {lessonMenuOpen ? 'Close menu' : 'Menu'}
                         </button>
-                        <button
-                          type="button"
-                          onClick={restartCurrentWord}
-                          disabled={!renderedUrl || !currentSegment?.wordId}
-                        >
-                          Restart current word
-                        </button>
-                      </div>
-                    ) : !minimalVisualMode ? (
-                      <div className="player-controls">
-                        <button
-                          type="button"
-                          onClick={() => pocketAudioRef.current?.play()}
-                          disabled={!renderedUrl || isPlaying}
-                        >
-                          Play
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => pocketAudioRef.current?.pause()}
-                          disabled={!renderedUrl || !isPlaying}
-                        >
-                          Pause
-                        </button>
-                        <button
-                          type="button"
-                          onClick={pauseAndSavePlace}
-                          disabled={!renderedUrl}
-                        >
-                          Pause & save place
-                        </button>
-                        <button
-                          type="button"
-                          onClick={resumeSavedPlace}
-                          disabled={!renderedUrl || savedResumeTime === null}
-                        >
-                          Resume lesson
-                        </button>
-                        <button
-                          type="button"
-                          onClick={restartCurrentWord}
-                          disabled={!renderedUrl || !currentSegment?.wordId}
-                        >
-                          Restart current word
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => startPocketLesson()}
-                          disabled={rendering || (showReviewPrompt && !allLessonWordsRated)}
-                        >
-                          Next Lesson
-                        </button>
-                        <label className="toggle compact-toggle">
-                          <input
-                            type="checkbox"
-                            aria-label="Auto advance to next lesson"
-                            checked={autoNextLesson}
-                            onChange={(event) => setAutoNextLesson(event.target.checked)}
-                          />
-                          Auto advance to next lesson
-                        </label>
-                        <label className="compact-field">
-                          Pause
-                          <select
-                            value={pauseProfile}
-                            onChange={(event) => setPauseProfile(event.target.value as PauseProfile)}
-                          >
-                            <option value="gentle">Gentle</option>
-                            <option value="normal">Normal</option>
-                            <option value="fast">Fast</option>
-                            <option value="challenge">Challenge</option>
-                          </select>
-                        </label>
-                        <button type="button" onClick={toggleFullscreen}>
-                          {isFullscreen ? 'Exit full screen' : 'Full screen'}
-                        </button>
-                        <button type="button" onClick={() => setMinimalVisualMode(true)}>
-                          Listening mode
-                        </button>
-                      </div>
-                    ) : null}
-                    {!focusedActiveQuiz && !minimalVisualMode && (
-                      <div className="coverage-grid">
-                        <span>Ready words: {coverage.readyWords}</span>
-                        <span>Prompt clips: {coverage.promptClips}</span>
-                        <span>Rendered warnings: {renderedLesson?.warnings.length ?? 0}</span>
+                        {lessonMenuOpen && (
+                          <>
+                            <button
+                              type="button"
+                              className="lesson-menu-backdrop"
+                              aria-label="Close lesson menu"
+                              onClick={() => setLessonMenuOpen(false)}
+                            />
+                            <div
+                              className="lesson-action-sheet"
+                              id="lesson-action-sheet"
+                              role="dialog"
+                              aria-label="Lesson controls"
+                            >
+                              <div className="sheet-heading">
+                                <strong>Lesson controls</strong>
+                                <button type="button" onClick={() => setLessonMenuOpen(false)}>
+                                  Close
+                                </button>
+                              </div>
+                              <div className="player-controls lesson-menu-controls">
+                                <button
+                                  type="button"
+                                  onClick={() => pocketAudioRef.current?.play()}
+                                  disabled={!renderedUrl || isPlaying}
+                                >
+                                  Play
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => pocketAudioRef.current?.pause()}
+                                  disabled={!renderedUrl || !isPlaying}
+                                >
+                                  Pause
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={pauseAndSavePlace}
+                                  disabled={!renderedUrl}
+                                >
+                                  Pause & save place
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={resumeSavedPlace}
+                                  disabled={!renderedUrl || savedResumeTime === null}
+                                >
+                                  Resume lesson
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={restartCurrentWord}
+                                  disabled={!renderedUrl || !currentSegment?.wordId}
+                                >
+                                  Restart current word
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setLessonMenuOpen(false)
+                                    void startPocketLesson()
+                                  }}
+                                  disabled={rendering || (showReviewPrompt && !allLessonWordsRated)}
+                                >
+                                  Next Lesson
+                                </button>
+                                <label className="toggle compact-toggle">
+                                  <input
+                                    type="checkbox"
+                                    aria-label="Auto advance to next lesson"
+                                    checked={autoNextLesson}
+                                    onChange={(event) => setAutoNextLesson(event.target.checked)}
+                                  />
+                                  Auto advance to next lesson
+                                </label>
+                                <label className="compact-field">
+                                  Pause
+                                  <select
+                                    value={pauseProfile}
+                                    onChange={(event) => setPauseProfile(event.target.value as PauseProfile)}
+                                  >
+                                    <option value="gentle">Gentle</option>
+                                    <option value="normal">Normal</option>
+                                    <option value="fast">Fast</option>
+                                    <option value="challenge">Challenge</option>
+                                  </select>
+                                </label>
+                                <button type="button" onClick={toggleFullscreen}>
+                                  {isFullscreen ? 'Exit full screen' : 'Full screen'}
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setLessonMenuOpen(false)
+                                    setMinimalVisualMode(true)
+                                  }}
+                                >
+                                  Listening mode
+                                </button>
+                              </div>
+                              {!focusedActiveQuiz && (
+                                <div className="coverage-grid menu-coverage">
+                                  <span>Ready words: {coverage.readyWords}</span>
+                                  <span>Prompt clips: {coverage.promptClips}</span>
+                                  <span>Rendered warnings: {renderedLesson?.warnings.length ?? 0}</span>
+                                </div>
+                              )}
+                            </div>
+                          </>
+                        )}
                       </div>
                     )}
                   </div>

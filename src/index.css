@@ -43,6 +43,7 @@
 body {
   margin: 0;
   min-height: 100svh;
+  overflow-x: hidden;
   background:
     linear-gradient(135deg, rgba(255, 244, 225, 0.28), rgba(233, 246, 255, 0.22)),
     url("./assets/chunky-background.png") center / cover fixed no-repeat;
@@ -158,18 +159,21 @@ dt {
 
 .app-shell {
   min-height: 100svh;
-  padding: clamp(14px, 3vw, 36px);
+  width: min(1220px, 100%);
+  padding: clamp(12px, 2.4vw, 30px);
   max-width: 1220px;
   margin: 0 auto;
 }
 
 .topbar {
+  min-width: 0;
+  max-width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 26px;
-  margin-bottom: clamp(20px, 4vw, 34px);
-  padding: clamp(14px, 2vw, 22px);
+  gap: clamp(14px, 2vw, 22px);
+  margin-bottom: clamp(14px, 2.6vw, 26px);
+  padding: clamp(12px, 1.6vw, 18px);
   border: 1px solid rgba(255, 255, 255, 0.64);
   border-radius: 38px;
   background: rgba(255, 255, 255, 0.74);
@@ -184,7 +188,7 @@ dt {
   justify-content: flex-start;
   box-shadow: none;
   border-radius: 30px;
-  min-width: min(420px, 100%);
+  min-width: min(370px, 100%);
 }
 
 .brand-button:hover {
@@ -233,11 +237,11 @@ dt {
 
 .brand-mark {
   position: relative;
-  width: 84px;
-  height: 84px;
-  flex: 0 0 84px;
+  width: clamp(66px, 6.5vw, 82px);
+  height: clamp(66px, 6.5vw, 82px);
+  flex: 0 0 clamp(66px, 6.5vw, 82px);
   overflow: hidden;
-  border-radius: 28px;
+  border-radius: 26px;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.54), rgba(255, 237, 213, 0.18)),
     url("./assets/chunky-logo.png") center / cover no-repeat;
@@ -292,10 +296,12 @@ dt {
 }
 
 .tabs {
+  min-width: 0;
+  max-width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 12px;
+  gap: 10px;
   padding: 0;
   border: 1px solid rgba(16, 35, 63, 0.08);
   border-radius: 999px;
@@ -304,8 +310,8 @@ dt {
 }
 
 .tabs button {
-  min-height: 60px;
-  padding: 12px 28px;
+  min-height: 56px;
+  padding: 10px 24px;
   border-color: rgba(16, 35, 63, 0.06);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.78);
@@ -358,15 +364,17 @@ dt {
 
 .screen {
   display: grid;
-  gap: 18px;
+  gap: clamp(14px, 2.4vw, 20px);
 }
 
 .screen-heading {
+  min-width: 0;
+  max-width: 100%;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
-  gap: 20px;
-  padding: clamp(22px, 4vw, 38px);
+  gap: clamp(16px, 2.4vw, 24px);
+  padding: clamp(18px, 3vw, 32px);
   background:
     linear-gradient(140deg, rgba(255, 255, 255, 0.92), rgba(255, 247, 237, 0.8) 48%, rgba(223, 241, 255, 0.72));
   border: 1px solid var(--border);
@@ -378,6 +386,16 @@ dt {
 .screen-heading.compact {
   padding: 22px;
   box-shadow: none;
+}
+
+.dashboard .screen-heading {
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+.dashboard .screen-heading h1 {
+  max-width: 820px;
+  font-size: clamp(2.3rem, 4.2vw, 3.7rem);
 }
 
 .metric-grid,
@@ -616,22 +634,15 @@ dt {
   border-color: var(--accent);
 }
 
-.quiet-controls {
-  justify-content: center;
-}
-
-.quiet-controls button {
-  min-height: 46px;
-}
-
 .mode-start-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(170px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  gap: 12px;
+  align-self: stretch;
 }
 
 .mode-start {
-  min-height: 92px;
+  min-height: 78px;
   display: grid;
   align-content: center;
   justify-items: start;
@@ -860,16 +871,16 @@ dt {
 .study-player {
   position: relative;
   display: grid;
-  gap: 16px;
+  gap: 12px;
 }
 
 .study-stage {
-  min-height: min(68svh, 660px);
+  min-height: clamp(350px, 50svh, 520px);
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto auto;
   align-items: center;
-  gap: clamp(12px, 2.5vw, 22px);
-  padding: clamp(22px, 4.2vw, 48px);
+  gap: clamp(10px, 2vw, 18px);
+  padding: clamp(18px, 3.2vw, 38px);
   border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 36px;
   background:
@@ -883,7 +894,12 @@ dt {
 
 .study-stage.active-focus {
   grid-template-rows: auto 1fr;
-  min-height: min(68svh, 640px);
+  min-height: clamp(350px, 50svh, 500px);
+}
+
+.study-stage.review-stage {
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: clamp(460px, 61svh, 620px);
 }
 
 .minimal-visual-stage {
@@ -1148,38 +1164,22 @@ dt {
 .review-panel {
   width: 100%;
   display: grid;
-  gap: 10px;
-  align-self: end;
-  padding: 12px;
-  border: 1px solid rgba(23, 111, 194, 0.18);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.86);
+  gap: clamp(12px, 2vw, 18px);
+  align-self: center;
+  justify-self: center;
+  padding: clamp(16px, 2.6vw, 28px);
+  border: 1px solid rgba(23, 111, 194, 0.16);
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 247, 237, 0.86)),
+    rgba(255, 255, 255, 0.86);
+  box-shadow:
+    0 22px 60px rgba(16, 35, 63, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
 }
 
-.rescue-panel {
-  width: 100%;
-  display: grid;
-  gap: 10px;
-  align-self: end;
-  padding: 12px;
-  border: 1px solid rgba(23, 111, 194, 0.18);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.86);
-}
-
-.rescue-word-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.rescue-word-list span {
-  padding: 8px 11px;
-  border-radius: 10px;
-  background: rgba(23, 111, 194, 0.1);
-  color: #08223d;
-  font-size: 1.15rem;
-  font-weight: 950;
+.main-review-panel {
+  max-width: 820px;
 }
 
 .review-heading,
@@ -1234,6 +1234,13 @@ dt {
 
 .review-buttons {
   flex-wrap: wrap;
+}
+
+.review-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .review-buttons button {
@@ -1334,8 +1341,8 @@ dt {
   display: grid;
   justify-self: center;
   align-self: center;
-  gap: clamp(14px, 3vw, 24px);
-  padding: clamp(20px, 4vw, 38px);
+  gap: clamp(10px, 2vw, 16px);
+  padding: clamp(16px, 2.8vw, 28px);
   border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: var(--radius-lg);
   background:
@@ -1360,7 +1367,7 @@ dt {
 
 .recall-prompt strong {
   color: var(--navy);
-  font-size: clamp(1.2rem, 4vw, 2rem);
+  font-size: clamp(1.15rem, 3.2vw, 1.75rem);
 }
 
 .recall-cue {
@@ -1373,7 +1380,7 @@ dt {
 }
 
 .recall-cue.chinese {
-  font-size: clamp(4.2rem, 18vw, 9rem);
+  font-size: clamp(3.8rem, 13vw, 7.2rem);
 }
 
 .recall-cue.english {
@@ -1417,13 +1424,13 @@ dt {
 }
 
 .recall-options button {
-  min-height: 112px;
-  padding: 20px;
+  min-height: 96px;
+  padding: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-size: clamp(2.35rem, 8vw, 3.5rem);
+  font-size: clamp(2.15rem, 6.6vw, 3.2rem);
   line-height: 1.05;
   font-weight: 950;
   overflow-wrap: anywhere;
@@ -1434,7 +1441,7 @@ dt {
 }
 
 .recall-kind-sentence-zh-en .recall-options button {
-  font-size: clamp(1.75rem, 6vw, 2.7rem);
+  font-size: clamp(1.65rem, 5vw, 2.45rem);
   line-height: 1.08;
 }
 
@@ -1489,32 +1496,16 @@ dt {
   position: relative;
   z-index: 4;
   display: grid;
-  gap: 10px;
+  gap: 8px;
   padding: 12px;
   border: 1px solid rgba(255, 255, 255, 0.68);
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.72);
   box-shadow: 0 18px 44px rgba(16, 35, 63, 0.12);
-  backdrop-filter: var(--blur);
-  overflow: hidden;
-  max-height: 280px;
-  opacity: 1;
-  transform: translateY(0);
-  transition:
-    max-height 180ms ease,
-    opacity 180ms ease,
-    transform 180ms ease;
 }
 
 .play-hover-menu audio {
   width: 100%;
-}
-
-.play-hover-menu:hover,
-.play-hover-menu:focus-within {
-  max-height: 300px;
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .study-player:fullscreen .play-hover-menu {
@@ -1524,6 +1515,97 @@ dt {
   bottom: clamp(10px, 2vw, 24px);
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(14px);
+}
+
+.lesson-menu-shell {
+  position: fixed;
+  z-index: 25;
+  left: max(12px, calc((100vw - 1120px) / 2));
+  right: max(12px, calc((100vw - 1120px) / 2));
+  bottom: 10px;
+  display: grid;
+  gap: 8px;
+}
+
+.lesson-menu-trigger {
+  width: 100%;
+  min-height: 54px;
+  border-color: rgba(249, 115, 22, 0.22);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 247, 237, 0.8));
+  color: var(--navy);
+  box-shadow: 0 12px 28px rgba(16, 35, 63, 0.08);
+}
+
+.lesson-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: rgba(16, 35, 63, 0.24);
+  box-shadow: none;
+  cursor: default;
+}
+
+.lesson-action-sheet {
+  position: fixed;
+  z-index: 31;
+  left: max(12px, calc((100vw - 720px) / 2));
+  right: max(12px, calc((100vw - 720px) / 2));
+  bottom: 12px;
+  display: grid;
+  gap: 14px;
+  max-height: min(72svh, 620px);
+  overflow: auto;
+  padding: clamp(16px, 3vw, 24px);
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  border-radius: 30px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 247, 237, 0.9));
+  box-shadow: 0 30px 90px rgba(16, 35, 63, 0.26);
+  backdrop-filter: blur(22px);
+}
+
+.sheet-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.sheet-heading strong {
+  color: var(--navy);
+  font-size: 1.2rem;
+}
+
+.lesson-menu-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.lesson-menu-controls button,
+.lesson-menu-controls label {
+  min-height: 54px;
+}
+
+.lesson-menu-controls .compact-toggle,
+.lesson-menu-controls .compact-field {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.menu-coverage {
+  justify-content: center;
+  padding: 10px;
+  border-radius: 18px;
+  background: rgba(223, 241, 255, 0.44);
 }
 
 .toggle {
@@ -1752,8 +1834,7 @@ kbd {
 }
 
 .status-bar {
-  position: sticky;
-  bottom: 0;
+  position: static;
   margin-top: 18px;
   background: rgba(255, 255, 255, 0.82);
   border: 1px solid var(--border);
@@ -2034,7 +2115,9 @@ kbd {
 
 @media (max-width: 820px) {
   .app-shell {
+    width: 100%;
     padding: 10px;
+    overflow-x: hidden;
   }
 
   .brand-mark {
@@ -2045,24 +2128,53 @@ kbd {
   }
 
   .brand-button {
+    width: 100%;
+    min-width: 0;
     padding-right: 8px;
+  }
+
+  .brand-button strong {
+    font-size: clamp(1.45rem, 6vw, 1.75rem);
   }
 
   .topbar,
   .screen-heading {
+    width: 100%;
+    max-width: calc(100vw - 20px);
     grid-template-columns: 1fr;
     display: grid;
     align-items: stretch;
+    gap: 12px;
   }
 
   .tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     justify-content: stretch;
+    border-radius: 28px;
+    padding: 4px;
   }
 
   .tabs button {
-    flex: 1 1 42%;
-    min-height: 52px;
-    padding: 10px 16px;
+    width: 100%;
+    min-width: 0;
+    flex: none;
+    min-height: 50px;
+    padding: 10px 8px;
+    font-size: 0.94rem;
+  }
+
+  .nav-icon {
+    width: 22px;
+    height: 22px;
+    flex-basis: 22px;
+  }
+
+  .dashboard .screen-heading h1 {
+    max-width: 100%;
+    font-size: clamp(2rem, 9vw, 2.65rem);
+    line-height: 1.05;
+    overflow-wrap: anywhere;
   }
 
   .metric-grid,
@@ -2090,9 +2202,13 @@ kbd {
   }
 
   .study-stage {
-    min-height: 64svh;
+    min-height: 62svh;
     border-radius: 26px;
     padding: 18px;
+  }
+
+  .study-stage.review-stage {
+    min-height: 62svh;
   }
 
   .study-target-strip {
@@ -2103,6 +2219,31 @@ kbd {
 
   .quiz-options {
     grid-template-columns: 1fr;
+  }
+
+  .lesson-action-sheet {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    max-height: 78svh;
+    border-radius: 26px;
+  }
+
+  .lesson-menu-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .main-review-panel {
+    padding: 14px;
+  }
+
+  .flashcard {
+    min-height: 220px;
+    padding: 18px;
+  }
+
+  .fsrs-preview-buttons {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .quiz-options button {
