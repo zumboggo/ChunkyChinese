@@ -30,7 +30,7 @@ Expected Pages URL:
 https://<your-github-name>.github.io/ChunkyChinese/
 ```
 
-The LMS 188 Azure clip pack is intentionally committed under `public/clip-packs/` so GitHub Pages can serve it to your phone. Anna's Reading Deck MP3 files are still kept in the repo for now, but that pack is hidden from the app's hosted-pack list. Delete old hosted packs when they are no longer useful to avoid repository bloat. Do not commit local backups or unrelated generated audio.
+The LMS 1000 Azure clip pack is intentionally committed under `public/clip-packs/` so GitHub Pages can serve it to your phone. Anna's Reading Deck MP3 files are still kept in the repo for now, but that pack is hidden from the app's hosted-pack list. Delete old hosted packs when they are no longer useful to avoid repository bloat. Do not commit local backups or unrelated generated audio.
 
 ## PWA Installation
 
@@ -55,23 +55,23 @@ To force users onto a new cached app shell after future updates, change `CACHE_V
 
 ## LMS Seed
 
-The app automatically seeds 188 target words on first run from:
+The app automatically seeds the LMS 1000 word list on first run from:
 
 ```text
-public/seed/lms-vocab-188.csv
+public/seed/lms-vocab-1000.csv
 ```
 
 That file was converted from:
 
 ```text
-C:\Users\LENOVO\Documents\LearnChinese\LMS\Glossika\input\target_words_full.csv
+C:\Users\LENOVO\Documents\LearnChinese\LMS\Glossika\input\Future_Known_1000.csv
 ```
 
-If IndexedDB already has words, the seed is not applied again. Use the Import screen to reimport `examples/lms-vocab-188.csv`; reimports merge by word and preserve progress/audio links.
+If IndexedDB already has words, the seed is not applied again. Use the Import screen to reimport `public/seed/lms-vocab-1000.csv`; reimports merge by word and preserve progress/audio links.
 
 ## Clip Pack Workflow
 
-1. Choose about 200 target words on the PC.
+1. Choose a target word list on the PC.
 2. Generate one clip pack from the LMS Glossika folder.
 3. Either commit the selected pack under `public/clip-packs/` for GitHub Pages hosting, or transfer the pack folder to the phone.
 4. Open the PWA, go to Import and Backup, and use **Download hosted clip pack** or import the whole clip pack folder.
@@ -95,7 +95,7 @@ From the Glossika folder:
 
 ```powershell
 cd C:\Users\LENOVO\Documents\LearnChinese\LMS\Glossika
-py export_clip_pack.py --targets input\target_words_full.csv --out clip_packs\lms_188 --synthesize
+py export_clip_pack.py --targets input\Future_Known_1000_enriched.csv --out clip_packs\lms_1000 --synthesize
 ```
 
 Azure synthesis requires:

@@ -111,7 +111,7 @@ const emptyStats: DashboardStats = {
   retentionSeries: [],
 }
 
-const DEFAULT_PACK_ID = 'lms-188-azure'
+const DEFAULT_PACK_ID = 'lms-1000-azure'
 const HIDDEN_PACK_IDS = new Set(['annas-reading-deck'])
 
 function App() {
@@ -1611,8 +1611,8 @@ function App() {
               <h1>Import and Backup</h1>
               <p>Everything stays in this browser's local IndexedDB.</p>
             </div>
-            <a className="ghost-link" href={`${import.meta.env.BASE_URL}seed/lms-vocab-188.csv`} download>
-              Download LMS CSV
+            <a className="ghost-link" href={`${import.meta.env.BASE_URL}seed/lms-vocab-1000.csv`} download>
+              Download LMS 1000 CSV
             </a>
           </div>
 

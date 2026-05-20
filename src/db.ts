@@ -148,15 +148,15 @@ export async function seedLmsWordsIfEmpty(): Promise<number> {
     return 0
   }
 
-  const response = await fetch(`${import.meta.env.BASE_URL}seed/lms-vocab-188.csv`)
+  const response = await fetch(`${import.meta.env.BASE_URL}seed/lms-vocab-1000.csv`)
   if (!response.ok) return 0
   const rows = parseCsv(await response.text())
   const pack = makeClipPack({
-    id: 'lms-188-azure',
-    name: 'LMS 188 Azure',
+    id: 'lms-1000-azure',
+    name: 'LMS 1000',
     source: 'hosted',
     language: 'zh-CN',
-    description: 'Built-in Legendary Moonlight Sculptor target words.',
+    description: 'Built-in Legendary Moonlight Sculptor 1000-word list.',
     browserTts: false,
   })
   const words = vocabFromCsvRows(rows, pack.id)
@@ -170,19 +170,19 @@ export async function seedLmsWordsIfEmpty(): Promise<number> {
 
 async function ensureLmsPackForExistingWords(): Promise<void> {
   const db = await getDB()
-  const existingPack = await db.get('clipPacks', 'lms-188-azure')
+  const existingPack = await db.get('clipPacks', 'lms-1000-azure')
   const activePackId = (await db.get('settings', 'activePackId')) as string | undefined
   if (existingPack && activePackId) return
 
-  const response = await fetch(`${import.meta.env.BASE_URL}seed/lms-vocab-188.csv`)
+  const response = await fetch(`${import.meta.env.BASE_URL}seed/lms-vocab-1000.csv`)
   if (!response.ok) return
   const rows = parseCsv(await response.text())
   const pack = existingPack ?? makeClipPack({
-    id: 'lms-188-azure',
-    name: 'LMS 188 Azure',
+    id: 'lms-1000-azure',
+    name: 'LMS 1000',
     source: 'hosted',
     language: 'zh-CN',
-    description: 'Built-in Legendary Moonlight Sculptor target words.',
+    description: 'Built-in Legendary Moonlight Sculptor 1000-word list.',
     browserTts: false,
   })
   const words = vocabFromCsvRows(rows, pack.id)
@@ -268,10 +268,10 @@ export async function getHostedClipPackIndex(): Promise<HostedClipPack[]> {
   } catch {
     return [
       {
-        id: 'lms-188-azure',
-        name: 'LMS 188 Azure',
-        description: 'Legendary Moonlight Sculptor target words with Azure clips.',
-        baseUrl: `${import.meta.env.BASE_URL}clip-packs/lms-188-azure`,
+        id: 'lms-1000-azure',
+        name: 'LMS 1000',
+        description: 'Legendary Moonlight Sculptor 1000-word vocabulary with Azure clips.',
+        baseUrl: `${import.meta.env.BASE_URL}clip-packs/lms-1000-azure`,
         language: 'zh-CN',
       },
     ]

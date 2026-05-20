@@ -9,7 +9,7 @@ const APP_SHELL = [
   `${APP_BASE}icons/icon-192.png`,
   `${APP_BASE}icons/icon-512.png`,
   `${APP_BASE}icons/chunky-logo.png`,
-  `${APP_BASE}seed/lms-vocab-188.csv`,
+  `${APP_BASE}seed/lms-vocab-1000.csv`,
   `${APP_BASE}clip-packs/index.json`,
   `${APP_BASE}reader-packs/index.json`,
   `${APP_BASE}reader-packs/lms-books/reader_manifest.json`,
