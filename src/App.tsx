@@ -751,19 +751,22 @@ function App() {
         return
       }
       if (showReviewPrompt) {
-        if (!reviewAnswerShown && (event.key === 'Enter' || event.key === ' ')) {
+        if (!reviewAnswerShown && (mappedIndex === 0 || event.key === 'Enter' || event.key === ' ')) {
           event.preventDefault()
           setReviewAnswerShown(true)
           return
         }
-        const rating = hotkeyToRating(pressed, hotkeys)
+        const rating = hotkeyToReviewRating(pressed, hotkeys)
         if (rating && reviewAnswerShown && currentReviewWord) {
           event.preventDefault()
           void handleFsrsRating(currentReviewWord.id, rating)
         }
         return
       }
-      if (currentQuiz?.kind === 'sentence-zh-en' && mappedIndex === 0) {
+      if (
+        mappedIndex === 0 &&
+        (currentQuiz?.kind === 'sentence-zh-en' || currentSegment?.quiz?.kind === 'sentence-zh-en')
+      ) {
         event.preventDefault()
         continueCurrentQuiz()
         return
@@ -799,6 +802,7 @@ function App() {
     continueCurrentQuiz,
     currentQuiz,
     currentQuizResponse,
+    currentSegment,
     fsrsRatings,
     handleFsrsRating,
     handleQuizAnswer,
@@ -2890,7 +2894,7 @@ function FlashcardReview({
           </>
         ) : (
           <button type="button" className="primary" onClick={onFlip}>
-            Answer 1
+            Flip
           </button>
         )}
       </div>
@@ -3042,9 +3046,9 @@ function detectSpeechLanguage(text: string): string {
   return /[\u3400-\u9fff]/.test(text) ? 'zh-CN' : 'en-US'
 }
 
-function hotkeyToRating(key: string, hotkeys: HotkeySettings): FsrsRating | undefined {
+function hotkeyToReviewRating(key: string, hotkeys: HotkeySettings): FsrsRating | undefined {
   const index = choiceKeyIndex(key, hotkeys)
-  return fsrsRatingsForUi[index]?.value
+  return (['again', 'good', 'hard', 'easy'] as FsrsRating[])[index]
 }
 
 function choiceKeyIndex(key: string, hotkeys: HotkeySettings): number {
@@ -3056,8 +3060,8 @@ function choiceKeyIndex(key: string, hotkeys: HotkeySettings): number {
 function hotkeyLabel(key: keyof HotkeySettings): string {
   return {
     choiceA: 'Choice A / Again',
-    choiceB: 'Choice B / Hard',
-    choiceC: 'Choice C / Good',
+    choiceB: 'Choice B / Good',
+    choiceC: 'Choice C / Hard',
     choiceD: 'Choice D / Easy',
     playPause: 'Play / Pause',
   }[key]
