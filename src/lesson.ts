@@ -253,14 +253,25 @@ export function selectTargetWords(
     .filter((word) => word.status !== 'new')
     .filter((word) => word.status !== 'known' || isFsrsDue(word))
     .sort((a, b) => futureDueSort(a) - futureDueSort(b))
-  const fallback = [
-    ...newCandidates,
-    ...candidates,
-    ...supportCandidates,
+  const pick = options.randomize ? weightedSampleWords : sortedSampleWords
+  const selected = [
+    ...pick(newCandidates, 3),
   ]
-  return options.randomize
-    ? weightedSampleWords(fallback, 5)
-    : [...fallback].sort((a, b) => scoreWord(a) - scoreWord(b)).slice(0, 5)
+  selected.push(
+    ...pick(
+      candidates.filter((word) => !selected.some((candidate) => candidate.id === word.id)),
+      2,
+    ),
+  )
+  if (selected.length < 5) {
+    const fillCandidates = [
+      ...newCandidates,
+      ...candidates,
+      ...supportCandidates,
+    ].filter((word) => !selected.some((candidate) => candidate.id === word.id))
+    selected.push(...pick(fillCandidates, 5 - selected.length))
+  }
+  return selected.slice(0, 5)
 }
 
 function scoreWord(word: VocabWord): number {
@@ -298,6 +309,10 @@ function weightedSampleWords(words: VocabWord[], count: number): VocabWord[] {
   }
 
   return selected
+}
+
+function sortedSampleWords(words: VocabWord[], count: number): VocabWord[] {
+  return [...words].sort((a, b) => scoreWord(a) - scoreWord(b)).slice(0, count)
 }
 
 function selectionWeight(word: VocabWord): number {

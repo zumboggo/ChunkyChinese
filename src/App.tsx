@@ -2566,6 +2566,9 @@ function ReaderMode({
   onToggleEnglish: () => void
   onMarkWord: (word: VocabWord, status: WordStatus) => void | Promise<void>
 }) {
+  const illustration = activeBook ? getReaderIllustration(activeBook, sentenceIndex) : undefined
+  const illustrationSrc = illustration ? publicAssetPath(illustration.imageFilename) : ''
+
   return (
     <section className="screen reader-screen">
       <div className="screen-heading compact">
@@ -2618,26 +2621,33 @@ function ReaderMode({
                   Sentence {sentenceIndex + 1} / {sentenceCount}
                 </span>
               </div>
-              <div className="reader-sentence">
-                {tokens.map((token) =>
-                  token.isChinese ? (
-                    <button
-                      key={token.id}
-                      type="button"
-                      className={`reader-token ${token.word ? 'known-token' : ''} ${
-                        selectedToken?.id === token.id ? 'active' : ''
-                      }`}
-                      onClick={() => onSelectToken(token)}
-                    >
-                      <span>{token.text}</span>
-                      {showPinyin && <small>{token.pinyin}</small>}
-                    </button>
-                  ) : (
-                    <span key={token.id} className="reader-token-space">
-                      {token.text}
-                    </span>
-                  ),
+              <div className="reader-reading-area">
+                {illustration && (
+                  <figure className="reader-illustration">
+                    <img src={illustrationSrc} alt={illustration.alt} loading="lazy" />
+                  </figure>
                 )}
+                <div className="reader-sentence">
+                  {tokens.map((token) =>
+                    token.isChinese ? (
+                      <button
+                        key={token.id}
+                        type="button"
+                        className={`reader-token ${token.word ? 'known-token' : ''} ${
+                          selectedToken?.id === token.id ? 'active' : ''
+                        }`}
+                        onClick={() => onSelectToken(token)}
+                      >
+                        <span>{token.text}</span>
+                        {showPinyin && <small>{token.pinyin}</small>}
+                      </button>
+                    ) : (
+                      <span key={token.id} className="reader-token-space">
+                        {token.text}
+                      </span>
+                    ),
+                  )}
+                </div>
               </div>
               {showEnglish && <p className="reader-translation">{sentence.english}</p>}
               <div className="reader-controls">
@@ -3109,6 +3119,30 @@ function tokenizeReaderText(text: string, vocab: VocabWord[]): ReaderWordToken[]
   }
 
   return tokens.filter((token) => token.text.length > 0)
+}
+
+function getReaderIllustration(book: ReaderBook, sentenceIndex: number) {
+  const sentenceNumber = sentenceIndex + 1
+  const illustration = book.illustrations?.find(
+    (item) => sentenceNumber >= item.sentenceStart && sentenceNumber <= item.sentenceEnd,
+  )
+  if (illustration) return illustration
+  if (book.id !== 'lms-book-1-chapters-1-5' || sentenceNumber < 1 || sentenceNumber > 25) {
+    return undefined
+  }
+  const imageNumber = Math.ceil(sentenceNumber / 5)
+  return {
+    id: `b01c01-test-${String(imageNumber).padStart(3, '0')}`,
+    imageFilename: `reader-packs/lms-books/images/book-1-chapters-1-5/illustration-${String(imageNumber).padStart(3, '0')}.png`,
+    alt: `Manga-style reader illustration ${imageNumber} for LMS Book 1 Chapters 1-5.`,
+    sentenceStart: (imageNumber - 1) * 5 + 1,
+    sentenceEnd: imageNumber * 5,
+  }
+}
+
+function publicAssetPath(path: string): string {
+  const base = import.meta.env.BASE_URL || '/'
+  return `${base.replace(/\/$/u, '')}/${path.replace(/^\//u, '')}`
 }
 
 function longestWordMatch(

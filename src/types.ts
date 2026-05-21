@@ -111,7 +111,17 @@ export interface ReaderBook {
   chapterStart: number
   chapterEnd: number
   path?: string
+  illustrations?: ReaderIllustration[]
   stories: ReaderStory[]
+}
+
+export interface ReaderIllustration {
+  id: string
+  imageFilename: string
+  alt: string
+  prompt?: string
+  sentenceStart: number
+  sentenceEnd: number
 }
 
 export interface ReaderStory {

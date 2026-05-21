@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "generate:reader-pack": "node scripts/generate-lms-reader-pack.mjs",
+    "generate:reader-illustrations": "node scripts/generate-reader-illustrations.mjs",
     "verify:reader-pack": "node scripts/verify-reader-pack.mjs"
   },
   "dependencies": {

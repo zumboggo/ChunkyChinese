@@ -4034,5 +4034,47 @@
         }
       ]
     }
+  ],
+  "illustrations": [
+    {
+      "id": "b01c01-test-001",
+      "imageFilename": "reader-packs/lms-books/images/book-1-chapters-1-5/illustration-001.png",
+      "alt": "Lee Hyun returns from work to care for his grandmother and younger sister in a modest home.",
+      "prompt": "A tired young Korean man in work clothes stands in the doorway of a cramped apartment, checking on his sick grandmother while his younger sister sits nearby with a worried expression, plain walls and unmarked household objects. Manga-inspired digital illustration, expressive clean linework, cinematic panel composition, soft watercolor shading, grounded modern Korean urban drama mood, warm interior lighting. No text anywhere, no letters, no numbers, no labels, no signs, no posters, no handwriting, no captions, no speech bubbles, no watermark, no signature.",
+      "sentenceStart": 1,
+      "sentenceEnd": 5
+    },
+    {
+      "id": "b01c01-test-002",
+      "imageFilename": "reader-packs/lms-books/images/book-1-chapters-1-5/illustration-002.png",
+      "alt": "Lee Hyun sits at his computer, quietly looking at an old game account.",
+      "prompt": "A young man sits alone at an old computer late at night, a soft abstract fantasy avatar glow on the monitor with no interface text, giving him a small moment of calm in a dark room. Manga-inspired digital illustration, expressive clean linework, cinematic panel composition, soft watercolor shading, grounded modern Korean urban drama mood, warm interior lighting. No text anywhere, no letters, no numbers, no labels, no signs, no posters, no handwriting, no captions, no speech bubbles, no watermark, no signature.",
+      "sentenceStart": 6,
+      "sentenceEnd": 10
+    },
+    {
+      "id": "b01c01-test-003",
+      "imageFilename": "reader-packs/lms-books/images/book-1-chapters-1-5/illustration-003.png",
+      "alt": "Lee Hyun weighs his old game account against the need for medicine money.",
+      "prompt": "A tense quiet family room with a small medicine bottle and blank envelope on a low table, a young man looking down in silence while his younger sister watches him anxiously. Manga-inspired digital illustration, expressive clean linework, cinematic panel composition, soft watercolor shading, grounded modern Korean urban drama mood, warm interior lighting. No text anywhere, no letters, no numbers, no labels, no signs, no posters, no handwriting, no captions, no speech bubbles, no watermark, no signature.",
+      "sentenceStart": 11,
+      "sentenceEnd": 15
+    },
+    {
+      "id": "b01c01-test-004",
+      "imageFilename": "reader-packs/lms-books/images/book-1-chapters-1-5/illustration-004.png",
+      "alt": "Lee Hyun sits between his old game card and his family obligation.",
+      "prompt": "A conflicted young man sits at a table beside a plain blank game keepsake card and the open doorway to his grandmother room, torn between personal hope and family duty. Manga-inspired digital illustration, expressive clean linework, cinematic panel composition, soft watercolor shading, grounded modern Korean urban drama mood, warm interior lighting. No text anywhere, no letters, no numbers, no labels, no signs, no posters, no handwriting, no captions, no speech bubbles, no watermark, no signature.",
+      "sentenceStart": 16,
+      "sentenceEnd": 20
+    },
+    {
+      "id": "b01c01-test-005",
+      "imageFilename": "reader-packs/lms-books/images/book-1-chapters-1-5/illustration-005.png",
+      "alt": "Lee Hyun brings money home and his family feels relief.",
+      "prompt": "A small but emotional homecoming: a young man places a simple stack of money on the table, his grandmother smiles softly, and his younger sister relaxes with visible relief, uncluttered tabletop. Manga-inspired digital illustration, expressive clean linework, cinematic panel composition, soft watercolor shading, grounded modern Korean urban drama mood, warm interior lighting. No text anywhere, no letters, no numbers, no labels, no signs, no posters, no handwriting, no captions, no speech bubbles, no watermark, no signature.",
+      "sentenceStart": 21,
+      "sentenceEnd": 25
+    }
   ]
 }

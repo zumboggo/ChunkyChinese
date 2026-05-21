@@ -2081,6 +2081,27 @@ kbd {
   font-weight: 850;
 }
 
+.reader-reading-area {
+  display: block;
+  min-height: 260px;
+}
+
+.reader-illustration {
+  float: right;
+  width: clamp(96px, 20%, 180px);
+  margin: 0 0 14px 18px;
+}
+
+.reader-illustration img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid rgba(16, 35, 63, 0.14);
+  border-radius: 12px;
+  box-shadow: 0 14px 32px rgba(16, 35, 63, 0.14);
+}
+
 .reader-sentence {
   display: block;
   min-height: 180px;
