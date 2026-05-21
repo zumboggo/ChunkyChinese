@@ -4,6 +4,7 @@ import { pinyin } from 'pinyin-pro'
 import {
   completeWordExposure,
   DEFAULT_HOTKEYS,
+  deferWordsAfterListening,
   downloadText,
   exportBackup,
   getAllAudioClips,
@@ -154,6 +155,7 @@ function App() {
   const [showReviewPrompt, setShowReviewPrompt] = useState(false)
   const [reviewCardIndex, setReviewCardIndex] = useState(0)
   const [reviewAnswerShown, setReviewAnswerShown] = useState(false)
+  const [flashcardFeedback, setFlashcardFeedback] = useState<FsrsRating | null>(null)
   const [savedResumeTime, setSavedResumeTime] = useState<number | null>(null)
   const [autoNextLesson, setAutoNextLesson] = useState(true)
   const [autoAdvance, setAutoAdvance] = useState(true)
@@ -183,6 +185,7 @@ function App() {
   const lastPocketTimeRef = useRef(0)
   const playModeRef = useRef<HTMLElement | null>(null)
   const readerAutoPlayKeyRef = useRef<string | null>(null)
+  const flashcardFeedbackTimeoutRef = useRef<number | null>(null)
 
   const refresh = useCallback(async () => {
     const [
@@ -365,9 +368,11 @@ function App() {
   const isListeningMode = studyMode === 'listeningMode'
   const activeRecallSupportHidden =
     isActiveLearningMode && hasPassedInitialVocabSection(currentSegment)
+  const isSentenceContinueSection =
+    currentQuiz?.kind === 'sentence-zh-en' || currentSegment?.quiz?.kind === 'sentence-zh-en'
   const focusedActiveQuiz = studyMode === 'activeRecall' && Boolean(currentQuiz)
   const effectiveShowPinyin = showPinyin && !activeRecallSupportHidden
-  const effectiveShowEnglish = showEnglish && !activeRecallSupportHidden
+  const effectiveShowEnglish = showEnglish && (!activeRecallSupportHidden || isSentenceContinueSection)
   const allLessonWordsRated =
     ratingWords.length > 0 && ratingWords.every((word) => fsrsRatings[word.id])
   const activeReaderBook = useMemo(
@@ -393,6 +398,15 @@ function App() {
     [scopedWords],
   )
   const currentReviewWord = ratingWords[reviewCardIndex]
+
+  useEffect(
+    () => () => {
+      if (flashcardFeedbackTimeoutRef.current !== null) {
+        window.clearTimeout(flashcardFeedbackTimeoutRef.current)
+      }
+    },
+    [],
+  )
 
   const handleStatus = useCallback(async (ids: string[], status: WordStatus) => {
     if (ids.length === 0) return
@@ -690,6 +704,19 @@ function App() {
     }
   }, [fsrsRatings, lessonWords, ratingWordIds, ratingWords, refresh, reviewCardIndex, showReviewPrompt])
 
+  const handleFlashcardRate = useCallback((wordId: string, rating: FsrsRating) => {
+    if (flashcardFeedback) return
+    setFlashcardFeedback(rating)
+    if (flashcardFeedbackTimeoutRef.current !== null) {
+      window.clearTimeout(flashcardFeedbackTimeoutRef.current)
+    }
+    flashcardFeedbackTimeoutRef.current = window.setTimeout(() => {
+      flashcardFeedbackTimeoutRef.current = null
+      setFlashcardFeedback(null)
+      void handleFsrsRating(wordId, rating)
+    }, 500)
+  }, [flashcardFeedback, handleFsrsRating])
+
   const cycleListeningRating = useCallback(async (wordId: string) => {
     const current = fsrsRatings[wordId]
     const nextRating: FsrsRating =
@@ -714,6 +741,26 @@ function App() {
       audio.pause()
     }
   }, [renderedUrl])
+
+  const completeListeningLesson = useCallback(async () => {
+    if (!renderedLesson) return
+    await recordEvent({
+      type: 'complete',
+      itemType: 'lesson',
+      itemId: renderedLesson.id,
+      seconds: renderedLesson.durationSeconds,
+    })
+    await deferWordsAfterListening(lessonWords.map((word) => word.id), 1)
+    await refresh()
+  }, [lessonWords, refresh, renderedLesson])
+
+  const completeListeningLessonAndStartNext = useCallback(async () => {
+    if (!renderedLesson) return
+    pocketAudioRef.current?.pause()
+    await completeListeningLesson()
+    setLastSummary('Listening mode lesson counted. Starting the next lesson.')
+    startNextLessonRef.current?.()
+  }, [completeListeningLesson, renderedLesson])
 
   function finishLessonAndReturnHome() {
     pocketAudioRef.current?.pause()
@@ -740,7 +787,7 @@ function App() {
           void moveReaderSentence(1)
         } else if (mappedIndex === 1) {
           event.preventDefault()
-          void moveReaderSentence(-1)
+          setReaderShowEnglish((value) => !value)
         }
         return
       }
@@ -751,24 +798,39 @@ function App() {
         return
       }
       if (showReviewPrompt) {
+        if (allLessonWordsRated) {
+          if (mappedIndex === 0) {
+            event.preventDefault()
+            startNextLessonRef.current?.()
+          } else if (mappedIndex === 1) {
+            event.preventDefault()
+            finishLessonAndReturnHome()
+          }
+          return
+        }
+        if (flashcardFeedback) return
         if (!reviewAnswerShown && (mappedIndex === 0 || event.key === 'Enter' || event.key === ' ')) {
           event.preventDefault()
           setReviewAnswerShown(true)
           return
         }
-        const rating = hotkeyToReviewRating(pressed, hotkeys)
+        const rating = mappedIndex === 0 ? 'again' : mappedIndex === 1 ? 'good' : hotkeyToReviewRating(pressed, hotkeys)
         if (rating && reviewAnswerShown && currentReviewWord) {
           event.preventDefault()
-          void handleFsrsRating(currentReviewWord.id, rating)
+          handleFlashcardRate(currentReviewWord.id, rating)
         }
         return
       }
       if (
-        mappedIndex === 0 &&
-        (currentQuiz?.kind === 'sentence-zh-en' || currentSegment?.quiz?.kind === 'sentence-zh-en')
+        mappedIndex >= 0 &&
+        isSentenceContinueSection
       ) {
         event.preventDefault()
-        continueCurrentQuiz()
+        if (mappedIndex === 0) {
+          continueCurrentQuiz()
+        } else if (mappedIndex === 1) {
+          setShowEnglish((value) => !value)
+        }
         return
       }
       if (
@@ -803,12 +865,15 @@ function App() {
     currentQuiz,
     currentQuizResponse,
     currentSegment,
+    allLessonWordsRated,
+    flashcardFeedback,
     fsrsRatings,
-    handleFsrsRating,
+    handleFlashcardRate,
     handleQuizAnswer,
     handleQuizHint,
     handleStatus,
     hotkeys,
+    isSentenceContinueSection,
     currentReviewWord,
     moveReaderSentence,
     ratingWords,
@@ -1896,7 +1961,8 @@ function App() {
                             word={currentReviewWord}
                             answerShown={reviewAnswerShown}
                             onFlip={() => setReviewAnswerShown(true)}
-                            onRate={(rating) => handleFsrsRating(currentReviewWord.id, rating)}
+                            onRate={(rating) => handleFlashcardRate(currentReviewWord.id, rating)}
+                            selectedRating={flashcardFeedback}
                           />
                         ) : (
                           <div className="review-complete">
@@ -1945,6 +2011,7 @@ function App() {
                         sentence={studySentence}
                         hintLevel={currentQuizHintLevel}
                         showPinyin={showPinyin}
+                        showEnglish={showEnglish}
                         choiceKeys={[
                           'A',
                           'B',
@@ -2002,6 +2069,13 @@ function App() {
                             </button>
                             <button type="button" onClick={replayCurrentSegment} disabled={!currentSegment}>
                               Replay
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => void completeListeningLessonAndStartNext()}
+                              disabled={!renderedLesson || rendering}
+                            >
+                              Next Lesson
                             </button>
                           </div>
                         )}
@@ -2114,13 +2188,17 @@ function App() {
                         onEnded={async () => {
                           setIsPlaying(false)
                           if (renderedLesson) {
-                            await recordEvent({
-                              type: 'complete',
-                              itemType: 'lesson',
-                              itemId: renderedLesson.id,
-                              seconds: renderedLesson.durationSeconds,
-                            })
-                            await refresh()
+                            if (isListeningMode) {
+                              await completeListeningLesson()
+                            } else {
+                              await recordEvent({
+                                type: 'complete',
+                                itemType: 'lesson',
+                                itemId: renderedLesson.id,
+                                seconds: renderedLesson.durationSeconds,
+                              })
+                              await refresh()
+                            }
                             if (isListeningMode && autoNextLesson) {
                               void startPocketLesson([], {
                                 randomize: true,
@@ -2215,6 +2293,19 @@ function App() {
                                 >
                                   Next Lesson
                                 </button>
+                                {studyMode === 'activeRecall' && (
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      pocketAudioRef.current?.pause()
+                                      setLessonMenuOpen(false)
+                                      openReviewPrompt()
+                                    }}
+                                    disabled={ratingWords.length === 0}
+                                  >
+                                    Flash Cards
+                                  </button>
+                                )}
                                 <label className="toggle compact-toggle">
                                   <input
                                     type="checkbox"
@@ -2750,6 +2841,7 @@ function ActiveRecallCard({
   sentence,
   hintLevel,
   showPinyin,
+  showEnglish,
   choiceKeys,
   onAnswer,
   onContinue,
@@ -2763,6 +2855,7 @@ function ActiveRecallCard({
   sentence?: Sentence
   hintLevel: number
   showPinyin: boolean
+  showEnglish: boolean
   choiceKeys: string[]
   onAnswer: (value: string) => void | Promise<void>
   onContinue: () => void
@@ -2809,6 +2902,9 @@ function ActiveRecallCard({
         </div>
       )}
       {showPinyinHint && <div className="recall-hint">{word?.pinyin}</div>}
+      {!answered && isSentenceContinue && showEnglish && sentence?.english && (
+        <div className="recall-hint">{sentence.english}</div>
+      )}
       {answered && (
         <div className={`recall-feedback ${response?.correct ? 'correct' : 'wrong'}`}>
           <strong>{response?.correct ? 'Correct' : response?.revealed ? 'Revealed' : 'Not quite'}</strong>
@@ -2875,11 +2971,13 @@ function FlashcardReview({
   answerShown,
   onFlip,
   onRate,
+  selectedRating,
 }: {
   word: VocabWord
   answerShown: boolean
   onFlip: () => void
   onRate: (rating: FsrsRating) => void | Promise<void>
+  selectedRating?: FsrsRating | null
 }) {
   const previews = previewFsrsRatings(word)
   return (
@@ -2901,7 +2999,13 @@ function FlashcardReview({
       {answerShown && (
         <div className="review-buttons fsrs-preview-buttons">
           {fsrsRatingsForUi.map((rating) => (
-            <button key={rating.value} type="button" onClick={() => onRate(rating.value)}>
+            <button
+              key={rating.value}
+              type="button"
+              className={selectedRating === rating.value ? 'feedback-selected' : ''}
+              onClick={() => onRate(rating.value)}
+              disabled={Boolean(selectedRating)}
+            >
               <strong>{rating.label}</strong>
               <span>{formatDueDate(previews[rating.value].dueAt)}</span>
             </button>

@@ -2223,6 +2223,12 @@ kbd {
   border-radius: 16px;
 }
 
+.fsrs-preview-buttons button.feedback-selected {
+  border-color: rgba(22, 163, 74, 0.55);
+  background: rgba(22, 163, 74, 0.18);
+  color: #0f7a3a;
+}
+
 .fsrs-preview-buttons span {
   color: var(--muted);
   font-size: 0.82rem;

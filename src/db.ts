@@ -537,6 +537,35 @@ export async function completeWordExposure(wordId: string, seconds = 0): Promise
   })
 }
 
+export async function deferWordsAfterListening(wordIds: string[], days = 1): Promise<void> {
+  if (wordIds.length === 0) return
+  const db = await getDB()
+  const tx = db.transaction('vocabWords', 'readwrite')
+  const store = tx.objectStore('vocabWords')
+  const now = new Date()
+  const nowIso = now.toISOString()
+  const listeningDueAt = new Date(now.getTime() + days * 86_400_000)
+
+  for (const wordId of new Set(wordIds)) {
+    const word = await store.get(wordId)
+    if (!word) continue
+    const existingDueTime = word.fsrsDueAt ? Date.parse(word.fsrsDueAt) : Number.NaN
+    const nextDueAt =
+      Number.isFinite(existingDueTime) && existingDueTime > listeningDueAt.getTime()
+        ? new Date(existingDueTime)
+        : listeningDueAt
+    await store.put({
+      ...word,
+      fsrsDueAt: nextDueAt.toISOString(),
+      seenCount: word.seenCount + 1,
+      lastReviewedAt: nowIso,
+      updatedAt: nowIso,
+    })
+  }
+
+  await tx.done
+}
+
 export async function importAudioFiles(files: FileList | File[], packId?: string): Promise<ImportSummary> {
   const fileArray = Array.from(files).filter((file) =>
     file.name.toLocaleLowerCase().endsWith('.mp3'),

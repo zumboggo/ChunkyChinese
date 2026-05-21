@@ -253,14 +253,11 @@ export function selectTargetWords(
     .filter((word) => word.status !== 'new')
     .filter((word) => word.status !== 'known' || isFsrsDue(word))
     .sort((a, b) => futureDueSort(a) - futureDueSort(b))
-  const fallback =
-    candidates.length >= 5
-      ? candidates
-      : [
-          ...candidates,
-          ...newCandidates,
-          ...supportCandidates,
-        ]
+  const fallback = [
+    ...newCandidates,
+    ...candidates,
+    ...supportCandidates,
+  ]
   return options.randomize
     ? weightedSampleWords(fallback, 5)
     : [...fallback].sort((a, b) => scoreWord(a) - scoreWord(b)).slice(0, 5)
