@@ -72,6 +72,7 @@ for (const book of books) {
     const response = await fetch(imageUrl)
     if (!response.ok) throw new Error(`Could not download image ${imageUrl}: HTTP ${response.status}`)
     writeFileSync(outputPath, Buffer.from(await response.arrayBuffer()))
+    await delay(1200)
   }
 
   book.illustrations = illustrations
@@ -177,16 +178,23 @@ function isSafetyFailure(error) {
 }
 
 async function replicateFetch(url, options = {}) {
-  const response = await fetch(url, {
-    ...options,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      ...(options.headers ?? {}),
-    },
-  })
-  const text = await response.text()
-  if (!response.ok) throw new Error(`Replicate HTTP ${response.status}: ${text}`)
-  return JSON.parse(text)
+  let lastError
+  for (let attempt = 1; attempt <= 5; attempt += 1) {
+    const response = await fetch(url, {
+      ...options,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...(options.headers ?? {}),
+      },
+    })
+    const text = await response.text()
+    if (response.ok) return JSON.parse(text)
+    lastError = new Error(`Replicate HTTP ${response.status}: ${text}`)
+    if (response.status !== 429 || attempt === 5) break
+    const retryAfter = Number(response.headers.get('retry-after')) || retryAfterSeconds(text) || 5
+    await delay((retryAfter + attempt) * 1000)
+  }
+  throw lastError
 }
 
 function parseArgs(values) {
@@ -215,6 +223,10 @@ function removeOldTestImages(bookSlug) {
 
 function chapterStart(filename) {
   return Number(filename.match(/chapters-(\d+)-/u)?.[1] ?? 0)
+}
+
+function retryAfterSeconds(text) {
+  return Number(text.match(/retry_after"?\s*:?\s*(\d+)/iu)?.[1] ?? 0)
 }
 
 function delay(ms) {

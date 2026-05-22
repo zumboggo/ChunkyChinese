@@ -830,7 +830,15 @@ export async function importHostedClipPack(
 
 export async function seedReaderBooksIfEmpty(): Promise<number> {
   const db = await getDB()
-  if ((await db.count('readerBooks')) > 0) return 0
+  const existingBooks = await db.getAll('readerBooks')
+  if (
+    existingBooks.length > 0 &&
+    existingBooks.every((book) => (book.illustrations?.length ?? 0) >= Math.ceil(
+      book.stories.flatMap((story) => story.sentences).length / 2,
+    ))
+  ) {
+    return 0
+  }
   const [firstPack] = await getHostedReaderPackIndex()
   if (!firstPack) return 0
   const summary = await importHostedReaderPack(firstPack.baseUrl, undefined, firstPack, {
@@ -878,6 +886,8 @@ export async function importHostedReaderPack(
   const base = resolveHostedBaseUrl(baseUrl)
   const manifest = (await fetchJson(`${base}/reader_manifest.json`)) as ReaderPack
   const packId = hosted?.id ?? manifest.packId ?? makePackId(manifest.name || 'Reader pack')
+  const db = await getDB()
+  const existingPack = await db.get('readerPacks', packId)
   const downloadAudio = options.downloadAudio ?? true
   const localAudioAvailable = Boolean(manifest.audioAvailable && downloadAudio)
   const pack: ReaderPack = {
@@ -887,9 +897,11 @@ export async function importHostedReaderPack(
     description: hosted?.description ?? manifest.description,
     baseUrl,
     language: hosted?.language ?? manifest.language ?? 'zh-CN',
-    installedAt: new Date().toISOString(),
-    audioAvailable: localAudioAvailable,
-    synthesizedAudioCount: localAudioAvailable ? manifest.synthesizedAudioCount ?? 0 : 0,
+    installedAt: existingPack?.installedAt ?? new Date().toISOString(),
+    audioAvailable: localAudioAvailable || Boolean(existingPack?.audioAvailable),
+    synthesizedAudioCount: localAudioAvailable
+      ? manifest.synthesizedAudioCount ?? 0
+      : existingPack?.synthesizedAudioCount ?? 0,
     storyCount: manifest.storyCount ?? 0,
     sentenceCount: manifest.sentenceCount ?? 0,
     books: manifest.books ?? [],
@@ -905,7 +917,6 @@ export async function importHostedReaderPack(
     })
   }
 
-  const db = await getDB()
   const tx = db.transaction(['readerPacks', 'readerBooks'], 'readwrite')
   await tx.objectStore('readerPacks').put(pack)
   for (const book of books) {

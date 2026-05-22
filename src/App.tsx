@@ -3127,16 +3127,18 @@ function getReaderIllustration(book: ReaderBook, sentenceIndex: number) {
     (item) => sentenceNumber >= item.sentenceStart && sentenceNumber <= item.sentenceEnd,
   )
   if (illustration) return illustration
-  if (book.id !== 'lms-book-1-chapters-1-5' || sentenceNumber < 1 || sentenceNumber > 25) {
+  if (!book.id.startsWith('lms-book-1-chapters-')) {
     return undefined
   }
-  const imageNumber = Math.ceil(sentenceNumber / 5)
+  const sentenceCount = book.stories.reduce((sum, story) => sum + story.sentences.length, 0)
+  if (sentenceNumber < 1 || sentenceNumber > sentenceCount) return undefined
+  const imageNumber = Math.ceil(sentenceNumber / 2)
   return {
-    id: `b01c01-test-${String(imageNumber).padStart(3, '0')}`,
-    imageFilename: `reader-packs/lms-books/images/book-1-chapters-1-5/illustration-${String(imageNumber).padStart(3, '0')}.png`,
-    alt: `Manga-style reader illustration ${imageNumber} for LMS Book 1 Chapters 1-5.`,
-    sentenceStart: (imageNumber - 1) * 5 + 1,
-    sentenceEnd: imageNumber * 5,
+    id: `${book.id}-illustration-${String(imageNumber).padStart(3, '0')}`,
+    imageFilename: `reader-packs/lms-books/images/${book.id}/illustration-${String(imageNumber).padStart(3, '0')}.webp`,
+    alt: `Chibi manga reader illustration ${imageNumber} for ${book.title}.`,
+    sentenceStart: (imageNumber - 1) * 2 + 1,
+    sentenceEnd: Math.min(imageNumber * 2, sentenceCount),
   }
 }
 
