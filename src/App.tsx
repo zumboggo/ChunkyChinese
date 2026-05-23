@@ -4,6 +4,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   AreaChart,
   Area,
+  BarChart,
+  Bar,
+  LineChart,
+  Line,
+  CartesianGrid,
+  Legend,
   XAxis,
   YAxis,
   Tooltip,
@@ -125,6 +131,7 @@ const emptyStats: DashboardStats = {
   currentStreak: 0,
   studyHeatmap: [],
   retentionSeries: [],
+  readingSeries: [],
 }
 
 const DEFAULT_PACK_ID = 'lms-1000-azure'
@@ -1595,8 +1602,11 @@ function App() {
             <InfoPanel title="Review heatmap">
               <ProgressHeatmap days={stats.studyHeatmap} />
             </InfoPanel>
-            <InfoPanel title="Retention graph">
-              <RetentionGraph points={stats.retentionSeries} />
+            <InfoPanel title="Vocab Growth">
+              <VocabGrowthChart points={stats.retentionSeries} />
+            </InfoPanel>
+            <InfoPanel title="Reading Speed (WPM)">
+              <ReadingWpmChart points={stats.readingSeries} />
             </InfoPanel>
           </div>
 
@@ -3109,52 +3119,46 @@ function ProgressHeatmap({ days }: { days: DashboardStats['studyHeatmap'] }) {
   )
 }
 
-function RetentionGraph({ points }: { points: DashboardStats['retentionSeries'] }) {
-  const maxTotal = Math.max(
-    1,
-    ...points.map(
-      (point) => point.unknown + point.barelyKnown + point.familiar + point.wellKnown,
-    ),
-  )
-
+function VocabGrowthChart({ points }: { points: DashboardStats['retentionSeries'] }) {
   return (
-    <div className="progress-visual">
-      <div className="retention-chart" aria-label="Word retention over time">
-        {points.map((point) => {
-          const segments = [
-            { key: 'unknown', value: point.unknown, label: 'Unknown' },
-            { key: 'barely', value: point.barelyKnown, label: 'Barely known' },
-            { key: 'familiar', value: point.familiar, label: 'Familiar' },
-            { key: 'well', value: point.wellKnown, label: 'Well known' },
-          ]
-          const total = segments.reduce((sum, segment) => sum + segment.value, 0)
-          return (
-            <div className="retention-bar-wrap" key={point.date}>
-              <div
-                className="retention-bar"
-                title={`${friendlyDate(point.date)}: ${point.wellKnown} well known, ${point.familiar} familiar, ${point.barelyKnown} barely known, ${point.unknown} unknown`}
-                aria-label={`${friendlyDate(point.date)}, ${total} words tracked`}
-              >
-                {segments.map((segment) => (
-                  <span
-                    key={segment.key}
-                    className={`retention-segment retention-${segment.key}`}
-                    style={{ height: `${(segment.value / maxTotal) * 100}%` }}
-                    aria-label={`${segment.label}: ${segment.value}`}
-                  />
-                ))}
-              </div>
-              <small>{shortMonthDay(point.date)}</small>
-            </div>
-          )
-        })}
-      </div>
-      <div className="retention-legend">
-        <span className="legend-unknown">Unknown</span>
-        <span className="legend-barely">Barely</span>
-        <span className="legend-familiar">Familiar</span>
-        <span className="legend-well">Well known</span>
-      </div>
+    <div style={{ width: '100%', height: 250 }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={points} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+          <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
+          <XAxis dataKey="date" tickFormatter={shortMonthDay} />
+          <YAxis />
+          <Tooltip 
+            labelFormatter={(label) => friendlyDate(label)}
+          />
+          <Legend />
+          <Bar dataKey="barelyKnown" name="New Words" stackId="a" fill="#ef4444" />
+          <Bar dataKey="familiar" name="Words in Progress" stackId="a" fill="#10b981" />
+          <Bar dataKey="wellKnown" name="Learned Words" stackId="a" fill="var(--accent-vibrant)" />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  )
+}
+
+function ReadingWpmChart({ points }: { points: DashboardStats['readingSeries'] }) {
+  if (!points || points.length === 0) {
+    return <div className="progress-caption">No reading data yet</div>
+  }
+  return (
+    <div style={{ width: '100%', height: 250 }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={points} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+          <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
+          <XAxis dataKey="date" tickFormatter={shortMonthDay} />
+          <YAxis />
+          <Tooltip 
+            formatter={(value: any, name: any) => [value, name === 'wpm' ? 'WPM' : name]}
+            labelFormatter={(label) => friendlyDate(label)}
+          />
+          <Legend />
+          <Line type="monotone" dataKey="wpm" name="Reading WPM" stroke="#f59e0b" activeDot={{ r: 8 }} />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   )
 }

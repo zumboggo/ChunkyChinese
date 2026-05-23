@@ -1077,6 +1077,7 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     currentStreak: calculateStreak(buildStudyHeatmap(events, readerSessions, 365)),
     studyHeatmap: buildStudyHeatmap(events, readerSessions, 84),
     retentionSeries: buildRetentionSeries(scopedWords, events, 12),
+    readingSeries: buildReadingSeries(readerSessions, 12),
   }
 }
 
@@ -1622,6 +1623,43 @@ function buildRetentionSeries(
       counts[level] += 1
     }
     points.push({ date: dateKey(pointDate), ...counts })
+  }
+
+  return points
+}
+
+function buildReadingSeries(
+  sessions: ReaderSession[],
+  weekCount: number,
+): DashboardStats['readingSeries'] {
+  const today = startOfToday()
+  const points: DashboardStats['readingSeries'] = []
+
+  // Ensure we align to the start of the current week (Sunday)
+  const currentWeekStart = new Date(today)
+  currentWeekStart.setDate(today.getDate() - today.getDay())
+
+  for (let offset = weekCount - 1; offset >= 0; offset -= 1) {
+    const weekStart = new Date(currentWeekStart)
+    weekStart.setDate(currentWeekStart.getDate() - offset * 7)
+    const weekEnd = new Date(weekStart)
+    weekEnd.setDate(weekStart.getDate() + 7)
+
+    const weekSessions = sessions.filter((s) => {
+      const time = new Date(s.startedAt).getTime()
+      return time >= weekStart.getTime() && time < weekEnd.getTime()
+    })
+
+    const wordsRead = weekSessions.reduce((sum, s) => sum + s.wordsRead, 0)
+    const activeSeconds = weekSessions.reduce((sum, s) => sum + s.activeSeconds, 0)
+    const wpm = activeSeconds > 0 ? Math.round((wordsRead / activeSeconds) * 60) : 0
+
+    points.push({
+      date: dateKey(weekStart),
+      wordsRead,
+      activeSeconds,
+      wpm,
+    })
   }
 
   return points

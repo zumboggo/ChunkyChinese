@@ -383,6 +383,7 @@ export interface DashboardStats {
   currentStreak: number
   studyHeatmap: StudyDayStat[]
   retentionSeries: RetentionPoint[]
+  readingSeries: ReadingDayStat[]
 }
 
 export interface StudyDayStat {
@@ -397,4 +398,11 @@ export interface RetentionPoint {
   barelyKnown: number
   familiar: number
   wellKnown: number
+}
+
+export interface ReadingDayStat {
+  date: string
+  wpm: number
+  wordsRead: number
+  activeSeconds: number
 }
