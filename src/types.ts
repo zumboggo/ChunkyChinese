@@ -164,6 +164,26 @@ export interface ReaderWordToken {
   word?: VocabWord
 }
 
+export interface ReaderSession {
+  id: string
+  bookId: string
+  packId: string
+  startedAt: string
+  endedAt?: string
+  activeSeconds: number
+  wordsRead: number
+  sentenceIdsRead: string[]
+  updatedAt: string
+}
+
+export interface ReaderSessionStats {
+  todayActiveSeconds: number
+  todayWordsRead: number
+  todayWpm: number
+  totalSessions: number
+}
+
+
 export interface VocabWord {
   id: string
   word: string

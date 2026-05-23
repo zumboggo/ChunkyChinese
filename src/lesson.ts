@@ -8,6 +8,7 @@ interface TargetSelectionOptions {
   activeRecall?: boolean
   newWordsLimit?: number
   allowExtraNew?: boolean
+  keptWordIds?: string[]
 }
 
 interface PauseTimings {
@@ -241,28 +242,40 @@ export function selectTargetWords(
     return options.randomize ? weightedSampleWords(selected, 5) : selected.slice(0, 5)
   }
 
-  const candidates = dueCandidates(words)
-  const newWordLimit = options.allowExtraNew ? 5 : Math.max(0, options.newWordsLimit ?? 5)
-  const newCandidates = words
+  const keptWords = options.keptWordIds
+    ? options.keptWordIds
+        .map((id) => words.find((word) => word.id === id))
+        .filter((word): word is VocabWord => Boolean(word))
+    : []
+  const selected = [...keptWords]
+  const filteredWords = options.keptWordIds
+    ? words.filter((word) => !options.keptWordIds!.includes(word.id))
+    : words
+
+  const candidates = dueCandidates(filteredWords)
+  const newWordLimit = options.allowExtraNew ? 5 : Math.max(0, (options.newWordsLimit ?? 5) - selected.filter((w) => w.status === 'new').length)
+  const newCandidates = filteredWords
     .filter((word) => word.status === 'new' && !word.fsrsDueAt)
     .sort((a, b) => scoreWord(a) - scoreWord(b))
-    .slice(0, newWordLimit)
-  const supportCandidates = words
+    .slice(0, Math.max(0, newWordLimit))
+  const supportCandidates = filteredWords
     .filter((word) => !candidates.some((candidate) => candidate.id === word.id))
     .filter((word) => !newCandidates.some((candidate) => candidate.id === word.id))
     .filter((word) => word.status !== 'new')
     .filter((word) => word.status !== 'known' || isFsrsDue(word))
     .sort((a, b) => futureDueSort(a) - futureDueSort(b))
   const pick = options.randomize ? weightedSampleWords : sortedSampleWords
-  const selected = [
-    ...pick(newCandidates, 3),
-  ]
-  selected.push(
-    ...pick(
-      candidates.filter((word) => !selected.some((candidate) => candidate.id === word.id)),
-      2,
-    ),
-  )
+
+  if (!options.keptWordIds) {
+    selected.push(...pick(newCandidates, 3))
+    selected.push(
+      ...pick(
+        candidates.filter((word) => !selected.some((candidate) => candidate.id === word.id)),
+        2,
+      ),
+    )
+  }
+
   if (selected.length < 5) {
     const fillCandidates = [
       ...newCandidates,

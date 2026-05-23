@@ -41,8 +41,11 @@ import {
   saveHotkeys,
   setActivePackId as persistActivePackId,
   updateWordStatus,
+  startReaderSession,
+  updateReaderSession,
+  getReaderSessionStats,
 } from './db'
-import { createLesson, createPocketLesson, type PauseProfile } from './lesson'
+import { createLesson, createPocketLesson, selectTargetWords, type PauseProfile } from './lesson'
 import { renderLessonToWav } from './renderAudio'
 import { previewFsrsRatings } from './scheduler'
 import type {
@@ -60,6 +63,8 @@ import type {
   ReaderPack,
   ReaderSentence,
   ReaderWordToken,
+  ReaderSession,
+  ReaderSessionStats,
   RenderedLesson,
   RenderedLessonSegment,
   Sentence,
@@ -172,6 +177,11 @@ function App() {
   const [readerShowPinyin, setReaderShowPinyin] = useState(true)
   const [readerShowEnglish, setReaderShowEnglish] = useState(true)
   const [selectedReaderToken, setSelectedReaderToken] = useState<ReaderWordToken | null>(null)
+  const [lessonStartStatuses, setLessonStartStatuses] = useState<Record<string, WordStatus>>({})
+  const [tappedWordIds, setTappedWordIds] = useState<Set<string>>(new Set())
+  const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
+  const [todayReaderStats, setTodayReaderStats] = useState<ReaderSessionStats | null>(null)
+  const lastReaderActivityTimeRef = useRef<number>(Date.now())
   const runToken = useRef(0)
   const activeAnswerLockRef = useRef<string | null>(null)
   const autoContinueTimeoutRef = useRef<number | null>(null)
@@ -399,6 +409,208 @@ function App() {
   )
   const currentReviewWord = ratingWords[reviewCardIndex]
 
+  const handleStatus = useCallback(async (ids: string[], status: WordStatus) => {
+    if (ids.length === 0) return
+    await updateWordStatus(ids, status)
+    setLastSummary(`Marked ${ids.length} word${ids.length === 1 ? '' : 's'} ${status}.`)
+    await refresh()
+  }, [refresh])
+
+  const recordReaderInteraction = useCallback(() => {
+    lastReaderActivityTimeRef.current = Date.now()
+  }, [])
+
+  const recordReaderSentenceView = useCallback(async (sentence: ReaderSentence, session: ReaderSession) => {
+    if (session.sentenceIdsRead.includes(sentence.id)) {
+      return
+    }
+    const currentVocab = scopedWords.length > 0 ? scopedWords : words
+    const tokens = tokenizeReaderText(sentence.chinese, currentVocab)
+    const chineseTokensCount = tokens.filter(t => t.isChinese).length
+    const updatedSession: ReaderSession = {
+      ...session,
+      sentenceIdsRead: [...session.sentenceIdsRead, sentence.id],
+      wordsRead: session.wordsRead + chineseTokensCount,
+      updatedAt: new Date().toISOString(),
+    }
+    await updateReaderSession(updatedSession)
+    setActiveReaderSession(updatedSession)
+    const stats = await getReaderSessionStats()
+    setTodayReaderStats(stats)
+  }, [words, scopedWords])
+
+  const cycleActiveRecallStatus = useCallback(async (wordId: string) => {
+    const word = words.find((w) => w.id === wordId)
+    if (!word) return
+
+    let nextStatus: WordStatus
+    if (!tappedWordIds.has(wordId)) {
+      setTappedWordIds((prev) => {
+        const next = new Set(prev)
+        next.add(wordId)
+        return next
+      })
+      if (word.status !== 'known') {
+        nextStatus = 'known'
+      } else {
+        nextStatus = 'learning'
+      }
+    } else {
+      if (word.status === 'known') {
+        nextStatus = 'learning'
+      } else if (word.status === 'learning') {
+        nextStatus = 'familiar'
+      } else if (word.status === 'familiar') {
+        nextStatus = 'review'
+      } else {
+        nextStatus = 'known'
+      }
+    }
+    await handleStatus([wordId], nextStatus)
+  }, [words, tappedWordIds, handleStatus])
+
+  const refreshRecallLesson = useCallback(async () => {
+    if (!lesson) return
+    setRendering(true)
+    try {
+      const targetWords = lesson.targetWords
+      const keptWords: VocabWord[] = []
+      for (const word of targetWords) {
+        const currentWord = words.find(w => w.id === word.id)
+        const currentStatus = currentWord?.status ?? word.status
+        const startStatus = lessonStartStatuses[word.id]
+        if (currentStatus === startStatus) {
+          keptWords.push(currentWord || word)
+        }
+      }
+      setQuizResponses({})
+      setQuizHints({})
+      setFsrsRatings({})
+      setTappedWordIds(new Set())
+      const useBrowserTts = activePack?.browserTts
+
+      if (keptWords.length === 0) {
+        const nextWords = scopedWords.length > 0 ? scopedWords : words
+        const nextSentences = scopedSentences.length > 0 ? scopedSentences : sentences
+        const nextLesson = useBrowserTts
+          ? createLesson(nextWords, nextSentences, [], {
+              activeRecall: true,
+              newWordsLimit: remainingNewWordsToday,
+            })
+          : createPocketLesson(nextWords, nextSentences, audioClips, [], {
+              pauseProfile,
+              activeRecall: true,
+              newWordsLimit: remainingNewWordsToday,
+            })
+        setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
+        const startStatuses: Record<string, WordStatus> = {}
+        nextLesson.targetWords.forEach(word => {
+          startStatuses[word.id] = word.status
+        })
+        setLessonStartStatuses(startStatuses)
+        await renderAndLoadLesson(
+          nextLesson,
+          true,
+          'Lesson refreshed with a totally new word set.',
+        )
+      } else {
+        const nextWords = scopedWords.length > 0 ? scopedWords : words
+        const nextSentences = scopedSentences.length > 0 ? scopedSentences : sentences
+        const keptWordIds = keptWords.map(w => w.id)
+        const nextLessonTargetWords = selectTargetWords(nextWords, [], {
+          activeRecall: true,
+          newWordsLimit: remainingNewWordsToday,
+          keptWordIds,
+        })
+        const nextLesson = useBrowserTts
+          ? createLesson(nextWords, nextSentences, nextLessonTargetWords.map(w => w.id), {
+              activeRecall: true,
+              allowExtraNew: true,
+            })
+          : createPocketLesson(nextWords, nextSentences, audioClips, nextLessonTargetWords.map(w => w.id), {
+              pauseProfile,
+              activeRecall: true,
+              allowExtraNew: true,
+            })
+        setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
+        const startStatuses: Record<string, WordStatus> = {}
+        nextLesson.targetWords.forEach(word => {
+          startStatuses[word.id] = word.status
+        })
+        setLessonStartStatuses(startStatuses)
+        await renderAndLoadLesson(
+          nextLesson,
+          true,
+          'Lesson refreshed, keeping unmodified words.',
+        )
+      }
+    } catch (error) {
+      setLastSummary(error instanceof Error ? error.message : 'Could not refresh lesson.')
+    } finally {
+      setRendering(false)
+    }
+  }, [lesson, words, lessonStartStatuses, activePack, audioClips, pauseProfile, remainingNewWordsToday, scopedWords, scopedSentences, renderAndLoadLesson])
+
+  // Reader Mode activity event listeners
+  useEffect(() => {
+    if (screen !== 'reader') return
+    const handleActivity = () => {
+      recordReaderInteraction()
+    }
+    window.addEventListener('keydown', handleActivity, { passive: true })
+    window.addEventListener('pointerdown', handleActivity, { passive: true })
+    return () => {
+      window.removeEventListener('keydown', handleActivity)
+      window.removeEventListener('pointerdown', handleActivity)
+    }
+  }, [screen, recordReaderInteraction])
+
+  // Reader Mode 1-second active timer
+  useEffect(() => {
+    if (screen !== 'reader' || !activeReaderSession) return
+    const interval = window.setInterval(() => {
+      const now = Date.now()
+      const timeSinceLastActivity = now - lastReaderActivityTimeRef.current
+      if (timeSinceLastActivity <= 60000) {
+        setActiveReaderSession((prev: ReaderSession | null) => {
+          if (!prev) return null
+          const updated = {
+            ...prev,
+            activeSeconds: prev.activeSeconds + 1,
+            updatedAt: new Date().toISOString(),
+          }
+          void updateReaderSession(updated)
+          return updated
+        })
+      }
+    }, 1000)
+    return () => {
+      window.clearInterval(interval)
+    }
+  }, [screen, activeReaderSession])
+
+  // Load today's reader stats when activeSeconds or wordsRead changes
+  useEffect(() => {
+    let active = true
+    async function loadStats() {
+      const stats = await getReaderSessionStats()
+      if (active) {
+        setTodayReaderStats(stats)
+      }
+    }
+    void loadStats()
+    return () => {
+      active = false
+    }
+  }, [screen, activeReaderSession?.activeSeconds, activeReaderSession?.wordsRead])
+
+  // Count sentence tokens when viewed
+  useEffect(() => {
+    if (screen === 'reader' && activeReaderSession && currentReaderSentence) {
+      void recordReaderSentenceView(currentReaderSentence, activeReaderSession)
+    }
+  }, [screen, activeReaderSession, currentReaderSentence, recordReaderSentenceView])
+
   useEffect(
     () => () => {
       if (flashcardFeedbackTimeoutRef.current !== null) {
@@ -408,12 +620,6 @@ function App() {
     [],
   )
 
-  const handleStatus = useCallback(async (ids: string[], status: WordStatus) => {
-    if (ids.length === 0) return
-    await updateWordStatus(ids, status)
-    setLastSummary(`Marked ${ids.length} word${ids.length === 1 ? '' : 's'} ${status}.`)
-    await refresh()
-  }, [refresh])
 
   const openReviewPrompt = useCallback(() => {
     setReviewCardIndex(0)
@@ -429,6 +635,9 @@ function App() {
     setReaderSentenceIndex(Math.min(Math.max(0, sentenceIndex), Math.max(0, sentenceCount - 1)))
     setSelectedReaderToken(null)
     setScreen('reader')
+    const session = await startReaderSession(book.packId, book.id)
+    setActiveReaderSession(session)
+    recordReaderInteraction()
     if (action === 'start') {
       await saveReaderProgress({
         packId: book.packId,
@@ -444,6 +653,7 @@ function App() {
       Math.max(readerSentenceIndex + delta, 0),
       readerSentences.length - 1,
     )
+    recordReaderInteraction()
     setReaderSentenceIndex(nextIndex)
     setSelectedReaderToken(null)
     await saveReaderProgress({
@@ -454,6 +664,7 @@ function App() {
   }, [activeReaderBook, readerSentenceIndex, readerSentences.length])
 
   async function playReaderSentence(sentence: ReaderSentence) {
+    recordReaderInteraction()
     const token = runToken.current + 1
     runToken.current = token
     audioRef.current?.pause()
@@ -961,6 +1172,12 @@ function App() {
           })
       setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
       setFsrsRatings({})
+      setTappedWordIds(new Set())
+      const startStatuses: Record<string, WordStatus> = {}
+      nextLesson.targetWords.forEach(word => {
+        startStatuses[word.id] = word.status
+      })
+      setLessonStartStatuses(startStatuses)
       await renderAndLoadLesson(
         nextLesson,
         playAfterRender,
@@ -1662,10 +1879,24 @@ function App() {
           onPrevious={() => moveReaderSentence(-1)}
           onNext={() => moveReaderSentence(1)}
           onPlay={playReaderSentence}
-          onSelectToken={setSelectedReaderToken}
-          onTogglePinyin={() => setReaderShowPinyin((value) => !value)}
-          onToggleEnglish={() => setReaderShowEnglish((value) => !value)}
-          onMarkWord={async (word, status) => handleStatus([word.id], status)}
+          onSelectToken={(token) => {
+            recordReaderInteraction()
+            setSelectedReaderToken(token)
+          }}
+          onTogglePinyin={() => {
+            recordReaderInteraction()
+            setReaderShowPinyin((value) => !value)
+          }}
+          onToggleEnglish={() => {
+            recordReaderInteraction()
+            setReaderShowEnglish((value) => !value)
+          }}
+          onMarkWord={async (word, status) => {
+            recordReaderInteraction()
+            await handleStatus([word.id], status)
+          }}
+          activeSession={activeReaderSession}
+          todayReaderStats={todayReaderStats}
         />
       )}
 
@@ -2283,16 +2514,29 @@ function App() {
                                 >
                                   Restart current word
                                 </button>
-                                <button
-                                  type="button"
-                                  onClick={() => {
-                                    setLessonMenuOpen(false)
-                                    void startPocketLesson()
-                                  }}
-                                  disabled={rendering || (showReviewPrompt && !allLessonWordsRated)}
-                                >
-                                  Next Lesson
-                                </button>
+                                                                {studyMode === 'activeRecall' ? (
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      setLessonMenuOpen(false)
+                                      void refreshRecallLesson()
+                                    }}
+                                    disabled={rendering}
+                                  >
+                                    Refresh
+                                  </button>
+                                ) : (
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      setLessonMenuOpen(false)
+                                      void startPocketLesson()
+                                    }}
+                                    disabled={rendering || (showReviewPrompt && !allLessonWordsRated)}
+                                  >
+                                    Next Lesson
+                                  </button>
+                                )}
                                 {studyMode === 'activeRecall' && (
                                   <button
                                     type="button"
@@ -2353,6 +2597,31 @@ function App() {
                       </div>
                     )}
                   </div>
+                  {isActiveLearningMode && lessonWords.length > 0 && (
+                    <div className="listening-rating-strip" aria-label="Rate lesson words">
+                      {lessonWords.map((word) => {
+                        const startStatus = lessonStartStatuses[word.id]
+                        const currentWord = words.find((w) => w.id === word.id)
+                        const currentStatus = currentWord?.status ?? word.status
+                        const isModified = startStatus !== undefined && currentStatus !== startStatus
+                        return (
+                          <button
+                            key={word.id}
+                            type="button"
+                            className={`rating-chip rating-status-${currentStatus} ${isModified ? 'chip-modified' : ''}`}
+                            onClick={() => cycleActiveRecallStatus(word.id)}
+                            title={`Click to cycle status of ${word.word}`}
+                          >
+                            <strong>{word.word}</strong>
+                            <span>{word.meaning}</span>
+                            <small>{currentStatus}</small>
+                            {isModified && <span className="modified-indicator">● Modified</span>}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  )}
+
                   {isListeningMode && lessonWords.length > 0 && (
                     <div className="listening-rating-strip" aria-label="Rate lesson words">
                       {lessonWords.map((word) => {
@@ -2546,6 +2815,8 @@ function ReaderMode({
   onTogglePinyin,
   onToggleEnglish,
   onMarkWord,
+  activeSession,
+  todayReaderStats,
 }: {
   readerPacks: ReaderPack[]
   readerBooks: ReaderBook[]
@@ -2565,6 +2836,8 @@ function ReaderMode({
   onTogglePinyin: () => void
   onToggleEnglish: () => void
   onMarkWord: (word: VocabWord, status: WordStatus) => void | Promise<void>
+  activeSession: ReaderSession | null
+  todayReaderStats: ReaderSessionStats | null
 }) {
   const illustration = activeBook ? getReaderIllustration(activeBook, sentenceIndex) : undefined
   const illustrationSrc = illustration ? publicAssetPath(illustration.imageFilename) : ''
@@ -2620,6 +2893,34 @@ function ReaderMode({
                 <span>
                   Sentence {sentenceIndex + 1} / {sentenceCount}
                 </span>
+              </div>
+
+              {/* Reader WPM Dashboard */}
+              <div className="reader-wpm-dashboard" aria-label="Reading stats dashboard">
+                <div className="dashboard-metric">
+                  <dt>Active Time</dt>
+                  <dd>{formatDuration(activeSession?.activeSeconds ?? 0)}</dd>
+                </div>
+                <div className="dashboard-metric">
+                  <dt>Words Read</dt>
+                  <dd>{activeSession?.wordsRead ?? 0}</dd>
+                </div>
+                <div className="dashboard-metric">
+                  <dt>Current WPM</dt>
+                  <dd>
+                    {activeSession && activeSession.activeSeconds > 0
+                      ? Math.round((activeSession.wordsRead / activeSession.activeSeconds) * 60)
+                      : 0}
+                  </dd>
+                </div>
+                <div className="dashboard-metric">
+                  <dt>Today</dt>
+                  <dd>{todayReaderStats?.todayWordsRead ?? 0} words</dd>
+                </div>
+                <div className="dashboard-metric">
+                  <dt>Book Progress</dt>
+                  <dd>{Math.round(((sentenceIndex + 1) / sentenceCount) * 100)}%</dd>
+                </div>
               </div>
               <div className="reader-reading-area">
                 {illustration && (
@@ -3634,3 +3935,10 @@ function getAudioCoverage(
 }
 
 export default App
+
+function formatDuration(seconds: number): string {
+  const m = Math.floor(seconds / 60)
+  const s = seconds % 60
+  return `${m}m ${s}s`
+}
+

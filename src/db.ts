@@ -23,6 +23,8 @@ import type {
   ReaderBook,
   ReaderPack,
   ReaderProgress,
+  ReaderSession,
+  ReaderSessionStats,
   RenderedLesson,
   Sentence,
   VocabWord,
@@ -31,7 +33,7 @@ import type {
 import { applyFsrsRating } from './scheduler'
 
 const DB_NAME = 'chunky-chinese-vocab'
-const DB_VERSION = 5
+const DB_VERSION = 7
 
 export const DEFAULT_HOTKEYS: HotkeySettings = {
   choiceA: '3',
@@ -83,6 +85,11 @@ interface ChunkyDB extends DBSchema {
     value: ReaderProgress
     indexes: { bookId: string; packId: string }
   }
+  readerSessions: {
+    key: string
+    value: ReaderSession
+    indexes: { bookId: string; packId: string; startedAt: string }
+  }
   settings: {
     key: string
     value: unknown
@@ -130,6 +137,12 @@ export function getDB(): Promise<IDBPDatabase<ChunkyDB>> {
           const readerProgress = db.createObjectStore('readerProgress', { keyPath: 'id' })
           readerProgress.createIndex('bookId', 'bookId')
           readerProgress.createIndex('packId', 'packId')
+        }
+        if (!db.objectStoreNames.contains('readerSessions')) {
+          const readerSessions = db.createObjectStore('readerSessions', { keyPath: 'id' })
+          readerSessions.createIndex('bookId', 'bookId')
+          readerSessions.createIndex('packId', 'packId')
+          readerSessions.createIndex('startedAt', 'startedAt')
         }
         if (!db.objectStoreNames.contains('settings')) {
           db.createObjectStore('settings')
@@ -877,6 +890,57 @@ export async function saveReaderProgress(progress: Omit<ReaderProgress, 'id' | '
   )
 }
 
+function readerSessionId(bookId: string, startedAt: string): string {
+  return `reader-session:${bookId}:${startedAt}`
+}
+
+export async function startReaderSession(
+  packId: string,
+  bookId: string,
+): Promise<ReaderSession> {
+  const session: ReaderSession = {
+    id: readerSessionId(bookId, new Date().toISOString()),
+    bookId,
+    packId,
+    startedAt: new Date().toISOString(),
+    activeSeconds: 0,
+    wordsRead: 0,
+    sentenceIdsRead: [],
+    updatedAt: new Date().toISOString(),
+  }
+  await (await getDB()).put('readerSessions', session)
+  return session
+}
+
+export async function updateReaderSession(
+  session: ReaderSession,
+): Promise<void> {
+  session.updatedAt = new Date().toISOString()
+  await (await getDB()).put('readerSessions', session)
+}
+
+export async function getReaderSessionStats(): Promise<ReaderSessionStats> {
+  const db = await getDB()
+  const sessions = await db.getAll('readerSessions')
+  const start = startOfToday()
+  const todaySessions = sessions.filter((s) => new Date(s.startedAt) >= start)
+  const todayActiveSeconds = todaySessions.reduce((sum, s) => sum + s.activeSeconds, 0)
+  const todayWordsRead = todaySessions.reduce((sum, s) => sum + s.wordsRead, 0)
+  const todayWpm = todayActiveSeconds > 0 ? Math.round((todayWordsRead / todayActiveSeconds) * 60) : 0
+  return {
+    todayActiveSeconds,
+    todayWordsRead,
+    todayWpm,
+    totalSessions: sessions.length,
+  }
+}
+
+export async function getAllReaderSessions(): Promise<ReaderSession[]> {
+  return (await (await getDB()).getAll('readerSessions')).sort(
+    (a, b) => Date.parse(b.startedAt) - Date.parse(a.startedAt),
+  )
+}
+
 export async function importHostedReaderPack(
   baseUrl: string,
   onProgress?: (completed: number, total: number, label: string) => void,
@@ -1032,6 +1096,7 @@ export async function exportBackup(): Promise<string> {
     readerPacks: await db.getAll('readerPacks'),
     readerBooks: await db.getAll('readerBooks'),
     readerProgress: await db.getAll('readerProgress'),
+    readerSessions: await db.getAll('readerSessions'),
     settings: {
       lmsSeededAt: await db.get('settings', 'lmsSeededAt'),
       activePackId: await db.get('settings', 'activePackId'),
@@ -1051,6 +1116,7 @@ export async function importBackup(text: string): Promise<ImportSummary> {
     readerPacks?: ReaderPack[]
     readerBooks?: ReaderBook[]
     readerProgress?: ReaderProgress[]
+    readerSessions?: ReaderSession[]
     settings?: {
       activePackId?: string
       hotkeys?: HotkeySettings
@@ -1060,7 +1126,7 @@ export async function importBackup(text: string): Promise<ImportSummary> {
   }
   const db = await getDB()
   const tx = db.transaction(
-    ['vocabWords', 'sentences', 'listeningEvents', 'clipPacks', 'readerPacks', 'readerBooks', 'readerProgress'],
+    ['vocabWords', 'sentences', 'listeningEvents', 'clipPacks', 'readerPacks', 'readerBooks', 'readerProgress', 'readerSessions'],
     'readwrite',
   )
   let created = 0
@@ -1089,6 +1155,9 @@ export async function importBackup(text: string): Promise<ImportSummary> {
   }
   for (const progress of backup.readerProgress ?? []) {
     await tx.objectStore('readerProgress').put(progress)
+  }
+  for (const session of backup.readerSessions ?? []) {
+    await tx.objectStore('readerSessions').put(session)
   }
 
   await tx.done

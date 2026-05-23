@@ -1875,6 +1875,82 @@ kbd {
   background: #16a34a;
 }
 
+/* Active Recall status chip styles */
+.rating-chip {
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(16, 35, 63, 0.08);
+}
+
+.rating-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 35, 63, 0.08);
+  filter: brightness(0.98);
+}
+
+.rating-chip:active {
+  transform: translateY(0);
+}
+
+.rating-status-new {
+  border-color: var(--border);
+  background: rgba(248, 250, 252, 0.82);
+}
+.rating-status-new small {
+  background: var(--muted-navy);
+}
+
+.rating-status-learning {
+  border-color: rgba(249, 115, 22, 0.44);
+  background: rgba(255, 247, 237, 0.9);
+}
+.rating-status-learning small {
+  background: var(--mango);
+}
+
+.rating-status-familiar {
+  border-color: rgba(250, 204, 21, 0.54);
+  background: rgba(254, 243, 199, 0.9);
+}
+.rating-status-familiar small {
+  background: #ca8a04;
+}
+
+.rating-status-review {
+  border-color: rgba(56, 189, 248, 0.44);
+  background: rgba(224, 242, 254, 0.9);
+}
+.rating-status-review small {
+  background: #0284c7;
+}
+
+.rating-status-known {
+  border-color: rgba(22, 163, 74, 0.38);
+  background: rgba(220, 252, 231, 0.9);
+}
+.rating-status-known small {
+  background: var(--success);
+}
+
+.chip-modified {
+  border-style: dashed !important;
+  border-width: 2px !important;
+  border-color: var(--mango) !important;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.15);
+}
+
+.modified-indicator {
+  font-size: 0.65rem;
+  font-weight: 850;
+  color: var(--mango-dark);
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+
 .lesson-now {
   min-height: 180px;
   display: grid;
@@ -2070,6 +2146,42 @@ kbd {
   background: rgba(255, 255, 255, 0.84);
   box-shadow: 0 18px 48px rgba(16, 35, 63, 0.08);
 }
+
+.reader-wpm-dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(10px, 2vw, 24px);
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 16px rgba(16, 35, 63, 0.03);
+  backdrop-filter: blur(8px);
+  margin-bottom: 8px;
+}
+
+.dashboard-metric {
+  flex: 1 1 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dashboard-metric dt {
+  font-size: 0.7rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted-navy);
+}
+
+.dashboard-metric dd {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--navy);
+}
+
 
 .reader-page-meta,
 .reader-controls {
