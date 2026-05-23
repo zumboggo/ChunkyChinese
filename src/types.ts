@@ -380,6 +380,7 @@ export interface DashboardStats {
   clipsCompletedToday: number
   knownToday: number
   newWordsToday: number
+  currentStreak: number
   studyHeatmap: StudyDayStat[]
   retentionSeries: RetentionPoint[]
 }

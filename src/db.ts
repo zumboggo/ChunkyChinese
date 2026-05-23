@@ -1037,12 +1037,14 @@ export async function getDashboardStats(): Promise<DashboardStats> {
   const db = await getDB()
   const words = await db.getAll('vocabWords')
   const events = await db.getAll('listeningEvents')
+  const readerSessions = await db.getAll('readerSessions')
   const activePackId = (await db.get('settings', 'activePackId')) as string | undefined
   const scopedWords = activePackId
     ? words.filter((word) => word.packIds?.includes(activePackId))
     : words
   const start = startOfToday()
   const todayEvents = events.filter((event) => new Date(event.timestamp) >= start)
+  const todaySessions = readerSessions.filter((session) => new Date(session.startedAt) >= start)
   const now = Date.now()
   const soon = now + 24 * 60 * 60 * 1000
   const dueWords = scopedWords.filter((word) => isWordDueForReview(word, now))
@@ -1060,7 +1062,9 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     newAvailable: scopedWords.filter((word) => word.status === 'new' && !word.fsrsDueAt).length,
     scheduled: scopedWords.filter((word) => Boolean(word.fsrsDueAt)).length,
     minutesToday:
-      todayEvents.reduce((sum, event) => sum + (event.seconds ?? 0), 0) / 60,
+      (todayEvents.reduce((sum, event) => sum + (event.seconds ?? 0), 0) +
+        todaySessions.reduce((sum, session) => sum + (session.activeSeconds ?? 0), 0)) /
+      60,
     clipsCompletedToday: todayEvents.filter((event) => event.type === 'complete').length,
     knownToday: todayEvents.filter((event) => event.type === 'mark_known').length,
     newWordsToday: scopedWords.filter(
@@ -1070,9 +1074,27 @@ export async function getDashboardStats(): Promise<DashboardStats> {
         word.lastReviewedAt &&
         new Date(word.lastReviewedAt) >= start,
     ).length,
-    studyHeatmap: buildStudyHeatmap(events, 84),
+    currentStreak: calculateStreak(buildStudyHeatmap(events, readerSessions, 365)),
+    studyHeatmap: buildStudyHeatmap(events, readerSessions, 84),
     retentionSeries: buildRetentionSeries(scopedWords, events, 12),
   }
+}
+
+function calculateStreak(heatmap: DashboardStats['studyHeatmap']): number {
+  if (heatmap.length === 0) return 0
+  let streak = 0
+  // heatmap[heatmap.length - 1] is today
+  for (let i = heatmap.length - 1; i >= 0; i--) {
+    if (heatmap[i].studySeconds > 0) {
+      streak++
+    } else if (i === heatmap.length - 1) {
+      // If today is 0, we don't break the streak immediately, we check yesterday
+      continue
+    } else {
+      break
+    }
+  }
+  return streak
 }
 
 export async function saveRenderedLesson(lesson: RenderedLesson): Promise<void> {
@@ -1508,7 +1530,11 @@ function startOfToday(): Date {
   return new Date(now.getFullYear(), now.getMonth(), now.getDate())
 }
 
-function buildStudyHeatmap(events: ListeningEvent[], dayCount: number): DashboardStats['studyHeatmap'] {
+function buildStudyHeatmap(
+  events: ListeningEvent[],
+  sessions: ReaderSession[],
+  dayCount: number,
+): DashboardStats['studyHeatmap'] {
   const today = startOfToday()
   const firstDay = new Date(today)
   firstDay.setDate(today.getDate() - (dayCount - 1))
@@ -1527,6 +1553,16 @@ function buildStudyHeatmap(events: ListeningEvent[], dayCount: number): Dashboar
     const day = byDay.get(key)
     if (!day) continue
     day.studySeconds += event.seconds ?? inferredStudySeconds(event)
+    day.activityCount += 1
+  }
+
+  for (const session of sessions) {
+    const date = new Date(session.startedAt)
+    if (Number.isNaN(date.getTime()) || date < firstDay) continue
+    const key = dateKey(date)
+    const day = byDay.get(key)
+    if (!day) continue
+    day.studySeconds += session.activeSeconds ?? 0
     day.activityCount += 1
   }
 

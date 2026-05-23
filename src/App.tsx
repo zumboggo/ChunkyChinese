@@ -1,5 +1,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts'
 import { pinyin } from 'pinyin-pro'
 import {
   completeWordExposure,
@@ -113,6 +122,7 @@ const emptyStats: DashboardStats = {
   clipsCompletedToday: 0,
   knownToday: 0,
   newWordsToday: 0,
+  currentStreak: 0,
   studyHeatmap: [],
   retentionSeries: [],
 }
@@ -1505,8 +1515,16 @@ function App() {
         </nav>
       </header>
 
+      <AnimatePresence mode="wait">
       {screen === 'dashboard' && (
-        <section className="screen dashboard">
+        <motion.section 
+          key="dashboard"
+          className="screen dashboard"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.2 }}
+        >
           <div className="screen-heading">
             <div>
               <h1>Press play, think, keep moving.</h1>
@@ -1571,6 +1589,9 @@ function App() {
           </div>
 
           <div className="dashboard-progress-grid">
+            <InfoPanel title="Recent Activity (Last 7 Days)">
+              <ActivityChart days={stats.studyHeatmap} />
+            </InfoPanel>
             <InfoPanel title="Review heatmap">
               <ProgressHeatmap days={stats.studyHeatmap} />
             </InfoPanel>
@@ -1599,7 +1620,11 @@ function App() {
             <InfoPanel title="Today">
               <dl className="stat-list">
                 <div>
-                  <dt>Listening minutes</dt>
+                  <dt>Current streak</dt>
+                  <dd>{stats.currentStreak} 🔥</dd>
+                </div>
+                <div>
+                  <dt>Study minutes</dt>
                   <dd>{stats.minutesToday.toFixed(1)}</dd>
                 </div>
                 <div>
@@ -1726,11 +1751,20 @@ function App() {
               Import data/audio
             </button>
           </div>
-        </section>
+        </motion.section>
       )}
+      </AnimatePresence>
 
+      <AnimatePresence mode="wait">
       {screen === 'words' && (
-        <section className="screen">
+        <motion.section 
+          key="words"
+          className="screen word-list"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.2 }}
+        >
           <div className="screen-heading compact">
             <div>
               <h1>Word Manager</h1>
@@ -1860,8 +1894,9 @@ function App() {
               Export CSV
             </button>
           </div>
-        </section>
+        </motion.section>
       )}
+      </AnimatePresence>
 
       {screen === 'reader' && (
         <ReaderMode
@@ -2447,6 +2482,14 @@ function App() {
                     ) : (
                       <div className="audio-placeholder">Render a lesson to create the audio track.</div>
                     )}
+                    {(focusedActiveQuiz || showReviewPrompt) && (
+                      <ControllerHUD 
+                        choiceA={hotkeys.choiceA}
+                        choiceB={hotkeys.choiceB}
+                        labelA={showReviewPrompt ? (reviewAnswerShown ? 'Again' : 'Flip') : currentQuiz?.options[0]?.label ?? 'Continue'}
+                        labelB={showReviewPrompt ? (reviewAnswerShown ? 'Good' : '') : (currentQuiz?.options.length ?? 0) > 1 ? currentQuiz!.options[1].label : ''}
+                      />
+                    )}
                     {!minimalVisualMode && (
                       <div className="lesson-menu-shell">
                         <button
@@ -2816,7 +2859,7 @@ function ReaderMode({
   onToggleEnglish,
   onMarkWord,
   activeSession,
-  todayReaderStats,
+  // todayReaderStats is unused in the compact bar
 }: {
   readerPacks: ReaderPack[]
   readerBooks: ReaderBook[]
@@ -2861,28 +2904,28 @@ function ReaderMode({
         </div>
       </div>
 
-      <div className="reader-layout">
+      <div className={`reader-layout ${activeBook ? 'zen-mode' : ''}`}>
         <aside className="reader-book-list" aria-label="Reader books">
-          {readerBooks.map((book) => (
-            <div
-              key={book.id}
-              className={`reader-book-card ${book.id === activeBook?.id ? 'active' : ''}`}
-            >
-              <strong>{book.title}</strong>
-              <span>
-                Chapters {book.chapterStart}-{book.chapterEnd} · {book.stories.length} stories
-              </span>
-              <div className="reader-book-actions">
-                <button type="button" className="primary" onClick={() => onChooseBook(book, 'resume')}>
-                  Resume
-                </button>
-                <button type="button" onClick={() => onChooseBook(book, 'start')}>
-                  Start from beginning
-                </button>
+            {readerBooks.map((book) => (
+              <div
+                key={book.id}
+                className={`reader-book-card ${book.id === activeBook?.id ? 'active' : ''}`}
+              >
+                <strong>{book.title}</strong>
+                <span>
+                  Chapters {book.chapterStart}-{book.chapterEnd} · {book.stories.length} stories
+                </span>
+                <div className="reader-book-actions">
+                  <button type="button" className="primary" onClick={() => onChooseBook(book, 'resume')}>
+                    Resume
+                  </button>
+                  <button type="button" onClick={() => onChooseBook(book, 'start')}>
+                    Start from beginning
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-          {readerBooks.length === 0 && <small>No reader books are installed yet.</small>}
+            ))}
+            {readerBooks.length === 0 && <small>No reader books are installed yet.</small>}
         </aside>
 
         <section className="reader-page">
@@ -2895,18 +2938,10 @@ function ReaderMode({
                 </span>
               </div>
 
-              {/* Reader WPM Dashboard */}
-              <div className="reader-wpm-dashboard" aria-label="Reading stats dashboard">
+              {/* Compact Reader WPM Dashboard */}
+              <div className="reader-wpm-dashboard compact-bar" aria-label="Reading stats dashboard">
                 <div className="dashboard-metric">
-                  <dt>Active Time</dt>
-                  <dd>{formatDuration(activeSession?.activeSeconds ?? 0)}</dd>
-                </div>
-                <div className="dashboard-metric">
-                  <dt>Words Read</dt>
-                  <dd>{activeSession?.wordsRead ?? 0}</dd>
-                </div>
-                <div className="dashboard-metric">
-                  <dt>Current WPM</dt>
+                  <dt>WPM</dt>
                   <dd>
                     {activeSession && activeSession.activeSeconds > 0
                       ? Math.round((activeSession.wordsRead / activeSession.activeSeconds) * 60)
@@ -2914,43 +2949,51 @@ function ReaderMode({
                   </dd>
                 </div>
                 <div className="dashboard-metric">
-                  <dt>Today</dt>
-                  <dd>{todayReaderStats?.todayWordsRead ?? 0} words</dd>
+                  <dt>Read</dt>
+                  <dd>{activeSession?.wordsRead ?? 0}</dd>
                 </div>
                 <div className="dashboard-metric">
-                  <dt>Book Progress</dt>
-                  <dd>{Math.round(((sentenceIndex + 1) / sentenceCount) * 100)}%</dd>
+                  <dt>Time</dt>
+                  <dd>{formatDuration(activeSession?.activeSeconds ?? 0)}</dd>
                 </div>
               </div>
-              <div className="reader-reading-area">
-                {illustration && (
-                  <figure className="reader-illustration">
-                    <img src={illustrationSrc} alt={illustration.alt} loading="lazy" />
-                  </figure>
-                )}
-                <div className="reader-sentence">
-                  {tokens.map((token) =>
-                    token.isChinese ? (
-                      <button
-                        key={token.id}
-                        type="button"
-                        className={`reader-token ${token.word ? 'known-token' : ''} ${
-                          selectedToken?.id === token.id ? 'active' : ''
-                        }`}
-                        onClick={() => onSelectToken(token)}
-                      >
-                        <span>{token.text}</span>
-                        {showPinyin && <small>{token.pinyin}</small>}
-                      </button>
-                    ) : (
-                      <span key={token.id} className="reader-token-space">
-                        {token.text}
-                      </span>
-                    ),
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={sentence.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="reader-reading-area"
+                >
+                  {illustration && (
+                    <figure className="reader-illustration">
+                      <img src={illustrationSrc} alt={illustration.alt} loading="lazy" />
+                    </figure>
                   )}
-                </div>
-              </div>
-              {showEnglish && <p className="reader-translation">{sentence.english}</p>}
+                  <div className="reader-sentence">
+                    {tokens.map((token) =>
+                      token.isChinese ? (
+                        <ruby
+                          key={token.id}
+                          className={`reader-token ${token.word ? 'known-token' : ''} ${
+                            selectedToken?.id === token.id ? 'active' : ''
+                          }`}
+                          onClick={() => onSelectToken(token)}
+                        >
+                          {token.text}
+                          {showPinyin && <rt>{token.pinyin}</rt>}
+                        </ruby>
+                      ) : (
+                        <span key={token.id} className="reader-token-space">
+                          {token.text}
+                        </span>
+                      ),
+                    )}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+              {showEnglish && <p className="reader-translation blur-reveal">{sentence.english}</p>}
               <div className="reader-controls">
                 <button type="button" onClick={onPrevious} disabled={sentenceIndex <= 0}>
                   Previous
@@ -3010,6 +3053,31 @@ function ReaderMode({
         </section>
       </div>
     </section>
+  )
+}
+
+function ActivityChart({ days }: { days: DashboardStats['studyHeatmap'] }) {
+  const last7Days = days.slice(-7)
+  return (
+    <div style={{ width: '100%', height: 200 }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={last7Days}>
+          <defs>
+            <linearGradient id="colorStudy" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="var(--accent-vibrant)" stopOpacity={0.8}/>
+              <stop offset="95%" stopColor="var(--accent-vibrant)" stopOpacity={0}/>
+            </linearGradient>
+          </defs>
+          <XAxis dataKey="date" tickFormatter={shortMonthDay} />
+          <YAxis hide />
+          <Tooltip 
+            formatter={(value: any) => [`${(Number(value) / 60).toFixed(1)} mins`, 'Study Time']}
+            labelFormatter={(label) => friendlyDate(label)}
+          />
+          <Area type="monotone" dataKey="studySeconds" stroke="var(--accent-vibrant)" fillOpacity={1} fill="url(#colorStudy)" />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 
@@ -3196,7 +3264,12 @@ function ActiveRecallCard({
   }, [quiz.id, quiz.stage, response])
 
   return (
-    <section
+    <motion.section
+      key={quiz.id}
+      initial={{ opacity: 0, rotateX: -20, scale: 0.95 }}
+      animate={{ opacity: 1, rotateX: 0, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.3 }}
       className={`active-recall-card recall-stage-${quiz.stage} recall-kind-${quiz.kind}`}
       aria-live="polite"
     >
@@ -3273,7 +3346,7 @@ function ActiveRecallCard({
           </button>
         )}
       </div>
-    </section>
+    </motion.section>
   )
 }
 
@@ -3324,6 +3397,31 @@ function FlashcardReview({
         </div>
       )}
     </section>
+  )
+}
+
+function ControllerHUD({
+  choiceA,
+  choiceB,
+  labelA,
+  labelB,
+}: {
+  choiceA: string
+  choiceB: string
+  labelA: string
+  labelB: string
+}) {
+  return (
+    <div className="controller-hud">
+      <div className="hud-button">
+        <kbd>{choiceA.toUpperCase()}</kbd>
+        <span>{labelA}</span>
+      </div>
+      <div className="hud-button">
+        <kbd>{choiceB.toUpperCase()}</kbd>
+        <span>{labelB}</span>
+      </div>
+    </div>
   )
 }
 
