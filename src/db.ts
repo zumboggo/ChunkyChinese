@@ -27,8 +27,13 @@ import type {
   ReaderSessionStats,
   RenderedLesson,
   Sentence,
+  StudyDayStat,
+  ReadingDayStat,
+  RetentionPoint,
+  UserSettings,
   VocabWord,
   WordStatus,
+  DictionaryEntry,
 } from './types'
 import { applyFsrsRating } from './scheduler'
 
@@ -94,6 +99,10 @@ interface ChunkyDB extends DBSchema {
     key: string
     value: unknown
   }
+  dictionary: {
+    key: string
+    value: DictionaryEntry
+  }
 }
 
 let dbPromise: Promise<IDBPDatabase<ChunkyDB>> | undefined
@@ -147,10 +156,36 @@ export function getDB(): Promise<IDBPDatabase<ChunkyDB>> {
         if (!db.objectStoreNames.contains('settings')) {
           db.createObjectStore('settings')
         }
+        if (!db.objectStoreNames.contains('dictionary')) {
+          db.createObjectStore('dictionary', { keyPath: 'simplified' })
+        }
       },
     })
   }
   return dbPromise
+}
+
+export async function getDictionaryCount(): Promise<number> {
+  const db = await getDB()
+  return await db.count('dictionary')
+}
+
+export async function downloadDictionary(): Promise<void> {
+  const db = await getDB()
+  const count = await db.count('dictionary')
+  if (count > 0) return
+
+  const response = await fetch('https://unpkg.com/cedict-json@1.3.20251213/cedict.json')
+  const entries = (await response.json()) as DictionaryEntry[]
+  const tx = db.transaction('dictionary', 'readwrite')
+  for (const entry of entries) {
+    await tx.store.put(entry)
+  }
+  await tx.done
+}
+
+export async function lookupDictionary(simplified: string): Promise<DictionaryEntry | undefined> {
+  return await (await getDB()).get('dictionary', simplified)
 }
 
 export async function seedLmsWordsIfEmpty(): Promise<number> {
@@ -229,6 +264,29 @@ export async function getAllClipPacks(): Promise<ClipPack[]> {
   return (await (await getDB()).getAll('clipPacks')).sort((a, b) =>
     a.name.localeCompare(b.name),
   )
+}
+
+export const DEFAULT_USER_SETTINGS: UserSettings = {
+  coins: 0,
+  readingGoalWords: 6000,
+  listeningGoalHours: 7.5,
+  lingqCreatedGoal: 390,
+  lingqLearnedGoal: 90,
+  knownWordsGoal: 180
+}
+
+export async function getUserSettings(): Promise<UserSettings> {
+  const saved = (await (await getDB()).get('settings', 'userSettings')) as Partial<UserSettings> | undefined
+  return { ...DEFAULT_USER_SETTINGS, ...saved }
+}
+
+export async function saveUserSettings(settings: UserSettings): Promise<void> {
+  await (await getDB()).put('settings', settings, 'userSettings')
+}
+
+export async function awardCoins(amount: number): Promise<void> {
+  const settings = await getUserSettings()
+  await saveUserSettings({ ...settings, coins: settings.coins + amount })
 }
 
 export async function getActivePackId(): Promise<string | undefined> {
@@ -467,6 +525,11 @@ export async function updateWordStatus(
     })
   }
   await tx.done
+
+  // Award gamification coins
+  if (status === 'known') await awardCoins(5 * wordIds.length)
+  else if (status === 'familiar') await awardCoins(3 * wordIds.length)
+  else if (status === 'learning') await awardCoins(1 * wordIds.length)
 }
 
 export async function rateWordFsrs(wordId: string, rating: FsrsRating): Promise<void> {
@@ -498,6 +561,10 @@ export async function rateWordFsrs(wordId: string, rating: FsrsRating): Promise<
     rating,
   })
   await tx.done
+
+  if (rating === 'easy') await awardCoins(5)
+  else if (rating === 'good') await awardCoins(3)
+  else if (rating === 'hard') await awardCoins(1)
 }
 
 export async function recordEvent(event: Omit<ListeningEvent, 'id' | 'timestamp'>) {
@@ -535,6 +602,8 @@ export async function recordQuizAnswer(wordId: string, correct: boolean): Promis
     correct,
   })
   await tx.done
+
+  if (correct) await awardCoins(1)
 }
 
 export async function completeWordExposure(wordId: string, seconds = 0): Promise<void> {
@@ -1067,6 +1136,8 @@ export async function getDashboardStats(): Promise<DashboardStats> {
       60,
     clipsCompletedToday: todayEvents.filter((event) => event.type === 'complete').length,
     knownToday: todayEvents.filter((event) => event.type === 'mark_known').length,
+    lingqsCreatedToday: todayEvents.filter((event) => event.type === 'mark_learning').length,
+    lingqsLearnedToday: todayEvents.filter((event) => event.type === 'mark_familiar' || event.type === 'mark_known').length,
     newWordsToday: scopedWords.filter(
       (word) =>
         word.status !== 'new' &&

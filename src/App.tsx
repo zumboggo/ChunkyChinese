@@ -59,10 +59,14 @@ import {
   startReaderSession,
   updateReaderSession,
   getReaderSessionStats,
+  getUserSettings,
+  saveUserSettings,
+  DEFAULT_USER_SETTINGS,
 } from './db'
 import { createLesson, createPocketLesson, selectTargetWords, type PauseProfile } from './lesson'
 import { renderLessonToWav } from './renderAudio'
 import { previewFsrsRatings } from './scheduler'
+import { UniversalImporter } from './UniversalImporter'
 import type {
   AudioClip,
   ClipPack,
@@ -127,6 +131,8 @@ const emptyStats: DashboardStats = {
   minutesToday: 0,
   clipsCompletedToday: 0,
   knownToday: 0,
+  lingqsCreatedToday: 0,
+  lingqsLearnedToday: 0,
   newWordsToday: 0,
   currentStreak: 0,
   studyHeatmap: [],
@@ -149,6 +155,7 @@ function App() {
   const [hostedReaderPacks, setHostedReaderPacks] = useState<HostedReaderPack[]>([])
   const [activePackId, setActivePackId] = useState<string | undefined>()
   const [stats, setStats] = useState<DashboardStats>(emptyStats)
+  const [userSettings, setUserSettings] = useState(DEFAULT_USER_SETTINGS)
   const [newWordsPerDay, setNewWordsPerDay] = useState(5)
   const [statusFilter, setStatusFilter] = useState<WordStatus | 'all'>('all')
   const [search, setSearch] = useState('')
@@ -233,6 +240,7 @@ function App() {
       getAllReaderBooks(),
       getActivePackId(),
       getNewWordsPerDay(),
+      getUserSettings(),
     ])
     setWords(nextWords)
     setSentences(nextSentences)
@@ -251,6 +259,7 @@ function App() {
     setReaderBooks(nextReaderBooks)
     setActivePackId(resolvedActivePackId)
     setNewWordsPerDay(nextNewWordsPerDay)
+    setUserSettings(nextUserSettings)
     setStats(nextStats)
   }, [])
 
@@ -1611,6 +1620,31 @@ function App() {
           </div>
 
           <div className="action-grid">
+            <InfoPanel title="Goals & Gamification">
+              <dl className="stat-list">
+                <div>
+                  <dt>Total Coins</dt>
+                  <dd>🪙 {userSettings.coins}</dd>
+                </div>
+                <div>
+                  <dt>LingQs Created (Today)</dt>
+                  <dd>{stats.lingqsCreatedToday} / {userSettings.lingqCreatedGoal}</dd>
+                </div>
+                <div>
+                  <dt>LingQs Learned (Today)</dt>
+                  <dd>{stats.lingqsLearnedToday} / {userSettings.lingqLearnedGoal}</dd>
+                </div>
+                <div>
+                  <dt>Total Known Words</dt>
+                  <dd>{stats.counts.known} / {userSettings.knownWordsGoal}</dd>
+                </div>
+              </dl>
+              <div className="button-row compact-buttons" style={{ marginTop: '0.5rem' }}>
+                <button type="button" onClick={() => setScreen('import')}>
+                  Edit Goals
+                </button>
+              </div>
+            </InfoPanel>
             <InfoPanel title="Active pack">
               <dl className="stat-list">
                 <div>
@@ -1958,6 +1992,12 @@ function App() {
           </div>
 
           <div className="import-grid">
+            <UniversalImporter
+              onComplete={async (summary) => {
+                setLastSummary(summary)
+                await refresh()
+              }}
+            />
             <section className="panel hosted-pack">
               <h2>Installed packs</h2>
               <p>Lessons use the active pack first. Progress is shared when the same word appears in multiple packs.</p>
@@ -2113,6 +2153,39 @@ function App() {
                   <dd>{coverage.promptClips}</dd>
                 </div>
               </dl>
+            </section>
+            <section className="panel">
+              <h2>Goals & Gamification</h2>
+              <p>Set your targets for language learning.</p>
+              <div className="hotkey-grid">
+                <label>
+                  <span>LingQs Created / Day</span>
+                  <input
+                    type="number"
+                    value={userSettings.lingqCreatedGoal}
+                    onChange={(e) => setUserSettings({ ...userSettings, lingqCreatedGoal: Number(e.target.value) })}
+                    onBlur={() => saveUserSettings(userSettings)}
+                  />
+                </label>
+                <label>
+                  <span>LingQs Learned / Day</span>
+                  <input
+                    type="number"
+                    value={userSettings.lingqLearnedGoal}
+                    onChange={(e) => setUserSettings({ ...userSettings, lingqLearnedGoal: Number(e.target.value) })}
+                    onBlur={() => saveUserSettings(userSettings)}
+                  />
+                </label>
+                <label>
+                  <span>Known Words Target</span>
+                  <input
+                    type="number"
+                    value={userSettings.knownWordsGoal}
+                    onChange={(e) => setUserSettings({ ...userSettings, knownWordsGoal: Number(e.target.value) })}
+                    onBlur={() => saveUserSettings(userSettings)}
+                  />
+                </label>
+              </div>
             </section>
             <section className="panel">
               <h2>Hotkey settings</h2>

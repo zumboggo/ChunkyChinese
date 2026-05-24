@@ -1,5 +1,12 @@
 export type WordStatus = 'new' | 'learning' | 'familiar' | 'known' | 'review'
 
+export interface DictionaryEntry {
+  traditional: string
+  simplified: string
+  pinyin: string
+  english: string
+}
+
 export type AudioClipType =
   | 'word'
   | 'meaning'
@@ -40,6 +47,15 @@ export interface HotkeySettings {
   choiceC: string
   choiceD: string
   playPause: string
+}
+
+export interface UserSettings {
+  coins: number
+  readingGoalWords: number
+  listeningGoalHours: number
+  lingqCreatedGoal: number
+  lingqLearnedGoal: number
+  knownWordsGoal: number
 }
 
 export interface ClipPack {
@@ -379,6 +395,8 @@ export interface DashboardStats {
   minutesToday: number
   clipsCompletedToday: number
   knownToday: number
+  lingqsCreatedToday: number
+  lingqsLearnedToday: number
   newWordsToday: number
   currentStreak: number
   studyHeatmap: StudyDayStat[]
