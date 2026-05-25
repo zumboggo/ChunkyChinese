@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
-import { TextParser, CsvParser, type ParsedContent, type CsvMapping } from './parsers'
-import { upsertWords, upsertSentences, getDictionaryCount, downloadDictionary, type ImportSummary } from './db'
+import { TextParser, CsvParser, type ParsedContent } from './parsers'
+import { upsertWords, upsertSentences, getDictionaryCount, downloadDictionary } from './db'
+import type { ImportSummary } from './types'
 
 export function UniversalImporter({ onComplete }: { onComplete: (summary: string) => void }) {
   const [file, setFile] = useState<File | null>(null)
   const [parsed, setParsed] = useState<ParsedContent | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [csvMapping, setCsvMapping] = useState<CsvMapping>({})
   const [dictCount, setDictCount] = useState(0)
   const [downloadingDict, setDownloadingDict] = useState(false)
 

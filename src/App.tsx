@@ -31,8 +31,6 @@ import {
   getAudioClip,
   getActivePackId,
   getDashboardStats,
-  getHostedClipPackIndex,
-  getHostedReaderPackIndex,
   getNewWordsPerDay,
   getHotkeys,
   getPromptClip,
@@ -40,11 +38,6 @@ import {
   importAudioFiles,
   importBackup,
   importClipPackFiles,
-  importCsvTtsPack,
-  importHostedClipPack,
-  importHostedReaderPack,
-  importSentencesCsv,
-  importVocabCsv,
   rateWordFsrs,
   recordEvent,
   recordQuizAnswer,
@@ -72,8 +65,6 @@ import type {
   ClipPack,
   DashboardStats,
   FsrsRating,
-  HostedClipPack,
-  HostedReaderPack,
   HotkeySettings,
   ImportSummary,
   LessonPlan,
@@ -151,8 +142,6 @@ function App() {
   const [clipPacks, setClipPacks] = useState<ClipPack[]>([])
   const [readerPacks, setReaderPacks] = useState<ReaderPack[]>([])
   const [readerBooks, setReaderBooks] = useState<ReaderBook[]>([])
-  const [hostedPacks, setHostedPacks] = useState<HostedClipPack[]>([])
-  const [hostedReaderPacks, setHostedReaderPacks] = useState<HostedReaderPack[]>([])
   const [activePackId, setActivePackId] = useState<string | undefined>()
   const [stats, setStats] = useState<DashboardStats>(emptyStats)
   const [userSettings, setUserSettings] = useState(DEFAULT_USER_SETTINGS)
@@ -189,13 +178,9 @@ function App() {
   const [autoNextLesson, setAutoNextLesson] = useState(true)
   const [autoAdvance, setAutoAdvance] = useState(true)
   const [hotkeys, setHotkeys] = useState<HotkeySettings>(DEFAULT_HOTKEYS)
-  const [csvPackName, setCsvPackName] = useState('My CSV Pack')
-  const [csvPackLanguage, setCsvPackLanguage] = useState('zh-CN')
   const [playbackRate, setPlaybackRate] = useState(1)
   const [lastSummary, setLastSummary] = useState<string>('Ready.')
   const [seedMessage, setSeedMessage] = useState('Loading LMS vocabulary...')
-  const [hostedImporting, setHostedImporting] = useState(false)
-  const [hostedProgress, setHostedProgress] = useState('')
   const [activeReaderBookId, setActiveReaderBookId] = useState<string | undefined>()
   const [readerSentenceIndex, setReaderSentenceIndex] = useState(0)
   const [readerShowPinyin, setReaderShowPinyin] = useState(true)
@@ -231,6 +216,7 @@ function App() {
       nextReaderBooks,
       nextActivePackId,
       nextNewWordsPerDay,
+      nextUserSettings,
     ] = await Promise.all([
       getAllWords(),
       getAllSentences(),
@@ -274,14 +260,8 @@ function App() {
             ? `Loaded ${seededReaderSentences} reader sentences.`
             : 'LMS vocabulary loaded.',
       )
-      const [nextHotkeys, nextHostedPacks, nextHostedReaderPacks] = await Promise.all([
-        getHotkeys(),
-        getHostedClipPackIndex(),
-        getHostedReaderPackIndex(),
-      ])
+      const nextHotkeys = await getHotkeys()
       setHotkeys(nextHotkeys)
-      setHostedPacks(nextHostedPacks.filter((pack) => !HIDDEN_PACK_IDS.has(pack.id)))
-      setHostedReaderPacks(nextHostedReaderPacks)
       await refresh()
     }
     void start()
@@ -494,6 +474,45 @@ function App() {
     }
     await handleStatus([wordId], nextStatus)
   }, [words, tappedWordIds, handleStatus])
+
+  const renderAndLoadLesson = useCallback(async (
+    nextLesson: LessonPlan,
+    playAfterRender: boolean,
+    readyMessage: string,
+  ) => {
+    setLesson(nextLesson)
+    setCurrentStepIndex(0)
+    setQuizResponses({})
+    setQuizHints({})
+    setShowReviewPrompt(false)
+    setReviewCardIndex(0)
+    setReviewAnswerShown(false)
+    if (nextLesson.steps.filter((step) => step.kind === 'audio').length === 0) {
+      setLessonMode('live')
+      setLastSummary('No local clips are linked yet. Using browser TTS while the app stays open.')
+      if (playAfterRender) window.setTimeout(() => runFromRef.current?.(0, nextLesson), 120)
+      return
+    }
+    const rendered = await renderLessonToWav(nextLesson, getAudioClip)
+    await saveRenderedLesson(rendered)
+    if (renderedUrl) URL.revokeObjectURL(renderedUrl)
+    const url = URL.createObjectURL(rendered.blob)
+    setRenderedLesson(rendered)
+    setRenderedUrl(url)
+    setPocketProgress({ current: 0, duration: rendered.durationSeconds })
+    lastPocketTimeRef.current = 0
+    setSavedResumeTime(null)
+    if (playAfterRender) {
+      window.setTimeout(() => {
+        void pocketAudioRef.current?.play()
+      }, 120)
+    }
+    setLastSummary(
+      rendered.warnings.length > 0
+        ? `${readyMessage} with ${rendered.warnings.length} warning(s).`
+        : readyMessage,
+    )
+  }, [renderedUrl])
 
   const refreshRecallLesson = useCallback(async () => {
     if (!lesson) return
@@ -1135,45 +1154,6 @@ function App() {
     await handleStatus([word.id], nextStatus)
   }
 
-  async function renderAndLoadLesson(
-    nextLesson: LessonPlan,
-    playAfterRender: boolean,
-    readyMessage: string,
-  ) {
-    setLesson(nextLesson)
-    setCurrentStepIndex(0)
-    setQuizResponses({})
-    setQuizHints({})
-    setShowReviewPrompt(false)
-    setReviewCardIndex(0)
-    setReviewAnswerShown(false)
-    if (nextLesson.steps.filter((step) => step.kind === 'audio').length === 0) {
-      setLessonMode('live')
-      setLastSummary('No local clips are linked yet. Using browser TTS while the app stays open.')
-      if (playAfterRender) window.setTimeout(() => runFromRef.current?.(0, nextLesson), 120)
-      return
-    }
-    const rendered = await renderLessonToWav(nextLesson, getAudioClip)
-    await saveRenderedLesson(rendered)
-    if (renderedUrl) URL.revokeObjectURL(renderedUrl)
-    const url = URL.createObjectURL(rendered.blob)
-    setRenderedLesson(rendered)
-    setRenderedUrl(url)
-    setPocketProgress({ current: 0, duration: rendered.durationSeconds })
-    lastPocketTimeRef.current = 0
-    setSavedResumeTime(null)
-    if (playAfterRender) {
-      window.setTimeout(() => {
-        void pocketAudioRef.current?.play()
-      }, 120)
-    }
-    setLastSummary(
-      rendered.warnings.length > 0
-        ? `${readyMessage} with ${rendered.warnings.length} warning(s).`
-        : readyMessage,
-    )
-  }
-
   async function startPocketLesson(
     manualIds: string[] = [],
     options: LessonStartOptions = { randomize: true },
@@ -1386,16 +1366,6 @@ function App() {
     }
   })
 
-  async function handleFileText(
-    files: FileList | null,
-    importer: (text: string) => Promise<ImportSummary>,
-  ) {
-    const file = files?.[0]
-    if (!file) return
-    const summary = await importer(await file.text())
-    setLastSummary(formatSummary(summary))
-    await refresh()
-  }
 
   async function handleBackupExport() {
     const text = await exportBackup()
@@ -1422,66 +1392,11 @@ function App() {
     await refresh()
   }
 
-  async function handleCsvTtsPackImport(files: FileList | null) {
-    const file = files?.[0]
-    if (!file) return
-    const summary = await importCsvTtsPack(await file.text(), csvPackName, csvPackLanguage)
-    setLastSummary(formatSummary(summary))
-    await refresh()
-  }
-
   async function handleClipPackImport(files: FileList | null) {
     if (!files) return
     const summary = await importClipPackFiles(files)
     setLastSummary(formatSummary(summary))
     await refresh()
-  }
-
-  async function handleHostedClipPackImport(pack: HostedClipPack) {
-    setHostedImporting(true)
-    setHostedProgress(`Starting ${pack.name} download...`)
-    try {
-      const summary = await importHostedClipPack(
-        pack.baseUrl,
-        (completed, total, label) => {
-          setHostedProgress(`${completed} / ${total}: ${label}`)
-        },
-        pack,
-      )
-      setLastSummary(formatSummary(summary))
-      setHostedProgress(`${pack.name} is ready offline in this browser.`)
-      await refresh()
-    } catch (error) {
-      const message = error instanceof Error ? error.message : 'Could not download hosted clip pack.'
-      setLastSummary(message)
-      setHostedProgress(message)
-    } finally {
-      setHostedImporting(false)
-    }
-  }
-
-  async function handleHostedReaderPackImport(pack: HostedReaderPack) {
-    setHostedImporting(true)
-    setHostedProgress(`Starting ${pack.name} story download...`)
-    try {
-      const summary = await importHostedReaderPack(
-        pack.baseUrl,
-        (completed, total, label) => {
-          setHostedProgress(`${completed} / ${total}: ${label}`)
-        },
-        pack,
-        { downloadAudio: true },
-      )
-      setLastSummary(formatSummary(summary))
-      setHostedProgress(`${pack.name} stories are ready offline in this browser.`)
-      await refresh()
-    } catch (error) {
-      const message = error instanceof Error ? error.message : 'Could not download hosted reader pack.'
-      setLastSummary(message)
-      setHostedProgress(message)
-    } finally {
-      setHostedImporting(false)
-    }
   }
 
   async function handleSetActivePack(packId: string | undefined) {
@@ -1559,6 +1474,16 @@ function App() {
                 <strong>Reader mode</strong>
                 <span>Read the LMS stories sentence by sentence.</span>
               </button>
+            </div>
+          </div>
+
+          <div className="gamification-banner">
+            <div className="coin-balance" title="Total Coins">
+              🪙 <strong>{userSettings.coins}</strong>
+            </div>
+            <div className="lingqs-status">
+              <span><strong>{stats.lingqsCreatedToday}</strong> / {userSettings.lingqCreatedGoal} LingQs Created</span>
+              <span><strong>{stats.lingqsLearnedToday}</strong> / {userSettings.lingqLearnedGoal} Learned</span>
             </div>
           </div>
 
@@ -2036,52 +1961,7 @@ function App() {
                 {clipPacks.length === 0 && <small>No packs installed yet.</small>}
               </div>
             </section>
-            <section className="panel hosted-pack">
-              <h2>Available hosted packs</h2>
-              <p>Download a hosted pack into this browser for offline MP3 lessons.</p>
-              <div className="pack-list">
-                {hostedPacks.map((pack) => (
-                  <div key={pack.id} className="pack-row">
-                    <span>
-                      <strong>{pack.name}</strong>
-                      <small>{pack.description ?? pack.language ?? 'Hosted clip pack'}</small>
-                    </span>
-                    <button
-                      className="primary"
-                      type="button"
-                      onClick={() => handleHostedClipPackImport(pack)}
-                      disabled={hostedImporting}
-                    >
-                      {hostedImporting ? 'Downloading...' : 'Download'}
-                    </button>
-                  </div>
-                ))}
-              </div>
-              {hostedProgress && <small>{hostedProgress}</small>}
-            </section>
-            <section className="panel hosted-pack">
-              <h2>Available reader packs</h2>
-              <p>Download story sentence audio into this browser for offline Reader Mode playback.</p>
-              <div className="pack-list">
-                {hostedReaderPacks.map((pack) => (
-                  <div key={pack.id} className="pack-row">
-                    <span>
-                      <strong>{pack.name}</strong>
-                      <small>{pack.description ?? pack.language ?? 'Hosted reader pack'}</small>
-                    </span>
-                    <button
-                      className="primary"
-                      type="button"
-                      onClick={() => handleHostedReaderPackImport(pack)}
-                      disabled={hostedImporting}
-                    >
-                      {hostedImporting ? 'Downloading...' : 'Download stories'}
-                    </button>
-                  </div>
-                ))}
-              </div>
-              {hostedReaderPacks.length === 0 && <small>No hosted reader packs found.</small>}
-            </section>
+
             <FilePanel
               title="Clip pack folder"
               help="Select the whole generated clip-pack folder: clips_manifest.json, vocab.csv, sentences.csv, and audio/."
@@ -2090,41 +1970,7 @@ function App() {
               webkitdirectory
               onChange={handleClipPackImport}
             />
-            <section className="panel">
-              <h2>CSV browser TTS pack</h2>
-              <p>Creates a pack from a CSV and uses browser speech when MP3 clips are missing. Best while the app stays open.</p>
-              <div className="filters">
-                <input
-                  value={csvPackName}
-                  onChange={(event) => setCsvPackName(event.target.value)}
-                  placeholder="Pack name"
-                  aria-label="CSV pack name"
-                />
-                <input
-                  value={csvPackLanguage}
-                  onChange={(event) => setCsvPackLanguage(event.target.value)}
-                  placeholder="Language, e.g. zh-CN"
-                  aria-label="CSV pack language"
-                />
-              </div>
-              <FileInputButton
-                label="Import CSV as TTS pack"
-                accept=".csv"
-                onChange={handleCsvTtsPackImport}
-              />
-            </section>
-            <FilePanel
-              title="Vocab CSV"
-              help="Imports app CSV, LMS full CSV, or Front/Back flashcard CSV. Reimports merge by word."
-              accept=".csv"
-              onChange={(files) => handleFileText(files, importVocabCsv)}
-            />
-            <FilePanel
-              title="Sentences CSV"
-              help="Columns: chinese, english, targetWords, audioSentenceFilename, tags, difficulty."
-              accept=".csv"
-              onChange={(files) => handleFileText(files, importSentencesCsv)}
-            />
+
             <FilePanel
               title="Audio MP3 files"
               help="Select files or a folder. Matching prefers words/, meanings/, and sentences/ paths."
@@ -2133,27 +1979,7 @@ function App() {
               webkitdirectory
               onChange={handleAudioImport}
             />
-            <section className="panel">
-              <h2>Clip coverage</h2>
-              <dl className="stat-list">
-                <div>
-                  <dt>Ready words</dt>
-                  <dd>{coverage.readyWords}</dd>
-                </div>
-                <div>
-                  <dt>Missing word clips</dt>
-                  <dd>{coverage.missingWordClips}</dd>
-                </div>
-                <div>
-                  <dt>Missing meaning clips</dt>
-                  <dd>{coverage.missingMeaningClips}</dd>
-                </div>
-                <div>
-                  <dt>Prompt clips</dt>
-                  <dd>{coverage.promptClips}</dd>
-                </div>
-              </dl>
-            </section>
+
             <section className="panel">
               <h2>Goals & Gamification</h2>
               <p>Set your targets for language learning.</p>
@@ -2942,7 +2768,6 @@ function ReaderMode({
   onToggleEnglish,
   onMarkWord,
   activeSession,
-  // todayReaderStats is unused in the compact bar
 }: {
   readerPacks: ReaderPack[]
   readerBooks: ReaderBook[]
@@ -3270,23 +3095,6 @@ function FilePanel({
         />
       </label>
     </section>
-  )
-}
-
-function FileInputButton({
-  label,
-  accept,
-  onChange,
-}: {
-  label: string
-  accept: string
-  onChange: (files: FileList | null) => void
-}) {
-  return (
-    <label className="file-button">
-      {label}
-      <input type="file" accept={accept} onChange={(event) => onChange(event.target.files)} />
-    </label>
   )
 }
 
