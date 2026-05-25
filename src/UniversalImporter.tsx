@@ -10,6 +10,7 @@ export function UniversalImporter({ onComplete }: { onComplete: (summary: string
   const [error, setError] = useState('')
   const [dictCount, setDictCount] = useState(0)
   const [downloadingDict, setDownloadingDict] = useState(false)
+  const [dictProgress, setDictProgress] = useState('')
 
   useEffect(() => {
     getDictionaryCount().then(setDictCount).catch(console.error)
@@ -18,8 +19,9 @@ export function UniversalImporter({ onComplete }: { onComplete: (summary: string
   async function handleDownloadDict() {
     setDownloadingDict(true)
     setError('')
+    setDictProgress('Starting download...')
     try {
-      await downloadDictionary()
+      await downloadDictionary((progress) => setDictProgress(progress))
       const count = await getDictionaryCount()
       setDictCount(count)
       onComplete(`Downloaded offline dictionary with ${count} entries.`)
@@ -27,6 +29,7 @@ export function UniversalImporter({ onComplete }: { onComplete: (summary: string
       setError(e instanceof Error ? e.message : 'Error downloading dictionary')
     } finally {
       setDownloadingDict(false)
+      setDictProgress('')
     }
   }
 
@@ -113,13 +116,20 @@ export function UniversalImporter({ onComplete }: { onComplete: (summary: string
         <h3>Offline Dictionary</h3>
         <p>Current entries: {dictCount}</p>
         {dictCount === 0 && (
-          <button 
-            className="primary" 
-            onClick={handleDownloadDict} 
-            disabled={downloadingDict}
-          >
-            {downloadingDict ? 'Downloading (16MB)...' : 'Download CC-CEDICT (~16MB)'}
-          </button>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-start' }}>
+            <button 
+              className="primary" 
+              onClick={handleDownloadDict} 
+              disabled={downloadingDict}
+            >
+              {downloadingDict ? 'Downloading...' : 'Download CC-CEDICT (~16MB)'}
+            </button>
+            {downloadingDict && (
+              <span style={{ fontSize: '0.9rem', color: 'var(--accent)', fontWeight: 'bold' }}>
+                {dictProgress}
+              </span>
+            )}
+          </div>
         )}
       </div>
 

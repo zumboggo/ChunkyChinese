@@ -1482,8 +1482,8 @@ function App() {
               🪙 <strong>{userSettings.coins}</strong>
             </div>
             <div className="lingqs-status">
-              <span><strong>{stats.lingqsCreatedToday}</strong> / {userSettings.lingqCreatedGoal} LingQs Created</span>
-              <span><strong>{stats.lingqsLearnedToday}</strong> / {userSettings.lingqLearnedGoal} Learned</span>
+              <span><strong>{stats.lingqsCreatedToday}</strong> / {userSettings.lingqCreatedGoal} Words Created</span>
+              <span><strong>{stats.lingqsLearnedToday}</strong> / {userSettings.lingqLearnedGoal} Words Learned</span>
             </div>
           </div>
 
@@ -1552,11 +1552,11 @@ function App() {
                   <dd>🪙 {userSettings.coins}</dd>
                 </div>
                 <div>
-                  <dt>LingQs Created (Today)</dt>
+                  <dt>Words Created (Today)</dt>
                   <dd>{stats.lingqsCreatedToday} / {userSettings.lingqCreatedGoal}</dd>
                 </div>
                 <div>
-                  <dt>LingQs Learned (Today)</dt>
+                  <dt>Words Learned (Today)</dt>
                   <dd>{stats.lingqsLearnedToday} / {userSettings.lingqLearnedGoal}</dd>
                 </div>
                 <div>
@@ -1985,7 +1985,7 @@ function App() {
               <p>Set your targets for language learning.</p>
               <div className="hotkey-grid">
                 <label>
-                  <span>LingQs Created / Day</span>
+                  <span>Words Created / Day</span>
                   <input
                     type="number"
                     value={userSettings.lingqCreatedGoal}
@@ -1994,7 +1994,7 @@ function App() {
                   />
                 </label>
                 <label>
-                  <span>LingQs Learned / Day</span>
+                  <span>Words Learned / Day</span>
                   <input
                     type="number"
                     value={userSettings.lingqLearnedGoal}

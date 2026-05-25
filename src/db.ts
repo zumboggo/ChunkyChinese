@@ -167,18 +167,39 @@ export async function getDictionaryCount(): Promise<number> {
   return await db.count('dictionary')
 }
 
-export async function downloadDictionary(): Promise<void> {
+export async function downloadDictionary(onProgress?: (progress: string) => void): Promise<void> {
   const db = await getDB()
   const count = await db.count('dictionary')
   if (count > 0) return
 
+  if (onProgress) onProgress('Downloading dictionary file (16MB)...')
   const response = await fetch('https://unpkg.com/cedict-json@1.3.20251213/cedict.json')
-  const entries = (await response.json()) as DictionaryEntry[]
-  const tx = db.transaction('dictionary', 'readwrite')
-  for (const entry of entries) {
-    await tx.store.put(entry)
+  if (!response.ok) {
+    throw new Error(`Failed to download dictionary: HTTP ${response.status}`)
   }
-  await tx.done
+
+  if (onProgress) onProgress('Parsing JSON entries...')
+  const entries = (await response.json()) as DictionaryEntry[]
+
+  const total = entries.length
+  if (onProgress) onProgress(`Saving ${total.toLocaleString()} entries to database...`)
+
+  const chunkSize = 10000
+  for (let i = 0; i < total; i += chunkSize) {
+    const chunk = entries.slice(i, i + chunkSize)
+    const tx = db.transaction('dictionary', 'readwrite')
+    for (const entry of chunk) {
+      tx.store.put(entry)
+    }
+    await tx.done
+
+    if (onProgress) {
+      const percent = Math.min(100, Math.round(((i + chunk.length) / total) * 100))
+      onProgress(`Saving entries to database: ${percent}%`)
+    }
+  }
+
+  if (onProgress) onProgress('Dictionary download complete!')
 }
 
 export async function lookupDictionary(simplified: string): Promise<DictionaryEntry | undefined> {
