@@ -826,7 +826,7 @@ export async function importHostedClipPack(
   onProgress?: (completed: number, total: number, label: string) => void,
   hosted?: Partial<HostedClipPack>,
 ): Promise<ImportSummary> {
-  const base = baseUrl.replace(/\/+$/, '')
+  const base = resolveHostedBaseUrl(baseUrl)
   const manifest = (await fetchJson(`${base}/clips_manifest.json`)) as ClipPackManifest
   const packId = hosted?.id ?? makePackId(manifest.packName || base.split('/').pop() || 'Hosted pack')
   const pack = makeClipPack({
@@ -835,7 +835,7 @@ export async function importHostedClipPack(
     source: 'hosted',
     language: hosted?.language,
     description: hosted?.description,
-    baseUrl,
+    baseUrl: base,
     browserTts: false,
   })
   const warnings: string[] = []

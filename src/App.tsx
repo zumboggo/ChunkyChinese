@@ -33,11 +33,13 @@ import {
   getDashboardStats,
   getNewWordsPerDay,
   getHotkeys,
+  getHostedClipPackIndex,
   getPromptClip,
   getReaderProgress,
   importAudioFiles,
   importBackup,
   importClipPackFiles,
+  importHostedClipPack,
   rateWordFsrs,
   recordEvent,
   recordQuizAnswer,
@@ -66,6 +68,7 @@ import type {
   DashboardStats,
   FsrsRating,
   HotkeySettings,
+  HostedClipPack,
   ImportSummary,
   LessonPlan,
   LessonStep,
@@ -140,6 +143,7 @@ function App() {
   const [sentences, setSentences] = useState<Sentence[]>([])
   const [audioClips, setAudioClips] = useState<AudioClip[]>([])
   const [clipPacks, setClipPacks] = useState<ClipPack[]>([])
+  const [hostedClipPacks, setHostedClipPacks] = useState<HostedClipPack[]>([])
   const [readerPacks, setReaderPacks] = useState<ReaderPack[]>([])
   const [readerBooks, setReaderBooks] = useState<ReaderBook[]>([])
   const [activePackId, setActivePackId] = useState<string | undefined>()
@@ -187,6 +191,8 @@ function App() {
   const [readerShowEnglish, setReaderShowEnglish] = useState(true)
   const [selectedReaderToken, setSelectedReaderToken] = useState<ReaderWordToken | null>(null)
   const [lessonStartStatuses, setLessonStartStatuses] = useState<Record<string, WordStatus>>({})
+  const [hostedPackDownloadId, setHostedPackDownloadId] = useState<string | null>(null)
+  const [hostedPackProgress, setHostedPackProgress] = useState('')
   const [tappedWordIds, setTappedWordIds] = useState<Set<string>>(new Set())
   const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
   const [todayReaderStats, setTodayReaderStats] = useState<ReaderSessionStats | null>(null)
@@ -217,6 +223,7 @@ function App() {
       nextActivePackId,
       nextNewWordsPerDay,
       nextUserSettings,
+      nextHostedClipPacks,
     ] = await Promise.all([
       getAllWords(),
       getAllSentences(),
@@ -227,6 +234,7 @@ function App() {
       getActivePackId(),
       getNewWordsPerDay(),
       getUserSettings(),
+      getHostedClipPackIndex(),
     ])
     setWords(nextWords)
     setSentences(nextSentences)
@@ -246,6 +254,7 @@ function App() {
     setActivePackId(resolvedActivePackId)
     setNewWordsPerDay(nextNewWordsPerDay)
     setUserSettings(nextUserSettings)
+    setHostedClipPacks(nextHostedClipPacks)
     setStats(nextStats)
   }, [])
 
@@ -1399,6 +1408,27 @@ function App() {
     await refresh()
   }
 
+  async function handleHostedClipPackImport(pack: HostedClipPack) {
+    setHostedPackDownloadId(pack.id)
+    setHostedPackProgress('Starting download...')
+    try {
+      const summary = await importHostedClipPack(
+        pack.baseUrl,
+        (completed, total, label) => {
+          setHostedPackProgress(`Downloading ${completed}/${total}: ${label}`)
+        },
+        pack,
+      )
+      setLastSummary(`Downloaded ${pack.name}. ${formatSummary(summary)}`)
+      setHostedPackProgress('')
+      await refresh()
+    } catch (error) {
+      setLastSummary(error instanceof Error ? error.message : `Could not download ${pack.name}.`)
+    } finally {
+      setHostedPackDownloadId(null)
+    }
+  }
+
   async function handleSetActivePack(packId: string | undefined) {
     await persistActivePackId(packId)
     setActivePackId(packId)
@@ -1923,6 +1953,34 @@ function App() {
                 await refresh()
               }}
             />
+            <section className="panel hosted-pack">
+              <h2>Download clip packs</h2>
+              <p>Hosted packs download MP3 clips into this browser for offline lessons.</p>
+              <div className="pack-list">
+                {hostedClipPacks.map((pack) => {
+                  const installed = clipPacks.some((installedPack) => installedPack.id === pack.id)
+                  const isDownloading = hostedPackDownloadId === pack.id
+                  return (
+                    <div key={pack.id} className="pack-row">
+                      <span>
+                        <strong>{pack.name}</strong>
+                        <small>{pack.description ?? `${pack.language ?? 'zh-CN'} clip pack`}</small>
+                      </span>
+                      <button
+                        type="button"
+                        className={installed ? '' : 'primary'}
+                        disabled={Boolean(hostedPackDownloadId)}
+                        onClick={() => handleHostedClipPackImport(pack)}
+                      >
+                        {isDownloading ? 'Downloading...' : installed ? 'Redownload' : 'Download'}
+                      </button>
+                    </div>
+                  )
+                })}
+                {hostedClipPacks.length === 0 && <small>No hosted clip packs are available.</small>}
+              </div>
+              {hostedPackProgress && <small>{hostedPackProgress}</small>}
+            </section>
             <section className="panel hosted-pack">
               <h2>Installed packs</h2>
               <p>Lessons use the active pack first. Progress is shared when the same word appears in multiple packs.</p>
