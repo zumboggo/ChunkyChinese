@@ -172,22 +172,28 @@ export async function getDictionaryCount(): Promise<number> {
   return await db.count('dictionary')
 }
 
-export async function downloadDictionary(onProgress?: (progress: string) => void): Promise<void> {
+export async function downloadDictionary(
+  onProgress?: (progress: string) => void,
+  forceRefresh = false,
+): Promise<void> {
   const db = await getDB()
   const count = await db.count('dictionary')
-  if (count > 0) return
+  if (count > 0 && !forceRefresh) return
 
   if (onProgress) onProgress('Downloading dictionary file (16MB)...')
-  const response = await fetch('https://unpkg.com/cedict-json@1.3.20251213/cedict.json')
-  if (!response.ok) {
-    throw new Error(`Failed to download dictionary: HTTP ${response.status}`)
-  }
+  const response = await fetchDictionary()
 
   if (onProgress) onProgress('Parsing JSON entries...')
-  const entries = (await response.json()) as DictionaryEntry[]
+  const entries = ((await response.json()) as RawDictionaryEntry[]).map(normalizeDictionaryEntry)
+  if (!Array.isArray(entries) || entries.length === 0) {
+    throw new Error('Dictionary download did not contain any entries.')
+  }
 
   const total = entries.length
   if (onProgress) onProgress(`Saving ${total.toLocaleString()} entries to database...`)
+  if (forceRefresh) {
+    await db.clear('dictionary')
+  }
 
   const chunkSize = 10000
   for (let i = 0; i < total; i += chunkSize) {
@@ -208,7 +214,8 @@ export async function downloadDictionary(onProgress?: (progress: string) => void
 }
 
 export async function lookupDictionary(simplified: string): Promise<DictionaryEntry | undefined> {
-  return await (await getDB()).get('dictionary', simplified)
+  const entry = await (await getDB()).get('dictionary', simplified)
+  return entry ? normalizeDictionaryEntry(entry as RawDictionaryEntry) : undefined
 }
 
 export async function seedLmsWordsIfEmpty(): Promise<number> {
@@ -345,12 +352,21 @@ export async function saveHotkeys(hotkeys: HotkeySettings): Promise<void> {
 }
 
 export async function getNewWordsPerDay(): Promise<number> {
-  const saved = (await (await getDB()).get('settings', 'newWordsPerDay')) as number | undefined
+  const db = await getDB()
+  const saved = (await db.get('settings', 'newWordsPerDay')) as number | undefined
+  const migratedOldDefault = (await db.get('settings', 'newWordsPerDayDefaultV2')) as boolean | undefined
+  if (saved === 5 && !migratedOldDefault) {
+    await db.put('settings', true, 'newWordsPerDayDefaultV2')
+    await db.put('settings', 15, 'newWordsPerDay')
+    return 15
+  }
   return normalizeNewWordsPerDay(saved)
 }
 
 export async function saveNewWordsPerDay(value: number): Promise<void> {
-  await (await getDB()).put('settings', normalizeNewWordsPerDay(value), 'newWordsPerDay')
+  const db = await getDB()
+  await db.put('settings', true, 'newWordsPerDayDefaultV2')
+  await db.put('settings', normalizeNewWordsPerDay(value), 'newWordsPerDay')
 }
 
 export async function getHostedClipPackIndex(): Promise<HostedClipPack[]> {
@@ -1532,8 +1548,41 @@ function normalizeHotkeys(hotkeys: HotkeySettings): HotkeySettings {
 
 function normalizeNewWordsPerDay(value: unknown): number {
   const number = Number(value)
-  if (!Number.isFinite(number)) return 5
+  if (!Number.isFinite(number)) return 15
   return Math.min(50, Math.max(0, Math.round(number)))
+}
+
+type RawDictionaryEntry = Omit<DictionaryEntry, 'english'> & {
+  english: string | string[]
+}
+
+const DICTIONARY_URLS = [
+  'https://cdn.jsdelivr.net/npm/cedict-json/cedict.json',
+  'https://unpkg.com/cedict-json/cedict.json',
+  'https://unpkg.com/cedict-json@1.3.20251213/cedict.json',
+]
+
+async function fetchDictionary(): Promise<Response> {
+  let lastError = 'unknown error'
+  for (const url of DICTIONARY_URLS) {
+    try {
+      const response = await fetch(url, { cache: 'no-store' })
+      if (response.ok) return response
+      lastError = `${url} returned HTTP ${response.status}`
+    } catch (error) {
+      lastError = `${url} failed: ${error instanceof Error ? error.message : String(error)}`
+    }
+  }
+  throw new Error(`Failed to download dictionary. ${lastError}`)
+}
+
+function normalizeDictionaryEntry(entry: RawDictionaryEntry): DictionaryEntry {
+  return {
+    traditional: entry.traditional,
+    simplified: entry.simplified,
+    pinyin: entry.pinyin,
+    english: Array.isArray(entry.english) ? entry.english.join('; ') : entry.english,
+  }
 }
 
 function normalizeKey(value: string | undefined, fallback: string): string {

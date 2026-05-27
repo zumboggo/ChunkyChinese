@@ -155,7 +155,7 @@ function App() {
   const [activePackId, setActivePackId] = useState<string | undefined>()
   const [stats, setStats] = useState<DashboardStats>(emptyStats)
   const [userSettings, setUserSettings] = useState(DEFAULT_USER_SETTINGS)
-  const [newWordsPerDay, setNewWordsPerDay] = useState(5)
+  const [newWordsPerDay, setNewWordsPerDay] = useState(15)
   const [cardFilter, setCardFilter] = useState<FsrsQueueBucket | 'all'>('all')
   const [search, setSearch] = useState('')
   const [lessonFilter, setLessonFilter] = useState('')
@@ -1479,25 +1479,25 @@ function App() {
           </span>
         </button>
         <nav className="tabs" aria-label="Main screens">
-          <button className={screen === 'dashboard' ? 'active' : ''} onClick={() => setScreen('dashboard')}>
+          <button type="button" className={screen === 'dashboard' ? 'active' : ''} onClick={() => setScreen('dashboard')}>
             <span className="nav-icon nav-dashboard" aria-hidden="true" />
             Dashboard
           </button>
-          <button className={screen === 'words' ? 'active' : ''} onClick={() => setScreen('words')}>
-            <span className="nav-icon nav-words" aria-hidden="true" />
-            Words
-          </button>
-          <button className={screen === 'flashcards' ? 'active' : ''} onClick={() => startFlashcards('mixed')}>
-            <span className="nav-icon nav-flashcards" aria-hidden="true" />
-            Flashcards
-          </button>
-          <button className={screen === 'import' ? 'active' : ''} onClick={() => setScreen('import')}>
+          <button type="button" className={screen === 'import' ? 'active' : ''} onClick={() => setScreen('import')}>
             <span className="nav-icon nav-import" aria-hidden="true" />
             Import
           </button>
-          <button className={screen === 'lesson' ? 'active' : ''} onClick={() => setScreen('lesson')}>
-            <span className="nav-icon nav-lesson" aria-hidden="true" />
-            Lesson
+          <button type="button" className={screen === 'words' ? 'active' : ''} onClick={() => setScreen('words')}>
+            <span className="nav-icon nav-words" aria-hidden="true" />
+            Words
+          </button>
+          <button
+            type="button"
+            className={screen === 'lesson' && studyMode === 'listeningMode' ? 'active' : ''}
+            onClick={() => startModeLesson('listeningMode')}
+          >
+            <span className="nav-icon nav-listen" aria-hidden="true" />
+            Listen
           </button>
         </nav>
       </header>
@@ -1683,15 +1683,9 @@ function App() {
               <div className="daily-plan">
                 <label>
                   New words/day
-                  <input
-                    type="number"
-                    min={0}
-                    max={50}
-                    value={newWordsPerDay}
-                    onChange={(event) => handleNewWordsPerDayChange(Number(event.target.value))}
-                  />
+                  <strong>{newWordsPerDay}</strong>
                 </label>
-                <span>{remainingNewWordsToday} new word slots left today</span>
+                <span>{remainingNewWordsToday} new word slots left today. Change this in Import.</span>
                 <label>
                   Flashcards/session
                   <input
@@ -2157,6 +2151,16 @@ function App() {
               <h2>Flashcard settings</h2>
               <p>Set lightweight targets for daily FSRS work.</p>
               <div className="hotkey-grid">
+                <label>
+                  <span>New Words / Day</span>
+                  <input
+                    type="number"
+                    min={0}
+                    max={50}
+                    value={newWordsPerDay}
+                    onChange={(event) => handleNewWordsPerDayChange(Number(event.target.value))}
+                  />
+                </label>
                 <label>
                   <span>Cards Reviewed / Day</span>
                   <input

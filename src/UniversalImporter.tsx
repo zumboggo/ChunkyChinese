@@ -21,7 +21,7 @@ export function UniversalImporter({ onComplete }: { onComplete: (summary: string
     setError('')
     setDictProgress('Starting download...')
     try {
-      await downloadDictionary((progress) => setDictProgress(progress))
+      await downloadDictionary((progress) => setDictProgress(progress), dictCount > 0)
       const count = await getDictionaryCount()
       setDictCount(count)
       onComplete(`Downloaded offline dictionary with ${count} entries.`)
@@ -122,22 +122,24 @@ export function UniversalImporter({ onComplete }: { onComplete: (summary: string
       <div style={{ marginBottom: '1rem', padding: '1rem', background: 'var(--bg-panel-dark)', borderRadius: '8px' }}>
         <h3>Offline Dictionary</h3>
         <p>Current entries: {dictCount}</p>
-        {dictCount === 0 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-start' }}>
-            <button 
-              className="primary" 
-              onClick={handleDownloadDict} 
-              disabled={downloadingDict}
-            >
-              {downloadingDict ? 'Downloading...' : 'Download CC-CEDICT (~16MB)'}
-            </button>
-            {downloadingDict && (
-              <span style={{ fontSize: '0.9rem', color: 'var(--accent)', fontWeight: 'bold' }}>
-                {dictProgress}
-              </span>
-            )}
-          </div>
-        )}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-start' }}>
+          <button
+            className="primary"
+            onClick={handleDownloadDict}
+            disabled={downloadingDict}
+          >
+            {downloadingDict
+              ? 'Downloading...'
+              : dictCount > 0
+                ? 'Refresh CC-CEDICT (~16MB)'
+                : 'Download CC-CEDICT (~16MB)'}
+          </button>
+          {downloadingDict && (
+            <span style={{ fontSize: '0.9rem', color: 'var(--accent)', fontWeight: 'bold' }}>
+              {dictProgress}
+            </span>
+          )}
+        </div>
       </div>
 
       <label className="file-button">
