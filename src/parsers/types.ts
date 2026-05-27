@@ -9,5 +9,5 @@ export interface ParsedContent {
 export interface ContentParser {
   name: string
   accepts: string[] // e.g. ['.csv', '.txt']
-  parse(fileContent: string, options?: any): Promise<ParsedContent>
+  parse(fileContent: string, options?: unknown): Promise<ParsedContent>
 }

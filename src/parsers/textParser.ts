@@ -2,6 +2,7 @@ import { makeSentenceId } from '../csv'
 import type { ParsedContent, ContentParser } from './types'
 import { pinyin as pinyinPro } from 'pinyin-pro'
 import { lookupDictionary } from '../db'
+import type { VocabWord } from '../types'
 
 export class TextParser implements ContentParser {
   name = 'Text Parser'
@@ -10,7 +11,7 @@ export class TextParser implements ContentParser {
   async parse(fileContent: string): Promise<ParsedContent> {
     const sentences = this.chunkIntoSentences(fileContent)
     const parsedSentences = []
-    const parsedWords = new Map<string, any>()
+    const parsedWords = new Map<string, Partial<VocabWord>>()
 
     for (const chinese of sentences) {
       if (!chinese.trim()) continue
@@ -41,16 +42,17 @@ export class TextParser implements ContentParser {
 
     const uniqueWords = Array.from(parsedWords.values())
     await Promise.all(uniqueWords.map(async (wordObj) => {
+      const wordText = wordObj.word ?? ''
       try {
-        const dictEntry = await lookupDictionary(wordObj.word!)
+        const dictEntry = await lookupDictionary(wordText)
         if (dictEntry) {
           wordObj.meaning = dictEntry.english
           wordObj.pinyin = dictEntry.pinyin
         } else {
-          wordObj.pinyin = pinyinPro(wordObj.word!, { toneType: 'num' })
+          wordObj.pinyin = pinyinPro(wordText, { toneType: 'num' })
         }
       } catch {
-        wordObj.pinyin = pinyinPro(wordObj.word!, { toneType: 'num' })
+        wordObj.pinyin = pinyinPro(wordText, { toneType: 'num' })
       }
     }))
 

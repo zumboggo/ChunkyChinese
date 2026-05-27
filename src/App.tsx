@@ -50,7 +50,6 @@ import {
   seedReaderBooksIfEmpty,
   saveHotkeys,
   setActivePackId as persistActivePackId,
-  updateWordStatus,
   startReaderSession,
   updateReaderSession,
   getReaderSessionStats,
@@ -60,7 +59,15 @@ import {
 } from './db'
 import { createLesson, createPocketLesson, selectTargetWords, type PauseProfile } from './lesson'
 import { renderLessonToWav } from './renderAudio'
-import { previewFsrsRatings } from './scheduler'
+import {
+  fsrsDueTime,
+  fsrsQueueBucket,
+  fsrsQueueLabel,
+  isFsrsCardDue,
+  isNewFsrsCard,
+  previewFsrsRatings,
+  type FsrsQueueBucket,
+} from './scheduler'
 import { UniversalImporter } from './UniversalImporter'
 import type {
   AudioClip,
@@ -83,10 +90,9 @@ import type {
   Sentence,
   StudyMode,
   VocabWord,
-  WordStatus,
 } from './types'
 
-type Screen = 'dashboard' | 'words' | 'reader' | 'import' | 'lesson'
+type Screen = 'dashboard' | 'words' | 'reader' | 'import' | 'lesson' | 'flashcards'
 type LessonStartOptions = {
   randomize?: boolean
   playAfterRender?: boolean
@@ -117,7 +123,7 @@ interface QuizResponse {
 }
 
 const emptyStats: DashboardStats = {
-  counts: { new: 0, learning: 0, familiar: 0, known: 0, review: 0 },
+  counts: { new: 0, learning: 0, due: 0, scheduled: 0 },
   dueNow: 0,
   dueSoon: 0,
   newAvailable: 0,
@@ -150,7 +156,7 @@ function App() {
   const [stats, setStats] = useState<DashboardStats>(emptyStats)
   const [userSettings, setUserSettings] = useState(DEFAULT_USER_SETTINGS)
   const [newWordsPerDay, setNewWordsPerDay] = useState(5)
-  const [statusFilter, setStatusFilter] = useState<WordStatus | 'all'>('all')
+  const [cardFilter, setCardFilter] = useState<FsrsQueueBucket | 'all'>('all')
   const [search, setSearch] = useState('')
   const [lessonFilter, setLessonFilter] = useState('')
   const [tagFilter, setTagFilter] = useState('')
@@ -190,13 +196,15 @@ function App() {
   const [readerShowPinyin, setReaderShowPinyin] = useState(true)
   const [readerShowEnglish, setReaderShowEnglish] = useState(true)
   const [selectedReaderToken, setSelectedReaderToken] = useState<ReaderWordToken | null>(null)
-  const [lessonStartStatuses, setLessonStartStatuses] = useState<Record<string, WordStatus>>({})
   const [hostedPackDownloadId, setHostedPackDownloadId] = useState<string | null>(null)
   const [hostedPackProgress, setHostedPackProgress] = useState('')
-  const [tappedWordIds, setTappedWordIds] = useState<Set<string>>(new Set())
+  const [flashcardQueueIds, setFlashcardQueueIds] = useState<string[]>([])
+  const [flashcardIndex, setFlashcardIndex] = useState(0)
+  const [flashcardAnswerShown, setFlashcardAnswerShown] = useState(false)
+  const [flashcardSessionFeedback, setFlashcardSessionFeedback] = useState<FsrsRating | null>(null)
   const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
   const [todayReaderStats, setTodayReaderStats] = useState<ReaderSessionStats | null>(null)
-  const lastReaderActivityTimeRef = useRef<number>(Date.now())
+  const lastReaderActivityTimeRef = useRef<number>(0)
   const runToken = useRef(0)
   const activeAnswerLockRef = useRef<string | null>(null)
   const autoContinueTimeoutRef = useRef<number | null>(null)
@@ -321,7 +329,7 @@ function App() {
     const query = search.trim().toLocaleLowerCase()
     const lessonNumber = Number(lessonFilter)
     return words.filter((word) => {
-      if (statusFilter !== 'all' && word.status !== statusFilter) return false
+      if (cardFilter !== 'all' && fsrsQueueBucket(word) !== cardFilter) return false
       if (lessonFilter && word.lessonNumber !== lessonNumber) return false
       if (tagFilter && !(word.tags ?? []).includes(tagFilter)) return false
       if (!query) return true
@@ -329,7 +337,7 @@ function App() {
         .filter(Boolean)
         .some((value) => value!.toLocaleLowerCase().includes(query))
     })
-  }, [lessonFilter, search, statusFilter, tagFilter, words])
+  }, [cardFilter, lessonFilter, search, tagFilter, words])
 
   const allTags = useMemo(
     () => Array.from(new Set(words.flatMap((word) => word.tags ?? []))).sort(),
@@ -423,13 +431,47 @@ function App() {
     [scopedWords],
   )
   const currentReviewWord = ratingWords[reviewCardIndex]
+  const flashcardQueue = useMemo(
+    () =>
+      flashcardQueueIds
+        .map((id) => words.find((word) => word.id === id))
+        .filter((word): word is VocabWord => Boolean(word)),
+    [flashcardQueueIds, words],
+  )
+  const currentFlashcardWord = flashcardQueue[flashcardIndex]
 
-  const handleStatus = useCallback(async (ids: string[], status: WordStatus) => {
-    if (ids.length === 0) return
-    await updateWordStatus(ids, status)
-    setLastSummary(`Marked ${ids.length} word${ids.length === 1 ? '' : 's'} ${status}.`)
-    await refresh()
-  }, [refresh])
+  const buildFlashcardQueue = useCallback((mode: 'due' | 'new' | 'mixed' | 'selected' = 'mixed') => {
+    const source = scopedWords.length > 0 ? scopedWords : words
+    const limit = Math.max(1, userSettings.flashcardsPerDay || 50)
+    const due = source
+      .filter((word) => isFsrsCardDue(word))
+      .sort((a, b) => fsrsDueTime(a) - fsrsDueTime(b))
+    const fresh = source
+      .filter(isNewFsrsCard)
+      .sort((a, b) => (a.lessonNumber ?? 9999) - (b.lessonNumber ?? 9999))
+    if (mode === 'due') return due.slice(0, limit)
+    if (mode === 'new') return fresh.slice(0, limit)
+    if (mode === 'selected') {
+      return selectedWordIds
+        .map((id) => source.find((word) => word.id === id))
+        .filter((word): word is VocabWord => Boolean(word))
+        .slice(0, limit)
+    }
+    const mixed = [...due, ...fresh].filter(
+      (word, index, all) => all.findIndex((candidate) => candidate.id === word.id) === index,
+    )
+    return mixed.slice(0, limit)
+  }, [scopedWords, selectedWordIds, userSettings.flashcardsPerDay, words])
+
+  const startFlashcards = useCallback((mode: 'due' | 'new' | 'mixed' | 'selected' = 'mixed', overrideWords?: VocabWord[]) => {
+    const queue = overrideWords ?? buildFlashcardQueue(mode)
+    setFlashcardQueueIds(queue.map((word) => word.id))
+    setFlashcardIndex(0)
+    setFlashcardAnswerShown(false)
+    setFlashcardSessionFeedback(null)
+    setScreen('flashcards')
+    setLastSummary(queue.length > 0 ? `Loaded ${queue.length} flashcards.` : 'No flashcards match that queue.')
+  }, [buildFlashcardQueue])
 
   const recordReaderInteraction = useCallback(() => {
     lastReaderActivityTimeRef.current = Date.now()
@@ -453,36 +495,6 @@ function App() {
     const stats = await getReaderSessionStats()
     setTodayReaderStats(stats)
   }, [words, scopedWords])
-
-  const cycleActiveRecallStatus = useCallback(async (wordId: string) => {
-    const word = words.find((w) => w.id === wordId)
-    if (!word) return
-
-    let nextStatus: WordStatus
-    if (!tappedWordIds.has(wordId)) {
-      setTappedWordIds((prev) => {
-        const next = new Set(prev)
-        next.add(wordId)
-        return next
-      })
-      if (word.status !== 'known') {
-        nextStatus = 'known'
-      } else {
-        nextStatus = 'learning'
-      }
-    } else {
-      if (word.status === 'known') {
-        nextStatus = 'learning'
-      } else if (word.status === 'learning') {
-        nextStatus = 'familiar'
-      } else if (word.status === 'familiar') {
-        nextStatus = 'review'
-      } else {
-        nextStatus = 'known'
-      }
-    }
-    await handleStatus([wordId], nextStatus)
-  }, [words, tappedWordIds, handleStatus])
 
   const renderAndLoadLesson = useCallback(async (
     nextLesson: LessonPlan,
@@ -531,16 +543,13 @@ function App() {
       const keptWords: VocabWord[] = []
       for (const word of targetWords) {
         const currentWord = words.find(w => w.id === word.id)
-        const currentStatus = currentWord?.status ?? word.status
-        const startStatus = lessonStartStatuses[word.id]
-        if (currentStatus === startStatus) {
+        if (!fsrsRatings[word.id]) {
           keptWords.push(currentWord || word)
         }
       }
       setQuizResponses({})
       setQuizHints({})
       setFsrsRatings({})
-      setTappedWordIds(new Set())
       const useBrowserTts = activePack?.browserTts
 
       if (keptWords.length === 0) {
@@ -557,11 +566,6 @@ function App() {
               newWordsLimit: remainingNewWordsToday,
             })
         setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
-        const startStatuses: Record<string, WordStatus> = {}
-        nextLesson.targetWords.forEach(word => {
-          startStatuses[word.id] = word.status
-        })
-        setLessonStartStatuses(startStatuses)
         await renderAndLoadLesson(
           nextLesson,
           true,
@@ -587,11 +591,6 @@ function App() {
               allowExtraNew: true,
             })
         setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
-        const startStatuses: Record<string, WordStatus> = {}
-        nextLesson.targetWords.forEach(word => {
-          startStatuses[word.id] = word.status
-        })
-        setLessonStartStatuses(startStatuses)
         await renderAndLoadLesson(
           nextLesson,
           true,
@@ -603,7 +602,7 @@ function App() {
     } finally {
       setRendering(false)
     }
-  }, [lesson, words, lessonStartStatuses, activePack, audioClips, pauseProfile, remainingNewWordsToday, scopedWords, scopedSentences, renderAndLoadLesson])
+  }, [lesson, words, fsrsRatings, activePack, audioClips, pauseProfile, remainingNewWordsToday, scopedWords, scopedSentences, sentences, renderAndLoadLesson])
 
   // Reader Mode activity event listeners
   useEffect(() => {
@@ -658,13 +657,6 @@ function App() {
     }
   }, [screen, activeReaderSession?.activeSeconds, activeReaderSession?.wordsRead])
 
-  // Count sentence tokens when viewed
-  useEffect(() => {
-    if (screen === 'reader' && activeReaderSession && currentReaderSentence) {
-      void recordReaderSentenceView(currentReaderSentence, activeReaderSession)
-    }
-  }, [screen, activeReaderSession, currentReaderSentence, recordReaderSentenceView])
-
   useEffect(
     () => () => {
       if (flashcardFeedbackTimeoutRef.current !== null) {
@@ -685,13 +677,19 @@ function App() {
     const progress = await getReaderProgress(book.packId, book.id)
     const sentenceCount = book.stories.reduce((sum, story) => sum + story.sentences.length, 0)
     const sentenceIndex = action === 'start' ? 0 : progress?.sentenceIndex ?? 0
+    const readerSentencesForBook = book.stories.flatMap((story) => story.sentences)
+    const boundedIndex = Math.min(Math.max(0, sentenceIndex), Math.max(0, sentenceCount - 1))
     setActiveReaderBookId(book.id)
-    setReaderSentenceIndex(Math.min(Math.max(0, sentenceIndex), Math.max(0, sentenceCount - 1)))
+    setReaderSentenceIndex(boundedIndex)
     setSelectedReaderToken(null)
     setScreen('reader')
     const session = await startReaderSession(book.packId, book.id)
     setActiveReaderSession(session)
     recordReaderInteraction()
+    const firstSentence = readerSentencesForBook[boundedIndex]
+    if (firstSentence) {
+      await recordReaderSentenceView(firstSentence, session)
+    }
     if (action === 'start') {
       await saveReaderProgress({
         packId: book.packId,
@@ -699,7 +697,7 @@ function App() {
         sentenceIndex: 0,
       })
     }
-  }, [])
+  }, [recordReaderInteraction, recordReaderSentenceView])
 
   const moveReaderSentence = useCallback(async (delta: number) => {
     if (!activeReaderBook || readerSentences.length === 0) return
@@ -715,7 +713,18 @@ function App() {
       bookId: activeReaderBook.id,
       sentenceIndex: nextIndex,
     })
-  }, [activeReaderBook, readerSentenceIndex, readerSentences.length])
+    const nextSentence = readerSentences[nextIndex]
+    if (nextSentence && activeReaderSession) {
+      await recordReaderSentenceView(nextSentence, activeReaderSession)
+    }
+  }, [
+    activeReaderBook,
+    activeReaderSession,
+    readerSentenceIndex,
+    readerSentences,
+    recordReaderInteraction,
+    recordReaderSentenceView,
+  ])
 
   async function playReaderSentence(sentence: ReaderSentence) {
     recordReaderInteraction()
@@ -982,18 +991,34 @@ function App() {
     }, 500)
   }, [flashcardFeedback, handleFsrsRating])
 
+  const handleStandaloneFlashcardRate = useCallback((rating: FsrsRating) => {
+    if (!currentFlashcardWord || flashcardSessionFeedback) return
+    const wordId = currentFlashcardWord.id
+    setFlashcardSessionFeedback(rating)
+    window.setTimeout(() => {
+      void (async () => {
+        await rateWordFsrs(wordId, rating)
+        await refresh()
+        setLastSummary(`Rated ${currentFlashcardWord.word} ${fsrsLabel(rating)}.`)
+        setFlashcardAnswerShown(false)
+        setFlashcardSessionFeedback(null)
+        setFlashcardIndex((index) => Math.min(index + 1, flashcardQueueIds.length))
+      })()
+    }, 500)
+  }, [currentFlashcardWord, flashcardQueueIds.length, flashcardSessionFeedback, refresh])
+
   const cycleListeningRating = useCallback(async (wordId: string) => {
     const current = fsrsRatings[wordId]
     const nextRating: FsrsRating =
       !current
         ? 'again'
         : current === 'again'
-        ? 'hard'
-        : current === 'hard'
           ? 'good'
           : current === 'good'
-            ? 'easy'
-            : 'hard'
+            ? 'hard'
+            : current === 'hard'
+              ? 'easy'
+              : 'again'
     await handleFsrsRating(wordId, nextRating)
   }, [fsrsRatings, handleFsrsRating])
 
@@ -1056,6 +1081,20 @@ function App() {
         }
         return
       }
+      if (screen === 'flashcards') {
+        if (!currentFlashcardWord) return
+        if (!flashcardAnswerShown && (mappedIndex === 0 || event.key === 'Enter' || event.key === ' ')) {
+          event.preventDefault()
+          setFlashcardAnswerShown(true)
+          return
+        }
+        const rating = mappedIndex === 0 ? 'again' : mappedIndex === 1 ? 'good' : hotkeyToReviewRating(pressed, hotkeys)
+        if (rating && flashcardAnswerShown) {
+          event.preventDefault()
+          handleStandaloneFlashcardRate(rating)
+        }
+        return
+      }
       if (screen !== 'lesson') return
       if (pressed === hotkeys.playPause) {
         event.preventDefault()
@@ -1114,12 +1153,6 @@ function App() {
       } else if (currentQuiz && !currentQuizResponse && pressed === 'h') {
         event.preventDefault()
         handleQuizHint()
-      } else if (studyWord && pressed === 'k') {
-        event.preventDefault()
-        void handleStatus([studyWord.id], 'known')
-      } else if (studyWord && pressed === 'f') {
-        event.preventDefault()
-        void handleStatus([studyWord.id], 'familiar')
       }
     }
 
@@ -1136,16 +1169,17 @@ function App() {
     handleFlashcardRate,
     handleQuizAnswer,
     handleQuizHint,
-    handleStatus,
     hotkeys,
     isSentenceContinueSection,
     currentReviewWord,
+    currentFlashcardWord,
+    flashcardAnswerShown,
+    handleStandaloneFlashcardRate,
     moveReaderSentence,
     ratingWords,
     reviewAnswerShown,
     screen,
     showReviewPrompt,
-    studyWord,
     togglePlayback,
   ])
 
@@ -1155,12 +1189,6 @@ function App() {
     } else {
       await playModeRef.current?.requestFullscreen()
     }
-  }
-
-  async function cycleWordStatus(word: VocabWord) {
-    const nextStatus: WordStatus =
-      word.status === 'known' ? 'learning' : word.status === 'familiar' ? 'known' : 'familiar'
-    await handleStatus([word.id], nextStatus)
   }
 
   async function startPocketLesson(
@@ -1187,12 +1215,6 @@ function App() {
           })
       setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
       setFsrsRatings({})
-      setTappedWordIds(new Set())
-      const startStatuses: Record<string, WordStatus> = {}
-      nextLesson.targetWords.forEach(word => {
-        startStatuses[word.id] = word.status
-      })
-      setLessonStartStatuses(startStatuses)
       await renderAndLoadLesson(
         nextLesson,
         playAfterRender,
@@ -1465,6 +1487,10 @@ function App() {
             <span className="nav-icon nav-words" aria-hidden="true" />
             Words
           </button>
+          <button className={screen === 'flashcards' ? 'active' : ''} onClick={() => startFlashcards('mixed')}>
+            <span className="nav-icon nav-flashcards" aria-hidden="true" />
+            Flashcards
+          </button>
           <button className={screen === 'import' ? 'active' : ''} onClick={() => setScreen('import')}>
             <span className="nav-icon nav-import" aria-hidden="true" />
             Import
@@ -1492,17 +1518,21 @@ function App() {
               <p>Start with due words, add new ones only when the queue is light.</p>
             </div>
             <div className="mode-start-grid" aria-label="Choose study mode">
-              <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('listeningMode')}>
-                <strong>Listening mode</strong>
-                <span>Continuous listening with auto-next on.</span>
+              <button className="mode-start reader-start" type="button" onClick={() => setScreen('reader')}>
+                <strong>Reading</strong>
+                <span>Read the LMS stories sentence by sentence.</span>
               </button>
               <button className="mode-start active-start" type="button" onClick={() => startModeLesson('activeRecall')}>
-                <strong>Active recall</strong>
+                <strong>Active Recall</strong>
                 <span>Pause for spoken 2-choice questions.</span>
               </button>
-              <button className="mode-start reader-start" type="button" onClick={() => setScreen('reader')}>
-                <strong>Reader mode</strong>
-                <span>Read the LMS stories sentence by sentence.</span>
+              <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('listeningMode')}>
+                <strong>Listening</strong>
+                <span>Continuous listening with auto-next on.</span>
+              </button>
+              <button className="mode-start flashcards-start" type="button" onClick={() => startFlashcards('mixed')}>
+                <strong>Flashcards</strong>
+                <span>Sort due and new words with FSRS.</span>
               </button>
             </div>
           </div>
@@ -1512,8 +1542,8 @@ function App() {
               🪙 <strong>{userSettings.coins}</strong>
             </div>
             <div className="lingqs-status">
-              <span><strong>{stats.lingqsCreatedToday}</strong> / {userSettings.lingqCreatedGoal} Words Created</span>
-              <span><strong>{stats.lingqsLearnedToday}</strong> / {userSettings.lingqLearnedGoal} Words Learned</span>
+              <span><strong>{stats.lingqsCreatedToday}</strong> cards reviewed</span>
+              <span><strong>{stats.lingqsLearnedToday}</strong> successful recalls</span>
             </div>
           </div>
 
@@ -1521,12 +1551,12 @@ function App() {
             <button
               type="button"
               className="metric hero-metric"
-              onClick={() => startModeLesson('activeRecall')}
+              onClick={() => startFlashcards('due')}
             >
               <span>Due now</span>
               <strong>{stats.dueNow}</strong>
             </button>
-            <button type="button" className="metric" onClick={() => startModeLesson('listeningMode')}>
+            <button type="button" className="metric" onClick={() => startFlashcards('new')}>
               <span>New available</span>
               <strong>{stats.newAvailable}</strong>
             </button>
@@ -1541,19 +1571,24 @@ function App() {
           </div>
 
           <div className="metric-grid">
-            {(['new', 'learning', 'familiar', 'review', 'known'] as WordStatus[]).map(
-              (status) => (
+            {([
+              ['new', 'New cards'],
+              ['learning', 'Learning'],
+              ['due', 'Due cards'],
+              ['scheduled', 'Scheduled'],
+            ] as Array<[FsrsQueueBucket, string]>).map(
+              ([bucket, label]) => (
                 <button
                   type="button"
                   className="metric"
-                  key={status}
+                  key={bucket}
                   onClick={() => {
-                    setStatusFilter(status)
+                    setCardFilter(bucket)
                     setScreen('words')
                   }}
                 >
-                  <span>{status}</span>
-                  <strong>{stats.counts[status]}</strong>
+                  <span>{label}</span>
+                  <strong>{stats.counts[bucket]}</strong>
                 </button>
               ),
             )}
@@ -1575,23 +1610,23 @@ function App() {
           </div>
 
           <div className="action-grid">
-            <InfoPanel title="Goals & Gamification">
+            <InfoPanel title="Flashcard Goals">
               <dl className="stat-list">
                 <div>
                   <dt>Total Coins</dt>
                   <dd>🪙 {userSettings.coins}</dd>
                 </div>
                 <div>
-                  <dt>Words Created (Today)</dt>
-                  <dd>{stats.lingqsCreatedToday} / {userSettings.lingqCreatedGoal}</dd>
+                  <dt>Cards reviewed today</dt>
+                  <dd>{stats.lingqsCreatedToday}</dd>
                 </div>
                 <div>
-                  <dt>Words Learned (Today)</dt>
-                  <dd>{stats.lingqsLearnedToday} / {userSettings.lingqLearnedGoal}</dd>
+                  <dt>Successful recalls today</dt>
+                  <dd>{stats.lingqsLearnedToday}</dd>
                 </div>
                 <div>
-                  <dt>Total Known Words</dt>
-                  <dd>{stats.counts.known} / {userSettings.knownWordsGoal}</dd>
+                  <dt>Flashcards / Day</dt>
+                  <dd>{userSettings.flashcardsPerDay}</dd>
                 </div>
               </dl>
               <div className="button-row compact-buttons" style={{ marginTop: '0.5rem' }}>
@@ -1631,7 +1666,7 @@ function App() {
                   <dd>{stats.clipsCompletedToday}</dd>
                 </div>
                 <div>
-                  <dt>Words marked known</dt>
+                  <dt>Cards rated Good/Easy</dt>
                   <dd>{stats.knownToday}</dd>
                 </div>
                 <div>
@@ -1657,17 +1692,31 @@ function App() {
                   />
                 </label>
                 <span>{remainingNewWordsToday} new word slots left today</span>
+                <label>
+                  Flashcards/session
+                  <input
+                    type="number"
+                    min={1}
+                    max={300}
+                    value={userSettings.flashcardsPerDay}
+                    onChange={(event) => {
+                      const next = { ...userSettings, flashcardsPerDay: Number(event.target.value) }
+                      setUserSettings(next)
+                      void saveUserSettings(next)
+                    }}
+                  />
+                </label>
               </div>
               <div className="button-row compact-buttons">
                 <button type="button" onClick={() => startModeLesson('activeRecall')}>
-                  Study due
+                  Active Recall
                 </button>
                 <button
                   type="button"
                   className="ghost-answer"
-                  onClick={() => startModeLesson('activeRecall', { allowExtraNew: true })}
+                  onClick={() => startFlashcards('mixed')}
                 >
-                  Learn extra new words
+                  Flashcards
                 </button>
               </div>
             </InfoPanel>
@@ -1679,7 +1728,7 @@ function App() {
                     type="button"
                     onClick={() => {
                       setSearch(word.word)
-                      setScreen('words')
+                      startFlashcards('mixed', [word])
                     }}
                   >
                     <strong>{word.word}</strong>
@@ -1703,7 +1752,7 @@ function App() {
                 </div>
                 <div>
                   <dt>At rating time</dt>
-                  <dd>A=Again, B=Hard, C=Good, D=Easy</dd>
+                  <dd>A=Again, B=Good, C=Hard, D=Easy</dd>
                 </div>
                 <div>
                   <dt>Play / pause</dt>
@@ -1792,15 +1841,20 @@ function App() {
               aria-label="Search words"
             />
             <select
-              value={statusFilter}
-              onChange={(event) => setStatusFilter(event.target.value as WordStatus | 'all')}
-              aria-label="Filter by status"
+              value={cardFilter}
+              onChange={(event) => setCardFilter(event.target.value as FsrsQueueBucket | 'all')}
+              aria-label="Filter by FSRS queue"
             >
-              <option value="all">All statuses</option>
-              {(['new', 'learning', 'familiar', 'known', 'review'] as WordStatus[]).map(
-                (status) => (
-                  <option key={status} value={status}>
-                    {status}
+              <option value="all">All FSRS cards</option>
+              {([
+                ['new', 'New'],
+                ['learning', 'Learning'],
+                ['due', 'Due'],
+                ['scheduled', 'Scheduled'],
+              ] as Array<[FsrsQueueBucket, string]>).map(
+                ([bucket, label]) => (
+                  <option key={bucket} value={bucket}>
+                    {label}
                   </option>
                 ),
               )}
@@ -1828,12 +1882,10 @@ function App() {
 
           <div className="bulk-row">
             <span>{selectedWordIds.length} selected</span>
-            <span>Click a word card to cycle: unknown to familiar to known.</span>
-            {(['learning', 'familiar', 'known', 'review'] as WordStatus[]).map((status) => (
-              <button key={status} type="button" onClick={() => handleStatus(selectedWordIds, status)}>
-                Mark {status}
-              </button>
-            ))}
+            <span>FSRS scheduling is updated by flashcard ratings.</span>
+            <button type="button" onClick={() => startFlashcards('selected')} disabled={selectedWordIds.length === 0}>
+              Flashcards from selected
+            </button>
             <button type="button" onClick={() => setSelectedWordIds([])}>
               Clear
             </button>
@@ -1841,7 +1893,7 @@ function App() {
 
           <div className="word-list">
             {filteredWords.map((word) => (
-              <article className={`word-row word-row-${word.status}`} key={word.id}>
+              <article className={`word-row word-row-${fsrsQueueBucket(word)}`} key={word.id}>
                 <label className="select-box">
                   <input
                     type="checkbox"
@@ -1858,8 +1910,8 @@ function App() {
                 <button
                   className="word-main word-cycle"
                   type="button"
-                  onClick={() => cycleWordStatus(word)}
-                  title="Cycle status"
+                  onClick={() => startFlashcards('mixed', [word])}
+                  title="Review this card"
                 >
                   <strong>{word.word}</strong>
                   <span>{word.meaning}</span>
@@ -1869,7 +1921,7 @@ function App() {
                     {formatDueDate(word.fsrsDueAt)}
                   </small>
                 </button>
-                <StatusPill status={word.status} />
+                <FsrsPill word={word} />
                 <div className="row-actions">
                   <button
                     type="button"
@@ -1878,11 +1930,9 @@ function App() {
                   >
                     Play
                   </button>
-                  {(['learning', 'familiar', 'known', 'review'] as WordStatus[]).map((status) => (
-                    <button key={status} type="button" onClick={() => handleStatus([word.id], status)}>
-                      {status}
-                    </button>
-                  ))}
+                  <button type="button" onClick={() => startFlashcards('mixed', [word])}>
+                    Flashcard
+                  </button>
                 </div>
               </article>
             ))}
@@ -1893,6 +1943,75 @@ function App() {
               Export CSV
             </button>
           </div>
+        </motion.section>
+      )}
+      </AnimatePresence>
+
+      <AnimatePresence mode="wait">
+      {screen === 'flashcards' && (
+        <motion.section
+          key="flashcards"
+          className="screen flashcards-screen"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.2 }}
+        >
+          <div className="screen-heading compact">
+            <div>
+              <h1>Flashcards</h1>
+              <p>Fast FSRS reviews. Front is Chinese; back is pinyin and definition.</p>
+            </div>
+            <div className="manager-heading-actions">
+              <button type="button" onClick={() => startFlashcards('due')}>
+                Due
+              </button>
+              <button type="button" onClick={() => startFlashcards('new')}>
+                New
+              </button>
+              <button className="primary" type="button" onClick={() => startFlashcards('mixed')}>
+                Mix
+              </button>
+            </div>
+          </div>
+
+          <section className="flashcards-workspace">
+            <div className="flashcards-meta">
+              <span>
+                {flashcardQueue.length > 0
+                  ? `Card ${Math.min(flashcardIndex + 1, flashcardQueue.length)} / ${flashcardQueue.length}`
+                  : 'No queue loaded'}
+              </span>
+              <span>{hotkeys.choiceA.toUpperCase()} flip, then Again · {hotkeys.choiceB.toUpperCase()} Good</span>
+            </div>
+
+            {currentFlashcardWord ? (
+              <FlashcardReview
+                word={currentFlashcardWord}
+                answerShown={flashcardAnswerShown}
+                onFlip={() => setFlashcardAnswerShown(true)}
+                onRate={handleStandaloneFlashcardRate}
+                selectedRating={flashcardSessionFeedback}
+                choiceKeys={hotkeys}
+              />
+            ) : (
+              <div className="review-complete flashcards-complete">
+                <strong>{flashcardQueue.length > 0 ? 'Flashcard queue complete.' : 'Choose a flashcard queue.'}</strong>
+                <span>Use due cards for scheduled reviews, or new cards when you want to sort ahead quickly.</span>
+                <div className="button-row compact-buttons">
+                  <button type="button" onClick={() => startFlashcards('due')}>
+                    Study due
+                  </button>
+                  <button type="button" onClick={() => startFlashcards('new')}>
+                    Sort new cards
+                  </button>
+                  <button type="button" className="primary" onClick={() => startFlashcards('mixed')}>
+                    Mixed queue
+                  </button>
+                </div>
+              </div>
+            )}
+          </section>
         </motion.section>
       )}
       </AnimatePresence>
@@ -1924,10 +2043,6 @@ function App() {
           onToggleEnglish={() => {
             recordReaderInteraction()
             setReaderShowEnglish((value) => !value)
-          }}
-          onMarkWord={async (word, status) => {
-            recordReaderInteraction()
-            await handleStatus([word.id], status)
           }}
           activeSession={activeReaderSession}
           todayReaderStats={todayReaderStats}
@@ -2039,11 +2154,11 @@ function App() {
             />
 
             <section className="panel">
-              <h2>Goals & Gamification</h2>
-              <p>Set your targets for language learning.</p>
+              <h2>Flashcard settings</h2>
+              <p>Set lightweight targets for daily FSRS work.</p>
               <div className="hotkey-grid">
                 <label>
-                  <span>Words Created / Day</span>
+                  <span>Cards Reviewed / Day</span>
                   <input
                     type="number"
                     value={userSettings.lingqCreatedGoal}
@@ -2052,7 +2167,7 @@ function App() {
                   />
                 </label>
                 <label>
-                  <span>Words Learned / Day</span>
+                  <span>Successful Recalls / Day</span>
                   <input
                     type="number"
                     value={userSettings.lingqLearnedGoal}
@@ -2061,11 +2176,11 @@ function App() {
                   />
                 </label>
                 <label>
-                  <span>Known Words Target</span>
+                  <span>Flashcards / Day</span>
                   <input
                     type="number"
-                    value={userSettings.knownWordsGoal}
-                    onChange={(e) => setUserSettings({ ...userSettings, knownWordsGoal: Number(e.target.value) })}
+                    value={userSettings.flashcardsPerDay}
+                    onChange={(e) => setUserSettings({ ...userSettings, flashcardsPerDay: Number(e.target.value) })}
                     onBlur={() => saveUserSettings(userSettings)}
                   />
                 </label>
@@ -2196,6 +2311,7 @@ function App() {
                             onFlip={() => setReviewAnswerShown(true)}
                             onRate={(rating) => handleFlashcardRate(currentReviewWord.id, rating)}
                             selectedRating={flashcardFeedback}
+                            choiceKeys={hotkeys}
                           />
                         ) : (
                           <div className="review-complete">
@@ -2608,24 +2724,23 @@ function App() {
                     )}
                   </div>
                   {isActiveLearningMode && lessonWords.length > 0 && (
-                    <div className="listening-rating-strip" aria-label="Rate lesson words">
+                    <div className="listening-rating-strip" aria-label="Lesson words">
                       {lessonWords.map((word) => {
-                        const startStatus = lessonStartStatuses[word.id]
                         const currentWord = words.find((w) => w.id === word.id)
-                        const currentStatus = currentWord?.status ?? word.status
-                        const isModified = startStatus !== undefined && currentStatus !== startStatus
+                        const displayWord = currentWord ?? word
+                        const rating = fsrsRatings[word.id]
                         return (
                           <button
                             key={word.id}
                             type="button"
-                            className={`rating-chip rating-status-${currentStatus} ${isModified ? 'chip-modified' : ''}`}
-                            onClick={() => cycleActiveRecallStatus(word.id)}
-                            title={`Click to cycle status of ${word.word}`}
+                            className={`rating-chip rating-${rating ?? fsrsQueueBucket(displayWord)} ${rating ? 'chip-modified' : ''}`}
+                            onClick={() => startFlashcards('mixed', [displayWord])}
+                            title={`Open flashcard for ${word.word}`}
                           >
                             <strong>{word.word}</strong>
                             <span>{word.meaning}</span>
-                            <small>{currentStatus}</small>
-                            {isModified && <span className="modified-indicator">● Modified</span>}
+                            <small>{rating ? fsrsLabel(rating) : fsrsQueueLabel(displayWord)}</small>
+                            {rating && <span className="modified-indicator">Rated</span>}
                           </button>
                         )
                       })}
@@ -2642,7 +2757,7 @@ function App() {
                             type="button"
                             className={`rating-chip rating-${rating}`}
                             onClick={() => cycleListeningRating(word.id)}
-                            title={`Click to cycle ${word.word}: Again, Hard, Good, Easy`}
+                            title={`Click to cycle ${word.word}: Again, Good, Hard, Easy`}
                           >
                             <strong>{word.word}</strong>
                             <span>{word.meaning}</span>
@@ -2735,11 +2850,8 @@ function App() {
 
                 {targetWord && (
                   <div className="button-row">
-                    <button type="button" onClick={() => handleStatus([targetWord.id], 'known')}>
-                      Mark known
-                    </button>
-                    <button type="button" onClick={() => handleStatus([targetWord.id], 'familiar')}>
-                      Mark familiar
+                    <button type="button" onClick={() => startFlashcards('mixed', [targetWord])}>
+                      Review card
                     </button>
                     <button
                       type="button"
@@ -2824,7 +2936,6 @@ function ReaderMode({
   onSelectToken,
   onTogglePinyin,
   onToggleEnglish,
-  onMarkWord,
   activeSession,
 }: {
   readerPacks: ReaderPack[]
@@ -2844,7 +2955,6 @@ function ReaderMode({
   onSelectToken: (token: ReaderWordToken | null) => void
   onTogglePinyin: () => void
   onToggleEnglish: () => void
-  onMarkWord: (word: VocabWord, status: WordStatus) => void | Promise<void>
   activeSession: ReaderSession | null
   todayReaderStats: ReaderSessionStats | null
 }) {
@@ -2942,7 +3052,7 @@ function ReaderMode({
                       token.isChinese ? (
                         <ruby
                           key={token.id}
-                          className={`reader-token ${token.word ? 'known-token' : ''} ${
+                          className={`reader-token ${token.word ? 'saved-token' : ''} ${
                             selectedToken?.id === token.id ? 'active' : ''
                           }`}
                           onClick={() => onSelectToken(token)}
@@ -2981,22 +3091,14 @@ function ReaderMode({
                   <p>{selectedToken.word.meaning}</p>
                   <dl className="stat-list compact-stats">
                     <div>
-                      <dt>Status</dt>
-                      <dd>{selectedToken.word.status}</dd>
+                      <dt>FSRS</dt>
+                      <dd>{fsrsQueueLabel(selectedToken.word)}</dd>
                     </div>
                     <div>
                       <dt>Due</dt>
                       <dd>{formatDueDate(selectedToken.word.fsrsDueAt)}</dd>
                     </div>
                   </dl>
-                  <div className="button-row compact-buttons">
-                    <button type="button" onClick={() => onMarkWord(selectedToken.word!, 'familiar')}>
-                      Mark familiar
-                    </button>
-                    <button type="button" onClick={() => onMarkWord(selectedToken.word!, 'known')}>
-                      Mark known
-                    </button>
-                  </div>
                 </div>
               )}
               {selectedToken && !selectedToken.word && selectedToken.isChinese && (
@@ -3036,8 +3138,8 @@ function ActivityChart({ days }: { days: DashboardStats['studyHeatmap'] }) {
           </defs>
           <XAxis dataKey="date" tickFormatter={shortMonthDay} />
           <YAxis hide />
-          <Tooltip 
-            formatter={(value: any) => [`${(Number(value) / 60).toFixed(1)} mins`, 'Study Time']}
+          <Tooltip
+            formatter={(value: unknown) => [`${(Number(value ?? 0) / 60).toFixed(1)} mins`, 'Study Time']}
             labelFormatter={(label) => friendlyDate(label)}
           />
           <Area type="monotone" dataKey="studySeconds" stroke="var(--accent-vibrant)" fillOpacity={1} fill="url(#colorStudy)" />
@@ -3087,9 +3189,9 @@ function VocabGrowthChart({ points }: { points: DashboardStats['retentionSeries'
             labelFormatter={(label) => friendlyDate(label)}
           />
           <Legend />
-          <Bar dataKey="barelyKnown" name="New Words" stackId="a" fill="#ef4444" />
-          <Bar dataKey="familiar" name="Words in Progress" stackId="a" fill="#10b981" />
-          <Bar dataKey="wellKnown" name="Learned Words" stackId="a" fill="var(--accent-vibrant)" />
+          <Bar dataKey="barelyKnown" name="Early FSRS" stackId="a" fill="#ef4444" />
+          <Bar dataKey="familiar" name="Growing FSRS" stackId="a" fill="#10b981" />
+          <Bar dataKey="wellKnown" name="Mature FSRS" stackId="a" fill="var(--accent-vibrant)" />
         </BarChart>
       </ResponsiveContainer>
     </div>
@@ -3107,8 +3209,11 @@ function ReadingWpmChart({ points }: { points: DashboardStats['readingSeries'] }
           <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
           <XAxis dataKey="date" tickFormatter={shortMonthDay} />
           <YAxis />
-          <Tooltip 
-            formatter={(value: any, name: any) => [value, name === 'wpm' ? 'WPM' : name]}
+          <Tooltip
+            formatter={(value: unknown, name: unknown) => [
+              String(value ?? ''),
+              name === 'wpm' ? 'WPM' : String(name ?? ''),
+            ]}
             labelFormatter={(label) => friendlyDate(label)}
           />
           <Legend />
@@ -3119,8 +3224,9 @@ function ReadingWpmChart({ points }: { points: DashboardStats['readingSeries'] }
   )
 }
 
-function StatusPill({ status }: { status: WordStatus }) {
-  return <span className={`status-pill status-${status}`}>{status}</span>
+function FsrsPill({ word }: { word: VocabWord }) {
+  const bucket = fsrsQueueBucket(word)
+  return <span className={`status-pill status-${bucket}`}>{fsrsQueueLabel(word)}</span>
 }
 
 function FilePanel({
@@ -3299,23 +3405,24 @@ function FlashcardReview({
   onFlip,
   onRate,
   selectedRating,
+  choiceKeys,
 }: {
   word: VocabWord
   answerShown: boolean
   onFlip: () => void
   onRate: (rating: FsrsRating) => void | Promise<void>
   selectedRating?: FsrsRating | null
+  choiceKeys?: HotkeySettings
 }) {
   const previews = previewFsrsRatings(word)
   return (
     <section className="flashcard-review">
       <div className={`flashcard ${answerShown ? 'answer-side' : 'front-side'}`}>
-        <span>{answerShown ? 'Answer 1' : 'Front'}</span>
+        <span>{answerShown ? 'Back' : 'Front'}</span>
         <strong>{word.word}</strong>
         {answerShown ? (
           <>
-            <small>{word.pinyin}</small>
-            <p>{word.meaning}</p>
+            <p>{word.pinyin ? `${word.pinyin} is ${word.meaning}` : word.meaning}</p>
           </>
         ) : (
           <button type="button" className="primary" onClick={onFlip}>
@@ -3333,6 +3440,7 @@ function FlashcardReview({
               onClick={() => onRate(rating.value)}
               disabled={Boolean(selectedRating)}
             >
+              {choiceKeys && <kbd>{ratingHotkeyLabel(rating.value, choiceKeys)}</kbd>}
               <strong>{rating.label}</strong>
               <span>{formatDueDate(previews[rating.value].dueAt)}</span>
             </button>
@@ -3385,13 +3493,20 @@ function formatSummary(summary: ImportSummary): string {
 
 const fsrsRatingsForUi: Array<{ value: FsrsRating; label: string }> = [
   { value: 'again', label: 'Again' },
-  { value: 'hard', label: 'Hard' },
   { value: 'good', label: 'Good' },
+  { value: 'hard', label: 'Hard' },
   { value: 'easy', label: 'Easy' },
 ]
 
 function fsrsLabel(rating: FsrsRating): string {
   return fsrsRatingsForUi.find((item) => item.value === rating)?.label ?? rating
+}
+
+function ratingHotkeyLabel(rating: FsrsRating, hotkeys: HotkeySettings): string {
+  if (rating === 'again') return hotkeys.choiceA.toUpperCase()
+  if (rating === 'good') return hotkeys.choiceB.toUpperCase()
+  if (rating === 'hard') return hotkeys.choiceC.toUpperCase()
+  return hotkeys.choiceD.toUpperCase()
 }
 
 function formatDueDate(value?: string): string {
@@ -3410,15 +3525,11 @@ function formatDueDate(value?: string): string {
 }
 
 function isDueForDisplay(word: VocabWord): boolean {
-  if (!word.fsrsDueAt) return word.status !== 'new' && word.status !== 'known'
-  const due = Date.parse(word.fsrsDueAt)
-  return !Number.isFinite(due) || due <= Date.now()
+  return isFsrsCardDue(word)
 }
 
 function dueTimeForDisplay(word: VocabWord): number {
-  if (!word.fsrsDueAt) return 0
-  const due = Date.parse(word.fsrsDueAt)
-  return Number.isFinite(due) ? due : 0
+  return fsrsDueTime(word)
 }
 
 function tokenizeReaderText(text: string, vocab: VocabWord[]): ReaderWordToken[] {
@@ -3565,7 +3676,6 @@ function wordsToProgressCsv(words: VocabWord[]): string {
     'word',
     'pinyin',
     'meaning',
-    'status',
     'lessonNumber',
     'tags',
     'source',
@@ -3591,7 +3701,6 @@ function wordsToProgressCsv(words: VocabWord[]): string {
       word.word,
       word.pinyin ?? '',
       word.meaning,
-      word.status,
       word.lessonNumber ?? '',
       (word.tags ?? []).join(';'),
       word.source ?? '',
@@ -3982,4 +4091,3 @@ function formatDuration(seconds: number): string {
   const s = seconds % 60
   return `${m}m ${s}s`
 }
-

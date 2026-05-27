@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&family=Noto+Serif+SC:wght@400;500;700&display=swap');
 
 :root {
   --bg-cream: #fff7ed;
@@ -385,6 +385,10 @@ dt {
   background-image: url("./assets/words_icon.png");
 }
 
+.nav-flashcards {
+  background-image: url("./assets/lesson_icon.png");
+}
+
 .nav-import {
   background-image: url("./assets/import_icon.png");
 }
@@ -453,7 +457,7 @@ dt {
 }
 
 .metric-grid {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .today-grid {
@@ -681,7 +685,7 @@ dt {
 
 .mode-start-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
   gap: 12px;
   align-self: stretch;
 }
@@ -747,6 +751,20 @@ dt {
 
 .reader-start span {
   color: #256b8f;
+}
+
+.flashcards-start {
+  border-color: rgba(124, 58, 237, 0.24);
+  background:
+    linear-gradient(135deg, rgba(250, 245, 255, 0.98), rgba(221, 214, 254, 0.78));
+}
+
+.flashcards-start strong {
+  color: #5b21b6;
+}
+
+.flashcards-start span {
+  color: #6d3db4;
 }
 
 .filters {
@@ -821,19 +839,14 @@ dt {
   border-color: #ddc558;
 }
 
-.word-row-familiar {
-  background: #e7f1ff;
-  border-color: #88bdf3;
-}
-
-.word-row-known {
-  background: #e4f7ed;
-  border-color: #86d5aa;
-}
-
-.word-row-review {
+.word-row-due {
   background: #fff0df;
   border-color: #e4af72;
+}
+
+.word-row-scheduled {
+  background: #e7f1ff;
+  border-color: #88bdf3;
 }
 
 .select-box input {
@@ -902,16 +915,12 @@ dt {
   background: var(--mango);
 }
 
-.status-familiar {
-  background: #2563eb;
-}
-
-.status-known {
-  background: var(--good);
-}
-
-.status-review {
+.status-due {
   background: var(--warn);
+}
+
+.status-scheduled {
+  background: #2563eb;
 }
 
 .file-button {
@@ -1886,7 +1895,6 @@ kbd {
   background: #16a34a;
 }
 
-/* Active Recall status chip styles */
 .rating-chip {
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1903,43 +1911,35 @@ kbd {
   transform: translateY(0);
 }
 
-.rating-status-new {
+.rating-new {
   border-color: var(--border);
   background: rgba(248, 250, 252, 0.82);
 }
-.rating-status-new small {
+.rating-new small {
   background: var(--muted-navy);
 }
 
-.rating-status-learning {
+.rating-learning {
   border-color: rgba(249, 115, 22, 0.44);
   background: rgba(255, 247, 237, 0.9);
 }
-.rating-status-learning small {
+.rating-learning small {
   background: var(--mango);
 }
 
-.rating-status-familiar {
-  border-color: rgba(250, 204, 21, 0.54);
-  background: rgba(254, 243, 199, 0.9);
-}
-.rating-status-familiar small {
-  background: #ca8a04;
-}
-
-.rating-status-review {
+.rating-due {
   border-color: rgba(56, 189, 248, 0.44);
   background: rgba(224, 242, 254, 0.9);
 }
-.rating-status-review small {
+.rating-due small {
   background: #0284c7;
 }
 
-.rating-status-known {
+.rating-scheduled {
   border-color: rgba(22, 163, 74, 0.38);
   background: rgba(220, 252, 231, 0.9);
 }
-.rating-status-known small {
+.rating-scheduled small {
   background: var(--success);
 }
 
@@ -2281,7 +2281,7 @@ kbd {
   border-bottom-color: var(--accent);
 }
 
-.reader-token.known-token {
+.reader-token.saved-token {
   color: var(--muted-navy);
 }
 
@@ -2370,16 +2370,39 @@ kbd {
   gap: 14px;
 }
 
+.flashcards-workspace {
+  display: grid;
+  gap: 14px;
+  max-width: 780px;
+  width: min(780px, 100%);
+  justify-self: center;
+}
+
+.flashcards-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--muted-navy);
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
 .flashcard {
   display: grid;
   justify-items: center;
-  gap: 12px;
-  min-height: 260px;
-  padding: 24px;
+  align-content: center;
+  gap: 16px;
+  min-height: clamp(340px, 52svh, 520px);
+  padding: clamp(24px, 5vw, 52px);
   border: 1px solid rgba(16, 35, 63, 0.1);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.88);
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 250, 242, 0.9));
   text-align: center;
+  box-shadow:
+    0 26px 80px rgba(16, 35, 63, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
 }
 
 .flashcard > span {
@@ -2388,14 +2411,17 @@ kbd {
 }
 
 .flashcard strong {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-family: "LXGW WenKai TC", "Noto Serif SC", KaiTi, STKaiti, serif;
+  font-size: clamp(4.2rem, 13vw, 9.5rem);
+  font-weight: 400;
   line-height: 1;
 }
 
 .flashcard p {
   max-width: 560px;
   color: var(--navy);
-  font-size: 1.4rem;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.45;
   font-weight: 800;
 }
 
@@ -2410,6 +2436,17 @@ kbd {
   gap: 4px;
   min-height: 82px;
   border-radius: 16px;
+}
+
+.fsrs-preview-buttons kbd {
+  justify-self: center;
+  min-width: 28px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(16, 35, 63, 0.08);
+  color: var(--muted-navy);
+  font-size: 0.72rem;
+  font-weight: 900;
 }
 
 .fsrs-preview-buttons button.feedback-selected {
@@ -2429,6 +2466,11 @@ kbd {
   padding: 18px;
   border-radius: 18px;
   background: rgba(22, 163, 74, 0.08);
+}
+
+.flashcards-complete {
+  justify-items: center;
+  text-align: center;
 }
 
 @media (prefers-reduced-motion: reduce) {

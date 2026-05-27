@@ -34,6 +34,8 @@ export type StudyMode = 'listeningMode' | 'activeRecall'
 
 export type FsrsStateName = 'New' | 'Learning' | 'Review' | 'Relearning'
 
+export type FsrsDashboardBucket = 'new' | 'learning' | 'due' | 'scheduled'
+
 export type LessonQuizKind = 'zh-en' | 'en-zh' | 'audio-zh' | 'contrast' | 'sentence-zh-en'
 
 export interface LessonQuizMetadata {
@@ -55,7 +57,7 @@ export interface UserSettings {
   listeningGoalHours: number
   lingqCreatedGoal: number
   lingqLearnedGoal: number
-  knownWordsGoal: number
+  flashcardsPerDay: number
 }
 
 export interface ClipPack {
@@ -387,7 +389,7 @@ export interface LessonPlan {
 }
 
 export interface DashboardStats {
-  counts: Record<WordStatus, number>
+  counts: Record<FsrsDashboardBucket, number>
   dueNow: number
   dueSoon: number
   newAvailable: number

@@ -32,7 +32,12 @@ import type {
   WordStatus,
   DictionaryEntry,
 } from './types'
-import { applyFsrsRating } from './scheduler'
+import {
+  applyFsrsRating,
+  isFsrsCardDue,
+  isFsrsCardDueSoon,
+  isNewFsrsCard,
+} from './scheduler'
 
 const DB_NAME = 'chunky-chinese-vocab'
 const DB_VERSION = 7
@@ -290,7 +295,7 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   listeningGoalHours: 7.5,
   lingqCreatedGoal: 390,
   lingqLearnedGoal: 90,
-  knownWordsGoal: 180
+  flashcardsPerDay: 50,
 }
 
 export async function getUserSettings(): Promise<UserSettings> {
@@ -515,39 +520,6 @@ export async function importCsvTtsPack(
     'This CSV pack uses browser TTS for missing clips. It is best for foreground practice, not locked-phone background audio.',
   )
   return summary
-}
-
-export async function updateWordStatus(
-  wordIds: string[],
-  status: WordStatus,
-): Promise<void> {
-  const db = await getDB()
-  const tx = db.transaction(['vocabWords', 'listeningEvents'], 'readwrite')
-  const now = new Date().toISOString()
-
-  for (const id of wordIds) {
-    const word = await tx.objectStore('vocabWords').get(id)
-    if (!word) continue
-    await tx.objectStore('vocabWords').put({
-      ...word,
-      status,
-      lastReviewedAt: now,
-      updatedAt: now,
-    })
-    await tx.objectStore('listeningEvents').put({
-      id: `event:${crypto.randomUUID()}`,
-      timestamp: now,
-      type: statusToEvent(status),
-      itemType: 'word',
-      itemId: id,
-    })
-  }
-  await tx.done
-
-  // Award gamification coins
-  if (status === 'known') await awardCoins(5 * wordIds.length)
-  else if (status === 'familiar') await awardCoins(3 * wordIds.length)
-  else if (status === 'learning') await awardCoins(1 * wordIds.length)
 }
 
 export async function rateWordFsrs(wordId: string, rating: FsrsRating): Promise<void> {
@@ -1135,30 +1107,34 @@ export async function getDashboardStats(): Promise<DashboardStats> {
   const now = Date.now()
   const soon = now + 24 * 60 * 60 * 1000
   const dueWords = scopedWords.filter((word) => isWordDueForReview(word, now))
+  const todayRatings = todayEvents.filter((event) => event.type === 'fsrs_rating')
+  const successfulRatingsToday = todayRatings.filter(
+    (event) => event.rating === 'good' || event.rating === 'easy',
+  )
 
   return {
     counts: {
-      new: scopedWords.filter((word) => word.status === 'new').length,
-      learning: scopedWords.filter((word) => word.status === 'learning').length,
-      familiar: scopedWords.filter((word) => word.status === 'familiar').length,
-      known: scopedWords.filter((word) => word.status === 'known').length,
-      review: scopedWords.filter((word) => word.status === 'review').length,
+      new: scopedWords.filter(isNewFsrsCard).length,
+      learning: scopedWords.filter(
+        (word) => word.fsrsState === 'Learning' || word.fsrsState === 'Relearning',
+      ).length,
+      due: dueWords.length,
+      scheduled: scopedWords.filter((word) => Boolean(word.fsrsDueAt)).length,
     },
     dueNow: dueWords.length,
     dueSoon: scopedWords.filter((word) => isWordDueSoon(word, now, soon)).length,
-    newAvailable: scopedWords.filter((word) => word.status === 'new' && !word.fsrsDueAt).length,
+    newAvailable: scopedWords.filter(isNewFsrsCard).length,
     scheduled: scopedWords.filter((word) => Boolean(word.fsrsDueAt)).length,
     minutesToday:
       (todayEvents.reduce((sum, event) => sum + (event.seconds ?? 0), 0) +
         todaySessions.reduce((sum, session) => sum + (session.activeSeconds ?? 0), 0)) /
       60,
     clipsCompletedToday: todayEvents.filter((event) => event.type === 'complete').length,
-    knownToday: todayEvents.filter((event) => event.type === 'mark_known').length,
-    lingqsCreatedToday: todayEvents.filter((event) => event.type === 'mark_learning').length,
-    lingqsLearnedToday: todayEvents.filter((event) => event.type === 'mark_familiar' || event.type === 'mark_known').length,
+    knownToday: successfulRatingsToday.length,
+    lingqsCreatedToday: todayRatings.length,
+    lingqsLearnedToday: successfulRatingsToday.length,
     newWordsToday: scopedWords.filter(
       (word) =>
-        word.status !== 'new' &&
         (word.fsrsRepetitions ?? 0) <= 1 &&
         word.lastReviewedAt &&
         new Date(word.lastReviewedAt) >= start,
@@ -1581,13 +1557,6 @@ function readRelativePath(file: File): string | undefined {
   return (file as File & { webkitRelativePath?: string }).webkitRelativePath
 }
 
-function statusToEvent(status: WordStatus): ListeningEvent['type'] {
-  if (status === 'known') return 'mark_known'
-  if (status === 'familiar') return 'mark_familiar'
-  if (status === 'learning') return 'mark_learning'
-  return 'mark_review'
-}
-
 function hasImportedProgress(word: VocabWord): boolean {
   return Boolean(
     word.lastReviewedAt ||
@@ -1602,17 +1571,11 @@ function hasImportedProgress(word: VocabWord): boolean {
 }
 
 function isWordDueForReview(word: VocabWord, now: number): boolean {
-  if (!word.fsrsDueAt) return word.status !== 'known'
-  const dueTime = Date.parse(word.fsrsDueAt)
-  if (!Number.isFinite(dueTime)) return word.status !== 'known'
-  if (word.status === 'known') return dueTime <= now
-  return dueTime <= now
+  return isFsrsCardDue(word, now)
 }
 
 function isWordDueSoon(word: VocabWord, now: number, soon: number): boolean {
-  if (!word.fsrsDueAt) return false
-  const dueTime = Date.parse(word.fsrsDueAt)
-  return Number.isFinite(dueTime) && dueTime > now && dueTime <= soon
+  return isFsrsCardDueSoon(word, now, soon)
 }
 
 function startOfToday(): Date {
@@ -1671,11 +1634,11 @@ function buildRetentionSeries(
     .filter((event) => Number.isFinite(event.time))
     .sort((a, b) => a.time - b.time)
   const currentLevelEvents = words
-    .filter((word) => word.status !== 'new')
+    .filter((word) => (word.fsrsRepetitions ?? 0) > 0 || Boolean(word.fsrsDueAt))
     .map((word) => ({
       itemId: word.id,
       time: Date.parse(word.lastReviewedAt || word.updatedAt || word.createdAt),
-      level: statusToRetentionLevel(word.status),
+      level: wordToRetentionLevel(word),
     }))
     .filter((event) => Number.isFinite(event.time))
     .sort((a, b) => a.time - b.time)
@@ -1695,8 +1658,8 @@ function buildRetentionSeries(
       if (level) levels.set(event.itemId, level)
     }
 
-    // Backups can restore current word progress without older rating events. This keeps
-    // the chart useful by adding the saved status at its recorded review/update date.
+    // Backups can restore current FSRS progress without older rating events. This keeps
+    // the chart useful by adding the saved schedule at its recorded review/update date.
     for (const event of currentLevelEvents) {
       if (event.time > pointDate.getTime()) break
       levels.set(event.itemId, event.level)
@@ -1764,9 +1727,6 @@ function inferredStudySeconds(event: ListeningEvent): number {
 function eventToRetentionLevel(
   event: ListeningEvent,
 ): 'barelyKnown' | 'familiar' | 'wellKnown' | undefined {
-  if (event.type === 'mark_known') return 'wellKnown'
-  if (event.type === 'mark_familiar') return 'familiar'
-  if (event.type === 'mark_learning' || event.type === 'mark_review') return 'barelyKnown'
   if (event.type === 'fsrs_rating') {
     if (event.rating === 'easy') return 'wellKnown'
     if (event.rating === 'good') return 'familiar'
@@ -1775,9 +1735,9 @@ function eventToRetentionLevel(
   return undefined
 }
 
-function statusToRetentionLevel(status: WordStatus): 'barelyKnown' | 'familiar' | 'wellKnown' {
-  if (status === 'known') return 'wellKnown'
-  if (status === 'familiar') return 'familiar'
+function wordToRetentionLevel(word: VocabWord): 'barelyKnown' | 'familiar' | 'wellKnown' {
+  if ((word.fsrsIntervalDays ?? 0) >= 14) return 'wellKnown'
+  if ((word.fsrsIntervalDays ?? 0) >= 2) return 'familiar'
   return 'barelyKnown'
 }
 

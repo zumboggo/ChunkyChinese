@@ -1,7 +1,9 @@
 import { createEmptyCard, fsrs, Rating, State, type Card, type Grade } from 'ts-fsrs'
-import type { FsrsRating, VocabWord, WordStatus } from './types'
+import type { FsrsRating, VocabWord } from './types'
 
 export type FsrsStateName = 'New' | 'Learning' | 'Review' | 'Relearning'
+
+export type FsrsQueueBucket = 'new' | 'learning' | 'due' | 'scheduled'
 
 export type FsrsDuePreview = Record<
   FsrsRating,
@@ -48,7 +50,6 @@ export function applyFsrsRating(
   now = new Date(),
 ): Pick<
   VocabWord,
-  | 'status'
   | 'fsrsDueAt'
   | 'fsrsIntervalDays'
   | 'fsrsStability'
@@ -67,6 +68,50 @@ export function applyFsrsRating(
   }
 }
 
+export function isNewFsrsCard(word: VocabWord): boolean {
+  return !word.fsrsDueAt && !word.lastReviewedAt && (word.fsrsRepetitions ?? 0) === 0
+}
+
+export function hasFsrsSchedule(word: VocabWord): boolean {
+  return Boolean(word.fsrsDueAt)
+}
+
+export function fsrsDueTime(word: VocabWord): number {
+  if (!word.fsrsDueAt) return Number.POSITIVE_INFINITY
+  const due = Date.parse(word.fsrsDueAt)
+  return Number.isFinite(due) ? due : 0
+}
+
+export function isFsrsCardDue(word: VocabWord, now = Date.now()): boolean {
+  if (!word.fsrsDueAt) return false
+  return fsrsDueTime(word) <= now
+}
+
+export function isFsrsCardDueSoon(
+  word: VocabWord,
+  now = Date.now(),
+  soon = now + 24 * 60 * 60 * 1000,
+): boolean {
+  if (!word.fsrsDueAt) return false
+  const due = fsrsDueTime(word)
+  return due > now && due <= soon
+}
+
+export function fsrsQueueBucket(word: VocabWord, now = Date.now()): FsrsQueueBucket {
+  if (isNewFsrsCard(word)) return 'new'
+  if (isFsrsCardDue(word, now)) return 'due'
+  if (word.fsrsState === 'Learning' || word.fsrsState === 'Relearning') return 'learning'
+  return 'scheduled'
+}
+
+export function fsrsQueueLabel(word: VocabWord, now = Date.now()): string {
+  const bucket = fsrsQueueBucket(word, now)
+  if (bucket === 'new') return 'New'
+  if (bucket === 'due') return 'Due'
+  if (bucket === 'learning') return word.fsrsState === 'Relearning' ? 'Relearning' : 'Learning'
+  return 'Scheduled'
+}
+
 function cardPreview(card: Card): FsrsDuePreview[FsrsRating] {
   return {
     dueAt: card.due.toISOString(),
@@ -79,7 +124,6 @@ function wordFieldsFromCard(
   card: Card,
 ): Pick<
   VocabWord,
-  | 'status'
   | 'fsrsDueAt'
   | 'fsrsIntervalDays'
   | 'fsrsStability'
@@ -90,7 +134,6 @@ function wordFieldsFromCard(
   | 'fsrsState'
 > {
   return {
-    status: statusFromCard(card),
     fsrsDueAt: card.due.toISOString(),
     fsrsIntervalDays: Math.max(0, Math.round(card.scheduled_days)),
     fsrsStability: round(card.stability),
@@ -124,17 +167,8 @@ function stateFromWord(word: VocabWord): State {
   if (word.fsrsState && word.fsrsState in stateNameToEnum) {
     return stateNameToEnum[word.fsrsState]
   }
-  if (word.status === 'new') return State.New
-  if (word.status === 'learning') return State.Learning
+  if (isNewFsrsCard(word)) return State.New
   return State.Review
-}
-
-function statusFromCard(card: Card): WordStatus {
-  if (card.state === State.New) return 'new'
-  if (card.state === State.Learning || card.state === State.Relearning) return 'learning'
-  if (card.scheduled_days >= 14) return 'known'
-  if (card.scheduled_days >= 2) return 'familiar'
-  return 'review'
 }
 
 function stateName(state: State): FsrsStateName {

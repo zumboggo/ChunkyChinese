@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { TextParser, CsvParser, type ParsedContent } from './parsers'
 import { upsertWords, upsertSentences, getDictionaryCount, downloadDictionary } from './db'
-import type { ImportSummary } from './types'
+import type { ImportSummary, Sentence, VocabWord } from './types'
 
 export function UniversalImporter({ onComplete }: { onComplete: (summary: string) => void }) {
   const [file, setFile] = useState<File | null>(null)
@@ -70,10 +70,13 @@ export function UniversalImporter({ onComplete }: { onComplete: (summary: string
       
       if (parsed.words.length > 0) {
         const now = new Date().toISOString()
-        const validWords = parsed.words
+        const validWords: VocabWord[] = parsed.words
           .filter(w => w.word && w.id)
-          .map(w => ({
+          .map((w) => ({
             ...w,
+            id: w.id ?? '',
+            word: w.word ?? '',
+            meaning: w.meaning ?? '',
             status: w.status || 'new',
             createdAt: now,
             updatedAt: now,
@@ -81,19 +84,23 @@ export function UniversalImporter({ onComplete }: { onComplete: (summary: string
             correctCount: 0,
             wrongCount: 0,
             listenedSeconds: 0,
-          })) as any[]
+          }))
         wordsSummary = await upsertWords(validWords)
       }
 
       if (parsed.sentences.length > 0) {
         const now = new Date().toISOString()
-        const validSentences = parsed.sentences
+        const validSentences: Sentence[] = parsed.sentences
           .filter(s => s.chinese && s.id)
-          .map(s => ({
+          .map((s) => ({
             ...s,
+            id: s.id ?? '',
+            chinese: s.chinese ?? '',
+            english: s.english ?? '',
+            targetWords: s.targetWords ?? [],
             createdAt: now,
             updatedAt: now,
-          })) as any[]
+          }))
         sentencesSummary = await upsertSentences(validSentences)
       }
 

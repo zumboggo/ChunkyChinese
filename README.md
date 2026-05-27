@@ -225,10 +225,11 @@ The clip pack import reports coverage for word clips, meaning clips, sentence cl
 
 ## Screens
 
-- Dashboard: due-word queue, counts, progress charts, daily listening stats, hotkey reminders, and quick next-lesson launch.
-- Word Manager: search/filter words, play word clips, and mark status individually or in bulk.
+- Dashboard: due-card queue, FSRS counts, progress charts, daily listening stats, hotkey reminders, and quick launches for Reading, Active Recall, Listening, and Flashcards.
+- Word Manager: search/filter words, play word clips, export progress CSV, and start flashcards from selected words.
 - Import and Backup: hosted clip pack download, clip pack import, CSV import, MP3 import, JSON backup/export.
 - Lesson: 5 word continuous lesson rendering, pinyin/English toggles, Listening mode, and Active Recall.
+- Flashcards: minimalist FSRS word cards for fast sorting, with Choice A = Again and Choice B = Good.
 
 ## Offline
 

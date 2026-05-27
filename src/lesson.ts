@@ -1,4 +1,5 @@
 import type { AudioClip, LessonPlan, LessonStep, Sentence, VocabWord } from './types'
+import { fsrsDueTime, isFsrsCardDue, isNewFsrsCard } from './scheduler'
 
 export type PauseProfile = 'gentle' | 'normal' | 'fast' | 'challenge'
 
@@ -238,7 +239,6 @@ export function selectTargetWords(
     const selected = manualIds
       .map((id) => words.find((word) => word.id === id))
       .filter((word): word is VocabWord => Boolean(word))
-      .filter((word) => word.status !== 'known' || isFsrsDue(word))
     return options.randomize ? weightedSampleWords(selected, 5) : selected.slice(0, 5)
   }
 
@@ -253,16 +253,15 @@ export function selectTargetWords(
     : words
 
   const candidates = dueCandidates(filteredWords)
-  const newWordLimit = options.allowExtraNew ? 5 : Math.max(0, (options.newWordsLimit ?? 5) - selected.filter((w) => w.status === 'new').length)
+  const newWordLimit = options.allowExtraNew ? 5 : Math.max(0, (options.newWordsLimit ?? 5) - selected.filter(isNewFsrsCard).length)
   const newCandidates = filteredWords
-    .filter((word) => word.status === 'new' && !word.fsrsDueAt)
+    .filter(isNewFsrsCard)
     .sort((a, b) => scoreWord(a) - scoreWord(b))
     .slice(0, Math.max(0, newWordLimit))
   const supportCandidates = filteredWords
     .filter((word) => !candidates.some((candidate) => candidate.id === word.id))
     .filter((word) => !newCandidates.some((candidate) => candidate.id === word.id))
-    .filter((word) => word.status !== 'new')
-    .filter((word) => word.status !== 'known' || isFsrsDue(word))
+    .filter((word) => !isNewFsrsCard(word))
     .sort((a, b) => futureDueSort(a) - futureDueSort(b))
   const pick = options.randomize ? weightedSampleWords : sortedSampleWords
 
@@ -288,15 +287,15 @@ export function selectTargetWords(
 }
 
 function scoreWord(word: VocabWord): number {
-  const statusWeight = {
-    new: 0,
-    learning: 4,
-    review: 12,
-    familiar: 20,
-    known: 42,
-  }[word.status]
+  const stateWeight = isNewFsrsCard(word)
+    ? 0
+    : word.fsrsState === 'Learning' || word.fsrsState === 'Relearning'
+      ? 4
+      : isFsrsDue(word)
+        ? 8
+        : 24
   const dueWeight = isFsrsDue(word) ? -12 - overdueDays(word) : futureDueSort(word) / 1000
-  return statusWeight + word.seenCount * 2 + (word.lessonNumber ?? 999) / 100 + dueWeight
+  return stateWeight + word.seenCount * 2 + (word.lessonNumber ?? 999) / 100 + dueWeight
 }
 
 function weightedSampleWords(words: VocabWord[], count: number): VocabWord[] {
@@ -329,13 +328,13 @@ function sortedSampleWords(words: VocabWord[], count: number): VocabWord[] {
 }
 
 function selectionWeight(word: VocabWord): number {
-  const statusWeight = {
-    new: 100,
-    learning: 78,
-    review: 34,
-    familiar: 12,
-    known: 8,
-  }[word.status]
+  const statusWeight = isNewFsrsCard(word)
+    ? 100
+    : word.fsrsState === 'Learning' || word.fsrsState === 'Relearning'
+      ? 78
+      : isFsrsDue(word)
+        ? 54
+        : 12
   if (word.fsrsDueAt && !isFsrsDue(word)) return 1
   const dueBonus = isFsrsDue(word) ? Math.min(overdueDays(word) * 8, 48) : 0
   const seenPenalty = Math.min(word.seenCount * 6, statusWeight * 0.72)
@@ -344,23 +343,18 @@ function selectionWeight(word: VocabWord): number {
 
 function dueCandidates(words: VocabWord[]): VocabWord[] {
   return words.filter((word) => {
-    if (word.status === 'new' && !word.fsrsDueAt) return false
-    if (!isFsrsDue(word)) return false
-    if (word.status === 'known') return Boolean(word.fsrsDueAt)
-    return true
+    if (isNewFsrsCard(word)) return false
+    return isFsrsDue(word)
   })
 }
 
 function isFsrsDue(word: VocabWord): boolean {
-  if (!word.fsrsDueAt) return word.status !== 'known'
-  const dueTime = Date.parse(word.fsrsDueAt)
-  return !Number.isFinite(dueTime) || dueTime <= Date.now()
+  return isFsrsCardDue(word)
 }
 
 function futureDueSort(word: VocabWord): number {
-  if (!word.fsrsDueAt) return word.status === 'known' ? Number.MAX_SAFE_INTEGER : 0
-  const dueTime = Date.parse(word.fsrsDueAt)
-  return Number.isFinite(dueTime) ? dueTime : 0
+  if (!word.fsrsDueAt) return isNewFsrsCard(word) ? 0 : Number.MAX_SAFE_INTEGER
+  return fsrsDueTime(word)
 }
 
 function overdueDays(word: VocabWord): number {
