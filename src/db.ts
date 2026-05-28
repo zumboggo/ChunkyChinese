@@ -303,6 +303,7 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   lingqCreatedGoal: 390,
   lingqLearnedGoal: 90,
   flashcardsPerDay: 50,
+  flashcardQueueMode: 'mixed',
 }
 
 export async function getUserSettings(): Promise<UserSettings> {
@@ -1204,6 +1205,7 @@ export async function exportBackup(): Promise<string> {
     settings: {
       lmsSeededAt: await db.get('settings', 'lmsSeededAt'),
       activePackId: await db.get('settings', 'activePackId'),
+      userSettings: await getUserSettings(),
       hotkeys: await getHotkeys(),
       newWordsPerDay: await getNewWordsPerDay(),
     },
@@ -1223,6 +1225,7 @@ export async function importBackup(text: string): Promise<ImportSummary> {
     readerSessions?: ReaderSession[]
     settings?: {
       activePackId?: string
+      userSettings?: UserSettings
       hotkeys?: HotkeySettings
       lmsSeededAt?: string
       newWordsPerDay?: number
@@ -1266,6 +1269,7 @@ export async function importBackup(text: string): Promise<ImportSummary> {
 
   await tx.done
   if (backup.settings?.activePackId) await db.put('settings', backup.settings.activePackId, 'activePackId')
+  if (backup.settings?.userSettings) await saveUserSettings(backup.settings.userSettings)
   if (backup.settings?.hotkeys) await saveHotkeys(backup.settings.hotkeys)
   if (backup.settings?.lmsSeededAt) await db.put('settings', backup.settings.lmsSeededAt, 'lmsSeededAt')
   if (backup.settings?.newWordsPerDay !== undefined) {
@@ -1557,6 +1561,7 @@ type RawDictionaryEntry = Omit<DictionaryEntry, 'english'> & {
 }
 
 const DICTIONARY_URLS = [
+  `${import.meta.env.BASE_URL}dictionary/cedict.json`,
   'https://cdn.jsdelivr.net/npm/cedict-json/cedict.json',
   'https://unpkg.com/cedict-json/cedict.json',
   'https://unpkg.com/cedict-json@1.3.20251213/cedict.json',

@@ -58,6 +58,7 @@ export interface UserSettings {
   lingqCreatedGoal: number
   lingqLearnedGoal: number
   flashcardsPerDay: number
+  flashcardQueueMode: 'mixed' | 'due' | 'new'
 }
 
 export interface ClipPack {

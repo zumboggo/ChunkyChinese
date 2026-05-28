@@ -67,21 +67,21 @@ That file was converted from:
 C:\Users\LENOVO\Documents\LearnChinese\LMS\Glossika\input\Future_Known_1000.csv
 ```
 
-If IndexedDB already has words, the seed is not applied again. Use the Import screen to reimport `public/seed/lms-vocab-1000.csv`; reimports merge by word and preserve progress/audio links.
+If IndexedDB already has words, the seed is not applied again. Use the Settings screen to reimport `public/seed/lms-vocab-1000.csv`; reimports merge by word and preserve progress/audio links.
 
 ## Clip Pack Workflow
 
 1. Choose a target word list on the PC.
 2. Generate one clip pack from the LMS Glossika folder.
 3. Either commit the selected pack under `public/clip-packs/` for GitHub Pages hosting, or transfer the pack folder to the phone.
-4. Open the PWA, go to Import and Backup, and use **Download hosted clip pack** or import the whole clip pack folder.
+4. Open the PWA, go to Settings, and use **Download hosted clip pack** or import the whole clip pack folder.
 5. Use Listening mode for normal listening. It renders one continuous local audio track and plays it through one `<audio>` element.
 
 Listening mode is meant for earbuds and a sleeping phone. It uses only imported MP3 blobs plus generated silence/ding sounds. It also sets Media Session metadata and play/pause handlers where the browser supports them, which helps Android Chrome expose lock-screen and earbud controls.
 
 Active Recall pauses only for answer input and keeps generated wait time tiny so practice stays fast. After the initial vocab learning blocks, Active Recall hides pinyin and English hints automatically so you have to retrieve the word a little harder. At the end of each lesson, rate each word with Again, Hard, Good, or Easy; the app stores a simple Anki-style due date, interval, ease, repetitions, and lapses locally and uses those fields to choose future lessons.
 
-The dashboard emphasizes the daily queue: due words first, then new words when the queue is light. Word Manager CSV export includes the scheduler fields, so review state can be backed up or moved into your main vocabulary spreadsheet.
+The dashboard emphasizes the daily queue: due words first, then new words when the queue is light. Settings CSV export includes the scheduler fields, so review state can be backed up or moved into your main vocabulary spreadsheet.
 
 ## Generate a Clip Pack
 
@@ -209,9 +209,9 @@ chinese,english,targetWords,audioSentenceFilename,audioEnglishFilename,tags,diff
 
 `targetWords` and `tags` use semicolon-separated values.
 
-## Import and Backup
+## Settings
 
-The Import and Backup screen supports:
+The Settings screen supports:
 
 - whole clip pack folder import
 - hosted LMS clip pack download from GitHub Pages into IndexedDB
@@ -220,16 +220,17 @@ The Import and Backup screen supports:
 - standalone MP3 folder/multi-file import
 - JSON backup export
 - JSON backup import
+- progress CSV export
+- flashcard queue, daily goal, and hotkey settings
 
 The clip pack import reports coverage for word clips, meaning clips, sentence clips, sentence meaning clips, and prompt clips. Reimports merge by word/sentence key and preserve status, counts, and existing progress where possible.
 
 ## Screens
 
 - Dashboard: due-card queue, FSRS counts, progress charts, daily listening stats, hotkey reminders, and quick launches for Reading, Active Recall, Listening, and Flashcards.
-- Word Manager: search/filter words, play word clips, export progress CSV, and start flashcards from selected words.
-- Import and Backup: hosted clip pack download, clip pack import, CSV import, MP3 import, JSON backup/export.
+- Settings: hosted clip pack download, clip pack import, CSV import/export, MP3 import, JSON backup/export, dictionary refresh, and controls.
 - Lesson: 5 word continuous lesson rendering, pinyin/English toggles, Listening mode, and Active Recall.
-- Flashcards: minimalist FSRS word cards for fast sorting, with Choice A = Again and Choice B = Good.
+- Flashcards: minimalist FSRS word cards for fast sorting, with queue choice in Settings and Choice A = Again / Choice B = Good after flipping.
 
 ## Offline
 
