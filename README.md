@@ -79,7 +79,7 @@ If IndexedDB already has words, the seed is not applied again. Use the Settings 
 
 Listening mode is meant for earbuds and a sleeping phone. It uses only imported MP3 blobs plus generated silence/ding sounds. It also sets Media Session metadata and play/pause handlers where the browser supports them, which helps Android Chrome expose lock-screen and earbud controls.
 
-Active Recall pauses only for answer input and keeps generated wait time tiny so practice stays fast. After the initial vocab learning blocks, Active Recall hides pinyin and English hints automatically so you have to retrieve the word a little harder. At the end of each lesson, rate each word with Again, Hard, Good, or Easy; the app stores a simple Anki-style due date, interval, ease, repetitions, and lapses locally and uses those fields to choose future lessons.
+Active Recall pauses only for answer input and keeps generated wait time tiny so practice stays fast. After the initial vocab learning blocks, Active Recall hides pinyin and English hints automatically so you have to retrieve the word a little harder. At the end of each lesson, rate each word with Again, Hard, Good, or Easy; the app stores FSRS due date, interval, stability, difficulty, repetitions, and lapses locally and uses those fields to choose future lessons.
 
 The dashboard emphasizes the daily queue: due words first, then new words when the queue is light. Settings CSV export includes the scheduler fields, so review state can be backed up or moved into your main vocabulary spreadsheet.
 
@@ -230,7 +230,7 @@ The clip pack import reports coverage for word clips, meaning clips, sentence cl
 - Dashboard: due-card queue, FSRS counts, progress charts, daily listening stats, hotkey reminders, and quick launches for Reading, Active Recall, Listening, and Flashcards.
 - Settings: hosted clip pack download, clip pack import, CSV import/export, MP3 import, JSON backup/export, dictionary refresh, and controls.
 - Lesson: 5 word continuous lesson rendering, pinyin/English toggles, Listening mode, and Active Recall.
-- Flashcards: minimalist FSRS word cards for fast sorting, with queue choice in Settings and Choice A = Again / Choice B = Good after flipping.
+- Flashcards: minimalist FSRS word cards for fast sorting, with Anki-style short learning loops, queue choice in Settings, and Choice A = Again / Choice B = Good after flipping.
 
 ## Offline
 

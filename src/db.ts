@@ -539,7 +539,7 @@ export async function importCsvTtsPack(
   return summary
 }
 
-export async function rateWordFsrs(wordId: string, rating: FsrsRating): Promise<void> {
+export async function rateWordFsrs(wordId: string, rating: FsrsRating): Promise<VocabWord | undefined> {
   const db = await getDB()
   const tx = db.transaction(['vocabWords', 'listeningEvents'], 'readwrite')
   const word = await tx.objectStore('vocabWords').get(wordId)
@@ -551,13 +551,14 @@ export async function rateWordFsrs(wordId: string, rating: FsrsRating): Promise<
   const now = new Date()
   const nowIso = now.toISOString()
   const next = applyFsrsRating(word, rating, now)
-
-  await tx.objectStore('vocabWords').put({
+  const updatedWord = {
     ...word,
     ...next,
     lastReviewedAt: nowIso,
     updatedAt: nowIso,
-  })
+  }
+
+  await tx.objectStore('vocabWords').put(updatedWord)
   await tx.objectStore('listeningEvents').put({
     id: `event:${crypto.randomUUID()}`,
     timestamp: nowIso,
@@ -572,6 +573,8 @@ export async function rateWordFsrs(wordId: string, rating: FsrsRating): Promise<
   if (rating === 'easy') await awardCoins(5)
   else if (rating === 'good') await awardCoins(3)
   else if (rating === 'hard') await awardCoins(1)
+
+  return updatedWord
 }
 
 export async function recordEvent(event: Omit<ListeningEvent, 'id' | 'timestamp'>) {

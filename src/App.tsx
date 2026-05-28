@@ -93,6 +93,13 @@ import type {
 
 type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
+type FlashcardSessionCounts = {
+  new: number
+  learning: number
+  review: number
+  done: number
+  total: number
+}
 type LessonStartOptions = {
   randomize?: boolean
   playAfterRender?: boolean
@@ -142,6 +149,7 @@ const emptyStats: DashboardStats = {
 
 const DEFAULT_PACK_ID = 'lms-1000-azure'
 const HIDDEN_PACK_IDS = new Set(['annas-reading-deck'])
+const FLASHCARD_LEARN_AHEAD_MS = 5 * 60 * 1000
 
 function App() {
   const [screen, setScreen] = useState<Screen>('dashboard')
@@ -174,7 +182,6 @@ function App() {
   const [lessonMenuOpen, setLessonMenuOpen] = useState(false)
   const [pauseProfile, setPauseProfile] = useState<PauseProfile>('normal')
   const [quizResponses, setQuizResponses] = useState<Record<string, QuizResponse>>({})
-  const [quizHints, setQuizHints] = useState<Record<string, number>>({})
   const [fsrsRatings, setFsrsRatings] = useState<Record<string, FsrsRating>>({})
   const [showReviewPrompt, setShowReviewPrompt] = useState(false)
   const [reviewCardIndex, setReviewCardIndex] = useState(0)
@@ -195,7 +202,9 @@ function App() {
   const [hostedPackDownloadId, setHostedPackDownloadId] = useState<string | null>(null)
   const [hostedPackProgress, setHostedPackProgress] = useState('')
   const [flashcardQueueIds, setFlashcardQueueIds] = useState<string[]>([])
-  const [flashcardIndex, setFlashcardIndex] = useState(0)
+  const [flashcardCurrentId, setFlashcardCurrentId] = useState<string | null>(null)
+  const [flashcardDoneIds, setFlashcardDoneIds] = useState<string[]>([])
+  const [flashcardClock, setFlashcardClock] = useState(() => Date.now())
   const [flashcardAnswerShown, setFlashcardAnswerShown] = useState(false)
   const [flashcardSessionFeedback, setFlashcardSessionFeedback] = useState<FsrsRating | null>(null)
   const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
@@ -372,7 +381,6 @@ function App() {
     [currentSegment, lessonWords, scopedSentences, scopedWords],
   )
   const currentQuizResponse = currentQuiz ? quizResponses[currentQuiz.id] : undefined
-  const currentQuizHintLevel = currentQuiz ? quizHints[currentQuiz.id] ?? 0 : 0
   const answeredQuizStats = useMemo(() => getAnsweredQuizStats(quizResponses), [quizResponses])
   const isActiveLearningMode = studyMode === 'activeRecall'
   const isListeningMode = studyMode === 'listeningMode'
@@ -415,13 +423,43 @@ function App() {
         .filter((word): word is VocabWord => Boolean(word)),
     [flashcardQueueIds, words],
   )
-  const currentFlashcardWord = flashcardQueue[flashcardIndex]
+  const flashcardDoneSet = useMemo(() => new Set(flashcardDoneIds), [flashcardDoneIds])
+  const flashcardSessionCounts = useMemo(
+    () => getFlashcardSessionCounts(flashcardQueue, flashcardDoneSet, flashcardClock),
+    [flashcardClock, flashcardDoneSet, flashcardQueue],
+  )
+  const currentFlashcardWord = useMemo(
+    () => {
+      const selected =
+        flashcardCurrentId && !flashcardDoneSet.has(flashcardCurrentId)
+          ? flashcardQueue.find((word) => word.id === flashcardCurrentId)
+          : undefined
+      if (selected) return selected
+      if (flashcardAnswerShown || flashcardSessionFeedback) return undefined
+      return selectNextFlashcardWord(flashcardQueue, flashcardDoneSet, undefined, flashcardClock)
+    },
+    [
+      flashcardAnswerShown,
+      flashcardClock,
+      flashcardCurrentId,
+      flashcardDoneSet,
+      flashcardQueue,
+      flashcardSessionFeedback,
+    ],
+  )
+  const flashcardSessionComplete =
+    flashcardQueue.length > 0 && flashcardSessionCounts.done >= flashcardSessionCounts.total
 
   const buildFlashcardQueue = useCallback((mode: FlashcardQueueMode = 'mixed') => {
     const source = scopedWords.length > 0 ? scopedWords : words
     const limit = Math.max(1, userSettings.flashcardsPerDay || 50)
+    const now = Date.now()
     const due = source
-      .filter((word) => isFsrsCardDue(word))
+      .filter(
+        (word) =>
+          isFsrsCardDue(word, now) ||
+          (isFlashcardLearning(word) && fsrsDueTime(word) <= now + FLASHCARD_LEARN_AHEAD_MS),
+      )
       .sort((a, b) => fsrsDueTime(a) - fsrsDueTime(b))
     const fresh = source
       .filter(isNewFsrsCard)
@@ -437,7 +475,9 @@ function App() {
   const startFlashcards = useCallback((mode: FlashcardQueueMode = 'mixed', overrideWords?: VocabWord[]) => {
     const queue = overrideWords ?? buildFlashcardQueue(mode)
     setFlashcardQueueIds(queue.map((word) => word.id))
-    setFlashcardIndex(0)
+    setFlashcardDoneIds([])
+    setFlashcardCurrentId(selectNextFlashcardWord(queue, new Set())?.id ?? null)
+    setFlashcardClock(Date.now())
     setFlashcardAnswerShown(false)
     setFlashcardSessionFeedback(null)
     setScreen('flashcards')
@@ -447,6 +487,12 @@ function App() {
   const startSavedFlashcards = useCallback(() => {
     startFlashcards(userSettings.flashcardQueueMode ?? 'mixed')
   }, [startFlashcards, userSettings.flashcardQueueMode])
+
+  useEffect(() => {
+    if (screen !== 'flashcards') return
+    const interval = window.setInterval(() => setFlashcardClock(Date.now()), 15_000)
+    return () => window.clearInterval(interval)
+  }, [screen])
 
   const recordReaderInteraction = useCallback(() => {
     lastReaderActivityTimeRef.current = Date.now()
@@ -479,7 +525,6 @@ function App() {
     setLesson(nextLesson)
     setCurrentStepIndex(0)
     setQuizResponses({})
-    setQuizHints({})
     setShowReviewPrompt(false)
     setReviewCardIndex(0)
     setReviewAnswerShown(false)
@@ -523,7 +568,6 @@ function App() {
         }
       }
       setQuizResponses({})
-      setQuizHints({})
       setFsrsRatings({})
       const useBrowserTts = activePack?.browserTts
 
@@ -798,10 +842,9 @@ function App() {
     stopActiveChoiceSpeech()
     activeAnswerLockRef.current = currentQuiz.id
     const correct = value === currentQuiz.correctValue
-    const hintCount = quizHints[currentQuiz.id] ?? 0
     setQuizResponses((responses) => ({
       ...responses,
-      [currentQuiz.id]: { selected: value, correct, hintCount },
+      [currentQuiz.id]: { selected: value, correct, hintCount: 0 },
     }))
     // TODO: Persist richer recall analytics: correctWithoutHint, correctWithHint, wrong, revealed.
     await recordQuizAnswer(currentQuiz.wordId, correct)
@@ -812,28 +855,7 @@ function App() {
         void pocketAudioRef.current?.play()
       }, 350)
     }
-  }, [currentQuiz, isActiveLearningMode, quizHints, quizResponses, refresh, stopActiveChoiceSpeech])
-
-  const revealCurrentQuiz = useCallback(async () => {
-    if (
-      !currentQuiz ||
-      quizResponses[currentQuiz.id] ||
-      activeAnswerLockRef.current === currentQuiz.id
-    ) {
-      return
-    }
-    stopActiveChoiceSpeech()
-    activeAnswerLockRef.current = currentQuiz.id
-    const hintCount = quizHints[currentQuiz.id] ?? 0
-    setQuizResponses((responses) => ({
-      ...responses,
-      [currentQuiz.id]: { correct: false, revealed: true, hintCount },
-    }))
-    // TODO: Store revealed/skipped separately from wrong answers when quiz analytics grow.
-    await recordQuizAnswer(currentQuiz.wordId, false)
-    setLastSummary('Revealed.')
-    await refresh()
-  }, [currentQuiz, quizHints, quizResponses, refresh, stopActiveChoiceSpeech])
+  }, [currentQuiz, isActiveLearningMode, quizResponses, refresh, stopActiveChoiceSpeech])
 
   const continueCurrentQuiz = useCallback(() => {
     stopActiveChoiceSpeech()
@@ -909,23 +931,6 @@ function App() {
     isActiveLearningMode,
   ])
 
-  const replayCurrentQuiz = useCallback(() => {
-    if (!pocketAudioRef.current || !currentSegment) return
-    pocketAudioRef.current.currentTime = Math.max(0, currentSegment.startSeconds - 5)
-    void pocketAudioRef.current.play()
-  }, [currentSegment])
-
-  const handleQuizHint = useCallback(() => {
-    if (!currentQuiz || currentQuizResponse) return
-    const level = quizHints[currentQuiz.id] ?? 0
-    if (level === 0) replayCurrentQuiz()
-    if (level >= 2) {
-      void revealCurrentQuiz()
-      return
-    }
-    setQuizHints((hints) => ({ ...hints, [currentQuiz.id]: level + 1 }))
-  }, [currentQuiz, currentQuizResponse, quizHints, replayCurrentQuiz, revealCurrentQuiz])
-
   const replayCurrentSegment = useCallback(() => {
     const audio = pocketAudioRef.current
     if (!audio || !currentSegment) return
@@ -969,18 +974,36 @@ function App() {
   const handleStandaloneFlashcardRate = useCallback((rating: FsrsRating) => {
     if (!currentFlashcardWord || flashcardSessionFeedback) return
     const wordId = currentFlashcardWord.id
+    const ratedWord = currentFlashcardWord
     setFlashcardSessionFeedback(rating)
     window.setTimeout(() => {
       void (async () => {
-        await rateWordFsrs(wordId, rating)
-        await refresh()
-        setLastSummary(`Rated ${currentFlashcardWord.word} ${fsrsLabel(rating)}.`)
+        const updatedWord = await rateWordFsrs(wordId, rating)
+        const now = Date.now()
+        const nextDoneIds = getNextFlashcardDoneIds(
+          flashcardDoneIds,
+          wordId,
+          updatedWord,
+          rating,
+          now,
+        )
+        const updatedQueue = flashcardQueue.map((word) => (word.id === wordId ? updatedWord ?? word : word))
+        const nextWord = selectNextFlashcardWord(updatedQueue, new Set(nextDoneIds), wordId, now)
+        if (updatedWord) {
+          setWords((currentWords) =>
+            currentWords.map((word) => (word.id === wordId ? updatedWord : word)),
+          )
+        }
+        setFlashcardDoneIds(nextDoneIds)
+        setFlashcardClock(now)
+        setFlashcardCurrentId(nextWord?.id ?? null)
+        void refresh()
+        setLastSummary(`Rated ${ratedWord.word} ${fsrsLabel(rating)}.`)
         setFlashcardAnswerShown(false)
         setFlashcardSessionFeedback(null)
-        setFlashcardIndex((index) => Math.min(index + 1, flashcardQueueIds.length))
       })()
     }, 500)
-  }, [currentFlashcardWord, flashcardQueueIds.length, flashcardSessionFeedback, refresh])
+  }, [currentFlashcardWord, flashcardDoneIds, flashcardQueue, flashcardSessionFeedback, refresh])
 
   const togglePlayback = useCallback(() => {
     const audio = pocketAudioRef.current
@@ -1138,9 +1161,6 @@ function App() {
       } else if (currentQuiz && currentQuizResponse && event.key === 'Enter') {
         event.preventDefault()
         continueCurrentQuiz()
-      } else if (currentQuiz && !currentQuizResponse && pressed === 'h') {
-        event.preventDefault()
-        handleQuizHint()
       }
     }
 
@@ -1156,7 +1176,6 @@ function App() {
     fsrsRatings,
     handleFlashcardRate,
     handleQuizAnswer,
-    handleQuizHint,
     hotkeys,
     isSentenceContinueSection,
     currentReviewWord,
@@ -1791,13 +1810,9 @@ function App() {
 
           <section className="flashcards-workspace">
             <div className="flashcards-meta">
-              <span>
-                {flashcardQueue.length > 0
-                  ? `Card ${Math.min(flashcardIndex + 1, flashcardQueue.length)} / ${flashcardQueue.length}`
-                  : 'No queue loaded'}
-              </span>
               <span>{hotkeys.choiceA.toUpperCase()} flip, then Again · {hotkeys.choiceB.toUpperCase()} Good</span>
             </div>
+            <FlashcardQueueCounters counts={flashcardSessionCounts} />
 
             {currentFlashcardWord ? (
               <FlashcardReview
@@ -1813,8 +1828,20 @@ function App() {
               />
             ) : (
               <div className="review-complete flashcards-complete">
-                <strong>{flashcardQueue.length > 0 ? 'Flashcard queue complete.' : 'Choose a flashcard queue.'}</strong>
-                <span>Choose your queue in Settings, then use Flashcards from the top banner.</span>
+                <strong>
+                  {flashcardSessionComplete
+                    ? 'Flashcard queue complete.'
+                    : flashcardQueue.length > 0
+                      ? 'Short-step cards are waiting.'
+                      : 'Choose a flashcard queue.'}
+                </strong>
+                <span>
+                  {flashcardSessionComplete
+                    ? 'Every card in this set is scheduled for tomorrow or later.'
+                    : flashcardQueue.length > 0
+                      ? 'Learning cards will come back within the 5-minute learn-ahead window.'
+                      : 'Choose your queue in Settings, then use Flashcards from the top banner.'}
+                </span>
               </div>
             )}
           </section>
@@ -2223,7 +2250,6 @@ function App() {
                         response={currentQuizResponse}
                         word={studyWord}
                         sentence={studySentence}
-                        hintLevel={currentQuizHintLevel}
                         showPinyin={showPinyin}
                         showEnglish={showEnglish}
                         choiceKeys={[
@@ -2234,9 +2260,7 @@ function App() {
                         ]}
                         onAnswer={handleQuizAnswer}
                         onContinue={continueCurrentQuiz}
-                        onHint={handleQuizHint}
-                        onReplay={replayCurrentQuiz}
-                        onReveal={revealCurrentQuiz}
+                        onReplay={replayCurrentSegment}
                       />
                     ) : (
                       <>
@@ -2434,7 +2458,15 @@ function App() {
                       <ControllerHUD
                         choiceA={hotkeys.choiceA}
                         choiceB={hotkeys.choiceB}
-                        labelA={showReviewPrompt ? (reviewAnswerShown ? 'Again' : 'Flip') : currentQuiz?.options[0]?.label ?? 'Continue'}
+                        labelA={
+                          showReviewPrompt
+                            ? reviewAnswerShown
+                              ? 'Again'
+                              : 'Flip'
+                            : isSentenceContinueSection
+                              ? 'I understand'
+                              : currentQuiz?.options[0]?.label ?? 'Continue'
+                        }
                         labelB={showReviewPrompt ? (reviewAnswerShown ? 'Good' : '') : (currentQuiz?.options.length ?? 0) > 1 ? currentQuiz!.options[1].label : ''}
                       />
                     )}
@@ -3083,29 +3115,23 @@ function ActiveRecallCard({
   response,
   word,
   sentence,
-  hintLevel,
   showPinyin,
   showEnglish,
   choiceKeys,
   onAnswer,
   onContinue,
-  onHint,
   onReplay,
-  onReveal,
 }: {
   quiz: ActiveQuiz
   response?: QuizResponse
   word?: VocabWord
   sentence?: Sentence
-  hintLevel: number
   showPinyin: boolean
   showEnglish: boolean
   choiceKeys: string[]
   onAnswer: (value: string) => void | Promise<void>
   onContinue: () => void
-  onHint: () => void
   onReplay: () => void
-  onReveal: () => void | Promise<void>
 }) {
   const [choicesReady, setChoicesReady] = useState(() => getChoiceRevealDelay(quiz.stage) === 0)
   const cue = getActiveRecallCue(quiz, word, sentence)
@@ -3113,7 +3139,7 @@ function ActiveRecallCard({
   const correctLabel = getQuizAnswerLabel(quiz, word)
   const selectedLabel = getSelectedAnswerLabel(quiz, response)
   const feedbackText = getQuizFeedbackText(quiz, word, correctLabel)
-  const showPinyinHint = ((showPinyin && quiz.stage === 'easy') || hintLevel >= 2) && Boolean(word?.pinyin)
+  const showPinyinHint = showPinyin && quiz.stage === 'easy' && Boolean(word?.pinyin)
   const answered = Boolean(response)
   const isSentenceContinue = quiz.kind === 'sentence-zh-en'
   const canChoose = !answered && choicesReady && quiz.options.length > 1
@@ -3168,24 +3194,18 @@ function ActiveRecallCard({
         <div className="recall-options single-reveal">
           <button type="button" className="primary" onClick={onContinue}>
             <kbd>{choiceKeys[0]?.toUpperCase() ?? 'A'}</kbd>
-            Continue
+            I understand
           </button>
         </div>
       )}
-      {!answered && choicesReady && !isSentenceContinue && (
-        <div className={`recall-options ${canChoose ? '' : 'single-reveal'}`}>
-          {canChoose ? (
-            quiz.options.map((option, index) => (
-              <button key={option.value} type="button" onClick={() => onAnswer(option.value)}>
-                <kbd>{choiceKeys[index]?.toUpperCase() ?? index + 1}</kbd>
-                {option.label}
-              </button>
-            ))
-          ) : (
-            <button type="button" onClick={onReveal}>
-              Reveal answer
+      {!answered && choicesReady && !isSentenceContinue && canChoose && (
+        <div className="recall-options">
+          {quiz.options.map((option, index) => (
+            <button key={option.value} type="button" onClick={() => onAnswer(option.value)}>
+              <kbd>{choiceKeys[index]?.toUpperCase() ?? index + 1}</kbd>
+              {option.label}
             </button>
-          )}
+          ))}
         </div>
       )}
       <div className="recall-support">
@@ -3193,18 +3213,6 @@ function ActiveRecallCard({
           <span className="ui-icon icon-replay" aria-hidden="true" />
           Replay
         </button>
-        {!answered && !isSentenceContinue && (
-          <button type="button" onClick={onHint}>
-            <span className="ui-icon icon-hint" aria-hidden="true" />
-            {hintLevel === 0 ? 'Hint' : hintLevel === 1 ? 'Show pinyin' : 'Reveal'}
-          </button>
-        )}
-        {!answered && !isSentenceContinue && (
-          <button type="button" onClick={onReveal}>
-            <span className="ui-icon icon-reveal" aria-hidden="true" />
-            Reveal
-          </button>
-        )}
         {answered && (
           <button type="button" className="primary" onClick={onContinue}>
             Continue
@@ -3212,6 +3220,29 @@ function ActiveRecallCard({
         )}
       </div>
     </motion.section>
+  )
+}
+
+function FlashcardQueueCounters({ counts }: { counts: FlashcardSessionCounts }) {
+  return (
+    <div className="flashcard-queue-counts" aria-label="Flashcard queue counts">
+      <span className="queue-count queue-new">
+        <strong>{counts.new}</strong>
+        New
+      </span>
+      <span className="queue-count queue-learning">
+        <strong>{counts.learning}</strong>
+        Learning
+      </span>
+      <span className="queue-count queue-review">
+        <strong>{counts.review}</strong>
+        Review
+      </span>
+      <span className="queue-count queue-done">
+        <strong>{counts.done}</strong>
+        Done
+      </span>
+    </div>
   )
 }
 
@@ -3313,6 +3344,110 @@ const fsrsRatingsForUi: Array<{ value: FsrsRating; label: string }> = [
   { value: 'hard', label: 'Hard' },
   { value: 'easy', label: 'Easy' },
 ]
+
+function selectNextFlashcardWord(
+  words: VocabWord[],
+  doneIds: Set<string>,
+  previousId?: string,
+  now = Date.now(),
+): VocabWord | undefined {
+  const pending = words.filter((word) => !doneIds.has(word.id))
+  const groups = [
+    pending
+      .filter((word) => isFlashcardLearning(word) && fsrsDueTime(word) <= now)
+      .sort(sortFlashcardByDueThenLesson),
+    pending
+      .filter((word) => !isFlashcardLearning(word) && !isNewFsrsCard(word) && isFsrsCardDue(word, now))
+      .sort(sortFlashcardByDueThenLesson),
+    pending
+      .filter(isNewFsrsCard)
+      .sort(sortFlashcardByLesson),
+    pending
+      .filter((word) => isFlashcardLearning(word) && fsrsDueTime(word) <= now + FLASHCARD_LEARN_AHEAD_MS)
+      .sort(sortFlashcardByDueThenLesson),
+  ]
+
+  for (const group of groups) {
+    const available = uniqueWordsById(group)
+    if (available.length === 0) continue
+    return available.find((word) => word.id !== previousId) ?? available[0]
+  }
+
+  return undefined
+}
+
+function getFlashcardSessionCounts(
+  words: VocabWord[],
+  doneIds: Set<string>,
+  now = Date.now(),
+): FlashcardSessionCounts {
+  const counts: FlashcardSessionCounts = {
+    new: 0,
+    learning: 0,
+    review: 0,
+    done: 0,
+    total: words.length,
+  }
+
+  for (const word of words) {
+    if (doneIds.has(word.id)) {
+      counts.done += 1
+    } else if (isNewFsrsCard(word)) {
+      counts.new += 1
+    } else if (isFlashcardLearning(word)) {
+      counts.learning += 1
+    } else if (isFsrsCardDue(word, now)) {
+      counts.review += 1
+    } else {
+      counts.done += 1
+    }
+  }
+
+  return counts
+}
+
+function getNextFlashcardDoneIds(
+  currentDoneIds: string[],
+  wordId: string,
+  updatedWord: VocabWord | undefined,
+  rating: FsrsRating,
+  now = Date.now(),
+): string[] {
+  const nextDoneIds = new Set(currentDoneIds)
+  if (updatedWord && isFlashcardSessionDone(updatedWord, rating, now)) {
+    nextDoneIds.add(wordId)
+  } else {
+    nextDoneIds.delete(wordId)
+  }
+  return [...nextDoneIds]
+}
+
+function isFlashcardSessionDone(word: VocabWord, rating: FsrsRating, now = Date.now()): boolean {
+  if (rating === 'easy') return true
+  if (isNewFsrsCard(word) || isFlashcardLearning(word)) return false
+  return !isFsrsCardDue(word, now)
+}
+
+function isFlashcardLearning(word: VocabWord): boolean {
+  return word.fsrsState === 'Learning' || word.fsrsState === 'Relearning'
+}
+
+function sortFlashcardByDueThenLesson(a: VocabWord, b: VocabWord): number {
+  return fsrsDueTime(a) - fsrsDueTime(b) || sortFlashcardByLesson(a, b)
+}
+
+function sortFlashcardByLesson(a: VocabWord, b: VocabWord): number {
+  return (a.lessonNumber ?? 9999) - (b.lessonNumber ?? 9999) || a.word.localeCompare(b.word)
+}
+
+function uniqueWordsById(words: VocabWord[]): VocabWord[] {
+  const seen = new Set<string>()
+  return words.filter((word) => {
+    if (seen.has(word.id)) return false
+    seen.add(word.id)
+    return true
+  })
+}
 
 function fsrsLabel(rating: FsrsRating): string {
   return fsrsRatingsForUi.find((item) => item.value === rating)?.label ?? rating

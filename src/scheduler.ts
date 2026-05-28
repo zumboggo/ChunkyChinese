@@ -17,6 +17,8 @@ export type FsrsDuePreview = Record<
 const scheduler = fsrs({
   request_retention: 0.9,
   enable_short_term: true,
+  learning_steps: ['1m', '5m'],
+  relearning_steps: ['1m', '5m'],
 })
 
 const ratingMap: Record<FsrsRating, Grade> = {

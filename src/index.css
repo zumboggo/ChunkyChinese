@@ -2140,6 +2140,52 @@ kbd {
   font-weight: 850;
 }
 
+.flashcard-queue-counts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.queue-count {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-height: 58px;
+  padding: 8px 6px;
+  border: 1px solid rgba(16, 35, 63, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--muted-navy);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.queue-count strong {
+  color: var(--navy);
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.queue-new {
+  border-color: rgba(59, 130, 246, 0.28);
+  background: rgba(219, 234, 254, 0.78);
+}
+
+.queue-learning {
+  border-color: rgba(239, 68, 68, 0.28);
+  background: rgba(254, 226, 226, 0.82);
+}
+
+.queue-review {
+  border-color: rgba(22, 163, 74, 0.24);
+  background: rgba(220, 252, 231, 0.82);
+}
+
+.queue-done {
+  border-color: rgba(100, 116, 139, 0.22);
+  background: rgba(241, 245, 249, 0.86);
+}
+
 .flashcard {
   display: grid;
   justify-items: center;
