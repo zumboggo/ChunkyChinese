@@ -39,6 +39,28 @@ import {
   isNewFsrsCard,
 } from './scheduler'
 
+type ProgressImportField =
+  | 'lastReviewedAt'
+  | 'seenCount'
+  | 'correctCount'
+  | 'wrongCount'
+  | 'listenedSeconds'
+  | 'fsrsDueAt'
+  | 'fsrsIntervalDays'
+  | 'fsrsEase'
+  | 'fsrsRepetitions'
+  | 'fsrsLapses'
+  | 'fsrsState'
+  | 'fsrsStability'
+  | 'fsrsDifficulty'
+  | 'fsrsLearningSteps'
+
+type ProgressImportFields = Partial<Record<ProgressImportField, boolean>>
+
+interface UpsertWordsOptions {
+  progressFields?: ProgressImportFields
+}
+
 const DB_NAME = 'chunky-chinese-vocab'
 const DB_VERSION = 7
 
@@ -423,22 +445,29 @@ export async function getPromptClip(promptId: string): Promise<AudioClip | undef
   )
 }
 
-export async function upsertWords(words: VocabWord[]): Promise<ImportSummary> {
+export async function upsertWords(words: VocabWord[], options: UpsertWordsOptions = {}): Promise<ImportSummary> {
   const db = await getDB()
   const tx = db.transaction('vocabWords', 'readwrite')
   let created = 0
   let updated = 0
+  const warnings: string[] = []
+  const explicitProgressFields = options.progressFields
+  const explicitProgressImport = explicitProgressFields
+    ? Object.values(explicitProgressFields).some(Boolean)
+    : false
 
   for (const word of words) {
     const existing = await tx.store.get(word.id)
     if (existing) {
       updated += 1
       const hasProgress = hasImportedProgress(word)
+      const shouldUseProgressField = (field: ProgressImportField) =>
+        explicitProgressFields ? Boolean(explicitProgressFields[field]) : hasProgress
       await tx.store.put({
         ...existing,
         word: word.word,
         meaning: word.meaning,
-        status: hasProgress ? word.status : existing.status,
+        status: shouldUseProgressField('fsrsState') ? word.status : existing.status,
         lessonNumber: word.lessonNumber ?? existing.lessonNumber,
         tags: word.tags?.length ? word.tags : existing.tags,
         partOfSpeech: word.partOfSpeech || existing.partOfSpeech,
@@ -447,17 +476,33 @@ export async function upsertWords(words: VocabWord[]): Promise<ImportSummary> {
         pinyin: word.pinyin || existing.pinyin,
         source: word.source || existing.source,
         notes: word.notes || existing.notes,
-        fsrsDueAt: word.fsrsDueAt || existing.fsrsDueAt,
-        fsrsIntervalDays: word.fsrsIntervalDays ?? existing.fsrsIntervalDays,
-        fsrsEase: word.fsrsEase ?? existing.fsrsEase,
-        fsrsRepetitions: word.fsrsRepetitions ?? existing.fsrsRepetitions,
-        fsrsLapses: word.fsrsLapses ?? existing.fsrsLapses,
+        fsrsDueAt: shouldUseProgressField('fsrsDueAt') ? word.fsrsDueAt || existing.fsrsDueAt : existing.fsrsDueAt,
+        fsrsIntervalDays: shouldUseProgressField('fsrsIntervalDays')
+          ? word.fsrsIntervalDays ?? existing.fsrsIntervalDays
+          : existing.fsrsIntervalDays,
+        fsrsEase: shouldUseProgressField('fsrsEase') ? word.fsrsEase ?? existing.fsrsEase : existing.fsrsEase,
+        fsrsRepetitions: shouldUseProgressField('fsrsRepetitions')
+          ? word.fsrsRepetitions ?? existing.fsrsRepetitions
+          : existing.fsrsRepetitions,
+        fsrsLapses: shouldUseProgressField('fsrsLapses') ? word.fsrsLapses ?? existing.fsrsLapses : existing.fsrsLapses,
+        fsrsState: shouldUseProgressField('fsrsState') ? word.fsrsState ?? existing.fsrsState : existing.fsrsState,
+        fsrsStability: shouldUseProgressField('fsrsStability')
+          ? word.fsrsStability ?? existing.fsrsStability
+          : existing.fsrsStability,
+        fsrsDifficulty: shouldUseProgressField('fsrsDifficulty')
+          ? word.fsrsDifficulty ?? existing.fsrsDifficulty
+          : existing.fsrsDifficulty,
+        fsrsLearningSteps: shouldUseProgressField('fsrsLearningSteps')
+          ? word.fsrsLearningSteps ?? existing.fsrsLearningSteps
+          : existing.fsrsLearningSteps,
         packIds: unique([...(existing.packIds ?? []), ...(word.packIds ?? [])]),
-        lastReviewedAt: word.lastReviewedAt || existing.lastReviewedAt,
-        seenCount: hasProgress ? word.seenCount : existing.seenCount,
-        correctCount: hasProgress ? word.correctCount : existing.correctCount,
-        wrongCount: hasProgress ? word.wrongCount : existing.wrongCount,
-        listenedSeconds: hasProgress ? word.listenedSeconds : existing.listenedSeconds,
+        lastReviewedAt: shouldUseProgressField('lastReviewedAt')
+          ? word.lastReviewedAt || existing.lastReviewedAt
+          : existing.lastReviewedAt,
+        seenCount: shouldUseProgressField('seenCount') ? word.seenCount : existing.seenCount,
+        correctCount: shouldUseProgressField('correctCount') ? word.correctCount : existing.correctCount,
+        wrongCount: shouldUseProgressField('wrongCount') ? word.wrongCount : existing.wrongCount,
+        listenedSeconds: shouldUseProgressField('listenedSeconds') ? word.listenedSeconds : existing.listenedSeconds,
         updatedAt: new Date().toISOString(),
       })
     } else {
@@ -467,7 +512,12 @@ export async function upsertWords(words: VocabWord[]): Promise<ImportSummary> {
   }
 
   await tx.done
-  return { created, updated, skipped: 0, warnings: [] }
+  if (updated > 0 && explicitProgressImport) {
+    warnings.push(
+      'CSV included review progress columns, so matching existing words updated those FSRS/progress fields. JSON backup remains the safest full-progress format.',
+    )
+  }
+  return { created, updated, skipped: 0, warnings }
 }
 
 export async function upsertSentences(sentences: Sentence[]): Promise<ImportSummary> {
@@ -504,7 +554,10 @@ export async function upsertSentences(sentences: Sentence[]): Promise<ImportSumm
 }
 
 export async function importVocabCsv(text: string, packId?: string): Promise<ImportSummary> {
-  return await upsertWords(vocabFromCsvRows(parseCsv(text), packId))
+  const rows = parseCsv(text)
+  return await upsertWords(vocabFromCsvRows(rows, packId), {
+    progressFields: detectProgressImportFields(rows),
+  })
 }
 
 export async function importSentencesCsv(text: string, packId?: string): Promise<ImportSummary> {
@@ -584,6 +637,13 @@ export async function recordEvent(event: Omit<ListeningEvent, 'id' | 'timestamp'
     id: `event:${crypto.randomUUID()}`,
     timestamp: new Date().toISOString(),
   })
+}
+
+export async function getReviewSignalEvents(): Promise<ListeningEvent[]> {
+  const db = await getDB()
+  return (await db.getAll('listeningEvents'))
+    .filter((event) => event.type === 'fsrs_rating' || event.type === 'quiz_answer')
+    .sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
 }
 
 export async function recordQuizAnswer(wordId: string, correct: boolean): Promise<void> {
@@ -738,6 +798,7 @@ export async function importClipPackFiles(files: FileList | File[]): Promise<Imp
   if (vocabFile) {
     const summary = await importVocabCsv(await vocabFile.text(), packId)
     importedWords = summary.created + summary.updated
+    warnings.push(...summary.warnings)
   } else {
     warnings.push('No vocab.csv found in clip pack.')
   }
@@ -840,6 +901,7 @@ export async function importHostedClipPack(
       packId,
     )
     importedWords = summary.created + summary.updated
+    warnings.push(...summary.warnings)
   }
   if (manifest.sentencesCsvPath) {
     const summary = await importSentencesCsv(
@@ -1620,11 +1682,40 @@ function hasImportedProgress(word: VocabWord): boolean {
       word.fsrsDueAt ||
       word.fsrsRepetitions ||
       word.fsrsIntervalDays ||
+      word.fsrsLapses ||
+      word.fsrsState ||
+      word.fsrsStability ||
+      word.fsrsDifficulty ||
+      word.fsrsLearningSteps ||
       word.seenCount ||
       word.correctCount ||
       word.wrongCount ||
       word.listenedSeconds,
   )
+}
+
+function detectProgressImportFields(rows: Record<string, string>[]): ProgressImportFields {
+  const headers = new Set(rows.flatMap((row) => Object.keys(row).map((key) => normalizeProgressHeader(key))))
+  return {
+    lastReviewedAt: headers.has('lastreviewedat'),
+    seenCount: headers.has('seencount'),
+    correctCount: headers.has('correctcount'),
+    wrongCount: headers.has('wrongcount'),
+    listenedSeconds: headers.has('listenedseconds'),
+    fsrsDueAt: headers.has('fsrsdueat') || headers.has('dueat'),
+    fsrsIntervalDays: headers.has('fsrsintervaldays') || headers.has('intervaldays'),
+    fsrsEase: headers.has('fsrsease') || headers.has('ease'),
+    fsrsRepetitions: headers.has('fsrsrepetitions') || headers.has('repetitions'),
+    fsrsLapses: headers.has('fsrslapses') || headers.has('lapses'),
+    fsrsState: headers.has('fsrsstate') || headers.has('state'),
+    fsrsStability: headers.has('fsrsstability') || headers.has('stability'),
+    fsrsDifficulty: headers.has('fsrsdifficulty') || headers.has('difficulty'),
+    fsrsLearningSteps: headers.has('fsrslearningsteps') || headers.has('learningsteps'),
+  }
+}
+
+function normalizeProgressHeader(value: string): string {
+  return value.trim().toLocaleLowerCase().replace(/[^a-z0-9]/g, '')
 }
 
 function isWordDueForReview(word: VocabWord, now: number): boolean {

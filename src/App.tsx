@@ -36,6 +36,7 @@ import {
   getHostedClipPackIndex,
   getPromptClip,
   getReaderProgress,
+  getReviewSignalEvents,
   importAudioFiles,
   importBackup,
   importClipPackFiles,
@@ -570,6 +571,7 @@ function App() {
       setQuizResponses({})
       setFsrsRatings({})
       const useBrowserTts = activePack?.browserTts
+      const activeRecallEvents = await getReviewSignalEvents()
 
       if (keptWords.length === 0) {
         const nextWords = scopedWords.length > 0 ? scopedWords : words
@@ -577,11 +579,13 @@ function App() {
         const nextLesson = useBrowserTts
           ? createLesson(nextWords, nextSentences, [], {
               activeRecall: true,
+              activeRecallEvents,
               newWordsLimit: remainingNewWordsToday,
             })
           : createPocketLesson(nextWords, nextSentences, audioClips, [], {
               pauseProfile,
               activeRecall: true,
+              activeRecallEvents,
               newWordsLimit: remainingNewWordsToday,
             })
         setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
@@ -596,6 +600,7 @@ function App() {
         const keptWordIds = keptWords.map(w => w.id)
         const nextLessonTargetWords = selectTargetWords(nextWords, [], {
           activeRecall: true,
+          activeRecallEvents,
           newWordsLimit: remainingNewWordsToday,
           keptWordIds,
         })
@@ -938,6 +943,49 @@ function App() {
     void audio.play()
   }, [currentSegment])
 
+  const replayActiveRecallQuestionAudio = useCallback(async () => {
+    if (!currentQuiz) {
+      replayCurrentSegment()
+      return
+    }
+    stopActiveChoiceSpeech()
+    const token = runToken.current + 1
+    runToken.current = token
+    pocketAudioRef.current?.pause()
+    audioRef.current?.pause()
+    window.speechSynthesis?.cancel()
+
+    const sentence = currentQuiz.sentenceId
+      ? sentences.find((candidate) => candidate.id === currentQuiz.sentenceId)
+      : undefined
+    const word = currentQuiz.wordId
+      ? words.find((candidate) => candidate.id === currentQuiz.wordId)
+      : undefined
+    const audioId = sentence?.audioSentenceId ?? word?.audioWordId
+    const text = sentence?.chinese ?? word?.word
+
+    if (audioId) {
+      const clip = await getAudioClip(audioId)
+      if (clip && runToken.current === token) {
+        const url = URL.createObjectURL(clip.blob)
+        const audio = new Audio(url)
+        audio.playbackRate = playbackRate
+        audioRef.current = audio
+        await new Promise<void>((resolve) => {
+          audio.addEventListener('ended', () => resolve(), { once: true })
+          audio.addEventListener('error', () => resolve(), { once: true })
+          audio.play().catch(() => resolve())
+        })
+        URL.revokeObjectURL(url)
+        return
+      }
+    }
+
+    if (text && 'speechSynthesis' in window && runToken.current === token) {
+      await speakUtterance(text, playbackRate, 'zh-CN')
+    }
+  }, [currentQuiz, playbackRate, replayCurrentSegment, sentences, stopActiveChoiceSpeech, words])
+
   const handleFsrsRating = useCallback(async (wordId: string, rating: FsrsRating) => {
     await rateWordFsrs(wordId, rating)
     const nextRatings = { ...fsrsRatings, [wordId]: rating }
@@ -1211,14 +1259,17 @@ function App() {
       const lessonWords = scopedWords.length > 0 ? scopedWords : words
       const lessonSentences = scopedSentences.length > 0 ? scopedSentences : sentences
       const useBrowserTts = activePack?.browserTts
+      const activeRecallEvents = studyMode === 'activeRecall' ? await getReviewSignalEvents() : undefined
       const nextLesson = useBrowserTts
         ? createLesson(lessonWords, lessonSentences, manualIds, {
             activeRecall: studyMode === 'activeRecall',
+            activeRecallEvents,
             ...selectionOptions,
           })
         : createPocketLesson(lessonWords, lessonSentences, audioClips, manualIds, {
             pauseProfile,
             activeRecall: studyMode === 'activeRecall',
+            activeRecallEvents,
             ...selectionOptions,
           })
       setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
@@ -2260,7 +2311,7 @@ function App() {
                         ]}
                         onAnswer={handleQuizAnswer}
                         onContinue={continueCurrentQuiz}
-                        onReplay={replayCurrentSegment}
+                        onReplay={() => void replayActiveRecallQuestionAudio()}
                       />
                     ) : (
                       <>

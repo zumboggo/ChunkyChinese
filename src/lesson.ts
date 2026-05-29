@@ -1,4 +1,4 @@
-import type { AudioClip, LessonPlan, LessonStep, Sentence, VocabWord } from './types'
+import type { AudioClip, LessonPlan, LessonStep, Sentence, VocabWord, ListeningEvent } from './types'
 import { fsrsDueTime, isFsrsCardDue, isNewFsrsCard } from './scheduler'
 
 export type PauseProfile = 'gentle' | 'normal' | 'fast' | 'challenge'
@@ -10,6 +10,7 @@ interface TargetSelectionOptions {
   newWordsLimit?: number
   allowExtraNew?: boolean
   keptWordIds?: string[]
+  activeRecallEvents?: ListeningEvent[]
 }
 
 interface PauseTimings {
@@ -242,6 +243,10 @@ export function selectTargetWords(
     return options.randomize ? weightedSampleWords(selected, 5) : selected.slice(0, 5)
   }
 
+  if (options.activeRecall && !options.keptWordIds) {
+    return selectActiveRecallTargetWords(words, options.activeRecallEvents ?? [])
+  }
+
   const keptWords = options.keptWordIds
     ? options.keptWordIds
         .map((id) => words.find((word) => word.id === id))
@@ -251,6 +256,16 @@ export function selectTargetWords(
   const filteredWords = options.keptWordIds
     ? words.filter((word) => !options.keptWordIds!.includes(word.id))
     : words
+
+  if (options.activeRecall && options.keptWordIds) {
+    const fillWords = selectActiveRecallTargetWords(filteredWords, options.activeRecallEvents ?? [])
+      .filter((word) => selected.length === 0 || !isNewFsrsCard(word))
+    for (const word of fillWords) {
+      if (selected.length >= 5) break
+      if (!selected.some((candidate) => candidate.id === word.id)) selected.push(word)
+    }
+    return selected.slice(0, 5)
+  }
 
   const candidates = dueCandidates(filteredWords)
   const newWordLimit = options.allowExtraNew ? 5 : Math.max(0, (options.newWordsLimit ?? 5) - selected.filter(isNewFsrsCard).length)
@@ -327,6 +342,40 @@ function sortedSampleWords(words: VocabWord[], count: number): VocabWord[] {
   return [...words].sort((a, b) => scoreWord(a) - scoreWord(b)).slice(0, count)
 }
 
+export function selectActiveRecallTargetWords(
+  words: VocabWord[],
+  events: ListeningEvent[] = [],
+): VocabWord[] {
+  const reviewed = words.filter((word) => !isNewFsrsCard(word))
+  const selected: VocabWord[] = []
+  const pick = (candidates: VocabWord[]) => {
+    for (const word of candidates) {
+      if (selected.length >= 5) return
+      if (!selected.some((candidate) => candidate.id === word.id)) selected.push(word)
+    }
+  }
+  const strongestStruggles = reviewed
+    .filter((word) => hasActiveRecallStruggleSignal(word, events))
+    .sort((a, b) => activeRecallStruggleScore(b, events) - activeRecallStruggleScore(a, events))
+
+  pick(strongestStruggles)
+
+  const weakDueFill = reviewed
+    .filter((word) => isWeakActiveRecallFill(word))
+    .sort((a, b) => activeRecallStruggleScore(b, events) - activeRecallStruggleScore(a, events))
+  pick(weakDueFill)
+
+  if (selected.length === 0) {
+    pick(
+      words
+        .filter(isNewFsrsCard)
+        .sort((a, b) => (a.lessonNumber ?? 9999) - (b.lessonNumber ?? 9999)),
+    )
+  }
+
+  return selected
+}
+
 function selectionWeight(word: VocabWord): number {
   const statusWeight = isNewFsrsCard(word)
     ? 100
@@ -346,6 +395,66 @@ function dueCandidates(words: VocabWord[]): VocabWord[] {
     if (isNewFsrsCard(word)) return false
     return isFsrsDue(word)
   })
+}
+
+function hasActiveRecallStruggleSignal(word: VocabWord, events: ListeningEvent[]): boolean {
+  return (
+    countAgainEvents(word.id, events).total > 0 ||
+    (word.fsrsLapses ?? 0) > 0 ||
+    (word.wrongCount ?? 0) > 0 ||
+    word.fsrsState === 'Learning' ||
+    word.fsrsState === 'Relearning'
+  )
+}
+
+function isWeakActiveRecallFill(word: VocabWord): boolean {
+  if (isNewFsrsCard(word)) return false
+  return (
+    isFsrsDue(word) ||
+    word.fsrsState === 'Learning' ||
+    word.fsrsState === 'Relearning' ||
+    (word.fsrsLapses ?? 0) > 0 ||
+    (word.fsrsIntervalDays ?? Number.POSITIVE_INFINITY) <= 2
+  )
+}
+
+function activeRecallStruggleScore(word: VocabWord, events: ListeningEvent[]): number {
+  const again = countAgainEvents(word.id, events)
+  const dueBonus = isFsrsDue(word) ? 24 + Math.min(overdueDays(word) * 10, 50) : 0
+  const learningBonus =
+    word.fsrsState === 'Relearning' ? 45 : word.fsrsState === 'Learning' ? 36 : 0
+  const lowIntervalBonus =
+    !isFsrsDue(word) && (word.fsrsIntervalDays ?? Number.POSITIVE_INFINITY) <= 2 ? 12 : 0
+  return (
+    again.recentScore +
+    again.total * 14 +
+    (word.fsrsLapses ?? 0) * 22 +
+    learningBonus +
+    dueBonus +
+    lowIntervalBonus +
+    (word.wrongCount ?? 0) * 4 -
+    (word.correctCount ?? 0) * 0.8
+  )
+}
+
+function countAgainEvents(wordId: string, events: ListeningEvent[]): { total: number; recentScore: number } {
+  const now = Date.now()
+  const sevenDays = 7 * 86_400_000
+  let total = 0
+  let recentScore = 0
+
+  for (const event of events) {
+    if (event.itemId !== wordId || event.type !== 'fsrs_rating' || event.rating !== 'again') continue
+    total += 1
+    const time = Date.parse(event.timestamp)
+    if (!Number.isFinite(time)) continue
+    const age = now - time
+    if (age >= 0 && age <= sevenDays) {
+      recentScore += 42 * (1 - age / sevenDays)
+    }
+  }
+
+  return { total, recentScore }
 }
 
 function isFsrsDue(word: VocabWord): boolean {

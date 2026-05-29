@@ -104,7 +104,13 @@ export function UniversalImporter({ onComplete }: { onComplete: (summary: string
         sentencesSummary = await upsertSentences(validSentences)
       }
 
-      onComplete(`Imported ${wordsSummary.created + wordsSummary.updated} words and ${sentencesSummary.created + sentencesSummary.updated} sentences.`)
+      const warningText = [...wordsSummary.warnings, ...sentencesSummary.warnings]
+      onComplete(
+        [
+          `Imported ${wordsSummary.created + wordsSummary.updated} words and ${sentencesSummary.created + sentencesSummary.updated} sentences.`,
+          ...warningText,
+        ].join(' '),
+      )
       setFile(null)
       setParsed(null)
     } catch (e) {
