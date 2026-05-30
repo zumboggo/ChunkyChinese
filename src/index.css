@@ -67,7 +67,8 @@ body::before {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -117,7 +118,8 @@ button:disabled {
 }
 
 input,
-select {
+select,
+textarea {
   width: 100%;
   min-height: 44px;
   border: 1px solid var(--border);
@@ -127,8 +129,14 @@ select {
   padding: 10px 12px;
 }
 
+textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
 button:focus-visible,
 input:focus-visible,
+textarea:focus-visible,
 select:focus-visible,
 .file-button:focus-within,
 .ghost-link:focus-visible {
@@ -2223,6 +2231,10 @@ kbd {
   font-weight: 800;
 }
 
+.flashcard-edit-button {
+  justify-self: center;
+}
+
 .fsrs-preview-buttons {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2269,6 +2281,42 @@ kbd {
 .flashcards-complete {
   justify-items: center;
   text-align: center;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(16, 35, 63, 0.38);
+  backdrop-filter: blur(10px);
+}
+
+.card-edit-dialog {
+  display: grid;
+  gap: 12px;
+  width: min(560px, 100%);
+  max-height: min(720px, calc(100svh - 36px));
+  overflow: auto;
+  padding: 18px;
+  border: 1px solid rgba(16, 35, 63, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: var(--shadow);
+}
+
+.card-edit-dialog label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted-navy);
+  font-size: 0.88rem;
+  font-weight: 900;
+}
+
+.card-edit-dialog .button-row {
+  justify-content: end;
 }
 
 @media (prefers-reduced-motion: reduce) {

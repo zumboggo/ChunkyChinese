@@ -63,6 +63,8 @@ interface UpsertWordsOptions {
 
 const DB_NAME = 'chunky-chinese-vocab'
 const DB_VERSION = 7
+const LMS_PACK_ID = 'lms-1000-azure'
+const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
 
 export const DEFAULT_HOTKEYS: HotkeySettings = {
   choiceA: '3',
@@ -245,6 +247,7 @@ export async function seedLmsWordsIfEmpty(): Promise<number> {
   const count = await db.count('vocabWords')
   if (count > 0) {
     await ensureLmsPackForExistingWords()
+    await applyBuiltInLmsCorrectionsIfNeeded()
     return 0
   }
 
@@ -252,7 +255,7 @@ export async function seedLmsWordsIfEmpty(): Promise<number> {
   if (!response.ok) return 0
   const rows = parseCsv(await response.text())
   const pack = makeClipPack({
-    id: 'lms-1000-azure',
+    id: LMS_PACK_ID,
     name: 'LMS 1000',
     source: 'hosted',
     language: 'zh-CN',
@@ -265,12 +268,13 @@ export async function seedLmsWordsIfEmpty(): Promise<number> {
   await upsertWords(words)
   await db.put('settings', new Date().toISOString(), 'lmsSeededAt')
   await db.put('settings', pack.id, 'activePackId')
+  await db.put('settings', LMS_TEXT_FIX_VERSION, 'lmsTextFixVersion')
   return words.length
 }
 
 async function ensureLmsPackForExistingWords(): Promise<void> {
   const db = await getDB()
-  const existingPack = await db.get('clipPacks', 'lms-1000-azure')
+  const existingPack = await db.get('clipPacks', LMS_PACK_ID)
   const activePackId = (await db.get('settings', 'activePackId')) as string | undefined
   if (existingPack && activePackId) return
 
@@ -278,7 +282,7 @@ async function ensureLmsPackForExistingWords(): Promise<void> {
   if (!response.ok) return
   const rows = parseCsv(await response.text())
   const pack = existingPack ?? makeClipPack({
-    id: 'lms-1000-azure',
+    id: LMS_PACK_ID,
     name: 'LMS 1000',
     source: 'hosted',
     language: 'zh-CN',
@@ -292,6 +296,49 @@ async function ensureLmsPackForExistingWords(): Promise<void> {
   if (!activePackId) {
     await db.put('settings', pack.id, 'activePackId')
   }
+}
+
+export async function applyBuiltInLmsCorrectionsIfNeeded(force = false): Promise<number> {
+  const db = await getDB()
+  const appliedVersion = (await db.get('settings', 'lmsTextFixVersion')) as string | undefined
+  if (!force && appliedVersion === LMS_TEXT_FIX_VERSION) return 0
+
+  const response = await fetch(`${import.meta.env.BASE_URL}seed/lms-vocab-1000.csv`)
+  if (!response.ok) return 0
+  const rows = parseCsv(await response.text())
+  const seedWords = vocabFromCsvRows(rows, LMS_PACK_ID)
+  const tx = db.transaction('vocabWords', 'readwrite')
+  let updated = 0
+  const now = new Date().toISOString()
+
+  for (const seedWord of seedWords) {
+    const existing = await tx.store.get(seedWord.id)
+    if (!existing || existing.userEditedAt) continue
+
+    const wordChanged = existing.word !== seedWord.word
+    const meaningChanged = existing.meaning !== seedWord.meaning
+    const pinyinChanged = (existing.pinyin ?? '') !== (seedWord.pinyin ?? '')
+    const notesChanged = (existing.notes ?? '') !== (seedWord.notes ?? '')
+    if (!wordChanged && !meaningChanged && !pinyinChanged && !notesChanged) continue
+
+    await tx.store.put({
+      ...existing,
+      word: seedWord.word,
+      meaning: seedWord.meaning,
+      pinyin: seedWord.pinyin || existing.pinyin,
+      notes: seedWord.notes || existing.notes,
+      audioWordId: wordChanged ? undefined : existing.audioWordId,
+      audioWordFilename: wordChanged ? undefined : existing.audioWordFilename,
+      audioMeaningId: meaningChanged ? undefined : existing.audioMeaningId,
+      audioMeaningFilename: meaningChanged ? undefined : existing.audioMeaningFilename,
+      updatedAt: now,
+    })
+    updated += 1
+  }
+
+  await tx.done
+  await db.put('settings', LMS_TEXT_FIX_VERSION, 'lmsTextFixVersion')
+  return updated
 }
 
 export async function getAllWords(): Promise<VocabWord[]> {
@@ -461,21 +508,24 @@ export async function upsertWords(words: VocabWord[], options: UpsertWordsOption
     if (existing) {
       updated += 1
       const hasProgress = hasImportedProgress(word)
+      const preserveUserText = Boolean(existing.userEditedAt)
       const shouldUseProgressField = (field: ProgressImportField) =>
         explicitProgressFields ? Boolean(explicitProgressFields[field]) : hasProgress
       await tx.store.put({
         ...existing,
-        word: word.word,
-        meaning: word.meaning,
+        word: preserveUserText ? existing.word : word.word,
+        meaning: preserveUserText ? existing.meaning : word.meaning,
         status: shouldUseProgressField('fsrsState') ? word.status : existing.status,
         lessonNumber: word.lessonNumber ?? existing.lessonNumber,
         tags: word.tags?.length ? word.tags : existing.tags,
         partOfSpeech: word.partOfSpeech || existing.partOfSpeech,
-        audioWordFilename: word.audioWordFilename || existing.audioWordFilename,
-        audioMeaningFilename: word.audioMeaningFilename || existing.audioMeaningFilename,
-        pinyin: word.pinyin || existing.pinyin,
+        audioWordFilename: preserveUserText ? existing.audioWordFilename : word.audioWordFilename || existing.audioWordFilename,
+        audioMeaningFilename: preserveUserText
+          ? existing.audioMeaningFilename
+          : word.audioMeaningFilename || existing.audioMeaningFilename,
+        pinyin: preserveUserText ? existing.pinyin : word.pinyin || existing.pinyin,
         source: word.source || existing.source,
-        notes: word.notes || existing.notes,
+        notes: preserveUserText ? existing.notes : word.notes || existing.notes,
         fsrsDueAt: shouldUseProgressField('fsrsDueAt') ? word.fsrsDueAt || existing.fsrsDueAt : existing.fsrsDueAt,
         fsrsIntervalDays: shouldUseProgressField('fsrsIntervalDays')
           ? word.fsrsIntervalDays ?? existing.fsrsIntervalDays
@@ -592,7 +642,46 @@ export async function importCsvTtsPack(
   return summary
 }
 
-export async function rateWordFsrs(wordId: string, rating: FsrsRating): Promise<VocabWord | undefined> {
+export interface RatingContext {
+  source?: ListeningEvent['source']
+  sessionId?: string
+}
+
+export async function updateWordText(
+  wordId: string,
+  patch: Pick<VocabWord, 'word' | 'pinyin' | 'meaning' | 'notes'>,
+): Promise<VocabWord | undefined> {
+  const db = await getDB()
+  const word = await db.get('vocabWords', wordId)
+  if (!word) return
+
+  const now = new Date().toISOString()
+  const nextWord = patch.word.trim()
+  const nextMeaning = patch.meaning.trim()
+  const wordChanged = nextWord !== word.word
+  const meaningChanged = nextMeaning !== word.meaning
+  const updatedWord: VocabWord = {
+    ...word,
+    word: nextWord || word.word,
+    pinyin: patch.pinyin?.trim() ?? '',
+    meaning: nextMeaning || word.meaning,
+    notes: patch.notes?.trim() ?? '',
+    audioWordId: wordChanged ? undefined : word.audioWordId,
+    audioWordFilename: wordChanged ? undefined : word.audioWordFilename,
+    audioMeaningId: meaningChanged ? undefined : word.audioMeaningId,
+    audioMeaningFilename: meaningChanged ? undefined : word.audioMeaningFilename,
+    userEditedAt: now,
+    updatedAt: now,
+  }
+  await db.put('vocabWords', updatedWord)
+  return updatedWord
+}
+
+export async function rateWordFsrs(
+  wordId: string,
+  rating: FsrsRating,
+  context: RatingContext = {},
+): Promise<VocabWord | undefined> {
   const db = await getDB()
   const tx = db.transaction(['vocabWords', 'listeningEvents'], 'readwrite')
   const word = await tx.objectStore('vocabWords').get(wordId)
@@ -620,6 +709,8 @@ export async function rateWordFsrs(wordId: string, rating: FsrsRating): Promise<
     itemId: wordId,
     correct: rating !== 'again',
     rating,
+    source: context.source,
+    sessionId: context.sessionId,
   })
   await tx.done
 

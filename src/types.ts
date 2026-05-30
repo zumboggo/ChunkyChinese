@@ -230,6 +230,7 @@ export interface VocabWord {
   packIds?: string[]
   createdAt: string
   updatedAt: string
+  userEditedAt?: string
   lastReviewedAt?: string
   seenCount: number
   correctCount: number
@@ -324,6 +325,8 @@ export interface ListeningEvent {
   seconds?: number
   correct?: boolean
   rating?: FsrsRating
+  source?: 'flashcards' | 'lesson-review' | 'active-recall'
+  sessionId?: string
 }
 
 export interface ImportSummary {

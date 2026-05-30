@@ -56,6 +56,7 @@ import {
   getReaderSessionStats,
   getUserSettings,
   saveUserSettings,
+  updateWordText,
   DEFAULT_USER_SETTINGS,
 } from './db'
 import { createLesson, createPocketLesson, selectTargetWords, type PauseProfile } from './lesson'
@@ -128,6 +129,14 @@ interface QuizResponse {
   skipped?: boolean
   revealed?: boolean
   hintCount?: number
+}
+
+interface CardEditDraft {
+  wordId: string
+  word: string
+  pinyin: string
+  meaning: string
+  notes: string
 }
 
 const emptyStats: DashboardStats = {
@@ -208,6 +217,8 @@ function App() {
   const [flashcardClock, setFlashcardClock] = useState(() => Date.now())
   const [flashcardAnswerShown, setFlashcardAnswerShown] = useState(false)
   const [flashcardSessionFeedback, setFlashcardSessionFeedback] = useState<FsrsRating | null>(null)
+  const [flashcardSessionId, setFlashcardSessionId] = useState<string | null>(null)
+  const [editingWord, setEditingWord] = useState<CardEditDraft | null>(null)
   const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
   const [todayReaderStats, setTodayReaderStats] = useState<ReaderSessionStats | null>(null)
   const lastReaderActivityTimeRef = useRef<number>(0)
@@ -478,6 +489,7 @@ function App() {
     setFlashcardQueueIds(queue.map((word) => word.id))
     setFlashcardDoneIds([])
     setFlashcardCurrentId(selectNextFlashcardWord(queue, new Set())?.id ?? null)
+    setFlashcardSessionId(`flashcards:${crypto.randomUUID()}`)
     setFlashcardClock(Date.now())
     setFlashcardAnswerShown(false)
     setFlashcardSessionFeedback(null)
@@ -488,6 +500,44 @@ function App() {
   const startSavedFlashcards = useCallback(() => {
     startFlashcards(userSettings.flashcardQueueMode ?? 'mixed')
   }, [startFlashcards, userSettings.flashcardQueueMode])
+
+  const openCardEditor = useCallback((word: VocabWord) => {
+    setEditingWord({
+      wordId: word.id,
+      word: word.word,
+      pinyin: word.pinyin ?? '',
+      meaning: word.meaning,
+      notes: word.notes ?? '',
+    })
+  }, [])
+
+  const saveCardEdit = useCallback(async () => {
+    if (!editingWord) return
+    const updatedWord = await updateWordText(editingWord.wordId, editingWord)
+    if (!updatedWord) {
+      setLastSummary('Could not find that card to edit.')
+      setEditingWord(null)
+      return
+    }
+    setWords((currentWords) =>
+      currentWords.map((word) => (word.id === updatedWord.id ? updatedWord : word)),
+    )
+    setSelectedReaderToken((token) =>
+      token?.word?.id === updatedWord.id ? { ...token, word: updatedWord } : token,
+    )
+    setEditingWord(null)
+    setLastSummary(`Saved edits to ${updatedWord.word}.`)
+    void refresh()
+  }, [editingWord, refresh])
+
+  const finishFlashcardSession = useCallback(() => {
+    setLastSummary('Flashcard session saved.')
+    setFlashcardCurrentId(null)
+    setFlashcardAnswerShown(false)
+    setFlashcardSessionFeedback(null)
+    setScreen('dashboard')
+    void refresh()
+  }, [refresh])
 
   useEffect(() => {
     if (screen !== 'flashcards') return
@@ -987,7 +1037,9 @@ function App() {
   }, [currentQuiz, playbackRate, replayCurrentSegment, sentences, stopActiveChoiceSpeech, words])
 
   const handleFsrsRating = useCallback(async (wordId: string, rating: FsrsRating) => {
-    await rateWordFsrs(wordId, rating)
+    await rateWordFsrs(wordId, rating, {
+      source: studyMode === 'activeRecall' ? 'active-recall' : 'lesson-review',
+    })
     const nextRatings = { ...fsrsRatings, [wordId]: rating }
     setFsrsRatings(nextRatings)
     setLastSummary(`Rated ${fsrsLabel(rating)}.`)
@@ -1004,7 +1056,7 @@ function App() {
         setReviewCardIndex(nextIndex >= 0 ? nextIndex : reviewCardIndex + 1)
       }
     }
-  }, [fsrsRatings, lessonWords, ratingWordIds, ratingWords, refresh, reviewCardIndex, showReviewPrompt])
+  }, [fsrsRatings, lessonWords, ratingWordIds, ratingWords, refresh, reviewCardIndex, showReviewPrompt, studyMode])
 
   const handleFlashcardRate = useCallback((wordId: string, rating: FsrsRating) => {
     if (flashcardFeedback) return
@@ -1026,7 +1078,10 @@ function App() {
     setFlashcardSessionFeedback(rating)
     window.setTimeout(() => {
       void (async () => {
-        const updatedWord = await rateWordFsrs(wordId, rating)
+        const updatedWord = await rateWordFsrs(wordId, rating, {
+          source: 'flashcards',
+          sessionId: flashcardSessionId ?? undefined,
+        })
         const now = Date.now()
         const nextDoneIds = getNextFlashcardDoneIds(
           flashcardDoneIds,
@@ -1051,7 +1106,7 @@ function App() {
         setFlashcardSessionFeedback(null)
       })()
     }, 500)
-  }, [currentFlashcardWord, flashcardDoneIds, flashcardQueue, flashcardSessionFeedback, refresh])
+  }, [currentFlashcardWord, flashcardDoneIds, flashcardQueue, flashcardSessionFeedback, flashcardSessionId, refresh])
 
   const togglePlayback = useCallback(() => {
     const audio = pocketAudioRef.current
@@ -1131,10 +1186,10 @@ function App() {
       if (screen === 'reader') {
         if (mappedIndex === 0) {
           event.preventDefault()
-          void moveReaderSentence(1)
+          setReaderShowEnglish((value) => !value)
         } else if (mappedIndex === 1) {
           event.preventDefault()
-          setReaderShowEnglish((value) => !value)
+          void moveReaderSentence(1)
         }
         return
       }
@@ -1874,6 +1929,7 @@ function App() {
                   void playFlashcardWordTwice(currentFlashcardWord)
                 }}
                 onRate={handleStandaloneFlashcardRate}
+                onEdit={() => openCardEditor(currentFlashcardWord)}
                 selectedRating={flashcardSessionFeedback}
                 choiceKeys={hotkeys}
               />
@@ -1893,6 +1949,11 @@ function App() {
                       ? 'Learning cards will come back within the 5-minute learn-ahead window.'
                       : 'Choose your queue in Settings, then use Flashcards from the top banner.'}
                 </span>
+                {flashcardSessionComplete && (
+                  <button type="button" className="primary" onClick={finishFlashcardSession}>
+                    Done
+                  </button>
+                )}
               </div>
             )}
           </section>
@@ -1920,6 +1981,7 @@ function App() {
             recordReaderInteraction()
             setSelectedReaderToken(token)
           }}
+          onEditWord={openCardEditor}
           onTogglePinyin={() => {
             recordReaderInteraction()
             setReaderShowPinyin((value) => !value)
@@ -2253,6 +2315,7 @@ function App() {
                                 void playFlashcardWordTwice(currentReviewWord)
                               }}
                               onRate={(rating) => handleFlashcardRate(currentReviewWord.id, rating)}
+                              onEdit={() => openCardEditor(currentReviewWord)}
                               selectedRating={flashcardFeedback}
                               choiceKeys={hotkeys}
                           />
@@ -2806,6 +2869,60 @@ function App() {
         </section>
       )}
 
+      {editingWord && (
+        <div className="modal-backdrop" role="presentation" onMouseDown={() => setEditingWord(null)}>
+          <form
+            className="card-edit-dialog"
+            onSubmit={(event) => {
+              event.preventDefault()
+              void saveCardEdit()
+            }}
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <div>
+              <h2>Edit card</h2>
+              <p>Fix card text without changing review history.</p>
+            </div>
+            <label>
+              Chinese
+              <input
+                value={editingWord.word}
+                onChange={(event) => setEditingWord({ ...editingWord, word: event.target.value })}
+              />
+            </label>
+            <label>
+              Pinyin
+              <input
+                value={editingWord.pinyin}
+                onChange={(event) => setEditingWord({ ...editingWord, pinyin: event.target.value })}
+              />
+            </label>
+            <label>
+              Meaning
+              <textarea
+                value={editingWord.meaning}
+                onChange={(event) => setEditingWord({ ...editingWord, meaning: event.target.value })}
+              />
+            </label>
+            <label>
+              Notes
+              <textarea
+                value={editingWord.notes}
+                onChange={(event) => setEditingWord({ ...editingWord, notes: event.target.value })}
+              />
+            </label>
+            <div className="button-row">
+              <button type="button" onClick={() => setEditingWord(null)}>
+                Cancel
+              </button>
+              <button type="submit" className="primary">
+                Save card
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+
       <footer className="status-bar" aria-live="polite">
         {lastSummary}
       </footer>
@@ -2838,6 +2955,7 @@ function ReaderMode({
   onNext,
   onPlay,
   onSelectToken,
+  onEditWord,
   onTogglePinyin,
   onToggleEnglish,
   activeSession,
@@ -2857,6 +2975,7 @@ function ReaderMode({
   onNext: () => void | Promise<void>
   onPlay: (sentence: ReaderSentence) => void | Promise<void>
   onSelectToken: (token: ReaderWordToken | null) => void
+  onEditWord: (word: VocabWord) => void
   onTogglePinyin: () => void
   onToggleEnglish: () => void
   activeSession: ReaderSession | null
@@ -2993,6 +3112,15 @@ function ReaderMode({
                   <strong>{selectedToken.word.word}</strong>
                   <span>{selectedToken.word.pinyin ?? selectedToken.pinyin}</span>
                   <p>{selectedToken.word.meaning}</p>
+                  <button
+                    type="button"
+                    className="ghost-answer"
+                    onClick={() => {
+                      if (selectedToken.word) onEditWord(selectedToken.word)
+                    }}
+                  >
+                    Edit card
+                  </button>
                   <dl className="stat-list compact-stats">
                     <div>
                       <dt>FSRS</dt>
@@ -3302,6 +3430,7 @@ function FlashcardReview({
   answerShown,
   onFlip,
   onRate,
+  onEdit,
   selectedRating,
   choiceKeys,
 }: {
@@ -3309,6 +3438,7 @@ function FlashcardReview({
   answerShown: boolean
   onFlip: () => void
   onRate: (rating: FsrsRating) => void | Promise<void>
+  onEdit?: () => void
   selectedRating?: FsrsRating | null
   choiceKeys?: HotkeySettings
 }) {
@@ -3328,6 +3458,11 @@ function FlashcardReview({
           </button>
         )}
       </div>
+      {onEdit && (
+        <button type="button" className="ghost-answer flashcard-edit-button" onClick={onEdit}>
+          Edit card
+        </button>
+      )}
       {answerShown && (
         <div className="review-buttons fsrs-preview-buttons">
           {fsrsRatingsForUi.map((rating) => (

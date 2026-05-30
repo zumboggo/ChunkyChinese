@@ -11,6 +11,8 @@
     "generate:reader-pack": "node scripts/generate-lms-reader-pack.mjs",
     "generate:reader-illustrations": "node scripts/generate-reader-illustrations.mjs",
     "generate:nav-icons": "node scripts/generate-nav-icons-ideogram.mjs",
+    "clean:lms-vocab": "node scripts/clean-lms-vocab.mjs --write",
+    "validate:lms-vocab": "node scripts/clean-lms-vocab.mjs",
     "verify:reader-pack": "node scripts/verify-reader-pack.mjs"
   },
   "dependencies": {

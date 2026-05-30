@@ -1,0 +1,864 @@
+{
+  "generatedAt": "2026-05-30T16:42:34.202Z",
+  "rowCount": 1000,
+  "updatedRows": 437,
+  "overrideCount": 69,
+  "exactDictionaryMatches": 931,
+  "missingDictionaryEntries": [],
+  "pinyinChanges": [
+    {
+      "word": "一样",
+      "before": "yīyàng",
+      "after": "yí yàng",
+      "source": "cedict"
+    },
+    {
+      "word": "一生",
+      "before": "yīshēng",
+      "after": "yì shēng",
+      "source": "cedict"
+    },
+    {
+      "word": "一边",
+      "before": "yībiān",
+      "after": "yì biān",
+      "source": "cedict"
+    },
+    {
+      "word": "一点",
+      "before": "yīdiǎn",
+      "after": "yì diǎn",
+      "source": "cedict"
+    },
+    {
+      "word": "动物",
+      "before": "dòngjù",
+      "after": "dòng wù",
+      "source": "cedict"
+    },
+    {
+      "word": "地方",
+      "before": "dìfang",
+      "after": "dì fāng",
+      "source": "cedict"
+    },
+    {
+      "word": "晚安",
+      "before": "wǎn&apos;ān",
+      "after": "wǎn ān",
+      "source": "cedict"
+    },
+    {
+      "word": "美",
+      "before": "méi",
+      "after": "měi",
+      "source": "cedict"
+    },
+    {
+      "word": "跟",
+      "before": "guìn",
+      "after": "gēn",
+      "source": "cedict"
+    },
+    {
+      "word": "身上",
+      "before": "shēnshang",
+      "after": "shēn shàng",
+      "source": "cedict"
+    },
+    {
+      "word": "这儿",
+      "before": "zhèr",
+      "after": "zhè ér",
+      "source": "cedict"
+    },
+    {
+      "word": "离开",
+      "before": "liūkāi",
+      "after": "lí kāi",
+      "source": "cedict"
+    },
+    {
+      "word": "的时侯",
+      "before": "de shí hóu",
+      "after": "de shí hòu",
+      "source": "context-override"
+    },
+    {
+      "word": "说过",
+      "before": "shuō guò",
+      "after": "shuō guo",
+      "source": "context-override"
+    },
+    {
+      "word": "一下",
+      "before": "yīxià",
+      "after": "yí xià",
+      "source": "cedict"
+    },
+    {
+      "word": "一些",
+      "before": "yīxiē",
+      "after": "yì xiē",
+      "source": "cedict"
+    },
+    {
+      "word": "一定",
+      "before": "yīdìng",
+      "after": "yí dìng",
+      "source": "cedict"
+    },
+    {
+      "word": "一会儿",
+      "before": "yīhuìr",
+      "after": "yí huì er",
+      "source": "cedict"
+    },
+    {
+      "word": "一起",
+      "before": "yīqǐ",
+      "after": "yì qǐ",
+      "source": "cedict"
+    },
+    {
+      "word": "一点儿",
+      "before": "yì diǎn ér",
+      "after": "yì diǎn er",
+      "source": "context-override"
+    },
+    {
+      "word": "事情",
+      "before": "shíxìng",
+      "after": "shì qíng",
+      "source": "cedict"
+    },
+    {
+      "word": "名字",
+      "before": "míngzi",
+      "after": "míng zì",
+      "source": "cedict"
+    },
+    {
+      "word": "告诉",
+      "before": "gàosu",
+      "after": "gào sù",
+      "source": "cedict"
+    },
+    {
+      "word": "外面",
+      "before": "miànlà",
+      "after": "wài miàn",
+      "source": "cedict"
+    },
+    {
+      "word": "对不起",
+      "before": "duìbuqǐ",
+      "after": "duì bù qǐ",
+      "source": "cedict"
+    },
+    {
+      "word": "意思",
+      "before": "yìsi",
+      "after": "yì sī",
+      "source": "cedict"
+    },
+    {
+      "word": "早上",
+      "before": "zǎoshang",
+      "after": "zǎo shàng",
+      "source": "cedict"
+    },
+    {
+      "word": "明白",
+      "before": "míngbai",
+      "after": "míng bái",
+      "source": "cedict"
+    },
+    {
+      "word": "晚上",
+      "before": "wǎnshang",
+      "after": "wǎn shàng",
+      "source": "cedict"
+    },
+    {
+      "word": "朋友",
+      "before": "péngyou",
+      "after": "péng yǒu",
+      "source": "cedict"
+    },
+    {
+      "word": "东西",
+      "before": "dōngxi",
+      "after": "dōng xī",
+      "source": "cedict"
+    },
+    {
+      "word": "的话",
+      "before": "de",
+      "after": "de huà",
+      "source": "context-override"
+    },
+    {
+      "word": "眼睛",
+      "before": "yǎnjing",
+      "after": "yǎn jīng",
+      "source": "cedict"
+    },
+    {
+      "word": "谢谢",
+      "before": "xièxie",
+      "after": "xiè xiè",
+      "source": "cedict"
+    },
+    {
+      "word": "头发",
+      "before": "tóufà",
+      "after": "tóu fa",
+      "source": "cedict"
+    },
+    {
+      "word": "钱包",
+      "before": "qiánbao",
+      "after": "qián bāo",
+      "source": "cedict"
+    },
+    {
+      "word": "犹太人",
+      "before": "yóulàirénisJew",
+      "after": "yóu tài rén",
+      "source": "cedict"
+    },
+    {
+      "word": "差不多",
+      "before": "chàbùduōshǎo",
+      "after": "chà bù duō",
+      "source": "cedict"
+    },
+    {
+      "word": "全世界",
+      "before": "quánshíjièshì",
+      "after": "quán shì jiè",
+      "source": "cedict"
+    },
+    {
+      "word": "关掉",
+      "before": "guāndǎi",
+      "after": "guān diào",
+      "source": "cedict"
+    },
+    {
+      "word": "管理",
+      "before": "guǎnlǐis",
+      "after": "guǎn lǐ",
+      "source": "cedict"
+    },
+    {
+      "word": "一说",
+      "before": "yì shuō",
+      "after": "yī shuō",
+      "source": "context-override"
+    },
+    {
+      "word": "还是",
+      "before": "háishi",
+      "after": "hái shì",
+      "source": "cedict"
+    },
+    {
+      "word": "时候",
+      "before": "shíhou",
+      "after": "shí hòu",
+      "source": "cedict"
+    },
+    {
+      "word": "一直",
+      "before": "yīzhí",
+      "after": "yì zhí",
+      "source": "cedict"
+    },
+    {
+      "word": "慢慢",
+      "before": "huǎnghuǎn",
+      "after": "màn màn",
+      "source": "cedict"
+    },
+    {
+      "word": "谁",
+      "before": "shéi",
+      "after": "shuí",
+      "source": "cedict"
+    },
+    {
+      "word": "哪个",
+      "before": "nǎge",
+      "after": "nǎ gè",
+      "source": "cedict"
+    },
+    {
+      "word": "多少",
+      "before": "duōshao",
+      "after": "duō shǎo",
+      "source": "cedict"
+    },
+    {
+      "word": "麻烦",
+      "before": "máfan",
+      "after": "má fán",
+      "source": "cedict"
+    },
+    {
+      "word": "悲伤",
+      "before": "sāngshāng",
+      "after": "bēi shāng",
+      "source": "cedict"
+    },
+    {
+      "word": "电脑",
+      "before": "jiàómáojī",
+      "after": "diàn nǎo",
+      "source": "cedict"
+    },
+    {
+      "word": "奶奶",
+      "before": "māma",
+      "after": "nǎi nai",
+      "source": "cedict"
+    },
+    {
+      "word": "爷爷",
+      "before": "yéya",
+      "after": "yé ye",
+      "source": "cedict"
+    },
+    {
+      "word": "怎么样",
+      "before": "zěnmeyàngishow",
+      "after": "zěn me yàng",
+      "source": "cedict"
+    },
+    {
+      "word": "慢慢地",
+      "before": "màn màn dì",
+      "after": "màn màn de",
+      "source": "context-override"
+    },
+    {
+      "word": "放在",
+      "before": "pánglàngzai",
+      "after": "fàng zài",
+      "source": "context-override"
+    },
+    {
+      "word": "课",
+      "before": "kē",
+      "after": "kè",
+      "source": "cedict"
+    },
+    {
+      "word": "那么",
+      "before": "ruòlà",
+      "after": "nà me",
+      "source": "cedict"
+    },
+    {
+      "word": "运气",
+      "before": "yùn qi",
+      "after": "yùn qì",
+      "source": "cedict"
+    },
+    {
+      "word": "清楚",
+      "before": "qīng chu",
+      "after": "qīng chǔ",
+      "source": "cedict"
+    },
+    {
+      "word": "笑话",
+      "before": "xiào hua",
+      "after": "xiào huà",
+      "source": "cedict"
+    },
+    {
+      "word": "护士",
+      "before": "hù shi",
+      "after": "hù shì",
+      "source": "cedict"
+    },
+    {
+      "word": "一个",
+      "before": "yīgè",
+      "after": "yí gè",
+      "source": "cedict"
+    },
+    {
+      "word": "故事",
+      "before": "gùshi",
+      "after": "gù shì",
+      "source": "cedict"
+    },
+    {
+      "word": "看看",
+      "before": "kànkan",
+      "after": "kàn kàn",
+      "source": "cedict"
+    },
+    {
+      "word": "聪明",
+      "before": "cōngmíng",
+      "after": "cōng ming",
+      "source": "cedict"
+    },
+    {
+      "word": "有时候",
+      "before": "yīnwèishì",
+      "after": "yǒu shí hòu",
+      "source": "cedict"
+    },
+    {
+      "word": "教",
+      "before": "jiāo",
+      "after": "jiào",
+      "source": "cedict"
+    },
+    {
+      "word": "第二",
+      "before": "dì&apos;èr",
+      "after": "dì èr",
+      "source": "cedict"
+    },
+    {
+      "word": "躲",
+      "before": "tǎo",
+      "after": "duǒ",
+      "source": "cedict"
+    },
+    {
+      "word": "想想",
+      "before": "xiǎngxiǎng",
+      "after": "xiǎng xiang",
+      "source": "context-override"
+    },
+    {
+      "word": "先生",
+      "before": "xiānsheng",
+      "after": "xiān shēng",
+      "source": "cedict"
+    },
+    {
+      "word": "来到",
+      "before": "láizàishànglài",
+      "after": "lái dào",
+      "source": "cedict"
+    },
+    {
+      "word": "真是",
+      "before": "zhēnshi",
+      "after": "zhēn shì",
+      "source": "cedict"
+    },
+    {
+      "word": "消息",
+      "before": "xiāoxi",
+      "after": "xiāo xī",
+      "source": "cedict"
+    },
+    {
+      "word": "女儿",
+      "before": "nǚ&apos;ér",
+      "after": "nǚ ér",
+      "source": "cedict"
+    },
+    {
+      "word": "可爱",
+      "before": "kě&apos;ài",
+      "after": "kě ài",
+      "source": "cedict"
+    },
+    {
+      "word": "点儿",
+      "before": "diǎnr",
+      "after": "diǎn er",
+      "source": "context-override"
+    },
+    {
+      "word": "一半",
+      "before": "yībàn",
+      "after": "yí bàn",
+      "source": "cedict"
+    },
+    {
+      "word": "嗯",
+      "before": "ǹg",
+      "after": "ńg",
+      "source": "context-override"
+    },
+    {
+      "word": "听听",
+      "before": "tīngtīng",
+      "after": "tīng ting",
+      "source": "context-override"
+    }
+  ],
+  "meaningChanges": [
+    {
+      "word": "大风",
+      "before": "strong wind",
+      "after": "gale",
+      "source": "cedict"
+    },
+    {
+      "word": "山顶",
+      "before": "mountaintop; summit",
+      "after": "hilltop",
+      "source": "cedict"
+    },
+    {
+      "word": "很多",
+      "before": "a lot; many",
+      "after": "many; a lot",
+      "source": "context-override"
+    },
+    {
+      "word": "住在",
+      "before": "to live in; to live at",
+      "after": "to live in",
+      "source": "context-override"
+    },
+    {
+      "word": "一开始",
+      "before": "at the beginning; from the start",
+      "after": "at first; from the beginning",
+      "source": "context-override"
+    },
+    {
+      "word": "等着",
+      "before": "to be waiting",
+      "after": "waiting; to wait",
+      "source": "context-override"
+    },
+    {
+      "word": "看着",
+      "before": "to look at; watching",
+      "after": "looking at; watching",
+      "source": "context-override"
+    },
+    {
+      "word": "笑着",
+      "before": "smiling; while laughing",
+      "after": "smiling; laughing",
+      "source": "context-override"
+    },
+    {
+      "word": "一",
+      "before": "one",
+      "after": "one; single",
+      "source": "cedict"
+    },
+    {
+      "word": "一下",
+      "before": "a moment",
+      "after": "a bit; a little",
+      "source": "cedict"
+    },
+    {
+      "word": "了",
+      "before": "completed action particle",
+      "after": "completed-action particle",
+      "source": "context-override"
+    },
+    {
+      "word": "事情",
+      "before": "circumstance; pinyin is shí xìng",
+      "after": "affair; matter",
+      "source": "cedict"
+    },
+    {
+      "word": "名字",
+      "before": "to take",
+      "after": "name",
+      "source": "cedict"
+    },
+    {
+      "word": "得",
+      "before": "structural particle; to get",
+      "after": "structural particle; to have to",
+      "source": "context-override"
+    },
+    {
+      "word": "从",
+      "before": "from",
+      "after": "from; through",
+      "source": "cedict"
+    },
+    {
+      "word": "房间",
+      "before": "America",
+      "after": "room",
+      "source": "cedict"
+    },
+    {
+      "word": "的话",
+      "before": "-hua is said",
+      "after": "if; in that case",
+      "source": "context-override"
+    },
+    {
+      "word": "犹太人",
+      "before": "h person; member of the Jewish people",
+      "after": "Jew",
+      "source": "cedict"
+    },
+    {
+      "word": "后来",
+      "before": "after that; subsequently",
+      "after": "afterwards; later",
+      "source": "cedict"
+    },
+    {
+      "word": "这不",
+      "before": "is this not; this is not",
+      "after": "this is not; isn't this",
+      "source": "context-override"
+    },
+    {
+      "word": "收",
+      "before": "to receive; to collect; to put away",
+      "after": "to receive; to collect",
+      "source": "cedict"
+    },
+    {
+      "word": "干",
+      "before": "to do",
+      "after": "to do; dry",
+      "source": "context-override"
+    },
+    {
+      "word": "放在",
+      "before": "to put down",
+      "after": "to put in; to put on",
+      "source": "context-override"
+    },
+    {
+      "word": "那个",
+      "before": "that",
+      "after": "that one; that thing",
+      "source": "cedict"
+    },
+    {
+      "word": "那么",
+      "before": "if",
+      "after": "like that; in that way",
+      "source": "cedict"
+    },
+    {
+      "word": "突然",
+      "before": "suddenly",
+      "after": "sudden; abrupt",
+      "source": "cedict"
+    },
+    {
+      "word": "因此",
+      "before": "therefore",
+      "after": "thus; consequently",
+      "source": "cedict"
+    },
+    {
+      "word": "于是",
+      "before": "so then",
+      "after": "thereupon; as a result",
+      "source": "cedict"
+    },
+    {
+      "word": "除了",
+      "before": "except for",
+      "after": "apart from; besides",
+      "source": "cedict"
+    },
+    {
+      "word": "记下",
+      "before": "to write down",
+      "after": "to write down; to note down",
+      "source": "context-override"
+    },
+    {
+      "word": "摆着",
+      "before": "to leave on display",
+      "after": "placed; arranged",
+      "source": "context-override"
+    },
+    {
+      "word": "随手",
+      "before": "casually",
+      "after": "conveniently; without extra trouble",
+      "source": "cedict"
+    },
+    {
+      "word": "舍不得",
+      "before": "unable to let go",
+      "after": "reluctant to part with",
+      "source": "context-override"
+    },
+    {
+      "word": "专心",
+      "before": "focused",
+      "after": "to focus one's attention; to concentrate on",
+      "source": "cedict"
+    },
+    {
+      "word": "惊讶",
+      "before": "surprised",
+      "after": "amazed; astonished",
+      "source": "cedict"
+    },
+    {
+      "word": "平静",
+      "before": "peaceful",
+      "after": "tranquil; undisturbed",
+      "source": "cedict"
+    },
+    {
+      "word": "摊位",
+      "before": "stall",
+      "after": "vendor's booth",
+      "source": "cedict"
+    },
+    {
+      "word": "新手",
+      "before": "newbie",
+      "after": "new hand; novice",
+      "source": "cedict"
+    },
+    {
+      "word": "等级",
+      "before": "level",
+      "after": "grade; rank",
+      "source": "cedict"
+    },
+    {
+      "word": "任务",
+      "before": "quest",
+      "after": "mission; assignment",
+      "source": "cedict"
+    },
+    {
+      "word": "本钱",
+      "before": "cost; original expense",
+      "after": "capital; asset",
+      "source": "cedict"
+    },
+    {
+      "word": "店主",
+      "before": "shopkeeper",
+      "after": "shop owner",
+      "source": "cedict"
+    },
+    {
+      "word": "愣住",
+      "before": "to be stunned",
+      "after": "to be stunned; to freeze",
+      "source": "context-override"
+    },
+    {
+      "word": "留着",
+      "before": "to keep; to leave kept",
+      "after": "to keep; to leave remaining",
+      "source": "context-override"
+    },
+    {
+      "word": "李贤",
+      "before": "Lee Hyun",
+      "after": "Li Xian; a name",
+      "source": "context-override"
+    },
+    {
+      "word": "李夏妍",
+      "before": "Lee Hayan",
+      "after": "Li Xiayan; a name",
+      "source": "context-override"
+    },
+    {
+      "word": "罗森海姆",
+      "before": "Rosenheim",
+      "after": "Rosenheim; a place name",
+      "source": "context-override"
+    },
+    {
+      "word": "塞拉堡",
+      "before": "Serabourg",
+      "after": "Sela Castle; a place name",
+      "source": "context-override"
+    },
+    {
+      "word": "扎哈布",
+      "before": "Zahab",
+      "after": "Zahab; a name",
+      "source": "context-override"
+    },
+    {
+      "word": "秘密职业",
+      "before": "hidden class",
+      "after": "secret profession",
+      "source": "context-override"
+    },
+    {
+      "word": "一个",
+      "before": "one",
+      "after": "a; an",
+      "source": "cedict"
+    },
+    {
+      "word": "伤心",
+      "before": "sad; heartbroken",
+      "after": "to grieve; to be broken-hearted",
+      "source": "cedict"
+    },
+    {
+      "word": "问问",
+      "before": "to ask",
+      "after": "to ask; to inquire",
+      "source": "context-override"
+    },
+    {
+      "word": "有时候",
+      "before": "Because; rán quē shì is Not enough",
+      "after": "sometimes",
+      "source": "cedict"
+    },
+    {
+      "word": "想法",
+      "before": "idea; thought",
+      "after": "way of thinking; opinion",
+      "source": "cedict"
+    },
+    {
+      "word": "想想",
+      "before": "think again; ponder",
+      "after": "to think about it",
+      "source": "context-override"
+    },
+    {
+      "word": "还要",
+      "before": "still want",
+      "after": "still need; also want",
+      "source": "context-override"
+    },
+    {
+      "word": "美国",
+      "before": "America",
+      "after": "United States; USA",
+      "source": "cedict"
+    },
+    {
+      "word": "点儿",
+      "before": "a little",
+      "after": "a little; a bit",
+      "source": "context-override"
+    },
+    {
+      "word": "听听",
+      "before": "to have a listen",
+      "after": "to listen; have a listen",
+      "source": "context-override"
+    }
+  ]
+}

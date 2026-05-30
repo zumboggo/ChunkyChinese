@@ -358,6 +358,7 @@ export function selectActiveRecallTargetWords(
     .filter((word) => hasActiveRecallStruggleSignal(word, events))
     .sort((a, b) => activeRecallStruggleScore(b, events) - activeRecallStruggleScore(a, events))
 
+  pick(recentFlashcardAgainWords(reviewed, events))
   pick(strongestStruggles)
 
   const weakDueFill = reviewed
@@ -374,6 +375,44 @@ export function selectActiveRecallTargetWords(
   }
 
   return selected
+}
+
+function recentFlashcardAgainWords(words: VocabWord[], events: ListeningEvent[]): VocabWord[] {
+  const latestBySession = new Map<string, number>()
+  for (const event of events) {
+    if (event.type !== 'fsrs_rating' || event.source !== 'flashcards' || !event.sessionId) continue
+    const time = Date.parse(event.timestamp)
+    if (!Number.isFinite(time)) continue
+    latestBySession.set(event.sessionId, Math.max(latestBySession.get(event.sessionId) ?? 0, time))
+  }
+
+  const recentSessionIds = new Set(
+    [...latestBySession.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 2)
+      .map(([sessionId]) => sessionId),
+  )
+  if (recentSessionIds.size === 0) return []
+
+  const scoreByWord = new Map<string, number>()
+  for (const event of events) {
+    if (
+      event.type !== 'fsrs_rating' ||
+      event.rating !== 'again' ||
+      event.source !== 'flashcards' ||
+      !event.sessionId ||
+      !recentSessionIds.has(event.sessionId)
+    ) {
+      continue
+    }
+    const time = Date.parse(event.timestamp)
+    const recency = Number.isFinite(time) ? time / 86_400_000 : 0
+    scoreByWord.set(event.itemId, (scoreByWord.get(event.itemId) ?? 0) + 1000 + recency)
+  }
+
+  return words
+    .filter((word) => (scoreByWord.get(word.id) ?? 0) > 0)
+    .sort((a, b) => (scoreByWord.get(b.id) ?? 0) - (scoreByWord.get(a.id) ?? 0))
 }
 
 function selectionWeight(word: VocabWord): number {
