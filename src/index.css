@@ -515,6 +515,67 @@ dt {
   backdrop-filter: var(--blur);
 }
 
+.panel-title-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: start;
+}
+
+.panel-title-row h2,
+.panel-title-row p {
+  margin-right: 0;
+}
+
+.cloud-sync-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.sync-pill {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.sync-unconfigured,
+.sync-error {
+  background: var(--warn);
+}
+
+.sync-signed-out,
+.sync-idle {
+  background: #64748b;
+}
+
+.sync-syncing,
+.sync-offline {
+  background: var(--mango);
+}
+
+.sync-synced {
+  background: #16a34a;
+}
+
+.magic-link-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+}
+
+.compact-stat-list {
+  gap: 8px;
+}
+
+.compact-stat-list dd {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
 .stat-list {
   display: grid;
   gap: 12px;

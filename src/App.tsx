@@ -70,6 +70,17 @@ import {
   type FsrsQueueBucket,
 } from './scheduler'
 import { UniversalImporter } from './UniversalImporter'
+import {
+  getCloudAuthState,
+  isSupabaseConfigured,
+  onCloudAuthChange,
+  signInWithGoogle,
+  signInWithMagicLink,
+  signOutOfCloud,
+  syncNow,
+  type CloudSyncResult,
+  type CloudSyncStatus,
+} from './supabaseSync'
 import type {
   AudioClip,
   ClipPack,
@@ -139,6 +150,13 @@ interface CardEditDraft {
   notes: string
 }
 
+interface CloudSyncUiState {
+  status: CloudSyncStatus
+  email: string
+  message: string
+  lastSyncedAt?: string
+}
+
 const emptyStats: DashboardStats = {
   counts: { new: 0, learning: 0, due: 0, scheduled: 0 },
   dueNow: 0,
@@ -175,6 +193,7 @@ function App() {
   const [userSettings, setUserSettings] = useState(DEFAULT_USER_SETTINGS)
   const [newWordsPerDay, setNewWordsPerDay] = useState(15)
   const [hotkeysEditing, setHotkeysEditing] = useState(false)
+  const [initialDataReady, setInitialDataReady] = useState(false)
   const [lesson, setLesson] = useState<LessonPlan | null>(null)
   const [ratingWordIds, setRatingWordIds] = useState<string[]>([])
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
@@ -221,6 +240,14 @@ function App() {
   const [editingWord, setEditingWord] = useState<CardEditDraft | null>(null)
   const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
   const [todayReaderStats, setTodayReaderStats] = useState<ReaderSessionStats | null>(null)
+  const [cloudUserEmail, setCloudUserEmail] = useState<string | null>(null)
+  const [cloudSync, setCloudSync] = useState<CloudSyncUiState>({
+    status: isSupabaseConfigured ? 'signed-out' : 'unconfigured',
+    email: '',
+    message: isSupabaseConfigured
+      ? 'Email link works now. Google needs its Supabase provider enabled.'
+      : 'Supabase sync is not configured yet.',
+  })
   const lastReaderActivityTimeRef = useRef<number>(0)
   const runToken = useRef(0)
   const activeAnswerLockRef = useRef<string | null>(null)
@@ -236,6 +263,7 @@ function App() {
   const playModeRef = useRef<HTMLElement | null>(null)
   const readerAutoPlayKeyRef = useRef<string | null>(null)
   const flashcardFeedbackTimeoutRef = useRef<number | null>(null)
+  const syncTimerRef = useRef<number | null>(null)
 
   const refresh = useCallback(async () => {
     const [
@@ -283,6 +311,64 @@ function App() {
     setStats(nextStats)
   }, [])
 
+  const handleCloudSyncNow = useCallback(async (silent = false) => {
+    if (!isSupabaseConfigured) {
+      setCloudSync((current) => ({
+        ...current,
+        status: 'unconfigured',
+        message: 'Supabase sync is not configured yet.',
+      }))
+      return
+    }
+    if (!cloudUserEmail) {
+      setCloudSync((current) => ({
+        ...current,
+        status: 'signed-out',
+        message: 'Email link works now. Google needs its Supabase provider enabled.',
+      }))
+      return
+    }
+    if (!navigator.onLine) {
+      setCloudSync((current) => ({
+        ...current,
+        status: 'offline',
+        message: 'Offline. Changes will sync when this device reconnects.',
+      }))
+      return
+    }
+
+    setCloudSync((current) => ({
+      ...current,
+      status: 'syncing',
+      message: silent ? current.message : 'Syncing progress...',
+    }))
+    try {
+      const result = await syncNow()
+      setCloudSync((current) => ({
+        ...current,
+        status: 'synced',
+        lastSyncedAt: result.syncedAt,
+        message: formatCloudSyncResult(result),
+      }))
+      await refresh()
+    } catch (error) {
+      setCloudSync((current) => ({
+        ...current,
+        status: 'error',
+        message: error instanceof Error ? error.message : 'Could not sync progress.',
+      }))
+    }
+  }, [cloudUserEmail, refresh])
+
+  const queueCloudSync = useCallback(() => {
+    if (!isSupabaseConfigured || !cloudUserEmail) return
+    if (syncTimerRef.current) window.clearTimeout(syncTimerRef.current)
+    syncTimerRef.current = window.setTimeout(() => {
+      syncTimerRef.current = null
+      void handleCloudSyncNow(true)
+    }, 1200)
+  }, [cloudUserEmail, handleCloudSyncNow])
+
   useEffect(() => {
     async function start() {
       const seeded = await seedLmsWordsIfEmpty()
@@ -297,9 +383,83 @@ function App() {
       const nextHotkeys = await getHotkeys()
       setHotkeys(nextHotkeys)
       await refresh()
+      setInitialDataReady(true)
     }
     void start()
   }, [refresh])
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function loadAuth() {
+      try {
+        const state = await getCloudAuthState()
+        if (cancelled) return
+        const email = state.user?.email ?? null
+        setCloudUserEmail(email)
+        setCloudSync((current) => ({
+          ...current,
+          status: !state.configured ? 'unconfigured' : email ? 'idle' : 'signed-out',
+          message: !state.configured
+            ? 'Supabase sync is not configured yet.'
+            : email
+              ? 'Signed in. Sync is ready.'
+              : 'Email link works now. Google needs its Supabase provider enabled.',
+        }))
+      } catch (error) {
+        if (cancelled) return
+        setCloudSync((current) => ({
+          ...current,
+          status: 'error',
+          message: error instanceof Error ? error.message : 'Could not load sync sign-in.',
+        }))
+      }
+    }
+
+    void loadAuth()
+    const unsubscribe = onCloudAuthChange((state) => {
+      const email = state.user?.email ?? null
+      setCloudUserEmail(email)
+      setCloudSync((current) => ({
+        ...current,
+        status: !state.configured ? 'unconfigured' : email ? 'idle' : 'signed-out',
+        message: !state.configured
+          ? 'Supabase sync is not configured yet.'
+          : email
+            ? 'Signed in. Sync is ready.'
+            : 'Email link works now. Google needs its Supabase provider enabled.',
+      }))
+    })
+    return () => {
+      cancelled = true
+      unsubscribe()
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!cloudUserEmail || !initialDataReady) return
+    void handleCloudSyncNow(true)
+  }, [cloudUserEmail, handleCloudSyncNow, initialDataReady])
+
+  useEffect(() => {
+    function handleOnline() {
+      void handleCloudSyncNow(true)
+    }
+    function handleOffline() {
+      setCloudSync((current) => ({
+        ...current,
+        status: 'offline',
+        message: 'Offline. Changes will sync when this device reconnects.',
+      }))
+    }
+    window.addEventListener('online', handleOnline)
+    window.addEventListener('offline', handleOffline)
+    return () => {
+      window.removeEventListener('online', handleOnline)
+      window.removeEventListener('offline', handleOffline)
+      if (syncTimerRef.current) window.clearTimeout(syncTimerRef.current)
+    }
+  }, [handleCloudSyncNow])
 
   useEffect(() => {
     return () => {
@@ -527,8 +687,9 @@ function App() {
     )
     setEditingWord(null)
     setLastSummary(`Saved edits to ${updatedWord.word}.`)
+    queueCloudSync()
     void refresh()
-  }, [editingWord, refresh])
+  }, [editingWord, queueCloudSync, refresh])
 
   const finishFlashcardSession = useCallback(() => {
     setLastSummary('Flashcard session saved.')
@@ -905,12 +1066,13 @@ function App() {
     await recordQuizAnswer(currentQuiz.wordId, correct)
     setLastSummary(correct ? 'Correct.' : 'Not quite.')
     await refresh()
+    queueCloudSync()
     if (!isActiveLearningMode) {
       window.setTimeout(() => {
         void pocketAudioRef.current?.play()
       }, 350)
     }
-  }, [currentQuiz, isActiveLearningMode, quizResponses, refresh, stopActiveChoiceSpeech])
+  }, [currentQuiz, isActiveLearningMode, queueCloudSync, quizResponses, refresh, stopActiveChoiceSpeech])
 
   const continueCurrentQuiz = useCallback(() => {
     stopActiveChoiceSpeech()
@@ -1044,6 +1206,7 @@ function App() {
     setFsrsRatings(nextRatings)
     setLastSummary(`Rated ${fsrsLabel(rating)}.`)
     await refresh()
+    queueCloudSync()
     const ratingIds =
       ratingWordIds.length > 0 ? ratingWordIds : lessonWords.map((word) => word.id)
     const completeSet = ratingIds.length > 0 && ratingIds.every((id) => nextRatings[id])
@@ -1056,7 +1219,7 @@ function App() {
         setReviewCardIndex(nextIndex >= 0 ? nextIndex : reviewCardIndex + 1)
       }
     }
-  }, [fsrsRatings, lessonWords, ratingWordIds, ratingWords, refresh, reviewCardIndex, showReviewPrompt, studyMode])
+  }, [fsrsRatings, lessonWords, queueCloudSync, ratingWordIds, ratingWords, refresh, reviewCardIndex, showReviewPrompt, studyMode])
 
   const handleFlashcardRate = useCallback((wordId: string, rating: FsrsRating) => {
     if (flashcardFeedback) return
@@ -1101,12 +1264,13 @@ function App() {
         setFlashcardClock(now)
         setFlashcardCurrentId(nextWord?.id ?? null)
         void refresh()
+        queueCloudSync()
         setLastSummary(`Rated ${ratedWord.word} ${fsrsLabel(rating)}.`)
         setFlashcardAnswerShown(false)
         setFlashcardSessionFeedback(null)
       })()
     }, 500)
-  }, [currentFlashcardWord, flashcardDoneIds, flashcardQueue, flashcardSessionFeedback, flashcardSessionId, refresh])
+  }, [currentFlashcardWord, flashcardDoneIds, flashcardQueue, flashcardSessionFeedback, flashcardSessionId, queueCloudSync, refresh])
 
   const togglePlayback = useCallback(() => {
     const audio = pocketAudioRef.current
@@ -1128,7 +1292,8 @@ function App() {
     })
     await deferWordsAfterListening(lessonWords.map((word) => word.id), 1)
     await refresh()
-  }, [lessonWords, refresh, renderedLesson])
+    queueCloudSync()
+  }, [lessonWords, queueCloudSync, refresh, renderedLesson])
 
   const completeListeningLessonAndStartNext = useCallback(async () => {
     if (!renderedLesson) return
@@ -1528,6 +1693,58 @@ function App() {
     const summary = await importBackup(await file.text())
     setLastSummary(formatSummary(summary))
     await refresh()
+    queueCloudSync()
+  }
+
+  async function handleGoogleSignIn() {
+    try {
+      setCloudSync((current) => ({ ...current, status: 'syncing', message: 'Opening Google sign-in...' }))
+      await signInWithGoogle()
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Could not start Google sign-in.'
+      setCloudSync((current) => ({
+        ...current,
+        status: 'error',
+        message: message.toLocaleLowerCase().includes('provider')
+          ? 'Google needs its Supabase provider enabled. Use email link for now.'
+          : message,
+      }))
+    }
+  }
+
+  async function handleMagicLinkSignIn() {
+    try {
+      await signInWithMagicLink(cloudSync.email)
+      setCloudSync((current) => ({
+        ...current,
+        status: 'signed-out',
+        message: 'Check your email for the sign-in link.',
+      }))
+    } catch (error) {
+      setCloudSync((current) => ({
+        ...current,
+        status: 'error',
+        message: error instanceof Error ? error.message : 'Could not send sign-in link.',
+      }))
+    }
+  }
+
+  async function handleCloudSignOut() {
+    try {
+      await signOutOfCloud()
+      setCloudUserEmail(null)
+      setCloudSync((current) => ({
+        ...current,
+        status: 'signed-out',
+        message: 'Signed out. Local progress is still saved on this device.',
+      }))
+    } catch (error) {
+      setCloudSync((current) => ({
+        ...current,
+        status: 'error',
+        message: error instanceof Error ? error.message : 'Could not sign out.',
+      }))
+    }
   }
 
   async function handleAudioImport(files: FileList | null) {
@@ -2008,10 +2225,81 @@ function App() {
           </div>
 
           <div className="import-grid">
+            <section className="panel cloud-sync-panel">
+              <div className="panel-title-row">
+                <div>
+                  <h2>Cloud sync</h2>
+                  <p>Sync vocab progress and card edits across your signed-in devices.</p>
+                </div>
+                <span className={`sync-pill sync-${cloudSync.status}`}>
+                  {syncStatusLabel(cloudSync.status)}
+                </span>
+              </div>
+              {cloudUserEmail ? (
+                <>
+                  <dl className="stat-list compact-stat-list">
+                    <div>
+                      <dt>Account</dt>
+                      <dd>{cloudUserEmail}</dd>
+                    </div>
+                    <div>
+                      <dt>Last sync</dt>
+                      <dd>{cloudSync.lastSyncedAt ? formatRelativeTime(cloudSync.lastSyncedAt) : 'Not yet'}</dd>
+                    </div>
+                  </dl>
+                  <div className="button-row">
+                    <button
+                      type="button"
+                      className="primary"
+                      disabled={cloudSync.status === 'syncing'}
+                      onClick={() => void handleCloudSyncNow(false)}
+                    >
+                      {cloudSync.status === 'syncing' ? 'Syncing...' : 'Sync now'}
+                    </button>
+                    <button type="button" onClick={() => void handleCloudSignOut()}>
+                      Sign out
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="button-row">
+                    <button
+                      type="button"
+                      className="primary"
+                      disabled={!isSupabaseConfigured || cloudSync.status === 'syncing'}
+                      onClick={() => void handleGoogleSignIn()}
+                    >
+                      Continue with Google
+                    </button>
+                  </div>
+                  <div className="magic-link-row">
+                    <input
+                      type="email"
+                      placeholder="Email for magic link"
+                      value={cloudSync.email}
+                      disabled={!isSupabaseConfigured}
+                      onChange={(event) =>
+                        setCloudSync((current) => ({ ...current, email: event.target.value }))
+                      }
+                    />
+                    <button
+                      type="button"
+                      disabled={!isSupabaseConfigured || cloudSync.status === 'syncing'}
+                      onClick={() => void handleMagicLinkSignIn()}
+                    >
+                      Send link
+                    </button>
+                  </div>
+                </>
+              )}
+              <small>{cloudSync.message}</small>
+            </section>
             <UniversalImporter
               onComplete={async (summary) => {
                 setLastSummary(summary)
                 await refresh()
+                queueCloudSync()
               }}
             />
             <section className="panel hosted-pack">
@@ -3522,6 +3810,39 @@ function formatSummary(summary: ImportSummary): string {
   if (summary.linkedAudio !== undefined) parts.push(`${summary.linkedAudio} audio links`)
   if (summary.warnings.length > 0) parts.push(`${summary.warnings.length} warnings`)
   return parts.join(', ')
+}
+
+function formatCloudSyncResult(result: CloudSyncResult): string {
+  const parts = [
+    `${result.pushedWords} word updates sent`,
+    `${result.pulledWords} word updates received`,
+    `${result.pushedEvents} events sent`,
+    `${result.pulledEvents} events received`,
+  ]
+  return `Synced. ${parts.join(', ')}.`
+}
+
+function syncStatusLabel(status: CloudSyncStatus): string {
+  if (status === 'unconfigured') return 'Setup needed'
+  if (status === 'signed-out') return 'Signed out'
+  if (status === 'syncing') return 'Syncing'
+  if (status === 'synced') return 'Synced'
+  if (status === 'offline') return 'Offline'
+  if (status === 'error') return 'Check sync'
+  return 'Ready'
+}
+
+function formatRelativeTime(value: string): string {
+  const time = Date.parse(value)
+  if (!Number.isFinite(time)) return 'Unknown'
+  const seconds = Math.max(0, Math.round((Date.now() - time) / 1000))
+  if (seconds < 60) return 'Just now'
+  const minutes = Math.round(seconds / 60)
+  if (minutes < 60) return `${minutes} min ago`
+  const hours = Math.round(minutes / 60)
+  if (hours < 24) return `${hours} hr ago`
+  const days = Math.round(hours / 24)
+  return `${days} day${days === 1 ? '' : 's'} ago`
 }
 
 const fsrsRatingsForUi: Array<{ value: FsrsRating; label: string }> = [

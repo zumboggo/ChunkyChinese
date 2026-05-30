@@ -66,6 +66,11 @@ const DB_VERSION = 7
 const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
 
+export interface SyncMetadata {
+  userId?: string
+  lastSyncedAt?: string
+}
+
 export const DEFAULT_HOTKEYS: HotkeySettings = {
   choiceA: '3',
   choiceB: '4',
@@ -355,6 +360,12 @@ export async function getAllSentences(): Promise<Sentence[]> {
   )
 }
 
+export async function getAllListeningEvents(): Promise<ListeningEvent[]> {
+  return (await (await getDB()).getAll('listeningEvents')).sort(
+    (a, b) => Date.parse(a.timestamp) - Date.parse(b.timestamp),
+  )
+}
+
 export async function getAllAudioClips(): Promise<AudioClip[]> {
   return await (await getDB()).getAll('audioClips')
 }
@@ -382,6 +393,15 @@ export async function getUserSettings(): Promise<UserSettings> {
 
 export async function saveUserSettings(settings: UserSettings): Promise<void> {
   await (await getDB()).put('settings', settings, 'userSettings')
+}
+
+export async function getSyncMetadata(): Promise<SyncMetadata> {
+  const saved = (await (await getDB()).get('settings', 'syncMetadata')) as SyncMetadata | undefined
+  return saved ?? {}
+}
+
+export async function saveSyncMetadata(metadata: SyncMetadata): Promise<void> {
+  await (await getDB()).put('settings', metadata, 'syncMetadata')
 }
 
 export async function awardCoins(amount: number): Promise<void> {
@@ -735,6 +755,26 @@ export async function getReviewSignalEvents(): Promise<ListeningEvent[]> {
   return (await db.getAll('listeningEvents'))
     .filter((event) => event.type === 'fsrs_rating' || event.type === 'quiz_answer')
     .sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
+}
+
+export async function putSyncedWords(words: VocabWord[]): Promise<void> {
+  if (words.length === 0) return
+  const db = await getDB()
+  const tx = db.transaction('vocabWords', 'readwrite')
+  for (const word of words) {
+    await tx.store.put(word)
+  }
+  await tx.done
+}
+
+export async function putSyncedListeningEvents(events: ListeningEvent[]): Promise<void> {
+  if (events.length === 0) return
+  const db = await getDB()
+  const tx = db.transaction('listeningEvents', 'readwrite')
+  for (const event of events) {
+    await tx.store.put(event)
+  }
+  await tx.done
 }
 
 export async function recordQuizAnswer(wordId: string, correct: boolean): Promise<void> {
