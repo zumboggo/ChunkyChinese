@@ -2025,6 +2025,41 @@ kbd {
   display: none;
 }
 
+.reader-resume-panel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  padding: clamp(16px, 3vw, 24px);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--card);
+  box-shadow: 0 18px 48px rgba(16, 35, 63, 0.08);
+}
+
+.reader-resume-button {
+  min-width: min(220px, 42vw);
+  min-height: 74px;
+  font-size: clamp(1.25rem, 3vw, 2rem);
+}
+
+.reader-resume-panel div {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.reader-resume-panel strong {
+  color: var(--navy);
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+}
+
+.reader-resume-panel span {
+  color: var(--muted);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
 .reader-book-list {
   display: grid;
   gap: 10px;
@@ -2143,6 +2178,23 @@ kbd {
   gap: 10px;
   color: var(--muted);
   font-weight: 850;
+}
+
+.reader-progress-bar {
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(100, 116, 139, 0.16);
+}
+
+.reader-progress-bar span {
+  display: block;
+  height: 100%;
+  min-width: 8px;
+  border-radius: inherit;
+  background:
+    linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 180ms ease;
 }
 
 .reader-reading-area {
@@ -2586,6 +2638,14 @@ kbd {
 
   .reader-sentence {
     min-height: 140px;
+  }
+
+  .reader-resume-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .reader-resume-button {
+    width: 100%;
   }
 
   .study-stage {

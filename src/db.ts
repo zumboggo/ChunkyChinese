@@ -137,6 +137,7 @@ interface ChunkyDB extends DBSchema {
 }
 
 let dbPromise: Promise<IDBPDatabase<ChunkyDB>> | undefined
+let bundledDictionaryPromise: Promise<Map<string, DictionaryEntry>> | undefined
 
 export function getDB(): Promise<IDBPDatabase<ChunkyDB>> {
   if (!dbPromise) {
@@ -243,8 +244,8 @@ export async function downloadDictionary(
 }
 
 export async function lookupDictionary(simplified: string): Promise<DictionaryEntry | undefined> {
-  const entry = await (await getDB()).get('dictionary', simplified)
-  return entry ? normalizeDictionaryEntry(entry as RawDictionaryEntry) : undefined
+  const dictionary = await loadBundledDictionary()
+  return dictionary.get(simplified)
 }
 
 export async function seedLmsWordsIfEmpty(): Promise<number> {
@@ -1168,6 +1169,24 @@ export async function getReaderProgress(
   return await (await getDB()).get('readerProgress', readerProgressId(packId, bookId))
 }
 
+export async function getAllReaderProgress(): Promise<ReaderProgress[]> {
+  return (await (await getDB()).getAll('readerProgress')).sort(
+    (a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt),
+  )
+}
+
+export async function getLatestReaderProgress(
+  books: ReaderBook[],
+): Promise<ReaderProgress | undefined> {
+  const bookMap = new Map(books.map((book) => [book.id, book]))
+  return (await getAllReaderProgress()).find((progress) => {
+    const book = bookMap.get(progress.bookId)
+    if (!book || book.packId !== progress.packId) return false
+    const sentenceCount = book.stories.flatMap((story) => story.sentences).length
+    return progress.sentenceIndex >= 0 && progress.sentenceIndex < sentenceCount
+  })
+}
+
 export async function saveReaderProgress(progress: Omit<ReaderProgress, 'id' | 'updatedAt'>): Promise<void> {
   await (await getDB()).put(
     'readerProgress',
@@ -1177,6 +1196,16 @@ export async function saveReaderProgress(progress: Omit<ReaderProgress, 'id' | '
       updatedAt: new Date().toISOString(),
     },
   )
+}
+
+export async function putSyncedReaderProgress(progressRows: ReaderProgress[]): Promise<void> {
+  if (progressRows.length === 0) return
+  const db = await getDB()
+  const tx = db.transaction('readerProgress', 'readwrite')
+  for (const progress of progressRows) {
+    await tx.store.put(progress)
+  }
+  await tx.done
 }
 
 function readerSessionId(bookId: string, startedAt: string): string {
@@ -1775,16 +1804,13 @@ type RawDictionaryEntry = Omit<DictionaryEntry, 'english'> & {
 
 const DICTIONARY_URLS = [
   `${import.meta.env.BASE_URL}dictionary/cedict.json`,
-  'https://cdn.jsdelivr.net/npm/cedict-json/cedict.json',
-  'https://unpkg.com/cedict-json/cedict.json',
-  'https://unpkg.com/cedict-json@1.3.20251213/cedict.json',
 ]
 
 async function fetchDictionary(): Promise<Response> {
   let lastError = 'unknown error'
   for (const url of DICTIONARY_URLS) {
     try {
-      const response = await fetch(url, { cache: 'no-store' })
+      const response = await fetch(url)
       if (response.ok) return response
       lastError = `${url} returned HTTP ${response.status}`
     } catch (error) {
@@ -1792,6 +1818,21 @@ async function fetchDictionary(): Promise<Response> {
     }
   }
   throw new Error(`Failed to download dictionary. ${lastError}`)
+}
+
+async function loadBundledDictionary(): Promise<Map<string, DictionaryEntry>> {
+  if (!bundledDictionaryPromise) {
+    bundledDictionaryPromise = (async () => {
+      const response = await fetchDictionary()
+      const entries = ((await response.json()) as RawDictionaryEntry[]).map(normalizeDictionaryEntry)
+      const dictionary = new Map<string, DictionaryEntry>()
+      for (const entry of entries) {
+        dictionary.set(entry.simplified, entry)
+      }
+      return dictionary
+    })()
+  }
+  return bundledDictionaryPromise
 }
 
 function normalizeDictionaryEntry(entry: RawDictionaryEntry): DictionaryEntry {

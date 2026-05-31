@@ -21,16 +21,16 @@ const DEFAULT_ENV = path.join(
 const PACK_DIR = path.join(ROOT, 'public', 'reader-packs', 'lms-books')
 const BOOK_DIR = path.join(PACK_DIR, 'books')
 const IMAGE_ROOT = path.join(PACK_DIR, 'images')
-const MODEL = 'black-forest-labs/flux-schnell'
 
 const args = parseArgs(process.argv.slice(2))
 loadEnv(path.resolve(args.env ?? DEFAULT_ENV))
 const token = process.env.REPLICATE_API_TOKEN?.trim()
 if (!token) throw new Error(`REPLICATE_API_TOKEN is missing. Checked ${args.env ?? DEFAULT_ENV}`)
 
+const MODEL = args.model ?? (args.perSentenceSdxl ? 'stability-ai/sdxl' : 'black-forest-labs/flux-schnell')
 const modelVersion = await resolveModelVersion(MODEL)
 const books = loadBooks()
-const total = books.reduce((sum, book) => sum + Math.ceil(flattenSentences(book).length / 2), 0)
+const total = books.reduce((sum, book) => sum + plannedImageCount(book), 0)
 let completed = 0
 
 for (const book of books) {
@@ -41,10 +41,11 @@ for (const book of books) {
 
   const sentences = flattenSentences(book)
   const illustrations = []
-  for (let index = 0; index < sentences.length; index += 2) {
-    const group = sentences.slice(index, index + 2)
-    const imageIndex = Math.floor(index / 2) + 1
-    const filename = `illustration-${String(imageIndex).padStart(3, '0')}.webp`
+  for (let index = 0; index < sentences.length; index += args.perSentenceSdxl ? 1 : 2) {
+    const group = args.perSentenceSdxl ? [sentences[index]] : sentences.slice(index, index + 2)
+    const sentenceNumber = index + 1
+    const imageIndex = args.perSentenceSdxl ? sentenceNumber : Math.floor(index / 2) + 1
+    const filename = imageFilenameForIndex(index)
     const imageFilename = `reader-packs/lms-books/images/${bookSlug}/${filename}`
     const outputPath = path.join(imageDir, filename)
     const scene = describeScene(group)
@@ -55,18 +56,18 @@ for (const book of books) {
       imageFilename,
       alt: scene,
       prompt,
-      sentenceStart: index + 1,
-      sentenceEnd: Math.min(index + 2, sentences.length),
+      sentenceStart: sentenceNumber,
+      sentenceEnd: args.perSentenceSdxl ? sentenceNumber : Math.min(index + 2, sentences.length),
     })
 
-    if (args.skipExisting && existsSync(outputPath)) {
+    if ((args.skipExisting || isPreservedOddSentence(index)) && existsSync(outputPath)) {
       completed += 1
       continue
     }
 
     completed += 1
     console.log(
-      `Generating ${completed}/${total}: ${bookSlug} sentences ${index + 1}-${Math.min(index + 2, sentences.length)}`,
+      `Generating ${completed}/${total}: ${bookSlug} sentences ${sentenceNumber}-${args.perSentenceSdxl ? sentenceNumber : Math.min(index + 2, sentences.length)}`,
     )
     const imageUrl = await runPredictionWithFallback(modelVersion, prompt, scene, 30_000 + completed)
     const response = await fetch(imageUrl)
@@ -79,7 +80,26 @@ for (const book of books) {
   writeFileSync(path.join(BOOK_DIR, `${book.id}.json`), `${JSON.stringify(book, null, 2)}\n`)
 }
 
-console.log(`Wrote ${total} reader illustrations.`)
+console.log(`Wrote ${total} reader illustration metadata entries.`)
+
+function plannedImageCount(book) {
+  const sentences = flattenSentences(book)
+  return args.perSentenceSdxl ? sentences.length : Math.ceil(sentences.length / 2)
+}
+
+function imageFilenameForIndex(sentenceIndex) {
+  if (!args.perSentenceSdxl) {
+    return `illustration-${String(Math.floor(sentenceIndex / 2) + 1).padStart(3, '0')}.webp`
+  }
+  if (sentenceIndex % 2 === 0) {
+    return `illustration-${String(Math.floor(sentenceIndex / 2) + 1).padStart(3, '0')}.webp`
+  }
+  return `sentence-${String(sentenceIndex + 1).padStart(3, '0')}.webp`
+}
+
+function isPreservedOddSentence(sentenceIndex) {
+  return args.perSentenceSdxl && sentenceIndex % 2 === 0
+}
 
 function loadBooks() {
   return readdirSync(BOOK_DIR)
@@ -109,6 +129,14 @@ function describeScene(group) {
 }
 
 function buildPrompt(scene) {
+  if (args.perSentenceSdxl) {
+    return [
+      'Vibrant beautiful detailed webcomic manga art, polished fantasy manhwa splash illustration, crisp clean line art, luminous color, dynamic composition, expressive faces, cinematic lighting, richly detailed backgrounds, high quality digital painting.',
+      'Show Lee Hyun as a young Korean man with messy black hair. In game-world scenes, show him as a novice adventurer or sculptor with simple tools. Keep family characters warm and recognizable when relevant: younger sister small and anxious but sweet, grandmother elderly and gentle.',
+      scene,
+      'Single square reader illustration. No speech bubbles, no captions, no readable text, no watermark, no signature.',
+    ].join(' ')
+  }
   return [
     'Use this visual direction: vivid colorful chibi manga illustration like a cheerful fantasy webnovel splash image, big expressive eyes, oversized cute heads, energetic poses, exaggerated funny or dramatic emotions when the scene calls for it, polished anime lighting, crisp clean line art, bright blue skies or warm cozy interiors, charming fantasy-adventure mood.',
     'Keep Lee Hyun as a young Korean man with messy black hair. Use recurring family characters when relevant: his younger sister is small and anxious but sweet, his grandmother is elderly and gentle. In game-world scenes, show him as a cute novice adventurer or sculptor with simple tools.',
@@ -138,17 +166,7 @@ async function runPrediction(version, prompt, seed) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       version,
-      input: {
-        prompt,
-        aspect_ratio: '1:1',
-        num_outputs: 1,
-        num_inference_steps: 4,
-        output_format: 'webp',
-        output_quality: 82,
-        megapixels: '0.25',
-        go_fast: false,
-        seed,
-      },
+      input: predictionInput(prompt, seed),
     }),
   })
   let current = prediction
@@ -164,7 +182,45 @@ async function runPrediction(version, prompt, seed) {
   return output
 }
 
+function predictionInput(prompt, seed) {
+  if (args.perSentenceSdxl) {
+    return {
+      width: 1024,
+      height: 1024,
+      prompt,
+      negative_prompt: 'speech bubble, caption, readable text, watermark, signature, logo, blurry, low quality, extra fingers, deformed hands',
+      scheduler: 'K_EULER',
+      num_outputs: 1,
+      num_inference_steps: 35,
+      guidance_scale: 7.5,
+      prompt_strength: 0.8,
+      refine: 'expert_ensemble_refiner',
+      output_format: 'webp',
+      seed,
+    }
+  }
+  return {
+    prompt,
+    aspect_ratio: '1:1',
+    num_outputs: 1,
+    num_inference_steps: 4,
+    output_format: 'webp',
+    output_quality: 82,
+    megapixels: '0.25',
+    go_fast: false,
+    seed,
+  }
+}
+
 function buildSafePrompt(scene) {
+  if (args.perSentenceSdxl) {
+    return [
+      'Wholesome vibrant detailed fantasy webcomic manga illustration, polished digital painting, expressive but family-friendly characters, clean line art, colorful lighting.',
+      'Show Lee Hyun as a young Korean protagonist with messy black hair. Keep all characters fully clothed and child-safe. No romance, no gore, no injury, no suggestive framing.',
+      scene.replace(/\b(sick|medicine|money|sell|empty|afraid|hard|difficult|blood|fight|weapon)\b/giu, 'important'),
+      'Single square reader illustration. No speech bubbles, no captions, no readable text, no watermark, no signature.',
+    ].join(' ')
+  }
   return [
     'Wholesome bright chibi manga illustration, vivid colors, cute exaggerated emotional expressions, cozy family-friendly fantasy webnovel style, clean line art, polished anime lighting.',
     'Show Lee Hyun as a cute young Korean protagonist with messy black hair reacting dramatically but innocently. Keep all characters fully clothed and child-safe. No romance, no violence, no injury, no suggestive framing.',
@@ -198,11 +254,13 @@ async function replicateFetch(url, options = {}) {
 }
 
 function parseArgs(values) {
-  const parsed = { skipExisting: false }
+  const parsed = { skipExisting: false, perSentenceSdxl: false }
   for (let index = 0; index < values.length; index += 1) {
     const value = values[index]
     if (value === '--env') parsed.env = values[++index]
     else if (value === '--skip-existing') parsed.skipExisting = true
+    else if (value === '--per-sentence-sdxl') parsed.perSentenceSdxl = true
+    else if (value === '--model') parsed.model = values[++index]
   }
   return parsed
 }

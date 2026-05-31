@@ -1,13 +1,15 @@
 import { createClient, type Session, type User } from '@supabase/supabase-js'
 import {
+  getAllReaderProgress,
   getAllListeningEvents,
   getAllWords,
   getSyncMetadata,
+  putSyncedReaderProgress,
   putSyncedListeningEvents,
   putSyncedWords,
   saveSyncMetadata,
 } from './db'
-import type { ListeningEvent, VocabWord } from './types'
+import type { ListeningEvent, ReaderProgress, VocabWord } from './types'
 
 const FALLBACK_SUPABASE_URL = 'https://nvrofeaaewwdeefxtmqu.supabase.co'
 const FALLBACK_SUPABASE_ANON_KEY = 'sb_publishable_YaSTM-n-eBSDWPkY4IigOg_vFHmdYSB'
@@ -39,6 +41,8 @@ export interface CloudSyncResult {
   pulledWords: number
   pushedEvents: number
   pulledEvents: number
+  pushedReaderProgress: number
+  pulledReaderProgress: number
   syncedAt: string
 }
 
@@ -55,6 +59,13 @@ type ReviewEventRow = {
   event_id: string
   event_data: ListeningEvent
   timestamp: string
+}
+
+type ReaderProgressRow = {
+  user_id: string
+  progress_id: string
+  progress_data: ReaderProgress
+  updated_at: string
 }
 
 export const supabase = isSupabaseConfigured
@@ -123,6 +134,7 @@ export async function signOutOfCloud(): Promise<void> {
 }
 
 let activeSync: Promise<CloudSyncResult> | null = null
+let readerProgressSyncAvailable = true
 
 export async function syncNow(): Promise<CloudSyncResult> {
   if (activeSync) return activeSync
@@ -141,11 +153,13 @@ async function runSyncNow(): Promise<CloudSyncResult> {
   const user = userData.user
   if (!user) throw new Error('Sign in before syncing.')
 
-  const [remoteWords, remoteEvents, localWords, localEvents, metadata] = await Promise.all([
+  const [remoteWords, remoteEvents, remoteReaderProgress, localWords, localEvents, localReaderProgress, metadata] = await Promise.all([
     fetchRemoteWords(),
     fetchRemoteEvents(),
+    fetchRemoteReaderProgress(),
     getAllWords(),
     getAllListeningEvents(),
+    getAllReaderProgress(),
     getSyncMetadata(),
   ])
 
@@ -162,10 +176,23 @@ async function runSyncNow(): Promise<CloudSyncResult> {
     .filter((event) => !localEventIds.has(event.id))
   await putSyncedListeningEvents(remoteOnlyEvents)
 
+  const localReaderProgressMap = new Map(localReaderProgress.map((progress) => [progress.id, progress]))
+  const pulledReaderProgress = readerProgressSyncAvailable
+    ? remoteReaderProgress
+        .map((row) => normalizeRemoteReaderProgress(row.progress_data, row.updated_at))
+        .filter((remote) => {
+          const local = localReaderProgressMap.get(remote.id)
+          return !local || timeValue(remote.updatedAt) > timeValue(local.updatedAt)
+        })
+    : []
+  await putSyncedReaderProgress(pulledReaderProgress)
+
   const latestLocalWords = await getAllWords()
   const latestLocalEvents = await getAllListeningEvents()
+  const latestLocalReaderProgress = await getAllReaderProgress()
   const remoteWordIds = new Set(syncableRemoteWords.map((row) => row.word_id))
   const remoteEventIds = new Set(remoteEvents.map((row) => row.event_id))
+  const remoteReaderProgressIds = new Set(remoteReaderProgress.map((row) => row.progress_id))
   const wordRows = latestLocalWords
     .filter(isSyncableVocabWord)
     .filter((word) => shouldPushWord(word, syncableRemoteWords.find((row) => row.word_id === word.id)))
@@ -173,6 +200,11 @@ async function runSyncNow(): Promise<CloudSyncResult> {
   const eventRows = latestLocalEvents
     .filter((event) => !remoteEventIds.has(event.id))
     .map((event) => eventToRow(user.id, event))
+  const readerProgressRows = readerProgressSyncAvailable
+    ? latestLocalReaderProgress
+        .filter((progress) => shouldPushReaderProgress(progress, remoteReaderProgress.find((row) => row.progress_id === progress.id)))
+        .map((progress) => readerProgressToRow(user.id, progress))
+    : []
 
   if (wordRows.length > 0) {
     const { error } = await supabase.from('word_progress').upsert(wordRows, {
@@ -186,6 +218,12 @@ async function runSyncNow(): Promise<CloudSyncResult> {
     })
     if (error) throw error
   }
+  if (readerProgressRows.length > 0) {
+    const { error } = await supabase.from('reader_progress').upsert(readerProgressRows, {
+      onConflict: 'user_id,progress_id',
+    })
+    if (error) throw error
+  }
 
   const syncedAt = new Date().toISOString()
   await saveSyncMetadata({ userId: user.id, lastSyncedAt: syncedAt })
@@ -195,6 +233,8 @@ async function runSyncNow(): Promise<CloudSyncResult> {
     pulledWords: pulledWords.length,
     pushedEvents: eventRows.length,
     pulledEvents: remoteOnlyEvents.length,
+    pushedReaderProgress: readerProgressRows.filter((row) => !remoteReaderProgressIds.has(row.progress_id)).length,
+    pulledReaderProgress: pulledReaderProgress.length,
     syncedAt,
   }
 }
@@ -215,6 +255,22 @@ async function fetchRemoteEvents(): Promise<ReviewEventRow[]> {
     .select('user_id, event_id, event_data, timestamp')
   if (error) throw error
   return (data ?? []) as ReviewEventRow[]
+}
+
+async function fetchRemoteReaderProgress(): Promise<ReaderProgressRow[]> {
+  if (!supabase) return []
+  const { data, error } = await supabase
+    .from('reader_progress')
+    .select('user_id, progress_id, progress_data, updated_at')
+  if (error) {
+    if (isMissingReaderProgressTable(error)) {
+      readerProgressSyncAvailable = false
+      return []
+    }
+    throw error
+  }
+  readerProgressSyncAvailable = true
+  return (data ?? []) as ReaderProgressRow[]
 }
 
 function mergeRemoteWords(
@@ -282,6 +338,33 @@ function eventToRow(userId: string, event: ListeningEvent): ReviewEventRow {
   }
 }
 
+function readerProgressToRow(userId: string, progress: ReaderProgress): ReaderProgressRow {
+  return {
+    user_id: userId,
+    progress_id: progress.id,
+    progress_data: progress,
+    updated_at: progress.updatedAt,
+  }
+}
+
+function shouldPushReaderProgress(
+  progress: ReaderProgress,
+  remote: ReaderProgressRow | undefined,
+): boolean {
+  if (!remote) return true
+  return timeValue(progress.updatedAt) > timeValue(remote.updated_at)
+}
+
+function normalizeRemoteReaderProgress(
+  progress: ReaderProgress,
+  fallbackUpdatedAt: string,
+): ReaderProgress {
+  return {
+    ...progress,
+    updatedAt: progress.updatedAt || fallbackUpdatedAt,
+  }
+}
+
 function normalizeRemoteWord(word: VocabWord, fallbackUpdatedAt: string): VocabWord {
   return {
     ...word,
@@ -343,4 +426,8 @@ function newerIso(first: string | undefined, second: string | undefined): string
 
 function unique(values: string[]): string[] {
   return Array.from(new Set(values.filter(Boolean)))
+}
+
+function isMissingReaderProgressTable(error: { code?: string; message?: string }): boolean {
+  return error.code === '42P01' || /reader_progress|relation .* does not exist/iu.test(error.message ?? '')
 }

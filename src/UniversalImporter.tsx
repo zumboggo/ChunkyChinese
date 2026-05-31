@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { TextParser, CsvParser, type ParsedContent } from './parsers'
-import { upsertWords, upsertSentences, getDictionaryCount, downloadDictionary } from './db'
+import { upsertWords, upsertSentences } from './db'
 import type { ImportSummary, Sentence, VocabWord } from './types'
 
 export function UniversalImporter({ onComplete }: { onComplete: (summary: string) => void }) {
@@ -8,30 +8,6 @@ export function UniversalImporter({ onComplete }: { onComplete: (summary: string
   const [parsed, setParsed] = useState<ParsedContent | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [dictCount, setDictCount] = useState(0)
-  const [downloadingDict, setDownloadingDict] = useState(false)
-  const [dictProgress, setDictProgress] = useState('')
-
-  useEffect(() => {
-    getDictionaryCount().then(setDictCount).catch(console.error)
-  }, [])
-
-  async function handleDownloadDict() {
-    setDownloadingDict(true)
-    setError('')
-    setDictProgress('Starting download...')
-    try {
-      await downloadDictionary((progress) => setDictProgress(progress), dictCount > 0)
-      const count = await getDictionaryCount()
-      setDictCount(count)
-      onComplete(`Downloaded offline dictionary with ${count} entries.`)
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Error downloading dictionary')
-    } finally {
-      setDownloadingDict(false)
-      setDictProgress('')
-    }
-  }
 
   async function handleFileSelect(files: FileList | null) {
     if (!files || files.length === 0) return
@@ -125,29 +101,6 @@ export function UniversalImporter({ onComplete }: { onComplete: (summary: string
       <h2>Universal Importer</h2>
       <p>Upload a .csv or .txt file. The text parser will automatically extract Chinese words.</p>
       
-      <div style={{ marginBottom: '1rem', padding: '1rem', background: 'var(--bg-panel-dark)', borderRadius: '8px' }}>
-        <h3>Offline Dictionary</h3>
-        <p>Current entries: {dictCount}</p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-start' }}>
-          <button
-            className="primary"
-            onClick={handleDownloadDict}
-            disabled={downloadingDict}
-          >
-            {downloadingDict
-              ? 'Downloading...'
-              : dictCount > 0
-                ? 'Refresh CC-CEDICT (~16MB)'
-                : 'Download CC-CEDICT (~16MB)'}
-          </button>
-          {downloadingDict && (
-            <span style={{ fontSize: '0.9rem', color: 'var(--accent)', fontWeight: 'bold' }}>
-              {dictProgress}
-            </span>
-          )}
-        </div>
-      </div>
-
       <label className="file-button">
         Choose file
         <input type="file" accept=".csv,.txt" onChange={(e) => handleFileSelect(e.target.files)} />

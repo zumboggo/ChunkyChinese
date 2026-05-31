@@ -26,6 +26,7 @@ import {
   getAllClipPacks,
   getAllReaderBooks,
   getAllReaderPacks,
+  getLatestReaderProgress,
   getAllSentences,
   getAllWords,
   getAudioClip,
@@ -94,6 +95,7 @@ import type {
   ReaderBook,
   ReaderPack,
   ReaderSentence,
+  ReaderProgress,
   ReaderWordToken,
   ReaderSession,
   ReaderSessionStats,
@@ -112,6 +114,15 @@ type FlashcardSessionCounts = {
   review: number
   done: number
   total: number
+}
+type ReaderResumeLocation = {
+  book: ReaderBook
+  story: string
+  chapter: number
+  sentenceIndex: number
+  sentenceCount: number
+  percent: number
+  label: string
 }
 type LessonStartOptions = {
   randomize?: boolean
@@ -240,6 +251,7 @@ function App() {
   const [editingWord, setEditingWord] = useState<CardEditDraft | null>(null)
   const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
   const [todayReaderStats, setTodayReaderStats] = useState<ReaderSessionStats | null>(null)
+  const [latestReaderProgress, setLatestReaderProgress] = useState<ReaderProgress | undefined>()
   const [cloudUserEmail, setCloudUserEmail] = useState<string | null>(null)
   const [cloudSync, setCloudSync] = useState<CloudSyncUiState>({
     status: isSupabaseConfigured ? 'signed-out' : 'unconfigured',
@@ -300,10 +312,12 @@ function App() {
       await persistActivePackId(resolvedActivePackId)
     }
     const nextStats = await getDashboardStats()
+    const nextLatestReaderProgress = await getLatestReaderProgress(nextReaderBooks)
     setAudioClips(nextAudio)
     setClipPacks(visiblePacks)
     setReaderPacks(nextReaderPacks)
     setReaderBooks(nextReaderBooks)
+    setLatestReaderProgress(nextLatestReaderProgress)
     setActivePackId(resolvedActivePackId)
     setNewWordsPerDay(nextNewWordsPerDay)
     setUserSettings(nextUserSettings)
@@ -581,6 +595,10 @@ function App() {
   const readerTokens = useMemo(
     () => tokenizeReaderText(currentReaderSentence?.chinese ?? '', scopedWords.length > 0 ? scopedWords : words),
     [currentReaderSentence, scopedWords, words],
+  )
+  const readerResumeLocation = useMemo(
+    () => getReaderResumeLocation(latestReaderProgress, readerBooks),
+    [latestReaderProgress, readerBooks],
   )
   const remainingNewWordsToday = Math.max(0, newWordsPerDay - stats.newWordsToday)
   const dueWordList = useMemo(
@@ -935,8 +953,10 @@ function App() {
         bookId: book.id,
         sentenceIndex: 0,
       })
+      setLatestReaderProgress(await getLatestReaderProgress(readerBooks))
+      queueCloudSync()
     }
-  }, [recordReaderInteraction, recordReaderSentenceView])
+  }, [queueCloudSync, readerBooks, recordReaderInteraction, recordReaderSentenceView])
 
   const moveReaderSentence = useCallback(async (delta: number) => {
     if (!activeReaderBook || readerSentences.length === 0) return
@@ -952,6 +972,8 @@ function App() {
       bookId: activeReaderBook.id,
       sentenceIndex: nextIndex,
     })
+    setLatestReaderProgress(await getLatestReaderProgress(readerBooks))
+    queueCloudSync()
     const nextSentence = readerSentences[nextIndex]
     if (nextSentence && activeReaderSession) {
       await recordReaderSentenceView(nextSentence, activeReaderSession)
@@ -960,7 +982,9 @@ function App() {
     activeReaderBook,
     activeReaderSession,
     readerSentenceIndex,
+    readerBooks,
     readerSentences,
+    queueCloudSync,
     recordReaderInteraction,
     recordReaderSentenceView,
   ])
@@ -1996,6 +2020,29 @@ function App() {
                 </div>
               </dl>
             </InfoPanel>
+            <InfoPanel title="Reading Today">
+              <dl className="stat-list">
+                <div>
+                  <dt>Reading time</dt>
+                  <dd>{formatDuration(todayReaderStats?.todayActiveSeconds ?? 0)}</dd>
+                </div>
+                <div>
+                  <dt>Words read</dt>
+                  <dd>{todayReaderStats?.todayWordsRead ?? 0}</dd>
+                </div>
+                <div>
+                  <dt>WPM</dt>
+                  <dd>{todayReaderStats?.todayWpm ?? 0}</dd>
+                </div>
+                <div>
+                  <dt>Total sessions</dt>
+                  <dd>{todayReaderStats?.totalSessions ?? 0}</dd>
+                </div>
+              </dl>
+              <button type="button" className="ghost-answer" onClick={() => setScreen('reader')}>
+                Open reader
+              </button>
+            </InfoPanel>
             <InfoPanel title="Daily plan">
               <div className="daily-plan">
                 <label>
@@ -2190,9 +2237,13 @@ function App() {
           sentenceCount={readerSentences.length}
           tokens={readerTokens}
           selectedToken={selectedReaderToken}
+          resumeLocation={readerResumeLocation}
           showPinyin={readerShowPinyin}
           showEnglish={readerShowEnglish}
           onChooseBook={openReaderBook}
+          onResume={() => {
+            if (readerResumeLocation) void openReaderBook(readerResumeLocation.book, 'resume')
+          }}
           onPrevious={() => moveReaderSentence(-1)}
           onNext={() => moveReaderSentence(1)}
           onPlay={playReaderSentence}
@@ -2209,8 +2260,6 @@ function App() {
             recordReaderInteraction()
             setReaderShowEnglish((value) => !value)
           }}
-          activeSession={activeReaderSession}
-          todayReaderStats={todayReaderStats}
         />
       )}
 
@@ -3258,9 +3307,11 @@ function ReaderMode({
   sentenceCount,
   tokens,
   selectedToken,
+  resumeLocation,
   showPinyin,
   showEnglish,
   onChooseBook,
+  onResume,
   onPrevious,
   onNext,
   onPlay,
@@ -3268,7 +3319,6 @@ function ReaderMode({
   onEditWord,
   onTogglePinyin,
   onToggleEnglish,
-  activeSession,
 }: {
   readerPacks: ReaderPack[]
   readerBooks: ReaderBook[]
@@ -3278,9 +3328,11 @@ function ReaderMode({
   sentenceCount: number
   tokens: ReaderWordToken[]
   selectedToken: ReaderWordToken | null
+  resumeLocation?: ReaderResumeLocation
   showPinyin: boolean
   showEnglish: boolean
   onChooseBook: (book: ReaderBook, action?: 'resume' | 'start') => void | Promise<void>
+  onResume: () => void
   onPrevious: () => void | Promise<void>
   onNext: () => void | Promise<void>
   onPlay: (sentence: ReaderSentence) => void | Promise<void>
@@ -3288,8 +3340,6 @@ function ReaderMode({
   onEditWord: (word: VocabWord) => void
   onTogglePinyin: () => void
   onToggleEnglish: () => void
-  activeSession: ReaderSession | null
-  todayReaderStats: ReaderSessionStats | null
 }) {
   const illustration = activeBook ? getReaderIllustration(activeBook, sentenceIndex) : undefined
   const illustrationSrc = illustration ? publicAssetPath(illustration.imageFilename) : ''
@@ -3312,6 +3362,18 @@ function ReaderMode({
           </button>
         </div>
       </div>
+
+      {resumeLocation && !activeBook && (
+        <section className="reader-resume-panel">
+          <button type="button" className="primary reader-resume-button" onClick={onResume}>
+            Resume
+          </button>
+          <div>
+            <strong>{resumeLocation.book.title}</strong>
+            <span>{resumeLocation.label}</span>
+          </div>
+        </section>
+      )}
 
       <div className={`reader-layout ${activeBook ? 'zen-mode' : ''}`}>
         <aside className="reader-book-list" aria-label="Reader books">
@@ -3346,25 +3408,8 @@ function ReaderMode({
                   Sentence {sentenceIndex + 1} / {sentenceCount}
                 </span>
               </div>
-
-              {/* Compact Reader WPM Dashboard */}
-              <div className="reader-wpm-dashboard compact-bar" aria-label="Reading stats dashboard">
-                <div className="dashboard-metric">
-                  <dt>WPM</dt>
-                  <dd>
-                    {activeSession && activeSession.activeSeconds > 0
-                      ? Math.round((activeSession.wordsRead / activeSession.activeSeconds) * 60)
-                      : 0}
-                  </dd>
-                </div>
-                <div className="dashboard-metric">
-                  <dt>Read</dt>
-                  <dd>{activeSession?.wordsRead ?? 0}</dd>
-                </div>
-                <div className="dashboard-metric">
-                  <dt>Time</dt>
-                  <dd>{formatDuration(activeSession?.activeSeconds ?? 0)}</dd>
-                </div>
+              <div className="reader-progress-bar" aria-label={`Story progress ${readerProgressPercent(sentenceIndex, sentenceCount)}%`}>
+                <span style={{ width: `${readerProgressPercent(sentenceIndex, sentenceCount)}%` }} />
               </div>
               <AnimatePresence mode="wait">
                 <motion.div
@@ -3842,6 +3887,8 @@ function formatCloudSyncResult(result: CloudSyncResult): string {
     `${result.pulledWords} word updates received`,
     `${result.pushedEvents} events sent`,
     `${result.pulledEvents} events received`,
+    `${result.pushedReaderProgress} reader bookmarks sent`,
+    `${result.pulledReaderProgress} reader bookmarks received`,
   ]
   return `Synced. ${parts.join(', ')}.`
 }
@@ -4071,10 +4118,46 @@ function getReaderIllustration(book: ReaderBook, sentenceIndex: number) {
   return {
     id: `${book.id}-illustration-${String(imageNumber).padStart(3, '0')}`,
     imageFilename: `reader-packs/lms-books/images/${book.id}/illustration-${String(imageNumber).padStart(3, '0')}.webp`,
-    alt: `Chibi manga reader illustration ${imageNumber} for ${book.title}.`,
+    alt: `Manga reader illustration ${imageNumber} for ${book.title}.`,
     sentenceStart: (imageNumber - 1) * 2 + 1,
     sentenceEnd: Math.min(imageNumber * 2, sentenceCount),
   }
+}
+
+function getReaderResumeLocation(
+  progress: ReaderProgress | undefined,
+  books: ReaderBook[],
+): ReaderResumeLocation | undefined {
+  if (!progress) return undefined
+  const book = books.find((item) => item.id === progress.bookId && item.packId === progress.packId)
+  if (!book) return undefined
+  const sentences = book.stories.flatMap((story) =>
+    story.sentences.map((sentence) => ({ sentence, story })),
+  )
+  if (sentences.length === 0) return undefined
+  const sentenceIndex = Math.min(Math.max(0, progress.sentenceIndex), sentences.length - 1)
+  const item = sentences[sentenceIndex]
+  const percent = readerProgressPercent(sentenceIndex, sentences.length)
+  const label = [
+    `Chapter ${item.story.chapter}`,
+    item.story.title,
+    `Sentence ${sentenceIndex + 1}/${sentences.length}`,
+    `${percent}%`,
+  ].join(' · ')
+  return {
+    book,
+    story: item.story.title,
+    chapter: item.story.chapter,
+    sentenceIndex,
+    sentenceCount: sentences.length,
+    percent,
+    label,
+  }
+}
+
+function readerProgressPercent(sentenceIndex: number, sentenceCount: number): number {
+  if (sentenceCount <= 0) return 0
+  return Math.min(100, Math.max(1, Math.round(((sentenceIndex + 1) / sentenceCount) * 100)))
 }
 
 function publicAssetPath(path: string): string {
