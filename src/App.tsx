@@ -389,6 +389,10 @@ function App() {
   }, [refresh])
 
   useEffect(() => {
+    document.documentElement.dataset.theme = userSettings.darkMode ? 'dark' : 'light'
+  }, [userSettings.darkMode])
+
+  useEffect(() => {
     let cancelled = false
 
     async function loadAuth() {
@@ -2386,6 +2390,26 @@ function App() {
             />
 
             <section className="panel">
+              <h2>Appearance</h2>
+              <p>Set a quieter display for low-light study.</p>
+              <label className="toggle-row">
+                <span>
+                  <strong>Dark mode</strong>
+                  <small>Use a darker background and softer panels.</small>
+                </span>
+                <input
+                  type="checkbox"
+                  checked={userSettings.darkMode}
+                  onChange={(event) => {
+                    const next = { ...userSettings, darkMode: event.target.checked }
+                    setUserSettings(next)
+                    void saveUserSettings(next)
+                  }}
+                />
+              </label>
+            </section>
+
+            <section className="panel">
               <h2>Flashcard settings</h2>
               <p>Set lightweight targets for daily FSRS work.</p>
               <div className="hotkey-grid">
@@ -3733,22 +3757,19 @@ function FlashcardReview({
     <section className="flashcard-review">
       <div className={`flashcard ${answerShown ? 'answer-side' : 'front-side'}`}>
         <span>{answerShown ? 'Back' : 'Front'}</span>
-        <strong>{word.word}</strong>
         {answerShown ? (
-          <>
-            <p>{word.pinyin ? `${word.pinyin} is ${word.meaning}` : word.meaning}</p>
-          </>
+          <p className="flashcard-answer-text">
+            {word.pinyin ? `${word.pinyin} is ${word.meaning}` : word.meaning}
+          </p>
         ) : (
-          <button type="button" className="primary" onClick={onFlip}>
-            Flip
-          </button>
+          <>
+            <strong>{word.word}</strong>
+            <button type="button" className="primary" onClick={onFlip}>
+              Flip
+            </button>
+          </>
         )}
       </div>
-      {onEdit && (
-        <button type="button" className="ghost-answer flashcard-edit-button" onClick={onEdit}>
-          Edit card
-        </button>
-      )}
       {answerShown && (
         <div className="review-buttons fsrs-preview-buttons">
           {fsrsRatingsForUi.map((rating) => (
@@ -3765,6 +3786,11 @@ function FlashcardReview({
             </button>
           ))}
         </div>
+      )}
+      {onEdit && (
+        <button type="button" className="ghost-answer flashcard-edit-button" onClick={onEdit}>
+          Edit card
+        </button>
       )}
     </section>
   )

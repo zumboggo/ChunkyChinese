@@ -149,8 +149,10 @@ async function runSyncNow(): Promise<CloudSyncResult> {
     getSyncMetadata(),
   ])
 
-  const localWordMap = new Map(localWords.map((word) => [word.id, word]))
-  const mergedWords = mergeRemoteWords(localWordMap, remoteWords, metadata.userId !== user.id)
+  const syncableRemoteWords = remoteWords.filter((row) => isSyncableVocabWord(row.word_data))
+  const syncableLocalWords = localWords.filter(isSyncableVocabWord)
+  const localWordMap = new Map(syncableLocalWords.map((word) => [word.id, word]))
+  const mergedWords = mergeRemoteWords(localWordMap, syncableRemoteWords, metadata.userId !== user.id)
   const pulledWords = mergedWords.filter((word) => localWordMap.get(word.id) !== word)
   await putSyncedWords(pulledWords)
 
@@ -162,10 +164,11 @@ async function runSyncNow(): Promise<CloudSyncResult> {
 
   const latestLocalWords = await getAllWords()
   const latestLocalEvents = await getAllListeningEvents()
-  const remoteWordIds = new Set(remoteWords.map((row) => row.word_id))
+  const remoteWordIds = new Set(syncableRemoteWords.map((row) => row.word_id))
   const remoteEventIds = new Set(remoteEvents.map((row) => row.event_id))
   const wordRows = latestLocalWords
-    .filter((word) => shouldPushWord(word, remoteWords.find((row) => row.word_id === word.id)))
+    .filter(isSyncableVocabWord)
+    .filter((word) => shouldPushWord(word, syncableRemoteWords.find((row) => row.word_id === word.id)))
     .map((word) => wordToRow(user.id, word))
   const eventRows = latestLocalEvents
     .filter((event) => !remoteEventIds.has(event.id))
@@ -312,6 +315,14 @@ function hasMeaningfulProgress(word: VocabWord): boolean {
       word.wrongCount ||
       word.listenedSeconds,
   )
+}
+
+function isSyncableVocabWord(word: VocabWord): boolean {
+  return hasHanText(word.word) || hasHanText(word.meaning)
+}
+
+function hasHanText(value: string | undefined): boolean {
+  return /[\u3400-\u9fff]/u.test(value ?? '')
 }
 
 function authRedirectUrl(): string {

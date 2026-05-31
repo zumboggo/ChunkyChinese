@@ -253,6 +253,7 @@ export async function seedLmsWordsIfEmpty(): Promise<number> {
   if (count > 0) {
     await ensureLmsPackForExistingWords()
     await applyBuiltInLmsCorrectionsIfNeeded()
+    await cleanupAccidentalEnglishOnlyCards()
     return 0
   }
 
@@ -274,6 +275,7 @@ export async function seedLmsWordsIfEmpty(): Promise<number> {
   await db.put('settings', new Date().toISOString(), 'lmsSeededAt')
   await db.put('settings', pack.id, 'activePackId')
   await db.put('settings', LMS_TEXT_FIX_VERSION, 'lmsTextFixVersion')
+  await cleanupAccidentalEnglishOnlyCards()
   return words.length
 }
 
@@ -346,6 +348,20 @@ export async function applyBuiltInLmsCorrectionsIfNeeded(force = false): Promise
   return updated
 }
 
+export async function cleanupAccidentalEnglishOnlyCards(): Promise<number> {
+  const db = await getDB()
+  const words = await db.getAll('vocabWords')
+  const accidentalCards = words.filter(isAccidentalEnglishOnlyCard)
+  if (accidentalCards.length === 0) return 0
+
+  const tx = db.transaction('vocabWords', 'readwrite')
+  for (const word of accidentalCards) {
+    await tx.store.delete(word.id)
+  }
+  await tx.done
+  return accidentalCards.length
+}
+
 export async function getAllWords(): Promise<VocabWord[]> {
   return (await (await getDB()).getAll('vocabWords')).sort((a, b) => {
     const lessonDelta = (a.lessonNumber ?? 9999) - (b.lessonNumber ?? 9999)
@@ -384,6 +400,7 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   lingqLearnedGoal: 90,
   flashcardsPerDay: 50,
   flashcardQueueMode: 'mixed',
+  darkMode: false,
 }
 
 export async function getUserSettings(): Promise<UserSettings> {
@@ -1823,6 +1840,16 @@ function hasImportedProgress(word: VocabWord): boolean {
       word.wrongCount ||
       word.listenedSeconds,
   )
+}
+
+function isAccidentalEnglishOnlyCard(word: VocabWord): boolean {
+  const belongsToLms = word.source === 'LMS 1000' || word.packIds?.includes(LMS_PACK_ID)
+  if (belongsToLms) return false
+  return !hasHanText(word.word) && !hasHanText(word.meaning)
+}
+
+function hasHanText(value: string | undefined): boolean {
+  return /[\u3400-\u9fff]/u.test(value ?? '')
 }
 
 function detectProgressImportFields(rows: Record<string, string>[]): ProgressImportFields {
