@@ -245,7 +245,7 @@ function App() {
     status: isSupabaseConfigured ? 'signed-out' : 'unconfigured',
     email: '',
     message: isSupabaseConfigured
-      ? 'Email link works now. Google needs its Supabase provider enabled.'
+      ? 'Sign in to sync progress across devices.'
       : 'Supabase sync is not configured yet.',
   })
   const lastReaderActivityTimeRef = useRef<number>(0)
@@ -324,7 +324,7 @@ function App() {
       setCloudSync((current) => ({
         ...current,
         status: 'signed-out',
-        message: 'Email link works now. Google needs its Supabase provider enabled.',
+        message: 'Sign in to sync progress across devices.',
       }))
       return
     }
@@ -404,7 +404,7 @@ function App() {
             ? 'Supabase sync is not configured yet.'
             : email
               ? 'Signed in. Sync is ready.'
-              : 'Email link works now. Google needs its Supabase provider enabled.',
+              : 'Sign in to sync progress across devices.',
         }))
       } catch (error) {
         if (cancelled) return
@@ -427,7 +427,7 @@ function App() {
           ? 'Supabase sync is not configured yet.'
           : email
             ? 'Signed in. Sync is ready.'
-            : 'Email link works now. Google needs its Supabase provider enabled.',
+            : 'Sign in to sync progress across devices.',
       }))
     })
     return () => {
@@ -1705,9 +1705,7 @@ function App() {
       setCloudSync((current) => ({
         ...current,
         status: 'error',
-        message: message.toLocaleLowerCase().includes('provider')
-          ? 'Google needs its Supabase provider enabled. Use email link for now.'
-          : message,
+        message,
       }))
     }
   }
