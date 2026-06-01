@@ -237,7 +237,7 @@ function App() {
   const [activeReaderBookId, setActiveReaderBookId] = useState<string | undefined>()
   const [readerSentenceIndex, setReaderSentenceIndex] = useState(0)
   const [readerShowPinyin, setReaderShowPinyin] = useState(true)
-  const [readerShowEnglish, setReaderShowEnglish] = useState(true)
+  const [readerShowEnglish, setReaderShowEnglish] = useState(false)
   const [selectedReaderToken, setSelectedReaderToken] = useState<ReaderWordToken | null>(null)
   const [hostedPackDownloadId, setHostedPackDownloadId] = useState<string | null>(null)
   const [hostedPackProgress, setHostedPackProgress] = useState('')
@@ -721,6 +721,11 @@ function App() {
     setScreen('dashboard')
     void refresh()
   }, [refresh])
+
+  const refreshFlashcardSession = useCallback(() => {
+    startSavedFlashcards()
+    setLastSummary('Loaded a fresh flashcard set.')
+  }, [startSavedFlashcards])
 
   useEffect(() => {
     if (screen !== 'flashcards') return
@@ -1387,6 +1392,16 @@ function App() {
         return
       }
       if (screen === 'flashcards') {
+        if (!currentFlashcardWord && flashcardSessionComplete) {
+          if (mappedIndex === 0) {
+            event.preventDefault()
+            refreshFlashcardSession()
+          } else if (mappedIndex === 1) {
+            event.preventDefault()
+            finishFlashcardSession()
+          }
+          return
+        }
         if (!currentFlashcardWord) return
         if (!flashcardAnswerShown && (mappedIndex === 0 || event.key === 'Enter' || event.key === ' ')) {
           event.preventDefault()
@@ -1468,7 +1483,9 @@ function App() {
     currentQuizResponse,
     currentSegment,
     allLessonWordsRated,
+    finishFlashcardSession,
     flashcardFeedback,
+    flashcardSessionComplete,
     fsrsRatings,
     handleFlashcardRate,
     handleQuizAnswer,
@@ -1478,6 +1495,7 @@ function App() {
     currentFlashcardWord,
     flashcardAnswerShown,
     handleStandaloneFlashcardRate,
+    refreshFlashcardSession,
     moveReaderSentence,
     playFlashcardWordTwice,
     ratingWords,
@@ -1819,7 +1837,7 @@ function App() {
   }
 
   async function handleHotkeyChange(name: keyof HotkeySettings, value: string) {
-    const next = { ...hotkeys, [name]: value.trim().toLocaleLowerCase() || DEFAULT_HOTKEYS[name] }
+    const next = { ...hotkeys, [name]: value.trim().toLocaleLowerCase() }
     setHotkeys(next)
     await saveHotkeys(next)
     setLastSummary('Hotkeys saved.')
@@ -2216,9 +2234,16 @@ function App() {
                       : 'Choose your queue in Settings, then use Flashcards from the top banner.'}
                 </span>
                 {flashcardSessionComplete && (
-                  <button type="button" className="primary" onClick={finishFlashcardSession}>
-                    Done
-                  </button>
+                  <div className="flashcard-complete-actions">
+                    <button type="button" className="primary" onClick={refreshFlashcardSession}>
+                      <kbd>{hotkeys.choiceA.toUpperCase()}</kbd>
+                      New set
+                    </button>
+                    <button type="button" onClick={finishFlashcardSession}>
+                      <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
+                      Done
+                    </button>
+                  </div>
                 )}
               </div>
             )}
@@ -3361,7 +3386,7 @@ function ReaderMode({
             Pinyin {showPinyin ? 'on' : 'off'}
           </button>
           <button type="button" className={showEnglish ? 'active' : ''} onClick={onToggleEnglish}>
-            English {showEnglish ? 'on' : 'off'}
+            English {showEnglish ? 'sharp' : 'blurred'}
           </button>
         </div>
       </div>
@@ -3462,7 +3487,7 @@ function ReaderMode({
                   </div>
                 </motion.div>
               </AnimatePresence>
-              {showEnglish && <p className="reader-translation blur-reveal">{sentence.english}</p>}
+              <p className={`reader-translation ${showEnglish ? 'revealed' : 'blur-reveal'}`}>{sentence.english}</p>
               <div className="reader-controls">
                 <button type="button" onClick={onPrevious} disabled={sentenceIndex <= 0}>
                   Previous
@@ -3816,11 +3841,14 @@ function FlashcardReview({
   return (
     <section className="flashcard-review">
       <div className={`flashcard ${answerShown ? 'answer-side' : 'front-side'}`}>
-        <span>{answerShown ? 'Back' : 'Front'}</span>
+        <span>{answerShown ? 'Front + back' : 'Front'}</span>
         {answerShown ? (
-          <p className="flashcard-answer-text">
-            {word.pinyin ? `${word.pinyin} is ${word.meaning}` : word.meaning}
-          </p>
+          <>
+            <strong>{word.word}</strong>
+            <p className="flashcard-answer-text">
+              {word.pinyin ? `${word.pinyin} is ${word.meaning}` : word.meaning}
+            </p>
+          </>
         ) : (
           <>
             <strong>{word.word}</strong>

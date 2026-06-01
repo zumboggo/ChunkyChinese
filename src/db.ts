@@ -72,10 +72,10 @@ export interface SyncMetadata {
 }
 
 export const DEFAULT_HOTKEYS: HotkeySettings = {
-  choiceA: '3',
-  choiceB: '4',
-  choiceC: '5',
-  choiceD: '6',
+  choiceA: '1',
+  choiceB: '2',
+  choiceC: '3',
+  choiceD: '4',
   playPause: 'p',
 }
 
@@ -446,6 +446,14 @@ export async function getHotkeys(): Promise<HotkeySettings> {
         ratingEasy?: string
       })
     | undefined
+  if (
+    saved?.choiceA === '3' &&
+    saved.choiceB === '4' &&
+    saved.choiceC === '5' &&
+    saved.choiceD === '6'
+  ) {
+    return DEFAULT_HOTKEYS
+  }
   return normalizeHotkeys({
     choiceA: saved?.choiceA ?? saved?.answerA ?? DEFAULT_HOTKEYS.choiceA,
     choiceB: saved?.choiceB ?? saved?.answerB ?? DEFAULT_HOTKEYS.choiceB,
@@ -1846,7 +1854,8 @@ function normalizeDictionaryEntry(entry: RawDictionaryEntry): DictionaryEntry {
 
 function normalizeKey(value: string | undefined, fallback: string): string {
   const trimmed = value?.trim()
-  return trimmed ? trimmed.toLocaleLowerCase() : fallback
+  if (value === undefined) return fallback
+  return trimmed ? trimmed.toLocaleLowerCase() : ''
 }
 
 function unique(values: string[]): string[] {

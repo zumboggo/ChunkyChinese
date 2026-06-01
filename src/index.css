@@ -2437,6 +2437,10 @@ kbd {
   line-height: 1;
 }
 
+.flashcard.answer-side strong {
+  font-size: clamp(4rem, 12vw, 8.8rem);
+}
+
 .flashcard p {
   max-width: 560px;
   color: var(--navy);
@@ -2508,6 +2512,19 @@ kbd {
 .flashcards-complete {
   justify-items: center;
   text-align: center;
+}
+
+.flashcard-complete-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.flashcard-complete-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .modal-backdrop {

@@ -389,7 +389,7 @@ function recentFlashcardAgainWords(words: VocabWord[], events: ListeningEvent[])
   const recentSessionIds = new Set(
     [...latestBySession.entries()]
       .sort((a, b) => b[1] - a[1])
-      .slice(0, 2)
+      .slice(0, 3)
       .map(([sessionId]) => sessionId),
   )
   if (recentSessionIds.size === 0) return []
