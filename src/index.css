@@ -2203,9 +2203,8 @@ kbd {
 }
 
 .reader-illustration {
-  float: right;
-  width: clamp(96px, 20%, 180px);
-  margin: 0 0 14px 18px;
+  width: min(100%, clamp(260px, 58vw, 560px));
+  margin: 0 auto 18px;
 }
 
 .reader-illustration img {

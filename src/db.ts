@@ -65,6 +65,7 @@ const DB_NAME = 'chunky-chinese-vocab'
 const DB_VERSION = 7
 const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
+const READER_PACK_FIX_VERSION = '2026-06-01-book1-images'
 
 export interface SyncMetadata {
   userId?: string
@@ -1142,7 +1143,9 @@ export async function importHostedClipPack(
 export async function seedReaderBooksIfEmpty(): Promise<number> {
   const db = await getDB()
   const existingBooks = await db.getAll('readerBooks')
+  const currentFixVersion = await db.get('settings', 'readerPackFixVersion')
   if (
+    currentFixVersion === READER_PACK_FIX_VERSION &&
     existingBooks.length > 0 &&
     existingBooks.every((book) => (book.illustrations?.length ?? 0) >= Math.ceil(
       book.stories.flatMap((story) => story.sentences).length / 2,
@@ -1155,6 +1158,7 @@ export async function seedReaderBooksIfEmpty(): Promise<number> {
   const summary = await importHostedReaderPack(firstPack.baseUrl, undefined, firstPack, {
     downloadAudio: false,
   })
+  await db.put('settings', READER_PACK_FIX_VERSION, 'readerPackFixVersion')
   return summary.importedSentences ?? 0
 }
 

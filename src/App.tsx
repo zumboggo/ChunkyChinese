@@ -4166,16 +4166,6 @@ function getReaderIllustration(book: ReaderBook, sentenceIndex: number) {
       fallbackImageFilename: exactIllustration.fallbackImageFilename ?? pairImageFilename,
     }
   }
-  if (sentenceNumber % 2 === 0) {
-    return {
-      id: `${book.id}-sentence-${String(sentenceNumber).padStart(3, '0')}`,
-      imageFilename: `reader-packs/lms-books/images/${book.id}/sentence-${String(sentenceNumber).padStart(3, '0')}.webp`,
-      fallbackImageFilename: pairImageFilename,
-      alt: `Manga reader illustration for sentence ${sentenceNumber} of ${book.title}.`,
-      sentenceStart: sentenceNumber,
-      sentenceEnd: sentenceNumber,
-    }
-  }
   const illustration = book.illustrations?.find(
     (item) => sentenceNumber >= item.sentenceStart && sentenceNumber <= item.sentenceEnd,
   )
