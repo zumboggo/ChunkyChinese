@@ -54,6 +54,9 @@ for (const book of books) {
     illustrations.push({
       id: `${bookSlug}-illustration-${String(imageIndex).padStart(3, '0')}`,
       imageFilename,
+      fallbackImageFilename: args.perSentenceSdxl && index % 2 === 1
+        ? `reader-packs/lms-books/images/${bookSlug}/illustration-${String(Math.ceil(sentenceNumber / 2)).padStart(3, '0')}.webp`
+        : undefined,
       alt: scene,
       prompt,
       sentenceStart: sentenceNumber,

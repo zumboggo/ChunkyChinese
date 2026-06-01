@@ -3343,6 +3343,9 @@ function ReaderMode({
 }) {
   const illustration = activeBook ? getReaderIllustration(activeBook, sentenceIndex) : undefined
   const illustrationSrc = illustration ? publicAssetPath(illustration.imageFilename) : ''
+  const fallbackIllustrationSrc = illustration?.fallbackImageFilename
+    ? publicAssetPath(illustration.fallbackImageFilename)
+    : ''
 
   return (
     <section className="screen reader-screen">
@@ -3422,7 +3425,19 @@ function ReaderMode({
                 >
                   {illustration && (
                     <figure className="reader-illustration">
-                      <img src={illustrationSrc} alt={illustration.alt} loading="lazy" />
+                      <img
+                        key={illustration.imageFilename}
+                        src={illustrationSrc}
+                        alt={illustration.alt}
+                        loading="lazy"
+                        onError={(event) => {
+                          if (!fallbackIllustrationSrc) return
+                          const image = event.currentTarget
+                          if (image.dataset.fallbackShown === 'true') return
+                          image.dataset.fallbackShown = 'true'
+                          image.src = fallbackIllustrationSrc
+                        }}
+                      />
                     </figure>
                   )}
                   <div className="reader-sentence">
@@ -4105,19 +4120,41 @@ function tokenizeReaderText(text: string, vocab: VocabWord[]): ReaderWordToken[]
 
 function getReaderIllustration(book: ReaderBook, sentenceIndex: number) {
   const sentenceNumber = sentenceIndex + 1
-  const illustration = book.illustrations?.find(
-    (item) => sentenceNumber >= item.sentenceStart && sentenceNumber <= item.sentenceEnd,
-  )
-  if (illustration) return illustration
   if (!book.id.startsWith('lms-book-1-chapters-')) {
-    return undefined
+    return book.illustrations?.find(
+      (item) => sentenceNumber >= item.sentenceStart && sentenceNumber <= item.sentenceEnd,
+    )
   }
   const sentenceCount = book.stories.reduce((sum, story) => sum + story.sentences.length, 0)
   if (sentenceNumber < 1 || sentenceNumber > sentenceCount) return undefined
   const imageNumber = Math.ceil(sentenceNumber / 2)
+  const pairImageFilename = `reader-packs/lms-books/images/${book.id}/illustration-${String(imageNumber).padStart(3, '0')}.webp`
+  const exactIllustration = book.illustrations?.find(
+    (item) => item.sentenceStart === sentenceNumber && item.sentenceEnd === sentenceNumber,
+  )
+  if (exactIllustration) {
+    return {
+      ...exactIllustration,
+      fallbackImageFilename: exactIllustration.fallbackImageFilename ?? pairImageFilename,
+    }
+  }
+  if (sentenceNumber % 2 === 0) {
+    return {
+      id: `${book.id}-sentence-${String(sentenceNumber).padStart(3, '0')}`,
+      imageFilename: `reader-packs/lms-books/images/${book.id}/sentence-${String(sentenceNumber).padStart(3, '0')}.webp`,
+      fallbackImageFilename: pairImageFilename,
+      alt: `Manga reader illustration for sentence ${sentenceNumber} of ${book.title}.`,
+      sentenceStart: sentenceNumber,
+      sentenceEnd: sentenceNumber,
+    }
+  }
+  const illustration = book.illustrations?.find(
+    (item) => sentenceNumber >= item.sentenceStart && sentenceNumber <= item.sentenceEnd,
+  )
+  if (illustration) return illustration
   return {
     id: `${book.id}-illustration-${String(imageNumber).padStart(3, '0')}`,
-    imageFilename: `reader-packs/lms-books/images/${book.id}/illustration-${String(imageNumber).padStart(3, '0')}.webp`,
+    imageFilename: pairImageFilename,
     alt: `Manga reader illustration ${imageNumber} for ${book.title}.`,
     sentenceStart: (imageNumber - 1) * 2 + 1,
     sentenceEnd: Math.min(imageNumber * 2, sentenceCount),

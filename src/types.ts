@@ -138,6 +138,7 @@ export interface ReaderBook {
 export interface ReaderIllustration {
   id: string
   imageFilename: string
+  fallbackImageFilename?: string
   alt: string
   prompt?: string
   sentenceStart: number
