@@ -388,6 +388,7 @@ function stripLocalAudioIds(word: VocabWord): VocabWord {
 function hasMeaningfulProgress(word: VocabWord): boolean {
   return Boolean(
     word.userEditedAt ||
+      word.activeRecallPriorityAt ||
       word.lastReviewedAt ||
       word.fsrsDueAt ||
       word.fsrsRepetitions ||

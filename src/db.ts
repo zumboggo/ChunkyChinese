@@ -77,6 +77,7 @@ export const DEFAULT_HOTKEYS: HotkeySettings = {
   choiceB: '2',
   choiceC: '3',
   choiceD: '4',
+  choiceE: '5',
   playPause: 'p',
 }
 
@@ -460,6 +461,7 @@ export async function getHotkeys(): Promise<HotkeySettings> {
     choiceB: saved?.choiceB ?? saved?.answerB ?? DEFAULT_HOTKEYS.choiceB,
     choiceC: saved?.choiceC ?? saved?.ratingGood ?? DEFAULT_HOTKEYS.choiceC,
     choiceD: saved?.choiceD ?? saved?.ratingEasy ?? DEFAULT_HOTKEYS.choiceD,
+    choiceE: saved?.choiceE ?? DEFAULT_HOTKEYS.choiceE,
     playPause: saved?.playPause ?? DEFAULT_HOTKEYS.playPause,
   })
 }
@@ -722,6 +724,44 @@ export async function updateWordText(
   }
   await db.put('vocabWords', updatedWord)
   return updatedWord
+}
+
+export async function setWordActiveRecallPriority(
+  wordId: string,
+  prioritized: boolean,
+): Promise<VocabWord | undefined> {
+  const db = await getDB()
+  const word = await db.get('vocabWords', wordId)
+  if (!word) return undefined
+  const now = new Date().toISOString()
+  const updatedWord: VocabWord = {
+    ...word,
+    activeRecallPriorityAt: prioritized ? word.activeRecallPriorityAt ?? now : undefined,
+    updatedAt: now,
+  }
+  await db.put('vocabWords', updatedWord)
+  return updatedWord
+}
+
+export async function clearWordActiveRecallPriorities(wordIds: string[]): Promise<VocabWord[]> {
+  if (wordIds.length === 0) return []
+  const db = await getDB()
+  const tx = db.transaction('vocabWords', 'readwrite')
+  const updatedWords: VocabWord[] = []
+  const now = new Date().toISOString()
+  for (const wordId of wordIds) {
+    const word = await tx.store.get(wordId)
+    if (!word?.activeRecallPriorityAt) continue
+    const updatedWord: VocabWord = {
+      ...word,
+      activeRecallPriorityAt: undefined,
+      updatedAt: now,
+    }
+    await tx.store.put(updatedWord)
+    updatedWords.push(updatedWord)
+  }
+  await tx.done
+  return updatedWords
 }
 
 export async function rateWordFsrs(
@@ -1800,6 +1840,7 @@ function normalizeHotkeys(hotkeys: HotkeySettings): HotkeySettings {
     choiceB: normalizeKey(hotkeys.choiceB, DEFAULT_HOTKEYS.choiceB),
     choiceC: normalizeKey(hotkeys.choiceC, DEFAULT_HOTKEYS.choiceC),
     choiceD: normalizeKey(hotkeys.choiceD, DEFAULT_HOTKEYS.choiceD),
+    choiceE: normalizeKey(hotkeys.choiceE, DEFAULT_HOTKEYS.choiceE),
     playPause: normalizeKey(hotkeys.playPause, DEFAULT_HOTKEYS.playPause),
   }
 }

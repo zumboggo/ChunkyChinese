@@ -511,6 +511,58 @@ dt {
   grid-template-columns: 1.4fr repeat(3, minmax(0, 1fr));
 }
 
+.dashboard-today-panel {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.7fr) minmax(0, 2fr);
+  gap: 14px;
+  align-items: stretch;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 16px 38px rgba(16, 35, 63, 0.08);
+}
+
+.dashboard-today-heading,
+.dashboard-today-stats div {
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  min-height: 76px;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.dashboard-today-heading strong {
+  color: var(--navy);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+}
+
+.dashboard-today-heading span,
+.dashboard-today-stats dt {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.dashboard-today-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.dashboard-today-stats dd {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  font-weight: 950;
+  line-height: 1;
+}
+
 .metric {
   display: grid;
   justify-items: start;
@@ -2448,6 +2500,22 @@ kbd {
   font-weight: 800;
 }
 
+.active-recall-priority-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+.active-recall-priority-button.active {
+  border-color: rgba(249, 115, 22, 0.5);
+  background: rgba(249, 115, 22, 0.16);
+  color: #9a3412;
+}
+
 .flashcard-edit-button {
   position: fixed;
   left: 50%;
@@ -2640,6 +2708,8 @@ kbd {
   .action-grid,
   .dashboard-progress-grid,
   .import-grid,
+  .dashboard-today-panel,
+  .dashboard-today-stats,
   .reader-layout,
   .filters,
   .hotkey-grid,

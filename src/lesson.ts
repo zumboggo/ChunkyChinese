@@ -358,6 +358,7 @@ export function selectActiveRecallTargetWords(
     .filter((word) => hasActiveRecallStruggleSignal(word, events))
     .sort((a, b) => activeRecallStruggleScore(b, events) - activeRecallStruggleScore(a, events))
 
+  pick(manualActiveRecallPriorityWords(words))
   pick(recentFlashcardAgainWords(reviewed, events))
   pick(strongestStruggles)
 
@@ -375,6 +376,17 @@ export function selectActiveRecallTargetWords(
   }
 
   return selected
+}
+
+function manualActiveRecallPriorityWords(words: VocabWord[]): VocabWord[] {
+  return words
+    .filter((word) => word.activeRecallPriorityAt)
+    .sort((a, b) => activeRecallPriorityTime(a) - activeRecallPriorityTime(b))
+}
+
+function activeRecallPriorityTime(word: VocabWord): number {
+  const time = Date.parse(word.activeRecallPriorityAt ?? '')
+  return Number.isFinite(time) ? time : Number.MAX_SAFE_INTEGER
 }
 
 function recentFlashcardAgainWords(words: VocabWord[], events: ListeningEvent[]): VocabWord[] {

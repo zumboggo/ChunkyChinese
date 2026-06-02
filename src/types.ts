@@ -48,6 +48,7 @@ export interface HotkeySettings {
   choiceB: string
   choiceC: string
   choiceD: string
+  choiceE: string
   playPause: string
 }
 
@@ -229,6 +230,7 @@ export interface VocabWord {
   fsrsStability?: number
   fsrsDifficulty?: number
   fsrsLearningSteps?: number
+  activeRecallPriorityAt?: string
   packIds?: string[]
   createdAt: string
   updatedAt: string

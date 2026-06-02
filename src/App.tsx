@@ -51,6 +51,8 @@ import {
   seedLmsWordsIfEmpty,
   seedReaderBooksIfEmpty,
   saveHotkeys,
+  setWordActiveRecallPriority,
+  clearWordActiveRecallPriorities,
   setActivePackId as persistActivePackId,
   startReaderSession,
   updateReaderSession,
@@ -276,6 +278,7 @@ function App() {
   const readerAutoPlayKeyRef = useRef<string | null>(null)
   const flashcardFeedbackTimeoutRef = useRef<number | null>(null)
   const syncTimerRef = useRef<number | null>(null)
+  const clearedActiveRecallLessonRef = useRef<string | null>(null)
 
   const refresh = useCallback(async () => {
     const [
@@ -713,6 +716,45 @@ function App() {
     void refresh()
   }, [editingWord, queueCloudSync, refresh])
 
+  const toggleActiveRecallPriority = useCallback(async (word: VocabWord) => {
+    const prioritized = !word.activeRecallPriorityAt
+    const updatedWord = await setWordActiveRecallPriority(word.id, prioritized)
+    if (!updatedWord) return
+    setWords((currentWords) =>
+      currentWords.map((currentWord) => (currentWord.id === updatedWord.id ? updatedWord : currentWord)),
+    )
+    setSelectedReaderToken((token) =>
+      token?.word?.id === updatedWord.id ? { ...token, word: updatedWord } : token,
+    )
+    setLastSummary(
+      prioritized
+        ? `${updatedWord.word} starred for Active Recall.`
+        : `${updatedWord.word} removed from Active Recall priority.`,
+    )
+    queueCloudSync()
+  }, [queueCloudSync])
+
+  useEffect(() => {
+    if (studyMode !== 'activeRecall' || !lesson || !allLessonWordsRated) return
+    const lessonWordIds = lesson.targetWords.map((word) => word.id).sort()
+    const clearKey = lessonWordIds.join('|')
+    if (!clearKey || clearedActiveRecallLessonRef.current === clearKey) return
+    clearedActiveRecallLessonRef.current = clearKey
+    const prioritizedIds = lessonWordIds.filter((wordId) =>
+      words.some((word) => word.id === wordId && word.activeRecallPriorityAt),
+    )
+    if (prioritizedIds.length === 0) return
+    void clearWordActiveRecallPriorities(prioritizedIds).then((updatedWords) => {
+      if (updatedWords.length === 0) return
+      const updatedById = new Map(updatedWords.map((word) => [word.id, word]))
+      setWords((currentWords) =>
+        currentWords.map((word) => updatedById.get(word.id) ?? word),
+      )
+      setLastSummary('Completed Active Recall priorities were cleared.')
+      queueCloudSync()
+    })
+  }, [allLessonWordsRated, lesson, queueCloudSync, studyMode, words])
+
   const finishFlashcardSession = useCallback(() => {
     setLastSummary('Flashcard session saved.')
     setFlashcardCurrentId(null)
@@ -762,6 +804,7 @@ function App() {
     readyMessage: string,
   ) => {
     setLesson(nextLesson)
+    clearedActiveRecallLessonRef.current = null
     setCurrentStepIndex(0)
     setQuizResponses({})
     setShowReviewPrompt(false)
@@ -1392,6 +1435,11 @@ function App() {
         return
       }
       if (screen === 'flashcards') {
+        if (pressed === hotkeys.choiceE && currentFlashcardWord) {
+          event.preventDefault()
+          void toggleActiveRecallPriority(currentFlashcardWord)
+          return
+        }
         if (!currentFlashcardWord && flashcardSessionComplete) {
           if (mappedIndex === 0) {
             event.preventDefault()
@@ -1409,7 +1457,7 @@ function App() {
           void playFlashcardWordTwice(currentFlashcardWord)
           return
         }
-        const rating = mappedIndex === 0 ? 'again' : mappedIndex === 1 ? 'good' : hotkeyToReviewRating(pressed, hotkeys)
+        const rating = hotkeyToReviewRating(pressed, hotkeys)
         if (rating && flashcardAnswerShown) {
           event.preventDefault()
           handleStandaloneFlashcardRate(rating)
@@ -1433,6 +1481,11 @@ function App() {
           }
           return
         }
+        if (pressed === hotkeys.choiceE && currentReviewWord) {
+          event.preventDefault()
+          void toggleActiveRecallPriority(currentReviewWord)
+          return
+        }
         if (flashcardFeedback) return
         if (!reviewAnswerShown && (mappedIndex === 0 || event.key === 'Enter' || event.key === ' ')) {
           event.preventDefault()
@@ -1440,7 +1493,7 @@ function App() {
           if (currentReviewWord) void playFlashcardWordTwice(currentReviewWord)
           return
         }
-        const rating = mappedIndex === 0 ? 'again' : mappedIndex === 1 ? 'good' : hotkeyToReviewRating(pressed, hotkeys)
+        const rating = hotkeyToReviewRating(pressed, hotkeys)
         if (rating && reviewAnswerShown && currentReviewWord) {
           event.preventDefault()
           handleFlashcardRate(currentReviewWord.id, rating)
@@ -1502,6 +1555,7 @@ function App() {
     reviewAnswerShown,
     screen,
     showReviewPrompt,
+    toggleActiveRecallPriority,
     togglePlayback,
   ])
 
@@ -1908,6 +1962,31 @@ function App() {
             </div>
           </div>
 
+          <section className="dashboard-today-panel" aria-label="Today">
+            <div className="dashboard-today-heading">
+              <strong>Today</strong>
+              <span>{stats.currentStreak} day streak</span>
+            </div>
+            <dl className="dashboard-today-stats">
+              <div>
+                <dt>Cards reviewed today</dt>
+                <dd>{stats.lingqsCreatedToday}</dd>
+              </div>
+              <div>
+                <dt>Successful recalls today</dt>
+                <dd>{stats.lingqsLearnedToday}</dd>
+              </div>
+              <div>
+                <dt>Study minutes</dt>
+                <dd>{stats.minutesToday.toFixed(1)}</dd>
+              </div>
+              <div>
+                <dt>New words today</dt>
+                <dd>{stats.newWordsToday} / {newWordsPerDay}</dd>
+              </div>
+            </dl>
+          </section>
+
           <div className="gamification-banner">
             <div className="coin-balance" title="Total Coins">
               🪙 <strong>{userSettings.coins}</strong>
@@ -1976,14 +2055,6 @@ function App() {
                   <dd>🪙 {userSettings.coins}</dd>
                 </div>
                 <div>
-                  <dt>Cards reviewed today</dt>
-                  <dd>{stats.lingqsCreatedToday}</dd>
-                </div>
-                <div>
-                  <dt>Successful recalls today</dt>
-                  <dd>{stats.lingqsLearnedToday}</dd>
-                </div>
-                <div>
                   <dt>Flashcards / Day</dt>
                   <dd>{userSettings.flashcardsPerDay}</dd>
                 </div>
@@ -2010,7 +2081,7 @@ function App() {
                 </div>
               </dl>
             </InfoPanel>
-            <InfoPanel title="Today">
+            <InfoPanel title="Study details">
               <dl className="stat-list">
                 <div>
                   <dt>Current streak</dt>
@@ -2124,8 +2195,12 @@ function App() {
                   </dd>
                 </div>
                 <div>
+                  <dt>E choice</dt>
+                  <dd>{hotkeys.choiceE.toUpperCase()}</dd>
+                </div>
+                <div>
                   <dt>At rating time</dt>
-                  <dd>A=Again, B=Good, C=Hard, D=Easy</dd>
+                  <dd>A=Again, B=Hard, C=Good, D=Easy, E=Star</dd>
                 </div>
                 <div>
                   <dt>Play / pause</dt>
@@ -2200,7 +2275,9 @@ function App() {
 
           <section className="flashcards-workspace">
             <div className="flashcards-meta">
-              <span>{hotkeys.choiceA.toUpperCase()} flip, then Again · {hotkeys.choiceB.toUpperCase()} Good</span>
+              <span>
+                {hotkeys.choiceA.toUpperCase()} flip, then Again · {hotkeys.choiceE.toUpperCase()} star for Active Recall
+              </span>
             </div>
             <FlashcardQueueCounters counts={flashcardSessionCounts} />
 
@@ -2214,6 +2291,7 @@ function App() {
                 }}
                 onRate={handleStandaloneFlashcardRate}
                 onEdit={() => openCardEditor(currentFlashcardWord)}
+                onToggleActiveRecallPriority={() => toggleActiveRecallPriority(currentFlashcardWord)}
                 selectedRating={flashcardSessionFeedback}
                 choiceKeys={hotkeys}
               />
@@ -2555,7 +2633,7 @@ function App() {
             </section>
             <section className="panel">
               <h2>Hotkey settings</h2>
-              <p>Choice A/B are the main 8BitDo controls; extra ratings stay available by tap.</p>
+              <p>Choice A-D rate flashcards; Choice E stars cards for Active Recall.</p>
               <dl className="stat-list">
                 <div>
                   <dt>Choice A / B</dt>
@@ -2564,6 +2642,10 @@ function App() {
                 <div>
                   <dt>Choice C / D</dt>
                   <dd>{hotkeys.choiceC.toUpperCase()} / {hotkeys.choiceD.toUpperCase()}</dd>
+                </div>
+                <div>
+                  <dt>Choice E</dt>
+                  <dd>{hotkeys.choiceE.toUpperCase()}</dd>
                 </div>
                 <div>
                   <dt>Play / pause</dt>
@@ -2700,6 +2782,7 @@ function App() {
                               }}
                               onRate={(rating) => handleFlashcardRate(currentReviewWord.id, rating)}
                               onEdit={() => openCardEditor(currentReviewWord)}
+                              onToggleActiveRecallPriority={() => toggleActiveRecallPriority(currentReviewWord)}
                               selectedRating={flashcardFeedback}
                               choiceKeys={hotkeys}
                           />
@@ -3826,6 +3909,7 @@ function FlashcardReview({
   onFlip,
   onRate,
   onEdit,
+  onToggleActiveRecallPriority,
   selectedRating,
   choiceKeys,
 }: {
@@ -3834,6 +3918,7 @@ function FlashcardReview({
   onFlip: () => void
   onRate: (rating: FsrsRating) => void | Promise<void>
   onEdit?: () => void
+  onToggleActiveRecallPriority?: () => void | Promise<void>
   selectedRating?: FsrsRating | null
   choiceKeys?: HotkeySettings
 }) {
@@ -3856,6 +3941,17 @@ function FlashcardReview({
               Flip
             </button>
           </>
+        )}
+        {onToggleActiveRecallPriority && (
+          <button
+            type="button"
+            className={`active-recall-priority-button ${word.activeRecallPriorityAt ? 'active' : ''}`}
+            onClick={onToggleActiveRecallPriority}
+            aria-pressed={Boolean(word.activeRecallPriorityAt)}
+          >
+            {choiceKeys?.choiceE && <kbd>{choiceKeys.choiceE.toUpperCase()}</kbd>}
+            <span>{word.activeRecallPriorityAt ? '★ Active Recall' : '☆ Active Recall'}</span>
+          </button>
         )}
       </div>
       {answerShown && (
@@ -3961,8 +4057,8 @@ function formatRelativeTime(value: string): string {
 
 const fsrsRatingsForUi: Array<{ value: FsrsRating; label: string }> = [
   { value: 'again', label: 'Again' },
-  { value: 'good', label: 'Good' },
   { value: 'hard', label: 'Hard' },
+  { value: 'good', label: 'Good' },
   { value: 'easy', label: 'Easy' },
 ]
 
@@ -4076,8 +4172,8 @@ function fsrsLabel(rating: FsrsRating): string {
 
 function ratingHotkeyLabel(rating: FsrsRating, hotkeys: HotkeySettings): string {
   if (rating === 'again') return hotkeys.choiceA.toUpperCase()
-  if (rating === 'good') return hotkeys.choiceB.toUpperCase()
-  if (rating === 'hard') return hotkeys.choiceC.toUpperCase()
+  if (rating === 'hard') return hotkeys.choiceB.toUpperCase()
+  if (rating === 'good') return hotkeys.choiceC.toUpperCase()
   return hotkeys.choiceD.toUpperCase()
 }
 
@@ -4261,7 +4357,7 @@ function detectSpeechLanguage(text: string): string {
 
 function hotkeyToReviewRating(key: string, hotkeys: HotkeySettings): FsrsRating | undefined {
   const index = choiceKeyIndex(key, hotkeys)
-  return (['again', 'good', 'hard', 'easy'] as FsrsRating[])[index]
+  return (['again', 'hard', 'good', 'easy'] as FsrsRating[])[index]
 }
 
 function choiceKeyIndex(key: string, hotkeys: HotkeySettings): number {
@@ -4273,9 +4369,10 @@ function choiceKeyIndex(key: string, hotkeys: HotkeySettings): number {
 function hotkeyLabel(key: keyof HotkeySettings): string {
   return {
     choiceA: 'Choice A / Again',
-    choiceB: 'Choice B / Good',
-    choiceC: 'Choice C / Hard',
+    choiceB: 'Choice B / Hard',
+    choiceC: 'Choice C / Good',
     choiceD: 'Choice D / Easy',
+    choiceE: 'Choice E / Active Recall star',
     playPause: 'Play / Pause',
   }[key]
 }
