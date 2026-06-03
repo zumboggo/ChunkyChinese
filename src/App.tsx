@@ -132,6 +132,7 @@ type LessonStartOptions = {
   pauseProfile?: PauseProfile
   newWordsLimit?: number
   allowExtraNew?: boolean
+  extraReviewFirst?: boolean
 }
 type QuizKind = 'zh-en' | 'en-zh' | 'audio-zh' | 'contrast' | 'sentence-zh-en'
 type RecallStage = 'easy' | 'audio-first' | 'try-before-choices' | 'quick' | 'rescue'
@@ -279,6 +280,7 @@ function App() {
   const flashcardFeedbackTimeoutRef = useRef<number | null>(null)
   const syncTimerRef = useRef<number | null>(null)
   const clearedActiveRecallLessonRef = useRef<string | null>(null)
+  const syncedFlashcardCompletionRef = useRef<string | null>(null)
 
   const refresh = useCallback(async () => {
     const [
@@ -544,6 +546,13 @@ function App() {
     () => (activePackId ? words.filter((word) => word.packIds?.includes(activePackId)) : words),
     [activePackId, words],
   )
+  const extraReviewWords = useMemo(
+    () =>
+      words
+        .filter((word) => word.activeRecallPriorityAt)
+        .sort((a, b) => priorityTime(a) - priorityTime(b)),
+    [words],
+  )
   const scopedSentences = useMemo(
     () =>
       activePackId
@@ -647,6 +656,18 @@ function App() {
   const flashcardSessionComplete =
     flashcardQueue.length > 0 && flashcardSessionCounts.done >= flashcardSessionCounts.total
 
+  useEffect(() => {
+    if (!flashcardSessionComplete || !flashcardSessionId) return
+    if (syncedFlashcardCompletionRef.current === flashcardSessionId) return
+    syncedFlashcardCompletionRef.current = flashcardSessionId
+    setLastSummary(
+      isSupabaseConfigured && cloudUserEmail
+        ? 'Flashcard set complete. Sync queued.'
+        : 'Flashcard set complete.',
+    )
+    queueCloudSync()
+  }, [cloudUserEmail, flashcardSessionComplete, flashcardSessionId, queueCloudSync])
+
   const buildFlashcardQueue = useCallback((mode: FlashcardQueueMode = 'mixed') => {
     const source = scopedWords.length > 0 ? scopedWords : words
     const limit = Math.max(1, userSettings.flashcardsPerDay || 50)
@@ -728,8 +749,8 @@ function App() {
     )
     setLastSummary(
       prioritized
-        ? `${updatedWord.word} starred for Active Recall.`
-        : `${updatedWord.word} removed from Active Recall priority.`,
+        ? `${updatedWord.word} starred for extra review.`
+        : `${updatedWord.word} removed from extra review.`,
     )
     queueCloudSync()
   }, [queueCloudSync])
@@ -750,7 +771,7 @@ function App() {
       setWords((currentWords) =>
         currentWords.map((word) => updatedById.get(word.id) ?? word),
       )
-      setLastSummary('Completed Active Recall priorities were cleared.')
+      setLastSummary('Completed extra review stars were cleared.')
       queueCloudSync()
     })
   }, [allLessonWordsRated, lesson, queueCloudSync, studyMode, words])
@@ -1584,12 +1605,14 @@ function App() {
         ? createLesson(lessonWords, lessonSentences, manualIds, {
             activeRecall: studyMode === 'activeRecall',
             activeRecallEvents,
+            extraReviewFirst: studyMode === 'listeningMode',
             ...selectionOptions,
           })
         : createPocketLesson(lessonWords, lessonSentences, audioClips, manualIds, {
             pauseProfile,
             activeRecall: studyMode === 'activeRecall',
             activeRecallEvents,
+            extraReviewFirst: studyMode === 'listeningMode',
             ...selectionOptions,
           })
       setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
@@ -1987,6 +2010,29 @@ function App() {
             </dl>
           </section>
 
+          <details className="extra-review-panel">
+            <summary>
+              <span>Extra review words</span>
+              <strong>{extraReviewWords.length}</strong>
+            </summary>
+            <div className="extra-review-list">
+              {extraReviewWords.map((word) => (
+                <div className="extra-review-row" key={word.id}>
+                  <span>
+                    <strong>{word.word}</strong>
+                    <small>{word.pinyin ? `${word.pinyin} · ${word.meaning}` : word.meaning}</small>
+                  </span>
+                  <button type="button" className="ghost-answer" onClick={() => toggleActiveRecallPriority(word)}>
+                    Remove
+                  </button>
+                </div>
+              ))}
+              {extraReviewWords.length === 0 && (
+                <small>No starred words yet. Press {hotkeys.choiceE.toUpperCase()} on a flashcard to add one.</small>
+              )}
+            </div>
+          </details>
+
           <div className="gamification-banner">
             <div className="coin-balance" title="Total Coins">
               🪙 <strong>{userSettings.coins}</strong>
@@ -2200,7 +2246,7 @@ function App() {
                 </div>
                 <div>
                   <dt>At rating time</dt>
-                  <dd>A=Again, B=Hard, C=Good, D=Easy, E=Star</dd>
+                  <dd>A=Again, B=Hard, C=Good, D=Easy, E=Extra review</dd>
                 </div>
                 <div>
                   <dt>Play / pause</dt>
@@ -2276,7 +2322,7 @@ function App() {
           <section className="flashcards-workspace">
             <div className="flashcards-meta">
               <span>
-                {hotkeys.choiceA.toUpperCase()} flip, then Again · {hotkeys.choiceE.toUpperCase()} star for Active Recall
+                {hotkeys.choiceA.toUpperCase()} flip, then Again · {hotkeys.choiceE.toUpperCase()} star for extra review
               </span>
             </div>
             <FlashcardQueueCounters counts={flashcardSessionCounts} />
@@ -2633,7 +2679,7 @@ function App() {
             </section>
             <section className="panel">
               <h2>Hotkey settings</h2>
-              <p>Choice A-D rate flashcards; Choice E stars cards for Active Recall.</p>
+              <p>Choice A-D rate flashcards; Choice E stars cards for extra review.</p>
               <dl className="stat-list">
                 <div>
                   <dt>Choice A / B</dt>
@@ -3950,7 +3996,7 @@ function FlashcardReview({
             aria-pressed={Boolean(word.activeRecallPriorityAt)}
           >
             {choiceKeys?.choiceE && <kbd>{choiceKeys.choiceE.toUpperCase()}</kbd>}
-            <span>{word.activeRecallPriorityAt ? '★ Active Recall' : '☆ Active Recall'}</span>
+            <span>{word.activeRecallPriorityAt ? '★ Extra review' : '☆ Extra review'}</span>
           </button>
         )}
       </div>
@@ -4177,6 +4223,11 @@ function ratingHotkeyLabel(rating: FsrsRating, hotkeys: HotkeySettings): string 
   return hotkeys.choiceD.toUpperCase()
 }
 
+function priorityTime(word: VocabWord): number {
+  const time = Date.parse(word.activeRecallPriorityAt ?? '')
+  return Number.isFinite(time) ? time : Number.MAX_SAFE_INTEGER
+}
+
 function formatDueDate(value?: string): string {
   if (!value) return 'Not scheduled'
   const due = new Date(value)
@@ -4372,7 +4423,7 @@ function hotkeyLabel(key: keyof HotkeySettings): string {
     choiceB: 'Choice B / Hard',
     choiceC: 'Choice C / Good',
     choiceD: 'Choice D / Easy',
-    choiceE: 'Choice E / Active Recall star',
+    choiceE: 'Choice E / Extra review star',
     playPause: 'Play / Pause',
   }[key]
 }

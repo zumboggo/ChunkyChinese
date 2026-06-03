@@ -11,6 +11,7 @@ interface TargetSelectionOptions {
   allowExtraNew?: boolean
   keptWordIds?: string[]
   activeRecallEvents?: ListeningEvent[]
+  extraReviewFirst?: boolean
 }
 
 interface PauseTimings {
@@ -256,6 +257,13 @@ export function selectTargetWords(
   const filteredWords = options.keptWordIds
     ? words.filter((word) => !options.keptWordIds!.includes(word.id))
     : words
+
+  if (options.extraReviewFirst) {
+    for (const word of manualActiveRecallPriorityWords(filteredWords)) {
+      if (selected.length >= 5) break
+      if (!selected.some((candidate) => candidate.id === word.id)) selected.push(word)
+    }
+  }
 
   if (options.activeRecall && options.keptWordIds) {
     const fillWords = selectActiveRecallTargetWords(filteredWords, options.activeRecallEvents ?? [])

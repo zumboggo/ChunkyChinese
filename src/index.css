@@ -563,6 +563,70 @@ dt {
   line-height: 1;
 }
 
+.extra-review-panel {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 14px 34px rgba(16, 35, 63, 0.07);
+}
+
+.extra-review-panel summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 54px;
+  padding: 14px 16px;
+  color: var(--navy);
+  cursor: pointer;
+  font-weight: 950;
+}
+
+.extra-review-panel summary strong {
+  display: inline-grid;
+  place-items: center;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 999px;
+  background: rgba(249, 115, 22, 0.16);
+  color: #9a3412;
+}
+
+.extra-review-list {
+  display: grid;
+  gap: 8px;
+  padding: 0 14px 14px;
+}
+
+.extra-review-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.extra-review-row span {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.extra-review-row strong {
+  color: var(--navy);
+  font-size: 1.25rem;
+}
+
+.extra-review-row small,
+.extra-review-list > small {
+  color: var(--muted);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
 .metric {
   display: grid;
   justify-items: start;
@@ -2732,6 +2796,10 @@ kbd {
 
   .reader-resume-button {
     width: 100%;
+  }
+
+  .extra-review-row {
+    grid-template-columns: 1fr;
   }
 
   .study-stage {
