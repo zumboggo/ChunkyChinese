@@ -4357,6 +4357,18 @@ function getReaderIllustration(book: ReaderBook, sentenceIndex: number) {
   }
   const sentenceCount = book.stories.reduce((sum, story) => sum + story.sentences.length, 0)
   if (sentenceNumber < 1 || sentenceNumber > sentenceCount) return undefined
+
+  if (book.id === 'lms-book-1-chapters-16-20') {
+    const sentenceImageFilename = `reader-packs/lms-books/images/${book.id}/sentence-${String(sentenceNumber).padStart(3, '0')}.webp`
+    return {
+      imageFilename: sentenceImageFilename,
+      fallbackImageFilename: undefined,
+      sentenceStart: sentenceNumber,
+      sentenceEnd: sentenceNumber,
+      alt: undefined,
+    }
+  }
+
   const imageNumber = Math.ceil(sentenceNumber / 2)
   const pairImageFilename = `reader-packs/lms-books/images/${book.id}/illustration-${String(imageNumber).padStart(3, '0')}.webp`
   const exactIllustration = book.illustrations?.find(
