@@ -3712,16 +3712,6 @@ function ReaderMode({
                   </dl>
                 </div>
               )}
-              {selectedToken && !selectedToken.word && selectedToken.isChinese && (
-                <div className="reader-word-popover" aria-live="polite">
-                  <button type="button" className="popover-close" onClick={() => onSelectToken(null)}>
-                    Close
-                  </button>
-                  <strong>{selectedToken.text}</strong>
-                  <span>{selectedToken.pinyin}</span>
-                  <p>No saved vocabulary entry yet.</p>
-                </div>
-              )}
             </>
           ) : (
             <div className="reader-empty">
