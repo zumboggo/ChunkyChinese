@@ -60,6 +60,8 @@ import {
   getUserSettings,
   saveUserSettings,
   updateWordText,
+  upsertWords,
+  lookupDictionary,
   DEFAULT_USER_SETTINGS,
 } from './db'
 import { createLesson, createPocketLesson, selectTargetWords, type PauseProfile } from './lesson'
@@ -93,6 +95,7 @@ import type {
   HostedClipPack,
   ImportSummary,
   LessonPlan,
+
   LessonStep,
   ReaderBook,
   ReaderPack,
@@ -106,6 +109,7 @@ import type {
   Sentence,
   StudyMode,
   VocabWord,
+  DictionaryEntry,
 } from './types'
 
 type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards'
@@ -242,6 +246,7 @@ function App() {
   const [readerShowPinyin, setReaderShowPinyin] = useState(true)
   const [readerShowEnglish, setReaderShowEnglish] = useState(false)
   const [selectedReaderToken, setSelectedReaderToken] = useState<ReaderWordToken | null>(null)
+  const [readerDictionaryEntry, setReaderDictionaryEntry] = useState<DictionaryEntry | null>(null)
   const [hostedPackDownloadId, setHostedPackDownloadId] = useState<string | null>(null)
   const [hostedPackProgress, setHostedPackProgress] = useState('')
   const [flashcardQueueIds, setFlashcardQueueIds] = useState<string[]>([])
@@ -1008,6 +1013,7 @@ function App() {
     setActiveReaderBookId(book.id)
     setReaderSentenceIndex(boundedIndex)
     setSelectedReaderToken(null)
+    setReaderDictionaryEntry(null)
     setScreen('reader')
     const session = await startReaderSession(book.packId, book.id)
     setActiveReaderSession(session)
@@ -1036,6 +1042,7 @@ function App() {
     recordReaderInteraction()
     setReaderSentenceIndex(nextIndex)
     setSelectedReaderToken(null)
+    setReaderDictionaryEntry(null)
     await saveReaderProgress({
       packId: activeReaderBook.packId,
       bookId: activeReaderBook.id,
@@ -2399,6 +2406,26 @@ function App() {
           onSelectToken={(token) => {
             recordReaderInteraction()
             setSelectedReaderToken(token)
+            setReaderDictionaryEntry(null)
+            if (token && !token.word && token.isChinese) {
+              lookupDictionary(token.text).then((entry) => setReaderDictionaryEntry(entry ?? null)).catch(console.error)
+            }
+          }}
+          onSaveWord={async (text, pinyin, meaning) => {
+            await upsertWords([{
+              id: crypto.randomUUID(),
+              word: text,
+              meaning: meaning,
+              pinyin: pinyin,
+              status: 'learning',
+              seenCount: 0,
+              correctCount: 0,
+              wrongCount: 0,
+              listenedSeconds: 0,
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString(),
+            }])
+            await refresh()
           }}
           onEditWord={openCardEditor}
           onTogglePinyin={() => {
@@ -2409,6 +2436,7 @@ function App() {
             recordReaderInteraction()
             setReaderShowEnglish((value) => !value)
           }}
+          readerDictionaryEntry={readerDictionaryEntry}
         />
       )}
 
@@ -3473,6 +3501,8 @@ function ReaderMode({
   onEditWord,
   onTogglePinyin,
   onToggleEnglish,
+  readerDictionaryEntry,
+  onSaveWord,
 }: {
   readerPacks: ReaderPack[]
   readerBooks: ReaderBook[]
@@ -3494,6 +3524,8 @@ function ReaderMode({
   onEditWord: (word: VocabWord) => void
   onTogglePinyin: () => void
   onToggleEnglish: () => void
+  readerDictionaryEntry: DictionaryEntry | null
+  onSaveWord: (text: string, pinyin: string, meaning: string) => void | Promise<void>
 }) {
   const illustration = activeBook ? getReaderIllustration(activeBook, sentenceIndex) : undefined
   const illustrationSrc = illustration ? publicAssetPath(illustration.imageFilename) : ''
@@ -3627,6 +3659,29 @@ function ReaderMode({
                 <button type="button" onClick={onNext} disabled={sentenceIndex >= sentenceCount - 1}>
                   Next
                 </button>
+                {selectedToken && !selectedToken.word && selectedToken.isChinese && (
+                  <div className="reader-word-popover" aria-live="polite">
+                    <button type="button" className="popover-close" onClick={() => onSelectToken(null)}>
+                      Close
+                    </button>
+                    <strong>{selectedToken.text}</strong>
+                    <span>{readerDictionaryEntry?.pinyin ?? selectedToken.pinyin}</span>
+                    {readerDictionaryEntry ? (
+                      <>
+                        <p>{readerDictionaryEntry.english}</p>
+                        <button
+                          type="button"
+                          className="primary"
+                          onClick={() => void onSaveWord(selectedToken.text, readerDictionaryEntry.pinyin, readerDictionaryEntry.english)}
+                        >
+                          Save Word
+                        </button>
+                      </>
+                    ) : (
+                      <p>No saved vocabulary entry yet.</p>
+                    )}
+                  </div>
+                )}
               </div>
               {selectedToken?.word && (
                 <div className="reader-word-popover" aria-live="polite">
