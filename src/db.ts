@@ -65,7 +65,7 @@ const DB_NAME = 'chunky-chinese-vocab'
 const DB_VERSION = 7
 const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
-const READER_PACK_FIX_VERSION = '2026-06-01-book1-images'
+const READER_PACK_FIX_VERSION = '2026-06-03-book2-per-sentence-images'
 
 export interface SyncMetadata {
   userId?: string
@@ -1187,9 +1187,13 @@ export async function seedReaderBooksIfEmpty(): Promise<number> {
   if (
     currentFixVersion === READER_PACK_FIX_VERSION &&
     existingBooks.length > 0 &&
-    existingBooks.every((book) => (book.illustrations?.length ?? 0) >= Math.ceil(
-      book.stories.flatMap((story) => story.sentences).length / 2,
-    ))
+    existingBooks.every((book) => {
+      const sentenceCount = book.stories.flatMap((story) => story.sentences).length
+      const expectedIllustrationCount = book.id === 'lms-book-1-chapters-16-20'
+        ? sentenceCount
+        : Math.ceil(sentenceCount / 2)
+      return (book.illustrations?.length ?? 0) >= expectedIllustrationCount
+    })
   ) {
     return 0
   }

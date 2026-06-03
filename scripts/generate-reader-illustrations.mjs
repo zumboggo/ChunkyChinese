@@ -215,8 +215,8 @@ function buildPrompt(scene) {
 function characterGuide(scene) {
   const lowerScene = scene.toLowerCase()
   const guides = [
-    'Reference character style: elegant fantasy webcomic cast with Korean manhwa proportions, ornate adventure clothing, consistent hair colors and silhouettes. Use the Weed/Lee Hyun pose sheet as text guidance: tousled dark brown hair, sharp amber-brown eyes, lean athletic build, expressive eyebrows, practical clothing that shifts between modern hoodie and fantasy sculptor-adventurer gear.',
-    'Weed / Lee Hyun: young Korean man, messy dark brown-black hair, confident practical expression, white shirt, leather straps, brown adventurer sculptor gear, leather gloves, sculpting tools or sword when relevant. His face should often show determination, clever mischievous glee, or fierce kindness.',
+    'Reference character style: elegant fantasy webcomic cast with Korean manhwa proportions, ornate adventure clothing, consistent hair colors and silhouettes. Use the Weed/Lee Hyun reference sheets as text guidance: tousled dark brown hair, sharp amber-brown eyes, lean athletic build, expressive eyebrows, practical clothing that shifts between modern hoodie, moonlit black cloak, and fantasy sculptor-adventurer gear.',
+    'Weed / Lee Hyun: young Korean man, messy dark brown-black hair, confident practical expression, white shirt, leather straps, brown adventurer sculptor gear, leather gloves, sculpting tools or sword when relevant. His character is a low-status sculptor who chooses creation over glory, fierce work over fame, and practical kindness over softness. His face should often show determination, clever mischievous glee, wild moonlit focus, or fierce kindness.',
   ]
   if (/\birene\b|priest|cleric|heal|holy/iu.test(lowerScene)) {
     guides.push('Irene: gentle blonde cleric in white and gold fantasy robes, blue eyes, ornate staff, kind expression.')
