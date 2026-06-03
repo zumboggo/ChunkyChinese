@@ -104,8 +104,9 @@ function createImageJobs(book) {
     const sentenceNumber = index + 1
     const imageIndex = usesPerSentenceMode() ? sentenceNumber : Math.floor(index / 2) + 1
     const filename = imageFilenameForIndex(index)
+    const proofDir = args.proofLabel ?? 'proof-flux'
     const relativeDir = args.proof
-      ? `reader-packs/lms-books/images/${book.id}/proof-flux`
+      ? `reader-packs/lms-books/images/${book.id}/${proofDir}`
       : `reader-packs/lms-books/images/${book.id}`
     const imageFilename = `${relativeDir}/${filename}`
     const outputPath = path.join(ROOT, 'public', imageFilename)
@@ -205,6 +206,7 @@ function buildPrompt(scene) {
   return [
     'Vibrant beautiful detailed fantasy webcomic manga art, polished manhwa-style digital painting, expressive faces, crisp clean line art, luminous color, cinematic lighting, rich backgrounds, dynamic but readable square composition.',
     characterGuide(scene),
+    moodGuide(),
     scene,
     'Illustrate the current sentence, using previous and next only as context. Show one main character unless the sentence clearly mentions companions, monsters, or a crowd. Square composition for a small reader thumbnail. Do not include signs, posters, labels, calligraphy, decorative glyphs, UI overlays, speech bubbles, captions, readable text, watermark, signature, logo, artist monogram, or initials.',
   ].join(' ')
@@ -213,8 +215,8 @@ function buildPrompt(scene) {
 function characterGuide(scene) {
   const lowerScene = scene.toLowerCase()
   const guides = [
-    'Reference character style: elegant fantasy webcomic cast with Korean manhwa proportions, ornate adventure clothing, consistent hair colors and silhouettes.',
-    'Weed / Lee Hyun: young Korean man, messy dark brown-black hair, confident practical expression, white shirt, leather straps, brown adventurer sculptor gear, simple sculpting tools or sword when relevant.',
+    'Reference character style: elegant fantasy webcomic cast with Korean manhwa proportions, ornate adventure clothing, consistent hair colors and silhouettes. Use the Weed/Lee Hyun pose sheet as text guidance: tousled dark brown hair, sharp amber-brown eyes, lean athletic build, expressive eyebrows, practical clothing that shifts between modern hoodie and fantasy sculptor-adventurer gear.',
+    'Weed / Lee Hyun: young Korean man, messy dark brown-black hair, confident practical expression, white shirt, leather straps, brown adventurer sculptor gear, leather gloves, sculpting tools or sword when relevant. His face should often show determination, clever mischievous glee, or fierce kindness.',
   ]
   if (/\birene\b|priest|cleric|heal|holy/iu.test(lowerScene)) {
     guides.push('Irene: gentle blonde cleric in white and gold fantasy robes, blue eyes, ornate staff, kind expression.')
@@ -242,6 +244,11 @@ function characterGuide(scene) {
   }
   guides.push('Only include characters who fit the sentence; if no named supporting character appears, focus on Weed and the environment.')
   return guides.join(' ')
+}
+
+function moodGuide() {
+  if (!args.mood) return ''
+  return `Emotional direction: ${args.mood}. Prefer determined eyes, a sly satisfied grin, protective warmth, and fierce kindness over blank neutral expressions.`
 }
 
 async function resolveModelVersion(model) {
@@ -366,7 +373,9 @@ function parseArgs(values) {
     else if (value === '--book-id') parsed.bookId = values[++index]
     else if (value === '--dry-run') parsed.dryRun = true
     else if (value === '--proof') parsed.proof = true
+    else if (value === '--proof-label') parsed.proofLabel = values[++index]
     else if (value === '--limit') parsed.limit = Number(values[++index])
+    else if (value === '--mood') parsed.mood = values[++index]
     else if (value === '--skip-existing') parsed.skipExisting = true
     else if (value === '--per-sentence') parsed.perSentence = true
     else if (value === '--per-sentence-sdxl') parsed.perSentenceSdxl = true
