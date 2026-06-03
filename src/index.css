@@ -2319,8 +2319,8 @@ kbd {
 }
 
 .reader-illustration {
-  width: min(100%, clamp(260px, 58vw, 560px));
-  margin: 0 auto 18px;
+  width: min(100%, clamp(320px, 82vw, 880px));
+  margin: 0 auto 24px;
 }
 
 .reader-illustration img {

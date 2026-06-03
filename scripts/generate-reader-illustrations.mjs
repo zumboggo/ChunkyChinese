@@ -23,90 +23,144 @@ const BOOK_DIR = path.join(PACK_DIR, 'books')
 const IMAGE_ROOT = path.join(PACK_DIR, 'images')
 
 const args = parseArgs(process.argv.slice(2))
-loadEnv(path.resolve(args.env ?? DEFAULT_ENV))
+if (!args.dryRun) loadEnv(path.resolve(args.env ?? DEFAULT_ENV))
 const token = process.env.REPLICATE_API_TOKEN?.trim()
-if (!token) throw new Error(`REPLICATE_API_TOKEN is missing. Checked ${args.env ?? DEFAULT_ENV}`)
-
-const MODEL = args.model ?? (args.perSentenceSdxl ? 'stability-ai/sdxl' : 'black-forest-labs/flux-schnell')
-const modelVersion = await resolveModelVersion(MODEL)
-const books = loadBooks()
-const total = books.reduce((sum, book) => sum + plannedImageCount(book), 0)
-let completed = 0
-
-for (const book of books) {
-  const bookSlug = book.id
-  const imageDir = path.join(IMAGE_ROOT, bookSlug)
-  mkdirSync(imageDir, { recursive: true })
-  removeOldTestImages(bookSlug)
-
-  const sentences = flattenSentences(book)
-  const illustrations = []
-  for (let index = 0; index < sentences.length; index += args.perSentenceSdxl ? 1 : 2) {
-    const group = args.perSentenceSdxl ? [sentences[index]] : sentences.slice(index, index + 2)
-    const sentenceNumber = index + 1
-    const imageIndex = args.perSentenceSdxl ? sentenceNumber : Math.floor(index / 2) + 1
-    const filename = imageFilenameForIndex(index)
-    const imageFilename = `reader-packs/lms-books/images/${bookSlug}/${filename}`
-    const outputPath = path.join(imageDir, filename)
-    const scene = describeScene(group)
-    const prompt = buildPrompt(scene)
-
-    illustrations.push({
-      id: `${bookSlug}-illustration-${String(imageIndex).padStart(3, '0')}`,
-      imageFilename,
-      fallbackImageFilename: args.perSentenceSdxl && index % 2 === 1
-        ? `reader-packs/lms-books/images/${bookSlug}/illustration-${String(Math.ceil(sentenceNumber / 2)).padStart(3, '0')}.webp`
-        : undefined,
-      alt: scene,
-      prompt,
-      sentenceStart: sentenceNumber,
-      sentenceEnd: args.perSentenceSdxl ? sentenceNumber : Math.min(index + 2, sentences.length),
-    })
-
-    if ((args.skipExisting || isPreservedOddSentence(index)) && existsSync(outputPath)) {
-      completed += 1
-      continue
-    }
-
-    completed += 1
-    console.log(
-      `Generating ${completed}/${total}: ${bookSlug} sentences ${sentenceNumber}-${args.perSentenceSdxl ? sentenceNumber : Math.min(index + 2, sentences.length)}`,
-    )
-    const imageUrl = await runPredictionWithFallback(modelVersion, prompt, scene, 30_000 + completed)
-    const response = await fetch(imageUrl)
-    if (!response.ok) throw new Error(`Could not download image ${imageUrl}: HTTP ${response.status}`)
-    writeFileSync(outputPath, Buffer.from(await response.arrayBuffer()))
-    await delay(1200)
-  }
-
-  book.illustrations = illustrations
-  writeFileSync(path.join(BOOK_DIR, `${book.id}.json`), `${JSON.stringify(book, null, 2)}\n`)
+if (!args.dryRun && !token) {
+  throw new Error(`REPLICATE_API_TOKEN is missing. Checked ${args.env ?? DEFAULT_ENV}`)
 }
 
-console.log(`Wrote ${total} reader illustration metadata entries.`)
+const MODEL = args.model ?? (args.perSentenceSdxl ? 'stability-ai/sdxl' : 'black-forest-labs/flux-schnell')
+const modelVersion = args.dryRun ? undefined : await resolveModelVersion(MODEL)
+const books = loadBooks()
+if (books.length === 0) {
+  throw new Error(args.bookId ? `No reader book matched --book-id ${args.bookId}.` : 'No reader books found.')
+}
+const plannedJobs = books.flatMap((book) => createImageJobs(book))
+const selectedJobs = selectJobs(plannedJobs)
+const total = selectedJobs.length
+let completed = 0
 
-function plannedImageCount(book) {
+console.log(
+  `${args.dryRun ? 'Dry run' : 'Planning'} ${total}/${plannedJobs.length} image jobs with ${MODEL}` +
+    `${args.proof ? ' in proof mode' : ''}.`,
+)
+
+if (args.dryRun) {
+  for (const job of selectedJobs) {
+    console.log(
+      [
+        `${job.book.id} sentence ${job.sentenceNumber}`,
+        job.outputPath,
+        job.prompt,
+      ].join('\n  '),
+    )
+  }
+  process.exit(0)
+}
+
+for (const job of selectedJobs) {
+  const imageDir = path.dirname(job.outputPath)
+  mkdirSync(imageDir, { recursive: true })
+  removeOldTestImages(job.book.id)
+
+  if (args.skipExisting && existsSync(job.outputPath)) {
+    completed += 1
+    console.log(`Skipping ${completed}/${total}: ${job.outputPath}`)
+    continue
+  }
+
+  completed += 1
+  console.log(`Generating ${completed}/${total}: ${job.book.id} sentence ${job.sentenceNumber}`)
+  const imageUrl = await runPredictionWithFallback(modelVersion, job.prompt, job.scene, 30_000 + completed)
+  const response = await fetch(imageUrl)
+  if (!response.ok) throw new Error(`Could not download image ${imageUrl}: HTTP ${response.status}`)
+  writeFileSync(job.outputPath, Buffer.from(await response.arrayBuffer()))
+  await delay(1200)
+}
+
+if (shouldWriteMetadata()) {
+  for (const book of books) {
+    const illustrations = createImageJobs(book).map((job) => job.illustration)
+    book.illustrations = illustrations
+    writeFileSync(path.join(BOOK_DIR, `${book.id}.json`), `${JSON.stringify(book, null, 2)}\n`)
+  }
+  console.log(`Wrote ${plannedJobs.length} reader illustration metadata entries.`)
+} else {
+  console.log('Left reader book metadata unchanged.')
+}
+
+console.log(`Finished ${total} image jobs.`)
+
+function shouldWriteMetadata() {
+  return !args.proof && !args.limit
+}
+
+function createImageJobs(book) {
   const sentences = flattenSentences(book)
-  return args.perSentenceSdxl ? sentences.length : Math.ceil(sentences.length / 2)
+  const jobs = []
+  const groupSize = usesPerSentenceMode() ? 1 : 2
+  for (let index = 0; index < sentences.length; index += groupSize) {
+    const group = sentences.slice(index, index + groupSize)
+    const sentenceNumber = index + 1
+    const imageIndex = usesPerSentenceMode() ? sentenceNumber : Math.floor(index / 2) + 1
+    const filename = imageFilenameForIndex(index)
+    const relativeDir = args.proof
+      ? `reader-packs/lms-books/images/${book.id}/proof-flux`
+      : `reader-packs/lms-books/images/${book.id}`
+    const imageFilename = `${relativeDir}/${filename}`
+    const outputPath = path.join(ROOT, 'public', imageFilename)
+    const scene = describeScene(book, group, sentences, index)
+    const prompt = buildPrompt(scene)
+    jobs.push({
+      book,
+      sentenceNumber,
+      outputPath,
+      scene,
+      prompt,
+      illustration: {
+        id: `${book.id}-${usesPerSentenceMode() ? 'sentence' : 'illustration'}-${String(imageIndex).padStart(3, '0')}`,
+        imageFilename,
+        alt: scene,
+        prompt,
+        sentenceStart: sentenceNumber,
+        sentenceEnd: usesPerSentenceMode() ? sentenceNumber : Math.min(index + 2, sentences.length),
+      },
+    })
+  }
+  return jobs
+}
+
+function selectJobs(jobs) {
+  if (!args.limit) return jobs
+  if (!args.proof) return jobs.slice(0, args.limit)
+  if (args.limit >= jobs.length) return jobs
+  if (args.limit === 1) return [jobs[0]]
+  const selected = []
+  const usedIndexes = new Set()
+  for (let index = 0; index < args.limit; index += 1) {
+    const jobIndex = Math.round((index * (jobs.length - 1)) / (args.limit - 1))
+    if (usedIndexes.has(jobIndex)) continue
+    usedIndexes.add(jobIndex)
+    selected.push(jobs[jobIndex])
+  }
+  return selected
 }
 
 function imageFilenameForIndex(sentenceIndex) {
-  if (!args.perSentenceSdxl) {
-    return `illustration-${String(Math.floor(sentenceIndex / 2) + 1).padStart(3, '0')}.webp`
-  }
-  if (sentenceIndex % 2 === 0) {
+  if (!usesPerSentenceMode()) {
     return `illustration-${String(Math.floor(sentenceIndex / 2) + 1).padStart(3, '0')}.webp`
   }
   return `sentence-${String(sentenceIndex + 1).padStart(3, '0')}.webp`
 }
 
-function isPreservedOddSentence(sentenceIndex) {
-  return args.perSentenceSdxl && sentenceIndex % 2 === 0
+function usesPerSentenceMode() {
+  return args.perSentence || args.perSentenceSdxl
 }
 
 function loadBooks() {
   return readdirSync(BOOK_DIR)
     .filter((file) => /^lms-book-1-chapters-\d+-\d+\.json$/u.test(file))
+    .filter((file) => !args.bookId || file === `${args.bookId}.json`)
     .sort((a, b) => chapterStart(a) - chapterStart(b))
     .map((file) => JSON.parse(readFileSync(path.join(BOOK_DIR, file), 'utf8')))
 }
@@ -122,13 +176,21 @@ function flattenSentences(book) {
   )
 }
 
-function describeScene(group) {
+function describeScene(book, group, allSentences = group, sentenceIndex = 0) {
   const chapter = group[0]?.chapter ?? 1
   const story = group[0]?.storyTitle ? `Story "${group[0].storyTitle}"` : 'the story'
   const english = group.map((sentence) => sentence.english).join(' ')
+  const previous = usesPerSentenceMode() ? allSentences[sentenceIndex - 1]?.english : undefined
+  const next = usesPerSentenceMode() ? allSentences[sentenceIndex + 1]?.english : undefined
+  const context = [previous ? `Previous: ${previous}` : '', next ? `Next: ${next}` : '']
+    .filter(Boolean)
+    .join(' ')
   const targetWords = [...new Set(group.flatMap((sentence) => sentence.words ?? []))].slice(0, 4)
   const wordCue = targetWords.length > 0 ? ` Key ideas: ${targetWords.join(', ')}.` : ''
-  return `Book 1 chapter ${chapter}, ${story}: ${english}${wordCue}`
+  const bookCue = book.id === 'lms-book-1-chapters-16-20'
+    ? 'Adapted LMS Book 2 scene'
+    : `Book ${book.book} scene`
+  return `${bookCue}, learner chapter ${chapter}, ${story}. Current sentence: ${english}${context ? ` ${context}` : ''}${wordCue}`
 }
 
 function buildPrompt(scene) {
@@ -141,11 +203,45 @@ function buildPrompt(scene) {
     ].join(' ')
   }
   return [
-    'Use this visual direction: vivid colorful chibi manga illustration like a cheerful fantasy webnovel splash image, big expressive eyes, oversized cute heads, energetic poses, exaggerated funny or dramatic emotions when the scene calls for it, polished anime lighting, crisp clean line art, bright blue skies or warm cozy interiors, charming fantasy-adventure mood.',
-    'Keep Lee Hyun as a young Korean man with messy black hair. Use recurring family characters when relevant: his younger sister is small and anxious but sweet, his grandmother is elderly and gentle. In game-world scenes, show him as a cute novice adventurer or sculptor with simple tools.',
+    'Vibrant beautiful detailed fantasy webcomic manga art, polished manhwa-style digital painting, expressive faces, crisp clean line art, luminous color, cinematic lighting, rich backgrounds, dynamic but readable square composition.',
+    characterGuide(scene),
     scene,
-    'Square composition for a small reader thumbnail. No speech bubbles, no captions, no readable text, no watermark, no signature.',
+    'Illustrate the current sentence, using previous and next only as context. Show one main character unless the sentence clearly mentions companions, monsters, or a crowd. Square composition for a small reader thumbnail. Do not include signs, posters, labels, calligraphy, decorative glyphs, UI overlays, speech bubbles, captions, readable text, watermark, signature, logo, artist monogram, or initials.',
   ].join(' ')
+}
+
+function characterGuide(scene) {
+  const lowerScene = scene.toLowerCase()
+  const guides = [
+    'Reference character style: elegant fantasy webcomic cast with Korean manhwa proportions, ornate adventure clothing, consistent hair colors and silhouettes.',
+    'Weed / Lee Hyun: young Korean man, messy dark brown-black hair, confident practical expression, white shirt, leather straps, brown adventurer sculptor gear, simple sculpting tools or sword when relevant.',
+  ]
+  if (/\birene\b|priest|cleric|heal|holy/iu.test(lowerScene)) {
+    guides.push('Irene: gentle blonde cleric in white and gold fantasy robes, blue eyes, ornate staff, kind expression.')
+  }
+  if (/\bseoyoon\b|black hair|quiet woman/iu.test(lowerScene)) {
+    guides.push('Seoyoon: elegant black-haired woman in white and deep purple fantasy robes, calm violet eyes, graceful reserved pose.')
+  }
+  if (/\bpale\b|archer|bow/iu.test(lowerScene)) {
+    guides.push('Pale: cheerful young archer with light brown ponytail, green adventurer outfit, bright lively smile, bow and quiver.')
+  }
+  if (/\bsurka\b|martial|punch|fighter/iu.test(lowerScene)) {
+    guides.push('Surka: energetic martial artist girl with brown ponytail, red and white outfit, playful determined expression.')
+  }
+  if (/\bromuna\b|mage|magic|spell|wizard/iu.test(lowerScene)) {
+    guides.push('Romuna: purple-haired mage with large dark witch hat, black and purple robes, glowing violet magic.')
+  }
+  if (/\bmapan\b|merchant|trade|sell|money|shop/iu.test(lowerScene)) {
+    guides.push('Mapan: round cheerful merchant with curly brown hair, green and gold clothes, friendly grin, travel pouches.')
+  }
+  if (/\bhwarveong\b|dance|dancer/iu.test(lowerScene)) {
+    guides.push('Hwarveong: graceful dancer with long dark hair, red and gold fantasy performer outfit, elegant confident pose.')
+  }
+  if (/\bgeomchi\b|master|disciple|sword|warrior|knight|cave of dead warriors/iu.test(lowerScene)) {
+    guides.push('Geomchi: muscular sword master with long dark hair and beard, black martial robe, huge sword, fierce grin. Geomchi disciples: young swordsmen in matching black robes.')
+  }
+  guides.push('Only include characters who fit the sentence; if no named supporting character appears, focus on Weed and the environment.')
+  return guides.join(' ')
 }
 
 async function resolveModelVersion(model) {
@@ -257,18 +353,33 @@ async function replicateFetch(url, options = {}) {
 }
 
 function parseArgs(values) {
-  const parsed = { skipExisting: false, perSentenceSdxl: false }
+  const parsed = {
+    dryRun: false,
+    proof: false,
+    skipExisting: false,
+    perSentence: false,
+    perSentenceSdxl: false,
+  }
   for (let index = 0; index < values.length; index += 1) {
     const value = values[index]
     if (value === '--env') parsed.env = values[++index]
+    else if (value === '--book-id') parsed.bookId = values[++index]
+    else if (value === '--dry-run') parsed.dryRun = true
+    else if (value === '--proof') parsed.proof = true
+    else if (value === '--limit') parsed.limit = Number(values[++index])
     else if (value === '--skip-existing') parsed.skipExisting = true
+    else if (value === '--per-sentence') parsed.perSentence = true
     else if (value === '--per-sentence-sdxl') parsed.perSentenceSdxl = true
     else if (value === '--model') parsed.model = values[++index]
+  }
+  if (parsed.limit !== undefined && (!Number.isInteger(parsed.limit) || parsed.limit < 1)) {
+    throw new Error('--limit must be a positive integer.')
   }
   return parsed
 }
 
 function loadEnv(envPath) {
+  if (!existsSync(envPath)) return
   for (const line of readFileSync(envPath, 'utf8').split(/\r?\n/u)) {
     const match = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/u)
     if (!match || process.env[match[1]]) continue
