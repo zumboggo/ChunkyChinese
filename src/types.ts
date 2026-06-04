@@ -53,7 +53,6 @@ export interface HotkeySettings {
 }
 
 export interface UserSettings {
-  coins: number
   readingGoalWords: number
   listeningGoalHours: number
   lingqCreatedGoal: number
@@ -66,6 +65,8 @@ export interface UserSettings {
   readerFontScale: number
   readerLineHeight: number
 }
+
+export type DashboardRange = 'today' | 'week' | 'month' | 'allTime'
 
 export interface ClipPack {
   id: string
@@ -404,7 +405,6 @@ export interface DashboardStats {
   counts: Record<FsrsDashboardBucket, number>
   dueNow: number
   dueSoon: number
-  newAvailable: number
   scheduled: number
   minutesToday: number
   clipsCompletedToday: number
@@ -412,10 +412,18 @@ export interface DashboardStats {
   lingqsCreatedToday: number
   lingqsLearnedToday: number
   newWordsToday: number
+  ranges: Record<DashboardRange, DashboardRangeStats>
   currentStreak: number
   studyHeatmap: StudyDayStat[]
   retentionSeries: RetentionPoint[]
   readingSeries: ReadingDayStat[]
+}
+
+export interface DashboardRangeStats {
+  cardsReviewed: number
+  successfulRecalls: number
+  studyMinutes: number
+  newWords: number
 }
 
 export interface StudyDayStat {

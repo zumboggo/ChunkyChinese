@@ -13,6 +13,7 @@ import type {
   ClipPack,
   ClipManifestEntry,
   ClipPackManifest,
+  DashboardRange,
   DashboardStats,
   FsrsRating,
   HostedClipPack,
@@ -396,7 +397,6 @@ export async function getAllClipPacks(): Promise<ClipPack[]> {
 }
 
 export const DEFAULT_USER_SETTINGS: UserSettings = {
-  coins: 0,
   readingGoalWords: 6000,
   listeningGoalHours: 7.5,
   lingqCreatedGoal: 390,
@@ -411,12 +411,24 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
 }
 
 export async function getUserSettings(): Promise<UserSettings> {
-  const saved = (await (await getDB()).get('settings', 'userSettings')) as Partial<UserSettings> | undefined
-  return { ...DEFAULT_USER_SETTINGS, ...saved }
+  const db = await getDB()
+  const saved = (await db.get('settings', 'userSettings')) as (Partial<UserSettings> & { coins?: number }) | undefined
+  const { settings, cleaned } = sanitizeUserSettings(saved)
+  if (cleaned) await db.put('settings', settings, 'userSettings')
+  return settings
 }
 
 export async function saveUserSettings(settings: UserSettings): Promise<void> {
-  await (await getDB()).put('settings', settings, 'userSettings')
+  await (await getDB()).put('settings', sanitizeUserSettings(settings).settings, 'userSettings')
+}
+
+function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: number }): { settings: UserSettings; cleaned: boolean } {
+  if (!saved) return { settings: DEFAULT_USER_SETTINGS, cleaned: false }
+  const { coins: _coins, ...rest } = saved
+  return {
+    settings: { ...DEFAULT_USER_SETTINGS, ...rest },
+    cleaned: _coins !== undefined,
+  }
 }
 
 export async function getSyncMetadata(): Promise<SyncMetadata> {
@@ -426,11 +438,6 @@ export async function getSyncMetadata(): Promise<SyncMetadata> {
 
 export async function saveSyncMetadata(metadata: SyncMetadata): Promise<void> {
   await (await getDB()).put('settings', metadata, 'syncMetadata')
-}
-
-export async function awardCoins(amount: number): Promise<void> {
-  const settings = await getUserSettings()
-  await saveUserSettings({ ...settings, coins: settings.coins + amount })
 }
 
 export async function getActivePackId(): Promise<string | undefined> {
@@ -805,10 +812,6 @@ export async function rateWordFsrs(
   })
   await tx.done
 
-  if (rating === 'easy') await awardCoins(5)
-  else if (rating === 'good') await awardCoins(3)
-  else if (rating === 'hard') await awardCoins(1)
-
   return updatedWord
 }
 
@@ -875,7 +878,6 @@ export async function recordQuizAnswer(wordId: string, correct: boolean): Promis
   })
   await tx.done
 
-  if (correct) await awardCoins(1)
 }
 
 export async function completeWordExposure(wordId: string, seconds = 0): Promise<void> {
@@ -1420,16 +1422,19 @@ export async function getDashboardStats(): Promise<DashboardStats> {
   const scopedWords = activePackId
     ? words.filter((word) => word.packIds?.includes(activePackId))
     : words
+  const scopedWordIds = new Set(scopedWords.map((word) => word.id))
   const start = startOfToday()
   const todayEvents = events.filter((event) => new Date(event.timestamp) >= start)
-  const todaySessions = readerSessions.filter((session) => new Date(session.startedAt) >= start)
   const now = Date.now()
   const soon = now + 24 * 60 * 60 * 1000
   const dueWords = scopedWords.filter((word) => isWordDueForReview(word, now))
-  const todayRatings = todayEvents.filter((event) => event.type === 'fsrs_rating')
+  const todayRatings = todayEvents.filter((event) => event.type === 'fsrs_rating' && scopedWordIds.has(event.itemId))
   const successfulRatingsToday = todayRatings.filter(
     (event) => event.rating === 'good' || event.rating === 'easy',
   )
+  const heatmap = buildStudyHeatmap(events, readerSessions, 84)
+  const todayHeatmap = heatmap[heatmap.length - 1]
+  const ranges = buildDashboardRangeStats(events, readerSessions, scopedWords, scopedWordIds)
 
   return {
     counts: {
@@ -1442,12 +1447,8 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     },
     dueNow: dueWords.length,
     dueSoon: scopedWords.filter((word) => isWordDueSoon(word, now, soon)).length,
-    newAvailable: scopedWords.filter(isNewFsrsCard).length,
     scheduled: scopedWords.filter((word) => Boolean(word.fsrsDueAt)).length,
-    minutesToday:
-      (todayEvents.reduce((sum, event) => sum + (event.seconds ?? 0), 0) +
-        todaySessions.reduce((sum, session) => sum + (session.activeSeconds ?? 0), 0)) /
-      60,
+    minutesToday: (todayHeatmap?.studySeconds ?? 0) / 60,
     clipsCompletedToday: todayEvents.filter((event) => event.type === 'complete').length,
     knownToday: successfulRatingsToday.length,
     lingqsCreatedToday: todayRatings.length,
@@ -1458,8 +1459,9 @@ export async function getDashboardStats(): Promise<DashboardStats> {
         word.lastReviewedAt &&
         new Date(word.lastReviewedAt) >= start,
     ).length,
+    ranges,
     currentStreak: calculateStreak(buildStudyHeatmap(events, readerSessions, 365)),
-    studyHeatmap: buildStudyHeatmap(events, readerSessions, 84),
+    studyHeatmap: heatmap,
     retentionSeries: buildRetentionSeries(scopedWords, events, 12),
     readingSeries: buildReadingSeries(readerSessions, 12),
   }
@@ -1480,6 +1482,68 @@ function calculateStreak(heatmap: DashboardStats['studyHeatmap']): number {
     }
   }
   return streak
+}
+
+function buildDashboardRangeStats(
+  events: ListeningEvent[],
+  readerSessions: ReaderSession[],
+  words: VocabWord[],
+  scopedWordIds: Set<string>,
+): Record<DashboardRange, DashboardStats['ranges'][DashboardRange]> {
+  const today = startOfToday()
+  const week = new Date(today)
+  week.setDate(today.getDate() - today.getDay())
+  const month = new Date(today.getFullYear(), today.getMonth(), 1)
+  return {
+    today: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, today),
+    week: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, week),
+    month: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, month),
+    allTime: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds),
+  }
+}
+
+function buildDashboardRangeStat(
+  events: ListeningEvent[],
+  readerSessions: ReaderSession[],
+  words: VocabWord[],
+  scopedWordIds: Set<string>,
+  start?: Date,
+): DashboardStats['ranges'][DashboardRange] {
+  const ratingEvents = events.filter((event) => {
+    const time = Date.parse(event.timestamp)
+    return (
+      event.type === 'fsrs_rating' &&
+      scopedWordIds.has(event.itemId) &&
+      Number.isFinite(time) &&
+      (!start || time >= start.getTime())
+    )
+  })
+  const studySeconds =
+    events
+      .filter((event) => {
+        const time = Date.parse(event.timestamp)
+        return Number.isFinite(time) && (!start || time >= start.getTime())
+      })
+      .reduce((sum, event) => sum + (event.seconds ?? inferredStudySeconds(event)), 0) +
+    readerSessions
+      .filter((session) => {
+        const time = Date.parse(session.startedAt)
+        return Number.isFinite(time) && (!start || time >= start.getTime())
+      })
+      .reduce((sum, session) => sum + (session.activeSeconds ?? 0), 0)
+  return {
+    cardsReviewed: ratingEvents.length,
+    successfulRecalls: ratingEvents.filter((event) => event.rating === 'good' || event.rating === 'easy').length,
+    studyMinutes: studySeconds / 60,
+    newWords: words.filter((word) => {
+      const reviewedAt = Date.parse(word.lastReviewedAt ?? '')
+      return (
+        (word.fsrsRepetitions ?? 0) <= 1 &&
+        Number.isFinite(reviewedAt) &&
+        (!start || reviewedAt >= start.getTime())
+      )
+    }).length,
+  }
 }
 
 export async function saveRenderedLesson(lesson: RenderedLesson): Promise<void> {

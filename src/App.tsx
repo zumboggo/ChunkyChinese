@@ -89,6 +89,7 @@ import {
 import type {
   AudioClip,
   ClipPack,
+  DashboardRange,
   DashboardStats,
   FsrsRating,
   HotkeySettings,
@@ -200,7 +201,6 @@ const emptyStats: DashboardStats = {
   counts: { new: 0, learning: 0, due: 0, scheduled: 0 },
   dueNow: 0,
   dueSoon: 0,
-  newAvailable: 0,
   scheduled: 0,
   minutesToday: 0,
   clipsCompletedToday: 0,
@@ -208,6 +208,12 @@ const emptyStats: DashboardStats = {
   lingqsCreatedToday: 0,
   lingqsLearnedToday: 0,
   newWordsToday: 0,
+  ranges: {
+    today: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
+    week: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
+    month: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
+    allTime: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
+  },
   currentStreak: 0,
   studyHeatmap: [],
   retentionSeries: [],
@@ -231,6 +237,7 @@ function App() {
   const [readerBooks, setReaderBooks] = useState<ReaderBook[]>([])
   const [activePackId, setActivePackId] = useState<string | undefined>()
   const [stats, setStats] = useState<DashboardStats>(emptyStats)
+  const [dashboardRange, setDashboardRange] = useState<DashboardRange>('today')
   const [userSettings, setUserSettings] = useState(DEFAULT_USER_SETTINGS)
   const [newWordsPerDay, setNewWordsPerDay] = useState(15)
   const [hotkeysEditing, setHotkeysEditing] = useState(false)
@@ -278,6 +285,7 @@ function App() {
   const [flashcardAnswerShown, setFlashcardAnswerShown] = useState(false)
   const [flashcardSessionFeedback, setFlashcardSessionFeedback] = useState<FsrsRating | null>(null)
   const [flashcardSessionId, setFlashcardSessionId] = useState<string | null>(null)
+  const [flashcardCelebrationId, setFlashcardCelebrationId] = useState(0)
   const [editingWord, setEditingWord] = useState<CardEditDraft | null>(null)
   const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
   const [todayReaderStats, setTodayReaderStats] = useState<ReaderSessionStats | null>(null)
@@ -290,6 +298,7 @@ function App() {
       ? 'Sign in to sync progress across devices.'
       : 'Supabase sync is not configured yet.',
   })
+  const [dashboardToast, setDashboardToast] = useState<string | null>(null)
   const lastReaderActivityTimeRef = useRef<number>(0)
   const runToken = useRef(0)
   const activeAnswerLockRef = useRef<string | null>(null)
@@ -309,6 +318,8 @@ function App() {
   const syncTimerRef = useRef<number | null>(null)
   const clearedActiveRecallLessonRef = useRef<string | null>(null)
   const syncedFlashcardCompletionRef = useRef<string | null>(null)
+  const dashboardToastKeyRef = useRef<string | null>(null)
+  const dashboardToastReadyRef = useRef(false)
 
   const refresh = useCallback(async () => {
     const [
@@ -647,6 +658,7 @@ function App() {
     () => getReaderResumeLocation(latestReaderProgress, readerBooks),
     [latestReaderProgress, readerBooks],
   )
+  const selectedRangeStats = stats.ranges[dashboardRange] ?? stats.ranges.today
   const remainingNewWordsToday = Math.max(0, newWordsPerDay - stats.newWordsToday)
   const dueWordList = useMemo(
     () =>
@@ -699,6 +711,8 @@ function App() {
     if (!flashcardSessionComplete || !flashcardSessionId) return
     if (syncedFlashcardCompletionRef.current === flashcardSessionId) return
     syncedFlashcardCompletionRef.current = flashcardSessionId
+    setFlashcardCelebrationId((value) => value + 1)
+    playGentleCelebration()
     setLastSummary(
       isSupabaseConfigured && cloudUserEmail
         ? 'Flashcard set complete. Sync queued.'
@@ -706,6 +720,21 @@ function App() {
     )
     queueCloudSync()
   }, [cloudUserEmail, flashcardSessionComplete, flashcardSessionId, queueCloudSync])
+
+  useEffect(() => {
+    if (!dashboardToastReadyRef.current) {
+      dashboardToastReadyRef.current = true
+      return
+    }
+    const encouragement = getDashboardEncouragement(stats, userSettings)
+    if (!encouragement) return
+    const key = `${new Date().toDateString()}:${encouragement}`
+    if (dashboardToastKeyRef.current === key) return
+    dashboardToastKeyRef.current = key
+    setDashboardToast(encouragement)
+    const timeout = window.setTimeout(() => setDashboardToast(null), 5200)
+    return () => window.clearTimeout(timeout)
+  }, [stats, userSettings])
 
   const buildFlashcardQueue = useCallback((mode: FlashcardQueueMode = 'mixed') => {
     const source = scopedWords.length > 0 ? scopedWords : words
@@ -834,6 +863,17 @@ function App() {
     const interval = window.setInterval(() => setFlashcardClock(Date.now()), 15_000)
     return () => window.clearInterval(interval)
   }, [screen])
+
+  useEffect(() => {
+    if (screen !== 'flashcards' || !flashcardSessionId) return
+    const timeout = window.setTimeout(() => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      })
+    }, 120)
+    return () => window.clearTimeout(timeout)
+  }, [flashcardSessionId, screen])
 
   const recordReaderInteraction = useCallback(() => {
     lastReaderActivityTimeRef.current = Date.now()
@@ -2077,28 +2117,46 @@ function App() {
 
           <section className="dashboard-today-panel" aria-label="Today">
             <div className="dashboard-today-heading">
-              <strong>Today</strong>
+              <strong>{dashboardRangeLabel(dashboardRange)}</strong>
               <span>{stats.currentStreak} day streak</span>
+            </div>
+            <div className="segmented-control dashboard-range-control" aria-label="Dashboard stats range">
+              {dashboardRanges.map((range) => (
+                <button
+                  key={range.value}
+                  type="button"
+                  className={dashboardRange === range.value ? 'active' : ''}
+                  onClick={() => setDashboardRange(range.value)}
+                >
+                  {range.label}
+                </button>
+              ))}
             </div>
             <dl className="dashboard-today-stats">
               <div>
-                <dt>Cards reviewed today</dt>
-                <dd>{stats.lingqsCreatedToday}</dd>
+                <dt>Cards reviewed</dt>
+                <dd>{selectedRangeStats.cardsReviewed}</dd>
               </div>
               <div>
-                <dt>Successful recalls today</dt>
-                <dd>{stats.lingqsLearnedToday}</dd>
+                <dt>Successful recalls</dt>
+                <dd>{selectedRangeStats.successfulRecalls}</dd>
               </div>
               <div>
                 <dt>Study minutes</dt>
-                <dd>{stats.minutesToday.toFixed(1)}</dd>
+                <dd>{selectedRangeStats.studyMinutes.toFixed(1)}</dd>
               </div>
               <div>
-                <dt>New words today</dt>
-                <dd>{stats.newWordsToday} / {newWordsPerDay}</dd>
+                <dt>New words</dt>
+                <dd>{selectedRangeStats.newWords}</dd>
               </div>
             </dl>
           </section>
+
+          {dashboardToast && (
+            <div className="dashboard-toast" role="status">
+              {dashboardToast}
+            </div>
+          )}
 
           <details className="extra-review-panel">
             <summary>
@@ -2123,24 +2181,10 @@ function App() {
             </div>
           </details>
 
-          <div className="gamification-banner">
-            <div className="coin-balance" title="Total Coins">
-              🪙 <strong>{userSettings.coins}</strong>
-            </div>
-            <div className="lingqs-status">
-              <span><strong>{stats.lingqsCreatedToday}</strong> cards reviewed</span>
-              <span><strong>{stats.lingqsLearnedToday}</strong> successful recalls</span>
-            </div>
-          </div>
-
           <div className="metric-grid today-grid">
             <div className="metric hero-metric passive-metric">
               <span>Due now</span>
               <strong>{stats.dueNow}</strong>
-            </div>
-            <div className="metric passive-metric">
-              <span>New available</span>
-              <strong>{stats.newAvailable}</strong>
             </div>
             <div className="metric passive-metric">
               <span>Due soon</span>
@@ -2186,10 +2230,6 @@ function App() {
           <div className="action-grid">
             <InfoPanel title="Flashcard Goals">
               <dl className="stat-list">
-                <div>
-                  <dt>Total Coins</dt>
-                  <dd>🪙 {userSettings.coins}</dd>
-                </div>
                 <div>
                   <dt>Flashcards / Day</dt>
                   <dd>{userSettings.flashcardsPerDay}</dd>
@@ -2402,6 +2442,7 @@ function App() {
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
         >
+          {flashcardCelebrationId > 0 && <FlashcardCelebration key={flashcardCelebrationId} />}
           <div className="screen-heading compact">
             <div>
               <h1>Flashcards</h1>
@@ -2494,6 +2535,11 @@ function App() {
           onPlay={playReaderSentence}
           onSelectToken={(token) => {
             recordReaderInteraction()
+            if (token && selectedReaderToken?.id === token.id) {
+              setSelectedReaderToken(null)
+              setReaderDictionaryEntry(null)
+              return
+            }
             setSelectedReaderToken(token)
             setReaderDictionaryEntry(null)
             if (token && !token.word && token.isChinese) {
@@ -3635,6 +3681,17 @@ const readerPinyinModes: Array<{ value: ReaderPinyinMode; label: string }> = [
   { value: 'none', label: 'None' },
 ]
 
+const dashboardRanges: Array<{ value: DashboardRange; label: string }> = [
+  { value: 'today', label: 'Today' },
+  { value: 'week', label: 'This week' },
+  { value: 'month', label: 'This month' },
+  { value: 'allTime', label: 'All time' },
+]
+
+function dashboardRangeLabel(range: DashboardRange): string {
+  return dashboardRanges.find((item) => item.value === range)?.label ?? 'Today'
+}
+
 function ReaderMode({
   readerPacks,
   readerBooks,
@@ -3840,11 +3897,11 @@ function ReaderMode({
                           tabIndex={0}
                           role="button"
                           aria-label={`${token.text}${token.pinyin ? `, ${token.pinyin}` : ''}`}
-                          onClick={() => onSelectToken(token)}
+                          onClick={() => onSelectToken(selectedToken?.id === token.id ? null : token)}
                           onKeyDown={(event) => {
                             if (event.key === 'Enter' || event.key === ' ') {
                               event.preventDefault()
-                              onSelectToken(token)
+                              onSelectToken(selectedToken?.id === token.id ? null : token)
                             }
                           }}
                         >
@@ -3872,7 +3929,7 @@ function ReaderMode({
                   Next
                 </button>
                 {selectedToken && !selectedToken.word && selectedToken.isChinese && (
-                  <div className="reader-word-popover" aria-live="polite">
+                  <div className="reader-word-popover" aria-live="polite" onClick={() => onSelectToken(null)}>
                     <button type="button" className="popover-close" onClick={() => onSelectToken(null)}>
                       Close
                     </button>
@@ -3884,7 +3941,10 @@ function ReaderMode({
                         <button
                           type="button"
                           className="primary"
-                          onClick={() => void onSaveWord(selectedToken.text, readerDictionaryEntry.pinyin, readerDictionaryEntry.english)}
+                          onClick={(event) => {
+                            event.stopPropagation()
+                            void onSaveWord(selectedToken.text, readerDictionaryEntry.pinyin, readerDictionaryEntry.english)
+                          }}
                         >
                           Save Word
                         </button>
@@ -3896,7 +3956,7 @@ function ReaderMode({
                 )}
               </div>
               {selectedToken?.word && (
-                <div className="reader-word-popover" aria-live="polite">
+                <div className="reader-word-popover" aria-live="polite" onClick={() => onSelectToken(null)}>
                   <button type="button" className="popover-close" onClick={() => onSelectToken(null)}>
                     Close
                   </button>
@@ -3906,7 +3966,8 @@ function ReaderMode({
                   <button
                     type="button"
                     className="ghost-answer"
-                    onClick={() => {
+                    onClick={(event) => {
+                      event.stopPropagation()
                       if (selectedToken.word) onEditWord(selectedToken.word)
                     }}
                   >
@@ -4035,22 +4096,30 @@ function ActivityChart({ days }: { days: DashboardStats['studyHeatmap'] }) {
 function ProgressHeatmap({ days }: { days: DashboardStats['studyHeatmap'] }) {
   const totalMinutes = days.reduce((sum, day) => sum + day.studySeconds, 0) / 60
   const activeDays = days.filter((day) => day.activityCount > 0).length
+  const weekdayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
   return (
     <div className="progress-visual">
-      <div className="heatmap-grid" aria-label="Recent study activity by day">
-        {days.map((day) => {
-          const minutes = day.studySeconds / 60
-          const level = heatLevel(minutes, day.activityCount)
-          return (
-            <span
-              key={day.date}
-              className={`heat-cell heat-${level}`}
-              title={`${friendlyDate(day.date)}: ${minutes.toFixed(1)} min, ${day.activityCount} events`}
-              aria-label={`${friendlyDate(day.date)}, ${minutes.toFixed(1)} study minutes`}
-            />
-          )
-        })}
+      <div className="heatmap-with-labels">
+        <div className="heatmap-weekdays" aria-hidden="true">
+          {weekdayLabels.map((label) => (
+            <span key={label}>{label}</span>
+          ))}
+        </div>
+        <div className="heatmap-grid" aria-label="Recent study activity by day">
+          {days.map((day) => {
+            const minutes = day.studySeconds / 60
+            const level = heatLevel(minutes, day.activityCount)
+            return (
+              <span
+                key={day.date}
+                className={`heat-cell heat-${level}`}
+                title={`${friendlyDate(day.date)}: ${minutes.toFixed(1)} min, ${day.activityCount} events`}
+                aria-label={`${friendlyDate(day.date)}, ${minutes.toFixed(1)} study minutes`}
+              />
+            )
+          })}
+        </div>
       </div>
       <div className="progress-caption">
         <span>{activeDays} study days</span>
@@ -4272,6 +4341,23 @@ function FlashcardQueueCounters({ counts }: { counts: FlashcardSessionCounts }) 
         <strong>{counts.done}</strong>
         Done
       </span>
+    </div>
+  )
+}
+
+function FlashcardCelebration() {
+  return (
+    <div className="flashcard-celebration" aria-hidden="true">
+      {Array.from({ length: 18 }, (_, index) => (
+        <span
+          key={index}
+          style={{
+            '--confetti-index': index,
+            '--confetti-x': `${(index % 6) * 18 - 45}vw`,
+            '--confetti-delay': `${(index % 5) * 45}ms`,
+          } as CSSProperties}
+        />
+      ))}
     </div>
   )
 }
@@ -4618,6 +4704,49 @@ function formatDueDate(value?: string): string {
   if (dayDelta === 1) return `Tomorrow ${time}`
   if (dayDelta === -1) return `Yesterday ${time}`
   return due.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
+function playGentleCelebration(): void {
+  const AudioContextConstructor =
+    window.AudioContext ??
+    (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+  if (!AudioContextConstructor) return
+  const context = new AudioContextConstructor()
+  const now = context.currentTime
+  const gain = context.createGain()
+  gain.gain.setValueAtTime(0.0001, now)
+  gain.gain.exponentialRampToValueAtTime(0.08, now + 0.02)
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.58)
+  gain.connect(context.destination)
+  ;[523.25, 659.25, 783.99].forEach((frequency, index) => {
+    const oscillator = context.createOscillator()
+    oscillator.type = 'sine'
+    oscillator.frequency.setValueAtTime(frequency, now + index * 0.09)
+    oscillator.connect(gain)
+    oscillator.start(now + index * 0.09)
+    oscillator.stop(now + index * 0.09 + 0.28)
+  })
+  window.setTimeout(() => void context.close(), 900)
+}
+
+function getDashboardEncouragement(stats: DashboardStats, settings: UserSettings): string | null {
+  const today = stats.ranges.today
+  if (today.cardsReviewed >= Math.max(1, settings.flashcardsPerDay) * 2) {
+    return `You reviewed ${today.cardsReviewed} cards today. That's 2x your daily flashcard goal.`
+  }
+  if (today.cardsReviewed >= Math.max(1, settings.flashcardsPerDay)) {
+    return `Daily flashcard goal reached: ${today.cardsReviewed} cards reviewed.`
+  }
+  const previousDays = stats.studyHeatmap.slice(-8, -1).filter((day) => day.studySeconds > 0)
+  if (previousDays.length >= 3) {
+    const averageSeconds =
+      previousDays.reduce((sum, day) => sum + day.studySeconds, 0) / previousDays.length
+    const todaySeconds = (stats.studyHeatmap.at(-1)?.studySeconds ?? 0)
+    if (todaySeconds >= Math.max(600, averageSeconds * 1.25)) {
+      return `You're ahead of your recent daily average today.`
+    }
+  }
+  return null
 }
 
 function isDueForDisplay(word: VocabWord): boolean {
