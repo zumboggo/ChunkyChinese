@@ -115,6 +115,7 @@ import type {
 
 type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
+type FlashcardFrontMode = 'text' | 'audio'
 type ReaderPinyinMode = UserSettings['readerPinyinMode']
 type ReaderTheme = UserSettings['readerTheme']
 type ReaderPinyinState = 'known' | 'medium' | 'unknown'
@@ -133,6 +134,22 @@ type ReaderResumeLocation = {
   sentenceCount: number
   percent: number
   label: string
+}
+type ReaderComprehensionSummary = {
+  knownPercent: number
+  known: number
+  learning: number
+  new: number
+  total: number
+}
+type ReaderBookComprehension = ReaderComprehensionSummary & {
+  chapters: Array<
+    ReaderComprehensionSummary & {
+      id: string
+      chapter: number
+      title: string
+    }
+  >
 }
 type LessonStartOptions = {
   randomize?: boolean
@@ -200,6 +217,8 @@ const emptyStats: DashboardStats = {
 const DEFAULT_PACK_ID = 'lms-1000-azure'
 const HIDDEN_PACK_IDS = new Set(['annas-reading-deck'])
 const FLASHCARD_LEARN_AHEAD_MS = 5 * 60 * 1000
+const FLASHCARD_AUDIO_FRONT_RATE = 0.2
+const READER_MAX_MATCH_LENGTH = 8
 
 function App() {
   const [screen, setScreen] = useState<Screen>('dashboard')
@@ -277,6 +296,7 @@ function App() {
   const autoContinueTimeoutRef = useRef<number | null>(null)
   const spokenQuizIdRef = useRef<string | null>(null)
   const startNextLessonRef = useRef<(() => void) | null>(null)
+  const startModeLessonRef = useRef<((mode: StudyMode, options?: LessonStartOptions) => void) | null>(null)
   const runFromRef = useRef<((index: number, plan?: LessonPlan) => void) | null>(null)
   const activeChoiceAudioRef = useRef<HTMLAudioElement | null>(null)
   const activeChoiceSpeechTokenRef = useRef(0)
@@ -616,6 +636,13 @@ function App() {
     () => tokenizeReaderText(currentReaderSentence?.chinese ?? '', scopedWords.length > 0 ? scopedWords : words),
     [currentReaderSentence, scopedWords, words],
   )
+  const readerComprehensionByBook = useMemo(
+    () =>
+      screen === 'reader' && !activeReaderBook
+        ? getReaderComprehensionByBook(readerBooks, scopedWords.length > 0 ? scopedWords : words)
+        : new Map<string, ReaderBookComprehension>(),
+    [activeReaderBook, readerBooks, scopedWords, screen, words],
+  )
   const readerResumeLocation = useMemo(
     () => getReaderResumeLocation(latestReaderProgress, readerBooks),
     [latestReaderProgress, readerBooks],
@@ -663,6 +690,10 @@ function App() {
   )
   const flashcardSessionComplete =
     flashcardQueue.length > 0 && flashcardSessionCounts.done >= flashcardSessionCounts.total
+  const currentFlashcardFrontMode = useMemo<FlashcardFrontMode>(
+    () => getFlashcardFrontMode(currentFlashcardWord, flashcardSessionId),
+    [currentFlashcardWord, flashcardSessionId],
+  )
 
   useEffect(() => {
     if (!flashcardSessionComplete || !flashcardSessionId) return
@@ -1446,6 +1477,18 @@ function App() {
   }, [playbackRate])
 
   useEffect(() => {
+    if (screen !== 'flashcards') return
+    if (!currentFlashcardWord || flashcardAnswerShown || currentFlashcardFrontMode !== 'audio') return
+    void playFlashcardWordTwice(currentFlashcardWord)
+  }, [
+    currentFlashcardFrontMode,
+    currentFlashcardWord,
+    flashcardAnswerShown,
+    playFlashcardWordTwice,
+    screen,
+  ])
+
+  useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       const target = event.target
       const isTyping =
@@ -1462,6 +1505,22 @@ function App() {
         } else if (mappedIndex === 1) {
           event.preventDefault()
           void moveReaderSentence(1)
+        }
+        return
+      }
+      if (screen === 'dashboard') {
+        if (mappedIndex === 0) {
+          event.preventDefault()
+          setScreen('reader')
+        } else if (mappedIndex === 1) {
+          event.preventDefault()
+          startModeLessonRef.current?.('activeRecall')
+        } else if (mappedIndex === 2) {
+          event.preventDefault()
+          startModeLessonRef.current?.('listeningMode')
+        } else if (mappedIndex === 3) {
+          event.preventDefault()
+          startSavedFlashcards()
         }
         return
       }
@@ -1586,6 +1645,7 @@ function App() {
     reviewAnswerShown,
     screen,
     showReviewPrompt,
+    startSavedFlashcards,
     toggleActiveRecallPriority,
     togglePlayback,
   ])
@@ -1664,6 +1724,12 @@ function App() {
       ...options,
     })
   }
+
+  useEffect(() => {
+    startModeLessonRef.current = (mode, options) => {
+      void startModeLesson(mode, options)
+    }
+  })
 
   function pauseAndSavePlace() {
     const audio = pocketAudioRef.current
@@ -1987,18 +2053,22 @@ function App() {
             </div>
             <div className="mode-start-grid" aria-label="Choose study mode">
               <button className="mode-start reader-start" type="button" onClick={() => setScreen('reader')}>
+                <kbd>{hotkeys.choiceA.toUpperCase()}</kbd>
                 <strong>Reading</strong>
                 <span>Read the LMS stories sentence by sentence.</span>
               </button>
               <button className="mode-start active-start" type="button" onClick={() => startModeLesson('activeRecall')}>
+                <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
                 <strong>Active Recall</strong>
                 <span>Pause for spoken 2-choice questions.</span>
               </button>
               <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('listeningMode')}>
+                <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
                 <strong>Listening</strong>
                 <span>Continuous listening with auto-next on.</span>
               </button>
               <button className="mode-start flashcards-start" type="button" onClick={startSavedFlashcards}>
+                <kbd>{hotkeys.choiceD.toUpperCase()}</kbd>
                 <strong>Flashcards</strong>
                 <span>Sort due and new words with FSRS.</span>
               </button>
@@ -2351,10 +2421,12 @@ function App() {
               <FlashcardReview
                 word={currentFlashcardWord}
                 answerShown={flashcardAnswerShown}
+                frontMode={currentFlashcardFrontMode}
                 onFlip={() => {
                   setFlashcardAnswerShown(true)
                   void playFlashcardWordTwice(currentFlashcardWord)
                 }}
+                onReplayAudio={() => playFlashcardWordTwice(currentFlashcardWord)}
                 onRate={handleStandaloneFlashcardRate}
                 onEdit={() => openCardEditor(currentFlashcardWord)}
                 onToggleActiveRecallPriority={() => toggleActiveRecallPriority(currentFlashcardWord)}
@@ -2400,6 +2472,7 @@ function App() {
         <ReaderMode
           readerPacks={readerPacks}
           readerBooks={readerBooks}
+          comprehensionByBook={readerComprehensionByBook}
           activeBook={activeReaderBook}
           sentence={currentReaderSentence}
           sentenceIndex={readerSentenceIndex}
@@ -3565,6 +3638,7 @@ const readerPinyinModes: Array<{ value: ReaderPinyinMode; label: string }> = [
 function ReaderMode({
   readerPacks,
   readerBooks,
+  comprehensionByBook,
   activeBook,
   sentence,
   sentenceIndex,
@@ -3591,6 +3665,7 @@ function ReaderMode({
 }: {
   readerPacks: ReaderPack[]
   readerBooks: ReaderBook[]
+  comprehensionByBook: Map<string, ReaderBookComprehension>
   activeBook?: ReaderBook
   sentence?: ReaderSentence
   sentenceIndex: number
@@ -3663,7 +3738,9 @@ function ReaderMode({
 
       <div className={`reader-layout ${activeBook ? 'zen-mode' : ''}`}>
         <aside className="reader-book-list" aria-label="Reader books">
-            {readerBooks.map((book) => (
+            {readerBooks.map((book) => {
+              const comprehension = comprehensionByBook.get(book.id)
+              return (
               <div
                 key={book.id}
                 className={`reader-book-card ${book.id === activeBook?.id ? 'active' : ''}`}
@@ -3672,6 +3749,30 @@ function ReaderMode({
                 <span>
                   Chapters {book.chapterStart}-{book.chapterEnd} · {book.stories.length} stories
                 </span>
+                <ReaderComprehensionMeter
+                  summary={comprehension}
+                  label={`You know ${comprehension?.knownPercent ?? 0}% of the words in this book.`}
+                />
+                {comprehension?.chapters.length ? (
+                  <details className="reader-chapter-metrics">
+                    <summary>Chapter breakdown</summary>
+                    <div className="reader-chapter-list">
+                      {comprehension.chapters.map((chapter) => (
+                        <div className="reader-chapter-row" key={chapter.id}>
+                          <span>
+                            <strong>Chapter {chapter.chapter}</strong>
+                            <small>{chapter.title}</small>
+                          </span>
+                          <ReaderComprehensionMeter
+                            summary={chapter}
+                            label={`You know ${chapter.knownPercent}% of the words in Chapter ${chapter.chapter}.`}
+                            compact
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </details>
+                ) : null}
                 <div className="reader-book-actions">
                   <button type="button" className="primary" onClick={() => onChooseBook(book, 'resume')}>
                     Resume
@@ -3681,7 +3782,8 @@ function ReaderMode({
                   </button>
                 </div>
               </div>
-            ))}
+              )
+            })}
             {readerBooks.length === 0 && <small>No reader books are installed yet.</small>}
         </aside>
 
@@ -3832,6 +3934,32 @@ function ReaderMode({
         </section>
       </div>
     </section>
+  )
+}
+
+function ReaderComprehensionMeter({
+  summary,
+  label,
+  compact = false,
+}: {
+  summary?: ReaderComprehensionSummary
+  label: string
+  compact?: boolean
+}) {
+  const percent = summary?.knownPercent ?? 0
+  const learning = summary?.learning ?? 0
+  const fresh = summary?.new ?? 0
+  const total = summary?.total ?? 0
+  return (
+    <div className={`reader-comprehension ${compact ? 'compact' : ''}`} aria-label={label}>
+      <div className="reader-comprehension-bar">
+        <span style={{ width: `${percent}%` }} />
+      </div>
+      <p>
+        You know {percent}% of the words{total > 0 ? ` (${summary?.known ?? 0}/${total})` : ''}.{' '}
+        {learning} Learning, {fresh} New.
+      </p>
+    </div>
   )
 }
 
@@ -4151,7 +4279,9 @@ function FlashcardQueueCounters({ counts }: { counts: FlashcardSessionCounts }) 
 function FlashcardReview({
   word,
   answerShown,
+  frontMode = 'text',
   onFlip,
+  onReplayAudio,
   onRate,
   onEdit,
   onToggleActiveRecallPriority,
@@ -4160,7 +4290,9 @@ function FlashcardReview({
 }: {
   word: VocabWord
   answerShown: boolean
+  frontMode?: FlashcardFrontMode
   onFlip: () => void
+  onReplayAudio?: () => void | Promise<void>
   onRate: (rating: FsrsRating) => void | Promise<void>
   onEdit?: () => void
   onToggleActiveRecallPriority?: () => void | Promise<void>
@@ -4168,10 +4300,11 @@ function FlashcardReview({
   choiceKeys?: HotkeySettings
 }) {
   const previews = previewFsrsRatings(word)
+  const audioFront = frontMode === 'audio' && !answerShown
   return (
     <section className="flashcard-review">
-      <div className={`flashcard ${answerShown ? 'answer-side' : 'front-side'}`}>
-        <span>{answerShown ? 'Front + back' : 'Front'}</span>
+      <div className={`flashcard ${answerShown ? 'answer-side' : 'front-side'} ${audioFront ? 'audio-front' : ''}`}>
+        <span>{answerShown ? 'Front + back' : audioFront ? 'Audio front' : 'Front'}</span>
         {answerShown ? (
           <>
             <strong>{word.word}</strong>
@@ -4181,7 +4314,19 @@ function FlashcardReview({
           </>
         ) : (
           <>
-            <strong>{word.word}</strong>
+            {audioFront ? (
+              <>
+                <strong>Listen first</strong>
+                <p className="flashcard-answer-text">The word audio plays twice.</p>
+                {onReplayAudio && (
+                  <button type="button" className="ghost-answer" onClick={onReplayAudio}>
+                    Replay audio
+                  </button>
+                )}
+              </>
+            ) : (
+              <strong>{word.word}</strong>
+            )}
             <button type="button" className="primary" onClick={onFlip}>
               Flip
             </button>
@@ -4210,8 +4355,10 @@ function FlashcardReview({
               disabled={Boolean(selectedRating)}
             >
               {choiceKeys && <kbd>{ratingHotkeyLabel(rating.value, choiceKeys)}</kbd>}
-              <strong>{rating.label}</strong>
-              <span>{formatDueDate(previews[rating.value].dueAt)}</span>
+              <strong>
+                {rating.label} <span className="fsrs-delay">({formatFsrsPreviewDelay(previews[rating.value].dueAt)})</span>
+              </strong>
+              <span>{previews[rating.value].state}</span>
             </button>
           ))}
         </div>
@@ -4422,6 +4569,37 @@ function ratingHotkeyLabel(rating: FsrsRating, hotkeys: HotkeySettings): string 
   return hotkeys.choiceD.toUpperCase()
 }
 
+function getFlashcardFrontMode(word: VocabWord | undefined, sessionId: string | null): FlashcardFrontMode {
+  if (!word) return 'text'
+  const bucket = stableStringBucket(`${sessionId ?? 'flashcards'}:${word.id}`, 1000) / 1000
+  return bucket < FLASHCARD_AUDIO_FRONT_RATE ? 'audio' : 'text'
+}
+
+function formatFsrsPreviewDelay(value: string, now = Date.now()): string {
+  const due = Date.parse(value)
+  if (!Number.isFinite(due)) return '?'
+  const ms = Math.max(0, due - now)
+  if (ms < 90_000) return '< 1m'
+  const minutes = Math.ceil(ms / 60_000)
+  if (minutes < 60) return `${minutes}m`
+  const hours = Math.ceil(minutes / 60)
+  if (hours < 24) return `${hours}h`
+  const days = Math.ceil(hours / 24)
+  if (days < 60) return `${days}d`
+  const months = Math.ceil(days / 30)
+  if (months < 24) return `${months}mo`
+  return `${Math.ceil(months / 12)}y`
+}
+
+function stableStringBucket(value: string, modulo: number): number {
+  let hash = 2166136261
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index)
+    hash = Math.imul(hash, 16777619)
+  }
+  return Math.abs(hash >>> 0) % modulo
+}
+
 function priorityTime(word: VocabWord): number {
   const time = Date.parse(word.activeRecallPriorityAt ?? '')
   return Number.isFinite(time) ? time : Number.MAX_SAFE_INTEGER
@@ -4450,9 +4628,100 @@ function dueTimeForDisplay(word: VocabWord): number {
   return fsrsDueTime(word)
 }
 
+function getReaderComprehensionByBook(books: ReaderBook[], vocab: VocabWord[]): Map<string, ReaderBookComprehension> {
+  const summaries = new Map<string, ReaderBookComprehension>()
+  for (const book of books) {
+    const chapters = book.stories.map((story) => ({
+      ...summarizeReaderTexts(story.sentences.map((sentence) => sentence.chinese), vocab),
+      id: story.id,
+      chapter: story.chapter,
+      title: story.title,
+    }))
+    const bookSummary = summarizeReaderTexts(
+      book.stories.flatMap((story) => story.sentences.map((sentence) => sentence.chinese)),
+      vocab,
+    )
+    summaries.set(book.id, {
+      ...bookSummary,
+      chapters,
+    })
+  }
+  return summaries
+}
+
+function summarizeReaderTexts(texts: string[], vocab: VocabWord[]): ReaderComprehensionSummary {
+  const categories = new Map<string, 'known' | 'learning' | 'new'>()
+  const wordMap = new Map(vocab.map((word) => [word.word, word]))
+  const maxWordLength = readerMaxChineseWordLength(wordMap)
+  for (const text of texts) {
+    for (const token of collectReaderComprehensionTokens(text, wordMap, maxWordLength)) {
+      const key = token.word?.id ?? `unsaved:${token.text}`
+      if (categories.has(key)) continue
+      categories.set(key, readerComprehensionCategory(token.word))
+    }
+  }
+
+  let known = 0
+  let learning = 0
+  let fresh = 0
+  for (const category of categories.values()) {
+    if (category === 'known') known += 1
+    else if (category === 'learning') learning += 1
+    else fresh += 1
+  }
+  const total = categories.size
+  return {
+    known,
+    learning,
+    new: fresh,
+    total,
+    knownPercent: total > 0 ? Math.round((known / total) * 100) : 0,
+  }
+}
+
+function readerMaxChineseWordLength(wordMap: Map<string, VocabWord>): number {
+  let maxLength = 1
+  for (const word of wordMap.keys()) {
+    if (!/[\u3400-\u9fff]/u.test(word)) continue
+    maxLength = Math.max(maxLength, Math.min(word.length, READER_MAX_MATCH_LENGTH))
+  }
+  return maxLength
+}
+
+function collectReaderComprehensionTokens(
+  text: string,
+  wordMap: Map<string, VocabWord>,
+  maxWordLength: number,
+): Array<{ text: string; word?: VocabWord }> {
+  const tokens: Array<{ text: string; word?: VocabWord }> = []
+  let index = 0
+  while (index < text.length) {
+    if (!isChineseChar(text[index])) {
+      index += 1
+      continue
+    }
+    const match = longestWordMatch(text, index, maxWordLength, wordMap)
+    if (match) {
+      tokens.push(match)
+      index += match.text.length
+    } else {
+      tokens.push({ text: text[index] })
+      index += 1
+    }
+  }
+  return tokens
+}
+
+function readerComprehensionCategory(word?: VocabWord): 'known' | 'learning' | 'new' {
+  if (!word || isNewFsrsCard(word)) return 'new'
+  const interval = word.fsrsIntervalDays ?? 0
+  if (word.fsrsState === 'Review' && interval >= 14 && !isFsrsCardDue(word)) return 'known'
+  return 'learning'
+}
+
 function tokenizeReaderText(text: string, vocab: VocabWord[]): ReaderWordToken[] {
   const wordMap = new Map(vocab.map((word) => [word.word, word]))
-  const maxWordLength = Math.max(1, ...[...wordMap.keys()].map((word) => word.length))
+  const maxWordLength = readerMaxChineseWordLength(wordMap)
   const segmenter =
     typeof Intl.Segmenter === 'function'
       ? new Intl.Segmenter('zh-CN', { granularity: 'word' })
