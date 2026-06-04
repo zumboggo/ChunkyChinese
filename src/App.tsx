@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   AreaChart,
@@ -108,12 +108,16 @@ import type {
   RenderedLessonSegment,
   Sentence,
   StudyMode,
+  UserSettings,
   VocabWord,
   DictionaryEntry,
 } from './types'
 
 type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
+type ReaderPinyinMode = UserSettings['readerPinyinMode']
+type ReaderTheme = UserSettings['readerTheme']
+type ReaderPinyinState = 'known' | 'medium' | 'unknown'
 type FlashcardSessionCounts = {
   new: number
   learning: number
@@ -243,7 +247,6 @@ function App() {
   const [seedMessage, setSeedMessage] = useState('Loading LMS vocabulary...')
   const [activeReaderBookId, setActiveReaderBookId] = useState<string | undefined>()
   const [readerSentenceIndex, setReaderSentenceIndex] = useState(0)
-  const [readerShowPinyin, setReaderShowPinyin] = useState(true)
   const [readerShowEnglish, setReaderShowEnglish] = useState(false)
   const [selectedReaderToken, setSelectedReaderToken] = useState<ReaderWordToken | null>(null)
   const [readerDictionaryEntry, setReaderDictionaryEntry] = useState<DictionaryEntry | null>(null)
@@ -1927,6 +1930,16 @@ function App() {
     setLastSummary('Hotkeys saved.')
   }
 
+  function saveReaderSettings(patch: Partial<Pick<
+    UserSettings,
+    'readerPinyinMode' | 'readerTheme' | 'readerFontScale' | 'readerLineHeight'
+  >>) {
+    const next = { ...userSettings, ...patch }
+    setUserSettings(next)
+    void saveUserSettings(next)
+    setLastSummary('Reader settings saved.')
+  }
+
   return (
     <main className="app-shell">
       <header className="topbar">
@@ -2394,7 +2407,10 @@ function App() {
           tokens={readerTokens}
           selectedToken={selectedReaderToken}
           resumeLocation={readerResumeLocation}
-          showPinyin={readerShowPinyin}
+          pinyinMode={userSettings.readerPinyinMode}
+          readerTheme={userSettings.readerTheme}
+          readerFontScale={userSettings.readerFontScale}
+          readerLineHeight={userSettings.readerLineHeight}
           showEnglish={readerShowEnglish}
           onChooseBook={openReaderBook}
           onResume={() => {
@@ -2428,9 +2444,9 @@ function App() {
             await refresh()
           }}
           onEditWord={openCardEditor}
-          onTogglePinyin={() => {
+          onPinyinModeChange={(mode) => {
             recordReaderInteraction()
-            setReaderShowPinyin((value) => !value)
+            saveReaderSettings({ readerPinyinMode: mode })
           }}
           onToggleEnglish={() => {
             recordReaderInteraction()
@@ -2633,6 +2649,66 @@ function App() {
                   }}
                 />
               </label>
+            </section>
+
+            <section className="panel reader-settings-panel">
+              <h2>Reader settings</h2>
+              <p>Shape Reader into a clean book view with adaptive pinyin hints.</p>
+              <div className="hotkey-grid">
+                <label>
+                  <span>Pinyin hints</span>
+                  <select
+                    value={userSettings.readerPinyinMode}
+                    onChange={(event) =>
+                      saveReaderSettings({ readerPinyinMode: event.target.value as ReaderPinyinMode })
+                    }
+                  >
+                    <option value="adaptive">Adaptive</option>
+                    <option value="all">All pinyin</option>
+                    <option value="none">No pinyin</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Reader theme</span>
+                  <select
+                    value={userSettings.readerTheme}
+                    onChange={(event) => saveReaderSettings({ readerTheme: event.target.value as ReaderTheme })}
+                  >
+                    <option value="light">Light</option>
+                    <option value="sepia">Sepia</option>
+                    <option value="dark">Dark</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Chinese font size</span>
+                  <input
+                    type="range"
+                    min={0.82}
+                    max={1.35}
+                    step={0.01}
+                    value={userSettings.readerFontScale}
+                    onChange={(event) => saveReaderSettings({ readerFontScale: Number(event.target.value) })}
+                  />
+                  <small>{Math.round(userSettings.readerFontScale * 100)}%</small>
+                </label>
+                <label>
+                  <span>Line spacing</span>
+                  <input
+                    type="range"
+                    min={1.45}
+                    max={2.35}
+                    step={0.05}
+                    value={userSettings.readerLineHeight}
+                    onChange={(event) => saveReaderSettings({ readerLineHeight: Number(event.target.value) })}
+                  />
+                  <small>{userSettings.readerLineHeight.toFixed(2)}x</small>
+                </label>
+              </div>
+              <div className="reader-pinyin-legend" aria-label="Adaptive pinyin legend">
+                <span className="legend-pinyin-known">Known: no pinyin</span>
+                <span className="legend-pinyin-medium">Medium: blurred hint</span>
+                <span className="legend-pinyin-unknown">Unknown: visible pinyin</span>
+              </div>
             </section>
 
             <section className="panel">
@@ -3480,6 +3556,12 @@ function InfoPanel({ title, children }: { title: string; children: ReactNode }) 
   )
 }
 
+const readerPinyinModes: Array<{ value: ReaderPinyinMode; label: string }> = [
+  { value: 'adaptive', label: 'Adaptive' },
+  { value: 'all', label: 'All' },
+  { value: 'none', label: 'None' },
+]
+
 function ReaderMode({
   readerPacks,
   readerBooks,
@@ -3490,7 +3572,10 @@ function ReaderMode({
   tokens,
   selectedToken,
   resumeLocation,
-  showPinyin,
+  pinyinMode,
+  readerTheme,
+  readerFontScale,
+  readerLineHeight,
   showEnglish,
   onChooseBook,
   onResume,
@@ -3499,7 +3584,7 @@ function ReaderMode({
   onPlay,
   onSelectToken,
   onEditWord,
-  onTogglePinyin,
+  onPinyinModeChange,
   onToggleEnglish,
   readerDictionaryEntry,
   onSaveWord,
@@ -3513,7 +3598,10 @@ function ReaderMode({
   tokens: ReaderWordToken[]
   selectedToken: ReaderWordToken | null
   resumeLocation?: ReaderResumeLocation
-  showPinyin: boolean
+  pinyinMode: ReaderPinyinMode
+  readerTheme: ReaderTheme
+  readerFontScale: number
+  readerLineHeight: number
   showEnglish: boolean
   onChooseBook: (book: ReaderBook, action?: 'resume' | 'start') => void | Promise<void>
   onResume: () => void
@@ -3522,7 +3610,7 @@ function ReaderMode({
   onPlay: (sentence: ReaderSentence) => void | Promise<void>
   onSelectToken: (token: ReaderWordToken | null) => void
   onEditWord: (word: VocabWord) => void
-  onTogglePinyin: () => void
+  onPinyinModeChange: (mode: ReaderPinyinMode) => void
   onToggleEnglish: () => void
   readerDictionaryEntry: DictionaryEntry | null
   onSaveWord: (text: string, pinyin: string, meaning: string) => void | Promise<void>
@@ -3534,7 +3622,7 @@ function ReaderMode({
     : ''
 
   return (
-    <section className="screen reader-screen">
+    <section className={`screen reader-screen reader-theme-${readerTheme}`}>
       <div className="screen-heading compact">
         <div>
           <h1>Reader Mode</h1>
@@ -3543,9 +3631,18 @@ function ReaderMode({
           </p>
         </div>
         <div className="study-toggles">
-          <button type="button" className={showPinyin ? 'active' : ''} onClick={onTogglePinyin}>
-            Pinyin {showPinyin ? 'on' : 'off'}
-          </button>
+          <div className="segmented-control reader-pinyin-control" aria-label="Reader pinyin mode">
+            {readerPinyinModes.map((mode) => (
+              <button
+                key={mode.value}
+                type="button"
+                className={pinyinMode === mode.value ? 'active' : ''}
+                onClick={() => onPinyinModeChange(mode.value)}
+              >
+                {mode.label}
+              </button>
+            ))}
+          </div>
           <button type="button" className={showEnglish ? 'active' : ''} onClick={onToggleEnglish}>
             English {showEnglish ? 'sharp' : 'blurred'}
           </button>
@@ -3588,7 +3685,13 @@ function ReaderMode({
             {readerBooks.length === 0 && <small>No reader books are installed yet.</small>}
         </aside>
 
-        <section className="reader-page">
+        <section
+          className="reader-page"
+          style={{
+            '--reader-font-scale': readerFontScale,
+            '--reader-line-height': readerLineHeight,
+          } as CSSProperties}
+        >
           {activeBook && sentence ? (
             <>
               <div className="reader-page-meta">
@@ -3631,13 +3734,20 @@ function ReaderMode({
                       token.isChinese ? (
                         <ruby
                           key={token.id}
-                          className={`reader-token ${token.word ? 'saved-token' : ''} ${
-                            selectedToken?.id === token.id ? 'active' : ''
-                          }`}
+                          className={readerTokenClassName(token, selectedToken, pinyinMode)}
+                          tabIndex={0}
+                          role="button"
+                          aria-label={`${token.text}${token.pinyin ? `, ${token.pinyin}` : ''}`}
                           onClick={() => onSelectToken(token)}
+                          onKeyDown={(event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                              event.preventDefault()
+                              onSelectToken(token)
+                            }
+                          }}
                         >
                           {token.text}
-                          {showPinyin && <rt>{token.pinyin}</rt>}
+                          {readerShouldRenderPinyin(token, pinyinMode) && <rt>{token.pinyin}</rt>}
                         </ruby>
                       ) : (
                         <span key={token.id} className="reader-token-space">
@@ -3723,6 +3833,50 @@ function ReaderMode({
       </div>
     </section>
   )
+}
+
+function readerTokenClassName(
+  token: ReaderWordToken,
+  selectedToken: ReaderWordToken | null,
+  pinyinMode: ReaderPinyinMode,
+): string {
+  const state = readerPinyinState(token, pinyinMode)
+  return [
+    'reader-token',
+    token.word ? 'saved-token' : '',
+    selectedToken?.id === token.id ? 'active' : '',
+    `pinyin-${state}`,
+  ].filter(Boolean).join(' ')
+}
+
+function readerShouldRenderPinyin(token: ReaderWordToken, pinyinMode: ReaderPinyinMode): boolean {
+  return readerPinyinState(token, pinyinMode) !== 'known'
+}
+
+function readerPinyinState(token: ReaderWordToken, pinyinMode: ReaderPinyinMode): ReaderPinyinState {
+  if (pinyinMode === 'all') return 'unknown'
+  if (pinyinMode === 'none') return 'known'
+  return adaptiveReaderPinyinState(token.word)
+}
+
+function adaptiveReaderPinyinState(word?: VocabWord): ReaderPinyinState {
+  if (!word) return 'unknown'
+  const interval = word.fsrsIntervalDays ?? 0
+  const repetitions = word.fsrsRepetitions ?? 0
+  const lapses = word.fsrsLapses ?? 0
+  const due = isFsrsCardDue(word)
+
+  if (word.fsrsState === 'Review' && interval >= 14 && !due && lapses === 0) return 'known'
+  if (lapses > 0 && (due || interval < 14)) return 'unknown'
+  if (word.fsrsState === 'Review' && interval >= 2) return 'medium'
+  if (
+    (word.fsrsState === 'Learning' || word.fsrsState === 'Relearning') &&
+    repetitions > 0 &&
+    !due
+  ) {
+    return 'medium'
+  }
+  return 'unknown'
 }
 
 function ActivityChart({ days }: { days: DashboardStats['studyHeatmap'] }) {

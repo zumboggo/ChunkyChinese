@@ -404,6 +404,10 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   flashcardsPerDay: 50,
   flashcardQueueMode: 'mixed',
   darkMode: false,
+  readerPinyinMode: 'adaptive',
+  readerTheme: 'sepia',
+  readerFontScale: 1,
+  readerLineHeight: 1.9,
 }
 
 export async function getUserSettings(): Promise<UserSettings> {

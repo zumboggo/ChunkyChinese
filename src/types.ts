@@ -61,6 +61,10 @@ export interface UserSettings {
   flashcardsPerDay: number
   flashcardQueueMode: 'mixed' | 'due' | 'new'
   darkMode: boolean
+  readerPinyinMode: 'adaptive' | 'all' | 'none'
+  readerTheme: 'light' | 'sepia' | 'dark'
+  readerFontScale: number
+  readerLineHeight: number
 }
 
 export interface ClipPack {

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+SC:wght@400;500;700&display=swap');
+@import 'lxgw-wenkai-webfont/lxgwwenkai-regular.css';
 
 :root {
   --bg-cream: #fff7ed;
@@ -943,6 +944,36 @@ dt {
   border-color: var(--accent);
 }
 
+.segmented-control {
+  display: inline-grid;
+  grid-auto-flow: column;
+  gap: 4px;
+  max-width: 100%;
+  padding: 4px;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.segmented-control button {
+  min-height: 36px;
+  padding: 7px 12px;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.segmented-control button.active {
+  background: var(--card-solid);
+  color: var(--accent);
+  box-shadow: 0 6px 16px rgba(16, 35, 63, 0.1);
+}
+
 .mode-start-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(160px, 1fr));
@@ -1074,6 +1105,56 @@ dt {
   gap: 5px;
   color: var(--muted-navy);
   font-weight: 850;
+}
+
+.hotkey-grid input[type='range'] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.reader-settings-panel .hotkey-grid small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.reader-pinyin-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.reader-pinyin-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 850;
+}
+
+.reader-pinyin-legend span::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+.legend-pinyin-known::before {
+  background: #16a34a;
+}
+
+.legend-pinyin-medium::before {
+  background: #f59e0b;
+}
+
+.legend-pinyin-unknown::before {
+  background: var(--accent-2);
 }
 
 .status-pill {
@@ -2215,16 +2296,54 @@ kbd {
   font-size: 0.82rem;
 }
 
+.reader-screen {
+  --reader-paper: rgba(255, 255, 255, 0.9);
+  --reader-paper-strong: #ffffff;
+  --reader-ink: #14213d;
+  --reader-muted: #65758b;
+  --reader-border: rgba(20, 33, 61, 0.12);
+  --reader-accent: var(--accent);
+  --reader-font-scale: 1;
+  --reader-line-height: 1.9;
+}
+
+.reader-theme-light {
+  --reader-paper: rgba(255, 255, 255, 0.94);
+  --reader-paper-strong: #ffffff;
+  --reader-ink: #101827;
+  --reader-muted: #52677f;
+  --reader-border: rgba(15, 23, 42, 0.12);
+}
+
+.reader-theme-sepia {
+  --reader-paper: rgba(255, 248, 232, 0.94);
+  --reader-paper-strong: #fff3d6;
+  --reader-ink: #30261b;
+  --reader-muted: #78634c;
+  --reader-border: rgba(92, 64, 35, 0.16);
+  --reader-accent: #b45309;
+}
+
+.reader-theme-dark {
+  --reader-paper: rgba(12, 18, 28, 0.94);
+  --reader-paper-strong: #101827;
+  --reader-ink: #edf2f7;
+  --reader-muted: #a9b8ca;
+  --reader-border: rgba(226, 232, 240, 0.16);
+  --reader-accent: #fbbf24;
+}
+
 .reader-page {
   position: relative;
   display: grid;
   gap: 18px;
   min-height: 520px;
   padding: clamp(18px, 4vw, 36px);
-  border: 1px solid var(--border);
+  border: 1px solid var(--reader-border);
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.84);
+  background: var(--reader-paper);
   box-shadow: 0 18px 48px rgba(16, 35, 63, 0.08);
+  color: var(--reader-ink);
 }
 
 .reader-wpm-dashboard {
@@ -2292,7 +2411,7 @@ kbd {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
-  color: var(--muted);
+  color: var(--reader-muted);
   font-weight: 850;
 }
 
@@ -2309,7 +2428,7 @@ kbd {
   min-width: 8px;
   border-radius: inherit;
   background:
-    linear-gradient(90deg, var(--accent), var(--accent-2));
+    linear-gradient(90deg, var(--reader-accent), var(--accent-2));
   transition: width 180ms ease;
 }
 
@@ -2336,9 +2455,11 @@ kbd {
 .reader-sentence {
   display: block;
   text-align: center;
-  font-family: 'Noto Serif SC', serif;
-  font-size: clamp(2rem, 4.4vw, 4rem);
-  line-height: 2;
+  font-family: 'LXGW WenKai', 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+  font-size: calc(clamp(2rem, 4.4vw, 4rem) * var(--reader-font-scale, 1));
+  line-height: var(--reader-line-height, 1.9);
+  color: var(--reader-ink);
+  letter-spacing: 0;
 }
 
 .reader-token {
@@ -2346,29 +2467,51 @@ kbd {
   display: inline-block;
   cursor: pointer;
   position: relative;
-  color: var(--navy);
+  color: var(--reader-ink);
   border-bottom: 2px solid transparent;
   transition: color 0.2s, border-bottom-color 0.2s;
   ruby-align: center;
+  border-radius: 6px;
+  padding: 0 1px;
 }
 
 .reader-token:hover,
+.reader-token:focus-visible,
 .reader-token.active {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+  color: var(--reader-accent);
+  border-bottom-color: var(--reader-accent);
+  outline: none;
 }
 
 .reader-token.saved-token {
-  color: var(--muted-navy);
+  color: var(--reader-ink);
 }
 
 .reader-token rt {
   font-family: Inter, ui-sans-serif, sans-serif;
   font-size: 0.45em;
-  color: var(--accent-2);
+  color: var(--reader-accent);
   font-weight: 600;
   transform: translateY(4px);
   user-select: none;
+  transition: filter 160ms ease, opacity 160ms ease, color 160ms ease;
+}
+
+.reader-token.pinyin-medium rt {
+  filter: blur(4px);
+  opacity: 0.46;
+}
+
+.reader-token.pinyin-medium:hover rt,
+.reader-token.pinyin-medium:focus-visible rt,
+.reader-token.pinyin-medium.active rt {
+  filter: blur(0);
+  opacity: 1;
+}
+
+.reader-token.pinyin-unknown rt {
+  filter: blur(0);
+  opacity: 1;
 }
 
 .reader-token-space {
@@ -2377,7 +2520,7 @@ kbd {
 
 .reader-translation {
   margin: 0;
-  color: var(--navy);
+  color: var(--reader-ink);
   font-size: clamp(1.15rem, 2vw, 1.5rem);
   line-height: 1.5;
 }
@@ -2410,10 +2553,11 @@ kbd {
   z-index: 100;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.75);
+  background: color-mix(in srgb, var(--reader-paper-strong) 86%, transparent);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   box-shadow: 0 24px 64px rgba(16, 35, 63, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  color: var(--reader-ink);
 }
 
 .reader-word-popover strong {
