@@ -6,8 +6,6 @@ import {
   Area,
   BarChart,
   Bar,
-  LineChart,
-  Line,
   CartesianGrid,
   Legend,
   XAxis,
@@ -72,7 +70,6 @@ import {
   isFsrsCardDue,
   isNewFsrsCard,
   previewFsrsRatings,
-  type FsrsQueueBucket,
 } from './scheduler'
 import { UniversalImporter } from './UniversalImporter'
 import {
@@ -660,14 +657,6 @@ function App() {
   )
   const selectedRangeStats = stats.ranges[dashboardRange] ?? stats.ranges.today
   const remainingNewWordsToday = Math.max(0, newWordsPerDay - stats.newWordsToday)
-  const dueWordList = useMemo(
-    () =>
-      scopedWords
-        .filter((word) => isDueForDisplay(word))
-        .sort((a, b) => dueTimeForDisplay(a) - dueTimeForDisplay(b))
-        .slice(0, 6),
-    [scopedWords],
-  )
   const currentReviewWord = ratingWords[reviewCardIndex]
   const flashcardQueue = useMemo(
     () =>
@@ -2049,12 +2038,13 @@ function App() {
   return (
     <main className="app-shell">
       <header className="topbar">
-        <button className="brand-button" type="button" onClick={() => setScreen('dashboard')}>
+        <button className="brand-button" type="button" onClick={() => setScreen('dashboard')} aria-label="Go to dashboard">
           <span className="brand-mark">中</span>
           <span>
             <strong>Chunky Chinese</strong>
             <small>{seedMessage}</small>
           </span>
+          <span className="brand-home-pill" aria-hidden="true">Home</span>
         </button>
         <nav className="tabs" aria-label="Main screens">
           <button type="button" className={screen === 'flashcards' ? 'active' : ''} onClick={startSavedFlashcards}>
@@ -2181,37 +2171,6 @@ function App() {
             </div>
           </details>
 
-          <div className="metric-grid today-grid">
-            <div className="metric hero-metric passive-metric">
-              <span>Due now</span>
-              <strong>{stats.dueNow}</strong>
-            </div>
-            <div className="metric passive-metric">
-              <span>Due soon</span>
-              <strong>{stats.dueSoon}</strong>
-            </div>
-            <div className="metric passive-metric">
-              <span>Scheduled</span>
-              <strong>{stats.scheduled}</strong>
-            </div>
-          </div>
-
-          <div className="metric-grid">
-            {([
-              ['new', 'New cards'],
-              ['learning', 'Learning'],
-              ['due', 'Due cards'],
-              ['scheduled', 'Scheduled'],
-            ] as Array<[FsrsQueueBucket, string]>).map(
-              ([bucket, label]) => (
-                <div className="metric passive-metric" key={bucket}>
-                  <span>{label}</span>
-                  <strong>{stats.counts[bucket]}</strong>
-                </div>
-              ),
-            )}
-          </div>
-
           <div className="dashboard-progress-grid">
             <InfoPanel title="Recent Activity (Last 7 Days)">
               <ActivityChart days={stats.studyHeatmap} />
@@ -2222,22 +2181,55 @@ function App() {
             <InfoPanel title="Vocab Growth">
               <VocabGrowthChart points={stats.retentionSeries} />
             </InfoPanel>
-            <InfoPanel title="Reading Speed (WPM)">
-              <ReadingWpmChart points={stats.readingSeries} />
-            </InfoPanel>
           </div>
 
           <div className="action-grid">
-            <InfoPanel title="Flashcard Goals">
-              <dl className="stat-list">
-                <div>
-                  <dt>Flashcards / Day</dt>
-                  <dd>{userSettings.flashcardsPerDay}</dd>
-                </div>
-              </dl>
-              <div className="button-row compact-buttons" style={{ marginTop: '0.5rem' }}>
+            <InfoPanel title="Goals">
+              <div className="daily-plan goals-plan">
+                <label>
+                  Flashcards / day
+                  <input
+                    type="number"
+                    min={1}
+                    max={300}
+                    value={userSettings.flashcardsPerDay}
+                    onChange={(event) => {
+                      const next = { ...userSettings, flashcardsPerDay: Number(event.target.value) }
+                      setUserSettings(next)
+                      void saveUserSettings(next)
+                    }}
+                  />
+                </label>
+                <span>
+                  {selectedRangeStats.cardsReviewed} reviewed in {dashboardRangeLabel(dashboardRange).toLocaleLowerCase()}.
+                </span>
+                <label>
+                  Reader pages / day
+                  <input
+                    type="number"
+                    min={1}
+                    max={500}
+                    value={userSettings.readingGoalPages}
+                    onChange={(event) => {
+                      const next = { ...userSettings, readingGoalPages: Number(event.target.value) }
+                      setUserSettings(next)
+                      void saveUserSettings(next)
+                    }}
+                  />
+                </label>
+                <span>{todayReaderStats?.todayPagesRead ?? 0} sentence pages read today.</span>
+                <label>
+                  New words / day
+                  <strong>{newWordsPerDay}</strong>
+                </label>
+                <span>{remainingNewWordsToday} new word slots left today. Change this in Settings.</span>
+              </div>
+              <div className="button-row compact-buttons">
                 <button type="button" onClick={() => setScreen('settings')}>
-                  Edit Goals
+                  More goals
+                </button>
+                <button type="button" className="ghost-answer" onClick={startSavedFlashcards}>
+                  Flashcards
                 </button>
               </div>
             </InfoPanel>
@@ -2268,6 +2260,26 @@ function App() {
                   <dd>{stats.minutesToday.toFixed(1)}</dd>
                 </div>
                 <div>
+                  <dt>Due soon</dt>
+                  <dd>{stats.dueSoon}</dd>
+                </div>
+                <div>
+                  <dt>Scheduled</dt>
+                  <dd>{stats.scheduled}</dd>
+                </div>
+                <div>
+                  <dt>New cards</dt>
+                  <dd>{stats.counts.new}</dd>
+                </div>
+                <div>
+                  <dt>Learning</dt>
+                  <dd>{stats.counts.learning}</dd>
+                </div>
+                <div>
+                  <dt>Due cards</dt>
+                  <dd>{stats.counts.due}</dd>
+                </div>
+                <div>
                   <dt>Clips completed</dt>
                   <dd>{stats.clipsCompletedToday}</dd>
                 </div>
@@ -2283,10 +2295,6 @@ function App() {
                   <dt>New words today</dt>
                   <dd>{stats.newWordsToday} / {newWordsPerDay}</dd>
                 </div>
-              </dl>
-            </InfoPanel>
-            <InfoPanel title="Reading Today">
-              <dl className="stat-list">
                 <div>
                   <dt>Reading time</dt>
                   <dd>{formatDuration(todayReaderStats?.todayActiveSeconds ?? 0)}</dd>
@@ -2294,6 +2302,10 @@ function App() {
                 <div>
                   <dt>Words read</dt>
                   <dd>{todayReaderStats?.todayWordsRead ?? 0}</dd>
+                </div>
+                <div>
+                  <dt>Pages read</dt>
+                  <dd>{todayReaderStats?.todayPagesRead ?? 0} / {userSettings.readingGoalPages}</dd>
                 </div>
                 <div>
                   <dt>WPM</dt>
@@ -2308,75 +2320,27 @@ function App() {
                 Open reader
               </button>
             </InfoPanel>
-            <InfoPanel title="Daily plan">
-              <div className="daily-plan">
-                <label>
-                  New words/day
-                  <strong>{newWordsPerDay}</strong>
-                </label>
-                <span>{remainingNewWordsToday} new word slots left today. Change this in Settings.</span>
-                <label>
-                  Flashcards/session
-                  <input
-                    type="number"
-                    min={1}
-                    max={300}
-                    value={userSettings.flashcardsPerDay}
-                    onChange={(event) => {
-                      const next = { ...userSettings, flashcardsPerDay: Number(event.target.value) }
-                      setUserSettings(next)
-                      void saveUserSettings(next)
-                    }}
-                  />
-                </label>
-              </div>
-              <div className="button-row compact-buttons">
-                <button type="button" onClick={() => startModeLesson('activeRecall')}>
-                  Active Recall
-                </button>
-                <button
-                  type="button"
-                  className="ghost-answer"
-                  onClick={startSavedFlashcards}
-                >
-                  Flashcards
-                </button>
-              </div>
-            </InfoPanel>
-            <InfoPanel title="Due next">
-              <div className="due-list">
-                {dueWordList.map((word) => (
-                  <button
-                    key={word.id}
-                    type="button"
-                    onClick={() => startFlashcards('mixed', [word])}
-                  >
-                    <strong>{word.word}</strong>
-                    <span>{formatDueDate(word.fsrsDueAt)}</span>
-                  </button>
-                ))}
-                {dueWordList.length === 0 && <small>No scheduled reviews are due.</small>}
-              </div>
-            </InfoPanel>
             <InfoPanel title="Hotkeys">
               <dl className="stat-list">
                 <div>
-                  <dt>A / B choices</dt>
-                  <dd>{hotkeys.choiceA.toUpperCase()} / {hotkeys.choiceB.toUpperCase()}</dd>
+                  <dt>Choice A</dt>
+                  <dd>{hotkeys.choiceA.toUpperCase()} · Again / primary</dd>
                 </div>
                 <div>
-                  <dt>C / D choices</dt>
-                  <dd>
-                    {hotkeys.choiceC.toUpperCase()} / {hotkeys.choiceD.toUpperCase()}
-                  </dd>
+                  <dt>Choice B</dt>
+                  <dd>{hotkeys.choiceB.toUpperCase()} · Hard / secondary</dd>
                 </div>
                 <div>
-                  <dt>E choice</dt>
-                  <dd>{hotkeys.choiceE.toUpperCase()}</dd>
+                  <dt>Choice C</dt>
+                  <dd>{hotkeys.choiceC.toUpperCase()} · Good</dd>
                 </div>
                 <div>
-                  <dt>At rating time</dt>
-                  <dd>A=Again, B=Hard, C=Good, D=Easy, E=Extra review</dd>
+                  <dt>Choice D</dt>
+                  <dd>{hotkeys.choiceD.toUpperCase()} · Easy</dd>
+                </div>
+                <div>
+                  <dt>Choice E</dt>
+                  <dd>{hotkeys.choiceE.toUpperCase()} · Extra review</dd>
                 </div>
                 <div>
                   <dt>Play / pause</dt>
@@ -2413,20 +2377,9 @@ function App() {
                   <dd>{readerBooks.length}</dd>
                 </div>
               </dl>
-              <button type="button" className="ghost-answer" onClick={() => setScreen('reader')}>
-                Open reader mode
-              </button>
             </InfoPanel>
           </div>
 
-          <div className="button-row">
-            <button type="button" onClick={() => setScreen('reader')}>
-              Reader mode
-            </button>
-            <button type="button" onClick={() => setScreen('settings')}>
-              Settings
-            </button>
-          </div>
         </motion.section>
       )}
       </AnimatePresence>
@@ -2898,6 +2851,20 @@ function App() {
                     }}
                   />
                 </label>
+                <label>
+                  <span>Reader Pages / Day</span>
+                  <input
+                    type="number"
+                    min={1}
+                    max={500}
+                    value={userSettings.readingGoalPages}
+                    onChange={(event) => {
+                      const next = { ...userSettings, readingGoalPages: Number(event.target.value) }
+                      setUserSettings(next)
+                      void saveUserSettings(next)
+                    }}
+                  />
+                </label>
               </div>
             </section>
             <section className="panel">
@@ -2905,12 +2872,20 @@ function App() {
               <p>Choice A-D rate flashcards; Choice E stars cards for extra review.</p>
               <dl className="stat-list">
                 <div>
-                  <dt>Choice A / B</dt>
-                  <dd>{hotkeys.choiceA.toUpperCase()} / {hotkeys.choiceB.toUpperCase()}</dd>
+                  <dt>Choice A</dt>
+                  <dd>{hotkeys.choiceA.toUpperCase()}</dd>
                 </div>
                 <div>
-                  <dt>Choice C / D</dt>
-                  <dd>{hotkeys.choiceC.toUpperCase()} / {hotkeys.choiceD.toUpperCase()}</dd>
+                  <dt>Choice B</dt>
+                  <dd>{hotkeys.choiceB.toUpperCase()}</dd>
+                </div>
+                <div>
+                  <dt>Choice C</dt>
+                  <dd>{hotkeys.choiceC.toUpperCase()}</dd>
+                </div>
+                <div>
+                  <dt>Choice D</dt>
+                  <dd>{hotkeys.choiceD.toUpperCase()}</dd>
                 </div>
                 <div>
                   <dt>Choice E</dt>
@@ -2925,7 +2900,7 @@ function App() {
                 {hotkeysEditing ? 'Done editing hotkeys' : 'Edit hotkeys'}
               </button>
               {hotkeysEditing && (
-                <div className="hotkey-grid">
+                <div className="hotkey-grid hotkey-edit-grid">
                   {(Object.keys(hotkeys) as Array<keyof HotkeySettings>).map((key) => (
                     <label key={key}>
                       {hotkeyLabel(key)}
@@ -4150,32 +4125,6 @@ function VocabGrowthChart({ points }: { points: DashboardStats['retentionSeries'
   )
 }
 
-function ReadingWpmChart({ points }: { points: DashboardStats['readingSeries'] }) {
-  if (!points || points.length === 0) {
-    return <div className="progress-caption">No reading data yet</div>
-  }
-  return (
-    <div style={{ width: '100%', height: 250 }}>
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={points} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-          <XAxis dataKey="date" tickFormatter={shortMonthDay} />
-          <YAxis />
-          <Tooltip
-            formatter={(value: unknown, name: unknown) => [
-              String(value ?? ''),
-              name === 'wpm' ? 'WPM' : String(name ?? ''),
-            ]}
-            labelFormatter={(label) => friendlyDate(label)}
-          />
-          <Legend />
-          <Line type="monotone" dataKey="wpm" name="Reading WPM" stroke="#f59e0b" activeDot={{ r: 8 }} />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
-  )
-}
-
 function FilePanel({
   title,
   help,
@@ -4747,14 +4696,6 @@ function getDashboardEncouragement(stats: DashboardStats, settings: UserSettings
     }
   }
   return null
-}
-
-function isDueForDisplay(word: VocabWord): boolean {
-  return isFsrsCardDue(word)
-}
-
-function dueTimeForDisplay(word: VocabWord): number {
-  return fsrsDueTime(word)
 }
 
 function getReaderComprehensionByBook(books: ReaderBook[], vocab: VocabWord[]): Map<string, ReaderBookComprehension> {

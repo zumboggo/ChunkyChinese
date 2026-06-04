@@ -398,6 +398,7 @@ export async function getAllClipPacks(): Promise<ClipPack[]> {
 
 export const DEFAULT_USER_SETTINGS: UserSettings = {
   readingGoalWords: 6000,
+  readingGoalPages: 20,
   listeningGoalHours: 7.5,
   lingqCreatedGoal: 390,
   lingqLearnedGoal: 90,
@@ -427,7 +428,7 @@ function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: number }
   const { coins: _coins, ...rest } = saved
   return {
     settings: { ...DEFAULT_USER_SETTINGS, ...rest },
-    cleaned: _coins !== undefined,
+    cleaned: _coins !== undefined || saved.readingGoalPages === undefined,
   }
 }
 
@@ -1306,10 +1307,12 @@ export async function getReaderSessionStats(): Promise<ReaderSessionStats> {
   const todaySessions = sessions.filter((s) => new Date(s.startedAt) >= start)
   const todayActiveSeconds = todaySessions.reduce((sum, s) => sum + s.activeSeconds, 0)
   const todayWordsRead = todaySessions.reduce((sum, s) => sum + s.wordsRead, 0)
+  const todayPagesRead = new Set(todaySessions.flatMap((s) => s.sentenceIdsRead ?? [])).size
   const todayWpm = todayActiveSeconds > 0 ? Math.round((todayWordsRead / todayActiveSeconds) * 60) : 0
   return {
     todayActiveSeconds,
     todayWordsRead,
+    todayPagesRead,
     todayWpm,
     totalSessions: sessions.length,
   }

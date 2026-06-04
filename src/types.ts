@@ -54,6 +54,7 @@ export interface HotkeySettings {
 
 export interface UserSettings {
   readingGoalWords: number
+  readingGoalPages: number
   listeningGoalHours: number
   lingqCreatedGoal: number
   lingqLearnedGoal: number
@@ -206,6 +207,7 @@ export interface ReaderSession {
 export interface ReaderSessionStats {
   todayActiveSeconds: number
   todayWordsRead: number
+  todayPagesRead: number
   todayWpm: number
   totalSessions: number
 }
