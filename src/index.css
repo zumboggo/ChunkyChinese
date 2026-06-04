@@ -728,6 +728,127 @@ dt {
   min-width: 0;
 }
 
+.process-chart-panel {
+  grid-column: 1 / -1;
+}
+
+.process-chart-wrap {
+  display: grid;
+  gap: 14px;
+}
+
+.process-chart-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+}
+
+.process-chart-summary dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.process-chart-summary dl div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  padding-left: 12px;
+  border-left: 3px solid rgba(29, 142, 216, 0.32);
+}
+
+.process-chart-summary dt {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.process-chart-summary dd {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(1.05rem, 2vw, 1.38rem);
+  font-weight: 950;
+  line-height: 1.1;
+}
+
+.process-status {
+  justify-self: end;
+  max-width: 100%;
+  padding: 8px 11px;
+  border-radius: 999px;
+  color: var(--navy);
+  font-size: 0.8rem;
+  font-weight: 950;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.process-status-neutral {
+  background: rgba(82, 103, 127, 0.12);
+}
+
+.process-status-normal {
+  background: rgba(22, 163, 74, 0.14);
+  color: #166534;
+}
+
+.process-status-high {
+  background: rgba(29, 142, 216, 0.16);
+  color: #075985;
+}
+
+.process-status-low {
+  background: rgba(220, 38, 38, 0.13);
+  color: #991b1b;
+}
+
+.process-chart {
+  width: 100%;
+  height: 265px;
+}
+
+.process-day-strip {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  align-items: center;
+}
+
+.process-day {
+  display: block;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(82, 103, 127, 0.18);
+}
+
+.process-day-normal {
+  background: rgba(22, 163, 74, 0.46);
+}
+
+.process-day-high {
+  background: rgba(29, 142, 216, 0.72);
+}
+
+.process-day-low {
+  background: rgba(220, 38, 38, 0.68);
+}
+
+:root[data-theme='dark'] .process-status-normal {
+  color: #bbf7d0;
+}
+
+:root[data-theme='dark'] .process-status-high {
+  color: #bae6fd;
+}
+
+:root[data-theme='dark'] .process-status-low {
+  color: #fecaca;
+}
+
 .panel,
 .lesson-card {
   background: var(--card);
@@ -3180,6 +3301,20 @@ kbd {
   .mode-start-grid,
   .target-strip {
     grid-template-columns: 1fr;
+  }
+
+  .process-chart-summary,
+  .process-chart-summary dl {
+    grid-template-columns: 1fr;
+  }
+
+  .process-status {
+    justify-self: start;
+    white-space: normal;
+  }
+
+  .process-chart {
+    height: 230px;
   }
 
   .fsrs-preview-buttons {

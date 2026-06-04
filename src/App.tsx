@@ -6,8 +6,12 @@ import {
   Area,
   BarChart,
   Bar,
+  LineChart,
+  Line,
   CartesianGrid,
   Legend,
+  ReferenceArea,
+  ReferenceLine,
   XAxis,
   YAxis,
   Tooltip,
@@ -212,6 +216,7 @@ const emptyStats: DashboardStats = {
     allTime: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
   },
   currentStreak: 0,
+  learningProcessSeries: [],
   studyHeatmap: [],
   retentionSeries: [],
   readingSeries: [],
@@ -2172,6 +2177,9 @@ function App() {
           </details>
 
           <div className="dashboard-progress-grid">
+            <InfoPanel title="Learning process" className="process-chart-panel">
+              <LearningProcessChart points={stats.learningProcessSeries} />
+            </InfoPanel>
             <InfoPanel title="Recent Activity (Last 7 Days)">
               <ActivityChart days={stats.studyHeatmap} />
             </InfoPanel>
@@ -3641,9 +3649,9 @@ function App() {
   )
 }
 
-function InfoPanel({ title, children }: { title: string; children: ReactNode }) {
+function InfoPanel({ title, children, className = '' }: { title: string; children: ReactNode; className?: string }) {
   return (
-    <section className="panel">
+    <section className={`panel ${className}`.trim()}>
       <h2>{title}</h2>
       {children}
     </section>
@@ -4045,9 +4053,12 @@ function adaptiveReaderPinyinState(word?: VocabWord): ReaderPinyinState {
 
 function ActivityChart({ days }: { days: DashboardStats['studyHeatmap'] }) {
   const last7Days = days.slice(-7)
+  if (last7Days.length === 0) {
+    return <div className="progress-caption">No activity data yet</div>
+  }
   return (
     <div style={{ width: '100%', height: 200 }}>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="100%" minWidth={0}>
         <AreaChart data={last7Days}>
           <defs>
             <linearGradient id="colorStudy" x1="0" y1="0" x2="0" y2="1">
@@ -4066,6 +4077,127 @@ function ActivityChart({ days }: { days: DashboardStats['studyHeatmap'] }) {
       </ResponsiveContainer>
     </div>
   )
+}
+
+function LearningProcessChart({ points }: { points: DashboardStats['learningProcessSeries'] }) {
+  const latestPoint = [...points].reverse().find((point) => point.value !== null)
+  const todayPoint = points.at(-1)
+  const limitPoint = points.find((point) => point.center !== null)
+  const last7Days = points.slice(-7)
+  const recentSignalCount = last7Days.filter((point) => point.signal).length
+  const chartNumbers = points.flatMap((point) =>
+    [point.value, point.center, point.upperLimit, point.lowerLimit].filter(
+      (value): value is number => value !== null && Number.isFinite(value),
+    ),
+  )
+  const chartMax = Math.max(1, ...chartNumbers)
+  const yDomain: [number, number] = [0, Math.ceil(chartMax * 1.12)]
+  const status = getLearningProcessStatus(todayPoint, latestPoint, limitPoint)
+  const todayLabel =
+    todayPoint?.value !== null && todayPoint?.value !== undefined
+      ? formatProcessValue(todayPoint.value)
+      : 'No recalls yet'
+  const normalLabel = limitPoint?.center !== null && limitPoint?.center !== undefined
+    ? formatProcessValue(limitPoint.center)
+    : 'Building history'
+
+  if (points.length === 0) {
+    return <div className="progress-caption">No review data yet</div>
+  }
+
+  return (
+    <div className="process-chart-wrap">
+      <div className="process-chart-summary">
+        <dl aria-label="Learning process summary">
+          <div>
+            <dt>Today</dt>
+            <dd>{todayLabel}</dd>
+          </div>
+          <div>
+            <dt>Normal</dt>
+            <dd>{normalLabel}</dd>
+          </div>
+          <div>
+            <dt>7 day signals</dt>
+            <dd>{recentSignalCount}</dd>
+          </div>
+        </dl>
+        <span className={`process-status process-status-${status.tone}`}>{status.label}</span>
+      </div>
+
+      <div className="process-chart" aria-label="Good and Easy recalls per 10 study minutes">
+        <ResponsiveContainer width="100%" height="100%" minWidth={0}>
+          <LineChart data={points} margin={{ top: 14, right: 16, left: 0, bottom: 4 }}>
+            <CartesianGrid strokeDasharray="3 3" opacity={0.18} />
+            {last7Days.length > 1 && (
+              <ReferenceArea
+                x1={last7Days[0].date}
+                x2={last7Days[last7Days.length - 1].date}
+                fill="var(--accent-2)"
+                fillOpacity={0.08}
+              />
+            )}
+            {limitPoint?.upperLimit !== null && limitPoint?.upperLimit !== undefined && (
+              <ReferenceLine y={limitPoint.upperLimit} stroke="#38bdf8" strokeDasharray="5 5" />
+            )}
+            {limitPoint?.center !== null && limitPoint?.center !== undefined && (
+              <ReferenceLine y={limitPoint.center} stroke="var(--muted-navy)" strokeDasharray="6 4" />
+            )}
+            {limitPoint?.lowerLimit !== null && limitPoint?.lowerLimit !== undefined && (
+              <ReferenceLine y={limitPoint.lowerLimit} stroke="#38bdf8" strokeDasharray="5 5" />
+            )}
+            <XAxis dataKey="date" tickFormatter={shortMonthDay} minTickGap={18} />
+            <YAxis width={34} domain={yDomain} tickFormatter={(value) => `${Number(value).toFixed(0)}`} />
+            <Tooltip
+              formatter={(value: unknown) => [`${Number(value ?? 0).toFixed(1)} / 10 min`, 'Good/Easy']}
+              labelFormatter={(label) => friendlyDate(String(label))}
+            />
+            <Line
+              type="monotone"
+              dataKey="value"
+              name="Good/Easy"
+              stroke="var(--accent)"
+              strokeWidth={3}
+              dot={{ r: 4, strokeWidth: 2, fill: 'var(--card-solid)' }}
+              activeDot={{ r: 7 }}
+              connectNulls
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+
+      <div className="process-day-strip" aria-label="Recent learning process days">
+        {last7Days.map((day) => (
+          <span
+            key={day.date}
+            className={`process-day process-day-${day.signal ?? (day.value === null ? 'empty' : 'normal')}`}
+            title={`${friendlyDate(day.date)}: ${
+              day.value === null ? 'no recall reviews' : `${formatProcessValue(day.value)}, ${day.successfulRecalls}/${day.recallAttempts} Good/Easy`
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function getLearningProcessStatus(
+  todayPoint: DashboardStats['learningProcessSeries'][number] | undefined,
+  latestPoint: DashboardStats['learningProcessSeries'][number] | undefined,
+  limitPoint: DashboardStats['learningProcessSeries'][number] | undefined,
+): { tone: 'neutral' | 'normal' | 'high' | 'low'; label: string } {
+  if (!latestPoint) return { tone: 'neutral', label: 'No recalls yet' }
+  if (!limitPoint) return { tone: 'neutral', label: 'Building history' }
+  const todayHasValue = todayPoint?.value !== null && todayPoint?.value !== undefined
+  const point = todayHasValue ? todayPoint : latestPoint
+  if (!todayHasValue) return { tone: 'neutral', label: 'No recalls today' }
+  if (point?.signal === 'high') return { tone: 'high', label: 'Above normal range' }
+  if (point?.signal === 'low') return { tone: 'low', label: 'Below normal range' }
+  return { tone: 'normal', label: 'Inside normal range' }
+}
+
+function formatProcessValue(value: number): string {
+  return `${value.toFixed(1)} / 10 min`
 }
 
 function ProgressHeatmap({ days }: { days: DashboardStats['studyHeatmap'] }) {
@@ -4105,9 +4237,12 @@ function ProgressHeatmap({ days }: { days: DashboardStats['studyHeatmap'] }) {
 }
 
 function VocabGrowthChart({ points }: { points: DashboardStats['retentionSeries'] }) {
+  if (points.length === 0) {
+    return <div className="progress-caption">No vocab data yet</div>
+  }
   return (
     <div style={{ width: '100%', height: 250 }}>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="100%" minWidth={0}>
         <BarChart data={points} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
           <XAxis dataKey="date" tickFormatter={shortMonthDay} />

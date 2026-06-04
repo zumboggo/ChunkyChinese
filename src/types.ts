@@ -416,6 +416,7 @@ export interface DashboardStats {
   newWordsToday: number
   ranges: Record<DashboardRange, DashboardRangeStats>
   currentStreak: number
+  learningProcessSeries: LearningProcessPoint[]
   studyHeatmap: StudyDayStat[]
   retentionSeries: RetentionPoint[]
   readingSeries: ReadingDayStat[]
@@ -447,4 +448,16 @@ export interface ReadingDayStat {
   wpm: number
   wordsRead: number
   activeSeconds: number
+}
+
+export interface LearningProcessPoint {
+  date: string
+  value: number | null
+  center: number | null
+  upperLimit: number | null
+  lowerLimit: number | null
+  successfulRecalls: number
+  recallAttempts: number
+  studyMinutes: number
+  signal?: 'high' | 'low'
 }

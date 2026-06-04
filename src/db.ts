@@ -1464,6 +1464,7 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     ).length,
     ranges,
     currentStreak: calculateStreak(buildStudyHeatmap(events, readerSessions, 365)),
+    learningProcessSeries: buildLearningProcessSeries(events, readerSessions, scopedWordIds, 28),
     studyHeatmap: heatmap,
     retentionSeries: buildRetentionSeries(scopedWords, events, 12),
     readingSeries: buildReadingSeries(readerSessions, 12),
@@ -2191,6 +2192,78 @@ function buildReadingSeries(
   }
 
   return points
+}
+
+function buildLearningProcessSeries(
+  events: ListeningEvent[],
+  readerSessions: ReaderSession[],
+  scopedWordIds: Set<string>,
+  dayCount: number,
+): DashboardStats['learningProcessSeries'] {
+  const heatmap = buildStudyHeatmap(events, readerSessions, dayCount)
+  const firstDay = heatmap[0] ? new Date(`${heatmap[0].date}T00:00:00`) : startOfToday()
+  const byDay = new Map(
+    heatmap.map((day) => [
+      day.date,
+      {
+        date: day.date,
+        studyMinutes: day.studySeconds / 60,
+        successfulRecalls: 0,
+        recallAttempts: 0,
+      },
+    ]),
+  )
+
+  for (const event of events) {
+    const time = Date.parse(event.timestamp)
+    if (!Number.isFinite(time) || time < firstDay.getTime() || !scopedWordIds.has(event.itemId)) continue
+    if (event.type !== 'fsrs_rating') continue
+    const day = byDay.get(dateKey(new Date(time)))
+    if (!day) continue
+    day.recallAttempts += 1
+    if (event.rating === 'good' || event.rating === 'easy') {
+      day.successfulRecalls += 1
+    }
+  }
+
+  const points = Array.from(byDay.values()).map((day) => ({
+    ...day,
+    value:
+      day.studyMinutes > 0 && day.recallAttempts > 0
+        ? roundProcessValue((day.successfulRecalls / day.studyMinutes) * 10)
+        : null,
+    center: null,
+    upperLimit: null,
+    lowerLimit: null,
+  }))
+  const values = points
+    .map((point) => point.value)
+    .filter((value): value is number => value !== null && Number.isFinite(value))
+
+  if (values.length < 3) return points
+
+  const center = roundProcessValue(values.reduce((sum, value) => sum + value, 0) / values.length)
+  const movingRanges = values.slice(1).map((value, index) => Math.abs(value - values[index]))
+  const averageMovingRange =
+    movingRanges.reduce((sum, range) => sum + range, 0) / Math.max(1, movingRanges.length)
+  const upperLimit = roundProcessValue(center + 2.66 * averageMovingRange)
+  const lowerLimit = roundProcessValue(Math.max(0, center - 2.66 * averageMovingRange))
+
+  return points.map((point) => {
+    const value = point.value
+    const signal = value === null ? undefined : value > upperLimit ? 'high' : value < lowerLimit ? 'low' : undefined
+    return {
+      ...point,
+      center,
+      upperLimit,
+      lowerLimit,
+      signal,
+    }
+  })
+}
+
+function roundProcessValue(value: number): number {
+  return Math.round(value * 10) / 10
 }
 
 function inferredStudySeconds(event: ListeningEvent): number {
