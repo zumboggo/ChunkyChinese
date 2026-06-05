@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "worldId": "royal-road-prototype",
+  "styleId": "royal-road-manhwa-v1",
+  "defaultMaxCostUsd": 3,
+  "backgrounds": [
+    {
+      "id": "town-square-day",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/town-square-day.txt",
+      "candidateCount": 4
+    },
+    {
+      "id": "training-hall",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/training-hall.txt",
+      "candidateCount": 4
+    },
+    {
+      "id": "workshop-before",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/workshop-before.txt",
+      "candidateCount": 4
+    }
+  ],
+  "cinematics": [
+    {
+      "id": "transition-hope",
+      "status": "needed",
+      "modelProfile": "seedream-cinematic",
+      "promptFile": "prompts/cinematics/transition-hope.txt",
+      "candidateCount": 4
+    }
+  ],
+  "sprites": [
+    {
+      "id": "protagonist-virtual-neutral",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/protagonist-virtual-neutral.txt",
+      "candidateCount": 2,
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "standing",
+      "expressionId": "neutral",
+      "masterAssetId": "protagonist-virtual-master",
+      "masterReferencePath": "references/protagonist-virtual-master.png"
+    },
+    {
+      "id": "protagonist-real-tired",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/protagonist-real-tired.txt",
+      "candidateCount": 2,
+      "characterId": "lee-hyun",
+      "personaId": "real-world",
+      "outfitId": "modern-apartment",
+      "poseId": "standing",
+      "expressionId": "tired",
+      "masterAssetId": "protagonist-real-world-master",
+      "masterReferencePath": "references/protagonist-real-world-master.png"
+    }
+  ]
+}

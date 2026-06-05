@@ -82,7 +82,7 @@ import {
 import { AdaptiveChineseText } from './AdaptiveChineseText'
 import { WordInfoPopover } from './WordInfoPopover'
 import { UniversalImporter } from './UniversalImporter'
-import { VisualNovelMode } from './visualNovel/VisualNovelMode'
+import { VisualNovelWorldMode } from './visualNovel/VisualNovelWorldMode'
 import {
   getCloudAuthState,
   isSupabaseConfigured,
@@ -2547,7 +2547,7 @@ function App() {
       )}
 
       {screen === 'visualNovel' && (
-        <VisualNovelMode
+        <VisualNovelWorldMode
           words={scopedWords.length > 0 ? scopedWords : words}
           readerBooks={readerBooks}
           pinyinMode={userSettings.readerPinyinMode}

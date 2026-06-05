@@ -40,7 +40,8 @@ import {
   isNewFsrsCard,
 } from './scheduler'
 import { visualNovelSaveId } from './visualNovel/engine'
-import type { VisualNovelSave } from './visualNovel/types'
+import { visualNovelWorldSaveId } from './visualNovel/worldEngine'
+import type { VisualNovelSave, VisualNovelWorldSave } from './visualNovel/types'
 
 type ProgressImportField =
   | 'lastReviewedAt'
@@ -65,7 +66,7 @@ interface UpsertWordsOptions {
 }
 
 const DB_NAME = 'chunky-chinese-vocab'
-const DB_VERSION = 8
+const DB_VERSION = 9
 const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
 const READER_PACK_FIX_VERSION = '2026-06-03-book2-per-sentence-images'
@@ -136,6 +137,11 @@ interface ChunkyDB extends DBSchema {
     value: VisualNovelSave
     indexes: { packId: string; visualNovelId: string; updatedAt: string }
   }
+  visualNovelWorldSaves: {
+    key: string
+    value: VisualNovelWorldSave
+    indexes: { worldId: string; updatedAt: string }
+  }
   settings: {
     key: string
     value: unknown
@@ -200,6 +206,11 @@ export function getDB(): Promise<IDBPDatabase<ChunkyDB>> {
           visualNovelSaves.createIndex('packId', 'packId')
           visualNovelSaves.createIndex('visualNovelId', 'visualNovelId')
           visualNovelSaves.createIndex('updatedAt', 'updatedAt')
+        }
+        if (!db.objectStoreNames.contains('visualNovelWorldSaves')) {
+          const visualNovelWorldSaves = db.createObjectStore('visualNovelWorldSaves', { keyPath: 'id' })
+          visualNovelWorldSaves.createIndex('worldId', 'worldId')
+          visualNovelWorldSaves.createIndex('updatedAt', 'updatedAt')
         }
         if (!db.objectStoreNames.contains('settings')) {
           db.createObjectStore('settings')
@@ -1361,6 +1372,27 @@ export async function deleteVisualNovelSave(packId: string, visualNovelId: strin
   await (await getDB()).delete('visualNovelSaves', visualNovelSaveId(packId, visualNovelId))
 }
 
+export async function getVisualNovelWorldSave(worldId: string): Promise<VisualNovelWorldSave | undefined> {
+  return await (await getDB()).get('visualNovelWorldSaves', visualNovelWorldSaveId(worldId))
+}
+
+export async function getAllVisualNovelWorldSaves(): Promise<VisualNovelWorldSave[]> {
+  return (await (await getDB()).getAll('visualNovelWorldSaves')).sort(
+    (a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt),
+  )
+}
+
+export async function saveVisualNovelWorldSave(save: VisualNovelWorldSave): Promise<void> {
+  await (await getDB()).put('visualNovelWorldSaves', {
+    ...save,
+    updatedAt: new Date().toISOString(),
+  })
+}
+
+export async function deleteVisualNovelWorldSave(worldId: string): Promise<void> {
+  await (await getDB()).delete('visualNovelWorldSaves', visualNovelWorldSaveId(worldId))
+}
+
 export async function importHostedReaderPack(
   baseUrl: string,
   onProgress?: (completed: number, total: number, label: string) => void,
@@ -1610,6 +1642,7 @@ export async function exportBackup(): Promise<string> {
     readerProgress: await db.getAll('readerProgress'),
     readerSessions: await db.getAll('readerSessions'),
     visualNovelSaves: await db.getAll('visualNovelSaves'),
+    visualNovelWorldSaves: await db.getAll('visualNovelWorldSaves'),
     settings: {
       lmsSeededAt: await db.get('settings', 'lmsSeededAt'),
       activePackId: await db.get('settings', 'activePackId'),
@@ -1632,6 +1665,7 @@ export async function importBackup(text: string): Promise<ImportSummary> {
     readerProgress?: ReaderProgress[]
     readerSessions?: ReaderSession[]
     visualNovelSaves?: VisualNovelSave[]
+    visualNovelWorldSaves?: VisualNovelWorldSave[]
     settings?: {
       activePackId?: string
       userSettings?: UserSettings
@@ -1652,6 +1686,7 @@ export async function importBackup(text: string): Promise<ImportSummary> {
       'readerProgress',
       'readerSessions',
       'visualNovelSaves',
+      'visualNovelWorldSaves',
     ],
     'readwrite',
   )
@@ -1687,6 +1722,9 @@ export async function importBackup(text: string): Promise<ImportSummary> {
   }
   for (const save of backup.visualNovelSaves ?? []) {
     await tx.objectStore('visualNovelSaves').put(save)
+  }
+  for (const save of backup.visualNovelWorldSaves ?? []) {
+    await tx.objectStore('visualNovelWorldSaves').put(save)
   }
 
   await tx.done

@@ -655,6 +655,7 @@ function speakerLabel(script: VnScript, node: VnNode): string {
   if (node.type === 'cinematic') return 'Cinematic'
   if (node.type === 'choice') return 'Choice'
   if (node.type === 'end') return 'Ending'
+  if (node.type === 'questResult') return 'Quest Result'
   if (!node.speaker) return 'Narration'
   const character = script.characters[node.speaker.characterId]
   const persona = node.speaker.personaId ? character?.personas[node.speaker.personaId] : undefined

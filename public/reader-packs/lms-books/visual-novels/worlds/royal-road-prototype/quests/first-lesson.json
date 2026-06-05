@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026-06-05-world-placeholder-v1",
+  "id": "first-lesson",
+  "packId": "royal-road-prototype",
+  "title": "First lesson",
+  "initialNodeId": "lesson-001",
+  "assetManifestPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/asset-manifest.json",
+  "characters": {
+    "protagonist": { "id": "protagonist", "displayNames": { "english": "Chen You", "chinese": "陈佑" }, "personas": { "virtual-sculptor": { "id": "virtual-sculptor", "defaultOutfitId": "plain-adventurer", "defaultSpriteId": "protagonist-virtual-neutral" } } },
+    "training-master": { "id": "training-master", "displayNames": { "english": "Training Master", "chinese": "训练师傅" }, "personas": { "default": { "id": "default", "defaultOutfitId": "training-robe", "defaultSpriteId": "training-master" } } }
+  },
+  "initialState": { "money": 0, "skills": { "sculpting": 0, "swordsmanship": 0 }, "flags": {}, "questNotes": {}, "appliedOnceKeys": [] },
+  "nodes": {
+    "lesson-001": {
+      "id": "lesson-001",
+      "type": "line",
+      "speaker": { "characterId": "training-master", "personaId": "default" },
+      "text": { "chinese": "新人，先别问怎么变强。先问自己能不能听完一句话。", "english": "Newcomer, do not first ask how to become strong. First ask whether you can listen to one full sentence." },
+      "scene": {
+        "backgroundId": "training-hall",
+        "characters": [
+          { "characterId": "protagonist", "personaId": "virtual-sculptor", "spriteId": "protagonist-virtual-neutral", "position": "left" },
+          { "characterId": "training-master", "personaId": "default", "spriteId": "training-master", "position": "right" }
+        ]
+      },
+      "nextId": "lesson-002"
+    },
+    "lesson-002": {
+      "id": "lesson-002",
+      "type": "choice",
+      "prompt": { "chinese": "师傅让你选第一项训练。", "english": "The master tells you to choose your first training." },
+      "choices": [
+        { "id": "listen", "kind": "memory", "label": { "chinese": "先练听命令。", "english": "Train listening to orders first." }, "nextId": "lesson-003a", "effects": [{ "id": "listen-carefully", "op": "setFlag", "key": "listened-to-master", "value": true }] },
+        { "id": "swing", "kind": "consequential", "label": { "chinese": "先挥剑，看起来比较帅。", "english": "Swing a sword first; it looks cooler." }, "nextId": "lesson-003b", "effects": [{ "id": "sword-start", "op": "addSkill", "skill": "swordsmanship", "amount": 1 }] }
+      ]
+    },
+    "lesson-003a": {
+      "id": "lesson-003a",
+      "type": "line",
+      "speaker": { "characterId": "training-master", "personaId": "default" },
+      "text": { "chinese": "很好。活得久的人，通常不是最帅的人。", "english": "Good. The people who live long are usually not the coolest-looking ones." },
+      "nextId": "lesson-result"
+    },
+    "lesson-003b": {
+      "id": "lesson-003b",
+      "type": "line",
+      "speaker": { "characterId": "training-master", "personaId": "default" },
+      "text": { "chinese": "剑挥得不错。差点打到自己，也算认识了敌人。", "english": "Nice swing. You nearly hit yourself, which means you have met the enemy." },
+      "nextId": "lesson-result"
+    },
+    "lesson-result": {
+      "id": "lesson-result",
+      "type": "questResult",
+      "questId": "first-lesson",
+      "outcomeId": "trained",
+      "completed": true,
+      "resultId": "first-lesson-trained",
+      "summary": { "chinese": "陈佑学会了第一件事：系统不会替他理解别人的话。", "english": "Chen You learns the first thing: the system will not understand other people's words for him." },
+      "worldEffects": [
+        { "id": "first-lesson-gold", "op": "addMoney", "amount": 10 },
+        { "id": "first-lesson-sword", "op": "addSkill", "skill": "swordsmanship", "amount": 1 },
+        { "id": "unlock-title-careful-newcomer", "op": "unlockTitle", "titleId": "Careful Newcomer" }
+      ],
+      "returnLocationId": "town-square"
+    }
+  }
+}

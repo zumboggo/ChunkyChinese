@@ -4,6 +4,7 @@ import type {
   VnCondition,
   VnEffect,
   VnNode,
+  VnQuestResult,
   VnScenePatch,
   VnSceneState,
   VnScript,
@@ -54,7 +55,7 @@ export function advanceVisualNovel(
   const node = currentVisualNovelNode(script, save)
   if (!node) return save
 
-  if (node.type === 'end') return save
+  if (node.type === 'end' || node.type === 'questResult') return save
 
   if (node.type === 'choice') {
     const choice = node.choices.find((item) => item.id === selectedChoiceId)
@@ -68,6 +69,18 @@ export function advanceVisualNovel(
   }
 
   return moveToNode(script, save, node.nextId, node.effects ?? [])
+}
+
+export function visualNovelQuestResult(node: VnNode | undefined): VnQuestResult | undefined {
+  if (!node || node.type !== 'questResult') return undefined
+  return {
+    questId: node.questId,
+    outcomeId: node.outcomeId,
+    completed: node.completed,
+    resultId: node.resultId ?? `${node.questId}:${node.outcomeId}`,
+    worldEffects: node.worldEffects ?? [],
+    returnLocationId: node.returnLocationId,
+  }
 }
 
 export function goBackVisualNovel(save: VisualNovelSave): VisualNovelSave {
@@ -153,6 +166,14 @@ export function conditionsPass(conditions: VnCondition[], state: VnState): boole
     if (condition.op === 'moneyAtLeast') return state.money >= condition.amount
     if (condition.op === 'skillAtLeast') return (state.skills[condition.skill] ?? 0) >= condition.amount
     if (condition.op === 'questStatus') return state.questNotes[condition.noteId]?.status === condition.status
+    if (
+      condition.op === 'worldQuestStatus' ||
+      condition.op === 'locationUnlocked' ||
+      condition.op === 'hasTitle' ||
+      condition.op === 'encounterSeen'
+    ) {
+      return false
+    }
     return false
   })
 }

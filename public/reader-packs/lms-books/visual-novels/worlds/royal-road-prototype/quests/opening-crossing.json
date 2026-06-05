@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026-06-05-world-placeholder-v1",
+  "id": "opening-crossing",
+  "packId": "royal-road-prototype",
+  "title": "Light beyond the narrow room",
+  "initialNodeId": "opening-001",
+  "assetManifestPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/asset-manifest.json",
+  "characters": {
+    "protagonist": {
+      "id": "protagonist",
+      "displayNames": { "english": "Chen You", "chinese": "陈佑" },
+      "personas": {
+        "real-world": { "id": "real-world", "defaultOutfitId": "work-clothes", "defaultSpriteId": "protagonist-real-tired" },
+        "virtual-sculptor": { "id": "virtual-sculptor", "defaultOutfitId": "plain-adventurer", "defaultSpriteId": "protagonist-virtual-neutral" }
+      }
+    }
+  },
+  "initialState": { "money": 8, "skills": { "sculpting": 0, "swordsmanship": 0 }, "flags": {}, "questNotes": {}, "appliedOnceKeys": [] },
+  "nodes": {
+    "opening-001": {
+      "id": "opening-001",
+      "type": "line",
+      "speaker": { "characterId": "protagonist", "personaId": "real-world" },
+      "text": {
+        "chinese": "陈佑下班回家时，手指冷得像借来的。",
+        "english": "When Chen You comes home from work, his fingers feel so cold they seem borrowed."
+      },
+      "scene": {
+        "backgroundId": "cold-work-night",
+        "characters": [{ "characterId": "protagonist", "personaId": "real-world", "spriteId": "protagonist-real-tired", "position": "center" }]
+      },
+      "nextId": "opening-002"
+    },
+    "opening-002": {
+      "id": "opening-002",
+      "type": "line",
+      "speaker": { "characterId": "protagonist", "personaId": "real-world" },
+      "text": {
+        "chinese": "账单压在桌上，像一座没有风景的山。",
+        "english": "The bills lie on the table like a mountain with no view."
+      },
+      "scene": { "backgroundId": "real-apartment-night" },
+      "nextId": "opening-003"
+    },
+    "opening-003": {
+      "id": "opening-003",
+      "type": "choice",
+      "prompt": {
+        "chinese": "旧头盔亮起一行字：现在进入吗？",
+        "english": "The old headset lights up with one question: enter now?"
+      },
+      "choices": [
+        {
+          "id": "hesitate",
+          "kind": "expressive",
+          "label": { "chinese": "先叹一口气，再进去。", "english": "Sigh once, then enter." },
+          "nextId": "opening-004a"
+        },
+        {
+          "id": "jump",
+          "kind": "expressive",
+          "label": { "chinese": "直接进去，反正现实也没有礼貌。", "english": "Enter directly; reality has no manners anyway." },
+          "nextId": "opening-004b"
+        }
+      ]
+    },
+    "opening-004a": {
+      "id": "opening-004a",
+      "type": "line",
+      "speaker": { "characterId": "protagonist", "personaId": "real-world" },
+      "text": { "chinese": "他叹气很轻，像怕把最后一点勇气吹走。", "english": "His sigh is quiet, as if he might blow away the last bit of courage." },
+      "nextId": "opening-005"
+    },
+    "opening-004b": {
+      "id": "opening-004b",
+      "type": "line",
+      "speaker": { "characterId": "protagonist", "personaId": "real-world" },
+      "text": { "chinese": "他按下确认，动作快得像在逃离一张账单。", "english": "He confirms so quickly it looks like he is fleeing a bill." },
+      "nextId": "opening-005"
+    },
+    "opening-005": {
+      "id": "opening-005",
+      "type": "cinematic",
+      "imageId": "transition-hope",
+      "description": "Chen You steps from a dark cramped room toward a vast warm fantasy world.",
+      "caption": {
+        "chinese": "黑暗退后，光向前铺开。陈佑第一次觉得，空手也可能是一种开始。",
+        "english": "Darkness falls back and light spreads ahead. For the first time, Chen You feels that empty hands might be a beginning."
+      },
+      "nextId": "opening-result"
+    },
+    "opening-result": {
+      "id": "opening-result",
+      "type": "questResult",
+      "questId": "opening-crossing",
+      "outcomeId": "entered-world",
+      "completed": true,
+      "resultId": "opening-crossing-entered-world",
+      "summary": {
+        "chinese": "陈佑站在晨光广场中央，身上没有钱，也没有名声，但路很多。",
+        "english": "Chen You stands in Morninglight Square with no money and no reputation, but with many roads."
+      },
+      "worldEffects": [
+        { "id": "opening-hope-flag", "op": "setFlag", "key": "entered-royal-road", "value": true }
+      ],
+      "returnLocationId": "town-square"
+    }
+  }
+}

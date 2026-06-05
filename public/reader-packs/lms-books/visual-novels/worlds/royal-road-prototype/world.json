@@ -1,0 +1,326 @@
+{
+  "id": "royal-road-prototype",
+  "schemaVersion": 1,
+  "contentVersion": "2026-06-05-world-placeholder-v1",
+  "title": "Royal Road Prototype",
+  "description": {
+    "chinese": "一个关于压力、选择、手艺和希望的互动小说世界。",
+    "english": "An interactive novel world about pressure, choices, craft, and hope."
+  },
+  "initialLocationId": "real-world-apartment",
+  "openingQuestId": "opening-crossing",
+  "assetManifestPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/asset-manifest.json",
+  "locations": {
+    "real-world-apartment": {
+      "id": "real-world-apartment",
+      "name": {
+        "chinese": "狭小的出租屋",
+        "english": "Cramped rented room"
+      },
+      "description": {
+        "chinese": "墙很薄，账单却很厚。陈佑坐在床边，听见冰箱低低地响，好像也在叹气。",
+        "english": "The walls are thin, but the bills are thick. Chen You sits on the bed and hears the refrigerator hum as if it is sighing too."
+      },
+      "backgroundId": "real-apartment-night",
+      "availableActions": [
+        {
+          "id": "enter-virtual-world",
+          "kind": "quest",
+          "targetId": "opening-crossing",
+          "label": {
+            "chinese": "戴上旧头盔，进入罗德之路。",
+            "english": "Put on the old headset and enter Royal Road."
+          }
+        }
+      ],
+      "travelTo": []
+    },
+    "town-square": {
+      "id": "town-square",
+      "name": {
+        "chinese": "晨光广场",
+        "english": "Morninglight Square"
+      },
+      "description": {
+        "chinese": "阳光落在石路上，喷泉旁的人们吵得很有精神。这里没有人认识陈佑，也没有人知道他的债。",
+        "english": "Sunlight falls across the stone road, and the people near the fountain argue with cheerful energy. No one here knows Chen You, and no one knows his debt."
+      },
+      "backgroundId": "town-square-day",
+      "availableActions": [
+        {
+          "id": "ask-first-work",
+          "kind": "quest",
+          "targetId": "first-lesson",
+          "label": {
+            "chinese": "向训练馆师傅打听第一份工作。",
+            "english": "Ask the training master about a first job."
+          }
+        }
+      ],
+      "travelTo": ["training-hall", "sculpture-workshop"]
+    },
+    "training-hall": {
+      "id": "training-hall",
+      "name": {
+        "chinese": "训练馆",
+        "english": "Training Hall"
+      },
+      "description": {
+        "chinese": "木剑敲在一起，声音像雨点。师傅说，穷人练剑要先练耳朵，因为听错命令最贵。",
+        "english": "Wooden swords knock together like rain. The master says poor students should train their ears first, because misheard orders are expensive."
+      },
+      "backgroundId": "training-hall",
+      "availableActions": [
+        {
+          "id": "ask-first-work",
+          "kind": "quest",
+          "targetId": "first-lesson",
+          "label": {
+            "chinese": "接受一次不太体面的入门训练。",
+            "english": "Accept a not-very-glorious first lesson."
+          }
+        }
+      ],
+      "travelTo": ["town-square", "sculpture-workshop"]
+    },
+    "sculpture-workshop": {
+      "id": "sculpture-workshop",
+      "name": {
+        "chinese": "石屑工坊",
+        "english": "Stonechip Workshop"
+      },
+      "description": {
+        "chinese": "工坊里到处是灰，坏掉的雕像排成一排，像在等一个更倒霉的人来拯救它们。",
+        "english": "Dust covers the workshop. Broken statues stand in a row as if waiting for someone even less fortunate to rescue them."
+      },
+      "restoredDescription": {
+        "chinese": "窗户擦亮后，石屑工坊看起来像真正的店。坏掉的雕像少了，奇怪的委托却更多了。",
+        "english": "With the windows cleaned, Stonechip Workshop almost looks like a real shop. There are fewer broken statues and more strange commissions."
+      },
+      "backgroundId": "workshop-before",
+      "restoredBackgroundId": "workshop-restored",
+      "availableActions": [
+        {
+          "id": "repair-workshop",
+          "kind": "quest",
+          "targetId": "workshop-restoration",
+          "label": {
+            "chinese": "帮老板修复门口那座倒霉雕像。",
+            "english": "Help the owner repair the unlucky statue by the door."
+          },
+          "conditions": [
+            {
+              "op": "worldQuestStatus",
+              "questId": "workshop-restoration",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "id": "take-commission",
+          "kind": "encounterPool",
+          "targetId": "sculpture-commissions",
+          "label": {
+            "chinese": "接一个小雕刻委托。",
+            "english": "Take a small sculpture commission."
+          },
+          "conditions": [
+            {
+              "op": "flagEquals",
+              "key": "sculpture-workshop-restored",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "travelTo": ["town-square", "training-hall"]
+    }
+  },
+  "quests": {
+    "opening-crossing": {
+      "id": "opening-crossing",
+      "title": {
+        "chinese": "狭窄房间外的光",
+        "english": "Light beyond the narrow room"
+      },
+      "category": "main",
+      "description": {
+        "chinese": "在现实压力中进入虚拟世界。",
+        "english": "Enter the virtual world from real-world pressure."
+      },
+      "objective": {
+        "chinese": "找到一个还能选择未来的地方。",
+        "english": "Find a place where the future still has choices."
+      },
+      "scriptPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/quests/opening-crossing.json",
+      "scriptId": "opening-crossing",
+      "entryNodeId": "opening-001",
+      "returnLocationId": "town-square",
+      "completionEffects": [
+        {
+          "id": "unlock-town",
+          "op": "unlockLocation",
+          "locationId": "town-square"
+        },
+        {
+          "id": "unlock-training",
+          "op": "unlockLocation",
+          "locationId": "training-hall"
+        },
+        {
+          "id": "unlock-workshop",
+          "op": "unlockLocation",
+          "locationId": "sculpture-workshop"
+        },
+        {
+          "id": "discover-first-lesson",
+          "op": "setWorldQuestStatus",
+          "questId": "first-lesson",
+          "status": "available"
+        },
+        {
+          "id": "discover-workshop",
+          "op": "setWorldQuestStatus",
+          "questId": "workshop-restoration",
+          "status": "available"
+        }
+      ]
+    },
+    "first-lesson": {
+      "id": "first-lesson",
+      "title": {
+        "chinese": "第一课：先别装高手",
+        "english": "First lesson: do not pretend yet"
+      },
+      "category": "main",
+      "description": {
+        "chinese": "训练馆师傅给新人一个现实的建议。",
+        "english": "The training master gives a new arrival painfully realistic advice."
+      },
+      "objective": {
+        "chinese": "听清师傅的话，选择一个适合自己的开始。",
+        "english": "Listen to the master and choose a beginning that suits you."
+      },
+      "scriptPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/quests/first-lesson.json",
+      "scriptId": "first-lesson",
+      "entryNodeId": "lesson-001",
+      "returnLocationId": "town-square",
+      "prerequisites": [
+        {
+          "op": "locationUnlocked",
+          "locationId": "town-square"
+        }
+      ]
+    },
+    "workshop-restoration": {
+      "id": "workshop-restoration",
+      "title": {
+        "chinese": "石屑工坊的门面",
+        "english": "The face of Stonechip Workshop"
+      },
+      "category": "side",
+      "description": {
+        "chinese": "修复门口破裂的雕像，帮工坊重新开张。",
+        "english": "Repair the cracked statue by the door and help the workshop reopen."
+      },
+      "objective": {
+        "chinese": "修好雕像，但别让老板看出你也快碎了。",
+        "english": "Fix the statue without letting the owner notice you are nearly cracked too."
+      },
+      "scriptPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/quests/workshop-restoration.json",
+      "scriptId": "workshop-restoration",
+      "entryNodeId": "workshop-001",
+      "returnLocationId": "sculpture-workshop"
+    },
+    "commission-child-animal": {
+      "id": "commission-child-animal",
+      "title": {
+        "chinese": "小动物雕像",
+        "english": "Small animal statue"
+      },
+      "category": "commission",
+      "scriptPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/quests/commission-child-animal.json",
+      "scriptId": "commission-child-animal",
+      "entryNodeId": "child-001",
+      "repeatable": false,
+      "maxCompletions": 1,
+      "returnLocationId": "sculpture-workshop",
+      "encounterPoolId": "sculpture-commissions"
+    },
+    "commission-vain-merchant": {
+      "id": "commission-vain-merchant",
+      "title": {
+        "chinese": "瘦一点的英雄",
+        "english": "A thinner hero"
+      },
+      "category": "commission",
+      "scriptPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/quests/commission-vain-merchant.json",
+      "scriptId": "commission-vain-merchant",
+      "entryNodeId": "merchant-001",
+      "repeatable": false,
+      "maxCompletions": 1,
+      "returnLocationId": "sculpture-workshop",
+      "encounterPoolId": "sculpture-commissions"
+    },
+    "commission-silent-warrior": {
+      "id": "commission-silent-warrior",
+      "title": {
+        "chinese": "沉默的纪念碑",
+        "english": "Silent memorial"
+      },
+      "category": "commission",
+      "scriptPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/quests/commission-silent-warrior.json",
+      "scriptId": "commission-silent-warrior",
+      "entryNodeId": "warrior-001",
+      "repeatable": false,
+      "maxCompletions": 1,
+      "returnLocationId": "sculpture-workshop",
+      "encounterPoolId": "sculpture-commissions"
+    }
+  },
+  "encounterPools": {
+    "sculpture-commissions": {
+      "id": "sculpture-commissions",
+      "title": {
+        "chinese": "雕刻委托",
+        "english": "Sculpture Commissions"
+      },
+      "questIds": [
+        "commission-child-animal",
+        "commission-vain-merchant",
+        "commission-silent-warrior"
+      ]
+    }
+  },
+  "initialState": {
+    "currentLocationId": "real-world-apartment",
+    "money": 8,
+    "skills": {
+      "sculpting": 0,
+      "swordsmanship": 0
+    },
+    "flags": {},
+    "questStates": {
+      "opening-crossing": {
+        "status": "available",
+        "completions": 0,
+        "updatedAt": "2026-06-05T00:00:00.000Z"
+      },
+      "first-lesson": {
+        "status": "hidden",
+        "completions": 0,
+        "updatedAt": "2026-06-05T00:00:00.000Z"
+      },
+      "workshop-restoration": {
+        "status": "hidden",
+        "completions": 0,
+        "updatedAt": "2026-06-05T00:00:00.000Z"
+      }
+    },
+    "unlockedLocations": ["real-world-apartment"],
+    "unlockedTitles": [],
+    "completedEncounterIds": [],
+    "encounterCounts": {},
+    "committedResultIds": []
+  }
+}

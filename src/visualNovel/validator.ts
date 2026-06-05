@@ -83,6 +83,10 @@ function validateNode(
     referencedAssets.cinematics.add(node.imageId)
     addNodeReference(node.id, node.nextId, nodeIds, referencedNodes, errors)
     validateEffects(node.effects ?? [], node.id, onceKeys, errors, warnings)
+  } else if (node.type === 'questResult') {
+    if (!node.questId) errors.push(`Quest result node ${node.id} is missing questId.`)
+    if (!node.outcomeId) errors.push(`Quest result node ${node.id} is missing outcomeId.`)
+    validateEffects(node.worldEffects ?? [], node.id, onceKeys, errors, warnings)
   } else if (node.type === 'end') {
     validateEffects(node.effects ?? [], node.id, onceKeys, errors, warnings)
   }
@@ -154,6 +158,7 @@ function validateReaderSentence(
     texts.push(...node.choices.map((choice) => choice.label))
   }
   if (node.type === 'cinematic' && node.caption) texts.push(node.caption)
+  if (node.type === 'questResult' && node.summary) texts.push(node.summary)
   if (node.type === 'end' && node.summary) texts.push(node.summary)
 
   for (const text of texts) {

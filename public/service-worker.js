@@ -15,6 +15,7 @@ const APP_SHELL = [
   `${APP_BASE}reader-packs/index.json`,
   `${APP_BASE}reader-packs/lms-books/reader_manifest.json`,
   `${APP_BASE}reader-packs/lms-books/visual-novels/index.json`,
+  `${APP_BASE}reader-packs/lms-books/visual-novels/worlds/index.json`,
 ]
 
 self.addEventListener('install', (event) => {
