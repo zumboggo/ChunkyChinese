@@ -62,6 +62,7 @@ import type {
   VnNode,
   VnQuestDefinition,
   VnQuestResult,
+  VnSceneCharacter,
   VnScript,
   VnText,
   VnWorld,
@@ -81,6 +82,12 @@ interface VisualNovelWorldModeProps {
   onEditWord: (word: VocabWord) => void
   onWordsChanged: () => void | Promise<void>
   onReturnToReader: () => void
+}
+
+interface VnHubCastMember {
+  characterId: string
+  name: string
+  spriteId: string
 }
 
 export function VisualNovelWorldMode({
@@ -480,13 +487,14 @@ export function VisualNovelWorldMode({
               </div>
               <WorldStatusPanel world={world} save={worldSave} />
             </section>
-            <WorldHub
-              world={world}
-              save={worldSave}
-              location={location}
-              words={words}
-              selectedToken={selectedToken}
-              pinyinMode={pinyinMode}
+              <WorldHub
+                world={world}
+                save={worldSave}
+                location={location}
+                manifest={manifest}
+                words={words}
+                selectedToken={selectedToken}
+                pinyinMode={pinyinMode}
               onSelectToken={handleSelectToken}
               onAction={handleWorldAction}
               onResume={resumeInterruptedQuest}
@@ -515,6 +523,7 @@ function WorldHub({
   world,
   save,
   location,
+  manifest,
   words,
   selectedToken,
   pinyinMode,
@@ -525,6 +534,7 @@ function WorldHub({
   world: VnWorld
   save: VisualNovelWorldSave
   location?: VnLocation
+  manifest: VnAssetManifest
   words: VocabWord[]
   selectedToken: ReaderWordToken | null
   pinyinMode: AdaptivePinyinMode
@@ -541,6 +551,10 @@ function WorldHub({
   const travelLocations = availableTravelLocations(world, save)
   const activeQuests = activeWorldQuests(world, save)
   const completedQuests = completedWorldQuests(world, save)
+  const castMembers = useMemo(
+    () => getHubCastMembers(world, location, manifest),
+    [location, manifest, world],
+  )
 
   return (
     <section className="vn-dialogue-panel vn-world-panel">
@@ -558,6 +572,21 @@ function WorldHub({
         />
       )}
       {description?.english && <p className="reader-translation vn-translation revealed">{description.english}</p>}
+
+      {castMembers.length > 0 && (
+        <div className="vn-location-cast" aria-label="People here">
+          {castMembers.map((member) => {
+            const sprite = manifest.sprites[member.spriteId]
+            if (!sprite) return null
+            return (
+              <figure key={`${member.characterId}:${member.spriteId}`}>
+                <img src={visualNovelAssetSrc(sprite.src)} alt={sprite.alt ?? member.name} />
+                <figcaption>{member.name}</figcaption>
+              </figure>
+            )
+          })}
+        </div>
+      )}
 
       {save.interruptedQuest && (
         <button type="button" className="primary" onClick={onResume}>
@@ -705,12 +734,12 @@ function QuestPlayer({
             <div className="vn-background vn-background-fallback" aria-label="Neutral background" />
           )}
           {!cinematic && save.scene.characters.map((character) => {
-            const sprite = manifest.sprites[character.spriteId]
-            if (!sprite || character.visible === false) return null
             return (
-              <div key={character.slotId ?? `${character.characterId}:${character.position}`} className={`vn-sprite vn-sprite-${character.position}`}>
-                <img src={visualNovelAssetSrc(sprite.src)} alt={sprite.alt ?? character.characterId} />
-              </div>
+              <VisualNovelSprite
+                key={character.slotId ?? `${character.characterId}:${character.position}`}
+                character={character}
+                manifest={manifest}
+              />
             )
           })}
         </div>
@@ -769,6 +798,43 @@ function QuestPlayer({
       </section>
     </>
   )
+}
+
+function VisualNovelSprite({
+  character,
+  manifest,
+}: {
+  character: VnSceneCharacter
+  manifest: VnAssetManifest
+}) {
+  const sprite = manifest.sprites[character.spriteId]
+  if (!sprite || character.visible === false) return null
+  return (
+    <div
+      className={`vn-sprite vn-sprite-${character.position}`}
+      style={{
+        '--vn-sprite-width': `${Math.round(sprite.width * (sprite.defaultScale ?? 0.74))}px`,
+      } as CSSProperties}
+    >
+      <img src={visualNovelAssetSrc(sprite.src)} alt={sprite.alt ?? character.characterId} />
+    </div>
+  )
+}
+
+function getHubCastMembers(world: VnWorld, location: VnLocation | undefined, manifest: VnAssetManifest): VnHubCastMember[] {
+  const characterIds = location?.npcIds ?? []
+  return characterIds.flatMap((characterId) => {
+    const character = world.characters?.[characterId]
+    if (!character) return []
+    const persona = Object.values(character.personas)[0]
+    const spriteId = persona?.defaultSpriteId
+    if (!spriteId || !manifest.sprites[spriteId]) return []
+    return [{
+      characterId,
+      name: character.displayNames.english ?? character.displayNames.chinese ?? characterId,
+      spriteId,
+    }]
+  })
 }
 
 function WorldStatusPanel({ world, save }: { world: VnWorld; save: VisualNovelWorldSave }) {

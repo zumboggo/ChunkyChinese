@@ -1,27 +1,92 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-06-05-world-placeholder-v1",
+  "contentVersion": "2026-06-05-cast-integrated-v1",
   "id": "workshop-restoration",
   "packId": "royal-road-prototype",
   "title": "The face of Stonechip Workshop",
   "initialNodeId": "workshop-001",
   "assetManifestPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/asset-manifest.json",
   "characters": {
-    "protagonist": { "id": "protagonist", "displayNames": { "english": "Chen You", "chinese": "陈佑" }, "personas": { "virtual-sculptor": { "id": "virtual-sculptor", "defaultOutfitId": "plain-adventurer", "defaultSpriteId": "protagonist-virtual-neutral" } } },
-    "workshop-owner": { "id": "workshop-owner", "displayNames": { "english": "Workshop Owner", "chinese": "工坊老板" }, "personas": { "default": { "id": "default", "defaultOutfitId": "apron", "defaultSpriteId": "workshop-owner" } } }
+    "protagonist": {
+      "id": "protagonist",
+      "displayNames": {
+        "english": "Chen You",
+        "chinese": "陈佑"
+      },
+      "personas": {
+        "virtual-sculptor": {
+          "id": "virtual-sculptor",
+          "defaultOutfitId": "plain-adventurer",
+          "defaultSpriteId": "protagonist-virtual-neutral"
+        }
+      }
+    },
+    "workshop-owner": {
+      "id": "workshop-owner",
+      "displayNames": {
+        "english": "Workshop Owner",
+        "chinese": "工坊老板"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "apron",
+          "defaultSpriteId": "workshop-owner"
+        }
+      }
+    },
+    "lee-hyun": {
+      "id": "lee-hyun",
+      "displayNames": {
+        "english": "Weed",
+        "chinese": "??"
+      },
+      "personas": {
+        "weed-sculptor": {
+          "id": "weed-sculptor",
+          "defaultOutfitId": "starter-sculptor",
+          "defaultSpriteId": "weed-sculptor-neutral"
+        }
+      }
+    }
   },
-  "initialState": { "money": 0, "skills": { "sculpting": 0, "swordsmanship": 0 }, "flags": {}, "questNotes": {}, "appliedOnceKeys": [] },
+  "initialState": {
+    "money": 0,
+    "skills": {
+      "sculpting": 0,
+      "swordsmanship": 0
+    },
+    "flags": {},
+    "questNotes": {},
+    "appliedOnceKeys": []
+  },
   "nodes": {
     "workshop-001": {
       "id": "workshop-001",
       "type": "line",
-      "speaker": { "characterId": "workshop-owner", "personaId": "default" },
-      "text": { "chinese": "门口的雕像裂了。客人看见它，就觉得我的店也快裂了。", "english": "The statue by the door is cracked. When customers see it, they think my shop is cracked too." },
+      "speaker": {
+        "characterId": "workshop-owner",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "门口的雕像裂了。客人看见它，就觉得我的店也快裂了。",
+        "english": "The statue by the door is cracked. When customers see it, they think my shop is cracked too."
+      },
       "scene": {
         "backgroundId": "workshop-before",
         "characters": [
-          { "characterId": "protagonist", "personaId": "virtual-sculptor", "spriteId": "protagonist-virtual-neutral", "position": "left" },
-          { "characterId": "workshop-owner", "personaId": "default", "spriteId": "workshop-owner", "position": "right" }
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-neutral",
+            "position": "left"
+          },
+          {
+            "characterId": "workshop-owner",
+            "personaId": "default",
+            "spriteId": "workshop-owner",
+            "position": "right"
+          }
         ]
       },
       "nextId": "workshop-002"
@@ -29,14 +94,73 @@
     "workshop-002": {
       "id": "workshop-002",
       "type": "choice",
-      "prompt": { "chinese": "你怎么处理裂痕？", "english": "How do you handle the crack?" },
+      "prompt": {
+        "chinese": "你怎么处理裂痕？",
+        "english": "How do you handle the crack?"
+      },
       "choices": [
-        { "id": "honest", "kind": "consequential", "label": { "chinese": "老实修补，先让它站稳。", "english": "Repair it honestly and make it stand." }, "nextId": "workshop-003a", "effects": [{ "id": "honest-sculpting", "op": "addSkill", "skill": "sculpting", "amount": 1 }] },
-        { "id": "creative", "kind": "consequential", "label": { "chinese": "把裂痕改成披风纹路。", "english": "Turn the crack into a cloak pattern." }, "nextId": "workshop-003b", "effects": [{ "id": "creative-sculpting", "op": "addSkill", "skill": "sculpting", "amount": 2 }] }
+        {
+          "id": "honest",
+          "kind": "consequential",
+          "label": {
+            "chinese": "老实修补，先让它站稳。",
+            "english": "Repair it honestly and make it stand."
+          },
+          "nextId": "workshop-003a",
+          "effects": [
+            {
+              "id": "honest-sculpting",
+              "op": "addSkill",
+              "skill": "sculpting",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "id": "creative",
+          "kind": "consequential",
+          "label": {
+            "chinese": "把裂痕改成披风纹路。",
+            "english": "Turn the crack into a cloak pattern."
+          },
+          "nextId": "workshop-003b",
+          "effects": [
+            {
+              "id": "creative-sculpting",
+              "op": "addSkill",
+              "skill": "sculpting",
+              "amount": 2
+            }
+          ]
+        }
       ]
     },
-    "workshop-003a": { "id": "workshop-003a", "type": "line", "speaker": { "characterId": "workshop-owner", "personaId": "default" }, "text": { "chinese": "不漂亮，但可靠。可靠在这里已经很稀有了。", "english": "Not beautiful, but reliable. Reliable is already rare here." }, "nextId": "workshop-result" },
-    "workshop-003b": { "id": "workshop-003b", "type": "line", "speaker": { "characterId": "workshop-owner", "personaId": "default" }, "text": { "chinese": "老板盯着披风纹路，表情像想省钱又不想承认满意。", "english": "The owner stares at the cloak pattern, looking like he wants to save money and avoid admitting satisfaction." }, "nextId": "workshop-result" },
+    "workshop-003a": {
+      "id": "workshop-003a",
+      "type": "line",
+      "speaker": {
+        "characterId": "workshop-owner",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "不漂亮，但可靠。可靠在这里已经很稀有了。",
+        "english": "Not beautiful, but reliable. Reliable is already rare here."
+      },
+      "nextId": "workshop-result"
+    },
+    "workshop-003b": {
+      "id": "workshop-003b",
+      "type": "line",
+      "speaker": {
+        "characterId": "workshop-owner",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "老板盯着披风纹路，表情像想省钱又不想承认满意。",
+        "english": "The owner stares at the cloak pattern, looking like he wants to save money and avoid admitting satisfaction."
+      },
+      "nextId": "workshop-result"
+    },
     "workshop-result": {
       "id": "workshop-result",
       "type": "questResult",
@@ -44,11 +168,28 @@
       "outcomeId": "restored",
       "completed": true,
       "resultId": "workshop-restoration-restored",
-      "summary": { "chinese": "石屑工坊重新开门，新的委托也开始找上门来。", "english": "Stonechip Workshop reopens, and new commissions begin to arrive." },
+      "summary": {
+        "chinese": "石屑工坊重新开门，新的委托也开始找上门来。",
+        "english": "Stonechip Workshop reopens, and new commissions begin to arrive."
+      },
       "worldEffects": [
-        { "id": "restore-workshop-flag", "op": "setFlag", "key": "sculpture-workshop-restored", "value": true },
-        { "id": "workshop-pay", "op": "addMoney", "amount": 25 },
-        { "id": "workshop-sculpting", "op": "addSkill", "skill": "sculpting", "amount": 1 }
+        {
+          "id": "restore-workshop-flag",
+          "op": "setFlag",
+          "key": "sculpture-workshop-restored",
+          "value": true
+        },
+        {
+          "id": "workshop-pay",
+          "op": "addMoney",
+          "amount": 25
+        },
+        {
+          "id": "workshop-sculpting",
+          "op": "addSkill",
+          "skill": "sculpting",
+          "amount": 1
+        }
       ],
       "returnLocationId": "sculpture-workshop"
     }

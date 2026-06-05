@@ -29,6 +29,18 @@ export function validateVisualNovelWorld(
     if (!locationIds.has(location.id)) errors.push(`Location key mismatch: ${location.id}.`)
     referencedBackgrounds.add(location.backgroundId)
     if (location.restoredBackgroundId) referencedBackgrounds.add(location.restoredBackgroundId)
+    for (const npcId of location.npcIds ?? []) {
+      const npc = world.characters?.[npcId]
+      if (!npc) {
+        errors.push(`Location ${location.id} references missing NPC ${npcId}.`)
+        continue
+      }
+      for (const persona of Object.values(npc.personas)) {
+        if (persona.defaultSpriteId && manifest && !manifest.sprites[persona.defaultSpriteId]) {
+          errors.push(`Location ${location.id} NPC ${npcId} references missing sprite ${persona.defaultSpriteId}.`)
+        }
+      }
+    }
     for (const destination of location.travelTo ?? []) {
       if (!locationIds.has(destination)) errors.push(`Location ${location.id} travels to missing ${destination}.`)
     }

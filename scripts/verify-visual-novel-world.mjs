@@ -41,6 +41,16 @@ function verifyWorld(entry) {
     if (!location.name?.chinese) errors.push(`location ${location.id} missing Chinese name`)
     if (location.backgroundId) backgroundRefs.add(location.backgroundId)
     if (location.restoredBackgroundId) backgroundRefs.add(location.restoredBackgroundId)
+    for (const npcId of location.npcIds ?? []) {
+      const npc = world.characters?.[npcId]
+      if (!npc) {
+        errors.push(`location ${location.id} references missing npc ${npcId}`)
+        continue
+      }
+      for (const persona of Object.values(npc.personas ?? {})) {
+        if (persona.defaultSpriteId) spriteRefs.add(persona.defaultSpriteId)
+      }
+    }
     for (const target of location.travelTo ?? []) {
       if (!locationIds.has(target)) errors.push(`location ${location.id} travels to missing ${target}`)
     }
@@ -166,6 +176,7 @@ function walk(nodeId, script, reachable) {
 
 function nextNodeIds(node) {
   if (node.type === 'choice') return (node.choices ?? []).map((choice) => choice.nextId).filter(Boolean)
+  if (node.type === 'cardBattle') return [node.winNextId, node.loseNextId].filter(Boolean)
   return node.nextId ? [node.nextId] : []
 }
 

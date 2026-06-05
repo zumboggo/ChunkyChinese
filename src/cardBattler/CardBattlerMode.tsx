@@ -64,7 +64,13 @@ export function CardBattlerMode({
       
       const key = event.key.toLowerCase()
       
-      if (key >= '1' && key <= '5') {
+      if (key === hotkeys.choiceA && state.hand.length > 0) {
+        event.preventDefault()
+        handlePlayCard(0)
+      } else if (key === hotkeys.choiceB && state.hand.length > 1) {
+        event.preventDefault()
+        handlePlayCard(1)
+      } else if (key >= '1' && key <= '5') {
         const index = parseInt(key, 10) - 1
         if (index < state.hand.length) {
           event.preventDefault()
@@ -73,19 +79,15 @@ export function CardBattlerMode({
       } else if (key === ' ' || key === 'enter') {
         event.preventDefault()
         handleEndTurn()
-      } else if (key === hotkeys.choiceA && state.hand.length > 0) {
-        event.preventDefault()
-        handlePlayCard(0)
-      } else if (key === hotkeys.choiceB && state.hand.length > 1) {
-        event.preventDefault()
-        handlePlayCard(1)
       }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [state, handlePlayCard, handleEndTurn, hotkeys])
 
-  const intent = enemyDef.intents[state.enemyIntentIndex % enemyDef.intents.length]
+  const intent = enemyDef.intents.length > 0
+    ? enemyDef.intents[state.enemyIntentIndex % enemyDef.intents.length]
+    : { type: 'attack' as const, amount: 0, description: { chinese: '等待', english: 'Waiting.' } }
   const intentTokens = useMemo(
     () => scopedTokens(tokenizeReaderText(intent.description.chinese, words), `intent-${state.turn}`),
     [intent.description.chinese, words, state.turn]
@@ -106,7 +108,7 @@ export function CardBattlerMode({
           <p>HP: {state.enemyHp} / {state.enemyMaxHp}</p>
           <p>Block: {state.enemyBlock}</p>
           <div className="enemy-intent">
-            <span className="intent-icon">⚠️</span>
+            <span className="intent-icon">!</span>
             <AdaptiveChineseText
               tokens={intentTokens}
               selectedToken={selectedToken}

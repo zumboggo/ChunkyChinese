@@ -1,7 +1,7 @@
 {
   "id": "royal-road-prototype",
   "schemaVersion": 1,
-  "contentVersion": "2026-06-05-weed-intro-v1",
+  "contentVersion": "2026-06-05-cast-integrated-v1",
   "title": "Royal Road Prototype",
   "description": {
     "chinese": "一个关于压力、选择、手艺和希望的互动小说世界。",
@@ -33,7 +33,10 @@
           }
         }
       ],
-      "travelTo": []
+      "travelTo": [],
+      "npcIds": [
+        "lee-hyun"
+      ]
     },
     "town-square": {
       "id": "town-square",
@@ -57,7 +60,16 @@
           }
         }
       ],
-      "travelTo": ["training-hall", "sculpture-workshop"]
+      "travelTo": [
+        "training-hall",
+        "sculpture-workshop"
+      ],
+      "npcIds": [
+        "pale",
+        "irene",
+        "mapan",
+        "hwareong"
+      ]
     },
     "training-hall": {
       "id": "training-hall",
@@ -81,7 +93,15 @@
           }
         }
       ],
-      "travelTo": ["town-square", "sculpture-workshop"]
+      "travelTo": [
+        "town-square",
+        "sculpture-workshop"
+      ],
+      "npcIds": [
+        "geomchi",
+        "geomchi-disciple",
+        "surka"
+      ]
     },
     "sculpture-workshop": {
       "id": "sculpture-workshop",
@@ -133,7 +153,15 @@
           ]
         }
       ],
-      "travelTo": ["town-square", "training-hall"]
+      "travelTo": [
+        "town-square",
+        "training-hall"
+      ],
+      "npcIds": [
+        "lee-hyun",
+        "romuna",
+        "seoyoon"
+      ]
     }
   },
   "quests": {
@@ -305,7 +333,12 @@
       },
       "cost": 1,
       "target": "enemy",
-      "effects": [{ "type": "damage", "amount": 6 }]
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 6
+        }
+      ]
     },
     "defend": {
       "id": "defend",
@@ -319,7 +352,12 @@
       },
       "cost": 1,
       "target": "self",
-      "effects": [{ "type": "block", "amount": 5 }]
+      "effects": [
+        {
+          "type": "block",
+          "amount": 5
+        }
+      ]
     }
   },
   "enemies": {
@@ -334,12 +372,18 @@
         {
           "type": "attack",
           "amount": 5,
-          "description": { "chinese": "准备攻击！", "english": "Preparing to attack!" }
+          "description": {
+            "chinese": "准备攻击！",
+            "english": "Preparing to attack!"
+          }
         },
         {
           "type": "block",
           "amount": 4,
-          "description": { "chinese": "正在防守。", "english": "Defending." }
+          "description": {
+            "chinese": "正在防守。",
+            "english": "Defending."
+          }
         }
       ]
     }
@@ -369,10 +413,159 @@
         "updatedAt": "2026-06-05T00:00:00.000Z"
       }
     },
-    "unlockedLocations": ["real-world-apartment"],
+    "unlockedLocations": [
+      "real-world-apartment"
+    ],
     "unlockedTitles": [],
     "completedEncounterIds": [],
     "encounterCounts": {},
     "committedResultIds": []
+  },
+  "characters": {
+    "lee-hyun": {
+      "id": "lee-hyun",
+      "displayNames": {
+        "english": "Weed / Lee Hyun",
+        "chinese": "?? / ??"
+      },
+      "personas": {
+        "weed-sculptor": {
+          "id": "weed-sculptor",
+          "defaultOutfitId": "starter-sculptor",
+          "defaultSpriteId": "weed-sculptor-neutral"
+        },
+        "weed-battle": {
+          "id": "weed-battle",
+          "defaultOutfitId": "starter-sculptor",
+          "defaultSpriteId": "weed-sculptor-determined"
+        }
+      }
+    },
+    "pale": {
+      "id": "pale",
+      "displayNames": {
+        "english": "Pale",
+        "chinese": "??"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "green-archer",
+          "defaultSpriteId": "pale-default"
+        }
+      }
+    },
+    "irene": {
+      "id": "irene",
+      "displayNames": {
+        "english": "Irene",
+        "chinese": "??"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "white-priestess",
+          "defaultSpriteId": "irene-default"
+        }
+      }
+    },
+    "seoyoon": {
+      "id": "seoyoon",
+      "displayNames": {
+        "english": "Seoyoon",
+        "chinese": "??"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "white-black-swordswoman",
+          "defaultSpriteId": "seoyoon-default"
+        }
+      }
+    },
+    "surka": {
+      "id": "surka",
+      "displayNames": {
+        "english": "Surka",
+        "chinese": "???"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "red-martial",
+          "defaultSpriteId": "surka-default"
+        }
+      }
+    },
+    "romuna": {
+      "id": "romuna",
+      "displayNames": {
+        "english": "Romuna",
+        "chinese": "???"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "purple-mage",
+          "defaultSpriteId": "romuna-default"
+        }
+      }
+    },
+    "mapan": {
+      "id": "mapan",
+      "displayNames": {
+        "english": "Mapan",
+        "chinese": "??"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "green-merchant",
+          "defaultSpriteId": "mapan-default"
+        }
+      }
+    },
+    "hwareong": {
+      "id": "hwareong",
+      "displayNames": {
+        "english": "Hwareong",
+        "chinese": "??"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "red-dancer",
+          "defaultSpriteId": "hwareong-default"
+        }
+      }
+    },
+    "geomchi": {
+      "id": "geomchi",
+      "displayNames": {
+        "english": "Geomchi",
+        "chinese": "??"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "black-swordsman",
+          "defaultSpriteId": "geomchi-commanding"
+        }
+      }
+    },
+    "geomchi-disciple": {
+      "id": "geomchi-disciple",
+      "displayNames": {
+        "english": "Geomchi Disciple",
+        "chinese": "????"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "black-disciple-uniform",
+          "defaultSpriteId": "geomchi-disciple-ready"
+        }
+      }
+    }
   }
 }

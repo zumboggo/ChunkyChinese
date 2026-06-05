@@ -89,6 +89,10 @@ function validateNode(
     validateEffects(node.worldEffects ?? [], node.id, onceKeys, errors, warnings)
   } else if (node.type === 'end') {
     validateEffects(node.effects ?? [], node.id, onceKeys, errors, warnings)
+  } else if (node.type === 'cardBattle') {
+    addNodeReference(node.id, node.winNextId, nodeIds, referencedNodes, errors)
+    if (node.loseNextId) addNodeReference(node.id, node.loseNextId, nodeIds, referencedNodes, errors)
+    validateEffects(node.effects ?? [], node.id, onceKeys, errors, warnings)
   }
 }
 

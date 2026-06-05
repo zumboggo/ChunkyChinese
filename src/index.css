@@ -2973,6 +2973,7 @@ kbd {
   display: block;
   width: 100%;
   height: auto;
+  border-radius: 16px;
 }
 
 .vn-sprite-left {
@@ -3147,6 +3148,40 @@ kbd {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
+}
+
+.vn-location-cast {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(82px, 1fr));
+  gap: 10px;
+}
+
+.vn-location-cast figure {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+}
+
+.vn-location-cast img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 18%;
+  border: 1px solid var(--reader-border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.64);
+  box-shadow: 0 10px 22px rgba(16, 35, 63, 0.1);
+}
+
+.vn-location-cast figcaption {
+  overflow: hidden;
+  color: var(--reader-muted);
+  font-size: 0.76rem;
+  font-weight: 850;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .vn-world-action-list,
