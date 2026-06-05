@@ -78,6 +78,7 @@ import {
   readerComprehensionCategory,
   readerMaxChineseWordLength,
   tokenizeReaderText,
+  adaptiveReaderPinyinState,
 } from './adaptiveText'
 import { AdaptiveChineseText } from './AdaptiveChineseText'
 import { WordInfoPopover } from './WordInfoPopover'
@@ -1925,6 +1926,38 @@ function App() {
     downloadText(`chunky-chinese-progress-${new Date().toISOString().slice(0, 10)}.csv`, text)
   }
 
+  function handleVocabSnapshotExport() {
+    const strong: string[] = []
+    const medium: string[] = []
+    const learning: string[] = []
+
+    for (const word of words) {
+      const state = adaptiveReaderPinyinState(word)
+      if (state === 'known') {
+        strong.push(word.word)
+      } else if (state === 'medium') {
+        medium.push(word.word)
+      } else {
+        learning.push(word.word)
+      }
+    }
+
+    const snapshot = {
+      generatedAt: new Date().toISOString(),
+      source: "ChunkyChinese vocabulary database",
+      knownCriteria: {
+        description: "Mapped using adaptiveReaderPinyinState. 'known' -> strong, 'medium' -> medium, 'unknown' -> learning."
+      },
+      words: {
+        strong,
+        medium,
+        learning
+      }
+    }
+
+    downloadText(`vocab-snapshot-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(snapshot, null, 2))
+  }
+
   async function handleBackupImport(files: FileList | null) {
     const file = files?.[0]
     if (!file) return
@@ -2569,9 +2602,14 @@ function App() {
               <h1>Settings</h1>
               <p>Import packs, set study defaults, export progress, and tune controls.</p>
             </div>
-            <button type="button" onClick={handleWordsCsvExport}>
-              Export CSV
-            </button>
+            <div className="button-group" style={{ display: 'flex', gap: '0.5rem' }}>
+              <button type="button" onClick={handleWordsCsvExport}>
+                Export CSV
+              </button>
+              <button type="button" onClick={handleVocabSnapshotExport}>
+                Export Vocab Snapshot
+              </button>
+            </div>
           </div>
 
           <div className="import-grid">

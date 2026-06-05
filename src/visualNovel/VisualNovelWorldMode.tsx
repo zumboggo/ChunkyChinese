@@ -39,6 +39,8 @@ import {
   saveVisualNovelWorldSave,
 } from './storage'
 import { validateVisualNovelWorld } from './worldValidator'
+import { CardBattlerMode } from '../cardBattler/CardBattlerMode'
+import { createEncounter } from '../cardBattler/engine'
 import {
   abandonWorldQuest,
   activeWorldQuests,
@@ -452,6 +454,7 @@ export function VisualNovelWorldMode({
             choices={choices}
             manifest={manifest}
             worldSave={worldSave}
+            words={words}
             displayTokens={displayTokens}
             selectedToken={selectedToken}
             pinyinMode={pinyinMode}
@@ -623,6 +626,7 @@ function QuestPlayer({
   choices,
   manifest,
   worldSave,
+  words,
   displayTokens,
   selectedToken,
   pinyinMode,
@@ -644,6 +648,7 @@ function QuestPlayer({
   choices: VnChoice[]
   manifest: VnAssetManifest
   worldSave: VisualNovelWorldSave
+  words: VocabWord[]
   displayTokens: ReaderWordToken[]
   selectedToken: ReaderWordToken | null
   pinyinMode: AdaptivePinyinMode
@@ -664,6 +669,29 @@ function QuestPlayer({
       ? manifest.backgrounds[save.scene.backgroundId]
       : undefined
   const cinematic = save.scene.cinematicImageId ? manifest.cinematics[save.scene.cinematicImageId] : undefined
+
+  if (node.type === 'cardBattle') {
+    return (
+      <CardBattlerMode
+        initialState={
+          save.activeEncounter ?? 
+          createEncounter(
+            ['strike', 'strike', 'strike', 'defend', 'defend'], 
+            node.encounterId, 
+            world.enemies?.[node.encounterId]?.maxHp ?? 20, 
+            50
+          )
+        }
+        enemyDef={world.enemies?.[node.encounterId] ?? { id: node.encounterId, name: { chinese: 'Enemy' }, maxHp: 20, intents: [] }}
+        cards={world.cards ?? {}}
+        words={words}
+        pinyinMode={pinyinMode}
+        hotkeys={hotkeys}
+        onBattleEnd={(state) => onAdvance(state.status === 'victory' ? 'win' : 'lose')}
+        onSelectToken={onSelectToken}
+      />
+    )
+  }
 
   return (
     <>
@@ -780,6 +808,7 @@ function getNodeText(node: VnNode): VnText | undefined {
   if (node.type === 'choice') return node.prompt
   if (node.type === 'cinematic') return node.caption
   if (node.type === 'questResult') return node.summary
+  if (node.type === 'cardBattle') return undefined
   return node.summary
 }
 

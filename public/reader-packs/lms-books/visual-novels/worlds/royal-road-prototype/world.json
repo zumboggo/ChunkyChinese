@@ -292,6 +292,58 @@
       ]
     }
   },
+  "cards": {
+    "strike": {
+      "id": "strike",
+      "name": {
+        "chinese": "打击",
+        "english": "Strike"
+      },
+      "description": {
+        "chinese": "造成 6 点伤害。",
+        "english": "Deal 6 damage."
+      },
+      "cost": 1,
+      "target": "enemy",
+      "effects": [{ "type": "damage", "amount": 6 }]
+    },
+    "defend": {
+      "id": "defend",
+      "name": {
+        "chinese": "防守",
+        "english": "Defend"
+      },
+      "description": {
+        "chinese": "获得 5 点格挡。",
+        "english": "Gain 5 block."
+      },
+      "cost": 1,
+      "target": "self",
+      "effects": [{ "type": "block", "amount": 5 }]
+    }
+  },
+  "enemies": {
+    "sculpture-slime": {
+      "id": "sculpture-slime",
+      "name": {
+        "chinese": "灰尘史莱姆",
+        "english": "Dust Slime"
+      },
+      "maxHp": 20,
+      "intents": [
+        {
+          "type": "attack",
+          "amount": 5,
+          "description": { "chinese": "准备攻击！", "english": "Preparing to attack!" }
+        },
+        {
+          "type": "block",
+          "amount": 4,
+          "description": { "chinese": "正在防守。", "english": "Defending." }
+        }
+      ]
+    }
+  },
   "initialState": {
     "currentLocationId": "real-world-apartment",
     "money": 8,

@@ -57,6 +57,16 @@ export function advanceVisualNovel(
 
   if (node.type === 'end' || node.type === 'questResult') return save
 
+  if (node.type === 'cardBattle') {
+    if (selectedChoiceId === 'win') {
+      return moveToNode(script, save, node.winNextId, node.effects ?? [])
+    }
+    if (selectedChoiceId === 'lose' && node.loseNextId) {
+      return moveToNode(script, save, node.loseNextId, node.effects ?? [])
+    }
+    return save
+  }
+
   if (node.type === 'choice') {
     const choice = node.choices.find((item) => item.id === selectedChoiceId)
     if (!choice || !conditionsPass(choice.conditions ?? [], save.state)) return save

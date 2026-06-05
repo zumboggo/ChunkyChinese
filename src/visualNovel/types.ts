@@ -1,9 +1,11 @@
 export type VnPosition = 'left' | 'center' | 'right'
 export type VnChoiceKind = 'expressive' | 'memory' | 'consequential'
 export type VnQuestStatus = 'active' | 'completed' | 'failed'
-export type VnNodeType = 'line' | 'choice' | 'cinematic' | 'questResult' | 'end'
+export type VnNodeType = 'line' | 'choice' | 'cinematic' | 'questResult' | 'end' | 'cardBattle'
 export type VnWorldQuestStatus = 'hidden' | 'discovered' | 'available' | 'active' | 'completed' | 'failed' | 'recoverable'
 export type VnQuestCategory = 'main' | 'side' | 'commission' | 'rumour' | 'training' | 'encounter'
+
+import type { CardBattlerState, CardDefinition, EnemyDefinition } from '../cardBattler/types'
 
 export interface VnIndexEntry {
   id: string
@@ -99,6 +101,7 @@ export type VnEffect =
   | { id: string; onceKey?: string; op: 'unlockTitle'; titleId: string }
   | { id: string; onceKey?: string; op: 'setWorldQuestStatus'; questId: string; status: VnWorldQuestStatus }
   | { id: string; onceKey?: string; op: 'recordEncounter'; encounterId: string; poolId?: string }
+  | { id: string; onceKey?: string; op: 'startCardBattle'; encounterId: string }
 
 export type VnCondition =
   | { op: 'flagEquals'; key: string; value: boolean | string | number }
@@ -155,6 +158,14 @@ export type VnNode =
       summary?: VnText
       effects?: VnEffect[]
     }
+  | {
+      id: string
+      type: 'cardBattle'
+      encounterId: string
+      winNextId: string
+      loseNextId?: string
+      effects?: VnEffect[]
+    }
 
 export interface VnChoice {
   id: string
@@ -177,6 +188,8 @@ export interface VnScript {
   characters: Record<string, VnCharacter>
   initialState: VnState
   nodes: Record<string, VnNode>
+  cards?: Record<string, CardDefinition>
+  enemies?: Record<string, EnemyDefinition>
 }
 
 export interface VnBackgroundAsset {
@@ -242,6 +255,7 @@ export interface VisualNovelSave {
   state: VnState
   scene: VnSceneState
   history: VnHistoryEntry[]
+  activeEncounter?: CardBattlerState
   updatedAt: string
 }
 
@@ -265,6 +279,8 @@ export interface VnWorld {
   locations: Record<string, VnLocation>
   quests: Record<string, VnQuestDefinition>
   encounterPools?: Record<string, VnEncounterPool>
+  cards?: Record<string, CardDefinition>
+  enemies?: Record<string, EnemyDefinition>
   initialState: VnWorldState
 }
 
@@ -360,5 +376,6 @@ export interface VisualNovelWorldSave {
   schemaVersion: number
   state: VnWorldState
   interruptedQuest?: VnInterruptedQuest
+  activeEncounter?: CardBattlerState
   updatedAt: string
 }

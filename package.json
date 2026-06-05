@@ -24,7 +24,8 @@
     "vn:assets:review": "node scripts/vn-assets/cli.mjs review",
     "vn:assets:process": "node scripts/vn-assets/cli.mjs process",
     "vn:assets:publish": "node scripts/vn-assets/cli.mjs publish",
-    "vn:assets:verify": "node scripts/vn-assets/cli.mjs verify"
+    "vn:assets:verify": "node scripts/vn-assets/cli.mjs verify",
+    "vn:analyze-language": "node scripts/vn-analyze-language.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.2",

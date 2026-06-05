@@ -47,6 +47,34 @@
       "type": "line",
       "speaker": { "characterId": "training-master", "personaId": "default" },
       "text": { "chinese": "剑挥得不错。差点打到自己，也算认识了敌人。", "english": "Nice swing. You nearly hit yourself, which means you have met the enemy." },
+      "nextId": "lesson-slime-appear"
+    },
+    "lesson-slime-appear": {
+      "id": "lesson-slime-appear",
+      "type": "line",
+      "speaker": { "characterId": "training-master", "personaId": "default" },
+      "text": { "chinese": "看，墙角的灰尘史莱姆被你吵醒了。正好，用它试试手。", "english": "Look, the dust slime in the corner was woken up by you. Perfect, use it to test your hand." },
+      "nextId": "lesson-slime-battle"
+    },
+    "lesson-slime-battle": {
+      "id": "lesson-slime-battle",
+      "type": "cardBattle",
+      "encounterId": "sculpture-slime",
+      "winNextId": "lesson-slime-win",
+      "loseNextId": "lesson-slime-lose"
+    },
+    "lesson-slime-win": {
+      "id": "lesson-slime-win",
+      "type": "line",
+      "speaker": { "characterId": "training-master", "personaId": "default" },
+      "text": { "chinese": "还算有点样子。", "english": "Not too bad." },
+      "nextId": "lesson-result"
+    },
+    "lesson-slime-lose": {
+      "id": "lesson-slime-lose",
+      "type": "line",
+      "speaker": { "characterId": "training-master", "personaId": "default" },
+      "text": { "chinese": "连灰尘都打不过，今天先扫地吧。", "english": "Can't even beat dust, just sweep the floor today." },
       "nextId": "lesson-result"
     },
     "lesson-result": {
