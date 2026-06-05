@@ -1,7 +1,7 @@
 {
   "id": "royal-road-prototype",
   "schemaVersion": 1,
-  "contentVersion": "2026-06-05-world-placeholder-v1",
+  "contentVersion": "2026-06-05-weed-intro-v1",
   "title": "Royal Road Prototype",
   "description": {
     "chinese": "一个关于压力、选择、手艺和希望的互动小说世界。",
@@ -18,8 +18,8 @@
         "english": "Cramped rented room"
       },
       "description": {
-        "chinese": "墙很薄，账单却很厚。陈佑坐在床边，听见冰箱低低地响，好像也在叹气。",
-        "english": "The walls are thin, but the bills are thick. Chen You sits on the bed and hears the refrigerator hum as if it is sighing too."
+        "chinese": "墙很薄，账单却很厚。李贤坐在床边，听见冰箱低低地响，好像也在叹气。",
+        "english": "The walls are thin, but the bills are thick. Lee Hyun sits on the bed and hears the refrigerator hum as if it is sighing too."
       },
       "backgroundId": "real-apartment-night",
       "availableActions": [

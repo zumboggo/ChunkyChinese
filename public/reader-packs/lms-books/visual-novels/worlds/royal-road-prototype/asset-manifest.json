@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-06-05-world-placeholder-v1",
+  "contentVersion": "2026-06-05-weed-intro-v1",
   "fallbackBackgroundId": "town-square-day",
   "backgrounds": {
     "real-apartment-night": {
@@ -9,6 +9,34 @@
       "width": 1600,
       "height": 900,
       "alt": "Placeholder cramped apartment at night."
+    },
+    "gas-station-night": {
+      "id": "gas-station-night",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/backgrounds/gas-station-night.svg",
+      "width": 1600,
+      "height": 900,
+      "alt": "Placeholder gas station work scene at night."
+    },
+    "family-room-late": {
+      "id": "family-room-late",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/backgrounds/family-room-late.svg",
+      "width": 1600,
+      "height": 900,
+      "alt": "Placeholder small family room late at night."
+    },
+    "account-sale-screen": {
+      "id": "account-sale-screen",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/backgrounds/account-sale-screen.svg",
+      "width": 1600,
+      "height": 900,
+      "alt": "Placeholder old game account sale screen."
+    },
+    "royal-road-login": {
+      "id": "royal-road-login",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/backgrounds/royal-road-login.svg",
+      "width": 1600,
+      "height": 900,
+      "alt": "Placeholder Royal Road login light."
     },
     "cold-work-night": {
       "id": "cold-work-night",
@@ -23,6 +51,13 @@
       "width": 1600,
       "height": 900,
       "alt": "Placeholder bright fantasy town square."
+    },
+    "training-yard-dawn": {
+      "id": "training-yard-dawn",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/backgrounds/training-yard-dawn.svg",
+      "width": 1600,
+      "height": 900,
+      "alt": "Placeholder Serabourg training yard at dawn."
     },
     "training-hall": {
       "id": "training-hall",
@@ -47,6 +82,66 @@
     }
   },
   "sprites": {
+    "lee-hyun-real-tired": {
+      "id": "lee-hyun-real-tired",
+      "characterId": "lee-hyun",
+      "personaId": "real-world",
+      "outfitId": "modern-work-clothes",
+      "poseId": "standing",
+      "expressionId": "tired",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/lee-hyun-real-tired.svg",
+      "width": 620,
+      "height": 920,
+      "anchorX": 310,
+      "anchorY": 900,
+      "defaultScale": 0.72,
+      "alt": "Placeholder tired real-world Lee Hyun."
+    },
+    "lee-hyun-real-forced-smile": {
+      "id": "lee-hyun-real-forced-smile",
+      "characterId": "lee-hyun",
+      "personaId": "real-world",
+      "outfitId": "modern-work-clothes",
+      "poseId": "standing",
+      "expressionId": "forced-smile",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/lee-hyun-real-forced-smile.svg",
+      "width": 620,
+      "height": 920,
+      "anchorX": 310,
+      "anchorY": 900,
+      "defaultScale": 0.72,
+      "alt": "Placeholder real-world Lee Hyun forcing a smile."
+    },
+    "weed-sculptor-neutral": {
+      "id": "weed-sculptor-neutral",
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "standing",
+      "expressionId": "neutral",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/weed-sculptor-neutral.svg",
+      "width": 620,
+      "height": 920,
+      "anchorX": 310,
+      "anchorY": 900,
+      "defaultScale": 0.74,
+      "alt": "Placeholder Weed in beginner sculptor gear."
+    },
+    "weed-sculptor-determined": {
+      "id": "weed-sculptor-determined",
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "standing",
+      "expressionId": "determined",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/weed-sculptor-determined.svg",
+      "width": 620,
+      "height": 920,
+      "anchorX": 310,
+      "anchorY": 900,
+      "defaultScale": 0.74,
+      "alt": "Placeholder Weed looking determined."
+    },
     "protagonist-real-tired": {
       "id": "protagonist-real-tired",
       "characterId": "protagonist",
@@ -124,6 +219,13 @@
     }
   },
   "cinematics": {
+    "lee-hyun-to-weed-transition": {
+      "id": "lee-hyun-to-weed-transition",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/cinematics/lee-hyun-to-weed-transition.svg",
+      "width": 1600,
+      "height": 900,
+      "alt": "Placeholder cinematic transition from Lee Hyun's room to Royal Road."
+    },
     "transition-hope": {
       "id": "transition-hope",
       "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/cinematics/transition-hope.svg",

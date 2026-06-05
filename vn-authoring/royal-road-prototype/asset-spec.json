@@ -5,42 +5,134 @@
   "defaultMaxCostUsd": 3,
   "backgrounds": [
     {
+      "id": "gas-station-night",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/gas-station-night.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
+      "id": "family-room-late",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/family-room-late.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
+      "id": "account-sale-screen",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/account-sale-screen.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
+      "id": "royal-road-login",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/royal-road-login.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
+      "id": "training-yard-dawn",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/training-yard-dawn.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
       "id": "town-square-day",
       "status": "needed",
       "modelProfile": "krea-background",
       "promptFile": "prompts/backgrounds/town-square-day.txt",
-      "candidateCount": 4
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
     },
     {
       "id": "training-hall",
       "status": "needed",
       "modelProfile": "krea-background",
       "promptFile": "prompts/backgrounds/training-hall.txt",
-      "candidateCount": 4
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
     },
     {
       "id": "workshop-before",
       "status": "needed",
       "modelProfile": "krea-background",
       "promptFile": "prompts/backgrounds/workshop-before.txt",
-      "candidateCount": 4
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
     }
   ],
   "cinematics": [
     {
-      "id": "transition-hope",
+      "id": "lee-hyun-to-weed-transition",
       "status": "needed",
       "modelProfile": "seedream-cinematic",
-      "promptFile": "prompts/cinematics/transition-hope.txt",
-      "candidateCount": 4
+      "promptFile": "prompts/cinematics/lee-hyun-to-weed-transition.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "protagonist-virtual-master", "role": "character-master", "path": "references/protagonist-virtual-master.png" },
+        { "id": "weed-outfit-pose-sheet", "role": "pose-sheet", "path": "references/weed-outfit-pose-sheet.png" },
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
     }
   ],
   "sprites": [
     {
-      "id": "protagonist-virtual-neutral",
+      "id": "lee-hyun-real-tired",
       "status": "needed",
       "modelProfile": "kontext-sprite",
-      "promptFile": "prompts/sprites/protagonist-virtual-neutral.txt",
+      "promptFile": "prompts/sprites/lee-hyun-real-tired.txt",
+      "candidateCount": 2,
+      "characterId": "lee-hyun",
+      "personaId": "real-world",
+      "outfitId": "modern-work-clothes",
+      "poseId": "standing",
+      "expressionId": "tired",
+      "masterAssetId": "weed-outfit-pose-sheet",
+      "masterReferencePath": "references/weed-outfit-pose-sheet.png"
+    },
+    {
+      "id": "lee-hyun-real-forced-smile",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/lee-hyun-real-forced-smile.txt",
+      "candidateCount": 2,
+      "characterId": "lee-hyun",
+      "personaId": "real-world",
+      "outfitId": "modern-work-clothes",
+      "poseId": "standing",
+      "expressionId": "forced-smile",
+      "masterAssetId": "weed-outfit-pose-sheet",
+      "masterReferencePath": "references/weed-outfit-pose-sheet.png"
+    },
+    {
+      "id": "weed-sculptor-neutral",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/weed-sculptor-neutral.txt",
       "candidateCount": 2,
       "characterId": "lee-hyun",
       "personaId": "weed-sculptor",
@@ -51,18 +143,18 @@
       "masterReferencePath": "references/protagonist-virtual-master.png"
     },
     {
-      "id": "protagonist-real-tired",
+      "id": "weed-sculptor-determined",
       "status": "needed",
       "modelProfile": "kontext-sprite",
-      "promptFile": "prompts/sprites/protagonist-real-tired.txt",
+      "promptFile": "prompts/sprites/weed-sculptor-determined.txt",
       "candidateCount": 2,
       "characterId": "lee-hyun",
-      "personaId": "real-world",
-      "outfitId": "modern-apartment",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
       "poseId": "standing",
-      "expressionId": "tired",
-      "masterAssetId": "protagonist-real-world-master",
-      "masterReferencePath": "references/protagonist-real-world-master.png"
+      "expressionId": "determined",
+      "masterAssetId": "protagonist-virtual-master",
+      "masterReferencePath": "references/protagonist-virtual-master.png"
     }
   ]
 }
