@@ -113,6 +113,7 @@ export function VisualNovelWorldMode({
   const [questSave, setQuestSave] = useState<VisualNovelSave | null>(null)
   const [loadState, setLoadState] = useState<'loading' | 'ready' | 'empty' | 'error'>('loading')
   const [message, setMessage] = useState<string | null>(null)
+  const [loadingSlow, setLoadingSlow] = useState(false)
   const [showEnglish, setShowEnglish] = useState(false)
   const [selectedToken, setSelectedToken] = useState<ReaderWordToken | null>(null)
   const [dictionaryEntry, setDictionaryEntry] = useState<DictionaryEntry | null>(null)
@@ -228,6 +229,16 @@ export function VisualNovelWorldMode({
     },
     [],
   )
+
+  useEffect(() => {
+    if (loadState !== 'loading') return
+    const resetTimeout = window.setTimeout(() => setLoadingSlow(false), 0)
+    const timeout = window.setTimeout(() => setLoadingSlow(true), 6000)
+    return () => {
+      window.clearTimeout(resetTimeout)
+      window.clearTimeout(timeout)
+    }
+  }, [loadState])
 
   const persistWorldSave = useCallback(async (nextSave: VisualNovelWorldSave) => {
     setWorldSave(nextSave)
@@ -446,7 +457,27 @@ export function VisualNovelWorldMode({
         </div>
       </div>
 
-      {loadState === 'loading' && <section className="vn-empty">Loading world...</section>}
+      {loadState === 'loading' && (
+        <section className="vn-empty">
+          <h2>Loading world...</h2>
+          {loadingSlow && (
+            <>
+              <p>
+                This is taking longer than expected. The installed PWA may still have stale story
+                cache data.
+              </p>
+              <div className="button-group">
+                <button type="button" onClick={resetPwaShell}>
+                  Reset app shell cache
+                </button>
+                <button type="button" onClick={() => window.location.reload()}>
+                  Reload
+                </button>
+              </div>
+            </>
+          )}
+        </section>
+      )}
       {loadState === 'empty' && <section className="vn-empty">No Visual Novel worlds are published yet.</section>}
       {loadState === 'error' && <section className="vn-empty">{message}</section>}
 
@@ -517,6 +548,12 @@ export function VisualNovelWorldMode({
       )}
     </section>
   )
+}
+
+function resetPwaShell() {
+  const url = new URL(window.location.href)
+  url.searchParams.set('resetPwa', '1')
+  window.location.assign(url.toString())
 }
 
 function WorldHub({

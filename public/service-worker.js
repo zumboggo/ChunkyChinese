@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-chinese-v36'
+const CACHE_VERSION = 'chunky-chinese-v37'
 // Change CACHE_VERSION whenever the app shell changes and you want browsers to
 // discard old cached files. The activate handler below removes older versions.
 const APP_BASE = new URL('./', self.location.href).pathname
