@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-chinese-v35'
+const CACHE_VERSION = 'chunky-chinese-v36'
 // Change CACHE_VERSION whenever the app shell changes and you want browsers to
 // discard old cached files. The activate handler below removes older versions.
 const APP_BASE = new URL('./', self.location.href).pathname
@@ -41,6 +41,12 @@ self.addEventListener('activate', (event) => {
       await self.clients.claim()
     })(),
   )
+})
+
+self.addEventListener('message', (event) => {
+  if (event.data?.type === 'SKIP_WAITING') {
+    event.waitUntil(self.skipWaiting())
+  }
 })
 
 self.addEventListener('fetch', (event) => {
