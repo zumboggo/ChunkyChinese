@@ -13,6 +13,20 @@ export const modelProfiles = {
     estimatedCostUsd: 0.04,
     defaults: { aspect_ratio: '16:9', creativity: 'medium' },
   },
+  'flux-scene': {
+    id: 'flux-scene',
+    model: 'black-forest-labs/flux-schnell',
+    role: 'background',
+    estimatedCostUsd: 0.003,
+    defaults: { aspect_ratio: '16:9', output_format: 'webp' },
+  },
+  'flux-sprite': {
+    id: 'flux-sprite',
+    model: 'black-forest-labs/flux-schnell',
+    role: 'sprite',
+    estimatedCostUsd: 0.003,
+    defaults: { aspect_ratio: '3:4', output_format: 'webp' },
+  },
   'seedream-cinematic': {
     id: 'seedream-cinematic',
     model: 'bytedance/seedream-5-lite',

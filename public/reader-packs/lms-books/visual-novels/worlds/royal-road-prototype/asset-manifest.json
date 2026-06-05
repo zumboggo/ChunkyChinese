@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-06-05-generated-assets-webp-v2",
+  "contentVersion": "2026-06-05-no-svg-runtime-art-v1",
   "fallbackBackgroundId": "town-square-day",
   "backgrounds": {
     "real-apartment-night": {
       "id": "real-apartment-night",
-      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/backgrounds/real-apartment-night.svg",
-      "width": 1600,
-      "height": 900,
-      "alt": "Placeholder cramped apartment at night."
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/backgrounds/real-apartment-night.webp",
+      "width": 1376,
+      "height": 768,
+      "alt": "cramped apartment at night."
     },
     "gas-station-night": {
       "id": "gas-station-night",
@@ -40,10 +40,10 @@
     },
     "cold-work-night": {
       "id": "cold-work-night",
-      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/backgrounds/cold-work-night.svg",
-      "width": 1600,
-      "height": 900,
-      "alt": "Placeholder cold work scene at night."
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/backgrounds/cold-work-night.webp",
+      "width": 1376,
+      "height": 768,
+      "alt": "cold work scene at night."
     },
     "town-square-day": {
       "id": "town-square-day",
@@ -75,10 +75,10 @@
     },
     "workshop-restored": {
       "id": "workshop-restored",
-      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/backgrounds/workshop-restored.svg",
-      "width": 1600,
-      "height": 900,
-      "alt": "Placeholder sculpture workshop after restoration."
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/backgrounds/workshop-restored.webp",
+      "width": 1376,
+      "height": 768,
+      "alt": "sculpture workshop after restoration."
     }
   },
   "sprites": {
@@ -149,13 +149,13 @@
       "outfitId": "work-clothes",
       "poseId": "tired",
       "expressionId": "neutral",
-      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/protagonist-real-tired.svg",
-      "width": 620,
-      "height": 920,
-      "anchorX": 310,
-      "anchorY": 900,
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/lee-hyun-real-tired.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
       "defaultScale": 0.72,
-      "alt": "Placeholder real-world protagonist."
+      "alt": "real-world protagonist."
     },
     "protagonist-virtual-neutral": {
       "id": "protagonist-virtual-neutral",
@@ -164,13 +164,13 @@
       "outfitId": "plain-adventurer",
       "poseId": "standing",
       "expressionId": "neutral",
-      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/protagonist-virtual-neutral.svg",
-      "width": 620,
-      "height": 920,
-      "anchorX": 310,
-      "anchorY": 900,
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/weed-sculptor-neutral.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
       "defaultScale": 0.74,
-      "alt": "Placeholder virtual-world protagonist."
+      "alt": "virtual-world protagonist."
     },
     "workshop-owner": {
       "id": "workshop-owner",
@@ -179,13 +179,13 @@
       "outfitId": "apron",
       "poseId": "speaking",
       "expressionId": "neutral",
-      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/workshop-owner.svg",
-      "width": 620,
-      "height": 920,
-      "anchorX": 310,
-      "anchorY": 900,
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/workshop-owner.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
       "defaultScale": 0.74,
-      "alt": "Placeholder workshop owner."
+      "alt": "workshop owner."
     },
     "training-master": {
       "id": "training-master",
@@ -194,13 +194,13 @@
       "outfitId": "training-robe",
       "poseId": "speaking",
       "expressionId": "stern",
-      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/training-master.svg",
-      "width": 620,
-      "height": 920,
-      "anchorX": 310,
-      "anchorY": 900,
-      "defaultScale": 0.74,
-      "alt": "Placeholder training master."
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/geomchi-commanding.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
+      "defaultScale": 0.76,
+      "alt": "training master."
     },
     "commission-client": {
       "id": "commission-client",
@@ -209,13 +209,13 @@
       "outfitId": "town-clothes",
       "poseId": "speaking",
       "expressionId": "neutral",
-      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/commission-client.svg",
-      "width": 620,
-      "height": 920,
-      "anchorX": 310,
-      "anchorY": 900,
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/commission-client.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
       "defaultScale": 0.7,
-      "alt": "Placeholder commission client."
+      "alt": "commission client."
     },
     "pale-default": {
       "id": "pale-default",
@@ -498,10 +498,10 @@
     },
     "transition-hope": {
       "id": "transition-hope",
-      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/cinematics/transition-hope.svg",
-      "width": 1600,
-      "height": 900,
-      "alt": "Placeholder cinematic transition from narrow darkness to a bright fantasy world."
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/cinematics/transition-hope.webp",
+      "width": 1376,
+      "height": 768,
+      "alt": "cinematic transition from narrow darkness to a bright fantasy world."
     }
   }
 }
