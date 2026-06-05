@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import Replicate from 'replicate'
 import {
@@ -10,7 +10,7 @@ import {
 } from './core.mjs'
 
 export async function inspectModelSchema(profile, token) {
-  const replicate = new Replicate({ auth: token })
+  const replicate = new Replicate({ auth: token, fileEncodingStrategy: 'upload' })
   const [owner, name] = profile.model.split('/')
   try {
     const model = await replicate.models.get(owner, name)
@@ -29,7 +29,7 @@ export async function generateReplicateAsset({ root, spec, style, asset, count, 
     throw new Error(`${asset.id} is missing required reference files: ${missing.join(', ')}`)
   }
 
-  const replicate = new Replicate({ auth: token })
+  const replicate = new Replicate({ auth: token, fileEncodingStrategy: 'upload' })
   const prompt = await promptText(root, asset, style)
   const input = await buildReplicateInput(root, profile, asset, prompt)
   const schema = await inspectModelSchema(profile, token)
@@ -62,7 +62,7 @@ export async function generateReplicateAsset({ root, spec, style, asset, count, 
         ].filter(Boolean),
         masterAssetId: asset.masterAssetId,
         poseMasterAssetId: asset.poseMasterAssetId,
-        generationSettings: predictionInput,
+        generationSettings: sanitizeGenerationSettings(predictionInput),
         candidateNumber: index,
         approvalStatus: 'candidate',
         candidatePath: path.relative(process.cwd(), candidatePath).replaceAll(path.sep, '/'),
@@ -80,19 +80,18 @@ export async function generateReplicateAsset({ root, spec, style, asset, count, 
 
 async function buildReplicateInput(root, profile, asset, prompt) {
   const input = { ...profile.defaults, ...(asset.input ?? {}), prompt }
-  const styleReferences = (asset.references ?? [])
+  const styleReferences = await Promise.all((asset.references ?? [])
     .filter((reference) => reference.role === 'style' || reference.role === 'location-master')
-    .map((reference) => pathToFileUrl(path.join(root, reference.path)))
+    .map((reference) => readReferenceFile(path.join(root, reference.path))))
   const mainReference = asset.masterReferencePath ?? asset.poseMasterReferencePath ?? asset.references?.[0]?.path
 
-  if (profile.id === 'krea-background' && styleReferences.length > 0) {
-    input.style_reference_images = styleReferences
-  }
+  // Krea's current API rejects Replicate temporary upload URLs for style refs.
+  // Keep background style direction in the prompt until a public/reference URL flow is added.
   if (profile.id === 'seedream-cinematic' && styleReferences.length > 0) {
     input.image_input = styleReferences
   }
   if (profile.role === 'sprite' && mainReference) {
-    input.input_image = pathToFileUrl(path.join(root, mainReference))
+    input.input_image = await readReferenceFile(path.join(root, mainReference))
   }
   return input
 }
@@ -124,6 +123,31 @@ function extensionFromUrl(url, fallback) {
   }
 }
 
-function pathToFileUrl(filePath) {
-  return new URL(`file:///${filePath.replaceAll('\\', '/')}`).toString()
+function sanitizeGenerationSettings(value) {
+  if (Buffer.isBuffer(value)) return `[Buffer ${value.length} bytes]`
+  if (Array.isArray(value)) return value.map(sanitizeGenerationSettings)
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, item]) => [key, sanitizeGenerationSettings(item)]),
+    )
+  }
+  return value
+}
+
+async function readReferenceFile(filePath) {
+  const bytes = await readFile(filePath)
+  const type = mimeTypeFor(filePath)
+  if (typeof File !== 'undefined') return new File([bytes], path.basename(filePath), { type })
+  const blob = new Blob([bytes], { type })
+  Object.defineProperty(blob, 'name', { value: path.basename(filePath) })
+  return blob
+}
+
+function mimeTypeFor(filePath) {
+  const ext = path.extname(filePath).toLowerCase()
+  if (ext === '.jpg' || ext === '.jpeg') return 'image/jpeg'
+  if (ext === '.webp') return 'image/webp'
+  if (ext === '.heic') return 'image/heic'
+  if (ext === '.heif') return 'image/heif'
+  return 'image/png'
 }

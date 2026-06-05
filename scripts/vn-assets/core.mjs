@@ -11,7 +11,7 @@ export const modelProfiles = {
     model: 'krea/krea-2-medium',
     role: 'background',
     estimatedCostUsd: 0.04,
-    defaults: { aspect_ratio: '16:9', creativity: 0.65 },
+    defaults: { aspect_ratio: '16:9', creativity: 'medium' },
   },
   'seedream-cinematic': {
     id: 'seedream-cinematic',
