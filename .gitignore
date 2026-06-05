@@ -31,6 +31,12 @@ audio/
 clips_manifest.local.json
 backup-*.json
 
+# Visual Novel authoring outputs that must never ship as runtime assets
+vn-authoring/**/candidates/**
+!vn-authoring/**/candidates/.gitkeep
+vn-authoring/**/metadata/raw/**
+!vn-authoring/**/metadata/raw/.gitkeep
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

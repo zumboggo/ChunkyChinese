@@ -7,13 +7,15 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "test": "vitest run",
     "preview": "vite preview",
     "generate:reader-pack": "node scripts/generate-lms-reader-pack.mjs",
     "generate:reader-illustrations": "node scripts/generate-reader-illustrations.mjs",
     "generate:nav-icons": "node scripts/generate-nav-icons-ideogram.mjs",
     "clean:lms-vocab": "node scripts/clean-lms-vocab.mjs --write",
     "validate:lms-vocab": "node scripts/clean-lms-vocab.mjs",
-    "verify:reader-pack": "node scripts/verify-reader-pack.mjs"
+    "verify:reader-pack": "node scripts/verify-reader-pack.mjs",
+    "verify:visual-novel-pack": "node scripts/verify-visual-novel-pack.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.2",
@@ -38,6 +40,7 @@
     "globals": "^17.6.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
-    "vite": "^8.0.12"
+    "vite": "^8.0.12",
+    "vitest": "^4.1.8"
   }
 }

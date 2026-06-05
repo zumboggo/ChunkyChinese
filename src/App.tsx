@@ -17,7 +17,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts'
-import { pinyin } from 'pinyin-pro'
 import {
   completeWordExposure,
   DEFAULT_HOTKEYS,
@@ -70,12 +69,20 @@ import { createLesson, createPocketLesson, selectTargetWords, type PauseProfile 
 import { renderLessonToWav } from './renderAudio'
 import {
   fsrsDueTime,
-  fsrsQueueLabel,
   isFsrsCardDue,
   isNewFsrsCard,
   previewFsrsRatings,
 } from './scheduler'
+import {
+  collectReaderComprehensionTokens,
+  readerComprehensionCategory,
+  readerMaxChineseWordLength,
+  tokenizeReaderText,
+} from './adaptiveText'
+import { AdaptiveChineseText } from './AdaptiveChineseText'
+import { WordInfoPopover } from './WordInfoPopover'
 import { UniversalImporter } from './UniversalImporter'
+import { VisualNovelMode } from './visualNovel/VisualNovelMode'
 import {
   getCloudAuthState,
   isSupabaseConfigured,
@@ -115,12 +122,11 @@ import type {
   DictionaryEntry,
 } from './types'
 
-type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards'
+type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'visualNovel'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
 type FlashcardFrontMode = 'text' | 'audio'
 type ReaderPinyinMode = UserSettings['readerPinyinMode']
 type ReaderTheme = UserSettings['readerTheme']
-type ReaderPinyinState = 'known' | 'medium' | 'unknown'
 type FlashcardSessionCounts = {
   new: number
   learning: number
@@ -226,7 +232,6 @@ const DEFAULT_PACK_ID = 'lms-1000-azure'
 const HIDDEN_PACK_IDS = new Set(['annas-reading-deck'])
 const FLASHCARD_LEARN_AHEAD_MS = 5 * 60 * 1000
 const FLASHCARD_AUDIO_FRONT_RATE = 0.2
-const READER_MAX_MATCH_LENGTH = 8
 
 function App() {
   const [screen, setScreen] = useState<Screen>('dashboard')
@@ -2092,6 +2097,11 @@ function App() {
                 <strong>Reading</strong>
                 <span>Read the LMS stories sentence by sentence.</span>
               </button>
+              <button className="mode-start novel-start" type="button" onClick={() => setScreen('visualNovel')}>
+                <kbd>VN</kbd>
+                <strong>Visual Novel</strong>
+                <span>Play a story scene with the same Adaptive Mode text.</span>
+              </button>
               <button className="mode-start active-start" type="button" onClick={() => startModeLesson('activeRecall')}>
                 <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
                 <strong>Active Recall</strong>
@@ -2533,6 +2543,22 @@ function App() {
             setReaderShowEnglish((value) => !value)
           }}
           readerDictionaryEntry={readerDictionaryEntry}
+        />
+      )}
+
+      {screen === 'visualNovel' && (
+        <VisualNovelMode
+          words={scopedWords.length > 0 ? scopedWords : words}
+          readerBooks={readerBooks}
+          pinyinMode={userSettings.readerPinyinMode}
+          readerTheme={userSettings.readerTheme}
+          readerFontScale={userSettings.readerFontScale}
+          readerLineHeight={userSettings.readerLineHeight}
+          playbackRate={playbackRate}
+          hotkeys={hotkeys}
+          onEditWord={openCardEditor}
+          onWordsChanged={refresh}
+          onReturnToReader={() => setScreen('reader')}
         />
       )}
 
@@ -3871,33 +3897,12 @@ function ReaderMode({
                       />
                     </figure>
                   )}
-                  <div className="reader-sentence">
-                    {tokens.map((token) =>
-                      token.isChinese ? (
-                        <ruby
-                          key={token.id}
-                          className={readerTokenClassName(token, selectedToken, pinyinMode)}
-                          tabIndex={0}
-                          role="button"
-                          aria-label={`${token.text}${token.pinyin ? `, ${token.pinyin}` : ''}`}
-                          onClick={() => onSelectToken(selectedToken?.id === token.id ? null : token)}
-                          onKeyDown={(event) => {
-                            if (event.key === 'Enter' || event.key === ' ') {
-                              event.preventDefault()
-                              onSelectToken(selectedToken?.id === token.id ? null : token)
-                            }
-                          }}
-                        >
-                          {token.text}
-                          {readerShouldRenderPinyin(token, pinyinMode) && <rt>{token.pinyin}</rt>}
-                        </ruby>
-                      ) : (
-                        <span key={token.id} className="reader-token-space">
-                          {token.text}
-                        </span>
-                      ),
-                    )}
-                  </div>
+                  <AdaptiveChineseText
+                    tokens={tokens}
+                    selectedToken={selectedToken}
+                    pinyinMode={pinyinMode}
+                    onSelectToken={onSelectToken}
+                  />
                 </motion.div>
               </AnimatePresence>
               <p className={`reader-translation ${showEnglish ? 'revealed' : 'blur-reveal'}`}>{sentence.english}</p>
@@ -3911,62 +3916,16 @@ function ReaderMode({
                 <button type="button" onClick={onNext} disabled={sentenceIndex >= sentenceCount - 1}>
                   Next
                 </button>
-                {selectedToken && !selectedToken.word && selectedToken.isChinese && (
-                  <div className="reader-word-popover" aria-live="polite" onClick={() => onSelectToken(null)}>
-                    <button type="button" className="popover-close" onClick={() => onSelectToken(null)}>
-                      Close
-                    </button>
-                    <strong>{selectedToken.text}</strong>
-                    <span>{readerDictionaryEntry?.pinyin ?? selectedToken.pinyin}</span>
-                    {readerDictionaryEntry ? (
-                      <>
-                        <p>{readerDictionaryEntry.english}</p>
-                        <button
-                          type="button"
-                          className="primary"
-                          onClick={(event) => {
-                            event.stopPropagation()
-                            void onSaveWord(selectedToken.text, readerDictionaryEntry.pinyin, readerDictionaryEntry.english)
-                          }}
-                        >
-                          Save Word
-                        </button>
-                      </>
-                    ) : (
-                      <p>No saved vocabulary entry yet.</p>
-                    )}
-                  </div>
-                )}
               </div>
-              {selectedToken?.word && (
-                <div className="reader-word-popover" aria-live="polite" onClick={() => onSelectToken(null)}>
-                  <button type="button" className="popover-close" onClick={() => onSelectToken(null)}>
-                    Close
-                  </button>
-                  <strong>{selectedToken.word.word}</strong>
-                  <span>{selectedToken.word.pinyin ?? selectedToken.pinyin}</span>
-                  <p>{selectedToken.word.meaning}</p>
-                  <button
-                    type="button"
-                    className="ghost-answer"
-                    onClick={(event) => {
-                      event.stopPropagation()
-                      if (selectedToken.word) onEditWord(selectedToken.word)
-                    }}
-                  >
-                    Edit card
-                  </button>
-                  <dl className="stat-list compact-stats">
-                    <div>
-                      <dt>FSRS</dt>
-                      <dd>{fsrsQueueLabel(selectedToken.word)}</dd>
-                    </div>
-                    <div>
-                      <dt>Due</dt>
-                      <dd>{formatDueDate(selectedToken.word.fsrsDueAt)}</dd>
-                    </div>
-                  </dl>
-                </div>
+              {selectedToken && (
+                <WordInfoPopover
+                  selectedToken={selectedToken}
+                  dictionaryEntry={readerDictionaryEntry}
+                  onClose={() => onSelectToken(null)}
+                  onEditWord={onEditWord}
+                  onSaveWord={onSaveWord}
+                  formatDueDate={formatDueDate}
+                />
               )}
             </>
           ) : (
@@ -4005,50 +3964,6 @@ function ReaderComprehensionMeter({
       </p>
     </div>
   )
-}
-
-function readerTokenClassName(
-  token: ReaderWordToken,
-  selectedToken: ReaderWordToken | null,
-  pinyinMode: ReaderPinyinMode,
-): string {
-  const state = readerPinyinState(token, pinyinMode)
-  return [
-    'reader-token',
-    token.word ? 'saved-token' : '',
-    selectedToken?.id === token.id ? 'active' : '',
-    `pinyin-${state}`,
-  ].filter(Boolean).join(' ')
-}
-
-function readerShouldRenderPinyin(token: ReaderWordToken, pinyinMode: ReaderPinyinMode): boolean {
-  return readerPinyinState(token, pinyinMode) !== 'known'
-}
-
-function readerPinyinState(token: ReaderWordToken, pinyinMode: ReaderPinyinMode): ReaderPinyinState {
-  if (pinyinMode === 'all') return 'unknown'
-  if (pinyinMode === 'none') return 'known'
-  return adaptiveReaderPinyinState(token.word)
-}
-
-function adaptiveReaderPinyinState(word?: VocabWord): ReaderPinyinState {
-  if (!word) return 'unknown'
-  const interval = word.fsrsIntervalDays ?? 0
-  const repetitions = word.fsrsRepetitions ?? 0
-  const lapses = word.fsrsLapses ?? 0
-  const due = isFsrsCardDue(word)
-
-  if (word.fsrsState === 'Review' && interval >= 14 && !due && lapses === 0) return 'known'
-  if (lapses > 0 && (due || interval < 14)) return 'unknown'
-  if (word.fsrsState === 'Review' && interval >= 2) return 'medium'
-  if (
-    (word.fsrsState === 'Learning' || word.fsrsState === 'Relearning') &&
-    repetitions > 0 &&
-    !due
-  ) {
-    return 'medium'
-  }
-  return 'unknown'
 }
 
 function ActivityChart({ days }: { days: DashboardStats['studyHeatmap'] }) {
@@ -4884,88 +4799,6 @@ function summarizeReaderTexts(texts: string[], vocab: VocabWord[]): ReaderCompre
   }
 }
 
-function readerMaxChineseWordLength(wordMap: Map<string, VocabWord>): number {
-  let maxLength = 1
-  for (const word of wordMap.keys()) {
-    if (!/[\u3400-\u9fff]/u.test(word)) continue
-    maxLength = Math.max(maxLength, Math.min(word.length, READER_MAX_MATCH_LENGTH))
-  }
-  return maxLength
-}
-
-function collectReaderComprehensionTokens(
-  text: string,
-  wordMap: Map<string, VocabWord>,
-  maxWordLength: number,
-): Array<{ text: string; word?: VocabWord }> {
-  const tokens: Array<{ text: string; word?: VocabWord }> = []
-  let index = 0
-  while (index < text.length) {
-    if (!isChineseChar(text[index])) {
-      index += 1
-      continue
-    }
-    const match = longestWordMatch(text, index, maxWordLength, wordMap)
-    if (match) {
-      tokens.push(match)
-      index += match.text.length
-    } else {
-      tokens.push({ text: text[index] })
-      index += 1
-    }
-  }
-  return tokens
-}
-
-function readerComprehensionCategory(word?: VocabWord): 'known' | 'learning' | 'new' {
-  if (!word || isNewFsrsCard(word)) return 'new'
-  const interval = word.fsrsIntervalDays ?? 0
-  if (word.fsrsState === 'Review' && interval >= 14 && !isFsrsCardDue(word)) return 'known'
-  return 'learning'
-}
-
-function tokenizeReaderText(text: string, vocab: VocabWord[]): ReaderWordToken[] {
-  const wordMap = new Map(vocab.map((word) => [word.word, word]))
-  const maxWordLength = readerMaxChineseWordLength(wordMap)
-  const segmenter =
-    typeof Intl.Segmenter === 'function'
-      ? new Intl.Segmenter('zh-CN', { granularity: 'word' })
-      : undefined
-  const tokens: ReaderWordToken[] = []
-  let index = 0
-  let tokenIndex = 0
-
-  while (index < text.length) {
-    if (!isChineseChar(text[index])) {
-      const start = index
-      while (index < text.length && !isChineseChar(text[index])) index += 1
-      tokens.push({
-        id: `token-${tokenIndex}`,
-        text: text.slice(start, index),
-        index: tokenIndex,
-        isChinese: false,
-      })
-      tokenIndex += 1
-      continue
-    }
-
-    const match = longestWordMatch(text, index, maxWordLength, wordMap)
-    const segment = match?.text ?? firstChineseSegment(text.slice(index), segmenter)
-    tokens.push({
-      id: `token-${tokenIndex}`,
-      text: segment,
-      index: tokenIndex,
-      isChinese: true,
-      pinyin: match?.word.pinyin ?? pinyin(segment, { type: 'string', separator: ' ' }),
-      word: match?.word,
-    })
-    index += segment.length
-    tokenIndex += 1
-  }
-
-  return tokens.filter((token) => token.text.length > 0)
-}
-
 function getReaderIllustration(book: ReaderBook, sentenceIndex: number) {
   const sentenceNumber = sentenceIndex + 1
   if (!book.id.startsWith('lms-book-1-chapters-')) {
@@ -5050,30 +4883,6 @@ function readerProgressPercent(sentenceIndex: number, sentenceCount: number): nu
 function publicAssetPath(path: string): string {
   const base = import.meta.env.BASE_URL || '/'
   return `${base.replace(/\/$/u, '')}/${path.replace(/^\//u, '')}`
-}
-
-function longestWordMatch(
-  text: string,
-  start: number,
-  maxWordLength: number,
-  wordMap: Map<string, VocabWord>,
-): { text: string; word: VocabWord } | undefined {
-  for (let length = Math.min(maxWordLength, text.length - start); length > 0; length -= 1) {
-    const candidate = text.slice(start, start + length)
-    const word = wordMap.get(candidate)
-    if (word) return { text: candidate, word }
-  }
-  return undefined
-}
-
-function firstChineseSegment(text: string, segmenter?: Intl.Segmenter): string {
-  const segment = segmenter ? Array.from(segmenter.segment(text))[0]?.segment : undefined
-  if (segment && isChineseChar(segment[0])) return segment
-  return text[0] ?? ''
-}
-
-function isChineseChar(char: string): boolean {
-  return /[\u3400-\u9fff]/u.test(char)
 }
 
 function speakUtterance(text: string, rate: number, lang = detectSpeechLanguage(text)): Promise<void> {

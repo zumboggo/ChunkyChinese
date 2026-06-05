@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 920" role="img" aria-label="Placeholder annoyed workshop owner sprite">
+  <defs>
+    <linearGradient id="apron" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8a5a3b"/>
+      <stop offset="1" stop-color="#3c241a"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e7b98e"/>
+      <stop offset="1" stop-color="#a96b48"/>
+    </linearGradient>
+  </defs>
+  <g opacity="0.98">
+    <ellipse cx="310" cy="895" rx="186" ry="20" fill="#000" opacity="0.18"/>
+    <path d="M218 428 L402 428 L430 760 L376 895 L334 895 L318 646 L302 646 L286 895 L244 895 L190 760 Z" fill="#35251d"/>
+    <path d="M184 296 C224 242 396 242 436 296 L410 570 L210 570 Z" fill="url(#apron)"/>
+    <path d="M198 340 C152 408 136 498 160 566" fill="none" stroke="#76492f" stroke-width="44" stroke-linecap="round"/>
+    <path d="M422 340 C470 406 486 500 460 566" fill="none" stroke="#76492f" stroke-width="44" stroke-linecap="round"/>
+    <path d="M236 410 L384 410" stroke="#d7b37b" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="310" cy="188" r="94" fill="url(#skin)"/>
+    <path d="M222 178 C214 80 402 62 414 176 C360 132 276 132 222 178Z" fill="#4b3429"/>
+    <path d="M252 196 L294 210" stroke="#2e201b" stroke-width="12" stroke-linecap="round"/>
+    <path d="M328 210 L370 196" stroke="#2e201b" stroke-width="12" stroke-linecap="round"/>
+    <path d="M282 252 C304 238 330 238 352 252" stroke="#704231" stroke-width="10" stroke-linecap="round" fill="none"/>
+    <path d="M242 895 L288 895" stroke="#241a17" stroke-width="30" stroke-linecap="round"/>
+    <path d="M332 895 L378 895" stroke="#241a17" stroke-width="30" stroke-linecap="round"/>
+  </g>
+</svg>

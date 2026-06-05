@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-chinese-v32'
+const CACHE_VERSION = 'chunky-chinese-v33'
 // Change CACHE_VERSION whenever the app shell changes and you want browsers to
 // discard old cached files. The activate handler below removes older versions.
 const APP_BASE = new URL('./', self.location.href).pathname
@@ -14,6 +14,7 @@ const APP_SHELL = [
   `${APP_BASE}clip-packs/index.json`,
   `${APP_BASE}reader-packs/index.json`,
   `${APP_BASE}reader-packs/lms-books/reader_manifest.json`,
+  `${APP_BASE}reader-packs/lms-books/visual-novels/index.json`,
 ]
 
 self.addEventListener('install', (event) => {

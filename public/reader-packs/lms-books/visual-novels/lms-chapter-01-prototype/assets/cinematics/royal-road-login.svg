@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Placeholder transition cinematic">
+  <defs>
+    <linearGradient id="left" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10162f"/>
+      <stop offset="1" stop-color="#41516f"/>
+    </linearGradient>
+    <linearGradient id="right" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffd37a"/>
+      <stop offset="0.48" stop-color="#7db48e"/>
+      <stop offset="1" stop-color="#3d6d79"/>
+    </linearGradient>
+    <radialGradient id="portal" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.28" stop-color="#eff7ff" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#9ad8ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="900" fill="url(#left)"/>
+  <rect x="800" width="800" height="900" fill="url(#right)"/>
+  <path d="M0 640 C260 590 470 650 800 610 L800 900 L0 900 Z" fill="#1f2737"/>
+  <path d="M800 610 C1000 525 1260 590 1600 514 L1600 900 L800 900 Z" fill="#315f54"/>
+  <circle cx="800" cy="410" r="330" fill="url(#portal)"/>
+  <path d="M735 715 C748 560 742 455 800 356 C858 455 852 560 865 715 Z" fill="#111827" opacity="0.82"/>
+  <circle cx="800" cy="300" r="48" fill="#111827" opacity="0.82"/>
+  <path d="M930 245 C1110 170 1330 205 1520 100" stroke="#f7d58b" stroke-width="18" stroke-linecap="round" opacity="0.65"/>
+  <path d="M1010 330 C1180 300 1310 340 1490 275" stroke="#f7f1c4" stroke-width="8" stroke-linecap="round" opacity="0.58"/>
+</svg>

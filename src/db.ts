@@ -39,6 +39,8 @@ import {
   isFsrsCardDueSoon,
   isNewFsrsCard,
 } from './scheduler'
+import { visualNovelSaveId } from './visualNovel/engine'
+import type { VisualNovelSave } from './visualNovel/types'
 
 type ProgressImportField =
   | 'lastReviewedAt'
@@ -63,7 +65,7 @@ interface UpsertWordsOptions {
 }
 
 const DB_NAME = 'chunky-chinese-vocab'
-const DB_VERSION = 7
+const DB_VERSION = 8
 const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
 const READER_PACK_FIX_VERSION = '2026-06-03-book2-per-sentence-images'
@@ -129,6 +131,11 @@ interface ChunkyDB extends DBSchema {
     value: ReaderSession
     indexes: { bookId: string; packId: string; startedAt: string }
   }
+  visualNovelSaves: {
+    key: string
+    value: VisualNovelSave
+    indexes: { packId: string; visualNovelId: string; updatedAt: string }
+  }
   settings: {
     key: string
     value: unknown
@@ -187,6 +194,12 @@ export function getDB(): Promise<IDBPDatabase<ChunkyDB>> {
           readerSessions.createIndex('bookId', 'bookId')
           readerSessions.createIndex('packId', 'packId')
           readerSessions.createIndex('startedAt', 'startedAt')
+        }
+        if (!db.objectStoreNames.contains('visualNovelSaves')) {
+          const visualNovelSaves = db.createObjectStore('visualNovelSaves', { keyPath: 'id' })
+          visualNovelSaves.createIndex('packId', 'packId')
+          visualNovelSaves.createIndex('visualNovelId', 'visualNovelId')
+          visualNovelSaves.createIndex('updatedAt', 'updatedAt')
         }
         if (!db.objectStoreNames.contains('settings')) {
           db.createObjectStore('settings')
@@ -1324,6 +1337,30 @@ export async function getAllReaderSessions(): Promise<ReaderSession[]> {
   )
 }
 
+export async function getVisualNovelSave(
+  packId: string,
+  visualNovelId: string,
+): Promise<VisualNovelSave | undefined> {
+  return await (await getDB()).get('visualNovelSaves', visualNovelSaveId(packId, visualNovelId))
+}
+
+export async function getAllVisualNovelSaves(): Promise<VisualNovelSave[]> {
+  return (await (await getDB()).getAll('visualNovelSaves')).sort(
+    (a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt),
+  )
+}
+
+export async function saveVisualNovelSave(save: VisualNovelSave): Promise<void> {
+  await (await getDB()).put('visualNovelSaves', {
+    ...save,
+    updatedAt: new Date().toISOString(),
+  })
+}
+
+export async function deleteVisualNovelSave(packId: string, visualNovelId: string): Promise<void> {
+  await (await getDB()).delete('visualNovelSaves', visualNovelSaveId(packId, visualNovelId))
+}
+
 export async function importHostedReaderPack(
   baseUrl: string,
   onProgress?: (completed: number, total: number, label: string) => void,
@@ -1572,6 +1609,7 @@ export async function exportBackup(): Promise<string> {
     readerBooks: await db.getAll('readerBooks'),
     readerProgress: await db.getAll('readerProgress'),
     readerSessions: await db.getAll('readerSessions'),
+    visualNovelSaves: await db.getAll('visualNovelSaves'),
     settings: {
       lmsSeededAt: await db.get('settings', 'lmsSeededAt'),
       activePackId: await db.get('settings', 'activePackId'),
@@ -1593,6 +1631,7 @@ export async function importBackup(text: string): Promise<ImportSummary> {
     readerBooks?: ReaderBook[]
     readerProgress?: ReaderProgress[]
     readerSessions?: ReaderSession[]
+    visualNovelSaves?: VisualNovelSave[]
     settings?: {
       activePackId?: string
       userSettings?: UserSettings
@@ -1603,7 +1642,17 @@ export async function importBackup(text: string): Promise<ImportSummary> {
   }
   const db = await getDB()
   const tx = db.transaction(
-    ['vocabWords', 'sentences', 'listeningEvents', 'clipPacks', 'readerPacks', 'readerBooks', 'readerProgress', 'readerSessions'],
+    [
+      'vocabWords',
+      'sentences',
+      'listeningEvents',
+      'clipPacks',
+      'readerPacks',
+      'readerBooks',
+      'readerProgress',
+      'readerSessions',
+      'visualNovelSaves',
+    ],
     'readwrite',
   )
   let created = 0
@@ -1635,6 +1684,9 @@ export async function importBackup(text: string): Promise<ImportSummary> {
   }
   for (const session of backup.readerSessions ?? []) {
     await tx.objectStore('readerSessions').put(session)
+  }
+  for (const save of backup.visualNovelSaves ?? []) {
+    await tx.objectStore('visualNovelSaves').put(save)
   }
 
   await tx.done
