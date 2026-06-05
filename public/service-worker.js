@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-chinese-v34'
+const CACHE_VERSION = 'chunky-chinese-v35'
 // Change CACHE_VERSION whenever the app shell changes and you want browsers to
 // discard old cached files. The activate handler below removes older versions.
 const APP_BASE = new URL('./', self.location.href).pathname
@@ -55,6 +55,11 @@ self.addEventListener('fetch', (event) => {
     return
   }
 
+  if (isMutableContentAsset(url)) {
+    event.respondWith(networkFirstAsset(request))
+    return
+  }
+
   if (isStaticAppAsset(url)) {
     event.respondWith(cacheFirst(request))
     return
@@ -82,17 +87,21 @@ async function discoverAppShellUrls() {
 }
 
 async function networkFirstHtml(request) {
+  return networkFirstAsset(request, [request, `${APP_BASE}index.html`, APP_BASE])
+}
+
+async function networkFirstAsset(request, fallbacks = [request]) {
   const cache = await caches.open(CACHE_VERSION)
   try {
     const response = await fetch(request)
     if (response.ok) await cache.put(request, response.clone())
     return response
   } catch {
-    return (
-      (await cache.match(request)) ||
-      (await cache.match(`${APP_BASE}index.html`)) ||
-      (await cache.match(APP_BASE))
-    )
+    for (const fallback of fallbacks) {
+      const cached = await cache.match(fallback)
+      if (cached) return cached
+    }
+    throw new Error(`No cached response for ${request.url}`)
   }
 }
 
@@ -116,5 +125,12 @@ function isStaticAppAsset(url) {
     url.pathname.endsWith('/manifest.webmanifest') ||
     url.pathname.endsWith('/service-worker.js') ||
     url.pathname.endsWith('.svg')
+  )
+}
+
+function isMutableContentAsset(url) {
+  return (
+    url.pathname.startsWith(`${APP_BASE}reader-packs/`) &&
+    (url.pathname.endsWith('.json') || url.pathname.endsWith('/reader_manifest.json'))
   )
 }
