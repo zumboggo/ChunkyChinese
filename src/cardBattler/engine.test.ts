@@ -71,7 +71,7 @@ describe('Card Battler Engine', () => {
   })
 
   it('respects energy costs', () => {
-    let state = createEncounter(['strike'], 'slime', 20, 50)
+    const state = createEncounter(['strike'], 'slime', 20, 50)
     state.hand = ['strike']
     state.playerEnergy = 0
     

@@ -133,7 +133,7 @@ export function endTurn(
 ): CardBattlerState {
   if (state.status !== 'active') return state
 
-  let next = { ...state }
+  const next = { ...state }
 
   // Enemy turn starts
   next.enemyBlock = 0 
