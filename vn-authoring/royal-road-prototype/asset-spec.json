@@ -1,0 +1,480 @@
+{
+  "schemaVersion": 1,
+  "worldId": "royal-road-prototype",
+  "styleId": "royal-road-manhwa-v1",
+  "defaultMaxCostUsd": 3,
+  "backgrounds": [
+    {
+      "id": "real-apartment-night",
+      "status": "needed",
+      "modelProfile": "flux-scene",
+      "promptFile": "prompts/backgrounds/real-apartment-night.txt",
+      "candidateCount": 1,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
+      "id": "cold-work-night",
+      "status": "needed",
+      "modelProfile": "flux-scene",
+      "promptFile": "prompts/backgrounds/cold-work-night.txt",
+      "candidateCount": 1,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
+      "id": "gas-station-night",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/gas-station-night.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
+      "id": "family-room-late",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/family-room-late.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
+      "id": "account-sale-screen",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/account-sale-screen.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
+      "id": "royal-road-login",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/royal-road-login.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
+      "id": "training-yard-dawn",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/training-yard-dawn.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
+      "id": "town-square-day",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/town-square-day.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
+      "id": "training-hall",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/training-hall.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
+      "id": "workshop-before",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/workshop-before.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
+      "id": "workshop-restored",
+      "status": "needed",
+      "modelProfile": "flux-scene",
+      "promptFile": "prompts/backgrounds/workshop-restored.txt",
+      "candidateCount": 1,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    }
+  ],
+  "cinematics": [
+    {
+      "id": "lee-hyun-to-weed-transition",
+      "status": "needed",
+      "modelProfile": "seedream-cinematic",
+      "promptFile": "prompts/cinematics/lee-hyun-to-weed-transition.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "protagonist-virtual-master", "role": "character-master", "path": "references/protagonist-virtual-master.png" },
+        { "id": "weed-outfit-pose-sheet", "role": "pose-sheet", "path": "references/weed-outfit-pose-sheet.png" },
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    },
+    {
+      "id": "transition-hope",
+      "status": "needed",
+      "modelProfile": "flux-scene",
+      "promptFile": "prompts/cinematics/transition-hope.txt",
+      "candidateCount": 1,
+      "references": [
+        { "id": "protagonist-virtual-master", "role": "character-master", "path": "references/protagonist-virtual-master.png" },
+        { "id": "weed-outfit-pose-sheet", "role": "pose-sheet", "path": "references/weed-outfit-pose-sheet.png" },
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
+    }
+  ],
+  "sprites": [
+    {
+      "id": "lee-hyun-real-tired",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/lee-hyun-real-tired.txt",
+      "candidateCount": 2,
+      "characterId": "lee-hyun",
+      "personaId": "real-world",
+      "outfitId": "modern-work-clothes",
+      "poseId": "standing",
+      "expressionId": "tired",
+      "masterAssetId": "weed-outfit-pose-sheet",
+      "masterReferencePath": "references/weed-outfit-pose-sheet.png"
+    },
+    {
+      "id": "lee-hyun-real-forced-smile",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/lee-hyun-real-forced-smile.txt",
+      "candidateCount": 2,
+      "characterId": "lee-hyun",
+      "personaId": "real-world",
+      "outfitId": "modern-work-clothes",
+      "poseId": "standing",
+      "expressionId": "forced-smile",
+      "masterAssetId": "weed-outfit-pose-sheet",
+      "masterReferencePath": "references/weed-outfit-pose-sheet.png"
+    },
+    {
+      "id": "weed-sculptor-neutral",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/weed-sculptor-neutral.txt",
+      "candidateCount": 2,
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "standing",
+      "expressionId": "neutral",
+      "masterAssetId": "protagonist-virtual-master",
+      "masterReferencePath": "references/protagonist-virtual-master.png"
+    },
+    {
+      "id": "weed-sculptor-determined",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/weed-sculptor-determined.txt",
+      "candidateCount": 2,
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "standing",
+      "expressionId": "determined",
+      "masterAssetId": "protagonist-virtual-master",
+      "masterReferencePath": "references/protagonist-virtual-master.png"
+    },
+    {
+      "id": "pale-default",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/pale-default.txt",
+      "candidateCount": 2,
+      "characterId": "pale",
+      "personaId": "default",
+      "outfitId": "green-archer",
+      "poseId": "standing",
+      "expressionId": "bright",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "irene-default",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/irene-default.txt",
+      "candidateCount": 2,
+      "characterId": "irene",
+      "personaId": "default",
+      "outfitId": "white-priestess",
+      "poseId": "standing",
+      "expressionId": "gentle",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "seoyoon-default",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/seoyoon-default.txt",
+      "candidateCount": 2,
+      "characterId": "seoyoon",
+      "personaId": "default",
+      "outfitId": "white-black-swordswoman",
+      "poseId": "standing",
+      "expressionId": "quiet",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "surka-default",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/surka-default.txt",
+      "candidateCount": 2,
+      "characterId": "surka",
+      "personaId": "default",
+      "outfitId": "red-martial",
+      "poseId": "standing",
+      "expressionId": "energetic",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "romuna-default",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/romuna-default.txt",
+      "candidateCount": 2,
+      "characterId": "romuna",
+      "personaId": "default",
+      "outfitId": "purple-mage",
+      "poseId": "standing",
+      "expressionId": "confident",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "mapan-default",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/mapan-default.txt",
+      "candidateCount": 2,
+      "characterId": "mapan",
+      "personaId": "default",
+      "outfitId": "green-merchant",
+      "poseId": "standing",
+      "expressionId": "cheerful",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "hwareong-default",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/hwareong-default.txt",
+      "candidateCount": 2,
+      "characterId": "hwareong",
+      "personaId": "default",
+      "outfitId": "red-dancer",
+      "poseId": "standing",
+      "expressionId": "warm",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "geomchi-default",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/geomchi-default.txt",
+      "candidateCount": 2,
+      "characterId": "geomchi",
+      "personaId": "default",
+      "outfitId": "black-swordsman",
+      "poseId": "standing",
+      "expressionId": "boisterous",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "geomchi-disciple-default",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/geomchi-disciple-default.txt",
+      "candidateCount": 2,
+      "characterId": "geomchi-disciple",
+      "personaId": "default",
+      "outfitId": "black-disciple-uniform",
+      "poseId": "standing",
+      "expressionId": "eager",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "pale-ready",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/pale-ready.txt",
+      "candidateCount": 2,
+      "characterId": "pale",
+      "personaId": "default",
+      "outfitId": "green-archer",
+      "poseId": "ready",
+      "expressionId": "focused",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "irene-concerned",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/irene-concerned.txt",
+      "candidateCount": 2,
+      "characterId": "irene",
+      "personaId": "default",
+      "outfitId": "white-priestess",
+      "poseId": "speaking",
+      "expressionId": "concerned",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "seoyoon-alert",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/seoyoon-alert.txt",
+      "candidateCount": 2,
+      "characterId": "seoyoon",
+      "personaId": "default",
+      "outfitId": "white-black-swordswoman",
+      "poseId": "alert",
+      "expressionId": "calm",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "surka-confident",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/surka-confident.txt",
+      "candidateCount": 2,
+      "characterId": "surka",
+      "personaId": "default",
+      "outfitId": "red-martial",
+      "poseId": "fighting-stance",
+      "expressionId": "confident",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "romuna-casting",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/romuna-casting.txt",
+      "candidateCount": 2,
+      "characterId": "romuna",
+      "personaId": "default",
+      "outfitId": "purple-mage",
+      "poseId": "casting",
+      "expressionId": "focused",
+      "masterAssetId": "romuna-main-cast-crop",
+      "masterReferencePath": "references/romuna-main-cast-crop.png"
+    },
+    {
+      "id": "mapan-negotiating",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/mapan-negotiating.txt",
+      "candidateCount": 2,
+      "characterId": "mapan",
+      "personaId": "default",
+      "outfitId": "green-merchant",
+      "poseId": "speaking",
+      "expressionId": "negotiating",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "hwareong-amused",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/hwareong-amused.txt",
+      "candidateCount": 2,
+      "characterId": "hwareong",
+      "personaId": "default",
+      "outfitId": "red-dancer",
+      "poseId": "speaking",
+      "expressionId": "amused",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "geomchi-commanding",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/geomchi-commanding.txt",
+      "candidateCount": 2,
+      "characterId": "geomchi",
+      "personaId": "default",
+      "outfitId": "black-swordsman",
+      "poseId": "commanding",
+      "expressionId": "fierce-smile",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "geomchi-disciple-ready",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/geomchi-disciple-ready.txt",
+      "candidateCount": 2,
+      "characterId": "geomchi-disciple",
+      "personaId": "default",
+      "outfitId": "black-disciple-uniform",
+      "poseId": "ready",
+      "expressionId": "determined",
+      "masterAssetId": "main-cast-style-board",
+      "masterReferencePath": "references/main-cast-style-board.png"
+    },
+    {
+      "id": "workshop-owner",
+      "status": "needed",
+      "modelProfile": "flux-sprite",
+      "promptFile": "prompts/sprites/workshop-owner.txt",
+      "candidateCount": 1,
+      "characterId": "workshop-owner",
+      "personaId": "default",
+      "outfitId": "apron",
+      "poseId": "speaking",
+      "expressionId": "neutral",
+      "masterAssetId": "main-cast-style-board"
+    },
+    {
+      "id": "commission-client",
+      "status": "needed",
+      "modelProfile": "flux-sprite",
+      "promptFile": "prompts/sprites/commission-client.txt",
+      "candidateCount": 1,
+      "characterId": "commission-client",
+      "personaId": "default",
+      "outfitId": "town-clothes",
+      "poseId": "speaking",
+      "expressionId": "neutral",
+      "masterAssetId": "main-cast-style-board"
+    }
+  ]
+}

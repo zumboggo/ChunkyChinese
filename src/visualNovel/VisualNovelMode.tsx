@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { CSSProperties, MutableRefObject } from 'react'
+import { CardBattlerMode } from '../cardBattler/CardBattlerMode'
+import { createEncounter } from '../cardBattler/engine'
+import type { CardBattlerState } from '../cardBattler/types'
 import { AdaptiveChineseText } from '../AdaptiveChineseText'
 import { WordInfoPopover } from '../WordInfoPopover'
 import { tokenizeReaderText, type AdaptivePinyinMode } from '../adaptiveText'
@@ -256,6 +259,13 @@ export function VisualNovelMode({
     }
   }, [save])
 
+  const handleBattleEnd = useCallback(async (battleState: CardBattlerState) => {
+    if (!save || !script) return
+    const nextSave = advanceVisualNovel(script, save, battleState.status === 'victory' ? 'win' : 'lose')
+    nextSave.activeEncounter = undefined
+    await persistSave(nextSave, save.state)
+  }, [save, script, persistSave])
+
   const handleRestart = useCallback(async () => {
     if (!script) return
     stopAudio(audioRef, audioTokenRef)
@@ -389,7 +399,28 @@ export function VisualNovelMode({
 
       {loadState === 'ready' && script && save && node && manifest && (
         <>
-          <section className="vn-workspace">
+          {node.type === 'cardBattle' ? (
+            <CardBattlerMode
+              initialState={
+                save.activeEncounter ?? 
+                createEncounter(
+                  ['strike', 'strike', 'strike', 'defend', 'defend'], 
+                  node.encounterId, 
+                  script.enemies?.[node.encounterId]?.maxHp ?? 20, 
+                  50
+                )
+              }
+              enemyDef={script.enemies?.[node.encounterId] ?? { id: node.encounterId, name: { chinese: 'Enemy' }, maxHp: 20, intents: [] }}
+              cards={script.cards ?? {}}
+              words={words}
+              pinyinMode={pinyinMode}
+              hotkeys={hotkeys}
+              onBattleEnd={handleBattleEnd}
+              onSelectToken={handleSelectToken}
+            />
+          ) : (
+            <>
+              <section className="vn-workspace">
             <div className="vn-stage" aria-label="Visual Novel scene">
               {cinematic ? (
                 <img
@@ -516,6 +547,8 @@ export function VisualNovelMode({
               formatDueDate={formatDueDate}
             />
           )}
+            </>
+          )}
         </>
       )}
     </section>
@@ -611,6 +644,7 @@ function getDisplayText(node: VnNode): VnText | undefined {
   if (node.type === 'line') return node.text
   if (node.type === 'choice') return node.prompt
   if (node.type === 'cinematic') return node.caption
+  if (node.type === 'cardBattle') return undefined
   return node.summary
 }
 
@@ -655,6 +689,8 @@ function speakerLabel(script: VnScript, node: VnNode): string {
   if (node.type === 'cinematic') return 'Cinematic'
   if (node.type === 'choice') return 'Choice'
   if (node.type === 'end') return 'Ending'
+  if (node.type === 'questResult') return 'Quest Result'
+  if (node.type === 'cardBattle') return 'Combat'
   if (!node.speaker) return 'Narration'
   const character = script.characters[node.speaker.characterId]
   const persona = node.speaker.personaId ? character?.personas[node.speaker.personaId] : undefined

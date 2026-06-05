@@ -1,7 +1,11 @@
 export type VnPosition = 'left' | 'center' | 'right'
 export type VnChoiceKind = 'expressive' | 'memory' | 'consequential'
 export type VnQuestStatus = 'active' | 'completed' | 'failed'
-export type VnNodeType = 'line' | 'choice' | 'cinematic' | 'end'
+export type VnNodeType = 'line' | 'choice' | 'cinematic' | 'questResult' | 'end' | 'cardBattle'
+export type VnWorldQuestStatus = 'hidden' | 'discovered' | 'available' | 'active' | 'completed' | 'failed' | 'recoverable'
+export type VnQuestCategory = 'main' | 'side' | 'commission' | 'rumour' | 'training' | 'encounter'
+
+import type { CardBattlerState, CardDefinition, EnemyDefinition } from '../cardBattler/types'
 
 export interface VnIndexEntry {
   id: string
@@ -93,12 +97,21 @@ export type VnEffect =
   | { id: string; onceKey?: string; op: 'setFlag'; key: string; value: boolean | string | number }
   | { id: string; onceKey?: string; op: 'addQuestNote'; note: VnQuestNote }
   | { id: string; onceKey?: string; op: 'updateQuestNote'; noteId: string; status: VnQuestStatus; text?: string }
+  | { id: string; onceKey?: string; op: 'unlockLocation'; locationId: string }
+  | { id: string; onceKey?: string; op: 'unlockTitle'; titleId: string }
+  | { id: string; onceKey?: string; op: 'setWorldQuestStatus'; questId: string; status: VnWorldQuestStatus }
+  | { id: string; onceKey?: string; op: 'recordEncounter'; encounterId: string; poolId?: string }
+  | { id: string; onceKey?: string; op: 'startCardBattle'; encounterId: string }
 
 export type VnCondition =
   | { op: 'flagEquals'; key: string; value: boolean | string | number }
   | { op: 'moneyAtLeast'; amount: number }
   | { op: 'skillAtLeast'; skill: string; amount: number }
   | { op: 'questStatus'; noteId: string; status: VnQuestStatus }
+  | { op: 'worldQuestStatus'; questId: string; status: VnWorldQuestStatus }
+  | { op: 'locationUnlocked'; locationId: string }
+  | { op: 'hasTitle'; titleId: string }
+  | { op: 'encounterSeen'; encounterId: string; value?: boolean }
 
 export type VnNode =
   | {
@@ -129,9 +142,28 @@ export type VnNode =
     }
   | {
       id: string
+      type: 'questResult'
+      questId: string
+      outcomeId: string
+      completed: boolean
+      resultId?: string
+      summary?: VnText
+      worldEffects?: VnEffect[]
+      returnLocationId?: string
+    }
+  | {
+      id: string
       type: 'end'
       endingId: string
       summary?: VnText
+      effects?: VnEffect[]
+    }
+  | {
+      id: string
+      type: 'cardBattle'
+      encounterId: string
+      winNextId: string
+      loseNextId?: string
       effects?: VnEffect[]
     }
 
@@ -156,6 +188,8 @@ export interface VnScript {
   characters: Record<string, VnCharacter>
   initialState: VnState
   nodes: Record<string, VnNode>
+  cards?: Record<string, CardDefinition>
+  enemies?: Record<string, EnemyDefinition>
 }
 
 export interface VnBackgroundAsset {
@@ -221,5 +255,127 @@ export interface VisualNovelSave {
   state: VnState
   scene: VnSceneState
   history: VnHistoryEntry[]
+  activeEncounter?: CardBattlerState
+  updatedAt: string
+}
+
+export interface VnWorldIndexEntry {
+  id: string
+  title: string
+  description?: string
+  worldPath: string
+}
+
+export interface VnWorld {
+  id: string
+  schemaVersion: number
+  contentVersion: string
+  title: string
+  description?: VnText
+  initialLocationId: string
+  openingQuestId?: string
+  assetManifestPath: string
+  characters?: Record<string, VnCharacter>
+  locations: Record<string, VnLocation>
+  quests: Record<string, VnQuestDefinition>
+  encounterPools?: Record<string, VnEncounterPool>
+  cards?: Record<string, CardDefinition>
+  enemies?: Record<string, EnemyDefinition>
+  initialState: VnWorldState
+}
+
+export interface VnLocation {
+  id: string
+  name: VnText
+  description?: VnText
+  restoredDescription?: VnText
+  backgroundId: string
+  restoredBackgroundId?: string
+  npcIds?: string[]
+  travelTo?: string[]
+  availableActions?: VnWorldAction[]
+  conditions?: VnCondition[]
+}
+
+export interface VnWorldAction {
+  id: string
+  label: VnText
+  kind: 'travel' | 'quest' | 'encounterPool' | 'rumour'
+  targetId: string
+  conditions?: VnCondition[]
+}
+
+export interface VnQuestDefinition {
+  id: string
+  title: VnText
+  category: VnQuestCategory
+  description?: VnText
+  objective?: VnText
+  scriptPath: string
+  scriptId: string
+  entryNodeId: string
+  resultNodeIds?: string[]
+  discoveryConditions?: VnCondition[]
+  prerequisites?: VnCondition[]
+  repeatable?: boolean
+  maxCompletions?: number
+  returnLocationId?: string
+  completionEffects?: VnEffect[]
+  encounterPoolId?: string
+}
+
+export interface VnEncounterPool {
+  id: string
+  title: VnText
+  questIds: string[]
+  conditions?: VnCondition[]
+}
+
+export interface VnWorldState {
+  currentLocationId: string
+  money: number
+  skills: Record<string, number>
+  flags: Record<string, boolean | string | number>
+  questStates: Record<string, VnQuestState>
+  unlockedLocations: string[]
+  unlockedTitles: string[]
+  completedEncounterIds: string[]
+  encounterCounts: Record<string, number>
+  committedResultIds: string[]
+}
+
+export interface VnQuestState {
+  status: VnWorldQuestStatus
+  completions: number
+  activeRunId?: string
+  lastOutcomeId?: string
+  discoveredAt?: string
+  updatedAt: string
+}
+
+export interface VnQuestResult {
+  questId: string
+  outcomeId: string
+  completed: boolean
+  resultId: string
+  worldEffects: VnEffect[]
+  returnLocationId?: string
+}
+
+export interface VnInterruptedQuest {
+  questId: string
+  visualNovelId: string
+  saveId: string
+  startedAt: string
+}
+
+export interface VisualNovelWorldSave {
+  id: string
+  worldId: string
+  contentVersion: string
+  schemaVersion: number
+  state: VnWorldState
+  interruptedQuest?: VnInterruptedQuest
+  activeEncounter?: CardBattlerState
   updatedAt: string
 }

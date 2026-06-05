@@ -17,7 +17,15 @@
     "clean:lms-vocab": "node scripts/clean-lms-vocab.mjs --write",
     "validate:lms-vocab": "node scripts/clean-lms-vocab.mjs",
     "verify:reader-pack": "node scripts/verify-reader-pack.mjs",
-    "verify:visual-novel-pack": "node scripts/verify-visual-novel-pack.mjs"
+    "verify:visual-novel-pack": "node scripts/verify-visual-novel-pack.mjs",
+    "verify:visual-novel-world": "node scripts/verify-visual-novel-world.mjs",
+    "vn:assets:status": "node scripts/vn-assets/cli.mjs status",
+    "vn:assets:generate": "node scripts/vn-assets/cli.mjs generate",
+    "vn:assets:review": "node scripts/vn-assets/cli.mjs review",
+    "vn:assets:process": "node scripts/vn-assets/cli.mjs process",
+    "vn:assets:publish": "node scripts/vn-assets/cli.mjs publish",
+    "vn:assets:verify": "node scripts/vn-assets/cli.mjs verify",
+    "vn:analyze-language": "node scripts/vn-analyze-language.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.2",
@@ -41,6 +49,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
+    "replicate": "^1.4.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
     "vite": "^8.0.12",

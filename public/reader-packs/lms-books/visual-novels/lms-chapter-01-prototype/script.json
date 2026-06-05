@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-06-05-placeholder-v1",
+  "contentVersion": "2026-06-05-no-svg-runtime-art-v1",
   "id": "lms-chapter-01-prototype",
   "packId": "lms-books",
   "title": "LMS Chapter 01 Prototype",
@@ -24,7 +24,10 @@
           "defaultOutfitId": "work-clothes",
           "defaultSpriteId": "lee-real-neutral",
           "defaultScale": 0.72,
-          "preferredPositions": ["center", "left"]
+          "preferredPositions": [
+            "center",
+            "left"
+          ]
         },
         "weed-sculptor": {
           "id": "weed-sculptor",
@@ -35,7 +38,10 @@
           "defaultOutfitId": "sculptor-clothes",
           "defaultSpriteId": "weed-sculptor-calculating",
           "defaultScale": 0.76,
-          "preferredPositions": ["center", "left"]
+          "preferredPositions": [
+            "center",
+            "left"
+          ]
         }
       }
     },
@@ -55,7 +61,9 @@
           "defaultOutfitId": "workshop-apron",
           "defaultSpriteId": "owner-neutral",
           "defaultScale": 0.74,
-          "preferredPositions": ["right"]
+          "preferredPositions": [
+            "right"
+          ]
         }
       }
     }
