@@ -37,6 +37,7 @@ import {
   getVisualNovelWorldSave,
   saveVisualNovelSave,
   saveVisualNovelWorldSave,
+  deleteVisualNovelWorldSave,
 } from './storage'
 import { validateVisualNovelWorld } from './worldValidator'
 import { CardBattlerMode } from '../cardBattler/CardBattlerMode'
@@ -114,6 +115,8 @@ export function VisualNovelWorldMode({
   const [loadState, setLoadState] = useState<'loading' | 'ready' | 'empty' | 'error'>('loading')
   const [message, setMessage] = useState<string | null>(null)
   const [loadingSlow, setLoadingSlow] = useState(false)
+  const [loadingStep, setLoadingStep] = useState('Starting...')
+  const [reloadKey, setReloadKey] = useState(0)
   const [showEnglish, setShowEnglish] = useState(false)
   const [selectedToken, setSelectedToken] = useState<ReaderWordToken | null>(null)
   const [dictionaryEntry, setDictionaryEntry] = useState<DictionaryEntry | null>(null)
@@ -134,18 +137,28 @@ export function VisualNovelWorldMode({
   useEffect(() => {
     let cancelled = false
     async function loadIndex() {
-      setLoadState('loading')
-      const nextIndex = await loadVisualNovelWorldIndex()
-      if (cancelled) return
-      setWorldIndex(nextIndex)
-      setSelectedWorldId((current) => current ?? nextIndex[0]?.id)
-      setLoadState(nextIndex.length > 0 ? 'loading' : 'empty')
+      try {
+        setLoadState('loading')
+        setLoadingStep('Loading world index...')
+        setMessage(null)
+        const nextIndex = await loadVisualNovelWorldIndex()
+        if (cancelled) return
+        setWorldIndex(nextIndex)
+        setSelectedWorldId(nextIndex[0]?.id)
+        setLoadState(nextIndex.length > 0 ? 'loading' : 'empty')
+        setLoadingStep(nextIndex.length > 0 ? 'Loading selected world...' : 'No worlds found.')
+      } catch (error) {
+        console.error(error)
+        if (cancelled) return
+        setLoadState('error')
+        setMessage(error instanceof Error ? error.message : 'Visual Novel world index failed to load.')
+      }
     }
     void loadIndex()
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [reloadKey])
 
   useEffect(() => {
     if (!selectedWorldId) return
@@ -161,30 +174,51 @@ export function VisualNovelWorldMode({
         setDictionaryEntry(null)
         setActiveQuestId(null)
         setQuestSave(null)
+        setLoadingStep(`Loading ${selectedEntry.title}...`)
         const nextWorld = await loadVisualNovelWorld(selectedEntry)
+        setLoadingStep('Loading visual assets...')
         const nextManifest = await loadVisualNovelWorldAssetManifest(nextWorld)
         const nextScripts: Record<string, VnScript> = {}
-        await Promise.all(
-          Object.values(nextWorld.quests).map(async (quest) => {
-            nextScripts[quest.scriptId] = await loadVisualNovelQuestScript(nextWorld, quest.scriptPath)
-          }),
-        )
+        const quests = Object.values(nextWorld.quests)
+        for (const quest of quests) {
+          setLoadingStep(`Loading quest: ${quest.title.english ?? quest.id}...`)
+          nextScripts[quest.scriptId] = await loadVisualNovelQuestScript(nextWorld, quest.scriptPath)
+        }
+        setLoadingStep('Validating world...')
         const validation = validateVisualNovelWorld(nextWorld, nextScripts, nextManifest)
         if (validation.errors.length > 0) throw new Error(validation.errors[0])
         if (validation.warnings.length > 0) console.info('Visual Novel world validation warnings', validation.warnings)
-        const existingSave = await getVisualNovelWorldSave(nextWorld.id)
+        setLoadingStep('Opening local world save...')
+        const existingSave = await withTimeout(
+          getVisualNovelWorldSave(nextWorld.id),
+          5000,
+          'Local Visual Novel save took too long to open.',
+        ).catch((error) => {
+          console.warn(error)
+          return undefined
+        })
         const usableSave =
           existingSave &&
           existingSave.contentVersion === nextWorld.contentVersion &&
           Boolean(nextWorld.locations[existingSave.state.currentLocationId])
             ? existingSave
             : makeVisualNovelWorldSave(nextWorld)
-        if (!existingSave || existingSave !== usableSave) await saveVisualNovelWorldSave(usableSave)
+        if (!existingSave || existingSave !== usableSave) {
+          setLoadingStep('Saving fresh world state...')
+          await withTimeout(
+            saveVisualNovelWorldSave(usableSave),
+            5000,
+            'Local Visual Novel save took too long to write.',
+          ).catch((error) => {
+            console.warn(error)
+          })
+        }
         if (cancelled) return
         setWorld(nextWorld)
         setManifest(nextManifest)
         setScripts(nextScripts)
         setWorldSave(usableSave)
+        setLoadingStep('Ready.')
         setLoadState('ready')
       } catch (error) {
         console.error(error)
@@ -197,7 +231,7 @@ export function VisualNovelWorldMode({
     return () => {
       cancelled = true
     }
-  }, [selectedWorldId, worldIndex])
+  }, [selectedWorldId, worldIndex, reloadKey])
 
   const location = world && worldSave ? currentWorldLocation(world, worldSave) : undefined
   const activeQuest = world && activeQuestId ? world.quests[activeQuestId] : undefined
@@ -460,6 +494,7 @@ export function VisualNovelWorldMode({
       {loadState === 'loading' && (
         <section className="vn-empty">
           <h2>Loading world...</h2>
+          <p>{loadingStep}</p>
           {loadingSlow && (
             <>
               <p>
@@ -467,6 +502,9 @@ export function VisualNovelWorldMode({
                 cache data.
               </p>
               <div className="button-group">
+                <button type="button" onClick={() => setReloadKey((key) => key + 1)}>
+                  Try again
+                </button>
                 <button type="button" onClick={resetPwaShell}>
                   Reset app shell cache
                 </button>
@@ -479,7 +517,26 @@ export function VisualNovelWorldMode({
         </section>
       )}
       {loadState === 'empty' && <section className="vn-empty">No Visual Novel worlds are published yet.</section>}
-      {loadState === 'error' && <section className="vn-empty">{message}</section>}
+      {loadState === 'error' && (
+        <section className="vn-empty">
+          <h2>Visual Novel world could not load.</h2>
+          <p>{message}</p>
+          <div className="button-group">
+            <button type="button" onClick={() => setReloadKey((key) => key + 1)}>
+              Try again
+            </button>
+            <button type="button" onClick={async () => {
+              if (selectedWorldId) await deleteVisualNovelWorldSave(selectedWorldId).catch(console.warn)
+              setReloadKey((key) => key + 1)
+            }}>
+              Clear VN save
+            </button>
+            <button type="button" onClick={resetPwaShell}>
+              Reset app shell cache
+            </button>
+          </div>
+        </section>
+      )}
 
       {loadState === 'ready' && world && worldSave && manifest && (
         activeQuest && activeScript && questSave && node ? (
@@ -554,6 +611,16 @@ function resetPwaShell() {
   const url = new URL(window.location.href)
   url.searchParams.set('resetPwa', '1')
   window.location.assign(url.toString())
+}
+
+function withTimeout<T>(promise: Promise<T>, timeoutMs: number, message: string): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timeout = window.setTimeout(() => reject(new Error(message)), timeoutMs)
+    promise
+      .then(resolve)
+      .catch(reject)
+      .finally(() => window.clearTimeout(timeout))
+  })
 }
 
 function WorldHub({
