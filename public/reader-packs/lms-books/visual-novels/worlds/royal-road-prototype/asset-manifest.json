@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-06-05-no-svg-runtime-art-v1",
+  "contentVersion": "2026-06-05-alpha-sprites-v1",
   "fallbackBackgroundId": "town-square-day",
   "backgrounds": {
     "real-apartment-night": {
