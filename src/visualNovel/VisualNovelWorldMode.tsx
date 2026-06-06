@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import type { CSSProperties, MutableRefObject } from 'react'
-import { AdaptiveChineseText } from '../AdaptiveChineseText'
+import type { CSSProperties } from 'react'
 import { WordInfoPopover } from '../WordInfoPopover'
 import { tokenizeReaderText, type AdaptivePinyinMode } from '../adaptiveText'
 import {
@@ -8,6 +7,11 @@ import {
   getAudioClip,
   lookupDictionary,
   upsertWords,
+  getVisualNovelSave,
+  getVisualNovelWorldSave,
+  saveVisualNovelSave,
+  saveVisualNovelWorldSave,
+  deleteVisualNovelWorldSave,
 } from '../db'
 import type {
   DictionaryEntry,
@@ -32,23 +36,10 @@ import {
   loadVisualNovelWorldIndex,
   visualNovelAssetSrc,
 } from './loader'
-import {
-  getVisualNovelSave,
-  getVisualNovelWorldSave,
-  saveVisualNovelSave,
-  saveVisualNovelWorldSave,
-  deleteVisualNovelWorldSave,
-} from './storage'
 import { validateVisualNovelWorld } from './worldValidator'
-import { CardBattlerMode } from '../cardBattler/CardBattlerMode'
-import { createEncounter } from '../cardBattler/engine'
 import {
   abandonWorldQuest,
-  activeWorldQuests,
-  availableTravelLocations,
-  availableWorldActions,
   commitQuestResult,
-  completedWorldQuests,
   currentWorldLocation,
   makeVisualNovelWorldSave,
   nextEncounterQuest,
@@ -58,18 +49,17 @@ import type {
   VisualNovelSave,
   VisualNovelWorldSave,
   VnAssetManifest,
-  VnChoice,
-  VnLocation,
-  VnNode,
   VnQuestDefinition,
   VnQuestResult,
-  VnSceneCharacter,
   VnScript,
-  VnText,
   VnWorld,
   VnWorldAction,
   VnWorldIndexEntry,
 } from './types'
+import { getNodeText, getNodeAudioClipId, scopedTokens, stopAudio, speakUtterance, formatDueDate, getLocationBackgroundId } from './utils'
+import { QuestPlayer } from './QuestPlayer'
+import { WorldHub } from './WorldHub'
+import { WorldStatusPanel } from './WorldStatusPanel'
 
 interface VisualNovelWorldModeProps {
   words: VocabWord[]
@@ -83,12 +73,6 @@ interface VisualNovelWorldModeProps {
   onEditWord: (word: VocabWord) => void
   onWordsChanged: () => void | Promise<void>
   onReturnToReader: () => void
-}
-
-interface VnHubCastMember {
-  characterId: string
-  name: string
-  spriteId: string
 }
 
 export function VisualNovelWorldMode({
@@ -123,6 +107,7 @@ export function VisualNovelWorldMode({
   const [statusToast, setStatusToast] = useState<string | null>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const audioTokenRef = useRef(0)
+  const audioBlobUrlRef = useRef<string | null>(null)
 
   const readerSentenceById = useMemo(() => {
     const sentences = new Map<string, ReaderSentence>()
@@ -257,19 +242,18 @@ export function VisualNovelWorldMode({
     return () => window.clearTimeout(timeout)
   }, [statusToast])
 
-  useEffect(
-    () => () => {
-      stopAudio(audioRef, audioTokenRef)
-    },
-    [],
-  )
+  useEffect(() => () => {
+    stopAudio(audioRef, audioTokenRef)
+    if (audioBlobUrlRef.current) {
+      URL.revokeObjectURL(audioBlobUrlRef.current)
+      audioBlobUrlRef.current = null
+    }
+  }, [])
 
   useEffect(() => {
     if (loadState !== 'loading') return
-    const resetTimeout = window.setTimeout(() => setLoadingSlow(false), 0)
     const timeout = window.setTimeout(() => setLoadingSlow(true), 6000)
     return () => {
-      window.clearTimeout(resetTimeout)
       window.clearTimeout(timeout)
     }
   }, [loadState])
@@ -411,10 +395,15 @@ export function VisualNovelWorldMode({
     const token = audioTokenRef.current + 1
     audioTokenRef.current = token
     stopAudio(audioRef, audioTokenRef, token)
+    if (audioBlobUrlRef.current) {
+      URL.revokeObjectURL(audioBlobUrlRef.current)
+      audioBlobUrlRef.current = null
+    }
     if (audioClipId) {
       const clip = await getAudioClip(audioClipId)
       if (clip && audioTokenRef.current === token) {
         const url = URL.createObjectURL(clip.blob)
+        audioBlobUrlRef.current = url
         const audio = new Audio(url)
         audio.playbackRate = playbackRate
         audioRef.current = audio
@@ -424,6 +413,7 @@ export function VisualNovelWorldMode({
           audio.play().catch(() => resolve())
         })
         URL.revokeObjectURL(url)
+        audioBlobUrlRef.current = null
         if (audioRef.current === audio) audioRef.current = null
         return
       }
@@ -466,6 +456,7 @@ export function VisualNovelWorldMode({
 
   const backgroundId = getLocationBackgroundId(location, worldSave)
   const background = manifest && backgroundId ? manifest.backgrounds[backgroundId] : undefined
+
   return (
     <section
       className={`screen visual-novel-screen vn-world-screen reader-theme-${readerTheme}`}
@@ -575,14 +566,14 @@ export function VisualNovelWorldMode({
               </div>
               <WorldStatusPanel world={world} save={worldSave} />
             </section>
-              <WorldHub
-                world={world}
-                save={worldSave}
-                location={location}
-                manifest={manifest}
-                words={words}
-                selectedToken={selectedToken}
-                pinyinMode={pinyinMode}
+            <WorldHub
+              world={world}
+              save={worldSave}
+              location={location}
+              manifest={manifest}
+              words={words}
+              selectedToken={selectedToken}
+              pinyinMode={pinyinMode}
               onSelectToken={handleSelectToken}
               onAction={handleWorldAction}
               onResume={resumeInterruptedQuest}
@@ -621,402 +612,4 @@ function withTimeout<T>(promise: Promise<T>, timeoutMs: number, message: string)
       .catch(reject)
       .finally(() => window.clearTimeout(timeout))
   })
-}
-
-function WorldHub({
-  world,
-  save,
-  location,
-  manifest,
-  words,
-  selectedToken,
-  pinyinMode,
-  onSelectToken,
-  onAction,
-  onResume,
-}: {
-  world: VnWorld
-  save: VisualNovelWorldSave
-  location?: VnLocation
-  manifest: VnAssetManifest
-  words: VocabWord[]
-  selectedToken: ReaderWordToken | null
-  pinyinMode: AdaptivePinyinMode
-  onSelectToken: (token: ReaderWordToken | null) => void
-  onAction: (action: VnWorldAction) => void | Promise<void>
-  onResume: () => void | Promise<void>
-}) {
-  const description = getLocationDescription(location, save)
-  const descriptionTokens = useMemo(
-    () => scopedTokens(tokenizeReaderText(description?.chinese ?? '', words), `location-${location?.id ?? 'unknown'}`),
-    [description?.chinese, location?.id, words],
-  )
-  const actions = availableWorldActions(world, save)
-  const travelLocations = availableTravelLocations(world, save)
-  const activeQuests = activeWorldQuests(world, save)
-  const completedQuests = completedWorldQuests(world, save)
-  const castMembers = useMemo(
-    () => getHubCastMembers(world, location, manifest),
-    [location, manifest, world],
-  )
-
-  return (
-    <section className="vn-dialogue-panel vn-world-panel">
-      <div className="vn-node-meta">
-        <span>{location?.name.english ?? location?.id ?? 'Unknown location'}</span>
-        <span>{location?.name.chinese}</span>
-      </div>
-      {descriptionTokens.length > 0 && (
-        <AdaptiveChineseText
-          tokens={descriptionTokens}
-          selectedToken={selectedToken}
-          pinyinMode={pinyinMode}
-          onSelectToken={onSelectToken}
-          className="reader-sentence vn-line"
-        />
-      )}
-      {description?.english && <p className="reader-translation vn-translation revealed">{description.english}</p>}
-
-      {castMembers.length > 0 && (
-        <div className="vn-location-cast" aria-label="People here">
-          {castMembers.map((member) => {
-            const sprite = manifest.sprites[member.spriteId]
-            if (!sprite) return null
-            return (
-              <figure key={`${member.characterId}:${member.spriteId}`}>
-                <img src={visualNovelAssetSrc(sprite.src)} alt={sprite.alt ?? member.name} />
-                <figcaption>{member.name}</figcaption>
-              </figure>
-            )
-          })}
-        </div>
-      )}
-
-      {save.interruptedQuest && (
-        <button type="button" className="primary" onClick={onResume}>
-          Resume interrupted quest
-        </button>
-      )}
-
-      <div className="vn-world-grid">
-        <section>
-          <h2>Available</h2>
-          <div className="vn-world-action-list">
-            {actions.map((action) => (
-              <button key={action.id} type="button" onClick={() => onAction(action)}>
-                <strong>{action.label.english}</strong>
-                <span>{action.label.chinese}</span>
-              </button>
-            ))}
-            {actions.length === 0 && <small>No actions here yet.</small>}
-          </div>
-        </section>
-        <section>
-          <h2>Travel</h2>
-          <div className="vn-world-action-list">
-            {travelLocations.map((destination) => (
-              <button
-                key={destination.id}
-                type="button"
-                onClick={() => onAction({ id: `travel-${destination.id}`, kind: 'travel', targetId: destination.id, label: destination.name })}
-              >
-                <strong>{destination.name.english}</strong>
-                <span>{destination.name.chinese}</span>
-              </button>
-            ))}
-            {travelLocations.length === 0 && <small>No unlocked destinations.</small>}
-          </div>
-        </section>
-        <section>
-          <h2>Journal</h2>
-          <div className="vn-journal-list">
-            {activeQuests.map((quest) => (
-              <p key={quest.id}>
-                <strong>{quest.title.english}</strong>
-                <span>{quest.objective?.english ?? quest.description?.english}</span>
-              </p>
-            ))}
-            {completedQuests.slice(-3).map((quest) => (
-              <p key={quest.id} className="completed">
-                <strong>{quest.title.english}</strong>
-                <span>Completed</span>
-              </p>
-            ))}
-            {activeQuests.length === 0 && completedQuests.length === 0 && <small>No journal entries yet.</small>}
-          </div>
-        </section>
-      </div>
-    </section>
-  )
-}
-
-function QuestPlayer({
-  world,
-  quest,
-  save,
-  node,
-  result,
-  choices,
-  manifest,
-  worldSave,
-  words,
-  displayTokens,
-  selectedToken,
-  pinyinMode,
-  showEnglish,
-  onSelectToken,
-  onToggleEnglish,
-  onBack,
-  onAdvance,
-  onCommitResult,
-  onAbandon,
-  onReplay,
-  hotkeys,
-}: {
-  world: VnWorld
-  quest: VnQuestDefinition
-  save: VisualNovelSave
-  node: VnNode
-  result?: VnQuestResult
-  choices: VnChoice[]
-  manifest: VnAssetManifest
-  worldSave: VisualNovelWorldSave
-  words: VocabWord[]
-  displayTokens: ReaderWordToken[]
-  selectedToken: ReaderWordToken | null
-  pinyinMode: AdaptivePinyinMode
-  showEnglish: boolean
-  onSelectToken: (token: ReaderWordToken | null) => void
-  onToggleEnglish: () => void
-  onBack: () => void | Promise<void>
-  onAdvance: (choiceId?: string) => void | Promise<void>
-  onCommitResult: (result: VnQuestResult) => void | Promise<void>
-  onAbandon: () => void | Promise<void>
-  onReplay: () => void | Promise<void>
-  hotkeys: HotkeySettings
-}) {
-  const text = getNodeText(node)
-  const background = save.scene.cinematicImageId
-    ? undefined
-    : save.scene.backgroundId
-      ? manifest.backgrounds[save.scene.backgroundId]
-      : undefined
-  const cinematic = save.scene.cinematicImageId ? manifest.cinematics[save.scene.cinematicImageId] : undefined
-
-  if (node.type === 'cardBattle') {
-    return (
-      <CardBattlerMode
-        initialState={
-          save.activeEncounter ?? 
-          createEncounter(
-            ['strike', 'strike', 'strike', 'defend', 'defend'], 
-            node.encounterId, 
-            world.enemies?.[node.encounterId]?.maxHp ?? 20, 
-            50
-          )
-        }
-        enemyDef={world.enemies?.[node.encounterId] ?? { id: node.encounterId, name: { chinese: 'Enemy' }, maxHp: 20, intents: [] }}
-        cards={world.cards ?? {}}
-        words={words}
-        pinyinMode={pinyinMode}
-        hotkeys={hotkeys}
-        onBattleEnd={(state) => onAdvance(state.status === 'victory' ? 'win' : 'lose')}
-        onSelectToken={onSelectToken}
-      />
-    )
-  }
-
-  return (
-    <>
-      <section className="vn-workspace">
-        <div className="vn-stage" aria-label="Quest scene">
-          {cinematic ? (
-            <img className="vn-cinematic" src={visualNovelAssetSrc(cinematic.src)} alt={cinematic.alt} />
-          ) : background ? (
-            <img className="vn-background" src={visualNovelAssetSrc(background.src)} alt={background.alt} />
-          ) : (
-            <div className="vn-background vn-background-fallback" aria-label="Neutral background" />
-          )}
-          {!cinematic && save.scene.characters.map((character) => {
-            return (
-              <VisualNovelSprite
-                key={character.slotId ?? `${character.characterId}:${character.position}`}
-                character={character}
-                manifest={manifest}
-              />
-            )
-          })}
-        </div>
-        <WorldStatusPanel world={world} save={worldSave} />
-      </section>
-      <section className="vn-dialogue-panel">
-        <div className="vn-node-meta">
-          <span>{quest.title.english}</span>
-          <span>{node.id}</span>
-        </div>
-        {displayTokens.length > 0 && (
-          <AdaptiveChineseText
-            tokens={displayTokens}
-            selectedToken={selectedToken}
-            pinyinMode={pinyinMode}
-            onSelectToken={onSelectToken}
-            className="reader-sentence vn-line"
-          />
-        )}
-        {text?.english && (
-          <p className={`reader-translation vn-translation ${showEnglish ? 'revealed' : 'blur-reveal'}`} onClick={onToggleEnglish}>
-            {text.english}
-          </p>
-        )}
-        {node.type === 'choice' && (
-          <div className="vn-choice-list">
-            {choices.map((choice, index) => (
-              <button key={choice.id} type="button" className={`vn-world-choice vn-choice-${choice.kind}`} onClick={() => onAdvance(choice.id)}>
-                {index < 2 && <kbd>{(index === 0 ? hotkeys.choiceA : hotkeys.choiceB).toUpperCase()}</kbd>}
-                <span>{choice.label.chinese}</span>
-                <small>{choice.label.english}</small>
-              </button>
-            ))}
-          </div>
-        )}
-        {result && (
-          <div className="vn-result-panel">
-            <strong>{result.completed ? 'Quest complete' : 'Quest unresolved'}</strong>
-            <button type="button" className="primary" onClick={() => onCommitResult(result)}>
-              Return to world
-            </button>
-          </div>
-        )}
-        <div className="vn-controls">
-          <button type="button" onClick={onBack} disabled={save.history.length <= 1 || Boolean(result)}>Back</button>
-          <button type="button" onClick={onReplay}>Replay</button>
-          <button type="button" onClick={onToggleEnglish}>English {showEnglish ? 'sharp' : 'blurred'}</button>
-          {!result && node.type !== 'choice' && (
-            <button type="button" className="primary" onClick={() => onAdvance()}>
-              <kbd>{hotkeys.choiceA.toUpperCase()}</kbd>
-              Next
-            </button>
-          )}
-          <button type="button" className="ghost-answer" onClick={onAbandon}>Pause quest</button>
-        </div>
-      </section>
-    </>
-  )
-}
-
-function VisualNovelSprite({
-  character,
-  manifest,
-}: {
-  character: VnSceneCharacter
-  manifest: VnAssetManifest
-}) {
-  const sprite = manifest.sprites[character.spriteId]
-  if (!sprite || character.visible === false) return null
-  return (
-    <div
-      className={`vn-sprite vn-sprite-${character.position}`}
-      style={{
-        '--vn-sprite-width': `${Math.round(sprite.width * (sprite.defaultScale ?? 0.74))}px`,
-      } as CSSProperties}
-    >
-      <img src={visualNovelAssetSrc(sprite.src)} alt={sprite.alt ?? character.characterId} />
-    </div>
-  )
-}
-
-function getHubCastMembers(world: VnWorld, location: VnLocation | undefined, manifest: VnAssetManifest): VnHubCastMember[] {
-  const characterIds = location?.npcIds ?? []
-  return characterIds.flatMap((characterId) => {
-    const character = world.characters?.[characterId]
-    if (!character) return []
-    const persona = Object.values(character.personas)[0]
-    const spriteId = persona?.defaultSpriteId
-    if (!spriteId || !manifest.sprites[spriteId]) return []
-    return [{
-      characterId,
-      name: character.displayNames.english ?? character.displayNames.chinese ?? characterId,
-      spriteId,
-    }]
-  })
-}
-
-function WorldStatusPanel({ world, save }: { world: VnWorld; save: VisualNovelWorldSave }) {
-  const state = save.state
-  return (
-    <aside className="vn-status-panel" aria-label="World status">
-      <div><span>Gold</span><strong>{state.money}</strong></div>
-      <div><span>Sculpting</span><strong>{state.skills.sculpting ?? 0}</strong></div>
-      <div><span>Swordsmanship</span><strong>{state.skills.swordsmanship ?? 0}</strong></div>
-      {state.unlockedTitles[0] && <p className="vn-quest-note"><strong>Title</strong><span>{state.unlockedTitles[0]}</span></p>}
-      <p className="vn-quest-note">
-        <strong>{world.title}</strong>
-        <span>{state.unlockedLocations.length} locations unlocked</span>
-      </p>
-    </aside>
-  )
-}
-
-function getLocationBackgroundId(location: VnLocation | undefined, save: VisualNovelWorldSave | null): string | undefined {
-  if (!location) return undefined
-  if (location.restoredBackgroundId && save?.state.flags[`${location.id}-restored`] === true) {
-    return location.restoredBackgroundId
-  }
-  return location.backgroundId
-}
-
-function getLocationDescription(location: VnLocation | undefined, save: VisualNovelWorldSave): VnText | undefined {
-  if (!location) return undefined
-  if (location.restoredDescription && save.state.flags[`${location.id}-restored`] === true) {
-    return location.restoredDescription
-  }
-  return location.description
-}
-
-function getNodeText(node: VnNode): VnText | undefined {
-  if (node.type === 'line') return node.text
-  if (node.type === 'choice') return node.prompt
-  if (node.type === 'cinematic') return node.caption
-  if (node.type === 'questResult') return node.summary
-  if (node.type === 'cardBattle') return undefined
-  return node.summary
-}
-
-function getNodeAudioClipId(node: VnNode, readerSentenceById: Map<string, ReaderSentence>): string | undefined {
-  if ((node.type === 'line' || node.type === 'cinematic') && node.audioClipId) return node.audioClipId
-  const readerSentenceId = getNodeText(node)?.readerSentenceId
-  return readerSentenceId ? readerSentenceById.get(readerSentenceId)?.audioClipId : undefined
-}
-
-function scopedTokens(tokens: ReaderWordToken[], prefix: string): ReaderWordToken[] {
-  return tokens.map((token) => ({ ...token, id: `${prefix}-${token.id}` }))
-}
-
-function stopAudio(
-  audioRef: MutableRefObject<HTMLAudioElement | null>,
-  tokenRef: MutableRefObject<number>,
-  nextToken = tokenRef.current + 1,
-) {
-  tokenRef.current = nextToken
-  audioRef.current?.pause()
-  audioRef.current = null
-  window.speechSynthesis?.cancel()
-}
-
-function speakUtterance(text: string, rate: number): Promise<void> {
-  return new Promise((resolve) => {
-    const utterance = new SpeechSynthesisUtterance(text)
-    utterance.rate = rate
-    utterance.lang = /[\u3400-\u9fff]/u.test(text) ? 'zh-CN' : 'en-US'
-    utterance.onend = () => resolve()
-    utterance.onerror = () => resolve()
-    window.speechSynthesis.speak(utterance)
-  })
-}
-
-function formatDueDate(value?: string): string {
-  if (!value) return 'Unscheduled'
-  const date = new Date(value)
-  if (Number.isNaN(date.getTime())) return value
-  return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
 }
