@@ -113,6 +113,16 @@
       "references": [
         { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
       ]
+    },
+    {
+      "id": "workshop-table-closeup",
+      "status": "needed",
+      "modelProfile": "flux-scene",
+      "promptFile": "prompts/backgrounds/workshop-table-closeup.txt",
+      "candidateCount": 1,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
     }
   ],
   "cinematics": [
@@ -197,6 +207,118 @@
       "expressionId": "determined",
       "masterAssetId": "protagonist-virtual-master",
       "masterReferencePath": "references/protagonist-virtual-master.png"
+    },
+    {
+      "id": "weed-sculptor-calculating",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/weed-sculptor-calculating.txt",
+      "candidateCount": 1,
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "standing",
+      "expressionId": "calculating",
+      "masterAssetId": "protagonist-virtual-master",
+      "masterReferencePath": "references/protagonist-virtual-master.png"
+    },
+    {
+      "id": "weed-sculptor-amused",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/weed-sculptor-amused.txt",
+      "candidateCount": 1,
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "standing",
+      "expressionId": "amused",
+      "masterAssetId": "protagonist-virtual-master",
+      "masterReferencePath": "references/protagonist-virtual-master.png"
+    },
+    {
+      "id": "weed-sculptor-annoyed",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/weed-sculptor-annoyed.txt",
+      "candidateCount": 1,
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "standing",
+      "expressionId": "annoyed",
+      "masterAssetId": "protagonist-virtual-master",
+      "masterReferencePath": "references/protagonist-virtual-master.png"
+    },
+    {
+      "id": "weed-sculptor-startled",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/weed-sculptor-startled.txt",
+      "candidateCount": 1,
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "standing",
+      "expressionId": "startled",
+      "masterAssetId": "protagonist-virtual-master",
+      "masterReferencePath": "references/protagonist-virtual-master.png"
+    },
+    {
+      "id": "weed-sculptor-exhausted",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/weed-sculptor-exhausted.txt",
+      "candidateCount": 1,
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "standing",
+      "expressionId": "exhausted",
+      "masterAssetId": "protagonist-virtual-master",
+      "masterReferencePath": "references/protagonist-virtual-master.png"
+    },
+    {
+      "id": "weed-sculptor-sculpting-focus",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/weed-sculptor-sculpting-focus.txt",
+      "candidateCount": 1,
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "sculpting",
+      "expressionId": "focused",
+      "masterAssetId": "protagonist-virtual-master",
+      "masterReferencePath": "references/protagonist-virtual-master.png"
+    },
+    {
+      "id": "weed-sculptor-observing-side",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/weed-sculptor-observing-side.txt",
+      "candidateCount": 1,
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "observing-side",
+      "expressionId": "observing",
+      "masterAssetId": "protagonist-virtual-master",
+      "masterReferencePath": "references/protagonist-virtual-master.png"
+    },
+    {
+      "id": "lee-hyun-real-sitting-exhausted",
+      "status": "needed",
+      "modelProfile": "kontext-sprite",
+      "promptFile": "prompts/sprites/lee-hyun-real-sitting-exhausted.txt",
+      "candidateCount": 1,
+      "characterId": "lee-hyun",
+      "personaId": "real-world",
+      "outfitId": "modern-work-clothes",
+      "poseId": "sitting",
+      "expressionId": "exhausted",
+      "masterAssetId": "weed-outfit-pose-sheet",
+      "masterReferencePath": "references/weed-outfit-pose-sheet.png"
     },
     {
       "id": "pale-default",

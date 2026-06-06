@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-06-05-cast-integrated-v1",
+  "contentVersion": "2026-06-06-immersive-staging-v1",
   "id": "first-lesson",
   "packId": "royal-road-prototype",
   "title": "First lesson",
@@ -17,7 +17,7 @@
         "weed-sculptor": {
           "id": "weed-sculptor",
           "defaultOutfitId": "starter-sculptor",
-          "defaultSpriteId": "weed-sculptor-determined"
+          "defaultSpriteId": "weed-sculptor-calculating"
         }
       }
     },
@@ -64,14 +64,21 @@
           {
             "characterId": "lee-hyun",
             "personaId": "weed-sculptor",
-            "spriteId": "weed-sculptor-determined",
-            "position": "left"
+            "spriteId": "weed-sculptor-calculating",
+            "position": "left",
+            "xPercent": 30,
+            "scale": 0.76,
+            "zIndex": 2,
+            "dimmed": true
           },
           {
             "characterId": "geomchi",
             "personaId": "default",
             "spriteId": "geomchi-commanding",
-            "position": "right"
+            "position": "right",
+            "xPercent": 70,
+            "scale": 1.04,
+            "zIndex": 3
           }
         ]
       },
@@ -132,7 +139,30 @@
         "chinese": "很好。活得久的人，通常不是最帅的人。",
         "english": "Good. The people who live long are usually not the coolest-looking ones."
       },
-      "nextId": "lesson-result"
+      "nextId": "lesson-result",
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-amused",
+            "position": "left",
+            "xPercent": 31,
+            "scale": 0.76,
+            "zIndex": 2,
+            "dimmed": true
+          },
+          {
+            "characterId": "geomchi",
+            "personaId": "default",
+            "spriteId": "geomchi-commanding",
+            "position": "right",
+            "xPercent": 70,
+            "scale": 1.04,
+            "zIndex": 3
+          }
+        ]
+      }
     },
     "lesson-003b": {
       "id": "lesson-003b",
@@ -145,7 +175,29 @@
         "chinese": "剑挥得不错。差点打到自己，也算认识了敌人。",
         "english": "Nice swing. You nearly hit yourself, which means you have met the enemy."
       },
-      "nextId": "lesson-slime-appear"
+      "nextId": "lesson-slime-appear",
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-annoyed",
+            "position": "left",
+            "xPercent": 31,
+            "scale": 0.78,
+            "zIndex": 2
+          },
+          {
+            "characterId": "geomchi",
+            "personaId": "default",
+            "spriteId": "geomchi-commanding",
+            "position": "right",
+            "xPercent": 70,
+            "scale": 1.04,
+            "zIndex": 3
+          }
+        ]
+      }
     },
     "lesson-slime-appear": {
       "id": "lesson-slime-appear",
@@ -158,7 +210,29 @@
         "chinese": "看，墙角的灰尘史莱姆被你吵醒了。正好，用它试试手。",
         "english": "Look, the dust slime in the corner was woken up by you. Perfect, use it to test your hand."
       },
-      "nextId": "lesson-slime-battle"
+      "nextId": "lesson-slime-battle",
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-startled",
+            "position": "left",
+            "xPercent": 31,
+            "scale": 0.76,
+            "zIndex": 2
+          },
+          {
+            "characterId": "geomchi",
+            "personaId": "default",
+            "spriteId": "geomchi-commanding",
+            "position": "right",
+            "xPercent": 70,
+            "scale": 1.04,
+            "zIndex": 3
+          }
+        ]
+      }
     },
     "lesson-slime-battle": {
       "id": "lesson-slime-battle",
@@ -178,7 +252,30 @@
         "chinese": "还算有点样子。",
         "english": "Not too bad."
       },
-      "nextId": "lesson-result"
+      "nextId": "lesson-result",
+      "scene": {
+        "backgroundId": "training-hall",
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-exhausted",
+            "position": "left",
+            "xPercent": 32,
+            "scale": 0.74,
+            "zIndex": 2
+          },
+          {
+            "characterId": "geomchi",
+            "personaId": "default",
+            "spriteId": "geomchi-commanding",
+            "position": "right",
+            "xPercent": 70,
+            "scale": 1.04,
+            "zIndex": 3
+          }
+        ]
+      }
     },
     "lesson-slime-lose": {
       "id": "lesson-slime-lose",
@@ -191,7 +288,30 @@
         "chinese": "连灰尘都打不过，今天先扫地吧。",
         "english": "Can't even beat dust, just sweep the floor today."
       },
-      "nextId": "lesson-result"
+      "nextId": "lesson-result",
+      "scene": {
+        "backgroundId": "training-hall",
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-exhausted",
+            "position": "left",
+            "xPercent": 32,
+            "scale": 0.74,
+            "zIndex": 2
+          },
+          {
+            "characterId": "geomchi",
+            "personaId": "default",
+            "spriteId": "geomchi-commanding",
+            "position": "right",
+            "xPercent": 70,
+            "scale": 1.04,
+            "zIndex": 3
+          }
+        ]
+      }
     },
     "lesson-result": {
       "id": "lesson-result",

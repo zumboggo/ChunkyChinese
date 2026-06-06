@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-06-05-weed-intro-v1",
+  "contentVersion": "2026-06-06-immersive-staging-v1",
   "id": "opening-crossing",
   "packId": "royal-road-prototype",
   "title": "Weed's first road",
@@ -9,26 +9,38 @@
   "characters": {
     "lee-hyun": {
       "id": "lee-hyun",
-      "displayNames": { "english": "Lee Hyun", "chinese": "李贤" },
+      "displayNames": {
+        "english": "Lee Hyun",
+        "chinese": "李贤"
+      },
       "personas": {
         "real-world": {
           "id": "real-world",
-          "displayNames": { "english": "Lee Hyun", "chinese": "李贤" },
+          "displayNames": {
+            "english": "Lee Hyun",
+            "chinese": "李贤"
+          },
           "defaultOutfitId": "modern-work-clothes",
-          "defaultSpriteId": "lee-hyun-real-tired"
+          "defaultSpriteId": "lee-hyun-real-sitting-exhausted"
         },
         "weed-sculptor": {
           "id": "weed-sculptor",
-          "displayNames": { "english": "Weed", "chinese": "杂草" },
+          "displayNames": {
+            "english": "Weed",
+            "chinese": "杂草"
+          },
           "defaultOutfitId": "starter-sculptor",
-          "defaultSpriteId": "weed-sculptor-neutral"
+          "defaultSpriteId": "weed-sculptor-calculating"
         }
       }
     }
   },
   "initialState": {
     "money": 8,
-    "skills": { "sculpting": 0, "swordsmanship": 0 },
+    "skills": {
+      "sculpting": 0,
+      "swordsmanship": 0
+    },
     "flags": {},
     "questNotes": {},
     "appliedOnceKeys": []
@@ -44,9 +56,7 @@
       },
       "scene": {
         "backgroundId": "family-room-late",
-        "characters": [
-          { "characterId": "lee-hyun", "personaId": "real-world", "spriteId": "lee-hyun-real-tired", "position": "center" }
-        ]
+        "clearCharacters": true
       },
       "nextId": "opening-002"
     },
@@ -58,7 +68,10 @@
         "english": "During the day, he works at a gas station.",
         "readerSentenceId": "b01c01-sell-old-account-s02"
       },
-      "scene": { "backgroundId": "gas-station-night" },
+      "scene": {
+        "backgroundId": "gas-station-night",
+        "clearCharacters": true
+      },
       "nextId": "opening-003"
     },
     "opening-003": {
@@ -69,7 +82,10 @@
         "english": "At night, after he goes home, he still has to take care of his grandma and younger sister.",
         "readerSentenceId": "b01c01-sell-old-account-s03"
       },
-      "scene": { "backgroundId": "family-room-late" },
+      "scene": {
+        "backgroundId": "family-room-late",
+        "clearCharacters": true
+      },
       "nextId": "opening-004"
     },
     "opening-004": {
@@ -100,7 +116,10 @@
         "english": "He still has an old game account.",
         "readerSentenceId": "b01c01-sell-old-account-s08"
       },
-      "scene": { "backgroundId": "account-sale-screen" },
+      "scene": {
+        "backgroundId": "account-sale-screen",
+        "clearCharacters": true
+      },
       "nextId": "opening-007"
     },
     "opening-007": {
@@ -114,19 +133,28 @@
         {
           "id": "family-bills",
           "kind": "memory",
-          "label": { "chinese": "为了家里的账单和生活费。", "english": "For family bills and living costs." },
+          "label": {
+            "chinese": "为了家里的账单和生活费。",
+            "english": "For family bills and living costs."
+          },
           "nextId": "opening-008"
         },
         {
           "id": "pride",
           "kind": "memory",
-          "label": { "chinese": "因为他想证明自己很厉害。", "english": "Because he wants to prove he is impressive." },
+          "label": {
+            "chinese": "因为他想证明自己很厉害。",
+            "english": "Because he wants to prove he is impressive."
+          },
           "nextId": "opening-009"
         },
         {
           "id": "easy-profit",
           "kind": "memory",
-          "label": { "chinese": "因为赚钱很容易。", "english": "Because making money is easy." },
+          "label": {
+            "chinese": "因为赚钱很容易。",
+            "english": "Because making money is easy."
+          },
           "nextId": "opening-009"
         }
       ]
@@ -160,7 +188,15 @@
       "scene": {
         "backgroundId": "real-apartment-night",
         "characters": [
-          { "characterId": "lee-hyun", "personaId": "real-world", "spriteId": "lee-hyun-real-tired", "position": "center" }
+          {
+            "characterId": "lee-hyun",
+            "personaId": "real-world",
+            "spriteId": "lee-hyun-real-sitting-exhausted",
+            "position": "left",
+            "xPercent": 34,
+            "scale": 0.82,
+            "zIndex": 2
+          }
         ]
       },
       "nextId": "opening-011"
@@ -196,13 +232,19 @@
         {
           "id": "joke",
           "kind": "expressive",
-          "label": { "chinese": "笑一下，说自己只是和箱子打架。", "english": "Smile and say he only fought some boxes." },
+          "label": {
+            "chinese": "笑一下，说自己只是和箱子打架。",
+            "english": "Smile and say he only fought some boxes."
+          },
           "nextId": "opening-014"
         },
         {
           "id": "quiet",
           "kind": "expressive",
-          "label": { "chinese": "安静一点，只说今天有点累。", "english": "Answer quietly that today was a little tiring." },
+          "label": {
+            "chinese": "安静一点，只说今天有点累。",
+            "english": "Answer quietly that today was a little tiring."
+          },
           "nextId": "opening-015"
         }
       ]
@@ -217,7 +259,15 @@
       },
       "scene": {
         "characters": [
-          { "characterId": "lee-hyun", "personaId": "real-world", "spriteId": "lee-hyun-real-forced-smile", "position": "center" }
+          {
+            "characterId": "lee-hyun",
+            "personaId": "real-world",
+            "spriteId": "lee-hyun-real-forced-smile",
+            "position": "right",
+            "xPercent": 58,
+            "scale": 0.82,
+            "zIndex": 2
+          }
         ]
       },
       "nextId": "opening-016"
@@ -229,7 +279,20 @@
         "chinese": "他把声音放轻，只说：“今天有点累，但没事。”",
         "english": "He softens his voice and says only, 'Today was a little tiring, but it's okay.'"
       },
-      "nextId": "opening-016"
+      "nextId": "opening-016",
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "real-world",
+            "spriteId": "lee-hyun-real-sitting-exhausted",
+            "position": "left",
+            "xPercent": 34,
+            "scale": 0.82,
+            "zIndex": 2
+          }
+        ]
+      }
     },
     "opening-016": {
       "id": "opening-016",
@@ -262,13 +325,19 @@
         {
           "id": "hesitate",
           "kind": "expressive",
-          "label": { "chinese": "先停一下，记住现实的重量。", "english": "Pause and remember the weight of reality." },
+          "label": {
+            "chinese": "先停一下，记住现实的重量。",
+            "english": "Pause and remember the weight of reality."
+          },
           "nextId": "opening-019"
         },
         {
           "id": "enter",
           "kind": "expressive",
-          "label": { "chinese": "直接进入。不能浪费时间。", "english": "Enter directly. No time can be wasted." },
+          "label": {
+            "chinese": "直接进入。不能浪费时间。",
+            "english": "Enter directly. No time can be wasted."
+          },
           "nextId": "opening-020"
         }
       ]
@@ -280,7 +349,10 @@
         "chinese": "他停了一秒。不是因为害怕，而是因为身后还有家人。",
         "english": "He pauses for one second. Not because he is afraid, but because his family is behind him."
       },
-      "scene": { "backgroundId": "royal-road-login" },
+      "scene": {
+        "backgroundId": "royal-road-login",
+        "clearCharacters": true
+      },
       "nextId": "opening-021"
     },
     "opening-020": {
@@ -290,7 +362,10 @@
         "chinese": "他立刻按下确认。穷人的犹豫，也要算成本。",
         "english": "He confirms at once. Even hesitation has a cost when you are poor."
       },
-      "scene": { "backgroundId": "royal-road-login" },
+      "scene": {
+        "backgroundId": "royal-road-login",
+        "clearCharacters": true
+      },
       "nextId": "opening-021"
     },
     "opening-021": {
@@ -307,7 +382,10 @@
     "opening-022": {
       "id": "opening-022",
       "type": "line",
-      "speaker": { "characterId": "lee-hyun", "personaId": "weed-sculptor" },
+      "speaker": {
+        "characterId": "lee-hyun",
+        "personaId": "weed-sculptor"
+      },
       "text": {
         "chinese": "杂草进入皇家之路以后，没有先去找热闹的地方，也没有急着去做简单任务。",
         "english": "After Weed enters Royal Road, he does not first look for lively places and does not hurry to do easy quests.",
@@ -316,7 +394,15 @@
       "scene": {
         "backgroundId": "training-yard-dawn",
         "characters": [
-          { "characterId": "lee-hyun", "personaId": "weed-sculptor", "spriteId": "weed-sculptor-neutral", "position": "center" }
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-startled",
+            "position": "right",
+            "xPercent": 63,
+            "scale": 0.78,
+            "zIndex": 2
+          }
         ]
       },
       "nextId": "opening-023"
@@ -324,7 +410,10 @@
     "opening-023": {
       "id": "opening-023",
       "type": "line",
-      "speaker": { "characterId": "lee-hyun", "personaId": "weed-sculptor" },
+      "speaker": {
+        "characterId": "lee-hyun",
+        "personaId": "weed-sculptor"
+      },
       "text": {
         "chinese": "他一到塞拉堡城，就先走进训练场。",
         "english": "As soon as he arrives in Serabourg, he first walks into the training hall.",
@@ -332,7 +421,15 @@
       },
       "scene": {
         "characters": [
-          { "characterId": "lee-hyun", "personaId": "weed-sculptor", "spriteId": "weed-sculptor-determined", "position": "center" }
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-calculating",
+            "position": "left",
+            "xPercent": 38,
+            "scale": 0.82,
+            "zIndex": 2
+          }
         ]
       },
       "nextId": "opening-result"
@@ -349,7 +446,12 @@
         "english": "Weed stands before the training yard with no money and no reputation, but he knows the first rule: become stronger first."
       },
       "worldEffects": [
-        { "id": "opening-hope-flag", "op": "setFlag", "key": "entered-royal-road", "value": true }
+        {
+          "id": "opening-hope-flag",
+          "op": "setFlag",
+          "key": "entered-royal-road",
+          "value": true
+        }
       ],
       "returnLocationId": "town-square"
     }

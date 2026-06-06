@@ -1,21 +1,169 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-06-05-world-placeholder-v1",
+  "contentVersion": "2026-06-06-immersive-staging-v1",
   "id": "commission-silent-warrior",
   "packId": "royal-road-prototype",
   "title": "Silent memorial",
   "initialNodeId": "warrior-001",
   "assetManifestPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/asset-manifest.json",
   "characters": {
-    "protagonist": { "id": "protagonist", "displayNames": { "english": "Chen You", "chinese": "陈佑" }, "personas": { "virtual-sculptor": { "id": "virtual-sculptor", "defaultOutfitId": "plain-adventurer", "defaultSpriteId": "protagonist-virtual-neutral" } } },
-    "commission-client": { "id": "commission-client", "displayNames": { "english": "Warrior", "chinese": "战士" }, "personas": { "default": { "id": "default", "defaultOutfitId": "town-clothes", "defaultSpriteId": "commission-client" } } }
+    "protagonist": {
+      "id": "protagonist",
+      "displayNames": {
+        "english": "Chen You",
+        "chinese": "陈佑"
+      },
+      "personas": {
+        "virtual-sculptor": {
+          "id": "virtual-sculptor",
+          "defaultOutfitId": "plain-adventurer",
+          "defaultSpriteId": "protagonist-virtual-neutral"
+        }
+      }
+    },
+    "commission-client": {
+      "id": "commission-client",
+      "displayNames": {
+        "english": "Warrior",
+        "chinese": "战士"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "town-clothes",
+          "defaultSpriteId": "commission-client"
+        }
+      }
+    }
   },
-  "initialState": { "money": 0, "skills": { "sculpting": 0, "swordsmanship": 0 }, "flags": {}, "questNotes": {}, "appliedOnceKeys": [] },
+  "initialState": {
+    "money": 0,
+    "skills": {
+      "sculpting": 0,
+      "swordsmanship": 0
+    },
+    "flags": {},
+    "questNotes": {},
+    "appliedOnceKeys": []
+  },
   "nodes": {
-    "warrior-001": { "id": "warrior-001", "type": "line", "speaker": { "characterId": "commission-client", "personaId": "default" }, "text": { "chinese": "战士把一块旧布放在桌上，只说：做一个纪念。", "english": "The warrior places an old cloth on the table and says only: make a memorial." }, "scene": { "backgroundId": "workshop-restored", "characters": [{ "characterId": "protagonist", "personaId": "virtual-sculptor", "spriteId": "protagonist-virtual-neutral", "position": "left" }, { "characterId": "commission-client", "personaId": "default", "spriteId": "commission-client", "position": "right" }] }, "nextId": "warrior-002" },
-    "warrior-002": { "id": "warrior-002", "type": "choice", "prompt": { "chinese": "他不愿解释。你雕什么？", "english": "He refuses to explain. What do you carve?" }, "choices": [{ "id": "quiet-stone", "kind": "memory", "label": { "chinese": "雕一块安静的石碑。", "english": "Carve a quiet stone marker." }, "nextId": "warrior-003a" }, { "id": "sword", "kind": "consequential", "label": { "chinese": "雕一把断剑。", "english": "Carve a broken sword." }, "nextId": "warrior-003b", "effects": [{ "id": "warrior-sword", "op": "addSkill", "skill": "swordsmanship", "amount": 1 }] }] },
-    "warrior-003a": { "id": "warrior-003a", "type": "line", "speaker": { "characterId": "commission-client", "personaId": "default" }, "text": { "chinese": "战士点头。他没有笑，但肩膀像终于放下了一点重量。", "english": "The warrior nods. He does not smile, but his shoulders seem to set down a little weight." }, "nextId": "warrior-result" },
-    "warrior-003b": { "id": "warrior-003b", "type": "line", "speaker": { "characterId": "commission-client", "personaId": "default" }, "text": { "chinese": "断剑让他看了很久。最后他说：够了。", "english": "He looks at the broken sword for a long time. At last he says: enough." }, "nextId": "warrior-result" },
-    "warrior-result": { "id": "warrior-result", "type": "questResult", "questId": "commission-silent-warrior", "outcomeId": "finished", "completed": true, "resultId": "commission-silent-warrior-finished", "summary": { "chinese": "有些委托不解释原因。陈佑学会了让石头替别人安静。", "english": "Some commissions do not explain themselves. Chen You learns to let stone be quiet for someone else." }, "worldEffects": [{ "id": "warrior-pay", "op": "addMoney", "amount": 12 }, { "id": "warrior-sculpting", "op": "addSkill", "skill": "sculpting", "amount": 1 }, { "id": "warrior-record", "op": "recordEncounter", "encounterId": "commission-silent-warrior", "poolId": "sculpture-commissions" }], "returnLocationId": "sculpture-workshop" }
+    "warrior-001": {
+      "id": "warrior-001",
+      "type": "line",
+      "speaker": {
+        "characterId": "commission-client",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "战士把一块旧布放在桌上，只说：做一个纪念。",
+        "english": "The warrior places an old cloth on the table and says only: make a memorial."
+      },
+      "scene": {
+        "backgroundId": "workshop-restored",
+        "characters": [
+          {
+            "characterId": "commission-client",
+            "personaId": "default",
+            "spriteId": "commission-client",
+            "position": "right"
+          }
+        ]
+      },
+      "nextId": "warrior-002"
+    },
+    "warrior-002": {
+      "id": "warrior-002",
+      "type": "choice",
+      "prompt": {
+        "chinese": "他不愿解释。你雕什么？",
+        "english": "He refuses to explain. What do you carve?"
+      },
+      "choices": [
+        {
+          "id": "quiet-stone",
+          "kind": "memory",
+          "label": {
+            "chinese": "雕一块安静的石碑。",
+            "english": "Carve a quiet stone marker."
+          },
+          "nextId": "warrior-003a"
+        },
+        {
+          "id": "sword",
+          "kind": "consequential",
+          "label": {
+            "chinese": "雕一把断剑。",
+            "english": "Carve a broken sword."
+          },
+          "nextId": "warrior-003b",
+          "effects": [
+            {
+              "id": "warrior-sword",
+              "op": "addSkill",
+              "skill": "swordsmanship",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    },
+    "warrior-003a": {
+      "id": "warrior-003a",
+      "type": "line",
+      "speaker": {
+        "characterId": "commission-client",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "战士点头。他没有笑，但肩膀像终于放下了一点重量。",
+        "english": "The warrior nods. He does not smile, but his shoulders seem to set down a little weight."
+      },
+      "nextId": "warrior-result"
+    },
+    "warrior-003b": {
+      "id": "warrior-003b",
+      "type": "line",
+      "speaker": {
+        "characterId": "commission-client",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "断剑让他看了很久。最后他说：够了。",
+        "english": "He looks at the broken sword for a long time. At last he says: enough."
+      },
+      "nextId": "warrior-result"
+    },
+    "warrior-result": {
+      "id": "warrior-result",
+      "type": "questResult",
+      "questId": "commission-silent-warrior",
+      "outcomeId": "finished",
+      "completed": true,
+      "resultId": "commission-silent-warrior-finished",
+      "summary": {
+        "chinese": "有些委托不解释原因。陈佑学会了让石头替别人安静。",
+        "english": "Some commissions do not explain themselves. Chen You learns to let stone be quiet for someone else."
+      },
+      "worldEffects": [
+        {
+          "id": "warrior-pay",
+          "op": "addMoney",
+          "amount": 12
+        },
+        {
+          "id": "warrior-sculpting",
+          "op": "addSkill",
+          "skill": "sculpting",
+          "amount": 1
+        },
+        {
+          "id": "warrior-record",
+          "op": "recordEncounter",
+          "encounterId": "commission-silent-warrior",
+          "poolId": "sculpture-commissions"
+        }
+      ],
+      "returnLocationId": "sculpture-workshop"
+    }
   }
 }

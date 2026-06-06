@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-06-05-alpha-sprites-v1",
+  "contentVersion": "2026-06-06-immersive-staging-v1",
   "fallbackBackgroundId": "town-square-day",
   "backgrounds": {
     "real-apartment-night": {
@@ -57,7 +57,7 @@
       "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/backgrounds/training-yard-dawn.webp",
       "width": 1376,
       "height": 768,
-      "alt": "Placeholder Serabourg training yard at dawn."
+      "alt": "Clean Serabourg beginner training yard at dawn with wooden practice dummies and no people."
     },
     "training-hall": {
       "id": "training-hall",
@@ -79,6 +79,13 @@
       "width": 1376,
       "height": 768,
       "alt": "sculpture workshop after restoration."
+    },
+    "workshop-table-closeup": {
+      "id": "workshop-table-closeup",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/backgrounds/workshop-table-closeup.webp",
+      "width": 1376,
+      "height": 768,
+      "alt": "Close view of a sculpture workshop table with stone pieces and chisels."
     }
   },
   "sprites": {
@@ -486,6 +493,126 @@
       "anchorY": 1160,
       "defaultScale": 0.74,
       "alt": "Geomchi disciple standing ready."
+    },
+    "weed-sculptor-calculating": {
+      "id": "weed-sculptor-calculating",
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "standing",
+      "expressionId": "calculating",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/weed-sculptor-calculating.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
+      "defaultScale": 0.74,
+      "alt": "Weed calculating his next move."
+    },
+    "weed-sculptor-amused": {
+      "id": "weed-sculptor-amused",
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "standing",
+      "expressionId": "amused",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/weed-sculptor-amused.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
+      "defaultScale": 0.74,
+      "alt": "Weed with a restrained amused smile."
+    },
+    "weed-sculptor-annoyed": {
+      "id": "weed-sculptor-annoyed",
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "standing",
+      "expressionId": "annoyed",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/weed-sculptor-annoyed.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
+      "defaultScale": 0.72,
+      "alt": "Weed looking annoyed and unimpressed."
+    },
+    "weed-sculptor-startled": {
+      "id": "weed-sculptor-startled",
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "standing",
+      "expressionId": "startled",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/weed-sculptor-startled.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
+      "defaultScale": 0.72,
+      "alt": "Weed startled but trying to stay composed."
+    },
+    "weed-sculptor-exhausted": {
+      "id": "weed-sculptor-exhausted",
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "standing",
+      "expressionId": "exhausted",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/weed-sculptor-exhausted.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
+      "defaultScale": 0.72,
+      "alt": "Weed standing stubbornly despite exhaustion."
+    },
+    "weed-sculptor-sculpting-focus": {
+      "id": "weed-sculptor-sculpting-focus",
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "sculpting",
+      "expressionId": "focused",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/weed-sculptor-sculpting-focus.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
+      "defaultScale": 0.7,
+      "alt": "Weed focused on sculpting with a chisel and stone."
+    },
+    "weed-sculptor-observing-side": {
+      "id": "weed-sculptor-observing-side",
+      "characterId": "lee-hyun",
+      "personaId": "weed-sculptor",
+      "outfitId": "starter-sculptor",
+      "poseId": "observing-side",
+      "expressionId": "observing",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/weed-sculptor-observing-side.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
+      "defaultScale": 0.72,
+      "alt": "Weed quietly observing from the side."
+    },
+    "lee-hyun-real-sitting-exhausted": {
+      "id": "lee-hyun-real-sitting-exhausted",
+      "characterId": "lee-hyun",
+      "personaId": "real-world",
+      "outfitId": "modern-work-clothes",
+      "poseId": "sitting",
+      "expressionId": "exhausted",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/lee-hyun-real-sitting-exhausted.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
+      "defaultScale": 0.76,
+      "alt": "Lee Hyun sitting exhausted in modern clothes."
     }
   },
   "cinematics": {

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-06-05-cast-integrated-v1",
+  "contentVersion": "2026-06-06-immersive-staging-v1",
   "id": "workshop-restoration",
   "packId": "royal-road-prototype",
   "title": "The face of Stonechip Workshop",
@@ -45,7 +45,7 @@
         "weed-sculptor": {
           "id": "weed-sculptor",
           "defaultOutfitId": "starter-sculptor",
-          "defaultSpriteId": "weed-sculptor-neutral"
+          "defaultSpriteId": "weed-sculptor-sculpting-focus"
         }
       }
     }
@@ -76,16 +76,13 @@
         "backgroundId": "workshop-before",
         "characters": [
           {
-            "characterId": "lee-hyun",
-            "personaId": "weed-sculptor",
-            "spriteId": "weed-sculptor-neutral",
-            "position": "left"
-          },
-          {
             "characterId": "workshop-owner",
             "personaId": "default",
             "spriteId": "workshop-owner",
-            "position": "right"
+            "position": "right",
+            "xPercent": 68,
+            "scale": 0.92,
+            "zIndex": 3
           }
         ]
       },
@@ -133,7 +130,22 @@
             }
           ]
         }
-      ]
+      ],
+      "scene": {
+        "backgroundId": "workshop-table-closeup",
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-sculpting-focus",
+            "position": "left",
+            "xPercent": 30,
+            "scale": 0.72,
+            "zIndex": 2,
+            "opacity": 0.96
+          }
+        ]
+      }
     },
     "workshop-003a": {
       "id": "workshop-003a",
@@ -146,7 +158,11 @@
         "chinese": "不漂亮，但可靠。可靠在这里已经很稀有了。",
         "english": "Not beautiful, but reliable. Reliable is already rare here."
       },
-      "nextId": "workshop-result"
+      "nextId": "workshop-result",
+      "scene": {
+        "backgroundId": "workshop-table-closeup",
+        "clearCharacters": true
+      }
     },
     "workshop-003b": {
       "id": "workshop-003b",
@@ -159,7 +175,11 @@
         "chinese": "老板盯着披风纹路，表情像想省钱又不想承认满意。",
         "english": "The owner stares at the cloak pattern, looking like he wants to save money and avoid admitting satisfaction."
       },
-      "nextId": "workshop-result"
+      "nextId": "workshop-result",
+      "scene": {
+        "backgroundId": "workshop-table-closeup",
+        "clearCharacters": true
+      }
     },
     "workshop-result": {
       "id": "workshop-result",

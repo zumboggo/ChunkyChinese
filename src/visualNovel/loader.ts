@@ -2,7 +2,7 @@ import type { VnAssetManifest, VnIndexEntry, VnScript, VnWorld, VnWorldIndexEntr
 
 const VN_INDEX_PATH = 'reader-packs/lms-books/visual-novels/index.json'
 const VN_WORLD_INDEX_PATH = 'reader-packs/lms-books/visual-novels/worlds/index.json'
-const VN_CONTENT_CACHE_VERSION = '2026-06-05-vn-world-alpha-sprites-v1'
+const VN_CONTENT_CACHE_VERSION = '2026-06-06-vn-world-immersive-staging-v1'
 const JSON_TIMEOUT_MS = 15000
 
 export async function loadVisualNovelIndex(): Promise<VnIndexEntry[]> {

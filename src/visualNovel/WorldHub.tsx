@@ -143,7 +143,7 @@ interface VnHubCastMember {
 
 function getHubCastMembers(world: VnWorld, location: VnLocation | undefined, manifest: VnAssetManifest): VnHubCastMember[] {
   const characterIds = location?.npcIds ?? []
-  return characterIds.flatMap((characterId) => {
+  return characterIds.filter((characterId) => characterId !== 'lee-hyun' && characterId !== 'protagonist').flatMap((characterId) => {
     const character = world.characters?.[characterId]
     if (!character) return []
     const persona = Object.values(character.personas)[0]

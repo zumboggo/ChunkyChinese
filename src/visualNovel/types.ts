@@ -61,6 +61,13 @@ export interface VnSceneCharacter {
   spriteId: string
   position: VnPosition
   visible?: boolean
+  xPercent?: number
+  yPercent?: number
+  scale?: number
+  zIndex?: number
+  opacity?: number
+  mirror?: boolean
+  dimmed?: boolean
 }
 
 export interface VnScenePatch {
