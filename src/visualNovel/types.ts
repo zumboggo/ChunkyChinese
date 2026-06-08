@@ -298,6 +298,7 @@ export interface VnLocation {
   restoredDescription?: VnText
   backgroundId: string
   restoredBackgroundId?: string
+  musicId?: string
   npcIds?: string[]
   travelTo?: string[]
   availableActions?: VnWorldAction[]

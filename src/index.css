@@ -3139,6 +3139,25 @@ kbd {
   gap: 6px;
 }
 
+.vn-typewriter-active .vn-line {
+  animation: vn-typewriter-reveal 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.vn-typewriter-done .vn-line {
+  opacity: 1;
+}
+
+@keyframes vn-typewriter-reveal {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.vn-translation-hidden {
+  opacity: 0;
+  transition: opacity 0.3s ease 0.2s;
+}
+
 .vn-subtitle-text .vn-line {
   color: #38bdf8;
   font-family: "Microsoft YaHei", "Noto Sans SC", "PingFang SC", "Source Han Sans SC", sans-serif;
@@ -3699,6 +3718,102 @@ kbd {
 
 .vn-journal-list p.completed {
   opacity: 0.72;
+}
+
+/* ── Travel Map ── */
+
+.vn-map-toggle {
+  width: 100%;
+  min-height: 36px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  font-weight: 800;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.vn-map-toggle:hover {
+  background: rgba(56, 189, 248, 0.15);
+}
+
+.vn-travel-map {
+  margin-bottom: 10px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  padding: 8px;
+  overflow: hidden;
+}
+
+.vn-map-svg {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+}
+
+.vn-map-path {
+  stroke: rgba(56, 189, 248, 0.15);
+  stroke-width: 0.8;
+  stroke-dasharray: 3 2;
+}
+
+.vn-map-path-unlocked {
+  stroke: rgba(56, 189, 248, 0.4);
+  stroke-dasharray: none;
+}
+
+.vn-map-node circle {
+  fill: rgba(56, 189, 248, 0.2);
+  stroke: rgba(56, 189, 248, 0.4);
+  stroke-width: 0.5;
+}
+
+.vn-map-unlocked circle {
+  fill: rgba(56, 189, 248, 0.3);
+  stroke: #38bdf8;
+}
+
+.vn-map-current circle {
+  fill: #38bdf8;
+  stroke: #fff;
+  stroke-width: 0.8;
+  filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.6));
+}
+
+.vn-map-locked circle {
+  fill: rgba(100, 116, 139, 0.2);
+  stroke: rgba(100, 116, 139, 0.3);
+}
+
+.vn-map-label {
+  fill: rgba(241, 245, 249, 0.7);
+  font-size: 3.5px;
+  font-weight: 700;
+}
+
+.vn-map-current .vn-map-label {
+  fill: #38bdf8;
+}
+
+.vn-map-travel-btn {
+  fill: rgba(56, 189, 248, 0.25);
+  stroke: #38bdf8;
+  stroke-width: 0.3;
+}
+
+.vn-map-travel-btn:hover {
+  fill: rgba(56, 189, 248, 0.45);
+}
+
+.vn-map-travel-label {
+  fill: #38bdf8;
+  font-size: 3px;
+  font-weight: 900;
+  pointer-events: none;
 }
 
 .vn-world-choice {

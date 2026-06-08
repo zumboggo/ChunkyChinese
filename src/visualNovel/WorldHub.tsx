@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { AdaptiveChineseText } from '../AdaptiveChineseText'
 import { tokenizeReaderText, type AdaptivePinyinMode } from '../adaptiveText'
 import type { ReaderWordToken, VocabWord } from '../types'
@@ -14,6 +14,20 @@ import {
 } from './worldEngine'
 import { scopedTokens, getLocationDescription } from './utils'
 import type { VisualNovelWorldSave } from './types'
+
+const MAP_LAYOUT: Record<string, { x: number; y: number; label: string }> = {
+  'real-world-apartment': { x: 50, y: 15, label: 'Apartment' },
+  'town-square': { x: 50, y: 45, label: 'Town Square' },
+  'training-hall': { x: 25, y: 75, label: 'Training Hall' },
+  'sculpture-workshop': { x: 75, y: 75, label: 'Workshop' },
+}
+
+const MAP_CONNECTIONS: [string, string][] = [
+  ['real-world-apartment', 'town-square'],
+  ['town-square', 'training-hall'],
+  ['town-square', 'sculpture-workshop'],
+  ['training-hall', 'sculpture-workshop'],
+]
 
 export function WorldHub({
   world,
@@ -38,6 +52,7 @@ export function WorldHub({
   onAction: (action: VnWorldAction) => void | Promise<void>
   onResume: () => void | Promise<void>
 }) {
+  const [showMap, setShowMap] = useState(false)
   const description = getLocationDescription(location, save)
   const descriptionTokens = useMemo(
     () => scopedTokens(tokenizeReaderText(description?.chinese ?? '', words), `location-${location?.id ?? 'unknown'}`),
@@ -48,6 +63,7 @@ export function WorldHub({
   const activeQuests = activeWorldQuests(world, save).filter((quest) => quest.category !== 'rumour')
   const completedQuests = completedWorldQuests(world, save).filter((quest) => quest.category !== 'rumour')
   const recommended = recommendedWorldAction(world, save)
+  const unlockedLocations = save.state.unlockedLocations
 
   return (
     <section className="vn-dialogue-panel vn-world-panel">
@@ -65,7 +81,6 @@ export function WorldHub({
         />
       )}
       {description?.english && <p className="reader-translation vn-translation revealed">{description.english}</p>}
-
 
       {recommended && (
         <button
@@ -102,6 +117,50 @@ export function WorldHub({
         </section>
         <section>
           <h2>Travel</h2>
+          <button type="button" className="vn-map-toggle" onClick={() => setShowMap((v) => !v)}>
+            {showMap ? 'Hide map' : 'Show map'}
+          </button>
+          {showMap && (
+            <div className="vn-travel-map">
+              <svg className="vn-map-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+                {MAP_CONNECTIONS.map(([a, b]) => {
+                  const la = MAP_LAYOUT[a]
+                  const lb = MAP_LAYOUT[b]
+                  if (!la || !lb) return null
+                  const bothUnlocked = unlockedLocations.includes(a) && unlockedLocations.includes(b)
+                  return (
+                    <line
+                      key={`${a}-${b}`}
+                      x1={la.x} y1={la.y} x2={lb.x} y2={lb.y}
+                      className={`vn-map-path ${bothUnlocked ? 'vn-map-path-unlocked' : ''}`}
+                    />
+                  )
+                })}
+                {Object.entries(MAP_LAYOUT).map(([locId, pos]) => {
+                  const isUnlocked = unlockedLocations.includes(locId)
+                  const isCurrent = location?.id === locId
+                  const canTravel = travelLocations.some((t) => t.id === locId)
+                  return (
+                    <g key={locId} className={`vn-map-node ${isCurrent ? 'vn-map-current' : ''} ${isUnlocked ? 'vn-map-unlocked' : 'vn-map-locked'}`}>
+                      <circle cx={pos.x} cy={pos.y} r={isCurrent ? 6 : 4} />
+                      <text x={pos.x} y={pos.y - 8} textAnchor="middle" className="vn-map-label">{pos.label}</text>
+                      {canTravel && (
+                        <rect
+                          x={pos.x - 12} y={pos.y - 3} width={24} height={6} rx={3}
+                          className="vn-map-travel-btn"
+                          onClick={() => onAction({ id: `travel-${locId}`, kind: 'travel', targetId: locId, label: world.locations[locId]?.name ?? { chinese: locId } })}
+                          style={{ cursor: 'pointer' }}
+                        />
+                      )}
+                      {canTravel && (
+                        <text x={pos.x} y={pos.y + 1.5} textAnchor="middle" className="vn-map-travel-label">Go</text>
+                      )}
+                    </g>
+                  )
+                })}
+              </svg>
+            </div>
+          )}
           <div className="vn-world-action-list">
             {travelLocations.map((destination) => (
               <button

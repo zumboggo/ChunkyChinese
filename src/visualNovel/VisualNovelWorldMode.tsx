@@ -109,6 +109,8 @@ export function VisualNovelWorldMode({
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const audioTokenRef = useRef(0)
   const audioBlobUrlRef = useRef<string | null>(null)
+  const ambientAudioRef = useRef<HTMLAudioElement | null>(null)
+  const ambientMusicIdRef = useRef<string | null>(null)
 
   const readerSentenceById = useMemo(() => {
     const sentences = new Map<string, ReaderSentence>()
@@ -220,6 +222,44 @@ export function VisualNovelWorldMode({
   }, [selectedWorldId, worldIndex, reloadKey])
 
   const location = world && worldSave ? currentWorldLocation(world, worldSave) : undefined
+
+  useEffect(() => {
+    const musicId = location?.musicId
+    if (!musicId || activeQuestId) {
+      if (ambientAudioRef.current) {
+        ambientAudioRef.current.pause()
+        ambientAudioRef.current = null
+        ambientMusicIdRef.current = null
+      }
+      return
+    }
+    if (musicId === ambientMusicIdRef.current) return
+    let cancelled = false
+    void (async () => {
+      const clip = await getAudioClip(musicId)
+      if (cancelled || !clip) return
+      if (ambientAudioRef.current) ambientAudioRef.current.pause()
+      const url = URL.createObjectURL(clip.blob)
+      const audio = new Audio(url)
+      audio.loop = true
+      audio.volume = 0.3
+      ambientAudioRef.current = audio
+      ambientMusicIdRef.current = musicId
+      audio.addEventListener('ended', () => URL.revokeObjectURL(url), { once: true })
+      audio.play().catch(() => {})
+    })()
+    return () => { cancelled = true }
+  }, [location?.musicId, activeQuestId])
+
+  useEffect(() => {
+    return () => {
+      if (ambientAudioRef.current) {
+        ambientAudioRef.current.pause()
+        ambientAudioRef.current = null
+      }
+    }
+  }, [])
+
   const castMembers = useMemo(
     () => (world && worldSave && manifest ? getHubCastMembers(world, worldSave, location, manifest) : []),
     [location, manifest, worldSave, world],

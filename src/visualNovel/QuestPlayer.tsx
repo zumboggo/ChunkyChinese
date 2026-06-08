@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AdaptiveChineseText } from '../AdaptiveChineseText'
 import type { AdaptivePinyinMode } from '../adaptiveText'
 import type { HotkeySettings, VocabWord } from '../types'
@@ -11,6 +11,26 @@ import type { VisualNovelSave, VisualNovelWorldSave, VnAssetManifest, VnChoice, 
 import { getNodeText, VN_DEFAULT_ENCOUNTER_DECK, VN_DEFAULT_ENEMY_MAX_HP, VN_DEFAULT_PLAYER_MAX_HP } from './utils'
 import { VisualNovelSprite } from './VisualNovelSprite'
 import { WorldStatusPanel } from './WorldStatusPanel'
+
+type Mood = 'neutral' | 'angry' | 'happy' | 'surprised' | 'sad'
+
+function detectMood(chinese: string): Mood {
+  if (/[！!]/.test(chinese) && /[杀死打怒恨滚该死可恶]/.test(chinese)) return 'angry'
+  if (/[！!]/.test(chinese) && /[哈哈哇太好了真棒厉害好]/.test(chinese)) return 'happy'
+  if (/[？?]/.test(chinese) && /[什么怎么为什么哪谁]/.test(chinese)) return 'surprised'
+  if (/[哭悲伤痛泪可怜惨]/.test(chinese)) return 'sad'
+  if (/[！!]/.test(chinese)) return 'surprised'
+  if (/[哈哈哈嘻嘻]/.test(chinese)) return 'happy'
+  return 'neutral'
+}
+
+const MOOD_SPRITE_SUFFIX: Record<Mood, string> = {
+  neutral: '',
+  angry: '-angry',
+  happy: '-amused',
+  surprised: '-startled',
+  sad: '-exhausted',
+}
 
 export function QuestPlayer({
   world,
@@ -59,7 +79,12 @@ export function QuestPlayer({
   hotkeys: HotkeySettings
 }) {
   const [showInventory, setShowInventory] = useState(false)
+  const [typewriterDone, setTypewriterDone] = useState(false)
+  const typewriterRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const prevNodeIdRef = useRef<string | null>(null)
+
   const text = getNodeText(node)
+  const chineseText = text?.chinese ?? ''
   const background = save.scene.cinematicImageId
     ? undefined
     : save.scene.backgroundId
@@ -76,6 +101,38 @@ export function QuestPlayer({
       chinese: character.displayNames.chinese,
     }
   }, [node, world.characters])
+
+  const mood = useMemo(() => detectMood(chineseText), [chineseText])
+
+  const moodSprites = useMemo(() => {
+    if (node.type !== 'line') return save.scene.characters
+    return save.scene.characters.map((char) => {
+      const suffix = MOOD_SPRITE_SUFFIX[mood]
+      if (!suffix || char.spriteId.includes(suffix)) return char
+      const baseSprite = char.spriteId.replace(/-(amused|annoyed|startled|exhausted|commanding|calculating|concerned|negotiating)$/, '')
+      const candidateId = baseSprite + suffix
+      if (manifest.sprites[candidateId]) return { ...char, spriteId: candidateId }
+      return char
+    })
+  }, [node, save.scene.characters, mood, manifest.sprites])
+
+  useEffect(() => {
+    if (node.id !== prevNodeIdRef.current) {
+      prevNodeIdRef.current = node.id
+      setTypewriterDone(false)
+      if (typewriterRef.current) clearTimeout(typewriterRef.current)
+      const duration = Math.min(chineseText.length * 60, 3000)
+      typewriterRef.current = setTimeout(() => setTypewriterDone(true), duration)
+    }
+    return () => { if (typewriterRef.current) clearTimeout(typewriterRef.current) }
+  }, [node.id, chineseText.length])
+
+  const skipTypewriter = useCallback(() => {
+    if (!typewriterDone) {
+      if (typewriterRef.current) clearTimeout(typewriterRef.current)
+      setTypewriterDone(true)
+    }
+  }, [typewriterDone])
 
   if (node.type === 'cardBattle') {
     const savedHp = worldSave.state.playerHp
@@ -106,7 +163,7 @@ export function QuestPlayer({
   }
 
   return (
-    <div className="vn-fullscreen">
+    <div className="vn-fullscreen" onClick={skipTypewriter}>
       <div className="vn-fullscreen-stage" aria-label="Quest scene">
         {cinematic ? (
           <img className="vn-cinematic" src={visualNovelAssetSrc(cinematic.src)} alt={cinematic.alt} />
@@ -115,7 +172,7 @@ export function QuestPlayer({
         ) : (
           <div className="vn-background vn-background-fallback" aria-label="Neutral background" />
         )}
-        {!cinematic && save.scene.characters.map((character) => {
+        {!cinematic && moodSprites.map((character) => {
           return (
             <VisualNovelSprite
               key={character.slotId ?? `${character.characterId}:${character.position}`}
@@ -133,7 +190,7 @@ export function QuestPlayer({
             {speaker.chinese && <span className="vn-speaker-chinese">{speaker.chinese}</span>}
           </div>
         )}
-        <div className="vn-subtitle-text">
+        <div className={`vn-subtitle-text ${typewriterDone ? 'vn-typewriter-done' : 'vn-typewriter-active'}`}>
           {displayTokens.length > 0 && (
             <AdaptiveChineseText
               tokens={displayTokens}
@@ -144,10 +201,10 @@ export function QuestPlayer({
             />
           )}
           {showEnglish && text?.english && (
-            <p className="vn-translation-overlay revealed">{text.english}</p>
+            <p className={`vn-translation-overlay ${typewriterDone ? 'revealed' : 'vn-translation-hidden'}`}>{text.english}</p>
           )}
         </div>
-        {node.type === 'choice' && (
+        {node.type === 'choice' && typewriterDone && (
           <div className="vn-choice-list vn-subtitle-choices">
             {choices.map((choice, index) => (
               <button key={choice.id} type="button" className={`vn-world-choice vn-choice-${choice.kind}`} onClick={() => onAdvance(choice.id)}>
@@ -161,7 +218,7 @@ export function QuestPlayer({
             ))}
           </div>
         )}
-        {result && (
+        {result && typewriterDone && (
           <div className="vn-result-panel vn-subtitle-result">
             <strong>{result.completed ? 'Quest complete' : 'Quest unresolved'}</strong>
             <button type="button" className="primary" onClick={() => onCommitResult(result)}>
@@ -172,30 +229,30 @@ export function QuestPlayer({
       </div>
 
       <div className="vn-bottom-bar">
-        <button type="button" className="vn-bar-btn" onClick={onToggleEnglish} title="Toggle English">
+        <button type="button" className="vn-bar-btn" onClick={(e) => { e.stopPropagation(); onToggleEnglish() }} title="Toggle English">
           <span className="vn-bar-icon">{'\u{1F1EC}\u{1F1E7}'}</span>
         </button>
-        <button type="button" className="vn-bar-btn" onClick={() => setShowInventory((v) => !v)} title="Inventory">
+        <button type="button" className="vn-bar-btn" onClick={(e) => { e.stopPropagation(); setShowInventory((v) => !v) }} title="Inventory">
           <span className="vn-bar-icon">{'\u{1F6E1}\uFE0F'}</span>
         </button>
-        <button type="button" className="vn-bar-btn" onClick={onReplay} title="Replay audio">
+        <button type="button" className="vn-bar-btn" onClick={(e) => { e.stopPropagation(); onReplay() }} title="Replay audio">
           <span className="vn-bar-icon">{'\u{1F50A}'}</span>
         </button>
         {!result && node.type !== 'choice' && (
-          <button type="button" className="vn-bar-btn vn-bar-btn-primary" onClick={() => onAdvance()} title="Next">
+          <button type="button" className="vn-bar-btn vn-bar-btn-primary" onClick={(e) => { e.stopPropagation(); onAdvance() }} title="Next">
             <span className="vn-bar-icon">{'\u25B6\uFE0F'}</span>
           </button>
         )}
-        <button type="button" className="vn-bar-btn" onClick={onBack} disabled={save.history.length <= 1 || Boolean(result)} title="Back">
+        <button type="button" className="vn-bar-btn" onClick={(e) => { e.stopPropagation(); onBack() }} disabled={save.history.length <= 1 || Boolean(result)} title="Back">
           <span className="vn-bar-icon">{'\u25C0\uFE0F'}</span>
         </button>
-        <button type="button" className="vn-bar-btn vn-bar-btn-ghost" onClick={onAbandon} title="Pause quest">
+        <button type="button" className="vn-bar-btn vn-bar-btn-ghost" onClick={(e) => { e.stopPropagation(); onAbandon() }} title="Pause quest">
           <span className="vn-bar-icon">{'\u23F8\uFE0F'}</span>
         </button>
       </div>
 
       {showInventory && (
-        <div className="vn-inventory-overlay" onClick={() => setShowInventory(false)}>
+        <div className="vn-inventory-overlay" onClick={(e) => { e.stopPropagation(); setShowInventory(false) }}>
           <div className="vn-inventory-panel" onClick={(e) => e.stopPropagation()}>
             <div className="vn-inventory-header">
               <h3>Status & Inventory</h3>
