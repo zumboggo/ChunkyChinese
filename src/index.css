@@ -1722,6 +1722,18 @@ dt {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  align-items: center;
+}
+
+.listening-mode-toggle {
+  border-radius: 8px;
+}
+
+.listening-mode-toggle button {
+  min-height: 32px;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  border-radius: 6px;
 }
 
 .study-chinese {
@@ -3069,6 +3081,256 @@ kbd {
     linear-gradient(135deg, #31445a, #596679 52%, #334155);
 }
 
+/* ── VN Fullscreen Subtitle Layout ── */
+
+.vn-fullscreen {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.vn-fullscreen-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.vn-fullscreen-stage .vn-background,
+.vn-fullscreen-stage .vn-cinematic {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.vn-fullscreen-stage .vn-sprite {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  width: min(var(--vn-sprite-width, 200px), 38vw);
+  max-width: 42%;
+  transform: translateX(-50%) scaleX(var(--vn-sprite-flip, 1));
+  transform-origin: 50% 100%;
+  filter: drop-shadow(0 24px 28px rgba(0, 0, 0, 0.28));
+  pointer-events: none;
+}
+
+.vn-subtitle-overlay {
+  position: absolute;
+  bottom: 64px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 20px 24px 16px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  display: grid;
+  gap: 8px;
+  max-height: 55vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.vn-subtitle-text {
+  display: grid;
+  gap: 6px;
+}
+
+.vn-subtitle-text .vn-line {
+  color: #f1f5f9;
+  font-size: clamp(1.4rem, 4.5vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.5;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 0, 0, 0.4);
+  min-height: auto;
+}
+
+.vn-translation-overlay {
+  color: rgba(241, 245, 249, 0.85);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+.vn-translation-overlay.blur-reveal {
+  filter: blur(6px);
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.vn-translation-overlay.revealed {
+  filter: none;
+}
+
+.vn-subtitle-choices {
+  margin-top: 4px;
+}
+
+.vn-subtitle-choices .vn-world-choice {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f1f5f9;
+}
+
+.vn-subtitle-choices .vn-world-choice:hover {
+  background: rgba(0, 0, 0, 0.7);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.vn-subtitle-result {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: #f1f5f9;
+}
+
+/* ── Bottom Bar ── */
+
+.vn-bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vn-bar-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.15s, border-color 0.15s;
+  padding: 0;
+}
+
+.vn-bar-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.vn-bar-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.vn-bar-btn-primary {
+  background: rgba(37, 99, 235, 0.3);
+  border-color: rgba(37, 99, 235, 0.5);
+}
+
+.vn-bar-btn-primary:hover {
+  background: rgba(37, 99, 235, 0.5);
+}
+
+.vn-bar-btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  opacity: 0.6;
+}
+
+.vn-bar-btn-ghost:hover {
+  opacity: 1;
+}
+
+.vn-bar-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* ── Inventory Overlay ── */
+
+.vn-inventory-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.vn-inventory-panel {
+  width: min(360px, 100%);
+  max-height: min(500px, calc(100svh - 36px));
+  overflow: auto;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 16px;
+  color: #f1f5f9;
+}
+
+.vn-inventory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.vn-inventory-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.vn-inventory-header button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+
+.vn-inventory-panel .vn-status-panel {
+  background: transparent;
+  border: none;
+  color: #f1f5f9;
+}
+
+.vn-inventory-panel .vn-status-row {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.vn-inventory-panel .vn-status-label {
+  color: rgba(241, 245, 249, 0.6);
+}
+
+.vn-inventory-panel .vn-status-value {
+  color: #f1f5f9;
+}
+
+.vn-inventory-panel .vn-deck-label {
+  color: rgba(241, 245, 249, 0.6);
+}
+
+.vn-inventory-panel .vn-deck-entry {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+}
+
 .vn-sprite {
   position: absolute;
   bottom: -2%;
@@ -4037,21 +4299,38 @@ kbd {
   color: #9a3412;
 }
 
-.flashcard-edit-button {
-  position: fixed;
-  left: 50%;
-  bottom: max(14px, env(safe-area-inset-bottom));
-  z-index: 40;
-  transform: translateX(-50%);
-  box-shadow: 0 14px 34px rgba(16, 35, 63, 0.16);
+.flashcard-bottom-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+  margin-top: 8px;
 }
 
-.flashcard-edit-button:hover {
-  transform: translateX(-50%) translateY(-1px);
+.flashcard-bottom-actions button {
+  min-height: 34px;
+  padding: 4px 14px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  border-radius: 8px;
 }
 
-.flashcard-edit-button:active {
-  transform: translateX(-50%) scale(0.99);
+.flashcard-bottom-actions button.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.flashcard-sentence-cn {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
+
+.flashcard-word-meaning {
+  margin-top: 8px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.95rem;
 }
 
 .fsrs-preview-buttons {

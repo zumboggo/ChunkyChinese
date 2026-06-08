@@ -291,6 +291,8 @@ function App() {
   const [flashcardDoneIds, setFlashcardDoneIds] = useState<string[]>([])
   const [flashcardClock, setFlashcardClock] = useState(() => Date.now())
   const [flashcardAnswerShown, setFlashcardAnswerShown] = useState(false)
+  const [flashcardSentenceMode, setFlashcardSentenceMode] = useState(false)
+  const [lmsSentences, setLmsSentences] = useState<Array<{ word: string; chinese: string; english: string }>>([])
   const [flashcardSessionFeedback, setFlashcardSessionFeedback] = useState<FsrsRating | null>(null)
   const [flashcardSessionId, setFlashcardSessionId] = useState<string | null>(null)
   const [flashcardCelebrationId, setFlashcardCelebrationId] = useState(0)
@@ -328,6 +330,13 @@ function App() {
   const syncedFlashcardCompletionRef = useRef<string | null>(null)
   const dashboardToastKeyRef = useRef<string | null>(null)
   const dashboardToastReadyRef = useRef(false)
+
+  useEffect(() => {
+    fetch('seed/lms-sentences.json')
+      .then((r) => r.json())
+      .then((data) => setLmsSentences(data))
+      .catch(() => {})
+  }, [])
 
   const refresh = useCallback(async () => {
     const [
@@ -2135,18 +2144,13 @@ function App() {
                 <strong>Visual Novel</strong>
                 <span>Play a story scene with the same Adaptive Mode text.</span>
               </button>
-              <button className="mode-start active-start" type="button" onClick={() => startModeLesson('activeRecall')}>
-                <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
-                <strong>Active Recall</strong>
-                <span>Pause for spoken 2-choice questions.</span>
-              </button>
               <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('listeningMode')}>
-                <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
+                <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
                 <strong>Listening</strong>
-                <span>Continuous listening with auto-next on.</span>
+                <span>Listen with passive or active recall modes.</span>
               </button>
               <button className="mode-start flashcards-start" type="button" onClick={startSavedFlashcards}>
-                <kbd>{hotkeys.choiceD.toUpperCase()}</kbd>
+                <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
                 <strong>Flashcards</strong>
                 <span>Sort due and new words with FSRS.</span>
               </button>
@@ -2477,6 +2481,9 @@ function App() {
                 onToggleActiveRecallPriority={() => toggleActiveRecallPriority(currentFlashcardWord)}
                 selectedRating={flashcardSessionFeedback}
                 choiceKeys={hotkeys}
+                sentence={lmsSentences.find((s) => s.word === currentFlashcardWord.word) ?? null}
+                sentenceMode={flashcardSentenceMode}
+                onToggleSentenceMode={() => setFlashcardSentenceMode((v) => !v)}
               />
             ) : (
               <div className="review-complete flashcards-complete">
@@ -3023,23 +3030,36 @@ function App() {
                     <div className="study-meta">
                       <span>
                         {minimalVisualMode
-                          ? 'Listening mode'
+                          ? 'Listening'
                           : focusedActiveQuiz
-                            ? 'Active recall'
+                            ? 'Active Recall'
                             : rendering
                               ? 'Rendering local audio...'
                               : renderedLesson?.title ?? lesson.title}
                       </span>
                       {minimalVisualMode ? (
                         <div className="study-toggles minimal-toggles">
+                          <div className="segmented-control listening-mode-toggle" aria-label="Listening mode">
+                            <button
+                              type="button"
+                              className={studyMode === 'listeningMode' ? 'active' : ''}
+                              onClick={() => { if (studyMode !== 'listeningMode') void startModeLesson('listeningMode') }}
+                            >
+                              Passive
+                            </button>
+                            <button
+                              type="button"
+                              className={studyMode === 'activeRecall' ? 'active' : ''}
+                              onClick={() => { if (studyMode !== 'activeRecall') void startModeLesson('activeRecall') }}
+                            >
+                              Active Recall
+                            </button>
+                          </div>
                           <button type="button" onClick={() => setShowPinyin((value) => !value)}>
                             Pinyin {showPinyin ? 'on' : 'off'}
                           </button>
                           <button type="button" onClick={() => setShowEnglish((value) => !value)}>
                             English {showEnglish ? 'on' : 'off'}
-                          </button>
-                          <button type="button" onClick={() => setMinimalVisualMode(false)}>
-                            Exit
                           </button>
                           <label className="toggle compact-toggle">
                             <input
@@ -3054,22 +3074,27 @@ function App() {
                         <span className="mode-chip">Paused for answer</span>
                       ) : (
                         <div className="study-toggles">
+                          <div className="segmented-control listening-mode-toggle" aria-label="Listening mode">
+                            <button
+                              type="button"
+                              className={studyMode === 'listeningMode' ? 'active' : ''}
+                              onClick={() => { if (studyMode !== 'listeningMode') void startModeLesson('listeningMode') }}
+                            >
+                              Passive
+                            </button>
+                            <button
+                              type="button"
+                              className={studyMode === 'activeRecall' ? 'active' : ''}
+                              onClick={() => { if (studyMode !== 'activeRecall') void startModeLesson('activeRecall') }}
+                            >
+                              Active Recall
+                            </button>
+                          </div>
                           <button type="button" onClick={() => setShowPinyin((value) => !value)}>
                             Pinyin {showPinyin ? 'on' : 'off'}
                           </button>
                           <button type="button" onClick={() => setShowEnglish((value) => !value)}>
                             English {showEnglish ? 'on' : 'off'}
-                          </button>
-                          <button
-                            type="button"
-                            className={studyMode === 'activeRecall' ? 'active' : ''}
-                            onClick={() =>
-                              setStudyMode((mode) =>
-                                mode === 'activeRecall' ? 'listeningMode' : 'activeRecall',
-                              )
-                            }
-                          >
-                            {studyMode === 'activeRecall' ? 'Active' : 'Listening'}
                           </button>
                         </div>
                       )}
@@ -4410,6 +4435,9 @@ function FlashcardReview({
   onToggleActiveRecallPriority,
   selectedRating,
   choiceKeys,
+  sentence,
+  sentenceMode,
+  onToggleSentenceMode,
 }: {
   word: VocabWord
   answerShown: boolean
@@ -4421,19 +4449,40 @@ function FlashcardReview({
   onToggleActiveRecallPriority?: () => void | Promise<void>
   selectedRating?: FsrsRating | null
   choiceKeys?: HotkeySettings
+  sentence?: { chinese: string; english: string } | null
+  sentenceMode?: boolean
+  onToggleSentenceMode?: () => void
 }) {
   const previews = previewFsrsRatings(word)
   const audioFront = frontMode === 'audio' && !answerShown
+  const useSentence = sentenceMode && sentence
+
+  function highlightWord(text: string, target: string): string {
+    const index = text.indexOf(target)
+    if (index === -1) return text
+    return text.slice(0, index) + '【' + target + '】' + text.slice(index + target.length)
+  }
+
   return (
     <section className="flashcard-review">
       <div className={`flashcard ${answerShown ? 'answer-side' : 'front-side'} ${audioFront ? 'audio-front' : ''}`}>
-        <span>{answerShown ? 'Front + back' : audioFront ? 'Audio front' : 'Front'}</span>
+        <span>{answerShown ? (useSentence ? 'Sentence + meaning' : 'Front + back') : audioFront ? 'Audio front' : useSentence ? 'Sentence front' : 'Front'}</span>
         {answerShown ? (
           <>
-            <strong>{word.word}</strong>
-            <p className="flashcard-answer-text">
-              {word.pinyin ? `${word.pinyin} is ${word.meaning}` : word.meaning}
-            </p>
+            {useSentence ? (
+              <>
+                <strong className="flashcard-sentence-cn">{sentence.chinese}</strong>
+                <p className="flashcard-answer-text">{sentence.english}</p>
+                <p className="flashcard-word-meaning">{word.word} — {word.meaning}</p>
+              </>
+            ) : (
+              <>
+                <strong>{word.word}</strong>
+                <p className="flashcard-answer-text">
+                  {word.pinyin ? `${word.pinyin} is ${word.meaning}` : word.meaning}
+                </p>
+              </>
+            )}
           </>
         ) : (
           <>
@@ -4447,6 +4496,8 @@ function FlashcardReview({
                   </button>
                 )}
               </>
+            ) : useSentence ? (
+              <strong className="flashcard-sentence-cn">{highlightWord(sentence.chinese, word.word)}</strong>
             ) : (
               <strong>{word.word}</strong>
             )}
@@ -4486,11 +4537,22 @@ function FlashcardReview({
           ))}
         </div>
       )}
-      {onEdit && (
-        <button type="button" className="ghost-answer flashcard-edit-button" onClick={onEdit}>
-          Edit card
-        </button>
-      )}
+      <div className="flashcard-bottom-actions">
+        {onEdit && (
+          <button type="button" className="ghost-answer" onClick={onEdit}>
+            Edit
+          </button>
+        )}
+        {onToggleSentenceMode && (
+          <button
+            type="button"
+            className={`ghost-answer ${sentenceMode ? 'active' : ''}`}
+            onClick={onToggleSentenceMode}
+          >
+            Sentences
+          </button>
+        )}
+      </div>
     </section>
   )
 }

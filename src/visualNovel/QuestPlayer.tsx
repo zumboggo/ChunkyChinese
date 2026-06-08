@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { AdaptiveChineseText } from '../AdaptiveChineseText'
 import type { AdaptivePinyinMode } from '../adaptiveText'
 import type { HotkeySettings, VocabWord } from '../types'
@@ -14,7 +14,6 @@ import { WorldStatusPanel } from './WorldStatusPanel'
 
 export function QuestPlayer({
   world,
-  quest,
   save,
   node,
   result,
@@ -37,7 +36,7 @@ export function QuestPlayer({
   hotkeys,
 }: {
   world: VnWorld
-  quest: VnQuestDefinition
+  quest?: VnQuestDefinition
   save: VisualNovelSave
   node: VnNode
   result?: VnQuestResult
@@ -59,6 +58,7 @@ export function QuestPlayer({
   onBattleStateUpdate?: (state: CardBattlerState) => void
   hotkeys: HotkeySettings
 }) {
+  const [showInventory, setShowInventory] = useState(false)
   const text = getNodeText(node)
   const background = save.scene.cinematicImageId
     ? undefined
@@ -106,58 +106,49 @@ export function QuestPlayer({
   }
 
   return (
-    <div className="app-split-layout">
-      <section className="vn-workspace">
-        <div className="vn-stage" aria-label="Quest scene">
-          {cinematic ? (
-            <img className="vn-cinematic" src={visualNovelAssetSrc(cinematic.src)} alt={cinematic.alt} />
-          ) : background ? (
-            <img className="vn-background" src={visualNovelAssetSrc(background.src)} alt={background.alt} />
-          ) : (
-            <div className="vn-background vn-background-fallback" aria-label="Neutral background" />
-          )}
-          {!cinematic && save.scene.characters.map((character) => {
-            return (
-              <VisualNovelSprite
-                key={character.slotId ?? `${character.characterId}:${character.position}`}
-                character={character}
-                manifest={manifest}
-              />
-            )
-          })}
-        </div>
-        <details className="vn-status-expander">
-          <summary>Status & Inventory</summary>
-          <WorldStatusPanel world={world} save={worldSave} />
-        </details>
-      </section>
-      <section className="vn-dialogue-panel">
-        <div className="vn-node-meta">
-          <span>{quest.title.english}</span>
-          <span>{node.id}</span>
-        </div>
+    <div className="vn-fullscreen">
+      <div className="vn-fullscreen-stage" aria-label="Quest scene">
+        {cinematic ? (
+          <img className="vn-cinematic" src={visualNovelAssetSrc(cinematic.src)} alt={cinematic.alt} />
+        ) : background ? (
+          <img className="vn-background" src={visualNovelAssetSrc(background.src)} alt={background.alt} />
+        ) : (
+          <div className="vn-background vn-background-fallback" aria-label="Neutral background" />
+        )}
+        {!cinematic && save.scene.characters.map((character) => {
+          return (
+            <VisualNovelSprite
+              key={character.slotId ?? `${character.characterId}:${character.position}`}
+              character={character}
+              manifest={manifest}
+            />
+          )
+        })}
+      </div>
+
+      <div className="vn-subtitle-overlay">
         {speaker && (
           <div className="vn-speaker-plate">
             <span>{speaker.english}</span>
             {speaker.chinese && <span className="vn-speaker-chinese">{speaker.chinese}</span>}
           </div>
         )}
-        {displayTokens.length > 0 && (
-          <AdaptiveChineseText
-            tokens={displayTokens}
-            selectedToken={selectedToken}
-            pinyinMode={pinyinMode}
-            onSelectToken={onSelectToken}
-            className="reader-sentence vn-line"
-          />
-        )}
-        {text?.english && (
-          <p className={`reader-translation vn-translation ${showEnglish ? 'revealed' : 'blur-reveal'}`} onClick={onToggleEnglish}>
-            {text.english}
-          </p>
-        )}
+        <div className="vn-subtitle-text">
+          {displayTokens.length > 0 && (
+            <AdaptiveChineseText
+              tokens={displayTokens}
+              selectedToken={selectedToken}
+              pinyinMode={pinyinMode}
+              onSelectToken={onSelectToken}
+              className="reader-sentence vn-line"
+            />
+          )}
+          {showEnglish && text?.english && (
+            <p className="vn-translation-overlay revealed">{text.english}</p>
+          )}
+        </div>
         {node.type === 'choice' && (
-          <div className="vn-choice-list">
+          <div className="vn-choice-list vn-subtitle-choices">
             {choices.map((choice, index) => (
               <button key={choice.id} type="button" className={`vn-world-choice vn-choice-${choice.kind}`} onClick={() => onAdvance(choice.id)}>
                 {index < 2 && <kbd>{(index === 0 ? hotkeys.choiceA : hotkeys.choiceB).toUpperCase()}</kbd>}
@@ -171,26 +162,49 @@ export function QuestPlayer({
           </div>
         )}
         {result && (
-          <div className="vn-result-panel">
+          <div className="vn-result-panel vn-subtitle-result">
             <strong>{result.completed ? 'Quest complete' : 'Quest unresolved'}</strong>
             <button type="button" className="primary" onClick={() => onCommitResult(result)}>
               Return to world
             </button>
           </div>
         )}
-        <div className="vn-controls">
-          <button type="button" onClick={onBack} disabled={save.history.length <= 1 || Boolean(result)}>Back</button>
-          <button type="button" onClick={onReplay}>Replay</button>
-          <button type="button" onClick={onToggleEnglish}>English {showEnglish ? 'sharp' : 'blurred'}</button>
-          {!result && node.type !== 'choice' && (
-            <button type="button" className="primary" onClick={() => onAdvance()}>
-              <kbd>{hotkeys.choiceA.toUpperCase()}</kbd>
-              Next
-            </button>
-          )}
-          <button type="button" className="ghost-answer" onClick={onAbandon}>Pause quest</button>
+      </div>
+
+      <div className="vn-bottom-bar">
+        <button type="button" className="vn-bar-btn" onClick={onToggleEnglish} title="Toggle English">
+          <span className="vn-bar-icon">{'\u{1F1EC}\u{1F1E7}'}</span>
+        </button>
+        <button type="button" className="vn-bar-btn" onClick={() => setShowInventory((v) => !v)} title="Inventory">
+          <span className="vn-bar-icon">{'\u{1F6E1}\uFE0F'}</span>
+        </button>
+        <button type="button" className="vn-bar-btn" onClick={onReplay} title="Replay audio">
+          <span className="vn-bar-icon">{'\u{1F50A}'}</span>
+        </button>
+        {!result && node.type !== 'choice' && (
+          <button type="button" className="vn-bar-btn vn-bar-btn-primary" onClick={() => onAdvance()} title="Next">
+            <span className="vn-bar-icon">{'\u25B6\uFE0F'}</span>
+          </button>
+        )}
+        <button type="button" className="vn-bar-btn" onClick={onBack} disabled={save.history.length <= 1 || Boolean(result)} title="Back">
+          <span className="vn-bar-icon">{'\u25C0\uFE0F'}</span>
+        </button>
+        <button type="button" className="vn-bar-btn vn-bar-btn-ghost" onClick={onAbandon} title="Pause quest">
+          <span className="vn-bar-icon">{'\u23F8\uFE0F'}</span>
+        </button>
+      </div>
+
+      {showInventory && (
+        <div className="vn-inventory-overlay" onClick={() => setShowInventory(false)}>
+          <div className="vn-inventory-panel" onClick={(e) => e.stopPropagation()}>
+            <div className="vn-inventory-header">
+              <h3>Status & Inventory</h3>
+              <button type="button" onClick={() => setShowInventory(false)}>Close</button>
+            </div>
+            <WorldStatusPanel world={world} save={worldSave} />
+          </div>
         </div>
-      </section>
+      )}
     </div>
   )
 }
