@@ -121,7 +121,7 @@ export function WorldHub({
             }
           }}
         >
-          <span>{recommended.badge}</span>
+          <span>Next · {recommended.badge}</span>
           <strong>{recommended.label.english ?? recommended.label.chinese}</strong>
           {recommended.label.chinese && <small>{recommended.label.chinese}</small>}
           <em>{recommended.reason}</em>
