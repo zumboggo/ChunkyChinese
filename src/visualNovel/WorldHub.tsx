@@ -71,43 +71,6 @@ export function WorldHub({
       )}
       {description?.english && <p className="reader-translation vn-translation revealed">{description.english}</p>}
 
-      {castMembers.length > 0 && (
-        <div className="vn-location-cast" aria-label="People here">
-          {castMembers.map((member) => {
-            const sprite = manifest.sprites[member.spriteId]
-            if (!sprite) return null
-            const content = (
-              <>
-                <img src={visualNovelAssetSrc(sprite.src)} alt={sprite.alt ?? member.name} />
-                <span>{member.name}</span>
-                {member.talkQuest && <small>{member.talkQuest.hubLabel?.english ?? 'Talk'}</small>}
-              </>
-            )
-            if (member.talkQuest) {
-              return (
-                <button
-                  key={`${member.characterId}:${member.spriteId}`}
-                  type="button"
-                  className="vn-cast-card vn-cast-card-interactive"
-                  onClick={() => onAction({
-                    id: `talk-${member.talkQuest!.id}`,
-                    kind: 'quest',
-                    targetId: member.talkQuest!.id,
-                    label: member.talkQuest!.hubLabel ?? member.talkQuest!.title,
-                  })}
-                >
-                  {content}
-                </button>
-              )
-            }
-            return (
-              <div key={`${member.characterId}:${member.spriteId}`} className="vn-cast-card">
-                {content}
-              </div>
-            )
-          })}
-        </div>
-      )}
 
       {recommended && (
         <button
@@ -174,14 +137,14 @@ export function WorldHub({
   )
 }
 
-interface VnHubCastMember {
+export interface VnHubCastMember {
   characterId: string
   name: string
   spriteId: string
   talkQuest?: VnQuestDefinition
 }
 
-function getHubCastMembers(
+export function getHubCastMembers(
   world: VnWorld,
   save: VisualNovelWorldSave,
   location: VnLocation | undefined,

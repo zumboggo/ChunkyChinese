@@ -3,6 +3,7 @@ import { AdaptiveChineseText } from '../AdaptiveChineseText'
 import type { AdaptivePinyinMode } from '../adaptiveText'
 import type { HotkeySettings, VocabWord } from '../types'
 import type { ReaderWordToken } from '../types'
+import type { CardBattlerState } from '../cardBattler/types'
 import { CardBattlerMode } from '../cardBattler/CardBattlerMode'
 import { createEncounter } from '../cardBattler/engine'
 import { visualNovelAssetSrc } from './loader'
@@ -32,6 +33,7 @@ export function QuestPlayer({
   onCommitResult,
   onAbandon,
   onReplay,
+  onBattleStateUpdate,
   hotkeys,
 }: {
   world: VnWorld
@@ -54,6 +56,7 @@ export function QuestPlayer({
   onCommitResult: (result: VnQuestResult) => void | Promise<void>
   onAbandon: () => void | Promise<void>
   onReplay: () => void | Promise<void>
+  onBattleStateUpdate?: (state: CardBattlerState) => void
   hotkeys: HotkeySettings
 }) {
   const text = getNodeText(node)
@@ -75,12 +78,14 @@ export function QuestPlayer({
   }, [node, world.characters])
 
   if (node.type === 'cardBattle') {
+    const savedHp = worldSave.state.playerHp
     const encounterState = save.activeEncounter ?? 
       createEncounter(
-        VN_DEFAULT_ENCOUNTER_DECK, 
+        worldSave.state.playerDeck ?? VN_DEFAULT_ENCOUNTER_DECK, 
         node.encounterId, 
         world.enemies?.[node.encounterId]?.maxHp ?? VN_DEFAULT_ENEMY_MAX_HP, 
-        VN_DEFAULT_PLAYER_MAX_HP
+        VN_DEFAULT_PLAYER_MAX_HP,
+        savedHp,
       )
     return (
       <CardBattlerMode
@@ -91,7 +96,10 @@ export function QuestPlayer({
         pinyinMode={pinyinMode}
         hotkeys={hotkeys}
         deck={encounterState.deck}
-        onBattleEnd={(state) => onAdvance(state.status === 'victory' ? 'win' : 'lose')}
+        onBattleEnd={(state) => {
+          onBattleStateUpdate?.(state)
+          onAdvance(state.status === 'victory' ? 'win' : 'lose')
+        }}
         onSelectToken={onSelectToken}
       />
     )
@@ -118,7 +126,10 @@ export function QuestPlayer({
             )
           })}
         </div>
-        <WorldStatusPanel world={world} save={worldSave} />
+        <details className="vn-status-expander">
+          <summary>Status & Inventory</summary>
+          <WorldStatusPanel world={world} save={worldSave} />
+        </details>
       </section>
       <section className="vn-dialogue-panel">
         <div className="vn-node-meta">

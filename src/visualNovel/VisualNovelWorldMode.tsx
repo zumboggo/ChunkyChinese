@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { WordInfoPopover } from '../WordInfoPopover'
 import { tokenizeReaderText, type AdaptivePinyinMode } from '../adaptiveText'
+import type { CardBattlerState } from '../cardBattler/types'
 import {
   deleteVisualNovelSave,
   getAudioClip,
@@ -58,7 +59,7 @@ import type {
 } from './types'
 import { getNodeText, getNodeAudioClipId, scopedTokens, stopAudio, speakUtterance, formatDueDate, getLocationBackgroundId } from './utils'
 import { QuestPlayer } from './QuestPlayer'
-import { WorldHub } from './WorldHub'
+import { WorldHub, getHubCastMembers } from './WorldHub'
 import { WorldStatusPanel } from './WorldStatusPanel'
 
 interface VisualNovelWorldModeProps {
@@ -219,6 +220,10 @@ export function VisualNovelWorldMode({
   }, [selectedWorldId, worldIndex, reloadKey])
 
   const location = world && worldSave ? currentWorldLocation(world, worldSave) : undefined
+  const castMembers = useMemo(
+    () => (world && worldSave && manifest ? getHubCastMembers(world, worldSave, location, manifest) : []),
+    [location, manifest, worldSave, world],
+  )
   const activeQuest = world && activeQuestId ? world.quests[activeQuestId] : undefined
   const activeScript = activeQuest ? scripts[activeQuest.scriptId] : undefined
   const node = activeScript && questSave ? currentVisualNovelNode(activeScript, questSave) : undefined
@@ -380,13 +385,31 @@ export function VisualNovelWorldMode({
 
   const handleCommitResult = useCallback(async (questResult: VnQuestResult) => {
     if (!world || !worldSave || !activeQuest || !activeScript) return
-    const nextWorldSave = commitQuestResult(world, worldSave, activeQuest, questResult)
+    let nextWorldSave = commitQuestResult(world, worldSave, activeQuest, questResult)
+    const encounter = questSave?.activeEncounter
+    if (encounter && encounter.status === 'victory') {
+      nextWorldSave = {
+        ...nextWorldSave,
+        state: {
+          ...nextWorldSave.state,
+          playerHp: encounter.playerHp,
+          playerDeck: encounter.deck,
+        },
+      }
+    }
     await persistWorldSave(nextWorldSave)
     await deleteVisualNovelSave(activeScript.packId, activeScript.id)
     setActiveQuestId(null)
     setQuestSave(null)
     setStatusToast(questResult.completed ? 'Quest result committed.' : 'Quest can be recovered.')
-  }, [activeQuest, activeScript, persistWorldSave, world, worldSave])
+  }, [activeQuest, activeScript, persistWorldSave, questSave, world, worldSave])
+
+  const handleBattleStateUpdate = useCallback(async (battleState: CardBattlerState) => {
+    if (!questSave) return
+    const nextSave: VisualNovelSave = { ...questSave, activeEncounter: battleState, updatedAt: new Date().toISOString() }
+    setQuestSave(nextSave)
+    await saveVisualNovelSave(nextSave)
+  }, [questSave])
 
   const playCurrentAudio = useCallback(async () => {
     if (!node) return
@@ -462,8 +485,8 @@ export function VisualNovelWorldMode({
     <section
       className={`screen visual-novel-screen vn-world-screen reader-theme-${readerTheme}`}
       style={{
-        '--reader-font-scale': readerFontScale,
-        '--reader-line-height': readerLineHeight,
+        '--reader-font-scale': 1,
+        '--reader-line-height': 1.5,
       } as CSSProperties}
     >
       <div className="screen-heading compact vn-heading">
@@ -553,6 +576,7 @@ export function VisualNovelWorldMode({
             onCommitResult={handleCommitResult}
             onAbandon={handleAbandonQuest}
             onReplay={playCurrentAudio}
+            onBattleStateUpdate={handleBattleStateUpdate}
             hotkeys={hotkeys}
           />
         ) : (
@@ -565,7 +589,47 @@ export function VisualNovelWorldMode({
                   <div className="vn-background vn-background-fallback" aria-label="Neutral background" />
                 )}
               </div>
-              <WorldStatusPanel world={world} save={worldSave} />
+              {castMembers.length > 0 && (
+                <div className="vn-location-cast" aria-label="People here">
+                  {castMembers.map((member) => {
+                    const sprite = manifest.sprites[member.spriteId]
+                    if (!sprite) return null
+                    const content = (
+                      <>
+                        <img src={visualNovelAssetSrc(sprite.src)} alt={sprite.alt ?? member.name} />
+                        <span>{member.name}</span>
+                        {member.talkQuest && <small>{member.talkQuest.hubLabel?.english ?? 'Talk'}</small>}
+                      </>
+                    )
+                    if (member.talkQuest) {
+                      return (
+                        <button
+                          key={`${member.characterId}:${member.spriteId}`}
+                          type="button"
+                          className="vn-cast-card vn-cast-card-interactive"
+                          onClick={() => handleWorldAction({
+                            id: `talk-${member.talkQuest!.id}`,
+                            kind: 'quest',
+                            targetId: member.talkQuest!.id,
+                            label: member.talkQuest!.hubLabel ?? member.talkQuest!.title,
+                          })}
+                        >
+                          {content}
+                        </button>
+                      )
+                    }
+                    return (
+                      <div key={`${member.characterId}:${member.spriteId}`} className="vn-cast-card">
+                        {content}
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
+              <details className="vn-status-expander">
+                <summary>Status & Inventory</summary>
+                <WorldStatusPanel world={world} save={worldSave} />
+              </details>
             </section>
             <WorldHub
               world={world}

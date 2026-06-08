@@ -3035,10 +3035,9 @@ kbd {
 }
 
 .vn-workspace {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(180px, 240px);
+  display: flex;
+  flex-direction: column;
   gap: 14px;
-  align-items: stretch;
 }
 
 .vn-stage {
@@ -3106,15 +3105,35 @@ kbd {
   left: 69%;
 }
 
+.vn-status-expander {
+  border: 1px solid var(--reader-border);
+  border-radius: 20px;
+  background: var(--reader-paper);
+  color: var(--reader-ink);
+  overflow: hidden;
+}
+
+.vn-status-expander summary {
+  padding: 16px;
+  font-weight: 850;
+  cursor: pointer;
+  user-select: none;
+  transition: background 160ms ease;
+}
+
+.vn-status-expander summary:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.vn-status-expander[open] summary {
+  border-bottom: 1px solid var(--reader-border);
+}
+
 .vn-status-panel {
   display: grid;
   align-content: start;
   gap: 10px;
   padding: 16px;
-  border: 1px solid var(--reader-border);
-  border-radius: 20px;
-  background: var(--reader-paper);
-  color: var(--reader-ink);
 }
 
 .vn-status-panel > div {
@@ -3593,6 +3612,46 @@ kbd {
 .vn-status-title::before {
   content: '\1F451';
   font-size: 0.9rem;
+}
+
+/* ── Deck summary ── */
+
+.vn-deck-summary {
+  display: grid;
+  gap: 4px;
+  padding: 8px 0;
+  border-top: 1px solid var(--reader-border);
+}
+
+.vn-deck-label {
+  font-size: 0.78rem;
+  font-weight: 850;
+  color: var(--reader-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.vn-deck-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.vn-deck-entry {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.06);
+  font-size: 0.72rem;
+  font-weight: 760;
+  color: var(--reader-ink);
+}
+
+.vn-deck-count {
+  font-weight: 900;
+  color: var(--reader-accent, #2563eb);
 }
 
 /* ── Recommended action card (hub) ── */
@@ -4616,4 +4675,40 @@ kbd {
   align-items: center;
   color: var(--text-error);
   font-weight: bold;
+}
+
+/* ── Turn summary animation ── */
+
+.battler-turn-summary {
+  padding: 12px 24px;
+  border-radius: 12px;
+  background: rgba(16, 24, 39, 0.85);
+  color: #f1f5f9;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  animation: turn-summary-enter 400ms ease-out, turn-summary-exit 400ms 800ms ease-in forwards;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes turn-summary-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes turn-summary-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
 }
