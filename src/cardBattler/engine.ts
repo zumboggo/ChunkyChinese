@@ -210,8 +210,10 @@ export function endTurn(
 
   const next = { ...state }
 
-  // Enemy turn starts — reset block
+  // Enemy turn starts — reset block, tick both enemy and player statuses
   next.enemyBlock = 0
+  next.enemyStatuses = tickStatuses(next.enemyStatuses)
+  next.playerStatuses = tickStatuses(next.playerStatuses)
 
   // Execute ALL intents for this turn (statuses active during action)
   const intents = computeEnemyIntents(enemyDef, next.enemyIntentIndex)
@@ -240,9 +242,6 @@ export function endTurn(
     }
   }
 
-  // Tick enemy statuses at end of enemy turn (after action)
-  next.enemyStatuses = tickStatuses(next.enemyStatuses)
-
   // Check defeat
   if (next.playerHp <= 0) {
     next.status = 'defeat'
@@ -263,9 +262,6 @@ export function endTurn(
 
   // Draw new hand
   const drawn = drawCards(next, 5)
-
-  // Tick player statuses so debuffs from enemy turn affect this hand
-  drawn.playerStatuses = tickStatuses(drawn.playerStatuses)
 
   return drawn
 }

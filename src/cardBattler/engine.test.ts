@@ -361,7 +361,7 @@ describe('Card Battler Engine', () => {
     expect(state.playerHp).toBe(47)
 
     state = endTurn(state, pureAttackEnemy)
-    expect(state.playerHp).toBe(44)
+    expect(state.playerHp).toBe(42)
   })
 
   it('player attack is reduced by weak', () => {
