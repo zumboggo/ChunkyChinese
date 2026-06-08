@@ -89,6 +89,22 @@
             "chinese": "接受一次不太体面的入门训练。",
             "english": "Accept a not-very-glorious first lesson."
           }
+        },
+        {
+          "id": "enter-basement",
+          "kind": "quest",
+          "targetId": "dungeon-rat-nest",
+          "label": {
+            "chinese": "进入地下室清理鼠患。",
+            "english": "Enter the basement to clear the rat nest."
+          },
+          "conditions": [
+            {
+              "op": "worldQuestStatus",
+              "questId": "first-lesson",
+              "status": "completed"
+            }
+          ]
         }
       ],
       "travelTo": [
@@ -382,6 +398,34 @@
         "chinese": "????",
         "english": "Ask training"
       }
+    },
+    "dungeon-rat-nest": {
+      "id": "dungeon-rat-nest",
+      "title": {
+        "chinese": "地下室鼠患",
+        "english": "Basement rats"
+      },
+      "category": "side",
+      "description": {
+        "chinese": "训练馆地下室有老鼠窝，师傅让你去清理。",
+        "english": "There is a rat nest in the training hall basement. The master wants you to clear it."
+      },
+      "objective": {
+        "chinese": "下去地下室，赶走老鼠。",
+        "english": "Go to the basement and drive out the rats."
+      },
+      "scriptPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/quests/dungeon-rat-nest.json",
+      "scriptId": "dungeon-rat-nest",
+      "entryNodeId": "dungeon-001",
+      "repeatable": true,
+      "returnLocationId": "training-hall",
+      "prerequisites": [
+        {
+          "op": "worldQuestStatus",
+          "questId": "first-lesson",
+          "status": "completed"
+        }
+      ]
     }
   },
   "encounterPools": {
@@ -629,6 +673,50 @@
           "description": {
             "chinese": "释放粘液！",
             "english": "Spewing slime!"
+          }
+        }
+      ],
+      "cardRewardPool": [
+        "heavy-strike",
+        "shield-wall",
+        "bash",
+        "intimidate",
+        "battle-cry",
+        "quick-jab",
+        "focus"
+      ]
+    },
+    "basement-rat": {
+      "id": "basement-rat",
+      "name": {
+        "chinese": "地下室大老鼠",
+        "english": "Basement Rat"
+      },
+      "maxHp": 28,
+      "intents": [
+        {
+          "type": "attack",
+          "amount": 4,
+          "description": {
+            "chinese": "扑咬！",
+            "english": "Lunging bite!"
+          }
+        },
+        {
+          "type": "buff",
+          "amount": 2,
+          "statusId": "strength",
+          "description": {
+            "chinese": "磨牙……",
+            "english": "Grinding teeth..."
+          }
+        },
+        {
+          "type": "attack",
+          "amount": 10,
+          "description": {
+            "chinese": "全力撕咬！",
+            "english": "Savage bite!"
           }
         }
       ],
