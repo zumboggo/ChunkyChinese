@@ -436,6 +436,157 @@
           "amount": 5
         }
       ]
+    },
+    "bash": {
+      "id": "bash",
+      "name": {
+        "chinese": "猛击",
+        "english": "Bash"
+      },
+      "description": {
+        "chinese": "造成 6 点伤害。施加 2 层易伤。",
+        "english": "Deal 6 damage. Apply 2 Vulnerable."
+      },
+      "cost": 1,
+      "target": "enemy",
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 6
+        },
+        {
+          "type": "applyStatus",
+          "statusId": "vulnerable",
+          "amount": 2
+        }
+      ]
+    },
+    "heavy-strike": {
+      "id": "heavy-strike",
+      "name": {
+        "chinese": "重击",
+        "english": "Heavy Strike"
+      },
+      "description": {
+        "chinese": "造成 14 点伤害。",
+        "english": "Deal 14 damage."
+      },
+      "cost": 2,
+      "target": "enemy",
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 14
+        }
+      ]
+    },
+    "shield-wall": {
+      "id": "shield-wall",
+      "name": {
+        "chinese": "铁壁",
+        "english": "Shield Wall"
+      },
+      "description": {
+        "chinese": "获得 12 点格挡。",
+        "english": "Gain 12 block."
+      },
+      "cost": 2,
+      "target": "self",
+      "effects": [
+        {
+          "type": "block",
+          "amount": 12
+        }
+      ]
+    },
+    "focus": {
+      "id": "focus",
+      "name": {
+        "chinese": "集中",
+        "english": "Focus"
+      },
+      "description": {
+        "chinese": "抽 1 张牌。获得 1 点能量。",
+        "english": "Draw 1 card. Gain 1 energy."
+      },
+      "cost": 0,
+      "target": "self",
+      "effects": [
+        {
+          "type": "draw",
+          "amount": 1
+        },
+        {
+          "type": "addEnergy",
+          "amount": 1
+        }
+      ]
+    },
+    "intimidate": {
+      "id": "intimidate",
+      "name": {
+        "chinese": "威吓",
+        "english": "Intimidate"
+      },
+      "description": {
+        "chinese": "施加 2 层虚弱。",
+        "english": "Apply 2 Weak."
+      },
+      "cost": 1,
+      "target": "enemy",
+      "effects": [
+        {
+          "type": "applyStatus",
+          "statusId": "weak",
+          "amount": 2
+        }
+      ],
+      "exhaust": true
+    },
+    "battle-cry": {
+      "id": "battle-cry",
+      "name": {
+        "chinese": "战吼",
+        "english": "Battle Cry"
+      },
+      "description": {
+        "chinese": "获得 2 层力量。",
+        "english": "Gain 2 Strength."
+      },
+      "cost": 1,
+      "target": "self",
+      "effects": [
+        {
+          "type": "applyStatus",
+          "statusId": "strength",
+          "amount": 2,
+          "targetSelf": true
+        }
+      ],
+      "exhaust": true
+    },
+    "quick-jab": {
+      "id": "quick-jab",
+      "name": {
+        "chinese": "快拳",
+        "english": "Quick Jab"
+      },
+      "description": {
+        "chinese": "造成 3 点伤害。抽 1 张牌。",
+        "english": "Deal 3 damage. Draw 1 card."
+      },
+      "cost": 0,
+      "target": "enemy",
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 3
+        },
+        {
+          "type": "draw",
+          "amount": 1
+        }
+      ]
     }
   },
   "enemies": {
@@ -445,7 +596,7 @@
         "chinese": "灰尘史莱姆",
         "english": "Dust Slime"
       },
-      "maxHp": 20,
+      "maxHp": 24,
       "intents": [
         {
           "type": "attack",
@@ -456,13 +607,39 @@
           }
         },
         {
-          "type": "block",
+          "type": "defend",
           "amount": 4,
           "description": {
             "chinese": "正在防守。",
             "english": "Defending."
           }
+        },
+        {
+          "type": "attack",
+          "amount": 8,
+          "description": {
+            "chinese": "蓄力重击！",
+            "english": "Charging a heavy blow!"
+          }
+        },
+        {
+          "type": "debuff",
+          "amount": 1,
+          "statusId": "weak",
+          "description": {
+            "chinese": "释放粘液！",
+            "english": "Spewing slime!"
+          }
         }
+      ],
+      "cardRewardPool": [
+        "heavy-strike",
+        "shield-wall",
+        "bash",
+        "intimidate",
+        "battle-cry",
+        "quick-jab",
+        "focus"
       ]
     }
   },

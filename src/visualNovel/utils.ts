@@ -69,6 +69,10 @@ export function getLocationDescription(location: VnLocation | undefined, save: V
   return location.description
 }
 
-export const VN_DEFAULT_ENCOUNTER_DECK = ['strike', 'strike', 'strike', 'defend', 'defend']
-export const VN_DEFAULT_ENEMY_MAX_HP = 20
+export const VN_DEFAULT_ENCOUNTER_DECK = [
+  'strike', 'strike', 'strike', 'strike',
+  'defend', 'defend', 'defend',
+  'bash',
+]
+export const VN_DEFAULT_ENEMY_MAX_HP = 24
 export const VN_DEFAULT_PLAYER_MAX_HP = 50
