@@ -14,12 +14,37 @@ import type {
   VnQuestResult,
   VnQuestState,
   VnScript,
+  VnText,
   VnState,
   VnWorld,
   VnWorldAction,
   VnWorldQuestStatus,
   VnWorldState,
 } from './types'
+
+export type VnRecommendedWorldAction =
+  | {
+      kind: 'resume'
+      badge: 'Resume'
+      label: VnText
+      reason: string
+    }
+  | {
+      kind: 'action'
+      badge: string
+      label: VnText
+      action: VnWorldAction
+      quest?: VnQuestDefinition
+      reason: string
+    }
+  | {
+      kind: 'travel'
+      badge: 'Travel'
+      label: VnText
+      action: VnWorldAction
+      destination: VnLocation
+      reason: string
+    }
 
 export function visualNovelWorldSaveId(worldId: string): string {
   return `visual-novel-world-save:${worldId}`
@@ -70,6 +95,95 @@ export function availableWorldActions(world: VnWorld, save: VisualNovelWorldSave
     }
     return true
   })
+}
+
+export function recommendedWorldAction(world: VnWorld, save: VisualNovelWorldSave): VnRecommendedWorldAction | undefined {
+  if (save.interruptedQuest) {
+    const quest = world.quests[save.interruptedQuest.questId]
+    return {
+      kind: 'resume',
+      badge: 'Resume',
+      label: quest?.title ?? { chinese: '继续任务', english: 'Resume interrupted quest' },
+      reason: 'Continue where you paused.',
+    }
+  }
+
+  const actions = availableWorldActions(world, save)
+  const rankedQuest = actions
+    .filter((action) => action.kind === 'quest')
+    .map((action) => ({ action, quest: world.quests[action.targetId] }))
+    .filter((item): item is { action: VnWorldAction; quest: VnQuestDefinition } => Boolean(item.quest))
+    .find((item) => item.quest.category === 'main') ??
+    actions
+      .filter((action) => action.kind === 'quest')
+      .map((action) => ({ action, quest: world.quests[action.targetId] }))
+      .filter((item): item is { action: VnWorldAction; quest: VnQuestDefinition } => Boolean(item.quest))
+      .find((item) => item.quest.category === 'side' || item.quest.category === 'training')
+
+  if (rankedQuest) {
+    return {
+      kind: 'action',
+      badge: worldActionBadge(world, rankedQuest.action),
+      label: rankedQuest.action.label,
+      action: rankedQuest.action,
+      quest: rankedQuest.quest,
+      reason: rankedQuest.quest.objective?.english ?? rankedQuest.quest.description?.english ?? 'Advance the story.',
+    }
+  }
+
+  const encounter = actions.find((action) => action.kind === 'encounterPool')
+  if (encounter) {
+    return {
+      kind: 'action',
+      badge: worldActionBadge(world, encounter),
+      label: encounter.label,
+      action: encounter,
+      reason: 'Try a short optional scene.',
+    }
+  }
+
+  const destination = availableTravelLocations(world, save)[0]
+  if (destination) {
+    return {
+      kind: 'travel',
+      badge: 'Travel',
+      label: destination.name,
+      destination,
+      action: { id: `travel-${destination.id}`, kind: 'travel', targetId: destination.id, label: destination.name },
+      reason: 'Move to another unlocked location.',
+    }
+  }
+
+  return undefined
+}
+
+export function availableNpcTalkQuest(
+  world: VnWorld,
+  save: VisualNovelWorldSave,
+  location: VnLocation | undefined,
+  npcId: string,
+): VnQuestDefinition | undefined {
+  if (!location) return undefined
+  return Object.values(world.quests).find((quest) => (
+    quest.category === 'rumour' &&
+    quest.hubNpcId === npcId &&
+    quest.hubLocationId === location.id &&
+    isQuestAvailable(quest, save.state)
+  ))
+}
+
+export function worldActionBadge(world: VnWorld, action: VnWorldAction): string {
+  if (action.kind === 'travel') return 'Travel'
+  if (action.kind === 'encounterPool') return 'Commission'
+  if (action.kind === 'rumour') return 'Talk'
+  const quest = world.quests[action.targetId]
+  if (!quest) return action.kind
+  if (quest.category === 'main') return 'Main'
+  if (quest.category === 'side') return 'Side'
+  if (quest.category === 'training') return 'Training'
+  if (quest.category === 'commission') return 'Commission'
+  if (quest.category === 'rumour') return 'Talk'
+  return quest.category
 }
 
 export function availableWorldQuests(world: VnWorld, save: VisualNovelWorldSave): VnQuestDefinition[] {
@@ -144,14 +258,29 @@ export function commitQuestResult(
 ): VisualNovelWorldSave {
   const resultId = `${quest.id}:${result.resultId}`
   if (save.state.committedResultIds.includes(resultId)) {
+    const now = new Date().toISOString()
+    const previousQuestState = save.state.questStates[quest.id]
+    const nextStatus: VnWorldQuestStatus = result.completed ? 'completed' : 'recoverable'
+    const shouldCountCompletion = result.completed && quest.repeatable
     return {
       ...save,
       interruptedQuest: undefined,
       state: {
         ...save.state,
         currentLocationId: result.returnLocationId ?? quest.returnLocationId ?? save.state.currentLocationId,
+        questStates: {
+          ...save.state.questStates,
+          [quest.id]: {
+            status: nextStatus,
+            completions: (previousQuestState?.completions ?? 0) + (shouldCountCompletion ? 1 : 0),
+            activeRunId: undefined,
+            lastOutcomeId: result.outcomeId,
+            discoveredAt: previousQuestState?.discoveredAt ?? now,
+            updatedAt: now,
+          },
+        },
       },
-      updatedAt: new Date().toISOString(),
+      updatedAt: now,
     }
   }
 

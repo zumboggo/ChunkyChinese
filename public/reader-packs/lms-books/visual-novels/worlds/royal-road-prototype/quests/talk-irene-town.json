@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026-06-08-hub-npc-v1",
+  "id": "talk-irene-town",
+  "packId": "royal-road-prototype",
+  "title": "Talk: Irene",
+  "assetManifestPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/asset-manifest.json",
+  "initialNodeId": "irene-talk-001",
+  "characters": {
+    "irene": {
+      "id": "irene",
+      "displayNames": {
+        "english": "Irene",
+        "chinese": "伊莲"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "white-priestess",
+          "defaultSpriteId": "irene-default"
+        }
+      }
+    },
+    "lee-hyun": {
+      "id": "lee-hyun",
+      "displayNames": {
+        "english": "Weed",
+        "chinese": "韦德"
+      },
+      "personas": {
+        "weed-sculptor": {
+          "id": "weed-sculptor",
+          "defaultOutfitId": "sculptor-apron",
+          "defaultSpriteId": "weed-sculptor-calculating"
+        }
+      }
+    }
+  },
+  "initialState": {
+    "money": 0,
+    "skills": {
+      "sculpting": 0,
+      "swordsmanship": 0
+    },
+    "flags": {},
+    "questNotes": {},
+    "appliedOnceKeys": []
+  },
+  "nodes": {
+    "irene-talk-001": {
+      "id": "irene-talk-001",
+      "type": "line",
+      "speaker": {
+        "characterId": "irene",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "你的肩膀很紧。你刚来这里，对吗？",
+        "english": "Your shoulders are very tense. You just arrived here, right?"
+      },
+      "scene": {
+        "backgroundId": "town-square-day",
+        "characters": [
+          {
+            "slotId": "irene",
+            "characterId": "irene",
+            "personaId": "default",
+            "spriteId": "irene-concerned",
+            "position": "left",
+            "xPercent": 35,
+            "scale": 0.92
+          },
+          {
+            "slotId": "weed",
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-calculating",
+            "position": "right",
+            "xPercent": 68,
+            "scale": 0.82,
+            "dimmed": true
+          }
+        ]
+      },
+      "nextId": "irene-talk-002"
+    },
+    "irene-talk-002": {
+      "id": "irene-talk-002",
+      "type": "choice",
+      "prompt": {
+        "chinese": "你怎么回答？",
+        "english": "How do you answer?"
+      },
+      "choices": [
+        {
+          "id": "honest",
+          "kind": "expressive",
+          "label": {
+            "chinese": "是的，我还不太习惯。",
+            "english": "Yes. I am still not used to it."
+          },
+          "nextId": "irene-talk-honest"
+        },
+        {
+          "id": "dry",
+          "kind": "expressive",
+          "label": {
+            "chinese": "我只是和空气讲价。",
+            "english": "I am only bargaining with the air."
+          },
+          "nextId": "irene-talk-dry"
+        }
+      ]
+    },
+    "irene-talk-honest": {
+      "id": "irene-talk-honest",
+      "type": "line",
+      "speaker": {
+        "characterId": "irene",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "慢慢来。这里很大，但第一步可以很小。",
+        "english": "Take your time. This place is large, but the first step can be small."
+      },
+      "effects": [
+        {
+          "id": "talked-irene-town-honest",
+          "op": "setFlag",
+          "key": "talked-irene-town",
+          "value": "honest"
+        }
+      ],
+      "nextId": "irene-talk-result"
+    },
+    "irene-talk-dry": {
+      "id": "irene-talk-dry",
+      "type": "line",
+      "speaker": {
+        "characterId": "irene",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "那你应该赢了。空气通常没有钱。",
+        "english": "Then you probably won. The air usually has no money."
+      },
+      "effects": [
+        {
+          "id": "talked-irene-town-dry",
+          "op": "setFlag",
+          "key": "talked-irene-town",
+          "value": "dry"
+        }
+      ],
+      "nextId": "irene-talk-result"
+    },
+    "irene-talk-result": {
+      "id": "irene-talk-result",
+      "type": "questResult",
+      "questId": "talk-irene-town",
+      "outcomeId": "heard-kind-word",
+      "completed": true,
+      "resultId": "talk-irene-town-done",
+      "summary": {
+        "chinese": "伊莲给了你一句温柔的提醒。",
+        "english": "Irene gives you a gentle reminder."
+      },
+      "returnLocationId": "town-square"
+    }
+  }
+}

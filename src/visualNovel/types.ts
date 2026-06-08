@@ -329,6 +329,9 @@ export interface VnQuestDefinition {
   returnLocationId?: string
   completionEffects?: VnEffect[]
   encounterPoolId?: string
+  hubNpcId?: string
+  hubLocationId?: string
+  hubLabel?: VnText
 }
 
 export interface VnEncounterPool {

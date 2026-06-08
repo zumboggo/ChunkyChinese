@@ -3,8 +3,16 @@ import { AdaptiveChineseText } from '../AdaptiveChineseText'
 import { tokenizeReaderText, type AdaptivePinyinMode } from '../adaptiveText'
 import type { ReaderWordToken, VocabWord } from '../types'
 import { visualNovelAssetSrc } from './loader'
-import type { VnAssetManifest, VnLocation, VnWorld, VnWorldAction } from './types'
-import { activeWorldQuests, availableTravelLocations, availableWorldActions, completedWorldQuests } from './worldEngine'
+import type { VnAssetManifest, VnLocation, VnQuestDefinition, VnWorld, VnWorldAction } from './types'
+import {
+  activeWorldQuests,
+  availableNpcTalkQuest,
+  availableTravelLocations,
+  availableWorldActions,
+  completedWorldQuests,
+  recommendedWorldAction,
+  worldActionBadge,
+} from './worldEngine'
 import { scopedTokens, getLocationDescription } from './utils'
 import type { VisualNovelWorldSave } from './types'
 
@@ -38,11 +46,12 @@ export function WorldHub({
   )
   const actions = availableWorldActions(world, save)
   const travelLocations = availableTravelLocations(world, save)
-  const activeQuests = activeWorldQuests(world, save)
-  const completedQuests = completedWorldQuests(world, save)
+  const activeQuests = activeWorldQuests(world, save).filter((quest) => quest.category !== 'rumour')
+  const completedQuests = completedWorldQuests(world, save).filter((quest) => quest.category !== 'rumour')
+  const recommended = recommendedWorldAction(world, save)
   const castMembers = useMemo(
-    () => getHubCastMembers(world, location, manifest),
-    [location, manifest, world],
+    () => getHubCastMembers(world, save, location, manifest),
+    [location, manifest, save, world],
   )
 
   return (
@@ -67,19 +76,55 @@ export function WorldHub({
           {castMembers.map((member) => {
             const sprite = manifest.sprites[member.spriteId]
             if (!sprite) return null
-            return (
-              <figure key={`${member.characterId}:${member.spriteId}`}>
+            const content = (
+              <>
                 <img src={visualNovelAssetSrc(sprite.src)} alt={sprite.alt ?? member.name} />
-                <figcaption>{member.name}</figcaption>
-              </figure>
+                <span>{member.name}</span>
+                {member.talkQuest && <small>{member.talkQuest.hubLabel?.english ?? 'Talk'}</small>}
+              </>
+            )
+            if (member.talkQuest) {
+              return (
+                <button
+                  key={`${member.characterId}:${member.spriteId}`}
+                  type="button"
+                  className="vn-cast-card vn-cast-card-interactive"
+                  onClick={() => onAction({
+                    id: `talk-${member.talkQuest!.id}`,
+                    kind: 'quest',
+                    targetId: member.talkQuest!.id,
+                    label: member.talkQuest!.hubLabel ?? member.talkQuest!.title,
+                  })}
+                >
+                  {content}
+                </button>
+              )
+            }
+            return (
+              <div key={`${member.characterId}:${member.spriteId}`} className="vn-cast-card">
+                {content}
+              </div>
             )
           })}
         </div>
       )}
 
-      {save.interruptedQuest && (
-        <button type="button" className="primary" onClick={onResume}>
-          Resume interrupted quest
+      {recommended && (
+        <button
+          type="button"
+          className="vn-recommended-action"
+          onClick={() => {
+            if (recommended.kind === 'resume') {
+              void onResume()
+            } else {
+              void onAction(recommended.action)
+            }
+          }}
+        >
+          <span>{recommended.badge}</span>
+          <strong>{recommended.label.english ?? recommended.label.chinese}</strong>
+          {recommended.label.chinese && <small>{recommended.label.chinese}</small>}
+          <em>{recommended.reason}</em>
         </button>
       )}
 
@@ -89,6 +134,7 @@ export function WorldHub({
           <div className="vn-world-action-list">
             {actions.map((action) => (
               <button key={action.id} type="button" onClick={() => onAction(action)}>
+                <span className="vn-world-badge">{worldActionBadge(world, action)}</span>
                 <strong>{action.label.english}</strong>
                 <span>{action.label.chinese}</span>
               </button>
@@ -105,6 +151,7 @@ export function WorldHub({
                 type="button"
                 onClick={() => onAction({ id: `travel-${destination.id}`, kind: 'travel', targetId: destination.id, label: destination.name })}
               >
+                <span className="vn-world-badge">Travel</span>
                 <strong>{destination.name.english}</strong>
                 <span>{destination.name.chinese}</span>
               </button>
@@ -115,18 +162,10 @@ export function WorldHub({
         <section>
           <h2>Journal</h2>
           <div className="vn-journal-list">
-            {activeQuests.map((quest) => (
-              <p key={quest.id}>
-                <strong>{quest.title.english}</strong>
-                <span>{quest.objective?.english ?? quest.description?.english}</span>
-              </p>
-            ))}
-            {completedQuests.slice(-3).map((quest) => (
-              <p key={quest.id} className="completed">
-                <strong>{quest.title.english}</strong>
-                <span>Completed</span>
-              </p>
-            ))}
+            {activeQuests.length > 0 && <small>Active</small>}
+            {activeQuests.map((quest) => <JournalQuest key={quest.id} quest={quest} />)}
+            {completedQuests.length > 0 && <small>Recently completed</small>}
+            {completedQuests.slice(-3).map((quest) => <JournalQuest key={quest.id} quest={quest} completed />)}
             {activeQuests.length === 0 && completedQuests.length === 0 && <small>No journal entries yet.</small>}
           </div>
         </section>
@@ -139,9 +178,15 @@ interface VnHubCastMember {
   characterId: string
   name: string
   spriteId: string
+  talkQuest?: VnQuestDefinition
 }
 
-function getHubCastMembers(world: VnWorld, location: VnLocation | undefined, manifest: VnAssetManifest): VnHubCastMember[] {
+function getHubCastMembers(
+  world: VnWorld,
+  save: VisualNovelWorldSave,
+  location: VnLocation | undefined,
+  manifest: VnAssetManifest,
+): VnHubCastMember[] {
   const characterIds = location?.npcIds ?? []
   return characterIds.filter((characterId) => characterId !== 'lee-hyun' && characterId !== 'protagonist').flatMap((characterId) => {
     const character = world.characters?.[characterId]
@@ -149,10 +194,21 @@ function getHubCastMembers(world: VnWorld, location: VnLocation | undefined, man
     const persona = Object.values(character.personas)[0]
     const spriteId = persona?.defaultSpriteId
     if (!spriteId || !manifest.sprites[spriteId]) return []
+    const talkQuest = availableNpcTalkQuest(world, save, location, characterId)
     return [{
       characterId,
       name: character.displayNames.english ?? character.displayNames.chinese ?? characterId,
       spriteId,
+      talkQuest,
     }]
   })
+}
+
+function JournalQuest({ quest, completed = false }: { quest: VnQuestDefinition; completed?: boolean }) {
+  return (
+    <p className={completed ? 'completed' : undefined}>
+      <strong>{quest.title.english}</strong>
+      <span>{completed ? 'Completed' : quest.objective?.english ?? quest.description?.english}</span>
+    </p>
+  )
 }

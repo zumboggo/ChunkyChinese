@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { AdaptiveChineseText } from '../AdaptiveChineseText'
 import type { AdaptivePinyinMode } from '../adaptiveText'
 import type { HotkeySettings, VocabWord } from '../types'
@@ -63,6 +64,16 @@ export function QuestPlayer({
       : undefined
   const cinematic = save.scene.cinematicImageId ? manifest.cinematics[save.scene.cinematicImageId] : undefined
 
+  const speaker = useMemo(() => {
+    if (node.type !== 'line' || !node.speaker) return undefined
+    const character = world.characters?.[node.speaker.characterId]
+    if (!character) return undefined
+    return {
+      english: character.displayNames.english ?? character.displayNames.chinese ?? node.speaker.characterId,
+      chinese: character.displayNames.chinese,
+    }
+  }, [node, world.characters])
+
   if (node.type === 'cardBattle') {
     return (
       <CardBattlerMode
@@ -114,6 +125,12 @@ export function QuestPlayer({
           <span>{quest.title.english}</span>
           <span>{node.id}</span>
         </div>
+        {speaker && (
+          <div className="vn-speaker-plate">
+            <span>{speaker.english}</span>
+            {speaker.chinese && <span className="vn-speaker-chinese">{speaker.chinese}</span>}
+          </div>
+        )}
         {displayTokens.length > 0 && (
           <AdaptiveChineseText
             tokens={displayTokens}
@@ -133,6 +150,9 @@ export function QuestPlayer({
             {choices.map((choice, index) => (
               <button key={choice.id} type="button" className={`vn-world-choice vn-choice-${choice.kind}`} onClick={() => onAdvance(choice.id)}>
                 {index < 2 && <kbd>{(index === 0 ? hotkeys.choiceA : hotkeys.choiceB).toUpperCase()}</kbd>}
+                <span className={`vn-choice-kind vn-choice-kind-${choice.kind}`}>
+                  {choice.kind === 'memory' ? 'Memory' : choice.kind === 'consequential' ? 'Story' : 'Express'}
+                </span>
                 <span>{choice.label.chinese}</span>
                 <small>{choice.label.english}</small>
               </button>

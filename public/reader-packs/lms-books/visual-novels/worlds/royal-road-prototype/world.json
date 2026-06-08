@@ -1,7 +1,7 @@
 {
   "id": "royal-road-prototype",
   "schemaVersion": 1,
-  "contentVersion": "2026-06-06-immersive-staging-v1",
+  "contentVersion": "2026-06-08-hub-npc-v1",
   "title": "Royal Road Prototype",
   "description": {
     "chinese": "一个关于压力、选择、手艺和希望的互动小说世界。",
@@ -301,6 +301,87 @@
       "maxCompletions": 1,
       "returnLocationId": "sculpture-workshop",
       "encounterPoolId": "sculpture-commissions"
+    },
+    "talk-mapan-town": {
+      "id": "talk-mapan-town",
+      "title": {
+        "chinese": "?????",
+        "english": "Talk with Mapan"
+      },
+      "category": "rumour",
+      "description": {
+        "chinese": "????????????",
+        "english": "Hear practical advice from the square merchant."
+      },
+      "objective": {
+        "chinese": "???????????",
+        "english": "Ask Mapan how to earn a little money first."
+      },
+      "scriptPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/quests/talk-mapan-town.json",
+      "scriptId": "talk-mapan-town",
+      "entryNodeId": "mapan-talk-001",
+      "repeatable": true,
+      "returnLocationId": "town-square",
+      "hubNpcId": "mapan",
+      "hubLocationId": "town-square",
+      "hubLabel": {
+        "chinese": "?????",
+        "english": "Talk money"
+      }
+    },
+    "talk-irene-town": {
+      "id": "talk-irene-town",
+      "title": {
+        "chinese": "?????",
+        "english": "Talk with Irene"
+      },
+      "category": "rumour",
+      "description": {
+        "chinese": "?????????",
+        "english": "Hear a gentle reminder."
+      },
+      "objective": {
+        "chinese": "????????",
+        "english": "Say a few words with Irene."
+      },
+      "scriptPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/quests/talk-irene-town.json",
+      "scriptId": "talk-irene-town",
+      "entryNodeId": "irene-talk-001",
+      "repeatable": true,
+      "returnLocationId": "town-square",
+      "hubNpcId": "irene",
+      "hubLocationId": "town-square",
+      "hubLabel": {
+        "chinese": "?????",
+        "english": "Talk gently"
+      }
+    },
+    "talk-geomchi-training": {
+      "id": "talk-geomchi-training",
+      "title": {
+        "chinese": "?????",
+        "english": "Talk with Geomchi"
+      },
+      "category": "rumour",
+      "description": {
+        "chinese": "?????????????",
+        "english": "Hear a not very gentle training tip."
+      },
+      "objective": {
+        "chinese": "???????????",
+        "english": "Ask Geomchi what a beginner should learn first."
+      },
+      "scriptPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/quests/talk-geomchi-training.json",
+      "scriptId": "talk-geomchi-training",
+      "entryNodeId": "geomchi-talk-001",
+      "repeatable": true,
+      "returnLocationId": "training-hall",
+      "hubNpcId": "geomchi",
+      "hubLocationId": "training-hall",
+      "hubLabel": {
+        "chinese": "????",
+        "english": "Ask training"
+      }
     }
   },
   "encounterPools": {

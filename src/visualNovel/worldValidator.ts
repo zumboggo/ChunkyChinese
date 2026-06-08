@@ -65,6 +65,12 @@ export function validateVisualNovelWorld(
     if (quest.encounterPoolId && !world.encounterPools?.[quest.encounterPoolId]) {
       errors.push(`Quest ${quest.id} references missing encounter pool ${quest.encounterPoolId}.`)
     }
+    if (quest.hubNpcId && !world.characters?.[quest.hubNpcId]) {
+      errors.push(`Quest ${quest.id} references missing hub NPC ${quest.hubNpcId}.`)
+    }
+    if (quest.hubLocationId && !locationIds.has(quest.hubLocationId)) {
+      errors.push(`Quest ${quest.id} hubLocationId points to missing ${quest.hubLocationId}.`)
+    }
     const script = scripts[quest.scriptId]
     if (script) {
       const scriptResult = validateVisualNovelScript(script, manifest)

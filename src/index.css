@@ -3185,17 +3185,85 @@ kbd {
   gap: 14px;
 }
 
+.vn-recommended-action {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 4px 12px;
+  justify-items: start;
+  min-height: 96px;
+  padding: 16px;
+  border-radius: 18px;
+  text-align: left;
+  background:
+    linear-gradient(135deg, rgba(249, 115, 22, 0.18), rgba(14, 165, 233, 0.1)),
+    rgba(255, 255, 255, 0.82);
+  box-shadow: 0 14px 34px rgba(16, 35, 63, 0.12);
+}
+
+.vn-recommended-action > span,
+.vn-world-badge {
+  display: inline-grid;
+  align-self: start;
+  place-items: center;
+  min-height: 28px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #101827;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0;
+}
+
+.vn-recommended-action strong,
+.vn-recommended-action small,
+.vn-recommended-action em {
+  grid-column: 2;
+}
+
+.vn-recommended-action small,
+.vn-recommended-action em {
+  color: var(--reader-muted);
+  font-weight: 780;
+}
+
+.vn-recommended-action em {
+  font-style: normal;
+}
+
 .vn-location-cast {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(82px, 1fr));
   gap: 10px;
 }
 
-.vn-location-cast figure {
+.vn-cast-card {
   display: grid;
   gap: 6px;
   min-width: 0;
   margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--reader-muted);
+  text-align: center;
+}
+
+.vn-cast-card-interactive {
+  cursor: pointer;
+}
+
+.vn-cast-card-interactive:hover,
+.vn-cast-card-interactive:focus-visible {
+  outline: none;
+}
+
+.vn-cast-card-interactive:hover img,
+.vn-cast-card-interactive:focus-visible img {
+  border-color: var(--reader-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(16, 35, 63, 0.16);
 }
 
 .vn-location-cast img {
@@ -3208,15 +3276,26 @@ kbd {
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.64);
   box-shadow: 0 10px 22px rgba(16, 35, 63, 0.1);
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
 }
 
-.vn-location-cast figcaption {
+.vn-cast-card > span {
   overflow: hidden;
   color: var(--reader-muted);
   font-size: 0.76rem;
   font-weight: 850;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.vn-cast-card > small {
+  justify-self: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(249, 115, 22, 0.12);
+  color: #c2410c;
+  font-size: 0.7rem;
+  font-weight: 950;
 }
 
 .vn-world-action-list,
@@ -3282,6 +3361,317 @@ kbd {
   border: 1px solid var(--reader-border);
   border-radius: 16px;
   background: rgba(16, 24, 39, 0.06);
+}
+
+/* ── Scene transition: background crossfade ── */
+
+.vn-stage .vn-background,
+.vn-stage .vn-cinematic {
+  animation: vn-fade-in 320ms ease-out both;
+}
+
+@keyframes vn-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── Speaker name plate ── */
+
+.vn-speaker-plate {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 10px;
+  background: #101827;
+  color: #f1f5f9;
+  font-size: 0.82rem;
+  font-weight: 850;
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(16, 24, 39, 0.18);
+  justify-self: start;
+}
+
+.vn-speaker-plate .vn-speaker-chinese {
+  color: #94a3b8;
+  font-weight: 760;
+}
+
+/* ── Choice kind pill labels ── */
+
+.vn-choice-kind {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  grid-column: 2;
+  justify-self: start;
+}
+
+.vn-choice-kind-memory {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.vn-choice-kind-consequential {
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+.vn-choice-kind-expressive {
+  background: #f0fdf4;
+  color: #166534;
+}
+
+/* ── Dialogue text entrance animation ── */
+
+.vn-dialogue-panel .vn-line {
+  animation: vn-text-enter 240ms ease-out both;
+}
+
+@keyframes vn-text-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.vn-dialogue-panel .vn-translation {
+  animation: vn-text-enter 240ms 80ms ease-out both;
+}
+
+/* ── Choice list entrance animation ── */
+
+.vn-choice-list {
+  animation: vn-text-enter 260ms ease-out both;
+}
+
+/* ── Enhanced status panel ── */
+
+.vn-status-panel {
+  gap: 6px;
+}
+
+.vn-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--reader-border);
+}
+
+.vn-status-row:last-child {
+  border-bottom: none;
+}
+
+.vn-status-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--reader-muted);
+  font-weight: 760;
+  font-size: 0.82rem;
+}
+
+.vn-status-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.vn-status-value {
+  font-weight: 850;
+  font-size: 0.92rem;
+  color: var(--reader-ink);
+}
+
+.vn-status-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #fef9c3, #fef3c7);
+  border: 1px solid #fbbf24;
+  font-size: 0.78rem;
+  font-weight: 850;
+  color: #92400e;
+}
+
+.vn-status-title::before {
+  content: '\1F451';
+  font-size: 0.9rem;
+}
+
+/* ── Recommended action card (hub) ── */
+
+.vn-recommended-action {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 12px;
+  align-items: center;
+  padding: 14px 16px;
+  border: 2px solid var(--reader-accent, #2563eb);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.06), rgba(37, 99, 235, 0.02));
+  text-align: left;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.vn-recommended-action:hover,
+.vn-recommended-action:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.14);
+  outline: none;
+}
+
+.vn-recommended-action span:first-child {
+  grid-row: 1 / 3;
+  padding: 3px 10px;
+  border-radius: 8px;
+  background: var(--reader-accent, #2563eb);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.vn-recommended-action strong {
+  font-size: 1rem;
+  color: var(--reader-ink);
+}
+
+.vn-recommended-action small {
+  grid-column: 2;
+  color: var(--reader-muted);
+  font-weight: 760;
+  font-size: 0.82rem;
+}
+
+.vn-recommended-action em {
+  grid-column: 2;
+  color: var(--reader-muted);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* ── Cast cards (NPC portraits in hub) ── */
+
+.vn-location-cast .vn-cast-card {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.vn-location-cast .vn-cast-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 18%;
+  border: 1px solid var(--reader-border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.64);
+  box-shadow: 0 10px 22px rgba(16, 35, 63, 0.1);
+}
+
+.vn-location-cast .vn-cast-card span {
+  overflow: hidden;
+  color: var(--reader-muted);
+  font-size: 0.76rem;
+  font-weight: 850;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vn-location-cast .vn-cast-card small {
+  color: var(--reader-accent, #2563eb);
+  font-size: 0.68rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.vn-location-cast .vn-cast-card-interactive {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background: none;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.vn-location-cast .vn-cast-card-interactive:hover,
+.vn-location-cast .vn-cast-card-interactive:focus-visible {
+  border-color: var(--reader-accent, #2563eb);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.vn-location-cast .vn-cast-card-interactive img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 18%;
+  border: 1px solid var(--reader-border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.64);
+  box-shadow: 0 10px 22px rgba(16, 35, 63, 0.1);
+}
+
+.vn-location-cast .vn-cast-card-interactive span {
+  overflow: hidden;
+  color: var(--reader-muted);
+  font-size: 0.76rem;
+  font-weight: 850;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vn-location-cast .vn-cast-card-interactive small {
+  color: var(--reader-accent, #2563eb);
+  font-size: 0.68rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── Action/travel badges ── */
+
+.vn-world-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── Result panel celebration ── */
+
+.vn-result-panel strong {
+  font-size: 1.05rem;
 }
 
 .popover-close {
@@ -3858,6 +4248,15 @@ kbd {
   .vn-status-panel {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     border-radius: 18px;
+  }
+
+  .vn-status-row {
+    border-bottom: none;
+    padding: 6px 0;
+  }
+
+  .vn-status-title {
+    grid-column: 1 / -1;
   }
 
   .vn-quest-note {

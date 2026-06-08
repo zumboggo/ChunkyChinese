@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import {
+  availableNpcTalkQuest,
   availableTravelLocations,
   availableWorldActions,
   commitQuestResult,
   makeVisualNovelWorldSave,
   nextEncounterQuest,
+  recommendedWorldAction,
   startWorldQuest,
 } from './worldEngine'
 import type { VnScript, VnWorld } from './types'
@@ -71,6 +73,45 @@ describe('visual novel world engine', () => {
     expect(first?.id).toBe('commission-a')
     expect(second?.id).toBe('commission-b')
   })
+
+  it('recommends the next hub action and resolves NPC talk quests', () => {
+    const world = makeWorld()
+    const save = makeVisualNovelWorldSave(world)
+    const recommended = recommendedWorldAction(world, save)
+    const talkQuest = availableNpcTalkQuest(world, save, world.locations.home, 'guide')
+
+    expect(recommended?.kind).toBe('action')
+    expect(recommended?.badge).toBe('Main')
+    expect(talkQuest?.id).toBe('talk-guide')
+  })
+
+  it('clears repeatable micro-scene results after replaying the same result id', () => {
+    const world = makeWorld()
+    const save = makeVisualNovelWorldSave(world)
+    const quest = world.quests['talk-guide']
+    const firstRun = startWorldQuest(world, save, quest, makeScript('talk-guide')).worldSave
+    const completed = commitQuestResult(world, firstRun, quest, {
+      questId: 'talk-guide',
+      outcomeId: 'done',
+      completed: true,
+      resultId: 'talk-guide-done',
+      worldEffects: [],
+      returnLocationId: 'home',
+    })
+    const secondRun = startWorldQuest(world, completed, quest, makeScript('talk-guide')).worldSave
+    const replayed = commitQuestResult(world, secondRun, quest, {
+      questId: 'talk-guide',
+      outcomeId: 'done',
+      completed: true,
+      resultId: 'talk-guide-done',
+      worldEffects: [],
+      returnLocationId: 'home',
+    })
+
+    expect(replayed.interruptedQuest).toBeUndefined()
+    expect(replayed.state.questStates['talk-guide']?.status).toBe('completed')
+    expect(replayed.state.questStates['talk-guide']?.completions).toBe(2)
+  })
 })
 
 function makeWorld(): VnWorld {
@@ -87,6 +128,7 @@ function makeWorld(): VnWorld {
         name: { chinese: '家', english: 'Home' },
         backgroundId: 'home-bg',
         travelTo: ['town'],
+        npcIds: ['guide'],
         availableActions: [
           { id: 'start', kind: 'quest', targetId: 'opening', label: { chinese: '开始', english: 'Start' } },
         ],
@@ -95,6 +137,19 @@ function makeWorld(): VnWorld {
         id: 'town',
         name: { chinese: '广场', english: 'Town' },
         backgroundId: 'town-bg',
+      },
+    },
+    characters: {
+      guide: {
+        id: 'guide',
+        displayNames: { english: 'Guide' },
+        personas: {
+          default: {
+            id: 'default',
+            defaultOutfitId: 'default',
+            defaultSpriteId: 'guide-default',
+          },
+        },
       },
     },
     quests: {
@@ -125,6 +180,19 @@ function makeWorld(): VnWorld {
         entryNodeId: 'start',
         repeatable: false,
       },
+      'talk-guide': {
+        id: 'talk-guide',
+        title: { chinese: '聊天', english: 'Talk to Guide' },
+        category: 'rumour',
+        scriptId: 'talk-guide',
+        scriptPath: 'talk-guide.json',
+        entryNodeId: 'start',
+        repeatable: true,
+        returnLocationId: 'home',
+        hubNpcId: 'guide',
+        hubLocationId: 'home',
+        hubLabel: { chinese: '聊一句。', english: 'Talk' },
+      },
     },
     encounterPools: {
       commissions: {
@@ -148,13 +216,13 @@ function makeWorld(): VnWorld {
   }
 }
 
-function makeScript(): VnScript {
+function makeScript(id = 'opening'): VnScript {
   return {
     schemaVersion: 1,
     contentVersion: 'test',
-    id: 'opening',
+    id,
     packId: 'test-world',
-    title: 'Opening',
+    title: id,
     initialNodeId: 'start',
     assetManifestPath: 'manifest.json',
     characters: {},
@@ -170,7 +238,7 @@ function makeScript(): VnScript {
       result: {
         id: 'result',
         type: 'questResult',
-        questId: 'opening',
+        questId: id,
         outcomeId: 'done',
         completed: true,
       },
