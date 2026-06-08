@@ -3121,22 +3121,26 @@ kbd {
 
 .vn-subtitle-overlay {
   position: absolute;
-  bottom: 64px;
+  bottom: 80px;
   left: 0;
   right: 0;
-  z-index: 10;
-  padding: 20px 24px 16px;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  z-index: 100;
+  padding: 16px 20px 12px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.85) 60%, rgba(0, 0, 0, 0.95) 100%);
   display: grid;
   gap: 8px;
   max-height: 55vh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  align-items: center;
 }
 
 .vn-subtitle-text {
   display: grid;
   gap: 6px;
+  width: 100%;
+  max-width: min(92vw, 960px);
+  justify-self: center;
 }
 
 .vn-typewriter-active .vn-line {
@@ -3164,18 +3168,20 @@ kbd {
   font-size: clamp(1.4rem, 4.5vw, 2.2rem);
   font-weight: 900;
   line-height: 1.5;
-  text-shadow: 0 2px 12px rgba(56, 189, 248, 0.4), 0 0 30px rgba(56, 189, 248, 0.2), 0 2px 8px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.95), 0 0 4px rgba(0, 0, 0, 0.85), 0 2px 8px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.25);
   min-height: auto;
   letter-spacing: 0.03em;
+  text-align: center;
 }
 
 .vn-translation-overlay {
-  color: rgba(56, 189, 248, 0.75);
+  color: rgba(56, 189, 248, 0.9);
   font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.5;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.5);
   margin: 0;
+  text-align: center;
 }
 
 .vn-translation-overlay.blur-reveal {
@@ -3874,6 +3880,8 @@ kbd {
   line-height: 1.4;
   box-shadow: 0 4px 12px rgba(56, 189, 248, 0.1);
   justify-self: start;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
 }
 
 .vn-speaker-plate .vn-speaker-chinese {
