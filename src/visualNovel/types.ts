@@ -352,6 +352,8 @@ export interface VnWorldState {
   completedEncounterIds: string[]
   encounterCounts: Record<string, number>
   committedResultIds: string[]
+  playerHp?: number
+  playerDeck?: string[]
 }
 
 export interface VnQuestState {

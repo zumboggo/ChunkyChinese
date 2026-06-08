@@ -2,7 +2,6 @@ import { useMemo } from 'react'
 import { AdaptiveChineseText } from '../AdaptiveChineseText'
 import { tokenizeReaderText, type AdaptivePinyinMode } from '../adaptiveText'
 import type { ReaderWordToken, VocabWord } from '../types'
-import { visualNovelAssetSrc } from './loader'
 import type { VnAssetManifest, VnLocation, VnQuestDefinition, VnWorld, VnWorldAction } from './types'
 import {
   activeWorldQuests,
@@ -20,7 +19,7 @@ export function WorldHub({
   world,
   save,
   location,
-  manifest,
+  manifest: _manifest,
   words,
   selectedToken,
   pinyinMode,
@@ -49,10 +48,6 @@ export function WorldHub({
   const activeQuests = activeWorldQuests(world, save).filter((quest) => quest.category !== 'rumour')
   const completedQuests = completedWorldQuests(world, save).filter((quest) => quest.category !== 'rumour')
   const recommended = recommendedWorldAction(world, save)
-  const castMembers = useMemo(
-    () => getHubCastMembers(world, save, location, manifest),
-    [location, manifest, save, world],
-  )
 
   return (
     <section className="vn-dialogue-panel vn-world-panel">

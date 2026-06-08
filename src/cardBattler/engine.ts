@@ -5,11 +5,13 @@ export function createEncounter(
   enemyId: string,
   enemyMaxHp: number,
   playerMaxHp: number,
+  startingHp?: number,
 ): CardBattlerState {
+  const hp = startingHp !== undefined ? Math.min(startingHp, playerMaxHp) : playerMaxHp
   const state: CardBattlerState = {
     status: 'active',
     playerMaxHp,
-    playerHp: playerMaxHp,
+    playerHp: hp,
     playerBlock: 0,
     playerMaxEnergy: 3,
     playerEnergy: 3,
@@ -127,9 +129,10 @@ export function computeEnemyDamagePreview(
   const intents = computeEnemyIntents(enemyDef, intentIndex)
   let total = 0
   const weak = getStatusAmount(enemyStatuses, 'weak')
+  const strength = getStatusAmount(enemyStatuses, 'strength')
   for (const intent of intents) {
     if (intent.type === 'attack') {
-      const base = intent.amount ?? 0
+      const base = calcDamageWithStrength(intent.amount ?? 0, strength)
       total += calcDamageWithWeak(base, weak)
     }
   }

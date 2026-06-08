@@ -1,0 +1,267 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026-06-08-golem-v1",
+  "id": "dungeon-training-golem",
+  "packId": "royal-road-prototype",
+  "title": "Training Golem",
+  "initialNodeId": "golem-001",
+  "assetManifestPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/asset-manifest.json",
+  "characters": {
+    "lee-hyun": {
+      "id": "lee-hyun",
+      "displayNames": {
+        "english": "Weed",
+        "chinese": "??"
+      },
+      "personas": {
+        "weed-sculptor": {
+          "id": "weed-sculptor",
+          "defaultOutfitId": "starter-sculptor",
+          "defaultSpriteId": "weed-sculptor-calculating"
+        }
+      }
+    },
+    "geomchi": {
+      "id": "geomchi",
+      "displayNames": {
+        "english": "Geomchi",
+        "chinese": "??"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "black-swordsman",
+          "defaultSpriteId": "geomchi-commanding"
+        }
+      }
+    }
+  },
+  "initialState": {
+    "money": 0,
+    "skills": {
+      "sculpting": 0,
+      "swordsmanship": 0
+    },
+    "flags": {},
+    "questNotes": {},
+    "appliedOnceKeys": []
+  },
+  "nodes": {
+    "golem-001": {
+      "id": "golem-001",
+      "type": "line",
+      "speaker": {
+        "characterId": "geomchi",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "角落那个石头人是以前的训练傀儡。它不会动，但你打它，它会还手。",
+        "english": "That stone figure in the corner is an old training golem. It does not move, but hit it and it hits back."
+      },
+      "nextId": "golem-002",
+      "scene": {
+        "backgroundId": "training-hall",
+        "characters": [
+          {
+            "characterId": "geomchi",
+            "personaId": "default",
+            "spriteId": "geomchi-commanding",
+            "position": "center",
+            "xPercent": 50,
+            "scale": 1.04,
+            "zIndex": 3
+          }
+        ]
+      }
+    },
+    "golem-002": {
+      "id": "golem-002",
+      "type": "line",
+      "speaker": {
+        "characterId": "lee-hyun",
+        "personaId": "weed-sculptor"
+      },
+      "text": {
+        "chinese": "石头做的？那我用拳头打它，手不会疼吗？",
+        "english": "Made of stone? If I punch it, will my hand hurt?"
+      },
+      "nextId": "golem-003",
+      "scene": {
+        "backgroundId": "training-hall",
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-annoyed",
+            "position": "left",
+            "xPercent": 31,
+            "scale": 0.78,
+            "zIndex": 2
+          },
+          {
+            "characterId": "geomchi",
+            "personaId": "default",
+            "spriteId": "geomchi-commanding",
+            "position": "right",
+            "xPercent": 70,
+            "scale": 1.04,
+            "zIndex": 3
+          }
+        ]
+      }
+    },
+    "golem-003": {
+      "id": "golem-003",
+      "type": "line",
+      "speaker": {
+        "characterId": "geomchi",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "会。所以别用拳头，用剑。去吧。",
+        "english": "Yes. So do not use fists. Use a sword. Go."
+      },
+      "nextId": "golem-appear",
+      "scene": {
+        "backgroundId": "training-hall",
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-annoyed",
+            "position": "left",
+            "xPercent": 31,
+            "scale": 0.78,
+            "zIndex": 2
+          },
+          {
+            "characterId": "geomchi",
+            "personaId": "default",
+            "spriteId": "geomchi-commanding",
+            "position": "right",
+            "xPercent": 70,
+            "scale": 1.04,
+            "zIndex": 3
+          }
+        ]
+      }
+    },
+    "golem-appear": {
+      "id": "golem-appear",
+      "type": "line",
+      "text": {
+        "chinese": "石头傀儡的眼睛亮了。它慢慢举起拳头。",
+        "english": "The golem's eyes light up. It slowly raises its fist."
+      },
+      "nextId": "golem-battle",
+      "scene": {
+        "backgroundId": "training-hall"
+      }
+    },
+    "golem-battle": {
+      "id": "golem-battle",
+      "type": "cardBattle",
+      "encounterId": "training-golem",
+      "winNextId": "golem-win",
+      "loseNextId": "golem-lose"
+    },
+    "golem-win": {
+      "id": "golem-win",
+      "type": "line",
+      "speaker": {
+        "characterId": "geomchi",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "不错。傀儡碎了，但你还在。这就是进步。",
+        "english": "Not bad. The golem is broken, but you are still standing. That is progress."
+      },
+      "nextId": "golem-result",
+      "scene": {
+        "backgroundId": "training-hall",
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-calculating",
+            "position": "left",
+            "xPercent": 31,
+            "scale": 0.78,
+            "zIndex": 2
+          },
+          {
+            "characterId": "geomchi",
+            "personaId": "default",
+            "spriteId": "geomchi-commanding",
+            "position": "right",
+            "xPercent": 70,
+            "scale": 1.04,
+            "zIndex": 3
+          }
+        ]
+      }
+    },
+    "golem-lose": {
+      "id": "golem-lose",
+      "type": "line",
+      "speaker": {
+        "characterId": "geomchi",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "石头赢了你。回去练练再来。",
+        "english": "The stone beat you. Go practice and come back."
+      },
+      "nextId": "golem-result",
+      "scene": {
+        "backgroundId": "training-hall",
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-exhausted",
+            "position": "left",
+            "xPercent": 32,
+            "scale": 0.74,
+            "zIndex": 2
+          },
+          {
+            "characterId": "geomchi",
+            "personaId": "default",
+            "spriteId": "geomchi-commanding",
+            "position": "right",
+            "xPercent": 70,
+            "scale": 1.04,
+            "zIndex": 3
+          }
+        ]
+      }
+    },
+    "golem-result": {
+      "id": "golem-result",
+      "type": "questResult",
+      "questId": "dungeon-training-golem",
+      "outcomeId": "defeated",
+      "completed": true,
+      "resultId": "golem-defeated",
+      "summary": {
+        "chinese": "傀儡碎了。但拳头打石头确实会疼。",
+        "english": "The golem is broken. But punching stone does hurt."
+      },
+      "worldEffects": [
+        {
+          "id": "golem-gold",
+          "op": "addMoney",
+          "amount": 20
+        },
+        {
+          "id": "golem-sword",
+          "op": "addSkill",
+          "skill": "swordsmanship",
+          "amount": 2
+        }
+      ],
+      "returnLocationId": "training-hall"
+    }
+  }
+}

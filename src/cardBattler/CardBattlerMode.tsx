@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AdaptiveChineseText } from '../AdaptiveChineseText'
 import { tokenizeReaderText, type AdaptivePinyinMode } from '../adaptiveText'
 import type { VocabWord, ReaderWordToken, HotkeySettings } from '../types'
@@ -37,6 +37,8 @@ export function CardBattlerMode({
   const [state, setState] = useState<CardBattlerState>(initialState)
   const [selectedToken, setSelectedToken] = useState<ReaderWordToken | null>(null)
   const [viewingPile, setViewingPile] = useState<'draw' | 'discard' | null>(null)
+  const [turnSummary, setTurnSummary] = useState<string | null>(null)
+  const summaryTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const effectiveDeck = deck ?? initialState.deck
 
@@ -68,8 +70,27 @@ export function CardBattlerMode({
   }, [state, cards, enemyDef, effectiveDeck, onBattleEnd])
 
   const handleEndTurn = useCallback(() => {
+    const prevState = state
     const nextState = endTurn(state, enemyDef)
-    if (nextState !== state) {
+    if (nextState !== prevState) {
+      const intent = enemyDef.intents[prevState.enemyIntentIndex % enemyDef.intents.length]
+      const parts: string[] = []
+      if (intent.type === 'attack') {
+        const actualDmg = Math.max(0, prevState.playerHp - nextState.playerHp)
+        if (actualDmg > 0) parts.push(`-${actualDmg} HP`)
+      }
+      if (intent.type === 'defend') parts.push(`+${intent.amount} Block`)
+      if (intent.type === 'buff') parts.push(`+${intent.amount} Strength`)
+      if (intent.type === 'debuff') parts.push(`+${intent.amount} Weak`)
+      if (nextState.playerBlock < prevState.playerBlock && intent.type === 'attack') {
+        const blocked = prevState.playerBlock
+        if (blocked > 0) parts.unshift(`Block: ${blocked}`)
+      }
+      const msg = parts.length > 0 ? parts.join(' | ') : 'Enemy turn'
+      setTurnSummary(msg)
+      if (summaryTimer.current) clearTimeout(summaryTimer.current)
+      summaryTimer.current = setTimeout(() => setTurnSummary(null), 1200)
+
       setState(nextState)
       if (nextState.status !== 'active') {
         onBattleEnd(nextState)
@@ -202,6 +223,11 @@ export function CardBattlerMode({
       </div>
 
       <div className="battler-board">
+        {turnSummary && (
+          <div className="battler-turn-summary" role="status">
+            {turnSummary}
+          </div>
+        )}
         {state.status === 'victory' && <h1>VICTORY!</h1>}
         {state.status === 'defeat' && <h1>DEFEAT...</h1>}
       </div>
@@ -254,8 +280,8 @@ export function CardBattlerMode({
   )
 }
 
-function calcPreviewDamage(base: number, _enemyDmg: number, playerVulnerable: number): string {
-  const afterVuln = playerVulnerable > 0 ? Math.floor(base * 1.5) : base
+function calcPreviewDamage(_base: number, enemyDmg: number, playerVulnerable: number): string {
+  const afterVuln = playerVulnerable > 0 ? Math.floor(enemyDmg * 1.5) : enemyDmg
   return `${afterVuln}`
 }
 
