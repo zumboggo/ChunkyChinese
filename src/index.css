@@ -1460,6 +1460,43 @@ dt {
   gap: 12px;
 }
 
+@media (min-width: 900px) {
+  .study-player:not(:fullscreen) {
+    height: calc(100vh - 140px);
+  }
+  .study-stage:not(.review-stage):not(.active-focus) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    align-items: center;
+  }
+  .study-stage:not(.review-stage):not(.active-focus) .study-meta {
+    grid-column: 1 / -1;
+  }
+  .study-stage:not(.review-stage):not(.active-focus) .study-chinese {
+    grid-column: 1;
+    grid-row: 2 / span 3;
+    align-self: center;
+  }
+  .study-stage:not(.review-stage):not(.active-focus) .study-pinyin,
+  .study-stage:not(.review-stage):not(.active-focus) .study-meaning,
+  .study-stage:not(.review-stage):not(.active-focus) .study-time,
+  .study-stage:not(.review-stage):not(.active-focus) .quiz-panel,
+  .study-stage:not(.review-stage):not(.active-focus) .minimal-controls {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 899px) {
+  .study-player:not(:fullscreen) {
+    height: calc(100svh - 120px);
+  }
+}
+
+.study-player:not(:fullscreen) .study-stage {
+  height: 100%;
+  overflow-y: auto;
+}
+
 .study-stage {
   min-height: clamp(350px, 50svh, 520px);
   display: grid;
@@ -2780,7 +2817,8 @@ kbd {
   display: block;
   width: 100%;
   aspect-ratio: 1;
-  object-fit: cover;
+  object-fit: contain;
+  background: #101827;
   border: 1px solid rgba(16, 35, 63, 0.14);
   border-radius: 12px;
   box-shadow: 0 14px 32px rgba(16, 35, 63, 0.14);
@@ -2951,6 +2989,51 @@ kbd {
   margin: 0;
 }
 
+.app-split-layout {
+  display: grid;
+  gap: 14px;
+}
+
+@media (min-width: 900px) {
+  .app-split-layout {
+    grid-template-columns: 1fr 1fr;
+    height: calc(100vh - 140px);
+  }
+  .app-split-layout > * {
+    min-height: 0;
+    height: 100%;
+    overflow-y: auto;
+  }
+  .app-split-layout > .vn-workspace {
+    display: flex;
+    flex-direction: column;
+  }
+  .app-split-layout .vn-stage {
+    flex: 1;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 899px) {
+  .app-split-layout {
+    grid-template-rows: auto auto;
+    height: calc(100svh - 100px);
+  }
+  .app-split-layout > * {
+    min-height: 0;
+    overflow-y: auto;
+  }
+  .app-split-layout > .vn-workspace {
+    display: flex;
+    flex-direction: column;
+    min-height: 40svh;
+  }
+  .app-split-layout .vn-stage {
+    flex: 1;
+    min-height: 0;
+  }
+}
+
 .vn-workspace {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(180px, 240px);
@@ -2975,7 +3058,7 @@ kbd {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .vn-cinematic {

@@ -555,7 +555,7 @@ export function VisualNovelWorldMode({
             hotkeys={hotkeys}
           />
         ) : (
-          <>
+          <div className="app-split-layout">
             <section className="vn-workspace vn-world-workspace">
               <div className="vn-stage" aria-label="World location">
                 {background ? (
@@ -578,7 +578,7 @@ export function VisualNovelWorldMode({
               onAction={handleWorldAction}
               onResume={resumeInterruptedQuest}
             />
-          </>
+          </div>
         )
       )}
 

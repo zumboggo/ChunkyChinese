@@ -75,22 +75,22 @@ export function QuestPlayer({
   }, [node, world.characters])
 
   if (node.type === 'cardBattle') {
+    const encounterState = save.activeEncounter ?? 
+      createEncounter(
+        VN_DEFAULT_ENCOUNTER_DECK, 
+        node.encounterId, 
+        world.enemies?.[node.encounterId]?.maxHp ?? VN_DEFAULT_ENEMY_MAX_HP, 
+        VN_DEFAULT_PLAYER_MAX_HP
+      )
     return (
       <CardBattlerMode
-        initialState={
-          save.activeEncounter ?? 
-          createEncounter(
-            VN_DEFAULT_ENCOUNTER_DECK, 
-            node.encounterId, 
-            world.enemies?.[node.encounterId]?.maxHp ?? VN_DEFAULT_ENEMY_MAX_HP, 
-            VN_DEFAULT_PLAYER_MAX_HP
-          )
-        }
+        initialState={encounterState}
         enemyDef={world.enemies?.[node.encounterId] ?? { id: node.encounterId, name: { chinese: 'Enemy' }, maxHp: VN_DEFAULT_ENEMY_MAX_HP, intents: [] }}
         cards={world.cards ?? {}}
         words={words}
         pinyinMode={pinyinMode}
         hotkeys={hotkeys}
+        deck={encounterState.deck}
         onBattleEnd={(state) => onAdvance(state.status === 'victory' ? 'win' : 'lose')}
         onSelectToken={onSelectToken}
       />
@@ -98,7 +98,7 @@ export function QuestPlayer({
   }
 
   return (
-    <>
+    <div className="app-split-layout">
       <section className="vn-workspace">
         <div className="vn-stage" aria-label="Quest scene">
           {cinematic ? (
@@ -180,6 +180,6 @@ export function QuestPlayer({
           <button type="button" className="ghost-answer" onClick={onAbandon}>Pause quest</button>
         </div>
       </section>
-    </>
+    </div>
   )
 }
