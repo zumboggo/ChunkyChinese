@@ -439,13 +439,14 @@ export function VisualNovelWorldMode({
       }
       if (!node) return
       if (node.type === 'choice') {
-        const mappedIndex = [hotkeys.choiceA, hotkeys.choiceB].findIndex((key) => key === pressed)
+        let mappedIndex = [hotkeys.choiceA, hotkeys.choiceB].findIndex((key) => key === pressed)
+        if (mappedIndex === -1 && pressed === 'arrowright') mappedIndex = 0
         const choice = choices[mappedIndex]
         if (choice) {
           event.preventDefault()
           void handleQuestAdvance(choice.id)
         }
-      } else if (!result && (pressed === hotkeys.choiceA || event.key === 'Enter' || event.key === ' ')) {
+      } else if (!result && (pressed === hotkeys.choiceA || pressed === 'arrowright' || event.key === 'Enter' || event.key === ' ')) {
         event.preventDefault()
         void handleQuestAdvance()
       }

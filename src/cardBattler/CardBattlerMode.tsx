@@ -96,7 +96,7 @@ export function CardBattlerMode({
 
       const key = event.key.toLowerCase()
 
-      if (key === hotkeys.choiceA && state.hand.length > 0) {
+      if ((key === hotkeys.choiceA || key === 'arrowright') && state.hand.length > 0) {
         event.preventDefault()
         handlePlayCard(0)
       } else if (key === hotkeys.choiceB && state.hand.length > 1) {

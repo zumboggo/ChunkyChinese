@@ -4944,6 +4944,7 @@ function hotkeyToReviewRating(key: string, hotkeys: HotkeySettings): FsrsRating 
 }
 
 function choiceKeyIndex(key: string, hotkeys: HotkeySettings): number {
+  if (key === 'arrowright') return 0
   return [hotkeys.choiceA, hotkeys.choiceB, hotkeys.choiceC, hotkeys.choiceD].findIndex(
     (candidate) => candidate === key,
   )
