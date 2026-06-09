@@ -1563,7 +1563,7 @@ function App() {
           setScreen('reader')
         } else if (mappedIndex === 1) {
           event.preventDefault()
-          startModeLessonRef.current?.('activeRecall')
+          setScreen('visualNovel')
         } else if (mappedIndex === 2) {
           event.preventDefault()
           startModeLessonRef.current?.('listeningMode')
@@ -2140,17 +2140,17 @@ function App() {
                 <span>Read the LMS stories sentence by sentence.</span>
               </button>
               <button className="mode-start novel-start" type="button" onClick={() => setScreen('visualNovel')}>
-                <kbd>VN</kbd>
+                <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
                 <strong>Visual Novel</strong>
                 <span>Play a story scene with the same Adaptive Mode text.</span>
               </button>
               <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('listeningMode')}>
-                <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
+                <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
                 <strong>Listening</strong>
                 <span>Listen with passive or active recall modes.</span>
               </button>
               <button className="mode-start flashcards-start" type="button" onClick={startSavedFlashcards}>
-                <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
+                <kbd>{hotkeys.choiceD.toUpperCase()}</kbd>
                 <strong>Flashcards</strong>
                 <span>Sort due and new words with FSRS.</span>
               </button>

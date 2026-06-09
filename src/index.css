@@ -3175,6 +3175,21 @@ kbd {
   text-align: center;
 }
 
+.vn-subtitle-text .reader-token {
+  color: #93c5fd;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.vn-subtitle-text .reader-token:hover,
+.vn-subtitle-text .reader-token:focus-visible,
+.vn-subtitle-text .reader-token.active {
+  color: #bfdbfe;
+}
+
+.vn-subtitle-text .reader-token rt {
+  color: #93c5fd;
+}
+
 .vn-translation-overlay {
   color: rgba(147, 197, 253, 0.85);
   font-size: 0.95rem;
