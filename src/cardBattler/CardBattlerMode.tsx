@@ -392,6 +392,9 @@ function CardView({ cardId, cardDef, index, words, pinyinMode, selectedToken, on
           onSelectToken={onSelectToken}
         />
       </div>
+      <div className="card-illustration">
+        <img src={`${import.meta.env.BASE_URL || '/'}cards/${cardId}.webp`} alt={cardDef.name.english} loading="lazy" draggable="false" />
+      </div>
       <div className="card-type-badge">
         {getCardTypeLabel(cardDef)}
       </div>
