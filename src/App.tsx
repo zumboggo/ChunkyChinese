@@ -4457,6 +4457,14 @@ function FlashcardReview({
   const audioFront = frontMode === 'audio' && !answerShown
   const useSentence = sentenceMode && sentence
 
+  useEffect(() => {
+    if (useSentence) {
+      const safeWord = encodeURIComponent(word.word)
+      const audio = new Audio(`/audio/sentences/${safeWord}.mp3`)
+      audio.play().catch((err) => console.log('Autoplay prevented or missing audio:', err))
+    }
+  }, [useSentence, word.word])
+
   function highlightWord(text: string, target: string): string {
     const index = text.indexOf(target)
     if (index === -1) return text
