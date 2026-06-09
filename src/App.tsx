@@ -291,8 +291,12 @@ function App() {
   const [flashcardDoneIds, setFlashcardDoneIds] = useState<string[]>([])
   const [flashcardClock, setFlashcardClock] = useState(() => Date.now())
   const [flashcardAnswerShown, setFlashcardAnswerShown] = useState(false)
-  const [flashcardSentenceMode, setFlashcardSentenceMode] = useState(false)
   const [lmsSentences, setLmsSentences] = useState<Array<{ word: string; chinese: string; english: string }>>([])
+  const [flashcardSessionKind, setFlashcardSessionKind] = useState<'words' | 'sentences'>('words')
+  const [flashcardSentenceQueue, setFlashcardSentenceQueue] = useState<Array<{ word: string; chinese: string; english: string }>>([])
+  const [flashcardSentenceIndex, setFlashcardSentenceIndex] = useState(0)
+  const [flashcardSentenceAnswerShown, setFlashcardSentenceAnswerShown] = useState(false)
+  const [flashcardAudioOnly, setFlashcardAudioOnly] = useState(false)
   const [flashcardSessionFeedback, setFlashcardSessionFeedback] = useState<FsrsRating | null>(null)
   const [flashcardSessionId, setFlashcardSessionId] = useState<string | null>(null)
   const [flashcardCelebrationId, setFlashcardCelebrationId] = useState(0)
@@ -712,8 +716,8 @@ function App() {
   const flashcardSessionComplete =
     flashcardQueue.length > 0 && flashcardSessionCounts.done >= flashcardSessionCounts.total
   const currentFlashcardFrontMode = useMemo<FlashcardFrontMode>(
-    () => getFlashcardFrontMode(currentFlashcardWord, flashcardSessionId),
-    [currentFlashcardWord, flashcardSessionId],
+    () => getFlashcardFrontMode(currentFlashcardWord, flashcardSessionId, flashcardAudioOnly),
+    [currentFlashcardWord, flashcardSessionId, flashcardAudioOnly],
   )
 
   useEffect(() => {
@@ -776,6 +780,11 @@ function App() {
     setFlashcardClock(Date.now())
     setFlashcardAnswerShown(false)
     setFlashcardSessionFeedback(null)
+    setFlashcardSessionKind('words')
+    setFlashcardSentenceQueue([])
+    setFlashcardSentenceIndex(0)
+    setFlashcardSentenceAnswerShown(false)
+    setFlashcardAudioOnly(false)
     setScreen('flashcards')
     setLastSummary(queue.length > 0 ? `Loaded ${queue.length} flashcards.` : 'No flashcards match that queue.')
   }, [buildFlashcardQueue])
@@ -783,6 +792,22 @@ function App() {
   const startSavedFlashcards = useCallback(() => {
     startFlashcards(userSettings.flashcardQueueMode ?? 'mixed')
   }, [startFlashcards, userSettings.flashcardQueueMode])
+
+  const startSentenceFlashcards = useCallback(() => {
+    const pool = lmsSentences.length > 0 ? lmsSentences : []
+    const shuffled = [...pool].sort(() => Math.random() - 0.5)
+    const queue = shuffled.slice(0, 50)
+    setFlashcardSessionKind('sentences')
+    setFlashcardSentenceQueue(queue)
+    setFlashcardSentenceIndex(0)
+    setFlashcardSentenceAnswerShown(false)
+    setFlashcardAudioOnly(false)
+    setFlashcardSessionId(`sentences:${crypto.randomUUID()}`)
+    setFlashcardClock(Date.now())
+    setFlashcardSessionFeedback(null)
+    setScreen('flashcards')
+    setLastSummary(queue.length > 0 ? `Loaded ${queue.length} sentence flashcards.` : 'No sentence flashcards available.')
+  }, [lmsSentences])
 
   const openCardEditor = useCallback((word: VocabWord) => {
     setEditingWord({
@@ -858,14 +883,24 @@ function App() {
     setFlashcardCurrentId(null)
     setFlashcardAnswerShown(false)
     setFlashcardSessionFeedback(null)
+    setFlashcardSessionKind('words')
+    setFlashcardSentenceQueue([])
+    setFlashcardSentenceIndex(0)
+    setFlashcardSentenceAnswerShown(false)
+    setFlashcardAudioOnly(false)
     setScreen('dashboard')
     void refresh()
   }, [refresh])
 
   const refreshFlashcardSession = useCallback(() => {
-    startSavedFlashcards()
-    setLastSummary('Loaded a fresh flashcard set.')
-  }, [startSavedFlashcards])
+    if (flashcardSessionKind === 'sentences') {
+      startSentenceFlashcards()
+      setLastSummary('Loaded a fresh sentence flashcard set.')
+    } else {
+      startSavedFlashcards()
+      setLastSummary('Loaded a fresh flashcard set.')
+    }
+  }, [flashcardSessionKind, startSavedFlashcards, startSentenceFlashcards])
 
   useEffect(() => {
     if (screen !== 'flashcards') return
@@ -1525,8 +1560,20 @@ function App() {
     }
   }, [playbackRate])
 
+  const playSentenceTwice = useCallback(async (sentence: string) => {
+    const token = runToken.current + 1
+    runToken.current = token
+    audioRef.current?.pause()
+    window.speechSynthesis?.cancel()
+    for (let index = 0; index < 2; index += 1) {
+      if (runToken.current !== token) return
+      await speakUtterance(sentence, playbackRate, 'zh-CN')
+    }
+  }, [playbackRate])
+
   useEffect(() => {
     if (screen !== 'flashcards') return
+    if (flashcardSessionKind === 'sentences') return
     if (!currentFlashcardWord || flashcardAnswerShown || currentFlashcardFrontMode !== 'audio') return
     void playFlashcardWordTwice(currentFlashcardWord)
   }, [
@@ -1534,6 +1581,25 @@ function App() {
     currentFlashcardWord,
     flashcardAnswerShown,
     playFlashcardWordTwice,
+    screen,
+    flashcardSessionKind,
+  ])
+
+  useEffect(() => {
+    if (screen !== 'flashcards') return
+    if (flashcardSessionKind !== 'sentences') return
+    const sentence = flashcardSentenceQueue[flashcardSentenceIndex]
+    if (!sentence || flashcardSentenceAnswerShown) return
+    if (flashcardAudioOnly) {
+      void playSentenceTwice(sentence.chinese)
+    }
+  }, [
+    flashcardSessionKind,
+    flashcardSentenceQueue,
+    flashcardSentenceIndex,
+    flashcardSentenceAnswerShown,
+    flashcardAudioOnly,
+    playSentenceTwice,
     screen,
   ])
 
@@ -1574,6 +1640,34 @@ function App() {
         return
       }
       if (screen === 'flashcards') {
+        if (flashcardSessionKind === 'sentences') {
+          const currentSentence = flashcardSentenceQueue[flashcardSentenceIndex]
+          if (!currentSentence && flashcardSentenceIndex >= flashcardSentenceQueue.length) {
+            if (mappedIndex === 0) {
+              event.preventDefault()
+              refreshFlashcardSession()
+            } else if (mappedIndex === 1) {
+              event.preventDefault()
+              finishFlashcardSession()
+            }
+            return
+          }
+          if (!currentSentence) return
+          if (!flashcardSentenceAnswerShown && (mappedIndex === 0 || event.key === 'Enter' || event.key === ' ')) {
+            event.preventDefault()
+            setFlashcardSentenceAnswerShown(true)
+            void playSentenceTwice(currentSentence.chinese)
+            return
+          }
+          if (flashcardSentenceAnswerShown) {
+            if (mappedIndex === 0 || mappedIndex === 1) {
+              event.preventDefault()
+              setFlashcardSentenceAnswerShown(false)
+              setFlashcardSentenceIndex((i) => i + 1)
+            }
+          }
+          return
+        }
         if (pressed === hotkeys.choiceE && currentFlashcardWord) {
           event.preventDefault()
           void toggleActiveRecallPriority(currentFlashcardWord)
@@ -2286,6 +2380,9 @@ function App() {
                 <button type="button" className="ghost-answer" onClick={startSavedFlashcards}>
                   Flashcards
                 </button>
+                <button type="button" className="ghost-answer" onClick={startSentenceFlashcards}>
+                  Sentences
+                </button>
               </div>
             </InfoPanel>
             <InfoPanel title="Active pack">
@@ -2454,19 +2551,149 @@ function App() {
           <div className="screen-heading compact">
             <div>
               <h1>Flashcards</h1>
-              <p>Fast FSRS reviews. Front is Chinese; back is pinyin and definition.</p>
+              <p>
+                {flashcardSessionKind === 'sentences'
+                  ? 'Sentence mode. Front is Chinese; back is English.'
+                  : 'Fast FSRS reviews. Front is Chinese; back is pinyin and definition.'}
+              </p>
             </div>
           </div>
 
           <section className="flashcards-workspace">
             <div className="flashcards-meta">
               <span>
-                {hotkeys.choiceA.toUpperCase()} flip, then Again · {hotkeys.choiceE.toUpperCase()} star for extra review
+                {flashcardSessionKind === 'sentences'
+                  ? `${hotkeys.choiceA.toUpperCase()} flip, then ${hotkeys.choiceA.toUpperCase()} / ${hotkeys.choiceB.toUpperCase()} next`
+                  : `${hotkeys.choiceA.toUpperCase()} flip, then Again · ${hotkeys.choiceE.toUpperCase()} star for extra review`}
               </span>
+              <div className="flashcard-mode-buttons">
+                <button
+                  type="button"
+                  className={`ghost-answer ${flashcardSessionKind === 'sentences' ? 'active' : ''}`}
+                  onClick={startSentenceFlashcards}
+                >
+                  Sentences
+                </button>
+                <button
+                  type="button"
+                  className={`ghost-answer ${flashcardAudioOnly ? 'active' : ''}`}
+                  onClick={() => setFlashcardAudioOnly((v) => !v)}
+                >
+                  Audio only
+                </button>
+              </div>
             </div>
-            <FlashcardQueueCounters counts={flashcardSessionCounts} />
+            {flashcardSessionKind === 'words' && <FlashcardQueueCounters counts={flashcardSessionCounts} />}
 
-            {currentFlashcardWord ? (
+            {flashcardSessionKind === 'sentences' ? (
+              flashcardSentenceIndex < flashcardSentenceQueue.length ? (
+                (() => {
+                  const sentence = flashcardSentenceQueue[flashcardSentenceIndex]
+                  const audioFront = flashcardAudioOnly && !flashcardSentenceAnswerShown
+                  return (
+                    <section className="flashcard-review">
+                      <div className={`flashcard ${flashcardSentenceAnswerShown ? 'answer-side' : 'front-side'} ${audioFront ? 'audio-front' : ''}`}>
+                        <span>
+                          {flashcardSentenceAnswerShown
+                            ? 'Sentence + meaning'
+                            : audioFront
+                              ? 'Audio front'
+                              : 'Sentence front'}
+                        </span>
+                        {flashcardSentenceAnswerShown ? (
+                          <>
+                            <strong className="flashcard-sentence-cn">{sentence.chinese}</strong>
+                            <p className="flashcard-answer-text">{sentence.english}</p>
+                            <p className="flashcard-word-meaning">{sentence.word}</p>
+                          </>
+                        ) : (
+                          <>
+                            {audioFront ? (
+                              <>
+                                <strong>Listen first</strong>
+                                <p className="flashcard-answer-text">The sentence audio plays twice.</p>
+                                <button
+                                  type="button"
+                                  className="ghost-answer"
+                                  onClick={() => void playSentenceTwice(sentence.chinese)}
+                                >
+                                  Replay audio
+                                </button>
+                              </>
+                            ) : (
+                              <strong className="flashcard-sentence-cn">{sentence.chinese}</strong>
+                            )}
+                            <button
+                              type="button"
+                              className="primary"
+                              onClick={() => {
+                                setFlashcardSentenceAnswerShown(true)
+                                void playSentenceTwice(sentence.chinese)
+                              }}
+                            >
+                              Flip
+                            </button>
+                          </>
+                        )}
+                      </div>
+                      {flashcardSentenceAnswerShown && (
+                        <div className="review-buttons fsrs-preview-buttons">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setFlashcardSentenceAnswerShown(false)
+                              setFlashcardSentenceIndex((i) => i + 1)
+                            }}
+                          >
+                            <kbd>{hotkeys.choiceA.toUpperCase()}</kbd>
+                            <strong>Again</strong>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setFlashcardSentenceAnswerShown(false)
+                              setFlashcardSentenceIndex((i) => i + 1)
+                            }}
+                          >
+                            <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
+                            <strong>Good</strong>
+                          </button>
+                        </div>
+                      )}
+                      <div className="flashcard-bottom-actions">
+                        <button
+                          type="button"
+                          className="ghost-answer"
+                          onClick={() => {
+                            setFlashcardSessionKind('words')
+                            setFlashcardSentenceQueue([])
+                            setFlashcardSentenceIndex(0)
+                            setFlashcardSentenceAnswerShown(false)
+                          }}
+                        >
+                          Back to words
+                        </button>
+                      </div>
+                    </section>
+                  )
+                })()
+              ) : (
+                <div className="review-complete flashcards-complete">
+                  <strong>Sentence flashcard queue complete.</strong>
+                  <span>You reviewed {flashcardSentenceQueue.length} sentences.</span>
+                  <div className="flashcard-complete-actions">
+                    <button type="button" className="primary" onClick={refreshFlashcardSession}>
+                      <kbd>{hotkeys.choiceA.toUpperCase()}</kbd>
+                      New set
+                    </button>
+                    <button type="button" onClick={finishFlashcardSession}>
+                      <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
+                      Done
+                    </button>
+                  </div>
+                </div>
+              )
+            ) : currentFlashcardWord ? (
               <FlashcardReview
                 word={currentFlashcardWord}
                 answerShown={flashcardAnswerShown}
@@ -2481,9 +2708,6 @@ function App() {
                 onToggleActiveRecallPriority={() => toggleActiveRecallPriority(currentFlashcardWord)}
                 selectedRating={flashcardSessionFeedback}
                 choiceKeys={hotkeys}
-                sentence={lmsSentences.find((s) => s.word === currentFlashcardWord.word) ?? null}
-                sentenceMode={flashcardSentenceMode}
-                onToggleSentenceMode={() => setFlashcardSentenceMode((v) => !v)}
               />
             ) : (
               <div className="review-complete flashcards-complete">
@@ -4435,9 +4659,6 @@ function FlashcardReview({
   onToggleActiveRecallPriority,
   selectedRating,
   choiceKeys,
-  sentence,
-  sentenceMode,
-  onToggleSentenceMode,
 }: {
   word: VocabWord
   answerShown: boolean
@@ -4449,48 +4670,20 @@ function FlashcardReview({
   onToggleActiveRecallPriority?: () => void | Promise<void>
   selectedRating?: FsrsRating | null
   choiceKeys?: HotkeySettings
-  sentence?: { chinese: string; english: string } | null
-  sentenceMode?: boolean
-  onToggleSentenceMode?: () => void
 }) {
   const previews = previewFsrsRatings(word)
   const audioFront = frontMode === 'audio' && !answerShown
-  const useSentence = sentenceMode && sentence
-
-  useEffect(() => {
-    if (useSentence) {
-      const safeWord = encodeURIComponent(word.word)
-      const audio = new Audio(`/audio/sentences/${safeWord}.mp3`)
-      audio.play().catch((err) => console.log('Autoplay prevented or missing audio:', err))
-    }
-  }, [useSentence, word.word])
-
-  function highlightWord(text: string, target: string): string {
-    const index = text.indexOf(target)
-    if (index === -1) return text
-    return text.slice(0, index) + '【' + target + '】' + text.slice(index + target.length)
-  }
 
   return (
     <section className="flashcard-review">
       <div className={`flashcard ${answerShown ? 'answer-side' : 'front-side'} ${audioFront ? 'audio-front' : ''}`}>
-        <span>{answerShown ? (useSentence ? 'Sentence + meaning' : 'Front + back') : audioFront ? 'Audio front' : useSentence ? 'Sentence front' : 'Front'}</span>
+        <span>{answerShown ? 'Front + back' : audioFront ? 'Audio front' : 'Front'}</span>
         {answerShown ? (
           <>
-            {useSentence ? (
-              <>
-                <strong className="flashcard-sentence-cn">{sentence.chinese}</strong>
-                <p className="flashcard-answer-text">{sentence.english}</p>
-                <p className="flashcard-word-meaning">{word.word} — {word.meaning}</p>
-              </>
-            ) : (
-              <>
-                <strong>{word.word}</strong>
-                <p className="flashcard-answer-text">
-                  {word.pinyin ? `${word.pinyin} is ${word.meaning}` : word.meaning}
-                </p>
-              </>
-            )}
+            <strong>{word.word}</strong>
+            <p className="flashcard-answer-text">
+              {word.pinyin ? `${word.pinyin} is ${word.meaning}` : word.meaning}
+            </p>
           </>
         ) : (
           <>
@@ -4504,8 +4697,6 @@ function FlashcardReview({
                   </button>
                 )}
               </>
-            ) : useSentence ? (
-              <strong className="flashcard-sentence-cn">{highlightWord(sentence.chinese, word.word)}</strong>
             ) : (
               <strong>{word.word}</strong>
             )}
@@ -4549,15 +4740,6 @@ function FlashcardReview({
         {onEdit && (
           <button type="button" className="ghost-answer" onClick={onEdit}>
             Edit
-          </button>
-        )}
-        {onToggleSentenceMode && (
-          <button
-            type="button"
-            className={`ghost-answer ${sentenceMode ? 'active' : ''}`}
-            onClick={onToggleSentenceMode}
-          >
-            Sentences
           </button>
         )}
       </div>
@@ -4762,8 +4944,9 @@ function ratingHotkeyLabel(rating: FsrsRating, hotkeys: HotkeySettings): string 
   return hotkeys.choiceD.toUpperCase()
 }
 
-function getFlashcardFrontMode(word: VocabWord | undefined, sessionId: string | null): FlashcardFrontMode {
+function getFlashcardFrontMode(word: VocabWord | undefined, sessionId: string | null, audioOnly = false): FlashcardFrontMode {
   if (!word) return 'text'
+  if (audioOnly) return 'audio'
   const bucket = stableStringBucket(`${sessionId ?? 'flashcards'}:${word.id}`, 1000) / 1000
   return bucket < FLASHCARD_AUDIO_FRONT_RATE ? 'audio' : 'text'
 }

@@ -4600,6 +4600,12 @@ kbd {
   font-weight: 850;
 }
 
+.flashcard-mode-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .flashcard-queue-counts {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
