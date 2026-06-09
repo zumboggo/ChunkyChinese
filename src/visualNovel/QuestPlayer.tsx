@@ -226,6 +226,9 @@ export function QuestPlayer({
             </button>
           </div>
         )}
+        {typewriterDone && !result && node.type !== 'choice' && (
+          <div className="vn-advance-indicator" aria-hidden="true" />
+        )}
       </div>
 
       <div className="vn-bottom-bar">

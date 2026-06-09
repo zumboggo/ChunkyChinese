@@ -3115,24 +3115,25 @@ kbd {
   max-width: 42%;
   transform: translateX(-50%) scaleX(var(--vn-sprite-flip, 1));
   transform-origin: 50% 100%;
-  filter: drop-shadow(0 24px 28px rgba(0, 0, 0, 0.28));
   pointer-events: none;
 }
 
 .vn-subtitle-overlay {
   position: absolute;
-  bottom: 80px;
+  bottom: 56px;
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 16px 20px 12px;
-  background: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.85) 60%, rgba(0, 0, 0, 0.95) 100%);
+  padding: 14px 20px 16px;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(16px);
+  border-top: 2px solid rgba(56, 189, 248, 0.35);
   display: grid;
   gap: 8px;
-  max-height: 55vh;
+  max-height: 50vh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  align-items: center;
+  align-items: start;
 }
 
 .vn-subtitle-text {
@@ -3361,14 +3362,13 @@ kbd {
 
 .vn-sprite {
   position: absolute;
-  bottom: -2%;
+  bottom: 0;
   z-index: 2;
   width: min(var(--vn-sprite-width), 38vw);
   max-width: 42%;
   --vn-sprite-flip: 1;
   transform: translateX(-50%) scaleX(var(--vn-sprite-flip));
   transform-origin: 50% 100%;
-  filter: drop-shadow(0 24px 28px rgba(0, 0, 0, 0.28));
   pointer-events: none;
 }
 
@@ -3380,11 +3380,11 @@ kbd {
 }
 
 .vn-sprite-dimmed {
-  filter: brightness(0.78) saturate(0.82) drop-shadow(0 20px 22px rgba(0, 0, 0, 0.24));
+  filter: brightness(0.78) saturate(0.82);
 }
 
 .vn-sprite-left {
-  left: 31%;
+  left: 20%;
 }
 
 .vn-sprite-center {
@@ -3392,7 +3392,7 @@ kbd {
 }
 
 .vn-sprite-right {
-  left: 69%;
+  left: 80%;
 }
 
 .vn-status-expander {
@@ -3874,19 +3874,18 @@ kbd {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 14px;
-  border-radius: 10px;
-  background: rgba(56, 189, 248, 0.15);
-  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 3px 12px;
+  border-radius: 8px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
   color: #38bdf8;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 850;
   letter-spacing: 0.03em;
   line-height: 1.4;
-  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.1);
-  justify-self: start;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
+  justify-self: start;
+  margin-bottom: 2px;
 }
 
 .vn-speaker-plate .vn-speaker-chinese {
@@ -4208,6 +4207,279 @@ kbd {
 
 .vn-result-panel strong {
   font-size: 1.05rem;
+}
+
+/* ── Advance dialogue indicator (bouncing arrow) ── */
+
+.vn-advance-indicator {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  z-index: 10;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid #38bdf8;
+  animation: vn-bounce-arrow 1.2s ease-in-out infinite;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+@keyframes vn-bounce-arrow {
+  0%, 100% { transform: translateY(0); opacity: 0.8; }
+  50% { transform: translateY(6px); opacity: 0.4; }
+}
+
+/* ── World Hub panel (inside subtitle overlay) ── */
+
+.vn-hub-panel {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  max-width: min(92vw, 960px);
+  justify-self: center;
+  color: #f1f5f9;
+}
+
+.vn-hub-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.vn-hub-location {
+  font-size: 0.85rem;
+  font-weight: 850;
+  color: rgba(241, 245, 249, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.vn-hub-location-cn {
+  font-size: 0.78rem;
+  font-weight: 760;
+  color: rgba(56, 189, 248, 0.6);
+}
+
+.vn-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.vn-hub-grid h2 {
+  margin: 0 0 6px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(241, 245, 249, 0.5);
+}
+
+.vn-hub-action-list {
+  display: grid;
+  gap: 6px;
+}
+
+.vn-hub-action-list button {
+  display: grid;
+  gap: 3px;
+  min-height: 60px;
+  justify-items: start;
+  text-align: left;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.vn-hub-action-list button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.vn-hub-action-list button strong {
+  color: #f1f5f9;
+  font-size: 0.82rem;
+}
+
+.vn-hub-action-list button span {
+  color: rgba(241, 245, 249, 0.6);
+  font-size: 0.72rem;
+  font-weight: 760;
+}
+
+.vn-hub-action-list button small {
+  color: rgba(241, 245, 249, 0.4);
+  font-size: 0.68rem;
+}
+
+/* ── Dark recommended action variant ── */
+
+.vn-recommended-action-dark {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(14, 165, 233, 0.08));
+  border: 2px solid rgba(249, 115, 22, 0.4);
+  color: #f1f5f9;
+}
+
+.vn-recommended-action-dark:hover,
+.vn-recommended-action-dark:focus-visible {
+  border-color: rgba(249, 115, 22, 0.7);
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.15);
+}
+
+.vn-recommended-action-dark strong {
+  color: #f1f5f9;
+}
+
+.vn-recommended-action-dark small {
+  color: rgba(241, 245, 249, 0.6);
+}
+
+.vn-recommended-action-dark em {
+  color: rgba(241, 245, 249, 0.5);
+}
+
+.vn-recommended-badge {
+  grid-row: 1 / 3;
+  padding: 3px 10px;
+  border-radius: 8px;
+  background: rgba(249, 115, 22, 0.3);
+  border: 1px solid rgba(249, 115, 22, 0.5);
+  color: #fb923c;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ── Journal list dark theme ── */
+
+.vn-journal-list-dark p {
+  display: grid;
+  gap: 3px;
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.vn-journal-list-dark p strong {
+  color: #f1f5f9;
+  font-size: 0.78rem;
+}
+
+.vn-journal-list-dark p span {
+  color: rgba(241, 245, 249, 0.5);
+  font-size: 0.72rem;
+}
+
+.vn-journal-list-dark p.completed {
+  opacity: 0.5;
+}
+
+.vn-journal-list-dark small {
+  color: rgba(241, 245, 249, 0.4);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── Interactive sprite (clickable NPC in world) ── */
+
+.vn-sprite-interactive {
+  pointer-events: auto;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.vn-sprite-interactive:hover {
+  filter: brightness(1.15);
+}
+
+.vn-sprite-interactive:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: -4px;
+  border-radius: 4px;
+}
+
+/* ── Status expander in bottom bar ── */
+
+.vn-status-expander-bar {
+  position: relative;
+}
+
+.vn-status-expander-bar summary {
+  list-style: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  padding: 0;
+}
+
+.vn-status-expander-bar summary::-webkit-details-marker {
+  display: none;
+}
+
+.vn-status-expander-bar summary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.vn-status-dropdown {
+  position: absolute;
+  bottom: 54px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(340px, 90vw);
+  max-height: min(400px, calc(100svh - 120px));
+  overflow: auto;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 14px;
+  color: #f1f5f9;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.vn-status-dropdown .vn-status-panel {
+  background: transparent;
+  border: none;
+  color: #f1f5f9;
+}
+
+.vn-status-dropdown .vn-status-row {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.vn-status-dropdown .vn-status-label {
+  color: rgba(241, 245, 249, 0.6);
+}
+
+.vn-status-dropdown .vn-status-value {
+  color: #f1f5f9;
+}
+
+.vn-status-dropdown .vn-deck-label {
+  color: rgba(241, 245, 249, 0.6);
+}
+
+.vn-status-dropdown .vn-deck-entry {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
 }
 
 .popover-close {

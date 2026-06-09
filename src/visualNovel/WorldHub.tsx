@@ -66,26 +66,28 @@ export function WorldHub({
   const unlockedLocations = save.state.unlockedLocations
 
   return (
-    <section className="vn-dialogue-panel vn-world-panel">
-      <div className="vn-node-meta">
-        <span>{location?.name.english ?? location?.id ?? 'Unknown location'}</span>
-        <span>{location?.name.chinese}</span>
+    <section className="vn-hub-panel">
+      <div className="vn-hub-header">
+        <span className="vn-hub-location">{location?.name.english ?? location?.id ?? 'Unknown location'}</span>
+        {location?.name.chinese && <span className="vn-hub-location-cn">{location.name.chinese}</span>}
       </div>
       {descriptionTokens.length > 0 && (
-        <AdaptiveChineseText
-          tokens={descriptionTokens}
-          selectedToken={selectedToken}
-          pinyinMode={pinyinMode}
-          onSelectToken={onSelectToken}
-          className="reader-sentence vn-line"
-        />
+        <div className="vn-subtitle-text">
+          <AdaptiveChineseText
+            tokens={descriptionTokens}
+            selectedToken={selectedToken}
+            pinyinMode={pinyinMode}
+            onSelectToken={onSelectToken}
+            className="reader-sentence vn-line"
+          />
+          {description?.english && <p className="vn-translation-overlay revealed">{description.english}</p>}
+        </div>
       )}
-      {description?.english && <p className="reader-translation vn-translation revealed">{description.english}</p>}
 
       {recommended && (
         <button
           type="button"
-          className="vn-recommended-action"
+          className="vn-recommended-action vn-recommended-action-dark"
           onClick={() => {
             if (recommended.kind === 'resume') {
               void onResume()
@@ -94,17 +96,17 @@ export function WorldHub({
             }
           }}
         >
-          <span>Next · {recommended.badge}</span>
+          <span className="vn-recommended-badge">Next · {recommended.badge}</span>
           <strong>{recommended.label.english ?? recommended.label.chinese}</strong>
           {recommended.label.chinese && <small>{recommended.label.chinese}</small>}
           <em>{recommended.reason}</em>
         </button>
       )}
 
-      <div className="vn-world-grid">
+      <div className="vn-hub-grid">
         <section>
           <h2>Available</h2>
-          <div className="vn-world-action-list">
+          <div className="vn-hub-action-list">
             {actions.map((action) => (
               <button key={action.id} type="button" onClick={() => onAction(action)}>
                 <span className="vn-world-badge">{worldActionBadge(world, action)}</span>
@@ -161,7 +163,7 @@ export function WorldHub({
               </svg>
             </div>
           )}
-          <div className="vn-world-action-list">
+          <div className="vn-hub-action-list">
             {travelLocations.map((destination) => (
               <button
                 key={destination.id}
@@ -178,7 +180,7 @@ export function WorldHub({
         </section>
         <section>
           <h2>Journal</h2>
-          <div className="vn-journal-list">
+          <div className="vn-journal-list vn-journal-list-dark">
             {activeQuests.length > 0 && <small>Active</small>}
             {activeQuests.map((quest) => <JournalQuest key={quest.id} quest={quest} />)}
             {completedQuests.length > 0 && <small>Recently completed</small>}

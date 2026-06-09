@@ -620,69 +620,75 @@ export function VisualNovelWorldMode({
             hotkeys={hotkeys}
           />
         ) : (
-          <div className="app-split-layout">
-            <section className="vn-workspace vn-world-workspace">
-              <div className="vn-stage" aria-label="World location">
-                {background ? (
-                  <img className="vn-background" src={visualNovelAssetSrc(background.src)} alt={background.alt} />
-                ) : (
-                  <div className="vn-background vn-background-fallback" aria-label="Neutral background" />
-                )}
-              </div>
-              {castMembers.length > 0 && (
-                <div className="vn-location-cast" aria-label="People here">
-                  {castMembers.map((member) => {
-                    const sprite = manifest.sprites[member.spriteId]
-                    if (!sprite) return null
-                    const content = (
-                      <>
-                        <img src={visualNovelAssetSrc(sprite.src)} alt={sprite.alt ?? member.name} />
-                        <span>{member.name}</span>
-                        {member.talkQuest && <small>{member.talkQuest.hubLabel?.english ?? 'Talk'}</small>}
-                      </>
-                    )
-                    if (member.talkQuest) {
-                      return (
-                        <button
-                          key={`${member.characterId}:${member.spriteId}`}
-                          type="button"
-                          className="vn-cast-card vn-cast-card-interactive"
-                          onClick={() => handleWorldAction({
-                            id: `talk-${member.talkQuest!.id}`,
-                            kind: 'quest',
-                            targetId: member.talkQuest!.id,
-                            label: member.talkQuest!.hubLabel ?? member.talkQuest!.title,
-                          })}
-                        >
-                          {content}
-                        </button>
-                      )
-                    }
-                    return (
-                      <div key={`${member.characterId}:${member.spriteId}`} className="vn-cast-card">
-                        {content}
-                      </div>
-                    )
-                  })}
-                </div>
+          <div className="vn-fullscreen">
+            <div className="vn-fullscreen-stage" aria-label="World location">
+              {background ? (
+                <img className="vn-background" src={visualNovelAssetSrc(background.src)} alt={background.alt} />
+              ) : (
+                <div className="vn-background vn-background-fallback" aria-label="Neutral background" />
               )}
-              <details className="vn-status-expander">
-                <summary>Status & Inventory</summary>
-                <WorldStatusPanel world={world} save={worldSave} />
+              {castMembers.map((member) => {
+                const sprite = manifest.sprites[member.spriteId]
+                if (!sprite) return null
+                const index = castMembers.indexOf(member)
+                const positions = ['vn-sprite-left', 'vn-sprite-center', 'vn-sprite-right'] as const
+                const posClass = positions[index % positions.length]
+                return (
+                  <div
+                    key={`${member.characterId}:${member.spriteId}`}
+                    className={`vn-sprite ${posClass}${member.talkQuest ? ' vn-sprite-interactive' : ''}`}
+                    role={member.talkQuest ? 'button' : undefined}
+                    tabIndex={member.talkQuest ? 0 : undefined}
+                    onClick={member.talkQuest ? () => handleWorldAction({
+                      id: `talk-${member.talkQuest!.id}`,
+                      kind: 'quest',
+                      targetId: member.talkQuest!.id,
+                      label: member.talkQuest!.hubLabel ?? member.talkQuest!.title,
+                    }) : undefined}
+                    onKeyDown={member.talkQuest ? (e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault()
+                        handleWorldAction({
+                          id: `talk-${member.talkQuest!.id}`,
+                          kind: 'quest',
+                          targetId: member.talkQuest!.id,
+                          label: member.talkQuest!.hubLabel ?? member.talkQuest!.title,
+                        })
+                      }
+                    } : undefined}
+                  >
+                    <img src={visualNovelAssetSrc(sprite.src)} alt={sprite.alt ?? member.name} />
+                  </div>
+                )
+              })}
+            </div>
+            <div className="vn-subtitle-overlay">
+              <WorldHub
+                world={world}
+                save={worldSave}
+                location={location}
+                manifest={manifest}
+                words={words}
+                selectedToken={selectedToken}
+                pinyinMode={pinyinMode}
+                onSelectToken={handleSelectToken}
+                onAction={handleWorldAction}
+                onResume={resumeInterruptedQuest}
+              />
+            </div>
+            <div className="vn-bottom-bar">
+              <details className="vn-status-expander vn-status-expander-bar">
+                <summary className="vn-bar-btn" title="Status & Inventory">
+                  <span className="vn-bar-icon">{'\u{1F6E1}\uFE0F'}</span>
+                </summary>
+                <div className="vn-status-dropdown">
+                  <WorldStatusPanel world={world} save={worldSave} />
+                </div>
               </details>
-            </section>
-            <WorldHub
-              world={world}
-              save={worldSave}
-              location={location}
-              manifest={manifest}
-              words={words}
-              selectedToken={selectedToken}
-              pinyinMode={pinyinMode}
-              onSelectToken={handleSelectToken}
-              onAction={handleWorldAction}
-              onResume={resumeInterruptedQuest}
-            />
+              <button type="button" className="vn-bar-btn vn-bar-btn-ghost" onClick={onReturnToReader} title="Return to Reader">
+                <span className="vn-bar-icon">{'\u25C0\uFE0F'}</span>
+              </button>
+            </div>
           </div>
         )
       )}
