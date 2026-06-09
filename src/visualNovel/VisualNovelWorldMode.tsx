@@ -59,7 +59,7 @@ import type {
 } from './types'
 import { getNodeText, getNodeAudioClipId, scopedTokens, stopAudio, speakUtterance, formatDueDate, getLocationBackgroundId } from './utils'
 import { QuestPlayer } from './QuestPlayer'
-import { WorldHub, getHubCastMembers } from './WorldHub'
+import { WorldHub, getHubCastMembers, MAP_LAYOUT, MAP_CONNECTIONS } from './WorldHub'
 import { WorldStatusPanel } from './WorldStatusPanel'
 
 interface VisualNovelWorldModeProps {
@@ -103,6 +103,8 @@ export function VisualNovelWorldMode({
   const [loadingStep, setLoadingStep] = useState('Starting...')
   const [reloadKey, setReloadKey] = useState(0)
   const [showEnglish, setShowEnglish] = useState(false)
+  const [showMap, setShowMap] = useState(false)
+  const [showInventory, setShowInventory] = useState(false)
   const [selectedToken, setSelectedToken] = useState<ReaderWordToken | null>(null)
   const [dictionaryEntry, setDictionaryEntry] = useState<DictionaryEntry | null>(null)
   const [statusToast, setStatusToast] = useState<string | null>(null)
@@ -617,6 +619,7 @@ export function VisualNovelWorldMode({
             onAbandon={handleAbandonQuest}
             onReplay={playCurrentAudio}
             onBattleStateUpdate={handleBattleStateUpdate}
+            onShowMap={() => setShowMap(true)}
             hotkeys={hotkeys}
           />
         ) : (
@@ -671,20 +674,22 @@ export function VisualNovelWorldMode({
                 words={words}
                 selectedToken={selectedToken}
                 pinyinMode={pinyinMode}
+                showEnglish={showEnglish}
                 onSelectToken={handleSelectToken}
                 onAction={handleWorldAction}
                 onResume={resumeInterruptedQuest}
               />
             </div>
             <div className="vn-bottom-bar">
-              <details className="vn-status-expander vn-status-expander-bar">
-                <summary className="vn-bar-btn" title="Status & Inventory">
-                  <span className="vn-bar-icon">{'\u{1F6E1}\uFE0F'}</span>
-                </summary>
-                <div className="vn-status-dropdown">
-                  <WorldStatusPanel world={world} save={worldSave} />
-                </div>
-              </details>
+              <button type="button" className={`vn-bar-btn vn-bar-btn-english${showEnglish ? ' vn-bar-btn-active' : ''}`} onClick={() => setShowEnglish((v) => !v)} title="Toggle English">
+                <span className="vn-bar-icon-text">E</span>
+              </button>
+              <button type="button" className="vn-bar-btn" onClick={() => setShowMap(true)} title="Map">
+                <span className="vn-bar-icon">{'\u{1F5FA}\uFE0F'}</span>
+              </button>
+              <button type="button" className="vn-bar-btn" onClick={() => setShowInventory(true)} title="Inventory">
+                <span className="vn-bar-icon">{'\u{1F6E1}\uFE0F'}</span>
+              </button>
               <button type="button" className="vn-bar-btn vn-bar-btn-ghost" onClick={onReturnToReader} title="Return to Reader">
                 <span className="vn-bar-icon">{'\u25C0\uFE0F'}</span>
               </button>
@@ -694,6 +699,71 @@ export function VisualNovelWorldMode({
       )}
 
       {statusToast && <div className="vn-status-toast" role="status">{statusToast}</div>}
+
+      {showMap && world && worldSave && (
+        <div className="vn-map-overlay" onClick={() => setShowMap(false)}>
+          <div className="vn-map-overlay-panel" onClick={(e) => e.stopPropagation()}>
+            <div className="vn-map-overlay-header">
+              <h3>World Map</h3>
+              <button type="button" onClick={() => setShowMap(false)}>Close</button>
+            </div>
+            <div className="vn-map-overlay-body">
+              <svg className="vn-map-svg vn-map-svg-large" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+                {MAP_CONNECTIONS.map(([a, b]) => {
+                  const la = MAP_LAYOUT[a]
+                  const lb = MAP_LAYOUT[b]
+                  if (!la || !lb) return null
+                  const bothUnlocked = worldSave.state.unlockedLocations.includes(a) && worldSave.state.unlockedLocations.includes(b)
+                  return (
+                    <line
+                      key={`${a}-${b}`}
+                      x1={la.x} y1={la.y} x2={lb.x} y2={lb.y}
+                      className={`vn-map-path ${bothUnlocked ? 'vn-map-path-unlocked' : ''}`}
+                    />
+                  )
+                })}
+                {Object.entries(MAP_LAYOUT).map(([locId, pos]) => {
+                  const isUnlocked = worldSave.state.unlockedLocations.includes(locId)
+                  const isCurrent = location?.id === locId
+                  const canTravel = isUnlocked && !isCurrent
+                  return (
+                    <g key={locId} className={`vn-map-node ${isCurrent ? 'vn-map-current' : ''} ${isUnlocked ? 'vn-map-unlocked' : 'vn-map-locked'}`}>
+                      <circle cx={pos.x} cy={pos.y} r={isCurrent ? 6 : 4} />
+                      <text x={pos.x} y={pos.y - 8} textAnchor="middle" className="vn-map-label">{pos.label}</text>
+                      {canTravel && (
+                        <rect
+                          x={pos.x - 12} y={pos.y - 3} width={24} height={6} rx={3}
+                          className="vn-map-travel-btn"
+                          onClick={() => {
+                            void handleWorldAction({ id: `travel-${locId}`, kind: 'travel', targetId: locId, label: world.locations[locId]?.name ?? { chinese: locId } })
+                            setShowMap(false)
+                          }}
+                          style={{ cursor: 'pointer' }}
+                        />
+                      )}
+                      {canTravel && (
+                        <text x={pos.x} y={pos.y + 1.5} textAnchor="middle" className="vn-map-travel-label">Go</text>
+                      )}
+                    </g>
+                  )
+                })}
+              </svg>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showInventory && world && worldSave && (
+        <div className="vn-inventory-overlay" onClick={() => setShowInventory(false)}>
+          <div className="vn-inventory-panel" onClick={(e) => e.stopPropagation()}>
+            <div className="vn-inventory-header">
+              <h3>Status & Inventory</h3>
+              <button type="button" onClick={() => setShowInventory(false)}>Close</button>
+            </div>
+            <WorldStatusPanel world={world} save={worldSave} />
+          </div>
+        </div>
+      )}
 
       {selectedToken && (
         <WordInfoPopover

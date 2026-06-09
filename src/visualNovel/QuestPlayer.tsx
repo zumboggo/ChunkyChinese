@@ -53,6 +53,7 @@ export function QuestPlayer({
   onAbandon,
   onReplay,
   onBattleStateUpdate,
+  onShowMap,
   hotkeys,
 }: {
   world: VnWorld
@@ -76,6 +77,7 @@ export function QuestPlayer({
   onAbandon: () => void | Promise<void>
   onReplay: () => void | Promise<void>
   onBattleStateUpdate?: (state: CardBattlerState) => void
+  onShowMap: () => void
   hotkeys: HotkeySettings
 }) {
   const [showInventory, setShowInventory] = useState(false)
@@ -232,8 +234,11 @@ export function QuestPlayer({
       </div>
 
       <div className="vn-bottom-bar">
-        <button type="button" className="vn-bar-btn" onClick={(e) => { e.stopPropagation(); onToggleEnglish() }} title="Toggle English">
-          <span className="vn-bar-icon">{'\u{1F1EC}\u{1F1E7}'}</span>
+        <button type="button" className={`vn-bar-btn vn-bar-btn-english${showEnglish ? ' vn-bar-btn-active' : ''}`} onClick={(e) => { e.stopPropagation(); onToggleEnglish() }} title="Toggle English">
+          <span className="vn-bar-icon-text">E</span>
+        </button>
+        <button type="button" className="vn-bar-btn" onClick={(e) => { e.stopPropagation(); onShowMap() }} title="Map">
+          <span className="vn-bar-icon">{'\u{1F5FA}\uFE0F'}</span>
         </button>
         <button type="button" className="vn-bar-btn" onClick={(e) => { e.stopPropagation(); setShowInventory((v) => !v) }} title="Inventory">
           <span className="vn-bar-icon">{'\u{1F6E1}\uFE0F'}</span>

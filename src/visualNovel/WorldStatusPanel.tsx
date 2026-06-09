@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import type { VisualNovelWorldSave, VnWorld } from './types'
+import { activeWorldQuests, completedWorldQuests } from './worldEngine'
 
 const DEFAULT_DECK = ['strike', 'strike', 'strike', 'strike', 'defend', 'defend', 'defend', 'bash']
 
@@ -7,6 +8,8 @@ export function WorldStatusPanel({ world, save }: { world: VnWorld; save: Visual
   const state = save.state
   const deck = state.playerDeck ?? DEFAULT_DECK
   const hp = state.playerHp
+  const activeQuests = activeWorldQuests(world, save).filter((q) => q.category !== 'rumour')
+  const completedQuests = completedWorldQuests(world, save).filter((q) => q.category !== 'rumour')
 
   const deckSummary = useMemo(() => {
     const counts = new Map<string, number>()
@@ -48,6 +51,27 @@ export function WorldStatusPanel({ world, save }: { world: VnWorld; save: Visual
           ))}
         </div>
       </div>
+      {activeQuests.length > 0 && (
+        <div className="vn-active-quests">
+          <span className="vn-deck-label">Active Quests</span>
+          {activeQuests.map((quest) => (
+            <div key={quest.id} className="vn-active-quest-row">
+              <strong>{quest.title.english}</strong>
+              <span>{quest.objective?.english ?? quest.description?.english ?? ''}</span>
+            </div>
+          ))}
+        </div>
+      )}
+      {completedQuests.length > 0 && (
+        <div className="vn-active-quests">
+          <span className="vn-deck-label">Completed</span>
+          {completedQuests.slice(-3).map((quest) => (
+            <div key={quest.id} className="vn-active-quest-row vn-active-quest-completed">
+              <strong>{quest.title.english}</strong>
+            </div>
+          ))}
+        </div>
+      )}
       <p className="vn-quest-note">
         <strong>{world.title}</strong>
         <span>{state.unlockedLocations.length} location{state.unlockedLocations.length !== 1 ? 's' : ''} unlocked</span>

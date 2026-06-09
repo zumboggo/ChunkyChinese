@@ -4497,6 +4497,142 @@ kbd {
   color: #f1f5f9;
 }
 
+/* ── English toggle button (bold blue E) ── */
+
+.vn-bar-btn-english {
+  position: relative;
+}
+
+.vn-bar-btn-english .vn-bar-icon-text {
+  font-family: Inter, ui-sans-serif, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #38bdf8;
+  line-height: 1;
+}
+
+.vn-bar-btn-active {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: rgba(56, 189, 248, 0.5);
+}
+
+/* ── Map overlay ── */
+
+.vn-map-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+.vn-map-overlay-panel {
+  width: min(480px, 100%);
+  max-height: min(500px, calc(100svh - 36px));
+  overflow: auto;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 16px;
+  padding: 16px;
+  color: #f1f5f9;
+}
+
+.vn-map-overlay-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.vn-map-overlay-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #f1f5f9;
+}
+
+.vn-map-overlay-header button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+
+.vn-map-overlay-body {
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  padding: 12px;
+  overflow: hidden;
+}
+
+.vn-map-svg-large {
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+}
+
+/* ── Active quests in status panel ── */
+
+.vn-active-quests {
+  display: grid;
+  gap: 4px;
+  padding: 8px 0;
+  border-top: 1px solid var(--reader-border);
+}
+
+.vn-active-quest-row {
+  display: grid;
+  gap: 2px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: rgba(56, 189, 248, 0.06);
+  border: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+.vn-active-quest-row strong {
+  font-size: 0.82rem;
+  font-weight: 850;
+  color: var(--reader-ink);
+}
+
+.vn-active-quest-row span {
+  font-size: 0.72rem;
+  color: var(--reader-muted);
+  font-weight: 600;
+}
+
+.vn-active-quest-completed {
+  opacity: 0.5;
+}
+
+.vn-active-quest-completed strong {
+  text-decoration: line-through;
+}
+
+/* ── Hub actions row (2-column instead of 3) ── */
+
+.vn-hub-actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.vn-hub-actions-row h2 {
+  margin: 0 0 6px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(241, 245, 249, 0.5);
+}
+
 .popover-close {
   justify-self: end;
   min-height: 34px;
