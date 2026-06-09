@@ -3460,6 +3460,11 @@ kbd {
   color: var(--reader-ink);
 }
 
+.vn-dialogue-panel .reader-token,
+.vn-dialogue-panel .reader-token.saved-token {
+  color: inherit;
+}
+
 .vn-node-meta,
 .vn-controls {
   display: flex;
