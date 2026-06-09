@@ -3164,23 +3164,23 @@ kbd {
 }
 
 .vn-subtitle-text .vn-line {
-  color: #38bdf8;
+  color: #93c5fd;
   font-family: "Microsoft YaHei", "Noto Sans SC", "PingFang SC", "Source Han Sans SC", sans-serif;
   font-size: clamp(1.4rem, 4.5vw, 2.2rem);
   font-weight: 900;
   line-height: 1.5;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.95), 0 0 4px rgba(0, 0, 0, 0.85), 0 2px 8px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.25);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
   min-height: auto;
   letter-spacing: 0.03em;
   text-align: center;
 }
 
 .vn-translation-overlay {
-  color: rgba(56, 189, 248, 0.9);
+  color: rgba(147, 197, 253, 0.85);
   font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.5;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
   margin: 0;
   text-align: center;
 }
