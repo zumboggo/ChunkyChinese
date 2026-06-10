@@ -1,4 +1,4 @@
-export type VnPosition = 'left' | 'center' | 'right'
+export type VnPosition = 'farLeft' | 'left' | 'center' | 'right' | 'farRight'
 export type VnChoiceKind = 'expressive' | 'memory' | 'consequential'
 export type VnQuestStatus = 'active' | 'completed' | 'failed'
 export type VnNodeType = 'line' | 'choice' | 'cinematic' | 'questResult' | 'end' | 'cardBattle'
@@ -120,6 +120,20 @@ export type VnCondition =
   | { op: 'hasTitle'; titleId: string }
   | { op: 'encounterSeen'; encounterId: string; value?: boolean }
 
+export interface VnAnimCommand {
+  type: 'show' | 'hide' | 'expression' | 'animate' | 'move' | 'dialogue'
+  character?: string
+  speaker?: string
+  position?: VnPosition
+  expression?: string
+  value?: string
+  animation?: string
+  transition?: 'crossfade' | 'immediate'
+  duration?: number
+  wait?: boolean
+  facing?: 'left' | 'right' | 'none'
+}
+
 export type VnNode =
   | {
       id: string
@@ -130,6 +144,7 @@ export type VnNode =
       effects?: VnEffect[]
       audioClipId?: string
       nextId?: string
+      animCommands?: VnAnimCommand[]
     }
   | {
       id: string

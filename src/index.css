@@ -3418,6 +3418,58 @@ kbd {
   left: 80%;
 }
 
+.vn-sprite-far-left {
+  left: 8%;
+}
+
+.vn-sprite-far-right {
+  left: 92%;
+}
+
+.vn-animated-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.vn-sprite-anim-root {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  width: min(var(--vn-sprite-width, 200px), 38vw);
+  max-width: 42%;
+  transform: translateX(-50%) scaleX(var(--vn-sprite-flip, 1));
+  transform-origin: 50% 100%;
+  pointer-events: none;
+  transition: left 0.45s ease-in-out;
+}
+
+.vn-sprite-anim-root .vn-position-layer {
+  position: relative;
+  width: 100%;
+}
+
+.vn-sprite-anim-root .vn-anim-layer {
+  position: relative;
+  width: 100%;
+}
+
+.vn-sprite-anim-root .vn-sprite-inner {
+  position: relative;
+  width: 100%;
+}
+
+.vn-sprite-anim-root .vn-sprite-inner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+}
+
+.vn-sprite-anim-root .vn-sprite-inner.vn-sprite-dimmed {
+  filter: brightness(0.78) saturate(0.82);
+}
+
 .vn-status-expander {
   border: 1px solid var(--reader-border);
   border-radius: 20px;
@@ -5233,6 +5285,19 @@ kbd {
 
   .vn-sprite-right {
     left: 66%;
+  }
+
+  .vn-sprite-far-left {
+    left: 18%;
+  }
+
+  .vn-sprite-far-right {
+    left: 82%;
+  }
+
+  .vn-sprite-anim-root {
+    width: min(calc(var(--vn-sprite-width) * 0.78), 54vw);
+    max-width: 58%;
   }
 
   .vn-status-panel {
