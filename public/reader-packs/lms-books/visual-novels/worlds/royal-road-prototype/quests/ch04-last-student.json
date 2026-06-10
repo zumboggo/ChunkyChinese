@@ -215,7 +215,7 @@
         "personaId": "default"
       },
       "text": {
-        "chinese": "教官没有笑他。教官只是说："你的手太紧了。"",
+        "chinese": "教官没有笑他。教官只是说：\"你的手太紧了。\"",
         "english": "The instructor does not laugh at him. The instructor simply says, 'Your hands are too tight.'"
       },
       "nextId": "ch04-009"
@@ -250,7 +250,7 @@
         "personaId": "default"
       },
       "text": {
-        "chinese": "教官又提醒他说："不是一直用力，就会更强。合适的时候放松，动作才会对。"",
+        "chinese": "教官又提醒他说：\"不是一直用力，就会更强。合适的时候放松，动作才会对。\"",
         "english": "The instructor adds, 'Using force all the time does not make you stronger. Relax at the right moment, and the movement will be correct.'"
       },
       "nextId": "ch04-011"
@@ -263,7 +263,7 @@
         "personaId": "weed-sculptor"
       },
       "text": {
-        "chinese": "杂草这一次没有装作没听见。他低声问："那我应该先看哪里？"",
+        "chinese": "杂草这一次没有装作没听见。他低声问：\"那我应该先看哪里？\"",
         "english": "This time Weed does not pretend he did not hear. He asks quietly, 'Then where should I look first?'"
       },
       "scene": {

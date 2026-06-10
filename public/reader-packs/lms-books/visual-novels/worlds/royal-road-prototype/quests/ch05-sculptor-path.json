@@ -188,7 +188,7 @@
         "personaId": "weed-sculptor"
       },
       "text": {
-        "chinese": "想到这里，他又坐下来了。这一次，他不再只想"快点结束"，而是开始认真听，认真问，也认真把每个人的话放在一起想。",
+        "chinese": "想到这里，他又坐下来了。这一次，他不再只想\"快点结束\"，而是开始认真听，认真问，也认真把每个人的话放在一起想。",
         "english": "Thinking of this, he sits back down. This time, he no longer just wants to 'finish quickly.' He starts listening carefully, asking carefully, and piecing each person's words together."
       },
       "scene": {
@@ -251,7 +251,7 @@
       "id": "ch05-010",
       "type": "line",
       "text": {
-        "chinese": "后来，他听见有人提到雕刻师。那个人一说完，旁边的人都笑了。有人说："那种职业能做什么？"还有人说："选那个，不如什么都不选。"",
+        "chinese": "后来，他听见有人提到雕刻师。那个人一说完，旁边的人都笑了。有人说：\"那种职业能做什么？\"还有人说：\"选那个，不如什么都不选。\"",
         "english": "Then he hears someone mention the sculptor class. As soon as that person finishes, everyone nearby laughs. Someone says, 'What can that class even do?' Another says, 'Choosing that is worse than choosing nothing.'"
       },
       "nextId": "ch05-011"
@@ -606,7 +606,7 @@
       "id": "ch05-027",
       "type": "line",
       "text": {
-        "chinese": "后来还有人直接取笑他。那个人说："这个也有人要吗？"",
+        "chinese": "后来还有人直接取笑他。那个人说：\"这个也有人要吗？\"",
         "english": "Later someone directly mocks him. That person says, 'Does anyone actually want this?'"
       },
       "nextId": "ch05-028"
@@ -681,7 +681,7 @@
         "personaId": "default"
       },
       "text": {
-        "chinese": "后来，老人轻轻点头。老人说："这东西还不成熟。可是做它的人很认真。"",
+        "chinese": "后来，老人轻轻点头。老人说：\"这东西还不成熟。可是做它的人很认真。\"",
         "english": "Then, the old man nods gently. The old man says, 'This piece is not yet mature. But the person who made it was very serious.'"
       },
       "nextId": "ch05-032"

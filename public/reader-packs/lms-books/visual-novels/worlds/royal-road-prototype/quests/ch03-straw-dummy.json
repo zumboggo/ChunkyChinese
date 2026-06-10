@@ -103,7 +103,7 @@
       "id": "ch03-003",
       "type": "line",
       "text": {
-        "chinese": "有人去市场，有人去找队友，还有人笑杂草。他们问："你一直打这个木头人，要打到什么时候？"",
+        "chinese": "有人去市场，有人去找队友，还有人笑杂草。他们问：\"你一直打这个木头人，要打到什么时候？\"",
         "english": "Some go to the market, some look for teammates, and some laugh at Weed. They ask, 'How long are you going to keep hitting that wooden dummy?'"
       },
       "nextId": "ch03-004"
@@ -202,7 +202,7 @@
       "id": "ch03-009",
       "type": "line",
       "text": {
-        "chinese": "可是打得越久，他心里越乱。他开始想："我是不是太慢了？"他又想："我是不是再练也没有用？"",
+        "chinese": "可是打得越久，他心里越乱。他开始想：\"我是不是太慢了？\"他又想：\"我是不是再练也没有用？\"",
         "english": "But the longer he strikes, the more chaotic his mind becomes. He starts thinking, 'Am I too slow?' He also thinks, 'Is practicing more even useful?'"
       },
       "scene": {
@@ -259,7 +259,7 @@
         "personaId": "default"
       },
       "text": {
-        "chinese": "教官没有马上说话。只在杂草快没有力气的时候，教官问了一句："你是在练，还是只是在生气？"",
+        "chinese": "教官没有马上说话。只在杂草快没有力气的时候，教官问了一句：\"你是在练，还是只是在生气？\"",
         "english": "The instructor does not speak right away. Only when Weed is nearly out of strength, the instructor asks, 'Are you practicing, or just being angry?'"
       },
       "scene": {

@@ -117,7 +117,7 @@
         "personaId": "default"
       },
       "text": {
-        "chinese": "她只问："今天很累吗？"",
+        "chinese": "她只问：\"今天很累吗？\"",
         "english": "She only asks, 'Was today very tiring?'"
       },
       "nextId": "ch02-005"
@@ -152,7 +152,7 @@
           "id": "nothing",
           "kind": "expressive",
           "label": {
-            "chinese": "说"没事"，然后快点回房间。",
+            "chinese": "说\"没事\"，然后快点回房间。",
             "english": "Say 'It's nothing' and hurry back to his room."
           },
           "nextId": "ch02-007"
@@ -167,7 +167,7 @@
         "personaId": "real-world"
       },
       "text": {
-        "chinese": "李贤笑着说："没事，今天只是和几个箱子打架，我赢了。"",
+        "chinese": "李贤笑着说：\"没事，今天只是和几个箱子打架，我赢了。\"",
         "english": "Lee Hyun smiles and says, 'It's nothing. I just fought some boxes today. I won.'"
       },
       "scene": {
@@ -193,7 +193,7 @@
         "personaId": "real-world"
       },
       "text": {
-        "chinese": "他把声音放轻，只说："今天有点累，但没事。"",
+        "chinese": "他把声音放轻，只说：\"今天有点累，但没事。\"",
         "english": "He softens his voice and says only, 'Today was a little tiring, but it's okay.'"
       },
       "nextId": "ch02-008"
@@ -220,7 +220,7 @@
       "id": "ch02-010",
       "type": "line",
       "text": {
-        "chinese": "所以他一直有一个习惯。不管多痛，都先说"没事"。",
+        "chinese": "所以他一直有一个习惯。不管多痛，都先说\"没事\"。",
         "english": "So he has always had a habit. No matter how much it hurts, he always says 'It's nothing' first."
       },
       "nextId": "ch02-011"
@@ -273,7 +273,7 @@
         "personaId": "default"
       },
       "text": {
-        "chinese": "她小声说："哥哥，你为什么不早说？"",
+        "chinese": "她小声说：\"哥哥，你为什么不早说？\"",
         "english": "She whispers, 'Why didn't you tell me earlier?'"
       },
       "nextId": "ch02-015"
@@ -300,7 +300,7 @@
       "id": "ch02-017",
       "type": "line",
       "text": {
-        "chinese": "李贤慢慢坐下，把手伸出来。他说："今天真的有一点痛。"",
+        "chinese": "李贤慢慢坐下，把手伸出来。他说：\"今天真的有一点痛。\"",
         "english": "Lee Hyun slowly sits down and holds out his hands. He says, 'Today it really does hurt a little.'"
       },
       "scene": {
@@ -348,7 +348,7 @@
         "personaId": "default"
       },
       "text": {
-        "chinese": "包扎完以后，她说："下次早点告诉我。"",
+        "chinese": "包扎完以后，她说：\"下次早点告诉我。\"",
         "english": "After the bandaging, she says, 'Tell me earlier next time.'"
       },
       "scene": {

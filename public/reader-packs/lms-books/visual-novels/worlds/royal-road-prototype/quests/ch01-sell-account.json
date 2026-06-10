@@ -148,7 +148,7 @@
       "id": "ch01-005",
       "type": "line",
       "text": {
-        "chinese": "李贤自己也很急，可是他不喜欢把"我很难"放在脸上。",
+        "chinese": "李贤自己也很急，可是他不喜欢把\"我很难\"放在脸上。",
         "english": "Lee Hyun is worried too, but he does not like to show how hard things are on his face."
       },
       "scene": {
@@ -238,7 +238,7 @@
       "id": "ch01-010",
       "type": "line",
       "text": {
-        "chinese": "不完全是这样。那个账号不只是游戏，也不只是钱。它是李贤告诉自己"我还没有输"的方式。",
+        "chinese": "不完全是这样。那个账号不只是游戏，也不只是钱。它是李贤告诉自己\"我还没有输\"的方式。",
         "english": "Not quite. That account is not just a game, and not just money. It is Lee Hyun's way of telling himself, 'I have not lost yet.'"
       },
       "nextId": "ch01-011"
@@ -274,7 +274,7 @@
         "personaId": "default"
       },
       "text": {
-        "chinese": "妹妹小声问他："明天买药的钱在哪里？"",
+        "chinese": "妹妹小声问他：\"明天买药的钱在哪里？\"",
         "english": "His sister whispers to him, 'Where is the money for tomorrow's medicine?'"
       },
       "scene": {
@@ -318,7 +318,7 @@
       "id": "ch01-014",
       "type": "line",
       "text": {
-        "chinese": "一个声音说："不能卖。卖了以后，你就真的什么都没有了。"",
+        "chinese": "一个声音说：\"不能卖。卖了以后，你就真的什么都没有了。\"",
         "english": "One voice says, 'You cannot sell it. After you sell it, you will truly have nothing.'"
       },
       "nextId": "ch01-015"
@@ -327,7 +327,7 @@
       "id": "ch01-015",
       "type": "line",
       "text": {
-        "chinese": "另一个声音说："如果不卖，家里怎么办？"",
+        "chinese": "另一个声音说：\"如果不卖，家里怎么办？\"",
         "english": "Another voice says, 'If you do not sell, what will happen to the family?'"
       },
       "nextId": "ch01-016"
@@ -336,7 +336,7 @@
       "id": "ch01-016",
       "type": "line",
       "text": {
-        "chinese": "他坐了很久，才慢慢明白，自己一直舍不得的不是游戏本身，而是那个"我还没有输"的感觉。",
+        "chinese": "他坐了很久，才慢慢明白，自己一直舍不得的不是游戏本身，而是那个\"我还没有输\"的感觉。",
         "english": "He sits for a long time before slowly understanding: what he has been reluctant to let go of is not the game itself, but the feeling of 'I have not lost yet.'"
       },
       "nextId": "ch01-017"
