@@ -86,6 +86,13 @@
       "width": 1376,
       "height": 768,
       "alt": "Close view of a sculpture workshop table with stone pieces and chisels."
+    },
+    "market-stalls": {
+      "id": "market-stalls",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/backgrounds/market-stalls.webp",
+      "width": 1376,
+      "height": 768,
+      "alt": "Outdoor fantasy market with wooden stalls and colorful goods in daylight."
     }
   },
   "sprites": {
@@ -613,6 +620,96 @@
       "anchorY": 1160,
       "defaultScale": 0.76,
       "alt": "Lee Hyun sitting exhausted in modern clothes."
+    },
+    "lee-hyun-sister-neutral": {
+      "id": "lee-hyun-sister-neutral",
+      "characterId": "lee-hyun-sister",
+      "personaId": "default",
+      "outfitId": "modern-casual",
+      "poseId": "standing",
+      "expressionId": "neutral",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/lee-hyun-sister-neutral.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
+      "defaultScale": 0.72,
+      "alt": "Lee Hyun's younger sister with a gentle but worried expression."
+    },
+    "lee-hyun-sister-worried": {
+      "id": "lee-hyun-sister-worried",
+      "characterId": "lee-hyun-sister",
+      "personaId": "default",
+      "outfitId": "modern-casual",
+      "poseId": "standing",
+      "expressionId": "worried",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/lee-hyun-sister-worried.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
+      "defaultScale": 0.72,
+      "alt": "Lee Hyun's younger sister looking worried and anxious."
+    },
+    "lee-hyun-sister-relieved": {
+      "id": "lee-hyun-sister-relieved",
+      "characterId": "lee-hyun-sister",
+      "personaId": "default",
+      "outfitId": "modern-casual",
+      "poseId": "standing",
+      "expressionId": "relieved",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/lee-hyun-sister-relieved.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
+      "defaultScale": 0.72,
+      "alt": "Lee Hyun's younger sister with a relieved gentle smile."
+    },
+    "nainai-sick": {
+      "id": "nainai-sick",
+      "characterId": "nainai",
+      "personaId": "default",
+      "outfitId": "nightclothes",
+      "poseId": "sitting",
+      "expressionId": "sick",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/nainai-sick.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
+      "defaultScale": 0.72,
+      "alt": "Elderly grandmother looking frail and sick."
+    },
+    "nainai-gentle-smile": {
+      "id": "nainai-gentle-smile",
+      "characterId": "nainai",
+      "personaId": "default",
+      "outfitId": "nightclothes",
+      "poseId": "sitting",
+      "expressionId": "gentle-smile",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/nainai-gentle-smile.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
+      "defaultScale": 0.72,
+      "alt": "Elderly grandmother with a gentle loving smile."
+    },
+    "old-man-approving": {
+      "id": "old-man-approving",
+      "characterId": "old-man",
+      "personaId": "default",
+      "outfitId": "traditional-market",
+      "poseId": "standing",
+      "expressionId": "approving",
+      "src": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/assets/characters/old-man-approving.webp",
+      "width": 880,
+      "height": 1184,
+      "anchorX": 440,
+      "anchorY": 1160,
+      "defaultScale": 0.72,
+      "alt": "Wise elderly man with a calm approving expression."
     }
   },
   "cinematics": {

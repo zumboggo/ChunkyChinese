@@ -3300,6 +3300,14 @@ kbd {
   line-height: 1;
 }
 
+.vn-bar-label {
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
 /* ── Inventory Overlay ── */
 
 .vn-inventory-overlay {
@@ -4521,7 +4529,7 @@ kbd {
 .vn-map-overlay {
   position: fixed;
   inset: 0;
-  z-index: 60;
+  z-index: 200;
   display: grid;
   place-items: center;
   padding: 18px;

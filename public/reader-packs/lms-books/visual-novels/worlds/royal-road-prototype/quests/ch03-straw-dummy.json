@@ -1,0 +1,446 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026-06-10-chapters-v1",
+  "id": "ch03-straw-dummy",
+  "packId": "royal-road-prototype",
+  "title": "The Straw Dummy",
+  "initialNodeId": "ch03-001",
+  "assetManifestPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/asset-manifest.json",
+  "characters": {
+    "lee-hyun": {
+      "id": "lee-hyun",
+      "displayNames": {
+        "english": "Weed",
+        "chinese": "杂草"
+      },
+      "personas": {
+        "weed-sculptor": {
+          "id": "weed-sculptor",
+          "displayNames": {
+            "english": "Weed",
+            "chinese": "杂草"
+          },
+          "defaultOutfitId": "starter-sculptor",
+          "defaultSpriteId": "weed-sculptor-calculating"
+        }
+      }
+    },
+    "geomchi": {
+      "id": "geomchi",
+      "displayNames": {
+        "english": "Geomchi",
+        "chinese": "剑士"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "displayNames": {
+            "english": "Geomchi",
+            "chinese": "剑士"
+          },
+          "defaultOutfitId": "black-swordsman",
+          "defaultSpriteId": "geomchi-default"
+        }
+      }
+    }
+  },
+  "initialState": {
+    "money": 8,
+    "skills": {
+      "sculpting": 0,
+      "swordsmanship": 0
+    },
+    "flags": {},
+    "questNotes": {},
+    "appliedOnceKeys": []
+  },
+  "nodes": {
+    "ch03-001": {
+      "id": "ch03-001",
+      "type": "line",
+      "speaker": {
+        "characterId": "lee-hyun",
+        "personaId": "weed-sculptor"
+      },
+      "text": {
+        "chinese": "杂草进入皇家之路以后，没有先去找热闹的地方，也没有急着去做简单任务。",
+        "english": "After Weed enters Royal Road, he does not first look for lively places and does not hurry to do easy quests."
+      },
+      "scene": {
+        "backgroundId": "training-yard-dawn",
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-calculating",
+            "position": "left",
+            "xPercent": 38,
+            "scale": 0.78,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch03-002"
+    },
+    "ch03-002": {
+      "id": "ch03-002",
+      "type": "line",
+      "speaker": {
+        "characterId": "lee-hyun",
+        "personaId": "weed-sculptor"
+      },
+      "text": {
+        "chinese": "他一到塞拉堡城，就先走进训练场。别的新手看了一圈，打几下训练稻草人，很快就走了。",
+        "english": "As soon as he arrives in Serabourg, he walks into the training hall. Other newcomers look around, hit the training scarecrow a few times, and quickly leave."
+      },
+      "scene": {
+        "backgroundId": "training-hall",
+        "clearCharacters": true
+      },
+      "nextId": "ch03-003"
+    },
+    "ch03-003": {
+      "id": "ch03-003",
+      "type": "line",
+      "text": {
+        "chinese": "有人去市场，有人去找队友，还有人笑杂草。他们问："你一直打这个木头人，要打到什么时候？"",
+        "english": "Some go to the market, some look for teammates, and some laugh at Weed. They ask, 'How long are you going to keep hitting that wooden dummy?'"
+      },
+      "nextId": "ch03-004"
+    },
+    "ch03-004": {
+      "id": "ch03-004",
+      "type": "line",
+      "speaker": {
+        "characterId": "lee-hyun",
+        "personaId": "weed-sculptor"
+      },
+      "text": {
+        "chinese": "杂草没有回话，只是继续拿着木剑，一下一下地打。",
+        "english": "Weed does not reply. He just keeps holding the wooden sword, striking again and again."
+      },
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-determined",
+            "position": "left",
+            "xPercent": 38,
+            "scale": 0.78,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch03-005"
+    },
+    "ch03-005": {
+      "id": "ch03-005",
+      "type": "choice",
+      "prompt": {
+        "chinese": "杂草为什么要一直打稻草人？",
+        "english": "Why does Weed keep hitting the scarecrow?"
+      },
+      "choices": [
+        {
+          "id": "angry",
+          "kind": "expressive",
+          "label": {
+            "chinese": "因为他很生气，想打东西。",
+            "english": "Because he is angry and wants to hit something."
+          },
+          "nextId": "ch03-006"
+        },
+        {
+          "id": "get-stronger",
+          "kind": "memory",
+          "label": {
+            "chinese": "因为他想变强，比别人更苦、更久。",
+            "english": "Because he wants to become stronger, endure more and longer than others."
+          },
+          "nextId": "ch03-007"
+        },
+        {
+          "id": "nothing-else",
+          "kind": "expressive",
+          "label": {
+            "chinese": "因为他没有别的事做。",
+            "english": "Because he has nothing else to do."
+          },
+          "nextId": "ch03-006"
+        }
+      ]
+    },
+    "ch03-006": {
+      "id": "ch03-006",
+      "type": "line",
+      "text": {
+        "chinese": "不完全是。杂草心里一直有一个想法：自己开始得太晚，钱也不多，运气也不会特别好。如果不比别人更苦、更久、更能忍，以后一定还是弱的人。",
+        "english": "Not quite. Weed has always had a thought: he started too late, does not have much money, and will not have special luck. If he does not endure more, longer, and harder than others, he will surely remain weak."
+      },
+      "nextId": "ch03-008"
+    },
+    "ch03-007": {
+      "id": "ch03-007",
+      "type": "line",
+      "text": {
+        "chinese": "对。在杂草心里，这很重要。他一直有一个想法：自己开始得太晚，钱也不多。如果不比别人更苦、更久、更能忍，以后一定还是弱的人。",
+        "english": "Right. In Weed's heart, this is very important. He has always thought: he started too late and does not have much money. If he does not endure more, longer, and harder than others, he will surely remain weak."
+      },
+      "nextId": "ch03-008"
+    },
+    "ch03-008": {
+      "id": "ch03-008",
+      "type": "line",
+      "text": {
+        "chinese": "所以他不肯停。手痛了，他继续。肚子饿了，他继续。天黑了，他还是继续。",
+        "english": "So he refuses to stop. His hands hurt, he continues. He is hungry, he continues. It gets dark, he still continues."
+      },
+      "nextId": "ch03-009"
+    },
+    "ch03-009": {
+      "id": "ch03-009",
+      "type": "line",
+      "text": {
+        "chinese": "可是打得越久，他心里越乱。他开始想："我是不是太慢了？"他又想："我是不是再练也没有用？"",
+        "english": "But the longer he strikes, the more chaotic his mind becomes. He starts thinking, 'Am I too slow?' He also thinks, 'Is practicing more even useful?'"
+      },
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-exhausted",
+            "position": "left",
+            "xPercent": 38,
+            "scale": 0.78,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch03-010"
+    },
+    "ch03-010": {
+      "id": "ch03-010",
+      "type": "line",
+      "text": {
+        "chinese": "教官一直在旁边看。",
+        "english": "The instructor has been watching from the side."
+      },
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-exhausted",
+            "position": "left",
+            "xPercent": 38,
+            "scale": 0.78,
+            "zIndex": 2
+          },
+          {
+            "characterId": "geomchi",
+            "personaId": "default",
+            "spriteId": "geomchi-default",
+            "position": "right",
+            "xPercent": 68,
+            "scale": 0.78,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch03-011"
+    },
+    "ch03-011": {
+      "id": "ch03-011",
+      "type": "line",
+      "speaker": {
+        "characterId": "geomchi",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "教官没有马上说话。只在杂草快没有力气的时候，教官问了一句："你是在练，还是只是在生气？"",
+        "english": "The instructor does not speak right away. Only when Weed is nearly out of strength, the instructor asks, 'Are you practicing, or just being angry?'"
+      },
+      "scene": {
+        "characters": [
+          {
+            "characterId": "geomchi",
+            "personaId": "default",
+            "spriteId": "geomchi-commanding",
+            "position": "right",
+            "xPercent": 68,
+            "scale": 0.78,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch03-012"
+    },
+    "ch03-012": {
+      "id": "ch03-012",
+      "type": "choice",
+      "prompt": {
+        "chinese": "教官的话是什么意思？",
+        "english": "What did the instructor mean?"
+      },
+      "choices": [
+        {
+          "id": "think-first",
+          "kind": "memory",
+          "label": {
+            "chinese": "我需要先想清楚再打，而不是乱打。",
+            "english": "I need to think before I strike, not just hit randomly."
+          },
+          "nextId": "ch03-013"
+        },
+        {
+          "id": "hit-harder",
+          "kind": "expressive",
+          "label": {
+            "chinese": "我需要打更用力！",
+            "english": "I need to hit harder!"
+          },
+          "nextId": "ch03-014"
+        },
+        {
+          "id": "take-nap",
+          "kind": "expressive",
+          "label": {
+            "chinese": "我需要先睡一觉。",
+            "english": "I need to take a nap first."
+          },
+          "nextId": "ch03-014"
+        }
+      ]
+    },
+    "ch03-013": {
+      "id": "ch03-013",
+      "type": "line",
+      "text": {
+        "chinese": "杂草第一次停下来，看着手里的木剑，又看着前面的稻草人。他突然明白，一直乱打，不等于真正变强。",
+        "english": "Weed stops for the first time. He looks at the wooden sword in his hand, then at the scarecrow ahead. He suddenly understands that hitting randomly does not truly make you stronger."
+      },
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-startled",
+            "position": "left",
+            "xPercent": 38,
+            "scale": 0.78,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch03-015"
+    },
+    "ch03-014": {
+      "id": "ch03-014",
+      "type": "line",
+      "text": {
+        "chinese": "不完全是。杂草停下来，看着手里的木剑，突然明白，他不是在跟稻草人练，而是在跟自己心里的怕打。",
+        "english": "Not quite. Weed stops and looks at the wooden sword. He suddenly understands: he was not practicing against the scarecrow. He was fighting against his own fear."
+      },
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-startled",
+            "position": "left",
+            "xPercent": 38,
+            "scale": 0.78,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch03-015"
+    },
+    "ch03-015": {
+      "id": "ch03-015",
+      "type": "line",
+      "speaker": {
+        "characterId": "lee-hyun",
+        "personaId": "weed-sculptor"
+      },
+      "text": {
+        "chinese": "从那以后，杂草还是继续练，可是方法变了。他先看，再想，然后再打。每一下都更稳，也更安静。",
+        "english": "From then on, Weed still continues practicing, but his method changes. He watches first, thinks, and then strikes. Each blow is steadier and quieter."
+      },
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "weed-sculptor",
+            "spriteId": "weed-sculptor-observing-side",
+            "position": "left",
+            "xPercent": 38,
+            "scale": 0.78,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch03-016"
+    },
+    "ch03-016": {
+      "id": "ch03-016",
+      "type": "line",
+      "text": {
+        "chinese": "没过多久，教官走过来，把一个特别任务交给了他。",
+        "english": "Not long after, the instructor walks over and gives him a special quest."
+      },
+      "scene": {
+        "characters": [
+          {
+            "characterId": "geomchi",
+            "personaId": "default",
+            "spriteId": "geomchi-commanding",
+            "position": "right",
+            "xPercent": 68,
+            "scale": 0.78,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch03-017"
+    },
+    "ch03-017": {
+      "id": "ch03-017",
+      "type": "line",
+      "text": {
+        "chinese": "那一刻，杂草才知道，真正让人变强的，不只是吃苦，也是愿意改自己。",
+        "english": "At that moment, Weed learns that what truly makes you stronger is not just enduring hardship, but also being willing to change yourself."
+      },
+      "nextId": "ch03-result"
+    },
+    "ch03-result": {
+      "id": "ch03-result",
+      "type": "questResult",
+      "questId": "ch03-straw-dummy",
+      "outcomeId": "trained-wisely",
+      "completed": true,
+      "resultId": "ch03-trained-wisely",
+      "summary": {
+        "chinese": "杂草在训练场打了很久的稻草人，直到教官问他：你是在练，还是只是在生气？他学会了先看、先想、再动手。",
+        "english": "Weed hit the training scarecrow for a long time, until the instructor asked: are you practicing, or just angry? He learned to watch first, think first, then act."
+      },
+      "worldEffects": [
+        {
+          "id": "scarecrow-flag",
+          "op": "setFlag",
+          "key": "scarecrow-training",
+          "value": true
+        },
+        {
+          "id": "swordsmanship-up",
+          "op": "addSkill",
+          "skill": "swordsmanship",
+          "amount": 1
+        }
+      ],
+      "returnLocationId": "training-hall"
+    }
+  }
+}

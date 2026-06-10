@@ -677,7 +677,6 @@ export function VisualNovelWorldMode({
                 showEnglish={showEnglish}
                 onSelectToken={handleSelectToken}
                 onAction={handleWorldAction}
-                onResume={resumeInterruptedQuest}
               />
             </div>
             <div className="vn-bottom-bar">
@@ -690,6 +689,11 @@ export function VisualNovelWorldMode({
               <button type="button" className="vn-bar-btn" onClick={() => setShowInventory(true)} title="Inventory">
                 <span className="vn-bar-icon">{'\u{1F6E1}\uFE0F'}</span>
               </button>
+              {worldSave.interruptedQuest && (
+                <button type="button" className="vn-bar-btn vn-bar-btn-primary" onClick={() => void resumeInterruptedQuest()} title="Resume quest">
+                  <span className="vn-bar-label">Resume</span>
+                </button>
+              )}
               <button type="button" className="vn-bar-btn vn-bar-btn-ghost" onClick={onReturnToReader} title="Return to Reader">
                 <span className="vn-bar-icon">{'\u25C0\uFE0F'}</span>
               </button>

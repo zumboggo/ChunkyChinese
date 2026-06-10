@@ -1,0 +1,409 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026-06-10-chapters-v1",
+  "id": "ch02-tired-hands",
+  "packId": "royal-road-prototype",
+  "title": "The Hands She Saw",
+  "initialNodeId": "ch02-001",
+  "assetManifestPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/asset-manifest.json",
+  "characters": {
+    "lee-hyun": {
+      "id": "lee-hyun",
+      "displayNames": {
+        "english": "Lee Hyun",
+        "chinese": "李贤"
+      },
+      "personas": {
+        "real-world": {
+          "id": "real-world",
+          "displayNames": {
+            "english": "Lee Hyun",
+            "chinese": "李贤"
+          },
+          "defaultOutfitId": "modern-work-clothes",
+          "defaultSpriteId": "lee-hyun-real-sitting-exhausted"
+        }
+      }
+    },
+    "lee-hyun-sister": {
+      "id": "lee-hyun-sister",
+      "displayNames": {
+        "english": "Sister",
+        "chinese": "妹妹"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "displayNames": {
+            "english": "Sister",
+            "chinese": "妹妹"
+          },
+          "defaultOutfitId": "modern-casual",
+          "defaultSpriteId": "lee-hyun-sister-neutral"
+        }
+      }
+    }
+  },
+  "initialState": {
+    "money": 8,
+    "skills": {
+      "sculpting": 0,
+      "swordsmanship": 0
+    },
+    "flags": {},
+    "questNotes": {},
+    "appliedOnceKeys": []
+  },
+  "nodes": {
+    "ch02-001": {
+      "id": "ch02-001",
+      "type": "line",
+      "text": {
+        "chinese": "那天晚上，李贤比平常更晚回家。",
+        "english": "That night, Lee Hyun comes home later than usual."
+      },
+      "scene": {
+        "backgroundId": "real-apartment-night",
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "real-world",
+            "spriteId": "lee-hyun-real-sitting-exhausted",
+            "position": "left",
+            "xPercent": 35,
+            "scale": 0.82,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch02-002"
+    },
+    "ch02-002": {
+      "id": "ch02-002",
+      "type": "line",
+      "text": {
+        "chinese": "他一开门，就先把手放到背后。",
+        "english": "As soon as he opens the door, he puts his hands behind his back."
+      },
+      "nextId": "ch02-003"
+    },
+    "ch02-003": {
+      "id": "ch02-003",
+      "type": "line",
+      "text": {
+        "chinese": "妹妹马上看了他一眼。",
+        "english": "His sister looks at him right away."
+      },
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun-sister",
+            "personaId": "default",
+            "spriteId": "lee-hyun-sister-neutral",
+            "position": "right",
+            "xPercent": 65,
+            "scale": 0.72,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch02-004"
+    },
+    "ch02-004": {
+      "id": "ch02-004",
+      "type": "line",
+      "speaker": {
+        "characterId": "lee-hyun-sister",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "她只问："今天很累吗？"",
+        "english": "She only asks, 'Was today very tiring?'"
+      },
+      "nextId": "ch02-005"
+    },
+    "ch02-005": {
+      "id": "ch02-005",
+      "type": "choice",
+      "prompt": {
+        "chinese": "李贤要怎么回答？",
+        "english": "How should Lee Hyun answer?"
+      },
+      "choices": [
+        {
+          "id": "joke",
+          "kind": "expressive",
+          "label": {
+            "chinese": "笑一下，说自己只是和箱子打架。",
+            "english": "Smile and say he only fought some boxes."
+          },
+          "nextId": "ch02-006"
+        },
+        {
+          "id": "quiet",
+          "kind": "expressive",
+          "label": {
+            "chinese": "安静一点，只说今天有点累。",
+            "english": "Answer quietly that today was a little tiring."
+          },
+          "nextId": "ch02-007"
+        },
+        {
+          "id": "nothing",
+          "kind": "expressive",
+          "label": {
+            "chinese": "说"没事"，然后快点回房间。",
+            "english": "Say 'It's nothing' and hurry back to his room."
+          },
+          "nextId": "ch02-007"
+        }
+      ]
+    },
+    "ch02-006": {
+      "id": "ch02-006",
+      "type": "line",
+      "speaker": {
+        "characterId": "lee-hyun",
+        "personaId": "real-world"
+      },
+      "text": {
+        "chinese": "李贤笑着说："没事，今天只是和几个箱子打架，我赢了。"",
+        "english": "Lee Hyun smiles and says, 'It's nothing. I just fought some boxes today. I won.'"
+      },
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "real-world",
+            "spriteId": "lee-hyun-real-forced-smile",
+            "position": "left",
+            "xPercent": 35,
+            "scale": 0.82,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch02-008"
+    },
+    "ch02-007": {
+      "id": "ch02-007",
+      "type": "line",
+      "speaker": {
+        "characterId": "lee-hyun",
+        "personaId": "real-world"
+      },
+      "text": {
+        "chinese": "他把声音放轻，只说："今天有点累，但没事。"",
+        "english": "He softens his voice and says only, 'Today was a little tiring, but it's okay.'"
+      },
+      "nextId": "ch02-008"
+    },
+    "ch02-008": {
+      "id": "ch02-008",
+      "type": "line",
+      "text": {
+        "chinese": "其实他今天搬了很多东西。手上有两处小小的擦伤。右手还有一个新的伤口。",
+        "english": "In fact, he carried many things today. There are two small scrapes on his hands. His right hand has a fresh wound."
+      },
+      "nextId": "ch02-009"
+    },
+    "ch02-009": {
+      "id": "ch02-009",
+      "type": "line",
+      "text": {
+        "chinese": "在他心里，家里已经很难了。如果连他也看起来很累，妹妹一定会更怕。",
+        "english": "In his heart, things are already hard enough at home. If even he looks tired, his sister will be even more afraid."
+      },
+      "nextId": "ch02-010"
+    },
+    "ch02-010": {
+      "id": "ch02-010",
+      "type": "line",
+      "text": {
+        "chinese": "所以他一直有一个习惯。不管多痛，都先说"没事"。",
+        "english": "So he has always had a habit. No matter how much it hurts, he always says 'It's nothing' first."
+      },
+      "nextId": "ch02-011"
+    },
+    "ch02-011": {
+      "id": "ch02-011",
+      "type": "line",
+      "text": {
+        "chinese": "妹妹去拿水的时候，李贤想快点回房间。可是他一转身，手还是碰到了门边。",
+        "english": "While his sister goes to get water, Lee Hyun tries to hurry back to his room. But as he turns, his hand brushes against the door frame."
+      },
+      "nextId": "ch02-012"
+    },
+    "ch02-012": {
+      "id": "ch02-012",
+      "type": "line",
+      "text": {
+        "chinese": "他马上吸了一口气。妹妹听见声音，立刻走了过来。",
+        "english": "He gasps at once. His sister hears the sound and immediately walks over."
+      },
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun-sister",
+            "personaId": "default",
+            "spriteId": "lee-hyun-sister-worried",
+            "position": "right",
+            "xPercent": 65,
+            "scale": 0.72,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch02-013"
+    },
+    "ch02-013": {
+      "id": "ch02-013",
+      "type": "line",
+      "text": {
+        "chinese": "她看见他的手，脸一下子白了。",
+        "english": "She sees his hands, and her face turns pale at once."
+      },
+      "nextId": "ch02-014"
+    },
+    "ch02-014": {
+      "id": "ch02-014",
+      "type": "line",
+      "speaker": {
+        "characterId": "lee-hyun-sister",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "她小声说："哥哥，你为什么不早说？"",
+        "english": "She whispers, 'Why didn't you tell me earlier?'"
+      },
+      "nextId": "ch02-015"
+    },
+    "ch02-015": {
+      "id": "ch02-015",
+      "type": "line",
+      "text": {
+        "chinese": "李贤本来还想笑一下。可是他看见妹妹的眼睛，突然说不出话。",
+        "english": "Lee Hyun wanted to smile. But when he sees his sister's eyes, he suddenly cannot speak."
+      },
+      "nextId": "ch02-016"
+    },
+    "ch02-016": {
+      "id": "ch02-016",
+      "type": "line",
+      "text": {
+        "chinese": "他第一次想到，也许自己一直这样逞强，并没有让妹妹放心。也许妹妹最怕的，不是伤口。妹妹最怕的是，哥哥什么都不说。",
+        "english": "For the first time, he thinks that maybe his constant pretense of strength has not reassured her. Maybe what she fears most is not the wounds. What she fears most is that her brother says nothing at all."
+      },
+      "nextId": "ch02-017"
+    },
+    "ch02-017": {
+      "id": "ch02-017",
+      "type": "line",
+      "text": {
+        "chinese": "李贤慢慢坐下，把手伸出来。他说："今天真的有一点痛。"",
+        "english": "Lee Hyun slowly sits down and holds out his hands. He says, 'Today it really does hurt a little.'"
+      },
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun",
+            "personaId": "real-world",
+            "spriteId": "lee-hyun-real-sitting-exhausted",
+            "position": "left",
+            "xPercent": 35,
+            "scale": 0.82,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch02-018"
+    },
+    "ch02-018": {
+      "id": "ch02-018",
+      "type": "line",
+      "text": {
+        "chinese": "妹妹没有哭。她只是去拿药，又认真帮他包扎。",
+        "english": "His sister does not cry. She just goes to get medicine and carefully bandages his hands."
+      },
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun-sister",
+            "personaId": "default",
+            "spriteId": "lee-hyun-sister-neutral",
+            "position": "right",
+            "xPercent": 65,
+            "scale": 0.72,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch02-019"
+    },
+    "ch02-019": {
+      "id": "ch02-019",
+      "type": "line",
+      "speaker": {
+        "characterId": "lee-hyun-sister",
+        "personaId": "default"
+      },
+      "text": {
+        "chinese": "包扎完以后，她说："下次早点告诉我。"",
+        "english": "After the bandaging, she says, 'Tell me earlier next time.'"
+      },
+      "scene": {
+        "characters": [
+          {
+            "characterId": "lee-hyun-sister",
+            "personaId": "default",
+            "spriteId": "lee-hyun-sister-relieved",
+            "position": "right",
+            "xPercent": 65,
+            "scale": 0.72,
+            "zIndex": 2
+          }
+        ]
+      },
+      "nextId": "ch02-020"
+    },
+    "ch02-020": {
+      "id": "ch02-020",
+      "type": "line",
+      "text": {
+        "chinese": "李贤点了点头。那天晚上，他还是很累。可是他的心比平常更安静。",
+        "english": "Lee Hyun nods. That night, he is still very tired. But his heart is quieter than usual."
+      },
+      "nextId": "ch02-021"
+    },
+    "ch02-021": {
+      "id": "ch02-021",
+      "type": "line",
+      "text": {
+        "chinese": "他终于明白，保护家里的人，不一定是什么都自己藏起来。",
+        "english": "He finally understands that protecting your family does not always mean hiding everything by yourself."
+      },
+      "nextId": "ch02-result"
+    },
+    "ch02-result": {
+      "id": "ch02-result",
+      "type": "questResult",
+      "questId": "ch02-tired-hands",
+      "outcomeId": "sister-helped",
+      "completed": true,
+      "resultId": "ch02-sister-helped",
+      "summary": {
+        "chinese": "妹妹看见了李贤的手，也看见了他一直藏起来的痛。李贤学会了一件事：保护家人，不一定要什么都自己扛。",
+        "english": "Sister saw Lee Hyun's hands and the pain he had been hiding. Lee Hyun learned something: protecting family does not mean carrying everything alone."
+      },
+      "worldEffects": [
+        {
+          "id": "sister-knows-flag",
+          "op": "setFlag",
+          "key": "sister-knows",
+          "value": true
+        }
+      ],
+      "returnLocationId": "real-world-apartment"
+    }
+  }
+}

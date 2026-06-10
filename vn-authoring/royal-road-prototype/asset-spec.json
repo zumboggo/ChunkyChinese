@@ -123,6 +123,16 @@
       "references": [
         { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
       ]
+    },
+    {
+      "id": "market-stalls",
+      "status": "needed",
+      "modelProfile": "krea-background",
+      "promptFile": "prompts/backgrounds/market-stalls.txt",
+      "candidateCount": 4,
+      "references": [
+        { "id": "main-cast-style-board", "role": "style", "path": "references/main-cast-style-board.png" }
+      ]
     }
   ],
   "cinematics": [
@@ -596,6 +606,84 @@
       "outfitId": "town-clothes",
       "poseId": "speaking",
       "expressionId": "neutral",
+      "masterAssetId": "main-cast-style-board"
+    },
+    {
+      "id": "lee-hyun-sister-neutral",
+      "status": "needed",
+      "modelProfile": "flux-sprite",
+      "promptFile": "prompts/sprites/lee-hyun-sister-neutral.txt",
+      "candidateCount": 2,
+      "characterId": "lee-hyun-sister",
+      "personaId": "default",
+      "outfitId": "modern-casual",
+      "poseId": "standing",
+      "expressionId": "neutral",
+      "masterAssetId": "main-cast-style-board"
+    },
+    {
+      "id": "lee-hyun-sister-worried",
+      "status": "needed",
+      "modelProfile": "flux-sprite",
+      "promptFile": "prompts/sprites/lee-hyun-sister-worried.txt",
+      "candidateCount": 2,
+      "characterId": "lee-hyun-sister",
+      "personaId": "default",
+      "outfitId": "modern-casual",
+      "poseId": "standing",
+      "expressionId": "worried",
+      "masterAssetId": "main-cast-style-board"
+    },
+    {
+      "id": "lee-hyun-sister-relieved",
+      "status": "needed",
+      "modelProfile": "flux-sprite",
+      "promptFile": "prompts/sprites/lee-hyun-sister-relieved.txt",
+      "candidateCount": 2,
+      "characterId": "lee-hyun-sister",
+      "personaId": "default",
+      "outfitId": "modern-casual",
+      "poseId": "standing",
+      "expressionId": "relieved",
+      "masterAssetId": "main-cast-style-board"
+    },
+    {
+      "id": "nainai-sick",
+      "status": "needed",
+      "modelProfile": "flux-sprite",
+      "promptFile": "prompts/sprites/nainai-sick.txt",
+      "candidateCount": 2,
+      "characterId": "nainai",
+      "personaId": "default",
+      "outfitId": "nightclothes",
+      "poseId": "sitting",
+      "expressionId": "sick",
+      "masterAssetId": "main-cast-style-board"
+    },
+    {
+      "id": "nainai-gentle-smile",
+      "status": "needed",
+      "modelProfile": "flux-sprite",
+      "promptFile": "prompts/sprites/nainai-gentle-smile.txt",
+      "candidateCount": 2,
+      "characterId": "nainai",
+      "personaId": "default",
+      "outfitId": "nightclothes",
+      "poseId": "sitting",
+      "expressionId": "gentle-smile",
+      "masterAssetId": "main-cast-style-board"
+    },
+    {
+      "id": "old-man-approving",
+      "status": "needed",
+      "modelProfile": "flux-sprite",
+      "promptFile": "prompts/sprites/old-man-approving.txt",
+      "candidateCount": 2,
+      "characterId": "old-man",
+      "personaId": "default",
+      "outfitId": "traditional-market",
+      "poseId": "standing",
+      "expressionId": "approving",
       "masterAssetId": "main-cast-style-board"
     }
   ]

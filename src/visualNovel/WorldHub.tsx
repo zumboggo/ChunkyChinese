@@ -38,7 +38,6 @@ export function WorldHub({
   showEnglish,
   onSelectToken,
   onAction,
-  onResume,
 }: {
   world: VnWorld
   save: VisualNovelWorldSave
@@ -50,7 +49,6 @@ export function WorldHub({
   showEnglish: boolean
   onSelectToken: (token: ReaderWordToken | null) => void
   onAction: (action: VnWorldAction) => void | Promise<void>
-  onResume: () => void | Promise<void>
 }) {
   const description = getLocationDescription(location, save)
   const descriptionTokens = useMemo(
@@ -80,17 +78,11 @@ export function WorldHub({
         </div>
       )}
 
-      {recommended && (
+      {recommended && recommended.kind !== 'resume' && (
         <button
           type="button"
           className="vn-recommended-action vn-recommended-action-dark"
-          onClick={() => {
-            if (recommended.kind === 'resume') {
-              void onResume()
-            } else {
-              void onAction(recommended.action)
-            }
-          }}
+          onClick={() => void onAction(recommended.action)}
         >
           <span className="vn-recommended-badge">Next · {recommended.badge}</span>
           <strong>{recommended.label.english ?? recommended.label.chinese}</strong>
