@@ -120,7 +120,15 @@
           }
         ]
       },
-      "nextId": "ch04-004"
+      "nextId": "ch04-004",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "squash",
+          "duration": 350
+        }
+      ]
     },
     "ch04-004": {
       "id": "ch04-004",
@@ -205,7 +213,15 @@
           }
         ]
       },
-      "nextId": "ch04-008"
+      "nextId": "ch04-008",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "geomchi",
+          "animation": "leanIn",
+          "duration": 500
+        }
+      ]
     },
     "ch04-008": {
       "id": "ch04-008",
@@ -240,7 +256,15 @@
           }
         ]
       },
-      "nextId": "ch04-010"
+      "nextId": "ch04-010",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "recoil",
+          "duration": 400
+        }
+      ]
     },
     "ch04-010": {
       "id": "ch04-010",
@@ -323,7 +347,15 @@
           }
         ]
       },
-      "nextId": "ch04-result"
+      "nextId": "ch04-result",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "nod",
+          "duration": 400
+        }
+      ]
     },
     "ch04-result": {
       "id": "ch04-result",

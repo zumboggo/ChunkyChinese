@@ -108,7 +108,15 @@
             "zIndex": 3
           }
         ]
-      }
+      },
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "recoil",
+          "duration": 350
+        }
+      ]
     },
     "golem-003": {
       "id": "golem-003",
@@ -144,7 +152,15 @@
             "zIndex": 3
           }
         ]
-      }
+      },
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "geomchi",
+          "animation": "nod",
+          "duration": 400
+        }
+      ]
     },
     "golem-appear": {
       "id": "golem-appear",

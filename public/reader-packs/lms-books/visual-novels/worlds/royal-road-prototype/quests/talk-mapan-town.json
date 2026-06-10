@@ -82,7 +82,15 @@
           }
         ]
       },
-      "nextId": "mapan-talk-002"
+      "nextId": "mapan-talk-002",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "mapan",
+          "animation": "nod",
+          "duration": 350
+        }
+      ]
     },
     "mapan-talk-002": {
       "id": "mapan-talk-002",

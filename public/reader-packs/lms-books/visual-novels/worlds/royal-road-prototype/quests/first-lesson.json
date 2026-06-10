@@ -82,7 +82,15 @@
           }
         ]
       },
-      "nextId": "lesson-002"
+      "nextId": "lesson-002",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "geomchi",
+          "animation": "fadeIn",
+          "duration": 300
+        }
+      ]
     },
     "lesson-002": {
       "id": "lesson-002",
@@ -232,7 +240,15 @@
             "zIndex": 3
           }
         ]
-      }
+      },
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "recoil",
+          "duration": 350
+        }
+      ]
     },
     "lesson-slime-battle": {
       "id": "lesson-slime-battle",

@@ -107,7 +107,15 @@
           }
         ]
       },
-      "nextId": "ch02-004"
+      "nextId": "ch02-004",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun-sister",
+          "animation": "fadeIn",
+          "duration": 300
+        }
+      ]
     },
     "ch02-004": {
       "id": "ch02-004",
@@ -254,7 +262,15 @@
           }
         ]
       },
-      "nextId": "ch02-013"
+      "nextId": "ch02-013",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun-sister",
+          "animation": "recoil",
+          "duration": 400
+        }
+      ]
     },
     "ch02-013": {
       "id": "ch02-013",
@@ -316,7 +332,15 @@
           }
         ]
       },
-      "nextId": "ch02-018"
+      "nextId": "ch02-018",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "nod",
+          "duration": 450
+        }
+      ]
     },
     "ch02-018": {
       "id": "ch02-018",
@@ -364,7 +388,15 @@
           }
         ]
       },
-      "nextId": "ch02-020"
+      "nextId": "ch02-020",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun-sister",
+          "animation": "nod",
+          "duration": 350
+        }
+      ]
     },
     "ch02-020": {
       "id": "ch02-020",

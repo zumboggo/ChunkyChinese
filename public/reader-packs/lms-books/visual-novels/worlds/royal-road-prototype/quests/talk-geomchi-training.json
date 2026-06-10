@@ -82,7 +82,15 @@
           }
         ]
       },
-      "nextId": "geomchi-talk-002"
+      "nextId": "geomchi-talk-002",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "geomchi",
+          "animation": "leanIn",
+          "duration": 400
+        }
+      ]
     },
     "geomchi-talk-002": {
       "id": "geomchi-talk-002",

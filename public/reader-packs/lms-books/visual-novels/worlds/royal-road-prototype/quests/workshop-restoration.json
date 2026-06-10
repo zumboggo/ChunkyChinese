@@ -145,7 +145,15 @@
             "opacity": 0.96
           }
         ]
-      }
+      },
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "fadeIn",
+          "duration": 300
+        }
+      ]
     },
     "workshop-003a": {
       "id": "workshop-003a",

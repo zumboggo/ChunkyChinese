@@ -7,7 +7,7 @@ import type { CardBattlerState } from '../cardBattler/types'
 import { CardBattlerMode } from '../cardBattler/CardBattlerMode'
 import { createEncounter } from '../cardBattler/engine'
 import { visualNovelAssetSrc } from './loader'
-import type { VisualNovelSave, VisualNovelWorldSave, VnAssetManifest, VnChoice, VnNode, VnQuestDefinition, VnQuestResult, VnWorld } from './types'
+import type { VisualNovelSave, VisualNovelWorldSave, VnAssetManifest, VnAnimCommand, VnChoice, VnNode, VnQuestDefinition, VnQuestResult, VnWorld } from './types'
 import { getNodeText, VN_DEFAULT_ENCOUNTER_DECK, VN_DEFAULT_ENEMY_MAX_HP, VN_DEFAULT_PLAYER_MAX_HP } from './utils'
 import { VisualNovelSprite } from './VisualNovelSprite'
 import { WorldStatusPanel } from './WorldStatusPanel'
@@ -30,6 +30,15 @@ const MOOD_SPRITE_SUFFIX: Record<Mood, string> = {
   happy: '-amused',
   surprised: '-startled',
   sad: '-exhausted',
+}
+
+const ANIM_DURATIONS: Record<string, number> = {
+  bounce: 350, shake: 400, nod: 400, recoil: 450, leanIn: 500, squash: 350,
+  enterLeft: 500, enterRight: 500, exitLeft: 400, exitRight: 400, fadeIn: 300, fadeOut: 300,
+}
+
+function animCommandCharId(cmd: VnAnimCommand, firstSceneChar?: string): string | undefined {
+  return cmd.character ?? cmd.speaker ?? firstSceneChar
 }
 
 export function QuestPlayer({
@@ -106,17 +115,53 @@ export function QuestPlayer({
 
   const mood = useMemo(() => detectMood(chineseText), [chineseText])
 
+  const animOverride = useMemo(() => {
+    if (node.type !== 'line' || !node.animCommands?.length) return null
+    const firstCharId = save.scene.characters[0]?.characterId
+    let overrideSprite: string | undefined
+    let animCharId: string | undefined
+    for (const cmd of node.animCommands) {
+      const charId = animCommandCharId(cmd, firstCharId)
+      if (!charId) continue
+      if (cmd.type === 'animate' && cmd.animation) animCharId = charId
+      if ((cmd.type === 'expression' && cmd.value) || (cmd.type === 'dialogue' && cmd.expression)) overrideSprite = cmd.value ?? cmd.expression
+    }
+    return overrideSprite ? { spriteId: overrideSprite, charId: animCharId } : null
+  }, [node, save.scene.characters])
+
   const moodSprites = useMemo(() => {
     if (node.type !== 'line') return save.scene.characters
     return save.scene.characters.map((char) => {
-      const suffix = MOOD_SPRITE_SUFFIX[mood]
-      if (!suffix || char.spriteId.includes(suffix)) return char
-      const baseSprite = char.spriteId.replace(/-(amused|annoyed|startled|exhausted|commanding|calculating|concerned|negotiating)$/, '')
-      const candidateId = baseSprite + suffix
-      if (manifest.sprites[candidateId]) return { ...char, spriteId: candidateId }
-      return char
+      let spriteId = char.spriteId
+      if (animOverride?.spriteId && manifest.sprites[animOverride.spriteId] && char.characterId === animOverride.charId) {
+        spriteId = animOverride.spriteId
+      } else {
+        const suffix = MOOD_SPRITE_SUFFIX[mood]
+        if (suffix && !char.spriteId.includes(suffix)) {
+          const base = char.spriteId.replace(/-(amused|annoyed|startled|exhausted|commanding|calculating|concerned|negotiating)$/, '')
+          const candidate = base + suffix
+          if (manifest.sprites[candidate]) spriteId = candidate
+        }
+      }
+      return { ...char, spriteId }
     })
-  }, [node, save.scene.characters, mood, manifest.sprites])
+  }, [node, save.scene.characters, mood, manifest.sprites, animOverride])
+
+  const animClassMap = useMemo(() => {
+    if (node.type !== 'line' || !node.animCommands?.length) return {}
+    const firstCharId = save.scene.characters[0]?.characterId
+    const map: Record<string, string> = {}
+    for (const cmd of node.animCommands) {
+      if (cmd.type !== 'animate' || !cmd.animation) continue
+      const charId = animCommandCharId(cmd, firstCharId)
+      if (!charId) continue
+      const n = cmd.animation
+      if (n in ANIM_DURATIONS || n.startsWith('enter') || n.startsWith('exit') || n.startsWith('fade')) {
+        map[charId] = `vn-anim-${n}`
+      }
+    }
+    return map
+  }, [node, save.scene.characters])
 
   useEffect(() => {
     if (node.id !== prevNodeIdRef.current) {
@@ -175,11 +220,13 @@ export function QuestPlayer({
           <div className="vn-background vn-background-fallback" aria-label="Neutral background" />
         )}
         {!cinematic && moodSprites.map((character) => {
+          const animClass = animClassMap[character.characterId]
           return (
             <VisualNovelSprite
               key={character.slotId ?? `${character.characterId}:${character.position}`}
               character={character}
               manifest={manifest}
+              animationClass={animClass}
             />
           )
         })}

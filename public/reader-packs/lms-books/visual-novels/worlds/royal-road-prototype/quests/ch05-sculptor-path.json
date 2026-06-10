@@ -106,7 +106,15 @@
           }
         ]
       },
-      "nextId": "ch05-003"
+      "nextId": "ch05-003",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "shake",
+          "duration": 300
+        }
+      ]
     },
     "ch05-003": {
       "id": "ch05-003",
@@ -178,7 +186,15 @@
           }
         ]
       },
-      "nextId": "ch05-006"
+      "nextId": "ch05-006",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "bounce",
+          "duration": 350
+        }
+      ]
     },
     "ch05-006": {
       "id": "ch05-006",
@@ -343,7 +359,15 @@
           }
         ]
       },
-      "nextId": "ch05-014"
+      "nextId": "ch05-014",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "nod",
+          "duration": 450
+        }
+      ]
     },
     "ch05-014": {
       "id": "ch05-014",
@@ -555,7 +579,15 @@
           }
         ]
       },
-      "nextId": "ch05-024"
+      "nextId": "ch05-024",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "nod",
+          "duration": 400
+        }
+      ]
     },
     "ch05-024": {
       "id": "ch05-024",
@@ -631,7 +663,15 @@
           }
         ]
       },
-      "nextId": "ch05-029"
+      "nextId": "ch05-029",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "squash",
+          "duration": 400
+        }
+      ]
     },
     "ch05-029": {
       "id": "ch05-029",
@@ -671,7 +711,15 @@
           }
         ]
       },
-      "nextId": "ch05-031"
+      "nextId": "ch05-031",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "recoil",
+          "duration": 400
+        }
+      ]
     },
     "ch05-031": {
       "id": "ch05-031",
@@ -706,7 +754,15 @@
           }
         ]
       },
-      "nextId": "ch05-033"
+      "nextId": "ch05-033",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "nod",
+          "duration": 500
+        }
+      ]
     },
     "ch05-033": {
       "id": "ch05-033",

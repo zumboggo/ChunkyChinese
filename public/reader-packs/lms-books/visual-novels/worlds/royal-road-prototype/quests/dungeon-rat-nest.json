@@ -108,7 +108,15 @@
             "zIndex": 3
           }
         ]
-      }
+      },
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "leanIn",
+          "duration": 400
+        }
+      ]
     },
     "dungeon-003": {
       "id": "dungeon-003",
@@ -144,7 +152,15 @@
             "zIndex": 3
           }
         ]
-      }
+      },
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "shake",
+          "duration": 300
+        }
+      ]
     },
     "dungeon-004": {
       "id": "dungeon-004",
@@ -168,7 +184,15 @@
       "nextId": "dungeon-rat-battle",
       "scene": {
         "backgroundId": "training-hall"
-      }
+      },
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "recoil",
+          "duration": 350
+        }
+      ]
     },
     "dungeon-rat-battle": {
       "id": "dungeon-rat-battle",

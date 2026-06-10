@@ -69,7 +69,15 @@
           }
         ]
       },
-      "nextId": "child-002"
+      "nextId": "child-002",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "commission-client",
+          "animation": "fadeIn",
+          "duration": 300
+        }
+      ]
     },
     "child-002": {
       "id": "child-002",

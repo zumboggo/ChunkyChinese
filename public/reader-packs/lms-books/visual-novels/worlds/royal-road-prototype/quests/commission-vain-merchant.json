@@ -79,7 +79,15 @@
           }
         ]
       },
-      "nextId": "merchant-002"
+      "nextId": "merchant-002",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "commission-client",
+          "animation": "fadeIn",
+          "duration": 300
+        }
+      ]
     },
     "merchant-002": {
       "id": "merchant-002",

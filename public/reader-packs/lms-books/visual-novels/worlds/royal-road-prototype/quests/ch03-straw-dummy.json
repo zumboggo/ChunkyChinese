@@ -132,7 +132,15 @@
           }
         ]
       },
-      "nextId": "ch03-005"
+      "nextId": "ch03-005",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "bounce",
+          "duration": 300
+        }
+      ]
     },
     "ch03-005": {
       "id": "ch03-005",
@@ -218,7 +226,15 @@
           }
         ]
       },
-      "nextId": "ch03-010"
+      "nextId": "ch03-010",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "shake",
+          "duration": 400
+        }
+      ]
     },
     "ch03-010": {
       "id": "ch03-010",
@@ -275,7 +291,15 @@
           }
         ]
       },
-      "nextId": "ch03-012"
+      "nextId": "ch03-012",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "geomchi",
+          "animation": "leanIn",
+          "duration": 450
+        }
+      ]
     },
     "ch03-012": {
       "id": "ch03-012",
@@ -334,7 +358,15 @@
           }
         ]
       },
-      "nextId": "ch03-015"
+      "nextId": "ch03-015",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "bounce",
+          "duration": 350
+        }
+      ]
     },
     "ch03-014": {
       "id": "ch03-014",

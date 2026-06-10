@@ -82,7 +82,15 @@
           }
         ]
       },
-      "nextId": "irene-talk-002"
+      "nextId": "irene-talk-002",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "irene",
+          "animation": "nod",
+          "duration": 350
+        }
+      ]
     },
     "irene-talk-002": {
       "id": "irene-talk-002",

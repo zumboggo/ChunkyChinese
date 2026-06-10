@@ -199,7 +199,15 @@
           }
         ]
       },
-      "nextId": "opening-011"
+      "nextId": "opening-011",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "squash",
+          "duration": 350
+        }
+      ]
     },
     "opening-011": {
       "id": "opening-011",
@@ -270,7 +278,15 @@
           }
         ]
       },
-      "nextId": "opening-016"
+      "nextId": "opening-016",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "shake",
+          "duration": 300
+        }
+      ]
     },
     "opening-015": {
       "id": "opening-015",
@@ -405,7 +421,15 @@
           }
         ]
       },
-      "nextId": "opening-023"
+      "nextId": "opening-023",
+      "animCommands": [
+        {
+          "type": "animate",
+          "character": "lee-hyun",
+          "animation": "bounce",
+          "duration": 400
+        }
+      ]
     },
     "opening-023": {
       "id": "opening-023",

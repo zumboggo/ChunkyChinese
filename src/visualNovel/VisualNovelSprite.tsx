@@ -5,9 +5,11 @@ import type { VnAssetManifest, VnSceneCharacter } from './types'
 export function VisualNovelSprite({
   character,
   manifest,
+  animationClass,
 }: {
   character: VnSceneCharacter
   manifest: VnAssetManifest
+  animationClass?: string
 }) {
   const sprite = manifest.sprites[character.spriteId]
   if (!sprite || character.visible === false) return null
@@ -22,7 +24,7 @@ export function VisualNovelSprite({
   } as CSSProperties
   return (
     <div
-      className={`vn-sprite vn-sprite-${character.position}${character.dimmed ? ' vn-sprite-dimmed' : ''}`}
+      className={`vn-sprite vn-sprite-${character.position}${character.dimmed ? ' vn-sprite-dimmed' : ''}${animationClass ? ` ${animationClass}` : ''}`}
       style={style}
     >
       <img src={visualNovelAssetSrc(sprite.src)} alt={sprite.alt ?? character.characterId} />
