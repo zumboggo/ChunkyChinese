@@ -4,7 +4,7 @@ import { activeWorldQuests, completedWorldQuests } from './worldEngine'
 
 const DEFAULT_DECK = ['strike', 'strike', 'strike', 'strike', 'defend', 'defend', 'defend', 'bash']
 
-export function WorldStatusPanel({ world, save }: { world: VnWorld; save: VisualNovelWorldSave }) {
+export function WorldStatusPanel({ world, save, onRestart }: { world: VnWorld; save: VisualNovelWorldSave; onRestart?: () => void }) {
   const state = save.state
   const deck = state.playerDeck ?? DEFAULT_DECK
   const hp = state.playerHp
@@ -76,6 +76,11 @@ export function WorldStatusPanel({ world, save }: { world: VnWorld; save: Visual
         <strong>{world.title}</strong>
         <span>{state.unlockedLocations.length} location{state.unlockedLocations.length !== 1 ? 's' : ''} unlocked</span>
       </p>
+      {onRestart && (
+        <button type="button" className="vn-restart-btn" onClick={onRestart}>
+          Restart Story (keep stats)
+        </button>
+      )}
     </aside>
   )
 }

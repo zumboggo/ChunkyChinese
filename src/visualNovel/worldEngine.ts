@@ -61,6 +61,20 @@ export function makeVisualNovelWorldSave(world: VnWorld): VisualNovelWorldSave {
   }
 }
 
+export function restartWorldWithStats(world: VnWorld, currentSave: VisualNovelWorldSave): VisualNovelWorldSave {
+  const fresh = makeVisualNovelWorldSave(world)
+  return {
+    ...fresh,
+    state: {
+      ...fresh.state,
+      money: currentSave.state.money,
+      skills: { ...currentSave.state.skills },
+      playerHp: currentSave.state.playerHp,
+      playerDeck: currentSave.state.playerDeck ? [...currentSave.state.playerDeck] : undefined,
+    },
+  }
+}
+
 export function currentWorldLocation(world: VnWorld, save: VisualNovelWorldSave): VnLocation | undefined {
   return world.locations[save.state.currentLocationId]
 }

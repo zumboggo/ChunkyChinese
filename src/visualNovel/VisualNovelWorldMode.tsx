@@ -44,6 +44,7 @@ import {
   currentWorldLocation,
   makeVisualNovelWorldSave,
   nextEncounterQuest,
+  restartWorldWithStats,
   startWorldQuest,
 } from './worldEngine'
 import type {
@@ -108,6 +109,7 @@ export function VisualNovelWorldMode({
   const [selectedToken, setSelectedToken] = useState<ReaderWordToken | null>(null)
   const [dictionaryEntry, setDictionaryEntry] = useState<DictionaryEntry | null>(null)
   const [statusToast, setStatusToast] = useState<string | null>(null)
+  const [showRestartConfirm, setShowRestartConfirm] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const audioTokenRef = useRef(0)
   const audioBlobUrlRef = useRef<string | null>(null)
@@ -453,6 +455,24 @@ export function VisualNovelWorldMode({
     await saveVisualNovelSave(nextSave)
   }, [questSave])
 
+  const handleRestartConfirm = useCallback(async () => {
+    if (!world || !worldSave) return
+    setShowRestartConfirm(false)
+    stopAudio(audioRef, audioTokenRef)
+    if (worldSave.interruptedQuest) {
+      const quest = world.quests[worldSave.interruptedQuest.questId]
+      if (quest) {
+        const script = scripts[quest.scriptId]
+        if (script) await deleteVisualNovelSave(script.packId, script.id).catch(() => {})
+      }
+    }
+    const freshSave = restartWorldWithStats(world, worldSave)
+    await persistWorldSave(freshSave)
+    setActiveQuestId(null)
+    setQuestSave(null)
+    setStatusToast('Story restarted. Stats preserved.')
+  }, [persistWorldSave, scripts, world, worldSave])
+
   const playCurrentAudio = useCallback(async () => {
     if (!node) return
     const text = getNodeText(node)?.chinese ?? ''
@@ -764,7 +784,20 @@ export function VisualNovelWorldMode({
               <h3>Status & Inventory</h3>
               <button type="button" onClick={() => setShowInventory(false)}>Close</button>
             </div>
-            <WorldStatusPanel world={world} save={worldSave} />
+            <WorldStatusPanel world={world} save={worldSave} onRestart={() => { setShowInventory(false); setShowRestartConfirm(true) }} />
+          </div>
+        </div>
+      )}
+
+      {showRestartConfirm && (
+        <div className="vn-inventory-overlay" onClick={() => setShowRestartConfirm(false)}>
+          <div className="vn-confirm-dialog" onClick={(e) => e.stopPropagation()}>
+            <h3>Restart Story?</h3>
+            <p>All quest progress will reset to the beginning. Your gold, skills, HP, and deck will be kept.</p>
+            <div className="vn-confirm-actions">
+              <button type="button" className="vn-confirm-cancel" onClick={() => setShowRestartConfirm(false)}>Cancel</button>
+              <button type="button" className="vn-confirm-restart" onClick={() => void handleRestartConfirm()}>Restart</button>
+            </div>
           </div>
         </div>
       )}

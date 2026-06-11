@@ -3383,6 +3383,88 @@ kbd {
   color: #f1f5f9;
 }
 
+.vn-restart-btn {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 8px 12px;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.12);
+  color: #fca5a5;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.vn-restart-btn:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: rgba(239, 68, 68, 0.6);
+}
+
+.vn-confirm-dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(340px, 88vw);
+  padding: 24px;
+  border-radius: 14px;
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  color: #f1f5f9;
+  text-align: center;
+}
+
+.vn-confirm-dialog h3 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+
+.vn-confirm-dialog p {
+  margin: 0 0 20px;
+  font-size: 0.85rem;
+  color: rgba(241, 245, 249, 0.7);
+  line-height: 1.5;
+}
+
+.vn-confirm-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.vn-confirm-cancel {
+  padding: 8px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background: transparent;
+  color: #f1f5f9;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.vn-confirm-cancel:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.vn-confirm-restart {
+  padding: 8px 20px;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.vn-confirm-restart:hover {
+  background: rgba(239, 68, 68, 0.35);
+}
+
 .vn-sprite {
   position: absolute;
   bottom: 0;
