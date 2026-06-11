@@ -114,6 +114,12 @@ export function fsrsQueueLabel(word: VocabWord, now = Date.now()): string {
   return 'Scheduled'
 }
 
+export function downgradeRating(rating: FsrsRating): FsrsRating {
+  if (rating === 'easy') return 'good'
+  if (rating === 'good') return 'hard'
+  return 'again'
+}
+
 function cardPreview(card: Card): FsrsDuePreview[FsrsRating] {
   return {
     dueAt: card.due.toISOString(),

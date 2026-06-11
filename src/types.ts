@@ -60,6 +60,7 @@ export interface UserSettings {
   lingqLearnedGoal: number
   flashcardsPerDay: number
   flashcardQueueMode: 'mixed' | 'due' | 'new'
+  flashcardAudioFrontPercent: number
   darkMode: boolean
   readerPinyinMode: 'adaptive' | 'all' | 'none'
   readerTheme: 'light' | 'sepia' | 'dark'
@@ -417,6 +418,8 @@ export interface DashboardStats {
   ranges: Record<DashboardRange, DashboardRangeStats>
   currentStreak: number
   longestStreak: number
+  avgFlashcardSetSeconds: number
+  lastFlashcardSetSeconds: number
   learningProcessSeries: LearningProcessPoint[]
   studyHeatmap: StudyDayStat[]
   retentionSeries: RetentionPoint[]

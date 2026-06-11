@@ -428,6 +428,7 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   lingqLearnedGoal: 90,
   flashcardsPerDay: 50,
   flashcardQueueMode: 'mixed',
+  flashcardAudioFrontPercent: 40,
   darkMode: false,
   readerPinyinMode: 'adaptive',
   readerTheme: 'sepia',
@@ -1507,6 +1508,13 @@ export async function getDashboardStats(): Promise<DashboardStats> {
   const heatmap = buildStudyHeatmap(events, readerSessions, 84)
   const todayHeatmap = heatmap[heatmap.length - 1]
   const ranges = buildDashboardRangeStats(events, readerSessions, scopedWords, scopedWordIds)
+  const flashcardSetEvents = events.filter((e) => e.type === 'complete' && e.source === 'flashcards' && e.seconds && e.seconds > 0)
+  const avgFlashcardSetSeconds = flashcardSetEvents.length > 0
+    ? flashcardSetEvents.reduce((sum, e) => sum + (e.seconds ?? 0), 0) / flashcardSetEvents.length
+    : 0
+  const lastFlashcardSetSeconds = flashcardSetEvents.length > 0
+    ? flashcardSetEvents.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())[0].seconds ?? 0
+    : 0
 
   return {
     counts: {
@@ -1534,6 +1542,8 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     ranges,
     currentStreak: calculateStreak(buildStudyHeatmap(events, readerSessions, 365)),
     longestStreak: calculateLongestStreak(buildStudyHeatmap(events, readerSessions, 365)),
+    avgFlashcardSetSeconds,
+    lastFlashcardSetSeconds,
     learningProcessSeries: buildLearningProcessSeries(events, readerSessions, scopedWordIds, 28),
     studyHeatmap: heatmap,
     retentionSeries: buildRetentionSeries(scopedWords, events, 12),

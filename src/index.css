@@ -5116,6 +5116,72 @@ kbd {
   gap: 8px;
 }
 
+.flashcard-session-summary {
+  display: grid;
+  gap: 12px;
+  padding: 14px 0;
+}
+
+.session-summary-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  font-size: 0.9rem;
+  color: var(--muted-navy);
+}
+
+.session-summary-stats strong {
+  font-size: 1.05rem;
+}
+
+.session-struggled-words {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.struggled-label {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--muted-navy);
+}
+
+.struggled-word-btn {
+  font-size: 0.85rem;
+  padding: 4px 10px;
+}
+
+.struggled-word-btn.active {
+  color: #f59e0b;
+  border-color: #f59e0b;
+}
+
+.audio-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.audio-slider-row input[type="range"] {
+  flex: 1;
+  accent-color: var(--brand);
+}
+
+.audio-slider-value {
+  font-size: 0.9rem;
+  font-weight: 800;
+  min-width: 3ch;
+  text-align: right;
+}
+
+.flashcard.reverse-front .flashcard-answer-text {
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
 .modal-backdrop {
   position: fixed;
   inset: 0;
