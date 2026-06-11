@@ -40,7 +40,9 @@ import {
 import { validateVisualNovelWorld } from './worldValidator'
 import {
   abandonWorldQuest,
+  activeWorldQuests,
   commitQuestResult,
+  completedWorldQuests,
   currentWorldLocation,
   makeVisualNovelWorldSave,
   nextEncounterQuest,
@@ -59,7 +61,7 @@ import type {
   VnWorldIndexEntry,
 } from './types'
 import { getNodeText, getNodeAudioClipId, scopedTokens, stopAudio, speakUtterance, formatDueDate, getLocationBackgroundId } from './utils'
-import { QuestPlayer } from './QuestPlayer'
+import { QuestPlayer, type VnTextSpeed } from './QuestPlayer'
 import { WorldHub, getHubCastMembers, MAP_LAYOUT, MAP_CONNECTIONS } from './WorldHub'
 import { WorldStatusPanel } from './WorldStatusPanel'
 
@@ -110,6 +112,14 @@ export function VisualNovelWorldMode({
   const [dictionaryEntry, setDictionaryEntry] = useState<DictionaryEntry | null>(null)
   const [statusToast, setStatusToast] = useState<string | null>(null)
   const [showRestartConfirm, setShowRestartConfirm] = useState(false)
+  const [showSettings, setShowSettings] = useState(false)
+  const [showJournal, setShowJournal] = useState(false)
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle')
+  const [textSpeed, setTextSpeed] = useState<VnTextSpeed>(() => {
+    const saved = localStorage.getItem('vnTextSpeed')
+    return (saved === 'slow' || saved === 'normal' || saved === 'fast' || saved === 'instant') ? saved : 'normal'
+  })
+  const [autoAdvance, setAutoAdvance] = useState(() => localStorage.getItem('vnAutoAdvance') === 'true')
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const audioTokenRef = useRef(0)
   const audioBlobUrlRef = useRef<string | null>(null)
@@ -291,6 +301,15 @@ export function VisualNovelWorldMode({
     return () => window.clearTimeout(timeout)
   }, [statusToast])
 
+  useEffect(() => {
+    if (saveStatus !== 'saved') return
+    const timeout = window.setTimeout(() => setSaveStatus('idle'), 1800)
+    return () => window.clearTimeout(timeout)
+  }, [saveStatus])
+
+  useEffect(() => { localStorage.setItem('vnTextSpeed', textSpeed) }, [textSpeed])
+  useEffect(() => { localStorage.setItem('vnAutoAdvance', String(autoAdvance)) }, [autoAdvance])
+
   useEffect(() => () => {
     stopAudio(audioRef, audioTokenRef)
     if (audioBlobUrlRef.current) {
@@ -309,7 +328,9 @@ export function VisualNovelWorldMode({
 
   const persistWorldSave = useCallback(async (nextSave: VisualNovelWorldSave) => {
     setWorldSave(nextSave)
+    setSaveStatus('saving')
     await saveVisualNovelWorldSave(nextSave)
+    setSaveStatus('saved')
   }, [])
 
   const handleSelectToken = useCallback((token: ReaderWordToken | null) => {
@@ -631,6 +652,8 @@ export function VisualNovelWorldMode({
             selectedToken={selectedToken}
             pinyinMode={pinyinMode}
             showEnglish={showEnglish}
+            textSpeed={textSpeed}
+            autoAdvance={autoAdvance}
             onSelectToken={handleSelectToken}
             onToggleEnglish={() => setShowEnglish((value) => !value)}
             onBack={handleQuestBack}
@@ -640,6 +663,7 @@ export function VisualNovelWorldMode({
             onReplay={playCurrentAudio}
             onBattleStateUpdate={handleBattleStateUpdate}
             onShowMap={() => setShowMap(true)}
+            onShowSettings={() => setShowSettings(true)}
             hotkeys={hotkeys}
           />
         ) : (
@@ -709,6 +733,9 @@ export function VisualNovelWorldMode({
               <button type="button" className="vn-bar-btn" onClick={() => setShowInventory(true)} title="Inventory">
                 <span className="vn-bar-icon">{'\u{1F6E1}\uFE0F'}</span>
               </button>
+              <button type="button" className="vn-bar-btn" onClick={() => setShowJournal(true)} title="Journal">
+                <span className="vn-bar-icon">{'\u{1F4D6}'}</span>
+              </button>
               {worldSave.interruptedQuest && (
                 <button type="button" className="vn-bar-btn vn-bar-btn-primary" onClick={() => void resumeInterruptedQuest()} title="Resume quest">
                   <span className="vn-bar-label">Resume</span>
@@ -716,6 +743,9 @@ export function VisualNovelWorldMode({
               )}
               <button type="button" className="vn-bar-btn vn-bar-btn-ghost" onClick={onReturnToReader} title="Return to Reader">
                 <span className="vn-bar-icon">{'\u25C0\uFE0F'}</span>
+              </button>
+              <button type="button" className="vn-bar-btn vn-bar-btn-gear" onClick={() => setShowSettings(true)} title="Settings">
+                <span className="vn-bar-icon">{'\u2699\uFE0F'}</span>
               </button>
             </div>
           </div>
@@ -799,6 +829,93 @@ export function VisualNovelWorldMode({
               <button type="button" className="vn-confirm-restart" onClick={() => void handleRestartConfirm()}>Restart</button>
             </div>
           </div>
+        </div>
+      )}
+
+      {showSettings && (
+        <div className="vn-inventory-overlay" onClick={() => setShowSettings(false)}>
+          <div className="vn-settings-panel" onClick={(e) => e.stopPropagation()}>
+            <div className="vn-inventory-header">
+              <h3>Settings</h3>
+              <button type="button" onClick={() => setShowSettings(false)}>Close</button>
+            </div>
+            <div className="vn-settings-body">
+              <label className="vn-setting-row">
+                <span className="vn-setting-label">Text Speed</span>
+                <select
+                  value={textSpeed}
+                  onChange={(e) => setTextSpeed(e.target.value as VnTextSpeed)}
+                >
+                  <option value="slow">Slow</option>
+                  <option value="normal">Normal</option>
+                  <option value="fast">Fast</option>
+                  <option value="instant">Instant</option>
+                </select>
+              </label>
+              <label className="vn-setting-row">
+                <span className="vn-setting-label">Auto-Advance</span>
+                <input
+                  type="checkbox"
+                  checked={autoAdvance}
+                  onChange={(e) => setAutoAdvance(e.target.checked)}
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showJournal && world && worldSave && (
+        <div className="vn-inventory-overlay" onClick={() => setShowJournal(false)}>
+          <div className="vn-journal-panel" onClick={(e) => e.stopPropagation()}>
+            <div className="vn-inventory-header">
+              <h3>Quest Journal</h3>
+              <button type="button" onClick={() => setShowJournal(false)}>Close</button>
+            </div>
+            <div className="vn-journal-body">
+              {(() => {
+                const active = activeWorldQuests(world, worldSave).filter((q) => q.category !== 'rumour')
+                const completed = completedWorldQuests(world, worldSave).filter((q) => q.category !== 'rumour')
+                return (
+                  <>
+                    {active.length > 0 && (
+                      <section className="vn-journal-section">
+                        <h4>Active Quests</h4>
+                        {active.map((quest) => (
+                          <div key={quest.id} className="vn-journal-entry">
+                            <strong>{quest.title.english ?? quest.id}</strong>
+                            {quest.title.chinese && <span className="vn-journal-cn">{quest.title.chinese}</span>}
+                            {quest.objective?.english && <p>{quest.objective.english}</p>}
+                            {quest.description?.english && <small>{quest.description.english}</small>}
+                          </div>
+                        ))}
+                      </section>
+                    )}
+                    {completed.length > 0 && (
+                      <section className="vn-journal-section">
+                        <h4>Completed</h4>
+                        {completed.map((quest) => (
+                          <div key={quest.id} className="vn-journal-entry vn-journal-completed">
+                            <strong>{quest.title.english ?? quest.id}</strong>
+                            {quest.title.chinese && <span className="vn-journal-cn">{quest.title.chinese}</span>}
+                          </div>
+                        ))}
+                      </section>
+                    )}
+                    {active.length === 0 && completed.length === 0 && (
+                      <p className="vn-journal-empty">No quests discovered yet.</p>
+                    )}
+                  </>
+                )
+              })()}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {saveStatus !== 'idle' && (
+        <div className={`vn-save-indicator ${saveStatus === 'saved' ? 'vn-save-saved' : ''}`} role="status">
+          {saveStatus === 'saving' ? 'Saving...' : 'Saved'}
         </div>
       )}
 

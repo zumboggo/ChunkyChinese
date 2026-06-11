@@ -12,6 +12,7 @@ interface AdaptiveChineseTextProps {
   pinyinMode: AdaptivePinyinMode
   onSelectToken: (token: ReaderWordToken | null) => void
   className?: string
+  visibleCount?: number
 }
 
 export function AdaptiveChineseText({
@@ -20,6 +21,7 @@ export function AdaptiveChineseText({
   pinyinMode,
   onSelectToken,
   className = 'reader-sentence',
+  visibleCount,
 }: AdaptiveChineseTextProps) {
   function toggleToken(token: ReaderWordToken) {
     onSelectToken(selectedToken?.id === token.id ? null : token)
@@ -32,13 +34,17 @@ export function AdaptiveChineseText({
     }
   }
 
+  const renderedTokens = visibleCount !== undefined ? tokens.slice(0, visibleCount) : tokens
+  const hasReveal = visibleCount !== undefined && visibleCount < tokens.length
+
   return (
     <div className={className}>
-      {tokens.map((token) =>
+      {renderedTokens.map((token, index) =>
         token.isChinese ? (
           <ruby
             key={token.id}
-            className={readerTokenClassName(token, selectedToken, pinyinMode)}
+            className={`${readerTokenClassName(token, selectedToken, pinyinMode)}${hasReveal ? ' vn-token-reveal' : ''}`}
+            style={hasReveal ? { animationDelay: `${index * 30}ms` } : undefined}
             tabIndex={0}
             role="button"
             aria-label={`${token.text}${token.pinyin ? `, ${token.pinyin}` : ''}`}
@@ -49,7 +55,11 @@ export function AdaptiveChineseText({
             {readerShouldRenderPinyin(token, pinyinMode) && <rt>{token.pinyin}</rt>}
           </ruby>
         ) : (
-          <span key={token.id} className="reader-token-space">
+          <span
+            key={token.id}
+            className={`reader-token-space${hasReveal ? ' vn-token-reveal' : ''}`}
+            style={hasReveal ? { animationDelay: `${index * 30}ms` } : undefined}
+          >
             {token.text}
           </span>
         ),

@@ -41,6 +41,15 @@ function animCommandCharId(cmd: VnAnimCommand, firstSceneChar?: string): string 
   return cmd.character ?? cmd.speaker ?? firstSceneChar
 }
 
+export type VnTextSpeed = 'slow' | 'normal' | 'fast' | 'instant'
+
+const TEXT_SPEED_MS: Record<VnTextSpeed, number> = {
+  slow: 120,
+  normal: 60,
+  fast: 30,
+  instant: 0,
+}
+
 export function QuestPlayer({
   world,
   save,
@@ -54,6 +63,8 @@ export function QuestPlayer({
   selectedToken,
   pinyinMode,
   showEnglish,
+  textSpeed,
+  autoAdvance,
   onSelectToken,
   onToggleEnglish,
   onBack,
@@ -63,6 +74,7 @@ export function QuestPlayer({
   onReplay,
   onBattleStateUpdate,
   onShowMap,
+  onShowSettings,
   hotkeys,
 }: {
   world: VnWorld
@@ -78,6 +90,8 @@ export function QuestPlayer({
   selectedToken: ReaderWordToken | null
   pinyinMode: AdaptivePinyinMode
   showEnglish: boolean
+  textSpeed: VnTextSpeed
+  autoAdvance: boolean
   onSelectToken: (token: ReaderWordToken | null) => void
   onToggleEnglish: () => void
   onBack: () => void | Promise<void>
@@ -87,11 +101,14 @@ export function QuestPlayer({
   onReplay: () => void | Promise<void>
   onBattleStateUpdate?: (state: CardBattlerState) => void
   onShowMap: () => void
+  onShowSettings: () => void
   hotkeys: HotkeySettings
 }) {
   const [showInventory, setShowInventory] = useState(false)
+  const [visibleTokenCount, setVisibleTokenCount] = useState<number | undefined>(undefined)
   const [typewriterDone, setTypewriterDone] = useState(false)
-  const typewriterRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const typewriterTimersRef = useRef<ReturnType<typeof setTimeout>[]>([])
+  const autoAdvanceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const prevNodeIdRef = useRef<string | null>(null)
 
   const text = getNodeText(node)
@@ -166,17 +183,46 @@ export function QuestPlayer({
   useEffect(() => {
     if (node.id !== prevNodeIdRef.current) {
       prevNodeIdRef.current = node.id
-      setTypewriterDone(false)
-      if (typewriterRef.current) clearTimeout(typewriterRef.current)
-      const duration = Math.min(chineseText.length * 60, 3000)
-      typewriterRef.current = setTimeout(() => setTypewriterDone(true), duration)
+      for (const t of typewriterTimersRef.current) clearTimeout(t)
+      typewriterTimersRef.current = []
+      if (autoAdvanceRef.current) { clearTimeout(autoAdvanceRef.current); autoAdvanceRef.current = null }
+
+      const msPerToken = TEXT_SPEED_MS[textSpeed]
+      const totalTokens = displayTokens.length
+
+      if (msPerToken === 0 || totalTokens === 0) {
+        setVisibleTokenCount(undefined)
+        setTypewriterDone(true)
+      } else {
+        setVisibleTokenCount(0)
+        setTypewriterDone(false)
+        for (let i = 1; i <= totalTokens; i++) {
+          const t = setTimeout(() => setVisibleTokenCount(i), i * msPerToken)
+          typewriterTimersRef.current.push(t)
+        }
+        const doneT = setTimeout(() => setTypewriterDone(true), totalTokens * msPerToken + 100)
+        typewriterTimersRef.current.push(doneT)
+      }
     }
-    return () => { if (typewriterRef.current) clearTimeout(typewriterRef.current) }
-  }, [node.id, chineseText.length])
+    return () => {
+      for (const t of typewriterTimersRef.current) clearTimeout(t)
+      typewriterTimersRef.current = []
+      if (autoAdvanceRef.current) { clearTimeout(autoAdvanceRef.current); autoAdvanceRef.current = null }
+    }
+  }, [node.id, displayTokens.length, textSpeed])
+
+  useEffect(() => {
+    if (autoAdvance && typewriterDone && !result && node.type !== 'choice' && node.type !== 'cardBattle') {
+      autoAdvanceRef.current = setTimeout(() => { void onAdvance() }, 1200)
+      return () => { if (autoAdvanceRef.current) { clearTimeout(autoAdvanceRef.current); autoAdvanceRef.current = null } }
+    }
+  }, [autoAdvance, typewriterDone, result, node.type, onAdvance])
 
   const skipTypewriter = useCallback(() => {
     if (!typewriterDone) {
-      if (typewriterRef.current) clearTimeout(typewriterRef.current)
+      for (const t of typewriterTimersRef.current) clearTimeout(t)
+      typewriterTimersRef.current = []
+      setVisibleTokenCount(undefined)
       setTypewriterDone(true)
     }
   }, [typewriterDone])
@@ -247,6 +293,7 @@ export function QuestPlayer({
               pinyinMode={pinyinMode}
               onSelectToken={onSelectToken}
               className="reader-sentence vn-line"
+              visibleCount={visibleTokenCount}
             />
           )}
           {showEnglish && text?.english && (
@@ -303,6 +350,9 @@ export function QuestPlayer({
         </button>
         <button type="button" className="vn-bar-btn vn-bar-btn-ghost" onClick={(e) => { e.stopPropagation(); onAbandon() }} title="Pause quest">
           <span className="vn-bar-icon">{'\u23F8\uFE0F'}</span>
+        </button>
+        <button type="button" className="vn-bar-btn vn-bar-btn-gear" onClick={(e) => { e.stopPropagation(); onShowSettings() }} title="Settings">
+          <span className="vn-bar-icon">{'\u2699\uFE0F'}</span>
         </button>
       </div>
 
