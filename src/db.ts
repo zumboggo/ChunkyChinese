@@ -1533,6 +1533,7 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     ).length,
     ranges,
     currentStreak: calculateStreak(buildStudyHeatmap(events, readerSessions, 365)),
+    longestStreak: calculateLongestStreak(buildStudyHeatmap(events, readerSessions, 365)),
     learningProcessSeries: buildLearningProcessSeries(events, readerSessions, scopedWordIds, 28),
     studyHeatmap: heatmap,
     retentionSeries: buildRetentionSeries(scopedWords, events, 12),
@@ -1555,6 +1556,21 @@ function calculateStreak(heatmap: DashboardStats['studyHeatmap']): number {
     }
   }
   return streak
+}
+
+function calculateLongestStreak(heatmap: DashboardStats['studyHeatmap']): number {
+  if (heatmap.length === 0) return 0
+  let longest = 0
+  let current = 0
+  for (let i = 0; i < heatmap.length; i++) {
+    if (heatmap[i].studySeconds > 0) {
+      current++
+      if (current > longest) longest = current
+    } else {
+      current = 0
+    }
+  }
+  return longest
 }
 
 function buildDashboardRangeStats(

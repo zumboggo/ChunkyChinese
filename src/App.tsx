@@ -232,7 +232,7 @@ const emptyStats: DashboardStats = {
 const DEFAULT_PACK_ID = 'lms-1000-azure'
 const HIDDEN_PACK_IDS = new Set(['annas-reading-deck'])
 const FLASHCARD_LEARN_AHEAD_MS = 5 * 60 * 1000
-const FLASHCARD_AUDIO_FRONT_RATE = 0.2
+const FLASHCARD_AUDIO_FRONT_RATE = 0.4
 
 function App() {
   const [screen, setScreen] = useState<Screen>('dashboard')
@@ -1626,16 +1626,16 @@ function App() {
       if (screen === 'dashboard') {
         if (mappedIndex === 0) {
           event.preventDefault()
-          setScreen('reader')
+          startSavedFlashcards()
         } else if (mappedIndex === 1) {
           event.preventDefault()
-          setScreen('visualNovel')
+          setScreen('reader')
         } else if (mappedIndex === 2) {
           event.preventDefault()
-          startModeLessonRef.current?.('listeningMode')
+          setScreen('visualNovel')
         } else if (mappedIndex === 3) {
           event.preventDefault()
-          startSavedFlashcards()
+          startModeLessonRef.current?.('listeningMode')
         }
         return
       }
@@ -2228,25 +2228,25 @@ function App() {
               <p>Start with due words, add new ones only when the queue is light.</p>
             </div>
             <div className="mode-start-grid" aria-label="Choose study mode">
-              <button className="mode-start reader-start" type="button" onClick={() => setScreen('reader')}>
+              <button className="mode-start flashcards-start" type="button" onClick={startSavedFlashcards}>
                 <kbd>{hotkeys.choiceA.toUpperCase()}</kbd>
+                <strong>Flashcards</strong>
+                <span>Sort due and new words with FSRS.</span>
+              </button>
+              <button className="mode-start reader-start" type="button" onClick={() => setScreen('reader')}>
+                <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
                 <strong>Reading</strong>
                 <span>Read the LMS stories sentence by sentence.</span>
               </button>
               <button className="mode-start novel-start" type="button" onClick={() => setScreen('visualNovel')}>
-                <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
+                <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
                 <strong>Visual Novel</strong>
                 <span>Play a story scene with the same Adaptive Mode text.</span>
               </button>
               <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('listeningMode')}>
-                <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
+                <kbd>{hotkeys.choiceD.toUpperCase()}</kbd>
                 <strong>Listening</strong>
                 <span>Listen with passive or active recall modes.</span>
-              </button>
-              <button className="mode-start flashcards-start" type="button" onClick={startSavedFlashcards}>
-                <kbd>{hotkeys.choiceD.toUpperCase()}</kbd>
-                <strong>Flashcards</strong>
-                <span>Sort due and new words with FSRS.</span>
               </button>
             </div>
           </div>
@@ -2406,6 +2406,10 @@ function App() {
                 <div>
                   <dt>Current streak</dt>
                   <dd>{stats.currentStreak} 🔥</dd>
+                </div>
+                <div>
+                  <dt>Longest streak</dt>
+                  <dd>{stats.longestStreak}</dd>
                 </div>
                 <div>
                   <dt>Study minutes</dt>

@@ -416,6 +416,7 @@ export interface DashboardStats {
   newWordsToday: number
   ranges: Record<DashboardRange, DashboardRangeStats>
   currentStreak: number
+  longestStreak: number
   learningProcessSeries: LearningProcessPoint[]
   studyHeatmap: StudyDayStat[]
   retentionSeries: RetentionPoint[]
