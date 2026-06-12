@@ -3069,7 +3069,8 @@ kbd {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center 30%;
 }
 
 .vn-cinematic {
@@ -3104,7 +3105,8 @@ kbd {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center 30%;
 }
 
 .vn-fullscreen-stage .vn-sprite {
@@ -4762,6 +4764,41 @@ kbd {
   white-space: nowrap;
 }
 
+.vn-explore-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  margin-top: 4px;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 10px;
+  background: rgba(56, 189, 248, 0.08);
+  color: #38bdf8;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
+  animation: vn-explore-glow 2.4s ease-in-out infinite;
+}
+
+.vn-explore-btn:hover,
+.vn-hub-expanded .vn-explore-btn {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.6);
+  animation: none;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+}
+
+@keyframes vn-explore-glow {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
+    border-color: rgba(56, 189, 248, 0.6);
+  }
+}
+
 /* ── Journal list dark theme ── */
 
 .vn-journal-list-dark p {
@@ -5694,6 +5731,58 @@ kbd {
   .vn-sprite-anim-root {
     width: min(calc(var(--vn-sprite-width) * 0.78), 54vw);
     max-width: 58%;
+  }
+
+  .visual-novel-screen {
+    gap: 0;
+  }
+
+  .visual-novel-screen .vn-heading {
+    display: none;
+  }
+
+  .vn-fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    height: 100%;
+    height: 100dvh;
+  }
+
+  .vn-subtitle-overlay {
+    bottom: 48px;
+    max-height: 35vh;
+    padding: 10px 14px 12px;
+  }
+
+  .vn-bottom-bar {
+    height: 48px;
+    gap: 6px;
+  }
+
+  .vn-bar-btn {
+    min-width: 40px;
+    padding: 4px 6px;
+  }
+
+  .vn-hub-panel {
+    max-height: 42vh;
+    overflow-y: auto;
+  }
+
+  .vn-hub-actions-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .vn-hub-actions-row section {
+    max-height: 28vh;
+    overflow-y: auto;
+  }
+
+  .vn-recommended-action {
+    padding: 8px 12px;
+    font-size: 0.85rem;
   }
 
   .vn-status-panel {

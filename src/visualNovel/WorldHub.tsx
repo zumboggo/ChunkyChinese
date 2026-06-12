@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { AdaptiveChineseText } from '../AdaptiveChineseText'
 import { tokenizeReaderText, type AdaptivePinyinMode } from '../adaptiveText'
 import type { ReaderWordToken, VocabWord } from '../types'
@@ -50,6 +50,7 @@ export function WorldHub({
   onSelectToken: (token: ReaderWordToken | null) => void
   onAction: (action: VnWorldAction) => void | Promise<void>
 }) {
+  const [expanded, setExpanded] = useState(false)
   const description = getLocationDescription(location, save)
   const descriptionTokens = useMemo(
     () => scopedTokens(tokenizeReaderText(description?.chinese ?? '', words), `location-${location?.id ?? 'unknown'}`),
@@ -58,25 +59,14 @@ export function WorldHub({
   const actions = availableWorldActions(world, save)
   const travelLocations = availableTravelLocations(world, save)
   const recommended = recommendedWorldAction(world, save)
+  const totalOptions = actions.length + travelLocations.length
 
   return (
-    <section className="vn-hub-panel">
+    <section className={`vn-hub-panel${expanded ? ' vn-hub-expanded' : ''}`}>
       <div className="vn-hub-header">
         <span className="vn-hub-location">{location?.name.english ?? location?.id ?? 'Unknown location'}</span>
         {location?.name.chinese && <span className="vn-hub-location-cn">{location.name.chinese}</span>}
       </div>
-      {descriptionTokens.length > 0 && (
-        <div className="vn-subtitle-text">
-          <AdaptiveChineseText
-            tokens={descriptionTokens}
-            selectedToken={selectedToken}
-            pinyinMode={pinyinMode}
-            onSelectToken={onSelectToken}
-            className="reader-sentence vn-line"
-          />
-          {showEnglish && description?.english && <p className="vn-translation-overlay revealed">{description.english}</p>}
-        </div>
-      )}
 
       {recommended && recommended.kind !== 'resume' && (
         <button
@@ -91,38 +81,65 @@ export function WorldHub({
         </button>
       )}
 
-      <div className="vn-hub-actions-row">
-        <section>
-          <h2>Available</h2>
-          <div className="vn-hub-action-list">
-            {actions.map((action) => (
-              <button key={action.id} type="button" onClick={() => onAction(action)}>
-                <span className="vn-world-badge">{worldActionBadge(world, action)}</span>
-                <strong>{action.label.english}</strong>
-                <span>{action.label.chinese}</span>
-              </button>
-            ))}
-            {actions.length === 0 && <small>No actions here yet.</small>}
+      {expanded && (
+        <>
+          {descriptionTokens.length > 0 && (
+            <div className="vn-subtitle-text">
+              <AdaptiveChineseText
+                tokens={descriptionTokens}
+                selectedToken={selectedToken}
+                pinyinMode={pinyinMode}
+                onSelectToken={onSelectToken}
+                className="reader-sentence vn-line"
+              />
+              {showEnglish && description?.english && <p className="vn-translation-overlay revealed">{description.english}</p>}
+            </div>
+          )}
+
+          <div className="vn-hub-actions-row">
+            {actions.length > 0 && (
+              <section>
+                <h2>Available</h2>
+                <div className="vn-hub-action-list">
+                  {actions.map((action) => (
+                    <button key={action.id} type="button" onClick={() => onAction(action)}>
+                      <span className="vn-world-badge">{worldActionBadge(world, action)}</span>
+                      <strong>{action.label.english}</strong>
+                      <span>{action.label.chinese}</span>
+                    </button>
+                  ))}
+                </div>
+              </section>
+            )}
+            {travelLocations.length > 0 && (
+              <section>
+                <h2>Travel</h2>
+                <div className="vn-hub-action-list">
+                  {travelLocations.map((destination) => (
+                    <button
+                      key={destination.id}
+                      type="button"
+                      onClick={() => onAction({ id: `travel-${destination.id}`, kind: 'travel', targetId: destination.id, label: destination.name })}
+                    >
+                      <span className="vn-world-badge">Travel</span>
+                      <strong>{destination.name.english}</strong>
+                      <span>{destination.name.chinese}</span>
+                    </button>
+                  ))}
+                </div>
+              </section>
+            )}
           </div>
-        </section>
-        <section>
-          <h2>Travel</h2>
-          <div className="vn-hub-action-list">
-            {travelLocations.map((destination) => (
-              <button
-                key={destination.id}
-                type="button"
-                onClick={() => onAction({ id: `travel-${destination.id}`, kind: 'travel', targetId: destination.id, label: destination.name })}
-              >
-                <span className="vn-world-badge">Travel</span>
-                <strong>{destination.name.english}</strong>
-                <span>{destination.name.chinese}</span>
-              </button>
-            ))}
-            {travelLocations.length === 0 && <small>No unlocked destinations.</small>}
-          </div>
-        </section>
-      </div>
+        </>
+      )}
+
+      <button
+        type="button"
+        className="vn-explore-btn"
+        onClick={() => setExpanded((v) => !v)}
+      >
+        {expanded ? 'Collapse' : `Explore${totalOptions > 0 ? ` (${totalOptions})` : ''}`}
+      </button>
     </section>
   )
 }
