@@ -5708,29 +5708,34 @@ kbd {
   }
 
   .vn-sprite {
-    width: min(calc(var(--vn-sprite-width) * 0.78), 54vw);
-    max-width: 58%;
+    width: min(calc(var(--vn-sprite-width) * 1.1), 72vw);
+    max-width: 75%;
   }
 
   .vn-sprite-left {
-    left: 34%;
+    left: 28%;
   }
 
   .vn-sprite-right {
-    left: 66%;
+    left: 72%;
   }
 
   .vn-sprite-far-left {
-    left: 18%;
+    left: 14%;
   }
 
   .vn-sprite-far-right {
-    left: 82%;
+    left: 86%;
   }
 
   .vn-sprite-anim-root {
-    width: min(calc(var(--vn-sprite-width) * 0.78), 54vw);
-    max-width: 58%;
+    width: min(calc(var(--vn-sprite-width) * 1.1), 72vw);
+    max-width: 75%;
+  }
+
+  .vn-fullscreen-stage .vn-sprite {
+    width: min(calc(var(--vn-sprite-width, 200px) * 1.1), 72vw);
+    max-width: 75%;
   }
 
   .visual-novel-screen {
