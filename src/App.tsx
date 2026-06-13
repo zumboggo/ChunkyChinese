@@ -307,6 +307,7 @@ function App() {
   const [flashcardSessionRatingCounts, setFlashcardSessionRatingCounts] = useState<Record<FsrsRating, number>>({ again: 0, hard: 0, good: 0, easy: 0 })
   const [flashcardSessionStartMs, setFlashcardSessionStartMs] = useState<number>(0)
   const [flashcardSessionStruggledWords, setFlashcardSessionStruggledWords] = useState<VocabWord[]>([])
+  const [flashcardSessionAllWords, setFlashcardSessionAllWords] = useState<VocabWord[]>([])
   const [editingWord, setEditingWord] = useState<CardEditDraft | null>(null)
   const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
   const [todayReaderStats, setTodayReaderStats] = useState<ReaderSessionStats | null>(null)
@@ -820,6 +821,7 @@ function App() {
     setFlashcardSessionRatingCounts({ again: 0, hard: 0, good: 0, easy: 0 })
     setFlashcardSessionStartMs(Date.now())
     setFlashcardSessionStruggledWords([])
+    setFlashcardSessionAllWords([])
     setScreen('flashcards')
     setLastSummary(queue.length > 0 ? `Loaded ${queue.length} flashcards.` : 'No flashcards match that queue.')
   }, [buildFlashcardQueue])
@@ -843,6 +845,7 @@ function App() {
     setFlashcardSessionRatingCounts({ again: 0, hard: 0, good: 0, easy: 0 })
     setFlashcardSessionStartMs(Date.now())
     setFlashcardSessionStruggledWords([])
+    setFlashcardSessionAllWords([])
     setScreen('flashcards')
     setLastSummary(queue.length > 0 ? `Loaded ${queue.length} sentence flashcards.` : 'No sentence flashcards available.')
   }, [lmsSentences])
@@ -1503,6 +1506,7 @@ function App() {
     if (rating === 'again') {
       setFlashcardSessionStruggledWords((prev) => prev.some((w) => w.id === wordId) ? prev : [...prev, ratedWord])
     }
+    setFlashcardSessionAllWords((prev) => prev.some((w) => w.id === wordId) ? prev : [...prev, ratedWord])
     window.setTimeout(() => {
       void (async () => {
         const updatedWord = await rateWordFsrs(wordId, rating, {
@@ -2812,10 +2816,10 @@ function App() {
                           </span>
                         ))}
                       </div>
-                      {flashcardSessionStruggledWords.length > 0 && (
+                      {flashcardSessionAllWords.length > 0 && (
                         <div className="session-struggled-words">
                           <span className="struggled-label">Words to review:</span>
-                          {flashcardSessionStruggledWords.map((word) => (
+                          {flashcardSessionAllWords.map((word) => (
                             <button
                               key={word.id}
                               type="button"
@@ -4833,9 +4837,6 @@ function FlashcardReview({
             ) : (
               <strong>{word.word}</strong>
             )}
-            <button type="button" className="primary" onClick={onFlip}>
-              Flip
-            </button>
           </>
         )}
         {onToggleActiveRecallPriority && (
@@ -4847,6 +4848,11 @@ function FlashcardReview({
           >
             {choiceKeys?.choiceE && <kbd>{choiceKeys.choiceE.toUpperCase()}</kbd>}
             <span>{word.activeRecallPriorityAt ? '★ Extra review' : '☆ Extra review'}</span>
+          </button>
+        )}
+        {!answerShown && (
+          <button type="button" className="primary flashcard-flip-btn" onClick={onFlip}>
+            Flip
           </button>
         )}
       </div>
