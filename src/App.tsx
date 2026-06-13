@@ -4799,9 +4799,53 @@ function FlashcardReview({
   const previews = previewFsrsRatings(word)
   const audioFront = frontMode === 'audio' && !answerShown
   const reverseFront = frontMode === 'reverse' && !answerShown
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null)
+  const [swipeDir, setSwipeDir] = useState<string | null>(null)
+
+  const SWIPE_THRESHOLD = 40
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    const t = e.touches[0]
+    touchStartRef.current = { x: t.clientX, y: t.clientY }
+    setSwipeDir(null)
+  }, [])
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!touchStartRef.current || !answerShown) return
+    const t = e.touches[0]
+    const dx = t.clientX - touchStartRef.current.x
+    const dy = t.clientY - touchStartRef.current.y
+    if (Math.abs(dx) < SWIPE_THRESHOLD && Math.abs(dy) < SWIPE_THRESHOLD) {
+      setSwipeDir(null)
+      return
+    }
+    if (Math.abs(dx) > Math.abs(dy)) {
+      setSwipeDir(dx > 0 ? 'right' : 'left')
+    } else {
+      setSwipeDir(dy > 0 ? 'down' : 'up')
+    }
+  }, [answerShown])
+
+  const handleTouchEnd = useCallback(() => {
+    if (!touchStartRef.current || !answerShown || !swipeDir || selectedRating) {
+      touchStartRef.current = null
+      setSwipeDir(null)
+      return
+    }
+    const swipeRating: Record<string, FsrsRating> = { up: 'again', left: 'hard', right: 'good', down: 'easy' }
+    const rating = swipeRating[swipeDir]
+    if (rating) onRate(rating)
+    touchStartRef.current = null
+    setSwipeDir(null)
+  }, [answerShown, swipeDir, selectedRating, onRate])
 
   return (
-    <section className="flashcard-review">
+    <section
+      className={`flashcard-review${swipeDir ? ` swipe-${swipeDir}` : ''}`}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className={`flashcard ${answerShown ? 'answer-side' : 'front-side'} ${audioFront ? 'audio-front' : ''} ${reverseFront ? 'reverse-front' : ''}`}>
         <span>{answerShown ? 'Front + back' : audioFront ? 'Audio front' : reverseFront ? 'Reverse front' : 'Front'}</span>
         {answerShown ? (
@@ -4873,6 +4917,16 @@ function FlashcardReview({
               <span>{previews[rating.value].state}</span>
             </button>
           ))}
+        </div>
+      )}
+      {answerShown && swipeDir && (
+        <div className={`swipe-indicator swipe-indicator-${swipeDir}`}>
+          {{ up: 'Again', left: 'Hard', right: 'Good', down: 'Easy' }[swipeDir]}
+        </div>
+      )}
+      {answerShown && !selectedRating && (
+        <div className="swipe-instructions">
+          Swipe: ↑ Again ← Hard → Good ↓ Easy
         </div>
       )}
       <div className="flashcard-bottom-actions">
