@@ -680,10 +680,13 @@ export function VisualNovelWorldMode({
                 const index = castMembers.indexOf(member)
                 const positions = ['vn-sprite-left', 'vn-sprite-center', 'vn-sprite-right'] as const
                 const posClass = positions[index % positions.length]
+                const spriteScale = sprite.defaultScale ?? 0.74
+                const spriteWidth = `${Math.round(sprite.width * spriteScale)}px`
                 return (
                   <div
                     key={`${member.characterId}:${member.spriteId}`}
                     className={`vn-sprite ${posClass}${member.talkQuest ? ' vn-sprite-interactive' : ''}`}
+                    style={{ '--vn-sprite-width': spriteWidth } as React.CSSProperties}
                     role={member.talkQuest ? 'button' : undefined}
                     tabIndex={member.talkQuest ? 0 : undefined}
                     onClick={member.talkQuest ? () => handleWorldAction({
