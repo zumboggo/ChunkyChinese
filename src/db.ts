@@ -1,4 +1,4 @@
-import { openDB, type DBSchema, type IDBPDatabase } from 'idb'
+import { openDB, type DBSchema, type IDBPDatabase, type IDBPTransaction } from 'idb'
 import {
   basenameWithoutExt,
   makeWordId,
@@ -8,11 +8,26 @@ import {
   stableHash,
   vocabFromCsvRows,
 } from './csv'
+import {
+  comicChapterRecordId,
+  comicImageRecordId,
+  comicProgressId,
+  makeDefaultComicProgress,
+  parseComicPackZip,
+} from './comics/comicPack'
 import type {
   AudioClip,
   ClipPack,
   ClipManifestEntry,
   ClipPackManifest,
+  ComicChapter,
+  ComicChapterRecord,
+  ComicImageRecord,
+  ComicImportSummary,
+  ComicPackManifest,
+  ComicPackRecord,
+  ComicPackSummary,
+  ComicProgress,
   DashboardRange,
   DashboardStats,
   FsrsRating,
@@ -66,7 +81,7 @@ interface UpsertWordsOptions {
 }
 
 const DB_NAME = 'chunky-chinese-vocab'
-const DB_VERSION = 9
+const DB_VERSION = 10
 const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
 const READER_PACK_FIX_VERSION = '2026-06-03-book2-per-sentence-images'
@@ -142,6 +157,25 @@ interface ChunkyDB extends DBSchema {
     value: VisualNovelWorldSave
     indexes: { worldId: string; updatedAt: string }
   }
+  comicPacks: {
+    key: string
+    value: ComicPackRecord
+  }
+  comicChapters: {
+    key: string
+    value: ComicChapterRecord
+    indexes: { packId: string }
+  }
+  comicImages: {
+    key: string
+    value: ComicImageRecord
+    indexes: { packId: string }
+  }
+  comicProgress: {
+    key: string
+    value: ComicProgress
+    indexes: { packId: string; updatedAt: string }
+  }
   settings: {
     key: string
     value: unknown
@@ -211,6 +245,22 @@ export function getDB(): Promise<IDBPDatabase<ChunkyDB>> {
           const visualNovelWorldSaves = db.createObjectStore('visualNovelWorldSaves', { keyPath: 'id' })
           visualNovelWorldSaves.createIndex('worldId', 'worldId')
           visualNovelWorldSaves.createIndex('updatedAt', 'updatedAt')
+        }
+        if (!db.objectStoreNames.contains('comicPacks')) {
+          db.createObjectStore('comicPacks', { keyPath: 'id' })
+        }
+        if (!db.objectStoreNames.contains('comicChapters')) {
+          const comicChapters = db.createObjectStore('comicChapters', { keyPath: 'recordId' })
+          comicChapters.createIndex('packId', 'packId')
+        }
+        if (!db.objectStoreNames.contains('comicImages')) {
+          const comicImages = db.createObjectStore('comicImages', { keyPath: 'id' })
+          comicImages.createIndex('packId', 'packId')
+        }
+        if (!db.objectStoreNames.contains('comicProgress')) {
+          const comicProgress = db.createObjectStore('comicProgress', { keyPath: 'id' })
+          comicProgress.createIndex('packId', 'packId')
+          comicProgress.createIndex('updatedAt', 'updatedAt')
         }
         if (!db.objectStoreNames.contains('settings')) {
           db.createObjectStore('settings')
@@ -1296,6 +1346,124 @@ export async function putSyncedReaderProgress(progressRows: ReaderProgress[]): P
   await tx.done
 }
 
+type ComicPackTransaction = IDBPTransaction<
+  ChunkyDB,
+  ['comicPacks', 'comicChapters', 'comicImages', 'comicProgress'],
+  'readwrite'
+>
+
+export async function importComicPack(
+  file: Blob | ArrayBuffer,
+  options: { replace?: boolean; source?: 'sample' | 'imported' } = {},
+): Promise<ComicImportSummary> {
+  const parsed = await parseComicPackZip(file)
+  const db = await getDB()
+  const existing = await db.get('comicPacks', parsed.manifest.id)
+  if (existing && !options.replace) {
+    throw new Error(`Comic pack "${parsed.manifest.id}" already exists. Confirm replacement before importing again.`)
+  }
+  await saveComicPackToDatabase(parsed.manifest, parsed.chapters, parsed.images, parsed.imageContentTypes, {
+    replace: options.replace ?? false,
+    source: options.source ?? 'imported',
+  })
+  return {
+    packId: parsed.manifest.id,
+    title: parsed.manifest.title,
+    chapters: parsed.chapters.length,
+    pages: parsed.chapters.reduce((sum, chapter) => sum + chapter.pages.length, 0),
+    images: parsed.images.size,
+    warnings: parsed.warnings,
+    replaced: Boolean(existing && options.replace),
+  }
+}
+
+export async function ensureSampleComicPack(): Promise<void> {
+  const existing = await getComicPack('sample-missing-dumpling')
+  if (existing) return
+  const baseUrl = `${import.meta.env.BASE_URL}comic-packs/sample-missing-dumpling/`
+  const manifest = await fetchJson(`${baseUrl}manifest.json`) as ComicPackManifest
+  const chapters: ComicChapter[] = []
+  const images = new Map<string, Blob>()
+  const imageContentTypes = new Map<string, string>()
+  const imagePaths = new Set<string>()
+  if (manifest.coverImage) imagePaths.add(manifest.coverImage)
+  for (const ref of manifest.chapters) {
+    const chapter = await fetchJson(`${baseUrl}${ref.file}`) as ComicChapter
+    chapters.push(chapter)
+    for (const page of chapter.pages) imagePaths.add(page.image)
+  }
+  for (const path of imagePaths) {
+    const response = await fetch(`${baseUrl}${path}`)
+    if (!response.ok) throw new Error(`Sample comic image failed to load: ${path}`)
+    images.set(path, await response.blob())
+    imageContentTypes.set(path, response.headers.get('content-type') ?? contentTypeForComicImage(path))
+  }
+  await saveComicPackToDatabase(manifest, chapters, images, imageContentTypes, {
+    replace: true,
+    source: 'sample',
+  })
+}
+
+export async function listComicPacks(): Promise<ComicPackSummary[]> {
+  const db = await getDB()
+  const packs = await db.getAll('comicPacks')
+  const progressRows = await db.getAll('comicProgress')
+  const progressByPack = new Map(progressRows.map((progress) => [progress.packId, progress]))
+  return packs.sort((a, b) => a.title.localeCompare(b.title)).map((pack) => ({
+    id: pack.id,
+    title: pack.title,
+    titleChinese: pack.titleChinese,
+    author: pack.author,
+    description: pack.description,
+    language: pack.language,
+    source: pack.source,
+    coverImage: pack.coverImage,
+    chapterCount: pack.chapterCount,
+    pageCount: pack.pageCount,
+    imageCount: pack.imageCount,
+    progress: progressByPack.get(pack.id),
+  }))
+}
+
+export async function getComicPack(packId: string): Promise<ComicPackRecord | undefined> {
+  return await (await getDB()).get('comicPacks', packId)
+}
+
+export async function getComicChapters(packId: string): Promise<ComicChapterRecord[]> {
+  return (await (await getDB()).getAllFromIndex('comicChapters', 'packId', packId))
+    .sort((a, b) => a.chapterIndex - b.chapterIndex)
+}
+
+export async function getComicChapter(
+  packId: string,
+  chapterId: string,
+): Promise<ComicChapterRecord | undefined> {
+  return await (await getDB()).get('comicChapters', comicChapterRecordId(packId, chapterId))
+}
+
+export async function getComicImage(packId: string, imagePath: string): Promise<Blob | undefined> {
+  return (await (await getDB()).get('comicImages', comicImageRecordId(packId, imagePath)))?.blob
+}
+
+export async function getComicProgress(packId: string): Promise<ComicProgress | undefined> {
+  return await (await getDB()).get('comicProgress', comicProgressId(packId))
+}
+
+export async function saveComicProgress(progress: ComicProgress): Promise<void> {
+  await (await getDB()).put('comicProgress', {
+    ...progress,
+    id: comicProgressId(progress.packId),
+    updatedAt: new Date().toISOString(),
+  })
+}
+
+export async function deleteComicPack(packId: string): Promise<void> {
+  const db = await getDB()
+  const tx = db.transaction(['comicPacks', 'comicChapters', 'comicImages', 'comicProgress'], 'readwrite') as ComicPackTransaction
+  await deleteComicPackInTransaction(tx, packId)
+  await tx.done
+}
+
 function readerSessionId(bookId: string, startedAt: string): string {
   return `reader-session:${bookId}:${startedAt}`
 }
@@ -1669,6 +1837,10 @@ export async function exportBackup(): Promise<string> {
     readerSessions: await db.getAll('readerSessions'),
     visualNovelSaves: await db.getAll('visualNovelSaves'),
     visualNovelWorldSaves: await db.getAll('visualNovelWorldSaves'),
+    comicPacks: await db.getAll('comicPacks'),
+    comicChapters: await db.getAll('comicChapters'),
+    comicImages: await db.getAll('comicImages'),
+    comicProgress: await db.getAll('comicProgress'),
     settings: {
       lmsSeededAt: await db.get('settings', 'lmsSeededAt'),
       activePackId: await db.get('settings', 'activePackId'),
@@ -1692,6 +1864,10 @@ export async function importBackup(text: string): Promise<ImportSummary> {
     readerSessions?: ReaderSession[]
     visualNovelSaves?: VisualNovelSave[]
     visualNovelWorldSaves?: VisualNovelWorldSave[]
+    comicPacks?: ComicPackRecord[]
+    comicChapters?: ComicChapterRecord[]
+    comicImages?: ComicImageRecord[]
+    comicProgress?: ComicProgress[]
     settings?: {
       activePackId?: string
       userSettings?: UserSettings
@@ -1713,6 +1889,10 @@ export async function importBackup(text: string): Promise<ImportSummary> {
       'readerSessions',
       'visualNovelSaves',
       'visualNovelWorldSaves',
+      'comicPacks',
+      'comicChapters',
+      'comicImages',
+      'comicProgress',
     ],
     'readwrite',
   )
@@ -1751,6 +1931,18 @@ export async function importBackup(text: string): Promise<ImportSummary> {
   }
   for (const save of backup.visualNovelWorldSaves ?? []) {
     await tx.objectStore('visualNovelWorldSaves').put(save)
+  }
+  for (const pack of backup.comicPacks ?? []) {
+    await tx.objectStore('comicPacks').put(pack)
+  }
+  for (const chapter of backup.comicChapters ?? []) {
+    await tx.objectStore('comicChapters').put(chapter)
+  }
+  for (const image of backup.comicImages ?? []) {
+    await tx.objectStore('comicImages').put(image)
+  }
+  for (const progress of backup.comicProgress ?? []) {
+    await tx.objectStore('comicProgress').put(progress)
   }
 
   await tx.done
@@ -1982,6 +2174,78 @@ function uniqueReaderWordCount(books: ReaderBook[]): number {
 
 function readerProgressId(packId: string, bookId: string): string {
   return `reader-progress:${packId}:${bookId}`
+}
+
+async function saveComicPackToDatabase(
+  manifest: ComicPackManifest,
+  chapters: ComicChapter[],
+  images: Map<string, Blob>,
+  imageContentTypes: Map<string, string>,
+  options: { replace: boolean; source: 'sample' | 'imported' },
+): Promise<void> {
+  const db = await getDB()
+  const existing = await db.get('comicPacks', manifest.id)
+  if (existing && !options.replace) {
+    throw new Error(`Comic pack "${manifest.id}" already exists. Confirm replacement before importing again.`)
+  }
+
+  const now = new Date().toISOString()
+  const tx = db.transaction(['comicPacks', 'comicChapters', 'comicImages', 'comicProgress'], 'readwrite') as ComicPackTransaction
+  if (existing && options.replace) await deleteComicPackInTransaction(tx, manifest.id, { keepProgress: false })
+  await tx.objectStore('comicPacks').put({
+    ...manifest,
+    importedAt: existing?.importedAt ?? now,
+    updatedAt: now,
+    source: options.source,
+    chapterCount: chapters.length,
+    pageCount: chapters.reduce((sum, chapter) => sum + chapter.pages.length, 0),
+    imageCount: images.size,
+  })
+  for (const [chapterIndex, chapter] of chapters.entries()) {
+    await tx.objectStore('comicChapters').put({
+      ...chapter,
+      recordId: comicChapterRecordId(manifest.id, chapter.id),
+      packId: manifest.id,
+      chapterIndex,
+      updatedAt: now,
+    })
+  }
+  for (const [path, blob] of images.entries()) {
+    await tx.objectStore('comicImages').put({
+      id: comicImageRecordId(manifest.id, path),
+      packId: manifest.id,
+      path,
+      blob,
+      contentType: imageContentTypes.get(path) ?? contentTypeForComicImage(path),
+      updatedAt: now,
+    })
+  }
+  if (!(await tx.objectStore('comicProgress').get(comicProgressId(manifest.id)))) {
+    await tx.objectStore('comicProgress').put(makeDefaultComicProgress(manifest.id, chapters[0]?.id ?? 'chapter-01'))
+  }
+  await tx.done
+}
+
+async function deleteComicPackInTransaction(
+  tx: ComicPackTransaction,
+  packId: string,
+  options: { keepProgress?: boolean } = {},
+): Promise<void> {
+  await tx.objectStore('comicPacks').delete(packId)
+  const chapterKeys = await tx.objectStore('comicChapters').index('packId').getAllKeys(packId)
+  for (const key of chapterKeys) await tx.objectStore('comicChapters').delete(key)
+  const imageKeys = await tx.objectStore('comicImages').index('packId').getAllKeys(packId)
+  for (const key of imageKeys) await tx.objectStore('comicImages').delete(key)
+  if (!options.keepProgress) await tx.objectStore('comicProgress').delete(comicProgressId(packId))
+}
+
+function contentTypeForComicImage(path: string): string {
+  const lower = path.toLowerCase()
+  if (lower.endsWith('.svg')) return 'image/svg+xml'
+  if (lower.endsWith('.png')) return 'image/png'
+  if (lower.endsWith('.jpg') || lower.endsWith('.jpeg')) return 'image/jpeg'
+  if (lower.endsWith('.webp')) return 'image/webp'
+  return 'application/octet-stream'
 }
 
 function resolveHostedBaseUrl(baseUrl: string): string {

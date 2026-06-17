@@ -1,0 +1,103 @@
+{
+  "id": "chapter-01",
+  "title": "The Investigation",
+  "titleChinese": "调查",
+  "pages": [
+    {
+      "id": "page-001",
+      "image": "images/chapter-01-page-001.svg",
+      "width": 900,
+      "height": 1300,
+      "bubbles": [
+        {
+          "id": "bubble-001",
+          "order": 1,
+          "chinese": "早上，小林发现盘子空了。",
+          "english": "In the morning, Xiao Lin discovered the plate was empty.",
+          "type": "narration",
+          "box": { "x": 0.08, "y": 0.06, "width": 0.48, "height": 0.1 }
+        },
+        {
+          "id": "bubble-002",
+          "order": 2,
+          "chinese": "我的饺子去哪儿了？",
+          "english": "Where did my dumpling go?",
+          "type": "dialogue",
+          "box": { "x": 0.55, "y": 0.13, "width": 0.35, "height": 0.12 }
+        },
+        {
+          "id": "bubble-003",
+          "order": 3,
+          "chinese": "咚！",
+          "english": "Thump!",
+          "type": "sfx",
+          "box": { "x": 0.12, "y": 0.5, "width": 0.18, "height": 0.08 }
+        }
+      ]
+    },
+    {
+      "id": "page-002",
+      "image": "images/chapter-01-page-002.svg",
+      "width": 900,
+      "height": 1300,
+      "bubbles": [
+        {
+          "id": "bubble-004",
+          "order": 1,
+          "chinese": "桌子下面有一条小小的线索。",
+          "english": "Under the table there was one tiny clue.",
+          "type": "narration",
+          "box": { "x": 0.06, "y": 0.08, "width": 0.5, "height": 0.1 }
+        },
+        {
+          "id": "bubble-005",
+          "order": 2,
+          "chinese": "这是辣椒油的味道。",
+          "english": "This is the smell of chili oil.",
+          "type": "thought",
+          "box": { "x": 0.5, "y": 0.24, "width": 0.36, "height": 0.11 }
+        },
+        {
+          "id": "bubble-006",
+          "order": 3,
+          "chinese": "我知道是谁了。",
+          "english": "I know who it was.",
+          "type": "dialogue",
+          "box": { "x": 0.47, "y": 0.62, "width": 0.32, "height": 0.11 }
+        }
+      ]
+    },
+    {
+      "id": "page-003",
+      "image": "images/chapter-01-page-003.svg",
+      "width": 900,
+      "height": 1300,
+      "bubbles": [
+        {
+          "id": "bubble-007",
+          "order": 1,
+          "chinese": "猫坐在窗边，嘴边还有一点油。",
+          "english": "The cat sat by the window with a little oil near its mouth.",
+          "type": "narration",
+          "box": { "x": 0.08, "y": 0.08, "width": 0.56, "height": 0.11 }
+        },
+        {
+          "id": "bubble-008",
+          "order": 2,
+          "chinese": "下次我们一起吃，好吗？",
+          "english": "Next time, shall we eat together?",
+          "type": "dialogue",
+          "box": { "x": 0.42, "y": 0.48, "width": 0.4, "height": 0.12 }
+        },
+        {
+          "id": "bubble-009",
+          "order": 3,
+          "chinese": "喵。",
+          "english": "Meow.",
+          "type": "sfx",
+          "box": { "x": 0.22, "y": 0.38, "width": 0.16, "height": 0.08 }
+        }
+      ]
+    }
+  ]
+}

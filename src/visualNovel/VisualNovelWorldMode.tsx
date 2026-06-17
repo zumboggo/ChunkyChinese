@@ -62,7 +62,8 @@ import type {
 } from './types'
 import { getNodeText, getNodeAudioClipId, scopedTokens, stopAudio, speakUtterance, formatDueDate, getLocationBackgroundId } from './utils'
 import { QuestPlayer, type VnTextSpeed } from './QuestPlayer'
-import { WorldHub, getHubCastMembers, MAP_LAYOUT, MAP_CONNECTIONS } from './WorldHub'
+import { WorldHub } from './WorldHub'
+import { getHubCastMembers, MAP_LAYOUT, MAP_CONNECTIONS } from './WorldHubData'
 import { WorldStatusPanel } from './WorldStatusPanel'
 
 interface VisualNovelWorldModeProps {
@@ -84,8 +85,6 @@ export function VisualNovelWorldMode({
   readerBooks,
   pinyinMode,
   readerTheme,
-  readerFontScale: _readerFontScale,
-  readerLineHeight: _readerLineHeight,
   playbackRate,
   hotkeys,
   onEditWord,

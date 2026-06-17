@@ -190,19 +190,22 @@ export function QuestPlayer({
       const msPerToken = TEXT_SPEED_MS[textSpeed]
       const totalTokens = displayTokens.length
 
-      if (msPerToken === 0 || totalTokens === 0) {
-        setVisibleTokenCount(undefined)
-        setTypewriterDone(true)
-      } else {
-        setVisibleTokenCount(0)
-        setTypewriterDone(false)
-        for (let i = 1; i <= totalTokens; i++) {
-          const t = setTimeout(() => setVisibleTokenCount(i), i * msPerToken)
-          typewriterTimersRef.current.push(t)
+      const setupTimer = setTimeout(() => {
+        if (msPerToken === 0 || totalTokens === 0) {
+          setVisibleTokenCount(undefined)
+          setTypewriterDone(true)
+        } else {
+          setVisibleTokenCount(0)
+          setTypewriterDone(false)
+          for (let i = 1; i <= totalTokens; i++) {
+            const t = setTimeout(() => setVisibleTokenCount(i), i * msPerToken)
+            typewriterTimersRef.current.push(t)
+          }
+          const doneT = setTimeout(() => setTypewriterDone(true), totalTokens * msPerToken + 100)
+          typewriterTimersRef.current.push(doneT)
         }
-        const doneT = setTimeout(() => setTypewriterDone(true), totalTokens * msPerToken + 100)
-        typewriterTimersRef.current.push(doneT)
-      }
+      }, 0)
+      typewriterTimersRef.current.push(setupTimer)
     }
     return () => {
       for (const t of typewriterTimersRef.current) clearTimeout(t)

@@ -213,6 +213,130 @@ export interface ReaderSessionStats {
   totalSessions: number
 }
 
+export type ComicBubbleType = 'dialogue' | 'narration' | 'thought' | 'sfx'
+
+export type ComicTranslationMode = 'hidden' | 'tap' | 'visible'
+
+export interface ComicPackManifest {
+  format: 'chunky-comic-pack'
+  formatVersion: 1
+  id: string
+  title: string
+  titleChinese?: string
+  author?: string
+  description?: string
+  language: 'zh-CN' | 'zh-TW'
+  coverImage?: string
+  chapters: ComicChapterReference[]
+}
+
+export interface ComicChapterReference {
+  id: string
+  title: string
+  titleChinese?: string
+  file: string
+}
+
+export interface ComicChapter {
+  id: string
+  title: string
+  titleChinese?: string
+  pages: ComicPage[]
+}
+
+export interface ComicPage {
+  id: string
+  image: string
+  width?: number
+  height?: number
+  bubbles: ComicBubble[]
+}
+
+export interface ComicBubble {
+  id: string
+  order: number
+  chinese: string
+  english?: string
+  type: ComicBubbleType
+  box?: {
+    x: number
+    y: number
+    width: number
+    height: number
+  }
+}
+
+export interface ComicPackRecord extends ComicPackManifest {
+  importedAt: string
+  updatedAt: string
+  source: 'sample' | 'imported'
+  chapterCount: number
+  pageCount: number
+  imageCount: number
+}
+
+export interface ComicChapterRecord extends ComicChapter {
+  recordId: string
+  packId: string
+  chapterIndex: number
+  updatedAt: string
+}
+
+export interface ComicImageRecord {
+  id: string
+  packId: string
+  path: string
+  blob: Blob
+  contentType?: string
+  updatedAt: string
+}
+
+export interface ComicProgress {
+  id: string
+  packId: string
+  chapterId: string
+  pageIndex: number
+  updatedAt: string
+  translationMode: ComicTranslationMode
+  showSoundEffects: boolean
+}
+
+export interface ComicPackSummary {
+  id: string
+  title: string
+  titleChinese?: string
+  author?: string
+  description?: string
+  language: 'zh-CN' | 'zh-TW'
+  source: 'sample' | 'imported'
+  coverImage?: string
+  chapterCount: number
+  pageCount: number
+  imageCount: number
+  progress?: ComicProgress
+}
+
+export interface ComicImportSummary {
+  packId: string
+  title: string
+  chapters: number
+  pages: number
+  images: number
+  warnings: string[]
+  replaced: boolean
+}
+
+export interface ComicCoverageSummary {
+  totalOccurrences: number
+  uniqueWords: number
+  knownOccurrences: number
+  familiarOccurrences: number
+  learningOccurrences: number
+  unknownOccurrences: number
+  knownPercent: number
+  uniqueUnknownWords: number
+}
+
 
 export interface VocabWord {
   id: string

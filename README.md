@@ -20,6 +20,67 @@ npm.cmd run dev
 npm.cmd run build
 ```
 
+## Comic Reader
+
+Comic Reader opens locally prepared Chinese comic packs and shows the artwork above a clickable Chinese transcript. Transcript lines reuse ChunkyChinese Adaptive Mode, saved vocabulary identities, CC-CEDICT lookup, and the existing word popover, so tapping a Chinese word works like Reader and Visual Novel text.
+
+Comic files stay local in the browser. The app does not upload comics, run OCR, scrape websites, download comics from URLs, or automatically translate pages in this first version.
+
+Comic packs use a ZIP file with the extension `.comicpack.zip`:
+
+```text
+my-comic.comicpack.zip
+  manifest.json
+  chapters/
+    chapter-01.json
+  images/
+    chapter-01-page-001.webp
+    chapter-01-page-002.webp
+```
+
+`manifest.json` must be at the ZIP root, not inside an extra wrapping folder. A minimal manifest looks like:
+
+```json
+{
+  "format": "chunky-comic-pack",
+  "formatVersion": 1,
+  "id": "my-comic",
+  "title": "My Comic",
+  "titleChinese": "我的漫画",
+  "language": "zh-CN",
+  "coverImage": "images/page-001.webp",
+  "chapters": [
+    {
+      "id": "chapter-01",
+      "title": "Chapter One",
+      "file": "chapters/chapter-01.json"
+    }
+  ]
+}
+```
+
+Each chapter JSON lists pages, image paths, and manually prepared bubbles in reading order. Coordinates are normalized `0` to `1` values and are preserved for future overlay tooling, even though v1 renders translations below the image.
+
+The repository includes a copyright-free sample under:
+
+```text
+public/comic-packs/sample-missing-dumpling
+```
+
+It also includes a manual template under:
+
+```text
+examples/comicpack-template
+```
+
+To zip a copied template folder in PowerShell, run this from inside the folder:
+
+```powershell
+Compress-Archive -Path manifest.json,chapters,images -DestinationPath my-comic.comicpack.zip
+```
+
+Only import material you are legally permitted to use. Do not distribute processed comic packs or transcript files for copyrighted works without permission.
+
 ## Publish to GitHub Pages
 
 This repository is configured to publish the PWA app shell to GitHub Pages from the `main` branch. The GitHub Actions workflow builds with `GITHUB_PAGES=true`, which sets the Vite base path to `/ChunkyChinese/`.

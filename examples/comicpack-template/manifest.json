@@ -1,0 +1,19 @@
+{
+  "format": "chunky-comic-pack",
+  "formatVersion": 1,
+  "id": "my-comic",
+  "title": "My Comic",
+  "titleChinese": "我的漫画",
+  "author": "Your Name",
+  "description": "A manually prepared local comic pack.",
+  "language": "zh-CN",
+  "coverImage": "images/page-001.svg",
+  "chapters": [
+    {
+      "id": "chapter-01",
+      "title": "Chapter One",
+      "titleChinese": "第一章",
+      "file": "chapters/chapter-01.json"
+    }
+  ]
+}

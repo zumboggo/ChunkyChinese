@@ -1,0 +1,23 @@
+{
+  "id": "chapter-01",
+  "title": "Chapter One",
+  "titleChinese": "第一章",
+  "pages": [
+    {
+      "id": "page-001",
+      "image": "images/page-001.svg",
+      "width": 900,
+      "height": 1300,
+      "bubbles": [
+        {
+          "id": "bubble-001",
+          "order": 1,
+          "chinese": "这里写中文台词。",
+          "english": "Write the English translation here.",
+          "type": "dialogue",
+          "box": { "x": 0.1, "y": 0.1, "width": 0.4, "height": 0.12 }
+        }
+      ]
+    }
+  ]
+}

@@ -85,6 +85,7 @@ import { AdaptiveChineseText } from './AdaptiveChineseText'
 import { WordInfoPopover } from './WordInfoPopover'
 import { UniversalImporter } from './UniversalImporter'
 import { VisualNovelWorldMode } from './visualNovel/VisualNovelWorldMode'
+import { ComicReaderMode } from './comics/ComicReaderMode'
 import {
   getCloudAuthState,
   isSupabaseConfigured,
@@ -124,7 +125,7 @@ import type {
   DictionaryEntry,
 } from './types'
 
-type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'visualNovel'
+type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'visualNovel' | 'comicReader'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
 type FlashcardFrontMode = 'text' | 'audio' | 'reverse'
 type ReaderPinyinMode = UserSettings['readerPinyinMode']
@@ -306,7 +307,7 @@ function App() {
   const [flashcardCelebrationId, setFlashcardCelebrationId] = useState(0)
   const [flashcardSessionRatingCounts, setFlashcardSessionRatingCounts] = useState<Record<FsrsRating, number>>({ again: 0, hard: 0, good: 0, easy: 0 })
   const [flashcardSessionStartMs, setFlashcardSessionStartMs] = useState<number>(0)
-  const [flashcardSessionStruggledWords, setFlashcardSessionStruggledWords] = useState<VocabWord[]>([])
+  const [, setFlashcardSessionStruggledWords] = useState<VocabWord[]>([])
   const [flashcardSessionAllWords, setFlashcardSessionAllWords] = useState<VocabWord[]>([])
   const [editingWord, setEditingWord] = useState<CardEditDraft | null>(null)
   const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
@@ -1682,6 +1683,9 @@ function App() {
         } else if (mappedIndex === 3) {
           event.preventDefault()
           startModeLessonRef.current?.('listeningMode')
+        } else if (pressed === hotkeys.choiceE) {
+          event.preventDefault()
+          setScreen('comicReader')
         }
         return
       }
@@ -2293,6 +2297,11 @@ function App() {
                 <kbd>{hotkeys.choiceD.toUpperCase()}</kbd>
                 <strong>Listening</strong>
                 <span>Listen with passive or active recall modes.</span>
+              </button>
+              <button className="mode-start comic-start" type="button" onClick={() => setScreen('comicReader')}>
+                <kbd>{hotkeys.choiceE.toUpperCase()}</kbd>
+                <strong>Comic Reader</strong>
+                <span>Read local comic pages with clickable Chinese transcripts.</span>
               </button>
             </div>
           </div>
@@ -2930,6 +2939,16 @@ function App() {
           onEditWord={openCardEditor}
           onWordsChanged={refresh}
           onReturnToReader={() => setScreen('reader')}
+        />
+      )}
+
+      {screen === 'comicReader' && (
+        <ComicReaderMode
+          words={scopedWords.length > 0 ? scopedWords : words}
+          pinyinMode={userSettings.readerPinyinMode}
+          onEditWord={openCardEditor}
+          onWordsChanged={refresh}
+          onReturnHome={() => setScreen('dashboard')}
         />
       )}
 
