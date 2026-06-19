@@ -9,6 +9,7 @@ Everything runs on your computer. The default workflow does not upload images, O
 - Imports `.png`, `.jpg`, `.jpeg`, and `.webp` pages in natural filename order.
 - Renames pages consistently and optionally converts them to quality-controlled WebP.
 - Runs optional local Simplified or Traditional Chinese OCR through PaddleOCR.
+- Discards OCR detections with no Chinese characters to reduce logo and HUD noise.
 - Stores OCR text, confidence, pixel boxes, normalized boxes, and reading order in `project.json`.
 - Provides a localhost review interface for editing text, translations, types, order, boxes, and review/ignore state.
 - Supports manual missing-bubble creation and false-positive deletion.

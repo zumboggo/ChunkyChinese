@@ -3,9 +3,11 @@ from __future__ import annotations
 import json
 import sys
 import tempfile
+import types
 import unittest
 import zipfile
 from pathlib import Path
+from unittest.mock import patch
 
 from PIL import Image
 
@@ -16,7 +18,7 @@ if str(TOOL_DIR) not in sys.path:
 from build_comic_pack import build_parser, initialize_project
 from comic_pack_schema import build_pack_documents, export_pack, save_project, validate_project
 from image_utils import natural_sort_key
-from ocr import normalize_box, normalize_ocr_response, sort_reading_order
+from ocr import _call_engine, create_paddle_engine, normalize_box, normalize_ocr_response, sort_reading_order
 
 
 class ComicPackBuilderTests(unittest.TestCase):
@@ -52,6 +54,64 @@ class ComicPackBuilderTests(unittest.TestCase):
         self.assertEqual([bubble["chinese"] for bubble in bubbles], ["你好", "再见"])
         self.assertFalse(bubbles[0]["needsReview"])
         self.assertTrue(bubbles[1]["needsReview"])
+
+    def test_current_paddle_engine_configuration(self) -> None:
+        received: dict[str, object] = {}
+
+        class FakePaddleOCR:
+            def __init__(self, **kwargs):
+                received.update(kwargs)
+
+        with patch.dict(sys.modules, {"paddleocr": types.SimpleNamespace(PaddleOCR=FakePaddleOCR)}):
+            engine = create_paddle_engine("zh")
+
+        self.assertIsInstance(engine, FakePaddleOCR)
+        self.assertEqual(received["lang"], "ch")
+        self.assertFalse(received["use_doc_orientation_classify"])
+        self.assertFalse(received["use_doc_unwarping"])
+        self.assertTrue(received["use_textline_orientation"])
+
+    def test_predict_is_preferred_for_current_paddle(self) -> None:
+        calls: list[str] = []
+
+        class FakeEngine:
+            def predict(self, path):
+                calls.append(f"predict:{path}")
+                return ["current"]
+
+            def ocr(self, path, cls=True):
+                calls.append(f"ocr:{path}:{cls}")
+                return ["legacy"]
+
+        result = _call_engine(FakeEngine(), Path("page.webp"))
+        self.assertEqual(result, ["current"])
+        self.assertEqual(calls, ["predict:page.webp"])
+
+    def test_current_paddle_json_result_normalization(self) -> None:
+        response = [{
+            "res": {
+                "dt_polys": [[[20, 20], [120, 20], [120, 70], [20, 70]]],
+                "rec_texts": ["你好"],
+                "rec_scores": [0.96],
+            }
+        }]
+        bubbles = normalize_ocr_response(response, "page-001", 200, 400)
+        self.assertEqual(len(bubbles), 1)
+        self.assertEqual(bubbles[0]["chinese"], "你好")
+
+    def test_non_chinese_ocr_noise_is_excluded(self) -> None:
+        response = [{
+            "res": {
+                "dt_polys": [
+                    [[20, 20], [120, 20], [120, 70], [20, 70]],
+                    [[20, 80], [120, 80], [120, 130], [20, 130]],
+                ],
+                "rec_texts": ["W", "气血："],
+                "rec_scores": [0.99, 0.98],
+            }
+        }]
+        bubbles = normalize_ocr_response(response, "page-001", 200, 400)
+        self.assertEqual([bubble["chinese"] for bubble in bubbles], ["气血："])
 
     def test_reading_order_uses_vertical_bands_then_left_to_right(self) -> None:
         candidates = [

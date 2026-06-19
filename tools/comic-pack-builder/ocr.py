@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any, Iterable
 
 from comic_pack_schema import load_project, save_project
+
+_CJK_TEXT = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]")
 
 
 def normalize_box(
@@ -65,7 +68,7 @@ def normalize_ocr_response(
     candidates: list[dict[str, Any]] = []
     for index, (points, text, confidence) in enumerate(rows, start=1):
         cleaned = str(text).strip()
-        if not cleaned:
+        if not cleaned or not _CJK_TEXT.search(cleaned):
             continue
         box, source_box = normalize_box(points, image_width, image_height)
         candidates.append(
@@ -97,9 +100,17 @@ def create_paddle_engine(language: str = "zh"):
         ) from error
     paddle_language = "chinese_cht" if language in {"zh-TW", "cht", "traditional"} else "ch"
     try:
-        return PaddleOCR(use_angle_cls=True, lang=paddle_language, show_log=False)
-    except TypeError:
-        return PaddleOCR(lang=paddle_language)
+        return PaddleOCR(
+            lang=paddle_language,
+            use_doc_orientation_classify=False,
+            use_doc_unwarping=False,
+            use_textline_orientation=True,
+        )
+    except (TypeError, ValueError):
+        try:
+            return PaddleOCR(use_angle_cls=True, lang=paddle_language, show_log=False)
+        except (TypeError, ValueError):
+            return PaddleOCR(lang=paddle_language)
 
 
 def run_project_ocr(
@@ -139,10 +150,10 @@ def run_project_ocr(
 
 
 def _call_engine(engine: Any, image_path: Path) -> Any:
-    if hasattr(engine, "ocr"):
-        return engine.ocr(str(image_path), cls=True)
     if hasattr(engine, "predict"):
         return engine.predict(str(image_path))
+    if hasattr(engine, "ocr"):
+        return engine.ocr(str(image_path), cls=True)
     raise RuntimeError("Unsupported OCR engine: expected ocr() or predict().")
 
 
@@ -157,6 +168,10 @@ def _iter_ocr_rows(response: Any):
         yield from _iter_ocr_rows(response.res)
         return
     if isinstance(response, dict):
+        nested_result = response.get("res")
+        if isinstance(nested_result, dict):
+            yield from _iter_ocr_rows(nested_result)
+            return
         texts = response.get("rec_texts") or response.get("texts") or []
         scores = response.get("rec_scores") or response.get("scores") or []
         boxes = response.get("dt_polys") or response.get("rec_polys") or response.get("boxes") or []
