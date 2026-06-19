@@ -1,0 +1,1306 @@
+{
+  "id": "chapter-01",
+  "title": "Chapter 1",
+  "titleChinese": "第一话",
+  "pages": [
+    {
+      "id": "page-001",
+      "image": "images/chapter-01-page-001.webp",
+      "width": 1500,
+      "height": 880,
+      "bubbles": [
+        {
+          "id": "page-001-bubble-001",
+          "order": 1,
+          "chinese": "阅文集团",
+          "type": "dialogue",
+          "box": {
+            "x": 0.818667,
+            "y": 0.005682,
+            "width": 0.082667,
+            "height": 0.034091
+          }
+        },
+        {
+          "id": "page-001-bubble-004",
+          "order": 2,
+          "chinese": "鲜漫文化",
+          "type": "dialogue",
+          "box": {
+            "x": 0.908,
+            "y": 0.028409,
+            "width": 0.07,
+            "height": 0.021591
+          }
+        },
+        {
+          "id": "page-001-bubble-005",
+          "order": 3,
+          "chinese": "全球高武",
+          "type": "dialogue",
+          "box": {
+            "x": 0.090667,
+            "y": 0.720455,
+            "width": 0.337333,
+            "height": 0.188636
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-002",
+      "image": "images/chapter-01-page-002.webp",
+      "width": 800,
+      "height": 368,
+      "bubbles": []
+    },
+    {
+      "id": "page-003",
+      "image": "images/chapter-01-page-003.webp",
+      "width": 800,
+      "height": 373,
+      "bubbles": [
+        {
+          "id": "page-003-bubble-001",
+          "order": 1,
+          "chinese": "这里是2008年",
+          "type": "dialogue",
+          "box": {
+            "x": 0.26875,
+            "y": 0.193029,
+            "width": 0.45,
+            "height": 0.176944
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-004",
+      "image": "images/chapter-01-page-004.webp",
+      "width": 800,
+      "height": 362,
+      "bubbles": []
+    },
+    {
+      "id": "page-005",
+      "image": "images/chapter-01-page-005.webp",
+      "width": 800,
+      "height": 417,
+      "bubbles": []
+    },
+    {
+      "id": "page-006",
+      "image": "images/chapter-01-page-006.webp",
+      "width": 800,
+      "height": 379,
+      "bubbles": []
+    },
+    {
+      "id": "page-007",
+      "image": "images/chapter-01-page-007.webp",
+      "width": 800,
+      "height": 425,
+      "bubbles": []
+    },
+    {
+      "id": "page-008",
+      "image": "images/chapter-01-page-008.webp",
+      "width": 800,
+      "height": 358,
+      "bubbles": [
+        {
+          "id": "page-008-bubble-001",
+          "order": 1,
+          "chinese": "我重生到了十年前！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.1325,
+            "y": 0.0,
+            "width": 0.78125,
+            "height": 0.162011
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-009",
+      "image": "images/chapter-01-page-009.webp",
+      "width": 800,
+      "height": 365,
+      "bubbles": [
+        {
+          "id": "page-009-bubble-001",
+          "order": 1,
+          "chinese": "但这里",
+          "type": "dialogue",
+          "box": {
+            "x": 0.38,
+            "y": 0.394521,
+            "width": 0.22,
+            "height": 0.210959
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-010",
+      "image": "images/chapter-01-page-010.webp",
+      "width": 800,
+      "height": 347,
+      "bubbles": [
+        {
+          "id": "page-010-bubble-001",
+          "order": 1,
+          "chinese": "和原来的世界不太一样",
+          "type": "dialogue",
+          "box": {
+            "x": 0.245,
+            "y": 0.170029,
+            "width": 0.485,
+            "height": 0.132565
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-011",
+      "image": "images/chapter-01-page-011.webp",
+      "width": 800,
+      "height": 345,
+      "bubbles": []
+    },
+    {
+      "id": "page-012",
+      "image": "images/chapter-01-page-012.webp",
+      "width": 800,
+      "height": 421,
+      "bubbles": [
+        {
+          "id": "page-012-bubble-001",
+          "order": 1,
+          "chinese": "武者",
+          "type": "dialogue",
+          "box": {
+            "x": 0.18125,
+            "y": 0.144893,
+            "width": 0.4975,
+            "height": 0.534442
+          }
+        },
+        {
+          "id": "page-012-bubble-002",
+          "order": 2,
+          "chinese": "三特权",
+          "type": "dialogue",
+          "box": {
+            "x": 0.2075,
+            "y": 0.653207,
+            "width": 0.69625,
+            "height": 0.346793
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-013",
+      "image": "images/chapter-01-page-013.webp",
+      "width": 800,
+      "height": 379,
+      "bubbles": []
+    },
+    {
+      "id": "page-014",
+      "image": "images/chapter-01-page-014.webp",
+      "width": 800,
+      "height": 425,
+      "bubbles": []
+    },
+    {
+      "id": "page-015",
+      "image": "images/chapter-01-page-015.webp",
+      "width": 800,
+      "height": 875,
+      "bubbles": [
+        {
+          "id": "page-015-bubble-001",
+          "order": 1,
+          "chinese": "拒绝一个三品",
+          "type": "dialogue",
+          "box": {
+            "x": 0.03,
+            "y": 0.451429,
+            "width": 0.3225,
+            "height": 0.057143
+          }
+        },
+        {
+          "id": "page-015-bubble-002",
+          "order": 2,
+          "chinese": "武者的人情，",
+          "type": "dialogue",
+          "box": {
+            "x": 0.03125,
+            "y": 0.512,
+            "width": 0.29125,
+            "height": 0.054857
+          }
+        },
+        {
+          "id": "page-015-bubble-003",
+          "order": 3,
+          "chinese": "可没什么",
+          "type": "dialogue",
+          "box": {
+            "x": 0.2125,
+            "y": 0.750857,
+            "width": 0.2125,
+            "height": 0.057143
+          }
+        },
+        {
+          "id": "page-015-bubble-004",
+          "order": 4,
+          "chinese": "好处……",
+          "type": "dialogue",
+          "box": {
+            "x": 0.21125,
+            "y": 0.805714,
+            "width": 0.21375,
+            "height": 0.057143
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-016",
+      "image": "images/chapter-01-page-016.webp",
+      "width": 800,
+      "height": 347,
+      "bubbles": []
+    },
+    {
+      "id": "page-017",
+      "image": "images/chapter-01-page-017.webp",
+      "width": 800,
+      "height": 347,
+      "bubbles": [
+        {
+          "id": "page-017-bubble-001",
+          "order": 1,
+          "chinese": "我以为我会像所有重生的男主一样",
+          "type": "dialogue",
+          "box": {
+            "x": 0.09625,
+            "y": 0.440922,
+            "width": 0.8075,
+            "height": 0.115274
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-018",
+      "image": "images/chapter-01-page-018.webp",
+      "width": 800,
+      "height": 345,
+      "bubbles": []
+    },
+    {
+      "id": "page-019",
+      "image": "images/chapter-01-page-019.webp",
+      "width": 800,
+      "height": 390,
+      "bubbles": []
+    },
+    {
+      "id": "page-020",
+      "image": "images/chapter-01-page-020.webp",
+      "width": 800,
+      "height": 372,
+      "bubbles": []
+    },
+    {
+      "id": "page-021",
+      "image": "images/chapter-01-page-021.webp",
+      "width": 800,
+      "height": 351,
+      "bubbles": [
+        {
+          "id": "page-021-bubble-001",
+          "order": 1,
+          "chinese": "得到一个金手指……",
+          "type": "dialogue",
+          "box": {
+            "x": 0.23875,
+            "y": 0.082621,
+            "width": 0.54625,
+            "height": 0.176638
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-022",
+      "image": "images/chapter-01-page-022.webp",
+      "width": 800,
+      "height": 470,
+      "bubbles": [
+        {
+          "id": "page-022-bubble-002",
+          "order": 1,
+          "chinese": "在了我眼前！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.335,
+            "y": 0.593617,
+            "width": 0.235,
+            "height": 0.085106
+          }
+        },
+        {
+          "id": "page-022-bubble-001",
+          "order": 2,
+          "chinese": "这东西突然出现",
+          "type": "dialogue",
+          "box": {
+            "x": 0.33625,
+            "y": 0.504255,
+            "width": 0.2975,
+            "height": 0.078723
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-023",
+      "image": "images/chapter-01-page-023.webp",
+      "width": 800,
+      "height": 700,
+      "bubbles": []
+    },
+    {
+      "id": "page-024",
+      "image": "images/chapter-01-page-024.webp",
+      "width": 800,
+      "height": 363,
+      "bubbles": []
+    },
+    {
+      "id": "page-025",
+      "image": "images/chapter-01-page-025.webp",
+      "width": 800,
+      "height": 440,
+      "bubbles": [
+        {
+          "id": "page-025-bubble-002",
+          "order": 1,
+          "chinese": "车财富：",
+          "type": "dialogue",
+          "box": {
+            "x": 0.11375,
+            "y": 0.152273,
+            "width": 0.3975,
+            "height": 0.147727
+          }
+        },
+        {
+          "id": "page-025-bubble-006",
+          "order": 2,
+          "chinese": "气血：",
+          "type": "dialogue",
+          "box": {
+            "x": 0.245,
+            "y": 0.345455,
+            "width": 0.26125,
+            "height": 0.159091
+          }
+        },
+        {
+          "id": "page-025-bubble-010",
+          "order": 3,
+          "chinese": "精神：",
+          "type": "dialogue",
+          "box": {
+            "x": 0.23875,
+            "y": 0.545455,
+            "width": 0.26625,
+            "height": 0.156818
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-026",
+      "image": "images/chapter-01-page-026.webp",
+      "width": 800,
+      "height": 396,
+      "bubbles": [
+        {
+          "id": "page-026-bubble-004",
+          "order": 1,
+          "chinese": "确实得到了",
+          "type": "dialogue",
+          "box": {
+            "x": 0.22375,
+            "y": 0.828283,
+            "width": 0.53875,
+            "height": 0.171717
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-027",
+      "image": "images/chapter-01-page-027.webp",
+      "width": 800,
+      "height": 385,
+      "bubbles": []
+    },
+    {
+      "id": "page-028",
+      "image": "images/chapter-01-page-028.webp",
+      "width": 800,
+      "height": 408,
+      "bubbles": []
+    },
+    {
+      "id": "page-029",
+      "image": "images/chapter-01-page-029.webp",
+      "width": 800,
+      "height": 445,
+      "bubbles": []
+    },
+    {
+      "id": "page-030",
+      "image": "images/chapter-01-page-030.webp",
+      "width": 800,
+      "height": 475,
+      "bubbles": []
+    },
+    {
+      "id": "page-031",
+      "image": "images/chapter-01-page-031.webp",
+      "width": 800,
+      "height": 381,
+      "bubbles": [
+        {
+          "id": "page-031-bubble-001",
+          "order": 1,
+          "chinese": "我一定要",
+          "type": "dialogue",
+          "box": {
+            "x": 0.56125,
+            "y": 0.0,
+            "width": 0.3,
+            "height": 0.11811
+          }
+        },
+        {
+          "id": "page-031-bubble-002",
+          "order": 2,
+          "chinese": "考武科！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.56125,
+            "y": 0.12336,
+            "width": 0.2625,
+            "height": 0.183727
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-032",
+      "image": "images/chapter-01-page-032.webp",
+      "width": 800,
+      "height": 416,
+      "bubbles": [
+        {
+          "id": "page-032-bubble-001",
+          "order": 1,
+          "chinese": "满怀信心",
+          "type": "dialogue",
+          "box": {
+            "x": 0.26875,
+            "y": 0.509615,
+            "width": 0.475,
+            "height": 0.271635
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-033",
+      "image": "images/chapter-01-page-033.webp",
+      "width": 800,
+      "height": 472,
+      "bubbles": [
+        {
+          "id": "page-033-bubble-001",
+          "order": 1,
+          "chinese": "我小看了武者的世界……",
+          "type": "dialogue",
+          "box": {
+            "x": 0.12625,
+            "y": 0.451271,
+            "width": 0.77375,
+            "height": 0.127119
+          }
+        },
+        {
+          "id": "page-033-bubble-002",
+          "order": 2,
+          "chinese": "腾讯动漫",
+          "type": "dialogue",
+          "box": {
+            "x": 0.81375,
+            "y": 0.879237,
+            "width": 0.16125,
+            "height": 0.086864
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-034",
+      "image": "images/chapter-01-page-034.webp",
+      "width": 800,
+      "height": 381,
+      "bubbles": [
+        {
+          "id": "page-034-bubble-002",
+          "order": 1,
+          "chinese": "为了武科不惜",
+          "type": "dialogue",
+          "box": {
+            "x": 0.6375,
+            "y": 0.291339,
+            "width": 0.25625,
+            "height": 0.107612
+          }
+        },
+        {
+          "id": "page-034-bubble-001",
+          "order": 2,
+          "chinese": "虽然理解你们",
+          "type": "dialogue",
+          "box": {
+            "x": 0.63875,
+            "y": 0.183727,
+            "width": 0.25375,
+            "height": 0.107612
+          }
+        },
+        {
+          "id": "page-034-bubble-003",
+          "order": 3,
+          "chinese": "一切代价....",
+          "type": "dialogue",
+          "box": {
+            "x": 0.6375,
+            "y": 0.396325,
+            "width": 0.24,
+            "height": 0.104987
+          }
+        },
+        {
+          "id": "page-034-bubble-004",
+          "order": 4,
+          "chinese": "但是，身体",
+          "type": "dialogue",
+          "box": {
+            "x": 0.535,
+            "y": 0.818898,
+            "width": 0.22,
+            "height": 0.115486
+          }
+        },
+        {
+          "id": "page-034-bubble-005",
+          "order": 5,
+          "chinese": "才是根本！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.53875,
+            "y": 0.929134,
+            "width": 0.1925,
+            "height": 0.070866
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-035",
+      "image": "images/chapter-01-page-035.webp",
+      "width": 800,
+      "height": 436,
+      "bubbles": []
+    },
+    {
+      "id": "page-036",
+      "image": "images/chapter-01-page-036.webp",
+      "width": 800,
+      "height": 424,
+      "bubbles": []
+    },
+    {
+      "id": "page-037",
+      "image": "images/chapter-01-page-037.webp",
+      "width": 800,
+      "height": 413,
+      "bubbles": []
+    },
+    {
+      "id": "page-038",
+      "image": "images/chapter-01-page-038.webp",
+      "width": 800,
+      "height": 405,
+      "bubbles": []
+    },
+    {
+      "id": "page-039",
+      "image": "images/chapter-01-page-039.webp",
+      "width": 800,
+      "height": 436,
+      "bubbles": []
+    },
+    {
+      "id": "page-040",
+      "image": "images/chapter-01-page-040.webp",
+      "width": 800,
+      "height": 393,
+      "bubbles": []
+    },
+    {
+      "id": "page-041",
+      "image": "images/chapter-01-page-041.webp",
+      "width": 800,
+      "height": 362,
+      "bubbles": []
+    },
+    {
+      "id": "page-042",
+      "image": "images/chapter-01-page-042.webp",
+      "width": 800,
+      "height": 405,
+      "bubbles": []
+    },
+    {
+      "id": "page-043",
+      "image": "images/chapter-01-page-043.webp",
+      "width": 800,
+      "height": 407,
+      "bubbles": [
+        {
+          "id": "page-043-bubble-001",
+          "order": 1,
+          "chinese": "险逼近",
+          "type": "dialogue",
+          "box": {
+            "x": 0.0,
+            "y": 0.255528,
+            "width": 0.6275,
+            "height": 0.63145
+          }
+        },
+        {
+          "id": "page-043-bubble-002",
+          "order": 2,
+          "chinese": "危险逼近",
+          "type": "dialogue",
+          "box": {
+            "x": 0.1675,
+            "y": 0.648649,
+            "width": 0.70875,
+            "height": 0.351351
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-044",
+      "image": "images/chapter-01-page-044.webp",
+      "width": 800,
+      "height": 398,
+      "bubbles": []
+    },
+    {
+      "id": "page-045",
+      "image": "images/chapter-01-page-045.webp",
+      "width": 800,
+      "height": 425,
+      "bubbles": []
+    },
+    {
+      "id": "page-046",
+      "image": "images/chapter-01-page-046.webp",
+      "width": 800,
+      "height": 363,
+      "bubbles": []
+    },
+    {
+      "id": "page-047",
+      "image": "images/chapter-01-page-047.webp",
+      "width": 800,
+      "height": 367,
+      "bubbles": [
+        {
+          "id": "page-047-bubble-001",
+          "order": 1,
+          "chinese": "糟了！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.14375,
+            "y": 0.749319,
+            "width": 0.305,
+            "height": 0.250681
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-048",
+      "image": "images/chapter-01-page-048.webp",
+      "width": 800,
+      "height": 495,
+      "bubbles": []
+    },
+    {
+      "id": "page-049",
+      "image": "images/chapter-01-page-049.webp",
+      "width": 800,
+      "height": 438,
+      "bubbles": []
+    },
+    {
+      "id": "page-050",
+      "image": "images/chapter-01-page-050.webp",
+      "width": 800,
+      "height": 474,
+      "bubbles": [
+        {
+          "id": "page-050-bubble-001",
+          "order": 1,
+          "chinese": "利益纠葛",
+          "type": "dialogue",
+          "box": {
+            "x": 0.135,
+            "y": 0.485232,
+            "width": 0.8275,
+            "height": 0.449367
+          }
+        },
+        {
+          "id": "page-050-bubble-002",
+          "order": 2,
+          "chinese": "腾讯动漫",
+          "type": "dialogue",
+          "box": {
+            "x": 0.8125,
+            "y": 0.883966,
+            "width": 0.1625,
+            "height": 0.080169
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-051",
+      "image": "images/chapter-01-page-051.webp",
+      "width": 800,
+      "height": 425,
+      "bubbles": []
+    },
+    {
+      "id": "page-052",
+      "image": "images/chapter-01-page-052.webp",
+      "width": 800,
+      "height": 1195,
+      "bubbles": [
+        {
+          "id": "page-052-bubble-001",
+          "order": 1,
+          "chinese": "腾讯动漫",
+          "type": "dialogue",
+          "box": {
+            "x": 0.81125,
+            "y": 0.948954,
+            "width": 0.16625,
+            "height": 0.038494
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-053",
+      "image": "images/chapter-01-page-053.webp",
+      "width": 800,
+      "height": 434,
+      "bubbles": [
+        {
+          "id": "page-053-bubble-001",
+          "order": 1,
+          "chinese": "死亡威胁",
+          "type": "dialogue",
+          "box": {
+            "x": 0.0,
+            "y": 0.564516,
+            "width": 1.0,
+            "height": 0.435484
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-054",
+      "image": "images/chapter-01-page-054.webp",
+      "width": 800,
+      "height": 376,
+      "bubbles": [
+        {
+          "id": "page-054-bubble-001",
+          "order": 1,
+          "chinese": "死亡威册",
+          "type": "dialogue",
+          "box": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 0.356383
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-055",
+      "image": "images/chapter-01-page-055.webp",
+      "width": 800,
+      "height": 495,
+      "bubbles": [
+        {
+          "id": "page-055-bubble-001",
+          "order": 1,
+          "chinese": "咔啦",
+          "type": "dialogue",
+          "box": {
+            "x": 0.08125,
+            "y": 0.0,
+            "width": 0.33625,
+            "height": 0.29697
+          }
+        },
+        {
+          "id": "page-055-bubble-002",
+          "order": 2,
+          "chinese": "腾讯动漫",
+          "type": "dialogue",
+          "box": {
+            "x": 0.82125,
+            "y": 0.890909,
+            "width": 0.15,
+            "height": 0.066667
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-056",
+      "image": "images/chapter-01-page-056.webp",
+      "width": 800,
+      "height": 416,
+      "bubbles": [
+        {
+          "id": "page-056-bubble-001",
+          "order": 1,
+          "chinese": "被打中",
+          "type": "dialogue",
+          "box": {
+            "x": 0.58125,
+            "y": 0.454327,
+            "width": 0.2375,
+            "height": 0.173077
+          }
+        },
+        {
+          "id": "page-056-bubble-002",
+          "order": 2,
+          "chinese": "我会死！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.58375,
+            "y": 0.600962,
+            "width": 0.2625,
+            "height": 0.163462
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-057",
+      "image": "images/chapter-01-page-057.webp",
+      "width": 800,
+      "height": 434,
+      "bubbles": [
+        {
+          "id": "page-057-bubble-001",
+          "order": 1,
+          "chinese": "弱者",
+          "type": "dialogue",
+          "box": {
+            "x": 0.335,
+            "y": 0.668203,
+            "width": 0.315,
+            "height": 0.331797
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-058",
+      "image": "images/chapter-01-page-058.webp",
+      "width": 800,
+      "height": 495,
+      "bubbles": [
+        {
+          "id": "page-058-bubble-003",
+          "order": 1,
+          "chinese": "人家不击5自不",
+          "type": "dialogue",
+          "box": {
+            "x": 0.12125,
+            "y": 0.343434,
+            "width": 0.7775,
+            "height": 0.105051
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-059",
+      "image": "images/chapter-01-page-059.webp",
+      "width": 800,
+      "height": 509,
+      "bubbles": [
+        {
+          "id": "page-059-bubble-001",
+          "order": 1,
+          "chinese": "腾讯动漫",
+          "type": "dialogue",
+          "box": {
+            "x": 0.81125,
+            "y": 0.886051,
+            "width": 0.16375,
+            "height": 0.082515
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-060",
+      "image": "images/chapter-01-page-060.webp",
+      "width": 800,
+      "height": 425,
+      "bubbles": [
+        {
+          "id": "page-060-bubble-001",
+          "order": 1,
+          "chinese": "眼前只有一条路可以走",
+          "type": "dialogue",
+          "box": {
+            "x": 0.1675,
+            "y": 0.548235,
+            "width": 0.68375,
+            "height": 0.136471
+          }
+        },
+        {
+          "id": "page-060-bubble-002",
+          "order": 2,
+          "chinese": "东一",
+          "type": "dialogue",
+          "box": {
+            "x": 0.16875,
+            "y": 0.672941,
+            "width": 0.6825,
+            "height": 0.129412
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-061",
+      "image": "images/chapter-01-page-061.webp",
+      "width": 800,
+      "height": 318,
+      "bubbles": []
+    },
+    {
+      "id": "page-062",
+      "image": "images/chapter-01-page-062.webp",
+      "width": 800,
+      "height": 354,
+      "bubbles": []
+    },
+    {
+      "id": "page-063",
+      "image": "images/chapter-01-page-063.webp",
+      "width": 800,
+      "height": 395,
+      "bubbles": [
+        {
+          "id": "page-063-bubble-001",
+          "order": 1,
+          "chinese": "响",
+          "type": "dialogue",
+          "box": {
+            "x": 0.46125,
+            "y": 0.012658,
+            "width": 0.53875,
+            "height": 0.987342
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-064",
+      "image": "images/chapter-01-page-064.webp",
+      "width": 800,
+      "height": 357,
+      "bubbles": []
+    },
+    {
+      "id": "page-065",
+      "image": "images/chapter-01-page-065.webp",
+      "width": 800,
+      "height": 378,
+      "bubbles": []
+    },
+    {
+      "id": "page-066",
+      "image": "images/chapter-01-page-066.webp",
+      "width": 800,
+      "height": 370,
+      "bubbles": []
+    },
+    {
+      "id": "page-067",
+      "image": "images/chapter-01-page-067.webp",
+      "width": 800,
+      "height": 350,
+      "bubbles": []
+    },
+    {
+      "id": "page-068",
+      "image": "images/chapter-01-page-068.webp",
+      "width": 800,
+      "height": 395,
+      "bubbles": [
+        {
+          "id": "page-068-bubble-001",
+          "order": 1,
+          "chinese": "变强！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-069",
+      "image": "images/chapter-01-page-069.webp",
+      "width": 800,
+      "height": 402,
+      "bubbles": [
+        {
+          "id": "page-069-bubble-001",
+          "order": 1,
+          "chinese": "成为最强武者",
+          "type": "dialogue",
+          "box": {
+            "x": 0.0875,
+            "y": 0.689055,
+            "width": 0.85125,
+            "height": 0.310945
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-070",
+      "image": "images/chapter-01-page-070.webp",
+      "width": 800,
+      "height": 411,
+      "bubbles": []
+    },
+    {
+      "id": "page-071",
+      "image": "images/chapter-01-page-071.webp",
+      "width": 800,
+      "height": 471,
+      "bubbles": [
+        {
+          "id": "page-071-bubble-001",
+          "order": 1,
+          "chinese": "宗师",
+          "type": "dialogue",
+          "box": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 1.0
+          }
+        },
+        {
+          "id": "page-071-bubble-002",
+          "order": 2,
+          "chinese": "腾讯动漫",
+          "type": "dialogue",
+          "box": {
+            "x": 0.8125,
+            "y": 0.881104,
+            "width": 0.1625,
+            "height": 0.087049
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-072",
+      "image": "images/chapter-01-page-072.webp",
+      "width": 800,
+      "height": 385,
+      "bubbles": []
+    },
+    {
+      "id": "page-073",
+      "image": "images/chapter-01-page-073.webp",
+      "width": 800,
+      "height": 418,
+      "bubbles": [
+        {
+          "id": "page-073-bubble-001",
+          "order": 1,
+          "chinese": "后来才知道",
+          "type": "dialogue",
+          "box": {
+            "x": 0.2775,
+            "y": 0.313397,
+            "width": 0.44625,
+            "height": 0.191388
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-074",
+      "image": "images/chapter-01-page-074.webp",
+      "width": 800,
+      "height": 395,
+      "bubbles": [
+        {
+          "id": "page-074-bubble-001",
+          "order": 1,
+          "chinese": "武者仅仅只是个开始",
+          "type": "dialogue",
+          "box": {
+            "x": 0.23375,
+            "y": 0.118987,
+            "width": 0.52875,
+            "height": 0.126582
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-075",
+      "image": "images/chapter-01-page-075.webp",
+      "width": 800,
+      "height": 423,
+      "bubbles": []
+    },
+    {
+      "id": "page-076",
+      "image": "images/chapter-01-page-076.webp",
+      "width": 800,
+      "height": 365,
+      "bubbles": []
+    },
+    {
+      "id": "page-077",
+      "image": "images/chapter-01-page-077.webp",
+      "width": 800,
+      "height": 366,
+      "bubbles": []
+    },
+    {
+      "id": "page-078",
+      "image": "images/chapter-01-page-078.webp",
+      "width": 800,
+      "height": 426,
+      "bubbles": []
+    },
+    {
+      "id": "page-079",
+      "image": "images/chapter-01-page-079.webp",
+      "width": 800,
+      "height": 375,
+      "bubbles": []
+    },
+    {
+      "id": "page-080",
+      "image": "images/chapter-01-page-080.webp",
+      "width": 800,
+      "height": 402,
+      "bubbles": [
+        {
+          "id": "page-080-bubble-001",
+          "order": 1,
+          "chinese": "还有一股更強大的未知在凝视着我……",
+          "type": "dialogue",
+          "box": {
+            "x": 0.0825,
+            "y": 0.266169,
+            "width": 0.85875,
+            "height": 0.099502
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-081",
+      "image": "images/chapter-01-page-081.webp",
+      "width": 800,
+      "height": 495,
+      "bubbles": [
+        {
+          "id": "page-081-bubble-001",
+          "order": 1,
+          "chinese": "全球高武",
+          "type": "dialogue",
+          "box": {
+            "x": 0.05,
+            "y": 0.474747,
+            "width": 0.9,
+            "height": 0.464646
+          }
+        },
+        {
+          "id": "page-081-bubble-003",
+          "order": 2,
+          "chinese": "腾讯动漫",
+          "type": "dialogue",
+          "box": {
+            "x": 0.8125,
+            "y": 0.886869,
+            "width": 0.16125,
+            "height": 0.082828
+          }
+        }
+      ]
+    }
+  ]
+}

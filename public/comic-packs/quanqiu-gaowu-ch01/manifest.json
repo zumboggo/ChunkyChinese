@@ -1,0 +1,18 @@
+{
+  "format": "chunky-comic-pack",
+  "formatVersion": 1,
+  "id": "quanqiu-gaowu-ch01",
+  "title": "Global Martial Arts",
+  "titleChinese": "全球高武",
+  "description": "Private study pack prepared from locally obtained Tencent Comics images.",
+  "language": "zh-CN",
+  "coverImage": "images/chapter-01-page-001.webp",
+  "chapters": [
+    {
+      "id": "chapter-01",
+      "title": "Chapter 1",
+      "titleChinese": "第一话",
+      "file": "chapters/chapter-01.json"
+    }
+  ]
+}

@@ -103,6 +103,14 @@ export interface HostedReaderPack {
   language?: string
 }
 
+export interface HostedComicPack {
+  id: string
+  name: string
+  description?: string
+  baseUrl: string
+  language?: string
+}
+
 export interface ReaderPack {
   packId: string
   name: string

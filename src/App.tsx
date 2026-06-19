@@ -36,6 +36,7 @@ import {
   getNewWordsPerDay,
   getHotkeys,
   getHostedClipPackIndex,
+  getHostedComicPackIndex,
   getPromptClip,
   getReaderProgress,
   getReviewSignalEvents,
@@ -43,6 +44,7 @@ import {
   importBackup,
   importClipPackFiles,
   importHostedClipPack,
+  importHostedComicPack,
   rateWordFsrs,
   recordEvent,
   recordQuizAnswer,
@@ -105,6 +107,7 @@ import type {
   FsrsRating,
   HotkeySettings,
   HostedClipPack,
+  HostedComicPack,
   ImportSummary,
   LessonPlan,
 
@@ -251,6 +254,7 @@ function App() {
   const [audioClips, setAudioClips] = useState<AudioClip[]>([])
   const [clipPacks, setClipPacks] = useState<ClipPack[]>([])
   const [hostedClipPacks, setHostedClipPacks] = useState<HostedClipPack[]>([])
+  const [hostedComicPacks, setHostedComicPacks] = useState<HostedComicPack[]>([])
   const [readerPacks, setReaderPacks] = useState<ReaderPack[]>([])
   const [readerBooks, setReaderBooks] = useState<ReaderBook[]>([])
   const [activePackId, setActivePackId] = useState<string | undefined>()
@@ -367,6 +371,7 @@ function App() {
       nextNewWordsPerDay,
       nextUserSettings,
       nextHostedClipPacks,
+      nextHostedComicPacks,
     ] = await Promise.all([
       getAllWords(),
       getAllSentences(),
@@ -378,6 +383,7 @@ function App() {
       getNewWordsPerDay(),
       getUserSettings(),
       getHostedClipPackIndex(),
+      getHostedComicPackIndex(),
     ])
     setWords(nextWords)
     setSentences(nextSentences)
@@ -400,6 +406,7 @@ function App() {
     setNewWordsPerDay(nextNewWordsPerDay)
     setUserSettings(nextUserSettings)
     setHostedClipPacks(nextHostedClipPacks)
+    setHostedComicPacks(nextHostedComicPacks)
     setStats(nextStats)
   }, [])
 
@@ -2240,6 +2247,24 @@ function App() {
     }
   }
 
+  async function handleHostedComicPackImport(pack: HostedComicPack) {
+    setHostedPackDownloadId(pack.id)
+    setHostedPackProgress('Starting download...')
+    try {
+      const summary = await importHostedComicPack(
+        pack.baseUrl,
+        (message) => setHostedPackProgress(message),
+        pack,
+      )
+      setLastSummary(`Downloaded ${pack.name}. ${summary.chapterCount} chapters, ${summary.pageCount} pages, ${summary.bubbleCount} bubbles.`)
+      setHostedPackProgress('')
+    } catch (error) {
+      setLastSummary(error instanceof Error ? error.message : `Could not download ${pack.name}.`)
+    } finally {
+      setHostedPackDownloadId(null)
+    }
+  }
+
   async function handleSetActivePack(packId: string | undefined) {
     await persistActivePackId(packId)
     setActivePackId(packId)
@@ -3077,6 +3102,34 @@ function App() {
               </div>
               {hostedPackProgress && <small>{hostedPackProgress}</small>}
             </section>
+            {hostedComicPacks.length > 0 && (
+              <section className="panel hosted-pack">
+                <h2>Download comic packs</h2>
+                <p>Download comic packs for the Comic Reader with bubble transcripts and vocabulary lookup.</p>
+                <div className="pack-list">
+                  {hostedComicPacks.map((pack) => {
+                    const isDownloading = hostedPackDownloadId === pack.id
+                    return (
+                      <div key={pack.id} className="pack-row">
+                        <span>
+                          <strong>{pack.name}</strong>
+                          <small>{pack.description ?? `${pack.language ?? 'zh-CN'} comic pack`}</small>
+                        </span>
+                        <button
+                          type="button"
+                          className="primary"
+                          disabled={Boolean(hostedPackDownloadId)}
+                          onClick={() => void handleHostedComicPackImport(pack)}
+                        >
+                          {isDownloading ? 'Downloading...' : 'Download'}
+                        </button>
+                      </div>
+                    )
+                  })}
+                </div>
+                {hostedPackDownloadId && hostedPackProgress && <small>{hostedPackProgress}</small>}
+              </section>
+            )}
             <section className="panel hosted-pack">
               <h2>Installed packs</h2>
               <p>Lessons use the active pack first. Progress is shared when the same word appears in multiple packs.</p>

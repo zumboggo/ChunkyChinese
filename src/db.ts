@@ -32,6 +32,7 @@ import type {
   DashboardStats,
   FsrsRating,
   HostedClipPack,
+  HostedComicPack,
   HostedReaderPack,
   HotkeySettings,
   ImportSummary,
@@ -612,6 +613,17 @@ export async function getHostedReaderPackIndex(): Promise<HostedReaderPack[]> {
         language: 'zh-CN',
       },
     ]
+  }
+}
+
+export async function getHostedComicPackIndex(): Promise<HostedComicPack[]> {
+  try {
+    const packs = (await fetchJson(`${import.meta.env.BASE_URL}comic-packs/index.json`)) as
+      | HostedComicPack[]
+      | { packs?: HostedComicPack[] }
+    return Array.isArray(packs) ? packs : packs.packs ?? []
+  } catch {
+    return []
   }
 }
 
@@ -1404,6 +1416,53 @@ export async function ensureSampleComicPack(): Promise<void> {
     replace: true,
     source: 'sample',
   })
+}
+
+export async function importHostedComicPack(
+  baseUrl: string,
+  onProgress?: (message: string) => void,
+  hosted?: HostedComicPack,
+): Promise<ComicImportSummary> {
+  const resolvedBase = resolveHostedBaseUrl(baseUrl)
+  onProgress?.('Fetching comic manifest...')
+  const manifest = (await fetchJson(`${resolvedBase}manifest.json`)) as ComicPackManifest
+  const chapters: ComicChapter[] = []
+  const images = new Map<string, Blob>()
+  const imageContentTypes = new Map<string, string>()
+  const imagePaths = new Set<string>()
+  if (manifest.coverImage) imagePaths.add(manifest.coverImage)
+  for (const ref of manifest.chapters) {
+    onProgress?.(`Loading chapter: ${ref.title ?? ref.id}...`)
+    const chapter = (await fetchJson(`${resolvedBase}${encodePath(ref.file)}`)) as ComicChapter
+    chapters.push(chapter)
+    for (const page of chapter.pages) imagePaths.add(page.image)
+  }
+  let fetched = 0
+  for (const path of imagePaths) {
+    fetched++
+    onProgress?.(`Downloading images (${fetched}/${imagePaths.size})...`)
+    const response = await fetch(`${resolvedBase}${encodePath(path)}`)
+    if (!response.ok) throw new Error(`Comic image failed to load: ${path}`)
+    images.set(path, await response.blob())
+    imageContentTypes.set(path, response.headers.get('content-type') ?? contentTypeForComicImage(path))
+  }
+  onProgress?.('Saving to library...')
+  await saveComicPackToDatabase(manifest, chapters, images, imageContentTypes, {
+    replace: true,
+    source: hosted ? `hosted:${hosted.id}` : 'hosted',
+  })
+  return {
+    packId: manifest.id,
+    title: manifest.title,
+    titleChinese: manifest.titleChinese,
+    chapterCount: chapters.length,
+    pageCount: chapters.reduce((sum, ch) => sum + ch.pages.length, 0),
+    bubbleCount: chapters.reduce(
+      (sum, ch) => sum + ch.pages.reduce((ps, p) => ps + p.bubbles.length, 0),
+      0,
+    ),
+    replaced: true,
+  }
 }
 
 export async function listComicPacks(): Promise<ComicPackSummary[]> {
