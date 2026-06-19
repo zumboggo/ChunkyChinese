@@ -1368,7 +1368,7 @@ type ComicPackTransaction = IDBPTransaction<
 
 export async function importComicPack(
   file: Blob | ArrayBuffer,
-  options: { replace?: boolean; source?: 'sample' | 'imported' } = {},
+  options: { replace?: boolean; source?: 'sample' | 'imported' | 'hosted' } = {},
 ): Promise<ComicImportSummary> {
   const parsed = await parseComicPackZip(file)
   const db = await getDB()
@@ -1421,7 +1421,6 @@ export async function ensureSampleComicPack(): Promise<void> {
 export async function importHostedComicPack(
   baseUrl: string,
   onProgress?: (message: string) => void,
-  hosted?: HostedComicPack,
 ): Promise<ComicImportSummary> {
   const resolvedBase = resolveHostedBaseUrl(baseUrl)
   onProgress?.('Fetching comic manifest...')
@@ -1449,18 +1448,15 @@ export async function importHostedComicPack(
   onProgress?.('Saving to library...')
   await saveComicPackToDatabase(manifest, chapters, images, imageContentTypes, {
     replace: true,
-    source: hosted ? `hosted:${hosted.id}` : 'hosted',
+    source: 'hosted',
   })
   return {
     packId: manifest.id,
     title: manifest.title,
-    titleChinese: manifest.titleChinese,
-    chapterCount: chapters.length,
-    pageCount: chapters.reduce((sum, ch) => sum + ch.pages.length, 0),
-    bubbleCount: chapters.reduce(
-      (sum, ch) => sum + ch.pages.reduce((ps, p) => ps + p.bubbles.length, 0),
-      0,
-    ),
+    chapters: chapters.length,
+    pages: chapters.reduce((sum, ch) => sum + ch.pages.length, 0),
+    images: imagePaths.size,
+    warnings: [],
     replaced: true,
   }
 }
@@ -2276,7 +2272,7 @@ async function saveComicPackToDatabase(
   chapters: ComicChapter[],
   images: Map<string, Blob>,
   imageContentTypes: Map<string, string>,
-  options: { replace: boolean; source: 'sample' | 'imported' },
+  options: { replace: boolean; source: 'sample' | 'imported' | 'hosted' },
 ): Promise<void> {
   const db = await getDB()
   const existing = await db.get('comicPacks', manifest.id)

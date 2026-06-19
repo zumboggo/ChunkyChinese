@@ -307,9 +307,8 @@ export function ComicReaderMode({
       const summary = await importHostedComicPack(
         pack.baseUrl,
         (msg) => setDownloadProgress(msg),
-        pack,
       )
-      setMessage(`Downloaded ${pack.name}: ${summary.chapterCount} chapters, ${summary.pageCount} pages.`)
+      setMessage(`Downloaded ${pack.name}: ${summary.chapters} chapters, ${summary.pages} pages.`)
       await loadLibrary()
     } catch (error) {
       setMessage(error instanceof Error ? error.message : `Could not download ${pack.name}.`)

@@ -2254,9 +2254,8 @@ function App() {
       const summary = await importHostedComicPack(
         pack.baseUrl,
         (message) => setHostedPackProgress(message),
-        pack,
       )
-      setLastSummary(`Downloaded ${pack.name}. ${summary.chapterCount} chapters, ${summary.pageCount} pages, ${summary.bubbleCount} bubbles.`)
+      setLastSummary(`Downloaded ${pack.name}. ${summary.chapters} chapters, ${summary.pages} pages.`)
       setHostedPackProgress('')
     } catch (error) {
       setLastSummary(error instanceof Error ? error.message : `Could not download ${pack.name}.`)

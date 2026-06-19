@@ -278,7 +278,7 @@ export interface ComicBubble {
 export interface ComicPackRecord extends ComicPackManifest {
   importedAt: string
   updatedAt: string
-  source: 'sample' | 'imported'
+  source: 'sample' | 'imported' | 'hosted'
   chapterCount: number
   pageCount: number
   imageCount: number
@@ -317,7 +317,7 @@ export interface ComicPackSummary {
   author?: string
   description?: string
   language: 'zh-CN' | 'zh-TW'
-  source: 'sample' | 'imported'
+  source: 'sample' | 'imported' | 'hosted'
   coverImage?: string
   chapterCount: number
   pageCount: number
