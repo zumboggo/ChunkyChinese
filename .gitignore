@@ -59,3 +59,12 @@ vn-authoring/**/contact-sheets/**
 # Playwright
 playwright-report/
 test-results/
+
+# Local Comic Pack Builder content
+tools/comic-pack-builder/.venv/
+tools/comic-pack-builder/projects/
+tools/comic-pack-builder/dist/
+tools/comic-pack-builder/raw-images/
+tools/comic-pack-builder/split-images/
+tools/comic-pack-builder/**/__pycache__/
+tools/comic-pack-builder/**/*.pyc

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ChunkyChinese Comic Pack Builder</title>
+    <link rel="stylesheet" href="/static/review.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <h1>Comic Pack Builder</h1>
+        <p id="project-subtitle">Loading local project...</p>
+      </div>
+      <div class="header-actions">
+        <button id="validate-button" type="button">Validate</button>
+        <button id="save-button" class="primary" type="button">Save project</button>
+        <button id="export-button" class="primary" type="button">Export ZIP</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="page-rail" aria-label="Comic pages">
+        <div class="rail-heading">
+          <strong>Pages</strong>
+          <span id="page-count"></span>
+        </div>
+        <nav id="page-list"></nav>
+        <details class="project-settings">
+          <summary>Project details</summary>
+          <label>English title<input id="project-title"></label>
+          <label>Chinese title<input id="project-title-zh"></label>
+          <label>Author<input id="project-author"></label>
+          <label>Description<textarea id="project-description" rows="3"></textarea></label>
+        </details>
+      </aside>
+
+      <section class="image-stage">
+        <div class="page-toolbar">
+          <button id="previous-page" type="button" aria-label="Previous page">&larr;</button>
+          <div>
+            <strong id="page-title"></strong>
+            <span id="page-position"></span>
+          </div>
+          <button id="next-page" type="button" aria-label="Next page">&rarr;</button>
+        </div>
+        <div id="image-frame" class="image-frame">
+          <img id="page-image" alt="">
+          <div id="box-layer" class="box-layer"></div>
+        </div>
+      </section>
+
+      <aside class="bubble-inspector">
+        <div class="inspector-heading">
+          <div>
+            <strong>Transcript regions</strong>
+            <span id="bubble-count"></span>
+          </div>
+          <button id="add-bubble" type="button">Add bubble</button>
+        </div>
+        <div id="bubble-list" class="bubble-list"></div>
+      </aside>
+    </main>
+
+    <section class="status-drawer" aria-live="polite">
+      <div id="status-message">Ready.</div>
+      <details>
+        <summary>Local translation</summary>
+        <div class="translation-controls">
+          <label>Endpoint<input id="translation-endpoint" value="http://127.0.0.1:11434/v1/chat/completions"></label>
+          <label>Model<input id="translation-model" value="qwen2.5:7b"></label>
+          <button id="translate-button" type="button">Translate current page</button>
+        </div>
+      </details>
+    </section>
+
+    <template id="bubble-template">
+      <article class="bubble-editor">
+        <div class="bubble-editor-header">
+          <button class="select-bubble" type="button"></button>
+          <div class="order-actions">
+            <button class="move-up" type="button" aria-label="Move bubble up">&uarr;</button>
+            <button class="move-down" type="button" aria-label="Move bubble down">&darr;</button>
+            <button class="delete-bubble danger" type="button">Delete</button>
+          </div>
+        </div>
+        <label>Chinese<textarea class="bubble-chinese" rows="2"></textarea></label>
+        <label>English<textarea class="bubble-english" rows="2"></textarea></label>
+        <div class="bubble-options">
+          <label>Type
+            <select class="bubble-type">
+              <option value="dialogue">Dialogue</option>
+              <option value="narration">Narration</option>
+              <option value="thought">Thought</option>
+              <option value="sfx">Sound effect</option>
+            </select>
+          </label>
+          <label class="check-label"><input class="bubble-review" type="checkbox">Needs review</label>
+          <label class="check-label"><input class="bubble-ignored" type="checkbox">Ignored</label>
+        </div>
+        <fieldset>
+          <legend>Normalized box</legend>
+          <label>X<input class="box-x" type="number" min="0" max="1" step="0.001"></label>
+          <label>Y<input class="box-y" type="number" min="0" max="1" step="0.001"></label>
+          <label>W<input class="box-width" type="number" min="0" max="1" step="0.001"></label>
+          <label>H<input class="box-height" type="number" min="0" max="1" step="0.001"></label>
+        </fieldset>
+      </article>
+    </template>
+    <script src="/static/review.js"></script>
+  </body>
+</html>

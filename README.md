@@ -81,6 +81,16 @@ Compress-Archive -Path manifest.json,chapters,images -DestinationPath my-comic.c
 
 Only import material you are legally permitted to use. Do not distribute processed comic packs or transcript files for copyrighted works without permission.
 
+### Desktop Comic Pack Builder
+
+Phase 2 adds a private local OCR/review/export workflow under:
+
+```text
+tools/comic-pack-builder
+```
+
+See [tools/comic-pack-builder/README.md](tools/comic-pack-builder/README.md) for setup, PaddleOCR installation, review-server usage, long-page splitting, optional local translation, and export commands.
+
 ## Publish to GitHub Pages
 
 This repository is configured to publish the PWA app shell to GitHub Pages from the `main` branch. The GitHub Actions workflow builds with `GITHUB_PAGES=true`, which sets the Vite base path to `/ChunkyChinese/`.
