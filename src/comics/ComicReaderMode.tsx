@@ -10,7 +10,9 @@ import {
   getComicImage,
   getComicPack,
   getComicProgress,
+  getHostedComicPackIndex,
   importComicPack,
+  importHostedComicPack,
   listComicPacks,
   lookupDictionary,
   saveComicProgress,
@@ -32,6 +34,7 @@ import type {
   ComicProgress,
   ComicTranslationMode,
   DictionaryEntry,
+  HostedComicPack,
   ReaderWordToken,
   VocabWord,
 } from '../types'
@@ -74,6 +77,9 @@ export function ComicReaderMode({
   const [message, setMessage] = useState<string | null>(null)
   const [pendingReplaceFile, setPendingReplaceFile] = useState<File | null>(null)
   const [importing, setImporting] = useState(false)
+  const [hostedPacks, setHostedPacks] = useState<HostedComicPack[]>([])
+  const [downloadingId, setDownloadingId] = useState<string | null>(null)
+  const [downloadProgress, setDownloadProgress] = useState('')
   const readerTopRef = useRef<HTMLDivElement | null>(null)
 
   const activePage = activeChapter?.pages[pageIndex]
@@ -90,7 +96,12 @@ export function ComicReaderMode({
     try {
       setLoadState('loading')
       await ensureSampleComicPack()
-      setPacks(await listComicPacks())
+      const [packList, hosted] = await Promise.all([
+        listComicPacks(),
+        getHostedComicPackIndex(),
+      ])
+      setPacks(packList)
+      setHostedPacks(hosted)
       setLoadState('ready')
     } catch (error) {
       console.error(error)
@@ -289,6 +300,25 @@ export function ComicReaderMode({
     await loadLibrary()
   }
 
+  async function handleHostedDownload(pack: HostedComicPack) {
+    setDownloadingId(pack.id)
+    setDownloadProgress('Starting download...')
+    try {
+      const summary = await importHostedComicPack(
+        pack.baseUrl,
+        (msg) => setDownloadProgress(msg),
+        pack,
+      )
+      setMessage(`Downloaded ${pack.name}: ${summary.chapterCount} chapters, ${summary.pageCount} pages.`)
+      await loadLibrary()
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : `Could not download ${pack.name}.`)
+    } finally {
+      setDownloadingId(null)
+      setDownloadProgress('')
+    }
+  }
+
   async function saveWord(text: string, pinyin: string, meaning: string) {
     await upsertWords([{
       id: crypto.randomUUID(),
@@ -369,6 +399,36 @@ export function ComicReaderMode({
               </button>
             )}
           </section>
+
+          {hostedPacks.length > 0 && (() => {
+            const available = hostedPacks.filter((hp) => !packs.some((p) => p.id === hp.id))
+            if (available.length === 0) return null
+            return (
+              <section className="comic-import-panel panel" aria-label="Download comic packs">
+                <div>
+                  <h2>Download Comic Packs</h2>
+                  <p>Available packs with bubble transcripts and vocabulary lookup.</p>
+                </div>
+                {available.map((hp) => (
+                  <div key={hp.id} className="pack-row">
+                    <span>
+                      <strong>{hp.name}</strong>
+                      <small>{hp.description ?? ''}</small>
+                    </span>
+                    <button
+                      type="button"
+                      className="primary"
+                      disabled={Boolean(downloadingId)}
+                      onClick={() => void handleHostedDownload(hp)}
+                    >
+                      {downloadingId === hp.id ? 'Downloading...' : 'Download'}
+                    </button>
+                  </div>
+                ))}
+                {downloadingId && downloadProgress && <small>{downloadProgress}</small>}
+              </section>
+            )
+          })()}
 
           <div className="comic-library-grid">
             {packs.map((pack) => (
