@@ -589,8 +589,7 @@ dt {
   min-height: 44px;
 }
 
-.dashboard-today-heading,
-.dashboard-today-stats div {
+.dashboard-today-heading {
   display: grid;
   align-content: center;
   gap: 5px;
@@ -606,7 +605,8 @@ dt {
 }
 
 .dashboard-today-heading span,
-.dashboard-today-stats dt {
+.dashboard-today-stats dt,
+.dashboard-comparison-head {
   color: var(--muted);
   font-size: 0.78rem;
   font-weight: 850;
@@ -614,20 +614,53 @@ dt {
   letter-spacing: 0.03em;
 }
 
+.dashboard-comparison-head {
+  display: grid;
+  grid-template-columns: minmax(140px, 1.5fr) repeat(2, minmax(72px, 1fr));
+  grid-column: 1 / -1;
+  gap: 10px;
+  align-items: end;
+  padding: 2px 14px 0;
+}
+
+.dashboard-comparison-head.single-period {
+  grid-template-columns: minmax(140px, 1.5fr) minmax(72px, 1fr);
+}
+
+.dashboard-comparison-head strong {
+  color: var(--navy);
+  text-align: center;
+}
+
 .dashboard-today-stats {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-column: 1 / -1;
   gap: 10px;
   margin: 0;
 }
 
+.dashboard-today-stats div {
+  display: grid;
+  grid-template-columns: minmax(140px, 1.5fr) repeat(2, minmax(72px, 1fr));
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.dashboard-today-stats.single-period div {
+  grid-template-columns: minmax(140px, 1.5fr) minmax(72px, 1fr);
+}
+
 .dashboard-today-stats dd {
   margin: 0;
   color: var(--navy);
-  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  font-size: clamp(1.3rem, 2.5vw, 1.9rem);
   font-weight: 950;
   line-height: 1;
+  text-align: center;
 }
 
 .dashboard-toast {
@@ -759,6 +792,11 @@ dt {
 }
 
 .process-chart-panel {
+  grid-column: 1 / -1;
+}
+
+.vocab-growth-panel,
+.study-details-panel {
   grid-column: 1 / -1;
 }
 
@@ -2473,20 +2511,11 @@ kbd {
   gap: 10px;
 }
 
-.goals-plan {
-  margin-bottom: 14px;
-}
-
 .daily-plan label {
   display: grid;
   gap: 6px;
   color: var(--muted);
   font-weight: 850;
-}
-
-.compact-buttons button {
-  min-height: 40px;
-  padding: 8px 12px;
 }
 
 .due-list {
@@ -5472,8 +5501,9 @@ kbd {
 }
 
 .struggled-word-btn {
-  font-size: 0.85rem;
-  padding: 4px 10px;
+  min-height: 46px;
+  padding: 8px 14px;
+  font-size: 1.15rem;
 }
 
 .struggled-word-btn.active {
@@ -5631,6 +5661,20 @@ kbd {
   .process-chart-summary,
   .process-chart-summary dl {
     grid-template-columns: 1fr;
+  }
+
+  .study-details-panel {
+    grid-column: auto;
+  }
+
+  .dashboard-comparison-head,
+  .dashboard-today-stats div {
+    grid-template-columns: minmax(110px, 1.35fr) repeat(2, minmax(64px, 1fr));
+  }
+
+  .dashboard-comparison-head.single-period,
+  .dashboard-today-stats.single-period div {
+    grid-template-columns: minmax(110px, 1.35fr) minmax(64px, 1fr);
   }
 
   .process-status {
@@ -6319,130 +6363,344 @@ kbd {
 }
 
 .comic-page-reader {
+  --comic-paper: #fbf6ed;
+  --comic-ink: #142338;
+  --comic-muted: #6e756f;
   position: relative;
   display: grid;
-  gap: 1rem;
+  gap: 12px;
+  width: min(100%, 720px);
+  margin: 0 auto;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 92px);
+  color: var(--comic-ink);
 }
 
-.comic-page-toolbar {
+.comic-view-reader {
+  min-height: 100dvh;
+  padding: 0 clamp(8px, 2vw, 16px);
+  background: var(--comic-paper);
+}
+
+.comic-reading-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: grid;
-  grid-template-columns: minmax(80px, 1fr) auto minmax(80px, 1fr);
+  grid-template-columns: 44px minmax(0, 1fr) auto;
   align-items: center;
-  gap: 0.75rem;
+  gap: 10px;
+  min-height: 64px;
+  padding: calc(env(safe-area-inset-top) + 8px) 4px 8px;
+  background: color-mix(in srgb, var(--comic-paper) 92%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
-.comic-page-toolbar span {
-  text-align: center;
-  color: var(--text-secondary);
-  font-weight: 800;
+.comic-icon-button,
+.comic-chapters-button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(20, 35, 56, 0.12);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--comic-ink);
+  box-shadow: 0 8px 20px rgba(42, 35, 25, 0.08);
+  font-size: 1.35rem;
 }
 
-.comic-page-toolbar button:last-child {
-  justify-self: end;
+.comic-reading-title {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
 }
 
-.comic-page-toolbar.bottom {
-  grid-template-columns: 1fr 1fr;
+.comic-reading-title > span:last-child {
+  min-width: 0;
+  display: grid;
+  gap: 1px;
+}
+
+.comic-reading-title strong,
+.comic-reading-title small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.comic-reading-title strong {
+  font-size: 1rem;
+}
+
+.comic-reading-title small {
+  color: var(--comic-muted);
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.comic-title-mark {
+  display: grid;
+  flex: 0 0 30px;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #f6b83f;
+  color: #34260c;
+  font-family: "LXGW WenKai", serif;
+  font-weight: 900;
+}
+
+.comic-page-indicator {
+  color: var(--comic-muted);
+  font-size: 0.82rem;
+  font-weight: 900;
+  white-space: nowrap;
 }
 
 .comic-page-figure {
   margin: 0;
   width: 100%;
-  border-radius: 8px;
+  min-height: 220px;
+  max-height: 52dvh;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
   overflow: hidden;
-  border: 1px solid var(--border-subtle);
-  background: var(--surface-raised);
-  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(74, 57, 35, 0.12);
+  background: #fffdf8;
+  box-shadow: 0 14px 34px rgba(68, 50, 27, 0.11);
 }
 
 .comic-page-figure img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 52dvh;
+  max-height: 620px;
+  object-fit: contain;
 }
 
 .comic-page-missing {
-  min-height: 45vh;
+  min-height: 38dvh;
   display: grid;
   place-items: center;
-  color: var(--text-muted);
-}
-
-.comic-reader-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-}
-
-.comic-sfx-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  color: var(--text-secondary);
-  font-weight: 700;
+  color: var(--comic-muted);
 }
 
 .comic-transcript-list {
   list-style: none;
   display: grid;
-  gap: 0.85rem;
+  gap: 9px;
   padding: 0;
   margin: 0;
 }
 
 .comic-transcript-line {
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 0.9rem;
-  background: var(--surface-raised);
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  min-height: 76px;
+  padding: 10px 12px;
+  border: 1px solid rgba(64, 49, 32, 0.08);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 9px 24px rgba(51, 40, 26, 0.07);
 }
 
 .comic-transcript-line.bubble-narration {
-  background: color-mix(in srgb, var(--surface-raised), #f2e6c8 18%);
+  background: color-mix(in srgb, #ffffff, #f2e6c8 20%);
 }
 
 .comic-transcript-line.bubble-thought {
-  background: color-mix(in srgb, var(--surface-raised), #dbeafe 16%);
+  background: color-mix(in srgb, #ffffff, #dbeafe 18%);
 }
 
 .comic-transcript-line.bubble-sfx {
   border-style: dashed;
 }
 
-.comic-bubble-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
+.comic-transcript-number {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #f8caa7;
+  color: #553015;
+  font-size: 0.9rem;
+  font-weight: 950;
 }
 
-.comic-bubble-meta span {
+.comic-transcript-line:nth-child(3n + 2) .comic-transcript-number {
+  background: #cce8d5;
+  color: #174a2a;
+}
+
+.comic-transcript-line:nth-child(3n) .comic-transcript-number {
+  background: #cfe1f5;
+  color: #173d66;
+}
+
+.comic-transcript-copy {
+  min-width: 0;
+  display: grid;
+  justify-items: start;
+  gap: 2px;
+}
+
+.comic-bubble-kind {
   text-transform: uppercase;
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  color: var(--comic-muted);
   font-weight: 900;
 }
 
 .comic-chinese-line {
+  width: 100%;
   font-family: "LXGW WenKai", serif;
-  font-size: clamp(1.55rem, 2.2vw, 2.25rem);
-  line-height: 2.15;
+  font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+  line-height: 1.95;
+}
+
+.comic-chinese-line .reader-token {
+  border-bottom: 1px dotted rgba(62, 91, 83, 0.32);
+  border-radius: 3px;
+}
+
+.comic-chinese-line .reader-token:focus-visible {
+  outline: 2px solid #d68c1e;
+  outline-offset: 3px;
 }
 
 .comic-english-line {
-  margin: 0.5rem 0 0;
-  color: var(--text-secondary);
-  font-size: 1rem;
+  margin: 1px 0 0;
+  color: var(--comic-muted);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.comic-translation-reveal {
+  min-height: 30px;
+  padding: 3px 0;
+  border: 0;
+  background: transparent;
+  color: #826627;
+  box-shadow: none;
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.comic-settings-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid rgba(64, 49, 32, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--comic-muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.comic-setting-group {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.comic-translation-control {
+  padding: 2px;
+  border-radius: 10px;
+}
+
+.comic-translation-control button {
+  min-height: 34px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+}
+
+.comic-setting-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(64, 49, 32, 0.12);
+}
+
+.comic-pinyin-status {
+  white-space: nowrap;
+}
+
+.comic-sfx-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 34px;
+  margin-left: auto;
+  color: var(--comic-muted);
+  font-weight: 850;
+}
+
+.comic-reader-bottom-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: 15;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  width: min(calc(100vw - 16px), 720px);
+  padding: 10px 4px calc(env(safe-area-inset-bottom) + 10px);
+  background: color-mix(in srgb, var(--comic-paper) 94%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.comic-page-button {
+  min-width: 0;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
+.comic-page-previous {
+  border-color: #142338;
+  background: #142338;
+  color: #ffffff;
+}
+
+.comic-page-next {
+  border-color: #e7a92f;
+  background: #f5bd4e;
+  color: #33260d;
+}
+
+.comic-reader-bottom-nav button:disabled {
+  opacity: 0.38;
+}
+
+.comic-page-reader .reader-word-popover {
+  bottom: calc(env(safe-area-inset-bottom) + 90px);
+  width: min(420px, calc(100vw - 24px));
 }
 
 @media (max-width: 720px) {
   .comic-reader-topbar,
-  .comic-import-panel,
-  .comic-reader-controls {
+  .comic-import-panel {
     align-items: stretch;
     flex-direction: column;
   }
@@ -6455,16 +6713,47 @@ kbd {
     min-height: 220px;
   }
 
-  .comic-page-toolbar {
-    grid-template-columns: 1fr;
+  .comic-view-reader {
+    margin-inline: -4px;
   }
 
-  .comic-page-toolbar button,
-  .comic-page-toolbar button:last-child {
-    justify-self: stretch;
+  .comic-page-figure,
+  .comic-page-figure img {
+    max-height: 42dvh;
+  }
+
+  .comic-page-figure img {
+    height: 42dvh;
   }
 
   .comic-chinese-line {
-    font-size: 1.45rem;
+    font-size: 1.25rem;
+    line-height: 1.85;
+  }
+
+  .comic-transcript-line {
+    min-height: 72px;
+    padding-block: 8px;
+  }
+
+  .comic-settings-strip {
+    gap: 6px;
+  }
+
+  .comic-setting-divider {
+    display: none;
+  }
+
+  .comic-pinyin-status {
+    order: 3;
+  }
+
+  .comic-sfx-toggle {
+    order: 4;
+  }
+
+  .comic-page-button {
+    padding-inline: 10px;
+    font-size: 0.86rem;
   }
 }

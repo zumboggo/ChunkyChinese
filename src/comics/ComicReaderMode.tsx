@@ -77,6 +77,10 @@ export function ComicReaderMode({
   const readerTopRef = useRef<HTMLDivElement | null>(null)
 
   const activePage = activeChapter?.pages[pageIndex]
+  const isFirstPage = chapters[0]?.id === activeChapter?.id && pageIndex <= 0
+  const isLastPage =
+    chapters.at(-1)?.id === activeChapter?.id &&
+    pageIndex >= (activeChapter?.pages.length ?? 1) - 1
   const visibleBubbles = useMemo(
     () => (activePage?.bubbles ?? []).filter((bubble) => showSoundEffects || bubble.type !== 'sfx'),
     [activePage, showSoundEffects],
@@ -126,6 +130,17 @@ export function ComicReaderMode({
     }
     void saveComicProgress(progress).catch(console.error)
   }, [activePack, activeChapter, pageIndex, translationMode, showSoundEffects])
+
+  useEffect(() => {
+    if (view !== 'reader') return
+    const timeout = window.setTimeout(() => {
+      const top = readerTopRef.current
+        ? readerTopRef.current.getBoundingClientRect().top + window.scrollY
+        : 0
+      window.scrollTo({ top, behavior: 'auto' })
+    }, 0)
+    return () => window.clearTimeout(timeout)
+  }, [activeChapter?.id, pageIndex, view])
 
   const goToPage = useCallback((nextChapter: ComicChapterRecord, nextPageIndex: number) => {
     setActiveChapter(nextChapter)
@@ -314,16 +329,18 @@ export function ComicReaderMode({
   }
 
   return (
-    <section className="screen comic-reader-screen" ref={readerTopRef}>
-      <div className="comic-reader-topbar">
-        <button type="button" className="ghost-answer" onClick={view === 'library' ? onReturnHome : () => setView(view === 'reader' ? 'chapters' : 'library')}>
-          {view === 'library' ? 'Back to Dashboard' : 'Back'}
-        </button>
-        <div>
-          <h1>{view === 'library' ? 'Comic Reader' : activePack?.title ?? 'Comic Reader'}</h1>
-          <p>{view === 'library' ? 'Imported packs stay on this device.' : activePack?.titleChinese}</p>
+    <section className={`screen comic-reader-screen comic-view-${view}`} ref={readerTopRef}>
+      {view !== 'reader' && (
+        <div className="comic-reader-topbar">
+          <button type="button" className="ghost-answer" onClick={view === 'library' ? onReturnHome : () => setView('library')}>
+            {view === 'library' ? 'Back to Dashboard' : 'Back'}
+          </button>
+          <div>
+            <h1>{view === 'library' ? 'Comic Reader' : activePack?.title ?? 'Comic Reader'}</h1>
+            <p>{view === 'library' ? 'Imported packs stay on this device.' : activePack?.titleChinese}</p>
+          </div>
         </div>
-      </div>
+      )}
 
       {message && <div className="comic-reader-message" role="status">{message}</div>}
 
@@ -421,15 +438,24 @@ export function ComicReaderMode({
 
       {view === 'reader' && activePack && activeChapter && activePage && (
         <section className="comic-page-reader">
-          <div className="comic-page-toolbar">
-            <button type="button" onClick={() => movePage(-1)} disabled={chapters[0]?.id === activeChapter.id && pageIndex <= 0}>
-              Previous
+          <header className="comic-reading-header">
+            <button
+              type="button"
+              className="comic-icon-button"
+              aria-label="Back to chapters"
+              onClick={() => setView('chapters')}
+            >
+              <span aria-hidden="true">←</span>
             </button>
-            <span>{activeChapter.title} · Page {pageIndex + 1} of {activeChapter.pages.length}</span>
-            <button type="button" onClick={() => movePage(1)} disabled={chapters.at(-1)?.id === activeChapter.id && pageIndex >= activeChapter.pages.length - 1}>
-              Next
-            </button>
-          </div>
+            <div className="comic-reading-title">
+              <span className="comic-title-mark" aria-hidden="true">漫</span>
+              <span>
+                <strong>{activePack.title}</strong>
+                <small>{activeChapter.title}</small>
+              </span>
+            </div>
+            <span className="comic-page-indicator">{pageIndex + 1} / {activeChapter.pages.length}</span>
+          </header>
           <ComicPageImage
             packId={activePack.id}
             imagePath={activePage.image}
@@ -439,35 +465,11 @@ export function ComicReaderMode({
               setDictionaryEntry(null)
             }}
           />
-          <div className="comic-reader-controls">
-            <div className="segmented-control" aria-label="Translation mode">
-              {translationModes.map((mode) => (
-                <button
-                  key={mode.value}
-                  type="button"
-                  className={translationMode === mode.value ? 'active' : ''}
-                  onClick={() => {
-                    setTranslationMode(mode.value)
-                    setRevealedBubbleIds(new Set())
-                  }}
-                >
-                  {mode.label}
-                </button>
-              ))}
-            </div>
-            <label className="comic-sfx-toggle">
-              <input
-                type="checkbox"
-                checked={showSoundEffects}
-                onChange={(event) => setShowSoundEffects(event.target.checked)}
-              />
-              Show sound effects
-            </label>
-          </div>
           <ol className="comic-transcript-list">
-            {visibleBubbles.map((bubble) => (
+            {visibleBubbles.map((bubble, index) => (
               <ComicTranscriptLine
                 key={bubble.id}
+                index={index}
                 bubble={bubble}
                 words={words}
                 pinyinMode={pinyinMode}
@@ -494,14 +496,38 @@ export function ComicReaderMode({
               />
             ))}
           </ol>
-          <div className="comic-page-toolbar bottom">
-            <button type="button" onClick={() => movePage(-1)} disabled={chapters[0]?.id === activeChapter.id && pageIndex <= 0}>
-              Previous Page
-            </button>
-            <button type="button" className="primary" onClick={() => movePage(1)} disabled={chapters.at(-1)?.id === activeChapter.id && pageIndex >= activeChapter.pages.length - 1}>
-              Next Page
-            </button>
+
+          <div className="comic-settings-strip">
+            <div className="comic-setting-group">
+              <span>Translation</span>
+              <div className="segmented-control comic-translation-control" aria-label="Translation mode">
+                {translationModes.map((mode) => (
+                  <button
+                    key={mode.value}
+                    type="button"
+                    className={translationMode === mode.value ? 'active' : ''}
+                    onClick={() => {
+                      setTranslationMode(mode.value)
+                      setRevealedBubbleIds(new Set())
+                    }}
+                  >
+                    {mode.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <span className="comic-setting-divider" aria-hidden="true" />
+            <span className="comic-pinyin-status">Pinyin: {comicPinyinLabel(pinyinMode)}</span>
+            <label className="comic-sfx-toggle">
+              <input
+                type="checkbox"
+                checked={showSoundEffects}
+                onChange={(event) => setShowSoundEffects(event.target.checked)}
+              />
+              SFX
+            </label>
           </div>
+
           {selectedToken && (
             <WordInfoPopover
               selectedToken={selectedToken}
@@ -515,6 +541,36 @@ export function ComicReaderMode({
               formatDueDate={formatDueDate}
             />
           )}
+
+          <nav className="comic-reader-bottom-nav" aria-label="Comic page navigation">
+            <button
+              type="button"
+              className="comic-page-button comic-page-previous"
+              onClick={() => movePage(-1)}
+              disabled={isFirstPage}
+            >
+              <span aria-hidden="true">←</span>
+              Previous
+            </button>
+            <button
+              type="button"
+              className="comic-chapters-button"
+              aria-label="Back to chapter list"
+              title="Chapters"
+              onClick={() => setView('chapters')}
+            >
+              <span aria-hidden="true">≡</span>
+            </button>
+            <button
+              type="button"
+              className="comic-page-button comic-page-next"
+              onClick={() => movePage(1)}
+              disabled={isLastPage}
+            >
+              Next
+              <span aria-hidden="true">→</span>
+            </button>
+          </nav>
         </section>
       )}
     </section>
@@ -548,6 +604,7 @@ function ComicChapterCard({
 }
 
 function ComicTranscriptLine({
+  index,
   bubble,
   words,
   pinyinMode,
@@ -557,6 +614,7 @@ function ComicTranscriptLine({
   onToggleTranslation,
   onSelectToken,
 }: {
+  index: number
   bubble: ComicBubble
   words: VocabWord[]
   pinyinMode: AdaptivePinyinMode
@@ -573,27 +631,28 @@ function ComicTranscriptLine({
   const translationVisible = shouldShowComicTranslation(translationMode, bubble.id, revealedBubbleIds)
   return (
     <li className={`comic-transcript-line bubble-${bubble.type}`}>
-      <div className="comic-bubble-meta">
-        <span>{bubble.type}</span>
+      <span className="comic-transcript-number" aria-hidden="true">{index + 1}</span>
+      <div className="comic-transcript-copy">
+        <span className="comic-bubble-kind">{bubble.type}</span>
+        <AdaptiveChineseText
+          tokens={tokens}
+          selectedToken={selectedToken}
+          pinyinMode={pinyinMode}
+          onSelectToken={onSelectToken}
+          className="comic-chinese-line"
+        />
+        {bubble.english && translationVisible && <p className="comic-english-line">{bubble.english}</p>}
         {translationMode === 'tap' && bubble.english && (
           <button
             type="button"
-            className="ghost-answer"
+            className="comic-translation-reveal"
             aria-expanded={translationVisible}
             onClick={onToggleTranslation}
           >
-            {translationVisible ? 'Hide English' : 'Reveal English'}
+            {translationVisible ? 'Hide English' : 'Tap to reveal English'}
           </button>
         )}
       </div>
-      <AdaptiveChineseText
-        tokens={tokens}
-        selectedToken={selectedToken}
-        pinyinMode={pinyinMode}
-        onSelectToken={onSelectToken}
-        className="comic-chinese-line"
-      />
-      {bubble.english && translationVisible && <p className="comic-english-line">{bubble.english}</p>}
     </li>
   )
 }
@@ -656,4 +715,10 @@ function formatDueDate(value?: string): string {
   const date = new Date(value)
   if (Number.isNaN(date.getTime())) return 'Unknown'
   return date.toLocaleDateString()
+}
+
+function comicPinyinLabel(mode: AdaptivePinyinMode): string {
+  if (mode === 'all') return 'All'
+  if (mode === 'none') return 'Off'
+  return 'Adaptive'
 }

@@ -224,6 +224,11 @@ const emptyStats: DashboardStats = {
     month: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
     allTime: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
   },
+  previousRanges: {
+    today: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
+    week: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
+    month: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
+  },
   currentStreak: 0,
   longestStreak: 0,
   avgFlashcardSetSeconds: 0,
@@ -307,8 +312,7 @@ function App() {
   const [flashcardCelebrationId, setFlashcardCelebrationId] = useState(0)
   const [flashcardSessionRatingCounts, setFlashcardSessionRatingCounts] = useState<Record<FsrsRating, number>>({ again: 0, hard: 0, good: 0, easy: 0 })
   const [flashcardSessionStartMs, setFlashcardSessionStartMs] = useState<number>(0)
-  const [, setFlashcardSessionStruggledWords] = useState<VocabWord[]>([])
-  const [flashcardSessionAllWords, setFlashcardSessionAllWords] = useState<VocabWord[]>([])
+  const [flashcardSessionStruggledWords, setFlashcardSessionStruggledWords] = useState<VocabWord[]>([])
   const [editingWord, setEditingWord] = useState<CardEditDraft | null>(null)
   const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
   const [todayReaderStats, setTodayReaderStats] = useState<ReaderSessionStats | null>(null)
@@ -689,6 +693,7 @@ function App() {
     [latestReaderProgress, readerBooks],
   )
   const selectedRangeStats = stats.ranges[dashboardRange] ?? stats.ranges.today
+  const selectedPreviousRangeStats = stats.previousRanges[dashboardRange]
   const remainingNewWordsToday = Math.max(0, newWordsPerDay - stats.newWordsToday)
   const currentReviewWord = ratingWords[reviewCardIndex]
   const flashcardQueue = useMemo(
@@ -822,7 +827,6 @@ function App() {
     setFlashcardSessionRatingCounts({ again: 0, hard: 0, good: 0, easy: 0 })
     setFlashcardSessionStartMs(Date.now())
     setFlashcardSessionStruggledWords([])
-    setFlashcardSessionAllWords([])
     setScreen('flashcards')
     setLastSummary(queue.length > 0 ? `Loaded ${queue.length} flashcards.` : 'No flashcards match that queue.')
   }, [buildFlashcardQueue])
@@ -846,7 +850,6 @@ function App() {
     setFlashcardSessionRatingCounts({ again: 0, hard: 0, good: 0, easy: 0 })
     setFlashcardSessionStartMs(Date.now())
     setFlashcardSessionStruggledWords([])
-    setFlashcardSessionAllWords([])
     setScreen('flashcards')
     setLastSummary(queue.length > 0 ? `Loaded ${queue.length} sentence flashcards.` : 'No sentence flashcards available.')
   }, [lmsSentences])
@@ -1516,7 +1519,6 @@ function App() {
     if (rating === 'again') {
       setFlashcardSessionStruggledWords((prev) => prev.some((w) => w.id === wordId) ? prev : [...prev, ratedWord])
     }
-    setFlashcardSessionAllWords((prev) => prev.some((w) => w.id === wordId) ? prev : [...prev, ratedWord])
     window.setTimeout(() => {
       void (async () => {
         const updatedWord = await rateWordFsrs(wordId, rating, {
@@ -2357,22 +2359,34 @@ function App() {
                 </button>
               ))}
             </div>
-            <dl className="dashboard-today-stats">
+            <div
+              className={`dashboard-comparison-head ${selectedPreviousRangeStats ? '' : 'single-period'}`.trim()}
+              aria-hidden="true"
+            >
+              <span>Metric</span>
+              <strong>{dashboardRangeLabel(dashboardRange)}</strong>
+              {selectedPreviousRangeStats && <strong>{dashboardPreviousRangeLabel(dashboardRange)}</strong>}
+            </div>
+            <dl className={`dashboard-today-stats ${selectedPreviousRangeStats ? '' : 'single-period'}`.trim()}>
               <div>
                 <dt>Cards reviewed</dt>
                 <dd>{selectedRangeStats.cardsReviewed}</dd>
+                {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.cardsReviewed}</dd>}
               </div>
               <div>
                 <dt>Successful recalls</dt>
                 <dd>{selectedRangeStats.successfulRecalls}</dd>
+                {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.successfulRecalls}</dd>}
               </div>
               <div>
                 <dt>Study minutes</dt>
                 <dd>{selectedRangeStats.studyMinutes.toFixed(1)}</dd>
+                {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.studyMinutes.toFixed(1)}</dd>}
               </div>
               <div>
                 <dt>New words</dt>
                 <dd>{selectedRangeStats.newWords}</dd>
+                {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.newWords}</dd>}
               </div>
             </dl>
           </section>
@@ -2416,81 +2430,10 @@ function App() {
             <InfoPanel title="Review heatmap">
               <ProgressHeatmap days={stats.studyHeatmap} />
             </InfoPanel>
-            <InfoPanel title="Vocab Growth">
+            <InfoPanel title="Vocab Growth" className="vocab-growth-panel">
               <VocabGrowthChart points={stats.retentionSeries} />
             </InfoPanel>
-          </div>
-
-          <div className="action-grid">
-            <InfoPanel title="Goals">
-              <div className="daily-plan goals-plan">
-                <label>
-                  Flashcards / day
-                  <input
-                    type="number"
-                    min={1}
-                    max={300}
-                    value={userSettings.flashcardsPerDay}
-                    onChange={(event) => {
-                      const next = { ...userSettings, flashcardsPerDay: Number(event.target.value) }
-                      setUserSettings(next)
-                      void saveUserSettings(next)
-                    }}
-                  />
-                </label>
-                <span>
-                  {selectedRangeStats.cardsReviewed} reviewed in {dashboardRangeLabel(dashboardRange).toLocaleLowerCase()}.
-                </span>
-                <label>
-                  Reader pages / day
-                  <input
-                    type="number"
-                    min={1}
-                    max={500}
-                    value={userSettings.readingGoalPages}
-                    onChange={(event) => {
-                      const next = { ...userSettings, readingGoalPages: Number(event.target.value) }
-                      setUserSettings(next)
-                      void saveUserSettings(next)
-                    }}
-                  />
-                </label>
-                <span>{todayReaderStats?.todayPagesRead ?? 0} sentence pages read today.</span>
-                <label>
-                  New words / day
-                  <strong>{newWordsPerDay}</strong>
-                </label>
-                <span>{remainingNewWordsToday} new word slots left today. Change this in Settings.</span>
-              </div>
-              <div className="button-row compact-buttons">
-                <button type="button" onClick={() => setScreen('settings')}>
-                  More goals
-                </button>
-                <button type="button" className="ghost-answer" onClick={startSavedFlashcards}>
-                  Flashcards
-                </button>
-                <button type="button" className="ghost-answer" onClick={startSentenceFlashcards}>
-                  Sentences
-                </button>
-              </div>
-            </InfoPanel>
-            <InfoPanel title="Active pack">
-              <dl className="stat-list">
-                <div>
-                  <dt>Pack</dt>
-                  <dd>{activePack?.name ?? 'All words'}</dd>
-                </div>
-                <div>
-                  <dt>Words in scope</dt>
-                  <dd>{scopedWords.length}</dd>
-                </div>
-                <div>
-                  <dt>Audio mode</dt>
-                  <dd>{activePack?.browserTts ? 'Browser TTS' : 'MP3 clips'}</dd>
-                </div>
-              </dl>
-            </InfoPanel>
-            <InfoPanel title="Study details">
+            <InfoPanel title="Study details" className="study-details-panel">
               <dl className="stat-list">
                 <div>
                   <dt>Current streak</dt>
@@ -2572,6 +2515,25 @@ function App() {
               <button type="button" className="ghost-answer" onClick={() => setScreen('reader')}>
                 Open reader
               </button>
+            </InfoPanel>
+          </div>
+
+          <div className="action-grid">
+            <InfoPanel title="Active pack">
+              <dl className="stat-list">
+                <div>
+                  <dt>Pack</dt>
+                  <dd>{activePack?.name ?? 'All words'}</dd>
+                </div>
+                <div>
+                  <dt>Words in scope</dt>
+                  <dd>{scopedWords.length}</dd>
+                </div>
+                <div>
+                  <dt>Audio mode</dt>
+                  <dd>{activePack?.browserTts ? 'Browser TTS' : 'MP3 clips'}</dd>
+                </div>
+              </dl>
             </InfoPanel>
             <InfoPanel title="Hotkeys">
               <dl className="stat-list">
@@ -2864,10 +2826,10 @@ function App() {
                           </span>
                         ))}
                       </div>
-                      {flashcardSessionAllWords.length > 0 && (
+                      {flashcardSessionStruggledWords.length > 0 && (
                         <div className="session-struggled-words">
-                          <span className="struggled-label">Words to review:</span>
-                          {flashcardSessionAllWords.map((word) => (
+                          <span className="struggled-label">Rated Again this round:</span>
+                          {flashcardSessionStruggledWords.map((word) => (
                             <button
                               key={word.id}
                               type="button"
@@ -3252,9 +3214,80 @@ function App() {
               </div>
             </section>
 
+            <section className="panel goals-settings-panel">
+              <h2>Goals</h2>
+              <p>Set the daily targets used across Dashboard, Flashcards, and Reader.</p>
+              <div className="hotkey-grid">
+                <label>
+                  <span>New Words / Day</span>
+                  <input
+                    type="number"
+                    min={0}
+                    max={50}
+                    value={newWordsPerDay}
+                    onChange={(event) => handleNewWordsPerDayChange(Number(event.target.value))}
+                  />
+                </label>
+                <label>
+                  <span>Cards Reviewed / Day</span>
+                  <input
+                    type="number"
+                    min={0}
+                    value={userSettings.lingqCreatedGoal}
+                    onChange={(event) => {
+                      const next = { ...userSettings, lingqCreatedGoal: Number(event.target.value) }
+                      setUserSettings(next)
+                      void saveUserSettings(next)
+                    }}
+                  />
+                </label>
+                <label>
+                  <span>Successful Recalls / Day</span>
+                  <input
+                    type="number"
+                    min={0}
+                    value={userSettings.lingqLearnedGoal}
+                    onChange={(event) => {
+                      const next = { ...userSettings, lingqLearnedGoal: Number(event.target.value) }
+                      setUserSettings(next)
+                      void saveUserSettings(next)
+                    }}
+                  />
+                </label>
+                <label>
+                  <span>Flashcards / Day</span>
+                  <input
+                    type="number"
+                    min={1}
+                    max={300}
+                    value={userSettings.flashcardsPerDay}
+                    onChange={(event) => {
+                      const next = { ...userSettings, flashcardsPerDay: Number(event.target.value) }
+                      setUserSettings(next)
+                      void saveUserSettings(next)
+                    }}
+                  />
+                </label>
+                <label>
+                  <span>Reader Pages / Day</span>
+                  <input
+                    type="number"
+                    min={1}
+                    max={500}
+                    value={userSettings.readingGoalPages}
+                    onChange={(event) => {
+                      const next = { ...userSettings, readingGoalPages: Number(event.target.value) }
+                      setUserSettings(next)
+                      void saveUserSettings(next)
+                    }}
+                  />
+                </label>
+              </div>
+            </section>
+
             <section className="panel">
               <h2>Flashcard settings</h2>
-              <p>Set lightweight targets for daily FSRS work.</p>
+              <p>Choose the queue and audio presentation for regular FSRS study.</p>
               <div className="hotkey-grid">
                 <label>
                   <span>Flashcard queue</span>
@@ -3275,52 +3308,6 @@ function App() {
                   </select>
                 </label>
                 <label>
-                  <span>New Words / Day</span>
-                  <input
-                    type="number"
-                    min={0}
-                    max={50}
-                    value={newWordsPerDay}
-                    onChange={(event) => handleNewWordsPerDayChange(Number(event.target.value))}
-                  />
-                </label>
-                <label>
-                  <span>Cards Reviewed / Day</span>
-                  <input
-                    type="number"
-                    value={userSettings.lingqCreatedGoal}
-                    onChange={(event) => {
-                      const next = { ...userSettings, lingqCreatedGoal: Number(event.target.value) }
-                      setUserSettings(next)
-                      void saveUserSettings(next)
-                    }}
-                  />
-                </label>
-                <label>
-                  <span>Successful Recalls / Day</span>
-                  <input
-                    type="number"
-                    value={userSettings.lingqLearnedGoal}
-                    onChange={(event) => {
-                      const next = { ...userSettings, lingqLearnedGoal: Number(event.target.value) }
-                      setUserSettings(next)
-                      void saveUserSettings(next)
-                    }}
-                  />
-                </label>
-                <label>
-                  <span>Flashcards / Day</span>
-                  <input
-                    type="number"
-                    value={userSettings.flashcardsPerDay}
-                    onChange={(event) => {
-                      const next = { ...userSettings, flashcardsPerDay: Number(event.target.value) }
-                      setUserSettings(next)
-                      void saveUserSettings(next)
-                    }}
-                  />
-                </label>
-                <label>
                   <span>Audio front % (regular mode)</span>
                   <div className="audio-slider-row">
                     <input
@@ -3337,20 +3324,6 @@ function App() {
                     />
                     <span className="audio-slider-value">{userSettings.flashcardAudioFrontPercent}%</span>
                   </div>
-                </label>
-                <label>
-                  <span>Reader Pages / Day</span>
-                  <input
-                    type="number"
-                    min={1}
-                    max={500}
-                    value={userSettings.readingGoalPages}
-                    onChange={(event) => {
-                      const next = { ...userSettings, readingGoalPages: Number(event.target.value) }
-                      setUserSettings(next)
-                      void saveUserSettings(next)
-                    }}
-                  />
                 </label>
               </div>
             </section>
@@ -4174,6 +4147,13 @@ const dashboardRanges: Array<{ value: DashboardRange; label: string }> = [
 
 function dashboardRangeLabel(range: DashboardRange): string {
   return dashboardRanges.find((item) => item.value === range)?.label ?? 'Today'
+}
+
+function dashboardPreviousRangeLabel(range: DashboardRange): string {
+  if (range === 'today') return 'Yesterday'
+  if (range === 'week') return 'Last week'
+  if (range === 'month') return 'Last month'
+  return ''
 }
 
 function ReaderMode({

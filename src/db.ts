@@ -1677,7 +1677,12 @@ export async function getDashboardStats(): Promise<DashboardStats> {
   )
   const heatmap = buildStudyHeatmap(events, readerSessions, 84)
   const todayHeatmap = heatmap[heatmap.length - 1]
-  const ranges = buildDashboardRangeStats(events, readerSessions, scopedWords, scopedWordIds)
+  const { ranges, previousRanges } = buildDashboardRangeStats(
+    events,
+    readerSessions,
+    scopedWords,
+    scopedWordIds,
+  )
   const flashcardSetEvents = events.filter((e) => e.type === 'complete' && e.source === 'flashcards' && e.seconds && e.seconds > 0)
   const avgFlashcardSetSeconds = flashcardSetEvents.length > 0
     ? flashcardSetEvents.reduce((sum, e) => sum + (e.seconds ?? 0), 0) / flashcardSetEvents.length
@@ -1710,6 +1715,7 @@ export async function getDashboardStats(): Promise<DashboardStats> {
         new Date(word.lastReviewedAt) >= start,
     ).length,
     ranges,
+    previousRanges,
     currentStreak: calculateStreak(buildStudyHeatmap(events, readerSessions, 365)),
     longestStreak: calculateLongestStreak(buildStudyHeatmap(events, readerSessions, 365)),
     avgFlashcardSetSeconds,
@@ -1758,16 +1764,33 @@ function buildDashboardRangeStats(
   readerSessions: ReaderSession[],
   words: VocabWord[],
   scopedWordIds: Set<string>,
-): Record<DashboardRange, DashboardStats['ranges'][DashboardRange]> {
+): Pick<DashboardStats, 'ranges' | 'previousRanges'> {
   const today = startOfToday()
+  const tomorrow = new Date(today)
+  tomorrow.setDate(today.getDate() + 1)
+  const yesterday = new Date(today)
+  yesterday.setDate(today.getDate() - 1)
   const week = new Date(today)
   week.setDate(today.getDate() - today.getDay())
+  const nextWeek = new Date(week)
+  nextWeek.setDate(week.getDate() + 7)
+  const lastWeek = new Date(week)
+  lastWeek.setDate(week.getDate() - 7)
   const month = new Date(today.getFullYear(), today.getMonth(), 1)
+  const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1)
+  const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1)
   return {
-    today: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, today),
-    week: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, week),
-    month: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, month),
-    allTime: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds),
+    ranges: {
+      today: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, today, tomorrow),
+      week: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, week, nextWeek),
+      month: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, month, nextMonth),
+      allTime: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds),
+    },
+    previousRanges: {
+      today: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, yesterday, today),
+      week: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, lastWeek, week),
+      month: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, lastMonth, month),
+    },
   }
 }
 
@@ -1777,6 +1800,7 @@ function buildDashboardRangeStat(
   words: VocabWord[],
   scopedWordIds: Set<string>,
   start?: Date,
+  end?: Date,
 ): DashboardStats['ranges'][DashboardRange] {
   const ratingEvents = events.filter((event) => {
     const time = Date.parse(event.timestamp)
@@ -1784,20 +1808,29 @@ function buildDashboardRangeStat(
       event.type === 'fsrs_rating' &&
       scopedWordIds.has(event.itemId) &&
       Number.isFinite(time) &&
-      (!start || time >= start.getTime())
+      (!start || time >= start.getTime()) &&
+      (!end || time < end.getTime())
     )
   })
   const studySeconds =
     events
       .filter((event) => {
         const time = Date.parse(event.timestamp)
-        return Number.isFinite(time) && (!start || time >= start.getTime())
+        return (
+          Number.isFinite(time) &&
+          (!start || time >= start.getTime()) &&
+          (!end || time < end.getTime())
+        )
       })
       .reduce((sum, event) => sum + (event.seconds ?? inferredStudySeconds(event)), 0) +
     readerSessions
       .filter((session) => {
         const time = Date.parse(session.startedAt)
-        return Number.isFinite(time) && (!start || time >= start.getTime())
+        return (
+          Number.isFinite(time) &&
+          (!start || time >= start.getTime()) &&
+          (!end || time < end.getTime())
+        )
       })
       .reduce((sum, session) => sum + (session.activeSeconds ?? 0), 0)
   return {
@@ -1809,7 +1842,8 @@ function buildDashboardRangeStat(
       return (
         (word.fsrsRepetitions ?? 0) <= 1 &&
         Number.isFinite(reviewedAt) &&
-        (!start || reviewedAt >= start.getTime())
+        (!start || reviewedAt >= start.getTime()) &&
+        (!end || reviewedAt < end.getTime())
       )
     }).length,
   }

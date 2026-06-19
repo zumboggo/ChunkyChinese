@@ -541,6 +541,7 @@ export interface DashboardStats {
   lingqsLearnedToday: number
   newWordsToday: number
   ranges: Record<DashboardRange, DashboardRangeStats>
+  previousRanges: Partial<Record<DashboardRange, DashboardRangeStats>>
   currentStreak: number
   longestStreak: number
   avgFlashcardSetSeconds: number
