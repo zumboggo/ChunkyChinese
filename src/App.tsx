@@ -1225,22 +1225,31 @@ function App() {
     recordReaderSentenceView,
   ])
 
-  async function playReaderSentence(sentence: ReaderSentence) {
+  const playReaderSentence = useCallback(async (sentence: ReaderSentence) => {
     recordReaderInteraction()
     const token = runToken.current + 1
     runToken.current = token
     audioRef.current?.pause()
     window.speechSynthesis?.cancel()
     const clip = await getAudioClip(sentence.audioClipId)
-    if (clip) {
-      await playAudioClip(clip.id, token)
+    if (clip && runToken.current === token) {
+      const url = URL.createObjectURL(clip.blob)
+      const audio = new Audio(url)
+      audio.playbackRate = playbackRate
+      audioRef.current = audio
+      await new Promise<void>((resolve) => {
+        audio.addEventListener('ended', () => resolve(), { once: true })
+        audio.addEventListener('error', () => resolve(), { once: true })
+        audio.play().catch(() => resolve())
+      })
+      URL.revokeObjectURL(url)
       return
     }
-    if ('speechSynthesis' in window) {
+    if ('speechSynthesis' in window && runToken.current === token) {
       window.speechSynthesis.cancel()
       await speakUtterance(sentence.chinese, playbackRate, 'zh-CN')
     }
-  }
+  }, [playbackRate, recordReaderInteraction])
 
   useEffect(() => {
     if (screen !== 'reader' || !activeReaderBook || !currentReaderSentence) return
@@ -1661,7 +1670,10 @@ function App() {
       const pressed = event.key.toLocaleLowerCase()
       const mappedIndex = choiceKeyIndex(pressed, hotkeys)
       if (screen === 'reader') {
-        if (mappedIndex === 0) {
+        if (pressed === hotkeys.choiceF && currentReaderSentence) {
+          event.preventDefault()
+          void playReaderSentence(currentReaderSentence)
+        } else if (mappedIndex === 0) {
           event.preventDefault()
           setReaderShowEnglish((value) => !value)
         } else if (mappedIndex === 1) {
@@ -1692,6 +1704,11 @@ function App() {
       if (screen === 'flashcards') {
         if (flashcardSessionKind === 'sentences') {
           const currentSentence = flashcardSentenceQueue[flashcardSentenceIndex]
+          if (pressed === hotkeys.choiceF && currentSentence) {
+            event.preventDefault()
+            void playSentenceTwice(currentSentence.chinese)
+            return
+          }
           if (!currentSentence && flashcardSentenceIndex >= flashcardSentenceQueue.length) {
             if (mappedIndex === 0) {
               event.preventDefault()
@@ -1716,6 +1733,11 @@ function App() {
               setFlashcardSentenceIndex((i) => i + 1)
             }
           }
+          return
+        }
+        if (pressed === hotkeys.choiceF && currentFlashcardWord) {
+          event.preventDefault()
+          void playFlashcardWordTwice(currentFlashcardWord)
           return
         }
         if (pressed === hotkeys.choiceE && currentFlashcardWord) {
@@ -1767,6 +1789,11 @@ function App() {
         if (pressed === hotkeys.choiceE && currentReviewWord) {
           event.preventDefault()
           void toggleActiveRecallPriority(currentReviewWord)
+          return
+        }
+        if (pressed === hotkeys.choiceF && currentReviewWord) {
+          event.preventDefault()
+          void playFlashcardWordTwice(currentReviewWord)
           return
         }
         if (flashcardFeedback) return
@@ -1829,11 +1856,18 @@ function App() {
     isSentenceContinueSection,
     currentReviewWord,
     currentFlashcardWord,
+    currentReaderSentence,
     flashcardAnswerShown,
+    flashcardSentenceAnswerShown,
+    flashcardSentenceIndex,
+    flashcardSentenceQueue,
+    flashcardSessionKind,
     handleStandaloneFlashcardRate,
     refreshFlashcardSession,
     moveReaderSentence,
     playFlashcardWordTwice,
+    playReaderSentence,
+    playSentenceTwice,
     ratingWords,
     reviewAnswerShown,
     screen,
@@ -2562,6 +2596,10 @@ function App() {
                   <dd>{hotkeys.choiceE.toUpperCase()} · Extra review</dd>
                 </div>
                 <div>
+                  <dt>Choice F</dt>
+                  <dd>{hotkeys.choiceF.toUpperCase()} · Replay audio</dd>
+                </div>
+                <div>
                   <dt>Play / pause</dt>
                   <dd>{hotkeys.playPause.toUpperCase()}</dd>
                 </div>
@@ -2679,13 +2717,6 @@ function App() {
                               <>
                                 <strong>Listen first</strong>
                                 <p className="flashcard-answer-text">The sentence audio plays twice.</p>
-                                <button
-                                  type="button"
-                                  className="ghost-answer"
-                                  onClick={() => void playSentenceTwice(sentence.chinese)}
-                                >
-                                  Replay audio
-                                </button>
                               </>
                             ) : (
                               <strong className="flashcard-sentence-cn">{sentence.chinese}</strong>
@@ -2702,6 +2733,14 @@ function App() {
                             </button>
                           </>
                         )}
+                        <button
+                          type="button"
+                          className="ghost-answer"
+                          onClick={() => void playSentenceTwice(sentence.chinese)}
+                        >
+                          <kbd>{hotkeys.choiceF.toUpperCase()}</kbd>
+                          Play audio
+                        </button>
                       </div>
                       {flashcardSentenceAnswerShown && (
                         <div className="review-buttons fsrs-preview-buttons">
@@ -2876,6 +2915,7 @@ function App() {
           readerTheme={userSettings.readerTheme}
           readerFontScale={userSettings.readerFontScale}
           readerLineHeight={userSettings.readerLineHeight}
+          replayHotkey={hotkeys.choiceF}
           showEnglish={readerShowEnglish}
           onChooseBook={openReaderBook}
           onResume={() => {
@@ -3316,7 +3356,7 @@ function App() {
             </section>
             <section className="panel">
               <h2>Hotkey settings</h2>
-              <p>Choice A-D rate flashcards; Choice E stars cards for extra review.</p>
+              <p>Choice A-D rate flashcards; Choice E stars cards; Choice F replays audio.</p>
               <dl className="stat-list">
                 <div>
                   <dt>Choice A</dt>
@@ -3337,6 +3377,10 @@ function App() {
                 <div>
                   <dt>Choice E</dt>
                   <dd>{hotkeys.choiceE.toUpperCase()}</dd>
+                </div>
+                <div>
+                  <dt>Choice F</dt>
+                  <dd>{hotkeys.choiceF.toUpperCase()}</dd>
                 </div>
                 <div>
                   <dt>Play / pause</dt>
@@ -4147,6 +4191,7 @@ function ReaderMode({
   readerTheme,
   readerFontScale,
   readerLineHeight,
+  replayHotkey,
   showEnglish,
   onChooseBook,
   onResume,
@@ -4174,6 +4219,7 @@ function ReaderMode({
   readerTheme: ReaderTheme
   readerFontScale: number
   readerLineHeight: number
+  replayHotkey: string
   showEnglish: boolean
   onChooseBook: (book: ReaderBook, action?: 'resume' | 'start') => void | Promise<void>
   onResume: () => void
@@ -4342,6 +4388,7 @@ function ReaderMode({
                   Previous
                 </button>
                 <button type="button" className="primary" onClick={() => onPlay(sentence)}>
+                  <kbd>{replayHotkey.toUpperCase()}</kbd>
                   Play sentence
                 </button>
                 <button type="button" onClick={onNext} disabled={sentenceIndex >= sentenceCount - 1}>
@@ -4889,11 +4936,6 @@ function FlashcardReview({
               <>
                 <strong>Listen first</strong>
                 <p className="flashcard-answer-text">The word audio plays twice.</p>
-                {onReplayAudio && (
-                  <button type="button" className="ghost-answer" onClick={onReplayAudio}>
-                    Replay audio
-                  </button>
-                )}
               </>
             ) : reverseFront ? (
               <strong>{word.meaning}</strong>
@@ -4901,6 +4943,12 @@ function FlashcardReview({
               <strong>{word.word}</strong>
             )}
           </>
+        )}
+        {onReplayAudio && (
+          <button type="button" className="ghost-answer" onClick={onReplayAudio}>
+            {choiceKeys?.choiceF && <kbd>{choiceKeys.choiceF.toUpperCase()}</kbd>}
+            Play audio
+          </button>
         )}
         {onToggleActiveRecallPriority && (
           <button
@@ -5424,6 +5472,7 @@ function hotkeyLabel(key: keyof HotkeySettings): string {
     choiceC: 'Choice C / Good',
     choiceD: 'Choice D / Easy',
     choiceE: 'Choice E / Extra review star',
+    choiceF: 'Choice F / Replay audio',
     playPause: 'Play / Pause',
   }[key]
 }

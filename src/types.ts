@@ -49,6 +49,7 @@ export interface HotkeySettings {
   choiceC: string
   choiceD: string
   choiceE: string
+  choiceF: string
   playPause: string
 }
 

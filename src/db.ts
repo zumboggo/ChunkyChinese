@@ -97,6 +97,7 @@ export const DEFAULT_HOTKEYS: HotkeySettings = {
   choiceC: '3',
   choiceD: '4',
   choiceE: '5',
+  choiceF: '6',
   playPause: 'p',
 }
 
@@ -549,6 +550,7 @@ export async function getHotkeys(): Promise<HotkeySettings> {
     choiceC: saved?.choiceC ?? saved?.ratingGood ?? DEFAULT_HOTKEYS.choiceC,
     choiceD: saved?.choiceD ?? saved?.ratingEasy ?? DEFAULT_HOTKEYS.choiceD,
     choiceE: saved?.choiceE ?? DEFAULT_HOTKEYS.choiceE,
+    choiceF: saved?.choiceF ?? DEFAULT_HOTKEYS.choiceF,
     playPause: saved?.playPause ?? DEFAULT_HOTKEYS.playPause,
   })
 }
@@ -2297,6 +2299,7 @@ function normalizeHotkeys(hotkeys: HotkeySettings): HotkeySettings {
     choiceC: normalizeKey(hotkeys.choiceC, DEFAULT_HOTKEYS.choiceC),
     choiceD: normalizeKey(hotkeys.choiceD, DEFAULT_HOTKEYS.choiceD),
     choiceE: normalizeKey(hotkeys.choiceE, DEFAULT_HOTKEYS.choiceE),
+    choiceF: normalizeKey(hotkeys.choiceF, DEFAULT_HOTKEYS.choiceF),
     playPause: normalizeKey(hotkeys.playPause, DEFAULT_HOTKEYS.playPause),
   }
 }
