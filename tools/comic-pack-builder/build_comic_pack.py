@@ -184,7 +184,7 @@ def build_parser() -> argparse.ArgumentParser:
     translate_parser.add_argument("--project", required=True)
     translate_parser.add_argument("--page-id", required=True)
     translate_parser.add_argument("--endpoint", default="http://127.0.0.1:11434/v1/chat/completions")
-    translate_parser.add_argument("--model", default="qwen2.5:7b")
+    translate_parser.add_argument("--model", default="hy-mt2:1.8b")
     translate_parser.set_defaults(func=command_translate)
     return parser
 

@@ -102,7 +102,7 @@ def make_handler(application: ReviewApplication):
                         return
                     provider = OpenAICompatibleLocalProvider(
                         endpoint=body.get("endpoint", "http://127.0.0.1:11434/v1/chat/completions"),
-                        model=body.get("model", "qwen2.5:7b"),
+                        model=body.get("model", "hy-mt2:1.8b"),
                     )
                     translations = provider.translate_page(page.get("bubbles", []))
                     by_id = {item["id"]: item["english"] for item in translations}

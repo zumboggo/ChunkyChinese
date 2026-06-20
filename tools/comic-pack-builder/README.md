@@ -163,17 +163,30 @@ The splitter uses simple consecutive crops. It does not detect panels or avoid c
 
 Manual English translation is always supported and blank translations are valid.
 
-To use a local OpenAI-compatible endpoint such as Ollama, LM Studio, or OpenWebUI:
+### Ollama with Hy-MT2-1.8B
+
+Install the official Tencent Q4_K_M GGUF model and the project-specific chat template:
+
+```powershell
+ollama create hy-mt2:1.8b -f .\ollama\Hy-MT2-1.8B.Modelfile
+```
+
+The custom Modelfile is required because the upstream GGUF's automatically generated
+Ollama template does not currently preserve the user prompt correctly.
+
+To translate with Ollama:
 
 ```powershell
 py build_comic_pack.py translate `
   --project .\projects\my-comic `
   --page-id page-001 `
   --endpoint http://127.0.0.1:11434/v1/chat/completions `
-  --model qwen2.5:7b
+  --model hy-mt2:1.8b
 ```
 
-The same fields are available in the review UI. Translation is never triggered automatically.
+`hy-mt2:1.8b` is the default in both the CLI and review UI. The endpoint and model
+fields remain configurable for LM Studio, OpenWebUI, or another local model.
+Translation is never triggered automatically.
 
 ## Project Layout
 

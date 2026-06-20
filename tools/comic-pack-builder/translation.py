@@ -23,7 +23,7 @@ class ManualTranslationProvider:
 @dataclass
 class OpenAICompatibleLocalProvider:
     endpoint: str = "http://127.0.0.1:11434/v1/chat/completions"
-    model: str = "qwen2.5:7b"
+    model: str = "hy-mt2:1.8b"
     timeout_seconds: int = 120
 
     def translate_page(self, bubbles: list[dict[str, Any]]) -> list[dict[str, str]]:
