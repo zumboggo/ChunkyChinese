@@ -1423,8 +1423,9 @@ export async function importHostedComicPack(
   onProgress?: (message: string) => void,
 ): Promise<ComicImportSummary> {
   const resolvedBase = resolveHostedBaseUrl(baseUrl)
+  const base = `${resolvedBase}/`
   onProgress?.('Fetching comic manifest...')
-  const manifest = (await fetchJson(`${resolvedBase}manifest.json`)) as ComicPackManifest
+  const manifest = (await fetchJson(`${base}manifest.json`)) as ComicPackManifest
   const chapters: ComicChapter[] = []
   const images = new Map<string, Blob>()
   const imageContentTypes = new Map<string, string>()
@@ -1432,7 +1433,7 @@ export async function importHostedComicPack(
   if (manifest.coverImage) imagePaths.add(manifest.coverImage)
   for (const ref of manifest.chapters) {
     onProgress?.(`Loading chapter: ${ref.title ?? ref.id}...`)
-    const chapter = (await fetchJson(`${resolvedBase}${encodePath(ref.file)}`)) as ComicChapter
+    const chapter = (await fetchJson(`${base}${encodePath(ref.file)}`)) as ComicChapter
     chapters.push(chapter)
     for (const page of chapter.pages) imagePaths.add(page.image)
   }
@@ -1440,7 +1441,7 @@ export async function importHostedComicPack(
   for (const path of imagePaths) {
     fetched++
     onProgress?.(`Downloading images (${fetched}/${imagePaths.size})...`)
-    const response = await fetch(`${resolvedBase}${encodePath(path)}`)
+    const response = await fetch(`${base}${encodePath(path)}`)
     if (!response.ok) throw new Error(`Comic image failed to load: ${path}`)
     images.set(path, await response.blob())
     imageContentTypes.set(path, response.headers.get('content-type') ?? contentTypeForComicImage(path))
