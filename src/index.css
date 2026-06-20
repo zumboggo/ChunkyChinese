@@ -6473,6 +6473,8 @@ kbd {
   border: 1px solid rgba(74, 57, 35, 0.12);
   background: #fffdf8;
   box-shadow: 0 14px 34px rgba(68, 50, 27, 0.11);
+  cursor: pointer;
+  touch-action: pan-y;
 }
 
 .comic-page-figure img {
@@ -6521,6 +6523,11 @@ kbd {
 
 .comic-transcript-line.bubble-sfx {
   border-style: dashed;
+}
+
+.comic-transcript-line.active {
+  border-color: rgba(214, 140, 30, 0.72);
+  box-shadow: 0 0 0 3px rgba(246, 184, 63, 0.2), 0 12px 28px rgba(51, 40, 26, 0.1);
 }
 
 .comic-transcript-number {
@@ -6607,6 +6614,57 @@ kbd {
   color: var(--comic-muted);
   font-size: 0.78rem;
   font-weight: 850;
+}
+
+.comic-controller-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  color: var(--comic-muted);
+}
+
+.comic-controller-hint kbd,
+.comic-page-button kbd {
+  min-width: 1.65rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 6px;
+  background: rgba(20, 35, 56, 0.1);
+  color: currentColor;
+  text-align: center;
+}
+
+.comic-reading-header,
+.comic-settings-strip,
+.comic-reader-bottom-nav {
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.comic-page-reader.distraction-free {
+  padding-bottom: 12px;
+}
+
+.comic-page-reader.distraction-free .comic-reading-header,
+.comic-page-reader.distraction-free .comic-settings-strip,
+.comic-page-reader.distraction-free .comic-reader-bottom-nav {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.comic-page-reader.distraction-free .comic-reading-header {
+  transform: translateY(-12px);
+}
+
+.comic-page-reader.distraction-free .comic-reader-bottom-nav {
+  transform: translate(-50%, 18px);
+}
+
+body.comic-distraction-free .topbar {
+  display: none;
+}
+
+body.comic-distraction-free .app-shell {
+  padding-top: 0;
 }
 
 .comic-setting-group {

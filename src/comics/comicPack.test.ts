@@ -3,8 +3,10 @@ import JSZip from 'jszip'
 import { describe, expect, it } from 'vitest'
 import { getComicProgress, importComicPack, saveComicProgress } from '../db'
 import {
+  adjacentComicImagePaths,
   calculateComicCoverage,
   comicProgressId,
+  nextComicBubbleId,
   parseComicPackZip,
   shouldShowComicTranslation,
 } from './comicPack'
@@ -63,10 +65,41 @@ describe('comic reader helpers', () => {
   })
 
   it('handles translation display modes', () => {
-    expect(shouldShowComicTranslation('hidden', 'a', new Set(['a']))).toBe(false)
+    expect(shouldShowComicTranslation('hidden', 'a', new Set(['a']))).toBe(true)
     expect(shouldShowComicTranslation('visible', 'a', new Set())).toBe(true)
     expect(shouldShowComicTranslation('tap', 'a', new Set(['a']))).toBe(true)
     expect(shouldShowComicTranslation('tap', 'a', new Set(['b']))).toBe(false)
+  })
+
+  it('advances through transcript bubbles in order', () => {
+    const bubbles = makeChapter().pages[0].bubbles
+    expect(nextComicBubbleId(bubbles, null)).toBe('bubble-b')
+    expect(nextComicBubbleId(bubbles, 'bubble-b')).toBe('bubble-a')
+    expect(nextComicBubbleId(bubbles, 'bubble-a')).toBeNull()
+  })
+
+  it('returns current and adjacent page images across chapter boundaries', () => {
+    const first = {
+      ...makeChapter(),
+      recordId: 'pack:chapter-01',
+      packId: 'pack',
+      chapterIndex: 0,
+      updatedAt: '2026-06-20T00:00:00.000Z',
+    }
+    first.pages.push({ ...first.pages[0], id: 'page-002', image: 'images/page-002.svg' })
+    const second = {
+      ...first,
+      id: 'chapter-02',
+      recordId: 'pack:chapter-02',
+      chapterIndex: 1,
+      pages: [{ ...first.pages[0], id: 'page-003', image: 'images/page-003.svg' }],
+    }
+
+    expect(adjacentComicImagePaths([first, second], 'chapter-01', 1)).toEqual([
+      'images/page-002.svg',
+      'images/page-001.svg',
+      'images/page-003.svg',
+    ])
   })
 
   it('saves and restores comic progress in IndexedDB', async () => {

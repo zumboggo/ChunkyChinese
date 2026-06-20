@@ -2972,6 +2972,7 @@ function App() {
         <ComicReaderMode
           words={scopedWords.length > 0 ? scopedWords : words}
           pinyinMode={userSettings.readerPinyinMode}
+          hotkeys={hotkeys}
           onEditWord={openCardEditor}
           onWordsChanged={refresh}
           onReturnHome={() => setScreen('dashboard')}

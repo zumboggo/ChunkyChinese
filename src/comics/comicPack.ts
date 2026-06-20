@@ -7,6 +7,7 @@ import type {
   ComicBubble,
   ComicBubbleType,
   ComicChapter,
+  ComicChapterRecord,
   ComicChapterReference,
   ComicCoverageSummary,
   ComicPackManifest,
@@ -56,8 +57,39 @@ export function shouldShowComicTranslation(
   revealedBubbleIds: Set<string>,
 ): boolean {
   if (mode === 'visible') return true
-  if (mode === 'hidden') return false
   return revealedBubbleIds.has(bubbleId)
+}
+
+export function nextComicBubbleId(
+  bubbles: ComicBubble[],
+  currentBubbleId: string | null,
+): string | null {
+  const currentIndex = currentBubbleId
+    ? bubbles.findIndex((bubble) => bubble.id === currentBubbleId)
+    : -1
+  return bubbles[currentIndex + 1]?.id ?? null
+}
+
+export function adjacentComicImagePaths(
+  chapters: ComicChapterRecord[],
+  chapterId: string,
+  pageIndex: number,
+): string[] {
+  const pages = chapters.flatMap((chapter) =>
+    chapter.pages.map((page, index) => ({
+      chapterId: chapter.id,
+      pageIndex: index,
+      image: page.image,
+    })),
+  )
+  const currentIndex = pages.findIndex(
+    (page) => page.chapterId === chapterId && page.pageIndex === pageIndex,
+  )
+  if (currentIndex < 0) return []
+  return [pages[currentIndex], pages[currentIndex - 1], pages[currentIndex + 1]]
+    .filter((page): page is NonNullable<typeof page> => Boolean(page))
+    .map((page) => page.image)
+    .filter((path, index, paths) => paths.indexOf(path) === index)
 }
 
 export function normalizeComicPath(path: unknown, label = 'path'): string {

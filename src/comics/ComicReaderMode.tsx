@@ -20,10 +20,12 @@ import {
 } from '../db'
 import {
   DEFAULT_COMIC_TRANSLATION_MODE,
+  adjacentComicImagePaths,
   calculateComicCoverage,
   comicProgressId,
   isComicPackDuplicateError,
   makeDefaultComicProgress,
+  nextComicBubbleId,
   shouldShowComicTranslation,
 } from './comicPack'
 import type {
@@ -35,6 +37,7 @@ import type {
   ComicTranslationMode,
   DictionaryEntry,
   HostedComicPack,
+  HotkeySettings,
   ReaderWordToken,
   VocabWord,
 } from '../types'
@@ -42,6 +45,7 @@ import type {
 interface ComicReaderModeProps {
   words: VocabWord[]
   pinyinMode: AdaptivePinyinMode
+  hotkeys: HotkeySettings
   onEditWord: (word: VocabWord) => void
   onWordsChanged: () => void | Promise<void>
   onReturnHome: () => void
@@ -58,6 +62,7 @@ const translationModes: Array<{ value: ComicTranslationMode; label: string }> = 
 export function ComicReaderMode({
   words,
   pinyinMode,
+  hotkeys,
   onEditWord,
   onWordsChanged,
   onReturnHome,
@@ -71,6 +76,8 @@ export function ComicReaderMode({
   const [translationMode, setTranslationMode] = useState<ComicTranslationMode>(DEFAULT_COMIC_TRANSLATION_MODE)
   const [showSoundEffects, setShowSoundEffects] = useState(false)
   const [revealedBubbleIds, setRevealedBubbleIds] = useState<Set<string>>(new Set())
+  const [activeBubbleId, setActiveBubbleId] = useState<string | null>(null)
+  const [distractionFree, setDistractionFree] = useState(false)
   const [selectedToken, setSelectedToken] = useState<ReaderWordToken | null>(null)
   const [dictionaryEntry, setDictionaryEntry] = useState<DictionaryEntry | null>(null)
   const [loadState, setLoadState] = useState<'loading' | 'ready' | 'error'>('loading')
@@ -81,6 +88,7 @@ export function ComicReaderMode({
   const [downloadingId, setDownloadingId] = useState<string | null>(null)
   const [downloadProgress, setDownloadProgress] = useState('')
   const readerTopRef = useRef<HTMLDivElement | null>(null)
+  const bubbleElementsRef = useRef(new Map<string, HTMLLIElement>())
 
   const activePage = activeChapter?.pages[pageIndex]
   const isFirstPage = chapters[0]?.id === activeChapter?.id && pageIndex <= 0
@@ -90,6 +98,12 @@ export function ComicReaderMode({
   const visibleBubbles = useMemo(
     () => (activePage?.bubbles ?? []).filter((bubble) => showSoundEffects || bubble.type !== 'sfx'),
     [activePage, showSoundEffects],
+  )
+  const preloadedImagePaths = useMemo(
+    () => activeChapter
+      ? adjacentComicImagePaths(chapters, activeChapter.id, pageIndex)
+      : [],
+    [activeChapter, chapters, pageIndex],
   )
 
   const loadLibrary = useCallback(async () => {
@@ -153,12 +167,18 @@ export function ComicReaderMode({
     return () => window.clearTimeout(timeout)
   }, [activeChapter?.id, pageIndex, view])
 
+  useEffect(() => {
+    document.body.classList.toggle('comic-distraction-free', view === 'reader' && distractionFree)
+    return () => document.body.classList.remove('comic-distraction-free')
+  }, [distractionFree, view])
+
   const goToPage = useCallback((nextChapter: ComicChapterRecord, nextPageIndex: number) => {
     setActiveChapter(nextChapter)
     setPageIndex(Math.max(0, Math.min(nextPageIndex, nextChapter.pages.length - 1)))
     setSelectedToken(null)
     setDictionaryEntry(null)
     setRevealedBubbleIds(new Set())
+    setActiveBubbleId(null)
     window.requestAnimationFrame(() => readerTopRef.current?.scrollIntoView({ block: 'start' }))
   }, [])
 
@@ -180,25 +200,45 @@ export function ComicReaderMode({
     }
   }, [activeChapter, chapters, goToPage, pageIndex])
 
+  const advanceTranscript = useCallback(() => {
+    const nextBubbleId = nextComicBubbleId(visibleBubbles, activeBubbleId)
+    setSelectedToken(null)
+    setDictionaryEntry(null)
+    if (!nextBubbleId) {
+      movePage(1)
+      return
+    }
+    setActiveBubbleId(nextBubbleId)
+    setRevealedBubbleIds((current) => new Set(current).add(nextBubbleId))
+    window.requestAnimationFrame(() => {
+      bubbleElementsRef.current.get(nextBubbleId)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      })
+    })
+  }, [activeBubbleId, movePage, visibleBubbles])
+
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (view !== 'reader') return
+      const pressed = event.key.toLocaleLowerCase()
       const target = event.target
-      const isInteractive =
-        target instanceof HTMLButtonElement ||
+      const isTextInput =
         target instanceof HTMLInputElement ||
         target instanceof HTMLSelectElement ||
         target instanceof HTMLTextAreaElement ||
-        target instanceof HTMLAnchorElement ||
         (target instanceof HTMLElement && target.isContentEditable)
-      if (isInteractive) return
-      if (event.key === 'ArrowLeft') {
+      if (isTextInput) return
+      if (pressed === hotkeys.choiceA) {
         event.preventDefault()
-        movePage(-1)
-      } else if (event.key === 'ArrowRight') {
+        advanceTranscript()
+      } else if (pressed === hotkeys.choiceB || pressed === 'arrowright') {
         event.preventDefault()
         movePage(1)
-      } else if (event.key === 'Escape') {
+      } else if (pressed === hotkeys.choiceC || pressed === 'arrowleft') {
+        event.preventDefault()
+        movePage(-1)
+      } else if (pressed === 'escape') {
         event.preventDefault()
         setSelectedToken(null)
         setDictionaryEntry(null)
@@ -206,7 +246,7 @@ export function ComicReaderMode({
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [movePage, view])
+  }, [advanceTranscript, hotkeys, movePage, view])
 
   async function openPack(packId: string, mode: 'continue' | 'start' = 'continue') {
     const [pack, chapterRows, progress] = await Promise.all([
@@ -230,6 +270,7 @@ export function ComicReaderMode({
     setPageIndex(mode === 'continue' ? Math.min(restoredProgress.pageIndex, chapter.pages.length - 1) : 0)
     setActiveChapter(chapter)
     setRevealedBubbleIds(new Set())
+    setActiveBubbleId(null)
     setSelectedToken(null)
     setDictionaryEntry(null)
     setView(mode === 'continue' ? 'reader' : 'chapters')
@@ -246,6 +287,7 @@ export function ComicReaderMode({
     setActiveChapter(chapter)
     setPageIndex(progress?.chapterId === chapter.id ? Math.min(progress.pageIndex, chapter.pages.length - 1) : 0)
     setRevealedBubbleIds(new Set())
+    setActiveBubbleId(null)
     setSelectedToken(null)
     setDictionaryEntry(null)
     setView('reader')
@@ -496,7 +538,7 @@ export function ComicReaderMode({
       )}
 
       {view === 'reader' && activePack && activeChapter && activePage && (
-        <section className="comic-page-reader">
+        <section className={`comic-page-reader${distractionFree ? ' distraction-free' : ''}`}>
           <header className="comic-reading-header">
             <button
               type="button"
@@ -516,13 +558,19 @@ export function ComicReaderMode({
             <span className="comic-page-indicator">{pageIndex + 1} / {activeChapter.pages.length}</span>
           </header>
           <ComicPageImage
+            key={activePack.id}
             packId={activePack.id}
             imagePath={activePage.image}
+            preloadImagePaths={preloadedImagePaths}
             alt={`${activePack.title}, ${activeChapter.title}, page ${pageIndex + 1}`}
-            onDismiss={() => {
+            distractionFree={distractionFree}
+            onToggleDistractionFree={() => {
               setSelectedToken(null)
               setDictionaryEntry(null)
+              setDistractionFree((current) => !current)
             }}
+            onSwipePrevious={() => movePage(-1)}
+            onSwipeNext={() => movePage(1)}
           />
           <ol className="comic-transcript-list">
             {visibleBubbles.map((bubble, index) => (
@@ -535,6 +583,11 @@ export function ComicReaderMode({
                 selectedToken={selectedToken}
                 translationMode={translationMode}
                 revealedBubbleIds={revealedBubbleIds}
+                active={bubble.id === activeBubbleId}
+                onElement={(element) => {
+                  if (element) bubbleElementsRef.current.set(bubble.id, element)
+                  else bubbleElementsRef.current.delete(bubble.id)
+                }}
                 onToggleTranslation={() => {
                   setRevealedBubbleIds((current) => {
                     const next = new Set(current)
@@ -557,6 +610,11 @@ export function ComicReaderMode({
           </ol>
 
           <div className="comic-settings-strip">
+            <span className="comic-controller-hint">
+              <kbd>{hotkeys.choiceA.toUpperCase()}</kbd> reveal
+              <kbd>{hotkeys.choiceB.toUpperCase()}</kbd> next
+              <kbd>{hotkeys.choiceC.toUpperCase()}</kbd> previous
+            </span>
             <div className="comic-setting-group">
               <span>Translation</span>
               <div className="segmented-control comic-translation-control" aria-label="Translation mode">
@@ -610,6 +668,7 @@ export function ComicReaderMode({
               disabled={isFirstPage}
             >
               <span aria-hidden="true">←</span>
+              <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
               Previous
             </button>
             <button
@@ -628,6 +687,7 @@ export function ComicReaderMode({
               disabled={isLastPage}
             >
               Next
+              <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
               <span aria-hidden="true">→</span>
             </button>
           </nav>
@@ -671,6 +731,8 @@ function ComicTranscriptLine({
   selectedToken,
   translationMode,
   revealedBubbleIds,
+  active,
+  onElement,
   onToggleTranslation,
   onSelectToken,
 }: {
@@ -681,6 +743,8 @@ function ComicTranscriptLine({
   selectedToken: ReaderWordToken | null
   translationMode: ComicTranslationMode
   revealedBubbleIds: Set<string>
+  active: boolean
+  onElement: (element: HTMLLIElement | null) => void
   onToggleTranslation: () => void
   onSelectToken: (token: ReaderWordToken | null) => void
 }) {
@@ -690,7 +754,11 @@ function ComicTranscriptLine({
   )
   const translationVisible = shouldShowComicTranslation(translationMode, bubble.id, revealedBubbleIds)
   return (
-    <li className={`comic-transcript-line bubble-${bubble.type}`}>
+    <li
+      ref={onElement}
+      className={`comic-transcript-line bubble-${bubble.type}${active ? ' active' : ''}`}
+      data-bubble-id={bubble.id}
+    >
       <span className="comic-transcript-number" aria-hidden="true">{index + 1}</span>
       <div className="comic-transcript-copy">
         <span className="comic-bubble-kind">{bubble.type}</span>
@@ -729,20 +797,114 @@ function ComicCover({ packId, imagePath, alt }: { packId: string; imagePath?: st
 function ComicPageImage({
   packId,
   imagePath,
+  preloadImagePaths,
   alt,
-  onDismiss,
+  distractionFree,
+  onToggleDistractionFree,
+  onSwipePrevious,
+  onSwipeNext,
 }: {
   packId: string
   imagePath: string
+  preloadImagePaths: string[]
   alt: string
-  onDismiss: () => void
+  distractionFree: boolean
+  onToggleDistractionFree: () => void
+  onSwipePrevious: () => void
+  onSwipeNext: () => void
 }) {
-  const url = useComicImageUrl(packId, imagePath)
+  const urls = useComicImageUrls(packId, preloadImagePaths)
+  const url = urls.get(imagePath) ?? null
+  const pointerStartRef = useRef<{ x: number; y: number } | null>(null)
+  const suppressClickRef = useRef(false)
+
+  function handlePointerEnd(clientX: number, clientY: number) {
+    const start = pointerStartRef.current
+    pointerStartRef.current = null
+    if (!start) return
+    const deltaX = clientX - start.x
+    const deltaY = clientY - start.y
+    if (Math.abs(deltaX) < 55 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) return
+    suppressClickRef.current = true
+    if (deltaX < 0) onSwipeNext()
+    else onSwipePrevious()
+  }
+
   return (
-    <figure className="comic-page-figure" onClick={onDismiss}>
+    <figure
+      className="comic-page-figure"
+      role="button"
+      tabIndex={0}
+      aria-label={`Comic page. ${distractionFree ? 'Show' : 'Hide'} reading controls`}
+      onPointerDown={(event) => {
+        pointerStartRef.current = { x: event.clientX, y: event.clientY }
+        suppressClickRef.current = false
+      }}
+      onPointerUp={(event) => handlePointerEnd(event.clientX, event.clientY)}
+      onPointerCancel={() => {
+        pointerStartRef.current = null
+      }}
+      onClick={() => {
+        if (suppressClickRef.current) {
+          suppressClickRef.current = false
+          return
+        }
+        onToggleDistractionFree()
+      }}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          onToggleDistractionFree()
+        }
+      }}
+    >
       {url ? <img src={url} alt={alt} /> : <div className="comic-page-missing">Image unavailable</div>}
     </figure>
   )
+}
+
+function useComicImageUrls(packId: string, imagePaths: string[]): Map<string, string> {
+  const cacheRef = useRef(new Map<string, string>())
+  const pendingRef = useRef(new Set<string>())
+  const disposedRef = useRef(false)
+  const [urls, setUrls] = useState<Map<string, string>>(() => new Map())
+  const pathsKey = imagePaths.join('\n')
+
+  useEffect(() => {
+    disposedRef.current = false
+    const cache = cacheRef.current
+    const pending = pendingRef.current
+    return () => {
+      disposedRef.current = true
+      for (const url of cache.values()) URL.revokeObjectURL(url)
+      cache.clear()
+      pending.clear()
+    }
+  }, [])
+
+  useEffect(() => {
+    for (const path of imagePaths) {
+      if (cacheRef.current.has(path) || pendingRef.current.has(path)) continue
+      pendingRef.current.add(path)
+      void getComicImage(packId, path)
+        .then(async (blob) => {
+          pendingRef.current.delete(path)
+          if (!blob || disposedRef.current) return
+          const objectUrl = URL.createObjectURL(blob)
+          cacheRef.current.set(path, objectUrl)
+          const image = new Image()
+          image.src = objectUrl
+          await image.decode().catch(() => undefined)
+          if (!disposedRef.current) setUrls(new Map(cacheRef.current))
+        })
+        .catch((error) => {
+          pendingRef.current.delete(path)
+          console.error(error)
+        })
+    }
+  }, [packId, pathsKey, imagePaths])
+
+  return urls
 }
 
 function useComicImageUrl(packId: string, imagePath?: string): string | null {
