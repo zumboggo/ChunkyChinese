@@ -19,7 +19,8 @@
             "y": 0.005682,
             "width": 0.082667,
             "height": 0.034091
-          }
+          },
+          "english": "Yuewen Group"
         },
         {
           "id": "page-001-bubble-004",
@@ -31,7 +32,8 @@
             "y": 0.028409,
             "width": 0.07,
             "height": 0.021591
-          }
+          },
+          "english": "Xianman Culture"
         },
         {
           "id": "page-001-bubble-005",
@@ -43,7 +45,8 @@
             "y": 0.720455,
             "width": 0.337333,
             "height": 0.188636
-          }
+          },
+          "english": "Global Gao Wu"
         }
       ]
     },
@@ -70,7 +73,8 @@
             "y": 0.193029,
             "width": 0.45,
             "height": 0.176944
-          }
+          },
+          "english": "This is in 2008"
         }
       ]
     },
@@ -115,10 +119,11 @@
           "type": "dialogue",
           "box": {
             "x": 0.1325,
-            "y": 0.0,
+            "y": 0,
             "width": 0.78125,
             "height": 0.162011
-          }
+          },
+          "english": "I was reborn ten years ago!"
         }
       ]
     },
@@ -138,7 +143,8 @@
             "y": 0.394521,
             "width": 0.22,
             "height": 0.210959
-          }
+          },
+          "english": "But here"
         }
       ]
     },
@@ -158,7 +164,8 @@
             "y": 0.170029,
             "width": 0.485,
             "height": 0.132565
-          }
+          },
+          "english": "is different from the original world"
         }
       ]
     },
@@ -185,7 +192,8 @@
             "y": 0.144893,
             "width": 0.4975,
             "height": 0.534442
-          }
+          },
+          "english": "Warrior"
         },
         {
           "id": "page-012-bubble-002",
@@ -197,7 +205,8 @@
             "y": 0.653207,
             "width": 0.69625,
             "height": 0.346793
-          }
+          },
+          "english": "Three Privileges"
         }
       ]
     },
@@ -231,7 +240,8 @@
             "y": 0.451429,
             "width": 0.3225,
             "height": 0.057143
-          }
+          },
+          "english": "Reject a Third-Rank Warrior"
         },
         {
           "id": "page-015-bubble-002",
@@ -243,7 +253,8 @@
             "y": 0.512,
             "width": 0.29125,
             "height": 0.054857
-          }
+          },
+          "english": "Friendships of Warriors"
         },
         {
           "id": "page-015-bubble-003",
@@ -255,7 +266,8 @@
             "y": 0.750857,
             "width": 0.2125,
             "height": 0.057143
-          }
+          },
+          "english": "But there's nothing"
         },
         {
           "id": "page-015-bubble-004",
@@ -267,7 +279,8 @@
             "y": 0.805714,
             "width": 0.21375,
             "height": 0.057143
-          }
+          },
+          "english": "Any benefits……"
         }
       ]
     },
@@ -294,7 +307,8 @@
             "y": 0.440922,
             "width": 0.8075,
             "height": 0.115274
-          }
+          },
+          "english": "I thought I would be like all reborn male protagonists"
         }
       ]
     },
@@ -335,7 +349,8 @@
             "y": 0.082621,
             "width": 0.54625,
             "height": 0.176638
-          }
+          },
+          "english": "Get a golden finger……"
         }
       ]
     },
@@ -355,7 +370,8 @@
             "y": 0.593617,
             "width": 0.235,
             "height": 0.085106
-          }
+          },
+          "english": "Right before my eyes!"
         },
         {
           "id": "page-022-bubble-001",
@@ -367,7 +383,8 @@
             "y": 0.504255,
             "width": 0.2975,
             "height": 0.078723
-          }
+          },
+          "english": "This thing appeared suddenly"
         }
       ]
     },
@@ -401,7 +418,8 @@
             "y": 0.152273,
             "width": 0.3975,
             "height": 0.147727
-          }
+          },
+          "english": "Wealth:"
         },
         {
           "id": "page-025-bubble-006",
@@ -413,7 +431,8 @@
             "y": 0.345455,
             "width": 0.26125,
             "height": 0.159091
-          }
+          },
+          "english": "Qi:"
         },
         {
           "id": "page-025-bubble-010",
@@ -425,7 +444,8 @@
             "y": 0.545455,
             "width": 0.26625,
             "height": 0.156818
-          }
+          },
+          "english": "Spirit:"
         }
       ]
     },
@@ -445,7 +465,8 @@
             "y": 0.828283,
             "width": 0.53875,
             "height": 0.171717
-          }
+          },
+          "english": "Indeed obtained"
         }
       ]
     },
@@ -490,10 +511,11 @@
           "type": "dialogue",
           "box": {
             "x": 0.56125,
-            "y": 0.0,
+            "y": 0,
             "width": 0.3,
             "height": 0.11811
-          }
+          },
+          "english": "I must"
         },
         {
           "id": "page-031-bubble-002",
@@ -505,7 +527,8 @@
             "y": 0.12336,
             "width": 0.2625,
             "height": 0.183727
-          }
+          },
+          "english": "Kao Wu Ke!"
         }
       ]
     },
@@ -525,7 +548,8 @@
             "y": 0.509615,
             "width": 0.475,
             "height": 0.271635
-          }
+          },
+          "english": "With confidence"
         }
       ]
     },
@@ -545,7 +569,8 @@
             "y": 0.451271,
             "width": 0.77375,
             "height": 0.127119
-          }
+          },
+          "english": "I underestimated the world of warriors..."
         },
         {
           "id": "page-033-bubble-002",
@@ -557,7 +582,8 @@
             "y": 0.879237,
             "width": 0.16125,
             "height": 0.086864
-          }
+          },
+          "english": "Tencent Animation"
         }
       ]
     },
@@ -577,7 +603,8 @@
             "y": 0.291339,
             "width": 0.25625,
             "height": 0.107612
-          }
+          },
+          "english": "At any cost for Kao Wu Ke"
         },
         {
           "id": "page-034-bubble-001",
@@ -589,7 +616,8 @@
             "y": 0.183727,
             "width": 0.25375,
             "height": 0.107612
-          }
+          },
+          "english": "Although I understand you"
         },
         {
           "id": "page-034-bubble-003",
@@ -601,7 +629,8 @@
             "y": 0.396325,
             "width": 0.24,
             "height": 0.104987
-          }
+          },
+          "english": "Any price..."
         },
         {
           "id": "page-034-bubble-004",
@@ -613,7 +642,8 @@
             "y": 0.818898,
             "width": 0.22,
             "height": 0.115486
-          }
+          },
+          "english": "But, the body"
         },
         {
           "id": "page-034-bubble-005",
@@ -625,7 +655,8 @@
             "y": 0.929134,
             "width": 0.1925,
             "height": 0.070866
-          }
+          },
+          "english": "is the fundamental!"
         }
       ]
     },
@@ -697,11 +728,12 @@
           "chinese": "险逼近",
           "type": "dialogue",
           "box": {
-            "x": 0.0,
+            "x": 0,
             "y": 0.255528,
             "width": 0.6275,
             "height": 0.63145
-          }
+          },
+          "english": "Danger approaching"
         },
         {
           "id": "page-043-bubble-002",
@@ -713,7 +745,8 @@
             "y": 0.648649,
             "width": 0.70875,
             "height": 0.351351
-          }
+          },
+          "english": "Danger approaching"
         }
       ]
     },
@@ -754,7 +787,8 @@
             "y": 0.749319,
             "width": 0.305,
             "height": 0.250681
-          }
+          },
+          "english": "Oh no!"
         }
       ]
     },
@@ -788,7 +822,8 @@
             "y": 0.485232,
             "width": 0.8275,
             "height": 0.449367
-          }
+          },
+          "english": "Interest conflicts"
         },
         {
           "id": "page-050-bubble-002",
@@ -800,7 +835,8 @@
             "y": 0.883966,
             "width": 0.1625,
             "height": 0.080169
-          }
+          },
+          "english": "Tencent Animation"
         }
       ]
     },
@@ -827,7 +863,8 @@
             "y": 0.948954,
             "width": 0.16625,
             "height": 0.038494
-          }
+          },
+          "english": "Tencent Animation"
         }
       ]
     },
@@ -843,11 +880,12 @@
           "chinese": "死亡威胁",
           "type": "dialogue",
           "box": {
-            "x": 0.0,
+            "x": 0,
             "y": 0.564516,
-            "width": 1.0,
+            "width": 1,
             "height": 0.435484
-          }
+          },
+          "english": "Death threat"
         }
       ]
     },
@@ -863,11 +901,12 @@
           "chinese": "死亡威册",
           "type": "dialogue",
           "box": {
-            "x": 0.0,
-            "y": 0.0,
-            "width": 1.0,
+            "x": 0,
+            "y": 0,
+            "width": 1,
             "height": 0.356383
-          }
+          },
+          "english": "Death threat note"
         }
       ]
     },
@@ -884,10 +923,11 @@
           "type": "dialogue",
           "box": {
             "x": 0.08125,
-            "y": 0.0,
+            "y": 0,
             "width": 0.33625,
             "height": 0.29697
-          }
+          },
+          "english": "Cala"
         },
         {
           "id": "page-055-bubble-002",
@@ -899,7 +939,8 @@
             "y": 0.890909,
             "width": 0.15,
             "height": 0.066667
-          }
+          },
+          "english": "Tencent Animation"
         }
       ]
     },
@@ -919,7 +960,8 @@
             "y": 0.454327,
             "width": 0.2375,
             "height": 0.173077
-          }
+          },
+          "english": "Hit by a punch"
         },
         {
           "id": "page-056-bubble-002",
@@ -931,7 +973,8 @@
             "y": 0.600962,
             "width": 0.2625,
             "height": 0.163462
-          }
+          },
+          "english": "I will die！"
         }
       ]
     },
@@ -951,7 +994,8 @@
             "y": 0.668203,
             "width": 0.315,
             "height": 0.331797
-          }
+          },
+          "english": "Weakling"
         }
       ]
     },
@@ -971,7 +1015,8 @@
             "y": 0.343434,
             "width": 0.7775,
             "height": 0.105051
-          }
+          },
+          "english": "I won't strike unless forced"
         }
       ]
     },
@@ -991,7 +1036,8 @@
             "y": 0.886051,
             "width": 0.16375,
             "height": 0.082515
-          }
+          },
+          "english": "Tencent Animation"
         }
       ]
     },
@@ -1011,7 +1057,8 @@
             "y": 0.548235,
             "width": 0.68375,
             "height": 0.136471
-          }
+          },
+          "english": "There is only one way to go"
         },
         {
           "id": "page-060-bubble-002",
@@ -1023,7 +1070,8 @@
             "y": 0.672941,
             "width": 0.6825,
             "height": 0.129412
-          }
+          },
+          "english": "East One"
         }
       ]
     },
@@ -1057,7 +1105,8 @@
             "y": 0.012658,
             "width": 0.53875,
             "height": 0.987342
-          }
+          },
+          "english": "Sound"
         }
       ]
     },
@@ -1101,11 +1150,12 @@
           "chinese": "变强！",
           "type": "dialogue",
           "box": {
-            "x": 0.0,
-            "y": 0.0,
-            "width": 1.0,
-            "height": 1.0
-          }
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          },
+          "english": "Become stronger！"
         }
       ]
     },
@@ -1125,7 +1175,8 @@
             "y": 0.689055,
             "width": 0.85125,
             "height": 0.310945
-          }
+          },
+          "english": "Become the strongest warrior"
         }
       ]
     },
@@ -1148,11 +1199,12 @@
           "chinese": "宗师",
           "type": "dialogue",
           "box": {
-            "x": 0.0,
-            "y": 0.0,
-            "width": 1.0,
-            "height": 1.0
-          }
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          },
+          "english": "Master"
         },
         {
           "id": "page-071-bubble-002",
@@ -1164,7 +1216,8 @@
             "y": 0.881104,
             "width": 0.1625,
             "height": 0.087049
-          }
+          },
+          "english": "Tencent Animation"
         }
       ]
     },
@@ -1191,7 +1244,8 @@
             "y": 0.313397,
             "width": 0.44625,
             "height": 0.191388
-          }
+          },
+          "english": "Later I learned"
         }
       ]
     },
@@ -1211,7 +1265,8 @@
             "y": 0.118987,
             "width": 0.52875,
             "height": 0.126582
-          }
+          },
+          "english": "A warrior is just the beginning"
         }
       ]
     },
@@ -1266,7 +1321,8 @@
             "y": 0.266169,
             "width": 0.85875,
             "height": 0.099502
-          }
+          },
+          "english": "There is an even stronger unknown staring at me…"
         }
       ]
     },
@@ -1286,7 +1342,8 @@
             "y": 0.474747,
             "width": 0.9,
             "height": 0.464646
-          }
+          },
+          "english": "Global High武"
         },
         {
           "id": "page-081-bubble-003",
@@ -1298,7 +1355,8 @@
             "y": 0.886869,
             "width": 0.16125,
             "height": 0.082828
-          }
+          },
+          "english": "Tencent Animation"
         }
       ]
     }
