@@ -49,6 +49,7 @@ interface ComicReaderModeProps {
   onEditWord: (word: VocabWord) => void
   onWordsChanged: () => void | Promise<void>
   onReturnHome: () => void
+  onOpenClassicReader: () => void
 }
 
 type ComicView = 'library' | 'chapters' | 'reader'
@@ -66,6 +67,7 @@ export function ComicReaderMode({
   onEditWord,
   onWordsChanged,
   onReturnHome,
+  onOpenClassicReader,
 }: ComicReaderModeProps) {
   const [view, setView] = useState<ComicView>('library')
   const [packs, setPacks] = useState<ComicPackSummary[]>([])
@@ -403,9 +405,16 @@ export function ComicReaderMode({
     <section className={`screen comic-reader-screen comic-view-${view}`} ref={readerTopRef}>
       {view !== 'reader' && (
         <div className="comic-reader-topbar">
-          <button type="button" className="ghost-answer" onClick={view === 'library' ? onReturnHome : () => setView('library')}>
-            {view === 'library' ? 'Back to Dashboard' : 'Back'}
-          </button>
+          <div className="comic-reader-topbar-actions">
+            <button type="button" className="ghost-answer" onClick={view === 'library' ? onReturnHome : () => setView('library')}>
+              {view === 'library' ? 'Back to Dashboard' : 'Back'}
+            </button>
+            {view === 'library' && (
+              <button type="button" onClick={onOpenClassicReader}>
+                Classic Reading Mode
+              </button>
+            )}
+          </div>
           <div>
             <h1>{view === 'library' ? 'Comic Reader' : activePack?.title ?? 'Comic Reader'}</h1>
             <p>{view === 'library' ? 'Imported packs stay on this device.' : activePack?.titleChinese}</p>

@@ -1697,16 +1697,13 @@ function App() {
           startSavedFlashcards()
         } else if (mappedIndex === 1) {
           event.preventDefault()
-          setScreen('reader')
+          setScreen('comicReader')
         } else if (mappedIndex === 2) {
           event.preventDefault()
-          setScreen('visualNovel')
+          startModeLessonRef.current?.('listeningMode')
         } else if (mappedIndex === 3) {
           event.preventDefault()
-          startModeLessonRef.current?.('listeningMode')
-        } else if (pressed === hotkeys.choiceE) {
-          event.preventDefault()
-          setScreen('comicReader')
+          setScreen('visualNovel')
         }
         return
       }
@@ -2343,25 +2340,20 @@ function App() {
                 <strong>Flashcards</strong>
                 <span>Sort due and new words with FSRS.</span>
               </button>
-              <button className="mode-start reader-start" type="button" onClick={() => setScreen('reader')}>
+              <button className="mode-start comic-start" type="button" onClick={() => setScreen('comicReader')}>
                 <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
-                <strong>Reading</strong>
-                <span>Read the LMS stories sentence by sentence.</span>
-              </button>
-              <button className="mode-start novel-start" type="button" onClick={() => setScreen('visualNovel')}>
-                <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
-                <strong>Visual Novel</strong>
-                <span>Play a story scene with the same Adaptive Mode text.</span>
+                <strong>Comic Reading</strong>
+                <span>Read comic pages with clickable Chinese transcripts.</span>
               </button>
               <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('listeningMode')}>
-                <kbd>{hotkeys.choiceD.toUpperCase()}</kbd>
+                <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
                 <strong>Listening</strong>
                 <span>Listen with passive or active recall modes.</span>
               </button>
-              <button className="mode-start comic-start" type="button" onClick={() => setScreen('comicReader')}>
-                <kbd>{hotkeys.choiceE.toUpperCase()}</kbd>
-                <strong>Comic Reader</strong>
-                <span>Read local comic pages with clickable Chinese transcripts.</span>
+              <button className="mode-start novel-start" type="button" onClick={() => setScreen('visualNovel')}>
+                <kbd>{hotkeys.choiceD.toUpperCase()}</kbd>
+                <strong>Visual Novel</strong>
+                <span>Play a story scene with the same Adaptive Mode text.</span>
               </button>
             </div>
           </div>
@@ -2536,7 +2528,7 @@ function App() {
                   <dd>{stats.lastFlashcardSetSeconds > 0 ? formatDuration(stats.lastFlashcardSetSeconds) : '—'}</dd>
                 </div>
               </dl>
-              <button type="button" className="ghost-answer" onClick={() => setScreen('reader')}>
+              <button type="button" className="ghost-answer" onClick={() => setScreen('comicReader')}>
                 Open reader
               </button>
             </InfoPanel>
@@ -2964,7 +2956,7 @@ function App() {
           hotkeys={hotkeys}
           onEditWord={openCardEditor}
           onWordsChanged={refresh}
-          onReturnToReader={() => setScreen('reader')}
+          onReturnToReader={() => setScreen('comicReader')}
         />
       )}
 
@@ -2976,6 +2968,7 @@ function App() {
           onEditWord={openCardEditor}
           onWordsChanged={refresh}
           onReturnHome={() => setScreen('dashboard')}
+          onOpenClassicReader={() => setScreen('reader')}
         />
       )}
 

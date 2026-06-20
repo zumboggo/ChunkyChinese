@@ -1247,7 +1247,9 @@ dt {
   position: relative;
   min-height: 78px;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   align-content: center;
+  justify-content: stretch;
   justify-items: start;
   gap: 5px;
   padding: 18px;
@@ -1278,10 +1280,18 @@ dt {
 }
 
 .mode-start strong {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
   font-size: 1.12rem;
 }
 
 .mode-start span {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
   color: var(--muted-navy);
   font-size: 0.9rem;
   font-weight: 750;
@@ -6258,6 +6268,13 @@ kbd {
 
 .comic-reader-topbar > div {
   flex: 1;
+}
+
+.comic-reader-topbar-actions {
+  display: flex;
+  flex: 0 0 auto !important;
+  flex-wrap: wrap;
+  gap: 0.65rem;
 }
 
 .comic-reader-message {
