@@ -598,6 +598,7 @@ export function ComicReaderMode({
               onEditWord={onEditWord}
               onSaveWord={saveWord}
               formatDueDate={formatDueDate}
+              minimal
             />
           )}
 

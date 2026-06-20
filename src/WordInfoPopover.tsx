@@ -8,6 +8,7 @@ interface WordInfoPopoverProps {
   onEditWord: (word: VocabWord) => void
   onSaveWord: (text: string, pinyin: string, meaning: string) => void | Promise<void>
   formatDueDate: (value?: string) => string
+  minimal?: boolean
 }
 
 export function WordInfoPopover({
@@ -17,7 +18,28 @@ export function WordInfoPopover({
   onEditWord,
   onSaveWord,
   formatDueDate,
+  minimal = false,
 }: WordInfoPopoverProps) {
+  if (minimal) {
+    if (!selectedToken.word && !selectedToken.isChinese) return null
+
+    const pinyin = selectedToken.word?.pinyin ?? dictionaryEntry?.pinyin ?? selectedToken.pinyin
+    const definition =
+      selectedToken.word?.meaning ??
+      dictionaryEntry?.english ??
+      'Definition not found.'
+
+    return (
+      <div className="reader-word-popover reader-word-popover-minimal" aria-live="polite" onClick={onClose}>
+        <button type="button" className="popover-close" aria-label="Close definition" onClick={onClose}>
+          ×
+        </button>
+        <span className="reader-word-pinyin">{pinyin}</span>
+        <p>{definition}</p>
+      </div>
+    )
+  }
+
   if (selectedToken.word) {
     return (
       <div className="reader-word-popover" aria-live="polite" onClick={onClose}>
