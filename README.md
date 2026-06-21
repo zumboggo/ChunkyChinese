@@ -61,11 +61,6 @@ my-comic.comicpack.zip
 
 Each chapter JSON lists pages, image paths, and manually prepared bubbles in reading order. Coordinates are normalized `0` to `1` values and are preserved for future overlay tooling, even though v1 renders translations below the image.
 
-The repository includes a copyright-free sample under:
-
-```text
-public/comic-packs/sample-missing-dumpling
-```
 
 It also includes a manual template under:
 

@@ -1,0 +1,2190 @@
+{
+  "id": "chapter-10",
+  "title": "Part 10",
+  "titleChinese": "第10部分",
+  "pages": [
+    {
+      "id": "page-136",
+      "image": "images/chapter-01-page-136.webp",
+      "width": 2481,
+      "height": 3718,
+      "bubbles": []
+    },
+    {
+      "id": "page-137",
+      "image": "images/chapter-01-page-137.webp",
+      "width": 2481,
+      "height": 3721,
+      "bubbles": [
+        {
+          "id": "page-137-bubble-001",
+          "order": 1,
+          "chinese": "真是的！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.402257,
+            "y": 0.088148,
+            "width": 0.096332,
+            "height": 0.022306
+          }
+        },
+        {
+          "id": "page-137-bubble-002",
+          "order": 2,
+          "chinese": "你会御剑，",
+          "type": "dialogue",
+          "box": {
+            "x": 0.463523,
+            "y": 0.237571,
+            "width": 0.122934,
+            "height": 0.022843
+          }
+        },
+        {
+          "id": "page-137-bubble-003",
+          "order": 3,
+          "chinese": "应该都已",
+          "type": "dialogue",
+          "box": {
+            "x": 0.463926,
+            "y": 0.258801,
+            "width": 0.112052,
+            "height": 0.022037
+          }
+        },
+        {
+          "id": "page-137-bubble-004",
+          "order": 4,
+          "chinese": "筑基！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.462314,
+            "y": 0.279495,
+            "width": 0.072954,
+            "height": 0.022843
+          }
+        },
+        {
+          "id": "page-137-bubble-005",
+          "order": 5,
+          "chinese": "以后你才是",
+          "type": "dialogue",
+          "box": {
+            "x": 0.550181,
+            "y": 0.331094,
+            "width": 0.138251,
+            "height": 0.023112
+          }
+        },
+        {
+          "id": "page-137-bubble-006",
+          "order": 6,
+          "chinese": "逍遥门的大",
+          "type": "dialogue",
+          "box": {
+            "x": 0.550181,
+            "y": 0.352325,
+            "width": 0.138251,
+            "height": 0.021768
+          }
+        },
+        {
+          "id": "page-137-bubble-007",
+          "order": 7,
+          "chinese": "师兄……",
+          "type": "dialogue",
+          "box": {
+            "x": 0.550181,
+            "y": 0.372749,
+            "width": 0.103184,
+            "height": 0.023381
+          }
+        },
+        {
+          "id": "page-137-bubble-008",
+          "order": 8,
+          "chinese": "咦？这",
+          "type": "dialogue",
+          "box": {
+            "x": 0.16969,
+            "y": 0.467616,
+            "width": 0.090286,
+            "height": 0.025262
+          }
+        },
+        {
+          "id": "page-137-bubble-009",
+          "order": 9,
+          "chinese": "里是哪？",
+          "type": "dialogue",
+          "box": {
+            "x": 0.171302,
+            "y": 0.489922,
+            "width": 0.107215,
+            "height": 0.022306
+          }
+        },
+        {
+          "id": "page-137-bubble-010",
+          "order": 10,
+          "chinese": "这里不",
+          "type": "dialogue",
+          "box": {
+            "x": 0.569931,
+            "y": 0.656813,
+            "width": 0.087868,
+            "height": 0.023112
+          }
+        },
+        {
+          "id": "page-137-bubble-011",
+          "order": 11,
+          "chinese": "是逍遥门。",
+          "type": "dialogue",
+          "box": {
+            "x": 0.571141,
+            "y": 0.678312,
+            "width": 0.122128,
+            "height": 0.022575
+          }
+        },
+        {
+          "id": "page-137-bubble-012",
+          "order": 12,
+          "chinese": "大师兄，",
+          "type": "dialogue",
+          "box": {
+            "x": 0.338976,
+            "y": 0.737705,
+            "width": 0.097944,
+            "height": 0.023381
+          }
+        },
+        {
+          "id": "page-137-bubble-013",
+          "order": 13,
+          "chinese": "你不认得",
+          "type": "dialogue",
+          "box": {
+            "x": 0.339782,
+            "y": 0.759473,
+            "width": 0.114873,
+            "height": 0.022037
+          }
+        },
+        {
+          "id": "page-137-bubble-014",
+          "order": 14,
+          "chinese": "这里吗？",
+          "type": "dialogue",
+          "box": {
+            "x": 0.340185,
+            "y": 0.780435,
+            "width": 0.108424,
+            "height": 0.020693
+          }
+        },
+        {
+          "id": "page-137-bubble-015",
+          "order": 15,
+          "chinese": "不认",
+          "type": "dialogue",
+          "box": {
+            "x": 0.200322,
+            "y": 0.88014,
+            "width": 0.062475,
+            "height": 0.024993
+          }
+        },
+        {
+          "id": "page-137-bubble-016",
+          "order": 16,
+          "chinese": "得啊。",
+          "type": "dialogue",
+          "box": {
+            "x": 0.200726,
+            "y": 0.901371,
+            "width": 0.073761,
+            "height": 0.024725
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-138",
+      "image": "images/chapter-01-page-138.webp",
+      "width": 2481,
+      "height": 3718,
+      "bubbles": [
+        {
+          "id": "page-138-bubble-001",
+          "order": 1,
+          "chinese": "这里是",
+          "type": "dialogue",
+          "box": {
+            "x": 0.262797,
+            "y": 0.163798,
+            "width": 0.094317,
+            "height": 0.025551
+          }
+        },
+        {
+          "id": "page-138-bubble-002",
+          "order": 2,
+          "chinese": "你杀死",
+          "type": "dialogue",
+          "box": {
+            "x": 0.355905,
+            "y": 0.600861,
+            "width": 0.112858,
+            "height": 0.032544
+          }
+        },
+        {
+          "id": "page-138-bubble-003",
+          "order": 3,
+          "chinese": "我的地",
+          "type": "dialogue",
+          "box": {
+            "x": 0.356711,
+            "y": 0.62695,
+            "width": 0.111245,
+            "height": 0.032275
+          }
+        },
+        {
+          "id": "page-138-bubble-004",
+          "order": 4,
+          "chinese": "方啊，",
+          "type": "dialogue",
+          "box": {
+            "x": 0.355502,
+            "y": 0.651963,
+            "width": 0.091092,
+            "height": 0.034158
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-139",
+      "image": "images/chapter-01-page-139.webp",
+      "width": 2481,
+      "height": 3721,
+      "bubbles": [
+        {
+          "id": "page-139-bubble-001",
+          "order": 1,
+          "chinese": "关",
+          "type": "dialogue",
+          "box": {
+            "x": 0.202338,
+            "y": 0.556033,
+            "width": 0.129383,
+            "height": 0.094867
+          }
+        },
+        {
+          "id": "page-139-bubble-002",
+          "order": 2,
+          "chinese": "东方",
+          "type": "dialogue",
+          "box": {
+            "x": 0.721886,
+            "y": 0.711099,
+            "width": 0.087062,
+            "height": 0.037624
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-140",
+      "image": "images/chapter-01-page-140.webp",
+      "width": 2481,
+      "height": 3718,
+      "bubbles": [
+        {
+          "id": "page-140-bubble-001",
+          "order": 1,
+          "chinese": "呵……",
+          "type": "dialogue",
+          "box": {
+            "x": 0.119307,
+            "y": 0.046261,
+            "width": 0.089883,
+            "height": 0.024744
+          }
+        },
+        {
+          "id": "page-140-bubble-002",
+          "order": 2,
+          "chinese": "呵呵",
+          "type": "dialogue",
+          "box": {
+            "x": 0.316002,
+            "y": 0.105702,
+            "width": 0.062878,
+            "height": 0.022593
+          }
+        },
+        {
+          "id": "page-140-bubble-003",
+          "order": 3,
+          "chinese": "真是没",
+          "type": "dialogue",
+          "box": {
+            "x": 0.190246,
+            "y": 0.254438,
+            "width": 0.088674,
+            "height": 0.022593
+          }
+        },
+        {
+          "id": "page-140-bubble-004",
+          "order": 4,
+          "chinese": "想到……",
+          "type": "dialogue",
+          "box": {
+            "x": 0.190246,
+            "y": 0.274879,
+            "width": 0.112858,
+            "height": 0.022055
+          }
+        },
+        {
+          "id": "page-140-bubble-005",
+          "order": 5,
+          "chinese": "我们两",
+          "type": "dialogue",
+          "box": {
+            "x": 0.623539,
+            "y": 0.514793,
+            "width": 0.087062,
+            "height": 0.022593
+          }
+        },
+        {
+          "id": "page-140-bubble-006",
+          "order": 6,
+          "chinese": "个人……",
+          "type": "dialogue",
+          "box": {
+            "x": 0.62233,
+            "y": 0.534696,
+            "width": 0.114067,
+            "height": 0.024744
+          }
+        },
+        {
+          "id": "page-140-bubble-007",
+          "order": 7,
+          "chinese": "最后，竟",
+          "type": "dialogue",
+          "box": {
+            "x": 0.621524,
+            "y": 0.555406,
+            "width": 0.116888,
+            "height": 0.024744
+          }
+        },
+        {
+          "id": "page-140-bubble-008",
+          "order": 8,
+          "chinese": "然是这种",
+          "type": "dialogue",
+          "box": {
+            "x": 0.62233,
+            "y": 0.576385,
+            "width": 0.115276,
+            "height": 0.023669
+          }
+        },
+        {
+          "id": "page-140-bubble-009",
+          "order": 9,
+          "chinese": "结局。",
+          "type": "dialogue",
+          "box": {
+            "x": 0.621927,
+            "y": 0.596557,
+            "width": 0.073358,
+            "height": 0.024207
+          }
+        },
+        {
+          "id": "page-140-bubble-010",
+          "order": 10,
+          "chinese": "是吧？",
+          "type": "dialogue",
+          "box": {
+            "x": 0.135429,
+            "y": 0.666756,
+            "width": 0.083837,
+            "height": 0.0234
+          }
+        },
+        {
+          "id": "page-140-bubble-011",
+          "order": 11,
+          "chinese": "大师兄？",
+          "type": "dialogue",
+          "box": {
+            "x": 0.135429,
+            "y": 0.688004,
+            "width": 0.111649,
+            "height": 0.022862
+          }
+        },
+        {
+          "id": "page-140-bubble-012",
+          "order": 12,
+          "chinese": "闭嘴。",
+          "type": "dialogue",
+          "box": {
+            "x": 0.21322,
+            "y": 0.755514,
+            "width": 0.075373,
+            "height": 0.02582
+          }
+        },
+        {
+          "id": "page-140-bubble-013",
+          "order": 13,
+          "chinese": "你没资",
+          "type": "dialogue",
+          "box": {
+            "x": 0.70133,
+            "y": 0.901022,
+            "width": 0.087465,
+            "height": 0.022862
+          }
+        },
+        {
+          "id": "page-140-bubble-014",
+          "order": 14,
+          "chinese": "格，这",
+          "type": "dialogue",
+          "box": {
+            "x": 0.700121,
+            "y": 0.920925,
+            "width": 0.08948,
+            "height": 0.024207
+          }
+        },
+        {
+          "id": "page-140-bubble-015",
+          "order": 15,
+          "chinese": "么叫我。",
+          "type": "dialogue",
+          "box": {
+            "x": 0.702136,
+            "y": 0.942173,
+            "width": 0.097138,
+            "height": 0.0234
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-141",
+      "image": "images/chapter-01-page-141.webp",
+      "width": 2481,
+      "height": 3721,
+      "bubbles": [
+        {
+          "id": "page-141-bubble-001",
+          "order": 1,
+          "chinese": "哈！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.683998,
+            "y": 0.058855,
+            "width": 0.056429,
+            "height": 0.029024
+          }
+        },
+        {
+          "id": "page-141-bubble-002",
+          "order": 2,
+          "chinese": "哈!",
+          "type": "dialogue",
+          "box": {
+            "x": 0.617493,
+            "y": 0.253695,
+            "width": 0.05401,
+            "height": 0.030368
+          }
+        },
+        {
+          "id": "page-141-bubble-003",
+          "order": 3,
+          "chinese": "哈哈！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.225312,
+            "y": 0.330288,
+            "width": 0.087062,
+            "height": 0.030368
+          }
+        },
+        {
+          "id": "page-141-bubble-004",
+          "order": 4,
+          "chinese": "答",
+          "type": "dialogue",
+          "box": {
+            "x": 0.540911,
+            "y": 0.695512,
+            "width": 0.065699,
+            "height": 0.045955
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-142",
+      "image": "images/chapter-01-page-142.webp",
+      "width": 2481,
+      "height": 3718,
+      "bubbles": [
+        {
+          "id": "page-142-bubble-001",
+          "order": 1,
+          "chinese": "东方",
+          "type": "dialogue",
+          "box": {
+            "x": 0.283353,
+            "y": 0.048413,
+            "width": 0.069327,
+            "height": 0.026358
+          }
+        },
+        {
+          "id": "page-142-bubble-002",
+          "order": 2,
+          "chinese": "纤云！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.284563,
+            "y": 0.072082,
+            "width": 0.079807,
+            "height": 0.023938
+          }
+        },
+        {
+          "id": "page-142-bubble-003",
+          "order": 3,
+          "chinese": "若有",
+          "type": "dialogue",
+          "box": {
+            "x": 0.068118,
+            "y": 0.159494,
+            "width": 0.060056,
+            "height": 0.022593
+          }
+        },
+        {
+          "id": "page-142-bubble-004",
+          "order": 4,
+          "chinese": "来世",
+          "type": "dialogue",
+          "box": {
+            "x": 0.068924,
+            "y": 0.181549,
+            "width": 0.058444,
+            "height": 0.019096
+          }
+        },
+        {
+          "id": "page-142-bubble-005",
+          "order": 5,
+          "chinese": "我定要",
+          "type": "dialogue",
+          "box": {
+            "x": 0.131802,
+            "y": 0.268962,
+            "width": 0.08424,
+            "height": 0.021517
+          }
+        },
+        {
+          "id": "page-142-bubble-006",
+          "order": 6,
+          "chinese": "将你的",
+          "type": "dialogue",
+          "box": {
+            "x": 0.132205,
+            "y": 0.288865,
+            "width": 0.086256,
+            "height": 0.022324
+          }
+        },
+        {
+          "id": "page-142-bubble-007",
+          "order": 7,
+          "chinese": "全部…",
+          "type": "dialogue",
+          "box": {
+            "x": 0.132608,
+            "y": 0.308768,
+            "width": 0.104796,
+            "height": 0.022593
+          }
+        },
+        {
+          "id": "page-142-bubble-008",
+          "order": 8,
+          "chinese": "剥奇",
+          "type": "dialogue",
+          "box": {
+            "x": 0.73559,
+            "y": 0.45858,
+            "width": 0.059653,
+            "height": 0.0234
+          }
+        },
+        {
+          "id": "page-142-bubble-009",
+          "order": 9,
+          "chinese": "殆尽！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.733978,
+            "y": 0.479021,
+            "width": 0.072954,
+            "height": 0.0234
+          }
+        },
+        {
+          "id": "page-142-bubble-010",
+          "order": 10,
+          "chinese": "否则枉为",
+          "type": "dialogue",
+          "box": {
+            "x": 0.474002,
+            "y": 0.600323,
+            "width": 0.122128,
+            "height": 0.024476
+          }
+        },
+        {
+          "id": "page-142-bubble-011",
+          "order": 11,
+          "chinese": "这三界魔",
+          "type": "dialogue",
+          "box": {
+            "x": 0.472793,
+            "y": 0.621302,
+            "width": 0.126159,
+            "height": 0.026896
+          }
+        },
+        {
+          "id": "page-142-bubble-012",
+          "order": 12,
+          "chinese": "尊之首!",
+          "type": "dialogue",
+          "box": {
+            "x": 0.471181,
+            "y": 0.645239,
+            "width": 0.110842,
+            "height": 0.025282
+          }
+        },
+        {
+          "id": "page-142-bubble-013",
+          "order": 13,
+          "chinese": "可惜啊，没有",
+          "type": "dialogue",
+          "box": {
+            "x": 0.090689,
+            "y": 0.85745,
+            "width": 0.168077,
+            "height": 0.026358
+          }
+        },
+        {
+          "id": "page-142-bubble-014",
+          "order": 14,
+          "chinese": "来世，却是重",
+          "type": "dialogue",
+          "box": {
+            "x": 0.08948,
+            "y": 0.876009,
+            "width": 0.170093,
+            "height": 0.029048
+          }
+        },
+        {
+          "id": "page-142-bubble-015",
+          "order": 15,
+          "chinese": "来了一遍。",
+          "type": "dialogue",
+          "box": {
+            "x": 0.08948,
+            "y": 0.897257,
+            "width": 0.130593,
+            "height": 0.028241
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-143",
+      "image": "images/chapter-01-page-143.webp",
+      "width": 2481,
+      "height": 3721,
+      "bubbles": [
+        {
+          "id": "page-143-bubble-001",
+          "order": 1,
+          "chinese": "而且这一",
+          "type": "dialogue",
+          "box": {
+            "x": 0.440548,
+            "y": 0.04273,
+            "width": 0.115679,
+            "height": 0.023112
+          }
+        },
+        {
+          "id": "page-143-bubble-002",
+          "order": 2,
+          "chinese": "世的大师",
+          "type": "dialogue",
+          "box": {
+            "x": 0.440951,
+            "y": 0.063424,
+            "width": 0.116082,
+            "height": 0.022306
+          }
+        },
+        {
+          "id": "page-143-bubble-003",
+          "order": 3,
+          "chinese": "兄，脑子",
+          "type": "dialogue",
+          "box": {
+            "x": 0.440548,
+            "y": 0.083848,
+            "width": 0.116485,
+            "height": 0.02365
+          }
+        },
+        {
+          "id": "page-143-bubble-004",
+          "order": 4,
+          "chinese": "里有坑。",
+          "type": "dialogue",
+          "box": {
+            "x": 0.440548,
+            "y": 0.104811,
+            "width": 0.101975,
+            "height": 0.023112
+          }
+        },
+        {
+          "id": "page-143-bubble-005",
+          "order": 5,
+          "chinese": "你、你到底",
+          "type": "dialogue",
+          "box": {
+            "x": 0.525595,
+            "y": 0.183284,
+            "width": 0.145506,
+            "height": 0.024456
+          }
+        },
+        {
+          "id": "page-143-bubble-006",
+          "order": 6,
+          "chinese": "在说什么啊，",
+          "type": "dialogue",
+          "box": {
+            "x": 0.525998,
+            "y": 0.205859,
+            "width": 0.148327,
+            "height": 0.022037
+          }
+        },
+        {
+          "id": "page-143-bubble-007",
+          "order": 7,
+          "chinese": "八戒？",
+          "type": "dialogue",
+          "box": {
+            "x": 0.526401,
+            "y": 0.226821,
+            "width": 0.081822,
+            "height": 0.022843
+          }
+        },
+        {
+          "id": "page-143-bubble-008",
+          "order": 8,
+          "chinese": "大师兄你",
+          "type": "dialogue",
+          "box": {
+            "x": 0.675534,
+            "y": 0.24617,
+            "width": 0.115276,
+            "height": 0.021768
+          }
+        },
+        {
+          "id": "page-143-bubble-009",
+          "order": 9,
+          "chinese": "总是说，",
+          "type": "dialogue",
+          "box": {
+            "x": 0.675534,
+            "y": 0.266864,
+            "width": 0.097541,
+            "height": 0.022306
+          }
+        },
+        {
+          "id": "page-143-bubble-010",
+          "order": 10,
+          "chinese": "因为我是",
+          "type": "dialogue",
+          "box": {
+            "x": 0.675534,
+            "y": 0.287288,
+            "width": 0.11447,
+            "height": 0.022843
+          }
+        },
+        {
+          "id": "page-143-bubble-011",
+          "order": 11,
+          "chinese": "“主角”，",
+          "type": "dialogue",
+          "box": {
+            "x": 0.683192,
+            "y": 0.307713,
+            "width": 0.105603,
+            "height": 0.023112
+          }
+        },
+        {
+          "id": "page-143-bubble-012",
+          "order": 12,
+          "chinese": "所以你打",
+          "type": "dialogue",
+          "box": {
+            "x": 0.565498,
+            "y": 0.484547,
+            "width": 0.116888,
+            "height": 0.024456
+          }
+        },
+        {
+          "id": "page-143-bubble-013",
+          "order": 13,
+          "chinese": "不赢我，",
+          "type": "dialogue",
+          "box": {
+            "x": 0.565498,
+            "y": 0.507122,
+            "width": 0.098347,
+            "height": 0.022037
+          }
+        },
+        {
+          "id": "page-143-bubble-014",
+          "order": 14,
+          "chinese": "可你为",
+          "type": "dialogue",
+          "box": {
+            "x": 0.654575,
+            "y": 0.556571,
+            "width": 0.087465,
+            "height": 0.022037
+          }
+        },
+        {
+          "id": "page-143-bubble-015",
+          "order": 15,
+          "chinese": "什么不",
+          "type": "dialogue",
+          "box": {
+            "x": 0.654172,
+            "y": 0.577264,
+            "width": 0.087868,
+            "height": 0.0215
+          }
+        },
+        {
+          "id": "page-143-bubble-016",
+          "order": 16,
+          "chinese": "想想……",
+          "type": "dialogue",
+          "box": {
+            "x": 0.652963,
+            "y": 0.597689,
+            "width": 0.108827,
+            "height": 0.022306
+          }
+        },
+        {
+          "id": "page-143-bubble-017",
+          "order": 17,
+          "chinese": "如果你",
+          "type": "dialogue",
+          "box": {
+            "x": 0.557033,
+            "y": 0.835528,
+            "width": 0.090286,
+            "height": 0.022306
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-144",
+      "image": "images/chapter-01-page-144.webp",
+      "width": 2481,
+      "height": 3718,
+      "bubbles": [
+        {
+          "id": "page-144-bubble-001",
+          "order": 1,
+          "chinese": "那我。",
+          "type": "dialogue",
+          "box": {
+            "x": 0.497783,
+            "y": 0.329747,
+            "width": 0.071745,
+            "height": 0.022055
+          }
+        },
+        {
+          "id": "page-144-bubble-002",
+          "order": 2,
+          "chinese": "又是谁",
+          "type": "dialogue",
+          "box": {
+            "x": 0.496977,
+            "y": 0.348037,
+            "width": 0.087465,
+            "height": 0.024744
+          }
+        },
+        {
+          "id": "page-144-bubble-003",
+          "order": 3,
+          "chinese": "呢？",
+          "type": "dialogue",
+          "box": {
+            "x": 0.493349,
+            "y": 0.366864,
+            "width": 0.087868,
+            "height": 0.029048
+          }
+        },
+        {
+          "id": "page-144-bubble-004",
+          "order": 4,
+          "chinese": "所有的故",
+          "type": "dialogue",
+          "box": {
+            "x": 0.716243,
+            "y": 0.625336,
+            "width": 0.122128,
+            "height": 0.032006
+          }
+        },
+        {
+          "id": "page-144-bubble-005",
+          "order": 5,
+          "chinese": "事中……",
+          "type": "dialogue",
+          "box": {
+            "x": 0.719468,
+            "y": 0.648467,
+            "width": 0.116888,
+            "height": 0.026089
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-145",
+      "image": "images/chapter-01-page-145.webp",
+      "width": 2481,
+      "height": 3721,
+      "bubbles": [
+        {
+          "id": "page-145-bubble-001",
+          "order": 1,
+          "chinese": "直到最",
+          "type": "dialogue",
+          "box": {
+            "x": 0.09996,
+            "y": 0.04488,
+            "width": 0.091495,
+            "height": 0.024725
+          }
+        },
+        {
+          "id": "page-145-bubble-002",
+          "order": 2,
+          "chinese": "后一幕，",
+          "type": "dialogue",
+          "box": {
+            "x": 0.098751,
+            "y": 0.063155,
+            "width": 0.100363,
+            "height": 0.028487
+          }
+        },
+        {
+          "id": "page-145-bubble-003",
+          "order": 3,
+          "chinese": "主角都一",
+          "type": "dialogue",
+          "box": {
+            "x": 0.73559,
+            "y": 0.092986,
+            "width": 0.114067,
+            "height": 0.022037
+          }
+        },
+        {
+          "id": "page-145-bubble-004",
+          "order": 4,
+          "chinese": "直赢不了",
+          "type": "dialogue",
+          "box": {
+            "x": 0.733575,
+            "y": 0.11126,
+            "width": 0.119307,
+            "height": 0.026874
+          }
+        },
+        {
+          "id": "page-145-bubble-005",
+          "order": 5,
+          "chinese": "的人，",
+          "type": "dialogue",
+          "box": {
+            "x": 0.733172,
+            "y": 0.131416,
+            "width": 0.090286,
+            "height": 0.027412
+          }
+        },
+        {
+          "id": "page-145-bubble-007",
+          "order": 6,
+          "chinese": "只有一个",
+          "type": "dialogue",
+          "box": {
+            "x": 0.442967,
+            "y": 0.499328,
+            "width": 0.115276,
+            "height": 0.027143
+          }
+        },
+        {
+          "id": "page-145-bubble-008",
+          "order": 7,
+          "chinese": "那就是",
+          "type": "dialogue",
+          "box": {
+            "x": 0.727932,
+            "y": 0.605751,
+            "width": 0.090689,
+            "height": 0.024725
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-146",
+      "image": "images/chapter-01-page-146.webp",
+      "width": 2481,
+      "height": 3718,
+      "bubbles": [
+        {
+          "id": "page-146-bubble-001",
+          "order": 1,
+          "chinese": "原来……",
+          "type": "dialogue",
+          "box": {
+            "x": 0.242241,
+            "y": 0.110005,
+            "width": 0.113261,
+            "height": 0.022862
+          }
+        },
+        {
+          "id": "page-146-bubble-002",
+          "order": 2,
+          "chinese": "是这样。",
+          "type": "dialogue",
+          "box": {
+            "x": 0.241435,
+            "y": 0.130984,
+            "width": 0.09996,
+            "height": 0.022593
+          }
+        },
+        {
+          "id": "page-146-bubble-003",
+          "order": 3,
+          "chinese": "这些东西",
+          "type": "dialogue",
+          "box": {
+            "x": 0.595324,
+            "y": 0.186659,
+            "width": 0.11447,
+            "height": 0.02071
+          }
+        },
+        {
+          "id": "page-146-bubble-004",
+          "order": 4,
+          "chinese": "以前明明",
+          "type": "dialogue",
+          "box": {
+            "x": 0.59734,
+            "y": 0.206294,
+            "width": 0.112858,
+            "height": 0.022862
+          }
+        },
+        {
+          "id": "page-146-bubble-005",
+          "order": 5,
+          "chinese": "是你在照",
+          "type": "dialogue",
+          "box": {
+            "x": 0.596937,
+            "y": 0.228349,
+            "width": 0.112052,
+            "height": 0.020979
+          }
+        },
+        {
+          "id": "page-146-bubble-006",
+          "order": 6,
+          "chinese": "顾的！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.59734,
+            "y": 0.248521,
+            "width": 0.070536,
+            "height": 0.021248
+          }
+        },
+        {
+          "id": "page-146-bubble-007",
+          "order": 7,
+          "chinese": "为什么现",
+          "type": "dialogue",
+          "box": {
+            "x": 0.701733,
+            "y": 0.296127,
+            "width": 0.113664,
+            "height": 0.021786
+          }
+        },
+        {
+          "id": "page-146-bubble-008",
+          "order": 8,
+          "chinese": "在变得这",
+          "type": "dialogue",
+          "box": {
+            "x": 0.70133,
+            "y": 0.317106,
+            "width": 0.11447,
+            "height": 0.020979
+          }
+        },
+        {
+          "id": "page-146-bubble-009",
+          "order": 9,
+          "chinese": "么懒啊！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.702539,
+            "y": 0.337278,
+            "width": 0.098347,
+            "height": 0.021248
+          }
+        },
+        {
+          "id": "page-146-bubble-010",
+          "order": 10,
+          "chinese": "所以，八",
+          "type": "dialogue",
+          "box": {
+            "x": 0.39863,
+            "y": 0.454545,
+            "width": 0.116888,
+            "height": 0.025013
+          }
+        },
+        {
+          "id": "page-146-bubble-011",
+          "order": 11,
+          "chinese": "戒才会说",
+          "type": "dialogue",
+          "box": {
+            "x": 0.399033,
+            "y": 0.476331,
+            "width": 0.115679,
+            "height": 0.0234
+          }
+        },
+        {
+          "id": "page-146-bubble-012",
+          "order": 12,
+          "chinese": "我曾经照",
+          "type": "dialogue",
+          "box": {
+            "x": 0.399436,
+            "y": 0.497041,
+            "width": 0.114873,
+            "height": 0.022593
+          }
+        },
+        {
+          "id": "page-146-bubble-013",
+          "order": 13,
+          "chinese": "顾过仙果。",
+          "type": "dialogue",
+          "box": {
+            "x": 0.400242,
+            "y": 0.518558,
+            "width": 0.124143,
+            "height": 0.02071
+          }
+        },
+        {
+          "id": "page-146-bubble-014",
+          "order": 14,
+          "chinese": "我家大师",
+          "type": "dialogue",
+          "box": {
+            "x": 0.149536,
+            "y": 0.674825,
+            "width": 0.113664,
+            "height": 0.020979
+          }
+        },
+        {
+          "id": "page-146-bubble-015",
+          "order": 15,
+          "chinese": "兄教过我",
+          "type": "dialogue",
+          "box": {
+            "x": 0.149536,
+            "y": 0.695535,
+            "width": 0.114067,
+            "height": 0.020979
+          }
+        },
+        {
+          "id": "page-146-bubble-016",
+          "order": 16,
+          "chinese": "一句话……",
+          "type": "dialogue",
+          "box": {
+            "x": 0.149133,
+            "y": 0.715707,
+            "width": 0.137042,
+            "height": 0.021517
+          }
+        },
+        {
+          "id": "page-146-bubble-017",
+          "order": 17,
+          "chinese": "杀人就要",
+          "type": "dialogue",
+          "box": {
+            "x": 0.235792,
+            "y": 0.785637,
+            "width": 0.130189,
+            "height": 0.025013
+          }
+        },
+        {
+          "id": "page-146-bubble-018",
+          "order": 18,
+          "chinese": "有被杀的",
+          "type": "dialogue",
+          "box": {
+            "x": 0.236195,
+            "y": 0.807961,
+            "width": 0.129383,
+            "height": 0.022862
+          }
+        },
+        {
+          "id": "page-146-bubble-019",
+          "order": 19,
+          "chinese": "也会说出",
+          "type": "dialogue",
+          "box": {
+            "x": 0.69609,
+            "y": 0.824906,
+            "width": 0.112858,
+            "height": 0.020979
+          }
+        },
+        {
+          "id": "page-146-bubble-020",
+          "order": 20,
+          "chinese": "觉悟。",
+          "type": "dialogue",
+          "box": {
+            "x": 0.236195,
+            "y": 0.829209,
+            "width": 0.072148,
+            "height": 0.022055
+          }
+        },
+        {
+          "id": "page-146-bubble-021",
+          "order": 21,
+          "chinese": "我从来没",
+          "type": "dialogue",
+          "box": {
+            "x": 0.695687,
+            "y": 0.845347,
+            "width": 0.113261,
+            "height": 0.021786
+          }
+        },
+        {
+          "id": "page-146-bubble-022",
+          "order": 22,
+          "chinese": "有告诉过",
+          "type": "dialogue",
+          "box": {
+            "x": 0.694881,
+            "y": 0.867133,
+            "width": 0.114067,
+            "height": 0.02071
+          }
+        },
+        {
+          "id": "page-146-bubble-023",
+          "order": 23,
+          "chinese": "他的话。",
+          "type": "dialogue",
+          "box": {
+            "x": 0.694075,
+            "y": 0.886498,
+            "width": 0.100363,
+            "height": 0.022055
+          }
+        },
+        {
+          "id": "page-146-bubble-024",
+          "order": 24,
+          "chinese": "原来都是",
+          "type": "dialogue",
+          "box": {
+            "x": 0.846836,
+            "y": 0.905325,
+            "width": 0.10923,
+            "height": 0.022055
+          }
+        },
+        {
+          "id": "page-146-bubble-025",
+          "order": 25,
+          "chinese": "因为…",
+          "type": "dialogue",
+          "box": {
+            "x": 0.846836,
+            "y": 0.926573,
+            "width": 0.10923,
+            "height": 0.021786
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-147",
+      "image": "images/chapter-01-page-147.webp",
+      "width": 2481,
+      "height": 3721,
+      "bubbles": [
+        {
+          "id": "page-147-bubble-001",
+          "order": 1,
+          "chinese": "他是重",
+          "type": "dialogue",
+          "box": {
+            "x": 0.441757,
+            "y": 0.088148,
+            "width": 0.089077,
+            "height": 0.022843
+          }
+        },
+        {
+          "id": "page-147-bubble-002",
+          "order": 2,
+          "chinese": "生的！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.441757,
+            "y": 0.108842,
+            "width": 0.076985,
+            "height": 0.022575
+          }
+        },
+        {
+          "id": "page-147-bubble-003",
+          "order": 3,
+          "chinese": "明明努力",
+          "type": "dialogue",
+          "box": {
+            "x": 0.182588,
+            "y": 0.229239,
+            "width": 0.112052,
+            "height": 0.023918
+          }
+        },
+        {
+          "id": "page-147-bubble-004",
+          "order": 4,
+          "chinese": "回避了那",
+          "type": "dialogue",
+          "box": {
+            "x": 0.182185,
+            "y": 0.249933,
+            "width": 0.114067,
+            "height": 0.02365
+          }
+        },
+        {
+          "id": "page-147-bubble-005",
+          "order": 5,
+          "chinese": "么多FLAG,",
+          "type": "dialogue",
+          "box": {
+            "x": 0.183394,
+            "y": 0.270626,
+            "width": 0.123337,
+            "height": 0.024456
+          }
+        },
+        {
+          "id": "page-147-bubble-006",
+          "order": 6,
+          "chinese": "没想到最后",
+          "type": "dialogue",
+          "box": {
+            "x": 0.263603,
+            "y": 0.315238,
+            "width": 0.143087,
+            "height": 0.0215
+          }
+        },
+        {
+          "id": "page-147-bubble-007",
+          "order": 7,
+          "chinese": "自己竟是被",
+          "type": "dialogue",
+          "box": {
+            "x": 0.265619,
+            "y": 0.335931,
+            "width": 0.140669,
+            "height": 0.0215
+          }
+        },
+        {
+          "id": "page-147-bubble-008",
+          "order": 8,
+          "chinese": "重生主角报",
+          "type": "dialogue",
+          "box": {
+            "x": 0.263603,
+            "y": 0.35555,
+            "width": 0.143894,
+            "height": 0.023112
+          }
+        },
+        {
+          "id": "page-147-bubble-009",
+          "order": 9,
+          "chinese": "复的目标……",
+          "type": "dialogue",
+          "box": {
+            "x": 0.264813,
+            "y": 0.37678,
+            "width": 0.152761,
+            "height": 0.021768
+          }
+        },
+        {
+          "id": "page-147-bubble-010",
+          "order": 10,
+          "chinese": "这一",
+          "type": "dialogue",
+          "box": {
+            "x": 0.614672,
+            "y": 0.460898,
+            "width": 0.063281,
+            "height": 0.023918
+          }
+        },
+        {
+          "id": "page-147-bubble-011",
+          "order": 11,
+          "chinese": "次…",
+          "type": "dialogue",
+          "box": {
+            "x": 0.615881,
+            "y": 0.481322,
+            "width": 0.052801,
+            "height": 0.023918
+          }
+        },
+        {
+          "id": "page-147-bubble-012",
+          "order": 12,
+          "chinese": "死定了？",
+          "type": "dialogue",
+          "box": {
+            "x": 0.614672,
+            "y": 0.501747,
+            "width": 0.110842,
+            "height": 0.024993
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-148",
+      "image": "images/chapter-01-page-148.webp",
+      "width": 2481,
+      "height": 3718,
+      "bubbles": [
+        {
+          "id": "page-148-bubble-002",
+          "order": 1,
+          "chinese": "寻演",
+          "type": "dialogue",
+          "box": {
+            "x": 0.226119,
+            "y": 0.247445,
+            "width": 0.099154,
+            "height": 0.044379
+          }
+        },
+        {
+          "id": "page-148-bubble-004",
+          "order": 2,
+          "chinese": "欸？",
+          "type": "dialogue",
+          "box": {
+            "x": 0.83152,
+            "y": 0.377084,
+            "width": 0.051995,
+            "height": 0.02071
+          }
+        },
+        {
+          "id": "page-148-bubble-005",
+          "order": 3,
+          "chinese": "导演",
+          "type": "dialogue",
+          "box": {
+            "x": 0.222894,
+            "y": 0.587144,
+            "width": 0.082628,
+            "height": 0.034965
+          }
+        },
+        {
+          "id": "page-148-bubble-006",
+          "order": 4,
+          "chinese": "凌宇沫",
+          "type": "dialogue",
+          "box": {
+            "x": 0.204353,
+            "y": 0.61915,
+            "width": 0.118501,
+            "height": 0.03362
+          }
+        },
+        {
+          "id": "page-148-bubble-007",
+          "order": 5,
+          "chinese": "导演",
+          "type": "dialogue",
+          "box": {
+            "x": 0.509069,
+            "y": 0.675094,
+            "width": 0.081822,
+            "height": 0.028241
+          }
+        },
+        {
+          "id": "page-148-bubble-008",
+          "order": 6,
+          "chinese": "凌宇沫",
+          "type": "dialogue",
+          "box": {
+            "x": 0.492946,
+            "y": 0.72808,
+            "width": 0.114873,
+            "height": 0.029317
+          }
+        },
+        {
+          "id": "page-148-bubble-009",
+          "order": 7,
+          "chinese": "欸！？",
+          "type": "dialogue",
+          "box": {
+            "x": 0.747279,
+            "y": 0.7539,
+            "width": 0.087868,
+            "height": 0.027703
+          }
+        },
+        {
+          "id": "page-148-bubble-010",
+          "order": 8,
+          "chinese": "领衔主演",
+          "type": "dialogue",
+          "box": {
+            "x": 0.47763,
+            "y": 0.782141,
+            "width": 0.150343,
+            "height": 0.029317
+          }
+        },
+        {
+          "id": "page-148-bubble-011",
+          "order": 9,
+          "chinese": "东方纤云－东方纤云",
+          "type": "dialogue",
+          "box": {
+            "x": 0.387747,
+            "y": 0.835664,
+            "width": 0.328094,
+            "height": 0.030393
+          }
+        },
+        {
+          "id": "page-148-bubble-012",
+          "order": 10,
+          "chinese": "印飞星—印飞星",
+          "type": "dialogue",
+          "box": {
+            "x": 0.42241,
+            "y": 0.862292,
+            "width": 0.257154,
+            "height": 0.030662
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-149",
+      "image": "images/chapter-01-page-149.webp",
+      "width": 2481,
+      "height": 3721,
+      "bubbles": [
+        {
+          "id": "page-149-bubble-001",
+          "order": 1,
+          "chinese": "等等！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.132608,
+            "y": 0.140016,
+            "width": 0.074164,
+            "height": 0.022843
+          }
+        },
+        {
+          "id": "page-149-bubble-002",
+          "order": 2,
+          "chinese": "导演",
+          "type": "dialogue",
+          "box": {
+            "x": 0.422813,
+            "y": 0.155066,
+            "width": 0.08021,
+            "height": 0.029024
+          }
+        },
+        {
+          "id": "page-149-bubble-003",
+          "order": 3,
+          "chinese": "凌宇沫",
+          "type": "dialogue",
+          "box": {
+            "x": 0.405482,
+            "y": 0.209621,
+            "width": 0.116082,
+            "height": 0.029024
+          }
+        },
+        {
+          "id": "page-149-bubble-004",
+          "order": 4,
+          "chinese": "领衔主演",
+          "type": "dialogue",
+          "box": {
+            "x": 0.389762,
+            "y": 0.290245,
+            "width": 0.149536,
+            "height": 0.029293
+          }
+        },
+        {
+          "id": "page-149-bubble-005",
+          "order": 5,
+          "chinese": "这是",
+          "type": "dialogue",
+          "box": {
+            "x": 0.731963,
+            "y": 0.303413,
+            "width": 0.06449,
+            "height": 0.022575
+          }
+        },
+        {
+          "id": "page-149-bubble-006",
+          "order": 6,
+          "chinese": "什么？",
+          "type": "dialogue",
+          "box": {
+            "x": 0.732366,
+            "y": 0.322763,
+            "width": 0.082225,
+            "height": 0.024725
+          }
+        },
+        {
+          "id": "page-149-bubble-007",
+          "order": 7,
+          "chinese": "东方纤云－东方纤云",
+          "type": "dialogue",
+          "box": {
+            "x": 0.299476,
+            "y": 0.343456,
+            "width": 0.329303,
+            "height": 0.030099
+          }
+        },
+        {
+          "id": "page-149-bubble-008",
+          "order": 8,
+          "chinese": "印飞星—印飞星",
+          "type": "dialogue",
+          "box": {
+            "x": 0.335752,
+            "y": 0.371137,
+            "width": 0.257154,
+            "height": 0.028756
+          }
+        },
+        {
+          "id": "page-149-bubble-009",
+          "order": 9,
+          "chinese": "字幕？！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.80532,
+            "y": 0.395593,
+            "width": 0.09996,
+            "height": 0.023112
+          }
+        },
+        {
+          "id": "page-149-bubble-010",
+          "order": 10,
+          "chinese": "演员表",
+          "type": "dialogue",
+          "box": {
+            "x": 0.407497,
+            "y": 0.424886,
+            "width": 0.115276,
+            "height": 0.029024
+          }
+        },
+        {
+          "id": "page-149-bubble-011",
+          "order": 11,
+          "chinese": "逍遥星河－逍遥星河",
+          "type": "dialogue",
+          "box": {
+            "x": 0.301088,
+            "y": 0.478904,
+            "width": 0.328094,
+            "height": 0.029562
+          }
+        },
+        {
+          "id": "page-149-bubble-012",
+          "order": 12,
+          "chinese": "龚常胜－龚常胜",
+          "type": "dialogue",
+          "box": {
+            "x": 0.337364,
+            "y": 0.506047,
+            "width": 0.256751,
+            "height": 0.029562
+          }
+        },
+        {
+          "id": "page-149-bubble-013",
+          "order": 13,
+          "chinese": "叶昭昭-叶昭昭",
+          "type": "dialogue",
+          "box": {
+            "x": 0.336558,
+            "y": 0.53319,
+            "width": 0.257557,
+            "height": 0.029562
+          }
+        },
+        {
+          "id": "page-149-bubble-014",
+          "order": 14,
+          "chinese": "逍遥渡影－逍遥渡影",
+          "type": "dialogue",
+          "box": {
+            "x": 0.302297,
+            "y": 0.560333,
+            "width": 0.3289,
+            "height": 0.028218
+          }
+        },
+        {
+          "id": "page-149-bubble-015",
+          "order": 15,
+          "chinese": "坏人A-周狗剩",
+          "type": "dialogue",
+          "box": {
+            "x": 0.345022,
+            "y": 0.586402,
+            "width": 0.243853,
+            "height": 0.030906
+          }
+        },
+        {
+          "id": "page-149-bubble-016",
+          "order": 16,
+          "chinese": "坏人B-李秀慧",
+          "type": "dialogue",
+          "box": {
+            "x": 0.344216,
+            "y": 0.613545,
+            "width": 0.242241,
+            "height": 0.029562
+          }
+        },
+        {
+          "id": "page-149-bubble-017",
+          "order": 17,
+          "chinese": "坏人C-王二嘎",
+          "type": "dialogue",
+          "box": {
+            "x": 0.347844,
+            "y": 0.640957,
+            "width": 0.23942,
+            "height": 0.028756
+          }
+        },
+        {
+          "id": "page-149-bubble-018",
+          "order": 18,
+          "chinese": "友情客串",
+          "type": "dialogue",
+          "box": {
+            "x": 0.392181,
+            "y": 0.72158,
+            "width": 0.148327,
+            "height": 0.029831
+          }
+        },
+        {
+          "id": "page-149-bubble-020",
+          "order": 19,
+          "chinese": "别结",
+          "type": "dialogue",
+          "box": {
+            "x": 0.195889,
+            "y": 0.780167,
+            "width": 0.063281,
+            "height": 0.023918
+          }
+        },
+        {
+          "id": "page-149-bubble-019",
+          "order": 20,
+          "chinese": "茉莉-茉莉",
+          "type": "dialogue",
+          "box": {
+            "x": 0.374849,
+            "y": 0.775329,
+            "width": 0.184603,
+            "height": 0.029831
+          }
+        },
+        {
+          "id": "page-149-bubble-021",
+          "order": 21,
+          "chinese": "束啊！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.195889,
+            "y": 0.801129,
+            "width": 0.073358,
+            "height": 0.023112
+          }
+        },
+        {
+          "id": "page-149-bubble-022",
+          "order": 22,
+          "chinese": "龙井-龙井",
+          "type": "dialogue",
+          "box": {
+            "x": 0.374849,
+            "y": 0.801666,
+            "width": 0.185812,
+            "height": 0.030099
+          }
+        }
+      ]
+    },
+    {
+      "id": "page-150",
+      "image": "images/chapter-01-page-150.webp",
+      "width": 2481,
+      "height": 3718,
+      "bubbles": [
+        {
+          "id": "page-150-bubble-001",
+          "order": 1,
+          "chinese": "可乐瓶",
+          "type": "dialogue",
+          "box": {
+            "x": 0.476018,
+            "y": 0.027165,
+            "width": 0.104393,
+            "height": 0.026089
+          }
+        },
+        {
+          "id": "page-150-bubble-002",
+          "order": 2,
+          "chinese": "饭盒米团",
+          "type": "dialogue",
+          "box": {
+            "x": 0.439742,
+            "y": 0.047875,
+            "width": 0.175333,
+            "height": 0.030662
+          }
+        },
+        {
+          "id": "page-150-bubble-003",
+          "order": 3,
+          "chinese": "森闲",
+          "type": "dialogue",
+          "box": {
+            "x": 0.442563,
+            "y": 0.073158,
+            "width": 0.073358,
+            "height": 0.024744
+          }
+        },
+        {
+          "id": "page-150-bubble-004",
+          "order": 4,
+          "chinese": "南瓜",
+          "type": "dialogue",
+          "box": {
+            "x": 0.539702,
+            "y": 0.072351,
+            "width": 0.074567,
+            "height": 0.026627
+          }
+        },
+        {
+          "id": "page-150-bubble-005",
+          "order": 5,
+          "chinese": "音效、灯光",
+          "type": "dialogue",
+          "box": {
+            "x": 0.44337,
+            "y": 0.11646,
+            "width": 0.16969,
+            "height": 0.026896
+          }
+        },
+        {
+          "id": "page-150-bubble-006",
+          "order": 6,
+          "chinese": "一打的瓶闻人晓东",
+          "type": "dialogue",
+          "box": {
+            "x": 0.376864,
+            "y": 0.13986,
+            "width": 0.301894,
+            "height": 0.025551
+          }
+        },
+        {
+          "id": "page-150-bubble-007",
+          "order": 7,
+          "chinese": "发行商",
+          "type": "dialogue",
+          "box": {
+            "x": 0.476018,
+            "y": 0.18397,
+            "width": 0.104393,
+            "height": 0.027434
+          }
+        },
+        {
+          "id": "page-150-bubble-008",
+          "order": 8,
+          "chinese": "剧象漫画",
+          "type": "dialogue",
+          "box": {
+            "x": 0.48287,
+            "y": 0.266541,
+            "width": 0.090689,
+            "height": 0.017214
+          }
+        },
+        {
+          "id": "page-150-bubble-010",
+          "order": 9,
+          "chinese": "特别鸣谢",
+          "type": "dialogue",
+          "box": {
+            "x": 0.458686,
+            "y": 0.296934,
+            "width": 0.135832,
+            "height": 0.024744
+          }
+        },
+        {
+          "id": "page-150-bubble-011",
+          "order": 10,
+          "chinese": "剧象漫画的老云",
+          "type": "dialogue",
+          "box": {
+            "x": 0.4079,
+            "y": 0.317644,
+            "width": 0.237001,
+            "height": 0.027703
+          }
+        },
+        {
+          "id": "page-150-bubble-012",
+          "order": 11,
+          "chinese": "莲子",
+          "type": "dialogue",
+          "box": {
+            "x": 0.490931,
+            "y": 0.341313,
+            "width": 0.071342,
+            "height": 0.026358
+          }
+        },
+        {
+          "id": "page-150-bubble-013",
+          "order": 12,
+          "chinese": "《我家大师兄脑子有坑》",
+          "type": "dialogue",
+          "box": {
+            "x": 0.358726,
+            "y": 0.408284,
+            "width": 0.337364,
+            "height": 0.026358
+          }
+        },
+        {
+          "id": "page-150-bubble-014",
+          "order": 13,
+          "chinese": "一完一",
+          "type": "dialogue",
+          "box": {
+            "x": 0.480451,
+            "y": 0.432491,
+            "width": 0.099557,
+            "height": 0.024207
+          }
+        },
+        {
+          "id": "page-150-bubble-015",
+          "order": 14,
+          "chinese": "我还",
+          "type": "dialogue",
+          "box": {
+            "x": 0.495365,
+            "y": 0.537655,
+            "width": 0.06449,
+            "height": 0.022593
+          }
+        },
+        {
+          "id": "page-150-bubble-016",
+          "order": 15,
+          "chinese": "没死！",
+          "type": "dialogue",
+          "box": {
+            "x": 0.495365,
+            "y": 0.558365,
+            "width": 0.074567,
+            "height": 0.023131
+          }
+        },
+        {
+          "id": "page-150-bubble-017",
+          "order": 16,
+          "chinese": "我",
+          "type": "dialogue",
+          "box": {
+            "x": 0.144297,
+            "y": 0.620764,
+            "width": 0.102781,
+            "height": 0.064551
+          }
+        },
+        {
+          "id": "page-150-bubble-018",
+          "order": 17,
+          "chinese": "想",
+          "type": "dialogue",
+          "box": {
+            "x": 0.143087,
+            "y": 0.846154,
+            "width": 0.103184,
+            "height": 0.065896
+          }
+        },
+        {
+          "id": "page-150-bubble-019",
+          "order": 18,
+          "chinese": "死",
+          "type": "dialogue",
+          "box": {
+            "x": 0.802096,
+            "y": 0.84723,
+            "width": 0.102378,
+            "height": 0.064282
+          }
+        }
+      ]
+    }
+  ]
+}

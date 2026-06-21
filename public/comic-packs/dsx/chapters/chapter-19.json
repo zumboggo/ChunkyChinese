@@ -1,0 +1,21 @@
+{
+  "id": "chapter-19",
+  "title": "Part 19",
+  "titleChinese": "第19部分",
+  "pages": [
+    {
+      "id": "page-271",
+      "image": "images/chapter-01-page-271.webp",
+      "width": 2481,
+      "height": 3721,
+      "bubbles": []
+    },
+    {
+      "id": "page-272",
+      "image": "images/chapter-01-page-272.webp",
+      "width": 2550,
+      "height": 3300,
+      "bubbles": []
+    }
+  ]
+}

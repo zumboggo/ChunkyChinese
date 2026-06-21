@@ -1,0 +1,124 @@
+{
+  "format": "chunky-comic-pack",
+  "formatVersion": 1,
+  "id": "dsx",
+  "title": "我家大师兄脑子有坑 1",
+  "language": "zh-CN",
+  "coverImage": "images/chapter-01-page-001.webp",
+  "chapters": [
+    {
+      "id": "chapter-01",
+      "title": "Part 1",
+      "titleChinese": "第1部分",
+      "file": "chapters/chapter-01.json"
+    },
+    {
+      "id": "chapter-02",
+      "title": "Part 2",
+      "titleChinese": "第2部分",
+      "file": "chapters/chapter-02.json"
+    },
+    {
+      "id": "chapter-03",
+      "title": "Part 3",
+      "titleChinese": "第3部分",
+      "file": "chapters/chapter-03.json"
+    },
+    {
+      "id": "chapter-04",
+      "title": "Part 4",
+      "titleChinese": "第4部分",
+      "file": "chapters/chapter-04.json"
+    },
+    {
+      "id": "chapter-05",
+      "title": "Part 5",
+      "titleChinese": "第5部分",
+      "file": "chapters/chapter-05.json"
+    },
+    {
+      "id": "chapter-06",
+      "title": "Part 6",
+      "titleChinese": "第6部分",
+      "file": "chapters/chapter-06.json"
+    },
+    {
+      "id": "chapter-07",
+      "title": "Part 7",
+      "titleChinese": "第7部分",
+      "file": "chapters/chapter-07.json"
+    },
+    {
+      "id": "chapter-08",
+      "title": "Part 8",
+      "titleChinese": "第8部分",
+      "file": "chapters/chapter-08.json"
+    },
+    {
+      "id": "chapter-09",
+      "title": "Part 9",
+      "titleChinese": "第9部分",
+      "file": "chapters/chapter-09.json"
+    },
+    {
+      "id": "chapter-10",
+      "title": "Part 10",
+      "titleChinese": "第10部分",
+      "file": "chapters/chapter-10.json"
+    },
+    {
+      "id": "chapter-11",
+      "title": "Part 11",
+      "titleChinese": "第11部分",
+      "file": "chapters/chapter-11.json"
+    },
+    {
+      "id": "chapter-12",
+      "title": "Part 12",
+      "titleChinese": "第12部分",
+      "file": "chapters/chapter-12.json"
+    },
+    {
+      "id": "chapter-13",
+      "title": "Part 13",
+      "titleChinese": "第13部分",
+      "file": "chapters/chapter-13.json"
+    },
+    {
+      "id": "chapter-14",
+      "title": "Part 14",
+      "titleChinese": "第14部分",
+      "file": "chapters/chapter-14.json"
+    },
+    {
+      "id": "chapter-15",
+      "title": "Part 15",
+      "titleChinese": "第15部分",
+      "file": "chapters/chapter-15.json"
+    },
+    {
+      "id": "chapter-16",
+      "title": "Part 16",
+      "titleChinese": "第16部分",
+      "file": "chapters/chapter-16.json"
+    },
+    {
+      "id": "chapter-17",
+      "title": "Part 17",
+      "titleChinese": "第17部分",
+      "file": "chapters/chapter-17.json"
+    },
+    {
+      "id": "chapter-18",
+      "title": "Part 18",
+      "titleChinese": "第18部分",
+      "file": "chapters/chapter-18.json"
+    },
+    {
+      "id": "chapter-19",
+      "title": "Part 19",
+      "titleChinese": "第19部分",
+      "file": "chapters/chapter-19.json"
+    }
+  ]
+}

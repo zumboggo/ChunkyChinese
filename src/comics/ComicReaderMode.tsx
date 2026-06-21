@@ -4,7 +4,6 @@ import { WordInfoPopover } from '../WordInfoPopover'
 import { tokenizeReaderText, type AdaptivePinyinMode } from '../adaptiveText'
 import {
   deleteComicPack,
-  ensureSampleComicPack,
   getComicChapter,
   getComicChapters,
   getComicImage,
@@ -111,7 +110,7 @@ export function ComicReaderMode({
   const loadLibrary = useCallback(async () => {
     try {
       setLoadState('loading')
-      await ensureSampleComicPack()
+
       const [packList, hosted] = await Promise.all([
         listComicPacks(),
         getHostedComicPackIndex(),

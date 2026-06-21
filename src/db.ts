@@ -1391,32 +1391,7 @@ export async function importComicPack(
   }
 }
 
-export async function ensureSampleComicPack(): Promise<void> {
-  const existing = await getComicPack('sample-missing-dumpling')
-  if (existing) return
-  const baseUrl = `${import.meta.env.BASE_URL}comic-packs/sample-missing-dumpling/`
-  const manifest = await fetchJson(`${baseUrl}manifest.json`) as ComicPackManifest
-  const chapters: ComicChapter[] = []
-  const images = new Map<string, Blob>()
-  const imageContentTypes = new Map<string, string>()
-  const imagePaths = new Set<string>()
-  if (manifest.coverImage) imagePaths.add(manifest.coverImage)
-  for (const ref of manifest.chapters) {
-    const chapter = await fetchJson(`${baseUrl}${ref.file}`) as ComicChapter
-    chapters.push(chapter)
-    for (const page of chapter.pages) imagePaths.add(page.image)
-  }
-  for (const path of imagePaths) {
-    const response = await fetch(`${baseUrl}${path}`)
-    if (!response.ok) throw new Error(`Sample comic image failed to load: ${path}`)
-    images.set(path, await response.blob())
-    imageContentTypes.set(path, response.headers.get('content-type') ?? contentTypeForComicImage(path))
-  }
-  await saveComicPackToDatabase(manifest, chapters, images, imageContentTypes, {
-    replace: true,
-    source: 'sample',
-  })
-}
+
 
 export async function importHostedComicPack(
   baseUrl: string,
