@@ -1,0 +1,24 @@
+{
+  "packId": "can-i-dance",
+  "name": "Can I Dance With You?",
+  "description": "Chinese Breeze Level 1 - Can I Dance With You? (我可以请你跳舞吗？)",
+  "createdAt": "2026-06-21T00:00:00.000Z",
+  "voice": "",
+  "rate": "0%",
+  "audioAvailable": false,
+  "synthesizedAudioCount": 0,
+  "storyCount": 8,
+  "sentenceCount": 323,
+  "books": [
+    {
+      "id": "can-i-dance-with-you",
+      "title": "Can I Dance With You?",
+      "book": 1,
+      "chapterStart": 1,
+      "chapterEnd": 8,
+      "storyCount": 8,
+      "sentenceCount": 323,
+      "path": "books/can-i-dance-with-you.json"
+    }
+  ]
+}
