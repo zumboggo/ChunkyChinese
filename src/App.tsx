@@ -85,6 +85,8 @@ import {
 } from './adaptiveText'
 import { AdaptiveChineseText } from './AdaptiveChineseText'
 import { WordInfoPopover } from './WordInfoPopover'
+import { GrammarPopover } from './GrammarPopover'
+import { findGrammarMatches, mapGrammarToTokens, type GrammarMatch } from './grammarPoints'
 import { UniversalImporter } from './UniversalImporter'
 import { VisualNovelWorldMode } from './visualNovel/VisualNovelWorldMode'
 import { ComicReaderMode } from './comics/ComicReaderMode'
@@ -130,7 +132,7 @@ import type {
   DictionaryEntry,
 } from './types'
 
-type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'visualNovel' | 'comicReader'
+type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'visualNovel' | 'comicReader' | 'readingTexts'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
 type FlashcardFrontMode = 'text' | 'audio' | 'reverse'
 type ReaderPinyinMode = UserSettings['readerPinyinMode']
@@ -2281,11 +2283,11 @@ function App() {
           </button>
           <button
             type="button"
-            className={screen === 'lesson' && studyMode === 'listeningMode' ? 'active' : ''}
-            onClick={() => startModeLesson('listeningMode')}
+            className={screen === 'readingTexts' ? 'active' : ''}
+            onClick={() => setScreen('readingTexts')}
           >
-            <span className="nav-icon nav-listen" aria-hidden="true" />
-            Listen
+            <span className="nav-icon nav-comics" aria-hidden="true" />
+            Reading
           </button>
         </nav>
       </header>
@@ -2311,10 +2313,10 @@ function App() {
                 <strong>Flashcards</strong>
                 <span>Sort due and new words with FSRS.</span>
               </button>
-              <button className="mode-start comic-start" type="button" onClick={() => setScreen('comicReader')}>
+              <button className="mode-start reading-texts-start" type="button" onClick={() => setScreen('readingTexts')}>
                 <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
-                <strong>Comic Reading</strong>
-                <span>Read comic pages with clickable Chinese transcripts.</span>
+                <strong>Reading Texts</strong>
+                <span>Choose between novels, stories, and comics.</span>
               </button>
               <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('listeningMode')}>
                 <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
@@ -2947,6 +2949,46 @@ function App() {
           onReturnHome={() => setScreen('dashboard')}
           onOpenClassicReader={() => setScreen('reader')}
         />
+      )}
+
+      {screen === 'readingTexts' && (
+        <section className="screen reading-texts-screen">
+          <div className="screen-heading compact">
+            <div>
+              <button type="button" className="ghost-answer" onClick={() => setScreen('dashboard')}>
+                Back to Dashboard
+              </button>
+              <h1>Reading Texts</h1>
+              <p>Choose a reading format to practice your Chinese.</p>
+            </div>
+          </div>
+          <div className="reading-texts-grid">
+            <button
+              className="reading-texts-card"
+              type="button"
+              onClick={() => setScreen('reader')}
+            >
+              <strong>Novels &amp; Stories</strong>
+              <span>Read sentence by sentence with pinyin, translations, and audio.</span>
+            </button>
+            <button
+              className="reading-texts-card"
+              type="button"
+              onClick={() => setScreen('comicReader')}
+            >
+              <strong>Comics</strong>
+              <span>Read comic pages with bubble transcripts and vocabulary lookup.</span>
+            </button>
+            <button
+              className="reading-texts-card"
+              type="button"
+              onClick={() => setScreen('visualNovel')}
+            >
+              <strong>Visual Novel</strong>
+              <span>Play through story scenes with interactive dialogue choices.</span>
+            </button>
+          </div>
+        </section>
       )}
 
       {screen === 'settings' && (
@@ -4252,6 +4294,7 @@ function ReaderMode({
   onSaveWord: (text: string, pinyin: string, meaning: string) => void | Promise<void>
 }) {
   const [listeningMenuOpen, setListeningMenuOpen] = useState(false)
+  const [grammarSelection, setGrammarSelection] = useState<GrammarMatch[] | null>(null)
   const listeningRepeatTotal = listening.snapshot.mode === 'single' ? 1 : listeningRepeats
   const listeningPlaying =
     listening.snapshot.status === 'playing' || listening.snapshot.status === 'loading'
@@ -4261,6 +4304,15 @@ function ReaderMode({
   const fallbackIllustrationSrc = illustration?.fallbackImageFilename
     ? publicAssetPath(illustration.fallbackImageFilename)
     : ''
+
+  const grammarMatches = useMemo(
+    () => (sentence ? findGrammarMatches(sentence.chinese) : []),
+    [sentence],
+  )
+  const grammarTokenMap = useMemo(
+    () => mapGrammarToTokens(grammarMatches, tokens),
+    [grammarMatches, tokens],
+  )
 
   return (
     <section className={`screen reader-screen reader-theme-${readerTheme}`}>
@@ -4410,7 +4462,12 @@ function ReaderMode({
                     tokens={tokens}
                     selectedToken={selectedToken}
                     pinyinMode={pinyinMode}
-                    onSelectToken={onSelectToken}
+                    onSelectToken={(token) => {
+                      setGrammarSelection(null)
+                      onSelectToken(token)
+                    }}
+                    onGrammarSelect={(matches) => setGrammarSelection(matches)}
+                    grammarTokenMap={grammarTokenMap}
                   />
                 </motion.div>
               </AnimatePresence>
@@ -4436,7 +4493,7 @@ function ReaderMode({
                   <div className="reader-listening-controls">
                     <button
                       type="button"
-                      onClick={() => void onPrevious()}
+                      onClick={() => { setGrammarSelection(null); void onPrevious() }}
                       disabled={sentenceIndex <= 0}
                     >
                       Previous
@@ -4451,7 +4508,7 @@ function ReaderMode({
                     </button>
                     <button
                       type="button"
-                      onClick={() => void onNext()}
+                      onClick={() => { setGrammarSelection(null); void onNext() }}
                       disabled={sentenceIndex >= sentenceCount - 1}
                     >
                       <kbd>{choiceB.toUpperCase()}</kbd>
@@ -4467,14 +4524,14 @@ function ReaderMode({
                 </div>
               ) : (
                 <div className="reader-controls">
-                  <button type="button" onClick={() => void onPrevious()} disabled={sentenceIndex <= 0}>
+                  <button type="button" onClick={() => { setGrammarSelection(null); void onPrevious() }} disabled={sentenceIndex <= 0}>
                     Previous
                   </button>
                   <button type="button" className="primary" onClick={listening.playSentenceOnce}>
                     <kbd>{replayHotkey.toUpperCase()}</kbd>
                     Play sentence
                   </button>
-                  <button type="button" onClick={() => void onNext()} disabled={sentenceIndex >= sentenceCount - 1}>
+                  <button type="button" onClick={() => { setGrammarSelection(null); void onNext() }} disabled={sentenceIndex >= sentenceCount - 1}>
                     Next
                   </button>
                   <button type="button" className="reader-listening-start" onClick={() => setListeningMenuOpen(true)}>
@@ -4491,6 +4548,17 @@ function ReaderMode({
                   onSaveWord={onSaveWord}
                   formatDueDate={formatDueDate}
                 />
+              )}
+              {grammarSelection && (
+                <GrammarPopover
+                  matches={grammarSelection}
+                  onClose={() => setGrammarSelection(null)}
+                />
+              )}
+              {grammarMatches.length > 0 && !grammarSelection && !selectedToken && (
+                <div className="grammar-hint" aria-label={`${grammarMatches.length} grammar points highlighted`}>
+                  {grammarMatches.length} grammar {grammarMatches.length === 1 ? 'point' : 'points'} highlighted
+                </div>
               )}
               {listeningMenuOpen && (
                 <>

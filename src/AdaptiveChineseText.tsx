@@ -5,12 +5,15 @@ import {
   type AdaptivePinyinMode,
 } from './adaptiveText'
 import type { ReaderWordToken } from './types'
+import type { GrammarMatch } from './grammarPoints'
 
 interface AdaptiveChineseTextProps {
   tokens: ReaderWordToken[]
   selectedToken: ReaderWordToken | null
   pinyinMode: AdaptivePinyinMode
   onSelectToken: (token: ReaderWordToken | null) => void
+  onGrammarSelect?: (matches: GrammarMatch[], token: ReaderWordToken) => void
+  grammarTokenMap?: Map<string, GrammarMatch[]>
   className?: string
   visibleCount?: number
 }
@@ -20,10 +23,17 @@ export function AdaptiveChineseText({
   selectedToken,
   pinyinMode,
   onSelectToken,
+  onGrammarSelect,
+  grammarTokenMap,
   className = 'reader-sentence',
   visibleCount,
 }: AdaptiveChineseTextProps) {
   function toggleToken(token: ReaderWordToken) {
+    const grammarMatches = grammarTokenMap?.get(token.id)
+    if (grammarMatches && grammarMatches.length > 0 && onGrammarSelect) {
+      onGrammarSelect(grammarMatches, token)
+      return
+    }
     onSelectToken(selectedToken?.id === token.id ? null : token)
   }
 
@@ -39,15 +49,17 @@ export function AdaptiveChineseText({
 
   return (
     <div className={className}>
-      {renderedTokens.map((token, index) =>
-        token.isChinese ? (
+      {renderedTokens.map((token, index) => {
+        const grammarMatches = grammarTokenMap?.get(token.id)
+        const hasGrammar = grammarMatches && grammarMatches.length > 0
+        return token.isChinese ? (
           <ruby
             key={token.id}
-            className={`${readerTokenClassName(token, selectedToken, pinyinMode)}${hasReveal ? ' vn-token-reveal' : ''}`}
+            className={`${readerTokenClassName(token, selectedToken, pinyinMode)}${hasGrammar ? ' grammar-highlight' : ''}${hasReveal ? ' vn-token-reveal' : ''}`}
             style={hasReveal ? { animationDelay: `${index * 30}ms` } : undefined}
             tabIndex={0}
             role="button"
-            aria-label={`${token.text}${token.pinyin ? `, ${token.pinyin}` : ''}`}
+            aria-label={`${token.text}${token.pinyin ? `, ${token.pinyin}` : ''}${hasGrammar ? `, grammar: ${grammarMatches[0].point.pattern}` : ''}`}
             onClick={() => toggleToken(token)}
             onKeyDown={(event) => handleTokenKeyDown(event, token)}
           >
@@ -62,8 +74,8 @@ export function AdaptiveChineseText({
           >
             {token.text}
           </span>
-        ),
-      )}
+        )
+      })}
     </div>
   )
 }
