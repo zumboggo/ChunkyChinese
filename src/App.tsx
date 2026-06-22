@@ -693,7 +693,7 @@ function App() {
   )
   const readerComprehensionByBook = useMemo(
     () =>
-      screen === 'reader' && !activeReaderBook
+      screen === 'readingTexts' || (screen === 'reader' && !activeReaderBook)
         ? getReaderComprehensionByBook(readerBooks, scopedWords.length > 0 ? scopedWords : words)
         : new Map<string, ReaderBookComprehension>(),
     [activeReaderBook, readerBooks, scopedWords, screen, words],
@@ -2875,6 +2875,10 @@ function App() {
           listeningRepeats={userSettings.readerListeningRepeats}
           listeningAutoAdvance={userSettings.readerListeningAutoAdvance}
           onChooseBook={openReaderBook}
+          onOpenLibrary={() => {
+            readerListening.stop()
+            setScreen('readingTexts')
+          }}
           onResume={() => {
             if (readerResumeLocation) void openReaderBook(readerResumeLocation.book, 'resume')
           }}
@@ -2952,43 +2956,19 @@ function App() {
       )}
 
       {screen === 'readingTexts' && (
-        <section className="screen reading-texts-screen">
-          <div className="screen-heading compact">
-            <div>
-              <button type="button" className="ghost-answer" onClick={() => setScreen('dashboard')}>
-                Back to Dashboard
-              </button>
-              <h1>Reading Texts</h1>
-              <p>Choose a reading format to practice your Chinese.</p>
-            </div>
-          </div>
-          <div className="reading-texts-grid">
-            <button
-              className="reading-texts-card"
-              type="button"
-              onClick={() => setScreen('reader')}
-            >
-              <strong>Novels &amp; Stories</strong>
-              <span>Read sentence by sentence with pinyin, translations, and audio.</span>
-            </button>
-            <button
-              className="reading-texts-card"
-              type="button"
-              onClick={() => setScreen('comicReader')}
-            >
-              <strong>Comics</strong>
-              <span>Read comic pages with bubble transcripts and vocabulary lookup.</span>
-            </button>
-            <button
-              className="reading-texts-card"
-              type="button"
-              onClick={() => setScreen('visualNovel')}
-            >
-              <strong>Visual Novel</strong>
-              <span>Play through story scenes with interactive dialogue choices.</span>
-            </button>
-          </div>
-        </section>
+        <ReadingTextsLibrary
+          readerBooks={readerBooks}
+          comprehensionByBook={readerComprehensionByBook}
+          resumeLocation={readerResumeLocation}
+          onBack={() => setScreen('dashboard')}
+          onChooseBook={openReaderBook}
+          onBrowseNovels={() => {
+            setActiveReaderBookId(undefined)
+            setScreen('reader')
+          }}
+          onOpenComics={() => setScreen('comicReader')}
+          onOpenVisualNovel={() => setScreen('visualNovel')}
+        />
       )}
 
       {screen === 'settings' && (
@@ -4221,6 +4201,176 @@ function dashboardPreviousRangeLabel(range: DashboardRange): string {
   return ''
 }
 
+function ReadingTextsLibrary({
+  readerBooks,
+  comprehensionByBook,
+  resumeLocation,
+  onBack,
+  onChooseBook,
+  onBrowseNovels,
+  onOpenComics,
+  onOpenVisualNovel,
+}: {
+  readerBooks: ReaderBook[]
+  comprehensionByBook: Map<string, ReaderBookComprehension>
+  resumeLocation?: ReaderResumeLocation
+  onBack: () => void
+  onChooseBook: (book: ReaderBook, action?: 'resume' | 'start') => void | Promise<void>
+  onBrowseNovels: () => void
+  onOpenComics: () => void
+  onOpenVisualNovel: () => void
+}) {
+  return (
+    <section className="screen reading-texts-screen">
+      <header className="reading-library-heading">
+        <button type="button" className="ghost-answer reading-back-button" onClick={onBack}>
+          Back to Dashboard
+        </button>
+        <div>
+          <span className="reading-library-mark" aria-hidden="true">阅</span>
+          <div>
+            <h1>Reading Texts</h1>
+            <p>Pick up a book or explore another way to read Chinese.</p>
+          </div>
+        </div>
+      </header>
+
+      {resumeLocation ? (
+        <section className="reading-continue" aria-labelledby="reading-continue-title">
+          <div className="reading-continue-copy">
+            <span>Continue reading</span>
+            <h2 id="reading-continue-title">{resumeLocation.book.title}</h2>
+            <p>Chapter {resumeLocation.chapter} · {resumeLocation.story}</p>
+            <div className="reading-progress-row">
+              <div className="reading-progress-track" aria-label={`${resumeLocation.percent}% read`}>
+                <span style={{ width: `${resumeLocation.percent}%` }} />
+              </div>
+              <strong>{resumeLocation.percent}%</strong>
+            </div>
+            <small>
+              Sentence {resumeLocation.sentenceIndex + 1} of {resumeLocation.sentenceCount}
+            </small>
+          </div>
+          <div className="reading-continue-books" aria-hidden="true">
+            <span>故事</span>
+            <span>中文</span>
+            <span>阅读</span>
+          </div>
+          <button
+            type="button"
+            className="primary reading-continue-action"
+            onClick={() => void onChooseBook(resumeLocation.book, 'resume')}
+          >
+            Resume
+            <span aria-hidden="true">→</span>
+          </button>
+        </section>
+      ) : null}
+
+      <section className="reading-library-section" aria-labelledby="reading-library-title">
+        <div className="reading-section-heading">
+          <div>
+            <h2 id="reading-library-title">Your Library</h2>
+            <p>{readerBooks.length} books ready to read</p>
+          </div>
+          <button type="button" className="ghost-answer" onClick={onBrowseNovels}>
+            Classic library
+          </button>
+        </div>
+
+        {readerBooks.length > 0 ? (
+          <div className="reading-book-shelf">
+            <div className="reading-book-grid">
+              {readerBooks.map((book, index) => {
+                const comprehension = comprehensionByBook.get(book.id)
+                const isResumeBook = resumeLocation?.book.id === book.id
+                const progress = isResumeBook ? resumeLocation.percent : 0
+                return (
+                  <article className="reading-library-book" key={book.id}>
+                    <div className={`reading-book-cover reading-book-cover-${index % 4}`} aria-hidden="true">
+                      <span>{book.title}</span>
+                    </div>
+                    <div className="reading-book-copy">
+                      <div>
+                        <h3>{book.title}</h3>
+                        <p>
+                          Chapters {book.chapterStart}-{book.chapterEnd} · {book.stories.length} stories
+                        </p>
+                      </div>
+                      <div className="reading-book-progress" aria-hidden="true">
+                        <span style={{ width: `${progress}%` }} />
+                      </div>
+                      <small>
+                        {isResumeBook
+                          ? `Continue at sentence ${resumeLocation.sentenceIndex + 1}`
+                          : `${comprehension?.knownPercent ?? 0}% vocabulary known`}
+                      </small>
+                      <div className="reading-book-actions">
+                        {isResumeBook ? (
+                          <button
+                            type="button"
+                            className="primary"
+                            onClick={() => void onChooseBook(book, 'resume')}
+                          >
+                            Resume
+                          </button>
+                        ) : null}
+                        <button type="button" onClick={() => void onChooseBook(book, 'start')}>
+                          Start
+                        </button>
+                      </div>
+                    </div>
+                  </article>
+                )
+              })}
+            </div>
+          </div>
+        ) : (
+          <div className="reading-library-empty">
+            <strong>Your books are still loading.</strong>
+            <span>They will appear here automatically when the library is ready.</span>
+          </div>
+        )}
+      </section>
+
+      <section className="reading-formats-section" aria-labelledby="reading-formats-title">
+        <div className="reading-section-heading">
+          <div>
+            <h2 id="reading-formats-title">Explore formats</h2>
+            <p>Choose the reading experience that fits your mood.</p>
+          </div>
+        </div>
+        <div className="reading-formats-grid">
+          <button type="button" className="reading-format reading-format-novels" onClick={onBrowseNovels}>
+            <span className="reading-format-icon" aria-hidden="true">文</span>
+            <span>
+              <strong>Novels &amp; Stories</strong>
+              <small>Browse every book with pinyin, translations, and audio.</small>
+            </span>
+            <span className="reading-format-arrow" aria-hidden="true">→</span>
+          </button>
+          <button type="button" className="reading-format reading-format-comics" onClick={onOpenComics}>
+            <span className="reading-format-icon" aria-hidden="true">漫</span>
+            <span>
+              <strong>Comics</strong>
+              <small>Read pages with bubble transcripts and vocabulary lookup.</small>
+            </span>
+            <span className="reading-format-arrow" aria-hidden="true">→</span>
+          </button>
+          <button type="button" className="reading-format reading-format-novel" onClick={onOpenVisualNovel}>
+            <span className="reading-format-icon" aria-hidden="true">剧</span>
+            <span>
+              <strong>Visual Novel</strong>
+              <small>Play through interactive scenes and dialogue choices.</small>
+            </span>
+            <span className="reading-format-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+    </section>
+  )
+}
+
 function ReaderMode({
   readerPacks,
   readerBooks,
@@ -4245,6 +4395,7 @@ function ReaderMode({
   listeningRepeats,
   listeningAutoAdvance,
   onChooseBook,
+  onOpenLibrary,
   onResume,
   onPrevious,
   onNext,
@@ -4279,6 +4430,7 @@ function ReaderMode({
   listeningRepeats: number
   listeningAutoAdvance: boolean
   onChooseBook: (book: ReaderBook, action?: 'resume' | 'start') => void | Promise<void>
+  onOpenLibrary: () => void
   onResume: () => void
   onPrevious: () => void | Promise<void>
   onNext: () => void | Promise<void>
@@ -4324,6 +4476,9 @@ function ReaderMode({
           </p>
         </div>
         <div className="study-toggles">
+          <button type="button" onClick={onOpenLibrary}>
+            Library
+          </button>
           {activeBook && sentence && (
             <button
               type="button"

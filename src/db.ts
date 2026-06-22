@@ -1353,7 +1353,7 @@ export async function seedReaderBooksIfEmpty(): Promise<number> {
   const results = await Promise.allSettled(
     hostedPacks.map((pack) =>
       importHostedReaderPack(pack.baseUrl, undefined, pack, {
-        downloadAudio: pack.id === 'rise-of-the-monkey-king' || pack.id === 'just-friends',
+        downloadAudio: false,
       }),
     ),
   )
@@ -1365,7 +1365,30 @@ export async function seedReaderBooksIfEmpty(): Promise<number> {
     0,
   )
   if (results.every((result) => result.status === 'fulfilled')) {
-    await db.put('settings', READER_PACK_FIX_VERSION, 'readerPackFixVersion')
+    const audioPacks = hostedPacks.filter(
+      (pack) => pack.id === 'rise-of-the-monkey-king' || pack.id === 'just-friends',
+    )
+    if (audioPacks.length === 0) {
+      await db.put('settings', READER_PACK_FIX_VERSION, 'readerPackFixVersion')
+    } else {
+      void Promise.allSettled(
+        audioPacks.map((pack) =>
+          importHostedReaderPack(pack.baseUrl, undefined, pack, { downloadAudio: true }),
+        ),
+      )
+        .then(async (audioResults) => {
+          if (audioResults.every((result) => result.status === 'fulfilled')) {
+            await db.put('settings', READER_PACK_FIX_VERSION, 'readerPackFixVersion')
+            return
+          }
+          for (const result of audioResults) {
+            if (result.status === 'rejected') {
+              console.warn('Could not cache hosted reader audio.', result.reason)
+            }
+          }
+        })
+        .catch((error) => console.warn('Could not finish caching hosted reader audio.', error))
+    }
   } else {
     for (const result of results) {
       if (result.status === 'rejected') {
