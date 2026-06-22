@@ -12,6 +12,7 @@
     "test:e2e:ui": "playwright test --ui",
     "preview": "vite preview",
     "generate:reader-pack": "node scripts/generate-lms-reader-pack.mjs",
+    "generate:monkey-king-reader": "node scripts/generate-monkey-king-reader-pack.mjs",
     "generate:reader-illustrations": "node scripts/generate-reader-illustrations.mjs",
     "generate:nav-icons": "node scripts/generate-nav-icons-ideogram.mjs",
     "clean:lms-vocab": "node scripts/clean-lms-vocab.mjs --write",

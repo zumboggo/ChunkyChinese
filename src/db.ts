@@ -85,7 +85,7 @@ const DB_NAME = 'chunky-chinese-vocab'
 const DB_VERSION = 10
 const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
-const READER_PACK_FIX_VERSION = '2026-06-22-sherlock-reader'
+const READER_PACK_FIX_VERSION = '2026-06-22-monkey-king-reader'
 
 export interface SyncMetadata {
   userId?: string
@@ -644,6 +644,13 @@ export async function getHostedReaderPackIndex(): Promise<HostedReaderPack[]> {
         name: 'Sherlock Holmes Graded Reader',
         description: 'Mandarin Companion Level 1 Sherlock Holmes reader.',
         baseUrl: `${import.meta.env.BASE_URL}reader-packs/sherlock-holmes`,
+        language: 'zh-CN',
+      },
+      {
+        id: 'rise-of-the-monkey-king',
+        name: 'Rise of the Monkey King',
+        description: 'A bilingual Chinese-English retelling of the rise of Sun Wukong.',
+        baseUrl: `${import.meta.env.BASE_URL}reader-packs/rise-of-the-monkey-king`,
         language: 'zh-CN',
       },
     ]
@@ -1339,7 +1346,7 @@ export async function seedReaderBooksIfEmpty(): Promise<number> {
   const results = await Promise.allSettled(
     hostedPacks.map((pack) =>
       importHostedReaderPack(pack.baseUrl, undefined, pack, {
-        downloadAudio: false,
+        downloadAudio: pack.id === 'rise-of-the-monkey-king',
       }),
     ),
   )

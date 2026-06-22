@@ -12,5 +12,12 @@
     "description": "Mandarin Companion Level 1 — Sherlock Holmes and the Case of the Curly Haired Company.",
     "baseUrl": "reader-packs/sherlock-holmes",
     "language": "zh-CN"
+  },
+  {
+    "id": "rise-of-the-monkey-king",
+    "name": "Rise of the Monkey King",
+    "description": "A bilingual Chinese-English retelling of the rise of Sun Wukong.",
+    "baseUrl": "reader-packs/rise-of-the-monkey-king",
+    "language": "zh-CN"
   }
 ]
