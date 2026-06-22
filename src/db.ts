@@ -85,7 +85,7 @@ const DB_NAME = 'chunky-chinese-vocab'
 const DB_VERSION = 10
 const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
-const READER_PACK_FIX_VERSION = '2026-06-22-monkey-king-reader'
+const READER_PACK_FIX_VERSION = '2026-06-22-just-friends-reader'
 
 export interface SyncMetadata {
   userId?: string
@@ -651,6 +651,13 @@ export async function getHostedReaderPackIndex(): Promise<HostedReaderPack[]> {
         name: 'Rise of the Monkey King',
         description: 'A bilingual Chinese-English retelling of the rise of Sun Wukong.',
         baseUrl: `${import.meta.env.BASE_URL}reader-packs/rise-of-the-monkey-king`,
+        language: 'zh-CN',
+      },
+      {
+        id: 'just-friends',
+        name: 'Just Friends?',
+        description: 'Mandarin Companion Breakthrough Level - Just Friends? (我们是朋友吗？).',
+        baseUrl: `${import.meta.env.BASE_URL}reader-packs/just-friends`,
         language: 'zh-CN',
       },
     ]
@@ -1346,7 +1353,7 @@ export async function seedReaderBooksIfEmpty(): Promise<number> {
   const results = await Promise.allSettled(
     hostedPacks.map((pack) =>
       importHostedReaderPack(pack.baseUrl, undefined, pack, {
-        downloadAudio: pack.id === 'rise-of-the-monkey-king',
+        downloadAudio: pack.id === 'rise-of-the-monkey-king' || pack.id === 'just-friends',
       }),
     ),
   )

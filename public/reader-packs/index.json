@@ -19,5 +19,12 @@
     "description": "A bilingual Chinese-English retelling of the rise of Sun Wukong.",
     "baseUrl": "reader-packs/rise-of-the-monkey-king",
     "language": "zh-CN"
+  },
+  {
+    "id": "just-friends",
+    "name": "Just Friends?",
+    "description": "Mandarin Companion Breakthrough Level — Just Friends? (我们是朋友吗？).",
+    "baseUrl": "reader-packs/just-friends",
+    "language": "zh-CN"
   }
 ]
