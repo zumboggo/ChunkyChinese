@@ -5,8 +5,8 @@
   "createdAt": "2026-06-21T00:00:00.000Z",
   "voice": "female-premium",
   "rate": "0%",
-  "audioAvailable": false,
-  "synthesizedAudioCount": 0,
+  "audioAvailable": true,
+  "synthesizedAudioCount": 398,
   "storyCount": 10,
   "sentenceCount": 549,
   "books": [
