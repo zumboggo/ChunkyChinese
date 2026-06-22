@@ -5,5 +5,12 @@
     "description": "Legendary Moonlight Sculptor LMS reader compilations from StoryEditor.",
     "baseUrl": "reader-packs/lms-books",
     "language": "zh-CN"
+  },
+  {
+    "id": "sherlock-holmes",
+    "name": "Sherlock Holmes Graded Reader",
+    "description": "Mandarin Companion Level 1 — Sherlock Holmes and the Case of the Curly Haired Company.",
+    "baseUrl": "reader-packs/sherlock-holmes",
+    "language": "zh-CN"
   }
 ]

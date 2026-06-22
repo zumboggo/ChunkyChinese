@@ -85,7 +85,7 @@ const DB_NAME = 'chunky-chinese-vocab'
 const DB_VERSION = 10
 const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
-const READER_PACK_FIX_VERSION = '2026-06-03-book2-per-sentence-images'
+const READER_PACK_FIX_VERSION = '2026-06-22-sherlock-reader'
 
 export interface SyncMetadata {
   userId?: string
@@ -637,6 +637,13 @@ export async function getHostedReaderPackIndex(): Promise<HostedReaderPack[]> {
         name: 'LMS Reader Books',
         description: 'LMS Book 1 chapter compilation readers.',
         baseUrl: `${import.meta.env.BASE_URL}reader-packs/lms-books`,
+        language: 'zh-CN',
+      },
+      {
+        id: 'sherlock-holmes',
+        name: 'Sherlock Holmes Graded Reader',
+        description: 'Mandarin Companion Level 1 Sherlock Holmes reader.',
+        baseUrl: `${import.meta.env.BASE_URL}reader-packs/sherlock-holmes`,
         language: 'zh-CN',
       },
     ]
@@ -1307,26 +1314,52 @@ export async function seedReaderBooksIfEmpty(): Promise<number> {
   const db = await getDB()
   const existingBooks = await db.getAll('readerBooks')
   const currentFixVersion = await db.get('settings', 'readerPackFixVersion')
-  if (
-    currentFixVersion === READER_PACK_FIX_VERSION &&
-    existingBooks.length > 0 &&
-    existingBooks.every((book) => {
+  const hostedPacks = await getHostedReaderPackIndex()
+  const installedPackIds = new Set(existingBooks.map((book) => book.packId))
+  const hasEveryHostedPack = hostedPacks.every((pack) => installedPackIds.has(pack.id))
+  const lmsIllustrationsAreCurrent = existingBooks
+    .filter((book) => book.packId === 'lms-books')
+    .every((book) => {
       const sentenceCount = book.stories.flatMap((story) => story.sentences).length
       const expectedIllustrationCount = book.id === 'lms-book-1-chapters-16-20'
         ? sentenceCount
         : Math.ceil(sentenceCount / 2)
       return (book.illustrations?.length ?? 0) >= expectedIllustrationCount
     })
+  if (
+    currentFixVersion === READER_PACK_FIX_VERSION &&
+    existingBooks.length > 0 &&
+    hasEveryHostedPack &&
+    lmsIllustrationsAreCurrent
   ) {
     return 0
   }
-  const [firstPack] = await getHostedReaderPackIndex()
-  if (!firstPack) return 0
-  const summary = await importHostedReaderPack(firstPack.baseUrl, undefined, firstPack, {
-    downloadAudio: false,
-  })
-  await db.put('settings', READER_PACK_FIX_VERSION, 'readerPackFixVersion')
-  return summary.importedSentences ?? 0
+  if (hostedPacks.length === 0) return 0
+
+  const results = await Promise.allSettled(
+    hostedPacks.map((pack) =>
+      importHostedReaderPack(pack.baseUrl, undefined, pack, {
+        downloadAudio: false,
+      }),
+    ),
+  )
+  const importedSentences = results.reduce(
+    (total, result) =>
+      result.status === 'fulfilled'
+        ? total + (result.value.importedSentences ?? 0)
+        : total,
+    0,
+  )
+  if (results.every((result) => result.status === 'fulfilled')) {
+    await db.put('settings', READER_PACK_FIX_VERSION, 'readerPackFixVersion')
+  } else {
+    for (const result of results) {
+      if (result.status === 'rejected') {
+        console.warn('Could not seed a hosted reader pack.', result.reason)
+      }
+    }
+  }
+  return importedSentences
 }
 
 export async function getAllReaderPacks(): Promise<ReaderPack[]> {
