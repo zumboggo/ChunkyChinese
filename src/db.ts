@@ -93,10 +93,10 @@ export interface SyncMetadata {
 }
 
 export const DEFAULT_HOTKEYS: HotkeySettings = {
-  choiceA: '1',
-  choiceB: '2',
-  choiceC: '3',
-  choiceD: '4',
+  choiceA: '3',
+  choiceB: '4',
+  choiceC: '1',
+  choiceD: '2',
   choiceE: '5',
   choiceF: '6',
   playPause: 'p',
@@ -486,6 +486,9 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   readerTheme: 'sepia',
   readerFontScale: 1,
   readerLineHeight: 1.9,
+  readerListeningRate: 0.8,
+  readerListeningRepeats: 2,
+  readerListeningAutoAdvance: true,
 }
 
 export async function getUserSettings(): Promise<UserSettings> {
@@ -500,13 +503,37 @@ export async function saveUserSettings(settings: UserSettings): Promise<void> {
   await (await getDB()).put('settings', sanitizeUserSettings(settings).settings, 'userSettings')
 }
 
-function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: number }): { settings: UserSettings; cleaned: boolean } {
+export function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: number }): { settings: UserSettings; cleaned: boolean } {
   if (!saved) return { settings: DEFAULT_USER_SETTINGS, cleaned: false }
   const { coins: _coins, ...rest } = saved
-  return {
-    settings: { ...DEFAULT_USER_SETTINGS, ...rest },
-    cleaned: _coins !== undefined || saved.readingGoalPages === undefined,
+  const merged = { ...DEFAULT_USER_SETTINGS, ...rest }
+  const settings: UserSettings = {
+    ...merged,
+    readerListeningRate: clampReaderListeningRate(merged.readerListeningRate),
+    readerListeningRepeats: clampReaderListeningRepeats(merged.readerListeningRepeats),
+    readerListeningAutoAdvance: Boolean(merged.readerListeningAutoAdvance),
   }
+  return {
+    settings,
+    cleaned:
+      _coins !== undefined ||
+      saved.readingGoalPages === undefined ||
+      saved.readerListeningRate === undefined ||
+      saved.readerListeningRepeats === undefined ||
+      saved.readerListeningAutoAdvance === undefined ||
+      settings.readerListeningRate !== saved.readerListeningRate ||
+      settings.readerListeningRepeats !== saved.readerListeningRepeats,
+  }
+}
+
+function clampReaderListeningRate(value: number): number {
+  if (!Number.isFinite(value)) return DEFAULT_USER_SETTINGS.readerListeningRate
+  return Math.min(1.2, Math.max(0.6, Math.round(value * 10) / 10))
+}
+
+function clampReaderListeningRepeats(value: number): number {
+  if (!Number.isFinite(value)) return DEFAULT_USER_SETTINGS.readerListeningRepeats
+  return Math.min(5, Math.max(1, Math.round(value)))
 }
 
 export async function getSyncMetadata(): Promise<SyncMetadata> {

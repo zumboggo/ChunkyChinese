@@ -88,6 +88,8 @@ import { WordInfoPopover } from './WordInfoPopover'
 import { UniversalImporter } from './UniversalImporter'
 import { VisualNovelWorldMode } from './visualNovel/VisualNovelWorldMode'
 import { ComicReaderMode } from './comics/ComicReaderMode'
+import { useReaderListeningController } from './useReaderListeningController'
+import type { ReaderListeningController } from './useReaderListeningController'
 import {
   getCloudAuthState,
   isSupabaseConfigured,
@@ -344,7 +346,6 @@ function App() {
   const pocketAudioRef = useRef<HTMLAudioElement | null>(null)
   const lastPocketTimeRef = useRef(0)
   const playModeRef = useRef<HTMLElement | null>(null)
-  const readerAutoPlayKeyRef = useRef<string | null>(null)
   const flashcardFeedbackTimeoutRef = useRef<number | null>(null)
   const syncTimerRef = useRef<number | null>(null)
   const clearedActiveRecallLessonRef = useRef<string | null>(null)
@@ -1235,65 +1236,23 @@ function App() {
     recordReaderSentenceView,
   ])
 
-  const playReaderSentence = useCallback(async (sentence: ReaderSentence) => {
-    recordReaderInteraction()
-    const token = runToken.current + 1
-    runToken.current = token
-    audioRef.current?.pause()
-    window.speechSynthesis?.cancel()
-    const clip = await getAudioClip(sentence.audioClipId)
-    if (clip && runToken.current === token) {
-      const url = URL.createObjectURL(clip.blob)
-      const audio = new Audio(url)
-      audio.playbackRate = playbackRate
-      audioRef.current = audio
-      await new Promise<void>((resolve) => {
-        audio.addEventListener('ended', () => resolve(), { once: true })
-        audio.addEventListener('error', () => resolve(), { once: true })
-        audio.play().catch(() => resolve())
-      })
-      URL.revokeObjectURL(url)
-      return
-    }
-    if ('speechSynthesis' in window && runToken.current === token) {
-      window.speechSynthesis.cancel()
-      await speakUtterance(sentence.chinese, playbackRate, 'zh-CN')
-    }
-  }, [playbackRate, recordReaderInteraction])
+  const readerListening = useReaderListeningController({
+    sentence: currentReaderSentence,
+    sentenceIndex: readerSentenceIndex,
+    sentenceCount: readerSentences.length,
+    rate: userSettings.readerListeningRate,
+    repeatCount: userSettings.readerListeningRepeats,
+    autoAdvance: userSettings.readerListeningAutoAdvance,
+    mediaSessionEnabled: screen === 'reader',
+    onNext: () => moveReaderSentence(1),
+    onPrevious: () => moveReaderSentence(-1),
+  })
+  const readerListeningActive = readerListening.active
+  const stopReaderListening = readerListening.stop
 
   useEffect(() => {
-    if (screen !== 'reader' || !activeReaderBook || !currentReaderSentence) return
-    const key = `${activeReaderBook.id}:${readerSentenceIndex}:${currentReaderSentence.id}`
-    if (readerAutoPlayKeyRef.current === key) return
-    readerAutoPlayKeyRef.current = key
-    const token = runToken.current + 1
-    runToken.current = token
-    audioRef.current?.pause()
-    window.speechSynthesis?.cancel()
-
-    async function playCurrentReaderSentence() {
-      const sentence = currentReaderSentence
-      const clip = await getAudioClip(sentence.audioClipId)
-      if (clip && runToken.current === token) {
-        const url = URL.createObjectURL(clip.blob)
-        const audio = new Audio(url)
-        audio.playbackRate = playbackRate
-        audioRef.current = audio
-        await new Promise<void>((resolve) => {
-          audio.addEventListener('ended', () => resolve(), { once: true })
-          audio.addEventListener('error', () => resolve(), { once: true })
-          audio.play().catch(() => resolve())
-        })
-        URL.revokeObjectURL(url)
-        return
-      }
-      if ('speechSynthesis' in window && runToken.current === token) {
-        await speakUtterance(sentence.chinese, playbackRate, 'zh-CN')
-      }
-    }
-
-    void playCurrentReaderSentence()
-  }, [activeReaderBook, currentReaderSentence, playbackRate, readerSentenceIndex, screen])
+    if (screen !== 'reader' && readerListeningActive) stopReaderListening()
+  }, [readerListeningActive, screen, stopReaderListening])
 
   async function handleNewWordsPerDayChange(value: number) {
     await saveNewWordsPerDay(value)
@@ -1679,9 +1638,15 @@ function App() {
       const pressed = event.key.toLocaleLowerCase()
       const mappedIndex = choiceKeyIndex(pressed, hotkeys)
       if (screen === 'reader') {
-        if (pressed === hotkeys.choiceF && currentReaderSentence) {
+        if (readerListening.active && mappedIndex === 0) {
           event.preventDefault()
-          void playReaderSentence(currentReaderSentence)
+          readerListening.togglePlayPause()
+        } else if (readerListening.active && mappedIndex === 1) {
+          event.preventDefault()
+          void readerListening.next()
+        } else if (pressed === hotkeys.choiceF && currentReaderSentence) {
+          event.preventDefault()
+          readerListening.playSentenceOnce()
         } else if (mappedIndex === 0) {
           event.preventDefault()
           setReaderShowEnglish((value) => !value)
@@ -1872,7 +1837,7 @@ function App() {
     refreshFlashcardSession,
     moveReaderSentence,
     playFlashcardWordTwice,
-    playReaderSentence,
+    readerListening,
     playSentenceTwice,
     ratingWords,
     reviewAnswerShown,
@@ -2280,7 +2245,13 @@ function App() {
 
   function saveReaderSettings(patch: Partial<Pick<
     UserSettings,
-    'readerPinyinMode' | 'readerTheme' | 'readerFontScale' | 'readerLineHeight'
+    | 'readerPinyinMode'
+    | 'readerTheme'
+    | 'readerFontScale'
+    | 'readerLineHeight'
+    | 'readerListeningRate'
+    | 'readerListeningRepeats'
+    | 'readerListeningAutoAdvance'
   >>) {
     const next = { ...userSettings, ...patch }
     setUserSettings(next)
@@ -2894,14 +2865,20 @@ function App() {
           readerFontScale={userSettings.readerFontScale}
           readerLineHeight={userSettings.readerLineHeight}
           replayHotkey={hotkeys.choiceF}
+          choiceA={hotkeys.choiceA}
+          choiceB={hotkeys.choiceB}
           showEnglish={readerShowEnglish}
+          listening={readerListening}
+          listeningRate={userSettings.readerListeningRate}
+          listeningRepeats={userSettings.readerListeningRepeats}
+          listeningAutoAdvance={userSettings.readerListeningAutoAdvance}
           onChooseBook={openReaderBook}
           onResume={() => {
             if (readerResumeLocation) void openReaderBook(readerResumeLocation.book, 'resume')
           }}
-          onPrevious={() => moveReaderSentence(-1)}
-          onNext={() => moveReaderSentence(1)}
-          onPlay={playReaderSentence}
+          onPrevious={() => readerListening.previous()}
+          onNext={() => readerListening.next()}
+          onListeningSettingsChange={(patch) => saveReaderSettings(patch)}
           onSelectToken={(token) => {
             recordReaderInteraction()
             if (token && selectedReaderToken?.id === token.id) {
@@ -4218,12 +4195,18 @@ function ReaderMode({
   readerFontScale,
   readerLineHeight,
   replayHotkey,
+  choiceA,
+  choiceB,
   showEnglish,
+  listening,
+  listeningRate,
+  listeningRepeats,
+  listeningAutoAdvance,
   onChooseBook,
   onResume,
   onPrevious,
   onNext,
-  onPlay,
+  onListeningSettingsChange,
   onSelectToken,
   onEditWord,
   onPinyinModeChange,
@@ -4246,12 +4229,21 @@ function ReaderMode({
   readerFontScale: number
   readerLineHeight: number
   replayHotkey: string
+  choiceA: string
+  choiceB: string
   showEnglish: boolean
+  listening: ReaderListeningController
+  listeningRate: number
+  listeningRepeats: number
+  listeningAutoAdvance: boolean
   onChooseBook: (book: ReaderBook, action?: 'resume' | 'start') => void | Promise<void>
   onResume: () => void
   onPrevious: () => void | Promise<void>
   onNext: () => void | Promise<void>
-  onPlay: (sentence: ReaderSentence) => void | Promise<void>
+  onListeningSettingsChange: (patch: Partial<Pick<
+    UserSettings,
+    'readerListeningRate' | 'readerListeningRepeats' | 'readerListeningAutoAdvance'
+  >>) => void
   onSelectToken: (token: ReaderWordToken | null) => void
   onEditWord: (word: VocabWord) => void
   onPinyinModeChange: (mode: ReaderPinyinMode) => void
@@ -4259,6 +4251,11 @@ function ReaderMode({
   readerDictionaryEntry: DictionaryEntry | null
   onSaveWord: (text: string, pinyin: string, meaning: string) => void | Promise<void>
 }) {
+  const [listeningMenuOpen, setListeningMenuOpen] = useState(false)
+  const listeningRepeatTotal = listening.snapshot.mode === 'single' ? 1 : listeningRepeats
+  const listeningPlaying =
+    listening.snapshot.status === 'playing' || listening.snapshot.status === 'loading'
+
   const illustration = activeBook ? getReaderIllustration(activeBook, sentenceIndex) : undefined
   const illustrationSrc = illustration ? publicAssetPath(illustration.imageFilename) : ''
   const fallbackIllustrationSrc = illustration?.fallbackImageFilename
@@ -4275,6 +4272,15 @@ function ReaderMode({
           </p>
         </div>
         <div className="study-toggles">
+          {activeBook && sentence && (
+            <button
+              type="button"
+              className={listening.active ? 'active' : ''}
+              onClick={() => setListeningMenuOpen(true)}
+            >
+              Listening Mode
+            </button>
+          )}
           <div className="segmented-control reader-pinyin-control" aria-label="Reader pinyin mode">
             {readerPinyinModes.map((mode) => (
               <button
@@ -4381,7 +4387,7 @@ function ReaderMode({
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}
-                  className="reader-reading-area"
+                  className={`reader-reading-area${listening.active ? ' reader-listening-highlight' : ''}`}
                 >
                   {illustration && (
                     <figure className="reader-illustration">
@@ -4408,19 +4414,74 @@ function ReaderMode({
                   />
                 </motion.div>
               </AnimatePresence>
-              <p className={`reader-translation ${showEnglish ? 'revealed' : 'blur-reveal'}`}>{sentence.english}</p>
-              <div className="reader-controls">
-                <button type="button" onClick={onPrevious} disabled={sentenceIndex <= 0}>
-                  Previous
-                </button>
-                <button type="button" className="primary" onClick={() => onPlay(sentence)}>
-                  <kbd>{replayHotkey.toUpperCase()}</kbd>
-                  Play sentence
-                </button>
-                <button type="button" onClick={onNext} disabled={sentenceIndex >= sentenceCount - 1}>
-                  Next
-                </button>
-              </div>
+              <p
+                className={`reader-translation ${
+                  showEnglish || listening.active ? 'revealed' : 'blur-reveal'
+                }${listening.active ? ' reader-listening-highlight' : ''}`}
+              >
+                {sentence.english}
+              </p>
+              {listening.active ? (
+                <div className="reader-listening-dock" aria-live="polite">
+                  <div className="reader-listening-status">
+                    <strong>
+                      {listening.snapshot.status === 'completed'
+                        ? 'Finished'
+                        : `Repeat ${listening.snapshot.repeatNumber} of ${listeningRepeatTotal}`}
+                    </strong>
+                    <span>
+                      {listeningRate.toFixed(1)}× · {listeningAutoAdvance ? 'Auto-advance on' : 'Auto-advance off'}
+                    </span>
+                  </div>
+                  <div className="reader-listening-controls">
+                    <button
+                      type="button"
+                      onClick={() => void onPrevious()}
+                      disabled={sentenceIndex <= 0}
+                    >
+                      Previous
+                    </button>
+                    <button
+                      type="button"
+                      className="primary"
+                      onClick={listening.togglePlayPause}
+                    >
+                      <kbd>{choiceA.toUpperCase()}</kbd>
+                      {listeningPlaying ? 'Pause' : 'Play'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => void onNext()}
+                      disabled={sentenceIndex >= sentenceCount - 1}
+                    >
+                      <kbd>{choiceB.toUpperCase()}</kbd>
+                      Next
+                    </button>
+                    <button type="button" onClick={() => setListeningMenuOpen(true)}>
+                      Settings
+                    </button>
+                    <button type="button" onClick={listening.stop}>
+                      Stop
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="reader-controls">
+                  <button type="button" onClick={() => void onPrevious()} disabled={sentenceIndex <= 0}>
+                    Previous
+                  </button>
+                  <button type="button" className="primary" onClick={listening.playSentenceOnce}>
+                    <kbd>{replayHotkey.toUpperCase()}</kbd>
+                    Play sentence
+                  </button>
+                  <button type="button" onClick={() => void onNext()} disabled={sentenceIndex >= sentenceCount - 1}>
+                    Next
+                  </button>
+                  <button type="button" className="reader-listening-start" onClick={() => setListeningMenuOpen(true)}>
+                    Listening Mode
+                  </button>
+                </div>
+              )}
               {selectedToken && (
                 <WordInfoPopover
                   selectedToken={selectedToken}
@@ -4430,6 +4491,76 @@ function ReaderMode({
                   onSaveWord={onSaveWord}
                   formatDueDate={formatDueDate}
                 />
+              )}
+              {listeningMenuOpen && (
+                <>
+                  <button
+                    type="button"
+                    className="reader-listening-backdrop"
+                    aria-label="Close Listening Mode settings"
+                    onClick={() => setListeningMenuOpen(false)}
+                  />
+                  <section
+                    className="reader-listening-sheet"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="reader-listening-heading"
+                  >
+                    <div className="sheet-heading">
+                      <div>
+                        <strong id="reader-listening-heading">Listening Mode</strong>
+                        <small>Chinese audio with synchronized English text</small>
+                      </div>
+                      <button type="button" onClick={() => setListeningMenuOpen(false)}>Close</button>
+                    </div>
+                    <label>
+                      <span>Speed</span>
+                      <select
+                        value={listeningRate}
+                        onChange={(event) => onListeningSettingsChange({
+                          readerListeningRate: Number(event.target.value),
+                        })}
+                      >
+                        {[0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2].map((value) => (
+                          <option key={value} value={value}>{value.toFixed(1)}×</option>
+                        ))}
+                      </select>
+                    </label>
+                    <label>
+                      <span>Repeat each sentence</span>
+                      <select
+                        value={listeningRepeats}
+                        onChange={(event) => onListeningSettingsChange({
+                          readerListeningRepeats: Number(event.target.value),
+                        })}
+                      >
+                        {[1, 2, 3, 4, 5].map((value) => (
+                          <option key={value} value={value}>{value}×</option>
+                        ))}
+                      </select>
+                    </label>
+                    <label className="reader-listening-toggle">
+                      <input
+                        type="checkbox"
+                        checked={listeningAutoAdvance}
+                        onChange={(event) => onListeningSettingsChange({
+                          readerListeningAutoAdvance: event.target.checked,
+                        })}
+                      />
+                      <span>Automatically continue to the next sentence</span>
+                    </label>
+                    <button
+                      type="button"
+                      className="primary reader-listening-launch"
+                      onClick={() => {
+                        listening.startListening()
+                        setListeningMenuOpen(false)
+                      }}
+                    >
+                      Start from sentence {sentenceIndex + 1}
+                    </button>
+                  </section>
+                </>
               )}
             </>
           ) : (

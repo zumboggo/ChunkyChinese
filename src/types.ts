@@ -67,6 +67,9 @@ export interface UserSettings {
   readerTheme: 'light' | 'sepia' | 'dark'
   readerFontScale: number
   readerLineHeight: number
+  readerListeningRate: number
+  readerListeningRepeats: number
+  readerListeningAutoAdvance: boolean
 }
 
 export type DashboardRange = 'today' | 'week' | 'month' | 'allTime'
@@ -183,6 +186,13 @@ export interface ReaderSentence {
   audioClipId: string
   audioFilename: string
   ssmlFilename: string
+  wordTimings?: ReaderWordTiming[]
+}
+
+export interface ReaderWordTiming {
+  text: string
+  startSeconds: number
+  endSeconds: number
 }
 
 export interface ReaderProgress {
