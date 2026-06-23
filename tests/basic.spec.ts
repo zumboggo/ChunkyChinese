@@ -27,6 +27,38 @@ test.describe('Chunky Chinese Vocab Smoke Tests', () => {
   });
 
   test('should expose passive sentence listening from the dashboard', async ({ page }) => {
+    await page.addInitScript(() => {
+      ;(window as unknown as { __spokenUtterances: Array<{ text: string; lang: string }> }).__spokenUtterances = []
+      class MockSpeechSynthesisUtterance {
+        text: string
+        lang = ''
+        rate = 1
+        onend: (() => void) | null = null
+        onerror: (() => void) | null = null
+
+        constructor(text: string) {
+          this.text = text
+        }
+      }
+      Object.defineProperty(window, 'SpeechSynthesisUtterance', {
+        configurable: true,
+        value: MockSpeechSynthesisUtterance,
+      })
+      Object.defineProperty(window, 'speechSynthesis', {
+        configurable: true,
+        value: {
+          speak: (utterance) => {
+            ;(window as unknown as { __spokenUtterances: Array<{ text: string; lang: string }> }).__spokenUtterances.push({
+              text: utterance.text,
+              lang: utterance.lang,
+            })
+            window.setTimeout(() => utterance.onend?.(), 0)
+          },
+          cancel: () => {},
+        },
+      })
+    })
+
     const sentenceDataLoaded = page
       .waitForResponse((response) =>
         response.url().includes('/seed/lms-sentences.json') && response.ok(),
@@ -45,5 +77,14 @@ test.describe('Chunky Chinese Vocab Smoke Tests', () => {
     await expect(page.locator('.sentence-mode-display')).toBeVisible();
     await expect(page.locator('.sentence-round-info')).toContainText('Round 1 of 25');
     await expect(page.locator('.sentence-current')).toBeVisible();
+
+    const displayedChinese = await page.locator('.sentence-chinese').innerText();
+    await expect
+      .poll(() =>
+        page.evaluate(() =>
+          (window as unknown as { __spokenUtterances: Array<{ text: string; lang: string }> }).__spokenUtterances,
+        ),
+      )
+      .toContainEqual({ text: displayedChinese, lang: 'zh-CN' });
   });
 });

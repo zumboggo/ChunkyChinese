@@ -1386,22 +1386,18 @@ function App() {
     const token = ++runToken.current
 
     async function playSequence() {
-      const enAudio = new Audio(`seed/sentence-audio/${currentSentence.word}-en.mp3`)
-      const cnAudio = new Audio(`seed/sentence-audio/${currentSentence.word}.mp3`)
-
-      const playAndWait = (audio: HTMLAudioElement): Promise<void> =>
-        new Promise((resolve) => {
-          audio.addEventListener('ended', () => resolve(), { once: true })
-          audio.addEventListener('error', () => resolve(), { once: true })
-          audio.play().catch(() => resolve())
-        })
-
       const wait = (ms: number): Promise<void> =>
         new Promise((resolve) => { setTimeout(resolve, ms) })
 
+      const speakAndWait = async (text: string, lang: string) => {
+        if (!text.trim()) return
+        window.speechSynthesis?.cancel()
+        await speakUtterance(text, playbackRate, lang)
+      }
+
       // English
       if (cancelled || runToken.current !== token) return
-      await playAndWait(enAudio)
+      await speakAndWait(currentSentence.english, 'en-US')
 
       // Pause
       if (cancelled || runToken.current !== token) return
@@ -1409,7 +1405,7 @@ function App() {
 
       // Chinese
       if (cancelled || runToken.current !== token) return
-      await playAndWait(cnAudio)
+      await speakAndWait(currentSentence.chinese, 'zh-CN')
 
       // Recall pause
       if (cancelled || runToken.current !== token) return
@@ -1417,7 +1413,7 @@ function App() {
 
       // Chinese again
       if (cancelled || runToken.current !== token) return
-      await playAndWait(cnAudio)
+      await speakAndWait(currentSentence.chinese, 'zh-CN')
 
       // Gap
       if (cancelled || runToken.current !== token) return
@@ -1430,8 +1426,11 @@ function App() {
 
     void playSequence()
 
-    return () => { cancelled = true }
-  }, [studyMode, sentenceSetComplete, sentenceQueue, sentenceRoundIndex, sentenceRoundOrder])
+    return () => {
+      cancelled = true
+      window.speechSynthesis?.cancel()
+    }
+  }, [playbackRate, studyMode, sentenceSetComplete, sentenceQueue, sentenceRoundIndex, sentenceRoundOrder])
 
   const handleQuizAnswer = useCallback(async (value: string) => {
     if (
