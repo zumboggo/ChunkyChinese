@@ -1,5 +1,5 @@
 import { createEmptyCard, fsrs, Rating, State, type Card, type Grade } from 'ts-fsrs'
-import type { FsrsRating, VocabWord } from './types'
+import type { FsrsRating, SentenceSrsRecord, VocabWord } from './types'
 
 export type FsrsStateName = 'New' | 'Learning' | 'Review' | 'Relearning'
 
@@ -195,4 +195,69 @@ function finiteNumber(value?: number): number | undefined {
 
 function round(value: number): number {
   return Number.isFinite(value) ? Number(value.toFixed(4)) : 0
+}
+
+export function applySentenceSrsRating(
+  record: SentenceSrsRecord,
+  rating: 'again' | 'good',
+  now = new Date(),
+): SentenceSrsRecord {
+  const card = sentenceSrsToCard(record, now)
+  const grade: Grade = rating === 'again' ? Rating.Again : Rating.Good
+  const next = scheduler.next(card, now, grade).card
+  return {
+    ...sentenceSrsFieldsFromCard(next),
+    id: record.id,
+    seenCount: (record.seenCount ?? 0) + 1,
+    lastReviewedAt: now.toISOString(),
+  }
+}
+
+export function isNewSentenceSrs(record: SentenceSrsRecord): boolean {
+  return !record.fsrsDueAt && !record.lastReviewedAt && (record.fsrsRepetitions ?? 0) === 0
+}
+
+export function isSentenceSrsDue(record: SentenceSrsRecord, now = Date.now()): boolean {
+  if (!record.fsrsDueAt) return true
+  return Date.parse(record.fsrsDueAt) <= now
+}
+
+function sentenceSrsToCard(record: SentenceSrsRecord, now: Date): Card {
+  const empty = createEmptyCard(now)
+  const due = parseDate(record.fsrsDueAt) ?? empty.due
+  const lastReview = parseDate(record.lastReviewedAt)
+  return {
+    due,
+    stability: finiteNumber(record.fsrsStability) ?? empty.stability,
+    difficulty: finiteNumber(record.fsrsDifficulty) ?? empty.difficulty,
+    elapsed_days: 0,
+    scheduled_days: Math.max(0, Math.round(finiteNumber(record.fsrsIntervalDays) ?? empty.scheduled_days)),
+    learning_steps: 0,
+    reps: Math.max(0, Math.round(finiteNumber(record.fsrsRepetitions) ?? empty.reps)),
+    lapses: Math.max(0, Math.round(finiteNumber(record.fsrsLapses) ?? empty.lapses)),
+    state: sentenceSrsStateFromRecord(record),
+    ...(lastReview ? { last_review: lastReview } : {}),
+  }
+}
+
+function sentenceSrsFieldsFromCard(
+  card: Card,
+): Omit<SentenceSrsRecord, 'id' | 'seenCount' | 'lastReviewedAt'> {
+  return {
+    fsrsDueAt: card.due.toISOString(),
+    fsrsIntervalDays: Math.max(0, Math.round(card.scheduled_days)),
+    fsrsStability: round(card.stability),
+    fsrsDifficulty: round(card.difficulty),
+    fsrsRepetitions: card.reps,
+    fsrsLapses: card.lapses,
+    fsrsState: stateName(card.state),
+  }
+}
+
+function sentenceSrsStateFromRecord(record: SentenceSrsRecord): State {
+  if (record.fsrsState && record.fsrsState in stateNameToEnum) {
+    return stateNameToEnum[record.fsrsState]
+  }
+  if (isNewSentenceSrs(record)) return State.New
+  return State.Review
 }

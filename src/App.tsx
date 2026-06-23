@@ -29,6 +29,7 @@ import {
   getAllReaderPacks,
   getLatestReaderProgress,
   getAllSentences,
+  getAllSentenceSrs,
   getAllWords,
   getAudioClip,
   getActivePackId,
@@ -49,6 +50,7 @@ import {
   recordEvent,
   recordQuizAnswer,
   saveRenderedLesson,
+  saveSentenceSrs,
   saveNewWordsPerDay,
   saveReaderProgress,
   seedLmsWordsIfEmpty,
@@ -67,7 +69,7 @@ import {
   lookupDictionary,
   DEFAULT_USER_SETTINGS,
 } from './db'
-import { createLesson, createPocketLesson, selectTargetWords, type PauseProfile } from './lesson'
+import { createLesson, createPocketLesson, selectTargetWords, selectSentenceLessonSet, buildSentenceRoundOrder, createSentenceLesson, type PauseProfile, type SentenceLessonItem } from './lesson'
 import { renderLessonToWav } from './renderAudio'
 import {
   fsrsDueTime,
@@ -75,6 +77,9 @@ import {
   isNewFsrsCard,
   previewFsrsRatings,
   downgradeRating,
+  applySentenceSrsRating,
+  isNewSentenceSrs,
+  isSentenceSrsDue,
 } from './scheduler'
 import {
   collectReaderComprehensionTokens,
@@ -126,6 +131,7 @@ import type {
   RenderedLesson,
   RenderedLessonSegment,
   Sentence,
+  SentenceSrsRecord,
   StudyMode,
   UserSettings,
   VocabWord,
@@ -335,6 +341,12 @@ function App() {
       : 'Supabase sync is not configured yet.',
   })
   const [dashboardToast, setDashboardToast] = useState<string | null>(null)
+  const [sentenceQueue, setSentenceQueue] = useState<SentenceLessonItem[]>([])
+  const [sentenceRoundOrder, setSentenceRoundOrder] = useState<number[]>([])
+  const [sentenceRoundIndex, setSentenceRoundIndex] = useState(0)
+  const [sentenceSetComplete, setSentenceSetComplete] = useState(false)
+  const [sentenceSetStartMs, setSentenceSetStartMs] = useState(0)
+  const [sentenceSrsMap, setSentenceSrsMap] = useState<Map<string, SentenceSrsRecord>>(new Map())
   const lastReaderActivityTimeRef = useRef<number>(0)
   const runToken = useRef(0)
   const activeAnswerLockRef = useRef<string | null>(null)
@@ -865,6 +877,60 @@ function App() {
     setLastSummary(queue.length > 0 ? `Loaded ${queue.length} sentence flashcards.` : 'No sentence flashcards available.')
   }, [lmsSentences])
 
+  const startSentenceLesson = useCallback(async () => {
+    const allSrs = await getAllSentenceSrs()
+    const srsMap = new Map(allSrs.map((r) => [r.id, r]))
+    setSentenceSrsMap(srsMap)
+
+    const set = selectSentenceLessonSet(lmsSentences, srsMap, 5)
+    if (set.length === 0) {
+      setLastSummary('No sentences available.')
+      return
+    }
+
+    const order = buildSentenceRoundOrder(set.length, 25)
+    setSentenceQueue(set)
+    setSentenceRoundOrder(order)
+    setSentenceRoundIndex(0)
+    setSentenceSetComplete(false)
+    setSentenceSetStartMs(Date.now())
+    setStudyMode('sentenceMode')
+    setMinimalVisualMode(true)
+    setAutoNextLesson(false)
+    setScreen('lesson')
+    setLastSummary(`Sentence set: ${set.length} sentences × 25 rounds`)
+  }, [lmsSentences])
+
+  const completeSentenceSet = useCallback(async (rating: 'again' | 'good') => {
+    const now = new Date()
+    for (const sent of sentenceQueue) {
+      const existing = sentenceSrsMap.get(sent.word)
+      const record: SentenceSrsRecord = existing ?? {
+        id: sent.word,
+        fsrsIntervalDays: 0,
+        fsrsStability: 0,
+        fsrsDifficulty: 0,
+        fsrsState: 'New',
+        fsrsLapses: 0,
+        fsrsRepetitions: 0,
+        seenCount: 0,
+      }
+      const updated = applySentenceSrsRating(record, rating, now)
+      await saveSentenceSrs(updated)
+    }
+
+    if (rating === 'good') {
+      setSentenceSetComplete(false)
+      setSentenceRoundIndex(0)
+      await startSentenceLesson()
+    } else {
+      setSentenceRoundIndex(0)
+      setSentenceSetComplete(false)
+      setSentenceSetStartMs(Date.now())
+      setLastSummary('Redoing the same set.')
+    }
+  }, [sentenceQueue, sentenceSrsMap, startSentenceLesson])
+
   const openCardEditor = useCallback((word: VocabWord) => {
     setEditingWord({
       wordId: word.id,
@@ -1291,6 +1357,67 @@ function App() {
   }, [clearAutoContinueTimeout, currentQuiz?.id, renderedLesson?.id, stopActiveChoiceSpeech])
 
   useEffect(() => clearAutoContinueTimeout, [clearAutoContinueTimeout])
+
+  useEffect(() => {
+    if (studyMode !== 'sentenceMode' || sentenceSetComplete || sentenceQueue.length === 0) return
+    if (sentenceRoundIndex >= sentenceRoundOrder.length) {
+      setSentenceSetComplete(true)
+      return
+    }
+
+    const currentSentence = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]
+    if (!currentSentence) return
+
+    let cancelled = false
+    const token = ++runToken.current
+
+    async function playSequence() {
+      const enAudio = new Audio(`seed/sentence-audio/${currentSentence.word}-en.mp3`)
+      const cnAudio = new Audio(`seed/sentence-audio/${currentSentence.word}.mp3`)
+
+      const playAndWait = (audio: HTMLAudioElement): Promise<void> =>
+        new Promise((resolve) => {
+          audio.addEventListener('ended', () => resolve(), { once: true })
+          audio.addEventListener('error', () => resolve(), { once: true })
+          audio.play().catch(() => resolve())
+        })
+
+      const wait = (ms: number): Promise<void> =>
+        new Promise((resolve) => { setTimeout(resolve, ms) })
+
+      // English
+      if (cancelled || runToken.current !== token) return
+      await playAndWait(enAudio)
+
+      // Pause
+      if (cancelled || runToken.current !== token) return
+      await wait(1200)
+
+      // Chinese
+      if (cancelled || runToken.current !== token) return
+      await playAndWait(cnAudio)
+
+      // Recall pause
+      if (cancelled || runToken.current !== token) return
+      await wait(2500)
+
+      // Chinese again
+      if (cancelled || runToken.current !== token) return
+      await playAndWait(cnAudio)
+
+      // Gap
+      if (cancelled || runToken.current !== token) return
+      await wait(800)
+
+      // Advance
+      if (cancelled || runToken.current !== token) return
+      setSentenceRoundIndex((prev) => prev + 1)
+    }
+
+    void playSequence()
+
+    return () => { cancelled = true }
+  }, [studyMode, sentenceSetComplete, sentenceQueue, sentenceRoundIndex, sentenceRoundOrder])
 
   const handleQuizAnswer = useCallback(async (value: string) => {
     if (
@@ -3489,6 +3616,13 @@ function App() {
                             >
                               Active Recall
                             </button>
+                            <button
+                              type="button"
+                              className={studyMode === 'sentenceMode' ? 'active' : ''}
+                              onClick={() => { if (studyMode !== 'sentenceMode') void startSentenceLesson() }}
+                            >
+                              Sentences
+                            </button>
                           </div>
                           <button type="button" onClick={() => setShowPinyin((value) => !value)}>
                             Pinyin {showPinyin ? 'on' : 'off'}
@@ -3523,6 +3657,13 @@ function App() {
                               onClick={() => { if (studyMode !== 'activeRecall') void startModeLesson('activeRecall') }}
                             >
                               Active Recall
+                            </button>
+                            <button
+                              type="button"
+                              className={studyMode === 'sentenceMode' ? 'active' : ''}
+                              onClick={() => { if (studyMode !== 'sentenceMode') void startSentenceLesson() }}
+                            >
+                              Sentences
                             </button>
                           </div>
                           <button type="button" onClick={() => setShowPinyin((value) => !value)}>
@@ -3619,6 +3760,66 @@ function App() {
                         onContinue={continueCurrentQuiz}
                         onReplay={() => void replayActiveRecallQuestionAudio()}
                       />
+                    ) : studyMode === 'sentenceMode' && sentenceSetComplete ? (
+                      <div className="sentence-set-summary">
+                        <div className="sentence-set-header">
+                          <strong>Set Complete</strong>
+                          <span>{Math.round((Date.now() - sentenceSetStartMs) / 1000)}s</span>
+                        </div>
+                        <div className="sentence-set-list">
+                          {sentenceQueue.map((sent, i) => (
+                            <div key={sent.word} className="sentence-set-item">
+                              <span className="sentence-set-num">{i + 1}</span>
+                              <div>
+                                <p className="sentence-set-zh">{sent.chinese}</p>
+                                <p className="sentence-set-en">{sent.english}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="sentence-set-actions">
+                          <button type="button" onClick={() => void completeSentenceSet('again')}>
+                            Again
+                          </button>
+                          <button type="button" className="primary" onClick={() => void completeSentenceSet('good')}>
+                            Good
+                          </button>
+                        </div>
+                      </div>
+                    ) : studyMode === 'sentenceMode' ? (
+                      <div className="sentence-mode-display">
+                        <div className="sentence-round-info">
+                          <span>Round {Math.floor(sentenceRoundIndex / sentenceQueue.length) + 1} of 25</span>
+                          <div className="sentence-progress-bar">
+                            <span style={{ width: `${(sentenceRoundIndex / (sentenceQueue.length * 25)) * 100}%` }} />
+                          </div>
+                        </div>
+                        {sentenceQueue.length > 0 && sentenceRoundOrder.length > 0 && (
+                          <div className="sentence-current">
+                            <div className="sentence-english">
+                              {sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.english}
+                            </div>
+                            <div className="sentence-chinese">
+                              {sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.chinese}
+                            </div>
+                          </div>
+                        )}
+                        <div className="sentence-dots">
+                          {sentenceQueue.map((_, i) => (
+                            <span
+                              key={i}
+                              className={`sentence-dot ${sentenceRoundOrder[sentenceRoundIndex] === i ? 'active' : ''}`}
+                            />
+                          ))}
+                        </div>
+                        <button
+                          type="button"
+                          className="ghost-answer"
+                          onClick={() => { setSentenceSetComplete(true) }}
+                        >
+                          End Set
+                        </button>
+                      </div>
                     ) : (
                       <>
                     <div className={`study-chinese ${studyDisplay.kind}`}>

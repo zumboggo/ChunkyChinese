@@ -44,6 +44,7 @@ import type {
   ReaderSessionStats,
   RenderedLesson,
   Sentence,
+  SentenceSrsRecord,
   UserSettings,
   VocabWord,
   WordStatus,
@@ -82,7 +83,7 @@ interface UpsertWordsOptions {
 }
 
 const DB_NAME = 'chunky-chinese-vocab'
-const DB_VERSION = 10
+const DB_VERSION = 11
 const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
 const READER_PACK_FIX_VERSION = '2026-06-23-reader-covers-and-hidden-packs'
@@ -186,6 +187,10 @@ interface ChunkyDB extends DBSchema {
     key: string
     value: DictionaryEntry
   }
+  sentenceSrs: {
+    key: string
+    value: SentenceSrsRecord
+  }
 }
 
 let dbPromise: Promise<IDBPDatabase<ChunkyDB>> | undefined
@@ -269,6 +274,9 @@ export function getDB(): Promise<IDBPDatabase<ChunkyDB>> {
         }
         if (!db.objectStoreNames.contains('dictionary')) {
           db.createObjectStore('dictionary', { keyPath: 'simplified' })
+        }
+        if (!db.objectStoreNames.contains('sentenceSrs')) {
+          db.createObjectStore('sentenceSrs', { keyPath: 'id' })
         }
       },
     })
@@ -1467,6 +1475,37 @@ export async function putSyncedReaderProgress(progressRows: ReaderProgress[]): P
   const tx = db.transaction('readerProgress', 'readwrite')
   for (const progress of progressRows) {
     await tx.store.put(progress)
+  }
+  await tx.done
+}
+
+export async function getSentenceSrs(id: string): Promise<SentenceSrsRecord | undefined> {
+  return await (await getDB()).get('sentenceSrs', id)
+}
+
+export async function getAllSentenceSrs(): Promise<SentenceSrsRecord[]> {
+  return await (await getDB()).getAll('sentenceSrs')
+}
+
+export async function saveSentenceSrs(record: SentenceSrsRecord): Promise<void> {
+  await (await getDB()).put('sentenceSrs', record)
+}
+
+export async function getDueSentenceSrs(): Promise<SentenceSrsRecord[]> {
+  const all = await getAllSentenceSrs()
+  const now = Date.now()
+  return all.filter((record) => {
+    if (!record.fsrsDueAt) return true
+    return Date.parse(record.fsrsDueAt) <= now
+  })
+}
+
+export async function putSyncedSentenceSrs(rows: SentenceSrsRecord[]): Promise<void> {
+  if (rows.length === 0) return
+  const db = await getDB()
+  const tx = db.transaction('sentenceSrs', 'readwrite')
+  for (const row of rows) {
+    await tx.store.put(row)
   }
   await tx.done
 }

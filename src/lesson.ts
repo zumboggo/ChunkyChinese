@@ -1,5 +1,5 @@
-import type { AudioClip, LessonPlan, LessonStep, Sentence, VocabWord, ListeningEvent } from './types'
-import { fsrsDueTime, isFsrsCardDue, isNewFsrsCard } from './scheduler'
+import type { AudioClip, LessonPlan, LessonStep, Sentence, SentenceSrsRecord, VocabWord, ListeningEvent } from './types'
+import { fsrsDueTime, isFsrsCardDue, isSentenceSrsDue, isNewFsrsCard, isNewSentenceSrs } from './scheduler'
 
 export type PauseProfile = 'gentle' | 'normal' | 'fast' | 'challenge'
 
@@ -912,4 +912,104 @@ function normalizePrompt(value: string): string {
     .replace(/^.*\//, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
+}
+
+export interface SentenceLessonItem {
+  word: string
+  chinese: string
+  english: string
+}
+
+export function selectSentenceLessonSet(
+  sentences: SentenceLessonItem[],
+  sentenceSrsMap: Map<string, SentenceSrsRecord>,
+  count = 5,
+): SentenceLessonItem[] {
+  const selected: SentenceLessonItem[] = []
+  const selectedWords = new Set<string>()
+
+  const pick = (candidates: SentenceLessonItem[]) => {
+    for (const sent of candidates) {
+      if (selected.length >= count) return
+      if (selectedWords.has(sent.word)) continue
+      selected.push(sent)
+      selectedWords.add(sent.word)
+    }
+  }
+
+  // Priority 1: Due sentences (overdue by most)
+  const due = sentences
+    .filter((s) => {
+      const record = sentenceSrsMap.get(s.word)
+      return record && isSentenceSrsDue(record) && !isNewSentenceSrs(record)
+    })
+    .sort((a, b) => {
+      const ra = sentenceSrsMap.get(a.word)
+      const rb = sentenceSrsMap.get(b.word)
+      const da = ra?.fsrsDueAt ? Date.parse(ra.fsrsDueAt) : 0
+      const db = rb?.fsrsDueAt ? Date.parse(rb.fsrsDueAt) : 0
+      return da - db
+    })
+  pick(due)
+
+  // Priority 2: New sentences (never seen)
+  const newSentences = sentences.filter((s) => {
+    const record = sentenceSrsMap.get(s.word)
+    return !record || isNewSentenceSrs(record)
+  })
+  pick(newSentences)
+
+  // Priority 3: Lapsed sentences (lapses > 0)
+  const lapsed = sentences
+    .filter((s) => {
+      const record = sentenceSrsMap.get(s.word)
+      return record && (record.fsrsLapses ?? 0) > 0
+    })
+    .sort((a, b) => {
+      const ra = sentenceSrsMap.get(a.word)
+      const rb = sentenceSrsMap.get(b.word)
+      return (rb?.fsrsLapses ?? 0) - (ra?.fsrsLapses ?? 0)
+    })
+  pick(lapsed)
+
+  // Priority 4: Random fill from remaining
+  const remaining = sentences.filter((s) => !selectedWords.has(s.word))
+  const shuffled = [...remaining].sort(() => Math.random() - 0.5)
+  pick(shuffled)
+
+  return selected.slice(0, count)
+}
+
+export function buildSentenceRoundOrder(setSize = 5, rounds = 25): number[] {
+  const order: number[] = []
+  for (let r = 0; r < rounds; r++) {
+    const indices = Array.from({ length: setSize }, (_, i) => i)
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]]
+    }
+    order.push(...indices)
+  }
+  return order
+}
+
+export function createSentenceLesson(
+  englishText: string,
+  chineseText: string,
+): LessonPlan {
+  const steps: LessonStep[] = [
+    { kind: 'speech', text: englishText, start: 0, end: 0 },
+    { kind: 'pause', start: 0, end: 1.2 },
+    { kind: 'speech', text: chineseText, start: 0, end: 0 },
+    { kind: 'pause', start: 0, end: 2.5 },
+    { kind: 'speech', text: chineseText, start: 0, end: 0 },
+    { kind: 'pause', start: 0, end: 0.8 },
+  ]
+
+  return {
+    id: `sentence-${Date.now()}`,
+    title: chineseText,
+    targetWords: [],
+    steps,
+  }
 }

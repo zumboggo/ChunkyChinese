@@ -30,7 +30,7 @@ export type ListeningEventType =
 
 export type FsrsRating = 'again' | 'hard' | 'good' | 'easy'
 
-export type StudyMode = 'listeningMode' | 'activeRecall'
+export type StudyMode = 'listeningMode' | 'activeRecall' | 'sentenceMode'
 
 export type FsrsStateName = 'New' | 'Learning' | 'Review' | 'Relearning'
 
@@ -205,6 +205,19 @@ export interface ReaderProgress {
   bookId: string
   sentenceIndex: number
   updatedAt: string
+}
+
+export interface SentenceSrsRecord {
+  id: string
+  fsrsDueAt?: string
+  fsrsIntervalDays: number
+  fsrsStability: number
+  fsrsDifficulty: number
+  fsrsState: FsrsStateName
+  fsrsLapses: number
+  fsrsRepetitions: number
+  seenCount: number
+  lastReviewedAt?: string
 }
 
 export interface ReaderWordToken {

@@ -31,6 +31,7 @@ audio/
 !public/reader-packs/**/*.mp3
 !public/reader-packs/**/audio/
 !public/reader-packs/**/audio/**
+!public/seed/sentence-audio/*.mp3
 clips_manifest.local.json
 backup-*.json
 
