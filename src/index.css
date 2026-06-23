@@ -3377,6 +3377,194 @@ kbd {
   --reader-border: rgba(20, 33, 61, 0.12);
   --reader-accent: var(--accent);
   --reader-font-scale: 1;
+  max-width: 1320px;
+  padding: clamp(18px, 3vw, 38px);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 82% 8%, rgba(190, 86, 55, 0.18), transparent 26%),
+    linear-gradient(145deg, #101725, #172235 54%, #101826);
+  box-shadow: 0 30px 80px rgba(4, 10, 20, 0.24);
+}
+
+.reader-screen .screen-heading h1 {
+  color: #f8f2e8;
+}
+
+.reader-screen .screen-heading p {
+  color: #aab7ca;
+}
+
+.reader-screen .screen-heading .study-toggles button {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.07);
+  color: #f8f2e8;
+}
+
+.reader-screen .screen-heading .study-toggles button.active {
+  border-color: #cf7046;
+  background: #cf7046;
+  color: #fffaf3;
+}
+
+.reader-resume-panel {
+  border-color: rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(circle at 76% 24%, rgba(235, 148, 91, 0.23), transparent 33%),
+    linear-gradient(135deg, #202d42, #151e2d);
+  box-shadow: 0 26px 58px rgba(4, 9, 18, 0.28);
+}
+
+.reader-resume-panel strong {
+  color: #f8f2e8;
+}
+
+.reader-resume-panel span {
+  color: #aab7ca;
+}
+
+.reader-resume-button {
+  border-color: #cf7046;
+  background: #cf7046;
+  color: #fffaf3;
+  box-shadow: 0 14px 34px rgba(207, 112, 70, 0.35);
+}
+
+.reader-layout {
+  gap: 20px;
+}
+
+.reader-book-list {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  padding-bottom: 28px;
+  border: 1px solid rgba(120, 53, 15, 0.28);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(214, 164, 95, 0.15) 0%, rgba(154, 91, 40, 0.25) 100%),
+    linear-gradient(145deg, #1c2940, #141e2e);
+}
+
+.reader-book-list::after {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 0;
+  height: 14px;
+  border-radius: 0 0 12px 12px;
+  background: linear-gradient(#d6a45f, #9a5b28);
+  box-shadow: 0 6px 14px rgba(92, 55, 20, 0.3);
+  content: '';
+}
+
+.reader-book-card {
+  border-color: rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background: rgba(245, 239, 228, 0.96);
+  box-shadow: 0 10px 24px rgba(4, 9, 18, 0.25);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.reader-book-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(4, 9, 18, 0.35);
+}
+
+.reader-book-card.active {
+  border-color: rgba(207, 112, 70, 0.6);
+  box-shadow: inset 4px 0 0 #cf7046, 0 16px 34px rgba(4, 9, 18, 0.35);
+}
+
+.reader-book-card strong {
+  color: #152033;
+  font-family: Georgia, 'Noto Serif SC', serif;
+}
+
+.reader-book-card span {
+  color: #677386;
+}
+
+.reader-comprehension-bar {
+  background: rgba(21, 32, 51, 0.12);
+}
+
+.reader-comprehension-bar span {
+  background: linear-gradient(90deg, #cf7046, #e8a87c);
+}
+
+.reader-comprehension p {
+  color: #677386;
+}
+
+.reader-chapter-row {
+  border-color: rgba(21, 32, 51, 0.08);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.reader-chapter-row strong {
+  color: #152033;
+}
+
+.reader-chapter-row small {
+  color: #677386;
+}
+
+.reader-book-actions button {
+  border-color: rgba(21, 32, 51, 0.2);
+  background: #fffaf1;
+  color: #182236;
+}
+
+.reader-book-actions .primary {
+  border-color: #cf7046;
+  background: #cf7046;
+  color: white;
+}
+
+.reader-page {
+  --reader-paper: rgba(251, 246, 237, 0.96);
+  --reader-paper-strong: #fbf6ed;
+  --reader-ink: #142338;
+  --reader-muted: #6e756f;
+  --reader-border: rgba(20, 35, 56, 0.12);
+  border-radius: 22px;
+  box-shadow: 0 24px 60px rgba(4, 10, 20, 0.18);
+}
+
+.reader-page-meta {
+  color: #677386;
+}
+
+.reader-reading-area {
+  color: #142338;
+}
+
+.reader-controls button {
+  border-color: rgba(21, 32, 51, 0.2);
+  background: #fffaf1;
+  color: #182236;
+}
+
+.reader-controls .primary {
+  border-color: #cf7046;
+  background: #cf7046;
+  color: white;
+}
+
+.reader-controls button.active {
+  border-color: #cf7046;
+  background: #cf7046;
+  color: white;
+}
+
+.reader-empty {
+  color: #677386;
+}
+
+.reader-empty h2 {
+  color: #152033;
+}
   --reader-line-height: 1.9;
 }
 
