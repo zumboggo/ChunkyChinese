@@ -367,6 +367,17 @@ function App() {
   const dashboardToastKeyRef = useRef<string | null>(null)
   const dashboardToastReadyRef = useRef(false)
 
+  const stopAudioOutputs = useCallback(() => {
+    activeChoiceSpeechTokenRef.current += 1
+    activeChoiceAudioRef.current?.pause()
+    activeChoiceAudioRef.current = null
+    audioRef.current?.pause()
+    audioRef.current = null
+    pocketAudioRef.current?.pause()
+    window.speechSynthesis?.cancel()
+    setIsPlaying(false)
+  }, [])
+
   const loadLmsSentences = useCallback(async () => {
     const response = await fetch('seed/lms-sentences.json')
     if (!response.ok) throw new Error('Could not load sentence listening data.')
@@ -882,6 +893,8 @@ function App() {
   }, [lmsSentences])
 
   const startSentenceLesson = useCallback(async () => {
+    stopAudioOutputs()
+    runToken.current += 1
     const allSrs = await getAllSentenceSrs()
     const srsMap = new Map(allSrs.map((r) => [r.id, r]))
     setSentenceSrsMap(srsMap)
@@ -913,7 +926,7 @@ function App() {
     setAutoNextLesson(false)
     setScreen('lesson')
     setLastSummary(`Sentence set: ${set.length} sentences × 25 rounds`)
-  }, [lmsSentences, loadLmsSentences])
+  }, [lmsSentences, loadLmsSentences, stopAudioOutputs])
 
   const completeSentenceSet = useCallback(async (rating: 'again' | 'good') => {
     const now = new Date()
@@ -1351,11 +1364,8 @@ function App() {
   }, [])
 
   const stopActiveChoiceSpeech = useCallback(() => {
-    activeChoiceSpeechTokenRef.current += 1
-    activeChoiceAudioRef.current?.pause()
-    activeChoiceAudioRef.current = null
-    window.speechSynthesis?.cancel()
-  }, [])
+    stopAudioOutputs()
+  }, [stopAudioOutputs])
 
   useEffect(() => {
     if (!isActiveLearningMode || !currentQuiz || currentQuizResponse) return
@@ -1383,6 +1393,7 @@ function App() {
     if (!currentSentence) return
 
     let cancelled = false
+    stopAudioOutputs()
     const token = ++runToken.current
 
     async function playSequence() {
@@ -1392,6 +1403,7 @@ function App() {
       const speakAndWait = async (text: string, lang: string) => {
         if (!text.trim()) return
         window.speechSynthesis?.cancel()
+        await wait(0)
         await speakUtterance(text, playbackRate, lang)
       }
 
@@ -1428,9 +1440,10 @@ function App() {
 
     return () => {
       cancelled = true
+      runToken.current += 1
       window.speechSynthesis?.cancel()
     }
-  }, [playbackRate, studyMode, sentenceSetComplete, sentenceQueue, sentenceRoundIndex, sentenceRoundOrder])
+  }, [playbackRate, stopAudioOutputs, studyMode, sentenceSetComplete, sentenceQueue, sentenceRoundIndex, sentenceRoundOrder])
 
   const handleQuizAnswer = useCallback(async (value: string) => {
     if (
@@ -3939,6 +3952,7 @@ function App() {
                     )}
                   </div>
 
+                  {studyMode !== 'sentenceMode' && (
                   <div className={`play-hover-menu ${minimalVisualMode ? 'minimal-audio-host' : ''}`}>
                     {renderedUrl ? (
                       <audio
@@ -4195,11 +4209,12 @@ function App() {
                                 </div>
                               )}
                             </div>
-                          </>
-                        )}
-                      </div>
+                        </>
+                      )}
+                    </div>
                     )}
                   </div>
+                  )}
                 </section>
 
               {lesson && lessonMode === 'live' && (
