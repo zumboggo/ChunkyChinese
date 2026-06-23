@@ -69,7 +69,7 @@ import {
   lookupDictionary,
   DEFAULT_USER_SETTINGS,
 } from './db'
-import { createLesson, createPocketLesson, selectTargetWords, selectSentenceLessonSet, buildSentenceRoundOrder, createSentenceLesson, type PauseProfile, type SentenceLessonItem } from './lesson'
+import { createLesson, createPocketLesson, selectTargetWords, selectSentenceLessonSet, buildSentenceRoundOrder, type PauseProfile, type SentenceLessonItem } from './lesson'
 import { renderLessonToWav } from './renderAudio'
 import {
   fsrsDueTime,
@@ -78,8 +78,6 @@ import {
   previewFsrsRatings,
   downgradeRating,
   applySentenceSrsRating,
-  isNewSentenceSrs,
-  isSentenceSrsDue,
 } from './scheduler'
 import {
   collectReaderComprehensionTokens,
@@ -183,6 +181,7 @@ type LessonStartOptions = {
   allowExtraNew?: boolean
   extraReviewFirst?: boolean
 }
+type LmsSeedSentence = { word: string; chinese: string; english: string }
 type QuizKind = 'zh-en' | 'en-zh' | 'audio-zh' | 'contrast' | 'sentence-zh-en'
 type RecallStage = 'easy' | 'audio-first' | 'try-before-choices' | 'quick' | 'rescue'
 
@@ -316,9 +315,9 @@ function App() {
   const [flashcardDoneIds, setFlashcardDoneIds] = useState<string[]>([])
   const [flashcardClock, setFlashcardClock] = useState(() => Date.now())
   const [flashcardAnswerShown, setFlashcardAnswerShown] = useState(false)
-  const [lmsSentences, setLmsSentences] = useState<Array<{ word: string; chinese: string; english: string }>>([])
+  const [lmsSentences, setLmsSentences] = useState<LmsSeedSentence[]>([])
   const [flashcardSessionKind, setFlashcardSessionKind] = useState<'words' | 'sentences'>('words')
-  const [flashcardSentenceQueue, setFlashcardSentenceQueue] = useState<Array<{ word: string; chinese: string; english: string }>>([])
+  const [flashcardSentenceQueue, setFlashcardSentenceQueue] = useState<LmsSeedSentence[]>([])
   const [flashcardSentenceIndex, setFlashcardSentenceIndex] = useState(0)
   const [flashcardSentenceAnswerShown, setFlashcardSentenceAnswerShown] = useState(false)
   const [flashcardAudioOnly, setFlashcardAudioOnly] = useState(false)
@@ -368,12 +367,17 @@ function App() {
   const dashboardToastKeyRef = useRef<string | null>(null)
   const dashboardToastReadyRef = useRef(false)
 
-  useEffect(() => {
-    fetch('seed/lms-sentences.json')
-      .then((r) => r.json())
-      .then((data) => setLmsSentences(data))
-      .catch(() => {})
+  const loadLmsSentences = useCallback(async () => {
+    const response = await fetch('seed/lms-sentences.json')
+    if (!response.ok) throw new Error('Could not load sentence listening data.')
+    const data = (await response.json()) as LmsSeedSentence[]
+    setLmsSentences(data)
+    return data
   }, [])
+
+  useEffect(() => {
+    loadLmsSentences().catch(() => {})
+  }, [loadLmsSentences])
 
   const refresh = useCallback(async () => {
     const [
@@ -882,7 +886,17 @@ function App() {
     const srsMap = new Map(allSrs.map((r) => [r.id, r]))
     setSentenceSrsMap(srsMap)
 
-    const set = selectSentenceLessonSet(lmsSentences, srsMap, 5)
+    let sentencePool = lmsSentences
+    if (sentencePool.length === 0) {
+      try {
+        sentencePool = await loadLmsSentences()
+      } catch {
+        setLastSummary('Could not load sentence listening data.')
+        return
+      }
+    }
+
+    const set = selectSentenceLessonSet(sentencePool, srsMap, 5)
     if (set.length === 0) {
       setLastSummary('No sentences available.')
       return
@@ -899,7 +913,7 @@ function App() {
     setAutoNextLesson(false)
     setScreen('lesson')
     setLastSummary(`Sentence set: ${set.length} sentences × 25 rounds`)
-  }, [lmsSentences])
+  }, [lmsSentences, loadLmsSentences])
 
   const completeSentenceSet = useCallback(async (rating: 'again' | 'good') => {
     const now = new Date()
@@ -1792,11 +1806,14 @@ function App() {
           startSavedFlashcards()
         } else if (mappedIndex === 1) {
           event.preventDefault()
-          setScreen('comicReader')
+          setScreen('readingTexts')
         } else if (mappedIndex === 2) {
           event.preventDefault()
           startModeLessonRef.current?.('listeningMode')
         } else if (mappedIndex === 3) {
+          event.preventDefault()
+          void startSentenceLesson()
+        } else if (pressed === hotkeys.choiceE) {
           event.preventDefault()
           setScreen('visualNovel')
         }
@@ -1973,6 +1990,7 @@ function App() {
     reviewAnswerShown,
     screen,
     showReviewPrompt,
+    startSentenceLesson,
     startSavedFlashcards,
     toggleActiveRecallPriority,
     togglePlayback,
@@ -2451,8 +2469,13 @@ function App() {
                 <strong>Listening</strong>
                 <span>Listen with passive or active recall modes.</span>
               </button>
-              <button className="mode-start novel-start" type="button" onClick={() => setScreen('visualNovel')}>
+              <button className="mode-start sentence-start" type="button" onClick={() => void startSentenceLesson()}>
                 <kbd>{hotkeys.choiceD.toUpperCase()}</kbd>
+                <strong>Sentences</strong>
+                <span>Passive sentence loops with English, Chinese, and recall pauses.</span>
+              </button>
+              <button className="mode-start novel-start" type="button" onClick={() => setScreen('visualNovel')}>
+                <kbd>{hotkeys.choiceE.toUpperCase()}</kbd>
                 <strong>Visual Novel</strong>
                 <span>Play a story scene with the same Adaptive Mode text.</span>
               </button>
@@ -3578,7 +3601,7 @@ function App() {
 
       {screen === 'lesson' && (
         <section className="screen lesson-screen">
-          {lesson ? (
+          {lesson || studyMode === 'sentenceMode' ? (
             <>
                 <section
                   className={`study-player ${minimalVisualMode ? 'minimal-visual-player' : ''}`}
@@ -3597,7 +3620,7 @@ function App() {
                             ? 'Active Recall'
                             : rendering
                               ? 'Rendering local audio...'
-                              : renderedLesson?.title ?? lesson.title}
+                              : renderedLesson?.title ?? lesson?.title ?? 'Sentence listening'}
                       </span>
                       {minimalVisualMode ? (
                         <div className="study-toggles minimal-toggles">
@@ -4180,7 +4203,7 @@ function App() {
                   </div>
                 </section>
 
-              {lessonMode === 'live' && (
+              {lesson && lessonMode === 'live' && (
               <div className="lesson-card">
                 <div className="lesson-now">
                   <span>
@@ -4282,7 +4305,7 @@ function App() {
               </div>
               )}
 
-              {lessonMode === 'live' && (
+              {lesson && lessonMode === 'live' && (
                 <ol className="playlist">
                   {lesson.steps.map((step, index) => (
                     <li key={step.id} className={index === currentStepIndex ? 'active' : ''}>

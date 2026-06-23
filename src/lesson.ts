@@ -998,12 +998,12 @@ export function createSentenceLesson(
   chineseText: string,
 ): LessonPlan {
   const steps: LessonStep[] = [
-    { kind: 'speech', text: englishText, start: 0, end: 0 },
-    { kind: 'pause', start: 0, end: 1.2 },
-    { kind: 'speech', text: chineseText, start: 0, end: 0 },
-    { kind: 'pause', start: 0, end: 2.5 },
-    { kind: 'speech', text: chineseText, start: 0, end: 0 },
-    { kind: 'pause', start: 0, end: 0.8 },
+    { id: 'sentence-english', kind: 'speech', text: englishText, label: 'English prompt' },
+    { id: 'sentence-pause-after-english', kind: 'pause', seconds: 1.2, label: 'Recall pause' },
+    { id: 'sentence-chinese-first', kind: 'speech', text: chineseText, label: 'Chinese sentence' },
+    { id: 'sentence-recall-pause', kind: 'pause', seconds: 2.5, label: 'Try saying it' },
+    { id: 'sentence-chinese-repeat', kind: 'speech', text: chineseText, label: 'Chinese repeat' },
+    { id: 'sentence-gap', kind: 'pause', seconds: 0.8, label: 'Next sentence gap' },
   ]
 
   return {

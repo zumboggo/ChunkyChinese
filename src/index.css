@@ -1242,7 +1242,7 @@ dt {
 
 .mode-start-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 12px;
   align-self: stretch;
 }
@@ -1323,6 +1323,20 @@ dt {
 
 .listen-start span {
   color: #276749;
+}
+
+.sentence-start {
+  border-color: rgba(217, 119, 6, 0.26);
+  background:
+    linear-gradient(135deg, rgba(255, 251, 235, 0.98), rgba(254, 215, 170, 0.82));
+}
+
+.sentence-start strong {
+  color: #92400e;
+}
+
+.sentence-start span {
+  color: #9a5a16;
 }
 
 .reader-start {
@@ -3531,6 +3545,7 @@ kbd {
   --reader-border: rgba(20, 33, 61, 0.12);
   --reader-accent: var(--accent);
   --reader-font-scale: 1;
+  --reader-line-height: 1.9;
   max-width: 1320px;
   padding: clamp(18px, 3vw, 38px);
   border-radius: 32px;
@@ -3718,8 +3733,6 @@ kbd {
 
 .reader-empty h2 {
   color: #152033;
-}
-  --reader-line-height: 1.9;
 }
 
 .reader-theme-light {
