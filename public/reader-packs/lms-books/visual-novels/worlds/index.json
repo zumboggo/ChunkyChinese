@@ -4,5 +4,11 @@
     "title": "Royal Road Prototype",
     "description": "A persistent interactive-fiction world for Chinese reading, humour, exploration, and light progression.",
     "worldPath": "reader-packs/lms-books/visual-novels/worlds/royal-road-prototype/world.json"
+  },
+  {
+    "id": "just-friends",
+    "title": "Just Friends?",
+    "description": "Complete scene-mode pilot with reusable backgrounds and character expressions.",
+    "worldPath": "reader-packs/just-friends/visual-novels/worlds/just-friends/world.json"
   }
 ]

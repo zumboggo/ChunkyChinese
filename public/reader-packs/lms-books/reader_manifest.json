@@ -19,7 +19,8 @@
       "chapterEnd": 5,
       "storyCount": 10,
       "sentenceCount": 296,
-      "path": "books/lms-book-1-chapters-1-5.json"
+      "path": "books/lms-book-1-chapters-1-5.json",
+      "coverImage": "images/covers/lms-01-05.webp"
     },
     {
       "id": "lms-book-1-chapters-6-10",
@@ -29,7 +30,8 @@
       "chapterEnd": 10,
       "storyCount": 10,
       "sentenceCount": 311,
-      "path": "books/lms-book-1-chapters-6-10.json"
+      "path": "books/lms-book-1-chapters-6-10.json",
+      "coverImage": "images/covers/lms-06-10.webp"
     },
     {
       "id": "lms-book-1-chapters-11-15",
@@ -39,7 +41,8 @@
       "chapterEnd": 15,
       "storyCount": 10,
       "sentenceCount": 257,
-      "path": "books/lms-book-1-chapters-11-15.json"
+      "path": "books/lms-book-1-chapters-11-15.json",
+      "coverImage": "images/covers/lms-11-15.webp"
     },
     {
       "id": "lms-book-1-chapters-16-20",
@@ -49,7 +52,8 @@
       "chapterEnd": 20,
       "storyCount": 10,
       "sentenceCount": 250,
-      "path": "books/lms-book-1-chapters-16-20.json"
+      "path": "books/lms-book-1-chapters-16-20.json",
+      "coverImage": "images/covers/lms-16-20.webp"
     }
   ]
 }

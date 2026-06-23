@@ -1798,6 +1798,194 @@ dt {
   color: #0f766e;
 }
 
+/* Editorial reader library */
+.reading-texts-screen {
+  max-width: 1320px;
+  padding: clamp(18px, 3vw, 38px);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 82% 8%, rgba(190, 86, 55, 0.18), transparent 26%),
+    linear-gradient(145deg, #101725, #172235 54%, #101826);
+  box-shadow: 0 30px 80px rgba(4, 10, 20, 0.24);
+}
+
+.reading-library-heading h1,
+.reading-section-heading h2,
+.reading-continue h2,
+.reading-library-book h3 {
+  color: #f8f2e8;
+}
+
+.reading-library-heading p,
+.reading-section-heading p {
+  color: #aab7ca;
+}
+
+.reading-back-button {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.07);
+  color: #f8f2e8;
+}
+
+.reading-library-mark {
+  border-color: rgba(232, 166, 100, 0.24);
+  background: linear-gradient(145deg, #d87c4b, #793f36);
+  color: #fff8ec;
+  box-shadow: 0 18px 40px rgba(5, 8, 15, 0.34);
+}
+
+.reading-continue {
+  border-color: rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(circle at 76% 24%, rgba(235, 148, 91, 0.23), transparent 33%),
+    linear-gradient(135deg, #202d42, #151e2d);
+  box-shadow: 0 26px 58px rgba(4, 9, 18, 0.28);
+}
+
+.reading-continue-copy > span {
+  color: #f0a873;
+}
+
+.reading-continue p,
+.reading-continue-copy small {
+  color: #b8c3d3;
+}
+
+.reading-progress-track,
+.reading-book-progress {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.reading-progress-track span,
+.reading-book-progress span {
+  background: linear-gradient(90deg, #ed8b58, #f1c784);
+}
+
+.reading-book-shelf {
+  padding-bottom: 0;
+}
+
+.reading-book-shelf::after {
+  display: none;
+}
+
+.reading-book-grid {
+  grid-auto-columns: minmax(360px, 0.72fr);
+  gap: 20px;
+  padding: 5px 2px 16px;
+}
+
+.reading-library-book {
+  grid-template-columns: 142px minmax(0, 1fr);
+  min-height: 246px;
+  padding: 12px;
+  border-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  background: rgba(245, 239, 228, 0.96);
+  box-shadow: 0 22px 44px rgba(4, 9, 18, 0.3);
+}
+
+.reading-book-cover {
+  min-height: 220px;
+  padding: 0;
+  border-radius: 7px 12px 12px 7px;
+  background: #27344a;
+  box-shadow: -6px 10px 24px rgba(3, 7, 14, 0.32), inset 4px 0 0 rgba(255, 255, 255, 0.18);
+}
+
+.reading-book-cover::after {
+  inset: 0;
+  height: auto;
+  border-radius: inherit;
+  background: linear-gradient(180deg, transparent 45%, rgba(5, 8, 14, 0.84));
+  transform: none;
+}
+
+.reading-book-cover img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reading-book-cover span {
+  align-self: end;
+  padding: 16px 11px;
+  color: #fff8ec;
+  font-family: Georgia, 'Noto Serif SC', serif;
+  font-size: 0.88rem;
+  text-align: left;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.reading-library-book h3 {
+  color: #152033;
+  font-family: Georgia, 'Noto Serif SC', serif;
+  font-size: 1.2rem;
+}
+
+.reading-library-book p,
+.reading-book-copy small {
+  color: #677386;
+}
+
+.reading-book-actions button {
+  border-color: rgba(21, 32, 51, 0.2);
+  background: #fffaf1;
+  color: #182236;
+}
+
+.reading-book-actions .primary {
+  border-color: #cf7046;
+  background: #cf7046;
+  color: white;
+}
+
+.reading-book-actions .reading-scene-action {
+  border-color: #172235;
+  background: #172235;
+  color: #fff6e9;
+}
+
+.reading-formats-grid {
+  gap: 16px;
+}
+
+.reading-format,
+.reading-format-comics,
+.reading-format-novel {
+  border-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.065);
+}
+
+.reading-format strong {
+  color: #fff7eb;
+}
+
+.reading-format small {
+  color: #acb9cb;
+}
+
+.reading-format-arrow {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #f0aa76;
+}
+
+.reading-format-icon,
+.reading-format-comics .reading-format-icon,
+.reading-format-novel .reading-format-icon {
+  background: #cb7048;
+  box-shadow: none;
+}
+
+.reading-format:hover {
+  border-color: rgba(240, 170, 118, 0.44);
+  box-shadow: 0 18px 36px rgba(4, 9, 18, 0.24);
+}
+
 .flashcards-start {
   border-color: rgba(124, 58, 237, 0.24);
   background:
@@ -3741,6 +3929,13 @@ kbd {
   transform: translateX(-50%) scaleX(var(--vn-sprite-flip, 1));
   transform-origin: 50% 100%;
   pointer-events: none;
+}
+
+.vn-fullscreen-stage .vn-sprite img {
+  width: auto;
+  max-width: 100%;
+  max-height: 68dvh;
+  margin: 0 auto;
 }
 
 .vn-subtitle-overlay {

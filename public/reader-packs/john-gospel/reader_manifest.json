@@ -3,10 +3,10 @@
   "name": "Gospel of John",
   "description": "Gospel of John in Simplified Chinese with English translations",
   "createdAt": "2026-06-21T00:00:00.000Z",
-  "voice": "",
-  "rate": "0%",
-  "audioAvailable": false,
-  "synthesizedAudioCount": 0,
+  "voice": "cmn-CN-Chirp3-HD-Aoede",
+  "rate": "0.85",
+  "audioAvailable": true,
+  "synthesizedAudioCount": 812,
   "storyCount": 21,
   "sentenceCount": 812,
   "books": [
@@ -18,7 +18,9 @@
       "chapterEnd": 21,
       "storyCount": 21,
       "sentenceCount": 812,
-      "path": "books/john-gospel.json"
+      "path": "books/john-gospel.json",
+      "coverImage": "images/covers/gospel-of-john.webp"
     }
-  ]
+  ],
+  "speakingRate": 0.85
 }

@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "style": "Cinematic contemporary Chinese manhwa, realistic stylized proportions, expressive faces, clean moderately fine linework, rich controlled color, painted cel shading, strong silhouettes, no text, no watermark.",
+  "assets": [
+    {
+      "id": "cover-lms-01-05",
+      "kind": "cover",
+      "aspectRatio": "2:3",
+      "output": "public/reader-packs/lms-books/images/covers/lms-01-05.webp",
+      "prompt": "Portrait book-cover artwork without typography. A poor but fiercely determined young Korean man stands between a cold night-shift gas station and the glowing gates of a vast fantasy virtual world, sculpting tools in hand, transition from hardship to possibility. Cinematic contemporary fantasy manhwa, deep navy, electric cyan and ember orange, bold central silhouette, no text, no logos, no watermark."
+    },
+    {
+      "id": "cover-lms-06-10",
+      "kind": "cover",
+      "aspectRatio": "2:3",
+      "output": "public/reader-packs/lms-books/images/covers/lms-06-10.webp",
+      "prompt": "Portrait book-cover artwork without typography. A pragmatic novice sculptor-adventurer studies a rough stone statue in a bustling medieval fantasy market while armored companions and distant monsters frame the scene. Cinematic Korean fantasy manhwa, emerald, bronze and midnight blue, dynamic diagonal composition, no text, no logos, no watermark."
+    },
+    {
+      "id": "cover-lms-11-15",
+      "kind": "cover",
+      "aspectRatio": "2:3",
+      "output": "public/reader-packs/lms-books/images/covers/lms-11-15.webp",
+      "prompt": "Portrait book-cover artwork without typography. A calculating moonlight sculptor carves a luminous heroic figure as a dangerous fantasy quest unfolds behind him, blades, magic, and a windswept mountain fortress. Cinematic Korean fantasy manhwa, silver moonlight, violet magic and warm gold, visually bold, no text, no logos, no watermark."
+    },
+    {
+      "id": "cover-lms-16-20",
+      "kind": "cover",
+      "aspectRatio": "2:3",
+      "output": "public/reader-packs/lms-books/images/covers/lms-16-20.webp",
+      "prompt": "Portrait book-cover artwork without typography. The moonlight sculptor stands atop a monumental unfinished statue overlooking a huge fantasy battlefield and distant kingdom, quiet resolve against epic scale. Cinematic Korean fantasy manhwa, storm blue, moonlit white and crimson accents, bold negative space, no text, no logos, no watermark."
+    },
+    {
+      "id": "cover-sherlock",
+      "kind": "cover",
+      "aspectRatio": "2:3",
+      "output": "public/reader-packs/sherlock-holmes/images/covers/sherlock-curly-haired.webp",
+      "prompt": "Portrait mystery book-cover artwork without typography. A sharp-eyed Chinese reimagining of Sherlock Holmes in a dark coat investigates a strange company of curly-haired men in a rain-slicked old city street; a red curl motif coils through lamplight and clues. Graphic cinematic manhwa mystery, black, oxblood red and amber, no text, no logos, no watermark."
+    },
+    {
+      "id": "cover-monkey-king",
+      "kind": "cover",
+      "aspectRatio": "2:3",
+      "output": "public/reader-packs/rise-of-the-monkey-king/images/covers/rise-of-the-monkey-king.webp",
+      "prompt": "Portrait mythic adventure book-cover artwork without typography. Sun Wukong bursts upward from a shattered mountain with his golden staff, cloud ribbons spiraling around him, celestial palace and waterfalls in the distance. Bold Chinese fantasy manhua, vermilion, gold, jade and storm blue, explosive silhouette, no text, no logos, no watermark."
+    },
+    {
+      "id": "cover-just-friends",
+      "kind": "cover",
+      "aspectRatio": "2:3",
+      "output": "public/reader-packs/just-friends/images/covers/just-friends.webp",
+      "prompt": "Portrait contemporary romance-drama book-cover artwork without typography. Two male university best friends stand back-to-back outside a warmly lit Guangzhou bookstore while a confident young woman approaches between them; affection, jealousy and uncertainty conveyed through glances. Cinematic contemporary Chinese manhwa, deep indigo, coral and warm gold, visually bold, no text, no logos, no watermark."
+    },
+    {
+      "id": "cover-can-i-dance",
+      "kind": "cover",
+      "aspectRatio": "2:3",
+      "output": "public/reader-packs/can-i-dance/images/covers/can-i-dance.webp",
+      "prompt": "Portrait contemporary drama book-cover artwork without typography. A young woman pauses beneath colorful dance-hall lights as an earnest young man offers his hand; urban night, music, hesitation and hope. Cinematic Chinese manhwa, magenta, teal and midnight blue, graceful sweeping movement, no text, no logos, no watermark."
+    },
+    {
+      "id": "cover-john",
+      "kind": "cover",
+      "aspectRatio": "2:3",
+      "output": "public/reader-packs/john-gospel/images/covers/gospel-of-john.webp",
+      "prompt": "Portrait historical book-cover artwork without typography. A luminous path across dark water leads toward a compassionate teacher in first-century Judea, with fishing boats, olive trees and a distant crowd; themes of light, testimony and living water. Reverent cinematic historical illustration, deep blue, warm ivory and restrained gold, no text, no logos, no watermark."
+    },
+    {
+      "id": "jf-campus-day",
+      "kind": "background",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/just-friends/visual-novels/worlds/just-friends/assets/backgrounds/campus-day.webp",
+      "prompt": "Wide 16:9 empty establishing background for a visual novel. Modern Guangzhou university campus courtyard in daylight, banyan trees, classroom buildings, bicycles, a few distant indistinct students, clear lower-middle area for sprites. Cinematic contemporary Chinese manhwa, rich controlled color, no principal characters, no text, no watermark."
+    },
+    {
+      "id": "jf-bookstore-evening",
+      "kind": "background",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/just-friends/visual-novels/worlds/just-friends/assets/backgrounds/bookstore-evening.webp",
+      "prompt": "Wide 16:9 empty visual-novel background. Cozy modern Chinese bookstore at evening, tall shelves, warm pendant lights, street visible through glass, romantic but tense atmosphere, clear lower foreground for character sprites. Cinematic contemporary manhwa, indigo and amber, no principal characters, no text, no watermark."
+    },
+    {
+      "id": "jf-snack-shop-night",
+      "kind": "background",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/just-friends/visual-novels/worlds/just-friends/assets/backgrounds/snack-shop-night.webp",
+      "prompt": "Wide 16:9 empty visual-novel background. Small Guangzhou late-night snack shop with simple tables, steam from the kitchen, neon reflections outside, intimate space for an argument, clear lower-middle sprite area. Cinematic contemporary Chinese manhwa, coral neon and deep blue, no principal characters, no text, no watermark."
+    },
+    {
+      "id": "jf-restaurant-night",
+      "kind": "background",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/just-friends/visual-novels/worlds/just-friends/assets/backgrounds/restaurant-night.webp",
+      "prompt": "Wide 16:9 empty visual-novel background. Comfortable family restaurant in Guangzhou at night, round table, warm practical lighting, city lights through windows, space for three standing or seated sprites. Cinematic contemporary Chinese manhwa, warm gold and navy, no principal characters, no text, no watermark."
+    },
+    {
+      "id": "jf-family-home",
+      "kind": "background",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/just-friends/visual-novels/worlds/just-friends/assets/backgrounds/family-home.webp",
+      "prompt": "Wide 16:9 empty visual-novel background. Welcoming middle-class Chinese family dining room on a Sunday, home-cooked dishes, soft window light, family photographs without readable text, clear foreground for sprites. Cinematic contemporary Chinese manhwa, warm natural colors, no principal characters, no text, no watermark."
+    },
+    {
+      "id": "jf-dapeng-neutral",
+      "kind": "sprite",
+      "aspectRatio": "3:4",
+      "chromaKey": true,
+      "output": "public/reader-packs/just-friends/visual-novels/worlds/just-friends/assets/characters/dapeng-neutral.webp",
+      "prompt": "Three-quarter full-body visual-novel character sprite of Qian Dapeng, a handsome athletic 20-year-old Chinese university student, short dark hair, casual navy overshirt over white T-shirt and jeans, guarded neutral expression. Contemporary Chinese manhwa, consistent proportions, feet visible, centered. Perfectly flat solid #00ff00 background, no shadow, no green on subject, no text, no watermark."
+    },
+    {
+      "id": "jf-dapeng-angry",
+      "kind": "sprite",
+      "aspectRatio": "3:4",
+      "chromaKey": true,
+      "output": "public/reader-packs/just-friends/visual-novels/worlds/just-friends/assets/characters/dapeng-angry.webp",
+      "prompt": "Three-quarter full-body visual-novel character sprite of the same Qian Dapeng: handsome athletic 20-year-old Chinese university student, short dark hair, identical navy overshirt, white T-shirt and jeans, visibly jealous and angry with tense shoulders. Contemporary Chinese manhwa, feet visible, centered. Perfectly flat solid #00ff00 background, no shadow, no green on subject, no text, no watermark."
+    },
+    {
+      "id": "jf-wendong-neutral",
+      "kind": "sprite",
+      "aspectRatio": "3:4",
+      "chromaKey": true,
+      "output": "public/reader-packs/just-friends/visual-novels/worlds/just-friends/assets/characters/wendong-neutral.webp",
+      "prompt": "Three-quarter full-body visual-novel character sprite of Xie Wendong, a thoughtful slim 20-year-old Chinese university student, neat dark hair, glasses, light gray cardigan over pale blue shirt and dark trousers, gentle reserved expression. Contemporary Chinese manhwa, feet visible, centered. Perfectly flat solid #00ff00 background, no shadow, no green on subject, no text, no watermark."
+    },
+    {
+      "id": "jf-wendong-worried",
+      "kind": "sprite",
+      "aspectRatio": "3:4",
+      "chromaKey": true,
+      "output": "public/reader-packs/just-friends/visual-novels/worlds/just-friends/assets/characters/wendong-worried.webp",
+      "prompt": "Three-quarter full-body visual-novel character sprite of the same Xie Wendong: thoughtful slim 20-year-old Chinese university student, identical neat dark hair, glasses, light gray cardigan, pale blue shirt and dark trousers, worried conflicted expression and hesitant hands. Contemporary Chinese manhwa, feet visible, centered. Perfectly flat solid #00ff00 background, no shadow, no green on subject, no text, no watermark."
+    },
+    {
+      "id": "jf-zixin-neutral",
+      "kind": "sprite",
+      "aspectRatio": "3:4",
+      "chromaKey": true,
+      "output": "public/reader-packs/just-friends/visual-novels/worlds/just-friends/assets/characters/zixin-neutral.webp",
+      "prompt": "Three-quarter full-body visual-novel character sprite of Zhou Zixin, a confident friendly 20-year-old Chinese university student, long dark hair, coral jacket over cream blouse and dark skirt, warm observant neutral expression. Contemporary Chinese manhwa, feet visible, centered. Perfectly flat solid #00ff00 background, no shadow, no green on subject, no text, no watermark."
+    },
+    {
+      "id": "jf-zixin-smile",
+      "kind": "sprite",
+      "aspectRatio": "3:4",
+      "chromaKey": true,
+      "output": "public/reader-packs/just-friends/visual-novels/worlds/just-friends/assets/characters/zixin-smile.webp",
+      "prompt": "Three-quarter full-body visual-novel character sprite of the same Zhou Zixin: confident friendly 20-year-old Chinese university student, identical long dark hair, coral jacket, cream blouse and dark skirt, bright knowing smile with relaxed posture. Contemporary Chinese manhwa, feet visible, centered. Perfectly flat solid #00ff00 background, no shadow, no green on subject, no text, no watermark."
+    }
+  ]
+}

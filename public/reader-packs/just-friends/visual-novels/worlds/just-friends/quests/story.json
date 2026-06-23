@@ -1,0 +1,3928 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026-06-23-just-friends-pilot-v1",
+  "id": "just-friends-story",
+  "packId": "just-friends",
+  "title": "Just Friends?",
+  "description": "The complete graded reader staged with reusable backgrounds and character expressions.",
+  "initialNodeId": "jf-001",
+  "assetManifestPath": "reader-packs/just-friends/visual-novels/worlds/just-friends/asset-manifest.json",
+  "characters": {
+    "dapeng": {
+      "id": "dapeng",
+      "displayNames": {
+        "english": "Qian Dapeng",
+        "chinese": "钱大朋"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "campus",
+          "defaultSpriteId": "dapeng-neutral",
+          "defaultScale": 0.78,
+          "preferredPositions": [
+            "left",
+            "center"
+          ]
+        }
+      }
+    },
+    "wendong": {
+      "id": "wendong",
+      "displayNames": {
+        "english": "Xie Wendong",
+        "chinese": "谢文东"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "campus",
+          "defaultSpriteId": "wendong-neutral",
+          "defaultScale": 0.78,
+          "preferredPositions": [
+            "right",
+            "center"
+          ]
+        }
+      }
+    },
+    "zixin": {
+      "id": "zixin",
+      "displayNames": {
+        "english": "Zhou Zixin",
+        "chinese": "周子心"
+      },
+      "personas": {
+        "default": {
+          "id": "default",
+          "defaultOutfitId": "campus",
+          "defaultSpriteId": "zixin-neutral",
+          "defaultScale": 0.78,
+          "preferredPositions": [
+            "center",
+            "right"
+          ]
+        }
+      }
+    }
+  },
+  "initialState": {
+    "money": 0,
+    "skills": {},
+    "flags": {},
+    "questNotes": {},
+    "appliedOnceKeys": []
+  },
+  "nodes": {
+    "jf-001": {
+      "id": "jf-001",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋和谢文东都是中山大学的大学生，今年是他们大学的第二年。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s001"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s001",
+      "nextId": "jf-002",
+      "scene": {
+        "backgroundId": "campus-day",
+        "characters": [
+          {
+            "characterId": "dapeng",
+            "personaId": "default",
+            "spriteId": "dapeng-neutral",
+            "position": "left"
+          },
+          {
+            "characterId": "wendong",
+            "personaId": "default",
+            "spriteId": "wendong-neutral",
+            "position": "right"
+          }
+        ]
+      }
+    },
+    "jf-002": {
+      "id": "jf-002",
+      "type": "line",
+      "text": {
+        "chinese": "他们天天一起去吃饭，一起去看书，两个人是很好的朋友。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s002"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s002",
+      "nextId": "jf-003"
+    },
+    "jf-003": {
+      "id": "jf-003",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东的爸爸妈妈开饭店。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s003"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s003",
+      "nextId": "jf-004"
+    },
+    "jf-004": {
+      "id": "jf-004",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东有时候会带钱大朋去饭店吃饭。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s004"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s004",
+      "nextId": "jf-005"
+    },
+    "jf-005": {
+      "id": "jf-005",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东的爸爸妈妈都见过钱大朋。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s005"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s005",
+      "nextId": "jf-006"
+    },
+    "jf-006": {
+      "id": "jf-006",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋有时候也会开车带谢文东回家。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s006"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s006",
+      "nextId": "jf-007"
+    },
+    "jf-007": {
+      "id": "jf-007",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋不喜欢吃大学的饭，天天都出去吃。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s007"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s007",
+      "nextId": "jf-008"
+    },
+    "jf-008": {
+      "id": "jf-008",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋的爸爸妈妈很有钱，每个月都给儿子很多钱。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s008"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s008",
+      "nextId": "jf-009"
+    },
+    "jf-009": {
+      "id": "jf-009",
+      "type": "line",
+      "text": {
+        "chinese": "“大朋，你有车，天天开车来大学。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s009"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s009",
+      "nextId": "jf-010"
+    },
+    "jf-010": {
+      "id": "jf-010",
+      "type": "line",
+      "text": {
+        "chinese": "你很开心吧！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s010"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s010",
+      "nextId": "jf-011"
+    },
+    "jf-011": {
+      "id": "jf-011",
+      "type": "line",
+      "text": {
+        "chinese": "文东和大朋说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s011"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s011",
+      "nextId": "jf-012"
+    },
+    "jf-012": {
+      "id": "jf-012",
+      "type": "line",
+      "text": {
+        "chinese": "“我一点也不开心！",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s012"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s012",
+      "nextId": "jf-013"
+    },
+    "jf-013": {
+      "id": "jf-013",
+      "type": "line",
+      "text": {
+        "chinese": "我从小到大都跟我爸妈在一起，我做什么他们都要问。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s013"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s013",
+      "nextId": "jf-014"
+    },
+    "jf-014": {
+      "id": "jf-014",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋不开心地说，“我一点也不喜欢这样的家。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s014"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s014",
+      "nextId": "jf-015"
+    },
+    "jf-015": {
+      "id": "jf-015",
+      "type": "line",
+      "text": {
+        "chinese": "“他们关心你。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s015"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s015",
+      "nextId": "jf-016"
+    },
+    "jf-016": {
+      "id": "jf-016",
+      "type": "line",
+      "text": {
+        "chinese": "那样不好吗？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s016"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s016",
+      "nextId": "jf-017"
+    },
+    "jf-017": {
+      "id": "jf-017",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东问。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s017"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s017",
+      "nextId": "jf-018"
+    },
+    "jf-018": {
+      "id": "jf-018",
+      "type": "line",
+      "text": {
+        "chinese": "“我知道他们关心我。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s018"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s018",
+      "nextId": "jf-019"
+    },
+    "jf-019": {
+      "id": "jf-019",
+      "type": "line",
+      "text": {
+        "chinese": "可是，有时候‘太关心了’，我不知道怎么跟他们说。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s019"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s019",
+      "nextId": "jf-020"
+    },
+    "jf-020": {
+      "id": "jf-020",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋说，“我回家的时候，我妈天天问我有没有女朋友。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s020"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s020",
+      "nextId": "jf-021"
+    },
+    "jf-021": {
+      "id": "jf-021",
+      "type": "line",
+      "text": {
+        "chinese": "“你怎么说？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s021"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s021",
+      "nextId": "jf-022"
+    },
+    "jf-022": {
+      "id": "jf-022",
+      "type": "line",
+      "text": {
+        "chinese": "“我不知道怎么说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s022"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s022",
+      "nextId": "jf-023"
+    },
+    "jf-023": {
+      "id": "jf-023",
+      "type": "line",
+      "text": {
+        "chinese": "说有，我妈会马上想和我的女朋友见面。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s023"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s023",
+      "nextId": "jf-024"
+    },
+    "jf-024": {
+      "id": "jf-024",
+      "type": "line",
+      "text": {
+        "chinese": "说没有，我妈会叫我去见一个女生，跟那个女生去吃饭什么的。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s024"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s024",
+      "nextId": "jf-025"
+    },
+    "jf-025": {
+      "id": "jf-025",
+      "type": "line",
+      "text": {
+        "chinese": "可是，我一点也不喜欢那个女生。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s025"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s025",
+      "nextId": "jf-026"
+    },
+    "jf-026": {
+      "id": "jf-026",
+      "type": "line",
+      "text": {
+        "chinese": "我也不想和她见面。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s026"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s026",
+      "nextId": "jf-027"
+    },
+    "jf-027": {
+      "id": "jf-027",
+      "type": "line",
+      "text": {
+        "chinese": "“那，你妈知不知道你不喜欢那个女生？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s027"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s027",
+      "nextId": "jf-028"
+    },
+    "jf-028": {
+      "id": "jf-028",
+      "type": "line",
+      "text": {
+        "chinese": "“她知道，我说过很多次，可是，那个女生是一个大学生，她是我爸的一个好朋友的女儿。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s028"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s028",
+      "nextId": "jf-029"
+    },
+    "jf-029": {
+      "id": "jf-029",
+      "type": "line",
+      "text": {
+        "chinese": "我爸很喜欢。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s029"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s029",
+      "nextId": "jf-030"
+    },
+    "jf-030": {
+      "id": "jf-030",
+      "type": "line",
+      "text": {
+        "chinese": "我一点也不喜欢。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s030"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s030",
+      "nextId": "jf-031"
+    },
+    "jf-031": {
+      "id": "jf-031",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东听了笑笑，不知道说什么。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch01-s031"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch01-s031",
+      "nextId": "jf-032"
+    },
+    "jf-032": {
+      "id": "jf-032",
+      "type": "line",
+      "text": {
+        "chinese": "“大朋，我们大学那么多好看的女生，你没有喜欢的吗？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s001"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s001",
+      "nextId": "jf-033",
+      "scene": {
+        "backgroundId": "campus-day",
+        "characters": [
+          {
+            "characterId": "dapeng",
+            "personaId": "default",
+            "spriteId": "dapeng-neutral",
+            "position": "left"
+          },
+          {
+            "characterId": "wendong",
+            "personaId": "default",
+            "spriteId": "wendong-neutral",
+            "position": "right"
+          }
+        ]
+      }
+    },
+    "jf-033": {
+      "id": "jf-033",
+      "type": "line",
+      "text": {
+        "chinese": "吃饭的时候，谢文东问。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s002"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s002",
+      "nextId": "jf-034"
+    },
+    "jf-034": {
+      "id": "jf-034",
+      "type": "line",
+      "text": {
+        "chinese": "大朋看看文东，笑了笑：“你看到什么了？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s003"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s003",
+      "nextId": "jf-035"
+    },
+    "jf-035": {
+      "id": "jf-035",
+      "type": "line",
+      "text": {
+        "chinese": "“这几天，我看你都在看周子心。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s004"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s004",
+      "nextId": "jf-036"
+    },
+    "jf-036": {
+      "id": "jf-036",
+      "type": "line",
+      "text": {
+        "chinese": "上次，我跟你说话你都没有听见。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s005"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s005",
+      "nextId": "jf-037"
+    },
+    "jf-037": {
+      "id": "jf-037",
+      "type": "line",
+      "text": {
+        "chinese": "你是不是喜欢她？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s006"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s006",
+      "nextId": "jf-038"
+    },
+    "jf-038": {
+      "id": "jf-038",
+      "type": "line",
+      "text": {
+        "chinese": "“我喜欢她，那又怎么样？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s007"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s007",
+      "nextId": "jf-039"
+    },
+    "jf-039": {
+      "id": "jf-039",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋笑了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s008"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s008",
+      "nextId": "jf-040"
+    },
+    "jf-040": {
+      "id": "jf-040",
+      "type": "line",
+      "text": {
+        "chinese": "文东看看大朋，没有笑：“我也喜欢她。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s009"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s009",
+      "nextId": "jf-041"
+    },
+    "jf-041": {
+      "id": "jf-041",
+      "type": "line",
+      "text": {
+        "chinese": "大朋一下子不笑了，也不吃了：“不是吧？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s010"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s010",
+      "nextId": "jf-042"
+    },
+    "jf-042": {
+      "id": "jf-042",
+      "type": "line",
+      "text": {
+        "chinese": "从什么时候……我怎么一点也不知道？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s011"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s011",
+      "nextId": "jf-043"
+    },
+    "jf-043": {
+      "id": "jf-043",
+      "type": "line",
+      "text": {
+        "chinese": "“我和她都喜欢看书，我在书店见过她很多次。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s012"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s012",
+      "nextId": "jf-044"
+    },
+    "jf-044": {
+      "id": "jf-044",
+      "type": "line",
+      "text": {
+        "chinese": "她是一个好女生，也很好看……谁会不喜欢？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s013"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s013",
+      "nextId": "jf-045"
+    },
+    "jf-045": {
+      "id": "jf-045",
+      "type": "line",
+      "text": {
+        "chinese": "“那，你跟她说了吗？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s014"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s014",
+      "nextId": "jf-046"
+    },
+    "jf-046": {
+      "id": "jf-046",
+      "type": "line",
+      "text": {
+        "chinese": "大朋小心地问。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s015"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s015",
+      "nextId": "jf-047"
+    },
+    "jf-047": {
+      "id": "jf-047",
+      "type": "line",
+      "text": {
+        "chinese": "“没有，她不知道我喜欢她……”文东不说了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s016"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s016",
+      "nextId": "jf-048"
+    },
+    "jf-048": {
+      "id": "jf-048",
+      "type": "line",
+      "text": {
+        "chinese": "“我也没跟她说。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s017"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s017",
+      "nextId": "jf-049"
+    },
+    "jf-049": {
+      "id": "jf-049",
+      "type": "line",
+      "text": {
+        "chinese": "大朋说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s018"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s018",
+      "nextId": "jf-050"
+    },
+    "jf-050": {
+      "id": "jf-050",
+      "type": "line",
+      "text": {
+        "chinese": "“大朋，我们是不是好朋友？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s019"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s019",
+      "nextId": "jf-051"
+    },
+    "jf-051": {
+      "id": "jf-051",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东问。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s020"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s020",
+      "nextId": "jf-052"
+    },
+    "jf-052": {
+      "id": "jf-052",
+      "type": "line",
+      "text": {
+        "chinese": "“是，那又怎么样？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s021"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s021",
+      "nextId": "jf-053"
+    },
+    "jf-053": {
+      "id": "jf-053",
+      "type": "line",
+      "text": {
+        "chinese": "周子心不是你的女朋友，对不对？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s022"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s022",
+      "nextId": "jf-054"
+    },
+    "jf-054": {
+      "id": "jf-054",
+      "type": "line",
+      "text": {
+        "chinese": "大朋小心地问。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s023"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s023",
+      "nextId": "jf-055"
+    },
+    "jf-055": {
+      "id": "jf-055",
+      "type": "line",
+      "text": {
+        "chinese": "文东生气地看大朋：“你怎么能这样说？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s024"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s024",
+      "nextId": "jf-056"
+    },
+    "jf-056": {
+      "id": "jf-056",
+      "type": "line",
+      "text": {
+        "chinese": "大朋知道文东生气了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s025"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s025",
+      "nextId": "jf-057"
+    },
+    "jf-057": {
+      "id": "jf-057",
+      "type": "line",
+      "text": {
+        "chinese": "大朋跟他说：“好了好了，我知道你要说什么。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s026"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s026",
+      "nextId": "jf-058"
+    },
+    "jf-058": {
+      "id": "jf-058",
+      "type": "line",
+      "text": {
+        "chinese": "我们是好朋友，我是不会跟你喜欢的女生一起出去的。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s027"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s027",
+      "nextId": "jf-059"
+    },
+    "jf-059": {
+      "id": "jf-059",
+      "type": "line",
+      "text": {
+        "chinese": "文东笑了：“好！",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s028"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s028",
+      "nextId": "jf-060"
+    },
+    "jf-060": {
+      "id": "jf-060",
+      "type": "line",
+      "text": {
+        "chinese": "我也是不会跟她一起出去的！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch02-s029"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch02-s029",
+      "nextId": "jf-061"
+    },
+    "jf-061": {
+      "id": "jf-061",
+      "type": "line",
+      "text": {
+        "chinese": "星期四晚上，很多学生都在一起说话。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s001"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s001",
+      "nextId": "jf-062",
+      "scene": {
+        "backgroundId": "bookstore-evening",
+        "characters": [
+          {
+            "characterId": "dapeng",
+            "personaId": "default",
+            "spriteId": "dapeng-neutral",
+            "position": "left"
+          },
+          {
+            "characterId": "zixin",
+            "personaId": "default",
+            "spriteId": "zixin-smile",
+            "position": "right"
+          }
+        ]
+      }
+    },
+    "jf-062": {
+      "id": "jf-062",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东不在。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s002"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s002",
+      "nextId": "jf-063"
+    },
+    "jf-063": {
+      "id": "jf-063",
+      "type": "line",
+      "text": {
+        "chinese": "两个男生问钱大朋：“大朋，你是不是喜欢周子心？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s003"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s003",
+      "nextId": "jf-064"
+    },
+    "jf-064": {
+      "id": "jf-064",
+      "type": "line",
+      "text": {
+        "chinese": "“没有……你们听谁说的？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s004"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s004",
+      "nextId": "jf-065"
+    },
+    "jf-065": {
+      "id": "jf-065",
+      "type": "line",
+      "text": {
+        "chinese": "大朋说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s005"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s005",
+      "nextId": "jf-066"
+    },
+    "jf-066": {
+      "id": "jf-066",
+      "type": "line",
+      "text": {
+        "chinese": "“没有人说，可是，大家都知道了。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s006"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s006",
+      "nextId": "jf-067"
+    },
+    "jf-067": {
+      "id": "jf-067",
+      "type": "line",
+      "text": {
+        "chinese": "两个男生笑了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s007"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s007",
+      "nextId": "jf-068"
+    },
+    "jf-068": {
+      "id": "jf-068",
+      "type": "line",
+      "text": {
+        "chinese": "“好了好了，不要笑了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s008"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s008",
+      "nextId": "jf-069"
+    },
+    "jf-069": {
+      "id": "jf-069",
+      "type": "line",
+      "text": {
+        "chinese": "对，我是喜欢她。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s009"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s009",
+      "nextId": "jf-070"
+    },
+    "jf-070": {
+      "id": "jf-070",
+      "type": "line",
+      "text": {
+        "chinese": "那又怎么样？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s010"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s010",
+      "nextId": "jf-071"
+    },
+    "jf-071": {
+      "id": "jf-071",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋也笑了一下，“我出去走走。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s011"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s011",
+      "nextId": "jf-072"
+    },
+    "jf-072": {
+      "id": "jf-072",
+      "type": "line",
+      "text": {
+        "chinese": "这时候，钱大朋看到了周子心。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s012"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s012",
+      "nextId": "jf-073"
+    },
+    "jf-073": {
+      "id": "jf-073",
+      "type": "line",
+      "text": {
+        "chinese": "“周子心，这么晚了，你一个人去哪儿？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s013"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s013",
+      "nextId": "jf-074"
+    },
+    "jf-074": {
+      "id": "jf-074",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋问她。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s014"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s014",
+      "nextId": "jf-075"
+    },
+    "jf-075": {
+      "id": "jf-075",
+      "type": "line",
+      "text": {
+        "chinese": "周子心看了看：“钱大朋？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s015"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s015",
+      "nextId": "jf-076"
+    },
+    "jf-076": {
+      "id": "jf-076",
+      "type": "line",
+      "text": {
+        "chinese": "她笑了一下，“我要去书店。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s016"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s016",
+      "nextId": "jf-077"
+    },
+    "jf-077": {
+      "id": "jf-077",
+      "type": "line",
+      "text": {
+        "chinese": "“那个很大的书店？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s017"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s017",
+      "nextId": "jf-078"
+    },
+    "jf-078": {
+      "id": "jf-078",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋问。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s018"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s018",
+      "nextId": "jf-079"
+    },
+    "jf-079": {
+      "id": "jf-079",
+      "type": "line",
+      "text": {
+        "chinese": "“对，这里有车可以去那个很大的书店。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s019"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s019",
+      "nextId": "jf-080"
+    },
+    "jf-080": {
+      "id": "jf-080",
+      "type": "line",
+      "text": {
+        "chinese": "周子心笑了笑。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s020"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s020",
+      "nextId": "jf-081"
+    },
+    "jf-081": {
+      "id": "jf-081",
+      "type": "line",
+      "text": {
+        "chinese": "“你回来的时候都要9点多了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s021"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s021",
+      "nextId": "jf-082"
+    },
+    "jf-082": {
+      "id": "jf-082",
+      "type": "line",
+      "text": {
+        "chinese": "你一个人回来不行……我开车带你去吧。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s022"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s022",
+      "nextId": "jf-083"
+    },
+    "jf-083": {
+      "id": "jf-083",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋笑笑说，“周子心，我们走吧。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s023"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s023",
+      "nextId": "jf-084"
+    },
+    "jf-084": {
+      "id": "jf-084",
+      "type": "line",
+      "text": {
+        "chinese": "车在那里。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch03-s024"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch03-s024",
+      "nextId": "jf-085"
+    },
+    "jf-085": {
+      "id": "jf-085",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东晚上在外面和朋友吃饭，回来的时候，他看到了钱大朋在车里，车里还有周子心。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s001"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s001",
+      "nextId": "jf-086",
+      "scene": {
+        "backgroundId": "bookstore-evening",
+        "characters": [
+          {
+            "characterId": "dapeng",
+            "personaId": "default",
+            "spriteId": "dapeng-angry",
+            "position": "left"
+          },
+          {
+            "characterId": "zixin",
+            "personaId": "default",
+            "spriteId": "zixin-neutral",
+            "position": "right"
+          }
+        ]
+      }
+    },
+    "jf-086": {
+      "id": "jf-086",
+      "type": "line",
+      "text": {
+        "chinese": "“钱大朋，你不是我的朋友！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s002"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s002",
+      "nextId": "jf-087"
+    },
+    "jf-087": {
+      "id": "jf-087",
+      "type": "line",
+      "text": {
+        "chinese": "文东大叫。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s003"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s003",
+      "nextId": "jf-088"
+    },
+    "jf-088": {
+      "id": "jf-088",
+      "type": "line",
+      "text": {
+        "chinese": "可是，大朋什么也没听到，开车走了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s004"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s004",
+      "nextId": "jf-089"
+    },
+    "jf-089": {
+      "id": "jf-089",
+      "type": "line",
+      "text": {
+        "chinese": "文东很生气，他马上叫了车，也去了那个书店。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s005"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s005",
+      "nextId": "jf-090"
+    },
+    "jf-090": {
+      "id": "jf-090",
+      "type": "line",
+      "text": {
+        "chinese": "到了书店，周子心跟钱大朋说：“你去哪里？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s006"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s006",
+      "nextId": "jf-091"
+    },
+    "jf-091": {
+      "id": "jf-091",
+      "type": "line",
+      "text": {
+        "chinese": "“我去外面走走吧。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s007"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s007",
+      "nextId": "jf-092"
+    },
+    "jf-092": {
+      "id": "jf-092",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s008"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s008",
+      "nextId": "jf-093"
+    },
+    "jf-093": {
+      "id": "jf-093",
+      "type": "line",
+      "text": {
+        "chinese": "“过一会儿，我开车带你回去。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s009"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s009",
+      "nextId": "jf-094"
+    },
+    "jf-094": {
+      "id": "jf-094",
+      "type": "line",
+      "text": {
+        "chinese": "周子心说：“你和我一起去吧。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s010"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s010",
+      "nextId": "jf-095"
+    },
+    "jf-095": {
+      "id": "jf-095",
+      "type": "line",
+      "text": {
+        "chinese": "你可以看看有没有你喜欢的书。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s011"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s011",
+      "nextId": "jf-096"
+    },
+    "jf-096": {
+      "id": "jf-096",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋想了想，和周子心一起去书店了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s012"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s012",
+      "nextId": "jf-097"
+    },
+    "jf-097": {
+      "id": "jf-097",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东看到他们去了书店，谢文东也去了书店。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s013"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s013",
+      "nextId": "jf-098"
+    },
+    "jf-098": {
+      "id": "jf-098",
+      "type": "line",
+      "text": {
+        "chinese": "过了一会儿，周子心跟钱大朋说：“大朋，我们出去吃一点东西吧。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s014"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s014",
+      "nextId": "jf-099"
+    },
+    "jf-099": {
+      "id": "jf-099",
+      "type": "line",
+      "text": {
+        "chinese": "他看了看周子心，说：“好。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s015"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s015",
+      "nextId": "jf-100"
+    },
+    "jf-100": {
+      "id": "jf-100",
+      "type": "line",
+      "text": {
+        "chinese": "说完，大朋和周子心去了书店外面的小吃店。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch04-s016"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch04-s016",
+      "nextId": "jf-101"
+    },
+    "jf-101": {
+      "id": "jf-101",
+      "type": "line",
+      "text": {
+        "chinese": "在小吃店里，人不多。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s001"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s001",
+      "nextId": "jf-102",
+      "scene": {
+        "backgroundId": "snack-shop-night",
+        "characters": [
+          {
+            "characterId": "dapeng",
+            "personaId": "default",
+            "spriteId": "dapeng-angry",
+            "position": "left"
+          },
+          {
+            "characterId": "zixin",
+            "personaId": "default",
+            "spriteId": "zixin-neutral",
+            "position": "right"
+          }
+        ]
+      }
+    },
+    "jf-102": {
+      "id": "jf-102",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋说：“点你喜欢吃的小吃吧。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s002"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s002",
+      "nextId": "jf-103"
+    },
+    "jf-103": {
+      "id": "jf-103",
+      "type": "line",
+      "text": {
+        "chinese": "这里的小吃都很好吃。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s003"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s003",
+      "nextId": "jf-104"
+    },
+    "jf-104": {
+      "id": "jf-104",
+      "type": "line",
+      "text": {
+        "chinese": "周子心笑了笑说：“谢谢你开车带我过来，你点吧。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s004"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s004",
+      "nextId": "jf-105"
+    },
+    "jf-105": {
+      "id": "jf-105",
+      "type": "line",
+      "text": {
+        "chinese": "这时候，钱大朋听到一个男生叫他：“钱大朋！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s005"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s005",
+      "nextId": "jf-106"
+    },
+    "jf-106": {
+      "id": "jf-106",
+      "type": "line",
+      "text": {
+        "chinese": "“谢文东？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s006"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s006",
+      "nextId": "jf-107"
+    },
+    "jf-107": {
+      "id": "jf-107",
+      "type": "line",
+      "text": {
+        "chinese": "你怎么在这里……”钱大朋说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s007"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s007",
+      "nextId": "jf-108"
+    },
+    "jf-108": {
+      "id": "jf-108",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东生气地看了看钱大朋：“你和周子心怎么会在一起……我们不是好朋友吗？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s008"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s008",
+      "nextId": "jf-109"
+    },
+    "jf-109": {
+      "id": "jf-109",
+      "type": "line",
+      "text": {
+        "chinese": "“不是你想的那样。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s009"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s009",
+      "nextId": "jf-110"
+    },
+    "jf-110": {
+      "id": "jf-110",
+      "type": "line",
+      "text": {
+        "chinese": "她要来书店，我开车带她来书店。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s010"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s010",
+      "nextId": "jf-111"
+    },
+    "jf-111": {
+      "id": "jf-111",
+      "type": "line",
+      "text": {
+        "chinese": "“我都看到了！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s011"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s011",
+      "nextId": "jf-112"
+    },
+    "jf-112": {
+      "id": "jf-112",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东说，“你们两个在一起多长时间了？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s012"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s012",
+      "nextId": "jf-113"
+    },
+    "jf-113": {
+      "id": "jf-113",
+      "type": "line",
+      "text": {
+        "chinese": "“谢文东，你在说什么？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s013"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s013",
+      "nextId": "jf-114"
+    },
+    "jf-114": {
+      "id": "jf-114",
+      "type": "line",
+      "text": {
+        "chinese": "周子心马上说，“我没和钱大朋在一起，他也不是我男朋友。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s014"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s014",
+      "nextId": "jf-115"
+    },
+    "jf-115": {
+      "id": "jf-115",
+      "type": "line",
+      "text": {
+        "chinese": "“钱大朋，谢文东为什么那样说？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s015"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s015",
+      "nextId": "jf-116"
+    },
+    "jf-116": {
+      "id": "jf-116",
+      "type": "line",
+      "text": {
+        "chinese": "周子心问。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s016"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s016",
+      "nextId": "jf-117"
+    },
+    "jf-117": {
+      "id": "jf-117",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋不知道对周子心说什么。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s017"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s017",
+      "nextId": "jf-118"
+    },
+    "jf-118": {
+      "id": "jf-118",
+      "type": "line",
+      "text": {
+        "chinese": "他看谢文东不说话，他也不说话。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s018"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s018",
+      "nextId": "jf-119"
+    },
+    "jf-119": {
+      "id": "jf-119",
+      "type": "line",
+      "text": {
+        "chinese": "周子心说：“好吧，要是你们都没什么要说的，那我走了。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s019"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s019",
+      "nextId": "jf-120"
+    },
+    "jf-120": {
+      "id": "jf-120",
+      "type": "line",
+      "text": {
+        "chinese": "她走了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s020"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s020",
+      "nextId": "jf-121"
+    },
+    "jf-121": {
+      "id": "jf-121",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东说：“钱大朋，你怎么能这样做？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s021"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s021",
+      "nextId": "jf-122"
+    },
+    "jf-122": {
+      "id": "jf-122",
+      "type": "line",
+      "text": {
+        "chinese": "我们不是好朋友吗？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s022"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s022",
+      "nextId": "jf-123"
+    },
+    "jf-123": {
+      "id": "jf-123",
+      "type": "line",
+      "text": {
+        "chinese": "“我做什么了？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s023"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s023",
+      "nextId": "jf-124"
+    },
+    "jf-124": {
+      "id": "jf-124",
+      "type": "line",
+      "text": {
+        "chinese": "我什么也没做！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s024"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s024",
+      "nextId": "jf-125"
+    },
+    "jf-125": {
+      "id": "jf-125",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋又说：“你为什么要来这里？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s025"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s025",
+      "nextId": "jf-126"
+    },
+    "jf-126": {
+      "id": "jf-126",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东小心地说：“要是我没有来这里，谁知道你们会做什么……”“谢文东，你听我说，我和周子心不是男朋友和女朋友！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s026"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s026",
+      "nextId": "jf-127"
+    },
+    "jf-127": {
+      "id": "jf-127",
+      "type": "line",
+      "text": {
+        "chinese": "说完，钱大朋生气地走了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch05-s027"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch05-s027",
+      "nextId": "jf-128"
+    },
+    "jf-128": {
+      "id": "jf-128",
+      "type": "line",
+      "text": {
+        "chinese": "第二天，钱大朋和谢文东还是不说话。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s001"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s001",
+      "nextId": "jf-129",
+      "scene": {
+        "backgroundId": "campus-day",
+        "characters": [
+          {
+            "characterId": "dapeng",
+            "personaId": "default",
+            "spriteId": "dapeng-angry",
+            "position": "left"
+          },
+          {
+            "characterId": "wendong",
+            "personaId": "default",
+            "spriteId": "wendong-worried",
+            "position": "right"
+          }
+        ]
+      }
+    },
+    "jf-129": {
+      "id": "jf-129",
+      "type": "line",
+      "text": {
+        "chinese": "吃饭的时候，周子心看到谢文东一个人在吃饭。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s002"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s002",
+      "nextId": "jf-130"
+    },
+    "jf-130": {
+      "id": "jf-130",
+      "type": "line",
+      "text": {
+        "chinese": "她问谢文东：“谢文东，昨天你们怎么了？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s003"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s003",
+      "nextId": "jf-131"
+    },
+    "jf-131": {
+      "id": "jf-131",
+      "type": "line",
+      "text": {
+        "chinese": "“对不起，昨天我有一点......我和钱大朋……有一点生气。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s004"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s004",
+      "nextId": "jf-132"
+    },
+    "jf-132": {
+      "id": "jf-132",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东不知道要怎么说，“可是我们是朋友，这没什么。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s005"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s005",
+      "nextId": "jf-133"
+    },
+    "jf-133": {
+      "id": "jf-133",
+      "type": "line",
+      "text": {
+        "chinese": "周子心说：“我知道了。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s006"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s006",
+      "nextId": "jf-134"
+    },
+    "jf-134": {
+      "id": "jf-134",
+      "type": "line",
+      "text": {
+        "chinese": "“我们不说这个了。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s007"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s007",
+      "nextId": "jf-135"
+    },
+    "jf-135": {
+      "id": "jf-135",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东说，“你今天晚上有时间吗？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s008"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s008",
+      "nextId": "jf-136"
+    },
+    "jf-136": {
+      "id": "jf-136",
+      "type": "line",
+      "text": {
+        "chinese": "“我……我今天晚上有时间。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s009"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s009",
+      "nextId": "jf-137"
+    },
+    "jf-137": {
+      "id": "jf-137",
+      "type": "line",
+      "text": {
+        "chinese": "“你知道我们家开饭店，对吧？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s010"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s010",
+      "nextId": "jf-138"
+    },
+    "jf-138": {
+      "id": "jf-138",
+      "type": "line",
+      "text": {
+        "chinese": "上个月又开了一个饭店。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s011"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s011",
+      "nextId": "jf-139"
+    },
+    "jf-139": {
+      "id": "jf-139",
+      "type": "line",
+      "text": {
+        "chinese": "我爸妈叫我去这个饭店吃饭。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s012"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s012",
+      "nextId": "jf-140"
+    },
+    "jf-140": {
+      "id": "jf-140",
+      "type": "line",
+      "text": {
+        "chinese": "“那你去过了吗？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s013"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s013",
+      "nextId": "jf-141"
+    },
+    "jf-141": {
+      "id": "jf-141",
+      "type": "line",
+      "text": {
+        "chinese": "“还没。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s014"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s014",
+      "nextId": "jf-142"
+    },
+    "jf-142": {
+      "id": "jf-142",
+      "type": "line",
+      "text": {
+        "chinese": "我今天过去。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s015"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s015",
+      "nextId": "jf-143"
+    },
+    "jf-143": {
+      "id": "jf-143",
+      "type": "line",
+      "text": {
+        "chinese": "你也一起来吧。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s016"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s016",
+      "nextId": "jf-144"
+    },
+    "jf-144": {
+      "id": "jf-144",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s017"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s017",
+      "nextId": "jf-145"
+    },
+    "jf-145": {
+      "id": "jf-145",
+      "type": "line",
+      "text": {
+        "chinese": "“行，那我再叫几个女生吧。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s018"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s018",
+      "nextId": "jf-146"
+    },
+    "jf-146": {
+      "id": "jf-146",
+      "type": "line",
+      "text": {
+        "chinese": "“下次吧。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s019"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s019",
+      "nextId": "jf-147"
+    },
+    "jf-147": {
+      "id": "jf-147",
+      "type": "line",
+      "text": {
+        "chinese": "要是你喜欢我家饭店的菜，再带你的朋友去。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s020"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s020",
+      "nextId": "jf-148"
+    },
+    "jf-148": {
+      "id": "jf-148",
+      "type": "line",
+      "text": {
+        "chinese": "“也行。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s021"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s021",
+      "nextId": "jf-149"
+    },
+    "jf-149": {
+      "id": "jf-149",
+      "type": "line",
+      "text": {
+        "chinese": "好，那晚上见。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s022"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s022",
+      "nextId": "jf-150"
+    },
+    "jf-150": {
+      "id": "jf-150",
+      "type": "line",
+      "text": {
+        "chinese": "周子心开心地说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch06-s023"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch06-s023",
+      "nextId": "jf-151"
+    },
+    "jf-151": {
+      "id": "jf-151",
+      "type": "line",
+      "text": {
+        "chinese": "晚上7点，周子心来到了饭店。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s001"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s001",
+      "nextId": "jf-152",
+      "scene": {
+        "backgroundId": "restaurant-night",
+        "characters": [
+          {
+            "characterId": "wendong",
+            "personaId": "default",
+            "spriteId": "wendong-neutral",
+            "position": "left"
+          },
+          {
+            "characterId": "zixin",
+            "personaId": "default",
+            "spriteId": "zixin-smile",
+            "position": "right"
+          }
+        ]
+      }
+    },
+    "jf-152": {
+      "id": "jf-152",
+      "type": "line",
+      "text": {
+        "chinese": "她看到了谢文东。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s002"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s002",
+      "nextId": "jf-153"
+    },
+    "jf-153": {
+      "id": "jf-153",
+      "type": "line",
+      "text": {
+        "chinese": "“周子心，你来了。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s003"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s003",
+      "nextId": "jf-154"
+    },
+    "jf-154": {
+      "id": "jf-154",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东马上开心地说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s004"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s004",
+      "nextId": "jf-155"
+    },
+    "jf-155": {
+      "id": "jf-155",
+      "type": "line",
+      "text": {
+        "chinese": "周子心笑了笑说，“文东，你今天为什么不跟我一起来？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s005"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s005",
+      "nextId": "jf-156"
+    },
+    "jf-156": {
+      "id": "jf-156",
+      "type": "line",
+      "text": {
+        "chinese": "“钱大朋看见了会生气的。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s006"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s006",
+      "nextId": "jf-157"
+    },
+    "jf-157": {
+      "id": "jf-157",
+      "type": "line",
+      "text": {
+        "chinese": "文东小心地说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s007"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s007",
+      "nextId": "jf-158"
+    },
+    "jf-158": {
+      "id": "jf-158",
+      "type": "line",
+      "text": {
+        "chinese": "“他为什么要生气？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s008"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s008",
+      "nextId": "jf-159"
+    },
+    "jf-159": {
+      "id": "jf-159",
+      "type": "line",
+      "text": {
+        "chinese": "周子心问。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s009"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s009",
+      "nextId": "jf-160"
+    },
+    "jf-160": {
+      "id": "jf-160",
+      "type": "line",
+      "text": {
+        "chinese": "“不说他了，我们点菜吧。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s010"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s010",
+      "nextId": "jf-161"
+    },
+    "jf-161": {
+      "id": "jf-161",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东又笑了，“喜欢吃什么都可以，不要看多少钱。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s011"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s011",
+      "nextId": "jf-162"
+    },
+    "jf-162": {
+      "id": "jf-162",
+      "type": "line",
+      "text": {
+        "chinese": "“不行。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s012"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s012",
+      "nextId": "jf-163"
+    },
+    "jf-163": {
+      "id": "jf-163",
+      "type": "line",
+      "text": {
+        "chinese": "我不能这样做。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s013"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s013",
+      "nextId": "jf-164"
+    },
+    "jf-164": {
+      "id": "jf-164",
+      "type": "line",
+      "text": {
+        "chinese": "周子心也笑了，“我们两个人，点两个菜可以了。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s014"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s014",
+      "nextId": "jf-165"
+    },
+    "jf-165": {
+      "id": "jf-165",
+      "type": "line",
+      "text": {
+        "chinese": "“那不行，你是我朋友，我带你来我家饭店吃饭，不能点那么少！",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s015"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s015",
+      "nextId": "jf-166"
+    },
+    "jf-166": {
+      "id": "jf-166",
+      "type": "line",
+      "text": {
+        "chinese": "要是你不点，我来点。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s016"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s016",
+      "nextId": "jf-167"
+    },
+    "jf-167": {
+      "id": "jf-167",
+      "type": "line",
+      "text": {
+        "chinese": "说完，谢文东一下子点了五个菜。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s017"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s017",
+      "nextId": "jf-168"
+    },
+    "jf-168": {
+      "id": "jf-168",
+      "type": "line",
+      "text": {
+        "chinese": "“你点太多了，我们两个人吃不完的。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s018"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s018",
+      "nextId": "jf-169"
+    },
+    "jf-169": {
+      "id": "jf-169",
+      "type": "line",
+      "text": {
+        "chinese": "周子心说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s019"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s019",
+      "nextId": "jf-170"
+    },
+    "jf-170": {
+      "id": "jf-170",
+      "type": "line",
+      "text": {
+        "chinese": "“一点也不多。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s020"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s020",
+      "nextId": "jf-171"
+    },
+    "jf-171": {
+      "id": "jf-171",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch07-s021"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch07-s021",
+      "nextId": "jf-172"
+    },
+    "jf-172": {
+      "id": "jf-172",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东和周子心还在饭店吃饭的时候，钱大朋也到了饭店。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s001"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s001",
+      "nextId": "jf-173",
+      "scene": {
+        "backgroundId": "restaurant-night",
+        "characters": [
+          {
+            "characterId": "dapeng",
+            "personaId": "default",
+            "spriteId": "dapeng-angry",
+            "position": "left"
+          },
+          {
+            "characterId": "wendong",
+            "personaId": "default",
+            "spriteId": "wendong-worried",
+            "position": "center"
+          },
+          {
+            "characterId": "zixin",
+            "personaId": "default",
+            "spriteId": "zixin-neutral",
+            "position": "right"
+          }
+        ]
+      }
+    },
+    "jf-173": {
+      "id": "jf-173",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋看到了谢文东的爸妈。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s002"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s002",
+      "nextId": "jf-174"
+    },
+    "jf-174": {
+      "id": "jf-174",
+      "type": "line",
+      "text": {
+        "chinese": "“大朋，很长时间没见你了。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s003"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s003",
+      "nextId": "jf-175"
+    },
+    "jf-175": {
+      "id": "jf-175",
+      "type": "line",
+      "text": {
+        "chinese": "谢爸爸和谢妈妈说，“今天没跟文东一起过来？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s004"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s004",
+      "nextId": "jf-176"
+    },
+    "jf-176": {
+      "id": "jf-176",
+      "type": "line",
+      "text": {
+        "chinese": "“文东没来吗？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s005"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s005",
+      "nextId": "jf-177"
+    },
+    "jf-177": {
+      "id": "jf-177",
+      "type": "line",
+      "text": {
+        "chinese": "我听说他今天带女朋友一起过来的。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s006"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s006",
+      "nextId": "jf-178"
+    },
+    "jf-178": {
+      "id": "jf-178",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋笑了笑。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s007"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s007",
+      "nextId": "jf-179"
+    },
+    "jf-179": {
+      "id": "jf-179",
+      "type": "line",
+      "text": {
+        "chinese": "“文东有女朋友了？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s008"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s008",
+      "nextId": "jf-180"
+    },
+    "jf-180": {
+      "id": "jf-180",
+      "type": "line",
+      "text": {
+        "chinese": "谢爸爸问，“我怎么没听他说过.......”“我也没听他说过。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s009"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s009",
+      "nextId": "jf-181"
+    },
+    "jf-181": {
+      "id": "jf-181",
+      "type": "line",
+      "text": {
+        "chinese": "谢妈妈也说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s010"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s010",
+      "nextId": "jf-182"
+    },
+    "jf-182": {
+      "id": "jf-182",
+      "type": "line",
+      "text": {
+        "chinese": "“我也是听他女朋友的一个朋友说的。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s011"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s011",
+      "nextId": "jf-183"
+    },
+    "jf-183": {
+      "id": "jf-183",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s012"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s012",
+      "nextId": "jf-184"
+    },
+    "jf-184": {
+      "id": "jf-184",
+      "type": "line",
+      "text": {
+        "chinese": "“行，我们知道了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s013"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s013",
+      "nextId": "jf-185"
+    },
+    "jf-185": {
+      "id": "jf-185",
+      "type": "line",
+      "text": {
+        "chinese": "我问问他。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s014"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s014",
+      "nextId": "jf-186"
+    },
+    "jf-186": {
+      "id": "jf-186",
+      "type": "line",
+      "text": {
+        "chinese": "谢爸爸说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s015"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s015",
+      "nextId": "jf-187"
+    },
+    "jf-187": {
+      "id": "jf-187",
+      "type": "line",
+      "text": {
+        "chinese": "“文东来了吗？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s016"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s016",
+      "nextId": "jf-188"
+    },
+    "jf-188": {
+      "id": "jf-188",
+      "type": "line",
+      "text": {
+        "chinese": "他在哪里？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s017"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s017",
+      "nextId": "jf-189"
+    },
+    "jf-189": {
+      "id": "jf-189",
+      "type": "line",
+      "text": {
+        "chinese": "谢妈妈开心地说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s018"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s018",
+      "nextId": "jf-190"
+    },
+    "jf-190": {
+      "id": "jf-190",
+      "type": "line",
+      "text": {
+        "chinese": "“我怎么没看到他......”“在那里，你看！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s019"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s019",
+      "nextId": "jf-191"
+    },
+    "jf-191": {
+      "id": "jf-191",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋对谢妈妈说，“文东！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s020"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s020",
+      "nextId": "jf-192"
+    },
+    "jf-192": {
+      "id": "jf-192",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋叫。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s021"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s021",
+      "nextId": "jf-193"
+    },
+    "jf-193": {
+      "id": "jf-193",
+      "type": "line",
+      "text": {
+        "chinese": "饭店里有很多人在说话，谢文东没听见。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s022"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s022",
+      "nextId": "jf-194"
+    },
+    "jf-194": {
+      "id": "jf-194",
+      "type": "line",
+      "text": {
+        "chinese": "“他没听见。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s023"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s023",
+      "nextId": "jf-195"
+    },
+    "jf-195": {
+      "id": "jf-195",
+      "type": "line",
+      "text": {
+        "chinese": "我们还是过去看看吧。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s024"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s024",
+      "nextId": "jf-196"
+    },
+    "jf-196": {
+      "id": "jf-196",
+      "type": "line",
+      "text": {
+        "chinese": "谢妈妈说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch08-s025"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch08-s025",
+      "nextId": "jf-197"
+    },
+    "jf-197": {
+      "id": "jf-197",
+      "type": "line",
+      "text": {
+        "chinese": "“文东。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s001"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s001",
+      "nextId": "jf-198",
+      "scene": {
+        "backgroundId": "restaurant-night",
+        "characters": [
+          {
+            "characterId": "wendong",
+            "personaId": "default",
+            "spriteId": "wendong-worried",
+            "position": "left"
+          },
+          {
+            "characterId": "zixin",
+            "personaId": "default",
+            "spriteId": "zixin-neutral",
+            "position": "right"
+          }
+        ]
+      }
+    },
+    "jf-198": {
+      "id": "jf-198",
+      "type": "line",
+      "text": {
+        "chinese": "谢爸爸叫，“你什么时候来的，也不跟我们说？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s002"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s002",
+      "nextId": "jf-199"
+    },
+    "jf-199": {
+      "id": "jf-199",
+      "type": "line",
+      "text": {
+        "chinese": "“爸？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s003"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s003",
+      "nextId": "jf-200"
+    },
+    "jf-200": {
+      "id": "jf-200",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东说，“你们今天怎么在店里……”“这是我们的饭店！",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s004"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s004",
+      "nextId": "jf-201"
+    },
+    "jf-201": {
+      "id": "jf-201",
+      "type": "line",
+      "text": {
+        "chinese": "我们来看看。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s005"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s005",
+      "nextId": "jf-202"
+    },
+    "jf-202": {
+      "id": "jf-202",
+      "type": "line",
+      "text": {
+        "chinese": "谢妈妈说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s006"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s006",
+      "nextId": "jf-203"
+    },
+    "jf-203": {
+      "id": "jf-203",
+      "type": "line",
+      "text": {
+        "chinese": "“文东，这是你女朋友吗？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s007"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s007",
+      "nextId": "jf-204"
+    },
+    "jf-204": {
+      "id": "jf-204",
+      "type": "line",
+      "text": {
+        "chinese": "文东不知道说什么。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s008"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s008",
+      "nextId": "jf-205"
+    },
+    "jf-205": {
+      "id": "jf-205",
+      "type": "line",
+      "text": {
+        "chinese": "“我叫周子心，是文东的朋友。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s009"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s009",
+      "nextId": "jf-206"
+    },
+    "jf-206": {
+      "id": "jf-206",
+      "type": "line",
+      "text": {
+        "chinese": "周子心说，“可是，我不是他女朋友。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s010"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s010",
+      "nextId": "jf-207"
+    },
+    "jf-207": {
+      "id": "jf-207",
+      "type": "line",
+      "text": {
+        "chinese": "“文东，你妈问你，你为什么不说话？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s011"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s011",
+      "nextId": "jf-208"
+    },
+    "jf-208": {
+      "id": "jf-208",
+      "type": "line",
+      "text": {
+        "chinese": "谢爸爸问。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s012"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s012",
+      "nextId": "jf-209"
+    },
+    "jf-209": {
+      "id": "jf-209",
+      "type": "line",
+      "text": {
+        "chinese": "“对……不是女朋友……”文东说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s013"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s013",
+      "nextId": "jf-210"
+    },
+    "jf-210": {
+      "id": "jf-210",
+      "type": "line",
+      "text": {
+        "chinese": "“文东，那你知不知道她有没有男朋友？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s014"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s014",
+      "nextId": "jf-211"
+    },
+    "jf-211": {
+      "id": "jf-211",
+      "type": "line",
+      "text": {
+        "chinese": "谢妈妈又问。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s015"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s015",
+      "nextId": "jf-212"
+    },
+    "jf-212": {
+      "id": "jf-212",
+      "type": "line",
+      "text": {
+        "chinese": "“妈，你第一次和她见面，问这么多？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s016"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s016",
+      "nextId": "jf-213"
+    },
+    "jf-213": {
+      "id": "jf-213",
+      "type": "line",
+      "text": {
+        "chinese": "文东有一点不开心。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s017"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s017",
+      "nextId": "jf-214"
+    },
+    "jf-214": {
+      "id": "jf-214",
+      "type": "line",
+      "text": {
+        "chinese": "“我问一下不行吗？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s018"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s018",
+      "nextId": "jf-215"
+    },
+    "jf-215": {
+      "id": "jf-215",
+      "type": "line",
+      "text": {
+        "chinese": "我很关心你。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s019"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s019",
+      "nextId": "jf-216"
+    },
+    "jf-216": {
+      "id": "jf-216",
+      "type": "line",
+      "text": {
+        "chinese": "谢妈妈没有生气。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s020"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s020",
+      "nextId": "jf-217"
+    },
+    "jf-217": {
+      "id": "jf-217",
+      "type": "line",
+      "text": {
+        "chinese": "“你过来也不跟我们说一下。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s021"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s021",
+      "nextId": "jf-218"
+    },
+    "jf-218": {
+      "id": "jf-218",
+      "type": "line",
+      "text": {
+        "chinese": "谢爸爸听起来有一点不开心，“你能不能多回来看看我们？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s022"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s022",
+      "nextId": "jf-219"
+    },
+    "jf-219": {
+      "id": "jf-219",
+      "type": "line",
+      "text": {
+        "chinese": "“爸，妈，我知道了……”文东说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s023"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s023",
+      "nextId": "jf-220"
+    },
+    "jf-220": {
+      "id": "jf-220",
+      "type": "line",
+      "text": {
+        "chinese": "“大朋不说，我们都不知道你今天过来了。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s024"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s024",
+      "nextId": "jf-221"
+    },
+    "jf-221": {
+      "id": "jf-221",
+      "type": "line",
+      "text": {
+        "chinese": "谢爸爸又说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s025"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s025",
+      "nextId": "jf-222"
+    },
+    "jf-222": {
+      "id": "jf-222",
+      "type": "line",
+      "text": {
+        "chinese": "“大朋？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s026"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s026",
+      "nextId": "jf-223"
+    },
+    "jf-223": {
+      "id": "jf-223",
+      "type": "line",
+      "text": {
+        "chinese": "大朋怎么会知道我过来了……”文东看了一下周子心。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s027"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s027",
+      "nextId": "jf-224"
+    },
+    "jf-224": {
+      "id": "jf-224",
+      "type": "line",
+      "text": {
+        "chinese": "“你在问我吗？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s028"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s028",
+      "nextId": "jf-225"
+    },
+    "jf-225": {
+      "id": "jf-225",
+      "type": "line",
+      "text": {
+        "chinese": "周子心说，“我一点也不知道，可是我跟我的两个朋友说了晚上要出去吃饭。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s029"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s029",
+      "nextId": "jf-226"
+    },
+    "jf-226": {
+      "id": "jf-226",
+      "type": "line",
+      "text": {
+        "chinese": "可能大朋问过她们……”文东看起来一点也不开心。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s030"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s030",
+      "nextId": "jf-227"
+    },
+    "jf-227": {
+      "id": "jf-227",
+      "type": "line",
+      "text": {
+        "chinese": "“大朋还在店里吧？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s031"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s031",
+      "nextId": "jf-228"
+    },
+    "jf-228": {
+      "id": "jf-228",
+      "type": "line",
+      "text": {
+        "chinese": "他问爸爸。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s032"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s032",
+      "nextId": "jf-229"
+    },
+    "jf-229": {
+      "id": "jf-229",
+      "type": "line",
+      "text": {
+        "chinese": "“还在，在那里。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s033"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s033",
+      "nextId": "jf-230"
+    },
+    "jf-230": {
+      "id": "jf-230",
+      "type": "line",
+      "text": {
+        "chinese": "“我有话要跟他说。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s034"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s034",
+      "nextId": "jf-231"
+    },
+    "jf-231": {
+      "id": "jf-231",
+      "type": "line",
+      "text": {
+        "chinese": "说完，谢文东走了过去。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s035"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s035",
+      "nextId": "jf-232"
+    },
+    "jf-232": {
+      "id": "jf-232",
+      "type": "line",
+      "text": {
+        "chinese": "“你们也吃。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s036"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s036",
+      "nextId": "jf-233"
+    },
+    "jf-233": {
+      "id": "jf-233",
+      "type": "line",
+      "text": {
+        "chinese": "周子心对谢爸爸谢妈妈笑了笑。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch09-s037"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch09-s037",
+      "nextId": "jf-234"
+    },
+    "jf-234": {
+      "id": "jf-234",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东走了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s001"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s001",
+      "nextId": "jf-235",
+      "scene": {
+        "backgroundId": "family-home",
+        "characters": [
+          {
+            "characterId": "wendong",
+            "personaId": "default",
+            "spriteId": "wendong-worried",
+            "position": "left"
+          },
+          {
+            "characterId": "zixin",
+            "personaId": "default",
+            "spriteId": "zixin-smile",
+            "position": "right"
+          }
+        ]
+      }
+    },
+    "jf-235": {
+      "id": "jf-235",
+      "type": "line",
+      "text": {
+        "chinese": "谢妈妈马上问周子心：“你这么好看，怎么没有男朋友？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s002"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s002",
+      "nextId": "jf-236"
+    },
+    "jf-236": {
+      "id": "jf-236",
+      "type": "line",
+      "text": {
+        "chinese": "“我有过男朋友，可是，我们不在一起了。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s003"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s003",
+      "nextId": "jf-237"
+    },
+    "jf-237": {
+      "id": "jf-237",
+      "type": "line",
+      "text": {
+        "chinese": "周子心说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s004"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s004",
+      "nextId": "jf-238"
+    },
+    "jf-238": {
+      "id": "jf-238",
+      "type": "line",
+      "text": {
+        "chinese": "谢妈妈问：“那你说说，你喜欢什么样的男生？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s005"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s005",
+      "nextId": "jf-239"
+    },
+    "jf-239": {
+      "id": "jf-239",
+      "type": "line",
+      "text": {
+        "chinese": "周子心笑了一下，不说话。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s006"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s006",
+      "nextId": "jf-240"
+    },
+    "jf-240": {
+      "id": "jf-240",
+      "type": "line",
+      "text": {
+        "chinese": "谢妈妈看她不说话，又问：“你看我儿子文东怎么样？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s007"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s007",
+      "nextId": "jf-241"
+    },
+    "jf-241": {
+      "id": "jf-241",
+      "type": "line",
+      "text": {
+        "chinese": "周子心笑了一下，对谢爸爸和谢妈妈说：“文东对他的朋友都很好。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s008"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s008",
+      "nextId": "jf-242"
+    },
+    "jf-242": {
+      "id": "jf-242",
+      "type": "line",
+      "text": {
+        "chinese": "可是他不是我喜欢的男生，不是你们想的那样。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s009"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s009",
+      "nextId": "jf-243"
+    },
+    "jf-243": {
+      "id": "jf-243",
+      "type": "line",
+      "text": {
+        "chinese": "“那钱大朋呢？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s010"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s010",
+      "nextId": "jf-244"
+    },
+    "jf-244": {
+      "id": "jf-244",
+      "type": "line",
+      "text": {
+        "chinese": "你喜不喜欢钱大朋呢？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s011"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s011",
+      "nextId": "jf-245"
+    },
+    "jf-245": {
+      "id": "jf-245",
+      "type": "line",
+      "text": {
+        "chinese": "谢妈妈笑了笑，又问。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s012"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s012",
+      "nextId": "jf-246"
+    },
+    "jf-246": {
+      "id": "jf-246",
+      "type": "line",
+      "text": {
+        "chinese": "“钱大朋？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s013"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s013",
+      "nextId": "jf-247"
+    },
+    "jf-247": {
+      "id": "jf-247",
+      "type": "line",
+      "text": {
+        "chinese": "周子心问。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s014"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s014",
+      "nextId": "jf-248"
+    },
+    "jf-248": {
+      "id": "jf-248",
+      "type": "line",
+      "text": {
+        "chinese": "谢妈妈笑了笑，没说什么。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s015"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s015",
+      "nextId": "jf-249"
+    },
+    "jf-249": {
+      "id": "jf-249",
+      "type": "line",
+      "text": {
+        "chinese": "她知道，自己的儿子喜欢这个女生。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s016"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s016",
+      "nextId": "jf-250"
+    },
+    "jf-250": {
+      "id": "jf-250",
+      "type": "line",
+      "text": {
+        "chinese": "可是钱大朋，她儿子的好朋友，也喜欢这个女生。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s017"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s017",
+      "nextId": "jf-251"
+    },
+    "jf-251": {
+      "id": "jf-251",
+      "type": "line",
+      "text": {
+        "chinese": "周子心看了一下谢妈妈，说：“钱大朋也是我的朋友。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s018"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s018",
+      "nextId": "jf-252"
+    },
+    "jf-252": {
+      "id": "jf-252",
+      "type": "line",
+      "text": {
+        "chinese": "可是，他也不是我喜欢的男生。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s019"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s019",
+      "nextId": "jf-253"
+    },
+    "jf-253": {
+      "id": "jf-253",
+      "type": "line",
+      "text": {
+        "chinese": "谢妈妈笑了：“那他们知道吗？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s020"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s020",
+      "nextId": "jf-254"
+    },
+    "jf-254": {
+      "id": "jf-254",
+      "type": "line",
+      "text": {
+        "chinese": "“我们没有说过，他们也没问过我。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s021"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s021",
+      "nextId": "jf-255"
+    },
+    "jf-255": {
+      "id": "jf-255",
+      "type": "line",
+      "text": {
+        "chinese": "周子心说得很小心。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s022"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s022",
+      "nextId": "jf-256"
+    },
+    "jf-256": {
+      "id": "jf-256",
+      "type": "line",
+      "text": {
+        "chinese": "谢妈妈笑了笑，没说什么。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch10-s023"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch10-s023",
+      "nextId": "jf-257"
+    },
+    "jf-257": {
+      "id": "jf-257",
+      "type": "line",
+      "text": {
+        "chinese": "“钱大朋！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s001"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s001",
+      "nextId": "jf-258",
+      "scene": {
+        "backgroundId": "campus-day",
+        "characters": [
+          {
+            "characterId": "dapeng",
+            "personaId": "default",
+            "spriteId": "dapeng-neutral",
+            "position": "left"
+          },
+          {
+            "characterId": "wendong",
+            "personaId": "default",
+            "spriteId": "wendong-neutral",
+            "position": "right"
+          }
+        ]
+      }
+    },
+    "jf-258": {
+      "id": "jf-258",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东很生气，“你跟我去外面，我有话要跟你说！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s002"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s002",
+      "nextId": "jf-259"
+    },
+    "jf-259": {
+      "id": "jf-259",
+      "type": "line",
+      "text": {
+        "chinese": "“你有话要说？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s003"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s003",
+      "nextId": "jf-260"
+    },
+    "jf-260": {
+      "id": "jf-260",
+      "type": "line",
+      "text": {
+        "chinese": "我也有话要说！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s004"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s004",
+      "nextId": "jf-261"
+    },
+    "jf-261": {
+      "id": "jf-261",
+      "type": "line",
+      "text": {
+        "chinese": "到了外面，钱大朋大叫。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s005"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s005",
+      "nextId": "jf-262"
+    },
+    "jf-262": {
+      "id": "jf-262",
+      "type": "line",
+      "text": {
+        "chinese": "“我问你，你跟我爸妈说了什么？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s006"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s006",
+      "nextId": "jf-263"
+    },
+    "jf-263": {
+      "id": "jf-263",
+      "type": "line",
+      "text": {
+        "chinese": "“我说了你做的。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s007"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s007",
+      "nextId": "jf-264"
+    },
+    "jf-264": {
+      "id": "jf-264",
+      "type": "line",
+      "text": {
+        "chinese": "大朋说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s008"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s008",
+      "nextId": "jf-265"
+    },
+    "jf-265": {
+      "id": "jf-265",
+      "type": "line",
+      "text": {
+        "chinese": "“我什么也没做！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s009"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s009",
+      "nextId": "jf-266"
+    },
+    "jf-266": {
+      "id": "jf-266",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东大叫，“我跟周子心是朋友！",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s010"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s010",
+      "nextId": "jf-267"
+    },
+    "jf-267": {
+      "id": "jf-267",
+      "type": "line",
+      "text": {
+        "chinese": "朋友！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s011"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s011",
+      "nextId": "jf-268"
+    },
+    "jf-268": {
+      "id": "jf-268",
+      "type": "line",
+      "text": {
+        "chinese": "“那你为什么要带她来饭店吃饭？！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s012"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s012",
+      "nextId": "jf-269"
+    },
+    "jf-269": {
+      "id": "jf-269",
+      "type": "line",
+      "text": {
+        "chinese": "“我和周子心是朋友，你知道吗？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s013"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s013",
+      "nextId": "jf-270"
+    },
+    "jf-270": {
+      "id": "jf-270",
+      "type": "line",
+      "text": {
+        "chinese": "我和她一起吃个饭，那又怎么样？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s014"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s014",
+      "nextId": "jf-271"
+    },
+    "jf-271": {
+      "id": "jf-271",
+      "type": "line",
+      "text": {
+        "chinese": "文东大叫。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s015"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s015",
+      "nextId": "jf-272"
+    },
+    "jf-272": {
+      "id": "jf-272",
+      "type": "line",
+      "text": {
+        "chinese": "“朋友？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s016"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s016",
+      "nextId": "jf-273"
+    },
+    "jf-273": {
+      "id": "jf-273",
+      "type": "line",
+      "text": {
+        "chinese": "今天是朋友，明天是什么？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s017"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s017",
+      "nextId": "jf-274"
+    },
+    "jf-274": {
+      "id": "jf-274",
+      "type": "line",
+      "text": {
+        "chinese": "大朋还是很生气，“女朋友！",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s018"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s018",
+      "nextId": "jf-275"
+    },
+    "jf-275": {
+      "id": "jf-275",
+      "type": "line",
+      "text": {
+        "chinese": "我什么都不知道吗？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s019"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s019",
+      "nextId": "jf-276"
+    },
+    "jf-276": {
+      "id": "jf-276",
+      "type": "line",
+      "text": {
+        "chinese": "我们是朋友吗？！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s020"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s020",
+      "nextId": "jf-277"
+    },
+    "jf-277": {
+      "id": "jf-277",
+      "type": "line",
+      "text": {
+        "chinese": "“你那天还带她去书店和小吃店了！",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s021"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s021",
+      "nextId": "jf-278"
+    },
+    "jf-278": {
+      "id": "jf-278",
+      "type": "line",
+      "text": {
+        "chinese": "要是我没看到你们，过几天她可能是你女朋友了吧？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s022"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s022",
+      "nextId": "jf-279"
+    },
+    "jf-279": {
+      "id": "jf-279",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s023"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s023",
+      "nextId": "jf-280"
+    },
+    "jf-280": {
+      "id": "jf-280",
+      "type": "line",
+      "text": {
+        "chinese": "“我们看书，没什么！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s024"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s024",
+      "nextId": "jf-281"
+    },
+    "jf-281": {
+      "id": "jf-281",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s025"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s025",
+      "nextId": "jf-282"
+    },
+    "jf-282": {
+      "id": "jf-282",
+      "type": "line",
+      "text": {
+        "chinese": "“那我们吃饭，也没什么！”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s026"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s026",
+      "nextId": "jf-283"
+    },
+    "jf-283": {
+      "id": "jf-283",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s027"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s027",
+      "nextId": "jf-284"
+    },
+    "jf-284": {
+      "id": "jf-284",
+      "type": "line",
+      "text": {
+        "chinese": "两个人都很生气，也都不说话了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s028"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s028",
+      "nextId": "jf-285"
+    },
+    "jf-285": {
+      "id": "jf-285",
+      "type": "line",
+      "text": {
+        "chinese": "过了一会儿，谢文东问大朋：“我们是朋友吗？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s029"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s029",
+      "nextId": "jf-286"
+    },
+    "jf-286": {
+      "id": "jf-286",
+      "type": "line",
+      "text": {
+        "chinese": "大朋看了看谢文东，说：“文东，我们都喜欢这个女生。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s030"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s030",
+      "nextId": "jf-287"
+    },
+    "jf-287": {
+      "id": "jf-287",
+      "type": "line",
+      "text": {
+        "chinese": "可是，我们是那么好的朋友……”大朋不说了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s031"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s031",
+      "nextId": "jf-288"
+    },
+    "jf-288": {
+      "id": "jf-288",
+      "type": "line",
+      "text": {
+        "chinese": "“我喜欢她，可是，我做得一点也不对。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s032"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s032",
+      "nextId": "jf-289"
+    },
+    "jf-289": {
+      "id": "jf-289",
+      "type": "line",
+      "text": {
+        "chinese": "文东看看大朋，说：“我也要你这个朋友。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s033"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s033",
+      "nextId": "jf-290"
+    },
+    "jf-290": {
+      "id": "jf-290",
+      "type": "line",
+      "text": {
+        "chinese": "“这也是我要说的。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s034"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s034",
+      "nextId": "jf-291"
+    },
+    "jf-291": {
+      "id": "jf-291",
+      "type": "line",
+      "text": {
+        "chinese": "两个人都笑了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch11-s035"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch11-s035",
+      "nextId": "jf-292"
+    },
+    "jf-292": {
+      "id": "jf-292",
+      "type": "line",
+      "text": {
+        "chinese": "星期天，谢文东回家吃饭，谢妈妈问：“儿子，你跟大朋还好吧？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s001"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s001",
+      "nextId": "jf-293",
+      "scene": {
+        "backgroundId": "family-home",
+        "characters": [
+          {
+            "characterId": "dapeng",
+            "personaId": "default",
+            "spriteId": "dapeng-neutral",
+            "position": "left"
+          },
+          {
+            "characterId": "wendong",
+            "personaId": "default",
+            "spriteId": "wendong-neutral",
+            "position": "right"
+          }
+        ]
+      }
+    },
+    "jf-293": {
+      "id": "jf-293",
+      "type": "line",
+      "text": {
+        "chinese": "那天看你们两个一点也不开心。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s002"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s002",
+      "nextId": "jf-294"
+    },
+    "jf-294": {
+      "id": "jf-294",
+      "type": "line",
+      "text": {
+        "chinese": "“没什么。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s003"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s003",
+      "nextId": "jf-295"
+    },
+    "jf-295": {
+      "id": "jf-295",
+      "type": "line",
+      "text": {
+        "chinese": "都好了。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s004"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s004",
+      "nextId": "jf-296"
+    },
+    "jf-296": {
+      "id": "jf-296",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东笑了一下。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s005"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s005",
+      "nextId": "jf-297"
+    },
+    "jf-297": {
+      "id": "jf-297",
+      "type": "line",
+      "text": {
+        "chinese": "“对了，那天你和周子心都说什么了？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s006"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s006",
+      "nextId": "jf-298"
+    },
+    "jf-298": {
+      "id": "jf-298",
+      "type": "line",
+      "text": {
+        "chinese": "“你想听吗？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s007"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s007",
+      "nextId": "jf-299"
+    },
+    "jf-299": {
+      "id": "jf-299",
+      "type": "line",
+      "text": {
+        "chinese": "那你不要生气。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s008"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s008",
+      "nextId": "jf-300"
+    },
+    "jf-300": {
+      "id": "jf-300",
+      "type": "line",
+      "text": {
+        "chinese": "谢妈妈笑了一下，说：“那天她说，你不是她喜欢的男生。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s009"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s009",
+      "nextId": "jf-301"
+    },
+    "jf-301": {
+      "id": "jf-301",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东听了，看了看妈妈。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s010"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s010",
+      "nextId": "jf-302"
+    },
+    "jf-302": {
+      "id": "jf-302",
+      "type": "line",
+      "text": {
+        "chinese": "谢妈妈笑了笑说：“儿子，周子心说她也不喜欢大朋。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s011"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s011",
+      "nextId": "jf-303"
+    },
+    "jf-303": {
+      "id": "jf-303",
+      "type": "line",
+      "text": {
+        "chinese": "“我不生气。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s012"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s012",
+      "nextId": "jf-304"
+    },
+    "jf-304": {
+      "id": "jf-304",
+      "type": "line",
+      "text": {
+        "chinese": "文东笑了笑说，“我昨天看到她跟一个男生走在一起，两个人笑得很开心。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s013"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s013",
+      "nextId": "jf-305"
+    },
+    "jf-305": {
+      "id": "jf-305",
+      "type": "line",
+      "text": {
+        "chinese": "过了几天，钱大朋对谢文东说：“周子心的男朋友，你知道是谁吗？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s014"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s014",
+      "nextId": "jf-306"
+    },
+    "jf-306": {
+      "id": "jf-306",
+      "type": "line",
+      "text": {
+        "chinese": "他们很长时间都没有说过周子心的名字了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s015"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s015",
+      "nextId": "jf-307"
+    },
+    "jf-307": {
+      "id": "jf-307",
+      "type": "line",
+      "text": {
+        "chinese": "“他也是我们中山大学的大学生。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s016"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s016",
+      "nextId": "jf-308"
+    },
+    "jf-308": {
+      "id": "jf-308",
+      "type": "line",
+      "text": {
+        "chinese": "老师们都很喜欢他。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s017"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s017",
+      "nextId": "jf-309"
+    },
+    "jf-309": {
+      "id": "jf-309",
+      "type": "line",
+      "text": {
+        "chinese": "听说，他下个月要出国了。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s018"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s018",
+      "nextId": "jf-310"
+    },
+    "jf-310": {
+      "id": "jf-310",
+      "type": "line",
+      "text": {
+        "chinese": "文东说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s019"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s019",
+      "nextId": "jf-311"
+    },
+    "jf-311": {
+      "id": "jf-311",
+      "type": "line",
+      "text": {
+        "chinese": "“不会吧？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s020"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s020",
+      "nextId": "jf-312"
+    },
+    "jf-312": {
+      "id": "jf-312",
+      "type": "line",
+      "text": {
+        "chinese": "那周子心呢？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s021"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s021",
+      "nextId": "jf-313"
+    },
+    "jf-313": {
+      "id": "jf-313",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋问。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s022"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s022",
+      "nextId": "jf-314"
+    },
+    "jf-314": {
+      "id": "jf-314",
+      "type": "line",
+      "text": {
+        "chinese": "“不知道，可能也一起去吧。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s023"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s023",
+      "nextId": "jf-315"
+    },
+    "jf-315": {
+      "id": "jf-315",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s024"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s024",
+      "nextId": "jf-316"
+    },
+    "jf-316": {
+      "id": "jf-316",
+      "type": "line",
+      "text": {
+        "chinese": "“你……是不是还喜欢她？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s025"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s025",
+      "nextId": "jf-317"
+    },
+    "jf-317": {
+      "id": "jf-317",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东问。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s026"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s026",
+      "nextId": "jf-318"
+    },
+    "jf-318": {
+      "id": "jf-318",
+      "type": "line",
+      "text": {
+        "chinese": "“我不喜欢周子心了，我有喜欢的女生了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s027"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s027",
+      "nextId": "jf-319"
+    },
+    "jf-319": {
+      "id": "jf-319",
+      "type": "line",
+      "text": {
+        "chinese": "你呢？",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s028"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s028",
+      "nextId": "jf-320"
+    },
+    "jf-320": {
+      "id": "jf-320",
+      "type": "line",
+      "text": {
+        "chinese": "你问这个，你是不是还喜欢周子心？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s029"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s029",
+      "nextId": "jf-321"
+    },
+    "jf-321": {
+      "id": "jf-321",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋笑了笑，和文东说。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s030"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s030",
+      "nextId": "jf-322"
+    },
+    "jf-322": {
+      "id": "jf-322",
+      "type": "line",
+      "text": {
+        "chinese": "“我也有喜欢的女生了。”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s031"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s031",
+      "nextId": "jf-323"
+    },
+    "jf-323": {
+      "id": "jf-323",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东也笑了。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s032"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s032",
+      "nextId": "jf-324"
+    },
+    "jf-324": {
+      "id": "jf-324",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东又说：“那个女生做的小吃很好吃，你也吃过。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s033"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s033",
+      "nextId": "jf-325"
+    },
+    "jf-325": {
+      "id": "jf-325",
+      "type": "line",
+      "text": {
+        "chinese": "她也喜欢……”钱大朋一下子想到了什么：“你说的那个女生是……上次我们和朋友一起吃饭的时候……？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s034"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s034",
+      "nextId": "jf-326"
+    },
+    "jf-326": {
+      "id": "jf-326",
+      "type": "line",
+      "text": {
+        "chinese": "“那个朋友的女朋友的朋友？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s035"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s035",
+      "nextId": "jf-327"
+    },
+    "jf-327": {
+      "id": "jf-327",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东不笑了，“你也喜欢？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s036"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s036",
+      "nextId": "jf-328"
+    },
+    "jf-328": {
+      "id": "jf-328",
+      "type": "line",
+      "text": {
+        "chinese": "钱大朋看了看谢文东，谢文东看了看钱大朋。",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s037"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s037",
+      "nextId": "jf-329"
+    },
+    "jf-329": {
+      "id": "jf-329",
+      "type": "line",
+      "text": {
+        "chinese": "谢文东说：“大朋，我们是不是好朋友？”",
+        "english": "",
+        "readerSentenceId": "just-friends-ch12-s038"
+      },
+      "audioClipId": "reader-sentence:just-friends-ch12-s038",
+      "nextId": "jf-result"
+    },
+    "jf-result": {
+      "id": "jf-result",
+      "type": "questResult",
+      "questId": "just-friends-story",
+      "outcomeId": "finished",
+      "completed": true,
+      "resultId": "just-friends-finished",
+      "summary": {
+        "chinese": "故事读完了。钱大朋和谢文东终于说出了真正想说的话。",
+        "english": "Story complete. Qian Dapeng and Xie Wendong finally said what they truly meant."
+      },
+      "worldEffects": [
+        {
+          "id": "finished-story",
+          "op": "setFlag",
+          "key": "just-friends-finished",
+          "value": true
+        }
+      ],
+      "returnLocationId": "campus"
+    }
+  }
+}

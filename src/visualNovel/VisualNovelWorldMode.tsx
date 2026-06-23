@@ -78,6 +78,7 @@ interface VisualNovelWorldModeProps {
   onEditWord: (word: VocabWord) => void
   onWordsChanged: () => void | Promise<void>
   onReturnToReader: () => void
+  initialWorldId?: string
 }
 
 export function VisualNovelWorldMode({
@@ -90,6 +91,7 @@ export function VisualNovelWorldMode({
   onEditWord,
   onWordsChanged,
   onReturnToReader,
+  initialWorldId,
 }: VisualNovelWorldModeProps) {
   const [worldIndex, setWorldIndex] = useState<VnWorldIndexEntry[]>([])
   const [selectedWorldId, setSelectedWorldId] = useState<string | undefined>()
@@ -145,7 +147,11 @@ export function VisualNovelWorldMode({
         const nextIndex = await loadVisualNovelWorldIndex()
         if (cancelled) return
         setWorldIndex(nextIndex)
-        setSelectedWorldId(nextIndex[0]?.id)
+        setSelectedWorldId(
+          initialWorldId && nextIndex.some((entry) => entry.id === initialWorldId)
+            ? initialWorldId
+            : nextIndex[0]?.id,
+        )
         setLoadState(nextIndex.length > 0 ? 'loading' : 'empty')
         setLoadingStep(nextIndex.length > 0 ? 'Loading selected world...' : 'No worlds found.')
       } catch (error) {
@@ -159,7 +165,7 @@ export function VisualNovelWorldMode({
     return () => {
       cancelled = true
     }
-  }, [reloadKey])
+  }, [initialWorldId, reloadKey])
 
   useEffect(() => {
     if (!selectedWorldId) return

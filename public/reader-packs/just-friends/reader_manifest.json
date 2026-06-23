@@ -18,7 +18,9 @@
       "chapterEnd": 12,
       "storyCount": 12,
       "sentenceCount": 329,
-      "path": "books/just-friends.json"
+      "path": "books/just-friends.json",
+      "coverImage": "images/covers/just-friends.webp",
+      "visualNovelWorldId": "just-friends"
     }
   ]
 }

@@ -253,6 +253,7 @@ const FLASHCARD_REVERSE_RATE = 0.1
 
 function App() {
   const [screen, setScreen] = useState<Screen>('dashboard')
+  const [initialVisualNovelWorldId, setInitialVisualNovelWorldId] = useState<string | undefined>()
   const [words, setWords] = useState<VocabWord[]>([])
   const [sentences, setSentences] = useState<Sentence[]>([])
   const [audioClips, setAudioClips] = useState<AudioClip[]>([])
@@ -2939,7 +2940,8 @@ function App() {
           hotkeys={hotkeys}
           onEditWord={openCardEditor}
           onWordsChanged={refresh}
-          onReturnToReader={() => setScreen('comicReader')}
+          onReturnToReader={() => setScreen('readingTexts')}
+          initialWorldId={initialVisualNovelWorldId}
         />
       )}
 
@@ -2967,7 +2969,10 @@ function App() {
             setScreen('reader')
           }}
           onOpenComics={() => setScreen('comicReader')}
-          onOpenVisualNovel={() => setScreen('visualNovel')}
+          onOpenVisualNovel={(book) => {
+            setInitialVisualNovelWorldId(book?.visualNovelWorldId)
+            setScreen('visualNovel')
+          }}
         />
       )}
 
@@ -4201,6 +4206,11 @@ function dashboardPreviousRangeLabel(range: DashboardRange): string {
   return ''
 }
 
+function readerBookAssetUrl(book: ReaderBook, path: string): string {
+  const base = import.meta.env.BASE_URL || '/'
+  return `${base.replace(/\/$/u, '')}/reader-packs/${book.packId}/${path.replace(/^\//u, '')}`
+}
+
 function ReadingTextsLibrary({
   readerBooks,
   comprehensionByBook,
@@ -4218,7 +4228,7 @@ function ReadingTextsLibrary({
   onChooseBook: (book: ReaderBook, action?: 'resume' | 'start') => void | Promise<void>
   onBrowseNovels: () => void
   onOpenComics: () => void
-  onOpenVisualNovel: () => void
+  onOpenVisualNovel: (book?: ReaderBook) => void
 }) {
   return (
     <section className="screen reading-texts-screen">
@@ -4287,7 +4297,10 @@ function ReadingTextsLibrary({
                 const progress = isResumeBook ? resumeLocation.percent : 0
                 return (
                   <article className="reading-library-book" key={book.id}>
-                    <div className={`reading-book-cover reading-book-cover-${index % 4}`} aria-hidden="true">
+                    <div className={`reading-book-cover reading-book-cover-${index % 4}`}>
+                      {book.coverImage ? (
+                        <img src={readerBookAssetUrl(book, book.coverImage)} alt="" />
+                      ) : null}
                       <span>{book.title}</span>
                     </div>
                     <div className="reading-book-copy">
@@ -4318,6 +4331,15 @@ function ReadingTextsLibrary({
                         <button type="button" onClick={() => void onChooseBook(book, 'start')}>
                           Start
                         </button>
+                        {book.visualNovelWorldId ? (
+                          <button
+                            type="button"
+                            className="reading-scene-action"
+                            onClick={() => onOpenVisualNovel(book)}
+                          >
+                            Scene mode
+                          </button>
+                        ) : null}
                       </div>
                     </div>
                   </article>
@@ -4357,7 +4379,7 @@ function ReadingTextsLibrary({
             </span>
             <span className="reading-format-arrow" aria-hidden="true">→</span>
           </button>
-          <button type="button" className="reading-format reading-format-novel" onClick={onOpenVisualNovel}>
+          <button type="button" className="reading-format reading-format-novel" onClick={() => onOpenVisualNovel()}>
             <span className="reading-format-icon" aria-hidden="true">剧</span>
             <span>
               <strong>Visual Novel</strong>

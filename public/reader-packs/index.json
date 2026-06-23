@@ -26,5 +26,19 @@
     "description": "Mandarin Companion Breakthrough Level — Just Friends? (我们是朋友吗？).",
     "baseUrl": "reader-packs/just-friends",
     "language": "zh-CN"
+  },
+  {
+    "id": "can-i-dance",
+    "name": "Can I Dance With You?",
+    "description": "Chinese Breeze Level 1 graded reader.",
+    "baseUrl": "reader-packs/can-i-dance",
+    "language": "zh-CN"
+  },
+  {
+    "id": "john-gospel",
+    "name": "Gospel of John",
+    "description": "Simplified Chinese text with English translations.",
+    "baseUrl": "reader-packs/john-gospel",
+    "language": "zh-CN"
   }
 ]

@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026-06-23-just-friends-pilot-v1",
+  "backgrounds": {
+    "campus-day": {
+      "id": "campus-day",
+      "src": "reader-packs/just-friends/visual-novels/worlds/just-friends/assets/backgrounds/campus-day.webp",
+      "width": 1280,
+      "height": 720,
+      "alt": "campus day"
+    },
+    "bookstore-evening": {
+      "id": "bookstore-evening",
+      "src": "reader-packs/just-friends/visual-novels/worlds/just-friends/assets/backgrounds/bookstore-evening.webp",
+      "width": 1280,
+      "height": 720,
+      "alt": "bookstore evening"
+    },
+    "snack-shop-night": {
+      "id": "snack-shop-night",
+      "src": "reader-packs/just-friends/visual-novels/worlds/just-friends/assets/backgrounds/snack-shop-night.webp",
+      "width": 1280,
+      "height": 720,
+      "alt": "snack shop night"
+    },
+    "restaurant-night": {
+      "id": "restaurant-night",
+      "src": "reader-packs/just-friends/visual-novels/worlds/just-friends/assets/backgrounds/restaurant-night.webp",
+      "width": 1280,
+      "height": 720,
+      "alt": "restaurant night"
+    },
+    "family-home": {
+      "id": "family-home",
+      "src": "reader-packs/just-friends/visual-novels/worlds/just-friends/assets/backgrounds/family-home.webp",
+      "width": 1280,
+      "height": 720,
+      "alt": "family home"
+    }
+  },
+  "sprites": {
+    "dapeng-neutral": {
+      "id": "dapeng-neutral",
+      "characterId": "dapeng",
+      "personaId": "default",
+      "outfitId": "campus",
+      "poseId": "standing",
+      "expressionId": "neutral",
+      "src": "reader-packs/just-friends/visual-novels/worlds/just-friends/assets/characters/dapeng-neutral.webp",
+      "width": 768,
+      "height": 1024,
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "defaultScale": 0.78,
+      "mobileScale": 0.68,
+      "alt": "dapeng neutral"
+    },
+    "dapeng-angry": {
+      "id": "dapeng-angry",
+      "characterId": "dapeng",
+      "personaId": "default",
+      "outfitId": "campus",
+      "poseId": "standing",
+      "expressionId": "angry",
+      "src": "reader-packs/just-friends/visual-novels/worlds/just-friends/assets/characters/dapeng-angry.webp",
+      "width": 768,
+      "height": 1024,
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "defaultScale": 0.78,
+      "mobileScale": 0.68,
+      "alt": "dapeng angry"
+    },
+    "wendong-neutral": {
+      "id": "wendong-neutral",
+      "characterId": "wendong",
+      "personaId": "default",
+      "outfitId": "campus",
+      "poseId": "standing",
+      "expressionId": "neutral",
+      "src": "reader-packs/just-friends/visual-novels/worlds/just-friends/assets/characters/wendong-neutral.webp",
+      "width": 768,
+      "height": 1024,
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "defaultScale": 0.78,
+      "mobileScale": 0.68,
+      "alt": "wendong neutral"
+    },
+    "wendong-worried": {
+      "id": "wendong-worried",
+      "characterId": "wendong",
+      "personaId": "default",
+      "outfitId": "campus",
+      "poseId": "standing",
+      "expressionId": "worried",
+      "src": "reader-packs/just-friends/visual-novels/worlds/just-friends/assets/characters/wendong-worried.webp",
+      "width": 768,
+      "height": 1024,
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "defaultScale": 0.78,
+      "mobileScale": 0.68,
+      "alt": "wendong worried"
+    },
+    "zixin-neutral": {
+      "id": "zixin-neutral",
+      "characterId": "zixin",
+      "personaId": "default",
+      "outfitId": "campus",
+      "poseId": "standing",
+      "expressionId": "neutral",
+      "src": "reader-packs/just-friends/visual-novels/worlds/just-friends/assets/characters/zixin-neutral.webp",
+      "width": 768,
+      "height": 1024,
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "defaultScale": 0.78,
+      "mobileScale": 0.68,
+      "alt": "zixin neutral"
+    },
+    "zixin-smile": {
+      "id": "zixin-smile",
+      "characterId": "zixin",
+      "personaId": "default",
+      "outfitId": "campus",
+      "poseId": "standing",
+      "expressionId": "smile",
+      "src": "reader-packs/just-friends/visual-novels/worlds/just-friends/assets/characters/zixin-smile.webp",
+      "width": 768,
+      "height": 1024,
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "defaultScale": 0.78,
+      "mobileScale": 0.68,
+      "alt": "zixin smile"
+    }
+  },
+  "cinematics": {},
+  "fallbackBackgroundId": "campus-day"
+}

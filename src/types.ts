@@ -141,6 +141,8 @@ export interface ReaderBookSummary {
   storyCount: number
   sentenceCount: number
   path: string
+  coverImage?: string
+  visualNovelWorldId?: string
 }
 
 export interface ReaderBook {
@@ -151,6 +153,8 @@ export interface ReaderBook {
   chapterStart: number
   chapterEnd: number
   path?: string
+  coverImage?: string
+  visualNovelWorldId?: string
   illustrations?: ReaderIllustration[]
   stories: ReaderStory[]
 }

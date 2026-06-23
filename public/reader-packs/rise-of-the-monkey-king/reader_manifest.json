@@ -18,7 +18,8 @@
       "chapterEnd": 1,
       "storyCount": 1,
       "sentenceCount": 129,
-      "path": "books/rise-of-the-monkey-king.json"
+      "path": "books/rise-of-the-monkey-king.json",
+      "coverImage": "images/covers/rise-of-the-monkey-king.webp"
     }
   ]
 }

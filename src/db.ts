@@ -85,7 +85,7 @@ const DB_NAME = 'chunky-chinese-vocab'
 const DB_VERSION = 10
 const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
-const READER_PACK_FIX_VERSION = '2026-06-22-just-friends-reader'
+const READER_PACK_FIX_VERSION = '2026-06-23-reader-covers-and-hidden-packs'
 
 export interface SyncMetadata {
   userId?: string
@@ -658,6 +658,20 @@ export async function getHostedReaderPackIndex(): Promise<HostedReaderPack[]> {
         name: 'Just Friends?',
         description: 'Mandarin Companion Breakthrough Level - Just Friends? (我们是朋友吗？).',
         baseUrl: `${import.meta.env.BASE_URL}reader-packs/just-friends`,
+        language: 'zh-CN',
+      },
+      {
+        id: 'can-i-dance',
+        name: 'Can I Dance With You?',
+        description: 'Chinese Breeze Level 1 graded reader.',
+        baseUrl: `${import.meta.env.BASE_URL}reader-packs/can-i-dance`,
+        language: 'zh-CN',
+      },
+      {
+        id: 'john-gospel',
+        name: 'Gospel of John',
+        description: 'Simplified Chinese text with English translations.',
+        baseUrl: `${import.meta.env.BASE_URL}reader-packs/john-gospel`,
         language: 'zh-CN',
       },
     ]
@@ -1729,6 +1743,8 @@ export async function importHostedReaderPack(
       id: book.id,
       packId,
       path: summary.path,
+      coverImage: book.coverImage ?? summary.coverImage,
+      visualNovelWorldId: book.visualNovelWorldId ?? summary.visualNovelWorldId,
     })
   }
 
