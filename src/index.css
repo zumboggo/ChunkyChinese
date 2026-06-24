@@ -2541,7 +2541,43 @@ dt {
   to { opacity: 0; transform: translateY(110%)  rotate(4deg); }
 }
 
+/* ── Card stack (peek effect) ── */
+.sentence-card-stack {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  padding-bottom: 14px;
+}
+
+.sentence-card-peek {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  height: 56px;
+  border-radius: 20px;
+  background: var(--card-bg, #fff);
+  border: 1.5px solid rgba(100, 116, 139, 0.10);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Streak badge ── */
+.sentence-streak-badge {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #f97316;
+  text-shadow: 0 2px 8px rgba(249, 115, 22, 0.35);
+  animation: sentenceCardEnter 0.3s ease both;
+}
+
+/* ── Main card ── */
 .sentence-card {
+  position: relative;
+  z-index: 1;
   display: grid;
   gap: 20px;
   text-align: center;
@@ -2553,7 +2589,6 @@ dt {
     0 4px 16px rgba(0, 0, 0, 0.07),
     0 1px 4px rgba(0, 0, 0, 0.05);
   width: 100%;
-  max-width: 480px;
   will-change: transform, opacity;
   animation: sentenceCardEnter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -2576,7 +2611,37 @@ dt {
   font-size: clamp(2.6rem, 8vw, 5.5rem);
   font-weight: 900;
   line-height: 1.15;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: opacity 0.15s ease;
 }
+
+.sentence-chinese:hover { opacity: 0.8; }
+
+.sentence-pinyin {
+  color: var(--muted-navy);
+  font-size: clamp(0.9rem, 2.2vw, 1.25rem);
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  animation: sentenceCardEnter 0.2s ease both;
+}
+
+.sentence-pinyin-hint {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  opacity: 0.55;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  width: fit-content;
+  margin: 0 auto;
+  transition: opacity 0.15s ease;
+}
+
+.sentence-pinyin-hint:hover { opacity: 0.85; }
 
 .sentence-dots {
   display: flex;

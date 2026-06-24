@@ -70,6 +70,7 @@ import {
   DEFAULT_USER_SETTINGS,
 } from './db'
 import { createLesson, createPocketLesson, selectTargetWords, selectSentenceLessonSet, buildSentenceRoundOrder, type PauseProfile, type SentenceLessonItem } from './lesson'
+import { pinyin as getPinyin } from 'pinyin-pro'
 import { renderLessonToWav } from './renderAudio'
 import {
   fsrsDueTime,
@@ -372,6 +373,8 @@ function App() {
   const [sentenceSwipeDir, setSentenceSwipeDir] = useState<string | null>(null)
   const [sentenceDismissDir, setSentenceDismissDir] = useState<string | null>(null)
   const [sentenceAnimKey, setSentenceAnimKey] = useState(0)
+  const [sentenceStreak, setSentenceStreak] = useState(0)
+  const [sentencePinyinVisible, setSentencePinyinVisible] = useState(false)
   const dashboardToastReadyRef = useRef(false)
 
   const stopAudioOutputs = useCallback(() => {
@@ -929,6 +932,8 @@ function App() {
     setSentenceSetComplete(false)
     setSentenceSetStartMs(Date.now())
     setSentenceRatings(new Map())
+    setSentenceStreak(0)
+    setSentencePinyinVisible(false)
     setStudyMode('sentenceMode')
     setMinimalVisualMode(true)
     setAutoNextLesson(false)
@@ -966,12 +971,19 @@ function App() {
     left: 'again', up: 'hard', right: 'good', down: 'easy',
   }
 
+  const SENTENCE_GLOW_COLORS: Record<string, string> = {
+    left: '#f87171', up: '#fb923c', right: '#4ade80', down: '#60a5fa',
+  }
+
   const handleSentenceTouchStart = useCallback((e: React.TouchEvent) => {
     if (sentenceDismissDir) return
     const t = e.touches[0]
     sentenceTouchStartRef.current = { x: t.clientX, y: t.clientY }
     setSentenceSwipeDir(null)
-    if (sentenceCardRef.current) sentenceCardRef.current.style.transition = 'none'
+    if (sentenceCardRef.current) {
+      sentenceCardRef.current.style.transition = 'none'
+      sentenceCardRef.current.style.boxShadow = ''
+    }
   }, [sentenceDismissDir])
 
   const handleSentenceTouchMove = useCallback((e: React.TouchEvent) => {
@@ -984,7 +996,10 @@ function App() {
 
     if (absDx < SENTENCE_SWIPE_THRESHOLD && absDy < SENTENCE_SWIPE_THRESHOLD) {
       setSentenceSwipeDir(null)
-      if (sentenceCardRef.current) sentenceCardRef.current.style.transform = ''
+      if (sentenceCardRef.current) {
+        sentenceCardRef.current.style.transform = ''
+        sentenceCardRef.current.style.boxShadow = ''
+      }
       return
     }
 
@@ -1000,6 +1015,19 @@ function App() {
         sentenceCardRef.current.style.transform = `translateY(${dy * 0.35}px) rotate(${dx * 0.02}deg)`
       }
     }
+
+    // Edge glow: intensity grows with drag distance past the threshold
+    if (sentenceCardRef.current) {
+      const dist = Math.max(absDx, absDy)
+      const intensity = Math.min(1, (dist - SENTENCE_SWIPE_THRESHOLD) / 100)
+      const color = SENTENCE_GLOW_COLORS[dir]
+      sentenceCardRef.current.style.boxShadow = [
+        '0 4px 16px rgba(0,0,0,0.07)',
+        `0 0 0 2px ${color}`,
+        `0 0 ${Math.round(24 * intensity)}px ${Math.round(8 * intensity)}px ${color}66`,
+      ].join(', ')
+    }
+
     setSentenceSwipeDir(dir)
   }, [sentenceDismissDir])
 
@@ -1008,6 +1036,7 @@ function App() {
     if (sentenceCardRef.current) {
       sentenceCardRef.current.style.transition = ''
       sentenceCardRef.current.style.transform = ''
+      sentenceCardRef.current.style.boxShadow = ''
     }
 
     if (!sentenceSwipeDir || sentenceDismissDir) {
@@ -1024,7 +1053,14 @@ function App() {
     const currentWord = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.word
     if (currentWord) setSentenceRatings(prev => new Map(prev).set(currentWord, rating))
 
-    // Cancel running audio sequence then animate card away
+    // Streak counter
+    const isGood = rating === 'good' || rating === 'easy'
+    setSentenceStreak(prev => isGood ? prev + 1 : 0)
+
+    // Haptic pulse
+    navigator.vibrate?.(30)
+
+    // Cancel running audio then fly the card away
     runToken.current += 1
     window.speechSynthesis?.cancel()
 
@@ -1033,6 +1069,7 @@ function App() {
       setSentenceDismissDir(null)
       setSentenceAnimKey(prev => prev + 1)
       setSentenceRoundIndex(prev => prev + 1)
+      setSentencePinyinVisible(false)
     }, 300)
   }, [sentenceSwipeDir, sentenceDismissDir, sentenceQueue, sentenceRoundOrder, sentenceRoundIndex])
 
@@ -3940,25 +3977,47 @@ function App() {
                             <span style={{ width: `${(sentenceRoundIndex / (sentenceQueue.length * 25)) * 100}%` }} />
                           </div>
                         </div>
-                        {sentenceQueue.length > 0 && sentenceRoundOrder.length > 0 && (
-                          <div
-                            key={sentenceAnimKey}
-                            ref={sentenceCardRef}
-                            className={`sentence-card${sentenceDismissDir ? ` sentence-dismiss-${sentenceDismissDir}` : ''}`}
-                          >
-                            <div className="sentence-english">
-                              {sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.english}
-                            </div>
-                            <div className="sentence-chinese">
-                              {sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.chinese}
-                            </div>
-                            {(() => {
-                              const w = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.word
-                              const r = w ? sentenceRatings.get(w) : undefined
-                              return r ? <div className="sentence-stored-rating">{r.charAt(0).toUpperCase() + r.slice(1)}</div> : null
-                            })()}
+                        {sentenceStreak >= 3 && (
+                          <div className="sentence-streak-badge">
+                            🔥 {sentenceStreak}
                           </div>
                         )}
+                        {sentenceQueue.length > 0 && sentenceRoundOrder.length > 0 && (() => {
+                          const current = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]
+                          const next = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex + 1]]
+                          const storedRating = current?.word ? sentenceRatings.get(current.word) : undefined
+                          return (
+                            <div className="sentence-card-stack">
+                              {next && <div className="sentence-card-peek" aria-hidden="true" />}
+                              <div
+                                key={sentenceAnimKey}
+                                ref={sentenceCardRef}
+                                className={`sentence-card${sentenceDismissDir ? ` sentence-dismiss-${sentenceDismissDir}` : ''}`}
+                              >
+                                <div className="sentence-english">{current?.english}</div>
+                                <div
+                                  className="sentence-chinese"
+                                  role="button"
+                                  tabIndex={0}
+                                  onClick={() => setSentencePinyinVisible(v => !v)}
+                                  onKeyDown={e => e.key === 'Enter' && setSentencePinyinVisible(v => !v)}
+                                >
+                                  {current?.chinese}
+                                </div>
+                                {sentencePinyinVisible ? (
+                                  <div className="sentence-pinyin">
+                                    {getPinyin(current?.chinese ?? '', { toneType: 'symbol', separator: ' ' })}
+                                  </div>
+                                ) : (
+                                  <div className="sentence-pinyin-hint">拼 pinyin</div>
+                                )}
+                                {storedRating && (
+                                  <div className="sentence-stored-rating">{storedRating.charAt(0).toUpperCase() + storedRating.slice(1)}</div>
+                                )}
+                              </div>
+                            </div>
+                          )
+                        })()}
                         {sentenceSwipeDir && (
                           <div className={`swipe-indicator swipe-indicator-${sentenceSwipeDir}`}>
                             {{ left: '✗ Again', up: '△ Hard', right: '✓ Good', down: '★ Easy' }[sentenceSwipeDir]}
