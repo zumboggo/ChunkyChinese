@@ -15,3 +15,4 @@ console.log(`Generated RenPy prototype at ${path.relative(ROOT, result.projectDi
 console.log(`Quest script: ${result.scriptPath}`)
 console.log(`Nodes: ${result.nodeCount}`)
 console.log(`Assets copied: ${result.assetCount}`)
+console.log(`Audio files copied: ${result.audioCount}`)

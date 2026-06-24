@@ -1,4 +1,4 @@
-import { copyFileSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 
 const POSITION_MAP = {
@@ -54,6 +54,30 @@ export function convertVisualNovelToRenpy({
     '',
   ]
 
+  // --- English translation overlay ---
+  lines.push(
+    'default chunky_english_visible = False',
+    'default chunky_english_text = ""',
+    '',
+    'screen chunky_english():',
+    '    zorder 150',
+    '    if chunky_english_visible and chunky_english_text:',
+    '        frame:',
+    '            xalign 0.5',
+    '            ypos 0.60',
+    '            xsize 900',
+    '            background "#000000bb"',
+    '            padding (24, 12)',
+    '            text chunky_english_text:',
+    '                color "#fffacc"',
+    '                size 26',
+    '                text_align 0.5',
+    '                xalign 0.5',
+    '    key "e" action ToggleVariable("chunky_english_visible")',
+    '    key "E" action ToggleVariable("chunky_english_visible")',
+    '',
+  )
+
   for (const [id, asset] of Object.entries(manifest.backgrounds ?? {})) {
     lines.push(`image ${imageNames.backgrounds[id]} = ${pythonString(assetPath(asset, 'backgrounds'))}`)
   }
@@ -64,7 +88,16 @@ export function convertVisualNovelToRenpy({
     lines.push(`image ${imageNames.cinematics[id]} = ${pythonString(assetPath(asset, 'cinematics'))}`)
   }
 
+  // --- Character definitions ---
+  lines.push('')
+  for (const [id, character] of Object.entries(script.characters ?? {})) {
+    const varName = characterVar(id)
+    const displayName = character.displayNames.chinese ?? character.displayNames.english ?? id
+    lines.push(`define ${varName} = Character(${pythonString(displayName)})`)
+  }
+
   lines.push('', 'label start:', '    $ chunky_event("ready", {"initialNodeId": ' + pythonString(script.initialNodeId) + '})')
+  lines.push('    show screen chunky_english')
   lines.push(`    jump ${renpyLabel(script.initialNodeId)}`, '')
 
   for (const node of orderedNodes(script)) {
@@ -101,6 +134,11 @@ export function writeRenpyPrototype({
   writeFileSync(path.join(projectDir, 'progressive_download.txt'), buildProgressiveDownload(), 'utf8')
   writeFileSync(path.join(projectDir, 'README.md'), buildReadme(script), 'utf8')
   copyAssets(rootDir, gameDir, manifest)
+  const audioCount = copyAudioFiles(rootDir, gameDir, script)
+
+  const tlDir = path.join(gameDir, 'tl', 'english')
+  mkdirSync(tlDir, { recursive: true })
+  writeFileSync(path.join(tlDir, 'script.rpy'), buildEnglishTranslations(script), 'utf8')
 
   return {
     projectDir,
@@ -111,6 +149,7 @@ export function writeRenpyPrototype({
       Object.keys(manifest.backgrounds ?? {}).length +
       Object.keys(manifest.sprites ?? {}).length +
       Object.keys(manifest.cinematics ?? {}).length,
+    audioCount,
   }
 }
 
@@ -118,23 +157,34 @@ function emitNode(lines, node, script, world, imageNames) {
   if (node.type === 'line') {
     emitScene(lines, node.scene, imageNames)
     const text = node.text?.chinese ?? ''
-    const speaker = node.speaker ? speakerName(script, node.speaker) : undefined
+    const english = node.text?.english ?? ''
+    const audioFile = nodeAudioFile(node)
     lines.push(`    $ chunky_line(${pythonString(node.id)}, ${pythonString(text)})`)
-    lines.push(`    narrator ${pythonString(speaker ? `${speaker}: ${text}` : text)}`)
+    lines.push(`    $ chunky_english_text = ${pythonString(english)}`)
+    if (audioFile) lines.push(`    voice ${pythonString(audioFile)}`)
+    if (node.speaker) {
+      lines.push(`    ${characterVar(node.speaker.characterId)} ${pythonString(text)}`)
+    } else {
+      lines.push(`    narrator ${pythonString(text)}`)
+    }
     emitNext(lines, node.nextId)
     return
   }
 
   if (node.type === 'choice') {
     const prompt = node.prompt?.chinese
+    const promptEnglish = node.prompt?.english ?? ''
     if (prompt) {
       lines.push(`    $ chunky_line(${pythonString(node.id)}, ${pythonString(prompt)})`)
+      lines.push(`    $ chunky_english_text = ${pythonString(promptEnglish)}`)
       lines.push(`    narrator ${pythonString(prompt)}`)
     }
     lines.push('    menu:')
     for (const choice of node.choices ?? []) {
       const label = choice.label?.chinese ?? choice.id
-      lines.push(`        ${pythonString(label)}:`)
+      const labelEnglish = choice.label?.english ?? ''
+      const menuLabel = labelEnglish ? `${label}  [${labelEnglish}]` : label
+      lines.push(`        ${pythonString(menuLabel)}:`)
       lines.push(`            $ chunky_choice(${pythonString(node.id)}, ${pythonString(choice.id)}, ${pythonString(label)})`)
       lines.push(`            jump ${renpyLabel(choice.nextId)}`)
     }
@@ -145,7 +195,9 @@ function emitNode(lines, node, script, world, imageNames) {
     const imageName = imageNames.cinematics[node.imageId]
     if (imageName) lines.push(`    scene ${imageName}`)
     const caption = node.caption?.chinese ?? node.description
+    const captionEnglish = node.caption?.english ?? ''
     lines.push(`    $ chunky_line(${pythonString(node.id)}, ${pythonString(caption)})`)
+    lines.push(`    $ chunky_english_text = ${pythonString(captionEnglish)}`)
     lines.push(`    narrator ${pythonString(caption)}`)
     emitNext(lines, node.nextId)
     return
@@ -153,7 +205,11 @@ function emitNode(lines, node, script, world, imageNames) {
 
   if (node.type === 'questResult') {
     const summary = node.summary?.chinese
-    if (summary) lines.push(`    narrator ${pythonString(summary)}`)
+    const summaryEnglish = node.summary?.english ?? ''
+    if (summary) {
+      lines.push(`    $ chunky_english_text = ${pythonString(summaryEnglish)}`)
+      lines.push(`    narrator ${pythonString(summary)}`)
+    }
     lines.push(`    $ chunky_complete(${pythonString(node.id)}, ${pythonString(node.questId)}, ${pythonString(node.outcomeId)})`)
     lines.push('    return')
     return
@@ -161,7 +217,11 @@ function emitNode(lines, node, script, world, imageNames) {
 
   if (node.type === 'end') {
     const summary = node.summary?.chinese
-    if (summary) lines.push(`    narrator ${pythonString(summary)}`)
+    const summaryEnglish = node.summary?.english ?? ''
+    if (summary) {
+      lines.push(`    $ chunky_english_text = ${pythonString(summaryEnglish)}`)
+      lines.push(`    narrator ${pythonString(summary)}`)
+    }
     lines.push('    return')
     return
   }
@@ -239,6 +299,21 @@ function copyAsset(rootDir, gameDir, asset, folder) {
   copyFileSync(source, path.join(targetDir, path.basename(asset.src)))
 }
 
+function copyAudioFiles(rootDir, gameDir, script) {
+  let copied = 0
+  for (const node of Object.values(script.nodes ?? {})) {
+    const audioFile = nodeAudioFile(node)
+    if (!audioFile) continue
+    const sourcePath = path.join(rootDir, 'public', 'reader-packs', script.packId, audioFile)
+    const targetPath = path.join(gameDir, audioFile)
+    if (!existsSync(sourcePath)) continue
+    mkdirSync(path.dirname(targetPath), { recursive: true })
+    copyFileSync(sourcePath, targetPath)
+    copied++
+  }
+  return copied
+}
+
 function firstQuestScriptPath(world, storyId) {
   if (storyId) {
     const quest = world.quests?.[storyId]
@@ -249,9 +324,63 @@ function firstQuestScriptPath(world, storyId) {
   return firstQuest.scriptPath
 }
 
-function speakerName(script, speaker) {
-  const character = script.characters?.[speaker.characterId]
-  return character?.displayNames?.chinese ?? character?.displayNames?.english ?? speaker.characterId
+
+export function buildEnglishTranslations(script) {
+  const lines = [
+    '# English translations generated by scripts/vn-renpy/convert.mjs.',
+    '# Switch language in RenPy Preferences to play in English.',
+    '',
+  ]
+
+  // Character name translations (shown in the name plate)
+  const charNames = Object.values(script.characters ?? {})
+    .filter((c) => c.displayNames.chinese && c.displayNames.english)
+  if (charNames.length > 0) {
+    lines.push('translate english strings:')
+    lines.push('')
+    for (const character of charNames) {
+      lines.push(`    old ${pythonString(character.displayNames.chinese)}`)
+      lines.push(`    new ${pythonString(character.displayNames.english)}`)
+      lines.push('')
+    }
+  }
+
+  // Dialogue translations — one translate block per label, index _0
+  // (each generated label has exactly one say/dialogue statement)
+  for (const node of orderedNodes(script)) {
+    const label = renpyLabel(node.id)
+
+    if (node.type === 'line') {
+      const english = node.text?.english
+      if (!english) continue
+      const charVar = node.speaker ? characterVar(node.speaker.characterId) : 'narrator'
+      const original = node.text?.chinese ?? ''
+      lines.push(`translate english ${label}_0:`)
+      lines.push(`    # ${charVar} ${pythonString(original)}`)
+      lines.push(`    ${charVar} ${pythonString(english)}`)
+      lines.push('')
+    }
+
+    if (node.type === 'cinematic') {
+      const english = node.caption?.english
+      if (!english) continue
+      const original = node.caption?.chinese ?? node.description
+      lines.push(`translate english ${label}_0:`)
+      lines.push(`    # narrator ${pythonString(original)}`)
+      lines.push(`    narrator ${pythonString(english)}`)
+      lines.push('')
+    }
+
+    if ((node.type === 'questResult' || node.type === 'end') && node.summary?.english) {
+      const original = node.summary?.chinese ?? ''
+      lines.push(`translate english ${label}_0:`)
+      lines.push(`    # narrator ${pythonString(original)}`)
+      lines.push(`    narrator ${pythonString(node.summary.english)}`)
+      lines.push('')
+    }
+  }
+
+  return lines.join('\n') + '\n'
 }
 
 function buildOptionsRpy(script) {
@@ -289,6 +418,19 @@ function buildReadme(script) {
     '```',
     '',
   ].join('\n')
+}
+
+function characterVar(characterId) {
+  return `char_${renpyName(characterId)}`
+}
+
+function nodeAudioFile(node) {
+  const clipId = node.audioClipId
+  if (!clipId) return null
+  const prefix = 'reader-sentence:'
+  if (!clipId.startsWith(prefix)) return null
+  const sentenceId = clipId.slice(prefix.length)
+  return `audio/sentences/${sentenceId}.mp3`
 }
 
 function renpyLabel(id) {
