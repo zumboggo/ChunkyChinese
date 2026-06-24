@@ -199,11 +199,14 @@ function round(value: number): number {
 
 export function applySentenceSrsRating(
   record: SentenceSrsRecord,
-  rating: 'again' | 'good',
+  rating: 'again' | 'hard' | 'good' | 'easy',
   now = new Date(),
 ): SentenceSrsRecord {
   const card = sentenceSrsToCard(record, now)
-  const grade: Grade = rating === 'again' ? Rating.Again : Rating.Good
+  const grade: Grade =
+    rating === 'again' ? Rating.Again :
+    rating === 'hard'  ? Rating.Hard  :
+    rating === 'easy'  ? Rating.Easy  : Rating.Good
   const next = scheduler.next(card, now, grade).card
   return {
     ...sentenceSrsFieldsFromCard(next),

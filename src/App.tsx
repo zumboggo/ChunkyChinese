@@ -346,6 +346,7 @@ function App() {
   const [sentenceRoundIndex, setSentenceRoundIndex] = useState(0)
   const [sentenceSetComplete, setSentenceSetComplete] = useState(false)
   const [sentenceSetStartMs, setSentenceSetStartMs] = useState(0)
+  const [sentenceRatings, setSentenceRatings] = useState<Map<string, 'again' | 'hard' | 'good' | 'easy'>>(new Map())
   const [sentenceSrsMap, setSentenceSrsMap] = useState<Map<string, SentenceSrsRecord>>(new Map())
   const lastReaderActivityTimeRef = useRef<number>(0)
   const runToken = useRef(0)
@@ -366,6 +367,8 @@ function App() {
   const clearedActiveRecallLessonRef = useRef<string | null>(null)
   const syncedFlashcardCompletionRef = useRef<string | null>(null)
   const dashboardToastKeyRef = useRef<string | null>(null)
+  const sentenceTouchStartRef = useRef<{ x: number; y: number } | null>(null)
+  const [sentenceSwipeDir, setSentenceSwipeDir] = useState<string | null>(null)
   const dashboardToastReadyRef = useRef(false)
 
   const stopAudioOutputs = useCallback(() => {
@@ -922,6 +925,7 @@ function App() {
     setSentenceRoundIndex(0)
     setSentenceSetComplete(false)
     setSentenceSetStartMs(Date.now())
+    setSentenceRatings(new Map())
     setStudyMode('sentenceMode')
     setMinimalVisualMode(true)
     setAutoNextLesson(false)
@@ -929,9 +933,12 @@ function App() {
     setLastSummary(`Sentence set: ${set.length} sentences × 25 rounds`)
   }, [lmsSentences, loadLmsSentences, stopAudioOutputs])
 
-  const completeSentenceSet = useCallback(async (rating: 'again' | 'good') => {
+  const completeSentenceSet = useCallback(async (
+    ratings: Map<string, 'again' | 'hard' | 'good' | 'easy'>,
+  ) => {
     const now = new Date()
     for (const sent of sentenceQueue) {
+      const rating = ratings.get(sent.word) ?? 'good'
       const existing = sentenceSrsMap.get(sent.word)
       const record: SentenceSrsRecord = existing ?? {
         id: sent.word,
@@ -946,18 +953,54 @@ function App() {
       const updated = applySentenceSrsRating(record, rating, now)
       await saveSentenceSrs(updated)
     }
-
-    if (rating === 'good') {
-      setSentenceSetComplete(false)
-      setSentenceRoundIndex(0)
-      await startSentenceLesson()
-    } else {
-      setSentenceRoundIndex(0)
-      setSentenceSetComplete(false)
-      setSentenceSetStartMs(Date.now())
-      setLastSummary('Redoing the same set.')
-    }
+    setSentenceSetComplete(false)
+    setSentenceRoundIndex(0)
+    await startSentenceLesson()
   }, [sentenceQueue, sentenceSrsMap, startSentenceLesson])
+
+  const SENTENCE_SWIPE_THRESHOLD = 40
+  const sentenceSwipeRatingMap: Record<string, 'again' | 'hard' | 'good' | 'easy'> = {
+    left: 'again', up: 'hard', right: 'good', down: 'easy',
+  }
+
+  const handleSentenceTouchStart = useCallback((e: React.TouchEvent) => {
+    const t = e.touches[0]
+    sentenceTouchStartRef.current = { x: t.clientX, y: t.clientY }
+    setSentenceSwipeDir(null)
+  }, [])
+
+  const handleSentenceTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!sentenceTouchStartRef.current) return
+    const t = e.touches[0]
+    const dx = t.clientX - sentenceTouchStartRef.current.x
+    const dy = t.clientY - sentenceTouchStartRef.current.y
+    if (Math.abs(dx) < SENTENCE_SWIPE_THRESHOLD && Math.abs(dy) < SENTENCE_SWIPE_THRESHOLD) {
+      setSentenceSwipeDir(null)
+      return
+    }
+    if (Math.abs(dx) > Math.abs(dy)) {
+      setSentenceSwipeDir(dx > 0 ? 'right' : 'left')
+    } else {
+      setSentenceSwipeDir(dy > 0 ? 'down' : 'up')
+    }
+  }, [])
+
+  const handleSentenceTouchEnd = useCallback(() => {
+    if (!sentenceTouchStartRef.current || !sentenceSwipeDir) {
+      sentenceTouchStartRef.current = null
+      setSentenceSwipeDir(null)
+      return
+    }
+    const rating = sentenceSwipeRatingMap[sentenceSwipeDir]
+    if (rating) {
+      const currentWord = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.word
+      if (currentWord) {
+        setSentenceRatings(prev => new Map(prev).set(currentWord, rating))
+      }
+    }
+    sentenceTouchStartRef.current = null
+    setSentenceSwipeDir(null)
+  }, [sentenceSwipeDir, sentenceQueue, sentenceRoundOrder, sentenceRoundIndex])
 
   const openCardEditor = useCallback((word: VocabWord) => {
     setEditingWord({
@@ -3815,27 +3858,48 @@ function App() {
                           <span>{Math.round((Date.now() - sentenceSetStartMs) / 1000)}s</span>
                         </div>
                         <div className="sentence-set-list">
-                          {sentenceQueue.map((sent, i) => (
-                            <div key={sent.word} className="sentence-set-item">
-                              <span className="sentence-set-num">{i + 1}</span>
-                              <div>
-                                <p className="sentence-set-zh">{sent.chinese}</p>
-                                <p className="sentence-set-en">{sent.english}</p>
+                          {sentenceQueue.map((sent, i) => {
+                            const selectedRating = sentenceRatings.get(sent.word) ?? 'good'
+                            return (
+                              <div key={sent.word} className="sentence-set-item">
+                                <span className="sentence-set-num">{i + 1}</span>
+                                <div className="sentence-set-item-content">
+                                  <p className="sentence-set-zh">{sent.chinese}</p>
+                                  <p className="sentence-set-en">{sent.english}</p>
+                                  <div className="sentence-rating-buttons">
+                                    {(['again', 'hard', 'good', 'easy'] as const).map(r => (
+                                      <button
+                                        key={r}
+                                        type="button"
+                                        className={`sentence-rating-btn sentence-rating-btn-${r}${selectedRating === r ? ' selected' : ''}`}
+                                        onClick={() => setSentenceRatings(prev => new Map(prev).set(sent.word, r))}
+                                      >
+                                        {r.charAt(0).toUpperCase() + r.slice(1)}
+                                      </button>
+                                    ))}
+                                  </div>
+                                </div>
                               </div>
-                            </div>
-                          ))}
+                            )
+                          })}
                         </div>
                         <div className="sentence-set-actions">
-                          <button type="button" onClick={() => void completeSentenceSet('again')}>
-                            Again
-                          </button>
-                          <button type="button" className="primary" onClick={() => void completeSentenceSet('good')}>
-                            Good
+                          <button
+                            type="button"
+                            className="primary"
+                            onClick={() => void completeSentenceSet(sentenceRatings)}
+                          >
+                            Complete
                           </button>
                         </div>
                       </div>
                     ) : studyMode === 'sentenceMode' ? (
-                      <div className="sentence-mode-display">
+                      <div
+                        className={`sentence-mode-display${sentenceSwipeDir ? ` swipe-${sentenceSwipeDir}` : ''}`}
+                        onTouchStart={handleSentenceTouchStart}
+                        onTouchMove={handleSentenceTouchMove}
+                        onTouchEnd={handleSentenceTouchEnd}
+                      >
                         <div className="sentence-round-info">
                           <span>Round {Math.floor(sentenceRoundIndex / sentenceQueue.length) + 1} of 25</span>
                           <div className="sentence-progress-bar">
@@ -3850,13 +3914,23 @@ function App() {
                             <div className="sentence-chinese">
                               {sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.chinese}
                             </div>
+                            {(() => {
+                              const w = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.word
+                              const r = w ? sentenceRatings.get(w) : undefined
+                              return r ? <div className="sentence-stored-rating">{r.charAt(0).toUpperCase() + r.slice(1)}</div> : null
+                            })()}
+                          </div>
+                        )}
+                        {sentenceSwipeDir && (
+                          <div className={`swipe-indicator swipe-indicator-${sentenceSwipeDir}`}>
+                            {{ left: 'Again', up: 'Hard', right: 'Good', down: 'Easy' }[sentenceSwipeDir]}
                           </div>
                         )}
                         <div className="sentence-dots">
-                          {sentenceQueue.map((_, i) => (
+                          {sentenceQueue.map((sent, i) => (
                             <span
                               key={i}
-                              className={`sentence-dot ${sentenceRoundOrder[sentenceRoundIndex] === i ? 'active' : ''}`}
+                              className={`sentence-dot ${sentenceRoundOrder[sentenceRoundIndex] === i ? 'active' : ''}${sentenceRatings.has(sent.word) ? ' rated' : ''}`}
                             />
                           ))}
                         </div>
