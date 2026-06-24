@@ -46,6 +46,11 @@ vn-authoring/**/metadata/raw/**
 vn-authoring/**/contact-sheets/**
 !vn-authoring/**/contact-sheets/.gitkeep
 
+# RenPy local build/cache outputs
+renpy/**/*-dists/
+renpy/**/game/cache/
+renpy/**/game/saves/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

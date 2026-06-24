@@ -1,0 +1,5 @@
+# RenPyWeb progressive download rules.
+- image game/images/backgrounds/**
++ image game/images/characters/**
++ image game/images/cinematics/**
++ voice game/audio/**

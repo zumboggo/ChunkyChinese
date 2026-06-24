@@ -92,6 +92,7 @@ import { GrammarPopover } from './GrammarPopover'
 import { findGrammarMatches, mapGrammarToTokens, type GrammarMatch } from './grammarPoints'
 import { UniversalImporter } from './UniversalImporter'
 import { VisualNovelWorldMode } from './visualNovel/VisualNovelWorldMode'
+import { RenpyPrototypeMode } from './visualNovel/RenpyPrototypeMode'
 import { ComicReaderMode } from './comics/ComicReaderMode'
 import { useReaderListeningController } from './useReaderListeningController'
 import type { ReaderListeningController } from './useReaderListeningController'
@@ -136,7 +137,7 @@ import type {
   DictionaryEntry,
 } from './types'
 
-type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'visualNovel' | 'comicReader' | 'readingTexts'
+type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'visualNovel' | 'renpyPrototype' | 'comicReader' | 'readingTexts'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
 type FlashcardFrontMode = 'text' | 'audio' | 'reverse'
 type ReaderPinyinMode = UserSettings['readerPinyinMode']
@@ -3107,6 +3108,17 @@ function App() {
         />
       )}
 
+      {screen === 'renpyPrototype' && (
+        <RenpyPrototypeMode
+          hotkeys={hotkeys}
+          onReturnToLibrary={() => setScreen('readingTexts')}
+          onOpenReactVisualNovel={() => {
+            setInitialVisualNovelWorldId('just-friends')
+            setScreen('visualNovel')
+          }}
+        />
+      )}
+
       {screen === 'comicReader' && (
         <ComicReaderMode
           words={scopedWords.length > 0 ? scopedWords : words}
@@ -3131,6 +3143,7 @@ function App() {
             setScreen('reader')
           }}
           onOpenComics={() => setScreen('comicReader')}
+          onOpenRenpyPrototype={() => setScreen('renpyPrototype')}
           onOpenVisualNovel={(book) => {
             setInitialVisualNovelWorldId(book?.visualNovelWorldId)
             setScreen('visualNovel')
@@ -4457,6 +4470,7 @@ function ReadingTextsLibrary({
   onChooseBook,
   onBrowseNovels,
   onOpenComics,
+  onOpenRenpyPrototype,
   onOpenVisualNovel,
 }: {
   readerBooks: ReaderBook[]
@@ -4466,6 +4480,7 @@ function ReadingTextsLibrary({
   onChooseBook: (book: ReaderBook, action?: 'resume' | 'start') => void | Promise<void>
   onBrowseNovels: () => void
   onOpenComics: () => void
+  onOpenRenpyPrototype: () => void
   onOpenVisualNovel: (book?: ReaderBook) => void
 }) {
   return (
@@ -4578,6 +4593,15 @@ function ReadingTextsLibrary({
                             Scene mode
                           </button>
                         ) : null}
+                        {book.visualNovelWorldId === 'just-friends' ? (
+                          <button
+                            type="button"
+                            className="reading-scene-action"
+                            onClick={onOpenRenpyPrototype}
+                          >
+                            RenPy
+                          </button>
+                        ) : null}
                       </div>
                     </div>
                   </article>
@@ -4624,6 +4648,14 @@ function ReadingTextsLibrary({
               <small>Play through interactive scenes and dialogue choices.</small>
             </span>
             <span className="reading-format-arrow" aria-hidden="true">→</span>
+          </button>
+          <button type="button" className="reading-format reading-format-renpy" onClick={onOpenRenpyPrototype}>
+            <span className="reading-format-icon" aria-hidden="true">RP</span>
+            <span>
+              <strong>RenPy Prototype</strong>
+              <small>Try the exported Just Friends? web build when available.</small>
+            </span>
+            <span className="reading-format-arrow" aria-hidden="true">&gt;</span>
           </button>
         </div>
       </section>

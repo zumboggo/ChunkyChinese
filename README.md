@@ -119,6 +119,34 @@ Troubleshooting:
 
 To force users onto a new cached app shell after future updates, change `CACHE_VERSION` near the top of `public/service-worker.js`, commit, and deploy. The activate handler deletes older `chunky-chinese-*` caches.
 
+## RenPy Visual Novel Prototype
+
+The first RenPy spike targets the `just-friends` Visual Novel world while keeping the existing React VN as the fallback. Generate the RenPy project source from the current Chunky VN JSON with:
+
+```powershell
+npm.cmd run vn:renpy:convert
+```
+
+This writes the prototype project to:
+
+```text
+renpy/just-friends
+```
+
+Build that project as a RenPy web export, then copy the generated web files into:
+
+```text
+public/renpy/just-friends
+```
+
+Verify the hosted web-export shape before publishing:
+
+```powershell
+npm.cmd run vn:renpy:verify-web
+```
+
+The app exposes the prototype from Reading Texts as **RenPy** / **RenPy Prototype**. If the web export is missing, the screen stays in a clear missing-export state and the existing React Scene Mode still works.
+
 ## LMS Seed
 
 The app automatically seeds the LMS 1000 word list on first run from:

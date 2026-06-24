@@ -6233,6 +6233,73 @@ kbd {
   color: rgba(241, 245, 249, 0.5);
 }
 
+.renpy-prototype-screen {
+  min-height: calc(100svh - 96px);
+  gap: 14px;
+}
+
+.renpy-prototype-heading {
+  align-items: center;
+}
+
+.renpy-prototype-empty {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 12px;
+  min-height: min(620px, calc(100svh - 220px));
+  text-align: center;
+}
+
+.renpy-prototype-empty p {
+  max-width: 760px;
+  margin: 0;
+  color: var(--muted-navy);
+  line-height: 1.65;
+}
+
+.renpy-prototype-empty code {
+  padding: 2px 5px;
+  border-radius: 5px;
+  background: rgba(15, 23, 42, 0.08);
+  color: var(--navy);
+  font-weight: 850;
+}
+
+.renpy-prototype-frame-wrap {
+  position: relative;
+  min-height: min(720px, calc(100svh - 160px));
+  overflow: hidden;
+  border: 1px solid rgba(16, 35, 63, 0.12);
+  border-radius: 8px;
+  background: #05070d;
+  box-shadow: 0 24px 80px rgba(16, 35, 63, 0.18);
+}
+
+.renpy-prototype-frame {
+  display: block;
+  width: 100%;
+  height: min(720px, calc(100svh - 160px));
+  border: 0;
+  background: #05070d;
+}
+
+.renpy-prototype-status {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  max-width: calc(100% - 20px);
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.82);
+  color: #e5e7eb;
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
 .popover-close {
   justify-self: end;
   min-height: 34px;
@@ -7140,6 +7207,28 @@ kbd {
   .vn-controls {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .renpy-prototype-screen {
+    gap: 0;
+    padding: 0;
+  }
+
+  .renpy-prototype-screen .renpy-prototype-heading {
+    padding: max(16px, env(safe-area-inset-top, 0px)) 12px 12px;
+  }
+
+  .renpy-prototype-frame-wrap,
+  .renpy-prototype-frame {
+    height: calc(100svh - 92px);
+    min-height: calc(100svh - 92px);
+    border-radius: 0;
+  }
+
+  .renpy-prototype-status {
+    left: 8px;
+    right: 8px;
+    justify-content: space-between;
   }
 
   .active-recall-card {
