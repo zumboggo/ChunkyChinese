@@ -31,6 +31,7 @@
   --radius: 18px;
   --radius-lg: 28px;
   --blur: blur(18px);
+  --card-bg: #ffffff;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
@@ -43,6 +44,7 @@
 }
 
 :root[data-theme='dark'] {
+  --card-bg: #1e2d45;
   --bg-cream: #0f172a;
   --bg-sky: #132337;
   --navy: #f8fafc;
@@ -2519,22 +2521,59 @@ dt {
   transition: width 300ms ease;
 }
 
-.sentence-current {
-  display: grid;
-  gap: 16px;
-  text-align: center;
+/* ── Sentence card ── */
+
+@keyframes sentenceCardEnter {
+  from { opacity: 0; transform: translateY(28px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
 }
+
+@keyframes sentenceDismissLeft {
+  to { opacity: 0; transform: translateX(-130%) rotate(-18deg); }
+}
+@keyframes sentenceDismissRight {
+  to { opacity: 0; transform: translateX(130%)  rotate(18deg); }
+}
+@keyframes sentenceDismissUp {
+  to { opacity: 0; transform: translateY(-110%) rotate(-4deg); }
+}
+@keyframes sentenceDismissDown {
+  to { opacity: 0; transform: translateY(110%)  rotate(4deg); }
+}
+
+.sentence-card {
+  display: grid;
+  gap: 20px;
+  text-align: center;
+  padding: 32px 28px;
+  border-radius: 20px;
+  background: var(--card-bg, #fff);
+  border: 1.5px solid rgba(100, 116, 139, 0.13);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.07),
+    0 1px 4px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 480px;
+  will-change: transform, opacity;
+  animation: sentenceCardEnter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.sentence-card.sentence-dismiss-left  { animation: sentenceDismissLeft  0.3s ease-in forwards; }
+.sentence-card.sentence-dismiss-right { animation: sentenceDismissRight 0.3s ease-in forwards; }
+.sentence-card.sentence-dismiss-up    { animation: sentenceDismissUp    0.3s ease-in forwards; }
+.sentence-card.sentence-dismiss-down  { animation: sentenceDismissDown  0.3s ease-in forwards; }
 
 .sentence-english {
   color: var(--muted-navy);
-  font-size: clamp(1.3rem, 3vw, 2rem);
-  font-weight: 700;
+  font-size: clamp(1.15rem, 2.8vw, 1.7rem);
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .sentence-chinese {
   color: var(--navy);
   font-family: 'LXGW WenKai', 'Noto Serif SC', serif;
-  font-size: clamp(2.8rem, 9vw, 6rem);
+  font-size: clamp(2.6rem, 8vw, 5.5rem);
   font-weight: 900;
   line-height: 1.15;
 }
@@ -6525,19 +6564,27 @@ kbd {
 
 .swipe-indicator {
   position: fixed;
-  top: 50%;
+  top: 42%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 12px 24px;
-  border-radius: 12px;
-  background: rgba(15, 23, 42, 0.88);
+  padding: 10px 22px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.82);
   color: #f1f5f9;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   font-weight: 900;
+  letter-spacing: 0.04em;
   pointer-events: none;
   z-index: 60;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+  border: 2px solid currentColor;
+  transition: background 120ms ease, color 120ms ease;
 }
+
+.swipe-indicator-left  { color: #f87171; border-color: #f87171; }
+.swipe-indicator-up    { color: #fb923c; border-color: #fb923c; }
+.swipe-indicator-right { color: #4ade80; border-color: #4ade80; }
+.swipe-indicator-down  { color: #60a5fa; border-color: #60a5fa; }
 
 .swipe-instructions {
   text-align: center;

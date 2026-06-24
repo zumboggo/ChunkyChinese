@@ -368,7 +368,10 @@ function App() {
   const syncedFlashcardCompletionRef = useRef<string | null>(null)
   const dashboardToastKeyRef = useRef<string | null>(null)
   const sentenceTouchStartRef = useRef<{ x: number; y: number } | null>(null)
+  const sentenceCardRef = useRef<HTMLDivElement>(null)
   const [sentenceSwipeDir, setSentenceSwipeDir] = useState<string | null>(null)
+  const [sentenceDismissDir, setSentenceDismissDir] = useState<string | null>(null)
+  const [sentenceAnimKey, setSentenceAnimKey] = useState(0)
   const dashboardToastReadyRef = useRef(false)
 
   const stopAudioOutputs = useCallback(() => {
@@ -964,43 +967,74 @@ function App() {
   }
 
   const handleSentenceTouchStart = useCallback((e: React.TouchEvent) => {
+    if (sentenceDismissDir) return
     const t = e.touches[0]
     sentenceTouchStartRef.current = { x: t.clientX, y: t.clientY }
     setSentenceSwipeDir(null)
-  }, [])
+    if (sentenceCardRef.current) sentenceCardRef.current.style.transition = 'none'
+  }, [sentenceDismissDir])
 
   const handleSentenceTouchMove = useCallback((e: React.TouchEvent) => {
-    if (!sentenceTouchStartRef.current) return
+    if (!sentenceTouchStartRef.current || sentenceDismissDir) return
     const t = e.touches[0]
     const dx = t.clientX - sentenceTouchStartRef.current.x
     const dy = t.clientY - sentenceTouchStartRef.current.y
-    if (Math.abs(dx) < SENTENCE_SWIPE_THRESHOLD && Math.abs(dy) < SENTENCE_SWIPE_THRESHOLD) {
-      setSentenceSwipeDir(null)
-      return
-    }
-    if (Math.abs(dx) > Math.abs(dy)) {
-      setSentenceSwipeDir(dx > 0 ? 'right' : 'left')
-    } else {
-      setSentenceSwipeDir(dy > 0 ? 'down' : 'up')
-    }
-  }, [])
+    const absDx = Math.abs(dx)
+    const absDy = Math.abs(dy)
 
-  const handleSentenceTouchEnd = useCallback(() => {
-    if (!sentenceTouchStartRef.current || !sentenceSwipeDir) {
-      sentenceTouchStartRef.current = null
+    if (absDx < SENTENCE_SWIPE_THRESHOLD && absDy < SENTENCE_SWIPE_THRESHOLD) {
       setSentenceSwipeDir(null)
+      if (sentenceCardRef.current) sentenceCardRef.current.style.transform = ''
       return
     }
-    const rating = sentenceSwipeRatingMap[sentenceSwipeDir]
-    if (rating) {
-      const currentWord = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.word
-      if (currentWord) {
-        setSentenceRatings(prev => new Map(prev).set(currentWord, rating))
+
+    let dir: string
+    if (absDx > absDy) {
+      dir = dx > 0 ? 'right' : 'left'
+      if (sentenceCardRef.current) {
+        sentenceCardRef.current.style.transform = `translateX(${dx * 0.35}px) rotate(${dx * 0.035}deg)`
+      }
+    } else {
+      dir = dy > 0 ? 'down' : 'up'
+      if (sentenceCardRef.current) {
+        sentenceCardRef.current.style.transform = `translateY(${dy * 0.35}px) rotate(${dx * 0.02}deg)`
       }
     }
+    setSentenceSwipeDir(dir)
+  }, [sentenceDismissDir])
+
+  const handleSentenceTouchEnd = useCallback(() => {
     sentenceTouchStartRef.current = null
+    if (sentenceCardRef.current) {
+      sentenceCardRef.current.style.transition = ''
+      sentenceCardRef.current.style.transform = ''
+    }
+
+    if (!sentenceSwipeDir || sentenceDismissDir) {
+      setSentenceSwipeDir(null)
+      return
+    }
+
+    const rating = sentenceSwipeRatingMap[sentenceSwipeDir]
+    const dir = sentenceSwipeDir
     setSentenceSwipeDir(null)
-  }, [sentenceSwipeDir, sentenceQueue, sentenceRoundOrder, sentenceRoundIndex])
+
+    if (!rating) return
+
+    const currentWord = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.word
+    if (currentWord) setSentenceRatings(prev => new Map(prev).set(currentWord, rating))
+
+    // Cancel running audio sequence then animate card away
+    runToken.current += 1
+    window.speechSynthesis?.cancel()
+
+    setSentenceDismissDir(dir)
+    setTimeout(() => {
+      setSentenceDismissDir(null)
+      setSentenceAnimKey(prev => prev + 1)
+      setSentenceRoundIndex(prev => prev + 1)
+    }, 300)
+  }, [sentenceSwipeDir, sentenceDismissDir, sentenceQueue, sentenceRoundOrder, sentenceRoundIndex])
 
   const openCardEditor = useCallback((word: VocabWord) => {
     setEditingWord({
@@ -3907,7 +3941,11 @@ function App() {
                           </div>
                         </div>
                         {sentenceQueue.length > 0 && sentenceRoundOrder.length > 0 && (
-                          <div className="sentence-current">
+                          <div
+                            key={sentenceAnimKey}
+                            ref={sentenceCardRef}
+                            className={`sentence-card${sentenceDismissDir ? ` sentence-dismiss-${sentenceDismissDir}` : ''}`}
+                          >
                             <div className="sentence-english">
                               {sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.english}
                             </div>
@@ -3923,7 +3961,7 @@ function App() {
                         )}
                         {sentenceSwipeDir && (
                           <div className={`swipe-indicator swipe-indicator-${sentenceSwipeDir}`}>
-                            {{ left: 'Again', up: 'Hard', right: 'Good', down: 'Easy' }[sentenceSwipeDir]}
+                            {{ left: '✗ Again', up: '△ Hard', right: '✓ Good', down: '★ Easy' }[sentenceSwipeDir]}
                           </div>
                         )}
                         <div className="sentence-dots">
