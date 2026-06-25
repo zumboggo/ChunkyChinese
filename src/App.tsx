@@ -70,6 +70,7 @@ import {
   DEFAULT_USER_SETTINGS,
   getSentenceRepData,
   saveSentenceRepData,
+  restoreWordFsrs,
 } from './db'
 import { createLesson, createPocketLesson, selectTargetWords, selectSentenceLessonSet, buildSentenceRoundOrder, type PauseProfile, type SentenceLessonItem } from './lesson'
 import { pinyin as getPinyin } from 'pinyin-pro'
@@ -400,6 +401,12 @@ function App() {
   const lastPocketTimeRef = useRef(0)
   const playModeRef = useRef<HTMLElement | null>(null)
   const flashcardFeedbackTimeoutRef = useRef<number | null>(null)
+  const flashcardUndoTimeoutRef = useRef<number | null>(null)
+  const [flashcardUndoState, setFlashcardUndoState] = useState<{
+    word: VocabWord
+    rating: FsrsRating
+    prevDoneIds: string[]
+  } | null>(null)
   const syncTimerRef = useRef<number | null>(null)
   const clearedActiveRecallLessonRef = useRef<string | null>(null)
   const syncedFlashcardCompletionRef = useRef<string | null>(null)
@@ -1813,6 +1820,8 @@ function App() {
     if (!currentFlashcardWord || flashcardSessionFeedback) return
     const wordId = currentFlashcardWord.id
     const ratedWord = currentFlashcardWord
+    const preRatingWord = currentFlashcardWord
+    const preRatingDoneIds = flashcardDoneIds
     setFlashcardSessionFeedback(rating)
     setFlashcardSessionRatingCounts((prev) => ({ ...prev, [rating]: prev[rating] + 1 }))
     if (rating === 'again') {
@@ -1826,7 +1835,7 @@ function App() {
         })
         const now = Date.now()
         const nextDoneIds = getNextFlashcardDoneIds(
-          flashcardDoneIds,
+          preRatingDoneIds,
           wordId,
           updatedWord,
           rating,
@@ -1847,9 +1856,37 @@ function App() {
         setLastSummary(`Rated ${ratedWord.word} ${fsrsLabel(rating)}.`)
         setFlashcardAnswerShown(false)
         setFlashcardSessionFeedback(null)
+        if (flashcardUndoTimeoutRef.current !== null) window.clearTimeout(flashcardUndoTimeoutRef.current)
+        setFlashcardUndoState({ word: preRatingWord, rating, prevDoneIds: preRatingDoneIds })
+        flashcardUndoTimeoutRef.current = window.setTimeout(() => {
+          setFlashcardUndoState(null)
+          flashcardUndoTimeoutRef.current = null
+        }, 5000)
       })()
     }, 500)
   }, [currentFlashcardWord, flashcardDoneIds, flashcardQueue, flashcardSessionFeedback, flashcardSessionId, queueCloudSync, refresh])
+
+  const handleFlashcardUndo = useCallback(async () => {
+    if (!flashcardUndoState) return
+    if (flashcardUndoTimeoutRef.current !== null) {
+      window.clearTimeout(flashcardUndoTimeoutRef.current)
+      flashcardUndoTimeoutRef.current = null
+    }
+    await restoreWordFsrs(flashcardUndoState.word)
+    setWords((currentWords) =>
+      currentWords.map((w) => w.id === flashcardUndoState.word.id ? flashcardUndoState.word : w),
+    )
+    setFlashcardSessionRatingCounts((prev) => ({
+      ...prev,
+      [flashcardUndoState.rating]: Math.max(0, prev[flashcardUndoState.rating] - 1),
+    }))
+    setFlashcardDoneIds(flashcardUndoState.prevDoneIds)
+    setFlashcardCurrentId(flashcardUndoState.word.id)
+    setFlashcardAnswerShown(true)
+    setFlashcardSessionFeedback(null)
+    setFlashcardUndoState(null)
+    setLastSummary(`Undid rating for ${flashcardUndoState.word.word}.`)
+  }, [flashcardUndoState])
 
   const togglePlayback = useCallback(() => {
     const audio = pocketAudioRef.current
@@ -3190,6 +3227,12 @@ function App() {
               </div>
             )}
           </section>
+          {flashcardUndoState && (
+            <div className="flashcard-undo-toast">
+              <span>Rated <strong>{flashcardUndoState.word.word}</strong> as {fsrsLabel(flashcardUndoState.rating)}</span>
+              <button type="button" onClick={() => void handleFlashcardUndo()}>Undo</button>
+            </div>
+          )}
         </motion.section>
       )}
       </AnimatePresence>
@@ -5775,53 +5818,113 @@ function FlashcardReview({
   const audioFront = frontMode === 'audio' && !answerShown
   const reverseFront = frontMode === 'reverse' && !answerShown
   const touchStartRef = useRef<{ x: number; y: number } | null>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
   const [swipeDir, setSwipeDir] = useState<string | null>(null)
+  const [dismissDir, setDismissDir] = useState<string | null>(null)
 
   const SWIPE_THRESHOLD = 40
+  const FLASHCARD_GLOW: Record<string, string> = {
+    left: '#f87171', up: '#fb923c', right: '#4ade80', down: '#60a5fa',
+  }
+  const FLASHCARD_SWIPE_RATING: Record<string, FsrsRating> = {
+    left: 'again', up: 'hard', right: 'good', down: 'easy',
+  }
+  const FLASHCARD_SWIPE_LABEL: Record<string, string> = {
+    left: 'Again', up: 'Hard', right: 'Good', down: 'Easy',
+  }
+
+  useEffect(() => {
+    setDismissDir(null)
+    setSwipeDir(null)
+    if (cardRef.current) {
+      cardRef.current.style.transition = ''
+      cardRef.current.style.transform = ''
+      cardRef.current.style.boxShadow = ''
+    }
+  }, [word.id])
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (dismissDir) return
     const t = e.touches[0]
     touchStartRef.current = { x: t.clientX, y: t.clientY }
+    if (cardRef.current) {
+      cardRef.current.style.transition = 'none'
+      cardRef.current.style.boxShadow = ''
+    }
     setSwipeDir(null)
-  }, [])
+  }, [dismissDir])
 
   const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    if (!touchStartRef.current || !answerShown) return
+    if (!touchStartRef.current || !answerShown || dismissDir) return
     const t = e.touches[0]
     const dx = t.clientX - touchStartRef.current.x
     const dy = t.clientY - touchStartRef.current.y
-    if (Math.abs(dx) < SWIPE_THRESHOLD && Math.abs(dy) < SWIPE_THRESHOLD) {
-      setSwipeDir(null)
-      return
+    const absDx = Math.abs(dx)
+    const absDy = Math.abs(dy)
+    const dist = Math.sqrt(dx * dx + dy * dy)
+
+    let dir: string | null = null
+    if (absDx > SWIPE_THRESHOLD || absDy > SWIPE_THRESHOLD) {
+      dir = absDx > absDy ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up')
     }
-    if (Math.abs(dx) > Math.abs(dy)) {
-      setSwipeDir(dx > 0 ? 'right' : 'left')
-    } else {
-      setSwipeDir(dy > 0 ? 'down' : 'up')
+
+    if (cardRef.current) {
+      const tiltX = Math.min(14, (dx / 200) * 14)
+      const tiltY = Math.min(6, (dy / 300) * 6) * -0.3
+      cardRef.current.style.transform =
+        `translateX(${dx * 0.18}px) translateY(${dy * 0.08}px) rotate(${tiltX + tiltY}deg)`
+      if (dir) {
+        const color = FLASHCARD_GLOW[dir]
+        const intensity = Math.min(1, (dist - SWIPE_THRESHOLD) / 120)
+        const alpha = Math.round(intensity * 180).toString(16).padStart(2, '0')
+        cardRef.current.style.boxShadow =
+          `0 0 ${8 + 20 * intensity}px ${4 + 10 * intensity}px ${color}${alpha}`
+      } else {
+        cardRef.current.style.boxShadow = ''
+      }
     }
-  }, [answerShown])
+
+    setSwipeDir(dir)
+  }, [answerShown, dismissDir])
 
   const handleTouchEnd = useCallback(() => {
-    if (!touchStartRef.current || !answerShown || !swipeDir || selectedRating) {
+    if (!touchStartRef.current || !answerShown || !swipeDir || selectedRating || dismissDir) {
+      if (cardRef.current) {
+        cardRef.current.style.transition = ''
+        cardRef.current.style.transform = ''
+        cardRef.current.style.boxShadow = ''
+      }
       touchStartRef.current = null
       setSwipeDir(null)
       return
     }
-    const swipeRating: Record<string, FsrsRating> = { up: 'again', left: 'hard', right: 'good', down: 'easy' }
-    const rating = swipeRating[swipeDir]
-    if (rating) onRate(rating)
+    const rating = FLASHCARD_SWIPE_RATING[swipeDir]
+    if (!rating) return
+    navigator.vibrate?.(30)
+    setDismissDir(swipeDir)
+    onRate(rating)
     touchStartRef.current = null
     setSwipeDir(null)
-  }, [answerShown, swipeDir, selectedRating, onRate])
+  }, [answerShown, swipeDir, selectedRating, dismissDir, onRate])
 
   return (
     <section
-      className={`flashcard-review${swipeDir ? ` swipe-${swipeDir}` : ''}`}
+      className="flashcard-review"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <div className={`flashcard ${answerShown ? 'answer-side' : 'front-side'} ${audioFront ? 'audio-front' : ''} ${reverseFront ? 'reverse-front' : ''}`}>
+      <div
+        key={word.id}
+        ref={cardRef}
+        className={[
+          'flashcard',
+          answerShown ? 'answer-side' : 'front-side',
+          audioFront ? 'audio-front' : '',
+          reverseFront ? 'reverse-front' : '',
+          dismissDir ? `flashcard-dismiss-${dismissDir}` : '',
+        ].filter(Boolean).join(' ')}
+      >
         <span>{answerShown ? 'Front + back' : audioFront ? 'Audio front' : reverseFront ? 'Reverse front' : 'Front'}</span>
         {answerShown ? (
           reverseFront ? (
@@ -5897,12 +6000,12 @@ function FlashcardReview({
       )}
       {answerShown && swipeDir && (
         <div className={`swipe-indicator swipe-indicator-${swipeDir}`}>
-          {{ up: 'Again', left: 'Hard', right: 'Good', down: 'Easy' }[swipeDir]}
+          {FLASHCARD_SWIPE_LABEL[swipeDir]}
         </div>
       )}
       {answerShown && !selectedRating && (
         <div className="swipe-instructions">
-          Swipe: ↑ Again ← Hard → Good ↓ Easy
+          Swipe: ← Again ↑ Hard → Good ↓ Easy
         </div>
       )}
       <div className="flashcard-bottom-actions">

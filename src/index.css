@@ -6655,6 +6655,15 @@ kbd {
   background: rgba(241, 245, 249, 0.86);
 }
 
+@keyframes flashcardEnter {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+@keyframes flashcardDismissLeft  { to { opacity: 0; transform: translateX(-130%) rotate(-18deg); } }
+@keyframes flashcardDismissRight { to { opacity: 0; transform: translateX(130%)  rotate(18deg); } }
+@keyframes flashcardDismissUp    { to { opacity: 0; transform: translateY(-110%) rotate(-4deg); } }
+@keyframes flashcardDismissDown  { to { opacity: 0; transform: translateY(110%)  rotate(4deg); } }
+
 .flashcard {
   display: grid;
   grid-template-rows: auto 1fr auto auto;
@@ -6671,6 +6680,48 @@ kbd {
   box-shadow:
     0 26px 80px rgba(16, 35, 63, 0.13),
     inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  animation: flashcardEnter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity;
+}
+
+.flashcard.flashcard-dismiss-left  { animation: flashcardDismissLeft  0.3s ease-in forwards; }
+.flashcard.flashcard-dismiss-right { animation: flashcardDismissRight 0.3s ease-in forwards; }
+.flashcard.flashcard-dismiss-up    { animation: flashcardDismissUp    0.3s ease-in forwards; }
+.flashcard.flashcard-dismiss-down  { animation: flashcardDismissDown  0.3s ease-in forwards; }
+
+.flashcard-undo-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  color: #f1f5f9;
+  font-size: 0.88rem;
+  z-index: 70;
+  animation: flashcardEnter 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+  white-space: nowrap;
+}
+
+.flashcard-undo-toast button {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  color: #f1f5f9;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.flashcard-undo-toast button:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .flashcard-flip-btn {
@@ -6710,25 +6761,6 @@ kbd {
   padding: 4px 0;
 }
 
-.swipe-up .flashcard {
-  transform: translateY(-8px);
-  transition: transform 0.1s ease;
-}
-
-.swipe-down .flashcard {
-  transform: translateY(8px);
-  transition: transform 0.1s ease;
-}
-
-.swipe-left .flashcard {
-  transform: translateX(-8px) rotate(-1.5deg);
-  transition: transform 0.1s ease;
-}
-
-.swipe-right .flashcard {
-  transform: translateX(8px) rotate(1.5deg);
-  transition: transform 0.1s ease;
-}
 
 :root[data-theme='dark'] .flashcard {
   border-color: rgba(226, 232, 240, 0.14);

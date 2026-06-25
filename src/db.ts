@@ -1500,6 +1500,11 @@ export async function getDueSentenceSrs(): Promise<SentenceSrsRecord[]> {
   })
 }
 
+export async function restoreWordFsrs(word: VocabWord): Promise<void> {
+  const db = await getDB()
+  await db.put('vocabWords', word)
+}
+
 export async function getSentenceRepData(): Promise<{
   queueOffset: number
   repsToday: number
