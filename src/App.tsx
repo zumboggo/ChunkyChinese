@@ -4124,7 +4124,7 @@ function App() {
                                 >
                                   {current?.chinese}
                                 </div>
-                                {sentencePinyinVisible ? (
+                                {(sentencePinyinVisible || showPinyin) ? (
                                   <div className="sentence-pinyin">
                                     {getPinyin(current?.chinese ?? '', { toneType: 'symbol', separator: ' ' })}
                                   </div>
