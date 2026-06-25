@@ -1500,6 +1500,42 @@ export async function getDueSentenceSrs(): Promise<SentenceSrsRecord[]> {
   })
 }
 
+export async function getSentenceRepData(): Promise<{
+  queueOffset: number
+  repsToday: number
+  totalReps: number
+}> {
+  const db = await getDB()
+  const today = new Date().toISOString().slice(0, 10)
+  const storedDate = (await db.get('settings', 'sentenceRepsDate')) as string | undefined
+  const storedToday = storedDate === today
+    ? ((await db.get('settings', 'sentenceRepsToday')) as number | undefined) ?? 0
+    : 0
+  const queueOffset = ((await db.get('settings', 'sentenceQueueOffset')) as number | undefined) ?? 0
+  const totalReps = ((await db.get('settings', 'sentenceTotalReps')) as number | undefined) ?? 0
+  return { queueOffset, repsToday: storedToday, totalReps }
+}
+
+export async function saveSentenceRepData(delta: {
+  reps: number
+  queueOffset: number
+}): Promise<{ repsToday: number; totalReps: number }> {
+  const db = await getDB()
+  const today = new Date().toISOString().slice(0, 10)
+  const storedDate = (await db.get('settings', 'sentenceRepsDate')) as string | undefined
+  const storedToday = storedDate === today
+    ? ((await db.get('settings', 'sentenceRepsToday')) as number | undefined) ?? 0
+    : 0
+  const storedTotal = ((await db.get('settings', 'sentenceTotalReps')) as number | undefined) ?? 0
+  const newToday = storedToday + delta.reps
+  const newTotal = storedTotal + delta.reps
+  await db.put('settings', today, 'sentenceRepsDate')
+  await db.put('settings', newToday, 'sentenceRepsToday')
+  await db.put('settings', newTotal, 'sentenceTotalReps')
+  await db.put('settings', delta.queueOffset, 'sentenceQueueOffset')
+  return { repsToday: newToday, totalReps: newTotal }
+}
+
 export async function putSyncedSentenceSrs(rows: SentenceSrsRecord[]): Promise<void> {
   if (rows.length === 0) return
   const db = await getDB()

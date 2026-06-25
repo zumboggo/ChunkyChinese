@@ -68,6 +68,8 @@ import {
   upsertWords,
   lookupDictionary,
   DEFAULT_USER_SETTINGS,
+  getSentenceRepData,
+  saveSentenceRepData,
 } from './db'
 import { createLesson, createPocketLesson, selectTargetWords, selectSentenceLessonSet, buildSentenceRoundOrder, type PauseProfile, type SentenceLessonItem } from './lesson'
 import { pinyin as getPinyin } from 'pinyin-pro'
@@ -258,6 +260,40 @@ const HIDDEN_PACK_IDS = new Set(['annas-reading-deck'])
 const FLASHCARD_LEARN_AHEAD_MS = 5 * 60 * 1000
 const FLASHCARD_REVERSE_RATE = 0.1
 
+const SENTENCE_REP_RING_COLORS = ['#bae6fd', '#7dd3fc', '#38bdf8', '#0ea5e9', '#0284c7', '#0369a1']
+
+function SentenceRepRing({ repsToday, totalReps }: { repsToday: number; totalReps: number }) {
+  const sessionsToday = Math.floor(repsToday / 50)
+  const partialProgress = (repsToday % 50) / 50
+  const colorIndex = Math.min(sessionsToday, SENTENCE_REP_RING_COLORS.length - 1)
+  const color = SENTENCE_REP_RING_COLORS[colorIndex]
+  const r = 38
+  const circumference = 2 * Math.PI * r
+  // full ring for completed sessions; partial arc for the in-progress session
+  const fillFraction = sessionsToday >= 1 ? 1 : partialProgress
+  const strokeDashoffset = circumference * (1 - fillFraction)
+  return (
+    <div className="sentence-rep-ring-wrap">
+      <svg className="sentence-rep-ring" viewBox="0 0 100 100" aria-label={`${repsToday} sentence reps today`}>
+        <circle cx="50" cy="50" r={r} className="sentence-rep-ring-track" />
+        <circle
+          cx="50" cy="50" r={r}
+          className="sentence-rep-ring-fill"
+          style={{
+            stroke: color,
+            strokeDasharray: circumference,
+            strokeDashoffset,
+            filter: `drop-shadow(0 0 6px ${color})`,
+          }}
+        />
+        <text x="50" y="46" className="sentence-rep-ring-count">{repsToday}</text>
+        <text x="50" y="60" className="sentence-rep-ring-label">reps today</text>
+      </svg>
+      <p className="sentence-rep-total">{totalReps.toLocaleString()} total reps</p>
+    </div>
+  )
+}
+
 function App() {
   const [screen, setScreen] = useState<Screen>('dashboard')
   const [initialVisualNovelWorldId, setInitialVisualNovelWorldId] = useState<string | undefined>()
@@ -375,6 +411,9 @@ function App() {
   const [sentenceAnimKey, setSentenceAnimKey] = useState(0)
   const [sentenceStreak, setSentenceStreak] = useState(0)
   const [sentencePinyinVisible, setSentencePinyinVisible] = useState(false)
+  const [sentenceQueueOffset, setSentenceQueueOffset] = useState(0)
+  const [sentenceRepsToday, setSentenceRepsToday] = useState(0)
+  const [sentenceTotalReps, setSentenceTotalReps] = useState(0)
   const dashboardToastReadyRef = useRef(false)
 
   const stopAudioOutputs = useCallback(() => {
@@ -399,6 +438,14 @@ function App() {
   useEffect(() => {
     loadLmsSentences().catch(() => {})
   }, [loadLmsSentences])
+
+  useEffect(() => {
+    getSentenceRepData().then(({ queueOffset, repsToday, totalReps }) => {
+      setSentenceQueueOffset(queueOffset)
+      setSentenceRepsToday(repsToday)
+      setSentenceTotalReps(totalReps)
+    }).catch(() => {})
+  }, [])
 
   const refresh = useCallback(async () => {
     const [
@@ -919,13 +966,14 @@ function App() {
       }
     }
 
-    const set = selectSentenceLessonSet(sentencePool, srsMap, 5)
+    const currentOffset = sentenceQueueOffset
+    const set = selectSentenceLessonSet(sentencePool, srsMap, 5, currentOffset)
     if (set.length === 0) {
       setLastSummary('No sentences available.')
       return
     }
 
-    const order = buildSentenceRoundOrder(set.length, 25)
+    const order = buildSentenceRoundOrder(set.length, 10)
     setSentenceQueue(set)
     setSentenceRoundOrder(order)
     setSentenceRoundIndex(0)
@@ -938,7 +986,7 @@ function App() {
     setMinimalVisualMode(true)
     setAutoNextLesson(false)
     setScreen('lesson')
-    setLastSummary(`Sentence set: ${set.length} sentences × 25 rounds`)
+    setLastSummary(`Sentence set: ${set.length} sentences × 10 rounds (50 reps)`)
   }, [lmsSentences, loadLmsSentences, stopAudioOutputs])
 
   const completeSentenceSet = useCallback(async (
@@ -961,10 +1009,24 @@ function App() {
       const updated = applySentenceSrsRating(record, rating, now)
       await saveSentenceSrs(updated)
     }
+
+    const newInSession = sentenceQueue.filter((s) => {
+      const r = sentenceSrsMap.get(s.word)
+      return !r || (r.fsrsRepetitions ?? 0) === 0
+    }).length
+    const nextOffset = sentenceQueueOffset + newInSession
+    const { repsToday, totalReps } = await saveSentenceRepData({
+      reps: sentenceRoundOrder.length,
+      queueOffset: nextOffset,
+    })
+    setSentenceQueueOffset(nextOffset)
+    setSentenceRepsToday(repsToday)
+    setSentenceTotalReps(totalReps)
+
     setSentenceSetComplete(false)
     setSentenceRoundIndex(0)
     await startSentenceLesson()
-  }, [sentenceQueue, sentenceSrsMap, startSentenceLesson])
+  }, [sentenceQueue, sentenceSrsMap, sentenceQueueOffset, sentenceRoundOrder, startSentenceLesson])
 
   const SENTENCE_SWIPE_THRESHOLD = 40
   const sentenceSwipeRatingMap: Record<string, 'again' | 'hard' | 'good' | 'easy'> = {
@@ -2608,6 +2670,10 @@ function App() {
               </button>
             </div>
           </div>
+
+          {sentenceRepsToday > 0 && (
+            <SentenceRepRing repsToday={sentenceRepsToday} totalReps={sentenceTotalReps} />
+          )}
 
           <section className="dashboard-today-panel" aria-label="Today">
             <div className="dashboard-today-heading">

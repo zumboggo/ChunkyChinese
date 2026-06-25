@@ -924,6 +924,7 @@ export function selectSentenceLessonSet(
   sentences: SentenceLessonItem[],
   sentenceSrsMap: Map<string, SentenceSrsRecord>,
   count = 5,
+  queueOffset = 0,
 ): SentenceLessonItem[] {
   const selected: SentenceLessonItem[] = []
   const selectedWords = new Set<string>()
@@ -952,12 +953,13 @@ export function selectSentenceLessonSet(
     })
   pick(due)
 
-  // Priority 2: New sentences (never seen)
+  // Priority 2: New sentences — advance through pool in order from queue offset
   const newSentences = sentences.filter((s) => {
     const record = sentenceSrsMap.get(s.word)
     return !record || isNewSentenceSrs(record)
   })
-  pick(newSentences)
+  const offset = queueOffset % Math.max(1, newSentences.length)
+  pick([...newSentences.slice(offset), ...newSentences.slice(0, offset)])
 
   // Priority 3: Lapsed sentences (lapses > 0)
   const lapsed = sentences
