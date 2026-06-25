@@ -6,19 +6,29 @@ type RenpyBuildState = 'checking' | 'ready' | 'missing'
 interface RenpyPrototypeModeProps {
   hotkeys: HotkeySettings
   onReturnToLibrary: () => void
-  onOpenReactVisualNovel: () => void
+  /** Optional button to jump back to the React-based visual novel engine. */
+  onOpenReactVisualNovel?: () => void
+  /** Which exported build under public/renpy/<storyId> to embed. */
+  storyId?: string
+  title?: string
+  description?: string
+  /** Folder name shown in the "not found" help text. */
+  sourceDir?: string
 }
-
-const RENPY_STORY_ID = 'just-friends'
 
 export function RenpyPrototypeMode({
   hotkeys,
   onReturnToLibrary,
   onOpenReactVisualNovel,
+  storyId = 'just-friends',
+  title = 'RenPy Prototype',
+  description = 'Just Friends? embedded as an exported RenPy web build.',
+  sourceDir,
 }: RenpyPrototypeModeProps) {
   const [buildState, setBuildState] = useState<RenpyBuildState>('checking')
   const [lastEvent, setLastEvent] = useState<string>('Waiting for RenPy...')
-  const renpyUrl = useMemo(() => publicAssetPath(`renpy/${RENPY_STORY_ID}/index.html`), [])
+  const renpyUrl = useMemo(() => publicAssetPath(`renpy/${storyId}/index.html`), [storyId])
+  const projectDir = sourceDir ?? `renpy/${storyId}`
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' })
@@ -50,6 +60,9 @@ export function RenpyPrototypeMode({
       if (payload.type === 'lineChanged') setLastEvent(`Line ${payload.nodeId}`)
       if (payload.type === 'choiceSelected') setLastEvent(`Choice ${payload.choiceId}`)
       if (payload.type === 'questComplete') setLastEvent('Quest complete.')
+      if (payload.type === 'chapterStart') setLastEvent(`Chapter ${payload.chapterId}`)
+      if (payload.type === 'chapterComplete') setLastEvent(`Chapter complete: ${payload.chapterId}`)
+      if (payload.type === 'endingReached') setLastEvent(`Ending: ${payload.endingId}`)
     }
     window.addEventListener('message', handleMessage)
     return () => window.removeEventListener('message', handleMessage)
@@ -59,13 +72,15 @@ export function RenpyPrototypeMode({
     <section className="screen renpy-prototype-screen">
       <div className="screen-heading compact renpy-prototype-heading">
         <div>
-          <h1>RenPy Prototype</h1>
-          <p>Just Friends? embedded as an exported RenPy web build.</p>
+          <h1>{title}</h1>
+          <p>{description}</p>
         </div>
         <div className="button-group">
-          <button type="button" onClick={onOpenReactVisualNovel}>
-            React VN
-          </button>
+          {onOpenReactVisualNovel && (
+            <button type="button" onClick={onOpenReactVisualNovel}>
+              React VN
+            </button>
+          )}
           <button type="button" onClick={onReturnToLibrary}>
             Library
           </button>
@@ -83,12 +98,8 @@ export function RenpyPrototypeMode({
         <section className="panel renpy-prototype-empty">
           <h2>RenPy web export not found</h2>
           <p>
-            Generate the source with <code>npm run vn:renpy:convert</code>, build
-            <code> renpy/just-friends</code> in RenPy, then copy the web export to
-            <code> public/renpy/just-friends</code>.
-          </p>
-          <p>
-            Verify it with <code>npm run vn:renpy:verify-web</code>.
+            Build <code>{projectDir}</code> in RenPy, then copy the web export to
+            <code> public/renpy/{storyId}</code>.
           </p>
         </section>
       )}
@@ -97,7 +108,7 @@ export function RenpyPrototypeMode({
         <div className="renpy-prototype-frame-wrap">
           <iframe
             className="renpy-prototype-frame"
-            title="RenPy Just Friends prototype"
+            title={`RenPy ${title}`}
             src={renpyUrl}
             onLoad={(event) => {
               const frame = event.currentTarget.contentWindow

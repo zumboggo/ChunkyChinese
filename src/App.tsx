@@ -141,7 +141,7 @@ import type {
   DictionaryEntry,
 } from './types'
 
-type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'visualNovel' | 'renpyPrototype' | 'comicReader' | 'readingTexts'
+type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'visualNovel' | 'renpyPrototype' | 'renpyLms' | 'comicReader' | 'readingTexts'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
 type FlashcardFrontMode = 'text' | 'audio' | 'reverse'
 type ReaderPinyinMode = UserSettings['readerPinyinMode']
@@ -3342,6 +3342,16 @@ function App() {
         />
       )}
 
+      {screen === 'renpyLms' && (
+        <RenpyPrototypeMode
+          hotkeys={hotkeys}
+          storyId="lms"
+          title="Legendary Moonlight Sculptor"
+          description="The main story as an exported RenPy web build, with ruby pinyin and English you can toggle."
+          onReturnToLibrary={() => setScreen('readingTexts')}
+        />
+      )}
+
       {screen === 'comicReader' && (
         <ComicReaderMode
           words={scopedWords.length > 0 ? scopedWords : words}
@@ -3367,6 +3377,7 @@ function App() {
           }}
           onOpenComics={() => setScreen('comicReader')}
           onOpenRenpyPrototype={() => setScreen('renpyPrototype')}
+          onOpenRenpyLms={() => setScreen('renpyLms')}
           onOpenVisualNovel={(book) => {
             setInitialVisualNovelWorldId(book?.visualNovelWorldId)
             setScreen('visualNovel')
@@ -4751,6 +4762,7 @@ function ReadingTextsLibrary({
   onBrowseNovels,
   onOpenComics,
   onOpenRenpyPrototype,
+  onOpenRenpyLms,
   onOpenVisualNovel,
 }: {
   readerBooks: ReaderBook[]
@@ -4761,6 +4773,7 @@ function ReadingTextsLibrary({
   onBrowseNovels: () => void
   onOpenComics: () => void
   onOpenRenpyPrototype: () => void
+  onOpenRenpyLms: () => void
   onOpenVisualNovel: (book?: ReaderBook) => void
 }) {
   return (
@@ -4934,6 +4947,14 @@ function ReadingTextsLibrary({
             <span>
               <strong>RenPy Prototype</strong>
               <small>Try the exported Just Friends? web build when available.</small>
+            </span>
+            <span className="reading-format-arrow" aria-hidden="true">&gt;</span>
+          </button>
+          <button type="button" className="reading-format reading-format-renpy" onClick={onOpenRenpyLms}>
+            <span className="reading-format-icon" aria-hidden="true">月</span>
+            <span>
+              <strong>Moonlight Sculptor (RenPy)</strong>
+              <small>The main story with toggleable ruby pinyin and English.</small>
             </span>
             <span className="reading-format-arrow" aria-hidden="true">&gt;</span>
           </button>
