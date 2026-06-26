@@ -386,6 +386,8 @@ function App() {
   const [sentenceSetStartMs, setSentenceSetStartMs] = useState(0)
   const [sentenceRatings, setSentenceRatings] = useState<Map<string, 'again' | 'hard' | 'good' | 'easy'>>(new Map())
   const [sentenceSrsMap, setSentenceSrsMap] = useState<Map<string, SentenceSrsRecord>>(new Map())
+  const [sentencePaused, setSentencePaused] = useState(false)
+  const sentenceSilentAudioRef = useRef<HTMLAudioElement | null>(null)
   const lastReaderActivityTimeRef = useRef<number>(0)
   const runToken = useRef(0)
   const activeAnswerLockRef = useRef<string | null>(null)
@@ -989,6 +991,7 @@ function App() {
     setSentenceRatings(new Map())
     setSentenceStreak(0)
     setSentencePinyinVisible(false)
+    setSentencePaused(false)
     setStudyMode('sentenceMode')
     setMinimalVisualMode(true)
     setAutoNextLesson(false)
@@ -1568,6 +1571,7 @@ function App() {
 
   useEffect(() => {
     if (studyMode !== 'sentenceMode' || sentenceSetComplete || sentenceQueue.length === 0) return
+    if (sentencePaused) return
     if (sentenceRoundIndex >= sentenceRoundOrder.length) {
       setSentenceSetComplete(true)
       return
@@ -1627,7 +1631,76 @@ function App() {
       runToken.current += 1
       window.speechSynthesis?.cancel()
     }
-  }, [playbackRate, stopAudioOutputs, studyMode, sentenceSetComplete, sentenceQueue, sentenceRoundIndex, sentenceRoundOrder])
+  }, [playbackRate, stopAudioOutputs, studyMode, sentenceSetComplete, sentenceQueue, sentenceRoundIndex, sentenceRoundOrder, sentencePaused])
+
+  // Create a looping near-silent audio element once; keeps the Android audio session alive
+  // while sentence mode is active so the browser is less likely to throttle speech synthesis.
+  useEffect(() => {
+    const sampleRate = 8000
+    const numSamples = sampleRate // 1 second of silence
+    const buf = new ArrayBuffer(44 + numSamples * 2)
+    const v = new DataView(buf)
+    const setStr = (off: number, s: string) => { for (let i = 0; i < s.length; i++) v.setUint8(off + i, s.charCodeAt(i)) }
+    setStr(0, 'RIFF'); v.setUint32(4, 36 + numSamples * 2, true); setStr(8, 'WAVE')
+    setStr(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true)
+    v.setUint32(24, sampleRate, true); v.setUint32(28, sampleRate * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true)
+    setStr(36, 'data'); v.setUint32(40, numSamples * 2, true) // sample data stays 0 (silence)
+    const url = URL.createObjectURL(new Blob([buf], { type: 'audio/wav' }))
+    const audio = new Audio(url)
+    audio.loop = true
+    audio.volume = 0.001
+    sentenceSilentAudioRef.current = audio
+    return () => { audio.pause(); URL.revokeObjectURL(url) }
+  }, [])
+
+  // Start/stop the silent audio with sentence mode active/paused
+  useEffect(() => {
+    const audio = sentenceSilentAudioRef.current
+    if (!audio) return
+    if (studyMode === 'sentenceMode' && !sentencePaused && !sentenceSetComplete) {
+      void audio.play().catch(() => {})
+    } else {
+      audio.pause()
+    }
+  }, [studyMode, sentencePaused, sentenceSetComplete])
+
+  // Media Session: expose sentence-mode controls to lock screen / headphones
+  useEffect(() => {
+    if (!('mediaSession' in navigator)) return
+    if (studyMode !== 'sentenceMode') {
+      navigator.mediaSession.metadata = null
+      return
+    }
+    const current = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: current?.english ?? 'Sentence Practice',
+      artist: current?.chinese ?? '',
+      album: 'Chunky Chinese',
+    })
+    navigator.mediaSession.playbackState = sentencePaused ? 'paused' : 'playing'
+    const actions: [MediaSessionAction, MediaSessionActionHandler][] = [
+      ['play', () => setSentencePaused(false)],
+      ['pause', () => setSentencePaused(true)],
+      ['nexttrack', () => setSentenceRoundIndex(i => Math.min(i + 1, sentenceRoundOrder.length - 1))],
+      ['previoustrack', () => setSentenceRoundIndex(i => Math.max(0, i - 1))],
+    ]
+    for (const [action, handler] of actions) {
+      try { navigator.mediaSession.setActionHandler(action, handler) } catch { /* not supported */ }
+    }
+    return () => {
+      for (const [action] of actions) {
+        try { navigator.mediaSession.setActionHandler(action, null) } catch { /* not supported */ }
+      }
+    }
+  }, [studyMode, sentencePaused, sentenceRoundIndex, sentenceQueue, sentenceRoundOrder])
+
+  // Pause cleanly when page is hidden (screen lock / app switch)
+  useEffect(() => {
+    if (studyMode !== 'sentenceMode') return
+    const onVisChange = () => { if (document.visibilityState === 'hidden') setSentencePaused(true) }
+    document.addEventListener('visibilitychange', onVisChange)
+    return () => document.removeEventListener('visibilitychange', onVisChange)
+  }, [studyMode])
 
   const handleQuizAnswer = useCallback(async (value: string) => {
     if (
@@ -4085,22 +4158,37 @@ function App() {
                         </div>
                       </div>
                     ) : studyMode === 'sentenceMode' ? (
-                      <div
-                        className={`sentence-mode-display${sentenceSwipeDir ? ` swipe-${sentenceSwipeDir}` : ''}`}
-                        onTouchStart={handleSentenceTouchStart}
-                        onTouchMove={handleSentenceTouchMove}
-                        onTouchEnd={handleSentenceTouchEnd}
-                      >
-                        <div className="sentence-round-info">
-                          <span>Round {Math.floor(sentenceRoundIndex / sentenceQueue.length) + 1} of 25</span>
-                          <div className="sentence-progress-bar">
-                            <span style={{ width: `${(sentenceRoundIndex / (sentenceQueue.length * 25)) * 100}%` }} />
+                      <div className={`sentence-mode-display${sentenceSwipeDir ? ` swipe-${sentenceSwipeDir}` : ''}`}>
+                        <div className="sentence-top-bar">
+                          <button
+                            type="button"
+                            className="ghost-answer sentence-end-btn"
+                            onClick={() => { setSentenceSetComplete(true) }}
+                          >
+                            End Set
+                          </button>
+                          <div className="sentence-round-info">
+                            <span>Round {Math.floor(sentenceRoundIndex / sentenceQueue.length) + 1} of 25</span>
+                            <div className="sentence-progress-bar">
+                              <span style={{ width: `${(sentenceRoundIndex / (sentenceQueue.length * 25)) * 100}%` }} />
+                            </div>
                           </div>
+                          <button
+                            type="button"
+                            className="sentence-play-pause"
+                            onClick={() => setSentencePaused(p => !p)}
+                            aria-label={sentencePaused ? 'Resume' : 'Pause'}
+                          >
+                            {sentencePaused ? '▶' : '⏸'}
+                          </button>
                         </div>
                         {sentenceStreak >= 3 && (
                           <div className="sentence-streak-badge">
                             🔥 {sentenceStreak}
                           </div>
+                        )}
+                        {sentencePaused && (
+                          <div className="sentence-paused-overlay">Paused — tap ▶ to resume</div>
                         )}
                         {sentenceQueue.length > 0 && sentenceRoundOrder.length > 0 && (() => {
                           const current = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]
@@ -4123,6 +4211,15 @@ function App() {
                                   onKeyDown={e => e.key === 'Enter' && setSentencePinyinVisible(v => !v)}
                                 >
                                   {current?.chinese}
+                                </div>
+                                <div
+                                  className="sentence-drag-handle"
+                                  onTouchStart={handleSentenceTouchStart}
+                                  onTouchMove={handleSentenceTouchMove}
+                                  onTouchEnd={handleSentenceTouchEnd}
+                                  aria-label="Drag to rate"
+                                >
+                                  <span className="sentence-drag-knob" />
                                 </div>
                                 {(sentencePinyinVisible || showPinyin) ? (
                                   <div className="sentence-pinyin">
@@ -4151,13 +4248,6 @@ function App() {
                             />
                           ))}
                         </div>
-                        <button
-                          type="button"
-                          className="ghost-answer"
-                          onClick={() => { setSentenceSetComplete(true) }}
-                        >
-                          End Set
-                        </button>
                       </div>
                     ) : (
                       <>
