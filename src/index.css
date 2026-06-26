@@ -2487,47 +2487,155 @@ dt {
 
 .sentence-mode-display {
   display: grid;
-  gap: 24px;
+  gap: 20px;
   place-items: center;
-  padding: 20px;
+  padding: 16px 20px 20px;
 }
 
+/* ── Top bar: Menu | Play/Pause | End Set ── */
 .sentence-top-bar {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
   width: 100%;
   max-width: 400px;
 }
 
-.sentence-end-btn {
-  flex-shrink: 0;
-  font-size: 0.78rem;
-  padding: 6px 12px;
-  white-space: nowrap;
+/* Menu button (left) */
+.sentence-menu-wrap {
+  position: relative;
 }
 
-.sentence-play-pause {
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(100, 116, 139, 0.3);
-  background: transparent;
-  font-size: 1rem;
+.sentence-menu-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(100, 116, 139, 0.25);
+  background: rgba(255,255,255,0.6);
+  font-size: 1.15rem;
   display: grid;
   place-items: center;
   cursor: pointer;
   color: var(--navy);
   transition: background 120ms;
 }
-.sentence-play-pause:hover { background: rgba(124, 58, 237, 0.08); }
+.sentence-menu-btn:hover { background: rgba(124, 58, 237, 0.08); }
+
+/* Menu popup */
+.sentence-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+}
+
+.sentence-menu-popup {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 50;
+  min-width: 200px;
+  padding: 14px;
+  background: var(--card-bg, #fff);
+  border: 1px solid rgba(100, 116, 139, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.14);
+  display: grid;
+  gap: 12px;
+}
+
+.sentence-menu-label {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted-navy);
+}
+
+.sentence-menu-modes {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sentence-menu-modes button {
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--navy);
+  cursor: pointer;
+  transition: background 100ms;
+}
+.sentence-menu-modes button:hover { background: rgba(124, 58, 237, 0.07); }
+.sentence-menu-modes button.active {
+  background: rgba(124, 58, 237, 0.12);
+  color: #6d28d9;
+}
+
+.sentence-menu-toggles {
+  display: grid;
+  gap: 6px;
+  border-top: 1px solid rgba(100, 116, 139, 0.12);
+  padding-top: 10px;
+}
+
+.sentence-menu-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--navy);
+  transition: background 100ms;
+}
+.sentence-menu-toggle:hover { background: rgba(124, 58, 237, 0.07); }
+.sentence-menu-toggle input { cursor: pointer; }
+
+/* Play/Pause button (center — large and prominent) */
+.sentence-play-pause {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: #7c3aed;
+  color: #fff;
+  font-size: 1.4rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.35);
+  transition: background 120ms, transform 80ms;
+}
+.sentence-play-pause:hover { background: #6d28d9; }
+.sentence-play-pause:active { transform: scale(0.94); }
+
+/* End Set button (right) */
+.sentence-end-btn {
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(100, 116, 139, 0.25);
+  background: rgba(255,255,255,0.6);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--navy);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 120ms;
+}
+.sentence-end-btn:hover { background: rgba(124, 58, 237, 0.08); }
 
 .sentence-round-info {
   display: grid;
-  gap: 8px;
-  flex: 1;
-  min-width: 0;
+  gap: 6px;
+  width: 100%;
+  max-width: 400px;
   text-align: center;
 }
 
@@ -2547,17 +2655,7 @@ dt {
   letter-spacing: 0.02em;
 }
 
-.sentence-drag-handle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0;
-  cursor: grab;
-  touch-action: none;
-  user-select: none;
-}
-.sentence-drag-handle:active { cursor: grabbing; }
-
+/* (drag handle styles kept but unused — full-card swipe restored) */
 .sentence-drag-knob {
   display: block;
   width: 48px;
@@ -2664,9 +2762,12 @@ dt {
 
 .sentence-english {
   color: var(--muted-navy);
-  font-size: clamp(1.15rem, 2.8vw, 1.7rem);
+  font-size: clamp(0.95rem, 2.2vw, 1.3rem);
   font-weight: 600;
   line-height: 1.4;
+  border-top: 1px solid rgba(100, 116, 139, 0.12);
+  padding-top: 10px;
+  margin-top: 4px;
 }
 
 .sentence-chinese {

@@ -418,8 +418,9 @@ function App() {
   const [sentenceSwipeDir, setSentenceSwipeDir] = useState<string | null>(null)
   const [sentenceDismissDir, setSentenceDismissDir] = useState<string | null>(null)
   const [sentenceAnimKey, setSentenceAnimKey] = useState(0)
-  const [sentenceStreak, setSentenceStreak] = useState(0)
+  // sentenceStreak removed; badge feature dropped
   const [sentencePinyinVisible, setSentencePinyinVisible] = useState(false)
+  const [sentenceMenuOpen, setSentenceMenuOpen] = useState(false)
   const [sentenceQueueOffset, setSentenceQueueOffset] = useState(0)
   const [sentenceRepsToday, setSentenceRepsToday] = useState(0)
   const [sentenceTotalReps, setSentenceTotalReps] = useState(0)
@@ -989,7 +990,6 @@ function App() {
     setSentenceSetComplete(false)
     setSentenceSetStartMs(Date.now())
     setSentenceRatings(new Map())
-    setSentenceStreak(0)
     setSentencePinyinVisible(false)
     setSentencePaused(false)
     setStudyMode('sentenceMode')
@@ -1124,10 +1124,6 @@ function App() {
 
     const currentWord = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.word
     if (currentWord) setSentenceRatings(prev => new Map(prev).set(currentWord, rating))
-
-    // Streak counter
-    const isGood = rating === 'good' || rating === 'easy'
-    setSentenceStreak(prev => isGood ? prev + 1 : 0)
 
     // Haptic pulse
     navigator.vibrate?.(30)
@@ -3954,7 +3950,7 @@ function App() {
                               ? 'Rendering local audio...'
                               : renderedLesson?.title ?? lesson?.title ?? 'Sentence listening'}
                       </span>
-                      {minimalVisualMode ? (
+                      {minimalVisualMode && studyMode !== 'sentenceMode' ? (
                         <div className="study-toggles minimal-toggles">
                           <div className="segmented-control listening-mode-toggle" aria-label="Listening mode">
                             <button
@@ -3973,8 +3969,7 @@ function App() {
                             </button>
                             <button
                               type="button"
-                              className={studyMode === 'sentenceMode' ? 'active' : ''}
-                              onClick={() => { if (studyMode !== 'sentenceMode') void startSentenceLesson() }}
+                              onClick={() => void startSentenceLesson()}
                             >
                               Sentences
                             </button>
@@ -4158,21 +4153,68 @@ function App() {
                         </div>
                       </div>
                     ) : studyMode === 'sentenceMode' ? (
-                      <div className={`sentence-mode-display${sentenceSwipeDir ? ` swipe-${sentenceSwipeDir}` : ''}`}>
+                      <div
+                        className={`sentence-mode-display${sentenceSwipeDir ? ` swipe-${sentenceSwipeDir}` : ''}`}
+                        onTouchStart={handleSentenceTouchStart}
+                        onTouchMove={handleSentenceTouchMove}
+                        onTouchEnd={handleSentenceTouchEnd}
+                      >
+                        {/* Top bar: Menu | Play/Pause | End Set */}
                         <div className="sentence-top-bar">
-                          <button
-                            type="button"
-                            className="ghost-answer sentence-end-btn"
-                            onClick={() => { setSentenceSetComplete(true) }}
-                          >
-                            End Set
-                          </button>
-                          <div className="sentence-round-info">
-                            <span>Round {Math.floor(sentenceRoundIndex / sentenceQueue.length) + 1} of 25</span>
-                            <div className="sentence-progress-bar">
-                              <span style={{ width: `${(sentenceRoundIndex / (sentenceQueue.length * 25)) * 100}%` }} />
-                            </div>
+                          <div className="sentence-menu-wrap">
+                            <button
+                              type="button"
+                              className="sentence-menu-btn"
+                              onClick={() => setSentenceMenuOpen(o => !o)}
+                              aria-label="Menu"
+                            >
+                              ☰
+                            </button>
+                            {sentenceMenuOpen && (
+                              <>
+                                <div
+                                  className="sentence-menu-backdrop"
+                                  onClick={() => setSentenceMenuOpen(false)}
+                                />
+                                <div className="sentence-menu-popup">
+                                  <p className="sentence-menu-label">Mode</p>
+                                  <div className="sentence-menu-modes">
+                                    {/* cast escapes TS narrowing — we're always in sentenceMode here */}
+                                    <button
+                                      type="button"
+                                      className=""
+                                      onClick={() => { void startModeLesson('listeningMode'); setSentenceMenuOpen(false) }}
+                                    >Words</button>
+                                    <button
+                                      type="button"
+                                      className="active"
+                                      onClick={() => { setSentenceMenuOpen(false) }}
+                                    >Sentences</button>
+                                    <button
+                                      type="button"
+                                      className=""
+                                      onClick={() => { void startModeLesson('activeRecall'); setSentenceMenuOpen(false) }}
+                                    >Active Recall</button>
+                                  </div>
+                                  <div className="sentence-menu-toggles">
+                                    <label className="sentence-menu-toggle">
+                                      <span>Pinyin</span>
+                                      <input type="checkbox" checked={showPinyin} onChange={() => setShowPinyin(v => !v)} />
+                                    </label>
+                                    <label className="sentence-menu-toggle">
+                                      <span>English</span>
+                                      <input type="checkbox" checked={showEnglish} onChange={() => setShowEnglish(v => !v)} />
+                                    </label>
+                                    <label className="sentence-menu-toggle">
+                                      <span>Auto next</span>
+                                      <input type="checkbox" checked={autoNextLesson} onChange={e => setAutoNextLesson(e.target.checked)} />
+                                    </label>
+                                  </div>
+                                </div>
+                              </>
+                            )}
                           </div>
+
                           <button
                             type="button"
                             className="sentence-play-pause"
@@ -4181,15 +4223,27 @@ function App() {
                           >
                             {sentencePaused ? '▶' : '⏸'}
                           </button>
+
+                          <button
+                            type="button"
+                            className="sentence-end-btn"
+                            onClick={() => { setSentenceSetComplete(true) }}
+                          >
+                            End Set
+                          </button>
                         </div>
-                        {sentenceStreak >= 3 && (
-                          <div className="sentence-streak-badge">
-                            🔥 {sentenceStreak}
+
+                        <div className="sentence-round-info">
+                          <span>Round {Math.floor(sentenceRoundIndex / sentenceQueue.length) + 1} of 25</span>
+                          <div className="sentence-progress-bar">
+                            <span style={{ width: `${(sentenceRoundIndex / (sentenceQueue.length * 25)) * 100}%` }} />
                           </div>
-                        )}
+                        </div>
+
                         {sentencePaused && (
                           <div className="sentence-paused-overlay">Paused — tap ▶ to resume</div>
                         )}
+
                         {sentenceQueue.length > 0 && sentenceRoundOrder.length > 0 && (() => {
                           const current = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]
                           const next = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex + 1]]
@@ -4202,7 +4256,6 @@ function App() {
                                 ref={sentenceCardRef}
                                 className={`sentence-card${sentenceDismissDir ? ` sentence-dismiss-${sentenceDismissDir}` : ''}`}
                               >
-                                <div className="sentence-english">{current?.english}</div>
                                 <div
                                   className="sentence-chinese"
                                   role="button"
@@ -4212,21 +4265,15 @@ function App() {
                                 >
                                   {current?.chinese}
                                 </div>
-                                <div
-                                  className="sentence-drag-handle"
-                                  onTouchStart={handleSentenceTouchStart}
-                                  onTouchMove={handleSentenceTouchMove}
-                                  onTouchEnd={handleSentenceTouchEnd}
-                                  aria-label="Drag to rate"
-                                >
-                                  <span className="sentence-drag-knob" />
-                                </div>
                                 {(sentencePinyinVisible || showPinyin) ? (
                                   <div className="sentence-pinyin">
                                     {getPinyin(current?.chinese ?? '', { toneType: 'symbol', separator: ' ' })}
                                   </div>
                                 ) : (
                                   <div className="sentence-pinyin-hint">拼 pinyin</div>
+                                )}
+                                {showEnglish && (
+                                  <div className="sentence-english">{current?.english}</div>
                                 )}
                                 {storedRating && (
                                   <div className="sentence-stored-rating">{storedRating.charAt(0).toUpperCase() + storedRating.slice(1)}</div>
@@ -4235,6 +4282,7 @@ function App() {
                             </div>
                           )
                         })()}
+
                         {sentenceSwipeDir && (
                           <div className={`swipe-indicator swipe-indicator-${sentenceSwipeDir}`}>
                             {{ left: '✗ Again', up: '△ Hard', right: '✓ Good', down: '★ Easy' }[sentenceSwipeDir]}
