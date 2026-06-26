@@ -7620,6 +7620,10 @@ kbd {
   }
 
   .renpy-prototype-screen .renpy-prototype-heading {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--background, #0f172a);
     padding: max(16px, env(safe-area-inset-top, 0px)) 12px 12px;
   }
 

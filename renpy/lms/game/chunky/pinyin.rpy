@@ -94,12 +94,12 @@ init python:
     if persistent.show_english is None:
         persistent.show_english = True
 
-    # Style the ruby (pinyin) text that sits above each character.
+    # Ruby (pinyin) text above each character. Size 13 keeps even 4-char pinyin
+    # ("qiāo") narrower than a 33px CJK character so Ren'Py won't widen cells.
     style.default.ruby_style = Style(style.default)
-    style.default.ruby_style.size = 22
-    style.default.ruby_style.yoffset = -28
+    style.default.ruby_style.size = 13
+    style.default.ruby_style.yoffset = -16
 
-# Give dialogue lines extra headroom so the pinyin above the first line is not
-# clipped by the top of the text box.
+# Headroom for the pinyin row above the first dialogue line.
 style say_dialogue:
-    line_leading 24
+    line_leading 16
