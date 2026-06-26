@@ -2760,31 +2760,21 @@ function App() {
               <h1>Press play, think, keep moving.</h1>
               <p>Start with due words, add new ones only when the queue is light.</p>
             </div>
-            <div className="mode-start-grid" aria-label="Choose study mode">
+            <div className="mode-start-grid mode-start-grid-three" aria-label="Choose study mode">
               <button className="mode-start flashcards-start" type="button" onClick={startSavedFlashcards}>
                 <kbd>{hotkeys.choiceA.toUpperCase()}</kbd>
                 <strong>Flashcards</strong>
                 <span>Sort due and new words with FSRS.</span>
               </button>
-              <button className="mode-start reading-texts-start" type="button" onClick={() => setScreen('readingTexts')}>
+              <button className="mode-start listen-start" type="button" onClick={() => void startSentenceLesson()}>
                 <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
-                <strong>Reading Texts</strong>
-                <span>Choose between novels, stories, and comics.</span>
-              </button>
-              <button className="mode-start listen-start" type="button" onClick={() => startModeLesson('listeningMode')}>
-                <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
                 <strong>Listening</strong>
-                <span>Listen with passive or active recall modes.</span>
+                <span>Sentence loops by default — switch to Words or Active Recall in the menu.</span>
               </button>
-              <button className="mode-start sentence-start" type="button" onClick={() => void startSentenceLesson()}>
-                <kbd>{hotkeys.choiceD.toUpperCase()}</kbd>
-                <strong>Sentences</strong>
-                <span>Passive sentence loops with English, Chinese, and recall pauses.</span>
-              </button>
-              <button className="mode-start novel-start" type="button" onClick={() => setScreen('visualNovel')}>
-                <kbd>{hotkeys.choiceE.toUpperCase()}</kbd>
-                <strong>Visual Novel</strong>
-                <span>Play a story scene with the same Adaptive Mode text.</span>
+              <button className="mode-start reading-texts-start" type="button" onClick={() => setScreen('readingTexts')}>
+                <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
+                <strong>Reading</strong>
+                <span>Novels, comics, stories, and visual novels.</span>
               </button>
             </div>
           </div>
@@ -4922,6 +4912,28 @@ function readerBookAssetUrl(book: ReaderBook, path: string): string {
   return `${base.replace(/\/$/u, '')}/reader-packs/${book.packId}/${path.replace(/^\//u, '')}`
 }
 
+type ReadingBookCategory = 'novel' | 'story'
+
+// Which shelf each book lands on. Edit these to recategorize.
+// Per-pack default; override an individual book by its id in READING_BOOK_CATEGORY.
+const READING_PACK_CATEGORY: Record<string, ReadingBookCategory> = {
+  'lms-books': 'novel',
+  'sherlock-holmes': 'novel',
+  'rise-of-the-monkey-king': 'novel',
+  'just-friends': 'novel',
+  'can-i-dance': 'novel',
+  'john-gospel': 'story',
+}
+const READING_BOOK_CATEGORY: Record<string, ReadingBookCategory> = {
+  // 'some-book-id': 'story',
+}
+
+function readingBookCategory(book: ReaderBook): ReadingBookCategory {
+  return READING_BOOK_CATEGORY[book.id] ?? READING_PACK_CATEGORY[book.packId] ?? 'novel'
+}
+
+type ReadingCategoryView = null | 'novels' | 'stories' | 'visualNovels'
+
 function ReadingTextsLibrary({
   readerBooks,
   comprehensionByBook,
@@ -4945,6 +4957,179 @@ function ReadingTextsLibrary({
   onOpenRenpyLms: () => void
   onOpenVisualNovel: (book?: ReaderBook) => void
 }) {
+  const [category, setCategory] = useState<ReadingCategoryView>(null)
+
+  const novels = readerBooks.filter((b) => readingBookCategory(b) === 'novel')
+  const stories = readerBooks.filter((b) => readingBookCategory(b) === 'story')
+
+  const renderBookShelf = (books: ReaderBook[], emptyLabel: string) =>
+    books.length > 0 ? (
+      <div className="reading-book-shelf">
+        <div className="reading-book-grid">
+          {books.map((book, index) => {
+            const comprehension = comprehensionByBook.get(book.id)
+            const isResumeBook = resumeLocation?.book.id === book.id
+            const progress = isResumeBook ? resumeLocation.percent : 0
+            return (
+              <article className="reading-library-book" key={book.id}>
+                <div className={`reading-book-cover reading-book-cover-${index % 4}`}>
+                  {book.coverImage ? (
+                    <img src={readerBookAssetUrl(book, book.coverImage)} alt="" />
+                  ) : null}
+                  <span>{book.title}</span>
+                </div>
+                <div className="reading-book-copy">
+                  <div>
+                    <h3>{book.title}</h3>
+                    <p>
+                      Chapters {book.chapterStart}-{book.chapterEnd} · {book.stories.length} stories
+                    </p>
+                  </div>
+                  <div className="reading-book-progress" aria-hidden="true">
+                    <span style={{ width: `${progress}%` }} />
+                  </div>
+                  <small>
+                    {isResumeBook
+                      ? `Continue at sentence ${resumeLocation.sentenceIndex + 1}`
+                      : `${comprehension?.knownPercent ?? 0}% vocabulary known`}
+                  </small>
+                  <div className="reading-book-actions">
+                    {isResumeBook ? (
+                      <button
+                        type="button"
+                        className="primary"
+                        onClick={() => void onChooseBook(book, 'resume')}
+                      >
+                        Resume
+                      </button>
+                    ) : null}
+                    <button type="button" onClick={() => void onChooseBook(book, 'start')}>
+                      Start
+                    </button>
+                    {book.visualNovelWorldId ? (
+                      <button
+                        type="button"
+                        className="reading-scene-action"
+                        onClick={() => onOpenVisualNovel(book)}
+                      >
+                        Scene mode
+                      </button>
+                    ) : null}
+                  </div>
+                </div>
+              </article>
+            )
+          })}
+        </div>
+      </div>
+    ) : (
+      <div className="reading-library-empty">
+        <strong>{emptyLabel}</strong>
+        <span>Books you add to this shelf will appear here.</span>
+      </div>
+    )
+
+  // ── Category sub-views ──
+  if (category === 'novels' || category === 'stories') {
+    const isNovels = category === 'novels'
+    return (
+      <section className="screen reading-texts-screen">
+        <header className="reading-library-heading">
+          <button type="button" className="ghost-answer reading-back-button" onClick={() => setCategory(null)}>
+            Back to Reading
+          </button>
+          <div>
+            <span className="reading-library-mark" aria-hidden="true">{isNovels ? '文' : '事'}</span>
+            <div>
+              <h1>{isNovels ? 'Novels' : 'Stories'}</h1>
+              <p>{isNovels ? 'Long-form books with pinyin, translations, and audio.' : 'Short reads and standalone texts.'}</p>
+            </div>
+          </div>
+        </header>
+        <section className="reading-library-section">
+          <div className="reading-section-heading">
+            <div>
+              <h2>{isNovels ? novels.length : stories.length} {isNovels ? 'novels' : 'stories'}</h2>
+              <p>Tap a cover to start reading.</p>
+            </div>
+            <button type="button" className="ghost-answer" onClick={onBrowseNovels}>
+              Classic library
+            </button>
+          </div>
+          {renderBookShelf(isNovels ? novels : stories, isNovels ? 'No novels yet.' : 'No stories yet.')}
+        </section>
+      </section>
+    )
+  }
+
+  if (category === 'visualNovels') {
+    return (
+      <section className="screen reading-texts-screen">
+        <header className="reading-library-heading">
+          <button type="button" className="ghost-answer reading-back-button" onClick={() => setCategory(null)}>
+            Back to Reading
+          </button>
+          <div>
+            <span className="reading-library-mark" aria-hidden="true">剧</span>
+            <div>
+              <h1>Visual Novels</h1>
+              <p>Interactive stories with scenes, dialogue, and choices.</p>
+            </div>
+          </div>
+        </header>
+        <section className="reading-library-section">
+          <div className="reading-book-shelf">
+            <div className="reading-book-grid">
+              <article className="reading-library-book reading-vn-book">
+                <div className="reading-book-cover reading-book-cover-0">
+                  <span>Scene Mode</span>
+                </div>
+                <div className="reading-book-copy">
+                  <div>
+                    <h3>Interactive Scenes</h3>
+                    <p>Quest-based world with dialogue choices.</p>
+                  </div>
+                  <div className="reading-book-actions">
+                    <button type="button" className="primary" onClick={() => onOpenVisualNovel()}>Play</button>
+                  </div>
+                </div>
+              </article>
+              <article className="reading-library-book reading-vn-book">
+                <div className="reading-book-cover reading-book-cover-1">
+                  <span>Just Friends?</span>
+                </div>
+                <div className="reading-book-copy">
+                  <div>
+                    <h3>Just Friends?</h3>
+                    <p>Exported Ren'Py web build.</p>
+                  </div>
+                  <div className="reading-book-actions">
+                    <button type="button" className="primary" onClick={onOpenRenpyPrototype}>Play</button>
+                  </div>
+                </div>
+              </article>
+              <article className="reading-library-book reading-vn-book">
+                <div className="reading-book-cover reading-book-cover-2">
+                  <span>Moonlight Sculptor</span>
+                </div>
+                <div className="reading-book-copy">
+                  <div>
+                    <h3>Moonlight Sculptor</h3>
+                    <p>Main story with ruby pinyin and English toggles.</p>
+                  </div>
+                  <div className="reading-book-actions">
+                    <button type="button" className="primary" onClick={onOpenRenpyLms}>Play</button>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </section>
+    )
+  }
+
+  // ── Hub: 4 category tiles ──
   return (
     <section className="screen reading-texts-screen">
       <header className="reading-library-heading">
@@ -4954,8 +5139,8 @@ function ReadingTextsLibrary({
         <div>
           <span className="reading-library-mark" aria-hidden="true">阅</span>
           <div>
-            <h1>Reading Texts</h1>
-            <p>Pick up a book or explore another way to read Chinese.</p>
+            <h1>Reading</h1>
+            <p>Pick a format, then choose what to read.</p>
           </div>
         </div>
       </header>
@@ -4992,106 +5177,13 @@ function ReadingTextsLibrary({
         </section>
       ) : null}
 
-      <section className="reading-library-section" aria-labelledby="reading-library-title">
-        <div className="reading-section-heading">
-          <div>
-            <h2 id="reading-library-title">Your Library</h2>
-            <p>{readerBooks.length} books ready to read</p>
-          </div>
-          <button type="button" className="ghost-answer" onClick={onBrowseNovels}>
-            Classic library
-          </button>
-        </div>
-
-        {readerBooks.length > 0 ? (
-          <div className="reading-book-shelf">
-            <div className="reading-book-grid">
-              {readerBooks.map((book, index) => {
-                const comprehension = comprehensionByBook.get(book.id)
-                const isResumeBook = resumeLocation?.book.id === book.id
-                const progress = isResumeBook ? resumeLocation.percent : 0
-                return (
-                  <article className="reading-library-book" key={book.id}>
-                    <div className={`reading-book-cover reading-book-cover-${index % 4}`}>
-                      {book.coverImage ? (
-                        <img src={readerBookAssetUrl(book, book.coverImage)} alt="" />
-                      ) : null}
-                      <span>{book.title}</span>
-                    </div>
-                    <div className="reading-book-copy">
-                      <div>
-                        <h3>{book.title}</h3>
-                        <p>
-                          Chapters {book.chapterStart}-{book.chapterEnd} · {book.stories.length} stories
-                        </p>
-                      </div>
-                      <div className="reading-book-progress" aria-hidden="true">
-                        <span style={{ width: `${progress}%` }} />
-                      </div>
-                      <small>
-                        {isResumeBook
-                          ? `Continue at sentence ${resumeLocation.sentenceIndex + 1}`
-                          : `${comprehension?.knownPercent ?? 0}% vocabulary known`}
-                      </small>
-                      <div className="reading-book-actions">
-                        {isResumeBook ? (
-                          <button
-                            type="button"
-                            className="primary"
-                            onClick={() => void onChooseBook(book, 'resume')}
-                          >
-                            Resume
-                          </button>
-                        ) : null}
-                        <button type="button" onClick={() => void onChooseBook(book, 'start')}>
-                          Start
-                        </button>
-                        {book.visualNovelWorldId ? (
-                          <button
-                            type="button"
-                            className="reading-scene-action"
-                            onClick={() => onOpenVisualNovel(book)}
-                          >
-                            Scene mode
-                          </button>
-                        ) : null}
-                        {book.visualNovelWorldId === 'just-friends' ? (
-                          <button
-                            type="button"
-                            className="reading-scene-action"
-                            onClick={onOpenRenpyPrototype}
-                          >
-                            RenPy
-                          </button>
-                        ) : null}
-                      </div>
-                    </div>
-                  </article>
-                )
-              })}
-            </div>
-          </div>
-        ) : (
-          <div className="reading-library-empty">
-            <strong>Your books are still loading.</strong>
-            <span>They will appear here automatically when the library is ready.</span>
-          </div>
-        )}
-      </section>
-
       <section className="reading-formats-section" aria-labelledby="reading-formats-title">
-        <div className="reading-section-heading">
-          <div>
-            <h2 id="reading-formats-title">Explore formats</h2>
-            <p>Choose the reading experience that fits your mood.</p>
-          </div>
-        </div>
         <div className="reading-formats-grid">
-          <button type="button" className="reading-format reading-format-novels" onClick={onBrowseNovels}>
+          <button type="button" className="reading-format reading-format-novels" onClick={() => setCategory('novels')}>
             <span className="reading-format-icon" aria-hidden="true">文</span>
             <span>
-              <strong>Novels &amp; Stories</strong>
-              <small>Browse every book with pinyin, translations, and audio.</small>
+              <strong>Novels</strong>
+              <small>{novels.length} long-form books with pinyin and audio.</small>
             </span>
             <span className="reading-format-arrow" aria-hidden="true">→</span>
           </button>
@@ -5099,33 +5191,25 @@ function ReadingTextsLibrary({
             <span className="reading-format-icon" aria-hidden="true">漫</span>
             <span>
               <strong>Comics</strong>
-              <small>Read pages with bubble transcripts and vocabulary lookup.</small>
+              <small>Pages with bubble transcripts and vocabulary lookup.</small>
             </span>
             <span className="reading-format-arrow" aria-hidden="true">→</span>
           </button>
-          <button type="button" className="reading-format reading-format-novel" onClick={() => onOpenVisualNovel()}>
+          <button type="button" className="reading-format reading-format-novels" onClick={() => setCategory('stories')}>
+            <span className="reading-format-icon" aria-hidden="true">事</span>
+            <span>
+              <strong>Stories</strong>
+              <small>{stories.length} short reads and standalone texts.</small>
+            </span>
+            <span className="reading-format-arrow" aria-hidden="true">→</span>
+          </button>
+          <button type="button" className="reading-format reading-format-novel" onClick={() => setCategory('visualNovels')}>
             <span className="reading-format-icon" aria-hidden="true">剧</span>
             <span>
-              <strong>Visual Novel</strong>
-              <small>Play through interactive scenes and dialogue choices.</small>
+              <strong>Visual Novels</strong>
+              <small>Interactive scenes, dialogue, and Ren'Py stories.</small>
             </span>
             <span className="reading-format-arrow" aria-hidden="true">→</span>
-          </button>
-          <button type="button" className="reading-format reading-format-renpy" onClick={onOpenRenpyPrototype}>
-            <span className="reading-format-icon" aria-hidden="true">RP</span>
-            <span>
-              <strong>RenPy Prototype</strong>
-              <small>Try the exported Just Friends? web build when available.</small>
-            </span>
-            <span className="reading-format-arrow" aria-hidden="true">&gt;</span>
-          </button>
-          <button type="button" className="reading-format reading-format-renpy" onClick={onOpenRenpyLms}>
-            <span className="reading-format-icon" aria-hidden="true">月</span>
-            <span>
-              <strong>Moonlight Sculptor (RenPy)</strong>
-              <small>The main story with toggleable ruby pinyin and English.</small>
-            </span>
-            <span className="reading-format-arrow" aria-hidden="true">&gt;</span>
           </button>
         </div>
       </section>
