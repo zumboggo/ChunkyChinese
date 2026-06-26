@@ -2718,22 +2718,28 @@ function App() {
   return (
     <main className="app-shell">
       <header className="topbar">
-        <button className="brand-button" type="button" onClick={() => setScreen('dashboard')} aria-label="Go to dashboard">
-          <span className="brand-mark">中</span>
-          <span>
-            <strong>Chunky Chinese</strong>
-            <small>{seedMessage}</small>
-          </span>
-          <span className="brand-home-pill" aria-hidden="true">Home</span>
-        </button>
+        <div className="brand-with-settings">
+          <button className="brand-button" type="button" onClick={() => setScreen('dashboard')} aria-label="Go to dashboard">
+            <span className="brand-mark">中</span>
+            <span>
+              <strong>Chunky Chinese</strong>
+              <small>{seedMessage}</small>
+            </span>
+            <span className="brand-home-pill" aria-hidden="true">Home</span>
+          </button>
+          <button className="topbar-settings-btn" type="button" onClick={() => setScreen('settings')} aria-label="Settings">
+            <span className="nav-icon nav-settings" aria-hidden="true" />
+            Settings
+          </button>
+        </div>
         <nav className="tabs" aria-label="Main screens">
           <button type="button" className={screen === 'flashcards' ? 'active' : ''} onClick={startSavedFlashcards}>
             <span className="nav-icon nav-flashcards" aria-hidden="true" />
             Flashcards
           </button>
-          <button type="button" className={screen === 'settings' ? 'active' : ''} onClick={() => setScreen('settings')}>
-            <span className="nav-icon nav-settings" aria-hidden="true" />
-            Settings
+          <button type="button" className={screen === 'lesson' && studyMode === 'sentenceMode' ? 'active' : ''} onClick={() => void startSentenceLesson()}>
+            <span className="nav-icon nav-listen" aria-hidden="true" />
+            Listening
           </button>
           <button
             type="button"
