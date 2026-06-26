@@ -50,6 +50,9 @@ vn-authoring/**/contact-sheets/**
 renpy/**/*-dists/
 renpy/**/game/cache/
 renpy/**/game/saves/
+renpy/**/*.rpyc
+renpy/**/log.txt
+renpy/**/progressive_download.txt
 
 # Editor directories and files
 .vscode/*
