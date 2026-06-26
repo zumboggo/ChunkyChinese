@@ -49,6 +49,9 @@ interface ComicReaderModeProps {
   onWordsChanged: () => void | Promise<void>
   onReturnHome: () => void
   onOpenClassicReader: () => void
+  /** When set, the reader opens straight into this pack, skipping the library. */
+  initialPackId?: string
+  initialMode?: 'continue' | 'start'
 }
 
 type ComicView = 'library' | 'chapters' | 'reader'
@@ -67,6 +70,8 @@ export function ComicReaderMode({
   onWordsChanged,
   onReturnHome,
   onOpenClassicReader,
+  initialPackId,
+  initialMode = 'continue',
 }: ComicReaderModeProps) {
   const [view, setView] = useState<ComicView>('library')
   const [packs, setPacks] = useState<ComicPackSummary[]>([])
@@ -129,6 +134,16 @@ export function ComicReaderMode({
     const timeout = window.setTimeout(() => void loadLibrary(), 0)
     return () => window.clearTimeout(timeout)
   }, [loadLibrary])
+
+  // When launched from the Reading hub shelf, jump straight into the chosen pack.
+  const openedInitialRef = useRef(false)
+  useEffect(() => {
+    if (loadState !== 'ready' || !initialPackId || openedInitialRef.current) return
+    openedInitialRef.current = true
+    void openPack(initialPackId, initialMode)
+    // openPack is a stable in-component closure; intentionally not a dep
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadState, initialPackId, initialMode])
 
   useEffect(() => {
     if (!selectedToken || selectedToken.word || !selectedToken.isChinese) return
@@ -799,6 +814,100 @@ function ComicCover({ packId, imagePath, alt }: { packId: string; imagePath?: st
     <div className="comic-cover-frame">
       {url ? <img src={url} alt={alt} /> : <span>No cover</span>}
     </div>
+  )
+}
+
+// Bare cover image for the Reading-hub shelf (matches .reading-book-cover markup).
+function ShelfComicCover({ packId, imagePath }: { packId: string; imagePath?: string }) {
+  const url = useComicImageUrl(packId, imagePath)
+  return url ? <img src={url} alt="" /> : null
+}
+
+/**
+ * Comic library rendered with the shared wood-shelf aesthetic for use inside
+ * the Reading hub. Selection opens a pack via onOpenComic; onManage opens the
+ * full ComicReaderMode library (import / download / delete).
+ */
+export function ComicShelf({
+  onOpenComic,
+  onManage,
+}: {
+  onOpenComic: (packId: string, mode: 'continue' | 'start') => void
+  onManage: () => void
+}) {
+  const [packs, setPacks] = useState<ComicPackSummary[]>([])
+  const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading')
+
+  useEffect(() => {
+    let cancelled = false
+    listComicPacks()
+      .then((list) => {
+        if (cancelled) return
+        setPacks(list)
+        setState('ready')
+      })
+      .catch((error) => {
+        console.error(error)
+        if (!cancelled) setState('error')
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  return (
+    <section className="reading-library-section">
+      <div className="reading-section-heading">
+        <div>
+          <h2>{packs.length} comics</h2>
+          <p>Tap a cover to keep reading.</p>
+        </div>
+        <button type="button" className="ghost-answer" onClick={onManage}>
+          Import / manage
+        </button>
+      </div>
+      {state === 'ready' && packs.length === 0 ? (
+        <div className="reading-library-empty">
+          <strong>No comics yet.</strong>
+          <span>Use Import / manage to add a comic pack.</span>
+        </div>
+      ) : (
+        <div className="reading-book-shelf">
+          <div className="reading-book-grid">
+            {packs.map((pack, index) => {
+              const started = Boolean(pack.progress)
+              return (
+                <article className="reading-library-book" key={pack.id}>
+                  <div className={`reading-book-cover reading-book-cover-${index % 4}`}>
+                    <ShelfComicCover packId={pack.id} imagePath={pack.coverImage} />
+                    <span>{pack.title}</span>
+                  </div>
+                  <div className="reading-book-copy">
+                    <div>
+                      <h3>{pack.title}</h3>
+                      <p>{pack.chapterCount} chapters · {pack.pageCount} pages</p>
+                    </div>
+                    <small>
+                      {started ? `Continue at page ${(pack.progress?.pageIndex ?? 0) + 1}` : 'Not started'}
+                    </small>
+                    <div className="reading-book-actions">
+                      {started ? (
+                        <button type="button" className="primary" onClick={() => onOpenComic(pack.id, 'continue')}>
+                          Continue
+                        </button>
+                      ) : null}
+                      <button type="button" onClick={() => onOpenComic(pack.id, 'start')}>
+                        {started ? 'Restart' : 'Start'}
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+        </div>
+      )}
+    </section>
   )
 }
 

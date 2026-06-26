@@ -97,7 +97,7 @@ import { findGrammarMatches, mapGrammarToTokens, type GrammarMatch } from './gra
 import { UniversalImporter } from './UniversalImporter'
 import { VisualNovelWorldMode } from './visualNovel/VisualNovelWorldMode'
 import { RenpyPrototypeMode } from './visualNovel/RenpyPrototypeMode'
-import { ComicReaderMode } from './comics/ComicReaderMode'
+import { ComicReaderMode, ComicShelf } from './comics/ComicReaderMode'
 import { useReaderListeningController } from './useReaderListeningController'
 import type { ReaderListeningController } from './useReaderListeningController'
 import {
@@ -298,6 +298,7 @@ function SentenceRepRing({ repsToday, totalReps }: { repsToday: number; totalRep
 function App() {
   const [screen, setScreen] = useState<Screen>('dashboard')
   const [initialVisualNovelWorldId, setInitialVisualNovelWorldId] = useState<string | undefined>()
+  const [initialComicPack, setInitialComicPack] = useState<{ id: string; mode: 'continue' | 'start' } | undefined>()
   const [words, setWords] = useState<VocabWord[]>([])
   const [sentences, setSentences] = useState<Sentence[]>([])
   const [audioClips, setAudioClips] = useState<AudioClip[]>([])
@@ -3430,8 +3431,10 @@ function App() {
           hotkeys={hotkeys}
           onEditWord={openCardEditor}
           onWordsChanged={refresh}
-          onReturnHome={() => setScreen('dashboard')}
+          onReturnHome={() => setScreen('readingTexts')}
           onOpenClassicReader={() => setScreen('reader')}
+          initialPackId={initialComicPack?.id}
+          initialMode={initialComicPack?.mode}
         />
       )}
 
@@ -3446,7 +3449,14 @@ function App() {
             setActiveReaderBookId(undefined)
             setScreen('reader')
           }}
-          onOpenComics={() => setScreen('comicReader')}
+          onOpenComic={(packId, mode) => {
+            setInitialComicPack({ id: packId, mode })
+            setScreen('comicReader')
+          }}
+          onOpenComics={() => {
+            setInitialComicPack(undefined)
+            setScreen('comicReader')
+          }}
           onOpenRenpyPrototype={() => setScreen('renpyPrototype')}
           onOpenRenpyLms={() => setScreen('renpyLms')}
           onOpenVisualNovel={(book) => {
@@ -4932,7 +4942,7 @@ function readingBookCategory(book: ReaderBook): ReadingBookCategory {
   return READING_BOOK_CATEGORY[book.id] ?? READING_PACK_CATEGORY[book.packId] ?? 'novel'
 }
 
-type ReadingCategoryView = null | 'novels' | 'stories' | 'visualNovels'
+type ReadingCategoryView = null | 'novels' | 'stories' | 'comics' | 'visualNovels'
 
 function ReadingTextsLibrary({
   readerBooks,
@@ -4941,6 +4951,7 @@ function ReadingTextsLibrary({
   onBack,
   onChooseBook,
   onBrowseNovels,
+  onOpenComic,
   onOpenComics,
   onOpenRenpyPrototype,
   onOpenRenpyLms,
@@ -4952,6 +4963,7 @@ function ReadingTextsLibrary({
   onBack: () => void
   onChooseBook: (book: ReaderBook, action?: 'resume' | 'start') => void | Promise<void>
   onBrowseNovels: () => void
+  onOpenComic: (packId: string, mode: 'continue' | 'start') => void
   onOpenComics: () => void
   onOpenRenpyPrototype: () => void
   onOpenRenpyLms: () => void
@@ -5058,6 +5070,26 @@ function ReadingTextsLibrary({
           </div>
           {renderBookShelf(isNovels ? novels : stories, isNovels ? 'No novels yet.' : 'No stories yet.')}
         </section>
+      </section>
+    )
+  }
+
+  if (category === 'comics') {
+    return (
+      <section className="screen reading-texts-screen">
+        <header className="reading-library-heading">
+          <button type="button" className="ghost-answer reading-back-button" onClick={() => setCategory(null)}>
+            Back to Reading
+          </button>
+          <div>
+            <span className="reading-library-mark" aria-hidden="true">漫</span>
+            <div>
+              <h1>Comics</h1>
+              <p>Read pages with bubble transcripts and vocabulary lookup.</p>
+            </div>
+          </div>
+        </header>
+        <ComicShelf onOpenComic={onOpenComic} onManage={onOpenComics} />
       </section>
     )
   }
@@ -5187,7 +5219,7 @@ function ReadingTextsLibrary({
             </span>
             <span className="reading-format-arrow" aria-hidden="true">→</span>
           </button>
-          <button type="button" className="reading-format reading-format-comics" onClick={onOpenComics}>
+          <button type="button" className="reading-format reading-format-comics" onClick={() => setCategory('comics')}>
             <span className="reading-format-icon" aria-hidden="true">漫</span>
             <span>
               <strong>Comics</strong>
