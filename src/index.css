@@ -308,11 +308,10 @@ dt {
 .brand-button {
   border: 0;
   background: transparent;
-  padding: 4px 18px 4px 4px;
+  padding: 4px 12px 4px 4px;
   justify-content: flex-start;
   box-shadow: none;
   border-radius: 30px;
-  min-width: min(370px, 100%);
 }
 
 .brand-button:hover {
@@ -320,7 +319,7 @@ dt {
   box-shadow: none;
 }
 
-.brand-button > span:not(.brand-mark):not(.brand-home-pill) {
+.brand-button > span:not(.brand-mark) {
   display: grid;
   gap: 2px;
   text-align: left;
@@ -352,12 +351,24 @@ dt {
   box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.12);
 }
 
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .brand-home-pill {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  margin-left: auto;
-  padding: 7px 10px;
+  padding: 7px 12px;
   border: 1px solid rgba(249, 115, 22, 0.22);
   border-radius: 999px;
   background: rgba(255, 247, 237, 0.86);
@@ -366,6 +377,14 @@ dt {
   font-weight: 950;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background 0.15s;
+}
+
+.brand-home-pill:hover {
+  background: rgba(255, 237, 213, 0.96);
+  box-shadow: none;
 }
 
 .brand-home-pill::before {
@@ -376,38 +395,36 @@ dt {
   clip-path: polygon(50% 5%, 96% 43%, 84% 43%, 84% 94%, 58% 94%, 58% 66%, 42% 66%, 42% 94%, 16% 94%, 16% 43%, 4% 43%);
 }
 
-.brand-with-settings {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-}
-
 .topbar-settings-btn {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 6px 14px 6px 10px;
-  border: 1px solid rgba(16, 35, 63, 0.10);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.52);
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid rgba(16, 35, 63, 0.14);
+  border-radius: 999px;
+  background: rgba(241, 245, 249, 0.86);
   color: var(--navy);
-  font-size: 0.82rem;
-  font-weight: 700;
-  box-shadow: 0 2px 8px rgba(16, 35, 63, 0.06);
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  transition: background 0.18s, box-shadow 0.18s;
+  box-shadow: none;
+  transition: background 0.15s;
 }
 
 .topbar-settings-btn:hover {
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 4px 12px rgba(16, 35, 63, 0.10);
+  background: rgba(226, 232, 240, 0.96);
+  box-shadow: none;
 }
 
-.topbar-settings-btn .nav-icon {
-  width: 18px;
-  height: 18px;
-  flex: 0 0 18px;
+.topbar-settings-btn::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: currentColor;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 
 .manager-heading-actions {

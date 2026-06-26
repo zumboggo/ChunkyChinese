@@ -2718,19 +2718,18 @@ function App() {
   return (
     <main className="app-shell">
       <header className="topbar">
-        <div className="brand-with-settings">
+        <div className="brand-area">
           <button className="brand-button" type="button" onClick={() => setScreen('dashboard')} aria-label="Go to dashboard">
             <span className="brand-mark">中</span>
             <span>
               <strong>Chunky Chinese</strong>
               <small>{seedMessage}</small>
             </span>
-            <span className="brand-home-pill" aria-hidden="true">Home</span>
           </button>
-          <button className="topbar-settings-btn" type="button" onClick={() => setScreen('settings')} aria-label="Settings">
-            <span className="nav-icon nav-settings" aria-hidden="true" />
-            Settings
-          </button>
+          <div className="brand-pills">
+            <button className="brand-home-pill" type="button" onClick={() => setScreen('dashboard')}>Home</button>
+            <button className="topbar-settings-btn" type="button" onClick={() => setScreen('settings')}>Settings</button>
+          </div>
         </div>
         <nav className="tabs" aria-label="Main screens">
           <button type="button" className={screen === 'flashcards' ? 'active' : ''} onClick={startSavedFlashcards}>
