@@ -2507,19 +2507,24 @@ dt {
 }
 
 .sentence-menu-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  border: 1.5px solid rgba(100, 116, 139, 0.25);
-  background: rgba(255,255,255,0.6);
-  font-size: 1.15rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.75);
+  background: linear-gradient(155deg, rgba(255,255,255,0.90) 0%, rgba(224,220,245,0.80) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 2px 10px rgba(90,60,160,0.13);
+  font-size: 1.1rem;
   display: grid;
   place-items: center;
   cursor: pointer;
-  color: var(--navy);
-  transition: background 120ms;
+  color: #4a3580;
+  font-weight: 700;
+  transition: box-shadow 140ms, transform 80ms;
 }
-.sentence-menu-btn:hover { background: rgba(124, 58, 237, 0.08); }
+.sentence-menu-btn:hover { box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 4px 16px rgba(90,60,160,0.20); }
+.sentence-menu-btn:active { transform: scale(0.92); box-shadow: 0 1px 4px rgba(90,60,160,0.10) inset; }
 
 /* Menu popup */
 .sentence-menu-backdrop {
@@ -2530,17 +2535,19 @@ dt {
 
 .sentence-menu-popup {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 10px);
   left: 0;
   z-index: 50;
-  min-width: 200px;
-  padding: 14px;
-  background: var(--card-bg, #fff);
-  border: 1px solid rgba(100, 116, 139, 0.15);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.14);
+  min-width: 210px;
+  padding: 16px;
+  background: rgba(255,255,255,0.97);
+  border: 1px solid rgba(200,190,240,0.4);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(15,23,42,0.16), 0 2px 8px rgba(90,60,160,0.08);
   display: grid;
   gap: 12px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .sentence-menu-label {
@@ -2600,36 +2607,57 @@ dt {
 
 /* Play/Pause button (center — large and prominent) */
 .sentence-play-pause {
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  border: none;
-  background: #7c3aed;
-  color: #fff;
-  font-size: 1.4rem;
+  border: 1px solid rgba(255,255,255,0.85);
+  /* Silver gradient: bright specular highlight top-left, deeper pewter bottom-right */
+  background:
+    radial-gradient(ellipse at 38% 30%, rgba(255,255,255,0.88) 0%, transparent 52%),
+    linear-gradient(145deg, #eae8f4 0%, #d2ceea 35%, #b8b4cc 65%, #cac6de 100%);
+  color: #38296a;
+  font-size: 1.35rem;
   display: grid;
   place-items: center;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.35);
-  transition: background 120ms, transform 80ms;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.95) inset,
+    0 -1px 0 rgba(0,0,0,0.07) inset,
+    0 5px 18px rgba(80,60,140,0.22),
+    0 2px 4px rgba(0,0,0,0.10);
+  transition: box-shadow 140ms, transform 80ms;
 }
-.sentence-play-pause:hover { background: #6d28d9; }
-.sentence-play-pause:active { transform: scale(0.94); }
+.sentence-play-pause:hover {
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.95) inset,
+    0 -1px 0 rgba(0,0,0,0.09) inset,
+    0 7px 24px rgba(80,60,140,0.30),
+    0 2px 6px rgba(0,0,0,0.13);
+}
+.sentence-play-pause:active {
+  transform: scale(0.93);
+  box-shadow: 0 2px 3px rgba(0,0,0,0.14) inset, 0 1px 6px rgba(80,60,140,0.14);
+}
 
 /* End Set button (right) */
 .sentence-end-btn {
-  padding: 8px 14px;
-  border-radius: 12px;
-  border: 1.5px solid rgba(100, 116, 139, 0.25);
-  background: rgba(255,255,255,0.6);
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.75);
+  background: linear-gradient(155deg, rgba(255,255,255,0.90) 0%, rgba(224,220,245,0.80) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 2px 10px rgba(90,60,160,0.13);
   font-size: 0.82rem;
   font-weight: 800;
-  color: var(--navy);
+  color: #4a3580;
   cursor: pointer;
   white-space: nowrap;
-  transition: background 120ms;
+  transition: box-shadow 140ms, transform 80ms;
 }
-.sentence-end-btn:hover { background: rgba(124, 58, 237, 0.08); }
+.sentence-end-btn:hover { box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 4px 16px rgba(90,60,160,0.20); }
+.sentence-end-btn:active { transform: scale(0.93); box-shadow: 0 1px 4px rgba(90,60,160,0.10) inset; }
 
 .sentence-round-info {
   display: grid;

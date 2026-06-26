@@ -3991,7 +3991,7 @@ function App() {
                         </div>
                       ) : focusedActiveQuiz ? (
                         <span className="mode-chip">Paused for answer</span>
-                      ) : (
+                      ) : studyMode === 'sentenceMode' ? null : (
                         <div className="study-toggles">
                           <div className="segmented-control listening-mode-toggle" aria-label="Listening mode">
                             <button
@@ -4010,8 +4010,7 @@ function App() {
                             </button>
                             <button
                               type="button"
-                              className={studyMode === 'sentenceMode' ? 'active' : ''}
-                              onClick={() => { if (studyMode !== 'sentenceMode') void startSentenceLesson() }}
+                              onClick={() => void startSentenceLesson()}
                             >
                               Sentences
                             </button>
