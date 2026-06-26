@@ -403,6 +403,7 @@ function App() {
   const pocketAudioRef = useRef<HTMLAudioElement | null>(null)
   const lastPocketTimeRef = useRef(0)
   const playModeRef = useRef<HTMLElement | null>(null)
+  const studyStageRef = useRef<HTMLDivElement | null>(null)
   const flashcardFeedbackTimeoutRef = useRef<number | null>(null)
   const flashcardUndoTimeoutRef = useRef<number | null>(null)
   const [flashcardUndoState, setFlashcardUndoState] = useState<{
@@ -1577,6 +1578,14 @@ function App() {
   }, [clearAutoContinueTimeout, currentQuiz?.id, renderedLesson?.id, stopActiveChoiceSpeech])
 
   useEffect(() => clearAutoContinueTimeout, [clearAutoContinueTimeout])
+
+  useEffect(() => {
+    if (studyMode !== 'sentenceMode' || !sentenceSetComplete) return
+    window.requestAnimationFrame(() => {
+      studyStageRef.current?.scrollTo({ top: 0, behavior: 'auto' })
+      window.scrollTo({ top: 0, behavior: 'auto' })
+    })
+  }, [sentenceSetComplete, studyMode])
 
   useEffect(() => {
     if (studyMode !== 'sentenceMode' || sentenceSetComplete || sentenceQueue.length === 0) return
@@ -3968,6 +3977,7 @@ function App() {
                   ref={playModeRef}
                 >
                   <div
+                    ref={studyStageRef}
                     className={`study-stage ${focusedActiveQuiz ? 'active-focus' : ''} ${
                       minimalVisualMode ? 'minimal-visual-stage' : ''
                     } ${showReviewPrompt ? 'review-stage' : ''}`}
@@ -4143,6 +4153,16 @@ function App() {
                       />
                     ) : studyMode === 'sentenceMode' && sentenceSetComplete ? (
                       <div className="sentence-set-summary">
+                        <button
+                          type="button"
+                          className="sentence-play-pause sentence-set-next-play"
+                          onClick={() => void completeSentenceSet(sentenceRatings)}
+                          aria-label="Start next sentence set"
+                        >
+                          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                            <polygon points="5,3 19,12 5,21" />
+                          </svg>
+                        </button>
                         <div className="sentence-set-header">
                           <strong>Set Complete</strong>
                           <span>{Math.round((Date.now() - sentenceSetStartMs) / 1000)}s</span>

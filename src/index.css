@@ -2992,9 +2992,21 @@ dt {
 .sentence-set-summary {
   display: grid;
   gap: 18px;
+  align-self: start;
   padding: 20px;
   max-width: 500px;
   margin: 0 auto;
+  justify-items: center;
+}
+
+.sentence-set-summary > * {
+  width: 100%;
+}
+
+.sentence-set-next-play {
+  justify-self: center;
+  width: 68px;
+  height: 68px;
 }
 
 .sentence-set-header {
