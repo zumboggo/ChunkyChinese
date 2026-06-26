@@ -86,7 +86,7 @@ const DB_NAME = 'chunky-chinese-vocab'
 const DB_VERSION = 11
 const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
-const READER_PACK_FIX_VERSION = '2026-06-23-reader-covers-and-hidden-packs'
+const READER_PACK_FIX_VERSION = '2026-06-26-remove-stale-packs'
 
 export interface SyncMetadata {
   userId?: string
@@ -1371,6 +1371,23 @@ export async function seedReaderBooksIfEmpty(): Promise<number> {
     return 0
   }
   if (hostedPacks.length === 0) return 0
+
+  // Remove any packs (and their books) that are no longer in the hosted index.
+  const hostedPackIds = new Set(hostedPacks.map((p) => p.id))
+  const existingPacks = await db.getAll('readerPacks')
+  for (const pack of existingPacks) {
+    if (!hostedPackIds.has(pack.packId)) {
+      const staleTx = db.transaction(['readerPacks', 'readerBooks'], 'readwrite')
+      await staleTx.objectStore('readerPacks').delete(pack.packId)
+      const bookIndex = staleTx.objectStore('readerBooks').index('packId')
+      let cursor = await bookIndex.openCursor(IDBKeyRange.only(pack.packId))
+      while (cursor) {
+        await cursor.delete()
+        cursor = await cursor.continue()
+      }
+      await staleTx.done
+    }
+  }
 
   const results = await Promise.allSettled(
     hostedPacks.map((pack) =>

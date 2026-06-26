@@ -1848,15 +1848,40 @@ dt {
   color: #0f766e;
 }
 
-/* Editorial reader library */
+/* Editorial reader library — wood-grain themed */
 .reading-texts-screen {
   max-width: 1320px;
   padding: clamp(18px, 3vw, 38px);
   border-radius: 32px;
   background:
-    radial-gradient(circle at 82% 8%, rgba(190, 86, 55, 0.18), transparent 26%),
-    linear-gradient(145deg, #101725, #172235 54%, #101826);
-  box-shadow: 0 30px 80px rgba(4, 10, 20, 0.24);
+    /* Fine vertical grain lines */
+    repeating-linear-gradient(
+      87.5deg,
+      transparent 0px,
+      transparent 16px,
+      rgba(0, 0, 0, 0.045) 16px,
+      rgba(0, 0, 0, 0.045) 17px
+    ),
+    repeating-linear-gradient(
+      91deg,
+      transparent 0px,
+      transparent 22px,
+      rgba(255, 213, 160, 0.06) 22px,
+      rgba(255, 213, 160, 0.06) 23px
+    ),
+    /* Wavy growth-ring shimmer */
+    repeating-linear-gradient(
+      178deg,
+      transparent 0,
+      transparent 90px,
+      rgba(0, 0, 0, 0.03) 90px,
+      rgba(0, 0, 0, 0.03) 91px
+    ),
+    /* Warm highlight at top corner (light source) */
+    radial-gradient(ellipse at 12% 6%, rgba(192, 100, 55, 0.38), transparent 42%),
+    /* Mahogany base gradient */
+    linear-gradient(158deg, #6b2a14, #3e0f06 38%, #5a2212 68%, #3a0d05);
+  box-shadow: 0 30px 80px rgba(4, 10, 20, 0.30);
 }
 
 .reading-library-heading h1,
@@ -1912,11 +1937,14 @@ dt {
 }
 
 .reading-book-shelf {
-  padding-bottom: 0;
+  padding-bottom: 19px;
 }
 
 .reading-book-shelf::after {
-  display: none;
+  display: block;
+  background: linear-gradient(180deg, #c07840, #7a3e18);
+  border-color: rgba(255, 180, 90, 0.22);
+  box-shadow: 0 8px 22px rgba(30, 8, 2, 0.38);
 }
 
 .reading-book-grid {
