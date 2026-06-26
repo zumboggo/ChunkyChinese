@@ -1123,7 +1123,19 @@ function App() {
     if (!rating) return
 
     const currentWord = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.word
-    if (currentWord) setSentenceRatings(prev => new Map(prev).set(currentWord, rating))
+    if (currentWord) {
+      setSentenceRatings(prev => new Map(prev).set(currentWord, rating))
+      // Persist immediately so the next set picks up fresh FSRS state
+      const existing = sentenceSrsMap.get(currentWord)
+      const record: SentenceSrsRecord = existing ?? {
+        id: currentWord, fsrsIntervalDays: 0, fsrsStability: 0, fsrsDifficulty: 0,
+        fsrsState: 'New', fsrsLapses: 0, fsrsRepetitions: 0, seenCount: 0,
+      }
+      const updated = applySentenceSrsRating(record, rating)
+      void saveSentenceSrs(updated).then(() => {
+        setSentenceSrsMap(prev => new Map(prev).set(currentWord, updated))
+      })
+    }
 
     // Haptic pulse
     navigator.vibrate?.(30)
@@ -1139,7 +1151,7 @@ function App() {
       setSentenceRoundIndex(prev => prev + 1)
       setSentencePinyinVisible(false)
     }, 300)
-  }, [sentenceSwipeDir, sentenceDismissDir, sentenceQueue, sentenceRoundOrder, sentenceRoundIndex])
+  }, [sentenceSwipeDir, sentenceDismissDir, sentenceQueue, sentenceRoundOrder, sentenceRoundIndex, sentenceSrsMap])
 
   const openCardEditor = useCallback((word: VocabWord) => {
     setEditingWord({
@@ -4220,7 +4232,11 @@ function App() {
                             onClick={() => setSentencePaused(p => !p)}
                             aria-label={sentencePaused ? 'Resume' : 'Pause'}
                           >
-                            {sentencePaused ? '▶' : '⏸'}
+                            {sentencePaused ? (
+                              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
+                            ) : (
+                              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><rect x="5" y="4" width="4" height="16" rx="1"/><rect x="15" y="4" width="4" height="16" rx="1"/></svg>
+                            )}
                           </button>
 
                           <button
