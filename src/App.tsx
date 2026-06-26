@@ -3935,6 +3935,22 @@ function App() {
                 </label>
               </div>
             </section>
+            <section className="panel">
+              <h2>App update</h2>
+              <p>If the app looks out of date, force a fresh reload — clears all cached files and restarts.</p>
+              <div className="button-row">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const url = new URL(window.location.href)
+                    url.searchParams.set('resetPwa', '1')
+                    window.location.replace(url.toString())
+                  }}
+                >
+                  Force update
+                </button>
+              </div>
+            </section>
           </div>
         </section>
       )}
