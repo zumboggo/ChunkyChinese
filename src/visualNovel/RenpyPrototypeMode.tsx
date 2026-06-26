@@ -16,6 +16,16 @@ interface RenpyPrototypeModeProps {
   sourceDir?: string
 }
 
+async function forceUpdate() {
+  try {
+    const keys = await caches.keys()
+    await Promise.all(keys.map((k) => caches.delete(k)))
+    const regs = await navigator.serviceWorker.getRegistrations()
+    await Promise.all(regs.map((r) => r.unregister()))
+  } catch {}
+  window.location.reload()
+}
+
 export function RenpyPrototypeMode({
   hotkeys,
   onReturnToLibrary,
@@ -81,6 +91,9 @@ export function RenpyPrototypeMode({
               React VN
             </button>
           )}
+          <button type="button" onClick={() => void forceUpdate()}>
+            Force update
+          </button>
           <button type="button" onClick={onReturnToLibrary}>
             Library
           </button>
