@@ -3331,7 +3331,6 @@ function App() {
           readerFontScale={userSettings.readerFontScale}
           readerLineHeight={userSettings.readerLineHeight}
           replayHotkey={hotkeys.choiceF}
-          choiceA={hotkeys.choiceA}
           choiceB={hotkeys.choiceB}
           showEnglish={readerShowEnglish}
           listening={readerListening}
@@ -5270,7 +5269,6 @@ function ReaderMode({
   readerFontScale,
   readerLineHeight,
   replayHotkey,
-  choiceA,
   choiceB,
   showEnglish,
   listening,
@@ -5305,7 +5303,6 @@ function ReaderMode({
   readerFontScale: number
   readerLineHeight: number
   replayHotkey: string
-  choiceA: string
   choiceB: string
   showEnglish: boolean
   listening: ReaderListeningController
@@ -5518,45 +5515,53 @@ function ReaderMode({
               </p>
               {listening.active ? (
                 <div className="reader-listening-dock" aria-live="polite">
-                  <div className="reader-listening-status">
-                    <strong>
-                      {listening.snapshot.status === 'completed'
-                        ? 'Finished'
-                        : `Repeat ${listening.snapshot.repeatNumber} of ${listeningRepeatTotal}`}
-                    </strong>
-                    <span>
-                      {listeningRate.toFixed(1)}× · {listeningAutoAdvance ? 'Auto-advance on' : 'Auto-advance off'}
-                    </span>
-                  </div>
-                  <div className="reader-listening-controls">
+                  <div className="reader-listening-controls" aria-label="Reader listening controls">
                     <button
                       type="button"
-                      onClick={() => { setGrammarSelection(null); void onPrevious() }}
-                      disabled={sentenceIndex <= 0}
+                      className="sentence-menu-btn reader-listening-icon-btn"
+                      onClick={() => setListeningMenuOpen(true)}
+                      aria-label={`Listening settings. Repeat ${listening.snapshot.repeatNumber} of ${listeningRepeatTotal}, ${listeningRate.toFixed(1)} times speed, auto-advance ${listeningAutoAdvance ? 'on' : 'off'}.`}
                     >
-                      Previous
+                      ☰
                     </button>
                     <button
                       type="button"
-                      className="primary"
+                      className="sentence-play-pause reader-listening-play-btn"
                       onClick={listening.togglePlayPause}
+                      aria-label={listeningPlaying ? 'Pause listening' : 'Play listening'}
                     >
-                      <kbd>{choiceA.toUpperCase()}</kbd>
-                      {listeningPlaying ? 'Pause' : 'Play'}
+                      {listeningPlaying ? (
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                          <rect x="5" y="4" width="4" height="16" rx="1" />
+                          <rect x="15" y="4" width="4" height="16" rx="1" />
+                        </svg>
+                      ) : (
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                          <polygon points="5,3 19,12 5,21" />
+                        </svg>
+                      )}
                     </button>
                     <button
                       type="button"
+                      className="sentence-end-btn reader-listening-icon-btn reader-listening-stop-btn"
+                      onClick={listening.stop}
+                      aria-label="Stop listening"
+                    >
+                      <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true">
+                        <rect x="6" y="6" width="12" height="12" rx="2" />
+                      </svg>
+                    </button>
+                    <button
+                      type="button"
+                      className="sentence-end-btn reader-listening-icon-btn"
                       onClick={() => { setGrammarSelection(null); void onNext() }}
                       disabled={sentenceIndex >= sentenceCount - 1}
+                      aria-label={`Next sentence. Choice B hotkey: ${choiceB.toUpperCase()}.`}
                     >
-                      <kbd>{choiceB.toUpperCase()}</kbd>
-                      Next
-                    </button>
-                    <button type="button" onClick={() => setListeningMenuOpen(true)}>
-                      Settings
-                    </button>
-                    <button type="button" onClick={listening.stop}>
-                      Stop
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                        <polygon points="5,4 15,12 5,20" />
+                        <rect x="17" y="5" width="2" height="14" rx="1" />
+                      </svg>
                     </button>
                   </div>
                 </div>

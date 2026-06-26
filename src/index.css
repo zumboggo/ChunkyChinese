@@ -8059,44 +8059,49 @@ kbd {
   position: sticky;
   bottom: 10px;
   z-index: 40;
-  display: grid;
-  gap: 12px;
-  padding: 14px;
-  border: 1px solid color-mix(in srgb, var(--reader-accent) 30%, var(--reader-border));
-  border-radius: 18px;
-  background: color-mix(in srgb, var(--reader-paper-strong) 94%, transparent);
-  box-shadow: 0 18px 44px rgba(16, 35, 63, 0.18);
-  backdrop-filter: blur(16px);
-}
-
-.reader-listening-status {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 6px 12px;
-}
-
-.reader-listening-status strong {
-  color: var(--reader-ink);
-  font-size: 1rem;
-}
-
-.reader-listening-status span {
-  color: var(--reader-muted);
-  font-size: 0.82rem;
-  font-weight: 800;
+  width: min(100%, 430px);
+  margin: 12px auto 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,0.72);
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--reader-paper-strong) 86%, transparent);
+  box-shadow: 0 14px 36px rgba(16, 35, 63, 0.14);
+  backdrop-filter: blur(18px);
 }
 
 .reader-listening-controls {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
-.reader-listening-controls button {
-  min-width: 0;
-  padding-inline: 10px;
+.reader-listening-controls .reader-listening-icon-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+.reader-listening-controls .reader-listening-play-btn {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+}
+
+.reader-listening-stop-btn {
+  color: #7f1d1d;
+}
+
+.reader-listening-controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  transform: none;
 }
 
 .reader-listening-backdrop {
@@ -8173,12 +8178,7 @@ kbd {
 
 @media (max-width: 640px) {
   .reader-listening-controls {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .reader-listening-controls button:nth-child(4),
-  .reader-listening-controls button:nth-child(5) {
-    grid-column: span 1;
+    gap: 10px;
   }
 
   .reader-listening-dock {
