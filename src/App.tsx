@@ -81,6 +81,7 @@ import {
   isNewFsrsCard,
   downgradeRating,
   applySentenceSrsRating,
+  previewFsrsRatings,
 } from './scheduler'
 import {
   collectReaderComprehensionTokens,
@@ -261,6 +262,7 @@ const FLASHCARD_LEARN_AHEAD_MS = 5 * 60 * 1000
 const FLASHCARD_REVERSE_RATE = 0.1
 
 const SENTENCE_REP_RING_COLORS = ['#bae6fd', '#7dd3fc', '#38bdf8', '#0ea5e9', '#0284c7', '#0369a1']
+const FLASHCARD_REVIEW_RING_COLORS = ['#fef3c7', '#fde68a', '#fbbf24', '#f59e0b', '#d97706', '#b45309']
 
 function SentenceRepRing({ repsToday, totalReps }: { repsToday: number; totalReps: number }) {
   const sessionsToday = Math.floor(repsToday / 50)
@@ -290,6 +292,38 @@ function SentenceRepRing({ repsToday, totalReps }: { repsToday: number; totalRep
         <text x="50" y="60" className="sentence-rep-ring-label">reps today</text>
       </svg>
       <p className="sentence-rep-total">{totalReps.toLocaleString()} total reps</p>
+    </div>
+  )
+}
+
+function FlashcardReviewRing({ reviewsToday, totalReviews }: { reviewsToday: number; totalReviews: number }) {
+  const SESSION_SIZE = 40
+  const sessionsToday = Math.floor(reviewsToday / SESSION_SIZE)
+  const partialProgress = (reviewsToday % SESSION_SIZE) / SESSION_SIZE
+  const colorIndex = Math.min(sessionsToday, FLASHCARD_REVIEW_RING_COLORS.length - 1)
+  const color = FLASHCARD_REVIEW_RING_COLORS[colorIndex]
+  const r = 38
+  const circumference = 2 * Math.PI * r
+  const fillFraction = sessionsToday >= 1 ? 1 : partialProgress
+  const strokeDashoffset = circumference * (1 - fillFraction)
+  return (
+    <div className="sentence-rep-ring-wrap">
+      <svg className="sentence-rep-ring" viewBox="0 0 100 100" aria-label={`${reviewsToday} flashcards reviewed today`}>
+        <circle cx="50" cy="50" r={r} className="sentence-rep-ring-track" />
+        <circle
+          cx="50" cy="50" r={r}
+          className="sentence-rep-ring-fill"
+          style={{
+            stroke: color,
+            strokeDasharray: circumference,
+            strokeDashoffset,
+            filter: `drop-shadow(0 0 6px ${color})`,
+          }}
+        />
+        <text x="50" y="46" className="sentence-rep-ring-count">{reviewsToday}</text>
+        <text x="50" y="60" className="sentence-rep-ring-label">cards today</text>
+      </svg>
+      <p className="sentence-rep-total">{totalReviews.toLocaleString()} total reviews</p>
     </div>
   )
 }
@@ -361,6 +395,7 @@ function App() {
   const [flashcardSentenceAnswerShown, setFlashcardSentenceAnswerShown] = useState(false)
   const [flashcardAudioOnly, setFlashcardAudioOnly] = useState(false)
   const [flashcardSessionFeedback, setFlashcardSessionFeedback] = useState<FsrsRating | null>(null)
+  const [flashcardExternalDismissDir, setFlashcardExternalDismissDir] = useState<string | null>(null)
   const [flashcardSessionId, setFlashcardSessionId] = useState<string | null>(null)
   const [flashcardCelebrationId, setFlashcardCelebrationId] = useState(0)
   const [flashcardSessionRatingCounts, setFlashcardSessionRatingCounts] = useState<Record<FsrsRating, number>>({ again: 0, hard: 0, good: 0, easy: 0 })
@@ -1731,6 +1766,22 @@ function App() {
       ...responses,
       [currentQuiz.id]: { selected: value, correct, hintCount: 0 },
     }))
+    // Capture segment end before async re-renders so the direct timeout stays correct
+    const segEnd = isActiveLearningMode && currentSegment?.kind === 'pause'
+      ? currentSegment.endSeconds
+      : null
+    if (isActiveLearningMode && segEnd !== null) {
+      if (autoContinueTimeoutRef.current !== null) window.clearTimeout(autoContinueTimeoutRef.current)
+      autoContinueTimeoutRef.current = window.setTimeout(() => {
+        autoContinueTimeoutRef.current = null
+        stopActiveChoiceSpeech()
+        const audio = pocketAudioRef.current
+        if (audio) {
+          audio.currentTime = Math.min(audio.duration || segEnd, segEnd + 0.01)
+          audio.play().catch(() => {})
+        }
+      }, 900)
+    }
     // TODO: Persist richer recall analytics: correctWithoutHint, correctWithHint, wrong, revealed.
     await recordQuizAnswer(currentQuiz.wordId, correct)
     setLastSummary(correct ? 'Correct.' : 'Not quite.')
@@ -1741,7 +1792,7 @@ function App() {
         void pocketAudioRef.current?.play()
       }, 350)
     }
-  }, [currentQuiz, isActiveLearningMode, queueCloudSync, quizResponses, refresh, stopActiveChoiceSpeech])
+  }, [currentQuiz, currentSegment, isActiveLearningMode, queueCloudSync, quizResponses, refresh, stopActiveChoiceSpeech])
 
   const continueCurrentQuiz = useCallback(() => {
     stopActiveChoiceSpeech()
@@ -1801,21 +1852,6 @@ function App() {
     void playActiveQuizChoices(currentQuiz)
   }, [currentQuiz, currentQuizResponse, focusedActiveQuiz, playActiveQuizChoices])
 
-  useEffect(() => {
-    if (!isActiveLearningMode || !currentQuiz || !currentQuizResponse) return
-    clearAutoContinueTimeout()
-    autoContinueTimeoutRef.current = window.setTimeout(() => {
-      autoContinueTimeoutRef.current = null
-      continueCurrentQuiz()
-    }, 1000)
-    return clearAutoContinueTimeout
-  }, [
-    clearAutoContinueTimeout,
-    continueCurrentQuiz,
-    currentQuiz,
-    currentQuizResponse,
-    isActiveLearningMode,
-  ])
 
   const replayCurrentSegment = useCallback(() => {
     const audio = pocketAudioRef.current
@@ -1903,6 +1939,8 @@ function App() {
     }, 500)
   }, [flashcardFeedback, handleFsrsRating])
 
+  const RATING_DISMISS_DIR: Record<FsrsRating, string> = { again: 'left', hard: 'up', good: 'right', easy: 'down' }
+
   const handleStandaloneFlashcardRate = useCallback((rating: FsrsRating) => {
     if (!currentFlashcardWord || flashcardSessionFeedback) return
     const wordId = currentFlashcardWord.id
@@ -1910,6 +1948,7 @@ function App() {
     const preRatingWord = currentFlashcardWord
     const preRatingDoneIds = flashcardDoneIds
     setFlashcardSessionFeedback(rating)
+    setFlashcardExternalDismissDir(RATING_DISMISS_DIR[rating])
     setFlashcardSessionRatingCounts((prev) => ({ ...prev, [rating]: prev[rating] + 1 }))
     if (rating === 'again') {
       setFlashcardSessionStruggledWords((prev) => prev.some((w) => w.id === wordId) ? prev : [...prev, ratedWord])
@@ -1952,6 +1991,11 @@ function App() {
       })()
     }, 500)
   }, [currentFlashcardWord, flashcardDoneIds, flashcardQueue, flashcardSessionFeedback, flashcardSessionId, queueCloudSync, refresh])
+
+  // Reset external dismiss dir whenever the active flashcard word changes
+  useEffect(() => {
+    setFlashcardExternalDismissDir(null)
+  }, [currentFlashcardWord?.id])
 
   const handleFlashcardUndo = useCallback(async () => {
     if (!flashcardUndoState) return
@@ -2809,8 +2853,18 @@ function App() {
             </div>
           </div>
 
-          {sentenceRepsToday > 0 && (
-            <SentenceRepRing repsToday={sentenceRepsToday} totalReps={sentenceTotalReps} />
+          {(sentenceRepsToday > 0 || stats.ranges.today.cardsReviewed > 0) && (
+            <div className="rep-rings-row">
+              {sentenceRepsToday > 0 && (
+                <SentenceRepRing repsToday={sentenceRepsToday} totalReps={sentenceTotalReps} />
+              )}
+              {stats.ranges.today.cardsReviewed > 0 && (
+                <FlashcardReviewRing
+                  reviewsToday={stats.ranges.today.cardsReviewed}
+                  totalReviews={stats.ranges.allTime?.cardsReviewed ?? 0}
+                />
+              )}
+            </div>
           )}
 
           <section className="dashboard-today-panel" aria-label="Today">
@@ -3020,6 +3074,15 @@ function App() {
           <section className="flashcards-workspace">
             <div className="flashcards-meta">
               <div className="flashcard-mode-buttons">
+                {currentFlashcardWord && flashcardSessionKind === 'words' && (
+                  <button
+                    type="button"
+                    className="ghost-answer"
+                    onClick={() => openCardEditor(currentFlashcardWord)}
+                  >
+                    Edit
+                  </button>
+                )}
                 <button
                   type="button"
                   className={`ghost-answer ${flashcardSessionKind === 'sentences' ? 'active' : ''}`}
@@ -3149,9 +3212,9 @@ function App() {
                 }}
                 onReplayAudio={() => playFlashcardWordTwice(currentFlashcardWord)}
                 onRate={handleStandaloneFlashcardRate}
-                onEdit={() => openCardEditor(currentFlashcardWord)}
                 onToggleActiveRecallPriority={() => toggleActiveRecallPriority(currentFlashcardWord)}
                 selectedRating={flashcardSessionFeedback}
+                externalDismissDir={flashcardExternalDismissDir}
                 choiceKeys={hotkeys}
               />
             ) : (
@@ -4012,7 +4075,6 @@ function App() {
                                 void playFlashcardWordTwice(currentReviewWord)
                               }}
                               onRate={(rating) => handleFlashcardRate(currentReviewWord.id, rating)}
-                              onEdit={() => openCardEditor(currentReviewWord)}
                               onToggleActiveRecallPriority={() => toggleActiveRecallPriority(currentReviewWord)}
                               selectedRating={flashcardFeedback}
                               choiceKeys={hotkeys}
@@ -5870,6 +5932,7 @@ function VocabGrowthChart({ points }: { points: DashboardStats['retentionSeries'
             labelFormatter={(label) => friendlyDate(label)}
           />
           <Legend />
+          <Bar dataKey="unknown" name="Unseen" stackId="a" fill="#cbd5e1" />
           <Bar dataKey="barelyKnown" name="Early FSRS" stackId="a" fill="#ef4444" />
           <Bar dataKey="familiar" name="Growing FSRS" stackId="a" fill="#10b981" />
           <Bar dataKey="wellKnown" name="Mature FSRS" stackId="a" fill="var(--accent-vibrant)" />
@@ -6065,6 +6128,13 @@ function FlashcardCelebration() {
   )
 }
 
+function formatFsrsDelay(intervalDays: number): string {
+  if (intervalDays < 1) {
+    return `${Math.max(1, Math.round(intervalDays * 24 * 60))}m`
+  }
+  return `${Math.round(intervalDays)}d`
+}
+
 function FlashcardReview({
   word,
   answerShown,
@@ -6072,9 +6142,9 @@ function FlashcardReview({
   onFlip,
   onReplayAudio,
   onRate,
-  onEdit,
   onToggleActiveRecallPriority,
   selectedRating,
+  externalDismissDir,
   choiceKeys,
 }: {
   word: VocabWord
@@ -6083,9 +6153,9 @@ function FlashcardReview({
   onFlip: () => void
   onReplayAudio?: () => void | Promise<void>
   onRate: (rating: FsrsRating) => void | Promise<void>
-  onEdit?: () => void
   onToggleActiveRecallPriority?: () => void | Promise<void>
   selectedRating?: FsrsRating | null
+  externalDismissDir?: string | null
   choiceKeys?: HotkeySettings
 }) {
   const audioFront = frontMode === 'audio' && !answerShown
@@ -6094,6 +6164,7 @@ function FlashcardReview({
   const cardRef = useRef<HTMLDivElement>(null)
   const [swipeDir, setSwipeDir] = useState<string | null>(null)
   const [dismissDir, setDismissDir] = useState<string | null>(null)
+  const [flipPhase, setFlipPhase] = useState<'idle' | 'out' | 'in'>('idle')
 
   const SWIPE_THRESHOLD = 40
   const FLASHCARD_GLOW: Record<string, string> = {
@@ -6109,6 +6180,7 @@ function FlashcardReview({
   useEffect(() => {
     setDismissDir(null)
     setSwipeDir(null)
+    setFlipPhase('idle')
     if (cardRef.current) {
       cardRef.current.style.transition = ''
       cardRef.current.style.transform = ''
@@ -6116,8 +6188,18 @@ function FlashcardReview({
     }
   }, [word.id])
 
+  const handleCardClick = useCallback(() => {
+    if (answerShown || flipPhase !== 'idle' || dismissDir || externalDismissDir) return
+    setFlipPhase('out')
+    window.setTimeout(() => {
+      onFlip()
+      setFlipPhase('in')
+      window.setTimeout(() => setFlipPhase('idle'), 200)
+    }, 200)
+  }, [answerShown, dismissDir, externalDismissDir, flipPhase, onFlip])
+
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    if (dismissDir) return
+    if (dismissDir || externalDismissDir) return
     const t = e.touches[0]
     touchStartRef.current = { x: t.clientX, y: t.clientY }
     if (cardRef.current) {
@@ -6125,10 +6207,10 @@ function FlashcardReview({
       cardRef.current.style.boxShadow = ''
     }
     setSwipeDir(null)
-  }, [dismissDir])
+  }, [dismissDir, externalDismissDir])
 
   const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    if (!touchStartRef.current || !answerShown || dismissDir) return
+    if (!touchStartRef.current || !answerShown || dismissDir || externalDismissDir) return
     const t = e.touches[0]
     const dx = t.clientX - touchStartRef.current.x
     const dy = t.clientY - touchStartRef.current.y
@@ -6158,10 +6240,10 @@ function FlashcardReview({
     }
 
     setSwipeDir(dir)
-  }, [answerShown, dismissDir])
+  }, [answerShown, dismissDir, externalDismissDir])
 
   const handleTouchEnd = useCallback(() => {
-    if (!touchStartRef.current || !answerShown || !swipeDir || selectedRating || dismissDir) {
+    if (!touchStartRef.current || !answerShown || !swipeDir || selectedRating || dismissDir || externalDismissDir) {
       if (cardRef.current) {
         cardRef.current.style.transition = ''
         cardRef.current.style.transform = ''
@@ -6178,7 +6260,7 @@ function FlashcardReview({
     onRate(rating)
     touchStartRef.current = null
     setSwipeDir(null)
-  }, [answerShown, swipeDir, selectedRating, dismissDir, onRate])
+  }, [answerShown, swipeDir, selectedRating, dismissDir, externalDismissDir, onRate])
 
   return (
     <section
@@ -6195,8 +6277,14 @@ function FlashcardReview({
           answerShown ? 'answer-side' : 'front-side',
           audioFront ? 'audio-front' : '',
           reverseFront ? 'reverse-front' : '',
-          dismissDir ? `flashcard-dismiss-${dismissDir}` : '',
+          (externalDismissDir ?? dismissDir) ? `flashcard-dismiss-${externalDismissDir ?? dismissDir}` : '',
+          flipPhase !== 'idle' ? `flashcard-flip-${flipPhase}` : '',
         ].filter(Boolean).join(' ')}
+        onClick={!answerShown ? handleCardClick : undefined}
+        style={{ cursor: !answerShown ? 'pointer' : undefined }}
+        role={!answerShown ? 'button' : undefined}
+        tabIndex={!answerShown ? 0 : undefined}
+        onKeyDown={!answerShown ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCardClick() } } : undefined}
       >
         <span>{answerShown ? 'Front + back' : audioFront ? 'Audio front' : reverseFront ? 'Reverse front' : 'Front'}</span>
         {answerShown ? (
@@ -6235,7 +6323,7 @@ function FlashcardReview({
             Play audio
           </button>
         )}
-        {onToggleActiveRecallPriority && (
+        {answerShown && onToggleActiveRecallPriority && (
           <button
             type="button"
             className={`active-recall-priority-button ${word.activeRecallPriorityAt ? 'active' : ''}`}
@@ -6246,11 +6334,17 @@ function FlashcardReview({
             <span>{word.activeRecallPriorityAt ? '★ Extra review' : '☆ Extra review'}</span>
           </button>
         )}
-        {!answerShown && (
-          <button type="button" className="primary flashcard-flip-btn" onClick={onFlip}>
-            Flip
-          </button>
-        )}
+        {answerShown && (() => {
+          const previews = previewFsrsRatings(word)
+          return (
+            <div className="fsrs-interval-preview">
+              <span>Again {formatFsrsDelay(previews.again.intervalDays)}</span>
+              <span>Hard {formatFsrsDelay(previews.hard.intervalDays)}</span>
+              <span>Good {formatFsrsDelay(previews.good.intervalDays)}</span>
+              <span>Easy {formatFsrsDelay(previews.easy.intervalDays)}</span>
+            </div>
+          )
+        })()}
       </div>
       {answerShown && swipeDir && (
         <div className={`swipe-indicator swipe-indicator-${swipeDir}`}>
@@ -6264,13 +6358,6 @@ function FlashcardReview({
             : '← Again  ↑ Hard  → Good  ↓ Easy'}
         </div>
       )}
-      <div className="flashcard-bottom-actions">
-        {onEdit && (
-          <button type="button" className="ghost-answer" onClick={onEdit}>
-            Edit
-          </button>
-        )}
-      </div>
     </section>
   )
 }

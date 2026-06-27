@@ -7123,6 +7123,29 @@ kbd {
 .flashcard.flashcard-dismiss-up    { animation: flashcardDismissUp    0.3s ease-in forwards; }
 .flashcard.flashcard-dismiss-down  { animation: flashcardDismissDown  0.3s ease-in forwards; }
 
+@keyframes flashcardFlipOut { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+@keyframes flashcardFlipIn  { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+.flashcard.flashcard-flip-out { animation: flashcardFlipOut 0.18s ease-in  forwards; }
+.flashcard.flashcard-flip-in  { animation: flashcardFlipIn  0.18s ease-out forwards; }
+
+.fsrs-interval-preview {
+  display: flex;
+  gap: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  padding: 2px 0;
+}
+
+.rep-rings-row {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
 .flashcard-undo-toast {
   position: fixed;
   bottom: 24px;
