@@ -1049,6 +1049,35 @@ function App() {
     left: '#f87171', up: '#fb923c', right: '#4ade80', down: '#60a5fa',
   }
 
+  const rateSentenceAndAdvance = useCallback((rating: 'again' | 'hard' | 'good' | 'easy') => {
+    if (sentenceDismissDir) return
+    const ratingDirMap = { again: 'left', hard: 'up', good: 'right', easy: 'down' } as const
+    const dir = ratingDirMap[rating]
+    const currentWord = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.word
+    if (currentWord) {
+      setSentenceRatings(prev => new Map(prev).set(currentWord, rating))
+      const existing = sentenceSrsMap.get(currentWord)
+      const record: SentenceSrsRecord = existing ?? {
+        id: currentWord, fsrsIntervalDays: 0, fsrsStability: 0, fsrsDifficulty: 0,
+        fsrsState: 'New', fsrsLapses: 0, fsrsRepetitions: 0, seenCount: 0,
+      }
+      const updated = applySentenceSrsRating(record, rating)
+      void saveSentenceSrs(updated).then(() => {
+        setSentenceSrsMap(prev => new Map(prev).set(currentWord, updated))
+      })
+    }
+    navigator.vibrate?.(30)
+    runToken.current += 1
+    window.speechSynthesis?.cancel()
+    setSentenceDismissDir(dir)
+    setTimeout(() => {
+      setSentenceDismissDir(null)
+      setSentenceAnimKey(prev => prev + 1)
+      setSentenceRoundIndex(prev => prev + 1)
+      setSentencePinyinVisible(false)
+    }, 300)
+  }, [sentenceDismissDir, sentenceQueue, sentenceRoundOrder, sentenceRoundIndex, sentenceSrsMap])
+
   const handleSentenceTouchStart = useCallback((e: React.TouchEvent) => {
     if (sentenceDismissDir) return
     const t = e.touches[0]
@@ -1117,43 +1146,11 @@ function App() {
       setSentenceSwipeDir(null)
       return
     }
-
     const rating = sentenceSwipeRatingMap[sentenceSwipeDir]
-    const dir = sentenceSwipeDir
     setSentenceSwipeDir(null)
-
     if (!rating) return
-
-    const currentWord = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.word
-    if (currentWord) {
-      setSentenceRatings(prev => new Map(prev).set(currentWord, rating))
-      // Persist immediately so the next set picks up fresh FSRS state
-      const existing = sentenceSrsMap.get(currentWord)
-      const record: SentenceSrsRecord = existing ?? {
-        id: currentWord, fsrsIntervalDays: 0, fsrsStability: 0, fsrsDifficulty: 0,
-        fsrsState: 'New', fsrsLapses: 0, fsrsRepetitions: 0, seenCount: 0,
-      }
-      const updated = applySentenceSrsRating(record, rating)
-      void saveSentenceSrs(updated).then(() => {
-        setSentenceSrsMap(prev => new Map(prev).set(currentWord, updated))
-      })
-    }
-
-    // Haptic pulse
-    navigator.vibrate?.(30)
-
-    // Cancel running audio then fly the card away
-    runToken.current += 1
-    window.speechSynthesis?.cancel()
-
-    setSentenceDismissDir(dir)
-    setTimeout(() => {
-      setSentenceDismissDir(null)
-      setSentenceAnimKey(prev => prev + 1)
-      setSentenceRoundIndex(prev => prev + 1)
-      setSentencePinyinVisible(false)
-    }, 300)
-  }, [sentenceSwipeDir, sentenceDismissDir, sentenceQueue, sentenceRoundOrder, sentenceRoundIndex, sentenceSrsMap])
+    rateSentenceAndAdvance(rating)
+  }, [sentenceSwipeDir, sentenceDismissDir, sentenceSwipeRatingMap, rateSentenceAndAdvance])
 
   const openCardEditor = useCallback((word: VocabWord) => {
     setEditingWord({
@@ -2210,6 +2207,12 @@ function App() {
         togglePlayback()
         return
       }
+      if (studyMode === 'sentenceMode' && !sentenceSetComplete && mappedIndex >= 0 && mappedIndex <= 3) {
+        event.preventDefault()
+        const ratingMap = ['again', 'hard', 'good', 'easy'] as const
+        rateSentenceAndAdvance(ratingMap[mappedIndex])
+        return
+      }
       if (showReviewPrompt) {
         if (allLessonWordsRated) {
           if (mappedIndex === 0) {
@@ -2298,6 +2301,7 @@ function App() {
     flashcardSentenceQueue,
     flashcardSessionKind,
     handleStandaloneFlashcardRate,
+    rateSentenceAndAdvance,
     refreshFlashcardSession,
     moveReaderSentence,
     playFlashcardWordTwice,
@@ -2306,9 +2310,11 @@ function App() {
     ratingWords,
     reviewAnswerShown,
     screen,
+    sentenceSetComplete,
     showReviewPrompt,
     startSentenceLesson,
     startSavedFlashcards,
+    studyMode,
     toggleActiveRecallPriority,
     togglePlayback,
   ])
@@ -4343,6 +4349,21 @@ function App() {
                             {{ left: '✗ Again', up: '△ Hard', right: '✓ Good', down: '★ Easy' }[sentenceSwipeDir]}
                           </div>
                         )}
+
+                        <div className="sentence-rating-row">
+                          {(['again', 'hard', 'good', 'easy'] as const).map((r, i) => (
+                            <button
+                              key={r}
+                              type="button"
+                              className={`sentence-rate-btn sentence-rate-${r}`}
+                              onClick={() => rateSentenceAndAdvance(r)}
+                            >
+                              <kbd>{hotkeys[(['choiceA', 'choiceB', 'choiceC', 'choiceD'] as const)[i]].toUpperCase()}</kbd>
+                              {r.charAt(0).toUpperCase() + r.slice(1)}
+                            </button>
+                          ))}
+                        </div>
+
                         <div className="sentence-dots">
                           {sentenceQueue.map((sent, i) => (
                             <span
