@@ -94,10 +94,10 @@ export interface SyncMetadata {
 }
 
 export const DEFAULT_HOTKEYS: HotkeySettings = {
-  choiceA: '3',
-  choiceB: '4',
-  choiceC: '1',
-  choiceD: '2',
+  choiceA: '1',
+  choiceB: '2',
+  choiceC: '3',
+  choiceD: '4',
   choiceE: '5',
   choiceF: '6',
   playPause: 'p',
@@ -572,11 +572,10 @@ export async function getHotkeys(): Promise<HotkeySettings> {
         ratingEasy?: string
       })
     | undefined
+  // Reset old 8bitdo layout (3/4/5/6) or previous default (3/4/1/2) to current 1/2/3/4 defaults.
   if (
-    saved?.choiceA === '3' &&
-    saved.choiceB === '4' &&
-    saved.choiceC === '5' &&
-    saved.choiceD === '6'
+    (saved?.choiceA === '3' && saved.choiceB === '4' && saved.choiceC === '5' && saved.choiceD === '6') ||
+    (saved?.choiceA === '3' && saved.choiceB === '4' && saved.choiceC === '1' && saved.choiceD === '2')
   ) {
     return DEFAULT_HOTKEYS
   }

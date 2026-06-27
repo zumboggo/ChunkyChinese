@@ -3316,36 +3316,54 @@ dt {
   line-height: 1.05;
   font-weight: 950;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.84);
+  border-color: rgba(16, 35, 63, 0.08);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.97), rgba(255, 252, 247, 0.88));
+  box-shadow:
+    0 14px 32px rgba(16, 35, 63, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88);
+  transition: box-shadow 0.15s, transform 0.1s;
+}
+
+.quiz-options button:hover:not(.correct):not(.wrong):not(.ghost-answer) {
+  box-shadow:
+    0 18px 40px rgba(16, 35, 63, 0.11),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  transform: translateY(-1px);
 }
 
 .quiz-options kbd {
-  min-width: 1.55rem;
-  min-height: 1.55rem;
+  min-width: 1.6rem;
+  min-height: 1.6rem;
   display: inline-grid;
   place-items: center;
-  border: 1px solid rgba(23, 111, 194, 0.22);
+  border: 1px solid rgba(249, 115, 22, 0.22);
   border-radius: 10px;
-  background: rgba(255, 247, 237, 0.9);
+  background: linear-gradient(145deg, rgba(255, 247, 237, 0.96), rgba(255, 237, 213, 0.8));
   color: var(--mango-dark);
   font-family: inherit;
+  font-size: 0.72em;
   font-weight: 950;
+  box-shadow: 0 2px 4px rgba(194, 65, 12, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .quiz-options button.correct {
-  background: var(--success);
+  background: linear-gradient(145deg, #22c55e, #15803d);
   border-color: #15803d;
   color: #fff;
+  box-shadow: 0 14px 32px rgba(21, 128, 61, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.24);
 }
 
 .quiz-options button.wrong {
-  background: var(--danger);
+  background: linear-gradient(145deg, #f87171, #b91c1c);
   border-color: #b91c1c;
   color: #fff;
+  box-shadow: 0 14px 32px rgba(185, 28, 28, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .quiz-options .ghost-answer {
-  background: rgba(255, 255, 255, 0.68);
+  border-color: rgba(16, 35, 63, 0.06);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(248, 250, 252, 0.6));
+  box-shadow: 0 6px 16px rgba(16, 35, 63, 0.04);
 }
 
 .active-recall-card {
