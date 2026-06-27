@@ -17,38 +17,79 @@ screen chunky_chapter_select():
         xalign 0.5
         yalign 0.5
         xsize 980
-        padding (48, 40)
+        padding (48, 44)
         background "#241c14"
 
         vbox:
-            spacing 14
+            spacing 10
 
-            text "月光雕刻师" size 46 xalign 0.5 color "#f3e6cf"
-            text "Legendary Moonlight Sculptor" size 24 xalign 0.5 color "#b79b73"
+            text "月光雕刻师" size 52 xalign 0.5 color "#f3e6cf"
+            text "Legendary Moonlight Sculptor" size 22 xalign 0.5 color "#b79b73"
+            null height 4
+            add "#5a3e28" xfill True ysize 1
             null height 8
 
             for chapter in chunky_chapters:
                 textbutton "[chapter[u'title_zh']]    ·    [chapter[u'title_en']]":
                     xfill True
-                    text_size 30
+                    padding (16, 10)
+                    background Frame("#2e2016", 4, 4)
+                    hover_background Frame("#3d2a1a", 4, 4)
+                    text_size 26
+                    text_idle_color "#d4be9a"
+                    text_hover_color "#f3e6cf"
                     action Return(chapter["label"])
 
-            null height 16
+            null height 12
+            add "#5a3e28" xfill True ysize 1
+            null height 8
 
             hbox:
                 xalign 0.5
-                spacing 24
+                spacing 20
                 $ _py = "开" if persistent.show_pinyin else "关"
                 $ _en = "开" if persistent.show_english else "关"
-                textbutton "拼音 Pinyin: [_py]" action ToggleField(persistent, "show_pinyin")
-                textbutton "英文 English: [_en]" action ToggleField(persistent, "show_english")
+                textbutton "拼音 Pinyin: [_py]":
+                    padding (14, 8)
+                    background Frame("#2e2016", 4, 4)
+                    hover_background Frame("#3d2a1a", 4, 4)
+                    text_idle_color "#b79b73"
+                    text_hover_color "#f3e6cf"
+                    action ToggleField(persistent, "show_pinyin")
+                textbutton "英文 English: [_en]":
+                    padding (14, 8)
+                    background Frame("#2e2016", 4, 4)
+                    hover_background Frame("#3d2a1a", 4, 4)
+                    text_idle_color "#b79b73"
+                    text_hover_color "#f3e6cf"
+                    action ToggleField(persistent, "show_english")
+
+            null height 6
 
             hbox:
                 xalign 0.5
-                spacing 24
-                textbutton "读取 Load" action ShowMenu("load")
-                textbutton "设置 Settings" action ShowMenu("preferences")
-                textbutton "退出 Quit" action Quit(confirm=True)
+                spacing 20
+                textbutton "读取 Load":
+                    padding (14, 8)
+                    background Frame("#2e2016", 4, 4)
+                    hover_background Frame("#3d2a1a", 4, 4)
+                    text_idle_color "#b79b73"
+                    text_hover_color "#f3e6cf"
+                    action ShowMenu("load")
+                textbutton "设置 Settings":
+                    padding (14, 8)
+                    background Frame("#2e2016", 4, 4)
+                    hover_background Frame("#3d2a1a", 4, 4)
+                    text_idle_color "#b79b73"
+                    text_hover_color "#f3e6cf"
+                    action ShowMenu("preferences")
+                textbutton "退出 Quit":
+                    padding (14, 8)
+                    background Frame("#2e2016", 4, 4)
+                    hover_background Frame("#3d2a1a", 4, 4)
+                    text_idle_color "#b79b73"
+                    text_hover_color "#f3e6cf"
+                    action Quit(confirm=True)
 
 # Always-on key shortcuts so the reader can toggle aids during dialogue.
 # (Effect appears on the next line, which matches natural reading flow.)
