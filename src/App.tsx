@@ -304,6 +304,8 @@ function FlashcardReviewRing({ reviewsToday, totalReviews }: { reviewsToday: num
   )
 }
 
+const BOOK_LISTEN_SPEEDS = [0.6, 0.8, 1.0, 1.2, 1.4]
+
 function App() {
   const [screen, setScreen] = useState<Screen>('dashboard')
   const [initialVisualNovelWorldId, setInitialVisualNovelWorldId] = useState<string | undefined>()
@@ -440,6 +442,8 @@ function App() {
   const [bookListenSwipeDir, setBookListenSwipeDir] = useState<string | null>(null)
   const [bookListenDismissDir, setBookListenDismissDir] = useState<string | null>(null)
   const [bookListenAnimKey, setBookListenAnimKey] = useState(0)
+  const [bookListenFinished, setBookListenFinished] = useState(false)
+  const wakeLockRef = useRef<{ release: () => Promise<void> } | null>(null)
   const dashboardToastReadyRef = useRef(false)
 
   const stopAudioOutputs = useCallback(() => {
@@ -805,6 +809,10 @@ function App() {
     [bookListenBook],
   )
   const bookListenSentence = bookListenSentences[bookListenIndex] ?? null
+  const bookListenStory = useMemo(
+    () => bookListenBook?.stories.find(s => s.id === bookListenSentence?.storyId) ?? null,
+    [bookListenBook, bookListenSentence],
+  )
   const bookListenIllustration = bookListenBook
     ? getReaderIllustration(bookListenBook, bookListenIndex)
     : undefined
@@ -1413,6 +1421,7 @@ function App() {
     const sentenceCount = book.stories.flatMap(s => s.sentences).length
     const savedIndex = progress?.sentenceIndex ?? 0
     const bounded = Math.min(Math.max(0, savedIndex), Math.max(0, sentenceCount - 1))
+    setBookListenFinished(false)
     setBookListenBookId(book.id)
     setBookListenIndex(bounded)
   }, [])
@@ -1431,7 +1440,12 @@ function App() {
   const bookListenAdvance = useCallback(async () => {
     if (!bookListenBook) return
     const total = bookListenSentences.length
-    if (bookListenIndex >= total - 1) return
+    if (bookListenIndex >= total - 1) {
+      setBookListenFinished(true)
+      setFlashcardCelebrationId(id => id + 1)
+      playGentleCelebration()
+      return
+    }
     const nextIndex = bookListenIndex + 1
     setBookListenIndex(nextIndex)
     await saveReaderProgress({
@@ -1520,6 +1534,19 @@ function App() {
       bookListenStartRef.current?.()
     }
   }, [bookListenBookId, sentenceSubMode])
+
+  // Wake lock: keep screen on while book audio is playing
+  useEffect(() => {
+    const playing = bookListening.snapshot.status === 'playing'
+    const nav = navigator as Navigator & { wakeLock?: { request: (type: string) => Promise<{ release: () => Promise<void> }> } }
+    if (!nav.wakeLock) return
+    if (playing) {
+      nav.wakeLock.request('screen').then(lock => { wakeLockRef.current = lock }).catch(() => {})
+    } else {
+      wakeLockRef.current?.release().catch(() => {})
+      wakeLockRef.current = null
+    }
+  }, [bookListening.snapshot.status])
 
   useEffect(() => {
     if (screen !== 'reader' && readerListeningActive) stopReaderListening()
@@ -3915,10 +3942,49 @@ function App() {
                                   className="book-picker-row"
                                   onClick={() => void openBookListen(book)}
                                 >
+                                  {book.coverImage && (
+                                    <img
+                                      className="book-picker-cover"
+                                      src={readerBookAssetUrl(book, book.coverImage)}
+                                      alt=""
+                                    />
+                                  )}
                                   <span className="book-picker-title">{book.title}</span>
                                   <span className="book-picker-meta">{book.stories.flatMap(s => s.sentences).length} sentences</span>
                                 </button>
                               ))}
+                            </div>
+                          ) : bookListenFinished ? (
+                            /* Book finished screen */
+                            <div className="book-listen-finished-screen">
+                              {bookListenBook.coverImage && (
+                                <img
+                                  className="book-listen-finished-cover"
+                                  src={readerBookAssetUrl(bookListenBook, bookListenBook.coverImage)}
+                                  alt=""
+                                />
+                              )}
+                              <strong className="book-listen-finished-title">Finished!</strong>
+                              <span className="book-listen-finished-meta">{bookListenSentences.length} sentences complete</span>
+                              <div className="book-listen-finished-actions">
+                                <button
+                                  type="button"
+                                  className="primary"
+                                  onClick={() => {
+                                    setBookListenIndex(0)
+                                    setBookListenFinished(false)
+                                    window.setTimeout(() => bookListening.startListening(), 50)
+                                  }}
+                                >
+                                  Start Over
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => { setBookListenFinished(false); setBookListenBookId(null) }}
+                                >
+                                  Choose Book
+                                </button>
+                              </div>
                             </div>
                           ) : (
                             /* Book card view */
@@ -3961,7 +4027,19 @@ function App() {
                                     else void bookListening.previous()
                                   }, 320)
                                 } else {
-                                  if (dy > 40) bookListening.togglePlayPause()
+                                  if (dy > 40) {
+                                    bookListening.togglePlayPause()
+                                  } else if (dy < -40) {
+                                    // cycle: both on → English off → both off → both on
+                                    if (bookListenPinyinVisible && bookListenEnglishVisible) {
+                                      setBookListenEnglishVisible(false)
+                                    } else if (bookListenPinyinVisible && !bookListenEnglishVisible) {
+                                      setBookListenPinyinVisible(false)
+                                    } else {
+                                      setBookListenPinyinVisible(true)
+                                      setBookListenEnglishVisible(true)
+                                    }
+                                  }
                                 }
                               }}
                             >
@@ -4044,7 +4122,24 @@ function App() {
                                 </button>
 
                                 <span className="book-listen-title">{bookListenBook.title}</span>
+                                <button
+                                  type="button"
+                                  className="book-speed-badge"
+                                  onClick={() => {
+                                    const idx = BOOK_LISTEN_SPEEDS.indexOf(userSettings.readerListeningRate)
+                                    const next = BOOK_LISTEN_SPEEDS[(idx + 1) % BOOK_LISTEN_SPEEDS.length] ?? 1.0
+                                    void saveReaderSettings({ readerListeningRate: next })
+                                  }}
+                                  title="Cycle playback speed"
+                                >
+                                  {userSettings.readerListeningRate}×
+                                </button>
                               </div>
+
+                              {/* Story / chapter label */}
+                              {bookListenStory && (
+                                <div className="book-listen-story-label">{bookListenStory.title}</div>
+                              )}
 
                               {/* Illustration */}
                               {bookListenIllustration && (
@@ -4062,7 +4157,7 @@ function App() {
                                 key={bookListenAnimKey}
                                 className={`sentence-card${bookListenDismissDir ? ` sentence-dismiss-${bookListenDismissDir}` : ''}`}
                               >
-                                <div className="sentence-chinese">{bookListenSentence?.chinese}</div>
+                                <div className={`sentence-chinese${bookListening.snapshot.status === 'playing' ? ' book-playing' : ''}`}>{bookListenSentence?.chinese}</div>
                                 {bookListenPinyinVisible && bookListenSentence?.chinese && (
                                   <div className="sentence-pinyin">
                                     {getPinyin(bookListenSentence.chinese, { toneType: 'symbol', separator: ' ' })}
@@ -4075,7 +4170,7 @@ function App() {
 
                               {bookListenSwipeDir && !bookListenDismissDir && (
                                 <div className={`swipe-indicator swipe-indicator-${bookListenSwipeDir}`}>
-                                  {{ left: '← Next', right: '→ Prev', down: '⏸ Pause' }[bookListenSwipeDir] ?? ''}
+                                  {{ left: '← Next', right: '→ Prev', down: '⏸ Pause', up: '↑ Display' }[bookListenSwipeDir] ?? ''}
                                 </div>
                               )}
 
@@ -4089,6 +4184,7 @@ function App() {
 
                               {/* Swipe hints */}
                               <div className="book-listen-hints">
+                                <span>↑ display</span>
                                 <span>→ prev</span>
                                 <span>↓ pause</span>
                                 <span>← next</span>

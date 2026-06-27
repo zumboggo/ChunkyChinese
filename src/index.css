@@ -9318,8 +9318,9 @@ body.comic-distraction-free .app-shell {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   width: 100%;
-  padding: 14px 16px;
+  padding: 10px 16px;
   border-radius: 12px;
   border: none;
   background: var(--soft-surface, rgba(255,255,255,.06));
@@ -9421,4 +9422,93 @@ body.comic-distraction-free .app-shell {
   font-size: 0.75rem;
   color: var(--text-secondary, #777);
   opacity: 0.7;
+}
+
+/* Book cover thumbnail in picker */
+.book-picker-cover {
+  width: 40px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+/* Playing pulse on Chinese text */
+@keyframes book-playing-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+.sentence-chinese.book-playing {
+  animation: book-playing-pulse 1.8s ease-in-out infinite;
+}
+
+/* Story / chapter label */
+.book-listen-story-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent, #60a5fa);
+  padding: 0 20px 4px;
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Speed badge button */
+.book-speed-badge {
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1.5px solid var(--soft-border, rgba(255,255,255,.15));
+  background: transparent;
+  color: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .15s;
+}
+
+.book-speed-badge:hover {
+  background: var(--soft-surface, rgba(255,255,255,.08));
+}
+
+/* End-of-book finished screen */
+.book-listen-finished-screen {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.book-listen-finished-cover {
+  width: 90px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+}
+
+.book-listen-finished-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.book-listen-finished-meta {
+  font-size: 0.9rem;
+  color: var(--text-secondary, #999);
+}
+
+.book-listen-finished-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 6px;
 }
