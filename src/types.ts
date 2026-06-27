@@ -30,7 +30,7 @@ export type ListeningEventType =
 
 export type FsrsRating = 'again' | 'hard' | 'good' | 'easy'
 
-export type StudyMode = 'listeningMode' | 'activeRecall' | 'sentenceMode'
+export type StudyMode = 'listeningMode' | 'sentenceMode'
 
 export type FsrsStateName = 'New' | 'Learning' | 'Review' | 'Relearning'
 
