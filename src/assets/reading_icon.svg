@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <!-- Left page -->
+  <path d="M8 6 L8 70 L42 70 L42 6 C42 6 38 2 26 2 C14 2 8 6 8 6 Z"
+        stroke="#111827" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Right page -->
+  <path d="M72 6 L72 70 L42 70 L42 6 C42 6 46 2 58 2 C70 2 72 6 72 6 Z"
+        stroke="#111827" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Spine -->
+  <line x1="42" y1="2" x2="42" y2="70" stroke="#111827" stroke-width="5" stroke-linecap="round"/>
+  <!-- Bottom curve -->
+  <path d="M8 70 Q22 78 42 74 Q62 78 72 70"
+        fill="none" stroke="#111827" stroke-width="5.5" stroke-linecap="round"/>
+</svg>

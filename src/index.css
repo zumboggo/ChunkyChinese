@@ -573,6 +573,10 @@ dt {
   background-image: url("./assets/listen_icon.png");
 }
 
+.nav-reading {
+  background-image: url("./assets/reading_icon.svg");
+}
+
 .tabs .active,
 .primary {
   background:

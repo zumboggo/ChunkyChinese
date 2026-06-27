@@ -2550,7 +2550,7 @@ function App() {
             className={screen === 'readingTexts' ? 'active' : ''}
             onClick={() => setScreen('readingTexts')}
           >
-            <span className="nav-icon nav-comics" aria-hidden="true" />
+            <span className="nav-icon nav-reading" aria-hidden="true" />
             Reading
           </button>
         </nav>
