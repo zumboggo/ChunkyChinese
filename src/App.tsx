@@ -2378,7 +2378,7 @@ function App() {
     setShowEnglish(true)
     setShowPinyin(true)
     setMinimalVisualMode(mode === 'listeningMode')
-    setAutoNextLesson(mode === 'listeningMode')
+    setAutoNextLesson(mode === 'listeningMode' || mode === 'activeRecall')
     await startPocketLesson([], {
       randomize: true,
       playAfterRender: true,
@@ -4517,7 +4517,7 @@ function App() {
                         onEnded={async () => {
                           setIsPlaying(false)
                           if (renderedLesson) {
-                            if (isListeningMode) {
+                            if (isListeningMode || isActiveLearningMode) {
                               await completeListeningLesson()
                             } else {
                               await recordEvent({
@@ -4528,14 +4528,14 @@ function App() {
                               })
                               await refresh()
                             }
-                            if (isListeningMode && autoNextLesson) {
+                            if ((isListeningMode || isActiveLearningMode) && autoNextLesson) {
                               void startPocketLesson([], {
                                 randomize: true,
                                 playAfterRender: true,
                                 newWordsLimit: remainingNewWordsToday,
                               })
-                            } else if (isListeningMode) {
-                              setLastSummary('Listening mode lesson complete.')
+                            } else if (isListeningMode || isActiveLearningMode) {
+                              setLastSummary('Lesson complete.')
                             } else {
                               openReviewPrompt()
                             }
