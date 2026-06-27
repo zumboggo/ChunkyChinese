@@ -79,7 +79,6 @@ import {
   fsrsDueTime,
   isFsrsCardDue,
   isNewFsrsCard,
-  previewFsrsRatings,
   downgradeRating,
   applySentenceSrsRating,
 } from './scheduler'
@@ -2159,8 +2158,18 @@ function App() {
             return
           }
           if (flashcardSentenceAnswerShown) {
-            if (mappedIndex === 0 || mappedIndex === 1) {
+            if (mappedIndex === 0) {
               event.preventDefault()
+              const matchedWord = words.find((w) => w.word === currentSentence.word)
+              if (matchedWord) void rateWordFsrs(matchedWord.id, downgradeRating('again'), { source: 'flashcards', sessionId: flashcardSessionId ?? undefined })
+              setFlashcardSessionRatingCounts((prev) => ({ ...prev, again: prev.again + 1 }))
+              setFlashcardSentenceAnswerShown(false)
+              setFlashcardSentenceIndex((i) => i + 1)
+            } else if (mappedIndex === 1) {
+              event.preventDefault()
+              const matchedWord = words.find((w) => w.word === currentSentence.word)
+              if (matchedWord) void rateWordFsrs(matchedWord.id, downgradeRating('good'), { source: 'flashcards', sessionId: flashcardSessionId ?? undefined })
+              setFlashcardSessionRatingCounts((prev) => ({ ...prev, good: prev.good + 1 }))
               setFlashcardSentenceAnswerShown(false)
               setFlashcardSentenceIndex((i) => i + 1)
             }
@@ -3090,11 +3099,6 @@ function App() {
 
           <section className="flashcards-workspace">
             <div className="flashcards-meta">
-              <span>
-                {flashcardSessionKind === 'sentences'
-                  ? `${hotkeys.choiceA.toUpperCase()} flip, then ${hotkeys.choiceA.toUpperCase()} / ${hotkeys.choiceB.toUpperCase()} next`
-                  : `${hotkeys.choiceA.toUpperCase()} flip, then Again · ${hotkeys.choiceE.toUpperCase()} star for extra review`}
-              </span>
               <div className="flashcard-mode-buttons">
                 <button
                   type="button"
@@ -3167,39 +3171,8 @@ function App() {
                         </button>
                       </div>
                       {flashcardSentenceAnswerShown && (
-                        <div className="review-buttons fsrs-preview-buttons">
-                          <button
-                            type="button"
-                            onClick={() => {
-                              const matchedWord = words.find((w) => w.word === sentence.word)
-                              if (matchedWord) {
-                                const halfRating = downgradeRating('again')
-                                void rateWordFsrs(matchedWord.id, halfRating, { source: 'flashcards', sessionId: flashcardSessionId ?? undefined })
-                              }
-                              setFlashcardSessionRatingCounts((prev) => ({ ...prev, again: prev.again + 1 }))
-                              setFlashcardSentenceAnswerShown(false)
-                              setFlashcardSentenceIndex((i) => i + 1)
-                            }}
-                          >
-                            <kbd>{hotkeys.choiceA.toUpperCase()}</kbd>
-                            <strong>Again</strong>
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              const matchedWord = words.find((w) => w.word === sentence.word)
-                              if (matchedWord) {
-                                const halfRating = downgradeRating('good')
-                                void rateWordFsrs(matchedWord.id, halfRating, { source: 'flashcards', sessionId: flashcardSessionId ?? undefined })
-                              }
-                              setFlashcardSessionRatingCounts((prev) => ({ ...prev, good: prev.good + 1 }))
-                              setFlashcardSentenceAnswerShown(false)
-                              setFlashcardSentenceIndex((i) => i + 1)
-                            }}
-                          >
-                            <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
-                            <strong>Good</strong>
-                          </button>
+                        <div className="swipe-instructions">
+                          {hotkeys.choiceA.toUpperCase()} Again · {hotkeys.choiceB.toUpperCase()} Good
                         </div>
                       )}
                       <div className="flashcard-bottom-actions">
@@ -3492,484 +3465,508 @@ function App() {
               <h1>Settings</h1>
               <p>Import packs, set study defaults, export progress, and tune controls.</p>
             </div>
-            <div className="button-group" style={{ display: 'flex', gap: '0.5rem' }}>
-              <button type="button" onClick={handleWordsCsvExport}>
-                Export CSV
-              </button>
-              <button type="button" onClick={handleVocabSnapshotExport}>
-                Export Vocab Snapshot
-              </button>
-            </div>
           </div>
 
-          <div className="import-grid">
-            <section className="panel cloud-sync-panel">
-              <div className="panel-title-row">
-                <div>
-                  <h2>Cloud sync</h2>
-                  <p>Sync vocab progress and card edits across your signed-in devices.</p>
-                </div>
-                <span className={`sync-pill sync-${cloudSync.status}`}>
-                  {syncStatusLabel(cloudSync.status)}
-                </span>
-              </div>
-              {cloudUserEmail ? (
-                <>
-                  <dl className="stat-list compact-stat-list">
+          <div className="settings-sections">
+            <details className="settings-group" open={!cloudUserEmail}>
+              <summary className="settings-group-summary">Account &amp; Sync</summary>
+              <div className="import-grid">
+                <section className="panel cloud-sync-panel">
+                  <div className="panel-title-row">
                     <div>
-                      <dt>Account</dt>
-                      <dd>{cloudUserEmail}</dd>
+                      <h2>Cloud sync</h2>
+                      <p>Sync vocab progress and card edits across your signed-in devices.</p>
                     </div>
-                    <div>
-                      <dt>Last sync</dt>
-                      <dd>{cloudSync.lastSyncedAt ? formatRelativeTime(cloudSync.lastSyncedAt) : 'Not yet'}</dd>
-                    </div>
-                  </dl>
-                  <div className="button-row">
-                    <button
-                      type="button"
-                      className="primary"
-                      disabled={cloudSync.status === 'syncing'}
-                      onClick={() => void handleCloudSyncNow(false)}
-                    >
-                      {cloudSync.status === 'syncing' ? 'Syncing...' : 'Sync now'}
-                    </button>
-                    <button type="button" onClick={() => void handleCloudSignOut()}>
-                      Sign out
-                    </button>
+                    <span className={`sync-pill sync-${cloudSync.status}`}>
+                      {syncStatusLabel(cloudSync.status)}
+                    </span>
                   </div>
-                </>
-              ) : (
-                <>
-                  <div className="button-row">
-                    <button
-                      type="button"
-                      className="primary"
-                      disabled={!isSupabaseConfigured || cloudSync.status === 'syncing'}
-                      onClick={() => void handleGoogleSignIn()}
-                    >
-                      Continue with Google
-                    </button>
-                  </div>
-                  <div className="magic-link-row">
-                    <input
-                      type="email"
-                      placeholder="Email for magic link"
-                      value={cloudSync.email}
-                      disabled={!isSupabaseConfigured}
-                      onChange={(event) =>
-                        setCloudSync((current) => ({ ...current, email: event.target.value }))
-                      }
-                    />
-                    <button
-                      type="button"
-                      disabled={!isSupabaseConfigured || cloudSync.status === 'syncing'}
-                      onClick={() => void handleMagicLinkSignIn()}
-                    >
-                      Send link
-                    </button>
-                  </div>
-                </>
-              )}
-              <small>{cloudSync.message}</small>
-            </section>
-            <UniversalImporter
-              onComplete={async (summary) => {
-                setLastSummary(summary)
-                await refresh()
-                queueCloudSync()
-              }}
-            />
-            <section className="panel hosted-pack">
-              <h2>Download clip packs</h2>
-              <p>Hosted packs download MP3 clips into this browser for offline lessons.</p>
-              <div className="pack-list">
-                {hostedClipPacks.map((pack) => {
-                  const installed = clipPacks.some((installedPack) => installedPack.id === pack.id)
-                  const isDownloading = hostedPackDownloadId === pack.id
-                  return (
-                    <div key={pack.id} className="pack-row">
-                      <span>
-                        <strong>{pack.name}</strong>
-                        <small>{pack.description ?? `${pack.language ?? 'zh-CN'} clip pack`}</small>
-                      </span>
-                      <button
-                        type="button"
-                        className={installed ? '' : 'primary'}
-                        disabled={Boolean(hostedPackDownloadId)}
-                        onClick={() => handleHostedClipPackImport(pack)}
-                      >
-                        {isDownloading ? 'Downloading...' : installed ? 'Redownload' : 'Download'}
-                      </button>
-                    </div>
-                  )
-                })}
-                {hostedClipPacks.length === 0 && <small>No hosted clip packs are available.</small>}
-              </div>
-              {hostedPackProgress && <small>{hostedPackProgress}</small>}
-            </section>
-            {hostedComicPacks.length > 0 && (
-              <section className="panel hosted-pack">
-                <h2>Download comic packs</h2>
-                <p>Download comic packs for the Comic Reader with bubble transcripts and vocabulary lookup.</p>
-                <div className="pack-list">
-                  {hostedComicPacks.map((pack) => {
-                    const isDownloading = hostedPackDownloadId === pack.id
-                    return (
-                      <div key={pack.id} className="pack-row">
-                        <span>
-                          <strong>{pack.name}</strong>
-                          <small>{pack.description ?? `${pack.language ?? 'zh-CN'} comic pack`}</small>
-                        </span>
+                  {cloudUserEmail ? (
+                    <>
+                      <dl className="stat-list compact-stat-list">
+                        <div>
+                          <dt>Account</dt>
+                          <dd>{cloudUserEmail}</dd>
+                        </div>
+                        <div>
+                          <dt>Last sync</dt>
+                          <dd>{cloudSync.lastSyncedAt ? formatRelativeTime(cloudSync.lastSyncedAt) : 'Not yet'}</dd>
+                        </div>
+                      </dl>
+                      <div className="button-row">
                         <button
                           type="button"
                           className="primary"
-                          disabled={Boolean(hostedPackDownloadId)}
-                          onClick={() => void handleHostedComicPackImport(pack)}
+                          disabled={cloudSync.status === 'syncing'}
+                          onClick={() => void handleCloudSyncNow(false)}
                         >
-                          {isDownloading ? 'Downloading...' : 'Download'}
+                          {cloudSync.status === 'syncing' ? 'Syncing...' : 'Sync now'}
+                        </button>
+                        <button type="button" onClick={() => void handleCloudSignOut()}>
+                          Sign out
                         </button>
                       </div>
-                    )
-                  })}
-                </div>
-                {hostedPackDownloadId && hostedPackProgress && <small>{hostedPackProgress}</small>}
-              </section>
-            )}
-            <section className="panel hosted-pack">
-              <h2>Installed packs</h2>
-              <p>Lessons use the active pack first. Progress is shared when the same word appears in multiple packs.</p>
-              <div className="pack-list">
-                <div className={`pack-row ${activePackId ? '' : 'active'}`}>
-                  <span>
-                    <strong>All words</strong>
-                    <small>{words.length} words across every installed/imported pack.</small>
-                  </span>
-                  <button
-                    type="button"
-                    className={activePackId ? '' : 'primary'}
-                    onClick={() => handleSetActivePack(undefined)}
-                  >
-                    {activePackId ? 'Set active' : 'Active'}
-                  </button>
-                </div>
-                {clipPacks.map((pack) => (
-                  <div key={pack.id} className={`pack-row ${pack.id === activePackId ? 'active' : ''}`}>
-                    <span>
-                      <strong>{pack.name}</strong>
-                      <small>
-                        {pack.wordCount} words · {pack.audioCount} clips ·{' '}
-                        {pack.browserTts ? 'browser TTS' : 'MP3'}
-                      </small>
-                    </span>
-                    <button
-                      type="button"
-                      className={pack.id === activePackId ? 'primary' : ''}
-                      onClick={() => handleSetActivePack(pack.id)}
-                    >
-                      {pack.id === activePackId ? 'Active' : 'Set active'}
-                    </button>
-                  </div>
-                ))}
-                {clipPacks.length === 0 && <small>No packs installed yet.</small>}
+                    </>
+                  ) : (
+                    <>
+                      <div className="button-row">
+                        <button
+                          type="button"
+                          className="primary"
+                          disabled={!isSupabaseConfigured || cloudSync.status === 'syncing'}
+                          onClick={() => void handleGoogleSignIn()}
+                        >
+                          Continue with Google
+                        </button>
+                      </div>
+                      <div className="magic-link-row">
+                        <input
+                          type="email"
+                          placeholder="Email for magic link"
+                          value={cloudSync.email}
+                          disabled={!isSupabaseConfigured}
+                          onChange={(event) =>
+                            setCloudSync((current) => ({ ...current, email: event.target.value }))
+                          }
+                        />
+                        <button
+                          type="button"
+                          disabled={!isSupabaseConfigured || cloudSync.status === 'syncing'}
+                          onClick={() => void handleMagicLinkSignIn()}
+                        >
+                          Send link
+                        </button>
+                      </div>
+                    </>
+                  )}
+                  <small>{cloudSync.message}</small>
+                </section>
               </div>
-            </section>
+            </details>
 
-            <FilePanel
-              title="Clip pack folder"
-              help="Select the whole generated clip-pack folder: clips_manifest.json, vocab.csv, sentences.csv, and audio/."
-              accept=".json,.csv,.mp3,audio/mpeg"
-              multiple
-              webkitdirectory
-              onChange={handleClipPackImport}
-            />
-
-            <FilePanel
-              title="Audio MP3 files"
-              help="Select files or a folder. Matching prefers words/, meanings/, and sentences/ paths."
-              accept=".mp3,audio/mpeg"
-              multiple
-              webkitdirectory
-              onChange={handleAudioImport}
-            />
-
-            <section className="panel">
-              <h2>Appearance</h2>
-              <p>Set a quieter display for low-light study.</p>
-              <label className="toggle-row">
-                <span>
-                  <strong>Dark mode</strong>
-                  <small>Use a darker background and softer panels.</small>
-                </span>
-                <input
-                  type="checkbox"
-                  checked={userSettings.darkMode}
-                  onChange={(event) => {
-                    const next = { ...userSettings, darkMode: event.target.checked }
-                    setUserSettings(next)
-                    void saveUserSettings(next)
+            <details className="settings-group">
+              <summary className="settings-group-summary">Imports &amp; Packs</summary>
+              <div className="import-grid">
+                <UniversalImporter
+                  onComplete={async (summary) => {
+                    setLastSummary(summary)
+                    await refresh()
+                    queueCloudSync()
                   }}
                 />
-              </label>
-            </section>
-
-            <section className="panel reader-settings-panel">
-              <h2>Reader settings</h2>
-              <p>Shape Reader into a clean book view with adaptive pinyin hints.</p>
-              <div className="hotkey-grid">
-                <label>
-                  <span>Pinyin hints</span>
-                  <select
-                    value={userSettings.readerPinyinMode}
-                    onChange={(event) =>
-                      saveReaderSettings({ readerPinyinMode: event.target.value as ReaderPinyinMode })
-                    }
-                  >
-                    <option value="adaptive">Adaptive</option>
-                    <option value="all">All pinyin</option>
-                    <option value="none">No pinyin</option>
-                  </select>
-                </label>
-                <label>
-                  <span>Reader theme</span>
-                  <select
-                    value={userSettings.readerTheme}
-                    onChange={(event) => saveReaderSettings({ readerTheme: event.target.value as ReaderTheme })}
-                  >
-                    <option value="light">Light</option>
-                    <option value="sepia">Sepia</option>
-                    <option value="dark">Dark</option>
-                  </select>
-                </label>
-                <label>
-                  <span>Chinese font size</span>
-                  <input
-                    type="range"
-                    min={0.82}
-                    max={1.35}
-                    step={0.01}
-                    value={userSettings.readerFontScale}
-                    onChange={(event) => saveReaderSettings({ readerFontScale: Number(event.target.value) })}
-                  />
-                  <small>{Math.round(userSettings.readerFontScale * 100)}%</small>
-                </label>
-                <label>
-                  <span>Line spacing</span>
-                  <input
-                    type="range"
-                    min={1.45}
-                    max={2.35}
-                    step={0.05}
-                    value={userSettings.readerLineHeight}
-                    onChange={(event) => saveReaderSettings({ readerLineHeight: Number(event.target.value) })}
-                  />
-                  <small>{userSettings.readerLineHeight.toFixed(2)}x</small>
-                </label>
+                <section className="panel hosted-pack">
+                  <h2>Download clip packs</h2>
+                  <p>Hosted packs download MP3 clips into this browser for offline lessons.</p>
+                  <div className="pack-list">
+                    {hostedClipPacks.map((pack) => {
+                      const installed = clipPacks.some((installedPack) => installedPack.id === pack.id)
+                      const isDownloading = hostedPackDownloadId === pack.id
+                      return (
+                        <div key={pack.id} className="pack-row">
+                          <span>
+                            <strong>{pack.name}</strong>
+                            <small>{pack.description ?? `${pack.language ?? 'zh-CN'} clip pack`}</small>
+                          </span>
+                          <button
+                            type="button"
+                            className={installed ? '' : 'primary'}
+                            disabled={Boolean(hostedPackDownloadId)}
+                            onClick={() => handleHostedClipPackImport(pack)}
+                          >
+                            {isDownloading ? 'Downloading...' : installed ? 'Redownload' : 'Download'}
+                          </button>
+                        </div>
+                      )
+                    })}
+                    {hostedClipPacks.length === 0 && <small>No hosted clip packs are available.</small>}
+                  </div>
+                  {hostedPackProgress && <small>{hostedPackProgress}</small>}
+                </section>
+                {hostedComicPacks.length > 0 && (
+                  <section className="panel hosted-pack">
+                    <h2>Download comic packs</h2>
+                    <p>Download comic packs for the Comic Reader with bubble transcripts and vocabulary lookup.</p>
+                    <div className="pack-list">
+                      {hostedComicPacks.map((pack) => {
+                        const isDownloading = hostedPackDownloadId === pack.id
+                        return (
+                          <div key={pack.id} className="pack-row">
+                            <span>
+                              <strong>{pack.name}</strong>
+                              <small>{pack.description ?? `${pack.language ?? 'zh-CN'} comic pack`}</small>
+                            </span>
+                            <button
+                              type="button"
+                              className="primary"
+                              disabled={Boolean(hostedPackDownloadId)}
+                              onClick={() => void handleHostedComicPackImport(pack)}
+                            >
+                              {isDownloading ? 'Downloading...' : 'Download'}
+                            </button>
+                          </div>
+                        )
+                      })}
+                    </div>
+                    {hostedPackDownloadId && hostedPackProgress && <small>{hostedPackProgress}</small>}
+                  </section>
+                )}
+                <section className="panel hosted-pack">
+                  <h2>Installed packs</h2>
+                  <p>Lessons use the active pack first. Progress is shared when the same word appears in multiple packs.</p>
+                  <div className="pack-list">
+                    <div className={`pack-row ${activePackId ? '' : 'active'}`}>
+                      <span>
+                        <strong>All words</strong>
+                        <small>{words.length} words across every installed/imported pack.</small>
+                      </span>
+                      <button
+                        type="button"
+                        className={activePackId ? '' : 'primary'}
+                        onClick={() => handleSetActivePack(undefined)}
+                      >
+                        {activePackId ? 'Set active' : 'Active'}
+                      </button>
+                    </div>
+                    {clipPacks.map((pack) => (
+                      <div key={pack.id} className={`pack-row ${pack.id === activePackId ? 'active' : ''}`}>
+                        <span>
+                          <strong>{pack.name}</strong>
+                          <small>
+                            {pack.wordCount} words · {pack.audioCount} clips ·{' '}
+                            {pack.browserTts ? 'browser TTS' : 'MP3'}
+                          </small>
+                        </span>
+                        <button
+                          type="button"
+                          className={pack.id === activePackId ? 'primary' : ''}
+                          onClick={() => handleSetActivePack(pack.id)}
+                        >
+                          {pack.id === activePackId ? 'Active' : 'Set active'}
+                        </button>
+                      </div>
+                    ))}
+                    {clipPacks.length === 0 && <small>No packs installed yet.</small>}
+                  </div>
+                </section>
+                <FilePanel
+                  title="Clip pack folder"
+                  help="Select the whole generated clip-pack folder: clips_manifest.json, vocab.csv, sentences.csv, and audio/."
+                  accept=".json,.csv,.mp3,audio/mpeg"
+                  multiple
+                  webkitdirectory
+                  onChange={handleClipPackImport}
+                />
+                <FilePanel
+                  title="Audio MP3 files"
+                  help="Select files or a folder. Matching prefers words/, meanings/, and sentences/ paths."
+                  accept=".mp3,audio/mpeg"
+                  multiple
+                  webkitdirectory
+                  onChange={handleAudioImport}
+                />
               </div>
-              <div className="reader-pinyin-legend" aria-label="Adaptive pinyin legend">
-                <span className="legend-pinyin-known">Known: no pinyin</span>
-                <span className="legend-pinyin-medium">Medium: blurred hint</span>
-                <span className="legend-pinyin-unknown">Unknown: visible pinyin</span>
-              </div>
-            </section>
+            </details>
 
-            <section className="panel goals-settings-panel">
-              <h2>Goals</h2>
-              <p>Set the daily targets used across Dashboard, Flashcards, and Reader.</p>
-              <div className="hotkey-grid">
-                <label>
-                  <span>New Words / Day</span>
-                  <input
-                    type="number"
-                    min={0}
-                    max={50}
-                    value={newWordsPerDay}
-                    onChange={(event) => handleNewWordsPerDayChange(Number(event.target.value))}
-                  />
-                </label>
-                <label>
-                  <span>Cards Reviewed / Day</span>
-                  <input
-                    type="number"
-                    min={0}
-                    value={userSettings.lingqCreatedGoal}
-                    onChange={(event) => {
-                      const next = { ...userSettings, lingqCreatedGoal: Number(event.target.value) }
-                      setUserSettings(next)
-                      void saveUserSettings(next)
-                    }}
-                  />
-                </label>
-                <label>
-                  <span>Successful Recalls / Day</span>
-                  <input
-                    type="number"
-                    min={0}
-                    value={userSettings.lingqLearnedGoal}
-                    onChange={(event) => {
-                      const next = { ...userSettings, lingqLearnedGoal: Number(event.target.value) }
-                      setUserSettings(next)
-                      void saveUserSettings(next)
-                    }}
-                  />
-                </label>
-                <label>
-                  <span>Flashcards / Day</span>
-                  <input
-                    type="number"
-                    min={1}
-                    max={300}
-                    value={userSettings.flashcardsPerDay}
-                    onChange={(event) => {
-                      const next = { ...userSettings, flashcardsPerDay: Number(event.target.value) }
-                      setUserSettings(next)
-                      void saveUserSettings(next)
-                    }}
-                  />
-                </label>
-                <label>
-                  <span>Reader Pages / Day</span>
-                  <input
-                    type="number"
-                    min={1}
-                    max={500}
-                    value={userSettings.readingGoalPages}
-                    onChange={(event) => {
-                      const next = { ...userSettings, readingGoalPages: Number(event.target.value) }
-                      setUserSettings(next)
-                      void saveUserSettings(next)
-                    }}
-                  />
-                </label>
+            <details className="settings-group">
+              <summary className="settings-group-summary">Goals</summary>
+              <div className="import-grid">
+                <section className="panel goals-settings-panel">
+                  <h2>Daily targets</h2>
+                  <p>Set the daily targets used across Dashboard, Flashcards, and Reader.</p>
+                  <div className="hotkey-grid">
+                    <label>
+                      <span>New Words / Day</span>
+                      <input
+                        type="number"
+                        min={0}
+                        max={50}
+                        value={newWordsPerDay}
+                        onChange={(event) => handleNewWordsPerDayChange(Number(event.target.value))}
+                      />
+                    </label>
+                    <label>
+                      <span>Cards Reviewed / Day</span>
+                      <input
+                        type="number"
+                        min={0}
+                        value={userSettings.lingqCreatedGoal}
+                        onChange={(event) => {
+                          const next = { ...userSettings, lingqCreatedGoal: Number(event.target.value) }
+                          setUserSettings(next)
+                          void saveUserSettings(next)
+                        }}
+                      />
+                    </label>
+                    <label>
+                      <span>Successful Recalls / Day</span>
+                      <input
+                        type="number"
+                        min={0}
+                        value={userSettings.lingqLearnedGoal}
+                        onChange={(event) => {
+                          const next = { ...userSettings, lingqLearnedGoal: Number(event.target.value) }
+                          setUserSettings(next)
+                          void saveUserSettings(next)
+                        }}
+                      />
+                    </label>
+                    <label>
+                      <span>Flashcards / Day</span>
+                      <input
+                        type="number"
+                        min={1}
+                        max={300}
+                        value={userSettings.flashcardsPerDay}
+                        onChange={(event) => {
+                          const next = { ...userSettings, flashcardsPerDay: Number(event.target.value) }
+                          setUserSettings(next)
+                          void saveUserSettings(next)
+                        }}
+                      />
+                    </label>
+                    <label>
+                      <span>Reader Pages / Day</span>
+                      <input
+                        type="number"
+                        min={1}
+                        max={500}
+                        value={userSettings.readingGoalPages}
+                        onChange={(event) => {
+                          const next = { ...userSettings, readingGoalPages: Number(event.target.value) }
+                          setUserSettings(next)
+                          void saveUserSettings(next)
+                        }}
+                      />
+                    </label>
+                  </div>
+                </section>
               </div>
-            </section>
+            </details>
 
-            <section className="panel">
-              <h2>Flashcard settings</h2>
-              <p>Choose the queue and audio presentation for regular FSRS study.</p>
-              <div className="hotkey-grid">
-                <label>
-                  <span>Flashcard queue</span>
-                  <select
-                    value={userSettings.flashcardQueueMode}
-                    onChange={(event) => {
-                      const next = {
-                        ...userSettings,
-                        flashcardQueueMode: event.target.value as FlashcardQueueMode,
-                      }
-                      setUserSettings(next)
-                      void saveUserSettings(next)
-                    }}
-                  >
-                    <option value="mixed">Mix</option>
-                    <option value="due">Due</option>
-                    <option value="new">New</option>
-                  </select>
-                </label>
-                <label>
-                  <span>Audio front % (regular mode)</span>
-                  <div className="audio-slider-row">
+            <details className="settings-group">
+              <summary className="settings-group-summary">Flashcards</summary>
+              <div className="import-grid">
+                <section className="panel">
+                  <h2>Flashcard settings</h2>
+                  <p>Choose the queue and audio presentation for regular FSRS study.</p>
+                  <div className="hotkey-grid">
+                    <label>
+                      <span>Flashcard queue</span>
+                      <select
+                        value={userSettings.flashcardQueueMode}
+                        onChange={(event) => {
+                          const next = {
+                            ...userSettings,
+                            flashcardQueueMode: event.target.value as FlashcardQueueMode,
+                          }
+                          setUserSettings(next)
+                          void saveUserSettings(next)
+                        }}
+                      >
+                        <option value="mixed">Mix</option>
+                        <option value="due">Due</option>
+                        <option value="new">New</option>
+                      </select>
+                    </label>
+                    <label>
+                      <span>Audio front % (regular mode)</span>
+                      <div className="audio-slider-row">
+                        <input
+                          type="range"
+                          min={0}
+                          max={100}
+                          step={5}
+                          value={userSettings.flashcardAudioFrontPercent}
+                          onChange={(event) => {
+                            const next = { ...userSettings, flashcardAudioFrontPercent: Number(event.target.value) }
+                            setUserSettings(next)
+                            void saveUserSettings(next)
+                          }}
+                        />
+                        <span className="audio-slider-value">{userSettings.flashcardAudioFrontPercent}%</span>
+                      </div>
+                    </label>
+                  </div>
+                </section>
+              </div>
+            </details>
+
+            <details className="settings-group">
+              <summary className="settings-group-summary">Reader</summary>
+              <div className="import-grid">
+                <section className="panel reader-settings-panel">
+                  <h2>Reader settings</h2>
+                  <p>Shape Reader into a clean book view with adaptive pinyin hints.</p>
+                  <div className="hotkey-grid">
+                    <label>
+                      <span>Pinyin hints</span>
+                      <select
+                        value={userSettings.readerPinyinMode}
+                        onChange={(event) =>
+                          saveReaderSettings({ readerPinyinMode: event.target.value as ReaderPinyinMode })
+                        }
+                      >
+                        <option value="adaptive">Adaptive</option>
+                        <option value="all">All pinyin</option>
+                        <option value="none">No pinyin</option>
+                      </select>
+                    </label>
+                    <label>
+                      <span>Reader theme</span>
+                      <select
+                        value={userSettings.readerTheme}
+                        onChange={(event) => saveReaderSettings({ readerTheme: event.target.value as ReaderTheme })}
+                      >
+                        <option value="light">Light</option>
+                        <option value="sepia">Sepia</option>
+                        <option value="dark">Dark</option>
+                      </select>
+                    </label>
+                    <label>
+                      <span>Chinese font size</span>
+                      <input
+                        type="range"
+                        min={0.82}
+                        max={1.35}
+                        step={0.01}
+                        value={userSettings.readerFontScale}
+                        onChange={(event) => saveReaderSettings({ readerFontScale: Number(event.target.value) })}
+                      />
+                      <small>{Math.round(userSettings.readerFontScale * 100)}%</small>
+                    </label>
+                    <label>
+                      <span>Line spacing</span>
+                      <input
+                        type="range"
+                        min={1.45}
+                        max={2.35}
+                        step={0.05}
+                        value={userSettings.readerLineHeight}
+                        onChange={(event) => saveReaderSettings({ readerLineHeight: Number(event.target.value) })}
+                      />
+                      <small>{userSettings.readerLineHeight.toFixed(2)}x</small>
+                    </label>
+                  </div>
+                  <div className="reader-pinyin-legend" aria-label="Adaptive pinyin legend">
+                    <span className="legend-pinyin-known">Known: no pinyin</span>
+                    <span className="legend-pinyin-medium">Medium: blurred hint</span>
+                    <span className="legend-pinyin-unknown">Unknown: visible pinyin</span>
+                  </div>
+                </section>
+              </div>
+            </details>
+
+            <details className="settings-group">
+              <summary className="settings-group-summary">Appearance</summary>
+              <div className="import-grid">
+                <section className="panel">
+                  <h2>Appearance</h2>
+                  <p>Set a quieter display for low-light study.</p>
+                  <label className="toggle-row">
+                    <span>
+                      <strong>Dark mode</strong>
+                      <small>Use a darker background and softer panels.</small>
+                    </span>
                     <input
-                      type="range"
-                      min={0}
-                      max={100}
-                      step={5}
-                      value={userSettings.flashcardAudioFrontPercent}
+                      type="checkbox"
+                      checked={userSettings.darkMode}
                       onChange={(event) => {
-                        const next = { ...userSettings, flashcardAudioFrontPercent: Number(event.target.value) }
+                        const next = { ...userSettings, darkMode: event.target.checked }
                         setUserSettings(next)
                         void saveUserSettings(next)
                       }}
                     />
-                    <span className="audio-slider-value">{userSettings.flashcardAudioFrontPercent}%</span>
-                  </div>
-                </label>
+                  </label>
+                </section>
               </div>
-            </section>
-            <section className="panel">
-              <h2>Hotkey settings</h2>
-              <p>Choice A-D rate flashcards; Choice E stars cards; Choice F replays audio.</p>
-              <dl className="stat-list">
-                <div>
-                  <dt>Choice A</dt>
-                  <dd>{hotkeys.choiceA.toUpperCase()}</dd>
-                </div>
-                <div>
-                  <dt>Choice B</dt>
-                  <dd>{hotkeys.choiceB.toUpperCase()}</dd>
-                </div>
-                <div>
-                  <dt>Choice C</dt>
-                  <dd>{hotkeys.choiceC.toUpperCase()}</dd>
-                </div>
-                <div>
-                  <dt>Choice D</dt>
-                  <dd>{hotkeys.choiceD.toUpperCase()}</dd>
-                </div>
-                <div>
-                  <dt>Choice E</dt>
-                  <dd>{hotkeys.choiceE.toUpperCase()}</dd>
-                </div>
-                <div>
-                  <dt>Choice F</dt>
-                  <dd>{hotkeys.choiceF.toUpperCase()}</dd>
-                </div>
-                <div>
-                  <dt>Play / pause</dt>
-                  <dd>{hotkeys.playPause.toUpperCase()}</dd>
-                </div>
-              </dl>
-              <button type="button" onClick={() => setHotkeysEditing((value) => !value)}>
-                {hotkeysEditing ? 'Done editing hotkeys' : 'Edit hotkeys'}
-              </button>
-              {hotkeysEditing && (
-                <div className="hotkey-grid hotkey-edit-grid">
-                  {(Object.keys(hotkeys) as Array<keyof HotkeySettings>).map((key) => (
-                    <label key={key}>
-                      {hotkeyLabel(key)}
+            </details>
+
+            <details className="settings-group">
+              <summary className="settings-group-summary">Hotkeys</summary>
+              <div className="import-grid">
+                <section className="panel">
+                  <h2>Hotkey settings</h2>
+                  <p>Choice A–D rate flashcards and sentences; Choice E stars cards; Choice F replays audio.</p>
+                  <dl className="stat-list">
+                    <div><dt>Again (A)</dt><dd>{hotkeys.choiceA.toUpperCase()}</dd></div>
+                    <div><dt>Hard (B)</dt><dd>{hotkeys.choiceB.toUpperCase()}</dd></div>
+                    <div><dt>Good (C)</dt><dd>{hotkeys.choiceC.toUpperCase()}</dd></div>
+                    <div><dt>Easy (D)</dt><dd>{hotkeys.choiceD.toUpperCase()}</dd></div>
+                    <div><dt>Star (E)</dt><dd>{hotkeys.choiceE.toUpperCase()}</dd></div>
+                    <div><dt>Replay (F)</dt><dd>{hotkeys.choiceF.toUpperCase()}</dd></div>
+                    <div><dt>Play / pause</dt><dd>{hotkeys.playPause.toUpperCase()}</dd></div>
+                  </dl>
+                  <button type="button" onClick={() => setHotkeysEditing((value) => !value)}>
+                    {hotkeysEditing ? 'Done editing hotkeys' : 'Edit hotkeys'}
+                  </button>
+                  {hotkeysEditing && (
+                    <div className="hotkey-grid hotkey-edit-grid">
+                      {(Object.keys(hotkeys) as Array<keyof HotkeySettings>).map((key) => (
+                        <label key={key}>
+                          {hotkeyLabel(key)}
+                          <input
+                            value={hotkeys[key]}
+                            maxLength={16}
+                            onChange={(event) => handleHotkeyChange(key, event.target.value)}
+                          />
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                </section>
+              </div>
+            </details>
+
+            <details className="settings-group">
+              <summary className="settings-group-summary">Backup &amp; Export</summary>
+              <div className="import-grid">
+                <section className="panel">
+                  <h2>Export</h2>
+                  <p>Download your vocabulary list or a full snapshot for analysis.</p>
+                  <div className="button-row">
+                    <button type="button" onClick={handleWordsCsvExport}>
+                      Export CSV
+                    </button>
+                    <button type="button" onClick={handleVocabSnapshotExport}>
+                      Export Vocab Snapshot
+                    </button>
+                  </div>
+                </section>
+                <section className="panel">
+                  <h2>JSON backup</h2>
+                  <p>Back up words, sentences, progress, and events. Audio blobs stay importable separately.</p>
+                  <div className="button-row">
+                    <button type="button" onClick={handleBackupExport}>
+                      Export backup
+                    </button>
+                    <label className="file-button">
+                      Import backup
                       <input
-                        value={hotkeys[key]}
-                        maxLength={16}
-                        onChange={(event) => handleHotkeyChange(key, event.target.value)}
+                        type="file"
+                        accept=".json,application/json"
+                        onChange={(event) => handleBackupImport(event.target.files)}
                       />
                     </label>
-                  ))}
-                </div>
-              )}
-            </section>
-            <section className="panel">
-              <h2>JSON backup</h2>
-              <p>Back up words, sentences, progress, and events. Audio blobs stay importable separately.</p>
-              <div className="button-row">
-                <button type="button" onClick={handleBackupExport}>
-                  Export backup
-                </button>
-                <label className="file-button">
-                  Import backup
-                  <input
-                    type="file"
-                    accept=".json,application/json"
-                    onChange={(event) => handleBackupImport(event.target.files)}
-                  />
-                </label>
+                  </div>
+                </section>
+                <section className="panel">
+                  <h2>App update</h2>
+                  <p>If the app looks out of date, force a fresh reload — clears all cached files and restarts.</p>
+                  <div className="button-row">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const url = new URL(window.location.href)
+                        url.searchParams.set('resetPwa', '1')
+                        window.location.replace(url.toString())
+                      }}
+                    >
+                      Force update
+                    </button>
+                  </div>
+                </section>
               </div>
-            </section>
-            <section className="panel">
-              <h2>App update</h2>
-              <p>If the app looks out of date, force a fresh reload — clears all cached files and restarts.</p>
-              <div className="button-row">
-                <button
-                  type="button"
-                  onClick={() => {
-                    const url = new URL(window.location.href)
-                    url.searchParams.set('resetPwa', '1')
-                    window.location.replace(url.toString())
-                  }}
-                >
-                  Force update
-                </button>
-              </div>
-            </section>
+            </details>
           </div>
         </section>
       )}
@@ -6171,7 +6168,6 @@ function FlashcardReview({
   selectedRating?: FsrsRating | null
   choiceKeys?: HotkeySettings
 }) {
-  const previews = previewFsrsRatings(word)
   const audioFront = frontMode === 'audio' && !answerShown
   const reverseFront = frontMode === 'reverse' && !answerShown
   const touchStartRef = useRef<{ x: number; y: number } | null>(null)
@@ -6336,25 +6332,6 @@ function FlashcardReview({
           </button>
         )}
       </div>
-      {answerShown && (
-        <div className="review-buttons fsrs-preview-buttons">
-          {fsrsRatingsForUi.map((rating) => (
-            <button
-              key={rating.value}
-              type="button"
-              className={selectedRating === rating.value ? 'feedback-selected' : ''}
-              onClick={() => onRate(rating.value)}
-              disabled={Boolean(selectedRating)}
-            >
-              {choiceKeys && <kbd>{ratingHotkeyLabel(rating.value, choiceKeys)}</kbd>}
-              <strong>
-                {rating.label} <span className="fsrs-delay">({formatFsrsPreviewDelay(previews[rating.value].dueAt)})</span>
-              </strong>
-              <span>{previews[rating.value].state}</span>
-            </button>
-          ))}
-        </div>
-      )}
       {answerShown && swipeDir && (
         <div className={`swipe-indicator swipe-indicator-${swipeDir}`}>
           {FLASHCARD_SWIPE_LABEL[swipeDir]}
@@ -6362,7 +6339,9 @@ function FlashcardReview({
       )}
       {answerShown && !selectedRating && (
         <div className="swipe-instructions">
-          Swipe: ← Again ↑ Hard → Good ↓ Easy
+          {choiceKeys
+            ? `← Again  ↑ Hard  → Good  ↓ Easy  ·  ${choiceKeys.choiceA.toUpperCase()} ${choiceKeys.choiceB.toUpperCase()} ${choiceKeys.choiceC.toUpperCase()} ${choiceKeys.choiceD.toUpperCase()}`
+            : '← Again  ↑ Hard  → Good  ↓ Easy'}
         </div>
       )}
       <div className="flashcard-bottom-actions">
@@ -6566,13 +6545,6 @@ function fsrsLabel(rating: FsrsRating): string {
   return fsrsRatingsForUi.find((item) => item.value === rating)?.label ?? rating
 }
 
-function ratingHotkeyLabel(rating: FsrsRating, hotkeys: HotkeySettings): string {
-  if (rating === 'again') return hotkeys.choiceA.toUpperCase()
-  if (rating === 'hard') return hotkeys.choiceB.toUpperCase()
-  if (rating === 'good') return hotkeys.choiceC.toUpperCase()
-  return hotkeys.choiceD.toUpperCase()
-}
-
 function getFlashcardFrontMode(word: VocabWord | undefined, sessionId: string | null, audioOnly = false, audioPercent = 40): FlashcardFrontMode {
   if (!word) return 'text'
   if (audioOnly) return 'audio'
@@ -6580,22 +6552,6 @@ function getFlashcardFrontMode(word: VocabWord | undefined, sessionId: string | 
   if (bucket < FLASHCARD_REVERSE_RATE) return 'reverse'
   if (bucket < FLASHCARD_REVERSE_RATE + audioPercent / 100) return 'audio'
   return 'text'
-}
-
-function formatFsrsPreviewDelay(value: string, now = Date.now()): string {
-  const due = Date.parse(value)
-  if (!Number.isFinite(due)) return '?'
-  const ms = Math.max(0, due - now)
-  if (ms < 90_000) return '< 1m'
-  const minutes = Math.ceil(ms / 60_000)
-  if (minutes < 60) return `${minutes}m`
-  const hours = Math.ceil(minutes / 60)
-  if (hours < 24) return `${hours}h`
-  const days = Math.ceil(hours / 24)
-  if (days < 60) return `${days}d`
-  const months = Math.ceil(days / 30)
-  if (months < 24) return `${months}mo`
-  return `${Math.ceil(months / 12)}y`
 }
 
 function stableStringBucket(value: string, modulo: number): number {
