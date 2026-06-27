@@ -66087,6 +66087,4206 @@
       "linkedSentenceId": null,
       "provider": "azure",
       "voice": "zh-CN-XiaochenMultilingualNeural"
+    },
+    {
+      "id": "word:形容词",
+      "type": "word",
+      "text": "形容词",
+      "language": "zh-CN",
+      "path": "audio/words/形容词.mp3",
+      "label": "形容词",
+      "linkedWordIds": [
+        "word:形容词"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:机场",
+      "type": "word",
+      "text": "机场",
+      "language": "zh-CN",
+      "path": "audio/words/机场.mp3",
+      "label": "机场",
+      "linkedWordIds": [
+        "word:机场"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:公寓",
+      "type": "word",
+      "text": "公寓",
+      "language": "zh-CN",
+      "path": "audio/words/公寓.mp3",
+      "label": "公寓",
+      "linkedWordIds": [
+        "word:公寓"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:苹果",
+      "type": "word",
+      "text": "苹果",
+      "language": "zh-CN",
+      "path": "audio/words/苹果.mp3",
+      "label": "苹果",
+      "linkedWordIds": [
+        "word:苹果"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:四月",
+      "type": "word",
+      "text": "四月",
+      "language": "zh-CN",
+      "path": "audio/words/四月.mp3",
+      "label": "四月",
+      "linkedWordIds": [
+        "word:四月"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:手臂",
+      "type": "word",
+      "text": "手臂",
+      "language": "zh-CN",
+      "path": "audio/words/手臂.mp3",
+      "label": "手臂",
+      "linkedWordIds": [
+        "word:手臂"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:军队",
+      "type": "word",
+      "text": "军队",
+      "language": "zh-CN",
+      "path": "audio/words/军队.mp3",
+      "label": "军队",
+      "linkedWordIds": [
+        "word:军队"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:攻击",
+      "type": "word",
+      "text": "攻击",
+      "language": "zh-CN",
+      "path": "audio/words/攻击.mp3",
+      "label": "攻击",
+      "linkedWordIds": [
+        "word:攻击"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:八月",
+      "type": "word",
+      "text": "八月",
+      "language": "zh-CN",
+      "path": "audio/words/八月.mp3",
+      "label": "八月",
+      "linkedWordIds": [
+        "word:八月"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:婴儿",
+      "type": "word",
+      "text": "婴儿",
+      "language": "zh-CN",
+      "path": "audio/words/婴儿.mp3",
+      "label": "婴儿",
+      "linkedWordIds": [
+        "word:婴儿"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:球",
+      "type": "word",
+      "text": "球",
+      "language": "zh-CN",
+      "path": "audio/words/球.mp3",
+      "label": "球",
+      "linkedWordIds": [
+        "word:球"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:香蕉",
+      "type": "word",
+      "text": "香蕉",
+      "language": "zh-CN",
+      "path": "audio/words/香蕉.mp3",
+      "label": "香蕉",
+      "linkedWordIds": [
+        "word:香蕉"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:乐队",
+      "type": "word",
+      "text": "乐队",
+      "language": "zh-CN",
+      "path": "audio/words/乐队.mp3",
+      "label": "乐队",
+      "linkedWordIds": [
+        "word:乐队"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:酒吧",
+      "type": "word",
+      "text": "酒吧",
+      "language": "zh-CN",
+      "path": "audio/words/酒吧.mp3",
+      "label": "酒吧",
+      "linkedWordIds": [
+        "word:酒吧"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:浴室",
+      "type": "word",
+      "text": "浴室",
+      "language": "zh-CN",
+      "path": "audio/words/浴室.mp3",
+      "label": "浴室",
+      "linkedWordIds": [
+        "word:浴室"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:海滩",
+      "type": "word",
+      "text": "海滩",
+      "language": "zh-CN",
+      "path": "audio/words/海滩.mp3",
+      "label": "海滩",
+      "linkedWordIds": [
+        "word:海滩"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:胡子",
+      "type": "word",
+      "text": "胡子",
+      "language": "zh-CN",
+      "path": "audio/words/胡子.mp3",
+      "label": "胡子",
+      "linkedWordIds": [
+        "word:胡子"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:卧室",
+      "type": "word",
+      "text": "卧室",
+      "language": "zh-CN",
+      "path": "audio/words/卧室.mp3",
+      "label": "卧室",
+      "linkedWordIds": [
+        "word:卧室"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:牛肉",
+      "type": "word",
+      "text": "牛肉",
+      "language": "zh-CN",
+      "path": "audio/words/牛肉.mp3",
+      "label": "牛肉",
+      "linkedWordIds": [
+        "word:牛肉"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:啤酒",
+      "type": "word",
+      "text": "啤酒",
+      "language": "zh-CN",
+      "path": "audio/words/啤酒.mp3",
+      "label": "啤酒",
+      "linkedWordIds": [
+        "word:啤酒"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:弯曲",
+      "type": "word",
+      "text": "弯曲",
+      "language": "zh-CN",
+      "path": "audio/words/弯曲.mp3",
+      "label": "弯曲",
+      "linkedWordIds": [
+        "word:弯曲"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:饮料",
+      "type": "word",
+      "text": "饮料",
+      "language": "zh-CN",
+      "path": "audio/words/饮料.mp3",
+      "label": "饮料",
+      "linkedWordIds": [
+        "word:饮料"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:自行车",
+      "type": "word",
+      "text": "自行车",
+      "language": "zh-CN",
+      "path": "audio/words/自行车.mp3",
+      "label": "自行车",
+      "linkedWordIds": [
+        "word:自行车"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:账单",
+      "type": "word",
+      "text": "账单",
+      "language": "zh-CN",
+      "path": "audio/words/账单.mp3",
+      "label": "账单",
+      "linkedWordIds": [
+        "word:账单"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:盲",
+      "type": "word",
+      "text": "盲",
+      "language": "zh-CN",
+      "path": "audio/words/盲.mp3",
+      "label": "盲",
+      "linkedWordIds": [
+        "word:盲"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:血",
+      "type": "word",
+      "text": "血",
+      "language": "zh-CN",
+      "path": "audio/words/血.mp3",
+      "label": "血",
+      "linkedWordIds": [
+        "word:血"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:蓝色",
+      "type": "word",
+      "text": "蓝色",
+      "language": "zh-CN",
+      "path": "audio/words/蓝色.mp3",
+      "label": "蓝色",
+      "linkedWordIds": [
+        "word:蓝色"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:骨头",
+      "type": "word",
+      "text": "骨头",
+      "language": "zh-CN",
+      "path": "audio/words/骨头.mp3",
+      "label": "骨头",
+      "linkedWordIds": [
+        "word:骨头"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:底部",
+      "type": "word",
+      "text": "底部",
+      "language": "zh-CN",
+      "path": "audio/words/底部.mp3",
+      "label": "底部",
+      "linkedWordIds": [
+        "word:底部"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:箱子",
+      "type": "word",
+      "text": "箱子",
+      "language": "zh-CN",
+      "path": "audio/words/箱子.mp3",
+      "label": "箱子",
+      "linkedWordIds": [
+        "word:箱子"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:大脑",
+      "type": "word",
+      "text": "大脑",
+      "language": "zh-CN",
+      "path": "audio/words/大脑.mp3",
+      "label": "大脑",
+      "linkedWordIds": [
+        "word:大脑"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:面包",
+      "type": "word",
+      "text": "面包",
+      "language": "zh-CN",
+      "path": "audio/words/面包.mp3",
+      "label": "面包",
+      "linkedWordIds": [
+        "word:面包"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:打破",
+      "type": "word",
+      "text": "打破",
+      "language": "zh-CN",
+      "path": "audio/words/打破.mp3",
+      "label": "打破",
+      "linkedWordIds": [
+        "word:打破"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:早餐",
+      "type": "word",
+      "text": "早餐",
+      "language": "zh-CN",
+      "path": "audio/words/早餐.mp3",
+      "label": "早餐",
+      "linkedWordIds": [
+        "word:早餐"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:桥",
+      "type": "word",
+      "text": "桥",
+      "language": "zh-CN",
+      "path": "audio/words/桥.mp3",
+      "label": "桥",
+      "linkedWordIds": [
+        "word:桥"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:棕色",
+      "type": "word",
+      "text": "棕色",
+      "language": "zh-CN",
+      "path": "audio/words/棕色.mp3",
+      "label": "棕色",
+      "linkedWordIds": [
+        "word:棕色"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:建造",
+      "type": "word",
+      "text": "建造",
+      "language": "zh-CN",
+      "path": "audio/words/建造.mp3",
+      "label": "建造",
+      "linkedWordIds": [
+        "word:建造"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:建筑",
+      "type": "word",
+      "text": "建筑",
+      "language": "zh-CN",
+      "path": "audio/words/建筑.mp3",
+      "label": "建筑",
+      "linkedWordIds": [
+        "word:建筑"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:燃烧",
+      "type": "word",
+      "text": "燃烧",
+      "language": "zh-CN",
+      "path": "audio/words/燃烧.mp3",
+      "label": "燃烧",
+      "linkedWordIds": [
+        "word:燃烧"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:公交车",
+      "type": "word",
+      "text": "公交车",
+      "language": "zh-CN",
+      "path": "audio/words/公交车.mp3",
+      "label": "公交车",
+      "linkedWordIds": [
+        "word:公交车"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:蛋糕",
+      "type": "word",
+      "text": "蛋糕",
+      "language": "zh-CN",
+      "path": "audio/words/蛋糕.mp3",
+      "label": "蛋糕",
+      "linkedWordIds": [
+        "word:蛋糕"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:相机",
+      "type": "word",
+      "text": "相机",
+      "language": "zh-CN",
+      "path": "audio/words/相机.mp3",
+      "label": "相机",
+      "linkedWordIds": [
+        "word:相机"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:营地",
+      "type": "word",
+      "text": "营地",
+      "language": "zh-CN",
+      "path": "audio/words/营地.mp3",
+      "label": "营地",
+      "linkedWordIds": [
+        "word:营地"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:卡片",
+      "type": "word",
+      "text": "卡片",
+      "language": "zh-CN",
+      "path": "audio/words/卡片.mp3",
+      "label": "卡片",
+      "linkedWordIds": [
+        "word:卡片"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:携带",
+      "type": "word",
+      "text": "携带",
+      "language": "zh-CN",
+      "path": "audio/words/携带.mp3",
+      "label": "携带",
+      "linkedWordIds": [
+        "word:携带"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:猫",
+      "type": "word",
+      "text": "猫",
+      "language": "zh-CN",
+      "path": "audio/words/猫.mp3",
+      "label": "猫",
+      "linkedWordIds": [
+        "word:猫"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:捕捉",
+      "type": "word",
+      "text": "捕捉",
+      "language": "zh-CN",
+      "path": "audio/words/捕捉.mp3",
+      "label": "捕捉",
+      "linkedWordIds": [
+        "word:捕捉"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:天花板",
+      "type": "word",
+      "text": "天花板",
+      "language": "zh-CN",
+      "path": "audio/words/天花板.mp3",
+      "label": "天花板",
+      "linkedWordIds": [
+        "word:天花板"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:厘米",
+      "type": "word",
+      "text": "厘米",
+      "language": "zh-CN",
+      "path": "audio/words/厘米.mp3",
+      "label": "厘米",
+      "linkedWordIds": [
+        "word:厘米"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:奶酪",
+      "type": "word",
+      "text": "奶酪",
+      "language": "zh-CN",
+      "path": "audio/words/奶酪.mp3",
+      "label": "奶酪",
+      "linkedWordIds": [
+        "word:奶酪"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:鸡",
+      "type": "word",
+      "text": "鸡",
+      "language": "zh-CN",
+      "path": "audio/words/鸡.mp3",
+      "label": "鸡",
+      "linkedWordIds": [
+        "word:鸡"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:教堂",
+      "type": "word",
+      "text": "教堂",
+      "language": "zh-CN",
+      "path": "audio/words/教堂.mp3",
+      "label": "教堂",
+      "linkedWordIds": [
+        "word:教堂"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:圆圈",
+      "type": "word",
+      "text": "圆圈",
+      "language": "zh-CN",
+      "path": "audio/words/圆圈.mp3",
+      "label": "圆圈",
+      "linkedWordIds": [
+        "word:圆圈"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:黏土",
+      "type": "word",
+      "text": "黏土",
+      "language": "zh-CN",
+      "path": "audio/words/黏土.mp3",
+      "label": "黏土",
+      "linkedWordIds": [
+        "word:黏土"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:干净",
+      "type": "word",
+      "text": "干净",
+      "language": "zh-CN",
+      "path": "audio/words/干净.mp3",
+      "label": "干净",
+      "linkedWordIds": [
+        "word:干净"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:俱乐部",
+      "type": "word",
+      "text": "俱乐部",
+      "language": "zh-CN",
+      "path": "audio/words/俱乐部.mp3",
+      "label": "俱乐部",
+      "linkedWordIds": [
+        "word:俱乐部"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:外套",
+      "type": "word",
+      "text": "外套",
+      "language": "zh-CN",
+      "path": "audio/words/外套.mp3",
+      "label": "外套",
+      "linkedWordIds": [
+        "word:外套"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:咖啡",
+      "type": "word",
+      "text": "咖啡",
+      "language": "zh-CN",
+      "path": "audio/words/咖啡.mp3",
+      "label": "咖啡",
+      "linkedWordIds": [
+        "word:咖啡"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:电脑程序",
+      "type": "word",
+      "text": "电脑程序",
+      "language": "zh-CN",
+      "path": "audio/words/电脑程序.mp3",
+      "label": "电脑程序",
+      "linkedWordIds": [
+        "word:电脑程序"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:辅音",
+      "type": "word",
+      "text": "辅音",
+      "language": "zh-CN",
+      "path": "audio/words/辅音.mp3",
+      "label": "辅音",
+      "linkedWordIds": [
+        "word:辅音"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:合同",
+      "type": "word",
+      "text": "合同",
+      "language": "zh-CN",
+      "path": "audio/words/合同.mp3",
+      "label": "合同",
+      "linkedWordIds": [
+        "word:合同"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:做饭",
+      "type": "word",
+      "text": "做饭",
+      "language": "zh-CN",
+      "path": "audio/words/做饭.mp3",
+      "label": "做饭",
+      "linkedWordIds": [
+        "word:做饭"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:凉爽",
+      "type": "word",
+      "text": "凉爽",
+      "language": "zh-CN",
+      "path": "audio/words/凉爽.mp3",
+      "label": "凉爽",
+      "linkedWordIds": [
+        "word:凉爽"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:铜",
+      "type": "word",
+      "text": "铜",
+      "language": "zh-CN",
+      "path": "audio/words/铜.mp3",
+      "label": "铜",
+      "linkedWordIds": [
+        "word:铜"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:玉米",
+      "type": "word",
+      "text": "玉米",
+      "language": "zh-CN",
+      "path": "audio/words/玉米.mp3",
+      "label": "玉米",
+      "linkedWordIds": [
+        "word:玉米"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:角落",
+      "type": "word",
+      "text": "角落",
+      "language": "zh-CN",
+      "path": "audio/words/角落.mp3",
+      "label": "角落",
+      "linkedWordIds": [
+        "word:角落"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:法庭",
+      "type": "word",
+      "text": "法庭",
+      "language": "zh-CN",
+      "path": "audio/words/法庭.mp3",
+      "label": "法庭",
+      "linkedWordIds": [
+        "word:法庭"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:牛",
+      "type": "word",
+      "text": "牛",
+      "language": "zh-CN",
+      "path": "audio/words/牛.mp3",
+      "label": "牛",
+      "linkedWordIds": [
+        "word:牛"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:人群",
+      "type": "word",
+      "text": "人群",
+      "language": "zh-CN",
+      "path": "audio/words/人群.mp3",
+      "label": "人群",
+      "linkedWordIds": [
+        "word:人群"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:切割",
+      "type": "word",
+      "text": "切割",
+      "language": "zh-CN",
+      "path": "audio/words/切割.mp3",
+      "label": "切割",
+      "linkedWordIds": [
+        "word:切割"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:深蓝色",
+      "type": "word",
+      "text": "深蓝色",
+      "language": "zh-CN",
+      "path": "audio/words/深蓝色.mp3",
+      "label": "深蓝色",
+      "linkedWordIds": [
+        "word:深蓝色"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:日期",
+      "type": "word",
+      "text": "日期",
+      "language": "zh-CN",
+      "path": "audio/words/日期.mp3",
+      "label": "日期",
+      "linkedWordIds": [
+        "word:日期"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:聋",
+      "type": "word",
+      "text": "聋",
+      "language": "zh-CN",
+      "path": "audio/words/聋.mp3",
+      "label": "聋",
+      "linkedWordIds": [
+        "word:聋"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:死亡",
+      "type": "word",
+      "text": "死亡",
+      "language": "zh-CN",
+      "path": "audio/words/死亡.mp3",
+      "label": "死亡",
+      "linkedWordIds": [
+        "word:死亡"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:十二月",
+      "type": "word",
+      "text": "十二月",
+      "language": "zh-CN",
+      "path": "audio/words/十二月.mp3",
+      "label": "十二月",
+      "linkedWordIds": [
+        "word:十二月"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:深",
+      "type": "word",
+      "text": "深",
+      "language": "zh-CN",
+      "path": "audio/words/深.mp3",
+      "label": "深",
+      "linkedWordIds": [
+        "word:深"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:钻石",
+      "type": "word",
+      "text": "钻石",
+      "language": "zh-CN",
+      "path": "audio/words/钻石.mp3",
+      "label": "钻石",
+      "linkedWordIds": [
+        "word:钻石"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:挖掘",
+      "type": "word",
+      "text": "挖掘",
+      "language": "zh-CN",
+      "path": "audio/words/挖掘.mp3",
+      "label": "挖掘",
+      "linkedWordIds": [
+        "word:挖掘"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:晚餐",
+      "type": "word",
+      "text": "晚餐",
+      "language": "zh-CN",
+      "path": "audio/words/晚餐.mp3",
+      "label": "晚餐",
+      "linkedWordIds": [
+        "word:晚餐"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:脏",
+      "type": "word",
+      "text": "脏",
+      "language": "zh-CN",
+      "path": "audio/words/脏.mp3",
+      "label": "脏",
+      "linkedWordIds": [
+        "word:脏"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:疾病",
+      "type": "word",
+      "text": "疾病",
+      "language": "zh-CN",
+      "path": "audio/words/疾病.mp3",
+      "label": "疾病",
+      "linkedWordIds": [
+        "word:疾病"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:画",
+      "type": "word",
+      "text": "画",
+      "language": "zh-CN",
+      "path": "audio/words/画.mp3",
+      "label": "画",
+      "linkedWordIds": [
+        "word:画"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:梦",
+      "type": "word",
+      "text": "梦",
+      "language": "zh-CN",
+      "path": "audio/words/梦.mp3",
+      "label": "梦",
+      "linkedWordIds": [
+        "word:梦"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:驾驶",
+      "type": "word",
+      "text": "驾驶",
+      "language": "zh-CN",
+      "path": "audio/words/驾驶.mp3",
+      "label": "驾驶",
+      "linkedWordIds": [
+        "word:驾驶"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:药物",
+      "type": "word",
+      "text": "药物",
+      "language": "zh-CN",
+      "path": "audio/words/药物.mp3",
+      "label": "药物",
+      "linkedWordIds": [
+        "word:药物"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:灰尘",
+      "type": "word",
+      "text": "灰尘",
+      "language": "zh-CN",
+      "path": "audio/words/灰尘.mp3",
+      "label": "灰尘",
+      "linkedWordIds": [
+        "word:灰尘"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:东边",
+      "type": "word",
+      "text": "东边",
+      "language": "zh-CN",
+      "path": "audio/words/东边.mp3",
+      "label": "东边",
+      "linkedWordIds": [
+        "word:东边"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:选举",
+      "type": "word",
+      "text": "选举",
+      "language": "zh-CN",
+      "path": "audio/words/选举.mp3",
+      "label": "选举",
+      "linkedWordIds": [
+        "word:选举"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:能量",
+      "type": "word",
+      "text": "能量",
+      "language": "zh-CN",
+      "path": "audio/words/能量.mp3",
+      "label": "能量",
+      "linkedWordIds": [
+        "word:能量"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:引擎",
+      "type": "word",
+      "text": "引擎",
+      "language": "zh-CN",
+      "path": "audio/words/引擎.mp3",
+      "label": "引擎",
+      "linkedWordIds": [
+        "word:引擎"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:锻炼",
+      "type": "word",
+      "text": "锻炼",
+      "language": "zh-CN",
+      "path": "audio/words/锻炼.mp3",
+      "label": "锻炼",
+      "linkedWordIds": [
+        "word:锻炼"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:昂贵",
+      "type": "word",
+      "text": "昂贵",
+      "language": "zh-CN",
+      "path": "audio/words/昂贵.mp3",
+      "label": "昂贵",
+      "linkedWordIds": [
+        "word:昂贵"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:爆炸",
+      "type": "word",
+      "text": "爆炸",
+      "language": "zh-CN",
+      "path": "audio/words/爆炸.mp3",
+      "label": "爆炸",
+      "linkedWordIds": [
+        "word:爆炸"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:秋天",
+      "type": "word",
+      "text": "秋天",
+      "language": "zh-CN",
+      "path": "audio/words/秋天.mp3",
+      "label": "秋天",
+      "linkedWordIds": [
+        "word:秋天"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:家庭",
+      "type": "word",
+      "text": "家庭",
+      "language": "zh-CN",
+      "path": "audio/words/家庭.mp3",
+      "label": "家庭",
+      "linkedWordIds": [
+        "word:家庭"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:风扇",
+      "type": "word",
+      "text": "风扇",
+      "language": "zh-CN",
+      "path": "audio/words/风扇.mp3",
+      "label": "风扇",
+      "linkedWordIds": [
+        "word:风扇"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:农场",
+      "type": "word",
+      "text": "农场",
+      "language": "zh-CN",
+      "path": "audio/words/农场.mp3",
+      "label": "农场",
+      "linkedWordIds": [
+        "word:农场"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:二月",
+      "type": "word",
+      "text": "二月",
+      "language": "zh-CN",
+      "path": "audio/words/二月.mp3",
+      "label": "二月",
+      "linkedWordIds": [
+        "word:二月"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:喂养",
+      "type": "word",
+      "text": "喂养",
+      "language": "zh-CN",
+      "path": "audio/words/喂养.mp3",
+      "label": "喂养",
+      "linkedWordIds": [
+        "word:喂养"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:女性",
+      "type": "word",
+      "text": "女性",
+      "language": "zh-CN",
+      "path": "audio/words/女性.mp3",
+      "label": "女性",
+      "linkedWordIds": [
+        "word:女性"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:打架",
+      "type": "word",
+      "text": "打架",
+      "language": "zh-CN",
+      "path": "audio/words/打架.mp3",
+      "label": "打架",
+      "linkedWordIds": [
+        "word:打架"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:火",
+      "type": "word",
+      "text": "火",
+      "language": "zh-CN",
+      "path": "audio/words/火.mp3",
+      "label": "火",
+      "linkedWordIds": [
+        "word:火"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:平坦",
+      "type": "word",
+      "text": "平坦",
+      "language": "zh-CN",
+      "path": "audio/words/平坦.mp3",
+      "label": "平坦",
+      "linkedWordIds": [
+        "word:平坦"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:地板",
+      "type": "word",
+      "text": "地板",
+      "language": "zh-CN",
+      "path": "audio/words/地板.mp3",
+      "label": "地板",
+      "linkedWordIds": [
+        "word:地板"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:飞",
+      "type": "word",
+      "text": "飞",
+      "language": "zh-CN",
+      "path": "audio/words/飞.mp3",
+      "label": "飞",
+      "linkedWordIds": [
+        "word:飞"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:食物",
+      "type": "word",
+      "text": "食物",
+      "language": "zh-CN",
+      "path": "audio/words/食物.mp3",
+      "label": "食物",
+      "linkedWordIds": [
+        "word:食物"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:脚",
+      "type": "word",
+      "text": "脚",
+      "language": "zh-CN",
+      "path": "audio/words/脚.mp3",
+      "label": "脚",
+      "linkedWordIds": [
+        "word:脚"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:叉子",
+      "type": "word",
+      "text": "叉子",
+      "language": "zh-CN",
+      "path": "audio/words/叉子.mp3",
+      "label": "叉子",
+      "linkedWordIds": [
+        "word:叉子"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:星期五",
+      "type": "word",
+      "text": "星期五",
+      "language": "zh-CN",
+      "path": "audio/words/星期五.mp3",
+      "label": "星期五",
+      "linkedWordIds": [
+        "word:星期五"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:花园",
+      "type": "word",
+      "text": "花园",
+      "language": "zh-CN",
+      "path": "audio/words/花园.mp3",
+      "label": "花园",
+      "linkedWordIds": [
+        "word:花园"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:汽油",
+      "type": "word",
+      "text": "汽油",
+      "language": "zh-CN",
+      "path": "audio/words/汽油.mp3",
+      "label": "汽油",
+      "linkedWordIds": [
+        "word:汽油"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:金",
+      "type": "word",
+      "text": "金",
+      "language": "zh-CN",
+      "path": "audio/words/金.mp3",
+      "label": "金",
+      "linkedWordIds": [
+        "word:金"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:灰色",
+      "type": "word",
+      "text": "灰色",
+      "language": "zh-CN",
+      "path": "audio/words/灰色.mp3",
+      "label": "灰色",
+      "linkedWordIds": [
+        "word:灰色"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:绿色",
+      "type": "word",
+      "text": "绿色",
+      "language": "zh-CN",
+      "path": "audio/words/绿色.mp3",
+      "label": "绿色",
+      "linkedWordIds": [
+        "word:绿色"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:地面",
+      "type": "word",
+      "text": "地面",
+      "language": "zh-CN",
+      "path": "audio/words/地面.mp3",
+      "label": "地面",
+      "linkedWordIds": [
+        "word:地面"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:生长",
+      "type": "word",
+      "text": "生长",
+      "language": "zh-CN",
+      "path": "audio/words/生长.mp3",
+      "label": "生长",
+      "linkedWordIds": [
+        "word:生长"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:枪",
+      "type": "word",
+      "text": "枪",
+      "language": "zh-CN",
+      "path": "audio/words/枪.mp3",
+      "label": "枪",
+      "linkedWordIds": [
+        "word:枪"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:悬挂",
+      "type": "word",
+      "text": "悬挂",
+      "language": "zh-CN",
+      "path": "audio/words/悬挂.mp3",
+      "label": "悬挂",
+      "linkedWordIds": [
+        "word:悬挂"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:帽子",
+      "type": "word",
+      "text": "帽子",
+      "language": "zh-CN",
+      "path": "audio/words/帽子.mp3",
+      "label": "帽子",
+      "linkedWordIds": [
+        "word:帽子"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:健康",
+      "type": "word",
+      "text": "健康",
+      "language": "zh-CN",
+      "path": "audio/words/健康.mp3",
+      "label": "健康",
+      "linkedWordIds": [
+        "word:健康"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:热量",
+      "type": "word",
+      "text": "热量",
+      "language": "zh-CN",
+      "path": "audio/words/热量.mp3",
+      "label": "热量",
+      "linkedWordIds": [
+        "word:热量"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:沉重",
+      "type": "word",
+      "text": "沉重",
+      "language": "zh-CN",
+      "path": "audio/words/沉重.mp3",
+      "label": "沉重",
+      "linkedWordIds": [
+        "word:沉重"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:马",
+      "type": "word",
+      "text": "马",
+      "language": "zh-CN",
+      "path": "audio/words/马.mp3",
+      "label": "马",
+      "linkedWordIds": [
+        "word:马"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:酒店",
+      "type": "word",
+      "text": "酒店",
+      "language": "zh-CN",
+      "path": "audio/words/酒店.mp3",
+      "label": "酒店",
+      "linkedWordIds": [
+        "word:酒店"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:丈夫",
+      "type": "word",
+      "text": "丈夫",
+      "language": "zh-CN",
+      "path": "audio/words/丈夫.mp3",
+      "label": "丈夫",
+      "linkedWordIds": [
+        "word:丈夫"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:图像",
+      "type": "word",
+      "text": "图像",
+      "language": "zh-CN",
+      "path": "audio/words/图像.mp3",
+      "label": "图像",
+      "linkedWordIds": [
+        "word:图像"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:英寸",
+      "type": "word",
+      "text": "英寸",
+      "language": "zh-CN",
+      "path": "audio/words/英寸.mp3",
+      "label": "英寸",
+      "linkedWordIds": [
+        "word:英寸"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:伤",
+      "type": "word",
+      "text": "伤",
+      "language": "zh-CN",
+      "path": "audio/words/伤.mp3",
+      "label": "伤",
+      "linkedWordIds": [
+        "word:伤"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:岛屿",
+      "type": "word",
+      "text": "岛屿",
+      "language": "zh-CN",
+      "path": "audio/words/岛屿.mp3",
+      "label": "岛屿",
+      "linkedWordIds": [
+        "word:岛屿"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:一月",
+      "type": "word",
+      "text": "一月",
+      "language": "zh-CN",
+      "path": "audio/words/一月.mp3",
+      "label": "一月",
+      "linkedWordIds": [
+        "word:一月"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:果汁",
+      "type": "word",
+      "text": "果汁",
+      "language": "zh-CN",
+      "path": "audio/words/果汁.mp3",
+      "label": "果汁",
+      "linkedWordIds": [
+        "word:果汁"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:七月",
+      "type": "word",
+      "text": "七月",
+      "language": "zh-CN",
+      "path": "audio/words/七月.mp3",
+      "label": "七月",
+      "linkedWordIds": [
+        "word:七月"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:六月",
+      "type": "word",
+      "text": "六月",
+      "language": "zh-CN",
+      "path": "audio/words/六月.mp3",
+      "label": "六月",
+      "linkedWordIds": [
+        "word:六月"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:钥匙",
+      "type": "word",
+      "text": "钥匙",
+      "language": "zh-CN",
+      "path": "audio/words/钥匙.mp3",
+      "label": "钥匙",
+      "linkedWordIds": [
+        "word:钥匙"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:杀死",
+      "type": "word",
+      "text": "杀死",
+      "language": "zh-CN",
+      "path": "audio/words/杀死.mp3",
+      "label": "杀死",
+      "linkedWordIds": [
+        "word:杀死"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:公斤",
+      "type": "word",
+      "text": "公斤",
+      "language": "zh-CN",
+      "path": "audio/words/公斤.mp3",
+      "label": "公斤",
+      "linkedWordIds": [
+        "word:公斤"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:吻",
+      "type": "word",
+      "text": "吻",
+      "language": "zh-CN",
+      "path": "audio/words/吻.mp3",
+      "label": "吻",
+      "linkedWordIds": [
+        "word:吻"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:厨房",
+      "type": "word",
+      "text": "厨房",
+      "language": "zh-CN",
+      "path": "audio/words/厨房.mp3",
+      "label": "厨房",
+      "linkedWordIds": [
+        "word:厨房"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:膝盖",
+      "type": "word",
+      "text": "膝盖",
+      "language": "zh-CN",
+      "path": "audio/words/膝盖.mp3",
+      "label": "膝盖",
+      "linkedWordIds": [
+        "word:膝盖"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:湖",
+      "type": "word",
+      "text": "湖",
+      "language": "zh-CN",
+      "path": "audio/words/湖.mp3",
+      "label": "湖",
+      "linkedWordIds": [
+        "word:湖"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:灯",
+      "type": "word",
+      "text": "灯",
+      "language": "zh-CN",
+      "path": "audio/words/灯.mp3",
+      "label": "灯",
+      "linkedWordIds": [
+        "word:灯"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:笔记本电脑",
+      "type": "word",
+      "text": "笔记本电脑",
+      "language": "zh-CN",
+      "path": "audio/words/笔记本电脑.mp3",
+      "label": "笔记本电脑",
+      "linkedWordIds": [
+        "word:笔记本电脑"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:律师",
+      "type": "word",
+      "text": "律师",
+      "language": "zh-CN",
+      "path": "audio/words/律师.mp3",
+      "label": "律师",
+      "linkedWordIds": [
+        "word:律师"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:叶子",
+      "type": "word",
+      "text": "叶子",
+      "language": "zh-CN",
+      "path": "audio/words/叶子.mp3",
+      "label": "叶子",
+      "linkedWordIds": [
+        "word:叶子"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:左",
+      "type": "word",
+      "text": "左",
+      "language": "zh-CN",
+      "path": "audio/words/左.mp3",
+      "label": "左",
+      "linkedWordIds": [
+        "word:左"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:腿",
+      "type": "word",
+      "text": "腿",
+      "language": "zh-CN",
+      "path": "audio/words/腿.mp3",
+      "label": "腿",
+      "linkedWordIds": [
+        "word:腿"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:柠檬",
+      "type": "word",
+      "text": "柠檬",
+      "language": "zh-CN",
+      "path": "audio/words/柠檬.mp3",
+      "label": "柠檬",
+      "linkedWordIds": [
+        "word:柠檬"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:图书馆",
+      "type": "word",
+      "text": "图书馆",
+      "language": "zh-CN",
+      "path": "audio/words/图书馆.mp3",
+      "label": "图书馆",
+      "linkedWordIds": [
+        "word:图书馆"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:躺下",
+      "type": "word",
+      "text": "躺下",
+      "language": "zh-CN",
+      "path": "audio/words/躺下.mp3",
+      "label": "躺下",
+      "linkedWordIds": [
+        "word:躺下"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:举起",
+      "type": "word",
+      "text": "举起",
+      "language": "zh-CN",
+      "path": "audio/words/举起.mp3",
+      "label": "举起",
+      "linkedWordIds": [
+        "word:举起"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:浅蓝色",
+      "type": "word",
+      "text": "浅蓝色",
+      "language": "zh-CN",
+      "path": "audio/words/浅蓝色.mp3",
+      "label": "浅蓝色",
+      "linkedWordIds": [
+        "word:浅蓝色"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:嘴唇",
+      "type": "word",
+      "text": "嘴唇",
+      "language": "zh-CN",
+      "path": "audio/words/嘴唇.mp3",
+      "label": "嘴唇",
+      "linkedWordIds": [
+        "word:嘴唇"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:锁",
+      "type": "word",
+      "text": "锁",
+      "language": "zh-CN",
+      "path": "audio/words/锁.mp3",
+      "label": "锁",
+      "linkedWordIds": [
+        "word:锁"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:松",
+      "type": "word",
+      "text": "松",
+      "language": "zh-CN",
+      "path": "audio/words/松.mp3",
+      "label": "松",
+      "linkedWordIds": [
+        "word:松"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:午餐",
+      "type": "word",
+      "text": "午餐",
+      "language": "zh-CN",
+      "path": "audio/words/午餐.mp3",
+      "label": "午餐",
+      "linkedWordIds": [
+        "word:午餐"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:杂志",
+      "type": "word",
+      "text": "杂志",
+      "language": "zh-CN",
+      "path": "audio/words/杂志.mp3",
+      "label": "杂志",
+      "linkedWordIds": [
+        "word:杂志"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:男性",
+      "type": "word",
+      "text": "男性",
+      "language": "zh-CN",
+      "path": "audio/words/男性.mp3",
+      "label": "男性",
+      "linkedWordIds": [
+        "word:男性"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:地图",
+      "type": "word",
+      "text": "地图",
+      "language": "zh-CN",
+      "path": "audio/words/地图.mp3",
+      "label": "地图",
+      "linkedWordIds": [
+        "word:地图"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:三月",
+      "type": "word",
+      "text": "三月",
+      "language": "zh-CN",
+      "path": "audio/words/三月.mp3",
+      "label": "三月",
+      "linkedWordIds": [
+        "word:三月"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:婚姻",
+      "type": "word",
+      "text": "婚姻",
+      "language": "zh-CN",
+      "path": "audio/words/婚姻.mp3",
+      "label": "婚姻",
+      "linkedWordIds": [
+        "word:婚姻"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:结婚",
+      "type": "word",
+      "text": "结婚",
+      "language": "zh-CN",
+      "path": "audio/words/结婚.mp3",
+      "label": "结婚",
+      "linkedWordIds": [
+        "word:结婚"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:材料",
+      "type": "word",
+      "text": "材料",
+      "language": "zh-CN",
+      "path": "audio/words/材料.mp3",
+      "label": "材料",
+      "linkedWordIds": [
+        "word:材料"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:数学",
+      "type": "word",
+      "text": "数学",
+      "language": "zh-CN",
+      "path": "audio/words/数学.mp3",
+      "label": "数学",
+      "linkedWordIds": [
+        "word:数学"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:融化",
+      "type": "word",
+      "text": "融化",
+      "language": "zh-CN",
+      "path": "audio/words/融化.mp3",
+      "label": "融化",
+      "linkedWordIds": [
+        "word:融化"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:金属",
+      "type": "word",
+      "text": "金属",
+      "language": "zh-CN",
+      "path": "audio/words/金属.mp3",
+      "label": "金属",
+      "linkedWordIds": [
+        "word:金属"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:牛奶",
+      "type": "word",
+      "text": "牛奶",
+      "language": "zh-CN",
+      "path": "audio/words/牛奶.mp3",
+      "label": "牛奶",
+      "linkedWordIds": [
+        "word:牛奶"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:星期一",
+      "type": "word",
+      "text": "星期一",
+      "language": "zh-CN",
+      "path": "audio/words/星期一.mp3",
+      "label": "星期一",
+      "linkedWordIds": [
+        "word:星期一"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:老鼠",
+      "type": "word",
+      "text": "老鼠",
+      "language": "zh-CN",
+      "path": "audio/words/老鼠.mp3",
+      "label": "老鼠",
+      "linkedWordIds": [
+        "word:老鼠"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:音乐",
+      "type": "word",
+      "text": "音乐",
+      "language": "zh-CN",
+      "path": "audio/words/音乐.mp3",
+      "label": "音乐",
+      "linkedWordIds": [
+        "word:音乐"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:乐器",
+      "type": "word",
+      "text": "乐器",
+      "language": "zh-CN",
+      "path": "audio/words/乐器.mp3",
+      "label": "乐器",
+      "linkedWordIds": [
+        "word:乐器"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:狭窄",
+      "type": "word",
+      "text": "狭窄",
+      "language": "zh-CN",
+      "path": "audio/words/狭窄.mp3",
+      "label": "狭窄",
+      "linkedWordIds": [
+        "word:狭窄"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:脖子",
+      "type": "word",
+      "text": "脖子",
+      "language": "zh-CN",
+      "path": "audio/words/脖子.mp3",
+      "label": "脖子",
+      "linkedWordIds": [
+        "word:脖子"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:针",
+      "type": "word",
+      "text": "针",
+      "language": "zh-CN",
+      "path": "audio/words/针.mp3",
+      "label": "针",
+      "linkedWordIds": [
+        "word:针"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:网络",
+      "type": "word",
+      "text": "网络",
+      "language": "zh-CN",
+      "path": "audio/words/网络.mp3",
+      "label": "网络",
+      "linkedWordIds": [
+        "word:网络"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:报纸",
+      "type": "word",
+      "text": "报纸",
+      "language": "zh-CN",
+      "path": "audio/words/报纸.mp3",
+      "label": "报纸",
+      "linkedWordIds": [
+        "word:报纸"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:鼻子",
+      "type": "word",
+      "text": "鼻子",
+      "language": "zh-CN",
+      "path": "audio/words/鼻子.mp3",
+      "label": "鼻子",
+      "linkedWordIds": [
+        "word:鼻子"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:笔记",
+      "type": "word",
+      "text": "笔记",
+      "language": "zh-CN",
+      "path": "audio/words/笔记.mp3",
+      "label": "笔记",
+      "linkedWordIds": [
+        "word:笔记"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:名词",
+      "type": "word",
+      "text": "名词",
+      "language": "zh-CN",
+      "path": "audio/words/名词.mp3",
+      "label": "名词",
+      "linkedWordIds": [
+        "word:名词"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:十一月",
+      "type": "word",
+      "text": "十一月",
+      "language": "zh-CN",
+      "path": "audio/words/十一月.mp3",
+      "label": "十一月",
+      "linkedWordIds": [
+        "word:十一月"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:核",
+      "type": "word",
+      "text": "核",
+      "language": "zh-CN",
+      "path": "audio/words/核.mp3",
+      "label": "核",
+      "linkedWordIds": [
+        "word:核"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:数字",
+      "type": "word",
+      "text": "数字",
+      "language": "zh-CN",
+      "path": "audio/words/数字.mp3",
+      "label": "数字",
+      "linkedWordIds": [
+        "word:数字"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:十月",
+      "type": "word",
+      "text": "十月",
+      "language": "zh-CN",
+      "path": "audio/words/十月.mp3",
+      "label": "十月",
+      "linkedWordIds": [
+        "word:十月"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:办公室",
+      "type": "word",
+      "text": "办公室",
+      "language": "zh-CN",
+      "path": "audio/words/办公室.mp3",
+      "label": "办公室",
+      "linkedWordIds": [
+        "word:办公室"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:油",
+      "type": "word",
+      "text": "油",
+      "language": "zh-CN",
+      "path": "audio/words/油.mp3",
+      "label": "油",
+      "linkedWordIds": [
+        "word:油"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:橙子",
+      "type": "word",
+      "text": "橙子",
+      "language": "zh-CN",
+      "path": "audio/words/橙子.mp3",
+      "label": "橙子",
+      "linkedWordIds": [
+        "word:橙子"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:页面",
+      "type": "word",
+      "text": "页面",
+      "language": "zh-CN",
+      "path": "audio/words/页面.mp3",
+      "label": "页面",
+      "linkedWordIds": [
+        "word:页面"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:裤子",
+      "type": "word",
+      "text": "裤子",
+      "language": "zh-CN",
+      "path": "audio/words/裤子.mp3",
+      "label": "裤子",
+      "linkedWordIds": [
+        "word:裤子"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:纸",
+      "type": "word",
+      "text": "纸",
+      "language": "zh-CN",
+      "path": "audio/words/纸.mp3",
+      "label": "纸",
+      "linkedWordIds": [
+        "word:纸"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:父母",
+      "type": "word",
+      "text": "父母",
+      "language": "zh-CN",
+      "path": "audio/words/父母.mp3",
+      "label": "父母",
+      "linkedWordIds": [
+        "word:父母"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:模式",
+      "type": "word",
+      "text": "模式",
+      "language": "zh-CN",
+      "path": "audio/words/模式.mp3",
+      "label": "模式",
+      "linkedWordIds": [
+        "word:模式"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:笔",
+      "type": "word",
+      "text": "笔",
+      "language": "zh-CN",
+      "path": "audio/words/笔.mp3",
+      "label": "笔",
+      "linkedWordIds": [
+        "word:笔"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:铅笔",
+      "type": "word",
+      "text": "铅笔",
+      "language": "zh-CN",
+      "path": "audio/words/铅笔.mp3",
+      "label": "铅笔",
+      "linkedWordIds": [
+        "word:铅笔"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:照片",
+      "type": "word",
+      "text": "照片",
+      "language": "zh-CN",
+      "path": "audio/words/照片.mp3",
+      "label": "照片",
+      "linkedWordIds": [
+        "word:照片"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:猪",
+      "type": "word",
+      "text": "猪",
+      "language": "zh-CN",
+      "path": "audio/words/猪.mp3",
+      "label": "猪",
+      "linkedWordIds": [
+        "word:猪"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:粉色",
+      "type": "word",
+      "text": "粉色",
+      "language": "zh-CN",
+      "path": "audio/words/粉色.mp3",
+      "label": "粉色",
+      "linkedWordIds": [
+        "word:粉色"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:植物",
+      "type": "word",
+      "text": "植物",
+      "language": "zh-CN",
+      "path": "audio/words/植物.mp3",
+      "label": "植物",
+      "linkedWordIds": [
+        "word:植物"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:塑料",
+      "type": "word",
+      "text": "塑料",
+      "language": "zh-CN",
+      "path": "audio/words/塑料.mp3",
+      "label": "塑料",
+      "linkedWordIds": [
+        "word:塑料"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:盘子",
+      "type": "word",
+      "text": "盘子",
+      "language": "zh-CN",
+      "path": "audio/words/盘子.mp3",
+      "label": "盘子",
+      "linkedWordIds": [
+        "word:盘子"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:口袋",
+      "type": "word",
+      "text": "口袋",
+      "language": "zh-CN",
+      "path": "audio/words/口袋.mp3",
+      "label": "口袋",
+      "linkedWordIds": [
+        "word:口袋"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:毒药",
+      "type": "word",
+      "text": "毒药",
+      "language": "zh-CN",
+      "path": "audio/words/毒药.mp3",
+      "label": "毒药",
+      "linkedWordIds": [
+        "word:毒药"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:警察",
+      "type": "word",
+      "text": "警察",
+      "language": "zh-CN",
+      "path": "audio/words/警察.mp3",
+      "label": "警察",
+      "linkedWordIds": [
+        "word:警察"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:游泳池",
+      "type": "word",
+      "text": "游泳池",
+      "language": "zh-CN",
+      "path": "audio/words/游泳池.mp3",
+      "label": "游泳池",
+      "linkedWordIds": [
+        "word:游泳池"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:穷",
+      "type": "word",
+      "text": "穷",
+      "language": "zh-CN",
+      "path": "audio/words/穷.mp3",
+      "label": "穷",
+      "linkedWordIds": [
+        "word:穷"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:猪肉",
+      "type": "word",
+      "text": "猪肉",
+      "language": "zh-CN",
+      "path": "audio/words/猪肉.mp3",
+      "label": "猪肉",
+      "linkedWordIds": [
+        "word:猪肉"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:磅",
+      "type": "word",
+      "text": "磅",
+      "language": "zh-CN",
+      "path": "audio/words/磅.mp3",
+      "label": "磅",
+      "linkedWordIds": [
+        "word:磅"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:祈祷",
+      "type": "word",
+      "text": "祈祷",
+      "language": "zh-CN",
+      "path": "audio/words/祈祷.mp3",
+      "label": "祈祷",
+      "linkedWordIds": [
+        "word:祈祷"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:总统",
+      "type": "word",
+      "text": "总统",
+      "language": "zh-CN",
+      "path": "audio/words/总统.mp3",
+      "label": "总统",
+      "linkedWordIds": [
+        "word:总统"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:牧师",
+      "type": "word",
+      "text": "牧师",
+      "language": "zh-CN",
+      "path": "audio/words/牧师.mp3",
+      "label": "牧师",
+      "linkedWordIds": [
+        "word:牧师"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:监狱",
+      "type": "word",
+      "text": "监狱",
+      "language": "zh-CN",
+      "path": "audio/words/监狱.mp3",
+      "label": "监狱",
+      "linkedWordIds": [
+        "word:监狱"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:拉",
+      "type": "word",
+      "text": "拉",
+      "language": "zh-CN",
+      "path": "audio/words/拉.mp3",
+      "label": "拉",
+      "linkedWordIds": [
+        "word:拉"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:推",
+      "type": "word",
+      "text": "推",
+      "language": "zh-CN",
+      "path": "audio/words/推.mp3",
+      "label": "推",
+      "linkedWordIds": [
+        "word:推"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:女王",
+      "type": "word",
+      "text": "女王",
+      "language": "zh-CN",
+      "path": "audio/words/女王.mp3",
+      "label": "女王",
+      "linkedWordIds": [
+        "word:女王"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:收音机",
+      "type": "word",
+      "text": "收音机",
+      "language": "zh-CN",
+      "path": "audio/words/收音机.mp3",
+      "label": "收音机",
+      "linkedWordIds": [
+        "word:收音机"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:雨",
+      "type": "word",
+      "text": "雨",
+      "language": "zh-CN",
+      "path": "audio/words/雨.mp3",
+      "label": "雨",
+      "linkedWordIds": [
+        "word:雨"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:红色",
+      "type": "word",
+      "text": "红色",
+      "language": "zh-CN",
+      "path": "audio/words/红色.mp3",
+      "label": "红色",
+      "linkedWordIds": [
+        "word:红色"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:关系",
+      "type": "word",
+      "text": "关系",
+      "language": "zh-CN",
+      "path": "audio/words/关系.mp3",
+      "label": "关系",
+      "linkedWordIds": [
+        "word:关系"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:宗教",
+      "type": "word",
+      "text": "宗教",
+      "language": "zh-CN",
+      "path": "audio/words/宗教.mp3",
+      "label": "宗教",
+      "linkedWordIds": [
+        "word:宗教"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:餐厅",
+      "type": "word",
+      "text": "餐厅",
+      "language": "zh-CN",
+      "path": "audio/words/餐厅.mp3",
+      "label": "餐厅",
+      "linkedWordIds": [
+        "word:餐厅"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:富",
+      "type": "word",
+      "text": "富",
+      "language": "zh-CN",
+      "path": "audio/words/富.mp3",
+      "label": "富",
+      "linkedWordIds": [
+        "word:富"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:戒指",
+      "type": "word",
+      "text": "戒指",
+      "language": "zh-CN",
+      "path": "audio/words/戒指.mp3",
+      "label": "戒指",
+      "linkedWordIds": [
+        "word:戒指"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:屋顶",
+      "type": "word",
+      "text": "屋顶",
+      "language": "zh-CN",
+      "path": "audio/words/屋顶.mp3",
+      "label": "屋顶",
+      "linkedWordIds": [
+        "word:屋顶"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:盐",
+      "type": "word",
+      "text": "盐",
+      "language": "zh-CN",
+      "path": "audio/words/盐.mp3",
+      "label": "盐",
+      "linkedWordIds": [
+        "word:盐"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:沙",
+      "type": "word",
+      "text": "沙",
+      "language": "zh-CN",
+      "path": "audio/words/沙.mp3",
+      "label": "沙",
+      "linkedWordIds": [
+        "word:沙"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:星期六",
+      "type": "word",
+      "text": "星期六",
+      "language": "zh-CN",
+      "path": "audio/words/星期六.mp3",
+      "label": "星期六",
+      "linkedWordIds": [
+        "word:星期六"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:科学",
+      "type": "word",
+      "text": "科学",
+      "language": "zh-CN",
+      "path": "audio/words/科学.mp3",
+      "label": "科学",
+      "linkedWordIds": [
+        "word:科学"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:屏幕",
+      "type": "word",
+      "text": "屏幕",
+      "language": "zh-CN",
+      "path": "audio/words/屏幕.mp3",
+      "label": "屏幕",
+      "linkedWordIds": [
+        "word:屏幕"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:秘书",
+      "type": "word",
+      "text": "秘书",
+      "language": "zh-CN",
+      "path": "audio/words/秘书.mp3",
+      "label": "秘书",
+      "linkedWordIds": [
+        "word:秘书"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:种子",
+      "type": "word",
+      "text": "种子",
+      "language": "zh-CN",
+      "path": "audio/words/种子.mp3",
+      "label": "种子",
+      "linkedWordIds": [
+        "word:种子"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:九月",
+      "type": "word",
+      "text": "九月",
+      "language": "zh-CN",
+      "path": "audio/words/九月.mp3",
+      "label": "九月",
+      "linkedWordIds": [
+        "word:九月"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:浅",
+      "type": "word",
+      "text": "浅",
+      "language": "zh-CN",
+      "path": "audio/words/浅.mp3",
+      "label": "浅",
+      "linkedWordIds": [
+        "word:浅"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:衬衫",
+      "type": "word",
+      "text": "衬衫",
+      "language": "zh-CN",
+      "path": "audio/words/衬衫.mp3",
+      "label": "衬衫",
+      "linkedWordIds": [
+        "word:衬衫"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:鞋子",
+      "type": "word",
+      "text": "鞋子",
+      "language": "zh-CN",
+      "path": "audio/words/鞋子.mp3",
+      "label": "鞋子",
+      "linkedWordIds": [
+        "word:鞋子"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:肩膀",
+      "type": "word",
+      "text": "肩膀",
+      "language": "zh-CN",
+      "path": "audio/words/肩膀.mp3",
+      "label": "肩膀",
+      "linkedWordIds": [
+        "word:肩膀"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:标志",
+      "type": "word",
+      "text": "标志",
+      "language": "zh-CN",
+      "path": "audio/words/标志.mp3",
+      "label": "标志",
+      "linkedWordIds": [
+        "word:标志"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:银色",
+      "type": "word",
+      "text": "银色",
+      "language": "zh-CN",
+      "path": "audio/words/银色.mp3",
+      "label": "银色",
+      "linkedWordIds": [
+        "word:银色"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:皮肤",
+      "type": "word",
+      "text": "皮肤",
+      "language": "zh-CN",
+      "path": "audio/words/皮肤.mp3",
+      "label": "皮肤",
+      "linkedWordIds": [
+        "word:皮肤"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:裙子",
+      "type": "word",
+      "text": "裙子",
+      "language": "zh-CN",
+      "path": "audio/words/裙子.mp3",
+      "label": "裙子",
+      "linkedWordIds": [
+        "word:裙子"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:微笑",
+      "type": "word",
+      "text": "微笑",
+      "language": "zh-CN",
+      "path": "audio/words/微笑.mp3",
+      "label": "微笑",
+      "linkedWordIds": [
+        "word:微笑"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:雪",
+      "type": "word",
+      "text": "雪",
+      "language": "zh-CN",
+      "path": "audio/words/雪.mp3",
+      "label": "雪",
+      "linkedWordIds": [
+        "word:雪"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:肥皂",
+      "type": "word",
+      "text": "肥皂",
+      "language": "zh-CN",
+      "path": "audio/words/肥皂.mp3",
+      "label": "肥皂",
+      "linkedWordIds": [
+        "word:肥皂"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:柔软",
+      "type": "word",
+      "text": "柔软",
+      "language": "zh-CN",
+      "path": "audio/words/柔软.mp3",
+      "label": "柔软",
+      "linkedWordIds": [
+        "word:柔软"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:土壤",
+      "type": "word",
+      "text": "土壤",
+      "language": "zh-CN",
+      "path": "audio/words/土壤.mp3",
+      "label": "土壤",
+      "linkedWordIds": [
+        "word:土壤"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:汤",
+      "type": "word",
+      "text": "汤",
+      "language": "zh-CN",
+      "path": "audio/words/汤.mp3",
+      "label": "汤",
+      "linkedWordIds": [
+        "word:汤"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:南方",
+      "type": "word",
+      "text": "南方",
+      "language": "zh-CN",
+      "path": "audio/words/南方.mp3",
+      "label": "南方",
+      "linkedWordIds": [
+        "word:南方"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:勺子",
+      "type": "word",
+      "text": "勺子",
+      "language": "zh-CN",
+      "path": "audio/words/勺子.mp3",
+      "label": "勺子",
+      "linkedWordIds": [
+        "word:勺子"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:运动",
+      "type": "word",
+      "text": "运动",
+      "language": "zh-CN",
+      "path": "audio/words/运动.mp3",
+      "label": "运动",
+      "linkedWordIds": [
+        "word:运动"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:春天",
+      "type": "word",
+      "text": "春天",
+      "language": "zh-CN",
+      "path": "audio/words/春天.mp3",
+      "label": "春天",
+      "linkedWordIds": [
+        "word:春天"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:污渍",
+      "type": "word",
+      "text": "污渍",
+      "language": "zh-CN",
+      "path": "audio/words/污渍.mp3",
+      "label": "污渍",
+      "linkedWordIds": [
+        "word:污渍"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:街道",
+      "type": "word",
+      "text": "街道",
+      "language": "zh-CN",
+      "path": "audio/words/街道.mp3",
+      "label": "街道",
+      "linkedWordIds": [
+        "word:街道"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:糖",
+      "type": "word",
+      "text": "糖",
+      "language": "zh-CN",
+      "path": "audio/words/糖.mp3",
+      "label": "糖",
+      "linkedWordIds": [
+        "word:糖"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:套装",
+      "type": "word",
+      "text": "套装",
+      "language": "zh-CN",
+      "path": "audio/words/套装.mp3",
+      "label": "套装",
+      "linkedWordIds": [
+        "word:套装"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:夏天",
+      "type": "word",
+      "text": "夏天",
+      "language": "zh-CN",
+      "path": "audio/words/夏天.mp3",
+      "label": "夏天",
+      "linkedWordIds": [
+        "word:夏天"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:星期日",
+      "type": "word",
+      "text": "星期日",
+      "language": "zh-CN",
+      "path": "audio/words/星期日.mp3",
+      "label": "星期日",
+      "linkedWordIds": [
+        "word:星期日"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:汗水",
+      "type": "word",
+      "text": "汗水",
+      "language": "zh-CN",
+      "path": "audio/words/汗水.mp3",
+      "label": "汗水",
+      "linkedWordIds": [
+        "word:汗水"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:T恤",
+      "type": "word",
+      "text": "T恤",
+      "language": "zh-CN",
+      "path": "audio/words/T恤.mp3",
+      "label": "T恤",
+      "linkedWordIds": [
+        "word:T恤"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:味道",
+      "type": "word",
+      "text": "味道",
+      "language": "zh-CN",
+      "path": "audio/words/味道.mp3",
+      "label": "味道",
+      "linkedWordIds": [
+        "word:味道"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:茶",
+      "type": "word",
+      "text": "茶",
+      "language": "zh-CN",
+      "path": "audio/words/茶.mp3",
+      "label": "茶",
+      "linkedWordIds": [
+        "word:茶"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:泪滴",
+      "type": "word",
+      "text": "泪滴",
+      "language": "zh-CN",
+      "path": "audio/words/泪滴.mp3",
+      "label": "泪滴",
+      "linkedWordIds": [
+        "word:泪滴"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:温度",
+      "type": "word",
+      "text": "温度",
+      "language": "zh-CN",
+      "path": "audio/words/温度.mp3",
+      "label": "温度",
+      "linkedWordIds": [
+        "word:温度"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:剧院",
+      "type": "word",
+      "text": "剧院",
+      "language": "zh-CN",
+      "path": "audio/words/剧院.mp3",
+      "label": "剧院",
+      "linkedWordIds": [
+        "word:剧院"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:厚",
+      "type": "word",
+      "text": "厚",
+      "language": "zh-CN",
+      "path": "audio/words/厚.mp3",
+      "label": "厚",
+      "linkedWordIds": [
+        "word:厚"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:薄",
+      "type": "word",
+      "text": "薄",
+      "language": "zh-CN",
+      "path": "audio/words/薄.mp3",
+      "label": "薄",
+      "linkedWordIds": [
+        "word:薄"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:扔",
+      "type": "word",
+      "text": "扔",
+      "language": "zh-CN",
+      "path": "audio/words/扔.mp3",
+      "label": "扔",
+      "linkedWordIds": [
+        "word:扔"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:星期四",
+      "type": "word",
+      "text": "星期四",
+      "language": "zh-CN",
+      "path": "audio/words/星期四.mp3",
+      "label": "星期四",
+      "linkedWordIds": [
+        "word:星期四"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:票",
+      "type": "word",
+      "text": "票",
+      "language": "zh-CN",
+      "path": "audio/words/票.mp3",
+      "label": "票",
+      "linkedWordIds": [
+        "word:票"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:紧",
+      "type": "word",
+      "text": "紧",
+      "language": "zh-CN",
+      "path": "audio/words/紧.mp3",
+      "label": "紧",
+      "linkedWordIds": [
+        "word:紧"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:轮胎",
+      "type": "word",
+      "text": "轮胎",
+      "language": "zh-CN",
+      "path": "audio/words/轮胎.mp3",
+      "label": "轮胎",
+      "linkedWordIds": [
+        "word:轮胎"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:清洁",
+      "type": "word",
+      "text": "清洁",
+      "language": "zh-CN",
+      "path": "audio/words/清洁.mp3",
+      "label": "清洁",
+      "linkedWordIds": [
+        "word:清洁"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:混合",
+      "type": "word",
+      "text": "混合",
+      "language": "zh-CN",
+      "path": "audio/words/混合.mp3",
+      "label": "混合",
+      "linkedWordIds": [
+        "word:混合"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:射击",
+      "type": "word",
+      "text": "射击",
+      "language": "zh-CN",
+      "path": "audio/words/射击.mp3",
+      "label": "射击",
+      "linkedWordIds": [
+        "word:射击"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:观看",
+      "type": "word",
+      "text": "观看",
+      "language": "zh-CN",
+      "path": "audio/words/观看.mp3",
+      "label": "观看",
+      "linkedWordIds": [
+        "word:观看"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:脚趾",
+      "type": "word",
+      "text": "脚趾",
+      "language": "zh-CN",
+      "path": "audio/words/脚趾.mp3",
+      "label": "脚趾",
+      "linkedWordIds": [
+        "word:脚趾"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:舌头",
+      "type": "word",
+      "text": "舌头",
+      "language": "zh-CN",
+      "path": "audio/words/舌头.mp3",
+      "label": "舌头",
+      "linkedWordIds": [
+        "word:舌头"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:工具",
+      "type": "word",
+      "text": "工具",
+      "language": "zh-CN",
+      "path": "audio/words/工具.mp3",
+      "label": "工具",
+      "linkedWordIds": [
+        "word:工具"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:牙齿",
+      "type": "word",
+      "text": "牙齿",
+      "language": "zh-CN",
+      "path": "audio/words/牙齿.mp3",
+      "label": "牙齿",
+      "linkedWordIds": [
+        "word:牙齿"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:城镇",
+      "type": "word",
+      "text": "城镇",
+      "language": "zh-CN",
+      "path": "audio/words/城镇.mp3",
+      "label": "城镇",
+      "linkedWordIds": [
+        "word:城镇"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:火车",
+      "type": "word",
+      "text": "火车",
+      "language": "zh-CN",
+      "path": "audio/words/火车.mp3",
+      "label": "火车",
+      "linkedWordIds": [
+        "word:火车"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:火车站",
+      "type": "word",
+      "text": "火车站",
+      "language": "zh-CN",
+      "path": "audio/words/火车站.mp3",
+      "label": "火车站",
+      "linkedWordIds": [
+        "word:火车站"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:交通",
+      "type": "word",
+      "text": "交通",
+      "language": "zh-CN",
+      "path": "audio/words/交通.mp3",
+      "label": "交通",
+      "linkedWordIds": [
+        "word:交通"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:卡车",
+      "type": "word",
+      "text": "卡车",
+      "language": "zh-CN",
+      "path": "audio/words/卡车.mp3",
+      "label": "卡车",
+      "linkedWordIds": [
+        "word:卡车"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:星期二",
+      "type": "word",
+      "text": "星期二",
+      "language": "zh-CN",
+      "path": "audio/words/星期二.mp3",
+      "label": "星期二",
+      "linkedWordIds": [
+        "word:星期二"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:转动",
+      "type": "word",
+      "text": "转动",
+      "language": "zh-CN",
+      "path": "audio/words/转动.mp3",
+      "label": "转动",
+      "linkedWordIds": [
+        "word:转动"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:山谷",
+      "type": "word",
+      "text": "山谷",
+      "language": "zh-CN",
+      "path": "audio/words/山谷.mp3",
+      "label": "山谷",
+      "linkedWordIds": [
+        "word:山谷"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:动词",
+      "type": "word",
+      "text": "动词",
+      "language": "zh-CN",
+      "path": "audio/words/动词.mp3",
+      "label": "动词",
+      "linkedWordIds": [
+        "word:动词"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:受害者",
+      "type": "word",
+      "text": "受害者",
+      "language": "zh-CN",
+      "path": "audio/words/受害者.mp3",
+      "label": "受害者",
+      "linkedWordIds": [
+        "word:受害者"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:元音",
+      "type": "word",
+      "text": "元音",
+      "language": "zh-CN",
+      "path": "audio/words/元音.mp3",
+      "label": "元音",
+      "linkedWordIds": [
+        "word:元音"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
+    },
+    {
+      "id": "word:服务员",
+      "type": "word",
+      "text": "服务员",
+      "language": "zh-CN",
+      "path": "audio/words/服务员.mp3",
+      "label": "服务员",
+      "linkedWordIds": [
+        "word:服务员"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Gacrux"
+    },
+    {
+      "id": "word:墙",
+      "type": "word",
+      "text": "墙",
+      "language": "zh-CN",
+      "path": "audio/words/墙.mp3",
+      "label": "墙",
+      "linkedWordIds": [
+        "word:墙"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Kore"
+    },
+    {
+      "id": "word:战争",
+      "type": "word",
+      "text": "战争",
+      "language": "zh-CN",
+      "path": "audio/words/战争.mp3",
+      "label": "战争",
+      "linkedWordIds": [
+        "word:战争"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Laomedeia"
+    },
+    {
+      "id": "word:弱",
+      "type": "word",
+      "text": "弱",
+      "language": "zh-CN",
+      "path": "audio/words/弱.mp3",
+      "label": "弱",
+      "linkedWordIds": [
+        "word:弱"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Leda"
+    },
+    {
+      "id": "word:婚礼",
+      "type": "word",
+      "text": "婚礼",
+      "language": "zh-CN",
+      "path": "audio/words/婚礼.mp3",
+      "label": "婚礼",
+      "linkedWordIds": [
+        "word:婚礼"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Pulcherrima"
+    },
+    {
+      "id": "word:星期三",
+      "type": "word",
+      "text": "星期三",
+      "language": "zh-CN",
+      "path": "audio/words/星期三.mp3",
+      "label": "星期三",
+      "linkedWordIds": [
+        "word:星期三"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Sulafat"
+    },
+    {
+      "id": "word:重量",
+      "type": "word",
+      "text": "重量",
+      "language": "zh-CN",
+      "path": "audio/words/重量.mp3",
+      "label": "重量",
+      "linkedWordIds": [
+        "word:重量"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Vindemiatrix"
+    },
+    {
+      "id": "word:湿",
+      "type": "word",
+      "text": "湿",
+      "language": "zh-CN",
+      "path": "audio/words/湿.mp3",
+      "label": "湿",
+      "linkedWordIds": [
+        "word:湿"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Zephyr"
+    },
+    {
+      "id": "word:宽",
+      "type": "word",
+      "text": "宽",
+      "language": "zh-CN",
+      "path": "audio/words/宽.mp3",
+      "label": "宽",
+      "linkedWordIds": [
+        "word:宽"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Achernar"
+    },
+    {
+      "id": "word:妻子",
+      "type": "word",
+      "text": "妻子",
+      "language": "zh-CN",
+      "path": "audio/words/妻子.mp3",
+      "label": "妻子",
+      "linkedWordIds": [
+        "word:妻子"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Aoede"
+    },
+    {
+      "id": "word:窗户",
+      "type": "word",
+      "text": "窗户",
+      "language": "zh-CN",
+      "path": "audio/words/窗户.mp3",
+      "label": "窗户",
+      "linkedWordIds": [
+        "word:窗户"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Autonoe"
+    },
+    {
+      "id": "word:翅膀",
+      "type": "word",
+      "text": "翅膀",
+      "language": "zh-CN",
+      "path": "audio/words/翅膀.mp3",
+      "label": "翅膀",
+      "linkedWordIds": [
+        "word:翅膀"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Callirrhoe"
+    },
+    {
+      "id": "word:冬天",
+      "type": "word",
+      "text": "冬天",
+      "language": "zh-CN",
+      "path": "audio/words/冬天.mp3",
+      "label": "冬天",
+      "linkedWordIds": [
+        "word:冬天"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Despina"
+    },
+    {
+      "id": "word:黄色",
+      "type": "word",
+      "text": "黄色",
+      "language": "zh-CN",
+      "path": "audio/words/黄色.mp3",
+      "label": "黄色",
+      "linkedWordIds": [
+        "word:黄色"
+      ],
+      "linkedSentenceId": null,
+      "provider": "google",
+      "voice": "cmn-CN-Chirp3-HD-Erinome"
     }
   ]
 }
