@@ -418,6 +418,7 @@ function App() {
   const dashboardToastKeyRef = useRef<string | null>(null)
   const sentenceTouchStartRef = useRef<{ x: number; y: number } | null>(null)
   const bookListenTouchRef = useRef<{ x: number; y: number } | null>(null)
+  const bookListenStartRef = useRef<(() => void) | null>(null)
   const sentenceCardRef = useRef<HTMLDivElement>(null)
   const [sentenceSwipeDir, setSentenceSwipeDir] = useState<string | null>(null)
   const [sentenceDismissDir, setSentenceDismissDir] = useState<string | null>(null)
@@ -1497,6 +1498,16 @@ function App() {
     onNext: bookListenAdvance,
     onPrevious: bookListenGoBack,
   })
+
+  // Keep a stable ref to startListening so auto-start effect doesn't need it as a dep
+  bookListenStartRef.current = bookListening.startListening
+
+  // Auto-start when a book is opened or books tab is activated
+  useEffect(() => {
+    if (sentenceSubMode === 'books' && bookListenBookId) {
+      bookListenStartRef.current?.()
+    }
+  }, [bookListenBookId, sentenceSubMode])
 
   useEffect(() => {
     if (screen !== 'reader' && readerListeningActive) stopReaderListening()
@@ -3875,7 +3886,7 @@ function App() {
                           <button
                             type="button"
                             className={sentenceSubMode === 'books' ? 'active' : ''}
-                            onClick={() => setSentenceSubMode('books')}
+                            onClick={() => { setSentenceSubMode('books'); setSentencePaused(true) }}
                           >Books</button>
                         </div>
 
@@ -3916,8 +3927,8 @@ function App() {
                                 const absDy = Math.abs(dy)
                                 if (absDx < 40 && absDy < 40) return
                                 if (absDx > absDy) {
-                                  if (dx < -40) void bookListening.previous()
-                                  else if (dx > 40) void bookListening.next()
+                                  if (dx < -40) void bookListening.next()
+                                  else if (dx > 40) void bookListening.previous()
                                 } else {
                                   if (dy > 40) bookListening.togglePlayPause()
                                 }
@@ -3991,7 +4002,7 @@ function App() {
                                 <button
                                   type="button"
                                   className="sentence-play-pause"
-                                  onClick={() => bookListening.togglePlayPause()}
+                                  onClick={() => bookListening.snapshot.status === 'idle' ? bookListening.startListening() : bookListening.togglePlayPause()}
                                   aria-label={bookListening.snapshot.status === 'playing' ? 'Pause' : 'Play'}
                                 >
                                   {bookListening.snapshot.status === 'playing' ? (
@@ -4038,9 +4049,9 @@ function App() {
 
                               {/* Swipe hints */}
                               <div className="book-listen-hints">
-                                <span>← prev</span>
+                                <span>→ prev</span>
                                 <span>↓ pause</span>
-                                <span>→ skip</span>
+                                <span>← next</span>
                               </div>
                             </div>
                           )
