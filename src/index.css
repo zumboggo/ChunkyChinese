@@ -3026,6 +3026,15 @@ details.settings-group > .import-grid {
   padding-block: 12px;
 }
 
+.ring-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary, #888);
+  margin: 0;
+}
+
 .sentence-rep-ring {
   width: 120px;
   height: 120px;

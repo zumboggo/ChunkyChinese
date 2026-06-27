@@ -250,6 +250,7 @@ function SentenceRepRing({ repsToday, totalReps }: { repsToday: number; totalRep
   const strokeDashoffset = circumference * (1 - fillFraction)
   return (
     <div className="sentence-rep-ring-wrap">
+      <p className="ring-title">Sentences</p>
       <svg className="sentence-rep-ring" viewBox="0 0 100 100" aria-label={`${repsToday} sentence reps today`}>
         <circle cx="50" cy="50" r={r} className="sentence-rep-ring-track" />
         <circle
@@ -282,6 +283,7 @@ function FlashcardReviewRing({ reviewsToday, totalReviews }: { reviewsToday: num
   const strokeDashoffset = circumference * (1 - fillFraction)
   return (
     <div className="sentence-rep-ring-wrap">
+      <p className="ring-title">Flashcards</p>
       <svg className="sentence-rep-ring" viewBox="0 0 100 100" aria-label={`${reviewsToday} flashcards reviewed today`}>
         <circle cx="50" cy="50" r={r} className="sentence-rep-ring-track" />
         <circle
@@ -430,10 +432,14 @@ function App() {
   const [sentenceRepsToday, setSentenceRepsToday] = useState(0)
   const [sentenceTotalReps, setSentenceTotalReps] = useState(0)
   const [sentenceSubMode, setSentenceSubMode] = useState<'sets' | 'books'>('sets')
+  const [sentenceGapMs, setSentenceGapMs] = useState(800)
   const [bookListenBookId, setBookListenBookId] = useState<string | null>(null)
   const [bookListenIndex, setBookListenIndex] = useState(0)
   const [bookListenPinyinVisible, setBookListenPinyinVisible] = useState(true)
   const [bookListenEnglishVisible, setBookListenEnglishVisible] = useState(true)
+  const [bookListenSwipeDir, setBookListenSwipeDir] = useState<string | null>(null)
+  const [bookListenDismissDir, setBookListenDismissDir] = useState<string | null>(null)
+  const [bookListenAnimKey, setBookListenAnimKey] = useState(0)
   const dashboardToastReadyRef = useRef(false)
 
   const stopAudioOutputs = useCallback(() => {
@@ -1031,7 +1037,7 @@ function App() {
     }).length
     const nextOffset = sentenceQueueOffset + newInSession
     const { repsToday, totalReps } = await saveSentenceRepData({
-      reps: sentenceRoundOrder.length,
+      reps: sentenceQueue.length,
       queueOffset: nextOffset,
     })
     setSentenceQueueOffset(nextOffset)
@@ -1462,6 +1468,11 @@ function App() {
     if (nextSentence && activeReaderSession) {
       await recordReaderSentenceView(nextSentence, activeReaderSession)
     }
+    if (delta > 0) {
+      const { repsToday, totalReps } = await saveSentenceRepData({ reps: 1, queueOffset: sentenceQueueOffset })
+      setSentenceRepsToday(repsToday)
+      setSentenceTotalReps(totalReps)
+    }
   }, [
     activeReaderBook,
     activeReaderSession,
@@ -1471,6 +1482,7 @@ function App() {
     queueCloudSync,
     recordReaderInteraction,
     recordReaderSentenceView,
+    sentenceQueueOffset,
   ])
 
   const readerListening = useReaderListeningController({
@@ -1575,7 +1587,7 @@ function App() {
 
       // Gap
       if (cancelled || runToken.current !== token) return
-      await wait(800)
+      await wait(sentenceGapMs)
 
       // Advance
       if (cancelled || runToken.current !== token) return
@@ -1589,7 +1601,7 @@ function App() {
       runToken.current += 1
       window.speechSynthesis?.cancel()
     }
-  }, [playbackRate, stopAudioOutputs, studyMode, sentenceSetComplete, sentenceQueue, sentenceRoundIndex, sentenceRoundOrder, sentencePaused])
+  }, [playbackRate, sentenceGapMs, stopAudioOutputs, studyMode, sentenceSetComplete, sentenceQueue, sentenceRoundIndex, sentenceRoundOrder, sentencePaused])
 
   // Create a looping near-silent audio element once; keeps the Android audio session alive
   // while sentence mode is active so the browser is less likely to throttle speech synthesis.
@@ -3911,15 +3923,28 @@ function App() {
                           ) : (
                             /* Book card view */
                             <div
-                              className="sentence-mode-display book-listen-display"
+                              className={`sentence-mode-display book-listen-display${bookListenSwipeDir ? ` swipe-${bookListenSwipeDir}` : ''}`}
                               onTouchStart={e => {
+                                if (bookListenDismissDir) return
                                 const t = e.touches[0]
                                 bookListenTouchRef.current = { x: t.clientX, y: t.clientY }
+                                setBookListenSwipeDir(null)
+                              }}
+                              onTouchMove={e => {
+                                if (!bookListenTouchRef.current || bookListenDismissDir) return
+                                const t = e.touches[0]
+                                const dx = t.clientX - bookListenTouchRef.current.x
+                                const dy = t.clientY - bookListenTouchRef.current.y
+                                const absDx = Math.abs(dx)
+                                const absDy = Math.abs(dy)
+                                if (absDx < 20 && absDy < 20) return
+                                setBookListenSwipeDir(absDx > absDy ? (dx < 0 ? 'left' : 'right') : (dy > 0 ? 'down' : 'up'))
                               }}
                               onTouchEnd={e => {
                                 const start = bookListenTouchRef.current
                                 bookListenTouchRef.current = null
-                                if (!start) return
+                                setBookListenSwipeDir(null)
+                                if (!start || bookListenDismissDir) return
                                 const t = e.changedTouches[0]
                                 const dx = t.clientX - start.x
                                 const dy = t.clientY - start.y
@@ -3927,8 +3952,14 @@ function App() {
                                 const absDy = Math.abs(dy)
                                 if (absDx < 40 && absDy < 40) return
                                 if (absDx > absDy) {
-                                  if (dx < -40) void bookListening.next()
-                                  else if (dx > 40) void bookListening.previous()
+                                  const dir = dx < 0 ? 'left' : 'right'
+                                  setBookListenDismissDir(dir)
+                                  window.setTimeout(() => {
+                                    setBookListenDismissDir(null)
+                                    setBookListenAnimKey(k => k + 1)
+                                    if (dir === 'left') void bookListening.next()
+                                    else void bookListening.previous()
+                                  }, 320)
                                 } else {
                                   if (dy > 40) bookListening.togglePlayPause()
                                 }
@@ -4027,7 +4058,10 @@ function App() {
                               )}
 
                               {/* Sentence card */}
-                              <div className="sentence-card">
+                              <div
+                                key={bookListenAnimKey}
+                                className={`sentence-card${bookListenDismissDir ? ` sentence-dismiss-${bookListenDismissDir}` : ''}`}
+                              >
                                 <div className="sentence-chinese">{bookListenSentence?.chinese}</div>
                                 {bookListenPinyinVisible && bookListenSentence?.chinese && (
                                   <div className="sentence-pinyin">
@@ -4038,6 +4072,12 @@ function App() {
                                   <div className="sentence-english">{bookListenSentence?.english}</div>
                                 )}
                               </div>
+
+                              {bookListenSwipeDir && !bookListenDismissDir && (
+                                <div className={`swipe-indicator swipe-indicator-${bookListenSwipeDir}`}>
+                                  {{ left: '← Next', right: '→ Prev', down: '⏸ Pause' }[bookListenSwipeDir] ?? ''}
+                                </div>
+                              )}
 
                               {/* Progress */}
                               <div className="book-listen-progress">
@@ -4107,6 +4147,17 @@ function App() {
                                         <label className="sentence-menu-toggle">
                                           <span>Auto next</span>
                                           <input type="checkbox" checked={autoNextLesson} onChange={e => setAutoNextLesson(e.target.checked)} />
+                                        </label>
+                                        <label className="sentence-menu-toggle">
+                                          <span>Pause between sentences</span>
+                                          <select
+                                            value={sentenceGapMs}
+                                            onChange={e => setSentenceGapMs(Number(e.target.value))}
+                                          >
+                                            {[0, 500, 1000, 1500, 2000, 2500, 3000].map(ms => (
+                                              <option key={ms} value={ms}>{ms === 0 ? 'None' : `${ms / 1000}s`}</option>
+                                            ))}
+                                          </select>
                                         </label>
                                       </div>
                                     </div>
