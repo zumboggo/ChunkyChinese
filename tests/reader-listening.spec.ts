@@ -36,7 +36,7 @@ test('Reader Listening Mode is stable and phone-friendly', async ({ page }, test
   await expect(page.locator('.reader-listening-dock')).toBeVisible()
   await expect(page.locator('.reader-translation')).toHaveClass(/revealed/)
   await expect(page.locator('.reader-reading-area')).toHaveClass(/reader-listening-highlight/)
-  await expect(page.locator('.reader-listening-controls kbd')).toHaveText(['3', '4'])
+  await expect(page.locator('.reader-listening-controls kbd')).toHaveText(['1', '2'])
 
   await page.waitForTimeout(900)
   await expect(sentenceMeta).toContainText('Sentence 1 /')

@@ -94,10 +94,10 @@ export interface SyncMetadata {
 }
 
 export const DEFAULT_HOTKEYS: HotkeySettings = {
-  choiceA: '3',
-  choiceB: '4',
-  choiceC: '1',
-  choiceD: '2',
+  choiceA: '1',
+  choiceB: '2',
+  choiceC: '3',
+  choiceD: '4',
   choiceE: '5',
   choiceF: '6',
   playPause: 'p',
@@ -577,10 +577,10 @@ export async function getHotkeys(): Promise<HotkeySettings> {
     choiceF: saved?.choiceF ?? DEFAULT_HOTKEYS.choiceF,
     playPause: saved?.playPause ?? DEFAULT_HOTKEYS.playPause,
   }
-  // Reset old defaults to the current controller-friendly A/B layout while preserving utility keys.
+  // Reset old default layouts to the current 1/2/3/4 choice layout while preserving utility keys.
   if (
     (saved?.choiceA === '3' && saved.choiceB === '4' && saved.choiceC === '5' && saved.choiceD === '6') ||
-    (saved?.choiceA === '1' && saved.choiceB === '2' && saved.choiceC === '3' && saved.choiceD === '4')
+    (saved?.choiceA === '3' && saved.choiceB === '4' && saved.choiceC === '1' && saved.choiceD === '2')
   ) {
     return normalizeHotkeys({ ...DEFAULT_HOTKEYS, ...savedUtilityKeys })
   }
