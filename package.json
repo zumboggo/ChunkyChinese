@@ -25,6 +25,7 @@
     "verify:reader-pack": "node scripts/verify-reader-pack.mjs",
     "verify:visual-novel-pack": "node scripts/verify-visual-novel-pack.mjs",
     "verify:visual-novel-world": "node scripts/verify-visual-novel-world.mjs",
+    "vn:scene:audit": "node scripts/vn-scene-audit.mjs",
     "vn:renpy:convert": "node scripts/vn-renpy/convert.mjs",
     "vn:renpy:verify-web": "node scripts/verify-renpy-web.mjs",
     "renpy:convert": "node scripts/renpy/convert-chapters.mjs",

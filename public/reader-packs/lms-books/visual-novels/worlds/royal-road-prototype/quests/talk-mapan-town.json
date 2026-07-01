@@ -69,7 +69,8 @@
             "position": "left",
             "xPercent": 30,
             "scale": 0.82,
-            "dimmed": true
+            "dimmed": true,
+            "zIndex": 2
           },
           {
             "slotId": "mapan",
@@ -78,7 +79,8 @@
             "spriteId": "mapan-negotiating",
             "position": "right",
             "xPercent": 67,
-            "scale": 0.95
+            "scale": 0.95,
+            "zIndex": 2
           }
         ]
       },

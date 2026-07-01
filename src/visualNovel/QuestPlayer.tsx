@@ -7,29 +7,30 @@ import type { CardBattlerState } from '../cardBattler/types'
 import { CardBattlerMode } from '../cardBattler/CardBattlerMode'
 import { createEncounter } from '../cardBattler/engine'
 import { visualNovelAssetSrc } from './loader'
-import type { VisualNovelSave, VisualNovelWorldSave, VnAssetManifest, VnAnimCommand, VnChoice, VnNode, VnQuestDefinition, VnQuestResult, VnWorld } from './types'
+import type { VisualNovelSave, VisualNovelWorldSave, VnAssetManifest, VnAnimCommand, VnChoice, VnNode, VnQuestDefinition, VnQuestResult, VnSceneCharacter, VnWorld } from './types'
 import { getNodeText, VN_DEFAULT_ENCOUNTER_DECK, VN_DEFAULT_ENEMY_MAX_HP, VN_DEFAULT_PLAYER_MAX_HP } from './utils'
 import { VisualNovelSprite } from './VisualNovelSprite'
 import { WorldStatusPanel } from './WorldStatusPanel'
+import { resolveSpriteReference, visibleSceneCharacters, vnSceneLayoutClass } from './stageLayout'
 
 type Mood = 'neutral' | 'angry' | 'happy' | 'surprised' | 'sad'
 
 function detectMood(chinese: string): Mood {
-  if (/[！!]/.test(chinese) && /[杀死打怒恨滚该死可恶]/.test(chinese)) return 'angry'
-  if (/[！!]/.test(chinese) && /[哈哈哇太好了真棒厉害好]/.test(chinese)) return 'happy'
-  if (/[？?]/.test(chinese) && /[什么怎么为什么哪谁]/.test(chinese)) return 'surprised'
-  if (/[哭悲伤痛泪可怜惨]/.test(chinese)) return 'sad'
-  if (/[！!]/.test(chinese)) return 'surprised'
-  if (/[哈哈哈嘻嘻]/.test(chinese)) return 'happy'
+  if (/[\uFF01!]/.test(chinese) && /[\u6740\u6B7B\u6253\u6012\u6068\u6EDA\u8BE5\u6076]/.test(chinese)) return 'angry'
+  if (/[\uFF01!]/.test(chinese) && /[\u54C8\u54C7\u68D2\u597D\u5F00\u9AD8\u559C\u7B11]/.test(chinese)) return 'happy'
+  if (/[\uFF1F?]/.test(chinese) && /[\u4EC0\u600E\u4E3A\u54EA\u8C01]/.test(chinese)) return 'surprised'
+  if (/[\u54ED\u60B2\u4F24\u75DB\u6CEA\u60E8\u96BE]/.test(chinese)) return 'sad'
+  if (/[\uFF01!]/.test(chinese)) return 'surprised'
+  if (/[\u54C8\u563B\u7B11]/.test(chinese)) return 'happy'
   return 'neutral'
 }
 
-const MOOD_SPRITE_SUFFIX: Record<Mood, string> = {
-  neutral: '',
-  angry: '-angry',
-  happy: '-amused',
-  surprised: '-startled',
-  sad: '-exhausted',
+const MOOD_EXPRESSION_PREFERENCES: Record<Mood, string[]> = {
+  neutral: [],
+  angry: ['angry', 'annoyed', 'commanding', 'fierce-smile', 'stern', 'determined'],
+  happy: ['smile', 'amused', 'relieved', 'gentle-smile', 'approving', 'cheerful', 'warm', 'confident', 'bright', 'energetic'],
+  surprised: ['startled', 'alert', 'concerned', 'worried'],
+  sad: ['worried', 'sick', 'exhausted', 'tired', 'concerned'],
 }
 
 const ANIM_DURATIONS: Record<string, number> = {
@@ -39,6 +40,18 @@ const ANIM_DURATIONS: Record<string, number> = {
 
 function animCommandCharId(cmd: VnAnimCommand, firstSceneChar?: string): string | undefined {
   return cmd.character ?? cmd.speaker ?? firstSceneChar
+}
+
+function resolveMoodSpriteId(
+  manifest: VnAssetManifest,
+  character: VnSceneCharacter,
+  mood: Mood,
+): string | undefined {
+  for (const expressionId of MOOD_EXPRESSION_PREFERENCES[mood]) {
+    const spriteId = resolveSpriteReference(manifest, character, expressionId)
+    if (spriteId) return spriteId
+  }
+  return undefined
 }
 
 export type VnTextSpeed = 'slow' | 'normal' | 'fast' | 'instant'
@@ -136,33 +149,37 @@ export function QuestPlayer({
     if (node.type !== 'line' || !node.animCommands?.length) return null
     const firstCharId = save.scene.characters[0]?.characterId
     let overrideSprite: string | undefined
-    let animCharId: string | undefined
+    let overrideCharId: string | undefined
     for (const cmd of node.animCommands) {
       const charId = animCommandCharId(cmd, firstCharId)
       if (!charId) continue
-      if (cmd.type === 'animate' && cmd.animation) animCharId = charId
-      if ((cmd.type === 'expression' && cmd.value) || (cmd.type === 'dialogue' && cmd.expression)) overrideSprite = cmd.value ?? cmd.expression
+      if ((cmd.type === 'expression' && cmd.value) || (cmd.type === 'dialogue' && cmd.expression)) {
+        overrideSprite = cmd.value ?? cmd.expression
+        overrideCharId = charId
+      }
     }
-    return overrideSprite ? { spriteId: overrideSprite, charId: animCharId } : null
+    return overrideSprite && overrideCharId ? { spriteId: overrideSprite, charId: overrideCharId } : null
   }, [node, save.scene.characters])
 
   const moodSprites = useMemo(() => {
     if (node.type !== 'line') return save.scene.characters
+    const moodTargetCharacterId = node.speaker?.characterId ?? save.scene.characters[0]?.characterId
     return save.scene.characters.map((char) => {
       let spriteId = char.spriteId
-      if (animOverride?.spriteId && manifest.sprites[animOverride.spriteId] && char.characterId === animOverride.charId) {
-        spriteId = animOverride.spriteId
-      } else {
-        const suffix = MOOD_SPRITE_SUFFIX[mood]
-        if (suffix && !char.spriteId.includes(suffix)) {
-          const base = char.spriteId.replace(/-(amused|annoyed|startled|exhausted|commanding|calculating|concerned|negotiating)$/, '')
-          const candidate = base + suffix
-          if (manifest.sprites[candidate]) spriteId = candidate
-        }
+      if (animOverride?.spriteId && char.characterId === animOverride.charId) {
+        spriteId = resolveSpriteReference(manifest, char, animOverride.spriteId) ?? spriteId
+      } else if (char.characterId === moodTargetCharacterId) {
+        spriteId = resolveMoodSpriteId(manifest, char, mood) ?? spriteId
       }
       return { ...char, spriteId }
     })
   }, [node, save.scene.characters, mood, manifest.sprites, animOverride])
+
+  const sceneLayoutClass = useMemo(
+    () => vnSceneLayoutClass(moodSprites, Boolean(cinematic)),
+    [cinematic, moodSprites],
+  )
+  const visibleCharacterCount = visibleSceneCharacters(moodSprites).length
 
   const animClassMap = useMemo(() => {
     if (node.type !== 'line' || !node.animCommands?.length) return {}
@@ -259,8 +276,8 @@ export function QuestPlayer({
   }
 
   return (
-    <div className="vn-fullscreen" onClick={skipTypewriter}>
-      <div className="vn-fullscreen-stage" aria-label="Quest scene">
+    <div className={`vn-fullscreen ${sceneLayoutClass}`} onClick={skipTypewriter}>
+      <div className={`vn-fullscreen-stage ${sceneLayoutClass}`} aria-label="Quest scene" data-scene-character-count={visibleCharacterCount}>
         {cinematic ? (
           <img className="vn-cinematic" src={visualNovelAssetSrc(cinematic.src)} alt={cinematic.alt} />
         ) : background ? (

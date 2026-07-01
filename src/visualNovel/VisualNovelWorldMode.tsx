@@ -55,6 +55,7 @@ import type {
   VnAssetManifest,
   VnQuestDefinition,
   VnQuestResult,
+  VnSceneCharacter,
   VnScript,
   VnWorld,
   VnWorldAction,
@@ -62,9 +63,11 @@ import type {
 } from './types'
 import { getNodeText, getNodeAudioClipId, scopedTokens, stopAudio, speakUtterance, formatDueDate, getLocationBackgroundId } from './utils'
 import { QuestPlayer, type VnTextSpeed } from './QuestPlayer'
+import { VisualNovelSprite } from './VisualNovelSprite'
 import { WorldHub } from './WorldHub'
 import { getHubCastMembers, MAP_LAYOUT, MAP_CONNECTIONS } from './WorldHubData'
 import { WorldStatusPanel } from './WorldStatusPanel'
+import { vnSceneLayoutClass } from './stageLayout'
 
 interface VisualNovelWorldModeProps {
   words: VocabWord[]
@@ -568,10 +571,39 @@ export function VisualNovelWorldMode({
 
   const backgroundId = getLocationBackgroundId(location, worldSave)
   const background = manifest && backgroundId ? manifest.backgrounds[backgroundId] : undefined
+  const hubSceneCharacters = useMemo<VnSceneCharacter[]>(() => {
+    if (!manifest) return []
+    const positionsByCount: Record<number, VnSceneCharacter['position'][]> = {
+      1: ['center'],
+      2: ['left', 'right'],
+      3: ['left', 'center', 'right'],
+    }
+    const xByCount: Record<number, number[]> = {
+      1: [50],
+      2: [34, 66],
+      3: [22, 50, 78],
+    }
+    const count = Math.min(3, Math.max(1, castMembers.length))
+    return castMembers.flatMap((member, index) => {
+      const sprite = manifest.sprites[member.spriteId]
+      if (!sprite) return []
+      const positions = positionsByCount[count] ?? ['farLeft', 'left', 'center', 'right', 'farRight']
+      const xValues = xByCount[count]
+      return [{
+        characterId: member.characterId,
+        personaId: sprite.personaId,
+        spriteId: member.spriteId,
+        position: positions[index % positions.length],
+        xPercent: xValues?.[index],
+        zIndex: 2 + index,
+      }]
+    })
+  }, [castMembers, manifest])
+  const hubSceneLayoutClass = vnSceneLayoutClass(hubSceneCharacters)
 
   return (
     <section
-      className={`screen visual-novel-screen vn-world-screen reader-theme-${readerTheme}`}
+      className={`screen visual-novel-screen vn-world-screen${activeQuest ? ' vn-world-screen-active-quest' : ''} reader-theme-${readerTheme}`}
       style={{
         '--reader-font-scale': 1,
         '--reader-line-height': 1.5,
@@ -672,26 +704,22 @@ export function VisualNovelWorldMode({
             hotkeys={hotkeys}
           />
         ) : (
-          <div className="vn-fullscreen">
-            <div className="vn-fullscreen-stage" aria-label="World location">
+          <div className={`vn-fullscreen ${hubSceneLayoutClass}`}>
+            <div className={`vn-fullscreen-stage ${hubSceneLayoutClass}`} aria-label="World location" data-scene-character-count={hubSceneCharacters.length}>
               {background ? (
                 <img className="vn-background" src={visualNovelAssetSrc(background.src)} alt={background.alt} />
               ) : (
                 <div className="vn-background vn-background-fallback" aria-label="Neutral background" />
               )}
-              {castMembers.map((member) => {
-                const sprite = manifest.sprites[member.spriteId]
-                if (!sprite) return null
-                const index = castMembers.indexOf(member)
-                const positions = ['vn-sprite-left', 'vn-sprite-center', 'vn-sprite-right'] as const
-                const posClass = positions[index % positions.length]
-                const spriteScale = sprite.defaultScale ?? 0.74
-                const spriteWidth = `${Math.round(sprite.width * spriteScale)}px`
+              {hubSceneCharacters.map((character, index) => {
+                const member = castMembers[index]
+                if (!member) return null
                 return (
-                  <div
-                    key={`${member.characterId}:${member.spriteId}`}
-                    className={`vn-sprite ${posClass}${member.talkQuest ? ' vn-sprite-interactive' : ''}`}
-                    style={{ '--vn-sprite-width': spriteWidth } as React.CSSProperties}
+                  <VisualNovelSprite
+                    key={`${character.characterId}:${character.spriteId}`}
+                    character={character}
+                    manifest={manifest}
+                    className={member.talkQuest ? 'vn-sprite-interactive' : ''}
                     role={member.talkQuest ? 'button' : undefined}
                     tabIndex={member.talkQuest ? 0 : undefined}
                     onClick={member.talkQuest ? () => handleWorldAction({
@@ -711,9 +739,7 @@ export function VisualNovelWorldMode({
                         })
                       }
                     } : undefined}
-                  >
-                    <img src={visualNovelAssetSrc(sprite.src)} alt={sprite.alt ?? member.name} />
-                  </div>
+                  />
                 )
               })}
             </div>

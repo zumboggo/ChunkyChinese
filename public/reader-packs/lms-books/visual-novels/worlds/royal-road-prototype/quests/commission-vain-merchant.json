@@ -75,7 +75,10 @@
             "characterId": "commission-client",
             "personaId": "default",
             "spriteId": "commission-client",
-            "position": "right"
+            "position": "right",
+            "xPercent": 66,
+            "scale": 0.86,
+            "zIndex": 2
           }
         ]
       },

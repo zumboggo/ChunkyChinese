@@ -69,7 +69,8 @@
             "position": "left",
             "xPercent": 31,
             "scale": 0.78,
-            "dimmed": true
+            "dimmed": true,
+            "zIndex": 2
           },
           {
             "slotId": "geomchi",
@@ -78,7 +79,8 @@
             "spriteId": "geomchi-commanding",
             "position": "right",
             "xPercent": 69,
-            "scale": 0.95
+            "scale": 0.95,
+            "zIndex": 2
           }
         ]
       },

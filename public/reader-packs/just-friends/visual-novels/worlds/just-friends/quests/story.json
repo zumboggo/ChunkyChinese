@@ -91,13 +91,19 @@
             "characterId": "dapeng",
             "personaId": "default",
             "spriteId": "dapeng-neutral",
-            "position": "left"
+            "position": "left",
+            "xPercent": 34,
+            "scale": 0.92,
+            "zIndex": 2
           },
           {
             "characterId": "wendong",
             "personaId": "default",
             "spriteId": "wendong-neutral",
-            "position": "right"
+            "position": "right",
+            "xPercent": 66,
+            "scale": 0.92,
+            "zIndex": 2
           }
         ]
       }
@@ -449,13 +455,19 @@
             "characterId": "dapeng",
             "personaId": "default",
             "spriteId": "dapeng-neutral",
-            "position": "left"
+            "position": "left",
+            "xPercent": 34,
+            "scale": 0.92,
+            "zIndex": 2
           },
           {
             "characterId": "wendong",
             "personaId": "default",
             "spriteId": "wendong-neutral",
-            "position": "right"
+            "position": "right",
+            "xPercent": 66,
+            "scale": 0.92,
+            "zIndex": 2
           }
         ]
       }
@@ -711,7 +723,14 @@
         "readerSentenceId": "just-friends-ch02-s024"
       },
       "audioClipId": "reader-sentence:just-friends-ch02-s024",
-      "nextId": "jf-056"
+      "nextId": "jf-056",
+      "animCommands": [
+        {
+          "type": "expression",
+          "character": "wendong",
+          "value": "worried"
+        }
+      ]
     },
     "jf-056": {
       "id": "jf-056",
@@ -785,13 +804,19 @@
             "characterId": "dapeng",
             "personaId": "default",
             "spriteId": "dapeng-neutral",
-            "position": "left"
+            "position": "left",
+            "xPercent": 34,
+            "scale": 0.92,
+            "zIndex": 2
           },
           {
             "characterId": "zixin",
             "personaId": "default",
             "spriteId": "zixin-smile",
-            "position": "right"
+            "position": "right",
+            "xPercent": 66,
+            "scale": 0.92,
+            "zIndex": 2
           }
         ]
       }
@@ -1066,13 +1091,19 @@
             "characterId": "dapeng",
             "personaId": "default",
             "spriteId": "dapeng-angry",
-            "position": "left"
+            "position": "left",
+            "xPercent": 34,
+            "scale": 0.92,
+            "zIndex": 2
           },
           {
             "characterId": "zixin",
             "personaId": "default",
             "spriteId": "zixin-neutral",
-            "position": "right"
+            "position": "right",
+            "xPercent": 66,
+            "scale": 0.92,
+            "zIndex": 2
           }
         ]
       }
@@ -1086,7 +1117,51 @@
         "readerSentenceId": "just-friends-ch04-s002"
       },
       "audioClipId": "reader-sentence:just-friends-ch04-s002",
-      "nextId": "jf-087"
+      "nextId": "jf-087",
+      "animCommands": [
+        {
+          "type": "expression",
+          "character": "dapeng",
+          "value": "angry"
+        },
+        {
+          "type": "expression",
+          "character": "wendong",
+          "value": "worried"
+        }
+      ],
+      "scene": {
+        "backgroundId": "bookstore-evening",
+        "characters": [
+          {
+            "characterId": "dapeng",
+            "personaId": "default",
+            "spriteId": "dapeng-angry",
+            "position": "left",
+            "xPercent": 22,
+            "scale": 0.84,
+            "zIndex": 2
+          },
+          {
+            "characterId": "wendong",
+            "personaId": "default",
+            "spriteId": "wendong-worried",
+            "position": "center",
+            "xPercent": 50,
+            "scale": 0.88,
+            "zIndex": 3
+          },
+          {
+            "characterId": "zixin",
+            "personaId": "default",
+            "spriteId": "zixin-neutral",
+            "position": "right",
+            "xPercent": 78,
+            "scale": 0.84,
+            "zIndex": 2
+          }
+        ]
+      }
     },
     "jf-087": {
       "id": "jf-087",
@@ -1259,13 +1334,19 @@
             "characterId": "dapeng",
             "personaId": "default",
             "spriteId": "dapeng-angry",
-            "position": "left"
+            "position": "left",
+            "xPercent": 34,
+            "scale": 0.92,
+            "zIndex": 2
           },
           {
             "characterId": "zixin",
             "personaId": "default",
             "spriteId": "zixin-neutral",
-            "position": "right"
+            "position": "right",
+            "xPercent": 66,
+            "scale": 0.92,
+            "zIndex": 2
           }
         ]
       }
@@ -1345,7 +1426,51 @@
         "readerSentenceId": "just-friends-ch05-s008"
       },
       "audioClipId": "reader-sentence:just-friends-ch05-s008",
-      "nextId": "jf-109"
+      "nextId": "jf-109",
+      "animCommands": [
+        {
+          "type": "expression",
+          "character": "dapeng",
+          "value": "angry"
+        },
+        {
+          "type": "expression",
+          "character": "wendong",
+          "value": "worried"
+        }
+      ],
+      "scene": {
+        "backgroundId": "snack-shop-night",
+        "characters": [
+          {
+            "characterId": "dapeng",
+            "personaId": "default",
+            "spriteId": "dapeng-angry",
+            "position": "left",
+            "xPercent": 22,
+            "scale": 0.84,
+            "zIndex": 2
+          },
+          {
+            "characterId": "wendong",
+            "personaId": "default",
+            "spriteId": "wendong-worried",
+            "position": "center",
+            "xPercent": 50,
+            "scale": 0.88,
+            "zIndex": 3
+          },
+          {
+            "characterId": "zixin",
+            "personaId": "default",
+            "spriteId": "zixin-neutral",
+            "position": "right",
+            "xPercent": 78,
+            "scale": 0.84,
+            "zIndex": 2
+          }
+        ]
+      }
     },
     "jf-109": {
       "id": "jf-109",
@@ -1554,7 +1679,14 @@
         "readerSentenceId": "just-friends-ch05-s027"
       },
       "audioClipId": "reader-sentence:just-friends-ch05-s027",
-      "nextId": "jf-128"
+      "nextId": "jf-128",
+      "animCommands": [
+        {
+          "type": "expression",
+          "character": "dapeng",
+          "value": "angry"
+        }
+      ]
     },
     "jf-128": {
       "id": "jf-128",
@@ -1573,13 +1705,19 @@
             "characterId": "dapeng",
             "personaId": "default",
             "spriteId": "dapeng-angry",
-            "position": "left"
+            "position": "left",
+            "xPercent": 34,
+            "scale": 0.92,
+            "zIndex": 2
           },
           {
             "characterId": "wendong",
             "personaId": "default",
             "spriteId": "wendong-worried",
-            "position": "right"
+            "position": "right",
+            "xPercent": 66,
+            "scale": 0.92,
+            "zIndex": 2
           }
         ]
       }
@@ -1615,7 +1753,14 @@
         "readerSentenceId": "just-friends-ch06-s004"
       },
       "audioClipId": "reader-sentence:just-friends-ch06-s004",
-      "nextId": "jf-132"
+      "nextId": "jf-132",
+      "animCommands": [
+        {
+          "type": "expression",
+          "character": "wendong",
+          "value": "worried"
+        }
+      ]
     },
     "jf-132": {
       "id": "jf-132",
@@ -1843,13 +1988,19 @@
             "characterId": "wendong",
             "personaId": "default",
             "spriteId": "wendong-neutral",
-            "position": "left"
+            "position": "left",
+            "xPercent": 34,
+            "scale": 0.92,
+            "zIndex": 2
           },
           {
             "characterId": "zixin",
             "personaId": "default",
             "spriteId": "zixin-smile",
-            "position": "right"
+            "position": "right",
+            "xPercent": 66,
+            "scale": 0.92,
+            "zIndex": 2
           }
         ]
       }
@@ -1896,7 +2047,14 @@
         "readerSentenceId": "just-friends-ch07-s005"
       },
       "audioClipId": "reader-sentence:just-friends-ch07-s005",
-      "nextId": "jf-156"
+      "nextId": "jf-156",
+      "animCommands": [
+        {
+          "type": "expression",
+          "character": "zixin",
+          "value": "smile"
+        }
+      ]
     },
     "jf-156": {
       "id": "jf-156",
@@ -2091,19 +2249,28 @@
             "characterId": "dapeng",
             "personaId": "default",
             "spriteId": "dapeng-angry",
-            "position": "left"
+            "position": "left",
+            "xPercent": 22,
+            "scale": 0.84,
+            "zIndex": 2
           },
           {
             "characterId": "wendong",
             "personaId": "default",
             "spriteId": "wendong-worried",
-            "position": "center"
+            "position": "center",
+            "xPercent": 50,
+            "scale": 0.88,
+            "zIndex": 3
           },
           {
             "characterId": "zixin",
             "personaId": "default",
             "spriteId": "zixin-neutral",
-            "position": "right"
+            "position": "right",
+            "xPercent": 78,
+            "scale": 0.84,
+            "zIndex": 2
           }
         ]
       }
@@ -2389,13 +2556,19 @@
             "characterId": "wendong",
             "personaId": "default",
             "spriteId": "wendong-worried",
-            "position": "left"
+            "position": "left",
+            "xPercent": 34,
+            "scale": 0.92,
+            "zIndex": 2
           },
           {
             "characterId": "zixin",
             "personaId": "default",
             "spriteId": "zixin-neutral",
-            "position": "right"
+            "position": "right",
+            "xPercent": 66,
+            "scale": 0.92,
+            "zIndex": 2
           }
         ]
       }
@@ -2813,13 +2986,19 @@
             "characterId": "wendong",
             "personaId": "default",
             "spriteId": "wendong-worried",
-            "position": "left"
+            "position": "left",
+            "xPercent": 34,
+            "scale": 0.92,
+            "zIndex": 2
           },
           {
             "characterId": "zixin",
             "personaId": "default",
             "spriteId": "zixin-smile",
-            "position": "right"
+            "position": "right",
+            "xPercent": 66,
+            "scale": 0.92,
+            "zIndex": 2
           }
         ]
       }
@@ -3082,14 +3261,20 @@
           {
             "characterId": "dapeng",
             "personaId": "default",
-            "spriteId": "dapeng-neutral",
-            "position": "left"
+            "spriteId": "dapeng-angry",
+            "position": "left",
+            "xPercent": 34,
+            "scale": 0.92,
+            "zIndex": 2
           },
           {
             "characterId": "wendong",
             "personaId": "default",
-            "spriteId": "wendong-neutral",
-            "position": "right"
+            "spriteId": "wendong-worried",
+            "position": "right",
+            "xPercent": 66,
+            "scale": 0.92,
+            "zIndex": 2
           }
         ]
       }
@@ -3103,7 +3288,19 @@
         "readerSentenceId": "just-friends-ch11-s002"
       },
       "audioClipId": "reader-sentence:just-friends-ch11-s002",
-      "nextId": "jf-259"
+      "nextId": "jf-259",
+      "animCommands": [
+        {
+          "type": "expression",
+          "character": "dapeng",
+          "value": "angry"
+        },
+        {
+          "type": "expression",
+          "character": "wendong",
+          "value": "worried"
+        }
+      ]
     },
     "jf-259": {
       "id": "jf-259",
@@ -3389,7 +3586,19 @@
         "readerSentenceId": "just-friends-ch11-s028"
       },
       "audioClipId": "reader-sentence:just-friends-ch11-s028",
-      "nextId": "jf-285"
+      "nextId": "jf-285",
+      "animCommands": [
+        {
+          "type": "expression",
+          "character": "dapeng",
+          "value": "angry"
+        },
+        {
+          "type": "expression",
+          "character": "wendong",
+          "value": "worried"
+        }
+      ]
     },
     "jf-285": {
       "id": "jf-285",
@@ -3466,7 +3675,19 @@
         "readerSentenceId": "just-friends-ch11-s035"
       },
       "audioClipId": "reader-sentence:just-friends-ch11-s035",
-      "nextId": "jf-292"
+      "nextId": "jf-292",
+      "animCommands": [
+        {
+          "type": "expression",
+          "character": "dapeng",
+          "value": "neutral"
+        },
+        {
+          "type": "expression",
+          "character": "wendong",
+          "value": "neutral"
+        }
+      ]
     },
     "jf-292": {
       "id": "jf-292",
@@ -3485,13 +3706,19 @@
             "characterId": "dapeng",
             "personaId": "default",
             "spriteId": "dapeng-neutral",
-            "position": "left"
+            "position": "left",
+            "xPercent": 34,
+            "scale": 0.92,
+            "zIndex": 2
           },
           {
             "characterId": "wendong",
             "personaId": "default",
             "spriteId": "wendong-neutral",
-            "position": "right"
+            "position": "right",
+            "xPercent": 66,
+            "scale": 0.92,
+            "zIndex": 2
           }
         ]
       }
@@ -3626,7 +3853,14 @@
         "readerSentenceId": "just-friends-ch12-s013"
       },
       "audioClipId": "reader-sentence:just-friends-ch12-s013",
-      "nextId": "jf-305"
+      "nextId": "jf-305",
+      "animCommands": [
+        {
+          "type": "expression",
+          "character": "wendong",
+          "value": "neutral"
+        }
+      ]
     },
     "jf-305": {
       "id": "jf-305",

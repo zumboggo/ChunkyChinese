@@ -68,7 +68,8 @@
             "spriteId": "irene-concerned",
             "position": "left",
             "xPercent": 35,
-            "scale": 0.92
+            "scale": 0.92,
+            "zIndex": 2
           },
           {
             "slotId": "weed",
@@ -78,7 +79,8 @@
             "position": "right",
             "xPercent": 68,
             "scale": 0.82,
-            "dimmed": true
+            "dimmed": true,
+            "zIndex": 2
           }
         ]
       },
