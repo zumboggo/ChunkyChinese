@@ -50,6 +50,7 @@ import type {
   WordStatus,
   DictionaryEntry,
 } from './types'
+import { GENERATED_STORIES_PACK_ID, GENERATED_STORIES_PACK_NAME } from './generatedStories'
 import {
   applyFsrsRating,
   isFsrsCardDue,
@@ -1458,6 +1459,43 @@ export async function getAllReaderBooks(): Promise<ReaderBook[]> {
   return (await (await getDB()).getAll('readerBooks')).sort(
     (a, b) => a.chapterStart - b.chapterStart || a.title.localeCompare(b.title),
   )
+}
+
+export async function saveGeneratedReaderBook(book: ReaderBook): Promise<void> {
+  const db = await getDB()
+  const existingBooks = (await db.getAll('readerBooks')).filter(
+    (row) => row.packId === GENERATED_STORIES_PACK_ID,
+  )
+  const now = new Date().toISOString()
+  const pack: ReaderPack = {
+    packId: GENERATED_STORIES_PACK_ID,
+    name: GENERATED_STORIES_PACK_NAME,
+    description: 'AI-generated local stories tuned to your known vocabulary.',
+    language: 'zh-CN',
+    createdAt: now,
+    audioAvailable: false,
+    synthesizedAudioCount: 0,
+    storyCount: existingBooks.length + 1,
+    sentenceCount:
+      existingBooks.reduce((sum, item) => sum + item.stories.flatMap((story) => story.sentences).length, 0) +
+      book.stories.flatMap((story) => story.sentences).length,
+    books: [...existingBooks, book].map((item) => ({
+      id: item.id,
+      title: item.title,
+      book: item.book,
+      chapterStart: item.chapterStart,
+      chapterEnd: item.chapterEnd,
+      storyCount: item.stories.length,
+      sentenceCount: item.stories.flatMap((story) => story.sentences).length,
+      path: item.path ?? '',
+      coverImage: item.coverImage,
+      visualNovelWorldId: item.visualNovelWorldId,
+    })),
+  }
+  const tx = db.transaction(['readerPacks', 'readerBooks'], 'readwrite')
+  await tx.objectStore('readerPacks').put(pack)
+  await tx.objectStore('readerBooks').put(book)
+  await tx.done
 }
 
 export async function getReaderProgress(

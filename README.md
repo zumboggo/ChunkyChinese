@@ -109,6 +109,20 @@ Android Chrome testing steps:
 
 The app uses `public/manifest.webmanifest` and `public/service-worker.js`, both written for the GitHub Pages subpath `/ChunkyChinese/`. The manifest is linked from `index.html` with a relative link, and the service worker is registered with `navigator.serviceWorker.register("./service-worker.js")`.
 
+## Optional OpenRouter Story Generation
+
+AI-generated Reader stories are optional and run through a Supabase Edge Function so the OpenRouter key is never exposed in the browser. Apply `supabase-sync-schema.sql`, deploy `supabase/functions/generate-story`, and set these function secrets:
+
+```bash
+OPENROUTER_API_KEY=...
+CHUNKY_STORY_MODEL=moonshotai/kimi-k2.6
+CHUNKY_AI_STORY_DAILY_LIMIT=5
+CHUNKY_AI_STORIES_ENABLED=true
+CHUNKY_APP_URL=https://your-site.example
+```
+
+Use a dedicated OpenRouter API key with a small credit limit, such as `$5`, before enabling this on the hosted app. Generated stories are saved locally into the Reader library under Generated Stories.
+
 Troubleshooting:
 
 - If an old version keeps loading, clear site data for `zumboggo.github.io` in Chrome and reopen the app.

@@ -47,4 +47,19 @@ describe('WordInfoPopover', () => {
     expect(markup).not.toContain('FSRS')
     expect(markup).not.toContain('Due')
   })
+
+  it('labels unsaved reader words as save-to-deck actions', () => {
+    const markup = renderToStaticMarkup(
+      <WordInfoPopover
+        selectedToken={{ ...selectedToken, word: undefined }}
+        dictionaryEntry={{ simplified: '照顾', traditional: '照顧', pinyin: 'zhao gu', english: 'to look after' }}
+        onClose={vi.fn()}
+        onEditWord={vi.fn()}
+        onSaveWord={vi.fn()}
+        formatDueDate={() => ''}
+      />,
+    )
+
+    expect(markup).toContain('Save to deck')
+  })
 })

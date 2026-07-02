@@ -91,10 +91,10 @@ export function WordInfoPopover({
             onClick={(event) => {
               event.stopPropagation()
               void onSaveWord(selectedToken.text, dictionaryEntry.pinyin, dictionaryEntry.english)
-            }}
-          >
-            Save Word
-          </button>
+          }}
+        >
+            Save to deck
+        </button>
         </>
       ) : (
         <p>No saved vocabulary entry yet.</p>

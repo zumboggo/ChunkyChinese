@@ -23,9 +23,18 @@ create table if not exists public.reader_progress (
   primary key (user_id, progress_id)
 );
 
+create table if not exists public.ai_story_generations (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  model text not null,
+  prompt text not null,
+  created_at timestamptz not null default now()
+);
+
 alter table public.word_progress enable row level security;
 alter table public.review_events enable row level security;
 alter table public.reader_progress enable row level security;
+alter table public.ai_story_generations enable row level security;
 
 drop policy if exists "Users can read their own word progress" on public.word_progress;
 create policy "Users can read their own word progress"
@@ -83,3 +92,9 @@ on public.reader_progress for update
 to authenticated
 using (auth.uid() = user_id)
 with check (auth.uid() = user_id);
+
+drop policy if exists "Users can read their own AI story generation events" on public.ai_story_generations;
+create policy "Users can read their own AI story generation events"
+on public.ai_story_generations for select
+to authenticated
+using (auth.uid() = user_id);

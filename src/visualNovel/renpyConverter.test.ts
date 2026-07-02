@@ -71,7 +71,7 @@ describe('vn-renpy converter', () => {
   })
 
   it('generates English translation blocks for all dialogue lines', async () => {
-    // @ts-expect-error
+    // @ts-expect-error converter script is plain ESM without generated TS declarations.
     const { buildEnglishTranslations } = await import('../../scripts/vn-renpy/converter.mjs')
     const output = buildEnglishTranslations(TEST_SCRIPT)
 

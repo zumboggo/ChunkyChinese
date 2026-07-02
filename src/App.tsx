@@ -50,6 +50,7 @@ import {
   saveSentenceSrs,
   saveNewWordsPerDay,
   saveReaderProgress,
+  saveGeneratedReaderBook,
   seedLmsWordsIfEmpty,
   seedReaderBooksIfEmpty,
   saveHotkeys,
@@ -68,6 +69,23 @@ import {
   saveSentenceRepData,
   restoreWordFsrs,
 } from './db'
+import { generateAiStory } from './aiStories'
+import {
+  GENERATED_STORIES_PACK_ID,
+  GENERATED_STORY_TARGET_COVERAGE,
+  generatedStoryToReaderBook,
+  validateGeneratedStoryCoverage,
+  type GeneratedStoryPayload,
+  type GeneratedStoryValidation,
+} from './generatedStories'
+import {
+  mergeStoryChunkMetrics,
+  readerComfortLabel,
+  sortReaderBooksByKnownPercent,
+  storyChunkSentenceMetrics,
+  type StoryChunkMetrics,
+  type StoryChunkReceipt,
+} from './storyFeatures'
 import { createLesson, createPocketLesson, selectSentenceLessonSet, buildSentenceRoundOrder, type PauseProfile, type SentenceLessonItem } from './lesson'
 import { pinyin as getPinyin } from 'pinyin-pro'
 import { renderLessonToWav } from './renderAudio'
@@ -163,6 +181,21 @@ type ReaderComprehensionSummary = {
   learning: number
   new: number
   total: number
+}
+type StoryChunkSession = {
+  id: string
+  bookId: string
+  packId: string
+  startIndex: number
+  endIndex: number
+  startedAtMs: number
+  sentenceIdsRead: string[]
+  metrics: StoryChunkMetrics
+}
+type GeneratedStoryResult = {
+  book: ReaderBook
+  story: GeneratedStoryPayload
+  validation: GeneratedStoryValidation
 }
 type ReaderBookComprehension = ReaderComprehensionSummary & {
   chapters: Array<
@@ -382,6 +415,10 @@ function App() {
   const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
   const [todayReaderStats, setTodayReaderStats] = useState<ReaderSessionStats | null>(null)
   const [latestReaderProgress, setLatestReaderProgress] = useState<ReaderProgress | undefined>()
+  const [storyChunkSession, setStoryChunkSession] = useState<StoryChunkSession | null>(null)
+  const [storyChunkReceipt, setStoryChunkReceipt] = useState<StoryChunkReceipt | null>(null)
+  const [aiStoryMessage, setAiStoryMessage] = useState<string | null>(null)
+  const [aiStoryBusy, setAiStoryBusy] = useState(false)
   const [cloudUserEmail, setCloudUserEmail] = useState<string | null>(null)
   const [cloudSync, setCloudSync] = useState<CloudSyncUiState>({
     status: isSupabaseConfigured ? 'signed-out' : 'unconfigured',
@@ -1281,6 +1318,92 @@ function App() {
     setTodayReaderStats(stats)
   }, [words, scopedWords])
 
+  const finishStoryChunk = useCallback((receipt: StoryChunkReceipt) => {
+    setStoryChunkSession(null)
+    setStoryChunkReceipt(receipt)
+    setFlashcardCelebrationId((id) => id + 1)
+    playGentleCelebration()
+    setLastSummary(`Story Chunk complete: ${receipt.sentencesRead} sentences read.`)
+  }, [])
+
+  const storyChunkReceiptFromSession = useCallback((
+    session: StoryChunkSession,
+    metrics: StoryChunkMetrics,
+  ): StoryChunkReceipt => {
+    const targetSentences = session.endIndex - session.startIndex + 1
+    return {
+      title: 'Story Chunk complete',
+      sentencesRead: session.sentenceIdsRead.length,
+      targetSentences,
+      activeSeconds: Math.max(1, Math.round((Date.now() - session.startedAtMs) / 1000)),
+      progressPercent: readerProgressPercent(session.endIndex, readerSentences.length),
+      knownWords: metrics.knownWords.length,
+      learningWords: metrics.learningWords.length,
+      unsavedWordsTapped: metrics.tappedUnsavedWords.length,
+      wordsSaved: metrics.savedWords.length,
+    }
+  }, [readerSentences.length])
+
+  const recordStoryChunkSentence = useCallback((sentence: ReaderSentence, sentenceIndex: number) => {
+    const currentVocab = scopedWords.length > 0 ? scopedWords : words
+    const sentenceMetrics = storyChunkSentenceMetrics(sentence.chinese, currentVocab)
+    setStoryChunkSession((current) => {
+      if (!current || current.sentenceIdsRead.includes(sentence.id)) return current
+      if (sentenceIndex < current.startIndex || sentenceIndex > current.endIndex) return current
+      const nextMetrics = mergeStoryChunkMetrics(current.metrics, sentenceMetrics)
+      const nextSession: StoryChunkSession = {
+        ...current,
+        sentenceIdsRead: [...current.sentenceIdsRead, sentence.id],
+        metrics: nextMetrics,
+      }
+      if (sentenceIndex >= current.endIndex || nextSession.sentenceIdsRead.length >= current.endIndex - current.startIndex + 1) {
+        const receipt = storyChunkReceiptFromSession(nextSession, nextMetrics)
+        window.setTimeout(() => finishStoryChunk(receipt), 0)
+        return null
+      }
+      return nextSession
+    })
+  }, [finishStoryChunk, scopedWords, storyChunkReceiptFromSession, words])
+
+  const startStoryChunk = useCallback(() => {
+    if (!activeReaderBook || !currentReaderSentence || readerSentences.length === 0) return
+    const endIndex = Math.min(readerSentenceIndex + 9, readerSentences.length - 1)
+    const currentVocab = scopedWords.length > 0 ? scopedWords : words
+    const metrics = storyChunkSentenceMetrics(currentReaderSentence.chinese, currentVocab)
+    const session: StoryChunkSession = {
+      id: `story-chunk:${activeReaderBook.id}:${Date.now()}`,
+      bookId: activeReaderBook.id,
+      packId: activeReaderBook.packId,
+      startIndex: readerSentenceIndex,
+      endIndex,
+      startedAtMs: Date.now(),
+      sentenceIdsRead: [currentReaderSentence.id],
+      metrics,
+    }
+    setStoryChunkReceipt(null)
+    if (endIndex <= readerSentenceIndex) {
+      finishStoryChunk(storyChunkReceiptFromSession(session, metrics))
+      return
+    }
+    setStoryChunkSession(session)
+    setLastSummary(`Story Chunk started: ${endIndex - readerSentenceIndex + 1} sentences.`)
+  }, [
+    activeReaderBook,
+    currentReaderSentence,
+    finishStoryChunk,
+    readerSentenceIndex,
+    readerSentences.length,
+    scopedWords,
+    storyChunkReceiptFromSession,
+    words,
+  ])
+
+  const updateStoryChunkMetrics = useCallback((patch: Partial<StoryChunkMetrics>) => {
+    setStoryChunkSession((current) => (
+      current ? { ...current, metrics: mergeStoryChunkMetrics(current.metrics, patch) } : current
+    ))
+  }, [])
+
   const renderAndLoadLesson = useCallback(async (
     nextLesson: LessonPlan,
     playAfterRender: boolean,
@@ -1397,6 +1520,8 @@ function App() {
     setReaderSentenceIndex(boundedIndex)
     setSelectedReaderToken(null)
     setReaderDictionaryEntry(null)
+    setStoryChunkSession(null)
+    setStoryChunkReceipt(null)
     setScreen('reader')
     const session = await startReaderSession(book.packId, book.id)
     setActiveReaderSession(session)
@@ -1482,6 +1607,9 @@ function App() {
     if (nextSentence && activeReaderSession) {
       await recordReaderSentenceView(nextSentence, activeReaderSession)
     }
+    if (nextSentence && delta > 0) {
+      recordStoryChunkSentence(nextSentence, nextIndex)
+    }
     if (delta > 0) {
       const { repsToday, totalReps } = await saveSentenceRepData({ reps: 1, queueOffset: sentenceQueueOffset })
       setSentenceRepsToday(repsToday)
@@ -1496,6 +1624,7 @@ function App() {
     queueCloudSync,
     recordReaderInteraction,
     recordReaderSentenceView,
+    recordStoryChunkSentence,
     sentenceQueueOffset,
   ])
 
@@ -2404,6 +2533,49 @@ function App() {
     downloadText(`vocab-snapshot-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(snapshot, null, 2))
   }
 
+  const handleGenerateStory = useCallback(async (prompt: string): Promise<GeneratedStoryResult> => {
+    if (!cloudUserEmail) {
+      throw new Error('Sign in with cloud sync before generating AI stories.')
+    }
+    const knownWords = words
+      .filter((word) => adaptiveReaderPinyinState(word) === 'known')
+      .map((word) => ({
+        word: word.word,
+        pinyin: word.pinyin,
+        meaning: word.meaning,
+      }))
+      .slice(0, 1200)
+    if (knownWords.length < 20) {
+      throw new Error('You need at least 20 mature known words before generating a known-word story.')
+    }
+
+    setAiStoryBusy(true)
+    setAiStoryMessage('Generating a known-word story...')
+    try {
+      let story = await generateAiStory({ prompt, knownWords })
+      let validation = validateGeneratedStoryCoverage(story, words)
+      if (
+        validation.knownCoveragePercent < GENERATED_STORY_TARGET_COVERAGE ||
+        validation.unavoidableNewWords.length > 5
+      ) {
+        setAiStoryMessage('First draft was too spicy. Retrying with simpler known words...')
+        story = await generateAiStory({ prompt, knownWords, strictRetry: true })
+        validation = validateGeneratedStoryCoverage(story, words)
+      }
+      const book = generatedStoryToReaderBook(story, validation)
+      await saveGeneratedReaderBook(book)
+      await refresh()
+      setAiStoryMessage(
+        validation.warning
+          ? `${book.title} saved. ${validation.warning}`
+          : `${book.title} saved with ${validation.knownCoveragePercent}% known-word coverage.`,
+      )
+      return { book, story, validation }
+    } finally {
+      setAiStoryBusy(false)
+    }
+  }, [cloudUserEmail, refresh, words])
+
   async function handleBackupImport(files: FileList | null) {
     const file = files?.[0]
     if (!file) return
@@ -3068,6 +3240,8 @@ function App() {
           replayHotkey={hotkeys.choiceF}
           choiceB={hotkeys.choiceB}
           showEnglish={readerShowEnglish}
+          storyChunk={storyChunkSession}
+          storyChunkReceipt={storyChunkReceipt}
           listening={readerListening}
           listeningRate={userSettings.readerListeningRate}
           listeningRepeats={userSettings.readerListeningRepeats}
@@ -3083,6 +3257,8 @@ function App() {
           onPrevious={() => readerListening.previous()}
           onNext={() => readerListening.next()}
           onListeningSettingsChange={(patch) => saveReaderSettings(patch)}
+          onStartStoryChunk={startStoryChunk}
+          onDismissStoryChunkReceipt={() => setStoryChunkReceipt(null)}
           onSelectToken={(token) => {
             recordReaderInteraction()
             if (token && selectedReaderToken?.id === token.id) {
@@ -3093,6 +3269,7 @@ function App() {
             setSelectedReaderToken(token)
             setReaderDictionaryEntry(null)
             if (token && !token.word && token.isChinese) {
+              updateStoryChunkMetrics({ tappedUnsavedWords: [token.text] })
               lookupDictionary(token.text).then((entry) => setReaderDictionaryEntry(entry ?? null)).catch(console.error)
             }
           }}
@@ -3110,6 +3287,7 @@ function App() {
               createdAt: new Date().toISOString(),
               updatedAt: new Date().toISOString(),
             }])
+            updateStoryChunkMetrics({ savedWords: [text] })
             await refresh()
           }}
           onEditWord={openCardEditor}
@@ -3202,6 +3380,10 @@ function App() {
             setInitialVisualNovelWorldId(book?.visualNovelWorldId)
             setScreen('visualNovel')
           }}
+          onGenerateStory={handleGenerateStory}
+          aiStoryBusy={aiStoryBusy}
+          aiStoryMessage={aiStoryMessage}
+          canGenerateAiStories={Boolean(isSupabaseConfigured && cloudUserEmail)}
         />
       )}
 
@@ -4848,6 +5030,7 @@ type ReadingBookCategory = 'novel' | 'story'
 // Which shelf each book lands on. Edit these to recategorize.
 // Per-pack default; override an individual book by its id in READING_BOOK_CATEGORY.
 const READING_PACK_CATEGORY: Record<string, ReadingBookCategory> = {
+  [GENERATED_STORIES_PACK_ID]: 'story',
   'lms-books': 'novel',
   'sherlock-holmes': 'novel',
   'rise-of-the-monkey-king': 'novel',
@@ -4877,6 +5060,10 @@ function ReadingTextsLibrary({
   onOpenRenpyPrototype,
   onOpenRenpyLms,
   onOpenVisualNovel,
+  onGenerateStory,
+  aiStoryBusy,
+  aiStoryMessage,
+  canGenerateAiStories,
 }: {
   readerBooks: ReaderBook[]
   comprehensionByBook: Map<string, ReaderBookComprehension>
@@ -4889,11 +5076,23 @@ function ReadingTextsLibrary({
   onOpenRenpyPrototype: () => void
   onOpenRenpyLms: () => void
   onOpenVisualNovel: (book?: ReaderBook) => void
+  onGenerateStory: (prompt: string) => Promise<GeneratedStoryResult>
+  aiStoryBusy: boolean
+  aiStoryMessage: string | null
+  canGenerateAiStories: boolean
 }) {
   const [category, setCategory] = useState<ReadingCategoryView>(null)
 
-  const novels = readerBooks.filter((b) => readingBookCategory(b) === 'novel')
-  const stories = readerBooks.filter((b) => readingBookCategory(b) === 'story')
+  const novels = sortReaderBooksByKnownPercent(
+    readerBooks.filter((b) => readingBookCategory(b) === 'novel'),
+    comprehensionByBook,
+    resumeLocation?.book.id,
+  )
+  const stories = sortReaderBooksByKnownPercent(
+    readerBooks.filter((b) => readingBookCategory(b) === 'story'),
+    comprehensionByBook,
+    resumeLocation?.book.id,
+  )
 
   const renderBookShelf = (books: ReaderBook[], emptyLabel: string) =>
     books.length > 0 ? (
@@ -4924,7 +5123,7 @@ function ReadingTextsLibrary({
                   <small>
                     {isResumeBook
                       ? `Continue at sentence ${resumeLocation.sentenceIndex + 1}`
-                      : `${comprehension?.knownPercent ?? 0}% vocabulary known`}
+                      : `${comprehension?.knownPercent ?? 0}% vocabulary known · ${readerComfortLabel(comprehension?.knownPercent ?? 0)}`}
                   </small>
                   <div className="reading-book-actions">
                     {isResumeBook ? (
@@ -4989,6 +5188,15 @@ function ReadingTextsLibrary({
               Classic library
             </button>
           </div>
+          {!isNovels ? (
+            <GenerateStoryPanel
+              disabled={!canGenerateAiStories}
+              busy={aiStoryBusy}
+              message={aiStoryMessage}
+              onGenerate={onGenerateStory}
+              onOpenGenerated={(book) => void onChooseBook(book, 'start')}
+            />
+          ) : null}
           {renderBookShelf(isNovels ? novels : stories, isNovels ? 'No novels yet.' : 'No stories yet.')}
         </section>
       </section>
@@ -5170,6 +5378,78 @@ function ReadingTextsLibrary({
   )
 }
 
+function GenerateStoryPanel({
+  disabled,
+  busy,
+  message,
+  onGenerate,
+  onOpenGenerated,
+}: {
+  disabled: boolean
+  busy: boolean
+  message: string | null
+  onGenerate: (prompt: string) => Promise<GeneratedStoryResult>
+  onOpenGenerated: (book: ReaderBook) => void
+}) {
+  const [prompt, setPrompt] = useState('')
+  const [lastBook, setLastBook] = useState<ReaderBook | null>(null)
+  const [localMessage, setLocalMessage] = useState<string | null>(null)
+
+  async function submit() {
+    setLocalMessage(null)
+    try {
+      const result = await onGenerate(prompt)
+      setLastBook(result.book)
+      setLocalMessage(
+        result.validation.warning ??
+          `Saved with ${result.validation.knownCoveragePercent}% known-word coverage.`,
+      )
+    } catch (error) {
+      setLocalMessage(error instanceof Error ? error.message : 'Could not generate a story.')
+    }
+  }
+
+  return (
+    <section className="generate-story-panel">
+      <div>
+        <h3>Generate a known-word story</h3>
+        <p>Write a short prompt, and the app will ask for Chinese plus English using your mature known words first.</p>
+      </div>
+      <label>
+        <span>Prompt</span>
+        <textarea
+          value={prompt}
+          onChange={(event) => setPrompt(event.target.value)}
+          placeholder="A tiny adventure about my daughter, a morning walk, and a strange shop..."
+          rows={3}
+          maxLength={700}
+          disabled={disabled || busy}
+        />
+      </label>
+      <div className="generate-story-actions">
+        <button
+          type="button"
+          className="primary"
+          onClick={() => void submit()}
+          disabled={disabled || busy || prompt.trim().length === 0}
+        >
+          {busy ? 'Generating...' : 'Generate Story'}
+        </button>
+        {lastBook ? (
+          <button type="button" onClick={() => onOpenGenerated(lastBook)}>
+            Read it
+          </button>
+        ) : null}
+      </div>
+      <small>
+        {disabled
+          ? 'Sign in with cloud sync and deploy the Supabase function to enable AI stories.'
+          : localMessage ?? message ?? 'Targets about 400 Chinese word tokens and at least 95% known-word coverage.'}
+      </small>
+    </section>
+  )
+}
+
 function ReaderMode({
   readerPacks,
   readerBooks,
@@ -5188,6 +5468,8 @@ function ReaderMode({
   replayHotkey,
   choiceB,
   showEnglish,
+  storyChunk,
+  storyChunkReceipt,
   listening,
   listeningRate,
   listeningRepeats,
@@ -5198,6 +5480,8 @@ function ReaderMode({
   onPrevious,
   onNext,
   onListeningSettingsChange,
+  onStartStoryChunk,
+  onDismissStoryChunkReceipt,
   onSelectToken,
   onEditWord,
   onPinyinModeChange,
@@ -5222,6 +5506,8 @@ function ReaderMode({
   replayHotkey: string
   choiceB: string
   showEnglish: boolean
+  storyChunk: StoryChunkSession | null
+  storyChunkReceipt: StoryChunkReceipt | null
   listening: ReaderListeningController
   listeningRate: number
   listeningRepeats: number
@@ -5235,6 +5521,8 @@ function ReaderMode({
     UserSettings,
     'readerListeningRate' | 'readerListeningRepeats' | 'readerListeningAutoAdvance'
   >>) => void
+  onStartStoryChunk: () => void
+  onDismissStoryChunkReceipt: () => void
   onSelectToken: (token: ReaderWordToken | null) => void
   onEditWord: (word: VocabWord) => void
   onPinyinModeChange: (mode: ReaderPinyinMode) => void
@@ -5261,6 +5549,10 @@ function ReaderMode({
   const grammarTokenMap = useMemo(
     () => mapGrammarToTokens(grammarMatches, tokens),
     [grammarMatches, tokens],
+  )
+  const sortedReaderBooks = useMemo(
+    () => sortReaderBooksByKnownPercent(readerBooks, comprehensionByBook, activeBook?.id),
+    [activeBook?.id, comprehensionByBook, readerBooks],
   )
 
   return (
@@ -5317,7 +5609,7 @@ function ReaderMode({
 
       <div className={`reader-layout ${activeBook ? 'zen-mode' : ''}`}>
         <aside className="reader-book-list" aria-label="Reader books">
-            {readerBooks.map((book) => {
+            {sortedReaderBooks.map((book) => {
               const comprehension = comprehensionByBook.get(book.id)
               return (
               <div
@@ -5332,6 +5624,7 @@ function ReaderMode({
                   summary={comprehension}
                   label={`You know ${comprehension?.knownPercent ?? 0}% of the words in this book.`}
                 />
+                <span className="reader-comfort-label">{readerComfortLabel(comprehension?.knownPercent ?? 0)}</span>
                 {comprehension?.chapters.length ? (
                   <details className="reader-chapter-metrics">
                     <summary>Chapter breakdown</summary>
@@ -5384,6 +5677,34 @@ function ReaderMode({
               <div className="reader-progress-bar" aria-label={`Story progress ${readerProgressPercent(sentenceIndex, sentenceCount)}%`}>
                 <span style={{ width: `${readerProgressPercent(sentenceIndex, sentenceCount)}%` }} />
               </div>
+              {storyChunk ? (
+                <div className="story-chunk-strip" aria-live="polite">
+                  <strong>Story Chunk</strong>
+                  <span>
+                    {storyChunk.sentenceIdsRead.length} / {storyChunk.endIndex - storyChunk.startIndex + 1} sentences
+                  </span>
+                  <span>{storyChunk.metrics.knownWords.length} known met</span>
+                  <span>{storyChunk.metrics.learningWords.length} learning met</span>
+                </div>
+              ) : null}
+              {storyChunkReceipt ? (
+                <section className="story-chunk-receipt" aria-live="polite">
+                  <div>
+                    <strong>{storyChunkReceipt.title}</strong>
+                    <span>
+                      {storyChunkReceipt.sentencesRead}/{storyChunkReceipt.targetSentences} sentences · {formatDuration(storyChunkReceipt.activeSeconds)}
+                    </span>
+                  </div>
+                  <dl>
+                    <div><dt>Progress</dt><dd>{storyChunkReceipt.progressPercent}%</dd></div>
+                    <div><dt>Known met</dt><dd>{storyChunkReceipt.knownWords}</dd></div>
+                    <div><dt>Learning met</dt><dd>{storyChunkReceipt.learningWords}</dd></div>
+                    <div><dt>Tapped</dt><dd>{storyChunkReceipt.unsavedWordsTapped}</dd></div>
+                    <div><dt>Saved</dt><dd>{storyChunkReceipt.wordsSaved}</dd></div>
+                  </dl>
+                  <button type="button" onClick={onDismissStoryChunkReceipt}>Close</button>
+                </section>
+              ) : null}
               <AnimatePresence mode="wait">
                 <motion.div
                   key={sentence.id}
@@ -5493,6 +5814,14 @@ function ReaderMode({
                   </button>
                   <button type="button" onClick={() => { setGrammarSelection(null); void onNext() }} disabled={sentenceIndex >= sentenceCount - 1}>
                     Next
+                  </button>
+                  <button
+                    type="button"
+                    className={storyChunk ? 'active' : 'reader-story-chunk-start'}
+                    onClick={onStartStoryChunk}
+                    disabled={Boolean(storyChunk) || sentenceIndex >= sentenceCount}
+                  >
+                    {storyChunk ? 'Chunk running' : 'Start Story Chunk'}
                   </button>
                   <button type="button" className="reader-listening-start" onClick={() => setListeningMenuOpen(true)}>
                     Listening Mode
@@ -5962,6 +6291,8 @@ function FlashcardReview({
   }
 
   useEffect(() => {
+    // Reset transient swipe state when the card changes.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDismissDir(null)
     setSwipeDir(null)
     setFlipPhase('idle')
