@@ -4216,47 +4216,91 @@ kbd {
 }
 
 .story-chunk-receipt {
-  display: grid;
-  gap: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
   margin: 0.9rem 0;
   border: 1px solid rgba(34, 197, 94, 0.35);
-  border-radius: 8px;
-  padding: 0.9rem;
+  border-radius: 10px;
+  padding: 1rem;
   background: rgba(236, 253, 245, 0.9);
 }
 
-.story-chunk-receipt > div {
-  display: grid;
+.story-chunk-receipt-summary {
+  display: flex;
+  flex-direction: column;
   gap: 0.2rem;
 }
 
-.story-chunk-receipt span {
-  color: var(--muted-navy);
-}
-
-.story-chunk-receipt dl {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.55rem;
-  margin: 0;
-}
-
-.story-chunk-receipt dt {
-  color: var(--muted-navy);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-}
-
-.story-chunk-receipt dd {
-  margin: 0;
+.story-chunk-receipt-summary strong {
+  font-size: 1rem;
   color: var(--ink);
-  font-weight: 900;
 }
 
-@media (max-width: 680px) {
-  .story-chunk-receipt dl {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.story-chunk-receipt-summary span {
+  font-size: 0.82rem;
+  color: var(--muted-navy);
+}
+
+.story-chunk-receipt-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.story-chunk-receipt-actions button {
+  flex: 1;
+  padding: 0.55rem 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 8px;
+  border: 1.5px solid rgba(34, 197, 94, 0.4);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.story-chunk-receipt-actions .primary {
+  background: #22c55e;
+  border-color: #22c55e;
+  color: #fff;
+}
+
+.story-chunk-counter {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--reader-muted, #78634c);
+  padding: 6px 0 2px;
+  letter-spacing: 0.02em;
+}
+
+.story-chunk-counter-done {
+  font-weight: 800;
+  color: #22c55e;
+}
+
+.story-chunk-counter-sep {
+  opacity: 0.5;
+}
+
+.story-chunk-counter-label {
+  opacity: 0.65;
+}
+
+@keyframes reader-glow-fade {
+  0%   { opacity: 1; }
+  60%  { opacity: 0.7; }
+  100% { opacity: 0; }
+}
+
+.reader-next-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 200;
+  border: 3px solid rgba(34, 197, 94, 0.65);
+  border-radius: 18px;
+  box-shadow: 0 0 18px rgba(34, 197, 94, 0.35), inset 0 0 24px rgba(34, 197, 94, 0.15);
+  animation: reader-glow-fade 0.65s ease-out forwards;
 }
 
 .reader-chapter-metrics {

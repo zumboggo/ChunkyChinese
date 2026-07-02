@@ -5533,7 +5533,15 @@ function ReaderMode({
   const [listeningMenuOpen, setListeningMenuOpen] = useState(false)
   const [grammarSelection, setGrammarSelection] = useState<GrammarMatch[] | null>(null)
   const [readerBouncing, setReaderBouncing] = useState(false)
+  const [nextGlow, setNextGlow] = useState(false)
+  const nextGlowTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const readerSwipeStart = useRef<{ x: number; y: number } | null>(null)
+
+  function triggerNextGlow() {
+    if (nextGlowTimer.current) clearTimeout(nextGlowTimer.current)
+    setNextGlow(true)
+    nextGlowTimer.current = setTimeout(() => setNextGlow(false), 700)
+  }
 
   function handleReaderTouchStart(e: React.TouchEvent) {
     readerSwipeStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
@@ -5552,6 +5560,7 @@ function ReaderMode({
       listening.togglePlayPause()
     } else if (absDx > absDy && dx < -50) {
       setGrammarSelection(null)
+      triggerNextGlow()
       void onNext()
     } else if (absDx > absDy && dx > 50) {
       setGrammarSelection(null)
@@ -5715,32 +5724,20 @@ function ReaderMode({
               <div className="reader-progress-bar" aria-label={`Story progress ${readerProgressPercent(sentenceIndex, sentenceCount)}%`}>
                 <span style={{ width: `${readerProgressPercent(sentenceIndex, sentenceCount)}%` }} />
               </div>
-              {storyChunk ? (
-                <div className="story-chunk-strip" aria-live="polite">
-                  <strong>Story Chunk</strong>
-                  <span>
-                    {storyChunk.sentenceIdsRead.length} / {storyChunk.endIndex - storyChunk.startIndex + 1} sentences
-                  </span>
-                  <span>{storyChunk.metrics.knownWords.length} known met</span>
-                  <span>{storyChunk.metrics.learningWords.length} learning met</span>
-                </div>
-              ) : null}
               {storyChunkReceipt ? (
                 <section className="story-chunk-receipt" aria-live="polite">
-                  <div>
+                  <div className="story-chunk-receipt-summary">
                     <strong>{storyChunkReceipt.title}</strong>
-                    <span>
-                      {storyChunkReceipt.sentencesRead}/{storyChunkReceipt.targetSentences} sentences · {formatDuration(storyChunkReceipt.activeSeconds)}
-                    </span>
+                    <span>{storyChunkReceipt.sentencesRead} sentences · {formatDuration(storyChunkReceipt.activeSeconds)}</span>
                   </div>
-                  <dl>
-                    <div><dt>Progress</dt><dd>{storyChunkReceipt.progressPercent}%</dd></div>
-                    <div><dt>Known met</dt><dd>{storyChunkReceipt.knownWords}</dd></div>
-                    <div><dt>Learning met</dt><dd>{storyChunkReceipt.learningWords}</dd></div>
-                    <div><dt>Tapped</dt><dd>{storyChunkReceipt.unsavedWordsTapped}</dd></div>
-                    <div><dt>Saved</dt><dd>{storyChunkReceipt.wordsSaved}</dd></div>
-                  </dl>
-                  <button type="button" onClick={onDismissStoryChunkReceipt}>Close</button>
+                  <div className="story-chunk-receipt-actions">
+                    <button type="button" className="primary" onClick={() => { onDismissStoryChunkReceipt(); onStartStoryChunk() }}>
+                      Continue
+                    </button>
+                    <button type="button" onClick={onDismissStoryChunkReceipt}>
+                      Done
+                    </button>
+                  </div>
                 </section>
               ) : null}
               <div
@@ -5795,6 +5792,15 @@ function ReaderMode({
                   {sentence.english}
                 </p>
               </div>
+              {storyChunk && (
+                <div className="story-chunk-counter" aria-live="polite">
+                  <span className="story-chunk-counter-done">{storyChunk.sentenceIdsRead.length}</span>
+                  <span className="story-chunk-counter-sep"> / </span>
+                  <span>{storyChunk.endIndex - storyChunk.startIndex + 1}</span>
+                  <span className="story-chunk-counter-label"> sentences in chunk</span>
+                </div>
+              )}
+              {nextGlow && <div className="reader-next-glow" aria-hidden="true" />}
               {listening.active ? (
                 <div className="reader-listening-dock" aria-live="polite">
                   <div className="reader-listening-controls" aria-label="Reader listening controls">
@@ -5836,7 +5842,7 @@ function ReaderMode({
                     <button
                       type="button"
                       className="sentence-end-btn reader-listening-icon-btn"
-                      onClick={() => { setGrammarSelection(null); void onNext() }}
+                      onClick={() => { setGrammarSelection(null); triggerNextGlow(); void onNext() }}
                       disabled={sentenceIndex >= sentenceCount - 1}
                       aria-label={`Next sentence. Choice B hotkey: ${choiceB.toUpperCase()}.`}
                     >
@@ -5863,7 +5869,7 @@ function ReaderMode({
                   <button
                     type="button"
                     className="reader-btn-icon reader-btn-next"
-                    onClick={() => { setGrammarSelection(null); void onNext() }}
+                    onClick={() => { setGrammarSelection(null); triggerNextGlow(); void onNext() }}
                     disabled={sentenceIndex >= sentenceCount - 1}
                     aria-label={`Next sentence. Hotkey: ${choiceB.toUpperCase()}.`}
                   >
