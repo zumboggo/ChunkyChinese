@@ -5532,6 +5532,33 @@ function ReaderMode({
 }) {
   const [listeningMenuOpen, setListeningMenuOpen] = useState(false)
   const [grammarSelection, setGrammarSelection] = useState<GrammarMatch[] | null>(null)
+  const [readerBouncing, setReaderBouncing] = useState(false)
+  const readerSwipeStart = useRef<{ x: number; y: number } | null>(null)
+
+  function handleReaderTouchStart(e: React.TouchEvent) {
+    readerSwipeStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+  }
+  function handleReaderTouchEnd(e: React.TouchEvent) {
+    if (!readerSwipeStart.current) return
+    const dx = e.changedTouches[0].clientX - readerSwipeStart.current.x
+    const dy = e.changedTouches[0].clientY - readerSwipeStart.current.y
+    readerSwipeStart.current = null
+    const absDx = Math.abs(dx)
+    const absDy = Math.abs(dy)
+    if (absDx < 20 && absDy < 20) return
+    if (absDy > absDx && dy > 50) {
+      setReaderBouncing(true)
+      setTimeout(() => setReaderBouncing(false), 600)
+      listening.togglePlayPause()
+    } else if (absDx > absDy && dx < -50) {
+      setGrammarSelection(null)
+      void onNext()
+    } else if (absDx > absDy && dx > 50) {
+      setGrammarSelection(null)
+      void onPrevious()
+    }
+  }
+
   const listeningRepeatTotal = listening.snapshot.mode === 'single' ? 1 : listeningRepeats
   const listeningPlaying =
     listening.snapshot.status === 'playing' || listening.snapshot.status === 'loading'
@@ -5569,13 +5596,24 @@ function ReaderMode({
             Library
           </button>
           {activeBook && sentence && (
-            <button
-              type="button"
-              className={listening.active ? 'active' : ''}
-              onClick={() => setListeningMenuOpen(true)}
-            >
-              Listening Mode
-            </button>
+            <>
+              <button
+                type="button"
+                className={storyChunk ? 'active' : ''}
+                onClick={onStartStoryChunk}
+                disabled={Boolean(storyChunk) || sentenceIndex >= sentenceCount}
+                aria-label={storyChunk ? 'Story chunk running' : 'Start story chunk'}
+              >
+                {storyChunk ? 'Chunks ✓' : 'Chunks'}
+              </button>
+              <button
+                type="button"
+                className={listening.active ? 'active' : ''}
+                onClick={() => setListeningMenuOpen(true)}
+              >
+                Listening Mode
+              </button>
+            </>
           )}
           <div className="segmented-control reader-pinyin-control" aria-label="Reader pinyin mode">
             {readerPinyinModes.map((mode) => (
@@ -5705,52 +5743,58 @@ function ReaderMode({
                   <button type="button" onClick={onDismissStoryChunkReceipt}>Close</button>
                 </section>
               ) : null}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={sentence.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3 }}
-                  className={`reader-reading-area${listening.active ? ' reader-listening-highlight' : ''}`}
-                >
-                  {illustration && (
-                    <figure className="reader-illustration">
-                      <img
-                        key={illustration.imageFilename}
-                        src={illustrationSrc}
-                        alt={illustration.alt}
-                        loading="lazy"
-                        onError={(event) => {
-                          if (!fallbackIllustrationSrc) return
-                          const image = event.currentTarget
-                          if (image.dataset.fallbackShown === 'true') return
-                          image.dataset.fallbackShown = 'true'
-                          image.src = fallbackIllustrationSrc
-                        }}
-                      />
-                    </figure>
-                  )}
-                  <AdaptiveChineseText
-                    tokens={tokens}
-                    selectedToken={selectedToken}
-                    pinyinMode={pinyinMode}
-                    onSelectToken={(token) => {
-                      setGrammarSelection(null)
-                      onSelectToken(token)
-                    }}
-                    onGrammarSelect={(matches) => setGrammarSelection(matches)}
-                    grammarTokenMap={grammarTokenMap}
-                  />
-                </motion.div>
-              </AnimatePresence>
-              <p
-                className={`reader-translation ${
-                  showEnglish || listening.active ? 'revealed' : 'blur-reveal'
-                }${listening.active ? ' reader-listening-highlight' : ''}`}
+              <div
+                className={`reader-swipe-zone${readerBouncing ? ' reader-bounce-down' : ''}`}
+                onTouchStart={handleReaderTouchStart}
+                onTouchEnd={handleReaderTouchEnd}
               >
-                {sentence.english}
-              </p>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={sentence.id}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className={`reader-reading-area${listening.active ? ' reader-listening-highlight' : ''}`}
+                  >
+                    {illustration && (
+                      <figure className="reader-illustration">
+                        <img
+                          key={illustration.imageFilename}
+                          src={illustrationSrc}
+                          alt={illustration.alt}
+                          loading="lazy"
+                          onError={(event) => {
+                            if (!fallbackIllustrationSrc) return
+                            const image = event.currentTarget
+                            if (image.dataset.fallbackShown === 'true') return
+                            image.dataset.fallbackShown = 'true'
+                            image.src = fallbackIllustrationSrc
+                          }}
+                        />
+                      </figure>
+                    )}
+                    <AdaptiveChineseText
+                      tokens={tokens}
+                      selectedToken={selectedToken}
+                      pinyinMode={pinyinMode}
+                      onSelectToken={(token) => {
+                        setGrammarSelection(null)
+                        onSelectToken(token)
+                      }}
+                      onGrammarSelect={(matches) => setGrammarSelection(matches)}
+                      grammarTokenMap={grammarTokenMap}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+                <p
+                  className={`reader-translation ${
+                    showEnglish || listening.active ? 'revealed' : 'blur-reveal'
+                  }${listening.active ? ' reader-listening-highlight' : ''}`}
+                >
+                  {sentence.english}
+                </p>
+              </div>
               {listening.active ? (
                 <div className="reader-listening-dock" aria-live="polite">
                   <div className="reader-listening-controls" aria-label="Reader listening controls">
@@ -5804,27 +5848,46 @@ function ReaderMode({
                   </div>
                 </div>
               ) : (
-                <div className="reader-controls">
-                  <button type="button" onClick={() => { setGrammarSelection(null); void onPrevious() }} disabled={sentenceIndex <= 0}>
-                    Previous
-                  </button>
-                  <button type="button" className="primary" onClick={listening.playSentenceOnce}>
-                    <kbd>{replayHotkey.toUpperCase()}</kbd>
-                    Play sentence
-                  </button>
-                  <button type="button" onClick={() => { setGrammarSelection(null); void onNext() }} disabled={sentenceIndex >= sentenceCount - 1}>
-                    Next
+                <div className="reader-controls reader-controls-icon">
+                  <button
+                    type="button"
+                    className="reader-btn-icon reader-btn-prev"
+                    onClick={() => { setGrammarSelection(null); void onPrevious() }}
+                    disabled={sentenceIndex <= 0}
+                    aria-label="Previous sentence"
+                  >
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+                      <polygon points="17,4 7,12 17,20" />
+                    </svg>
                   </button>
                   <button
                     type="button"
-                    className={storyChunk ? 'active' : 'reader-story-chunk-start'}
-                    onClick={onStartStoryChunk}
-                    disabled={Boolean(storyChunk) || sentenceIndex >= sentenceCount}
+                    className="reader-btn-icon reader-btn-next"
+                    onClick={() => { setGrammarSelection(null); void onNext() }}
+                    disabled={sentenceIndex >= sentenceCount - 1}
+                    aria-label={`Next sentence. Hotkey: ${choiceB.toUpperCase()}.`}
                   >
-                    {storyChunk ? 'Chunk running' : 'Start Story Chunk'}
+                    <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true">
+                      <polygon points="7,4 17,12 7,20" />
+                    </svg>
                   </button>
-                  <button type="button" className="reader-listening-start" onClick={() => setListeningMenuOpen(true)}>
-                    Listening Mode
+                  <button
+                    type="button"
+                    className="reader-btn-icon reader-btn-play"
+                    onClick={listening.togglePlayPause}
+                    aria-label={listeningPlaying ? `Pause. Hotkey: ${replayHotkey.toUpperCase()}.` : `Play sentence. Hotkey: ${replayHotkey.toUpperCase()}.`}
+                  >
+                    {listeningPlaying ? (
+                      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+                        <rect x="5" y="4" width="4" height="16" rx="1" />
+                        <rect x="15" y="4" width="4" height="16" rx="1" />
+                      </svg>
+                    ) : (
+                      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+                        <path d="M11 5L6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"/>
+                        <path d="M15.5 8.5a5 5 0 0 1 0 7"/>
+                      </svg>
+                    )}
                   </button>
                 </div>
               )}
