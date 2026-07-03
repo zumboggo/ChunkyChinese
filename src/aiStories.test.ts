@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { extractJsonObject, generateAiStory } from './aiStories'
+import { COVER_IMAGE_MODEL, extractJsonObject, generateAiStory, generateStoryCover } from './aiStories'
 
 const STORY_JSON = {
   title: '小狗的一天',
@@ -95,10 +95,49 @@ describe('generateAiStory', () => {
     expect(fetchMock).toHaveBeenCalledTimes(2)
   })
 
+  it('builds a continuation prompt from previous sentences', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(completionResponse(JSON.stringify(STORY_JSON)))
+    vi.stubGlobal('fetch', fetchMock)
+    await generateAiStory({
+      ...baseOptions(),
+      prompt: '',
+      continueFrom: { title: '小狗的一天', recentSentences: ['它去公园玩。'], nextChapter: 2 },
+    })
+    const body = JSON.parse(fetchMock.mock.calls[0][1].body as string)
+    const userMessage = body.messages[1].content as string
+    expect(userMessage).toContain('它去公园玩。')
+    expect(userMessage).toContain('NEXT chapter (chapter 2)')
+    expect(userMessage).toContain('小狗')
+  })
+
   it('fails without an API key before any request', async () => {
     const fetchMock = vi.fn()
     vi.stubGlobal('fetch', fetchMock)
     await expect(generateAiStory({ ...baseOptions(), apiKey: '' })).rejects.toThrow(/Settings/)
     expect(fetchMock).not.toHaveBeenCalled()
+  })
+})
+
+describe('generateStoryCover', () => {
+  it('returns the data URL from an image completion', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(new Response(
+      JSON.stringify({ choices: [{ message: { images: [{ image_url: { url: 'data:image/png;base64,AAAA' } }] } }] }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } },
+    ))
+    vi.stubGlobal('fetch', fetchMock)
+    const url = await generateStoryCover({ apiKey: 'test-key', title: '小狗的一天', prompt: 'a puppy' })
+    expect(url).toBe('data:image/png;base64,AAAA')
+    const body = JSON.parse(fetchMock.mock.calls[0][1].body as string)
+    expect(body.model).toBe(COVER_IMAGE_MODEL)
+    expect(body.modalities).toEqual(['image', 'text'])
+  })
+
+  it('rejects when no image comes back', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(
+      JSON.stringify({ choices: [{ message: { content: 'no image, sorry' } }] }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } },
+    )))
+    await expect(generateStoryCover({ apiKey: 'test-key', title: 't', prompt: 'p' }))
+      .rejects.toThrow(/did not return a cover image/)
   })
 })

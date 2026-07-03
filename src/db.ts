@@ -512,12 +512,22 @@ export interface AiStorySettings {
   openRouterApiKey: string
   model: string
   defaultLengthChars: number
+  generateCover: boolean
+  generateAudio: boolean
+  azureSpeechKey: string
+  azureSpeechRegion: string
+  azureVoice: string
 }
 
 export const DEFAULT_AI_STORY_SETTINGS: AiStorySettings = {
   openRouterApiKey: '',
   model: 'deepseek/deepseek-chat',
   defaultLengthChars: 400,
+  generateCover: true,
+  generateAudio: false,
+  azureSpeechKey: '',
+  azureSpeechRegion: '',
+  azureVoice: 'zh-CN-XiaoxiaoNeural',
 }
 
 export async function getAiStorySettings(): Promise<AiStorySettings> {
@@ -1573,25 +1583,21 @@ export async function getAllReaderBooks(): Promise<ReaderBook[]> {
   )
 }
 
-export async function saveGeneratedReaderBook(book: ReaderBook): Promise<void> {
-  const db = await getDB()
-  const existingBooks = (await db.getAll('readerBooks')).filter(
-    (row) => row.packId === GENERATED_STORIES_PACK_ID,
-  )
-  const now = new Date().toISOString()
-  const pack: ReaderPack = {
+function buildGeneratedPackSummary(books: ReaderBook[]): ReaderPack {
+  return {
     packId: GENERATED_STORIES_PACK_ID,
     name: GENERATED_STORIES_PACK_NAME,
     description: 'AI-generated local stories tuned to your known vocabulary.',
     language: 'zh-CN',
-    createdAt: now,
+    createdAt: new Date().toISOString(),
     audioAvailable: false,
     synthesizedAudioCount: 0,
-    storyCount: existingBooks.length + 1,
-    sentenceCount:
-      existingBooks.reduce((sum, item) => sum + item.stories.flatMap((story) => story.sentences).length, 0) +
-      book.stories.flatMap((story) => story.sentences).length,
-    books: [...existingBooks, book].map((item) => ({
+    storyCount: books.length,
+    sentenceCount: books.reduce(
+      (sum, item) => sum + item.stories.flatMap((story) => story.sentences).length,
+      0,
+    ),
+    books: books.map((item) => ({
       id: item.id,
       title: item.title,
       book: item.book,
@@ -1604,10 +1610,53 @@ export async function saveGeneratedReaderBook(book: ReaderBook): Promise<void> {
       visualNovelWorldId: item.visualNovelWorldId,
     })),
   }
+}
+
+export async function saveGeneratedReaderBook(book: ReaderBook): Promise<void> {
+  const db = await getDB()
+  // Exclude any previous version of this book so re-saving (e.g. appending a
+  // chapter) updates the pack summary instead of duplicating the entry.
+  const existingBooks = (await db.getAll('readerBooks')).filter(
+    (row) => row.packId === GENERATED_STORIES_PACK_ID && row.id !== book.id,
+  )
+  const pack = buildGeneratedPackSummary([...existingBooks, book])
   const tx = db.transaction(['readerPacks', 'readerBooks'], 'readwrite')
   await tx.objectStore('readerPacks').put(pack)
   await tx.objectStore('readerBooks').put(book)
   await tx.done
+}
+
+export async function deleteGeneratedReaderBook(bookId: string): Promise<void> {
+  const db = await getDB()
+  const book = await db.get('readerBooks', bookId)
+  if (!book || book.packId !== GENERATED_STORIES_PACK_ID) return
+  const tx = db.transaction(
+    ['readerBooks', 'readerPacks', 'readerProgress', 'readerSessions', 'audioClips'],
+    'readwrite',
+  )
+  await tx.objectStore('readerBooks').delete(bookId)
+  for (const key of await tx.objectStore('readerProgress').index('bookId').getAllKeys(bookId)) {
+    await tx.objectStore('readerProgress').delete(key)
+  }
+  for (const key of await tx.objectStore('readerSessions').index('bookId').getAllKeys(bookId)) {
+    await tx.objectStore('readerSessions').delete(key)
+  }
+  // Clip ids are `${bookId}:audio...`; the store has no packId index, so
+  // delete by key-prefix range.
+  await tx.objectStore('audioClips').delete(
+    IDBKeyRange.bound(`${bookId}:audio`, `${bookId}:audio￿`),
+  )
+  const remaining = await tx.objectStore('readerBooks').index('packId').getAll(GENERATED_STORIES_PACK_ID)
+  if (remaining.length === 0) {
+    await tx.objectStore('readerPacks').delete(GENERATED_STORIES_PACK_ID)
+  } else {
+    await tx.objectStore('readerPacks').put(buildGeneratedPackSummary(remaining))
+  }
+  await tx.done
+}
+
+export async function saveAudioClip(clip: AudioClip): Promise<void> {
+  await (await getDB()).put('audioClips', clip)
 }
 
 export async function getReaderProgress(

@@ -20,7 +20,17 @@ export interface GenerateAiStoryOptions {
   apiKey: string
   model: string
   lengthChars: number
+  /** When set, the model writes the next chapter of an existing story. */
+  continueFrom?: {
+    title: string
+    recentSentences: string[]
+    nextChapter: number
+  }
 }
+
+// OpenRouter does not currently serve FLUX models; Gemini flash-lite image is
+// the cheapest good option (~$0.002/cover). Swap this constant when FLUX lands.
+export const COVER_IMAGE_MODEL = 'google/gemini-3.1-flash-lite-image'
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 const REQUEST_TIMEOUT_MS = 90_000
@@ -34,7 +44,7 @@ const SYSTEM_PROMPT = [
 
 export async function generateAiStory(options: GenerateAiStoryOptions): Promise<GeneratedStoryPayload> {
   const prompt = options.prompt.trim()
-  if (!prompt) throw new Error('Enter a story prompt first.')
+  if (!prompt && !options.continueFrom) throw new Error('Enter a story prompt first.')
   if (!options.apiKey) throw new Error('Add your OpenRouter API key in Settings first.')
 
   const messages = [
@@ -49,8 +59,16 @@ export async function generateAiStory(options: GenerateAiStoryOptions): Promise<
 function buildUserMessage(options: GenerateAiStoryOptions, prompt: string): string {
   const wordList = options.knownWords.map((w) => w.word).join('、')
   const approxSentences = Math.max(4, Math.round(options.lengthChars / 15))
+  const opening = options.continueFrom
+    ? [
+        `You are continuing an existing story titled 《${options.continueFrom.title}》. The most recent sentences are:`,
+        options.continueFrom.recentSentences.join('\n'),
+        `Write the NEXT chapter (chapter ${options.continueFrom.nextChapter}) that continues this story. Do not retell earlier events; pick up where it left off. Give the chapter its own short Chinese title in "title".`,
+        prompt ? `Additional direction from the learner: ${prompt}` : '',
+      ].filter(Boolean).join('\n\n')
+    : `Story request: ${prompt}`
   const parts = [
-    `Story request: ${prompt}`,
+    opening,
     `The story should be approximately ${options.lengthChars} Chinese characters in total, split into short sentences (roughly ${approxSentences} sentences).`,
     `The learner knows these words:\n${wordList}`,
     'At least 95% of the word occurrences in the story MUST come from this known-word list (plus proper names, numbers, and basic function words like 的/了/是/在/我/你/他/她).',
@@ -91,12 +109,7 @@ async function requestStoryJson(
   try {
     response = await fetch(OPENROUTER_URL, {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${options.apiKey}`,
-        'Content-Type': 'application/json',
-        'HTTP-Referer': typeof location !== 'undefined' ? location.origin + import.meta.env.BASE_URL : 'https://chunky-chinese.local/',
-        'X-Title': 'Chunky Chinese',
-      },
+      headers: openRouterHeaders(options.apiKey),
       body: JSON.stringify({
         model: options.model,
         messages,
@@ -140,6 +153,55 @@ function describeHttpError(status: number): string {
   if (status === 402) return 'Your OpenRouter account is out of credits.'
   if (status === 429) return 'Rate limited by OpenRouter. Wait a moment and try again.'
   return `OpenRouter request failed (HTTP ${status}).`
+}
+
+function openRouterHeaders(apiKey: string): Record<string, string> {
+  return {
+    Authorization: `Bearer ${apiKey}`,
+    'Content-Type': 'application/json',
+    'HTTP-Referer': typeof location !== 'undefined' ? location.origin + import.meta.env.BASE_URL : 'https://chunky-chinese.local/',
+    'X-Title': 'Chunky Chinese',
+  }
+}
+
+/**
+ * Generates a cover illustration via OpenRouter's unified image API.
+ * Best-effort: the caller should catch and save the story without a cover.
+ * Returns a data: URL suitable for storing directly in ReaderBook.coverImage.
+ */
+export async function generateStoryCover(options: {
+  apiKey: string
+  title: string
+  prompt: string
+}): Promise<string> {
+  const coverPrompt = [
+    `Children's picture-book cover illustration for a Chinese graded-reader story titled 《${options.title}》`,
+    options.prompt ? `about: ${options.prompt}.` : '.',
+    'Warm colors, simple friendly storybook style, no text or lettering on the image.',
+  ].join(' ')
+
+  const response = await fetch(OPENROUTER_URL, {
+    method: 'POST',
+    headers: openRouterHeaders(options.apiKey),
+    body: JSON.stringify({
+      model: COVER_IMAGE_MODEL,
+      messages: [{ role: 'user', content: coverPrompt }],
+      modalities: ['image', 'text'],
+    }),
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+  })
+  if (!response.ok) throw new Error(describeHttpError(response.status))
+
+  const payload = (await response.json()) as {
+    choices?: Array<{ message?: { images?: Array<{ image_url?: { url?: string } }> } }>
+    error?: { message?: string }
+  }
+  if (payload.error?.message) throw new Error(`OpenRouter error: ${payload.error.message}`)
+  const url = payload.choices?.[0]?.message?.images?.[0]?.image_url?.url
+  if (typeof url !== 'string' || !url.startsWith('data:image')) {
+    throw new Error('OpenRouter did not return a cover image.')
+  }
+  return url
 }
 
 export function extractJsonObject(text: string): unknown {

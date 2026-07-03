@@ -76,6 +76,26 @@ export function validateGeneratedStoryCoverage(
   }
 }
 
+function buildGeneratedSentences(
+  storyId: string,
+  sentences: GeneratedStorySentence[],
+  idFor: (n: number) => string,
+  audioIdFor: (n: number) => string,
+): ReaderSentence[] {
+  return sentences.map((sentence, index) => ({
+    id: idFor(index + 1),
+    storyId,
+    index: index + 1,
+    chinese: sentence.chinese.trim(),
+    pinyin: pinyin(sentence.chinese.trim(), { type: 'string', separator: ' ' }),
+    english: sentence.english.trim(),
+    targetWords: [],
+    audioClipId: audioIdFor(index + 1),
+    audioFilename: '',
+    ssmlFilename: '',
+  }))
+}
+
 export function generatedStoryToReaderBook(
   story: GeneratedStoryPayload,
   validation: GeneratedStoryValidation,
@@ -84,18 +104,12 @@ export function generatedStoryToReaderBook(
   const createdAt = now.toISOString()
   const bookId = `generated-story:${stableHash(`${createdAt}|${story.title}|${story.prompt}`)}`
   const storyId = `${bookId}:story`
-  const sentences: ReaderSentence[] = story.sentences.map((sentence, index) => ({
-    id: `${bookId}:sentence:${index + 1}`,
+  const sentences = buildGeneratedSentences(
     storyId,
-    index: index + 1,
-    chinese: sentence.chinese.trim(),
-    pinyin: pinyin(sentence.chinese.trim(), { type: 'string', separator: ' ' }),
-    english: sentence.english.trim(),
-    targetWords: [],
-    audioClipId: `${bookId}:audio:${index + 1}`,
-    audioFilename: '',
-    ssmlFilename: '',
-  }))
+    story.sentences,
+    (n) => `${bookId}:sentence:${n}`,
+    (n) => `${bookId}:audio:${n}`,
+  )
 
   return {
     id: bookId,
@@ -119,6 +133,45 @@ export function generatedStoryToReaderBook(
         sentences,
       },
     ],
+  }
+}
+
+/**
+ * Appends a generated continuation as a new chapter of an existing book.
+ * The `c${chapter}` id prefix cannot collide with chapter 1's plain-number
+ * scheme, and audio ids still start with `${bookId}:audio` so prefix-based
+ * clip deletion covers every chapter.
+ */
+export function appendGeneratedChapter(
+  book: ReaderBook,
+  story: GeneratedStoryPayload,
+  validation: GeneratedStoryValidation,
+): ReaderBook {
+  const chapter = book.stories.length + 1
+  const storyId = `${book.id}:story:c${chapter}`
+  const sentences = buildGeneratedSentences(
+    storyId,
+    story.sentences,
+    (n) => `${book.id}:sentence:c${chapter}-${n}`,
+    (n) => `${book.id}:audio:c${chapter}-${n}`,
+  )
+  const newStory = {
+    id: storyId,
+    title: story.title.trim() || `Chapter ${chapter}`,
+    book: book.book,
+    chapter,
+    sourceInspiration: `Prompt: ${story.prompt}. Coverage: ${validation.knownCoveragePercent}%.`,
+    newWords: validation.unavoidableNewWords.map((word) => ({
+      word: word.word,
+      pinyin: word.pinyin,
+      meaning: word.meaning,
+    })),
+    sentences,
+  }
+  return {
+    ...book,
+    chapterEnd: chapter,
+    stories: [...book.stories, newStory],
   }
 }
 

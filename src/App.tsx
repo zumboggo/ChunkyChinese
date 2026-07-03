@@ -51,6 +51,7 @@ import {
   saveNewWordsPerDay,
   saveReaderProgress,
   saveGeneratedReaderBook,
+  deleteGeneratedReaderBook,
   saveReaderVocabularyWord,
   seedLmsWordsIfEmpty,
   seedReaderBooksIfEmpty,
@@ -74,10 +75,12 @@ import {
   saveSentenceRepData,
   restoreWordFsrs,
 } from './db'
-import { generateAiStory, AI_STORY_MODELS, AI_STORY_LENGTHS } from './aiStories'
+import { generateAiStory, generateStoryCover, AI_STORY_MODELS, AI_STORY_LENGTHS } from './aiStories'
+import { synthesizeStoryAudio, AZURE_VOICES } from './storyAudio'
 import {
   GENERATED_STORIES_PACK_ID,
   GENERATED_STORY_TARGET_COVERAGE,
+  appendGeneratedChapter,
   generatedStoryToReaderBook,
   validateGeneratedStoryCoverage,
   type GeneratedStoryPayload,
@@ -150,6 +153,7 @@ import type {
   ReaderBook,
   ReaderPack,
   ReaderSentence,
+  ReaderStory,
   ReaderProgress,
   ReaderWordToken,
   ReaderSession,
@@ -430,6 +434,7 @@ function App() {
   const [aiStoryBusy, setAiStoryBusy] = useState(false)
   const [aiStorySettings, setAiStorySettings] = useState<AiStorySettings>(DEFAULT_AI_STORY_SETTINGS)
   const [aiKeyDraft, setAiKeyDraft] = useState('')
+  const [azureKeyDraft, setAzureKeyDraft] = useState('')
   const [cloudUserEmail, setCloudUserEmail] = useState<string | null>(null)
   const [cloudSync, setCloudSync] = useState<CloudSyncUiState>({
     status: isSupabaseConfigured ? 'signed-out' : 'unconfigured',
@@ -2467,14 +2472,7 @@ function App() {
     downloadText(`vocab-snapshot-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(snapshot, null, 2))
   }
 
-  const handleGenerateStory = useCallback(async (
-    prompt: string,
-    options: { lengthChars: number; model: string },
-  ): Promise<GeneratedStoryResult> => {
-    const apiKey = aiStorySettings.openRouterApiKey
-    if (!apiKey) {
-      throw new Error('Add your OpenRouter API key under Settings > AI Story Generation first.')
-    }
+  const collectKnownWords = useCallback(() => {
     const knownWords = activeWords
       .filter((word) => adaptiveReaderPinyinState(word) === 'known')
       .map((word) => ({
@@ -2486,6 +2484,52 @@ function App() {
     if (knownWords.length < 20) {
       throw new Error('You need at least 20 mature known words before generating a known-word story.')
     }
+    return knownWords
+  }, [activeWords])
+
+  const requireOpenRouterKey = useCallback(() => {
+    const apiKey = aiStorySettings.openRouterApiKey
+    if (!apiKey) {
+      throw new Error('Add your OpenRouter API key under Settings > AI Story Generation first.')
+    }
+    return apiKey
+  }, [aiStorySettings.openRouterApiKey])
+
+  // Generate → validate coverage → one stricter retry when the draft is too hard.
+  const generateValidatedStory = useCallback(async (
+    generateOptions: Parameters<typeof generateAiStory>[0],
+  ): Promise<{ story: GeneratedStoryPayload; validation: GeneratedStoryValidation }> => {
+    let story = await generateAiStory(generateOptions)
+    let validation = validateGeneratedStoryCoverage(story, activeWords)
+    if (
+      validation.knownCoveragePercent < GENERATED_STORY_TARGET_COVERAGE ||
+      validation.unavoidableNewWords.length > 5
+    ) {
+      setAiStoryMessage('First draft was too spicy. Retrying with simpler known words...')
+      story = await generateAiStory({ ...generateOptions, strictRetry: true })
+      validation = validateGeneratedStoryCoverage(story, activeWords)
+    }
+    return { story, validation }
+  }, [activeWords])
+
+  const synthesizeChapterAudio = useCallback(async (story: ReaderStory) => {
+    const result = await synthesizeStoryAudio(
+      story,
+      aiStorySettings,
+      (done, total) => setAiStoryMessage(`Generating audio ${done}/${total}...`),
+    )
+    if (result.failed > 0) {
+      return ` Audio: ${result.succeeded}/${result.succeeded + result.failed} sentences narrated${result.firstError ? ` (${result.firstError})` : ''}.`
+    }
+    return result.succeeded > 0 ? ` Narration ready (${result.succeeded} sentences).` : ''
+  }, [aiStorySettings])
+
+  const handleGenerateStory = useCallback(async (
+    prompt: string,
+    options: { lengthChars: number; model: string; cover: boolean; audio: boolean },
+  ): Promise<GeneratedStoryResult> => {
+    const apiKey = requireOpenRouterKey()
+    const knownWords = collectKnownWords()
 
     const generateOptions = {
       prompt,
@@ -2494,37 +2538,90 @@ function App() {
       model: options.model,
       lengthChars: options.lengthChars,
     }
-    // Remember the last-used model/length as the new defaults.
-    const nextSettings = { ...aiStorySettings, model: options.model, defaultLengthChars: options.lengthChars }
+    // Remember the last-used choices as the new defaults.
+    const nextSettings = {
+      ...aiStorySettings,
+      model: options.model,
+      defaultLengthChars: options.lengthChars,
+      generateCover: options.cover,
+      generateAudio: options.audio,
+    }
     setAiStorySettings(nextSettings)
     void saveAiStorySettings(nextSettings)
 
     setAiStoryBusy(true)
     setAiStoryMessage('Generating a known-word story...')
     try {
-      let story = await generateAiStory(generateOptions)
-      let validation = validateGeneratedStoryCoverage(story, activeWords)
-      if (
-        validation.knownCoveragePercent < GENERATED_STORY_TARGET_COVERAGE ||
-        validation.unavoidableNewWords.length > 5
-      ) {
-        setAiStoryMessage('First draft was too spicy. Retrying with simpler known words...')
-        story = await generateAiStory({ ...generateOptions, strictRetry: true })
-        validation = validateGeneratedStoryCoverage(story, activeWords)
-      }
+      const { story, validation } = await generateValidatedStory(generateOptions)
       const book = generatedStoryToReaderBook(story, validation)
+      if (options.cover) {
+        setAiStoryMessage('Generating cover image...')
+        try {
+          book.coverImage = await generateStoryCover({ apiKey, title: book.title, prompt })
+        } catch (error) {
+          console.warn('Cover generation failed; saving story without a cover.', error)
+        }
+      }
       await saveGeneratedReaderBook(book)
       await refresh()
+      let audioNote = ''
+      if (options.audio && aiStorySettings.azureSpeechKey && aiStorySettings.azureSpeechRegion) {
+        audioNote = await synthesizeChapterAudio(book.stories[0])
+      }
       setAiStoryMessage(
-        validation.warning
+        (validation.warning
           ? `${book.title} saved. ${validation.warning}`
-          : `${book.title} saved with ${validation.knownCoveragePercent}% known-word coverage.`,
+          : `${book.title} saved with ${validation.knownCoveragePercent}% known-word coverage.`) + audioNote,
       )
       return { book, story, validation }
     } finally {
       setAiStoryBusy(false)
     }
-  }, [activeWords, aiStorySettings, refresh])
+  }, [aiStorySettings, collectKnownWords, generateValidatedStory, refresh, requireOpenRouterKey, synthesizeChapterAudio])
+
+  const handleContinueStory = useCallback(async (book: ReaderBook, prompt = ''): Promise<GeneratedStoryResult> => {
+    const apiKey = requireOpenRouterKey()
+    const knownWords = collectKnownWords()
+    const nextChapter = book.stories.length + 1
+    const recentSentences = book.stories
+      .flatMap((story) => story.sentences)
+      .slice(-20)
+      .map((sentence) => sentence.chinese)
+
+    setAiStoryBusy(true)
+    setAiStoryMessage(`Writing chapter ${nextChapter} of ${book.title}...`)
+    try {
+      const { story, validation } = await generateValidatedStory({
+        prompt,
+        knownWords,
+        apiKey,
+        model: aiStorySettings.model,
+        lengthChars: aiStorySettings.defaultLengthChars,
+        continueFrom: { title: book.title, recentSentences, nextChapter },
+      })
+      const updated = appendGeneratedChapter(book, story, validation)
+      await saveGeneratedReaderBook(updated)
+      await refresh()
+      let audioNote = ''
+      if (aiStorySettings.generateAudio && aiStorySettings.azureSpeechKey && aiStorySettings.azureSpeechRegion) {
+        audioNote = await synthesizeChapterAudio(updated.stories[updated.stories.length - 1])
+      }
+      setAiStoryMessage(
+        `Chapter ${nextChapter} of ${updated.title} saved (${validation.knownCoveragePercent}% known).` + audioNote,
+      )
+      return { book: updated, story, validation }
+    } finally {
+      setAiStoryBusy(false)
+    }
+  }, [aiStorySettings, collectKnownWords, generateValidatedStory, refresh, requireOpenRouterKey, synthesizeChapterAudio])
+
+  const handleDeleteGeneratedStory = useCallback(async (book: ReaderBook) => {
+    if (!window.confirm(`Delete "${book.title}" from this device? This also removes its audio and reading progress.`)) return
+    await deleteGeneratedReaderBook(book.id)
+    setActiveReaderBookId((current) => (current === book.id ? undefined : current))
+    await refresh()
+    setLastSummary(`Deleted "${book.title}".`)
+  }, [refresh])
 
   async function handleBackupImport(files: FileList | null) {
     const file = files?.[0]
@@ -3341,10 +3438,18 @@ function App() {
             setScreen('visualNovel')
           }}
           onGenerateStory={handleGenerateStory}
+          onContinueStory={handleContinueStory}
+          onDeleteStory={handleDeleteGeneratedStory}
           aiStoryBusy={aiStoryBusy}
           aiStoryMessage={aiStoryMessage}
           canGenerateAiStories={aiStorySettings.openRouterApiKey.length > 0}
-          aiStoryDefaults={{ model: aiStorySettings.model, lengthChars: aiStorySettings.defaultLengthChars }}
+          aiStoryDefaults={{
+            model: aiStorySettings.model,
+            lengthChars: aiStorySettings.defaultLengthChars,
+            generateCover: aiStorySettings.generateCover,
+            generateAudio: aiStorySettings.generateAudio,
+            azureConfigured: Boolean(aiStorySettings.azureSpeechKey && aiStorySettings.azureSpeechRegion),
+          }}
         />
       )}
 
@@ -3497,6 +3602,84 @@ function App() {
                     >
                       {AI_STORY_MODELS.map((model) => (
                         <option key={model.id} value={model.id}>{model.label}</option>
+                      ))}
+                    </select>
+                  </label>
+                </section>
+                <section className="panel">
+                  <h2>Azure Speech (optional story narration)</h2>
+                  <p>
+                    Adds real narration audio to generated stories. Stored only on this device;
+                    sent only to {aiStorySettings.azureSpeechRegion || 'your-region'}.tts.speech.microsoft.com.
+                    Azure's free tier covers about 500k characters per month.
+                  </p>
+                  {aiStorySettings.azureSpeechKey ? (
+                    <div className="button-row">
+                      <span className="pill-note">
+                        Key saved (…{aiStorySettings.azureSpeechKey.slice(-4)})
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const next = { ...aiStorySettings, azureSpeechKey: '' }
+                          setAiStorySettings(next)
+                          void saveAiStorySettings(next)
+                          setLastSummary('Azure Speech key removed.')
+                        }}
+                      >
+                        Clear key
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="magic-link-row">
+                      <input
+                        type="password"
+                        autoComplete="off"
+                        placeholder="Azure Speech key"
+                        value={azureKeyDraft}
+                        onChange={(event) => setAzureKeyDraft(event.target.value)}
+                      />
+                      <button
+                        type="button"
+                        className="primary"
+                        disabled={azureKeyDraft.trim().length === 0}
+                        onClick={() => {
+                          const next = { ...aiStorySettings, azureSpeechKey: azureKeyDraft.trim() }
+                          setAiStorySettings(next)
+                          void saveAiStorySettings(next)
+                          setAzureKeyDraft('')
+                          setLastSummary('Azure Speech key saved on this device.')
+                        }}
+                      >
+                        Save key
+                      </button>
+                    </div>
+                  )}
+                  <label className="settings-inline-label">
+                    Region
+                    <input
+                      type="text"
+                      placeholder="eastus"
+                      value={aiStorySettings.azureSpeechRegion}
+                      onChange={(event) => {
+                        const next = { ...aiStorySettings, azureSpeechRegion: event.target.value.trim() }
+                        setAiStorySettings(next)
+                        void saveAiStorySettings(next)
+                      }}
+                    />
+                  </label>
+                  <label className="settings-inline-label">
+                    Voice
+                    <select
+                      value={aiStorySettings.azureVoice}
+                      onChange={(event) => {
+                        const next = { ...aiStorySettings, azureVoice: event.target.value }
+                        setAiStorySettings(next)
+                        void saveAiStorySettings(next)
+                      }}
+                    >
+                      {AZURE_VOICES.map((voice) => (
+                        <option key={voice.id} value={voice.id}>{voice.label}</option>
                       ))}
                     </select>
                   </label>
@@ -4106,7 +4289,7 @@ function App() {
                                   {book.coverImage && (
                                     <img
                                       className="book-picker-cover"
-                                      src={readerBookAssetUrl(book, book.coverImage)}
+                                      src={readerBookCoverSrc(book)}
                                       alt=""
                                     />
                                   )}
@@ -4121,7 +4304,7 @@ function App() {
                               {bookListenBook.coverImage && (
                                 <img
                                   className="book-listen-finished-cover"
-                                  src={readerBookAssetUrl(bookListenBook, bookListenBook.coverImage)}
+                                  src={readerBookCoverSrc(bookListenBook)}
                                   alt=""
                                 />
                               )}
@@ -5002,6 +5185,14 @@ function dashboardPreviousRangeLabel(range: DashboardRange): string {
   return ''
 }
 
+function readerBookCoverSrc(book: ReaderBook): string | undefined {
+  if (!book.coverImage) return undefined
+  // Generated covers are stored inline as data URLs; pack covers are static assets.
+  return book.coverImage.startsWith('data:')
+    ? book.coverImage
+    : readerBookAssetUrl(book, book.coverImage)
+}
+
 function readerBookAssetUrl(book: ReaderBook, path: string): string {
   const base = import.meta.env.BASE_URL || '/'
   return `${base.replace(/\/$/u, '')}/reader-packs/${book.packId}/${path.replace(/^\//u, '')}`
@@ -5043,6 +5234,8 @@ function ReadingTextsLibrary({
   onOpenRenpyLms,
   onOpenVisualNovel,
   onGenerateStory,
+  onContinueStory,
+  onDeleteStory,
   aiStoryBusy,
   aiStoryMessage,
   canGenerateAiStories,
@@ -5059,11 +5252,13 @@ function ReadingTextsLibrary({
   onOpenRenpyPrototype: () => void
   onOpenRenpyLms: () => void
   onOpenVisualNovel: (book?: ReaderBook) => void
-  onGenerateStory: (prompt: string, options: { lengthChars: number; model: string }) => Promise<GeneratedStoryResult>
+  onGenerateStory: (prompt: string, options: { lengthChars: number; model: string; cover: boolean; audio: boolean }) => Promise<GeneratedStoryResult>
+  onContinueStory: (book: ReaderBook) => Promise<GeneratedStoryResult>
+  onDeleteStory: (book: ReaderBook) => Promise<void>
   aiStoryBusy: boolean
   aiStoryMessage: string | null
   canGenerateAiStories: boolean
-  aiStoryDefaults: { model: string; lengthChars: number }
+  aiStoryDefaults: { model: string; lengthChars: number; generateCover: boolean; generateAudio: boolean; azureConfigured: boolean }
 }) {
   const [category, setCategory] = useState<ReadingCategoryView>(null)
 
@@ -5077,6 +5272,8 @@ function ReadingTextsLibrary({
     comprehensionByBook,
     resumeLocation?.book.id,
   )
+  const generatedBooks = stories.filter((b) => b.packId === GENERATED_STORIES_PACK_ID)
+  const shelfStories = stories.filter((b) => b.packId !== GENERATED_STORIES_PACK_ID)
 
   const renderBookShelf = (books: ReaderBook[], emptyLabel: string) =>
     books.length > 0 ? (
@@ -5090,7 +5287,7 @@ function ReadingTextsLibrary({
               <article className="reading-library-book" key={book.id}>
                 <div className={`reading-book-cover reading-book-cover-${index % 4}`}>
                   {book.coverImage ? (
-                    <img src={readerBookAssetUrl(book, book.coverImage)} alt="" />
+                    <img src={readerBookCoverSrc(book)} alt="" />
                   ) : null}
                   <span>{book.title}</span>
                 </div>
@@ -5182,7 +5379,47 @@ function ReadingTextsLibrary({
               defaults={aiStoryDefaults}
             />
           ) : null}
-          {renderBookShelf(isNovels ? novels : stories, isNovels ? 'No novels yet.' : 'No stories yet.')}
+          {!isNovels && generatedBooks.length > 0 ? (
+            <details className="generated-story-list" open>
+              <summary>Generated stories ({generatedBooks.length})</summary>
+              {generatedBooks.map((book) => {
+                const comprehension = comprehensionByBook.get(book.id)
+                const cover = readerBookCoverSrc(book)
+                return (
+                  <div className="generated-story-row" key={book.id}>
+                    {cover ? (
+                      <img src={cover} alt="" />
+                    ) : (
+                      <span className="generated-story-thumb-fallback" aria-hidden="true">书</span>
+                    )}
+                    <div className="generated-story-meta">
+                      <strong>{book.title}</strong>
+                      <small>
+                        {book.stories.length} chapter{book.stories.length > 1 ? 's' : ''} ·{' '}
+                        {comprehension?.knownPercent ?? 0}% known
+                      </small>
+                    </div>
+                    <div className="generated-story-actions">
+                      <button
+                        type="button"
+                        className="primary"
+                        onClick={() => void onChooseBook(book, resumeLocation?.book.id === book.id ? 'resume' : 'start')}
+                      >
+                        Read
+                      </button>
+                      <button type="button" disabled={aiStoryBusy} onClick={() => void onContinueStory(book)}>
+                        Continue
+                      </button>
+                      <button type="button" className="danger" onClick={() => void onDeleteStory(book)}>
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                )
+              })}
+            </details>
+          ) : null}
+          {renderBookShelf(isNovels ? novels : shelfStories, isNovels ? 'No novels yet.' : 'No stories yet.')}
         </section>
       </section>
     )
@@ -5374,20 +5611,22 @@ function GenerateStoryPanel({
   disabled: boolean
   busy: boolean
   message: string | null
-  onGenerate: (prompt: string, options: { lengthChars: number; model: string }) => Promise<GeneratedStoryResult>
+  onGenerate: (prompt: string, options: { lengthChars: number; model: string; cover: boolean; audio: boolean }) => Promise<GeneratedStoryResult>
   onOpenGenerated: (book: ReaderBook) => void
-  defaults: { model: string; lengthChars: number }
+  defaults: { model: string; lengthChars: number; generateCover: boolean; generateAudio: boolean; azureConfigured: boolean }
 }) {
   const [prompt, setPrompt] = useState('')
   const [lengthChars, setLengthChars] = useState(defaults.lengthChars)
   const [model, setModel] = useState(defaults.model)
+  const [cover, setCover] = useState(defaults.generateCover)
+  const [audio, setAudio] = useState(defaults.generateAudio && defaults.azureConfigured)
   const [lastResult, setLastResult] = useState<GeneratedStoryResult | null>(null)
   const [localMessage, setLocalMessage] = useState<string | null>(null)
 
   async function submit() {
     setLocalMessage(null)
     try {
-      const result = await onGenerate(prompt, { lengthChars, model })
+      const result = await onGenerate(prompt, { lengthChars, model, cover, audio })
       setLastResult(result)
       setLocalMessage(null)
     } catch (error) {
@@ -5439,6 +5678,24 @@ function GenerateStoryPanel({
               <option key={option.id} value={option.id}>{option.label}</option>
             ))}
           </select>
+        </label>
+        <label className="generate-story-check">
+          <input
+            type="checkbox"
+            checked={cover}
+            onChange={(event) => setCover(event.target.checked)}
+            disabled={disabled || busy}
+          />
+          <span>Generate cover</span>
+        </label>
+        <label className="generate-story-check" title={defaults.azureConfigured ? undefined : 'Add an Azure Speech key in Settings > AI Story Generation to enable narration.'}>
+          <input
+            type="checkbox"
+            checked={audio}
+            onChange={(event) => setAudio(event.target.checked)}
+            disabled={disabled || busy || !defaults.azureConfigured}
+          />
+          <span>Narrate with Azure{defaults.azureConfigured ? '' : ' (key needed)'}</span>
         </label>
       </div>
       <div className="generate-story-actions">
