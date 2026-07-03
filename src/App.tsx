@@ -269,7 +269,7 @@ const FLASHCARD_LEARN_AHEAD_MS = 5 * 60 * 1000
 const FLASHCARD_REVERSE_RATE = 0.1
 
 const SENTENCE_REP_RING_COLORS = ['#bae6fd', '#7dd3fc', '#38bdf8', '#0ea5e9', '#0284c7', '#0369a1']
-const FLASHCARD_REVIEW_RING_COLORS = ['#fef3c7', '#fde68a', '#fbbf24', '#f59e0b', '#d97706', '#b45309']
+const FLASHCARD_REVIEW_RING_COLORS = ['#fce7f3', '#f9a8d4', '#f472b6', '#ec4899', '#db2777', '#9d174d']
 
 function SentenceRepRing({ repsToday, totalReps }: { repsToday: number; totalReps: number }) {
   const sessionsToday = Math.floor(repsToday / 50)
