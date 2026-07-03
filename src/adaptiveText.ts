@@ -132,6 +132,20 @@ export function collectReaderComprehensionTokens(
   return tokens
 }
 
+/**
+ * LingQ-style status highlight class for a reader token:
+ * blue for words not saved yet, amber for saved-but-new, faint amber for
+ * in-progress, nothing once the word is known.
+ */
+export function readerWordStatusClass(token: ReaderWordToken): string {
+  if (!token.isChinese) return ''
+  if (!token.word) return 'wstat-unknown'
+  const category = readerComprehensionCategory(token.word)
+  if (category === 'new') return 'wstat-new'
+  if (category === 'learning') return 'wstat-learning'
+  return ''
+}
+
 export function readerComprehensionCategory(word?: VocabWord): 'known' | 'learning' | 'new' {
   if (!word || isNewFsrsCard(word)) return 'new'
   const interval = word.fsrsIntervalDays ?? 0

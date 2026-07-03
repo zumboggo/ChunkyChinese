@@ -2,6 +2,7 @@ import type { KeyboardEvent } from 'react'
 import {
   readerShouldRenderPinyin,
   readerTokenClassName,
+  readerWordStatusClass,
   type AdaptivePinyinMode,
 } from './adaptiveText'
 import type { ReaderWordToken } from './types'
@@ -16,6 +17,8 @@ interface AdaptiveChineseTextProps {
   grammarTokenMap?: Map<string, GrammarMatch[]>
   className?: string
   visibleCount?: number
+  /** LingQ-style word-status highlighting (reader only; defaults off). */
+  statusHighlight?: boolean
 }
 
 export function AdaptiveChineseText({
@@ -27,6 +30,7 @@ export function AdaptiveChineseText({
   grammarTokenMap,
   className = 'reader-sentence',
   visibleCount,
+  statusHighlight = false,
 }: AdaptiveChineseTextProps) {
   function toggleToken(token: ReaderWordToken) {
     const grammarMatches = grammarTokenMap?.get(token.id)
@@ -55,7 +59,7 @@ export function AdaptiveChineseText({
         return token.isChinese ? (
           <ruby
             key={token.id}
-            className={`${readerTokenClassName(token, selectedToken, pinyinMode)}${hasGrammar ? ' grammar-highlight' : ''}${hasReveal ? ' vn-token-reveal' : ''}`}
+            className={`${readerTokenClassName(token, selectedToken, pinyinMode)}${statusHighlight ? ` ${readerWordStatusClass(token)}`.trimEnd() : ''}${hasGrammar ? ' grammar-highlight' : ''}${hasReveal ? ' vn-token-reveal' : ''}`}
             style={hasReveal ? { animationDelay: `${index * 30}ms` } : undefined}
             tabIndex={0}
             role="button"

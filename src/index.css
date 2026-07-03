@@ -4256,6 +4256,12 @@ kbd {
   color: var(--muted-navy);
 }
 
+.story-chunk-receipt-summary .story-chunk-receipt-words {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--blue-deep);
+}
+
 .story-chunk-receipt-actions {
   display: flex;
   gap: 0.6rem;
@@ -4836,6 +4842,30 @@ kbd {
 .reader-token.saved-token {
   color: var(--reader-ink);
 }
+
+/* ── LingQ-style word-status highlighting ── */
+.reader-token.wstat-unknown {
+  background: rgba(56, 189, 248, 0.2);
+  box-decoration-break: clone;
+}
+
+.reader-token.wstat-new {
+  background: rgba(250, 204, 21, 0.32);
+  box-decoration-break: clone;
+}
+
+.reader-token.wstat-learning {
+  background: rgba(250, 204, 21, 0.16);
+  box-decoration-break: clone;
+}
+
+.reader-theme-dark .reader-token.wstat-unknown  { background: rgba(56, 189, 248, 0.16); }
+.reader-theme-dark .reader-token.wstat-new      { background: rgba(250, 204, 21, 0.15); }
+.reader-theme-dark .reader-token.wstat-learning { background: rgba(250, 204, 21, 0.08); }
+
+:root[data-theme='dark'] .reader-token.wstat-unknown  { background: rgba(56, 189, 248, 0.16); }
+:root[data-theme='dark'] .reader-token.wstat-new      { background: rgba(250, 204, 21, 0.15); }
+:root[data-theme='dark'] .reader-token.wstat-learning { background: rgba(250, 204, 21, 0.08); }
 
 .reader-token rt {
   font-family: Inter, ui-sans-serif, sans-serif;

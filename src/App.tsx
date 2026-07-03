@@ -2669,6 +2669,7 @@ function App() {
     | 'readerListeningRate'
     | 'readerListeningRepeats'
     | 'readerListeningAutoAdvance'
+    | 'readerStatusHighlight'
   >>) {
     const next = { ...userSettings, ...patch }
     setUserSettings(next)
@@ -3203,6 +3204,7 @@ function App() {
           listeningRate={userSettings.readerListeningRate}
           listeningRepeats={userSettings.readerListeningRepeats}
           listeningAutoAdvance={userSettings.readerListeningAutoAdvance}
+          statusHighlight={userSettings.readerStatusHighlight}
           onChooseBook={openReaderBook}
           onOpenLibrary={() => {
             readerListening.stop()
@@ -5286,6 +5288,7 @@ function ReaderMode({
   listeningRate,
   listeningRepeats,
   listeningAutoAdvance,
+  statusHighlight,
   onChooseBook,
   onOpenLibrary,
   onResume,
@@ -5324,6 +5327,7 @@ function ReaderMode({
   listeningRate: number
   listeningRepeats: number
   listeningAutoAdvance: boolean
+  statusHighlight: boolean
   onChooseBook: (book: ReaderBook, action?: 'resume' | 'start') => void | Promise<void>
   onOpenLibrary: () => void
   onResume: () => void
@@ -5331,7 +5335,7 @@ function ReaderMode({
   onNext: () => void | Promise<void>
   onListeningSettingsChange: (patch: Partial<Pick<
     UserSettings,
-    'readerListeningRate' | 'readerListeningRepeats' | 'readerListeningAutoAdvance'
+    'readerListeningRate' | 'readerListeningRepeats' | 'readerListeningAutoAdvance' | 'readerStatusHighlight'
   >>) => void
   onStartStoryChunk: () => void
   onDismissStoryChunkReceipt: () => void
@@ -5547,6 +5551,11 @@ function ReaderMode({
                         onChange={value => onPinyinModeChange(value as ReaderPinyinMode)}
                       />
                       <StudyMenuToggle label="English" checked={showEnglish} onChange={() => onToggleEnglish()} />
+                      <StudyMenuToggle
+                        label="Word highlights"
+                        checked={statusHighlight}
+                        onChange={checked => onListeningSettingsChange({ readerStatusHighlight: checked })}
+                      />
                     </StudyMenuSection>
                     <StudyMenuSection label="Playback">
                       <StudyMenuSelect
@@ -5582,6 +5591,10 @@ function ReaderMode({
                   <div className="story-chunk-receipt-summary">
                     <strong>{storyChunkReceipt.title}</strong>
                     <span>{storyChunkReceipt.sentencesRead} sentences · {formatDuration(storyChunkReceipt.activeSeconds)}</span>
+                    <span className="story-chunk-receipt-words">
+                      {storyChunkReceipt.unsavedWordsTapped + storyChunkReceipt.learningWords} new/learning words met
+                      {storyChunkReceipt.wordsSaved > 0 ? ` · ${storyChunkReceipt.wordsSaved} saved` : ''}
+                    </span>
                   </div>
                   <div className="story-chunk-receipt-actions">
                     <button type="button" className="primary" onClick={() => { onDismissStoryChunkReceipt(); onStartStoryChunk() }}>
@@ -5623,6 +5636,7 @@ function ReaderMode({
                       tokens={tokens}
                       selectedToken={selectedToken}
                       pinyinMode={pinyinMode}
+                      statusHighlight={statusHighlight}
                       onSelectToken={(token) => {
                         setGrammarSelection(null)
                         onSelectToken(token)

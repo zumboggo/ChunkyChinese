@@ -498,6 +498,7 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   readerListeningRate: 0.8,
   readerListeningRepeats: 2,
   readerListeningAutoAdvance: true,
+  readerStatusHighlight: true,
 }
 
 export async function getUserSettings(): Promise<UserSettings> {
@@ -521,6 +522,7 @@ export function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: n
     readerListeningRate: clampReaderListeningRate(merged.readerListeningRate),
     readerListeningRepeats: clampReaderListeningRepeats(merged.readerListeningRepeats),
     readerListeningAutoAdvance: Boolean(merged.readerListeningAutoAdvance),
+    readerStatusHighlight: merged.readerStatusHighlight !== false,
   }
   return {
     settings,

@@ -70,6 +70,7 @@ export interface UserSettings {
   readerListeningRate: number
   readerListeningRepeats: number
   readerListeningAutoAdvance: boolean
+  readerStatusHighlight: boolean
 }
 
 export type DashboardRange = 'today' | 'week' | 'month' | 'allTime'
