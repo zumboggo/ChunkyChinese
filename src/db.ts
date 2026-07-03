@@ -76,6 +76,8 @@ type ProgressImportField =
   | 'fsrsStability'
   | 'fsrsDifficulty'
   | 'fsrsLearningSteps'
+  | 'readingAddedAt'
+  | 'archivedAt'
 
 type ProgressImportFields = Partial<Record<ProgressImportField, boolean>>
 
@@ -459,6 +461,10 @@ export async function getAllWords(): Promise<VocabWord[]> {
   })
 }
 
+export function isActiveVocabWord(word: VocabWord): boolean {
+  return !word.archivedAt
+}
+
 export async function getAllSentences(): Promise<Sentence[]> {
   return (await (await getDB()).getAll('sentences')).sort((a, b) =>
     a.chinese.localeCompare(b.chinese, 'zh-Hans-CN'),
@@ -772,6 +778,12 @@ export async function upsertWords(words: VocabWord[], options: UpsertWordsOption
         fsrsLearningSteps: shouldUseProgressField('fsrsLearningSteps')
           ? word.fsrsLearningSteps ?? existing.fsrsLearningSteps
           : existing.fsrsLearningSteps,
+        readingAddedAt: shouldUseProgressField('readingAddedAt')
+          ? word.readingAddedAt || existing.readingAddedAt
+          : existing.readingAddedAt,
+        archivedAt: shouldUseProgressField('archivedAt')
+          ? word.archivedAt || existing.archivedAt
+          : existing.archivedAt,
         packIds: unique([...(existing.packIds ?? []), ...(word.packIds ?? [])]),
         lastReviewedAt: shouldUseProgressField('lastReviewedAt')
           ? word.lastReviewedAt || existing.lastReviewedAt
@@ -795,6 +807,80 @@ export async function upsertWords(words: VocabWord[], options: UpsertWordsOption
     )
   }
   return { created, updated, skipped: 0, warnings }
+}
+
+export async function saveReaderVocabularyWord(
+  text: string,
+  pinyin: string,
+  meaning: string,
+): Promise<VocabWord> {
+  const db = await getDB()
+  const tx = db.transaction('vocabWords', 'readwrite')
+  const store = tx.store
+  const now = new Date().toISOString()
+  const wordText = text.trim()
+  const stableId = makeWordId(wordText)
+  const existingById = await store.get(stableId)
+  const existing =
+    existingById ??
+    (await store.getAll()).find((word) => word.word === wordText)
+
+  const savedWord: VocabWord = existing
+    ? {
+        ...existing,
+        word: existing.userEditedAt ? existing.word : wordText,
+        pinyin: existing.userEditedAt ? existing.pinyin : pinyin || existing.pinyin,
+        meaning: existing.userEditedAt ? existing.meaning : meaning || existing.meaning,
+        status: existing.status || 'learning',
+        readingAddedAt: existing.readingAddedAt ?? now,
+        archivedAt: undefined,
+        updatedAt: now,
+      }
+    : {
+        id: stableId,
+        word: wordText,
+        meaning,
+        pinyin,
+        status: 'learning',
+        readingAddedAt: now,
+        seenCount: 0,
+        correctCount: 0,
+        wrongCount: 0,
+        listenedSeconds: 0,
+        createdAt: now,
+        updatedAt: now,
+      }
+
+  await store.put(savedWord)
+  await tx.done
+  return savedWord
+}
+
+export async function archiveWord(wordId: string): Promise<VocabWord | undefined> {
+  const db = await getDB()
+  const word = await db.get('vocabWords', wordId)
+  if (!word) return undefined
+  const now = new Date().toISOString()
+  const updatedWord: VocabWord = {
+    ...word,
+    archivedAt: word.archivedAt ?? now,
+    updatedAt: now,
+  }
+  await db.put('vocabWords', updatedWord)
+  return updatedWord
+}
+
+export async function restoreArchivedWord(wordId: string): Promise<VocabWord | undefined> {
+  const db = await getDB()
+  const word = await db.get('vocabWords', wordId)
+  if (!word) return undefined
+  const updatedWord: VocabWord = {
+    ...word,
+    archivedAt: undefined,
+    updatedAt: new Date().toISOString(),
+  }
+  await db.put('vocabWords', updatedWord)
+  return updatedWord
 }
 
 export async function upsertSentences(sentences: Sentence[]): Promise<ImportSummary> {
@@ -1949,14 +2035,11 @@ export async function importHostedReaderPack(
 
 export async function getDashboardStats(): Promise<DashboardStats> {
   const db = await getDB()
-  const words = await db.getAll('vocabWords')
+  const words = (await db.getAll('vocabWords')).filter(isActiveVocabWord)
   const events = await db.getAll('listeningEvents')
   const readerSessions = await db.getAll('readerSessions')
-  const activePackId = (await db.get('settings', 'activePackId')) as string | undefined
-  const scopedWords = activePackId
-    ? words.filter((word) => word.packIds?.includes(activePackId))
-    : words
-  const scopedWordIds = new Set(scopedWords.map((word) => word.id))
+  const scopedWords = words
+  const scopedWordIds = new Set(words.map((word) => word.id))
   const start = startOfToday()
   const todayEvents = events.filter((event) => new Date(event.timestamp) >= start)
   const now = Date.now()
@@ -2135,6 +2218,14 @@ function buildDashboardRangeStat(
         Number.isFinite(reviewedAt) &&
         (!start || reviewedAt >= start.getTime()) &&
         (!end || reviewedAt < end.getTime())
+      )
+    }).length,
+    readingGraduatedWords: words.filter((word) => {
+      const readingAddedAt = Date.parse(word.readingAddedAt ?? '')
+      return (
+        Number.isFinite(readingAddedAt) &&
+        (!start || readingAddedAt >= start.getTime()) &&
+        (!end || readingAddedAt < end.getTime())
       )
     }).length,
   }
@@ -2748,6 +2839,8 @@ function detectProgressImportFields(rows: Record<string, string>[]): ProgressImp
     fsrsStability: headers.has('fsrsstability') || headers.has('stability'),
     fsrsDifficulty: headers.has('fsrsdifficulty') || headers.has('difficulty'),
     fsrsLearningSteps: headers.has('fsrslearningsteps') || headers.has('learningsteps'),
+    readingAddedAt: headers.has('readingaddedat'),
+    archivedAt: headers.has('archivedat'),
   }
 }
 
@@ -2865,7 +2958,7 @@ function buildRetentionSeries(
   return points
 }
 
-function buildReadingSeries(
+export function buildReadingSeries(
   sessions: ReaderSession[],
   weekCount: number,
 ): DashboardStats['readingSeries'] {

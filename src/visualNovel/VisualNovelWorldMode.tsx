@@ -7,7 +7,7 @@ import {
   deleteVisualNovelSave,
   getAudioClip,
   lookupDictionary,
-  upsertWords,
+  saveReaderVocabularyWord,
   getVisualNovelSave,
   getVisualNovelWorldSave,
   saveVisualNovelSave,
@@ -350,22 +350,7 @@ export function VisualNovelWorldMode({
   }, [])
 
   const handleSaveWord = useCallback(async (text: string, pinyin: string, meaning: string) => {
-    const now = new Date().toISOString()
-    await upsertWords([
-      {
-        id: crypto.randomUUID(),
-        word: text,
-        meaning,
-        pinyin,
-        status: 'learning',
-        seenCount: 0,
-        correctCount: 0,
-        wrongCount: 0,
-        listenedSeconds: 0,
-        createdAt: now,
-        updatedAt: now,
-      },
-    ])
+    await saveReaderVocabularyWord(text, pinyin, meaning)
     await onWordsChanged()
   }, [onWordsChanged])
 

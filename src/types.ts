@@ -404,6 +404,8 @@ export interface VocabWord {
   createdAt: string
   updatedAt: string
   userEditedAt?: string
+  readingAddedAt?: string
+  archivedAt?: string
   lastReviewedAt?: string
   seenCount: number
   correctCount: number
@@ -593,6 +595,7 @@ export interface DashboardRangeStats {
   successfulRecalls: number
   studyMinutes: number
   newWords: number
+  readingGraduatedWords: number
 }
 
 export interface StudyDayStat {

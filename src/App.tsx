@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+﻿import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -32,7 +32,6 @@ import {
   getAllSentenceSrs,
   getAllWords,
   getAudioClip,
-  getActivePackId,
   getDashboardStats,
   getNewWordsPerDay,
   getHotkeys,
@@ -46,23 +45,25 @@ import {
   importHostedComicPack,
   rateWordFsrs,
   recordEvent,
+  restoreArchivedWord,
   saveRenderedLesson,
   saveSentenceSrs,
   saveNewWordsPerDay,
   saveReaderProgress,
   saveGeneratedReaderBook,
+  saveReaderVocabularyWord,
   seedLmsWordsIfEmpty,
   seedReaderBooksIfEmpty,
   saveHotkeys,
   setWordActiveRecallPriority,
-  setActivePackId as persistActivePackId,
+  archiveWord,
+  isActiveVocabWord,
   startReaderSession,
   updateReaderSession,
   getReaderSessionStats,
   getUserSettings,
   saveUserSettings,
   updateWordText,
-  upsertWords,
   lookupDictionary,
   DEFAULT_USER_SETTINGS,
   getSentenceRepData,
@@ -86,7 +87,7 @@ import {
   type StoryChunkMetrics,
   type StoryChunkReceipt,
 } from './storyFeatures'
-import { createLesson, createPocketLesson, selectSentenceLessonSet, buildSentenceRoundOrder, type PauseProfile, type SentenceLessonItem } from './lesson'
+import { createPocketLesson, selectSentenceLessonSet, buildSentenceRoundOrder, type PauseProfile, type SentenceLessonItem } from './lesson'
 import { pinyin as getPinyin } from 'pinyin-pro'
 import { renderLessonToWav } from './renderAudio'
 import {
@@ -113,6 +114,7 @@ import { VisualNovelWorldMode } from './visualNovel/VisualNovelWorldMode'
 import { RenpyPrototypeMode } from './visualNovel/RenpyPrototypeMode'
 import { ComicReaderMode, ComicShelf } from './comics/ComicReaderMode'
 import { useReaderListeningController } from './useReaderListeningController'
+import { shouldCountReaderActiveSecond } from './readerActivity'
 import type { ReaderListeningController } from './useReaderListeningController'
 import { useSwipeCard, SWIPE_NAV_GLOW, type SwipeDir } from './useSwipeCard'
 import { StudyMenuPopup, StudyMenuSection, StudyMenuToggle, StudyMenuSelect } from './StudyMenuPopup'
@@ -246,15 +248,15 @@ const emptyStats: DashboardStats = {
   lingqsLearnedToday: 0,
   newWordsToday: 0,
   ranges: {
-    today: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
-    week: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
-    month: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
-    allTime: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
+    today: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0, readingGraduatedWords: 0 },
+    week: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0, readingGraduatedWords: 0 },
+    month: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0, readingGraduatedWords: 0 },
+    allTime: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0, readingGraduatedWords: 0 },
   },
   previousRanges: {
-    today: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
-    week: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
-    month: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0 },
+    today: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0, readingGraduatedWords: 0 },
+    week: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0, readingGraduatedWords: 0 },
+    month: { cardsReviewed: 0, successfulRecalls: 0, studyMinutes: 0, newWords: 0, readingGraduatedWords: 0 },
   },
   currentStreak: 0,
   longestStreak: 0,
@@ -266,7 +268,6 @@ const emptyStats: DashboardStats = {
   readingSeries: [],
 }
 
-const DEFAULT_PACK_ID = 'lms-1000-azure'
 const HIDDEN_PACK_IDS = new Set(['annas-reading-deck'])
 const FLASHCARD_LEARN_AHEAD_MS = 5 * 60 * 1000
 const FLASHCARD_REVERSE_RATE = 0.1
@@ -354,7 +355,6 @@ function App() {
   const [hostedComicPacks, setHostedComicPacks] = useState<HostedComicPack[]>([])
   const [readerPacks, setReaderPacks] = useState<ReaderPack[]>([])
   const [readerBooks, setReaderBooks] = useState<ReaderBook[]>([])
-  const [activePackId, setActivePackId] = useState<string | undefined>()
   const [stats, setStats] = useState<DashboardStats>(emptyStats)
   const [dashboardRange, setDashboardRange] = useState<DashboardRange>('today')
   const [userSettings, setUserSettings] = useState(DEFAULT_USER_SETTINGS)
@@ -396,6 +396,8 @@ function App() {
   const [readerDictionaryEntry, setReaderDictionaryEntry] = useState<DictionaryEntry | null>(null)
   const [hostedPackDownloadId, setHostedPackDownloadId] = useState<string | null>(null)
   const [hostedPackProgress, setHostedPackProgress] = useState('')
+  const [vocabSourceSearch, setVocabSourceSearch] = useState('')
+  const [showArchivedVocabSources, setShowArchivedVocabSources] = useState(false)
   const [flashcardQueueIds, setFlashcardQueueIds] = useState<string[]>([])
   const [flashcardCurrentId, setFlashcardCurrentId] = useState<string | null>(null)
   const [flashcardDoneIds, setFlashcardDoneIds] = useState<string[]>([])
@@ -518,7 +520,6 @@ function App() {
       nextPacks,
       nextReaderPacks,
       nextReaderBooks,
-      nextActivePackId,
       nextNewWordsPerDay,
       nextUserSettings,
       nextHostedClipPacks,
@@ -530,7 +531,6 @@ function App() {
       getAllClipPacks(),
       getAllReaderPacks(),
       getAllReaderBooks(),
-      getActivePackId(),
       getNewWordsPerDay(),
       getUserSettings(),
       getHostedClipPackIndex(),
@@ -539,13 +539,6 @@ function App() {
     setWords(nextWords)
     setSentences(nextSentences)
     const visiblePacks = nextPacks.filter((pack) => !HIDDEN_PACK_IDS.has(pack.id))
-    const defaultPack = visiblePacks.find((pack) => pack.id === DEFAULT_PACK_ID)
-    const shouldUseDefault =
-      !nextActivePackId || HIDDEN_PACK_IDS.has(nextActivePackId) || !visiblePacks.some((pack) => pack.id === nextActivePackId)
-    const resolvedActivePackId = shouldUseDefault ? defaultPack?.id : nextActivePackId
-    if (resolvedActivePackId !== nextActivePackId) {
-      await persistActivePackId(resolvedActivePackId)
-    }
     const nextStats = await getDashboardStats()
     const nextLatestReaderProgress = await getLatestReaderProgress(nextReaderBooks)
     setAudioClips(nextAudio)
@@ -553,7 +546,6 @@ function App() {
     setReaderPacks(nextReaderPacks)
     setReaderBooks(nextReaderBooks)
     setLatestReaderProgress(nextLatestReaderProgress)
-    setActivePackId(resolvedActivePackId)
     setNewWordsPerDay(nextNewWordsPerDay)
     setUserSettings(nextUserSettings)
     setHostedClipPacks(nextHostedClipPacks)
@@ -772,29 +764,18 @@ function App() {
     ? sentences.find((sentence) => sentence.id === currentSegment.sentenceId)
     : undefined
   const studyDisplay = getStudyDisplay(studyWord, studySentence)
-  const activePack = clipPacks.find((pack) => pack.id === activePackId)
-  const scopedWords = useMemo(
-    () => (activePackId ? words.filter((word) => word.packIds?.includes(activePackId)) : words),
-    [activePackId, words],
-  )
+  const activeWords = useMemo(() => words.filter(isActiveVocabWord), [words])
   const extraReviewWords = useMemo(
     () =>
-      words
+      activeWords
         .filter((word) => word.activeRecallPriorityAt)
         .sort((a, b) => priorityTime(a) - priorityTime(b)),
-    [words],
+    [activeWords],
   )
-  const scopedSentences = useMemo(
-    () =>
-      activePackId
-        ? sentences.filter((sentence) => sentence.packIds?.includes(activePackId))
-        : sentences,
-    [activePackId, sentences],
-  )
-  const coverage = useMemo(() => getAudioCoverage(scopedWords, scopedSentences, audioClips), [
+  const coverage = useMemo(() => getAudioCoverage(activeWords, sentences, audioClips), [
+    activeWords,
     audioClips,
-    scopedSentences,
-    scopedWords,
+    sentences,
   ])
   const lessonWords = useMemo(
     () =>
@@ -822,15 +803,15 @@ function App() {
   )
   const currentReaderSentence = readerSentences[readerSentenceIndex]
   const readerTokens = useMemo(
-    () => tokenizeReaderText(currentReaderSentence?.chinese ?? '', scopedWords.length > 0 ? scopedWords : words),
-    [currentReaderSentence, scopedWords, words],
+    () => tokenizeReaderText(currentReaderSentence?.chinese ?? '', activeWords),
+    [activeWords, currentReaderSentence],
   )
   const readerComprehensionByBook = useMemo(
     () =>
       screen === 'readingTexts' || (screen === 'reader' && !activeReaderBook)
-        ? getReaderComprehensionByBook(readerBooks, scopedWords.length > 0 ? scopedWords : words)
+        ? getReaderComprehensionByBook(readerBooks, activeWords)
         : new Map<string, ReaderBookComprehension>(),
-    [activeReaderBook, readerBooks, scopedWords, screen, words],
+    [activeReaderBook, activeWords, readerBooks, screen],
   )
   const readerResumeLocation = useMemo(
     () => getReaderResumeLocation(latestReaderProgress, readerBooks),
@@ -949,7 +930,7 @@ function App() {
   }, [stats, userSettings])
 
   const buildFlashcardQueue = useCallback((mode: FlashcardQueueMode = 'mixed') => {
-    const source = scopedWords.length > 0 ? scopedWords : words
+    const source = activeWords
     const limit = Math.max(1, userSettings.flashcardsPerDay || 50)
     const now = Date.now()
     const due = source
@@ -968,7 +949,7 @@ function App() {
       (word, index, all) => all.findIndex((candidate) => candidate.id === word.id) === index,
     )
     return mixed.slice(0, limit)
-  }, [scopedWords, userSettings.flashcardsPerDay, words])
+  }, [activeWords, userSettings.flashcardsPerDay])
 
   const startFlashcards = useCallback((mode: FlashcardQueueMode = 'mixed', overrideWords?: VocabWord[]) => {
     const queue = overrideWords ?? buildFlashcardQueue(mode)
@@ -1051,7 +1032,7 @@ function App() {
     setMinimalVisualMode(true)
     setAutoNextLesson(false)
     setScreen('lesson')
-    setLastSummary(`Sentence set: ${set.length} sentences × 10 rounds (50 reps)`)
+    setLastSummary(`Sentence set: ${set.length} sentences Ã— 10 rounds (50 reps)`)
   }, [lmsSentences, loadLmsSentences, stopAudioOutputs])
 
   const completeSentenceSet = useCallback(async (
@@ -1231,8 +1212,7 @@ function App() {
     if (session.sentenceIdsRead.includes(sentence.id)) {
       return
     }
-    const currentVocab = scopedWords.length > 0 ? scopedWords : words
-    const tokens = tokenizeReaderText(sentence.chinese, currentVocab)
+    const tokens = tokenizeReaderText(sentence.chinese, activeWords)
     const chineseTokensCount = tokens.filter(t => t.isChinese).length
     const updatedSession: ReaderSession = {
       ...session,
@@ -1244,7 +1224,7 @@ function App() {
     setActiveReaderSession(updatedSession)
     const stats = await getReaderSessionStats()
     setTodayReaderStats(stats)
-  }, [words, scopedWords])
+  }, [activeWords])
 
   const finishStoryChunk = useCallback((receipt: StoryChunkReceipt) => {
     setStoryChunkSession(null)
@@ -1273,8 +1253,7 @@ function App() {
   }, [readerSentences.length])
 
   const recordStoryChunkSentence = useCallback((sentence: ReaderSentence, sentenceIndex: number) => {
-    const currentVocab = scopedWords.length > 0 ? scopedWords : words
-    const sentenceMetrics = storyChunkSentenceMetrics(sentence.chinese, currentVocab)
+    const sentenceMetrics = storyChunkSentenceMetrics(sentence.chinese, activeWords)
     setStoryChunkSession((current) => {
       if (!current || current.sentenceIdsRead.includes(sentence.id)) return current
       if (sentenceIndex < current.startIndex || sentenceIndex > current.endIndex) return current
@@ -1291,13 +1270,12 @@ function App() {
       }
       return nextSession
     })
-  }, [finishStoryChunk, scopedWords, storyChunkReceiptFromSession, words])
+  }, [activeWords, finishStoryChunk, storyChunkReceiptFromSession])
 
   const startStoryChunk = useCallback(() => {
     if (!activeReaderBook || !currentReaderSentence || readerSentences.length === 0) return
     const endIndex = Math.min(readerSentenceIndex + 9, readerSentences.length - 1)
-    const currentVocab = scopedWords.length > 0 ? scopedWords : words
-    const metrics = storyChunkSentenceMetrics(currentReaderSentence.chinese, currentVocab)
+    const metrics = storyChunkSentenceMetrics(currentReaderSentence.chinese, activeWords)
     const session: StoryChunkSession = {
       id: `story-chunk:${activeReaderBook.id}:${Date.now()}`,
       bookId: activeReaderBook.id,
@@ -1321,9 +1299,8 @@ function App() {
     finishStoryChunk,
     readerSentenceIndex,
     readerSentences.length,
-    scopedWords,
+    activeWords,
     storyChunkReceiptFromSession,
-    words,
   ])
 
   const updateStoryChunkMetrics = useCallback((patch: Partial<StoryChunkMetrics>) => {
@@ -1388,8 +1365,7 @@ function App() {
     if (screen !== 'reader' || !activeReaderSession) return
     const interval = window.setInterval(() => {
       const now = Date.now()
-      const timeSinceLastActivity = now - lastReaderActivityTimeRef.current
-      if (timeSinceLastActivity <= 60000) {
+      if (shouldCountReaderActiveSecond(lastReaderActivityTimeRef.current, now)) {
         setActiveReaderSession((prev: ReaderSession | null) => {
           if (!prev) return null
           const updated = {
@@ -1601,7 +1577,7 @@ function App() {
       } else if (dir === 'down') {
         bookListening.togglePlayPause()
       } else {
-        // cycle: both on → English off → both off → both on
+        // cycle: both on â†’ English off â†’ both off â†’ both on
         if (bookListenPinyinVisible && bookListenEnglishVisible) {
           setBookListenEnglishVisible(false)
         } else if (bookListenPinyinVisible && !bookListenEnglishVisible) {
@@ -2247,19 +2223,11 @@ function App() {
     setScreen('lesson')
     try {
       const { playAfterRender = false, ...selectionOptions } = options
-      const lessonWords = scopedWords.length > 0 ? scopedWords : words
-      const lessonSentences = scopedSentences.length > 0 ? scopedSentences : sentences
-      const useBrowserTts = activePack?.browserTts
-      const nextLesson = useBrowserTts
-        ? createLesson(lessonWords, lessonSentences, manualIds, {
-            extraReviewFirst: studyMode === 'listeningMode',
-            ...selectionOptions,
-          })
-        : createPocketLesson(lessonWords, lessonSentences, audioClips, manualIds, {
-            pauseProfile,
-            extraReviewFirst: studyMode === 'listeningMode',
-            ...selectionOptions,
-          })
+      const nextLesson = createPocketLesson(activeWords, sentences, audioClips, manualIds, {
+        pauseProfile,
+        extraReviewFirst: studyMode === 'listeningMode',
+        ...selectionOptions,
+      })
       setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
       setFsrsRatings({})
       await renderAndLoadLesson(
@@ -2463,7 +2431,7 @@ function App() {
     const medium: string[] = []
     const learning: string[] = []
 
-    for (const word of words) {
+    for (const word of activeWords) {
       const state = adaptiveReaderPinyinState(word)
       if (state === 'known') {
         strong.push(word.word)
@@ -2494,7 +2462,7 @@ function App() {
     if (!cloudUserEmail) {
       throw new Error('Sign in with cloud sync before generating AI stories.')
     }
-    const knownWords = words
+    const knownWords = activeWords
       .filter((word) => adaptiveReaderPinyinState(word) === 'known')
       .map((word) => ({
         word: word.word,
@@ -2510,14 +2478,14 @@ function App() {
     setAiStoryMessage('Generating a known-word story...')
     try {
       let story = await generateAiStory({ prompt, knownWords })
-      let validation = validateGeneratedStoryCoverage(story, words)
+      let validation = validateGeneratedStoryCoverage(story, activeWords)
       if (
         validation.knownCoveragePercent < GENERATED_STORY_TARGET_COVERAGE ||
         validation.unavoidableNewWords.length > 5
       ) {
         setAiStoryMessage('First draft was too spicy. Retrying with simpler known words...')
         story = await generateAiStory({ prompt, knownWords, strictRetry: true })
-        validation = validateGeneratedStoryCoverage(story, words)
+        validation = validateGeneratedStoryCoverage(story, activeWords)
       }
       const book = generatedStoryToReaderBook(story, validation)
       await saveGeneratedReaderBook(book)
@@ -2531,7 +2499,7 @@ function App() {
     } finally {
       setAiStoryBusy(false)
     }
-  }, [cloudUserEmail, refresh, words])
+  }, [activeWords, cloudUserEmail, refresh])
 
   async function handleBackupImport(files: FileList | null) {
     const file = files?.[0]
@@ -2593,7 +2561,7 @@ function App() {
 
   async function handleAudioImport(files: FileList | null) {
     if (!files) return
-    const summary = await importAudioFiles(files, activePackId)
+    const summary = await importAudioFiles(files)
     setLastSummary(formatSummary(summary))
     await refresh()
   }
@@ -2643,14 +2611,18 @@ function App() {
     }
   }
 
-  async function handleSetActivePack(packId: string | undefined) {
-    await persistActivePackId(packId)
-    setActivePackId(packId)
-    setLastSummary(
-      packId
-        ? `Active pack: ${clipPacks.find((pack) => pack.id === packId)?.name ?? packId}.`
-        : 'Active pack: All words.',
-    )
+  async function handleArchiveVocabularyWord(wordId: string) {
+    await archiveWord(wordId)
+    setLastSummary('Word archived. It is hidden from study and Reader coverage.')
+    await refresh()
+    queueCloudSync()
+  }
+
+  async function handleRestoreVocabularyWord(wordId: string) {
+    await restoreArchivedWord(wordId)
+    setLastSummary('Word restored to your central vocabulary list.')
+    await refresh()
+    queueCloudSync()
   }
 
   async function handleHotkeyChange(name: keyof HotkeySettings, value: string) {
@@ -2682,7 +2654,7 @@ function App() {
       <header className="topbar">
         <div className="brand-area">
           <button className="brand-button" type="button" onClick={() => setScreen('dashboard')} aria-label="Go to dashboard">
-            <span className="brand-mark">中</span>
+            <span className="brand-mark">ä¸­</span>
             <span>
               <strong>Chunky Chinese</strong>
               <small>{seedMessage}</small>
@@ -2737,7 +2709,7 @@ function App() {
               <button className="mode-start listen-start" type="button" onClick={() => void startSentenceLesson()}>
                 <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
                 <strong>Listening</strong>
-                <span>Sentence loops by default — switch to Words or Active Recall in the menu.</span>
+                <span>Sentence loops by default â€” switch to Words or Active Recall in the menu.</span>
               </button>
               <button className="mode-start reading-texts-start" type="button" onClick={() => setScreen('readingTexts')}>
                 <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
@@ -2807,6 +2779,11 @@ function App() {
                 <dd>{selectedRangeStats.newWords}</dd>
                 {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.newWords}</dd>}
               </div>
+              <div>
+                <dt>Reading graduates</dt>
+                <dd>{selectedRangeStats.readingGraduatedWords}</dd>
+                {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.readingGraduatedWords}</dd>}
+              </div>
             </dl>
           </section>
 
@@ -2826,7 +2803,7 @@ function App() {
                 <div className="extra-review-row" key={word.id}>
                   <span>
                     <strong>{word.word}</strong>
-                    <small>{word.pinyin ? `${word.pinyin} · ${word.meaning}` : word.meaning}</small>
+                    <small>{word.pinyin ? `${word.pinyin} Â· ${word.meaning}` : word.meaning}</small>
                   </span>
                   <button type="button" className="ghost-answer" onClick={() => toggleActiveRecallPriority(word)}>
                     Remove
@@ -2846,6 +2823,17 @@ function App() {
             <InfoPanel title="Recent Activity (Last 7 Days)">
               <ActivityChart days={stats.studyHeatmap} />
             </InfoPanel>
+            <InfoPanel title="Reading WPM Trend" className="reading-wpm-trend-panel">
+              <ReadingWpmTrendChart points={stats.readingSeries} />
+            </InfoPanel>
+            <InfoPanel title="Words Graduated From Reading" className="reading-graduated-panel">
+              <ReadingGraduatedCounter
+                current={selectedRangeStats.readingGraduatedWords}
+                previous={selectedPreviousRangeStats?.readingGraduatedWords}
+                allTime={stats.ranges.allTime.readingGraduatedWords}
+                rangeLabel={dashboardRangeLabel(dashboardRange)}
+              />
+            </InfoPanel>
             <InfoPanel title="Review heatmap">
               <ProgressHeatmap days={stats.studyHeatmap} />
             </InfoPanel>
@@ -2856,7 +2844,7 @@ function App() {
               <dl className="stat-list">
                 <div>
                   <dt>Current streak</dt>
-                  <dd>{stats.currentStreak} 🔥</dd>
+                  <dd>{stats.currentStreak} ðŸ”¥</dd>
                 </div>
                 <div>
                   <dt>Longest streak</dt>
@@ -2924,11 +2912,11 @@ function App() {
                 </div>
                 <div>
                   <dt>Avg flashcard set</dt>
-                  <dd>{stats.avgFlashcardSetSeconds > 0 ? formatDuration(Math.round(stats.avgFlashcardSetSeconds)) : '—'}</dd>
+                  <dd>{stats.avgFlashcardSetSeconds > 0 ? formatDuration(Math.round(stats.avgFlashcardSetSeconds)) : 'â€”'}</dd>
                 </div>
                 <div>
                   <dt>Last set duration</dt>
-                  <dd>{stats.lastFlashcardSetSeconds > 0 ? formatDuration(stats.lastFlashcardSetSeconds) : '—'}</dd>
+                  <dd>{stats.lastFlashcardSetSeconds > 0 ? formatDuration(stats.lastFlashcardSetSeconds) : 'â€”'}</dd>
                 </div>
               </dl>
               <button type="button" className="ghost-answer" onClick={() => setScreen('comicReader')}>
@@ -3049,7 +3037,7 @@ function App() {
                       </div>
                       {flashcardSentenceAnswerShown && (
                         <div className="swipe-instructions">
-                          {hotkeys.choiceA.toUpperCase()} Again · {hotkeys.choiceB.toUpperCase()} Good
+                          {hotkeys.choiceA.toUpperCase()} Again Â· {hotkeys.choiceB.toUpperCase()} Good
                         </div>
                       )}
                       <div className="flashcard-bottom-actions">
@@ -3148,7 +3136,7 @@ function App() {
                               className={`ghost-answer struggled-word-btn ${word.activeRecallPriorityAt ? 'active' : ''}`}
                               onClick={() => void toggleActiveRecallPriority(word)}
                             >
-                              {word.activeRecallPriorityAt ? '★' : '☆'} {word.word}
+                              {word.activeRecallPriorityAt ? 'â˜…' : 'â˜†'} {word.word}
                             </button>
                           ))}
                         </div>
@@ -3233,19 +3221,7 @@ function App() {
             }
           }}
           onSaveWord={async (text, pinyin, meaning) => {
-            await upsertWords([{
-              id: crypto.randomUUID(),
-              word: text,
-              meaning: meaning,
-              pinyin: pinyin,
-              status: 'learning',
-              seenCount: 0,
-              correctCount: 0,
-              wrongCount: 0,
-              listenedSeconds: 0,
-              createdAt: new Date().toISOString(),
-              updatedAt: new Date().toISOString(),
-            }])
+            await saveReaderVocabularyWord(text, pinyin, meaning)
             updateStoryChunkMetrics({ savedWords: [text] })
             await refresh()
           }}
@@ -3264,7 +3240,7 @@ function App() {
 
       {screen === 'visualNovel' && (
         <VisualNovelWorldMode
-          words={scopedWords.length > 0 ? scopedWords : words}
+          words={activeWords}
           readerBooks={readerBooks}
           pinyinMode={userSettings.readerPinyinMode}
           readerTheme={userSettings.readerTheme}
@@ -3302,7 +3278,7 @@ function App() {
 
       {screen === 'comicReader' && (
         <ComicReaderMode
-          words={scopedWords.length > 0 ? scopedWords : words}
+          words={activeWords}
           pinyinMode={userSettings.readerPinyinMode}
           hotkeys={hotkeys}
           onEditWord={openCardEditor}
@@ -3498,44 +3474,16 @@ function App() {
                     {hostedPackDownloadId && hostedPackProgress && <small>{hostedPackProgress}</small>}
                   </section>
                 )}
-                <section className="panel hosted-pack">
-                  <h2>Installed packs</h2>
-                  <p>Lessons use the active pack first. Progress is shared when the same word appears in multiple packs.</p>
-                  <div className="pack-list">
-                    <div className={`pack-row ${activePackId ? '' : 'active'}`}>
-                      <span>
-                        <strong>All words</strong>
-                        <small>{words.length} words across every installed/imported pack.</small>
-                      </span>
-                      <button
-                        type="button"
-                        className={activePackId ? '' : 'primary'}
-                        onClick={() => handleSetActivePack(undefined)}
-                      >
-                        {activePackId ? 'Set active' : 'Active'}
-                      </button>
-                    </div>
-                    {clipPacks.map((pack) => (
-                      <div key={pack.id} className={`pack-row ${pack.id === activePackId ? 'active' : ''}`}>
-                        <span>
-                          <strong>{pack.name}</strong>
-                          <small>
-                            {pack.wordCount} words · {pack.audioCount} clips ·{' '}
-                            {pack.browserTts ? 'browser TTS' : 'MP3'}
-                          </small>
-                        </span>
-                        <button
-                          type="button"
-                          className={pack.id === activePackId ? 'primary' : ''}
-                          onClick={() => handleSetActivePack(pack.id)}
-                        >
-                          {pack.id === activePackId ? 'Active' : 'Set active'}
-                        </button>
-                      </div>
-                    ))}
-                    {clipPacks.length === 0 && <small>No packs installed yet.</small>}
-                  </div>
-                </section>
+                <VocabularySourcesPanel
+                  words={words}
+                  clipPacks={clipPacks}
+                  search={vocabSourceSearch}
+                  showArchived={showArchivedVocabSources}
+                  onSearchChange={setVocabSourceSearch}
+                  onShowArchivedChange={setShowArchivedVocabSources}
+                  onArchiveWord={(wordId) => void handleArchiveVocabularyWord(wordId)}
+                  onRestoreWord={(wordId) => void handleRestoreVocabularyWord(wordId)}
+                />
                 <FilePanel
                   title="Clip pack folder"
                   help="Select the whole generated clip-pack folder: clips_manifest.json, vocab.csv, sentences.csv, and audio/."
@@ -3774,7 +3722,7 @@ function App() {
               <div className="import-grid">
                 <section className="panel">
                   <h2>Hotkey settings</h2>
-                  <p>Choice A–D rate flashcards and sentences; Choice E stars cards; Choice F replays audio.</p>
+                  <p>Choice Aâ€“D rate flashcards and sentences; Choice E stars cards; Choice F replays audio.</p>
                   <dl className="stat-list">
                     <div><dt>Again (A)</dt><dd>{hotkeys.choiceA.toUpperCase()}</dd></div>
                     <div><dt>Hard (B)</dt><dd>{hotkeys.choiceB.toUpperCase()}</dd></div>
@@ -3839,7 +3787,7 @@ function App() {
                 </section>
                 <section className="panel">
                   <h2>App update</h2>
-                  <p>If the app looks out of date, force a fresh reload — clears all cached files and restarts.</p>
+                  <p>If the app looks out of date, force a fresh reload â€” clears all cached files and restarts.</p>
                   <div className="button-row">
                     <button
                       type="button"
@@ -3888,7 +3836,7 @@ function App() {
                               onClick={() => setListeningLessonMenuOpen(o => !o)}
                               aria-label="Listening menu"
                             >
-                              ☰
+                              â˜°
                             </button>
                             <StudyMenuPopup open={listeningLessonMenuOpen} onClose={() => setListeningLessonMenuOpen(false)}>
                               <p className="sentence-menu-label">Mode</p>
@@ -4047,7 +3995,7 @@ function App() {
                         </div>
 
                         {sentenceSubMode === 'books' ? (
-                          /* ── Book Listening sub-mode ── */
+                          /* â”€â”€ Book Listening sub-mode â”€â”€ */
                           bookListenBook === null ? (
                             /* Book picker */
                             <div className="book-picker-list">
@@ -4118,7 +4066,7 @@ function App() {
                                     onClick={() => setSentenceMenuOpen(o => !o)}
                                     aria-label="Menu"
                                   >
-                                    ☰
+                                    â˜°
                                   </button>
                                   <StudyMenuPopup open={sentenceMenuOpen} onClose={() => setSentenceMenuOpen(false)}>
                                     <p className="sentence-menu-label">Book</p>
@@ -4135,13 +4083,13 @@ function App() {
                                       <StudyMenuSelect
                                         label="Speed"
                                         value={userSettings.readerListeningRate}
-                                        options={[0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.5].map(r => ({ value: r, label: `${r}×` }))}
+                                        options={[0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.5].map(r => ({ value: r, label: `${r}Ã—` }))}
                                         onChange={value => { void saveReaderSettings({ readerListeningRate: value }) }}
                                       />
                                       <StudyMenuSelect
                                         label="Repeats"
                                         value={userSettings.readerListeningRepeats}
-                                        options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}×` }))}
+                                        options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}Ã—` }))}
                                         onChange={value => { void saveReaderSettings({ readerListeningRepeats: value }) }}
                                       />
                                     </StudyMenuSection>
@@ -4159,7 +4107,7 @@ function App() {
                                   }}
                                   title="Cycle playback speed"
                                 >
-                                  {userSettings.readerListeningRate}×
+                                  {userSettings.readerListeningRate}Ã—
                                 </button>
                               </div>
 
@@ -4198,7 +4146,7 @@ function App() {
 
                               {bookListenSwipe.swipeDir && !bookListenDismissDir && (
                                 <div className={`swipe-indicator swipe-indicator-${bookListenSwipe.swipeDir}`}>
-                                  {{ left: '← Next', right: '→ Prev', down: '⏸ Pause', up: '↑ Display' }[bookListenSwipe.swipeDir] ?? ''}
+                                  {{ left: 'â† Next', right: 'â†’ Prev', down: 'â¸ Pause', up: 'â†‘ Display' }[bookListenSwipe.swipeDir] ?? ''}
                                 </div>
                               )}
 
@@ -4219,15 +4167,15 @@ function App() {
 
                               {/* Swipe hints */}
                               <div className="book-listen-hints">
-                                <span>↑ display</span>
-                                <span>→ prev</span>
-                                <span>↓ pause</span>
-                                <span>← next</span>
+                                <span>â†‘ display</span>
+                                <span>â†’ prev</span>
+                                <span>â†“ pause</span>
+                                <span>â† next</span>
                               </div>
                             </div>
                           )
                         ) : (
-                          /* ── Sets sub-mode (original sentence mode) ── */
+                          /* â”€â”€ Sets sub-mode (original sentence mode) â”€â”€ */
                           <div
                             className={`sentence-mode-display${sentenceSetSwipe.swipeDir ? ` swipe-${sentenceSetSwipe.swipeDir}` : ''}`}
                             {...sentenceSetSwipe.handlers}
@@ -4241,7 +4189,7 @@ function App() {
                                   onClick={() => setSentenceMenuOpen(o => !o)}
                                   aria-label="Menu"
                                 >
-                                  ☰
+                                  â˜°
                                 </button>
                                 <StudyMenuPopup open={sentenceMenuOpen} onClose={() => setSentenceMenuOpen(false)}>
                                   <p className="sentence-menu-label">Mode</p>
@@ -4288,7 +4236,7 @@ function App() {
                             </div>
 
                             {sentencePaused && (
-                              <div className="sentence-paused-overlay">Paused — tap ▶ to resume</div>
+                              <div className="sentence-paused-overlay">Paused â€” tap â–¶ to resume</div>
                             )}
 
                             {sentenceQueue.length > 0 && sentenceRoundOrder.length > 0 && (() => {
@@ -4317,7 +4265,7 @@ function App() {
                                         {getPinyin(current?.chinese ?? '', { toneType: 'symbol', separator: ' ' })}
                                       </div>
                                     ) : (
-                                      <div className="sentence-pinyin-hint">拼 pinyin</div>
+                                      <div className="sentence-pinyin-hint">æ‹¼ pinyin</div>
                                     )}
                                     {showEnglish && (
                                       <div className="sentence-english">{current?.english}</div>
@@ -4332,7 +4280,7 @@ function App() {
 
                             {sentenceSetSwipe.swipeDir && (
                               <div className={`swipe-indicator swipe-indicator-${sentenceSetSwipe.swipeDir}`}>
-                                {{ left: '✗ Again', up: '△ Hard', right: '✓ Good', down: '★ Easy' }[sentenceSetSwipe.swipeDir]}
+                                {{ left: 'âœ— Again', up: 'â–³ Hard', right: 'âœ“ Good', down: 'â˜… Easy' }[sentenceSetSwipe.swipeDir]}
                               </div>
                             )}
 
@@ -4620,7 +4568,7 @@ function App() {
                   )}
                   {targetWord && (
                     <p>
-                      Current word: <strong>{targetWord.word}</strong> · {targetWord.meaning}
+                      Current word: <strong>{targetWord.word}</strong> Â· {targetWord.meaning}
                     </p>
                   )}
                 </div>
@@ -4810,6 +4758,130 @@ function InfoPanel({ title, children, className = '' }: { title: string; childre
   )
 }
 
+function VocabularySourcesPanel({
+  words,
+  clipPacks,
+  search,
+  showArchived,
+  onSearchChange,
+  onShowArchivedChange,
+  onArchiveWord,
+  onRestoreWord,
+}: {
+  words: VocabWord[]
+  clipPacks: ClipPack[]
+  search: string
+  showArchived: boolean
+  onSearchChange: (value: string) => void
+  onShowArchivedChange: (value: boolean) => void
+  onArchiveWord: (wordId: string) => void
+  onRestoreWord: (wordId: string) => void
+}) {
+  const normalizedSearch = search.trim().toLocaleLowerCase()
+  const activeCount = words.filter(isActiveVocabWord).length
+  const archivedCount = words.length - activeCount
+  const sourceRows = [
+    {
+      id: 'central',
+      name: 'Central vocabulary',
+      description: `${activeCount} active words${archivedCount ? `, ${archivedCount} archived` : ''}`,
+      words,
+    },
+    ...clipPacks.map((pack) => {
+      const sourceWords = words.filter((word) => word.packIds?.includes(pack.id))
+      return {
+        id: pack.id,
+        name: pack.name,
+        description: `${sourceWords.filter(isActiveVocabWord).length} active words from this source`,
+        words: sourceWords,
+      }
+    }),
+    {
+      id: 'reading-saves',
+      name: 'Saved from reading',
+      description: `${words.filter((word) => isActiveVocabWord(word) && word.readingAddedAt).length} active words saved in context`,
+      words: words.filter((word) => word.readingAddedAt),
+    },
+  ].filter((source) => source.words.length > 0 || source.id === 'central')
+
+  return (
+    <section className="panel vocabulary-sources-panel">
+      <h2>Vocabulary sources</h2>
+      <p>One central vocab list powers flashcards, Reader coverage, AI stories, and lessons.</p>
+      <div className="vocabulary-source-controls">
+        <label>
+          <span>Search words</span>
+          <input
+            type="search"
+            value={search}
+            onChange={(event) => onSearchChange(event.target.value)}
+            placeholder="Chinese, pinyin, or meaning"
+          />
+        </label>
+        <label className="toggle-line">
+          <input
+            type="checkbox"
+            checked={showArchived}
+            onChange={(event) => onShowArchivedChange(event.target.checked)}
+          />
+          <span>Show archived</span>
+        </label>
+      </div>
+      <div className="vocabulary-source-list">
+        {sourceRows.map((source) => {
+          const sourceWords = source.words
+            .filter((word) => showArchived || isActiveVocabWord(word))
+            .filter((word) => {
+              if (!normalizedSearch) return true
+              return [word.word, word.pinyin, word.meaning]
+                .filter(Boolean)
+                .some((value) => value?.toLocaleLowerCase().includes(normalizedSearch))
+            })
+            .sort((a, b) => Number(Boolean(a.archivedAt)) - Number(Boolean(b.archivedAt)) || a.word.localeCompare(b.word, 'zh-Hans-CN'))
+          const previewWords = sourceWords.slice(0, 18)
+          return (
+            <details className="vocabulary-source-row" key={source.id} open={source.id === 'central'}>
+              <summary>
+                <span>
+                  <strong>{source.name}</strong>
+                  <small>{source.description}</small>
+                </span>
+                <em>{sourceWords.length} shown</em>
+              </summary>
+              <div className="vocabulary-source-words">
+                {previewWords.map((word) => (
+                  <div className={`vocabulary-source-word ${word.archivedAt ? 'archived' : ''}`} key={word.id}>
+                    <span>
+                      <strong>{word.word}</strong>
+                      <small>
+                        {word.pinyin ? `${word.pinyin} - ` : ''}{word.meaning}
+                        {word.readingAddedAt ? ` - saved ${formatRelativeTime(word.readingAddedAt)}` : ''}
+                      </small>
+                    </span>
+                    {word.archivedAt ? (
+                      <button type="button" className="ghost-answer" onClick={() => onRestoreWord(word.id)}>
+                        Restore
+                      </button>
+                    ) : (
+                      <button type="button" className="ghost-answer danger" onClick={() => onArchiveWord(word.id)}>
+                        Archive
+                      </button>
+                    )}
+                  </div>
+                ))}
+                {sourceWords.length > previewWords.length && (
+                  <small>{sourceWords.length - previewWords.length} more match this search.</small>
+                )}
+                {sourceWords.length === 0 && <small>No words match this source and filter.</small>}
+              </div>
+            </details>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
+
 const readerPinyinModes: Array<{ value: ReaderPinyinMode; label: string }> = [
   { value: 'adaptive', label: 'Adaptive' },
   { value: 'all', label: 'All' },
@@ -4928,7 +5000,7 @@ function ReadingTextsLibrary({
                   <div>
                     <h3>{book.title}</h3>
                     <p>
-                      Chapters {book.chapterStart}-{book.chapterEnd} · {book.stories.length} stories
+                      Chapters {book.chapterStart}-{book.chapterEnd} Â· {book.stories.length} stories
                     </p>
                   </div>
                   <div className="reading-book-progress" aria-hidden="true">
@@ -4937,7 +5009,7 @@ function ReadingTextsLibrary({
                   <small>
                     {isResumeBook
                       ? `Continue at sentence ${resumeLocation.sentenceIndex + 1}`
-                      : `${comprehension?.knownPercent ?? 0}% vocabulary known · ${readerComfortLabel(comprehension?.knownPercent ?? 0)}`}
+                      : `${comprehension?.knownPercent ?? 0}% vocabulary known Â· ${readerComfortLabel(comprehension?.knownPercent ?? 0)}`}
                   </small>
                   <div className="reading-book-actions">
                     {isResumeBook ? (
@@ -4975,7 +5047,7 @@ function ReadingTextsLibrary({
       </div>
     )
 
-  // ── Category sub-views ──
+  // â”€â”€ Category sub-views â”€â”€
   if (category === 'novels' || category === 'stories') {
     const isNovels = category === 'novels'
     return (
@@ -4985,7 +5057,7 @@ function ReadingTextsLibrary({
             Back to Reading
           </button>
           <div>
-            <span className="reading-library-mark" aria-hidden="true">{isNovels ? '文' : '事'}</span>
+            <span className="reading-library-mark" aria-hidden="true">{isNovels ? 'æ–‡' : 'äº‹'}</span>
             <div>
               <h1>{isNovels ? 'Novels' : 'Stories'}</h1>
               <p>{isNovels ? 'Long-form books with pinyin, translations, and audio.' : 'Short reads and standalone texts.'}</p>
@@ -5025,7 +5097,7 @@ function ReadingTextsLibrary({
             Back to Reading
           </button>
           <div>
-            <span className="reading-library-mark" aria-hidden="true">漫</span>
+            <span className="reading-library-mark" aria-hidden="true">æ¼«</span>
             <div>
               <h1>Comics</h1>
               <p>Read pages with bubble transcripts and vocabulary lookup.</p>
@@ -5045,7 +5117,7 @@ function ReadingTextsLibrary({
             Back to Reading
           </button>
           <div>
-            <span className="reading-library-mark" aria-hidden="true">剧</span>
+            <span className="reading-library-mark" aria-hidden="true">å‰§</span>
             <div>
               <h1>Visual Novels</h1>
               <p>Interactive stories with scenes, dialogue, and choices.</p>
@@ -5104,7 +5176,7 @@ function ReadingTextsLibrary({
     )
   }
 
-  // ── Hub: 4 category tiles ──
+  // â”€â”€ Hub: 4 category tiles â”€â”€
   return (
     <section className="screen reading-texts-screen">
       <header className="reading-library-heading">
@@ -5112,7 +5184,7 @@ function ReadingTextsLibrary({
           Back to Dashboard
         </button>
         <div>
-          <span className="reading-library-mark" aria-hidden="true">阅</span>
+          <span className="reading-library-mark" aria-hidden="true">é˜…</span>
           <div>
             <h1>Reading</h1>
             <p>Pick a format, then choose what to read.</p>
@@ -5125,7 +5197,7 @@ function ReadingTextsLibrary({
           <div className="reading-continue-copy">
             <span>Continue reading</span>
             <h2 id="reading-continue-title">{resumeLocation.book.title}</h2>
-            <p>Chapter {resumeLocation.chapter} · {resumeLocation.story}</p>
+            <p>Chapter {resumeLocation.chapter} Â· {resumeLocation.story}</p>
             <div className="reading-progress-row">
               <div className="reading-progress-track" aria-label={`${resumeLocation.percent}% read`}>
                 <span style={{ width: `${resumeLocation.percent}%` }} />
@@ -5137,9 +5209,9 @@ function ReadingTextsLibrary({
             </small>
           </div>
           <div className="reading-continue-books" aria-hidden="true">
-            <span>故事</span>
-            <span>中文</span>
-            <span>阅读</span>
+            <span>æ•…äº‹</span>
+            <span>ä¸­æ–‡</span>
+            <span>é˜…è¯»</span>
           </div>
           <button
             type="button"
@@ -5147,7 +5219,7 @@ function ReadingTextsLibrary({
             onClick={() => void onChooseBook(resumeLocation.book, 'resume')}
           >
             Resume
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true">â†’</span>
           </button>
         </section>
       ) : null}
@@ -5155,36 +5227,36 @@ function ReadingTextsLibrary({
       <section className="reading-formats-section" aria-labelledby="reading-formats-title">
         <div className="reading-formats-grid">
           <button type="button" className="reading-format reading-format-novels" onClick={() => setCategory('novels')}>
-            <span className="reading-format-icon" aria-hidden="true">文</span>
+            <span className="reading-format-icon" aria-hidden="true">æ–‡</span>
             <span>
               <strong>Novels</strong>
               <small>{novels.length} long-form books with pinyin and audio.</small>
             </span>
-            <span className="reading-format-arrow" aria-hidden="true">→</span>
+            <span className="reading-format-arrow" aria-hidden="true">â†’</span>
           </button>
           <button type="button" className="reading-format reading-format-comics" onClick={() => setCategory('comics')}>
-            <span className="reading-format-icon" aria-hidden="true">漫</span>
+            <span className="reading-format-icon" aria-hidden="true">æ¼«</span>
             <span>
               <strong>Comics</strong>
               <small>Pages with bubble transcripts and vocabulary lookup.</small>
             </span>
-            <span className="reading-format-arrow" aria-hidden="true">→</span>
+            <span className="reading-format-arrow" aria-hidden="true">â†’</span>
           </button>
           <button type="button" className="reading-format reading-format-novels" onClick={() => setCategory('stories')}>
-            <span className="reading-format-icon" aria-hidden="true">事</span>
+            <span className="reading-format-icon" aria-hidden="true">äº‹</span>
             <span>
               <strong>Stories</strong>
               <small>{stories.length} short reads and standalone texts.</small>
             </span>
-            <span className="reading-format-arrow" aria-hidden="true">→</span>
+            <span className="reading-format-arrow" aria-hidden="true">â†’</span>
           </button>
           <button type="button" className="reading-format reading-format-novel" onClick={() => setCategory('visualNovels')}>
-            <span className="reading-format-icon" aria-hidden="true">剧</span>
+            <span className="reading-format-icon" aria-hidden="true">å‰§</span>
             <span>
               <strong>Visual Novels</strong>
               <small>Interactive scenes, dialogue, and Ren'Py stories.</small>
             </span>
-            <span className="reading-format-arrow" aria-hidden="true">→</span>
+            <span className="reading-format-arrow" aria-hidden="true">â†’</span>
           </button>
         </div>
       </section>
@@ -5414,7 +5486,7 @@ function ReaderMode({
         <div>
           <h1>Reader Mode</h1>
           <p>
-            {readerPacks[0]?.name ?? 'LMS Reader Books'} · {readerBooks.length} compilation books.
+            {readerPacks[0]?.name ?? 'LMS Reader Books'} Â· {readerBooks.length} compilation books.
           </p>
         </div>
         <div className="study-toggles">
@@ -5430,7 +5502,7 @@ function ReaderMode({
                 disabled={Boolean(storyChunk) || sentenceIndex >= sentenceCount}
                 aria-label={storyChunk ? 'Story chunk running' : 'Start story chunk'}
               >
-                {storyChunk ? 'Chunks ✓' : 'Chunks'}
+                {storyChunk ? 'Chunks âœ“' : 'Chunks'}
               </button>
               <button
                 type="button"
@@ -5482,7 +5554,7 @@ function ReaderMode({
               >
                 <strong>{book.title}</strong>
                 <span>
-                  Chapters {book.chapterStart}-{book.chapterEnd} · {book.stories.length} stories
+                  Chapters {book.chapterStart}-{book.chapterEnd} Â· {book.stories.length} stories
                 </span>
                 <ReaderComprehensionMeter
                   summary={comprehension}
@@ -5540,7 +5612,7 @@ function ReaderMode({
                     onClick={() => setReaderMenuOpen(o => !o)}
                     aria-label="Reader menu"
                   >
-                    ☰
+                    â˜°
                   </button>
                   <StudyMenuPopup open={readerMenuOpen} onClose={() => setReaderMenuOpen(false)}>
                     <StudyMenuSection label="Display">
@@ -5561,13 +5633,13 @@ function ReaderMode({
                       <StudyMenuSelect
                         label="Speed"
                         value={listeningRate}
-                        options={[0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2].map(r => ({ value: r, label: `${r.toFixed(1)}×` }))}
+                        options={[0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2].map(r => ({ value: r, label: `${r.toFixed(1)}Ã—` }))}
                         onChange={value => onListeningSettingsChange({ readerListeningRate: value })}
                       />
                       <StudyMenuSelect
                         label="Repeats"
                         value={listeningRepeats}
-                        options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}×` }))}
+                        options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}Ã—` }))}
                         onChange={value => onListeningSettingsChange({ readerListeningRepeats: value })}
                       />
                       <StudyMenuToggle
@@ -5590,10 +5662,10 @@ function ReaderMode({
                 <section className="story-chunk-receipt" aria-live="polite">
                   <div className="story-chunk-receipt-summary">
                     <strong>{storyChunkReceipt.title}</strong>
-                    <span>{storyChunkReceipt.sentencesRead} sentences · {formatDuration(storyChunkReceipt.activeSeconds)}</span>
+                    <span>{storyChunkReceipt.sentencesRead} sentences Â· {formatDuration(storyChunkReceipt.activeSeconds)}</span>
                     <span className="story-chunk-receipt-words">
                       {storyChunkReceipt.unsavedWordsTapped + storyChunkReceipt.learningWords} new/learning words met
-                      {storyChunkReceipt.wordsSaved > 0 ? ` · ${storyChunkReceipt.wordsSaved} saved` : ''}
+                      {storyChunkReceipt.wordsSaved > 0 ? ` Â· ${storyChunkReceipt.wordsSaved} saved` : ''}
                     </span>
                   </div>
                   <div className="story-chunk-receipt-actions">
@@ -5612,6 +5684,7 @@ function ReaderMode({
               >
                   <div
                     key={`${sentence.id}-${readerSwipe.animKey}`}
+                    // eslint-disable-next-line react-hooks/refs -- Passing the swipe hook ref into JSX; this does not read ref.current during render.
                     ref={readerSwipe.cardRef}
                     className={`reader-reading-area card-enter${listening.active ? ' reader-listening-highlight' : ''}${readerSwipe.dismissClass ? ` ${readerSwipe.dismissClass}` : ''}`}
                   >
@@ -5671,7 +5744,7 @@ function ReaderMode({
                       onClick={() => setListeningMenuOpen(true)}
                       aria-label={`Listening settings. Repeat ${listening.snapshot.repeatNumber} of ${listeningRepeatTotal}, ${listeningRate.toFixed(1)} times speed, auto-advance ${listeningAutoAdvance ? 'on' : 'off'}.`}
                     >
-                      ☰
+                      â˜°
                     </button>
                     <button
                       type="button"
@@ -5778,7 +5851,7 @@ function ReaderMode({
                         })}
                       >
                         {[0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2].map((value) => (
-                          <option key={value} value={value}>{value.toFixed(1)}×</option>
+                          <option key={value} value={value}>{value.toFixed(1)}Ã—</option>
                         ))}
                       </select>
                     </label>
@@ -5791,7 +5864,7 @@ function ReaderMode({
                         })}
                       >
                         {[1, 2, 3, 4, 5].map((value) => (
-                          <option key={value} value={value}>{value}×</option>
+                          <option key={value} value={value}>{value}Ã—</option>
                         ))}
                       </select>
                     </label>
@@ -5881,6 +5954,81 @@ function ActivityChart({ days }: { days: DashboardStats['studyHeatmap'] }) {
           <Area type="monotone" dataKey="studySeconds" stroke="var(--accent-vibrant)" fillOpacity={1} fill="url(#colorStudy)" />
         </AreaChart>
       </ResponsiveContainer>
+    </div>
+  )
+}
+
+function ReadingWpmTrendChart({ points }: { points: DashboardStats['readingSeries'] }) {
+  const readablePoints = points.filter((point) => point.wordsRead > 0 || point.activeSeconds > 0)
+  const latest = [...readablePoints].reverse().find((point) => point.wpm > 0)
+  const peakWpm = Math.max(1, ...points.map((point) => point.wpm))
+  if (readablePoints.length === 0) {
+    return <div className="progress-caption">No reading speed data yet</div>
+  }
+  return (
+    <div className="reading-wpm-trend">
+      <div className="reading-wpm-summary">
+        <strong>{latest?.wpm ?? 0}</strong>
+        <span>latest WPM</span>
+      </div>
+      <div className="reading-wpm-chart" aria-label="Reading words per minute over the last 12 weeks">
+        <ResponsiveContainer width="100%" height="100%" minWidth={0}>
+          <LineChart data={points} margin={{ top: 12, right: 16, left: 0, bottom: 4 }}>
+            <CartesianGrid strokeDasharray="3 3" opacity={0.18} />
+            <XAxis dataKey="date" tickFormatter={shortMonthDay} minTickGap={18} />
+            <YAxis width={34} domain={[0, Math.ceil(peakWpm * 1.2)]} />
+            <Tooltip
+              formatter={(value: unknown, name: unknown) => {
+                if (name === 'wpm') return [`${Number(value ?? 0)} WPM`, 'Reading speed']
+                return [String(value ?? 0), String(name)]
+              }}
+              labelFormatter={(label) => friendlyDate(String(label))}
+            />
+            <Line
+              type="monotone"
+              dataKey="wpm"
+              name="wpm"
+              stroke="var(--accent-vibrant)"
+              strokeWidth={3}
+              dot={{ r: 4, strokeWidth: 2, fill: 'var(--card-solid)' }}
+              activeDot={{ r: 7 }}
+              connectNulls
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+      <p>Timing pauses after 1 minute without reader activity.</p>
+    </div>
+  )
+}
+
+function ReadingGraduatedCounter({
+  current,
+  previous,
+  allTime,
+  rangeLabel,
+}: {
+  current: number
+  previous?: number
+  allTime: number
+  rangeLabel: string
+}) {
+  const denominator = Math.max(1, allTime)
+  const percent = Math.min(100, Math.round((current / denominator) * 100))
+  const delta = previous === undefined ? undefined : current - previous
+  return (
+    <div className="reading-graduated-counter">
+      <div className="reading-graduated-number">
+        <strong>{current}</strong>
+        <span>{rangeLabel}</span>
+      </div>
+      <div className="reading-graduated-meter" aria-label={`${current} words saved from reading`}>
+        <span style={{ width: `${percent}%` }} />
+      </div>
+      <p>
+        {allTime} total saved from reading
+        {delta !== undefined ? ` - ${delta >= 0 ? '+' : ''}${delta} vs previous period` : ''}
+      </p>
     </div>
   )
 }
@@ -6275,7 +6423,7 @@ function FlashcardReview({
             aria-pressed={Boolean(word.activeRecallPriorityAt)}
           >
             {choiceKeys?.choiceE && <kbd>{choiceKeys.choiceE.toUpperCase()}</kbd>}
-            <span>{word.activeRecallPriorityAt ? '★ Extra review' : '☆ Extra review'}</span>
+            <span>{word.activeRecallPriorityAt ? 'â˜… Extra review' : 'â˜† Extra review'}</span>
           </button>
         )}
         {answerShown && (() => {
@@ -6298,8 +6446,8 @@ function FlashcardReview({
       {answerShown && !selectedRating && (
         <div className="swipe-instructions">
           {choiceKeys
-            ? `← Again  ↑ Hard  → Good  ↓ Easy  ·  ${choiceKeys.choiceA.toUpperCase()} ${choiceKeys.choiceB.toUpperCase()} ${choiceKeys.choiceC.toUpperCase()} ${choiceKeys.choiceD.toUpperCase()}`
-            : '← Again  ↑ Hard  → Good  ↓ Easy'}
+            ? `â† Again  â†‘ Hard  â†’ Good  â†“ Easy  Â·  ${choiceKeys.choiceA.toUpperCase()} ${choiceKeys.choiceB.toUpperCase()} ${choiceKeys.choiceC.toUpperCase()} ${choiceKeys.choiceD.toUpperCase()}`
+            : 'â† Again  â†‘ Hard  â†’ Good  â†“ Easy'}
         </div>
       )}
     </section>
@@ -6692,7 +6840,7 @@ function getReaderResumeLocation(
     item.story.title,
     `Sentence ${sentenceIndex + 1}/${sentences.length}`,
     `${percent}%`,
-  ].join(' · ')
+  ].join(' Â· ')
   return {
     book,
     story: item.story.title,
@@ -6777,6 +6925,8 @@ function wordsToProgressCsv(words: VocabWord[]): string {
     'fsrsStability',
     'fsrsDifficulty',
     'fsrsLearningSteps',
+    'readingAddedAt',
+    'archivedAt',
   ]
   const rows = words.map((word) =>
     [
@@ -6802,6 +6952,8 @@ function wordsToProgressCsv(words: VocabWord[]): string {
       word.fsrsStability ?? '',
       word.fsrsDifficulty ?? '',
       word.fsrsLearningSteps ?? '',
+      word.readingAddedAt ?? '',
+      word.archivedAt ?? '',
     ].map(csvCell).join(','),
   )
   return [columns.join(','), ...rows].join('\n')
@@ -6831,7 +6983,7 @@ function getStudyDisplay(word?: VocabWord, sentence?: Sentence) {
   }
   return {
     kind: 'word',
-    chinese: '准备',
+    chinese: 'å‡†å¤‡',
     english: 'Ready',
     pinyin: 'zhun bei',
   }

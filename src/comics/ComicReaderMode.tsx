@@ -15,7 +15,7 @@ import {
   listComicPacks,
   lookupDictionary,
   saveComicProgress,
-  upsertWords,
+  saveReaderVocabularyWord,
 } from '../db'
 import {
   DEFAULT_COMIC_TRANSLATION_MODE,
@@ -377,19 +377,7 @@ export function ComicReaderMode({
   }
 
   async function saveWord(text: string, pinyin: string, meaning: string) {
-    await upsertWords([{
-      id: crypto.randomUUID(),
-      word: text,
-      meaning,
-      pinyin,
-      status: 'learning',
-      seenCount: 0,
-      correctCount: 0,
-      wrongCount: 0,
-      listenedSeconds: 0,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    }])
+    await saveReaderVocabularyWord(text, pinyin, meaning)
     await onWordsChanged()
   }
 

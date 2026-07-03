@@ -125,6 +125,8 @@ export function vocabFromCsvRows(rows: Record<string, string>[], packId?: string
         fsrsStability: parseNumber(readColumn(row, ['fsrsStability', 'stability'])),
         fsrsDifficulty: parseNumber(readColumn(row, ['fsrsDifficulty', 'difficulty'])),
         fsrsLearningSteps: parseNumber(readColumn(row, ['fsrsLearningSteps', 'learningSteps'])),
+        readingAddedAt: readColumn(row, ['readingAddedAt']) || undefined,
+        archivedAt: readColumn(row, ['archivedAt']) || undefined,
         packIds,
         createdAt: now,
         updatedAt: now,
