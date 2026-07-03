@@ -2885,25 +2885,27 @@ details.settings-group > .import-grid {
   transition: width 300ms ease;
 }
 
-/* ── Sentence card ── */
+/* ── Shared swipe-card animation suite ── */
 
 @keyframes sentenceCardEnter {
   from { opacity: 0; transform: translateY(28px) scale(0.96); }
   to   { opacity: 1; transform: translateY(0)    scale(1); }
 }
 
-@keyframes sentenceDismissLeft {
-  to { opacity: 0; transform: translateX(-130%) rotate(-18deg); }
+@keyframes cardEnter {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
 }
-@keyframes sentenceDismissRight {
-  to { opacity: 0; transform: translateX(130%)  rotate(18deg); }
-}
-@keyframes sentenceDismissUp {
-  to { opacity: 0; transform: translateY(-110%) rotate(-4deg); }
-}
-@keyframes sentenceDismissDown {
-  to { opacity: 0; transform: translateY(110%)  rotate(4deg); }
-}
+@keyframes cardDismissLeft  { to { opacity: 0; transform: translateX(-130%) rotate(-18deg); } }
+@keyframes cardDismissRight { to { opacity: 0; transform: translateX(130%)  rotate(18deg); } }
+@keyframes cardDismissUp    { to { opacity: 0; transform: translateY(-110%) rotate(-4deg); } }
+@keyframes cardDismissDown  { to { opacity: 0; transform: translateY(110%)  rotate(4deg); } }
+
+.card-enter { animation: cardEnter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; will-change: transform, opacity; }
+.card-dismiss-left  { animation: cardDismissLeft  0.3s ease-in forwards !important; }
+.card-dismiss-right { animation: cardDismissRight 0.3s ease-in forwards !important; }
+.card-dismiss-up    { animation: cardDismissUp    0.3s ease-in forwards !important; }
+.card-dismiss-down  { animation: cardDismissDown  0.3s ease-in forwards !important; }
 
 /* ── Card stack (peek effect) ── */
 .sentence-card-stack {
@@ -2957,10 +2959,10 @@ details.settings-group > .import-grid {
   animation: sentenceCardEnter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.sentence-card.sentence-dismiss-left  { animation: sentenceDismissLeft  0.3s ease-in forwards; }
-.sentence-card.sentence-dismiss-right { animation: sentenceDismissRight 0.3s ease-in forwards; }
-.sentence-card.sentence-dismiss-up    { animation: sentenceDismissUp    0.3s ease-in forwards; }
-.sentence-card.sentence-dismiss-down  { animation: sentenceDismissDown  0.3s ease-in forwards; }
+.sentence-card.sentence-dismiss-left  { animation: cardDismissLeft  0.3s ease-in forwards; }
+.sentence-card.sentence-dismiss-right { animation: cardDismissRight 0.3s ease-in forwards; }
+.sentence-card.sentence-dismiss-up    { animation: cardDismissUp    0.3s ease-in forwards; }
+.sentence-card.sentence-dismiss-down  { animation: cardDismissDown  0.3s ease-in forwards; }
 
 .sentence-english {
   color: var(--muted-navy);
@@ -4725,6 +4727,16 @@ kbd {
 
 .reader-swipe-zone {
   display: contents;
+}
+
+/* Shared bottom study-controls bar (all study modes) */
+.study-controls {
+  margin-top: 6px;
+}
+
+.study-controls .reader-btn-play {
+  width: 60px;
+  height: 60px;
 }
 
 @keyframes reader-bounce-down {
@@ -7421,15 +7433,6 @@ kbd {
   background: rgba(241, 245, 249, 0.86);
 }
 
-@keyframes flashcardEnter {
-  from { opacity: 0; transform: translateY(24px) scale(0.97); }
-  to   { opacity: 1; transform: translateY(0)    scale(1); }
-}
-@keyframes flashcardDismissLeft  { to { opacity: 0; transform: translateX(-130%) rotate(-18deg); } }
-@keyframes flashcardDismissRight { to { opacity: 0; transform: translateX(130%)  rotate(18deg); } }
-@keyframes flashcardDismissUp    { to { opacity: 0; transform: translateY(-110%) rotate(-4deg); } }
-@keyframes flashcardDismissDown  { to { opacity: 0; transform: translateY(110%)  rotate(4deg); } }
-
 .flashcard {
   display: grid;
   grid-template-rows: auto 1fr auto auto;
@@ -7446,14 +7449,14 @@ kbd {
   box-shadow:
     0 26px 80px rgba(16, 35, 63, 0.13),
     inset 0 1px 0 rgba(255, 255, 255, 0.92);
-  animation: flashcardEnter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: cardEnter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
   will-change: transform, opacity;
 }
 
-.flashcard.flashcard-dismiss-left  { animation: flashcardDismissLeft  0.3s ease-in forwards; }
-.flashcard.flashcard-dismiss-right { animation: flashcardDismissRight 0.3s ease-in forwards; }
-.flashcard.flashcard-dismiss-up    { animation: flashcardDismissUp    0.3s ease-in forwards; }
-.flashcard.flashcard-dismiss-down  { animation: flashcardDismissDown  0.3s ease-in forwards; }
+.flashcard.flashcard-dismiss-left  { animation: cardDismissLeft  0.3s ease-in forwards; }
+.flashcard.flashcard-dismiss-right { animation: cardDismissRight 0.3s ease-in forwards; }
+.flashcard.flashcard-dismiss-up    { animation: cardDismissUp    0.3s ease-in forwards; }
+.flashcard.flashcard-dismiss-down  { animation: cardDismissDown  0.3s ease-in forwards; }
 
 @keyframes flashcardFlipOut { from { transform: scaleX(1); } to { transform: scaleX(0); } }
 @keyframes flashcardFlipIn  { from { transform: scaleX(0); } to { transform: scaleX(1); } }
@@ -7493,7 +7496,7 @@ kbd {
   color: #f1f5f9;
   font-size: 0.88rem;
   z-index: 70;
-  animation: flashcardEnter 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: cardEnter 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
   white-space: nowrap;
 }
 

@@ -114,6 +114,9 @@ import { RenpyPrototypeMode } from './visualNovel/RenpyPrototypeMode'
 import { ComicReaderMode, ComicShelf } from './comics/ComicReaderMode'
 import { useReaderListeningController } from './useReaderListeningController'
 import type { ReaderListeningController } from './useReaderListeningController'
+import { useSwipeCard, SWIPE_NAV_GLOW, type SwipeDir } from './useSwipeCard'
+import { StudyMenuPopup, StudyMenuSection, StudyMenuToggle, StudyMenuSelect } from './StudyMenuPopup'
+import { StudyControls } from './StudyControls'
 import {
   getCloudAuthState,
   isSupabaseConfigured,
@@ -457,16 +460,13 @@ function App() {
   const syncTimerRef = useRef<number | null>(null)
   const syncedFlashcardCompletionRef = useRef<string | null>(null)
   const dashboardToastKeyRef = useRef<string | null>(null)
-  const sentenceTouchStartRef = useRef<{ x: number; y: number } | null>(null)
-  const bookListenTouchRef = useRef<{ x: number; y: number } | null>(null)
   const bookListenStartRef = useRef<(() => void) | null>(null)
-  const sentenceCardRef = useRef<HTMLDivElement>(null)
-  const [sentenceSwipeDir, setSentenceSwipeDir] = useState<string | null>(null)
   const [sentenceDismissDir, setSentenceDismissDir] = useState<string | null>(null)
   const [sentenceAnimKey, setSentenceAnimKey] = useState(0)
   // sentenceStreak removed; badge feature dropped
   const [sentencePinyinVisible, setSentencePinyinVisible] = useState(false)
   const [sentenceMenuOpen, setSentenceMenuOpen] = useState(false)
+  const [listeningLessonMenuOpen, setListeningLessonMenuOpen] = useState(false)
   const [sentenceQueueOffset, setSentenceQueueOffset] = useState(0)
   const [sentenceRepsToday, setSentenceRepsToday] = useState(0)
   const [sentenceTotalReps, setSentenceTotalReps] = useState(0)
@@ -476,7 +476,6 @@ function App() {
   const [bookListenIndex, setBookListenIndex] = useState(0)
   const [bookListenPinyinVisible, setBookListenPinyinVisible] = useState(true)
   const [bookListenEnglishVisible, setBookListenEnglishVisible] = useState(true)
-  const [bookListenSwipeDir, setBookListenSwipeDir] = useState<string | null>(null)
   const [bookListenDismissDir, setBookListenDismissDir] = useState<string | null>(null)
   const [bookListenAnimKey, setBookListenAnimKey] = useState(0)
   const [bookListenFinished, setBookListenFinished] = useState(false)
@@ -1094,13 +1093,8 @@ function App() {
     await startSentenceLesson()
   }, [sentenceQueue, sentenceSrsMap, sentenceQueueOffset, sentenceRoundOrder, startSentenceLesson])
 
-  const SENTENCE_SWIPE_THRESHOLD = 40
   const sentenceSwipeRatingMap: Record<string, 'again' | 'hard' | 'good' | 'easy'> = {
     left: 'again', up: 'hard', right: 'good', down: 'easy',
-  }
-
-  const SENTENCE_GLOW_COLORS: Record<string, string> = {
-    left: '#f87171', up: '#fb923c', right: '#4ade80', down: '#60a5fa',
   }
 
   const rateSentenceAndAdvance = useCallback((rating: 'again' | 'hard' | 'good' | 'easy') => {
@@ -1132,79 +1126,13 @@ function App() {
     }, 300)
   }, [sentenceDismissDir, sentenceQueue, sentenceRoundOrder, sentenceRoundIndex, sentenceSrsMap])
 
-  const handleSentenceTouchStart = useCallback((e: React.TouchEvent) => {
-    if (sentenceDismissDir) return
-    const t = e.touches[0]
-    sentenceTouchStartRef.current = { x: t.clientX, y: t.clientY }
-    setSentenceSwipeDir(null)
-    if (sentenceCardRef.current) {
-      sentenceCardRef.current.style.transition = 'none'
-      sentenceCardRef.current.style.boxShadow = ''
-    }
-  }, [sentenceDismissDir])
-
-  const handleSentenceTouchMove = useCallback((e: React.TouchEvent) => {
-    if (!sentenceTouchStartRef.current || sentenceDismissDir) return
-    const t = e.touches[0]
-    const dx = t.clientX - sentenceTouchStartRef.current.x
-    const dy = t.clientY - sentenceTouchStartRef.current.y
-    const absDx = Math.abs(dx)
-    const absDy = Math.abs(dy)
-
-    if (absDx < SENTENCE_SWIPE_THRESHOLD && absDy < SENTENCE_SWIPE_THRESHOLD) {
-      setSentenceSwipeDir(null)
-      if (sentenceCardRef.current) {
-        sentenceCardRef.current.style.transform = ''
-        sentenceCardRef.current.style.boxShadow = ''
-      }
-      return
-    }
-
-    let dir: string
-    if (absDx > absDy) {
-      dir = dx > 0 ? 'right' : 'left'
-      if (sentenceCardRef.current) {
-        sentenceCardRef.current.style.transform = `translateX(${dx * 0.35}px) rotate(${dx * 0.035}deg)`
-      }
-    } else {
-      dir = dy > 0 ? 'down' : 'up'
-      if (sentenceCardRef.current) {
-        sentenceCardRef.current.style.transform = `translateY(${dy * 0.35}px) rotate(${dx * 0.02}deg)`
-      }
-    }
-
-    // Edge glow: intensity grows with drag distance past the threshold
-    if (sentenceCardRef.current) {
-      const dist = Math.max(absDx, absDy)
-      const intensity = Math.min(1, (dist - SENTENCE_SWIPE_THRESHOLD) / 100)
-      const color = SENTENCE_GLOW_COLORS[dir]
-      sentenceCardRef.current.style.boxShadow = [
-        '0 4px 16px rgba(0,0,0,0.07)',
-        `0 0 0 2px ${color}`,
-        `0 0 ${Math.round(24 * intensity)}px ${Math.round(8 * intensity)}px ${color}66`,
-      ].join(', ')
-    }
-
-    setSentenceSwipeDir(dir)
-  }, [sentenceDismissDir])
-
-  const handleSentenceTouchEnd = useCallback(() => {
-    sentenceTouchStartRef.current = null
-    if (sentenceCardRef.current) {
-      sentenceCardRef.current.style.transition = ''
-      sentenceCardRef.current.style.transform = ''
-      sentenceCardRef.current.style.boxShadow = ''
-    }
-
-    if (!sentenceSwipeDir || sentenceDismissDir) {
-      setSentenceSwipeDir(null)
-      return
-    }
-    const rating = sentenceSwipeRatingMap[sentenceSwipeDir]
-    setSentenceSwipeDir(null)
-    if (!rating) return
-    rateSentenceAndAdvance(rating)
-  }, [sentenceSwipeDir, sentenceDismissDir, sentenceSwipeRatingMap, rateSentenceAndAdvance])
+  const sentenceSetSwipe = useSwipeCard({
+    enabled: !sentenceDismissDir,
+    onSwipe: (dir) => {
+      const rating = sentenceSwipeRatingMap[dir]
+      if (rating) rateSentenceAndAdvance(rating)
+    },
+  })
 
   const openCardEditor = useCallback((word: VocabWord) => {
     setEditingWord({
@@ -1656,6 +1584,35 @@ function App() {
 
   // Keep a stable ref to startListening so auto-start effect doesn't need it as a dep
   bookListenStartRef.current = bookListening.startListening
+
+  const bookListenSwipe = useSwipeCard({
+    enabled: !bookListenDismissDir,
+    glowColors: SWIPE_NAV_GLOW,
+    onSwipe: (dir) => {
+      if (dir === 'left' || dir === 'right') {
+        navigator.vibrate?.(30)
+        setBookListenDismissDir(dir)
+        window.setTimeout(() => {
+          setBookListenDismissDir(null)
+          setBookListenAnimKey(k => k + 1)
+          if (dir === 'left') void bookListening.next()
+          else void bookListening.previous()
+        }, 320)
+      } else if (dir === 'down') {
+        bookListening.togglePlayPause()
+      } else {
+        // cycle: both on → English off → both off → both on
+        if (bookListenPinyinVisible && bookListenEnglishVisible) {
+          setBookListenEnglishVisible(false)
+        } else if (bookListenPinyinVisible && !bookListenEnglishVisible) {
+          setBookListenPinyinVisible(false)
+        } else {
+          setBookListenPinyinVisible(true)
+          setBookListenEnglishVisible(true)
+        }
+      }
+    },
+  })
 
   // Auto-start when a book is opened or books tab is activated
   useEffect(() => {
@@ -3920,61 +3877,37 @@ function App() {
                             ? 'Rendering local audio...'
                             : renderedLesson?.title ?? lesson?.title ?? 'Sentence listening'}
                       </span>
-                      {minimalVisualMode && studyMode !== 'sentenceMode' ? (
-                        <div className="study-toggles minimal-toggles">
-                          <div className="segmented-control listening-mode-toggle" aria-label="Listening mode">
-                            <button
-                              type="button"
-                              className={studyMode === 'listeningMode' ? 'active' : ''}
-                              onClick={() => { if (studyMode !== 'listeningMode') void startModeLesson('listeningMode') }}
-                            >
-                              Passive
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => void startSentenceLesson()}
-                            >
-                              Sentences
-                            </button>
-                          </div>
-                          <button type="button" onClick={() => setShowPinyin((value) => !value)}>
-                            Pinyin {showPinyin ? 'on' : 'off'}
-                          </button>
-                          <button type="button" onClick={() => setShowEnglish((value) => !value)}>
-                            English {showEnglish ? 'on' : 'off'}
-                          </button>
-                          <label className="toggle compact-toggle">
-                            <input
-                              type="checkbox"
-                              checked={autoNextLesson}
-                              onChange={(event) => setAutoNextLesson(event.target.checked)}
-                            />
-                            Auto next
-                          </label>
-                        </div>
-                      ) : studyMode === 'sentenceMode' ? null : (
+                      {studyMode === 'sentenceMode' ? null : (
                         <div className="study-toggles">
-                          <div className="segmented-control listening-mode-toggle" aria-label="Listening mode">
+                          <div className="sentence-menu-wrap">
                             <button
                               type="button"
-                              className={studyMode === 'listeningMode' ? 'active' : ''}
-                              onClick={() => { if (studyMode !== 'listeningMode') void startModeLesson('listeningMode') }}
+                              className="sentence-menu-btn"
+                              onClick={() => setListeningLessonMenuOpen(o => !o)}
+                              aria-label="Listening menu"
                             >
-                              Passive
+                              ☰
                             </button>
-                            <button
-                              type="button"
-                              onClick={() => void startSentenceLesson()}
-                            >
-                              Sentences
-                            </button>
+                            <StudyMenuPopup open={listeningLessonMenuOpen} onClose={() => setListeningLessonMenuOpen(false)}>
+                              <p className="sentence-menu-label">Mode</p>
+                              <div className="sentence-menu-modes">
+                                <button
+                                  type="button"
+                                  className={studyMode === 'listeningMode' ? 'active' : ''}
+                                  onClick={() => { if (studyMode !== 'listeningMode') void startModeLesson('listeningMode'); setListeningLessonMenuOpen(false) }}
+                                >Words</button>
+                                <button
+                                  type="button"
+                                  onClick={() => { void startSentenceLesson(); setListeningLessonMenuOpen(false) }}
+                                >Sentences</button>
+                              </div>
+                              <StudyMenuSection label="Display">
+                                <StudyMenuToggle label="Pinyin" checked={showPinyin} onChange={() => setShowPinyin(v => !v)} />
+                                <StudyMenuToggle label="English" checked={showEnglish} onChange={() => setShowEnglish(v => !v)} />
+                                <StudyMenuToggle label="Auto next" checked={autoNextLesson} onChange={checked => setAutoNextLesson(checked)} />
+                              </StudyMenuSection>
+                            </StudyMenuPopup>
                           </div>
-                          <button type="button" onClick={() => setShowPinyin((value) => !value)}>
-                            Pinyin {showPinyin ? 'on' : 'off'}
-                          </button>
-                          <button type="button" onClick={() => setShowEnglish((value) => !value)}>
-                            English {showEnglish ? 'on' : 'off'}
-                          </button>
                         </div>
                       )}
                     </div>
@@ -4171,59 +4104,8 @@ function App() {
                           ) : (
                             /* Book card view */
                             <div
-                              className={`sentence-mode-display book-listen-display${bookListenSwipeDir ? ` swipe-${bookListenSwipeDir}` : ''}`}
-                              onTouchStart={e => {
-                                if (bookListenDismissDir) return
-                                const t = e.touches[0]
-                                bookListenTouchRef.current = { x: t.clientX, y: t.clientY }
-                                setBookListenSwipeDir(null)
-                              }}
-                              onTouchMove={e => {
-                                if (!bookListenTouchRef.current || bookListenDismissDir) return
-                                const t = e.touches[0]
-                                const dx = t.clientX - bookListenTouchRef.current.x
-                                const dy = t.clientY - bookListenTouchRef.current.y
-                                const absDx = Math.abs(dx)
-                                const absDy = Math.abs(dy)
-                                if (absDx < 20 && absDy < 20) return
-                                setBookListenSwipeDir(absDx > absDy ? (dx < 0 ? 'left' : 'right') : (dy > 0 ? 'down' : 'up'))
-                              }}
-                              onTouchEnd={e => {
-                                const start = bookListenTouchRef.current
-                                bookListenTouchRef.current = null
-                                setBookListenSwipeDir(null)
-                                if (!start || bookListenDismissDir) return
-                                const t = e.changedTouches[0]
-                                const dx = t.clientX - start.x
-                                const dy = t.clientY - start.y
-                                const absDx = Math.abs(dx)
-                                const absDy = Math.abs(dy)
-                                if (absDx < 40 && absDy < 40) return
-                                if (absDx > absDy) {
-                                  const dir = dx < 0 ? 'left' : 'right'
-                                  setBookListenDismissDir(dir)
-                                  window.setTimeout(() => {
-                                    setBookListenDismissDir(null)
-                                    setBookListenAnimKey(k => k + 1)
-                                    if (dir === 'left') void bookListening.next()
-                                    else void bookListening.previous()
-                                  }, 320)
-                                } else {
-                                  if (dy > 40) {
-                                    bookListening.togglePlayPause()
-                                  } else if (dy < -40) {
-                                    // cycle: both on → English off → both off → both on
-                                    if (bookListenPinyinVisible && bookListenEnglishVisible) {
-                                      setBookListenEnglishVisible(false)
-                                    } else if (bookListenPinyinVisible && !bookListenEnglishVisible) {
-                                      setBookListenPinyinVisible(false)
-                                    } else {
-                                      setBookListenPinyinVisible(true)
-                                      setBookListenEnglishVisible(true)
-                                    }
-                                  }
-                                }
-                              }}
+                              className={`sentence-mode-display book-listen-display${bookListenSwipe.swipeDir ? ` swipe-${bookListenSwipe.swipeDir}` : ''}`}
+                              {...bookListenSwipe.handlers}
                             >
                               {/* Top bar */}
                               <div className="sentence-top-bar">
@@ -4236,72 +4118,33 @@ function App() {
                                   >
                                     ☰
                                   </button>
-                                  {sentenceMenuOpen && (
-                                    <>
-                                      <div
-                                        className="sentence-menu-backdrop"
-                                        onClick={() => setSentenceMenuOpen(false)}
+                                  <StudyMenuPopup open={sentenceMenuOpen} onClose={() => setSentenceMenuOpen(false)}>
+                                    <p className="sentence-menu-label">Book</p>
+                                    <button
+                                      type="button"
+                                      className="sentence-menu-change-book"
+                                      onClick={() => { setBookListenBookId(null); setSentenceMenuOpen(false) }}
+                                    >Change Book</button>
+                                    <StudyMenuSection label="Display">
+                                      <StudyMenuToggle label="Pinyin" checked={bookListenPinyinVisible} onChange={() => setBookListenPinyinVisible(v => !v)} />
+                                      <StudyMenuToggle label="English" checked={bookListenEnglishVisible} onChange={() => setBookListenEnglishVisible(v => !v)} />
+                                    </StudyMenuSection>
+                                    <StudyMenuSection label="Playback">
+                                      <StudyMenuSelect
+                                        label="Speed"
+                                        value={userSettings.readerListeningRate}
+                                        options={[0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.5].map(r => ({ value: r, label: `${r}×` }))}
+                                        onChange={value => { void saveReaderSettings({ readerListeningRate: value }) }}
                                       />
-                                      <div className="sentence-menu-popup">
-                                        <p className="sentence-menu-label">Book</p>
-                                        <button
-                                          type="button"
-                                          className="sentence-menu-change-book"
-                                          onClick={() => { setBookListenBookId(null); setSentenceMenuOpen(false) }}
-                                        >Change Book</button>
-                                        <p className="sentence-menu-label">Display</p>
-                                        <div className="sentence-menu-toggles">
-                                          <label className="sentence-menu-toggle">
-                                            <span>Pinyin</span>
-                                            <input type="checkbox" checked={bookListenPinyinVisible} onChange={() => setBookListenPinyinVisible(v => !v)} />
-                                          </label>
-                                          <label className="sentence-menu-toggle">
-                                            <span>English</span>
-                                            <input type="checkbox" checked={bookListenEnglishVisible} onChange={() => setBookListenEnglishVisible(v => !v)} />
-                                          </label>
-                                        </div>
-                                        <p className="sentence-menu-label">Playback</p>
-                                        <div className="sentence-menu-toggles">
-                                          <label className="sentence-menu-toggle">
-                                            <span>Speed</span>
-                                            <select
-                                              value={userSettings.readerListeningRate}
-                                              onChange={e => saveReaderSettings({ readerListeningRate: Number(e.target.value) })}
-                                            >
-                                              {[0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.5].map(r => (
-                                                <option key={r} value={r}>{r}×</option>
-                                              ))}
-                                            </select>
-                                          </label>
-                                          <label className="sentence-menu-toggle">
-                                            <span>Repeats</span>
-                                            <select
-                                              value={userSettings.readerListeningRepeats}
-                                              onChange={e => saveReaderSettings({ readerListeningRepeats: Number(e.target.value) })}
-                                            >
-                                              {[1, 2, 3, 4, 5].map(n => (
-                                                <option key={n} value={n}>{n}×</option>
-                                              ))}
-                                            </select>
-                                          </label>
-                                        </div>
-                                      </div>
-                                    </>
-                                  )}
+                                      <StudyMenuSelect
+                                        label="Repeats"
+                                        value={userSettings.readerListeningRepeats}
+                                        options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}×` }))}
+                                        onChange={value => { void saveReaderSettings({ readerListeningRepeats: value }) }}
+                                      />
+                                    </StudyMenuSection>
+                                  </StudyMenuPopup>
                                 </div>
-
-                                <button
-                                  type="button"
-                                  className="sentence-play-pause"
-                                  onClick={() => bookListening.snapshot.status === 'idle' ? bookListening.startListening() : bookListening.togglePlayPause()}
-                                  aria-label={bookListening.snapshot.status === 'playing' ? 'Pause' : 'Play'}
-                                >
-                                  {bookListening.snapshot.status === 'playing' ? (
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><rect x="5" y="4" width="4" height="16" rx="1"/><rect x="15" y="4" width="4" height="16" rx="1"/></svg>
-                                  ) : (
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
-                                  )}
-                                </button>
 
                                 <span className="book-listen-title">{bookListenBook.title}</span>
                                 <button
@@ -4337,6 +4180,7 @@ function App() {
                               {/* Sentence card */}
                               <div
                                 key={bookListenAnimKey}
+                                ref={bookListenSwipe.cardRef}
                                 className={`sentence-card${bookListenDismissDir ? ` sentence-dismiss-${bookListenDismissDir}` : ''}`}
                               >
                                 <div className={`sentence-chinese${bookListening.snapshot.status === 'playing' ? ' book-playing' : ''}`}>{bookListenSentence?.chinese}</div>
@@ -4350,9 +4194,9 @@ function App() {
                                 )}
                               </div>
 
-                              {bookListenSwipeDir && !bookListenDismissDir && (
-                                <div className={`swipe-indicator swipe-indicator-${bookListenSwipeDir}`}>
-                                  {{ left: '← Next', right: '→ Prev', down: '⏸ Pause', up: '↑ Display' }[bookListenSwipeDir] ?? ''}
+                              {bookListenSwipe.swipeDir && !bookListenDismissDir && (
+                                <div className={`swipe-indicator swipe-indicator-${bookListenSwipe.swipeDir}`}>
+                                  {{ left: '← Next', right: '→ Prev', down: '⏸ Pause', up: '↑ Display' }[bookListenSwipe.swipeDir] ?? ''}
                                 </div>
                               )}
 
@@ -4363,6 +4207,13 @@ function App() {
                                   <span style={{ width: `${((bookListenIndex + 1) / Math.max(1, bookListenSentences.length)) * 100}%` }} />
                                 </div>
                               </div>
+
+                              <StudyControls
+                                playing={bookListening.snapshot.status === 'playing'}
+                                onTogglePlay={() => bookListening.snapshot.status === 'idle' ? bookListening.startListening() : bookListening.togglePlayPause()}
+                                onPrevious={() => { void bookListening.previous() }}
+                                onNext={() => { void bookListening.next() }}
+                              />
 
                               {/* Swipe hints */}
                               <div className="book-listen-hints">
@@ -4376,10 +4227,8 @@ function App() {
                         ) : (
                           /* ── Sets sub-mode (original sentence mode) ── */
                           <div
-                            className={`sentence-mode-display${sentenceSwipeDir ? ` swipe-${sentenceSwipeDir}` : ''}`}
-                            onTouchStart={handleSentenceTouchStart}
-                            onTouchMove={handleSentenceTouchMove}
-                            onTouchEnd={handleSentenceTouchEnd}
+                            className={`sentence-mode-display${sentenceSetSwipe.swipeDir ? ` swipe-${sentenceSetSwipe.swipeDir}` : ''}`}
+                            {...sentenceSetSwipe.handlers}
                           >
                             {/* Top bar: Menu | Play/Pause | End Set */}
                             <div className="sentence-top-bar">
@@ -4392,69 +4241,33 @@ function App() {
                                 >
                                   ☰
                                 </button>
-                                {sentenceMenuOpen && (
-                                  <>
-                                    <div
-                                      className="sentence-menu-backdrop"
-                                      onClick={() => setSentenceMenuOpen(false)}
+                                <StudyMenuPopup open={sentenceMenuOpen} onClose={() => setSentenceMenuOpen(false)}>
+                                  <p className="sentence-menu-label">Mode</p>
+                                  <div className="sentence-menu-modes">
+                                    <button
+                                      type="button"
+                                      className=""
+                                      onClick={() => { void startModeLesson('listeningMode'); setSentenceMenuOpen(false) }}
+                                    >Words</button>
+                                    <button
+                                      type="button"
+                                      className="active"
+                                      onClick={() => { setSentenceMenuOpen(false) }}
+                                    >Sentences</button>
+                                  </div>
+                                  <StudyMenuSection label="Display">
+                                    <StudyMenuToggle label="Pinyin" checked={showPinyin} onChange={() => setShowPinyin(v => !v)} />
+                                    <StudyMenuToggle label="English" checked={showEnglish} onChange={() => setShowEnglish(v => !v)} />
+                                    <StudyMenuToggle label="Auto next" checked={autoNextLesson} onChange={checked => setAutoNextLesson(checked)} />
+                                    <StudyMenuSelect
+                                      label="Pause between sentences"
+                                      value={sentenceGapMs}
+                                      options={[0, 500, 1000, 1500, 2000, 2500, 3000].map(ms => ({ value: ms, label: ms === 0 ? 'None' : `${ms / 1000}s` }))}
+                                      onChange={value => setSentenceGapMs(value)}
                                     />
-                                    <div className="sentence-menu-popup">
-                                      <p className="sentence-menu-label">Mode</p>
-                                      <div className="sentence-menu-modes">
-                                        {/* cast escapes TS narrowing — we're always in sentenceMode here */}
-                                        <button
-                                          type="button"
-                                          className=""
-                                          onClick={() => { void startModeLesson('listeningMode'); setSentenceMenuOpen(false) }}
-                                        >Words</button>
-                                        <button
-                                          type="button"
-                                          className="active"
-                                          onClick={() => { setSentenceMenuOpen(false) }}
-                                        >Sentences</button>
-                                      </div>
-                                      <div className="sentence-menu-toggles">
-                                        <label className="sentence-menu-toggle">
-                                          <span>Pinyin</span>
-                                          <input type="checkbox" checked={showPinyin} onChange={() => setShowPinyin(v => !v)} />
-                                        </label>
-                                        <label className="sentence-menu-toggle">
-                                          <span>English</span>
-                                          <input type="checkbox" checked={showEnglish} onChange={() => setShowEnglish(v => !v)} />
-                                        </label>
-                                        <label className="sentence-menu-toggle">
-                                          <span>Auto next</span>
-                                          <input type="checkbox" checked={autoNextLesson} onChange={e => setAutoNextLesson(e.target.checked)} />
-                                        </label>
-                                        <label className="sentence-menu-toggle">
-                                          <span>Pause between sentences</span>
-                                          <select
-                                            value={sentenceGapMs}
-                                            onChange={e => setSentenceGapMs(Number(e.target.value))}
-                                          >
-                                            {[0, 500, 1000, 1500, 2000, 2500, 3000].map(ms => (
-                                              <option key={ms} value={ms}>{ms === 0 ? 'None' : `${ms / 1000}s`}</option>
-                                            ))}
-                                          </select>
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </>
-                                )}
+                                  </StudyMenuSection>
+                                </StudyMenuPopup>
                               </div>
-
-                              <button
-                                type="button"
-                                className="sentence-play-pause"
-                                onClick={() => setSentencePaused(p => !p)}
-                                aria-label={sentencePaused ? 'Resume' : 'Pause'}
-                              >
-                                {sentencePaused ? (
-                                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
-                                ) : (
-                                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><rect x="5" y="4" width="4" height="16" rx="1"/><rect x="15" y="4" width="4" height="16" rx="1"/></svg>
-                                )}
-                              </button>
 
                               <button
                                 type="button"
@@ -4485,7 +4298,7 @@ function App() {
                                   {next && <div className="sentence-card-peek" aria-hidden="true" />}
                                   <div
                                     key={sentenceAnimKey}
-                                    ref={sentenceCardRef}
+                                    ref={sentenceSetSwipe.cardRef}
                                     className={`sentence-card${sentenceDismissDir ? ` sentence-dismiss-${sentenceDismissDir}` : ''}`}
                                   >
                                     <div
@@ -4515,9 +4328,9 @@ function App() {
                               )
                             })()}
 
-                            {sentenceSwipeDir && (
-                              <div className={`swipe-indicator swipe-indicator-${sentenceSwipeDir}`}>
-                                {{ left: '✗ Again', up: '△ Hard', right: '✓ Good', down: '★ Easy' }[sentenceSwipeDir]}
+                            {sentenceSetSwipe.swipeDir && (
+                              <div className={`swipe-indicator swipe-indicator-${sentenceSetSwipe.swipeDir}`}>
+                                {{ left: '✗ Again', up: '△ Hard', right: '✓ Good', down: '★ Easy' }[sentenceSetSwipe.swipeDir]}
                               </div>
                             )}
 
@@ -4543,6 +4356,12 @@ function App() {
                                 />
                               ))}
                             </div>
+
+                            <StudyControls
+                              playing={!sentencePaused}
+                              onTogglePlay={() => setSentencePaused(p => !p)}
+                              playLabel={sentencePaused ? 'Resume' : 'Pause'}
+                            />
                           </div>
                         )}
                       </div>
@@ -4563,11 +4382,10 @@ function App() {
                       </span>
                     </div>
                         {minimalVisualMode && (
-                          <div className="minimal-controls">
-                            <button
-                              type="button"
-                              className="primary"
-                              onClick={() => {
+                          <>
+                            <StudyControls
+                              playing={isPlaying}
+                              onTogglePlay={() => {
                                 const audio = pocketAudioRef.current
                                 if (!audio) return
                                 if (audio.paused) {
@@ -4576,21 +4394,15 @@ function App() {
                                   audio.pause()
                                 }
                               }}
-                              disabled={!renderedUrl}
-                            >
-                              {isPlaying ? 'Pause' : 'Play'}
-                            </button>
-                            <button type="button" onClick={replayCurrentSegment} disabled={!currentSegment}>
-                              Replay
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => void completeListeningLessonAndStartNext()}
-                              disabled={!renderedLesson || rendering}
-                            >
-                              Next Lesson
-                            </button>
-                          </div>
+                              playDisabled={!renderedUrl}
+                              onPrevious={replayCurrentSegment}
+                              prevDisabled={!currentSegment}
+                              prevLabel="Replay segment"
+                              onNext={() => void completeListeningLessonAndStartNext()}
+                              nextDisabled={!renderedLesson || rendering}
+                              nextLabel="Next lesson"
+                            />
+                          </>
                         )}
                       </>
                     )}
@@ -5531,11 +5343,11 @@ function ReaderMode({
   onSaveWord: (text: string, pinyin: string, meaning: string) => void | Promise<void>
 }) {
   const [listeningMenuOpen, setListeningMenuOpen] = useState(false)
+  const [readerMenuOpen, setReaderMenuOpen] = useState(false)
   const [grammarSelection, setGrammarSelection] = useState<GrammarMatch[] | null>(null)
   const [readerBouncing, setReaderBouncing] = useState(false)
   const [nextGlow, setNextGlow] = useState(false)
   const nextGlowTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const readerSwipeStart = useRef<{ x: number; y: number } | null>(null)
 
   function triggerNextGlow() {
     if (nextGlowTimer.current) clearTimeout(nextGlowTimer.current)
@@ -5543,30 +5355,31 @@ function ReaderMode({
     nextGlowTimer.current = setTimeout(() => setNextGlow(false), 700)
   }
 
-  function handleReaderTouchStart(e: React.TouchEvent) {
-    readerSwipeStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
-  }
-  function handleReaderTouchEnd(e: React.TouchEvent) {
-    if (!readerSwipeStart.current) return
-    const dx = e.changedTouches[0].clientX - readerSwipeStart.current.x
-    const dy = e.changedTouches[0].clientY - readerSwipeStart.current.y
-    readerSwipeStart.current = null
-    const absDx = Math.abs(dx)
-    const absDy = Math.abs(dy)
-    if (absDx < 20 && absDy < 20) return
-    if (absDy > absDx && dy > 50) {
-      setReaderBouncing(true)
-      setTimeout(() => setReaderBouncing(false), 600)
-      listening.togglePlayPause()
-    } else if (absDx > absDy && dx < -50) {
-      setGrammarSelection(null)
-      triggerNextGlow()
-      void onNext()
-    } else if (absDx > absDy && dx > 50) {
-      setGrammarSelection(null)
-      void onPrevious()
-    }
-  }
+  const readerSwipe = useSwipeCard({
+    glowColors: SWIPE_NAV_GLOW,
+    directions: ['left', 'right', 'down'],
+    onSwipe: (dir) => {
+      if (dir === 'down') {
+        setReaderBouncing(true)
+        setTimeout(() => setReaderBouncing(false), 600)
+        listening.togglePlayPause()
+      } else if (dir === 'left' && sentenceIndex < sentenceCount - 1) {
+        setGrammarSelection(null)
+        readerSwipe.dismiss('left')
+      } else if (dir === 'right' && sentenceIndex > 0) {
+        setGrammarSelection(null)
+        readerSwipe.dismiss('right')
+      }
+    },
+    onDismissed: (dir) => {
+      if (dir === 'left') {
+        triggerNextGlow()
+        void onNext()
+      } else {
+        void onPrevious()
+      }
+    },
+  })
 
   const listeningRepeatTotal = listening.snapshot.mode === 'single' ? 1 : listeningRepeats
   const listeningPlaying =
@@ -5716,6 +5529,46 @@ function ReaderMode({
           {activeBook && sentence ? (
             <>
               <div className="reader-page-meta">
+                <div className="sentence-menu-wrap">
+                  <button
+                    type="button"
+                    className="sentence-menu-btn"
+                    onClick={() => setReaderMenuOpen(o => !o)}
+                    aria-label="Reader menu"
+                  >
+                    ☰
+                  </button>
+                  <StudyMenuPopup open={readerMenuOpen} onClose={() => setReaderMenuOpen(false)}>
+                    <StudyMenuSection label="Display">
+                      <StudyMenuSelect
+                        label="Pinyin"
+                        value={pinyinMode}
+                        options={readerPinyinModes.map(mode => ({ value: mode.value, label: mode.label }))}
+                        onChange={value => onPinyinModeChange(value as ReaderPinyinMode)}
+                      />
+                      <StudyMenuToggle label="English" checked={showEnglish} onChange={() => onToggleEnglish()} />
+                    </StudyMenuSection>
+                    <StudyMenuSection label="Playback">
+                      <StudyMenuSelect
+                        label="Speed"
+                        value={listeningRate}
+                        options={[0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2].map(r => ({ value: r, label: `${r.toFixed(1)}×` }))}
+                        onChange={value => onListeningSettingsChange({ readerListeningRate: value })}
+                      />
+                      <StudyMenuSelect
+                        label="Repeats"
+                        value={listeningRepeats}
+                        options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}×` }))}
+                        onChange={value => onListeningSettingsChange({ readerListeningRepeats: value })}
+                      />
+                      <StudyMenuToggle
+                        label="Auto-advance"
+                        checked={listeningAutoAdvance}
+                        onChange={checked => onListeningSettingsChange({ readerListeningAutoAdvance: checked })}
+                      />
+                    </StudyMenuSection>
+                  </StudyMenuPopup>
+                </div>
                 <span>{activeBook.title}</span>
                 <span>
                   Sentence {sentenceIndex + 1} / {sentenceCount}
@@ -5742,17 +5595,12 @@ function ReaderMode({
               ) : null}
               <div
                 className={`reader-swipe-zone${readerBouncing ? ' reader-bounce-down' : ''}`}
-                onTouchStart={handleReaderTouchStart}
-                onTouchEnd={handleReaderTouchEnd}
+                {...readerSwipe.handlers}
               >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={sentence.id}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3 }}
-                    className={`reader-reading-area${listening.active ? ' reader-listening-highlight' : ''}`}
+                  <div
+                    key={`${sentence.id}-${readerSwipe.animKey}`}
+                    ref={readerSwipe.cardRef}
+                    className={`reader-reading-area card-enter${listening.active ? ' reader-listening-highlight' : ''}${readerSwipe.dismissClass ? ` ${readerSwipe.dismissClass}` : ''}`}
                   >
                     {illustration && (
                       <figure className="reader-illustration">
@@ -5782,8 +5630,7 @@ function ReaderMode({
                       onGrammarSelect={(matches) => setGrammarSelection(matches)}
                       grammarTokenMap={grammarTokenMap}
                     />
-                  </motion.div>
-                </AnimatePresence>
+                  </div>
                 <p
                   className={`reader-translation ${
                     showEnglish || listening.active ? 'revealed' : 'blur-reveal'
@@ -5854,48 +5701,17 @@ function ReaderMode({
                   </div>
                 </div>
               ) : (
-                <div className="reader-controls reader-controls-icon">
-                  <button
-                    type="button"
-                    className="reader-btn-icon reader-btn-prev"
-                    onClick={() => { setGrammarSelection(null); void onPrevious() }}
-                    disabled={sentenceIndex <= 0}
-                    aria-label="Previous sentence"
-                  >
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
-                      <polygon points="17,4 7,12 17,20" />
-                    </svg>
-                  </button>
-                  <button
-                    type="button"
-                    className="reader-btn-icon reader-btn-next"
-                    onClick={() => { setGrammarSelection(null); triggerNextGlow(); void onNext() }}
-                    disabled={sentenceIndex >= sentenceCount - 1}
-                    aria-label={`Next sentence. Hotkey: ${choiceB.toUpperCase()}.`}
-                  >
-                    <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true">
-                      <polygon points="7,4 17,12 7,20" />
-                    </svg>
-                  </button>
-                  <button
-                    type="button"
-                    className="reader-btn-icon reader-btn-play"
-                    onClick={listening.togglePlayPause}
-                    aria-label={listeningPlaying ? `Pause. Hotkey: ${replayHotkey.toUpperCase()}.` : `Play sentence. Hotkey: ${replayHotkey.toUpperCase()}.`}
-                  >
-                    {listeningPlaying ? (
-                      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
-                        <rect x="5" y="4" width="4" height="16" rx="1" />
-                        <rect x="15" y="4" width="4" height="16" rx="1" />
-                      </svg>
-                    ) : (
-                      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
-                        <path d="M11 5L6 9H2v6h4l5 4V5z" fill="currentColor" stroke="none"/>
-                        <path d="M15.5 8.5a5 5 0 0 1 0 7"/>
-                      </svg>
-                    )}
-                  </button>
-                </div>
+                <StudyControls
+                  playing={listeningPlaying}
+                  onTogglePlay={listening.togglePlayPause}
+                  onPrevious={() => { setGrammarSelection(null); void onPrevious() }}
+                  onNext={() => { setGrammarSelection(null); triggerNextGlow(); void onNext() }}
+                  prevDisabled={sentenceIndex <= 0}
+                  nextDisabled={sentenceIndex >= sentenceCount - 1}
+                  prevLabel="Previous sentence"
+                  nextLabel={`Next sentence. Hotkey: ${choiceB.toUpperCase()}.`}
+                  playLabel={listeningPlaying ? `Pause. Hotkey: ${replayHotkey.toUpperCase()}.` : `Play sentence. Hotkey: ${replayHotkey.toUpperCase()}.`}
+                />
               )}
               {selectedToken && (
                 <WordInfoPopover
@@ -6342,34 +6158,30 @@ function FlashcardReview({
 }) {
   const audioFront = frontMode === 'audio' && !answerShown
   const reverseFront = frontMode === 'reverse' && !answerShown
-  const touchStartRef = useRef<{ x: number; y: number } | null>(null)
-  const cardRef = useRef<HTMLDivElement>(null)
-  const [swipeDir, setSwipeDir] = useState<string | null>(null)
-  const [dismissDir, setDismissDir] = useState<string | null>(null)
   const [flipPhase, setFlipPhase] = useState<'idle' | 'out' | 'in'>('idle')
 
-  const SWIPE_THRESHOLD = 40
-  const FLASHCARD_GLOW: Record<string, string> = {
-    left: '#f87171', up: '#fb923c', right: '#4ade80', down: '#60a5fa',
-  }
-  const FLASHCARD_SWIPE_RATING: Record<string, FsrsRating> = {
+  const FLASHCARD_SWIPE_RATING: Record<SwipeDir, FsrsRating> = {
     left: 'again', up: 'hard', right: 'good', down: 'easy',
   }
-  const FLASHCARD_SWIPE_LABEL: Record<string, string> = {
+  const FLASHCARD_SWIPE_LABEL: Record<SwipeDir, string> = {
     left: 'Again', up: 'Hard', right: 'Good', down: 'Easy',
   }
 
+  const swipe = useSwipeCard({
+    enabled: answerShown && !selectedRating && !externalDismissDir,
+    onSwipe: (dir) => {
+      swipe.dismiss(dir)
+      void onRate(FLASHCARD_SWIPE_RATING[dir])
+    },
+  })
+  const { cardRef, swipeDir, dismissDir } = swipe
+
   useEffect(() => {
     // Reset transient swipe state when the card changes.
+    swipe.reset()
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setDismissDir(null)
-    setSwipeDir(null)
     setFlipPhase('idle')
-    if (cardRef.current) {
-      cardRef.current.style.transition = ''
-      cardRef.current.style.transform = ''
-      cardRef.current.style.boxShadow = ''
-    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [word.id])
 
   const handleCardClick = useCallback(() => {
@@ -6382,76 +6194,10 @@ function FlashcardReview({
     }, 200)
   }, [answerShown, dismissDir, externalDismissDir, flipPhase, onFlip])
 
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    if (dismissDir || externalDismissDir) return
-    const t = e.touches[0]
-    touchStartRef.current = { x: t.clientX, y: t.clientY }
-    if (cardRef.current) {
-      cardRef.current.style.transition = 'none'
-      cardRef.current.style.boxShadow = ''
-    }
-    setSwipeDir(null)
-  }, [dismissDir, externalDismissDir])
-
-  const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    if (!touchStartRef.current || !answerShown || dismissDir || externalDismissDir) return
-    const t = e.touches[0]
-    const dx = t.clientX - touchStartRef.current.x
-    const dy = t.clientY - touchStartRef.current.y
-    const absDx = Math.abs(dx)
-    const absDy = Math.abs(dy)
-    const dist = Math.sqrt(dx * dx + dy * dy)
-
-    let dir: string | null = null
-    if (absDx > SWIPE_THRESHOLD || absDy > SWIPE_THRESHOLD) {
-      dir = absDx > absDy ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up')
-    }
-
-    if (cardRef.current) {
-      const tiltX = Math.min(14, (dx / 200) * 14)
-      const tiltY = Math.min(6, (dy / 300) * 6) * -0.3
-      cardRef.current.style.transform =
-        `translateX(${dx * 0.18}px) translateY(${dy * 0.08}px) rotate(${tiltX + tiltY}deg)`
-      if (dir) {
-        const color = FLASHCARD_GLOW[dir]
-        const intensity = Math.min(1, (dist - SWIPE_THRESHOLD) / 120)
-        const alpha = Math.round(intensity * 180).toString(16).padStart(2, '0')
-        cardRef.current.style.boxShadow =
-          `0 0 ${8 + 20 * intensity}px ${4 + 10 * intensity}px ${color}${alpha}`
-      } else {
-        cardRef.current.style.boxShadow = ''
-      }
-    }
-
-    setSwipeDir(dir)
-  }, [answerShown, dismissDir, externalDismissDir])
-
-  const handleTouchEnd = useCallback(() => {
-    if (!touchStartRef.current || !answerShown || !swipeDir || selectedRating || dismissDir || externalDismissDir) {
-      if (cardRef.current) {
-        cardRef.current.style.transition = ''
-        cardRef.current.style.transform = ''
-        cardRef.current.style.boxShadow = ''
-      }
-      touchStartRef.current = null
-      setSwipeDir(null)
-      return
-    }
-    const rating = FLASHCARD_SWIPE_RATING[swipeDir]
-    if (!rating) return
-    navigator.vibrate?.(30)
-    setDismissDir(swipeDir)
-    onRate(rating)
-    touchStartRef.current = null
-    setSwipeDir(null)
-  }, [answerShown, swipeDir, selectedRating, dismissDir, externalDismissDir, onRate])
-
   return (
     <section
       className="flashcard-review"
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      {...swipe.handlers}
     >
       <div
         key={word.id}
@@ -6461,7 +6207,7 @@ function FlashcardReview({
           answerShown ? 'answer-side' : 'front-side',
           audioFront ? 'audio-front' : '',
           reverseFront ? 'reverse-front' : '',
-          (externalDismissDir ?? dismissDir) ? `flashcard-dismiss-${externalDismissDir ?? dismissDir}` : '',
+          (externalDismissDir ?? dismissDir) ? `card-dismiss-${externalDismissDir ?? dismissDir}` : '',
           flipPhase !== 'idle' ? `flashcard-flip-${flipPhase}` : '',
         ].filter(Boolean).join(' ')}
         onClick={!answerShown ? handleCardClick : undefined}
