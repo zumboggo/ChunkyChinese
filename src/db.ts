@@ -507,6 +507,30 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   readerStatusHighlight: true,
 }
 
+export interface AiStorySettings {
+  /** Stored only in this device's IndexedDB; never synced or bundled. */
+  openRouterApiKey: string
+  model: string
+  defaultLengthChars: number
+}
+
+export const DEFAULT_AI_STORY_SETTINGS: AiStorySettings = {
+  openRouterApiKey: '',
+  model: 'deepseek/deepseek-chat',
+  defaultLengthChars: 400,
+}
+
+export async function getAiStorySettings(): Promise<AiStorySettings> {
+  const saved = (await (await getDB()).get('settings', 'aiStorySettings')) as
+    | Partial<AiStorySettings>
+    | undefined
+  return { ...DEFAULT_AI_STORY_SETTINGS, ...saved }
+}
+
+export async function saveAiStorySettings(settings: AiStorySettings): Promise<void> {
+  await (await getDB()).put('settings', settings, 'aiStorySettings')
+}
+
 export async function getUserSettings(): Promise<UserSettings> {
   const db = await getDB()
   const saved = (await db.get('settings', 'userSettings')) as (Partial<UserSettings> & { coins?: number }) | undefined

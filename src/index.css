@@ -1286,6 +1286,29 @@ details.settings-group > .import-grid {
   gap: 10px;
 }
 
+.pill-note {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--blue-deep);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.settings-inline-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted-navy);
+}
+
 .compact-stat-list {
   gap: 8px;
 }
@@ -4350,6 +4373,32 @@ kbd {
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
+}
+
+.generate-story-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.generate-story-options select {
+  width: 100%;
+}
+
+.generate-story-coverage {
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--blue-deep);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.generate-story-coverage.too-hard {
+  border-color: rgba(245, 158, 11, 0.45);
+  background: rgba(250, 204, 21, 0.16);
+  color: #92400e;
 }
 
 .generate-story-panel button:disabled {

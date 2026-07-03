@@ -63,6 +63,10 @@ import {
   getReaderSessionStats,
   getUserSettings,
   saveUserSettings,
+  getAiStorySettings,
+  saveAiStorySettings,
+  DEFAULT_AI_STORY_SETTINGS,
+  type AiStorySettings,
   updateWordText,
   lookupDictionary,
   DEFAULT_USER_SETTINGS,
@@ -70,7 +74,7 @@ import {
   saveSentenceRepData,
   restoreWordFsrs,
 } from './db'
-import { generateAiStory } from './aiStories'
+import { generateAiStory, AI_STORY_MODELS, AI_STORY_LENGTHS } from './aiStories'
 import {
   GENERATED_STORIES_PACK_ID,
   GENERATED_STORY_TARGET_COVERAGE,
@@ -424,6 +428,8 @@ function App() {
   const [storyChunkReceipt, setStoryChunkReceipt] = useState<StoryChunkReceipt | null>(null)
   const [aiStoryMessage, setAiStoryMessage] = useState<string | null>(null)
   const [aiStoryBusy, setAiStoryBusy] = useState(false)
+  const [aiStorySettings, setAiStorySettings] = useState<AiStorySettings>(DEFAULT_AI_STORY_SETTINGS)
+  const [aiKeyDraft, setAiKeyDraft] = useState('')
   const [cloudUserEmail, setCloudUserEmail] = useState<string | null>(null)
   const [cloudSync, setCloudSync] = useState<CloudSyncUiState>({
     status: isSupabaseConfigured ? 'signed-out' : 'unconfigured',
@@ -524,6 +530,7 @@ function App() {
       nextUserSettings,
       nextHostedClipPacks,
       nextHostedComicPacks,
+      nextAiStorySettings,
     ] = await Promise.all([
       getAllWords(),
       getAllSentences(),
@@ -535,6 +542,7 @@ function App() {
       getUserSettings(),
       getHostedClipPackIndex(),
       getHostedComicPackIndex(),
+      getAiStorySettings(),
     ])
     setWords(nextWords)
     setSentences(nextSentences)
@@ -550,6 +558,7 @@ function App() {
     setUserSettings(nextUserSettings)
     setHostedClipPacks(nextHostedClipPacks)
     setHostedComicPacks(nextHostedComicPacks)
+    setAiStorySettings(nextAiStorySettings)
     setStats(nextStats)
   }, [])
 
@@ -2458,9 +2467,13 @@ function App() {
     downloadText(`vocab-snapshot-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(snapshot, null, 2))
   }
 
-  const handleGenerateStory = useCallback(async (prompt: string): Promise<GeneratedStoryResult> => {
-    if (!cloudUserEmail) {
-      throw new Error('Sign in with cloud sync before generating AI stories.')
+  const handleGenerateStory = useCallback(async (
+    prompt: string,
+    options: { lengthChars: number; model: string },
+  ): Promise<GeneratedStoryResult> => {
+    const apiKey = aiStorySettings.openRouterApiKey
+    if (!apiKey) {
+      throw new Error('Add your OpenRouter API key under Settings > AI Story Generation first.')
     }
     const knownWords = activeWords
       .filter((word) => adaptiveReaderPinyinState(word) === 'known')
@@ -2469,22 +2482,34 @@ function App() {
         pinyin: word.pinyin,
         meaning: word.meaning,
       }))
-      .slice(0, 1200)
+      .slice(0, 1500)
     if (knownWords.length < 20) {
       throw new Error('You need at least 20 mature known words before generating a known-word story.')
     }
 
+    const generateOptions = {
+      prompt,
+      knownWords,
+      apiKey,
+      model: options.model,
+      lengthChars: options.lengthChars,
+    }
+    // Remember the last-used model/length as the new defaults.
+    const nextSettings = { ...aiStorySettings, model: options.model, defaultLengthChars: options.lengthChars }
+    setAiStorySettings(nextSettings)
+    void saveAiStorySettings(nextSettings)
+
     setAiStoryBusy(true)
     setAiStoryMessage('Generating a known-word story...')
     try {
-      let story = await generateAiStory({ prompt, knownWords })
+      let story = await generateAiStory(generateOptions)
       let validation = validateGeneratedStoryCoverage(story, activeWords)
       if (
         validation.knownCoveragePercent < GENERATED_STORY_TARGET_COVERAGE ||
         validation.unavoidableNewWords.length > 5
       ) {
         setAiStoryMessage('First draft was too spicy. Retrying with simpler known words...')
-        story = await generateAiStory({ prompt, knownWords, strictRetry: true })
+        story = await generateAiStory({ ...generateOptions, strictRetry: true })
         validation = validateGeneratedStoryCoverage(story, activeWords)
       }
       const book = generatedStoryToReaderBook(story, validation)
@@ -2499,7 +2524,7 @@ function App() {
     } finally {
       setAiStoryBusy(false)
     }
-  }, [activeWords, cloudUserEmail, refresh])
+  }, [activeWords, aiStorySettings, refresh])
 
   async function handleBackupImport(files: FileList | null) {
     const file = files?.[0]
@@ -3318,7 +3343,8 @@ function App() {
           onGenerateStory={handleGenerateStory}
           aiStoryBusy={aiStoryBusy}
           aiStoryMessage={aiStoryMessage}
-          canGenerateAiStories={Boolean(isSupabaseConfigured && cloudUserEmail)}
+          canGenerateAiStories={aiStorySettings.openRouterApiKey.length > 0}
+          aiStoryDefaults={{ model: aiStorySettings.model, lengthChars: aiStorySettings.defaultLengthChars }}
         />
       )}
 
@@ -3404,6 +3430,76 @@ function App() {
                     </>
                   )}
                   <small>{cloudSync.message}</small>
+                </section>
+              </div>
+            </details>
+
+            <details className="settings-group">
+              <summary className="settings-group-summary">AI Story Generation</summary>
+              <div className="import-grid">
+                <section className="panel">
+                  <h2>OpenRouter API key</h2>
+                  <p>
+                    Powers the Generate a Story feature. The key is stored only on this device
+                    (IndexedDB) and sent only to openrouter.ai. Get one at openrouter.ai/keys.
+                  </p>
+                  {aiStorySettings.openRouterApiKey ? (
+                    <div className="button-row">
+                      <span className="pill-note">
+                        Key saved (…{aiStorySettings.openRouterApiKey.slice(-4)})
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const next = { ...aiStorySettings, openRouterApiKey: '' }
+                          setAiStorySettings(next)
+                          void saveAiStorySettings(next)
+                          setLastSummary('OpenRouter API key removed.')
+                        }}
+                      >
+                        Clear key
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="magic-link-row">
+                      <input
+                        type="password"
+                        autoComplete="off"
+                        placeholder="sk-or-v1-..."
+                        value={aiKeyDraft}
+                        onChange={(event) => setAiKeyDraft(event.target.value)}
+                      />
+                      <button
+                        type="button"
+                        className="primary"
+                        disabled={aiKeyDraft.trim().length === 0}
+                        onClick={() => {
+                          const next = { ...aiStorySettings, openRouterApiKey: aiKeyDraft.trim() }
+                          setAiStorySettings(next)
+                          void saveAiStorySettings(next)
+                          setAiKeyDraft('')
+                          setLastSummary('OpenRouter API key saved on this device.')
+                        }}
+                      >
+                        Save key
+                      </button>
+                    </div>
+                  )}
+                  <label className="settings-inline-label">
+                    Default model
+                    <select
+                      value={aiStorySettings.model}
+                      onChange={(event) => {
+                        const next = { ...aiStorySettings, model: event.target.value }
+                        setAiStorySettings(next)
+                        void saveAiStorySettings(next)
+                      }}
+                    >
+                      {AI_STORY_MODELS.map((model) => (
+                        <option key={model.id} value={model.id}>{model.label}</option>
+                      ))}
+                    </select>
+                  </label>
                 </section>
               </div>
             </details>
@@ -4950,6 +5046,7 @@ function ReadingTextsLibrary({
   aiStoryBusy,
   aiStoryMessage,
   canGenerateAiStories,
+  aiStoryDefaults,
 }: {
   readerBooks: ReaderBook[]
   comprehensionByBook: Map<string, ReaderBookComprehension>
@@ -4962,10 +5059,11 @@ function ReadingTextsLibrary({
   onOpenRenpyPrototype: () => void
   onOpenRenpyLms: () => void
   onOpenVisualNovel: (book?: ReaderBook) => void
-  onGenerateStory: (prompt: string) => Promise<GeneratedStoryResult>
+  onGenerateStory: (prompt: string, options: { lengthChars: number; model: string }) => Promise<GeneratedStoryResult>
   aiStoryBusy: boolean
   aiStoryMessage: string | null
   canGenerateAiStories: boolean
+  aiStoryDefaults: { model: string; lengthChars: number }
 }) {
   const [category, setCategory] = useState<ReadingCategoryView>(null)
 
@@ -5081,6 +5179,7 @@ function ReadingTextsLibrary({
               message={aiStoryMessage}
               onGenerate={onGenerateStory}
               onOpenGenerated={(book) => void onChooseBook(book, 'start')}
+              defaults={aiStoryDefaults}
             />
           ) : null}
           {renderBookShelf(isNovels ? novels : stories, isNovels ? 'No novels yet.' : 'No stories yet.')}
@@ -5270,36 +5369,40 @@ function GenerateStoryPanel({
   message,
   onGenerate,
   onOpenGenerated,
+  defaults,
 }: {
   disabled: boolean
   busy: boolean
   message: string | null
-  onGenerate: (prompt: string) => Promise<GeneratedStoryResult>
+  onGenerate: (prompt: string, options: { lengthChars: number; model: string }) => Promise<GeneratedStoryResult>
   onOpenGenerated: (book: ReaderBook) => void
+  defaults: { model: string; lengthChars: number }
 }) {
   const [prompt, setPrompt] = useState('')
-  const [lastBook, setLastBook] = useState<ReaderBook | null>(null)
+  const [lengthChars, setLengthChars] = useState(defaults.lengthChars)
+  const [model, setModel] = useState(defaults.model)
+  const [lastResult, setLastResult] = useState<GeneratedStoryResult | null>(null)
   const [localMessage, setLocalMessage] = useState<string | null>(null)
 
   async function submit() {
     setLocalMessage(null)
     try {
-      const result = await onGenerate(prompt)
-      setLastBook(result.book)
-      setLocalMessage(
-        result.validation.warning ??
-          `Saved with ${result.validation.knownCoveragePercent}% known-word coverage.`,
-      )
+      const result = await onGenerate(prompt, { lengthChars, model })
+      setLastResult(result)
+      setLocalMessage(null)
     } catch (error) {
       setLocalMessage(error instanceof Error ? error.message : 'Could not generate a story.')
     }
   }
 
+  const coverage = lastResult?.validation.knownCoveragePercent
+  const coverageTooHard = coverage !== undefined && coverage < GENERATED_STORY_TARGET_COVERAGE
+
   return (
     <section className="generate-story-panel">
       <div>
         <h3>Generate a known-word story</h3>
-        <p>Write a short prompt, and the app will ask for Chinese plus English using your mature known words first.</p>
+        <p>Write a short prompt, and the app will write a bilingual story built from your mature known words.</p>
       </div>
       <label>
         <span>Prompt</span>
@@ -5312,6 +5415,32 @@ function GenerateStoryPanel({
           disabled={disabled || busy}
         />
       </label>
+      <div className="generate-story-options">
+        <label>
+          <span>Length</span>
+          <select
+            value={lengthChars}
+            onChange={(event) => setLengthChars(Number(event.target.value))}
+            disabled={disabled || busy}
+          >
+            {AI_STORY_LENGTHS.map((length) => (
+              <option key={length} value={length}>≈ {length} characters</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span>Model</span>
+          <select
+            value={model}
+            onChange={(event) => setModel(event.target.value)}
+            disabled={disabled || busy}
+          >
+            {AI_STORY_MODELS.map((option) => (
+              <option key={option.id} value={option.id}>{option.label}</option>
+            ))}
+          </select>
+        </label>
+      </div>
       <div className="generate-story-actions">
         <button
           type="button"
@@ -5321,16 +5450,30 @@ function GenerateStoryPanel({
         >
           {busy ? 'Generating...' : 'Generate Story'}
         </button>
-        {lastBook ? (
-          <button type="button" onClick={() => onOpenGenerated(lastBook)}>
+        {lastResult ? (
+          <button type="button" onClick={() => onOpenGenerated(lastResult.book)}>
             Read it
           </button>
         ) : null}
+        {coverageTooHard && !busy ? (
+          <button type="button" onClick={() => void submit()}>
+            Regenerate simpler
+          </button>
+        ) : null}
       </div>
+      {lastResult ? (
+        <div className={`generate-story-coverage${coverageTooHard ? ' too-hard' : ''}`}>
+          {coverage}% of this story is words you already know
+          {coverageTooHard ? ' — below the 95% target, so it may feel hard.' : '.'}
+          {lastResult.validation.unavoidableNewWords.length > 0
+            ? ` New words: ${lastResult.validation.unavoidableNewWords.map((w) => w.word).join('、')}`
+            : ''}
+        </div>
+      ) : null}
       <small>
         {disabled
-          ? 'Sign in with cloud sync and deploy the Supabase function to enable AI stories.'
-          : localMessage ?? message ?? 'Targets about 400 Chinese word tokens and at least 95% known-word coverage.'}
+          ? 'Add your OpenRouter API key under Settings > AI Story Generation to enable AI stories.'
+          : localMessage ?? message ?? 'Targets at least 95% known-word coverage.'}
       </small>
     </section>
   )
