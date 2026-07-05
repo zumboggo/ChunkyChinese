@@ -2773,7 +2773,7 @@ function App() {
   }
 
   return (
-    <main className="app-shell">
+    <main className={`app-shell app-screen-${screen}`}>
       <header className="topbar">
         <div className="brand-area">
           <button className="brand-button" type="button" onClick={() => setScreen('dashboard')} aria-label="Go to dashboard">
@@ -2806,6 +2806,16 @@ function App() {
             Reading
           </button>
         </nav>
+        {screen === 'dashboard' && (
+          <div className="dashboard-sidebar-streak" aria-label={`${stats.currentStreak} day streak`}>
+            <span className="dashboard-sidebar-flame" aria-hidden="true" />
+            <span>
+              <small>Current streak</small>
+              <strong>{stats.currentStreak} days</strong>
+              <small>Keep it up!</small>
+            </span>
+          </div>
+        )}
       </header>
 
       <AnimatePresence mode="wait">
@@ -2818,28 +2828,115 @@ function App() {
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="screen-heading">
-            <div>
-              <h1>Press play, think, keep moving.</h1>
-              <p>Start with due words, add new ones only when the queue is light.</p>
+          <div className="dashboard-overview">
+            <div className="screen-heading dashboard-hero-card">
+              <div className="dashboard-hero-copy">
+                <h1>Press play, think, keep moving.</h1>
+                <p>Start with due words, add new ones only when the queue is light.</p>
+              </div>
             </div>
-            <div className="mode-start-grid mode-start-grid-three" aria-label="Choose study mode">
-              <button className="mode-start flashcards-start" type="button" onClick={startSavedFlashcards}>
-                <kbd>{hotkeys.choiceA.toUpperCase()}</kbd>
+
+            <section className="dashboard-today-panel" aria-label="Today">
+              <div className="dashboard-today-heading">
+                <strong>{dashboardRangeLabel(dashboardRange)}</strong>
+                <span>{stats.currentStreak} day streak</span>
+              </div>
+              <div className="segmented-control dashboard-range-control" aria-label="Dashboard stats range">
+                {dashboardRanges.map((range) => (
+                  <button
+                    key={range.value}
+                    type="button"
+                    className={dashboardRange === range.value ? 'active' : ''}
+                    onClick={() => setDashboardRange(range.value)}
+                  >
+                    {range.label}
+                  </button>
+                ))}
+              </div>
+              <div
+                className={`dashboard-comparison-head ${selectedPreviousRangeStats ? '' : 'single-period'}`.trim()}
+                aria-hidden="true"
+              >
+                <span>Metric</span>
+                <strong>{dashboardRangeLabel(dashboardRange)}</strong>
+                {selectedPreviousRangeStats && <strong>{dashboardPreviousRangeLabel(dashboardRange)}</strong>}
+              </div>
+              <dl className={`dashboard-today-stats ${selectedPreviousRangeStats ? '' : 'single-period'}`.trim()}>
+                <div>
+                  <dt>Cards reviewed</dt>
+                  <dd>{selectedRangeStats.cardsReviewed}</dd>
+                  {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.cardsReviewed}</dd>}
+                </div>
+                <div>
+                  <dt>Successful recalls</dt>
+                  <dd>{selectedRangeStats.successfulRecalls}</dd>
+                  {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.successfulRecalls}</dd>}
+                </div>
+                <div>
+                  <dt>Study minutes</dt>
+                  <dd>{selectedRangeStats.studyMinutes.toFixed(1)}</dd>
+                  {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.studyMinutes.toFixed(1)}</dd>}
+                </div>
+                <div>
+                  <dt>New words</dt>
+                  <dd>{selectedRangeStats.newWords}</dd>
+                  {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.newWords}</dd>}
+                </div>
+                <div>
+                  <dt>Reading graduates</dt>
+                  <dd>{selectedRangeStats.readingGraduatedWords}</dd>
+                  {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.readingGraduatedWords}</dd>}
+                </div>
+              </dl>
+            </section>
+          </div>
+
+          <div className="mode-start-grid mode-start-grid-three dashboard-mode-list" aria-label="Choose study mode">
+            <button className="mode-start dashboard-mode-card flashcards-start" type="button" onClick={startSavedFlashcards}>
+              <span className="mode-start-logo" aria-hidden="true">
+                <span className="nav-icon nav-flashcards" />
+              </span>
+              <span className="mode-start-copy">
                 <strong>Flashcards</strong>
                 <span>Sort due and new words with FSRS.</span>
-              </button>
-              <button className="mode-start listen-start" type="button" onClick={() => void startSentenceLesson()}>
-                <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
+              </span>
+              <kbd>{hotkeys.choiceA.toUpperCase()}</kbd>
+              <span className="mode-start-metric">
+                <span>Due now</span>
+                <strong>{stats.dueNow}</strong>
+              </span>
+              <span className="mode-start-arrow" aria-hidden="true">→</span>
+            </button>
+            <button className="mode-start dashboard-mode-card listen-start" type="button" onClick={() => void startSentenceLesson()}>
+              <span className="mode-start-logo" aria-hidden="true">
+                <span className="nav-icon nav-listen" />
+              </span>
+              <span className="mode-start-copy">
                 <strong>Listening</strong>
                 <span>Sentence loops by default — switch to Words or Active Recall in the menu.</span>
-              </button>
-              <button className="mode-start reading-texts-start" type="button" onClick={() => setScreen('readingTexts')}>
-                <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
+              </span>
+              <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
+              <span className="mode-start-metric">
+                <span>Streak</span>
+                <strong>{stats.currentStreak}</strong>
+              </span>
+              <span className="mode-start-arrow" aria-hidden="true">→</span>
+            </button>
+            <button className="mode-start dashboard-mode-card reading-texts-start" type="button" onClick={() => setScreen('readingTexts')}>
+              <span className="mode-start-logo" aria-hidden="true">
+                <span className="nav-icon nav-reading" />
+              </span>
+              <span className="mode-start-copy">
                 <strong>Reading</strong>
                 <span>Novels, comics, stories, and visual novels.</span>
-              </button>
-            </div>
+              </span>
+              <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
+              <span className="mode-start-metric">
+                <span>In progress</span>
+                <strong>{readerResumeLocation ? 1 : 0}</strong>
+              </span>
+              <span className="mode-start-arrow" aria-hidden="true">→</span>
+            </button>
           </div>
 
           {(sentenceRepsToday > 0 || stats.ranges.today.cardsReviewed > 0) && (
@@ -2855,60 +2952,6 @@ function App() {
               )}
             </div>
           )}
-
-          <section className="dashboard-today-panel" aria-label="Today">
-            <div className="dashboard-today-heading">
-              <strong>{dashboardRangeLabel(dashboardRange)}</strong>
-              <span>{stats.currentStreak} day streak</span>
-            </div>
-            <div className="segmented-control dashboard-range-control" aria-label="Dashboard stats range">
-              {dashboardRanges.map((range) => (
-                <button
-                  key={range.value}
-                  type="button"
-                  className={dashboardRange === range.value ? 'active' : ''}
-                  onClick={() => setDashboardRange(range.value)}
-                >
-                  {range.label}
-                </button>
-              ))}
-            </div>
-            <div
-              className={`dashboard-comparison-head ${selectedPreviousRangeStats ? '' : 'single-period'}`.trim()}
-              aria-hidden="true"
-            >
-              <span>Metric</span>
-              <strong>{dashboardRangeLabel(dashboardRange)}</strong>
-              {selectedPreviousRangeStats && <strong>{dashboardPreviousRangeLabel(dashboardRange)}</strong>}
-            </div>
-            <dl className={`dashboard-today-stats ${selectedPreviousRangeStats ? '' : 'single-period'}`.trim()}>
-              <div>
-                <dt>Cards reviewed</dt>
-                <dd>{selectedRangeStats.cardsReviewed}</dd>
-                {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.cardsReviewed}</dd>}
-              </div>
-              <div>
-                <dt>Successful recalls</dt>
-                <dd>{selectedRangeStats.successfulRecalls}</dd>
-                {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.successfulRecalls}</dd>}
-              </div>
-              <div>
-                <dt>Study minutes</dt>
-                <dd>{selectedRangeStats.studyMinutes.toFixed(1)}</dd>
-                {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.studyMinutes.toFixed(1)}</dd>}
-              </div>
-              <div>
-                <dt>New words</dt>
-                <dd>{selectedRangeStats.newWords}</dd>
-                {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.newWords}</dd>}
-              </div>
-              <div>
-                <dt>Reading graduates</dt>
-                <dd>{selectedRangeStats.readingGraduatedWords}</dd>
-                {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.readingGraduatedWords}</dd>}
-              </div>
-            </dl>
-          </section>
 
           {dashboardToast && (
             <div className="dashboard-toast" role="status">
@@ -2939,7 +2982,7 @@ function App() {
             </div>
           </details>
 
-          <div className="dashboard-progress-grid">
+          <div className="dashboard-progress-grid" id="dashboard-progress">
             <InfoPanel title="Learning process" className="process-chart-panel">
               <LearningProcessChart points={stats.learningProcessSeries} />
             </InfoPanel>
@@ -3048,6 +3091,31 @@ function App() {
             </InfoPanel>
           </div>
 
+          <nav className="dashboard-bottom-nav" aria-label="Dashboard quick navigation">
+            <button type="button" className="active" onClick={() => setScreen('dashboard')}>
+              <span className="dashboard-bottom-icon dashboard-bottom-home" aria-hidden="true" />
+              Home
+            </button>
+            <button type="button" onClick={startSavedFlashcards}>
+              <span className="dashboard-bottom-icon dashboard-bottom-review" aria-hidden="true" />
+              Review
+            </button>
+            <button type="button" onClick={() => setScreen('readingTexts')}>
+              <span className="dashboard-bottom-icon dashboard-bottom-explore" aria-hidden="true" />
+              Explore
+            </button>
+            <button
+              type="button"
+              onClick={() => document.getElementById('dashboard-progress')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              <span className="dashboard-bottom-icon dashboard-bottom-progress" aria-hidden="true" />
+              Progress
+            </button>
+            <button type="button" onClick={() => setScreen('settings')}>
+              <span className="dashboard-bottom-icon dashboard-bottom-profile" aria-hidden="true" />
+              Profile
+            </button>
+          </nav>
 
         </motion.section>
       )}

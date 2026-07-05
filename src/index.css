@@ -10303,3 +10303,843 @@ body.comic-distraction-free .app-shell {
   justify-content: center;
   margin-top: 6px;
 }
+
+/* Dashboard refresh inspired by the July 2026 visual reference */
+.app-screen-dashboard {
+  width: min(1500px, 100%);
+  max-width: 1500px;
+  padding: clamp(10px, 1.8vw, 26px);
+}
+
+.app-screen-dashboard .topbar {
+  margin-bottom: clamp(18px, 2.6vw, 26px);
+  border-color: rgba(30, 41, 59, 0.08);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 13% 38%, rgba(244, 114, 182, 0.16), transparent 30%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 255, 0.9));
+  box-shadow: 0 24px 70px rgba(30, 41, 59, 0.11);
+}
+
+.app-screen-dashboard .brand-area {
+  min-width: 0;
+  width: 100%;
+}
+
+.app-screen-dashboard .brand-mark {
+  border-radius: 50%;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(254, 215, 170, 0.12)),
+    url("./assets/chunky-logo.png") center / cover no-repeat;
+  box-shadow:
+    0 16px 34px rgba(236, 72, 153, 0.14),
+    0 0 0 6px rgba(255, 255, 255, 0.86),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.app-screen-dashboard .brand-button strong {
+  color: #06183b;
+  font-weight: 950;
+  letter-spacing: 0;
+}
+
+.app-screen-dashboard .brand-button small {
+  color: #64748b;
+}
+
+.dashboard-sidebar-streak {
+  display: none;
+}
+
+.app-screen-dashboard .tabs {
+  border-color: rgba(30, 41, 59, 0.1);
+  background: rgba(255, 255, 255, 0.64);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+
+.app-screen-dashboard .tabs button {
+  color: #06183b;
+  font-weight: 900;
+}
+
+.app-screen-dashboard .tabs .active {
+  background:
+    radial-gradient(circle at 78% 12%, rgba(255, 255, 255, 0.38), transparent 32%),
+    linear-gradient(135deg, #a855f7, #7c3aed);
+  color: #ffffff;
+  box-shadow: 0 14px 26px rgba(124, 58, 237, 0.2);
+}
+
+.app-screen-dashboard .dashboard {
+  gap: clamp(14px, 2.4vw, 24px);
+  padding-bottom: 18px;
+}
+
+.dashboard-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(14px, 2vw, 22px);
+  align-items: stretch;
+}
+
+.app-screen-dashboard .dashboard-hero-card {
+  position: relative;
+  isolation: isolate;
+  min-height: clamp(300px, 43vw, 430px);
+  overflow: hidden;
+  align-items: start;
+  padding: clamp(30px, 5vw, 58px);
+  border: 1px solid rgba(196, 181, 253, 0.38);
+  border-radius: 28px;
+  background:
+    url("./assets/dashboard-mountain.png") right bottom / cover no-repeat,
+    linear-gradient(135deg, #ffffff 0%, #fff7fb 48%, #fff0dc 100%);
+  box-shadow: 0 28px 70px rgba(91, 33, 182, 0.11);
+}
+
+.app-screen-dashboard .dashboard-hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0 33%, rgba(255, 255, 255, 0.48) 58%, transparent 78%);
+  pointer-events: none;
+}
+
+.app-screen-dashboard .dashboard-hero-card::after {
+  content: "";
+  position: absolute;
+  top: 28%;
+  left: min(50%, 520px);
+  z-index: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #f472b6;
+  clip-path: polygon(50% 0, 62% 37%, 100% 50%, 62% 63%, 50% 100%, 38% 63%, 0 50%, 38% 37%);
+  filter: drop-shadow(0 10px 20px rgba(244, 114, 182, 0.24));
+}
+
+.dashboard-hero-copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: clamp(16px, 2vw, 22px);
+  max-width: min(600px, 78%);
+}
+
+.app-screen-dashboard .dashboard-hero-copy h1 {
+  max-width: 12em;
+  margin: 0;
+  color: #06183b;
+  font-size: clamp(2.75rem, 5vw, 4.45rem);
+  font-weight: 950;
+  line-height: 0.96;
+}
+
+.app-screen-dashboard .dashboard-hero-copy p {
+  max-width: 15.5em;
+  margin: 0;
+  color: #52647f;
+  font-size: clamp(1.08rem, 2.4vw, 1.48rem);
+  font-weight: 650;
+  line-height: 1.34;
+}
+
+.app-screen-dashboard .dashboard-today-panel {
+  min-width: 0;
+  align-content: start;
+  border-color: rgba(124, 58, 237, 0.14);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 9% 16%, rgba(167, 139, 250, 0.18), transparent 28%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 255, 0.86));
+  box-shadow: 0 24px 56px rgba(30, 41, 59, 0.1);
+}
+
+.app-screen-dashboard .dashboard-today-heading {
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.app-screen-dashboard .dashboard-today-heading strong {
+  color: #06183b;
+}
+
+.app-screen-dashboard .dashboard-today-stats div,
+.app-screen-dashboard .dashboard-range-control {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.app-screen-dashboard .dashboard-range-control {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  overflow: visible;
+  border-radius: 18px;
+}
+
+.app-screen-dashboard .dashboard-range-control button {
+  width: 100%;
+  min-width: 0;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.app-screen-dashboard .dashboard-mode-list {
+  grid-template-columns: 1fr;
+  gap: clamp(12px, 1.6vw, 16px);
+}
+
+.app-screen-dashboard .dashboard-mode-card {
+  min-height: clamp(116px, 11vw, 138px);
+  display: grid;
+  grid-template-columns: clamp(78px, 8vw, 96px) minmax(0, 1fr) auto minmax(112px, auto) auto;
+  align-items: center;
+  gap: clamp(14px, 2.6vw, 32px);
+  overflow: hidden;
+  padding: clamp(16px, 2.2vw, 26px);
+  border-radius: 24px;
+  box-shadow: 0 18px 46px rgba(30, 41, 59, 0.08);
+}
+
+.app-screen-dashboard .dashboard-mode-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 56px rgba(30, 41, 59, 0.12);
+}
+
+.app-screen-dashboard .dashboard-mode-card.flashcards-start {
+  border-color: rgba(124, 58, 237, 0.22);
+  background: linear-gradient(100deg, rgba(252, 250, 255, 0.99), rgba(246, 240, 255, 0.82));
+}
+
+.app-screen-dashboard .dashboard-mode-card.listen-start {
+  border-color: rgba(16, 185, 129, 0.22);
+  background: linear-gradient(100deg, rgba(248, 255, 252, 0.99), rgba(236, 253, 245, 0.82));
+}
+
+.app-screen-dashboard .dashboard-mode-card.reading-texts-start {
+  border-color: rgba(59, 130, 246, 0.22);
+  background: linear-gradient(100deg, rgba(248, 251, 255, 0.99), rgba(239, 246, 255, 0.84));
+}
+
+.app-screen-dashboard .mode-start-logo {
+  display: grid;
+  place-items: center;
+  width: clamp(76px, 8vw, 92px);
+  height: clamp(76px, 8vw, 92px);
+  border-radius: 24px;
+  box-shadow:
+    0 18px 30px rgba(30, 41, 59, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.app-screen-dashboard .flashcards-start .mode-start-logo {
+  background: linear-gradient(145deg, #c084fc, #7c3aed);
+}
+
+.app-screen-dashboard .listen-start .mode-start-logo {
+  background: linear-gradient(145deg, #5ee2a0, #16a34a);
+}
+
+.app-screen-dashboard .reading-texts-start .mode-start-logo {
+  background: linear-gradient(145deg, #60a5fa, #2563eb);
+}
+
+.app-screen-dashboard .mode-start-logo .nav-icon {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  color: #ffffff;
+  opacity: 1;
+}
+
+.app-screen-dashboard .dashboard-mode-card .mode-start-copy {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.app-screen-dashboard .dashboard-mode-card .mode-start-copy strong {
+  color: #06183b;
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  font-weight: 950;
+  line-height: 1.05;
+}
+
+.app-screen-dashboard .dashboard-mode-card .mode-start-copy > span {
+  color: #52647f;
+  font-size: clamp(0.98rem, 1.55vw, 1.16rem);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.app-screen-dashboard .dashboard-mode-card kbd {
+  position: static;
+  min-width: 42px;
+  min-height: 42px;
+  display: grid;
+  place-items: center;
+  padding: 0 10px;
+  border: 1px solid rgba(124, 58, 237, 0.17);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  color: #7c3aed;
+  font-size: 1.12rem;
+  font-weight: 950;
+  box-shadow: 0 10px 22px rgba(30, 41, 59, 0.08);
+}
+
+.app-screen-dashboard .listen-start kbd {
+  color: #059669;
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.app-screen-dashboard .reading-texts-start kbd {
+  color: #2563eb;
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.app-screen-dashboard .mode-start-metric {
+  min-width: 122px;
+  display: grid;
+  justify-items: center;
+  gap: 1px;
+  padding: 13px 18px;
+  border: 1px solid rgba(30, 41, 59, 0.08);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 12px 28px rgba(30, 41, 59, 0.08);
+}
+
+.app-screen-dashboard .mode-start-metric span {
+  color: #52647f;
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.app-screen-dashboard .mode-start-metric strong {
+  color: currentColor;
+  font-size: 1.52rem;
+  font-weight: 950;
+  line-height: 1.05;
+}
+
+.app-screen-dashboard .flashcards-start .mode-start-metric,
+.app-screen-dashboard .flashcards-start .mode-start-arrow {
+  color: #7c3aed;
+}
+
+.app-screen-dashboard .listen-start .mode-start-metric,
+.app-screen-dashboard .listen-start .mode-start-arrow {
+  color: #059669;
+}
+
+.app-screen-dashboard .reading-texts-start .mode-start-metric,
+.app-screen-dashboard .reading-texts-start .mode-start-arrow {
+  color: #2563eb;
+}
+
+.app-screen-dashboard .mode-start-arrow {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: currentColor;
+  color: #ffffff;
+  font-size: 1.85rem;
+  font-weight: 500;
+  line-height: 1;
+  box-shadow: 0 14px 28px rgba(30, 41, 59, 0.16);
+}
+
+.app-screen-dashboard .dashboard-progress-grid .panel {
+  border-color: rgba(30, 41, 59, 0.08);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 46px rgba(30, 41, 59, 0.08);
+}
+
+.dashboard-bottom-nav {
+  display: none;
+}
+
+.dashboard-bottom-icon {
+  width: 25px;
+  height: 25px;
+  background: currentColor;
+}
+
+.dashboard-bottom-home {
+  clip-path: polygon(50% 6%, 95% 43%, 82% 43%, 82% 94%, 58% 94%, 58% 66%, 42% 66%, 42% 94%, 18% 94%, 18% 43%, 5% 43%);
+}
+
+.dashboard-bottom-review {
+  clip-path: inset(14% 22% 12% 22% round 3px);
+  box-shadow: -5px -4px 0 -2px currentColor, 5px 4px 0 -2px currentColor;
+}
+
+.dashboard-bottom-explore {
+  border: 3px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.dashboard-bottom-explore::after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: 5px auto 0;
+  border-top: 3px solid currentColor;
+  border-right: 3px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.dashboard-bottom-progress {
+  display: grid;
+  grid-template-columns: repeat(3, 5px);
+  align-items: end;
+  gap: 3px;
+  background:
+    linear-gradient(currentColor, currentColor) center bottom / 5px 10px no-repeat;
+}
+
+.dashboard-bottom-progress::before,
+.dashboard-bottom-progress::after,
+.dashboard-bottom-progress span {
+  content: "";
+  display: block;
+  width: 5px;
+  border-radius: 99px;
+  background: currentColor;
+}
+
+.dashboard-bottom-progress::before {
+  height: 15px;
+}
+
+.dashboard-bottom-progress::after {
+  height: 21px;
+}
+
+.dashboard-bottom-profile {
+  border: 3px solid currentColor;
+  border-radius: 50% 50% 45% 45%;
+  background: transparent;
+  clip-path: polygon(0 100%, 100% 100%, 100% 50%, 70% 50%, 70% 20%, 30% 20%, 30% 50%, 0 50%);
+}
+
+@media (min-width: 980px) {
+  .app-screen-dashboard {
+    display: grid;
+    grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+    gap: clamp(22px, 2.4vw, 32px);
+    align-items: start;
+  }
+
+  .app-screen-dashboard .topbar {
+    position: sticky;
+    top: 18px;
+    min-height: calc(100svh - 36px);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 30px 26px;
+    border-radius: 32px;
+  }
+
+  .app-screen-dashboard .brand-area {
+    display: grid;
+    gap: 24px;
+  }
+
+  .app-screen-dashboard .brand-button {
+    width: 100%;
+    display: grid;
+    justify-items: start;
+    gap: 28px;
+    padding: 0;
+  }
+
+  .app-screen-dashboard .brand-button:hover {
+    background: transparent;
+  }
+
+  .app-screen-dashboard .brand-mark {
+    justify-self: start;
+    width: 116px;
+    height: 116px;
+    flex-basis: 116px;
+  }
+
+  .app-screen-dashboard .brand-button strong {
+    font-size: clamp(2.4rem, 3.4vw, 3rem);
+    line-height: 0.98;
+  }
+
+  .app-screen-dashboard .brand-button small {
+    max-width: 13rem;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .app-screen-dashboard .brand-pills {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .app-screen-dashboard .brand-home-pill,
+  .app-screen-dashboard .topbar-settings-btn {
+    width: 100%;
+    min-height: 56px;
+    justify-content: flex-start;
+    padding: 12px 18px;
+    border-radius: 18px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 1rem;
+  }
+
+  .app-screen-dashboard .brand-home-pill {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(244, 114, 182, 0.08));
+    color: #7c3aed;
+  }
+
+  .app-screen-dashboard .tabs {
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .app-screen-dashboard .tabs button {
+    justify-content: flex-start;
+    min-height: 58px;
+    padding: 13px 18px;
+    border-radius: 18px;
+    background: transparent;
+    box-shadow: none;
+    color: #52647f;
+  }
+
+  .app-screen-dashboard .tabs button:hover {
+    background: rgba(124, 58, 237, 0.08);
+    box-shadow: none;
+  }
+
+  .app-screen-dashboard .tabs .active {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.14), rgba(244, 114, 182, 0.08));
+    color: #7c3aed;
+    box-shadow: none;
+  }
+
+  .app-screen-dashboard .dashboard-sidebar-streak {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
+    margin-top: auto;
+    padding: 18px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #a855f7, #8b5cf6);
+    color: #ffffff;
+    box-shadow: 0 18px 34px rgba(124, 58, 237, 0.24);
+  }
+
+  .dashboard-sidebar-flame {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.84);
+  }
+
+  .dashboard-sidebar-flame::before {
+    content: "";
+    width: 23px;
+    height: 27px;
+    border-radius: 60% 60% 58% 58%;
+    background: linear-gradient(180deg, #fb7185, #f97316 58%, #facc15);
+    clip-path: polygon(50% 0, 72% 26%, 64% 44%, 86% 62%, 69% 100%, 31% 100%, 14% 62%, 36% 44%, 28% 26%);
+  }
+
+  .dashboard-sidebar-streak span:last-child {
+    display: grid;
+    gap: 3px;
+  }
+
+  .dashboard-sidebar-streak small,
+  .dashboard-sidebar-streak strong {
+    color: #ffffff;
+  }
+
+  .dashboard-sidebar-streak small {
+    font-size: 0.86rem;
+    font-weight: 700;
+    opacity: 0.86;
+  }
+
+  .dashboard-sidebar-streak strong {
+    font-size: 1.45rem;
+    font-weight: 950;
+    line-height: 1;
+  }
+
+  .app-screen-dashboard .dashboard-overview {
+    grid-template-columns: minmax(0, 1.9fr) minmax(320px, 0.8fr);
+  }
+
+  .app-screen-dashboard .dashboard-today-panel {
+    grid-template-columns: 1fr;
+    min-height: 100%;
+  }
+}
+
+@media (max-width: 979px) {
+  .app-screen-dashboard .brand-area {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .app-screen-dashboard .brand-pills {
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 760px) {
+  .app-screen-dashboard {
+    padding: 10px 10px calc(env(safe-area-inset-bottom) + 90px);
+  }
+
+  .app-screen-dashboard .topbar {
+    gap: 18px;
+    border-radius: 34px;
+    padding: 18px;
+  }
+
+  .app-screen-dashboard .brand-area {
+    grid-template-columns: 1fr;
+  }
+
+  .app-screen-dashboard .brand-pills {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .app-screen-dashboard .brand-home-pill,
+  .app-screen-dashboard .topbar-settings-btn {
+    min-height: 54px;
+    border-radius: 20px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.95rem;
+  }
+
+  .app-screen-dashboard .tabs {
+    gap: 0;
+    border-radius: 24px;
+    padding: 5px;
+    overflow: hidden;
+  }
+
+  .app-screen-dashboard .tabs button {
+    min-height: 56px;
+    border-radius: 20px;
+    font-size: 0.88rem;
+  }
+
+  .app-screen-dashboard .dashboard-hero-card {
+    min-height: clamp(350px, 92vw, 470px);
+    padding: 30px 26px;
+    border-radius: 28px;
+    background-size: auto 74%, cover;
+    background-position: right bottom, center;
+  }
+
+  .app-screen-dashboard .dashboard-hero-card::before {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0 48%, rgba(255, 255, 255, 0.34) 70%, transparent 100%);
+  }
+
+  .app-screen-dashboard .dashboard-hero-card::after {
+    top: 38%;
+    left: 54%;
+    width: 28px;
+    height: 28px;
+  }
+
+  .dashboard-hero-copy {
+    max-width: 100%;
+  }
+
+  .app-screen-dashboard .dashboard-hero-copy h1 {
+    font-size: clamp(2.65rem, 11.2vw, 4.1rem);
+  }
+
+  .app-screen-dashboard .dashboard-hero-copy p {
+    max-width: 13.5em;
+    font-size: clamp(1.02rem, 4.8vw, 1.28rem);
+  }
+
+  .app-screen-dashboard .dashboard-mode-card {
+    grid-template-columns: 82px minmax(0, 1fr) auto;
+    gap: 16px;
+    min-height: 152px;
+    padding: 18px;
+  }
+
+  .app-screen-dashboard .dashboard-mode-card kbd {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: start;
+  }
+
+  .app-screen-dashboard .mode-start-logo {
+    grid-row: 1 / span 2;
+    width: 74px;
+    height: 74px;
+    border-radius: 22px;
+  }
+
+  .app-screen-dashboard .mode-start-logo .nav-icon {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+  }
+
+  .app-screen-dashboard .mode-start-metric {
+    grid-column: 2;
+    justify-self: start;
+    min-width: 118px;
+    padding: 10px 14px;
+  }
+
+  .app-screen-dashboard .mode-start-arrow {
+    grid-column: 3;
+    grid-row: 2;
+    width: 54px;
+    height: 54px;
+    font-size: 1.65rem;
+  }
+
+  .app-screen-dashboard .dashboard-today-panel {
+    padding: 14px;
+  }
+
+  .app-screen-dashboard .dashboard-comparison-head,
+  .app-screen-dashboard .dashboard-today-stats div {
+    grid-template-columns: minmax(116px, 1.1fr) repeat(2, minmax(54px, 0.8fr));
+    gap: 8px;
+    padding-inline: 10px;
+  }
+
+  .app-screen-dashboard .dashboard-today-stats dd {
+    font-size: 1.2rem;
+  }
+
+  .app-screen-dashboard .dashboard-progress-grid .panel {
+    border-radius: 20px;
+  }
+
+  .app-screen-dashboard .dashboard-bottom-nav {
+    position: fixed;
+    left: 50%;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    z-index: 40;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    width: min(calc(100vw - 20px), 620px);
+    transform: translateX(-50%);
+    gap: 4px;
+    padding: 10px 10px 8px;
+    border: 1px solid rgba(30, 41, 59, 0.08);
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 20px 50px rgba(30, 41, 59, 0.14);
+    backdrop-filter: blur(18px);
+  }
+
+  .app-screen-dashboard .dashboard-bottom-nav button {
+    min-width: 0;
+    min-height: 56px;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: 3px;
+    padding: 4px 3px;
+    border: 0;
+    border-radius: 18px;
+    background: transparent;
+    color: #64748b;
+    box-shadow: none;
+    font-size: 0.76rem;
+    font-weight: 800;
+  }
+
+  .app-screen-dashboard .dashboard-bottom-nav button.active {
+    color: #7c3aed;
+  }
+
+  .app-screen-dashboard .dashboard-bottom-nav button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 430px) {
+  .app-screen-dashboard .brand-button {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .app-screen-dashboard .brand-mark {
+    width: 74px;
+    height: 74px;
+    flex-basis: 74px;
+  }
+
+  .app-screen-dashboard .brand-button strong {
+    font-size: clamp(1.9rem, 10vw, 2.55rem);
+  }
+
+  .app-screen-dashboard .dashboard-mode-card {
+    grid-template-columns: 72px minmax(0, 1fr) auto;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .app-screen-dashboard .mode-start-logo {
+    width: 66px;
+    height: 66px;
+    border-radius: 20px;
+  }
+
+  .app-screen-dashboard .mode-start-logo .nav-icon {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+  }
+
+  .app-screen-dashboard .dashboard-mode-card .mode-start-copy strong {
+    font-size: 1.25rem;
+  }
+
+  .app-screen-dashboard .dashboard-mode-card .mode-start-copy > span {
+    font-size: 0.9rem;
+  }
+}
