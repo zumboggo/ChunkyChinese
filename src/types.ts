@@ -71,6 +71,12 @@ export interface UserSettings {
   readerListeningRepeats: number
   readerListeningAutoAdvance: boolean
   readerStatusHighlight: boolean
+  sentenceRepeats: number
+  sentenceIncludeEnglish: boolean
+  sentencePauseFactor: number
+  sentenceSessionSize: number
+  sentenceRounds: number
+  sentenceShuffle: boolean
 }
 
 export type DashboardRange = 'today' | 'week' | 'month' | 'allTime'

@@ -505,6 +505,12 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   readerListeningRepeats: 2,
   readerListeningAutoAdvance: true,
   readerStatusHighlight: true,
+  sentenceRepeats: 2,
+  sentenceIncludeEnglish: true,
+  sentencePauseFactor: 1,
+  sentenceSessionSize: 5,
+  sentenceRounds: 10,
+  sentenceShuffle: false,
 }
 
 export interface AiStorySettings {
@@ -563,6 +569,12 @@ export function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: n
     readerListeningRepeats: clampReaderListeningRepeats(merged.readerListeningRepeats),
     readerListeningAutoAdvance: Boolean(merged.readerListeningAutoAdvance),
     readerStatusHighlight: merged.readerStatusHighlight !== false,
+    sentenceRepeats: clampInt(merged.sentenceRepeats, 1, 5, DEFAULT_USER_SETTINGS.sentenceRepeats),
+    sentenceIncludeEnglish: merged.sentenceIncludeEnglish !== false,
+    sentencePauseFactor: clampNumber(merged.sentencePauseFactor, 0, 2, DEFAULT_USER_SETTINGS.sentencePauseFactor),
+    sentenceSessionSize: clampInt(merged.sentenceSessionSize, 1, 10, DEFAULT_USER_SETTINGS.sentenceSessionSize),
+    sentenceRounds: clampInt(merged.sentenceRounds, 1, 25, DEFAULT_USER_SETTINGS.sentenceRounds),
+    sentenceShuffle: Boolean(merged.sentenceShuffle),
   }
   return {
     settings,
@@ -575,6 +587,16 @@ export function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: n
       settings.readerListeningRate !== saved.readerListeningRate ||
       settings.readerListeningRepeats !== saved.readerListeningRepeats,
   }
+}
+
+function clampInt(value: number, min: number, max: number, fallback: number): number {
+  if (!Number.isFinite(value)) return fallback
+  return Math.min(max, Math.max(min, Math.round(value)))
+}
+
+function clampNumber(value: number, min: number, max: number, fallback: number): number {
+  if (!Number.isFinite(value)) return fallback
+  return Math.min(max, Math.max(min, value))
 }
 
 function clampReaderListeningRate(value: number): number {

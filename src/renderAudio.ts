@@ -2,6 +2,98 @@ import type { AudioClip, LessonPlan, RenderedLesson, RenderedLessonSegment } fro
 
 const SAMPLE_RATE = 44100
 
+export interface SessionAudioStep {
+  kind: 'clip' | 'pause'
+  clipId?: string
+  seconds?: number
+  /** Pause length as a multiple of the previous clip's duration (shadowing pause). */
+  factorOfPrevious?: number
+  sentenceIndex: number
+  round: number
+  label: string
+}
+
+export interface SessionAudioSegment {
+  startSeconds: number
+  endSeconds: number
+  sentenceIndex: number
+  round: number
+  kind: 'clip' | 'pause'
+  label: string
+}
+
+export interface RenderedSession {
+  blob: Blob
+  durationSeconds: number
+  segments: SessionAudioSegment[]
+  warnings: string[]
+}
+
+export async function renderSessionToWav(
+  steps: SessionAudioStep[],
+  getClip: (id: string) => Promise<AudioClip | undefined>,
+  sampleRate = SAMPLE_RATE,
+): Promise<RenderedSession> {
+  const audioContext = new AudioContext({ sampleRate })
+  const buffers: AudioBuffer[] = []
+  const segments: SessionAudioSegment[] = []
+  const warnings: string[] = []
+  const decodedClips = new Map<string, AudioBuffer>()
+  let currentSeconds = 0
+  let previousClipSeconds = 0
+
+  for (const step of steps) {
+    let buffer: AudioBuffer | undefined
+    if (step.kind === 'clip' && step.clipId) {
+      const cached = decodedClips.get(step.clipId)
+      if (cached) {
+        buffer = cached
+      } else {
+        const clip = await getClip(step.clipId)
+        if (!clip) {
+          warnings.push(`Missing clip: ${step.label}`)
+          continue
+        }
+        try {
+          const data = await clip.blob.arrayBuffer()
+          buffer = await audioContext.decodeAudioData(data.slice(0))
+          decodedClips.set(step.clipId, buffer)
+        } catch {
+          warnings.push(`Could not decode clip: ${step.label}`)
+          continue
+        }
+      }
+      previousClipSeconds = buffer.duration
+    } else if (step.kind === 'pause') {
+      const seconds = step.factorOfPrevious !== undefined
+        ? previousClipSeconds * step.factorOfPrevious
+        : step.seconds ?? 0
+      if (seconds <= 0) continue
+      buffer = makeSilence(audioContext, seconds, sampleRate)
+    }
+
+    if (buffer) {
+      buffers.push(buffer)
+      const endSeconds = currentSeconds + buffer.duration
+      segments.push({
+        startSeconds: currentSeconds,
+        endSeconds,
+        sentenceIndex: step.sentenceIndex,
+        round: step.round,
+        kind: step.kind,
+        label: step.label,
+      })
+      currentSeconds = endSeconds
+    }
+  }
+
+  const merged = mergeBuffers(audioContext, buffers, sampleRate)
+  const blob = audioBufferToWav(merged, sampleRate)
+  void audioContext.close()
+
+  return { blob, durationSeconds: merged.duration, segments, warnings }
+}
+
 export async function renderLessonToWav(
   lesson: LessonPlan,
   getClip: (id: string) => Promise<AudioClip | undefined>,
@@ -27,7 +119,7 @@ export async function renderLessonToWav(
         warnings.push(`Could not decode clip: ${step.label}`)
       }
     } else if (step.kind === 'pause') {
-      buffer = makeSilence(audioContext, step.seconds)
+      buffer = makeSilence(audioContext, step.seconds, SAMPLE_RATE)
     } else if (step.kind === 'ding') {
       buffer = makeDing(audioContext)
     }
@@ -49,8 +141,8 @@ export async function renderLessonToWav(
     }
   }
 
-  const merged = mergeBuffers(audioContext, buffers)
-  const blob = audioBufferToWav(merged)
+  const merged = mergeBuffers(audioContext, buffers, SAMPLE_RATE)
+  const blob = audioBufferToWav(merged, SAMPLE_RATE)
   void audioContext.close()
 
   return {
@@ -65,8 +157,8 @@ export async function renderLessonToWav(
   }
 }
 
-function makeSilence(audioContext: AudioContext, seconds: number): AudioBuffer {
-  return audioContext.createBuffer(1, Math.ceil(seconds * SAMPLE_RATE), SAMPLE_RATE)
+function makeSilence(audioContext: AudioContext, seconds: number, sampleRate: number): AudioBuffer {
+  return audioContext.createBuffer(1, Math.max(1, Math.ceil(seconds * sampleRate)), sampleRate)
 }
 
 function makeDing(audioContext: AudioContext): AudioBuffer {
@@ -81,9 +173,9 @@ function makeDing(audioContext: AudioContext): AudioBuffer {
   return buffer
 }
 
-function mergeBuffers(audioContext: AudioContext, buffers: AudioBuffer[]): AudioBuffer {
+function mergeBuffers(audioContext: AudioContext, buffers: AudioBuffer[], sampleRate: number): AudioBuffer {
   const length = buffers.reduce((sum, buffer) => sum + buffer.length, 0)
-  const output = audioContext.createBuffer(1, Math.max(1, length), SAMPLE_RATE)
+  const output = audioContext.createBuffer(1, Math.max(1, length), sampleRate)
   const outputData = output.getChannelData(0)
   let offset = 0
 
@@ -96,7 +188,7 @@ function mergeBuffers(audioContext: AudioContext, buffers: AudioBuffer[]): Audio
   return output
 }
 
-function audioBufferToWav(buffer: AudioBuffer): Blob {
+function audioBufferToWav(buffer: AudioBuffer, sampleRate: number): Blob {
   const samples = buffer.getChannelData(0)
   const byteLength = 44 + samples.length * 2
   const arrayBuffer = new ArrayBuffer(byteLength)
@@ -109,8 +201,8 @@ function audioBufferToWav(buffer: AudioBuffer): Blob {
   view.setUint32(16, 16, true)
   view.setUint16(20, 1, true)
   view.setUint16(22, 1, true)
-  view.setUint32(24, SAMPLE_RATE, true)
-  view.setUint32(28, SAMPLE_RATE * 2, true)
+  view.setUint32(24, sampleRate, true)
+  view.setUint32(28, sampleRate * 2, true)
   view.setUint16(32, 2, true)
   view.setUint16(34, 16, true)
   writeString(view, 36, 'data')

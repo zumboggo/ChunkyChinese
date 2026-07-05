@@ -29,7 +29,6 @@ import {
   getAllReaderPacks,
   getLatestReaderProgress,
   getAllSentences,
-  getAllSentenceSrs,
   getAllWords,
   getAudioClip,
   getDashboardStats,
@@ -47,7 +46,7 @@ import {
   recordEvent,
   restoreArchivedWord,
   saveRenderedLesson,
-  saveSentenceSrs,
+  saveAudioClip,
   saveNewWordsPerDay,
   saveReaderProgress,
   saveGeneratedReaderBook,
@@ -104,15 +103,21 @@ import {
   type StoryChunkMetrics,
   type StoryChunkReceipt,
 } from './storyFeatures'
-import { createPocketLesson, selectSentenceLessonSet, buildSentenceRoundOrder, type PauseProfile, type SentenceLessonItem } from './lesson'
+import { createPocketLesson, type PauseProfile, type SentenceLessonItem } from './lesson'
 import { pinyin as getPinyin } from 'pinyin-pro'
-import { renderLessonToWav } from './renderAudio'
+import { renderLessonToWav, renderSessionToWav, type SessionAudioSegment } from './renderAudio'
+import {
+  buildSentenceSessionSteps,
+  ensureSentenceClip,
+  selectSequentialSentences,
+  SENTENCE_SESSION_SAMPLE_RATE,
+  type SentenceListeningSettings,
+} from './sentenceListening'
 import {
   fsrsDueTime,
   isFsrsCardDue,
   isNewFsrsCard,
   downgradeRating,
-  applySentenceSrsRating,
   previewFsrsRatings,
 } from './scheduler'
 import {
@@ -170,7 +175,6 @@ import type {
   ReaderSessionStats,
   RenderedLesson,
   Sentence,
-  SentenceSrsRecord,
   StudyMode,
   UserSettings,
   VocabWord,
@@ -455,14 +459,18 @@ function App() {
   })
   const [dashboardToast, setDashboardToast] = useState<string | null>(null)
   const [sentenceQueue, setSentenceQueue] = useState<SentenceLessonItem[]>([])
-  const [sentenceRoundOrder, setSentenceRoundOrder] = useState<number[]>([])
-  const [sentenceRoundIndex, setSentenceRoundIndex] = useState(0)
   const [sentenceSetComplete, setSentenceSetComplete] = useState(false)
   const [sentenceSetStartMs, setSentenceSetStartMs] = useState(0)
-  const [sentenceRatings, setSentenceRatings] = useState<Map<string, 'again' | 'hard' | 'good' | 'easy'>>(new Map())
-  const [sentenceSrsMap, setSentenceSrsMap] = useState<Map<string, SentenceSrsRecord>>(new Map())
-  const [sentencePaused, setSentencePaused] = useState(false)
-  const sentenceSilentAudioRef = useRef<HTMLAudioElement | null>(null)
+  const [sentencePaused, setSentencePaused] = useState(true)
+  const [sentenceRendered, setSentenceRendered] = useState<{
+    url: string
+    durationSeconds: number
+    segments: SessionAudioSegment[]
+  } | null>(null)
+  const [sentenceRendering, setSentenceRendering] = useState(false)
+  const [sentencePosition, setSentencePosition] = useState({ sentenceIndex: 0, round: 0 })
+  const [sentenceProgress, setSentenceProgress] = useState({ current: 0, duration: 0 })
+  const sentenceAudioRef = useRef<HTMLAudioElement | null>(null)
   const lastReaderActivityTimeRef = useRef<number>(0)
   const runToken = useRef(0)
   const startNextLessonRef = useRef<(() => void) | null>(null)
@@ -484,8 +492,6 @@ function App() {
   const syncedFlashcardCompletionRef = useRef<string | null>(null)
   const dashboardToastKeyRef = useRef<string | null>(null)
   const bookListenStartRef = useRef<(() => void) | null>(null)
-  const [sentenceDismissDir, setSentenceDismissDir] = useState<string | null>(null)
-  const [sentenceAnimKey, setSentenceAnimKey] = useState(0)
   // sentenceStreak removed; badge feature dropped
   const [sentencePinyinVisible, setSentencePinyinVisible] = useState(false)
   const [sentenceMenuOpen, setSentenceMenuOpen] = useState(false)
@@ -494,7 +500,6 @@ function App() {
   const [sentenceRepsToday, setSentenceRepsToday] = useState(0)
   const [sentenceTotalReps, setSentenceTotalReps] = useState(0)
   const [sentenceSubMode, setSentenceSubMode] = useState<'sets' | 'books'>('sets')
-  const [sentenceGapMs, setSentenceGapMs] = useState(800)
   const [bookListenBookId, setBookListenBookId] = useState<string | null>(null)
   const [bookListenIndex, setBookListenIndex] = useState(0)
   const [bookListenPinyinVisible, setBookListenPinyinVisible] = useState(true)
@@ -509,6 +514,7 @@ function App() {
     audioRef.current?.pause()
     audioRef.current = null
     pocketAudioRef.current?.pause()
+    sentenceAudioRef.current?.pause()
     window.speechSynthesis?.cancel()
     setIsPlaying(false)
   }, [])
@@ -1019,12 +1025,18 @@ function App() {
     setLastSummary(queue.length > 0 ? `Loaded ${queue.length} sentence flashcards.` : 'No sentence flashcards available.')
   }, [lmsSentences])
 
-  const startSentenceLesson = useCallback(async () => {
+  const sentenceListeningSettings = useMemo<SentenceListeningSettings>(() => ({
+    sentenceRepeats: userSettings.sentenceRepeats,
+    sentenceIncludeEnglish: userSettings.sentenceIncludeEnglish,
+    sentencePauseFactor: userSettings.sentencePauseFactor,
+    sentenceSessionSize: userSettings.sentenceSessionSize,
+    sentenceRounds: userSettings.sentenceRounds,
+    sentenceShuffle: userSettings.sentenceShuffle,
+  }), [userSettings])
+
+  const startSentenceLesson = useCallback(async (offsetOverride?: number) => {
     stopAudioOutputs()
     runToken.current += 1
-    const allSrs = await getAllSentenceSrs()
-    const srsMap = new Map(allSrs.map((r) => [r.id, r]))
-    setSentenceSrsMap(srsMap)
 
     let sentencePool = lmsSentences
     if (sentencePool.length === 0) {
@@ -1036,106 +1048,124 @@ function App() {
       }
     }
 
-    const currentOffset = sentenceQueueOffset
-    const set = selectSentenceLessonSet(sentencePool, srsMap, 5, currentOffset)
-    if (set.length === 0) {
-      setLastSummary('No sentences available.')
-      return
-    }
-
-    const order = buildSentenceRoundOrder(set.length, 10)
-    setSentenceQueue(set)
-    setSentenceRoundOrder(order)
-    setSentenceRoundIndex(0)
-    setSentenceSetComplete(false)
-    setSentenceSetStartMs(Date.now())
-    setSentenceRatings(new Map())
-    setSentencePinyinVisible(false)
-    setSentencePaused(false)
     setStudyMode('sentenceMode')
     setMinimalVisualMode(true)
     setAutoNextLesson(false)
     setScreen('lesson')
-    setLastSummary(`Sentence set: ${set.length} sentences × 10 rounds (50 reps)`)
-  }, [lmsSentences, loadLmsSentences, stopAudioOutputs])
+    setSentenceSetComplete(false)
+    setSentenceRendering(true)
+    setSentencePinyinVisible(false)
 
-  const completeSentenceSet = useCallback(async (
-    ratings: Map<string, 'again' | 'hard' | 'good' | 'easy'>,
-  ) => {
-    const now = new Date()
-    for (const sent of sentenceQueue) {
-      const rating = ratings.get(sent.word) ?? 'good'
-      const existing = sentenceSrsMap.get(sent.word)
-      const record: SentenceSrsRecord = existing ?? {
-        id: sent.word,
-        fsrsIntervalDays: 0,
-        fsrsStability: 0,
-        fsrsDifficulty: 0,
-        fsrsState: 'New',
-        fsrsLapses: 0,
-        fsrsRepetitions: 0,
-        seenCount: 0,
+    try {
+      const candidates = selectSequentialSentences(
+        sentencePool,
+        sentenceListeningSettings.sentenceSessionSize,
+        offsetOverride ?? sentenceQueueOffset,
+      )
+      const clipDeps = { getAudioClip, saveAudioClip }
+      const set: SentenceLessonItem[] = []
+      for (const sent of candidates) {
+        const zhClip = await ensureSentenceClip(sent.word, 'zh', sent.chinese, clipDeps)
+        if (!zhClip) continue
+        if (sentenceListeningSettings.sentenceIncludeEnglish) {
+          await ensureSentenceClip(sent.word, 'en', sent.english, clipDeps)
+        }
+        set.push(sent)
       }
-      const updated = applySentenceSrsRating(record, rating, now)
-      await saveSentenceSrs(updated)
-    }
+      if (set.length === 0) {
+        setLastSummary('No sentence audio available. Check your connection for the first download.')
+        return
+      }
 
-    const newInSession = sentenceQueue.filter((s) => {
-      const r = sentenceSrsMap.get(s.word)
-      return !r || (r.fsrsRepetitions ?? 0) === 0
-    }).length
-    const nextOffset = sentenceQueueOffset + newInSession
+      const steps = buildSentenceSessionSteps(set, sentenceListeningSettings)
+      const rendered = await renderSessionToWav(steps, getAudioClip, SENTENCE_SESSION_SAMPLE_RATE)
+      const url = URL.createObjectURL(rendered.blob)
+      setSentenceRendered((previous) => {
+        if (previous) URL.revokeObjectURL(previous.url)
+        return { url, durationSeconds: rendered.durationSeconds, segments: rendered.segments }
+      })
+      setSentenceQueue(set)
+      setSentencePosition({ sentenceIndex: rendered.segments[0]?.sentenceIndex ?? 0, round: 0 })
+      setSentenceProgress({ current: 0, duration: rendered.durationSeconds })
+      setSentenceSetStartMs(Date.now())
+      setLastSummary(
+        `Sentence set: ${set.length} sentences × ${sentenceListeningSettings.sentenceRounds} rounds`,
+      )
+    } catch (error) {
+      setLastSummary(error instanceof Error ? error.message : 'Could not prepare sentence audio.')
+    } finally {
+      setSentenceRendering(false)
+    }
+  }, [lmsSentences, loadLmsSentences, sentenceListeningSettings, sentenceQueueOffset, stopAudioOutputs])
+
+  const completeSentenceSet = useCallback(async () => {
+    const repsInSet = sentenceQueue.length * sentenceListeningSettings.sentenceRounds
+    const nextOffset = sentenceQueueOffset + sentenceQueue.length
     const { repsToday, totalReps } = await saveSentenceRepData({
-      reps: sentenceQueue.length,
+      reps: repsInSet,
       queueOffset: nextOffset,
     })
     setSentenceQueueOffset(nextOffset)
     setSentenceRepsToday(repsToday)
     setSentenceTotalReps(totalReps)
-
     setSentenceSetComplete(false)
-    setSentenceRoundIndex(0)
-    await startSentenceLesson()
-  }, [sentenceQueue, sentenceSrsMap, sentenceQueueOffset, sentenceRoundOrder, startSentenceLesson])
+    await startSentenceLesson(nextOffset)
+  }, [sentenceListeningSettings.sentenceRounds, sentenceQueue, sentenceQueueOffset, startSentenceLesson])
 
-  const sentenceSwipeRatingMap: Record<string, 'again' | 'hard' | 'good' | 'easy'> = {
-    left: 'again', up: 'hard', right: 'good', down: 'easy',
-  }
-
-  const rateSentenceAndAdvance = useCallback((rating: 'again' | 'hard' | 'good' | 'easy') => {
-    if (sentenceDismissDir) return
-    const ratingDirMap = { again: 'left', hard: 'up', good: 'right', easy: 'down' } as const
-    const dir = ratingDirMap[rating]
-    const currentWord = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]?.word
-    if (currentWord) {
-      setSentenceRatings(prev => new Map(prev).set(currentWord, rating))
-      const existing = sentenceSrsMap.get(currentWord)
-      const record: SentenceSrsRecord = existing ?? {
-        id: currentWord, fsrsIntervalDays: 0, fsrsStability: 0, fsrsDifficulty: 0,
-        fsrsState: 'New', fsrsLapses: 0, fsrsRepetitions: 0, seenCount: 0,
-      }
-      const updated = applySentenceSrsRating(record, rating)
-      void saveSentenceSrs(updated).then(() => {
-        setSentenceSrsMap(prev => new Map(prev).set(currentWord, updated))
-      })
+  const toggleSentencePlayback = useCallback(() => {
+    const audio = sentenceAudioRef.current
+    if (!audio || !sentenceRendered) return
+    if (audio.paused) {
+      void audio.play().catch(() => {})
+    } else {
+      audio.pause()
     }
-    navigator.vibrate?.(30)
-    runToken.current += 1
-    window.speechSynthesis?.cancel()
-    setSentenceDismissDir(dir)
-    setTimeout(() => {
-      setSentenceDismissDir(null)
-      setSentenceAnimKey(prev => prev + 1)
-      setSentenceRoundIndex(prev => prev + 1)
-      setSentencePinyinVisible(false)
-    }, 300)
-  }, [sentenceDismissDir, sentenceQueue, sentenceRoundOrder, sentenceRoundIndex, sentenceSrsMap])
+  }, [sentenceRendered])
+
+  const seekSentence = useCallback((direction: 1 | -1) => {
+    const audio = sentenceAudioRef.current
+    const segments = sentenceRendered?.segments
+    if (!audio || !segments || segments.length === 0) return
+    const time = audio.currentTime
+    let index = segments.findIndex((s) => time >= s.startSeconds && time < s.endSeconds)
+    if (index < 0) index = segments.length - 1
+    const current = segments[index]
+    const sameBlock = (s: SessionAudioSegment) =>
+      s.sentenceIndex === current.sentenceIndex && s.round === current.round
+
+    if (direction === 1) {
+      const next = segments.find((s, i) => i > index && !sameBlock(s))
+      if (next) audio.currentTime = next.startSeconds
+      return
+    }
+
+    let blockStart = index
+    while (blockStart > 0 && sameBlock(segments[blockStart - 1])) blockStart -= 1
+    const blockStartSeconds = segments[blockStart].startSeconds
+    // First back-press replays the current sentence; a quick second press goes back one.
+    if (time - blockStartSeconds > 1.5 || blockStart === 0) {
+      audio.currentTime = blockStartSeconds
+      return
+    }
+    const previous = segments[blockStart - 1]
+    let previousStart = blockStart - 1
+    while (
+      previousStart > 0 &&
+      segments[previousStart - 1].sentenceIndex === previous.sentenceIndex &&
+      segments[previousStart - 1].round === previous.round
+    ) {
+      previousStart -= 1
+    }
+    audio.currentTime = segments[previousStart].startSeconds
+  }, [sentenceRendered])
 
   const sentenceSetSwipe = useSwipeCard({
-    enabled: !sentenceDismissDir,
+    enabled: true,
     onSwipe: (dir) => {
-      const rating = sentenceSwipeRatingMap[dir]
-      if (rating) rateSentenceAndAdvance(rating)
+      if (dir === 'left') seekSentence(1)
+      else if (dir === 'right') seekSentence(-1)
+      else if (dir === 'down') toggleSentencePlayback()
+      else if (dir === 'up') setSentencePinyinVisible((value) => !value)
     },
   })
 
@@ -1653,120 +1683,41 @@ function App() {
     })
   }, [sentenceSetComplete, studyMode])
 
+  // Autoplay a freshly rendered sentence session and keep its speed in sync.
   useEffect(() => {
-    if (studyMode !== 'sentenceMode' || sentenceSetComplete || sentenceQueue.length === 0) return
-    if (sentencePaused) return
-    if (sentenceRoundIndex >= sentenceRoundOrder.length) {
-      setSentenceSetComplete(true)
-      return
-    }
-
-    const currentSentence = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]
-    if (!currentSentence) return
-
-    let cancelled = false
-    stopAudioOutputs()
-    const token = ++runToken.current
-
-    async function playSequence() {
-      const wait = (ms: number): Promise<void> =>
-        new Promise((resolve) => { setTimeout(resolve, ms) })
-
-      const speakAndWait = async (text: string, lang: string) => {
-        if (!text.trim()) return
-        window.speechSynthesis?.cancel()
-        await wait(0)
-        await speakUtterance(text, playbackRate, lang)
-      }
-
-      // English
-      if (cancelled || runToken.current !== token) return
-      await speakAndWait(currentSentence.english, 'en-US')
-
-      // Pause
-      if (cancelled || runToken.current !== token) return
-      await wait(1200)
-
-      // Chinese
-      if (cancelled || runToken.current !== token) return
-      await speakAndWait(currentSentence.chinese, 'zh-CN')
-
-      // Recall pause
-      if (cancelled || runToken.current !== token) return
-      await wait(2500)
-
-      // Chinese again
-      if (cancelled || runToken.current !== token) return
-      await speakAndWait(currentSentence.chinese, 'zh-CN')
-
-      // Gap
-      if (cancelled || runToken.current !== token) return
-      await wait(sentenceGapMs)
-
-      // Advance
-      if (cancelled || runToken.current !== token) return
-      setSentenceRoundIndex((prev) => prev + 1)
-    }
-
-    void playSequence()
-
-    return () => {
-      cancelled = true
-      runToken.current += 1
-      window.speechSynthesis?.cancel()
-    }
-  }, [playbackRate, sentenceGapMs, stopAudioOutputs, studyMode, sentenceSetComplete, sentenceQueue, sentenceRoundIndex, sentenceRoundOrder, sentencePaused])
-
-  // Create a looping near-silent audio element once; keeps the Android audio session alive
-  // while sentence mode is active so the browser is less likely to throttle speech synthesis.
-  useEffect(() => {
-    const sampleRate = 8000
-    const numSamples = sampleRate // 1 second of silence
-    const buf = new ArrayBuffer(44 + numSamples * 2)
-    const v = new DataView(buf)
-    const setStr = (off: number, s: string) => { for (let i = 0; i < s.length; i++) v.setUint8(off + i, s.charCodeAt(i)) }
-    setStr(0, 'RIFF'); v.setUint32(4, 36 + numSamples * 2, true); setStr(8, 'WAVE')
-    setStr(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true)
-    v.setUint32(24, sampleRate, true); v.setUint32(28, sampleRate * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true)
-    setStr(36, 'data'); v.setUint32(40, numSamples * 2, true) // sample data stays 0 (silence)
-    const url = URL.createObjectURL(new Blob([buf], { type: 'audio/wav' }))
-    const audio = new Audio(url)
-    audio.loop = true
-    audio.volume = 0.001
-    sentenceSilentAudioRef.current = audio
-    return () => { audio.pause(); URL.revokeObjectURL(url) }
-  }, [])
-
-  // Start/stop the silent audio with sentence mode active/paused
-  useEffect(() => {
-    const audio = sentenceSilentAudioRef.current
+    if (studyMode !== 'sentenceMode' || !sentenceRendered) return
+    const audio = sentenceAudioRef.current
     if (!audio) return
-    if (studyMode === 'sentenceMode' && !sentencePaused && !sentenceSetComplete) {
-      void audio.play().catch(() => {})
-    } else {
-      audio.pause()
-    }
-  }, [studyMode, sentencePaused, sentenceSetComplete])
+    audio.playbackRate = playbackRate
+    void audio.play().catch(() => {})
+    // Only re-run when a new session WAV lands, not on speed changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sentenceRendered, studyMode])
+
+  useEffect(() => {
+    const audio = sentenceAudioRef.current
+    if (audio) audio.playbackRate = playbackRate
+  }, [playbackRate])
 
   // Media Session: expose sentence-mode controls to lock screen / headphones
   useEffect(() => {
     if (!('mediaSession' in navigator)) return
-    if (studyMode !== 'sentenceMode') {
-      navigator.mediaSession.metadata = null
+    if (studyMode !== 'sentenceMode' || sentenceSubMode !== 'sets') {
+      if (studyMode !== 'sentenceMode') navigator.mediaSession.metadata = null
       return
     }
-    const current = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]
+    const current = sentenceQueue[sentencePosition.sentenceIndex]
     navigator.mediaSession.metadata = new MediaMetadata({
-      title: current?.english ?? 'Sentence Practice',
-      artist: current?.chinese ?? '',
+      title: current?.chinese ?? 'Sentence Practice',
+      artist: current?.english ?? '',
       album: 'Chunky Chinese',
     })
     navigator.mediaSession.playbackState = sentencePaused ? 'paused' : 'playing'
     const actions: [MediaSessionAction, MediaSessionActionHandler][] = [
-      ['play', () => setSentencePaused(false)],
-      ['pause', () => setSentencePaused(true)],
-      ['nexttrack', () => setSentenceRoundIndex(i => Math.min(i + 1, sentenceRoundOrder.length - 1))],
-      ['previoustrack', () => setSentenceRoundIndex(i => Math.max(0, i - 1))],
+      ['play', () => { void sentenceAudioRef.current?.play().catch(() => {}) }],
+      ['pause', () => sentenceAudioRef.current?.pause()],
+      ['nexttrack', () => seekSentence(1)],
+      ['previoustrack', () => seekSentence(-1)],
     ]
     for (const [action, handler] of actions) {
       try { navigator.mediaSession.setActionHandler(action, handler) } catch { /* not supported */ }
@@ -1776,15 +1727,7 @@ function App() {
         try { navigator.mediaSession.setActionHandler(action, null) } catch { /* not supported */ }
       }
     }
-  }, [studyMode, sentencePaused, sentenceRoundIndex, sentenceQueue, sentenceRoundOrder])
-
-  // Pause cleanly when page is hidden (screen lock / app switch)
-  useEffect(() => {
-    if (studyMode !== 'sentenceMode') return
-    const onVisChange = () => { if (document.visibilityState === 'hidden') setSentencePaused(true) }
-    document.addEventListener('visibilitychange', onVisChange)
-    return () => document.removeEventListener('visibilitychange', onVisChange)
-  }, [studyMode])
+  }, [seekSentence, sentencePaused, sentencePosition.sentenceIndex, sentenceQueue, sentenceSubMode, studyMode])
 
   const replayCurrentSegment = useCallback(() => {
     const audio = pocketAudioRef.current
@@ -2147,13 +2090,24 @@ function App() {
       if (screen !== 'lesson') return
       if (pressed === hotkeys.playPause) {
         event.preventDefault()
-        togglePlayback()
+        if (studyMode === 'sentenceMode') {
+          toggleSentencePlayback()
+        } else {
+          togglePlayback()
+        }
         return
       }
-      if (studyMode === 'sentenceMode' && !sentenceSetComplete && mappedIndex >= 0 && mappedIndex <= 3) {
-        event.preventDefault()
-        const ratingMap = ['again', 'hard', 'good', 'easy'] as const
-        rateSentenceAndAdvance(ratingMap[mappedIndex])
+      if (studyMode === 'sentenceMode' && !sentenceSetComplete) {
+        if (mappedIndex === 0) {
+          event.preventDefault()
+          seekSentence(-1)
+        } else if (mappedIndex === 1) {
+          event.preventDefault()
+          seekSentence(1)
+        } else if (mappedIndex === 2) {
+          event.preventDefault()
+          setSentencePinyinVisible((value) => !value)
+        }
         return
       }
       if (showReviewPrompt) {
@@ -2213,8 +2167,9 @@ function App() {
     flashcardSentenceQueue,
     flashcardSessionKind,
     handleStandaloneFlashcardRate,
-    rateSentenceAndAdvance,
     refreshFlashcardSession,
+    seekSentence,
+    toggleSentencePlayback,
     moveReaderSentence,
     playFlashcardWordTwice,
     readerListening,
@@ -2781,6 +2736,21 @@ function App() {
     setUserSettings(next)
     void saveUserSettings(next)
     setLastSummary('Reader settings saved.')
+  }
+
+  function saveSentenceListeningSettings(patch: Partial<Pick<
+    UserSettings,
+    | 'sentenceRepeats'
+    | 'sentenceIncludeEnglish'
+    | 'sentencePauseFactor'
+    | 'sentenceSessionSize'
+    | 'sentenceRounds'
+    | 'sentenceShuffle'
+  >>) {
+    const next = { ...userSettings, ...patch }
+    setUserSettings(next)
+    void saveUserSettings(next)
+    setLastSummary('Listening settings saved — applies to the next set.')
   }
 
   return (
@@ -4222,7 +4192,7 @@ function App() {
                         <button
                           type="button"
                           className="sentence-play-pause sentence-set-next-play"
-                          onClick={() => void completeSentenceSet(sentenceRatings)}
+                          onClick={() => void completeSentenceSet()}
                           aria-label="Start next sentence set"
                         >
                           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
@@ -4234,38 +4204,23 @@ function App() {
                           <span>{Math.round((Date.now() - sentenceSetStartMs) / 1000)}s</span>
                         </div>
                         <div className="sentence-set-list">
-                          {sentenceQueue.map((sent, i) => {
-                            const selectedRating = sentenceRatings.get(sent.word) ?? 'good'
-                            return (
-                              <div key={sent.word} className="sentence-set-item">
-                                <span className="sentence-set-num">{i + 1}</span>
-                                <div className="sentence-set-item-content">
-                                  <p className="sentence-set-zh">{sent.chinese}</p>
-                                  <p className="sentence-set-en">{sent.english}</p>
-                                  <div className="sentence-rating-buttons">
-                                    {(['again', 'hard', 'good', 'easy'] as const).map(r => (
-                                      <button
-                                        key={r}
-                                        type="button"
-                                        className={`sentence-rating-btn sentence-rating-btn-${r}${selectedRating === r ? ' selected' : ''}`}
-                                        onClick={() => setSentenceRatings(prev => new Map(prev).set(sent.word, r))}
-                                      >
-                                        {r.charAt(0).toUpperCase() + r.slice(1)}
-                                      </button>
-                                    ))}
-                                  </div>
-                                </div>
+                          {sentenceQueue.map((sent, i) => (
+                            <div key={sent.word} className="sentence-set-item">
+                              <span className="sentence-set-num">{i + 1}</span>
+                              <div className="sentence-set-item-content">
+                                <p className="sentence-set-zh">{sent.chinese}</p>
+                                <p className="sentence-set-en">{sent.english}</p>
                               </div>
-                            )
-                          })}
+                            </div>
+                          ))}
                         </div>
                         <div className="sentence-set-actions">
                           <button
                             type="button"
                             className="primary"
-                            onClick={() => void completeSentenceSet(sentenceRatings)}
+                            onClick={() => void completeSentenceSet()}
                           >
-                            Complete
+                            Next Set
                           </button>
                         </div>
                       </div>
@@ -4499,13 +4454,62 @@ function App() {
                                   <StudyMenuSection label="Display">
                                     <StudyMenuToggle label="Pinyin" checked={showPinyin} onChange={() => setShowPinyin(v => !v)} />
                                     <StudyMenuToggle label="English" checked={showEnglish} onChange={() => setShowEnglish(v => !v)} />
-                                    <StudyMenuToggle label="Auto next" checked={autoNextLesson} onChange={checked => setAutoNextLesson(checked)} />
+                                  </StudyMenuSection>
+                                  <StudyMenuSection label="Playback">
                                     <StudyMenuSelect
-                                      label="Pause between sentences"
-                                      value={sentenceGapMs}
-                                      options={[0, 500, 1000, 1500, 2000, 2500, 3000].map(ms => ({ value: ms, label: ms === 0 ? 'None' : `${ms / 1000}s` }))}
-                                      onChange={value => setSentenceGapMs(value)}
+                                      label="Speed"
+                                      value={playbackRate}
+                                      options={[0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2].map(r => ({ value: r, label: `${r}×` }))}
+                                      onChange={value => setPlaybackRate(value)}
                                     />
+                                    <StudyMenuSelect
+                                      label="Chinese repeats"
+                                      value={userSettings.sentenceRepeats}
+                                      options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}×` }))}
+                                      onChange={value => saveSentenceListeningSettings({ sentenceRepeats: value })}
+                                    />
+                                    <StudyMenuToggle
+                                      label="English audio"
+                                      checked={userSettings.sentenceIncludeEnglish}
+                                      onChange={checked => saveSentenceListeningSettings({ sentenceIncludeEnglish: checked })}
+                                    />
+                                    <StudyMenuSelect
+                                      label="Shadowing pause"
+                                      value={userSettings.sentencePauseFactor}
+                                      options={[
+                                        { value: 0, label: 'Off' },
+                                        { value: 0.5, label: 'Short (½× sentence)' },
+                                        { value: 1, label: 'Normal (1× sentence)' },
+                                        { value: 1.5, label: 'Long (1½× sentence)' },
+                                      ]}
+                                      onChange={value => saveSentenceListeningSettings({ sentencePauseFactor: value })}
+                                    />
+                                  </StudyMenuSection>
+                                  <StudyMenuSection label="Session">
+                                    <StudyMenuSelect
+                                      label="Sentences per set"
+                                      value={userSettings.sentenceSessionSize}
+                                      options={[3, 5, 8, 10].map(n => ({ value: n, label: `${n}` }))}
+                                      onChange={value => saveSentenceListeningSettings({ sentenceSessionSize: value })}
+                                    />
+                                    <StudyMenuSelect
+                                      label="Rounds"
+                                      value={userSettings.sentenceRounds}
+                                      options={[3, 5, 10, 15, 20].map(n => ({ value: n, label: `${n}` }))}
+                                      onChange={value => saveSentenceListeningSettings({ sentenceRounds: value })}
+                                    />
+                                    <StudyMenuToggle
+                                      label="Shuffle order"
+                                      checked={userSettings.sentenceShuffle}
+                                      onChange={checked => saveSentenceListeningSettings({ sentenceShuffle: checked })}
+                                    />
+                                    <button
+                                      type="button"
+                                      className="sentence-menu-change-book"
+                                      onClick={() => { setSentenceMenuOpen(false); void startSentenceLesson() }}
+                                    >
+                                      Rebuild set with these settings
+                                    </button>
                                   </StudyMenuSection>
                                 </StudyMenuPopup>
                               </div>
@@ -4513,34 +4517,36 @@ function App() {
                               <button
                                 type="button"
                                 className="sentence-end-btn"
-                                onClick={() => { setSentenceSetComplete(true) }}
+                                onClick={() => {
+                                  sentenceAudioRef.current?.pause()
+                                  setSentenceSetComplete(true)
+                                }}
                               >
                                 End Set
                               </button>
                             </div>
 
                             <div className="sentence-round-info">
-                              <span>Round {Math.floor(sentenceRoundIndex / sentenceQueue.length) + 1} of 25</span>
+                              <span>Round {sentencePosition.round + 1} of {sentenceListeningSettings.sentenceRounds}</span>
                               <div className="sentence-progress-bar">
-                                <span style={{ width: `${(sentenceRoundIndex / (sentenceQueue.length * 25)) * 100}%` }} />
+                                <span style={{ width: `${sentenceProgress.duration > 0 ? (sentenceProgress.current / sentenceProgress.duration) * 100 : 0}%` }} />
                               </div>
                             </div>
 
-                            {sentencePaused && (
+                            {sentenceRendering && (
+                              <div className="sentence-paused-overlay">Preparing audio…</div>
+                            )}
+                            {!sentenceRendering && sentencePaused && sentenceRendered && (
                               <div className="sentence-paused-overlay">Paused — tap ▶ to resume</div>
                             )}
 
-                            {sentenceQueue.length > 0 && sentenceRoundOrder.length > 0 && (() => {
-                              const current = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex]]
-                              const next = sentenceQueue[sentenceRoundOrder[sentenceRoundIndex + 1]]
-                              const storedRating = current?.word ? sentenceRatings.get(current.word) : undefined
+                            {sentenceQueue.length > 0 && (() => {
+                              const current = sentenceQueue[sentencePosition.sentenceIndex]
                               return (
                                 <div className="sentence-card-stack">
-                                  {next && <div className="sentence-card-peek" aria-hidden="true" />}
                                   <div
-                                    key={sentenceAnimKey}
                                     ref={sentenceSetSwipe.cardRef}
-                                    className={`sentence-card${sentenceDismissDir ? ` sentence-dismiss-${sentenceDismissDir}` : ''}`}
+                                    className="sentence-card"
                                   >
                                     <div
                                       className="sentence-chinese"
@@ -4561,9 +4567,6 @@ function App() {
                                     {showEnglish && (
                                       <div className="sentence-english">{current?.english}</div>
                                     )}
-                                    {storedRating && (
-                                      <div className="sentence-stored-rating">{storedRating.charAt(0).toUpperCase() + storedRating.slice(1)}</div>
-                                    )}
                                   </div>
                                 </div>
                               )
@@ -4571,38 +4574,74 @@ function App() {
 
                             {sentenceSetSwipe.swipeDir && (
                               <div className={`swipe-indicator swipe-indicator-${sentenceSetSwipe.swipeDir}`}>
-                                {{ left: '✗ Again', up: '△ Hard', right: '✓ Good', down: '★ Easy' }[sentenceSetSwipe.swipeDir]}
+                                {{ left: '← Next', right: '→ Prev', down: '⏸ Play/Pause', up: '↑ Pinyin' }[sentenceSetSwipe.swipeDir]}
                               </div>
                             )}
-
-                            <div className="sentence-rating-row">
-                              {(['again', 'hard', 'good', 'easy'] as const).map((r, i) => (
-                                <button
-                                  key={r}
-                                  type="button"
-                                  className={`sentence-rate-btn sentence-rate-${r}`}
-                                  onClick={() => rateSentenceAndAdvance(r)}
-                                >
-                                  <kbd>{hotkeys[(['choiceA', 'choiceB', 'choiceC', 'choiceD'] as const)[i]].toUpperCase()}</kbd>
-                                  {r.charAt(0).toUpperCase() + r.slice(1)}
-                                </button>
-                              ))}
-                            </div>
 
                             <div className="sentence-dots">
                               {sentenceQueue.map((sent, i) => (
                                 <span
-                                  key={i}
-                                  className={`sentence-dot ${sentenceRoundOrder[sentenceRoundIndex] === i ? 'active' : ''}${sentenceRatings.has(sent.word) ? ' rated' : ''}`}
+                                  key={sent.word}
+                                  className={`sentence-dot ${sentencePosition.sentenceIndex === i ? 'active' : ''}`}
                                 />
                               ))}
                             </div>
 
                             <StudyControls
                               playing={!sentencePaused}
-                              onTogglePlay={() => setSentencePaused(p => !p)}
+                              onTogglePlay={toggleSentencePlayback}
+                              playDisabled={!sentenceRendered || sentenceRendering}
                               playLabel={sentencePaused ? 'Resume' : 'Pause'}
+                              onPrevious={() => seekSentence(-1)}
+                              prevDisabled={!sentenceRendered}
+                              prevLabel="Previous sentence"
+                              onNext={() => seekSentence(1)}
+                              nextDisabled={!sentenceRendered}
+                              nextLabel="Next sentence"
                             />
+
+                            <div className="book-listen-hints">
+                              <span>↑ pinyin</span>
+                              <span>→ prev</span>
+                              <span>↓ pause</span>
+                              <span>← next</span>
+                            </div>
+
+                            {sentenceRendered && (
+                              <audio
+                                ref={sentenceAudioRef}
+                                src={sentenceRendered.url}
+                                preload="auto"
+                                onPlay={() => setSentencePaused(false)}
+                                onPause={() => setSentencePaused(true)}
+                                onTimeUpdate={(event) => {
+                                  const audio = event.currentTarget
+                                  const time = audio.currentTime
+                                  const segments = sentenceRendered.segments
+                                  const segment = segments.find(
+                                    (s) => time >= s.startSeconds && time < s.endSeconds,
+                                  )
+                                  if (
+                                    segment &&
+                                    (segment.sentenceIndex !== sentencePosition.sentenceIndex ||
+                                      segment.round !== sentencePosition.round)
+                                  ) {
+                                    setSentencePosition({
+                                      sentenceIndex: segment.sentenceIndex,
+                                      round: segment.round,
+                                    })
+                                  }
+                                  setSentenceProgress({
+                                    current: time,
+                                    duration: audio.duration || sentenceRendered.durationSeconds,
+                                  })
+                                }}
+                                onEnded={() => {
+                                  setSentencePaused(true)
+                                  void completeSentenceSet()
+                                }}
+                              />
+                            )}
                           </div>
                         )}
                       </div>
