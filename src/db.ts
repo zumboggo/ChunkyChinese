@@ -509,7 +509,7 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   sentenceIncludeEnglish: true,
   sentencePauseFactor: 1,
   sentenceSessionSize: 5,
-  sentenceRounds: 10,
+  sentenceRounds: 5,
   sentenceShuffle: false,
 }
 

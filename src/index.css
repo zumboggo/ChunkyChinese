@@ -3021,6 +3021,13 @@ details.settings-group > .import-grid {
   font-weight: 800;
 }
 
+.sentence-pool-progress {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
 .sentence-paused-overlay {
   padding: 8px 18px;
   border-radius: 10px;
@@ -3140,7 +3147,7 @@ details.settings-group > .import-grid {
 
 .sentence-english {
   color: var(--muted-navy);
-  font-size: clamp(0.95rem, 2.2vw, 1.3rem);
+  font-size: clamp(1.15rem, 2.6vw, 1.6rem);
   font-weight: 600;
   line-height: 1.4;
   border-top: 1px solid rgba(100, 116, 139, 0.12);
@@ -3163,7 +3170,7 @@ details.settings-group > .import-grid {
 
 .sentence-pinyin {
   color: var(--muted-navy);
-  font-size: clamp(0.9rem, 2.2vw, 1.25rem);
+  font-size: clamp(1.0rem, 2.4vw, 1.35rem);
   letter-spacing: 0.06em;
   line-height: 1.6;
   animation: sentenceCardEnter 0.2s ease both;

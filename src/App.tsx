@@ -1034,6 +1034,25 @@ function App() {
     sentenceShuffle: userSettings.sentenceShuffle,
   }), [userSettings])
 
+  const wordLessonMap = useMemo(() => {
+    const map = new Map<string, number>()
+    for (const word of words) {
+      if (word.lessonNumber !== undefined) map.set(word.word, word.lessonNumber)
+    }
+    return map
+  }, [words])
+
+  const sentencePoolProgress = useMemo(() => {
+    const current = sentenceQueue[sentencePosition.sentenceIndex]
+    if (!current || lmsSentences.length === 0) return null
+    const position = ((sentenceQueueOffset + sentencePosition.sentenceIndex) % lmsSentences.length) + 1
+    return {
+      position,
+      total: lmsSentences.length,
+      lesson: wordLessonMap.get(current.word),
+    }
+  }, [lmsSentences.length, sentencePosition.sentenceIndex, sentenceQueue, sentenceQueueOffset, wordLessonMap])
+
   const startSentenceLesson = useCallback(async (offsetOverride?: number) => {
     stopAudioOutputs()
     runToken.current += 1
@@ -4531,6 +4550,12 @@ function App() {
                               <div className="sentence-progress-bar">
                                 <span style={{ width: `${sentenceProgress.duration > 0 ? (sentenceProgress.current / sentenceProgress.duration) * 100 : 0}%` }} />
                               </div>
+                              {sentencePoolProgress && (
+                                <span className="sentence-pool-progress">
+                                  {sentencePoolProgress.lesson !== undefined && `Lesson ${sentencePoolProgress.lesson} · `}
+                                  {sentencePoolProgress.position}/{sentencePoolProgress.total} sentences
+                                </span>
+                              )}
                             </div>
 
                             {sentenceRendering && (
