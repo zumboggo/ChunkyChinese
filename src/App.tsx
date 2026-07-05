@@ -76,6 +76,16 @@ import {
   restoreWordFsrs,
 } from './db'
 import { generateAiStory, generateStoryCover, AI_STORY_MODELS, AI_STORY_LENGTHS } from './aiStories'
+import {
+  STORY_WORLDS,
+  buildStoryWorldContext,
+  loadStoryWorldSelection,
+  saveStoryWorldSelection,
+  loadFamilyProfile,
+  saveFamilyProfile,
+  DEFAULT_FAMILY_PROFILE,
+  type StoryWorldSelection,
+} from './storyWorlds'
 import { synthesizeStoryAudio, AZURE_VOICES } from './storyAudio'
 import {
   GENERATED_STORIES_PACK_ID,
@@ -1046,7 +1056,7 @@ function App() {
     setMinimalVisualMode(true)
     setAutoNextLesson(false)
     setScreen('lesson')
-    setLastSummary(`Sentence set: ${set.length} sentences Ã— 10 rounds (50 reps)`)
+    setLastSummary(`Sentence set: ${set.length} sentences × 10 rounds (50 reps)`)
   }, [lmsSentences, loadLmsSentences, stopAudioOutputs])
 
   const completeSentenceSet = useCallback(async (
@@ -1589,9 +1599,10 @@ function App() {
           else void bookListening.previous()
         }, 320)
       } else if (dir === 'down') {
-        bookListening.togglePlayPause()
+        if (bookListening.snapshot.status === 'idle') bookListening.startListening()
+        else bookListening.togglePlayPause()
       } else {
-        // cycle: both on â†’ English off â†’ both off â†’ both on
+        // cycle: both on → English off → both off → both on
         if (bookListenPinyinVisible && bookListenEnglishVisible) {
           setBookListenEnglishVisible(false)
         } else if (bookListenPinyinVisible && !bookListenEnglishVisible) {
@@ -2526,7 +2537,7 @@ function App() {
 
   const handleGenerateStory = useCallback(async (
     prompt: string,
-    options: { lengthChars: number; model: string; cover: boolean; audio: boolean },
+    options: { lengthChars: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection },
   ): Promise<GeneratedStoryResult> => {
     const apiKey = requireOpenRouterKey()
     const knownWords = collectKnownWords()
@@ -2537,6 +2548,7 @@ function App() {
       apiKey,
       model: options.model,
       lengthChars: options.lengthChars,
+      worldContext: options.world ? buildStoryWorldContext(options.world) : undefined,
     }
     // Remember the last-used choices as the new defaults.
     const nextSettings = {
@@ -2776,7 +2788,7 @@ function App() {
       <header className="topbar">
         <div className="brand-area">
           <button className="brand-button" type="button" onClick={() => setScreen('dashboard')} aria-label="Go to dashboard">
-            <span className="brand-mark">ä¸­</span>
+            <span className="brand-mark">中</span>
             <span>
               <strong>Chunky Chinese</strong>
               <small>{seedMessage}</small>
@@ -2831,7 +2843,7 @@ function App() {
               <button className="mode-start listen-start" type="button" onClick={() => void startSentenceLesson()}>
                 <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
                 <strong>Listening</strong>
-                <span>Sentence loops by default â€” switch to Words or Active Recall in the menu.</span>
+                <span>Sentence loops by default — switch to Words or Active Recall in the menu.</span>
               </button>
               <button className="mode-start reading-texts-start" type="button" onClick={() => setScreen('readingTexts')}>
                 <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
@@ -2925,7 +2937,7 @@ function App() {
                 <div className="extra-review-row" key={word.id}>
                   <span>
                     <strong>{word.word}</strong>
-                    <small>{word.pinyin ? `${word.pinyin} Â· ${word.meaning}` : word.meaning}</small>
+                    <small>{word.pinyin ? `${word.pinyin} · ${word.meaning}` : word.meaning}</small>
                   </span>
                   <button type="button" className="ghost-answer" onClick={() => toggleActiveRecallPriority(word)}>
                     Remove
@@ -2966,7 +2978,7 @@ function App() {
               <dl className="stat-list">
                 <div>
                   <dt>Current streak</dt>
-                  <dd>{stats.currentStreak} ðŸ”¥</dd>
+                  <dd>{stats.currentStreak} 🔥</dd>
                 </div>
                 <div>
                   <dt>Longest streak</dt>
@@ -3034,11 +3046,11 @@ function App() {
                 </div>
                 <div>
                   <dt>Avg flashcard set</dt>
-                  <dd>{stats.avgFlashcardSetSeconds > 0 ? formatDuration(Math.round(stats.avgFlashcardSetSeconds)) : 'â€”'}</dd>
+                  <dd>{stats.avgFlashcardSetSeconds > 0 ? formatDuration(Math.round(stats.avgFlashcardSetSeconds)) : '—'}</dd>
                 </div>
                 <div>
                   <dt>Last set duration</dt>
-                  <dd>{stats.lastFlashcardSetSeconds > 0 ? formatDuration(stats.lastFlashcardSetSeconds) : 'â€”'}</dd>
+                  <dd>{stats.lastFlashcardSetSeconds > 0 ? formatDuration(stats.lastFlashcardSetSeconds) : '—'}</dd>
                 </div>
               </dl>
               <button type="button" className="ghost-answer" onClick={() => setScreen('comicReader')}>
@@ -3159,7 +3171,7 @@ function App() {
                       </div>
                       {flashcardSentenceAnswerShown && (
                         <div className="swipe-instructions">
-                          {hotkeys.choiceA.toUpperCase()} Again Â· {hotkeys.choiceB.toUpperCase()} Good
+                          {hotkeys.choiceA.toUpperCase()} Again · {hotkeys.choiceB.toUpperCase()} Good
                         </div>
                       )}
                       <div className="flashcard-bottom-actions">
@@ -3258,7 +3270,7 @@ function App() {
                               className={`ghost-answer struggled-word-btn ${word.activeRecallPriorityAt ? 'active' : ''}`}
                               onClick={() => void toggleActiveRecallPriority(word)}
                             >
-                              {word.activeRecallPriorityAt ? 'â˜…' : 'â˜†'} {word.word}
+                              {word.activeRecallPriorityAt ? '★' : '☆'} {word.word}
                             </button>
                           ))}
                         </div>
@@ -4001,7 +4013,7 @@ function App() {
               <div className="import-grid">
                 <section className="panel">
                   <h2>Hotkey settings</h2>
-                  <p>Choice Aâ€“D rate flashcards and sentences; Choice E stars cards; Choice F replays audio.</p>
+                  <p>Choice A–D rate flashcards and sentences; Choice E stars cards; Choice F replays audio.</p>
                   <dl className="stat-list">
                     <div><dt>Again (A)</dt><dd>{hotkeys.choiceA.toUpperCase()}</dd></div>
                     <div><dt>Hard (B)</dt><dd>{hotkeys.choiceB.toUpperCase()}</dd></div>
@@ -4066,7 +4078,7 @@ function App() {
                 </section>
                 <section className="panel">
                   <h2>App update</h2>
-                  <p>If the app looks out of date, force a fresh reload â€” clears all cached files and restarts.</p>
+                  <p>If the app looks out of date, force a fresh reload — clears all cached files and restarts.</p>
                   <div className="button-row">
                     <button
                       type="button"
@@ -4115,7 +4127,7 @@ function App() {
                               onClick={() => setListeningLessonMenuOpen(o => !o)}
                               aria-label="Listening menu"
                             >
-                              â˜°
+                              ☰
                             </button>
                             <StudyMenuPopup open={listeningLessonMenuOpen} onClose={() => setListeningLessonMenuOpen(false)}>
                               <p className="sentence-menu-label">Mode</p>
@@ -4274,7 +4286,7 @@ function App() {
                         </div>
 
                         {sentenceSubMode === 'books' ? (
-                          /* â”€â”€ Book Listening sub-mode â”€â”€ */
+                          /* ── Book Listening sub-mode ── */
                           bookListenBook === null ? (
                             /* Book picker */
                             <div className="book-picker-list">
@@ -4345,7 +4357,7 @@ function App() {
                                     onClick={() => setSentenceMenuOpen(o => !o)}
                                     aria-label="Menu"
                                   >
-                                    â˜°
+                                    ☰
                                   </button>
                                   <StudyMenuPopup open={sentenceMenuOpen} onClose={() => setSentenceMenuOpen(false)}>
                                     <p className="sentence-menu-label">Book</p>
@@ -4362,13 +4374,13 @@ function App() {
                                       <StudyMenuSelect
                                         label="Speed"
                                         value={userSettings.readerListeningRate}
-                                        options={[0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.5].map(r => ({ value: r, label: `${r}Ã—` }))}
+                                        options={[0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.5].map(r => ({ value: r, label: `${r}×` }))}
                                         onChange={value => { void saveReaderSettings({ readerListeningRate: value }) }}
                                       />
                                       <StudyMenuSelect
                                         label="Repeats"
                                         value={userSettings.readerListeningRepeats}
-                                        options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}Ã—` }))}
+                                        options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}×` }))}
                                         onChange={value => { void saveReaderSettings({ readerListeningRepeats: value }) }}
                                       />
                                     </StudyMenuSection>
@@ -4386,7 +4398,7 @@ function App() {
                                   }}
                                   title="Cycle playback speed"
                                 >
-                                  {userSettings.readerListeningRate}Ã—
+                                  {userSettings.readerListeningRate}×
                                 </button>
                               </div>
 
@@ -4425,7 +4437,7 @@ function App() {
 
                               {bookListenSwipe.swipeDir && !bookListenDismissDir && (
                                 <div className={`swipe-indicator swipe-indicator-${bookListenSwipe.swipeDir}`}>
-                                  {{ left: 'â† Next', right: 'â†’ Prev', down: 'â¸ Pause', up: 'â†‘ Display' }[bookListenSwipe.swipeDir] ?? ''}
+                                  {{ left: '← Next', right: '→ Prev', down: '⏸ Pause', up: '↑ Display' }[bookListenSwipe.swipeDir] ?? ''}
                                 </div>
                               )}
 
@@ -4446,15 +4458,15 @@ function App() {
 
                               {/* Swipe hints */}
                               <div className="book-listen-hints">
-                                <span>â†‘ display</span>
-                                <span>â†’ prev</span>
-                                <span>â†“ pause</span>
-                                <span>â† next</span>
+                                <span>↑ display</span>
+                                <span>→ prev</span>
+                                <span>↓ pause</span>
+                                <span>← next</span>
                               </div>
                             </div>
                           )
                         ) : (
-                          /* â”€â”€ Sets sub-mode (original sentence mode) â”€â”€ */
+                          /* ── Sets sub-mode (original sentence mode) ── */
                           <div
                             className={`sentence-mode-display${sentenceSetSwipe.swipeDir ? ` swipe-${sentenceSetSwipe.swipeDir}` : ''}`}
                             {...sentenceSetSwipe.handlers}
@@ -4468,7 +4480,7 @@ function App() {
                                   onClick={() => setSentenceMenuOpen(o => !o)}
                                   aria-label="Menu"
                                 >
-                                  â˜°
+                                  ☰
                                 </button>
                                 <StudyMenuPopup open={sentenceMenuOpen} onClose={() => setSentenceMenuOpen(false)}>
                                   <p className="sentence-menu-label">Mode</p>
@@ -4515,7 +4527,7 @@ function App() {
                             </div>
 
                             {sentencePaused && (
-                              <div className="sentence-paused-overlay">Paused â€” tap â–¶ to resume</div>
+                              <div className="sentence-paused-overlay">Paused — tap ▶ to resume</div>
                             )}
 
                             {sentenceQueue.length > 0 && sentenceRoundOrder.length > 0 && (() => {
@@ -4544,7 +4556,7 @@ function App() {
                                         {getPinyin(current?.chinese ?? '', { toneType: 'symbol', separator: ' ' })}
                                       </div>
                                     ) : (
-                                      <div className="sentence-pinyin-hint">æ‹¼ pinyin</div>
+                                      <div className="sentence-pinyin-hint">拼 pinyin</div>
                                     )}
                                     {showEnglish && (
                                       <div className="sentence-english">{current?.english}</div>
@@ -4559,7 +4571,7 @@ function App() {
 
                             {sentenceSetSwipe.swipeDir && (
                               <div className={`swipe-indicator swipe-indicator-${sentenceSetSwipe.swipeDir}`}>
-                                {{ left: 'âœ— Again', up: 'â–³ Hard', right: 'âœ“ Good', down: 'â˜… Easy' }[sentenceSetSwipe.swipeDir]}
+                                {{ left: '✗ Again', up: '△ Hard', right: '✓ Good', down: '★ Easy' }[sentenceSetSwipe.swipeDir]}
                               </div>
                             )}
 
@@ -4847,7 +4859,7 @@ function App() {
                   )}
                   {targetWord && (
                     <p>
-                      Current word: <strong>{targetWord.word}</strong> Â· {targetWord.meaning}
+                      Current word: <strong>{targetWord.word}</strong> · {targetWord.meaning}
                     </p>
                   )}
                 </div>
@@ -5252,7 +5264,7 @@ function ReadingTextsLibrary({
   onOpenRenpyPrototype: () => void
   onOpenRenpyLms: () => void
   onOpenVisualNovel: (book?: ReaderBook) => void
-  onGenerateStory: (prompt: string, options: { lengthChars: number; model: string; cover: boolean; audio: boolean }) => Promise<GeneratedStoryResult>
+  onGenerateStory: (prompt: string, options: { lengthChars: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection }) => Promise<GeneratedStoryResult>
   onContinueStory: (book: ReaderBook) => Promise<GeneratedStoryResult>
   onDeleteStory: (book: ReaderBook) => Promise<void>
   aiStoryBusy: boolean
@@ -5295,7 +5307,7 @@ function ReadingTextsLibrary({
                   <div>
                     <h3>{book.title}</h3>
                     <p>
-                      Chapters {book.chapterStart}-{book.chapterEnd} Â· {book.stories.length} stories
+                      Chapters {book.chapterStart}-{book.chapterEnd} · {book.stories.length} stories
                     </p>
                   </div>
                   <div className="reading-book-progress" aria-hidden="true">
@@ -5304,7 +5316,7 @@ function ReadingTextsLibrary({
                   <small>
                     {isResumeBook
                       ? `Continue at sentence ${resumeLocation.sentenceIndex + 1}`
-                      : `${comprehension?.knownPercent ?? 0}% vocabulary known Â· ${readerComfortLabel(comprehension?.knownPercent ?? 0)}`}
+                      : `${comprehension?.knownPercent ?? 0}% vocabulary known · ${readerComfortLabel(comprehension?.knownPercent ?? 0)}`}
                   </small>
                   <div className="reading-book-actions">
                     {isResumeBook ? (
@@ -5342,7 +5354,7 @@ function ReadingTextsLibrary({
       </div>
     )
 
-  // â”€â”€ Category sub-views â”€â”€
+  // ── Category sub-views ──
   if (category === 'novels' || category === 'stories') {
     const isNovels = category === 'novels'
     return (
@@ -5352,7 +5364,7 @@ function ReadingTextsLibrary({
             Back to Reading
           </button>
           <div>
-            <span className="reading-library-mark" aria-hidden="true">{isNovels ? 'æ–‡' : 'äº‹'}</span>
+            <span className="reading-library-mark" aria-hidden="true">{isNovels ? '文' : '事'}</span>
             <div>
               <h1>{isNovels ? 'Novels' : 'Stories'}</h1>
               <p>{isNovels ? 'Long-form books with pinyin, translations, and audio.' : 'Short reads and standalone texts.'}</p>
@@ -5433,7 +5445,7 @@ function ReadingTextsLibrary({
             Back to Reading
           </button>
           <div>
-            <span className="reading-library-mark" aria-hidden="true">æ¼«</span>
+            <span className="reading-library-mark" aria-hidden="true">漫</span>
             <div>
               <h1>Comics</h1>
               <p>Read pages with bubble transcripts and vocabulary lookup.</p>
@@ -5453,7 +5465,7 @@ function ReadingTextsLibrary({
             Back to Reading
           </button>
           <div>
-            <span className="reading-library-mark" aria-hidden="true">å‰§</span>
+            <span className="reading-library-mark" aria-hidden="true">剧</span>
             <div>
               <h1>Visual Novels</h1>
               <p>Interactive stories with scenes, dialogue, and choices.</p>
@@ -5512,7 +5524,7 @@ function ReadingTextsLibrary({
     )
   }
 
-  // â”€â”€ Hub: 4 category tiles â”€â”€
+  // ── Hub: 4 category tiles ──
   return (
     <section className="screen reading-texts-screen">
       <header className="reading-library-heading">
@@ -5520,7 +5532,7 @@ function ReadingTextsLibrary({
           Back to Dashboard
         </button>
         <div>
-          <span className="reading-library-mark" aria-hidden="true">é˜…</span>
+          <span className="reading-library-mark" aria-hidden="true">阅</span>
           <div>
             <h1>Reading</h1>
             <p>Pick a format, then choose what to read.</p>
@@ -5533,7 +5545,7 @@ function ReadingTextsLibrary({
           <div className="reading-continue-copy">
             <span>Continue reading</span>
             <h2 id="reading-continue-title">{resumeLocation.book.title}</h2>
-            <p>Chapter {resumeLocation.chapter} Â· {resumeLocation.story}</p>
+            <p>Chapter {resumeLocation.chapter} · {resumeLocation.story}</p>
             <div className="reading-progress-row">
               <div className="reading-progress-track" aria-label={`${resumeLocation.percent}% read`}>
                 <span style={{ width: `${resumeLocation.percent}%` }} />
@@ -5545,9 +5557,9 @@ function ReadingTextsLibrary({
             </small>
           </div>
           <div className="reading-continue-books" aria-hidden="true">
-            <span>æ•…äº‹</span>
-            <span>ä¸­æ–‡</span>
-            <span>é˜…è¯»</span>
+            <span>故事</span>
+            <span>中文</span>
+            <span>阅读</span>
           </div>
           <button
             type="button"
@@ -5555,7 +5567,7 @@ function ReadingTextsLibrary({
             onClick={() => void onChooseBook(resumeLocation.book, 'resume')}
           >
             Resume
-            <span aria-hidden="true">â†’</span>
+            <span aria-hidden="true">→</span>
           </button>
         </section>
       ) : null}
@@ -5563,36 +5575,36 @@ function ReadingTextsLibrary({
       <section className="reading-formats-section" aria-labelledby="reading-formats-title">
         <div className="reading-formats-grid">
           <button type="button" className="reading-format reading-format-novels" onClick={() => setCategory('novels')}>
-            <span className="reading-format-icon" aria-hidden="true">æ–‡</span>
+            <span className="reading-format-icon" aria-hidden="true">文</span>
             <span>
               <strong>Novels</strong>
               <small>{novels.length} long-form books with pinyin and audio.</small>
             </span>
-            <span className="reading-format-arrow" aria-hidden="true">â†’</span>
+            <span className="reading-format-arrow" aria-hidden="true">→</span>
           </button>
           <button type="button" className="reading-format reading-format-comics" onClick={() => setCategory('comics')}>
-            <span className="reading-format-icon" aria-hidden="true">æ¼«</span>
+            <span className="reading-format-icon" aria-hidden="true">漫</span>
             <span>
               <strong>Comics</strong>
               <small>Pages with bubble transcripts and vocabulary lookup.</small>
             </span>
-            <span className="reading-format-arrow" aria-hidden="true">â†’</span>
+            <span className="reading-format-arrow" aria-hidden="true">→</span>
           </button>
           <button type="button" className="reading-format reading-format-novels" onClick={() => setCategory('stories')}>
-            <span className="reading-format-icon" aria-hidden="true">äº‹</span>
+            <span className="reading-format-icon" aria-hidden="true">事</span>
             <span>
               <strong>Stories</strong>
               <small>{stories.length} short reads and standalone texts.</small>
             </span>
-            <span className="reading-format-arrow" aria-hidden="true">â†’</span>
+            <span className="reading-format-arrow" aria-hidden="true">→</span>
           </button>
           <button type="button" className="reading-format reading-format-novel" onClick={() => setCategory('visualNovels')}>
-            <span className="reading-format-icon" aria-hidden="true">å‰§</span>
+            <span className="reading-format-icon" aria-hidden="true">剧</span>
             <span>
               <strong>Visual Novels</strong>
               <small>Interactive scenes, dialogue, and Ren'Py stories.</small>
             </span>
-            <span className="reading-format-arrow" aria-hidden="true">â†’</span>
+            <span className="reading-format-arrow" aria-hidden="true">→</span>
           </button>
         </div>
       </section>
@@ -5611,7 +5623,7 @@ function GenerateStoryPanel({
   disabled: boolean
   busy: boolean
   message: string | null
-  onGenerate: (prompt: string, options: { lengthChars: number; model: string; cover: boolean; audio: boolean }) => Promise<GeneratedStoryResult>
+  onGenerate: (prompt: string, options: { lengthChars: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection }) => Promise<GeneratedStoryResult>
   onOpenGenerated: (book: ReaderBook) => void
   defaults: { model: string; lengthChars: number; generateCover: boolean; generateAudio: boolean; azureConfigured: boolean }
 }) {
@@ -5622,11 +5634,44 @@ function GenerateStoryPanel({
   const [audio, setAudio] = useState(defaults.generateAudio && defaults.azureConfigured)
   const [lastResult, setLastResult] = useState<GeneratedStoryResult | null>(null)
   const [localMessage, setLocalMessage] = useState<string | null>(null)
+  const [world, setWorld] = useState<StoryWorldSelection>(() => loadStoryWorldSelection())
+  const [aboutWorldId, setAboutWorldId] = useState<string | null>(null)
+  const [editingFamily, setEditingFamily] = useState(false)
+  const [familyDraft, setFamilyDraft] = useState('')
+  const [familyEditMessage, setFamilyEditMessage] = useState<string | null>(null)
+
+  function updateWorld(patch: Partial<StoryWorldSelection>) {
+    setWorld((current) => {
+      const next = { ...current, ...patch }
+      saveStoryWorldSelection(next)
+      return next
+    })
+  }
+
+  function openFamilyEditor() {
+    setFamilyDraft(JSON.stringify(loadFamilyProfile(), null, 2))
+    setFamilyEditMessage(null)
+    setEditingFamily(true)
+  }
+
+  function saveFamilyDraft() {
+    try {
+      const parsed = JSON.parse(familyDraft) as typeof DEFAULT_FAMILY_PROFILE
+      if (typeof parsed.setting !== 'string' || !Array.isArray(parsed.characters) || !Array.isArray(parsed.rules)) {
+        throw new Error('Profile needs "setting" (text), "characters" (list), and "rules" (list).')
+      }
+      saveFamilyProfile(parsed)
+      setFamilyEditMessage('Family details saved.')
+      setEditingFamily(false)
+    } catch (error) {
+      setFamilyEditMessage(error instanceof Error ? error.message : 'Invalid JSON.')
+    }
+  }
 
   async function submit() {
     setLocalMessage(null)
     try {
-      const result = await onGenerate(prompt, { lengthChars, model, cover, audio })
+      const result = await onGenerate(prompt, { lengthChars, model, cover, audio, world })
       setLastResult(result)
       setLocalMessage(null)
     } catch (error) {
@@ -5636,19 +5681,120 @@ function GenerateStoryPanel({
 
   const coverage = lastResult?.validation.knownCoveragePercent
   const coverageTooHard = coverage !== undefined && coverage < GENERATED_STORY_TARGET_COVERAGE
+  const selectedWorld = STORY_WORLDS.find((w) => w.id === world.worldId)
 
   return (
     <section className="generate-story-panel">
       <div>
         <h3>Generate a known-word story</h3>
-        <p>Write a short prompt, and the app will write a bilingual story built from your mature known words.</p>
+        <p>Pick a story world, write an optional prompt, and the app will write a bilingual story built from your mature known words.</p>
       </div>
+      <div className="story-world-grid" role="radiogroup" aria-label="Story world">
+        {STORY_WORLDS.map((w) => (
+          <button
+            key={w.id}
+            type="button"
+            role="radio"
+            aria-checked={world.worldId === w.id}
+            className={`story-world-card${world.worldId === w.id ? ' selected' : ''}`}
+            onClick={() => updateWorld({ worldId: w.id })}
+            disabled={disabled || busy}
+          >
+            <span className="story-world-icon" aria-hidden="true">{w.icon}</span>
+            <span className="story-world-copy">
+              <strong>{w.title}</strong>
+              <small>{w.subtitle}</small>
+            </span>
+          </button>
+        ))}
+      </div>
+      {selectedWorld && (
+        <div className="story-world-detail">
+          <button
+            type="button"
+            className="story-world-about-toggle"
+            onClick={() => setAboutWorldId(aboutWorldId === selectedWorld.id ? null : selectedWorld.id)}
+          >
+            {aboutWorldId === selectedWorld.id ? 'Hide details' : 'About this world'}
+          </button>
+          {aboutWorldId === selectedWorld.id && (
+            <p className="story-world-description">{selectedWorld.description}</p>
+          )}
+          {world.worldId === 'gospel-john' && (
+            <div className="segmented-control story-world-suboption" aria-label="Gospel story mode">
+              <button
+                type="button"
+                className={world.gospelMode === 'retelling' ? 'active' : ''}
+                onClick={() => updateWorld({ gospelMode: 'retelling' })}
+                disabled={disabled || busy}
+              >
+                Biblical retelling
+              </button>
+              <button
+                type="button"
+                className={world.gospelMode === 'companion' ? 'active' : ''}
+                onClick={() => updateWorld({ gospelMode: 'companion' })}
+                disabled={disabled || busy}
+              >
+                Imaginative companion story
+              </button>
+            </div>
+          )}
+          {world.worldId === 'lms' && (
+            <label className="generate-story-check story-world-suboption">
+              <input
+                type="checkbox"
+                checked={!world.lmsAllowSpoilers}
+                onChange={(event) => updateWorld({ lmsAllowSpoilers: !event.target.checked })}
+                disabled={disabled || busy}
+              />
+              <span>Avoid spoilers (original early-story side adventures)</span>
+            </label>
+          )}
+          {world.worldId === 'family' && (
+            <div className="story-world-suboption">
+              {editingFamily ? (
+                <div className="story-world-family-editor">
+                  <textarea
+                    value={familyDraft}
+                    onChange={(event) => setFamilyDraft(event.target.value)}
+                    rows={12}
+                    spellCheck={false}
+                    aria-label="Family world profile JSON"
+                  />
+                  <div className="generate-story-actions">
+                    <button type="button" className="primary" onClick={saveFamilyDraft}>Save details</button>
+                    <button type="button" onClick={() => setEditingFamily(false)}>Cancel</button>
+                    <button
+                      type="button"
+                      onClick={() => setFamilyDraft(JSON.stringify(DEFAULT_FAMILY_PROFILE, null, 2))}
+                    >
+                      Reset to default
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <button type="button" onClick={openFamilyEditor}>Edit World Details</button>
+              )}
+              {familyEditMessage && <small>{familyEditMessage}</small>}
+            </div>
+          )}
+        </div>
+      )}
       <label>
-        <span>Prompt</span>
+        <span>Prompt{world.worldId === 'original' ? '' : ' (optional)'}</span>
         <textarea
           value={prompt}
           onChange={(event) => setPrompt(event.target.value)}
-          placeholder="A tiny adventure about my daughter, a morning walk, and a strange shop..."
+          placeholder={
+            world.worldId === 'family'
+              ? 'A camping trip where Anna finds a mysterious map...'
+              : world.worldId === 'lms'
+                ? 'Weed takes a sculpting commission from a suspicious NPC...'
+                : world.worldId === 'gospel-john'
+                  ? 'The wedding at Cana, or a fisherman who hears Jesus teach...'
+                  : 'A cozy story about a tiny robot... (or leave blank for a surprise)'
+          }
           rows={3}
           maxLength={700}
           disabled={disabled || busy}
@@ -5703,7 +5849,7 @@ function GenerateStoryPanel({
           type="button"
           className="primary"
           onClick={() => void submit()}
-          disabled={disabled || busy || prompt.trim().length === 0}
+          disabled={disabled || busy}
         >
           {busy ? 'Generating...' : 'Generate Story'}
         </button>
@@ -5838,7 +5984,8 @@ function ReaderMode({
       if (dir === 'down') {
         setReaderBouncing(true)
         setTimeout(() => setReaderBouncing(false), 600)
-        listening.togglePlayPause()
+        if (listening.active) listening.togglePlayPause()
+        else listening.playSentenceOnce()
       } else if (dir === 'left' && sentenceIndex < sentenceCount - 1) {
         setGrammarSelection(null)
         readerSwipe.dismiss('left')
@@ -5886,7 +6033,7 @@ function ReaderMode({
         <div>
           <h1>Reader Mode</h1>
           <p>
-            {readerPacks[0]?.name ?? 'LMS Reader Books'} Â· {readerBooks.length} compilation books.
+            {readerPacks[0]?.name ?? 'LMS Reader Books'} · {readerBooks.length} compilation books.
           </p>
         </div>
         <div className="study-toggles">
@@ -5902,7 +6049,7 @@ function ReaderMode({
                 disabled={Boolean(storyChunk) || sentenceIndex >= sentenceCount}
                 aria-label={storyChunk ? 'Story chunk running' : 'Start story chunk'}
               >
-                {storyChunk ? 'Chunks âœ“' : 'Chunks'}
+                {storyChunk ? 'Chunks ✓' : 'Chunks'}
               </button>
               <button
                 type="button"
@@ -5954,7 +6101,7 @@ function ReaderMode({
               >
                 <strong>{book.title}</strong>
                 <span>
-                  Chapters {book.chapterStart}-{book.chapterEnd} Â· {book.stories.length} stories
+                  Chapters {book.chapterStart}-{book.chapterEnd} · {book.stories.length} stories
                 </span>
                 <ReaderComprehensionMeter
                   summary={comprehension}
@@ -6012,7 +6159,7 @@ function ReaderMode({
                     onClick={() => setReaderMenuOpen(o => !o)}
                     aria-label="Reader menu"
                   >
-                    â˜°
+                    ☰
                   </button>
                   <StudyMenuPopup open={readerMenuOpen} onClose={() => setReaderMenuOpen(false)}>
                     <StudyMenuSection label="Display">
@@ -6033,13 +6180,13 @@ function ReaderMode({
                       <StudyMenuSelect
                         label="Speed"
                         value={listeningRate}
-                        options={[0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2].map(r => ({ value: r, label: `${r.toFixed(1)}Ã—` }))}
+                        options={[0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2].map(r => ({ value: r, label: `${r.toFixed(1)}×` }))}
                         onChange={value => onListeningSettingsChange({ readerListeningRate: value })}
                       />
                       <StudyMenuSelect
                         label="Repeats"
                         value={listeningRepeats}
-                        options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}Ã—` }))}
+                        options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}×` }))}
                         onChange={value => onListeningSettingsChange({ readerListeningRepeats: value })}
                       />
                       <StudyMenuToggle
@@ -6062,10 +6209,10 @@ function ReaderMode({
                 <section className="story-chunk-receipt" aria-live="polite">
                   <div className="story-chunk-receipt-summary">
                     <strong>{storyChunkReceipt.title}</strong>
-                    <span>{storyChunkReceipt.sentencesRead} sentences Â· {formatDuration(storyChunkReceipt.activeSeconds)}</span>
+                    <span>{storyChunkReceipt.sentencesRead} sentences · {formatDuration(storyChunkReceipt.activeSeconds)}</span>
                     <span className="story-chunk-receipt-words">
                       {storyChunkReceipt.unsavedWordsTapped + storyChunkReceipt.learningWords} new/learning words met
-                      {storyChunkReceipt.wordsSaved > 0 ? ` Â· ${storyChunkReceipt.wordsSaved} saved` : ''}
+                      {storyChunkReceipt.wordsSaved > 0 ? ` · ${storyChunkReceipt.wordsSaved} saved` : ''}
                     </span>
                   </div>
                   <div className="story-chunk-receipt-actions">
@@ -6144,7 +6291,7 @@ function ReaderMode({
                       onClick={() => setListeningMenuOpen(true)}
                       aria-label={`Listening settings. Repeat ${listening.snapshot.repeatNumber} of ${listeningRepeatTotal}, ${listeningRate.toFixed(1)} times speed, auto-advance ${listeningAutoAdvance ? 'on' : 'off'}.`}
                     >
-                      â˜°
+                      ☰
                     </button>
                     <button
                       type="button"
@@ -6190,7 +6337,10 @@ function ReaderMode({
               ) : (
                 <StudyControls
                   playing={listeningPlaying}
-                  onTogglePlay={listening.togglePlayPause}
+                  onTogglePlay={() => {
+                    if (listening.active) listening.togglePlayPause()
+                    else listening.playSentenceOnce()
+                  }}
                   onPrevious={() => { setGrammarSelection(null); void onPrevious() }}
                   onNext={() => { setGrammarSelection(null); triggerNextGlow(); void onNext() }}
                   prevDisabled={sentenceIndex <= 0}
@@ -6251,7 +6401,7 @@ function ReaderMode({
                         })}
                       >
                         {[0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2].map((value) => (
-                          <option key={value} value={value}>{value.toFixed(1)}Ã—</option>
+                          <option key={value} value={value}>{value.toFixed(1)}×</option>
                         ))}
                       </select>
                     </label>
@@ -6264,7 +6414,7 @@ function ReaderMode({
                         })}
                       >
                         {[1, 2, 3, 4, 5].map((value) => (
-                          <option key={value} value={value}>{value}Ã—</option>
+                          <option key={value} value={value}>{value}×</option>
                         ))}
                       </select>
                     </label>
@@ -6823,7 +6973,7 @@ function FlashcardReview({
             aria-pressed={Boolean(word.activeRecallPriorityAt)}
           >
             {choiceKeys?.choiceE && <kbd>{choiceKeys.choiceE.toUpperCase()}</kbd>}
-            <span>{word.activeRecallPriorityAt ? 'â˜… Extra review' : 'â˜† Extra review'}</span>
+            <span>{word.activeRecallPriorityAt ? '★ Extra review' : '☆ Extra review'}</span>
           </button>
         )}
         {answerShown && (() => {
@@ -6846,8 +6996,8 @@ function FlashcardReview({
       {answerShown && !selectedRating && (
         <div className="swipe-instructions">
           {choiceKeys
-            ? `â† Again  â†‘ Hard  â†’ Good  â†“ Easy  Â·  ${choiceKeys.choiceA.toUpperCase()} ${choiceKeys.choiceB.toUpperCase()} ${choiceKeys.choiceC.toUpperCase()} ${choiceKeys.choiceD.toUpperCase()}`
-            : 'â† Again  â†‘ Hard  â†’ Good  â†“ Easy'}
+            ? `← Again  ↑ Hard  → Good  ↓ Easy  ·  ${choiceKeys.choiceA.toUpperCase()} ${choiceKeys.choiceB.toUpperCase()} ${choiceKeys.choiceC.toUpperCase()} ${choiceKeys.choiceD.toUpperCase()}`
+            : '← Again  ↑ Hard  → Good  ↓ Easy'}
         </div>
       )}
     </section>
@@ -7240,7 +7390,7 @@ function getReaderResumeLocation(
     item.story.title,
     `Sentence ${sentenceIndex + 1}/${sentences.length}`,
     `${percent}%`,
-  ].join(' Â· ')
+  ].join(' · ')
   return {
     book,
     story: item.story.title,
@@ -7383,7 +7533,7 @@ function getStudyDisplay(word?: VocabWord, sentence?: Sentence) {
   }
   return {
     kind: 'word',
-    chinese: 'å‡†å¤‡',
+    chinese: '准备',
     english: 'Ready',
     pinyin: 'zhun bei',
   }

@@ -20,6 +20,12 @@ export interface GenerateAiStoryOptions {
   apiKey: string
   model: string
   lengthChars: number
+  /**
+   * Background context from the selected story world (see storyWorlds.ts).
+   * Injected as context only — learner-level and format constraints in this
+   * module always take precedence.
+   */
+  worldContext?: string
   /** When set, the model writes the next chapter of an existing story. */
   continueFrom?: {
     title: string
@@ -44,7 +50,7 @@ const SYSTEM_PROMPT = [
 
 export async function generateAiStory(options: GenerateAiStoryOptions): Promise<GeneratedStoryPayload> {
   const prompt = options.prompt.trim()
-  if (!prompt && !options.continueFrom) throw new Error('Enter a story prompt first.')
+  if (!prompt && !options.continueFrom && !options.worldContext) throw new Error('Enter a story prompt first.')
   if (!options.apiKey) throw new Error('Add your OpenRouter API key in Settings first.')
 
   const messages = [
@@ -66,9 +72,12 @@ function buildUserMessage(options: GenerateAiStoryOptions, prompt: string): stri
         `Write the NEXT chapter (chapter ${options.continueFrom.nextChapter}) that continues this story. Do not retell earlier events; pick up where it left off. Give the chapter its own short Chinese title in "title".`,
         prompt ? `Additional direction from the learner: ${prompt}` : '',
       ].filter(Boolean).join('\n\n')
-    : `Story request: ${prompt}`
+    : prompt
+      ? `Story request: ${prompt}`
+      : 'Story request: invent an engaging premise that fits the story world context below.'
   const parts = [
     opening,
+    options.worldContext ?? '',
     `The story should be approximately ${options.lengthChars} Chinese characters in total, split into short sentences (roughly ${approxSentences} sentences).`,
     `The learner knows these words:\n${wordList}`,
     'At least 95% of the word occurrences in the story MUST come from this known-word list (plus proper names, numbers, and basic function words like 的/了/是/在/我/你/他/她).',
@@ -82,7 +91,7 @@ function buildUserMessage(options: GenerateAiStoryOptions, prompt: string): stri
       'The previous draft used too many unknown words. Rewrite far more conservatively: use only the most common words from the list, keep sentences shorter, and add zero optional new words.',
     )
   }
-  return parts.join('\n\n')
+  return parts.filter(Boolean).join('\n\n')
 }
 
 async function requestWithMalformedRetry(

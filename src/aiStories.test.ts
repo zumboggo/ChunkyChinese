@@ -95,6 +95,38 @@ describe('generateAiStory', () => {
     expect(fetchMock).toHaveBeenCalledTimes(2)
   })
 
+  it('includes the story-world context in the prompt without dropping learner constraints', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(completionResponse(JSON.stringify(STORY_JSON)))
+    vi.stubGlobal('fetch', fetchMock)
+    await generateAiStory({
+      ...baseOptions(),
+      worldContext: 'STORY WORLD: My Family.\nSetting: a warm family world.',
+    })
+    const body = JSON.parse(fetchMock.mock.calls[0][1].body as string)
+    const userMessage = body.messages[1].content as string
+    expect(userMessage).toContain('STORY WORLD: My Family.')
+    expect(userMessage).toContain('小狗')
+    expect(userMessage).toContain('200 Chinese characters')
+    expect(userMessage).toContain('95%')
+  })
+
+  it('allows an empty prompt when a world context is provided', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(completionResponse(JSON.stringify(STORY_JSON)))
+    vi.stubGlobal('fetch', fetchMock)
+    const story = await generateAiStory({
+      ...baseOptions(),
+      prompt: '',
+      worldContext: 'STORY WORLD: a brand-new original story.',
+    })
+    expect(story.sentences).toHaveLength(2)
+    const body = JSON.parse(fetchMock.mock.calls[0][1].body as string)
+    expect(body.messages[1].content as string).toContain('invent an engaging premise')
+  })
+
+  it('still requires a prompt when no world context or continuation exists', async () => {
+    await expect(generateAiStory({ ...baseOptions(), prompt: '' })).rejects.toThrow(/story prompt/)
+  })
+
   it('builds a continuation prompt from previous sentences', async () => {
     const fetchMock = vi.fn().mockResolvedValue(completionResponse(JSON.stringify(STORY_JSON)))
     vi.stubGlobal('fetch', fetchMock)
