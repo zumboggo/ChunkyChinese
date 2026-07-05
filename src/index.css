@@ -569,8 +569,21 @@ dt {
   transform: scale(1.12);
 }
 
+.nav-flashcards,
+.nav-listen,
+.nav-reading {
+  background-color: currentColor;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
 .nav-flashcards {
-  background-image: url("./assets/flashcards_icon.png");
+  -webkit-mask-image: url("./assets/flashcards_icon.svg");
+  mask-image: url("./assets/flashcards_icon.svg");
 }
 
 .nav-settings {
@@ -578,7 +591,8 @@ dt {
 }
 
 .nav-listen {
-  background-image: url("./assets/listen_icon.png");
+  -webkit-mask-image: url("./assets/listen_icon.svg");
+  mask-image: url("./assets/listen_icon.svg");
 }
 
 .nav-comics {
@@ -586,7 +600,8 @@ dt {
 }
 
 .nav-reading {
-  background-image: url("./assets/reading_icon.svg");
+  -webkit-mask-image: url("./assets/reading_icon.svg");
+  mask-image: url("./assets/reading_icon.svg");
 }
 
 .tabs .active,
