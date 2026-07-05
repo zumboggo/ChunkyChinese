@@ -1,252 +1,6502 @@
 [
-  { "word": "一样", "chinese": "他们长得一样。", "english": "They look the same." },
-  { "word": "一次", "chinese": "我去过一次北京。", "english": "I have been to Beijing once." },
-  { "word": "一生", "chinese": "他一生都在这里住。", "english": "He lived here his whole life." },
-  { "word": "一边", "chinese": "她一边吃饭一边看书。", "english": "She eats while reading." },
-  { "word": "一点", "chinese": "给我一点时间。", "english": "Give me a little time." },
-  { "word": "上天", "chinese": "上天下雨了。", "english": "It rained from the sky." },
-  { "word": "上山", "chinese": "我们明天上山。", "english": "We will go up the mountain tomorrow." },
-  { "word": "上课", "chinese": "我每天八点上课。", "english": "I attend class at eight every day." },
-  { "word": "上面", "chinese": "书在桌子上面。", "english": "The book is on top of the table." },
-  { "word": "下来", "chinese": "他从楼上下来了。", "english": "He came down from upstairs." },
-  { "word": "不想", "chinese": "我今天不想出门。", "english": "I do not want to go out today." },
-  { "word": "丑", "chinese": "这个东西很丑。", "english": "This thing is very ugly." },
-  { "word": "世界", "chinese": "世界很大。", "english": "The world is very big." },
-  { "word": "中", "chinese": "他站在人群中间。", "english": "He stands in the middle of the crowd." },
-  { "word": "事", "chinese": "这件事很重要。", "english": "This matter is very important." },
-  { "word": "但是", "chinese": "我想去，但是没有时间。", "english": "I want to go, but I have no time." },
-  { "word": "位", "chinese": "那位先生是谁？", "english": "Who is that gentleman?" },
-  { "word": "来自", "chinese": "他来自中国。", "english": "He comes from China." },
-  { "word": "们", "chinese": "同学们都在等你。", "english": "The classmates are all waiting for you." },
-  { "word": "兄弟", "chinese": "他是我的兄弟。", "english": "He is my brother." },
-  { "word": "光", "chinese": "阳光很亮。", "english": "The sunlight is very bright." },
-  { "word": "出生", "chinese": "他出生在北京。", "english": "He was born in Beijing." },
-  { "word": "刀", "chinese": "这把刀很锋利。", "english": "This knife is very sharp." },
-  { "word": "到家", "chinese": "我晚上七点到家。", "english": "I arrive home at seven in the evening." },
-  { "word": "刚才", "chinese": "他刚才在这里。", "english": "He was here just now." },
-  { "word": "动物", "chinese": "动物园里有很多动物。", "english": "There are many animals in the zoo." },
-  { "word": "北", "chinese": "北京在中国的北边。", "english": "Beijing is in the north of China." },
-  { "word": "友好", "chinese": "他对每个人都很友好。", "english": "He is very friendly to everyone." },
-  { "word": "可怕", "chinese": "这个故事很可怕。", "english": "This story is very frightening." },
-  { "word": "向", "chinese": "他向我走过来。", "english": "He walked toward me." },
-  { "word": "哪里", "chinese": "你住在哪里？", "english": "Where do you live?" },
-  { "word": "哭", "chinese": "孩子在哭。", "english": "The child is crying." },
-  { "word": "唱", "chinese": "她唱得很好听。", "english": "She sings very well." },
-  { "word": "啊", "chinese": "今天真热啊！" , "english": "It is really hot today!" },
-  { "word": "喊叫", "chinese": "不要在这里喊叫。", "english": "Do not shout here." },
-  { "word": "四周", "chinese": "四周很安静。", "english": "It is quiet all around." },
-  { "word": "国王", "chinese": "国王住在宫殿里。", "english": "The king lives in the palace." },
-  { "word": "地", "chinese": "他高兴地笑了。", "english": "He smiled happily." },
-  { "word": "地方", "chinese": "这是一个好地方。", "english": "This is a good place." },
-  { "word": "地狱", "chinese": "这里热得像地狱。", "english": "It is as hot as hell here." },
-  { "word": "地球", "chinese": "地球是我们的家。", "english": "Earth is our home." },
-  { "word": "多么", "chinese": "多么美丽的风景！" , "english": "What a beautiful view!" },
-  { "word": "大地", "chinese": "大地上覆盖着雪。", "english": "The land is covered with snow." },
-  { "word": "大海", "chinese": "大海很蓝。", "english": "The sea is very blue." },
-  { "word": "大风", "chinese": "外面刮大风。", "english": "There is a strong wind outside." },
-  { "word": "天上", "chinese": "天上有许多星星。", "english": "There are many stars in the sky." },
-  { "word": "天地", "chinese": "天地之间只有我们。", "english": "Between heaven and earth there is only us." },
-  { "word": "姐妹", "chinese": "她们是姐妹。", "english": "They are sisters." },
-  { "word": "学会", "chinese": "我学会了做菜。", "english": "I learned how to cook." },
-  { "word": "安全", "chinese": "这里很安全。", "english": "It is very safe here." },
-  { "word": "宫殿", "chinese": "宫殿非常大。", "english": "The palace is very big." },
-  { "word": "害怕", "chinese": "我害怕黑暗。", "english": "I am afraid of the dark." },
-  { "word": "容易", "chinese": "这个问题很容易。", "english": "This question is very easy." },
-  { "word": "山", "chinese": "那座山很高。", "english": "That mountain is very tall." },
-  { "word": "山顶", "chinese": "我们爬到了山顶。", "english": "We climbed to the mountaintop." },
-  { "word": "带", "chinese": "请带一把伞。", "english": "Please bring an umbrella." },
-  { "word": "年轻", "chinese": "她很年轻。", "english": "She is very young." },
-  { "word": "床", "chinese": "我在床上休息。", "english": "I am resting on the bed." },
-  { "word": "座", "chinese": "这里有一座桥。", "english": "There is a bridge here." },
-  { "word": "张开", "chinese": "请张开嘴。", "english": "Please open your mouth." },
-  { "word": "后", "chinese": "他站在我后面。", "english": "He stands behind me." },
-  { "word": "得到", "chinese": "我得到了一个礼物。", "english": "I received a gift." },
-  { "word": "必须", "chinese": "你必须完成作业。", "english": "You must finish your homework." },
-  { "word": "怕", "chinese": "别怕，我在这里。", "english": "Do not be afraid, I am here." },
-  { "word": "想到", "chinese": "我想到一个好主意。", "english": "I thought of a good idea." },
-  { "word": "愉快", "chinese": "今天过得很愉快。", "english": "Today was very pleasant." },
-  { "word": "感到", "chinese": "我感到很累。", "english": "I feel very tired." },
-  { "word": "应该", "chinese": "你应该早点睡。", "english": "You should go to bed earlier." },
-  { "word": "怀孕", "chinese": "她怀孕了。", "english": "She is pregnant." },
-  { "word": "所以", "chinese": "下雨了，所以我不去。", "english": "It is raining, so I will not go." },
-  { "word": "打", "chinese": "他在打电话。", "english": "He is making a phone call." },
-  { "word": "把", "chinese": "请把门关上。", "english": "Please close the door." },
-  { "word": "拍手", "chinese": "孩子们高兴地拍手。", "english": "The children clapped happily." },
-  { "word": "拿起", "chinese": "他拿起书就走了。", "english": "He picked up the book and left." },
-  { "word": "担心", "chinese": "别担心，没事的。", "english": "Do not worry, it is fine." },
-  { "word": "放心", "chinese": "放心吧，我会帮忙的。", "english": "Rest assured, I will help." },
-  { "word": "方", "chinese": "东方是太阳升起的地方。", "english": "The east is where the sun rises." },
-  { "word": "时", "chinese": "小时候我很调皮。", "english": "When I was little I was very naughty." },
-  { "word": "晚", "chinese": "今天回来得很晚。", "english": "I came back very late today." },
-  { "word": "晚安", "chinese": "晚安，明天见。", "english": "Good night, see you tomorrow." },
-  { "word": "智慧", "chinese": "老人有很多智慧。", "english": "The old man has much wisdom." },
-  { "word": "更", "chinese": "这个比那个更好。", "english": "This one is even better than that one." },
-  { "word": "最后", "chinese": "最后他还是来了。", "english": "In the end he still came." },
-  { "word": "最近", "chinese": "你最近怎么样？", "english": "How have you been lately?" },
-  { "word": "月亮", "chinese": "今晚的月亮很圆。", "english": "Tonight's moon is very round." },
-  { "word": "有些", "chinese": "有些人不喜欢下雨。", "english": "Some people do not like rain." },
-  { "word": "有力", "chinese": "他的声音很有力。", "english": "His voice is very powerful." },
-  { "word": "有点", "chinese": "今天有点冷。", "english": "It is a little cold today." },
-  { "word": "果", "chinese": "这个果子很甜。", "english": "This fruit is very sweet." },
-  { "word": "森林", "chinese": "森林里有很多树。", "english": "There are many trees in the forest." },
-  { "word": "极大", "chinese": "这个问题有极大的困难。", "english": "This problem has enormous difficulty." },
-  { "word": "树", "chinese": "院子里有一棵大树。", "english": "There is a big tree in the yard." },
-  { "word": "歌", "chinese": "这首歌很好听。", "english": "This song sounds very nice." },
-  { "word": "欢迎", "chinese": "欢迎来到我的家。", "english": "Welcome to my home." },
-  { "word": "死", "chinese": "花死了。", "english": "The flower died." },
-  { "word": "段", "chinese": "这是一段很长的路。", "english": "This is a very long road." },
-  { "word": "没", "chinese": "我没有时间。", "english": "I have no time." },
-  { "word": "河流", "chinese": "这条河流很长。", "english": "This river is very long." },
-  { "word": "洗澡", "chinese": "我每天晚上洗澡。", "english": "I take a shower every evening." },
-  { "word": "洲", "chinese": "亚洲是最大的洲。", "english": "Asia is the largest continent." },
-  { "word": "海", "chinese": "大海很美。", "english": "The sea is very beautiful." },
-  { "word": "海边", "chinese": "我喜欢在海边散步。", "english": "I like to walk by the sea." },
-  { "word": "火焰", "chinese": "火焰很高。", "english": "The flames are very tall." },
-  { "word": "为", "chinese": "我为你感到骄傲。", "english": "I am proud of you." },
-  { "word": "无法无天", "chinese": "这些孩子无法无天。", "english": "These children are completely unruly." },
-  { "word": "猴", "chinese": "那只猴子很聪明。", "english": "That monkey is very clever." },
-  { "word": "瓶子", "chinese": "请给我一个瓶子。", "english": "Please give me a bottle." },
-  { "word": "当然", "chinese": "当然可以。", "english": "Of course you can." },
-  { "word": "发出", "chinese": "他发出一声大笑。", "english": "He let out a big laugh." },
-  { "word": "白天", "chinese": "白天很热。", "english": "The daytime is very hot." },
-  { "word": "盆", "chinese": "花盆里有一朵花。", "english": "There is a flower in the flower pot." },
-  { "word": "看起来", "chinese": "他看起来很高兴。", "english": "He looks very happy." },
-  { "word": "睡", "chinese": "我昨晚睡得很好。", "english": "I slept very well last night." },
-  { "word": "石头", "chinese": "地上有一块大石头。", "english": "There is a big rock on the ground." },
-  { "word": "礼物", "chinese": "我送了她一份礼物。", "english": "I gave her a gift." },
-  { "word": "空", "chinese": "天空很蓝。", "english": "The sky is very blue." },
-  { "word": "站", "chinese": "请站在这里。", "english": "Please stand here." },
-  { "word": "第", "chinese": "这是我第一次来。", "english": "This is my first time coming." },
-  { "word": "等到", "chinese": "等到明天再说。", "english": "Wait until tomorrow to talk about it." },
-  { "word": "美", "chinese": "这个花园很美。", "english": "This garden is very beautiful." },
-  { "word": "美丽", "chinese": "她是一个美丽的女孩。", "english": "She is a beautiful girl." },
-  { "word": "耳朵", "chinese": "兔子的耳朵很长。", "english": "Rabbit ears are very long." },
-  { "word": "圣人", "chinese": "古时候有很多圣人。", "english": "In ancient times there were many sages." },
-  { "word": "自己", "chinese": "我自己做饭。", "english": "I cook by myself." },
-  { "word": "舞", "chinese": "她跳了一支舞。", "english": "She danced a dance." },
-  { "word": "花", "chinese": "花园里有很多花。", "english": "There are many flowers in the garden." },
-  { "word": "蛋", "chinese": "我早上吃了一个蛋。", "english": "I ate an egg this morning." },
-  { "word": "里面", "chinese": "房间里面很暖和。", "english": "It is warm inside the room." },
-  { "word": "见", "chinese": "好久不见。", "english": "Long time no see." },
-  { "word": "许多", "chinese": "这里有许多人。", "english": "There are many people here." },
-  { "word": "变", "chinese": "天气变了。", "english": "The weather changed." },
-  { "word": "变成", "chinese": "水变成了冰。", "english": "The water turned into ice." },
-  { "word": "走出", "chinese": "他走出了房间。", "english": "He walked out of the room." },
-  { "word": "走向", "chinese": "她走向门口。", "english": "She walked toward the door." },
-  { "word": "起来", "chinese": "请站起来。", "english": "Please stand up." },
-  { "word": "跟", "chinese": "请跟我来。", "english": "Please follow me." },
-  { "word": "跳", "chinese": "孩子高兴地跳了起来。", "english": "The child jumped happily." },
-  { "word": "身上", "chinese": "他身上有很多钱。", "english": "He has a lot of money on him." },
-  { "word": "这些", "chinese": "这些都是我的书。", "english": "These are all my books." },
-  { "word": "这儿", "chinese": "请坐在这儿。", "english": "Please sit here." },
-  { "word": "这样", "chinese": "这样做就行了。", "english": "Just do it like this." },
-  { "word": "这里", "chinese": "我住在这里。", "english": "I live here." },
-  { "word": "过", "chinese": "我吃过饭了。", "english": "I have already eaten." },
-  { "word": "道", "chinese": "我知道了。", "english": "I understand." },
-  { "word": "避", "chinese": "请避开那个地方。", "english": "Please avoid that place." },
-  { "word": "边", "chinese": "河的两边都是树。", "english": "Both sides of the river have trees." },
-  { "word": "那里", "chinese": "我去过那里。", "english": "I have been there." },
-  { "word": "酒", "chinese": "他喜欢喝酒。", "english": "He likes to drink wine." },
-  { "word": "钓鱼", "chinese": "他每个周末去钓鱼。", "english": "He goes fishing every weekend." },
-  { "word": "长生", "chinese": "古代皇帝都想长生。", "english": "Ancient emperors all wanted immortality." },
-  { "word": "闭", "chinese": "请闭上眼睛。", "english": "Please close your eyes." },
-  { "word": "开门", "chinese": "请帮我开门。", "english": "Please help me open the door." },
-  { "word": "关于", "chinese": "这是一本关于历史的书。", "english": "This is a book about history." },
-  { "word": "离开", "chinese": "他离开了家。", "english": "He left home." },
-  { "word": "云", "chinese": "天上的云很白。", "english": "The clouds in the sky are very white." },
-  { "word": "雷电", "chinese": "雷电交加，大雨倾盆。", "english": "Thunder and lightning, heavy rain pours." },
-  { "word": "需要", "chinese": "我需要你的帮助。", "english": "I need your help." },
-  { "word": "头", "chinese": "他的头很疼。", "english": "His head hurts a lot." },
-  { "word": "风", "chinese": "外面的风很大。", "english": "The wind outside is very strong." },
-  { "word": "飞过", "chinese": "一只鸟从头上飞过。", "english": "A bird flew over my head." },
-  { "word": "马上", "chinese": "我马上就来。", "english": "I will come right away." },
-  { "word": "鸟", "chinese": "树上有一只鸟。", "english": "There is a bird in the tree." },
-  { "word": "有一天", "chinese": "有一天我会去中国。", "english": "One day I will go to China." },
-  { "word": "亲爱的", "chinese": "亲爱的，我回来了。", "english": "Dear, I am back." },
-  { "word": "很多", "chinese": "这里有很多人。", "english": "There are many people here." },
-  { "word": "看到", "chinese": "我看到了一只猫。", "english": "I saw a cat." },
-  { "word": "只有", "chinese": "只有他知道答案。", "english": "Only he knows the answer." },
-  { "word": "是的", "chinese": "是的，你说得对。", "english": "Yes, you are right." },
-  { "word": "住在", "chinese": "我住在北京。", "english": "I live in Beijing." },
-  { "word": "一开始", "chinese": "一开始我不喜欢。", "english": "At first I did not like it." },
-  { "word": "流向", "chinese": "河水流向大海。", "english": "The river flows toward the sea." },
-  { "word": "的时侯", "chinese": "小的时侯我住在这里。", "english": "When I was little I lived here." },
-  { "word": "等着", "chinese": "他正在门口等着。", "english": "He is waiting at the door." },
-  { "word": "海中", "chinese": "鱼在海中游。", "english": "Fish swim in the sea." },
-  { "word": "看着", "chinese": "她看着窗外。", "english": "She looks out the window." },
-  { "word": "哭着", "chinese": "孩子哭着找妈妈。", "english": "The child cries looking for mom." },
-  { "word": "学着", "chinese": "他学着做饭。", "english": "He is learning to cook." },
-  { "word": "笑着", "chinese": "她笑着回答。", "english": "She answered with a smile." },
-  { "word": "弯刀", "chinese": "他手里拿着一把弯刀。", "english": "He holds a curved blade in his hand." },
-  { "word": "说过", "chinese": "我以前说过这件事。", "english": "I have mentioned this before." },
-  { "word": "吧", "chinese": "我们走吧。", "english": "Let us go." },
-  { "word": "一", "chinese": "我有一个苹果。", "english": "I have one apple." },
-  { "word": "一下", "chinese": "请等一下。", "english": "Please wait a moment." },
-  { "word": "一些", "chinese": "给我一些水。", "english": "Give me some water." },
-  { "word": "一定", "chinese": "我一定来。", "english": "I will definitely come." },
-  { "word": "一会儿", "chinese": "我一会儿就走。", "english": "I will leave in a moment." },
-  { "word": "一起", "chinese": "我们一起去吧。", "english": "Let us go together." },
-  { "word": "一点儿", "chinese": "我只会一点儿中文。", "english": "I only know a little Chinese." },
-  { "word": "七", "chinese": "一周有七天。", "english": "There are seven days in a week." },
-  { "word": "三", "chinese": "我有三个苹果。", "english": "I have three apples." },
-  { "word": "上", "chinese": "书在桌子上。", "english": "The book is on the table." },
-  { "word": "上去", "chinese": "请上去看看。", "english": "Please go up and take a look." },
-  { "word": "下", "chinese": "请坐下。", "english": "Please sit down." },
-  { "word": "不", "chinese": "我不知道。", "english": "I do not know." },
-  { "word": "中国", "chinese": "中国有很多人。", "english": "China has many people." },
-  { "word": "九", "chinese": "早上九点见面。", "english": "Meet at nine in the morning." },
-  { "word": "也", "chinese": "我也想去。", "english": "I also want to go." },
-  { "word": "了", "chinese": "我吃完了。", "english": "I finished eating." },
-  { "word": "事情", "chinese": "有什么事情吗？", "english": "Is there anything?" },
-  { "word": "二", "chinese": "我有二块钱。", "english": "I have two yuan." },
-  { "word": "人", "chinese": "这里有很多人。", "english": "There are many people here." },
-  { "word": "什么", "chinese": "你在做什么？", "english": "What are you doing?" },
-  { "word": "今天", "chinese": "今天天气很好。", "english": "The weather is nice today." },
-  { "word": "他", "chinese": "他是我的朋友。", "english": "He is my friend." },
-  { "word": "以前", "chinese": "我以前住在这里。", "english": "I used to live here." },
-  { "word": "以后", "chinese": "以后再说吧。", "english": "Let us talk about it later." },
-  { "word": "住", "chinese": "我住在北京。", "english": "I live in Beijing." },
-  { "word": "你", "chinese": "你好吗？", "english": "How are you?" },
-  { "word": "来", "chinese": "请进来。", "english": "Please come in." },
-  { "word": "个", "chinese": "给我一个苹果。", "english": "Give me an apple." },
-  { "word": "做", "chinese": "你在做什么？", "english": "What are you doing?" },
-  { "word": "像", "chinese": "她像她妈妈。", "english": "She looks like her mom." },
-  { "word": "先", "chinese": "你先走。", "english": "You go first." },
-  { "word": "两", "chinese": "我有两个弟弟。", "english": "I have two younger brothers." },
-  { "word": "八", "chinese": "现在八点了。", "english": "It is eight o'clock now." },
-  { "word": "六", "chinese": "我家有六口人。", "english": "There are six people in my family." },
-  { "word": "再", "chinese": "请再说一遍。", "english": "Please say it again." },
-  { "word": "出来", "chinese": "请出来一下。", "english": "Please come out for a moment." },
-  { "word": "别", "chinese": "别担心。", "english": "Do not worry." },
-  { "word": "到", "chinese": "我到家了。", "english": "I arrived home." },
-  { "word": "刚", "chinese": "我刚到。", "english": "I just arrived." },
-  { "word": "十", "chinese": "十个苹果多少钱？", "english": "How much are ten apples?" },
-  { "word": "千", "chinese": "这本书一千页。", "english": "This book has one thousand pages." },
-  { "word": "去", "chinese": "我去超市。", "english": "I am going to the supermarket." },
-  { "word": "又", "chinese": "他又迟到了。", "english": "He was late again." },
-  { "word": "只", "chinese": "我只有一块钱。", "english": "I only have one yuan." },
-  { "word": "叫", "chinese": "你叫什么名字？", "english": "What is your name?" },
-  { "word": "可以", "chinese": "我可以进来吗？", "english": "May I come in?" },
-  { "word": "可能", "chinese": "他可能不来。", "english": "He might not come." },
-  { "word": "吃", "chinese": "我每天早上吃面包。", "english": "I eat bread every morning." },
-  { "word": "名字", "chinese": "你的名字是什么？", "english": "What is your name?" },
-  { "word": "告诉", "chinese": "请告诉我。", "english": "Please tell me." },
-  { "word": "呢", "chinese": "你呢？", "english": "And you?" },
-  { "word": "唱歌", "chinese": "她喜欢唱歌。", "english": "She likes to sing." },
-  { "word": "问", "chinese": "我想问你一个问题。", "english": "I want to ask you a question." },
-  { "word": "喜欢", "chinese": "我喜欢吃苹果。", "english": "I like to eat apples." },
-  { "word": "吗", "chinese": "你好吗？", "english": "How are you?" },
-  { "word": "四", "chinese": "一年有四季。", "english": "There are four seasons in a year." },
-  { "word": "回", "chinese": "我回家了。", "english": "I went home." },
-  { "word": "回来", "chinese": "他很快就回来。", "english": "He will come back soon." },
-  { "word": "回答", "chinese": "请回答我的问题。", "english": "Please answer my question." },
-  { "word": "因为", "chinese": "因为下雨，我不去了。", "english": "Because it is raining, I will not go." },
-  { "word": "国家", "chinese": "中国是一个大国。", "english": "China is a big country." },
-  { "word": "在", "chinese": "我在家里。", "english": "I am at home." },
-  { "word": "坐", "chinese": "请坐。", "english": "Please sit down." },
-  { "word": "块", "chinese": "给我一块蛋糕。", "english": "Give me a piece of cake." },
-  { "word": "外面", "chinese": "外面很冷。", "english": "It is cold outside." },
-  { "word": "多", "chinese": "这里人很多。", "english": "There are many people here." },
-  { "word": "大", "chinese": "这个房子很大。", "english": "This house is very big." },
-  { "word": "大家", "chinese": "大家好！" , "english": "Hello everyone!" }
+  {
+    "word": "一样",
+    "chinese": "他们长得一样。",
+    "english": "They look the same."
+  },
+  {
+    "word": "一次",
+    "chinese": "我去过一次北京。",
+    "english": "I have been to Beijing once."
+  },
+  {
+    "word": "一生",
+    "chinese": "他一生都在这里住。",
+    "english": "He lived here his whole life."
+  },
+  {
+    "word": "一边",
+    "chinese": "她一边吃饭一边看书。",
+    "english": "She eats while reading."
+  },
+  {
+    "word": "一点",
+    "chinese": "给我一点时间。",
+    "english": "Give me a little time."
+  },
+  {
+    "word": "上天",
+    "chinese": "上天下雨了。",
+    "english": "It rained from the sky."
+  },
+  {
+    "word": "上山",
+    "chinese": "我们明天上山。",
+    "english": "We will go up the mountain tomorrow."
+  },
+  {
+    "word": "上课",
+    "chinese": "我每天八点上课。",
+    "english": "I attend class at eight every day."
+  },
+  {
+    "word": "上面",
+    "chinese": "书在桌子上面。",
+    "english": "The book is on top of the table."
+  },
+  {
+    "word": "下来",
+    "chinese": "他从楼上下来了。",
+    "english": "He came down from upstairs."
+  },
+  {
+    "word": "不想",
+    "chinese": "我今天不想出门。",
+    "english": "I do not want to go out today."
+  },
+  {
+    "word": "丑",
+    "chinese": "这个东西很丑。",
+    "english": "This thing is very ugly."
+  },
+  {
+    "word": "世界",
+    "chinese": "世界很大。",
+    "english": "The world is very big."
+  },
+  {
+    "word": "中",
+    "chinese": "他站在人群中间。",
+    "english": "He stands in the middle of the crowd."
+  },
+  {
+    "word": "事",
+    "chinese": "这件事很重要。",
+    "english": "This matter is very important."
+  },
+  {
+    "word": "但是",
+    "chinese": "我想去，但是没有时间。",
+    "english": "I want to go, but I have no time."
+  },
+  {
+    "word": "位",
+    "chinese": "那位先生是谁？",
+    "english": "Who is that gentleman?"
+  },
+  {
+    "word": "来自",
+    "chinese": "他来自中国。",
+    "english": "He comes from China."
+  },
+  {
+    "word": "们",
+    "chinese": "同学们都在等你。",
+    "english": "The classmates are all waiting for you."
+  },
+  {
+    "word": "兄弟",
+    "chinese": "他是我的兄弟。",
+    "english": "He is my brother."
+  },
+  {
+    "word": "光",
+    "chinese": "阳光很亮。",
+    "english": "The sunlight is very bright."
+  },
+  {
+    "word": "出生",
+    "chinese": "他出生在北京。",
+    "english": "He was born in Beijing."
+  },
+  {
+    "word": "刀",
+    "chinese": "这把刀很锋利。",
+    "english": "This knife is very sharp."
+  },
+  {
+    "word": "到家",
+    "chinese": "我晚上七点到家。",
+    "english": "I arrive home at seven in the evening."
+  },
+  {
+    "word": "刚才",
+    "chinese": "他刚才在这里。",
+    "english": "He was here just now."
+  },
+  {
+    "word": "动物",
+    "chinese": "动物园里有很多动物。",
+    "english": "There are many animals in the zoo."
+  },
+  {
+    "word": "北",
+    "chinese": "北京在中国的北边。",
+    "english": "Beijing is in the north of China."
+  },
+  {
+    "word": "友好",
+    "chinese": "他对每个人都很友好。",
+    "english": "He is very friendly to everyone."
+  },
+  {
+    "word": "可怕",
+    "chinese": "这个故事很可怕。",
+    "english": "This story is very frightening."
+  },
+  {
+    "word": "向",
+    "chinese": "他向我走过来。",
+    "english": "He walked toward me."
+  },
+  {
+    "word": "哪里",
+    "chinese": "你住在哪里？",
+    "english": "Where do you live?"
+  },
+  {
+    "word": "哭",
+    "chinese": "孩子在哭。",
+    "english": "The child is crying."
+  },
+  {
+    "word": "唱",
+    "chinese": "她唱得很好听。",
+    "english": "She sings very well."
+  },
+  {
+    "word": "啊",
+    "chinese": "今天真热啊！",
+    "english": "It is really hot today!"
+  },
+  {
+    "word": "喊叫",
+    "chinese": "不要在这里喊叫。",
+    "english": "Do not shout here."
+  },
+  {
+    "word": "四周",
+    "chinese": "四周很安静。",
+    "english": "It is quiet all around."
+  },
+  {
+    "word": "国王",
+    "chinese": "国王住在宫殿里。",
+    "english": "The king lives in the palace."
+  },
+  {
+    "word": "地",
+    "chinese": "他高兴地笑了。",
+    "english": "He smiled happily."
+  },
+  {
+    "word": "地方",
+    "chinese": "这是一个好地方。",
+    "english": "This is a good place."
+  },
+  {
+    "word": "地狱",
+    "chinese": "这里热得像地狱。",
+    "english": "It is as hot as hell here."
+  },
+  {
+    "word": "地球",
+    "chinese": "地球是我们的家。",
+    "english": "Earth is our home."
+  },
+  {
+    "word": "多么",
+    "chinese": "多么美丽的风景！",
+    "english": "What a beautiful view!"
+  },
+  {
+    "word": "大地",
+    "chinese": "大地上覆盖着雪。",
+    "english": "The land is covered with snow."
+  },
+  {
+    "word": "大海",
+    "chinese": "大海很蓝。",
+    "english": "The sea is very blue."
+  },
+  {
+    "word": "大风",
+    "chinese": "外面刮大风。",
+    "english": "There is a strong wind outside."
+  },
+  {
+    "word": "天上",
+    "chinese": "天上有许多星星。",
+    "english": "There are many stars in the sky."
+  },
+  {
+    "word": "天地",
+    "chinese": "天地之间只有我们。",
+    "english": "Between heaven and earth there is only us."
+  },
+  {
+    "word": "姐妹",
+    "chinese": "她们是姐妹。",
+    "english": "They are sisters."
+  },
+  {
+    "word": "学会",
+    "chinese": "我学会了做菜。",
+    "english": "I learned how to cook."
+  },
+  {
+    "word": "安全",
+    "chinese": "这里很安全。",
+    "english": "It is very safe here."
+  },
+  {
+    "word": "宫殿",
+    "chinese": "宫殿非常大。",
+    "english": "The palace is very big."
+  },
+  {
+    "word": "害怕",
+    "chinese": "我害怕黑暗。",
+    "english": "I am afraid of the dark."
+  },
+  {
+    "word": "容易",
+    "chinese": "这个问题很容易。",
+    "english": "This question is very easy."
+  },
+  {
+    "word": "山",
+    "chinese": "那座山很高。",
+    "english": "That mountain is very tall."
+  },
+  {
+    "word": "山顶",
+    "chinese": "我们爬到了山顶。",
+    "english": "We climbed to the mountaintop."
+  },
+  {
+    "word": "带",
+    "chinese": "请带一把伞。",
+    "english": "Please bring an umbrella."
+  },
+  {
+    "word": "年轻",
+    "chinese": "她很年轻。",
+    "english": "She is very young."
+  },
+  {
+    "word": "床",
+    "chinese": "我在床上休息。",
+    "english": "I am resting on the bed."
+  },
+  {
+    "word": "座",
+    "chinese": "这里有一座桥。",
+    "english": "There is a bridge here."
+  },
+  {
+    "word": "张开",
+    "chinese": "请张开嘴。",
+    "english": "Please open your mouth."
+  },
+  {
+    "word": "后",
+    "chinese": "他站在我后面。",
+    "english": "He stands behind me."
+  },
+  {
+    "word": "得到",
+    "chinese": "我得到了一个礼物。",
+    "english": "I received a gift."
+  },
+  {
+    "word": "必须",
+    "chinese": "你必须完成作业。",
+    "english": "You must finish your homework."
+  },
+  {
+    "word": "怕",
+    "chinese": "别怕，我在这里。",
+    "english": "Do not be afraid, I am here."
+  },
+  {
+    "word": "想到",
+    "chinese": "我想到一个好主意。",
+    "english": "I thought of a good idea."
+  },
+  {
+    "word": "愉快",
+    "chinese": "今天过得很愉快。",
+    "english": "Today was very pleasant."
+  },
+  {
+    "word": "感到",
+    "chinese": "我感到很累。",
+    "english": "I feel very tired."
+  },
+  {
+    "word": "应该",
+    "chinese": "你应该早点睡。",
+    "english": "You should go to bed earlier."
+  },
+  {
+    "word": "怀孕",
+    "chinese": "她怀孕了。",
+    "english": "She is pregnant."
+  },
+  {
+    "word": "所以",
+    "chinese": "下雨了，所以我不去。",
+    "english": "It is raining, so I will not go."
+  },
+  {
+    "word": "打",
+    "chinese": "他在打电话。",
+    "english": "He is making a phone call."
+  },
+  {
+    "word": "把",
+    "chinese": "请把门关上。",
+    "english": "Please close the door."
+  },
+  {
+    "word": "拍手",
+    "chinese": "孩子们高兴地拍手。",
+    "english": "The children clapped happily."
+  },
+  {
+    "word": "拿起",
+    "chinese": "他拿起书就走了。",
+    "english": "He picked up the book and left."
+  },
+  {
+    "word": "担心",
+    "chinese": "别担心，没事的。",
+    "english": "Do not worry, it is fine."
+  },
+  {
+    "word": "放心",
+    "chinese": "放心吧，我会帮忙的。",
+    "english": "Rest assured, I will help."
+  },
+  {
+    "word": "方",
+    "chinese": "东方是太阳升起的地方。",
+    "english": "The east is where the sun rises."
+  },
+  {
+    "word": "时",
+    "chinese": "小时候我很调皮。",
+    "english": "When I was little I was very naughty."
+  },
+  {
+    "word": "晚",
+    "chinese": "今天回来得很晚。",
+    "english": "I came back very late today."
+  },
+  {
+    "word": "晚安",
+    "chinese": "晚安，明天见。",
+    "english": "Good night, see you tomorrow."
+  },
+  {
+    "word": "智慧",
+    "chinese": "老人有很多智慧。",
+    "english": "The old man has much wisdom."
+  },
+  {
+    "word": "更",
+    "chinese": "这个比那个更好。",
+    "english": "This one is even better than that one."
+  },
+  {
+    "word": "最后",
+    "chinese": "最后他还是来了。",
+    "english": "In the end he still came."
+  },
+  {
+    "word": "最近",
+    "chinese": "你最近怎么样？",
+    "english": "How have you been lately?"
+  },
+  {
+    "word": "月亮",
+    "chinese": "今晚的月亮很圆。",
+    "english": "Tonight's moon is very round."
+  },
+  {
+    "word": "有些",
+    "chinese": "有些人不喜欢下雨。",
+    "english": "Some people do not like rain."
+  },
+  {
+    "word": "有力",
+    "chinese": "他的声音很有力。",
+    "english": "His voice is very powerful."
+  },
+  {
+    "word": "有点",
+    "chinese": "今天有点冷。",
+    "english": "It is a little cold today."
+  },
+  {
+    "word": "果",
+    "chinese": "这个果子很甜。",
+    "english": "This fruit is very sweet."
+  },
+  {
+    "word": "森林",
+    "chinese": "森林里有很多树。",
+    "english": "There are many trees in the forest."
+  },
+  {
+    "word": "极大",
+    "chinese": "这个问题有极大的困难。",
+    "english": "This problem has enormous difficulty."
+  },
+  {
+    "word": "树",
+    "chinese": "院子里有一棵大树。",
+    "english": "There is a big tree in the yard."
+  },
+  {
+    "word": "歌",
+    "chinese": "这首歌很好听。",
+    "english": "This song sounds very nice."
+  },
+  {
+    "word": "欢迎",
+    "chinese": "欢迎来到我的家。",
+    "english": "Welcome to my home."
+  },
+  {
+    "word": "死",
+    "chinese": "花死了。",
+    "english": "The flower died."
+  },
+  {
+    "word": "段",
+    "chinese": "这是一段很长的路。",
+    "english": "This is a very long road."
+  },
+  {
+    "word": "没",
+    "chinese": "我没有时间。",
+    "english": "I have no time."
+  },
+  {
+    "word": "河流",
+    "chinese": "这条河流很长。",
+    "english": "This river is very long."
+  },
+  {
+    "word": "洗澡",
+    "chinese": "我每天晚上洗澡。",
+    "english": "I take a shower every evening."
+  },
+  {
+    "word": "洲",
+    "chinese": "亚洲是最大的洲。",
+    "english": "Asia is the largest continent."
+  },
+  {
+    "word": "海",
+    "chinese": "大海很美。",
+    "english": "The sea is very beautiful."
+  },
+  {
+    "word": "海边",
+    "chinese": "我喜欢在海边散步。",
+    "english": "I like to walk by the sea."
+  },
+  {
+    "word": "火焰",
+    "chinese": "火焰很高。",
+    "english": "The flames are very tall."
+  },
+  {
+    "word": "为",
+    "chinese": "我为你感到骄傲。",
+    "english": "I am proud of you."
+  },
+  {
+    "word": "无法无天",
+    "chinese": "这些孩子无法无天。",
+    "english": "These children are completely unruly."
+  },
+  {
+    "word": "猴",
+    "chinese": "那只猴子很聪明。",
+    "english": "That monkey is very clever."
+  },
+  {
+    "word": "瓶子",
+    "chinese": "请给我一个瓶子。",
+    "english": "Please give me a bottle."
+  },
+  {
+    "word": "当然",
+    "chinese": "当然可以。",
+    "english": "Of course you can."
+  },
+  {
+    "word": "发出",
+    "chinese": "他发出一声大笑。",
+    "english": "He let out a big laugh."
+  },
+  {
+    "word": "白天",
+    "chinese": "白天很热。",
+    "english": "The daytime is very hot."
+  },
+  {
+    "word": "盆",
+    "chinese": "花盆里有一朵花。",
+    "english": "There is a flower in the flower pot."
+  },
+  {
+    "word": "看起来",
+    "chinese": "他看起来很高兴。",
+    "english": "He looks very happy."
+  },
+  {
+    "word": "睡",
+    "chinese": "我昨晚睡得很好。",
+    "english": "I slept very well last night."
+  },
+  {
+    "word": "石头",
+    "chinese": "地上有一块大石头。",
+    "english": "There is a big rock on the ground."
+  },
+  {
+    "word": "礼物",
+    "chinese": "我送了她一份礼物。",
+    "english": "I gave her a gift."
+  },
+  {
+    "word": "空",
+    "chinese": "天空很蓝。",
+    "english": "The sky is very blue."
+  },
+  {
+    "word": "站",
+    "chinese": "请站在这里。",
+    "english": "Please stand here."
+  },
+  {
+    "word": "第",
+    "chinese": "这是我第一次来。",
+    "english": "This is my first time coming."
+  },
+  {
+    "word": "等到",
+    "chinese": "等到明天再说。",
+    "english": "Wait until tomorrow to talk about it."
+  },
+  {
+    "word": "美",
+    "chinese": "这个花园很美。",
+    "english": "This garden is very beautiful."
+  },
+  {
+    "word": "美丽",
+    "chinese": "她是一个美丽的女孩。",
+    "english": "She is a beautiful girl."
+  },
+  {
+    "word": "耳朵",
+    "chinese": "兔子的耳朵很长。",
+    "english": "Rabbit ears are very long."
+  },
+  {
+    "word": "圣人",
+    "chinese": "古时候有很多圣人。",
+    "english": "In ancient times there were many sages."
+  },
+  {
+    "word": "自己",
+    "chinese": "我自己做饭。",
+    "english": "I cook by myself."
+  },
+  {
+    "word": "舞",
+    "chinese": "她跳了一支舞。",
+    "english": "She danced a dance."
+  },
+  {
+    "word": "花",
+    "chinese": "花园里有很多花。",
+    "english": "There are many flowers in the garden."
+  },
+  {
+    "word": "蛋",
+    "chinese": "我早上吃了一个蛋。",
+    "english": "I ate an egg this morning."
+  },
+  {
+    "word": "里面",
+    "chinese": "房间里面很暖和。",
+    "english": "It is warm inside the room."
+  },
+  {
+    "word": "见",
+    "chinese": "好久不见。",
+    "english": "Long time no see."
+  },
+  {
+    "word": "许多",
+    "chinese": "这里有许多人。",
+    "english": "There are many people here."
+  },
+  {
+    "word": "变",
+    "chinese": "天气变了。",
+    "english": "The weather changed."
+  },
+  {
+    "word": "变成",
+    "chinese": "水变成了冰。",
+    "english": "The water turned into ice."
+  },
+  {
+    "word": "走出",
+    "chinese": "他走出了房间。",
+    "english": "He walked out of the room."
+  },
+  {
+    "word": "走向",
+    "chinese": "她走向门口。",
+    "english": "She walked toward the door."
+  },
+  {
+    "word": "起来",
+    "chinese": "请站起来。",
+    "english": "Please stand up."
+  },
+  {
+    "word": "跟",
+    "chinese": "请跟我来。",
+    "english": "Please follow me."
+  },
+  {
+    "word": "跳",
+    "chinese": "孩子高兴地跳了起来。",
+    "english": "The child jumped happily."
+  },
+  {
+    "word": "身上",
+    "chinese": "他身上有很多钱。",
+    "english": "He has a lot of money on him."
+  },
+  {
+    "word": "这些",
+    "chinese": "这些都是我的书。",
+    "english": "These are all my books."
+  },
+  {
+    "word": "这儿",
+    "chinese": "请坐在这儿。",
+    "english": "Please sit here."
+  },
+  {
+    "word": "这样",
+    "chinese": "这样做就行了。",
+    "english": "Just do it like this."
+  },
+  {
+    "word": "这里",
+    "chinese": "我住在这里。",
+    "english": "I live here."
+  },
+  {
+    "word": "过",
+    "chinese": "我吃过饭了。",
+    "english": "I have already eaten."
+  },
+  {
+    "word": "道",
+    "chinese": "我知道了。",
+    "english": "I understand."
+  },
+  {
+    "word": "避",
+    "chinese": "请避开那个地方。",
+    "english": "Please avoid that place."
+  },
+  {
+    "word": "边",
+    "chinese": "河的两边都是树。",
+    "english": "Both sides of the river have trees."
+  },
+  {
+    "word": "那里",
+    "chinese": "我去过那里。",
+    "english": "I have been there."
+  },
+  {
+    "word": "酒",
+    "chinese": "他喜欢喝酒。",
+    "english": "He likes to drink wine."
+  },
+  {
+    "word": "钓鱼",
+    "chinese": "他每个周末去钓鱼。",
+    "english": "He goes fishing every weekend."
+  },
+  {
+    "word": "长生",
+    "chinese": "古代皇帝都想长生。",
+    "english": "Ancient emperors all wanted immortality."
+  },
+  {
+    "word": "闭",
+    "chinese": "请闭上眼睛。",
+    "english": "Please close your eyes."
+  },
+  {
+    "word": "开门",
+    "chinese": "请帮我开门。",
+    "english": "Please help me open the door."
+  },
+  {
+    "word": "关于",
+    "chinese": "这是一本关于历史的书。",
+    "english": "This is a book about history."
+  },
+  {
+    "word": "离开",
+    "chinese": "他离开了家。",
+    "english": "He left home."
+  },
+  {
+    "word": "云",
+    "chinese": "天上的云很白。",
+    "english": "The clouds in the sky are very white."
+  },
+  {
+    "word": "雷电",
+    "chinese": "雷电交加，大雨倾盆。",
+    "english": "Thunder and lightning, heavy rain pours."
+  },
+  {
+    "word": "需要",
+    "chinese": "我需要你的帮助。",
+    "english": "I need your help."
+  },
+  {
+    "word": "头",
+    "chinese": "他的头很疼。",
+    "english": "His head hurts a lot."
+  },
+  {
+    "word": "风",
+    "chinese": "外面的风很大。",
+    "english": "The wind outside is very strong."
+  },
+  {
+    "word": "飞过",
+    "chinese": "一只鸟从头上飞过。",
+    "english": "A bird flew over my head."
+  },
+  {
+    "word": "马上",
+    "chinese": "我马上就来。",
+    "english": "I will come right away."
+  },
+  {
+    "word": "鸟",
+    "chinese": "树上有一只鸟。",
+    "english": "There is a bird in the tree."
+  },
+  {
+    "word": "有一天",
+    "chinese": "有一天我会去中国。",
+    "english": "One day I will go to China."
+  },
+  {
+    "word": "亲爱的",
+    "chinese": "亲爱的，我回来了。",
+    "english": "Dear, I am back."
+  },
+  {
+    "word": "很多",
+    "chinese": "这里有很多人。",
+    "english": "There are many people here."
+  },
+  {
+    "word": "看到",
+    "chinese": "我看到了一只猫。",
+    "english": "I saw a cat."
+  },
+  {
+    "word": "只有",
+    "chinese": "只有他知道答案。",
+    "english": "Only he knows the answer."
+  },
+  {
+    "word": "是的",
+    "chinese": "是的，你说得对。",
+    "english": "Yes, you are right."
+  },
+  {
+    "word": "住在",
+    "chinese": "我住在北京。",
+    "english": "I live in Beijing."
+  },
+  {
+    "word": "一开始",
+    "chinese": "一开始我不喜欢。",
+    "english": "At first I did not like it."
+  },
+  {
+    "word": "流向",
+    "chinese": "河水流向大海。",
+    "english": "The river flows toward the sea."
+  },
+  {
+    "word": "的时侯",
+    "chinese": "小的时侯我住在这里。",
+    "english": "When I was little I lived here."
+  },
+  {
+    "word": "等着",
+    "chinese": "他正在门口等着。",
+    "english": "He is waiting at the door."
+  },
+  {
+    "word": "海中",
+    "chinese": "鱼在海中游。",
+    "english": "Fish swim in the sea."
+  },
+  {
+    "word": "看着",
+    "chinese": "她看着窗外。",
+    "english": "She looks out the window."
+  },
+  {
+    "word": "哭着",
+    "chinese": "孩子哭着找妈妈。",
+    "english": "The child cries looking for mom."
+  },
+  {
+    "word": "学着",
+    "chinese": "他学着做饭。",
+    "english": "He is learning to cook."
+  },
+  {
+    "word": "笑着",
+    "chinese": "她笑着回答。",
+    "english": "She answered with a smile."
+  },
+  {
+    "word": "弯刀",
+    "chinese": "他手里拿着一把弯刀。",
+    "english": "He holds a curved blade in his hand."
+  },
+  {
+    "word": "说过",
+    "chinese": "我以前说过这件事。",
+    "english": "I have mentioned this before."
+  },
+  {
+    "word": "吧",
+    "chinese": "我们走吧。",
+    "english": "Let us go."
+  },
+  {
+    "word": "一",
+    "chinese": "我有一个苹果。",
+    "english": "I have one apple."
+  },
+  {
+    "word": "一下",
+    "chinese": "请等一下。",
+    "english": "Please wait a moment."
+  },
+  {
+    "word": "一些",
+    "chinese": "给我一些水。",
+    "english": "Give me some water."
+  },
+  {
+    "word": "一定",
+    "chinese": "我一定来。",
+    "english": "I will definitely come."
+  },
+  {
+    "word": "一会儿",
+    "chinese": "我一会儿就走。",
+    "english": "I will leave in a moment."
+  },
+  {
+    "word": "一起",
+    "chinese": "我们一起去吧。",
+    "english": "Let us go together."
+  },
+  {
+    "word": "一点儿",
+    "chinese": "我只会一点儿中文。",
+    "english": "I only know a little Chinese."
+  },
+  {
+    "word": "七",
+    "chinese": "一周有七天。",
+    "english": "There are seven days in a week."
+  },
+  {
+    "word": "三",
+    "chinese": "我有三个苹果。",
+    "english": "I have three apples."
+  },
+  {
+    "word": "上",
+    "chinese": "书在桌子上。",
+    "english": "The book is on the table."
+  },
+  {
+    "word": "上去",
+    "chinese": "请上去看看。",
+    "english": "Please go up and take a look."
+  },
+  {
+    "word": "下",
+    "chinese": "请坐下。",
+    "english": "Please sit down."
+  },
+  {
+    "word": "不",
+    "chinese": "我不知道。",
+    "english": "I do not know."
+  },
+  {
+    "word": "中国",
+    "chinese": "中国有很多人。",
+    "english": "China has many people."
+  },
+  {
+    "word": "九",
+    "chinese": "早上九点见面。",
+    "english": "Meet at nine in the morning."
+  },
+  {
+    "word": "也",
+    "chinese": "我也想去。",
+    "english": "I also want to go."
+  },
+  {
+    "word": "了",
+    "chinese": "我吃完了。",
+    "english": "I finished eating."
+  },
+  {
+    "word": "事情",
+    "chinese": "有什么事情吗？",
+    "english": "Is there anything?"
+  },
+  {
+    "word": "二",
+    "chinese": "我有二块钱。",
+    "english": "I have two yuan."
+  },
+  {
+    "word": "人",
+    "chinese": "这里有很多人。",
+    "english": "There are many people here."
+  },
+  {
+    "word": "什么",
+    "chinese": "你在做什么？",
+    "english": "What are you doing?"
+  },
+  {
+    "word": "今天",
+    "chinese": "今天天气很好。",
+    "english": "The weather is nice today."
+  },
+  {
+    "word": "他",
+    "chinese": "他是我的朋友。",
+    "english": "He is my friend."
+  },
+  {
+    "word": "以前",
+    "chinese": "我以前住在这里。",
+    "english": "I used to live here."
+  },
+  {
+    "word": "以后",
+    "chinese": "以后再说吧。",
+    "english": "Let us talk about it later."
+  },
+  {
+    "word": "住",
+    "chinese": "我住在北京。",
+    "english": "I live in Beijing."
+  },
+  {
+    "word": "你",
+    "chinese": "你好吗？",
+    "english": "How are you?"
+  },
+  {
+    "word": "来",
+    "chinese": "请进来。",
+    "english": "Please come in."
+  },
+  {
+    "word": "个",
+    "chinese": "给我一个苹果。",
+    "english": "Give me an apple."
+  },
+  {
+    "word": "做",
+    "chinese": "你在做什么？",
+    "english": "What are you doing?"
+  },
+  {
+    "word": "像",
+    "chinese": "她像她妈妈。",
+    "english": "She looks like her mom."
+  },
+  {
+    "word": "先",
+    "chinese": "你先走。",
+    "english": "You go first."
+  },
+  {
+    "word": "两",
+    "chinese": "我有两个弟弟。",
+    "english": "I have two younger brothers."
+  },
+  {
+    "word": "八",
+    "chinese": "现在八点了。",
+    "english": "It is eight o'clock now."
+  },
+  {
+    "word": "六",
+    "chinese": "我家有六口人。",
+    "english": "There are six people in my family."
+  },
+  {
+    "word": "再",
+    "chinese": "请再说一遍。",
+    "english": "Please say it again."
+  },
+  {
+    "word": "出来",
+    "chinese": "请出来一下。",
+    "english": "Please come out for a moment."
+  },
+  {
+    "word": "别",
+    "chinese": "别担心。",
+    "english": "Do not worry."
+  },
+  {
+    "word": "到",
+    "chinese": "我到家了。",
+    "english": "I arrived home."
+  },
+  {
+    "word": "刚",
+    "chinese": "我刚到。",
+    "english": "I just arrived."
+  },
+  {
+    "word": "十",
+    "chinese": "十个苹果多少钱？",
+    "english": "How much are ten apples?"
+  },
+  {
+    "word": "千",
+    "chinese": "这本书一千页。",
+    "english": "This book has one thousand pages."
+  },
+  {
+    "word": "去",
+    "chinese": "我去超市。",
+    "english": "I am going to the supermarket."
+  },
+  {
+    "word": "又",
+    "chinese": "他又迟到了。",
+    "english": "He was late again."
+  },
+  {
+    "word": "只",
+    "chinese": "我只有一块钱。",
+    "english": "I only have one yuan."
+  },
+  {
+    "word": "叫",
+    "chinese": "你叫什么名字？",
+    "english": "What is your name?"
+  },
+  {
+    "word": "可以",
+    "chinese": "我可以进来吗？",
+    "english": "May I come in?"
+  },
+  {
+    "word": "可能",
+    "chinese": "他可能不来。",
+    "english": "He might not come."
+  },
+  {
+    "word": "吃",
+    "chinese": "我每天早上吃面包。",
+    "english": "I eat bread every morning."
+  },
+  {
+    "word": "名字",
+    "chinese": "你的名字是什么？",
+    "english": "What is your name?"
+  },
+  {
+    "word": "告诉",
+    "chinese": "请告诉我。",
+    "english": "Please tell me."
+  },
+  {
+    "word": "呢",
+    "chinese": "你呢？",
+    "english": "And you?"
+  },
+  {
+    "word": "唱歌",
+    "chinese": "她喜欢唱歌。",
+    "english": "She likes to sing."
+  },
+  {
+    "word": "问",
+    "chinese": "我想问你一个问题。",
+    "english": "I want to ask you a question."
+  },
+  {
+    "word": "喜欢",
+    "chinese": "我喜欢吃苹果。",
+    "english": "I like to eat apples."
+  },
+  {
+    "word": "吗",
+    "chinese": "你好吗？",
+    "english": "How are you?"
+  },
+  {
+    "word": "四",
+    "chinese": "一年有四季。",
+    "english": "There are four seasons in a year."
+  },
+  {
+    "word": "回",
+    "chinese": "我回家了。",
+    "english": "I went home."
+  },
+  {
+    "word": "回来",
+    "chinese": "他很快就回来。",
+    "english": "He will come back soon."
+  },
+  {
+    "word": "回答",
+    "chinese": "请回答我的问题。",
+    "english": "Please answer my question."
+  },
+  {
+    "word": "因为",
+    "chinese": "因为下雨，我不去了。",
+    "english": "Because it is raining, I will not go."
+  },
+  {
+    "word": "国家",
+    "chinese": "中国是一个大国。",
+    "english": "China is a big country."
+  },
+  {
+    "word": "在",
+    "chinese": "我在家里。",
+    "english": "I am at home."
+  },
+  {
+    "word": "坐",
+    "chinese": "请坐。",
+    "english": "Please sit down."
+  },
+  {
+    "word": "块",
+    "chinese": "给我一块蛋糕。",
+    "english": "Give me a piece of cake."
+  },
+  {
+    "word": "外面",
+    "chinese": "外面很冷。",
+    "english": "It is cold outside."
+  },
+  {
+    "word": "多",
+    "chinese": "这里人很多。",
+    "english": "There are many people here."
+  },
+  {
+    "word": "大",
+    "chinese": "这个房子很大。",
+    "english": "This house is very big."
+  },
+  {
+    "word": "大家",
+    "chinese": "大家好！",
+    "english": "Hello everyone!"
+  },
+  {
+    "word": "天",
+    "chinese": "今天天很蓝。",
+    "english": "The sky is very blue today."
+  },
+  {
+    "word": "天气",
+    "chinese": "今天天气很好。",
+    "english": "The weather is nice today."
+  },
+  {
+    "word": "太",
+    "chinese": "这个太贵了。",
+    "english": "This is too expensive."
+  },
+  {
+    "word": "她",
+    "chinese": "她是我的朋友。",
+    "english": "She is my friend."
+  },
+  {
+    "word": "好",
+    "chinese": "这本书很好。",
+    "english": "This book is very good."
+  },
+  {
+    "word": "如果",
+    "chinese": "如果下雨，我就不去。",
+    "english": "If it rains, I won't go."
+  },
+  {
+    "word": "姓",
+    "chinese": "我姓王。",
+    "english": "My surname is Wang."
+  },
+  {
+    "word": "妈妈",
+    "chinese": "妈妈在做饭。",
+    "english": "Mom is cooking."
+  },
+  {
+    "word": "字",
+    "chinese": "这个字怎么读？",
+    "english": "How do you read this character?"
+  },
+  {
+    "word": "孩子",
+    "chinese": "孩子们在外面玩。",
+    "english": "The children are playing outside."
+  },
+  {
+    "word": "学校",
+    "chinese": "我的学校很大。",
+    "english": "My school is very big."
+  },
+  {
+    "word": "学生",
+    "chinese": "他是一个好学生。",
+    "english": "He is a good student."
+  },
+  {
+    "word": "学习",
+    "chinese": "我每天学习中文。",
+    "english": "I study Chinese every day."
+  },
+  {
+    "word": "它",
+    "chinese": "它是我的猫。",
+    "english": "It is my cat."
+  },
+  {
+    "word": "家",
+    "chinese": "我想回家。",
+    "english": "I want to go home."
+  },
+  {
+    "word": "写",
+    "chinese": "请写你的名字。",
+    "english": "Please write your name."
+  },
+  {
+    "word": "对",
+    "chinese": "你说得对。",
+    "english": "What you said is correct."
+  },
+  {
+    "word": "对不起",
+    "chinese": "对不起，我来晚了。",
+    "english": "Sorry, I came late."
+  },
+  {
+    "word": "小",
+    "chinese": "这个房间很小。",
+    "english": "This room is very small."
+  },
+  {
+    "word": "小心",
+    "chinese": "小心，路上有水。",
+    "english": "Be careful, there is water on the road."
+  },
+  {
+    "word": "小时",
+    "chinese": "我等了一个小时。",
+    "english": "I waited for an hour."
+  },
+  {
+    "word": "已经",
+    "chinese": "他已经走了。",
+    "english": "He has already left."
+  },
+  {
+    "word": "帮助",
+    "chinese": "谢谢你的帮助。",
+    "english": "Thank you for your help."
+  },
+  {
+    "word": "年",
+    "chinese": "我学了三年中文。",
+    "english": "I have studied Chinese for three years."
+  },
+  {
+    "word": "弟弟",
+    "chinese": "我弟弟比我小两岁。",
+    "english": "My younger brother is two years younger than me."
+  },
+  {
+    "word": "很",
+    "chinese": "今天我很开心。",
+    "english": "I am very happy today."
+  },
+  {
+    "word": "后门",
+    "chinese": "请从后门进来。",
+    "english": "Please come in through the back door."
+  },
+  {
+    "word": "后面",
+    "chinese": "他站在我后面。",
+    "english": "He is standing behind me."
+  },
+  {
+    "word": "得",
+    "chinese": "他跑得很快。",
+    "english": "He runs very fast."
+  },
+  {
+    "word": "从",
+    "chinese": "我从家里走来。",
+    "english": "I walked here from home."
+  },
+  {
+    "word": "快乐",
+    "chinese": "祝你生日快乐！",
+    "english": "Happy birthday to you!"
+  },
+  {
+    "word": "怎么",
+    "chinese": "这个字怎么写？",
+    "english": "How do you write this character?"
+  },
+  {
+    "word": "想",
+    "chinese": "我想喝水。",
+    "english": "I want to drink water."
+  },
+  {
+    "word": "意思",
+    "chinese": "这个词是什么意思？",
+    "english": "What does this word mean?"
+  },
+  {
+    "word": "爱",
+    "chinese": "我爱我的家人。",
+    "english": "I love my family."
+  },
+  {
+    "word": "慢",
+    "chinese": "请说慢一点。",
+    "english": "Please speak a little slower."
+  },
+  {
+    "word": "我",
+    "chinese": "我是学生。",
+    "english": "I am a student."
+  },
+  {
+    "word": "房间",
+    "chinese": "我的房间很干净。",
+    "english": "My room is very clean."
+  },
+  {
+    "word": "手",
+    "chinese": "我的手很冷。",
+    "english": "My hands are very cold."
+  },
+  {
+    "word": "打开",
+    "chinese": "请打开门。",
+    "english": "Please open the door."
+  },
+  {
+    "word": "找",
+    "chinese": "我在找我的钥匙。",
+    "english": "I am looking for my keys."
+  },
+  {
+    "word": "新",
+    "chinese": "这是我的新手机。",
+    "english": "This is my new cell phone."
+  },
+  {
+    "word": "早上",
+    "chinese": "我早上七点起床。",
+    "english": "I get up at seven in the morning."
+  },
+  {
+    "word": "明天",
+    "chinese": "明天见！",
+    "english": "See you tomorrow!"
+  },
+  {
+    "word": "明白",
+    "chinese": "现在我明白了。",
+    "english": "Now I understand."
+  },
+  {
+    "word": "昨天",
+    "chinese": "昨天我去了商店。",
+    "english": "Yesterday I went to the store."
+  },
+  {
+    "word": "是",
+    "chinese": "他是老师。",
+    "english": "He is a teacher."
+  },
+  {
+    "word": "时间",
+    "chinese": "我没有时间了。",
+    "english": "I don't have time anymore."
+  },
+  {
+    "word": "晚上",
+    "chinese": "晚上我在家看书。",
+    "english": "In the evening I read at home."
+  },
+  {
+    "word": "书",
+    "chinese": "这本书很有意思。",
+    "english": "This book is very interesting."
+  },
+  {
+    "word": "最",
+    "chinese": "这是最好的办法。",
+    "english": "This is the best way."
+  },
+  {
+    "word": "会",
+    "chinese": "我会说中文。",
+    "english": "I can speak Chinese."
+  },
+  {
+    "word": "有",
+    "chinese": "我有两个哥哥。",
+    "english": "I have two older brothers."
+  },
+  {
+    "word": "有名",
+    "chinese": "这家餐厅很有名。",
+    "english": "This restaurant is very famous."
+  },
+  {
+    "word": "朋友",
+    "chinese": "他是我最好的朋友。",
+    "english": "He is my best friend."
+  },
+  {
+    "word": "杯子",
+    "chinese": "杯子里有水。",
+    "english": "There is water in the cup."
+  },
+  {
+    "word": "东西",
+    "chinese": "我去买一点东西。",
+    "english": "I am going to buy some things."
+  },
+  {
+    "word": "桌子",
+    "chinese": "书在桌子上。",
+    "english": "The book is on the table."
+  },
+  {
+    "word": "椅子",
+    "chinese": "请坐在这把椅子上。",
+    "english": "Please sit on this chair."
+  },
+  {
+    "word": "次",
+    "chinese": "我去过两次北京。",
+    "english": "I have been to Beijing twice."
+  },
+  {
+    "word": "正在",
+    "chinese": "他正在吃饭。",
+    "english": "He is eating right now."
+  },
+  {
+    "word": "每",
+    "chinese": "我每年都回家。",
+    "english": "I go home every year."
+  },
+  {
+    "word": "比",
+    "chinese": "他比我高。",
+    "english": "He is taller than me."
+  },
+  {
+    "word": "水",
+    "chinese": "请给我一杯水。",
+    "english": "Please give me a glass of water."
+  },
+  {
+    "word": "水果",
+    "chinese": "我喜欢吃水果。",
+    "english": "I like eating fruit."
+  },
+  {
+    "word": "游泳",
+    "chinese": "夏天我常去游泳。",
+    "english": "In summer I often go swimming."
+  },
+  {
+    "word": "漂亮",
+    "chinese": "这个花园真漂亮。",
+    "english": "This garden is really beautiful."
+  },
+  {
+    "word": "为什么",
+    "chinese": "你为什么不来？",
+    "english": "Why aren't you coming?"
+  },
+  {
+    "word": "然后",
+    "chinese": "我先吃饭，然后看书。",
+    "english": "I eat first, then read."
+  },
+  {
+    "word": "热",
+    "chinese": "今天天气很热。",
+    "english": "The weather is very hot today."
+  },
+  {
+    "word": "爸爸",
+    "chinese": "爸爸在看电视。",
+    "english": "Dad is watching TV."
+  },
+  {
+    "word": "王",
+    "chinese": "他是这个国家的王。",
+    "english": "He is the king of this country."
+  },
+  {
+    "word": "玩",
+    "chinese": "孩子们在公园玩。",
+    "english": "The children are playing in the park."
+  },
+  {
+    "word": "现在",
+    "chinese": "现在几点了？",
+    "english": "What time is it now?"
+  },
+  {
+    "word": "生气",
+    "chinese": "请不要生气。",
+    "english": "Please don't be angry."
+  },
+  {
+    "word": "生活",
+    "chinese": "我的生活很简单。",
+    "english": "My life is very simple."
+  },
+  {
+    "word": "用",
+    "chinese": "我用笔写字。",
+    "english": "I write with a pen."
+  },
+  {
+    "word": "的",
+    "chinese": "这是我的书。",
+    "english": "This is my book."
+  },
+  {
+    "word": "的话",
+    "chinese": "你去的话，我也去。",
+    "english": "If you go, I will go too."
+  },
+  {
+    "word": "看",
+    "chinese": "你看，天多蓝！",
+    "english": "Look, how blue the sky is!"
+  },
+  {
+    "word": "看见",
+    "chinese": "我看见他了。",
+    "english": "I saw him."
+  },
+  {
+    "word": "真",
+    "chinese": "你真聪明！",
+    "english": "You are really smart!"
+  },
+  {
+    "word": "眼睛",
+    "chinese": "她的眼睛很大。",
+    "english": "Her eyes are very big."
+  },
+  {
+    "word": "睡觉",
+    "chinese": "我十点睡觉。",
+    "english": "I go to sleep at ten."
+  },
+  {
+    "word": "知道",
+    "chinese": "我不知道他的名字。",
+    "english": "I don't know his name."
+  },
+  {
+    "word": "种",
+    "chinese": "这种水果很甜。",
+    "english": "This kind of fruit is very sweet."
+  },
+  {
+    "word": "笑",
+    "chinese": "她笑得很开心。",
+    "english": "She laughed very happily."
+  },
+  {
+    "word": "等",
+    "chinese": "请等我五分钟。",
+    "english": "Please wait for me for five minutes."
+  },
+  {
+    "word": "累",
+    "chinese": "我今天很累。",
+    "english": "I am very tired today."
+  },
+  {
+    "word": "终于",
+    "chinese": "他终于回来了。",
+    "english": "He finally came back."
+  },
+  {
+    "word": "给",
+    "chinese": "请把书给我。",
+    "english": "Please give me the book."
+  },
+  {
+    "word": "经常",
+    "chinese": "我经常去那家商店。",
+    "english": "I often go to that store."
+  },
+  {
+    "word": "老",
+    "chinese": "这是一棵很老的树。",
+    "english": "This is a very old tree."
+  },
+  {
+    "word": "老师",
+    "chinese": "我们的老师很好。",
+    "english": "Our teacher is very nice."
+  },
+  {
+    "word": "声音",
+    "chinese": "她的声音很好听。",
+    "english": "Her voice is very pleasant."
+  },
+  {
+    "word": "听",
+    "chinese": "我喜欢听音乐。",
+    "english": "I like listening to music."
+  },
+  {
+    "word": "听到",
+    "chinese": "你听到那个声音了吗？",
+    "english": "Did you hear that sound?"
+  },
+  {
+    "word": "能",
+    "chinese": "你能帮我吗？",
+    "english": "Can you help me?"
+  },
+  {
+    "word": "船",
+    "chinese": "船在水上走。",
+    "english": "The boat moves on the water."
+  },
+  {
+    "word": "草",
+    "chinese": "草是绿色的。",
+    "english": "Grass is green."
+  },
+  {
+    "word": "西",
+    "chinese": "太阳从西边下去。",
+    "english": "The sun goes down in the west."
+  },
+  {
+    "word": "要",
+    "chinese": "我要一杯茶。",
+    "english": "I want a cup of tea."
+  },
+  {
+    "word": "话",
+    "chinese": "他的话很有意思。",
+    "english": "His words are very interesting."
+  },
+  {
+    "word": "说话",
+    "chinese": "请不要大声说话。",
+    "english": "Please don't speak loudly."
+  },
+  {
+    "word": "请",
+    "chinese": "请进来坐。",
+    "english": "Please come in and sit."
+  },
+  {
+    "word": "谢谢",
+    "chinese": "谢谢你的帮助！",
+    "english": "Thank you for your help!"
+  },
+  {
+    "word": "读",
+    "chinese": "我每天晚上读书。",
+    "english": "I read every evening."
+  },
+  {
+    "word": "让",
+    "chinese": "妈妈让我早点回家。",
+    "english": "Mom lets me come home early."
+  },
+  {
+    "word": "买",
+    "chinese": "我想买一本书。",
+    "english": "I want to buy a book."
+  },
+  {
+    "word": "卖",
+    "chinese": "这家店卖水果。",
+    "english": "This shop sells fruit."
+  },
+  {
+    "word": "走",
+    "chinese": "我们走路去学校。",
+    "english": "We walk to school."
+  },
+  {
+    "word": "起",
+    "chinese": "我每天六点起床。",
+    "english": "I get up at six every day."
+  },
+  {
+    "word": "跑",
+    "chinese": "他跑得真快！",
+    "english": "He runs really fast!"
+  },
+  {
+    "word": "路",
+    "chinese": "这条路很长。",
+    "english": "This road is very long."
+  },
+  {
+    "word": "跳舞",
+    "chinese": "她很喜欢跳舞。",
+    "english": "She likes dancing very much."
+  },
+  {
+    "word": "身体",
+    "chinese": "他的身体很好。",
+    "english": "His health is very good."
+  },
+  {
+    "word": "办法",
+    "chinese": "我有一个好办法。",
+    "english": "I have a good method."
+  },
+  {
+    "word": "这",
+    "chinese": "这是什么？",
+    "english": "What is this?"
+  },
+  {
+    "word": "进",
+    "chinese": "请进！",
+    "english": "Please come in!"
+  },
+  {
+    "word": "进去",
+    "chinese": "门开了，我们进去吧。",
+    "english": "The door is open, let's go in."
+  },
+  {
+    "word": "远",
+    "chinese": "学校离我家很远。",
+    "english": "The school is far from my home."
+  },
+  {
+    "word": "还",
+    "chinese": "他还在睡觉。",
+    "english": "He is still sleeping."
+  },
+  {
+    "word": "那",
+    "chinese": "那是我的车。",
+    "english": "That is my car."
+  },
+  {
+    "word": "那些",
+    "chinese": "那些书都是我的。",
+    "english": "Those books are all mine."
+  },
+  {
+    "word": "那样",
+    "chinese": "请不要那样说。",
+    "english": "Please don't say it like that."
+  },
+  {
+    "word": "里",
+    "chinese": "猫在房间里。",
+    "english": "The cat is in the room."
+  },
+  {
+    "word": "长",
+    "chinese": "她的头发很长。",
+    "english": "Her hair is very long."
+  },
+  {
+    "word": "门",
+    "chinese": "请关上门。",
+    "english": "Please close the door."
+  },
+  {
+    "word": "开",
+    "chinese": "窗户开着。",
+    "english": "The window is open."
+  },
+  {
+    "word": "关",
+    "chinese": "请关灯。",
+    "english": "Please turn off the light."
+  },
+  {
+    "word": "附近",
+    "chinese": "我家附近有一个公园。",
+    "english": "There is a park near my home."
+  },
+  {
+    "word": "离",
+    "chinese": "银行离这里不远。",
+    "english": "The bank is not far from here."
+  },
+  {
+    "word": "非常",
+    "chinese": "这个故事非常好。",
+    "english": "This story is very good."
+  },
+  {
+    "word": "面",
+    "chinese": "他的面前有一张桌子。",
+    "english": "There is a table in front of him."
+  },
+  {
+    "word": "头发",
+    "chinese": "她的头发是黑色的。",
+    "english": "Her hair is black."
+  },
+  {
+    "word": "高",
+    "chinese": "这个楼很高。",
+    "english": "This building is very tall."
+  },
+  {
+    "word": "高兴",
+    "chinese": "见到你很高兴。",
+    "english": "Nice to meet you."
+  },
+  {
+    "word": "点",
+    "chinese": "请给我一点水。",
+    "english": "Please give me a little water."
+  },
+  {
+    "word": "旧",
+    "chinese": "这是一件旧衣服。",
+    "english": "This is an old piece of clothing."
+  },
+  {
+    "word": "明",
+    "chinese": "今晚的月亮很明。",
+    "english": "The moon is very bright tonight."
+  },
+  {
+    "word": "钱包",
+    "chinese": "我的钱包不见了。",
+    "english": "My wallet is gone."
+  },
+  {
+    "word": "中文",
+    "chinese": "我在学中文。",
+    "english": "I am learning Chinese."
+  },
+  {
+    "word": "父",
+    "chinese": "他是三个孩子的父亲。",
+    "english": "He is the father of three children."
+  },
+  {
+    "word": "犹太人",
+    "chinese": "他是一个犹太人。",
+    "english": "He is a Jew."
+  },
+  {
+    "word": "不是",
+    "chinese": "这不是我的书。",
+    "english": "This is not my book."
+  },
+  {
+    "word": "在一起",
+    "chinese": "我们常常在一起吃饭。",
+    "english": "We often eat together."
+  },
+  {
+    "word": "一个人",
+    "chinese": "她一个人住。",
+    "english": "She lives alone."
+  },
+  {
+    "word": "西门",
+    "chinese": "我们在西门见面吧。",
+    "english": "Let's meet at the west gate."
+  },
+  {
+    "word": "那时候",
+    "chinese": "那时候我还很小。",
+    "english": "At that time I was still very young."
+  },
+  {
+    "word": "日",
+    "chinese": "今天是几月几日？",
+    "english": "What is the date today?"
+  },
+  {
+    "word": "十二",
+    "chinese": "现在是十二点。",
+    "english": "It is twelve o'clock now."
+  },
+  {
+    "word": "第二天",
+    "chinese": "第二天他就走了。",
+    "english": "The next day he left."
+  },
+  {
+    "word": "一定要",
+    "chinese": "你一定要来！",
+    "english": "You must come!"
+  },
+  {
+    "word": "过节",
+    "chinese": "我们回家过节。",
+    "english": "We go home to celebrate the festival."
+  },
+  {
+    "word": "后来",
+    "chinese": "后来他们成了朋友。",
+    "english": "Later they became friends."
+  },
+  {
+    "word": "只是",
+    "chinese": "我只是想帮你。",
+    "english": "I just want to help you."
+  },
+  {
+    "word": "那是",
+    "chinese": "那是很久以前的事了。",
+    "english": "That was a long time ago."
+  },
+  {
+    "word": "看错",
+    "chinese": "对不起，我看错了。",
+    "english": "Sorry, I saw it wrong."
+  },
+  {
+    "word": "走过",
+    "chinese": "他走过那条老街。",
+    "english": "He walked past that old street."
+  },
+  {
+    "word": "觉得",
+    "chinese": "我觉得这本书很好。",
+    "english": "I think this book is very good."
+  },
+  {
+    "word": "下去",
+    "chinese": "我们从山上走下去。",
+    "english": "We walk down from the mountain."
+  },
+  {
+    "word": "这不",
+    "chinese": "这不就是你的钱包吗？",
+    "english": "Isn't this your wallet?"
+  },
+  {
+    "word": "在世",
+    "chinese": "爷爷在世的时候很爱笑。",
+    "english": "When grandpa was alive, he loved to laugh."
+  },
+  {
+    "word": "大会",
+    "chinese": "明天公司有一个大会。",
+    "english": "The company has a big meeting tomorrow."
+  },
+  {
+    "word": "到现在",
+    "chinese": "到现在我还记得那天。",
+    "english": "Until now I still remember that day."
+  },
+  {
+    "word": "父爱",
+    "chinese": "父爱像山一样。",
+    "english": "A father's love is like a mountain."
+  },
+  {
+    "word": "不只",
+    "chinese": "他不只会说中文，还会写。",
+    "english": "He can not only speak Chinese, but also write it."
+  },
+  {
+    "word": "人中",
+    "chinese": "他是这些人中最高的。",
+    "english": "He is the tallest among these people."
+  },
+  {
+    "word": "对不对",
+    "chinese": "你是学生，对不对？",
+    "english": "You are a student, right?"
+  },
+  {
+    "word": "去死",
+    "chinese": "他生气地说：“去死吧！”",
+    "english": "He said angrily: \"Go die!\""
+  },
+  {
+    "word": "那时",
+    "chinese": "那时我们还不认识。",
+    "english": "At that time we didn't know each other yet."
+  },
+  {
+    "word": "穿上",
+    "chinese": "外面很冷，穿上外套吧。",
+    "english": "It's cold outside, put on your coat."
+  },
+  {
+    "word": "三次",
+    "chinese": "我去过三次那个城市。",
+    "english": "I have been to that city three times."
+  },
+  {
+    "word": "小羊",
+    "chinese": "小羊在草地上吃草。",
+    "english": "The lamb is eating grass on the grassland."
+  },
+  {
+    "word": "大节",
+    "chinese": "春节是中国的大节。",
+    "english": "Spring Festival is a major festival in China."
+  },
+  {
+    "word": "院子",
+    "chinese": "院子里有一棵大树。",
+    "english": "There is a big tree in the courtyard."
+  },
+  {
+    "word": "是不是",
+    "chinese": "你是不是累了？",
+    "english": "Are you tired or not?"
+  },
+  {
+    "word": "病人",
+    "chinese": "医生在看病人。",
+    "english": "The doctor is seeing a patient."
+  },
+  {
+    "word": "分",
+    "chinese": "现在是三点十分。",
+    "english": "It is ten past three now."
+  },
+  {
+    "word": "什么时候",
+    "chinese": "你什么时候回来？",
+    "english": "When will you come back?"
+  },
+  {
+    "word": "色",
+    "chinese": "我喜欢这个颜色。",
+    "english": "I like this color."
+  },
+  {
+    "word": "差不多",
+    "chinese": "我们差不多高。",
+    "english": "We are about the same height."
+  },
+  {
+    "word": "山上",
+    "chinese": "山上有很多树。",
+    "english": "There are many trees on the mountain."
+  },
+  {
+    "word": "全世界",
+    "chinese": "全世界的人都爱和平。",
+    "english": "People all over the world love peace."
+  },
+  {
+    "word": "流出",
+    "chinese": "水从山里流出来。",
+    "english": "Water flows out from the mountain."
+  },
+  {
+    "word": "第二次",
+    "chinese": "这是我第二次来北京。",
+    "english": "This is my second time in Beijing."
+  },
+  {
+    "word": "擦",
+    "chinese": "请擦一下桌子。",
+    "english": "Please wipe the table."
+  },
+  {
+    "word": "想见",
+    "chinese": "我很想见你。",
+    "english": "I really want to see you."
+  },
+  {
+    "word": "驴",
+    "chinese": "驴在路上慢慢走。",
+    "english": "The donkey walks slowly on the road."
+  },
+  {
+    "word": "十五",
+    "chinese": "她今年十五岁。",
+    "english": "She is fifteen years old this year."
+  },
+  {
+    "word": "十七",
+    "chinese": "我哥哥今年十七岁。",
+    "english": "My older brother is seventeen this year."
+  },
+  {
+    "word": "十九",
+    "chinese": "他十九岁上大学。",
+    "english": "He went to university at nineteen."
+  },
+  {
+    "word": "石",
+    "chinese": "路边有一块大石头。",
+    "english": "There is a big stone by the road."
+  },
+  {
+    "word": "在后",
+    "chinese": "他走在前，我走在后。",
+    "english": "He walks in front, I walk behind."
+  },
+  {
+    "word": "关掉",
+    "chinese": "睡觉前请关掉电视。",
+    "english": "Please turn off the TV before sleeping."
+  },
+  {
+    "word": "不太好",
+    "chinese": "他今天身体不太好。",
+    "english": "He is not feeling very well today."
+  },
+  {
+    "word": "买卖",
+    "chinese": "他家做小买卖。",
+    "english": "His family runs a small business."
+  },
+  {
+    "word": "再生",
+    "chinese": "纸可以再生使用。",
+    "english": "Paper can be recycled and used again."
+  },
+  {
+    "word": "买东西",
+    "chinese": "妈妈去商店买东西了。",
+    "english": "Mom went to the store to buy things."
+  },
+  {
+    "word": "流",
+    "chinese": "河水慢慢地流。",
+    "english": "The river water flows slowly."
+  },
+  {
+    "word": "工钱",
+    "chinese": "他今天拿到了工钱。",
+    "english": "He got his wages today."
+  },
+  {
+    "word": "人马",
+    "chinese": "老板带着他的人马来了。",
+    "english": "The boss came with his team."
+  },
+  {
+    "word": "全",
+    "chinese": "全家人都在家。",
+    "english": "The whole family is at home."
+  },
+  {
+    "word": "这位",
+    "chinese": "这位是我的老师。",
+    "english": "This is my teacher."
+  },
+  {
+    "word": "节",
+    "chinese": "春节是最大的节。",
+    "english": "Spring Festival is the biggest festival."
+  },
+  {
+    "word": "间",
+    "chinese": "我们家有三间房。",
+    "english": "Our home has three rooms."
+  },
+  {
+    "word": "不了",
+    "chinese": "太多了，我吃不了。",
+    "english": "It's too much, I can't eat it all."
+  },
+  {
+    "word": "医",
+    "chinese": "他学医五年了。",
+    "english": "He has studied medicine for five years."
+  },
+  {
+    "word": "不可以",
+    "chinese": "这里不可以说话。",
+    "english": "You cannot talk here."
+  },
+  {
+    "word": "管理",
+    "chinese": "他管理这家商店。",
+    "english": "He manages this store."
+  },
+  {
+    "word": "真神",
+    "chinese": "他们说那是真神。",
+    "english": "They say that is the true god."
+  },
+  {
+    "word": "一说",
+    "chinese": "他一说，大家都笑了。",
+    "english": "As soon as he spoke, everyone laughed."
+  },
+  {
+    "word": "拔",
+    "chinese": "医生帮我拔了一颗牙。",
+    "english": "The doctor pulled out one of my teeth."
+  },
+  {
+    "word": "门外",
+    "chinese": "有人站在门外。",
+    "english": "Someone is standing outside the door."
+  },
+  {
+    "word": "要不是",
+    "chinese": "要不是你帮我，我就输了。",
+    "english": "If it weren't for your help, I would have lost."
+  },
+  {
+    "word": "离岸",
+    "chinese": "船慢慢离岸了。",
+    "english": "The boat slowly left the shore."
+  },
+  {
+    "word": "万",
+    "chinese": "这个城市有一百万人。",
+    "english": "This city has one million people."
+  },
+  {
+    "word": "和",
+    "chinese": "我和他是朋友。",
+    "english": "He and I are friends."
+  },
+  {
+    "word": "还是",
+    "chinese": "你喝茶还是咖啡？",
+    "english": "Do you drink tea or coffee?"
+  },
+  {
+    "word": "就",
+    "chinese": "我马上就来。",
+    "english": "I will come right away."
+  },
+  {
+    "word": "都",
+    "chinese": "我们都喜欢这本书。",
+    "english": "We all like this book."
+  },
+  {
+    "word": "可是",
+    "chinese": "我想去，可是没有时间。",
+    "english": "I want to go, but I don't have time."
+  },
+  {
+    "word": "没有",
+    "chinese": "我没有钱了。",
+    "english": "I don't have money anymore."
+  },
+  {
+    "word": "不能",
+    "chinese": "你不能在这里游泳。",
+    "english": "You cannot swim here."
+  },
+  {
+    "word": "时候",
+    "chinese": "你什么时候吃饭？",
+    "english": "When do you eat?"
+  },
+  {
+    "word": "一直",
+    "chinese": "他一直在等你。",
+    "english": "He has been waiting for you all along."
+  },
+  {
+    "word": "总是",
+    "chinese": "她总是很早起床。",
+    "english": "She always gets up early."
+  },
+  {
+    "word": "常常",
+    "chinese": "我常常去那个公园。",
+    "english": "I often go to that park."
+  },
+  {
+    "word": "慢慢",
+    "chinese": "请慢慢说。",
+    "english": "Please speak slowly."
+  },
+  {
+    "word": "快",
+    "chinese": "快一点，我们要晚了！",
+    "english": "Hurry up, we are going to be late!"
+  },
+  {
+    "word": "之后",
+    "chinese": "吃饭之后我们去走走。",
+    "english": "After eating we will go for a walk."
+  },
+  {
+    "word": "谁",
+    "chinese": "门外是谁？",
+    "english": "Who is outside the door?"
+  },
+  {
+    "word": "哪个",
+    "chinese": "你喜欢哪个颜色？",
+    "english": "Which color do you like?"
+  },
+  {
+    "word": "多少",
+    "chinese": "这本书多少钱？",
+    "english": "How much is this book?"
+  },
+  {
+    "word": "几乎",
+    "chinese": "我几乎忘了这件事。",
+    "english": "I almost forgot about this."
+  },
+  {
+    "word": "不要",
+    "chinese": "不要在路上玩！",
+    "english": "Don't play on the road!"
+  },
+  {
+    "word": "不会",
+    "chinese": "我不会游泳。",
+    "english": "I cannot swim."
+  },
+  {
+    "word": "不用",
+    "chinese": "不用谢，这是小事。",
+    "english": "No need to thank me, it's a small thing."
+  },
+  {
+    "word": "另外",
+    "chinese": "另外，我还有一个问题。",
+    "english": "In addition, I have another question."
+  },
+  {
+    "word": "记得",
+    "chinese": "你还记得我吗？",
+    "english": "Do you still remember me?"
+  },
+  {
+    "word": "收",
+    "chinese": "我收到了你的信。",
+    "english": "I received your letter."
+  },
+  {
+    "word": "拿",
+    "chinese": "请帮我拿一下这个包。",
+    "english": "Please help me hold this bag."
+  },
+  {
+    "word": "相信",
+    "chinese": "我相信你能做到。",
+    "english": "I believe you can do it."
+  },
+  {
+    "word": "忘记",
+    "chinese": "我忘记带钥匙了。",
+    "english": "I forgot to bring my keys."
+  },
+  {
+    "word": "决定",
+    "chinese": "我决定明天出发。",
+    "english": "I decided to leave tomorrow."
+  },
+  {
+    "word": "接受",
+    "chinese": "他接受了我的帮助。",
+    "english": "He accepted my help."
+  },
+  {
+    "word": "麻烦",
+    "chinese": "麻烦你帮我开门。",
+    "english": "May I trouble you to open the door for me?"
+  },
+  {
+    "word": "希望",
+    "chinese": "我希望明天天气好。",
+    "english": "I hope the weather is good tomorrow."
+  },
+  {
+    "word": "问题",
+    "chinese": "我有一个问题。",
+    "english": "I have a question."
+  },
+  {
+    "word": "悲伤",
+    "chinese": "这是一个悲伤的故事。",
+    "english": "This is a sad story."
+  },
+  {
+    "word": "开心",
+    "chinese": "今天玩得很开心。",
+    "english": "I had a lot of fun today."
+  },
+  {
+    "word": "职业",
+    "chinese": "你的职业是什么？",
+    "english": "What is your profession?"
+  },
+  {
+    "word": "木头",
+    "chinese": "这把椅子是木头做的。",
+    "english": "This chair is made of wood."
+  },
+  {
+    "word": "游戏",
+    "chinese": "孩子们在玩游戏。",
+    "english": "The children are playing a game."
+  },
+  {
+    "word": "电脑",
+    "chinese": "我的电脑坏了。",
+    "english": "My computer is broken."
+  },
+  {
+    "word": "城市",
+    "chinese": "这个城市很大。",
+    "english": "This city is very big."
+  },
+  {
+    "word": "商店",
+    "chinese": "商店九点开门。",
+    "english": "The store opens at nine."
+  },
+  {
+    "word": "生病",
+    "chinese": "他生病了，不能来。",
+    "english": "He is sick and cannot come."
+  },
+  {
+    "word": "男人",
+    "chinese": "那个男人是我爸爸。",
+    "english": "That man is my father."
+  },
+  {
+    "word": "女人",
+    "chinese": "那个女人是他妈妈。",
+    "english": "That woman is his mother."
+  },
+  {
+    "word": "大人",
+    "chinese": "这本书是给大人看的。",
+    "english": "This book is for adults."
+  },
+  {
+    "word": "老人",
+    "chinese": "那位老人天天来公园。",
+    "english": "That old man comes to the park every day."
+  },
+  {
+    "word": "父亲",
+    "chinese": "我父亲是医生。",
+    "english": "My father is a doctor."
+  },
+  {
+    "word": "母亲",
+    "chinese": "母亲每天很早起床。",
+    "english": "Mother gets up very early every day."
+  },
+  {
+    "word": "奶奶",
+    "chinese": "奶奶给我讲故事。",
+    "english": "Grandma tells me stories."
+  },
+  {
+    "word": "爷爷",
+    "chinese": "爷爷喜欢喝茶。",
+    "english": "Grandpa likes drinking tea."
+  },
+  {
+    "word": "哥哥",
+    "chinese": "我哥哥在大学学习。",
+    "english": "My older brother studies at university."
+  },
+  {
+    "word": "妹妹",
+    "chinese": "妹妹今年八岁。",
+    "english": "My younger sister is eight this year."
+  },
+  {
+    "word": "姐姐",
+    "chinese": "姐姐在公司工作。",
+    "english": "My older sister works at a company."
+  },
+  {
+    "word": "同学",
+    "chinese": "他是我的老同学。",
+    "english": "He is my old classmate."
+  },
+  {
+    "word": "医生",
+    "chinese": "医生说我很健康。",
+    "english": "The doctor said I am very healthy."
+  },
+  {
+    "word": "教官",
+    "chinese": "教官教我们新动作。",
+    "english": "The instructor teaches us new moves."
+  },
+  {
+    "word": "特别",
+    "chinese": "今天是特别的一天。",
+    "english": "Today is a special day."
+  },
+  {
+    "word": "安静",
+    "chinese": "图书馆里很安静。",
+    "english": "It is very quiet in the library."
+  },
+  {
+    "word": "便宜",
+    "chinese": "这里的水果很便宜。",
+    "english": "The fruit here is very cheap."
+  },
+  {
+    "word": "干",
+    "chinese": "你在干什么？",
+    "english": "What are you doing?"
+  },
+  {
+    "word": "下午",
+    "chinese": "下午我们去公园吧。",
+    "english": "Let's go to the park in the afternoon."
+  },
+  {
+    "word": "低",
+    "chinese": "他低着头走路。",
+    "english": "He walks with his head down."
+  },
+  {
+    "word": "近",
+    "chinese": "我家离学校很近。",
+    "english": "My home is very close to school."
+  },
+  {
+    "word": "一块",
+    "chinese": "我们一块去吃饭吧。",
+    "english": "Let's go eat together."
+  },
+  {
+    "word": "一眼",
+    "chinese": "我一眼就看见他了。",
+    "english": "I saw him at first glance."
+  },
+  {
+    "word": "一种",
+    "chinese": "这是一种新水果。",
+    "english": "This is a new kind of fruit."
+  },
+  {
+    "word": "上帝",
+    "chinese": "他每天向上帝祈祷。",
+    "english": "He prays to God every day."
+  },
+  {
+    "word": "与",
+    "chinese": "我与他是老朋友。",
+    "english": "He and I are old friends."
+  },
+  {
+    "word": "久",
+    "chinese": "好久不见！",
+    "english": "Long time no see!"
+  },
+  {
+    "word": "人会",
+    "chinese": "有的人会说三种外语。",
+    "english": "Some people can speak three foreign languages."
+  },
+  {
+    "word": "他们",
+    "chinese": "他们是我的同学。",
+    "english": "They are my classmates."
+  },
+  {
+    "word": "价格",
+    "chinese": "这个价格太高了。",
+    "english": "This price is too high."
+  },
+  {
+    "word": "作品",
+    "chinese": "这是他最好的作品。",
+    "english": "This is his best work."
+  },
+  {
+    "word": "几个",
+    "chinese": "我买了几个苹果。",
+    "english": "I bought a few apples."
+  },
+  {
+    "word": "出",
+    "chinese": "他出门了。",
+    "english": "He went out."
+  },
+  {
+    "word": "别人",
+    "chinese": "不要拿别人的东西。",
+    "english": "Don't take other people's things."
+  },
+  {
+    "word": "前",
+    "chinese": "饭前要洗手。",
+    "english": "Wash your hands before meals."
+  },
+  {
+    "word": "动作",
+    "chinese": "这个动作很难。",
+    "english": "This movement is very difficult."
+  },
+  {
+    "word": "北京",
+    "chinese": "北京是中国的首都。",
+    "english": "Beijing is the capital of China."
+  },
+  {
+    "word": "吟游",
+    "chinese": "吟游诗人在唱歌。",
+    "english": "The bard is singing."
+  },
+  {
+    "word": "听见",
+    "chinese": "我听见有人叫我。",
+    "english": "I heard someone calling me."
+  },
+  {
+    "word": "哪",
+    "chinese": "你住在哪？",
+    "english": "Where do you live?"
+  },
+  {
+    "word": "外语",
+    "chinese": "她会说两种外语。",
+    "english": "She can speak two foreign languages."
+  },
+  {
+    "word": "大声",
+    "chinese": "请大声读这个句子。",
+    "english": "Please read this sentence loudly."
+  },
+  {
+    "word": "完",
+    "chinese": "我写完作业了。",
+    "english": "I finished writing my homework."
+  },
+  {
+    "word": "完成",
+    "chinese": "他完成了这个任务。",
+    "english": "He completed this task."
+  },
+  {
+    "word": "客人",
+    "chinese": "家里来了三位客人。",
+    "english": "Three guests came to our home."
+  },
+  {
+    "word": "尼哥",
+    "chinese": "尼哥是他的老朋友。",
+    "english": "Nige is his old friend."
+  },
+  {
+    "word": "帮忙",
+    "chinese": "你能帮忙拿一下吗？",
+    "english": "Can you help carry this?"
+  },
+  {
+    "word": "常",
+    "chinese": "他常来我家玩。",
+    "english": "He often comes to my home to hang out."
+  },
+  {
+    "word": "底母",
+    "chinese": "底母是一个好人。",
+    "english": "Dimu is a good person."
+  },
+  {
+    "word": "心里",
+    "chinese": "我心里很高兴。",
+    "english": "I feel very happy in my heart."
+  },
+  {
+    "word": "怎么样",
+    "chinese": "你最近怎么样？",
+    "english": "How have you been recently?"
+  },
+  {
+    "word": "慢慢地",
+    "chinese": "老人慢慢地走过来。",
+    "english": "The old man slowly walked over."
+  },
+  {
+    "word": "才",
+    "chinese": "他十点才起床。",
+    "english": "He didn't get up until ten."
+  },
+  {
+    "word": "打篮球",
+    "chinese": "我们下午去打篮球。",
+    "english": "We are going to play basketball in the afternoon."
+  },
+  {
+    "word": "放",
+    "chinese": "把书放在桌子上。",
+    "english": "Put the book on the table."
+  },
+  {
+    "word": "放在",
+    "chinese": "钥匙放在门边。",
+    "english": "The keys are placed by the door."
+  },
+  {
+    "word": "早",
+    "chinese": "今天我起得很早。",
+    "english": "I got up very early today."
+  },
+  {
+    "word": "有人",
+    "chinese": "有人在门外等你。",
+    "english": "Someone is waiting for you outside."
+  },
+  {
+    "word": "杂草",
+    "chinese": "花园里长了很多杂草。",
+    "english": "Many weeds grew in the garden."
+  },
+  {
+    "word": "生",
+    "chinese": "她生了一个女儿。",
+    "english": "She gave birth to a daughter."
+  },
+  {
+    "word": "真对不起",
+    "chinese": "真对不起，我忘了。",
+    "english": "I'm really sorry, I forgot."
+  },
+  {
+    "word": "眼",
+    "chinese": "他看了我一眼。",
+    "english": "He gave me a glance."
+  },
+  {
+    "word": "笑脸",
+    "chinese": "孩子的笑脸真可爱。",
+    "english": "The child's smiling face is really cute."
+  },
+  {
+    "word": "第一",
+    "chinese": "他是班里的第一名。",
+    "english": "He is number one in the class."
+  },
+  {
+    "word": "第一课",
+    "chinese": "今天我们学第一课。",
+    "english": "Today we study the first lesson."
+  },
+  {
+    "word": "认真",
+    "chinese": "她学习很认真。",
+    "english": "She studies very seriously."
+  },
+  {
+    "word": "诗人",
+    "chinese": "李白是有名的诗人。",
+    "english": "Li Bai is a famous poet."
+  },
+  {
+    "word": "说",
+    "chinese": "请再说一次。",
+    "english": "Please say it again."
+  },
+  {
+    "word": "请问",
+    "chinese": "请问，车站在哪里？",
+    "english": "Excuse me, where is the station?"
+  },
+  {
+    "word": "课",
+    "chinese": "今天有三节课。",
+    "english": "There are three lessons today."
+  },
+  {
+    "word": "过来",
+    "chinese": "请你过来一下。",
+    "english": "Please come over here."
+  },
+  {
+    "word": "这个",
+    "chinese": "这个多少钱？",
+    "english": "How much is this one?"
+  },
+  {
+    "word": "这家",
+    "chinese": "这家店的面包很好吃。",
+    "english": "The bread at this shop is delicious."
+  },
+  {
+    "word": "这时候",
+    "chinese": "这时候他回来了。",
+    "english": "At this moment he came back."
+  },
+  {
+    "word": "这种",
+    "chinese": "我喜欢这种茶。",
+    "english": "I like this kind of tea."
+  },
+  {
+    "word": "那个",
+    "chinese": "那个人是谁？",
+    "english": "Who is that person?"
+  },
+  {
+    "word": "那么",
+    "chinese": "你为什么那么高兴？",
+    "english": "Why are you so happy?"
+  },
+  {
+    "word": "那天",
+    "chinese": "那天下了大雨。",
+    "english": "It rained heavily that day."
+  },
+  {
+    "word": "重要",
+    "chinese": "这是一件重要的事。",
+    "english": "This is an important matter."
+  },
+  {
+    "word": "钱",
+    "chinese": "我带的钱不够。",
+    "english": "I didn't bring enough money."
+  },
+  {
+    "word": "银行",
+    "chinese": "我去银行取钱。",
+    "english": "I am going to the bank to withdraw money."
+  },
+  {
+    "word": "难",
+    "chinese": "这个问题太难了。",
+    "english": "This question is too difficult."
+  },
+  {
+    "word": "难过",
+    "chinese": "听到这个消息我很难过。",
+    "english": "I was very sad to hear this news."
+  },
+  {
+    "word": "其实",
+    "chinese": "其实我早就知道了。",
+    "english": "Actually, I knew it long ago."
+  },
+  {
+    "word": "立刻",
+    "chinese": "他立刻站了起来。",
+    "english": "He stood up at once."
+  },
+  {
+    "word": "突然",
+    "chinese": "天突然下起雨来。",
+    "english": "It suddenly started to rain."
+  },
+  {
+    "word": "刚刚",
+    "chinese": "他刚刚出去了。",
+    "english": "He just went out."
+  },
+  {
+    "word": "原来",
+    "chinese": "原来是你啊！",
+    "english": "So it was you!"
+  },
+  {
+    "word": "之前",
+    "chinese": "睡觉之前我会读书。",
+    "english": "I read before going to sleep."
+  },
+  {
+    "word": "所有",
+    "chinese": "所有的人都来了。",
+    "english": "All the people came."
+  },
+  {
+    "word": "任何",
+    "chinese": "我没有任何问题。",
+    "english": "I don't have any questions."
+  },
+  {
+    "word": "因此",
+    "chinese": "他病了，因此没来上课。",
+    "english": "He was sick, so he didn't come to class."
+  },
+  {
+    "word": "虽然",
+    "chinese": "虽然很累，我还是很开心。",
+    "english": "Although I am tired, I am still happy."
+  },
+  {
+    "word": "而且",
+    "chinese": "这本书很好，而且不贵。",
+    "english": "This book is good, and it's not expensive."
+  },
+  {
+    "word": "于是",
+    "chinese": "天黑了，于是我们回家了。",
+    "english": "It got dark, so we went home."
+  },
+  {
+    "word": "被",
+    "chinese": "我的杯子被他打破了。",
+    "english": "My cup was broken by him."
+  },
+  {
+    "word": "通过",
+    "chinese": "我通过朋友认识了他。",
+    "english": "I got to know him through a friend."
+  },
+  {
+    "word": "按照",
+    "chinese": "请按照老师说的做。",
+    "english": "Please do as the teacher says."
+  },
+  {
+    "word": "直到",
+    "chinese": "他等到很晚，直到我回来。",
+    "english": "He waited until late, until I came back."
+  },
+  {
+    "word": "除了",
+    "chinese": "除了他，大家都来了。",
+    "english": "Everyone came except him."
+  },
+  {
+    "word": "即使",
+    "chinese": "即使下雨，我也要去。",
+    "english": "Even if it rains, I will still go."
+  },
+  {
+    "word": "曾经",
+    "chinese": "我曾经住在北京。",
+    "english": "I once lived in Beijing."
+  },
+  {
+    "word": "仍然",
+    "chinese": "他仍然在等你。",
+    "english": "He is still waiting for you."
+  },
+  {
+    "word": "一切",
+    "chinese": "一切都会好的。",
+    "english": "Everything will be fine."
+  },
+  {
+    "word": "同时",
+    "chinese": "他们同时到了。",
+    "english": "They arrived at the same time."
+  },
+  {
+    "word": "照顾",
+    "chinese": "她在家照顾孩子。",
+    "english": "She takes care of the children at home."
+  },
+  {
+    "word": "愣",
+    "chinese": "他愣了一下，然后笑了。",
+    "english": "He froze for a moment, then smiled."
+  },
+  {
+    "word": "松一口气",
+    "chinese": "听到好消息，我松了一口气。",
+    "english": "Hearing the good news, I felt relieved."
+  },
+  {
+    "word": "擦伤",
+    "chinese": "他的手擦伤了。",
+    "english": "His hand got scraped."
+  },
+  {
+    "word": "逞强",
+    "chinese": "你累了就休息，别逞强。",
+    "english": "Rest if you are tired, don't act tough."
+  },
+  {
+    "word": "包扎",
+    "chinese": "护士帮他包扎伤口。",
+    "english": "The nurse bandaged his wound."
+  },
+  {
+    "word": "重复",
+    "chinese": "请重复一遍这个句子。",
+    "english": "Please repeat this sentence."
+  },
+  {
+    "word": "提醒",
+    "chinese": "请提醒我明天开会。",
+    "english": "Please remind me about the meeting tomorrow."
+  },
+  {
+    "word": "开口",
+    "chinese": "他想说话，但是没有开口。",
+    "english": "He wanted to speak, but didn't open his mouth."
+  },
+  {
+    "word": "浪费",
+    "chinese": "不要浪费时间。",
+    "english": "Don't waste time."
+  },
+  {
+    "word": "提到",
+    "chinese": "他提到了你的名字。",
+    "english": "He mentioned your name."
+  },
+  {
+    "word": "记下",
+    "chinese": "请记下我的电话。",
+    "english": "Please write down my phone number."
+  },
+  {
+    "word": "选择",
+    "chinese": "你可以自己选择。",
+    "english": "You can choose for yourself."
+  },
+  {
+    "word": "珍惜",
+    "chinese": "要珍惜和家人的时间。",
+    "english": "Treasure the time with your family."
+  },
+  {
+    "word": "重新",
+    "chinese": "我们重新开始吧。",
+    "english": "Let's start over."
+  },
+  {
+    "word": "取笑",
+    "chinese": "不要取笑别人。",
+    "english": "Don't mock other people."
+  },
+  {
+    "word": "降",
+    "chinese": "晚上温度会降下来。",
+    "english": "The temperature will drop at night."
+  },
+  {
+    "word": "摆着",
+    "chinese": "桌上摆着一杯茶。",
+    "english": "A cup of tea is placed on the table."
+  },
+  {
+    "word": "开玩笑",
+    "chinese": "别生气，我在开玩笑。",
+    "english": "Don't be angry, I'm joking."
+  },
+  {
+    "word": "解释",
+    "chinese": "请解释一下这个词。",
+    "english": "Please explain this word."
+  },
+  {
+    "word": "观察",
+    "chinese": "他在观察小鸟。",
+    "english": "He is observing the birds."
+  },
+  {
+    "word": "回头",
+    "chinese": "他回头看了我一眼。",
+    "english": "He turned his head and glanced at me."
+  },
+  {
+    "word": "信",
+    "chinese": "我信你说的话。",
+    "english": "I trust what you said."
+  },
+  {
+    "word": "照样",
+    "chinese": "下雨了，他照样去跑步。",
+    "english": "It rained, but he went running all the same."
+  },
+  {
+    "word": "发抖",
+    "chinese": "他冷得发抖。",
+    "english": "He was shaking from the cold."
+  },
+  {
+    "word": "撑",
+    "chinese": "他累了，但还在撑着。",
+    "english": "He is tired, but still pushing through."
+  },
+  {
+    "word": "停住",
+    "chinese": "车在门口停住了。",
+    "english": "The car stopped at the door."
+  },
+  {
+    "word": "舍得",
+    "chinese": "你舍得卖掉这本书吗？",
+    "english": "Are you willing to part with this book and sell it?"
+  },
+  {
+    "word": "碰",
+    "chinese": "请不要碰这个杯子。",
+    "english": "Please don't touch this cup."
+  },
+  {
+    "word": "随手",
+    "chinese": "他随手关上了门。",
+    "english": "He closed the door on his way without thinking."
+  },
+  {
+    "word": "评价",
+    "chinese": "大家对他的评价很好。",
+    "english": "Everyone's evaluation of him is very good."
+  },
+  {
+    "word": "刺",
+    "chinese": "小心，花上有刺。",
+    "english": "Careful, the flower has thorns."
+  },
+  {
+    "word": "着急",
+    "chinese": "别着急，慢慢来。",
+    "english": "Don't be anxious, take your time."
+  },
+  {
+    "word": "提前",
+    "chinese": "请提前十分钟到。",
+    "english": "Please arrive ten minutes in advance."
+  },
+  {
+    "word": "留",
+    "chinese": "他给我留了一张字条。",
+    "english": "He left me a note."
+  },
+  {
+    "word": "负责",
+    "chinese": "我负责这个项目。",
+    "english": "I am responsible for this project."
+  },
+  {
+    "word": "认",
+    "chinese": "他认了自己的错。",
+    "english": "He acknowledged his mistake."
+  },
+  {
+    "word": "传开",
+    "chinese": "这个消息很快传开了。",
+    "english": "The news spread quickly."
+  },
+  {
+    "word": "练习",
+    "chinese": "我每天练习写字。",
+    "english": "I practice writing every day."
+  },
+  {
+    "word": "进入",
+    "chinese": "他们进入了房间。",
+    "english": "They entered the room."
+  },
+  {
+    "word": "关上",
+    "chinese": "请把窗户关上。",
+    "english": "Please close the window."
+  },
+  {
+    "word": "保护",
+    "chinese": "我们要保护小动物。",
+    "english": "We should protect small animals."
+  },
+  {
+    "word": "拒绝",
+    "chinese": "他拒绝了我的帮助。",
+    "english": "He refused my help."
+  },
+  {
+    "word": "结束",
+    "chinese": "电影十点结束。",
+    "english": "The movie ends at ten."
+  },
+  {
+    "word": "等待",
+    "chinese": "我们在门口等待他。",
+    "english": "We are waiting for him at the door."
+  },
+  {
+    "word": "继续",
+    "chinese": "请继续说下去。",
+    "english": "Please continue speaking."
+  },
+  {
+    "word": "舍不得",
+    "chinese": "我舍不得离开这里。",
+    "english": "I am reluctant to leave this place."
+  },
+  {
+    "word": "运气",
+    "chinese": "今天我的运气很好。",
+    "english": "My luck is very good today."
+  },
+  {
+    "word": "稳",
+    "chinese": "他走得很稳。",
+    "english": "He walks very steadily."
+  },
+  {
+    "word": "合适",
+    "chinese": "这件衣服很合适。",
+    "english": "This piece of clothing fits well."
+  },
+  {
+    "word": "清楚",
+    "chinese": "我听得很清楚。",
+    "english": "I heard it very clearly."
+  },
+  {
+    "word": "耐心",
+    "chinese": "老师对学生很有耐心。",
+    "english": "The teacher is very patient with students."
+  },
+  {
+    "word": "长远",
+    "chinese": "要为长远想一想。",
+    "english": "Think about the long term."
+  },
+  {
+    "word": "笑话",
+    "chinese": "他讲了一个笑话。",
+    "english": "He told a joke."
+  },
+  {
+    "word": "满意",
+    "chinese": "我对结果很满意。",
+    "english": "I am very satisfied with the result."
+  },
+  {
+    "word": "值得",
+    "chinese": "这本书值得一读。",
+    "english": "This book is worth reading."
+  },
+  {
+    "word": "僵",
+    "chinese": "他的手冻僵了。",
+    "english": "His hands were frozen stiff."
+  },
+  {
+    "word": "自然",
+    "chinese": "她笑得很自然。",
+    "english": "Her smile is very natural."
+  },
+  {
+    "word": "硬",
+    "chinese": "这块面包太硬了。",
+    "english": "This bread is too hard."
+  },
+  {
+    "word": "后悔",
+    "chinese": "我后悔没有早点来。",
+    "english": "I regret not coming earlier."
+  },
+  {
+    "word": "看轻",
+    "chinese": "不要看轻自己。",
+    "english": "Don't undervalue yourself."
+  },
+  {
+    "word": "珍贵",
+    "chinese": "时间是最珍贵的。",
+    "english": "Time is the most precious thing."
+  },
+  {
+    "word": "专心",
+    "chinese": "上课要专心听讲。",
+    "english": "Concentrate in class."
+  },
+  {
+    "word": "机会",
+    "chinese": "这是一个好机会。",
+    "english": "This is a good chance."
+  },
+  {
+    "word": "答案",
+    "chinese": "你知道答案吗？",
+    "english": "Do you know the answer?"
+  },
+  {
+    "word": "真相",
+    "chinese": "我们想知道真相。",
+    "english": "We want to know the truth."
+  },
+  {
+    "word": "秘密",
+    "chinese": "这是我们的秘密。",
+    "english": "This is our secret."
+  },
+  {
+    "word": "记忆",
+    "chinese": "这是我最美的记忆。",
+    "english": "This is my most beautiful memory."
+  },
+  {
+    "word": "约定",
+    "chinese": "我们有一个约定。",
+    "english": "We have a promise."
+  },
+  {
+    "word": "命运",
+    "chinese": "他相信命运。",
+    "english": "He believes in fate."
+  },
+  {
+    "word": "价值",
+    "chinese": "这幅画很有价值。",
+    "english": "This painting is very valuable."
+  },
+  {
+    "word": "恨",
+    "chinese": "不要恨任何人。",
+    "english": "Don't hate anyone."
+  },
+  {
+    "word": "痛苦",
+    "chinese": "他的心里很痛苦。",
+    "english": "He feels great pain in his heart."
+  },
+  {
+    "word": "失望",
+    "chinese": "别让妈妈失望。",
+    "english": "Don't let mom down."
+  },
+  {
+    "word": "勇气",
+    "chinese": "说真话需要勇气。",
+    "english": "Telling the truth takes courage."
+  },
+  {
+    "word": "荣耀",
+    "chinese": "这是全家的荣耀。",
+    "english": "This is the whole family's glory."
+  },
+  {
+    "word": "危险",
+    "chinese": "这条路很危险。",
+    "english": "This road is very dangerous."
+  },
+  {
+    "word": "紧张",
+    "chinese": "考试前我很紧张。",
+    "english": "I am very nervous before exams."
+  },
+  {
+    "word": "惊讶",
+    "chinese": "听到这个消息，大家都很惊讶。",
+    "english": "Everyone was amazed to hear the news."
+  },
+  {
+    "word": "害羞",
+    "chinese": "她见到新朋友会害羞。",
+    "english": "She gets shy when meeting new friends."
+  },
+  {
+    "word": "冷静",
+    "chinese": "遇到问题要冷静。",
+    "english": "Stay calm when facing problems."
+  },
+  {
+    "word": "坚定",
+    "chinese": "他的声音很坚定。",
+    "english": "His voice is very firm."
+  },
+  {
+    "word": "平静",
+    "chinese": "湖水很平静。",
+    "english": "The lake water is very tranquil."
+  },
+  {
+    "word": "混乱",
+    "chinese": "房间里一片混乱。",
+    "english": "The room is in complete chaos."
+  },
+  {
+    "word": "压力",
+    "chinese": "他的工作压力很大。",
+    "english": "His work pressure is very high."
+  },
+  {
+    "word": "摊位",
+    "chinese": "市场里有很多摊位。",
+    "english": "There are many booths in the market."
+  },
+  {
+    "word": "账号",
+    "chinese": "我忘了我的账号。",
+    "english": "I forgot my account."
+  },
+  {
+    "word": "玩家",
+    "chinese": "这个游戏有很多玩家。",
+    "english": "This game has many players."
+  },
+  {
+    "word": "新手",
+    "chinese": "我是一个新手，请多帮助。",
+    "english": "I am a novice, please help me."
+  },
+  {
+    "word": "高手",
+    "chinese": "他是游戏里的高手。",
+    "english": "He is an expert in the game."
+  },
+  {
+    "word": "等级",
+    "chinese": "他的等级很高。",
+    "english": "His rank is very high."
+  },
+  {
+    "word": "经验",
+    "chinese": "打怪可以得到经验。",
+    "english": "Fighting monsters gives you experience points."
+  },
+  {
+    "word": "技能",
+    "chinese": "他学会了一个新技能。",
+    "english": "He learned a new skill."
+  },
+  {
+    "word": "任务",
+    "chinese": "我完成了今天的任务。",
+    "english": "I completed today's mission."
+  },
+  {
+    "word": "奖励",
+    "chinese": "完成任务有奖励。",
+    "english": "There is a reward for completing the mission."
+  },
+  {
+    "word": "金币",
+    "chinese": "他有一百个金币。",
+    "english": "He has one hundred gold coins."
+  },
+  {
+    "word": "银币",
+    "chinese": "这把剑要十个银币。",
+    "english": "This sword costs ten silver coins."
+  },
+  {
+    "word": "铜币",
+    "chinese": "面包只要两个铜币。",
+    "english": "The bread costs only two copper coins."
+  },
+  {
+    "word": "债",
+    "chinese": "他终于还完了债。",
+    "english": "He finally paid off his debt."
+  },
+  {
+    "word": "利息",
+    "chinese": "银行会给你利息。",
+    "english": "The bank will give you interest."
+  },
+  {
+    "word": "生意",
+    "chinese": "他家的生意很好。",
+    "english": "His family's business is doing well."
+  },
+  {
+    "word": "工资",
+    "chinese": "他每月的工资不高。",
+    "english": "His monthly wages are not high."
+  },
+  {
+    "word": "机器",
+    "chinese": "这台机器坏了。",
+    "english": "This machine is broken."
+  },
+  {
+    "word": "胶囊",
+    "chinese": "每天吃一粒胶囊。",
+    "english": "Take one capsule every day."
+  },
+  {
+    "word": "王国",
+    "chinese": "这个王国很大。",
+    "english": "This kingdom is very big."
+  },
+  {
+    "word": "市场",
+    "chinese": "妈妈去市场买菜。",
+    "english": "Mom goes to the market to buy vegetables."
+  },
+  {
+    "word": "训练场",
+    "chinese": "士兵们在训练场练习。",
+    "english": "The soldiers are practicing at the training ground."
+  },
+  {
+    "word": "稻草人",
+    "chinese": "田里有一个稻草人。",
+    "english": "There is a scarecrow in the field."
+  },
+  {
+    "word": "木剑",
+    "chinese": "他用木剑练习。",
+    "english": "He practices with a wooden sword."
+  },
+  {
+    "word": "剑",
+    "chinese": "这把剑很锋利。",
+    "english": "This sword is very sharp."
+  },
+  {
+    "word": "盾牌",
+    "chinese": "战士拿着盾牌。",
+    "english": "The warrior holds a shield."
+  },
+  {
+    "word": "盔甲",
+    "chinese": "骑士穿着盔甲。",
+    "english": "The knight wears armor."
+  },
+  {
+    "word": "药",
+    "chinese": "这个药一天吃三次。",
+    "english": "Take this medicine three times a day."
+  },
+  {
+    "word": "医院",
+    "chinese": "他在医院看病。",
+    "english": "He is seeing a doctor at the hospital."
+  },
+  {
+    "word": "工厂",
+    "chinese": "爸爸在工厂工作。",
+    "english": "Dad works at a factory."
+  },
+  {
+    "word": "伤口",
+    "chinese": "伤口不深，别担心。",
+    "english": "The wound is not deep, don't worry."
+  },
+  {
+    "word": "线索",
+    "chinese": "警察找到了新线索。",
+    "english": "The police found a new clue."
+  },
+  {
+    "word": "表面",
+    "chinese": "桌子的表面很干净。",
+    "english": "The surface of the table is very clean."
+  },
+  {
+    "word": "手指",
+    "chinese": "我的手指很长。",
+    "english": "My fingers are very long."
+  },
+  {
+    "word": "表情",
+    "chinese": "他的表情很奇怪。",
+    "english": "His expression is very strange."
+  },
+  {
+    "word": "镜子",
+    "chinese": "她在照镜子。",
+    "english": "She is looking in the mirror."
+  },
+  {
+    "word": "台灯",
+    "chinese": "桌上有一盏台灯。",
+    "english": "There is a desk lamp on the table."
+  },
+  {
+    "word": "本钱",
+    "chinese": "做生意需要本钱。",
+    "english": "Doing business requires capital."
+  },
+  {
+    "word": "步骤",
+    "chinese": "请按步骤来做。",
+    "english": "Please follow the steps."
+  },
+  {
+    "word": "目的",
+    "chinese": "他来这里的目的是什么？",
+    "english": "What is his purpose for coming here?"
+  },
+  {
+    "word": "护士",
+    "chinese": "护士帮我看伤口。",
+    "english": "The nurse checked my wound."
+  },
+  {
+    "word": "店主",
+    "chinese": "店主对客人很好。",
+    "english": "The shop owner is nice to customers."
+  },
+  {
+    "word": "商人",
+    "chinese": "那个商人卖茶。",
+    "english": "That merchant sells tea."
+  },
+  {
+    "word": "工人",
+    "chinese": "工人们在建房子。",
+    "english": "The workers are building a house."
+  },
+  {
+    "word": "老板",
+    "chinese": "老板今天不在。",
+    "english": "The boss is not here today."
+  },
+  {
+    "word": "战士",
+    "chinese": "战士们很勇敢。",
+    "english": "The warriors are very brave."
+  },
+  {
+    "word": "骑士",
+    "chinese": "骑士骑着马来了。",
+    "english": "The knight came riding a horse."
+  },
+  {
+    "word": "士兵",
+    "chinese": "士兵站在门口。",
+    "english": "The soldier stands at the gate."
+  },
+  {
+    "word": "女仆",
+    "chinese": "女仆在打扫房间。",
+    "english": "The maid is cleaning the room."
+  },
+  {
+    "word": "热闹",
+    "chinese": "过节的时候街上很热闹。",
+    "english": "The streets are very lively during festivals."
+  },
+  {
+    "word": "愣住",
+    "chinese": "听到这句话，他愣住了。",
+    "english": "Hearing this, he was stunned."
+  },
+  {
+    "word": "忽然",
+    "chinese": "忽然下起了大雨。",
+    "english": "Suddenly it started raining heavily."
+  },
+  {
+    "word": "锋利",
+    "chinese": "这把刀很锋利。",
+    "english": "This knife is very sharp."
+  },
+  {
+    "word": "轻轻",
+    "chinese": "她轻轻地关上门。",
+    "english": "She closed the door lightly."
+  },
+  {
+    "word": "歪",
+    "chinese": "这张画挂歪了。",
+    "english": "This painting is hanging crooked."
+  },
+  {
+    "word": "留着",
+    "chinese": "这封信我一直留着。",
+    "english": "I have kept this letter all along."
+  },
+  {
+    "word": "中午",
+    "chinese": "中午我们一起吃饭吧。",
+    "english": "Let's eat together at noon."
+  },
+  {
+    "word": "半夜",
+    "chinese": "他半夜才回家。",
+    "english": "He didn't get home until midnight."
+  },
+  {
+    "word": "短",
+    "chinese": "她的头发很短。",
+    "english": "Her hair is very short."
+  },
+  {
+    "word": "假",
+    "chinese": "这个消息是假的。",
+    "english": "This news is false."
+  },
+  {
+    "word": "坏",
+    "chinese": "我的手机坏了。",
+    "english": "My phone is broken."
+  },
+  {
+    "word": "李贤",
+    "chinese": "李贤是我的同学。",
+    "english": "Li Xian is my classmate."
+  },
+  {
+    "word": "李夏妍",
+    "chinese": "李夏妍是他的妹妹。",
+    "english": "Li Xiayan is his younger sister."
+  },
+  {
+    "word": "皇家之路",
+    "chinese": "他每天玩皇家之路。",
+    "english": "He plays Royal Road every day."
+  },
+  {
+    "word": "罗森海姆",
+    "chinese": "他们到了罗森海姆。",
+    "english": "They arrived at Rosenheim."
+  },
+  {
+    "word": "塞拉堡",
+    "chinese": "塞拉堡在山上。",
+    "english": "Sela Castle is on the mountain."
+  },
+  {
+    "word": "扎哈布",
+    "chinese": "扎哈布是一个老商人。",
+    "english": "Zahab is an old merchant."
+  },
+  {
+    "word": "月光雕刻师",
+    "chinese": "月光雕刻师是个秘密职业。",
+    "english": "Moonlight Sculptor is a secret profession."
+  },
+  {
+    "word": "雕刻店",
+    "chinese": "他在雕刻店工作。",
+    "english": "He works at the sculpture shop."
+  },
+  {
+    "word": "秘密职业",
+    "chinese": "他找到了一个秘密职业。",
+    "english": "He found a secret profession."
+  },
+  {
+    "word": "开始",
+    "chinese": "电影八点开始。",
+    "english": "The movie starts at eight."
+  },
+  {
+    "word": "准备",
+    "chinese": "妈妈在准备晚饭。",
+    "english": "Mom is preparing dinner."
+  },
+  {
+    "word": "着",
+    "chinese": "门开着呢。",
+    "english": "The door is open."
+  },
+  {
+    "word": "件",
+    "chinese": "我买了一件外套。",
+    "english": "I bought a coat."
+  },
+  {
+    "word": "一个",
+    "chinese": "我有一个问题。",
+    "english": "I have a question."
+  },
+  {
+    "word": "只要",
+    "chinese": "只要你来，我就高兴。",
+    "english": "As long as you come, I will be happy."
+  },
+  {
+    "word": "好像",
+    "chinese": "他好像不太开心。",
+    "english": "He seems a bit unhappy."
+  },
+  {
+    "word": "认为",
+    "chinese": "我认为你是对的。",
+    "english": "I think you are right."
+  },
+  {
+    "word": "以为",
+    "chinese": "我以为你不来了。",
+    "english": "I thought you weren't coming."
+  },
+  {
+    "word": "感觉",
+    "chinese": "我感觉今天很冷。",
+    "english": "I feel it is very cold today."
+  },
+  {
+    "word": "就是",
+    "chinese": "这就是我的家。",
+    "english": "This is exactly my home."
+  },
+  {
+    "word": "认识",
+    "chinese": "很高兴认识你。",
+    "english": "Nice to know you."
+  },
+  {
+    "word": "穿",
+    "chinese": "她穿着一条红裙子。",
+    "english": "She is wearing a red skirt."
+  },
+  {
+    "word": "简单",
+    "chinese": "这个问题很简单。",
+    "english": "This question is very simple."
+  },
+  {
+    "word": "脸",
+    "chinese": "他的脸红了。",
+    "english": "His face turned red."
+  },
+  {
+    "word": "但",
+    "chinese": "我想去，但没有时间。",
+    "english": "I want to go, but I don't have time."
+  },
+  {
+    "word": "却",
+    "chinese": "他答应了，却没有来。",
+    "english": "He agreed, yet he didn't come."
+  },
+  {
+    "word": "嘴",
+    "chinese": "请把嘴张开。",
+    "english": "Please open your mouth."
+  },
+  {
+    "word": "讲",
+    "chinese": "老师在讲故事。",
+    "english": "The teacher is telling a story."
+  },
+  {
+    "word": "到底",
+    "chinese": "你到底想要什么？",
+    "english": "What on earth do you want?"
+  },
+  {
+    "word": "经过",
+    "chinese": "我每天经过那家店。",
+    "english": "I pass by that shop every day."
+  },
+  {
+    "word": "幸福",
+    "chinese": "我们的生活很幸福。",
+    "english": "Our life is very happy."
+  },
+  {
+    "word": "条",
+    "chinese": "他买了一条鱼。",
+    "english": "He bought a fish."
+  },
+  {
+    "word": "伤心",
+    "chinese": "别哭了，别太伤心。",
+    "english": "Don't cry, don't be too sad."
+  },
+  {
+    "word": "帮",
+    "chinese": "我来帮你拿吧。",
+    "english": "Let me help you carry it."
+  },
+  {
+    "word": "还有",
+    "chinese": "我还有一个问题。",
+    "english": "I have one more question."
+  },
+  {
+    "word": "休息",
+    "chinese": "你累了，休息一下吧。",
+    "english": "You are tired, take a rest."
+  },
+  {
+    "word": "而",
+    "chinese": "他喜欢茶，而我喜欢咖啡。",
+    "english": "He likes tea, while I like coffee."
+  },
+  {
+    "word": "真的",
+    "chinese": "这是真的吗？",
+    "english": "Is this true?"
+  },
+  {
+    "word": "发现",
+    "chinese": "我发现了一个秘密。",
+    "english": "I discovered a secret."
+  },
+  {
+    "word": "当",
+    "chinese": "当我到家时，天黑了。",
+    "english": "When I got home, it was dark."
+  },
+  {
+    "word": "几",
+    "chinese": "你家有几口人？",
+    "english": "How many people are in your family?"
+  },
+  {
+    "word": "家里",
+    "chinese": "家里只有我一个人。",
+    "english": "I am the only one at home."
+  },
+  {
+    "word": "可",
+    "chinese": "我想买，可太贵了。",
+    "english": "I want to buy it, but it's too expensive."
+  },
+  {
+    "word": "故事",
+    "chinese": "奶奶讲的故事很好听。",
+    "english": "The stories grandma tells are wonderful."
+  },
+  {
+    "word": "回去",
+    "chinese": "时间不早了，我要回去了。",
+    "english": "It's getting late, I need to go back."
+  },
+  {
+    "word": "动",
+    "chinese": "别动，我给你照相。",
+    "english": "Don't move, I'll take your picture."
+  },
+  {
+    "word": "家人",
+    "chinese": "我很想我的家人。",
+    "english": "I miss my family very much."
+  },
+  {
+    "word": "出去",
+    "chinese": "我们出去走走吧。",
+    "english": "Let's go out for a walk."
+  },
+  {
+    "word": "男朋友",
+    "chinese": "她的男朋友很高。",
+    "english": "Her boyfriend is very tall."
+  },
+  {
+    "word": "系统",
+    "chinese": "这个系统很好用。",
+    "english": "This system is easy to use."
+  },
+  {
+    "word": "也许",
+    "chinese": "也许明天会下雨。",
+    "english": "Maybe it will rain tomorrow."
+  },
+  {
+    "word": "问问",
+    "chinese": "我去问问老师。",
+    "english": "I'll go ask the teacher."
+  },
+  {
+    "word": "不好",
+    "chinese": "今天天气不好。",
+    "english": "The weather is not good today."
+  },
+  {
+    "word": "前面",
+    "chinese": "学校就在前面。",
+    "english": "The school is just ahead."
+  },
+  {
+    "word": "回家",
+    "chinese": "我五点回家。",
+    "english": "I go home at five."
+  },
+  {
+    "word": "送",
+    "chinese": "我送你回家吧。",
+    "english": "Let me take you home."
+  },
+  {
+    "word": "为了",
+    "chinese": "为了健康，他每天跑步。",
+    "english": "For his health, he runs every day."
+  },
+  {
+    "word": "直",
+    "chinese": "这条路很直。",
+    "english": "This road is very straight."
+  },
+  {
+    "word": "活",
+    "chinese": "那条鱼还活着。",
+    "english": "That fish is still alive."
+  },
+  {
+    "word": "手里",
+    "chinese": "他手里拿着一本书。",
+    "english": "He is holding a book in his hand."
+  },
+  {
+    "word": "不错",
+    "chinese": "这家的菜真不错。",
+    "english": "The food here is really not bad."
+  },
+  {
+    "word": "不过",
+    "chinese": "我想去，不过太晚了。",
+    "english": "I want to go, however it is too late."
+  },
+  {
+    "word": "不对",
+    "chinese": "这个答案不对。",
+    "english": "This answer is wrong."
+  },
+  {
+    "word": "这么",
+    "chinese": "今天怎么这么热？",
+    "english": "Why is it so hot today?"
+  },
+  {
+    "word": "面前",
+    "chinese": "他就站在我面前。",
+    "english": "He is standing right in front of me."
+  },
+  {
+    "word": "衣服",
+    "chinese": "这件衣服很漂亮。",
+    "english": "This piece of clothing is very pretty."
+  },
+  {
+    "word": "看看",
+    "chinese": "让我看看你的新书。",
+    "english": "Let me take a look at your new book."
+  },
+  {
+    "word": "找到",
+    "chinese": "我找到我的钥匙了！",
+    "english": "I found my keys!"
+  },
+  {
+    "word": "工作",
+    "chinese": "他在银行工作。",
+    "english": "He works at a bank."
+  },
+  {
+    "word": "行",
+    "chinese": "明天见面，行吗？",
+    "english": "Meet tomorrow, is that okay?"
+  },
+  {
+    "word": "第三",
+    "chinese": "这是第三次了。",
+    "english": "This is the third time."
+  },
+  {
+    "word": "它们",
+    "chinese": "它们是我家的猫。",
+    "english": "They are my family's cats."
+  },
+  {
+    "word": "坐下",
+    "chinese": "请大家坐下。",
+    "english": "Everyone please sit down."
+  },
+  {
+    "word": "聪明",
+    "chinese": "这个孩子很聪明。",
+    "english": "This child is very smart."
+  },
+  {
+    "word": "那种",
+    "chinese": "我不喜欢那种颜色。",
+    "english": "I don't like that kind of color."
+  },
+  {
+    "word": "输",
+    "chinese": "我们输了这场比赛。",
+    "english": "We lost this game."
+  },
+  {
+    "word": "回到",
+    "chinese": "他晚上十点回到家。",
+    "english": "He returned home at ten at night."
+  },
+  {
+    "word": "完全",
+    "chinese": "我完全明白了。",
+    "english": "I completely understand."
+  },
+  {
+    "word": "真正",
+    "chinese": "他是我真正的朋友。",
+    "english": "He is my true friend."
+  },
+  {
+    "word": "洞",
+    "chinese": "山里有一个大洞。",
+    "english": "There is a big cave in the mountain."
+  },
+  {
+    "word": "心",
+    "chinese": "他的心很好。",
+    "english": "He has a good heart."
+  },
+  {
+    "word": "路上",
+    "chinese": "路上有很多车。",
+    "english": "There are many cars on the road."
+  },
+  {
+    "word": "不知",
+    "chinese": "他不知说什么好。",
+    "english": "He didn't know what to say."
+  },
+  {
+    "word": "有时候",
+    "chinese": "有时候我一个人散步。",
+    "english": "Sometimes I take a walk alone."
+  },
+  {
+    "word": "付",
+    "chinese": "我来付钱吧。",
+    "english": "Let me pay."
+  },
+  {
+    "word": "强大",
+    "chinese": "这个国家很强大。",
+    "english": "This country is very powerful."
+  },
+  {
+    "word": "吃饭",
+    "chinese": "我们六点吃饭。",
+    "english": "We eat at six."
+  },
+  {
+    "word": "气",
+    "chinese": "他气得说不出话。",
+    "english": "He was so angry he couldn't speak."
+  },
+  {
+    "word": "掉",
+    "chinese": "杯子掉在地上了。",
+    "english": "The cup dropped on the floor."
+  },
+  {
+    "word": "每个",
+    "chinese": "每个人都有名字。",
+    "english": "Every person has a name."
+  },
+  {
+    "word": "子",
+    "chinese": "他有一个儿子。",
+    "english": "He has a son."
+  },
+  {
+    "word": "个人",
+    "chinese": "这是我个人的想法。",
+    "english": "This is my personal opinion."
+  },
+  {
+    "word": "过去",
+    "chinese": "过去的事就让它过去吧。",
+    "english": "Let the past be the past."
+  },
+  {
+    "word": "其他",
+    "chinese": "其他人都走了。",
+    "english": "The other people all left."
+  },
+  {
+    "word": "或者",
+    "chinese": "你可以喝茶或者咖啡。",
+    "english": "You can drink tea or coffee."
+  },
+  {
+    "word": "身",
+    "chinese": "他身上没有钱。",
+    "english": "He has no money on him."
+  },
+  {
+    "word": "名",
+    "chinese": "我们班有三十名学生。",
+    "english": "Our class has thirty students."
+  },
+  {
+    "word": "白",
+    "chinese": "她穿着一件白衣服。",
+    "english": "She is wearing white clothes."
+  },
+  {
+    "word": "口",
+    "chinese": "他喝了一口水。",
+    "english": "He took a sip of water."
+  },
+  {
+    "word": "愿意",
+    "chinese": "我愿意帮助你。",
+    "english": "I am willing to help you."
+  },
+  {
+    "word": "藏",
+    "chinese": "猫藏在桌子下面。",
+    "english": "The cat is hiding under the table."
+  },
+  {
+    "word": "亮",
+    "chinese": "房间里的灯很亮。",
+    "english": "The light in the room is very bright."
+  },
+  {
+    "word": "本来",
+    "chinese": "我本来想早点来的。",
+    "english": "I originally wanted to come earlier."
+  },
+  {
+    "word": "成为",
+    "chinese": "他想成为一名医生。",
+    "english": "He wants to become a doctor."
+  },
+  {
+    "word": "根本",
+    "chinese": "我根本不认识他。",
+    "english": "I don't know him at all."
+  },
+  {
+    "word": "下面",
+    "chinese": "猫在椅子下面。",
+    "english": "The cat is under the chair."
+  },
+  {
+    "word": "赢",
+    "chinese": "我们赢了比赛！",
+    "english": "We won the game!"
+  },
+  {
+    "word": "房子",
+    "chinese": "他们买了新房子。",
+    "english": "They bought a new house."
+  },
+  {
+    "word": "样子",
+    "chinese": "他的样子很累。",
+    "english": "He looks very tired."
+  },
+  {
+    "word": "打算",
+    "chinese": "你打算什么时候走？",
+    "english": "When do you plan to leave?"
+  },
+  {
+    "word": "想法",
+    "chinese": "这是一个好想法。",
+    "english": "This is a good idea."
+  },
+  {
+    "word": "每天",
+    "chinese": "我每天走路上学。",
+    "english": "I walk to school every day."
+  },
+  {
+    "word": "奇怪",
+    "chinese": "这件事很奇怪。",
+    "english": "This matter is very strange."
+  },
+  {
+    "word": "力",
+    "chinese": "他用力打开了门。",
+    "english": "He opened the door with force."
+  },
+  {
+    "word": "狗",
+    "chinese": "我家的狗很可爱。",
+    "english": "My family's dog is very cute."
+  },
+  {
+    "word": "除非",
+    "chinese": "除非下雨，我们都去。",
+    "english": "We will all go unless it rains."
+  },
+  {
+    "word": "甚至",
+    "chinese": "他甚至不认识自己的邻居。",
+    "english": "He doesn't even know his own neighbor."
+  },
+  {
+    "word": "这次",
+    "chinese": "这次我一定要赢。",
+    "english": "This time I must win."
+  },
+  {
+    "word": "出现",
+    "chinese": "天上出现了很多星星。",
+    "english": "Many stars appeared in the sky."
+  },
+  {
+    "word": "教",
+    "chinese": "她教我们中文。",
+    "english": "She teaches us Chinese."
+  },
+  {
+    "word": "冷",
+    "chinese": "今天外面很冷。",
+    "english": "It is very cold outside today."
+  },
+  {
+    "word": "记",
+    "chinese": "我记不住这个字。",
+    "english": "I can't remember this character."
+  },
+  {
+    "word": "下次",
+    "chinese": "下次我们一起去吧。",
+    "english": "Next time let's go together."
+  },
+  {
+    "word": "至少",
+    "chinese": "至少还有十分钟。",
+    "english": "There are at least ten minutes left."
+  },
+  {
+    "word": "不行",
+    "chinese": "今天不行，我很忙。",
+    "english": "Today won't work, I'm very busy."
+  },
+  {
+    "word": "别的",
+    "chinese": "还有别的问题吗？",
+    "english": "Are there any other questions?"
+  },
+  {
+    "word": "根",
+    "chinese": "树的根很深。",
+    "english": "The tree's roots are very deep."
+  },
+  {
+    "word": "算",
+    "chinese": "我算了一下，一共十块钱。",
+    "english": "I calculated, it's ten yuan in total."
+  },
+  {
+    "word": "情况",
+    "chinese": "现在情况怎么样？",
+    "english": "How is the situation now?"
+  },
+  {
+    "word": "错",
+    "chinese": "对不起，是我的错。",
+    "english": "Sorry, it's my mistake."
+  },
+  {
+    "word": "米",
+    "chinese": "我们晚饭吃米饭。",
+    "english": "We eat rice for dinner."
+  },
+  {
+    "word": "月",
+    "chinese": "下个月我去北京。",
+    "english": "Next month I am going to Beijing."
+  },
+  {
+    "word": "停",
+    "chinese": "雨停了。",
+    "english": "The rain stopped."
+  },
+  {
+    "word": "句",
+    "chinese": "请读这个句子。",
+    "english": "Please read this sentence."
+  },
+  {
+    "word": "搬",
+    "chinese": "我们下个月搬家。",
+    "english": "We are moving next month."
+  },
+  {
+    "word": "安",
+    "chinese": "晚安，明天见。",
+    "english": "Good night, see you tomorrow."
+  },
+  {
+    "word": "第二",
+    "chinese": "他是第二个到的。",
+    "english": "He was the second to arrive."
+  },
+  {
+    "word": "喝",
+    "chinese": "我想喝一杯茶。",
+    "english": "I want to drink a cup of tea."
+  },
+  {
+    "word": "爬",
+    "chinese": "我们去爬山吧。",
+    "english": "Let's go climb the mountain."
+  },
+  {
+    "word": "吹",
+    "chinese": "风吹开了窗户。",
+    "english": "The wind blew the window open."
+  },
+  {
+    "word": "邻居",
+    "chinese": "我们的邻居很好。",
+    "english": "Our neighbors are very nice."
+  },
+  {
+    "word": "很快",
+    "chinese": "他很快就回来了。",
+    "english": "He came back very quickly."
+  },
+  {
+    "word": "同",
+    "chinese": "我们住在同一个城市。",
+    "english": "We live in the same city."
+  },
+  {
+    "word": "越",
+    "chinese": "雨越下越大。",
+    "english": "The rain is getting heavier and heavier."
+  },
+  {
+    "word": "那边",
+    "chinese": "车站在那边。",
+    "english": "The station is over there."
+  },
+  {
+    "word": "创造",
+    "chinese": "他创造了新的世界。",
+    "english": "He created a new world."
+  },
+  {
+    "word": "连",
+    "chinese": "他连水都没喝。",
+    "english": "He didn't even drink water."
+  },
+  {
+    "word": "黑",
+    "chinese": "天黑了，回家吧。",
+    "english": "It's dark, let's go home."
+  },
+  {
+    "word": "往",
+    "chinese": "一直往前走。",
+    "english": "Keep going straight ahead."
+  },
+  {
+    "word": "再说",
+    "chinese": "这件事以后再说吧。",
+    "english": "Let's talk about this matter later."
+  },
+  {
+    "word": "百",
+    "chinese": "这本书一百块钱。",
+    "english": "This book costs one hundred yuan."
+  },
+  {
+    "word": "神奇",
+    "chinese": "这是一个神奇的故事。",
+    "english": "This is a magical story."
+  },
+  {
+    "word": "躲",
+    "chinese": "他躲在门后面。",
+    "english": "He is hiding behind the door."
+  },
+  {
+    "word": "改变",
+    "chinese": "他想改变自己的生活。",
+    "english": "He wants to change his life."
+  },
+  {
+    "word": "年纪",
+    "chinese": "爷爷年纪大了。",
+    "english": "Grandpa is getting old."
+  },
+  {
+    "word": "学",
+    "chinese": "我在学做饭。",
+    "english": "I am learning to cook."
+  },
+  {
+    "word": "包",
+    "chinese": "我的包里有书。",
+    "english": "There are books in my bag."
+  },
+  {
+    "word": "醒来",
+    "chinese": "我早上六点醒来。",
+    "english": "I wake up at six in the morning."
+  },
+  {
+    "word": "我们",
+    "chinese": "我们是好朋友。",
+    "english": "We are good friends."
+  },
+  {
+    "word": "车",
+    "chinese": "路上车很多。",
+    "english": "There are many cars on the road."
+  },
+  {
+    "word": "想想",
+    "chinese": "让我想想再回答。",
+    "english": "Let me think about it before answering."
+  },
+  {
+    "word": "你们",
+    "chinese": "你们从哪里来？",
+    "english": "Where are you all from?"
+  },
+  {
+    "word": "先生",
+    "chinese": "王先生，您好！",
+    "english": "Hello, Mr. Wang!"
+  },
+  {
+    "word": "成功",
+    "chinese": "他终于成功了。",
+    "english": "He finally succeeded."
+  },
+  {
+    "word": "成",
+    "chinese": "他们成了好朋友。",
+    "english": "They became good friends."
+  },
+  {
+    "word": "本",
+    "chinese": "我买了三本书。",
+    "english": "I bought three books."
+  },
+  {
+    "word": "洗",
+    "chinese": "我去洗手。",
+    "english": "I am going to wash my hands."
+  },
+  {
+    "word": "结果",
+    "chinese": "结果他没有来。",
+    "english": "As a result, he didn't come."
+  },
+  {
+    "word": "发生",
+    "chinese": "这里发生了什么？",
+    "english": "What happened here?"
+  },
+  {
+    "word": "选",
+    "chinese": "你选一个吧。",
+    "english": "You pick one."
+  },
+  {
+    "word": "肯定",
+    "chinese": "他肯定会来的。",
+    "english": "He will definitely come."
+  },
+  {
+    "word": "电话",
+    "chinese": "你的电话响了。",
+    "english": "Your phone is ringing."
+  },
+  {
+    "word": "等等",
+    "chinese": "等等我，我马上来！",
+    "english": "Wait for me, I'm coming right away!"
+  },
+  {
+    "word": "节目",
+    "chinese": "这个节目很有意思。",
+    "english": "This program is very interesting."
+  },
+  {
+    "word": "还要",
+    "chinese": "我还要一杯水。",
+    "english": "I want another glass of water."
+  },
+  {
+    "word": "战斗",
+    "chinese": "战斗结束了。",
+    "english": "The battle is over."
+  },
+  {
+    "word": "今晚",
+    "chinese": "今晚你有时间吗？",
+    "english": "Do you have time tonight?"
+  },
+  {
+    "word": "女孩",
+    "chinese": "那个女孩在唱歌。",
+    "english": "That girl is singing."
+  },
+  {
+    "word": "少",
+    "chinese": "这里人很少。",
+    "english": "There are very few people here."
+  },
+  {
+    "word": "来到",
+    "chinese": "春天来到了。",
+    "english": "Spring has arrived."
+  },
+  {
+    "word": "于",
+    "chinese": "他生于北京。",
+    "english": "He was born in Beijing."
+  },
+  {
+    "word": "美国",
+    "chinese": "她住在美国。",
+    "english": "She lives in the United States."
+  },
+  {
+    "word": "打电话",
+    "chinese": "我给妈妈打电话。",
+    "english": "I call my mom on the phone."
+  },
+  {
+    "word": "恭喜",
+    "chinese": "恭喜你考了第一名！",
+    "english": "Congratulations on getting first place!"
+  },
+  {
+    "word": "儿子",
+    "chinese": "他的儿子五岁了。",
+    "english": "His son is five years old."
+  },
+  {
+    "word": "检查",
+    "chinese": "医生给我做了检查。",
+    "english": "The doctor gave me a checkup."
+  },
+  {
+    "word": "再见",
+    "chinese": "再见，明天见！",
+    "english": "Goodbye, see you tomorrow!"
+  },
+  {
+    "word": "真是",
+    "chinese": "今天真是太热了。",
+    "english": "Today is really too hot."
+  },
+  {
+    "word": "公司",
+    "chinese": "他在一家大公司工作。",
+    "english": "He works at a big company."
+  },
+  {
+    "word": "消息",
+    "chinese": "我有一个好消息。",
+    "english": "I have good news."
+  },
+  {
+    "word": "努力",
+    "chinese": "她学习很努力。",
+    "english": "She studies very hard."
+  },
+  {
+    "word": "电视",
+    "chinese": "晚上我们看电视。",
+    "english": "In the evening we watch TV."
+  },
+  {
+    "word": "强",
+    "chinese": "他的身体很强。",
+    "english": "His body is very strong."
+  },
+  {
+    "word": "她们",
+    "chinese": "她们是姐妹。",
+    "english": "They are sisters."
+  },
+  {
+    "word": "张",
+    "chinese": "桌上有一张纸。",
+    "english": "There is a piece of paper on the table."
+  },
+  {
+    "word": "女儿",
+    "chinese": "他的女儿很聪明。",
+    "english": "His daughter is very smart."
+  },
+  {
+    "word": "小姐",
+    "chinese": "王小姐在等你。",
+    "english": "Miss Wang is waiting for you."
+  },
+  {
+    "word": "原因",
+    "chinese": "他没来的原因是生病了。",
+    "english": "The reason he didn't come is that he got sick."
+  },
+  {
+    "word": "听说",
+    "chinese": "听说他要搬家了。",
+    "english": "I heard he is going to move."
+  },
+  {
+    "word": "人们",
+    "chinese": "人们都喜欢这个公园。",
+    "english": "People all like this park."
+  },
+  {
+    "word": "电影",
+    "chinese": "这个电影很好看。",
+    "english": "This movie is very good."
+  },
+  {
+    "word": "放松",
+    "chinese": "周末我在家放松。",
+    "english": "On weekends I relax at home."
+  },
+  {
+    "word": "试",
+    "chinese": "让我试一试。",
+    "english": "Let me try."
+  },
+  {
+    "word": "够",
+    "chinese": "钱不够了。",
+    "english": "There isn't enough money."
+  },
+  {
+    "word": "接",
+    "chinese": "我去车站接你。",
+    "english": "I will pick you up at the station."
+  },
+  {
+    "word": "可爱",
+    "chinese": "这只小猫真可爱。",
+    "english": "This kitten is really cute."
+  },
+  {
+    "word": "不管",
+    "chinese": "不管多难，我都要学。",
+    "english": "No matter how hard it is, I will learn it."
+  },
+  {
+    "word": "不同",
+    "chinese": "我们的想法不同。",
+    "english": "Our ideas are different."
+  },
+  {
+    "word": "飞机",
+    "chinese": "飞机就要起飞了。",
+    "english": "The airplane is about to take off."
+  },
+  {
+    "word": "男孩",
+    "chinese": "那个男孩在踢球。",
+    "english": "That boy is kicking a ball."
+  },
+  {
+    "word": "美元",
+    "chinese": "这个要十美元。",
+    "english": "This costs ten US dollars."
+  },
+  {
+    "word": "这边",
+    "chinese": "请到这边来。",
+    "english": "Please come over here."
+  },
+  {
+    "word": "留下",
+    "chinese": "他留下了一封信。",
+    "english": "He left behind a letter."
+  },
+  {
+    "word": "首",
+    "chinese": "她唱了一首歌。",
+    "english": "She sang a song."
+  },
+  {
+    "word": "技术",
+    "chinese": "他的技术很好。",
+    "english": "His technical skills are very good."
+  },
+  {
+    "word": "点儿",
+    "chinese": "请给我一点儿时间。",
+    "english": "Please give me a little time."
+  },
+  {
+    "word": "大学",
+    "chinese": "我姐姐在上大学。",
+    "english": "My older sister is attending university."
+  },
+  {
+    "word": "放弃",
+    "chinese": "不要放弃，继续努力！",
+    "english": "Don't give up, keep working hard!"
+  },
+  {
+    "word": "怎么办",
+    "chinese": "下雨了，怎么办？",
+    "english": "It's raining, what should we do?"
+  },
+  {
+    "word": "小孩",
+    "chinese": "小孩们在院子里玩。",
+    "english": "The kids are playing in the yard."
+  },
+  {
+    "word": "星期",
+    "chinese": "一个星期有七天。",
+    "english": "A week has seven days."
+  },
+  {
+    "word": "生日",
+    "chinese": "明天是我的生日。",
+    "english": "Tomorrow is my birthday."
+  },
+  {
+    "word": "手机",
+    "chinese": "我的手机没电了。",
+    "english": "My cell phone is out of battery."
+  },
+  {
+    "word": "记住",
+    "chinese": "请记住这个地址。",
+    "english": "Please remember this address."
+  },
+  {
+    "word": "杀人",
+    "chinese": "杀人是最大的错。",
+    "english": "Killing someone is the greatest wrong."
+  },
+  {
+    "word": "什么样",
+    "chinese": "他是什么样的人？",
+    "english": "What kind of person is he?"
+  },
+  {
+    "word": "部分",
+    "chinese": "我只看了一部分。",
+    "english": "I only read a part of it."
+  },
+  {
+    "word": "人生",
+    "chinese": "人生有很多选择。",
+    "english": "Life has many choices."
+  },
+  {
+    "word": "冰",
+    "chinese": "湖上的冰很厚。",
+    "english": "The ice on the lake is very thick."
+  },
+  {
+    "word": "声",
+    "chinese": "外面有说话声。",
+    "english": "There are voices outside."
+  },
+  {
+    "word": "一半",
+    "chinese": "我吃了一半的蛋糕。",
+    "english": "I ate half of the cake."
+  },
+  {
+    "word": "脱",
+    "chinese": "进门请脱鞋。",
+    "english": "Please take off your shoes when entering."
+  },
+  {
+    "word": "明星",
+    "chinese": "她是有名的电影明星。",
+    "english": "She is a famous movie star."
+  },
+  {
+    "word": "汽车",
+    "chinese": "他买了一辆新汽车。",
+    "english": "He bought a new car."
+  },
+  {
+    "word": "方法",
+    "chinese": "这个方法很好用。",
+    "english": "This method works very well."
+  },
+  {
+    "word": "喝酒",
+    "chinese": "他不喝酒。",
+    "english": "He doesn't drink alcohol."
+  },
+  {
+    "word": "嗯",
+    "chinese": "嗯，我知道了。",
+    "english": "Uh-huh, I got it."
+  },
+  {
+    "word": "公园",
+    "chinese": "公园里有很多花。",
+    "english": "There are many flowers in the park."
+  },
+  {
+    "word": "武器",
+    "chinese": "士兵放下了武器。",
+    "english": "The soldier put down his weapon."
+  },
+  {
+    "word": "听听",
+    "chinese": "你听听这首歌。",
+    "english": "Have a listen to this song."
+  },
+  {
+    "word": "比较",
+    "chinese": "今天比较冷。",
+    "english": "Today is comparatively cold."
+  },
+  {
+    "word": "形容词",
+    "chinese": "“漂亮”是一个形容词。",
+    "english": "\"Beautiful\" is an adjective."
+  },
+  {
+    "word": "机场",
+    "chinese": "我们两点到机场。",
+    "english": "We arrive at the airport at two."
+  },
+  {
+    "word": "公寓",
+    "chinese": "他住在一个小公寓里。",
+    "english": "He lives in a small apartment."
+  },
+  {
+    "word": "苹果",
+    "chinese": "我每天吃一个苹果。",
+    "english": "I eat an apple every day."
+  },
+  {
+    "word": "四月",
+    "chinese": "四月的花很漂亮。",
+    "english": "The flowers in April are very pretty."
+  },
+  {
+    "word": "手臂",
+    "chinese": "他的手臂很长。",
+    "english": "His arms are very long."
+  },
+  {
+    "word": "军队",
+    "chinese": "军队来到了城外。",
+    "english": "The army arrived outside the city."
+  },
+  {
+    "word": "攻击",
+    "chinese": "晚上他们开始攻击。",
+    "english": "At night they started to attack."
+  },
+  {
+    "word": "八月",
+    "chinese": "八月天气最热。",
+    "english": "The weather is hottest in August."
+  },
+  {
+    "word": "婴儿",
+    "chinese": "婴儿在睡觉。",
+    "english": "The baby is sleeping."
+  },
+  {
+    "word": "球",
+    "chinese": "孩子们在玩球。",
+    "english": "The children are playing with a ball."
+  },
+  {
+    "word": "香蕉",
+    "chinese": "香蕉是黄色的。",
+    "english": "Bananas are yellow."
+  },
+  {
+    "word": "乐队",
+    "chinese": "乐队在公园里表演。",
+    "english": "The band is performing in the park."
+  },
+  {
+    "word": "酒吧",
+    "chinese": "他们在酒吧听音乐。",
+    "english": "They listen to music at the bar."
+  },
+  {
+    "word": "浴室",
+    "chinese": "浴室在二楼。",
+    "english": "The bathroom is on the second floor."
+  },
+  {
+    "word": "海滩",
+    "chinese": "夏天我们去海滩玩。",
+    "english": "In summer we go to the beach."
+  },
+  {
+    "word": "胡子",
+    "chinese": "爷爷的胡子是白色的。",
+    "english": "Grandpa's beard is white."
+  },
+  {
+    "word": "卧室",
+    "chinese": "我的卧室很小。",
+    "english": "My bedroom is very small."
+  },
+  {
+    "word": "牛肉",
+    "chinese": "我喜欢吃牛肉面。",
+    "english": "I like eating beef noodles."
+  },
+  {
+    "word": "啤酒",
+    "chinese": "爸爸喝了一杯啤酒。",
+    "english": "Dad drank a glass of beer."
+  },
+  {
+    "word": "弯曲",
+    "chinese": "这条路很弯曲。",
+    "english": "This road is very winding."
+  },
+  {
+    "word": "饮料",
+    "chinese": "你想喝什么饮料？",
+    "english": "What beverage do you want to drink?"
+  },
+  {
+    "word": "自行车",
+    "chinese": "我骑自行车上学。",
+    "english": "I ride a bicycle to school."
+  },
+  {
+    "word": "账单",
+    "chinese": "请给我账单。",
+    "english": "Please give me the bill."
+  },
+  {
+    "word": "盲",
+    "chinese": "那位老人的眼睛盲了。",
+    "english": "That old man's eyes are blind."
+  },
+  {
+    "word": "血",
+    "chinese": "他的手上有血。",
+    "english": "There is blood on his hand."
+  },
+  {
+    "word": "蓝色",
+    "chinese": "天空是蓝色的。",
+    "english": "The sky is blue."
+  },
+  {
+    "word": "骨头",
+    "chinese": "狗喜欢吃骨头。",
+    "english": "Dogs like eating bones."
+  },
+  {
+    "word": "底部",
+    "chinese": "杯子的底部有字。",
+    "english": "There are words on the bottom of the cup."
+  },
+  {
+    "word": "箱子",
+    "chinese": "箱子里都是书。",
+    "english": "The box is full of books."
+  },
+  {
+    "word": "大脑",
+    "chinese": "多睡觉对大脑好。",
+    "english": "Sleeping more is good for the brain."
+  },
+  {
+    "word": "面包",
+    "chinese": "早上我吃面包。",
+    "english": "I eat bread in the morning."
+  },
+  {
+    "word": "打破",
+    "chinese": "他打破了一个杯子。",
+    "english": "He broke a cup."
+  },
+  {
+    "word": "早餐",
+    "chinese": "我七点吃早餐。",
+    "english": "I eat breakfast at seven."
+  },
+  {
+    "word": "桥",
+    "chinese": "河上有一座桥。",
+    "english": "There is a bridge over the river."
+  },
+  {
+    "word": "棕色",
+    "chinese": "他的头发是棕色的。",
+    "english": "His hair is brown."
+  },
+  {
+    "word": "建造",
+    "chinese": "他们在建造新房子。",
+    "english": "They are building a new house."
+  },
+  {
+    "word": "建筑",
+    "chinese": "这个建筑很有名。",
+    "english": "This building is very famous."
+  },
+  {
+    "word": "燃烧",
+    "chinese": "火在燃烧。",
+    "english": "The fire is burning."
+  },
+  {
+    "word": "公交车",
+    "chinese": "我坐公交车上班。",
+    "english": "I take the bus to work."
+  },
+  {
+    "word": "蛋糕",
+    "chinese": "生日蛋糕很好吃。",
+    "english": "The birthday cake is delicious."
+  },
+  {
+    "word": "相机",
+    "chinese": "他用相机照相。",
+    "english": "He takes photos with a camera."
+  },
+  {
+    "word": "营地",
+    "chinese": "晚上我们回到营地。",
+    "english": "At night we return to the camp."
+  },
+  {
+    "word": "卡片",
+    "chinese": "她给我一张卡片。",
+    "english": "She gave me a card."
+  },
+  {
+    "word": "携带",
+    "chinese": "请不要携带食物进来。",
+    "english": "Please do not carry food inside."
+  },
+  {
+    "word": "猫",
+    "chinese": "我家有两只猫。",
+    "english": "My family has two cats."
+  },
+  {
+    "word": "捕捉",
+    "chinese": "猫在捕捉老鼠。",
+    "english": "The cat is catching the mouse."
+  },
+  {
+    "word": "天花板",
+    "chinese": "天花板上有一盏灯。",
+    "english": "There is a light on the ceiling."
+  },
+  {
+    "word": "厘米",
+    "chinese": "这条鱼有三十厘米长。",
+    "english": "This fish is thirty centimeters long."
+  },
+  {
+    "word": "奶酪",
+    "chinese": "老鼠喜欢吃奶酪。",
+    "english": "Mice like eating cheese."
+  },
+  {
+    "word": "鸡",
+    "chinese": "农场里有很多鸡。",
+    "english": "There are many chickens on the farm."
+  },
+  {
+    "word": "教堂",
+    "chinese": "教堂在城市中心。",
+    "english": "The church is in the city center."
+  },
+  {
+    "word": "圆圈",
+    "chinese": "孩子们站成一个圆圈。",
+    "english": "The children stood in a circle."
+  },
+  {
+    "word": "黏土",
+    "chinese": "孩子用黏土做了一只小猫。",
+    "english": "The child made a little cat out of clay."
+  },
+  {
+    "word": "干净",
+    "chinese": "这个房间很干净。",
+    "english": "This room is very clean."
+  },
+  {
+    "word": "俱乐部",
+    "chinese": "他是读书俱乐部的人。",
+    "english": "He is a member of the book club."
+  },
+  {
+    "word": "外套",
+    "chinese": "今天冷，穿上外套。",
+    "english": "It's cold today, put on a coat."
+  },
+  {
+    "word": "咖啡",
+    "chinese": "我早上喝一杯咖啡。",
+    "english": "I drink a cup of coffee in the morning."
+  },
+  {
+    "word": "电脑程序",
+    "chinese": "他会写电脑程序。",
+    "english": "He can write computer programs."
+  },
+  {
+    "word": "辅音",
+    "chinese": "这个字的辅音很难读。",
+    "english": "The consonant in this word is hard to pronounce."
+  },
+  {
+    "word": "合同",
+    "chinese": "他们签了一份合同。",
+    "english": "They signed a contract."
+  },
+  {
+    "word": "做饭",
+    "chinese": "妈妈在厨房做饭。",
+    "english": "Mom is cooking in the kitchen."
+  },
+  {
+    "word": "凉爽",
+    "chinese": "秋天的天气很凉爽。",
+    "english": "The weather in fall is very cool."
+  },
+  {
+    "word": "铜",
+    "chinese": "这个杯子是铜做的。",
+    "english": "This cup is made of copper."
+  },
+  {
+    "word": "玉米",
+    "chinese": "我们晚饭吃玉米。",
+    "english": "We eat corn for dinner."
+  },
+  {
+    "word": "角落",
+    "chinese": "猫睡在房间的角落里。",
+    "english": "The cat sleeps in the corner of the room."
+  },
+  {
+    "word": "法庭",
+    "chinese": "律师在法庭上说话。",
+    "english": "The lawyer speaks in court."
+  },
+  {
+    "word": "牛",
+    "chinese": "牛在田里吃草。",
+    "english": "The cow is eating grass in the field."
+  },
+  {
+    "word": "人群",
+    "chinese": "人群中有一个孩子。",
+    "english": "There is a child in the crowd."
+  },
+  {
+    "word": "切割",
+    "chinese": "这个机器可以切割金属。",
+    "english": "This machine can cut metal."
+  },
+  {
+    "word": "深蓝色",
+    "chinese": "晚上的天是深蓝色的。",
+    "english": "The night sky is dark blue."
+  },
+  {
+    "word": "日期",
+    "chinese": "请写上今天的日期。",
+    "english": "Please write today's date."
+  },
+  {
+    "word": "聋",
+    "chinese": "那位老人耳朵聋了。",
+    "english": "That old man's ears are deaf."
+  },
+  {
+    "word": "死亡",
+    "chinese": "医生说这不会有死亡的危险。",
+    "english": "The doctor said there is no danger of death."
+  },
+  {
+    "word": "十二月",
+    "chinese": "十二月天气很冷。",
+    "english": "The weather in December is very cold."
+  },
+  {
+    "word": "深",
+    "chinese": "这个湖很深。",
+    "english": "This lake is very deep."
+  },
+  {
+    "word": "钻石",
+    "chinese": "这个戒指上有钻石。",
+    "english": "This ring has a diamond on it."
+  },
+  {
+    "word": "挖掘",
+    "chinese": "工人在挖掘土地。",
+    "english": "The workers are digging the ground."
+  },
+  {
+    "word": "晚餐",
+    "chinese": "晚餐吃鱼和米饭。",
+    "english": "For dinner we have fish and rice."
+  },
+  {
+    "word": "脏",
+    "chinese": "你的鞋子太脏了。",
+    "english": "Your shoes are too dirty."
+  },
+  {
+    "word": "疾病",
+    "chinese": "运动可以让人少生疾病。",
+    "english": "Exercise helps people get fewer diseases."
+  },
+  {
+    "word": "画",
+    "chinese": "她在画一只猫。",
+    "english": "She is drawing a cat."
+  },
+  {
+    "word": "梦",
+    "chinese": "昨晚我做了一个梦。",
+    "english": "Last night I had a dream."
+  },
+  {
+    "word": "驾驶",
+    "chinese": "他会驾驶汽车。",
+    "english": "He can drive a car."
+  },
+  {
+    "word": "药物",
+    "chinese": "这种药物一天吃两次。",
+    "english": "Take this drug twice a day."
+  },
+  {
+    "word": "灰尘",
+    "chinese": "桌子上都是灰尘。",
+    "english": "The table is covered in dust."
+  },
+  {
+    "word": "东边",
+    "chinese": "太阳从东边出来。",
+    "english": "The sun rises in the east."
+  },
+  {
+    "word": "选举",
+    "chinese": "明年有一场大选举。",
+    "english": "There is a big election next year."
+  },
+  {
+    "word": "能量",
+    "chinese": "食物给我们能量。",
+    "english": "Food gives us energy."
+  },
+  {
+    "word": "引擎",
+    "chinese": "汽车的引擎坏了。",
+    "english": "The car's engine is broken."
+  },
+  {
+    "word": "锻炼",
+    "chinese": "爷爷每天早上锻炼。",
+    "english": "Grandpa exercises every morning."
+  },
+  {
+    "word": "昂贵",
+    "chinese": "这块手表很昂贵。",
+    "english": "This watch is very expensive."
+  },
+  {
+    "word": "爆炸",
+    "chinese": "远处有东西爆炸了。",
+    "english": "Something exploded in the distance."
+  },
+  {
+    "word": "秋天",
+    "chinese": "秋天的叶子是黄色的。",
+    "english": "The leaves in fall are yellow."
+  },
+  {
+    "word": "家庭",
+    "chinese": "他有一个幸福的家庭。",
+    "english": "He has a happy family."
+  },
+  {
+    "word": "风扇",
+    "chinese": "天太热，打开风扇吧。",
+    "english": "It's too hot, turn on the fan."
+  },
+  {
+    "word": "农场",
+    "chinese": "农场里有牛和马。",
+    "english": "There are cows and horses on the farm."
+  },
+  {
+    "word": "二月",
+    "chinese": "二月还是很冷。",
+    "english": "February is still very cold."
+  },
+  {
+    "word": "喂养",
+    "chinese": "她每天喂养小猫。",
+    "english": "She feeds the kitten every day."
+  },
+  {
+    "word": "女性",
+    "chinese": "这本书很多女性喜欢。",
+    "english": "Many women like this book."
+  },
+  {
+    "word": "打架",
+    "chinese": "两个男孩在打架。",
+    "english": "Two boys are fighting."
+  },
+  {
+    "word": "火",
+    "chinese": "火很热，别碰！",
+    "english": "The fire is hot, don't touch it!"
+  },
+  {
+    "word": "平坦",
+    "chinese": "这条路很平坦。",
+    "english": "This road is very flat."
+  },
+  {
+    "word": "地板",
+    "chinese": "地板上有水。",
+    "english": "There is water on the floor."
+  },
+  {
+    "word": "飞",
+    "chinese": "小鸟在天上飞。",
+    "english": "The birds are flying in the sky."
+  },
+  {
+    "word": "食物",
+    "chinese": "桌上有很多食物。",
+    "english": "There is a lot of food on the table."
+  },
+  {
+    "word": "脚",
+    "chinese": "走了一天，我的脚很累。",
+    "english": "After walking all day, my feet are tired."
+  },
+  {
+    "word": "叉子",
+    "chinese": "他用叉子吃饭。",
+    "english": "He eats with a fork."
+  },
+  {
+    "word": "星期五",
+    "chinese": "星期五我们看电影。",
+    "english": "On Friday we watch a movie."
+  },
+  {
+    "word": "花园",
+    "chinese": "花园里的花开了。",
+    "english": "The flowers in the garden bloomed."
+  },
+  {
+    "word": "汽油",
+    "chinese": "汽车没有汽油了。",
+    "english": "The car is out of gasoline."
+  },
+  {
+    "word": "金",
+    "chinese": "这个戒指是金的。",
+    "english": "This ring is made of gold."
+  },
+  {
+    "word": "灰色",
+    "chinese": "今天的天是灰色的。",
+    "english": "The sky is gray today."
+  },
+  {
+    "word": "绿色",
+    "chinese": "春天的树是绿色的。",
+    "english": "The trees in spring are green."
+  },
+  {
+    "word": "地面",
+    "chinese": "地面上有很多叶子。",
+    "english": "There are many leaves on the ground."
+  },
+  {
+    "word": "生长",
+    "chinese": "花在春天生长。",
+    "english": "Flowers grow in spring."
+  },
+  {
+    "word": "枪",
+    "chinese": "士兵手里拿着枪。",
+    "english": "The soldier holds a gun in his hand."
+  },
+  {
+    "word": "悬挂",
+    "chinese": "墙上悬挂着一幅画。",
+    "english": "A painting hangs on the wall."
+  },
+  {
+    "word": "帽子",
+    "chinese": "他戴着一顶红帽子。",
+    "english": "He is wearing a red hat."
+  },
+  {
+    "word": "健康",
+    "chinese": "每天运动让人健康。",
+    "english": "Exercising every day keeps people healthy."
+  },
+  {
+    "word": "热量",
+    "chinese": "火发出很多热量。",
+    "english": "Fire gives off a lot of heat."
+  },
+  {
+    "word": "沉重",
+    "chinese": "这个箱子很沉重。",
+    "english": "This box is very heavy."
+  },
+  {
+    "word": "马",
+    "chinese": "他骑着一匹白马。",
+    "english": "He is riding a white horse."
+  },
+  {
+    "word": "酒店",
+    "chinese": "我们住在这家酒店。",
+    "english": "We are staying at this hotel."
+  },
+  {
+    "word": "丈夫",
+    "chinese": "她的丈夫是老师。",
+    "english": "Her husband is a teacher."
+  },
+  {
+    "word": "图像",
+    "chinese": "屏幕上有一个图像。",
+    "english": "There is an image on the screen."
+  },
+  {
+    "word": "英寸",
+    "chinese": "这个屏幕有十英寸。",
+    "english": "This screen is ten inches."
+  },
+  {
+    "word": "伤",
+    "chinese": "他腿上的伤好了。",
+    "english": "The injury on his leg has healed."
+  },
+  {
+    "word": "岛屿",
+    "chinese": "海上有很多小岛屿。",
+    "english": "There are many small islands in the sea."
+  },
+  {
+    "word": "一月",
+    "chinese": "一月是一年的开始。",
+    "english": "January is the start of the year."
+  },
+  {
+    "word": "果汁",
+    "chinese": "我喝了一杯果汁。",
+    "english": "I drank a glass of juice."
+  },
+  {
+    "word": "七月",
+    "chinese": "七月我们去海边。",
+    "english": "In July we go to the seaside."
+  },
+  {
+    "word": "六月",
+    "chinese": "六月天气开始热了。",
+    "english": "In June the weather starts getting hot."
+  },
+  {
+    "word": "钥匙",
+    "chinese": "钥匙在我的包里。",
+    "english": "The keys are in my bag."
+  },
+  {
+    "word": "杀死",
+    "chinese": "猫杀死了一只老鼠。",
+    "english": "The cat killed a mouse."
+  },
+  {
+    "word": "公斤",
+    "chinese": "我买了两公斤苹果。",
+    "english": "I bought two kilograms of apples."
+  },
+  {
+    "word": "吻",
+    "chinese": "妈妈吻了孩子的脸。",
+    "english": "Mom kissed the child's face."
+  },
+  {
+    "word": "厨房",
+    "chinese": "厨房里很香。",
+    "english": "It smells good in the kitchen."
+  },
+  {
+    "word": "膝盖",
+    "chinese": "他的膝盖受伤了。",
+    "english": "His knee got injured."
+  },
+  {
+    "word": "湖",
+    "chinese": "湖边有很多树。",
+    "english": "There are many trees by the lake."
+  },
+  {
+    "word": "灯",
+    "chinese": "请打开灯。",
+    "english": "Please turn on the lamp."
+  },
+  {
+    "word": "笔记本电脑",
+    "chinese": "我用笔记本电脑工作。",
+    "english": "I work on a laptop."
+  },
+  {
+    "word": "律师",
+    "chinese": "他想成为一名律师。",
+    "english": "He wants to become a lawyer."
+  },
+  {
+    "word": "叶子",
+    "chinese": "秋天叶子掉下来了。",
+    "english": "In fall the leaves fall down."
+  },
+  {
+    "word": "左",
+    "chinese": "在前面向左走。",
+    "english": "Turn left up ahead."
+  },
+  {
+    "word": "腿",
+    "chinese": "跑完步，我的腿很累。",
+    "english": "After running, my legs are tired."
+  },
+  {
+    "word": "柠檬",
+    "chinese": "柠檬水很好喝。",
+    "english": "Lemon water is very tasty."
+  },
+  {
+    "word": "图书馆",
+    "chinese": "我在图书馆看书。",
+    "english": "I read at the library."
+  },
+  {
+    "word": "躺下",
+    "chinese": "他躺下休息了。",
+    "english": "He lay down to rest."
+  },
+  {
+    "word": "举起",
+    "chinese": "他举起了手。",
+    "english": "He raised his hand."
+  },
+  {
+    "word": "浅蓝色",
+    "chinese": "她的裙子是浅蓝色的。",
+    "english": "Her skirt is light blue."
+  },
+  {
+    "word": "嘴唇",
+    "chinese": "冬天他的嘴唇很干。",
+    "english": "In winter his lips are very dry."
+  },
+  {
+    "word": "锁",
+    "chinese": "门上有一把大锁。",
+    "english": "There is a big lock on the door."
+  },
+  {
+    "word": "松",
+    "chinese": "这双鞋有点松。",
+    "english": "These shoes are a bit loose."
+  },
+  {
+    "word": "午餐",
+    "chinese": "我们十二点吃午餐。",
+    "english": "We eat lunch at twelve."
+  },
+  {
+    "word": "杂志",
+    "chinese": "他在看一本杂志。",
+    "english": "He is reading a magazine."
+  },
+  {
+    "word": "男性",
+    "chinese": "这家店的客人多是男性。",
+    "english": "Most customers at this shop are male."
+  },
+  {
+    "word": "地图",
+    "chinese": "看地图，我们快到了。",
+    "english": "Looking at the map, we are almost there."
+  },
+  {
+    "word": "三月",
+    "chinese": "三月花开了。",
+    "english": "In March the flowers bloom."
+  },
+  {
+    "word": "婚姻",
+    "chinese": "他们的婚姻很幸福。",
+    "english": "Their marriage is very happy."
+  },
+  {
+    "word": "结婚",
+    "chinese": "他们明年结婚。",
+    "english": "They are getting married next year."
+  },
+  {
+    "word": "材料",
+    "chinese": "做桌子需要好材料。",
+    "english": "Making a table requires good materials."
+  },
+  {
+    "word": "数学",
+    "chinese": "他的数学很好。",
+    "english": "His math is very good."
+  },
+  {
+    "word": "融化",
+    "chinese": "雪在太阳下融化了。",
+    "english": "The snow melted under the sun."
+  },
+  {
+    "word": "金属",
+    "chinese": "这把剑是金属做的。",
+    "english": "This sword is made of metal."
+  },
+  {
+    "word": "牛奶",
+    "chinese": "我每天早上喝牛奶。",
+    "english": "I drink milk every morning."
+  },
+  {
+    "word": "星期一",
+    "chinese": "星期一我要上班。",
+    "english": "On Monday I have to work."
+  },
+  {
+    "word": "老鼠",
+    "chinese": "厨房里有一只老鼠！",
+    "english": "There is a mouse in the kitchen!"
+  },
+  {
+    "word": "音乐",
+    "chinese": "我喜欢安静的音乐。",
+    "english": "I like quiet music."
+  },
+  {
+    "word": "乐器",
+    "chinese": "你会玩什么乐器？",
+    "english": "What musical instrument can you play?"
+  },
+  {
+    "word": "狭窄",
+    "chinese": "这条街很狭窄。",
+    "english": "This street is very narrow."
+  },
+  {
+    "word": "脖子",
+    "chinese": "我的脖子有点痛。",
+    "english": "My neck hurts a little."
+  },
+  {
+    "word": "针",
+    "chinese": "妈妈用针做衣服。",
+    "english": "Mom uses a needle to make clothes."
+  },
+  {
+    "word": "网络",
+    "chinese": "家里的网络坏了。",
+    "english": "The network at home is broken."
+  },
+  {
+    "word": "报纸",
+    "chinese": "爷爷每天看报纸。",
+    "english": "Grandpa reads the newspaper every day."
+  },
+  {
+    "word": "鼻子",
+    "chinese": "他的鼻子很高。",
+    "english": "His nose is very tall."
+  },
+  {
+    "word": "笔记",
+    "chinese": "上课要记笔记。",
+    "english": "Take notes in class."
+  },
+  {
+    "word": "名词",
+    "chinese": "“书”是一个名词。",
+    "english": "\"Book\" is a noun."
+  },
+  {
+    "word": "十一月",
+    "chinese": "十一月开始下雪。",
+    "english": "It starts snowing in November."
+  },
+  {
+    "word": "核",
+    "chinese": "核能量很强大。",
+    "english": "Nuclear energy is very powerful."
+  },
+  {
+    "word": "数字",
+    "chinese": "请写下这个数字。",
+    "english": "Please write down this number."
+  },
+  {
+    "word": "十月",
+    "chinese": "十月的天气很凉爽。",
+    "english": "The weather in October is very cool."
+  },
+  {
+    "word": "办公室",
+    "chinese": "老板在办公室里。",
+    "english": "The boss is in the office."
+  },
+  {
+    "word": "油",
+    "chinese": "做饭要用油。",
+    "english": "Cooking requires oil."
+  },
+  {
+    "word": "橙子",
+    "chinese": "这个橙子很甜。",
+    "english": "This orange is very sweet."
+  },
+  {
+    "word": "页面",
+    "chinese": "请打开第十个页面。",
+    "english": "Please open page ten."
+  },
+  {
+    "word": "裤子",
+    "chinese": "这条裤子太长了。",
+    "english": "These pants are too long."
+  },
+  {
+    "word": "纸",
+    "chinese": "请给我一张纸。",
+    "english": "Please give me a piece of paper."
+  },
+  {
+    "word": "父母",
+    "chinese": "我的父母都是老师。",
+    "english": "My parents are both teachers."
+  },
+  {
+    "word": "模式",
+    "chinese": "手机在晚上模式。",
+    "english": "The phone is in night mode."
+  },
+  {
+    "word": "笔",
+    "chinese": "我的笔不见了。",
+    "english": "My pen is missing."
+  },
+  {
+    "word": "铅笔",
+    "chinese": "孩子用铅笔写字。",
+    "english": "The child writes with a pencil."
+  },
+  {
+    "word": "照片",
+    "chinese": "这是我们全家的照片。",
+    "english": "This is a photo of our whole family."
+  },
+  {
+    "word": "猪",
+    "chinese": "农场里有三头猪。",
+    "english": "There are three pigs on the farm."
+  },
+  {
+    "word": "粉色",
+    "chinese": "她喜欢粉色的花。",
+    "english": "She likes pink flowers."
+  },
+  {
+    "word": "植物",
+    "chinese": "房间里有很多植物。",
+    "english": "There are many plants in the room."
+  },
+  {
+    "word": "塑料",
+    "chinese": "这个杯子是塑料的。",
+    "english": "This cup is made of plastic."
+  },
+  {
+    "word": "盘子",
+    "chinese": "盘子里有水果。",
+    "english": "There is fruit on the plate."
+  },
+  {
+    "word": "口袋",
+    "chinese": "钥匙在我的口袋里。",
+    "english": "The keys are in my pocket."
+  },
+  {
+    "word": "毒药",
+    "chinese": "这是毒药，不能喝！",
+    "english": "This is poison, don't drink it!"
+  },
+  {
+    "word": "警察",
+    "chinese": "警察帮我们找到了钱包。",
+    "english": "The police helped us find the wallet."
+  },
+  {
+    "word": "游泳池",
+    "chinese": "酒店里有游泳池。",
+    "english": "The hotel has a swimming pool."
+  },
+  {
+    "word": "穷",
+    "chinese": "他家以前很穷。",
+    "english": "His family used to be very poor."
+  },
+  {
+    "word": "猪肉",
+    "chinese": "妈妈买了一斤猪肉。",
+    "english": "Mom bought a pound of pork."
+  },
+  {
+    "word": "磅",
+    "chinese": "这条鱼有三磅重。",
+    "english": "This fish weighs three pounds."
+  },
+  {
+    "word": "祈祷",
+    "chinese": "她每晚祈祷。",
+    "english": "She prays every night."
+  },
+  {
+    "word": "总统",
+    "chinese": "总统在电视上说话。",
+    "english": "The president is speaking on TV."
+  },
+  {
+    "word": "牧师",
+    "chinese": "牧师在教堂里讲话。",
+    "english": "The priest is speaking in the church."
+  },
+  {
+    "word": "监狱",
+    "chinese": "坏人被送进了监狱。",
+    "english": "The bad man was sent to prison."
+  },
+  {
+    "word": "拉",
+    "chinese": "请拉开门。",
+    "english": "Please pull the door open."
+  },
+  {
+    "word": "推",
+    "chinese": "这个门要推开。",
+    "english": "This door needs to be pushed open."
+  },
+  {
+    "word": "女王",
+    "chinese": "女王住在城堡里。",
+    "english": "The queen lives in the castle."
+  },
+  {
+    "word": "收音机",
+    "chinese": "爷爷在听收音机。",
+    "english": "Grandpa is listening to the radio."
+  },
+  {
+    "word": "雨",
+    "chinese": "外面下大雨了。",
+    "english": "It is raining heavily outside."
+  },
+  {
+    "word": "红色",
+    "chinese": "她穿着红色的衣服。",
+    "english": "She is wearing red clothes."
+  },
+  {
+    "word": "关系",
+    "chinese": "我们的关系很好。",
+    "english": "Our relationship is very good."
+  },
+  {
+    "word": "宗教",
+    "chinese": "每个宗教都不一样。",
+    "english": "Every religion is different."
+  },
+  {
+    "word": "餐厅",
+    "chinese": "这家餐厅的菜很好吃。",
+    "english": "The food at this restaurant is delicious."
+  },
+  {
+    "word": "富",
+    "chinese": "他家很富。",
+    "english": "His family is very rich."
+  },
+  {
+    "word": "戒指",
+    "chinese": "她手上戴着戒指。",
+    "english": "She is wearing a ring on her hand."
+  },
+  {
+    "word": "屋顶",
+    "chinese": "猫在屋顶上睡觉。",
+    "english": "The cat is sleeping on the roof."
+  },
+  {
+    "word": "盐",
+    "chinese": "汤里的盐太多了。",
+    "english": "There is too much salt in the soup."
+  },
+  {
+    "word": "沙",
+    "chinese": "孩子们在玩沙。",
+    "english": "The children are playing with sand."
+  },
+  {
+    "word": "星期六",
+    "chinese": "星期六我们去公园。",
+    "english": "On Saturday we go to the park."
+  },
+  {
+    "word": "科学",
+    "chinese": "他喜欢学科学。",
+    "english": "He likes studying science."
+  },
+  {
+    "word": "屏幕",
+    "chinese": "手机屏幕坏了。",
+    "english": "The phone screen is broken."
+  },
+  {
+    "word": "秘书",
+    "chinese": "秘书帮老板记事情。",
+    "english": "The secretary helps the boss keep track of things."
+  },
+  {
+    "word": "种子",
+    "chinese": "我们在花园里种下种子。",
+    "english": "We planted seeds in the garden."
+  },
+  {
+    "word": "九月",
+    "chinese": "九月学校开学。",
+    "english": "School starts in September."
+  },
+  {
+    "word": "浅",
+    "chinese": "这里的水很浅。",
+    "english": "The water here is very shallow."
+  },
+  {
+    "word": "衬衫",
+    "chinese": "他穿着白衬衫。",
+    "english": "He is wearing a white shirt."
+  },
+  {
+    "word": "鞋子",
+    "chinese": "这双鞋子很舒服。",
+    "english": "These shoes are very comfortable."
+  },
+  {
+    "word": "肩膀",
+    "chinese": "他的肩膀很宽。",
+    "english": "His shoulders are very broad."
+  },
+  {
+    "word": "标志",
+    "chinese": "路边有一个标志。",
+    "english": "There is a sign by the road."
+  },
+  {
+    "word": "银色",
+    "chinese": "他的车是银色的。",
+    "english": "His car is silver."
+  },
+  {
+    "word": "皮肤",
+    "chinese": "婴儿的皮肤很软。",
+    "english": "A baby's skin is very soft."
+  },
+  {
+    "word": "裙子",
+    "chinese": "她的裙子很漂亮。",
+    "english": "Her skirt is very pretty."
+  },
+  {
+    "word": "微笑",
+    "chinese": "她对我微笑了。",
+    "english": "She smiled at me."
+  },
+  {
+    "word": "雪",
+    "chinese": "外面下雪了！",
+    "english": "It is snowing outside!"
+  },
+  {
+    "word": "肥皂",
+    "chinese": "用肥皂洗手。",
+    "english": "Wash your hands with soap."
+  },
+  {
+    "word": "柔软",
+    "chinese": "这张床很柔软。",
+    "english": "This bed is very soft."
+  },
+  {
+    "word": "土壤",
+    "chinese": "这里的土壤很好。",
+    "english": "The soil here is very good."
+  },
+  {
+    "word": "汤",
+    "chinese": "这个汤很好喝。",
+    "english": "This soup is very tasty."
+  },
+  {
+    "word": "南方",
+    "chinese": "冬天鸟飞去南方。",
+    "english": "In winter the birds fly south."
+  },
+  {
+    "word": "勺子",
+    "chinese": "他用勺子喝汤。",
+    "english": "He drinks soup with a spoon."
+  },
+  {
+    "word": "运动",
+    "chinese": "运动对身体好。",
+    "english": "Sports are good for the body."
+  },
+  {
+    "word": "春天",
+    "chinese": "春天来了，花开了。",
+    "english": "Spring has come and the flowers have bloomed."
+  },
+  {
+    "word": "污渍",
+    "chinese": "衣服上有一块污渍。",
+    "english": "There is a stain on the clothes."
+  },
+  {
+    "word": "街道",
+    "chinese": "这条街道很干净。",
+    "english": "This street is very clean."
+  },
+  {
+    "word": "糖",
+    "chinese": "咖啡里要加糖吗？",
+    "english": "Do you want sugar in your coffee?"
+  },
+  {
+    "word": "套装",
+    "chinese": "他今天穿了一身套装。",
+    "english": "He is wearing a suit today."
+  },
+  {
+    "word": "夏天",
+    "chinese": "夏天我们去游泳。",
+    "english": "In summer we go swimming."
+  },
+  {
+    "word": "星期日",
+    "chinese": "星期日我在家休息。",
+    "english": "On Sunday I rest at home."
+  },
+  {
+    "word": "汗水",
+    "chinese": "他的脸上都是汗水。",
+    "english": "His face is covered in sweat."
+  },
+  {
+    "word": "T恤",
+    "chinese": "他穿着一件白T恤。",
+    "english": "He is wearing a white T-shirt."
+  },
+  {
+    "word": "味道",
+    "chinese": "这个汤的味道很好。",
+    "english": "This soup tastes very good."
+  },
+  {
+    "word": "茶",
+    "chinese": "请喝一杯茶。",
+    "english": "Please have a cup of tea."
+  },
+  {
+    "word": "泪滴",
+    "chinese": "她的脸上有一滴泪滴。",
+    "english": "There is a teardrop on her face."
+  },
+  {
+    "word": "温度",
+    "chinese": "今天的温度很低。",
+    "english": "The temperature today is very low."
+  },
+  {
+    "word": "剧院",
+    "chinese": "我们去剧院看戏。",
+    "english": "We go to the theater to see a play."
+  },
+  {
+    "word": "厚",
+    "chinese": "这本书很厚。",
+    "english": "This book is very thick."
+  },
+  {
+    "word": "薄",
+    "chinese": "这件衣服太薄了。",
+    "english": "This piece of clothing is too thin."
+  },
+  {
+    "word": "扔",
+    "chinese": "请不要扔东西。",
+    "english": "Please don't throw things."
+  },
+  {
+    "word": "星期四",
+    "chinese": "星期四我有中文课。",
+    "english": "On Thursday I have Chinese class."
+  },
+  {
+    "word": "票",
+    "chinese": "我买了两张电影票。",
+    "english": "I bought two movie tickets."
+  },
+  {
+    "word": "紧",
+    "chinese": "这双鞋有点紧。",
+    "english": "These shoes are a bit tight."
+  },
+  {
+    "word": "轮胎",
+    "chinese": "汽车的轮胎坏了。",
+    "english": "The car's tire is broken."
+  },
+  {
+    "word": "清洁",
+    "chinese": "周末我们清洁房间。",
+    "english": "On weekends we clean the room."
+  },
+  {
+    "word": "混合",
+    "chinese": "把水和面粉混合起来。",
+    "english": "Mix the water and flour together."
+  },
+  {
+    "word": "射击",
+    "chinese": "士兵在练习射击。",
+    "english": "The soldiers are practicing shooting."
+  },
+  {
+    "word": "观看",
+    "chinese": "很多人来观看比赛。",
+    "english": "Many people came to watch the game."
+  },
+  {
+    "word": "脚趾",
+    "chinese": "我的脚趾很痛。",
+    "english": "My toe hurts a lot."
+  },
+  {
+    "word": "舌头",
+    "chinese": "医生让我伸出舌头。",
+    "english": "The doctor asked me to stick out my tongue."
+  },
+  {
+    "word": "工具",
+    "chinese": "工人带来了很多工具。",
+    "english": "The worker brought many tools."
+  },
+  {
+    "word": "牙齿",
+    "chinese": "要每天刷牙齿。",
+    "english": "You should brush your teeth every day."
+  },
+  {
+    "word": "城镇",
+    "chinese": "这个城镇很安静。",
+    "english": "This town is very quiet."
+  },
+  {
+    "word": "火车",
+    "chinese": "火车八点开。",
+    "english": "The train leaves at eight."
+  },
+  {
+    "word": "火车站",
+    "chinese": "我们在火车站见面。",
+    "english": "We meet at the train station."
+  },
+  {
+    "word": "交通",
+    "chinese": "早上的交通很忙。",
+    "english": "The traffic in the morning is very busy."
+  },
+  {
+    "word": "卡车",
+    "chinese": "卡车上都是水果。",
+    "english": "The truck is full of fruit."
+  },
+  {
+    "word": "星期二",
+    "chinese": "星期二我们有数学课。",
+    "english": "On Tuesday we have math class."
+  },
+  {
+    "word": "转动",
+    "chinese": "轮子在慢慢转动。",
+    "english": "The wheel is slowly turning."
+  },
+  {
+    "word": "山谷",
+    "chinese": "山谷里有一条小河。",
+    "english": "There is a small river in the valley."
+  },
+  {
+    "word": "动词",
+    "chinese": "“跑”是一个动词。",
+    "english": "\"Run\" is a verb."
+  },
+  {
+    "word": "受害者",
+    "chinese": "警察在帮助受害者。",
+    "english": "The police are helping the victim."
+  },
+  {
+    "word": "元音",
+    "chinese": "这个字有两个元音。",
+    "english": "This word has two vowels."
+  },
+  {
+    "word": "服务员",
+    "chinese": "服务员送来了菜。",
+    "english": "The waiter brought the food."
+  },
+  {
+    "word": "墙",
+    "chinese": "墙上有一张地图。",
+    "english": "There is a map on the wall."
+  },
+  {
+    "word": "战争",
+    "chinese": "人们都不想要战争。",
+    "english": "People do not want war."
+  },
+  {
+    "word": "弱",
+    "chinese": "病后他的身体很弱。",
+    "english": "After being sick, his body is very weak."
+  },
+  {
+    "word": "婚礼",
+    "chinese": "他们的婚礼在春天。",
+    "english": "Their wedding is in spring."
+  },
+  {
+    "word": "星期三",
+    "chinese": "星期三下午我有空。",
+    "english": "I am free on Wednesday afternoon."
+  },
+  {
+    "word": "重量",
+    "chinese": "这个箱子的重量是十公斤。",
+    "english": "The weight of this box is ten kilograms."
+  },
+  {
+    "word": "湿",
+    "chinese": "下雨了，衣服都湿了。",
+    "english": "It rained and the clothes got all wet."
+  },
+  {
+    "word": "宽",
+    "chinese": "这条河很宽。",
+    "english": "This river is very wide."
+  },
+  {
+    "word": "妻子",
+    "chinese": "他的妻子是医生。",
+    "english": "His wife is a doctor."
+  },
+  {
+    "word": "窗户",
+    "chinese": "请打开窗户。",
+    "english": "Please open the window."
+  },
+  {
+    "word": "翅膀",
+    "chinese": "小鸟的翅膀受伤了。",
+    "english": "The bird's wing got injured."
+  },
+  {
+    "word": "冬天",
+    "chinese": "冬天常常下雪。",
+    "english": "It often snows in winter."
+  },
+  {
+    "word": "黄色",
+    "chinese": "香蕉是黄色的。",
+    "english": "Bananas are yellow."
+  }
 ]
