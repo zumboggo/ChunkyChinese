@@ -10494,6 +10494,12 @@ body.comic-distraction-free .app-shell {
   gap: clamp(12px, 1.6vw, 16px);
 }
 
+.app-screen-dashboard .rep-rings-row {
+  justify-content: center;
+  gap: clamp(14px, 3vw, 28px);
+  padding: 4px 0;
+}
+
 .app-screen-dashboard .dashboard-mode-card {
   min-height: clamp(116px, 11vw, 138px);
   display: grid;
@@ -10684,21 +10690,9 @@ body.comic-distraction-free .app-shell {
   box-shadow: -5px -4px 0 -2px currentColor, 5px 4px 0 -2px currentColor;
 }
 
-.dashboard-bottom-explore {
-  border: 3px solid currentColor;
-  border-radius: 50%;
-  background: transparent;
-}
-
-.dashboard-bottom-explore::after {
-  content: "";
-  display: block;
-  width: 8px;
-  height: 8px;
-  margin: 5px auto 0;
-  border-top: 3px solid currentColor;
-  border-right: 3px solid currentColor;
-  transform: rotate(45deg);
+.dashboard-bottom-listen {
+  mask: url("./assets/listen_icon.svg") center / contain no-repeat;
+  -webkit-mask: url("./assets/listen_icon.svg") center / contain no-repeat;
 }
 
 .dashboard-bottom-progress {
@@ -10728,11 +10722,8 @@ body.comic-distraction-free .app-shell {
   height: 21px;
 }
 
-.dashboard-bottom-profile {
-  border: 3px solid currentColor;
-  border-radius: 50% 50% 45% 45%;
-  background: transparent;
-  clip-path: polygon(0 100%, 100% 100%, 100% 50%, 70% 50%, 70% 20%, 30% 20%, 30% 50%, 0 50%);
+.dashboard-bottom-settings {
+  clip-path: polygon(50% 3%, 61% 35%, 96% 35%, 68% 55%, 79% 91%, 50% 70%, 21% 91%, 32% 55%, 4% 35%, 39% 35%);
 }
 
 @media (min-width: 980px) {
@@ -10898,12 +10889,12 @@ body.comic-distraction-free .app-shell {
   }
 
   .app-screen-dashboard .dashboard-overview {
-    grid-template-columns: minmax(0, 1.9fr) minmax(320px, 0.8fr);
+    grid-template-columns: 1fr;
   }
 
   .app-screen-dashboard .dashboard-today-panel {
-    grid-template-columns: 1fr;
-    min-height: 100%;
+    grid-template-columns: minmax(180px, 0.6fr) minmax(0, 1fr);
+    min-height: auto;
   }
 }
 

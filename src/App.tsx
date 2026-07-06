@@ -2835,61 +2835,21 @@ function App() {
                 <p>Start with due words, add new ones only when the queue is light.</p>
               </div>
             </div>
-
-            <section className="dashboard-today-panel" aria-label="Today">
-              <div className="dashboard-today-heading">
-                <strong>{dashboardRangeLabel(dashboardRange)}</strong>
-                <span>{stats.currentStreak} day streak</span>
-              </div>
-              <div className="segmented-control dashboard-range-control" aria-label="Dashboard stats range">
-                {dashboardRanges.map((range) => (
-                  <button
-                    key={range.value}
-                    type="button"
-                    className={dashboardRange === range.value ? 'active' : ''}
-                    onClick={() => setDashboardRange(range.value)}
-                  >
-                    {range.label}
-                  </button>
-                ))}
-              </div>
-              <div
-                className={`dashboard-comparison-head ${selectedPreviousRangeStats ? '' : 'single-period'}`.trim()}
-                aria-hidden="true"
-              >
-                <span>Metric</span>
-                <strong>{dashboardRangeLabel(dashboardRange)}</strong>
-                {selectedPreviousRangeStats && <strong>{dashboardPreviousRangeLabel(dashboardRange)}</strong>}
-              </div>
-              <dl className={`dashboard-today-stats ${selectedPreviousRangeStats ? '' : 'single-period'}`.trim()}>
-                <div>
-                  <dt>Cards reviewed</dt>
-                  <dd>{selectedRangeStats.cardsReviewed}</dd>
-                  {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.cardsReviewed}</dd>}
-                </div>
-                <div>
-                  <dt>Successful recalls</dt>
-                  <dd>{selectedRangeStats.successfulRecalls}</dd>
-                  {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.successfulRecalls}</dd>}
-                </div>
-                <div>
-                  <dt>Study minutes</dt>
-                  <dd>{selectedRangeStats.studyMinutes.toFixed(1)}</dd>
-                  {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.studyMinutes.toFixed(1)}</dd>}
-                </div>
-                <div>
-                  <dt>New words</dt>
-                  <dd>{selectedRangeStats.newWords}</dd>
-                  {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.newWords}</dd>}
-                </div>
-                <div>
-                  <dt>Reading graduates</dt>
-                  <dd>{selectedRangeStats.readingGraduatedWords}</dd>
-                  {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.readingGraduatedWords}</dd>}
-                </div>
-              </dl>
-            </section>
           </div>
+
+          {(sentenceRepsToday > 0 || stats.ranges.today.cardsReviewed > 0) && (
+            <div className="rep-rings-row">
+              {sentenceRepsToday > 0 && (
+                <SentenceRepRing repsToday={sentenceRepsToday} totalReps={sentenceTotalReps} />
+              )}
+              {stats.ranges.today.cardsReviewed > 0 && (
+                <FlashcardReviewRing
+                  reviewsToday={stats.ranges.today.cardsReviewed}
+                  totalReviews={stats.ranges.allTime?.cardsReviewed ?? 0}
+                />
+              )}
+            </div>
+          )}
 
           <div className="mode-start-grid mode-start-grid-three dashboard-mode-list" aria-label="Choose study mode">
             <button className="mode-start dashboard-mode-card flashcards-start" type="button" onClick={startSavedFlashcards}>
@@ -2939,19 +2899,59 @@ function App() {
             </button>
           </div>
 
-          {(sentenceRepsToday > 0 || stats.ranges.today.cardsReviewed > 0) && (
-            <div className="rep-rings-row">
-              {sentenceRepsToday > 0 && (
-                <SentenceRepRing repsToday={sentenceRepsToday} totalReps={sentenceTotalReps} />
-              )}
-              {stats.ranges.today.cardsReviewed > 0 && (
-                <FlashcardReviewRing
-                  reviewsToday={stats.ranges.today.cardsReviewed}
-                  totalReviews={stats.ranges.allTime?.cardsReviewed ?? 0}
-                />
-              )}
+          <section className="dashboard-today-panel" aria-label="Today">
+            <div className="dashboard-today-heading">
+              <strong>{dashboardRangeLabel(dashboardRange)}</strong>
+              <span>{stats.currentStreak} day streak</span>
             </div>
-          )}
+            <div className="segmented-control dashboard-range-control" aria-label="Dashboard stats range">
+              {dashboardRanges.map((range) => (
+                <button
+                  key={range.value}
+                  type="button"
+                  className={dashboardRange === range.value ? 'active' : ''}
+                  onClick={() => setDashboardRange(range.value)}
+                >
+                  {range.label}
+                </button>
+              ))}
+            </div>
+            <div
+              className={`dashboard-comparison-head ${selectedPreviousRangeStats ? '' : 'single-period'}`.trim()}
+              aria-hidden="true"
+            >
+              <span>Metric</span>
+              <strong>{dashboardRangeLabel(dashboardRange)}</strong>
+              {selectedPreviousRangeStats && <strong>{dashboardPreviousRangeLabel(dashboardRange)}</strong>}
+            </div>
+            <dl className={`dashboard-today-stats ${selectedPreviousRangeStats ? '' : 'single-period'}`.trim()}>
+              <div>
+                <dt>Cards reviewed</dt>
+                <dd>{selectedRangeStats.cardsReviewed}</dd>
+                {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.cardsReviewed}</dd>}
+              </div>
+              <div>
+                <dt>Successful recalls</dt>
+                <dd>{selectedRangeStats.successfulRecalls}</dd>
+                {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.successfulRecalls}</dd>}
+              </div>
+              <div>
+                <dt>Study minutes</dt>
+                <dd>{selectedRangeStats.studyMinutes.toFixed(1)}</dd>
+                {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.studyMinutes.toFixed(1)}</dd>}
+              </div>
+              <div>
+                <dt>New words</dt>
+                <dd>{selectedRangeStats.newWords}</dd>
+                {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.newWords}</dd>}
+              </div>
+              <div>
+                <dt>Reading graduates</dt>
+                <dd>{selectedRangeStats.readingGraduatedWords}</dd>
+                {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.readingGraduatedWords}</dd>}
+              </div>
+            </dl>
+          </section>
 
           {dashboardToast && (
             <div className="dashboard-toast" role="status">
@@ -3100,9 +3100,9 @@ function App() {
               <span className="dashboard-bottom-icon dashboard-bottom-review" aria-hidden="true" />
               Review
             </button>
-            <button type="button" onClick={() => setScreen('readingTexts')}>
-              <span className="dashboard-bottom-icon dashboard-bottom-explore" aria-hidden="true" />
-              Explore
+            <button type="button" onClick={() => void startSentenceLesson()}>
+              <span className="dashboard-bottom-icon dashboard-bottom-listen" aria-hidden="true" />
+              Listen
             </button>
             <button
               type="button"
@@ -3112,8 +3112,8 @@ function App() {
               Progress
             </button>
             <button type="button" onClick={() => setScreen('settings')}>
-              <span className="dashboard-bottom-icon dashboard-bottom-profile" aria-hidden="true" />
-              Profile
+              <span className="dashboard-bottom-icon dashboard-bottom-settings" aria-hidden="true" />
+              Settings
             </button>
           </nav>
 
