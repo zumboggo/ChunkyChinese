@@ -2,8 +2,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  AreaChart,
-  Area,
   BarChart,
   Bar,
   LineChart,
@@ -294,56 +292,91 @@ const HIDDEN_PACK_IDS = new Set(['annas-reading-deck'])
 const FLASHCARD_LEARN_AHEAD_MS = 5 * 60 * 1000
 const FLASHCARD_REVERSE_RATE = 0.1
 
-const SENTENCE_REP_RING_COLORS = ['#bae6fd', '#7dd3fc', '#38bdf8', '#0ea5e9', '#0284c7', '#0369a1']
-const FLASHCARD_REVIEW_RING_COLORS = ['#fce7f3', '#f9a8d4', '#f472b6', '#ec4899', '#db2777', '#9d174d']
+const GOAL_RING_COLORS: Record<string, string> = {
+  flashcards: '#ec4899',
+  listening: '#38bdf8',
+  reading: '#22c55e',
+}
 
-function SentenceRepRing({ repsToday, totalReps }: { repsToday: number; totalReps: number }) {
-  const sessionsToday = Math.floor(repsToday / 50)
-  const partialProgress = (repsToday % 50) / 50
-  const colorIndex = Math.min(sessionsToday, SENTENCE_REP_RING_COLORS.length - 1)
-  const color = SENTENCE_REP_RING_COLORS[colorIndex]
-  const r = 38
-  const circumference = 2 * Math.PI * r
-  // full ring for completed sessions; partial arc for the in-progress session
-  const fillFraction = sessionsToday >= 1 ? 1 : partialProgress
-  const strokeDashoffset = circumference * (1 - fillFraction)
+function useCountUp(value: number, durationMs = 500): number {
+  const [displayed, setDisplayed] = useState(0)
+  const fromRef = useRef(0)
+  useEffect(() => {
+    const from = fromRef.current
+    if (from === value) return
+    let frame = 0
+    const startedAt = performance.now()
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - startedAt) / durationMs)
+      const eased = 1 - (1 - t) * (1 - t)
+      const next = Math.round(from + (value - from) * eased)
+      setDisplayed(next)
+      if (t < 1) {
+        frame = requestAnimationFrame(tick)
+      } else {
+        fromRef.current = value
+      }
+    }
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [durationMs, value])
+  return displayed
+}
+
+function CountUpNumber({ value }: { value: number }) {
+  return <>{useCountUp(value)}</>
+}
+
+function EmptyPanelPrompt({
+  message,
+  actionLabel,
+  onAction,
+}: {
+  message: string
+  actionLabel: string
+  onAction: () => void
+}) {
   return (
-    <div className="sentence-rep-ring-wrap">
-      <p className="ring-title">Sentences</p>
-      <svg className="sentence-rep-ring" viewBox="0 0 100 100" aria-label={`${repsToday} sentence reps today`}>
-        <circle cx="50" cy="50" r={r} className="sentence-rep-ring-track" />
-        <circle
-          cx="50" cy="50" r={r}
-          className="sentence-rep-ring-fill"
-          style={{
-            stroke: color,
-            strokeDasharray: circumference,
-            strokeDashoffset,
-            filter: `drop-shadow(0 0 6px ${color})`,
-          }}
-        />
-        <text x="50" y="46" className="sentence-rep-ring-count">{repsToday}</text>
-        <text x="50" y="60" className="sentence-rep-ring-label">reps today</text>
-      </svg>
-      <p className="sentence-rep-total">{totalReps.toLocaleString()} total reps</p>
+    <div className="panel-empty">
+      <p>{message}</p>
+      <button type="button" className="ghost-answer" onClick={onAction}>
+        {actionLabel} →
+      </button>
     </div>
   )
 }
 
-function FlashcardReviewRing({ reviewsToday, totalReviews }: { reviewsToday: number; totalReviews: number }) {
-  const SESSION_SIZE = 40
-  const sessionsToday = Math.floor(reviewsToday / SESSION_SIZE)
-  const partialProgress = (reviewsToday % SESSION_SIZE) / SESSION_SIZE
-  const colorIndex = Math.min(sessionsToday, FLASHCARD_REVIEW_RING_COLORS.length - 1)
-  const color = FLASHCARD_REVIEW_RING_COLORS[colorIndex]
+function GoalRing({
+  kind,
+  title,
+  value,
+  goal,
+  unit,
+  onClick,
+}: {
+  kind: 'flashcards' | 'listening' | 'reading'
+  title: string
+  value: number
+  goal: number
+  unit: string
+  onClick: () => void
+}) {
+  const color = GOAL_RING_COLORS[kind]
+  const displayedValue = useCountUp(value)
   const r = 38
   const circumference = 2 * Math.PI * r
-  const fillFraction = sessionsToday >= 1 ? 1 : partialProgress
+  const fillFraction = goal > 0 ? Math.min(1, value / goal) : 0
   const strokeDashoffset = circumference * (1 - fillFraction)
+  const complete = goal > 0 && value >= goal
   return (
-    <div className="sentence-rep-ring-wrap">
-      <p className="ring-title">Flashcards</p>
-      <svg className="sentence-rep-ring" viewBox="0 0 100 100" aria-label={`${reviewsToday} flashcards reviewed today`}>
+    <button
+      type="button"
+      className={`sentence-rep-ring-wrap goal-ring${complete ? ' goal-ring-complete' : ''}`}
+      onClick={onClick}
+      aria-label={`${title}: ${value} of ${goal} ${unit} today. Tap to start.`}
+    >
+      <p className="ring-title">{title}</p>
+      <svg className="sentence-rep-ring" viewBox="0 0 100 100" aria-hidden="true">
         <circle cx="50" cy="50" r={r} className="sentence-rep-ring-track" />
         <circle
           cx="50" cy="50" r={r}
@@ -352,14 +385,14 @@ function FlashcardReviewRing({ reviewsToday, totalReviews }: { reviewsToday: num
             stroke: color,
             strokeDasharray: circumference,
             strokeDashoffset,
-            filter: `drop-shadow(0 0 6px ${color})`,
+            filter: complete ? `drop-shadow(0 0 8px ${color})` : undefined,
           }}
         />
-        <text x="50" y="46" className="sentence-rep-ring-count">{reviewsToday}</text>
-        <text x="50" y="60" className="sentence-rep-ring-label">cards today</text>
+        <text x="50" y="46" className="sentence-rep-ring-count">{displayedValue}</text>
+        <text x="50" y="60" className="sentence-rep-ring-label">of {goal} {unit}</text>
       </svg>
-      <p className="sentence-rep-total">{totalReviews.toLocaleString()} total reviews</p>
-    </div>
+      <p className="sentence-rep-total">{complete ? 'Goal complete!' : `${Math.round(fillFraction * 100)}% of daily goal`}</p>
+    </button>
   )
 }
 
@@ -435,6 +468,11 @@ function App() {
   const [flashcardExternalDismissDir, setFlashcardExternalDismissDir] = useState<string | null>(null)
   const [flashcardSessionId, setFlashcardSessionId] = useState<string | null>(null)
   const [flashcardCelebrationId, setFlashcardCelebrationId] = useState(0)
+  const [goalCelebrationId, setGoalCelebrationId] = useState(0)
+  const goalCelebrationRef = useRef<{ initialized: boolean; fired: Set<string> }>({
+    initialized: false,
+    fired: new Set(),
+  })
   const [flashcardSessionRatingCounts, setFlashcardSessionRatingCounts] = useState<Record<FsrsRating, number>>({ again: 0, hard: 0, good: 0, easy: 0 })
   const [flashcardSessionStartMs, setFlashcardSessionStartMs] = useState<number>(0)
   const [flashcardSessionStruggledWords, setFlashcardSessionStruggledWords] = useState<VocabWord[]>([])
@@ -498,7 +536,8 @@ function App() {
   const [listeningLessonMenuOpen, setListeningLessonMenuOpen] = useState(false)
   const [sentenceQueueOffset, setSentenceQueueOffset] = useState(0)
   const [sentenceRepsToday, setSentenceRepsToday] = useState(0)
-  const [sentenceTotalReps, setSentenceTotalReps] = useState(0)
+  // Total-rep counter still persists in IndexedDB; only daily reps drive the goal ring UI.
+  const [, setSentenceTotalReps] = useState(0)
   const [sentenceSubMode, setSentenceSubMode] = useState<'sets' | 'books'>('sets')
   const [bookListenBookId, setBookListenBookId] = useState<string | null>(null)
   const [bookListenIndex, setBookListenIndex] = useState(0)
@@ -1052,6 +1091,37 @@ function App() {
       lesson: wordLessonMap.get(current.word),
     }
   }, [lmsSentences.length, sentencePosition.sentenceIndex, sentenceQueue, sentenceQueueOffset, wordLessonMap])
+
+  // Celebrate a daily goal ring closing, once per goal per session.
+  // Goals already met when the app loads are treated as already celebrated.
+  useEffect(() => {
+    const entries: Array<[string, number, number]> = [
+      ['flashcards', stats.ranges.today.cardsReviewed, userSettings.flashcardsPerDay],
+      ['listening', sentenceRepsToday, userSettings.listeningRepsGoal],
+      ['reading', todayReaderStats?.todayPagesRead ?? 0, userSettings.readingGoalPages],
+    ]
+    const state = goalCelebrationRef.current
+    if (!state.initialized) {
+      for (const [key, value, goal] of entries) {
+        if (goal > 0 && value >= goal) state.fired.add(key)
+      }
+      state.initialized = true
+      return
+    }
+    for (const [key, value, goal] of entries) {
+      if (goal > 0 && value >= goal && !state.fired.has(key)) {
+        state.fired.add(key)
+        setGoalCelebrationId((id) => id + 1)
+      }
+    }
+  }, [
+    sentenceRepsToday,
+    stats.ranges.today.cardsReviewed,
+    todayReaderStats?.todayPagesRead,
+    userSettings.flashcardsPerDay,
+    userSettings.listeningRepsGoal,
+    userSettings.readingGoalPages,
+  ])
 
   const startSentenceLesson = useCallback(async (offsetOverride?: number) => {
     stopAudioOutputs()
@@ -2784,7 +2854,6 @@ function App() {
             </span>
           </button>
           <div className="brand-pills">
-            <button className="brand-home-pill" type="button" onClick={() => setScreen('dashboard')}>Home</button>
             <button className="topbar-settings-btn" type="button" onClick={() => setScreen('settings')}>Settings</button>
           </div>
         </div>
@@ -2806,7 +2875,7 @@ function App() {
             Reading
           </button>
         </nav>
-        {screen === 'dashboard' && (
+        {screen === 'dashboard' ? (
           <div className="dashboard-sidebar-streak" aria-label={`${stats.currentStreak} day streak`}>
             <span className="dashboard-sidebar-flame" aria-hidden="true" />
             <span>
@@ -2815,8 +2884,14 @@ function App() {
               <small>Keep it up!</small>
             </span>
           </div>
+        ) : (
+          <div className="topbar-streak-badge" aria-label={`${stats.currentStreak} day streak`} title="Current streak">
+            🔥 {stats.currentStreak}
+          </div>
         )}
       </header>
+
+      {goalCelebrationId > 0 && <FlashcardCelebration key={`goal-${goalCelebrationId}`} />}
 
       <AnimatePresence mode="wait">
       {screen === 'dashboard' && (
@@ -2837,19 +2912,32 @@ function App() {
             </div>
           </div>
 
-          {(sentenceRepsToday > 0 || stats.ranges.today.cardsReviewed > 0) && (
-            <div className="rep-rings-row">
-              {sentenceRepsToday > 0 && (
-                <SentenceRepRing repsToday={sentenceRepsToday} totalReps={sentenceTotalReps} />
-              )}
-              {stats.ranges.today.cardsReviewed > 0 && (
-                <FlashcardReviewRing
-                  reviewsToday={stats.ranges.today.cardsReviewed}
-                  totalReviews={stats.ranges.allTime?.cardsReviewed ?? 0}
-                />
-              )}
-            </div>
-          )}
+          <div className="rep-rings-row" aria-label="Daily goals">
+            <GoalRing
+              kind="flashcards"
+              title="Flashcards"
+              value={stats.ranges.today.cardsReviewed}
+              goal={userSettings.flashcardsPerDay}
+              unit="cards"
+              onClick={startSavedFlashcards}
+            />
+            <GoalRing
+              kind="listening"
+              title="Listening"
+              value={sentenceRepsToday}
+              goal={userSettings.listeningRepsGoal}
+              unit="reps"
+              onClick={() => void startSentenceLesson()}
+            />
+            <GoalRing
+              kind="reading"
+              title="Reading"
+              value={todayReaderStats?.todayPagesRead ?? 0}
+              goal={userSettings.readingGoalPages}
+              unit="pages"
+              onClick={() => setScreen('readingTexts')}
+            />
+          </div>
 
           <div className="mode-start-grid mode-start-grid-three dashboard-mode-list" aria-label="Choose study mode">
             <button className="mode-start dashboard-mode-card flashcards-start" type="button" onClick={startSavedFlashcards}>
@@ -2863,7 +2951,7 @@ function App() {
               <kbd>{hotkeys.choiceA.toUpperCase()}</kbd>
               <span className="mode-start-metric">
                 <span>Due now</span>
-                <strong>{stats.dueNow}</strong>
+                <strong><CountUpNumber value={stats.dueNow} /></strong>
               </span>
               <span className="mode-start-arrow" aria-hidden="true">→</span>
             </button>
@@ -2878,7 +2966,7 @@ function App() {
               <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
               <span className="mode-start-metric">
                 <span>Streak</span>
-                <strong>{stats.currentStreak}</strong>
+                <strong><CountUpNumber value={stats.currentStreak} /></strong>
               </span>
               <span className="mode-start-arrow" aria-hidden="true">→</span>
             </button>
@@ -2916,6 +3004,18 @@ function App() {
                 </button>
               ))}
             </div>
+            {selectedRangeStats.cardsReviewed === 0 &&
+            selectedRangeStats.successfulRecalls === 0 &&
+            selectedRangeStats.studyMinutes === 0 &&
+            selectedRangeStats.newWords === 0 &&
+            selectedRangeStats.readingGraduatedWords === 0 ? (
+              <EmptyPanelPrompt
+                message={`Nothing yet ${dashboardRangeLabel(dashboardRange).toLowerCase()} — warm up with a quick set.`}
+                actionLabel="Start flashcards"
+                onAction={startSavedFlashcards}
+              />
+            ) : (
+            <>
             <div
               className={`dashboard-comparison-head ${selectedPreviousRangeStats ? '' : 'single-period'}`.trim()}
               aria-hidden="true"
@@ -2951,6 +3051,8 @@ function App() {
                 {selectedPreviousRangeStats && <dd>{selectedPreviousRangeStats.readingGraduatedWords}</dd>}
               </div>
             </dl>
+            </>
+            )}
           </section>
 
           {dashboardToast && (
@@ -2986,11 +3088,16 @@ function App() {
             <InfoPanel title="Learning process" className="process-chart-panel">
               <LearningProcessChart points={stats.learningProcessSeries} />
             </InfoPanel>
-            <InfoPanel title="Recent Activity (Last 7 Days)">
-              <ActivityChart days={stats.studyHeatmap} />
-            </InfoPanel>
             <InfoPanel title="Reading WPM Trend" className="reading-wpm-trend-panel">
-              <ReadingWpmTrendChart points={stats.readingSeries} />
+              {stats.readingSeries.some((point) => point.wpm > 0) ? (
+                <ReadingWpmTrendChart points={stats.readingSeries} />
+              ) : (
+                <EmptyPanelPrompt
+                  message="Read for a few minutes to start your speed trend."
+                  actionLabel="Open reading"
+                  onAction={() => setScreen('readingTexts')}
+                />
+              )}
             </InfoPanel>
             <InfoPanel title="Words Graduated From Reading" className="reading-graduated-panel">
               <ReadingGraduatedCounter
@@ -3001,7 +3108,15 @@ function App() {
               />
             </InfoPanel>
             <InfoPanel title="Review heatmap">
-              <ProgressHeatmap days={stats.studyHeatmap} />
+              {stats.studyHeatmap.some((day) => day.activityCount > 0) ? (
+                <ProgressHeatmap days={stats.studyHeatmap} />
+              ) : (
+                <EmptyPanelPrompt
+                  message="Your first study session lights this up."
+                  actionLabel="Start flashcards"
+                  onAction={startSavedFlashcards}
+                />
+              )}
             </InfoPanel>
             <InfoPanel title="Vocab Growth" className="vocab-growth-panel">
               <VocabGrowthChart points={stats.retentionSeries} />
@@ -3013,40 +3128,8 @@ function App() {
                   <dd>{stats.currentStreak} 🔥</dd>
                 </div>
                 <div>
-                  <dt>Longest streak</dt>
-                  <dd>{stats.longestStreak}</dd>
-                </div>
-                <div>
                   <dt>Study minutes</dt>
                   <dd>{stats.minutesToday.toFixed(1)}</dd>
-                </div>
-                <div>
-                  <dt>Due soon</dt>
-                  <dd>{stats.dueSoon}</dd>
-                </div>
-                <div>
-                  <dt>Scheduled</dt>
-                  <dd>{stats.scheduled}</dd>
-                </div>
-                <div>
-                  <dt>New cards</dt>
-                  <dd>{stats.counts.new}</dd>
-                </div>
-                <div>
-                  <dt>Learning</dt>
-                  <dd>{stats.counts.learning}</dd>
-                </div>
-                <div>
-                  <dt>Due cards</dt>
-                  <dd>{stats.counts.due}</dd>
-                </div>
-                <div>
-                  <dt>Clips completed</dt>
-                  <dd>{stats.clipsCompletedToday}</dd>
-                </div>
-                <div>
-                  <dt>Cards rated Good/Easy</dt>
-                  <dd>{stats.knownToday}</dd>
                 </div>
                 <div>
                   <dt>FSRS ratings due</dt>
@@ -3057,14 +3140,6 @@ function App() {
                   <dd>{stats.newWordsToday} / {newWordsPerDay}</dd>
                 </div>
                 <div>
-                  <dt>Reading time</dt>
-                  <dd>{formatDuration(todayReaderStats?.todayActiveSeconds ?? 0)}</dd>
-                </div>
-                <div>
-                  <dt>Words read</dt>
-                  <dd>{todayReaderStats?.todayWordsRead ?? 0}</dd>
-                </div>
-                <div>
                   <dt>Pages read</dt>
                   <dd>{todayReaderStats?.todayPagesRead ?? 0} / {userSettings.readingGoalPages}</dd>
                 </div>
@@ -3072,54 +3147,113 @@ function App() {
                   <dt>WPM</dt>
                   <dd>{todayReaderStats?.todayWpm ?? 0}</dd>
                 </div>
-                <div>
-                  <dt>Total sessions</dt>
-                  <dd>{todayReaderStats?.totalSessions ?? 0}</dd>
-                </div>
-                <div>
-                  <dt>Avg flashcard set</dt>
-                  <dd>{stats.avgFlashcardSetSeconds > 0 ? formatDuration(Math.round(stats.avgFlashcardSetSeconds)) : '—'}</dd>
-                </div>
-                <div>
-                  <dt>Last set duration</dt>
-                  <dd>{stats.lastFlashcardSetSeconds > 0 ? formatDuration(stats.lastFlashcardSetSeconds) : '—'}</dd>
-                </div>
               </dl>
-              <button type="button" className="ghost-answer" onClick={() => setScreen('comicReader')}>
-                Open reader
-              </button>
+              <details className="study-details-more">
+                <summary>More stats</summary>
+                <dl className="stat-list">
+                  <div>
+                    <dt>Longest streak</dt>
+                    <dd>{stats.longestStreak}</dd>
+                  </div>
+                  <div>
+                    <dt>Due soon</dt>
+                    <dd>{stats.dueSoon}</dd>
+                  </div>
+                  <div>
+                    <dt>Scheduled</dt>
+                    <dd>{stats.scheduled}</dd>
+                  </div>
+                  <div>
+                    <dt>New cards</dt>
+                    <dd>{stats.counts.new}</dd>
+                  </div>
+                  <div>
+                    <dt>Learning</dt>
+                    <dd>{stats.counts.learning}</dd>
+                  </div>
+                  <div>
+                    <dt>Due cards</dt>
+                    <dd>{stats.counts.due}</dd>
+                  </div>
+                  <div>
+                    <dt>Clips completed</dt>
+                    <dd>{stats.clipsCompletedToday}</dd>
+                  </div>
+                  <div>
+                    <dt>Cards rated Good/Easy</dt>
+                    <dd>{stats.knownToday}</dd>
+                  </div>
+                  <div>
+                    <dt>Reading time</dt>
+                    <dd>{formatDuration(todayReaderStats?.todayActiveSeconds ?? 0)}</dd>
+                  </div>
+                  <div>
+                    <dt>Words read</dt>
+                    <dd>{todayReaderStats?.todayWordsRead ?? 0}</dd>
+                  </div>
+                  <div>
+                    <dt>Total sessions</dt>
+                    <dd>{todayReaderStats?.totalSessions ?? 0}</dd>
+                  </div>
+                  <div>
+                    <dt>Avg flashcard set</dt>
+                    <dd>{stats.avgFlashcardSetSeconds > 0 ? formatDuration(Math.round(stats.avgFlashcardSetSeconds)) : '—'}</dd>
+                  </div>
+                  <div>
+                    <dt>Last set duration</dt>
+                    <dd>{stats.lastFlashcardSetSeconds > 0 ? formatDuration(stats.lastFlashcardSetSeconds) : '—'}</dd>
+                  </div>
+                </dl>
+              </details>
             </InfoPanel>
           </div>
-
-          <nav className="dashboard-bottom-nav" aria-label="Dashboard quick navigation">
-            <button type="button" className="active" onClick={() => setScreen('dashboard')}>
-              <span className="dashboard-bottom-icon dashboard-bottom-home" aria-hidden="true" />
-              Home
-            </button>
-            <button type="button" onClick={startSavedFlashcards}>
-              <span className="dashboard-bottom-icon dashboard-bottom-review" aria-hidden="true" />
-              Review
-            </button>
-            <button type="button" onClick={() => void startSentenceLesson()}>
-              <span className="dashboard-bottom-icon dashboard-bottom-listen" aria-hidden="true" />
-              Listen
-            </button>
-            <button
-              type="button"
-              onClick={() => document.getElementById('dashboard-progress')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              <span className="dashboard-bottom-icon dashboard-bottom-progress" aria-hidden="true" />
-              Progress
-            </button>
-            <button type="button" onClick={() => setScreen('settings')}>
-              <span className="dashboard-bottom-icon dashboard-bottom-settings" aria-hidden="true" />
-              Settings
-            </button>
-          </nav>
 
         </motion.section>
       )}
       </AnimatePresence>
+
+      <nav className="app-bottom-nav" aria-label="Main navigation">
+        <button
+          type="button"
+          className={screen === 'dashboard' ? 'active' : ''}
+          onClick={() => setScreen('dashboard')}
+        >
+          <span className="dashboard-bottom-icon dashboard-bottom-home" aria-hidden="true" />
+          Home
+        </button>
+        <button
+          type="button"
+          className={screen === 'flashcards' ? 'active' : ''}
+          onClick={startSavedFlashcards}
+        >
+          <span className="nav-icon nav-flashcards" aria-hidden="true" />
+          Flashcards
+        </button>
+        <button
+          type="button"
+          className={screen === 'lesson' && studyMode === 'sentenceMode' ? 'active' : ''}
+          onClick={() => void startSentenceLesson()}
+        >
+          <span className="nav-icon nav-listen" aria-hidden="true" />
+          Listening
+        </button>
+        <button
+          type="button"
+          className={['readingTexts', 'reader', 'comicReader', 'visualNovel', 'renpyPrototype', 'renpyLms'].includes(screen) ? 'active' : ''}
+          onClick={() => setScreen('readingTexts')}
+        >
+          <span className="nav-icon nav-reading" aria-hidden="true" />
+          Reading
+        </button>
+        <button
+          type="button"
+          className={screen === 'settings' ? 'active' : ''}
+          onClick={() => setScreen('settings')}
+        >
+          <span className="dashboard-bottom-icon dashboard-bottom-settings" aria-hidden="true" />
+          Settings
+        </button>
+      </nav>
 
 
       <AnimatePresence mode="wait">
@@ -3917,6 +4051,20 @@ function App() {
                         value={userSettings.readingGoalPages}
                         onChange={(event) => {
                           const next = { ...userSettings, readingGoalPages: Number(event.target.value) }
+                          setUserSettings(next)
+                          void saveUserSettings(next)
+                        }}
+                      />
+                    </label>
+                    <label>
+                      <span>Listening Reps / Day</span>
+                      <input
+                        type="number"
+                        min={10}
+                        max={500}
+                        value={userSettings.listeningRepsGoal}
+                        onChange={(event) => {
+                          const next = { ...userSettings, listeningRepsGoal: Number(event.target.value) }
                           setUserSettings(next)
                           void saveUserSettings(next)
                         }}
@@ -6608,34 +6756,6 @@ function ReaderComprehensionMeter({
         You know {percent}% of the words{total > 0 ? ` (${summary?.known ?? 0}/${total})` : ''}.{' '}
         {learning} Learning, {fresh} New.
       </p>
-    </div>
-  )
-}
-
-function ActivityChart({ days }: { days: DashboardStats['studyHeatmap'] }) {
-  const last7Days = days.slice(-7)
-  if (last7Days.length === 0) {
-    return <div className="progress-caption">No activity data yet</div>
-  }
-  return (
-    <div style={{ width: '100%', height: 200 }}>
-      <ResponsiveContainer width="100%" height="100%" minWidth={0}>
-        <AreaChart data={last7Days}>
-          <defs>
-            <linearGradient id="colorStudy" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="var(--accent-vibrant)" stopOpacity={0.8}/>
-              <stop offset="95%" stopColor="var(--accent-vibrant)" stopOpacity={0}/>
-            </linearGradient>
-          </defs>
-          <XAxis dataKey="date" tickFormatter={shortMonthDay} />
-          <YAxis hide />
-          <Tooltip
-            formatter={(value: unknown) => [`${(Number(value ?? 0) / 60).toFixed(1)} mins`, 'Study Time']}
-            labelFormatter={(label) => friendlyDate(label)}
-          />
-          <Area type="monotone" dataKey="studySeconds" stroke="var(--accent-vibrant)" fillOpacity={1} fill="url(#colorStudy)" />
-        </AreaChart>
-      </ResponsiveContainer>
     </div>
   )
 }

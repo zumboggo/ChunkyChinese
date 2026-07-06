@@ -60,6 +60,7 @@ export interface UserSettings {
   lingqCreatedGoal: number
   lingqLearnedGoal: number
   flashcardsPerDay: number
+  listeningRepsGoal: number
   flashcardQueueMode: 'mixed' | 'due' | 'new'
   flashcardAudioFrontPercent: number
   darkMode: boolean
