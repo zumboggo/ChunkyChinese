@@ -179,7 +179,7 @@ import type {
   DictionaryEntry,
 } from './types'
 
-type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'visualNovel' | 'renpyPrototype' | 'renpyLms' | 'comicReader' | 'readingTexts'
+type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'visualNovel' | 'renpyPrototype' | 'comicReader' | 'readingTexts'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
 type FlashcardFrontMode = 'text' | 'audio' | 'reverse'
 type ReaderPinyinMode = UserSettings['readerPinyinMode']
@@ -396,12 +396,76 @@ function GoalRing({
   )
 }
 
+const WORD_MILESTONES = [25, 50, 100, 250, 500, 750, 1000, 1500, 2000, 3000, 5000, 7500, 10000]
+
+type MasteryInfo = { level: 0 | 1 | 2 | 3 | 4; label: string }
+
+// Mastery maps the FSRS interval to a coarse 5-step scale so every screen
+// can answer "how well do I know this word?" with the same vocabulary.
+function masteryForWord(word: VocabWord): MasteryInfo {
+  if ((word.fsrsRepetitions ?? 0) === 0 && !word.lastReviewedAt) return { level: 0, label: 'New' }
+  const interval = word.fsrsIntervalDays ?? 0
+  if (interval >= 60) return { level: 4, label: 'Mastered' }
+  if (interval >= 14) return { level: 3, label: 'Strong' }
+  if (interval >= 3) return { level: 2, label: 'Growing' }
+  return { level: 1, label: 'Seedling' }
+}
+
+function MasteryMeter({ word }: { word: VocabWord }) {
+  const mastery = masteryForWord(word)
+  return (
+    <span className={`mastery-meter mastery-level-${mastery.level}`} aria-label={`Mastery: ${mastery.label}`}>
+      {[1, 2, 3, 4].map((step) => (
+        <span key={step} className={`mastery-dot${step <= mastery.level ? ' filled' : ''}`} aria-hidden="true" />
+      ))}
+      <small>{mastery.label}</small>
+    </span>
+  )
+}
+
+function MilestoneJourney({
+  wordsKnown,
+  leveledUpThisWeek,
+}: {
+  wordsKnown: number
+  leveledUpThisWeek: number
+}) {
+  const nextMilestone = WORD_MILESTONES.find((m) => m > wordsKnown) ?? WORD_MILESTONES[WORD_MILESTONES.length - 1]
+  const previousMilestone = [...WORD_MILESTONES].reverse().find((m) => m <= wordsKnown) ?? 0
+  const span = Math.max(1, nextMilestone - previousMilestone)
+  const fillFraction = Math.min(1, Math.max(0, (wordsKnown - previousMilestone) / span))
+  const remaining = Math.max(0, nextMilestone - wordsKnown)
+  const displayedKnown = useCountUp(wordsKnown)
+  return (
+    <div className="milestone-journey" aria-label={`${wordsKnown} words known, ${remaining} to reach ${nextMilestone}`}>
+      <div className="milestone-journey-headline">
+        <strong className="milestone-journey-count">{displayedKnown}</strong>
+        <span className="milestone-journey-label">words known</span>
+        {leveledUpThisWeek > 0 && (
+          <span className="milestone-journey-delta">▲ {leveledUpThisWeek} moved up this week</span>
+        )}
+      </div>
+      <div className="milestone-journey-bar" role="progressbar" aria-valuemin={previousMilestone} aria-valuemax={nextMilestone} aria-valuenow={wordsKnown}>
+        <div className="milestone-journey-fill" style={{ width: `${fillFraction * 100}%` }} />
+      </div>
+      <div className="milestone-journey-legend">
+        <span>{previousMilestone}</span>
+        <span className="milestone-journey-next">
+          {remaining > 0 ? `${remaining} to go` : 'Milestone reached!'}
+        </span>
+        <span>{nextMilestone}</span>
+      </div>
+    </div>
+  )
+}
+
 const BOOK_LISTEN_SPEEDS = [0.6, 0.8, 1.0, 1.2, 1.4]
 
 function App() {
   const [screen, setScreen] = useState<Screen>('dashboard')
   const [initialVisualNovelWorldId, setInitialVisualNovelWorldId] = useState<string | undefined>()
   const [initialComicPack, setInitialComicPack] = useState<{ id: string; mode: 'continue' | 'start' } | undefined>()
+  const [renpyStoryVariant, setRenpyStoryVariant] = useState<'prototype' | 'lms'>('prototype')
   const [words, setWords] = useState<VocabWord[]>([])
   const [sentences, setSentences] = useState<Sentence[]>([])
   const [audioClips, setAudioClips] = useState<AudioClip[]>([])
@@ -476,6 +540,7 @@ function App() {
   const [flashcardSessionRatingCounts, setFlashcardSessionRatingCounts] = useState<Record<FsrsRating, number>>({ again: 0, hard: 0, good: 0, easy: 0 })
   const [flashcardSessionStartMs, setFlashcardSessionStartMs] = useState<number>(0)
   const [flashcardSessionStruggledWords, setFlashcardSessionStruggledWords] = useState<VocabWord[]>([])
+  const [flashcardSessionLeveledUp, setFlashcardSessionLeveledUp] = useState<VocabWord[]>([])
   const [editingWord, setEditingWord] = useState<CardEditDraft | null>(null)
   const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
   const [todayReaderStats, setTodayReaderStats] = useState<ReaderSessionStats | null>(null)
@@ -834,6 +899,10 @@ function App() {
     : undefined
   const studyDisplay = getStudyDisplay(studyWord, studySentence)
   const activeWords = useMemo(() => words.filter(isActiveVocabWord), [words])
+  const wordsKnown = useMemo(
+    () => activeWords.filter((word) => masteryForWord(word).level >= 3).length,
+    [activeWords],
+  )
   const extraReviewWords = useMemo(
     () =>
       activeWords
@@ -904,6 +973,13 @@ function App() {
     : undefined
   const selectedRangeStats = stats.ranges[dashboardRange] ?? stats.ranges.today
   const selectedPreviousRangeStats = stats.previousRanges[dashboardRange]
+  const leveledUpThisWeek = useMemo(() => {
+    const series = stats.retentionSeries
+    if (series.length < 2) return 0
+    const latest = series[series.length - 1]
+    const previous = series[series.length - 2]
+    return Math.max(0, latest.familiar + latest.wellKnown - (previous.familiar + previous.wellKnown))
+  }, [stats.retentionSeries])
   const remainingNewWordsToday = Math.max(0, newWordsPerDay - stats.newWordsToday)
   const currentReviewWord = ratingWords[reviewCardIndex]
   const flashcardQueue = useMemo(
@@ -1037,6 +1113,7 @@ function App() {
     setFlashcardSessionRatingCounts({ again: 0, hard: 0, good: 0, easy: 0 })
     setFlashcardSessionStartMs(Date.now())
     setFlashcardSessionStruggledWords([])
+    setFlashcardSessionLeveledUp([])
     setScreen('flashcards')
     setLastSummary(queue.length > 0 ? `Loaded ${queue.length} flashcards.` : 'No flashcards match that queue.')
   }, [buildFlashcardQueue])
@@ -1060,6 +1137,7 @@ function App() {
     setFlashcardSessionRatingCounts({ again: 0, hard: 0, good: 0, easy: 0 })
     setFlashcardSessionStartMs(Date.now())
     setFlashcardSessionStruggledWords([])
+    setFlashcardSessionLeveledUp([])
     setScreen('flashcards')
     setLastSummary(queue.length > 0 ? `Loaded ${queue.length} sentence flashcards.` : 'No sentence flashcards available.')
   }, [lmsSentences])
@@ -1895,6 +1973,11 @@ function App() {
           setWords((currentWords) =>
             currentWords.map((word) => (word.id === wordId ? updatedWord : word)),
           )
+          if (masteryForWord(updatedWord).level > masteryForWord(preRatingWord).level) {
+            setFlashcardSessionLeveledUp((prev) =>
+              prev.some((w) => w.id === wordId) ? prev : [...prev, updatedWord],
+            )
+          }
         }
         setFlashcardDoneIds(nextDoneIds)
         setFlashcardClock(now)
@@ -1933,6 +2016,7 @@ function App() {
       ...prev,
       [flashcardUndoState.rating]: Math.max(0, prev[flashcardUndoState.rating] - 1),
     }))
+    setFlashcardSessionLeveledUp((prev) => prev.filter((w) => w.id !== flashcardUndoState.word.id))
     setFlashcardDoneIds(flashcardUndoState.prevDoneIds)
     setFlashcardCurrentId(flashcardUndoState.word.id)
     setFlashcardAnswerShown(true)
@@ -2857,38 +2941,9 @@ function App() {
             <button className="topbar-settings-btn" type="button" onClick={() => setScreen('settings')}>Settings</button>
           </div>
         </div>
-        <nav className="tabs" aria-label="Main screens">
-          <button type="button" className={screen === 'flashcards' ? 'active' : ''} onClick={startSavedFlashcards}>
-            <span className="nav-icon nav-flashcards" aria-hidden="true" />
-            Flashcards
-          </button>
-          <button type="button" className={screen === 'lesson' && studyMode === 'sentenceMode' ? 'active' : ''} onClick={() => void startSentenceLesson()}>
-            <span className="nav-icon nav-listen" aria-hidden="true" />
-            Listening
-          </button>
-          <button
-            type="button"
-            className={screen === 'readingTexts' ? 'active' : ''}
-            onClick={() => setScreen('readingTexts')}
-          >
-            <span className="nav-icon nav-reading" aria-hidden="true" />
-            Reading
-          </button>
-        </nav>
-        {screen === 'dashboard' ? (
-          <div className="dashboard-sidebar-streak" aria-label={`${stats.currentStreak} day streak`}>
-            <span className="dashboard-sidebar-flame" aria-hidden="true" />
-            <span>
-              <small>Current streak</small>
-              <strong>{stats.currentStreak} days</strong>
-              <small>Keep it up!</small>
-            </span>
-          </div>
-        ) : (
-          <div className="topbar-streak-badge" aria-label={`${stats.currentStreak} day streak`} title="Current streak">
-            🔥 {stats.currentStreak}
-          </div>
-        )}
+        <div className="topbar-streak-badge" aria-label={`${stats.currentStreak} day streak`} title="Current streak">
+          🔥 {stats.currentStreak}
+        </div>
       </header>
 
       {goalCelebrationId > 0 && <FlashcardCelebration key={`goal-${goalCelebrationId}`} />}
@@ -2905,10 +2960,7 @@ function App() {
         >
           <div className="dashboard-overview">
             <div className="screen-heading dashboard-hero-card">
-              <div className="dashboard-hero-copy">
-                <h1>Press play, think, keep moving.</h1>
-                <p>Start with due words, add new ones only when the queue is light.</p>
-              </div>
+              <MilestoneJourney wordsKnown={wordsKnown} leveledUpThisWeek={leveledUpThisWeek} />
             </div>
           </div>
 
@@ -2965,8 +3017,8 @@ function App() {
               </span>
               <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
               <span className="mode-start-metric">
-                <span>Streak</span>
-                <strong><CountUpNumber value={stats.currentStreak} /></strong>
+                <span>Reps today</span>
+                <strong><CountUpNumber value={sentenceRepsToday} /></strong>
               </span>
               <span className="mode-start-arrow" aria-hidden="true">→</span>
             </button>
@@ -2990,7 +3042,6 @@ function App() {
           <section className="dashboard-today-panel" aria-label="Today">
             <div className="dashboard-today-heading">
               <strong>{dashboardRangeLabel(dashboardRange)}</strong>
-              <span>{stats.currentStreak} day streak</span>
             </div>
             <div className="segmented-control dashboard-range-control" aria-label="Dashboard stats range">
               {dashboardRanges.map((range) => (
@@ -3085,28 +3136,6 @@ function App() {
           </details>
 
           <div className="dashboard-progress-grid" id="dashboard-progress">
-            <InfoPanel title="Learning process" className="process-chart-panel">
-              <LearningProcessChart points={stats.learningProcessSeries} />
-            </InfoPanel>
-            <InfoPanel title="Reading WPM Trend" className="reading-wpm-trend-panel">
-              {stats.readingSeries.some((point) => point.wpm > 0) ? (
-                <ReadingWpmTrendChart points={stats.readingSeries} />
-              ) : (
-                <EmptyPanelPrompt
-                  message="Read for a few minutes to start your speed trend."
-                  actionLabel="Open reading"
-                  onAction={() => setScreen('readingTexts')}
-                />
-              )}
-            </InfoPanel>
-            <InfoPanel title="Words Graduated From Reading" className="reading-graduated-panel">
-              <ReadingGraduatedCounter
-                current={selectedRangeStats.readingGraduatedWords}
-                previous={selectedPreviousRangeStats?.readingGraduatedWords}
-                allTime={stats.ranges.allTime.readingGraduatedWords}
-                rangeLabel={dashboardRangeLabel(dashboardRange)}
-              />
-            </InfoPanel>
             <InfoPanel title="Review heatmap">
               {stats.studyHeatmap.some((day) => day.activityCount > 0) ? (
                 <ProgressHeatmap days={stats.studyHeatmap} />
@@ -3121,36 +3150,55 @@ function App() {
             <InfoPanel title="Vocab Growth" className="vocab-growth-panel">
               <VocabGrowthChart points={stats.retentionSeries} />
             </InfoPanel>
-            <InfoPanel title="Study details" className="study-details-panel">
-              <dl className="stat-list">
-                <div>
-                  <dt>Current streak</dt>
-                  <dd>{stats.currentStreak} 🔥</dd>
-                </div>
-                <div>
-                  <dt>Study minutes</dt>
-                  <dd>{stats.minutesToday.toFixed(1)}</dd>
-                </div>
-                <div>
-                  <dt>FSRS ratings due</dt>
-                  <dd>{stats.dueNow}</dd>
-                </div>
-                <div>
-                  <dt>New words today</dt>
-                  <dd>{stats.newWordsToday} / {newWordsPerDay}</dd>
-                </div>
-                <div>
-                  <dt>Pages read</dt>
-                  <dd>{todayReaderStats?.todayPagesRead ?? 0} / {userSettings.readingGoalPages}</dd>
-                </div>
-                <div>
-                  <dt>WPM</dt>
-                  <dd>{todayReaderStats?.todayWpm ?? 0}</dd>
-                </div>
-              </dl>
-              <details className="study-details-more">
-                <summary>More stats</summary>
+          </div>
+
+          <details className="dashboard-all-stats">
+            <summary>All stats</summary>
+            <div className="dashboard-progress-grid">
+              <InfoPanel title="Learning process" className="process-chart-panel">
+                <LearningProcessChart points={stats.learningProcessSeries} />
+              </InfoPanel>
+              <InfoPanel title="Reading WPM Trend" className="reading-wpm-trend-panel">
+                {stats.readingSeries.some((point) => point.wpm > 0) ? (
+                  <ReadingWpmTrendChart points={stats.readingSeries} />
+                ) : (
+                  <EmptyPanelPrompt
+                    message="Read for a few minutes to start your speed trend."
+                    actionLabel="Open reading"
+                    onAction={() => setScreen('readingTexts')}
+                  />
+                )}
+              </InfoPanel>
+              <InfoPanel title="Words Graduated From Reading" className="reading-graduated-panel">
+                <ReadingGraduatedCounter
+                  current={selectedRangeStats.readingGraduatedWords}
+                  previous={selectedPreviousRangeStats?.readingGraduatedWords}
+                  allTime={stats.ranges.allTime.readingGraduatedWords}
+                  rangeLabel={dashboardRangeLabel(dashboardRange)}
+                />
+              </InfoPanel>
+              <InfoPanel title="Study details" className="study-details-panel">
                 <dl className="stat-list">
+                  <div>
+                    <dt>Study minutes</dt>
+                    <dd>{stats.minutesToday.toFixed(1)}</dd>
+                  </div>
+                  <div>
+                    <dt>FSRS ratings due</dt>
+                    <dd>{stats.dueNow}</dd>
+                  </div>
+                  <div>
+                    <dt>New words today</dt>
+                    <dd>{stats.newWordsToday} / {newWordsPerDay}</dd>
+                  </div>
+                  <div>
+                    <dt>Pages read</dt>
+                    <dd>{todayReaderStats?.todayPagesRead ?? 0} / {userSettings.readingGoalPages}</dd>
+                  </div>
+                  <div>
+                    <dt>WPM</dt>
+                    <dd>{todayReaderStats?.todayWpm ?? 0}</dd>
+                  </div>
                   <div>
                     <dt>Longest streak</dt>
                     <dd>{stats.longestStreak}</dd>
@@ -3204,9 +3252,9 @@ function App() {
                     <dd>{stats.lastFlashcardSetSeconds > 0 ? formatDuration(stats.lastFlashcardSetSeconds) : '—'}</dd>
                   </div>
                 </dl>
-              </details>
-            </InfoPanel>
-          </div>
+              </InfoPanel>
+            </div>
+          </details>
 
         </motion.section>
       )}
@@ -3239,7 +3287,7 @@ function App() {
         </button>
         <button
           type="button"
-          className={['readingTexts', 'reader', 'comicReader', 'visualNovel', 'renpyPrototype', 'renpyLms'].includes(screen) ? 'active' : ''}
+          className={['readingTexts', 'reader', 'comicReader', 'visualNovel', 'renpyPrototype'].includes(screen) ? 'active' : ''}
           onClick={() => setScreen('readingTexts')}
         >
           <span className="nav-icon nav-reading" aria-hidden="true" />
@@ -3428,7 +3476,7 @@ function App() {
               <div className="review-complete flashcards-complete">
                 <strong>
                   {flashcardSessionComplete
-                    ? 'Flashcard queue complete.'
+                    ? 'Set complete — nice work!'
                     : flashcardQueue.length > 0
                       ? 'Short-step cards are waiting.'
                       : 'Choose a flashcard queue.'}
@@ -3443,6 +3491,48 @@ function App() {
                 {flashcardSessionComplete && (
                   <>
                     <div className="flashcard-session-summary">
+                      {(() => {
+                        const totalRated =
+                          flashcardSessionRatingCounts.again +
+                          flashcardSessionRatingCounts.hard +
+                          flashcardSessionRatingCounts.good +
+                          flashcardSessionRatingCounts.easy
+                        const accuracy = totalRated > 0
+                          ? Math.round(((flashcardSessionRatingCounts.good + flashcardSessionRatingCounts.easy) / totalRated) * 100)
+                          : 0
+                        const goal = userSettings.flashcardsPerDay
+                        const reviewedToday = stats.ranges.today.cardsReviewed
+                        const goalFraction = goal > 0 ? Math.min(1, reviewedToday / goal) : 0
+                        return (
+                          <div className="session-recap-highlights">
+                            <span className="session-recap-chip">
+                              <strong>{accuracy}%</strong> recalled
+                            </span>
+                            <span className="session-recap-chip">
+                              <strong>🔥 {stats.currentStreak}</strong> day streak
+                            </span>
+                            <div className="session-recap-goal" aria-label={`Daily goal: ${reviewedToday} of ${goal} cards`}>
+                              <span>Daily goal {reviewedToday} / {goal}{goalFraction >= 1 ? ' — complete! 🎉' : ''}</span>
+                              <div className="session-recap-goal-bar">
+                                <div className="session-recap-goal-fill" style={{ width: `${goalFraction * 100}%` }} />
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      })()}
+                      {flashcardSessionLeveledUp.length > 0 && (
+                        <div className="session-leveled-words">
+                          <span className="struggled-label">Leveled up this set:</span>
+                          {flashcardSessionLeveledUp.slice(0, 10).map((word) => (
+                            <span key={word.id} className="session-leveled-word">
+                              {word.word} → {masteryForWord(word).label}
+                            </span>
+                          ))}
+                          {flashcardSessionLeveledUp.length > 10 && (
+                            <span className="struggled-label">+{flashcardSessionLeveledUp.length - 10} more</span>
+                          )}
+                        </div>
+                      )}
                       <div className="session-summary-stats">
                         <span><strong>{formatDuration(Math.round((Date.now() - flashcardSessionStartMs) / 1000))}</strong> duration</span>
                         {fsrsRatingsForUi.map((r) => (
@@ -3581,24 +3671,24 @@ function App() {
       )}
 
       {screen === 'renpyPrototype' && (
-        <RenpyPrototypeMode
-          hotkeys={hotkeys}
-          onReturnToLibrary={() => setScreen('readingTexts')}
-          onOpenReactVisualNovel={() => {
-            setInitialVisualNovelWorldId('just-friends')
-            setScreen('visualNovel')
-          }}
-        />
-      )}
-
-      {screen === 'renpyLms' && (
-        <RenpyPrototypeMode
-          hotkeys={hotkeys}
-          storyId="lms"
-          title="Legendary Moonlight Sculptor"
-          description="The main story as an exported RenPy web build, with ruby pinyin and English you can toggle."
-          onReturnToLibrary={() => setScreen('readingTexts')}
-        />
+        renpyStoryVariant === 'lms' ? (
+          <RenpyPrototypeMode
+            hotkeys={hotkeys}
+            storyId="lms"
+            title="Legendary Moonlight Sculptor"
+            description="The main story as an exported RenPy web build, with ruby pinyin and English you can toggle."
+            onReturnToLibrary={() => setScreen('readingTexts')}
+          />
+        ) : (
+          <RenpyPrototypeMode
+            hotkeys={hotkeys}
+            onReturnToLibrary={() => setScreen('readingTexts')}
+            onOpenReactVisualNovel={() => {
+              setInitialVisualNovelWorldId('just-friends')
+              setScreen('visualNovel')
+            }}
+          />
+        )
       )}
 
       {screen === 'comicReader' && (
@@ -3634,8 +3724,14 @@ function App() {
             setInitialComicPack(undefined)
             setScreen('comicReader')
           }}
-          onOpenRenpyPrototype={() => setScreen('renpyPrototype')}
-          onOpenRenpyLms={() => setScreen('renpyLms')}
+          onOpenRenpyPrototype={() => {
+            setRenpyStoryVariant('prototype')
+            setScreen('renpyPrototype')
+          }}
+          onOpenRenpyLms={() => {
+            setRenpyStoryVariant('lms')
+            setScreen('renpyPrototype')
+          }}
           onOpenVisualNovel={(book) => {
             setInitialVisualNovelWorldId(book?.visualNovelWorldId)
             setScreen('visualNovel')
@@ -7217,6 +7313,7 @@ function FlashcardReview({
             Play audio
           </button>
         )}
+        {answerShown && <MasteryMeter word={word} />}
         {answerShown && onToggleActiveRecallPriority && (
           <button
             type="button"

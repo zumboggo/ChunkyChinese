@@ -11008,8 +11008,8 @@ body.comic-distraction-free .app-shell {
   }
 
   .app-screen-dashboard .dashboard-hero-card::after {
-    top: 38%;
-    left: 54%;
+    top: 8%;
+    left: 80%;
     width: 28px;
     height: 28px;
   }
@@ -11188,4 +11188,193 @@ body.comic-distraction-free .app-shell {
   .app-screen-dashboard .dashboard-mode-card .mode-start-copy > span {
     font-size: 0.9rem;
   }
+}
+
+/* Milestone journey (dashboard hero) */
+
+.milestone-journey {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 14px;
+  width: min(100%, 460px);
+}
+
+.milestone-journey-headline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.milestone-journey-count {
+  font-size: clamp(2.65rem, 8vw, 4.1rem);
+  font-weight: 950;
+  line-height: 1;
+  color: var(--navy);
+}
+
+.milestone-journey-label {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--muted-navy);
+}
+
+.milestone-journey-delta {
+  width: 100%;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #15803d;
+}
+
+.milestone-journey-bar {
+  height: 16px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(16, 35, 63, 0.1);
+  box-shadow: inset 0 1px 3px rgba(16, 35, 63, 0.12);
+}
+
+.milestone-journey-fill {
+  height: 100%;
+  min-width: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-vibrant));
+  transition: width 0.6s ease;
+}
+
+.milestone-journey-legend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--muted-navy);
+}
+
+.milestone-journey-next {
+  color: var(--navy);
+}
+
+/* Mastery meter (flashcard back) */
+
+.mastery-meter {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.mastery-meter small {
+  margin-left: 4px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--muted-navy);
+}
+
+.mastery-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(16, 35, 63, 0.14);
+}
+
+.mastery-dot.filled {
+  background: var(--accent-vibrant);
+}
+
+.mastery-level-4 .mastery-dot.filled {
+  background: #16a34a;
+}
+
+/* Session recap */
+
+.session-recap-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.session-recap-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--muted-navy);
+}
+
+.session-recap-chip strong {
+  font-size: 1.05rem;
+  color: var(--navy);
+}
+
+.session-recap-goal {
+  display: grid;
+  gap: 6px;
+  width: min(100%, 280px);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--muted-navy);
+  text-align: left;
+}
+
+.session-recap-goal-bar {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(16, 35, 63, 0.1);
+}
+
+.session-recap-goal-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-vibrant));
+  transition: width 0.6s ease;
+}
+
+.session-leveled-words {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.session-leveled-word {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(22, 163, 74, 0.13);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #166534;
+}
+
+/* Collapsed "All stats" section */
+
+.dashboard-all-stats {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 14px 34px rgba(16, 35, 63, 0.07);
+}
+
+.dashboard-all-stats > summary {
+  display: flex;
+  align-items: center;
+  min-height: 54px;
+  padding: 14px 16px;
+  color: var(--navy);
+  cursor: pointer;
+  font-weight: 950;
+}
+
+.dashboard-all-stats > .dashboard-progress-grid {
+  padding: 0 14px 14px;
 }
