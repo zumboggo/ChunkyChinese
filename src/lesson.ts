@@ -11,7 +11,6 @@ interface TargetSelectionOptions {
   allowExtraNew?: boolean
   keptWordIds?: string[]
   activeRecallEvents?: ListeningEvent[]
-  extraReviewFirst?: boolean
 }
 
 interface PauseTimings {
@@ -258,13 +257,6 @@ export function selectTargetWords(
     ? words.filter((word) => !options.keptWordIds!.includes(word.id))
     : words
 
-  if (options.extraReviewFirst) {
-    for (const word of manualActiveRecallPriorityWords(filteredWords)) {
-      if (selected.length >= 5) break
-      if (!selected.some((candidate) => candidate.id === word.id)) selected.push(word)
-    }
-  }
-
   if (options.activeRecall && options.keptWordIds) {
     const fillWords = selectActiveRecallTargetWords(filteredWords, options.activeRecallEvents ?? [])
       .filter((word) => selected.length === 0 || !isNewFsrsCard(word))
@@ -366,7 +358,6 @@ export function selectActiveRecallTargetWords(
     .filter((word) => hasActiveRecallStruggleSignal(word, events))
     .sort((a, b) => activeRecallStruggleScore(b, events) - activeRecallStruggleScore(a, events))
 
-  pick(manualActiveRecallPriorityWords(words))
   pick(recentFlashcardAgainWords(reviewed, events))
   pick(strongestStruggles)
 
@@ -384,17 +375,6 @@ export function selectActiveRecallTargetWords(
   }
 
   return selected
-}
-
-function manualActiveRecallPriorityWords(words: VocabWord[]): VocabWord[] {
-  return words
-    .filter((word) => word.activeRecallPriorityAt)
-    .sort((a, b) => activeRecallPriorityTime(a) - activeRecallPriorityTime(b))
-}
-
-function activeRecallPriorityTime(word: VocabWord): number {
-  const time = Date.parse(word.activeRecallPriorityAt ?? '')
-  return Number.isFinite(time) ? time : Number.MAX_SAFE_INTEGER
 }
 
 function recentFlashcardAgainWords(words: VocabWord[], events: ListeningEvent[]): VocabWord[] {

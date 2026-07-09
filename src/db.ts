@@ -89,6 +89,7 @@ const DB_NAME = 'chunky-chinese-vocab'
 const DB_VERSION = 11
 const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
+const ENGLISH_ONLY_CARD_CLEANUP_VERSION = '2026-07-09-english-only-duplicates'
 const READER_PACK_FIX_VERSION = '2026-06-27-reader-english-health-check'
 
 export interface SyncMetadata {
@@ -441,15 +442,27 @@ export async function applyBuiltInLmsCorrectionsIfNeeded(force = false): Promise
 
 export async function cleanupAccidentalEnglishOnlyCards(): Promise<number> {
   const db = await getDB()
+  const appliedVersion = (await db.get('settings', 'englishOnlyCardCleanupVersion')) as string | undefined
+  if (appliedVersion === ENGLISH_ONLY_CARD_CLEANUP_VERSION) return 0
+
   const words = await db.getAll('vocabWords')
-  const accidentalCards = words.filter(isAccidentalEnglishOnlyCard)
-  if (accidentalCards.length === 0) return 0
+  const chineseMeaningKeys = new Set(
+    words
+      .filter((word) => hasHanText(word.word))
+      .flatMap((word) => englishCardKeys(word.meaning)),
+  )
+  const accidentalCards = words.filter((word) => isAccidentalEnglishOnlyCard(word, chineseMeaningKeys))
+  if (accidentalCards.length === 0) {
+    await db.put('settings', ENGLISH_ONLY_CARD_CLEANUP_VERSION, 'englishOnlyCardCleanupVersion')
+    return 0
+  }
 
   const tx = db.transaction('vocabWords', 'readwrite')
   for (const word of accidentalCards) {
     await tx.store.delete(word.id)
   }
   await tx.done
+  await db.put('settings', ENGLISH_ONLY_CARD_CLEANUP_VERSION, 'englishOnlyCardCleanupVersion')
   return accidentalCards.length
 }
 
@@ -1046,44 +1059,6 @@ export async function updateWordText(
   }
   await db.put('vocabWords', updatedWord)
   return updatedWord
-}
-
-export async function setWordActiveRecallPriority(
-  wordId: string,
-  prioritized: boolean,
-): Promise<VocabWord | undefined> {
-  const db = await getDB()
-  const word = await db.get('vocabWords', wordId)
-  if (!word) return undefined
-  const now = new Date().toISOString()
-  const updatedWord: VocabWord = {
-    ...word,
-    activeRecallPriorityAt: prioritized ? word.activeRecallPriorityAt ?? now : undefined,
-    updatedAt: now,
-  }
-  await db.put('vocabWords', updatedWord)
-  return updatedWord
-}
-
-export async function clearWordActiveRecallPriorities(wordIds: string[]): Promise<VocabWord[]> {
-  if (wordIds.length === 0) return []
-  const db = await getDB()
-  const tx = db.transaction('vocabWords', 'readwrite')
-  const updatedWords: VocabWord[] = []
-  const now = new Date().toISOString()
-  for (const wordId of wordIds) {
-    const word = await tx.store.get(wordId)
-    if (!word?.activeRecallPriorityAt) continue
-    const updatedWord: VocabWord = {
-      ...word,
-      activeRecallPriorityAt: undefined,
-      updatedAt: now,
-    }
-    await tx.store.put(updatedWord)
-    updatedWords.push(updatedWord)
-  }
-  await tx.done
-  return updatedWords
 }
 
 export async function rateWordFsrs(
@@ -2909,14 +2884,36 @@ function hasImportedProgress(word: VocabWord): boolean {
   )
 }
 
-function isAccidentalEnglishOnlyCard(word: VocabWord): boolean {
+function isAccidentalEnglishOnlyCard(word: VocabWord, chineseMeaningKeys: Set<string>): boolean {
   const belongsToLms = word.source === 'LMS 1000' || word.packIds?.includes(LMS_PACK_ID)
-  if (belongsToLms) return false
-  return !hasHanText(word.word) && !hasHanText(word.meaning)
+  if (hasHanText(word.word) || hasHanText(word.meaning)) return false
+
+  const frontKeys = englishCardKeys(word.word)
+  const backKeys = englishCardKeys(word.meaning)
+  const exactEnglishMirror = frontKeys.some((key) => backKeys.includes(key))
+  const duplicatesChineseCard = [...frontKeys, ...backKeys].some((key) => chineseMeaningKeys.has(key))
+
+  return !belongsToLms || exactEnglishMirror || duplicatesChineseCard
 }
 
 function hasHanText(value: string | undefined): boolean {
   return /[\u3400-\u9fff]/u.test(value ?? '')
+}
+
+function englishCardKeys(value: string | undefined): string[] {
+  const text = value?.toLocaleLowerCase().replace(/\([^)]*\)/g, ' ')
+  const normalize = (part: string) =>
+    part
+      .replace(/[^a-z0-9]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+  const normalized = text ? normalize(text) : ''
+  if (!normalized) return []
+  const parts = (text ?? '')
+    .split(/\s*(?:[;,/]|\bor\b|\band\b)\s*/u)
+    .map(normalize)
+    .filter((part) => part.length > 1)
+  return unique([normalized, ...parts])
 }
 
 function detectProgressImportFields(rows: Record<string, string>[]): ProgressImportFields {

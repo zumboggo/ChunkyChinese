@@ -53,9 +53,9 @@ import {
   seedLmsWordsIfEmpty,
   seedReaderBooksIfEmpty,
   saveHotkeys,
-  setWordActiveRecallPriority,
   archiveWord,
   isActiveVocabWord,
+  cleanupAccidentalEnglishOnlyCards,
   startReaderSession,
   updateReaderSession,
   getReaderSessionStats,
@@ -237,7 +237,6 @@ type LessonStartOptions = {
   pauseProfile?: PauseProfile
   newWordsLimit?: number
   allowExtraNew?: boolean
-  extraReviewFirst?: boolean
 }
 type LmsSeedSentence = { word: string; chinese: string; english: string }
 
@@ -539,7 +538,6 @@ function App() {
   })
   const [flashcardSessionRatingCounts, setFlashcardSessionRatingCounts] = useState<Record<FsrsRating, number>>({ again: 0, hard: 0, good: 0, easy: 0 })
   const [flashcardSessionStartMs, setFlashcardSessionStartMs] = useState<number>(0)
-  const [flashcardSessionStruggledWords, setFlashcardSessionStruggledWords] = useState<VocabWord[]>([])
   const [flashcardSessionLeveledUp, setFlashcardSessionLeveledUp] = useState<VocabWord[]>([])
   const [editingWord, setEditingWord] = useState<CardEditDraft | null>(null)
   const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
@@ -644,6 +642,7 @@ function App() {
   }, [])
 
   const refresh = useCallback(async () => {
+    await cleanupAccidentalEnglishOnlyCards()
     const [
       nextWords,
       nextSentences,
@@ -903,13 +902,6 @@ function App() {
     () => activeWords.filter((word) => masteryForWord(word).level >= 3).length,
     [activeWords],
   )
-  const extraReviewWords = useMemo(
-    () =>
-      activeWords
-        .filter((word) => word.activeRecallPriorityAt)
-        .sort((a, b) => priorityTime(a) - priorityTime(b)),
-    [activeWords],
-  )
   const coverage = useMemo(() => getAudioCoverage(activeWords, sentences, audioClips), [
     activeWords,
     audioClips,
@@ -1112,7 +1104,6 @@ function App() {
     setFlashcardAudioOnly(false)
     setFlashcardSessionRatingCounts({ again: 0, hard: 0, good: 0, easy: 0 })
     setFlashcardSessionStartMs(Date.now())
-    setFlashcardSessionStruggledWords([])
     setFlashcardSessionLeveledUp([])
     setScreen('flashcards')
     setLastSummary(queue.length > 0 ? `Loaded ${queue.length} flashcards.` : 'No flashcards match that queue.')
@@ -1136,7 +1127,6 @@ function App() {
     setFlashcardSessionFeedback(null)
     setFlashcardSessionRatingCounts({ again: 0, hard: 0, good: 0, easy: 0 })
     setFlashcardSessionStartMs(Date.now())
-    setFlashcardSessionStruggledWords([])
     setFlashcardSessionLeveledUp([])
     setScreen('flashcards')
     setLastSummary(queue.length > 0 ? `Loaded ${queue.length} sentence flashcards.` : 'No sentence flashcards available.')
@@ -1366,24 +1356,6 @@ function App() {
     void refresh()
   }, [editingWord, queueCloudSync, refresh])
 
-  const toggleActiveRecallPriority = useCallback(async (word: VocabWord) => {
-    const prioritized = !word.activeRecallPriorityAt
-    const updatedWord = await setWordActiveRecallPriority(word.id, prioritized)
-    if (!updatedWord) return
-    setWords((currentWords) =>
-      currentWords.map((currentWord) => (currentWord.id === updatedWord.id ? updatedWord : currentWord)),
-    )
-    setSelectedReaderToken((token) =>
-      token?.word?.id === updatedWord.id ? { ...token, word: updatedWord } : token,
-    )
-    setLastSummary(
-      prioritized
-        ? `${updatedWord.word} starred for extra review.`
-        : `${updatedWord.word} removed from extra review.`,
-    )
-    queueCloudSync()
-  }, [queueCloudSync])
-
   const finishFlashcardSession = useCallback(() => {
     setLastSummary('Flashcard session saved.')
     setFlashcardCurrentId(null)
@@ -1415,15 +1387,11 @@ function App() {
   }, [screen])
 
   useEffect(() => {
-    if (screen !== 'flashcards' || !flashcardSessionId) return
-    const timeout = window.setTimeout(() => {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-      })
-    }, 120)
-    return () => window.clearTimeout(timeout)
-  }, [flashcardSessionId, screen])
+    if (screen !== 'flashcards') return
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: 'auto' })
+    })
+  }, [screen, flashcardSessionId])
 
   const recordReaderInteraction = useCallback(() => {
     lastReaderActivityTimeRef.current = Date.now()
@@ -1944,15 +1912,11 @@ function App() {
   const handleStandaloneFlashcardRate = useCallback((rating: FsrsRating) => {
     if (!currentFlashcardWord || flashcardSessionFeedback) return
     const wordId = currentFlashcardWord.id
-    const ratedWord = currentFlashcardWord
     const preRatingWord = currentFlashcardWord
     const preRatingDoneIds = flashcardDoneIds
     setFlashcardSessionFeedback(rating)
     setFlashcardExternalDismissDir(RATING_DISMISS_DIR[rating])
     setFlashcardSessionRatingCounts((prev) => ({ ...prev, [rating]: prev[rating] + 1 }))
-    if (rating === 'again') {
-      setFlashcardSessionStruggledWords((prev) => prev.some((w) => w.id === wordId) ? prev : [...prev, ratedWord])
-    }
     window.setTimeout(() => {
       void (async () => {
         const updatedWord = await rateWordFsrs(wordId, rating, {
@@ -1984,7 +1948,7 @@ function App() {
         setFlashcardCurrentId(nextWord?.id ?? null)
         void refresh()
         queueCloudSync()
-        setLastSummary(`Rated ${ratedWord.word} ${fsrsLabel(rating)}.`)
+        setLastSummary(`Rated ${preRatingWord.word} ${fsrsLabel(rating)}.`)
         setFlashcardAnswerShown(false)
         setFlashcardSessionFeedback(null)
         if (flashcardUndoTimeoutRef.current !== null) window.clearTimeout(flashcardUndoTimeoutRef.current)
@@ -2231,11 +2195,6 @@ function App() {
           void playFlashcardWordTwice(currentFlashcardWord)
           return
         }
-        if (pressed === hotkeys.choiceE && currentFlashcardWord) {
-          event.preventDefault()
-          void toggleActiveRecallPriority(currentFlashcardWord)
-          return
-        }
         if (!currentFlashcardWord && flashcardSessionComplete) {
           if (mappedIndex === 0) {
             event.preventDefault()
@@ -2294,11 +2253,6 @@ function App() {
           }
           return
         }
-        if (pressed === hotkeys.choiceE && currentReviewWord) {
-          event.preventDefault()
-          void toggleActiveRecallPriority(currentReviewWord)
-          return
-        }
         if (pressed === hotkeys.choiceF && currentReviewWord) {
           event.preventDefault()
           void playFlashcardWordTwice(currentReviewWord)
@@ -2355,7 +2309,6 @@ function App() {
     startSentenceLesson,
     startSavedFlashcards,
     studyMode,
-    toggleActiveRecallPriority,
     togglePlayback,
   ])
 
@@ -2378,7 +2331,6 @@ function App() {
       const { playAfterRender = false, ...selectionOptions } = options
       const nextLesson = createPocketLesson(activeWords, sentences, audioClips, manualIds, {
         pauseProfile,
-        extraReviewFirst: studyMode === 'listeningMode',
         ...selectionOptions,
       })
       setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
@@ -3112,29 +3064,6 @@ function App() {
             </div>
           )}
 
-          <details className="extra-review-panel">
-            <summary>
-              <span>Extra review words</span>
-              <strong>{extraReviewWords.length}</strong>
-            </summary>
-            <div className="extra-review-list">
-              {extraReviewWords.map((word) => (
-                <div className="extra-review-row" key={word.id}>
-                  <span>
-                    <strong>{word.word}</strong>
-                    <small>{word.pinyin ? `${word.pinyin} · ${word.meaning}` : word.meaning}</small>
-                  </span>
-                  <button type="button" className="ghost-answer" onClick={() => toggleActiveRecallPriority(word)}>
-                    Remove
-                  </button>
-                </div>
-              ))}
-              {extraReviewWords.length === 0 && (
-                <small>No starred words yet. Press {hotkeys.choiceE.toUpperCase()} on a flashcard to add one.</small>
-              )}
-            </div>
-          </details>
-
           <div className="dashboard-progress-grid" id="dashboard-progress">
             <InfoPanel title="Review heatmap">
               {stats.studyHeatmap.some((day) => day.activityCount > 0) ? (
@@ -3318,11 +3247,7 @@ function App() {
           <div className="screen-heading compact">
             <div>
               <h1>Flashcards</h1>
-              <p>
-                {flashcardSessionKind === 'sentences'
-                  ? 'Sentence mode. Front is Chinese; back is English.'
-                  : 'Fast FSRS reviews. Front is Chinese; back is pinyin and definition.'}
-              </p>
+              {flashcardSessionKind === 'sentences' && <p>Sentence mode. Front is Chinese; back is English.</p>}
             </div>
           </div>
 
@@ -3467,7 +3392,6 @@ function App() {
                 }}
                 onReplayAudio={() => playFlashcardWordTwice(currentFlashcardWord)}
                 onRate={handleStandaloneFlashcardRate}
-                onToggleActiveRecallPriority={() => toggleActiveRecallPriority(currentFlashcardWord)}
                 selectedRating={flashcardSessionFeedback}
                 externalDismissDir={flashcardExternalDismissDir}
                 choiceKeys={hotkeys}
@@ -3541,21 +3465,6 @@ function App() {
                           </span>
                         ))}
                       </div>
-                      {flashcardSessionStruggledWords.length > 0 && (
-                        <div className="session-struggled-words">
-                          <span className="struggled-label">Rated Again this round:</span>
-                          {flashcardSessionStruggledWords.map((word) => (
-                            <button
-                              key={word.id}
-                              type="button"
-                              className={`ghost-answer struggled-word-btn ${word.activeRecallPriorityAt ? 'active' : ''}`}
-                              onClick={() => void toggleActiveRecallPriority(word)}
-                            >
-                              {word.activeRecallPriorityAt ? '★' : '☆'} {word.word}
-                            </button>
-                          ))}
-                        </div>
-                      )}
                     </div>
                     <div className="flashcard-complete-actions">
                       <button type="button" className="primary" onClick={refreshFlashcardSession}>
@@ -4476,7 +4385,6 @@ function App() {
                                 void playFlashcardWordTwice(currentReviewWord)
                               }}
                               onRate={(rating) => handleFlashcardRate(currentReviewWord.id, rating)}
-                              onToggleActiveRecallPriority={() => toggleActiveRecallPriority(currentReviewWord)}
                               selectedRating={flashcardFeedback}
                               choiceKeys={hotkeys}
                           />
@@ -7200,7 +7108,6 @@ function FlashcardReview({
   onFlip,
   onReplayAudio,
   onRate,
-  onToggleActiveRecallPriority,
   selectedRating,
   externalDismissDir,
   choiceKeys,
@@ -7211,7 +7118,6 @@ function FlashcardReview({
   onFlip: () => void
   onReplayAudio?: () => void | Promise<void>
   onRate: (rating: FsrsRating) => void | Promise<void>
-  onToggleActiveRecallPriority?: () => void | Promise<void>
   selectedRating?: FsrsRating | null
   externalDismissDir?: string | null
   choiceKeys?: HotkeySettings
@@ -7255,13 +7161,11 @@ function FlashcardReview({
   }, [answerShown, dismissDir, externalDismissDir, flipPhase, onFlip])
 
   return (
-    <section
-      className="flashcard-review"
-      {...swipe.handlers}
-    >
+    <section className="flashcard-review">
       <div
         key={word.id}
         ref={cardRef}
+        {...swipe.handlers}
         className={[
           'flashcard',
           answerShown ? 'answer-side' : 'front-side',
@@ -7314,17 +7218,6 @@ function FlashcardReview({
           </button>
         )}
         {answerShown && <MasteryMeter word={word} />}
-        {answerShown && onToggleActiveRecallPriority && (
-          <button
-            type="button"
-            className={`active-recall-priority-button ${word.activeRecallPriorityAt ? 'active' : ''}`}
-            onClick={onToggleActiveRecallPriority}
-            aria-pressed={Boolean(word.activeRecallPriorityAt)}
-          >
-            {choiceKeys?.choiceE && <kbd>{choiceKeys.choiceE.toUpperCase()}</kbd>}
-            <span>{word.activeRecallPriorityAt ? '★ Extra review' : '☆ Extra review'}</span>
-          </button>
-        )}
         {answerShown && (() => {
           const previews = previewFsrsRatings(word)
           return (
@@ -7561,11 +7454,6 @@ function stableStringBucket(value: string, modulo: number): number {
   return Math.abs(hash >>> 0) % modulo
 }
 
-function priorityTime(word: VocabWord): number {
-  const time = Date.parse(word.activeRecallPriorityAt ?? '')
-  return Number.isFinite(time) ? time : Number.MAX_SAFE_INTEGER
-}
-
 function formatDueDate(value?: string): string {
   if (!value) return 'Not scheduled'
   const due = new Date(value)
@@ -7794,7 +7682,7 @@ function hotkeyLabel(key: keyof HotkeySettings): string {
     choiceB: 'Choice B / Hard',
     choiceC: 'Choice C / Good',
     choiceD: 'Choice D / Easy',
-    choiceE: 'Choice E / Extra review star',
+    choiceE: 'Choice E / Bonus action',
     choiceF: 'Choice F / Replay audio',
     playPause: 'Play / Pause',
   }[key]

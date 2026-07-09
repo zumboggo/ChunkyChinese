@@ -119,6 +119,7 @@ export function useSwipeCard({
 
   const onTouchMove = useCallback((e: React.TouchEvent) => {
     if (!touchStartRef.current || !enabled || dismissDir) return
+    if (e.cancelable) e.preventDefault()
     const t = e.touches[0]
     const dx = t.clientX - touchStartRef.current.x
     const dy = t.clientY - touchStartRef.current.y

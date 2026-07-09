@@ -843,70 +843,6 @@ details.settings-group > .import-grid {
   box-shadow: 0 12px 28px rgba(16, 35, 63, 0.1);
 }
 
-.extra-review-panel {
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.68);
-  box-shadow: 0 14px 34px rgba(16, 35, 63, 0.07);
-}
-
-.extra-review-panel summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 54px;
-  padding: 14px 16px;
-  color: var(--navy);
-  cursor: pointer;
-  font-weight: 950;
-}
-
-.extra-review-panel summary strong {
-  display: inline-grid;
-  place-items: center;
-  min-width: 32px;
-  min-height: 32px;
-  border-radius: 999px;
-  background: rgba(236, 72, 153, 0.16);
-  color: #9d174d;
-}
-
-.extra-review-list {
-  display: grid;
-  gap: 8px;
-  padding: 0 14px 14px;
-}
-
-.extra-review-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 10px;
-  padding: 12px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.7);
-}
-
-.extra-review-row span {
-  display: grid;
-  gap: 3px;
-  min-width: 0;
-}
-
-.extra-review-row strong {
-  color: var(--navy);
-  font-size: 1.25rem;
-}
-
-.extra-review-row small,
-.extra-review-list > small {
-  color: var(--muted);
-  font-weight: 800;
-  line-height: 1.35;
-}
-
 .metric {
   display: grid;
   justify-items: start;
@@ -7768,15 +7704,15 @@ kbd {
 
 .flashcard-review {
   display: grid;
-  gap: 14px;
-  min-height: min(760px, calc(100svh - 220px));
+  gap: 10px;
+  min-height: auto;
   align-content: start;
-  padding-bottom: 76px;
+  padding-bottom: 8px;
 }
 
 .flashcards-workspace {
   display: grid;
-  gap: 14px;
+  gap: 10px;
   max-width: 780px;
   width: min(780px, 100%);
   justify-self: center;
@@ -7910,9 +7846,9 @@ kbd {
   grid-template-rows: auto 1fr auto auto;
   justify-items: center;
   align-content: center;
-  gap: 16px;
-  min-height: clamp(340px, 52svh, 520px);
-  padding: clamp(24px, 5vw, 52px);
+  gap: clamp(10px, 2svh, 16px);
+  min-height: clamp(300px, 48svh, 500px);
+  padding: clamp(20px, 4.4vw, 48px);
   border: 1px solid rgba(16, 35, 63, 0.1);
   border-radius: var(--radius);
   background:
@@ -7923,6 +7859,9 @@ kbd {
     inset 0 1px 0 rgba(255, 255, 255, 0.92);
   animation: cardEnter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
   will-change: transform, opacity;
+  touch-action: none;
+  overscroll-behavior: contain;
+  user-select: none;
 }
 
 .flashcard.flashcard-dismiss-left  { animation: cardDismissLeft  0.3s ease-in forwards; }
@@ -8065,22 +8004,6 @@ kbd {
   font-weight: 800;
 }
 
-.active-recall-priority-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 42px;
-  padding: 8px 13px;
-  border-radius: 999px;
-  font-weight: 900;
-}
-
-.active-recall-priority-button.active {
-  border-color: rgba(236, 72, 153, 0.5);
-  background: rgba(236, 72, 153, 0.16);
-  color: #9d174d;
-}
-
 .flashcard-bottom-actions {
   display: flex;
   gap: 8px;
@@ -8201,29 +8124,10 @@ kbd {
   font-size: 1.05rem;
 }
 
-.session-struggled-words {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
 .struggled-label {
   font-size: 0.85rem;
   font-weight: 800;
   color: var(--muted-navy);
-}
-
-.struggled-word-btn {
-  min-height: 46px;
-  padding: 8px 14px;
-  font-size: 1.15rem;
-}
-
-.struggled-word-btn.active {
-  color: #f59e0b;
-  border-color: #f59e0b;
 }
 
 .audio-slider-row {
@@ -8485,10 +8389,6 @@ kbd {
 
   .reading-format-arrow {
     display: none;
-  }
-
-  .extra-review-row {
-    grid-template-columns: 1fr;
   }
 
   .study-stage {
