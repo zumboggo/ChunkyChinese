@@ -209,6 +209,17 @@ export function createPocketLesson(
       .map((entry) => entry.sentence)
       .filter((sentence): sentence is Sentence => Boolean(sentence)),
   )
+  const warnings = [
+    ...targetWords
+      .filter((word) => !word.audioMeaningId)
+      .map((word) => `Missing English meaning audio for ${word.word}: ${word.meaning}`),
+    ...targetSentences
+      .filter((sentence) => !sentence.audioEnglishId)
+      .map(
+        (sentence) =>
+          `Missing sentence English audio for ${sentence.chinese}: ${sentence.english}`,
+      ),
+  ]
 
   addPrompt(steps, audioClips, 'listen', 'Listen')
   targetWords.forEach((word, index) => {
@@ -228,6 +239,7 @@ export function createPocketLesson(
     title: `${targetWords.length} word lesson`,
     targetWords,
     steps,
+    warnings,
   }
 }
 

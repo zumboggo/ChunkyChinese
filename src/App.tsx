@@ -42,6 +42,7 @@ import {
   importHostedComicPack,
   rateWordFsrs,
   recordEvent,
+  repairAudioClipLinks,
   restoreArchivedWord,
   saveRenderedLesson,
   saveAudioClip,
@@ -748,6 +749,7 @@ function App() {
     async function start() {
       const seeded = await seedLmsWordsIfEmpty()
       const seededReaderSentences = await seedReaderBooksIfEmpty()
+      await repairAudioClipLinks()
       setSeedMessage(
         seeded > 0
           ? `Seeded ${seeded} LMS target words.`
@@ -2329,7 +2331,26 @@ function App() {
     setScreen('lesson')
     try {
       const { playAfterRender = false, ...selectionOptions } = options
-      const nextLesson = createPocketLesson(activeWords, sentences, audioClips, manualIds, {
+      let lessonWords = activeWords
+      let lessonSentences = sentences
+      let lessonAudioClips = audioClips
+      const repairedLinks = await repairAudioClipLinks()
+      if (repairedLinks > 0) {
+        const [freshWords, freshSentences, freshAudioClips, freshStats] = await Promise.all([
+          getAllWords(),
+          getAllSentences(),
+          getAllAudioClips(),
+          getDashboardStats(),
+        ])
+        setWords(freshWords)
+        setSentences(freshSentences)
+        setAudioClips(freshAudioClips)
+        setStats(freshStats)
+        lessonWords = freshWords.filter(isActiveVocabWord)
+        lessonSentences = freshSentences
+        lessonAudioClips = freshAudioClips
+      }
+      const nextLesson = createPocketLesson(lessonWords, lessonSentences, lessonAudioClips, manualIds, {
         pauseProfile,
         ...selectionOptions,
       })

@@ -572,6 +572,7 @@ export interface LessonPlan {
   title: string
   targetWords: VocabWord[]
   steps: LessonStep[]
+  warnings?: string[]
 }
 
 export interface DashboardStats {

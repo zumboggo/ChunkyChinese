@@ -14,6 +14,7 @@
     "generate:reader-pack": "node scripts/generate-lms-reader-pack.mjs",
     "generate:just-friends-reader": "python scripts/generate-just-friends-reader.py",
     "generate:monkey-king-reader": "node scripts/generate-monkey-king-reader-pack.mjs",
+    "generate:lms-meaning-chirp-backfill": "node scripts/generate-lms-meaning-chirp-backfill.mjs",
     "generate:reader-illustrations": "node scripts/generate-reader-illustrations.mjs",
     "reader:assets:audit": "python scripts/reader-assets.py audit",
     "reader:audio": "python scripts/reader-assets.py generate-audio",

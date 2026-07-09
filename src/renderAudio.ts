@@ -101,7 +101,7 @@ export async function renderLessonToWav(
   const audioContext = new AudioContext({ sampleRate: SAMPLE_RATE })
   const buffers: AudioBuffer[] = []
   const segments: RenderedLessonSegment[] = []
-  const warnings: string[] = []
+  const warnings: string[] = [...(lesson.warnings ?? [])]
   let currentSeconds = 0
 
   for (const step of lesson.steps) {

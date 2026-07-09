@@ -1343,6 +1343,7 @@ export async function importClipPackFiles(files: FileList | File[]): Promise<Imp
   }
 
   await tx.done
+  linkedAudio += await repairAudioClipLinks()
   pack.wordCount = (await db.getAll('vocabWords')).filter((word) =>
     word.packIds?.includes(packId),
   ).length
@@ -1451,6 +1452,7 @@ export async function importHostedClipPack(
   }
 
   await tx.done
+  linkedAudio += await repairAudioClipLinks()
   pack.wordCount = (await db.getAll('vocabWords')).filter((word) =>
     word.packIds?.includes(packId),
   ).length
@@ -1656,6 +1658,22 @@ export async function deleteGeneratedReaderBook(bookId: string): Promise<void> {
 
 export async function saveAudioClip(clip: AudioClip): Promise<void> {
   await (await getDB()).put('audioClips', clip)
+}
+
+export async function repairAudioClipLinks(): Promise<number> {
+  const db = await getDB()
+  const words = await db.getAll('vocabWords')
+  const sentences = await db.getAll('sentences')
+  const clips = await db.getAll('audioClips')
+  const tx = db.transaction(['vocabWords', 'sentences'], 'readwrite')
+  let linkedAudio = 0
+
+  for (const clip of clips) {
+    linkedAudio += await linkClip(tx, clip, words, sentences)
+  }
+
+  await tx.done
+  return linkedAudio
 }
 
 export async function getReaderProgress(
@@ -2464,8 +2482,11 @@ async function linkClip(
   const path = normalizeFilename(clip.path || clip.filename)
   let links = 0
 
-  const manifestWordIds = new Set(manifestEntry?.linkedWordIds ?? [])
-  const manifestSentenceId = manifestEntry?.linkedSentenceId
+  const manifestWordIds = new Set([
+    ...(clip.linkedWordIds ?? []),
+    ...(manifestEntry?.linkedWordIds ?? []),
+  ])
+  const manifestSentenceId = manifestEntry?.linkedSentenceId ?? clip.linkedSentenceId
 
   if (
     clip.type === 'word' ||
@@ -2491,11 +2512,21 @@ async function linkClip(
           label === word.meaning.toLocaleLowerCase().replaceAll(' ', '-'))
 
       if (wordMatch || meaningMatch) {
+        const nextAudioWordId = wordMatch ? clip.id : word.audioWordId
+        const nextAudioMeaningId = meaningMatch ? clip.id : word.audioMeaningId
+        const nextPackIds = clip.packId
+          ? unique([...(word.packIds ?? []), clip.packId])
+          : word.packIds
+        const changed =
+          nextAudioWordId !== word.audioWordId ||
+          nextAudioMeaningId !== word.audioMeaningId ||
+          (clip.packId !== undefined && !(word.packIds ?? []).includes(clip.packId))
+        if (!changed) continue
         const nextWord = {
           ...word,
-          audioWordId: wordMatch ? clip.id : word.audioWordId,
-          audioMeaningId: meaningMatch ? clip.id : word.audioMeaningId,
-          packIds: clip.packId ? unique([...(word.packIds ?? []), clip.packId]) : word.packIds,
+          audioWordId: nextAudioWordId,
+          audioMeaningId: nextAudioMeaningId,
+          packIds: nextPackIds,
           updatedAt: new Date().toISOString(),
         }
         await tx.objectStore('vocabWords').put(nextWord)
@@ -2520,24 +2551,34 @@ async function linkClip(
         label === sentence.english.toLocaleLowerCase().replaceAll(' ', '-')
 
       if (clip.type === 'sentence' && sentenceMatch) {
+        const nextPackIds = clip.packId
+          ? unique([...(sentence.packIds ?? []), clip.packId])
+          : sentence.packIds
+        const changed =
+          sentence.audioSentenceId !== clip.id ||
+          (clip.packId !== undefined && !(sentence.packIds ?? []).includes(clip.packId))
+        if (!changed) continue
         const nextSentence = {
           ...sentence,
           audioSentenceId: clip.id,
-          packIds: clip.packId
-            ? unique([...(sentence.packIds ?? []), clip.packId])
-            : sentence.packIds,
+          packIds: nextPackIds,
           updatedAt: new Date().toISOString(),
         }
         await tx.objectStore('sentences').put(nextSentence)
         Object.assign(sentence, nextSentence)
         links += 1
       } else if (clip.type === 'sentenceMeaning' && englishMatch) {
+        const nextPackIds = clip.packId
+          ? unique([...(sentence.packIds ?? []), clip.packId])
+          : sentence.packIds
+        const changed =
+          sentence.audioEnglishId !== clip.id ||
+          (clip.packId !== undefined && !(sentence.packIds ?? []).includes(clip.packId))
+        if (!changed) continue
         const nextSentence = {
           ...sentence,
           audioEnglishId: clip.id,
-          packIds: clip.packId
-            ? unique([...(sentence.packIds ?? []), clip.packId])
-            : sentence.packIds,
+          packIds: nextPackIds,
           updatedAt: new Date().toISOString(),
         }
         await tx.objectStore('sentences').put(nextSentence)
