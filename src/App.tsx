@@ -6403,7 +6403,6 @@ function ReaderMode({
   readerDictionaryEntry: DictionaryEntry | null
   onSaveWord: (text: string, pinyin: string, meaning: string) => void | Promise<void>
 }) {
-  const [listeningMenuOpen, setListeningMenuOpen] = useState(false)
   const [readerMenuOpen, setReaderMenuOpen] = useState(false)
   const [grammarSelection, setGrammarSelection] = useState<GrammarMatch[] | null>(null)
   const [readerBouncing, setReaderBouncing] = useState(false)
@@ -6443,7 +6442,6 @@ function ReaderMode({
     },
   })
 
-  const listeningRepeatTotal = listening.snapshot.mode === 'single' ? 1 : listeningRepeats
   const listeningPlaying =
     listening.snapshot.status === 'playing' || listening.snapshot.status === 'loading'
 
@@ -6468,54 +6466,36 @@ function ReaderMode({
 
   return (
     <section className={`screen reader-screen reader-theme-${readerTheme}`}>
-      <div className="screen-heading compact">
-        <div>
-          <h1>Reader Mode</h1>
-          <p>
-            {readerPacks[0]?.name ?? 'LMS Reader Books'} · {readerBooks.length} compilation books.
-          </p>
-        </div>
-        <div className="study-toggles">
-          <button type="button" onClick={onOpenLibrary}>
-            Library
-          </button>
-          {activeBook && sentence && (
-            <>
-              <button
-                type="button"
-                className={storyChunk ? 'active' : ''}
-                onClick={onStartStoryChunk}
-                disabled={Boolean(storyChunk) || sentenceIndex >= sentenceCount}
-                aria-label={storyChunk ? 'Story chunk running' : 'Start story chunk'}
-              >
-                {storyChunk ? 'Chunks ✓' : 'Chunks'}
-              </button>
-              <button
-                type="button"
-                className={listening.active ? 'active' : ''}
-                onClick={() => setListeningMenuOpen(true)}
-              >
-                Listening Mode
-              </button>
-            </>
-          )}
-          <div className="segmented-control reader-pinyin-control" aria-label="Reader pinyin mode">
-            {readerPinyinModes.map((mode) => (
-              <button
-                key={mode.value}
-                type="button"
-                className={pinyinMode === mode.value ? 'active' : ''}
-                onClick={() => onPinyinModeChange(mode.value)}
-              >
-                {mode.label}
-              </button>
-            ))}
+      {!(activeBook && sentence) && (
+        <div className="screen-heading compact">
+          <div>
+            <h1>Reader Mode</h1>
+            <p>
+              {readerPacks[0]?.name ?? 'LMS Reader Books'} · {readerBooks.length} compilation books.
+            </p>
           </div>
-          <button type="button" className={showEnglish ? 'active' : ''} onClick={onToggleEnglish}>
-            English {showEnglish ? 'sharp' : 'blurred'}
-          </button>
+          <div className="study-toggles">
+            <button type="button" onClick={onOpenLibrary}>
+              Library
+            </button>
+            <div className="segmented-control reader-pinyin-control" aria-label="Reader pinyin mode">
+              {readerPinyinModes.map((mode) => (
+                <button
+                  key={mode.value}
+                  type="button"
+                  className={pinyinMode === mode.value ? 'active' : ''}
+                  onClick={() => onPinyinModeChange(mode.value)}
+                >
+                  {mode.label}
+                </button>
+              ))}
+            </div>
+            <button type="button" className={showEnglish ? 'active' : ''} onClick={onToggleEnglish}>
+              English {showEnglish ? 'sharp' : 'blurred'}
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       {resumeLocation && !activeBook && (
         <section className="reader-resume-panel">
@@ -6591,52 +6571,10 @@ function ReaderMode({
           {activeBook && sentence ? (
             <>
               <div className="reader-page-meta">
-                <div className="sentence-menu-wrap">
-                  <button
-                    type="button"
-                    className="sentence-menu-btn"
-                    onClick={() => setReaderMenuOpen(o => !o)}
-                    aria-label="Reader menu"
-                  >
-                    ☰
-                  </button>
-                  <StudyMenuPopup open={readerMenuOpen} onClose={() => setReaderMenuOpen(false)}>
-                    <StudyMenuSection label="Display">
-                      <StudyMenuSelect
-                        label="Pinyin"
-                        value={pinyinMode}
-                        options={readerPinyinModes.map(mode => ({ value: mode.value, label: mode.label }))}
-                        onChange={value => onPinyinModeChange(value as ReaderPinyinMode)}
-                      />
-                      <StudyMenuToggle label="English" checked={showEnglish} onChange={() => onToggleEnglish()} />
-                      <StudyMenuToggle
-                        label="Word highlights"
-                        checked={statusHighlight}
-                        onChange={checked => onListeningSettingsChange({ readerStatusHighlight: checked })}
-                      />
-                    </StudyMenuSection>
-                    <StudyMenuSection label="Playback">
-                      <StudyMenuSelect
-                        label="Speed"
-                        value={listeningRate}
-                        options={[0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2].map(r => ({ value: r, label: `${r.toFixed(1)}×` }))}
-                        onChange={value => onListeningSettingsChange({ readerListeningRate: value })}
-                      />
-                      <StudyMenuSelect
-                        label="Repeats"
-                        value={listeningRepeats}
-                        options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}×` }))}
-                        onChange={value => onListeningSettingsChange({ readerListeningRepeats: value })}
-                      />
-                      <StudyMenuToggle
-                        label="Auto-advance"
-                        checked={listeningAutoAdvance}
-                        onChange={checked => onListeningSettingsChange({ readerListeningAutoAdvance: checked })}
-                      />
-                    </StudyMenuSection>
-                  </StudyMenuPopup>
-                </div>
-                <span>{activeBook.title}</span>
+                <button type="button" className="reader-exit-btn" onClick={onOpenLibrary}>
+                  Library
+                </button>
+                <span className="reader-meta-title">{activeBook.title}</span>
                 <span>
                   Sentence {sentenceIndex + 1} / {sentenceCount}
                 </span>
@@ -6738,14 +6676,14 @@ function ReaderMode({
                       onGrammarSelect={(matches) => setGrammarSelection(matches)}
                       grammarTokenMap={grammarTokenMap}
                     />
+                    <p
+                      className={`reader-translation ${
+                        showEnglish || listening.active ? 'revealed' : 'blur-reveal'
+                      }${listening.active ? ' reader-listening-highlight' : ''}`}
+                    >
+                      {sentence.english}
+                    </p>
                   </div>
-                <p
-                  className={`reader-translation ${
-                    showEnglish || listening.active ? 'revealed' : 'blur-reveal'
-                  }${listening.active ? ' reader-listening-highlight' : ''}`}
-                >
-                  {sentence.english}
-                </p>
               </div>
               {storyChunk && (
                 <div className="story-chunk-counter" aria-live="polite">
@@ -6756,17 +6694,92 @@ function ReaderMode({
                 </div>
               )}
               {nextGlow && <div className="reader-next-glow" aria-hidden="true" />}
-              {listening.active ? (
-                <div className="reader-listening-dock" aria-live="polite">
+              <div className="reader-bottom-bar">
+                <div className="sentence-menu-wrap">
+                  <button
+                    type="button"
+                    className="sentence-menu-btn"
+                    onClick={() => setReaderMenuOpen(o => !o)}
+                    aria-label="Reader menu"
+                  >
+                    ☰
+                  </button>
+                  <StudyMenuPopup
+                    open={readerMenuOpen}
+                    onClose={() => setReaderMenuOpen(false)}
+                    className="popup-up"
+                  >
+                    <StudyMenuSection label="Display">
+                      <StudyMenuSelect
+                        label="Pinyin"
+                        value={pinyinMode}
+                        options={readerPinyinModes.map(mode => ({ value: mode.value, label: mode.label }))}
+                        onChange={value => onPinyinModeChange(value as ReaderPinyinMode)}
+                      />
+                      <StudyMenuToggle label="English" checked={showEnglish} onChange={() => onToggleEnglish()} />
+                      <StudyMenuToggle
+                        label="Word highlights"
+                        checked={statusHighlight}
+                        onChange={checked => onListeningSettingsChange({ readerStatusHighlight: checked })}
+                      />
+                    </StudyMenuSection>
+                    <StudyMenuSection label="Playback">
+                      <StudyMenuSelect
+                        label="Speed"
+                        value={listeningRate}
+                        options={[0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2].map(r => ({ value: r, label: `${r.toFixed(1)}×` }))}
+                        onChange={value => onListeningSettingsChange({ readerListeningRate: value })}
+                      />
+                      <StudyMenuSelect
+                        label="Repeats"
+                        value={listeningRepeats}
+                        options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}×` }))}
+                        onChange={value => onListeningSettingsChange({ readerListeningRepeats: value })}
+                      />
+                      <StudyMenuToggle
+                        label="Auto-advance"
+                        checked={listeningAutoAdvance}
+                        onChange={checked => onListeningSettingsChange({ readerListeningAutoAdvance: checked })}
+                      />
+                    </StudyMenuSection>
+                    <p className="sentence-menu-label">Session</p>
+                    <div className="sentence-menu-modes">
+                      <button
+                        type="button"
+                        className={listening.active ? 'active' : ''}
+                        onClick={() => {
+                          if (listening.active) listening.stop()
+                          else listening.startListening()
+                          setReaderMenuOpen(false)
+                        }}
+                      >
+                        {listening.active ? 'Stop Listening Mode' : `Listen from sentence ${sentenceIndex + 1}`}
+                      </button>
+                      <button
+                        type="button"
+                        className={storyChunk ? 'active' : ''}
+                        disabled={Boolean(storyChunk) || sentenceIndex >= sentenceCount}
+                        onClick={() => {
+                          onStartStoryChunk()
+                          setReaderMenuOpen(false)
+                        }}
+                      >
+                        {storyChunk ? 'Story chunk running' : 'Start story chunk'}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setReaderMenuOpen(false)
+                          onOpenLibrary()
+                        }}
+                      >
+                        Back to library
+                      </button>
+                    </div>
+                  </StudyMenuPopup>
+                </div>
+                {listening.active ? (
                   <div className="reader-listening-controls" aria-label="Reader listening controls">
-                    <button
-                      type="button"
-                      className="sentence-menu-btn reader-listening-icon-btn"
-                      onClick={() => setListeningMenuOpen(true)}
-                      aria-label={`Listening settings. Repeat ${listening.snapshot.repeatNumber} of ${listeningRepeatTotal}, ${listeningRate.toFixed(1)} times speed, auto-advance ${listeningAutoAdvance ? 'on' : 'off'}.`}
-                    >
-                      ☰
-                    </button>
                     <button
                       type="button"
                       className="sentence-play-pause reader-listening-play-btn"
@@ -6807,23 +6820,23 @@ function ReaderMode({
                       </svg>
                     </button>
                   </div>
-                </div>
-              ) : (
-                <StudyControls
-                  playing={listeningPlaying}
-                  onTogglePlay={() => {
-                    if (listening.active) listening.togglePlayPause()
-                    else listening.playSentenceOnce()
-                  }}
-                  onPrevious={() => { setGrammarSelection(null); void onPrevious() }}
-                  onNext={() => { setGrammarSelection(null); triggerNextGlow(); void onNext() }}
-                  prevDisabled={sentenceIndex <= 0}
-                  nextDisabled={sentenceIndex >= sentenceCount - 1}
-                  prevLabel="Previous sentence"
-                  nextLabel={`Next sentence. Hotkey: ${choiceB.toUpperCase()}.`}
-                  playLabel={listeningPlaying ? `Pause. Hotkey: ${replayHotkey.toUpperCase()}.` : `Play sentence. Hotkey: ${replayHotkey.toUpperCase()}.`}
-                />
-              )}
+                ) : (
+                  <StudyControls
+                    playing={listeningPlaying}
+                    onTogglePlay={() => {
+                      if (listening.active) listening.togglePlayPause()
+                      else listening.playSentenceOnce()
+                    }}
+                    onPrevious={() => { setGrammarSelection(null); void onPrevious() }}
+                    onNext={() => { setGrammarSelection(null); triggerNextGlow(); void onNext() }}
+                    prevDisabled={sentenceIndex <= 0}
+                    nextDisabled={sentenceIndex >= sentenceCount - 1}
+                    prevLabel="Previous sentence"
+                    nextLabel={`Next sentence. Hotkey: ${choiceB.toUpperCase()}.`}
+                    playLabel={listeningPlaying ? `Pause. Hotkey: ${replayHotkey.toUpperCase()}.` : `Play sentence. Hotkey: ${replayHotkey.toUpperCase()}.`}
+                  />
+                )}
+              </div>
               {selectedToken && (
                 <WordInfoPopover
                   selectedToken={selectedToken}
@@ -6844,76 +6857,6 @@ function ReaderMode({
                 <div className="grammar-hint" aria-label={`${grammarMatches.length} grammar points highlighted`}>
                   {grammarMatches.length} grammar {grammarMatches.length === 1 ? 'point' : 'points'} highlighted
                 </div>
-              )}
-              {listeningMenuOpen && (
-                <>
-                  <button
-                    type="button"
-                    className="reader-listening-backdrop"
-                    aria-label="Close Listening Mode settings"
-                    onClick={() => setListeningMenuOpen(false)}
-                  />
-                  <section
-                    className="reader-listening-sheet"
-                    role="dialog"
-                    aria-modal="true"
-                    aria-labelledby="reader-listening-heading"
-                  >
-                    <div className="sheet-heading">
-                      <div>
-                        <strong id="reader-listening-heading">Listening Mode</strong>
-                        <small>Chinese audio with synchronized English text</small>
-                      </div>
-                      <button type="button" onClick={() => setListeningMenuOpen(false)}>Close</button>
-                    </div>
-                    <label>
-                      <span>Speed</span>
-                      <select
-                        value={listeningRate}
-                        onChange={(event) => onListeningSettingsChange({
-                          readerListeningRate: Number(event.target.value),
-                        })}
-                      >
-                        {[0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2].map((value) => (
-                          <option key={value} value={value}>{value.toFixed(1)}×</option>
-                        ))}
-                      </select>
-                    </label>
-                    <label>
-                      <span>Repeat each sentence</span>
-                      <select
-                        value={listeningRepeats}
-                        onChange={(event) => onListeningSettingsChange({
-                          readerListeningRepeats: Number(event.target.value),
-                        })}
-                      >
-                        {[1, 2, 3, 4, 5].map((value) => (
-                          <option key={value} value={value}>{value}×</option>
-                        ))}
-                      </select>
-                    </label>
-                    <label className="reader-listening-toggle">
-                      <input
-                        type="checkbox"
-                        checked={listeningAutoAdvance}
-                        onChange={(event) => onListeningSettingsChange({
-                          readerListeningAutoAdvance: event.target.checked,
-                        })}
-                      />
-                      <span>Automatically continue to the next sentence</span>
-                    </label>
-                    <button
-                      type="button"
-                      className="primary reader-listening-launch"
-                      onClick={() => {
-                        listening.startListening()
-                        setListeningMenuOpen(false)
-                      }}
-                    >
-                      Start from sentence {sentenceIndex + 1}
-                    </button>
-                  </section>
-                </>
               )}
             </>
           ) : (

@@ -2850,6 +2850,16 @@ details.settings-group > .import-grid {
   -webkit-backdrop-filter: blur(20px);
 }
 
+/* Variant for triggers at the bottom of the screen: open upward instead.
+   The reader popup is tall (Display + Playback + Session), so cap it to the
+   viewport and scroll inside rather than overflowing past the top edge. */
+.sentence-menu-popup.popup-up {
+  top: auto;
+  bottom: calc(100% + 10px);
+  max-height: min(72svh, 640px);
+  overflow-y: auto;
+}
+
 .sentence-menu-label {
   margin: 0;
   font-size: 0.72rem;
@@ -4982,8 +4992,7 @@ kbd {
 .reader-page {
   position: relative;
   display: grid;
-  gap: 18px;
-  min-height: 520px;
+  gap: 12px;
   padding: clamp(18px, 4vw, 36px);
   border: 1px solid var(--reader-border);
   border-radius: 24px;
@@ -5109,8 +5118,48 @@ kbd {
   box-shadow: none;
 }
 
+/* The reader card: a real box (like .flashcard) so touch-action can stop the
+   page from scrolling while swiping. Chinese, pinyin, and English all live
+   inside; theme vars keep every reader-theme variant working. */
 .reader-swipe-zone {
-  display: contents;
+  position: relative;
+  display: grid;
+  align-content: center;
+  gap: clamp(12px, 2.5svh, 20px);
+  min-height: clamp(300px, 48svh, 560px);
+  padding: clamp(18px, 4vw, 44px);
+  border: 1px solid var(--reader-border);
+  border-radius: var(--radius);
+  background: var(--reader-paper-strong, var(--reader-paper));
+  box-shadow: 0 26px 80px rgba(16, 35, 63, 0.13);
+  touch-action: none;
+  overscroll-behavior: contain;
+  user-select: none;
+}
+
+/* Bottom bar: ☰ settings menu at the left, prev/play/next filling the rest. */
+.reader-bottom-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.reader-bottom-bar .study-controls,
+.reader-bottom-bar .reader-listening-controls {
+  flex: 1;
+  margin-top: 0;
+}
+
+.sentence-menu-modes button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.reader-page-meta .reader-exit-btn {
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  border-radius: 999px;
 }
 
 /* Shared bottom study-controls bar (all study modes) */
@@ -5133,7 +5182,6 @@ kbd {
 }
 
 .reader-swipe-zone.reader-bounce-down {
-  display: block;
   animation: reader-bounce-down 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
 }
 
@@ -5156,7 +5204,6 @@ kbd {
 
 .reader-reading-area {
   display: block;
-  min-height: 260px;
 }
 
 .reader-listening-highlight {
@@ -8436,6 +8483,11 @@ kbd {
     padding: 18px;
   }
 
+  .reader-swipe-zone {
+    min-height: calc(100svh - 300px);
+    padding: 16px;
+  }
+
   .fsrs-preview-buttons {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -8968,20 +9020,6 @@ kbd {
   }
 }
 
-.reader-listening-dock {
-  position: sticky;
-  bottom: 10px;
-  z-index: 40;
-  width: min(100%, 430px);
-  margin: 12px auto 0;
-  padding: 12px 14px;
-  border: 1px solid rgba(255,255,255,0.72);
-  border-radius: 22px;
-  background: color-mix(in srgb, var(--reader-paper-strong) 86%, transparent);
-  box-shadow: 0 14px 36px rgba(16, 35, 63, 0.14);
-  backdrop-filter: blur(18px);
-}
-
 .reader-listening-controls {
   display: flex;
   align-items: center;
@@ -9017,85 +9055,9 @@ kbd {
   transform: none;
 }
 
-.reader-listening-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 110;
-  border: 0;
-  border-radius: 0;
-  background: rgba(8, 15, 28, 0.52);
-  backdrop-filter: blur(3px);
-}
-
-.reader-listening-sheet {
-  position: fixed;
-  left: 50%;
-  bottom: 0;
-  z-index: 111;
-  display: grid;
-  gap: 18px;
-  width: min(100%, 560px);
-  max-height: min(82svh, 680px);
-  overflow-y: auto;
-  padding: 20px max(20px, env(safe-area-inset-right))
-    max(24px, calc(env(safe-area-inset-bottom) + 16px))
-    max(20px, env(safe-area-inset-left));
-  border: 1px solid var(--reader-border);
-  border-bottom: 0;
-  border-radius: 24px 24px 0 0;
-  background: var(--reader-paper-strong);
-  box-shadow: 0 -24px 70px rgba(8, 15, 28, 0.28);
-  color: var(--reader-ink);
-  transform: translateX(-50%);
-}
-
-.reader-listening-sheet .sheet-heading {
-  align-items: start;
-}
-
-.reader-listening-sheet .sheet-heading > div {
-  display: grid;
-  gap: 4px;
-}
-
-.reader-listening-sheet .sheet-heading small {
-  color: var(--reader-muted);
-}
-
-.reader-listening-sheet label {
-  display: grid;
-  gap: 8px;
-  color: var(--reader-ink);
-  font-weight: 850;
-}
-
-.reader-listening-sheet select {
-  width: 100%;
-  min-height: 48px;
-}
-
-.reader-listening-sheet .reader-listening-toggle {
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-}
-
-.reader-listening-toggle input {
-  width: 22px;
-  height: 22px;
-}
-
-.reader-listening-launch {
-  min-height: 54px;
-  font-size: 1rem;
-}
-
 @media (max-width: 640px) {
   .reader-listening-controls {
     gap: 10px;
-  }
-
-  .reader-listening-dock {
-    bottom: max(8px, env(safe-area-inset-bottom));
   }
 }
 
