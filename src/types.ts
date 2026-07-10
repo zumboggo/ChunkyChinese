@@ -415,6 +415,7 @@ export interface VocabWord {
   userEditedAt?: string
   readingAddedAt?: string
   lastReadingCreditAt?: string
+  readingExposures?: number
   archivedAt?: string
   lastReviewedAt?: string
   seenCount: number

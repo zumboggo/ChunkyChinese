@@ -1109,13 +1109,13 @@ export interface ReadingExposureResult {
   promotedWords: VocabWord[]
 }
 
-// Passive reading credit: every exposure bumps seenCount; untapped words that
-// are new or due also receive an FSRS 'good' (max once per day, see
-// isEligibleForReadingCredit) so reading moves words toward "known" without
-// inflating intervals. Words looked up this sentence only get the seen bump.
+// Passive reading credit: every exposure bumps seenCount; a word the user
+// didn't look up also gains one reading exposure (max once per calendar day,
+// see isEligibleForReadingCredit), and reaching READING_MASTERY_TARGET carries
+// it to "known" via masteryForWord. Words looked up this sentence only get the
+// seen bump — a lookup means you didn't recall it, so it shouldn't count.
 export async function applyReadingExposures(
   exposures: Array<{ wordId: string; tapped: boolean }>,
-  sessionId?: string,
 ): Promise<ReadingExposureResult> {
   const result: ReadingExposureResult = {
     updatedWords: [],
@@ -1129,9 +1129,8 @@ export async function applyReadingExposures(
   if (deduped.size === 0) return result
 
   const db = await getDB()
-  const tx = db.transaction(['vocabWords', 'listeningEvents'], 'readwrite')
+  const tx = db.transaction('vocabWords', 'readwrite')
   const wordStore = tx.objectStore('vocabWords')
-  const eventStore = tx.objectStore('listeningEvents')
   const now = new Date()
   const nowIso = now.toISOString()
 
@@ -1147,20 +1146,9 @@ export async function applyReadingExposures(
       const prevLevel = masteryForWord(word).level
       updated = {
         ...updated,
-        ...applyFsrsRating(word, 'good', now),
+        readingExposures: (word.readingExposures ?? 0) + 1,
         lastReadingCreditAt: nowIso,
       }
-      await eventStore.put({
-        id: `event:${crypto.randomUUID()}`,
-        timestamp: nowIso,
-        type: 'fsrs_rating',
-        itemType: 'word',
-        itemId: wordId,
-        correct: true,
-        rating: 'good',
-        source: 'reading',
-        sessionId,
-      })
       result.creditedWordIds.push(wordId)
       if (masteryForWord(updated).level > prevLevel) {
         result.promotedWords.push(updated)

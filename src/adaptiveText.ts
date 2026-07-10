@@ -1,5 +1,5 @@
 import { pinyin } from 'pinyin-pro'
-import { isFsrsCardDue, isNewFsrsCard } from './scheduler'
+import { isFsrsCardDue, isNewFsrsCard, isReadingKnown } from './scheduler'
 import type { ReaderWordToken, UserSettings, VocabWord } from './types'
 
 export type AdaptivePinyinMode = UserSettings['readerPinyinMode']
@@ -81,6 +81,7 @@ export function readerPinyinState(
 
 export function adaptiveReaderPinyinState(word?: VocabWord): AdaptivePinyinState {
   if (!word) return 'unknown'
+  if (isReadingKnown(word)) return 'known'
   const interval = word.fsrsIntervalDays ?? 0
   const repetitions = word.fsrsRepetitions ?? 0
   const lapses = word.fsrsLapses ?? 0
@@ -96,6 +97,8 @@ export function adaptiveReaderPinyinState(word?: VocabWord): AdaptivePinyinState
   ) {
     return 'medium'
   }
+  // Some reading progress, but not yet known — dim the pinyin a little.
+  if ((word.readingExposures ?? 0) > 0) return 'medium'
   return 'unknown'
 }
 
@@ -147,9 +150,11 @@ export function readerWordStatusClass(token: ReaderWordToken): string {
 }
 
 export function readerComprehensionCategory(word?: VocabWord): 'known' | 'learning' | 'new' {
-  if (!word || isNewFsrsCard(word)) return 'new'
+  if (!word) return 'new'
+  if (isReadingKnown(word)) return 'known'
   const interval = word.fsrsIntervalDays ?? 0
   if (word.fsrsState === 'Review' && interval >= 14 && !isFsrsCardDue(word)) return 'known'
+  if (isNewFsrsCard(word) && (word.readingExposures ?? 0) === 0) return 'new'
   return 'learning'
 }
 

@@ -75,30 +75,31 @@ export function WordInfoPopover({
 
   if (!selectedToken.isChinese) return null
 
+  const savePinyin = dictionaryEntry?.pinyin ?? selectedToken.pinyin ?? ''
+  const saveMeaning = dictionaryEntry?.english ?? ''
+
   return (
     <div className="reader-word-popover" aria-live="polite" onClick={onClose}>
       <button type="button" className="popover-close" onClick={onClose}>
         Close
       </button>
       <strong>{selectedToken.text}</strong>
-      <span>{dictionaryEntry?.pinyin ?? selectedToken.pinyin}</span>
-      {dictionaryEntry ? (
-        <>
-          <p>{dictionaryEntry.english}</p>
-          <button
-            type="button"
-            className="primary"
-            onClick={(event) => {
-              event.stopPropagation()
-              void onSaveWord(selectedToken.text, dictionaryEntry.pinyin, dictionaryEntry.english)
-          }}
-        >
-            Save to deck
-        </button>
-        </>
+      <span>{savePinyin}</span>
+      {saveMeaning ? (
+        <p>{saveMeaning}</p>
       ) : (
-        <p>No saved vocabulary entry yet.</p>
+        <p className="reader-word-hint">No dictionary match — add it, then edit the meaning.</p>
       )}
+      <button
+        type="button"
+        className="primary"
+        onClick={(event) => {
+          event.stopPropagation()
+          void onSaveWord(selectedToken.text, savePinyin, saveMeaning)
+        }}
+      >
+        {saveMeaning ? 'Save to deck' : 'Add to deck'}
+      </button>
     </div>
   )
 }

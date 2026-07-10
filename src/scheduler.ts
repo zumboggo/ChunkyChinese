@@ -89,12 +89,16 @@ export function isFsrsCardDue(word: VocabWord, now = Date.now()): boolean {
   return fsrsDueTime(word) <= now
 }
 
-// Reading credit: a passive read advances FSRS only when the schedule says the
-// word needed reinforcing (new or due), at most once per calendar day, so
-// re-reading the same text cannot inflate intervals.
+// How many spaced reading encounters carry a word to "known" (Strong). The
+// FSRS ladder graduates an actively-recalled card in ~4 reviews, which is too
+// fast to feel like reading; passive reading is counted separately and reaches
+// "known" after this many distinct-day encounters.
+export const READING_MASTERY_TARGET = 11
+
+// A read is credited at most once per calendar day per word (spacing matters
+// more than raw repetition, and it stops re-reading one text from farming).
 export function isEligibleForReadingCredit(word: VocabWord, now = new Date()): boolean {
   if (word.archivedAt) return false
-  if (!isNewFsrsCard(word) && !isFsrsCardDue(word, now.getTime())) return false
   if (!word.lastReadingCreditAt) return true
   const startOfDay = new Date(now)
   startOfDay.setHours(0, 0, 0, 0)
@@ -104,15 +108,37 @@ export function isEligibleForReadingCredit(word: VocabWord, now = new Date()): b
 
 export type MasteryInfo = { level: 0 | 1 | 2 | 3 | 4; label: string }
 
-// Mastery maps the FSRS interval to a coarse 5-step scale so every screen
-// can answer "how well do I know this word?" with the same vocabulary.
-export function masteryForWord(word: VocabWord): MasteryInfo {
-  if ((word.fsrsRepetitions ?? 0) === 0 && !word.lastReviewedAt) return { level: 0, label: 'New' }
+const MASTERY_LABELS = ['New', 'Seedling', 'Growing', 'Strong', 'Mastered'] as const
+
+// Mastery from active recall: the FSRS interval mapped to the 5-step scale.
+function fsrsMasteryLevel(word: VocabWord): 0 | 1 | 2 | 3 | 4 {
+  if ((word.fsrsRepetitions ?? 0) === 0 && !word.lastReviewedAt) return 0
   const interval = word.fsrsIntervalDays ?? 0
-  if (interval >= 60) return { level: 4, label: 'Mastered' }
-  if (interval >= 14) return { level: 3, label: 'Strong' }
-  if (interval >= 3) return { level: 2, label: 'Growing' }
-  return { level: 1, label: 'Seedling' }
+  if (interval >= 60) return 4
+  if (interval >= 14) return 3
+  if (interval >= 3) return 2
+  return 1
+}
+
+// Mastery from reading exposure: tops out at Strong ("known"). Reaching
+// Mastered (level 4) still requires active recall via flashcards.
+function readingMasteryLevel(word: VocabWord): 0 | 1 | 2 | 3 {
+  const exposures = word.readingExposures ?? 0
+  if (exposures >= READING_MASTERY_TARGET) return 3
+  if (exposures >= Math.ceil(READING_MASTERY_TARGET * 0.55)) return 2
+  if (exposures >= 1) return 1
+  return 0
+}
+
+export function isReadingKnown(word: VocabWord): boolean {
+  return (word.readingExposures ?? 0) >= READING_MASTERY_TARGET
+}
+
+// Mastery answers "how well do I know this word?" the same way on every screen,
+// taking whichever is further along: flashcard recall or reading exposure.
+export function masteryForWord(word: VocabWord): MasteryInfo {
+  const level = Math.max(fsrsMasteryLevel(word), readingMasteryLevel(word)) as MasteryInfo['level']
+  return { level, label: MASTERY_LABELS[level] }
 }
 
 export function isFsrsCardDueSoon(

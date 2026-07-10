@@ -545,6 +545,8 @@ function App() {
   const readerTappedWordIdsRef = useRef<Set<string>>(new Set())
   // Sentences already credited this session, so back/forward swiping can't farm credit.
   const readerCreditedSentenceIdsRef = useRef<Set<string>>(new Set())
+  // Mirrors readerListening.active so credit stays reading-only (see effect below).
+  const readerListeningActiveRef = useRef(false)
   const [todayReaderStats, setTodayReaderStats] = useState<ReaderSessionStats | null>(null)
   const [latestReaderProgress, setLatestReaderProgress] = useState<ReaderProgress | undefined>()
   const [storyChunkSession, setStoryChunkSession] = useState<StoryChunkSession | null>(null)
@@ -1713,6 +1715,8 @@ function App() {
     tokens: ReaderWordToken[],
     session: ReaderSession,
   ): Promise<ReaderSession> => {
+    // Reading-only: skip crediting while a listening session is auto-advancing.
+    if (readerListeningActiveRef.current) return session
     if (readerCreditedSentenceIdsRef.current.has(sentence.id)) return session
     readerCreditedSentenceIdsRef.current.add(sentence.id)
     const tapped = readerTappedWordIdsRef.current
@@ -1722,7 +1726,6 @@ function App() {
     if (savedWordIds.length === 0) return session
     const result = await applyReadingExposures(
       savedWordIds.map((wordId) => ({ wordId, tapped: tapped.has(wordId) })),
-      session.id,
     )
     if (result.updatedWords.length > 0) {
       const byId = new Map(result.updatedWords.map((word) => [word.id, word]))
@@ -1814,6 +1817,9 @@ function App() {
   })
   const readerListeningActive = readerListening.active
   const stopReaderListening = readerListening.stop
+  useEffect(() => {
+    readerListeningActiveRef.current = readerListeningActive
+  }, [readerListeningActive])
 
   // Close out the reading session: credit the sentence currently on screen,
   // stamp endedAt, and show a recap when the session had real activity.
@@ -6647,7 +6653,7 @@ function ReaderMode({
                     </span>
                     <div className="session-recap-highlights">
                       <span className="session-recap-chip">
-                        <strong>{sessionRecap.exposuresCredited}</strong> words reinforced
+                        <strong>{sessionRecap.exposuresCredited}</strong> words practiced
                       </span>
                       <span className="session-recap-chip">
                         <strong>{sessionRecap.promoted.length}</strong> leveled up
