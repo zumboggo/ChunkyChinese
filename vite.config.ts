@@ -7,6 +7,11 @@ const base = process.env.GITHUB_PAGES === 'true' ? '/ChunkyChinese/' : '/'
 export default defineConfig({
   base,
   plugins: [react()],
+  server: process.env.PORT ? { port: Number(process.env.PORT) } : undefined,
+  preview: process.env.PORT ? { port: Number(process.env.PORT) } : undefined,
+  // A second dev-server instance (e.g. the Claude preview) gets its own dep
+  // cache so it doesn't contend with an already-running `npm run dev`.
+  cacheDir: process.env.PORT ? `node_modules/.vite-${process.env.PORT}` : undefined,
   test: {
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
     exclude: ['tests/**', 'node_modules/**', 'dist/**'],

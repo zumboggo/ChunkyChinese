@@ -53,9 +53,11 @@ import type {
 import { GENERATED_STORIES_PACK_ID, GENERATED_STORIES_PACK_NAME } from './generatedStories'
 import {
   applyFsrsRating,
+  isEligibleForReadingCredit,
   isFsrsCardDue,
   isFsrsCardDueSoon,
   isNewFsrsCard,
+  masteryForWord,
 } from './scheduler'
 import { visualNovelSaveId } from './visualNovel/engine'
 import { visualNovelWorldSaveId } from './visualNovel/worldEngine'
@@ -1101,6 +1103,76 @@ export async function rateWordFsrs(
   return updatedWord
 }
 
+export interface ReadingExposureResult {
+  updatedWords: VocabWord[]
+  creditedWordIds: string[]
+  promotedWords: VocabWord[]
+}
+
+// Passive reading credit: every exposure bumps seenCount; untapped words that
+// are new or due also receive an FSRS 'good' (max once per day, see
+// isEligibleForReadingCredit) so reading moves words toward "known" without
+// inflating intervals. Words looked up this sentence only get the seen bump.
+export async function applyReadingExposures(
+  exposures: Array<{ wordId: string; tapped: boolean }>,
+  sessionId?: string,
+): Promise<ReadingExposureResult> {
+  const result: ReadingExposureResult = {
+    updatedWords: [],
+    creditedWordIds: [],
+    promotedWords: [],
+  }
+  const deduped = new Map<string, boolean>()
+  for (const { wordId, tapped } of exposures) {
+    deduped.set(wordId, (deduped.get(wordId) ?? false) || tapped)
+  }
+  if (deduped.size === 0) return result
+
+  const db = await getDB()
+  const tx = db.transaction(['vocabWords', 'listeningEvents'], 'readwrite')
+  const wordStore = tx.objectStore('vocabWords')
+  const eventStore = tx.objectStore('listeningEvents')
+  const now = new Date()
+  const nowIso = now.toISOString()
+
+  for (const [wordId, tapped] of deduped) {
+    const word = await wordStore.get(wordId)
+    if (!word || word.archivedAt) continue
+    let updated: VocabWord = {
+      ...word,
+      seenCount: word.seenCount + 1,
+      updatedAt: nowIso,
+    }
+    if (!tapped && isEligibleForReadingCredit(word, now)) {
+      const prevLevel = masteryForWord(word).level
+      updated = {
+        ...updated,
+        ...applyFsrsRating(word, 'good', now),
+        lastReadingCreditAt: nowIso,
+      }
+      await eventStore.put({
+        id: `event:${crypto.randomUUID()}`,
+        timestamp: nowIso,
+        type: 'fsrs_rating',
+        itemType: 'word',
+        itemId: wordId,
+        correct: true,
+        rating: 'good',
+        source: 'reading',
+        sessionId,
+      })
+      result.creditedWordIds.push(wordId)
+      if (masteryForWord(updated).level > prevLevel) {
+        result.promotedWords.push(updated)
+      }
+    }
+    await wordStore.put(updated)
+    result.updatedWords.push(updated)
+  }
+  await tx.done
+  return result
+}
+
 export async function recordEvent(event: Omit<ListeningEvent, 'id' | 'timestamp'>) {
   const db = await getDB()
   await db.put('listeningEvents', {
@@ -1947,6 +2019,8 @@ export async function startReaderSession(
     activeSeconds: 0,
     wordsRead: 0,
     sentenceIdsRead: [],
+    exposuresCredited: 0,
+    promotedWordIds: [],
     updatedAt: new Date().toISOString(),
   }
   await (await getDB()).put('readerSessions', session)

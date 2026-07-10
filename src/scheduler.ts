@@ -89,6 +89,32 @@ export function isFsrsCardDue(word: VocabWord, now = Date.now()): boolean {
   return fsrsDueTime(word) <= now
 }
 
+// Reading credit: a passive read advances FSRS only when the schedule says the
+// word needed reinforcing (new or due), at most once per calendar day, so
+// re-reading the same text cannot inflate intervals.
+export function isEligibleForReadingCredit(word: VocabWord, now = new Date()): boolean {
+  if (word.archivedAt) return false
+  if (!isNewFsrsCard(word) && !isFsrsCardDue(word, now.getTime())) return false
+  if (!word.lastReadingCreditAt) return true
+  const startOfDay = new Date(now)
+  startOfDay.setHours(0, 0, 0, 0)
+  const lastCredit = Date.parse(word.lastReadingCreditAt)
+  return !Number.isFinite(lastCredit) || lastCredit < startOfDay.getTime()
+}
+
+export type MasteryInfo = { level: 0 | 1 | 2 | 3 | 4; label: string }
+
+// Mastery maps the FSRS interval to a coarse 5-step scale so every screen
+// can answer "how well do I know this word?" with the same vocabulary.
+export function masteryForWord(word: VocabWord): MasteryInfo {
+  if ((word.fsrsRepetitions ?? 0) === 0 && !word.lastReviewedAt) return { level: 0, label: 'New' }
+  const interval = word.fsrsIntervalDays ?? 0
+  if (interval >= 60) return { level: 4, label: 'Mastered' }
+  if (interval >= 14) return { level: 3, label: 'Strong' }
+  if (interval >= 3) return { level: 2, label: 'Growing' }
+  return { level: 1, label: 'Seedling' }
+}
+
 export function isFsrsCardDueSoon(
   word: VocabWord,
   now = Date.now(),

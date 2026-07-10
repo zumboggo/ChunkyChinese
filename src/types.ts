@@ -246,6 +246,8 @@ export interface ReaderSession {
   activeSeconds: number
   wordsRead: number
   sentenceIdsRead: string[]
+  exposuresCredited?: number
+  promotedWordIds?: string[]
   updatedAt: string
 }
 
@@ -412,6 +414,7 @@ export interface VocabWord {
   updatedAt: string
   userEditedAt?: string
   readingAddedAt?: string
+  lastReadingCreditAt?: string
   archivedAt?: string
   lastReviewedAt?: string
   seenCount: number
@@ -507,7 +510,7 @@ export interface ListeningEvent {
   seconds?: number
   correct?: boolean
   rating?: FsrsRating
-  source?: 'flashcards' | 'lesson-review' | 'active-recall'
+  source?: 'flashcards' | 'lesson-review' | 'active-recall' | 'reading'
   sessionId?: string
 }
 

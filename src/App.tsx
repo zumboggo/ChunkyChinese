@@ -59,6 +59,7 @@ import {
   cleanupAccidentalEnglishOnlyCards,
   startReaderSession,
   updateReaderSession,
+  applyReadingExposures,
   getReaderSessionStats,
   getUserSettings,
   saveUserSettings,
@@ -118,6 +119,7 @@ import {
   isNewFsrsCard,
   downgradeRating,
   previewFsrsRatings,
+  masteryForWord,
 } from './scheduler'
 import {
   collectReaderComprehensionTokens,
@@ -200,6 +202,13 @@ type ReaderResumeLocation = {
   sentenceCount: number
   percent: number
   label: string
+}
+type ReaderSessionRecap = {
+  sentencesRead: number
+  wordsRead: number
+  exposuresCredited: number
+  promoted: VocabWord[]
+  activeSeconds: number
 }
 type ReaderComprehensionSummary = {
   knownPercent: number
@@ -398,19 +407,6 @@ function GoalRing({
 
 const WORD_MILESTONES = [25, 50, 100, 250, 500, 750, 1000, 1500, 2000, 3000, 5000, 7500, 10000]
 
-type MasteryInfo = { level: 0 | 1 | 2 | 3 | 4; label: string }
-
-// Mastery maps the FSRS interval to a coarse 5-step scale so every screen
-// can answer "how well do I know this word?" with the same vocabulary.
-function masteryForWord(word: VocabWord): MasteryInfo {
-  if ((word.fsrsRepetitions ?? 0) === 0 && !word.lastReviewedAt) return { level: 0, label: 'New' }
-  const interval = word.fsrsIntervalDays ?? 0
-  if (interval >= 60) return { level: 4, label: 'Mastered' }
-  if (interval >= 14) return { level: 3, label: 'Strong' }
-  if (interval >= 3) return { level: 2, label: 'Growing' }
-  return { level: 1, label: 'Seedling' }
-}
-
 function MasteryMeter({ word }: { word: VocabWord }) {
   const mastery = masteryForWord(word)
   return (
@@ -542,6 +538,13 @@ function App() {
   const [flashcardSessionLeveledUp, setFlashcardSessionLeveledUp] = useState<VocabWord[]>([])
   const [editingWord, setEditingWord] = useState<CardEditDraft | null>(null)
   const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
+  const [readerRecap, setReaderRecap] = useState<ReaderSessionRecap | null>(null)
+  // Words that leveled up from reading credits this session (for the recap).
+  const readerSessionPromotedRef = useRef<VocabWord[]>([])
+  // Words looked up on the current sentence — they skip passive credit this sentence.
+  const readerTappedWordIdsRef = useRef<Set<string>>(new Set())
+  // Sentences already credited this session, so back/forward swiping can't farm credit.
+  const readerCreditedSentenceIdsRef = useRef<Set<string>>(new Set())
   const [todayReaderStats, setTodayReaderStats] = useState<ReaderSessionStats | null>(null)
   const [latestReaderProgress, setLatestReaderProgress] = useState<ReaderProgress | undefined>()
   const [storyChunkSession, setStoryChunkSession] = useState<StoryChunkSession | null>(null)
@@ -1574,6 +1577,23 @@ function App() {
     }
   }, [screen, activeReaderSession])
 
+  // Safety net: leaving the reader by any path that skips endReaderSession
+  // (e.g. bottom nav) still stamps endedAt and resets per-session tracking.
+  useEffect(() => {
+    if (screen === 'reader' || !activeReaderSession) return
+    const ended: ReaderSession = {
+      ...activeReaderSession,
+      endedAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    }
+    void updateReaderSession(ended)
+    setActiveReaderSession(null)
+    setReaderRecap(null)
+    readerSessionPromotedRef.current = []
+    readerTappedWordIdsRef.current.clear()
+    readerCreditedSentenceIdsRef.current.clear()
+  }, [screen, activeReaderSession])
+
   // Load today's reader stats when activeSeconds or wordsRead changes
   useEffect(() => {
     let active = true
@@ -1617,6 +1637,10 @@ function App() {
     setReaderDictionaryEntry(null)
     setStoryChunkSession(null)
     setStoryChunkReceipt(null)
+    setReaderRecap(null)
+    readerSessionPromotedRef.current = []
+    readerTappedWordIdsRef.current.clear()
+    readerCreditedSentenceIdsRef.current.clear()
     setScreen('reader')
     const session = await startReaderSession(book.packId, book.id)
     setActiveReaderSession(session)
@@ -1681,8 +1705,55 @@ function App() {
     setSentenceTotalReps(totalReps)
   }, [bookListenBook, bookListenIndex, bookListenSentences.length, sentenceQueueOffset])
 
+  // Passive reading credit for the sentence being left: every saved word the
+  // user didn't look up counts as a successful FSRS exposure (throttled in
+  // applyReadingExposures), so reading moves words toward "known".
+  const creditReaderSentence = useCallback(async (
+    sentence: ReaderSentence,
+    tokens: ReaderWordToken[],
+    session: ReaderSession,
+  ): Promise<ReaderSession> => {
+    if (readerCreditedSentenceIdsRef.current.has(sentence.id)) return session
+    readerCreditedSentenceIdsRef.current.add(sentence.id)
+    const tapped = readerTappedWordIdsRef.current
+    const savedWordIds = [...new Set(
+      tokens.filter((token) => token.word).map((token) => token.word!.id),
+    )]
+    if (savedWordIds.length === 0) return session
+    const result = await applyReadingExposures(
+      savedWordIds.map((wordId) => ({ wordId, tapped: tapped.has(wordId) })),
+      session.id,
+    )
+    if (result.updatedWords.length > 0) {
+      const byId = new Map(result.updatedWords.map((word) => [word.id, word]))
+      setWords((currentWords) => currentWords.map((word) => byId.get(word.id) ?? word))
+    }
+    if (result.promotedWords.length > 0) {
+      const seen = new Set(readerSessionPromotedRef.current.map((word) => word.id))
+      readerSessionPromotedRef.current = [
+        ...readerSessionPromotedRef.current,
+        ...result.promotedWords.filter((word) => !seen.has(word.id)),
+      ]
+    }
+    if (result.creditedWordIds.length === 0) return session
+    const updatedSession: ReaderSession = {
+      ...session,
+      exposuresCredited: (session.exposuresCredited ?? 0) + result.creditedWordIds.length,
+      promotedWordIds: [...new Set([
+        ...(session.promotedWordIds ?? []),
+        ...result.promotedWords.map((word) => word.id),
+      ])],
+      updatedAt: new Date().toISOString(),
+    }
+    await updateReaderSession(updatedSession)
+    setActiveReaderSession(updatedSession)
+    return updatedSession
+  }, [])
+
   const moveReaderSentence = useCallback(async (delta: number) => {
     if (!activeReaderBook || readerSentences.length === 0) return
+    const leavingSentence = readerSentences[readerSentenceIndex]
+    const leavingTokens = readerTokens
     const nextIndex = Math.min(
       Math.max(readerSentenceIndex + delta, 0),
       readerSentences.length - 1,
@@ -1691,6 +1762,11 @@ function App() {
     setReaderSentenceIndex(nextIndex)
     setSelectedReaderToken(null)
     setReaderDictionaryEntry(null)
+    let sessionForView = activeReaderSession
+    if (delta > 0 && leavingSentence && sessionForView) {
+      sessionForView = await creditReaderSentence(leavingSentence, leavingTokens, sessionForView)
+    }
+    readerTappedWordIdsRef.current.clear()
     await saveReaderProgress({
       packId: activeReaderBook.packId,
       bookId: activeReaderBook.id,
@@ -1699,8 +1775,8 @@ function App() {
     setLatestReaderProgress(await getLatestReaderProgress(readerBooks))
     queueCloudSync()
     const nextSentence = readerSentences[nextIndex]
-    if (nextSentence && activeReaderSession) {
-      await recordReaderSentenceView(nextSentence, activeReaderSession)
+    if (nextSentence && sessionForView) {
+      await recordReaderSentenceView(nextSentence, sessionForView)
     }
     if (nextSentence && delta > 0) {
       recordStoryChunkSentence(nextSentence, nextIndex)
@@ -1713,9 +1789,11 @@ function App() {
   }, [
     activeReaderBook,
     activeReaderSession,
+    creditReaderSentence,
     readerSentenceIndex,
     readerBooks,
     readerSentences,
+    readerTokens,
     queueCloudSync,
     recordReaderInteraction,
     recordReaderSentenceView,
@@ -1736,6 +1814,47 @@ function App() {
   })
   const readerListeningActive = readerListening.active
   const stopReaderListening = readerListening.stop
+
+  // Close out the reading session: credit the sentence currently on screen,
+  // stamp endedAt, and show a recap when the session had real activity.
+  const endReaderSession = useCallback(async () => {
+    readerListening.stop()
+    let session = activeReaderSession
+    if (session && currentReaderSentence) {
+      session = await creditReaderSentence(currentReaderSentence, readerTokens, session)
+    }
+    readerTappedWordIdsRef.current.clear()
+    setActiveReaderSession(null)
+    if (session) {
+      const ended: ReaderSession = {
+        ...session,
+        endedAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      }
+      await updateReaderSession(ended)
+      const hadActivity =
+        ended.sentenceIdsRead.length > 1 || (ended.exposuresCredited ?? 0) > 0
+      if (hadActivity) {
+        setReaderRecap({
+          sentencesRead: ended.sentenceIdsRead.length,
+          wordsRead: ended.wordsRead,
+          exposuresCredited: ended.exposuresCredited ?? 0,
+          promoted: readerSessionPromotedRef.current,
+          activeSeconds: ended.activeSeconds,
+        })
+        playGentleCelebration()
+        return
+      }
+    }
+    setScreen('readingTexts')
+  }, [activeReaderSession, creditReaderSentence, currentReaderSentence, readerListening, readerTokens])
+
+  const dismissReaderRecap = useCallback(() => {
+    setReaderRecap(null)
+    readerSessionPromotedRef.current = []
+    readerCreditedSentenceIdsRef.current.clear()
+    setScreen('readingTexts')
+  }, [])
 
   const bookListening = useReaderListeningController({
     sentence: bookListenSentence ?? undefined,
@@ -3540,9 +3659,10 @@ function App() {
           statusHighlight={userSettings.readerStatusHighlight}
           onChooseBook={openReaderBook}
           onOpenLibrary={() => {
-            readerListening.stop()
-            setScreen('readingTexts')
+            void endReaderSession()
           }}
+          sessionRecap={readerRecap}
+          onDismissRecap={dismissReaderRecap}
           onResume={() => {
             if (readerResumeLocation) void openReaderBook(readerResumeLocation.book, 'resume')
           }}
@@ -3560,13 +3680,17 @@ function App() {
             }
             setSelectedReaderToken(token)
             setReaderDictionaryEntry(null)
+            if (token?.word) {
+              readerTappedWordIdsRef.current.add(token.word.id)
+            }
             if (token && !token.word && token.isChinese) {
               updateStoryChunkMetrics({ tappedUnsavedWords: [token.text] })
               lookupDictionary(token.text).then((entry) => setReaderDictionaryEntry(entry ?? null)).catch(console.error)
             }
           }}
           onSaveWord={async (text, pinyin, meaning) => {
-            await saveReaderVocabularyWord(text, pinyin, meaning)
+            const saved = await saveReaderVocabularyWord(text, pinyin, meaning)
+            readerTappedWordIdsRef.current.add(saved.id)
             updateStoryChunkMetrics({ savedWords: [text] })
             await refresh()
           }}
@@ -6207,6 +6331,8 @@ function ReaderMode({
   showEnglish,
   storyChunk,
   storyChunkReceipt,
+  sessionRecap,
+  onDismissRecap,
   listening,
   listeningRate,
   listeningRepeats,
@@ -6246,6 +6372,8 @@ function ReaderMode({
   showEnglish: boolean
   storyChunk: StoryChunkSession | null
   storyChunkReceipt: StoryChunkReceipt | null
+  sessionRecap: ReaderSessionRecap | null
+  onDismissRecap: () => void
   listening: ReaderListeningController
   listeningRate: number
   listeningRepeats: number
@@ -6510,7 +6638,42 @@ function ReaderMode({
               <div className="reader-progress-bar" aria-label={`Story progress ${readerProgressPercent(sentenceIndex, sentenceCount)}%`}>
                 <span style={{ width: `${readerProgressPercent(sentenceIndex, sentenceCount)}%` }} />
               </div>
-              {storyChunkReceipt ? (
+              {sessionRecap ? (
+                <section className="story-chunk-receipt" aria-live="polite">
+                  <div className="story-chunk-receipt-summary">
+                    <strong>Reading session complete</strong>
+                    <span>
+                      {sessionRecap.sentencesRead} sentences · {sessionRecap.wordsRead} words · {formatDuration(sessionRecap.activeSeconds)}
+                    </span>
+                    <div className="session-recap-highlights">
+                      <span className="session-recap-chip">
+                        <strong>{sessionRecap.exposuresCredited}</strong> words reinforced
+                      </span>
+                      <span className="session-recap-chip">
+                        <strong>{sessionRecap.promoted.length}</strong> leveled up
+                      </span>
+                    </div>
+                    {sessionRecap.promoted.length > 0 && (
+                      <div className="session-leveled-words">
+                        <span className="struggled-label">Leveled up by reading:</span>
+                        {sessionRecap.promoted.slice(0, 10).map((word) => (
+                          <span key={word.id} className="session-leveled-word">
+                            {word.word} → {masteryForWord(word).label}
+                          </span>
+                        ))}
+                        {sessionRecap.promoted.length > 10 && (
+                          <span className="struggled-label">+{sessionRecap.promoted.length - 10} more</span>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  <div className="story-chunk-receipt-actions">
+                    <button type="button" className="primary" onClick={onDismissRecap}>
+                      Done
+                    </button>
+                  </div>
+                </section>
+              ) : storyChunkReceipt ? (
                 <section className="story-chunk-receipt" aria-live="polite">
                   <div className="story-chunk-receipt-summary">
                     <strong>{storyChunkReceipt.title}</strong>
