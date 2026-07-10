@@ -1,4 +1,5 @@
 ﻿import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { lazy, Suspense } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -43,6 +44,7 @@ import {
   rateWordFsrs,
   recordEvent,
   repairAudioClipLinks,
+  repairAudioClipLinksIfNeeded,
   restoreArchivedWord,
   saveRenderedLesson,
   saveAudioClip,
@@ -52,6 +54,7 @@ import {
   deleteGeneratedReaderBook,
   saveReaderVocabularyWord,
   seedLmsWordsIfEmpty,
+  seedCoreWordsIfEmpty,
   seedReaderBooksIfEmpty,
   saveHotkeys,
   archiveWord,
@@ -132,10 +135,6 @@ import { AdaptiveChineseText } from './AdaptiveChineseText'
 import { WordInfoPopover } from './WordInfoPopover'
 import { GrammarPopover } from './GrammarPopover'
 import { findGrammarMatches, mapGrammarToTokens, type GrammarMatch } from './grammarPoints'
-import { UniversalImporter } from './UniversalImporter'
-import { VisualNovelWorldMode } from './visualNovel/VisualNovelWorldMode'
-import { RenpyPrototypeMode } from './visualNovel/RenpyPrototypeMode'
-import { ComicReaderMode, ComicShelf } from './comics/ComicReaderMode'
 import { useReaderListeningController } from './useReaderListeningController'
 import { shouldCountReaderActiveSecond } from './readerActivity'
 import type { ReaderListeningController } from './useReaderListeningController'
@@ -181,6 +180,15 @@ import type {
   VocabWord,
   DictionaryEntry,
 } from './types'
+import { DeferredTaskCoordinator } from './deferredTasks'
+import { clearStartupResumeState, loadStartupResumeState, saveStartupResumeState } from './startupResume'
+import { markStartup } from './startupPerformance'
+
+const UniversalImporter = lazy(() => import('./UniversalImporter').then((module) => ({ default: module.UniversalImporter })))
+const VisualNovelWorldMode = lazy(() => import('./visualNovel/VisualNovelWorldMode').then((module) => ({ default: module.VisualNovelWorldMode })))
+const RenpyPrototypeMode = lazy(() => import('./visualNovel/RenpyPrototypeMode').then((module) => ({ default: module.RenpyPrototypeMode })))
+const ComicReaderMode = lazy(() => import('./comics/ComicReaderMode').then((module) => ({ default: module.ComicReaderMode })))
+const ComicShelf = lazy(() => import('./comics/ComicReaderMode').then((module) => ({ default: module.ComicShelf })))
 
 type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'visualNovel' | 'renpyPrototype' | 'comicReader' | 'readingTexts'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
@@ -458,7 +466,13 @@ function MilestoneJourney({
 const BOOK_LISTEN_SPEEDS = [0.6, 0.8, 1.0, 1.2, 1.4]
 
 function App() {
-  const [screen, setScreen] = useState<Screen>('dashboard')
+  const startupResume = useMemo(() => loadStartupResumeState(), [])
+  const [screen, setScreen] = useState<Screen>(() => {
+    if (startupResume?.destination === 'flashcards') return 'flashcards'
+    if (startupResume?.destination === 'sentenceListening') return 'lesson'
+    if (startupResume?.destination === 'reader') return 'reader'
+    return 'dashboard'
+  })
   const [initialVisualNovelWorldId, setInitialVisualNovelWorldId] = useState<string | undefined>()
   const [initialComicPack, setInitialComicPack] = useState<{ id: string; mode: 'continue' | 'start' } | undefined>()
   const [renpyStoryVariant, setRenpyStoryVariant] = useState<'prototype' | 'lms'>('prototype')
@@ -488,7 +502,9 @@ function App() {
   const [showEnglish, setShowEnglish] = useState(true)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [studyMode, setStudyMode] = useState<StudyMode>('listeningMode')
+  const [studyMode, setStudyMode] = useState<StudyMode>(() =>
+    startupResume?.destination === 'sentenceListening' ? 'sentenceMode' : 'listeningMode',
+  )
   const [minimalVisualMode, setMinimalVisualMode] = useState(false)
   const [lessonMenuOpen, setLessonMenuOpen] = useState(false)
   const [pauseProfile, setPauseProfile] = useState<PauseProfile>('normal')
@@ -513,9 +529,9 @@ function App() {
   const [hostedPackProgress, setHostedPackProgress] = useState('')
   const [vocabSourceSearch, setVocabSourceSearch] = useState('')
   const [showArchivedVocabSources, setShowArchivedVocabSources] = useState(false)
-  const [flashcardQueueIds, setFlashcardQueueIds] = useState<string[]>([])
-  const [flashcardCurrentId, setFlashcardCurrentId] = useState<string | null>(null)
-  const [flashcardDoneIds, setFlashcardDoneIds] = useState<string[]>([])
+  const [flashcardQueueIds, setFlashcardQueueIds] = useState<string[]>(() => startupResume?.queueIds ?? [])
+  const [flashcardCurrentId, setFlashcardCurrentId] = useState<string | null>(() => startupResume?.currentId ?? null)
+  const [flashcardDoneIds, setFlashcardDoneIds] = useState<string[]>(() => startupResume?.completedIds ?? [])
   const [flashcardClock, setFlashcardClock] = useState(() => Date.now())
   const [flashcardAnswerShown, setFlashcardAnswerShown] = useState(false)
   const [lmsSentences, setLmsSentences] = useState<LmsSeedSentence[]>([])
@@ -526,7 +542,7 @@ function App() {
   const [flashcardAudioOnly, setFlashcardAudioOnly] = useState(false)
   const [flashcardSessionFeedback, setFlashcardSessionFeedback] = useState<FsrsRating | null>(null)
   const [flashcardExternalDismissDir, setFlashcardExternalDismissDir] = useState<string | null>(null)
-  const [flashcardSessionId, setFlashcardSessionId] = useState<string | null>(null)
+  const [flashcardSessionId, setFlashcardSessionId] = useState<string | null>(() => startupResume?.sessionId ?? null)
   const [flashcardCelebrationId, setFlashcardCelebrationId] = useState(0)
   const [goalCelebrationId, setGoalCelebrationId] = useState(0)
   const goalCelebrationRef = useRef<{ initialized: boolean; fired: Set<string> }>({
@@ -603,7 +619,7 @@ function App() {
   const [sentencePinyinVisible, setSentencePinyinVisible] = useState(false)
   const [sentenceMenuOpen, setSentenceMenuOpen] = useState(false)
   const [listeningLessonMenuOpen, setListeningLessonMenuOpen] = useState(false)
-  const [sentenceQueueOffset, setSentenceQueueOffset] = useState(0)
+  const [sentenceQueueOffset, setSentenceQueueOffset] = useState(() => startupResume?.destination === 'sentenceListening' ? startupResume.sentenceIndex ?? 0 : 0)
   const [sentenceRepsToday, setSentenceRepsToday] = useState(0)
   // Total-rep counter still persists in IndexedDB; only daily reps drive the goal ring UI.
   const [, setSentenceTotalReps] = useState(0)
@@ -648,7 +664,6 @@ function App() {
   }, [])
 
   const refresh = useCallback(async () => {
-    await cleanupAccidentalEnglishOnlyCards()
     const [
       nextWords,
       nextSentences,
@@ -751,23 +766,80 @@ function App() {
   }, [cloudUserEmail, handleCloudSyncNow])
 
   useEffect(() => {
-    async function start() {
-      const seeded = await seedLmsWordsIfEmpty()
-      const seededReaderSentences = await seedReaderBooksIfEmpty()
-      await repairAudioClipLinks()
-      setSeedMessage(
-        seeded > 0
-          ? `Seeded ${seeded} LMS target words.`
-          : seededReaderSentences > 0
-            ? `Loaded ${seededReaderSentences} reader sentences.`
-            : 'LMS vocabulary loaded.',
-      )
-      const nextHotkeys = await getHotkeys()
+    let cancelled = false
+    const deferred = new DeferredTaskCoordinator()
+
+    async function startCore() {
+      markStartup('destination-selected')
+      const seeded = await seedCoreWordsIfEmpty()
+      const [nextWords, nextHotkeys, nextSettings, nextNewWordsPerDay] = await Promise.all([
+        getAllWords(),
+        getHotkeys(),
+        getUserSettings(),
+        getNewWordsPerDay(),
+      ])
+      if (cancelled) return
+      setWords(nextWords)
       setHotkeys(nextHotkeys)
-      await refresh()
+      setUserSettings(nextSettings)
+      setNewWordsPerDay(nextNewWordsPerDay)
+
+      if (screen === 'lesson') {
+        const [nextSentences, nextAudio] = await Promise.all([getAllSentences(), getAllAudioClips()])
+        if (!cancelled) {
+          setSentences(nextSentences)
+          setAudioClips(nextAudio)
+        }
+      } else if (screen === 'reader') {
+        const [nextReaderPacks, nextReaderBooks] = await Promise.all([getAllReaderPacks(), getAllReaderBooks()])
+        if (!cancelled) {
+          setReaderPacks(nextReaderPacks)
+          setReaderBooks(nextReaderBooks)
+          if (startupResume?.readerBookId && nextReaderBooks.some((book) => book.id === startupResume.readerBookId)) {
+            setActiveReaderBookId(startupResume.readerBookId)
+            setReaderSentenceIndex(startupResume.sentenceIndex ?? 0)
+          } else if (startupResume?.destination === 'reader') {
+            clearStartupResumeState()
+            setScreen('dashboard')
+          }
+          setLatestReaderProgress(await getLatestReaderProgress(nextReaderBooks))
+        }
+      }
+
+      if (cancelled) return
+      setSeedMessage(seeded > 0 ? `Seeded ${seeded} LMS target words.` : 'Ready to learn.')
       setInitialDataReady(true)
+      markStartup('essential-data-ready')
+      markStartup('study-interactive')
+
+      deferred.enqueue({
+        id: 'content-maintenance',
+        run: async () => {
+          await seedLmsWordsIfEmpty()
+          await seedReaderBooksIfEmpty()
+          await repairAudioClipLinksIfNeeded()
+          await cleanupAccidentalEnglishOnlyCards()
+        },
+      })
+      deferred.enqueue({
+        id: 'secondary-data',
+        run: async () => {
+          await refresh()
+          markStartup('background-complete')
+        },
+      })
     }
-    void start()
+    void startCore().catch((error) => {
+      console.error('Core startup failed', error)
+      setSeedMessage('Local data could not be loaded. Try reloading.')
+      setInitialDataReady(true)
+    })
+    return () => {
+      cancelled = true
+      deferred.cancel()
+    }
+  // Startup is intentionally a one-shot pipeline; screen is the synchronously restored destination.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh])
 
   useEffect(() => {
@@ -775,6 +847,7 @@ function App() {
   }, [userSettings.darkMode])
 
   useEffect(() => {
+    if (!initialDataReady) return
     let cancelled = false
 
     async function loadAuth() {
@@ -820,12 +893,28 @@ function App() {
       cancelled = true
       unsubscribe()
     }
-  }, [])
+  }, [initialDataReady])
 
   useEffect(() => {
     if (!cloudUserEmail || !initialDataReady) return
     void handleCloudSyncNow(true)
   }, [cloudUserEmail, handleCloudSyncNow, initialDataReady])
+
+  useEffect(() => {
+    if (screen !== 'readingTexts' || readerBooks.length > 0) return
+    let cancelled = false
+    void (async () => {
+      await seedReaderBooksIfEmpty()
+      const [nextPacks, nextBooks] = await Promise.all([getAllReaderPacks(), getAllReaderBooks()])
+      if (cancelled) return
+      setReaderPacks(nextPacks)
+      setReaderBooks(nextBooks)
+      setLatestReaderProgress(await getLatestReaderProgress(nextBooks))
+    })().catch((error) => {
+      if (!cancelled) setLastSummary(error instanceof Error ? error.message : 'Could not load the reading library.')
+    })
+    return () => { cancelled = true }
+  }, [readerBooks.length, screen])
 
   useEffect(() => {
     function handleOnline() {
@@ -934,6 +1023,16 @@ function App() {
     () => readerBooks.find((book) => book.id === activeReaderBookId),
     [activeReaderBookId, readerBooks],
   )
+
+  useEffect(() => {
+    if (screen !== 'reader' || !activeReaderBook) return
+    saveStartupResumeState({
+      destination: 'reader',
+      readerPackId: activeReaderBook.packId,
+      readerBookId: activeReaderBook.id,
+      sentenceIndex: readerSentenceIndex,
+    })
+  }, [activeReaderBook, readerSentenceIndex, screen])
   const readerSentences = useMemo(
     () => activeReaderBook?.stories.flatMap((story) => story.sentences) ?? [],
     [activeReaderBook],
@@ -1097,10 +1196,11 @@ function App() {
 
   const startFlashcards = useCallback((mode: FlashcardQueueMode = 'mixed', overrideWords?: VocabWord[]) => {
     const queue = overrideWords ?? buildFlashcardQueue(mode)
+    const sessionId = `flashcards:${crypto.randomUUID()}`
     setFlashcardQueueIds(queue.map((word) => word.id))
     setFlashcardDoneIds([])
     setFlashcardCurrentId(selectNextFlashcardWord(queue, new Set())?.id ?? null)
-    setFlashcardSessionId(`flashcards:${crypto.randomUUID()}`)
+    setFlashcardSessionId(sessionId)
     setFlashcardClock(Date.now())
     setFlashcardAnswerShown(false)
     setFlashcardSessionFeedback(null)
@@ -1113,6 +1213,13 @@ function App() {
     setFlashcardSessionStartMs(Date.now())
     setFlashcardSessionLeveledUp([])
     setScreen('flashcards')
+    if (queue[0]) saveStartupResumeState({
+      destination: 'flashcards',
+      sessionId,
+      queueIds: queue.map((word) => word.id),
+      currentId: queue[0].id,
+      completedIds: [],
+    })
     setLastSummary(queue.length > 0 ? `Loaded ${queue.length} flashcards.` : 'No flashcards match that queue.')
   }, [buildFlashcardQueue])
 
@@ -1216,6 +1323,7 @@ function App() {
     setMinimalVisualMode(true)
     setAutoNextLesson(false)
     setScreen('lesson')
+    saveStartupResumeState({ destination: 'sentenceListening', sentenceIndex: offsetOverride ?? sentenceQueueOffset })
     setSentenceSetComplete(false)
     setSentenceRendering(true)
     setSentencePinyinVisible(false)
@@ -1374,8 +1482,21 @@ function App() {
     setFlashcardSentenceAnswerShown(false)
     setFlashcardAudioOnly(false)
     setScreen('dashboard')
+    clearStartupResumeState()
     void refresh()
   }, [refresh])
+
+  useEffect(() => {
+    if (screen !== 'flashcards' || flashcardSessionKind !== 'words') return
+    if (!flashcardSessionId || !flashcardCurrentId || flashcardQueueIds.length === 0) return
+    saveStartupResumeState({
+      destination: 'flashcards',
+      sessionId: flashcardSessionId,
+      queueIds: flashcardQueueIds,
+      currentId: flashcardCurrentId,
+      completedIds: flashcardDoneIds,
+    })
+  }, [flashcardCurrentId, flashcardDoneIds, flashcardQueueIds, flashcardSessionId, flashcardSessionKind, screen])
 
   const refreshFlashcardSession = useCallback(() => {
     if (flashcardSessionKind === 'sentences') {
@@ -3026,6 +3147,7 @@ function App() {
 
   return (
     <main className={`app-shell app-screen-${screen}`}>
+      <Suspense fallback={<section className="screen-loading" aria-live="polite">Loading this feature…</section>}>
       <header className="topbar">
         <div className="brand-area">
           <button className="brand-button" type="button" onClick={() => setScreen('dashboard')} aria-label="Go to dashboard">
@@ -5471,6 +5593,7 @@ function App() {
       <footer className="status-bar" aria-live="polite">
         {lastSummary}
       </footer>
+      </Suspense>
     </main>
   )
 }

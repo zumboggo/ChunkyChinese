@@ -93,6 +93,7 @@ const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
 const ENGLISH_ONLY_CARD_CLEANUP_VERSION = '2026-07-09-english-only-duplicates'
 const READER_PACK_FIX_VERSION = '2026-06-27-reader-english-health-check'
+const AUDIO_LINK_REPAIR_VERSION = '2026-07-10-startup-link-repair'
 
 export interface SyncMetadata {
   userId?: string
@@ -1734,6 +1735,21 @@ export async function repairAudioClipLinks(): Promise<number> {
 
   await tx.done
   return linkedAudio
+}
+
+/** Critical-path seed check. Existing libraries skip all correction/cleanup scans. */
+export async function seedCoreWordsIfEmpty(): Promise<number> {
+  const db = await getDB()
+  return (await db.count('vocabWords')) === 0 ? seedLmsWordsIfEmpty() : 0
+}
+
+/** Full repair is migration-only; imports continue to link their own clips incrementally. */
+export async function repairAudioClipLinksIfNeeded(): Promise<number> {
+  const db = await getDB()
+  if (await db.get('settings', 'audioLinkRepairVersion') === AUDIO_LINK_REPAIR_VERSION) return 0
+  const repaired = await repairAudioClipLinks()
+  await db.put('settings', AUDIO_LINK_REPAIR_VERSION, 'audioLinkRepairVersion')
+  return repaired
 }
 
 export async function getReaderProgress(

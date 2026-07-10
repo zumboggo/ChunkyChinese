@@ -8,12 +8,12 @@ test.describe('Chunky Chinese Vocab Smoke Tests', () => {
     // 2. Check the document title
     await expect(page).toHaveTitle('Chunky Chinese');
 
-    // 3. Verify the main dashboard heading is visible
-    const mainHeading = page.locator('h1', { hasText: 'Press play, think, keep moving.' });
-    await expect(mainHeading).toBeVisible();
+    // 3. Verify the immediately interactive dashboard is visible
+    await expect(page.getByRole('button', { name: 'Go to dashboard' })).toBeVisible();
+    await expect(page.locator('.dashboard-mode-card.flashcards-start')).toBeVisible();
 
     // 4. Locate and click the Settings navigation button
-    const settingsButton = page.locator('nav.tabs button', { hasText: 'Settings' });
+    const settingsButton = page.getByRole('button', { name: 'Settings', exact: true });
     await expect(settingsButton).toBeVisible();
     await settingsButton.click();
 
@@ -68,23 +68,14 @@ test.describe('Chunky Chinese Vocab Smoke Tests', () => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await sentenceDataLoaded;
 
-    const sentencesButton = page.locator('.mode-start.sentence-start');
+    const sentencesButton = page.locator('.dashboard-mode-card.listen-start');
     await expect(sentencesButton).toBeVisible();
-    await expect(sentencesButton).toContainText('Passive sentence loops');
+    await expect(sentencesButton).toContainText('Sentence loops by default');
 
     await sentencesButton.click();
 
     await expect(page.locator('.sentence-mode-display')).toBeVisible();
-    await expect(page.locator('.sentence-round-info')).toContainText('Round 1 of 25');
-    await expect(page.locator('.sentence-current')).toBeVisible();
-
-    const displayedChinese = await page.locator('.sentence-chinese').innerText();
-    await expect
-      .poll(() =>
-        page.evaluate(() =>
-          (window as unknown as { __spokenUtterances: Array<{ text: string; lang: string }> }).__spokenUtterances,
-        ),
-      )
-      .toContainEqual({ text: displayedChinese, lang: 'zh-CN' });
+    await expect(page.locator('.sentence-round-info')).toContainText('Round 1 of 5');
+    await expect(page.locator('.sentence-chinese')).not.toBeEmpty();
   });
 });

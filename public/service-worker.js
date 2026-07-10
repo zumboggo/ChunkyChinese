@@ -1,8 +1,7 @@
-const CACHE_VERSION = 'chunky-chinese-v48'
+const CACHE_VERSION = 'chunky-chinese-v49'
 // Change CACHE_VERSION whenever the app shell changes and you want browsers to
 // discard old cached files. The activate handler below removes older versions.
 const APP_BASE = new URL('./', self.location.href).pathname
-const VN_CONTENT_BASE = `${APP_BASE}reader-packs/lms-books/visual-novels/`
 const APP_SHELL = [
   APP_BASE,
   `${APP_BASE}index.html`,
@@ -11,18 +10,7 @@ const APP_SHELL = [
   `${APP_BASE}icons/icon-512.png`,
   `${APP_BASE}icons/chunky-logo.png`,
   `${APP_BASE}seed/lms-vocab-1000.csv`,
-  `${APP_BASE}dictionary/cedict.json`,
-  `${APP_BASE}clip-packs/index.json`,
-  `${APP_BASE}reader-packs/index.json`,
-  `${APP_BASE}reader-packs/lms-books/reader_manifest.json`,
-  `${APP_BASE}reader-packs/sherlock-holmes/reader_manifest.json`,
-  `${APP_BASE}reader-packs/sherlock-holmes/books/sherlock-holmes-curly-haired.json`,
-  `${APP_BASE}reader-packs/rise-of-the-monkey-king/reader_manifest.json`,
-  `${APP_BASE}reader-packs/rise-of-the-monkey-king/books/rise-of-the-monkey-king.json`,
-  `${APP_BASE}reader-packs/just-friends/reader_manifest.json`,
-  `${APP_BASE}reader-packs/just-friends/books/just-friends.json`,
-  `${VN_CONTENT_BASE}index.json`,
-  `${VN_CONTENT_BASE}worlds/index.json`,
+  `${APP_BASE}seed/lms-sentences.json`,
 ]
 
 self.addEventListener('install', (event) => {
@@ -30,8 +18,13 @@ self.addEventListener('install', (event) => {
     (async () => {
       const cache = await caches.open(CACHE_VERSION)
       const shellUrls = await discoverAppShellUrls()
-      const vnUrls = await discoverVisualNovelUrls()
-      await cache.addAll([...new Set([...APP_SHELL, ...shellUrls, ...vnUrls])])
+      // A missing optional asset must not prevent a new worker from activating.
+      await Promise.allSettled(
+        [...new Set([...APP_SHELL, ...shellUrls])].map(async (url) => {
+          const response = await fetch(url, { cache: 'reload' })
+          if (response.ok) await cache.put(url, response)
+        }),
+      )
       await self.skipWaiting()
     })(),
   )
@@ -98,51 +91,6 @@ async function discoverAppShellUrls() {
   } catch {
     return []
   }
-}
-
-async function discoverVisualNovelUrls() {
-  const urls = []
-
-  // Discover standalone VN scripts and asset manifests
-  try {
-    const vnIndexRes = await fetch(`${VN_CONTENT_BASE}index.json`, { cache: 'reload' })
-    if (vnIndexRes.ok) {
-      const entries = await vnIndexRes.json()
-      for (const entry of entries) {
-        if (entry.scriptPath) urls.push(`${APP_BASE}${entry.scriptPath}`)
-        if (entry.id) urls.push(`${VN_CONTENT_BASE}${entry.id}/asset-manifest.json`)
-      }
-    }
-  } catch {}
-
-  // Discover world data, quest scripts, and world asset manifests
-  try {
-    const worldIndexRes = await fetch(`${VN_CONTENT_BASE}worlds/index.json`, { cache: 'reload' })
-    if (worldIndexRes.ok) {
-      const entries = await worldIndexRes.json()
-      for (const entry of entries) {
-        if (entry.worldPath) urls.push(`${APP_BASE}${entry.worldPath}`)
-        if (entry.id) {
-          const worldDir = `${VN_CONTENT_BASE}worlds/${entry.id}`
-          urls.push(`${worldDir}/asset-manifest.json`)
-          // Discover quest scripts referenced by the world JSON
-          try {
-            const worldRes = await fetch(`${worldDir}/world.json`, { cache: 'reload' })
-            if (worldRes.ok) {
-              const world = await worldRes.json()
-              for (const quest of Object.values(world.quests ?? {})) {
-                if (quest.scriptPath) {
-                  urls.push(`${worldDir}/${quest.scriptPath}`)
-                }
-              }
-            }
-          } catch {}
-        }
-      }
-    }
-  } catch {}
-
-  return urls
 }
 
 async function networkFirstHtml(request) {

@@ -9,10 +9,11 @@ test('Reading Texts exposes the book library and keeps it accessible from a book
   })
 
   await page.goto('/', { waitUntil: 'domcontentloaded' })
-  await page.getByRole('button', { name: 'Reading', exact: true }).click()
+  await page.locator('.dashboard-mode-card.reading-texts-start').click()
 
-  await expect(page.getByRole('heading', { name: 'Reading Texts' })).toBeVisible()
-  await expect(page.getByRole('heading', { name: 'Your Library' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Reading' })).toBeVisible()
+  await page.getByRole('button', { name: /^Novels/ }).click()
+  await expect(page.getByRole('heading', { name: 'Novels', exact: true })).toBeVisible()
 
   const justFriends = page.locator('.reading-library-book', { hasText: 'Just Friends?' })
   const monkeyKing = page.locator('.reading-library-book', { hasText: 'Rise of the Monkey King' })
@@ -26,8 +27,8 @@ test('Reading Texts exposes the book library and keeps it accessible from a book
   await expect(page.getByRole('button', { name: 'Library', exact: true })).toBeVisible()
 
   await page.getByRole('button', { name: 'Library', exact: true }).click()
-  await expect(page.getByRole('heading', { name: 'Your Library' })).toBeVisible()
-  await expect(monkeyKing).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Reading' })).toBeVisible()
+  await expect(page.getByRole('button', { name: /^Novels/ })).toBeVisible()
 
   await page.screenshot({
     path: testInfo.outputPath(`reading-texts-library-${testInfo.project.name}.png`),

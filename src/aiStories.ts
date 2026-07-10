@@ -130,9 +130,9 @@ async function requestStoryJson(
     })
   } catch (error) {
     if (error instanceof DOMException && (error.name === 'TimeoutError' || error.name === 'AbortError')) {
-      throw new Error('Story generation timed out. Try a shorter length or try again.')
+      throw new Error('Story generation timed out. Try a shorter length or try again.', { cause: error })
     }
-    throw new Error('Could not reach openrouter.ai. Check your internet connection.')
+    throw new Error('Could not reach openrouter.ai. Check your internet connection.', { cause: error })
   }
 
   if (!response.ok) {

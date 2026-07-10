@@ -47,13 +47,6 @@
 
         window.addEventListener('load', async () => {
           try {
-            let reloadedForController = false
-            navigator.serviceWorker.addEventListener('controllerchange', () => {
-              if (reloadedForController) return
-              reloadedForController = true
-              window.location.reload()
-            })
-
             const registration = await navigator.serviceWorker.register('./service-worker.js', {
               updateViaCache: 'none',
             })
@@ -67,9 +60,8 @@
               })
             })
             await registration.update()
-            if (registration.waiting) {
-              registration.waiting.postMessage({ type: 'SKIP_WAITING' })
-            }
+            // Let a waiting worker take over on the next normal navigation so an
+            // active study session is never interrupted by an update reload.
           } catch (error) {
             console.warn('Chunky Chinese service worker registration failed.', error)
           }

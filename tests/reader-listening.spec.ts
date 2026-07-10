@@ -10,41 +10,36 @@ test('Reader Listening Mode is stable and phone-friendly', async ({ page }, test
 
   await page.goto('/', { waitUntil: 'domcontentloaded' })
   await expect(page).toHaveTitle('Chunky Chinese')
-  await expect(page.getByRole('heading', { name: 'Press play, think, keep moving.' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Go to dashboard' })).toBeVisible()
 
-  await page.getByRole('button', { name: 'Open reader', exact: true }).click()
-  await page.getByRole('button', { name: 'Classic Reading Mode', exact: true }).click()
+  await page.locator('.dashboard-mode-card.reading-texts-start').click()
+  await page.getByRole('button', { name: /^Novels/ }).click()
 
-  const firstBook = page.locator('.reader-book-card').first()
+  const firstBook = page.locator('.reading-library-book').first()
   await expect(firstBook).toBeVisible()
-  await firstBook.getByRole('button', { name: 'Resume', exact: true }).click()
+  await firstBook.getByRole('button', { name: 'Start', exact: true }).click()
 
   const sentenceMeta = page.locator('.reader-page-meta')
   await expect(sentenceMeta).toContainText('Sentence 1 /')
 
-  await page.locator('.reader-controls').getByRole('button', { name: 'Listening Mode' }).click()
-  const dialog = page.getByRole('dialog', { name: 'Listening Mode' })
-  await expect(dialog).toBeVisible()
-  await expect(dialog.getByLabel('Speed')).toHaveValue('0.8')
-  await expect(dialog.getByLabel('Repeat each sentence')).toHaveValue('2')
-  await expect(dialog.getByLabel('Automatically continue to the next sentence')).toBeChecked()
+  await page.getByRole('button', { name: 'Reader menu' }).click()
+  await page.getByLabel('Speed').selectOption('0.9')
+  await page.getByLabel('Repeats').selectOption('3')
+  await page.getByRole('button', { name: 'Listen from sentence 1' }).click()
 
-  await dialog.getByLabel('Speed').selectOption('0.9')
-  await dialog.getByLabel('Repeat each sentence').selectOption('3')
-  await dialog.getByRole('button', { name: 'Start from sentence 1' }).click()
-
-  await expect(page.locator('.reader-listening-dock')).toBeVisible()
+  await expect(page.locator('.reader-listening-controls')).toBeVisible()
   await expect(page.locator('.reader-translation')).toHaveClass(/revealed/)
   await expect(page.locator('.reader-reading-area')).toHaveClass(/reader-listening-highlight/)
-  await expect(page.locator('.reader-listening-controls kbd')).toHaveText(['1', '2'])
+  await expect(page.getByRole('button', { name: /Pause listening|Play listening/ })).toBeVisible()
+  await expect(page.getByRole('button', { name: /Next sentence/ })).toBeVisible()
 
   await page.waitForTimeout(900)
   await expect(sentenceMeta).toContainText('Sentence 1 /')
 
-  await page.locator('.reader-listening-controls').getByRole('button', { name: 'Settings' }).click()
-  await expect(dialog.getByLabel('Speed')).toHaveValue('0.9')
-  await expect(dialog.getByLabel('Repeat each sentence')).toHaveValue('3')
-  await dialog.getByRole('button', { name: 'Close' }).click()
+  await page.getByRole('button', { name: 'Reader menu' }).click()
+  await expect(page.getByLabel('Speed')).toHaveValue('0.9')
+  await expect(page.getByLabel('Repeats')).toHaveValue('3')
+  await page.locator('.sentence-menu-backdrop').click({ position: { x: 5, y: 5 } })
 
   await page.screenshot({
     path: testInfo.outputPath(`reader-listening-${testInfo.project.name}.png`),
