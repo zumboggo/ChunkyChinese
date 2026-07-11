@@ -32,6 +32,11 @@ export interface GenerateAiStoryOptions {
     recentSentences: string[]
     nextChapter: number
   }
+  /**
+   * Almost-known words to weave in for reading exposure ("finisher" stories).
+   * Treated as known for the 95% coverage rule.
+   */
+  focusWords?: Array<{ word: string; pinyin: string; meaning: string }>
 }
 
 // OpenRouter does not currently serve FLUX models; Gemini flash-lite image is
@@ -83,6 +88,15 @@ function buildUserMessage(options: GenerateAiStoryOptions, prompt: string): stri
     'At least 95% of the word occurrences in the story MUST come from this known-word list (plus proper names, numbers, and basic function words like 的/了/是/在/我/你/他/她).',
     'Use at most 5 words outside the list, and include every such word in unavoidableNewWords with pinyin and meaning.',
   ]
+  if (options.focusWords && options.focusWords.length > 0) {
+    parts.push(
+      [
+        'FOCUS WORDS — the learner is very close to mastering these. Use EACH of the following words at least twice, in different sentences, in natural contexts:',
+        options.focusWords.map((w) => `${w.word} (${w.pinyin} — ${w.meaning})`).join('；'),
+        'Do not force them in awkwardly; weave them into the plot. These focus words count as known words for the 95% rule.',
+      ].join('\n'),
+    )
+  }
   if (options.knownWords.length < 150) {
     parts.push('The learner is a beginner: restrict any vocabulary outside the list to HSK 1–2 level.')
   }

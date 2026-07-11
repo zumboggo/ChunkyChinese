@@ -4510,6 +4510,28 @@ kbd {
   width: auto;
 }
 
+/* Almost-known words the next generated story will weave in. */
+.focus-word-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.focus-word-row small {
+  flex-basis: 100%;
+  color: var(--muted, #64748b);
+}
+
+.focus-word-chip {
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  background: rgba(124, 58, 237, 0.08);
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
 /* ── Generated stories compact list ── */
 .generated-story-list {
   margin-bottom: 1.2rem;
@@ -10442,6 +10464,31 @@ body.comic-distraction-free .app-shell {
 .app-screen-dashboard .dashboard-mode-list {
   grid-template-columns: 1fr;
   gap: clamp(12px, 1.6vw, 16px);
+}
+
+/* Flashcards cell: the mode card plus the compact Quick 10 shortcut below it. */
+.mode-start-stack {
+  display: grid;
+  gap: 8px;
+}
+
+.mode-start-stack .mode-start {
+  width: 100%;
+}
+
+.quick-ten-button {
+  justify-self: start;
+  padding: 7px 16px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  background: rgba(124, 58, 237, 0.08);
+  color: var(--ink, #1e293b);
+}
+
+.quick-ten-button:hover {
+  background: rgba(124, 58, 237, 0.14);
 }
 
 .app-screen-dashboard .rep-rings-row {

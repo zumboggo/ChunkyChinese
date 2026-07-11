@@ -62,6 +62,34 @@ describe('generatedStories', () => {
     expect(validation.warning).toContain('new words')
   })
 
+  it('counts focus words as known when treatAsKnown is provided', () => {
+    // 学习 is saved but still learning (interval below the Known threshold).
+    const learning: VocabWord = {
+      ...knownWord('学习'),
+      fsrsState: 'Learning',
+      fsrsIntervalDays: 2,
+    }
+    const story = normalizeGeneratedStoryPayload({
+      title: 'Study',
+      sentences: [
+        { chinese: '我喜欢学习。', english: 'I like studying.' },
+        { chinese: '学习很好。', english: 'Studying is good.' },
+      ],
+    }, 'study')
+    const vocab = [knownWord('我'), knownWord('喜欢'), knownWord('很'), knownWord('好'), learning]
+
+    const without = validateGeneratedStoryCoverage(story, vocab)
+    expect(without.knownCoveragePercent).toBeLessThan(95)
+
+    const withFocus = validateGeneratedStoryCoverage(story, vocab, new Set(['学习']))
+    expect(withFocus.knownCoveragePercent).toBeGreaterThanOrEqual(95)
+    expect(withFocus.warning).toBeUndefined()
+
+    // An unknown string not in vocab cannot be whitelisted.
+    const bogus = validateGeneratedStoryCoverage(story, [knownWord('我'), knownWord('喜欢'), knownWord('很'), knownWord('好')], new Set(['学习']))
+    expect(bogus.knownCoveragePercent).toBeLessThan(95)
+  })
+
   it('converts generated stories into local Reader books', () => {
     const story = normalizeGeneratedStoryPayload({
       title: 'Small Shop',

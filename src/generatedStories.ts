@@ -42,6 +42,10 @@ export interface GeneratedStoryValidation {
 export function validateGeneratedStoryCoverage(
   story: GeneratedStoryPayload,
   vocab: VocabWord[],
+  // Focus words the prompt deliberately wove in: they are the learner's own
+  // almost-known vocab, so they count as known for the coverage bar rather
+  // than tripping the "too hard" retry.
+  treatAsKnown?: Set<string>,
 ): GeneratedStoryValidation {
   const wordMap = new Map(vocab.map((word) => [word.word, word]))
   const maxWordLength = readerMaxChineseWordLength(wordMap)
@@ -52,7 +56,12 @@ export function validateGeneratedStoryCoverage(
     const tokens = collectReaderComprehensionTokens(sentence.chinese, wordMap, maxWordLength)
     for (const token of tokens) {
       totalOccurrences += 1
-      if (readerComprehensionCategory(token.word) === 'known') knownOccurrences += 1
+      if (
+        readerComprehensionCategory(token.word) === 'known' ||
+        (token.word && treatAsKnown?.has(token.text))
+      ) {
+        knownOccurrences += 1
+      }
     }
   }
 

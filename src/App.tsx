@@ -552,6 +552,8 @@ function App() {
   const [flashcardSessionRatingCounts, setFlashcardSessionRatingCounts] = useState<Record<FsrsRating, number>>({ again: 0, hard: 0, good: 0, easy: 0 })
   const [flashcardSessionStartMs, setFlashcardSessionStartMs] = useState<number>(0)
   const [flashcardSessionLeveledUp, setFlashcardSessionLeveledUp] = useState<VocabWord[]>([])
+  // Good/easy ratings this set on words below Known — the recap's "moved closer" chip.
+  const [flashcardSessionMovedCloser, setFlashcardSessionMovedCloser] = useState(0)
   const [editingWord, setEditingWord] = useState<CardEditDraft | null>(null)
   const [activeReaderSession, setActiveReaderSession] = useState<ReaderSession | null>(null)
   const [readerRecap, setReaderRecap] = useState<ReaderSessionRecap | null>(null)
@@ -610,6 +612,7 @@ function App() {
     word: VocabWord
     rating: FsrsRating
     prevDoneIds: string[]
+    movedCloser: boolean
   } | null>(null)
   const syncTimerRef = useRef<number | null>(null)
   const syncedFlashcardCompletionRef = useRef<string | null>(null)
@@ -998,6 +1001,32 @@ function App() {
     () => activeWords.filter((word) => masteryForWord(word).level >= 3).length,
     [activeWords],
   )
+  // Due words whose next 'good' rating crosses the 14-day Known threshold —
+  // the highest-value reviews for growing the words-known count.
+  const promotableDueWords = useMemo(() => {
+    const now = Date.now()
+    return activeWords.filter(
+      (word) => isFsrsCardDue(word, now) && canBecomeKnownWithGood(word, now),
+    )
+  }, [activeWords])
+  // Words closest to Known that an AI "finisher story" should weave in for
+  // reading exposure (level 1-2, most reading progress first).
+  const storyFocusCandidates = useMemo(
+    () =>
+      activeWords
+        .filter((word) => {
+          const level = masteryForWord(word).level
+          return level >= 1 && level <= 2
+        })
+        .sort(
+          (a, b) =>
+            (b.readingExposures ?? 0) - (a.readingExposures ?? 0) ||
+            (b.fsrsIntervalDays ?? 0) - (a.fsrsIntervalDays ?? 0),
+        )
+        .slice(0, 12)
+        .map((word) => ({ word: word.word, pinyin: word.pinyin ?? '', meaning: word.meaning })),
+    [activeWords],
+  )
   const coverage = useMemo(() => getAudioCoverage(activeWords, sentences, audioClips), [
     activeWords,
     audioClips,
@@ -1176,13 +1205,16 @@ function App() {
     const source = activeWords
     const limit = Math.max(1, userSettings.flashcardsPerDay || 50)
     const now = Date.now()
-    const due = source
-      .filter(
+    // Promotable-first so words one good rating from Known survive the
+    // per-set limit slice below.
+    const due = sortPromotableFirst(
+      source.filter(
         (word) =>
           isFsrsCardDue(word, now) ||
           (isFlashcardLearning(word) && fsrsDueTime(word) <= now + FLASHCARD_LEARN_AHEAD_MS),
-      )
-      .sort((a, b) => fsrsDueTime(a) - fsrsDueTime(b))
+      ),
+      now,
+    )
     const fresh = source
       .filter(isNewFsrsCard)
       .sort((a, b) => (a.lessonNumber ?? 9999) - (b.lessonNumber ?? 9999))
@@ -1212,6 +1244,7 @@ function App() {
     setFlashcardSessionRatingCounts({ again: 0, hard: 0, good: 0, easy: 0 })
     setFlashcardSessionStartMs(Date.now())
     setFlashcardSessionLeveledUp([])
+    setFlashcardSessionMovedCloser(0)
     setScreen('flashcards')
     if (queue[0]) saveStartupResumeState({
       destination: 'flashcards',
@@ -1226,6 +1259,18 @@ function App() {
   const startSavedFlashcards = useCallback(() => {
     startFlashcards(userSettings.flashcardQueueMode ?? 'mixed')
   }, [startFlashcards, userSettings.flashcardQueueMode])
+
+  // A bounded, high-value set: the 10 due words most able to level up.
+  // "New set" afterwards intentionally falls back to the full saved-mode
+  // queue via refreshFlashcardSession — Quick 10 is an on-ramp, not a mode.
+  const startQuickTenFlashcards = useCallback(() => {
+    const now = Date.now()
+    const due = sortPromotableFirst(
+      activeWords.filter((word) => isFsrsCardDue(word, now)),
+      now,
+    )
+    startFlashcards('due', due.slice(0, 10))
+  }, [activeWords, startFlashcards])
 
   const startSentenceFlashcards = useCallback(() => {
     const pool = lmsSentences.length > 0 ? lmsSentences : []
@@ -1242,6 +1287,7 @@ function App() {
     setFlashcardSessionRatingCounts({ again: 0, hard: 0, good: 0, easy: 0 })
     setFlashcardSessionStartMs(Date.now())
     setFlashcardSessionLeveledUp([])
+    setFlashcardSessionMovedCloser(0)
     setScreen('flashcards')
     setLastSummary(queue.length > 0 ? `Loaded ${queue.length} sentence flashcards.` : 'No sentence flashcards available.')
   }, [lmsSentences])
@@ -2162,9 +2208,12 @@ function App() {
     const wordId = currentFlashcardWord.id
     const preRatingWord = currentFlashcardWord
     const preRatingDoneIds = flashcardDoneIds
+    const movedCloser =
+      (rating === 'good' || rating === 'easy') && masteryForWord(preRatingWord).level < 3
     setFlashcardSessionFeedback(rating)
     setFlashcardExternalDismissDir(RATING_DISMISS_DIR[rating])
     setFlashcardSessionRatingCounts((prev) => ({ ...prev, [rating]: prev[rating] + 1 }))
+    if (movedCloser) setFlashcardSessionMovedCloser((prev) => prev + 1)
     window.setTimeout(() => {
       void (async () => {
         const updatedWord = await rateWordFsrs(wordId, rating, {
@@ -2200,7 +2249,7 @@ function App() {
         setFlashcardAnswerShown(false)
         setFlashcardSessionFeedback(null)
         if (flashcardUndoTimeoutRef.current !== null) window.clearTimeout(flashcardUndoTimeoutRef.current)
-        setFlashcardUndoState({ word: preRatingWord, rating, prevDoneIds: preRatingDoneIds })
+        setFlashcardUndoState({ word: preRatingWord, rating, prevDoneIds: preRatingDoneIds, movedCloser })
         flashcardUndoTimeoutRef.current = window.setTimeout(() => {
           setFlashcardUndoState(null)
           flashcardUndoTimeoutRef.current = null
@@ -2229,6 +2278,9 @@ function App() {
       [flashcardUndoState.rating]: Math.max(0, prev[flashcardUndoState.rating] - 1),
     }))
     setFlashcardSessionLeveledUp((prev) => prev.filter((w) => w.id !== flashcardUndoState.word.id))
+    if (flashcardUndoState.movedCloser) {
+      setFlashcardSessionMovedCloser((prev) => Math.max(0, prev - 1))
+    }
     setFlashcardDoneIds(flashcardUndoState.prevDoneIds)
     setFlashcardCurrentId(flashcardUndoState.word.id)
     setFlashcardAnswerShown(true)
@@ -2857,15 +2909,18 @@ function App() {
   const generateValidatedStory = useCallback(async (
     generateOptions: Parameters<typeof generateAiStory>[0],
   ): Promise<{ story: GeneratedStoryPayload; validation: GeneratedStoryValidation }> => {
+    const treatAsKnown = generateOptions.focusWords
+      ? new Set(generateOptions.focusWords.map((w) => w.word))
+      : undefined
     let story = await generateAiStory(generateOptions)
-    let validation = validateGeneratedStoryCoverage(story, activeWords)
+    let validation = validateGeneratedStoryCoverage(story, activeWords, treatAsKnown)
     if (
       validation.knownCoveragePercent < GENERATED_STORY_TARGET_COVERAGE ||
       validation.unavoidableNewWords.length > 5
     ) {
       setAiStoryMessage('First draft was too spicy. Retrying with simpler known words...')
       story = await generateAiStory({ ...generateOptions, strictRetry: true })
-      validation = validateGeneratedStoryCoverage(story, activeWords)
+      validation = validateGeneratedStoryCoverage(story, activeWords, treatAsKnown)
     }
     return { story, validation }
   }, [activeWords])
@@ -2884,10 +2939,21 @@ function App() {
 
   const handleGenerateStory = useCallback(async (
     prompt: string,
-    options: { lengthChars: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection },
+    options: {
+      lengthChars: number
+      model: string
+      cover: boolean
+      audio: boolean
+      world?: StoryWorldSelection
+      focusWords?: Array<{ word: string; pinyin: string; meaning: string }>
+    },
   ): Promise<GeneratedStoryResult> => {
     const apiKey = requireOpenRouterKey()
     const knownWords = collectKnownWords()
+    // Focus candidates exclude level-3 words by construction, but dedupe
+    // defensively against the known list to avoid double instructions.
+    const knownSet = new Set(knownWords.map((w) => w.word))
+    const focusWords = options.focusWords?.filter((w) => !knownSet.has(w.word))
 
     const generateOptions = {
       prompt,
@@ -2896,6 +2962,7 @@ function App() {
       model: options.model,
       lengthChars: options.lengthChars,
       worldContext: options.world ? buildStoryWorldContext(options.world) : undefined,
+      focusWords: focusWords && focusWords.length > 0 ? focusWords : undefined,
     }
     // Remember the last-used choices as the new defaults.
     const nextSettings = {
@@ -3212,21 +3279,30 @@ function App() {
           </div>
 
           <div className="mode-start-grid mode-start-grid-three dashboard-mode-list" aria-label="Choose study mode">
-            <button className="mode-start dashboard-mode-card flashcards-start" type="button" onClick={startSavedFlashcards}>
-              <span className="mode-start-logo" aria-hidden="true">
-                <span className="nav-icon nav-flashcards" />
-              </span>
-              <span className="mode-start-copy">
-                <strong>Flashcards</strong>
-                <span>Sort due and new words with FSRS.</span>
-              </span>
-              <kbd>{hotkeys.choiceA.toUpperCase()}</kbd>
-              <span className="mode-start-metric">
-                <span>Due now</span>
-                <strong><CountUpNumber value={stats.dueNow} /></strong>
-              </span>
-              <span className="mode-start-arrow" aria-hidden="true">→</span>
-            </button>
+            <div className="mode-start-stack">
+              <button className="mode-start dashboard-mode-card flashcards-start" type="button" onClick={startSavedFlashcards}>
+                <span className="mode-start-logo" aria-hidden="true">
+                  <span className="nav-icon nav-flashcards" />
+                </span>
+                <span className="mode-start-copy">
+                  <strong>Flashcards</strong>
+                  <span>Sort due and new words with FSRS.</span>
+                </span>
+                <kbd>{hotkeys.choiceA.toUpperCase()}</kbd>
+                <span className="mode-start-metric">
+                  <span>{promotableDueWords.length > 0 ? 'Can become Known' : 'Due now'}</span>
+                  <strong>
+                    <CountUpNumber value={promotableDueWords.length > 0 ? promotableDueWords.length : stats.dueNow} />
+                  </strong>
+                </span>
+                <span className="mode-start-arrow" aria-hidden="true">→</span>
+              </button>
+              {stats.dueNow > 0 && (
+                <button type="button" className="quick-ten-button" onClick={startQuickTenFlashcards}>
+                  Quick 10 · {Math.min(10, stats.dueNow)} high-value cards
+                </button>
+              )}
+            </div>
             <button className="mode-start dashboard-mode-card listen-start" type="button" onClick={() => void startSentenceLesson()}>
               <span className="mode-start-logo" aria-hidden="true">
                 <span className="nav-icon nav-listen" />
@@ -3703,6 +3779,26 @@ function App() {
                             <span className="session-recap-chip">
                               <strong>🔥 {stats.currentStreak}</strong> day streak
                             </span>
+                            {(() => {
+                              const becameKnown = flashcardSessionLeveledUp.filter(
+                                (word) => masteryForWord(word).level >= 3,
+                              ).length
+                              if (becameKnown > 0) {
+                                return (
+                                  <span className="session-recap-chip">
+                                    <strong>{becameKnown}</strong> became Known
+                                  </span>
+                                )
+                              }
+                              if (flashcardSessionMovedCloser > 0) {
+                                return (
+                                  <span className="session-recap-chip">
+                                    <strong>{flashcardSessionMovedCloser}</strong> moved closer to Known
+                                  </span>
+                                )
+                              }
+                              return null
+                            })()}
                             <div className="session-recap-goal" aria-label={`Daily goal: ${reviewedToday} of ${goal} cards`}>
                               <span>Daily goal {reviewedToday} / {goal}{goalFraction >= 1 ? ' — complete! 🎉' : ''}</span>
                               <div className="session-recap-goal-bar">
@@ -3924,6 +4020,7 @@ function App() {
           aiStoryBusy={aiStoryBusy}
           aiStoryMessage={aiStoryMessage}
           canGenerateAiStories={aiStorySettings.openRouterApiKey.length > 0}
+          storyFocusCandidates={storyFocusCandidates}
           aiStoryDefaults={{
             model: aiStorySettings.model,
             lengthChars: aiStorySettings.defaultLengthChars,
@@ -5810,6 +5907,7 @@ function ReadingTextsLibrary({
   aiStoryMessage,
   canGenerateAiStories,
   aiStoryDefaults,
+  storyFocusCandidates,
 }: {
   readerBooks: ReaderBook[]
   comprehensionByBook: Map<string, ReaderBookComprehension>
@@ -5822,13 +5920,14 @@ function ReadingTextsLibrary({
   onOpenRenpyPrototype: () => void
   onOpenRenpyLms: () => void
   onOpenVisualNovel: (book?: ReaderBook) => void
-  onGenerateStory: (prompt: string, options: { lengthChars: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection }) => Promise<GeneratedStoryResult>
+  onGenerateStory: (prompt: string, options: { lengthChars: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection; focusWords?: Array<{ word: string; pinyin: string; meaning: string }> }) => Promise<GeneratedStoryResult>
   onContinueStory: (book: ReaderBook) => Promise<GeneratedStoryResult>
   onDeleteStory: (book: ReaderBook) => Promise<void>
   aiStoryBusy: boolean
   aiStoryMessage: string | null
   canGenerateAiStories: boolean
   aiStoryDefaults: { model: string; lengthChars: number; generateCover: boolean; generateAudio: boolean; azureConfigured: boolean }
+  storyFocusCandidates: Array<{ word: string; pinyin: string; meaning: string }>
 }) {
   const [category, setCategory] = useState<ReadingCategoryView>(null)
 
@@ -5947,6 +6046,7 @@ function ReadingTextsLibrary({
               onGenerate={onGenerateStory}
               onOpenGenerated={(book) => void onChooseBook(book, 'start')}
               defaults={aiStoryDefaults}
+              focusCandidates={storyFocusCandidates}
             />
           ) : null}
           {!isNovels && generatedBooks.length > 0 ? (
@@ -6177,19 +6277,22 @@ function GenerateStoryPanel({
   onGenerate,
   onOpenGenerated,
   defaults,
+  focusCandidates,
 }: {
   disabled: boolean
   busy: boolean
   message: string | null
-  onGenerate: (prompt: string, options: { lengthChars: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection }) => Promise<GeneratedStoryResult>
+  onGenerate: (prompt: string, options: { lengthChars: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection; focusWords?: Array<{ word: string; pinyin: string; meaning: string }> }) => Promise<GeneratedStoryResult>
   onOpenGenerated: (book: ReaderBook) => void
   defaults: { model: string; lengthChars: number; generateCover: boolean; generateAudio: boolean; azureConfigured: boolean }
+  focusCandidates: Array<{ word: string; pinyin: string; meaning: string }>
 }) {
   const [prompt, setPrompt] = useState('')
   const [lengthChars, setLengthChars] = useState(defaults.lengthChars)
   const [model, setModel] = useState(defaults.model)
   const [cover, setCover] = useState(defaults.generateCover)
   const [audio, setAudio] = useState(defaults.generateAudio && defaults.azureConfigured)
+  const [focusAlmostKnown, setFocusAlmostKnown] = useState(() => focusCandidates.length >= 3)
   const [lastResult, setLastResult] = useState<GeneratedStoryResult | null>(null)
   const [localMessage, setLocalMessage] = useState<string | null>(null)
   const [world, setWorld] = useState<StoryWorldSelection>(() => loadStoryWorldSelection())
@@ -6229,7 +6332,14 @@ function GenerateStoryPanel({
   async function submit() {
     setLocalMessage(null)
     try {
-      const result = await onGenerate(prompt, { lengthChars, model, cover, audio, world })
+      const result = await onGenerate(prompt, {
+        lengthChars,
+        model,
+        cover,
+        audio,
+        world,
+        focusWords: focusAlmostKnown && focusCandidates.length > 0 ? focusCandidates : undefined,
+      })
       setLastResult(result)
       setLocalMessage(null)
     } catch (error) {
@@ -6401,7 +6511,28 @@ function GenerateStoryPanel({
           />
           <span>Narrate with Azure{defaults.azureConfigured ? '' : ' (key needed)'}</span>
         </label>
+        {focusCandidates.length > 0 && (
+          <label className="generate-story-check" title="Weave in the words closest to becoming Known, so reading this story counts where it matters most.">
+            <input
+              type="checkbox"
+              checked={focusAlmostKnown}
+              onChange={(event) => setFocusAlmostKnown(event.target.checked)}
+              disabled={disabled || busy}
+            />
+            <span>Focus almost-known words ({focusCandidates.length})</span>
+          </label>
+        )}
       </div>
+      {focusAlmostKnown && focusCandidates.length > 0 && (
+        <div className="focus-word-row" aria-label="Almost-known words this story will practice">
+          {focusCandidates.map((candidate) => (
+            <span key={candidate.word} className="focus-word-chip" title={`${candidate.pinyin} — ${candidate.meaning}`}>
+              {candidate.word}
+            </span>
+          ))}
+          <small>These will each appear at least twice.</small>
+        </div>
+      )}
       <div className="generate-story-actions">
         <button
           type="button"
@@ -7584,6 +7715,25 @@ const fsrsRatingsForUi: Array<{ value: FsrsRating; label: string }> = [
   { value: 'easy', label: 'Easy' },
 ]
 
+// One 'good' tap away from Known (mastery level 3 = interval >= 14 days).
+// previewFsrsRatings rounds intervals the same way applyFsrsRating does, so
+// this exactly predicts the post-rating mastery level.
+function canBecomeKnownWithGood(word: VocabWord, now = Date.now()): boolean {
+  if (masteryForWord(word).level >= 3) return false
+  return previewFsrsRatings(word, new Date(now)).good.intervalDays >= 14
+}
+
+function sortPromotableFirst(words: VocabWord[], now: number): VocabWord[] {
+  const promotable = new Set(
+    words.filter((word) => canBecomeKnownWithGood(word, now)).map((word) => word.id),
+  )
+  return [...words].sort(
+    (a, b) =>
+      Number(promotable.has(b.id)) - Number(promotable.has(a.id)) ||
+      sortFlashcardByDueThenLesson(a, b),
+  )
+}
+
 function selectNextFlashcardWord(
   words: VocabWord[],
   doneIds: Set<string>,
@@ -7595,9 +7745,14 @@ function selectNextFlashcardWord(
     pending
       .filter((word) => isFlashcardLearning(word) && fsrsDueTime(word) <= now)
       .sort(sortFlashcardByDueThenLesson),
-    pending
-      .filter((word) => !isFlashcardLearning(word) && !isNewFsrsCard(word) && isFsrsCardDue(word, now))
-      .sort(sortFlashcardByDueThenLesson),
+    // Review-due cards: words one good rating from Known come first — they are
+    // the reviews that directly grow the words-known count.
+    sortPromotableFirst(
+      pending.filter(
+        (word) => !isFlashcardLearning(word) && !isNewFsrsCard(word) && isFsrsCardDue(word, now),
+      ),
+      now,
+    ),
     pending
       .filter(isNewFsrsCard)
       .sort(sortFlashcardByLesson),
