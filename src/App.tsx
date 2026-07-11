@@ -7267,10 +7267,10 @@ function VocabGrowthChart({ points }: { points: DashboardStats['retentionSeries'
             labelFormatter={(label) => friendlyDate(label)}
           />
           <Legend />
-          <Bar dataKey="unknown" name="Unseen" stackId="a" fill="#cbd5e1" />
-          <Bar dataKey="barelyKnown" name="Early FSRS" stackId="a" fill="#ef4444" />
-          <Bar dataKey="familiar" name="Growing FSRS" stackId="a" fill="#10b981" />
           <Bar dataKey="wellKnown" name="Mature FSRS" stackId="a" fill="var(--accent-vibrant)" />
+          <Bar dataKey="familiar" name="Growing FSRS" stackId="a" fill="#10b981" />
+          <Bar dataKey="barelyKnown" name="Early FSRS" stackId="a" fill="#ef4444" />
+          <Bar dataKey="unknown" name="Unseen" stackId="a" fill="#cbd5e1" />
         </BarChart>
       </ResponsiveContainer>
     </div>

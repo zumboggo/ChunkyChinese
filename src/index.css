@@ -10195,6 +10195,7 @@ body.comic-distraction-free .app-shell {
 }
 
 .app-screen-dashboard .topbar {
+  position: relative;
   margin-bottom: clamp(18px, 2.6vw, 26px);
   border-color: rgba(30, 41, 59, 0.08);
   border-radius: 34px;
@@ -10249,6 +10250,17 @@ body.comic-distraction-free .app-shell {
   font-weight: 800;
   box-shadow: var(--soft-shadow);
   white-space: nowrap;
+}
+
+.app-screen-dashboard .topbar-streak-badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+}
+
+.app-screen-dashboard .brand-button {
+  padding-right: 96px;
 }
 
 /* Tap feedback on primary interactive surfaces */
@@ -10646,6 +10658,11 @@ body.comic-distraction-free .app-shell {
     margin: 0;
     padding: 30px 26px;
     border-radius: 32px;
+  }
+
+  .app-screen-dashboard .topbar-streak-badge {
+    top: 26px;
+    right: 24px;
   }
 
   .app-screen-dashboard .brand-area {
