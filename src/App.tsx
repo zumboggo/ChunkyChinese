@@ -5954,12 +5954,17 @@ function ReadingTextsLibrary({
             const progress = isResumeBook ? resumeLocation.percent : 0
             return (
               <article className="reading-library-book" key={book.id}>
-                <div className={`reading-book-cover reading-book-cover-${index % 4}`}>
+                <button
+                  type="button"
+                  className={`reading-book-cover reading-book-cover-${index % 4}`}
+                  onClick={() => void onChooseBook(book, isResumeBook ? 'resume' : 'start')}
+                  aria-label={`${isResumeBook ? 'Resume' : 'Start'} ${book.title}`}
+                >
                   {book.coverImage ? (
                     <img src={readerBookCoverSrc(book)} alt="" />
                   ) : null}
                   <span>{book.title}</span>
-                </div>
+                </button>
                 <div className="reading-book-copy">
                   <div>
                     <h3>{book.title}</h3>

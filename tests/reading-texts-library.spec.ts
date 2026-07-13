@@ -37,3 +37,15 @@ test('Reading Texts exposes the book library and keeps it accessible from a book
 
   expect(consoleErrors).toEqual([])
 })
+
+test('Stories start directly from their cover', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'domcontentloaded' })
+  await page.locator('.dashboard-mode-card.reading-texts-start').click()
+  await page.getByRole('button', { name: /^Stories/ }).click()
+
+  await expect(page.getByRole('heading', { name: 'Stories', exact: true })).toBeVisible()
+  await page.getByRole('button', { name: 'Start Gospel of John', exact: true }).click()
+
+  await expect(page.locator('.reader-page-meta')).toContainText('Gospel of John')
+  await expect(page.locator('.reader-page-meta')).toContainText('Sentence 1 / 812')
+})
