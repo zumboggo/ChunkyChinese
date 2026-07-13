@@ -6825,13 +6825,16 @@ function ReaderMode({
           {activeBook && sentence ? (
             <>
               <div className="reader-page-meta">
-                <button type="button" className="reader-exit-btn" onClick={onOpenLibrary}>
-                  Library
-                </button>
-                <span className="reader-meta-title">{activeBook.title}</span>
-                <span>
+                <div className="reader-meta-primary">
+                  <button type="button" className="reader-exit-btn" onClick={onOpenLibrary}>
+                    <span aria-hidden="true">▤</span>
+                    Library
+                  </button>
+                  <span className="reader-meta-title">{activeBook.title}</span>
+                </div>
+                <strong className="reader-sentence-count">
                   Sentence {sentenceIndex + 1} / {sentenceCount}
-                </span>
+                </strong>
               </div>
               <div className="reader-progress-bar" aria-label={`Story progress ${readerProgressPercent(sentenceIndex, sentenceCount)}%`}>
                 <span style={{ width: `${readerProgressPercent(sentenceIndex, sentenceCount)}%` }} />
