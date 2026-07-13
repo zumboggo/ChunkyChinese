@@ -22,6 +22,11 @@ function configureAudioElement(
   audio.onerror = onError
 }
 
+function loadAudioSource(audio: HTMLAudioElement, url: string) {
+  audio.src = url
+  audio.load()
+}
+
 interface ReaderListeningControllerOptions {
   sentence?: ReaderSentence
   sentenceIndex: number
@@ -122,6 +127,19 @@ export function useReaderListeningController({
     audioUrlRef.current = null
   }, [])
 
+  const clearAudioSource = useCallback(() => {
+    const audio = audioRef.current
+    if (audio) {
+      audio.onended = null
+      audio.onerror = null
+      audio.pause()
+      audio.removeAttribute('src')
+    }
+    audioSentenceIdRef.current = null
+    if (audioUrlRef.current) URL.revokeObjectURL(audioUrlRef.current)
+    audioUrlRef.current = null
+  }, [])
+
   const invalidatePlayback = useCallback((discard = false) => {
     runTokenRef.current += 1
     window.speechSynthesis?.cancel()
@@ -213,7 +231,11 @@ export function useReaderListeningController({
 
     let audio = audioRef.current
     if (!audio || audioSentenceIdRef.current !== currentSentence.id) {
-      discardAudio()
+      // Keep the same media element for the entire listening session. Mobile
+      // browsers unlock the element that was started by the user's tap; making
+      // a new Audio after every IndexedDB lookup can make auto-advance look like
+      // a fresh autoplay request and get blocked.
+      clearAudioSource()
       const clip = await getAudioClip(currentSentence.audioClipId)
       if (runTokenRef.current !== token) return
       if (!clip) {
@@ -222,8 +244,11 @@ export function useReaderListeningController({
       }
       const url = URL.createObjectURL(clip.blob)
       audioUrlRef.current = url
-      audio = new Audio(url)
-      audioRef.current = audio
+      if (!audio) {
+        audio = new Audio()
+        audioRef.current = audio
+      }
+      loadAudioSource(audio, url)
       audioSentenceIdRef.current = currentSentence.id
     }
 
@@ -249,7 +274,7 @@ export function useReaderListeningController({
       if (runTokenRef.current === token) playWithSpeechSynthesis(currentSentence.chinese, token)
     }
   }, [
-    discardAudio,
+    clearAudioSource,
     finishRepetition,
     playWithSpeechSynthesis,
     setMediaPlaybackState,
@@ -312,7 +337,7 @@ export function useReaderListeningController({
     const nextSentenceId = sentence?.id
     if (lastSentenceIdRef.current === nextSentenceId) return
     lastSentenceIdRef.current = nextSentenceId
-    discardAudio()
+    clearAudioSource()
     if (snapshotRef.current.status === 'idle' || !nextSentenceId) return
     updateSnapshot((current) => ({
       ...current,
@@ -321,7 +346,7 @@ export function useReaderListeningController({
       source: null,
     }))
     void playCurrent(true)
-  }, [discardAudio, playCurrent, sentence?.id, updateSnapshot])
+  }, [clearAudioSource, playCurrent, sentence?.id, updateSnapshot])
 
   useEffect(() => {
     const audio = audioRef.current
