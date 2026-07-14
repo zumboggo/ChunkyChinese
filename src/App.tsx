@@ -904,7 +904,8 @@ function App() {
   }, [cloudUserEmail, handleCloudSyncNow, initialDataReady])
 
   useEffect(() => {
-    if (screen !== 'readingTexts' || readerBooks.length > 0) return
+    const needsReaderLibrary = screen === 'readingTexts' || (screen === 'lesson' && studyMode === 'sentenceMode')
+    if (!needsReaderLibrary || readerBooks.length > 0) return
     let cancelled = false
     void (async () => {
       await seedReaderBooksIfEmpty()
@@ -917,7 +918,7 @@ function App() {
       if (!cancelled) setLastSummary(error instanceof Error ? error.message : 'Could not load the reading library.')
     })
     return () => { cancelled = true }
-  }, [readerBooks.length, screen])
+  }, [readerBooks.length, screen, studyMode])
 
   useEffect(() => {
     function handleOnline() {
@@ -4690,7 +4691,7 @@ function App() {
                     ref={studyStageRef}
                     className={`study-stage ${minimalVisualMode ? 'minimal-visual-stage' : ''} ${showReviewPrompt ? 'review-stage' : ''}`}
                   >
-                    <div className="study-meta">
+                    <div className={`study-meta${studyMode === 'sentenceMode' ? ' sentence-listening-study-meta' : ''}`}>
                       <span>
                         {minimalVisualMode
                           ? 'Listening'
@@ -4835,15 +4836,20 @@ function App() {
                       </div>
                     ) : studyMode === 'sentenceMode' ? (
                       <div className="sentence-mode-root">
+                        <h1 className="listening-mode-title">Listening</h1>
                         {/* Sets / Books segmented tab */}
-                        <div className="sentence-submode-tabs">
+                        <div className="sentence-submode-tabs" role="tablist" aria-label="Listening source">
                           <button
                             type="button"
+                            role="tab"
+                            aria-selected={sentenceSubMode === 'sets'}
                             className={sentenceSubMode === 'sets' ? 'active' : ''}
                             onClick={() => setSentenceSubMode('sets')}
                           >Sets</button>
                           <button
                             type="button"
+                            role="tab"
+                            aria-selected={sentenceSubMode === 'books'}
                             className={sentenceSubMode === 'books' ? 'active' : ''}
                             onClick={() => { setSentenceSubMode('books'); setSentencePaused(true) }}
                           >Books</button>
@@ -4909,7 +4915,7 @@ function App() {
                           ) : (
                             /* Book card view */
                             <div
-                              className={`sentence-mode-display book-listen-display${bookListenSwipe.swipeDir ? ` swipe-${bookListenSwipe.swipeDir}` : ''}`}
+                              className={`sentence-mode-display book-listen-display listening-session-display${bookListenSwipe.swipeDir ? ` swipe-${bookListenSwipe.swipeDir}` : ''}`}
                               {...bookListenSwipe.handlers}
                             >
                               {/* Top bar */}
@@ -4971,23 +4977,32 @@ function App() {
                                 <div className="book-listen-story-label">{bookListenStory.title}</div>
                               )}
 
-                              {/* Illustration */}
-                              {bookListenIllustration && (
-                                <div className="book-sentence-illustration">
-                                  <img
-                                    src={publicAssetPath(bookListenIllustration.imageFilename)}
-                                    alt={bookListenIllustration.alt ?? ''}
-                                    className="book-sentence-illustration-img"
-                                  />
+                              {/* Progress */}
+                              <div className="book-listen-progress">
+                                <div className="book-listen-progress-copy">
+                                  <strong>{bookListenBook.title}</strong>
+                                  <span>{bookListenIndex + 1} / {bookListenSentences.length} sentences</span>
                                 </div>
-                              )}
+                                <div className="book-listen-progress-bar">
+                                  <span style={{ width: `${((bookListenIndex + 1) / Math.max(1, bookListenSentences.length)) * 100}%` }} />
+                                </div>
+                              </div>
 
                               {/* Sentence card */}
                               <div
                                 key={bookListenAnimKey}
                                 ref={bookListenSwipe.cardRef}
-                                className={`sentence-card${bookListenDismissDir ? ` sentence-dismiss-${bookListenDismissDir}` : ''}`}
+                                className={`sentence-card book-listen-card${(bookListenSentence?.chinese.length ?? 0) > 14 ? ' sentence-card-long' : ''}${bookListenDismissDir ? ` sentence-dismiss-${bookListenDismissDir}` : ''}`}
                               >
+                                {bookListenIllustration && (
+                                  <div className="book-sentence-illustration">
+                                    <img
+                                      src={publicAssetPath(bookListenIllustration.imageFilename)}
+                                      alt={bookListenIllustration.alt ?? ''}
+                                      className="book-sentence-illustration-img"
+                                    />
+                                  </div>
+                                )}
                                 <div className={`sentence-chinese${bookListening.snapshot.status === 'playing' ? ' book-playing' : ''}`}>{bookListenSentence?.chinese}</div>
                                 {bookListenPinyinVisible && bookListenSentence?.chinese && (
                                   <div className="sentence-pinyin">
@@ -5004,14 +5019,6 @@ function App() {
                                   {{ left: '← Next', right: '→ Prev', down: '⏸ Pause', up: '↑ Display' }[bookListenSwipe.swipeDir] ?? ''}
                                 </div>
                               )}
-
-                              {/* Progress */}
-                              <div className="book-listen-progress">
-                                <span>{bookListenIndex + 1} / {bookListenSentences.length}</span>
-                                <div className="book-listen-progress-bar">
-                                  <span style={{ width: `${((bookListenIndex + 1) / Math.max(1, bookListenSentences.length)) * 100}%` }} />
-                                </div>
-                              </div>
 
                               <StudyControls
                                 playing={bookListening.snapshot.status === 'playing'}
@@ -5032,7 +5039,7 @@ function App() {
                         ) : (
                           /* ── Sets sub-mode (original sentence mode) ── */
                           <div
-                            className={`sentence-mode-display${sentenceSetSwipe.swipeDir ? ` swipe-${sentenceSetSwipe.swipeDir}` : ''}`}
+                            className={`sentence-mode-display listening-session-display listening-sets-display${sentenceSetSwipe.swipeDir ? ` swipe-${sentenceSetSwipe.swipeDir}` : ''}`}
                             {...sentenceSetSwipe.handlers}
                           >
                             {/* Top bar: Menu | Play/Pause | End Set */}
@@ -5161,7 +5168,7 @@ function App() {
                                 <div className="sentence-card-stack">
                                   <div
                                     ref={sentenceSetSwipe.cardRef}
-                                    className="sentence-card"
+                                    className={`sentence-card${(current?.chinese.length ?? 0) > 14 ? ' sentence-card-long' : ''}`}
                                   >
                                     <div
                                       className="sentence-chinese"
