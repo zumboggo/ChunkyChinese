@@ -78,6 +78,7 @@ test('Book Listening starts from the picker and preserves all four swipes', asyn
   await page.locator('.dashboard-mode-card.listen-start').click()
   await page.locator('.sentence-mode-root').getByRole('button', { name: 'Menu' }).click()
   await page.locator('.sentence-menu-popup').getByRole('button', { name: 'Books' }).click()
+  await expect(page.getByRole('tab', { name: 'Sets' })).toBeVisible()
 
   const firstBook = page.locator('.book-picker-row').first()
   await expect(firstBook).toBeVisible()
