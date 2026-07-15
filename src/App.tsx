@@ -311,6 +311,12 @@ const emptyStats: DashboardStats = {
 
 const HIDDEN_PACK_IDS = new Set(['annas-reading-deck'])
 const FLASHCARD_LEARN_AHEAD_MS = 5 * 60 * 1000
+const FLASHCARD_RATING_DISMISS_DIR: Record<FsrsRating, string> = {
+  again: 'left',
+  hard: 'up',
+  good: 'right',
+  easy: 'down',
+}
 const FLASHCARD_REVERSE_RATE = 0.1
 
 const GOAL_RING_COLORS: Record<string, string> = {
@@ -608,6 +614,7 @@ function App() {
   const studyStageRef = useRef<HTMLDivElement | null>(null)
   const flashcardFeedbackTimeoutRef = useRef<number | null>(null)
   const flashcardUndoTimeoutRef = useRef<number | null>(null)
+  const pendingFlashcardStartRef = useRef(false)
   const [flashcardUndoState, setFlashcardUndoState] = useState<{
     word: VocabWord
     rating: FsrsRating
@@ -1215,9 +1222,10 @@ function App() {
   const startFlashcards = useCallback((mode: FlashcardQueueMode = 'mixed', overrideWords?: VocabWord[]) => {
     const queue = overrideWords ?? buildFlashcardQueue(mode)
     const sessionId = `flashcards:${crypto.randomUUID()}`
+    const firstCard = selectNextFlashcardWord(queue, new Set())
     setFlashcardQueueIds(queue.map((word) => word.id))
     setFlashcardDoneIds([])
-    setFlashcardCurrentId(selectNextFlashcardWord(queue, new Set())?.id ?? null)
+    setFlashcardCurrentId(firstCard?.id ?? null)
     setFlashcardSessionId(sessionId)
     setFlashcardClock(Date.now())
     setFlashcardAnswerShown(false)
@@ -1228,19 +1236,33 @@ function App() {
     setFlashcardSessionLeveledUp([])
     setFlashcardSessionMovedCloser(0)
     setScreen('flashcards')
-    if (queue[0]) saveStartupResumeState({
+    if (firstCard) saveStartupResumeState({
       destination: 'flashcards',
       sessionId,
       queueIds: queue.map((word) => word.id),
-      currentId: queue[0].id,
+      currentId: firstCard.id,
       completedIds: [],
     })
     setLastSummary(queue.length > 0 ? `Loaded ${queue.length} flashcards.` : 'No flashcards match that queue.')
   }, [buildFlashcardQueue])
 
   const startSavedFlashcards = useCallback(() => {
+    if (!initialDataReady) {
+      pendingFlashcardStartRef.current = true
+      setScreen('flashcards')
+      setLastSummary('Loading flashcards…')
+      return
+    }
     startFlashcards(userSettings.flashcardQueueMode ?? 'mixed')
-  }, [startFlashcards, userSettings.flashcardQueueMode])
+  }, [initialDataReady, startFlashcards, userSettings.flashcardQueueMode])
+
+  useEffect(() => {
+    if (!initialDataReady || !pendingFlashcardStartRef.current) return
+    pendingFlashcardStartRef.current = false
+    if (screen === 'flashcards') {
+      startFlashcards(userSettings.flashcardQueueMode ?? 'mixed')
+    }
+  }, [initialDataReady, screen, startFlashcards, userSettings.flashcardQueueMode])
 
   // A bounded, high-value set: the 10 due words most able to level up.
   // "New set" afterwards intentionally falls back to the full saved-mode
@@ -2154,8 +2176,6 @@ function App() {
     }, 500)
   }, [flashcardFeedback, handleFsrsRating])
 
-  const RATING_DISMISS_DIR: Record<FsrsRating, string> = { again: 'left', hard: 'up', good: 'right', easy: 'down' }
-
   const handleStandaloneFlashcardRate = useCallback((rating: FsrsRating) => {
     if (!currentFlashcardWord || flashcardSessionFeedback) return
     const wordId = currentFlashcardWord.id
@@ -2164,49 +2184,61 @@ function App() {
     const movedCloser =
       (rating === 'good' || rating === 'easy') && masteryForWord(preRatingWord).level < 3
     setFlashcardSessionFeedback(rating)
-    setFlashcardExternalDismissDir(RATING_DISMISS_DIR[rating])
+    setFlashcardExternalDismissDir(FLASHCARD_RATING_DISMISS_DIR[rating])
     setFlashcardSessionRatingCounts((prev) => ({ ...prev, [rating]: prev[rating] + 1 }))
     if (movedCloser) setFlashcardSessionMovedCloser((prev) => prev + 1)
     window.setTimeout(() => {
       void (async () => {
-        const updatedWord = await rateWordFsrs(wordId, rating, {
-          source: 'flashcards',
-          sessionId: flashcardSessionId ?? undefined,
-        })
-        const now = Date.now()
-        const nextDoneIds = getNextFlashcardDoneIds(
-          preRatingDoneIds,
-          wordId,
-          updatedWord,
-          rating,
-          now,
-        )
-        const updatedQueue = flashcardQueue.map((word) => (word.id === wordId ? updatedWord ?? word : word))
-        const nextWord = selectNextFlashcardWord(updatedQueue, new Set(nextDoneIds), wordId, now)
-        if (updatedWord) {
-          setWords((currentWords) =>
-            currentWords.map((word) => (word.id === wordId ? updatedWord : word)),
+        try {
+          const updatedWord = await rateWordFsrs(wordId, rating, {
+            source: 'flashcards',
+            sessionId: flashcardSessionId ?? undefined,
+          })
+          const now = Date.now()
+          const nextDoneIds = getNextFlashcardDoneIds(
+            preRatingDoneIds,
+            wordId,
+            updatedWord,
+            rating,
+            now,
           )
-          if (masteryForWord(updatedWord).level > masteryForWord(preRatingWord).level) {
-            setFlashcardSessionLeveledUp((prev) =>
-              prev.some((w) => w.id === wordId) ? prev : [...prev, updatedWord],
+          const updatedQueue = flashcardQueue.map((word) => (word.id === wordId ? updatedWord ?? word : word))
+          const nextWord = selectNextFlashcardWord(updatedQueue, new Set(nextDoneIds), wordId, now)
+          if (updatedWord) {
+            setWords((currentWords) =>
+              currentWords.map((word) => (word.id === wordId ? updatedWord : word)),
             )
+            if (masteryForWord(updatedWord).level > masteryForWord(preRatingWord).level) {
+              setFlashcardSessionLeveledUp((prev) =>
+                prev.some((w) => w.id === wordId) ? prev : [...prev, updatedWord],
+              )
+            }
           }
+          setFlashcardDoneIds(nextDoneIds)
+          setFlashcardClock(now)
+          setFlashcardCurrentId(nextWord?.id ?? null)
+          setFlashcardExternalDismissDir(null)
+          void refresh()
+          queueCloudSync()
+          setLastSummary(`Rated ${preRatingWord.word} ${fsrsLabel(rating)}.`)
+          setFlashcardAnswerShown(false)
+          setFlashcardSessionFeedback(null)
+          if (flashcardUndoTimeoutRef.current !== null) window.clearTimeout(flashcardUndoTimeoutRef.current)
+          setFlashcardUndoState({ word: preRatingWord, rating, prevDoneIds: preRatingDoneIds, movedCloser })
+          flashcardUndoTimeoutRef.current = window.setTimeout(() => {
+            setFlashcardUndoState(null)
+            flashcardUndoTimeoutRef.current = null
+          }, 5000)
+        } catch (error) {
+          setFlashcardExternalDismissDir(null)
+          setFlashcardSessionFeedback(null)
+          setFlashcardSessionRatingCounts((prev) => ({
+            ...prev,
+            [rating]: Math.max(0, prev[rating] - 1),
+          }))
+          if (movedCloser) setFlashcardSessionMovedCloser((prev) => Math.max(0, prev - 1))
+          setLastSummary(error instanceof Error ? `Could not save rating: ${error.message}` : 'Could not save rating. Try again.')
         }
-        setFlashcardDoneIds(nextDoneIds)
-        setFlashcardClock(now)
-        setFlashcardCurrentId(nextWord?.id ?? null)
-        void refresh()
-        queueCloudSync()
-        setLastSummary(`Rated ${preRatingWord.word} ${fsrsLabel(rating)}.`)
-        setFlashcardAnswerShown(false)
-        setFlashcardSessionFeedback(null)
-        if (flashcardUndoTimeoutRef.current !== null) window.clearTimeout(flashcardUndoTimeoutRef.current)
-        setFlashcardUndoState({ word: preRatingWord, rating, prevDoneIds: preRatingDoneIds, movedCloser })
-        flashcardUndoTimeoutRef.current = window.setTimeout(() => {
-          setFlashcardUndoState(null)
-          flashcardUndoTimeoutRef.current = null
-        }, 5000)
       })()
     }, 500)
   }, [currentFlashcardWord, flashcardDoneIds, flashcardQueue, flashcardSessionFeedback, flashcardSessionId, queueCloudSync, refresh])
@@ -3525,14 +3557,18 @@ function App() {
             ) : (
               <div className="review-complete flashcards-complete">
                 <strong>
-                  {flashcardSessionComplete
+                  {!initialDataReady
+                    ? 'Loading flashcards…'
+                    : flashcardSessionComplete
                     ? 'Set complete — nice work!'
                     : flashcardQueue.length > 0
                       ? 'Short-step cards are waiting.'
                       : 'Choose a flashcard queue.'}
                 </strong>
                 <span>
-                  {flashcardSessionComplete
+                  {!initialDataReady
+                    ? 'Your saved vocabulary is still loading.'
+                    : flashcardSessionComplete
                     ? 'Every card in this set is scheduled for tomorrow or later.'
                     : flashcardQueue.length > 0
                       ? 'Learning cards will come back within the 5-minute learn-ahead window.'

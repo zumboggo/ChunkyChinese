@@ -60,6 +60,19 @@ async function openFlashcards(page: import('@playwright/test').Page) {
   await expect(page.locator('.flashcard.front-side')).toBeVisible()
 }
 
+test('Flashcards waits for startup vocabulary instead of opening an empty set', async ({ page }) => {
+  await page.route('**/seed/lms-vocab-1000.csv', async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 750))
+    await route.continue()
+  })
+
+  await page.goto('/', { waitUntil: 'domcontentloaded' })
+  await page.getByRole('button', { name: 'Flashcards', exact: true }).click()
+
+  await expect(page.locator('.flashcards-complete strong')).toHaveText('Loading flashcards…')
+  await expect(page.locator('.flashcard.front-side')).toBeVisible({ timeout: 15_000 })
+})
+
 test('phone Flashcards removes Sentence Mode and keeps core front controls', async ({ page }, testInfo) => {
   await openFlashcards(page)
 
@@ -117,4 +130,23 @@ test('Flashcards uses swipes and Choice A-D keys without rating buttons', async 
   }
 
   await page.screenshot({ path: testInfo.outputPath('flashcards-phone-answer.png'), fullPage: false })
+})
+
+test('a repeated learning card resets its dismiss animation', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'domcontentloaded' })
+  await expect(page.getByText(/Seeded \d+ LMS target words\./)).toBeVisible({ timeout: 15_000 })
+  await page.getByRole('button', { name: 'Settings', exact: true }).click()
+  await page.locator('summary').filter({ hasText: 'Goals' }).click()
+  await page.getByLabel('Flashcards / Day').fill('1')
+  await page.locator('summary').filter({ hasText: 'Flashcards' }).click()
+  await page.getByLabel('Flashcard queue').selectOption('new')
+  await page.getByRole('button', { name: 'Flashcards', exact: true }).click()
+
+  await page.keyboard.press('1')
+  await expect(page.locator('.flashcard.answer-side')).toBeVisible()
+  await page.keyboard.press('1')
+
+  const repeatedCard = page.locator('.flashcard.front-side')
+  await expect(repeatedCard).toBeVisible()
+  await expect(repeatedCard).not.toHaveClass(/card-dismiss-/)
 })
