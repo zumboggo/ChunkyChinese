@@ -58,6 +58,220 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Reader dark theme: neon night-sky treatment inspired by the listening UI. */
+.app-screen-reader:has(.reader-theme-dark) {
+  position: relative;
+  isolation: isolate;
+}
+
+.app-screen-reader:has(.reader-theme-dark)::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at -8% 72%, rgba(174, 42, 236, 0.42) 0, rgba(94, 31, 185, 0.2) 18%, transparent 43%),
+    radial-gradient(ellipse at 106% 64%, rgba(0, 200, 255, 0.34) 0, rgba(13, 79, 203, 0.17) 22%, transparent 46%),
+    radial-gradient(circle at 18% 20%, rgba(48, 51, 141, 0.22), transparent 27%),
+    radial-gradient(circle at 72% 8%, rgba(106, 30, 162, 0.14), transparent 23%),
+    linear-gradient(165deg, #030615 0%, #070a20 47%, #030817 100%);
+}
+
+.app-screen-reader:has(.reader-theme-dark)::after {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.46;
+  pointer-events: none;
+  content: '';
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(132, 202, 255, 0.75) 0 0.8px, transparent 1.2px);
+  background-position: 18px 31px, 81px 12px;
+  background-size: 103px 137px, 149px 113px;
+  mask-image: linear-gradient(to bottom, transparent 4%, #000 26%, #000 82%, transparent 100%);
+}
+
+:root .reader-theme-dark.reader-screen {
+  --reader-paper: rgba(9, 12, 36, 0.76);
+  --reader-paper-strong: rgba(14, 17, 48, 0.88);
+  --reader-ink: #f8f7ff;
+  --reader-muted: #b9bad5;
+  --reader-border: rgba(164, 148, 255, 0.25);
+  --reader-accent: #ff5db8;
+  --reader-accent-cyan: #5ae6ff;
+  overflow: visible;
+  border-color: rgba(145, 126, 238, 0.18);
+  background:
+    radial-gradient(ellipse at -6% 70%, rgba(202, 57, 244, 0.36), transparent 42%),
+    radial-gradient(ellipse at 105% 62%, rgba(21, 201, 255, 0.28), transparent 44%),
+    linear-gradient(165deg, rgba(4, 6, 22, 0.94), rgba(7, 10, 31, 0.91));
+  box-shadow:
+    0 30px 90px rgba(0, 0, 14, 0.64),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.reader-theme-dark .reader-page {
+  border: 0;
+  background: transparent;
+}
+
+.reader-theme-dark .reader-meta-title,
+.reader-theme-dark .reader-sentence-count {
+  color: var(--reader-ink);
+  text-shadow: 0 0 24px rgba(144, 125, 255, 0.22);
+}
+
+.reader-theme-dark .reader-page-meta .reader-exit-btn {
+  border-color: rgba(181, 158, 255, 0.34);
+  background: linear-gradient(145deg, rgba(29, 28, 67, 0.92), rgba(15, 19, 51, 0.88));
+  color: #f8f7ff;
+  box-shadow:
+    0 10px 26px rgba(0, 0, 16, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 18px rgba(117, 76, 229, 0.12);
+}
+
+.reader-theme-dark .reader-progress-bar {
+  height: 10px;
+  border: 1px solid rgba(150, 139, 224, 0.1);
+  background: rgba(52, 50, 94, 0.42);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.reader-theme-dark .reader-progress-bar span {
+  background: linear-gradient(90deg, #ff5db8 0%, #dc50da 55%, #8172ff 100%);
+  box-shadow: 0 0 13px rgba(255, 82, 185, 0.78);
+}
+
+.reader-theme-dark .reader-swipe-zone {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(145deg, rgba(20, 21, 60, 0.94), rgba(10, 16, 48, 0.9)) padding-box,
+    linear-gradient(135deg, #ff70ba 0%, rgba(139, 91, 237, 0.72) 48%, #5ae6ff 100%) border-box;
+  box-shadow:
+    -18px 12px 48px rgba(213, 57, 233, 0.18),
+    18px 14px 54px rgba(29, 186, 255, 0.16),
+    0 28px 74px rgba(0, 0, 18, 0.58),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.reader-theme-dark .reader-sentence {
+  color: #fff;
+  text-shadow: 0 2px 18px rgba(160, 168, 255, 0.14);
+}
+
+.reader-theme-dark .reader-token rt {
+  color: #c6c5e7;
+}
+
+.reader-theme-dark .reader-token:hover,
+.reader-theme-dark .reader-token:focus-visible,
+.reader-theme-dark .reader-token.active {
+  color: #ff79c4;
+  border-bottom-color: #ff5db8;
+  text-shadow: 0 0 16px rgba(255, 93, 184, 0.34);
+}
+
+.reader-theme-dark .reader-translation {
+  padding-top: clamp(24px, 4svh, 42px);
+  border-top: 1px solid rgba(191, 187, 234, 0.2);
+  color: #c8c8e6;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.reader-theme-dark .reader-reading-area.reader-listening-highlight {
+  background: rgba(255, 82, 181, 0.07);
+  box-shadow: 0 0 0 2px rgba(255, 93, 184, 0.26), 0 0 36px rgba(180, 53, 231, 0.12);
+}
+
+.reader-theme-dark .reader-bottom-bar {
+  padding: 12px clamp(12px, 2.5vw, 24px);
+  border: 1px solid rgba(150, 126, 235, 0.32);
+  border-radius: 999px;
+  background: linear-gradient(145deg, rgba(15, 23, 59, 0.88), rgba(26, 14, 51, 0.84));
+  box-shadow:
+    0 18px 48px rgba(0, 0, 17, 0.48),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 28px rgba(103, 78, 224, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.reader-theme-dark .reader-bottom-bar .sentence-menu-btn,
+.reader-theme-dark .reader-bottom-bar .reader-btn-icon,
+.reader-theme-dark .reader-listening-controls .reader-listening-icon-btn {
+  border-color: rgba(171, 160, 235, 0.3);
+  background: linear-gradient(145deg, rgba(35, 38, 83, 0.95), rgba(19, 22, 59, 0.92));
+  color: #f9f8ff;
+  box-shadow:
+    0 10px 24px rgba(0, 0, 16, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.reader-theme-dark .reader-bottom-bar .reader-btn-play,
+.reader-theme-dark .reader-listening-controls .reader-listening-play-btn,
+.reader-theme-dark .reader-bottom-bar .reader-controls-icon .reader-btn-next,
+.reader-theme-dark .reader-bottom-bar .reader-listening-controls button:last-child {
+  border-color: rgba(255, 123, 213, 0.75);
+  background: linear-gradient(135deg, #ff56a9 0%, #d946d5 52%, #814fe9 100%);
+  color: #fff;
+  box-shadow:
+    0 12px 30px rgba(218, 61, 207, 0.38),
+    0 0 24px rgba(255, 80, 179, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.reader-theme-dark .reader-bottom-bar .reader-btn-icon:disabled,
+.reader-theme-dark .reader-bottom-bar .reader-controls-icon .reader-btn-next:disabled,
+.reader-theme-dark .reader-bottom-bar .reader-listening-controls button:last-child:disabled {
+  border-color: rgba(151, 142, 207, 0.16);
+  background: rgba(22, 25, 60, 0.7);
+  color: rgba(192, 190, 222, 0.34);
+  box-shadow: none;
+}
+
+@media (max-width: 760px) {
+  .app-screen-reader:has(.reader-theme-dark) {
+    padding-inline: 0;
+    background: #040718;
+  }
+
+  :root .reader-theme-dark.reader-screen {
+    min-height: calc(100svh - 92px - env(safe-area-inset-bottom));
+    padding-inline: 12px;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .reader-theme-dark .reader-swipe-zone {
+    min-height: clamp(400px, 55svh, 590px);
+  }
+
+  .reader-theme-dark .reader-bottom-bar {
+    padding: 10px 12px;
+  }
+
+  .app-screen-reader:has(.reader-theme-dark) .app-bottom-nav {
+    border-color: rgba(120, 104, 205, 0.28);
+    background: rgba(8, 12, 35, 0.92);
+    box-shadow: 0 18px 48px rgba(0, 0, 14, 0.58), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .app-screen-reader:has(.reader-theme-dark) .app-bottom-nav button {
+    color: #7f82a9;
+  }
+
+  .app-screen-reader:has(.reader-theme-dark) .app-bottom-nav button.active {
+    color: #ff5db8;
+    text-shadow: 0 0 14px rgba(255, 93, 184, 0.4);
+  }
+}
+
 :root[data-theme='dark'] {
   --card-bg: #1e2d45;
   --bg-cream: #0f172a;
