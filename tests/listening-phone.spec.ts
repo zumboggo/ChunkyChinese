@@ -57,7 +57,7 @@ test('Listening Sets uses the phone shell without changing core controls', async
 
   const root = page.locator('.sentence-mode-root')
   await expect(root.getByRole('heading', { name: 'Listening' })).toBeVisible()
-  await expect(root.getByRole('tab', { name: 'Sets' })).toHaveAttribute('aria-selected', 'true')
+  await expect(root.locator('[role="tab"][aria-selected="true"]')).toHaveText('Sets')
   await expect(root.locator('.sentence-round-info')).toContainText('Round 1 of 5')
   await expect(root.locator('.sentence-card')).toBeVisible()
   await expect(root.getByRole('button', { name: /Pause|Resume/ })).toBeVisible()
@@ -66,7 +66,7 @@ test('Listening Sets uses the phone shell without changing core controls', async
   const card = root.locator('.sentence-card')
   await root.getByRole('button', { name: 'Menu' }).click()
   await page.getByLabel('Pinyin').uncheck()
-  await page.locator('.sentence-menu-backdrop').click({ position: { x: 380, y: 800 } })
+  await page.locator('.sentence-menu-backdrop').click({ position: { x: 5, y: 5 } })
   await expect(root.locator('.sentence-pinyin-hint')).toBeVisible()
   await swipe(root.locator('.listening-sets-display'), { x: 190, y: 430 }, { x: 190, y: 300 }, 1)
   await expect(root.locator('.sentence-pinyin')).toBeVisible()
@@ -76,7 +76,8 @@ test('Listening Sets uses the phone shell without changing core controls', async
 test('Book Listening starts from the picker and preserves all four swipes', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' })
   await page.locator('.dashboard-mode-card.listen-start').click()
-  await page.getByRole('tab', { name: 'Books' }).click()
+  await page.locator('.sentence-mode-root').getByRole('button', { name: 'Menu' }).click()
+  await page.locator('.sentence-menu-popup').getByRole('button', { name: 'Books' }).click()
 
   const firstBook = page.locator('.book-picker-row').first()
   await expect(firstBook).toBeVisible()

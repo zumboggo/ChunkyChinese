@@ -93,7 +93,7 @@ export function isFsrsCardDue(word: VocabWord, now = Date.now()): boolean {
 // FSRS ladder graduates an actively-recalled card in ~4 reviews, which is too
 // fast to feel like reading; passive reading is counted separately and reaches
 // "known" after this many distinct-day encounters.
-export const READING_MASTERY_TARGET = 11
+export const READING_MASTERY_TARGET = 6
 
 // A read is credited at most once per calendar day per word (spacing matters
 // more than raw repetition, and it stops re-reading one text from farming).

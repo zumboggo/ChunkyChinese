@@ -1162,6 +1162,50 @@ export async function applyReadingExposures(
   return result
 }
 
+// Before reading credit became an exposure meter (Jul 2026), each daily reading
+// credit applied an FSRS "good" rating and logged a listeningEvents record with
+// source 'reading'. Those events are the only surviving trace of that reading
+// history, so words that were read back then start their exposure meter from
+// the distinct days they were actually credited instead of zero.
+export async function backfillReadingExposuresFromEvents(): Promise<number> {
+  const db = await getDB()
+  const done = (await db.get('settings', 'readingExposureBackfillV1')) as boolean | undefined
+  if (done) return 0
+
+  const events = await db.getAll('listeningEvents')
+  const daysByWord = new Map<string, Set<string>>()
+  for (const event of events) {
+    if (event.type !== 'fsrs_rating' || event.itemType !== 'word') continue
+    if (event.source !== 'reading' || !event.itemId) continue
+    const day = event.timestamp.slice(0, 10)
+    const days = daysByWord.get(event.itemId) ?? new Set<string>()
+    days.add(day)
+    daysByWord.set(event.itemId, days)
+  }
+
+  let changed = 0
+  if (daysByWord.size > 0) {
+    const nowIso = new Date().toISOString()
+    const tx = db.transaction('vocabWords', 'readwrite')
+    for (const [wordId, days] of daysByWord) {
+      const word = await tx.store.get(wordId)
+      if (!word) continue
+      const next = Math.max(word.readingExposures ?? 0, days.size)
+      if (next === (word.readingExposures ?? 0)) continue
+      await tx.store.put({ ...word, readingExposures: next, updatedAt: nowIso })
+      changed += 1
+    }
+    await tx.done
+  }
+  await db.put('settings', true, 'readingExposureBackfillV1')
+  return changed
+}
+
+export async function deleteWordPermanently(wordId: string): Promise<void> {
+  const db = await getDB()
+  await db.delete('vocabWords', wordId)
+}
+
 export async function recordEvent(event: Omit<ListeningEvent, 'id' | 'timestamp'>) {
   const db = await getDB()
   await db.put('listeningEvents', {

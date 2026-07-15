@@ -13,6 +13,7 @@ export function StudyControls({
   prevLabel = 'Previous',
   nextLabel = 'Next',
   playLabel,
+  className = '',
 }: {
   playing: boolean
   onTogglePlay: () => void
@@ -24,9 +25,10 @@ export function StudyControls({
   prevLabel?: string
   nextLabel?: string
   playLabel?: string
+  className?: string
 }) {
   return (
-    <div className="reader-controls reader-controls-icon study-controls">
+    <div className={`reader-controls reader-controls-icon study-controls ${className}`.trim()}>
       {onPrevious && (
         <button
           type="button"

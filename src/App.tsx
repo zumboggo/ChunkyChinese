@@ -58,6 +58,8 @@ import {
   seedReaderBooksIfEmpty,
   saveHotkeys,
   archiveWord,
+  backfillReadingExposuresFromEvents,
+  deleteWordPermanently,
   isActiveVocabWord,
   cleanupAccidentalEnglishOnlyCards,
   startReaderSession,
@@ -122,6 +124,9 @@ import {
   isNewFsrsCard,
   previewFsrsRatings,
   masteryForWord,
+  fsrsQueueBucket,
+  fsrsQueueLabel,
+  type FsrsQueueBucket,
 } from './scheduler'
 import {
   collectReaderComprehensionTokens,
@@ -189,7 +194,7 @@ const RenpyPrototypeMode = lazy(() => import('./visualNovel/RenpyPrototypeMode')
 const ComicReaderMode = lazy(() => import('./comics/ComicReaderMode').then((module) => ({ default: module.ComicReaderMode })))
 const ComicShelf = lazy(() => import('./comics/ComicReaderMode').then((module) => ({ default: module.ComicShelf })))
 
-type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'visualNovel' | 'renpyPrototype' | 'comicReader' | 'readingTexts'
+type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'visualNovel' | 'renpyPrototype' | 'comicReader' | 'readingTexts' | 'words'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
 type FlashcardFrontMode = 'text' | 'audio' | 'reverse'
 type ReaderPinyinMode = UserSettings['readerPinyinMode']
@@ -817,6 +822,8 @@ function App() {
           await seedReaderBooksIfEmpty()
           await repairAudioClipLinksIfNeeded()
           await cleanupAccidentalEnglishOnlyCards()
+          const backfilled = await backfillReadingExposuresFromEvents()
+          if (backfilled > 0) queueCloudSync()
         },
       })
       deferred.enqueue({
@@ -3040,6 +3047,14 @@ function App() {
     queueCloudSync()
   }
 
+  async function handleDeleteVocabularyWord(word: VocabWord) {
+    if (!window.confirm(`Permanently delete “${word.word}” and its review history? This cannot be undone.`)) return
+    await deleteWordPermanently(word.id)
+    setLastSummary(`Deleted ${word.word} permanently.`)
+    await refresh()
+    queueCloudSync()
+  }
+
   async function handleHotkeyChange(name: keyof HotkeySettings, value: string) {
     const next = { ...hotkeys, [name]: value.trim().toLocaleLowerCase() }
     setHotkeys(next)
@@ -3459,10 +3474,10 @@ function App() {
             <div>
               <h1>Flashcards</h1>
               <p>{Math.max(0, flashcardSessionCounts.total - flashcardSessionCounts.done)} cards remaining</p>
+            </div>
             <span className="flashcard-session-streak" aria-label={`${stats.currentStreak} day streak`}>
               <span aria-hidden="true">🔥</span> {stats.currentStreak}
             </span>
-            </div>
           </div>
 
           <section className="flashcards-workspace">
@@ -3480,10 +3495,10 @@ function App() {
                 <button
                   type="button"
                   className={`flashcard-action-pill flashcard-audio-action${flashcardAudioOnly ? ' active' : ''}`}
-                  aria-pressed={flashcardAudioOnly}
                   onClick={() => setFlashcardAudioOnly((v) => !v)}
-                  <span className="flashcard-action-icon flashcard-audio-icon" aria-hidden="true" />
+                  aria-pressed={flashcardAudioOnly}
                 >
+                  <span className="flashcard-action-icon flashcard-audio-icon" aria-hidden="true" />
                   Audio only
                 </button>
               </div>
@@ -3613,13 +3628,13 @@ function App() {
         </motion.section>
       )}
       </AnimatePresence>
+
       {screen === 'flashcards' && flashcardUndoState && (
         <div className="flashcard-undo-toast">
           <span>Rated <strong>{flashcardUndoState.word.word}</strong> as {fsrsLabel(flashcardUndoState.rating)}</span>
           <button type="button" onClick={() => void handleFlashcardUndo()}>Undo</button>
         </div>
       )}
-
 
       {screen === 'reader' && (
         <ReaderMode
@@ -3794,6 +3809,17 @@ function App() {
             generateAudio: aiStorySettings.generateAudio,
             azureConfigured: Boolean(aiStorySettings.azureSpeechKey && aiStorySettings.azureSpeechRegion),
           }}
+        />
+      )}
+
+      {screen === 'words' && (
+        <WordsManagerScreen
+          words={words}
+          onBack={() => setScreen('settings')}
+          onEdit={openCardEditor}
+          onArchive={(wordId) => void handleArchiveVocabularyWord(wordId)}
+          onRestore={(wordId) => void handleRestoreVocabularyWord(wordId)}
+          onDelete={(word) => void handleDeleteVocabularyWord(word)}
         />
       )}
 
@@ -4097,6 +4123,15 @@ function App() {
                     {hostedPackDownloadId && hostedPackProgress && <small>{hostedPackProgress}</small>}
                   </section>
                 )}
+                <section className="panel">
+                  <h2>Words</h2>
+                  <p>Browse the whole deck in one table — edit cards, filter by mastery, and archive words.</p>
+                  <div className="button-row">
+                    <button type="button" className="primary" onClick={() => setScreen('words')}>
+                      Open word manager
+                    </button>
+                  </div>
+                </section>
                 <VocabularySourcesPanel
                   words={words}
                   clipPacks={clipPacks}
@@ -4695,6 +4730,14 @@ function App() {
                                     ☰
                                   </button>
                                   <StudyMenuPopup open={sentenceMenuOpen} onClose={() => setSentenceMenuOpen(false)}>
+                                    <p className="sentence-menu-label">Source</p>
+                                    <div className="sentence-menu-modes">
+                                      <button
+                                        type="button"
+                                        onClick={() => { setSentenceSubMode('sets'); setSentenceMenuOpen(false) }}
+                                      >Sets</button>
+                                      <button type="button" className="active" onClick={() => setSentenceMenuOpen(false)}>Books</button>
+                                    </div>
                                     <p className="sentence-menu-label">Book</p>
                                     <button
                                       type="button"
@@ -4753,6 +4796,13 @@ function App() {
                                 </div>
                               </div>
 
+                              {bookListening.snapshot.status === 'loading' && (
+                                <div className="sentence-paused-overlay">Preparing audio…</div>
+                              )}
+                              {bookListening.snapshot.status !== 'playing' && bookListening.snapshot.status !== 'loading' && (
+                                <div className="sentence-paused-overlay">Paused — tap ▶ to resume</div>
+                              )}
+
                               {/* Sentence card */}
                               <div
                                 key={bookListenAnimKey}
@@ -4786,6 +4836,7 @@ function App() {
                               )}
 
                               <StudyControls
+                                className="listening-primary-controls"
                                 playing={bookListening.snapshot.status === 'playing'}
                                 onTogglePlay={() => bookListening.snapshot.status === 'idle' ? bookListening.startListening() : bookListening.togglePlayPause()}
                                 onPrevious={() => { void bookListening.previous() }}
@@ -4831,6 +4882,14 @@ function App() {
                                       className="active"
                                       onClick={() => { setSentenceMenuOpen(false) }}
                                     >Sentences</button>
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        setSentenceSubMode('books')
+                                        setSentencePaused(true)
+                                        setSentenceMenuOpen(false)
+                                      }}
+                                    >Books</button>
                                   </div>
                                   <StudyMenuSection label="Display">
                                     <StudyMenuToggle label="Pinyin" checked={showPinyin} onChange={() => setShowPinyin(v => !v)} />
@@ -4890,6 +4949,17 @@ function App() {
                                       onClick={() => { setSentenceMenuOpen(false); void startSentenceLesson() }}
                                     >
                                       Rebuild set with these settings
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="sentence-menu-change-book listening-menu-end-set"
+                                      onClick={() => {
+                                        sentenceAudioRef.current?.pause()
+                                        setSentenceSetComplete(true)
+                                        setSentenceMenuOpen(false)
+                                      }}
+                                    >
+                                      End Set
                                     </button>
                                   </StudyMenuSection>
                                 </StudyMenuPopup>
@@ -4975,6 +5045,7 @@ function App() {
                             </div>
 
                             <StudyControls
+                              className="listening-primary-controls"
                               playing={!sentencePaused}
                               onTogglePlay={toggleSentencePlayback}
                               playDisabled={!sentenceRendered || sentenceRendering}
@@ -5472,6 +5543,186 @@ function InfoPanel({ title, children, className = '' }: { title: string; childre
     <section className={`panel ${className}`.trim()}>
       <h2>{title}</h2>
       {children}
+    </section>
+  )
+}
+
+const WORDS_PAGE_SIZE = 100
+const WORDS_MASTERY_OPTIONS = [
+  { value: 'all', label: 'All mastery' },
+  { value: '0', label: 'New' },
+  { value: '1', label: 'Seedling' },
+  { value: '2', label: 'Growing' },
+  { value: '3', label: 'Strong' },
+  { value: '4', label: 'Mastered' },
+] as const
+const WORDS_BUCKET_OPTIONS = [
+  { value: 'all', label: 'All statuses' },
+  { value: 'new', label: 'Unseen' },
+  { value: 'learning', label: 'Learning' },
+  { value: 'due', label: 'Due' },
+  { value: 'scheduled', label: 'Scheduled' },
+] as const
+
+function WordsManagerScreen({
+  words,
+  onBack,
+  onEdit,
+  onArchive,
+  onRestore,
+  onDelete,
+}: {
+  words: VocabWord[]
+  onBack: () => void
+  onEdit: (word: VocabWord) => void
+  onArchive: (wordId: string) => void
+  onRestore: (wordId: string) => void
+  onDelete: (word: VocabWord) => void
+}) {
+  const [search, setSearch] = useState('')
+  const [page, setPage] = useState(0)
+  const [masteryFilter, setMasteryFilter] = useState<'all' | '0' | '1' | '2' | '3' | '4'>('all')
+  const [bucketFilter, setBucketFilter] = useState<'all' | FsrsQueueBucket>('all')
+  const [showArchived, setShowArchived] = useState(false)
+  // Snapshot per mount so due/scheduled bucketing stays stable while browsing.
+  const [now] = useState(() => Date.now())
+
+  const filtered = useMemo(() => {
+    const query = search.trim().toLocaleLowerCase()
+    return words.filter((word) => {
+      if (!showArchived && word.archivedAt) return false
+      if (masteryFilter !== 'all' && masteryForWord(word).level !== Number(masteryFilter)) return false
+      if (bucketFilter !== 'all' && fsrsQueueBucket(word, now) !== bucketFilter) return false
+      if (!query) return true
+      return (
+        word.word.includes(query) ||
+        (word.pinyin ?? '').toLocaleLowerCase().includes(query) ||
+        word.meaning.toLocaleLowerCase().includes(query)
+      )
+    })
+  }, [words, search, masteryFilter, bucketFilter, showArchived, now])
+
+  const pageCount = Math.max(1, Math.ceil(filtered.length / WORDS_PAGE_SIZE))
+  const clampedPage = Math.min(page, pageCount - 1)
+  const pageWords = filtered.slice(clampedPage * WORDS_PAGE_SIZE, (clampedPage + 1) * WORDS_PAGE_SIZE)
+
+  return (
+    <section className="screen">
+      <div className="screen-heading compact">
+        <div>
+          <h1>Words</h1>
+          <p>
+            {filtered.length.toLocaleString()} {filtered.length === 1 ? 'word' : 'words'}
+            {pageCount > 1 ? ` · page ${clampedPage + 1} of ${pageCount}` : ''}
+          </p>
+        </div>
+        <button type="button" className="ghost-answer reading-back-button" onClick={onBack}>
+          Back to Settings
+        </button>
+      </div>
+
+      <section className="panel words-manager-panel">
+        <div className="words-manager-toolbar">
+          <input
+            type="search"
+            placeholder="Search hanzi, pinyin, or meaning"
+            value={search}
+            onChange={(event) => {
+              setSearch(event.target.value)
+              setPage(0)
+            }}
+          />
+          <select
+            value={masteryFilter}
+            aria-label="Filter by mastery"
+            onChange={(event) => {
+              setMasteryFilter(event.target.value as typeof masteryFilter)
+              setPage(0)
+            }}
+          >
+            {WORDS_MASTERY_OPTIONS.map((option) => (
+              <option key={option.value} value={option.value}>{option.label}</option>
+            ))}
+          </select>
+          <select
+            value={bucketFilter}
+            aria-label="Filter by study status"
+            onChange={(event) => {
+              setBucketFilter(event.target.value as typeof bucketFilter)
+              setPage(0)
+            }}
+          >
+            {WORDS_BUCKET_OPTIONS.map((option) => (
+              <option key={option.value} value={option.value}>{option.label}</option>
+            ))}
+          </select>
+          <label className="words-archived-toggle">
+            <input
+              type="checkbox"
+              checked={showArchived}
+              onChange={(event) => {
+                setShowArchived(event.target.checked)
+                setPage(0)
+              }}
+            />
+            <span>Show archived</span>
+          </label>
+        </div>
+
+        <div className="words-table">
+          {pageWords.map((word) => (
+            <div key={word.id} className={`words-row${word.archivedAt ? ' archived' : ''}`}>
+              <span className="words-row-hanzi">{word.word}</span>
+              <span className="words-row-pinyin">{word.pinyin}</span>
+              <span className="words-row-meaning">{word.meaning}</span>
+              <MasteryMeter word={word} />
+              <span className="queue-pill">{word.archivedAt ? 'Archived' : fsrsQueueLabel(word, now)}</span>
+              <span className="words-row-actions">
+                <button type="button" className="ghost-answer" onClick={() => onEdit(word)}>
+                  Edit
+                </button>
+                {word.archivedAt ? (
+                  <>
+                    <button type="button" className="ghost-answer" onClick={() => onRestore(word.id)}>
+                      Restore
+                    </button>
+                    <button type="button" className="ghost-answer danger" onClick={() => onDelete(word)}>
+                      Delete
+                    </button>
+                  </>
+                ) : (
+                  <button type="button" className="ghost-answer danger" onClick={() => onArchive(word.id)}>
+                    Archive
+                  </button>
+                )}
+              </span>
+            </div>
+          ))}
+          {pageWords.length === 0 && <p className="words-empty">No words match this filter.</p>}
+        </div>
+
+        {pageCount > 1 && (
+          <div className="words-pagination">
+            <button
+              type="button"
+              className="ghost-answer"
+              disabled={clampedPage === 0}
+              onClick={() => setPage(clampedPage - 1)}
+            >
+              Prev
+            </button>
+            <span>Page {clampedPage + 1} of {pageCount}</span>
+            <button
+              type="button"
+              className="ghost-answer"
+              disabled={clampedPage >= pageCount - 1}
+              onClick={() => setPage(clampedPage + 1)}
+            >
+              Next
+            </button>
+          </div>
+        )}
+      </section>
     </section>
   )
 }
@@ -7385,20 +7636,20 @@ function FlashcardReview({
               void onReplayAudio()
             }}
           >
-            <span className="flashcard-play-audio-icon" aria-hidden="true" />
             {choiceKeys?.choiceF && <kbd>{choiceKeys.choiceF.toUpperCase()}</kbd>}
+            <span className="flashcard-play-audio-icon" aria-hidden="true" />
             Play audio
           </button>
         )}
         {answerShown && <MasteryMeter word={word} />}
         {answerShown && (() => {
+          const previews = previewFsrsRatings(word)
           const ratings: Array<{ rating: FsrsRating; label: string; delay: string; hotkey?: string }> = [
             { rating: 'again', label: 'Again', delay: formatFsrsDelay(previews.again.intervalDays), hotkey: choiceKeys?.choiceA },
             { rating: 'hard', label: 'Hard', delay: formatFsrsDelay(previews.hard.intervalDays), hotkey: choiceKeys?.choiceC },
             { rating: 'good', label: 'Good', delay: formatFsrsDelay(previews.good.intervalDays), hotkey: choiceKeys?.choiceB },
             { rating: 'easy', label: 'Easy', delay: formatFsrsDelay(previews.easy.intervalDays), hotkey: choiceKeys?.choiceD },
           ]
-          const previews = previewFsrsRatings(word)
           return (
             <div className="fsrs-interval-preview">
               {ratings.map(({ rating, label, delay, hotkey }) => (
@@ -7884,11 +8135,11 @@ function hotkeyToReviewRating(key: string, hotkeys: HotkeySettings): FsrsRating 
   const index = choiceKeyIndex(key, hotkeys)
   return (['again', 'hard', 'good', 'easy'] as FsrsRating[])[index]
 }
+
 function hotkeyToStandaloneFlashcardRating(key: string, hotkeys: HotkeySettings): FsrsRating | undefined {
   const index = choiceKeyIndex(key, hotkeys)
   return (['again', 'good', 'hard', 'easy'] as FsrsRating[])[index]
 }
-
 
 function choiceKeyIndex(key: string, hotkeys: HotkeySettings): number {
   if (key === 'arrowright') return 0
