@@ -338,7 +338,7 @@ The clip pack import reports coverage for word clips, meaning clips, sentence cl
 - Dashboard: due-card queue, FSRS counts, progress charts, daily listening stats, hotkey reminders, and quick launches for Reading, Active Recall, Listening, and Flashcards.
 - Settings: hosted clip pack download, clip pack import, CSV import/export, MP3 import, JSON backup/export, dictionary refresh, and controls.
 - Lesson: 5 word continuous lesson rendering, pinyin/English toggles, Listening mode, and Active Recall.
-- Flashcards: minimalist FSRS word cards for fast sorting, with Anki-style short learning loops, queue choice in Settings, and Choice A = Again / Choice B = Good after flipping.
+- Flashcards: minimalist FSRS word cards for swipe-first sorting, with Anki-style short learning loops, queue choice in Settings, and Choice A–D = Again / Hard / Good / Easy after flipping.
 
 ## Offline
 

@@ -66,7 +66,12 @@ test('phone Flashcards removes Sentence Mode and keeps core front controls', asy
   await expect(page.getByRole('heading', { name: 'Flashcards' })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Sentences', exact: true })).toHaveCount(0)
   await expect(page.locator('.flashcard-queue-counts')).toBeVisible()
-  await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button', { name: 'Flashcards' })).toHaveClass(/active/)
+  const bottomNav = page.getByRole('navigation', { name: 'Main navigation' })
+  await expect(bottomNav.getByRole('button', { name: 'Flashcards' })).toHaveClass(/active/)
+  await expect(bottomNav.locator('button')).toHaveCount(5)
+  for (const button of await bottomNav.locator('button').all()) {
+    await expect(button).toHaveText('')
+  }
 
   const front = page.locator('.flashcard.front-side')
   await page.locator('.flashcard-play-audio').click()
@@ -83,22 +88,19 @@ test('phone Flashcards removes Sentence Mode and keeps core front controls', asy
   await page.screenshot({ path: testInfo.outputPath('flashcards-phone-front.png'), fullPage: false })
 })
 
-test('Flashcards keeps swipe ratings, tap ratings, and A/B controller flow', async ({ page }, testInfo) => {
+test('Flashcards uses swipes and Choice A-D keys without rating buttons', async ({ page }, testInfo) => {
   await openFlashcards(page)
 
   await page.keyboard.press('1')
   await expect(page.locator('.flashcard.answer-side')).toBeVisible()
-  await expect(page.getByRole('button', { name: /Again, next review/ })).toBeVisible()
-  await expect(page.getByRole('button', { name: /Good, next review/ })).toBeVisible()
+  await expect(page.locator('.flashcard-rating-chip')).toHaveCount(0)
 
-  await page.getByRole('button', { name: /Hard, next review/ }).click()
-  await expect(page.locator('.flashcard-undo-toast')).toContainText('Hard')
-  await page.getByRole('button', { name: 'Undo', exact: true }).click()
-  await expect(page.locator('.flashcard.answer-side')).toBeVisible()
-
-  await page.keyboard.press('2')
-  await expect(page.locator('.flashcard-undo-toast')).toContainText('Good')
-  await page.getByRole('button', { name: 'Undo', exact: true }).click()
+  for (const [key, rating] of [['1', 'Again'], ['2', 'Hard'], ['3', 'Good'], ['4', 'Easy']] as const) {
+    await page.keyboard.press(key)
+    await expect(page.locator('.flashcard-undo-toast')).toContainText(rating)
+    await page.getByRole('button', { name: 'Undo', exact: true }).click()
+    await expect(page.locator('.flashcard.answer-side')).toBeVisible()
+  }
 
   const gestures = [
     { from: { x: 310, y: 430 }, to: { x: 100, y: 430 }, rating: 'Again' },

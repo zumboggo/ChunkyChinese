@@ -1,7 +1,7 @@
 ﻿import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { lazy, Suspense } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import {
   BarChart,
   Bar,
@@ -3117,7 +3117,6 @@ function App() {
 
       {goalCelebrationId > 0 && <FlashcardCelebration key={`goal-${goalCelebrationId}`} />}
 
-      <AnimatePresence mode="wait">
       {screen === 'dashboard' && (
         <motion.section
           key="dashboard"
@@ -3413,53 +3412,56 @@ function App() {
 
         </motion.section>
       )}
-      </AnimatePresence>
 
       <nav className="app-bottom-nav" aria-label="Main navigation">
         <button
           type="button"
           className={screen === 'dashboard' ? 'active' : ''}
           onClick={() => setScreen('dashboard')}
+          aria-label="Home"
+          title="Home"
         >
           <span className="dashboard-bottom-icon dashboard-bottom-home" aria-hidden="true" />
-          Home
         </button>
         <button
           type="button"
           className={screen === 'flashcards' ? 'active' : ''}
           onClick={startSavedFlashcards}
+          aria-label="Flashcards"
+          title="Flashcards"
         >
           <span className="nav-icon nav-flashcards" aria-hidden="true" />
-          Flashcards
         </button>
         <button
           type="button"
           className={screen === 'lesson' && studyMode === 'sentenceMode' ? 'active' : ''}
           onClick={() => void startSentenceLesson()}
+          aria-label="Listening"
+          title="Listening"
         >
           <span className="nav-icon nav-listen" aria-hidden="true" />
-          Listening
         </button>
         <button
           type="button"
           className={['readingTexts', 'reader', 'comicReader', 'visualNovel', 'renpyPrototype'].includes(screen) ? 'active' : ''}
           onClick={() => setScreen('readingTexts')}
+          aria-label="Reading"
+          title="Reading"
         >
           <span className="nav-icon nav-reading" aria-hidden="true" />
-          Reading
         </button>
         <button
           type="button"
           className={screen === 'settings' ? 'active' : ''}
           onClick={() => setScreen('settings')}
+          aria-label="Settings"
+          title="Settings"
         >
           <span className="dashboard-bottom-icon dashboard-bottom-settings" aria-hidden="true" />
-          Settings
         </button>
       </nav>
 
 
-      <AnimatePresence mode="wait">
       {screen === 'flashcards' && (
         <motion.section
           key="flashcards"
@@ -3627,7 +3629,6 @@ function App() {
           </section>
         </motion.section>
       )}
-      </AnimatePresence>
 
       {screen === 'flashcards' && flashcardUndoState && (
         <div className="flashcard-undo-toast">
@@ -7512,13 +7513,6 @@ function FlashcardCelebration() {
   )
 }
 
-function formatFsrsDelay(intervalDays: number): string {
-  if (intervalDays < 1) {
-    return `${Math.max(1, Math.round(intervalDays * 24 * 60))}m`
-  }
-  return `${Math.round(intervalDays)}d`
-}
-
 function FlashcardReview({
   word,
   answerShown,
@@ -7642,36 +7636,6 @@ function FlashcardReview({
           </button>
         )}
         {answerShown && <MasteryMeter word={word} />}
-        {answerShown && (() => {
-          const previews = previewFsrsRatings(word)
-          const ratings: Array<{ rating: FsrsRating; label: string; delay: string; hotkey?: string }> = [
-            { rating: 'again', label: 'Again', delay: formatFsrsDelay(previews.again.intervalDays), hotkey: choiceKeys?.choiceA },
-            { rating: 'hard', label: 'Hard', delay: formatFsrsDelay(previews.hard.intervalDays), hotkey: choiceKeys?.choiceC },
-            { rating: 'good', label: 'Good', delay: formatFsrsDelay(previews.good.intervalDays), hotkey: choiceKeys?.choiceB },
-            { rating: 'easy', label: 'Easy', delay: formatFsrsDelay(previews.easy.intervalDays), hotkey: choiceKeys?.choiceD },
-          ]
-          return (
-            <div className="fsrs-interval-preview">
-              {ratings.map(({ rating, label, delay, hotkey }) => (
-                <button
-                  key={rating}
-                  type="button"
-                  className={`flashcard-rating-chip rating-${rating}`}
-                  onClick={(event) => {
-                    event.stopPropagation()
-                    void onRate(rating)
-                  }}
-                  disabled={Boolean(selectedRating)}
-                  aria-label={`${label}, next review ${delay}`}
-                >
-                  {hotkey && <kbd>{hotkey.toUpperCase()}</kbd>}
-                  <span>{label}</span>
-                  <strong>{delay}</strong>
-                </button>
-              ))}
-            </div>
-          )
-        })()}
       </div>
       {answerShown && swipeDir && (
         <div className={`swipe-indicator swipe-indicator-${swipeDir}`}>
@@ -7681,7 +7645,7 @@ function FlashcardReview({
       {answerShown && !selectedRating && (
         <div className="swipe-instructions">
           {choiceKeys
-            ? `← Again  ↑ Hard  → Good  ↓ Easy  ·  ${choiceKeys.choiceA.toUpperCase()} Again  ${choiceKeys.choiceB.toUpperCase()} Good`
+            ? `← Again  ↑ Hard  → Good  ↓ Easy  ·  ${choiceKeys.choiceA.toUpperCase()} Again  ${choiceKeys.choiceB.toUpperCase()} Hard  ${choiceKeys.choiceC.toUpperCase()} Good  ${choiceKeys.choiceD.toUpperCase()} Easy`
             : '← Again  ↑ Hard  → Good  ↓ Easy'}
         </div>
       )}
@@ -8138,7 +8102,7 @@ function hotkeyToReviewRating(key: string, hotkeys: HotkeySettings): FsrsRating 
 
 function hotkeyToStandaloneFlashcardRating(key: string, hotkeys: HotkeySettings): FsrsRating | undefined {
   const index = choiceKeyIndex(key, hotkeys)
-  return (['again', 'good', 'hard', 'easy'] as FsrsRating[])[index]
+  return (['again', 'hard', 'good', 'easy'] as FsrsRating[])[index]
 }
 
 function choiceKeyIndex(key: string, hotkeys: HotkeySettings): number {

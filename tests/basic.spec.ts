@@ -21,6 +21,10 @@ test.describe('Chunky Chinese Vocab Smoke Tests', () => {
     const settingsHeading = page.locator('h1', { hasText: 'Settings' });
     await expect(settingsHeading).toBeVisible();
 
+    // Once the destination renders, the previous screen is no longer mounted
+    // underneath it.
+    expect(await page.locator('.dashboard').count()).toBe(0);
+
     // 6. Verify section inside Settings exists
     const cloudSyncHeading = page.locator('h2', { hasText: 'Cloud sync' });
     await expect(cloudSyncHeading).toBeVisible();
