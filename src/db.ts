@@ -92,7 +92,7 @@ const DB_VERSION = 11
 const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
 const ENGLISH_ONLY_CARD_CLEANUP_VERSION = '2026-07-09-english-only-duplicates'
-const READER_PACK_FIX_VERSION = '2026-06-27-reader-english-health-check'
+const READER_PACK_FIX_VERSION = '2026-07-15-john-chapters-1-3-art'
 const AUDIO_LINK_REPAIR_VERSION = '2026-07-10-startup-link-repair'
 
 export interface SyncMetadata {

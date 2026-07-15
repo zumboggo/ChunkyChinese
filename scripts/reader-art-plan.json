@@ -66,6 +66,111 @@
       "prompt": "Portrait historical book-cover artwork without typography. A luminous path across dark water leads toward a compassionate teacher in first-century Judea, with fishing boats, olive trees and a distant crowd; themes of light, testimony and living water. Reverent cinematic historical illustration, deep blue, warm ivory and restrained gold, no text, no logos, no watermark."
     },
     {
+      "id": "john-ch01-scene-01",
+      "kind": "illustration",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/john-gospel/images/chapters/ch01-scene-01.webp",
+      "prompt": "Use case: historical-scene. Asset type: wide Gospel reader illustration. The opening creation scene from the first chapter: an immense star-filled night above a dark primordial sea and untouched rocky earth, the first narrow band of warm living light appearing at the horizon and reflecting across the water, suggesting the eternal Word through light without depicting God as a human figure. Cinematic illustrated realism, painterly naturalism with photographic depth, grand 24mm composition, deep indigo shadows, restrained gold light, tactile rock and water, profound stillness and holy mystery. Historically and theologically reverent. Keep every corner as plain natural rock, water, or sky texture. Absolutely no people, written words, letters, verse numbers, signatures, glyphs, symbols, halo, modern objects, frame, logo, or watermark."
+    },
+    {
+      "id": "john-ch01-scene-02",
+      "kind": "illustration",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/john-gospel/images/chapters/ch01-scene-02.webp",
+      "prompt": "Use case: historical-scene. Asset type: wide Gospel reader illustration. John 1:4-5, life and light in darkness: a first-century Judean village before dawn, stone homes and narrow lanes almost swallowed by blue-black shadow while a powerful warm light pours through one open doorway and reaches ordinary faces gathering outside, fear and weariness giving way to wonder. The darkness remains palpable at the edges but cannot overcome the light. Cinematic illustrated realism, painterly naturalism, realistic Middle Eastern faces and skin texture, 35mm low-angle composition, volumetric dust, warm ivory against deep indigo, emotionally restrained and reverent. No visible supernatural figure, no written words, no modern objects, no halos, no watermark."
+    },
+    {
+      "id": "john-ch01-scene-03",
+      "kind": "illustration",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/john-gospel/images/chapters/ch01-scene-03.webp",
+      "prompt": "Use case: historical-scene. Asset type: wide Gospel reader illustration. John 1:6-9: John the Baptist stands ankle-deep at the Jordan River at first light, urgently testifying to a mixed crowd on the bank and pointing beyond himself toward the coming light. John is a lean, sun-weathered Jewish man in his thirties with thick dark hair and beard, a coarse brown camel-hair garment and leather belt; his expression is fierce but humble. First-century Judea, reeds, pale limestone hills and cold morning mist. Cinematic illustrated realism, painterly naturalism, realistic anatomy and faces, dynamic 35mm framing, silver-blue dawn broken by warm sunlight on the listeners, tension of expectation. No Jesus in this scene, no text, no halos, no modern objects, no watermark."
+    },
+    {
+      "id": "john-ch01-scene-04",
+      "kind": "illustration",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/john-gospel/images/chapters/ch01-scene-04.webp",
+      "prompt": "Use case: historical-scene. Asset type: wide Gospel reader illustration. John 1:10-13, the true light unrecognized: Jesus moves quietly through a crowded first-century Galilean market while most people pass him without recognition or turn away, absorbed in bargaining and burdens; at the edge, a few ordinary men, women and a child stop and look toward him with dawning trust. Keep Jesus consistent: an early-thirties Jewish man with olive skin, shoulder-length wavy dark-brown hair, a short full beard, deep brown eyes, an undyed cream wool tunic, muted indigo mantle and weathered sandals. Cinematic illustrated realism, painterly naturalism, 50mm street-level composition, natural skin and worn fabrics, shafts of warm light divided by deep market shadow, quiet rejection versus fragile hope. No halo, no glowing eyes, no text, no anachronisms, no watermark."
+    },
+    {
+      "id": "john-ch01-scene-05",
+      "kind": "illustration",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/john-gospel/images/chapters/ch01-scene-05.webp",
+      "prompt": "Use case: historical-scene. Asset type: wide Gospel reader illustration. John 1:14-15, the Word became flesh and John bears witness: on the Jordan bank in clear morning light, John the Baptist turns from the crowd and points with stunned conviction toward Jesus approaching among ordinary travelers; the people pivot between them as recognition begins. Keep Jesus consistent: early-thirties Jewish man, olive skin, shoulder-length wavy dark-brown hair, short full beard, deep brown eyes, undyed cream wool tunic, muted indigo mantle, weathered sandals; compassionate, calm and fully human, no halo. Keep John lean and sun-weathered in coarse camel-hair brown with a leather belt. Cinematic illustrated realism, painterly naturalism, sweeping 35mm composition, wind moving garments and reeds, luminous but natural sunlight, tension of revelation, grace and truth. No text, no modern objects, no angel wings, no watermark."
+    },
+    {
+      "id": "john-ch02-scene-01",
+      "kind": "illustration",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/john-gospel/images/chapters/ch02-scene-01.webp",
+      "prompt": "Use case: historical-scene. Asset type: wide Gospel reader illustration. The wedding at Cana: a joyful but modest first-century Galilean wedding feast in a limestone courtyard at late afternoon, families reclining around low tables, musicians and lamps. At the far left, the clearly identifiable bride and groom stand together beneath a simple flower canopy greeting guests. At the opposite right-hand entrance, Jesus, his mother Mary and several disciples arrive together as ordinary invited guests, physically separated from the bridal couple. Jesus is the only man wearing a muted indigo mantle: an early-thirties Jewish man with olive skin, shoulder-length wavy dark-brown hair, short full beard and cream wool tunic. Mary is a middle-aged Galilean Jewish woman with olive skin, wise dark eyes, dark hair mostly covered by a muted blue-gray veil and an earth-red dress. Cinematic illustrated realism, painterly naturalism, wide 24mm establishing shot, tactile stone, linen and pottery, amber sun, genuine communal warmth with a faint undertone of coming tension. Exactly one Jesus; Jesus is not the groom and does not stand beside or touch the bride. Every corner is natural architecture or guests: no halos, text, letters, numbers, signatures, modern objects, lavish European banquet, border, logo, or watermark."
+    },
+    {
+      "id": "john-ch02-scene-02",
+      "kind": "illustration",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/john-gospel/images/chapters/ch02-scene-02.webp",
+      "prompt": "Use case: historical-scene. Asset type: wide Gospel reader illustration. The wine has run out at the Cana wedding: behind the feast, anxious servants discover empty clay wine vessels while celebration continues out of focus beyond them. Mary quietly tells Jesus of the crisis; Jesus meets her gaze with solemn restraint, while Mary gestures calmly toward the servants with unshaken trust. Show exactly one Jesus and one Mary. Jesus is the only man in a cream wool tunic and muted indigo mantle; Mary wears an earth-red dress and blue-gray veil. All other men wear plain earth-brown garments and look distinctly different from Jesus. Cinematic illustrated realism, painterly naturalism, intimate 50mm composition, faces and hands carrying the tension, lamplight and fading daylight, social shame pressing in around a private moment of faith. No duplicate people, halos, text, letters, numbers, signatures, modern objects, border, logo, or watermark."
+    },
+    {
+      "id": "john-ch02-scene-03",
+      "kind": "illustration",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/john-gospel/images/chapters/ch02-scene-03.webp",
+      "prompt": "Use case: historical-scene. Asset type: wide Gospel reader illustration. John 2:6-12, water becomes wine: six massive pale stone purification jars fill the foreground as a servant draws liquid and watches it become rich red wine in a simple cup; another servant freezes in astonishment, the headwaiter tastes unknowingly near the feast, and the disciples exchange stunned looks. Jesus stands composed in the middle distance, not theatrical, his glory revealed through quiet authority. Keep Jesus consistent: olive-skinned early-thirties Jewish man, wavy dark-brown shoulder-length hair, short beard, cream tunic and muted indigo mantle. Cinematic illustrated realism, painterly naturalism, low 35mm framing, tactile wet stone and clay, warm feast light catching the wine against cool shadows, wonder held inside an ordinary act of obedience. No magical sparks, no halo, no text, no modern glassware, no watermark."
+    },
+    {
+      "id": "john-ch02-scene-04",
+      "kind": "illustration",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/john-gospel/images/chapters/ch02-scene-04.webp",
+      "prompt": "Use case: historical-scene. Asset type: wide Gospel reader illustration. Entering the Jerusalem temple at Passover: Jesus and his disciples step into the vast outer court and confront a dense marketplace of cattle, sheep, dove cages and money-changing tables crowding sacred space; pilgrims squeeze through, coins change hands and animals strain against ropes. Jesus stops in the foreground, grief hardening into controlled righteous anger as he takes in the exploitation. Keep Jesus consistent in cream wool and muted indigo, realistic first-century Jewish features and clothing. Cinematic illustrated realism, painterly naturalism, monumental 24mm architecture, harsh noon shafts through dust, crowded layered composition, oppressive noise and moral tension. Historically grounded Second Temple setting. Fill every edge and corner with natural stone architecture, people, animals, or shadow. No halo, text, letters, numbers, signatures, modern objects, Roman church imagery, border, logo, or watermark."
+    },
+    {
+      "id": "john-ch02-scene-05",
+      "kind": "illustration",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/john-gospel/images/chapters/ch02-scene-05.webp",
+      "prompt": "Use case: historical-scene. Asset type: wide Gospel reader illustration. Cleansing the temple and the challenge that follows: at the decisive instant, Jesus overturns a money-changing table in the temple court, coins suspended in the air, merchants recoiling and animals surging toward the open gate; his braided cord drives the livestock, not striking people. His disciples watch with alarm and awe while temple authorities advance from the far side. Keep Jesus consistent: olive skin, wavy dark-brown shoulder-length hair, short beard, cream tunic, muted indigo mantle, fierce sorrow rather than rage. Cinematic illustrated realism, painterly naturalism, dynamic low-angle 28mm composition, strong diagonal motion, blazing sun and deep colonnade shadow, immense tension and moral force. Fill every corner with plain stone floor, architecture, people, animals, or shadow. No gore, halo, text, letters, numbers, signatures, modern objects, European cathedral, border, logo, or watermark."
+    },
+    {
+      "id": "john-ch03-scene-01",
+      "kind": "illustration",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/john-gospel/images/chapters/ch03-scene-01.webp",
+      "prompt": "Use case: historical-scene. Asset type: wide Gospel reader illustration. Nicodemus comes by night: in a secluded Jerusalem rooftop courtyard, Nicodemus enters cautiously beneath a moonlit arch while Jesus waits beside a single oil lamp; the respected ruler glances back toward the dark street, torn between reputation and urgent curiosity. Keep Jesus consistent: early-thirties Jewish man, olive skin, shoulder-length wavy dark-brown hair, short full beard, cream wool tunic and muted indigo mantle. Nicodemus is a late-fifties Jewish scholar with an intelligent lined face, silver-streaked dark beard, burgundy robe and cream prayer shawl. Cinematic illustrated realism, painterly naturalism, intimate 50mm framing, realistic stone and fabric, deep cobalt night divided by warm lamplight, secrecy, respect and spiritual tension. Fill every edge and corner with natural stone, night sky, or deep shadow. No halos, text, letters, numbers, signatures, modern objects, border, logo, or watermark."
+    },
+    {
+      "id": "john-ch03-scene-02",
+      "kind": "illustration",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/john-gospel/images/chapters/ch03-scene-02.webp",
+      "prompt": "Use case: historical-scene. Asset type: wide Gospel reader illustration. In a dark Jerusalem rooftop courtyard, Jesus leans slightly forward across a low table and speaks about being born again with quiet absolute authority; Nicodemus, an accomplished elderly teacher, sits opposite in lamplight with brow furrowed and hands open, visibly disarmed by words he cannot fit into his learning. Keep Jesus in cream wool and muted indigo with calm deep-brown eyes; keep Nicodemus late-fifties with silver-streaked beard, burgundy robe and cream shawl. Cinematic illustrated realism, painterly naturalism, full-bleed 50mm two-shot, subtle facial emotion and hand language, lamp flame between them, natural stone and compressed darkness reaching every edge, tension between knowledge and transformation. No white paper margin, painted border, visual baby metaphor, halo, text, letters, numbers, signature, modern objects, logo, or watermark."
+    },
+    {
+      "id": "john-ch03-scene-03",
+      "kind": "illustration",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/john-gospel/images/chapters/ch03-scene-03.webp",
+      "prompt": "Use case: historical-scene. Asset type: wide Gospel reader illustration. John 3:8-13, the wind blows where it wishes: a sudden night wind moves through the rooftop courtyard, bending the oil-lamp flame, lifting the edge of Nicodemus's cream shawl and sending olive leaves spiraling through moonlight; Jesus remains steady as he explains the unseen Spirit, while Nicodemus listens in humbled astonishment. Keep Jesus and Nicodemus visually consistent with the earlier night scenes. Cinematic illustrated realism, painterly naturalism, atmospheric 35mm composition, visible motion in fabric, flame and leaves, cool moonlight crossing warm lamplight, mysterious unseen power made tangible without fantasy effects. No ghost figure, no halo, no text, no modern objects, no watermark."
+    },
+    {
+      "id": "john-ch03-scene-04",
+      "kind": "illustration",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/john-gospel/images/chapters/ch03-scene-04.webp",
+      "prompt": "Use case: historical-scene. Asset type: wide Gospel reader illustration. John 3:14-18, the Son of Man lifted up and God's love for the world: a reverent visual echo of Moses in the wilderness, with a bronze serpent raised high on a weathered wooden pole above a desperate Israelite camp as wounded people look up from shadow into dawn light; the pole's silhouette subtly foreshadows a cross without depicting a crucifixion. Far beyond, sunrise spreads over many peoples and distant lands, conveying rescue offered to the world rather than condemnation. Cinematic illustrated realism, painterly naturalism, epic 24mm desert composition, windblown fabric, bronze and wood texture, storm-dark foreground opening into restrained gold, anguish turning toward hope. No gore, no Jesus portrait, no written symbols, no text, no modern objects, no watermark."
+    },
+    {
+      "id": "john-ch03-scene-05",
+      "kind": "illustration",
+      "aspectRatio": "16:9",
+      "output": "public/reader-packs/john-gospel/images/chapters/ch03-scene-05.webp",
+      "prompt": "Use case: historical-scene. Asset type: wide Gospel reader illustration. Light has come into the world: at the mouth of a narrow Jerusalem passage before dawn, several figures cling to concealment in deep shadow while one ordinary person steps truthfully into clear morning light; in the luminous open courtyard beyond, Jesus stands at a respectful distance with an inviting, compassionate posture, never coercive. Keep Jesus consistent: olive-skinned early-thirties Jewish man, wavy dark-brown shoulder-length hair, short beard, cream tunic and muted indigo mantle. Cinematic illustrated realism, painterly naturalism, strong 35mm chiaroscuro composition, realistic worn stone and faces, darkness visually heavy but natural sunlight stronger, moral exposure, mercy and courageous hope. Fill every edge and corner with natural stone, shadow, or sunlight. No halo, glowing body, text, letters, numbers, signatures, modern objects, border, logo, or watermark."
+    },
+    {
       "id": "jf-campus-day",
       "kind": "background",
       "aspectRatio": "16:9",

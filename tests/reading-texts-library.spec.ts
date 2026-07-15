@@ -48,4 +48,29 @@ test('Stories start directly from their cover', async ({ page }) => {
 
   await expect(page.locator('.reader-page-meta')).toContainText('Gospel of John')
   await expect(page.locator('.reader-page-meta')).toContainText('Sentence 1 / 812')
+
+  const illustration = page.locator('.reader-illustration img')
+  const nextSentence = page.locator('button[aria-label^="Next sentence. Hotkey:"]')
+  await expect(illustration).toHaveAttribute(
+    'src',
+    /reader-packs\/john-gospel\/images\/chapters\/ch01-scene-01\.webp$/,
+  )
+  await expect(illustration).toHaveJSProperty('complete', true)
+  await expect(illustration).toHaveJSProperty('naturalWidth', 1260)
+
+  for (let sentence = 2; sentence <= 6; sentence += 1) {
+    await nextSentence.click()
+    await expect(page.locator('.reader-page-meta')).toContainText(`Sentence ${sentence} / 812`)
+    await expect(illustration).toHaveAttribute(
+      'src',
+      /reader-packs\/john-gospel\/images\/chapters\/ch01-scene-01\.webp$/,
+    )
+  }
+
+  await nextSentence.click()
+  await expect(page.locator('.reader-page-meta')).toContainText('Sentence 7 / 812')
+  await expect(illustration).toHaveAttribute(
+    'src',
+    /reader-packs\/john-gospel\/images\/chapters\/ch01-scene-02\.webp$/,
+  )
 })

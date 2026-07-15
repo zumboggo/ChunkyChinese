@@ -4,6 +4,113 @@
   "book": 1,
   "chapterStart": 1,
   "chapterEnd": 21,
+  "illustrations": [
+    {
+      "id": "john-ch01-scene-01",
+      "imageFilename": "reader-packs/john-gospel/images/chapters/ch01-scene-01.webp",
+      "alt": "The first light crosses a dark primordial sea beneath the stars.",
+      "sentenceStart": 1,
+      "sentenceEnd": 6
+    },
+    {
+      "id": "john-ch01-scene-02",
+      "imageFilename": "reader-packs/john-gospel/images/chapters/ch01-scene-02.webp",
+      "alt": "Unconquerable light reaches a Judean village in the darkness.",
+      "sentenceStart": 7,
+      "sentenceEnd": 9
+    },
+    {
+      "id": "john-ch01-scene-03",
+      "imageFilename": "reader-packs/john-gospel/images/chapters/ch01-scene-03.webp",
+      "alt": "John the Baptist testifies beside the Jordan at dawn.",
+      "sentenceStart": 10,
+      "sentenceEnd": 13
+    },
+    {
+      "id": "john-ch01-scene-04",
+      "imageFilename": "reader-packs/john-gospel/images/chapters/ch01-scene-04.webp",
+      "alt": "Jesus passes through a crowd that does not recognize him while a few turn toward him.",
+      "sentenceStart": 14,
+      "sentenceEnd": 18
+    },
+    {
+      "id": "john-ch01-scene-05",
+      "imageFilename": "reader-packs/john-gospel/images/chapters/ch01-scene-05.webp",
+      "alt": "John points toward Jesus approaching the Jordan in morning light.",
+      "sentenceStart": 19,
+      "sentenceEnd": 23
+    },
+    {
+      "id": "john-ch02-scene-01",
+      "imageFilename": "reader-packs/john-gospel/images/chapters/ch02-scene-01.webp",
+      "alt": "Jesus, Mary, and the disciples arrive at the wedding feast in Cana.",
+      "sentenceStart": 24,
+      "sentenceEnd": 26
+    },
+    {
+      "id": "john-ch02-scene-02",
+      "imageFilename": "reader-packs/john-gospel/images/chapters/ch02-scene-02.webp",
+      "alt": "Mary quietly tells Jesus that the wedding wine has run out.",
+      "sentenceStart": 27,
+      "sentenceEnd": 29
+    },
+    {
+      "id": "john-ch02-scene-03",
+      "imageFilename": "reader-packs/john-gospel/images/chapters/ch02-scene-03.webp",
+      "alt": "A servant draws wine from a stone jar that had been filled with water.",
+      "sentenceStart": 30,
+      "sentenceEnd": 36
+    },
+    {
+      "id": "john-ch02-scene-04",
+      "imageFilename": "reader-packs/john-gospel/images/chapters/ch02-scene-04.webp",
+      "alt": "Jesus confronts the crowded marketplace inside the Jerusalem temple court.",
+      "sentenceStart": 37,
+      "sentenceEnd": 38
+    },
+    {
+      "id": "john-ch02-scene-05",
+      "imageFilename": "reader-packs/john-gospel/images/chapters/ch02-scene-05.webp",
+      "alt": "Jesus overturns the money changers' table as temple authorities approach.",
+      "sentenceStart": 39,
+      "sentenceEnd": 49
+    },
+    {
+      "id": "john-ch03-scene-01",
+      "imageFilename": "reader-packs/john-gospel/images/chapters/ch03-scene-01.webp",
+      "alt": "Nicodemus comes secretly to speak with Jesus by night.",
+      "sentenceStart": 50,
+      "sentenceEnd": 51
+    },
+    {
+      "id": "john-ch03-scene-02",
+      "imageFilename": "reader-packs/john-gospel/images/chapters/ch03-scene-02.webp",
+      "alt": "Jesus tells the perplexed Nicodemus that one must be born again.",
+      "sentenceStart": 52,
+      "sentenceEnd": 56
+    },
+    {
+      "id": "john-ch03-scene-03",
+      "imageFilename": "reader-packs/john-gospel/images/chapters/ch03-scene-03.webp",
+      "alt": "Night wind moves through the courtyard as Jesus teaches Nicodemus about the Spirit.",
+      "sentenceStart": 57,
+      "sentenceEnd": 62
+    },
+    {
+      "id": "john-ch03-scene-04",
+      "imageFilename": "reader-packs/john-gospel/images/chapters/ch03-scene-04.webp",
+      "alt": "The bronze serpent is raised in the wilderness as suffering people look toward hope.",
+      "sentenceStart": 63,
+      "sentenceEnd": 67
+    },
+    {
+      "id": "john-ch03-scene-05",
+      "imageFilename": "reader-packs/john-gospel/images/chapters/ch03-scene-05.webp",
+      "alt": "A person steps from a shadowed Jerusalem passage into the light near Jesus.",
+      "sentenceStart": 68,
+      "sentenceEnd": 70
+    }
+  ],
   "stories": [
     {
       "id": "john-ch01",

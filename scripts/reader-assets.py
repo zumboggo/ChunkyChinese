@@ -429,6 +429,7 @@ def adc_path() -> Path | None:
 
 
 def adc_access_token(credentials: dict[str, Any]) -> str:
+    token_uri = credentials.get("token_uri") or "https://oauth2.googleapis.com/token"
     payload = urllib.parse.urlencode(
         {
             "client_id": credentials["client_id"],
@@ -437,7 +438,7 @@ def adc_access_token(credentials: dict[str, Any]) -> str:
             "grant_type": "refresh_token",
         }
     ).encode("utf-8")
-    request = urllib.request.Request(credentials["token_uri"], data=payload, method="POST")
+    request = urllib.request.Request(token_uri, data=payload, method="POST")
     request.add_header("Content-Type", "application/x-www-form-urlencoded")
     with urllib.request.urlopen(request, timeout=60) as response:
         return json.loads(response.read().decode("utf-8"))["access_token"]
@@ -471,7 +472,7 @@ def generate_vertex_image(prompt: str, credentials_path: Path, aspect_ratio: str
             },
         },
         {"Authorization": f"Bearer {token}"},
-        attempts=3,
+        attempts=5,
     )
     image = find_base64_image(response)
     if not image:
@@ -479,13 +480,47 @@ def generate_vertex_image(prompt: str, credentials_path: Path, aspect_ratio: str
     return image
 
 
+def generate_vertex_gemini_image(prompt: str, credentials_path: Path, aspect_ratio: str) -> bytes:
+    credentials = read_json(credentials_path)
+    project_id = (
+        os.environ.get("GOOGLE_CLOUD_PROJECT")
+        or os.environ.get("GCLOUD_PROJECT")
+        or credentials.get("quota_project_id")
+    )
+    if not project_id:
+        raise RuntimeError("ADC is configured but GOOGLE_CLOUD_PROJECT/quota_project_id is missing")
+    location = os.environ.get("GOOGLE_CLOUD_LOCATION", "us-central1")
+    model = os.environ.get("GOOGLE_IMAGE_MODEL", "gemini-2.5-flash-image")
+    token = adc_access_token(credentials)
+    response = request_json(
+        (
+            f"https://{location}-aiplatform.googleapis.com/v1/projects/{project_id}/"
+            f"locations/{location}/publishers/google/models/{model}:generateContent"
+        ),
+        {
+            "contents": [{"role": "USER", "parts": [{"text": prompt}]}],
+            "generationConfig": {
+                "responseModalities": ["TEXT", "IMAGE"],
+                "imageConfig": {"aspectRatio": aspect_ratio},
+            },
+        },
+        {"Authorization": f"Bearer {token}"},
+        attempts=3,
+    )
+    image = find_base64_image(response)
+    if not image:
+        raise RuntimeError("Vertex Gemini response did not contain image data")
+    return image
+
+
 def generate_gemini_image(prompt: str, api_key: str, aspect_ratio: str) -> bytes:
+    model = os.environ.get("GOOGLE_GEMINI_IMAGE_MODEL", "gemini-3.1-flash-image")
     payload = {
-        "model": "gemini-3.1-flash-image",
+        "model": model,
         "input": [{"type": "text", "text": prompt}],
         "response_format": {
             "type": "image",
-            "mime_type": "image/png",
+            "mime_type": "image/jpeg",
             "aspect_ratio": aspect_ratio,
             "image_size": "1K",
         },
@@ -531,8 +566,15 @@ def process_art_image(source: Path, destination: Path, asset: dict[str, Any]) ->
 
 
 def generate_art(args: argparse.Namespace) -> None:
+    backend = os.environ.get("GOOGLE_IMAGE_BACKEND", "auto").lower()
+    if backend not in {"auto", "vertex", "gemini"}:
+        raise SystemExit("GOOGLE_IMAGE_BACKEND must be auto, vertex, or gemini.")
     credentials_path = adc_path()
     api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_CLOUD_API_KEY")
+    if backend == "gemini":
+        credentials_path = None
+    if backend == "vertex" and not credentials_path:
+        raise SystemExit("GOOGLE_IMAGE_BACKEND=vertex requires Application Default Credentials.")
     if not credentials_path and not api_key:
         raise SystemExit("ADC, GEMINI_API_KEY, or GOOGLE_CLOUD_API_KEY is not configured.")
     plan = read_json(ART_PLAN_PATH)
@@ -551,7 +593,11 @@ def generate_art(args: argparse.Namespace) -> None:
         if args.dry_run:
             continue
         if credentials_path:
-            image = generate_vertex_image(asset["prompt"], credentials_path, asset["aspectRatio"])
+            model = os.environ.get("GOOGLE_IMAGE_MODEL", "imagen-4.0-generate-001")
+            if model.startswith("gemini-"):
+                image = generate_vertex_gemini_image(asset["prompt"], credentials_path, asset["aspectRatio"])
+            else:
+                image = generate_vertex_image(asset["prompt"], credentials_path, asset["aspectRatio"])
         else:
             image = generate_gemini_image(asset["prompt"], api_key, asset["aspectRatio"])
         with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as handle:
