@@ -5470,7 +5470,7 @@ kbd {
   display: block;
   width: 100%;
   height: auto;
-  background: #101827;
+  background: var(--reader-paper-strong, #fff);
   border: 1px solid rgba(16, 35, 63, 0.14);
   border-radius: 12px;
   box-shadow: 0 14px 32px rgba(16, 35, 63, 0.14);
@@ -13382,6 +13382,10 @@ body.comic-distraction-free .app-shell {
 
 .reader-theme-sepia.reader-screen {
   background: linear-gradient(150deg, #fffaf0, #f1e5cf);
+}
+
+.reader-theme-light.reader-screen {
+  background: linear-gradient(150deg, #ffffff, #f4f8fc);
 }
 
 .reader-theme-dark.reader-screen {

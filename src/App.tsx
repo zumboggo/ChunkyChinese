@@ -5936,7 +5936,7 @@ const READING_PACK_CATEGORY: Record<string, ReadingBookCategory> = {
   'rise-of-the-monkey-king': 'novel',
   'just-friends': 'novel',
   'can-i-dance': 'novel',
-  'john-gospel': 'story',
+  'john-gospel': 'novel',
 }
 const READING_BOOK_CATEGORY: Record<string, ReadingBookCategory> = {
   // 'some-book-id': 'story',
