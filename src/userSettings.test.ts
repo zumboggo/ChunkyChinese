@@ -11,6 +11,7 @@ describe('reader listening settings', () => {
     expect(settings.readerListeningRate).toBe(0.8)
     expect(settings.readerListeningRepeats).toBe(2)
     expect(settings.readerListeningAutoAdvance).toBe(true)
+    expect(settings.selectedFlashcardDeckIds).toEqual(['all'])
   })
 
   it('clamps malformed listening settings to supported controls', () => {

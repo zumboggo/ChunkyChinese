@@ -10,6 +10,7 @@ import {
   saveSyncMetadata,
 } from './db'
 import type { ListeningEvent, ReaderProgress, VocabWord } from './types'
+import { effectiveWordDeckIds, uniqueDeckIds } from './flashcardDecks'
 
 const FALLBACK_SUPABASE_URL = 'https://nvrofeaaewwdeefxtmqu.supabase.co'
 const FALLBACK_SUPABASE_ANON_KEY = 'sb_publishable_YaSTM-n-eBSDWPkY4IigOg_vFHmdYSB'
@@ -298,6 +299,7 @@ function mergeRemoteWords(
         ...local,
         ...remote,
         packIds: unique([...(local.packIds ?? []), ...(remote.packIds ?? [])]),
+        deckIds: uniqueDeckIds([...effectiveWordDeckIds(local), ...effectiveWordDeckIds(remote)]),
       })
     } else if (remoteEditedAt > localEditedAt) {
       merged.push({

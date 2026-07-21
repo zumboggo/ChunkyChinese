@@ -1,4 +1,5 @@
 import type { Sentence, VocabWord, WordStatus } from './types'
+import { ORIGINAL_DECK_ID, SAVED_FROM_READING_DECK_ID, uniqueDeckIds } from './flashcardDecks'
 
 const validStatuses: WordStatus[] = ['new', 'learning', 'familiar', 'known', 'review']
 
@@ -98,6 +99,8 @@ export function vocabFromCsvRows(rows: Record<string, string>[], packId?: string
       ]
       const packIds = unique([...parseList(readColumn(row, ['packIds', 'packId'])), ...(packId ? [packId] : [])])
       const source = readColumn(row, ['source', 'Source'])
+      const readingAddedAt = readColumn(row, ['readingAddedAt']) || undefined
+      const importedDeckIds = uniqueDeckIds(parseList(readColumn(row, ['deckIds', 'deckId'])))
       if (source && !tags.includes(source)) tags.push(source)
 
       return {
@@ -125,9 +128,14 @@ export function vocabFromCsvRows(rows: Record<string, string>[], packId?: string
         fsrsStability: parseNumber(readColumn(row, ['fsrsStability', 'stability'])),
         fsrsDifficulty: parseNumber(readColumn(row, ['fsrsDifficulty', 'difficulty'])),
         fsrsLearningSteps: parseNumber(readColumn(row, ['fsrsLearningSteps', 'learningSteps'])),
-        readingAddedAt: readColumn(row, ['readingAddedAt']) || undefined,
+        readingAddedAt,
         archivedAt: readColumn(row, ['archivedAt']) || undefined,
         packIds,
+        deckIds: importedDeckIds.length > 0
+          ? importedDeckIds
+          : readingAddedAt
+            ? [ORIGINAL_DECK_ID, SAVED_FROM_READING_DECK_ID]
+            : [ORIGINAL_DECK_ID],
         createdAt: now,
         updatedAt: now,
         lastReviewedAt: readColumn(row, ['lastReviewedAt']) || undefined,

@@ -141,6 +141,14 @@ import { GrammarPopover } from './GrammarPopover'
 import { findGrammarMatches, mapGrammarToTokens, type GrammarMatch } from './grammarPoints'
 import { useReaderListeningController } from './useReaderListeningController'
 import { shouldCountReaderActiveSecond } from './readerActivity'
+import {
+  ALL_FLASHCARD_DECK_ID,
+  FLASHCARD_DECKS,
+  ORIGINAL_DECK_ID,
+  effectiveWordDeckIds,
+  wordIsInSelectedFlashcardDecks,
+} from './flashcardDecks'
+import { cappedFlashcardStudySeconds } from './studyTime'
 import type { ReaderListeningController } from './useReaderListeningController'
 import { useSwipeCard, SWIPE_NAV_GLOW, type SwipeDir } from './useSwipeCard'
 import { StudyMenuPopup, StudyMenuSection, StudyMenuToggle, StudyMenuSelect } from './StudyMenuPopup'
@@ -162,6 +170,7 @@ import type {
   DashboardRange,
   DashboardStats,
   FsrsRating,
+  FlashcardDeckId,
   HotkeySettings,
   HostedClipPack,
   HostedComicPack,
@@ -235,7 +244,7 @@ type StoryChunkSession = {
   packId: string
   startIndex: number
   endIndex: number
-  startedAtMs: number
+  startedActiveSeconds: number
   sentenceIdsRead: string[]
   metrics: StoryChunkMetrics
 }
@@ -556,7 +565,7 @@ function App() {
     fired: new Set(),
   })
   const [flashcardSessionRatingCounts, setFlashcardSessionRatingCounts] = useState<Record<FsrsRating, number>>({ again: 0, hard: 0, good: 0, easy: 0 })
-  const [flashcardSessionStartMs, setFlashcardSessionStartMs] = useState<number>(0)
+  const [flashcardSessionStudySeconds, setFlashcardSessionStudySeconds] = useState(0)
   const [flashcardSessionLeveledUp, setFlashcardSessionLeveledUp] = useState<VocabWord[]>([])
   // Good/easy ratings this set on words below Known — the recap's "moved closer" chip.
   const [flashcardSessionMovedCloser, setFlashcardSessionMovedCloser] = useState(0)
@@ -614,6 +623,7 @@ function App() {
   const studyStageRef = useRef<HTMLDivElement | null>(null)
   const flashcardFeedbackTimeoutRef = useRef<number | null>(null)
   const flashcardUndoTimeoutRef = useRef<number | null>(null)
+  const flashcardPresentationStartedAtRef = useRef(Date.now())
   const pendingFlashcardStartRef = useRef(false)
   const [flashcardUndoState, setFlashcardUndoState] = useState<{
     word: VocabWord
@@ -1007,6 +1017,19 @@ function App() {
     : undefined
   const studyDisplay = getStudyDisplay(studyWord, studySentence)
   const activeWords = useMemo(() => words.filter(isActiveVocabWord), [words])
+  const selectedFlashcardWords = useMemo(
+    () => activeWords.filter((word) => wordIsInSelectedFlashcardDecks(word, userSettings.selectedFlashcardDeckIds)),
+    [activeWords, userSettings.selectedFlashcardDeckIds],
+  )
+  const flashcardDeckCounts = useMemo(() => {
+    const counts = new Map<FlashcardDeckId, number>([[ALL_FLASHCARD_DECK_ID, activeWords.length]])
+    for (const word of activeWords) {
+      for (const deckId of effectiveWordDeckIds(word)) {
+        counts.set(deckId, (counts.get(deckId) ?? 0) + 1)
+      }
+    }
+    return counts
+  }, [activeWords])
   const wordsKnown = useMemo(
     () => activeWords.filter((word) => masteryForWord(word).level >= 3).length,
     [activeWords],
@@ -1152,6 +1175,7 @@ function App() {
   )
   const flashcardSessionComplete =
     flashcardQueue.length > 0 && flashcardSessionCounts.done >= flashcardSessionCounts.total
+  const currentFlashcardWordId = currentFlashcardWord?.id
   const currentFlashcardFrontMode = useMemo<FlashcardFrontMode>(
     () => getFlashcardFrontMode(currentFlashcardWord, flashcardSessionId, flashcardAudioOnly, userSettings.flashcardAudioFrontPercent),
     [currentFlashcardWord, flashcardSessionId, flashcardAudioOnly, userSettings.flashcardAudioFrontPercent],
@@ -1163,12 +1187,11 @@ function App() {
     syncedFlashcardCompletionRef.current = flashcardSessionId
     setFlashcardCelebrationId((value) => value + 1)
     playGentleCelebration()
-    const durationSeconds = Math.round((Date.now() - flashcardSessionStartMs) / 1000)
     void recordEvent({
       type: 'complete',
       itemType: 'lesson',
       itemId: flashcardSessionId,
-      seconds: durationSeconds,
+      seconds: flashcardSessionStudySeconds,
       source: 'flashcards',
     })
     setLastSummary(
@@ -1177,7 +1200,7 @@ function App() {
         : 'Flashcard set complete.',
     )
     queueCloudSync()
-  }, [cloudUserEmail, flashcardSessionComplete, flashcardSessionId, flashcardSessionStartMs, queueCloudSync])
+  }, [cloudUserEmail, flashcardSessionComplete, flashcardSessionId, flashcardSessionStudySeconds, queueCloudSync])
 
   useEffect(() => {
     if (!dashboardToastReadyRef.current) {
@@ -1195,7 +1218,7 @@ function App() {
   }, [stats, userSettings])
 
   const buildFlashcardQueue = useCallback((mode: FlashcardQueueMode = 'mixed') => {
-    const source = activeWords
+    const source = selectedFlashcardWords
     const limit = Math.max(1, userSettings.flashcardsPerDay || 50)
     const now = Date.now()
     // Promotable-first so words one good rating from Known survive the
@@ -1217,7 +1240,7 @@ function App() {
       (word, index, all) => all.findIndex((candidate) => candidate.id === word.id) === index,
     )
     return mixed.slice(0, limit)
-  }, [activeWords, userSettings.flashcardsPerDay])
+  }, [selectedFlashcardWords, userSettings.flashcardsPerDay])
 
   const startFlashcards = useCallback((mode: FlashcardQueueMode = 'mixed', overrideWords?: VocabWord[]) => {
     const queue = overrideWords ?? buildFlashcardQueue(mode)
@@ -1232,7 +1255,7 @@ function App() {
     setFlashcardSessionFeedback(null)
     setFlashcardAudioOnly(false)
     setFlashcardSessionRatingCounts({ again: 0, hard: 0, good: 0, easy: 0 })
-    setFlashcardSessionStartMs(Date.now())
+    setFlashcardSessionStudySeconds(0)
     setFlashcardSessionLeveledUp([])
     setFlashcardSessionMovedCloser(0)
     setScreen('flashcards')
@@ -1270,11 +1293,11 @@ function App() {
   const startQuickTenFlashcards = useCallback(() => {
     const now = Date.now()
     const due = sortPromotableFirst(
-      activeWords.filter((word) => isFsrsCardDue(word, now)),
+      selectedFlashcardWords.filter((word) => isFsrsCardDue(word, now)),
       now,
     )
     startFlashcards('due', due.slice(0, 10))
-  }, [activeWords, startFlashcards])
+  }, [selectedFlashcardWords, startFlashcards])
 
   const sentenceListeningSettings = useMemo<SentenceListeningSettings>(() => ({
     sentenceRepeats: userSettings.sentenceRepeats,
@@ -1536,6 +1559,11 @@ function App() {
   }, [screen])
 
   useEffect(() => {
+    if (screen !== 'flashcards' || !currentFlashcardWordId) return
+    flashcardPresentationStartedAtRef.current = Date.now()
+  }, [currentFlashcardWordId, flashcardSessionId, screen])
+
+  useEffect(() => {
     if (screen !== 'flashcards') return
     window.requestAnimationFrame(() => {
       window.scrollTo({ top: 0, behavior: 'auto' })
@@ -1581,14 +1609,14 @@ function App() {
       title: 'Story Chunk complete',
       sentencesRead: session.sentenceIdsRead.length,
       targetSentences,
-      activeSeconds: Math.max(1, Math.round((Date.now() - session.startedAtMs) / 1000)),
+      activeSeconds: Math.max(1, (activeReaderSession?.activeSeconds ?? 0) - session.startedActiveSeconds),
       progressPercent: readerProgressPercent(session.endIndex, readerSentences.length),
       knownWords: metrics.knownWords.length,
       learningWords: metrics.learningWords.length,
       unsavedWordsTapped: metrics.tappedUnsavedWords.length,
       wordsSaved: metrics.savedWords.length,
     }
-  }, [readerSentences.length])
+  }, [activeReaderSession?.activeSeconds, readerSentences.length])
 
   const recordStoryChunkSentence = useCallback((sentence: ReaderSentence, sentenceIndex: number) => {
     const sentenceMetrics = storyChunkSentenceMetrics(sentence.chinese, activeWords)
@@ -1620,7 +1648,7 @@ function App() {
       packId: activeReaderBook.packId,
       startIndex: readerSentenceIndex,
       endIndex,
-      startedAtMs: Date.now(),
+      startedActiveSeconds: activeReaderSession?.activeSeconds ?? 0,
       sentenceIdsRead: [currentReaderSentence.id],
       metrics,
     }
@@ -1633,6 +1661,7 @@ function App() {
     setLastSummary(`Story Chunk started: ${endIndex - readerSentenceIndex + 1} sentences.`)
   }, [
     activeReaderBook,
+    activeReaderSession?.activeSeconds,
     currentReaderSentence,
     finishStoryChunk,
     readerSentenceIndex,
@@ -2179,6 +2208,7 @@ function App() {
   const handleStandaloneFlashcardRate = useCallback((rating: FsrsRating) => {
     if (!currentFlashcardWord || flashcardSessionFeedback) return
     const wordId = currentFlashcardWord.id
+    const studySeconds = cappedFlashcardStudySeconds(flashcardPresentationStartedAtRef.current, Date.now())
     const preRatingWord = currentFlashcardWord
     const preRatingDoneIds = flashcardDoneIds
     const movedCloser =
@@ -2193,6 +2223,7 @@ function App() {
           const updatedWord = await rateWordFsrs(wordId, rating, {
             source: 'flashcards',
             sessionId: flashcardSessionId ?? undefined,
+            seconds: studySeconds,
           })
           const now = Date.now()
           const nextDoneIds = getNextFlashcardDoneIds(
@@ -2214,6 +2245,7 @@ function App() {
               )
             }
           }
+          setFlashcardSessionStudySeconds((seconds) => seconds + studySeconds)
           setFlashcardDoneIds(nextDoneIds)
           setFlashcardClock(now)
           setFlashcardCurrentId(nextWord?.id ?? null)
@@ -2268,6 +2300,7 @@ function App() {
     }
     setFlashcardDoneIds(flashcardUndoState.prevDoneIds)
     setFlashcardCurrentId(flashcardUndoState.word.id)
+    flashcardPresentationStartedAtRef.current = Date.now()
     setFlashcardAnswerShown(true)
     setFlashcardSessionFeedback(null)
     setFlashcardUndoState(null)
@@ -3094,6 +3127,23 @@ function App() {
     setLastSummary('Hotkeys saved.')
   }
 
+  function saveFlashcardDeckSelection(deckId: FlashcardDeckId, checked: boolean) {
+    let selected = userSettings.selectedFlashcardDeckIds
+    if (deckId === ALL_FLASHCARD_DECK_ID) {
+      selected = checked ? [ALL_FLASHCARD_DECK_ID] : [ORIGINAL_DECK_ID]
+    } else {
+      const individual = selected.filter((id) => id !== ALL_FLASHCARD_DECK_ID)
+      selected = checked
+        ? Array.from(new Set([...individual, deckId]))
+        : individual.filter((id) => id !== deckId)
+      if (selected.length === 0) selected = [deckId]
+    }
+    const next = { ...userSettings, selectedFlashcardDeckIds: selected }
+    setUserSettings(next)
+    void saveUserSettings(next)
+    setLastSummary('Flashcard decks saved.')
+  }
+
   function saveReaderSettings(patch: Partial<Pick<
     UserSettings,
     | 'readerPinyinMode'
@@ -3572,7 +3622,7 @@ function App() {
                     ? 'Every card in this set is scheduled for tomorrow or later.'
                     : flashcardQueue.length > 0
                       ? 'Learning cards will come back within the 5-minute learn-ahead window.'
-                      : 'Choose your queue in Settings, then use Flashcards from the top banner.'}
+                      : 'Choose at least one flashcard deck and queue in Settings.'}
                 </span>
                 {flashcardSessionComplete && (
                   <>
@@ -3640,7 +3690,7 @@ function App() {
                         </div>
                       )}
                       <div className="session-summary-stats">
-                        <span><strong>{formatDuration(Math.round((Date.now() - flashcardSessionStartMs) / 1000))}</strong> duration</span>
+                        <span><strong>{formatDuration(flashcardSessionStudySeconds)}</strong> study time</span>
                         {fsrsRatingsForUi.map((r) => (
                           <span key={r.value}>
                             <strong>{flashcardSessionRatingCounts[r.value]}</strong> {r.label}
@@ -4293,7 +4343,27 @@ function App() {
               <div className="import-grid">
                 <section className="panel">
                   <h2>Flashcard settings</h2>
-                  <p>Choose the queue and audio presentation for regular FSRS study.</p>
+                  <p>Choose which decks feed one combined FSRS queue. Mastery and overall metrics remain shared across all words.</p>
+                  <div className="flashcard-deck-settings" aria-label="Flashcard decks">
+                    {FLASHCARD_DECKS.map((deck) => {
+                      const allSelected = userSettings.selectedFlashcardDeckIds.includes(ALL_FLASHCARD_DECK_ID)
+                      const checked = userSettings.selectedFlashcardDeckIds.includes(deck.id)
+                      return (
+                        <label key={deck.id} className="toggle-row flashcard-deck-option">
+                          <span>
+                            <strong>{deck.name}</strong>
+                            <small>{deck.description} · {flashcardDeckCounts.get(deck.id) ?? 0} words</small>
+                          </span>
+                          <input
+                            type="checkbox"
+                            checked={checked}
+                            disabled={deck.id !== ALL_FLASHCARD_DECK_ID && allSelected}
+                            onChange={(event) => saveFlashcardDeckSelection(deck.id, event.target.checked)}
+                          />
+                        </label>
+                      )
+                    })}
+                  </div>
                   <div className="hotkey-grid">
                     <label>
                       <span>Flashcard queue</span>
@@ -8186,6 +8256,7 @@ function wordsToProgressCsv(words: VocabWord[]): string {
     'fsrsLearningSteps',
     'readingAddedAt',
     'archivedAt',
+    'deckIds',
   ]
   const rows = words.map((word) =>
     [
@@ -8213,6 +8284,7 @@ function wordsToProgressCsv(words: VocabWord[]): string {
       word.fsrsLearningSteps ?? '',
       word.readingAddedAt ?? '',
       word.archivedAt ?? '',
+      effectiveWordDeckIds(word).join(';'),
     ].map(csvCell).join(','),
   )
   return [columns.join(','), ...rows].join('\n')

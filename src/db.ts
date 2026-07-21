@@ -52,6 +52,13 @@ import type {
 } from './types'
 import { GENERATED_STORIES_PACK_ID, GENERATED_STORIES_PACK_NAME } from './generatedStories'
 import {
+  SAVED_FROM_READING_DECK_ID,
+  effectiveWordDeckIds,
+  sanitizeSelectedFlashcardDeckIds,
+  uniqueDeckIds,
+} from './flashcardDecks'
+import { studySecondsForEvent } from './studyTime'
+import {
   applyFsrsRating,
   isEligibleForReadingCredit,
   isFsrsCardDue,
@@ -512,6 +519,7 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   flashcardsPerDay: 50,
   listeningRepsGoal: 75,
   flashcardQueueMode: 'mixed',
+  selectedFlashcardDeckIds: ['all'],
   flashcardAudioFrontPercent: 40,
   darkMode: false,
   readerPinyinMode: 'adaptive',
@@ -582,6 +590,7 @@ export function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: n
   const merged = { ...DEFAULT_USER_SETTINGS, ...rest }
   const settings: UserSettings = {
     ...merged,
+    selectedFlashcardDeckIds: sanitizeSelectedFlashcardDeckIds(merged.selectedFlashcardDeckIds),
     readerListeningRate: clampReaderListeningRate(merged.readerListeningRate),
     readerListeningRepeats: clampReaderListeningRepeats(merged.readerListeningRepeats),
     readerListeningAutoAdvance: Boolean(merged.readerListeningAutoAdvance),
@@ -602,6 +611,8 @@ export function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: n
       saved.readerListeningRate === undefined ||
       saved.readerListeningRepeats === undefined ||
       saved.readerListeningAutoAdvance === undefined ||
+      saved.selectedFlashcardDeckIds === undefined ||
+      JSON.stringify(settings.selectedFlashcardDeckIds) !== JSON.stringify(saved.selectedFlashcardDeckIds) ||
       settings.readerListeningRate !== saved.readerListeningRate ||
       settings.readerListeningRepeats !== saved.readerListeningRepeats,
   }
@@ -859,6 +870,7 @@ export async function upsertWords(words: VocabWord[], options: UpsertWordsOption
           ? word.archivedAt || existing.archivedAt
           : existing.archivedAt,
         packIds: unique([...(existing.packIds ?? []), ...(word.packIds ?? [])]),
+        deckIds: uniqueDeckIds([...effectiveWordDeckIds(existing), ...effectiveWordDeckIds(word)]),
         lastReviewedAt: shouldUseProgressField('lastReviewedAt')
           ? word.lastReviewedAt || existing.lastReviewedAt
           : existing.lastReviewedAt,
@@ -907,6 +919,7 @@ export async function saveReaderVocabularyWord(
         meaning: existing.userEditedAt ? existing.meaning : meaning || existing.meaning,
         status: existing.status || 'learning',
         readingAddedAt: existing.readingAddedAt ?? now,
+        deckIds: uniqueDeckIds([...effectiveWordDeckIds(existing), SAVED_FROM_READING_DECK_ID]),
         archivedAt: undefined,
         updatedAt: now,
       }
@@ -917,6 +930,7 @@ export async function saveReaderVocabularyWord(
         pinyin,
         status: 'learning',
         readingAddedAt: now,
+        deckIds: [SAVED_FROM_READING_DECK_ID],
         seenCount: 0,
         correctCount: 0,
         wrongCount: 0,
@@ -1032,6 +1046,7 @@ export async function importCsvTtsPack(
 export interface RatingContext {
   source?: ListeningEvent['source']
   sessionId?: string
+  seconds?: number
 }
 
 export async function updateWordText(
@@ -1098,6 +1113,7 @@ export async function rateWordFsrs(
     rating,
     source: context.source,
     sessionId: context.sessionId,
+    seconds: context.seconds,
   })
   await tx.done
 
@@ -2408,7 +2424,7 @@ function buildDashboardRangeStat(
           (!end || time < end.getTime())
         )
       })
-      .reduce((sum, event) => sum + (event.seconds ?? inferredStudySeconds(event)), 0) +
+      .reduce((sum, event) => sum + studySecondsForEvent(event), 0) +
     readerSessions
       .filter((session) => {
         const time = Date.parse(session.startedAt)
@@ -3140,7 +3156,7 @@ function buildStudyHeatmap(
     const key = dateKey(date)
     const day = byDay.get(key)
     if (!day) continue
-    day.studySeconds += event.seconds ?? inferredStudySeconds(event)
+    day.studySeconds += studySecondsForEvent(event)
     day.activityCount += 1
   }
 
@@ -3322,13 +3338,6 @@ function buildLearningProcessSeries(
 
 function roundProcessValue(value: number): number {
   return Math.round(value * 10) / 10
-}
-
-function inferredStudySeconds(event: ListeningEvent): number {
-  if (event.type === 'complete') return 3
-  if (event.type === 'quiz_answer' || event.type === 'fsrs_rating') return 8
-  if (event.type === 'play' || event.type === 'quiz_prompt') return 2
-  return 1
 }
 
 function eventToRetentionLevel(

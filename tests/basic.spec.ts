@@ -30,6 +30,32 @@ test.describe('Chunky Chinese Vocab Smoke Tests', () => {
     await expect(cloudSyncHeading).toBeVisible();
   });
 
+  test('lets the learner choose persistent flashcard decks in Settings', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.getByRole('button', { name: 'Settings', exact: true }).click();
+    await page.locator('summary').filter({ hasText: 'Flashcards' }).click();
+
+    const allDeck = page.getByRole('checkbox', { name: /All/ });
+    const originalDeck = page.getByRole('checkbox', { name: /Original Deck/ });
+    const readingDeck = page.getByRole('checkbox', { name: /Saved from Reading/ });
+
+    await expect(allDeck).toBeChecked();
+    await expect(originalDeck).toBeDisabled();
+    await expect(readingDeck).toBeDisabled();
+
+    await allDeck.uncheck();
+    await expect(originalDeck).toBeChecked();
+    await expect(originalDeck).toBeEnabled();
+    await readingDeck.check();
+    await expect(readingDeck).toBeChecked();
+
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.getByRole('button', { name: 'Settings', exact: true }).click();
+    await page.locator('summary').filter({ hasText: 'Flashcards' }).click();
+    await expect(originalDeck).toBeChecked();
+    await expect(readingDeck).toBeChecked();
+  });
+
   test('should expose passive sentence listening from the dashboard', async ({ page }) => {
     await page.addInitScript(() => {
       ;(window as unknown as { __spokenUtterances: Array<{ text: string; lang: string }> }).__spokenUtterances = []

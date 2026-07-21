@@ -1530,6 +1530,25 @@ details.settings-group > .import-grid {
   accent-color: var(--accent);
 }
 
+.flashcard-deck-settings {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.flashcard-deck-option:has(input:checked) {
+  border-color: rgba(236, 72, 153, 0.34);
+  background: rgba(253, 242, 248, 0.72);
+}
+
+:root[data-theme='dark'] .flashcard-deck-option:has(input:checked) {
+  background: rgba(131, 24, 67, 0.24);
+}
+
+.flashcard-deck-option input:disabled {
+  opacity: 0.45;
+}
+
 .progress-visual {
   display: grid;
   gap: 14px;

@@ -51,6 +51,7 @@ describe('reader dashboard tracking', () => {
 
     const afterSave = await getDashboardStats()
     expect(saved.readingAddedAt).toBeTruthy()
+    expect(saved.deckIds).toEqual(['saved-from-reading'])
     expect(afterSave.ranges.allTime.readingGraduatedWords).toBe(
       before.ranges.allTime.readingGraduatedWords + 1,
     )

@@ -30,6 +30,9 @@ export type ListeningEventType =
 
 export type FsrsRating = 'again' | 'hard' | 'good' | 'easy'
 
+export type VocabDeckId = 'original' | 'saved-from-reading'
+export type FlashcardDeckId = 'all' | VocabDeckId
+
 export type StudyMode = 'listeningMode' | 'sentenceMode'
 
 export type FsrsStateName = 'New' | 'Learning' | 'Review' | 'Relearning'
@@ -62,6 +65,7 @@ export interface UserSettings {
   flashcardsPerDay: number
   listeningRepsGoal: number
   flashcardQueueMode: 'mixed' | 'due' | 'new'
+  selectedFlashcardDeckIds: FlashcardDeckId[]
   flashcardAudioFrontPercent: number
   darkMode: boolean
   readerPinyinMode: 'adaptive' | 'all' | 'none'
@@ -410,6 +414,7 @@ export interface VocabWord {
   fsrsLearningSteps?: number
   activeRecallPriorityAt?: string
   packIds?: string[]
+  deckIds?: VocabDeckId[]
   createdAt: string
   updatedAt: string
   userEditedAt?: string
