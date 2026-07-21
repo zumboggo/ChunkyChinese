@@ -621,6 +621,13 @@ export interface StudyDayStat {
   activityCount: number
 }
 
+export interface StudyTimeAdjustment {
+  cutoffAt: string
+  scale: number
+  targetMinutes: number
+  rawSeconds: number
+}
+
 export interface RetentionPoint {
   date: string
   unknown: number

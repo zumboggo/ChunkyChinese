@@ -1,4 +1,4 @@
-import type { ListeningEvent } from './types'
+import type { ListeningEvent, StudyTimeAdjustment } from './types'
 
 export const STUDY_INACTIVITY_PAUSE_MS = 60_000
 export const FLASHCARD_PRESENTATION_LIMIT_SECONDS = 60
@@ -25,6 +25,18 @@ export function studySecondsForEvent(event: ListeningEvent): number {
     return Math.min(FLASHCARD_PRESENTATION_LIMIT_SECONDS, Math.max(0, seconds))
   }
   return Math.max(0, seconds)
+}
+
+export function adjustedHistoricalStudySeconds(
+  seconds: number,
+  timestamp: string,
+  adjustment?: StudyTimeAdjustment,
+): number {
+  if (!adjustment) return Math.max(0, seconds)
+  const time = Date.parse(timestamp)
+  const cutoff = Date.parse(adjustment.cutoffAt)
+  if (!Number.isFinite(time) || !Number.isFinite(cutoff) || time > cutoff) return Math.max(0, seconds)
+  return Math.max(0, seconds * adjustment.scale)
 }
 
 function inferredStudySeconds(event: ListeningEvent): number {

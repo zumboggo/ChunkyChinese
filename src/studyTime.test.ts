@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   cappedFlashcardStudySeconds,
+  adjustedHistoricalStudySeconds,
   shouldCountActiveStudySecond,
   studySecondsForEvent,
 } from './studyTime'
@@ -38,5 +39,16 @@ describe('study time', () => {
       source: 'flashcards',
       seconds: 120,
     }))).toBe(0)
+  })
+
+  it('rescales only history at or before the chosen cutoff', () => {
+    const adjustment = {
+      cutoffAt: '2026-01-02T00:00:00.000Z',
+      scale: 0.25,
+      targetMinutes: 1000,
+      rawSeconds: 240_000,
+    }
+    expect(adjustedHistoricalStudySeconds(120, '2026-01-01T00:00:00.000Z', adjustment)).toBe(30)
+    expect(adjustedHistoricalStudySeconds(120, '2026-01-03T00:00:00.000Z', adjustment)).toBe(120)
   })
 })

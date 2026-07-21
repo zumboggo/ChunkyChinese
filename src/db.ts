@@ -45,6 +45,7 @@ import type {
   RenderedLesson,
   Sentence,
   SentenceSrsRecord,
+  StudyTimeAdjustment,
   UserSettings,
   VocabWord,
   WordStatus,
@@ -57,7 +58,7 @@ import {
   sanitizeSelectedFlashcardDeckIds,
   uniqueDeckIds,
 } from './flashcardDecks'
-import { studySecondsForEvent } from './studyTime'
+import { adjustedHistoricalStudySeconds, studySecondsForEvent } from './studyTime'
 import {
   applyFsrsRating,
   isEligibleForReadingCredit,
@@ -709,6 +710,57 @@ export async function saveNewWordsPerDay(value: number): Promise<void> {
   const db = await getDB()
   await db.put('settings', true, 'newWordsPerDayDefaultV2')
   await db.put('settings', normalizeNewWordsPerDay(value), 'newWordsPerDay')
+}
+
+export async function getStudyTimeAdjustment(): Promise<StudyTimeAdjustment | undefined> {
+  const saved = (await (await getDB()).get('settings', 'studyTimeAdjustment')) as
+    | StudyTimeAdjustment
+    | undefined
+  if (
+    !saved ||
+    !Number.isFinite(Date.parse(saved.cutoffAt)) ||
+    !Number.isFinite(saved.scale) ||
+    saved.scale < 0 ||
+    !Number.isFinite(saved.targetMinutes) ||
+    saved.targetMinutes < 0 ||
+    !Number.isFinite(saved.rawSeconds) ||
+    saved.rawSeconds < 0
+  ) return undefined
+  return saved
+}
+
+export async function setHistoricalStudyMinutes(targetMinutes: number): Promise<StudyTimeAdjustment> {
+  if (!Number.isFinite(targetMinutes) || targetMinutes < 0) {
+    throw new Error('Historical study minutes must be zero or greater.')
+  }
+  const db = await getDB()
+  const [events, readerSessions] = await Promise.all([
+    db.getAll('listeningEvents'),
+    db.getAll('readerSessions'),
+  ])
+  const rawSeconds =
+    events.reduce(
+      (sum, event) => Number.isFinite(Date.parse(event.timestamp)) ? sum + studySecondsForEvent(event) : sum,
+      0,
+    ) +
+    readerSessions.reduce(
+      (sum, session) => Number.isFinite(Date.parse(session.startedAt))
+        ? sum + Math.max(0, session.activeSeconds ?? 0)
+        : sum,
+      0,
+    )
+  const adjustment: StudyTimeAdjustment = {
+    cutoffAt: new Date().toISOString(),
+    scale: rawSeconds > 0 ? (targetMinutes * 60) / rawSeconds : 1,
+    targetMinutes,
+    rawSeconds,
+  }
+  await db.put('settings', adjustment, 'studyTimeAdjustment')
+  return adjustment
+}
+
+export async function clearStudyTimeAdjustment(): Promise<void> {
+  await (await getDB()).delete('settings', 'studyTimeAdjustment')
 }
 
 export async function getHostedClipPackIndex(): Promise<HostedClipPack[]> {
@@ -2100,10 +2152,16 @@ export async function updateReaderSession(
 
 export async function getReaderSessionStats(): Promise<ReaderSessionStats> {
   const db = await getDB()
-  const sessions = await db.getAll('readerSessions')
+  const [sessions, adjustment] = await Promise.all([
+    db.getAll('readerSessions'),
+    getStudyTimeAdjustment(),
+  ])
   const start = startOfToday()
   const todaySessions = sessions.filter((s) => new Date(s.startedAt) >= start)
-  const todayActiveSeconds = todaySessions.reduce((sum, s) => sum + s.activeSeconds, 0)
+  const todayActiveSeconds = todaySessions.reduce(
+    (sum, s) => sum + adjustedHistoricalStudySeconds(s.activeSeconds, s.startedAt, adjustment),
+    0,
+  )
   const todayWordsRead = todaySessions.reduce((sum, s) => sum + s.wordsRead, 0)
   const todayPagesRead = new Set(todaySessions.flatMap((s) => s.sentenceIdsRead ?? [])).size
   const todayWpm = todayActiveSeconds > 0 ? Math.round((todayWordsRead / todayActiveSeconds) * 60) : 0
@@ -2266,6 +2324,7 @@ export async function getDashboardStats(): Promise<DashboardStats> {
   const words = (await db.getAll('vocabWords')).filter(isActiveVocabWord)
   const events = await db.getAll('listeningEvents')
   const readerSessions = await db.getAll('readerSessions')
+  const studyTimeAdjustment = await getStudyTimeAdjustment()
   const scopedWords = words
   const scopedWordIds = new Set(words.map((word) => word.id))
   const start = startOfToday()
@@ -2277,13 +2336,14 @@ export async function getDashboardStats(): Promise<DashboardStats> {
   const successfulRatingsToday = todayRatings.filter(
     (event) => event.rating === 'good' || event.rating === 'easy',
   )
-  const heatmap = buildStudyHeatmap(events, readerSessions, 84)
+  const heatmap = buildStudyHeatmap(events, readerSessions, 84, studyTimeAdjustment)
   const todayHeatmap = heatmap[heatmap.length - 1]
   const { ranges, previousRanges } = buildDashboardRangeStats(
     events,
     readerSessions,
     scopedWords,
     scopedWordIds,
+    studyTimeAdjustment,
   )
   const flashcardSetEvents = events.filter((e) => e.type === 'complete' && e.source === 'flashcards' && e.seconds && e.seconds > 0)
   const avgFlashcardSetSeconds = flashcardSetEvents.length > 0
@@ -2318,14 +2378,14 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     ).length,
     ranges,
     previousRanges,
-    currentStreak: calculateStreak(buildStudyHeatmap(events, readerSessions, 365)),
-    longestStreak: calculateLongestStreak(buildStudyHeatmap(events, readerSessions, 365)),
+    currentStreak: calculateStreak(buildStudyHeatmap(events, readerSessions, 365, studyTimeAdjustment)),
+    longestStreak: calculateLongestStreak(buildStudyHeatmap(events, readerSessions, 365, studyTimeAdjustment)),
     avgFlashcardSetSeconds,
     lastFlashcardSetSeconds,
-    learningProcessSeries: buildLearningProcessSeries(events, readerSessions, scopedWordIds, 28),
+    learningProcessSeries: buildLearningProcessSeries(events, readerSessions, scopedWordIds, 28, studyTimeAdjustment),
     studyHeatmap: heatmap,
     retentionSeries: buildRetentionSeries(scopedWords, events, 12),
-    readingSeries: buildReadingSeries(readerSessions, 12),
+    readingSeries: buildReadingSeries(readerSessions, 12, studyTimeAdjustment),
   }
 }
 
@@ -2366,6 +2426,7 @@ function buildDashboardRangeStats(
   readerSessions: ReaderSession[],
   words: VocabWord[],
   scopedWordIds: Set<string>,
+  adjustment?: StudyTimeAdjustment,
 ): Pick<DashboardStats, 'ranges' | 'previousRanges'> {
   const today = startOfToday()
   const tomorrow = new Date(today)
@@ -2383,15 +2444,15 @@ function buildDashboardRangeStats(
   const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1)
   return {
     ranges: {
-      today: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, today, tomorrow),
-      week: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, week, nextWeek),
-      month: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, month, nextMonth),
-      allTime: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds),
+      today: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, adjustment, today, tomorrow),
+      week: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, adjustment, week, nextWeek),
+      month: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, adjustment, month, nextMonth),
+      allTime: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, adjustment),
     },
     previousRanges: {
-      today: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, yesterday, today),
-      week: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, lastWeek, week),
-      month: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, lastMonth, month),
+      today: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, adjustment, yesterday, today),
+      week: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, adjustment, lastWeek, week),
+      month: buildDashboardRangeStat(events, readerSessions, words, scopedWordIds, adjustment, lastMonth, month),
     },
   }
 }
@@ -2401,6 +2462,7 @@ function buildDashboardRangeStat(
   readerSessions: ReaderSession[],
   words: VocabWord[],
   scopedWordIds: Set<string>,
+  adjustment?: StudyTimeAdjustment,
   start?: Date,
   end?: Date,
 ): DashboardStats['ranges'][DashboardRange] {
@@ -2424,7 +2486,10 @@ function buildDashboardRangeStat(
           (!end || time < end.getTime())
         )
       })
-      .reduce((sum, event) => sum + studySecondsForEvent(event), 0) +
+      .reduce(
+        (sum, event) => sum + adjustedHistoricalStudySeconds(studySecondsForEvent(event), event.timestamp, adjustment),
+        0,
+      ) +
     readerSessions
       .filter((session) => {
         const time = Date.parse(session.startedAt)
@@ -2434,7 +2499,10 @@ function buildDashboardRangeStat(
           (!end || time < end.getTime())
         )
       })
-      .reduce((sum, session) => sum + (session.activeSeconds ?? 0), 0)
+      .reduce(
+        (sum, session) => sum + adjustedHistoricalStudySeconds(session.activeSeconds ?? 0, session.startedAt, adjustment),
+        0,
+      )
   return {
     cardsReviewed: ratingEvents.length,
     successfulRecalls: ratingEvents.filter((event) => event.rating === 'good' || event.rating === 'easy').length,
@@ -2493,6 +2561,7 @@ export async function exportBackup(): Promise<string> {
       userSettings: await getUserSettings(),
       hotkeys: await getHotkeys(),
       newWordsPerDay: await getNewWordsPerDay(),
+      studyTimeAdjustment: await getStudyTimeAdjustment(),
     },
   }
   return JSON.stringify(backup, null, 2)
@@ -2520,6 +2589,7 @@ export async function importBackup(text: string): Promise<ImportSummary> {
       hotkeys?: HotkeySettings
       lmsSeededAt?: string
       newWordsPerDay?: number
+      studyTimeAdjustment?: StudyTimeAdjustment
     }
   }
   const db = await getDB()
@@ -2598,6 +2668,9 @@ export async function importBackup(text: string): Promise<ImportSummary> {
   if (backup.settings?.lmsSeededAt) await db.put('settings', backup.settings.lmsSeededAt, 'lmsSeededAt')
   if (backup.settings?.newWordsPerDay !== undefined) {
     await saveNewWordsPerDay(backup.settings.newWordsPerDay)
+  }
+  if (backup.settings?.studyTimeAdjustment) {
+    await db.put('settings', backup.settings.studyTimeAdjustment, 'studyTimeAdjustment')
   }
   return { created, updated, skipped: 0, warnings: [] }
 }
@@ -3138,6 +3211,7 @@ function buildStudyHeatmap(
   events: ListeningEvent[],
   sessions: ReaderSession[],
   dayCount: number,
+  adjustment?: StudyTimeAdjustment,
 ): DashboardStats['studyHeatmap'] {
   const today = startOfToday()
   const firstDay = new Date(today)
@@ -3156,7 +3230,11 @@ function buildStudyHeatmap(
     const key = dateKey(date)
     const day = byDay.get(key)
     if (!day) continue
-    day.studySeconds += studySecondsForEvent(event)
+    day.studySeconds += adjustedHistoricalStudySeconds(
+      studySecondsForEvent(event),
+      event.timestamp,
+      adjustment,
+    )
     day.activityCount += 1
   }
 
@@ -3166,7 +3244,11 @@ function buildStudyHeatmap(
     const key = dateKey(date)
     const day = byDay.get(key)
     if (!day) continue
-    day.studySeconds += session.activeSeconds ?? 0
+    day.studySeconds += adjustedHistoricalStudySeconds(
+      session.activeSeconds ?? 0,
+      session.startedAt,
+      adjustment,
+    )
     day.activityCount += 1
   }
 
@@ -3234,6 +3316,7 @@ function buildRetentionSeries(
 export function buildReadingSeries(
   sessions: ReaderSession[],
   weekCount: number,
+  adjustment?: StudyTimeAdjustment,
 ): DashboardStats['readingSeries'] {
   const today = startOfToday()
   const points: DashboardStats['readingSeries'] = []
@@ -3254,7 +3337,10 @@ export function buildReadingSeries(
     })
 
     const wordsRead = weekSessions.reduce((sum, s) => sum + s.wordsRead, 0)
-    const activeSeconds = weekSessions.reduce((sum, s) => sum + s.activeSeconds, 0)
+    const activeSeconds = weekSessions.reduce(
+      (sum, s) => sum + adjustedHistoricalStudySeconds(s.activeSeconds, s.startedAt, adjustment),
+      0,
+    )
     const wpm = activeSeconds > 0 ? Math.round((wordsRead / activeSeconds) * 60) : 0
 
     points.push({
@@ -3273,8 +3359,9 @@ function buildLearningProcessSeries(
   readerSessions: ReaderSession[],
   scopedWordIds: Set<string>,
   dayCount: number,
+  adjustment?: StudyTimeAdjustment,
 ): DashboardStats['learningProcessSeries'] {
-  const heatmap = buildStudyHeatmap(events, readerSessions, dayCount)
+  const heatmap = buildStudyHeatmap(events, readerSessions, dayCount, adjustment)
   const firstDay = heatmap[0] ? new Date(`${heatmap[0].date}T00:00:00`) : startOfToday()
   const byDay = new Map(
     heatmap.map((day) => [

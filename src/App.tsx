@@ -49,6 +49,8 @@ import {
   saveRenderedLesson,
   saveAudioClip,
   saveNewWordsPerDay,
+  setHistoricalStudyMinutes,
+  clearStudyTimeAdjustment,
   saveReaderProgress,
   saveGeneratedReaderBook,
   deleteGeneratedReaderBook,
@@ -507,6 +509,7 @@ function App() {
   const [dashboardRange, setDashboardRange] = useState<DashboardRange>('today')
   const [userSettings, setUserSettings] = useState(DEFAULT_USER_SETTINGS)
   const [newWordsPerDay, setNewWordsPerDay] = useState(15)
+  const [historicalStudyMinutesDraft, setHistoricalStudyMinutesDraft] = useState('')
   const [hotkeysEditing, setHotkeysEditing] = useState(false)
   const [initialDataReady, setInitialDataReady] = useState(false)
   const [lesson, setLesson] = useState<LessonPlan | null>(null)
@@ -1799,13 +1802,15 @@ function App() {
   }, [])
 
   const openReaderBook = useCallback(async (book: ReaderBook, action: 'resume' | 'start' = 'resume') => {
-    const progress = await getReaderProgress(book.packId, book.id)
     const sentenceCount = book.stories.reduce((sum, story) => sum + story.sentences.length, 0)
-    const sentenceIndex = action === 'start' ? 0 : progress?.sentenceIndex ?? 0
     const readerSentencesForBook = book.stories.flatMap((story) => story.sentences)
-    const boundedIndex = Math.min(Math.max(0, sentenceIndex), Math.max(0, sentenceCount - 1))
+    const cachedProgress = latestReaderProgress?.packId === book.packId && latestReaderProgress.bookId === book.id
+      ? latestReaderProgress
+      : undefined
+    const initialIndex = action === 'start' ? 0 : cachedProgress?.sentenceIndex ?? 0
+    const boundedInitialIndex = Math.min(Math.max(0, initialIndex), Math.max(0, sentenceCount - 1))
     setActiveReaderBookId(book.id)
-    setReaderSentenceIndex(boundedIndex)
+    setReaderSentenceIndex(boundedInitialIndex)
     setSelectedReaderToken(null)
     setReaderDictionaryEntry(null)
     setStoryChunkSession(null)
@@ -1815,23 +1820,34 @@ function App() {
     readerTappedWordIdsRef.current.clear()
     readerCreditedSentenceIdsRef.current.clear()
     setScreen('reader')
-    const session = await startReaderSession(book.packId, book.id)
-    setActiveReaderSession(session)
     recordReaderInteraction()
-    const firstSentence = readerSentencesForBook[boundedIndex]
-    if (firstSentence) {
-      await recordReaderSentenceView(firstSentence, session)
+    try {
+      let boundedIndex = boundedInitialIndex
+      if (action === 'resume' && !cachedProgress) {
+        const progress = await getReaderProgress(book.packId, book.id)
+        boundedIndex = Math.min(
+          Math.max(0, progress?.sentenceIndex ?? 0),
+          Math.max(0, sentenceCount - 1),
+        )
+        setReaderSentenceIndex(boundedIndex)
+      }
+      const session = await startReaderSession(book.packId, book.id)
+      setActiveReaderSession(session)
+      const firstSentence = readerSentencesForBook[boundedIndex]
+      if (firstSentence) await recordReaderSentenceView(firstSentence, session)
+      if (action === 'start') {
+        await saveReaderProgress({
+          packId: book.packId,
+          bookId: book.id,
+          sentenceIndex: 0,
+        })
+        setLatestReaderProgress(await getLatestReaderProgress(readerBooks))
+        queueCloudSync()
+      }
+    } catch (error) {
+      setLastSummary(error instanceof Error ? error.message : 'Reader progress could not be saved.')
     }
-    if (action === 'start') {
-      await saveReaderProgress({
-        packId: book.packId,
-        bookId: book.id,
-        sentenceIndex: 0,
-      })
-      setLatestReaderProgress(await getLatestReaderProgress(readerBooks))
-      queueCloudSync()
-    }
-  }, [queueCloudSync, readerBooks, recordReaderInteraction, recordReaderSentenceView])
+  }, [latestReaderProgress, queueCloudSync, readerBooks, recordReaderInteraction, recordReaderSentenceView])
 
   const openBookListen = useCallback(async (book: ReaderBook) => {
     const progress = await getReaderProgress(book.packId, book.id)
@@ -3144,6 +3160,25 @@ function App() {
     setLastSummary('Flashcard decks saved.')
   }
 
+  async function handleHistoricalStudyTimeApply() {
+    const targetMinutes = Number(historicalStudyMinutesDraft)
+    if (!Number.isFinite(targetMinutes) || targetMinutes < 0) {
+      setLastSummary('Enter a historical study total of zero minutes or more.')
+      return
+    }
+    await setHistoricalStudyMinutes(targetMinutes)
+    await refresh()
+    setHistoricalStudyMinutesDraft(String(Math.round(targetMinutes)))
+    setLastSummary(`Historical study time adjusted to ${Math.round(targetMinutes).toLocaleString()} minutes.`)
+  }
+
+  async function handleHistoricalStudyTimeClear() {
+    await clearStudyTimeAdjustment()
+    await refresh()
+    setHistoricalStudyMinutesDraft('')
+    setLastSummary('Historical study-time adjustment removed.')
+  }
+
   function saveReaderSettings(patch: Partial<Pick<
     UserSettings,
     | 'readerPinyinMode'
@@ -3175,6 +3210,12 @@ function App() {
     void saveUserSettings(next)
     setLastSummary('Listening settings saved — applies to the next set.')
   }
+
+  useEffect(() => {
+    if (screen === 'settings' && historicalStudyMinutesDraft === '') {
+      setHistoricalStudyMinutesDraft(String(Math.round(stats.ranges.allTime.studyMinutes)))
+    }
+  }, [historicalStudyMinutesDraft, screen, stats.ranges.allTime.studyMinutes])
 
   return (
     <main className={`app-shell app-screen-${screen}`}>
@@ -4333,6 +4374,37 @@ function App() {
                         }}
                       />
                     </label>
+                  </div>
+                </section>
+                <section className="panel historical-study-time-panel">
+                  <h2>Historical study time</h2>
+                  <p>
+                    Correct an inflated total without deleting study history. Existing days keep their
+                    relative shape; activity after the correction counts normally.
+                  </p>
+                  <div className="hotkey-grid">
+                    <label>
+                      <span>Corrected total minutes</span>
+                      <input
+                        type="number"
+                        min={0}
+                        step={10}
+                        inputMode="numeric"
+                        value={historicalStudyMinutesDraft}
+                        onChange={(event) => setHistoricalStudyMinutesDraft(event.target.value)}
+                      />
+                      <small>
+                        Dashboard now shows {Math.round(stats.ranges.allTime.studyMinutes).toLocaleString()} total minutes.
+                      </small>
+                    </label>
+                  </div>
+                  <div className="button-row">
+                    <button type="button" className="primary" onClick={() => void handleHistoricalStudyTimeApply()}>
+                      Apply correction
+                    </button>
+                    <button type="button" onClick={() => void handleHistoricalStudyTimeClear()}>
+                      Remove correction
+                    </button>
                   </div>
                 </section>
               </div>

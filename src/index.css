@@ -13563,13 +13563,29 @@ main.app-shell {
   }
 
   .reader-swipe-zone {
+    align-content: start;
     min-height: clamp(390px, 53svh, 570px);
     padding: clamp(20px, 6vw, 30px) clamp(14px, 4vw, 24px);
     border-radius: 26px;
+    touch-action: pan-y;
   }
 
   .reader-reading-area {
     gap: clamp(24px, 4svh, 38px);
+  }
+
+  .reader-illustration {
+    display: grid;
+    max-height: 33svh;
+    place-items: center;
+    margin-bottom: 0;
+  }
+
+  .reader-illustration img {
+    width: auto;
+    max-width: 100%;
+    max-height: 33svh;
+    object-fit: contain;
   }
 
   .reader-sentence {
