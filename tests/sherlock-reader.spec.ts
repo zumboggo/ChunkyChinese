@@ -7,6 +7,8 @@ test('Sherlock Holmes appears in the Novels and Stories reader', async ({ page }
   await expect(page.getByRole('button', { name: 'Go to dashboard' })).toBeVisible()
 
   await page.locator('.dashboard-mode-card.reading-texts-start').click()
+  await page.getByRole('button', { name: 'Reader menu' }).click()
+  await page.getByRole('button', { name: 'Back to library' }).click()
   await page.getByRole('button', { name: /^Novels/ }).click()
 
   const sherlockCard = page.locator('.reading-library-book', {

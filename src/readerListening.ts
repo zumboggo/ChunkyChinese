@@ -2,6 +2,7 @@ export type ReaderListeningStatus =
   | 'idle'
   | 'loading'
   | 'playing'
+  | 'shadowing'
   | 'paused'
   | 'completed'
 
@@ -13,6 +14,8 @@ export interface ReaderListeningSnapshot {
   mode: ReaderListeningMode
   repeatNumber: number
   source: ReaderListeningSource
+  phase: 'audio' | 'shadowing'
+  shadowRemainingMs: number
 }
 
 export interface ReaderListeningCompletion {
@@ -25,6 +28,13 @@ export const IDLE_READER_LISTENING_SNAPSHOT: ReaderListeningSnapshot = {
   mode: 'continuous',
   repeatNumber: 1,
   source: null,
+  phase: 'audio',
+  shadowRemainingMs: 0,
+}
+
+export function readerShadowPauseMs(spokenDurationMs: number, pauseFactor: number): number {
+  if (!Number.isFinite(spokenDurationMs) || !Number.isFinite(pauseFactor)) return 0
+  return Math.max(0, Math.round(spokenDurationMs * Math.max(0, pauseFactor)))
 }
 
 export function nextReaderListeningCompletion({

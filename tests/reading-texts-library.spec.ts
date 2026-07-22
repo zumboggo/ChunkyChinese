@@ -10,6 +10,8 @@ test('Reading Texts exposes the book library and keeps it accessible from a book
 
   await page.goto('/', { waitUntil: 'domcontentloaded' })
   await page.locator('.dashboard-mode-card.reading-texts-start').click()
+  await page.getByRole('button', { name: 'Reader menu' }).click()
+  await page.getByRole('button', { name: 'Back to library' }).click()
 
   await expect(page.getByRole('heading', { name: 'Reading' })).toBeVisible()
   await page.getByRole('button', { name: /^Novels/ }).click()
@@ -43,6 +45,8 @@ test('Reading Texts exposes the book library and keeps it accessible from a book
 test('Gospel of John starts from the novels shelf with its illustrations', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' })
   await page.locator('.dashboard-mode-card.reading-texts-start').click()
+  await page.getByRole('button', { name: 'Reader menu' }).click()
+  await page.getByRole('button', { name: 'Back to library' }).click()
   await page.getByRole('button', { name: /^Novels/ }).click()
 
   await expect(page.getByRole('heading', { name: 'Novels', exact: true })).toBeVisible()
@@ -52,7 +56,7 @@ test('Gospel of John starts from the novels shelf with its illustrations', async
   await expect(page.locator('.reader-page-meta')).toContainText('Sentence 1 / 812')
 
   const illustration = page.locator('.reader-illustration img')
-  const nextSentence = page.locator('button[aria-label^="Next sentence. Hotkey:"]')
+  const nextSentence = page.getByRole('button', { name: /Next sentence/ })
   await expect(illustration).toHaveAttribute(
     'src',
     /reader-packs\/john-gospel\/images\/chapters\/ch01-scene-01\.webp$/,

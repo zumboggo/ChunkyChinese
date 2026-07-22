@@ -40,6 +40,7 @@ import type {
   ReaderBook,
   ReaderPack,
   ReaderProgress,
+  ReaderQueueState,
   ReaderSession,
   ReaderSessionStats,
   RenderedLesson,
@@ -528,8 +529,10 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   readerFontScale: 1,
   readerLineHeight: 1.9,
   readerListeningRate: 0.8,
-  readerListeningRepeats: 2,
+  readerListeningRepeats: 3,
+  readerListeningPauseFactor: 1,
   readerListeningAutoAdvance: true,
+  readerShowEnglish: true,
   readerStatusHighlight: true,
   sentenceRepeats: 2,
   sentenceIncludeEnglish: true,
@@ -588,13 +591,17 @@ export async function saveUserSettings(settings: UserSettings): Promise<void> {
 export function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: number }): { settings: UserSettings; cleaned: boolean } {
   if (!saved) return { settings: DEFAULT_USER_SETTINGS, cleaned: false }
   const { coins: _coins, ...rest } = saved
+  const migrateReaderPlaylistDefaults = saved.readerListeningPauseFactor === undefined
   const merged = { ...DEFAULT_USER_SETTINGS, ...rest }
   const settings: UserSettings = {
     ...merged,
+    readerPinyinMode: migrateReaderPlaylistDefaults ? 'adaptive' : merged.readerPinyinMode,
     selectedFlashcardDeckIds: sanitizeSelectedFlashcardDeckIds(merged.selectedFlashcardDeckIds),
     readerListeningRate: clampReaderListeningRate(merged.readerListeningRate),
-    readerListeningRepeats: clampReaderListeningRepeats(merged.readerListeningRepeats),
+    readerListeningRepeats: clampReaderListeningRepeats(migrateReaderPlaylistDefaults ? 3 : merged.readerListeningRepeats),
+    readerListeningPauseFactor: clampNumber(merged.readerListeningPauseFactor, 0, 2, DEFAULT_USER_SETTINGS.readerListeningPauseFactor),
     readerListeningAutoAdvance: Boolean(merged.readerListeningAutoAdvance),
+    readerShowEnglish: migrateReaderPlaylistDefaults ? true : merged.readerShowEnglish !== false,
     readerStatusHighlight: merged.readerStatusHighlight !== false,
     listeningRepsGoal: clampInt(merged.listeningRepsGoal, 10, 500, DEFAULT_USER_SETTINGS.listeningRepsGoal),
     sentenceRepeats: clampInt(merged.sentenceRepeats, 1, 5, DEFAULT_USER_SETTINGS.sentenceRepeats),
@@ -611,11 +618,14 @@ export function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: n
       saved.readingGoalPages === undefined ||
       saved.readerListeningRate === undefined ||
       saved.readerListeningRepeats === undefined ||
+      saved.readerListeningPauseFactor === undefined ||
       saved.readerListeningAutoAdvance === undefined ||
+      saved.readerShowEnglish === undefined ||
       saved.selectedFlashcardDeckIds === undefined ||
       JSON.stringify(settings.selectedFlashcardDeckIds) !== JSON.stringify(saved.selectedFlashcardDeckIds) ||
       settings.readerListeningRate !== saved.readerListeningRate ||
-      settings.readerListeningRepeats !== saved.readerListeningRepeats,
+      settings.readerListeningRepeats !== saved.readerListeningRepeats ||
+      settings.readerListeningPauseFactor !== saved.readerListeningPauseFactor,
   }
 }
 
@@ -1882,6 +1892,7 @@ export async function getLatestReaderProgress(
 ): Promise<ReaderProgress | undefined> {
   const bookMap = new Map(books.map((book) => [book.id, book]))
   return (await getAllReaderProgress()).find((progress) => {
+    if (progress.completedAt) return false
     const book = bookMap.get(progress.bookId)
     if (!book || book.packId !== progress.packId) return false
     const sentenceCount = book.stories.flatMap((story) => story.sentences).length
@@ -1890,14 +1901,48 @@ export async function getLatestReaderProgress(
 }
 
 export async function saveReaderProgress(progress: Omit<ReaderProgress, 'id' | 'updatedAt'>): Promise<void> {
-  await (await getDB()).put(
+  const db = await getDB()
+  const id = readerProgressId(progress.packId, progress.bookId)
+  const existing = await db.get('readerProgress', id)
+  const completedAt = Object.prototype.hasOwnProperty.call(progress, 'completedAt')
+    ? progress.completedAt
+    : existing?.completedAt
+  await db.put(
     'readerProgress',
     {
       ...progress,
-      id: readerProgressId(progress.packId, progress.bookId),
+      id,
+      completedAt,
       updatedAt: new Date().toISOString(),
     },
   )
+}
+
+const READER_QUEUE_STATE_KEY = 'readerQueueState'
+
+export async function getReaderQueueState(): Promise<ReaderQueueState> {
+  const saved = (await (await getDB()).get('settings', READER_QUEUE_STATE_KEY)) as ReaderQueueState | undefined
+  if (!saved || saved.version !== 1) {
+    return { version: 1, orderedBookIds: [], excludedBookIds: [], updatedAt: '' }
+  }
+  return {
+    version: 1,
+    orderedBookIds: Array.isArray(saved.orderedBookIds) ? saved.orderedBookIds : [],
+    excludedBookIds: Array.isArray(saved.excludedBookIds) ? saved.excludedBookIds : [],
+    updatedAt: saved.updatedAt || '',
+  }
+}
+
+export async function saveReaderQueueState(
+  state: Omit<ReaderQueueState, 'version' | 'updatedAt'>,
+): Promise<ReaderQueueState> {
+  const value: ReaderQueueState = {
+    ...state,
+    version: 1,
+    updatedAt: new Date().toISOString(),
+  }
+  await (await getDB()).put('settings', value, READER_QUEUE_STATE_KEY)
+  return value
 }
 
 export async function putSyncedReaderProgress(progressRows: ReaderProgress[]): Promise<void> {

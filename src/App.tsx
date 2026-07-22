@@ -27,6 +27,8 @@ import {
   getAllReaderBooks,
   getAllReaderPacks,
   getLatestReaderProgress,
+  getAllReaderProgress,
+  getReaderQueueState,
   getAllSentences,
   getAllWords,
   getAudioClip,
@@ -52,6 +54,7 @@ import {
   setHistoricalStudyMinutes,
   clearStudyTimeAdjustment,
   saveReaderProgress,
+  saveReaderQueueState,
   saveGeneratedReaderBook,
   deleteGeneratedReaderBook,
   saveReaderVocabularyWord,
@@ -141,6 +144,12 @@ import { findGrammarMatches, mapGrammarToTokens, type GrammarMatch } from './gra
 import { useReaderListeningController } from './useReaderListeningController'
 import { shouldCountReaderActiveSecond } from './readerActivity'
 import {
+  buildReaderQueue,
+  promoteLatestReaderBook,
+  readingBookCategory,
+  reorderReaderQueue,
+} from './readerQueue'
+import {
   ALL_FLASHCARD_DECK_ID,
   FLASHCARD_DECKS,
   ORIGINAL_DECK_ID,
@@ -182,6 +191,7 @@ import type {
   ReaderSentence,
   ReaderStory,
   ReaderProgress,
+  ReaderQueueState,
   ReaderWordToken,
   ReaderSession,
   ReaderSessionStats,
@@ -550,7 +560,7 @@ function App() {
   const [seedMessage, setSeedMessage] = useState('Loading LMS vocabulary...')
   const [activeReaderBookId, setActiveReaderBookId] = useState<string | undefined>()
   const [readerSentenceIndex, setReaderSentenceIndex] = useState(0)
-  const [readerShowEnglish, setReaderShowEnglish] = useState(false)
+  const [readerShowEnglish, setReaderShowEnglish] = useState(DEFAULT_USER_SETTINGS.readerShowEnglish)
   const [selectedReaderToken, setSelectedReaderToken] = useState<ReaderWordToken | null>(null)
   const [readerDictionaryEntry, setReaderDictionaryEntry] = useState<DictionaryEntry | null>(null)
   const [hostedPackDownloadId, setHostedPackDownloadId] = useState<string | null>(null)
@@ -591,6 +601,14 @@ function App() {
   const readerListeningActiveRef = useRef(false)
   const [todayReaderStats, setTodayReaderStats] = useState<ReaderSessionStats | null>(null)
   const [latestReaderProgress, setLatestReaderProgress] = useState<ReaderProgress | undefined>()
+  const [readerProgressRows, setReaderProgressRows] = useState<ReaderProgress[]>([])
+  const [readerQueueState, setReaderQueueState] = useState<ReaderQueueState>({
+    version: 1,
+    orderedBookIds: [],
+    excludedBookIds: [],
+    updatedAt: '',
+  })
+  const [completedReaderBookId, setCompletedReaderBookId] = useState<string | null>(null)
   const [storyChunkSession, setStoryChunkSession] = useState<StoryChunkSession | null>(null)
   const [storyChunkReceipt, setStoryChunkReceipt] = useState<StoryChunkReceipt | null>(null)
   const [aiStoryMessage, setAiStoryMessage] = useState<string | null>(null)
@@ -644,6 +662,9 @@ function App() {
   const syncedFlashcardCompletionRef = useRef<string | null>(null)
   const dashboardToastKeyRef = useRef<string | null>(null)
   const bookListenStartRef = useRef<(() => void) | null>(null)
+  const readerListeningStartRef = useRef<(() => void) | null>(null)
+  const startReaderPlaylistRef = useRef<(() => Promise<void>) | null>(null)
+  const pendingReaderAutoStartRef = useRef(false)
   // sentenceStreak removed; badge feature dropped
   const [sentencePinyinVisible, setSentencePinyinVisible] = useState(false)
   const [sentenceMenuOpen, setSentenceMenuOpen] = useState(false)
@@ -705,6 +726,8 @@ function App() {
       nextHostedClipPacks,
       nextHostedComicPacks,
       nextAiStorySettings,
+      nextReaderProgressRows,
+      nextReaderQueueState,
     ] = await Promise.all([
       getAllWords(),
       getAllSentences(),
@@ -717,6 +740,8 @@ function App() {
       getHostedClipPackIndex(),
       getHostedComicPackIndex(),
       getAiStorySettings(),
+      getAllReaderProgress(),
+      getReaderQueueState(),
     ])
     setWords(nextWords)
     setSentences(nextSentences)
@@ -728,8 +753,11 @@ function App() {
     setReaderPacks(nextReaderPacks)
     setReaderBooks(nextReaderBooks)
     setLatestReaderProgress(nextLatestReaderProgress)
+    setReaderProgressRows(nextReaderProgressRows)
+    setReaderQueueState(nextReaderQueueState)
     setNewWordsPerDay(nextNewWordsPerDay)
     setUserSettings(nextUserSettings)
+    setReaderShowEnglish(nextUserSettings.readerShowEnglish)
     setHostedClipPacks(nextHostedClipPacks)
     setHostedComicPacks(nextHostedComicPacks)
     setAiStorySettings(nextAiStorySettings)
@@ -811,6 +839,7 @@ function App() {
       setWords(nextWords)
       setHotkeys(nextHotkeys)
       setUserSettings(nextSettings)
+      setReaderShowEnglish(nextSettings.readerShowEnglish)
       setNewWordsPerDay(nextNewWordsPerDay)
 
       if (screen === 'lesson') {
@@ -820,10 +849,17 @@ function App() {
           setAudioClips(nextAudio)
         }
       } else if (screen === 'reader') {
-        const [nextReaderPacks, nextReaderBooks] = await Promise.all([getAllReaderPacks(), getAllReaderBooks()])
+        const [nextReaderPacks, nextReaderBooks, nextProgressRows, nextQueueState] = await Promise.all([
+          getAllReaderPacks(),
+          getAllReaderBooks(),
+          getAllReaderProgress(),
+          getReaderQueueState(),
+        ])
         if (!cancelled) {
           setReaderPacks(nextReaderPacks)
           setReaderBooks(nextReaderBooks)
+          setReaderProgressRows(nextProgressRows)
+          setReaderQueueState(nextQueueState)
           if (startupResume?.readerBookId && nextReaderBooks.some((book) => book.id === startupResume.readerBookId)) {
             setActiveReaderBookId(startupResume.readerBookId)
             setReaderSentenceIndex(startupResume.sentenceIndex ?? 0)
@@ -1114,11 +1150,16 @@ function App() {
     [activeWords, currentReaderSentence],
   )
   const readerComprehensionByBook = useMemo(
-    () =>
-      screen === 'readingTexts' || (screen === 'reader' && !activeReaderBook)
-        ? getCachedReaderComprehensionByBook(readerBooks, activeWords)
-        : new Map<string, ReaderBookComprehension>(),
-    [activeReaderBook, activeWords, readerBooks, screen],
+    () => getCachedReaderComprehensionByBook(readerBooks, activeWords),
+    [activeWords, readerBooks],
+  )
+  const readerKnownPercentByBook = useMemo(
+    () => new Map([...readerComprehensionByBook].map(([bookId, summary]) => [bookId, summary.knownPercent])),
+    [readerComprehensionByBook],
+  )
+  const readerQueue = useMemo(
+    () => buildReaderQueue(readerBooks, readerProgressRows, readerKnownPercentByBook, readerQueueState),
+    [readerBooks, readerKnownPercentByBook, readerProgressRows, readerQueueState],
   )
   const readerResumeLocation = useMemo(
     () => getReaderResumeLocation(latestReaderProgress, readerBooks),
@@ -1490,8 +1531,7 @@ function App() {
     setStudyNowPlan(nextPlan)
     const step = nextPlan.steps[nextIndex]
     if (step.id === 'listening') void startSentenceLesson()
-    else if (step.id === 'reading' && readerResumeLocation) void openReaderBook(readerResumeLocation.book, 'resume')
-    else if (step.id === 'reading') setScreen('readingTexts')
+    else if (step.id === 'reading') void startReaderPlaylistRef.current?.()
   }
 
   async function handleReaderOfflineDownload(book: ReaderBook) {
@@ -1906,6 +1946,8 @@ function App() {
     setStoryChunkSession(null)
     setStoryChunkReceipt(null)
     setReaderRecap(null)
+    setCompletedReaderBookId(null)
+    pendingReaderAutoStartRef.current = true
     readerSessionPromotedRef.current = []
     readerTappedWordIdsRef.current.clear()
     readerCreditedSentenceIdsRef.current.clear()
@@ -1930,7 +1972,10 @@ function App() {
           packId: book.packId,
           bookId: book.id,
           sentenceIndex: 0,
+          completedAt: undefined,
         })
+        const nextProgressRows = await getAllReaderProgress()
+        setReaderProgressRows(nextProgressRows)
         setLatestReaderProgress(await getLatestReaderProgress(readerBooks))
         queueCloudSync()
       }
@@ -2052,6 +2097,7 @@ function App() {
       bookId: activeReaderBook.id,
       sentenceIndex: nextIndex,
     })
+    setReaderProgressRows(await getAllReaderProgress())
     setLatestReaderProgress(await getLatestReaderProgress(readerBooks))
     queueCloudSync()
     const nextSentence = readerSentences[nextIndex]
@@ -2081,22 +2127,131 @@ function App() {
     sentenceQueueOffset,
   ])
 
+  const handleReaderBookComplete = useCallback(async () => {
+    if (!activeReaderBook || readerSentences.length === 0) return
+    const completedAt = new Date().toISOString()
+    await saveReaderProgress({
+      packId: activeReaderBook.packId,
+      bookId: activeReaderBook.id,
+      sentenceIndex: readerSentences.length - 1,
+      completedAt,
+    })
+    if (activeReaderSession) {
+      await updateReaderSession({
+        ...activeReaderSession,
+        endedAt: completedAt,
+        updatedAt: completedAt,
+      })
+      setActiveReaderSession(null)
+    }
+    const nextProgressRows = await getAllReaderProgress()
+    setReaderProgressRows(nextProgressRows)
+    setLatestReaderProgress(await getLatestReaderProgress(readerBooks))
+    setCompletedReaderBookId(activeReaderBook.id)
+    queueCloudSync()
+    playGentleCelebration()
+  }, [activeReaderBook, activeReaderSession, queueCloudSync, readerBooks, readerSentences.length])
+
   const readerListening = useReaderListeningController({
     sentence: currentReaderSentence,
     sentenceIndex: readerSentenceIndex,
     sentenceCount: readerSentences.length,
     rate: userSettings.readerListeningRate,
     repeatCount: userSettings.readerListeningRepeats,
+    pauseFactor: userSettings.readerListeningPauseFactor,
     autoAdvance: userSettings.readerListeningAutoAdvance,
     mediaSessionEnabled: screen === 'reader',
     onNext: () => moveReaderSentence(1),
     onPrevious: () => moveReaderSentence(-1),
+    onComplete: handleReaderBookComplete,
   })
+  readerListeningStartRef.current = readerListening.startListening
+
+  useEffect(() => {
+    if (screen !== 'reader' || !currentReaderSentence || !pendingReaderAutoStartRef.current) return
+    pendingReaderAutoStartRef.current = false
+    const timer = window.setTimeout(() => readerListeningStartRef.current?.(), 50)
+    return () => window.clearTimeout(timer)
+  }, [activeReaderBookId, currentReaderSentence, screen])
   const readerListeningActive = readerListening.active
   const stopReaderListening = readerListening.stop
   useEffect(() => {
     readerListeningActiveRef.current = readerListeningActive
   }, [readerListeningActive])
+
+  const startReaderPlaylist = useCallback(async () => {
+    let books = readerBooks
+    if (books.length === 0) {
+      await seedReaderBooksIfEmpty()
+      const [nextPacks, nextBooks] = await Promise.all([getAllReaderPacks(), getAllReaderBooks()])
+      books = nextBooks
+      setReaderPacks(nextPacks)
+      setReaderBooks(nextBooks)
+    }
+    const [progressRows, queueState] = await Promise.all([getAllReaderProgress(), getReaderQueueState()])
+    const comprehension = getCachedReaderComprehensionByBook(books, activeWords)
+    const knownPercent = new Map([...comprehension].map(([bookId, summary]) => [bookId, summary.knownPercent]))
+    const queue = promoteLatestReaderBook(
+      buildReaderQueue(books, progressRows, knownPercent, queueState),
+      progressRows,
+    )
+    setReaderProgressRows(progressRows)
+    setReaderQueueState(queueState)
+    if (queue.length === 0) {
+      setScreen('readingTexts')
+      return
+    }
+    if (queue[0]?.id !== queueState.orderedBookIds[0]) {
+      const saved = await saveReaderQueueState({
+        orderedBookIds: queue.map((book) => book.id),
+        excludedBookIds: queueState.excludedBookIds,
+      })
+      setReaderQueueState(saved)
+    }
+    await openReaderBook(queue[0], 'resume')
+  }, [activeWords, openReaderBook, readerBooks])
+  startReaderPlaylistRef.current = startReaderPlaylist
+
+  const moveReaderQueueBook = useCallback(async (bookId: string, delta: -1 | 1) => {
+    const saved = await saveReaderQueueState({
+      orderedBookIds: reorderReaderQueue(readerQueue, bookId, delta),
+      excludedBookIds: readerQueueState.excludedBookIds,
+    })
+    setReaderQueueState(saved)
+  }, [readerQueue, readerQueueState.excludedBookIds])
+
+  const removeReaderQueueBook = useCallback(async (bookId: string) => {
+    const saved = await saveReaderQueueState({
+      orderedBookIds: readerQueueState.orderedBookIds.filter((id) => id !== bookId),
+      excludedBookIds: [...new Set([...readerQueueState.excludedBookIds, bookId])],
+    })
+    setReaderQueueState(saved)
+  }, [readerQueueState.excludedBookIds, readerQueueState.orderedBookIds])
+
+  const addReaderQueueBook = useCallback(async (bookId: string) => {
+    const saved = await saveReaderQueueState({
+      orderedBookIds: [...readerQueue.map((book) => book.id), bookId],
+      excludedBookIds: readerQueueState.excludedBookIds.filter((id) => id !== bookId),
+    })
+    setReaderQueueState(saved)
+  }, [readerQueue, readerQueueState.excludedBookIds])
+
+  const resetReaderQueue = useCallback(async () => {
+    const saved = await saveReaderQueueState({ orderedBookIds: [], excludedBookIds: [] })
+    setReaderQueueState(saved)
+  }, [])
+
+  const toggleReaderEnglish = useCallback(() => {
+    setReaderShowEnglish((current) => {
+      const readerShowEnglish = !current
+      setUserSettings((settings) => {
+        const next = { ...settings, readerShowEnglish }
+        void saveUserSettings(next)
+        return next
+      })
+      return readerShowEnglish
+    })
+  }, [])
 
   // Close out the reading session: credit the sentence currently on screen,
   // stamp endedAt, and show a recap when the session had real activity.
@@ -2145,6 +2300,7 @@ function App() {
     sentenceCount: bookListenSentences.length,
     rate: userSettings.readerListeningRate,
     repeatCount: userSettings.readerListeningRepeats,
+    pauseFactor: userSettings.readerListeningPauseFactor,
     autoAdvance: true,
     mediaSessionEnabled: screen === 'lesson' && sentenceSubMode === 'books',
     onNext: bookListenAdvance,
@@ -2513,10 +2669,16 @@ function App() {
           readerListening.playSentenceOnce()
         } else if (mappedIndex === 0) {
           event.preventDefault()
-          setReaderShowEnglish((value) => !value)
+          readerListening.startListening()
         } else if (mappedIndex === 1) {
           event.preventDefault()
           void moveReaderSentence(1)
+        } else if (mappedIndex === 2) {
+          event.preventDefault()
+          void moveReaderSentence(-1)
+        } else if (mappedIndex === 3) {
+          event.preventDefault()
+          toggleReaderEnglish()
         }
         return
       }
@@ -2526,7 +2688,7 @@ function App() {
           startSavedFlashcards()
         } else if (mappedIndex === 1) {
           event.preventDefault()
-          setScreen('readingTexts')
+          void startReaderPlaylistRef.current?.()
         } else if (mappedIndex === 2) {
           event.preventDefault()
           startModeLessonRef.current?.('listeningMode')
@@ -2655,6 +2817,7 @@ function App() {
     startSavedFlashcards,
     studyMode,
     togglePlayback,
+    toggleReaderEnglish,
   ])
 
   async function toggleFullscreen() {
@@ -3310,7 +3473,9 @@ function App() {
     | 'readerLineHeight'
     | 'readerListeningRate'
     | 'readerListeningRepeats'
+    | 'readerListeningPauseFactor'
     | 'readerListeningAutoAdvance'
+    | 'readerShowEnglish'
     | 'readerStatusHighlight'
   >>) {
     const next = { ...userSettings, ...patch }
@@ -3440,7 +3605,7 @@ function App() {
               value={todayReaderStats?.todayPagesRead ?? 0}
               goal={userSettings.readingGoalPages}
               unit="pages"
-              onClick={() => setScreen('readingTexts')}
+              onClick={() => void startReaderPlaylistRef.current?.()}
             />
           </div>
 
@@ -3484,7 +3649,7 @@ function App() {
               </span>
               <span className="mode-start-arrow" aria-hidden="true">→</span>
             </button>
-            <button className="mode-start dashboard-mode-card reading-texts-start" type="button" onClick={() => setScreen('readingTexts')}>
+            <button className="mode-start dashboard-mode-card reading-texts-start" type="button" onClick={() => void startReaderPlaylistRef.current?.()}>
               <span className="mode-start-logo" aria-hidden="true">
                 <span className="nav-icon nav-reading" />
               </span>
@@ -3604,7 +3769,7 @@ function App() {
                   <EmptyPanelPrompt
                     message="Read for a few minutes to start your speed trend."
                     actionLabel="Open reading"
-                    onAction={() => setScreen('readingTexts')}
+                    onAction={() => void startReaderPlaylistRef.current?.()}
                   />
                 )}
               </InfoPanel>
@@ -3729,7 +3894,7 @@ function App() {
         <button
           type="button"
           className={['readingTexts', 'reader', 'comicReader', 'visualNovel', 'renpyPrototype'].includes(screen) ? 'active' : ''}
-          onClick={() => setScreen('readingTexts')}
+          onClick={() => void startReaderPlaylistRef.current?.()}
           aria-label="Reading"
           title="Reading"
         >
@@ -3950,8 +4115,30 @@ function App() {
           listening={readerListening}
           listeningRate={userSettings.readerListeningRate}
           listeningRepeats={userSettings.readerListeningRepeats}
+          listeningPauseFactor={userSettings.readerListeningPauseFactor}
           listeningAutoAdvance={userSettings.readerListeningAutoAdvance}
           statusHighlight={userSettings.readerStatusHighlight}
+          readerQueue={readerQueue}
+          excludedQueueBooks={readerBooks.filter((book) => readerQueueState.excludedBookIds.includes(book.id) && !readerProgressRows.find((row) => row.bookId === book.id)?.completedAt)}
+          completedBook={completedReaderBookId === activeReaderBook?.id ? activeReaderBook : undefined}
+          onContinueQueue={() => {
+            const nextBook = readerQueue[0]
+            if (!nextBook) {
+              setScreen('readingTexts')
+              return
+            }
+            readerListening.stop()
+            void openReaderBook(nextBook, 'resume')
+          }}
+          onReplayBook={() => {
+            if (!activeReaderBook) return
+            readerListening.stop()
+            void openReaderBook(activeReaderBook, 'start')
+          }}
+          onMoveQueueBook={(bookId, delta) => void moveReaderQueueBook(bookId, delta)}
+          onRemoveQueueBook={(bookId) => void removeReaderQueueBook(bookId)}
+          onAddQueueBook={(bookId) => void addReaderQueueBook(bookId)}
+          onResetQueue={() => void resetReaderQueue()}
           onChooseBook={openReaderBook}
           onOpenLibrary={() => {
             void endReaderSession()
@@ -3996,7 +4183,7 @@ function App() {
           }}
           onToggleEnglish={() => {
             recordReaderInteraction()
-            setReaderShowEnglish((value) => !value)
+            toggleReaderEnglish()
           }}
           readerDictionaryEntry={readerDictionaryEntry}
         />
@@ -5146,6 +5333,17 @@ function App() {
                                         options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}×` }))}
                                         onChange={value => { void saveReaderSettings({ readerListeningRepeats: value }) }}
                                       />
+                                      <StudyMenuSelect
+                                        label="Speak pause"
+                                        value={userSettings.readerListeningPauseFactor}
+                                        options={[
+                                          { value: 0, label: 'Off' },
+                                          { value: 0.5, label: 'Short (½× sentence)' },
+                                          { value: 1, label: 'Normal (1× sentence)' },
+                                          { value: 1.5, label: 'Long (1½× sentence)' },
+                                        ]}
+                                        onChange={value => { void saveReaderSettings({ readerListeningPauseFactor: value }) }}
+                                      />
                                     </StudyMenuSection>
                                   </StudyMenuPopup>
                                 </div>
@@ -6273,27 +6471,6 @@ function readerBookAssetUrl(book: ReaderBook, path: string): string {
   return `${base.replace(/\/$/u, '')}/reader-packs/${book.packId}/${path.replace(/^\//u, '')}`
 }
 
-type ReadingBookCategory = 'novel' | 'story'
-
-// Which shelf each book lands on. Edit these to recategorize.
-// Per-pack default; override an individual book by its id in READING_BOOK_CATEGORY.
-const READING_PACK_CATEGORY: Record<string, ReadingBookCategory> = {
-  [GENERATED_STORIES_PACK_ID]: 'story',
-  'lms-books': 'novel',
-  'sherlock-holmes': 'novel',
-  'rise-of-the-monkey-king': 'novel',
-  'just-friends': 'novel',
-  'can-i-dance': 'novel',
-  'john-gospel': 'novel',
-}
-const READING_BOOK_CATEGORY: Record<string, ReadingBookCategory> = {
-  // 'some-book-id': 'story',
-}
-
-function readingBookCategory(book: ReaderBook): ReadingBookCategory {
-  return READING_BOOK_CATEGORY[book.id] ?? READING_PACK_CATEGORY[book.packId] ?? 'novel'
-}
-
 type ReadingCategoryView = null | 'novels' | 'stories' | 'comics' | 'visualNovels'
 
 function ReadingTextsLibrary({
@@ -7041,8 +7218,18 @@ function ReaderMode({
   listening,
   listeningRate,
   listeningRepeats,
+  listeningPauseFactor,
   listeningAutoAdvance,
   statusHighlight,
+  readerQueue,
+  excludedQueueBooks,
+  completedBook,
+  onContinueQueue,
+  onReplayBook,
+  onMoveQueueBook,
+  onRemoveQueueBook,
+  onAddQueueBook,
+  onResetQueue,
   onChooseBook,
   onOpenLibrary,
   onResume,
@@ -7082,8 +7269,18 @@ function ReaderMode({
   listening: ReaderListeningController
   listeningRate: number
   listeningRepeats: number
+  listeningPauseFactor: number
   listeningAutoAdvance: boolean
   statusHighlight: boolean
+  readerQueue: ReaderBook[]
+  excludedQueueBooks: ReaderBook[]
+  completedBook?: ReaderBook
+  onContinueQueue: () => void
+  onReplayBook: () => void
+  onMoveQueueBook: (bookId: string, delta: -1 | 1) => void
+  onRemoveQueueBook: (bookId: string) => void
+  onAddQueueBook: (bookId: string) => void
+  onResetQueue: () => void
   onChooseBook: (book: ReaderBook, action?: 'resume' | 'start') => void | Promise<void>
   onOpenLibrary: () => void
   onResume: () => void
@@ -7091,7 +7288,7 @@ function ReaderMode({
   onNext: () => void | Promise<void>
   onListeningSettingsChange: (patch: Partial<Pick<
     UserSettings,
-    'readerListeningRate' | 'readerListeningRepeats' | 'readerListeningAutoAdvance' | 'readerStatusHighlight'
+    'readerListeningRate' | 'readerListeningRepeats' | 'readerListeningPauseFactor' | 'readerListeningAutoAdvance' | 'readerStatusHighlight'
   >>) => void
   onStartStoryChunk: () => void
   onDismissStoryChunkReceipt: () => void
@@ -7122,7 +7319,7 @@ function ReaderMode({
         setReaderBouncing(true)
         setTimeout(() => setReaderBouncing(false), 600)
         if (listening.active) listening.togglePlayPause()
-        else listening.playSentenceOnce()
+        else listening.startListening()
       } else if (dir === 'left' && sentenceIndex < sentenceCount - 1) {
         setGrammarSelection(null)
         readerSwipe.dismiss('left')
@@ -7142,7 +7339,8 @@ function ReaderMode({
   })
 
   const listeningPlaying =
-    listening.snapshot.status === 'playing' || listening.snapshot.status === 'loading'
+    ['playing', 'loading', 'shadowing'].includes(listening.snapshot.status)
+  const listeningShadowing = listening.snapshot.status === 'shadowing'
 
   const illustration = activeBook ? getReaderIllustration(activeBook, sentenceIndex) : undefined
   const illustrationSrc = illustration ? publicAssetPath(illustration.imageFilename) : ''
@@ -7164,7 +7362,7 @@ function ReaderMode({
   )
 
   return (
-    <section className={`screen reader-screen reader-theme-${readerTheme}`}>
+    <section className={`screen reader-screen reader-playlist-screen reader-theme-${readerTheme}`}>
       {!(activeBook && sentence) && (
         <div className="screen-heading compact">
           <div>
@@ -7284,6 +7482,27 @@ function ReaderMode({
               <div className="reader-progress-bar" aria-label={`Story progress ${readerProgressPercent(sentenceIndex, sentenceCount)}%`}>
                 <span style={{ width: `${readerProgressPercent(sentenceIndex, sentenceCount)}%` }} />
               </div>
+              {completedBook && (
+                <section className="reader-book-complete" aria-live="polite">
+                  <span className="reader-complete-mark" aria-hidden="true">✓</span>
+                  <small>Book complete</small>
+                  <h2>{completedBook.title}</h2>
+                  <p>
+                    {readerQueue[0]
+                      ? `Up next: ${readerQueue[0].title}`
+                      : 'Your reading queue is complete.'}
+                  </p>
+                  <div className="reader-complete-actions">
+                    {readerQueue[0] && (
+                      <button type="button" className="primary" onClick={onContinueQueue}>
+                        Continue to next book
+                      </button>
+                    )}
+                    <button type="button" onClick={onReplayBook}>Read again</button>
+                    <button type="button" onClick={onOpenLibrary}>Library</button>
+                  </div>
+                </section>
+              )}
               {sessionRecap ? (
                 <section className="story-chunk-receipt" aria-live="polite">
                   <div className="story-chunk-receipt-summary">
@@ -7349,13 +7568,18 @@ function ReaderMode({
                     ref={readerSwipe.cardRef}
                     className={`reader-reading-area card-enter${listening.active ? ' reader-listening-highlight' : ''}${readerSwipe.dismissClass ? ` ${readerSwipe.dismissClass}` : ''}`}
                   >
+                    {listeningShadowing && (
+                      <div className="reader-shadowing-cue" aria-live="polite">
+                        Your turn · speak it aloud
+                      </div>
+                    )}
                     {illustration && (
                       <figure className="reader-illustration">
                         <img
                           key={illustration.imageFilename}
                           src={illustrationSrc}
                           alt={illustration.alt}
-                          loading="lazy"
+                          loading="eager"
                           onError={(event) => {
                             if (!fallbackIllustrationSrc) return
                             const image = event.currentTarget
@@ -7438,11 +7662,45 @@ function ReaderMode({
                         options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}×` }))}
                         onChange={value => onListeningSettingsChange({ readerListeningRepeats: value })}
                       />
+                      <StudyMenuSelect
+                        label="Speak pause"
+                        value={listeningPauseFactor}
+                        options={[
+                          { value: 0, label: 'Off' },
+                          { value: 0.5, label: 'Short (½× sentence)' },
+                          { value: 1, label: 'Normal (1× sentence)' },
+                          { value: 1.5, label: 'Long (1½× sentence)' },
+                        ]}
+                        onChange={value => onListeningSettingsChange({ readerListeningPauseFactor: value })}
+                      />
                       <StudyMenuToggle
                         label="Auto-advance"
                         checked={listeningAutoAdvance}
                         onChange={checked => onListeningSettingsChange({ readerListeningAutoAdvance: checked })}
                       />
+                    </StudyMenuSection>
+                    <StudyMenuSection label={`Queue · ${readerQueue.length} books`}>
+                      <div className="reader-queue-list">
+                        {readerQueue.map((book, index) => (
+                          <div className={`reader-queue-row${book.id === activeBook?.id ? ' active' : ''}`} key={book.id}>
+                            <span>
+                              <small>{book.id === activeBook?.id ? 'Now playing' : index === 0 ? 'Up next' : `#${index + 1}`}</small>
+                              <strong>{book.title}</strong>
+                            </span>
+                            <div>
+                              <button type="button" disabled={index === 0} onClick={() => onMoveQueueBook(book.id, -1)} aria-label={`Move ${book.title} up`}>↑</button>
+                              <button type="button" disabled={index === readerQueue.length - 1} onClick={() => onMoveQueueBook(book.id, 1)} aria-label={`Move ${book.title} down`}>↓</button>
+                              <button type="button" disabled={book.id === activeBook?.id} onClick={() => onRemoveQueueBook(book.id)} aria-label={`Remove ${book.title} from queue`}>×</button>
+                            </div>
+                          </div>
+                        ))}
+                        {excludedQueueBooks.map((book) => (
+                          <button type="button" className="reader-queue-add" key={book.id} onClick={() => onAddQueueBook(book.id)}>
+                            Add {book.title}
+                          </button>
+                        ))}
+                        <button type="button" className="reader-queue-reset" onClick={onResetQueue}>Reset to automatic</button>
+                      </div>
                     </StudyMenuSection>
                     <p className="sentence-menu-label">Session</p>
                     <div className="sentence-menu-modes">
@@ -7527,7 +7785,7 @@ function ReaderMode({
                     playing={listeningPlaying}
                     onTogglePlay={() => {
                       if (listening.active) listening.togglePlayPause()
-                      else listening.playSentenceOnce()
+                      else listening.startListening()
                     }}
                     onPrevious={() => { setGrammarSelection(null); void onPrevious() }}
                     onNext={() => { setGrammarSelection(null); triggerNextGlow(); void onNext() }}

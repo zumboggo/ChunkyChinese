@@ -74,7 +74,9 @@ export interface UserSettings {
   readerLineHeight: number
   readerListeningRate: number
   readerListeningRepeats: number
+  readerListeningPauseFactor: number
   readerListeningAutoAdvance: boolean
+  readerShowEnglish: boolean
   readerStatusHighlight: boolean
   sentenceRepeats: number
   sentenceIncludeEnglish: boolean
@@ -216,6 +218,14 @@ export interface ReaderProgress {
   packId: string
   bookId: string
   sentenceIndex: number
+  completedAt?: string
+  updatedAt: string
+}
+
+export interface ReaderQueueState {
+  version: 1
+  orderedBookIds: string[]
+  excludedBookIds: string[]
   updatedAt: string
 }
 

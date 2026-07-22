@@ -9,8 +9,11 @@ describe('reader listening settings', () => {
     })
     expect(cleaned).toBe(true)
     expect(settings.readerListeningRate).toBe(0.8)
-    expect(settings.readerListeningRepeats).toBe(2)
+    expect(settings.readerListeningRepeats).toBe(3)
+    expect(settings.readerListeningPauseFactor).toBe(1)
     expect(settings.readerListeningAutoAdvance).toBe(true)
+    expect(settings.readerPinyinMode).toBe('adaptive')
+    expect(settings.readerShowEnglish).toBe(true)
     expect(settings.selectedFlashcardDeckIds).toEqual(['all'])
   })
 
@@ -22,5 +25,19 @@ describe('reader listening settings', () => {
     })
     expect(settings.readerListeningRate).toBe(1.2)
     expect(settings.readerListeningRepeats).toBe(5)
+  })
+
+  it('preserves Reader choices after the one-time playlist migration', () => {
+    const { settings } = sanitizeUserSettings({
+      ...DEFAULT_USER_SETTINGS,
+      readerPinyinMode: 'none',
+      readerListeningRepeats: 4,
+      readerListeningPauseFactor: 1.5,
+      readerShowEnglish: false,
+    })
+    expect(settings.readerPinyinMode).toBe('none')
+    expect(settings.readerListeningRepeats).toBe(4)
+    expect(settings.readerListeningPauseFactor).toBe(1.5)
+    expect(settings.readerShowEnglish).toBe(false)
   })
 })

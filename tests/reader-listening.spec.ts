@@ -13,6 +13,9 @@ test('Reader Listening Mode is stable and phone-friendly', async ({ page }, test
   await expect(page.getByRole('button', { name: 'Go to dashboard' })).toBeVisible()
 
   await page.locator('.dashboard-mode-card.reading-texts-start').click()
+  await expect(page.locator('.reader-page-meta')).toContainText('Sentence 1 /')
+  await page.getByRole('button', { name: 'Reader menu' }).click()
+  await page.getByRole('button', { name: 'Back to library' }).click()
   await page.getByRole('button', { name: /^Novels/ }).click()
 
   const firstBook = page.locator('.reading-library-book').first()
@@ -25,7 +28,7 @@ test('Reader Listening Mode is stable and phone-friendly', async ({ page }, test
   await page.getByRole('button', { name: 'Reader menu' }).click()
   await page.getByLabel('Speed').selectOption('0.9')
   await page.getByLabel('Repeats').selectOption('3')
-  await page.getByRole('button', { name: 'Listen from sentence 1' }).click()
+  await page.locator('.sentence-menu-backdrop').click({ position: { x: 5, y: 5 } })
 
   await expect(page.locator('.reader-listening-controls')).toBeVisible()
   await expect(page.locator('.reader-translation')).toHaveClass(/revealed/)

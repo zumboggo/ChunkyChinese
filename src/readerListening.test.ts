@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { isCredibleSpeechCompletion, nextReaderListeningCompletion } from './readerListening'
+import { isCredibleSpeechCompletion, nextReaderListeningCompletion, readerShadowPauseMs } from './readerListening'
 
 describe('reader listening completion', () => {
   it('repeats until the configured count is reached', () => {
@@ -52,5 +52,11 @@ describe('reader listening completion', () => {
   it('rejects instant speech-synthesis completions that indicate unavailable TTS', () => {
     expect(isCredibleSpeechCompletion(1000, 1100)).toBe(false)
     expect(isCredibleSpeechCompletion(1000, 1400)).toBe(true)
+  })
+
+  it('uses the spoken sentence duration for the shadowing pause', () => {
+    expect(readerShadowPauseMs(2400, 1)).toBe(2400)
+    expect(readerShadowPauseMs(2400, 1.5)).toBe(3600)
+    expect(readerShadowPauseMs(2400, 0)).toBe(0)
   })
 })

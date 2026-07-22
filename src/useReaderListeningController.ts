@@ -4,6 +4,7 @@ import {
   IDLE_READER_LISTENING_SNAPSHOT,
   isCredibleSpeechCompletion,
   nextReaderListeningCompletion,
+  readerShadowPauseMs,
   type ReaderListeningMode,
   type ReaderListeningSnapshot,
 } from './readerListening'
@@ -33,10 +34,12 @@ interface ReaderListeningControllerOptions {
   sentenceCount: number
   rate: number
   repeatCount: number
+  pauseFactor: number
   autoAdvance: boolean
   mediaSessionEnabled: boolean
   onNext: () => void | Promise<void>
   onPrevious: () => void | Promise<void>
+  onComplete?: () => void | Promise<void>
 }
 
 export interface ReaderListeningController {
@@ -58,10 +61,12 @@ export function useReaderListeningController({
   sentenceCount,
   rate,
   repeatCount,
+  pauseFactor,
   autoAdvance,
   mediaSessionEnabled,
   onNext,
   onPrevious,
+  onComplete,
 }: ReaderListeningControllerOptions): ReaderListeningController {
   const [snapshot, setSnapshot] = useState<ReaderListeningSnapshot>(IDLE_READER_LISTENING_SNAPSHOT)
   const snapshotRef = useRef(snapshot)
@@ -70,15 +75,20 @@ export function useReaderListeningController({
   const sentenceCountRef = useRef(sentenceCount)
   const rateRef = useRef(rate)
   const repeatCountRef = useRef(repeatCount)
+  const pauseFactorRef = useRef(pauseFactor)
   const autoAdvanceRef = useRef(autoAdvance)
   const onNextRef = useRef(onNext)
   const onPreviousRef = useRef(onPrevious)
+  const onCompleteRef = useRef(onComplete)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const audioUrlRef = useRef<string | null>(null)
   const audioSentenceIdRef = useRef<string | null>(null)
   const runTokenRef = useRef(0)
   const lastSentenceIdRef = useRef(sentence?.id)
   const playCurrentRef = useRef<(restart: boolean) => void>(() => undefined)
+  const shadowTimerRef = useRef<number | null>(null)
+  const shadowDeadlineRef = useRef(0)
+  const shadowTokenRef = useRef(0)
 
   useEffect(() => {
     sentenceRef.current = sentence
@@ -86,13 +96,17 @@ export function useReaderListeningController({
     sentenceCountRef.current = sentenceCount
     rateRef.current = rate
     repeatCountRef.current = repeatCount
+    pauseFactorRef.current = pauseFactor
     autoAdvanceRef.current = autoAdvance
     onNextRef.current = onNext
     onPreviousRef.current = onPrevious
+    onCompleteRef.current = onComplete
   }, [
     autoAdvance,
     onNext,
     onPrevious,
+    onComplete,
+    pauseFactor,
     rate,
     repeatCount,
     sentence,
@@ -110,6 +124,12 @@ export function useReaderListeningController({
 
   const setMediaPlaybackState = useCallback((state: MediaSessionPlaybackState) => {
     if ('mediaSession' in navigator) navigator.mediaSession.playbackState = state
+  }, [])
+
+  const clearShadowTimer = useCallback(() => {
+    if (shadowTimerRef.current !== null) window.clearTimeout(shadowTimerRef.current)
+    shadowTimerRef.current = null
+    shadowDeadlineRef.current = 0
   }, [])
 
   const discardAudio = useCallback(() => {
@@ -141,6 +161,7 @@ export function useReaderListeningController({
   }, [])
 
   const invalidatePlayback = useCallback((discard = false) => {
+    clearShadowTimer()
     runTokenRef.current += 1
     window.speechSynthesis?.cancel()
     const audio = audioRef.current
@@ -151,7 +172,7 @@ export function useReaderListeningController({
     }
     if (discard) discardAudio()
     setMediaPlaybackState('paused')
-  }, [discardAudio, setMediaPlaybackState])
+  }, [clearShadowTimer, discardAudio, setMediaPlaybackState])
 
   const finishRepetition = useCallback(async (token: number) => {
     if (runTokenRef.current !== token) return
@@ -168,6 +189,8 @@ export function useReaderListeningController({
         ...current,
         status: 'loading',
         repeatNumber: completion.repeatNumber,
+        phase: 'audio',
+        shadowRemainingMs: 0,
       })
       playCurrentRef.current(true)
       return
@@ -177,6 +200,8 @@ export function useReaderListeningController({
         ...current,
         status: 'loading',
         repeatNumber: 1,
+        phase: 'audio',
+        shadowRemainingMs: 0,
       })
       await onNextRef.current()
       return
@@ -184,9 +209,43 @@ export function useReaderListeningController({
     updateSnapshot({
       ...current,
       status: 'completed',
+      shadowRemainingMs: 0,
     })
     setMediaPlaybackState('paused')
+    if (sentenceIndexRef.current >= sentenceCountRef.current - 1) {
+      await onCompleteRef.current?.()
+    }
   }, [setMediaPlaybackState, updateSnapshot])
+
+  const finishShadowPause = useCallback((token: number) => {
+    if (runTokenRef.current !== token) return
+    clearShadowTimer()
+    void finishRepetition(token)
+  }, [clearShadowTimer, finishRepetition])
+
+  const scheduleShadowPause = useCallback((token: number, durationMs: number) => {
+    clearShadowTimer()
+    const remainingMs = Math.max(0, Math.round(durationMs))
+    if (remainingMs === 0) {
+      void finishRepetition(token)
+      return
+    }
+    shadowTokenRef.current = token
+    shadowDeadlineRef.current = Date.now() + remainingMs
+    updateSnapshot((current) => ({
+      ...current,
+      status: 'shadowing',
+      phase: 'shadowing',
+      shadowRemainingMs: remainingMs,
+    }))
+    setMediaPlaybackState('playing')
+    shadowTimerRef.current = window.setTimeout(() => finishShadowPause(token), remainingMs)
+  }, [clearShadowTimer, finishRepetition, finishShadowPause, setMediaPlaybackState, updateSnapshot])
+
+  const finishAudioPlayback = useCallback((token: number, spokenDurationMs: number) => {
+    if (runTokenRef.current !== token) return
+    scheduleShadowPause(token, readerShadowPauseMs(spokenDurationMs, pauseFactorRef.current))
+  }, [scheduleShadowPause])
 
   const failPlayback = useCallback((token: number) => {
     if (runTokenRef.current !== token) return
@@ -213,14 +272,14 @@ export function useReaderListeningController({
     }
     utterance.onend = () => {
       if (isCredibleSpeechCompletion(startedAt, Date.now())) {
-        void finishRepetition(token)
+        finishAudioPlayback(token, Date.now() - startedAt)
       } else {
         failPlayback(token)
       }
     }
     utterance.onerror = () => failPlayback(token)
     window.speechSynthesis.speak(utterance)
-  }, [discardAudio, failPlayback, finishRepetition, setMediaPlaybackState, updateSnapshot])
+  }, [discardAudio, failPlayback, finishAudioPlayback, setMediaPlaybackState, updateSnapshot])
 
   const playCurrent = useCallback(async (restart: boolean) => {
     const currentSentence = sentenceRef.current
@@ -256,7 +315,12 @@ export function useReaderListeningController({
       audio,
       rateRef.current,
       restart,
-      () => void finishRepetition(token),
+      () => {
+        const spokenMs = Number.isFinite(audio.duration)
+          ? (audio.duration / Math.max(0.1, rateRef.current)) * 1000
+          : 0
+        finishAudioPlayback(token, spokenMs)
+      },
       () => {
         if (runTokenRef.current !== token) return
         playWithSpeechSynthesis(currentSentence.chinese, token)
@@ -275,7 +339,7 @@ export function useReaderListeningController({
     }
   }, [
     clearAudioSource,
-    finishRepetition,
+    finishAudioPlayback,
     playWithSpeechSynthesis,
     setMediaPlaybackState,
     updateSnapshot,
@@ -295,24 +359,42 @@ export function useReaderListeningController({
       mode,
       repeatNumber: 1,
       source: null,
+      phase: 'audio',
+      shadowRemainingMs: 0,
     })
     void playCurrent(true)
   }, [invalidatePlayback, playCurrent, updateSnapshot])
 
   const pause = useCallback(() => {
+    if (snapshotRef.current.status === 'shadowing') {
+      const remainingMs = Math.max(0, shadowDeadlineRef.current - Date.now())
+      clearShadowTimer()
+      updateSnapshot((current) => ({
+        ...current,
+        status: 'paused',
+        phase: 'shadowing',
+        shadowRemainingMs: remainingMs,
+      }))
+      setMediaPlaybackState('paused')
+      return
+    }
     if (!['loading', 'playing'].includes(snapshotRef.current.status)) return
     invalidatePlayback(false)
-    updateSnapshot((current) => ({ ...current, status: 'paused' }))
-  }, [invalidatePlayback, updateSnapshot])
+    updateSnapshot((current) => ({ ...current, status: 'paused', phase: 'audio' }))
+  }, [clearShadowTimer, invalidatePlayback, setMediaPlaybackState, updateSnapshot])
 
   const resume = useCallback(() => {
     if (!['paused', 'completed'].includes(snapshotRef.current.status)) return
+    if (snapshotRef.current.status === 'paused' && snapshotRef.current.phase === 'shadowing') {
+      scheduleShadowPause(shadowTokenRef.current, snapshotRef.current.shadowRemainingMs)
+      return
+    }
     const restart = snapshotRef.current.source !== 'audio' || snapshotRef.current.status === 'completed'
     if (snapshotRef.current.status === 'completed') {
       updateSnapshot((current) => ({ ...current, repeatNumber: 1 }))
     }
     void playCurrent(restart)
-  }, [playCurrent, updateSnapshot])
+  }, [playCurrent, scheduleShadowPause, updateSnapshot])
 
   const stop = useCallback(() => {
     invalidatePlayback(true)
@@ -328,6 +410,8 @@ export function useReaderListeningController({
         status: 'loading',
         repeatNumber: 1,
         source: null,
+        phase: 'audio',
+        shadowRemainingMs: 0,
       }))
     }
     await (direction === 'next' ? onNextRef.current() : onPreviousRef.current())
@@ -337,6 +421,7 @@ export function useReaderListeningController({
     const nextSentenceId = sentence?.id
     if (lastSentenceIdRef.current === nextSentenceId) return
     lastSentenceIdRef.current = nextSentenceId
+    clearShadowTimer()
     clearAudioSource()
     if (snapshotRef.current.status === 'idle' || !nextSentenceId) return
     updateSnapshot((current) => ({
@@ -344,9 +429,11 @@ export function useReaderListeningController({
       status: 'loading',
       repeatNumber: 1,
       source: null,
+      phase: 'audio',
+      shadowRemainingMs: 0,
     }))
     void playCurrent(true)
-  }, [clearAudioSource, playCurrent, sentence?.id, updateSnapshot])
+  }, [clearAudioSource, clearShadowTimer, playCurrent, sentence?.id, updateSnapshot])
 
   useEffect(() => {
     const audio = audioRef.current
@@ -387,8 +474,9 @@ export function useReaderListeningController({
   useEffect(() => () => {
     runTokenRef.current += 1
     window.speechSynthesis?.cancel()
+    clearShadowTimer()
     discardAudio()
-  }, [discardAudio])
+  }, [clearShadowTimer, discardAudio])
 
   return {
     snapshot,
@@ -397,7 +485,7 @@ export function useReaderListeningController({
     playSentenceOnce: () => start('single'),
     pause,
     resume,
-    togglePlayPause: snapshot.status === 'playing' || snapshot.status === 'loading' ? pause : resume,
+    togglePlayPause: ['playing', 'loading', 'shadowing'].includes(snapshot.status) ? pause : resume,
     next: () => navigate('next'),
     previous: () => navigate('previous'),
     stop,

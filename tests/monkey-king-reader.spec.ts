@@ -7,6 +7,8 @@ test('Rise of the Monkey King appears as a bilingual novel', async ({ page }) =>
   await expect(page.getByRole('button', { name: 'Go to dashboard' })).toBeVisible()
 
   await page.locator('.dashboard-mode-card.reading-texts-start').click()
+  await page.getByRole('button', { name: 'Reader menu' }).click()
+  await page.getByRole('button', { name: 'Back to library' }).click()
   await page.getByRole('button', { name: /^Novels/ }).click()
 
   const monkeyKingCard = page.locator('.reading-library-book', {
@@ -21,5 +23,5 @@ test('Rise of the Monkey King appears as a bilingual novel', async ({ page }) =>
   await expect(page.locator('.reader-translation')).toContainText(
     'My dear child, I know that the hour is late.',
   )
-  await expect(page.getByRole('button', { name: /Play sentence/ })).toBeVisible()
+  await expect(page.getByRole('button', { name: /Pause listening|Play listening/ })).toBeVisible()
 })

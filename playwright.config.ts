@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const baseURL = 'http://127.0.0.1:5173';
+const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? 'http://127.0.0.1:5173';
+const devServerPort = new URL(baseURL).port || '5173';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -41,7 +42,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npm run dev -- --host 127.0.0.1',
+    command: `npm run dev -- --host 127.0.0.1 --port ${devServerPort}`,
     url: baseURL,
     reuseExistingServer: !process.env.CI,
   },

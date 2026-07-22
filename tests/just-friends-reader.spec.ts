@@ -7,6 +7,8 @@ test('Just Friends appears as a twelve-chapter graded reader', async ({ page }) 
   await expect(page.getByRole('button', { name: 'Go to dashboard' })).toBeVisible()
 
   await page.locator('.dashboard-mode-card.reading-texts-start').click()
+  await page.getByRole('button', { name: 'Reader menu' }).click()
+  await page.getByRole('button', { name: 'Back to library' }).click()
   await page.getByRole('button', { name: /^Novels/ }).click()
 
   const justFriendsCard = page.locator('.reading-library-book', {
@@ -26,6 +28,8 @@ test('Reader word taps and horizontal swipes remain functional', async ({ page }
   await expect(page.getByRole('button', { name: 'Go to dashboard' })).toBeVisible()
 
   await page.locator('.dashboard-mode-card.reading-texts-start').click()
+  await page.getByRole('button', { name: 'Reader menu' }).click()
+  await page.getByRole('button', { name: 'Back to library' }).click()
   await page.getByRole('button', { name: /^Novels/ }).click()
   const justFriendsCard = page.locator('.reading-library-book', { hasText: 'Just Friends?' })
   await justFriendsCard.getByRole('button', { name: 'Start', exact: true }).click()
