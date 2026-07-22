@@ -1,4 +1,5 @@
-const CACHE_VERSION = 'chunky-chinese-v49'
+const CACHE_VERSION = 'chunky-chinese-v50'
+const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'
 // Change CACHE_VERSION whenever the app shell changes and you want browsers to
 // discard old cached files. The activate handler below removes older versions.
 const APP_BASE = new URL('./', self.location.href).pathname
@@ -67,6 +68,11 @@ self.addEventListener('fetch', (event) => {
     return
   }
 
+  if (isReaderMediaAsset(url)) {
+    event.respondWith(readerOfflineFirst(request))
+    return
+  }
+
   if (isStaticAppAsset(url)) {
     event.respondWith(cacheFirst(request))
     return
@@ -120,6 +126,21 @@ async function cacheFirst(request) {
   const response = await fetch(request)
   if (response.ok) await cache.put(request, response.clone())
   return response
+}
+
+async function readerOfflineFirst(request) {
+  const offlineCache = await caches.open(READER_OFFLINE_CACHE)
+  const downloaded = await offlineCache.match(request)
+  if (downloaded) return downloaded
+  if (new URL(request.url).pathname.endsWith('.mp3')) return fetch(request)
+  return cacheFirst(request)
+}
+
+function isReaderMediaAsset(url) {
+  return (
+    url.pathname.startsWith(`${APP_BASE}reader-packs/`) &&
+    /\.(?:mp3|webp|png|jpe?g|avif)$/i.test(url.pathname)
+  )
 }
 
 function isStaticAppAsset(url) {

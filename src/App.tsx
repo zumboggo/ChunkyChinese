@@ -131,9 +131,6 @@ import {
   type FsrsQueueBucket,
 } from './scheduler'
 import {
-  collectReaderComprehensionTokens,
-  readerComprehensionCategory,
-  readerMaxChineseWordLength,
   tokenizeReaderText,
   adaptiveReaderPinyinState,
 } from './adaptiveText'
@@ -198,6 +195,22 @@ import type {
 import { DeferredTaskCoordinator } from './deferredTasks'
 import { clearStartupResumeState, loadStartupResumeState, saveStartupResumeState } from './startupResume'
 import { markStartup } from './startupPerformance'
+import {
+  getCachedReaderComprehensionByBook,
+  type ReaderBookComprehension,
+  type ReaderComprehensionSummary,
+} from './readerLibraryCache'
+import {
+  downloadReaderBookForOffline,
+  getReaderBookOfflineStatus,
+  removeReaderBookOfflineDownload,
+  type ReaderOfflineStatus,
+} from './readerOffline'
+import {
+  repairDataHealth,
+  runDataHealthCheck,
+  type DataHealthReport,
+} from './dataHealth'
 
 const UniversalImporter = lazy(() => import('./UniversalImporter').then((module) => ({ default: module.UniversalImporter })))
 const VisualNovelWorldMode = lazy(() => import('./visualNovel/VisualNovelWorldMode').then((module) => ({ default: module.VisualNovelWorldMode })))
@@ -233,13 +246,6 @@ type ReaderSessionRecap = {
   promoted: VocabWord[]
   activeSeconds: number
 }
-type ReaderComprehensionSummary = {
-  knownPercent: number
-  known: number
-  learning: number
-  new: number
-  total: number
-}
 type StoryChunkSession = {
   id: string
   bookId: string
@@ -255,15 +261,9 @@ type GeneratedStoryResult = {
   story: GeneratedStoryPayload
   validation: GeneratedStoryValidation
 }
-type ReaderBookComprehension = ReaderComprehensionSummary & {
-  chapters: Array<
-    ReaderComprehensionSummary & {
-      id: string
-      chapter: number
-      title: string
-    }
-  >
-}
+type StudyNowStepId = 'flashcards' | 'listening' | 'reading'
+type StudyNowStep = { id: StudyNowStepId; label: string; detail: string }
+type StudyNowPlan = { minutes: number; stepIndex: number; steps: StudyNowStep[] }
 type LessonStartOptions = {
   randomize?: boolean
   playAfterRender?: boolean
@@ -510,6 +510,12 @@ function App() {
   const [userSettings, setUserSettings] = useState(DEFAULT_USER_SETTINGS)
   const [newWordsPerDay, setNewWordsPerDay] = useState(15)
   const [historicalStudyMinutesDraft, setHistoricalStudyMinutesDraft] = useState('')
+  const [studyNowPlan, setStudyNowPlan] = useState<StudyNowPlan | null>(null)
+  const [readerOfflineStatuses, setReaderOfflineStatuses] = useState<Map<string, ReaderOfflineStatus>>(new Map())
+  const [readerOfflineBusyId, setReaderOfflineBusyId] = useState<string | null>(null)
+  const [readerOfflineProgress, setReaderOfflineProgress] = useState('')
+  const [dataHealthReport, setDataHealthReport] = useState<DataHealthReport | null>(null)
+  const [dataHealthBusy, setDataHealthBusy] = useState(false)
   const [hotkeysEditing, setHotkeysEditing] = useState(false)
   const [initialDataReady, setInitialDataReady] = useState(false)
   const [lesson, setLesson] = useState<LessonPlan | null>(null)
@@ -1110,7 +1116,7 @@ function App() {
   const readerComprehensionByBook = useMemo(
     () =>
       screen === 'readingTexts' || (screen === 'reader' && !activeReaderBook)
-        ? getReaderComprehensionByBook(readerBooks, activeWords)
+        ? getCachedReaderComprehensionByBook(readerBooks, activeWords)
         : new Map<string, ReaderBookComprehension>(),
     [activeReaderBook, activeWords, readerBooks, screen],
   )
@@ -1131,6 +1137,23 @@ function App() {
     () => bookListenBook?.stories.find(s => s.id === bookListenSentence?.storyId) ?? null,
     [bookListenBook, bookListenSentence],
   )
+
+  useEffect(() => {
+    if (screen !== 'reader' || !activeReaderBook) return
+    preloadReaderSentenceAssets(activeReaderBook, readerSentenceIndex)
+    preloadReaderSentenceAssets(activeReaderBook, readerSentenceIndex + 1)
+  }, [activeReaderBook, readerSentenceIndex, screen])
+
+  useEffect(() => {
+    if (screen !== 'readingTexts' || readerBooks.length === 0) return
+    let cancelled = false
+    void Promise.all(readerBooks.map(async (book) => [book.id, await getReaderBookOfflineStatus(book)] as const))
+      .then((entries) => {
+        if (!cancelled) setReaderOfflineStatuses(new Map(entries))
+      })
+      .catch(() => {})
+    return () => { cancelled = true }
+  }, [readerBooks, screen])
   const bookListenIllustration = bookListenBook
     ? getReaderIllustration(bookListenBook, bookListenIndex)
     : undefined
@@ -1439,6 +1462,73 @@ function App() {
     setSentenceSetComplete(false)
     await startSentenceLesson(nextOffset)
   }, [sentenceListeningSettings.sentenceRounds, sentenceQueue, sentenceQueueOffset, startSentenceLesson])
+
+  function startStudyNow(minutes: number) {
+    const cardCount = minutes === 5 ? 4 : minutes === 10 ? 8 : 15
+    const steps: StudyNowStep[] = [
+      { id: 'flashcards', label: 'Flashcards', detail: `${cardCount} high-value cards` },
+      { id: 'listening', label: 'Listening', detail: 'One focused sentence set' },
+      { id: 'reading', label: 'Reading', detail: readerResumeLocation ? 'Continue your current book' : 'Choose a short reading' },
+    ]
+    const plan = { minutes, stepIndex: 0, steps }
+    setStudyNowPlan(plan)
+    startFlashcards('mixed', buildFlashcardQueue('mixed').slice(0, cardCount))
+    setLastSummary(`${minutes}-minute Study Now plan started.`)
+  }
+
+  function advanceStudyNow() {
+    if (!studyNowPlan) return
+    const nextIndex = studyNowPlan.stepIndex + 1
+    if (nextIndex >= studyNowPlan.steps.length) {
+      setStudyNowPlan(null)
+      setScreen('dashboard')
+      setLastSummary('Study Now complete. Nice work!')
+      playGentleCelebration()
+      return
+    }
+    const nextPlan = { ...studyNowPlan, stepIndex: nextIndex }
+    setStudyNowPlan(nextPlan)
+    const step = nextPlan.steps[nextIndex]
+    if (step.id === 'listening') void startSentenceLesson()
+    else if (step.id === 'reading' && readerResumeLocation) void openReaderBook(readerResumeLocation.book, 'resume')
+    else if (step.id === 'reading') setScreen('readingTexts')
+  }
+
+  async function handleReaderOfflineDownload(book: ReaderBook) {
+    setReaderOfflineBusyId(book.id)
+    setReaderOfflineProgress('Preparing download…')
+    try {
+      const result = await downloadReaderBookForOffline(book, (completed, total) => {
+        setReaderOfflineProgress(`Downloading ${completed}/${total} files…`)
+      })
+      setReaderOfflineStatuses((current) => new Map(current).set(book.id, result))
+      setLastSummary(result.total === 0
+        ? `${book.title} text is already stored locally; it has no downloadable media.`
+        : result.failed
+        ? `${book.title} downloaded with ${result.failed} missing file${result.failed === 1 ? '' : 's'}.`
+        : `${book.title} is available offline.`)
+    } catch (error) {
+      setLastSummary(error instanceof Error ? error.message : 'Could not download that book.')
+    } finally {
+      setReaderOfflineBusyId(null)
+      setReaderOfflineProgress('')
+    }
+  }
+
+  async function handleReaderOfflineRemove(book: ReaderBook) {
+    setReaderOfflineBusyId(book.id)
+    try {
+      await removeReaderBookOfflineDownload(book)
+      setReaderOfflineStatuses((current) => new Map(current).set(book.id, {
+        cached: 0,
+        total: current.get(book.id)?.total ?? 0,
+        complete: false,
+      }))
+      setLastSummary(`${book.title} offline download removed.`)
+    } finally {
+      setReaderOfflineBusyId(null)
+    }
+  }
 
   const toggleSentencePlayback = useCallback(() => {
     const audio = sentenceAudioRef.current
@@ -3179,6 +3269,39 @@ function App() {
     setLastSummary('Historical study-time adjustment removed.')
   }
 
+  async function handleDataHealthCheck() {
+    setDataHealthBusy(true)
+    try {
+      const report = await runDataHealthCheck()
+      setDataHealthReport(report)
+      setLastSummary(report.healthy ? 'Data health check passed.' : `Data health found ${report.issueCount} issue${report.issueCount === 1 ? '' : 's'}.`)
+    } catch (error) {
+      setLastSummary(error instanceof Error ? error.message : 'Could not check local data.')
+    } finally {
+      setDataHealthBusy(false)
+    }
+  }
+
+  async function handleDataHealthRepair() {
+    if (!dataHealthReport || dataHealthReport.healthy) return
+    setDataHealthBusy(true)
+    try {
+      const backup = await exportBackup()
+      downloadText(`chunky-chinese-before-repair-${new Date().toISOString().slice(0, 10)}.json`, backup)
+      const result = await repairDataHealth()
+      await refresh()
+      const report = await runDataHealthCheck()
+      setDataHealthReport(report)
+      setLastSummary(
+        `Repair complete: ${result.repairedStudyEvents + result.removedDuplicateEvents + result.repairedReaderSessions + result.repairedReaderProgress} records fixed. Backup downloaded first.`,
+      )
+    } catch (error) {
+      setLastSummary(error instanceof Error ? error.message : 'Could not repair local data.')
+    } finally {
+      setDataHealthBusy(false)
+    }
+  }
+
   function saveReaderSettings(patch: Partial<Pick<
     UserSettings,
     | 'readerPinyinMode'
@@ -3238,6 +3361,28 @@ function App() {
         </div>
       </header>
 
+      {studyNowPlan && (
+        <aside className="study-now-strip" aria-label={`${studyNowPlan.minutes}-minute Study Now plan`}>
+          <span>
+            <strong>Study Now · {studyNowPlan.minutes} min</strong>
+            <small>{studyNowPlan.steps[studyNowPlan.stepIndex].label}: {studyNowPlan.steps[studyNowPlan.stepIndex].detail}</small>
+          </span>
+          <div className="study-now-dots" aria-label={`Step ${studyNowPlan.stepIndex + 1} of ${studyNowPlan.steps.length}`}>
+            {studyNowPlan.steps.map((step, index) => (
+              <i key={step.id} className={index <= studyNowPlan.stepIndex ? 'active' : ''} />
+            ))}
+          </div>
+          <button type="button" className="primary" onClick={advanceStudyNow}>
+            {studyNowPlan.stepIndex + 1 < studyNowPlan.steps.length
+              ? `Next: ${studyNowPlan.steps[studyNowPlan.stepIndex + 1].label}`
+              : 'Finish'}
+          </button>
+          <button type="button" className="ghost-answer" onClick={() => setStudyNowPlan(null)}>
+            End
+          </button>
+        </aside>
+      )}
+
       {goalCelebrationId > 0 && <FlashcardCelebration key={`goal-${goalCelebrationId}`} />}
 
       {screen === 'dashboard' && (
@@ -3254,6 +3399,23 @@ function App() {
               <MilestoneJourney wordsKnown={wordsKnown} leveledUpThisWeek={leveledUpThisWeek} />
             </div>
           </div>
+
+          <section className="study-now-launcher" aria-labelledby="study-now-title">
+            <span className="study-now-launcher-mark" aria-hidden="true">今</span>
+            <div>
+              <span>Recommended</span>
+              <h2 id="study-now-title">Study Now</h2>
+              <p>A guided mix of high-value flashcards, focused listening, and reading.</p>
+            </div>
+            <div className="study-now-lengths" aria-label="Choose session length">
+              {[5, 10, 20].map((minutes) => (
+                <button key={minutes} type="button" onClick={() => startStudyNow(minutes)}>
+                  <strong>{minutes}</strong>
+                  <small>min</small>
+                </button>
+              ))}
+            </div>
+          </section>
 
           <div className="rep-rings-row" aria-label="Daily goals">
             <GoalRing
@@ -3897,8 +4059,14 @@ function App() {
           readerBooks={readerBooks}
           comprehensionByBook={readerComprehensionByBook}
           resumeLocation={readerResumeLocation}
+          offlineStatuses={readerOfflineStatuses}
+          offlineBusyId={readerOfflineBusyId}
+          offlineProgress={readerOfflineProgress}
           onBack={() => setScreen('dashboard')}
           onChooseBook={openReaderBook}
+          onPreloadBook={(book) => preloadReaderSentenceAssets(book, 0)}
+          onDownloadOffline={(book) => void handleReaderOfflineDownload(book)}
+          onRemoveOffline={(book) => void handleReaderOfflineRemove(book)}
           onBrowseNovels={() => {
             setActiveReaderBookId(undefined)
             setScreen('reader')
@@ -4406,6 +4574,44 @@ function App() {
                       Remove correction
                     </button>
                   </div>
+                </section>
+              </div>
+            </details>
+
+            <details className="settings-group">
+              <summary className="settings-group-summary">Data Health</summary>
+              <div className="import-grid">
+                <section className="panel data-health-panel">
+                  <div className="panel-title-row">
+                    <div>
+                      <h2>Local data check</h2>
+                      <p>Checks study timing, duplicate events, Reader sessions, and saved book positions.</p>
+                    </div>
+                    {dataHealthReport && (
+                      <span className={`sync-pill ${dataHealthReport.healthy ? 'sync-synced' : 'sync-error'}`}>
+                        {dataHealthReport.healthy ? 'Healthy' : `${dataHealthReport.issueCount} issues`}
+                      </span>
+                    )}
+                  </div>
+                  {dataHealthReport ? (
+                    <div className="data-health-results" aria-live="polite">
+                      {dataHealthReport.details.map((detail) => <span key={detail}>{detail}</span>)}
+                      <small>Checked {formatRelativeTime(dataHealthReport.checkedAt)}.</small>
+                    </div>
+                  ) : (
+                    <small>No check has been run on this device yet.</small>
+                  )}
+                  <div className="button-row">
+                    <button type="button" className="primary" disabled={dataHealthBusy} onClick={() => void handleDataHealthCheck()}>
+                      {dataHealthBusy ? 'Checking…' : 'Run data check'}
+                    </button>
+                    {dataHealthReport && !dataHealthReport.healthy && (
+                      <button type="button" disabled={dataHealthBusy} onClick={() => void handleDataHealthRepair()}>
+                        Download backup &amp; repair
+                      </button>
+                    )}
+                  </div>
+                  <small>Repairs always download a full backup before changing local records.</small>
                 </section>
               </div>
             </details>
@@ -6094,8 +6300,14 @@ function ReadingTextsLibrary({
   readerBooks,
   comprehensionByBook,
   resumeLocation,
+  offlineStatuses,
+  offlineBusyId,
+  offlineProgress,
   onBack,
   onChooseBook,
+  onPreloadBook,
+  onDownloadOffline,
+  onRemoveOffline,
   onBrowseNovels,
   onOpenComic,
   onOpenComics,
@@ -6114,8 +6326,14 @@ function ReadingTextsLibrary({
   readerBooks: ReaderBook[]
   comprehensionByBook: Map<string, ReaderBookComprehension>
   resumeLocation?: ReaderResumeLocation
+  offlineStatuses: Map<string, ReaderOfflineStatus>
+  offlineBusyId: string | null
+  offlineProgress: string
   onBack: () => void
   onChooseBook: (book: ReaderBook, action?: 'resume' | 'start') => void | Promise<void>
+  onPreloadBook: (book: ReaderBook) => void
+  onDownloadOffline: (book: ReaderBook) => void
+  onRemoveOffline: (book: ReaderBook) => void
   onBrowseNovels: () => void
   onOpenComic: (packId: string, mode: 'continue' | 'start') => void
   onOpenComics: () => void
@@ -6154,12 +6372,16 @@ function ReadingTextsLibrary({
             const comprehension = comprehensionByBook.get(book.id)
             const isResumeBook = resumeLocation?.book.id === book.id
             const progress = isResumeBook ? resumeLocation.percent : 0
+            const offlineStatus = offlineStatuses.get(book.id)
+            const offlineBusy = offlineBusyId === book.id
             return (
               <article className="reading-library-book" key={book.id}>
                 <button
                   type="button"
                   className={`reading-book-cover reading-book-cover-${index % 4}`}
                   onClick={() => void onChooseBook(book, isResumeBook ? 'resume' : 'start')}
+                  onMouseEnter={() => onPreloadBook(book)}
+                  onFocus={() => onPreloadBook(book)}
                   aria-label={`${isResumeBook ? 'Resume' : 'Start'} ${book.title}`}
                 >
                   {book.coverImage ? (
@@ -6194,6 +6416,22 @@ function ReadingTextsLibrary({
                     ) : null}
                     <button type="button" onClick={() => void onChooseBook(book, 'start')}>
                       Start
+                    </button>
+                    <button
+                      type="button"
+                      className={offlineStatus?.complete ? 'offline-ready' : ''}
+                      disabled={offlineBusy || offlineStatus?.total === 0}
+                      onClick={() => offlineStatus?.complete ? onRemoveOffline(book) : onDownloadOffline(book)}
+                    >
+                      {offlineBusy
+                        ? offlineProgress || 'Working…'
+                        : offlineStatus?.complete
+                          ? 'Offline ✓'
+                          : offlineStatus?.total === 0
+                            ? 'Text already local'
+                          : offlineStatus?.cached
+                            ? `Resume download (${offlineStatus.cached}/${offlineStatus.total})`
+                            : 'Download offline'}
                     </button>
                     {book.visualNovelWorldId ? (
                       <button
@@ -8121,57 +8359,6 @@ function getDashboardEncouragement(stats: DashboardStats, settings: UserSettings
   return null
 }
 
-function getReaderComprehensionByBook(books: ReaderBook[], vocab: VocabWord[]): Map<string, ReaderBookComprehension> {
-  const summaries = new Map<string, ReaderBookComprehension>()
-  for (const book of books) {
-    const chapters = book.stories.map((story) => ({
-      ...summarizeReaderTexts(story.sentences.map((sentence) => sentence.chinese), vocab),
-      id: story.id,
-      chapter: story.chapter,
-      title: story.title,
-    }))
-    const bookSummary = summarizeReaderTexts(
-      book.stories.flatMap((story) => story.sentences.map((sentence) => sentence.chinese)),
-      vocab,
-    )
-    summaries.set(book.id, {
-      ...bookSummary,
-      chapters,
-    })
-  }
-  return summaries
-}
-
-function summarizeReaderTexts(texts: string[], vocab: VocabWord[]): ReaderComprehensionSummary {
-  const categories = new Map<string, 'known' | 'learning' | 'new'>()
-  const wordMap = new Map(vocab.map((word) => [word.word, word]))
-  const maxWordLength = readerMaxChineseWordLength(wordMap)
-  for (const text of texts) {
-    for (const token of collectReaderComprehensionTokens(text, wordMap, maxWordLength)) {
-      const key = token.word?.id ?? `unsaved:${token.text}`
-      if (categories.has(key)) continue
-      categories.set(key, readerComprehensionCategory(token.word))
-    }
-  }
-
-  let known = 0
-  let learning = 0
-  let fresh = 0
-  for (const category of categories.values()) {
-    if (category === 'known') known += 1
-    else if (category === 'learning') learning += 1
-    else fresh += 1
-  }
-  const total = categories.size
-  return {
-    known,
-    learning,
-    new: fresh,
-    total,
-    knownPercent: total > 0 ? Math.round((known / total) * 100) : 0,
-  }
-}
-
 function getReaderIllustration(book: ReaderBook, sentenceIndex: number) {
   const sentenceNumber = sentenceIndex + 1
   if (!book.id.startsWith('lms-book-1-chapters-')) {
@@ -8256,6 +8443,20 @@ function readerProgressPercent(sentenceIndex: number, sentenceCount: number): nu
 function publicAssetPath(path: string): string {
   const base = import.meta.env.BASE_URL || '/'
   return `${base.replace(/\/$/u, '')}/${path.replace(/^\//u, '')}`
+}
+
+function preloadReaderSentenceAssets(book: ReaderBook, sentenceIndex: number): void {
+  const sentences = book.stories.flatMap((story) => story.sentences)
+  const sentence = sentences[sentenceIndex]
+  if (!sentence) return
+  const illustration = getReaderIllustration(book, sentenceIndex)
+  if (illustration) {
+    const image = new Image()
+    image.src = publicAssetPath(illustration.imageFilename)
+  }
+  if (sentence.audioFilename) {
+    void fetch(publicAssetPath(sentence.audioFilename), { cache: 'force-cache' }).catch(() => {})
+  }
 }
 
 function speakUtterance(text: string, rate: number, lang = detectSpeechLanguage(text)): Promise<void> {

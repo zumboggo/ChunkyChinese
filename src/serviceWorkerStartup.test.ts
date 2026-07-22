@@ -10,4 +10,11 @@ describe('service worker startup cache', () => {
     expect(shell).not.toContain('visual-novels/')
     expect(shell).toContain('seed/lms-vocab-1000.csv')
   })
+
+  it('serves explicitly downloaded Reader media before the network', async () => {
+    const source = await readFile(new URL('../public/service-worker.js', import.meta.url), 'utf8')
+    expect(source).toContain("const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'")
+    expect(source).toContain('event.respondWith(readerOfflineFirst(request))')
+    expect(source).toContain("pathname.endsWith('.mp3')) return fetch(request)")
+  })
 })
