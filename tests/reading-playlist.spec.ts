@@ -64,6 +64,9 @@ test('Reading opens the LMS playlist immediately with adaptive pinyin and phone-
   await expect(page.locator('.reader-meta-title')).toContainText('LMS Book 1 Chapters 1-5')
   await expect(page.getByRole('button', { name: /Pause listening|Play listening/ })).toBeVisible()
   await expect(page.locator('.reader-translation')).toBeVisible()
+  await expect(page.locator('.reader-illustration')).toHaveCount(0)
+  await expect(page.locator('.grammar-hint')).toHaveCount(0)
+  await expect(page.locator('.reader-shadowing-cue')).toHaveCount(0)
 
   await page.getByRole('button', { name: 'Reader menu' }).click()
   await expect(page.getByLabel('Pinyin')).toHaveValue('adaptive')
@@ -93,7 +96,7 @@ test('Reading opens the LMS playlist immediately with adaptive pinyin and phone-
 test('the final shadowing pause waits for a Continue tap before starting the next book', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' })
   await page.locator('.dashboard-mode-card.reading-texts-start').click()
-  await expect(page.locator('.reader-page-meta')).toContainText('Sentence 1 / 296')
+  await expect(page.locator('.reader-page-meta')).toContainText('Sentence 1 / 311')
   await page.evaluate(() => {
     localStorage.setItem('chunky-startup-resume-v1', JSON.stringify({
       version: 1,
@@ -101,14 +104,13 @@ test('the final shadowing pause waits for a Continue tap before starting the nex
       updatedAt: new Date().toISOString(),
       readerPackId: 'lms-books',
       readerBookId: 'lms-book-1-chapters-1-5',
-      sentenceIndex: 295,
+      sentenceIndex: 310,
     }))
   })
   await page.reload({ waitUntil: 'domcontentloaded' })
 
-  await expect(page.locator('.reader-page-meta')).toContainText('Sentence 296 / 296')
+  await expect(page.locator('.reader-page-meta')).toContainText('Sentence 311 / 311')
   await page.getByRole('button', { name: /Play sentence/ }).click()
-  await expect(page.locator('.reader-shadowing-cue')).toContainText('Your turn')
   await expect(page.locator('.reader-book-complete')).toBeVisible({ timeout: 5_000 })
   await expect(page.locator('.reader-book-complete')).toContainText('LMS Book 1 Chapters 6-10')
   await expect(page.locator('.reader-meta-title')).toContainText('LMS Book 1 Chapters 1-5')

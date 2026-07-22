@@ -457,16 +457,28 @@
           "ssmlFilename": "ssml/sentences/b01c06-unsold-carving-s33.ssml"
         },
         {
-          "id": "b01c06-unsold-carving-s34",
+          "id": "b01c06-unsold-carving-s34-part-1",
           "storyId": "b01c06-unsold-carving",
           "index": 34,
-          "chinese": "可是回去的时候，他第一次不是只想“怎么卖”，而是开始想“我到底做了什么”。",
-          "pinyin": "kě shì huí qù de shí hòu ， tā dì yī cì bú shì zhī xiǎng “ zěn me mài ” ， ér shì kāi shǐ xiǎng “ wǒ dào dǐ zuò le shén me ” 。",
-          "english": "But on the way back, for the first time he is no longer only thinking, 'How do I sell this?' He starts thinking, 'What did I actually make?'",
+          "chinese": "可是回去的时候，他第一次不是只想“怎么卖”。",
+          "pinyin": "kě shì huí qù de shí hòu ， tā dì yī cì bú shì zhī xiǎng “ zěn me mài ” 。",
+          "english": "But on the way back, for the first time he is not only thinking, 'How do I sell this?'",
           "targetWords": [],
-          "audioClipId": "reader-sentence:b01c06-unsold-carving-s34",
-          "audioFilename": "audio/sentences/b01c06-unsold-carving-s34.mp3",
-          "ssmlFilename": "ssml/sentences/b01c06-unsold-carving-s34.ssml"
+          "audioClipId": "reader-sentence:b01c06-unsold-carving-s34-part-1",
+          "audioFilename": "",
+          "ssmlFilename": "ssml/sentences/b01c06-unsold-carving-s34-part-1.ssml"
+        },
+        {
+          "id": "b01c06-unsold-carving-s34-part-2",
+          "storyId": "b01c06-unsold-carving",
+          "index": 35,
+          "chinese": "他开始想：“我到底做了什么？”",
+          "pinyin": "tā kāi shǐ xiǎng ： “ wǒ dào dǐ zuò le shén me ？ ”",
+          "english": "He starts thinking, 'What did I actually make?'",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c06-unsold-carving-s34-part-2",
+          "audioFilename": "",
+          "ssmlFilename": "ssml/sentences/b01c06-unsold-carving-s34-part-2.ssml"
         }
       ]
     },
@@ -2826,21 +2838,33 @@
           "ssmlFilename": "ssml/sentences/b01c09-one-look-customer-s13.ssml"
         },
         {
-          "id": "b01c09-one-look-customer-s14",
+          "id": "b01c09-one-look-customer-s14-part-1",
           "storyId": "b01c09-one-look-customer",
           "index": 14,
-          "chinese": "因为他忽然想到，自己如果现在回过去，今天一整天都会坏掉。",
-          "pinyin": "yīn wèi tā hū rán xiǎng dào ， zì jǐ rú guǒ xiàn zài huí guò qù ， jīn tiān yì zhěng tiān dōu huì huài diào 。",
-          "english": "Because he suddenly thinks that if he fires back now, the whole day will be ruined.",
+          "chinese": "他忽然想到，自己如果现在回过去，会有什么结果。",
+          "pinyin": "tā hū rán xiǎng dào ， zì jǐ rú guǒ xiàn zài huí guò qù ， huì yǒu shén me jié guǒ 。",
+          "english": "He suddenly thinks about what will happen if he fires back now.",
           "targetWords": [],
-          "audioClipId": "reader-sentence:b01c09-one-look-customer-s14",
-          "audioFilename": "audio/sentences/b01c09-one-look-customer-s14.mp3",
-          "ssmlFilename": "ssml/sentences/b01c09-one-look-customer-s14.ssml"
+          "audioClipId": "reader-sentence:b01c09-one-look-customer-s14-part-1",
+          "audioFilename": "",
+          "ssmlFilename": "ssml/sentences/b01c09-one-look-customer-s14-part-1.ssml"
+        },
+        {
+          "id": "b01c09-one-look-customer-s14-part-2",
+          "storyId": "b01c09-one-look-customer",
+          "index": 15,
+          "chinese": "今天一整天都会坏掉。",
+          "pinyin": "jīn tiān yì zhěng tiān dōu huì huài diào 。",
+          "english": "The whole day will be ruined.",
+          "targetWords": [],
+          "audioClipId": "reader-sentence:b01c09-one-look-customer-s14-part-2",
+          "audioFilename": "",
+          "ssmlFilename": "ssml/sentences/b01c09-one-look-customer-s14-part-2.ssml"
         },
         {
           "id": "b01c09-one-look-customer-s15",
           "storyId": "b01c09-one-look-customer",
-          "index": 15,
+          "index": 16,
           "chinese": "而那个人说完就会走。",
           "pinyin": "ér nà ge rén shuō wán jiù huì zǒu 。",
           "english": "And that person will leave right after speaking.",
@@ -2852,7 +2876,7 @@
         {
           "id": "b01c09-one-look-customer-s16",
           "storyId": "b01c09-one-look-customer",
-          "index": 16,
+          "index": 17,
           "chinese": "最后留下来生气的人，还是自己。",
           "pinyin": "zuì hòu liú xià lái shēng qì de rén ， hái shì zì jǐ 。",
           "english": "The one left behind feeling angry will still be himself.",
@@ -2864,7 +2888,7 @@
         {
           "id": "b01c09-one-look-customer-s17",
           "storyId": "b01c09-one-look-customer",
-          "index": 17,
+          "index": 18,
           "chinese": "所以杂草没有争。",
           "pinyin": "suǒ yǐ zá cǎo méi yǒu zhēng 。",
           "english": "So Weed does not argue.",
@@ -2876,7 +2900,7 @@
         {
           "id": "b01c09-one-look-customer-s18",
           "storyId": "b01c09-one-look-customer",
-          "index": 18,
+          "index": 19,
           "chinese": "那个人果然很快就走了。",
           "pinyin": "nà ge rén guǒ rán hěn kuài jiù zǒu le 。",
           "english": "Sure enough, the person leaves very quickly.",
@@ -2888,7 +2912,7 @@
         {
           "id": "b01c09-one-look-customer-s19",
           "storyId": "b01c09-one-look-customer",
-          "index": 19,
+          "index": 20,
           "chinese": "杂草一个人站在原地，心里还是很乱。",
           "pinyin": "zá cǎo yí gè rén zhàn zài yuán dì ， xīn lǐ hái shì hěn luàn 。",
           "english": "Weed stands there alone, and his mind is still very unsettled.",
@@ -2900,7 +2924,7 @@
         {
           "id": "b01c09-one-look-customer-s20",
           "storyId": "b01c09-one-look-customer",
-          "index": 20,
+          "index": 21,
           "chinese": "他低头看着自己的作品。",
           "pinyin": "tā dī tóu kàn zhe zì jǐ de zuò pǐn 。",
           "english": "He lowers his head and looks at his own work.",
@@ -2912,7 +2936,7 @@
         {
           "id": "b01c09-one-look-customer-s21",
           "storyId": "b01c09-one-look-customer",
-          "index": 21,
+          "index": 22,
           "chinese": "然后慢慢问自己一个问题。",
           "pinyin": "rán hòu màn màn wèn zì jǐ yí gè wèn tí 。",
           "english": "Then he slowly asks himself one question.",
@@ -2924,7 +2948,7 @@
         {
           "id": "b01c09-one-look-customer-s22",
           "storyId": "b01c09-one-look-customer",
-          "index": 22,
+          "index": 23,
           "chinese": "那个人真的看懂了吗？",
           "pinyin": "nà ge rén zhēn de kàn dǒng le ma ？",
           "english": "Did that person really understand what he saw?",
@@ -2936,7 +2960,7 @@
         {
           "id": "b01c09-one-look-customer-s23",
           "storyId": "b01c09-one-look-customer",
-          "index": 23,
+          "index": 24,
           "chinese": "答案当然是没有。",
           "pinyin": "dá àn dāng rán shì méi yǒu 。",
           "english": "The answer is of course no.",
@@ -2948,7 +2972,7 @@
         {
           "id": "b01c09-one-look-customer-s24",
           "storyId": "b01c09-one-look-customer",
-          "index": 24,
+          "index": 25,
           "chinese": "想到这里，杂草的气慢慢下去了一点。",
           "pinyin": "xiǎng dào zhè lǐ ， zá cǎo de qì màn màn xià qù le yì diǎn 。",
           "english": "Thinking this, Weed's anger slowly goes down a little.",
@@ -2960,7 +2984,7 @@
         {
           "id": "b01c09-one-look-customer-s25",
           "storyId": "b01c09-one-look-customer",
-          "index": 25,
+          "index": 26,
           "chinese": "因为他终于知道，不是每一句话都值得放进心里。",
           "pinyin": "yīn wèi tā zhōng yú zhī dào ， bú shì měi yí jù huà dōu zhí dé fàng jìn xīn lǐ 。",
           "english": "Because he finally knows that not every sentence is worth placing in his heart.",
@@ -2972,7 +2996,7 @@
         {
           "id": "b01c09-one-look-customer-s26",
           "storyId": "b01c09-one-look-customer",
-          "index": 26,
+          "index": 27,
           "chinese": "后来，他把那件作品拿近一点，又认真看了一次。",
           "pinyin": "hòu lái ， tā bǎ nà jiàn zuò pǐn ná jìn yì diǎn ， yòu rèn zhēn kàn le yí cì 。",
           "english": "Later, he brings the piece closer and looks at it seriously once more.",
@@ -2984,7 +3008,7 @@
         {
           "id": "b01c09-one-look-customer-s27",
           "storyId": "b01c09-one-look-customer",
-          "index": 27,
+          "index": 28,
           "chinese": "他发现上面当然还有问题。",
           "pinyin": "tā fā xiàn shàng miàn dāng rán hái yǒu wèn tí 。",
           "english": "He finds that of course there are still problems in it.",
@@ -2996,7 +3020,7 @@
         {
           "id": "b01c09-one-look-customer-s28",
           "storyId": "b01c09-one-look-customer",
-          "index": 28,
+          "index": 29,
           "chinese": "可是那些问题，不是刚才那个人随手说出来的那些。",
           "pinyin": "kě shì nà xiē wèn tí ， bú shì gāng cái nà ge rén suí shǒu shuō chū lái de nà xiē 。",
           "english": "But those are not the same problems that person casually spoke about.",
@@ -3010,7 +3034,7 @@
         {
           "id": "b01c09-one-look-customer-s29",
           "storyId": "b01c09-one-look-customer",
-          "index": 29,
+          "index": 30,
           "chinese": "杂草这一次没有再想那个人。",
           "pinyin": "zá cǎo zhè yí cì méi yǒu zài xiǎng nà ge rén 。",
           "english": "This time, Weed stops thinking about that person.",
@@ -3022,7 +3046,7 @@
         {
           "id": "b01c09-one-look-customer-s30",
           "storyId": "b01c09-one-look-customer",
-          "index": 30,
+          "index": 31,
           "chinese": "他只开始想下一件。",
           "pinyin": "tā zhī kāi shǐ xiǎng xià yí jiàn 。",
           "english": "He only starts thinking about the next piece.",
@@ -3036,7 +3060,7 @@
         {
           "id": "b01c09-one-look-customer-s31",
           "storyId": "b01c09-one-look-customer",
-          "index": 31,
+          "index": 32,
           "chinese": "他终于明白，想走得稳一点，就要把心留给真正专心看的人。",
           "pinyin": "tā zhōng yú míng bái ， xiǎng zǒu dé wěn yì diǎn ， jiù yào bǎ xīn liú gěi zhēn zhèng zhuān xīn kàn de rén 。",
           "english": "He finally understands that if he wants to walk more steadily, he has to keep his heart for the people who truly look with focus.",
@@ -3865,20 +3889,33 @@
           "ssmlFilename": "ssml/sentences/b01c10-asked-the-name-s28.ssml"
         },
         {
-          "id": "b01c10-asked-the-name-s29",
+          "id": "b01c10-asked-the-name-s29-part-1",
           "storyId": "b01c10-asked-the-name",
           "index": 29,
-          "chinese": "那一天以后，杂草第一次认真想，自己的名字也许会慢慢传开。",
-          "pinyin": "nà yì tiān yǐ hòu ， zá cǎo dì yī cì rèn zhēn xiǎng ， zì jǐ de míng zì yě xǔ huì màn màn chuán kāi 。",
-          "english": "After that day, for the first time Weed seriously thinks that his name may slowly begin to spread.",
+          "chinese": "那一天以后，杂草第一次认真想。",
+          "pinyin": "nà yì tiān yǐ hòu ， zá cǎo dì yī cì rèn zhēn xiǎng 。",
+          "english": "After that day, Weed seriously considers something for the first time.",
+          "targetWords": [
+            "认"
+          ],
+          "audioClipId": "reader-sentence:b01c10-asked-the-name-s29-part-1",
+          "audioFilename": "",
+          "ssmlFilename": "ssml/sentences/b01c10-asked-the-name-s29-part-1.ssml"
+        },
+        {
+          "id": "b01c10-asked-the-name-s29-part-2",
+          "storyId": "b01c10-asked-the-name",
+          "index": 30,
+          "chinese": "自己的名字也许会慢慢传开。",
+          "pinyin": "zì jǐ de míng zì yě xǔ huì màn màn chuán kāi 。",
+          "english": "His name may slowly begin to spread.",
           "targetWords": [
             "名字",
-            "认",
             "传开"
           ],
-          "audioClipId": "reader-sentence:b01c10-asked-the-name-s29",
-          "audioFilename": "audio/sentences/b01c10-asked-the-name-s29.mp3",
-          "ssmlFilename": "ssml/sentences/b01c10-asked-the-name-s29.ssml"
+          "audioClipId": "reader-sentence:b01c10-asked-the-name-s29-part-2",
+          "audioFilename": "",
+          "ssmlFilename": "ssml/sentences/b01c10-asked-the-name-s29-part-2.ssml"
         }
       ]
     },

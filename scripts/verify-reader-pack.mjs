@@ -8,7 +8,9 @@ const manifest = JSON.parse(readFileSync(path.join(packDir, 'reader_manifest.jso
 
 assertEqual(manifest.storyCount, 40, 'story count')
 assertEqual(manifest.books.length, 4, 'book count')
-assertEqual(manifest.sentenceCount, 1114, 'sentence count')
+assertEqual(manifest.sentenceCount, 1132, 'sentence count')
+assertEqual(manifest.splitSourceSentenceCount, 18, 'split source sentence count')
+assertEqual(manifest.maxReaderSentenceHanzi, 24, 'maximum reader sentence Hanzi')
 
 let countedSentences = 0
 const ids = new Set()
@@ -25,6 +27,10 @@ for (const bookSummary of manifest.books) {
       }
       if (!sentence.audioClipId?.startsWith('reader-sentence:')) {
         throw new Error(`Missing reader audio clip id for ${sentence.id}`)
+      }
+      const hanzi = [...sentence.chinese].filter((character) => /\p{Script=Han}/u.test(character)).length
+      if (hanzi > manifest.maxReaderSentenceHanzi) {
+        throw new Error(`Oversized reader sentence: ${sentence.id} (${hanzi} Hanzi)`)
       }
     }
   }

@@ -27,8 +27,10 @@ const DEFAULT_AZURE_CONFIG = path.join(
   'azure-tts-ssml',
   'config.json',
 )
+const SENTENCE_SPLITS_PATH = path.join(ROOT, 'scripts', 'lms-reader-sentence-splits.json')
 const GROUP_SIZE = 5
 const SYNTH_RETRIES = 3
+const sentenceSplits = JSON.parse(readText(SENTENCE_SPLITS_PATH))
 
 const args = parseArgs(process.argv.slice(2))
 const sourceDir = path.resolve(args.lmsDir ?? DEFAULT_LMS_DIR)
@@ -173,25 +175,35 @@ function normalizeStory(story, sourceOrder) {
       pinyin: word.pinyin ?? pinyinFor(word.word),
       meaning: word.gloss ?? word.meaning ?? '',
     })),
-    sentences: (story.sentences ?? []).map((sentence, index) => {
-      const id = sentence.sentence_id || `${story.story_id}-s${String(index + 1).padStart(2, '0')}`
-      const safeId = safePath(id)
-      const targetWords = (story.new_words ?? [])
-        .map((word) => word.word)
-        .filter((word) => sentence.chinese?.includes(word))
-      return {
-        id,
-        storyId: story.story_id,
-        index: index + 1,
-        chinese: sentence.chinese,
-        pinyin: pinyinFor(sentence.chinese),
-        english: sentence.english_helper ?? sentence.english ?? '',
-        targetWords,
-        audioClipId: `reader-sentence:${id}`,
-        audioFilename: `audio/sentences/${safeId}.mp3`,
-        ssmlFilename: `ssml/sentences/${safeId}.ssml`,
-      }
-    }),
+    sentences: (story.sentences ?? [])
+      .flatMap((sentence, sourceIndex) => {
+        const sourceId = sentence.sentence_id || `${story.story_id}-s${String(sourceIndex + 1).padStart(2, '0')}`
+        const plannedParts = sentenceSplits[sourceId]
+        const parts = plannedParts ?? [{
+          chinese: sentence.chinese,
+          english: sentence.english_helper ?? sentence.english ?? '',
+        }]
+        return parts.map((part, partIndex) => {
+          const id = plannedParts ? `${sourceId}-part-${partIndex + 1}` : sourceId
+          const safeId = safePath(id)
+          const targetWords = (story.new_words ?? [])
+            .map((word) => word.word)
+            .filter((word) => part.chinese?.includes(word))
+          return {
+            id,
+            storyId: story.story_id,
+            index: 0,
+            chinese: part.chinese,
+            pinyin: pinyinFor(part.chinese),
+            english: part.english,
+            targetWords,
+            audioClipId: `reader-sentence:${id}`,
+            audioFilename: `audio/sentences/${safeId}.mp3`,
+            ssmlFilename: `ssml/sentences/${safeId}.ssml`,
+          }
+        })
+      })
+      .map((sentence, index) => ({ ...sentence, index: index + 1 })),
     sourceOrder,
   }
 }

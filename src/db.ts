@@ -102,6 +102,7 @@ const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
 const ENGLISH_ONLY_CARD_CLEANUP_VERSION = '2026-07-09-english-only-duplicates'
 const READER_PACK_FIX_VERSION = '2026-07-15-john-chapters-1-3-art'
+const LMS_READER_TEXT_FIX_VERSION = '2026-07-22-phone-length-splits'
 const AUDIO_LINK_REPAIR_VERSION = '2026-07-10-startup-link-repair'
 
 export interface SyncMetadata {
@@ -1661,6 +1662,7 @@ export async function seedReaderBooksIfEmpty(): Promise<number> {
   const db = await getDB()
   const existingBooks = await db.getAll('readerBooks')
   const currentFixVersion = await db.get('settings', 'readerPackFixVersion')
+  const currentLmsTextFixVersion = await db.get('settings', 'lmsReaderTextFixVersion')
   const hostedPacks = await getHostedReaderPackIndex()
   const installedPackIds = new Set(existingBooks.map((book) => book.packId))
   const hasEveryHostedPack = hostedPacks.every((pack) => installedPackIds.has(pack.id))
@@ -1680,6 +1682,7 @@ export async function seedReaderBooksIfEmpty(): Promise<number> {
   )
   if (
     currentFixVersion === READER_PACK_FIX_VERSION &&
+    currentLmsTextFixVersion === LMS_READER_TEXT_FIX_VERSION &&
     existingBooks.length > 0 &&
     hasEveryHostedPack &&
     lmsIllustrationsAreCurrent &&
@@ -1721,6 +1724,7 @@ export async function seedReaderBooksIfEmpty(): Promise<number> {
     0,
   )
   if (results.every((result) => result.status === 'fulfilled')) {
+    await db.put('settings', LMS_READER_TEXT_FIX_VERSION, 'lmsReaderTextFixVersion')
     const audioPacks = hostedPacks.filter(
       (pack) => pack.id === 'rise-of-the-monkey-king' || pack.id === 'just-friends',
     )
@@ -2328,6 +2332,10 @@ export async function importHostedReaderPack(
     const existingClips = new Map((await db.getAll('audioClips')).map((clip) => [clip.id, clip]))
     const prepared: AudioClip[] = []
     for (const [index, sentence] of sentences.entries()) {
+      if (!sentence.audioFilename) {
+        onProgress?.(index + 1, sentences.length, sentence.chinese)
+        continue
+      }
       const existing = existingClips.get(sentence.audioClipId)
       if (existing?.blob) {
         prepared.push(readerSentenceToClip(sentence, existing.blob, packId, pack.voice, existing.createdAt))

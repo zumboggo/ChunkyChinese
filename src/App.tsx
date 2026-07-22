@@ -7340,14 +7340,6 @@ function ReaderMode({
 
   const listeningPlaying =
     ['playing', 'loading', 'shadowing'].includes(listening.snapshot.status)
-  const listeningShadowing = listening.snapshot.status === 'shadowing'
-
-  const illustration = activeBook ? getReaderIllustration(activeBook, sentenceIndex) : undefined
-  const illustrationSrc = illustration ? publicAssetPath(illustration.imageFilename) : ''
-  const fallbackIllustrationSrc = illustration?.fallbackImageFilename
-    ? publicAssetPath(illustration.fallbackImageFilename)
-    : ''
-
   const grammarMatches = useMemo(
     () => (sentence ? findGrammarMatches(sentence.chinese) : []),
     [sentence],
@@ -7568,28 +7560,6 @@ function ReaderMode({
                     ref={readerSwipe.cardRef}
                     className={`reader-reading-area card-enter${listening.active ? ' reader-listening-highlight' : ''}${readerSwipe.dismissClass ? ` ${readerSwipe.dismissClass}` : ''}`}
                   >
-                    {listeningShadowing && (
-                      <div className="reader-shadowing-cue" aria-live="polite">
-                        Your turn · speak it aloud
-                      </div>
-                    )}
-                    {illustration && (
-                      <figure className="reader-illustration">
-                        <img
-                          key={illustration.imageFilename}
-                          src={illustrationSrc}
-                          alt={illustration.alt}
-                          loading="eager"
-                          onError={(event) => {
-                            if (!fallbackIllustrationSrc) return
-                            const image = event.currentTarget
-                            if (image.dataset.fallbackShown === 'true') return
-                            image.dataset.fallbackShown = 'true'
-                            image.src = fallbackIllustrationSrc
-                          }}
-                        />
-                      </figure>
-                    )}
                     <AdaptiveChineseText
                       tokens={tokens}
                       selectedToken={selectedToken}
@@ -7812,11 +7782,6 @@ function ReaderMode({
                   matches={grammarSelection}
                   onClose={() => setGrammarSelection(null)}
                 />
-              )}
-              {grammarMatches.length > 0 && !grammarSelection && !selectedToken && (
-                <div className="grammar-hint" aria-label={`${grammarMatches.length} grammar points highlighted`}>
-                  {grammarMatches.length} grammar {grammarMatches.length === 1 ? 'point' : 'points'} highlighted
-                </div>
               )}
             </>
           ) : (
