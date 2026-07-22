@@ -67,6 +67,11 @@ test('Reading opens the LMS playlist immediately with adaptive pinyin and phone-
   await expect(page.locator('.reader-illustration')).toHaveCount(0)
   await expect(page.locator('.grammar-hint')).toHaveCount(0)
   await expect(page.locator('.reader-shadowing-cue')).toHaveCount(0)
+  await expect(page.locator('.reader-bottom-bar')).toContainText('Menu')
+  await expect(page.locator('.reader-bottom-bar')).toContainText('Pause')
+  await expect(page.locator('.reader-bottom-bar')).toContainText('Stop')
+  await expect(page.locator('.reader-bottom-bar')).toContainText('Next')
+  await expect(page.locator('.app-bottom-nav')).toContainText('Reader')
 
   await page.getByRole('button', { name: 'Reader menu' }).click()
   await expect(page.getByLabel('Pinyin')).toHaveValue('adaptive')

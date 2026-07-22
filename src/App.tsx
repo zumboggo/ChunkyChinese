@@ -3872,6 +3872,7 @@ function App() {
           title="Home"
         >
           <span className="dashboard-bottom-icon dashboard-bottom-home" aria-hidden="true" />
+          <span className="nav-label">Home</span>
         </button>
         <button
           type="button"
@@ -3881,6 +3882,7 @@ function App() {
           title="Flashcards"
         >
           <span className="nav-icon nav-flashcards" aria-hidden="true" />
+          <span className="nav-label">Review</span>
         </button>
         <button
           type="button"
@@ -3890,6 +3892,7 @@ function App() {
           title="Listening"
         >
           <span className="nav-icon nav-listen" aria-hidden="true" />
+          <span className="nav-label">Listen</span>
         </button>
         <button
           type="button"
@@ -3899,6 +3902,7 @@ function App() {
           title="Reading"
         >
           <span className="nav-icon nav-reading" aria-hidden="true" />
+          <span className="nav-label">Reader</span>
         </button>
         <button
           type="button"
@@ -3908,6 +3912,7 @@ function App() {
           title="Settings"
         >
           <span className="dashboard-bottom-icon dashboard-bottom-settings" aria-hidden="true" />
+          <span className="nav-label">Settings</span>
         </button>
       </nav>
 
@@ -7462,7 +7467,8 @@ function ReaderMode({
               <div className="reader-page-meta">
                 <div className="reader-meta-primary">
                   <button type="button" className="reader-exit-btn" onClick={onOpenLibrary}>
-                    <span aria-hidden="true">▤</span>
+                    <span className="reader-back-chevron" aria-hidden="true">‹</span>
+                    <span className="reader-library-icon" aria-hidden="true">▥</span>
                     Library
                   </button>
                   <span className="reader-meta-title">{activeBook.title}</span>
@@ -7598,7 +7604,8 @@ function ReaderMode({
                     onClick={() => setReaderMenuOpen(o => !o)}
                     aria-label="Reader menu"
                   >
-                    ☰
+                    <span className="reader-control-icon" aria-hidden="true">☰</span>
+                    <span className="reader-control-label">Menu</span>
                   </button>
                   <StudyMenuPopup
                     open={readerMenuOpen}
@@ -7716,16 +7723,19 @@ function ReaderMode({
                       onClick={listening.togglePlayPause}
                       aria-label={listeningPlaying ? 'Pause listening' : 'Play listening'}
                     >
-                      {listeningPlaying ? (
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-                          <rect x="5" y="4" width="4" height="16" rx="1" />
-                          <rect x="15" y="4" width="4" height="16" rx="1" />
-                        </svg>
-                      ) : (
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-                          <polygon points="5,3 19,12 5,21" />
-                        </svg>
-                      )}
+                      <span className="reader-control-icon" aria-hidden="true">
+                        {listeningPlaying ? (
+                          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <rect x="5" y="4" width="4" height="16" rx="1" />
+                            <rect x="15" y="4" width="4" height="16" rx="1" />
+                          </svg>
+                        ) : (
+                          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <polygon points="5,3 19,12 5,21" />
+                          </svg>
+                        )}
+                      </span>
+                      <span className="reader-control-label">{listeningPlaying ? 'Pause' : 'Play'}</span>
                     </button>
                     <button
                       type="button"
@@ -7733,9 +7743,12 @@ function ReaderMode({
                       onClick={listening.stop}
                       aria-label="Stop listening"
                     >
-                      <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true">
-                        <rect x="6" y="6" width="12" height="12" rx="2" />
-                      </svg>
+                      <span className="reader-control-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+                          <rect x="6" y="6" width="12" height="12" rx="2" />
+                        </svg>
+                      </span>
+                      <span className="reader-control-label">Stop</span>
                     </button>
                     <button
                       type="button"
@@ -7744,10 +7757,13 @@ function ReaderMode({
                       disabled={sentenceIndex >= sentenceCount - 1}
                       aria-label={`Next sentence. Choice B hotkey: ${choiceB.toUpperCase()}.`}
                     >
-                      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-                        <polygon points="5,4 15,12 5,20" />
-                        <rect x="17" y="5" width="2" height="14" rx="1" />
-                      </svg>
+                      <span className="reader-control-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                          <polygon points="5,4 15,12 5,20" />
+                          <rect x="17" y="5" width="2" height="14" rx="1" />
+                        </svg>
+                      </span>
+                      <span className="reader-control-label">Next</span>
                     </button>
                   </div>
                 ) : (

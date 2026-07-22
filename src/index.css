@@ -363,6 +363,316 @@
   }
 }
 
+/* Reader listening surface: quiet editorial palette and labeled controls. */
+.app-bottom-nav .nav-label {
+  display: none;
+}
+
+.reader-playlist-screen:not(.reader-theme-dark) {
+  --reader-accent: #df5d9d;
+  --reader-border: #eee6ec;
+  --reader-ink: #152139;
+  --reader-muted: #675d7c;
+  --reader-paper: #fffdfb;
+  --reader-paper-strong: #fffefd;
+  background: linear-gradient(180deg, #fcf9f6 0%, #fbf8fa 58%, #f7f3fb 100%);
+}
+
+.reader-playlist-screen:not(.reader-theme-dark) .reader-page-meta {
+  color: #282044;
+}
+
+.reader-playlist-screen .reader-meta-title,
+.reader-playlist-screen .reader-sentence-count,
+.reader-playlist-screen .reader-translation {
+  font-family: Georgia, 'Noto Serif', 'Noto Serif SC', serif;
+}
+
+.reader-playlist-screen .reader-meta-title {
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.reader-playlist-screen .reader-sentence-count {
+  color: #554778;
+  font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.reader-playlist-screen:not(.reader-theme-dark) .reader-exit-btn {
+  border-color: #eadfd8;
+  background: rgba(255, 254, 252, 0.96);
+  color: #292143;
+  box-shadow: 0 10px 26px rgba(76, 58, 90, 0.08);
+}
+
+.reader-playlist-screen .reader-back-chevron {
+  font-family: Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 400;
+  line-height: 0.7;
+}
+
+.reader-playlist-screen .reader-library-icon {
+  font-size: 1rem;
+}
+
+.reader-playlist-screen:not(.reader-theme-dark) .reader-progress-bar {
+  height: 7px;
+  background: #eeeaf2;
+}
+
+.reader-playlist-screen:not(.reader-theme-dark) .reader-progress-bar span {
+  background: linear-gradient(90deg, #dc5c9b, #ed8cba);
+}
+
+.reader-playlist-screen:not(.reader-theme-dark) .reader-swipe-zone {
+  border: 1px solid #f0e9ee;
+  background: rgba(255, 254, 253, 0.98);
+  box-shadow: 0 20px 52px rgba(73, 55, 86, 0.1);
+}
+
+.reader-playlist-screen:not(.reader-theme-dark) .reader-reading-area,
+.reader-playlist-screen:not(.reader-theme-dark) .reader-reading-area.reader-listening-highlight {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.reader-playlist-screen .reader-sentence {
+  font-family: 'LXGW WenKai', 'STKaiti', 'KaiTi', 'Noto Serif SC', serif;
+  font-weight: 400;
+}
+
+.reader-playlist-screen .reader-token rt {
+  color: #d84c8a;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-weight: 650;
+}
+
+.reader-playlist-screen:not(.reader-theme-dark) .reader-token.wstat-unknown {
+  background: rgba(255, 239, 218, 0.78);
+}
+
+.reader-playlist-screen:not(.reader-theme-dark) .reader-token.wstat-new {
+  background: rgba(249, 226, 238, 0.72);
+}
+
+.reader-playlist-screen:not(.reader-theme-dark) .reader-token.wstat-learning {
+  background: rgba(245, 236, 249, 0.78);
+}
+
+.reader-playlist-screen:not(.reader-theme-dark) .reader-token.grammar-highlight {
+  text-decoration-color: #c8a8e8;
+}
+
+.reader-playlist-screen:not(.reader-theme-dark) .reader-translation,
+.reader-playlist-screen:not(.reader-theme-dark) .reader-translation.reader-listening-highlight {
+  border: 1px solid #e9e0ef;
+  background: #fdfaff;
+  color: #202a3d;
+  box-shadow: none;
+  font-weight: 500;
+}
+
+.reader-playlist-screen .reader-bottom-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  align-items: stretch;
+  gap: 8px;
+  min-height: 92px;
+  padding: 9px 10px 7px;
+  border: 1px solid rgba(230, 222, 234, 0.8);
+  border-radius: 26px;
+  background: rgba(255, 254, 253, 0.9);
+  box-shadow: 0 14px 38px rgba(70, 54, 84, 0.08);
+}
+
+.reader-playlist-screen .sentence-menu-wrap,
+.reader-playlist-screen .reader-listening-controls {
+  min-width: 0;
+  height: 100%;
+}
+
+.reader-playlist-screen .reader-listening-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: none;
+  gap: 8px;
+}
+
+.reader-playlist-screen .reader-bottom-bar .sentence-menu-btn,
+.reader-playlist-screen .reader-bottom-bar .reader-listening-controls > button {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  min-height: 72px;
+  place-content: center;
+  justify-items: center;
+  gap: 5px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #57446f;
+  box-shadow: none;
+}
+
+.reader-playlist-screen .reader-control-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid #ece5ef;
+  border-radius: 17px;
+  background: #fff;
+  color: #5d4774;
+  box-shadow: 0 8px 20px rgba(78, 58, 92, 0.08);
+  font-size: 1.25rem;
+}
+
+.reader-playlist-screen .reader-listening-play-btn .reader-control-icon {
+  width: 58px;
+  height: 58px;
+  border-color: #d9c5ef;
+  border-radius: 50%;
+  background: linear-gradient(155deg, #d9b8ee, #7350bd 78%);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(110, 76, 177, 0.28);
+}
+
+.reader-playlist-screen .reader-listening-stop-btn .reader-control-icon {
+  background: #f7f1fb;
+  color: #694b8d;
+}
+
+.reader-playlist-screen .reader-listening-controls > button:last-child .reader-control-icon {
+  border-color: #f4d7c5;
+  background: #fff6ee;
+  color: #ed792b;
+  box-shadow: 0 8px 20px rgba(235, 121, 43, 0.12);
+}
+
+.reader-playlist-screen .reader-control-label {
+  color: #5e4c73;
+  font-size: 0.72rem;
+  font-weight: 550;
+  line-height: 1;
+}
+
+.reader-playlist-screen .reader-listening-controls > button:last-child .reader-control-label {
+  color: #e27227;
+}
+
+.reader-playlist-screen .reader-listening-controls > button:disabled {
+  opacity: 0.42;
+}
+
+.app-screen-reader .app-bottom-nav .nav-label {
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 550;
+  line-height: 1;
+}
+
+.app-screen-reader .app-bottom-nav button {
+  gap: 5px;
+  min-height: 64px;
+}
+
+@media (max-width: 760px) {
+  .app-shell.app-screen-reader {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 104px);
+  }
+
+  .reader-screen.reader-playlist-screen:not(.reader-theme-dark) {
+    background: linear-gradient(180deg, #fcf9f6 0%, #fbf8fa 58%, #f7f3fb 100%);
+  }
+
+  .reader-playlist-screen .reader-page {
+    gap: 8px;
+  }
+
+  .reader-playlist-screen .reader-page-meta {
+    gap: 10px;
+  }
+
+  .reader-playlist-screen .reader-meta-title {
+    color: #192238;
+    font-size: 1.04rem;
+    text-align: center;
+  }
+
+  .reader-playlist-screen .reader-page-meta .reader-exit-btn {
+    min-height: 42px;
+    padding: 7px 12px 7px 9px;
+  }
+
+  .reader-playlist-screen .reader-sentence-count {
+    font-size: 1.08rem;
+  }
+
+  .reader-playlist-screen .reader-swipe-zone {
+    padding: 18px 20px;
+    border-radius: 28px;
+  }
+
+  .reader-playlist-screen .reader-reading-area {
+    gap: 18px;
+  }
+
+  .reader-playlist-screen .reader-sentence {
+    font-size: calc(clamp(2.2rem, 11.7vw, 3.4rem) * var(--reader-font-scale, 1));
+    line-height: max(1.46, calc(var(--reader-line-height, 1.9) * 0.82));
+  }
+
+  .reader-playlist-screen .reader-sentence:has(.reader-token:nth-of-type(6)) {
+    font-size: calc(clamp(1.85rem, 9.2vw, 2.6rem) * var(--reader-font-scale, 1));
+  }
+
+  .reader-playlist-screen .reader-translation {
+    min-height: 90px;
+    flex-basis: 31%;
+    padding: 14px 12px;
+    border-radius: 20px;
+    font-size: clamp(1.08rem, 5vw, 1.4rem);
+    line-height: 1.4;
+  }
+
+  .reader-playlist-screen .reader-bottom-bar {
+    min-height: 88px;
+    margin-top: 0;
+    padding: 7px 8px 5px;
+    border-radius: 24px;
+  }
+
+  .reader-playlist-screen .reader-bottom-bar .sentence-menu-btn,
+  .reader-playlist-screen .reader-bottom-bar .reader-listening-controls > button {
+    min-height: 72px;
+  }
+
+  .reader-playlist-screen .reader-control-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 15px;
+  }
+
+  .reader-playlist-screen .reader-listening-play-btn .reader-control-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .app-screen-reader .app-bottom-nav {
+    padding-block: 7px 6px;
+  }
+
+  .app-screen-reader .app-bottom-nav button {
+    min-height: 64px;
+  }
+}
+
 /* Reader dark theme: neon night-sky treatment inspired by the listening UI. */
 .app-screen-reader:has(.reader-theme-dark) {
   position: relative;
@@ -14145,4 +14455,10 @@ main.app-shell {
     height: 100%;
     min-height: 0;
   }
+}
+
+.reader-playlist-screen .reader-bottom-bar .reader-listening-controls > button:last-child {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
