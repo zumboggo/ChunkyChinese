@@ -1,8 +1,13 @@
-const CACHE_VERSION = 'chunky-chinese-v50'
+const CACHE_VERSION = 'chunky-chinese-v51'
 const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'
 // Change CACHE_VERSION whenever the app shell changes and you want browsers to
 // discard old cached files. The activate handler below removes older versions.
 const APP_BASE = new URL('./', self.location.href).pathname
+const FLIGHT_CORE = [
+  `${APP_BASE}dictionary/cedict.json`,
+  `${APP_BASE}clip-packs/index.json`,
+  `${APP_BASE}reader-packs/index.json`,
+]
 const APP_SHELL = [
   APP_BASE,
   `${APP_BASE}index.html`,
@@ -48,6 +53,32 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('message', (event) => {
   if (event.data?.type === 'SKIP_WAITING') {
     event.waitUntil(self.skipWaiting())
+    return
+  }
+  if (event.data?.type === 'PREPARE_OFFLINE') {
+    event.waitUntil(
+      (async () => {
+        try {
+          const discovered = await discoverAppShellUrls()
+          const requested = Array.isArray(event.data.resources)
+            ? event.data.resources.filter(isSafeOfflineResource)
+            : []
+          const result = await cacheOfflineUrls([
+            ...APP_SHELL,
+            ...FLIGHT_CORE,
+            ...discovered,
+            ...requested,
+          ])
+          event.ports[0]?.postMessage(result)
+        } catch (error) {
+          event.ports[0]?.postMessage({
+            cached: 0,
+            failed: 1,
+            error: error instanceof Error ? error.message : 'Could not prepare the app for offline use.',
+          })
+        }
+      })(),
+    )
   }
 })
 
@@ -146,13 +177,15 @@ function isReaderMediaAsset(url) {
 function isStaticAppAsset(url) {
   return (
     url.pathname.startsWith(`${APP_BASE}assets/`) ||
+    url.pathname.startsWith(`${APP_BASE}src/`) ||
+    url.pathname.startsWith(`${APP_BASE}node_modules/.vite/`) ||
     url.pathname.startsWith(`${APP_BASE}icons/`) ||
     url.pathname.startsWith(`${APP_BASE}seed/`) ||
     url.pathname.startsWith(`${APP_BASE}dictionary/`) ||
     (url.pathname.startsWith(`${APP_BASE}reader-packs/`) && !url.pathname.endsWith('.mp3')) ||
     url.pathname.endsWith('/manifest.webmanifest') ||
     url.pathname.endsWith('/service-worker.js') ||
-    url.pathname.endsWith('.svg')
+    /\.(?:js|mjs|css|tsx?|jsx?|svg|woff2?)$/i.test(url.pathname)
   )
 }
 
@@ -161,4 +194,35 @@ function isMutableContentAsset(url) {
     url.pathname.startsWith(`${APP_BASE}reader-packs/`) &&
     (url.pathname.endsWith('.json') || url.pathname.endsWith('/reader_manifest.json'))
   )
+}
+
+async function cacheOfflineUrls(urls) {
+  const cache = await caches.open(CACHE_VERSION)
+  let cached = 0
+  let failed = 0
+  const uniqueUrls = [...new Set(urls)]
+  const workers = Array.from({ length: Math.min(6, uniqueUrls.length) }, async (_, workerIndex) => {
+    for (let index = workerIndex; index < uniqueUrls.length; index += 6) {
+      const url = uniqueUrls[index]
+      try {
+        const response = await fetch(url, { cache: 'reload' })
+        if (!response.ok) throw new Error(`HTTP ${response.status}`)
+        await cache.put(url, response)
+        cached += 1
+      } catch {
+        failed += 1
+      }
+    }
+  })
+  await Promise.all(workers)
+  return { cached, failed }
+}
+
+function isSafeOfflineResource(value) {
+  try {
+    const url = new URL(value, self.location.origin)
+    return url.origin === self.location.origin && url.pathname.startsWith(APP_BASE)
+  } catch {
+    return false
+  }
 }

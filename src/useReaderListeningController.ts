@@ -28,6 +28,11 @@ function loadAudioSource(audio: HTMLAudioElement, url: string) {
   audio.load()
 }
 
+function publicAssetUrl(path: string): string {
+  const base = import.meta.env.BASE_URL || '/'
+  return `${base.replace(/\/$/u, '')}/${path.replace(/^\//u, '')}`
+}
+
 interface ReaderListeningControllerOptions {
   sentence?: ReaderSentence
   sentenceIndex: number
@@ -297,12 +302,14 @@ export function useReaderListeningController({
       clearAudioSource()
       const clip = await getAudioClip(currentSentence.audioClipId)
       if (runTokenRef.current !== token) return
-      if (!clip) {
+      if (!clip && !currentSentence.audioFilename) {
         playWithSpeechSynthesis(currentSentence.chinese, token)
         return
       }
-      const url = URL.createObjectURL(clip.blob)
-      audioUrlRef.current = url
+      const url = clip
+        ? URL.createObjectURL(clip.blob)
+        : publicAssetUrl(currentSentence.audioFilename as string)
+      audioUrlRef.current = clip ? url : null
       if (!audio) {
         audio = new Audio()
         audioRef.current = audio

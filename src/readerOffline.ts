@@ -12,6 +12,16 @@ export interface ReaderOfflineDownloadResult extends ReaderOfflineStatus {
   failed: number
 }
 
+export function readerBookOfflineAudioUrls(book: ReaderBook): string[] {
+  return [...new Set(
+    book.stories
+      .flatMap((story) => story.sentences)
+      .map((sentence) => sentence.audioFilename)
+      .filter((path): path is string => Boolean(path))
+      .map(publicAssetUrl),
+  )]
+}
+
 export function readerBookOfflineAssetUrls(book: ReaderBook): string[] {
   const urls = new Set<string>()
   if (book.coverImage && !book.coverImage.startsWith('data:')) {
@@ -33,9 +43,7 @@ export function readerBookOfflineAssetUrls(book: ReaderBook): string[] {
       }
     }
   }
-  for (const sentence of book.stories.flatMap((story) => story.sentences)) {
-    if (sentence.audioFilename) urls.add(publicAssetUrl(sentence.audioFilename))
-  }
+  for (const url of readerBookOfflineAudioUrls(book)) urls.add(url)
   return [...urls]
 }
 
@@ -51,9 +59,10 @@ export async function getReaderBookOfflineStatus(book: ReaderBook): Promise<Read
 export async function downloadReaderBookForOffline(
   book: ReaderBook,
   onProgress?: (completed: number, total: number) => void,
+  options: { audioOnly?: boolean } = {},
 ): Promise<ReaderOfflineDownloadResult> {
   if (!('caches' in window)) throw new Error('Offline downloads are not supported in this browser.')
-  const urls = readerBookOfflineAssetUrls(book)
+  const urls = options.audioOnly ? readerBookOfflineAudioUrls(book) : readerBookOfflineAssetUrls(book)
   const cache = await caches.open(READER_OFFLINE_CACHE)
   let completed = 0
   let failed = 0
@@ -77,8 +86,12 @@ export async function downloadReaderBookForOffline(
     }
   }
   await Promise.all(Array.from({ length: Math.min(6, urls.length) }, () => worker()))
-  const status = await getReaderBookOfflineStatus(book)
-  return { ...status, failed }
+  if (options.audioOnly) {
+    const matches = await Promise.all(urls.map((url) => cache.match(url)))
+    const cached = matches.filter(Boolean).length
+    return { cached, total: urls.length, complete: urls.length > 0 && cached === urls.length, failed }
+  }
+  return { ...(await getReaderBookOfflineStatus(book)), failed }
 }
 
 export async function removeReaderBookOfflineDownload(book: ReaderBook): Promise<void> {

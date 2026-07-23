@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { analyzeDataHealthRecords } from './dataHealth'
 import { readerLibraryFingerprint } from './readerLibraryCache'
-import { readerBookOfflineAssetUrls } from './readerOffline'
+import { readerBookOfflineAssetUrls, readerBookOfflineAudioUrls } from './readerOffline'
 import type { ListeningEvent, ReaderBook, ReaderProgress, ReaderSession } from './types'
 
 function book(): ReaderBook {
@@ -55,6 +55,10 @@ describe('Reader improvements', () => {
     expect(urls).toContain('/reader-packs/pack-1/cover.webp')
     expect(urls).toContain('/reader-packs/pack-1/art.webp')
     expect(urls).toContain('/reader-packs/pack-1/audio.mp3')
+  })
+
+  it('can prepare listening audio without downloading reader images', () => {
+    expect(readerBookOfflineAudioUrls(book())).toEqual(['/reader-packs/pack-1/audio.mp3'])
   })
 })
 

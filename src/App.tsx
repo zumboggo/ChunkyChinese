@@ -213,9 +213,11 @@ import {
 import {
   downloadReaderBookForOffline,
   getReaderBookOfflineStatus,
+  readerBookOfflineAudioUrls,
   removeReaderBookOfflineDownload,
   type ReaderOfflineStatus,
 } from './readerOffline'
+import { getOfflineReadyAt, markOfflineReady, prepareOfflineAppShell } from './flightOffline'
 import {
   repairDataHealth,
   runDataHealthCheck,
@@ -524,6 +526,9 @@ function App() {
   const [readerOfflineStatuses, setReaderOfflineStatuses] = useState<Map<string, ReaderOfflineStatus>>(new Map())
   const [readerOfflineBusyId, setReaderOfflineBusyId] = useState<string | null>(null)
   const [readerOfflineProgress, setReaderOfflineProgress] = useState('')
+  const [flightOfflineBusy, setFlightOfflineBusy] = useState(false)
+  const [flightOfflineProgress, setFlightOfflineProgress] = useState('')
+  const [flightOfflineReadyAt, setFlightOfflineReadyAt] = useState<string | null>(() => getOfflineReadyAt())
   const [dataHealthReport, setDataHealthReport] = useState<DataHealthReport | null>(null)
   const [dataHealthBusy, setDataHealthBusy] = useState(false)
   const [hotkeysEditing, setHotkeysEditing] = useState(false)
@@ -1567,6 +1572,83 @@ function App() {
       setLastSummary(`${book.title} offline download removed.`)
     } finally {
       setReaderOfflineBusyId(null)
+    }
+  }
+
+  async function handlePrepareForFlight() {
+    if (!navigator.onLine) {
+      setLastSummary('Connect to the internet before preparing the offline bundle.')
+      return
+    }
+    setFlightOfflineBusy(true)
+    setFlightOfflineProgress('Saving the app and dictionary…')
+    let failedFiles = 0
+    try {
+      await navigator.storage?.persist?.()
+      const shell = await prepareOfflineAppShell()
+      failedFiles += shell.failed
+
+      setFlightOfflineProgress('Saving the reading library…')
+      await seedReaderBooksIfEmpty()
+      const nextBooks = await getAllReaderBooks()
+      const lmsBooks = nextBooks.filter((book) => book.packId === 'lms-books')
+      if (lmsBooks.length === 0) {
+        throw new Error('The LMS Reader library could not be saved. Check your connection and try again.')
+      }
+      const readerAudioTotal = lmsBooks.reduce(
+        (sum, book) => sum + readerBookOfflineAudioUrls(book).length,
+        0,
+      )
+      let readerAudioCompleted = 0
+      for (const book of lmsBooks) {
+        const result = await downloadReaderBookForOffline(
+          book,
+          (completed) => {
+            setFlightOfflineProgress(
+              `Saving LMS Reader audio ${readerAudioCompleted + completed}/${readerAudioTotal}…`,
+            )
+          },
+          { audioOnly: true },
+        )
+        readerAudioCompleted += result.total
+        failedFiles += result.failed
+      }
+
+      const flightClipPacks = hostedClipPacks.length > 0
+        ? hostedClipPacks
+        : await getHostedClipPackIndex()
+      const lmsClipPack = flightClipPacks.find((pack) => pack.id === 'lms-1000-azure')
+      if (lmsClipPack) {
+        setFlightOfflineProgress('Saving LMS listening clips…')
+        let lastShownPercent = -1
+        const summary = await importHostedClipPack(
+          lmsClipPack.baseUrl,
+          (completed, total) => {
+            const percent = total > 0 ? Math.floor((completed / total) * 100) : 100
+            if (percent === lastShownPercent) return
+            lastShownPercent = percent
+            setFlightOfflineProgress(`Saving LMS listening clips… ${percent}%`)
+          },
+          lmsClipPack,
+        )
+        failedFiles += summary.skipped
+      } else {
+        failedFiles += 1
+      }
+
+      await refresh()
+      const readyAt = markOfflineReady()
+      setFlightOfflineReadyAt(readyAt)
+      setFlightOfflineProgress('')
+      setLastSummary(
+        failedFiles > 0
+          ? `Mostly ready for your flight. ${failedFiles} optional file${failedFiles === 1 ? '' : 's'} could not be saved.`
+          : 'Ready for your flight. The core app, LMS study modes, Reader audio, and dictionary are saved offline.',
+      )
+    } catch (error) {
+      setLastSummary(error instanceof Error ? error.message : 'Could not finish preparing the offline bundle.')
+    } finally {
+      setFlightOfflineBusy(false)
     }
   }
 
@@ -4321,6 +4403,52 @@ function App() {
           </div>
 
           <div className="settings-sections">
+            <details className="settings-group" open>
+              <summary className="settings-group-summary">Flight mode</summary>
+              <div className="import-grid">
+                <section className="panel offline-flight-panel">
+                  <div className="panel-title-row">
+                    <div>
+                      <h2>Prepare for offline use</h2>
+                      <p>
+                        Saves the app, LMS flashcards and listening clips, all LMS Reader text and
+                        narration, and the Chinese dictionary on this phone.
+                      </p>
+                    </div>
+                    <span className={`sync-pill ${flightOfflineReadyAt ? 'sync-synced' : 'sync-idle'}`}>
+                      {flightOfflineReadyAt ? 'Ready' : 'Not saved'}
+                    </span>
+                  </div>
+                  <div className="offline-flight-copy">
+                    <strong>About 85–90 MB · keep this screen open until it finishes.</strong>
+                    <small>
+                      Progress and settings already live on this device. Cloud sync, AI story
+                      generation, and packs you have not downloaded still need internet.
+                    </small>
+                    {flightOfflineReadyAt ? (
+                      <small>Last prepared {formatRelativeTime(flightOfflineReadyAt)}.</small>
+                    ) : null}
+                  </div>
+                  <div className="button-row">
+                    <button
+                      type="button"
+                      className="primary"
+                      disabled={flightOfflineBusy}
+                      onClick={() => void handlePrepareForFlight()}
+                    >
+                      {flightOfflineBusy ? 'Preparing…' : flightOfflineReadyAt ? 'Refresh offline bundle' : 'Prepare for flight'}
+                    </button>
+                  </div>
+                  {flightOfflineProgress ? (
+                    <div className="offline-flight-progress" role="status" aria-live="polite">
+                      <span className="offline-flight-spinner" aria-hidden="true" />
+                      <strong>{flightOfflineProgress}</strong>
+                    </div>
+                  ) : null}
+                </section>
+              </div>
+            </details>
+
             <details className="settings-group" open={!cloudUserEmail}>
               <summary className="settings-group-summary">Account &amp; Sync</summary>
               <div className="import-grid">

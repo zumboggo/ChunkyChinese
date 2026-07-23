@@ -2030,6 +2030,48 @@ details.settings-group > .import-grid {
   gap: 14px;
 }
 
+.offline-flight-panel {
+  display: grid;
+  gap: 14px;
+  grid-column: 1 / -1;
+  background:
+    linear-gradient(145deg, rgba(239, 246, 255, 0.96), rgba(255, 255, 255, 0.96));
+}
+
+.offline-flight-copy {
+  display: grid;
+  gap: 5px;
+}
+
+.offline-flight-copy small {
+  color: var(--muted);
+}
+
+.offline-flight-progress {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--blue-deep);
+  font-size: 0.88rem;
+}
+
+.offline-flight-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(37, 99, 235, 0.2);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: offline-flight-spin 0.8s linear infinite;
+}
+
+@keyframes offline-flight-spin {
+  to { transform: rotate(360deg); }
+}
+
+:root[data-theme='dark'] .offline-flight-panel {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.96));
+}
+
 .sync-pill {
   flex: 0 0 auto;
   border-radius: 999px;
