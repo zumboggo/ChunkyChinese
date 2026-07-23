@@ -1,5 +1,6 @@
-const CACHE_VERSION = 'chunky-chinese-v51'
+const CACHE_VERSION = 'chunky-chinese-v53'
 const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'
+const SENTENCE_OFFLINE_CACHE = 'chunky-sentence-listening-v1'
 // Change CACHE_VERSION whenever the app shell changes and you want browsers to
 // discard old cached files. The activate handler below removes older versions.
 const APP_BASE = new URL('./', self.location.href).pathname
@@ -104,6 +105,11 @@ self.addEventListener('fetch', (event) => {
     return
   }
 
+  if (isSentenceAudioAsset(url)) {
+    event.respondWith(sentenceOfflineFirst(request))
+    return
+  }
+
   if (isStaticAppAsset(url)) {
     event.respondWith(cacheFirst(request))
     return
@@ -137,12 +143,12 @@ async function networkFirstHtml(request) {
 async function networkFirstAsset(request, fallbacks = [request]) {
   const cache = await caches.open(CACHE_VERSION)
   try {
-    const response = await fetch(request)
+    const response = await fetchWithTimeout(request)
     if (response.ok) await cache.put(request, response.clone())
     return response
   } catch {
     for (const fallback of fallbacks) {
-      const cached = await cache.match(fallback)
+      const cached = await cache.match(fallback, { ignoreVary: true })
       if (cached) return cached
     }
     throw new Error(`No cached response for ${request.url}`)
@@ -151,19 +157,26 @@ async function networkFirstAsset(request, fallbacks = [request]) {
 
 async function cacheFirst(request) {
   const cache = await caches.open(CACHE_VERSION)
-  const cached = await cache.match(request)
+  const cached = await cache.match(request, { ignoreVary: true })
   if (cached) return cached
 
-  const response = await fetch(request)
+  const response = await fetchWithTimeout(request)
   if (response.ok) await cache.put(request, response.clone())
   return response
 }
 
 async function readerOfflineFirst(request) {
   const offlineCache = await caches.open(READER_OFFLINE_CACHE)
-  const downloaded = await offlineCache.match(request)
+  const downloaded = await offlineCache.match(request, { ignoreVary: true })
   if (downloaded) return downloaded
-  if (new URL(request.url).pathname.endsWith('.mp3')) return fetch(request)
+  if (new URL(request.url).pathname.endsWith('.mp3')) return fetchWithTimeout(request)
+  return cacheFirst(request)
+}
+
+async function sentenceOfflineFirst(request) {
+  const offlineCache = await caches.open(SENTENCE_OFFLINE_CACHE)
+  const downloaded = await offlineCache.match(request, { ignoreVary: true })
+  if (downloaded) return downloaded
   return cacheFirst(request)
 }
 
@@ -171,6 +184,13 @@ function isReaderMediaAsset(url) {
   return (
     url.pathname.startsWith(`${APP_BASE}reader-packs/`) &&
     /\.(?:mp3|webp|png|jpe?g|avif)$/i.test(url.pathname)
+  )
+}
+
+function isSentenceAudioAsset(url) {
+  return (
+    url.pathname.startsWith(`${APP_BASE}seed/sentence-audio/`) &&
+    url.pathname.endsWith('.mp3')
   )
 }
 
@@ -224,5 +244,15 @@ function isSafeOfflineResource(value) {
     return url.origin === self.location.origin && url.pathname.startsWith(APP_BASE)
   } catch {
     return false
+  }
+}
+
+async function fetchWithTimeout(request, timeoutMs = 5000) {
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), timeoutMs)
+  try {
+    return await fetch(request, { signal: controller.signal })
+  } finally {
+    clearTimeout(timeout)
   }
 }

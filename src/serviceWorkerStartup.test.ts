@@ -15,6 +15,14 @@ describe('service worker startup cache', () => {
     const source = await readFile(new URL('../public/service-worker.js', import.meta.url), 'utf8')
     expect(source).toContain("const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'")
     expect(source).toContain('event.respondWith(readerOfflineFirst(request))')
-    expect(source).toContain("pathname.endsWith('.mp3')) return fetch(request)")
+    expect(source).toContain("pathname.endsWith('.mp3')) return fetchWithTimeout(request)")
+  })
+
+  it('serves the complete downloaded sentence library before the network', async () => {
+    const source = await readFile(new URL('../public/service-worker.js', import.meta.url), 'utf8')
+    expect(source).toContain("const SENTENCE_OFFLINE_CACHE = 'chunky-sentence-listening-v1'")
+    expect(source).toContain('event.respondWith(sentenceOfflineFirst(request))')
+    expect(source).toContain('seed/sentence-audio/')
+    expect(source).toContain('fetchWithTimeout(request)')
   })
 })

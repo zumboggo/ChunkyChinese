@@ -25,7 +25,7 @@ export function sentenceClipId(word: string, lang: 'zh' | 'en'): string {
   return lang === 'zh' ? `lms-sentence-${word}` : `lms-sentence-${word}-en`
 }
 
-function seedAudioUrl(word: string, lang: 'zh' | 'en'): string {
+export function sentenceSeedAudioUrl(word: string, lang: 'zh' | 'en'): string {
   const filename = lang === 'zh' ? `${word}.mp3` : `${word}-en.mp3`
   return `seed/sentence-audio/${encodeURIComponent(filename)}`
 }
@@ -54,7 +54,7 @@ export async function ensureSentenceClip(
   const fetchFn = deps.fetchFn ?? fetch
   let blob: Blob
   try {
-    const response = await fetchFn(seedAudioUrl(word, lang))
+    const response = await fetchFn(sentenceSeedAudioUrl(word, lang))
     if (!response.ok) return undefined
     blob = await response.blob()
   } catch {

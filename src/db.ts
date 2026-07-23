@@ -507,6 +507,10 @@ export async function getAllAudioClips(): Promise<AudioClip[]> {
   return await (await getDB()).getAll('audioClips')
 }
 
+export async function getPromptAudioClips(): Promise<AudioClip[]> {
+  return await (await getDB()).getAllFromIndex('audioClips', 'type', 'prompt')
+}
+
 export async function getAllClipPacks(): Promise<ClipPack[]> {
   return (await (await getDB()).getAll('clipPacks')).sort((a, b) =>
     a.name.localeCompare(b.name),
@@ -1587,13 +1591,31 @@ export async function importHostedClipPack(
   }
 
   const db = await getDB()
-  const existingClips = new Map((await db.getAll('audioClips')).map((clip) => [clip.id, clip]))
+  const words = await db.getAll('vocabWords')
+  const sentences = await db.getAll('sentences')
   const preparedClips: Array<{ entry: ClipManifestEntry; clip: AudioClip; existed: boolean }> = []
   const total = manifest.clips?.length ?? 0
   let skipped = 0
+  let created = 0
+  let updated = 0
+  let linkedAudio = 0
+
+  const flushPreparedClips = async () => {
+    if (preparedClips.length === 0) return
+    const batch = preparedClips.splice(0)
+    const tx = db.transaction(['audioClips', 'vocabWords', 'sentences'], 'readwrite')
+    for (const prepared of batch) {
+      const clip = { ...prepared.clip, packId }
+      await tx.objectStore('audioClips').put(clip)
+      if (prepared.existed) updated += 1
+      else created += 1
+      linkedAudio += await linkClip(tx, clip, words, sentences, prepared.entry)
+    }
+    await tx.done
+  }
 
   for (const [index, entry] of (manifest.clips ?? []).entries()) {
-    const existing = existingClips.get(entry.id)
+    const existing = await db.get('audioClips', entry.id)
     if (existing?.blob) {
       preparedClips.push({
         entry,
@@ -1601,6 +1623,7 @@ export async function importHostedClipPack(
         clip: manifestEntryToClip(entry, existing.blob, existing.createdAt),
       })
       onProgress?.(index + 1, total, entry.label || entry.text || entry.path)
+      if (preparedClips.length >= 100) await flushPreparedClips()
       continue
     }
 
@@ -1619,24 +1642,9 @@ export async function importHostedClipPack(
       )
     }
     onProgress?.(index + 1, total, entry.label || entry.text || entry.path)
+    if (preparedClips.length >= 100) await flushPreparedClips()
   }
-
-  const words = await db.getAll('vocabWords')
-  const sentences = await db.getAll('sentences')
-  const tx = db.transaction(['audioClips', 'vocabWords', 'sentences'], 'readwrite')
-  let created = 0
-  let updated = 0
-  let linkedAudio = 0
-
-  for (const prepared of preparedClips) {
-    await tx.objectStore('audioClips').put({ ...prepared.clip, packId })
-    if (prepared.existed) updated += 1
-    else created += 1
-    linkedAudio += await linkClip(tx, { ...prepared.clip, packId }, words, sentences, prepared.entry)
-  }
-
-  await tx.done
-  linkedAudio += await repairAudioClipLinks()
+  await flushPreparedClips()
   pack.wordCount = (await db.getAll('vocabWords')).filter((word) =>
     word.packIds?.includes(packId),
   ).length

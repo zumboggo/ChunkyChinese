@@ -22,7 +22,6 @@ import {
   deferWordsAfterListening,
   downloadText,
   exportBackup,
-  getAllAudioClips,
   getAllClipPacks,
   getAllReaderBooks,
   getAllReaderPacks,
@@ -35,6 +34,7 @@ import {
   getDashboardStats,
   getNewWordsPerDay,
   getHotkeys,
+  getPromptAudioClips,
   getHostedClipPackIndex,
   getHostedComicPackIndex,
   getReaderProgress,
@@ -45,7 +45,6 @@ import {
   importHostedComicPack,
   rateWordFsrs,
   recordEvent,
-  repairAudioClipLinks,
   repairAudioClipLinksIfNeeded,
   restoreArchivedWord,
   saveRenderedLesson,
@@ -218,6 +217,7 @@ import {
   type ReaderOfflineStatus,
 } from './readerOffline'
 import { getOfflineReadyAt, markOfflineReady, prepareOfflineAppShell } from './flightOffline'
+import { downloadSentenceListeningForOffline } from './sentenceOffline'
 import {
   repairDataHealth,
   runDataHealthCheck,
@@ -736,7 +736,7 @@ function App() {
     ] = await Promise.all([
       getAllWords(),
       getAllSentences(),
-      getAllAudioClips(),
+      getPromptAudioClips(),
       getAllClipPacks(),
       getAllReaderPacks(),
       getAllReaderBooks(),
@@ -848,7 +848,7 @@ function App() {
       setNewWordsPerDay(nextNewWordsPerDay)
 
       if (screen === 'lesson') {
-        const [nextSentences, nextAudio] = await Promise.all([getAllSentences(), getAllAudioClips()])
+        const [nextSentences, nextAudio] = await Promise.all([getAllSentences(), getPromptAudioClips()])
         if (!cancelled) {
           setSentences(nextSentences)
           setAudioClips(nextAudio)
@@ -1614,6 +1614,22 @@ function App() {
         failedFiles += result.failed
       }
 
+      const flightSentences = lmsSentences.length > 0
+        ? lmsSentences
+        : await loadLmsSentences()
+      setFlightOfflineProgress('Saving sentence listening audio…')
+      let lastSentencePercent = -1
+      const sentenceAudio = await downloadSentenceListeningForOffline(
+        flightSentences,
+        (completed, total) => {
+          const percent = total > 0 ? Math.floor((completed / total) * 100) : 100
+          if (percent === lastSentencePercent) return
+          lastSentencePercent = percent
+          setFlightOfflineProgress(`Saving sentence listening audio… ${percent}%`)
+        },
+      )
+      failedFiles += sentenceAudio.failed
+
       const flightClipPacks = hostedClipPacks.length > 0
         ? hostedClipPacks
         : await getHostedClipPackIndex()
@@ -1637,18 +1653,24 @@ function App() {
       }
 
       await refresh()
-      const readyAt = markOfflineReady()
-      setFlightOfflineReadyAt(readyAt)
       setFlightOfflineProgress('')
-      setLastSummary(
-        failedFiles > 0
-          ? `Mostly ready for your flight. ${failedFiles} optional file${failedFiles === 1 ? '' : 's'} could not be saved.`
-          : 'Ready for your flight. The core app, LMS study modes, Reader audio, and dictionary are saved offline.',
-      )
+      if (failedFiles > 0) {
+        setFlightOfflineReadyAt(null)
+        setLastSummary(
+          `Offline download incomplete: ${failedFiles} file${failedFiles === 1 ? '' : 's'} could not be verified. Keep your connection on and tap Prepare again.`,
+        )
+      } else {
+        const readyAt = markOfflineReady()
+        setFlightOfflineReadyAt(readyAt)
+        setLastSummary(
+          'Ready for your flight. Flashcards, sentence listening, LMS Reader audio, and the dictionary are verified offline.',
+        )
+      }
     } catch (error) {
       setLastSummary(error instanceof Error ? error.message : 'Could not finish preparing the offline bundle.')
     } finally {
       setFlightOfflineBusy(false)
+      setFlightOfflineProgress('')
     }
   }
 
@@ -2922,12 +2944,12 @@ function App() {
       let lessonWords = activeWords
       let lessonSentences = sentences
       let lessonAudioClips = audioClips
-      const repairedLinks = await repairAudioClipLinks()
+      const repairedLinks = await repairAudioClipLinksIfNeeded()
       if (repairedLinks > 0) {
         const [freshWords, freshSentences, freshAudioClips, freshStats] = await Promise.all([
           getAllWords(),
           getAllSentences(),
-          getAllAudioClips(),
+          getPromptAudioClips(),
           getDashboardStats(),
         ])
         setWords(freshWords)
@@ -4420,7 +4442,7 @@ function App() {
                     </span>
                   </div>
                   <div className="offline-flight-copy">
-                    <strong>About 85–90 MB · keep this screen open until it finishes.</strong>
+                    <strong>About 115–125 MB · keep this screen open until it finishes.</strong>
                     <small>
                       Progress and settings already live on this device. Cloud sync, AI story
                       generation, and packs you have not downloaded still need internet.

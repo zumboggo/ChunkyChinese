@@ -3,7 +3,7 @@ export interface OfflineShellResult {
   failed: number
 }
 
-const OFFLINE_READY_AT_KEY = 'chunky-offline-ready-at'
+const OFFLINE_READY_AT_KEY = 'chunky-offline-ready-v2-at'
 
 export async function prepareOfflineAppShell(): Promise<OfflineShellResult> {
   if (!('serviceWorker' in navigator)) {
@@ -11,6 +11,20 @@ export async function prepareOfflineAppShell(): Promise<OfflineShellResult> {
   }
 
   const registration = await navigator.serviceWorker.ready
+  if (!navigator.serviceWorker.controller) {
+    await new Promise<void>((resolve, reject) => {
+      const timeout = window.setTimeout(() => {
+        navigator.serviceWorker.removeEventListener('controllerchange', handleControllerChange)
+        reject(new Error('The offline worker could not take control. Reload once and try again.'))
+      }, 15_000)
+      function handleControllerChange() {
+        window.clearTimeout(timeout)
+        navigator.serviceWorker.removeEventListener('controllerchange', handleControllerChange)
+        resolve()
+      }
+      navigator.serviceWorker.addEventListener('controllerchange', handleControllerChange)
+    })
+  }
   const worker = registration.active ?? registration.waiting
   if (!worker) throw new Error('The offline worker is not ready yet. Please try again.')
 

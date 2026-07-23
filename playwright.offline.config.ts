@@ -6,7 +6,7 @@ export default defineConfig({
   testDir: './tests',
   testMatch: 'offline-flight.spec.ts',
   workers: 1,
-  timeout: 120_000,
+  timeout: 360_000,
   reporter: 'line',
   use: {
     ...devices['Desktop Chrome'],
