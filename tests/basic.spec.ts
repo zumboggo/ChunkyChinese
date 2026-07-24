@@ -30,6 +30,16 @@ test.describe('Chunky Chinese Vocab Smoke Tests', () => {
     await expect(cloudSyncHeading).toBeVisible();
   });
 
+  test('keeps dashboard study choices user-directed', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+    await expect(page.locator('.dashboard-mode-card.flashcards-start')).toBeVisible();
+    await expect(page.locator('.dashboard-mode-card.listen-start')).toBeVisible();
+    await expect(page.locator('.dashboard-mode-card.reading-texts-start')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Study Now' })).toHaveCount(0);
+    await expect(page.getByLabel('Choose session length')).toHaveCount(0);
+  });
+
   test('lets the learner choose persistent flashcard decks in Settings', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await page.getByRole('button', { name: 'Settings', exact: true }).click();

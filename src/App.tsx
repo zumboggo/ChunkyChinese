@@ -273,9 +273,6 @@ type GeneratedStoryResult = {
   story: GeneratedStoryPayload
   validation: GeneratedStoryValidation
 }
-type StudyNowStepId = 'flashcards' | 'listening' | 'reading'
-type StudyNowStep = { id: StudyNowStepId; label: string; detail: string }
-type StudyNowPlan = { minutes: number; stepIndex: number; steps: StudyNowStep[] }
 type LessonStartOptions = {
   randomize?: boolean
   playAfterRender?: boolean
@@ -522,7 +519,6 @@ function App() {
   const [userSettings, setUserSettings] = useState(DEFAULT_USER_SETTINGS)
   const [newWordsPerDay, setNewWordsPerDay] = useState(15)
   const [historicalStudyMinutesDraft, setHistoricalStudyMinutesDraft] = useState('')
-  const [studyNowPlan, setStudyNowPlan] = useState<StudyNowPlan | null>(null)
   const [readerOfflineStatuses, setReaderOfflineStatuses] = useState<Map<string, ReaderOfflineStatus>>(new Map())
   const [readerOfflineBusyId, setReaderOfflineBusyId] = useState<string | null>(null)
   const [readerOfflineProgress, setReaderOfflineProgress] = useState('')
@@ -1508,36 +1504,6 @@ function App() {
     setSentenceSetComplete(false)
     await startSentenceLesson(nextOffset)
   }, [sentenceListeningSettings.sentenceRounds, sentenceQueue, sentenceQueueOffset, startSentenceLesson])
-
-  function startStudyNow(minutes: number) {
-    const cardCount = minutes === 5 ? 4 : minutes === 10 ? 8 : 15
-    const steps: StudyNowStep[] = [
-      { id: 'flashcards', label: 'Flashcards', detail: `${cardCount} high-value cards` },
-      { id: 'listening', label: 'Listening', detail: 'One focused sentence set' },
-      { id: 'reading', label: 'Reading', detail: readerResumeLocation ? 'Continue your current book' : 'Choose a short reading' },
-    ]
-    const plan = { minutes, stepIndex: 0, steps }
-    setStudyNowPlan(plan)
-    startFlashcards('mixed', buildFlashcardQueue('mixed').slice(0, cardCount))
-    setLastSummary(`${minutes}-minute Study Now plan started.`)
-  }
-
-  function advanceStudyNow() {
-    if (!studyNowPlan) return
-    const nextIndex = studyNowPlan.stepIndex + 1
-    if (nextIndex >= studyNowPlan.steps.length) {
-      setStudyNowPlan(null)
-      setScreen('dashboard')
-      setLastSummary('Study Now complete. Nice work!')
-      playGentleCelebration()
-      return
-    }
-    const nextPlan = { ...studyNowPlan, stepIndex: nextIndex }
-    setStudyNowPlan(nextPlan)
-    const step = nextPlan.steps[nextIndex]
-    if (step.id === 'listening') void startSentenceLesson()
-    else if (step.id === 'reading') void startReaderPlaylistRef.current?.()
-  }
 
   async function handleReaderOfflineDownload(book: ReaderBook) {
     setReaderOfflineBusyId(book.id)
@@ -3630,28 +3596,6 @@ function App() {
         </div>
       </header>
 
-      {studyNowPlan && (
-        <aside className="study-now-strip" aria-label={`${studyNowPlan.minutes}-minute Study Now plan`}>
-          <span>
-            <strong>Study Now · {studyNowPlan.minutes} min</strong>
-            <small>{studyNowPlan.steps[studyNowPlan.stepIndex].label}: {studyNowPlan.steps[studyNowPlan.stepIndex].detail}</small>
-          </span>
-          <div className="study-now-dots" aria-label={`Step ${studyNowPlan.stepIndex + 1} of ${studyNowPlan.steps.length}`}>
-            {studyNowPlan.steps.map((step, index) => (
-              <i key={step.id} className={index <= studyNowPlan.stepIndex ? 'active' : ''} />
-            ))}
-          </div>
-          <button type="button" className="primary" onClick={advanceStudyNow}>
-            {studyNowPlan.stepIndex + 1 < studyNowPlan.steps.length
-              ? `Next: ${studyNowPlan.steps[studyNowPlan.stepIndex + 1].label}`
-              : 'Finish'}
-          </button>
-          <button type="button" className="ghost-answer" onClick={() => setStudyNowPlan(null)}>
-            End
-          </button>
-        </aside>
-      )}
-
       {goalCelebrationId > 0 && <FlashcardCelebration key={`goal-${goalCelebrationId}`} />}
 
       {screen === 'dashboard' && (
@@ -3668,23 +3612,6 @@ function App() {
               <MilestoneJourney wordsKnown={wordsKnown} leveledUpThisWeek={leveledUpThisWeek} />
             </div>
           </div>
-
-          <section className="study-now-launcher" aria-labelledby="study-now-title">
-            <span className="study-now-launcher-mark" aria-hidden="true">今</span>
-            <div>
-              <span>Recommended</span>
-              <h2 id="study-now-title">Study Now</h2>
-              <p>A guided mix of high-value flashcards, focused listening, and reading.</p>
-            </div>
-            <div className="study-now-lengths" aria-label="Choose session length">
-              {[5, 10, 20].map((minutes) => (
-                <button key={minutes} type="button" onClick={() => startStudyNow(minutes)}>
-                  <strong>{minutes}</strong>
-                  <small>min</small>
-                </button>
-              ))}
-            </div>
-          </section>
 
           <div className="rep-rings-row" aria-label="Daily goals">
             <GoalRing
