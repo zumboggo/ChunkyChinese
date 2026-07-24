@@ -1,11 +1,9 @@
 import { serve } from 'https://deno.land/std@0.224.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-}
+import {
+  corsHeadersForRequest,
+  isRequestOriginAllowed,
+} from '../_shared/cors.ts'
 
 type KnownWord = {
   word: string
@@ -60,21 +58,26 @@ const storySchema = {
 }
 
 serve(async (request) => {
+  const allowedOrigins = Deno.env.get('CHUNKY_ALLOWED_ORIGINS') ?? ''
+  const corsHeaders = corsHeadersForRequest(request, allowedOrigins)
+  if (!isRequestOriginAllowed(request, allowedOrigins)) {
+    return json({ error: 'Origin not allowed.' }, 403, corsHeaders)
+  }
   if (request.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
-  if (request.method !== 'POST') return json({ error: 'Method not allowed.' }, 405)
+  if (request.method !== 'POST') return json({ error: 'Method not allowed.' }, 405, corsHeaders)
 
   if (Deno.env.get('CHUNKY_AI_STORIES_ENABLED') === 'false') {
-    return json({ error: 'AI story generation is disabled.' }, 503)
+    return json({ error: 'AI story generation is disabled.' }, 503, corsHeaders)
   }
 
   const openRouterKey = Deno.env.get('OPENROUTER_API_KEY')
-  if (!openRouterKey) return json({ error: 'OpenRouter is not configured.' }, 503)
+  if (!openRouterKey) return json({ error: 'OpenRouter is not configured.' }, 503, corsHeaders)
 
   const supabaseUrl = Deno.env.get('SUPABASE_URL')
   const anonKey = Deno.env.get('SUPABASE_ANON_KEY')
   const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
   if (!supabaseUrl || !anonKey || !serviceRoleKey) {
-    return json({ error: 'Supabase function environment is not configured.' }, 503)
+    return json({ error: 'Supabase function environment is not configured.' }, 503, corsHeaders)
   }
 
   const authorization = request.headers.get('Authorization') ?? ''
@@ -82,15 +85,17 @@ serve(async (request) => {
     global: { headers: { Authorization: authorization } },
   })
   const { data: userData, error: userError } = await userClient.auth.getUser()
-  if (userError || !userData.user) return json({ error: 'Sign in before generating stories.' }, 401)
+  if (userError || !userData.user) {
+    return json({ error: 'Sign in before generating stories.' }, 401, corsHeaders)
+  }
 
   const body = (await request.json().catch(() => ({}))) as RequestBody
   const prompt = (body.prompt ?? '').trim().slice(0, 700)
-  if (!prompt) return json({ error: 'Prompt is required.' }, 400)
+  if (!prompt) return json({ error: 'Prompt is required.' }, 400, corsHeaders)
 
   const knownWords = normalizeKnownWords(body.knownWords ?? []).slice(0, 1200)
   if (knownWords.length < 20) {
-    return json({ error: 'Add more known words before generating a known-word story.' }, 400)
+    return json({ error: 'Add more known words before generating a known-word story.' }, 400, corsHeaders)
   }
 
   const admin = createClient(supabaseUrl, serviceRoleKey)
@@ -103,7 +108,9 @@ serve(async (request) => {
     .eq('user_id', userData.user.id)
     .gte('created_at', since.toISOString())
 
-  if ((count ?? 0) >= limit) return json({ error: 'Daily AI story limit reached.' }, 429)
+  if ((count ?? 0) >= limit) {
+    return json({ error: 'Daily AI story limit reached.' }, 429, corsHeaders)
+  }
 
   const model = Deno.env.get('CHUNKY_STORY_MODEL') ?? 'moonshotai/kimi-k2.6'
   const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
@@ -145,7 +152,7 @@ serve(async (request) => {
 
   const raw = await response.text()
   if (!response.ok) {
-    return json({ error: `OpenRouter error ${response.status}: ${raw.slice(0, 300)}` }, 502)
+    return json({ error: `OpenRouter error ${response.status}: ${raw.slice(0, 300)}` }, 502, corsHeaders)
   }
 
   const parsed = JSON.parse(raw) as {
@@ -153,7 +160,7 @@ serve(async (request) => {
     usage?: unknown
   }
   const content = parsed.choices?.[0]?.message?.content
-  if (!content) return json({ error: 'OpenRouter returned an empty story.' }, 502)
+  if (!content) return json({ error: 'OpenRouter returned an empty story.' }, 502, corsHeaders)
   const story = JSON.parse(content) as Record<string, unknown>
 
   await admin.from('ai_story_generations').insert({
@@ -162,7 +169,7 @@ serve(async (request) => {
     prompt,
   })
 
-  return json(story, 200)
+  return json(story, 200, corsHeaders)
 })
 
 function storySystemPrompt(strictRetry?: boolean): string {
@@ -199,7 +206,11 @@ function normalizeKnownWords(words: KnownWord[]): KnownWord[] {
   return normalized
 }
 
-function json(value: unknown, status = 200): Response {
+function json(
+  value: unknown,
+  status = 200,
+  corsHeaders: Record<string, string> = {},
+): Response {
   return new Response(JSON.stringify(value), {
     status,
     headers: { ...corsHeaders, 'Content-Type': 'application/json' },

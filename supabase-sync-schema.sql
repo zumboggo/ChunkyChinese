@@ -93,8 +93,16 @@ to authenticated
 using (auth.uid() = user_id)
 with check (auth.uid() = user_id);
 
-drop policy if exists "Users can read their own AI story generation events" on public.ai_story_generations;
-create policy "Users can read their own AI story generation events"
-on public.ai_story_generations for select
-to authenticated
-using (auth.uid() = user_id);
+revoke all on table public.word_progress from anon, authenticated;
+revoke all on table public.review_events from anon, authenticated;
+revoke all on table public.reader_progress from anon, authenticated;
+revoke all on table public.ai_story_generations from anon, authenticated;
+
+grant select, insert, update on table public.word_progress to authenticated;
+grant select, insert, update on table public.review_events to authenticated;
+grant select, insert, update on table public.reader_progress to authenticated;
+
+-- AI prompts are used only for server-side rate limiting and are not exposed
+-- through the browser Data API.
+drop policy if exists "Users can read their own AI story generation events"
+on public.ai_story_generations;

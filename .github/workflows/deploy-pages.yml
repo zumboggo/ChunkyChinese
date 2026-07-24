@@ -35,6 +35,9 @@ jobs:
         env:
           GITHUB_PAGES: 'true'
 
+      - name: Check client bundle for private credentials
+        run: node scripts/check-client-secrets.mjs
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:

@@ -4481,7 +4481,8 @@ function App() {
                   <h2>OpenRouter API key</h2>
                   <p>
                     Powers the Generate a Story feature. The key is stored only on this device
-                    (IndexedDB) and sent only to openrouter.ai. Get one at openrouter.ai/keys.
+                    (IndexedDB) and sent only to openrouter.ai. Use only your own personal key,
+                    never a shared app-wide key. Get one at openrouter.ai/keys.
                   </p>
                   {aiStorySettings.openRouterApiKey ? (
                     <div className="button-row">
@@ -4546,7 +4547,8 @@ function App() {
                   <p>
                     Adds real narration audio to generated stories. Stored only on this device;
                     sent only to {aiStorySettings.azureSpeechRegion || 'your-region'}.tts.speech.microsoft.com.
-                    Azure's free tier covers about 500k characters per month.
+                    Use only your own personal key, never a shared app-wide key. Azure's free tier
+                    covers about 500k characters per month.
                   </p>
                   {aiStorySettings.azureSpeechKey ? (
                     <div className="button-row">

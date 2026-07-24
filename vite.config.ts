@@ -7,6 +7,20 @@ const base = process.env.GITHUB_PAGES === 'true' ? '/ChunkyChinese/' : '/'
 export default defineConfig({
   base,
   plugins: [react()],
+  build: {
+    rolldownOptions: {
+      output: {
+        codeSplitting: {
+          groups: [
+            {
+              name: 'cloud-data',
+              test: /[\\/](?:src[\\/](?:db|supabaseSync)\.ts|node_modules[\\/](?:@supabase|idb)[\\/])/u,
+            },
+          ],
+        },
+      },
+    },
+  },
   server: process.env.PORT ? { port: Number(process.env.PORT) } : undefined,
   preview: process.env.PORT ? { port: Number(process.env.PORT) } : undefined,
   // A second dev-server instance (e.g. the Claude preview) gets its own dep
