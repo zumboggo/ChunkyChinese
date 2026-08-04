@@ -5016,6 +5016,14 @@ function App() {
                     <span className="legend-pinyin-medium">Medium: blurred hint</span>
                     <span className="legend-pinyin-unknown">Unknown: visible pinyin</span>
                   </div>
+                  <button
+                    type="button"
+                    className="reader-library-settings-link"
+                    onClick={() => setScreen('readingTexts')}
+                  >
+                    Browse book library
+                    <span aria-hidden="true">→</span>
+                  </button>
                 </section>
               </div>
             </details>
@@ -5371,7 +5379,7 @@ function App() {
                           ) : (
                             /* Book card view */
                             <div
-                              className={`sentence-mode-display book-listen-display listening-session-display${bookListenSwipe.swipeDir ? ` swipe-${bookListenSwipe.swipeDir}` : ''}`}
+                              className={`sentence-mode-display book-listen-display listening-session-display${bookListening.snapshot.status === 'idle' ? ' listening-preplay' : ''}${bookListenSwipe.swipeDir ? ` swipe-${bookListenSwipe.swipeDir}` : ''}`}
                               {...bookListenSwipe.handlers}
                             >
                               {/* Top bar */}
@@ -5467,7 +5475,10 @@ function App() {
                                 <div className="sentence-paused-overlay">Preparing audio…</div>
                               )}
                               {bookListening.snapshot.status !== 'playing' && bookListening.snapshot.status !== 'loading' && (
-                                <div className="sentence-paused-overlay">Paused — tap ▶ to resume</div>
+                                <div className="sentence-paused-overlay listening-ready-message">
+                                  <span aria-hidden="true">✦</span>
+                                  Ready when you are — tap play to begin
+                                </div>
                               )}
 
                               {/* Sentence card */}
@@ -5522,7 +5533,7 @@ function App() {
                         ) : (
                           /* ── Sets sub-mode (original sentence mode) ── */
                           <div
-                            className={`sentence-mode-display listening-session-display listening-sets-display${sentenceSetSwipe.swipeDir ? ` swipe-${sentenceSetSwipe.swipeDir}` : ''}`}
+                            className={`sentence-mode-display listening-session-display listening-sets-display${!sentenceRendering && sentencePaused && sentenceRendered ? ' listening-preplay' : ''}${sentenceSetSwipe.swipeDir ? ` swipe-${sentenceSetSwipe.swipeDir}` : ''}`}
                             {...sentenceSetSwipe.handlers}
                           >
                             {/* Top bar: Menu | Play/Pause | End Set */}
@@ -5661,7 +5672,10 @@ function App() {
                               <div className="sentence-paused-overlay">Preparing audio…</div>
                             )}
                             {!sentenceRendering && sentencePaused && sentenceRendered && (
-                              <div className="sentence-paused-overlay">Paused — tap ▶ to resume</div>
+                              <div className="sentence-paused-overlay listening-ready-message">
+                                <span aria-hidden="true">✦</span>
+                                Ready when you are — tap play to begin
+                              </div>
                             )}
 
                             {sentenceQueue.length > 0 && (() => {
