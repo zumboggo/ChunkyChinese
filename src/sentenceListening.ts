@@ -6,7 +6,115 @@ export const LMS_SENTENCE_AUDIO_PACK_ID = 'lms-sentence-audio'
 /** Rendering at 22050 Hz halves session WAV size with no audible loss for speech. */
 export const SENTENCE_SESSION_SAMPLE_RATE = 22050
 
+/**
+ * A selectable set of sentences. Pools that share a `seedPath` also share their
+ * audio files and clip ids — a topic pool is just a filtered view of the same
+ * seed, so switching between "everything" and one situation reuses the clips.
+ */
+export interface SentencePool {
+  id: string
+  name: string
+  description: string
+  /** Seed JSON to fetch, relative to the app base URL. */
+  seedPath: string
+  /** Public directory holding `<key>.mp3` and `<key>-en.mp3`. */
+  audioDir: string
+  /** Prefix for the IndexedDB clip ids of this pool's audio. */
+  clipPrefix: string
+  /** Audio pack id recorded on saved clips. */
+  packId: string
+  /** When set, only seed entries with this `topic` belong to the pool. */
+  topic?: string
+}
+
+export const LMS_SENTENCE_POOL: SentencePool = {
+  id: 'lms-1000',
+  name: 'LMS 1000',
+  description: 'The original 1,300-sentence vocabulary course.',
+  seedPath: 'seed/lms-sentences.json',
+  audioDir: 'seed/sentence-audio',
+  clipPrefix: 'lms-sentence',
+  packId: LMS_SENTENCE_AUDIO_PACK_ID,
+}
+
+export const CHINA_LIFE_SENTENCE_AUDIO_PACK_ID = 'china-life-sentence-audio'
+
+const CHINA_LIFE_BASE = {
+  seedPath: 'seed/china-life-sentences.json',
+  audioDir: 'seed/china-life-audio',
+  clipPrefix: 'china-life-sentence',
+  packId: CHINA_LIFE_SENTENCE_AUDIO_PACK_ID,
+} as const
+
+/** Order matters: this is the order the collection picker renders. */
+export const SENTENCE_POOLS: SentencePool[] = [
+  {
+    ...CHINA_LIFE_BASE,
+    id: 'china-life',
+    name: 'Life in China — everything',
+    description: 'All 201 situational sentences, in topic order.',
+  },
+  {
+    ...CHINA_LIFE_BASE,
+    id: 'china-delivery-call',
+    name: 'Package delivery calls',
+    description: "What the courier says when they phone you — and how to answer.",
+    topic: 'delivery-call',
+  },
+  {
+    ...CHINA_LIFE_BASE,
+    id: 'china-delivery-pickup',
+    name: 'Picking up & sending parcels',
+    description: 'Pickup stations, lockers, codes, returns.',
+    topic: 'delivery-pickup',
+  },
+  {
+    ...CHINA_LIFE_BASE,
+    id: 'china-taxi',
+    name: 'Taxis & getting around',
+    description: 'Ride-hailing, directions, the subway, missed stops.',
+    topic: 'taxi',
+  },
+  {
+    ...CHINA_LIFE_BASE,
+    id: 'china-school',
+    name: 'School & teaching',
+    description: 'Running a classroom, the staff room, parents, exams.',
+    topic: 'school',
+  },
+  {
+    ...CHINA_LIFE_BASE,
+    id: 'china-shopping',
+    name: 'Taobao, JD & Meituan',
+    description: 'The words on the checkout, tracking and food-delivery screens.',
+    topic: 'shopping-app',
+  },
+  {
+    ...CHINA_LIFE_BASE,
+    id: 'china-essentials',
+    name: 'Everyday essentials',
+    description: 'Phrasebook core: asking, apologising, paying, getting help.',
+    topic: 'essentials',
+  },
+  LMS_SENTENCE_POOL,
+]
+
+export function getSentencePool(poolId: string | undefined): SentencePool {
+  return SENTENCE_POOLS.find((pool) => pool.id === poolId) ?? LMS_SENTENCE_POOL
+}
+
+/** Narrows a loaded seed file to the entries that belong to a topic pool. */
+export function filterPoolSentences<T extends { topic?: string }>(
+  seed: T[],
+  pool: SentencePool,
+): T[] {
+  if (!pool.topic) return seed
+  return seed.filter((sentence) => sentence.topic === pool.topic)
+}
+
 export interface SentenceListeningSettings {
+  /** Which collection the set is drawn from. Defaults to the LMS 1000 pool. */
+  sentencePoolId?: string
   /** How many times the Chinese sentence plays per rep (1-5). */
   sentenceRepeats: number
   /** Play the English translation before the Chinese. */
@@ -21,13 +129,23 @@ export interface SentenceListeningSettings {
   sentenceShuffle: boolean
 }
 
-export function sentenceClipId(word: string, lang: 'zh' | 'en'): string {
-  return lang === 'zh' ? `lms-sentence-${word}` : `lms-sentence-${word}-en`
+export function sentenceClipId(
+  word: string,
+  lang: 'zh' | 'en',
+  pool: SentencePool = LMS_SENTENCE_POOL,
+): string {
+  return lang === 'zh'
+    ? `${pool.clipPrefix}-${word}`
+    : `${pool.clipPrefix}-${word}-en`
 }
 
-export function sentenceSeedAudioUrl(word: string, lang: 'zh' | 'en'): string {
+export function sentenceSeedAudioUrl(
+  word: string,
+  lang: 'zh' | 'en',
+  pool: SentencePool = LMS_SENTENCE_POOL,
+): string {
   const filename = lang === 'zh' ? `${word}.mp3` : `${word}-en.mp3`
-  return `seed/sentence-audio/${encodeURIComponent(filename)}`
+  return `${pool.audioDir}/${encodeURIComponent(filename)}`
 }
 
 export interface SentenceClipDeps {
@@ -46,15 +164,16 @@ export async function ensureSentenceClip(
   lang: 'zh' | 'en',
   text: string,
   deps: SentenceClipDeps,
+  pool: SentencePool = LMS_SENTENCE_POOL,
 ): Promise<AudioClip | undefined> {
-  const id = sentenceClipId(word, lang)
+  const id = sentenceClipId(word, lang, pool)
   const cached = await deps.getAudioClip(id)
   if (cached) return cached
 
   const fetchFn = deps.fetchFn ?? fetch
   let blob: Blob
   try {
-    const response = await fetchFn(sentenceSeedAudioUrl(word, lang))
+    const response = await fetchFn(sentenceSeedAudioUrl(word, lang, pool))
     if (!response.ok) return undefined
     blob = await response.blob()
   } catch {
@@ -71,7 +190,7 @@ export async function ensureSentenceClip(
     text,
     language: lang === 'zh' ? 'zh-CN' : 'en-US',
     provider: 'google-tts-seed',
-    packId: LMS_SENTENCE_AUDIO_PACK_ID,
+    packId: pool.packId,
     createdAt: new Date().toISOString(),
   }
   await deps.saveAudioClip(clip)
@@ -96,6 +215,7 @@ export function buildSentenceSessionSteps(
   random: () => number = Math.random,
 ): SessionAudioStep[] {
   const steps: SessionAudioStep[] = []
+  const pool = getSentencePool(settings.sentencePoolId)
   const repeats = Math.max(1, Math.round(settings.sentenceRepeats))
   const rounds = Math.max(1, Math.round(settings.sentenceRounds))
   const pauseFactor = Math.max(0, settings.sentencePauseFactor)
@@ -117,7 +237,7 @@ export function buildSentenceSessionSteps(
         steps.push({
           ...base,
           kind: 'clip',
-          clipId: sentenceClipId(sentence.word, 'en'),
+          clipId: sentenceClipId(sentence.word, 'en', pool),
           label: sentence.english,
         })
         steps.push({ ...base, kind: 'pause', seconds: 1.0, label: 'Recall pause' })
@@ -127,7 +247,7 @@ export function buildSentenceSessionSteps(
         steps.push({
           ...base,
           kind: 'clip',
-          clipId: sentenceClipId(sentence.word, 'zh'),
+          clipId: sentenceClipId(sentence.word, 'zh', pool),
           label: sentence.chinese,
         })
         if (pauseFactor > 0) {

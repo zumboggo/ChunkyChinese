@@ -15,6 +15,7 @@ import {
   makeDefaultComicProgress,
   parseComicPackZip,
 } from './comics/comicPack'
+import { getSentencePool } from './sentenceListening'
 import type {
   AudioClip,
   ClipPack,
@@ -101,7 +102,7 @@ const DB_VERSION = 11
 const LMS_PACK_ID = 'lms-1000-azure'
 const LMS_TEXT_FIX_VERSION = '2026-05-30-cedict-cleanup'
 const ENGLISH_ONLY_CARD_CLEANUP_VERSION = '2026-07-09-english-only-duplicates'
-const READER_PACK_FIX_VERSION = '2026-07-15-john-chapters-1-3-art'
+const READER_PACK_FIX_VERSION = '2026-07-16-just-friends-eight-sentence-art'
 const LMS_READER_TEXT_FIX_VERSION = '2026-07-22-phone-length-splits'
 const AUDIO_LINK_REPAIR_VERSION = '2026-07-10-startup-link-repair'
 
@@ -545,6 +546,7 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   sentenceSessionSize: 5,
   sentenceRounds: 5,
   sentenceShuffle: false,
+  sentencePoolId: 'china-life',
 }
 
 export interface AiStorySettings {
@@ -615,6 +617,7 @@ export function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: n
     sentenceSessionSize: clampInt(merged.sentenceSessionSize, 1, 10, DEFAULT_USER_SETTINGS.sentenceSessionSize),
     sentenceRounds: clampInt(merged.sentenceRounds, 1, 25, DEFAULT_USER_SETTINGS.sentenceRounds),
     sentenceShuffle: Boolean(merged.sentenceShuffle),
+    sentencePoolId: getSentencePool(merged.sentencePoolId).id,
   }
   return {
     settings,
@@ -1993,7 +1996,18 @@ export async function restoreWordFsrs(word: VocabWord): Promise<void> {
   await db.put('vocabWords', word)
 }
 
-export async function getSentenceRepData(): Promise<{
+/**
+ * Each collection keeps its own place in the queue, so switching to "taxis" and
+ * back to "LMS 1000" resumes each where you left it. The LMS pool keeps using
+ * the original `sentenceQueueOffset` key so existing progress is not lost.
+ */
+function sentenceQueueOffsetKey(poolId?: string): string {
+  return !poolId || poolId === 'lms-1000'
+    ? 'sentenceQueueOffset'
+    : `sentenceQueueOffset:${poolId}`
+}
+
+export async function getSentenceRepData(poolId?: string): Promise<{
   queueOffset: number
   repsToday: number
   totalReps: number
@@ -2004,7 +2018,8 @@ export async function getSentenceRepData(): Promise<{
   const storedToday = storedDate === today
     ? ((await db.get('settings', 'sentenceRepsToday')) as number | undefined) ?? 0
     : 0
-  const queueOffset = ((await db.get('settings', 'sentenceQueueOffset')) as number | undefined) ?? 0
+  const queueOffset =
+    ((await db.get('settings', sentenceQueueOffsetKey(poolId))) as number | undefined) ?? 0
   const totalReps = ((await db.get('settings', 'sentenceTotalReps')) as number | undefined) ?? 0
   return { queueOffset, repsToday: storedToday, totalReps }
 }
@@ -2012,6 +2027,7 @@ export async function getSentenceRepData(): Promise<{
 export async function saveSentenceRepData(delta: {
   reps: number
   queueOffset: number
+  poolId?: string
 }): Promise<{ repsToday: number; totalReps: number }> {
   const db = await getDB()
   const today = new Date().toISOString().slice(0, 10)
@@ -2025,7 +2041,7 @@ export async function saveSentenceRepData(delta: {
   await db.put('settings', today, 'sentenceRepsDate')
   await db.put('settings', newToday, 'sentenceRepsToday')
   await db.put('settings', newTotal, 'sentenceTotalReps')
-  await db.put('settings', delta.queueOffset, 'sentenceQueueOffset')
+  await db.put('settings', delta.queueOffset, sentenceQueueOffsetKey(delta.poolId))
   return { repsToday: newToday, totalReps: newTotal }
 }
 

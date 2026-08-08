@@ -118,9 +118,13 @@ import { renderLessonToWav, renderSessionToWav, type SessionAudioSegment } from 
 import {
   buildSentenceSessionSteps,
   ensureSentenceClip,
+  filterPoolSentences,
+  getSentencePool,
   selectSequentialSentences,
+  SENTENCE_POOLS,
   SENTENCE_SESSION_SAMPLE_RATE,
   type SentenceListeningSettings,
+  type SentencePool,
 } from './sentenceListening'
 import {
   fsrsDueTime,
@@ -280,7 +284,7 @@ type LessonStartOptions = {
   newWordsLimit?: number
   allowExtraNew?: boolean
 }
-type LmsSeedSentence = { word: string; chinese: string; english: string }
+type LmsSeedSentence = { word: string; chinese: string; english: string; topic?: string }
 
 interface CardEditDraft {
   wordId: string
@@ -517,6 +521,10 @@ function App() {
   const [stats, setStats] = useState<DashboardStats>(emptyStats)
   const [dashboardRange, setDashboardRange] = useState<DashboardRange>('today')
   const [userSettings, setUserSettings] = useState(DEFAULT_USER_SETTINGS)
+  const activeSentencePool = useMemo(
+    () => getSentencePool(userSettings.sentencePoolId),
+    [userSettings.sentencePoolId],
+  )
   const [newWordsPerDay, setNewWordsPerDay] = useState(15)
   const [historicalStudyMinutesDraft, setHistoricalStudyMinutesDraft] = useState('')
   const [readerOfflineStatuses, setReaderOfflineStatuses] = useState<Map<string, ReaderOfflineStatus>>(new Map())
@@ -694,25 +702,33 @@ function App() {
     setIsPlaying(false)
   }, [])
 
-  const loadLmsSentences = useCallback(async () => {
-    const response = await fetch('seed/lms-sentences.json')
-    if (!response.ok) throw new Error('Could not load sentence listening data.')
-    const data = (await response.json()) as LmsSeedSentence[]
-    setLmsSentences(data)
-    return data
+  /** Raw seed files keyed by path — topic pools are filtered views of one file. */
+  const sentenceSeedCache = useRef<Record<string, LmsSeedSentence[]>>({})
+
+  const loadSentenceSeed = useCallback(async (pool: SentencePool) => {
+    let seed = sentenceSeedCache.current[pool.seedPath]
+    if (!seed) {
+      const response = await fetch(pool.seedPath)
+      if (!response.ok) throw new Error('Could not load sentence listening data.')
+      seed = (await response.json()) as LmsSeedSentence[]
+      sentenceSeedCache.current[pool.seedPath] = seed
+    }
+    const selected = filterPoolSentences(seed, pool)
+    setLmsSentences(selected)
+    return selected
   }, [])
 
   useEffect(() => {
-    loadLmsSentences().catch(() => {})
-  }, [loadLmsSentences])
+    loadSentenceSeed(activeSentencePool).catch(() => {})
+  }, [activeSentencePool, loadSentenceSeed])
 
   useEffect(() => {
-    getSentenceRepData().then(({ queueOffset, repsToday, totalReps }) => {
+    getSentenceRepData(activeSentencePool.id).then(({ queueOffset, repsToday, totalReps }) => {
       setSentenceQueueOffset(queueOffset)
       setSentenceRepsToday(repsToday)
       setSentenceTotalReps(totalReps)
     }).catch(() => {})
-  }, [])
+  }, [activeSentencePool.id])
 
   const refresh = useCallback(async () => {
     const [
@@ -1368,6 +1384,7 @@ function App() {
   }, [selectedFlashcardWords, startFlashcards])
 
   const sentenceListeningSettings = useMemo<SentenceListeningSettings>(() => ({
+    sentencePoolId: userSettings.sentencePoolId,
     sentenceRepeats: userSettings.sentenceRepeats,
     sentenceIncludeEnglish: userSettings.sentenceIncludeEnglish,
     sentencePauseFactor: userSettings.sentencePauseFactor,
@@ -1426,14 +1443,21 @@ function App() {
     userSettings.readingGoalPages,
   ])
 
-  const startSentenceLesson = useCallback(async (offsetOverride?: number) => {
+  const startSentenceLesson = useCallback(async (
+    offsetOverride?: number,
+    /** Passed when switching collections, before the saved setting has landed in state. */
+    poolOverride?: SentencePool,
+  ) => {
     stopAudioOutputs()
     runToken.current += 1
 
-    let sentencePool = lmsSentences
+    const pool = poolOverride ?? activeSentencePool
+    const settings: SentenceListeningSettings = { ...sentenceListeningSettings, sentencePoolId: pool.id }
+
+    let sentencePool = poolOverride ? [] : lmsSentences
     if (sentencePool.length === 0) {
       try {
-        sentencePool = await loadLmsSentences()
+        sentencePool = await loadSentenceSeed(pool)
       } catch {
         setLastSummary('Could not load sentence listening data.')
         return
@@ -1452,16 +1476,16 @@ function App() {
     try {
       const candidates = selectSequentialSentences(
         sentencePool,
-        sentenceListeningSettings.sentenceSessionSize,
+        settings.sentenceSessionSize,
         offsetOverride ?? sentenceQueueOffset,
       )
       const clipDeps = { getAudioClip, saveAudioClip }
       const set: SentenceLessonItem[] = []
       for (const sent of candidates) {
-        const zhClip = await ensureSentenceClip(sent.word, 'zh', sent.chinese, clipDeps)
+        const zhClip = await ensureSentenceClip(sent.word, 'zh', sent.chinese, clipDeps, pool)
         if (!zhClip) continue
-        if (sentenceListeningSettings.sentenceIncludeEnglish) {
-          await ensureSentenceClip(sent.word, 'en', sent.english, clipDeps)
+        if (settings.sentenceIncludeEnglish) {
+          await ensureSentenceClip(sent.word, 'en', sent.english, clipDeps, pool)
         }
         set.push(sent)
       }
@@ -1470,7 +1494,7 @@ function App() {
         return
       }
 
-      const steps = buildSentenceSessionSteps(set, sentenceListeningSettings)
+      const steps = buildSentenceSessionSteps(set, settings)
       const rendered = await renderSessionToWav(steps, getAudioClip, SENTENCE_SESSION_SAMPLE_RATE)
       const url = URL.createObjectURL(rendered.blob)
       setSentenceRendered((previous) => {
@@ -1482,14 +1506,14 @@ function App() {
       setSentenceProgress({ current: 0, duration: rendered.durationSeconds })
       setSentenceSetStartMs(Date.now())
       setLastSummary(
-        `Sentence set: ${set.length} sentences × ${sentenceListeningSettings.sentenceRounds} rounds`,
+        `${pool.name}: ${set.length} sentences × ${settings.sentenceRounds} rounds`,
       )
     } catch (error) {
       setLastSummary(error instanceof Error ? error.message : 'Could not prepare sentence audio.')
     } finally {
       setSentenceRendering(false)
     }
-  }, [lmsSentences, loadLmsSentences, sentenceListeningSettings, sentenceQueueOffset, stopAudioOutputs])
+  }, [activeSentencePool, lmsSentences, loadSentenceSeed, sentenceListeningSettings, sentenceQueueOffset, stopAudioOutputs])
 
   const completeSentenceSet = useCallback(async () => {
     const repsInSet = sentenceQueue.length * sentenceListeningSettings.sentenceRounds
@@ -1497,13 +1521,30 @@ function App() {
     const { repsToday, totalReps } = await saveSentenceRepData({
       reps: repsInSet,
       queueOffset: nextOffset,
+      poolId: activeSentencePool.id,
     })
     setSentenceQueueOffset(nextOffset)
     setSentenceRepsToday(repsToday)
     setSentenceTotalReps(totalReps)
     setSentenceSetComplete(false)
     await startSentenceLesson(nextOffset)
-  }, [sentenceListeningSettings.sentenceRounds, sentenceQueue, sentenceQueueOffset, startSentenceLesson])
+  }, [activeSentencePool.id, sentenceListeningSettings.sentenceRounds, sentenceQueue, sentenceQueueOffset, startSentenceLesson])
+
+  /** Switches collection, resumes that collection's own place in the queue, and rebuilds the set. */
+  const changeSentencePool = useCallback(async (poolId: string) => {
+    const pool = getSentencePool(poolId)
+    if (pool.id === activeSentencePool.id) return
+    const nextSettings = { ...userSettings, sentencePoolId: pool.id }
+    setUserSettings(nextSettings)
+    void saveUserSettings(nextSettings)
+    try {
+      const { queueOffset } = await getSentenceRepData(pool.id)
+      setSentenceQueueOffset(queueOffset)
+      await startSentenceLesson(queueOffset, pool)
+    } catch {
+      setLastSummary('Could not switch collection.')
+    }
+  }, [activeSentencePool.id, startSentenceLesson, userSettings])
 
   async function handleReaderOfflineDownload(book: ReaderBook) {
     setReaderOfflineBusyId(book.id)
@@ -1580,21 +1621,30 @@ function App() {
         failedFiles += result.failed
       }
 
-      const flightSentences = lmsSentences.length > 0
-        ? lmsSentences
-        : await loadLmsSentences()
-      setFlightOfflineProgress('Saving sentence listening audio…')
-      let lastSentencePercent = -1
-      const sentenceAudio = await downloadSentenceListeningForOffline(
-        flightSentences,
-        (completed, total) => {
-          const percent = total > 0 ? Math.floor((completed / total) * 100) : 100
-          if (percent === lastSentencePercent) return
-          lastSentencePercent = percent
-          setFlightOfflineProgress(`Saving sentence listening audio… ${percent}%`)
-        },
+      // Every distinct seed file, so a flight covers whichever collection you switch to.
+      const flightPools = SENTENCE_POOLS.filter(
+        (pool, index, all) => all.findIndex((other) => other.seedPath === pool.seedPath) === index,
       )
-      failedFiles += sentenceAudio.failed
+      setFlightOfflineProgress('Saving sentence listening audio…')
+      for (const [poolIndex, pool] of flightPools.entries()) {
+        const flightSentences = await loadSentenceSeed(pool)
+        let lastSentencePercent = -1
+        const sentenceAudio = await downloadSentenceListeningForOffline(
+          flightSentences,
+          (completed, total) => {
+            const percent = total > 0 ? Math.floor((completed / total) * 100) : 100
+            if (percent === lastSentencePercent) return
+            lastSentencePercent = percent
+            setFlightOfflineProgress(
+              `Saving sentence listening audio (${poolIndex + 1}/${flightPools.length})… ${percent}%`,
+            )
+          },
+          pool,
+        )
+        failedFiles += sentenceAudio.failed
+      }
+      // Leave the in-memory list on the collection the user is actually studying.
+      await loadSentenceSeed(activeSentencePool).catch(() => {})
 
       const flightClipPacks = hostedClipPacks.length > 0
         ? hostedClipPacks
@@ -5603,6 +5653,18 @@ function App() {
                                       onChange={value => saveSentenceListeningSettings({ sentencePauseFactor: value })}
                                     />
                                   </StudyMenuSection>
+                                  <StudyMenuSection label="Collection">
+                                    <StudyMenuSelect
+                                      label="Sentences from"
+                                      value={activeSentencePool.id}
+                                      options={SENTENCE_POOLS.map(pool => ({ value: pool.id, label: pool.name }))}
+                                      onChange={poolId => {
+                                        setSentenceMenuOpen(false)
+                                        void changeSentencePool(poolId)
+                                      }}
+                                    />
+                                    <p className="sentence-menu-hint">{activeSentencePool.description}</p>
+                                  </StudyMenuSection>
                                   <StudyMenuSection label="Session">
                                     <StudyMenuSelect
                                       label="Sentences per set"
@@ -5662,7 +5724,9 @@ function App() {
                               </div>
                               {sentencePoolProgress && (
                                 <span className="sentence-pool-progress">
-                                  {sentencePoolProgress.lesson !== undefined && `Lesson ${sentencePoolProgress.lesson} · `}
+                                  {sentencePoolProgress.lesson !== undefined
+                                    ? `Lesson ${sentencePoolProgress.lesson} · `
+                                    : `${activeSentencePool.name} · `}
                                   {sentencePoolProgress.position}/{sentencePoolProgress.total} sentences
                                 </span>
                               )}

@@ -3800,6 +3800,14 @@ details.settings-group > .import-grid {
   color: var(--muted-navy);
 }
 
+.sentence-menu-hint {
+  margin: 2px 0 0;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--muted-navy);
+  opacity: 0.85;
+}
+
 .sentence-menu-modes {
   display: flex;
   flex-direction: column;

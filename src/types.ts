@@ -84,6 +84,8 @@ export interface UserSettings {
   sentenceSessionSize: number
   sentenceRounds: number
   sentenceShuffle: boolean
+  /** Which sentence collection the Sets sub-mode draws from. */
+  sentencePoolId: string
 }
 
 export type DashboardRange = 'today' | 'week' | 'month' | 'allTime'

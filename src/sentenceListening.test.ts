@@ -1,8 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import {
   buildSentenceSessionSteps,
+  filterPoolSentences,
+  getSentencePool,
   selectSequentialSentences,
   sentenceClipId,
+  sentenceSeedAudioUrl,
+  SENTENCE_POOLS,
   type SentenceListeningSettings,
 } from './sentenceListening'
 
@@ -101,5 +105,55 @@ describe('selectSequentialSentences', () => {
   it('caps the set at the pool size and handles an empty pool', () => {
     expect(selectSequentialSentences(SENTENCES, 10, 0)).toHaveLength(3)
     expect(selectSequentialSentences([], 5, 0)).toEqual([])
+  })
+})
+
+describe('sentence pools', () => {
+  it('falls back to the LMS pool for unknown or missing ids, keeping legacy clip ids', () => {
+    expect(getSentencePool(undefined).id).toBe('lms-1000')
+    expect(getSentencePool('nope').id).toBe('lms-1000')
+    expect(sentenceClipId('一样', 'zh')).toBe('lms-sentence-一样')
+    expect(sentenceSeedAudioUrl('一样', 'en')).toBe(
+      `seed/sentence-audio/${encodeURIComponent('一样-en.mp3')}`,
+    )
+  })
+
+  it('namespaces clip ids and audio paths per pool', () => {
+    const pool = getSentencePool('china-taxi')
+    expect(sentenceClipId('cl-taxi-001', 'zh', pool)).toBe('china-life-sentence-cl-taxi-001')
+    expect(sentenceSeedAudioUrl('cl-taxi-001', 'en', pool)).toBe(
+      'seed/china-life-audio/cl-taxi-001-en.mp3',
+    )
+  })
+
+  it('gives every topic pool of one seed file the same audio, so clips are shared', () => {
+    const chinaPools = SENTENCE_POOLS.filter((pool) => pool.id.startsWith('china-'))
+    expect(chinaPools.length).toBeGreaterThan(1)
+    for (const pool of chinaPools) {
+      expect(pool.audioDir).toBe('seed/china-life-audio')
+      expect(pool.clipPrefix).toBe('china-life-sentence')
+    }
+  })
+
+  it('filters a seed file down to a topic, and leaves untopiced pools whole', () => {
+    const seed = [
+      { word: 'a', topic: 'taxi' },
+      { word: 'b', topic: 'school' },
+      { word: 'c', topic: 'taxi' },
+    ]
+    expect(filterPoolSentences(seed, getSentencePool('china-taxi')).map((s) => s.word))
+      .toEqual(['a', 'c'])
+    expect(filterPoolSentences(seed, getSentencePool('china-life'))).toHaveLength(3)
+  })
+
+  it('builds session steps against the pool named in the settings', () => {
+    const steps = buildSentenceSessionSteps(
+      [{ word: 'cl-taxi-001', chinese: '师傅，去人民广场。', english: 'Driver, to People\u2019s Square.' }],
+      { ...BASE_SETTINGS, sentencePoolId: 'china-taxi', sentenceRepeats: 1, sentenceRounds: 1 },
+    )
+    expect(steps.filter((s) => s.kind === 'clip').map((s) => s.clipId)).toEqual([
+      'china-life-sentence-cl-taxi-001-en',
+      'china-life-sentence-cl-taxi-001',
+    ])
   })
 })

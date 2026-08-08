@@ -1,4 +1,5 @@
-import { sentenceSeedAudioUrl } from './sentenceListening'
+import { LMS_SENTENCE_POOL, sentenceSeedAudioUrl } from './sentenceListening'
+import type { SentencePool } from './sentenceListening'
 
 export const SENTENCE_OFFLINE_CACHE = 'chunky-sentence-listening-v1'
 
@@ -11,11 +12,12 @@ export interface SentenceOfflineResult {
 
 export function sentenceOfflineAssetUrls(
   sentences: Array<{ word: string }>,
+  pool: SentencePool = LMS_SENTENCE_POOL,
 ): string[] {
   const urls = new Set<string>()
   for (const sentence of sentences) {
-    urls.add(publicAssetUrl(sentenceSeedAudioUrl(sentence.word, 'zh')))
-    urls.add(publicAssetUrl(sentenceSeedAudioUrl(sentence.word, 'en')))
+    urls.add(publicAssetUrl(sentenceSeedAudioUrl(sentence.word, 'zh', pool)))
+    urls.add(publicAssetUrl(sentenceSeedAudioUrl(sentence.word, 'en', pool)))
   }
   return [...urls]
 }
@@ -23,11 +25,12 @@ export function sentenceOfflineAssetUrls(
 export async function downloadSentenceListeningForOffline(
   sentences: Array<{ word: string }>,
   onProgress?: (completed: number, total: number) => void,
+  pool: SentencePool = LMS_SENTENCE_POOL,
 ): Promise<SentenceOfflineResult> {
   if (!('caches' in window)) {
     throw new Error('Offline sentence downloads are not supported in this browser.')
   }
-  const urls = sentenceOfflineAssetUrls(sentences)
+  const urls = sentenceOfflineAssetUrls(sentences, pool)
   const cache = await caches.open(SENTENCE_OFFLINE_CACHE)
   let completed = 0
   let failed = 0

@@ -35,6 +35,13 @@
     "language": "zh-CN"
   },
   {
+    "id": "china-arrival",
+    "name": "The Package, the Classroom, and a Bowl of Hot Soup",
+    "description": "An American English teacher's first three months in China — courier calls, pickup stations, taxis, students, and one warm meal.",
+    "baseUrl": "reader-packs/china-arrival",
+    "language": "zh-CN"
+  },
+  {
     "id": "john-gospel",
     "name": "Gospel of John",
     "description": "Simplified Chinese text with English translations.",

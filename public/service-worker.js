@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-chinese-v53'
+const CACHE_VERSION = 'chunky-chinese-v54'
 const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'
 const SENTENCE_OFFLINE_CACHE = 'chunky-sentence-listening-v1'
 // Change CACHE_VERSION whenever the app shell changes and you want browsers to
@@ -18,6 +18,7 @@ const APP_SHELL = [
   `${APP_BASE}icons/chunky-logo.png`,
   `${APP_BASE}seed/lms-vocab-1000.csv`,
   `${APP_BASE}seed/lms-sentences.json`,
+  `${APP_BASE}seed/china-life-sentences.json`,
 ]
 
 self.addEventListener('install', (event) => {
@@ -189,7 +190,8 @@ function isReaderMediaAsset(url) {
 
 function isSentenceAudioAsset(url) {
   return (
-    url.pathname.startsWith(`${APP_BASE}seed/sentence-audio/`) &&
+    (url.pathname.startsWith(`${APP_BASE}seed/sentence-audio/`) ||
+      url.pathname.startsWith(`${APP_BASE}seed/china-life-audio/`)) &&
     url.pathname.endsWith('.mp3')
   )
 }
