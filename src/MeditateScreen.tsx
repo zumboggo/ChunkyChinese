@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { pinyin } from 'pinyin-pro'
 import {
   MEDITATION_PASSAGES,
@@ -6,8 +6,13 @@ import {
   type MeditationPassage,
   type MeditationPhrase,
 } from './meditations'
+import {
+  synthesizeMeditationAudio,
+  type StoryAudioSettings,
+} from './storyAudio'
 
 const PROGRESS_KEY = 'chunky-meditate-progress-v1'
+const AUDIO_CACHE = 'chunky-meditation-audio-v1'
 
 interface MeditationProgress {
   passageId: string
@@ -30,9 +35,13 @@ function phrasePinyin(text: string): string {
 export function MeditateScreen({
   onBack,
   onSavePhrase,
+  audioSettings,
+  onOpenSettings,
 }: {
   onBack: () => void
   onSavePhrase: (phrase: MeditationPhrase) => void | Promise<void>
+  audioSettings: StoryAudioSettings
+  onOpenSettings: () => void
 }) {
   const savedProgress = useMemo(() => loadProgress(), [])
   const [passage, setPassage] = useState<MeditationPassage | null>(() =>
@@ -42,6 +51,10 @@ export function MeditateScreen({
   const [showEnglish, setShowEnglish] = useState(false)
   const [selectedPhrase, setSelectedPhrase] = useState<MeditationPhrase | null>(null)
   const [savedMessage, setSavedMessage] = useState('')
+  const [audioStatus, setAudioStatus] = useState<'idle' | 'loading' | 'playing' | 'error'>('idle')
+  const [audioMessage, setAudioMessage] = useState('')
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const objectUrlRef = useRef<string | null>(null)
 
   const unit = passage?.units[Math.min(unitIndex, Math.max(0, passage.units.length - 1))]
 
@@ -50,7 +63,13 @@ export function MeditateScreen({
     localStorage.setItem(PROGRESS_KEY, JSON.stringify({ passageId: passage.id, unitIndex }))
   }, [passage, unitIndex])
 
+  useEffect(() => () => {
+    audioRef.current?.pause()
+    if (objectUrlRef.current) URL.revokeObjectURL(objectUrlRef.current)
+  }, [])
+
   function choosePassage(next: MeditationPassage) {
+    stopAudio()
     setPassage(next)
     setUnitIndex(0)
     setShowEnglish(false)
@@ -60,19 +79,86 @@ export function MeditateScreen({
 
   function move(delta: number) {
     if (!passage) return
+    stopAudio()
     setUnitIndex((current) => Math.max(0, Math.min(passage.units.length - 1, current + delta)))
     setShowEnglish(false)
     setSelectedPhrase(null)
     setSavedMessage('')
   }
 
-  function speakSlowly() {
+  function stopAudio() {
+    audioRef.current?.pause()
+    audioRef.current = null
+    window.speechSynthesis?.cancel()
+    if (objectUrlRef.current) URL.revokeObjectURL(objectUrlRef.current)
+    objectUrlRef.current = null
+    setAudioStatus('idle')
+    setAudioMessage('')
+  }
+
+  function speakWithDeviceVoice() {
     if (!unit || !('speechSynthesis' in window)) return
     window.speechSynthesis.cancel()
     const utterance = new SpeechSynthesisUtterance(unit.phrases.map((phrase) => phrase.chinese).join(''))
     utterance.lang = 'zh-CN'
     utterance.rate = 0.62
+    utterance.onstart = () => {
+      setAudioStatus('playing')
+      setAudioMessage('Playing with this device’s Mandarin voice')
+    }
+    utterance.onend = () => setAudioStatus('idle')
+    utterance.onerror = () => {
+      setAudioStatus('error')
+      setAudioMessage('This device could not play its Mandarin voice.')
+    }
     window.speechSynthesis.speak(utterance)
+  }
+
+  async function playSpokenChinese() {
+    if (!unit || !passage) return
+    if (audioStatus === 'playing') {
+      stopAudio()
+      return
+    }
+    if (!audioSettings.azureSpeechKey || !audioSettings.azureSpeechRegion) {
+      speakWithDeviceVoice()
+      return
+    }
+    setAudioStatus('loading')
+    setAudioMessage('Preparing the Azure Mandarin voice…')
+    try {
+      const path = `${import.meta.env.BASE_URL}meditation-audio/${passage.id}/${unitIndex}-${audioSettings.azureVoice}.mp3`
+      const request = new Request(new URL(path, window.location.origin))
+      const cache = 'caches' in window ? await caches.open(AUDIO_CACHE) : null
+      let response = await cache?.match(request)
+      if (!response) {
+        const blob = await synthesizeMeditationAudio(
+          unit.phrases.map((phrase) => phrase.chinese),
+          audioSettings,
+        )
+        response = new Response(blob, { headers: { 'Content-Type': 'audio/mpeg' } })
+        await cache?.put(request, response.clone())
+      }
+      const blob = await response.blob()
+      const objectUrl = URL.createObjectURL(blob)
+      objectUrlRef.current = objectUrl
+      const audio = new Audio(objectUrl)
+      audioRef.current = audio
+      audio.onended = () => {
+        setAudioStatus('idle')
+        setAudioMessage('Cached on this device for next time')
+      }
+      audio.onerror = () => {
+        setAudioStatus('error')
+        setAudioMessage('The generated audio could not be played.')
+      }
+      await audio.play()
+      setAudioStatus('playing')
+      setAudioMessage('Azure neural voice · slow phrase pacing')
+    } catch (error) {
+      setAudioStatus('error')
+      setAudioMessage(error instanceof Error ? error.message : 'Could not create spoken Chinese audio.')
+    }
   }
 
   if (!passage || !unit) {
@@ -112,8 +198,24 @@ export function MeditateScreen({
           <span>{passage.chineseTitle}</span>
           <strong>{unit.reference}</strong>
         </div>
-        <button type="button" className="meditate-audio-button" onClick={speakSlowly}>慢慢听</button>
+        <button
+          type="button"
+          className={`meditate-audio-button${audioStatus === 'playing' ? ' active' : ''}`}
+          onClick={() => void playSpokenChinese()}
+          disabled={audioStatus === 'loading'}
+        >
+          {audioStatus === 'loading' ? '准备声音…' : audioStatus === 'playing' ? '停止' : '慢慢听'}
+        </button>
       </header>
+
+      <div className="meditate-audio-status" role="status">
+        <span>{audioMessage || (audioSettings.azureSpeechKey && audioSettings.azureSpeechRegion
+          ? `Azure · ${audioSettings.azureVoice}`
+          : 'Device Mandarin voice')}</span>
+        {!audioSettings.azureSpeechKey || !audioSettings.azureSpeechRegion ? (
+          <button type="button" onClick={onOpenSettings}>Set up Azure voice</button>
+        ) : null}
+      </div>
 
       <div className="meditate-progress" aria-label={`${progress}% through ${passage.title}`}>
         <span style={{ width: `${progress}%` }} />

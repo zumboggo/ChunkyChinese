@@ -21,6 +21,50 @@ export interface StoryAudioResult {
   firstError?: string
 }
 
+function escapeSsml(text: string): string {
+  return text
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&apos;')
+}
+
+export function buildMeditationSsml(phrases: string[], voice: string): string {
+  const body = phrases
+    .map((phrase) => `<prosody rate="-18%">${escapeSsml(phrase)}</prosody>`)
+    .join('<break time="420ms"/>')
+  return `<speak version="1.0" xml:lang="zh-CN"><voice name="${escapeSsml(voice)}">${body}</voice></speak>`
+}
+
+export async function synthesizeMeditationAudio(
+  phrases: string[],
+  settings: StoryAudioSettings,
+): Promise<Blob> {
+  const sdk = await import('microsoft-cognitiveservices-speech-sdk')
+  const config = sdk.SpeechConfig.fromSubscription(settings.azureSpeechKey, settings.azureSpeechRegion)
+  config.speechSynthesisOutputFormat = sdk.SpeechSynthesisOutputFormat.Audio16Khz32KBitRateMonoMp3
+  const synthesizer = new sdk.SpeechSynthesizer(config, null as never)
+  try {
+    const result = await new Promise<import('microsoft-cognitiveservices-speech-sdk').SpeechSynthesisResult>(
+      (resolve, reject) => synthesizer.speakSsmlAsync(
+        buildMeditationSsml(phrases, settings.azureVoice),
+        resolve,
+        reject,
+      ),
+    )
+    if (result.reason !== sdk.ResultReason.SynthesizingAudioCompleted || !result.audioData?.byteLength) {
+      const details = result.reason === sdk.ResultReason.Canceled
+        ? sdk.CancellationDetails.fromResult(result).errorDetails
+        : `Synthesis returned reason ${result.reason}`
+      throw new Error(details || 'Azure did not return meditation audio.')
+    }
+    return new Blob([result.audioData], { type: 'audio/mpeg' })
+  } finally {
+    synthesizer.close()
+  }
+}
+
 /**
  * Synthesizes MP3 narration for every sentence of a generated story via Azure
  * Speech and stores each clip under the sentence's audioClipId, which the

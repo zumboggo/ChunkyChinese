@@ -4301,6 +4301,8 @@ function App() {
       {screen === 'meditate' && (
         <MeditateScreen
           onBack={() => setScreen('dashboard')}
+          audioSettings={aiStorySettings}
+          onOpenSettings={() => setScreen('settings')}
           onSavePhrase={async (phrase) => {
             await saveReaderVocabularyWord(
               phrase.chinese,
@@ -4524,7 +4526,7 @@ function App() {
                   </label>
                 </section>
                 <section className="panel">
-                  <h2>Azure Speech (optional story narration)</h2>
+                  <h2>Azure Speech (story and Meditate narration)</h2>
                   <p>
                     Adds real narration audio to generated stories. Stored only on this device;
                     sent only to {aiStorySettings.azureSpeechRegion || 'your-region'}.tts.speech.microsoft.com.

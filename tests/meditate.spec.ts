@@ -11,6 +11,8 @@ test('opens Psalm 23 with stacked pinyin, Chinese, gloss, and revealed English',
   await expect(shepherdPhrase.locator('.meditate-pinyin')).toContainText('mù zhě')
   await expect(shepherdPhrase.locator('strong')).toHaveText('牧者')
   await expect(shepherdPhrase.locator('.meditate-gloss')).toHaveText('shepherd')
+  await expect(page.getByRole('button', { name: '慢慢听' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Set up Azure voice' })).toBeVisible()
 
   await page.getByRole('button', { name: 'Tap for the natural English sentence' }).click()
   await expect(page.getByText('The LORD is my shepherd; I will lack nothing.')).toBeVisible()
