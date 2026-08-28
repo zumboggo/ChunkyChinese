@@ -1,7 +1,11 @@
 # Chunky Chinese
 
 A private, offline-first Chinese study PWA for flashcards, sentence listening,
-graded readers, and generated stories.
+graded readers, generated stories, and slow phrase-by-phrase Scripture meditation.
+
+Meditate mode presents simple Chinese with pinyin above each phrase, a direct
+contextual gloss below it, and natural English available on demand. Its fresh
+study adaptation uses the public-domain World English Bible as a reference.
 
 ## Run locally
 
@@ -41,6 +45,7 @@ Expected objects are declared in `src/contentCatalog.ts`:
 study-content/
   clip-packs/lms-1000-azure-v1.zip
   reader-packs/<pack-id>-v1.zip
+  reader-packs/john-gospel-{core,audio-1,audio-2}-v1.zip
   sentence-audio/lms-sentence-audio-v1.zip
   sentence-audio/china-life-audio-v1.zip
 ```

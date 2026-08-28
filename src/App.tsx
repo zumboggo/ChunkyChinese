@@ -227,7 +227,8 @@ import {
 } from './dataHealth'
 
 const UniversalImporter = lazy(() => import('./UniversalImporter').then((module) => ({ default: module.UniversalImporter })))
-type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'readingTexts' | 'words'
+const MeditateScreen = lazy(() => import('./MeditateScreen').then((module) => ({ default: module.MeditateScreen })))
+type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'readingTexts' | 'meditate' | 'words'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
 type FlashcardFrontMode = 'text' | 'audio' | 'reverse'
 type ReaderPinyinMode = UserSettings['readerPinyinMode']
@@ -882,7 +883,6 @@ function App() {
         id: 'content-maintenance',
         run: async () => {
           await seedLmsWordsIfEmpty()
-          await seedReaderBooksIfEmpty()
           await repairAudioClipLinksIfNeeded()
           await cleanupAccidentalEnglishOnlyCards()
           const backfilled = await backfillReadingExposuresFromEvents()
@@ -984,7 +984,7 @@ function App() {
     if (!needsReaderLibrary || readerBooks.length > 0) return
     let cancelled = false
     void (async () => {
-      await seedReaderBooksIfEmpty()
+      if (cloudUserEmail) await seedReaderBooksIfEmpty()
       const [nextPacks, nextBooks] = await Promise.all([getAllReaderPacks(), getAllReaderBooks()])
       if (cancelled) return
       setReaderPacks(nextPacks)
@@ -994,7 +994,7 @@ function App() {
       if (!cancelled) setLastSummary(error instanceof Error ? error.message : 'Could not load the reading library.')
     })
     return () => { cancelled = true }
-  }, [readerBooks.length, screen, studyMode])
+  }, [cloudUserEmail, readerBooks.length, screen, studyMode])
 
   useEffect(() => {
     function handleOnline() {
@@ -1591,6 +1591,7 @@ function App() {
       failedFiles += shell.failed
 
       setFlightOfflineProgress('Saving the reading library…')
+      if (!cloudUserEmail) throw new Error('Sign in before preparing private reading content for offline use.')
       await seedReaderBooksIfEmpty()
       const nextBooks = await getAllReaderBooks()
       const lmsBooks = nextBooks.filter((book) => book.packId === 'lms-books')
@@ -2296,7 +2297,7 @@ function App() {
 
   const startReaderPlaylist = useCallback(async () => {
     let books = readerBooks
-    if (books.length === 0) {
+    if (books.length === 0 && cloudUserEmail) {
       await seedReaderBooksIfEmpty()
       const [nextPacks, nextBooks] = await Promise.all([getAllReaderPacks(), getAllReaderBooks()])
       books = nextBooks
@@ -2324,7 +2325,7 @@ function App() {
       setReaderQueueState(saved)
     }
     await openReaderBook(queue[0], 'resume')
-  }, [activeWords, openReaderBook, readerBooks])
+  }, [activeWords, cloudUserEmail, openReaderBook, readerBooks])
   startReaderPlaylistRef.current = startReaderPlaylist
 
   const moveReaderQueueBook = useCallback(async (bookId: string, delta: -1 | 1) => {
@@ -3721,6 +3722,18 @@ function App() {
               </span>
               <span className="mode-start-arrow" aria-hidden="true">→</span>
             </button>
+            <button className="mode-start dashboard-mode-card meditate-start" type="button" onClick={() => setScreen('meditate')}>
+              <span className="mode-start-logo meditate-mode-logo" aria-hidden="true">静</span>
+              <span className="mode-start-copy">
+                <strong>Meditate</strong>
+                <span>Scripture with pinyin and direct phrase-by-phrase English.</span>
+              </span>
+              <span className="mode-start-metric">
+                <span>Passages</span>
+                <strong>8</strong>
+              </span>
+              <span className="mode-start-arrow" aria-hidden="true">→</span>
+            </button>
           </div>
 
           <section className="dashboard-today-panel" aria-label="Today">
@@ -4281,6 +4294,20 @@ function App() {
             generateCover: aiStorySettings.generateCover,
             generateAudio: aiStorySettings.generateAudio,
             azureConfigured: Boolean(aiStorySettings.azureSpeechKey && aiStorySettings.azureSpeechRegion),
+          }}
+        />
+      )}
+
+      {screen === 'meditate' && (
+        <MeditateScreen
+          onBack={() => setScreen('dashboard')}
+          onSavePhrase={async (phrase) => {
+            await saveReaderVocabularyWord(
+              phrase.chinese,
+              getPinyin(phrase.chinese, { toneType: 'symbol', v: true }),
+              phrase.gloss,
+            )
+            await refresh()
           }}
         />
       )}
