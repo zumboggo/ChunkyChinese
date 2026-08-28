@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="zh-CN">
-  <voice name="zh-CN-XiaochenNeural">
-    <prosody rate="-5%">可是回去的时候，他第一次不是只想“怎么卖”，而是开始想“我到底做了什么”。</prosody>
-  </voice>
-</speak>

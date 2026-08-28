@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-chinese-v54'
+const CACHE_VERSION = 'chunky-chinese-v55'
 const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'
 const SENTENCE_OFFLINE_CACHE = 'chunky-sentence-listening-v1'
 // Change CACHE_VERSION whenever the app shell changes and you want browsers to
@@ -6,8 +6,6 @@ const SENTENCE_OFFLINE_CACHE = 'chunky-sentence-listening-v1'
 const APP_BASE = new URL('./', self.location.href).pathname
 const FLIGHT_CORE = [
   `${APP_BASE}dictionary/cedict.json`,
-  `${APP_BASE}clip-packs/index.json`,
-  `${APP_BASE}reader-packs/index.json`,
 ]
 const APP_SHELL = [
   APP_BASE,
@@ -183,7 +181,8 @@ async function sentenceOfflineFirst(request) {
 
 function isReaderMediaAsset(url) {
   return (
-    url.pathname.startsWith(`${APP_BASE}reader-packs/`) &&
+    (url.pathname.startsWith(`${APP_BASE}reader-packs/`) ||
+      url.pathname.startsWith(`${APP_BASE}private-content/`)) &&
     /\.(?:mp3|webp|png|jpe?g|avif)$/i.test(url.pathname)
   )
 }

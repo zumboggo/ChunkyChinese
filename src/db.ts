@@ -1,4 +1,5 @@
-import { openDB, type DBSchema, type IDBPDatabase, type IDBPTransaction } from 'idb'
+import { openDB, type DBSchema, type IDBPDatabase } from 'idb'
+import JSZip from 'jszip'
 import {
   basenameWithoutExt,
   makeWordId,
@@ -8,32 +9,16 @@ import {
   stableHash,
   vocabFromCsvRows,
 } from './csv'
-import {
-  comicChapterRecordId,
-  comicImageRecordId,
-  comicProgressId,
-  makeDefaultComicProgress,
-  parseComicPackZip,
-} from './comics/comicPack'
 import { getSentencePool } from './sentenceListening'
 import type {
   AudioClip,
   ClipPack,
   ClipManifestEntry,
   ClipPackManifest,
-  ComicChapter,
-  ComicChapterRecord,
-  ComicImageRecord,
-  ComicImportSummary,
-  ComicPackManifest,
-  ComicPackRecord,
-  ComicPackSummary,
-  ComicProgress,
   DashboardRange,
   DashboardStats,
   FsrsRating,
   HostedClipPack,
-  HostedComicPack,
   HostedReaderPack,
   HotkeySettings,
   ImportSummary,
@@ -61,6 +46,8 @@ import {
   uniqueDeckIds,
 } from './flashcardDecks'
 import { adjustedHistoricalStudySeconds, studySecondsForEvent } from './studyTime'
+import { PRIVATE_CLIP_PACKS, PRIVATE_READER_PACKS } from './contentCatalog'
+import { downloadPrivateContent } from './supabaseSync'
 import {
   applyFsrsRating,
   isEligibleForReadingCredit,
@@ -69,9 +56,6 @@ import {
   isNewFsrsCard,
   masteryForWord,
 } from './scheduler'
-import { visualNovelSaveId } from './visualNovel/engine'
-import { visualNovelWorldSaveId } from './visualNovel/worldEngine'
-import type { VisualNovelSave, VisualNovelWorldSave } from './visualNovel/types'
 
 type ProgressImportField =
   | 'lastReviewedAt'
@@ -168,35 +152,6 @@ interface ChunkyDB extends DBSchema {
     value: ReaderSession
     indexes: { bookId: string; packId: string; startedAt: string }
   }
-  visualNovelSaves: {
-    key: string
-    value: VisualNovelSave
-    indexes: { packId: string; visualNovelId: string; updatedAt: string }
-  }
-  visualNovelWorldSaves: {
-    key: string
-    value: VisualNovelWorldSave
-    indexes: { worldId: string; updatedAt: string }
-  }
-  comicPacks: {
-    key: string
-    value: ComicPackRecord
-  }
-  comicChapters: {
-    key: string
-    value: ComicChapterRecord
-    indexes: { packId: string }
-  }
-  comicImages: {
-    key: string
-    value: ComicImageRecord
-    indexes: { packId: string }
-  }
-  comicProgress: {
-    key: string
-    value: ComicProgress
-    indexes: { packId: string; updatedAt: string }
-  }
   settings: {
     key: string
     value: unknown
@@ -259,33 +214,6 @@ export function getDB(): Promise<IDBPDatabase<ChunkyDB>> {
           readerSessions.createIndex('bookId', 'bookId')
           readerSessions.createIndex('packId', 'packId')
           readerSessions.createIndex('startedAt', 'startedAt')
-        }
-        if (!db.objectStoreNames.contains('visualNovelSaves')) {
-          const visualNovelSaves = db.createObjectStore('visualNovelSaves', { keyPath: 'id' })
-          visualNovelSaves.createIndex('packId', 'packId')
-          visualNovelSaves.createIndex('visualNovelId', 'visualNovelId')
-          visualNovelSaves.createIndex('updatedAt', 'updatedAt')
-        }
-        if (!db.objectStoreNames.contains('visualNovelWorldSaves')) {
-          const visualNovelWorldSaves = db.createObjectStore('visualNovelWorldSaves', { keyPath: 'id' })
-          visualNovelWorldSaves.createIndex('worldId', 'worldId')
-          visualNovelWorldSaves.createIndex('updatedAt', 'updatedAt')
-        }
-        if (!db.objectStoreNames.contains('comicPacks')) {
-          db.createObjectStore('comicPacks', { keyPath: 'id' })
-        }
-        if (!db.objectStoreNames.contains('comicChapters')) {
-          const comicChapters = db.createObjectStore('comicChapters', { keyPath: 'recordId' })
-          comicChapters.createIndex('packId', 'packId')
-        }
-        if (!db.objectStoreNames.contains('comicImages')) {
-          const comicImages = db.createObjectStore('comicImages', { keyPath: 'id' })
-          comicImages.createIndex('packId', 'packId')
-        }
-        if (!db.objectStoreNames.contains('comicProgress')) {
-          const comicProgress = db.createObjectStore('comicProgress', { keyPath: 'id' })
-          comicProgress.createIndex('packId', 'packId')
-          comicProgress.createIndex('updatedAt', 'updatedAt')
         }
         if (!db.objectStoreNames.contains('settings')) {
           db.createObjectStore('settings')
@@ -782,87 +710,11 @@ export async function clearStudyTimeAdjustment(): Promise<void> {
 }
 
 export async function getHostedClipPackIndex(): Promise<HostedClipPack[]> {
-  try {
-    const packs = (await fetchJson(`${import.meta.env.BASE_URL}clip-packs/index.json`)) as
-      | HostedClipPack[]
-      | { packs?: HostedClipPack[] }
-    return Array.isArray(packs) ? packs : packs.packs ?? []
-  } catch {
-    return [
-      {
-        id: 'lms-1000-azure',
-        name: 'LMS 1000',
-        description: 'Legendary Moonlight Sculptor 1000-word vocabulary with Azure clips.',
-        baseUrl: `${import.meta.env.BASE_URL}clip-packs/lms-1000-azure`,
-        language: 'zh-CN',
-      },
-    ]
-  }
+  return PRIVATE_CLIP_PACKS
 }
 
 export async function getHostedReaderPackIndex(): Promise<HostedReaderPack[]> {
-  try {
-    const packs = (await fetchJson(`${import.meta.env.BASE_URL}reader-packs/index.json`)) as
-      | HostedReaderPack[]
-      | { packs?: HostedReaderPack[] }
-    return Array.isArray(packs) ? packs : packs.packs ?? []
-  } catch {
-    return [
-      {
-        id: 'lms-books',
-        name: 'LMS Reader Books',
-        description: 'LMS Book 1 chapter compilation readers.',
-        baseUrl: `${import.meta.env.BASE_URL}reader-packs/lms-books`,
-        language: 'zh-CN',
-      },
-      {
-        id: 'sherlock-holmes',
-        name: 'Sherlock Holmes Graded Reader',
-        description: 'Mandarin Companion Level 1 Sherlock Holmes reader.',
-        baseUrl: `${import.meta.env.BASE_URL}reader-packs/sherlock-holmes`,
-        language: 'zh-CN',
-      },
-      {
-        id: 'rise-of-the-monkey-king',
-        name: 'Rise of the Monkey King',
-        description: 'A bilingual Chinese-English retelling of the rise of Sun Wukong.',
-        baseUrl: `${import.meta.env.BASE_URL}reader-packs/rise-of-the-monkey-king`,
-        language: 'zh-CN',
-      },
-      {
-        id: 'just-friends',
-        name: 'Just Friends?',
-        description: 'Mandarin Companion Breakthrough Level - Just Friends? (我们是朋友吗？).',
-        baseUrl: `${import.meta.env.BASE_URL}reader-packs/just-friends`,
-        language: 'zh-CN',
-      },
-      {
-        id: 'can-i-dance',
-        name: 'Can I Dance With You?',
-        description: 'Chinese Breeze Level 1 graded reader.',
-        baseUrl: `${import.meta.env.BASE_URL}reader-packs/can-i-dance`,
-        language: 'zh-CN',
-      },
-      {
-        id: 'john-gospel',
-        name: 'Gospel of John',
-        description: 'Simplified Chinese text with English translations.',
-        baseUrl: `${import.meta.env.BASE_URL}reader-packs/john-gospel`,
-        language: 'zh-CN',
-      },
-    ]
-  }
-}
-
-export async function getHostedComicPackIndex(): Promise<HostedComicPack[]> {
-  try {
-    const packs = (await fetchJson(`${import.meta.env.BASE_URL}comic-packs/index.json`)) as
-      | HostedComicPack[]
-      | { packs?: HostedComicPack[] }
-    return Array.isArray(packs) ? packs : packs.packs ?? []
-  } catch {
-    return []
-  }
+  return PRIVATE_READER_PACKS
 }
 
 export async function getAudioClip(id: string): Promise<AudioClip | undefined> {
@@ -1557,116 +1409,15 @@ export async function importClipPackFiles(files: FileList | File[]): Promise<Imp
 }
 
 export async function importHostedClipPack(
-  baseUrl: string,
+  storagePath: string,
   onProgress?: (completed: number, total: number, label: string) => void,
   hosted?: Partial<HostedClipPack>,
 ): Promise<ImportSummary> {
-  const base = resolveHostedBaseUrl(baseUrl)
-  const manifest = (await fetchJson(`${base}/clips_manifest.json`)) as ClipPackManifest
-  const packId = hosted?.id ?? makePackId(manifest.packName || base.split('/').pop() || 'Hosted pack')
-  const pack = makeClipPack({
-    id: packId,
-    name: hosted?.name ?? manifest.packName ?? packId,
-    source: 'hosted',
-    language: hosted?.language,
-    description: hosted?.description,
-    baseUrl: base,
-    browserTts: false,
-  })
-  const warnings: string[] = []
-  let importedWords = 0
-  let importedSentences = 0
-
-  if (manifest.vocabCsvPath) {
-    const summary = await importVocabCsv(
-      await fetchText(`${base}/${encodePath(manifest.vocabCsvPath)}`),
-      packId,
-    )
-    importedWords = summary.created + summary.updated
-    warnings.push(...summary.warnings)
-  }
-  if (manifest.sentencesCsvPath) {
-    const summary = await importSentencesCsv(
-      await fetchText(`${base}/${encodePath(manifest.sentencesCsvPath)}`),
-      packId,
-    )
-    importedSentences = summary.created + summary.updated
-  }
-
-  const db = await getDB()
-  const words = await db.getAll('vocabWords')
-  const sentences = await db.getAll('sentences')
-  const preparedClips: Array<{ entry: ClipManifestEntry; clip: AudioClip; existed: boolean }> = []
-  const total = manifest.clips?.length ?? 0
-  let skipped = 0
-  let created = 0
-  let updated = 0
-  let linkedAudio = 0
-
-  const flushPreparedClips = async () => {
-    if (preparedClips.length === 0) return
-    const batch = preparedClips.splice(0)
-    const tx = db.transaction(['audioClips', 'vocabWords', 'sentences'], 'readwrite')
-    for (const prepared of batch) {
-      const clip = { ...prepared.clip, packId }
-      await tx.objectStore('audioClips').put(clip)
-      if (prepared.existed) updated += 1
-      else created += 1
-      linkedAudio += await linkClip(tx, clip, words, sentences, prepared.entry)
-    }
-    await tx.done
-  }
-
-  for (const [index, entry] of (manifest.clips ?? []).entries()) {
-    const existing = await db.get('audioClips', entry.id)
-    if (existing?.blob) {
-      preparedClips.push({
-        entry,
-        existed: true,
-        clip: manifestEntryToClip(entry, existing.blob, existing.createdAt),
-      })
-      onProgress?.(index + 1, total, entry.label || entry.text || entry.path)
-      if (preparedClips.length >= 100) await flushPreparedClips()
-      continue
-    }
-
-    try {
-      const response = await fetch(`${base}/${encodePath(entry.path)}`)
-      if (!response.ok) throw new Error(`HTTP ${response.status}`)
-      preparedClips.push({
-        entry,
-        existed: false,
-        clip: manifestEntryToClip(entry, await response.blob()),
-      })
-    } catch (error) {
-      skipped += 1
-      warnings.push(
-        `Could not download ${entry.path}${error instanceof Error ? `: ${error.message}` : ''}`,
-      )
-    }
-    onProgress?.(index + 1, total, entry.label || entry.text || entry.path)
-    if (preparedClips.length >= 100) await flushPreparedClips()
-  }
-  await flushPreparedClips()
-  pack.wordCount = (await db.getAll('vocabWords')).filter((word) =>
-    word.packIds?.includes(packId),
-  ).length
-  pack.sentenceCount = (await db.getAll('sentences')).filter((sentence) =>
-    sentence.packIds?.includes(packId),
-  ).length
-  pack.audioCount = created + updated
-  await db.put('clipPacks', pack)
-  await db.put('settings', manifest, 'lastClipPackManifest')
-  await db.put('settings', packId, 'activePackId')
-  return {
-    created,
-    updated,
-    skipped,
-    linkedAudio,
-    importedWords,
-    importedSentences,
-    warnings,
-  }
+  onProgress?.(0, 1, 'Downloading private pack')
+  const archive = await downloadPrivateContent(storagePath)
+  const files = await zipToFiles(archive)
+  onProgress?.(1, 1, hosted?.name ?? 'Importing pack')
+  return importClipPackFiles(files)
 }
 
 export async function seedReaderBooksIfEmpty(): Promise<number> {
@@ -1722,7 +1473,7 @@ export async function seedReaderBooksIfEmpty(): Promise<number> {
 
   const results = await Promise.allSettled(
     hostedPacks.map((pack) =>
-      importHostedReaderPack(pack.baseUrl, undefined, pack, {
+      importHostedReaderPack(pack.storagePath, undefined, pack, {
         downloadAudio: false,
       }),
     ),
@@ -1736,30 +1487,7 @@ export async function seedReaderBooksIfEmpty(): Promise<number> {
   )
   if (results.every((result) => result.status === 'fulfilled')) {
     await db.put('settings', LMS_READER_TEXT_FIX_VERSION, 'lmsReaderTextFixVersion')
-    const audioPacks = hostedPacks.filter(
-      (pack) => pack.id === 'rise-of-the-monkey-king' || pack.id === 'just-friends',
-    )
-    if (audioPacks.length === 0) {
-      await db.put('settings', READER_PACK_FIX_VERSION, 'readerPackFixVersion')
-    } else {
-      void Promise.allSettled(
-        audioPacks.map((pack) =>
-          importHostedReaderPack(pack.baseUrl, undefined, pack, { downloadAudio: true }),
-        ),
-      )
-        .then(async (audioResults) => {
-          if (audioResults.every((result) => result.status === 'fulfilled')) {
-            await db.put('settings', READER_PACK_FIX_VERSION, 'readerPackFixVersion')
-            return
-          }
-          for (const result of audioResults) {
-            if (result.status === 'rejected') {
-              console.warn('Could not cache hosted reader audio.', result.reason)
-            }
-          }
-        })
-        .catch((error) => console.warn('Could not finish caching hosted reader audio.', error))
-    }
+    await db.put('settings', READER_PACK_FIX_VERSION, 'readerPackFixVersion')
   } else {
     for (const result of results) {
       if (result.status === 'rejected') {
@@ -1806,7 +1534,6 @@ function buildGeneratedPackSummary(books: ReaderBook[]): ReaderPack {
       sentenceCount: item.stories.flatMap((story) => story.sentences).length,
       path: item.path ?? '',
       coverImage: item.coverImage,
-      visualNovelWorldId: item.visualNovelWorldId,
     })),
   }
 }
@@ -2055,143 +1782,6 @@ export async function putSyncedSentenceSrs(rows: SentenceSrsRecord[]): Promise<v
   await tx.done
 }
 
-type ComicPackTransaction = IDBPTransaction<
-  ChunkyDB,
-  ['comicPacks', 'comicChapters', 'comicImages', 'comicProgress'],
-  'readwrite'
->
-
-export async function importComicPack(
-  file: Blob | ArrayBuffer,
-  options: { replace?: boolean; source?: 'sample' | 'imported' | 'hosted' } = {},
-): Promise<ComicImportSummary> {
-  const parsed = await parseComicPackZip(file)
-  const db = await getDB()
-  const existing = await db.get('comicPacks', parsed.manifest.id)
-  if (existing && !options.replace) {
-    throw new Error(`Comic pack "${parsed.manifest.id}" already exists. Confirm replacement before importing again.`)
-  }
-  await saveComicPackToDatabase(parsed.manifest, parsed.chapters, parsed.images, parsed.imageContentTypes, {
-    replace: options.replace ?? false,
-    source: options.source ?? 'imported',
-  })
-  return {
-    packId: parsed.manifest.id,
-    title: parsed.manifest.title,
-    chapters: parsed.chapters.length,
-    pages: parsed.chapters.reduce((sum, chapter) => sum + chapter.pages.length, 0),
-    images: parsed.images.size,
-    warnings: parsed.warnings,
-    replaced: Boolean(existing && options.replace),
-  }
-}
-
-
-
-export async function importHostedComicPack(
-  baseUrl: string,
-  onProgress?: (message: string) => void,
-): Promise<ComicImportSummary> {
-  const resolvedBase = resolveHostedBaseUrl(baseUrl)
-  const base = `${resolvedBase}/`
-  onProgress?.('Fetching comic manifest...')
-  const manifest = (await fetchJson(`${base}manifest.json`)) as ComicPackManifest
-  const chapters: ComicChapter[] = []
-  const images = new Map<string, Blob>()
-  const imageContentTypes = new Map<string, string>()
-  const imagePaths = new Set<string>()
-  if (manifest.coverImage) imagePaths.add(manifest.coverImage)
-  for (const ref of manifest.chapters) {
-    onProgress?.(`Loading chapter: ${ref.title ?? ref.id}...`)
-    const chapter = (await fetchJson(`${base}${encodePath(ref.file)}`)) as ComicChapter
-    chapters.push(chapter)
-    for (const page of chapter.pages) imagePaths.add(page.image)
-  }
-  let fetched = 0
-  for (const path of imagePaths) {
-    fetched++
-    onProgress?.(`Downloading images (${fetched}/${imagePaths.size})...`)
-    const response = await fetch(`${base}${encodePath(path)}`)
-    if (!response.ok) throw new Error(`Comic image failed to load: ${path}`)
-    images.set(path, await response.blob())
-    imageContentTypes.set(path, response.headers.get('content-type') ?? contentTypeForComicImage(path))
-  }
-  onProgress?.('Saving to library...')
-  await saveComicPackToDatabase(manifest, chapters, images, imageContentTypes, {
-    replace: true,
-    source: 'hosted',
-  })
-  return {
-    packId: manifest.id,
-    title: manifest.title,
-    chapters: chapters.length,
-    pages: chapters.reduce((sum, ch) => sum + ch.pages.length, 0),
-    images: imagePaths.size,
-    warnings: [],
-    replaced: true,
-  }
-}
-
-export async function listComicPacks(): Promise<ComicPackSummary[]> {
-  const db = await getDB()
-  const packs = await db.getAll('comicPacks')
-  const progressRows = await db.getAll('comicProgress')
-  const progressByPack = new Map(progressRows.map((progress) => [progress.packId, progress]))
-  return packs.sort((a, b) => a.title.localeCompare(b.title)).map((pack) => ({
-    id: pack.id,
-    title: pack.title,
-    titleChinese: pack.titleChinese,
-    author: pack.author,
-    description: pack.description,
-    language: pack.language,
-    source: pack.source,
-    coverImage: pack.coverImage,
-    chapterCount: pack.chapterCount,
-    pageCount: pack.pageCount,
-    imageCount: pack.imageCount,
-    progress: progressByPack.get(pack.id),
-  }))
-}
-
-export async function getComicPack(packId: string): Promise<ComicPackRecord | undefined> {
-  return await (await getDB()).get('comicPacks', packId)
-}
-
-export async function getComicChapters(packId: string): Promise<ComicChapterRecord[]> {
-  return (await (await getDB()).getAllFromIndex('comicChapters', 'packId', packId))
-    .sort((a, b) => a.chapterIndex - b.chapterIndex)
-}
-
-export async function getComicChapter(
-  packId: string,
-  chapterId: string,
-): Promise<ComicChapterRecord | undefined> {
-  return await (await getDB()).get('comicChapters', comicChapterRecordId(packId, chapterId))
-}
-
-export async function getComicImage(packId: string, imagePath: string): Promise<Blob | undefined> {
-  return (await (await getDB()).get('comicImages', comicImageRecordId(packId, imagePath)))?.blob
-}
-
-export async function getComicProgress(packId: string): Promise<ComicProgress | undefined> {
-  return await (await getDB()).get('comicProgress', comicProgressId(packId))
-}
-
-export async function saveComicProgress(progress: ComicProgress): Promise<void> {
-  await (await getDB()).put('comicProgress', {
-    ...progress,
-    id: comicProgressId(progress.packId),
-    updatedAt: new Date().toISOString(),
-  })
-}
-
-export async function deleteComicPack(packId: string): Promise<void> {
-  const db = await getDB()
-  const tx = db.transaction(['comicPacks', 'comicChapters', 'comicImages', 'comicProgress'], 'readwrite') as ComicPackTransaction
-  await deleteComicPackInTransaction(tx, packId)
-  await tx.done
-}
-
 function readerSessionId(bookId: string, startedAt: string): string {
   return `reader-session:${bookId}:${startedAt}`
 }
@@ -2253,147 +1843,112 @@ export async function getAllReaderSessions(): Promise<ReaderSession[]> {
   )
 }
 
-export async function getVisualNovelSave(
-  packId: string,
-  visualNovelId: string,
-): Promise<VisualNovelSave | undefined> {
-  return await (await getDB()).get('visualNovelSaves', visualNovelSaveId(packId, visualNovelId))
-}
-
-export async function getAllVisualNovelSaves(): Promise<VisualNovelSave[]> {
-  return (await (await getDB()).getAll('visualNovelSaves')).sort(
-    (a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt),
-  )
-}
-
-export async function saveVisualNovelSave(save: VisualNovelSave): Promise<void> {
-  await (await getDB()).put('visualNovelSaves', {
-    ...save,
-    updatedAt: new Date().toISOString(),
-  })
-}
-
-export async function deleteVisualNovelSave(packId: string, visualNovelId: string): Promise<void> {
-  await (await getDB()).delete('visualNovelSaves', visualNovelSaveId(packId, visualNovelId))
-}
-
-export async function getVisualNovelWorldSave(worldId: string): Promise<VisualNovelWorldSave | undefined> {
-  return await (await getDB()).get('visualNovelWorldSaves', visualNovelWorldSaveId(worldId))
-}
-
-export async function getAllVisualNovelWorldSaves(): Promise<VisualNovelWorldSave[]> {
-  return (await (await getDB()).getAll('visualNovelWorldSaves')).sort(
-    (a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt),
-  )
-}
-
-export async function saveVisualNovelWorldSave(save: VisualNovelWorldSave): Promise<void> {
-  await (await getDB()).put('visualNovelWorldSaves', {
-    ...save,
-    updatedAt: new Date().toISOString(),
-  })
-}
-
-export async function deleteVisualNovelWorldSave(worldId: string): Promise<void> {
-  await (await getDB()).delete('visualNovelWorldSaves', visualNovelWorldSaveId(worldId))
-}
-
 export async function importHostedReaderPack(
-  baseUrl: string,
+  storagePath: string,
   onProgress?: (completed: number, total: number, label: string) => void,
   hosted?: Partial<HostedReaderPack>,
   options: { downloadAudio?: boolean } = {},
 ): Promise<ImportSummary> {
-  const base = resolveHostedBaseUrl(baseUrl)
-  const manifest = (await fetchJson(`${base}/reader_manifest.json`)) as ReaderPack
-  const packId = hosted?.id ?? manifest.packId ?? makePackId(manifest.name || 'Reader pack')
-  const db = await getDB()
-  const existingPack = await db.get('readerPacks', packId)
-  const downloadAudio = options.downloadAudio ?? true
-  const localAudioAvailable = Boolean(manifest.audioAvailable && downloadAudio)
+  onProgress?.(0, 1, 'Downloading private reader pack')
+  const archivePaths = hosted?.storagePaths ?? [storagePath]
+  const zips = await Promise.all(
+    archivePaths.map(async (path) => JSZip.loadAsync(await downloadPrivateContent(path))),
+  )
+  const findEntry = (path: string) => zips.map((zip) => zip.file(path)).find(Boolean) ?? null
+  const manifestEntry = findEntry('reader_manifest.json')
+  if (!manifestEntry) throw new Error('Reader pack is missing reader_manifest.json.')
+  const manifest = JSON.parse(await manifestEntry.async('text')) as ReaderPack
+  const packId = hosted?.id ?? manifest.packId
+  const syntheticBase = `${import.meta.env.BASE_URL}private-content/${packId}`
   const pack: ReaderPack = {
     ...manifest,
     packId,
-    name: hosted?.name ?? manifest.name ?? packId,
+    name: hosted?.name ?? manifest.name,
     description: hosted?.description ?? manifest.description,
-    baseUrl,
     language: hosted?.language ?? manifest.language ?? 'zh-CN',
-    installedAt: existingPack?.installedAt ?? new Date().toISOString(),
-    audioAvailable: localAudioAvailable || Boolean(existingPack?.audioAvailable),
-    synthesizedAudioCount: localAudioAvailable
-      ? manifest.synthesizedAudioCount ?? 0
-      : existingPack?.synthesizedAudioCount ?? 0,
-    storyCount: manifest.storyCount ?? 0,
-    sentenceCount: manifest.sentenceCount ?? 0,
-    books: manifest.books ?? [],
+    baseUrl: syntheticBase,
+    installedAt: new Date().toISOString(),
   }
   const books: ReaderBook[] = []
   for (const summary of pack.books) {
-    const book = (await fetchJson(`${base}/${encodePath(summary.path)}`)) as Omit<ReaderBook, 'packId'>
-    books.push({
-      ...book,
-      id: book.id,
-      packId,
-      path: summary.path,
-      coverImage: book.coverImage ?? summary.coverImage,
-      visualNovelWorldId: book.visualNovelWorldId ?? summary.visualNovelWorldId,
-    })
+    const entry = findEntry(summary.path)
+    if (!entry) throw new Error(`Reader pack is missing ${summary.path}.`)
+    const book = JSON.parse(await entry.async('text')) as Omit<ReaderBook, 'packId'>
+    books.push({ ...book, packId, path: summary.path, coverImage: book.coverImage ?? summary.coverImage })
   }
 
+  const db = await getDB()
   const tx = db.transaction(['readerPacks', 'readerBooks'], 'readwrite')
   await tx.objectStore('readerPacks').put(pack)
-  for (const book of books) {
-    await tx.objectStore('readerBooks').put(book)
-  }
+  for (const book of books) await tx.objectStore('readerBooks').put(book)
+
   await tx.done
 
-  const warnings: string[] = []
-  let created = 0
-  let updated = 0
-  let skipped = 0
-  const sentences = books.flatMap((book) => book.stories.flatMap((story) => story.sentences))
-  if (downloadAudio && manifest.audioAvailable) {
-    const existingClips = new Map((await db.getAll('audioClips')).map((clip) => [clip.id, clip]))
-    const prepared: AudioClip[] = []
-    for (const [index, sentence] of sentences.entries()) {
-      if (!sentence.audioFilename) {
-        onProgress?.(index + 1, sentences.length, sentence.chinese)
-        continue
-      }
-      const existing = existingClips.get(sentence.audioClipId)
-      if (existing?.blob) {
-        prepared.push(readerSentenceToClip(sentence, existing.blob, packId, pack.voice, existing.createdAt))
-        updated += 1
-        onProgress?.(index + 1, sentences.length, sentence.chinese)
-        continue
-      }
-      try {
-        const response = await fetch(`${base}/${encodePath(sentence.audioFilename)}`)
-        if (!response.ok) throw new Error(`HTTP ${response.status}`)
-        prepared.push(readerSentenceToClip(sentence, await response.blob(), packId, pack.voice))
-        created += 1
-      } catch (error) {
-        skipped += 1
-        warnings.push(
-          `Could not download ${sentence.audioFilename}${error instanceof Error ? `: ${error.message}` : ''}`,
-        )
-      }
-      onProgress?.(index + 1, sentences.length, sentence.chinese)
-    }
-    const audioTx = db.transaction('audioClips', 'readwrite')
-    for (const clip of prepared) await audioTx.objectStore('audioClips').put(clip)
-    await audioTx.done
+  const mediaEntries = zips.flatMap((zip) => Object.values(zip.files)).filter((entry) => {
+    if (entry.dir || !/\.(?:mp3|webp|png|jpe?g|avif)$/iu.test(entry.name)) return false
+    return options.downloadAudio !== false || !entry.name.toLowerCase().endsWith('.mp3')
+  })
+  let audioCount = 0
+  const mediaCache = await caches.open('chunky-reader-downloads-v1')
+  for (const [index, entry] of mediaEntries.entries()) {
+    const blob = await entry.async('blob')
+    const mediaUrl = `${syntheticBase}/${entry.name}`
+    const response = new Response(blob, { headers: { 'Content-Type': contentTypeForMedia(entry.name) } })
+    await mediaCache.put(mediaUrl, response.clone())
+    await mediaCache.put(
+      `${import.meta.env.BASE_URL}reader-packs/${packId}/${entry.name}`,
+      response.clone(),
+    )
+    if (entry.name.toLowerCase().endsWith('.mp3')) audioCount += 1
+    onProgress?.(index + 1, mediaEntries.length, entry.name)
   }
-
+  const sentences = books.flatMap((book) => book.stories.flatMap((story) => story.sentences))
+  const readerClips: AudioClip[] = []
+  if (options.downloadAudio !== false) {
+    for (const sentence of sentences) {
+      if (!sentence.audioFilename || !sentence.audioClipId) continue
+      const entry = findEntry(sentence.audioFilename)
+      if (!entry) continue
+      readerClips.push(readerSentenceToClip(sentence, await entry.async('blob'), packId, pack.voice))
+    }
+  }
+  const audioTx = db.transaction('audioClips', 'readwrite')
+  for (const clip of readerClips) await audioTx.objectStore('audioClips').put(clip)
+  await audioTx.done
   return {
-    created,
-    updated,
-    skipped,
-    linkedAudio: created + updated,
+    created: audioCount,
+    updated: 0,
+    skipped: 0,
+    linkedAudio: audioCount,
     importedWords: uniqueReaderWordCount(books),
     importedSentences: sentences.length,
-    warnings,
+    warnings: [],
   }
+}
+
+async function zipToFiles(archive: Blob): Promise<File[]> {
+  const zip = await JSZip.loadAsync(archive)
+  const files: File[] = []
+  for (const entry of Object.values(zip.files)) {
+    if (entry.dir || entry.name.toLowerCase().endsWith('.ssml')) continue
+    const blob = await entry.async('blob')
+    files.push(new File([blob], entry.name.split('/').pop() ?? entry.name, {
+      type: contentTypeForMedia(entry.name),
+    }))
+    Object.defineProperty(files[files.length - 1], 'webkitRelativePath', { value: entry.name })
+  }
+  return files
+}
+
+function contentTypeForMedia(path: string): string {
+  const lower = path.toLowerCase()
+  if (lower.endsWith('.mp3')) return 'audio/mpeg'
+  if (lower.endsWith('.json')) return 'application/json'
+  if (lower.endsWith('.csv')) return 'text/csv'
+  if (lower.endsWith('.webp')) return 'image/webp'
+  if (lower.endsWith('.png')) return 'image/png'
+  if (lower.endsWith('.jpg') || lower.endsWith('.jpeg')) return 'image/jpeg'
+  return 'application/octet-stream'
 }
 
 export async function getDashboardStats(): Promise<DashboardStats> {
@@ -2626,12 +2181,6 @@ export async function exportBackup(): Promise<string> {
     readerBooks: await db.getAll('readerBooks'),
     readerProgress: await db.getAll('readerProgress'),
     readerSessions: await db.getAll('readerSessions'),
-    visualNovelSaves: await db.getAll('visualNovelSaves'),
-    visualNovelWorldSaves: await db.getAll('visualNovelWorldSaves'),
-    comicPacks: await db.getAll('comicPacks'),
-    comicChapters: await db.getAll('comicChapters'),
-    comicImages: await db.getAll('comicImages'),
-    comicProgress: await db.getAll('comicProgress'),
     settings: {
       lmsSeededAt: await db.get('settings', 'lmsSeededAt'),
       activePackId: await db.get('settings', 'activePackId'),
@@ -2654,12 +2203,6 @@ export async function importBackup(text: string): Promise<ImportSummary> {
     readerBooks?: ReaderBook[]
     readerProgress?: ReaderProgress[]
     readerSessions?: ReaderSession[]
-    visualNovelSaves?: VisualNovelSave[]
-    visualNovelWorldSaves?: VisualNovelWorldSave[]
-    comicPacks?: ComicPackRecord[]
-    comicChapters?: ComicChapterRecord[]
-    comicImages?: ComicImageRecord[]
-    comicProgress?: ComicProgress[]
     settings?: {
       activePackId?: string
       userSettings?: UserSettings
@@ -2680,12 +2223,6 @@ export async function importBackup(text: string): Promise<ImportSummary> {
       'readerBooks',
       'readerProgress',
       'readerSessions',
-      'visualNovelSaves',
-      'visualNovelWorldSaves',
-      'comicPacks',
-      'comicChapters',
-      'comicImages',
-      'comicProgress',
     ],
     'readwrite',
   )
@@ -2719,25 +2256,6 @@ export async function importBackup(text: string): Promise<ImportSummary> {
   for (const session of backup.readerSessions ?? []) {
     await tx.objectStore('readerSessions').put(session)
   }
-  for (const save of backup.visualNovelSaves ?? []) {
-    await tx.objectStore('visualNovelSaves').put(save)
-  }
-  for (const save of backup.visualNovelWorldSaves ?? []) {
-    await tx.objectStore('visualNovelWorldSaves').put(save)
-  }
-  for (const pack of backup.comicPacks ?? []) {
-    await tx.objectStore('comicPacks').put(pack)
-  }
-  for (const chapter of backup.comicChapters ?? []) {
-    await tx.objectStore('comicChapters').put(chapter)
-  }
-  for (const image of backup.comicImages ?? []) {
-    await tx.objectStore('comicImages').put(image)
-  }
-  for (const progress of backup.comicProgress ?? []) {
-    await tx.objectStore('comicProgress').put(progress)
-  }
-
   await tx.done
   if (backup.settings?.activePackId) await db.put('settings', backup.settings.activePackId, 'activePackId')
   if (backup.settings?.userSettings) await saveUserSettings(backup.settings.userSettings)
@@ -2915,46 +2433,6 @@ function resolveManifestFile(files: Map<string, File>, path: string): File | und
   return undefined
 }
 
-async function fetchJson(url: string): Promise<unknown> {
-  const response = await fetch(url)
-  if (!response.ok) throw new Error(`Could not fetch ${url}: HTTP ${response.status}`)
-  return await response.json()
-}
-
-async function fetchText(url: string): Promise<string> {
-  const response = await fetch(url)
-  if (!response.ok) throw new Error(`Could not fetch ${url}: HTTP ${response.status}`)
-  return await response.text()
-}
-
-function encodePath(path: string): string {
-  return normalizeFilename(path).split('/').map(encodeURIComponent).join('/')
-}
-
-function manifestEntryToClip(
-  entry: ClipManifestEntry,
-  blob: Blob,
-  createdAt = new Date().toISOString(),
-): AudioClip {
-  const filename = entry.path.split('/').pop() || entry.id
-  return {
-    id: entry.id,
-    type: entry.type,
-    label: entry.label || entry.text || basenameWithoutExt(entry.path),
-    filename,
-    path: normalizeFilename(entry.path),
-    blob,
-    linkedWordIds: entry.linkedWordIds,
-    linkedSentenceId: entry.linkedSentenceId,
-    manifestId: entry.id,
-    text: entry.text,
-    language: entry.language,
-    provider: entry.provider,
-    voice: entry.voice,
-    createdAt,
-  }
-}
-
 function readerSentenceToClip(
   sentence: ReaderBook['stories'][number]['sentences'][number],
   blob: Blob,
@@ -2993,84 +2471,6 @@ function uniqueReaderWordCount(books: ReaderBook[]): number {
 
 function readerProgressId(packId: string, bookId: string): string {
   return `reader-progress:${packId}:${bookId}`
-}
-
-async function saveComicPackToDatabase(
-  manifest: ComicPackManifest,
-  chapters: ComicChapter[],
-  images: Map<string, Blob>,
-  imageContentTypes: Map<string, string>,
-  options: { replace: boolean; source: 'sample' | 'imported' | 'hosted' },
-): Promise<void> {
-  const db = await getDB()
-  const existing = await db.get('comicPacks', manifest.id)
-  if (existing && !options.replace) {
-    throw new Error(`Comic pack "${manifest.id}" already exists. Confirm replacement before importing again.`)
-  }
-
-  const now = new Date().toISOString()
-  const tx = db.transaction(['comicPacks', 'comicChapters', 'comicImages', 'comicProgress'], 'readwrite') as ComicPackTransaction
-  if (existing && options.replace) await deleteComicPackInTransaction(tx, manifest.id, { keepProgress: false })
-  await tx.objectStore('comicPacks').put({
-    ...manifest,
-    importedAt: existing?.importedAt ?? now,
-    updatedAt: now,
-    source: options.source,
-    chapterCount: chapters.length,
-    pageCount: chapters.reduce((sum, chapter) => sum + chapter.pages.length, 0),
-    imageCount: images.size,
-  })
-  for (const [chapterIndex, chapter] of chapters.entries()) {
-    await tx.objectStore('comicChapters').put({
-      ...chapter,
-      recordId: comicChapterRecordId(manifest.id, chapter.id),
-      packId: manifest.id,
-      chapterIndex,
-      updatedAt: now,
-    })
-  }
-  for (const [path, blob] of images.entries()) {
-    await tx.objectStore('comicImages').put({
-      id: comicImageRecordId(manifest.id, path),
-      packId: manifest.id,
-      path,
-      blob,
-      contentType: imageContentTypes.get(path) ?? contentTypeForComicImage(path),
-      updatedAt: now,
-    })
-  }
-  if (!(await tx.objectStore('comicProgress').get(comicProgressId(manifest.id)))) {
-    await tx.objectStore('comicProgress').put(makeDefaultComicProgress(manifest.id, chapters[0]?.id ?? 'chapter-01'))
-  }
-  await tx.done
-}
-
-async function deleteComicPackInTransaction(
-  tx: ComicPackTransaction,
-  packId: string,
-  options: { keepProgress?: boolean } = {},
-): Promise<void> {
-  await tx.objectStore('comicPacks').delete(packId)
-  const chapterKeys = await tx.objectStore('comicChapters').index('packId').getAllKeys(packId)
-  for (const key of chapterKeys) await tx.objectStore('comicChapters').delete(key)
-  const imageKeys = await tx.objectStore('comicImages').index('packId').getAllKeys(packId)
-  for (const key of imageKeys) await tx.objectStore('comicImages').delete(key)
-  if (!options.keepProgress) await tx.objectStore('comicProgress').delete(comicProgressId(packId))
-}
-
-function contentTypeForComicImage(path: string): string {
-  const lower = path.toLowerCase()
-  if (lower.endsWith('.svg')) return 'image/svg+xml'
-  if (lower.endsWith('.png')) return 'image/png'
-  if (lower.endsWith('.jpg') || lower.endsWith('.jpeg')) return 'image/jpeg'
-  if (lower.endsWith('.webp')) return 'image/webp'
-  return 'application/octet-stream'
-}
-
-function resolveHostedBaseUrl(baseUrl: string): string {
-  const cleaned = baseUrl.replace(/\/+$/, '')
-  if (/^(https?:|\/)/u.test(cleaned)) return cleaned
-  return `${import.meta.env.BASE_URL}${cleaned}`.replace(/([^:]\/)\/+/gu, '$1')
 }
 
 function makeClipPack(input: {

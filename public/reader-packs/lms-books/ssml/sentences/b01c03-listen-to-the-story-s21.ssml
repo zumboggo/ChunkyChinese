@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="zh-CN">
-  <voice name="zh-CN-XiaochenNeural">
-    <prosody rate="-5%">那份约定、那个夜晚、那把像剑一样的雕刻刀，原来都连在一起。</prosody>
-  </voice>
-</speak>

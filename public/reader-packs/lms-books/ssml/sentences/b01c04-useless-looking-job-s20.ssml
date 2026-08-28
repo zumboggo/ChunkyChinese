@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="zh-CN">
-  <voice name="zh-CN-XiaochenNeural">
-    <prosody rate="-5%">如果每个人都觉得一个职业没用，也许只是因为他们只看今天。</prosody>
-  </voice>
-</speak>

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="zh-CN">
-  <voice name="zh-CN-XiaochenNeural">
-    <prosody rate="-5%">因为他觉得，也许真正大的改变，本来就不是从大东西开始。</prosody>
-  </voice>
-</speak>

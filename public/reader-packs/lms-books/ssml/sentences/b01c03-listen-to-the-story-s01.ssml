@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="zh-CN">
-  <voice name="zh-CN-XiaochenNeural">
-    <prosody rate="-5%">杂草为了一个关于月光的任务，先去找雕刻店的店主，又去酒馆找吟游诗人，后来还去找旧女仆。</prosody>
-  </voice>
-</speak>

@@ -36,13 +36,11 @@ import {
   getHotkeys,
   getPromptAudioClips,
   getHostedClipPackIndex,
-  getHostedComicPackIndex,
   getReaderProgress,
   importAudioFiles,
   importBackup,
   importClipPackFiles,
   importHostedClipPack,
-  importHostedComicPack,
   rateWordFsrs,
   recordEvent,
   repairAudioClipLinksIfNeeded,
@@ -184,7 +182,6 @@ import type {
   FlashcardDeckId,
   HotkeySettings,
   HostedClipPack,
-  HostedComicPack,
   ImportSummary,
   LessonPlan,
 
@@ -222,6 +219,7 @@ import {
 } from './readerOffline'
 import { getOfflineReadyAt, markOfflineReady, prepareOfflineAppShell } from './flightOffline'
 import { downloadSentenceListeningForOffline } from './sentenceOffline'
+import { installPrivateSentenceAudio } from './privateContent'
 import {
   repairDataHealth,
   runDataHealthCheck,
@@ -229,12 +227,7 @@ import {
 } from './dataHealth'
 
 const UniversalImporter = lazy(() => import('./UniversalImporter').then((module) => ({ default: module.UniversalImporter })))
-const VisualNovelWorldMode = lazy(() => import('./visualNovel/VisualNovelWorldMode').then((module) => ({ default: module.VisualNovelWorldMode })))
-const RenpyPrototypeMode = lazy(() => import('./visualNovel/RenpyPrototypeMode').then((module) => ({ default: module.RenpyPrototypeMode })))
-const ComicReaderMode = lazy(() => import('./comics/ComicReaderMode').then((module) => ({ default: module.ComicReaderMode })))
-const ComicShelf = lazy(() => import('./comics/ComicReaderMode').then((module) => ({ default: module.ComicShelf })))
-
-type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'visualNovel' | 'renpyPrototype' | 'comicReader' | 'readingTexts' | 'words'
+type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'readingTexts' | 'words'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
 type FlashcardFrontMode = 'text' | 'audio' | 'reverse'
 type ReaderPinyinMode = UserSettings['readerPinyinMode']
@@ -333,7 +326,6 @@ const emptyStats: DashboardStats = {
   readingSeries: [],
 }
 
-const HIDDEN_PACK_IDS = new Set(['annas-reading-deck'])
 const FLASHCARD_LEARN_AHEAD_MS = 5 * 60 * 1000
 const FLASHCARD_RATING_DISMISS_DIR: Record<FsrsRating, string> = {
   again: 'left',
@@ -507,15 +499,11 @@ function App() {
     if (startupResume?.destination === 'reader') return 'reader'
     return 'dashboard'
   })
-  const [initialVisualNovelWorldId, setInitialVisualNovelWorldId] = useState<string | undefined>()
-  const [initialComicPack, setInitialComicPack] = useState<{ id: string; mode: 'continue' | 'start' } | undefined>()
-  const [renpyStoryVariant, setRenpyStoryVariant] = useState<'prototype' | 'lms'>('prototype')
   const [words, setWords] = useState<VocabWord[]>([])
   const [sentences, setSentences] = useState<Sentence[]>([])
   const [audioClips, setAudioClips] = useState<AudioClip[]>([])
   const [clipPacks, setClipPacks] = useState<ClipPack[]>([])
   const [hostedClipPacks, setHostedClipPacks] = useState<HostedClipPack[]>([])
-  const [hostedComicPacks, setHostedComicPacks] = useState<HostedComicPack[]>([])
   const [readerPacks, setReaderPacks] = useState<ReaderPack[]>([])
   const [readerBooks, setReaderBooks] = useState<ReaderBook[]>([])
   const [stats, setStats] = useState<DashboardStats>(emptyStats)
@@ -741,7 +729,6 @@ function App() {
       nextNewWordsPerDay,
       nextUserSettings,
       nextHostedClipPacks,
-      nextHostedComicPacks,
       nextAiStorySettings,
       nextReaderProgressRows,
       nextReaderQueueState,
@@ -755,18 +742,16 @@ function App() {
       getNewWordsPerDay(),
       getUserSettings(),
       getHostedClipPackIndex(),
-      getHostedComicPackIndex(),
       getAiStorySettings(),
       getAllReaderProgress(),
       getReaderQueueState(),
     ])
     setWords(nextWords)
     setSentences(nextSentences)
-    const visiblePacks = nextPacks.filter((pack) => !HIDDEN_PACK_IDS.has(pack.id))
     const nextStats = await getDashboardStats()
     const nextLatestReaderProgress = await getLatestReaderProgress(nextReaderBooks)
     setAudioClips(nextAudio)
-    setClipPacks(visiblePacks)
+    setClipPacks(nextPacks)
     setReaderPacks(nextReaderPacks)
     setReaderBooks(nextReaderBooks)
     setLatestReaderProgress(nextLatestReaderProgress)
@@ -776,7 +761,6 @@ function App() {
     setUserSettings(nextUserSettings)
     setReaderShowEnglish(nextUserSettings.readerShowEnglish)
     setHostedClipPacks(nextHostedClipPacks)
-    setHostedComicPacks(nextHostedComicPacks)
     setAiStorySettings(nextAiStorySettings)
     setStats(nextStats)
   }, [])
@@ -981,7 +965,18 @@ function App() {
 
   useEffect(() => {
     if (!cloudUserEmail || !initialDataReady) return
-    void handleCloudSyncNow(true)
+    void installPrivateSentenceAudio((message) => {
+      setCloudSync((current) => ({ ...current, status: 'syncing', message }))
+    })
+      .then(() => seedReaderBooksIfEmpty())
+      .then(() => handleCloudSyncNow(true))
+      .catch((error) => {
+        setCloudSync((current) => ({
+          ...current,
+          status: 'error',
+          message: error instanceof Error ? error.message : 'Could not install private study content.',
+        }))
+      })
   }, [cloudUserEmail, handleCloudSyncNow, initialDataReady])
 
   useEffect(() => {
@@ -1654,7 +1649,7 @@ function App() {
         setFlightOfflineProgress('Saving LMS listening clips…')
         let lastShownPercent = -1
         const summary = await importHostedClipPack(
-          lmsClipPack.baseUrl,
+          lmsClipPack.storagePath,
           (completed, total) => {
             const percent = total > 0 ? Math.floor((completed / total) * 100) : 100
             if (percent === lastShownPercent) return
@@ -2815,9 +2810,6 @@ function App() {
         } else if (mappedIndex === 3) {
           event.preventDefault()
           void startSentenceLesson()
-        } else if (pressed === hotkeys.choiceE) {
-          event.preventDefault()
-          setScreen('visualNovel')
         }
         return
       }
@@ -3454,7 +3446,7 @@ function App() {
     setHostedPackProgress('Starting download...')
     try {
       const summary = await importHostedClipPack(
-        pack.baseUrl,
+        pack.storagePath,
         (completed, total, label) => {
           setHostedPackProgress(`Downloading ${completed}/${total}: ${label}`)
         },
@@ -3470,22 +3462,6 @@ function App() {
     }
   }
 
-  async function handleHostedComicPackImport(pack: HostedComicPack) {
-    setHostedPackDownloadId(pack.id)
-    setHostedPackProgress('Starting download...')
-    try {
-      const summary = await importHostedComicPack(
-        pack.baseUrl,
-        (message) => setHostedPackProgress(message),
-      )
-      setLastSummary(`Downloaded ${pack.name}. ${summary.chapters} chapters, ${summary.pages} pages.`)
-      setHostedPackProgress('')
-    } catch (error) {
-      setLastSummary(error instanceof Error ? error.message : `Could not download ${pack.name}.`)
-    } finally {
-      setHostedPackDownloadId(null)
-    }
-  }
 
   async function handleArchiveVocabularyWord(wordId: string) {
     await archiveWord(wordId)
@@ -3736,7 +3712,7 @@ function App() {
               </span>
               <span className="mode-start-copy">
                 <strong>Reading</strong>
-                <span>Novels, comics, stories, and visual novels.</span>
+                <span>Novels, short texts, and generated stories.</span>
               </span>
               <kbd>{hotkeys.choiceC.toUpperCase()}</kbd>
               <span className="mode-start-metric">
@@ -3977,7 +3953,7 @@ function App() {
         </button>
         <button
           type="button"
-          className={['readingTexts', 'reader', 'comicReader', 'visualNovel', 'renpyPrototype'].includes(screen) ? 'active' : ''}
+          className={['readingTexts', 'reader'].includes(screen) ? 'active' : ''}
           onClick={() => void startReaderPlaylistRef.current?.()}
           aria-label="Reading"
           title="Reading"
@@ -4275,58 +4251,6 @@ function App() {
         />
       )}
 
-      {screen === 'visualNovel' && (
-        <VisualNovelWorldMode
-          words={activeWords}
-          readerBooks={readerBooks}
-          pinyinMode={userSettings.readerPinyinMode}
-          readerTheme={userSettings.readerTheme}
-          readerFontScale={userSettings.readerFontScale}
-          readerLineHeight={userSettings.readerLineHeight}
-          playbackRate={playbackRate}
-          hotkeys={hotkeys}
-          onEditWord={openCardEditor}
-          onWordsChanged={refresh}
-          onReturnToReader={() => setScreen('readingTexts')}
-          initialWorldId={initialVisualNovelWorldId}
-        />
-      )}
-
-      {screen === 'renpyPrototype' && (
-        renpyStoryVariant === 'lms' ? (
-          <RenpyPrototypeMode
-            hotkeys={hotkeys}
-            storyId="lms"
-            title="Legendary Moonlight Sculptor"
-            description="The main story as an exported RenPy web build, with ruby pinyin and English you can toggle."
-            onReturnToLibrary={() => setScreen('readingTexts')}
-          />
-        ) : (
-          <RenpyPrototypeMode
-            hotkeys={hotkeys}
-            onReturnToLibrary={() => setScreen('readingTexts')}
-            onOpenReactVisualNovel={() => {
-              setInitialVisualNovelWorldId('just-friends')
-              setScreen('visualNovel')
-            }}
-          />
-        )
-      )}
-
-      {screen === 'comicReader' && (
-        <ComicReaderMode
-          words={activeWords}
-          pinyinMode={userSettings.readerPinyinMode}
-          hotkeys={hotkeys}
-          onEditWord={openCardEditor}
-          onWordsChanged={refresh}
-          onReturnHome={() => setScreen('readingTexts')}
-          onOpenClassicReader={() => setScreen('reader')}
-          initialPackId={initialComicPack?.id}
-          initialMode={initialComicPack?.mode}
-        />
-      )}
-
       {screen === 'readingTexts' && (
         <ReadingTextsLibrary
           readerBooks={readerBooks}
@@ -4343,26 +4267,6 @@ function App() {
           onBrowseNovels={() => {
             setActiveReaderBookId(undefined)
             setScreen('reader')
-          }}
-          onOpenComic={(packId, mode) => {
-            setInitialComicPack({ id: packId, mode })
-            setScreen('comicReader')
-          }}
-          onOpenComics={() => {
-            setInitialComicPack(undefined)
-            setScreen('comicReader')
-          }}
-          onOpenRenpyPrototype={() => {
-            setRenpyStoryVariant('prototype')
-            setScreen('renpyPrototype')
-          }}
-          onOpenRenpyLms={() => {
-            setRenpyStoryVariant('lms')
-            setScreen('renpyPrototype')
-          }}
-          onOpenVisualNovel={(book) => {
-            setInitialVisualNovelWorldId(book?.visualNovelWorldId)
-            setScreen('visualNovel')
           }}
           onGenerateStory={handleGenerateStory}
           onContinueStory={handleContinueStory}
@@ -4712,34 +4616,6 @@ function App() {
                   </div>
                   {hostedPackProgress && <small>{hostedPackProgress}</small>}
                 </section>
-                {hostedComicPacks.length > 0 && (
-                  <section className="panel hosted-pack">
-                    <h2>Download comic packs</h2>
-                    <p>Download comic packs for the Comic Reader with bubble transcripts and vocabulary lookup.</p>
-                    <div className="pack-list">
-                      {hostedComicPacks.map((pack) => {
-                        const isDownloading = hostedPackDownloadId === pack.id
-                        return (
-                          <div key={pack.id} className="pack-row">
-                            <span>
-                              <strong>{pack.name}</strong>
-                              <small>{pack.description ?? `${pack.language ?? 'zh-CN'} comic pack`}</small>
-                            </span>
-                            <button
-                              type="button"
-                              className="primary"
-                              disabled={Boolean(hostedPackDownloadId)}
-                              onClick={() => void handleHostedComicPackImport(pack)}
-                            >
-                              {isDownloading ? 'Downloading...' : 'Download'}
-                            </button>
-                          </div>
-                        )
-                      })}
-                    </div>
-                    {hostedPackDownloadId && hostedPackProgress && <small>{hostedPackProgress}</small>}
-                  </section>
-                )}
                 <section className="panel">
                   <h2>Words</h2>
                   <p>Browse the whole deck in one table — edit cards, filter by mastery, and archive words.</p>
@@ -6630,10 +6506,10 @@ function readerBookCoverSrc(book: ReaderBook): string | undefined {
 
 function readerBookAssetUrl(book: ReaderBook, path: string): string {
   const base = import.meta.env.BASE_URL || '/'
-  return `${base.replace(/\/$/u, '')}/reader-packs/${book.packId}/${path.replace(/^\//u, '')}`
+  return `${base.replace(/\/$/u, '')}/private-content/${book.packId}/${path.replace(/^\//u, '')}`
 }
 
-type ReadingCategoryView = null | 'novels' | 'stories' | 'comics' | 'visualNovels'
+type ReadingCategoryView = null | 'novels' | 'stories'
 
 function ReadingTextsLibrary({
   readerBooks,
@@ -6648,11 +6524,6 @@ function ReadingTextsLibrary({
   onDownloadOffline,
   onRemoveOffline,
   onBrowseNovels,
-  onOpenComic,
-  onOpenComics,
-  onOpenRenpyPrototype,
-  onOpenRenpyLms,
-  onOpenVisualNovel,
   onGenerateStory,
   onContinueStory,
   onDeleteStory,
@@ -6674,11 +6545,6 @@ function ReadingTextsLibrary({
   onDownloadOffline: (book: ReaderBook) => void
   onRemoveOffline: (book: ReaderBook) => void
   onBrowseNovels: () => void
-  onOpenComic: (packId: string, mode: 'continue' | 'start') => void
-  onOpenComics: () => void
-  onOpenRenpyPrototype: () => void
-  onOpenRenpyLms: () => void
-  onOpenVisualNovel: (book?: ReaderBook) => void
   onGenerateStory: (prompt: string, options: { lengthChars: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection; focusWords?: Array<{ word: string; pinyin: string; meaning: string }> }) => Promise<GeneratedStoryResult>
   onContinueStory: (book: ReaderBook) => Promise<GeneratedStoryResult>
   onDeleteStory: (book: ReaderBook) => Promise<void>
@@ -6772,15 +6638,6 @@ function ReadingTextsLibrary({
                             ? `Resume download (${offlineStatus.cached}/${offlineStatus.total})`
                             : 'Download offline'}
                     </button>
-                    {book.visualNovelWorldId ? (
-                      <button
-                        type="button"
-                        className="reading-scene-action"
-                        onClick={() => onOpenVisualNovel(book)}
-                      >
-                        Scene mode
-                      </button>
-                    ) : null}
                   </div>
                 </div>
               </article>
@@ -6879,94 +6736,7 @@ function ReadingTextsLibrary({
     )
   }
 
-  if (category === 'comics') {
-    return (
-      <section className="screen reading-texts-screen">
-        <header className="reading-library-heading">
-          <button type="button" className="ghost-answer reading-back-button" onClick={() => setCategory(null)}>
-            Back to Reading
-          </button>
-          <div>
-            <span className="reading-library-mark" aria-hidden="true">漫</span>
-            <div>
-              <h1>Comics</h1>
-              <p>Read pages with bubble transcripts and vocabulary lookup.</p>
-            </div>
-          </div>
-        </header>
-        <ComicShelf onOpenComic={onOpenComic} onManage={onOpenComics} />
-      </section>
-    )
-  }
-
-  if (category === 'visualNovels') {
-    return (
-      <section className="screen reading-texts-screen">
-        <header className="reading-library-heading">
-          <button type="button" className="ghost-answer reading-back-button" onClick={() => setCategory(null)}>
-            Back to Reading
-          </button>
-          <div>
-            <span className="reading-library-mark" aria-hidden="true">剧</span>
-            <div>
-              <h1>Visual Novels</h1>
-              <p>Interactive stories with scenes, dialogue, and choices.</p>
-            </div>
-          </div>
-        </header>
-        <section className="reading-library-section">
-          <div className="reading-book-shelf">
-            <div className="reading-book-grid">
-              <article className="reading-library-book reading-vn-book">
-                <div className="reading-book-cover reading-book-cover-0">
-                  <span>Scene Mode</span>
-                </div>
-                <div className="reading-book-copy">
-                  <div>
-                    <h3>Interactive Scenes</h3>
-                    <p>Quest-based world with dialogue choices.</p>
-                  </div>
-                  <div className="reading-book-actions">
-                    <button type="button" className="primary" onClick={() => onOpenVisualNovel()}>Play</button>
-                  </div>
-                </div>
-              </article>
-              <article className="reading-library-book reading-vn-book">
-                <div className="reading-book-cover reading-book-cover-1">
-                  <span>Just Friends?</span>
-                </div>
-                <div className="reading-book-copy">
-                  <div>
-                    <h3>Just Friends?</h3>
-                    <p>Exported Ren'Py web build.</p>
-                  </div>
-                  <div className="reading-book-actions">
-                    <button type="button" className="primary" onClick={onOpenRenpyPrototype}>Play</button>
-                  </div>
-                </div>
-              </article>
-              <article className="reading-library-book reading-vn-book">
-                <div className="reading-book-cover reading-book-cover-2">
-                  <span>Moonlight Sculptor</span>
-                </div>
-                <div className="reading-book-copy">
-                  <div>
-                    <h3>Moonlight Sculptor</h3>
-                    <p>Main story with ruby pinyin and English toggles.</p>
-                  </div>
-                  <div className="reading-book-actions">
-                    <button type="button" className="primary" onClick={onOpenRenpyLms}>Play</button>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-      </section>
-    )
-  }
-
-  // ── Hub: 4 category tiles ──
+  // ── Hub ──
   return (
     <section className="screen reading-texts-screen">
       <header className="reading-library-heading">
@@ -7024,27 +6794,11 @@ function ReadingTextsLibrary({
             </span>
             <span className="reading-format-arrow" aria-hidden="true">→</span>
           </button>
-          <button type="button" className="reading-format reading-format-comics" onClick={() => setCategory('comics')}>
-            <span className="reading-format-icon" aria-hidden="true">漫</span>
-            <span>
-              <strong>Comics</strong>
-              <small>Pages with bubble transcripts and vocabulary lookup.</small>
-            </span>
-            <span className="reading-format-arrow" aria-hidden="true">→</span>
-          </button>
           <button type="button" className="reading-format reading-format-novels" onClick={() => setCategory('stories')}>
             <span className="reading-format-icon" aria-hidden="true">事</span>
             <span>
               <strong>Stories</strong>
               <small>{stories.length} short reads and standalone texts.</small>
-            </span>
-            <span className="reading-format-arrow" aria-hidden="true">→</span>
-          </button>
-          <button type="button" className="reading-format reading-format-novel" onClick={() => setCategory('visualNovels')}>
-            <span className="reading-format-icon" aria-hidden="true">剧</span>
-            <span>
-              <strong>Visual Novels</strong>
-              <small>Interactive scenes, dialogue, and Ren'Py stories.</small>
             </span>
             <span className="reading-format-arrow" aria-hidden="true">→</span>
           </button>

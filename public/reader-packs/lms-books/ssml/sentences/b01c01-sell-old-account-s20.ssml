@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="zh-CN">
-  <voice name="zh-CN-XiaochenNeural">
-    <prosody rate="-5%">他坐了很久，才慢慢明白，自己一直舍不得的不是游戏本身，而是那个“我还没有输”的感觉。</prosody>
-  </voice>
-</speak>

@@ -52,7 +52,7 @@ describe('Reader improvements', () => {
 
   it('collects cover, illustration, and audio for offline use', () => {
     const urls = readerBookOfflineAssetUrls(book())
-    expect(urls).toContain('/reader-packs/pack-1/cover.webp')
+    expect(urls).toContain('/private-content/pack-1/cover.webp')
     expect(urls).toContain('/reader-packs/pack-1/art.webp')
     expect(urls).toContain('/reader-packs/pack-1/audio.mp3')
   })

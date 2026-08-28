@@ -11,6 +11,7 @@ import {
 } from './db'
 import type { ListeningEvent, ReaderProgress, VocabWord } from './types'
 import { effectiveWordDeckIds, uniqueDeckIds } from './flashcardDecks'
+import { PRIVATE_CONTENT_BUCKET } from './contentCatalog'
 
 const FALLBACK_SUPABASE_URL = 'https://nvrofeaaewwdeefxtmqu.supabase.co'
 const FALLBACK_SUPABASE_ANON_KEY = 'sb_publishable_YaSTM-n-eBSDWPkY4IigOg_vFHmdYSB'
@@ -78,6 +79,16 @@ export const supabase = isSupabaseConfigured
       },
     })
   : null
+
+export async function downloadPrivateContent(path: string): Promise<Blob> {
+  if (!supabase) throw new Error('Supabase is not configured yet.')
+  const { data: { user }, error: userError } = await supabase.auth.getUser()
+  if (userError) throw userError
+  if (!user) throw new Error('Sign in before downloading private study content.')
+  const { data, error } = await supabase.storage.from(PRIVATE_CONTENT_BUCKET).download(path)
+  if (error) throw error
+  return data
+}
 
 export async function getCloudAuthState(): Promise<CloudAuthState> {
   if (!supabase) return { configured: false, session: null, user: null }

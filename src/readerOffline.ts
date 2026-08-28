@@ -107,5 +107,5 @@ function publicAssetUrl(path: string): string {
 
 function readerBookAssetUrl(book: ReaderBook, path: string): string {
   const base = import.meta.env.BASE_URL || '/'
-  return `${base.replace(/\/$/u, '')}/reader-packs/${book.packId}/${path.replace(/^\//u, '')}`
+  return `${base.replace(/\/$/u, '')}/private-content/${book.packId}/${path.replace(/^\//u, '')}`
 }
