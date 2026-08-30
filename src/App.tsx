@@ -19,7 +19,6 @@ import {
 import {
   completeWordExposure,
   DEFAULT_HOTKEYS,
-  deferWordsAfterListening,
   downloadText,
   exportBackup,
   getAllClipPacks,
@@ -92,7 +91,7 @@ import {
   DEFAULT_FAMILY_PROFILE,
   type StoryWorldSelection,
 } from './storyWorlds'
-import { synthesizeStoryAudio, AZURE_VOICES } from './storyAudio'
+import { synthesizeStoryAudio, ensureEnglishMeaningAudio, AZURE_VOICES } from './storyAudio'
 import {
   GENERATED_STORIES_PACK_ID,
   GENERATED_STORY_TARGET_COVERAGE,
@@ -139,6 +138,13 @@ import {
   adaptiveReaderPinyinState,
 } from './adaptiveText'
 import { AdaptiveChineseText } from './AdaptiveChineseText'
+import {
+  clearLegacyMeditationProgress,
+  includeMeditativeScripture,
+  MEDITATIVE_SCRIPTURE_BOOK,
+  MEDITATIVE_SCRIPTURE_BOOK_ID,
+  readLegacyMeditationProgress,
+} from './meditationReader'
 import { WordInfoPopover } from './WordInfoPopover'
 import { GrammarPopover } from './GrammarPopover'
 import { findGrammarMatches, mapGrammarToTokens, type GrammarMatch } from './grammarPoints'
@@ -227,8 +233,7 @@ import {
 } from './dataHealth'
 
 const UniversalImporter = lazy(() => import('./UniversalImporter').then((module) => ({ default: module.UniversalImporter })))
-const MeditateScreen = lazy(() => import('./MeditateScreen').then((module) => ({ default: module.MeditateScreen })))
-type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'readingTexts' | 'meditate' | 'words'
+type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'readingTexts' | 'words'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
 type FlashcardFrontMode = 'text' | 'audio' | 'reverse'
 type ReaderPinyinMode = UserSettings['readerPinyinMode']
@@ -545,6 +550,7 @@ function App() {
   const [lessonMenuOpen, setLessonMenuOpen] = useState(false)
   const [pauseProfile, setPauseProfile] = useState<PauseProfile>('normal')
   const [fsrsRatings, setFsrsRatings] = useState<Record<string, FsrsRating>>({})
+  const [listeningSetRatings, setListeningSetRatings] = useState<Record<string, FsrsRating>>({})
   const [showReviewPrompt, setShowReviewPrompt] = useState(false)
   const [reviewCardIndex, setReviewCardIndex] = useState(0)
   const [reviewAnswerShown, setReviewAnswerShown] = useState(false)
@@ -559,6 +565,7 @@ function App() {
   const [activeReaderBookId, setActiveReaderBookId] = useState<string | undefined>()
   const [readerSentenceIndex, setReaderSentenceIndex] = useState(0)
   const [readerShowEnglish, setReaderShowEnglish] = useState(DEFAULT_USER_SETTINGS.readerShowEnglish)
+  const [readerInterlinear, setReaderInterlinear] = useState(DEFAULT_USER_SETTINGS.readerInterlinear)
   const [selectedReaderToken, setSelectedReaderToken] = useState<ReaderWordToken | null>(null)
   const [readerDictionaryEntry, setReaderDictionaryEntry] = useState<DictionaryEntry | null>(null)
   const [hostedPackDownloadId, setHostedPackDownloadId] = useState<string | null>(null)
@@ -643,6 +650,10 @@ function App() {
   const runFromRef = useRef<((index: number, plan?: LessonPlan) => void) | null>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const pocketAudioRef = useRef<HTMLAudioElement | null>(null)
+  const listeningSetTransitionRef = useRef(false)
+  const completedListeningSetIdsRef = useRef(new Set<string>())
+  const previousListeningWordIdsRef = useRef<string[]>([])
+  const deviceMeaningSpokenStepRef = useRef<string | null>(null)
   const lastPocketTimeRef = useRef(0)
   const playModeRef = useRef<HTMLElement | null>(null)
   const studyStageRef = useRef<HTMLDivElement | null>(null)
@@ -750,17 +761,19 @@ function App() {
     setWords(nextWords)
     setSentences(nextSentences)
     const nextStats = await getDashboardStats()
-    const nextLatestReaderProgress = await getLatestReaderProgress(nextReaderBooks)
+    const booksWithScripture = includeMeditativeScripture(nextReaderBooks)
+    const nextLatestReaderProgress = await getLatestReaderProgress(booksWithScripture)
     setAudioClips(nextAudio)
     setClipPacks(nextPacks)
     setReaderPacks(nextReaderPacks)
-    setReaderBooks(nextReaderBooks)
+    setReaderBooks(booksWithScripture)
     setLatestReaderProgress(nextLatestReaderProgress)
     setReaderProgressRows(nextReaderProgressRows)
     setReaderQueueState(nextReaderQueueState)
     setNewWordsPerDay(nextNewWordsPerDay)
     setUserSettings(nextUserSettings)
     setReaderShowEnglish(nextUserSettings.readerShowEnglish)
+    setReaderInterlinear(nextUserSettings.readerInterlinear)
     setHostedClipPacks(nextHostedClipPacks)
     setAiStorySettings(nextAiStorySettings)
     setStats(nextStats)
@@ -842,7 +855,21 @@ function App() {
       setHotkeys(nextHotkeys)
       setUserSettings(nextSettings)
       setReaderShowEnglish(nextSettings.readerShowEnglish)
+      setReaderInterlinear(nextSettings.readerInterlinear)
       setNewWordsPerDay(nextNewWordsPerDay)
+
+      const legacyMeditationIndex = readLegacyMeditationProgress()
+      if (legacyMeditationIndex !== undefined) {
+        const existing = await getReaderProgress(MEDITATIVE_SCRIPTURE_BOOK.packId, MEDITATIVE_SCRIPTURE_BOOK.id)
+        if (!existing) {
+          await saveReaderProgress({
+            packId: MEDITATIVE_SCRIPTURE_BOOK.packId,
+            bookId: MEDITATIVE_SCRIPTURE_BOOK.id,
+            sentenceIndex: legacyMeditationIndex,
+          })
+        }
+        clearLegacyMeditationProgress()
+      }
 
       if (screen === 'lesson') {
         const [nextSentences, nextAudio] = await Promise.all([getAllSentences(), getPromptAudioClips()])
@@ -859,17 +886,18 @@ function App() {
         ])
         if (!cancelled) {
           setReaderPacks(nextReaderPacks)
-          setReaderBooks(nextReaderBooks)
+          const booksWithScripture = includeMeditativeScripture(nextReaderBooks)
+          setReaderBooks(booksWithScripture)
           setReaderProgressRows(nextProgressRows)
           setReaderQueueState(nextQueueState)
-          if (startupResume?.readerBookId && nextReaderBooks.some((book) => book.id === startupResume.readerBookId)) {
+          if (startupResume?.readerBookId && booksWithScripture.some((book) => book.id === startupResume.readerBookId)) {
             setActiveReaderBookId(startupResume.readerBookId)
             setReaderSentenceIndex(startupResume.sentenceIndex ?? 0)
           } else if (startupResume?.destination === 'reader') {
             clearStartupResumeState()
             setScreen('dashboard')
           }
-          setLatestReaderProgress(await getLatestReaderProgress(nextReaderBooks))
+          setLatestReaderProgress(await getLatestReaderProgress(booksWithScripture))
         }
       }
 
@@ -988,8 +1016,9 @@ function App() {
       const [nextPacks, nextBooks] = await Promise.all([getAllReaderPacks(), getAllReaderBooks()])
       if (cancelled) return
       setReaderPacks(nextPacks)
-      setReaderBooks(nextBooks)
-      setLatestReaderProgress(await getLatestReaderProgress(nextBooks))
+      const booksWithScripture = includeMeditativeScripture(nextBooks)
+      setReaderBooks(booksWithScripture)
+      setLatestReaderProgress(await getLatestReaderProgress(booksWithScripture))
     })().catch((error) => {
       if (!cancelled) setLastSummary(error instanceof Error ? error.message : 'Could not load the reading library.')
     })
@@ -1073,6 +1102,22 @@ function App() {
     ? sentences.find((sentence) => sentence.id === currentSegment.sentenceId)
     : undefined
   const studyDisplay = getStudyDisplay(studyWord, studySentence)
+  useEffect(() => {
+    if (
+      studyMode !== 'listeningMode' ||
+      !isPlaying ||
+      currentSegment?.kind !== 'pause' ||
+      !studyWord ||
+      studyWord.audioMeaningId ||
+      deviceMeaningSpokenStepRef.current === currentSegment.stepId ||
+      !window.speechSynthesis
+    ) return
+    deviceMeaningSpokenStepRef.current = currentSegment.stepId
+    const utterance = new SpeechSynthesisUtterance(studyWord.meaning)
+    utterance.lang = 'en-US'
+    utterance.rate = 0.92
+    window.speechSynthesis.speak(utterance)
+  }, [currentSegment, isPlaying, studyMode, studyWord])
   const activeWords = useMemo(() => words.filter(isActiveVocabWord), [words])
   const selectedFlashcardWords = useMemo(
     () => activeWords.filter((word) => wordIsInSelectedFlashcardDecks(word, userSettings.selectedFlashcardDeckIds)),
@@ -2056,6 +2101,7 @@ function App() {
     const initialIndex = action === 'start' ? 0 : cachedProgress?.sentenceIndex ?? 0
     const boundedInitialIndex = Math.min(Math.max(0, initialIndex), Math.max(0, sentenceCount - 1))
     setActiveReaderBookId(book.id)
+    setReaderInterlinear(book.id === MEDITATIVE_SCRIPTURE_BOOK_ID ? true : userSettings.readerInterlinear)
     setReaderSentenceIndex(boundedInitialIndex)
     setSelectedReaderToken(null)
     setReaderDictionaryEntry(null)
@@ -2098,7 +2144,7 @@ function App() {
     } catch (error) {
       setLastSummary(error instanceof Error ? error.message : 'Reader progress could not be saved.')
     }
-  }, [latestReaderProgress, queueCloudSync, readerBooks, recordReaderInteraction, recordReaderSentenceView])
+  }, [latestReaderProgress, queueCloudSync, readerBooks, recordReaderInteraction, recordReaderSentenceView, userSettings.readerInterlinear])
 
   const openBookListen = useCallback(async (book: ReaderBook) => {
     const progress = await getReaderProgress(book.packId, book.id)
@@ -2300,9 +2346,9 @@ function App() {
     if (books.length === 0 && cloudUserEmail) {
       await seedReaderBooksIfEmpty()
       const [nextPacks, nextBooks] = await Promise.all([getAllReaderPacks(), getAllReaderBooks()])
-      books = nextBooks
+      books = includeMeditativeScripture(nextBooks)
       setReaderPacks(nextPacks)
-      setReaderBooks(nextBooks)
+      setReaderBooks(books)
     }
     const [progressRows, queueState] = await Promise.all([getAllReaderProgress(), getReaderQueueState()])
     const comprehension = getCachedReaderComprehensionByBook(books, activeWords)
@@ -2703,18 +2749,51 @@ function App() {
       itemId: renderedLesson.id,
       seconds: renderedLesson.durationSeconds,
     })
-    await deferWordsAfterListening(lessonWords.map((word) => word.id), 1)
     await refresh()
     queueCloudSync()
-  }, [lessonWords, queueCloudSync, refresh, renderedLesson])
+  }, [queueCloudSync, refresh, renderedLesson])
 
   const completeListeningLessonAndStartNext = useCallback(async () => {
-    if (!renderedLesson) return
+    if (
+      !renderedLesson ||
+      listeningSetTransitionRef.current ||
+      completedListeningSetIdsRef.current.has(renderedLesson.id)
+    ) return
+    listeningSetTransitionRef.current = true
+    completedListeningSetIdsRef.current.add(renderedLesson.id)
     pocketAudioRef.current?.pause()
-    await completeListeningLesson()
-    setLastSummary('Listening mode lesson counted. Starting the next lesson.')
-    startNextLessonRef.current?.()
-  }, [completeListeningLesson, renderedLesson])
+    try {
+      const sessionId = `listening-set:${renderedLesson.id}`
+      await Promise.all(
+        (Object.entries(listeningSetRatings) as Array<[string, FsrsRating]>).map(([wordId, rating]) =>
+          rateWordFsrs(wordId, rating, {
+            source: 'listening-set',
+            sessionId,
+            seconds: renderedLesson.durationSeconds,
+          }),
+        ),
+      )
+      await completeListeningLesson()
+      setLastSummary('Ratings saved. Preparing five new words…')
+      startNextLessonRef.current?.()
+    } catch (error) {
+      completedListeningSetIdsRef.current.delete(renderedLesson.id)
+      setLastSummary(error instanceof Error ? error.message : 'Could not save this listening set.')
+    } finally {
+      listeningSetTransitionRef.current = false
+    }
+  }, [completeListeningLesson, listeningSetRatings, renderedLesson])
+
+  function cycleListeningSetRating(wordId: string) {
+    const cycle: Array<FsrsRating | undefined> = [undefined, 'again', 'hard', 'good', 'easy']
+    setListeningSetRatings((current) => {
+      const nextRating = cycle[(cycle.indexOf(current[wordId]) + 1) % cycle.length]
+      const next = { ...current }
+      if (nextRating) next[wordId] = nextRating
+      else delete next[wordId]
+      return next
+    })
+  }
 
   function finishLessonAndReturnHome() {
     pocketAudioRef.current?.pause()
@@ -2867,6 +2946,19 @@ function App() {
         }
         return
       }
+      if (studyMode === 'listeningMode' && !showReviewPrompt) {
+        if (mappedIndex >= 0 && mappedIndex < 5) {
+          const word = lessonWords[mappedIndex]
+          if (word) {
+            event.preventDefault()
+            cycleListeningSetRating(word.id)
+          }
+        } else if (pressed === hotkeys.choiceF) {
+          event.preventDefault()
+          void completeListeningLessonAndStartNext()
+        }
+        return
+      }
       if (showReviewPrompt) {
         if (allLessonWordsRated) {
           if (mappedIndex === 0) {
@@ -2903,6 +2995,7 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [
     currentSegment,
+    completeListeningLessonAndStartNext,
     allLessonWordsRated,
     finishFlashcardSession,
     flashcardFeedback,
@@ -2910,6 +3003,7 @@ function App() {
     fsrsRatings,
     handleFlashcardRate,
     hotkeys,
+    lessonWords,
     currentReviewWord,
     currentFlashcardWord,
     currentReaderSentence,
@@ -2951,6 +3045,10 @@ function App() {
     try {
       const { playAfterRender = false, ...selectionOptions } = options
       let lessonWords = activeWords
+      if (studyMode === 'listeningMode' && activeWords.length >= 10) {
+        const previous = new Set(previousListeningWordIdsRef.current)
+        lessonWords = activeWords.filter((word) => !previous.has(word.id))
+      }
       let lessonSentences = sentences
       let lessonAudioClips = audioClips
       const repairedLinks = await repairAudioClipLinksIfNeeded()
@@ -2969,12 +3067,31 @@ function App() {
         lessonSentences = freshSentences
         lessonAudioClips = freshAudioClips
       }
-      const nextLesson = createPocketLesson(lessonWords, lessonSentences, lessonAudioClips, manualIds, {
+      let nextLesson = createPocketLesson(lessonWords, lessonSentences, lessonAudioClips, manualIds, {
         pauseProfile,
         ...selectionOptions,
       })
+      if (studyMode === 'listeningMode' && nextLesson.targetWords.some((word) => !word.audioMeaningId)) {
+        const prepared = await ensureEnglishMeaningAudio(nextLesson.targetWords, aiStorySettings)
+        if (prepared.some((word) => word.audioMeaningId)) {
+          const freshAudio = await getPromptAudioClips()
+          const targetMap = new Map(prepared.map((word) => [word.id, word]))
+          lessonWords = lessonWords.map((word) => targetMap.get(word.id) ?? word)
+          lessonAudioClips = freshAudio
+          nextLesson = createPocketLesson(
+            lessonWords,
+            lessonSentences,
+            lessonAudioClips,
+            prepared.map((word) => word.id),
+            { pauseProfile, ...selectionOptions, randomize: false },
+          )
+        }
+      }
       setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
       setFsrsRatings({})
+      setListeningSetRatings({})
+      previousListeningWordIdsRef.current = nextLesson.targetWords.map((word) => word.id)
+      listeningSetTransitionRef.current = false
       await renderAndLoadLesson(
         nextLesson,
         playAfterRender,
@@ -3573,6 +3690,7 @@ function App() {
     | 'readerListeningPauseFactor'
     | 'readerListeningAutoAdvance'
     | 'readerShowEnglish'
+    | 'readerInterlinear'
     | 'readerStatusHighlight'
   >>) {
     const next = { ...userSettings, ...patch }
@@ -3698,7 +3816,7 @@ function App() {
               </span>
               <span className="mode-start-copy">
                 <strong>Listening</strong>
-                <span>Sentence loops by default — switch to Words or Active Recall in the menu.</span>
+                <span>Sentence loops by default — switch to five-word Active Recall in the menu.</span>
               </span>
               <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
               <span className="mode-start-metric">
@@ -3719,18 +3837,6 @@ function App() {
               <span className="mode-start-metric">
                 <span>In progress</span>
                 <strong>{readerResumeLocation ? 1 : 0}</strong>
-              </span>
-              <span className="mode-start-arrow" aria-hidden="true">→</span>
-            </button>
-            <button className="mode-start dashboard-mode-card meditate-start" type="button" onClick={() => setScreen('meditate')}>
-              <span className="mode-start-logo meditate-mode-logo" aria-hidden="true">静</span>
-              <span className="mode-start-copy">
-                <strong>Meditate</strong>
-                <span>Scripture with pinyin and direct phrase-by-phrase English.</span>
-              </span>
-              <span className="mode-start-metric">
-                <span>Passages</span>
-                <strong>8</strong>
               </span>
               <span className="mode-start-arrow" aria-hidden="true">→</span>
             </button>
@@ -4185,6 +4291,7 @@ function App() {
           replayHotkey={hotkeys.choiceF}
           choiceB={hotkeys.choiceB}
           showEnglish={readerShowEnglish}
+          interlinear={readerInterlinear}
           storyChunk={storyChunkSession}
           storyChunkReceipt={storyChunkReceipt}
           listening={readerListening}
@@ -4260,6 +4367,14 @@ function App() {
             recordReaderInteraction()
             toggleReaderEnglish()
           }}
+          onToggleInterlinear={() => {
+            recordReaderInteraction()
+            const next = !readerInterlinear
+            setReaderInterlinear(next)
+            if (activeReaderBook?.id !== MEDITATIVE_SCRIPTURE_BOOK_ID) {
+              saveReaderSettings({ readerInterlinear: next })
+            }
+          }}
           readerDictionaryEntry={readerDictionaryEntry}
         />
       )}
@@ -4294,22 +4409,6 @@ function App() {
             generateCover: aiStorySettings.generateCover,
             generateAudio: aiStorySettings.generateAudio,
             azureConfigured: Boolean(aiStorySettings.azureSpeechKey && aiStorySettings.azureSpeechRegion),
-          }}
-        />
-      )}
-
-      {screen === 'meditate' && (
-        <MeditateScreen
-          onBack={() => setScreen('dashboard')}
-          audioSettings={aiStorySettings}
-          onOpenSettings={() => setScreen('settings')}
-          onSavePhrase={async (phrase) => {
-            await saveReaderVocabularyWord(
-              phrase.chinese,
-              getPinyin(phrase.chinese, { toneType: 'symbol', v: true }),
-              phrase.gloss,
-            )
-            await refresh()
           }}
         />
       )}
@@ -4526,7 +4625,7 @@ function App() {
                   </label>
                 </section>
                 <section className="panel">
-                  <h2>Azure Speech (story and Meditate narration)</h2>
+                  <h2>Azure Speech (story and Scripture narration)</h2>
                   <p>
                     Adds real narration audio to generated stories. Stored only on this device;
                     sent only to {aiStorySettings.azureSpeechRegion || 'your-region'}.tts.speech.microsoft.com.
@@ -5762,6 +5861,37 @@ function App() {
                       <div className="study-pinyin">{studyDisplay.pinyin}</div>
                     )}
                     {showEnglish && <div className="study-meaning">{studyDisplay.english}</div>}
+                    {minimalVisualMode && lessonWords.length > 0 && (
+                      <div className="listening-rating-panel" aria-label="Rate this five-word set">
+                        <div className="listening-word-buttons">
+                          {lessonWords.map((word, index) => {
+                            const rating = listeningSetRatings[word.id]
+                            const key = [hotkeys.choiceA, hotkeys.choiceB, hotkeys.choiceC, hotkeys.choiceD, hotkeys.choiceE][index]
+                            return (
+                              <button
+                                type="button"
+                                key={word.id}
+                                className={`listening-word-rating${rating ? ` rating-${rating}` : ''}`}
+                                onClick={() => cycleListeningSetRating(word.id)}
+                                aria-label={`${word.word}: ${rating ? fsrsLabel(rating) : 'not rated'}`}
+                              >
+                                <kbd>{key.toUpperCase()}</kbd>
+                                <strong>{word.word}</strong>
+                                <span>{rating ? fsrsLabel(rating) : 'No change'}</span>
+                              </button>
+                            )
+                          })}
+                        </div>
+                        <button
+                          type="button"
+                          className="listening-new-set"
+                          onClick={() => void completeListeningLessonAndStartNext()}
+                          disabled={!renderedLesson || rendering}
+                        >
+                          <kbd>{hotkeys.choiceF.toUpperCase()}</kbd> New Set
+                        </button>
+                      </div>
+                    )}
                     <div className="study-time">
                       <span>
                         {renderedLesson
@@ -5833,7 +5963,11 @@ function App() {
                           setIsPlaying(false)
                           if (renderedLesson) {
                             if (isListeningMode) {
-                              await completeListeningLesson()
+                              if (autoNextLesson) {
+                                await completeListeningLessonAndStartNext()
+                              } else {
+                                await completeListeningLesson()
+                              }
                             } else {
                               await recordEvent({
                                 type: 'complete',
@@ -5843,15 +5977,9 @@ function App() {
                               })
                               await refresh()
                             }
-                            if (isListeningMode && autoNextLesson) {
-                              void startPocketLesson([], {
-                                randomize: true,
-                                playAfterRender: true,
-                                newWordsLimit: remainingNewWordsToday,
-                              })
-                            } else if (isListeningMode) {
+                            if (isListeningMode && !autoNextLesson) {
                               setLastSummary('Lesson complete.')
-                            } else {
+                            } else if (!isListeningMode) {
                               openReviewPrompt()
                             }
                           }
@@ -7156,6 +7284,7 @@ function ReaderMode({
   replayHotkey,
   choiceB,
   showEnglish,
+  interlinear,
   storyChunk,
   storyChunkReceipt,
   sessionRecap,
@@ -7187,6 +7316,7 @@ function ReaderMode({
   onEditWord,
   onPinyinModeChange,
   onToggleEnglish,
+  onToggleInterlinear,
   readerDictionaryEntry,
   onSaveWord,
 }: {
@@ -7207,6 +7337,7 @@ function ReaderMode({
   replayHotkey: string
   choiceB: string
   showEnglish: boolean
+  interlinear: boolean
   storyChunk: StoryChunkSession | null
   storyChunkReceipt: StoryChunkReceipt | null
   sessionRecap: ReaderSessionRecap | null
@@ -7241,6 +7372,7 @@ function ReaderMode({
   onEditWord: (word: VocabWord) => void
   onPinyinModeChange: (mode: ReaderPinyinMode) => void
   onToggleEnglish: () => void
+  onToggleInterlinear: () => void
   readerDictionaryEntry: DictionaryEntry | null
   onSaveWord: (text: string, pinyin: string, meaning: string) => void | Promise<void>
 }) {
@@ -7506,18 +7638,49 @@ function ReaderMode({
                     ref={readerSwipe.cardRef}
                     className={`reader-reading-area card-enter${listening.active ? ' reader-listening-highlight' : ''}${readerSwipe.dismissClass ? ` ${readerSwipe.dismissClass}` : ''}`}
                   >
-                    <AdaptiveChineseText
-                      tokens={tokens}
-                      selectedToken={selectedToken}
-                      pinyinMode={pinyinMode}
-                      statusHighlight={statusHighlight}
-                      onSelectToken={(token) => {
-                        setGrammarSelection(null)
-                        onSelectToken(token)
-                      }}
-                      onGrammarSelect={(matches) => setGrammarSelection(matches)}
-                      grammarTokenMap={grammarTokenMap}
-                    />
+                    {interlinear ? (
+                      <div className="reader-interlinear" lang="zh-CN">
+                        {(sentence.interlinear ?? tokens.map((token) => ({
+                          chinese: token.text,
+                          pinyin: token.pinyin,
+                          gloss: token.isChinese ? token.word?.meaning ?? 'tap for meaning' : '',
+                        }))).map((chunk, index) => (
+                          <button
+                            type="button"
+                            className="reader-interlinear-chunk"
+                            key={`${chunk.chinese}-${index}`}
+                            onClick={() => {
+                              setGrammarSelection(null)
+                              const token = tokens.find((item) => item.text === chunk.chinese)
+                              onSelectToken(token ?? {
+                                id: `interlinear-${index}`,
+                                text: chunk.chinese,
+                                index,
+                                isChinese: true,
+                                pinyin: chunk.pinyin,
+                              })
+                            }}
+                          >
+                            <span className="reader-interlinear-pinyin">{chunk.pinyin}</span>
+                            <strong>{chunk.chinese}</strong>
+                            <span className="reader-interlinear-gloss">{chunk.gloss}</span>
+                          </button>
+                        ))}
+                      </div>
+                    ) : (
+                      <AdaptiveChineseText
+                        tokens={tokens}
+                        selectedToken={selectedToken}
+                        pinyinMode={pinyinMode}
+                        statusHighlight={statusHighlight}
+                        onSelectToken={(token) => {
+                          setGrammarSelection(null)
+                          onSelectToken(token)
+                        }}
+                        onGrammarSelect={(matches) => setGrammarSelection(matches)}
+                        grammarTokenMap={grammarTokenMap}
+                      />
+                    )}
                     <p
                       className={`reader-translation ${
                         showEnglish || listening.active ? 'revealed' : 'blur-reveal'
@@ -7560,6 +7723,7 @@ function ReaderMode({
                         onChange={value => onPinyinModeChange(value as ReaderPinyinMode)}
                       />
                       <StudyMenuToggle label="English" checked={showEnglish} onChange={() => onToggleEnglish()} />
+                      <StudyMenuToggle label="Interlinear" checked={interlinear} onChange={() => onToggleInterlinear()} />
                       <StudyMenuToggle
                         label="Word highlights"
                         checked={statusHighlight}

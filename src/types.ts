@@ -77,6 +77,7 @@ export interface UserSettings {
   readerListeningPauseFactor: number
   readerListeningAutoAdvance: boolean
   readerShowEnglish: boolean
+  readerInterlinear: boolean
   readerStatusHighlight: boolean
   sentenceRepeats: number
   sentenceIncludeEnglish: boolean
@@ -198,6 +199,13 @@ export interface ReaderSentence {
   audioFilename: string
   ssmlFilename: string
   wordTimings?: ReaderWordTiming[]
+  interlinear?: ReaderInterlinearChunk[]
+}
+
+export interface ReaderInterlinearChunk {
+  chinese: string
+  pinyin?: string
+  gloss: string
 }
 
 export interface ReaderWordTiming {
@@ -394,7 +402,7 @@ export interface ListeningEvent {
   seconds?: number
   correct?: boolean
   rating?: FsrsRating
-  source?: 'flashcards' | 'lesson-review' | 'active-recall' | 'reading'
+  source?: 'flashcards' | 'lesson-review' | 'active-recall' | 'listening-set' | 'reading'
   sessionId?: string
 }
 

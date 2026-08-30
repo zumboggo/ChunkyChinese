@@ -1,5 +1,6 @@
 import type { ReaderStory } from './types'
-import { saveAudioClip } from './db'
+import { saveAudioClip, saveWordMeaningAudio } from './db'
+import type { VocabWord } from './types'
 import { GENERATED_STORIES_PACK_ID } from './generatedStories'
 
 export const AZURE_VOICES = [
@@ -63,6 +64,58 @@ export async function synthesizeMeditationAudio(
   } finally {
     synthesizer.close()
   }
+}
+
+export async function ensureEnglishMeaningAudio(
+  words: VocabWord[],
+  settings: StoryAudioSettings,
+): Promise<VocabWord[]> {
+  if (!settings.azureSpeechKey || !settings.azureSpeechRegion) return words
+  const missing = words.filter((word) => !word.audioMeaningId)
+  if (missing.length === 0) return words
+  const sdk = await import('microsoft-cognitiveservices-speech-sdk')
+  const config = sdk.SpeechConfig.fromSubscription(settings.azureSpeechKey, settings.azureSpeechRegion)
+  config.speechSynthesisVoiceName = 'en-US-JennyNeural'
+  config.speechSynthesisOutputFormat = sdk.SpeechSynthesisOutputFormat.Audio16Khz32KBitRateMonoMp3
+  const synthesizer = new sdk.SpeechSynthesizer(config, null as never)
+  const generated = new Map<string, string>()
+  try {
+    for (const word of missing) {
+      try {
+        const stablePart = await stableTextId(`${word.id}:${word.meaning}`)
+        const clipId = `meaning-azure:${stablePart}`
+        const result = await new Promise<import('microsoft-cognitiveservices-speech-sdk').SpeechSynthesisResult>(
+          (resolve, reject) => synthesizer.speakTextAsync(word.meaning, resolve, reject),
+        )
+        if (result.reason !== sdk.ResultReason.SynthesizingAudioCompleted || !result.audioData?.byteLength) continue
+        await saveWordMeaningAudio(word.id, {
+          id: clipId,
+          type: 'meaning',
+          label: word.meaning,
+          filename: `generated/${stablePart}.mp3`,
+          blob: new Blob([result.audioData], { type: 'audio/mpeg' }),
+          linkedWordIds: [word.id],
+          text: word.meaning,
+          language: 'en-US',
+          provider: 'azure-speech',
+          voice: 'en-US-JennyNeural',
+          createdAt: new Date().toISOString(),
+        })
+        generated.set(word.id, clipId)
+      } catch {
+        // Keep the lesson usable; the UI can fall back to device speech.
+      }
+    }
+  } finally {
+    synthesizer.close()
+  }
+  return words.map((word) => generated.has(word.id) ? { ...word, audioMeaningId: generated.get(word.id) } : word)
+}
+
+async function stableTextId(value: string): Promise<string> {
+  const bytes = new TextEncoder().encode(value)
+  const digest = await crypto.subtle.digest('SHA-256', bytes)
+  return Array.from(new Uint8Array(digest)).slice(0, 12).map((byte) => byte.toString(16).padStart(2, '0')).join('')
 }
 
 /**

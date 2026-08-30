@@ -467,6 +467,7 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   readerListeningPauseFactor: 1,
   readerListeningAutoAdvance: true,
   readerShowEnglish: true,
+  readerInterlinear: false,
   readerStatusHighlight: true,
   sentenceRepeats: 2,
   sentenceIncludeEnglish: true,
@@ -537,6 +538,7 @@ export function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: n
     readerListeningPauseFactor: clampNumber(merged.readerListeningPauseFactor, 0, 2, DEFAULT_USER_SETTINGS.readerListeningPauseFactor),
     readerListeningAutoAdvance: Boolean(merged.readerListeningAutoAdvance),
     readerShowEnglish: migrateReaderPlaylistDefaults ? true : merged.readerShowEnglish !== false,
+    readerInterlinear: Boolean(merged.readerInterlinear),
     readerStatusHighlight: merged.readerStatusHighlight !== false,
     listeningRepsGoal: clampInt(merged.listeningRepsGoal, 10, 500, DEFAULT_USER_SETTINGS.listeningRepsGoal),
     sentenceRepeats: clampInt(merged.sentenceRepeats, 1, 5, DEFAULT_USER_SETTINGS.sentenceRepeats),
@@ -557,6 +559,7 @@ export function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: n
       saved.readerListeningPauseFactor === undefined ||
       saved.readerListeningAutoAdvance === undefined ||
       saved.readerShowEnglish === undefined ||
+      saved.readerInterlinear === undefined ||
       saved.selectedFlashcardDeckIds === undefined ||
       JSON.stringify(settings.selectedFlashcardDeckIds) !== JSON.stringify(saved.selectedFlashcardDeckIds) ||
       settings.readerListeningRate !== saved.readerListeningRate ||
@@ -1583,6 +1586,22 @@ export async function deleteGeneratedReaderBook(bookId: string): Promise<void> {
 
 export async function saveAudioClip(clip: AudioClip): Promise<void> {
   await (await getDB()).put('audioClips', clip)
+}
+
+export async function saveWordMeaningAudio(wordId: string, clip: AudioClip): Promise<void> {
+  const db = await getDB()
+  const tx = db.transaction(['audioClips', 'vocabWords'], 'readwrite')
+  await tx.objectStore('audioClips').put(clip)
+  const word = await tx.objectStore('vocabWords').get(wordId)
+  if (word) {
+    await tx.objectStore('vocabWords').put({
+      ...word,
+      audioMeaningId: clip.id,
+      audioMeaningFilename: clip.filename,
+      updatedAt: new Date().toISOString(),
+    })
+  }
+  await tx.done
 }
 
 export async function repairAudioClipLinks(): Promise<number> {

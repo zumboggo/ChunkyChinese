@@ -232,6 +232,7 @@ export function createPocketLesson(
     audioClips,
     options.activeRecall ? pauses.recall : 3,
   )
+  addSpacedRecallRounds(steps, targetWords, audioClips, pauses)
   addQuickFinalPass(steps, targetWords, audioClips, pauses)
 
   return {
@@ -240,6 +241,35 @@ export function createPocketLesson(
     targetWords,
     steps,
     warnings,
+  }
+}
+
+function addSpacedRecallRounds(
+  steps: LessonStep[],
+  words: VocabWord[],
+  audioClips: AudioClip[],
+  pauses: PauseTimings,
+) {
+  for (let round = 0; round < 3; round += 1) {
+    shuffle(words).forEach((word, index) => {
+      addChineseToEnglishRecall(
+        steps,
+        word,
+        audioClips,
+        `spaced-${round}-zh-en-${index}-${word.id}`,
+        pauses.recall + (round === 0 ? 0.8 : 0.3),
+      )
+    })
+    const speakingWord = words[round % Math.max(1, words.length)]
+    if (speakingWord) {
+      addEnglishToChineseWordRecall(
+        steps,
+        speakingWord,
+        audioClips,
+        `spaced-${round}-en-zh-${speakingWord.id}`,
+        pauses.recall,
+      )
+    }
   }
 }
 

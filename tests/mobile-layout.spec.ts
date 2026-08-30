@@ -16,13 +16,13 @@ test('dashboard goals and mode cards form balanced phone rows', async ({ page })
   expect(goalBoxes.every((box) => box.width > 90)).toBe(true)
 
   const modeCards = page.locator('.dashboard-mode-card')
-  await expect(modeCards).toHaveCount(4)
+  await expect(modeCards).toHaveCount(3)
   for (const card of await modeCards.all()) {
     const box = await card.boundingBox()
     expect(box?.width).toBeGreaterThan(340)
     expect(box?.width).toBeLessThanOrEqual(370)
   }
-  await expect(page.locator('.meditate-mode-logo')).toHaveText('静')
+  await expect(page.locator('.meditate-mode-logo')).toHaveCount(0)
 })
 
 test('flashcard queue counters do not collide on a phone', async ({ page }) => {
