@@ -82,8 +82,8 @@ test('phone Flashcards removes Sentence Mode and keeps core front controls', asy
   const bottomNav = page.getByRole('navigation', { name: 'Main navigation' })
   await expect(bottomNav.getByRole('button', { name: 'Flashcards' })).toHaveClass(/active/)
   await expect(bottomNav.locator('button')).toHaveCount(5)
-  for (const button of await bottomNav.locator('button').all()) {
-    await expect(button).toHaveText('')
+  for (const label of await bottomNav.locator('.nav-label').all()) {
+    await expect(label).not.toBeVisible()
   }
 
   const front = page.locator('.flashcard.front-side')

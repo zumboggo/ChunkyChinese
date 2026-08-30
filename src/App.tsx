@@ -8455,10 +8455,11 @@ function FlashcardReview({
         </div>
       )}
       {answerShown && !selectedRating && (
-        <div className="swipe-instructions">
-          {choiceKeys
-            ? `← Again  ↑ Hard  → Good  ↓ Easy  ·  ${choiceKeys.choiceA.toUpperCase()} Again  ${choiceKeys.choiceB.toUpperCase()} Hard  ${choiceKeys.choiceC.toUpperCase()} Good  ${choiceKeys.choiceD.toUpperCase()} Easy`
-            : '← Again  ↑ Hard  → Good  ↓ Easy'}
+        <div className="swipe-instructions" aria-label="Swipe left for Again, up for Hard, right for Good, or down for Easy">
+          <span><b aria-hidden="true">←</b> Again{choiceKeys && <kbd>{choiceKeys.choiceA.toUpperCase()}</kbd>}</span>
+          <span><b aria-hidden="true">↑</b> Hard{choiceKeys && <kbd>{choiceKeys.choiceB.toUpperCase()}</kbd>}</span>
+          <span><b aria-hidden="true">→</b> Good{choiceKeys && <kbd>{choiceKeys.choiceC.toUpperCase()}</kbd>}</span>
+          <span><b aria-hidden="true">↓</b> Easy{choiceKeys && <kbd>{choiceKeys.choiceD.toUpperCase()}</kbd>}</span>
         </div>
       )}
     </section>
