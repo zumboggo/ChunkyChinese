@@ -10,6 +10,7 @@ interface TargetSelectionOptions {
   newWordsLimit?: number
   allowExtraNew?: boolean
   keptWordIds?: string[]
+  excludedWordIds?: string[]
   activeRecallEvents?: ListeningEvent[]
 }
 
@@ -278,26 +279,28 @@ export function selectTargetWords(
   manualIds: string[] = [],
   options: TargetSelectionOptions = {},
 ): VocabWord[] {
+  const excluded = new Set(options.excludedWordIds ?? [])
+  const eligibleWords = words.filter((word) => !excluded.has(word.id))
   if (manualIds.length > 0) {
     const selected = manualIds
-      .map((id) => words.find((word) => word.id === id))
+      .map((id) => eligibleWords.find((word) => word.id === id))
       .filter((word): word is VocabWord => Boolean(word))
     return options.randomize ? weightedSampleWords(selected, 5) : selected.slice(0, 5)
   }
 
   if (options.activeRecall && !options.keptWordIds) {
-    return selectActiveRecallTargetWords(words, options.activeRecallEvents ?? [])
+    return selectActiveRecallTargetWords(eligibleWords, options.activeRecallEvents ?? [])
   }
 
   const keptWords = options.keptWordIds
     ? options.keptWordIds
-        .map((id) => words.find((word) => word.id === id))
+        .map((id) => eligibleWords.find((word) => word.id === id))
         .filter((word): word is VocabWord => Boolean(word))
     : []
   const selected = [...keptWords]
   const filteredWords = options.keptWordIds
-    ? words.filter((word) => !options.keptWordIds!.includes(word.id))
-    : words
+    ? eligibleWords.filter((word) => !options.keptWordIds!.includes(word.id))
+    : eligibleWords
 
   if (options.activeRecall && options.keptWordIds) {
     const fillWords = selectActiveRecallTargetWords(filteredWords, options.activeRecallEvents ?? [])

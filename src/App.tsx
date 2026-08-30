@@ -282,6 +282,8 @@ type LessonStartOptions = {
   pauseProfile?: PauseProfile
   newWordsLimit?: number
   allowExtraNew?: boolean
+  keptWordIds?: string[]
+  excludedWordIds?: string[]
 }
 type LmsSeedSentence = { word: string; chinese: string; english: string; topic?: string }
 
@@ -2795,6 +2797,40 @@ function App() {
     })
   }
 
+  async function replaceListeningWord(wordId: string) {
+    if (rendering || listeningSetTransitionRef.current) return
+    const keptWordIds = lessonWords.filter((word) => word.id !== wordId).map((word) => word.id)
+    if (keptWordIds.length !== 4) return
+    listeningSetTransitionRef.current = true
+    pocketAudioRef.current?.pause()
+    const preservedRatings = { ...listeningSetRatings }
+    const rating = preservedRatings[wordId]
+    delete preservedRatings[wordId]
+    try {
+      if (rating) {
+        await rateWordFsrs(wordId, rating, {
+          source: 'listening-set',
+          sessionId: `listening-swap:${renderedLesson?.id ?? Date.now()}`,
+          seconds: pocketProgress.current,
+        })
+        queueCloudSync()
+      }
+      await startPocketLesson([], {
+        randomize: false,
+        playAfterRender: true,
+        newWordsLimit: remainingNewWordsToday,
+        keptWordIds,
+        excludedWordIds: [wordId],
+      })
+      setListeningSetRatings(preservedRatings)
+      setLastSummary(rating ? `Rating saved. Switched out one word.` : 'Switched out one word.')
+    } catch (error) {
+      setLastSummary(error instanceof Error ? error.message : 'Could not switch this word.')
+    } finally {
+      listeningSetTransitionRef.current = false
+    }
+  }
+
   function finishLessonAndReturnHome() {
     pocketAudioRef.current?.pause()
     setShowReviewPrompt(false)
@@ -3047,7 +3083,8 @@ function App() {
       let lessonWords = activeWords
       if (studyMode === 'listeningMode' && activeWords.length >= 10) {
         const previous = new Set(previousListeningWordIdsRef.current)
-        lessonWords = activeWords.filter((word) => !previous.has(word.id))
+        const kept = new Set(options.keptWordIds ?? [])
+        lessonWords = activeWords.filter((word) => !previous.has(word.id) || kept.has(word.id))
       }
       let lessonSentences = sentences
       let lessonAudioClips = audioClips
@@ -5868,17 +5905,30 @@ function App() {
                             const rating = listeningSetRatings[word.id]
                             const key = [hotkeys.choiceA, hotkeys.choiceB, hotkeys.choiceC, hotkeys.choiceD, hotkeys.choiceE][index]
                             return (
-                              <button
-                                type="button"
-                                key={word.id}
-                                className={`listening-word-rating${rating ? ` rating-${rating}` : ''}`}
-                                onClick={() => cycleListeningSetRating(word.id)}
-                                aria-label={`${word.word}: ${rating ? fsrsLabel(rating) : 'not rated'}`}
-                              >
-                                <kbd>{key.toUpperCase()}</kbd>
-                                <strong>{word.word}</strong>
-                                <span>{rating ? fsrsLabel(rating) : 'No change'}</span>
-                              </button>
+                              <div className="listening-word-slot" key={word.id}>
+                                <button
+                                  type="button"
+                                  className={`listening-word-rating${rating ? ` rating-${rating}` : ''}`}
+                                  onClick={() => cycleListeningSetRating(word.id)}
+                                  aria-label={`${word.word}: ${rating ? fsrsLabel(rating) : 'not rated'}`}
+                                >
+                                  <kbd>{key.toUpperCase()}</kbd>
+                                  <strong>{word.word}</strong>
+                                  <span>{rating ? fsrsLabel(rating) : 'No change'}</span>
+                                </button>
+                                <button
+                                  type="button"
+                                  className="listening-word-refresh"
+                                  onClick={() => void replaceListeningWord(word.id)}
+                                  disabled={rendering}
+                                  aria-label={`Switch out ${word.word}`}
+                                  title="Switch this word"
+                                >
+                                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M20 7v5h-5M4 17v-5h5M6.1 9a7 7 0 0 1 11.2-2.1L20 9M4 15l2.7 2.1A7 7 0 0 0 17.9 15" />
+                                  </svg>
+                                </button>
+                              </div>
                             )
                           })}
                         </div>

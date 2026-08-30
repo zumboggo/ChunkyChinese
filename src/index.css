@@ -10671,6 +10671,13 @@ main.app-shell {
   gap: 0.55rem;
 }
 
+.listening-word-slot {
+  display: grid;
+  min-width: 0;
+  justify-items: center;
+  gap: 0.35rem;
+}
+
 .listening-word-rating {
   display: grid;
   justify-items: center;
@@ -10681,6 +10688,37 @@ main.app-shell {
   border-radius: 0.85rem;
   background: color-mix(in srgb, var(--surface, white) 94%, transparent);
   color: inherit;
+  width: 100%;
+}
+
+.listening-word-refresh {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  min-height: 0;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 7%, transparent);
+  color: inherit;
+  opacity: 0.62;
+}
+
+.listening-word-refresh:hover,
+.listening-word-refresh:focus-visible {
+  opacity: 1;
+  transform: rotate(18deg);
+}
+
+.listening-word-refresh svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .listening-word-rating strong { font-size: 1.25rem; }

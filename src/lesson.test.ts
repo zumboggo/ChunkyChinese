@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createPocketLesson } from './lesson'
+import { createPocketLesson, selectTargetWords } from './lesson'
 import type { AudioClip, Sentence, VocabWord } from './types'
 
 function makeWord(overrides: Partial<VocabWord> = {}): VocabWord {
@@ -39,6 +39,23 @@ function makeSentence(overrides: Partial<Sentence> = {}): Sentence {
 const audioClips: AudioClip[] = []
 
 describe('createPocketLesson', () => {
+  it('keeps four words while replacing an explicitly excluded fifth word', () => {
+    const words = Array.from({ length: 8 }, (_, index) => makeWord({
+      id: `word:${index}`,
+      word: `词${index}`,
+      lessonNumber: index,
+    }))
+    const selected = selectTargetWords(words, [], {
+      randomize: false,
+      keptWordIds: words.slice(0, 4).map((word) => word.id),
+      excludedWordIds: [words[4].id],
+    })
+
+    expect(selected.map((word) => word.id)).toEqual([
+      'word:0', 'word:1', 'word:2', 'word:3', 'word:5',
+    ])
+  })
+
   it('includes linked English meaning clips in Words-mode steps', () => {
     const word = makeWord()
     const lesson = createPocketLesson([word], [], audioClips, [word.id], { randomize: false })
