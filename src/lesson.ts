@@ -225,13 +225,26 @@ export function createPocketLesson(
   addPrompt(steps, audioClips, 'listen', 'Listen')
   targetWords.forEach((word, index) => {
     addWordLearningBlock(steps, word, audioClips, `word-block-${index + 1}-${word.id}`, pauses)
+    if (index > 0) {
+      shuffle(targetWords.slice(0, index)).slice(0, 2).forEach((earlier, recallIndex) => {
+        addChineseToEnglishRecall(
+          steps,
+          earlier,
+          audioClips,
+          `growing-recall-${index}-${recallIndex}-${earlier.id}`,
+          pauses.recall,
+        )
+      })
+    }
   })
   addMixedWordRecall(steps, targetWords, audioClips, pauses)
-  addSentenceSupport(
+  addGuidedSentenceConstruction(
     steps,
-    targetSentences.slice(0, 4),
+    targetSentences
+      .sort((a, b) => a.chinese.length - b.chinese.length)
+      .slice(0, 2),
     audioClips,
-    options.activeRecall ? pauses.recall : 3,
+    options.activeRecall ? pauses.recall : Math.max(3.5, pauses.recall),
   )
   addSpacedRecallRounds(steps, targetWords, audioClips, pauses)
   addQuickFinalPass(steps, targetWords, audioClips, pauses)
@@ -638,47 +651,41 @@ function addMixedWordRecall(
       Math.max(pauses.recall - 0.3, pauses.quick),
     )
   })
-  shuffle(words)
-    .slice(0, Math.min(3, words.length))
-    .forEach((word, index) => {
-      addAudioToChineseWordRecall(
-        steps,
-        word,
-        audioClips,
-        `mixed-audio-zh-${index}-${word.id}`,
-        Math.max(pauses.recall - 0.2, pauses.quick + 0.5),
-      )
-  })
-  buildContrastPairs(words).forEach(([word, other], index) => {
-    addContrastQuestion(steps, word, other, audioClips, `contrast-${index}-${word.id}`, pauses)
-  })
 }
 
-function addSentenceSupport(
+function addGuidedSentenceConstruction(
   steps: LessonStep[],
   sentences: Sentence[],
   audioClips: AudioClip[],
   pauseSeconds = 3,
 ) {
   if (sentences.length === 0) return
-  addPrompt(steps, audioClips, 'listen', 'Sentence listening')
+  addPrompt(steps, audioClips, 'listen', 'Build a tiny sentence')
   sentences.forEach((sentence, index) => {
-    const prefix = `sentence-support-${index}-${sentence.id}`
-    addSentenceAudio(steps, sentence, `${prefix}-sentence-1`)
-    addSentenceMeaningAudio(steps, sentence, `${prefix}-meaning-1`)
-    addSentenceAudio(steps, sentence, `${prefix}-sentence-2`)
-    addSentenceMeaningAudio(steps, sentence, `${prefix}-meaning-2`)
-    addPrompt(steps, audioClips, 'meaning', 'What does it mean?', undefined, sentence.id)
-    addSentenceAudio(steps, sentence, `${prefix}-recall-sentence`)
+    const prefix = `guided-sentence-${index}-${sentence.id}`
+    addSentenceMeaningAudio(steps, sentence, `${prefix}-english-goal`)
+    addSentenceAudio(steps, sentence, `${prefix}-listen-whole`)
+    addPrompt(steps, audioClips, 'listen', 'Listen and repeat', undefined, sentence.id)
+    addSentenceAudio(steps, sentence, `${prefix}-repeat-model`)
     steps.push({
-      id: `${prefix}-pause`,
+      id: `${prefix}-repeat-pause`,
       kind: 'pause',
-      seconds: pauseSeconds,
-      label: 'Think',
+      seconds: Math.max(2.8, pauseSeconds - 0.5),
+      label: 'Say the sentence',
       sentenceId: sentence.id,
       quiz: { kind: 'sentence-zh-en' },
     })
-    addSentenceMeaningAudio(steps, sentence, `${prefix}-answer`)
+    addSentenceAudio(steps, sentence, `${prefix}-repeat-answer`)
+    addSentenceMeaningAudio(steps, sentence, `${prefix}-recall-cue`)
+    steps.push({
+      id: `${prefix}-recall-pause`,
+      kind: 'pause',
+      seconds: pauseSeconds,
+      label: 'Build it in Chinese',
+      sentenceId: sentence.id,
+      quiz: { kind: 'sentence-zh-en' },
+    })
+    addSentenceAudio(steps, sentence, `${prefix}-recall-answer`)
     steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', sentenceId: sentence.id })
   })
 }
@@ -745,52 +752,6 @@ function addEnglishToChineseWordRecall(
   addWordAudio(steps, word, `${prefix}-word`)
 }
 
-function addAudioToChineseWordRecall(
-  steps: LessonStep[],
-  word: VocabWord,
-  audioClips: AudioClip[],
-  prefix: string,
-  pauseSeconds: number,
-) {
-  if (!word.audioWordId) return
-  addPrompt(steps, audioClips, 'listen', 'Listen', word.id)
-  addWordAudio(steps, word, `${prefix}-word`)
-  steps.push({
-    id: `${prefix}-pause`,
-    kind: 'pause',
-    seconds: pauseSeconds,
-    label: 'Which word?',
-    wordId: word.id,
-    quiz: { kind: 'audio-zh' },
-  })
-  addWordAudio(steps, word, `${prefix}-answer`)
-}
-
-function addContrastQuestion(
-  steps: LessonStep[],
-  word: VocabWord,
-  other: VocabWord,
-  audioClips: AudioClip[],
-  prefix: string,
-  pauses: PauseTimings,
-) {
-  addPrompt(steps, audioClips, 'which-chinese-means', 'Which means?', word.id)
-  addMeaningAudio(steps, word, `${prefix}-meaning`)
-  addWordAudio(steps, word, `${prefix}-option-a`)
-  addPrompt(steps, audioClips, 'or', 'Or', word.id)
-  addWordAudio(steps, other, `${prefix}-option-b`)
-  steps.push({
-    id: `${prefix}-pause`,
-    kind: 'pause',
-    seconds: pauses.contrast,
-    label: 'Think',
-    wordId: word.id,
-    quiz: { kind: 'contrast', otherWordId: other.id },
-  })
-  addWordAudio(steps, word, `${prefix}-answer`)
-  steps.push({ id: `${prefix}-ding`, kind: 'ding', label: 'Ding', wordId: word.id })
-}
-
 function getPauseTimings(profile: PauseProfile = 'normal'): PauseTimings {
   return {
     gentle: { recall: 3.5, speaking: 2.6, quick: 1.3, contrast: 3.2 },
@@ -826,17 +787,6 @@ function addWhatDoesPrompt(
   addPrompt(steps, audioClips, 'meaning', 'What does this mean?', word.id)
 }
 
-function buildContrastPairs(words: VocabWord[]): Array<[VocabWord, VocabWord]> {
-  if (words.length < 2) return []
-  return shuffle(words)
-    .map((word, index): [VocabWord, VocabWord] => [
-      word,
-      words[(index + 2) % words.length] ?? words[0] ?? word,
-    ])
-    .filter(([word, other]) => word.id !== other.id)
-    .slice(0, 2)
-}
-
 function uniqueSentences(sentences: Sentence[]): Sentence[] {
   const seen = new Set<string>()
   return sentences.filter((sentence) => {
@@ -855,7 +805,17 @@ function addPrompt(
   sentenceId?: string,
 ) {
   const clip = findPrompt(audioClips, promptId)
-  if (!clip) return
+  if (!clip) {
+    steps.push({
+      id: `prompt-${promptId}-${steps.length}`,
+      kind: 'speech',
+      text: label,
+      label,
+      wordId,
+      sentenceId,
+    })
+    return
+  }
   steps.push({
     id: `prompt-${promptId}-${steps.length}`,
     kind: 'audio',
@@ -867,7 +827,10 @@ function addPrompt(
 }
 
 function addWordAudio(steps: LessonStep[], word: VocabWord, id: string) {
-  if (!word.audioWordId) return
+  if (!word.audioWordId) {
+    steps.push({ id, kind: 'speech', text: word.word, label: word.word, wordId: word.id })
+    return
+  }
   steps.push({
     id,
     kind: 'audio',
@@ -878,7 +841,10 @@ function addWordAudio(steps: LessonStep[], word: VocabWord, id: string) {
 }
 
 function addMeaningAudio(steps: LessonStep[], word: VocabWord, id: string) {
-  if (!word.audioMeaningId) return
+  if (!word.audioMeaningId) {
+    steps.push({ id, kind: 'speech', text: word.meaning, label: word.meaning, wordId: word.id })
+    return
+  }
   steps.push({
     id,
     kind: 'audio',
@@ -889,7 +855,10 @@ function addMeaningAudio(steps: LessonStep[], word: VocabWord, id: string) {
 }
 
 function addSentenceAudio(steps: LessonStep[], sentence: Sentence, id: string) {
-  if (!sentence.audioSentenceId) return
+  if (!sentence.audioSentenceId) {
+    steps.push({ id, kind: 'speech', text: sentence.chinese, label: sentence.chinese, sentenceId: sentence.id })
+    return
+  }
   steps.push({
     id,
     kind: 'audio',
@@ -900,7 +869,10 @@ function addSentenceAudio(steps: LessonStep[], sentence: Sentence, id: string) {
 }
 
 function addSentenceMeaningAudio(steps: LessonStep[], sentence: Sentence, id: string) {
-  if (!sentence.audioEnglishId) return
+  if (!sentence.audioEnglishId) {
+    steps.push({ id, kind: 'speech', text: sentence.english, label: sentence.english, sentenceId: sentence.id })
+    return
+  }
   steps.push({
     id,
     kind: 'audio',

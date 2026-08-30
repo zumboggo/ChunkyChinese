@@ -1982,7 +1982,10 @@ function App() {
     setShowReviewPrompt(false)
     setReviewCardIndex(0)
     setReviewAnswerShown(false)
-    if (nextLesson.steps.filter((step) => step.kind === 'audio').length === 0) {
+    if (
+      nextLesson.steps.filter((step) => step.kind === 'audio').length === 0 ||
+      nextLesson.steps.some((step) => step.kind === 'speech')
+    ) {
       setLessonMode('live')
       setLastSummary('No local clips are linked yet. Using browser TTS while the app stays open.')
       if (playAfterRender) window.setTimeout(() => runFromRef.current?.(0, nextLesson), 120)

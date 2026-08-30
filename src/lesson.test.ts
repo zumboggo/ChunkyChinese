@@ -92,6 +92,7 @@ describe('createPocketLesson', () => {
           step.label === 'test meaning',
       ),
     ).toBe(false)
+    expect(lesson.steps.some((step) => step.kind === 'speech' && step.text === word.meaning)).toBe(true)
   })
 
   it('warns when sentence support is missing English audio', () => {
@@ -104,5 +105,17 @@ describe('createPocketLesson', () => {
     expect(lesson.warnings).toContain(
       'Missing sentence English audio for test sentence: test sentence meaning',
     )
+  })
+
+  it('culminates in open-recall tiny sentences without two-choice recognition', () => {
+    const word = makeWord()
+    const sentence = makeSentence()
+    const lesson = createPocketLesson([word], [sentence], audioClips, [word.id], {
+      randomize: false,
+    })
+
+    expect(lesson.steps.some((step) => step.id.includes('guided-sentence') && step.label === 'Build it in Chinese')).toBe(true)
+    expect(lesson.steps.some((step) => step.quiz?.kind === 'contrast')).toBe(false)
+    expect(lesson.steps.filter((step) => step.sentenceId === sentence.id && step.kind === 'pause')).toHaveLength(2)
   })
 })
