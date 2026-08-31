@@ -137,17 +137,13 @@ import {
   tokenizeReaderText,
   adaptiveReaderPinyinState,
 } from './adaptiveText'
-import { AdaptiveChineseText } from './AdaptiveChineseText'
 import {
   clearLegacyMeditationProgress,
   includeMeditativeScripture,
   MEDITATIVE_SCRIPTURE_BOOK,
-  MEDITATIVE_SCRIPTURE_BOOK_ID,
   readLegacyMeditationProgress,
 } from './meditationReader'
 import { WordInfoPopover } from './WordInfoPopover'
-import { GrammarPopover } from './GrammarPopover'
-import { findGrammarMatches, mapGrammarToTokens, type GrammarMatch } from './grammarPoints'
 import { useReaderListeningController } from './useReaderListeningController'
 import { shouldCountReaderActiveSecond } from './readerActivity'
 import {
@@ -236,7 +232,6 @@ const UniversalImporter = lazy(() => import('./UniversalImporter').then((module)
 type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'readingTexts' | 'words'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
 type FlashcardFrontMode = 'text' | 'audio' | 'reverse'
-type ReaderPinyinMode = UserSettings['readerPinyinMode']
 type ReaderTheme = UserSettings['readerTheme']
 type FlashcardSessionCounts = {
   new: number
@@ -567,7 +562,6 @@ function App() {
   const [activeReaderBookId, setActiveReaderBookId] = useState<string | undefined>()
   const [readerSentenceIndex, setReaderSentenceIndex] = useState(0)
   const [readerShowEnglish, setReaderShowEnglish] = useState(DEFAULT_USER_SETTINGS.readerShowEnglish)
-  const [readerInterlinear, setReaderInterlinear] = useState(DEFAULT_USER_SETTINGS.readerInterlinear)
   const [selectedReaderToken, setSelectedReaderToken] = useState<ReaderWordToken | null>(null)
   const [readerDictionaryEntry, setReaderDictionaryEntry] = useState<DictionaryEntry | null>(null)
   const [hostedPackDownloadId, setHostedPackDownloadId] = useState<string | null>(null)
@@ -775,7 +769,6 @@ function App() {
     setNewWordsPerDay(nextNewWordsPerDay)
     setUserSettings(nextUserSettings)
     setReaderShowEnglish(nextUserSettings.readerShowEnglish)
-    setReaderInterlinear(nextUserSettings.readerInterlinear)
     setHostedClipPacks(nextHostedClipPacks)
     setAiStorySettings(nextAiStorySettings)
     setStats(nextStats)
@@ -857,7 +850,6 @@ function App() {
       setHotkeys(nextHotkeys)
       setUserSettings(nextSettings)
       setReaderShowEnglish(nextSettings.readerShowEnglish)
-      setReaderInterlinear(nextSettings.readerInterlinear)
       setNewWordsPerDay(nextNewWordsPerDay)
 
       const legacyMeditationIndex = readLegacyMeditationProgress()
@@ -2106,7 +2098,6 @@ function App() {
     const initialIndex = action === 'start' ? 0 : cachedProgress?.sentenceIndex ?? 0
     const boundedInitialIndex = Math.min(Math.max(0, initialIndex), Math.max(0, sentenceCount - 1))
     setActiveReaderBookId(book.id)
-    setReaderInterlinear(book.id === MEDITATIVE_SCRIPTURE_BOOK_ID ? true : userSettings.readerInterlinear)
     setReaderSentenceIndex(boundedInitialIndex)
     setSelectedReaderToken(null)
     setReaderDictionaryEntry(null)
@@ -2149,7 +2140,7 @@ function App() {
     } catch (error) {
       setLastSummary(error instanceof Error ? error.message : 'Reader progress could not be saved.')
     }
-  }, [latestReaderProgress, queueCloudSync, readerBooks, recordReaderInteraction, recordReaderSentenceView, userSettings.readerInterlinear])
+  }, [latestReaderProgress, queueCloudSync, readerBooks, recordReaderInteraction, recordReaderSentenceView])
 
   const openBookListen = useCallback(async (book: ReaderBook) => {
     const progress = await getReaderProgress(book.packId, book.id)
@@ -3730,7 +3721,6 @@ function App() {
     | 'readerListeningPauseFactor'
     | 'readerListeningAutoAdvance'
     | 'readerShowEnglish'
-    | 'readerInterlinear'
     | 'readerStatusHighlight'
   >>) {
     const next = { ...userSettings, ...patch }
@@ -3813,7 +3803,7 @@ function App() {
               value={sentenceRepsToday}
               goal={userSettings.listeningRepsGoal}
               unit="reps"
-              onClick={() => void startSentenceLesson()}
+              onClick={() => void startModeLesson('listeningMode')}
             />
             <GoalRing
               kind="reading"
@@ -3850,13 +3840,13 @@ function App() {
                 </button>
               )}
             </div>
-            <button className="mode-start dashboard-mode-card listen-start" type="button" onClick={() => void startSentenceLesson()}>
+            <button className="mode-start dashboard-mode-card listen-start" type="button" onClick={() => void startModeLesson('listeningMode')}>
               <span className="mode-start-logo" aria-hidden="true">
                 <span className="nav-icon nav-listen" />
               </span>
               <span className="mode-start-copy">
                 <strong>Listening</strong>
-                <span>Sentence loops by default — switch to five-word Active Recall in the menu.</span>
+                <span>Build recall with one focused set of five words.</span>
               </span>
               <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
               <span className="mode-start-metric">
@@ -4102,8 +4092,8 @@ function App() {
         </button>
         <button
           type="button"
-          className={screen === 'lesson' && studyMode === 'sentenceMode' ? 'active' : ''}
-          onClick={() => void startSentenceLesson()}
+          className={screen === 'lesson' ? 'active' : ''}
+          onClick={() => void startModeLesson('listeningMode')}
           aria-label="Listening"
           title="Listening"
         >
@@ -4324,14 +4314,12 @@ function App() {
           tokens={readerTokens}
           selectedToken={selectedReaderToken}
           resumeLocation={readerResumeLocation}
-          pinyinMode={userSettings.readerPinyinMode}
           readerTheme={userSettings.readerTheme}
           readerFontScale={userSettings.readerFontScale}
           readerLineHeight={userSettings.readerLineHeight}
           replayHotkey={hotkeys.choiceF}
           choiceB={hotkeys.choiceB}
           showEnglish={readerShowEnglish}
-          interlinear={readerInterlinear}
           storyChunk={storyChunkSession}
           storyChunkReceipt={storyChunkReceipt}
           listening={readerListening}
@@ -4339,7 +4327,6 @@ function App() {
           listeningRepeats={userSettings.readerListeningRepeats}
           listeningPauseFactor={userSettings.readerListeningPauseFactor}
           listeningAutoAdvance={userSettings.readerListeningAutoAdvance}
-          statusHighlight={userSettings.readerStatusHighlight}
           readerQueue={readerQueue}
           excludedQueueBooks={readerBooks.filter((book) => readerQueueState.excludedBookIds.includes(book.id) && !readerProgressRows.find((row) => row.bookId === book.id)?.completedAt)}
           completedBook={completedReaderBookId === activeReaderBook?.id ? activeReaderBook : undefined}
@@ -4399,21 +4386,9 @@ function App() {
             await refresh()
           }}
           onEditWord={openCardEditor}
-          onPinyinModeChange={(mode) => {
-            recordReaderInteraction()
-            saveReaderSettings({ readerPinyinMode: mode })
-          }}
           onToggleEnglish={() => {
             recordReaderInteraction()
             toggleReaderEnglish()
-          }}
-          onToggleInterlinear={() => {
-            recordReaderInteraction()
-            const next = !readerInterlinear
-            setReaderInterlinear(next)
-            if (activeReaderBook?.id !== MEDITATIVE_SCRIPTURE_BOOK_ID) {
-              saveReaderSettings({ readerInterlinear: next })
-            }
           }}
           readerDictionaryEntry={readerDictionaryEntry}
         />
@@ -5054,21 +5029,8 @@ function App() {
               <div className="import-grid">
                 <section className="panel reader-settings-panel">
                   <h2>Reader settings</h2>
-                  <p>Shape Reader into a clean book view with adaptive pinyin hints.</p>
+                  <p>Shape Reader into a calm interlinear book view.</p>
                   <div className="hotkey-grid">
-                    <label>
-                      <span>Pinyin hints</span>
-                      <select
-                        value={userSettings.readerPinyinMode}
-                        onChange={(event) =>
-                          saveReaderSettings({ readerPinyinMode: event.target.value as ReaderPinyinMode })
-                        }
-                      >
-                        <option value="adaptive">Adaptive</option>
-                        <option value="all">All pinyin</option>
-                        <option value="none">No pinyin</option>
-                      </select>
-                    </label>
                     <label>
                       <span>Reader theme</span>
                       <select
@@ -6682,12 +6644,6 @@ function VocabularySourcesPanel({
   )
 }
 
-const readerPinyinModes: Array<{ value: ReaderPinyinMode; label: string }> = [
-  { value: 'adaptive', label: 'Adaptive' },
-  { value: 'all', label: 'All' },
-  { value: 'none', label: 'None' },
-]
-
 const dashboardRanges: Array<{ value: DashboardRange; label: string }> = [
   { value: 'today', label: 'Today' },
   { value: 'week', label: 'This week' },
@@ -7330,14 +7286,12 @@ function ReaderMode({
   tokens,
   selectedToken,
   resumeLocation,
-  pinyinMode,
   readerTheme,
   readerFontScale,
   readerLineHeight,
   replayHotkey,
   choiceB,
   showEnglish,
-  interlinear,
   storyChunk,
   storyChunkReceipt,
   sessionRecap,
@@ -7347,7 +7301,6 @@ function ReaderMode({
   listeningRepeats,
   listeningPauseFactor,
   listeningAutoAdvance,
-  statusHighlight,
   readerQueue,
   excludedQueueBooks,
   completedBook,
@@ -7367,9 +7320,7 @@ function ReaderMode({
   onDismissStoryChunkReceipt,
   onSelectToken,
   onEditWord,
-  onPinyinModeChange,
   onToggleEnglish,
-  onToggleInterlinear,
   readerDictionaryEntry,
   onSaveWord,
 }: {
@@ -7383,14 +7334,12 @@ function ReaderMode({
   tokens: ReaderWordToken[]
   selectedToken: ReaderWordToken | null
   resumeLocation?: ReaderResumeLocation
-  pinyinMode: ReaderPinyinMode
   readerTheme: ReaderTheme
   readerFontScale: number
   readerLineHeight: number
   replayHotkey: string
   choiceB: string
   showEnglish: boolean
-  interlinear: boolean
   storyChunk: StoryChunkSession | null
   storyChunkReceipt: StoryChunkReceipt | null
   sessionRecap: ReaderSessionRecap | null
@@ -7400,7 +7349,6 @@ function ReaderMode({
   listeningRepeats: number
   listeningPauseFactor: number
   listeningAutoAdvance: boolean
-  statusHighlight: boolean
   readerQueue: ReaderBook[]
   excludedQueueBooks: ReaderBook[]
   completedBook?: ReaderBook
@@ -7423,14 +7371,11 @@ function ReaderMode({
   onDismissStoryChunkReceipt: () => void
   onSelectToken: (token: ReaderWordToken | null) => void
   onEditWord: (word: VocabWord) => void
-  onPinyinModeChange: (mode: ReaderPinyinMode) => void
   onToggleEnglish: () => void
-  onToggleInterlinear: () => void
   readerDictionaryEntry: DictionaryEntry | null
   onSaveWord: (text: string, pinyin: string, meaning: string) => void | Promise<void>
 }) {
   const [readerMenuOpen, setReaderMenuOpen] = useState(false)
-  const [grammarSelection, setGrammarSelection] = useState<GrammarMatch[] | null>(null)
   const [readerBouncing, setReaderBouncing] = useState(false)
   const [nextGlow, setNextGlow] = useState(false)
   const nextGlowTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -7451,10 +7396,8 @@ function ReaderMode({
         if (listening.active) listening.togglePlayPause()
         else listening.startListening()
       } else if (dir === 'left' && sentenceIndex < sentenceCount - 1) {
-        setGrammarSelection(null)
         readerSwipe.dismiss('left')
       } else if (dir === 'right' && sentenceIndex > 0) {
-        setGrammarSelection(null)
         readerSwipe.dismiss('right')
       }
     },
@@ -7470,14 +7413,6 @@ function ReaderMode({
 
   const listeningPlaying =
     ['playing', 'loading', 'shadowing'].includes(listening.snapshot.status)
-  const grammarMatches = useMemo(
-    () => (sentence ? findGrammarMatches(sentence.chinese) : []),
-    [sentence],
-  )
-  const grammarTokenMap = useMemo(
-    () => mapGrammarToTokens(grammarMatches, tokens),
-    [grammarMatches, tokens],
-  )
   const sortedReaderBooks = useMemo(
     () => sortReaderBooksByKnownPercent(readerBooks, comprehensionByBook, activeBook?.id),
     [activeBook?.id, comprehensionByBook, readerBooks],
@@ -7497,18 +7432,6 @@ function ReaderMode({
             <button type="button" onClick={onOpenLibrary}>
               Library
             </button>
-            <div className="segmented-control reader-pinyin-control" aria-label="Reader pinyin mode">
-              {readerPinyinModes.map((mode) => (
-                <button
-                  key={mode.value}
-                  type="button"
-                  className={pinyinMode === mode.value ? 'active' : ''}
-                  onClick={() => onPinyinModeChange(mode.value)}
-                >
-                  {mode.label}
-                </button>
-              ))}
-            </div>
             <button type="button" className={showEnglish ? 'active' : ''} onClick={onToggleEnglish}>
               English {showEnglish ? 'sharp' : 'blurred'}
             </button>
@@ -7691,49 +7614,33 @@ function ReaderMode({
                     ref={readerSwipe.cardRef}
                     className={`reader-reading-area card-enter${listening.active ? ' reader-listening-highlight' : ''}${readerSwipe.dismissClass ? ` ${readerSwipe.dismissClass}` : ''}`}
                   >
-                    {interlinear ? (
-                      <div className="reader-interlinear" lang="zh-CN">
-                        {(sentence.interlinear ?? tokens.map((token) => ({
-                          chinese: token.text,
-                          pinyin: token.pinyin,
-                          gloss: token.isChinese ? token.word?.meaning ?? 'tap for meaning' : '',
-                        }))).map((chunk, index) => (
-                          <button
-                            type="button"
-                            className="reader-interlinear-chunk"
-                            key={`${chunk.chinese}-${index}`}
-                            onClick={() => {
-                              setGrammarSelection(null)
-                              const token = tokens.find((item) => item.text === chunk.chinese)
-                              onSelectToken(token ?? {
-                                id: `interlinear-${index}`,
-                                text: chunk.chinese,
-                                index,
-                                isChinese: true,
-                                pinyin: chunk.pinyin,
-                              })
-                            }}
-                          >
-                            <span className="reader-interlinear-pinyin">{chunk.pinyin}</span>
-                            <strong>{chunk.chinese}</strong>
-                            <span className="reader-interlinear-gloss">{chunk.gloss}</span>
-                          </button>
-                        ))}
-                      </div>
-                    ) : (
-                      <AdaptiveChineseText
-                        tokens={tokens}
-                        selectedToken={selectedToken}
-                        pinyinMode={pinyinMode}
-                        statusHighlight={statusHighlight}
-                        onSelectToken={(token) => {
-                          setGrammarSelection(null)
-                          onSelectToken(token)
-                        }}
-                        onGrammarSelect={(matches) => setGrammarSelection(matches)}
-                        grammarTokenMap={grammarTokenMap}
-                      />
-                    )}
+                    <div className="reader-interlinear" lang="zh-CN">
+                      {(sentence.interlinear ?? tokens.map((token) => ({
+                        chinese: token.text,
+                        pinyin: token.pinyin,
+                        gloss: token.isChinese ? token.word?.meaning ?? 'tap for meaning' : '',
+                      }))).map((chunk, index) => (
+                        <button
+                          type="button"
+                          className="reader-interlinear-chunk"
+                          key={`${chunk.chinese}-${index}`}
+                          onClick={() => {
+                            const token = tokens.find((item) => item.text === chunk.chinese)
+                            onSelectToken(token ?? {
+                              id: `interlinear-${index}`,
+                              text: chunk.chinese,
+                              index,
+                              isChinese: true,
+                              pinyin: chunk.pinyin,
+                            })
+                          }}
+                        >
+                          <span className="reader-interlinear-pinyin">{chunk.pinyin}</span>
+                          <strong>{chunk.chinese}</strong>
+                          <span className="reader-interlinear-gloss">{chunk.gloss}</span>
+                        </button>
+                      ))}
+                    </div>
                     <p
                       className={`reader-translation ${
                         showEnglish || listening.active ? 'revealed' : 'blur-reveal'
@@ -7769,19 +7676,7 @@ function ReaderMode({
                     className="popup-up"
                   >
                     <StudyMenuSection label="Display">
-                      <StudyMenuSelect
-                        label="Pinyin"
-                        value={pinyinMode}
-                        options={readerPinyinModes.map(mode => ({ value: mode.value, label: mode.label }))}
-                        onChange={value => onPinyinModeChange(value as ReaderPinyinMode)}
-                      />
                       <StudyMenuToggle label="English" checked={showEnglish} onChange={() => onToggleEnglish()} />
-                      <StudyMenuToggle label="Interlinear" checked={interlinear} onChange={() => onToggleInterlinear()} />
-                      <StudyMenuToggle
-                        label="Word highlights"
-                        checked={statusHighlight}
-                        onChange={checked => onListeningSettingsChange({ readerStatusHighlight: checked })}
-                      />
                     </StudyMenuSection>
                     <StudyMenuSection label="Playback">
                       <StudyMenuSelect
@@ -7910,7 +7805,7 @@ function ReaderMode({
                     <button
                       type="button"
                       className="sentence-end-btn reader-listening-icon-btn"
-                      onClick={() => { setGrammarSelection(null); triggerNextGlow(); void onNext() }}
+                      onClick={() => { triggerNextGlow(); void onNext() }}
                       disabled={sentenceIndex >= sentenceCount - 1}
                       aria-label={`Next sentence. Choice B hotkey: ${choiceB.toUpperCase()}.`}
                     >
@@ -7930,8 +7825,8 @@ function ReaderMode({
                       if (listening.active) listening.togglePlayPause()
                       else listening.startListening()
                     }}
-                    onPrevious={() => { setGrammarSelection(null); void onPrevious() }}
-                    onNext={() => { setGrammarSelection(null); triggerNextGlow(); void onNext() }}
+                    onPrevious={() => { void onPrevious() }}
+                    onNext={() => { triggerNextGlow(); void onNext() }}
                     prevDisabled={sentenceIndex <= 0}
                     nextDisabled={sentenceIndex >= sentenceCount - 1}
                     prevLabel="Previous sentence"
@@ -7948,12 +7843,6 @@ function ReaderMode({
                   onEditWord={onEditWord}
                   onSaveWord={onSaveWord}
                   formatDueDate={formatDueDate}
-                />
-              )}
-              {grammarSelection && (
-                <GrammarPopover
-                  matches={grammarSelection}
-                  onClose={() => setGrammarSelection(null)}
                 />
               )}
             </>

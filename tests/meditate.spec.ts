@@ -15,5 +15,8 @@ test('opens Meditative Scripture inside Reading with contextual interlinear text
   await expect(shepherdPhrase.locator('strong')).toHaveText('牧者')
   await expect(shepherdPhrase.locator('.reader-interlinear-gloss')).toHaveText('shepherd')
   await expect(page.getByText('The LORD is my shepherd; I will lack nothing.')).toBeVisible()
+  await page.getByRole('button', { name: 'Reader menu' }).click()
+  await expect(page.getByText('Interlinear', { exact: true })).toHaveCount(0)
+  await expect(page.locator('.adaptive-chinese-text')).toHaveCount(0)
   await expect(page.getByRole('button', { name: /Meditate/ })).toHaveCount(0)
 })

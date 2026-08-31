@@ -77,7 +77,6 @@ export interface UserSettings {
   readerListeningPauseFactor: number
   readerListeningAutoAdvance: boolean
   readerShowEnglish: boolean
-  readerInterlinear: boolean
   readerStatusHighlight: boolean
   sentenceRepeats: number
   sentenceIncludeEnglish: boolean

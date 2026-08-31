@@ -467,7 +467,6 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   readerListeningPauseFactor: 1,
   readerListeningAutoAdvance: true,
   readerShowEnglish: true,
-  readerInterlinear: false,
   readerStatusHighlight: true,
   sentenceRepeats: 2,
   sentenceIncludeEnglish: true,
@@ -524,9 +523,9 @@ export async function saveUserSettings(settings: UserSettings): Promise<void> {
   await (await getDB()).put('settings', sanitizeUserSettings(settings).settings, 'userSettings')
 }
 
-export function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: number }): { settings: UserSettings; cleaned: boolean } {
+export function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: number; readerInterlinear?: boolean }): { settings: UserSettings; cleaned: boolean } {
   if (!saved) return { settings: DEFAULT_USER_SETTINGS, cleaned: false }
-  const { coins: _coins, ...rest } = saved
+  const { coins: _coins, readerInterlinear: _legacyReaderInterlinear, ...rest } = saved
   const migrateReaderPlaylistDefaults = saved.readerListeningPauseFactor === undefined
   const merged = { ...DEFAULT_USER_SETTINGS, ...rest }
   const settings: UserSettings = {
@@ -538,7 +537,6 @@ export function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: n
     readerListeningPauseFactor: clampNumber(merged.readerListeningPauseFactor, 0, 2, DEFAULT_USER_SETTINGS.readerListeningPauseFactor),
     readerListeningAutoAdvance: Boolean(merged.readerListeningAutoAdvance),
     readerShowEnglish: migrateReaderPlaylistDefaults ? true : merged.readerShowEnglish !== false,
-    readerInterlinear: Boolean(merged.readerInterlinear),
     readerStatusHighlight: merged.readerStatusHighlight !== false,
     listeningRepsGoal: clampInt(merged.listeningRepsGoal, 10, 500, DEFAULT_USER_SETTINGS.listeningRepsGoal),
     sentenceRepeats: clampInt(merged.sentenceRepeats, 1, 5, DEFAULT_USER_SETTINGS.sentenceRepeats),
@@ -559,7 +557,7 @@ export function sanitizeUserSettings(saved?: Partial<UserSettings> & { coins?: n
       saved.readerListeningPauseFactor === undefined ||
       saved.readerListeningAutoAdvance === undefined ||
       saved.readerShowEnglish === undefined ||
-      saved.readerInterlinear === undefined ||
+      _legacyReaderInterlinear !== undefined ||
       saved.selectedFlashcardDeckIds === undefined ||
       JSON.stringify(settings.selectedFlashcardDeckIds) !== JSON.stringify(saved.selectedFlashcardDeckIds) ||
       settings.readerListeningRate !== saved.readerListeningRate ||
