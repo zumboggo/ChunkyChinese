@@ -363,6 +363,33 @@
   }
 }
 
+/* Difficulty-aware reading progress */
+.reading-progress-panel { grid-column: 1 / -1; }
+.reading-progress-wrap { display: grid; gap: 16px; }
+.reading-progress-header { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+.reading-progress-header > div:first-child { display: grid; justify-items: start; gap: 8px; }
+.reading-progress-header p, .reading-progress-note, .reading-progress-empty p, .reading-progress-empty span { margin: 0; color: var(--muted); }
+.reading-progress-header .segmented-control { flex: 0 0 auto; }
+.reading-progress-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 0; }
+.reading-progress-stats div { display: grid; gap: 4px; padding: 12px 14px; border: 1px solid var(--study-line); border-radius: 16px; background: rgba(255, 252, 246, 0.66); }
+.reading-progress-stats dt { color: var(--study-muted); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+.reading-progress-stats dd { margin: 0; color: var(--study-ink); font-size: 1.18rem; font-weight: 850; }
+.reading-progress-chart { width: 100%; height: 300px; }
+.reading-progress-building, .reading-progress-empty { display: grid; place-content: center; min-height: 220px; gap: 8px; text-align: center; }
+.reading-progress-note { font-size: 0.78rem; }
+.reading-rebaseline { justify-self: start; border-color: var(--study-line); background: rgba(255, 252, 246, 0.78); color: var(--study-indigo); }
+.reading-recap-primary { border-color: rgba(102, 105, 146, 0.22); background: rgba(222, 221, 235, 0.55); }
+.reading-recap-qualification { margin: 10px 0 0; color: var(--study-muted); font-size: 0.82rem; line-height: 1.45; }
+
+@media (max-width: 600px) {
+  .reading-progress-header { align-items: stretch; flex-direction: column; }
+  .reading-progress-header .segmented-control { width: 100%; }
+  .reading-progress-header .segmented-control button { flex: 1; }
+  .reading-progress-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .reading-progress-chart { height: 270px; }
+  .reading-progress-stats dd { font-size: 1.02rem; }
+}
+
 /* Reader listening surface: quiet editorial palette and labeled controls. */
 .app-bottom-nav .nav-label {
   display: none;

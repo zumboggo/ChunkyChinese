@@ -21,6 +21,9 @@ function makeSession(startedAt: Date, wordsRead: number, activeSeconds: number):
     startedAt: startedAt.toISOString(),
     activeSeconds,
     wordsRead,
+    measurementVersion: 1,
+    focusedWordsRead: wordsRead,
+    focusedActiveSeconds: activeSeconds,
     sentenceIdsRead: [],
     updatedAt: startedAt.toISOString(),
   }

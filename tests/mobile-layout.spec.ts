@@ -23,6 +23,11 @@ test('dashboard goals and mode cards form balanced phone rows', async ({ page })
     expect(box?.width).toBeLessThanOrEqual(370)
   }
   await expect(page.locator('.meditate-mode-logo')).toHaveCount(0)
+  const readingProgress = page.locator('.reading-progress-panel')
+  await expect(readingProgress).toBeVisible()
+  const progressBox = await readingProgress.boundingBox()
+  expect(progressBox?.width).toBeLessThanOrEqual(374)
+  await expect(readingProgress).toContainText('3 focused minutes')
 })
 
 test('flashcard queue counters do not collide on a phone', async ({ page }) => {

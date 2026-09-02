@@ -262,7 +262,42 @@ export interface ReaderSession {
   sentenceIdsRead: string[]
   exposuresCredited?: number
   promotedWordIds?: string[]
+  measurementVersion?: 1
+  focusedActiveSeconds?: number
+  focusedWordsRead?: number
+  knownTokenCount?: number
+  learningTokenCount?: number
+  newTokenCount?: number
+  challengePercent?: number
+  progressQualified?: boolean
+  baselinePhase?: number
   updatedAt: string
+}
+
+export interface ReadingProgressPoint {
+  sessionId: string
+  date: string
+  bookId: string
+  wpm: number
+  challengePercent: number
+  wordsRead: number
+  paceIndex: number | null
+  center: number | null
+  upperLimit: number | null
+  lowerLimit: number | null
+  phase: number
+  signal?: 'high' | 'low' | 'upshift' | 'downshift' | 'rising' | 'falling'
+}
+
+export interface ReadingProgressSummary {
+  points: ReadingProgressPoint[]
+  qualifiedSessions: number
+  focusedWordsRead: number
+  medianChallenge: number
+  bestSustainedPace: number
+  baselineCount: number
+  status: 'building' | 'stable' | 'positive' | 'watch' | 'unusual'
+  message: string
 }
 
 export interface ReaderSessionStats {
@@ -490,6 +525,7 @@ export interface DashboardStats {
   studyHeatmap: StudyDayStat[]
   retentionSeries: RetentionPoint[]
   readingSeries: ReadingDayStat[]
+  readingProgress: ReadingProgressSummary
 }
 
 export interface DashboardRangeStats {

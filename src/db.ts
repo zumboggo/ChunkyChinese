@@ -48,6 +48,7 @@ import {
 import { adjustedHistoricalStudySeconds, studySecondsForEvent } from './studyTime'
 import { PRIVATE_CLIP_PACKS, PRIVATE_READER_PACKS } from './contentCatalog'
 import { downloadPrivateContent } from './supabaseSync'
+import { buildReadingProgress, qualifyReadingSession, READING_MEASUREMENT_VERSION } from './readingProgress'
 import {
   applyFsrsRating,
   isEligibleForReadingCredit,
@@ -1817,6 +1818,15 @@ export async function startReaderSession(
     sentenceIdsRead: [],
     exposuresCredited: 0,
     promotedWordIds: [],
+    measurementVersion: READING_MEASUREMENT_VERSION,
+    focusedActiveSeconds: 0,
+    focusedWordsRead: 0,
+    knownTokenCount: 0,
+    learningTokenCount: 0,
+    newTokenCount: 0,
+    challengePercent: 0,
+    progressQualified: false,
+    baselinePhase: 1,
     updatedAt: new Date().toISOString(),
   }
   await (await getDB()).put('readerSessions', session)
@@ -1858,6 +1868,27 @@ export async function getAllReaderSessions(): Promise<ReaderSession[]> {
   return (await (await getDB()).getAll('readerSessions')).sort(
     (a, b) => Date.parse(b.startedAt) - Date.parse(a.startedAt),
   )
+}
+
+export async function putSyncedReaderSessions(sessions: ReaderSession[]): Promise<void> {
+  if (sessions.length === 0) return
+  const db = await getDB()
+  const tx = db.transaction('readerSessions', 'readwrite')
+  for (const session of sessions) await tx.store.put(session)
+  await tx.done
+}
+
+export async function rebaselineReadingProgress(): Promise<number> {
+  const db = await getDB()
+  const sessions = (await db.getAll('readerSessions')).filter(qualifyReadingSession)
+    .sort((a, b) => Date.parse(a.startedAt) - Date.parse(b.startedAt))
+  if (sessions.length < 12) return 0
+  const nextPhase = Math.max(1, ...sessions.map(session => session.baselinePhase ?? 1)) + 1
+  const selected = sessions.slice(-12)
+  const tx = db.transaction('readerSessions', 'readwrite')
+  for (const session of selected) await tx.store.put({ ...session, baselinePhase: nextPhase, updatedAt: new Date().toISOString() })
+  await tx.done
+  return selected.length
 }
 
 export async function importHostedReaderPack(
@@ -2035,6 +2066,7 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     studyHeatmap: heatmap,
     retentionSeries: buildRetentionSeries(scopedWords, events, 12),
     readingSeries: buildReadingSeries(readerSessions, 12, studyTimeAdjustment),
+    readingProgress: buildReadingProgress(readerSessions),
   }
 }
 
@@ -2827,12 +2859,12 @@ export function buildReadingSeries(
 
     const weekSessions = sessions.filter((s) => {
       const time = new Date(s.startedAt).getTime()
-      return time >= weekStart.getTime() && time < weekEnd.getTime()
+      return s.measurementVersion === READING_MEASUREMENT_VERSION && time >= weekStart.getTime() && time < weekEnd.getTime()
     })
 
-    const wordsRead = weekSessions.reduce((sum, s) => sum + s.wordsRead, 0)
+    const wordsRead = weekSessions.reduce((sum, s) => sum + (s.focusedWordsRead ?? 0), 0)
     const activeSeconds = weekSessions.reduce(
-      (sum, s) => sum + adjustedHistoricalStudySeconds(s.activeSeconds, s.startedAt, adjustment),
+      (sum, s) => sum + adjustedHistoricalStudySeconds(s.focusedActiveSeconds ?? 0, s.startedAt, adjustment),
       0,
     )
     const wpm = activeSeconds > 0 ? Math.round((wordsRead / activeSeconds) * 60) : 0

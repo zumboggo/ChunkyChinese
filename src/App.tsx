@@ -5,6 +5,9 @@ import { motion } from 'framer-motion'
 import {
   BarChart,
   Bar,
+  ScatterChart,
+  Scatter,
+  ZAxis,
   LineChart,
   Line,
   CartesianGrid,
@@ -79,7 +82,17 @@ import {
   getSentenceRepData,
   saveSentenceRepData,
   restoreWordFsrs,
+  rebaselineReadingProgress,
 } from './db'
+import {
+  countReadingDifficulty,
+  focusedWpm,
+  qualifyReadingSession,
+  readingChallengePercent,
+  shouldCountFocusedReadingSecond,
+  READING_MIN_FOCUSED_SECONDS,
+  READING_MIN_FOCUSED_WORDS,
+} from './readingProgress'
 import { generateAiStory, generateStoryCover, AI_STORY_MODELS, AI_STORY_LENGTHS } from './aiStories'
 import {
   STORY_WORLDS,
@@ -255,6 +268,11 @@ type ReaderSessionRecap = {
   exposuresCredited: number
   promoted: VocabWord[]
   activeSeconds: number
+  focusedActiveSeconds: number
+  focusedWordsRead: number
+  focusedWpm: number
+  challengePercent: number
+  qualified: boolean
 }
 type StoryChunkSession = {
   id: string
@@ -327,6 +345,7 @@ const emptyStats: DashboardStats = {
   studyHeatmap: [],
   retentionSeries: [],
   readingSeries: [],
+  readingProgress: { points: [], qualifiedSessions: 0, focusedWordsRead: 0, medianChallenge: 0, bestSustainedPace: 0, baselineCount: 0, status: 'building', message: 'Complete a focused reading session to begin your progress map.' },
 }
 
 const FLASHCARD_LEARN_AHEAD_MS = 5 * 60 * 1000
@@ -600,6 +619,7 @@ function App() {
   const readerCreditedSentenceIdsRef = useRef<Set<string>>(new Set())
   // Mirrors readerListening.active so credit stays reading-only (see effect below).
   const readerListeningActiveRef = useRef(false)
+  const readerOverlayOpenRef = useRef(false)
   const [todayReaderStats, setTodayReaderStats] = useState<ReaderSessionStats | null>(null)
   const [latestReaderProgress, setLatestReaderProgress] = useState<ReaderProgress | undefined>()
   const [readerProgressRows, setReaderProgressRows] = useState<ReaderProgress[]>([])
@@ -1861,6 +1881,9 @@ function App() {
   const recordReaderInteraction = useCallback(() => {
     lastReaderActivityTimeRef.current = Date.now()
   }, [])
+  const handleReaderOverlayOpenChange = useCallback((open: boolean) => {
+    readerOverlayOpenRef.current = open
+  }, [])
 
   const recordReaderSentenceView = useCallback(async (sentence: ReaderSentence, session: ReaderSession) => {
     if (session.sentenceIdsRead.includes(sentence.id)) {
@@ -1868,12 +1891,30 @@ function App() {
     }
     const tokens = tokenizeReaderText(sentence.chinese, activeWords)
     const chineseTokensCount = tokens.filter(t => t.isChinese).length
+    const focusedReading = session.measurementVersion === 1 && !readerListeningActiveRef.current
+    const difficulty = focusedReading ? countReadingDifficulty(tokens) : { known: 0, learning: 0, fresh: 0, total: 0 }
+    const knownTokenCount = (session.knownTokenCount ?? 0) + difficulty.known
+    const learningTokenCount = (session.learningTokenCount ?? 0) + difficulty.learning
+    const newTokenCount = (session.newTokenCount ?? 0) + difficulty.fresh
+    const focusedWordsRead = (session.focusedWordsRead ?? 0) + (focusedReading ? difficulty.total : 0)
+    const challengePercent = readingChallengePercent({
+      known: knownTokenCount,
+      learning: learningTokenCount,
+      fresh: newTokenCount,
+      total: knownTokenCount + learningTokenCount + newTokenCount,
+    })
     const updatedSession: ReaderSession = {
       ...session,
       sentenceIdsRead: [...session.sentenceIdsRead, sentence.id],
       wordsRead: session.wordsRead + chineseTokensCount,
+      focusedWordsRead,
+      knownTokenCount,
+      learningTokenCount,
+      newTokenCount,
+      challengePercent,
       updatedAt: new Date().toISOString(),
     }
+    updatedSession.progressQualified = qualifyReadingSession(updatedSession)
     await updateReaderSession(updatedSession)
     setActiveReaderSession(updatedSession)
     const stats = await getReaderSessionStats()
@@ -2023,14 +2064,23 @@ function App() {
     if (screen !== 'reader' || !activeReaderSession) return
     const interval = window.setInterval(() => {
       const now = Date.now()
+      const focused = shouldCountFocusedReadingSecond({
+        lastInteractionAt: lastReaderActivityTimeRef.current,
+        now,
+        documentHidden: document.hidden,
+        listening: readerListeningActiveRef.current,
+        overlayOpen: readerOverlayOpenRef.current,
+      })
       if (shouldCountReaderActiveSecond(lastReaderActivityTimeRef.current, now)) {
         setActiveReaderSession((prev: ReaderSession | null) => {
           if (!prev) return null
           const updated = {
             ...prev,
             activeSeconds: prev.activeSeconds + 1,
+            focusedActiveSeconds: (prev.focusedActiveSeconds ?? 0) + (focused ? 1 : 0),
             updatedAt: new Date().toISOString(),
           }
+          updated.progressQualified = qualifyReadingSession(updated)
           void updateReaderSession(updated)
           return updated
         })
@@ -2051,12 +2101,13 @@ function App() {
       updatedAt: new Date().toISOString(),
     }
     void updateReaderSession(ended)
+    queueCloudSync()
     setActiveReaderSession(null)
     setReaderRecap(null)
     readerSessionPromotedRef.current = []
     readerTappedWordIdsRef.current.clear()
     readerCreditedSentenceIdsRef.current.clear()
-  }, [screen, activeReaderSession])
+  }, [screen, activeReaderSession, queueCloudSync])
 
   // Load today's reader stats when activeSeconds or wordsRead changes
   useEffect(() => {
@@ -2428,6 +2479,7 @@ function App() {
         updatedAt: new Date().toISOString(),
       }
       await updateReaderSession(ended)
+      queueCloudSync()
       const hadActivity =
         ended.sentenceIdsRead.length > 1 || (ended.exposuresCredited ?? 0) > 0
       if (hadActivity) {
@@ -2437,13 +2489,18 @@ function App() {
           exposuresCredited: ended.exposuresCredited ?? 0,
           promoted: readerSessionPromotedRef.current,
           activeSeconds: ended.activeSeconds,
+          focusedActiveSeconds: ended.focusedActiveSeconds ?? 0,
+          focusedWordsRead: ended.focusedWordsRead ?? 0,
+          focusedWpm: focusedWpm(ended),
+          challengePercent: ended.challengePercent ?? 0,
+          qualified: qualifyReadingSession(ended),
         })
         playGentleCelebration()
         return
       }
     }
     setScreen('readingTexts')
-  }, [activeReaderSession, creditReaderSentence, currentReaderSentence, readerListening, readerTokens])
+  }, [activeReaderSession, creditReaderSentence, currentReaderSentence, queueCloudSync, readerListening, readerTokens])
 
   const dismissReaderRecap = useCallback(() => {
     setReaderRecap(null)
@@ -3960,6 +4017,19 @@ function App() {
             <InfoPanel title="Vocab Growth" className="vocab-growth-panel">
               <VocabGrowthChart points={stats.retentionSeries} />
             </InfoPanel>
+            <InfoPanel title="Reading Progress" className="reading-progress-panel">
+              <ReadingProgressPanel
+                summary={stats.readingProgress}
+                onRebaseline={async () => {
+                  const count = await rebaselineReadingProgress()
+                  if (count > 0) {
+                    await refresh()
+                    queueCloudSync()
+                    setLastSummary('A new reading baseline phase now uses your latest 12 qualified sessions.')
+                  }
+                }}
+              />
+            </InfoPanel>
           </div>
 
           <details className="dashboard-all-stats">
@@ -4390,6 +4460,7 @@ function App() {
             recordReaderInteraction()
             toggleReaderEnglish()
           }}
+          onOverlayOpenChange={handleReaderOverlayOpenChange}
           readerDictionaryEntry={readerDictionaryEntry}
         />
       )}
@@ -7321,6 +7392,7 @@ function ReaderMode({
   onSelectToken,
   onEditWord,
   onToggleEnglish,
+  onOverlayOpenChange,
   readerDictionaryEntry,
   onSaveWord,
 }: {
@@ -7372,6 +7444,7 @@ function ReaderMode({
   onSelectToken: (token: ReaderWordToken | null) => void
   onEditWord: (word: VocabWord) => void
   onToggleEnglish: () => void
+  onOverlayOpenChange: (open: boolean) => void
   readerDictionaryEntry: DictionaryEntry | null
   onSaveWord: (text: string, pinyin: string, meaning: string) => void | Promise<void>
 }) {
@@ -7379,6 +7452,11 @@ function ReaderMode({
   const [readerBouncing, setReaderBouncing] = useState(false)
   const [nextGlow, setNextGlow] = useState(false)
   const nextGlowTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    onOverlayOpenChange(readerMenuOpen || Boolean(selectedToken))
+    return () => onOverlayOpenChange(false)
+  }, [onOverlayOpenChange, readerMenuOpen, selectedToken])
 
   function triggerNextGlow() {
     if (nextGlowTimer.current) clearTimeout(nextGlowTimer.current)
@@ -7557,6 +7635,12 @@ function ReaderMode({
                       {sessionRecap.sentencesRead} sentences · {sessionRecap.wordsRead} words · {formatDuration(sessionRecap.activeSeconds)}
                     </span>
                     <div className="session-recap-highlights">
+                      <span className="session-recap-chip reading-recap-primary">
+                        <strong>{sessionRecap.focusedWpm}</strong> focused WPM
+                      </span>
+                      <span className="session-recap-chip reading-recap-primary">
+                        <strong>{sessionRecap.challengePercent.toFixed(1)}%</strong> challenge
+                      </span>
                       <span className="session-recap-chip">
                         <strong>{sessionRecap.exposuresCredited}</strong> words practiced
                       </span>
@@ -7564,6 +7648,11 @@ function ReaderMode({
                         <strong>{sessionRecap.promoted.length}</strong> leveled up
                       </span>
                     </div>
+                    <p className="reading-recap-qualification">
+                      {sessionRecap.qualified
+                        ? 'This session was added to your Reading Progress chart.'
+                        : `Progress measurement needs ${Math.max(0, READING_MIN_FOCUSED_WORDS - sessionRecap.focusedWordsRead)} more words and ${Math.max(0, Math.ceil((READING_MIN_FOCUSED_SECONDS - sessionRecap.focusedActiveSeconds) / 60))} more focused minutes.`}
+                    </p>
                     {sessionRecap.promoted.length > 0 && (
                       <div className="session-leveled-words">
                         <span className="struggled-label">Leveled up by reading:</span>
@@ -7884,6 +7973,75 @@ function ReaderComprehensionMeter({
   )
 }
 
+function ReadingProgressPanel({ summary, onRebaseline }: {
+  summary: DashboardStats['readingProgress']
+  onRebaseline: () => void | Promise<void>
+}) {
+  const [view, setView] = useState<'map' | 'process'>('map')
+  const recent = summary.points.slice(-24)
+  const latestPhase = recent.at(-1)?.phase ?? 1
+  const processPoints = summary.points.filter(point => point.phase === latestPhase && point.paceIndex !== null)
+  const limit = processPoints.at(-1)
+  const statusLabel = { building: 'Building baseline', stable: 'Stable range', positive: 'Positive shift', watch: 'Possible downward shift', unusual: 'Unusual session' }[summary.status]
+  if (summary.points.length === 0) return (
+    <div className="reading-progress-empty">
+      <p>Complete 3 focused minutes and 75 Chinese words to place your first point.</p>
+      <span>Audio, menus, word lookups, and inactive time are excluded.</span>
+    </div>
+  )
+  return (
+    <div className="reading-progress-wrap">
+      <div className="reading-progress-header">
+        <div>
+          <span className={`process-status process-status-${summary.status === 'positive' ? 'high' : summary.status === 'stable' ? 'normal' : summary.status === 'building' ? 'neutral' : 'low'}`}>{statusLabel}</span>
+          <p>{summary.message}</p>
+        </div>
+        <div className="segmented-control" aria-label="Reading progress chart">
+          <button type="button" className={view === 'map' ? 'active' : ''} onClick={() => setView('map')}>Progress map</button>
+          <button type="button" className={view === 'process' ? 'active' : ''} onClick={() => setView('process')}>Process</button>
+        </div>
+      </div>
+      <dl className="reading-progress-stats">
+        <div><dt>Sessions</dt><dd>{summary.qualifiedSessions}</dd></div>
+        <div><dt>Focused words</dt><dd>{summary.focusedWordsRead.toLocaleString()}</dd></div>
+        <div><dt>Median challenge</dt><dd>{summary.medianChallenge.toFixed(1)}%</dd></div>
+        <div><dt>Best sustained</dt><dd>{summary.bestSustainedPace.toFixed(1)} WPM</dd></div>
+      </dl>
+      <div className="reading-progress-chart">
+        {view === 'map' ? (
+          <ResponsiveContainer width="100%" height="100%" minWidth={0}>
+            <ScatterChart margin={{ top: 14, right: 18, bottom: 10, left: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" opacity={0.16} />
+              <XAxis type="number" dataKey="challengePercent" name="Challenge" unit="%" domain={[0, 'dataMax + 5']} />
+              <YAxis type="number" dataKey="wpm" name="Focused pace" unit=" WPM" width={42} domain={[0, 'dataMax + 5']} />
+              <ZAxis type="number" dataKey="wordsRead" range={[70, 260]} />
+              <Tooltip cursor={{ strokeDasharray: '3 3' }} formatter={(value: unknown, name: unknown) => [Number(value).toFixed(1), String(name)]} />
+              <Scatter data={recent} fill="var(--study-indigo)" line={{ stroke: 'var(--study-sage)', strokeWidth: 2 }} />
+            </ScatterChart>
+          </ResponsiveContainer>
+        ) : processPoints.length > 0 ? (
+          <ResponsiveContainer width="100%" height="100%" minWidth={0}>
+            <LineChart data={processPoints} margin={{ top: 14, right: 18, bottom: 10, left: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" opacity={0.16} />
+              {limit?.upperLimit != null && <ReferenceLine y={limit.upperLimit} stroke="#9b6a4d" strokeDasharray="5 5" />}
+              {limit?.center != null && <ReferenceLine y={limit.center} stroke="var(--study-muted)" strokeDasharray="6 4" />}
+              {limit?.lowerLimit != null && <ReferenceLine y={limit.lowerLimit} stroke="#9b6a4d" strokeDasharray="5 5" />}
+              <XAxis dataKey="date" tickFormatter={shortMonthDay} minTickGap={18} />
+              <YAxis width={38} domain={['auto', 'auto']} />
+              <Tooltip formatter={(value: unknown) => [`${Number(value).toFixed(1)}`, 'Difficulty-adjusted pace']} labelFormatter={label => friendlyDate(String(label))} />
+              <Line type="linear" dataKey="paceIndex" stroke="var(--study-indigo)" strokeWidth={3} dot={{ r: 4 }} />
+            </LineChart>
+          </ResponsiveContainer>
+        ) : <div className="reading-progress-building">{summary.baselineCount} / 12 qualified sessions collected for control limits.</div>}
+      </div>
+      <p className="reading-progress-note">Control limits describe your normal process; they are not targets.</p>
+      {summary.status === 'positive' && summary.qualifiedSessions >= 12 && (
+        <button type="button" className="reading-rebaseline" onClick={() => void onRebaseline()}>Start a new baseline from the latest 12</button>
+      )}
+    </div>
+  )
+}
+
 function ReadingWpmTrendChart({ points }: { points: DashboardStats['readingSeries'] }) {
   const readablePoints = points.filter((point) => point.wordsRead > 0 || point.activeSeconds > 0)
   const latest = [...readablePoints].reverse().find((point) => point.wpm > 0)
@@ -7923,7 +8081,7 @@ function ReadingWpmTrendChart({ points }: { points: DashboardStats['readingSerie
           </LineChart>
         </ResponsiveContainer>
       </div>
-      <p>Timing pauses after 1 minute without reader activity.</p>
+      <p>Focused timing excludes narration, lookups, menus, hidden tabs, and inactivity.</p>
     </div>
   )
 }
@@ -8403,6 +8561,8 @@ function formatCloudSyncResult(result: CloudSyncResult): string {
     `${result.pulledEvents} events received`,
     `${result.pushedReaderProgress} reader bookmarks sent`,
     `${result.pulledReaderProgress} reader bookmarks received`,
+    `${result.pushedReaderSessions} reading sessions sent`,
+    `${result.pulledReaderSessions} reading sessions received`,
   ]
   return `Synced. ${parts.join(', ')}.`
 }

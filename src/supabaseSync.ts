@@ -1,17 +1,20 @@
 import { createClient, type Session, type User } from '@supabase/supabase-js'
 import {
   getAllReaderProgress,
+  getAllReaderSessions,
   getAllListeningEvents,
   getAllWords,
   getSyncMetadata,
   putSyncedReaderProgress,
+  putSyncedReaderSessions,
   putSyncedListeningEvents,
   putSyncedWords,
   saveSyncMetadata,
 } from './db'
-import type { ListeningEvent, ReaderProgress, VocabWord } from './types'
+import type { ListeningEvent, ReaderProgress, ReaderSession, VocabWord } from './types'
 import { effectiveWordDeckIds, uniqueDeckIds } from './flashcardDecks'
 import { PRIVATE_CONTENT_BUCKET } from './contentCatalog'
+import { mergeReaderSessionRecords } from './readingProgress'
 
 const FALLBACK_SUPABASE_URL = 'https://nvrofeaaewwdeefxtmqu.supabase.co'
 const FALLBACK_SUPABASE_ANON_KEY = 'sb_publishable_YaSTM-n-eBSDWPkY4IigOg_vFHmdYSB'
@@ -45,6 +48,8 @@ export interface CloudSyncResult {
   pulledEvents: number
   pushedReaderProgress: number
   pulledReaderProgress: number
+  pushedReaderSessions: number
+  pulledReaderSessions: number
   syncedAt: string
 }
 
@@ -67,6 +72,13 @@ type ReaderProgressRow = {
   user_id: string
   progress_id: string
   progress_data: ReaderProgress
+  updated_at: string
+}
+
+type ReaderSessionRow = {
+  user_id: string
+  session_id: string
+  session_data: ReaderSession
   updated_at: string
 }
 
@@ -165,13 +177,15 @@ async function runSyncNow(): Promise<CloudSyncResult> {
   const user = userData.user
   if (!user) throw new Error('Sign in before syncing.')
 
-  const [remoteWords, remoteEvents, remoteReaderProgress, localWords, localEvents, localReaderProgress, metadata] = await Promise.all([
+  const [remoteWords, remoteEvents, remoteReaderProgress, remoteReaderSessions, localWords, localEvents, localReaderProgress, localReaderSessions, metadata] = await Promise.all([
     fetchRemoteWords(),
     fetchRemoteEvents(),
     fetchRemoteReaderProgress(),
+    fetchRemoteReaderSessions(),
     getAllWords(),
     getAllListeningEvents(),
     getAllReaderProgress(),
+    getAllReaderSessions(),
     getSyncMetadata(),
   ])
 
@@ -199,12 +213,18 @@ async function runSyncNow(): Promise<CloudSyncResult> {
     : []
   await putSyncedReaderProgress(pulledReaderProgress)
 
+  const normalizedRemoteReaderSessions = remoteReaderSessions.map(row => normalizeRemoteReaderSession(row.session_data, row.updated_at))
+  const pulledReaderSessions = mergeReaderSessionRecords(localReaderSessions, normalizedRemoteReaderSessions).pulled
+  await putSyncedReaderSessions(pulledReaderSessions)
+
   const latestLocalWords = await getAllWords()
   const latestLocalEvents = await getAllListeningEvents()
   const latestLocalReaderProgress = await getAllReaderProgress()
+  const latestLocalReaderSessions = await getAllReaderSessions()
   const remoteWordIds = new Set(syncableRemoteWords.map((row) => row.word_id))
   const remoteEventIds = new Set(remoteEvents.map((row) => row.event_id))
   const remoteReaderProgressIds = new Set(remoteReaderProgress.map((row) => row.progress_id))
+  const remoteReaderSessionIds = new Set(remoteReaderSessions.map(row => row.session_id))
   const wordRows = latestLocalWords
     .filter(isSyncableVocabWord)
     .filter((word) => shouldPushWord(word, syncableRemoteWords.find((row) => row.word_id === word.id)))
@@ -217,6 +237,8 @@ async function runSyncNow(): Promise<CloudSyncResult> {
         .filter((progress) => shouldPushReaderProgress(progress, remoteReaderProgress.find((row) => row.progress_id === progress.id)))
         .map((progress) => readerProgressToRow(user.id, progress))
     : []
+  const readerSessionRows = mergeReaderSessionRecords(latestLocalReaderSessions, normalizedRemoteReaderSessions).toPush
+    .map(session => readerSessionToRow(user.id, session))
 
   if (wordRows.length > 0) {
     const { error } = await supabase.from('word_progress').upsert(wordRows, {
@@ -236,6 +258,12 @@ async function runSyncNow(): Promise<CloudSyncResult> {
     })
     if (error) throw error
   }
+  if (readerSessionRows.length > 0) {
+    const { error } = await supabase.from('reader_sessions').upsert(readerSessionRows, {
+      onConflict: 'user_id,session_id',
+    })
+    if (error) throw error
+  }
 
   const syncedAt = new Date().toISOString()
   await saveSyncMetadata({ userId: user.id, lastSyncedAt: syncedAt })
@@ -247,6 +275,8 @@ async function runSyncNow(): Promise<CloudSyncResult> {
     pulledEvents: remoteOnlyEvents.length,
     pushedReaderProgress: readerProgressRows.filter((row) => !remoteReaderProgressIds.has(row.progress_id)).length,
     pulledReaderProgress: pulledReaderProgress.length,
+    pushedReaderSessions: readerSessionRows.filter(row => !remoteReaderSessionIds.has(row.session_id)).length,
+    pulledReaderSessions: pulledReaderSessions.length,
     syncedAt,
   }
 }
@@ -283,6 +313,13 @@ async function fetchRemoteReaderProgress(): Promise<ReaderProgressRow[]> {
   }
   readerProgressSyncAvailable = true
   return (data ?? []) as ReaderProgressRow[]
+}
+
+async function fetchRemoteReaderSessions(): Promise<ReaderSessionRow[]> {
+  if (!supabase) return []
+  const { data, error } = await supabase.from('reader_sessions').select('user_id, session_id, session_data, updated_at')
+  if (error) throw error
+  return (data ?? []) as ReaderSessionRow[]
 }
 
 function mergeRemoteWords(
@@ -358,6 +395,14 @@ function readerProgressToRow(userId: string, progress: ReaderProgress): ReaderPr
     progress_data: progress,
     updated_at: progress.updatedAt,
   }
+}
+
+function readerSessionToRow(userId: string, session: ReaderSession): ReaderSessionRow {
+  return { user_id: userId, session_id: session.id, session_data: session, updated_at: session.updatedAt }
+}
+
+function normalizeRemoteReaderSession(session: ReaderSession, fallbackUpdatedAt: string): ReaderSession {
+  return { ...session, updatedAt: session.updatedAt || fallbackUpdatedAt }
 }
 
 function shouldPushReaderProgress(
