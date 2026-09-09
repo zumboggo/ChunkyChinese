@@ -4419,6 +4419,10 @@ function App() {
           onAddQueueBook={(bookId) => void addReaderQueueBook(bookId)}
           onResetQueue={() => void resetReaderQueue()}
           onChooseBook={openReaderBook}
+          onChooseChapter={(sentenceIndex) => {
+            readerListening.stop()
+            return moveReaderSentence(sentenceIndex - readerSentenceIndex)
+          }}
           onOpenLibrary={() => {
             void endReaderSession()
           }}
@@ -7382,6 +7386,7 @@ function ReaderMode({
   onAddQueueBook,
   onResetQueue,
   onChooseBook,
+  onChooseChapter,
   onOpenLibrary,
   onResume,
   onPrevious,
@@ -7431,6 +7436,7 @@ function ReaderMode({
   onAddQueueBook: (bookId: string) => void
   onResetQueue: () => void
   onChooseBook: (book: ReaderBook, action?: 'resume' | 'start') => void | Promise<void>
+  onChooseChapter: (sentenceIndex: number) => void | Promise<void>
   onOpenLibrary: () => void
   onResume: () => void
   onPrevious: () => void | Promise<void>
@@ -7449,6 +7455,8 @@ function ReaderMode({
   onSaveWord: (text: string, pinyin: string, meaning: string) => void | Promise<void>
 }) {
   const [readerMenuOpen, setReaderMenuOpen] = useState(false)
+  const [bookPickerOpen, setBookPickerOpen] = useState(false)
+  const [chapterPickerOpen, setChapterPickerOpen] = useState(false)
   const [readerBouncing, setReaderBouncing] = useState(false)
   const [nextGlow, setNextGlow] = useState(false)
   const nextGlowTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -7495,6 +7503,25 @@ function ReaderMode({
     () => sortReaderBooksByKnownPercent(readerBooks, comprehensionByBook, activeBook?.id),
     [activeBook?.id, comprehensionByBook, readerBooks],
   )
+  const chapterOptions = useMemo(() => {
+    return (activeBook?.stories ?? []).reduce<Array<{
+      story: ReaderStory
+      sentenceStart: number
+      sentenceEnd: number
+    }>>((options, story) => {
+      const sentenceStart = options.at(-1)?.sentenceEnd !== undefined
+        ? (options.at(-1)?.sentenceEnd ?? -1) + 1
+        : 0
+      return [...options, {
+        story,
+        sentenceStart,
+        sentenceEnd: sentenceStart + story.sentences.length - 1,
+      }]
+    }, [])
+  }, [activeBook])
+  const activeChapter = chapterOptions.find(
+    ({ sentenceStart, sentenceEnd }) => sentenceIndex >= sentenceStart && sentenceIndex <= sentenceEnd,
+  ) ?? chapterOptions[0]
 
   return (
     <section className={`screen reader-screen reader-playlist-screen reader-theme-${readerTheme}`}>
@@ -7592,11 +7619,49 @@ function ReaderMode({
             <>
               <div className="reader-page-meta">
                 <div className="reader-meta-primary">
-                  <button type="button" className="reader-exit-btn" onClick={onOpenLibrary}>
-                    <span className="reader-back-chevron" aria-hidden="true">‹</span>
-                    <span className="reader-library-icon" aria-hidden="true">▥</span>
-                    Library
-                  </button>
+                  <div className="reader-quick-selectors" aria-label="Choose reading text and chapter">
+                    <div className="reader-quick-picker">
+                      <button type="button" className="reader-quick-picker-button" aria-haspopup="menu" aria-expanded={bookPickerOpen} onClick={() => { setBookPickerOpen((open) => !open); setChapterPickerOpen(false) }}>
+                        <span aria-hidden="true">▥</span>
+                        <span className="reader-quick-picker-copy"><small>Text</small><strong>{activeBook.title}</strong></span>
+                        <span className="reader-picker-chevron" aria-hidden="true">⌄</span>
+                      </button>
+                      {bookPickerOpen && (
+                        <>
+                          <button type="button" className="reader-picker-backdrop" aria-label="Close text menu" onClick={() => setBookPickerOpen(false)} />
+                          <div className="reader-picker-menu" role="menu" aria-label="Reading texts">
+                            {sortedReaderBooks.map((book) => (
+                              <button type="button" role="menuitemradio" aria-checked={book.id === activeBook.id} className={book.id === activeBook.id ? 'active' : ''} key={book.id} onClick={() => { setBookPickerOpen(false); if (book.id !== activeBook.id) void onChooseBook(book, 'resume') }}>
+                                <span>{book.title}</span>
+                                <small>{book.stories.length} {book.stories.length === 1 ? 'chapter' : 'chapters'}</small>
+                              </button>
+                            ))}
+                            <button type="button" className="reader-picker-library-link" onClick={() => { setBookPickerOpen(false); onOpenLibrary() }}>Browse the full library →</button>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                    <div className="reader-quick-picker">
+                      <button type="button" className="reader-quick-picker-button chapter" aria-haspopup="menu" aria-expanded={chapterPickerOpen} onClick={() => { setChapterPickerOpen((open) => !open); setBookPickerOpen(false) }}>
+                        <span aria-hidden="true">§</span>
+                        <span className="reader-quick-picker-copy"><small>Chapter</small><strong>{activeChapter?.story.chapter ?? 1}</strong></span>
+                        <span className="reader-picker-chevron" aria-hidden="true">⌄</span>
+                      </button>
+                      {chapterPickerOpen && (
+                        <>
+                          <button type="button" className="reader-picker-backdrop" aria-label="Close chapter menu" onClick={() => setChapterPickerOpen(false)} />
+                          <div className="reader-picker-menu reader-chapter-picker-menu" role="menu" aria-label="Chapters">
+                            {chapterOptions.map(({ story, sentenceStart }) => (
+                              <button type="button" role="menuitemradio" aria-checked={story.id === activeChapter?.story.id} className={story.id === activeChapter?.story.id ? 'active' : ''} key={story.id} onClick={() => { setChapterPickerOpen(false); if (sentenceStart !== sentenceIndex) void onChooseChapter(sentenceStart) }}>
+                                <span>Chapter {story.chapter}</span>
+                                <small>{story.title}</small>
+                              </button>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
                   <span className="reader-meta-title">{activeBook.title}</span>
                 </div>
                 <strong className="reader-sentence-count">

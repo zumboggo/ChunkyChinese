@@ -9618,7 +9618,7 @@ main.app-shell {
 }
 
 .reader-meta-primary::after {
-  width: 102px;
+  width: calc(min(230px, 28vw) + 126px);
   content: '';
 }
 
@@ -9649,6 +9649,142 @@ main.app-shell {
 
 .reader-page-meta .reader-exit-btn > span {
   font-size: 1.15rem;
+}
+
+.reader-quick-selectors {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  min-width: 0;
+}
+
+.reader-quick-picker {
+  position: relative;
+  min-width: 0;
+}
+
+.reader-quick-picker-button {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  width: min(230px, 28vw);
+  min-height: 48px;
+  padding: 7px 11px;
+  border: 1px solid var(--reader-border);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--reader-paper-strong) 92%, var(--reader-accent) 8%);
+  color: var(--reader-ink);
+  box-shadow: 0 8px 20px rgba(37, 31, 24, 0.08);
+  text-align: left;
+}
+
+.reader-quick-picker-button.chapter {
+  width: 118px;
+}
+
+.reader-quick-picker-button:hover,
+.reader-quick-picker-button[aria-expanded='true'] {
+  border-color: color-mix(in srgb, var(--reader-accent) 55%, var(--reader-border));
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--reader-accent) 15%, transparent);
+}
+
+.reader-quick-picker-copy {
+  display: grid;
+  min-width: 0;
+  line-height: 1.08;
+}
+
+.reader-quick-picker-copy small {
+  color: var(--reader-muted);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.reader-quick-picker-copy strong {
+  overflow: hidden;
+  font-size: 0.82rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reader-picker-chevron {
+  color: var(--reader-muted);
+  font-size: 1rem;
+}
+
+.reader-picker-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 59;
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.reader-picker-menu {
+  position: absolute;
+  top: calc(100% + 9px);
+  left: 0;
+  z-index: 60;
+  display: grid;
+  width: min(360px, calc(100vw - 36px));
+  max-height: min(660px, 72svh);
+  padding: 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid color-mix(in srgb, var(--reader-accent) 20%, var(--reader-border));
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--reader-paper-strong) 97%, transparent);
+  box-shadow: 0 20px 55px rgba(27, 22, 18, 0.2);
+  backdrop-filter: blur(20px);
+}
+
+.reader-picker-menu > button {
+  display: grid;
+  gap: 2px;
+  min-height: 44px;
+  padding: 8px 11px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--reader-ink);
+  text-align: left;
+}
+
+.reader-picker-menu > button:hover,
+.reader-picker-menu > button.active {
+  background: color-mix(in srgb, var(--reader-accent) 12%, transparent);
+}
+
+.reader-picker-menu > button.active {
+  box-shadow: inset 3px 0 var(--reader-accent);
+}
+
+.reader-picker-menu > button span {
+  font-weight: 800;
+}
+
+.reader-picker-menu > button small {
+  overflow: hidden;
+  color: var(--reader-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reader-picker-menu > .reader-picker-library-link {
+  place-items: center;
+  margin-top: 5px;
+  border-top: 1px solid var(--reader-border);
+  border-radius: 0 0 12px 12px;
+  color: var(--reader-accent);
+  font-weight: 850;
+  text-align: center;
 }
 
 .reader-sentence-count {
@@ -9898,7 +10034,7 @@ main.app-shell {
   }
 
   .reader-meta-primary {
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: 12px;
   }
 
@@ -9907,8 +10043,27 @@ main.app-shell {
   }
 
   .reader-meta-title {
-    font-size: 1rem;
-    text-align: right;
+    display: none;
+  }
+
+  .reader-quick-selectors {
+    width: 100%;
+  }
+
+  .reader-quick-picker:first-child {
+    flex: 1 1 auto;
+  }
+
+  .reader-quick-picker-button {
+    width: 100%;
+  }
+
+  .reader-quick-picker-button.chapter {
+    width: 112px;
+  }
+
+  .reader-picker-menu {
+    max-height: min(660px, 68svh);
   }
 
   .reader-page-meta .reader-exit-btn {
