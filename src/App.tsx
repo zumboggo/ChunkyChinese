@@ -7457,45 +7457,11 @@ function ReaderMode({
   const [readerMenuOpen, setReaderMenuOpen] = useState(false)
   const [bookPickerOpen, setBookPickerOpen] = useState(false)
   const [chapterPickerOpen, setChapterPickerOpen] = useState(false)
-  const [readerBouncing, setReaderBouncing] = useState(false)
-  const [nextGlow, setNextGlow] = useState(false)
-  const nextGlowTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     onOverlayOpenChange(readerMenuOpen || Boolean(selectedToken))
     return () => onOverlayOpenChange(false)
   }, [onOverlayOpenChange, readerMenuOpen, selectedToken])
-
-  function triggerNextGlow() {
-    if (nextGlowTimer.current) clearTimeout(nextGlowTimer.current)
-    setNextGlow(true)
-    nextGlowTimer.current = setTimeout(() => setNextGlow(false), 700)
-  }
-
-  const readerSwipe = useSwipeCard({
-    glowColors: SWIPE_NAV_GLOW,
-    directions: ['left', 'right', 'down'],
-    onSwipe: (dir) => {
-      if (dir === 'down') {
-        setReaderBouncing(true)
-        setTimeout(() => setReaderBouncing(false), 600)
-        if (listening.active) listening.togglePlayPause()
-        else listening.startListening()
-      } else if (dir === 'left' && sentenceIndex < sentenceCount - 1) {
-        readerSwipe.dismiss('left')
-      } else if (dir === 'right' && sentenceIndex > 0) {
-        readerSwipe.dismiss('right')
-      }
-    },
-    onDismissed: (dir) => {
-      if (dir === 'left') {
-        triggerNextGlow()
-        void onNext()
-      } else {
-        void onPrevious()
-      }
-    },
-  })
 
   const listeningPlaying =
     ['playing', 'loading', 'shadowing'].includes(listening.snapshot.status)
@@ -7758,15 +7724,10 @@ function ReaderMode({
                   </div>
                 </section>
               ) : null}
-              <div
-                className={`reader-swipe-zone${readerBouncing ? ' reader-bounce-down' : ''}`}
-                {...readerSwipe.handlers}
-              >
+              <div className="reader-swipe-zone">
                   <div
-                    key={`${sentence.id}-${readerSwipe.animKey}`}
-                    // eslint-disable-next-line react-hooks/refs -- Passing the swipe hook ref into JSX; this does not read ref.current during render.
-                    ref={readerSwipe.cardRef}
-                    className={`reader-reading-area card-enter${listening.active ? ' reader-listening-highlight' : ''}${readerSwipe.dismissClass ? ` ${readerSwipe.dismissClass}` : ''}`}
+                    key={sentence.id}
+                    className={`reader-reading-area card-enter${listening.active ? ' reader-listening-highlight' : ''}`}
                   >
                     <div className="reader-interlinear" lang="zh-CN">
                       {(sentence.interlinear ?? tokens.map((token) => ({
@@ -7812,7 +7773,6 @@ function ReaderMode({
                   <span className="story-chunk-counter-label"> sentences in chunk</span>
                 </div>
               )}
-              {nextGlow && <div className="reader-next-glow" aria-hidden="true" />}
               <div className="reader-bottom-bar">
                 <div className="sentence-menu-wrap">
                   <button
@@ -7959,7 +7919,7 @@ function ReaderMode({
                     <button
                       type="button"
                       className="sentence-end-btn reader-listening-icon-btn"
-                      onClick={() => { triggerNextGlow(); void onNext() }}
+                      onClick={() => { void onNext() }}
                       disabled={sentenceIndex >= sentenceCount - 1}
                       aria-label={`Next sentence. Choice B hotkey: ${choiceB.toUpperCase()}.`}
                     >
@@ -7980,7 +7940,7 @@ function ReaderMode({
                       else listening.startListening()
                     }}
                     onPrevious={() => { void onPrevious() }}
-                    onNext={() => { triggerNextGlow(); void onNext() }}
+                    onNext={() => { void onNext() }}
                     prevDisabled={sentenceIndex <= 0}
                     nextDisabled={sentenceIndex >= sentenceCount - 1}
                     prevLabel="Previous sentence"
