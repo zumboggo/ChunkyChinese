@@ -10171,18 +10171,18 @@ main.app-shell {
 @media (max-width: 760px) {
   .app-shell.app-screen-reader {
     width: 100%;
-    height: 100svh;
+    height: auto;
     min-height: 100svh;
-    overflow: hidden;
-    padding: 8px 8px calc(env(safe-area-inset-bottom) + 94px);
+    overflow: visible;
+    padding: 8px 8px calc(env(safe-area-inset-bottom) + 154px);
   }
 
   .reader-screen.reader-playlist-screen {
     width: 100%;
-    height: 100%;
-    min-height: 0;
-    padding: 6px;
-    overflow: hidden;
+    height: auto;
+    min-height: calc(100svh - 170px);
+    padding: 6px 6px 28px;
+    overflow: visible;
     border: 0;
     border-radius: 0;
     background: linear-gradient(180deg, #f8fbff 0%, #edf6ff 38%, #eaf4ff 100%);
@@ -10191,7 +10191,7 @@ main.app-shell {
 
   .reader-playlist-screen .reader-layout,
   .reader-playlist-screen .reader-page {
-    height: 100%;
+    height: auto;
     min-height: 0;
   }
 }
