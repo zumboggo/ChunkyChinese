@@ -157,6 +157,7 @@ import {
   readLegacyMeditationProgress,
 } from './meditationReader'
 import { WordInfoPopover } from './WordInfoPopover'
+import { FlashcardDeckImporter } from './FlashcardDeckImporter'
 import { useReaderListeningController } from './useReaderListeningController'
 import { shouldCountReaderActiveSecond } from './readerActivity'
 import {
@@ -167,9 +168,9 @@ import {
 } from './readerQueue'
 import {
   ALL_FLASHCARD_DECK_ID,
-  FLASHCARD_DECKS,
   ORIGINAL_DECK_ID,
   effectiveWordDeckIds,
+  flashcardDecksForWords,
   wordIsInSelectedFlashcardDecks,
 } from './flashcardDecks'
 import { cappedFlashcardStudySeconds } from './studyTime'
@@ -707,6 +708,7 @@ function App() {
   const [bookListenAnimKey, setBookListenAnimKey] = useState(0)
   const [bookListenFinished, setBookListenFinished] = useState(false)
   const wakeLockRef = useRef<{ release: () => Promise<void> } | null>(null)
+  const previousScreenRef = useRef<Screen>(screen)
   const dashboardToastReadyRef = useRef(false)
 
   const stopAudioOutputs = useCallback(() => {
@@ -1133,6 +1135,7 @@ function App() {
     window.speechSynthesis.speak(utterance)
   }, [currentSegment, isPlaying, studyMode, studyWord])
   const activeWords = useMemo(() => words.filter(isActiveVocabWord), [words])
+  const flashcardDeckOptions = useMemo(() => flashcardDecksForWords(activeWords), [activeWords])
   const selectedFlashcardWords = useMemo(
     () => activeWords.filter((word) => wordIsInSelectedFlashcardDecks(word, userSettings.selectedFlashcardDeckIds)),
     [activeWords, userSettings.selectedFlashcardDeckIds],
@@ -2521,6 +2524,19 @@ function App() {
     onNext: bookListenAdvance,
     onPrevious: bookListenGoBack,
   })
+
+  // Keep audio alive when the browser/app is merely backgrounded, but stop it
+  // when the learner deliberately navigates away from Listening inside the app.
+  useEffect(() => {
+    const previousScreen = previousScreenRef.current
+    previousScreenRef.current = screen
+    if (previousScreen !== 'lesson' || screen === 'lesson') return
+    runToken.current += 1
+    stopAudioOutputs()
+    bookListening.stop()
+    setSentencePaused(true)
+    setIsPlaying(false)
+  }, [bookListening, screen, stopAudioOutputs])
 
   // Keep a stable ref to startListening so auto-start effect doesn't need it as a dep
   bookListenStartRef.current = bookListening.startListening
@@ -5038,7 +5054,7 @@ function App() {
                   <h2>Flashcard settings</h2>
                   <p>Choose which decks feed one combined FSRS queue. Mastery and overall metrics remain shared across all words.</p>
                   <div className="flashcard-deck-settings" aria-label="Flashcard decks">
-                    {FLASHCARD_DECKS.map((deck) => {
+                    {flashcardDeckOptions.map((deck) => {
                       const allSelected = userSettings.selectedFlashcardDeckIds.includes(ALL_FLASHCARD_DECK_ID)
                       const checked = userSettings.selectedFlashcardDeckIds.includes(deck.id)
                       return (
@@ -5057,6 +5073,21 @@ function App() {
                       )
                     })}
                   </div>
+                  <FlashcardDeckImporter
+                    decks={flashcardDeckOptions
+                      .filter((deck) => deck.id !== ALL_FLASHCARD_DECK_ID)
+                      .map((deck) => ({ id: deck.id, name: deck.name }))}
+                    onComplete={async (message, selectedDeckId) => {
+                      if (selectedDeckId) {
+                        const next = { ...userSettings, selectedFlashcardDeckIds: [selectedDeckId] }
+                        setUserSettings(next)
+                        await saveUserSettings(next)
+                      }
+                      setLastSummary(message)
+                      await refresh()
+                      queueCloudSync()
+                    }}
+                  />
                   <div className="hotkey-grid">
                     <label>
                       <span>Flashcard queue</span>
@@ -7463,6 +7494,17 @@ function ReaderMode({
     return () => onOverlayOpenChange(false)
   }, [onOverlayOpenChange, readerMenuOpen, selectedToken])
 
+  const readerSwipe = useSwipeCard({
+    directions: ['left', 'right'],
+    allowVerticalScroll: true,
+    threshold: 54,
+    glowColors: SWIPE_NAV_GLOW,
+    onSwipe: (direction) => {
+      if (direction === 'left' && sentenceIndex < sentenceCount - 1) void onNext()
+      if (direction === 'right' && sentenceIndex > 0) void onPrevious()
+    },
+  })
+
   const listeningPlaying =
     ['playing', 'loading', 'shadowing'].includes(listening.snapshot.status)
   const sortedReaderBooks = useMemo(
@@ -7724,9 +7766,12 @@ function ReaderMode({
                   </div>
                 </section>
               ) : null}
-              <div className="reader-swipe-zone">
+              {/* eslint-disable-next-line react-hooks/refs -- The swipe hook exposes stable JSX event handlers. */}
+              <div className="reader-swipe-zone" {...readerSwipe.handlers}>
                   <div
                     key={sentence.id}
+                    // eslint-disable-next-line react-hooks/refs -- Passing the swipe hook ref into JSX does not read ref.current.
+                    ref={readerSwipe.cardRef}
                     className={`reader-reading-area card-enter${listening.active ? ' reader-listening-highlight' : ''}`}
                   >
                     <div className="reader-interlinear" lang="zh-CN">

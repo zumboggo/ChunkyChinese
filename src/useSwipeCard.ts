@@ -17,6 +17,8 @@ export interface UseSwipeCardOptions {
   enabled?: boolean
   /** Which directions count as swipes. Defaults to all four. */
   directions?: SwipeDir[]
+  /** Let predominantly vertical gestures scroll the page normally. */
+  allowVerticalScroll?: boolean
   /** Drag distance (px) before a direction locks in. */
   threshold?: number
   glowColors?: Partial<Record<SwipeDir, string>>
@@ -55,6 +57,7 @@ const ALL_DIRS: SwipeDir[] = ['left', 'right', 'up', 'down']
 export function useSwipeCard({
   enabled = true,
   directions = ALL_DIRS,
+  allowVerticalScroll = false,
   threshold = 40,
   glowColors = SWIPE_RATING_GLOW,
   onSwipe,
@@ -64,6 +67,7 @@ export function useSwipeCard({
 }: UseSwipeCardOptions): SwipeCardHandle {
   const cardRef = useRef<HTMLDivElement | null>(null)
   const touchStartRef = useRef<{ x: number; y: number } | null>(null)
+  const touchAxisRef = useRef<'horizontal' | 'vertical' | null>(null)
   const dismissTimer = useRef<number | null>(null)
   const [swipeDir, setSwipeDir] = useState<SwipeDir | null>(null)
   const [dismissDir, setDismissDir] = useState<SwipeDir | null>(null)
@@ -83,6 +87,7 @@ export function useSwipeCard({
       dismissTimer.current = null
     }
     touchStartRef.current = null
+    touchAxisRef.current = null
     setSwipeDir(null)
     setDismissDir(null)
     clearCardStyles()
@@ -110,6 +115,7 @@ export function useSwipeCard({
     if (dismissDir) return
     const t = e.touches[0]
     touchStartRef.current = { x: t.clientX, y: t.clientY }
+    touchAxisRef.current = null
     if (cardRef.current) {
       cardRef.current.style.transition = 'none'
       cardRef.current.style.boxShadow = ''
@@ -119,13 +125,22 @@ export function useSwipeCard({
 
   const onTouchMove = useCallback((e: React.TouchEvent) => {
     if (!touchStartRef.current || !enabled || dismissDir) return
-    if (e.cancelable) e.preventDefault()
     const t = e.touches[0]
     const dx = t.clientX - touchStartRef.current.x
     const dy = t.clientY - touchStartRef.current.y
     const absDx = Math.abs(dx)
     const absDy = Math.abs(dy)
     const dist = Math.sqrt(dx * dx + dy * dy)
+
+    if (allowVerticalScroll && !touchAxisRef.current && (absDx > 8 || absDy > 8)) {
+      touchAxisRef.current = absDx > absDy ? 'horizontal' : 'vertical'
+    }
+    if (allowVerticalScroll && touchAxisRef.current === 'vertical') {
+      setSwipeDir(null)
+      clearCardStyles()
+      return
+    }
+    if (e.cancelable) e.preventDefault()
 
     let dir: SwipeDir | null = null
     if (absDx > threshold || absDy > threshold) {
@@ -150,11 +165,12 @@ export function useSwipeCard({
     }
 
     setSwipeDir(dir)
-  }, [directions, dismissDir, enabled, glowColors, threshold])
+  }, [allowVerticalScroll, clearCardStyles, directions, dismissDir, enabled, glowColors, threshold])
 
   const onTouchEnd = useCallback(() => {
     const dir = swipeDir
     touchStartRef.current = null
+    touchAxisRef.current = null
     setSwipeDir(null)
     clearCardStyles()
     if (!dir || !enabled || dismissDir) return

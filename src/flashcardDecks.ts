@@ -26,10 +26,47 @@ export const FLASHCARD_DECKS: ReadonlyArray<{
   },
 ]
 
-const VOCAB_DECK_IDS = new Set<VocabDeckId>([
-  ORIGINAL_DECK_ID,
-  SAVED_FROM_READING_DECK_ID,
-])
+const RESERVED_DECK_IDS = new Set([ALL_FLASHCARD_DECK_ID])
+
+function validDeckId(id: unknown): id is VocabDeckId {
+  return typeof id === 'string' && id.length > 0 && id.length <= 180 && !RESERVED_DECK_IDS.has(id)
+}
+
+export function customDeckId(name: string): VocabDeckId {
+  return `custom:${encodeURIComponent(name.trim())}`
+}
+
+export function flashcardDeckName(id: FlashcardDeckId): string {
+  if (id === ALL_FLASHCARD_DECK_ID) return 'All'
+  if (id === ORIGINAL_DECK_ID) return 'Original Deck'
+  if (id === SAVED_FROM_READING_DECK_ID) return 'Saved from Reading'
+  if (id.startsWith('custom:')) {
+    try {
+      return decodeURIComponent(id.slice('custom:'.length)) || 'Imported Deck'
+    } catch {
+      return id.slice('custom:'.length) || 'Imported Deck'
+    }
+  }
+  return id
+}
+
+export function flashcardDecksForWords(words: readonly VocabWord[]) {
+  const known = new Set<VocabDeckId>([ORIGINAL_DECK_ID, SAVED_FROM_READING_DECK_ID])
+  for (const word of words) {
+    for (const deckId of effectiveWordDeckIds(word)) known.add(deckId)
+  }
+  return [
+    ...FLASHCARD_DECKS,
+    ...Array.from(known)
+      .filter((id) => id !== ORIGINAL_DECK_ID && id !== SAVED_FROM_READING_DECK_ID)
+      .sort((a, b) => flashcardDeckName(a).localeCompare(flashcardDeckName(b)))
+      .map((id) => ({
+        id,
+        name: flashcardDeckName(id),
+        description: 'A deck imported from CSV.',
+      })),
+  ]
+}
 
 export function effectiveWordDeckIds(word: VocabWord): VocabDeckId[] {
   if (word.deckIds?.length) {
@@ -56,12 +93,12 @@ export function wordIsInSelectedFlashcardDecks(
 export function sanitizeSelectedFlashcardDeckIds(value: unknown): FlashcardDeckId[] {
   if (!Array.isArray(value)) return [ALL_FLASHCARD_DECK_ID]
   const selected = Array.from(
-    new Set(value.filter((id): id is FlashcardDeckId => id === ALL_FLASHCARD_DECK_ID || VOCAB_DECK_IDS.has(id as VocabDeckId))),
+    new Set(value.filter((id): id is FlashcardDeckId => id === ALL_FLASHCARD_DECK_ID || validDeckId(id))),
   )
   if (selected.includes(ALL_FLASHCARD_DECK_ID)) return [ALL_FLASHCARD_DECK_ID]
   return selected.length > 0 ? selected : [ALL_FLASHCARD_DECK_ID]
 }
 
 export function uniqueDeckIds(deckIds: readonly string[]): VocabDeckId[] {
-  return Array.from(new Set(deckIds.filter((id): id is VocabDeckId => VOCAB_DECK_IDS.has(id as VocabDeckId))))
+  return Array.from(new Set(deckIds.filter(validDeckId)))
 }

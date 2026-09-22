@@ -4,6 +4,9 @@ import {
   ORIGINAL_DECK_ID,
   SAVED_FROM_READING_DECK_ID,
   effectiveWordDeckIds,
+  customDeckId,
+  flashcardDeckName,
+  flashcardDecksForWords,
   sanitizeSelectedFlashcardDeckIds,
   wordIsInSelectedFlashcardDecks,
 } from './flashcardDecks'
@@ -50,5 +53,14 @@ describe('flashcard decks', () => {
     expect(sanitizeSelectedFlashcardDeckIds([ALL_FLASHCARD_DECK_ID, ORIGINAL_DECK_ID])).toEqual([
       ALL_FLASHCARD_DECK_ID,
     ])
+    expect(sanitizeSelectedFlashcardDeckIds(['custom:Travel%20Chinese'])).toEqual(['custom:Travel%20Chinese'])
+  })
+
+  it('discovers imported decks and preserves their display names', () => {
+    const deckId = customDeckId('Travel Chinese')
+    expect(flashcardDeckName(deckId)).toBe('Travel Chinese')
+    expect(flashcardDecksForWords([makeWord({ deckIds: [deckId] })])).toEqual(
+      expect.arrayContaining([expect.objectContaining({ id: deckId, name: 'Travel Chinese' })]),
+    )
   })
 })

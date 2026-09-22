@@ -85,6 +85,88 @@
   box-shadow: 0 24px 70px rgba(39, 91, 137, 0.13);
 }
 
+.flashcard-deck-importer {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid rgba(104, 91, 73, 0.14);
+  border-radius: 20px;
+  background: rgba(255, 253, 248, 0.72);
+}
+
+.flashcard-deck-importer h3,
+.flashcard-deck-importer p {
+  margin: 0;
+}
+
+.deck-import-mode {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  padding: 5px;
+  border-radius: 16px;
+  background: rgba(91, 86, 78, 0.08);
+}
+
+.deck-import-mode button {
+  min-height: 42px;
+  padding: 8px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: none;
+  font-size: 0.8rem;
+}
+
+.deck-import-mode button.active {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 5px 14px rgba(54, 46, 38, 0.1);
+}
+
+.deck-import-field {
+  display: grid;
+  gap: 6px;
+}
+
+.deck-import-field > span {
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.deck-import-field input,
+.deck-import-field select {
+  width: 100%;
+  min-height: 46px;
+}
+
+.deck-csv-button {
+  justify-self: stretch;
+  text-align: center;
+}
+
+.deck-import-preview {
+  display: grid;
+  gap: 4px;
+  max-height: 180px;
+  padding: 12px;
+  overflow-y: auto;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.deck-import-preview span,
+.deck-import-preview small {
+  color: var(--muted-navy);
+  font-size: 0.78rem;
+}
+
+.deck-import-error {
+  color: #9f2f3f;
+  font-weight: 700;
+}
+
 .reader-playlist-screen .reader-reading-area {
   position: relative;
   display: flex;

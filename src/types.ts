@@ -30,7 +30,7 @@ export type ListeningEventType =
 
 export type FsrsRating = 'again' | 'hard' | 'good' | 'easy'
 
-export type VocabDeckId = 'original' | 'saved-from-reading'
+export type VocabDeckId = string
 export type FlashcardDeckId = 'all' | VocabDeckId
 
 export type StudyMode = 'listeningMode' | 'sentenceMode'
