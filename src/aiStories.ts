@@ -11,7 +11,7 @@ export const AI_STORY_MODELS: AiStoryModel[] = [
   { id: 'moonshotai/kimi-k2', label: 'Kimi K2' },
 ]
 
-export const AI_STORY_LENGTHS = [200, 400, 600, 800]
+export const AI_STORY_LENGTHS = [100, 250, 400]
 
 export interface GenerateAiStoryOptions {
   prompt: string
@@ -19,7 +19,7 @@ export interface GenerateAiStoryOptions {
   strictRetry?: boolean
   apiKey: string
   model: string
-  lengthChars: number
+  sentenceCount: number
   /**
    * Background context from the selected story world (see storyWorlds.ts).
    * Injected as context only — learner-level and format constraints in this
@@ -44,7 +44,7 @@ export interface GenerateAiStoryOptions {
 export const COVER_IMAGE_MODEL = 'google/gemini-3.1-flash-lite-image'
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
-const REQUEST_TIMEOUT_MS = 90_000
+const REQUEST_TIMEOUT_MS = 180_000
 
 const SYSTEM_PROMPT = [
   'You write graded Chinese readers for a language learner.',
@@ -69,7 +69,6 @@ export async function generateAiStory(options: GenerateAiStoryOptions): Promise<
 
 function buildUserMessage(options: GenerateAiStoryOptions, prompt: string): string {
   const wordList = options.knownWords.map((w) => w.word).join('、')
-  const approxSentences = Math.max(4, Math.round(options.lengthChars / 15))
   const opening = options.continueFrom
     ? [
         `You are continuing an existing story titled 《${options.continueFrom.title}》. The most recent sentences are:`,
@@ -83,7 +82,7 @@ function buildUserMessage(options: GenerateAiStoryOptions, prompt: string): stri
   const parts = [
     opening,
     options.worldContext ?? '',
-    `The story should be approximately ${options.lengthChars} Chinese characters in total, split into short sentences (roughly ${approxSentences} sentences).`,
+    `Write approximately ${options.sentenceCount} short Chinese sentences. Each sentence must have its own faithful English translation in the matching array item.`,
     `The learner knows these words:\n${wordList}`,
     'At least 95% of the word occurrences in the story MUST come from this known-word list (plus proper names, numbers, and basic function words like 的/了/是/在/我/你/他/她).',
     'Use at most 5 words outside the list, and include every such word in unavoidableNewWords with pinyin and meaning.',
@@ -137,7 +136,7 @@ async function requestStoryJson(
         model: options.model,
         messages,
         temperature: options.strictRetry ? 0.5 : 0.8,
-        max_tokens: 4000,
+        max_tokens: Math.min(32_000, Math.max(4_000, options.sentenceCount * 90)),
         response_format: { type: 'json_object' },
       }),
       signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),

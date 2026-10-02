@@ -94,6 +94,7 @@ import {
   READING_MIN_FOCUSED_WORDS,
 } from './readingProgress'
 import { generateAiStory, generateStoryCover, AI_STORY_MODELS, AI_STORY_LENGTHS } from './aiStories'
+import { parseBilingualReaderText } from './readerTextImport'
 import {
   STORY_WORLDS,
   buildStoryWorldContext,
@@ -462,7 +463,12 @@ function GoalRing({
   )
 }
 
-const WORD_MILESTONES = [25, 50, 100, 250, 500, 750, 1000, 1500, 2000, 3000, 5000, 7500, 10000]
+const WORD_MILESTONES = Array.from({ length: 14 }, (_, index) => (index + 1) * 250)
+const TREE_STAGE_NAMES = [
+  'new sprout', 'young sprout', 'small seedling', 'strong seedling', 'young sapling',
+  'leafy sapling', 'young tree', 'growing tree', 'branching tree', 'full young tree',
+  'strong tree', 'mature tree', 'wide-canopy tree', 'flourishing tree', 'great learning tree',
+]
 
 function MasteryMeter({ word }: { word: VocabWord }) {
   const mastery = masteryForWord(word)
@@ -489,6 +495,9 @@ function MilestoneJourney({
   const fillFraction = Math.min(1, Math.max(0, (wordsKnown - previousMilestone) / span))
   const remaining = Math.max(0, nextMilestone - wordsKnown)
   const displayedKnown = useCountUp(wordsKnown)
+  const treeStage = Math.min(14, Math.floor(wordsKnown / 250))
+  const treeColumn = treeStage % 5
+  const treeRow = Math.floor(treeStage / 5)
   return (
     <div className="milestone-journey" aria-label={`${wordsKnown} words known, ${remaining} to reach ${nextMilestone}`}>
       <div className="milestone-journey-headline">
@@ -497,6 +506,18 @@ function MilestoneJourney({
         {leveledUpThisWeek > 0 && (
           <span className="milestone-journey-delta">▲ {leveledUpThisWeek} moved up this week</span>
         )}
+      </div>
+      <div className="vocab-tree-wrap">
+        <div
+          className="vocab-tree-stage"
+          role="img"
+          aria-label={`Vocabulary growth: ${TREE_STAGE_NAMES[treeStage]}`}
+          style={{
+            backgroundImage: `url(${import.meta.env.BASE_URL}images/vocab-tree-stages.png)`,
+            backgroundPosition: `${treeColumn * 25}% ${treeRow * 50}%`,
+          }}
+        />
+        <span>{TREE_STAGE_NAMES[treeStage]} · a new stage every 250 words</span>
       </div>
       <div className="milestone-journey-bar" role="progressbar" aria-valuemin={previousMilestone} aria-valuemax={nextMilestone} aria-valuenow={wordsKnown}>
         <div className="milestone-journey-fill" style={{ width: `${fillFraction * 100}%` }} />
@@ -3432,7 +3453,7 @@ function App() {
         pinyin: word.pinyin,
         meaning: word.meaning,
       }))
-      .slice(0, 1500)
+      .slice(0, 3500)
     if (knownWords.length < 20) {
       throw new Error('You need at least 20 mature known words before generating a known-word story.')
     }
@@ -3482,7 +3503,7 @@ function App() {
   const handleGenerateStory = useCallback(async (
     prompt: string,
     options: {
-      lengthChars: number
+      sentenceCount: number
       model: string
       cover: boolean
       audio: boolean
@@ -3502,7 +3523,7 @@ function App() {
       knownWords,
       apiKey,
       model: options.model,
-      lengthChars: options.lengthChars,
+      sentenceCount: options.sentenceCount,
       worldContext: options.world ? buildStoryWorldContext(options.world) : undefined,
       focusWords: focusWords && focusWords.length > 0 ? focusWords : undefined,
     }
@@ -3510,7 +3531,7 @@ function App() {
     const nextSettings = {
       ...aiStorySettings,
       model: options.model,
-      defaultLengthChars: options.lengthChars,
+      defaultSentenceCount: options.sentenceCount,
       generateCover: options.cover,
       generateAudio: options.audio,
     }
@@ -3547,6 +3568,16 @@ function App() {
     }
   }, [aiStorySettings, collectKnownWords, generateValidatedStory, refresh, requireOpenRouterKey, synthesizeChapterAudio])
 
+  const handleImportReaderText = useCallback(async (file: File): Promise<GeneratedStoryResult> => {
+    const story = parseBilingualReaderText(await file.text(), file.name)
+    const validation = validateGeneratedStoryCoverage(story, activeWords)
+    const book = generatedStoryToReaderBook(story, validation)
+    await saveGeneratedReaderBook(book)
+    await refresh()
+    setAiStoryMessage(`${book.title} added to Reading with ${story.sentences.length} sentence pairs.`)
+    return { book, story, validation }
+  }, [activeWords, refresh])
+
   const handleContinueStory = useCallback(async (book: ReaderBook, prompt = ''): Promise<GeneratedStoryResult> => {
     const apiKey = requireOpenRouterKey()
     const knownWords = collectKnownWords()
@@ -3564,7 +3595,7 @@ function App() {
         knownWords,
         apiKey,
         model: aiStorySettings.model,
-        lengthChars: aiStorySettings.defaultLengthChars,
+        sentenceCount: aiStorySettings.defaultSentenceCount,
         continueFrom: { title: book.title, recentSentences, nextChapter },
       })
       const updated = appendGeneratedChapter(book, story, validation)
@@ -4503,6 +4534,7 @@ function App() {
             setScreen('reader')
           }}
           onGenerateStory={handleGenerateStory}
+          onImportReaderText={handleImportReaderText}
           onContinueStory={handleContinueStory}
           onDeleteStory={handleDeleteGeneratedStory}
           aiStoryBusy={aiStoryBusy}
@@ -4511,7 +4543,7 @@ function App() {
           storyFocusCandidates={storyFocusCandidates}
           aiStoryDefaults={{
             model: aiStorySettings.model,
-            lengthChars: aiStorySettings.defaultLengthChars,
+            sentenceCount: aiStorySettings.defaultSentenceCount,
             generateCover: aiStorySettings.generateCover,
             generateAudio: aiStorySettings.generateAudio,
             azureConfigured: Boolean(aiStorySettings.azureSpeechKey && aiStorySettings.azureSpeechRegion),
@@ -4810,6 +4842,22 @@ function App() {
                   </label>
                 </section>
               </div>
+              <GenerateStoryPanel
+                disabled={!aiStorySettings.openRouterApiKey}
+                busy={aiStoryBusy}
+                message={aiStoryMessage}
+                onGenerate={handleGenerateStory}
+                onImportText={handleImportReaderText}
+                onOpenGenerated={(book) => void openReaderBook(book, 'start')}
+                defaults={{
+                  model: aiStorySettings.model,
+                  sentenceCount: aiStorySettings.defaultSentenceCount,
+                  generateCover: aiStorySettings.generateCover,
+                  generateAudio: aiStorySettings.generateAudio,
+                  azureConfigured: Boolean(aiStorySettings.azureSpeechKey && aiStorySettings.azureSpeechRegion),
+                }}
+                focusCandidates={storyFocusCandidates}
+              />
             </details>
 
             <details className="settings-group">
@@ -6797,6 +6845,7 @@ function ReadingTextsLibrary({
   onRemoveOffline,
   onBrowseNovels,
   onGenerateStory,
+  onImportReaderText,
   onContinueStory,
   onDeleteStory,
   aiStoryBusy,
@@ -6817,13 +6866,14 @@ function ReadingTextsLibrary({
   onDownloadOffline: (book: ReaderBook) => void
   onRemoveOffline: (book: ReaderBook) => void
   onBrowseNovels: () => void
-  onGenerateStory: (prompt: string, options: { lengthChars: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection; focusWords?: Array<{ word: string; pinyin: string; meaning: string }> }) => Promise<GeneratedStoryResult>
+  onGenerateStory: (prompt: string, options: { sentenceCount: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection; focusWords?: Array<{ word: string; pinyin: string; meaning: string }> }) => Promise<GeneratedStoryResult>
+  onImportReaderText: (file: File) => Promise<GeneratedStoryResult>
   onContinueStory: (book: ReaderBook) => Promise<GeneratedStoryResult>
   onDeleteStory: (book: ReaderBook) => Promise<void>
   aiStoryBusy: boolean
   aiStoryMessage: string | null
   canGenerateAiStories: boolean
-  aiStoryDefaults: { model: string; lengthChars: number; generateCover: boolean; generateAudio: boolean; azureConfigured: boolean }
+  aiStoryDefaults: { model: string; sentenceCount: number; generateCover: boolean; generateAudio: boolean; azureConfigured: boolean }
   storyFocusCandidates: Array<{ word: string; pinyin: string; meaning: string }>
 }) {
   const [category, setCategory] = useState<ReadingCategoryView>(null)
@@ -6957,6 +7007,7 @@ function ReadingTextsLibrary({
               busy={aiStoryBusy}
               message={aiStoryMessage}
               onGenerate={onGenerateStory}
+              onImportText={onImportReaderText}
               onOpenGenerated={(book) => void onChooseBook(book, 'start')}
               defaults={aiStoryDefaults}
               focusCandidates={storyFocusCandidates}
@@ -7085,6 +7136,7 @@ function GenerateStoryPanel({
   busy,
   message,
   onGenerate,
+  onImportText,
   onOpenGenerated,
   defaults,
   focusCandidates,
@@ -7092,13 +7144,14 @@ function GenerateStoryPanel({
   disabled: boolean
   busy: boolean
   message: string | null
-  onGenerate: (prompt: string, options: { lengthChars: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection; focusWords?: Array<{ word: string; pinyin: string; meaning: string }> }) => Promise<GeneratedStoryResult>
+  onGenerate: (prompt: string, options: { sentenceCount: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection; focusWords?: Array<{ word: string; pinyin: string; meaning: string }> }) => Promise<GeneratedStoryResult>
+  onImportText: (file: File) => Promise<GeneratedStoryResult>
   onOpenGenerated: (book: ReaderBook) => void
-  defaults: { model: string; lengthChars: number; generateCover: boolean; generateAudio: boolean; azureConfigured: boolean }
+  defaults: { model: string; sentenceCount: number; generateCover: boolean; generateAudio: boolean; azureConfigured: boolean }
   focusCandidates: Array<{ word: string; pinyin: string; meaning: string }>
 }) {
   const [prompt, setPrompt] = useState('')
-  const [lengthChars, setLengthChars] = useState(defaults.lengthChars)
+  const [sentenceCount, setSentenceCount] = useState(defaults.sentenceCount)
   const [model, setModel] = useState(defaults.model)
   const [cover, setCover] = useState(defaults.generateCover)
   const [audio, setAudio] = useState(defaults.generateAudio && defaults.azureConfigured)
@@ -7143,7 +7196,7 @@ function GenerateStoryPanel({
     setLocalMessage(null)
     try {
       const result = await onGenerate(prompt, {
-        lengthChars,
+        sentenceCount,
         model,
         cover,
         audio,
@@ -7165,7 +7218,7 @@ function GenerateStoryPanel({
     <section className="generate-story-panel">
       <div>
         <h3>Generate a known-word story</h3>
-        <p>Pick a story world, write an optional prompt, and the app will write a bilingual story built from your mature known words.</p>
+        <p>Pick a story world, write an optional prompt, and the app will create a Reader-ready bilingual book using at least 95% words you already know.</p>
       </div>
       <div className="story-world-grid" role="radiogroup" aria-label="Story world">
         {STORY_WORLDS.map((w) => (
@@ -7282,12 +7335,12 @@ function GenerateStoryPanel({
         <label>
           <span>Length</span>
           <select
-            value={lengthChars}
-            onChange={(event) => setLengthChars(Number(event.target.value))}
+            value={sentenceCount}
+            onChange={(event) => setSentenceCount(Number(event.target.value))}
             disabled={disabled || busy}
           >
             {AI_STORY_LENGTHS.map((length) => (
-              <option key={length} value={length}>≈ {length} characters</option>
+              <option key={length} value={length}>≈ {length} sentences</option>
             ))}
           </select>
         </label>
@@ -7343,6 +7396,32 @@ function GenerateStoryPanel({
           <small>These will each appear at least twice.</small>
         </div>
       )}
+      <div className="reader-text-import">
+        <div>
+          <strong>Or add your own paired text</strong>
+          <small>Upload a .txt file with one Chinese line, then its English translation, repeated throughout.</small>
+        </div>
+        <label className="reader-text-upload">
+          <span>Upload bilingual TXT</span>
+          <input
+            type="file"
+            accept=".txt,text/plain"
+            disabled={busy}
+            onChange={(event) => {
+              const file = event.target.files?.[0]
+              event.currentTarget.value = ''
+              if (!file) return
+              setLocalMessage(null)
+              void onImportText(file)
+                .then((result) => {
+                  setLastResult(result)
+                  setLocalMessage(`${result.book.title} is ready in Reading.`)
+                })
+                .catch((error) => setLocalMessage(error instanceof Error ? error.message : 'Could not import this text.'))
+            }}
+          />
+        </label>
+      </div>
       <div className="generate-story-actions">
         <button
           type="button"

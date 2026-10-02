@@ -23,7 +23,7 @@ function baseOptions() {
     knownWords: [{ word: '小狗', pinyin: 'xiǎo gǒu', meaning: 'puppy' }],
     apiKey: 'test-key',
     model: 'deepseek/deepseek-chat',
-    lengthChars: 200,
+    sentenceCount: 250,
   }
 }
 
@@ -65,7 +65,7 @@ describe('generateAiStory', () => {
     const userMessage = body.messages[1].content as string
     expect(body.model).toBe('deepseek/deepseek-chat')
     expect(userMessage).toContain('小狗')
-    expect(userMessage).toContain('200 Chinese characters')
+    expect(userMessage).toContain('250 short Chinese sentences')
     expect(fetchMock.mock.calls[0][1].headers.Authorization).toBe('Bearer test-key')
   })
 
@@ -106,7 +106,7 @@ describe('generateAiStory', () => {
     const userMessage = body.messages[1].content as string
     expect(userMessage).toContain('STORY WORLD: My Family.')
     expect(userMessage).toContain('小狗')
-    expect(userMessage).toContain('200 Chinese characters')
+    expect(userMessage).toContain('250 short Chinese sentences')
     expect(userMessage).toContain('95%')
   })
 

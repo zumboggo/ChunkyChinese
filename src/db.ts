@@ -482,7 +482,9 @@ export interface AiStorySettings {
   /** Stored only in this device's IndexedDB; never synced or bundled. */
   openRouterApiKey: string
   model: string
-  defaultLengthChars: number
+  defaultSentenceCount: number
+  /** Legacy setting retained only while older IndexedDB records migrate. */
+  defaultLengthChars?: number
   generateCover: boolean
   generateAudio: boolean
   azureSpeechKey: string
@@ -493,7 +495,7 @@ export interface AiStorySettings {
 export const DEFAULT_AI_STORY_SETTINGS: AiStorySettings = {
   openRouterApiKey: '',
   model: 'deepseek/deepseek-chat',
-  defaultLengthChars: 400,
+  defaultSentenceCount: 250,
   generateCover: true,
   generateAudio: false,
   azureSpeechKey: '',
@@ -505,7 +507,9 @@ export async function getAiStorySettings(): Promise<AiStorySettings> {
   const saved = (await (await getDB()).get('settings', 'aiStorySettings')) as
     | Partial<AiStorySettings>
     | undefined
-  return { ...DEFAULT_AI_STORY_SETTINGS, ...saved }
+  const merged = { ...DEFAULT_AI_STORY_SETTINGS, ...saved }
+  if (saved && saved.defaultSentenceCount === undefined) merged.defaultSentenceCount = 250
+  return merged
 }
 
 export async function saveAiStorySettings(settings: AiStorySettings): Promise<void> {
