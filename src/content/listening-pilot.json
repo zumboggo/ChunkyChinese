@@ -1,0 +1,864 @@
+[
+  {
+    "id": "listening-001",
+    "title": "A drink before we begin",
+    "objective": "You are visiting a friend. Listen for what goes into the tea.",
+    "prerequisites": [
+      "我",
+      "你",
+      "他",
+      "她",
+      "是",
+      "的",
+      "有",
+      "在",
+      "不",
+      "没有",
+      "想",
+      "要",
+      "可以",
+      "吃",
+      "喝",
+      "水",
+      "家",
+      "这里",
+      "那里",
+      "这",
+      "那",
+      "这个",
+      "那个",
+      "今天",
+      "现在",
+      "一",
+      "两",
+      "个",
+      "再",
+      "还",
+      "请",
+      "给",
+      "谢谢",
+      "好",
+      "也",
+      "什么",
+      "吗",
+      "呢",
+      "谁",
+      "哪里",
+      "找",
+      "里",
+      "里面",
+      "上",
+      "上面",
+      "下",
+      "和",
+      "还是",
+      "但是",
+      "一点",
+      "把",
+      "杯子",
+      "咖啡",
+      "了"
+    ],
+    "focus": [
+      {
+        "zh": "茶",
+        "en": "tea",
+        "sourceConcept": "tea"
+      },
+      {
+        "zh": "牛奶",
+        "en": "milk",
+        "sourceConcept": "milk"
+      },
+      {
+        "zh": "糖",
+        "en": "sugar",
+        "sourceConcept": "sugar"
+      },
+      {
+        "zh": "喝",
+        "en": "drink",
+        "sourceConcept": "drink (verb)"
+      },
+      {
+        "zh": "水",
+        "en": "water",
+        "sourceConcept": "water (noun)"
+      }
+    ],
+    "opening": {
+      "zh": "你想喝水吗？",
+      "en": "Would you like some water?"
+    },
+    "ladder": [
+      {
+        "zh": "我想喝茶。",
+        "en": "I would like some tea."
+      },
+      {
+        "zh": "你想喝茶吗？",
+        "en": "Would you like some tea?"
+      },
+      {
+        "zh": "我想要一点牛奶。",
+        "en": "I would like a little milk."
+      },
+      {
+        "zh": "茶里有牛奶。",
+        "en": "There is milk in the tea."
+      },
+      {
+        "zh": "我不要糖。",
+        "en": "I do not want sugar."
+      }
+    ],
+    "transfers": [
+      {
+        "zh": "我想喝水，不想喝茶。",
+        "en": "I want water, not tea.",
+        "question": "What does the speaker want to drink?",
+        "answer": "Water."
+      },
+      {
+        "zh": "茶里有糖，没有牛奶。",
+        "en": "There is sugar in the tea, but no milk.",
+        "question": "What is missing from the tea?",
+        "answer": "Milk."
+      },
+      {
+        "zh": "我也想要一点牛奶。",
+        "en": "I would like a little milk too.",
+        "question": "Is the speaker asking for milk or sugar?",
+        "answer": "Milk."
+      }
+    ],
+    "dialogue": [
+      {
+        "zh": "你想喝什么？",
+        "en": "What would you like to drink?",
+        "speaker": "a"
+      },
+      {
+        "zh": "我想喝茶。",
+        "en": "I would like tea.",
+        "speaker": "b"
+      },
+      {
+        "zh": "要牛奶吗？",
+        "en": "Would you like milk?",
+        "speaker": "a"
+      },
+      {
+        "zh": "要一点牛奶，不要糖，谢谢。",
+        "en": "A little milk, no sugar, thank you.",
+        "speaker": "b"
+      }
+    ],
+    "dialogueQuestion": "What will go into the tea, and what will be left out?",
+    "dialogueAnswer": "A little milk will go in. There will be no sugar.",
+    "closing": [
+      {
+        "zh": "我想喝茶。",
+        "en": "I would like some tea."
+      },
+      {
+        "zh": "不要糖，谢谢。",
+        "en": "No sugar, thank you."
+      }
+    ]
+  },
+  {
+    "id": "listening-002",
+    "title": "Something to eat",
+    "objective": "Breakfast is ready. Listen for what each person wants to eat.",
+    "prerequisites": [
+      "我",
+      "你",
+      "他",
+      "她",
+      "是",
+      "的",
+      "有",
+      "在",
+      "不",
+      "没有",
+      "想",
+      "要",
+      "可以",
+      "吃",
+      "喝",
+      "水",
+      "家",
+      "这里",
+      "那里",
+      "这",
+      "那",
+      "这个",
+      "那个",
+      "今天",
+      "现在",
+      "一",
+      "两",
+      "个",
+      "再",
+      "还",
+      "请",
+      "给",
+      "谢谢",
+      "好",
+      "也",
+      "什么",
+      "吗",
+      "呢",
+      "谁",
+      "哪里",
+      "找",
+      "里",
+      "里面",
+      "上",
+      "上面",
+      "下",
+      "和",
+      "还是",
+      "但是",
+      "一点",
+      "把",
+      "茶",
+      "牛奶",
+      "糖",
+      "了"
+    ],
+    "focus": [
+      {
+        "zh": "鸡蛋",
+        "en": "egg",
+        "sourceConcept": "egg"
+      },
+      {
+        "zh": "饿",
+        "en": "hungry",
+        "sourceConcept": null
+      },
+      {
+        "zh": "面包",
+        "en": "bread",
+        "sourceConcept": "bread"
+      },
+      {
+        "zh": "苹果",
+        "en": "apple",
+        "sourceConcept": "apple"
+      },
+      {
+        "zh": "早餐",
+        "en": "breakfast",
+        "sourceConcept": "breakfast"
+      }
+    ],
+    "opening": {
+      "zh": "我想喝茶。",
+      "en": "I would like some tea."
+    },
+    "ladder": [
+      {
+        "zh": "我饿了。",
+        "en": "I am hungry now."
+      },
+      {
+        "zh": "我想吃面包。",
+        "en": "I would like to eat bread."
+      },
+      {
+        "zh": "早餐有鸡蛋。",
+        "en": "There are eggs for breakfast."
+      },
+      {
+        "zh": "我想吃一个鸡蛋。",
+        "en": "I would like to eat an egg."
+      },
+      {
+        "zh": "我还想要一个苹果。",
+        "en": "I would also like an apple."
+      }
+    ],
+    "transfers": [
+      {
+        "zh": "我不饿。我想喝水。",
+        "en": "I am not hungry. I would like water.",
+        "question": "Does this person want food right now?",
+        "answer": "No. They want water."
+      },
+      {
+        "zh": "我想吃面包，不想吃鸡蛋。",
+        "en": "I want bread, not eggs.",
+        "question": "Which food does the speaker want?",
+        "answer": "Bread."
+      },
+      {
+        "zh": "早餐有面包，也有牛奶。",
+        "en": "There is bread and milk for breakfast.",
+        "question": "Which drink is available?",
+        "answer": "Milk."
+      }
+    ],
+    "dialogue": [
+      {
+        "zh": "你饿了吗？",
+        "en": "Are you hungry now?",
+        "speaker": "a"
+      },
+      {
+        "zh": "我饿了。早餐有什么？",
+        "en": "I am hungry. What is there for breakfast?",
+        "speaker": "b"
+      },
+      {
+        "zh": "有面包和鸡蛋。",
+        "en": "There is bread and there are eggs.",
+        "speaker": "a"
+      },
+      {
+        "zh": "我想吃一个鸡蛋，也想喝一点牛奶。",
+        "en": "I would like an egg and a little milk.",
+        "speaker": "b"
+      }
+    ],
+    "dialogueQuestion": "Which food and drink did the person choose?",
+    "dialogueAnswer": "An egg and a little milk.",
+    "closing": [
+      {
+        "zh": "我饿了。",
+        "en": "I am hungry now."
+      },
+      {
+        "zh": "不要糖，谢谢。",
+        "en": "No sugar, thank you."
+      }
+    ]
+  },
+  {
+    "id": "listening-003",
+    "title": "Put it here",
+    "objective": "You are setting the table. Listen for where the objects belong.",
+    "prerequisites": [
+      "我",
+      "你",
+      "他",
+      "她",
+      "是",
+      "的",
+      "有",
+      "在",
+      "不",
+      "没有",
+      "想",
+      "要",
+      "可以",
+      "吃",
+      "喝",
+      "水",
+      "家",
+      "这里",
+      "那里",
+      "这",
+      "那",
+      "这个",
+      "那个",
+      "今天",
+      "现在",
+      "一",
+      "两",
+      "个",
+      "再",
+      "还",
+      "请",
+      "给",
+      "谢谢",
+      "好",
+      "也",
+      "什么",
+      "吗",
+      "呢",
+      "谁",
+      "哪里",
+      "找",
+      "里",
+      "里面",
+      "上",
+      "上面",
+      "下",
+      "和",
+      "还是",
+      "但是",
+      "一点",
+      "把",
+      "杯子",
+      "茶",
+      "牛奶",
+      "糖",
+      "面包",
+      "鸡蛋",
+      "苹果",
+      "了"
+    ],
+    "focus": [
+      {
+        "zh": "盘子",
+        "en": "plate",
+        "sourceConcept": "plate"
+      },
+      {
+        "zh": "勺子",
+        "en": "spoon",
+        "sourceConcept": "spoon"
+      },
+      {
+        "zh": "旁边",
+        "en": "beside; next to",
+        "sourceConcept": null
+      },
+      {
+        "zh": "桌子",
+        "en": "table",
+        "sourceConcept": "table"
+      },
+      {
+        "zh": "放",
+        "en": "put; place",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "我想要一点牛奶。",
+      "en": "I would like a little milk."
+    },
+    "ladder": [
+      {
+        "zh": "盘子在桌子上。",
+        "en": "The plate is on the table."
+      },
+      {
+        "zh": "勺子在盘子旁边。",
+        "en": "The spoon is beside the plate."
+      },
+      {
+        "zh": "请放在这里。",
+        "en": "Please put it here."
+      },
+      {
+        "zh": "请把盘子放在桌子上。",
+        "en": "Please put the plate on the table."
+      },
+      {
+        "zh": "请把勺子放在盘子旁边。",
+        "en": "Please put the spoon beside the plate."
+      }
+    ],
+    "transfers": [
+      {
+        "zh": "杯子在盘子旁边。",
+        "en": "The cup is beside the plate.",
+        "question": "What is beside the plate?",
+        "answer": "The cup."
+      },
+      {
+        "zh": "请把苹果放在盘子上。",
+        "en": "Please put the apple on the plate.",
+        "question": "Where should the apple go?",
+        "answer": "On the plate."
+      },
+      {
+        "zh": "勺子不在这里，在那里。",
+        "en": "The spoon is not here. It is over there.",
+        "question": "Is the spoon here or over there?",
+        "answer": "Over there."
+      }
+    ],
+    "dialogue": [
+      {
+        "zh": "盘子放在哪里？",
+        "en": "Where should the plate go?",
+        "speaker": "a"
+      },
+      {
+        "zh": "请放在桌子上。",
+        "en": "Please put it on the table.",
+        "speaker": "b"
+      },
+      {
+        "zh": "勺子呢？",
+        "en": "And the spoon?",
+        "speaker": "a"
+      },
+      {
+        "zh": "放在盘子旁边，谢谢。",
+        "en": "Beside the plate, thank you.",
+        "speaker": "b"
+      }
+    ],
+    "dialogueQuestion": "Where should the spoon go?",
+    "dialogueAnswer": "Beside the plate.",
+    "closing": [
+      {
+        "zh": "请放在这里。",
+        "en": "Please put it here."
+      },
+      {
+        "zh": "我想吃一个鸡蛋。",
+        "en": "I would like to eat an egg."
+      }
+    ]
+  },
+  {
+    "id": "listening-004",
+    "title": "Is this yours?",
+    "objective": "Before leaving, you need to find your things. Listen for who owns them and where they are.",
+    "prerequisites": [
+      "我",
+      "你",
+      "他",
+      "她",
+      "是",
+      "的",
+      "有",
+      "在",
+      "不",
+      "没有",
+      "想",
+      "要",
+      "可以",
+      "吃",
+      "喝",
+      "水",
+      "家",
+      "这里",
+      "那里",
+      "这",
+      "那",
+      "这个",
+      "那个",
+      "今天",
+      "现在",
+      "一",
+      "两",
+      "个",
+      "再",
+      "还",
+      "请",
+      "给",
+      "谢谢",
+      "好",
+      "也",
+      "什么",
+      "吗",
+      "呢",
+      "谁",
+      "哪里",
+      "找",
+      "里",
+      "里面",
+      "上",
+      "上面",
+      "下",
+      "和",
+      "还是",
+      "但是",
+      "一点",
+      "把",
+      "桌子",
+      "放",
+      "旁边",
+      "盘子",
+      "勺子",
+      "了"
+    ],
+    "focus": [
+      {
+        "zh": "钥匙",
+        "en": "key",
+        "sourceConcept": "key"
+      },
+      {
+        "zh": "口袋",
+        "en": "pocket",
+        "sourceConcept": "pocket"
+      },
+      {
+        "zh": "外套",
+        "en": "coat",
+        "sourceConcept": "coat (noun)"
+      },
+      {
+        "zh": "手机",
+        "en": "mobile phone",
+        "sourceConcept": "cell phone"
+      },
+      {
+        "zh": "包",
+        "en": "bag",
+        "sourceConcept": "bag (noun)"
+      }
+    ],
+    "opening": {
+      "zh": "请放在这里。",
+      "en": "Please put it here."
+    },
+    "ladder": [
+      {
+        "zh": "这是你的外套吗？",
+        "en": "Is this your coat?"
+      },
+      {
+        "zh": "这是我的外套。",
+        "en": "This is my coat."
+      },
+      {
+        "zh": "我的手机在包里。",
+        "en": "My phone is in the bag."
+      },
+      {
+        "zh": "钥匙在口袋里。",
+        "en": "The key is in the pocket."
+      },
+      {
+        "zh": "我的钥匙在外套口袋里。",
+        "en": "My key is in the coat pocket."
+      }
+    ],
+    "transfers": [
+      {
+        "zh": "这不是我的手机，是她的。",
+        "en": "This is not my phone. It is hers.",
+        "question": "Whose phone is it?",
+        "answer": "Hers."
+      },
+      {
+        "zh": "我的包在桌子旁边。",
+        "en": "My bag is beside the table.",
+        "question": "Where is the bag?",
+        "answer": "Beside the table."
+      },
+      {
+        "zh": "钥匙不在包里，在口袋里。",
+        "en": "The key is not in the bag. It is in the pocket.",
+        "question": "Where is the key?",
+        "answer": "In the pocket."
+      }
+    ],
+    "dialogue": [
+      {
+        "zh": "这是你的手机吗？",
+        "en": "Is this your phone?",
+        "speaker": "a"
+      },
+      {
+        "zh": "是我的，谢谢。我的钥匙呢？",
+        "en": "It is mine, thank you. What about my key?",
+        "speaker": "b"
+      },
+      {
+        "zh": "在你的外套口袋里。",
+        "en": "In your coat pocket.",
+        "speaker": "a"
+      },
+      {
+        "zh": "好，我的包在哪里？",
+        "en": "Okay. Where is my bag?",
+        "speaker": "b"
+      },
+      {
+        "zh": "在桌子旁边。",
+        "en": "Beside the table.",
+        "speaker": "a"
+      }
+    ],
+    "dialogueQuestion": "Where are the key and the bag?",
+    "dialogueAnswer": "The key is in the coat pocket. The bag is beside the table.",
+    "closing": [
+      {
+        "zh": "我的钥匙在口袋里。",
+        "en": "My key is in the pocket."
+      },
+      {
+        "zh": "请放在这里。",
+        "en": "Please put it here."
+      }
+    ]
+  },
+  {
+    "id": "listening-005",
+    "title": "One more, please",
+    "objective": "You are ordering drinks for two people. Listen carefully to the quantities.",
+    "prerequisites": [
+      "我",
+      "你",
+      "他",
+      "她",
+      "是",
+      "的",
+      "有",
+      "在",
+      "不",
+      "没有",
+      "想",
+      "要",
+      "可以",
+      "吃",
+      "喝",
+      "水",
+      "家",
+      "这里",
+      "那里",
+      "这",
+      "那",
+      "这个",
+      "那个",
+      "今天",
+      "现在",
+      "一",
+      "两",
+      "个",
+      "再",
+      "还",
+      "请",
+      "给",
+      "谢谢",
+      "好",
+      "也",
+      "什么",
+      "吗",
+      "呢",
+      "谁",
+      "哪里",
+      "找",
+      "里",
+      "里面",
+      "上",
+      "上面",
+      "下",
+      "和",
+      "还是",
+      "但是",
+      "一点",
+      "把",
+      "茶",
+      "水",
+      "糖",
+      "牛奶",
+      "杯子",
+      "桌子",
+      "旁边",
+      "放",
+      "钥匙",
+      "口袋",
+      "了"
+    ],
+    "focus": [
+      {
+        "zh": "瓶子",
+        "en": "bottle",
+        "sourceConcept": "bottle"
+      },
+      {
+        "zh": "瓶",
+        "en": "bottle, used to count drinks",
+        "sourceConcept": null
+      },
+      {
+        "zh": "杯",
+        "en": "cup, used to count drinks",
+        "sourceConcept": null
+      },
+      {
+        "zh": "两",
+        "en": "two, before a measure word",
+        "sourceConcept": "two"
+      },
+      {
+        "zh": "再",
+        "en": "again; another",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "我的钥匙在口袋里。",
+      "en": "My key is in the pocket."
+    },
+    "ladder": [
+      {
+        "zh": "这是一个瓶子。",
+        "en": "This is a bottle."
+      },
+      {
+        "zh": "我想要一瓶水。",
+        "en": "I would like one bottle of water."
+      },
+      {
+        "zh": "我想要两杯茶。",
+        "en": "I would like two cups of tea."
+      },
+      {
+        "zh": "请再给我一杯茶。",
+        "en": "Please give me another cup of tea."
+      },
+      {
+        "zh": "一杯有糖，一杯没有糖。",
+        "en": "One cup has sugar; one has no sugar."
+      }
+    ],
+    "transfers": [
+      {
+        "zh": "我要两瓶水，不要茶。",
+        "en": "I want two bottles of water, not tea.",
+        "question": "How many bottles of water?",
+        "answer": "Two bottles."
+      },
+      {
+        "zh": "我要一杯茶，再要一瓶水。",
+        "en": "I want a cup of tea and also a bottle of water.",
+        "question": "Which drink comes in a bottle?",
+        "answer": "Water."
+      },
+      {
+        "zh": "这杯茶没有糖。",
+        "en": "This cup of tea has no sugar.",
+        "question": "Does this tea contain sugar?",
+        "answer": "No."
+      }
+    ],
+    "dialogue": [
+      {
+        "zh": "你想要什么？",
+        "en": "What would you like?",
+        "speaker": "a"
+      },
+      {
+        "zh": "两杯茶，谢谢。",
+        "en": "Two cups of tea, thank you.",
+        "speaker": "b"
+      },
+      {
+        "zh": "要糖吗？",
+        "en": "Would you like sugar?",
+        "speaker": "a"
+      },
+      {
+        "zh": "一杯要糖，一杯不要糖。再要一瓶水。",
+        "en": "Sugar in one cup, none in the other. A bottle of water too.",
+        "speaker": "b"
+      }
+    ],
+    "dialogueQuestion": "What was the complete order?",
+    "dialogueAnswer": "Two cups of tea, only one with sugar, and one bottle of water.",
+    "closing": [
+      {
+        "zh": "请再给我一杯茶。",
+        "en": "Please give me another cup of tea."
+      },
+      {
+        "zh": "我的钥匙在口袋里。",
+        "en": "My key is in the pocket."
+      }
+    ]
+  }
+]
