@@ -511,6 +511,7 @@ export interface DashboardStats {
   scheduled: number
   minutesToday: number
   clipsCompletedToday: number
+  listeningLessonsToday: number
   knownToday: number
   lingqsCreatedToday: number
   lingqsLearnedToday: number

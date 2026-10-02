@@ -3356,6 +3356,31 @@ details.settings-group > .import-grid {
   font-weight: 850;
 }
 
+.settings-goal-note {
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  min-height: 78px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.settings-goal-note > span {
+  color: var(--muted-navy);
+  font-weight: 850;
+}
+
+.settings-goal-note > strong {
+  color: var(--navy);
+}
+
+.settings-goal-note > small {
+  color: var(--muted);
+  line-height: 1.35;
+}
+
 .hotkey-grid input[type='range'] {
   width: 100%;
   accent-color: var(--accent);

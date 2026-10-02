@@ -2051,6 +2051,9 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     scheduled: scopedWords.filter((word) => Boolean(word.fsrsDueAt)).length,
     minutesToday: (todayHeatmap?.studySeconds ?? 0) / 60,
     clipsCompletedToday: todayEvents.filter((event) => event.type === 'complete').length,
+    listeningLessonsToday: todayEvents.filter(
+      (event) => event.type === 'complete' && event.itemType === 'lesson' && event.source !== 'flashcards',
+    ).length,
     knownToday: successfulRatingsToday.length,
     lingqsCreatedToday: todayRatings.length,
     lingqsLearnedToday: successfulRatingsToday.length,

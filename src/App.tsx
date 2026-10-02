@@ -324,6 +324,7 @@ const emptyStats: DashboardStats = {
   scheduled: 0,
   minutesToday: 0,
   clipsCompletedToday: 0,
+  listeningLessonsToday: 0,
   knownToday: 0,
   lingqsCreatedToday: 0,
   lingqsLearnedToday: 0,
@@ -428,19 +429,24 @@ function GoalRing({
   unit: string
   onClick: () => void
 }) {
-  const color = GOAL_RING_COLORS[kind]
+  const listeningDepth = Math.min(4, Math.max(0, value))
+  const listeningColors = ['#7dd3fc', '#38bdf8', '#0284c7', '#0369a1', '#0c4a6e']
+  const color = kind === 'listening' ? listeningColors[listeningDepth] : GOAL_RING_COLORS[kind]
   const displayedValue = useCountUp(value)
   const r = 38
   const circumference = 2 * Math.PI * r
   const fillFraction = goal > 0 ? Math.min(1, value / goal) : 0
   const strokeDashoffset = circumference * (1 - fillFraction)
   const complete = goal > 0 && value >= goal
+  const ariaLabel = kind === 'listening'
+    ? `${title}: ${value} ${value === 1 ? 'lesson' : 'lessons'} today. One lesson completes the daily goal. Tap to start.`
+    : `${title}: ${value} of ${goal} ${unit} today. Tap to start.`
   return (
     <button
       type="button"
       className={`sentence-rep-ring-wrap goal-ring${complete ? ' goal-ring-complete' : ''}`}
       onClick={onClick}
-      aria-label={`${title}: ${value} of ${goal} ${unit} today. Tap to start.`}
+      aria-label={ariaLabel}
     >
       <p className="ring-title">{title}</p>
       <svg className="sentence-rep-ring" viewBox="0 0 100 100" aria-hidden="true">
@@ -456,9 +462,15 @@ function GoalRing({
           }}
         />
         <text x="50" y="46" className="sentence-rep-ring-count">{displayedValue}</text>
-        <text x="50" y="60" className="sentence-rep-ring-label">of {goal} {unit}</text>
+        <text x="50" y="60" className="sentence-rep-ring-label">
+          {kind === 'listening' ? 'daily goal: 1' : `of ${goal} ${unit}`}
+        </text>
       </svg>
-      <p className="sentence-rep-total">{complete ? 'Goal complete!' : `${Math.round(fillFraction * 100)}% of daily goal`}</p>
+      <p className="sentence-rep-total">
+        {kind === 'listening' && complete
+          ? `${value} ${value === 1 ? 'lesson' : 'lessons'} today`
+          : complete ? 'Goal complete!' : `${Math.round(fillFraction * 100)}% of daily goal`}
+      </p>
     </button>
   )
 }
@@ -1495,7 +1507,7 @@ function App() {
   useEffect(() => {
     const entries: Array<[string, number, number]> = [
       ['flashcards', stats.ranges.today.cardsReviewed, userSettings.flashcardsPerDay],
-      ['listening', sentenceRepsToday, userSettings.listeningRepsGoal],
+      ['listening', stats.listeningLessonsToday, 1],
       ['reading', todayReaderStats?.todayPagesRead ?? 0, userSettings.readingGoalPages],
     ]
     const state = goalCelebrationRef.current
@@ -1514,10 +1526,10 @@ function App() {
     }
   }, [
     sentenceRepsToday,
+    stats.listeningLessonsToday,
     stats.ranges.today.cardsReviewed,
     todayReaderStats?.todayPagesRead,
     userSettings.flashcardsPerDay,
-    userSettings.listeningRepsGoal,
     userSettings.readingGoalPages,
   ])
 
@@ -2838,6 +2850,7 @@ function App() {
       itemType: 'lesson',
       itemId: renderedLesson.id,
       seconds: renderedLesson.durationSeconds,
+      source: 'active-recall',
     })
     await refresh()
     queueCloudSync()
@@ -3904,9 +3917,9 @@ function App() {
             <GoalRing
               kind="listening"
               title="Listening"
-              value={sentenceRepsToday}
-              goal={userSettings.listeningRepsGoal}
-              unit="reps"
+              value={stats.listeningLessonsToday}
+              goal={1}
+              unit="lesson"
               onClick={() => void startModeLesson('listeningMode')}
             />
             <GoalRing
@@ -3954,8 +3967,8 @@ function App() {
               </span>
               <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
               <span className="mode-start-metric">
-                <span>Reps today</span>
-                <strong><CountUpNumber value={sentenceRepsToday} /></strong>
+                <span>Lessons today</span>
+                <strong><CountUpNumber value={stats.listeningLessonsToday} /></strong>
               </span>
               <span className="mode-start-arrow" aria-hidden="true">→</span>
             </button>
@@ -5007,20 +5020,11 @@ function App() {
                         }}
                       />
                     </label>
-                    <label>
-                      <span>Listening Reps / Day</span>
-                      <input
-                        type="number"
-                        min={10}
-                        max={500}
-                        value={userSettings.listeningRepsGoal}
-                        onChange={(event) => {
-                          const next = { ...userSettings, listeningRepsGoal: Number(event.target.value) }
-                          setUserSettings(next)
-                          void saveUserSettings(next)
-                        }}
-                      />
-                    </label>
+                    <div className="settings-goal-note">
+                      <span>Listening / Day</span>
+                      <strong>1 four-minute lesson</strong>
+                      <small>Additional lessons deepen the dashboard ring color.</small>
+                    </div>
                   </div>
                 </section>
                 <section className="panel historical-study-time-panel">
@@ -7401,19 +7405,14 @@ function GenerateStoryPanel({
           <strong>Or add your own paired text</strong>
           <small>Upload a .txt file with one Chinese line, then its English translation, repeated throughout.</small>
           <details className="reader-text-format-example">
-            <summary>See Chinese and Japanese examples</summary>
+            <summary>See a Chinese and English example</summary>
             <div>
-              <strong>Chinese</strong>
+              <strong>Chinese followed by English</strong>
               <pre>{`今天阳光很好。
 The sunlight is lovely today.
 我们慢慢走回家。
 We walk home slowly.`}</pre>
-              <strong>Japanese</strong>
-              <pre>{`今日は天気がいいです。
-The weather is nice today.
-私たちはゆっくり家に帰ります。
-We walk home slowly.`}</pre>
-              <small>Use one target-language line followed by one English line. Blank lines are optional. Japanese text can be imported, though pronunciation and vocabulary aids are currently optimized for Chinese.</small>
+              <small>Use one Chinese line followed by one English line. Blank lines are optional.</small>
             </div>
           </details>
         </div>
