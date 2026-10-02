@@ -5579,6 +5579,38 @@ kbd {
   gap: 0.2rem;
 }
 
+.reader-text-format-example {
+  margin-top: 0.45rem;
+  color: var(--muted-navy);
+}
+
+.reader-text-format-example summary {
+  width: fit-content;
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 850;
+}
+
+.reader-text-format-example > div {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.6rem;
+}
+
+.reader-text-format-example pre {
+  max-width: 100%;
+  margin: 0;
+  padding: 0.7rem 0.8rem;
+  overflow-x: auto;
+  border: 1px solid rgba(14, 165, 163, 0.16);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--ink);
+  font: 0.78rem/1.55 ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: pre-wrap;
+}
+
 .reader-text-upload {
   position: relative;
   display: inline-flex !important;
@@ -10352,11 +10384,6 @@ main.app-shell {
   }
 }
 
-.reader-playlist-screen .reader-bottom-bar .reader-listening-controls > button:last-child {
-  border: 0;
-  background: transparent;
-  box-shadow: none;
-}
 .app-screen-dashboard .dashboard-mode-card.meditate-start {
   border-color: rgba(111, 87, 62, 0.24);
   background: linear-gradient(145deg, rgba(255, 252, 242, 0.96), rgba(238, 241, 223, 0.94));
@@ -11483,4 +11510,52 @@ main.app-shell {
   .flashcards-screen .flashcard.answer-side { min-height: clamp(330px, 44svh, 390px); }
   .flashcards-screen .flashcard strong.flashcard-word { font-size: clamp(3.7rem, 21vw, 5.8rem); }
   .flashcard-play-audio { min-height: 44px; }
+}
+
+/* Keep Reader transport reachable while long interlinear cards scroll. */
+@media (max-width: 760px) {
+  .app-shell.app-screen-reader,
+  .reader-screen.reader-playlist-screen,
+  .reader-playlist-screen .reader-layout,
+  .reader-playlist-screen .reader-page {
+    height: auto !important;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .reader-playlist-screen .reader-swipe-zone {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    touch-action: pan-y;
+    overscroll-behavior-y: auto;
+  }
+
+  .reader-playlist-screen .reader-bottom-bar {
+    position: sticky;
+    bottom: calc(env(safe-area-inset-bottom) + 84px);
+    z-index: 45;
+    width: 100%;
+    margin-top: 18px;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 22px;
+    background: rgba(255, 252, 246, 0.94);
+    box-shadow: 0 14px 34px rgba(68, 57, 42, 0.14);
+    backdrop-filter: blur(18px);
+  }
+
+  .reader-playlist-screen .reader-bottom-bar .reader-listening-controls > button:last-child {
+    border-color: #f58a28;
+    background: #f58a28;
+    color: #fff;
+    box-shadow: 0 14px 28px rgba(245, 138, 40, 0.28);
+  }
+
+  .reader-playlist-screen .reader-bottom-bar .reader-listening-controls > button:last-child:disabled {
+    border-color: var(--reader-border);
+    background: var(--reader-paper-strong);
+    color: var(--reader-muted);
+    box-shadow: none;
+  }
 }

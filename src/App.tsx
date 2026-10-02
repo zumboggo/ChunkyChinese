@@ -7400,6 +7400,22 @@ function GenerateStoryPanel({
         <div>
           <strong>Or add your own paired text</strong>
           <small>Upload a .txt file with one Chinese line, then its English translation, repeated throughout.</small>
+          <details className="reader-text-format-example">
+            <summary>See Chinese and Japanese examples</summary>
+            <div>
+              <strong>Chinese</strong>
+              <pre>{`今天阳光很好。
+The sunlight is lovely today.
+我们慢慢走回家。
+We walk home slowly.`}</pre>
+              <strong>Japanese</strong>
+              <pre>{`今日は天気がいいです。
+The weather is nice today.
+私たちはゆっくり家に帰ります。
+We walk home slowly.`}</pre>
+              <small>Use one target-language line followed by one English line. Blank lines are optional. Japanese text can be imported, though pronunciation and vocabulary aids are currently optimized for Chinese.</small>
+            </div>
+          </details>
         </div>
         <label className="reader-text-upload">
           <span>Upload bilingual TXT</span>
@@ -7851,7 +7867,7 @@ function ReaderMode({
                     key={sentence.id}
                     // eslint-disable-next-line react-hooks/refs -- Passing the swipe hook ref into JSX does not read ref.current.
                     ref={readerSwipe.cardRef}
-                    className={`reader-reading-area card-enter${listening.active ? ' reader-listening-highlight' : ''}`}
+                    className="reader-reading-area reader-listening-highlight card-enter"
                   >
                     <div className="reader-interlinear" lang="zh-CN">
                       {(sentence.interlinear ?? tokens.map((token) => ({
@@ -7883,7 +7899,7 @@ function ReaderMode({
                     <p
                       className={`reader-translation ${
                         showEnglish || listening.active ? 'revealed' : 'blur-reveal'
-                      }${listening.active ? ' reader-listening-highlight' : ''}`}
+                      } reader-listening-highlight`}
                     >
                       {sentence.english}
                     </p>
@@ -8057,20 +8073,51 @@ function ReaderMode({
                     </button>
                   </div>
                 ) : (
-                  <StudyControls
-                    playing={listeningPlaying}
-                    onTogglePlay={() => {
-                      if (listening.active) listening.togglePlayPause()
-                      else listening.startListening()
-                    }}
-                    onPrevious={() => { void onPrevious() }}
-                    onNext={() => { void onNext() }}
-                    prevDisabled={sentenceIndex <= 0}
-                    nextDisabled={sentenceIndex >= sentenceCount - 1}
-                    prevLabel="Previous sentence"
-                    nextLabel={`Next sentence. Hotkey: ${choiceB.toUpperCase()}.`}
-                    playLabel={listeningPlaying ? `Pause. Hotkey: ${replayHotkey.toUpperCase()}.` : `Play sentence. Hotkey: ${replayHotkey.toUpperCase()}.`}
-                  />
+                  <div className="reader-listening-controls" aria-label="Reader controls">
+                    <button
+                      type="button"
+                      className="sentence-play-pause reader-listening-play-btn"
+                      onClick={listening.startListening}
+                      aria-label={`Play sentence. Hotkey: ${replayHotkey.toUpperCase()}.`}
+                    >
+                      <span className="reader-control-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                          <polygon points="5,3 19,12 5,21" />
+                        </svg>
+                      </span>
+                      <span className="reader-control-label">Play</span>
+                    </button>
+                    <button
+                      type="button"
+                      className="sentence-end-btn reader-listening-icon-btn"
+                      onClick={() => { void onPrevious() }}
+                      disabled={sentenceIndex <= 0}
+                      aria-label="Previous sentence"
+                    >
+                      <span className="reader-control-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                          <rect x="5" y="5" width="2" height="14" rx="1" />
+                          <polygon points="19,4 9,12 19,20" />
+                        </svg>
+                      </span>
+                      <span className="reader-control-label">Previous</span>
+                    </button>
+                    <button
+                      type="button"
+                      className="sentence-end-btn reader-listening-icon-btn"
+                      onClick={() => { void onNext() }}
+                      disabled={sentenceIndex >= sentenceCount - 1}
+                      aria-label={`Next sentence. Hotkey: ${choiceB.toUpperCase()}.`}
+                    >
+                      <span className="reader-control-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                          <polygon points="5,4 15,12 5,20" />
+                          <rect x="17" y="5" width="2" height="14" rx="1" />
+                        </svg>
+                      </span>
+                      <span className="reader-control-label">Next</span>
+                    </button>
+                  </div>
                 )}
               </div>
               {selectedToken && (
