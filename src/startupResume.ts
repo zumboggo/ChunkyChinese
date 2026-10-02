@@ -1,6 +1,6 @@
 export const STARTUP_RESUME_KEY = 'chunky-startup-resume-v1'
 
-export type ResumableDestination = 'dashboard' | 'flashcards' | 'sentenceListening' | 'reader'
+export type ResumableDestination = 'dashboard' | 'flashcards' | 'sentenceListening' | 'reader' | 'listeningCourse'
 
 export interface StartupResumeState {
   version: 1
@@ -21,7 +21,7 @@ export function validateStartupResumeState(value: unknown, now = Date.now()): St
   if (!value || typeof value !== 'object') return null
   const state = value as Partial<StartupResumeState>
   if (state.version !== 1 || typeof state.destination !== 'string' || typeof state.updatedAt !== 'string') return null
-  if (!['dashboard', 'flashcards', 'sentenceListening', 'reader'].includes(state.destination)) return null
+  if (!['dashboard', 'flashcards', 'sentenceListening', 'reader', 'listeningCourse'].includes(state.destination)) return null
   const updatedAt = Date.parse(state.updatedAt)
   if (!Number.isFinite(updatedAt) || now - updatedAt > MAX_RESUME_AGE_MS || updatedAt > now + 60_000) return null
   if (state.destination === 'flashcards') {

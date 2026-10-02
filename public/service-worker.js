@@ -1,4 +1,5 @@
-const CACHE_VERSION = 'chunky-chinese-v55'
+const CACHE_VERSION = 'chunky-chinese-v56'
+const COURSE_OFFLINE_CACHE = 'chunky-listening-course-v1'
 const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'
 const SENTENCE_OFFLINE_CACHE = 'chunky-sentence-listening-v1'
 // Change CACHE_VERSION whenever the app shell changes and you want browsers to
@@ -17,6 +18,7 @@ const APP_SHELL = [
   `${APP_BASE}seed/lms-vocab-1000.csv`,
   `${APP_BASE}seed/lms-sentences.json`,
   `${APP_BASE}seed/china-life-sentences.json`,
+  `${APP_BASE}listening/course-v1.json`,
 ]
 
 self.addEventListener('install', (event) => {
@@ -89,6 +91,11 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url)
   if (url.origin !== self.location.origin || !url.pathname.startsWith(APP_BASE)) return
 
+  if (url.pathname.startsWith(`${APP_BASE}listening/`)) {
+    event.respondWith(courseOfflineFirst(request))
+    return
+  }
+
   if (request.mode === 'navigate') {
     event.respondWith(networkFirstHtml(request))
     return
@@ -133,6 +140,27 @@ async function discoverAppShellUrls() {
   } catch {
     return []
   }
+}
+
+async function courseOfflineFirst(request) {
+  const cache = await caches.open(COURSE_OFFLINE_CACHE)
+  const response = await cache.match(request.url)
+  // Range responses are partial files and must never be stored as full MP3s.
+  if (!response) return new URL(request.url).pathname.endsWith('.mp3') ? fetch(request) : cacheFirst(request)
+  const range = request.headers.get('range')
+  if (!range) return response
+  const blob = await response.blob()
+  const match = /^bytes=(\d*)-(\d*)$/.exec(range)
+  if (!match || (!match[1] && !match[2])) return new Response(null, { status: 416, headers: { 'Content-Range': `bytes */${blob.size}` } })
+  const start = match[1] ? Number(match[1]) : Math.max(0, blob.size - Number(match[2]))
+  const end = match[1] && match[2] ? Math.min(Number(match[2]), blob.size - 1) : blob.size - 1
+  if (start > end || start >= blob.size) return new Response(null, { status: 416, headers: { 'Content-Range': `bytes */${blob.size}` } })
+  return new Response(blob.slice(start, end + 1), { status: 206, headers: {
+    'Content-Type': response.headers.get('Content-Type') || 'audio/mpeg',
+    'Content-Length': String(end - start + 1),
+    'Content-Range': `bytes ${start}-${end}/${blob.size}`,
+    'Accept-Ranges': 'bytes',
+  } })
 }
 
 async function networkFirstHtml(request) {

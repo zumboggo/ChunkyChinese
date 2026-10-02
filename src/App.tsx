@@ -1,4 +1,4 @@
-﻿import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { lazy, Suspense } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
 import { motion } from 'framer-motion'
@@ -244,7 +244,9 @@ import {
 } from './dataHealth'
 
 const UniversalImporter = lazy(() => import('./UniversalImporter').then((module) => ({ default: module.UniversalImporter })))
-type Screen = 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'readingTexts' | 'words'
+const ListeningCourse = lazy(() => import('./ListeningCourse'))
+
+type Screen = 'listeningCourse' | 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'readingTexts' | 'words'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
 type FlashcardFrontMode = 'text' | 'audio' | 'reverse'
 type ReaderTheme = UserSettings['readerTheme']
@@ -551,6 +553,7 @@ function App() {
   const startupResume = useMemo(() => loadStartupResumeState(), [])
   const [screen, setScreen] = useState<Screen>(() => {
     if (startupResume?.destination === 'flashcards') return 'flashcards'
+    if (startupResume?.destination === 'listeningCourse') return 'listeningCourse'
     if (startupResume?.destination === 'sentenceListening') return 'lesson'
     if (startupResume?.destination === 'reader') return 'reader'
     return 'dashboard'
@@ -3254,6 +3257,16 @@ function App() {
   })
 
   async function startModeLesson(mode: StudyMode, options: LessonStartOptions = {}) {
+    if (mode === 'listeningMode') {
+      stopAudioOutputs()
+      saveStartupResumeState({ destination: 'listeningCourse' })
+      setScreen('listeningCourse')
+      return
+    }
+    await startArchivedModeLesson(mode, options)
+  }
+
+  async function startArchivedModeLesson(mode: StudyMode, options: LessonStartOptions = {}) {
     setStudyMode(mode)
     setShowEnglish(true)
     setShowPinyin(true)
@@ -3963,7 +3976,7 @@ function App() {
               </span>
               <span className="mode-start-copy">
                 <strong>Listening</strong>
-                <span>Build recall with one focused set of five words.</span>
+                <span>Understand a short conversation in about four minutes.</span>
               </span>
               <kbd>{hotkeys.choiceB.toUpperCase()}</kbd>
               <span className="mode-start-metric">
@@ -4222,7 +4235,7 @@ function App() {
         </button>
         <button
           type="button"
-          className={screen === 'lesson' ? 'active' : ''}
+          className={screen === 'lesson' || screen === 'listeningCourse' ? 'active' : ''}
           onClick={() => void startModeLesson('listeningMode')}
           aria-label="Listening"
           title="Listening"
@@ -5357,6 +5370,18 @@ function App() {
         </section>
       )}
 
+      {screen === 'listeningCourse' && (
+        <Suspense fallback={<section className="screen"><p>Loading listening lessons…</p></section>}>
+          <ListeningCourse key={cloudUserEmail || 'device'} scope={cloudUserEmail || 'device'}
+            onArchive={(mode) => { if (mode === 'words') void startArchivedModeLesson('listeningMode'); else void startSentenceLesson() }}
+            onComplete={async (lessonId, seconds) => {
+              await recordEvent({ type: 'complete', itemType: 'lesson', itemId: lessonId, source: 'listening-set', seconds })
+              queueCloudSync()
+              await refresh()
+            }} />
+        </Suspense>
+      )}
+
       {screen === 'lesson' && (
         <section className="screen lesson-screen">
           {lesson || studyMode === 'sentenceMode' ? (
@@ -5394,7 +5419,7 @@ function App() {
                                 <button
                                   type="button"
                                   className={studyMode === 'listeningMode' ? 'active' : ''}
-                                  onClick={() => { if (studyMode !== 'listeningMode') void startModeLesson('listeningMode'); setListeningLessonMenuOpen(false) }}
+                                  onClick={() => { if (studyMode !== 'listeningMode') void startArchivedModeLesson('listeningMode'); setListeningLessonMenuOpen(false) }}
                                 >Words</button>
                                 <button
                                   type="button"

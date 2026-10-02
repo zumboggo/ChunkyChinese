@@ -46,13 +46,10 @@ export function compilePilotLesson(lesson: PilotLesson): PilotStep[] {
     speak(focus.zh, 'zh', 'a'); speak(focus.en); speak(focus.zh, 'zh', 'a'); pause(1.5)
   }
   phase = 'build'
-  speak('Now put the pieces together. You can answer aloud, or just think the answer.')
   for (const [index, phrase] of lesson.ladder.entries()) {
     speak(phrase.zh, 'zh', 'a'); pause(2); speak(phrase.en)
     if (index % 2 === 0) {
       speak('Try saying it in Chinese.'); pause(4)
-    } else {
-      speak('Listen again. Notice what changed.')
     }
     speak(phrase.zh, 'zh', 'a'); pause(1.5)
   }

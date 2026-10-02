@@ -21,7 +21,7 @@ npm test
 npm run build
 ```
 
-## Short listening lesson pilot
+## Short listening lessons
 
 The first five content-first lessons are in `src/content/listening-pilot.json`.
 They move from a familiar phrase through five focus items, a controlled sentence
@@ -31,7 +31,18 @@ It does not update vocabulary, FSRS, or listening-mastery records.
 
 The target is **240 seconds, with an inclusive 210–270 second window**, measured
 from decoded audio plus intentional pauses. Missing or empty clips cannot pass.
-The current pilot is a private preview; it is not wired into the production menu.
+The Listen menu opens the five public lessons. Original MP3 recordings use an
+English narrator and two Mandarin voices from Replicate MiniMax Speech 02 HD.
+Measured lengths are 3:58–4:24. The player provides phrase-boundary resume,
+transcripts, MP3 downloads, and explicit offline downloads. Previous word and
+sentence modes remain accessible under “Previous listening modes”. Listening
+completion records a lesson event; it never changes vocabulary recall ratings.
+
+Regenerate public audio with `node scripts/generate-listening-course.mjs`.
+Set `FFMPEG_PATH` to your local ffmpeg executable. The script reads
+`REPLICATE_API_TOKEN` or `~/.claude/replicate-token` privately, caches clips outside
+the repository, and writes only original course MP3s and their timing manifest to
+`public/listening/`. Never commit credentials or private prediction metadata.
 
 Generate private previews on macOS with Node 24 and Python 3:
 
@@ -71,8 +82,8 @@ Next implementation stages:
 1. Review candidate mappings and resolve source concepts into Mandarin senses;
    explicitly expand number groups and one-to-many translations.
 2. Evaluate the five previews for pace, Mandarin naturalness, and comprehension.
-3. Add the unified Continue Listening player, preserving existing study history,
-   screen-off playback, controller controls, replay, and offline resume.
+3. Validate the public player on physical phones, including screen-off playback
+   and headset/controller controls.
 4. Personalize introductions and prerequisite support from current evidence;
    keep exposure distinct from tested listening recall.
 5. Expand in ten-lesson batches toward the 100-lesson course. Use supplementary
@@ -123,7 +134,7 @@ To publish a content update:
 3. Update the matching `storagePath` in `src/contentCatalog.ts`.
 4. Build, commit, and push the app.
 
-Do not commit private reader text, comic pages, generated audio, SSML output,
+Do not commit private reader text, comic pages, private generated audio, SSML output,
 local backups, API keys, or Supabase secret/service-role keys.
 
 ## Supabase

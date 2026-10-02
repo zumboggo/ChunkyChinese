@@ -54,6 +54,8 @@ async function swipe(
 test('Listening Sets uses the phone shell without changing core controls', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' })
   await page.locator('.dashboard-mode-card.listen-start').click()
+  await page.getByText('Previous listening modes', { exact: true }).click()
+  await page.getByRole('button', { name: 'Archived word sets' }).click()
   await expect(page.getByRole('button', { name: 'Listening menu' })).toBeVisible()
   await page.getByRole('button', { name: 'Listening menu' }).click()
   await expect(page.locator('.sentence-menu-popup').getByRole('button', { name: 'Words' })).toHaveClass(/active/)
@@ -80,6 +82,8 @@ test('Listening Sets uses the phone shell without changing core controls', async
 test('Book Listening starts from the picker and preserves all four swipes', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' })
   await page.locator('.dashboard-mode-card.listen-start').click()
+  await page.getByText('Previous listening modes', { exact: true }).click()
+  await page.getByRole('button', { name: 'Archived word sets' }).click()
   await page.getByRole('button', { name: 'Listening menu' }).click()
   await page.locator('.sentence-menu-popup').getByRole('button', { name: 'Sentences' }).click()
   await page.locator('.sentence-mode-root').getByRole('button', { name: 'Menu' }).click()

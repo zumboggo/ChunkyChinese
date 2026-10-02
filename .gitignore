@@ -33,6 +33,8 @@ audio/
 !public/reader-packs/**/audio/**
 !public/seed/sentence-audio/*.mp3
 !public/seed/china-life-audio/*.mp3
+# Original short lessons explicitly approved for public distribution.
+!public/listening/*.mp3
 clips_manifest.local.json
 backup-*.json
 
