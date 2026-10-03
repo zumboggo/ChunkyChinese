@@ -1290,5 +1290,325 @@
     "dialogueQuestion": "",
     "dialogueAnswer": "",
     "closing": []
+  },
+  {
+    "id": "listening-016",
+    "title": "The Missing Assignment",
+    "objective": "Ask about an unfinished assignment and agree on a deadline.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "作业",
+        "en": "assignment; homework",
+        "sourceConcept": null
+      },
+      {
+        "zh": "交",
+        "en": "hand in; submit",
+        "sourceConcept": null
+      },
+      {
+        "zh": "完成",
+        "en": "finish; complete",
+        "sourceConcept": null
+      },
+      {
+        "zh": "迟交",
+        "en": "submit late",
+        "sourceConcept": null
+      },
+      {
+        "zh": "明天",
+        "en": "tomorrow",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "你的作业完成了吗？",
+      "en": "Have you finished your assignment?"
+    },
+    "ladder": [
+      {
+        "zh": "还没有。",
+        "en": "Not yet."
+      },
+      {
+        "zh": "你什么时候可以交？",
+        "en": "When can you hand it in?"
+      },
+      {
+        "zh": "请明天交给我。",
+        "en": "Please hand it to me tomorrow."
+      },
+      {
+        "zh": "我完成了，但是还没交。",
+        "en": "I finished it, but I have not handed it in yet."
+      },
+      {
+        "zh": "下次不要迟交。",
+        "en": "Next time, do not hand it in late."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-017",
+    "title": "Make Your Meaning Clear",
+    "objective": "Discuss an essay paragraph and ask for a clearer example.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "作文",
+        "en": "essay; student writing",
+        "sourceConcept": null
+      },
+      {
+        "zh": "段落",
+        "en": "paragraph",
+        "sourceConcept": null
+      },
+      {
+        "zh": "例子",
+        "en": "example",
+        "sourceConcept": null
+      },
+      {
+        "zh": "修改",
+        "en": "revise",
+        "sourceConcept": null
+      },
+      {
+        "zh": "清楚",
+        "en": "clear",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "这个段落是什么意思？",
+      "en": "What does this paragraph mean?"
+    },
+    "ladder": [
+      {
+        "zh": "请给我一个例子。",
+        "en": "Please give me an example."
+      },
+      {
+        "zh": "这个例子很好。",
+        "en": "This example is good."
+      },
+      {
+        "zh": "请修改这个段落。",
+        "en": "Please revise this paragraph."
+      },
+      {
+        "zh": "现在清楚多了。",
+        "en": "Now it is much clearer."
+      },
+      {
+        "zh": "我可以写学校里的事情吗？",
+        "en": "May I write about things at school?"
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-018",
+    "title": "Which Classroom?",
+    "objective": "Find the classroom and check the lesson times with a colleague.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "教室",
+        "en": "classroom",
+        "sourceConcept": null
+      },
+      {
+        "zh": "办公室",
+        "en": "office",
+        "sourceConcept": null
+      },
+      {
+        "zh": "上课",
+        "en": "start class; be in class",
+        "sourceConcept": null
+      },
+      {
+        "zh": "下课",
+        "en": "finish class",
+        "sourceConcept": null
+      },
+      {
+        "zh": "几点",
+        "en": "what time",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "英语课在哪个教室？",
+      "en": "Which classroom is the English lesson in?"
+    },
+    "ladder": [
+      {
+        "zh": "教室在办公室旁边。",
+        "en": "The classroom is beside the office."
+      },
+      {
+        "zh": "我们几点上课？",
+        "en": "What time do we start class?"
+      },
+      {
+        "zh": "三点上课，四点下课。",
+        "en": "Class starts at three and finishes at four."
+      },
+      {
+        "zh": "办公室在楼下，教室在楼上。",
+        "en": "The office is downstairs and the classroom is upstairs."
+      },
+      {
+        "zh": "下课后，请来办公室。",
+        "en": "After class, please come to the office."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-019",
+    "title": "A Conversation with a Parent",
+    "objective": "Describe progress and agree on a practical way to help.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "孩子",
+        "en": "child",
+        "sourceConcept": null
+      },
+      {
+        "zh": "最近",
+        "en": "recently",
+        "sourceConcept": null
+      },
+      {
+        "zh": "按时",
+        "en": "on time",
+        "sourceConcept": null
+      },
+      {
+        "zh": "进步",
+        "en": "progress; improve",
+        "sourceConcept": null
+      },
+      {
+        "zh": "帮助",
+        "en": "help",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "您的孩子最近进步很大。",
+      "en": "Your child has made a lot of progress recently."
+    },
+    "ladder": [
+      {
+        "zh": "他现在按时交作业。",
+        "en": "He now hands in assignments on time."
+      },
+      {
+        "zh": "我可以怎么帮助他？",
+        "en": "How can I help him?"
+      },
+      {
+        "zh": "请问问他，今天的作业完成了吗？",
+        "en": "Please ask him whether today's assignment is finished."
+      },
+      {
+        "zh": "请提醒他按时交。",
+        "en": "Please remind him to hand it in on time."
+      },
+      {
+        "zh": "我也会帮助他。",
+        "en": "I will help him too."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-020",
+    "title": "A Taxi to School, a Taxi Home",
+    "objective": "Build and recall your school and home taxi destinations.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "成都",
+        "en": "Chengdu",
+        "sourceConcept": null
+      },
+      {
+        "zh": "爱思瑟",
+        "en": "Aisise",
+        "sourceConcept": null
+      },
+      {
+        "zh": "国际学校",
+        "en": "international school",
+        "sourceConcept": null
+      },
+      {
+        "zh": "华润二十四城",
+        "en": "Huarun Twenty-Four City",
+        "sourceConcept": null
+      },
+      {
+        "zh": "四期",
+        "en": "phase four",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "成都爱思瑟国际学校。",
+      "en": "Chengdu Aisise International School."
+    },
+    "ladder": [
+      {
+        "zh": "华润二十四城四期。",
+        "en": "Huarun Twenty-Four City, phase four."
+      },
+      {
+        "zh": "师傅，请到成都爱思瑟国际学校。",
+        "en": "Driver, please take me to Chengdu Aisise International School."
+      },
+      {
+        "zh": "师傅，请到华润二十四城四期。",
+        "en": "Driver, please take me to Huarun Twenty-Four City, phase four."
+      },
+      {
+        "zh": "二十四城，四期，对吗？",
+        "en": "Twenty-Four City, phase four, correct?"
+      },
+      {
+        "zh": "对，四期。",
+        "en": "Yes, phase four."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
   }
 ]

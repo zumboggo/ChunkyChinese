@@ -93,4 +93,4 @@ try { existing = JSON.parse(await fs.readFile(path.join(output, 'course-v1.json'
 const generatedIds = new Set(manifest.lessons.map(lesson => lesson.id))
 manifest.lessons.push(...existing.lessons.filter(lesson => !generatedIds.has(lesson.id)))
 await fs.writeFile(path.join(output, 'course-v1.json'), JSON.stringify(manifest, null, 2) + '\n')
-if (manifest.lessons.some(l => !l.withinTarget)) throw new Error('Adjust lesson timing before publishing. Generated clips are cached; reruns do not regenerate them.')
+if (manifest.lessons.some(l => generatedIds.has(l.id) && !l.withinTarget)) throw new Error('Adjust lesson timing before publishing. Generated clips are cached; reruns do not regenerate them.')

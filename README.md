@@ -31,7 +31,7 @@ It does not update vocabulary, FSRS, or listening-mastery records.
 
 The target is **240 seconds, with an inclusive 210–270 second window**, measured
 from decoded audio plus intentional pauses. Missing or empty clips cannot pass.
-The Listen menu opens fifteen public lessons. Lessons 6–15 use the user-supplied
+The Listen menu opens twenty public lessons. Lessons 6–20 use the user-supplied
 MiniMax Audio “Standup Guy” recordings in download order, with measured durations recorded in the audio manifest.
 They provide untimed study phrases and resume at the saved audio position. Original MP3 recordings use an
 English narrator and two Mandarin voices from Replicate MiniMax Speech 02 HD.
@@ -157,3 +157,6 @@ The app shell, dictionary, seed vocabulary, and sentence metadata are served by
 GitHub Pages. Private audio and readers are downloaded once after sign-in and
 stored locally. Study progress is written to IndexedDB immediately and synced to
 Supabase whenever the authenticated device is online.
+
+Lesson 20 intentionally retains the supplied 4:45 taxi destination recording,
+including its recall pauses; its duration is flagged outside the original target.
