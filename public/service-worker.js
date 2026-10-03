@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-chinese-v56'
+const CACHE_VERSION = 'chunky-chinese-v57'
 const COURSE_OFFLINE_CACHE = 'chunky-listening-course-v1'
 const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'
 const SENTENCE_OFFLINE_CACHE = 'chunky-sentence-listening-v1'
@@ -143,6 +143,8 @@ async function discoverAppShellUrls() {
 }
 
 async function courseOfflineFirst(request) {
+  // Refresh the catalog even when a previous version was saved with a lesson.
+  if (new URL(request.url).pathname.endsWith('/course-v1.json')) return networkFirstAsset(request)
   const cache = await caches.open(COURSE_OFFLINE_CACHE)
   const response = await cache.match(request.url)
   // Range responses are partial files and must never be stored as full MP3s.

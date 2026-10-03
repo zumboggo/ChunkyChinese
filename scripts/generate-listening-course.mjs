@@ -87,5 +87,10 @@ for (const lesson of lessons) {
   execFileSync(ffmpeg, ['-v', 'error', '-y', '-f', 's16le', '-ar', '32000', '-ac', '1', '-i', 'pipe:0', '-c:a', 'libmp3lame', '-b:a', '128k', path.join(output, file)], { input: Buffer.concat(buffers), maxBuffer: 32 * 1024 * 1024 })
   manifest.lessons.push({ id: lesson.id, title: lesson.title, file, seconds, withinTarget: timing.withinTarget, segments })
 }
+// Preserve separately imported recordings when rebuilding the original pilot.
+let existing = { lessons: [] }
+try { existing = JSON.parse(await fs.readFile(path.join(output, 'course-v1.json'), 'utf8')) } catch { /* First generation. */ }
+const generatedIds = new Set(manifest.lessons.map(lesson => lesson.id))
+manifest.lessons.push(...existing.lessons.filter(lesson => !generatedIds.has(lesson.id)))
 await fs.writeFile(path.join(output, 'course-v1.json'), JSON.stringify(manifest, null, 2) + '\n')
 if (manifest.lessons.some(l => !l.withinTarget)) throw new Error('Adjust lesson timing before publishing. Generated clips are cached; reruns do not regenerate them.')

@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import lessons from './content/listening-pilot.json'
+import pilotLessons from './content/listening-pilot.json'
+import additionalLessons from './content/listening-additional.json'
+
+const lessons = [...pilotLessons, ...additionalLessons]
 import { mergeHeardRanges, heardSeconds, readCourseProgress } from './listeningCourseProgress'
 import './listeningCourse.css'
 
@@ -126,7 +129,7 @@ export default function ListeningCourse({ scope, onArchive, onComplete }: Props)
         if (!player || !recording) return
         const saved = Math.min(progressRef.current.seconds, Math.max(0, recording.seconds - 1))
         const phrase = recording.segments.filter(s => s.kind === 'speech' && s.startSeconds <= saved).at(-1)
-        player.currentTime = phrase?.startSeconds ?? 0
+        player.currentTime = phrase?.startSeconds ?? saved
       }}
       onPause={() => { capturePlayed(); if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused' }}
       onPlay={() => { setError(''); if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing' }}
@@ -141,9 +144,9 @@ export default function ListeningCourse({ scope, onArchive, onComplete }: Props)
       <button type="button" onClick={() => { if (audio.current) { audio.current.currentTime = 0; void audio.current.play().catch(() => setError('Tap Play to start.')) } }}>Replay lesson</button>
       <button type="button" disabled={index === lessons.length - 1} onClick={() => selectLesson(lessons[index + 1].id)}>Next lesson →</button>
     </div>
-    {index === lessons.length - 1 && <p>These are the first five lessons. More are on the way.</p>}
+    {index === lessons.length - 1 && <p>You have reached the latest lesson. More are on the way.</p>}
     <label className="listening-course-picker">Choose a lesson<select value={lesson.id} onChange={event => selectLesson(event.target.value)}>{lessons.map((item, n) => <option key={item.id} value={item.id}>{n + 1}. {item.title}{progress.completed.includes(item.id) ? ' ✓' : ''}</option>)}</select></label>
-    <details><summary>Transcript</summary><div className="listening-course-transcript">{recording?.segments.filter(s => s.kind === 'speech').map((segment, n) => <p key={n} lang={segment.language === 'zh' ? 'zh-CN' : 'en'}><button type="button" aria-label={`Jump to ${formatTime(segment.startSeconds)}`} onClick={() => { if (audio.current) audio.current.currentTime = segment.startSeconds }}>{formatTime(segment.startSeconds)}</button>{segment.text}</p>)}</div></details>
+    {recording && recording.segments.length > 0 ? <details><summary>Transcript</summary><div className="listening-course-transcript">{recording?.segments.filter(s => s.kind === 'speech').map((segment, n) => <p key={n} lang={segment.language === 'zh' ? 'zh-CN' : 'en'}><button type="button" aria-label={`Jump to ${formatTime(segment.startSeconds)}`} onClick={() => { if (audio.current) audio.current.currentTime = segment.startSeconds }}>{formatTime(segment.startSeconds)}</button>{segment.text}</p>)}</div></details> : <details><summary>Lesson phrases</summary><div className="listening-course-transcript">{[lesson.opening, ...lesson.ladder, ...lesson.transfers, ...lesson.dialogue].map((phrase, n) => <p key={n}><span lang="zh-CN">{phrase.zh}</span><br /><small>{phrase.en}</small></p>)}</div></details>}
     <details><summary>Downloads</summary><div className="listening-course-actions"><button type="button" disabled={!src || saving} onClick={() => void saveOffline()}>{saving ? 'Saving…' : 'Save lesson offline'}</button>{src && <a href={src} download={`${lesson.id}.mp3`}>Download MP3</a>}</div><p role="status">{offlineMessage}</p></details>
     <details><summary>Previous listening modes</summary><p>Your old word sets, sentence collections, and progress are still available.</p><div className="listening-course-actions"><button type="button" onClick={() => onArchive('words')}>Archived word sets</button><button type="button" onClick={() => onArchive('sentences')}>Archived sentences</button></div></details>
   </section>

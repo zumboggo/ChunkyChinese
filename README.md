@@ -31,7 +31,9 @@ It does not update vocabulary, FSRS, or listening-mastery records.
 
 The target is **240 seconds, with an inclusive 210–270 second window**, measured
 from decoded audio plus intentional pauses. Missing or empty clips cannot pass.
-The Listen menu opens the five public lessons. Original MP3 recordings use an
+The Listen menu opens ten public lessons. Lessons 6–10 use the user-supplied
+MiniMax Audio “Standup Guy” recordings in download order, running 3:41–3:55.
+They provide untimed study phrases and resume at the saved audio position. Original MP3 recordings use an
 English narrator and two Mandarin voices from Replicate MiniMax Speech 02 HD.
 Measured lengths are 3:58–4:24. The player provides phrase-boundary resume,
 transcripts, MP3 downloads, and explicit offline downloads. Previous word and

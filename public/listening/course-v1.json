@@ -7925,6 +7925,56 @@
           "durationSeconds": 0.35
         }
       ]
+    },
+    {
+      "id": "listening-006",
+      "title": "Not too hot",
+      "file": "listening-006-53ae64ab.mp3",
+      "seconds": 228.47775,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "voice": "Standup Guy",
+      "segments": []
+    },
+    {
+      "id": "listening-007",
+      "title": "Let some air in",
+      "file": "listening-007-5a551771.mp3",
+      "seconds": 221.3395625,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "voice": "Standup Guy",
+      "segments": []
+    },
+    {
+      "id": "listening-008",
+      "title": "A place to sit",
+      "file": "listening-008-6c19ad4b.mp3",
+      "seconds": 225.786625,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "voice": "Standup Guy",
+      "segments": []
+    },
+    {
+      "id": "listening-009",
+      "title": "Which shoes?",
+      "file": "listening-009-45845043.mp3",
+      "seconds": 234.13175,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "voice": "Standup Guy",
+      "segments": []
+    },
+    {
+      "id": "listening-010",
+      "title": "Before you go out",
+      "file": "listening-010-0673f1f0.mp3",
+      "seconds": 234.623125,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "voice": "Standup Guy",
+      "segments": []
     }
   ]
 }

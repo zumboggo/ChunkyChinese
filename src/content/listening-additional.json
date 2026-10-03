@@ -1,0 +1,990 @@
+[
+  {
+    "id": "listening-006",
+    "title": "Not too hot",
+    "objective": "You are choosing a drink. Listen for temperature and size.",
+    "prerequisites": [
+      "我",
+      "你",
+      "他",
+      "她",
+      "是",
+      "的",
+      "有",
+      "在",
+      "不",
+      "没有",
+      "想",
+      "要",
+      "可以",
+      "吃",
+      "喝",
+      "水",
+      "家",
+      "这里",
+      "那里",
+      "这",
+      "那",
+      "这个",
+      "那个",
+      "今天",
+      "现在",
+      "一",
+      "两",
+      "个",
+      "再",
+      "还",
+      "请",
+      "给",
+      "谢谢",
+      "好",
+      "也",
+      "什么",
+      "吗",
+      "呢",
+      "谁",
+      "哪里",
+      "找",
+      "里",
+      "里面",
+      "上",
+      "上面",
+      "下",
+      "和",
+      "还是",
+      "但是",
+      "一点",
+      "把",
+      "杯子",
+      "咖啡",
+      "了",
+      "茶",
+      "牛奶",
+      "糖",
+      "面包",
+      "鸡蛋",
+      "苹果",
+      "桌子",
+      "放",
+      "旁边",
+      "盘子",
+      "勺子",
+      "钥匙",
+      "口袋",
+      "饿",
+      "早餐",
+      "外套",
+      "手机",
+      "包",
+      "瓶子",
+      "瓶",
+      "杯",
+      "很",
+      "太",
+      "大",
+      "小",
+      "去",
+      "回来",
+      "外面",
+      "都",
+      "一把",
+      "这件",
+      "带上"
+    ],
+    "focus": [
+      {
+        "zh": "热",
+        "en": "hot",
+        "sourceConcept": "hot"
+      },
+      {
+        "zh": "冷",
+        "en": "cold",
+        "sourceConcept": "cold"
+      },
+      {
+        "zh": "大",
+        "en": "big",
+        "sourceConcept": "big"
+      },
+      {
+        "zh": "小",
+        "en": "small",
+        "sourceConcept": "small"
+      },
+      {
+        "zh": "太",
+        "en": "too; excessively",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "请再给我一杯茶。",
+      "en": "Please give me another cup of tea."
+    },
+    "ladder": [
+      {
+        "zh": "茶很热。",
+        "en": "The tea is hot."
+      },
+      {
+        "zh": "水太冷了。",
+        "en": "The water is too cold."
+      },
+      {
+        "zh": "我要一个小杯子。",
+        "en": "I want a small cup."
+      },
+      {
+        "zh": "这个杯子太大了。",
+        "en": "This cup is too big."
+      }
+    ],
+    "transfers": [
+      {
+        "zh": "这杯水不冷，也不热。",
+        "en": "This water is neither cold nor hot.",
+        "question": "Is the water hot?",
+        "answer": "No. It is neither cold nor hot."
+      },
+      {
+        "zh": "我要小杯子，不要大杯子。",
+        "en": "I want the small cup, not the big cup.",
+        "question": "Which size does the speaker want?",
+        "answer": "The small cup."
+      }
+    ],
+    "dialogue": [
+      {
+        "zh": "你想喝茶吗？",
+        "en": "Would you like some tea?",
+        "speaker": "a"
+      },
+      {
+        "zh": "想，但是这杯茶太热了。",
+        "en": "Yes, but this tea is too hot.",
+        "speaker": "b"
+      },
+      {
+        "zh": "你想喝水吗？",
+        "en": "Would you like water?",
+        "speaker": "a"
+      },
+      {
+        "zh": "好，请给我一个小杯子。",
+        "en": "Yes, please give me a small cup.",
+        "speaker": "b"
+      }
+    ],
+    "dialogueQuestion": "Why did the visitor choose water?",
+    "dialogueAnswer": "The tea was too hot.",
+    "closing": [
+      {
+        "zh": "这杯茶太热了。",
+        "en": "This tea is too hot."
+      },
+      {
+        "zh": "我要一个小杯子。",
+        "en": "I want a small cup."
+      }
+    ]
+  },
+  {
+    "id": "listening-007",
+    "title": "Let some air in",
+    "objective": "You are in a warm room. Listen for what to open and what to close.",
+    "prerequisites": [
+      "我",
+      "你",
+      "他",
+      "她",
+      "是",
+      "的",
+      "有",
+      "在",
+      "不",
+      "没有",
+      "想",
+      "要",
+      "可以",
+      "吃",
+      "喝",
+      "水",
+      "家",
+      "这里",
+      "那里",
+      "这",
+      "那",
+      "这个",
+      "那个",
+      "今天",
+      "现在",
+      "一",
+      "两",
+      "个",
+      "再",
+      "还",
+      "请",
+      "给",
+      "谢谢",
+      "好",
+      "也",
+      "什么",
+      "吗",
+      "呢",
+      "谁",
+      "哪里",
+      "找",
+      "里",
+      "里面",
+      "上",
+      "上面",
+      "下",
+      "和",
+      "还是",
+      "但是",
+      "一点",
+      "把",
+      "杯子",
+      "咖啡",
+      "了",
+      "茶",
+      "牛奶",
+      "糖",
+      "面包",
+      "鸡蛋",
+      "苹果",
+      "桌子",
+      "放",
+      "旁边",
+      "盘子",
+      "勺子",
+      "钥匙",
+      "口袋",
+      "饿",
+      "早餐",
+      "外套",
+      "手机",
+      "包",
+      "瓶子",
+      "瓶",
+      "杯",
+      "很",
+      "太",
+      "大",
+      "小",
+      "去",
+      "回来",
+      "外面",
+      "都",
+      "热",
+      "冷",
+      "一把",
+      "这件",
+      "带上"
+    ],
+    "focus": [
+      {
+        "zh": "房间",
+        "en": "room",
+        "sourceConcept": "room"
+      },
+      {
+        "zh": "门",
+        "en": "door",
+        "sourceConcept": "door"
+      },
+      {
+        "zh": "窗户",
+        "en": "window",
+        "sourceConcept": "window"
+      },
+      {
+        "zh": "打开",
+        "en": "open",
+        "sourceConcept": "open (verb)"
+      },
+      {
+        "zh": "关上",
+        "en": "close",
+        "sourceConcept": "close (verb)"
+      }
+    ],
+    "opening": {
+      "zh": "这杯茶太热了。",
+      "en": "This tea is too hot."
+    },
+    "ladder": [
+      {
+        "zh": "房间很热。",
+        "en": "The room is hot."
+      },
+      {
+        "zh": "请打开窗户。",
+        "en": "Please open the window."
+      },
+      {
+        "zh": "请把门关上。",
+        "en": "Please close the door."
+      },
+      {
+        "zh": "门关上了，窗户打开了。",
+        "en": "The door is closed and the window is open."
+      }
+    ],
+    "transfers": [
+      {
+        "zh": "请打开门，不要打开窗户。",
+        "en": "Please open the door, not the window.",
+        "question": "What should you open?",
+        "answer": "The door."
+      },
+      {
+        "zh": "房间很冷，请关上窗户。",
+        "en": "The room is cold. Please close the window.",
+        "question": "Why close the window?",
+        "answer": "The room is cold."
+      }
+    ],
+    "dialogue": [
+      {
+        "zh": "房间太热了。",
+        "en": "The room is too hot.",
+        "speaker": "a"
+      },
+      {
+        "zh": "我可以打开窗户吗？",
+        "en": "May I open the window?",
+        "speaker": "b"
+      },
+      {
+        "zh": "可以。请把门关上。",
+        "en": "Yes. Please close the door.",
+        "speaker": "a"
+      },
+      {
+        "zh": "好，门关上了。",
+        "en": "Okay. The door is closed.",
+        "speaker": "b"
+      }
+    ],
+    "dialogueQuestion": "What should happen to the window and the door?",
+    "dialogueAnswer": "Open the window and close the door.",
+    "closing": [
+      {
+        "zh": "请打开窗户。",
+        "en": "Please open the window."
+      },
+      {
+        "zh": "请把门关上。",
+        "en": "Please close the door."
+      }
+    ]
+  },
+  {
+    "id": "listening-008",
+    "title": "A place to sit",
+    "objective": "You are visiting a friend. Listen for where you can sit.",
+    "prerequisites": [
+      "我",
+      "你",
+      "他",
+      "她",
+      "是",
+      "的",
+      "有",
+      "在",
+      "不",
+      "没有",
+      "想",
+      "要",
+      "可以",
+      "吃",
+      "喝",
+      "水",
+      "家",
+      "这里",
+      "那里",
+      "这",
+      "那",
+      "这个",
+      "那个",
+      "今天",
+      "现在",
+      "一",
+      "两",
+      "个",
+      "再",
+      "还",
+      "请",
+      "给",
+      "谢谢",
+      "好",
+      "也",
+      "什么",
+      "吗",
+      "呢",
+      "谁",
+      "哪里",
+      "找",
+      "里",
+      "里面",
+      "上",
+      "上面",
+      "下",
+      "和",
+      "还是",
+      "但是",
+      "一点",
+      "把",
+      "杯子",
+      "咖啡",
+      "了",
+      "茶",
+      "牛奶",
+      "糖",
+      "面包",
+      "鸡蛋",
+      "苹果",
+      "桌子",
+      "放",
+      "旁边",
+      "盘子",
+      "勺子",
+      "钥匙",
+      "口袋",
+      "饿",
+      "早餐",
+      "外套",
+      "手机",
+      "包",
+      "瓶子",
+      "瓶",
+      "杯",
+      "很",
+      "太",
+      "大",
+      "小",
+      "去",
+      "回来",
+      "外面",
+      "都",
+      "热",
+      "冷",
+      "房间",
+      "门",
+      "窗户",
+      "打开",
+      "关上",
+      "一把",
+      "这件",
+      "带上"
+    ],
+    "focus": [
+      {
+        "zh": "椅子",
+        "en": "chair",
+        "sourceConcept": "chair"
+      },
+      {
+        "zh": "沙发",
+        "en": "sofa",
+        "sourceConcept": "couch"
+      },
+      {
+        "zh": "坐",
+        "en": "sit",
+        "sourceConcept": "sit (verb)"
+      },
+      {
+        "zh": "站",
+        "en": "stand",
+        "sourceConcept": "stand (verb)"
+      },
+      {
+        "zh": "舒服",
+        "en": "comfortable",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "房间很热。",
+      "en": "The room is hot."
+    },
+    "ladder": [
+      {
+        "zh": "这里有一把椅子。",
+        "en": "There is a chair here."
+      },
+      {
+        "zh": "请坐。",
+        "en": "Please sit down."
+      },
+      {
+        "zh": "这个沙发很舒服。",
+        "en": "This sofa is comfortable."
+      },
+      {
+        "zh": "我想坐在沙发上。",
+        "en": "I want to sit on the sofa."
+      }
+    ],
+    "transfers": [
+      {
+        "zh": "他站在门旁边。",
+        "en": "He is standing beside the door.",
+        "question": "Is he sitting?",
+        "answer": "No. He is standing."
+      },
+      {
+        "zh": "椅子太小了，我想坐在沙发上。",
+        "en": "The chair is too small. I want to sit on the sofa.",
+        "question": "Why choose the sofa?",
+        "answer": "The chair is too small."
+      }
+    ],
+    "dialogue": [
+      {
+        "zh": "请坐，这里有椅子。",
+        "en": "Please sit. There is a chair here.",
+        "speaker": "a"
+      },
+      {
+        "zh": "我可以坐在沙发上吗？",
+        "en": "May I sit on the sofa?",
+        "speaker": "b"
+      },
+      {
+        "zh": "可以，沙发很舒服。",
+        "en": "Yes. The sofa is comfortable.",
+        "speaker": "a"
+      },
+      {
+        "zh": "谢谢。我想喝一点水。",
+        "en": "Thank you. I would like some water.",
+        "speaker": "b"
+      }
+    ],
+    "dialogueQuestion": "Where does the visitor want to sit?",
+    "dialogueAnswer": "On the sofa.",
+    "closing": [
+      {
+        "zh": "我想坐在沙发上。",
+        "en": "I want to sit on the sofa."
+      },
+      {
+        "zh": "请给我一杯水。",
+        "en": "Please give me a cup of water."
+      }
+    ]
+  },
+  {
+    "id": "listening-009",
+    "title": "Which shoes?",
+    "objective": "You are getting dressed. Listen for the clothes and their colors.",
+    "prerequisites": [
+      "我",
+      "你",
+      "他",
+      "她",
+      "是",
+      "的",
+      "有",
+      "在",
+      "不",
+      "没有",
+      "想",
+      "要",
+      "可以",
+      "吃",
+      "喝",
+      "水",
+      "家",
+      "这里",
+      "那里",
+      "这",
+      "那",
+      "这个",
+      "那个",
+      "今天",
+      "现在",
+      "一",
+      "两",
+      "个",
+      "再",
+      "还",
+      "请",
+      "给",
+      "谢谢",
+      "好",
+      "也",
+      "什么",
+      "吗",
+      "呢",
+      "谁",
+      "哪里",
+      "找",
+      "里",
+      "里面",
+      "上",
+      "上面",
+      "下",
+      "和",
+      "还是",
+      "但是",
+      "一点",
+      "把",
+      "杯子",
+      "咖啡",
+      "了",
+      "茶",
+      "牛奶",
+      "糖",
+      "面包",
+      "鸡蛋",
+      "苹果",
+      "桌子",
+      "放",
+      "旁边",
+      "盘子",
+      "勺子",
+      "钥匙",
+      "口袋",
+      "饿",
+      "早餐",
+      "外套",
+      "手机",
+      "包",
+      "瓶子",
+      "瓶",
+      "杯",
+      "很",
+      "太",
+      "大",
+      "小",
+      "去",
+      "回来",
+      "外面",
+      "都",
+      "热",
+      "冷",
+      "房间",
+      "门",
+      "窗户",
+      "打开",
+      "关上",
+      "椅子",
+      "沙发",
+      "坐",
+      "站",
+      "舒服",
+      "一把",
+      "这件",
+      "带上"
+    ],
+    "focus": [
+      {
+        "zh": "鞋子",
+        "en": "shoes",
+        "sourceConcept": "shoe"
+      },
+      {
+        "zh": "袜子",
+        "en": "socks",
+        "sourceConcept": "sock"
+      },
+      {
+        "zh": "黑色",
+        "en": "black",
+        "sourceConcept": "black"
+      },
+      {
+        "zh": "白色",
+        "en": "white",
+        "sourceConcept": "white"
+      },
+      {
+        "zh": "穿",
+        "en": "wear; put on clothes",
+        "sourceConcept": "wear (verb)"
+      }
+    ],
+    "opening": {
+      "zh": "我的钥匙在口袋里。",
+      "en": "My key is in the pocket."
+    },
+    "ladder": [
+      {
+        "zh": "这是我的鞋子。",
+        "en": "These are my shoes."
+      },
+      {
+        "zh": "我的袜子是白色的。",
+        "en": "My socks are white."
+      },
+      {
+        "zh": "我想穿黑色的鞋子。",
+        "en": "I want to wear the black shoes."
+      },
+      {
+        "zh": "白色的鞋子太小了。",
+        "en": "The white shoes are too small."
+      }
+    ],
+    "transfers": [
+      {
+        "zh": "他的鞋子是白色的，袜子是黑色的。",
+        "en": "His shoes are white and his socks are black.",
+        "question": "What color are his socks?",
+        "answer": "Black."
+      },
+      {
+        "zh": "我不想穿这件外套，太热了。",
+        "en": "I do not want to wear this coat. It is too hot.",
+        "question": "Why does the speaker not want the coat?",
+        "answer": "It is too hot."
+      }
+    ],
+    "dialogue": [
+      {
+        "zh": "你想穿白色的鞋子吗？",
+        "en": "Do you want to wear the white shoes?",
+        "speaker": "a"
+      },
+      {
+        "zh": "不想，白色的鞋子太小了。",
+        "en": "No. The white shoes are too small.",
+        "speaker": "b"
+      },
+      {
+        "zh": "那穿黑色的鞋子呢？",
+        "en": "How about wearing the black shoes?",
+        "speaker": "a"
+      },
+      {
+        "zh": "好，黑色的鞋子很舒服。",
+        "en": "Okay. The black shoes are comfortable.",
+        "speaker": "b"
+      }
+    ],
+    "dialogueQuestion": "Which shoes will the speaker wear, and why?",
+    "dialogueAnswer": "The black shoes. They are comfortable; the white shoes are too small.",
+    "closing": [
+      {
+        "zh": "我想穿黑色的鞋子。",
+        "en": "I want to wear the black shoes."
+      },
+      {
+        "zh": "我的袜子是白色的。",
+        "en": "My socks are white."
+      }
+    ]
+  },
+  {
+    "id": "listening-010",
+    "title": "Before you go out",
+    "objective": "You are going outside. Listen for what to take when it rains.",
+    "prerequisites": [
+      "我",
+      "你",
+      "他",
+      "她",
+      "是",
+      "的",
+      "有",
+      "在",
+      "不",
+      "没有",
+      "想",
+      "要",
+      "可以",
+      "吃",
+      "喝",
+      "水",
+      "家",
+      "这里",
+      "那里",
+      "这",
+      "那",
+      "这个",
+      "那个",
+      "今天",
+      "现在",
+      "一",
+      "两",
+      "个",
+      "再",
+      "还",
+      "请",
+      "给",
+      "谢谢",
+      "好",
+      "也",
+      "什么",
+      "吗",
+      "呢",
+      "谁",
+      "哪里",
+      "找",
+      "里",
+      "里面",
+      "上",
+      "上面",
+      "下",
+      "和",
+      "还是",
+      "但是",
+      "一点",
+      "把",
+      "杯子",
+      "咖啡",
+      "了",
+      "茶",
+      "牛奶",
+      "糖",
+      "面包",
+      "鸡蛋",
+      "苹果",
+      "桌子",
+      "放",
+      "旁边",
+      "盘子",
+      "勺子",
+      "钥匙",
+      "口袋",
+      "饿",
+      "早餐",
+      "外套",
+      "手机",
+      "包",
+      "瓶子",
+      "瓶",
+      "杯",
+      "很",
+      "太",
+      "大",
+      "小",
+      "去",
+      "回来",
+      "外面",
+      "都",
+      "热",
+      "冷",
+      "房间",
+      "门",
+      "窗户",
+      "打开",
+      "关上",
+      "椅子",
+      "沙发",
+      "坐",
+      "站",
+      "舒服",
+      "鞋子",
+      "袜子",
+      "黑色",
+      "白色",
+      "穿",
+      "一把",
+      "这件",
+      "带上"
+    ],
+    "focus": [
+      {
+        "zh": "下雨",
+        "en": "rain; be raining",
+        "sourceConcept": "rain"
+      },
+      {
+        "zh": "伞",
+        "en": "umbrella",
+        "sourceConcept": null
+      },
+      {
+        "zh": "外面",
+        "en": "outside",
+        "sourceConcept": "outside"
+      },
+      {
+        "zh": "带",
+        "en": "take along; bring",
+        "sourceConcept": "bring (verb)"
+      },
+      {
+        "zh": "回来",
+        "en": "come back",
+        "sourceConcept": "come (verb)"
+      }
+    ],
+    "opening": {
+      "zh": "我想穿黑色的鞋子。",
+      "en": "I want to wear the black shoes."
+    },
+    "ladder": [
+      {
+        "zh": "外面下雨了。",
+        "en": "It is raining outside."
+      },
+      {
+        "zh": "请带一把伞。",
+        "en": "Please take an umbrella."
+      },
+      {
+        "zh": "我的伞在门旁边。",
+        "en": "My umbrella is beside the door."
+      },
+      {
+        "zh": "外面很冷，我想回来了。",
+        "en": "It is cold outside. I want to come back now."
+      }
+    ],
+    "transfers": [
+      {
+        "zh": "外面没有下雨，但是很冷。",
+        "en": "It is not raining outside, but it is cold.",
+        "question": "Is it raining?",
+        "answer": "No. It is cold, but not raining."
+      },
+      {
+        "zh": "我带了钥匙，没有带伞。",
+        "en": "I brought my key, but did not bring an umbrella.",
+        "question": "What did the speaker leave behind?",
+        "answer": "The umbrella."
+      }
+    ],
+    "dialogue": [
+      {
+        "zh": "外面下雨了吗？",
+        "en": "Is it raining outside?",
+        "speaker": "a"
+      },
+      {
+        "zh": "下雨了。你带伞了吗？",
+        "en": "Yes. Did you bring an umbrella?",
+        "speaker": "b"
+      },
+      {
+        "zh": "没有。我的伞在哪里？",
+        "en": "No. Where is my umbrella?",
+        "speaker": "a"
+      },
+      {
+        "zh": "在门旁边。请带上伞。",
+        "en": "Beside the door. Please take it with you.",
+        "speaker": "b"
+      }
+    ],
+    "dialogueQuestion": "Where is the umbrella?",
+    "dialogueAnswer": "Beside the door.",
+    "closing": [
+      {
+        "zh": "请带一把伞。",
+        "en": "Please take an umbrella."
+      },
+      {
+        "zh": "我的钥匙在口袋里。",
+        "en": "My key is in the pocket."
+      }
+    ]
+  }
+]
