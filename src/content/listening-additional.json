@@ -986,5 +986,309 @@
         "en": "My key is in the pocket."
       }
     ]
+  },
+  {
+    "id": "listening-011",
+    "title": "Please Leave It at the Door",
+    "objective": "Tell a delivery person where to leave your package.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "快递",
+        "en": "delivery",
+        "sourceConcept": null
+      },
+      {
+        "zh": "包裹",
+        "en": "package",
+        "sourceConcept": null
+      },
+      {
+        "zh": "门口",
+        "en": "at the doorway",
+        "sourceConcept": null
+      },
+      {
+        "zh": "放",
+        "en": "put; leave",
+        "sourceConcept": null
+      },
+      {
+        "zh": "地上",
+        "en": "on the ground",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "您好，您的快递到了。",
+      "en": "Hello. Your delivery has arrived."
+    },
+    "ladder": [
+      {
+        "zh": "我现在不在家。",
+        "en": "I am not at home right now."
+      },
+      {
+        "zh": "请放在门口。",
+        "en": "Please leave it at the door."
+      },
+      {
+        "zh": "请放在门口的椅子上，不要放在地上。",
+        "en": "Please leave it on the chair by the door, not on the ground."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-012",
+    "title": "Which Package Is Mine?",
+    "objective": "Identify your package and check the name on it.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "哪个",
+        "en": "which one",
+        "sourceConcept": null
+      },
+      {
+        "zh": "名字",
+        "en": "name",
+        "sourceConcept": null
+      },
+      {
+        "zh": "上面",
+        "en": "on the surface",
+        "sourceConcept": null
+      },
+      {
+        "zh": "写",
+        "en": "write",
+        "sourceConcept": null
+      },
+      {
+        "zh": "对",
+        "en": "correct",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "哪个包裹是我的？",
+      "en": "Which package is mine?"
+    },
+    "ladder": [
+      {
+        "zh": "这个包裹上面有我的名字。",
+        "en": "My name is on this package."
+      },
+      {
+        "zh": "上面写的是什么名字？",
+        "en": "What name is written on it?"
+      },
+      {
+        "zh": "对，这个是我的。",
+        "en": "Yes, this one is mine."
+      },
+      {
+        "zh": "这个不是我的。",
+        "en": "This one is not mine."
+      },
+      {
+        "zh": "我姓李。",
+        "en": "My surname is Li."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-013",
+    "title": "Upstairs or Downstairs?",
+    "objective": "Agree on where to meet the delivery person.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "楼上",
+        "en": "upstairs",
+        "sourceConcept": null
+      },
+      {
+        "zh": "楼下",
+        "en": "downstairs",
+        "sourceConcept": null
+      },
+      {
+        "zh": "电梯",
+        "en": "elevator",
+        "sourceConcept": null
+      },
+      {
+        "zh": "等",
+        "en": "wait",
+        "sourceConcept": null
+      },
+      {
+        "zh": "拿",
+        "en": "take; collect",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "我在楼下。",
+      "en": "I am downstairs."
+    },
+    "ladder": [
+      {
+        "zh": "我现在下楼。",
+        "en": "I am coming downstairs now."
+      },
+      {
+        "zh": "请在电梯旁边等我。",
+        "en": "Please wait for me beside the elevator."
+      },
+      {
+        "zh": "我下楼拿包裹。",
+        "en": "I will go downstairs to collect the package."
+      },
+      {
+        "zh": "我在楼下的门口，不在电梯旁边。",
+        "en": "I am at the downstairs entrance, not beside the elevator."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-014",
+    "title": "Could You Say That Again?",
+    "objective": "Slow a phone conversation down and check what you heard.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "说",
+        "en": "speak; say",
+        "sourceConcept": null
+      },
+      {
+        "zh": "慢",
+        "en": "slow",
+        "sourceConcept": null
+      },
+      {
+        "zh": "快",
+        "en": "fast",
+        "sourceConcept": null
+      },
+      {
+        "zh": "听清楚",
+        "en": "hear clearly",
+        "sourceConcept": null
+      },
+      {
+        "zh": "再说一遍",
+        "en": "say it one more time",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "请说慢一点。",
+      "en": "Please speak a little more slowly."
+    },
+    "ladder": [
+      {
+        "zh": "不好意思，我没听清楚。",
+        "en": "Sorry, I did not hear clearly."
+      },
+      {
+        "zh": "请再说一遍。",
+        "en": "Please say it again."
+      },
+      {
+        "zh": "您说得太快了，我没听清楚。",
+        "en": "You spoke too quickly. I did not hear clearly."
+      },
+      {
+        "zh": "您在楼下，不在楼上，对吗？",
+        "en": "You are downstairs, not upstairs, correct?"
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-015",
+    "title": "Please Keep the Box Dry",
+    "objective": "Ask for a dry place and describe a heavy package.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "箱子",
+        "en": "box",
+        "sourceConcept": null
+      },
+      {
+        "zh": "重",
+        "en": "heavy",
+        "sourceConcept": null
+      },
+      {
+        "zh": "轻",
+        "en": "light; not heavy",
+        "sourceConcept": null
+      },
+      {
+        "zh": "湿",
+        "en": "wet",
+        "sourceConcept": null
+      },
+      {
+        "zh": "干",
+        "en": "dry",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "这个箱子很重。",
+      "en": "This box is heavy."
+    },
+    "ladder": [
+      {
+        "zh": "那个小箱子很轻。",
+        "en": "That small box is light."
+      },
+      {
+        "zh": "箱子湿了。",
+        "en": "The box has gotten wet."
+      },
+      {
+        "zh": "请放在里面，不要放在外面。",
+        "en": "Please put it inside, not outside."
+      },
+      {
+        "zh": "大箱子湿了，小箱子还是干的。",
+        "en": "The large box got wet; the small box is still dry."
+      },
+      {
+        "zh": "请放在门里面的地上，谢谢。",
+        "en": "Please put it on the floor just inside the door. Thank you."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
   }
 ]
