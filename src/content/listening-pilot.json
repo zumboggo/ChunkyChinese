@@ -1,6 +1,7 @@
 [
   {
     "id": "listening-001",
+    "theme": "everyday",
     "title": "A drink before we begin",
     "objective": "You are visiting a friend. Listen for what goes into the tea.",
     "prerequisites": [
@@ -169,6 +170,7 @@
   },
   {
     "id": "listening-002",
+    "theme": "everyday",
     "title": "Something to eat",
     "objective": "Breakfast is ready. Listen for what each person wants to eat.",
     "prerequisites": [
@@ -338,6 +340,7 @@
   },
   {
     "id": "listening-003",
+    "theme": "everyday",
     "title": "Put it here",
     "objective": "You are setting the table. Listen for where the objects belong.",
     "prerequisites": [
@@ -511,6 +514,7 @@
   },
   {
     "id": "listening-004",
+    "theme": "everyday",
     "title": "Is this yours?",
     "objective": "Before leaving, you need to find your things. Listen for who owns them and where they are.",
     "prerequisites": [
@@ -687,6 +691,7 @@
   },
   {
     "id": "listening-005",
+    "theme": "everyday",
     "title": "One more, please",
     "objective": "You are ordering drinks for two people. Listen carefully to the quantities.",
     "prerequisites": [

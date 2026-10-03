@@ -1,6 +1,7 @@
 [
   {
     "id": "listening-006",
+    "theme": "everyday",
     "title": "Not too hot",
     "objective": "You are choosing a drink. Listen for temperature and size.",
     "prerequisites": [
@@ -191,6 +192,7 @@
   },
   {
     "id": "listening-007",
+    "theme": "everyday",
     "title": "Let some air in",
     "objective": "You are in a warm room. Listen for what to open and what to close.",
     "prerequisites": [
@@ -383,6 +385,7 @@
   },
   {
     "id": "listening-008",
+    "theme": "everyday",
     "title": "A place to sit",
     "objective": "You are visiting a friend. Listen for where you can sit.",
     "prerequisites": [
@@ -580,6 +583,7 @@
   },
   {
     "id": "listening-009",
+    "theme": "everyday",
     "title": "Which shoes?",
     "objective": "You are getting dressed. Listen for the clothes and their colors.",
     "prerequisites": [
@@ -782,6 +786,7 @@
   },
   {
     "id": "listening-010",
+    "theme": "everyday",
     "title": "Before you go out",
     "objective": "You are going outside. Listen for what to take when it rains.",
     "prerequisites": [
@@ -989,6 +994,7 @@
   },
   {
     "id": "listening-011",
+    "theme": "deliveries",
     "title": "Please Leave It at the Door",
     "objective": "Tell a delivery person where to leave your package.",
     "prerequisites": [],
@@ -1045,6 +1051,7 @@
   },
   {
     "id": "listening-012",
+    "theme": "deliveries",
     "title": "Which Package Is Mine?",
     "objective": "Identify your package and check the name on it.",
     "prerequisites": [],
@@ -1109,6 +1116,7 @@
   },
   {
     "id": "listening-013",
+    "theme": "deliveries",
     "title": "Upstairs or Downstairs?",
     "objective": "Agree on where to meet the delivery person.",
     "prerequisites": [],
@@ -1169,6 +1177,7 @@
   },
   {
     "id": "listening-014",
+    "theme": "everyday",
     "title": "Could You Say That Again?",
     "objective": "Slow a phone conversation down and check what you heard.",
     "prerequisites": [],
@@ -1229,6 +1238,7 @@
   },
   {
     "id": "listening-015",
+    "theme": "deliveries",
     "title": "Please Keep the Box Dry",
     "objective": "Ask for a dry place and describe a heavy package.",
     "prerequisites": [],
@@ -1293,6 +1303,7 @@
   },
   {
     "id": "listening-016",
+    "theme": "school",
     "title": "The Missing Assignment",
     "objective": "Ask about an unfinished assignment and agree on a deadline.",
     "prerequisites": [],
@@ -1357,6 +1368,7 @@
   },
   {
     "id": "listening-017",
+    "theme": "school",
     "title": "Make Your Meaning Clear",
     "objective": "Discuss an essay paragraph and ask for a clearer example.",
     "prerequisites": [],
@@ -1421,6 +1433,7 @@
   },
   {
     "id": "listening-018",
+    "theme": "school",
     "title": "Which Classroom?",
     "objective": "Find the classroom and check the lesson times with a colleague.",
     "prerequisites": [],
@@ -1485,6 +1498,7 @@
   },
   {
     "id": "listening-019",
+    "theme": "school",
     "title": "A Conversation with a Parent",
     "objective": "Describe progress and agree on a practical way to help.",
     "prerequisites": [],
@@ -1549,6 +1563,7 @@
   },
   {
     "id": "listening-020",
+    "theme": "taxi",
     "title": "A Taxi to School, a Taxi Home",
     "objective": "Build and recall your school and home taxi destinations.",
     "prerequisites": [],

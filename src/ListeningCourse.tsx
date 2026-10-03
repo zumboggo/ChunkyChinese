@@ -5,6 +5,7 @@ import additionalLessons from './content/listening-additional.json'
 
 import { mergeHeardRanges, heardSeconds, readCourseProgress, completeCourseListen } from './listeningCourseProgress'
 import { lessonNumberIndex, nextCourseLesson, wordPinyin } from './listeningCourseControls'
+import { courseThemes, lessonsInTheme, leastPlayedLesson } from './listeningCourseThemes'
 import './listeningCourse.css'
 
 const lessons = [...pilotLessons, ...additionalLessons]
@@ -27,6 +28,14 @@ const formatTime = (seconds: number) => `${Math.floor(Math.round(seconds) / 60)}
 export default function ListeningCourse({ scope, onComplete }: Props) {
   const storageKey = `chunky-listening-course-v1:${scope}`
   const [progress, setProgress] = useState(() => readCourseProgress(storageKey, ids))
+  const [theme, setTheme] = useState(() => {
+    try {
+      const saved = localStorage.getItem(`${storageKey}:theme`) ?? 'all'
+      return lessonsInTheme(lessons, saved).some(item => item.id === progress.lessonId) ? saved : 'all'
+    } catch { return 'all' }
+  })
+  const themeRef = useRef(theme)
+  const themeLessons = lessonsInTheme(lessons, theme)
   const [recordings, setRecordings] = useState<CourseRecording[]>([])
   const [error, setError] = useState('')
   const [offlineMessage, setOfflineMessage] = useState('')
@@ -82,7 +91,23 @@ export default function ListeningCourse({ scope, onComplete }: Props) {
     return () => { for (const [action] of handlers) { try { navigator.mediaSession.setActionHandler(action, null) } catch { /* Unsupported action. */ } } }
   }, [lesson.title, recording])
 
+  function rememberTheme(value: string) {
+    themeRef.current = value
+    setTheme(value)
+    try { localStorage.setItem(`${storageKey}:theme`, value) } catch { /* Session preference still works. */ }
+  }
+
+  function selectTheme(value: string) {
+    const target = leastPlayedLesson(lessonsInTheme(lessons, value), progressRef.current.listens)
+    if (!target) return
+    rememberTheme(value)
+    selectLesson(target.id)
+  }
+
   function selectLesson(id: string, play = false) {
+    if (!lessonsInTheme(lessons, themeRef.current).some(item => item.id === id)) {
+      rememberTheme(lessons.find(item => item.id === id)?.theme ?? 'all')
+    }
     pendingPlay.current = play
     audio.current?.pause()
     if (id === progressRef.current.lessonId && audio.current) audio.current.currentTime = 0
@@ -114,7 +139,7 @@ export default function ListeningCourse({ scope, onComplete }: Props) {
     completing.current = false
     // A manual selection while completion is saving takes precedence over auto-next.
     if (progressRef.current.lessonId !== finishedId) return
-    const nextId = nextCourseLesson(ids, finishedId, autoNextRef.current)
+    const nextId = nextCourseLesson(lessonsInTheme(lessons, themeRef.current).map(item => item.id), finishedId, autoNextRef.current)
     if (nextId) selectLesson(nextId, true)
     else if (!qualified) setError('You reached the end. Replay to hear the remaining parts of this lesson.')
   }
@@ -161,13 +186,18 @@ export default function ListeningCourse({ scope, onComplete }: Props) {
     finally { setSaving(false) }
   }
 
+  const nextLesson = themeLessons[themeLessons.findIndex(item => item.id === lesson.id) + 1]
   const duration = recording?.seconds ?? 0
   const position = Math.min(progress.seconds, duration)
 
   return <section className="screen listening-course" aria-label="Short listening lessons">
     <div className="listening-course-heading"><span>LISTEN &amp; LEARN</span><span>One small lesson. A little more confidence.</span></div>
     <div className="listening-course-navigation">
-      <label className="listening-course-picker">Choose a lesson<select value={lesson.id} onChange={event => selectLesson(event.target.value)}>{lessons.map((item, n) => <option key={item.id} value={item.id}>{n + 1}. {item.title}{progress.completed.includes(item.id) ? ' ✓' : ''}</option>)}</select></label>
+      <label className="listening-course-picker listening-course-theme">Theme<select value={theme} onChange={event => selectTheme(event.target.value)} aria-describedby="listening-theme-help"><option value="all">All lessons</option>{courseThemes.map(item => {
+        const available = lessonsInTheme(lessons, item.id).length > 0
+        return <option key={item.id} value={item.id} disabled={!available}>{item.label}{available ? '' : ' — coming soon'}</option>
+      })}</select></label>
+      <label className="listening-course-picker">Choose a lesson<select value={lesson.id} onChange={event => selectLesson(event.target.value)}>{themeLessons.map(item => <option key={item.id} value={item.id}>{lessons.indexOf(item) + 1}. {item.title}{progress.completed.includes(item.id) ? ' ✓' : ''}</option>)}</select></label>
       <form className="listening-course-jump" onSubmit={event => {
         event.preventDefault()
         const target = lessonNumberIndex(jumpNumber, lessons.length)
@@ -175,6 +205,7 @@ export default function ListeningCourse({ scope, onComplete }: Props) {
         selectLesson(lessons[target].id)
       }}><label htmlFor="listening-lesson-number">Jump to</label><div><input id="listening-lesson-number" type="number" min="1" max={lessons.length} step="1" inputMode="numeric" placeholder={String(index + 1)} value={jumpNumber} onChange={event => { setJumpNumber(event.target.value); setJumpError('') }} aria-describedby={jumpError ? 'listening-jump-error' : undefined} /><button type="submit" aria-label="Go to lesson number">Go</button></div></form>
     </div>
+    <p id="listening-theme-help" className="listening-theme-help">Choose a theme to open its least-played lesson. Auto-next stays in that theme.</p>
     {jumpError && <p id="listening-jump-error" role="alert">{jumpError}</p>}
     <div className="listening-course-player">
       <div className="listening-course-meta"><span>LESSON {index + 1} OF {lessons.length}</span><span>{recording ? formatTime(duration) : 'About 4 minutes'}</span></div>
@@ -210,10 +241,10 @@ export default function ListeningCourse({ scope, onComplete }: Props) {
       <div className="listening-course-player-footer">
         <button type="button" onClick={() => selectLesson(lesson.id, true)}>Replay</button>
         <label className="listening-course-auto"><input type="checkbox" role="switch" checked={autoNext} onChange={event => setAutoNextPreference(event.target.checked)} /><span>Auto-next</span></label>
-        <button type="button" disabled={index === lessons.length - 1} onClick={() => selectLesson(lessons[index + 1].id)}>Next lesson <span aria-hidden="true">→</span></button>
+        <button type="button" disabled={!nextLesson} onClick={() => { if (nextLesson) selectLesson(nextLesson.id) }}>Next lesson <span aria-hidden="true">→</span></button>
       </div>
     </div>
-    {index === lessons.length - 1 && <p className="listening-course-last">You have reached the latest lesson. More are on the way.</p>}
+    {!nextLesson && <p className="listening-course-last">{theme === 'all' ? 'You have reached the latest lesson. More are on the way.' : 'This is the last lesson in this theme. Choose another theme or replay a lesson.'}</p>}
     <div className="listening-course-vocabulary-heading"><h2>Words to listen for</h2><span>{lesson.focus.length} familiar pieces</span></div>
     <div className="listening-course-focus" aria-label="Lesson vocabulary">{lesson.focus.map(word => <div key={word.zh}><span lang="zh-CN">{word.zh}</span><span className="listening-course-pinyin">{wordPinyin(word.zh)}</span><small>{word.en}</small></div>)}</div>
     <div className="listening-course-extras">
