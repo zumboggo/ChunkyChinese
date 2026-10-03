@@ -543,6 +543,7 @@ function App() {
   const [stats, setStats] = useState<DashboardStats>(emptyStats)
   const [dashboardRange, setDashboardRange] = useState<DashboardRange>('today')
   const [userSettings, setUserSettings] = useState(DEFAULT_USER_SETTINGS)
+  const readerSettingsRevision = useRef(0)
   const activeSentencePool = useMemo(
     () => getSentencePool(userSettings.sentencePoolId),
     [userSettings.sentencePoolId],
@@ -724,6 +725,7 @@ function App() {
   }, [activeSentencePool.id])
 
   const refresh = useCallback(async () => {
+    const settingsRevision = readerSettingsRevision.current
     const [
       nextWords,
       nextSentences,
@@ -764,8 +766,11 @@ function App() {
     setReaderProgressRows(nextReaderProgressRows)
     setReaderQueueState(nextReaderQueueState)
     setNewWordsPerDay(nextNewWordsPerDay)
-    setUserSettings(nextUserSettings)
-    setReaderShowEnglish(nextUserSettings.readerShowEnglish)
+    // Background loading must not undo display choices made while it was running.
+    if (readerSettingsRevision.current === settingsRevision) {
+      setUserSettings(nextUserSettings)
+      setReaderShowEnglish(nextUserSettings.readerShowEnglish)
+    }
     setHostedClipPacks(nextHostedClipPacks)
     setAiStorySettings(nextAiStorySettings)
     setStats(nextStats)
@@ -2111,6 +2116,7 @@ function App() {
   }, [])
 
   const toggleReaderEnglish = useCallback(() => {
+    readerSettingsRevision.current += 1
     setReaderShowEnglish((current) => {
       const readerShowEnglish = !current
       setUserSettings((settings) => {
@@ -3021,9 +3027,12 @@ function App() {
     | 'readerShowEnglish'
     | 'readerStatusHighlight'
   >>) {
-    const next = { ...userSettings, ...patch }
-    setUserSettings(next)
-    void saveUserSettings(next)
+    readerSettingsRevision.current += 1
+    setUserSettings(current => {
+      const next = { ...current, ...patch }
+      void saveUserSettings(next)
+      return next
+    })
     setLastSummary('Reader settings saved.')
   }
 
@@ -3615,6 +3624,8 @@ function App() {
           replayHotkey={hotkeys.choiceF}
           choiceB={hotkeys.choiceB}
           showEnglish={readerShowEnglish}
+          showPinyin={userSettings.readerPinyinMode !== 'none'}
+          onTogglePinyin={() => saveReaderSettings({ readerPinyinMode: userSettings.readerPinyinMode === 'none' ? 'all' : 'none' })}
           storyChunk={storyChunkSession}
           storyChunkReceipt={storyChunkReceipt}
           listening={readerListening}
@@ -4987,6 +4998,7 @@ function ReadingTextsLibrary({
   storyFocusCandidates: Array<{ word: string; pinyin: string; meaning: string }>
 }) {
   const [category, setCategory] = useState<ReadingCategoryView>(null)
+  const [creating, setCreating] = useState(false)
 
   const novels = sortReaderBooksByKnownPercent(
     readerBooks.filter((b) => readingBookCategory(b) === 'novel'),
@@ -4998,8 +5010,8 @@ function ReadingTextsLibrary({
     comprehensionByBook,
     resumeLocation?.book.id,
   )
-  const generatedBooks = stories.filter((b) => b.packId === GENERATED_STORIES_PACK_ID)
-  const shelfStories = stories.filter((b) => b.packId !== GENERATED_STORIES_PACK_ID)
+  const visibleBooks = category === 'novels' ? novels : category === 'stories' ? stories :
+    sortReaderBooksByKnownPercent(readerBooks, comprehensionByBook, resumeLocation?.book.id)
 
   const renderBookShelf = (books: ReaderBook[], emptyLabel: string) =>
     books.length > 0 ? (
@@ -5071,6 +5083,11 @@ function ReadingTextsLibrary({
                             : 'Download offline'}
                     </button>
                   </div>
+                  {book.packId === GENERATED_STORIES_PACK_ID && <details className="reading-story-actions">
+                    <summary>Story options</summary>
+                    <button type="button" disabled={aiStoryBusy} onClick={() => void onContinueStory(book)}>Write next chapter</button>
+                    <button type="button" className="danger" disabled={aiStoryBusy} onClick={() => void onDeleteStory(book)}>Delete story</button>
+                  </details>}
                 </div>
               </article>
             )
@@ -5084,91 +5101,6 @@ function ReadingTextsLibrary({
       </div>
     )
 
-  // ── Category sub-views ──
-  if (category === 'novels' || category === 'stories') {
-    const isNovels = category === 'novels'
-    return (
-      <section className="screen reading-texts-screen">
-        <header className="reading-library-heading">
-          <button type="button" className="ghost-answer reading-back-button" onClick={() => setCategory(null)}>
-            Back to Reading
-          </button>
-          <div>
-            <span className="reading-library-mark" aria-hidden="true">{isNovels ? '文' : '事'}</span>
-            <div>
-              <h1>{isNovels ? 'Novels' : 'Stories'}</h1>
-              <p>{isNovels ? 'Long-form books with pinyin, translations, and audio.' : 'Short reads and standalone texts.'}</p>
-            </div>
-          </div>
-        </header>
-        <section className="reading-library-section">
-          <div className="reading-section-heading">
-            <div>
-              <h2>{isNovels ? novels.length : stories.length} {isNovels ? 'novels' : 'stories'}</h2>
-              <p>Tap a cover to start reading.</p>
-            </div>
-            <button type="button" className="ghost-answer" onClick={onBrowseNovels}>
-              Classic library
-            </button>
-          </div>
-          {!isNovels ? (
-            <GenerateStoryPanel
-              disabled={!canGenerateAiStories}
-              busy={aiStoryBusy}
-              message={aiStoryMessage}
-              onGenerate={onGenerateStory}
-              onImportText={onImportReaderText}
-              onOpenGenerated={(book) => void onChooseBook(book, 'start')}
-              defaults={aiStoryDefaults}
-              focusCandidates={storyFocusCandidates}
-            />
-          ) : null}
-          {!isNovels && generatedBooks.length > 0 ? (
-            <details className="generated-story-list" open>
-              <summary>Generated stories ({generatedBooks.length})</summary>
-              {generatedBooks.map((book) => {
-                const comprehension = comprehensionByBook.get(book.id)
-                const cover = readerBookCoverSrc(book)
-                return (
-                  <div className="generated-story-row" key={book.id}>
-                    {cover ? (
-                      <img src={cover} alt="" />
-                    ) : (
-                      <span className="generated-story-thumb-fallback" aria-hidden="true">书</span>
-                    )}
-                    <div className="generated-story-meta">
-                      <strong>{book.title}</strong>
-                      <small>
-                        {book.stories.length} chapter{book.stories.length > 1 ? 's' : ''} ·{' '}
-                        {comprehension?.knownPercent ?? 0}% known
-                      </small>
-                    </div>
-                    <div className="generated-story-actions">
-                      <button
-                        type="button"
-                        className="primary"
-                        onClick={() => void onChooseBook(book, resumeLocation?.book.id === book.id ? 'resume' : 'start')}
-                      >
-                        Read
-                      </button>
-                      <button type="button" disabled={aiStoryBusy} onClick={() => void onContinueStory(book)}>
-                        Continue
-                      </button>
-                      <button type="button" className="danger" onClick={() => void onDeleteStory(book)}>
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                )
-              })}
-            </details>
-          ) : null}
-          {renderBookShelf(isNovels ? novels : shelfStories, isNovels ? 'No novels yet.' : 'No stories yet.')}
-        </section>
-      </section>
-    )
-  }
-
   // ── Hub ──
   return (
     <section className="screen reading-texts-screen">
@@ -5180,7 +5112,7 @@ function ReadingTextsLibrary({
           <span className="reading-library-mark" aria-hidden="true">阅</span>
           <div>
             <h1>Reading</h1>
-            <p>Pick a format, then choose what to read.</p>
+            <p>Choose a book or pick up where you left off.</p>
           </div>
         </div>
       </header>
@@ -5217,25 +5149,28 @@ function ReadingTextsLibrary({
         </section>
       ) : null}
 
-      <section className="reading-formats-section" aria-labelledby="reading-formats-title">
-        <div className="reading-formats-grid">
-          <button type="button" className="reading-format reading-format-novels" onClick={() => setCategory('novels')}>
-            <span className="reading-format-icon" aria-hidden="true">文</span>
-            <span>
-              <strong>Novels</strong>
-              <small>{novels.length} long-form books with pinyin and audio.</small>
-            </span>
-            <span className="reading-format-arrow" aria-hidden="true">→</span>
-          </button>
-          <button type="button" className="reading-format reading-format-novels" onClick={() => setCategory('stories')}>
-            <span className="reading-format-icon" aria-hidden="true">事</span>
-            <span>
-              <strong>Stories</strong>
-              <small>{stories.length} short reads and standalone texts.</small>
-            </span>
-            <span className="reading-format-arrow" aria-hidden="true">→</span>
-          </button>
+      <div className="reading-library-toolbar">
+        <div className="reading-library-filters" role="group" aria-label="Filter reading library">
+          {([{ value: null, label: 'All' }, { value: 'novels', label: 'Novels' }, { value: 'stories', label: 'Stories' }] as const).map(filter => (
+            <button type="button" key={filter.label} aria-pressed={category === filter.value} onClick={() => setCategory(filter.value)}>{filter.label}</button>
+          ))}
         </div>
+        <button type="button" aria-expanded={creating} aria-controls="reading-create-story" onClick={() => setCreating(value => !value)}>{creating ? 'Close story creator' : 'Create a story'}</button>
+      </div>
+      {creating && <div id="reading-create-story">
+        <GenerateStoryPanel
+          disabled={!canGenerateAiStories} busy={aiStoryBusy} message={aiStoryMessage}
+          onGenerate={onGenerateStory} onImportText={onImportReaderText}
+          onOpenGenerated={(book) => void onChooseBook(book, 'start')}
+          defaults={aiStoryDefaults} focusCandidates={storyFocusCandidates}
+        />
+      </div>}
+      <section className="reading-library-section" aria-label="Your books">
+        <div className="reading-section-heading">
+          <h2>{category === 'novels' ? 'Novels' : category === 'stories' ? 'Stories' : 'Your books'}</h2>
+          <button type="button" className="ghost-answer" onClick={onBrowseNovels}>Classic library</button>
+        </div>
+        {renderBookShelf(visibleBooks, category === 'novels' ? 'No novels yet.' : category === 'stories' ? 'No stories yet.' : 'No books yet.')}
       </section>
     </section>
   )
@@ -5573,9 +5508,9 @@ We walk home slowly.`}</pre>
         </div>
       ) : null}
       <small>
-        {disabled
+        {localMessage ?? message ?? (disabled
           ? 'Add your OpenRouter API key under Settings > AI Story Generation to enable AI stories.'
-          : localMessage ?? message ?? 'Targets at least 95% known-word coverage.'}
+          : 'Targets at least 95% known-word coverage.')}
       </small>
     </section>
   )
@@ -5598,6 +5533,8 @@ function ReaderMode({
   replayHotkey,
   choiceB,
   showEnglish,
+  showPinyin,
+  onTogglePinyin,
   storyChunk,
   storyChunkReceipt,
   sessionRecap,
@@ -5648,6 +5585,8 @@ function ReaderMode({
   replayHotkey: string
   choiceB: string
   showEnglish: boolean
+  showPinyin: boolean
+  onTogglePinyin: () => void
   storyChunk: StoryChunkSession | null
   storyChunkReceipt: StoryChunkReceipt | null
   sessionRecap: ReaderSessionRecap | null
@@ -5746,7 +5685,7 @@ function ReaderMode({
               Library
             </button>
             <button type="button" className={showEnglish ? 'active' : ''} onClick={onToggleEnglish}>
-              English {showEnglish ? 'sharp' : 'blurred'}
+              Meaning {showEnglish ? 'on' : 'off'}
             </button>
           </div>
         </div>
@@ -5967,6 +5906,14 @@ function ReaderMode({
                 </section>
               ) : null}
               {/* eslint-disable-next-line react-hooks/refs -- The swipe hook exposes stable JSX event handlers. */}
+              <div className="reader-simple-toolbar" aria-label="Reading help">
+                <button type="button" onClick={onOpenLibrary}>Library</button>
+                <button type="button" aria-pressed={showPinyin} onClick={onTogglePinyin}>Pinyin</button>
+                <button type="button" aria-pressed={showEnglish} onClick={onToggleEnglish}>Meaning</button>
+                <StudyMenuSelect label="Speed" value={listeningRate}
+                  options={[0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2].map(rate => ({ value: rate, label: `${rate.toFixed(1)}×` }))}
+                  onChange={value => onListeningSettingsChange({ readerListeningRate: value })} />
+              </div>
               <div className="reader-swipe-zone" {...readerSwipe.handlers}>
                   <div
                     key={sentence.id}
@@ -5974,7 +5921,7 @@ function ReaderMode({
                     ref={readerSwipe.cardRef}
                     className="reader-reading-area reader-listening-highlight card-enter"
                   >
-                    <div className="reader-interlinear" lang="zh-CN">
+                    <div className={`reader-interlinear${showPinyin ? "" : " hide-pinyin"}${showEnglish ? "" : " hide-meaning"}`} lang="zh-CN">
                       {(sentence.interlinear ?? tokens.map((token) => ({
                         chinese: token.text,
                         pinyin: token.pinyin,
@@ -5995,19 +5942,13 @@ function ReaderMode({
                             })
                           }}
                         >
-                          <span className="reader-interlinear-pinyin">{chunk.pinyin}</span>
+                          {showPinyin && <span className="reader-interlinear-pinyin">{chunk.pinyin}</span>}
                           <strong>{chunk.chinese}</strong>
-                          <span className="reader-interlinear-gloss">{chunk.gloss}</span>
+                          {showEnglish && <span className="reader-interlinear-gloss">{chunk.gloss}</span>}
                         </button>
                       ))}
                     </div>
-                    <p
-                      className={`reader-translation ${
-                        showEnglish || listening.active ? 'revealed' : 'blur-reveal'
-                      } reader-listening-highlight`}
-                    >
-                      {sentence.english}
-                    </p>
+                    {showEnglish && <p className="reader-translation revealed reader-listening-highlight">{sentence.english}</p>}
                   </div>
               </div>
               {storyChunk && (
@@ -6027,23 +5968,14 @@ function ReaderMode({
                     aria-label="Reader menu"
                   >
                     <span className="reader-control-icon" aria-hidden="true">☰</span>
-                    <span className="reader-control-label">Menu</span>
+                    <span className="reader-control-label">More options</span>
                   </button>
                   <StudyMenuPopup
                     open={readerMenuOpen}
                     onClose={() => setReaderMenuOpen(false)}
                     className="popup-up"
                   >
-                    <StudyMenuSection label="Display">
-                      <StudyMenuToggle label="English" checked={showEnglish} onChange={() => onToggleEnglish()} />
-                    </StudyMenuSection>
-                    <StudyMenuSection label="Playback">
-                      <StudyMenuSelect
-                        label="Speed"
-                        value={listeningRate}
-                        options={[0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2].map(r => ({ value: r, label: `${r.toFixed(1)}×` }))}
-                        onChange={value => onListeningSettingsChange({ readerListeningRate: value })}
-                      />
+                    <StudyMenuSection label="Playback options">
                       <StudyMenuSelect
                         label="Repeats"
                         value={listeningRepeats}
@@ -6051,7 +5983,7 @@ function ReaderMode({
                         onChange={value => onListeningSettingsChange({ readerListeningRepeats: value })}
                       />
                       <StudyMenuSelect
-                        label="Speak pause"
+                        label="Speaking pause"
                         value={listeningPauseFactor}
                         options={[
                           { value: 0, label: 'Off' },
@@ -6101,7 +6033,7 @@ function ReaderMode({
                           setReaderMenuOpen(false)
                         }}
                       >
-                        {listening.active ? 'Stop Listening Mode' : `Listen from sentence ${sentenceIndex + 1}`}
+                        {listening.active ? 'Stop audio' : 'Start audio'}
                       </button>
                       <button
                         type="button"
@@ -6112,7 +6044,7 @@ function ReaderMode({
                           setReaderMenuOpen(false)
                         }}
                       >
-                        {storyChunk ? 'Story chunk running' : 'Start story chunk'}
+                        {storyChunk ? 'Short session running' : 'Read a short section'}
                       </button>
                       <button
                         type="button"
@@ -6126,104 +6058,18 @@ function ReaderMode({
                     </div>
                   </StudyMenuPopup>
                 </div>
-                {listening.active ? (
-                  <div className="reader-listening-controls" aria-label="Reader listening controls">
-                    <button
-                      type="button"
-                      className="sentence-play-pause reader-listening-play-btn"
-                      onClick={listening.togglePlayPause}
-                      aria-label={listeningPlaying ? 'Pause listening' : 'Play listening'}
-                    >
-                      <span className="reader-control-icon" aria-hidden="true">
-                        {listeningPlaying ? (
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                            <rect x="5" y="4" width="4" height="16" rx="1" />
-                            <rect x="15" y="4" width="4" height="16" rx="1" />
-                          </svg>
-                        ) : (
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                            <polygon points="5,3 19,12 5,21" />
-                          </svg>
-                        )}
-                      </span>
-                      <span className="reader-control-label">{listeningPlaying ? 'Pause' : 'Play'}</span>
-                    </button>
-                    <button
-                      type="button"
-                      className="sentence-end-btn reader-listening-icon-btn reader-listening-stop-btn"
-                      onClick={listening.stop}
-                      aria-label="Stop listening"
-                    >
-                      <span className="reader-control-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
-                          <rect x="6" y="6" width="12" height="12" rx="2" />
-                        </svg>
-                      </span>
-                      <span className="reader-control-label">Stop</span>
-                    </button>
-                    <button
-                      type="button"
-                      className="sentence-end-btn reader-listening-icon-btn"
-                      onClick={() => { void onNext() }}
-                      disabled={sentenceIndex >= sentenceCount - 1}
-                      aria-label={`Next sentence. Choice B hotkey: ${choiceB.toUpperCase()}.`}
-                    >
-                      <span className="reader-control-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                          <polygon points="5,4 15,12 5,20" />
-                          <rect x="17" y="5" width="2" height="14" rx="1" />
-                        </svg>
-                      </span>
-                      <span className="reader-control-label">Next</span>
-                    </button>
-                  </div>
-                ) : (
-                  <div className="reader-listening-controls" aria-label="Reader controls">
-                    <button
-                      type="button"
-                      className="sentence-play-pause reader-listening-play-btn"
-                      onClick={listening.startListening}
-                      aria-label={`Play sentence. Hotkey: ${replayHotkey.toUpperCase()}.`}
-                    >
-                      <span className="reader-control-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                          <polygon points="5,3 19,12 5,21" />
-                        </svg>
-                      </span>
-                      <span className="reader-control-label">Play</span>
-                    </button>
-                    <button
-                      type="button"
-                      className="sentence-end-btn reader-listening-icon-btn"
-                      onClick={() => { void onPrevious() }}
-                      disabled={sentenceIndex <= 0}
-                      aria-label="Previous sentence"
-                    >
-                      <span className="reader-control-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                          <rect x="5" y="5" width="2" height="14" rx="1" />
-                          <polygon points="19,4 9,12 19,20" />
-                        </svg>
-                      </span>
-                      <span className="reader-control-label">Previous</span>
-                    </button>
-                    <button
-                      type="button"
-                      className="sentence-end-btn reader-listening-icon-btn"
-                      onClick={() => { void onNext() }}
-                      disabled={sentenceIndex >= sentenceCount - 1}
-                      aria-label={`Next sentence. Hotkey: ${choiceB.toUpperCase()}.`}
-                    >
-                      <span className="reader-control-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                          <polygon points="5,4 15,12 5,20" />
-                          <rect x="17" y="5" width="2" height="14" rx="1" />
-                        </svg>
-                      </span>
-                      <span className="reader-control-label">Next</span>
-                    </button>
-                  </div>
-                )}
+                <div className="reader-listening-controls" aria-label="Reader controls">
+                  <button type="button" className="sentence-end-btn reader-listening-icon-btn" disabled={sentenceIndex <= 0} onClick={() => void onPrevious()} aria-label="Previous sentence">
+                    <span className="reader-control-icon" aria-hidden="true">←</span><span className="reader-control-label">Previous</span>
+                  </button>
+                  <button type="button" className="sentence-play-pause reader-listening-play-btn" onClick={listening.active ? listening.togglePlayPause : listening.startListening}
+                    aria-label={listeningPlaying ? 'Pause listening' : 'Play listening'} title={`Play or pause. Hotkey: ${replayHotkey.toUpperCase()}`}>
+                    <span className="reader-control-icon" aria-hidden="true">{listeningPlaying ? 'Ⅱ' : '▶'}</span><span className="reader-control-label">{listeningPlaying ? 'Pause' : 'Play'}</span>
+                  </button>
+                  <button type="button" className="sentence-end-btn reader-listening-icon-btn" disabled={sentenceIndex >= sentenceCount - 1} onClick={() => void onNext()} aria-label={`Next sentence. Hotkey: ${choiceB.toUpperCase()}.`}>
+                    <span className="reader-control-icon" aria-hidden="true">→</span><span className="reader-control-label">Next</span>
+                  </button>
+                </div>
               </div>
               {selectedToken && (
                 <WordInfoPopover
