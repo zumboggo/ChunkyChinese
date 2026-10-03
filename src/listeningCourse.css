@@ -88,3 +88,6 @@
 .app-screen-listeningCourse .brand-button strong { color: #392820; }
 .app-screen-listeningCourse .app-bottom-nav { background: #fffaf3; border-color: #ddcdbc; }
 .app-screen-listeningCourse .app-bottom-nav button.active { color: #a84f35; background: #f2e5d9; }
+
+.listening-course-count { color: var(--listen-sage); font-size: .8rem; text-align: center; margin: 16px 0 -10px; }
+.listening-phrase-pinyin { display: block; color: var(--listen-accent); font-size: .9rem; line-height: 1.7; margin: 3px 0; }

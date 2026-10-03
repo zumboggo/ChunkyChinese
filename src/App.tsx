@@ -47,8 +47,6 @@ import {
   recordEvent,
   repairAudioClipLinksIfNeeded,
   restoreArchivedWord,
-  saveRenderedLesson,
-  saveAudioClip,
   saveNewWordsPerDay,
   setHistoricalStudyMinutes,
   clearStudyTimeAdjustment,
@@ -105,7 +103,7 @@ import {
   DEFAULT_FAMILY_PROFILE,
   type StoryWorldSelection,
 } from './storyWorlds'
-import { synthesizeStoryAudio, ensureEnglishMeaningAudio, AZURE_VOICES } from './storyAudio'
+import { synthesizeStoryAudio, AZURE_VOICES } from './storyAudio'
 import {
   GENERATED_STORIES_PACK_ID,
   GENERATED_STORY_TARGET_COVERAGE,
@@ -123,18 +121,9 @@ import {
   type StoryChunkMetrics,
   type StoryChunkReceipt,
 } from './storyFeatures'
-import { createPocketLesson, type PauseProfile, type SentenceLessonItem } from './lesson'
-import { pinyin as getPinyin } from 'pinyin-pro'
-import { renderLessonToWav, renderSessionToWav, type SessionAudioSegment } from './renderAudio'
 import {
-  buildSentenceSessionSteps,
-  ensureSentenceClip,
   filterPoolSentences,
   getSentencePool,
-  selectSequentialSentences,
-  SENTENCE_POOLS,
-  SENTENCE_SESSION_SAMPLE_RATE,
-  type SentenceListeningSettings,
   type SentencePool,
 } from './sentenceListening'
 import {
@@ -178,7 +167,6 @@ import { cappedFlashcardStudySeconds } from './studyTime'
 import type { ReaderListeningController } from './useReaderListeningController'
 import { useSwipeCard, SWIPE_NAV_GLOW, type SwipeDir } from './useSwipeCard'
 import { StudyMenuPopup, StudyMenuSection, StudyMenuToggle, StudyMenuSelect } from './StudyMenuPopup'
-import { StudyControls } from './StudyControls'
 import {
   getCloudAuthState,
   isSupabaseConfigured,
@@ -214,7 +202,6 @@ import type {
   ReaderSessionStats,
   RenderedLesson,
   Sentence,
-  StudyMode,
   UserSettings,
   VocabWord,
   DictionaryEntry,
@@ -235,7 +222,6 @@ import {
   type ReaderOfflineStatus,
 } from './readerOffline'
 import { getOfflineReadyAt, markOfflineReady, prepareOfflineAppShell } from './flightOffline'
-import { downloadSentenceListeningForOffline } from './sentenceOffline'
 import { installPrivateSentenceAudio } from './privateContent'
 import {
   repairDataHealth,
@@ -292,15 +278,6 @@ type GeneratedStoryResult = {
   book: ReaderBook
   story: GeneratedStoryPayload
   validation: GeneratedStoryValidation
-}
-type LessonStartOptions = {
-  randomize?: boolean
-  playAfterRender?: boolean
-  pauseProfile?: PauseProfile
-  newWordsLimit?: number
-  allowExtraNew?: boolean
-  keptWordIds?: string[]
-  excludedWordIds?: string[]
 }
 type LmsSeedSentence = { word: string; chinese: string; english: string; topic?: string }
 
@@ -547,20 +524,18 @@ function MilestoneJourney({
   )
 }
 
-const BOOK_LISTEN_SPEEDS = [0.6, 0.8, 1.0, 1.2, 1.4]
-
 function App() {
   const startupResume = useMemo(() => loadStartupResumeState(), [])
   const [screen, setScreen] = useState<Screen>(() => {
     if (startupResume?.destination === 'flashcards') return 'flashcards'
     if (startupResume?.destination === 'listeningCourse') return 'listeningCourse'
-    if (startupResume?.destination === 'sentenceListening') return 'lesson'
+    if (startupResume?.destination === 'sentenceListening') return 'listeningCourse'
     if (startupResume?.destination === 'reader') return 'reader'
     return 'dashboard'
   })
   const [words, setWords] = useState<VocabWord[]>([])
-  const [sentences, setSentences] = useState<Sentence[]>([])
-  const [audioClips, setAudioClips] = useState<AudioClip[]>([])
+  const [, setSentences] = useState<Sentence[]>([])
+  const [, setAudioClips] = useState<AudioClip[]>([])
   const [clipPacks, setClipPacks] = useState<ClipPack[]>([])
   const [hostedClipPacks, setHostedClipPacks] = useState<HostedClipPack[]>([])
   const [readerPacks, setReaderPacks] = useState<ReaderPack[]>([])
@@ -584,35 +559,21 @@ function App() {
   const [dataHealthBusy, setDataHealthBusy] = useState(false)
   const [hotkeysEditing, setHotkeysEditing] = useState(false)
   const [initialDataReady, setInitialDataReady] = useState(false)
-  const [lesson, setLesson] = useState<LessonPlan | null>(null)
-  const [ratingWordIds, setRatingWordIds] = useState<string[]>([])
-  const [currentStepIndex, setCurrentStepIndex] = useState(0)
-  const [lessonMode, setLessonMode] = useState<'pocket' | 'live'>('pocket')
-  const [renderedLesson, setRenderedLesson] = useState<RenderedLesson | null>(null)
-  const [renderedUrl, setRenderedUrl] = useState('')
-  const [rendering, setRendering] = useState(false)
-  const [pocketProgress, setPocketProgress] = useState({ current: 0, duration: 0 })
-  const [showPinyin, setShowPinyin] = useState(true)
-  const [showEnglish, setShowEnglish] = useState(true)
-  const [isFullscreen, setIsFullscreen] = useState(false)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [studyMode, setStudyMode] = useState<StudyMode>(() =>
-    startupResume?.destination === 'sentenceListening' ? 'sentenceMode' : 'listeningMode',
-  )
-  const [minimalVisualMode, setMinimalVisualMode] = useState(false)
-  const [lessonMenuOpen, setLessonMenuOpen] = useState(false)
-  const [pauseProfile, setPauseProfile] = useState<PauseProfile>('normal')
-  const [fsrsRatings, setFsrsRatings] = useState<Record<string, FsrsRating>>({})
-  const [listeningSetRatings, setListeningSetRatings] = useState<Record<string, FsrsRating>>({})
-  const [showReviewPrompt, setShowReviewPrompt] = useState(false)
-  const [reviewCardIndex, setReviewCardIndex] = useState(0)
-  const [reviewAnswerShown, setReviewAnswerShown] = useState(false)
-  const [flashcardFeedback, setFlashcardFeedback] = useState<FsrsRating | null>(null)
-  const [savedResumeTime, setSavedResumeTime] = useState<number | null>(null)
-  const [autoNextLesson, setAutoNextLesson] = useState(true)
-  const [autoAdvance, setAutoAdvance] = useState(true)
+  const [lesson, ] = useState<LessonPlan | null>(null)
+
+  const [, setCurrentStepIndex] = useState(0)
+
+  const [renderedLesson, ] = useState<RenderedLesson | null>(null)
+  const [renderedUrl, ] = useState('')
+
+  const [, setIsFullscreen] = useState(false)
+  const [, setIsPlaying] = useState(false)
+
+  const [flashcardFeedback, ] = useState<FsrsRating | null>(null)
+
+  const [autoAdvance] = useState(true)
   const [hotkeys, setHotkeys] = useState<HotkeySettings>(DEFAULT_HOTKEYS)
-  const [playbackRate, setPlaybackRate] = useState(1)
+  const [playbackRate] = useState(1)
   const [lastSummary, setLastSummary] = useState<string>('Ready.')
   const [seedMessage, setSeedMessage] = useState('Loading LMS vocabulary...')
   const [activeReaderBookId, setActiveReaderBookId] = useState<string | undefined>()
@@ -629,7 +590,7 @@ function App() {
   const [flashcardDoneIds, setFlashcardDoneIds] = useState<string[]>(() => startupResume?.completedIds ?? [])
   const [flashcardClock, setFlashcardClock] = useState(() => Date.now())
   const [flashcardAnswerShown, setFlashcardAnswerShown] = useState(false)
-  const [lmsSentences, setLmsSentences] = useState<LmsSeedSentence[]>([])
+  const [, setLmsSentences] = useState<LmsSeedSentence[]>([])
   const [flashcardAudioOnly, setFlashcardAudioOnly] = useState(false)
   const [flashcardSessionFeedback, setFlashcardSessionFeedback] = useState<FsrsRating | null>(null)
   const [flashcardExternalDismissDir, setFlashcardExternalDismissDir] = useState<string | null>(null)
@@ -683,33 +644,17 @@ function App() {
       : 'Supabase sync is not configured yet.',
   })
   const [dashboardToast, setDashboardToast] = useState<string | null>(null)
-  const [sentenceQueue, setSentenceQueue] = useState<SentenceLessonItem[]>([])
-  const [sentenceSetComplete, setSentenceSetComplete] = useState(false)
-  const [sentenceSetStartMs, setSentenceSetStartMs] = useState(0)
-  const [sentencePaused, setSentencePaused] = useState(true)
-  const [sentenceRendered, setSentenceRendered] = useState<{
-    url: string
-    durationSeconds: number
-    segments: SessionAudioSegment[]
-  } | null>(null)
-  const [sentenceRendering, setSentenceRendering] = useState(false)
-  const [sentencePosition, setSentencePosition] = useState({ sentenceIndex: 0, round: 0 })
-  const [sentenceProgress, setSentenceProgress] = useState({ current: 0, duration: 0 })
+
+  const [, setSentencePaused] = useState(true)
+
   const sentenceAudioRef = useRef<HTMLAudioElement | null>(null)
   const lastReaderActivityTimeRef = useRef<number>(0)
   const runToken = useRef(0)
-  const startNextLessonRef = useRef<(() => void) | null>(null)
-  const startModeLessonRef = useRef<((mode: StudyMode, options?: LessonStartOptions) => void) | null>(null)
+  const startModeLessonRef = useRef<(() => void) | null>(null)
   const runFromRef = useRef<((index: number, plan?: LessonPlan) => void) | null>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const pocketAudioRef = useRef<HTMLAudioElement | null>(null)
-  const listeningSetTransitionRef = useRef(false)
-  const completedListeningSetIdsRef = useRef(new Set<string>())
-  const previousListeningWordIdsRef = useRef<string[]>([])
-  const deviceMeaningSpokenStepRef = useRef<string | null>(null)
-  const lastPocketTimeRef = useRef(0)
   const playModeRef = useRef<HTMLElement | null>(null)
-  const studyStageRef = useRef<HTMLDivElement | null>(null)
   const flashcardFeedbackTimeoutRef = useRef<number | null>(null)
   const flashcardUndoTimeoutRef = useRef<number | null>(null)
   const flashcardPresentationStartedAtRef = useRef(Date.now())
@@ -728,21 +673,15 @@ function App() {
   const startReaderPlaylistRef = useRef<(() => Promise<void>) | null>(null)
   const pendingReaderAutoStartRef = useRef(false)
   // sentenceStreak removed; badge feature dropped
-  const [sentencePinyinVisible, setSentencePinyinVisible] = useState(false)
-  const [sentenceMenuOpen, setSentenceMenuOpen] = useState(false)
-  const [listeningLessonMenuOpen, setListeningLessonMenuOpen] = useState(false)
+
   const [sentenceQueueOffset, setSentenceQueueOffset] = useState(() => startupResume?.destination === 'sentenceListening' ? startupResume.sentenceIndex ?? 0 : 0)
   const [sentenceRepsToday, setSentenceRepsToday] = useState(0)
   // Total-rep counter still persists in IndexedDB; only daily reps drive the goal ring UI.
   const [, setSentenceTotalReps] = useState(0)
-  const [sentenceSubMode, setSentenceSubMode] = useState<'sets' | 'books'>('sets')
-  const [bookListenBookId, setBookListenBookId] = useState<string | null>(null)
+  const [sentenceSubMode] = useState<'sets' | 'books'>('sets')
+  const [bookListenBookId] = useState<string | null>(null)
   const [bookListenIndex, setBookListenIndex] = useState(0)
-  const [bookListenPinyinVisible, setBookListenPinyinVisible] = useState(true)
-  const [bookListenEnglishVisible, setBookListenEnglishVisible] = useState(true)
-  const [bookListenDismissDir, setBookListenDismissDir] = useState<string | null>(null)
-  const [bookListenAnimKey, setBookListenAnimKey] = useState(0)
-  const [bookListenFinished, setBookListenFinished] = useState(false)
+  const [, setBookListenFinished] = useState(false)
   const wakeLockRef = useRef<{ release: () => Promise<void> } | null>(null)
   const previousScreenRef = useRef<Screen>(screen)
   const dashboardToastReadyRef = useRef(false)
@@ -1060,7 +999,7 @@ function App() {
   }, [cloudUserEmail, handleCloudSyncNow, initialDataReady])
 
   useEffect(() => {
-    const needsReaderLibrary = screen === 'readingTexts' || (screen === 'lesson' && studyMode === 'sentenceMode')
+    const needsReaderLibrary = screen === 'readingTexts'
     if (!needsReaderLibrary || readerBooks.length > 0) return
     let cancelled = false
     void (async () => {
@@ -1075,7 +1014,7 @@ function App() {
       if (!cancelled) setLastSummary(error instanceof Error ? error.message : 'Could not load the reading library.')
     })
     return () => { cancelled = true }
-  }, [cloudUserEmail, readerBooks.length, screen, studyMode])
+  }, [cloudUserEmail, readerBooks.length, screen])
 
   useEffect(() => {
     function handleOnline() {
@@ -1138,38 +1077,6 @@ function App() {
     })
   }, [renderedLesson])
 
-  const currentStep = lesson?.steps[currentStepIndex]
-  const currentSegment = renderedLesson?.segments?.find(
-    (segment) =>
-      pocketProgress.current >= segment.startSeconds &&
-      pocketProgress.current < segment.endSeconds,
-  )
-  const targetWord = currentStep?.wordId
-    ? words.find((word) => word.id === currentStep.wordId)
-    : undefined
-  const studyWord = currentSegment?.wordId
-    ? words.find((word) => word.id === currentSegment.wordId)
-    : targetWord
-  const studySentence = currentSegment?.sentenceId
-    ? sentences.find((sentence) => sentence.id === currentSegment.sentenceId)
-    : undefined
-  const studyDisplay = getStudyDisplay(studyWord, studySentence)
-  useEffect(() => {
-    if (
-      studyMode !== 'listeningMode' ||
-      !isPlaying ||
-      currentSegment?.kind !== 'pause' ||
-      !studyWord ||
-      studyWord.audioMeaningId ||
-      deviceMeaningSpokenStepRef.current === currentSegment.stepId ||
-      !window.speechSynthesis
-    ) return
-    deviceMeaningSpokenStepRef.current = currentSegment.stepId
-    const utterance = new SpeechSynthesisUtterance(studyWord.meaning)
-    utterance.lang = 'en-US'
-    utterance.rate = 0.92
-    window.speechSynthesis.speak(utterance)
-  }, [currentSegment, isPlaying, studyMode, studyWord])
   const activeWords = useMemo(() => words.filter(isActiveVocabWord), [words])
   const flashcardDeckOptions = useMemo(() => flashcardDecksForWords(activeWords), [activeWords])
   const selectedFlashcardWords = useMemo(
@@ -1215,27 +1122,6 @@ function App() {
         .map((word) => ({ word: word.word, pinyin: word.pinyin ?? '', meaning: word.meaning })),
     [activeWords],
   )
-  const coverage = useMemo(() => getAudioCoverage(activeWords, sentences, audioClips), [
-    activeWords,
-    audioClips,
-    sentences,
-  ])
-  const lessonWords = useMemo(
-    () =>
-      lesson?.targetWords
-        .map((target) => words.find((word) => word.id === target.id) ?? target) ?? [],
-    [lesson, words],
-  )
-  const ratingWords = useMemo(
-    () =>
-      (ratingWordIds.length > 0 ? ratingWordIds : lesson?.targetWords.map((word) => word.id) ?? [])
-        .map((id) => words.find((word) => word.id === id))
-        .filter((word): word is VocabWord => Boolean(word)),
-    [lesson, ratingWordIds, words],
-  )
-  const isListeningMode = studyMode === 'listeningMode'
-  const allLessonWordsRated =
-    ratingWords.length > 0 && ratingWords.every((word) => fsrsRatings[word.id])
   const activeReaderBook = useMemo(
     () => readerBooks.find((book) => book.id === activeReaderBookId),
     [activeReaderBookId, readerBooks],
@@ -1284,10 +1170,6 @@ function App() {
     [bookListenBook],
   )
   const bookListenSentence = bookListenSentences[bookListenIndex] ?? null
-  const bookListenStory = useMemo(
-    () => bookListenBook?.stories.find(s => s.id === bookListenSentence?.storyId) ?? null,
-    [bookListenBook, bookListenSentence],
-  )
 
   useEffect(() => {
     if (screen !== 'reader' || !activeReaderBook) return
@@ -1305,9 +1187,6 @@ function App() {
       .catch(() => {})
     return () => { cancelled = true }
   }, [readerBooks, screen])
-  const bookListenIllustration = bookListenBook
-    ? getReaderIllustration(bookListenBook, bookListenIndex)
-    : undefined
   const selectedRangeStats = stats.ranges[dashboardRange] ?? stats.ranges.today
   const selectedPreviousRangeStats = stats.previousRanges[dashboardRange]
   const leveledUpThisWeek = useMemo(() => {
@@ -1317,8 +1196,6 @@ function App() {
     const previous = series[series.length - 2]
     return Math.max(0, latest.familiar + latest.wellKnown - (previous.familiar + previous.wellKnown))
   }, [stats.retentionSeries])
-  const remainingNewWordsToday = Math.max(0, newWordsPerDay - stats.newWordsToday)
-  const currentReviewWord = ratingWords[reviewCardIndex]
   const flashcardQueue = useMemo(
     () =>
       flashcardQueueIds
@@ -1476,35 +1353,6 @@ function App() {
     startFlashcards('due', due.slice(0, 10))
   }, [selectedFlashcardWords, startFlashcards])
 
-  const sentenceListeningSettings = useMemo<SentenceListeningSettings>(() => ({
-    sentencePoolId: userSettings.sentencePoolId,
-    sentenceRepeats: userSettings.sentenceRepeats,
-    sentenceIncludeEnglish: userSettings.sentenceIncludeEnglish,
-    sentencePauseFactor: userSettings.sentencePauseFactor,
-    sentenceSessionSize: userSettings.sentenceSessionSize,
-    sentenceRounds: userSettings.sentenceRounds,
-    sentenceShuffle: userSettings.sentenceShuffle,
-  }), [userSettings])
-
-  const wordLessonMap = useMemo(() => {
-    const map = new Map<string, number>()
-    for (const word of words) {
-      if (word.lessonNumber !== undefined) map.set(word.word, word.lessonNumber)
-    }
-    return map
-  }, [words])
-
-  const sentencePoolProgress = useMemo(() => {
-    const current = sentenceQueue[sentencePosition.sentenceIndex]
-    if (!current || lmsSentences.length === 0) return null
-    const position = ((sentenceQueueOffset + sentencePosition.sentenceIndex) % lmsSentences.length) + 1
-    return {
-      position,
-      total: lmsSentences.length,
-      lesson: wordLessonMap.get(current.word),
-    }
-  }, [lmsSentences.length, sentencePosition.sentenceIndex, sentenceQueue, sentenceQueueOffset, wordLessonMap])
-
   // Celebrate a daily goal ring closing, once per goal per session.
   // Goals already met when the app loads are treated as already celebrated.
   useEffect(() => {
@@ -1535,109 +1383,6 @@ function App() {
     userSettings.flashcardsPerDay,
     userSettings.readingGoalPages,
   ])
-
-  const startSentenceLesson = useCallback(async (
-    offsetOverride?: number,
-    /** Passed when switching collections, before the saved setting has landed in state. */
-    poolOverride?: SentencePool,
-  ) => {
-    stopAudioOutputs()
-    runToken.current += 1
-
-    const pool = poolOverride ?? activeSentencePool
-    const settings: SentenceListeningSettings = { ...sentenceListeningSettings, sentencePoolId: pool.id }
-
-    let sentencePool = poolOverride ? [] : lmsSentences
-    if (sentencePool.length === 0) {
-      try {
-        sentencePool = await loadSentenceSeed(pool)
-      } catch {
-        setLastSummary('Could not load sentence listening data.')
-        return
-      }
-    }
-
-    setStudyMode('sentenceMode')
-    setMinimalVisualMode(true)
-    setAutoNextLesson(false)
-    setScreen('lesson')
-    saveStartupResumeState({ destination: 'sentenceListening', sentenceIndex: offsetOverride ?? sentenceQueueOffset })
-    setSentenceSetComplete(false)
-    setSentenceRendering(true)
-    setSentencePinyinVisible(false)
-
-    try {
-      const candidates = selectSequentialSentences(
-        sentencePool,
-        settings.sentenceSessionSize,
-        offsetOverride ?? sentenceQueueOffset,
-      )
-      const clipDeps = { getAudioClip, saveAudioClip }
-      const set: SentenceLessonItem[] = []
-      for (const sent of candidates) {
-        const zhClip = await ensureSentenceClip(sent.word, 'zh', sent.chinese, clipDeps, pool)
-        if (!zhClip) continue
-        if (settings.sentenceIncludeEnglish) {
-          await ensureSentenceClip(sent.word, 'en', sent.english, clipDeps, pool)
-        }
-        set.push(sent)
-      }
-      if (set.length === 0) {
-        setLastSummary('No sentence audio available. Check your connection for the first download.')
-        return
-      }
-
-      const steps = buildSentenceSessionSteps(set, settings)
-      const rendered = await renderSessionToWav(steps, getAudioClip, SENTENCE_SESSION_SAMPLE_RATE)
-      const url = URL.createObjectURL(rendered.blob)
-      setSentenceRendered((previous) => {
-        if (previous) URL.revokeObjectURL(previous.url)
-        return { url, durationSeconds: rendered.durationSeconds, segments: rendered.segments }
-      })
-      setSentenceQueue(set)
-      setSentencePosition({ sentenceIndex: rendered.segments[0]?.sentenceIndex ?? 0, round: 0 })
-      setSentenceProgress({ current: 0, duration: rendered.durationSeconds })
-      setSentenceSetStartMs(Date.now())
-      setLastSummary(
-        `${pool.name}: ${set.length} sentences × ${settings.sentenceRounds} rounds`,
-      )
-    } catch (error) {
-      setLastSummary(error instanceof Error ? error.message : 'Could not prepare sentence audio.')
-    } finally {
-      setSentenceRendering(false)
-    }
-  }, [activeSentencePool, lmsSentences, loadSentenceSeed, sentenceListeningSettings, sentenceQueueOffset, stopAudioOutputs])
-
-  const completeSentenceSet = useCallback(async () => {
-    const repsInSet = sentenceQueue.length * sentenceListeningSettings.sentenceRounds
-    const nextOffset = sentenceQueueOffset + sentenceQueue.length
-    const { repsToday, totalReps } = await saveSentenceRepData({
-      reps: repsInSet,
-      queueOffset: nextOffset,
-      poolId: activeSentencePool.id,
-    })
-    setSentenceQueueOffset(nextOffset)
-    setSentenceRepsToday(repsToday)
-    setSentenceTotalReps(totalReps)
-    setSentenceSetComplete(false)
-    await startSentenceLesson(nextOffset)
-  }, [activeSentencePool.id, sentenceListeningSettings.sentenceRounds, sentenceQueue, sentenceQueueOffset, startSentenceLesson])
-
-  /** Switches collection, resumes that collection's own place in the queue, and rebuilds the set. */
-  const changeSentencePool = useCallback(async (poolId: string) => {
-    const pool = getSentencePool(poolId)
-    if (pool.id === activeSentencePool.id) return
-    const nextSettings = { ...userSettings, sentencePoolId: pool.id }
-    setUserSettings(nextSettings)
-    void saveUserSettings(nextSettings)
-    try {
-      const { queueOffset } = await getSentenceRepData(pool.id)
-      setSentenceQueueOffset(queueOffset)
-      await startSentenceLesson(queueOffset, pool)
-    } catch {
-      setLastSummary('Could not switch collection.')
-    }
-  }, [activeSentencePool.id, startSentenceLesson, userSettings])
 
   async function handleReaderOfflineDownload(book: ReaderBook) {
     setReaderOfflineBusyId(book.id)
@@ -1715,30 +1460,20 @@ function App() {
         failedFiles += result.failed
       }
 
-      // Every distinct seed file, so a flight covers whichever collection you switch to.
-      const flightPools = SENTENCE_POOLS.filter(
-        (pool, index, all) => all.findIndex((other) => other.seedPath === pool.seedPath) === index,
-      )
-      setFlightOfflineProgress('Saving sentence listening audio…')
-      for (const [poolIndex, pool] of flightPools.entries()) {
-        const flightSentences = await loadSentenceSeed(pool)
-        let lastSentencePercent = -1
-        const sentenceAudio = await downloadSentenceListeningForOffline(
-          flightSentences,
-          (completed, total) => {
-            const percent = total > 0 ? Math.floor((completed / total) * 100) : 100
-            if (percent === lastSentencePercent) return
-            lastSentencePercent = percent
-            setFlightOfflineProgress(
-              `Saving sentence listening audio (${poolIndex + 1}/${flightPools.length})… ${percent}%`,
-            )
-          },
-          pool,
-        )
-        failedFiles += sentenceAudio.failed
+      setFlightOfflineProgress('Saving short listening lessons…')
+      const catalogResponse = await fetch(publicAssetPath('listening/course-v1.json'))
+      if (!catalogResponse.ok) throw new Error('Could not load listening lessons.')
+      const catalog = await catalogResponse.json() as { lessons: Array<{ file: string }> }
+      const courseCache = await caches.open('chunky-listening-course-v1')
+      for (const [index, recording] of catalog.lessons.entries()) {
+        setFlightOfflineProgress(`Saving listening lesson ${index + 1}/${catalog.lessons.length}…`)
+        try {
+          const url = publicAssetPath(`listening/${recording.file}`)
+          const response = await fetch(url)
+          if (!response.ok) throw new Error('Audio download failed')
+          await courseCache.put(url, response)
+        } catch { failedFiles++ }
       }
-      // Leave the in-memory list on the collection the user is actually studying.
-      await loadSentenceSeed(activeSentencePool).catch(() => {})
 
       const flightClipPacks = hostedClipPacks.length > 0
         ? hostedClipPacks
@@ -1773,7 +1508,7 @@ function App() {
         const readyAt = markOfflineReady()
         setFlightOfflineReadyAt(readyAt)
         setLastSummary(
-          'Ready for your flight. Flashcards, sentence listening, LMS Reader audio, and the dictionary are verified offline.',
+          'Ready for your flight. Flashcards, short listening lessons, LMS Reader audio, and the dictionary are verified offline.',
         )
       }
     } catch (error) {
@@ -1783,63 +1518,6 @@ function App() {
       setFlightOfflineProgress('')
     }
   }
-
-  const toggleSentencePlayback = useCallback(() => {
-    const audio = sentenceAudioRef.current
-    if (!audio || !sentenceRendered) return
-    if (audio.paused) {
-      void audio.play().catch(() => {})
-    } else {
-      audio.pause()
-    }
-  }, [sentenceRendered])
-
-  const seekSentence = useCallback((direction: 1 | -1) => {
-    const audio = sentenceAudioRef.current
-    const segments = sentenceRendered?.segments
-    if (!audio || !segments || segments.length === 0) return
-    const time = audio.currentTime
-    let index = segments.findIndex((s) => time >= s.startSeconds && time < s.endSeconds)
-    if (index < 0) index = segments.length - 1
-    const current = segments[index]
-    const sameBlock = (s: SessionAudioSegment) =>
-      s.sentenceIndex === current.sentenceIndex && s.round === current.round
-
-    if (direction === 1) {
-      const next = segments.find((s, i) => i > index && !sameBlock(s))
-      if (next) audio.currentTime = next.startSeconds
-      return
-    }
-
-    let blockStart = index
-    while (blockStart > 0 && sameBlock(segments[blockStart - 1])) blockStart -= 1
-    const blockStartSeconds = segments[blockStart].startSeconds
-    // First back-press replays the current sentence; a quick second press goes back one.
-    if (time - blockStartSeconds > 1.5 || blockStart === 0) {
-      audio.currentTime = blockStartSeconds
-      return
-    }
-    const previous = segments[blockStart - 1]
-    let previousStart = blockStart - 1
-    while (
-      previousStart > 0 &&
-      segments[previousStart - 1].sentenceIndex === previous.sentenceIndex &&
-      segments[previousStart - 1].round === previous.round
-    ) {
-      previousStart -= 1
-    }
-    audio.currentTime = segments[previousStart].startSeconds
-  }, [sentenceRendered])
-
-  const sentenceSetSwipe = useSwipeCard({
-    enabled: true,
-    onSwipe: (dir) => {
-      if (dir === 'left') seekSentence(1)
-      else if (dir === 'right') seekSentence(-1)
-      else if (dir === 'down') toggleSentencePlayback()
-      else if (dir === 'up') setSentencePinyinVisible((value) => !value)
-    },
-  })
 
   const openCardEditor = useCallback((word: VocabWord) => {
     setEditingWord({
@@ -2044,46 +1722,6 @@ function App() {
     ))
   }, [])
 
-  const renderAndLoadLesson = useCallback(async (
-    nextLesson: LessonPlan,
-    playAfterRender: boolean,
-    readyMessage: string,
-  ) => {
-    setLesson(nextLesson)
-    setCurrentStepIndex(0)
-    setShowReviewPrompt(false)
-    setReviewCardIndex(0)
-    setReviewAnswerShown(false)
-    if (
-      nextLesson.steps.filter((step) => step.kind === 'audio').length === 0 ||
-      nextLesson.steps.some((step) => step.kind === 'speech')
-    ) {
-      setLessonMode('live')
-      setLastSummary('No local clips are linked yet. Using browser TTS while the app stays open.')
-      if (playAfterRender) window.setTimeout(() => runFromRef.current?.(0, nextLesson), 120)
-      return
-    }
-    const rendered = await renderLessonToWav(nextLesson, getAudioClip)
-    await saveRenderedLesson(rendered)
-    if (renderedUrl) URL.revokeObjectURL(renderedUrl)
-    const url = URL.createObjectURL(rendered.blob)
-    setRenderedLesson(rendered)
-    setRenderedUrl(url)
-    setPocketProgress({ current: 0, duration: rendered.durationSeconds })
-    lastPocketTimeRef.current = 0
-    setSavedResumeTime(null)
-    if (playAfterRender) {
-      window.setTimeout(() => {
-        void pocketAudioRef.current?.play()
-      }, 120)
-    }
-    setLastSummary(
-      rendered.warnings.length > 0
-        ? `${readyMessage} with ${rendered.warnings.length} warning(s).`
-        : readyMessage,
-    )
-  }, [renderedUrl])
-
   // Reader Mode activity event listeners
   useEffect(() => {
     if (screen !== 'reader') return
@@ -2172,13 +1810,6 @@ function App() {
     [],
   )
 
-
-  const openReviewPrompt = useCallback(() => {
-    setReviewCardIndex(0)
-    setReviewAnswerShown(false)
-    setShowReviewPrompt(true)
-  }, [])
-
   const openReaderBook = useCallback(async (book: ReaderBook, action: 'resume' | 'start' = 'resume') => {
     const sentenceCount = book.stories.reduce((sum, story) => sum + story.sentences.length, 0)
     const readerSentencesForBook = book.stories.flatMap((story) => story.sentences)
@@ -2231,16 +1862,6 @@ function App() {
       setLastSummary(error instanceof Error ? error.message : 'Reader progress could not be saved.')
     }
   }, [latestReaderProgress, queueCloudSync, readerBooks, recordReaderInteraction, recordReaderSentenceView])
-
-  const openBookListen = useCallback(async (book: ReaderBook) => {
-    const progress = await getReaderProgress(book.packId, book.id)
-    const sentenceCount = book.stories.flatMap(s => s.sentences).length
-    const savedIndex = progress?.sentenceIndex ?? 0
-    const bounded = Math.min(Math.max(0, savedIndex), Math.max(0, sentenceCount - 1))
-    setBookListenFinished(false)
-    setBookListenBookId(book.id)
-    setBookListenIndex(bounded)
-  }, [])
 
   const bookListenGoBack = useCallback(async () => {
     if (!bookListenBook) return
@@ -2577,36 +2198,6 @@ function App() {
   // Keep a stable ref to startListening so auto-start effect doesn't need it as a dep
   bookListenStartRef.current = bookListening.startListening
 
-  const bookListenSwipe = useSwipeCard({
-    enabled: !bookListenDismissDir,
-    glowColors: SWIPE_NAV_GLOW,
-    onSwipe: (dir) => {
-      if (dir === 'left' || dir === 'right') {
-        navigator.vibrate?.(30)
-        setBookListenDismissDir(dir)
-        window.setTimeout(() => {
-          setBookListenDismissDir(null)
-          setBookListenAnimKey(k => k + 1)
-          if (dir === 'left') void bookListening.next()
-          else void bookListening.previous()
-        }, 320)
-      } else if (dir === 'down') {
-        if (bookListening.snapshot.status === 'idle') bookListening.startListening()
-        else bookListening.togglePlayPause()
-      } else {
-        // cycle: both on → English off → both off → both on
-        if (bookListenPinyinVisible && bookListenEnglishVisible) {
-          setBookListenEnglishVisible(false)
-        } else if (bookListenPinyinVisible && !bookListenEnglishVisible) {
-          setBookListenPinyinVisible(false)
-        } else {
-          setBookListenPinyinVisible(true)
-          setBookListenEnglishVisible(true)
-        }
-      }
-    },
-  })
-
   // Auto-start when a book is opened or books tab is activated
   useEffect(() => {
     if (sentenceSubMode === 'books' && bookListenBookId) {
@@ -2637,24 +2228,7 @@ function App() {
     await refresh()
   }
 
-  useEffect(() => {
-    if (studyMode !== 'sentenceMode' || !sentenceSetComplete) return
-    window.requestAnimationFrame(() => {
-      studyStageRef.current?.scrollTo({ top: 0, behavior: 'auto' })
-      window.scrollTo({ top: 0, behavior: 'auto' })
-    })
-  }, [sentenceSetComplete, studyMode])
-
   // Autoplay a freshly rendered sentence session and keep its speed in sync.
-  useEffect(() => {
-    if (studyMode !== 'sentenceMode' || !sentenceRendered) return
-    const audio = sentenceAudioRef.current
-    if (!audio) return
-    audio.playbackRate = playbackRate
-    void audio.play().catch(() => {})
-    // Only re-run when a new session WAV lands, not on speed changes.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sentenceRendered, studyMode])
 
   useEffect(() => {
     const audio = sentenceAudioRef.current
@@ -2662,77 +2236,6 @@ function App() {
   }, [playbackRate])
 
   // Media Session: expose sentence-mode controls to lock screen / headphones
-  useEffect(() => {
-    if (!('mediaSession' in navigator)) return
-    if (studyMode !== 'sentenceMode' || sentenceSubMode !== 'sets') {
-      if (studyMode !== 'sentenceMode') navigator.mediaSession.metadata = null
-      return
-    }
-    const current = sentenceQueue[sentencePosition.sentenceIndex]
-    navigator.mediaSession.metadata = new MediaMetadata({
-      title: current?.chinese ?? 'Sentence Practice',
-      artist: current?.english ?? '',
-      album: 'Chunky Chinese',
-    })
-    navigator.mediaSession.playbackState = sentencePaused ? 'paused' : 'playing'
-    const actions: [MediaSessionAction, MediaSessionActionHandler][] = [
-      ['play', () => { void sentenceAudioRef.current?.play().catch(() => {}) }],
-      ['pause', () => sentenceAudioRef.current?.pause()],
-      ['nexttrack', () => seekSentence(1)],
-      ['previoustrack', () => seekSentence(-1)],
-    ]
-    for (const [action, handler] of actions) {
-      try { navigator.mediaSession.setActionHandler(action, handler) } catch { /* not supported */ }
-    }
-    return () => {
-      for (const [action] of actions) {
-        try { navigator.mediaSession.setActionHandler(action, null) } catch { /* not supported */ }
-      }
-    }
-  }, [seekSentence, sentencePaused, sentencePosition.sentenceIndex, sentenceQueue, sentenceSubMode, studyMode])
-
-  const replayCurrentSegment = useCallback(() => {
-    const audio = pocketAudioRef.current
-    if (!audio || !currentSegment) return
-    audio.currentTime = Math.max(0, currentSegment.startSeconds)
-    void audio.play()
-  }, [currentSegment])
-
-  const handleFsrsRating = useCallback(async (wordId: string, rating: FsrsRating) => {
-    await rateWordFsrs(wordId, rating, {
-      source: 'lesson-review',
-    })
-    const nextRatings = { ...fsrsRatings, [wordId]: rating }
-    setFsrsRatings(nextRatings)
-    setLastSummary(`Rated ${fsrsLabel(rating)}.`)
-    await refresh()
-    queueCloudSync()
-    const ratingIds =
-      ratingWordIds.length > 0 ? ratingWordIds : lessonWords.map((word) => word.id)
-    const completeSet = ratingIds.length > 0 && ratingIds.every((id) => nextRatings[id])
-    if (showReviewPrompt) {
-      setReviewAnswerShown(false)
-      if (completeSet) {
-        setReviewCardIndex(ratingWords.length)
-      } else {
-        const nextIndex = ratingWords.findIndex((word) => !nextRatings[word.id])
-        setReviewCardIndex(nextIndex >= 0 ? nextIndex : reviewCardIndex + 1)
-      }
-    }
-  }, [fsrsRatings, lessonWords, queueCloudSync, ratingWordIds, ratingWords, refresh, reviewCardIndex, showReviewPrompt])
-
-  const handleFlashcardRate = useCallback((wordId: string, rating: FsrsRating) => {
-    if (flashcardFeedback) return
-    setFlashcardFeedback(rating)
-    if (flashcardFeedbackTimeoutRef.current !== null) {
-      window.clearTimeout(flashcardFeedbackTimeoutRef.current)
-    }
-    flashcardFeedbackTimeoutRef.current = window.setTimeout(() => {
-      flashcardFeedbackTimeoutRef.current = null
-      setFlashcardFeedback(null)
-      void handleFsrsRating(wordId, rating)
-    }, 500)
-  }, [flashcardFeedback, handleFsrsRating])
 
   const handleStandaloneFlashcardRate = useCallback((rating: FsrsRating) => {
     if (!currentFlashcardWord || flashcardSessionFeedback) return
@@ -2836,114 +2339,6 @@ function App() {
     setLastSummary(`Undid rating for ${flashcardUndoState.word.word}.`)
   }, [flashcardUndoState])
 
-  const togglePlayback = useCallback(() => {
-    const audio = pocketAudioRef.current
-    if (!audio || !renderedUrl) return
-    if (audio.paused) {
-      void audio.play()
-    } else {
-      audio.pause()
-    }
-  }, [renderedUrl])
-
-  const completeListeningLesson = useCallback(async () => {
-    if (!renderedLesson) return
-    await recordEvent({
-      type: 'complete',
-      itemType: 'lesson',
-      itemId: renderedLesson.id,
-      seconds: renderedLesson.durationSeconds,
-      source: 'active-recall',
-    })
-    await refresh()
-    queueCloudSync()
-  }, [queueCloudSync, refresh, renderedLesson])
-
-  const completeListeningLessonAndStartNext = useCallback(async () => {
-    if (
-      !renderedLesson ||
-      listeningSetTransitionRef.current ||
-      completedListeningSetIdsRef.current.has(renderedLesson.id)
-    ) return
-    listeningSetTransitionRef.current = true
-    completedListeningSetIdsRef.current.add(renderedLesson.id)
-    pocketAudioRef.current?.pause()
-    try {
-      const sessionId = `listening-set:${renderedLesson.id}`
-      await Promise.all(
-        (Object.entries(listeningSetRatings) as Array<[string, FsrsRating]>).map(([wordId, rating]) =>
-          rateWordFsrs(wordId, rating, {
-            source: 'listening-set',
-            sessionId,
-            seconds: renderedLesson.durationSeconds,
-          }),
-        ),
-      )
-      await completeListeningLesson()
-      setLastSummary('Ratings saved. Preparing five new words…')
-      startNextLessonRef.current?.()
-    } catch (error) {
-      completedListeningSetIdsRef.current.delete(renderedLesson.id)
-      setLastSummary(error instanceof Error ? error.message : 'Could not save this listening set.')
-    } finally {
-      listeningSetTransitionRef.current = false
-    }
-  }, [completeListeningLesson, listeningSetRatings, renderedLesson])
-
-  function cycleListeningSetRating(wordId: string) {
-    const cycle: Array<FsrsRating | undefined> = [undefined, 'again', 'hard', 'good', 'easy']
-    setListeningSetRatings((current) => {
-      const nextRating = cycle[(cycle.indexOf(current[wordId]) + 1) % cycle.length]
-      const next = { ...current }
-      if (nextRating) next[wordId] = nextRating
-      else delete next[wordId]
-      return next
-    })
-  }
-
-  async function replaceListeningWord(wordId: string) {
-    if (rendering || listeningSetTransitionRef.current) return
-    const keptWordIds = lessonWords.filter((word) => word.id !== wordId).map((word) => word.id)
-    if (keptWordIds.length !== 4) return
-    listeningSetTransitionRef.current = true
-    pocketAudioRef.current?.pause()
-    const preservedRatings = { ...listeningSetRatings }
-    const rating = preservedRatings[wordId]
-    delete preservedRatings[wordId]
-    try {
-      if (rating) {
-        await rateWordFsrs(wordId, rating, {
-          source: 'listening-set',
-          sessionId: `listening-swap:${renderedLesson?.id ?? Date.now()}`,
-          seconds: pocketProgress.current,
-        })
-        queueCloudSync()
-      }
-      await startPocketLesson([], {
-        randomize: false,
-        playAfterRender: true,
-        newWordsLimit: remainingNewWordsToday,
-        keptWordIds,
-        excludedWordIds: [wordId],
-      })
-      setListeningSetRatings(preservedRatings)
-      setLastSummary(rating ? `Rating saved. Switched out one word.` : 'Switched out one word.')
-    } catch (error) {
-      setLastSummary(error instanceof Error ? error.message : 'Could not switch this word.')
-    } finally {
-      listeningSetTransitionRef.current = false
-    }
-  }
-
-  function finishLessonAndReturnHome() {
-    pocketAudioRef.current?.pause()
-    setShowReviewPrompt(false)
-    setMinimalVisualMode(false)
-    setSavedResumeTime(null)
-    setScreen('dashboard')
-    setLastSummary('Lesson finished. Your selected ratings were saved.')
-  }
-
   const playFlashcardWordTwice = useCallback(async (word: VocabWord) => {
     const token = runToken.current + 1
     runToken.current = token
@@ -3026,10 +2421,10 @@ function App() {
           void startReaderPlaylistRef.current?.()
         } else if (mappedIndex === 2) {
           event.preventDefault()
-          startModeLessonRef.current?.('listeningMode')
+          startModeLessonRef.current?.()
         } else if (mappedIndex === 3) {
           event.preventDefault()
-          void startSentenceLesson()
+          startModeLessonRef.current?.()
         }
         return
       }
@@ -3063,264 +2458,39 @@ function App() {
         }
         return
       }
-      if (screen !== 'lesson') return
-      if (pressed === hotkeys.playPause) {
-        event.preventDefault()
-        if (studyMode === 'sentenceMode') {
-          toggleSentencePlayback()
-        } else {
-          togglePlayback()
-        }
-        return
-      }
-      if (studyMode === 'sentenceMode' && !sentenceSetComplete) {
-        if (mappedIndex === 0) {
-          event.preventDefault()
-          seekSentence(-1)
-        } else if (mappedIndex === 1) {
-          event.preventDefault()
-          seekSentence(1)
-        } else if (mappedIndex === 2) {
-          event.preventDefault()
-          setSentencePinyinVisible((value) => !value)
-        }
-        return
-      }
-      if (studyMode === 'listeningMode' && !showReviewPrompt) {
-        if (mappedIndex >= 0 && mappedIndex < 5) {
-          const word = lessonWords[mappedIndex]
-          if (word) {
-            event.preventDefault()
-            cycleListeningSetRating(word.id)
-          }
-        } else if (pressed === hotkeys.choiceF) {
-          event.preventDefault()
-          void completeListeningLessonAndStartNext()
-        }
-        return
-      }
-      if (showReviewPrompt) {
-        if (allLessonWordsRated) {
-          if (mappedIndex === 0) {
-            event.preventDefault()
-            startNextLessonRef.current?.()
-          } else if (mappedIndex === 1) {
-            event.preventDefault()
-            finishLessonAndReturnHome()
-          }
-          return
-        }
-        if (pressed === hotkeys.choiceF && currentReviewWord) {
-          event.preventDefault()
-          void playFlashcardWordTwice(currentReviewWord)
-          return
-        }
-        if (flashcardFeedback) return
-        if (!reviewAnswerShown && (mappedIndex === 0 || event.key === 'Enter' || event.key === ' ')) {
-          event.preventDefault()
-          setReviewAnswerShown(true)
-          if (currentReviewWord) void playFlashcardWordTwice(currentReviewWord)
-          return
-        }
-        const rating = hotkeyToReviewRating(pressed, hotkeys)
-        if (rating && reviewAnswerShown && currentReviewWord) {
-          event.preventDefault()
-          handleFlashcardRate(currentReviewWord.id, rating)
-        }
-        return
-      }
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [
-    currentSegment,
-    completeListeningLessonAndStartNext,
-    allLessonWordsRated,
     finishFlashcardSession,
     flashcardFeedback,
     flashcardSessionComplete,
-    fsrsRatings,
-    handleFlashcardRate,
     hotkeys,
-    lessonWords,
-    currentReviewWord,
     currentFlashcardWord,
     currentReaderSentence,
     flashcardAnswerShown,
     handleStandaloneFlashcardRate,
     refreshFlashcardSession,
-    seekSentence,
-    toggleSentencePlayback,
     moveReaderSentence,
     playFlashcardWordTwice,
     readerListening,
-    ratingWords,
-    reviewAnswerShown,
     screen,
-    sentenceSetComplete,
-    showReviewPrompt,
-    startSentenceLesson,
     startSavedFlashcards,
-    studyMode,
-    togglePlayback,
     toggleReaderEnglish,
   ])
 
-  async function toggleFullscreen() {
-    if (document.fullscreenElement) {
-      await document.exitFullscreen()
-    } else {
-      await playModeRef.current?.requestFullscreen()
-    }
-  }
-
-  async function startPocketLesson(
-    manualIds: string[] = [],
-    options: LessonStartOptions = { randomize: true },
-  ) {
-    setLessonMode('pocket')
-    setRendering(true)
-    setScreen('lesson')
-    try {
-      const { playAfterRender = false, ...selectionOptions } = options
-      let lessonWords = activeWords
-      if (studyMode === 'listeningMode' && activeWords.length >= 10) {
-        const previous = new Set(previousListeningWordIdsRef.current)
-        const kept = new Set(options.keptWordIds ?? [])
-        lessonWords = activeWords.filter((word) => !previous.has(word.id) || kept.has(word.id))
-      }
-      let lessonSentences = sentences
-      let lessonAudioClips = audioClips
-      const repairedLinks = await repairAudioClipLinksIfNeeded()
-      if (repairedLinks > 0) {
-        const [freshWords, freshSentences, freshAudioClips, freshStats] = await Promise.all([
-          getAllWords(),
-          getAllSentences(),
-          getPromptAudioClips(),
-          getDashboardStats(),
-        ])
-        setWords(freshWords)
-        setSentences(freshSentences)
-        setAudioClips(freshAudioClips)
-        setStats(freshStats)
-        lessonWords = freshWords.filter(isActiveVocabWord)
-        lessonSentences = freshSentences
-        lessonAudioClips = freshAudioClips
-      }
-      let nextLesson = createPocketLesson(lessonWords, lessonSentences, lessonAudioClips, manualIds, {
-        pauseProfile,
-        ...selectionOptions,
-      })
-      if (studyMode === 'listeningMode' && nextLesson.targetWords.some((word) => !word.audioMeaningId)) {
-        const prepared = await ensureEnglishMeaningAudio(nextLesson.targetWords, aiStorySettings)
-        if (prepared.some((word) => word.audioMeaningId)) {
-          const freshAudio = await getPromptAudioClips()
-          const targetMap = new Map(prepared.map((word) => [word.id, word]))
-          lessonWords = lessonWords.map((word) => targetMap.get(word.id) ?? word)
-          lessonAudioClips = freshAudio
-          nextLesson = createPocketLesson(
-            lessonWords,
-            lessonSentences,
-            lessonAudioClips,
-            prepared.map((word) => word.id),
-            { pauseProfile, ...selectionOptions, randomize: false },
-          )
-        }
-      }
-      setRatingWordIds(nextLesson.targetWords.map((word) => word.id))
-      setFsrsRatings({})
-      setListeningSetRatings({})
-      previousListeningWordIdsRef.current = nextLesson.targetWords.map((word) => word.id)
-      listeningSetTransitionRef.current = false
-      await renderAndLoadLesson(
-        nextLesson,
-        playAfterRender,
-        'Lesson rendered and ready for background-style playback.',
-      )
-    } catch (error) {
-      setLastSummary(error instanceof Error ? error.message : 'Could not render lesson.')
-    } finally {
-      setRendering(false)
-    }
-  }
-
-  useEffect(() => {
-    startNextLessonRef.current = () => {
-      setShowReviewPrompt(false)
-      void startPocketLesson([], {
-        randomize: true,
-        playAfterRender: true,
-        newWordsLimit: remainingNewWordsToday,
-      })
-    }
-  })
-
-  async function startModeLesson(mode: StudyMode, options: LessonStartOptions = {}) {
-    if (mode === 'listeningMode') {
-      stopAudioOutputs()
-      saveStartupResumeState({ destination: 'listeningCourse' })
-      setScreen('listeningCourse')
-      return
-    }
-    await startArchivedModeLesson(mode, options)
-  }
-
-  async function startArchivedModeLesson(mode: StudyMode, options: LessonStartOptions = {}) {
-    setStudyMode(mode)
-    setShowEnglish(true)
-    setShowPinyin(true)
-    setMinimalVisualMode(mode === 'listeningMode')
-    setAutoNextLesson(mode === 'listeningMode')
-    await startPocketLesson([], {
-      randomize: true,
-      playAfterRender: true,
-      pauseProfile,
-      newWordsLimit: remainingNewWordsToday,
-      ...options,
-    })
-  }
-
-  useEffect(() => {
-    startModeLessonRef.current = (mode, options) => {
-      void startModeLesson(mode, options)
-    }
-  })
-
-  function pauseAndSavePlace() {
-    const audio = pocketAudioRef.current
-    if (!audio) return
-    audio.pause()
-    setSavedResumeTime(audio.currentTime)
-    setLastSummary('Paused and saved your place for this session.')
-    // TODO: Persist resume state in IndexedDB so it survives a browser restart.
-  }
-
-  function resumeSavedPlace() {
-    const audio = pocketAudioRef.current
-    if (!audio || savedResumeTime === null) return
-    audio.currentTime = savedResumeTime
-    void audio.play()
-  }
-
-  function restartCurrentWord() {
-    const audio = pocketAudioRef.current
-    if (!audio || !renderedLesson?.segments || !currentSegment?.wordId) return
-    let startIndex = currentStepIndex
-    for (let index = currentStepIndex - 1; index >= 0; index -= 1) {
-      const segment = renderedLesson.segments[index]
-      if (segment?.wordId !== currentSegment.wordId) break
-      startIndex = index
-    }
-    audio.currentTime = Math.max(0, renderedLesson.segments[startIndex]?.startSeconds ?? 0)
-    void audio.play()
-  }
-
-  function stopPlayback() {
+  async function startModeLesson() {
     stopAudioOutputs()
-    runToken.current += 1
-    setIsPlaying(false)
+    saveStartupResumeState({ destination: 'listeningCourse' })
+    setScreen('listeningCourse')
   }
+
+  useEffect(() => {
+    startModeLessonRef.current = () => {
+      void startModeLesson()
+    }
+  })
 
   async function playStep(step: LessonStep, token: number) {
     await recordEvent({
@@ -3427,7 +2597,6 @@ function App() {
       void runFrom(index, plan)
     }
   })
-
 
   async function handleBackupExport() {
     const text = await exportBackup()
@@ -3741,7 +2910,6 @@ function App() {
     }
   }
 
-
   async function handleArchiveVocabularyWord(wordId: string) {
     await archiveWord(wordId)
     setLastSummary('Word archived. It is hidden from study and Reader coverage.')
@@ -3859,21 +3027,6 @@ function App() {
     setLastSummary('Reader settings saved.')
   }
 
-  function saveSentenceListeningSettings(patch: Partial<Pick<
-    UserSettings,
-    | 'sentenceRepeats'
-    | 'sentenceIncludeEnglish'
-    | 'sentencePauseFactor'
-    | 'sentenceSessionSize'
-    | 'sentenceRounds'
-    | 'sentenceShuffle'
-  >>) {
-    const next = { ...userSettings, ...patch }
-    setUserSettings(next)
-    void saveUserSettings(next)
-    setLastSummary('Listening settings saved — applies to the next set.')
-  }
-
   useEffect(() => {
     if (screen === 'settings' && historicalStudyMinutesDraft === '') {
       setHistoricalStudyMinutesDraft(String(Math.round(stats.ranges.allTime.studyMinutes)))
@@ -3933,7 +3086,7 @@ function App() {
               value={stats.listeningLessonsToday}
               goal={1}
               unit="lesson"
-              onClick={() => void startModeLesson('listeningMode')}
+              onClick={() => void startModeLesson()}
             />
             <GoalRing
               kind="reading"
@@ -3970,7 +3123,7 @@ function App() {
                 </button>
               )}
             </div>
-            <button className="mode-start dashboard-mode-card listen-start" type="button" onClick={() => void startModeLesson('listeningMode')}>
+            <button className="mode-start dashboard-mode-card listen-start" type="button" onClick={() => void startModeLesson()}>
               <span className="mode-start-logo" aria-hidden="true">
                 <span className="nav-icon nav-listen" />
               </span>
@@ -4236,7 +3389,7 @@ function App() {
         <button
           type="button"
           className={screen === 'lesson' || screen === 'listeningCourse' ? 'active' : ''}
-          onClick={() => void startModeLesson('listeningMode')}
+          onClick={() => void startModeLesson()}
           aria-label="Listening"
           title="Listening"
         >
@@ -4264,7 +3417,6 @@ function App() {
           <span className="nav-label">Settings</span>
         </button>
       </nav>
-
 
       {screen === 'flashcards' && (
         <motion.section
@@ -5373,1083 +4525,12 @@ function App() {
       {screen === 'listeningCourse' && (
         <Suspense fallback={<section className="screen"><p>Loading listening lessons…</p></section>}>
           <ListeningCourse key={cloudUserEmail || 'device'} scope={cloudUserEmail || 'device'}
-            onArchive={(mode) => { if (mode === 'words') void startArchivedModeLesson('listeningMode'); else void startSentenceLesson() }}
             onComplete={async (lessonId, seconds) => {
               await recordEvent({ type: 'complete', itemType: 'lesson', itemId: lessonId, source: 'listening-set', seconds })
               queueCloudSync()
               await refresh()
             }} />
         </Suspense>
-      )}
-
-      {screen === 'lesson' && (
-        <section className="screen lesson-screen">
-          {lesson || studyMode === 'sentenceMode' ? (
-            <>
-                <section
-                  className={`study-player ${minimalVisualMode ? 'minimal-visual-player' : ''}`}
-                  ref={playModeRef}
-                >
-                  <div
-                    ref={studyStageRef}
-                    className={`study-stage ${minimalVisualMode ? 'minimal-visual-stage' : ''} ${showReviewPrompt ? 'review-stage' : ''}`}
-                  >
-                    <div className={`study-meta${studyMode === 'sentenceMode' ? ' sentence-listening-study-meta' : ''}`}>
-                      <span>
-                        {minimalVisualMode
-                          ? 'Listening'
-                          : rendering
-                            ? 'Rendering local audio...'
-                            : renderedLesson?.title ?? lesson?.title ?? 'Sentence listening'}
-                      </span>
-                      {studyMode === 'sentenceMode' ? null : (
-                        <div className="study-toggles">
-                          <div className="sentence-menu-wrap">
-                            <button
-                              type="button"
-                              className="sentence-menu-btn"
-                              onClick={() => setListeningLessonMenuOpen(o => !o)}
-                              aria-label="Listening menu"
-                            >
-                              ☰
-                            </button>
-                            <StudyMenuPopup open={listeningLessonMenuOpen} onClose={() => setListeningLessonMenuOpen(false)}>
-                              <p className="sentence-menu-label">Mode</p>
-                              <div className="sentence-menu-modes">
-                                <button
-                                  type="button"
-                                  className={studyMode === 'listeningMode' ? 'active' : ''}
-                                  onClick={() => { if (studyMode !== 'listeningMode') void startArchivedModeLesson('listeningMode'); setListeningLessonMenuOpen(false) }}
-                                >Words</button>
-                                <button
-                                  type="button"
-                                  onClick={() => { void startSentenceLesson(); setListeningLessonMenuOpen(false) }}
-                                >Sentences</button>
-                              </div>
-                              <StudyMenuSection label="Display">
-                                <StudyMenuToggle label="Pinyin" checked={showPinyin} onChange={() => setShowPinyin(v => !v)} />
-                                <StudyMenuToggle label="English" checked={showEnglish} onChange={() => setShowEnglish(v => !v)} />
-                                <StudyMenuToggle label="Auto next" checked={autoNextLesson} onChange={checked => setAutoNextLesson(checked)} />
-                              </StudyMenuSection>
-                            </StudyMenuPopup>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                    {showReviewPrompt && ratingWords.length > 0 ? (
-                      <div className="review-panel main-review-panel" aria-live="polite">
-                        <div className="review-heading">
-                          <strong>Active recall review</strong>
-                          <span>
-                            {allLessonWordsRated
-                              ? 'Set scheduled'
-                              : `Card ${Math.min(reviewCardIndex + 1, ratingWords.length)} / ${ratingWords.length}`}
-                          </span>
-                        </div>
-                        <p className="review-note">
-                          These ratings decide when each word comes back. Unanswered quiz questions
-                          are ignored; this is the main memory signal.
-                        </p>
-                        {currentReviewWord && !fsrsRatings[currentReviewWord.id] ? (
-                            <FlashcardReview
-                              word={currentReviewWord}
-                              answerShown={reviewAnswerShown}
-                              onFlip={() => {
-                                setReviewAnswerShown(true)
-                                void playFlashcardWordTwice(currentReviewWord)
-                              }}
-                              onRate={(rating) => handleFlashcardRate(currentReviewWord.id, rating)}
-                              selectedRating={flashcardFeedback}
-                              choiceKeys={hotkeys}
-                          />
-                        ) : (
-                          <div className="review-complete">
-                            <strong>All five cards are scheduled.</strong>
-                            <span>Due dates are now visible across the dashboard, reader, and flashcards.</span>
-                          </div>
-                        )}
-                        <div className="review-actions">
-                          <button
-                            type="button"
-                            className="ghost-answer"
-                            onClick={() => setShowReviewPrompt(false)}
-                          >
-                            Not now
-                          </button>
-                          {allLessonWordsRated && (
-                            <button
-                              type="button"
-                              className="primary"
-                              onClick={() =>
-                                startPocketLesson([], {
-                                  randomize: true,
-                                  playAfterRender: true,
-                                  newWordsLimit: remainingNewWordsToday,
-                                })
-                              }
-                            >
-                              Next Lesson
-                            </button>
-                          )}
-                          <button
-                            type="button"
-                            className="primary"
-                            onClick={finishLessonAndReturnHome}
-                          >
-                            Done
-                          </button>
-                        </div>
-                      </div>
-                    ) : studyMode === 'sentenceMode' && sentenceSetComplete ? (
-                      <div className="sentence-set-summary">
-                        <button
-                          type="button"
-                          className="sentence-play-pause sentence-set-next-play"
-                          onClick={() => void completeSentenceSet()}
-                          aria-label="Start next sentence set"
-                        >
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-                            <polygon points="5,3 19,12 5,21" />
-                          </svg>
-                        </button>
-                        <div className="sentence-set-header">
-                          <strong>Set Complete</strong>
-                          <span>{Math.round((Date.now() - sentenceSetStartMs) / 1000)}s</span>
-                        </div>
-                        <div className="sentence-set-list">
-                          {sentenceQueue.map((sent, i) => (
-                            <div key={sent.word} className="sentence-set-item">
-                              <span className="sentence-set-num">{i + 1}</span>
-                              <div className="sentence-set-item-content">
-                                <p className="sentence-set-zh">{sent.chinese}</p>
-                                <p className="sentence-set-en">{sent.english}</p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="sentence-set-actions">
-                          <button
-                            type="button"
-                            className="primary"
-                            onClick={() => void completeSentenceSet()}
-                          >
-                            Next Set
-                          </button>
-                        </div>
-                      </div>
-                    ) : studyMode === 'sentenceMode' ? (
-                      <div className="sentence-mode-root">
-                        <h1 className="listening-mode-title">Listening</h1>
-                        {/* Sets / Books segmented tab */}
-                        <div className="sentence-submode-tabs" role="tablist" aria-label="Listening source">
-                          <button
-                            type="button"
-                            role="tab"
-                            aria-selected={sentenceSubMode === 'sets'}
-                            className={sentenceSubMode === 'sets' ? 'active' : ''}
-                            onClick={() => setSentenceSubMode('sets')}
-                          >Sets</button>
-                          <button
-                            type="button"
-                            role="tab"
-                            aria-selected={sentenceSubMode === 'books'}
-                            className={sentenceSubMode === 'books' ? 'active' : ''}
-                            onClick={() => { setSentenceSubMode('books'); setSentencePaused(true) }}
-                          >Books</button>
-                        </div>
-
-                        {sentenceSubMode === 'books' ? (
-                          /* ── Book Listening sub-mode ── */
-                          bookListenBook === null ? (
-                            /* Book picker */
-                            <div className="book-picker-list">
-                              <p className="book-picker-heading">Choose a book to listen to</p>
-                              {readerBooks.map(book => (
-                                <button
-                                  key={book.id}
-                                  type="button"
-                                  className="book-picker-row"
-                                  onClick={() => void openBookListen(book)}
-                                >
-                                  {book.coverImage && (
-                                    <img
-                                      className="book-picker-cover"
-                                      src={readerBookCoverSrc(book)}
-                                      alt=""
-                                    />
-                                  )}
-                                  <span className="book-picker-title">{book.title}</span>
-                                  <span className="book-picker-meta">{book.stories.flatMap(s => s.sentences).length} sentences</span>
-                                </button>
-                              ))}
-                            </div>
-                          ) : bookListenFinished ? (
-                            /* Book finished screen */
-                            <div className="book-listen-finished-screen">
-                              {bookListenBook.coverImage && (
-                                <img
-                                  className="book-listen-finished-cover"
-                                  src={readerBookCoverSrc(bookListenBook)}
-                                  alt=""
-                                />
-                              )}
-                              <strong className="book-listen-finished-title">Finished!</strong>
-                              <span className="book-listen-finished-meta">{bookListenSentences.length} sentences complete</span>
-                              <div className="book-listen-finished-actions">
-                                <button
-                                  type="button"
-                                  className="primary"
-                                  onClick={() => {
-                                    setBookListenIndex(0)
-                                    setBookListenFinished(false)
-                                    window.setTimeout(() => bookListening.startListening(), 50)
-                                  }}
-                                >
-                                  Start Over
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={() => { setBookListenFinished(false); setBookListenBookId(null) }}
-                                >
-                                  Choose Book
-                                </button>
-                              </div>
-                            </div>
-                          ) : (
-                            /* Book card view */
-                            <div
-                              className={`sentence-mode-display book-listen-display listening-session-display${bookListening.snapshot.status === 'idle' ? ' listening-preplay' : ''}${bookListenSwipe.swipeDir ? ` swipe-${bookListenSwipe.swipeDir}` : ''}`}
-                              {...bookListenSwipe.handlers}
-                            >
-                              {/* Top bar */}
-                              <div className="sentence-top-bar">
-                                <div className="sentence-menu-wrap">
-                                  <button
-                                    type="button"
-                                    className="sentence-menu-btn"
-                                    onClick={() => setSentenceMenuOpen(o => !o)}
-                                    aria-label="Menu"
-                                  >
-                                    ☰
-                                  </button>
-                                  <StudyMenuPopup open={sentenceMenuOpen} onClose={() => setSentenceMenuOpen(false)}>
-                                    <p className="sentence-menu-label">Source</p>
-                                    <div className="sentence-menu-modes">
-                                      <button
-                                        type="button"
-                                        onClick={() => { setSentenceSubMode('sets'); setSentenceMenuOpen(false) }}
-                                      >Sets</button>
-                                      <button type="button" className="active" onClick={() => setSentenceMenuOpen(false)}>Books</button>
-                                    </div>
-                                    <p className="sentence-menu-label">Book</p>
-                                    <button
-                                      type="button"
-                                      className="sentence-menu-change-book"
-                                      onClick={() => { setBookListenBookId(null); setSentenceMenuOpen(false) }}
-                                    >Change Book</button>
-                                    <StudyMenuSection label="Display">
-                                      <StudyMenuToggle label="Pinyin" checked={bookListenPinyinVisible} onChange={() => setBookListenPinyinVisible(v => !v)} />
-                                      <StudyMenuToggle label="English" checked={bookListenEnglishVisible} onChange={() => setBookListenEnglishVisible(v => !v)} />
-                                    </StudyMenuSection>
-                                    <StudyMenuSection label="Playback">
-                                      <StudyMenuSelect
-                                        label="Speed"
-                                        value={userSettings.readerListeningRate}
-                                        options={[0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.5].map(r => ({ value: r, label: `${r}×` }))}
-                                        onChange={value => { void saveReaderSettings({ readerListeningRate: value }) }}
-                                      />
-                                      <StudyMenuSelect
-                                        label="Repeats"
-                                        value={userSettings.readerListeningRepeats}
-                                        options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}×` }))}
-                                        onChange={value => { void saveReaderSettings({ readerListeningRepeats: value }) }}
-                                      />
-                                      <StudyMenuSelect
-                                        label="Speak pause"
-                                        value={userSettings.readerListeningPauseFactor}
-                                        options={[
-                                          { value: 0, label: 'Off' },
-                                          { value: 0.5, label: 'Short (½× sentence)' },
-                                          { value: 1, label: 'Normal (1× sentence)' },
-                                          { value: 1.5, label: 'Long (1½× sentence)' },
-                                        ]}
-                                        onChange={value => { void saveReaderSettings({ readerListeningPauseFactor: value }) }}
-                                      />
-                                    </StudyMenuSection>
-                                  </StudyMenuPopup>
-                                </div>
-
-                                <span className="book-listen-title">{bookListenBook.title}</span>
-                                <button
-                                  type="button"
-                                  className="book-speed-badge"
-                                  onClick={() => {
-                                    const idx = BOOK_LISTEN_SPEEDS.indexOf(userSettings.readerListeningRate)
-                                    const next = BOOK_LISTEN_SPEEDS[(idx + 1) % BOOK_LISTEN_SPEEDS.length] ?? 1.0
-                                    void saveReaderSettings({ readerListeningRate: next })
-                                  }}
-                                  title="Cycle playback speed"
-                                >
-                                  {userSettings.readerListeningRate}×
-                                </button>
-                              </div>
-
-                              {/* Story / chapter label */}
-                              {bookListenStory && (
-                                <div className="book-listen-story-label">{bookListenStory.title}</div>
-                              )}
-
-                              {/* Progress */}
-                              <div className="book-listen-progress">
-                                <div className="book-listen-progress-copy">
-                                  <strong>{bookListenBook.title}</strong>
-                                  <span>{bookListenIndex + 1} / {bookListenSentences.length} sentences</span>
-                                </div>
-                                <div className="book-listen-progress-bar">
-                                  <span style={{ width: `${((bookListenIndex + 1) / Math.max(1, bookListenSentences.length)) * 100}%` }} />
-                                </div>
-                              </div>
-
-                              {bookListening.snapshot.status === 'loading' && (
-                                <div className="sentence-paused-overlay">Preparing audio…</div>
-                              )}
-                              {bookListening.snapshot.status !== 'playing' && bookListening.snapshot.status !== 'loading' && (
-                                <div className="sentence-paused-overlay listening-ready-message">
-                                  <span aria-hidden="true">✦</span>
-                                  Ready when you are — tap play to begin
-                                </div>
-                              )}
-
-                              {/* Sentence card */}
-                              <div
-                                key={bookListenAnimKey}
-                                ref={bookListenSwipe.cardRef}
-                                className={`sentence-card book-listen-card${(bookListenSentence?.chinese.length ?? 0) > 14 ? ' sentence-card-long' : ''}${bookListenDismissDir ? ` sentence-dismiss-${bookListenDismissDir}` : ''}`}
-                              >
-                                {bookListenIllustration && (
-                                  <div className="book-sentence-illustration">
-                                    <img
-                                      src={publicAssetPath(bookListenIllustration.imageFilename)}
-                                      alt={bookListenIllustration.alt ?? ''}
-                                      className="book-sentence-illustration-img"
-                                    />
-                                  </div>
-                                )}
-                                <div className={`sentence-chinese${bookListening.snapshot.status === 'playing' ? ' book-playing' : ''}`}>{bookListenSentence?.chinese}</div>
-                                {bookListenPinyinVisible && bookListenSentence?.chinese && (
-                                  <div className="sentence-pinyin">
-                                    {getPinyin(bookListenSentence.chinese, { toneType: 'symbol', separator: ' ' })}
-                                  </div>
-                                )}
-                                {bookListenEnglishVisible && (
-                                  <div className="sentence-english">{bookListenSentence?.english}</div>
-                                )}
-                              </div>
-
-                              {bookListenSwipe.swipeDir && !bookListenDismissDir && (
-                                <div className={`swipe-indicator swipe-indicator-${bookListenSwipe.swipeDir}`}>
-                                  {{ left: '← Next', right: '→ Prev', down: '⏸ Pause', up: '↑ Display' }[bookListenSwipe.swipeDir] ?? ''}
-                                </div>
-                              )}
-
-                              <StudyControls
-                                className="listening-primary-controls"
-                                playing={bookListening.snapshot.status === 'playing'}
-                                onTogglePlay={() => bookListening.snapshot.status === 'idle' ? bookListening.startListening() : bookListening.togglePlayPause()}
-                                onPrevious={() => { void bookListening.previous() }}
-                                onNext={() => { void bookListening.next() }}
-                              />
-
-                              {/* Swipe hints */}
-                              <div className="book-listen-hints">
-                                <span>↑ display</span>
-                                <span>→ prev</span>
-                                <span>↓ pause</span>
-                                <span>← next</span>
-                              </div>
-                            </div>
-                          )
-                        ) : (
-                          /* ── Sets sub-mode (original sentence mode) ── */
-                          <div
-                            className={`sentence-mode-display listening-session-display listening-sets-display${!sentenceRendering && sentencePaused && sentenceRendered ? ' listening-preplay' : ''}${sentenceSetSwipe.swipeDir ? ` swipe-${sentenceSetSwipe.swipeDir}` : ''}`}
-                            {...sentenceSetSwipe.handlers}
-                          >
-                            {/* Top bar: Menu | Play/Pause | End Set */}
-                            <div className="sentence-top-bar">
-                              <div className="sentence-menu-wrap">
-                                <button
-                                  type="button"
-                                  className="sentence-menu-btn"
-                                  onClick={() => setSentenceMenuOpen(o => !o)}
-                                  aria-label="Menu"
-                                >
-                                  ☰
-                                </button>
-                                <StudyMenuPopup open={sentenceMenuOpen} onClose={() => setSentenceMenuOpen(false)}>
-                                  <p className="sentence-menu-label">Mode</p>
-                                  <div className="sentence-menu-modes">
-                                    <button
-                                      type="button"
-                                      className=""
-                                      onClick={() => { void startModeLesson('listeningMode'); setSentenceMenuOpen(false) }}
-                                    >Words</button>
-                                    <button
-                                      type="button"
-                                      className="active"
-                                      onClick={() => { setSentenceMenuOpen(false) }}
-                                    >Sentences</button>
-                                    <button
-                                      type="button"
-                                      onClick={() => {
-                                        setSentenceSubMode('books')
-                                        setSentencePaused(true)
-                                        setSentenceMenuOpen(false)
-                                      }}
-                                    >Books</button>
-                                  </div>
-                                  <StudyMenuSection label="Display">
-                                    <StudyMenuToggle label="Pinyin" checked={showPinyin} onChange={() => setShowPinyin(v => !v)} />
-                                    <StudyMenuToggle label="English" checked={showEnglish} onChange={() => setShowEnglish(v => !v)} />
-                                  </StudyMenuSection>
-                                  <StudyMenuSection label="Playback">
-                                    <StudyMenuSelect
-                                      label="Speed"
-                                      value={playbackRate}
-                                      options={[0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2].map(r => ({ value: r, label: `${r}×` }))}
-                                      onChange={value => setPlaybackRate(value)}
-                                    />
-                                    <StudyMenuSelect
-                                      label="Chinese repeats"
-                                      value={userSettings.sentenceRepeats}
-                                      options={[1, 2, 3, 4, 5].map(n => ({ value: n, label: `${n}×` }))}
-                                      onChange={value => saveSentenceListeningSettings({ sentenceRepeats: value })}
-                                    />
-                                    <StudyMenuToggle
-                                      label="English audio"
-                                      checked={userSettings.sentenceIncludeEnglish}
-                                      onChange={checked => saveSentenceListeningSettings({ sentenceIncludeEnglish: checked })}
-                                    />
-                                    <StudyMenuSelect
-                                      label="Shadowing pause"
-                                      value={userSettings.sentencePauseFactor}
-                                      options={[
-                                        { value: 0, label: 'Off' },
-                                        { value: 0.5, label: 'Short (½× sentence)' },
-                                        { value: 1, label: 'Normal (1× sentence)' },
-                                        { value: 1.5, label: 'Long (1½× sentence)' },
-                                      ]}
-                                      onChange={value => saveSentenceListeningSettings({ sentencePauseFactor: value })}
-                                    />
-                                  </StudyMenuSection>
-                                  <StudyMenuSection label="Collection">
-                                    <StudyMenuSelect
-                                      label="Sentences from"
-                                      value={activeSentencePool.id}
-                                      options={SENTENCE_POOLS.map(pool => ({ value: pool.id, label: pool.name }))}
-                                      onChange={poolId => {
-                                        setSentenceMenuOpen(false)
-                                        void changeSentencePool(poolId)
-                                      }}
-                                    />
-                                    <p className="sentence-menu-hint">{activeSentencePool.description}</p>
-                                  </StudyMenuSection>
-                                  <StudyMenuSection label="Session">
-                                    <StudyMenuSelect
-                                      label="Sentences per set"
-                                      value={userSettings.sentenceSessionSize}
-                                      options={[3, 5, 8, 10].map(n => ({ value: n, label: `${n}` }))}
-                                      onChange={value => saveSentenceListeningSettings({ sentenceSessionSize: value })}
-                                    />
-                                    <StudyMenuSelect
-                                      label="Rounds"
-                                      value={userSettings.sentenceRounds}
-                                      options={[3, 5, 10, 15, 20].map(n => ({ value: n, label: `${n}` }))}
-                                      onChange={value => saveSentenceListeningSettings({ sentenceRounds: value })}
-                                    />
-                                    <StudyMenuToggle
-                                      label="Shuffle order"
-                                      checked={userSettings.sentenceShuffle}
-                                      onChange={checked => saveSentenceListeningSettings({ sentenceShuffle: checked })}
-                                    />
-                                    <button
-                                      type="button"
-                                      className="sentence-menu-change-book"
-                                      onClick={() => { setSentenceMenuOpen(false); void startSentenceLesson() }}
-                                    >
-                                      Rebuild set with these settings
-                                    </button>
-                                    <button
-                                      type="button"
-                                      className="sentence-menu-change-book listening-menu-end-set"
-                                      onClick={() => {
-                                        sentenceAudioRef.current?.pause()
-                                        setSentenceSetComplete(true)
-                                        setSentenceMenuOpen(false)
-                                      }}
-                                    >
-                                      End Set
-                                    </button>
-                                  </StudyMenuSection>
-                                </StudyMenuPopup>
-                              </div>
-
-                              <button
-                                type="button"
-                                className="sentence-end-btn"
-                                onClick={() => {
-                                  sentenceAudioRef.current?.pause()
-                                  setSentenceSetComplete(true)
-                                }}
-                              >
-                                End Set
-                              </button>
-                            </div>
-
-                            <div className="sentence-round-info">
-                              <span>Round {sentencePosition.round + 1} of {sentenceListeningSettings.sentenceRounds}</span>
-                              <div className="sentence-progress-bar">
-                                <span style={{ width: `${sentenceProgress.duration > 0 ? (sentenceProgress.current / sentenceProgress.duration) * 100 : 0}%` }} />
-                              </div>
-                              {sentencePoolProgress && (
-                                <span className="sentence-pool-progress">
-                                  {sentencePoolProgress.lesson !== undefined
-                                    ? `Lesson ${sentencePoolProgress.lesson} · `
-                                    : `${activeSentencePool.name} · `}
-                                  {sentencePoolProgress.position}/{sentencePoolProgress.total} sentences
-                                </span>
-                              )}
-                            </div>
-
-                            {sentenceRendering && (
-                              <div className="sentence-paused-overlay">Preparing audio…</div>
-                            )}
-                            {!sentenceRendering && sentencePaused && sentenceRendered && (
-                              <div className="sentence-paused-overlay listening-ready-message">
-                                <span aria-hidden="true">✦</span>
-                                Ready when you are — tap play to begin
-                              </div>
-                            )}
-
-                            {sentenceQueue.length > 0 && (() => {
-                              const current = sentenceQueue[sentencePosition.sentenceIndex]
-                              return (
-                                <div className="sentence-card-stack">
-                                  <div
-                                    ref={sentenceSetSwipe.cardRef}
-                                    className={`sentence-card${(current?.chinese.length ?? 0) > 14 ? ' sentence-card-long' : ''}`}
-                                  >
-                                    <div
-                                      className="sentence-chinese"
-                                      role="button"
-                                      tabIndex={0}
-                                      onClick={() => setSentencePinyinVisible(v => !v)}
-                                      onKeyDown={e => e.key === 'Enter' && setSentencePinyinVisible(v => !v)}
-                                    >
-                                      {current?.chinese}
-                                    </div>
-                                    {(sentencePinyinVisible || showPinyin) ? (
-                                      <div className="sentence-pinyin">
-                                        {getPinyin(current?.chinese ?? '', { toneType: 'symbol', separator: ' ' })}
-                                      </div>
-                                    ) : (
-                                      <div className="sentence-pinyin-hint">拼 pinyin</div>
-                                    )}
-                                    {showEnglish && (
-                                      <div className="sentence-english">{current?.english}</div>
-                                    )}
-                                  </div>
-                                </div>
-                              )
-                            })()}
-
-                            {sentenceSetSwipe.swipeDir && (
-                              <div className={`swipe-indicator swipe-indicator-${sentenceSetSwipe.swipeDir}`}>
-                                {{ left: '← Next', right: '→ Prev', down: '⏸ Play/Pause', up: '↑ Pinyin' }[sentenceSetSwipe.swipeDir]}
-                              </div>
-                            )}
-
-                            <div className="sentence-dots">
-                              {sentenceQueue.map((sent, i) => (
-                                <span
-                                  key={sent.word}
-                                  className={`sentence-dot ${sentencePosition.sentenceIndex === i ? 'active' : ''}`}
-                                />
-                              ))}
-                            </div>
-
-                            <StudyControls
-                              className="listening-primary-controls"
-                              playing={!sentencePaused}
-                              onTogglePlay={toggleSentencePlayback}
-                              playDisabled={!sentenceRendered || sentenceRendering}
-                              playLabel={sentencePaused ? 'Resume' : 'Pause'}
-                              onPrevious={() => seekSentence(-1)}
-                              prevDisabled={!sentenceRendered}
-                              prevLabel="Previous sentence"
-                              onNext={() => seekSentence(1)}
-                              nextDisabled={!sentenceRendered}
-                              nextLabel="Next sentence"
-                            />
-
-                            <div className="book-listen-hints">
-                              <span>↑ pinyin</span>
-                              <span>→ prev</span>
-                              <span>↓ pause</span>
-                              <span>← next</span>
-                            </div>
-
-                            {sentenceRendered && (
-                              <audio
-                                ref={sentenceAudioRef}
-                                src={sentenceRendered.url}
-                                preload="auto"
-                                onPlay={() => setSentencePaused(false)}
-                                onPause={() => setSentencePaused(true)}
-                                onTimeUpdate={(event) => {
-                                  const audio = event.currentTarget
-                                  const time = audio.currentTime
-                                  const segments = sentenceRendered.segments
-                                  const segment = segments.find(
-                                    (s) => time >= s.startSeconds && time < s.endSeconds,
-                                  )
-                                  if (
-                                    segment &&
-                                    (segment.sentenceIndex !== sentencePosition.sentenceIndex ||
-                                      segment.round !== sentencePosition.round)
-                                  ) {
-                                    setSentencePosition({
-                                      sentenceIndex: segment.sentenceIndex,
-                                      round: segment.round,
-                                    })
-                                  }
-                                  setSentenceProgress({
-                                    current: time,
-                                    duration: audio.duration || sentenceRendered.durationSeconds,
-                                  })
-                                }}
-                                onEnded={() => {
-                                  setSentencePaused(true)
-                                  void completeSentenceSet()
-                                }}
-                              />
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <>
-                    <div className={`study-chinese ${studyDisplay.kind}`}>
-                      {studyDisplay.chinese}
-                    </div>
-                    {showPinyin && studyDisplay.pinyin && (
-                      <div className="study-pinyin">{studyDisplay.pinyin}</div>
-                    )}
-                    {showEnglish && <div className="study-meaning">{studyDisplay.english}</div>}
-                    {minimalVisualMode && lessonWords.length > 0 && (
-                      <div className="listening-rating-panel" aria-label="Rate this five-word set">
-                        <div className="listening-word-buttons">
-                          {lessonWords.map((word, index) => {
-                            const rating = listeningSetRatings[word.id]
-                            const key = [hotkeys.choiceA, hotkeys.choiceB, hotkeys.choiceC, hotkeys.choiceD, hotkeys.choiceE][index]
-                            return (
-                              <div className="listening-word-slot" key={word.id}>
-                                <button
-                                  type="button"
-                                  className={`listening-word-rating${rating ? ` rating-${rating}` : ''}`}
-                                  onClick={() => cycleListeningSetRating(word.id)}
-                                  aria-label={`${word.word}: ${rating ? fsrsLabel(rating) : 'not rated'}`}
-                                >
-                                  <kbd>{key.toUpperCase()}</kbd>
-                                  <strong>{word.word}</strong>
-                                  <span>{rating ? fsrsLabel(rating) : 'No change'}</span>
-                                </button>
-                                <button
-                                  type="button"
-                                  className="listening-word-refresh"
-                                  onClick={() => void replaceListeningWord(word.id)}
-                                  disabled={rendering}
-                                  aria-label={`Switch out ${word.word}`}
-                                  title="Switch this word"
-                                >
-                                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M20 7v5h-5M4 17v-5h5M6.1 9a7 7 0 0 1 11.2-2.1L20 9M4 15l2.7 2.1A7 7 0 0 0 17.9 15" />
-                                  </svg>
-                                </button>
-                              </div>
-                            )
-                          })}
-                        </div>
-                        <button
-                          type="button"
-                          className="listening-new-set"
-                          onClick={() => void completeListeningLessonAndStartNext()}
-                          disabled={!renderedLesson || rendering}
-                        >
-                          <kbd>{hotkeys.choiceF.toUpperCase()}</kbd> New Set
-                        </button>
-                      </div>
-                    )}
-                    <div className="study-time">
-                      <span>
-                        {renderedLesson
-                          ? `${formatTime(pocketProgress.current)} / ${formatTime(pocketProgress.duration)}`
-                          : 'Import a clip pack, then render a lesson for phone-style playback.'}
-                      </span>
-                    </div>
-                        {minimalVisualMode && (
-                          <>
-                            <StudyControls
-                              playing={isPlaying}
-                              onTogglePlay={() => {
-                                const audio = pocketAudioRef.current
-                                if (!audio) return
-                                if (audio.paused) {
-                                  void audio.play()
-                                } else {
-                                  audio.pause()
-                                }
-                              }}
-                              playDisabled={!renderedUrl}
-                              onPrevious={replayCurrentSegment}
-                              prevDisabled={!currentSegment}
-                              prevLabel="Replay segment"
-                              onNext={() => void completeListeningLessonAndStartNext()}
-                              nextDisabled={!renderedLesson || rendering}
-                              nextLabel="Next lesson"
-                            />
-                          </>
-                        )}
-                      </>
-                    )}
-                  </div>
-
-                  {studyMode !== 'sentenceMode' && (
-                  <div className={`play-hover-menu ${minimalVisualMode ? 'minimal-audio-host' : ''}`}>
-                    {renderedUrl ? (
-                      <audio
-                        ref={pocketAudioRef}
-                        src={renderedUrl}
-                        controls={!minimalVisualMode}
-                        preload="metadata"
-                        onPlay={() => {
-                          setIsPlaying(true)
-                          if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing'
-                        }}
-                        onPause={() => {
-                          setIsPlaying(false)
-                          if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused'
-                        }}
-                        onTimeUpdate={(event) => {
-                          const audio = event.currentTarget
-                          const current = audio.currentTime
-                          lastPocketTimeRef.current = current
-                          const segmentIndex =
-                            renderedLesson?.segments?.findIndex(
-                              (segment) =>
-                                current >= segment.startSeconds && current < segment.endSeconds,
-                            ) ?? -1
-                          if (segmentIndex >= 0 && segmentIndex !== currentStepIndex) {
-                            setCurrentStepIndex(segmentIndex)
-                          }
-                          setPocketProgress({
-                            current,
-                            duration: audio.duration || renderedLesson?.durationSeconds || 0,
-                          })
-                        }}
-                        onEnded={async () => {
-                          setIsPlaying(false)
-                          if (renderedLesson) {
-                            if (isListeningMode) {
-                              if (autoNextLesson) {
-                                await completeListeningLessonAndStartNext()
-                              } else {
-                                await completeListeningLesson()
-                              }
-                            } else {
-                              await recordEvent({
-                                type: 'complete',
-                                itemType: 'lesson',
-                                itemId: renderedLesson.id,
-                                seconds: renderedLesson.durationSeconds,
-                              })
-                              await refresh()
-                            }
-                            if (isListeningMode && !autoNextLesson) {
-                              setLastSummary('Lesson complete.')
-                            } else if (!isListeningMode) {
-                              openReviewPrompt()
-                            }
-                          }
-                        }}
-                      />
-                    ) : (
-                      <div className="audio-placeholder">Render a lesson to create the audio track.</div>
-                    )}
-                    {showReviewPrompt && (
-                      <ControllerHUD
-                        choiceA={hotkeys.choiceA}
-                        choiceB={hotkeys.choiceB}
-                        labelA={reviewAnswerShown ? 'Again' : 'Flip'}
-                        labelB={reviewAnswerShown ? 'Good' : ''}
-                      />
-                    )}
-                    {!minimalVisualMode && (
-                      <div className="lesson-menu-shell">
-                        <button
-                          type="button"
-                          className="lesson-menu-trigger"
-                          onClick={() => setLessonMenuOpen((open) => !open)}
-                          aria-expanded={lessonMenuOpen}
-                          aria-controls="lesson-action-sheet"
-                        >
-                          {lessonMenuOpen ? 'Close menu' : 'Menu'}
-                        </button>
-                        {lessonMenuOpen && (
-                          <>
-                            <button
-                              type="button"
-                              className="lesson-menu-backdrop"
-                              aria-label="Close lesson menu"
-                              onClick={() => setLessonMenuOpen(false)}
-                            />
-                            <div
-                              className="lesson-action-sheet"
-                              id="lesson-action-sheet"
-                              role="dialog"
-                              aria-label="Lesson controls"
-                            >
-                              <div className="sheet-heading">
-                                <strong>Lesson controls</strong>
-                                <button type="button" onClick={() => setLessonMenuOpen(false)}>
-                                  Close
-                                </button>
-                              </div>
-                              <div className="player-controls lesson-menu-controls">
-                                <button
-                                  type="button"
-                                  onClick={() => pocketAudioRef.current?.play()}
-                                  disabled={!renderedUrl || isPlaying}
-                                >
-                                  Play
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={() => pocketAudioRef.current?.pause()}
-                                  disabled={!renderedUrl || !isPlaying}
-                                >
-                                  Pause
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={pauseAndSavePlace}
-                                  disabled={!renderedUrl}
-                                >
-                                  Pause & save place
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={resumeSavedPlace}
-                                  disabled={!renderedUrl || savedResumeTime === null}
-                                >
-                                  Resume lesson
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={restartCurrentWord}
-                                  disabled={!renderedUrl || !currentSegment?.wordId}
-                                >
-                                  Restart current word
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={() => {
-                                    setLessonMenuOpen(false)
-                                    void startPocketLesson()
-                                  }}
-                                  disabled={rendering || (showReviewPrompt && !allLessonWordsRated)}
-                                >
-                                  Next Lesson
-                                </button>
-                                <label className="toggle compact-toggle">
-                                  <input
-                                    type="checkbox"
-                                    aria-label="Auto advance to next lesson"
-                                    checked={autoNextLesson}
-                                    onChange={(event) => setAutoNextLesson(event.target.checked)}
-                                  />
-                                  Auto advance to next lesson
-                                </label>
-                                <label className="compact-field">
-                                  Pause
-                                  <select
-                                    value={pauseProfile}
-                                    onChange={(event) => setPauseProfile(event.target.value as PauseProfile)}
-                                  >
-                                    <option value="gentle">Gentle</option>
-                                    <option value="normal">Normal</option>
-                                    <option value="fast">Fast</option>
-                                    <option value="challenge">Challenge</option>
-                                  </select>
-                                </label>
-                                <button type="button" onClick={toggleFullscreen}>
-                                  {isFullscreen ? 'Exit full screen' : 'Full screen'}
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={() => {
-                                    setLessonMenuOpen(false)
-                                    setMinimalVisualMode(true)
-                                  }}
-                                >
-                                  Listening mode
-                                </button>
-                              </div>
-                              <div className="coverage-grid menu-coverage">
-                                <span>Ready words: {coverage.readyWords}</span>
-                                <span>Prompt clips: {coverage.promptClips}</span>
-                                <span>Rendered warnings: {renderedLesson?.warnings.length ?? 0}</span>
-                              </div>
-                            </div>
-                        </>
-                      )}
-                    </div>
-                    )}
-                  </div>
-                  )}
-                </section>
-
-              {lesson && lessonMode === 'live' && (
-              <div className="lesson-card">
-                <div className="lesson-now">
-                  <span>
-                    Step {Math.min(currentStepIndex + 1, lesson.steps.length)} of{' '}
-                    {lesson.steps.length}
-                  </span>
-                  <h2>{currentStep?.label ?? lesson.title}</h2>
-                  {currentStep?.kind === 'display' && (
-                    <pre className="display-text">{currentStep.text}</pre>
-                  )}
-                  {targetWord && (
-                    <p>
-                      Current word: <strong>{targetWord.word}</strong> · {targetWord.meaning}
-                    </p>
-                  )}
-                </div>
-
-                <div className="target-strip">
-                  {lesson.targetWords.map((word) => (
-                    <span key={word.id}>
-                      {word.word}
-                      <small>{word.meaning}</small>
-                    </span>
-                  ))}
-                </div>
-
-                <div className="player-controls">
-                  <button type="button" onClick={() => runFrom(currentStepIndex)} disabled={isPlaying}>
-                    Play
-                  </button>
-                  <button type="button" onClick={stopPlayback} disabled={!isPlaying}>
-                    Pause
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      stopPlayback()
-                      setCurrentStepIndex(Math.max(0, currentStepIndex - 1))
-                    }}
-                  >
-                    Previous
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      stopPlayback()
-                      setCurrentStepIndex(Math.min(lesson.steps.length - 1, currentStepIndex + 1))
-                    }}
-                  >
-                    Next
-                  </button>
-                  <button type="button" onClick={() => runFrom(currentStepIndex)}>
-                    Replay
-                  </button>
-                </div>
-
-                <div className="player-options">
-                  <label>
-                    Speed
-                    <select
-                      value={playbackRate}
-                      onChange={(event) => setPlaybackRate(Number(event.target.value))}
-                    >
-                      <option value={0.75}>0.75x</option>
-                      <option value={0.9}>0.9x</option>
-                      <option value={1}>1.0x</option>
-                    </select>
-                  </label>
-                  <label className="toggle">
-                    <input
-                      type="checkbox"
-                      checked={autoAdvance}
-                      onChange={(event) => setAutoAdvance(event.target.checked)}
-                    />
-                    Auto-advance
-                  </label>
-                </div>
-
-                {targetWord && (
-                  <div className="button-row">
-                    <button type="button" onClick={() => startFlashcards('mixed', [targetWord])}>
-                      Review card
-                    </button>
-                    <button
-                      type="button"
-                      onClick={async () => {
-                        await recordEvent({
-                          type: 'skip',
-                          itemType: 'word',
-                          itemId: targetWord.id,
-                        })
-                        setCurrentStepIndex(Math.min(lesson.steps.length - 1, currentStepIndex + 1))
-                      }}
-                    >
-                      Skip word
-                    </button>
-                  </div>
-                )}
-              </div>
-              )}
-
-              {lesson && lessonMode === 'live' && (
-                <ol className="playlist">
-                  {lesson.steps.map((step, index) => (
-                    <li key={step.id} className={index === currentStepIndex ? 'active' : ''}>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          stopPlayback()
-                          setCurrentStepIndex(index)
-                        }}
-                      >
-                        <span>{step.kind}</span>
-                        {step.label}
-                      </button>
-                    </li>
-                  ))}
-                </ol>
-              )}
-            </>
-          ) : (
-            <section className="panel empty-state">
-              <h2>No lesson loaded</h2>
-              <p>Start a lesson from Dashboard, or open Flashcards from the top banner.</p>
-              <button className="primary" type="button" onClick={() => startPocketLesson()}>
-                Next Lesson
-              </button>
-            </section>
-          )}
-        </section>
       )}
 
       {editingWord && (
@@ -8733,31 +6814,6 @@ function FlashcardReview({
   )
 }
 
-function ControllerHUD({
-  choiceA,
-  choiceB,
-  labelA,
-  labelB,
-}: {
-  choiceA: string
-  choiceB: string
-  labelA: string
-  labelB: string
-}) {
-  return (
-    <div className="controller-hud">
-      <div className="hud-button">
-        <kbd>{choiceA.toUpperCase()}</kbd>
-        <span>{labelA}</span>
-      </div>
-      <div className="hud-button">
-        <kbd>{choiceB.toUpperCase()}</kbd>
-        <span>{labelB}</span>
-      </div>
-    </div>
-  )
-}
-
 function formatSummary(summary: ImportSummary): string {
   const parts = [
     `${summary.created} created`,
@@ -9140,11 +7196,6 @@ function detectSpeechLanguage(text: string): string {
   return /[\u3400-\u9fff]/.test(text) ? 'zh-CN' : 'en-US'
 }
 
-function hotkeyToReviewRating(key: string, hotkeys: HotkeySettings): FsrsRating | undefined {
-  const index = choiceKeyIndex(key, hotkeys)
-  return (['again', 'hard', 'good', 'easy'] as FsrsRating[])[index]
-}
-
 function hotkeyToStandaloneFlashcardRating(key: string, hotkeys: HotkeySettings): FsrsRating | undefined {
   const index = choiceKeyIndex(key, hotkeys)
   return (['again', 'hard', 'good', 'easy'] as FsrsRating[])[index]
@@ -9234,38 +7285,6 @@ function csvCell(value: string | number): string {
   return /[",\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text
 }
 
-function getStudyDisplay(word?: VocabWord, sentence?: Sentence) {
-  if (sentence) {
-    return {
-      kind: 'sentence',
-      chinese: sentence.chinese,
-      english: sentence.english,
-      pinyin: word?.pinyin ?? '',
-    }
-  }
-  if (word) {
-    return {
-      kind: 'word',
-      chinese: word.word,
-      english: word.meaning,
-      pinyin: word.pinyin ?? '',
-    }
-  }
-  return {
-    kind: 'word',
-    chinese: '准备',
-    english: 'Ready',
-    pinyin: 'zhun bei',
-  }
-}
-
-function formatTime(seconds: number): string {
-  if (!Number.isFinite(seconds)) return '0:00'
-  const minutes = Math.floor(seconds / 60)
-  const remaining = Math.floor(seconds % 60)
-  return `${minutes}:${remaining.toString().padStart(2, '0')}`
-}
-
 function heatLevel(minutes: number, activityCount: number): number {
   if (activityCount === 0) return 0
   if (minutes >= 20) return 4
@@ -9282,27 +7301,6 @@ function friendlyDate(dateKey: string): string {
 function shortMonthDay(dateKey: string): string {
   const date = new Date(`${dateKey}T12:00:00`)
   return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
-}
-
-function getAudioCoverage(
-  words: VocabWord[],
-  sentences: Sentence[],
-  audioClips: AudioClip[],
-) {
-  const readyWords = words.filter((word) => word.audioWordId && word.audioMeaningId).length
-  const promptClips = audioClips.filter((clip) => clip.type === 'prompt').length
-  const sentenceReady = sentences.filter(
-    (sentence) => sentence.audioSentenceId && sentence.audioEnglishId,
-  ).length
-
-  return {
-    readyWords,
-    sentenceReady,
-    promptClips,
-    missingWordClips: words.filter((word) => !word.audioWordId).length,
-    missingMeaningClips: words.filter((word) => !word.audioMeaningId).length,
-    missingSentenceClips: sentences.filter((sentence) => !sentence.audioSentenceId).length,
-  }
 }
 
 export default App

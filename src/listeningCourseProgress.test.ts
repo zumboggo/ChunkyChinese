@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addHeardRange, heardSeconds, mergeHeardRanges, readCourseProgress } from './listeningCourseProgress'
+import { completeCourseListen, addHeardRange, heardSeconds, mergeHeardRanges, readCourseProgress } from './listeningCourseProgress'
 
 describe('listening course progress', () => {
   it('counts overlapping replays only once', () => {
@@ -17,6 +17,22 @@ describe('listening course progress', () => {
   it('safely recovers from invalid persisted state and filters obsolete lessons', () => {
     expect(readCourseProgress('key', ['one'], { getItem: () => '{bad' }).lessonId).toBe('one')
     const state = readCourseProgress('key', ['one'], { getItem: () => JSON.stringify({ lessonId: 'one', seconds: -5, completed: ['one', 'one', 'removed'], ranges: [[0, 10], [5, 20], [-1, 5], [5, 2]] }) })
-    expect(state).toEqual({ lessonId: 'one', seconds: 0, completed: ['one'], ranges: [[0, 20]] })
+    expect(state).toEqual({ lessonId: 'one', seconds: 0, completed: ['one'], listens: { one: 1 }, ranges: [[0, 20]] })
   })
+})
+
+it('keeps valid listening counts and recovers old completed lessons as one known listen', () => {
+  const state = readCourseProgress('key', ['one', 'two'], { getItem: () => JSON.stringify({ lessonId: 'one', completed: ['one', 'two'], listens: { one: 4, two: -2, removed: 9 } }) })
+  expect(state.listens).toEqual({ one: 4, two: 1 })
+})
+
+it('counts repeat listens and resets coverage so a seek cannot reuse an earlier full listen', () => {
+  const progress = { lessonId: 'one', seconds: 240, completed: [], listens: {}, ranges: [[0, 240] as [number, number]] }
+  const first = completeCourseListen(progress, 'one')
+  expect(first.listens.one).toBe(1)
+  expect(first.ranges).toEqual([])
+  expect(first.seconds).toBe(0)
+  const second = completeCourseListen({ ...first, ranges: [[0, 240]] }, 'one')
+  expect(second.listens.one).toBe(2)
+  expect(second.completed).toEqual(['one'])
 })

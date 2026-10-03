@@ -1,8 +1,9 @@
+import { pinyin } from 'pinyin-pro'
 import { useEffect, useRef, useState } from 'react'
 import pilotLessons from './content/listening-pilot.json'
 import additionalLessons from './content/listening-additional.json'
 
-import { mergeHeardRanges, heardSeconds, readCourseProgress } from './listeningCourseProgress'
+import { mergeHeardRanges, heardSeconds, readCourseProgress, completeCourseListen } from './listeningCourseProgress'
 import { lessonNumberIndex, nextCourseLesson, wordPinyin } from './listeningCourseControls'
 import './listeningCourse.css'
 
@@ -16,7 +17,6 @@ interface CourseRecording {
 }
 interface Props {
   scope: string
-  onArchive: (mode: 'words' | 'sentences') => void
   onComplete: (lessonId: string, seconds: number) => Promise<void>
 }
 const ids = lessons.map(lesson => lesson.id)
@@ -24,7 +24,7 @@ const OFFLINE_CACHE = 'chunky-listening-course-v1'
 const base = `${import.meta.env.BASE_URL}listening/`
 const formatTime = (seconds: number) => `${Math.floor(Math.round(seconds) / 60)}:${String(Math.round(seconds) % 60).padStart(2, '0')}`
 
-export default function ListeningCourse({ scope, onArchive, onComplete }: Props) {
+export default function ListeningCourse({ scope, onComplete }: Props) {
   const storageKey = `chunky-listening-course-v1:${scope}`
   const [progress, setProgress] = useState(() => readCourseProgress(storageKey, ids))
   const [recordings, setRecordings] = useState<CourseRecording[]>([])
@@ -32,6 +32,7 @@ export default function ListeningCourse({ scope, onArchive, onComplete }: Props)
   const [offlineMessage, setOfflineMessage] = useState('')
   const [saving, setSaving] = useState(false)
   const [completedNow, setCompletedNow] = useState(false)
+  const [playbackRun, setPlaybackRun] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
   const [jumpNumber, setJumpNumber] = useState('')
   const [jumpError, setJumpError] = useState('')
@@ -66,7 +67,7 @@ export default function ListeningCourse({ scope, onArchive, onComplete }: Props)
   useEffect(() => {
     const element = audio.current
     return () => { element?.pause() }
-  }, [lesson.id])
+  }, [lesson.id, playbackRun])
 
   useEffect(() => {
     if (!('mediaSession' in navigator)) return
@@ -91,6 +92,7 @@ export default function ListeningCourse({ scope, onArchive, onComplete }: Props)
     const next = { ...progressRef.current, lessonId: id, seconds: 0, ranges: [] }
     progressRef.current = next
     setProgress(next)
+    setPlaybackRun(value => value + 1)
   }
 
   async function finish() {
@@ -100,13 +102,14 @@ export default function ListeningCourse({ scope, onArchive, onComplete }: Props)
     completing.current = true
     const qualified = heardSeconds(current.ranges, recording.seconds) >= recording.seconds * 0.9
     if (qualified) {
-      try {
-        if (!current.completed.includes(finishedId)) await onComplete(finishedId, recording.seconds)
-        const next = { ...progressRef.current, completed: [...new Set([...progressRef.current.completed, finishedId])] }
-        progressRef.current = next
-        setProgress(next)
-        if (next.lessonId === finishedId) setCompletedNow(true)
-      } catch { setError('Your lesson played, but progress could not be saved.') }
+      const next = completeCourseListen(progressRef.current, finishedId)
+      progressRef.current = next
+      setProgress(next)
+      setCompletedNow(true)
+      // A new audio element clears native played ranges: a replay must be heard again.
+      setPlaybackRun(value => value + 1)
+      try { await onComplete(finishedId, recording.seconds) }
+      catch { setError('Your listen is saved on this device, but the activity log could not be updated.') }
     }
     completing.current = false
     // A manual selection while completion is saving takes precedence over auto-next.
@@ -135,7 +138,7 @@ export default function ListeningCourse({ scope, onArchive, onComplete }: Props)
 
   function capturePlayed() {
     const player = audio.current
-    if (!player || player.dataset.lessonId !== progressRef.current.lessonId) return progressRef.current
+    if (!player || player.dataset.lessonId !== progressRef.current.lessonId || player.dataset.playbackRun !== String(playbackRun)) return progressRef.current
     const nativeRanges = Array.from({ length: player.played.length }, (_, i): [number, number] => [player.played.start(i), player.played.end(i)])
     const next = { ...progressRef.current, seconds: player.currentTime, ranges: mergeHeardRanges([...progressRef.current.ranges, ...nativeRanges]) }
     progressRef.current = next
@@ -175,8 +178,9 @@ export default function ListeningCourse({ scope, onArchive, onComplete }: Props)
     {jumpError && <p id="listening-jump-error" role="alert">{jumpError}</p>}
     <div className="listening-course-player">
       <div className="listening-course-meta"><span>LESSON {index + 1} OF {lessons.length}</span><span>{recording ? formatTime(duration) : 'About 4 minutes'}</span></div>
+      <p className="listening-course-count" title="Counts when you reach the end after hearing at least 90% of a lesson. Saved on this device.">Listened {progress.listens[lesson.id] ?? 0} {(progress.listens[lesson.id] ?? 0) === 1 ? 'time' : 'times'}</p>
       <h1>{lesson.title}</h1><p className="listening-course-objective">{lesson.objective}</p>
-    <audio key={lesson.id} ref={audio} data-lesson-id={lesson.id} preload="metadata" src={src} aria-label="Lesson audio"
+    <audio key={`${lesson.id}:${playbackRun}`} ref={audio} data-lesson-id={lesson.id} data-playback-run={playbackRun} preload="metadata" src={src} aria-label="Lesson audio"
       onLoadedMetadata={() => {
         const player = audio.current
         if (!player || !recording) return
@@ -204,7 +208,7 @@ export default function ListeningCourse({ scope, onArchive, onComplete }: Props)
       {error && <p role="alert">{error}</p>}
       {completedNow && <p role="status" className="listening-course-complete">Lesson complete. Well done.</p>}
       <div className="listening-course-player-footer">
-        <button type="button" onClick={() => { seek(0); void audio.current?.play().catch(() => setError('Tap Play to start.')) }}>Replay</button>
+        <button type="button" onClick={() => selectLesson(lesson.id, true)}>Replay</button>
         <label className="listening-course-auto"><input type="checkbox" role="switch" checked={autoNext} onChange={event => setAutoNextPreference(event.target.checked)} /><span>Auto-next</span></label>
         <button type="button" disabled={index === lessons.length - 1} onClick={() => selectLesson(lessons[index + 1].id)}>Next lesson <span aria-hidden="true">→</span></button>
       </div>
@@ -213,9 +217,8 @@ export default function ListeningCourse({ scope, onArchive, onComplete }: Props)
     <div className="listening-course-vocabulary-heading"><h2>Words to listen for</h2><span>{lesson.focus.length} familiar pieces</span></div>
     <div className="listening-course-focus" aria-label="Lesson vocabulary">{lesson.focus.map(word => <div key={word.zh}><span lang="zh-CN">{word.zh}</span><span className="listening-course-pinyin">{wordPinyin(word.zh)}</span><small>{word.en}</small></div>)}</div>
     <div className="listening-course-extras">
-    {recording && recording.segments.length > 0 ? <details><summary>Transcript</summary><div className="listening-course-transcript">{recording?.segments.filter(s => s.kind === 'speech').map((segment, n) => <p key={n} lang={segment.language === 'zh' ? 'zh-CN' : 'en'}><button type="button" aria-label={`Jump to ${formatTime(segment.startSeconds)}`} onClick={() => { if (audio.current) audio.current.currentTime = segment.startSeconds }}>{formatTime(segment.startSeconds)}</button>{segment.text}</p>)}</div></details> : <details><summary>Lesson phrases</summary><div className="listening-course-transcript">{[lesson.opening, ...lesson.ladder, ...lesson.transfers, ...lesson.dialogue].map((phrase, n) => <p key={n}><span lang="zh-CN">{phrase.zh}</span><br /><small>{phrase.en}</small></p>)}</div></details>}
+    {recording && recording.segments.length > 0 ? <details><summary>Transcript</summary><div className="listening-course-transcript">{recording?.segments.filter(s => s.kind === 'speech').map((segment, n) => <p key={n} lang={segment.language === 'zh' ? 'zh-CN' : 'en'}><button type="button" aria-label={`Jump to ${formatTime(segment.startSeconds)}`} onClick={() => { if (audio.current) audio.current.currentTime = segment.startSeconds }}>{formatTime(segment.startSeconds)}</button>{segment.text}{segment.language === 'zh' && segment.text && <span className="listening-phrase-pinyin">{pinyin(segment.text)}</span>}</p>)}</div></details> : <details><summary>Lesson phrases</summary><div className="listening-course-transcript">{[lesson.opening, ...lesson.ladder, ...lesson.transfers, ...lesson.dialogue].map((phrase, n) => <p key={n}><span lang="zh-CN">{phrase.zh}</span><span className="listening-phrase-pinyin">{pinyin(phrase.zh)}</span><small>{phrase.en}</small></p>)}</div></details>}
     <details><summary>Downloads</summary><div className="listening-course-actions"><button type="button" disabled={!src || saving} onClick={() => void saveOffline()}>{saving ? 'Saving…' : 'Save lesson offline'}</button>{src && <a href={src} download={`${lesson.id}.mp3`}>Download MP3</a>}</div><p role="status">{offlineMessage}</p></details>
-    <details><summary>Previous listening modes</summary><p>Your old word sets, sentence collections, and progress are still available.</p><div className="listening-course-actions"><button type="button" onClick={() => onArchive('words')}>Archived word sets</button><button type="button" onClick={() => onArchive('sentences')}>Archived sentences</button></div></details>
     </div>
   </section>
 }

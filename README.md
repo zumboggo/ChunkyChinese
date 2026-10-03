@@ -36,9 +36,10 @@ MiniMax Audio “Standup Guy” recordings in download order, with measured dura
 They provide untimed study phrases and resume at the saved audio position. Original MP3 recordings use an
 English narrator and two Mandarin voices from Replicate MiniMax Speech 02 HD.
 Measured lengths are 3:58–4:24. The player provides phrase-boundary resume,
-transcripts, MP3 downloads, and explicit offline downloads. Previous word and
-sentence modes remain accessible under “Previous listening modes”. Listening
-completion records a lesson event; it never changes vocabulary recall ratings.
+transcripts, MP3 downloads, and explicit offline downloads. The previous listening screens have been removed; shared vocabulary, sentences,
+Reader material, imports, and study history are preserved. Each completed listen
+records a lesson event and increments a device-local count after at least 90%
+coverage. Replays start a fresh listening pass; vocabulary recall ratings are unchanged.
 
 Regenerate public audio with `node scripts/generate-listening-course.mjs`.
 Set `FFMPEG_PATH` to your local ffmpeg executable. The script reads
