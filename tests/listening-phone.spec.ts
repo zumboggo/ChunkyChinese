@@ -27,4 +27,12 @@ test('short listening lessons offer navigation, pinyin, counts, and auto-next on
   await expect(page.getByRole('combobox', { name: 'Theme', exact: true })).toHaveValue('school')
   await expect(page.getByRole('switch', { name: 'Auto-next' })).toBeChecked()
   await expect(page.getByRole('heading', { name: 'The Missing Assignment' })).toBeVisible()
+  await page.getByRole('combobox', { name: 'Theme', exact: true }).selectOption('lms')
+  await expect(page.getByRole('heading', { name: 'Entering Royal Road' })).toBeVisible()
+  await expect(page.getByRole('combobox', { name: 'Choose a lesson', exact: true }).locator('option')).toHaveCount(10)
+  await expect(page.locator('audio')).toHaveAttribute('src', /listening-021-.*\.mp3/)
+  await page.getByRole('combobox', { name: 'Choose a lesson', exact: true }).selectOption('listening-030')
+  await expect(page.getByRole('heading', { name: 'The Courage to Continue' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Next lesson' })).toBeDisabled()
+
 })

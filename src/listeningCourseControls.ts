@@ -2,6 +2,7 @@ import { pinyin } from 'pinyin-pro'
 
 // Use the spoken word sense and common neutral-tone endings for these lessons.
 const pronunciation: Record<string, string> = {
+  '舍不得': 'shě bu de', '休息': 'xiū xi', '藏': 'cáng',
   '例子': 'lì zi', '孩子': 'hái zi', '清楚': 'qīng chu',
   '爱思瑟': 'ài sī sè', '华润二十四城': 'huá rùn èr shí sì chéng',
   '勺子': 'sháo zi', '鞋子': 'xié zi', '箱子': 'xiāng zi',

@@ -8075,6 +8075,106 @@
       "provider": "MiniMax Audio",
       "voice": "Standup Guy",
       "segments": []
+    },
+    {
+      "id": "listening-021",
+      "title": "Entering Royal Road",
+      "file": "listening-021-a7f5296c.mp3",
+      "seconds": 231.366531,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "voice": "Standup Guy",
+      "segments": []
+    },
+    {
+      "id": "listening-022",
+      "title": "Choosing Your Equipment",
+      "file": "listening-022-9dcc3c7a.mp3",
+      "seconds": 242.938776,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "voice": "Standup Guy",
+      "segments": []
+    },
+    {
+      "id": "listening-023",
+      "title": "The First Battle",
+      "file": "listening-023-a86c149a.mp3",
+      "seconds": 256.679184,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "voice": "Standup Guy",
+      "segments": []
+    },
+    {
+      "id": "listening-024",
+      "title": "Finding the Camp",
+      "file": "listening-024-4cab7065.mp3",
+      "seconds": 244.741224,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "voice": "Standup Guy",
+      "segments": []
+    },
+    {
+      "id": "listening-025",
+      "title": "A Hidden Clue",
+      "file": "listening-025-7061a409.mp3",
+      "seconds": 254.484898,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "voice": "Standup Guy",
+      "segments": []
+    },
+    {
+      "id": "listening-026",
+      "title": "Inside the Sculpting Shop",
+      "file": "listening-026-ed305c93.mp3",
+      "seconds": 256.130612,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "voice": "Standup Guy",
+      "segments": []
+    },
+    {
+      "id": "listening-027",
+      "title": "Is It Worth the Money?",
+      "file": "listening-027-d6419e12.mp3",
+      "seconds": 246.622041,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "voice": "Standup Guy",
+      "segments": []
+    },
+    {
+      "id": "listening-028",
+      "title": "Resting After the Battle",
+      "file": "listening-028-cd4b37c8.mp3",
+      "seconds": 252.708571,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "voice": "Standup Guy",
+      "segments": []
+    },
+    {
+      "id": "listening-029",
+      "title": "Surprise and Relief",
+      "file": "listening-029-96a4bd70.mp3",
+      "seconds": 252.26449,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "voice": "Standup Guy",
+      "segments": []
+    },
+    {
+      "id": "listening-030",
+      "title": "The Courage to Continue",
+      "file": "listening-030-2ecb7fce.mp3",
+      "seconds": 256.444082,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "voice": "Standup Guy",
+      "segments": []
     }
   ]
 }

@@ -1625,5 +1625,667 @@
     "dialogueQuestion": "",
     "dialogueAnswer": "",
     "closing": []
+  },
+  {
+    "id": "listening-021",
+    "theme": "lms",
+    "title": "Entering Royal Road",
+    "objective": "Choose a skill and follow your first steps into Royal Road.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "皇家之路",
+        "en": "Royal Road",
+        "sourceConcept": null
+      },
+      {
+        "zh": "账号",
+        "en": "account",
+        "sourceConcept": null
+      },
+      {
+        "zh": "选",
+        "en": "choose",
+        "sourceConcept": null
+      },
+      {
+        "zh": "技能",
+        "en": "skill",
+        "sourceConcept": null
+      },
+      {
+        "zh": "经验",
+        "en": "experience",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "我有一个账号。",
+      "en": "I have an account."
+    },
+    "ladder": [
+      {
+        "zh": "我有一个皇家之路的账号。",
+        "en": "I have a Royal Road account."
+      },
+      {
+        "zh": "我要选一个技能。",
+        "en": "I want to choose a skill."
+      },
+      {
+        "zh": "你想选哪个技能？",
+        "en": "Which skill do you want to choose?"
+      },
+      {
+        "zh": "经验增加了。",
+        "en": "Experience has increased."
+      },
+      {
+        "zh": "我有账号，但是没有这个技能。",
+        "en": "I have an account, but I do not have this skill."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-022",
+    "theme": "lms",
+    "title": "Choosing Your Equipment",
+    "objective": "Recognize weapons, shields, and armor as you prepare for a journey.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "武器",
+        "en": "weapon",
+        "sourceConcept": null
+      },
+      {
+        "zh": "盾牌",
+        "en": "shield",
+        "sourceConcept": null
+      },
+      {
+        "zh": "盔甲",
+        "en": "armor",
+        "sourceConcept": null
+      },
+      {
+        "zh": "锋利",
+        "en": "sharp",
+        "sourceConcept": null
+      },
+      {
+        "zh": "举起",
+        "en": "raise, lift up",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "选一件武器。",
+      "en": "Choose a weapon."
+    },
+    "ladder": [
+      {
+        "zh": "这件武器很锋利。",
+        "en": "This weapon is sharp."
+      },
+      {
+        "zh": "这面盾牌很重。",
+        "en": "This shield is heavy."
+      },
+      {
+        "zh": "举起盾牌。",
+        "en": "Raise the shield."
+      },
+      {
+        "zh": "这套盔甲是不是太重了？",
+        "en": "Is this suit of armor too heavy?"
+      },
+      {
+        "zh": "他穿上盔甲，举起盾牌。",
+        "en": "He puts on armor and raises the shield."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-023",
+    "theme": "lms",
+    "title": "The First Battle",
+    "objective": "Listen for who attacks, dodges, and protects a friend.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "战士",
+        "en": "warrior",
+        "sourceConcept": null
+      },
+      {
+        "zh": "战斗",
+        "en": "battle",
+        "sourceConcept": null
+      },
+      {
+        "zh": "攻击",
+        "en": "attack",
+        "sourceConcept": null
+      },
+      {
+        "zh": "躲",
+        "en": "dodge or hide",
+        "sourceConcept": null
+      },
+      {
+        "zh": "保护",
+        "en": "protect",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "战斗开始了。",
+      "en": "The battle has begun."
+    },
+    "ladder": [
+      {
+        "zh": "战士发起了攻击。",
+        "en": "The warrior launched an attack."
+      },
+      {
+        "zh": "他躲开了。",
+        "en": "He dodged."
+      },
+      {
+        "zh": "战士举起了盾牌。",
+        "en": "The warrior raised his shield."
+      },
+      {
+        "zh": "他想保护朋友。",
+        "en": "He wants to protect his friend."
+      },
+      {
+        "zh": "先别攻击。",
+        "en": "Do not attack yet."
+      },
+      {
+        "zh": "先保护你的朋友。",
+        "en": "Protect your friend first."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-024",
+    "theme": "lms",
+    "title": "Finding the Camp",
+    "objective": "Follow directions between a town, a valley, and a camp.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "地图",
+        "en": "map",
+        "sourceConcept": null
+      },
+      {
+        "zh": "城镇",
+        "en": "town",
+        "sourceConcept": null
+      },
+      {
+        "zh": "山谷",
+        "en": "valley",
+        "sourceConcept": null
+      },
+      {
+        "zh": "营地",
+        "en": "camp",
+        "sourceConcept": null
+      },
+      {
+        "zh": "往",
+        "en": "toward",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "我有一张地图。",
+      "en": "I have a map."
+    },
+    "ladder": [
+      {
+        "zh": "营地在哪儿？",
+        "en": "Where is the camp?"
+      },
+      {
+        "zh": "营地在山谷里。",
+        "en": "The camp is in the valley."
+      },
+      {
+        "zh": "往城镇走。",
+        "en": "Walk toward the town."
+      },
+      {
+        "zh": "他在城镇里。",
+        "en": "He is in the town."
+      },
+      {
+        "zh": "他往城镇走。",
+        "en": "He is walking toward the town."
+      },
+      {
+        "zh": "营地在山谷里，不在城镇里。",
+        "en": "The camp is in the valley, not in the town."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-025",
+    "theme": "lms",
+    "title": "A Hidden Clue",
+    "objective": "Observe a room again and discover a hidden map.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "线索",
+        "en": "clue",
+        "sourceConcept": null
+      },
+      {
+        "zh": "观察",
+        "en": "observe",
+        "sourceConcept": null
+      },
+      {
+        "zh": "角落",
+        "en": "corner",
+        "sourceConcept": null
+      },
+      {
+        "zh": "藏",
+        "en": "hide",
+        "sourceConcept": null
+      },
+      {
+        "zh": "重新",
+        "en": "again, afresh",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "这里有线索吗？",
+      "en": "Is there a clue here?"
+    },
+    "ladder": [
+      {
+        "zh": "仔细观察这个房间。",
+        "en": "Observe this room carefully."
+      },
+      {
+        "zh": "看看那个角落。",
+        "en": "Look at that corner."
+      },
+      {
+        "zh": "角落里藏着一张地图。",
+        "en": "A map is hidden in the corner."
+      },
+      {
+        "zh": "重新看一遍。",
+        "en": "Look again."
+      },
+      {
+        "zh": "那个角落里藏着一条线索。",
+        "en": "A clue is hidden in that corner."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-026",
+    "theme": "lms",
+    "title": "Inside the Sculpting Shop",
+    "objective": "Choose tools and materials for your first attempt at sculpting.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "雕刻店",
+        "en": "sculpting shop",
+        "sourceConcept": null
+      },
+      {
+        "zh": "工具",
+        "en": "tool",
+        "sourceConcept": null
+      },
+      {
+        "zh": "材料",
+        "en": "material",
+        "sourceConcept": null
+      },
+      {
+        "zh": "切割",
+        "en": "cut",
+        "sourceConcept": null
+      },
+      {
+        "zh": "黏土",
+        "en": "clay",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "他走进了雕刻店。",
+      "en": "He walked into the sculpting shop."
+    },
+    "ladder": [
+      {
+        "zh": "工具在桌子上。",
+        "en": "The tools are on the table."
+      },
+      {
+        "zh": "我需要一些材料。",
+        "en": "I need some material."
+      },
+      {
+        "zh": "这是黏土。",
+        "en": "This is clay."
+      },
+      {
+        "zh": "这个工具可以切割木头。",
+        "en": "This tool can cut wood."
+      },
+      {
+        "zh": "我想先用黏土试试。",
+        "en": "I want to try using clay first."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-027",
+    "theme": "lms",
+    "title": "Is It Worth the Money?",
+    "objective": "Distinguish expensive items from precious ones and decide what is worth buying.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "珍贵",
+        "en": "precious",
+        "sourceConcept": null
+      },
+      {
+        "zh": "昂贵",
+        "en": "expensive",
+        "sourceConcept": null
+      },
+      {
+        "zh": "值得",
+        "en": "worth it",
+        "sourceConcept": null
+      },
+      {
+        "zh": "浪费",
+        "en": "waste",
+        "sourceConcept": null
+      },
+      {
+        "zh": "舍不得",
+        "en": "reluctant to part with",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "这种材料很珍贵。",
+      "en": "This material is precious."
+    },
+    "ladder": [
+      {
+        "zh": "这种材料很昂贵。",
+        "en": "This material is expensive."
+      },
+      {
+        "zh": "值得买吗？",
+        "en": "Is it worth buying?"
+      },
+      {
+        "zh": "很贵，但是值得买。",
+        "en": "It is expensive, but worth buying."
+      },
+      {
+        "zh": "别浪费材料。",
+        "en": "Do not waste materials."
+      },
+      {
+        "zh": "我舍不得卖这件武器。",
+        "en": "I am reluctant to sell this weapon."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-028",
+    "theme": "lms",
+    "title": "Resting After the Battle",
+    "objective": "Understand injuries and the difference between resting and giving up.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "牧师",
+        "en": "priest",
+        "sourceConcept": null
+      },
+      {
+        "zh": "伤",
+        "en": "injury or wound",
+        "sourceConcept": null
+      },
+      {
+        "zh": "休息",
+        "en": "rest",
+        "sourceConcept": null
+      },
+      {
+        "zh": "继续",
+        "en": "continue",
+        "sourceConcept": null
+      },
+      {
+        "zh": "放弃",
+        "en": "give up",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "牧师在营地里。",
+      "en": "The priest is in the camp."
+    },
+    "ladder": [
+      {
+        "zh": "战士受伤了。",
+        "en": "The warrior was injured."
+      },
+      {
+        "zh": "你需要休息。",
+        "en": "You need to rest."
+      },
+      {
+        "zh": "先休息，再继续。",
+        "en": "Rest first, then continue."
+      },
+      {
+        "zh": "我想休息，但是不想放弃。",
+        "en": "I want to rest, but I do not want to give up."
+      },
+      {
+        "zh": "别放弃。",
+        "en": "Do not give up."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-029",
+    "theme": "lms",
+    "title": "Surprise and Relief",
+    "objective": "Follow a narrator through contrast, consequences, surprise, and relief.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "却",
+        "en": "yet",
+        "sourceConcept": null
+      },
+      {
+        "zh": "于是",
+        "en": "so, thereupon",
+        "sourceConcept": null
+      },
+      {
+        "zh": "愣住",
+        "en": "freeze in surprise",
+        "sourceConcept": null
+      },
+      {
+        "zh": "松一口气",
+        "en": "breathe a sigh of relief",
+        "sourceConcept": null
+      },
+      {
+        "zh": "结果",
+        "en": "result, as it turned out",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "他很累，却不想休息。",
+      "en": "He was tired, yet did not want to rest."
+    },
+    "ladder": [
+      {
+        "zh": "他很累，于是坐下休息。",
+        "en": "He was tired, so he sat down to rest."
+      },
+      {
+        "zh": "战士愣住了。",
+        "en": "The warrior froze in surprise."
+      },
+      {
+        "zh": "他松了一口气。",
+        "en": "He breathed a sigh of relief."
+      },
+      {
+        "zh": "结果，他找到了朋友。",
+        "en": "As it turned out, he found his friend."
+      },
+      {
+        "zh": "他受伤了，却不想放弃。",
+        "en": "He was injured, yet did not want to give up."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-030",
+    "theme": "lms",
+    "title": "The Courage to Continue",
+    "objective": "Understand even if, as long as, and unless as you bring the journey together.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "即使",
+        "en": "even if",
+        "sourceConcept": null
+      },
+      {
+        "zh": "只要",
+        "en": "as long as",
+        "sourceConcept": null
+      },
+      {
+        "zh": "除非",
+        "en": "unless",
+        "sourceConcept": null
+      },
+      {
+        "zh": "成功",
+        "en": "succeed",
+        "sourceConcept": null
+      },
+      {
+        "zh": "勇气",
+        "en": "courage",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "我想成功。",
+      "en": "I want to succeed."
+    },
+    "ladder": [
+      {
+        "zh": "那个战士很有勇气。",
+        "en": "That warrior has courage."
+      },
+      {
+        "zh": "即使很难，我也要试试。",
+        "en": "Even if it is difficult, I still want to try."
+      },
+      {
+        "zh": "即使很累，我也不会放弃。",
+        "en": "Even if I am tired, I will not give up."
+      },
+      {
+        "zh": "只要有地图，我们就能找到营地。",
+        "en": "As long as we have a map, we can find the camp."
+      },
+      {
+        "zh": "除非下雨，否则我们明天出发。",
+        "en": "Unless it rains, we will leave tomorrow."
+      },
+      {
+        "zh": "勇气不一定让你成功，但是能让你再试一次。",
+        "en": "Courage does not necessarily make you succeed, but it can help you try again."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
   }
 ]
