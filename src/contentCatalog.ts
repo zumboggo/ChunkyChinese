@@ -21,6 +21,7 @@ export const PRIVATE_READER_PACKS: HostedReaderPack[] = [
   ['china-arrival', 'The Package, the Classroom, and a Bowl of Hot Soup'],
   ['john-gospel', 'Gospel of John'],
   ['wurao-feisheng-graded', '勿扰飞升 · Easy Reader'],
+  ['harry-potter-graded', 'Harry Potter · Easy Reader'],
 ].map(([id, name]) => ({
   id,
   name,
