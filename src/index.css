@@ -9956,6 +9956,11 @@ main.app-shell {
   backdrop-filter: blur(20px);
 }
 
+.reader-chapter-picker-menu {
+  right: 0;
+  left: auto;
+}
+
 .reader-picker-menu > button {
   display: grid;
   gap: 2px;
