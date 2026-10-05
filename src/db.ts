@@ -24,6 +24,7 @@ import type {
   ImportSummary,
   ListeningEvent,
   ReaderBook,
+  ReaderTextSyncRecord,
   ReaderPack,
   ReaderProgress,
   ReaderQueueState,
@@ -1546,7 +1547,7 @@ function buildGeneratedPackSummary(books: ReaderBook[]): ReaderPack {
   }
 }
 
-export async function saveGeneratedReaderBook(book: ReaderBook): Promise<void> {
+export async function saveGeneratedReaderBook(book: ReaderBook, synced?: ReaderTextSyncRecord): Promise<void> {
   if (book.library?.temporary) {
     temporaryReaderBooks.set(book.id, book)
     return
@@ -1558,22 +1559,26 @@ export async function saveGeneratedReaderBook(book: ReaderBook): Promise<void> {
     (row) => row.packId === GENERATED_STORIES_PACK_ID && row.id !== book.id,
   )
   const pack = buildGeneratedPackSummary([...existingBooks, book])
-  const tx = db.transaction(['readerPacks', 'readerBooks'], 'readwrite')
+  const tx = db.transaction(['readerPacks', 'readerBooks', 'settings'], 'readwrite')
+  const previous = await tx.objectStore('settings').get(`readerTextSync:${book.id}`) as ReaderTextSyncRecord | undefined
+  await tx.objectStore('settings').put({ bookId: book.id, ownerId: synced?.ownerId ?? previous?.ownerId, updatedAt: synced?.updatedAt ?? new Date(Math.max(Date.now(), (Date.parse(previous?.updatedAt ?? '') || 0) + 1)).toISOString(), book: null }, `readerTextSync:${book.id}`)
   await tx.objectStore('readerPacks').put(pack)
   await tx.objectStore('readerBooks').put(book)
   await tx.done
   temporaryReaderBooks.delete(book.id)
 }
 
-export async function deleteGeneratedReaderBook(bookId: string): Promise<void> {
+export async function deleteGeneratedReaderBook(bookId: string, synced?: ReaderTextSyncRecord): Promise<void> {
   if (temporaryReaderBooks.delete(bookId)) return
   const db = await getDB()
   const book = await db.get('readerBooks', bookId)
   if (!book || book.packId !== GENERATED_STORIES_PACK_ID) return
   const tx = db.transaction(
-    ['readerBooks', 'readerPacks', 'readerProgress', 'readerSessions', 'audioClips'],
+    ['readerBooks', 'readerPacks', 'readerProgress', 'readerSessions', 'audioClips', 'settings'],
     'readwrite',
   )
+  const previous = await tx.objectStore('settings').get(`readerTextSync:${bookId}`) as ReaderTextSyncRecord | undefined
+  await tx.objectStore('settings').put({ bookId, ownerId: synced?.ownerId ?? previous?.ownerId, updatedAt: synced?.updatedAt ?? new Date(Math.max(Date.now(), (Date.parse(previous?.updatedAt ?? '') || 0) + 1)).toISOString(), book: null }, `readerTextSync:${bookId}`)
   await tx.objectStore('readerBooks').delete(bookId)
   for (const key of await tx.objectStore('readerProgress').index('bookId').getAllKeys(bookId)) {
     await tx.objectStore('readerProgress').delete(key)
@@ -3003,3 +3008,45 @@ export function downloadText(filename: string, text: string, type = 'application
 }
 
 export { makeWordId }
+
+// Text metadata and deletion markers live in the existing settings store, so
+// offline saves need no schema upgrade. Temporary books never enter this store.
+export async function getReaderTextSyncRecords(userId: string): Promise<ReaderTextSyncRecord[]> {
+  const db = await getDB()
+  const tx = db.transaction(['readerBooks', 'settings'], 'readwrite')
+  const books = (await tx.objectStore('readerBooks').getAll()).filter(book => book.packId === GENERATED_STORIES_PACK_ID && !book.library?.temporary)
+  const settings = tx.objectStore('settings')
+  const keys = await settings.getAllKeys(IDBKeyRange.bound('readerTextSync:', 'readerTextSync:\uffff'))
+  const metadata = new Map<string, ReaderTextSyncRecord>()
+  for (const key of keys) {
+    const record = await settings.get(key) as ReaderTextSyncRecord
+    metadata.set(record.bookId, record)
+  }
+  const ids = new Set([...metadata.keys(), ...books.map(book => book.id)])
+  const result: ReaderTextSyncRecord[] = []
+  for (const id of ids) {
+    const previous = metadata.get(id)
+    if (previous?.ownerId && previous.ownerId !== userId) continue
+    const record = { bookId: id, ownerId: userId, updatedAt: previous?.updatedAt ?? '2000-01-01T00:00:00.000Z', book: books.find(book => book.id === id) ?? null }
+    await settings.put({ ...record, book: null }, `readerTextSync:${id}`)
+    result.push(record)
+  }
+  await tx.done
+  return result
+}
+
+export async function applyReaderTextSyncRecord(record: ReaderTextSyncRecord): Promise<void> {
+  const db = await getDB()
+  const previous = await db.get('settings', `readerTextSync:${record.bookId}`) as ReaderTextSyncRecord | undefined
+  if (previous?.ownerId && previous.ownerId !== record.ownerId) return
+  // Recheck after network waits: a local edit or deletion may have happened.
+  const existing = await db.get('readerBooks', record.bookId)
+  if (record.book && previous && (!existing || Date.parse(previous.updatedAt) > Date.parse(record.updatedAt))) return
+  if (record.book) {
+    if (record.book.id !== record.bookId || record.book.packId !== GENERATED_STORIES_PACK_ID || record.book.library?.temporary) return
+    await saveGeneratedReaderBook(record.book, record)
+  } else {
+    await deleteGeneratedReaderBook(record.bookId, record)
+    await db.put('settings', { ...record, book: null }, `readerTextSync:${record.bookId}`)
+  }
+}

@@ -577,3 +577,10 @@ export interface LearningProcessPoint {
   studyMinutes: number
   signal?: 'high' | 'low'
 }
+
+export interface ReaderTextSyncRecord {
+  bookId: string
+  ownerId?: string
+  updatedAt: string
+  book: ReaderBook | null
+}

@@ -1,3 +1,4 @@
+import { syncReaderTexts } from './readerTextCloud'
 import { createClient, type Session, type User } from '@supabase/supabase-js'
 import {
   getAllReaderProgress,
@@ -42,6 +43,8 @@ export interface CloudAuthState {
 }
 
 export interface CloudSyncResult {
+  pushedReaderTexts: number
+  pulledReaderTexts: number
   pushedWords: number
   pulledWords: number
   pushedEvents: number
@@ -265,10 +268,13 @@ async function runSyncNow(): Promise<CloudSyncResult> {
     if (error) throw error
   }
 
+  const textSync = await syncReaderTexts(supabase, user.id)
+
   const syncedAt = new Date().toISOString()
   await saveSyncMetadata({ userId: user.id, lastSyncedAt: syncedAt })
 
   return {
+    ...textSync,
     pushedWords: wordRows.filter((row) => !remoteWordIds.has(row.word_id)).length,
     pulledWords: pulledWords.length,
     pushedEvents: eventRows.length,

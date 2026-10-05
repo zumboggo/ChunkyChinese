@@ -2755,6 +2755,7 @@ function App() {
         }
       }
       await saveGeneratedReaderBook(book)
+      if (!book.library?.temporary) queueCloudSync()
       await refresh()
       let audioNote = ''
       if (!book.library?.temporary && options.audio && aiStorySettings.azureSpeechKey && aiStorySettings.azureSpeechRegion) {
@@ -2769,7 +2770,7 @@ function App() {
     } finally {
       setAiStoryBusy(false)
     }
-  }, [aiStorySettings, collectKnownWords, generateValidatedStory, refresh, requireOpenRouterKey, synthesizeChapterAudio])
+  }, [aiStorySettings, collectKnownWords, generateValidatedStory, refresh, requireOpenRouterKey, synthesizeChapterAudio, queueCloudSync])
 
   const handleImportReaderText = useCallback(async (file: File, placement?: ReaderPlacement): Promise<GeneratedStoryResult> => {
     const story = parseBilingualReaderText(await file.text(), file.name)
@@ -2777,10 +2778,11 @@ function App() {
     const book = generatedStoryToReaderBook(story, validation)
     book.library = placement
     await saveGeneratedReaderBook(book)
+    if (!book.library?.temporary) queueCloudSync()
     await refresh()
     setAiStoryMessage(`${book.title} added to Reading with ${story.sentences.length} sentence pairs.`)
     return { book, story, validation }
-  }, [activeWords, refresh])
+  }, [activeWords, refresh, queueCloudSync])
 
   const handleContinueStory = useCallback(async (book: ReaderBook, prompt = ''): Promise<GeneratedStoryResult> => {
     const apiKey = requireOpenRouterKey()
@@ -2804,6 +2806,7 @@ function App() {
       })
       const updated = appendGeneratedChapter(book, story, validation)
       await saveGeneratedReaderBook(updated)
+      if (!updated.library?.temporary) queueCloudSync()
       await refresh()
       let audioNote = ''
       if (!updated.library?.temporary && aiStorySettings.generateAudio && aiStorySettings.azureSpeechKey && aiStorySettings.azureSpeechRegion) {
@@ -2816,15 +2819,16 @@ function App() {
     } finally {
       setAiStoryBusy(false)
     }
-  }, [aiStorySettings, collectKnownWords, generateValidatedStory, refresh, requireOpenRouterKey, synthesizeChapterAudio])
+  }, [aiStorySettings, collectKnownWords, generateValidatedStory, refresh, requireOpenRouterKey, synthesizeChapterAudio, queueCloudSync])
 
   const handleDeleteGeneratedStory = useCallback(async (book: ReaderBook) => {
-    if (!window.confirm(`Delete "${book.title}" from this device? This also removes its audio and reading progress.`)) return
+    if (!window.confirm(`Delete "${book.title}" permanently? For saved texts, deletion also syncs to your account. This removes its local audio and reading progress.`)) return
     await deleteGeneratedReaderBook(book.id)
+    if (!book.library?.temporary) queueCloudSync()
     setActiveReaderBookId((current) => (current === book.id ? undefined : current))
     await refresh()
     setLastSummary(`Deleted "${book.title}".`)
-  }, [refresh])
+  }, [refresh, queueCloudSync])
 
   async function handleBackupImport(files: FileList | null) {
     const file = files?.[0]
@@ -3729,7 +3733,7 @@ function App() {
           onImportReaderText={handleImportReaderText}
           onContinueStory={handleContinueStory}
           onDeleteStory={handleDeleteGeneratedStory}
-          onKeepStory={async (book) => { await saveGeneratedReaderBook({ ...book, library: { ...readerPlacement(book), temporary: false } }); await refresh() }}
+          onKeepStory={async (book) => { await saveGeneratedReaderBook({ ...book, library: { ...readerPlacement(book), temporary: false } }); queueCloudSync(); await refresh() }}
           aiStoryBusy={aiStoryBusy}
           aiStoryMessage={aiStoryMessage}
           canGenerateAiStories={aiStorySettings.openRouterApiKey.length > 0}
@@ -5302,7 +5306,7 @@ function GenerateStoryPanel({
         <datalist id="reader-category-options">{categories.map(name => <option key={name} value={name} />)}</datalist>
         <label>Keep text<select aria-label="Keep text" value={placement.temporary ? 'temporary' : 'permanent'} onChange={event => setPlacement({ ...placement, temporary: event.target.value === 'temporary' })}><option value="permanent">Permanent</option><option value="temporary">Temporary</option></select></label>
       </div>
-      <small>{placement.temporary ? 'Temporary texts disappear when you reload or close the app. You can keep one permanently from its Story options.' : 'Saved on this device until you delete it. Include your texts in a backup when moving devices.'}</small>
+      <small>{placement.temporary ? 'Temporary texts disappear when you reload or close the app. You can keep one permanently from its Story options.' : 'Saved for offline reading and synced privately to your account when signed in. Sign in on another device to load your texts. Audio generated on this device stays local.'}</small>
       {method !== 'ai' && <label>{method === 'upload' ? 'Text title (optional)' : 'Text title'}<input value={textTitle} onChange={event => setTextTitle(event.target.value)} placeholder="Give your text a title" /></label>}
       {method === 'ai' && <>
       <div className="story-world-grid" role="radiogroup" aria-label="Story world">
@@ -6711,6 +6715,8 @@ function formatSummary(summary: ImportSummary): string {
 
 function formatCloudSyncResult(result: CloudSyncResult): string {
   const parts = [
+    `${result.pushedReaderTexts} texts sent`,
+    `${result.pulledReaderTexts} texts received`,
     `${result.pushedWords} word updates sent`,
     `${result.pulledWords} word updates received`,
     `${result.pushedEvents} events sent`,
