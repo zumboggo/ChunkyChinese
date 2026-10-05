@@ -18,6 +18,8 @@ export function parseBilingualReaderText(text: string, filename = 'Imported Stor
 
   const sentences = []
   for (let index = 0; index < lines.length; index += 2) {
+    if (!/\p{Script=Han}/u.test(lines[index])) throw new Error(`Line ${index + 1} should be Chinese. Put each English translation on the following line.`)
+    if (!/[a-z]/i.test(lines[index + 1])) throw new Error(`Line ${index + 2} should be an English translation. Use one sentence per line.`)
     sentences.push({ chinese: lines[index], english: lines[index + 1] })
   }
 

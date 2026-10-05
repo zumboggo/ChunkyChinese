@@ -15,6 +15,11 @@ describe('paired-line Reader text import', () => {
     expect(() => parseBilingualReaderText('你好。\nHello.\n再见。')).toThrow(/no matching English/i)
   })
 
+  it('rejects reversed pairs and missing translations before saving', () => {
+    expect(() => parseBilingualReaderText('Hello.\n你好。')).toThrow(/Line 1 should be Chinese/)
+    expect(() => parseBilingualReaderText('你好。\n再见。')).toThrow(/Line 2 should be an English/)
+  })
+
   it('derives a readable title from the filename', () => {
     expect(titleFromTextFilename('My Story.TXT')).toBe('My Story')
   })

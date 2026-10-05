@@ -11627,3 +11627,48 @@ main.app-shell {
   .reader-simple-toolbar button, .reader-simple-toolbar select { padding: 8px; }
   .reader-playlist-screen .reader-bottom-bar .sentence-menu-btn { width: 66px; min-width: 66px; }
 }
+
+/* Reader intake and collection navigation use the same compact controls. */
+.reader-library-search,
+.reader-placement {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+.reader-library-search label,
+.reader-placement label,
+.reader-paste-input label {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  font-weight: 650;
+}
+.reader-library-search input,
+.reader-library-search select,
+.reader-placement input,
+.reader-placement select,
+.reader-paste-input textarea {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #d8ccbb;
+  border-radius: 12px;
+  background: #fffcf6;
+  color: #263b39;
+  font: inherit;
+}
+.reader-add-methods { display: flex; flex-wrap: wrap; gap: 8px; }
+.reader-add-methods button[aria-pressed='true'] {
+  background: #e4eddf;
+  border-color: #76916b;
+  color: #294329;
+}
+.reader-paste-input { display: grid; gap: 12px; width: 100%; }
+.reader-category-section { margin-block: 22px; }
+.reader-category-section > h3 { margin: 0 0 12px; color: #665541; }
+@media (max-width: 600px) {
+  .reader-library-search, .reader-placement { grid-template-columns: 1fr; }
+  .reader-add-methods button { flex: 1 1 auto; min-height: 44px; }
+}

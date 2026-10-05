@@ -1464,7 +1464,7 @@ export async function seedReaderBooksIfEmpty(): Promise<number> {
   const hostedPackIds = new Set(hostedPacks.map((p) => p.id))
   const existingPacks = await db.getAll('readerPacks')
   for (const pack of existingPacks) {
-    if (!hostedPackIds.has(pack.packId)) {
+    if (pack.packId !== GENERATED_STORIES_PACK_ID && !hostedPackIds.has(pack.packId)) {
       const staleTx = db.transaction(['readerPacks', 'readerBooks'], 'readwrite')
       await staleTx.objectStore('readerPacks').delete(pack.packId)
       const bookIndex = staleTx.objectStore('readerBooks').index('packId')
@@ -1510,8 +1510,10 @@ export async function getAllReaderPacks(): Promise<ReaderPack[]> {
   )
 }
 
+const temporaryReaderBooks = new Map<string, ReaderBook>()
+
 export async function getAllReaderBooks(): Promise<ReaderBook[]> {
-  return (await (await getDB()).getAll('readerBooks')).sort(
+  return [...await (await getDB()).getAll('readerBooks'), ...temporaryReaderBooks.values()].sort(
     (a, b) => a.chapterStart - b.chapterStart || a.title.localeCompare(b.title),
   )
 }
@@ -1545,6 +1547,10 @@ function buildGeneratedPackSummary(books: ReaderBook[]): ReaderPack {
 }
 
 export async function saveGeneratedReaderBook(book: ReaderBook): Promise<void> {
+  if (book.library?.temporary) {
+    temporaryReaderBooks.set(book.id, book)
+    return
+  }
   const db = await getDB()
   // Exclude any previous version of this book so re-saving (e.g. appending a
   // chapter) updates the pack summary instead of duplicating the entry.
@@ -1556,9 +1562,11 @@ export async function saveGeneratedReaderBook(book: ReaderBook): Promise<void> {
   await tx.objectStore('readerPacks').put(pack)
   await tx.objectStore('readerBooks').put(book)
   await tx.done
+  temporaryReaderBooks.delete(book.id)
 }
 
 export async function deleteGeneratedReaderBook(bookId: string): Promise<void> {
+  if (temporaryReaderBooks.delete(bookId)) return
   const db = await getDB()
   const book = await db.get('readerBooks', bookId)
   if (!book || book.packId !== GENERATED_STORIES_PACK_ID) return

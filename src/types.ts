@@ -154,6 +154,7 @@ export interface ReaderBookSummary {
 }
 
 export interface ReaderBook {
+  library?: { textLength: 'short' | 'long'; category: string; temporary: boolean }
   id: string
   packId: string
   title: string

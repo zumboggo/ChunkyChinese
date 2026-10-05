@@ -1,3 +1,4 @@
+import { DEFAULT_READER_CATEGORIES, normalizeReaderCategory, readerPlacement, type ReaderPlacement } from './readerOrganization'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { lazy, Suspense } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
@@ -153,7 +154,6 @@ import { shouldCountReaderActiveSecond } from './readerActivity'
 import {
   buildReaderQueue,
   promoteLatestReaderBook,
-  readingBookCategory,
   reorderReaderQueue,
 } from './readerQueue'
 import {
@@ -2704,6 +2704,7 @@ function App() {
   const handleGenerateStory = useCallback(async (
     prompt: string,
     options: {
+      placement?: ReaderPlacement
       sentenceCount: number
       model: string
       cover: boolean
@@ -2744,6 +2745,7 @@ function App() {
     try {
       const { story, validation } = await generateValidatedStory(generateOptions)
       const book = generatedStoryToReaderBook(story, validation)
+      book.library = options.placement
       if (options.cover) {
         setAiStoryMessage('Generating cover image...')
         try {
@@ -2755,7 +2757,7 @@ function App() {
       await saveGeneratedReaderBook(book)
       await refresh()
       let audioNote = ''
-      if (options.audio && aiStorySettings.azureSpeechKey && aiStorySettings.azureSpeechRegion) {
+      if (!book.library?.temporary && options.audio && aiStorySettings.azureSpeechKey && aiStorySettings.azureSpeechRegion) {
         audioNote = await synthesizeChapterAudio(book.stories[0])
       }
       setAiStoryMessage(
@@ -2769,10 +2771,11 @@ function App() {
     }
   }, [aiStorySettings, collectKnownWords, generateValidatedStory, refresh, requireOpenRouterKey, synthesizeChapterAudio])
 
-  const handleImportReaderText = useCallback(async (file: File): Promise<GeneratedStoryResult> => {
+  const handleImportReaderText = useCallback(async (file: File, placement?: ReaderPlacement): Promise<GeneratedStoryResult> => {
     const story = parseBilingualReaderText(await file.text(), file.name)
     const validation = validateGeneratedStoryCoverage(story, activeWords)
     const book = generatedStoryToReaderBook(story, validation)
+    book.library = placement
     await saveGeneratedReaderBook(book)
     await refresh()
     setAiStoryMessage(`${book.title} added to Reading with ${story.sentences.length} sentence pairs.`)
@@ -2803,7 +2806,7 @@ function App() {
       await saveGeneratedReaderBook(updated)
       await refresh()
       let audioNote = ''
-      if (aiStorySettings.generateAudio && aiStorySettings.azureSpeechKey && aiStorySettings.azureSpeechRegion) {
+      if (!updated.library?.temporary && aiStorySettings.generateAudio && aiStorySettings.azureSpeechKey && aiStorySettings.azureSpeechRegion) {
         audioNote = await synthesizeChapterAudio(updated.stories[updated.stories.length - 1])
       }
       setAiStoryMessage(
@@ -3726,6 +3729,7 @@ function App() {
           onImportReaderText={handleImportReaderText}
           onContinueStory={handleContinueStory}
           onDeleteStory={handleDeleteGeneratedStory}
+          onKeepStory={async (book) => { await saveGeneratedReaderBook({ ...book, library: { ...readerPlacement(book), temporary: false } }); await refresh() }}
           aiStoryBusy={aiStoryBusy}
           aiStoryMessage={aiStoryMessage}
           canGenerateAiStories={aiStorySettings.openRouterApiKey.length > 0}
@@ -4950,7 +4954,7 @@ function readerBookAssetUrl(book: ReaderBook, path: string): string {
   return `${base.replace(/\/$/u, '')}/private-content/${book.packId}/${path.replace(/^\//u, '')}`
 }
 
-type ReadingCategoryView = null | 'novels' | 'stories'
+type ReadingCategoryView = null | 'short' | 'long'
 
 function ReadingTextsLibrary({
   readerBooks,
@@ -4969,6 +4973,7 @@ function ReadingTextsLibrary({
   onImportReaderText,
   onContinueStory,
   onDeleteStory,
+  onKeepStory,
   aiStoryBusy,
   aiStoryMessage,
   canGenerateAiStories,
@@ -4987,9 +4992,10 @@ function ReadingTextsLibrary({
   onDownloadOffline: (book: ReaderBook) => void
   onRemoveOffline: (book: ReaderBook) => void
   onBrowseNovels: () => void
-  onGenerateStory: (prompt: string, options: { sentenceCount: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection; focusWords?: Array<{ word: string; pinyin: string; meaning: string }> }) => Promise<GeneratedStoryResult>
-  onImportReaderText: (file: File) => Promise<GeneratedStoryResult>
+  onGenerateStory: (prompt: string, options: { placement?: ReaderPlacement; sentenceCount: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection; focusWords?: Array<{ word: string; pinyin: string; meaning: string }> }) => Promise<GeneratedStoryResult>
+  onImportReaderText: (file: File, placement?: ReaderPlacement) => Promise<GeneratedStoryResult>
   onContinueStory: (book: ReaderBook) => Promise<GeneratedStoryResult>
+  onKeepStory: (book: ReaderBook) => Promise<void>
   onDeleteStory: (book: ReaderBook) => Promise<void>
   aiStoryBusy: boolean
   aiStoryMessage: string | null
@@ -5000,18 +5006,15 @@ function ReadingTextsLibrary({
   const [category, setCategory] = useState<ReadingCategoryView>(null)
   const [creating, setCreating] = useState(false)
 
-  const novels = sortReaderBooksByKnownPercent(
-    readerBooks.filter((b) => readingBookCategory(b) === 'novel'),
-    comprehensionByBook,
-    resumeLocation?.book.id,
-  )
-  const stories = sortReaderBooksByKnownPercent(
-    readerBooks.filter((b) => readingBookCategory(b) === 'story'),
-    comprehensionByBook,
-    resumeLocation?.book.id,
-  )
-  const visibleBooks = category === 'novels' ? novels : category === 'stories' ? stories :
-    sortReaderBooksByKnownPercent(readerBooks, comprehensionByBook, resumeLocation?.book.id)
+  const [collection, setCollection] = useState('')
+  const [search, setSearch] = useState('')
+  const collections = [...new Set([...DEFAULT_READER_CATEGORIES, ...readerBooks.map(book => readerPlacement(book).category)])].sort()
+  const visibleBooks = readerBooks.filter(book => {
+    const placement = readerPlacement(book)
+    return (!category || placement.textLength === category) && (!collection || placement.category === collection) &&
+      (`${book.title} ${placement.category}`.toLowerCase().includes(search.trim().toLowerCase()) || placement.category.toLowerCase().includes(normalizeReaderCategory(search).toLowerCase()))
+  })
+  const groups = [...new Set(visibleBooks.map(book => readerPlacement(book).category))].sort()
 
   const renderBookShelf = (books: ReaderBook[], emptyLabel: string) =>
     books.length > 0 ? (
@@ -5042,7 +5045,7 @@ function ReadingTextsLibrary({
                   <div>
                     <h3>{book.title}</h3>
                     <p>
-                      Chapters {book.chapterStart}-{book.chapterEnd} · {book.stories.length} stories
+                      {readerPlacement(book).textLength === 'short' ? 'Short text' : 'Long text'} · Chapters {book.chapterStart}-{book.chapterEnd}{book.library?.temporary ? ' · Temporary' : ''}
                     </p>
                   </div>
                   <div className="reading-book-progress" aria-hidden="true">
@@ -5085,6 +5088,7 @@ function ReadingTextsLibrary({
                   </div>
                   {book.packId === GENERATED_STORIES_PACK_ID && <details className="reading-story-actions">
                     <summary>Story options</summary>
+                    {book.library?.temporary && <button type="button" onClick={() => void onKeepStory(book)}>Keep permanently</button>}
                     <button type="button" disabled={aiStoryBusy} onClick={() => void onContinueStory(book)}>Write next chapter</button>
                     <button type="button" className="danger" disabled={aiStoryBusy} onClick={() => void onDeleteStory(book)}>Delete story</button>
                   </details>}
@@ -5151,32 +5155,37 @@ function ReadingTextsLibrary({
 
       <div className="reading-library-toolbar">
         <div className="reading-library-filters" role="group" aria-label="Filter reading library">
-          {([{ value: null, label: 'All' }, { value: 'novels', label: 'Novels' }, { value: 'stories', label: 'Stories' }] as const).map(filter => (
+          {([{ value: null, label: 'All' }, { value: 'short', label: 'Short' }, { value: 'long', label: 'Long' }] as const).map(filter => (
             <button type="button" key={filter.label} aria-pressed={category === filter.value} onClick={() => setCategory(filter.value)}>{filter.label}</button>
           ))}
         </div>
-        <button type="button" aria-expanded={creating} aria-controls="reading-create-story" onClick={() => setCreating(value => !value)}>{creating ? 'Close story creator' : 'Create a story'}</button>
+        <button type="button" aria-expanded={creating} aria-controls="reading-create-story" onClick={() => setCreating(value => !value)}>{creating ? 'Close text creator' : 'Add a text'}</button>
+      </div>
+      <div className="reader-library-search">
+        <label>Category<select aria-label="Category" value={collection} onChange={event => setCollection(event.target.value)}><option value="">All categories</option>{collections.map(name => <option key={name}>{name}</option>)}</select></label>
+        <label>Find a text<input type="search" value={search} onChange={event => setSearch(event.target.value)} placeholder="Title or category" /></label>
       </div>
       {creating && <div id="reading-create-story">
         <GenerateStoryPanel
           disabled={!canGenerateAiStories} busy={aiStoryBusy} message={aiStoryMessage}
           onGenerate={onGenerateStory} onImportText={onImportReaderText}
           onOpenGenerated={(book) => void onChooseBook(book, 'start')}
-          defaults={aiStoryDefaults} focusCandidates={storyFocusCandidates}
+          defaults={aiStoryDefaults} focusCandidates={storyFocusCandidates} categories={collections}
         />
       </div>}
       <section className="reading-library-section" aria-label="Your books">
         <div className="reading-section-heading">
-          <h2>{category === 'novels' ? 'Novels' : category === 'stories' ? 'Stories' : 'Your books'}</h2>
+          <h2>{category === 'short' ? 'Short texts' : category === 'long' ? 'Long texts' : 'Your texts'}</h2>
           <button type="button" className="ghost-answer" onClick={onBrowseNovels}>Classic library</button>
         </div>
-        {renderBookShelf(visibleBooks, category === 'novels' ? 'No novels yet.' : category === 'stories' ? 'No stories yet.' : 'No books yet.')}
+        {groups.length ? groups.map(group => <section key={group} className="reader-category-section"><h3>{group}</h3>{renderBookShelf(visibleBooks.filter(book => readerPlacement(book).category === group).sort((a,b) => a.book - b.book || a.chapterStart - b.chapterStart || a.title.localeCompare(b.title)), '')}</section>) : renderBookShelf([], 'No matching texts.')}
       </section>
     </section>
   )
 }
 
 function GenerateStoryPanel({
+  categories = DEFAULT_READER_CATEGORIES,
   disabled,
   busy,
   message,
@@ -5186,15 +5195,33 @@ function GenerateStoryPanel({
   defaults,
   focusCandidates,
 }: {
+  categories?: string[]
   disabled: boolean
   busy: boolean
   message: string | null
-  onGenerate: (prompt: string, options: { sentenceCount: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection; focusWords?: Array<{ word: string; pinyin: string; meaning: string }> }) => Promise<GeneratedStoryResult>
-  onImportText: (file: File) => Promise<GeneratedStoryResult>
+  onGenerate: (prompt: string, options: { placement?: ReaderPlacement; sentenceCount: number; model: string; cover: boolean; audio: boolean; world?: StoryWorldSelection; focusWords?: Array<{ word: string; pinyin: string; meaning: string }> }) => Promise<GeneratedStoryResult>
+  onImportText: (file: File, placement?: ReaderPlacement) => Promise<GeneratedStoryResult>
   onOpenGenerated: (book: ReaderBook) => void
   defaults: { model: string; sentenceCount: number; generateCover: boolean; generateAudio: boolean; azureConfigured: boolean }
   focusCandidates: Array<{ word: string; pinyin: string; meaning: string }>
 }) {
+  const [method, setMethod] = useState<'upload' | 'paste' | 'ai'>('upload')
+  const [placement, setPlacement] = useState<ReaderPlacement>({ textLength: 'short', category: 'General', temporary: false })
+  const [textTitle, setTextTitle] = useState('')
+  const [pastedText, setPastedText] = useState('')
+  const [importing, setImporting] = useState(false)
+  const normalizedPlacement = { ...placement, category: normalizeReaderCategory(categories.find(name => name.toLowerCase() === placement.category.trim().toLowerCase()) ?? placement.category) }
+  async function importText(file: File) {
+    setImporting(true)
+    setLocalMessage(null)
+    try {
+      const named = textTitle.trim() ? new File([await file.text()], `${textTitle.trim()}.txt`, { type: 'text/plain' }) : file
+      const result = await onImportText(named, normalizedPlacement)
+      setLastResult(result)
+      setLocalMessage(`${result.book.title} is ready in Reading.`)
+    } catch (error) { setLocalMessage(error instanceof Error ? error.message : 'Could not import this text.') }
+    finally { setImporting(false) }
+  }
   const [prompt, setPrompt] = useState('')
   const [sentenceCount, setSentenceCount] = useState(defaults.sentenceCount)
   const [model, setModel] = useState(defaults.model)
@@ -5241,6 +5268,7 @@ function GenerateStoryPanel({
     setLocalMessage(null)
     try {
       const result = await onGenerate(prompt, {
+        placement: normalizedPlacement,
         sentenceCount,
         model,
         cover,
@@ -5262,9 +5290,21 @@ function GenerateStoryPanel({
   return (
     <section className="generate-story-panel">
       <div>
-        <h3>Generate a known-word story</h3>
-        <p>Pick a story world, write an optional prompt, and the app will create a Reader-ready bilingual book using at least 95% words you already know.</p>
+        <h3>Add a text</h3>
+        <p>Upload, paste, or generate a Chinese text with English translations.</p>
       </div>
+      <div className="reader-add-methods" role="group" aria-label="Add text method">
+        {(['upload', 'paste', 'ai'] as const).map(value => <button type="button" key={value} aria-pressed={method === value} disabled={busy || importing} onClick={() => { setMethod(value); setLastResult(null); setLocalMessage(null) }}>{value === 'upload' ? 'Upload TXT' : value === 'paste' ? 'Paste text' : 'Generate with AI'}</button>)}
+      </div>
+      <div className="reader-placement">
+        <label>Text length<select aria-label="Text length" value={placement.textLength} onChange={event => setPlacement({ ...placement, textLength: event.target.value as 'short' | 'long' })}><option value="short">Short</option><option value="long">Long</option></select></label>
+        <label>Text category<input list="reader-category-options" value={placement.category} onChange={event => setPlacement({ ...placement, category: event.target.value })} placeholder="Choose or type a new category" /></label>
+        <datalist id="reader-category-options">{categories.map(name => <option key={name} value={name} />)}</datalist>
+        <label>Keep text<select aria-label="Keep text" value={placement.temporary ? 'temporary' : 'permanent'} onChange={event => setPlacement({ ...placement, temporary: event.target.value === 'temporary' })}><option value="permanent">Permanent</option><option value="temporary">Temporary</option></select></label>
+      </div>
+      <small>{placement.temporary ? 'Temporary texts disappear when you reload or close the app. You can keep one permanently from its Story options.' : 'Saved on this device until you delete it. Include your texts in a backup when moving devices.'}</small>
+      {method !== 'ai' && <label>{method === 'upload' ? 'Text title (optional)' : 'Text title'}<input value={textTitle} onChange={event => setTextTitle(event.target.value)} placeholder="Give your text a title" /></label>}
+      {method === 'ai' && <>
       <div className="story-world-grid" role="radiogroup" aria-label="Story world">
         {STORY_WORLDS.map((w) => (
           <button
@@ -5415,9 +5455,9 @@ function GenerateStoryPanel({
             type="checkbox"
             checked={audio}
             onChange={(event) => setAudio(event.target.checked)}
-            disabled={disabled || busy || !defaults.azureConfigured}
+            disabled={disabled || busy || !defaults.azureConfigured || placement.temporary}
           />
-          <span>Narrate with Azure{defaults.azureConfigured ? '' : ' (key needed)'}</span>
+          <span>Narrate with Azure{placement.temporary ? ' (permanent texts only)' : defaults.azureConfigured ? '' : ' (key needed)'}</span>
         </label>
         {focusCandidates.length > 0 && (
           <label className="generate-story-check" title="Weave in the words closest to becoming Known, so reading this story counts where it matters most.">
@@ -5441,10 +5481,11 @@ function GenerateStoryPanel({
           <small>These will each appear at least twice.</small>
         </div>
       )}
-      <div className="reader-text-import">
+      </>}
+      {method !== 'ai' && <div className="reader-text-import">
         <div>
-          <strong>Or add your own paired text</strong>
-          <small>Upload a .txt file with one Chinese line, then its English translation, repeated throughout.</small>
+          <strong>Chinese and English, one pair at a time</strong>
+          <small>Use one Chinese sentence on a line, then its English translation on the next line. Repeat for each sentence; blank lines are optional.</small>
           <details className="reader-text-format-example">
             <summary>See a Chinese and English example</summary>
             <div>
@@ -5457,42 +5498,35 @@ We walk home slowly.`}</pre>
             </div>
           </details>
         </div>
-        <label className="reader-text-upload">
+        {method === 'upload' ? <label className="reader-text-upload">
           <span>Upload bilingual TXT</span>
           <input
             type="file"
             accept=".txt,text/plain"
-            disabled={busy}
+            disabled={busy || importing}
             onChange={(event) => {
               const file = event.target.files?.[0]
               event.currentTarget.value = ''
-              if (!file) return
-              setLocalMessage(null)
-              void onImportText(file)
-                .then((result) => {
-                  setLastResult(result)
-                  setLocalMessage(`${result.book.title} is ready in Reading.`)
-                })
-                .catch((error) => setLocalMessage(error instanceof Error ? error.message : 'Could not import this text.'))
+              if (file) void importText(file)
             }}
           />
-        </label>
-      </div>
+        </label> : <div className="reader-paste-input"><label>Chinese and English text<textarea aria-label="Chinese and English text" rows={8} value={pastedText} onChange={event => setPastedText(event.target.value)} placeholder={'你好。\nHello.\n我想看书。\nI want to read.'} /></label><button type="button" disabled={busy || importing || !pastedText.trim() || !textTitle.trim()} onClick={() => void importText(new File([pastedText], `${textTitle.trim()}.txt`, { type: 'text/plain' }))}>{importing ? 'Adding…' : 'Add pasted text'}</button></div>}
+      </div>}
       <div className="generate-story-actions">
-        <button
+        {method === 'ai' && <button
           type="button"
           className="primary"
           onClick={() => void submit()}
           disabled={disabled || busy}
         >
           {busy ? 'Generating...' : 'Generate Story'}
-        </button>
+        </button>}
         {lastResult ? (
           <button type="button" onClick={() => onOpenGenerated(lastResult.book)}>
             Read it
           </button>
         ) : null}
-        {coverageTooHard && !busy ? (
+        {method === 'ai' && coverageTooHard && !busy ? (
           <button type="button" onClick={() => void submit()}>
             Regenerate simpler
           </button>
@@ -5508,7 +5542,7 @@ We walk home slowly.`}</pre>
         </div>
       ) : null}
       <small>
-        {localMessage ?? message ?? (disabled
+        {localMessage ?? (method === 'ai' ? message : null) ?? (method !== 'ai' ? '' : disabled
           ? 'Add your OpenRouter API key under Settings > AI Story Generation to enable AI stories.'
           : 'Targets at least 95% known-word coverage.')}
       </small>
@@ -5714,7 +5748,7 @@ function ReaderMode({
               >
                 <strong>{book.title}</strong>
                 <span>
-                  Chapters {book.chapterStart}-{book.chapterEnd} · {book.stories.length} stories
+                  {readerPlacement(book).textLength === 'short' ? 'Short text' : 'Long text'} · Chapters {book.chapterStart}-{book.chapterEnd}{book.library?.temporary ? ' · Temporary' : ''}
                 </span>
                 <ReaderComprehensionMeter
                   summary={comprehension}
