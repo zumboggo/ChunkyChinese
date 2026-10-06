@@ -3025,6 +3025,7 @@ function App() {
     UserSettings,
     | 'readerPinyinMode'
     | 'readerTheme'
+    | 'readerLargeText'
     | 'readerFontScale'
     | 'readerLineHeight'
     | 'readerListeningRate'
@@ -3626,6 +3627,7 @@ function App() {
           selectedToken={selectedReaderToken}
           resumeLocation={readerResumeLocation}
           readerTheme={userSettings.readerTheme}
+          readerLargeText={userSettings.readerLargeText}
           readerFontScale={userSettings.readerFontScale}
           readerLineHeight={userSettings.readerLineHeight}
           replayHotkey={hotkeys.choiceF}
@@ -5566,6 +5568,7 @@ function ReaderMode({
   selectedToken,
   resumeLocation,
   readerTheme,
+  readerLargeText,
   readerFontScale,
   readerLineHeight,
   replayHotkey,
@@ -5618,6 +5621,7 @@ function ReaderMode({
   selectedToken: ReaderWordToken | null
   resumeLocation?: ReaderResumeLocation
   readerTheme: ReaderTheme
+  readerLargeText: boolean
   readerFontScale: number
   readerLineHeight: number
   replayHotkey: string
@@ -5651,7 +5655,7 @@ function ReaderMode({
   onNext: () => void | Promise<void>
   onListeningSettingsChange: (patch: Partial<Pick<
     UserSettings,
-    'readerListeningRate' | 'readerListeningRepeats' | 'readerListeningPauseFactor' | 'readerListeningAutoAdvance' | 'readerStatusHighlight'
+    'readerLargeText' | 'readerListeningRate' | 'readerListeningRepeats' | 'readerListeningPauseFactor' | 'readerListeningAutoAdvance' | 'readerStatusHighlight'
   >>) => void
   onStartStoryChunk: () => void
   onDismissStoryChunkReceipt: () => void
@@ -5709,7 +5713,7 @@ function ReaderMode({
   ) ?? chapterOptions[0]
 
   return (
-    <section className={`screen reader-screen reader-playlist-screen reader-theme-${readerTheme}`}>
+    <section className={`screen reader-screen reader-playlist-screen reader-theme-${readerTheme}${readerLargeText ? ' reader-large-text' : ''}`}>
       {!(activeBook && sentence) && (
         <div className="screen-heading compact">
           <div>
@@ -5796,7 +5800,7 @@ function ReaderMode({
         <section
           className="reader-page"
           style={{
-            '--reader-font-scale': readerFontScale,
+            '--reader-font-scale': readerFontScale * (readerLargeText ? 2.5 : 1),
             '--reader-line-height': readerLineHeight,
           } as CSSProperties}
         >
@@ -5945,6 +5949,7 @@ function ReaderMode({
               ) : null}
               {/* eslint-disable-next-line react-hooks/refs -- The swipe hook exposes stable JSX event handlers. */}
               <div className="reader-simple-toolbar" aria-label="Reading help">
+                <button type="button" className="reader-text-size-toggle" aria-label="Large text" title="Toggle extra-large reading text" aria-pressed={readerLargeText} onClick={() => onListeningSettingsChange({ readerLargeText: !readerLargeText })}><span aria-hidden="true"><small>t</small><strong>T</strong></span></button>
                 <button type="button" onClick={onOpenLibrary}>Library</button>
                 <button type="button" aria-pressed={showPinyin} onClick={onTogglePinyin}>Pinyin</button>
                 <button type="button" aria-pressed={showEnglish} onClick={onToggleEnglish}>Meaning</button>

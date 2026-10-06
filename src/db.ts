@@ -462,6 +462,7 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   darkMode: false,
   readerPinyinMode: 'adaptive',
   readerTheme: 'sepia',
+  readerLargeText: false,
   readerFontScale: 1,
   readerLineHeight: 1.9,
   readerListeningRate: 0.8,

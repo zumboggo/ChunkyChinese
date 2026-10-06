@@ -11672,3 +11672,17 @@ main.app-shell {
   .reader-library-search, .reader-placement { grid-template-columns: 1fr; }
   .reader-add-methods button { flex: 1 1 auto; min-height: 44px; }
 }
+
+/* Distance reading: keep controls compact while the reading content grows. */
+.reader-text-size-toggle { min-width: 44px; min-height: 44px; }
+.reader-text-size-toggle > span { display: inline-flex; align-items: baseline; gap: 2px; }
+.reader-text-size-toggle small { font-size: .8rem; }
+.reader-text-size-toggle strong { font-size: 1.5rem; line-height: 1; }
+.reader-text-size-toggle[aria-pressed="true"] { background: #e5eddd; color: #30432c; border-color: #899b7b; }
+.reader-large-text .reader-interlinear { max-width: 100%; gap: 1.8rem 1rem; }
+.reader-large-text .reader-interlinear-chunk { grid-template-rows: auto auto auto; max-width: 100%; gap: .45rem; }
+.reader-large-text .reader-interlinear-chunk strong { overflow-wrap: anywhere; }
+.reader-large-text .reader-interlinear-pinyin,
+.reader-large-text .reader-interlinear-gloss { font-size: 1.4rem; line-height: 1.4; max-width: 100%; overflow-wrap: anywhere; white-space: normal; }
+.reader-playlist-screen.reader-large-text .reader-translation { font-size: 1.65rem; line-height: 1.6; overflow-wrap: anywhere; }
+.reader-large-text .reader-reading-area { max-height: none; overflow: visible; }

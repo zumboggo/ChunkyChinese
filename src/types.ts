@@ -70,6 +70,7 @@ export interface UserSettings {
   darkMode: boolean
   readerPinyinMode: 'adaptive' | 'all' | 'none'
   readerTheme: 'light' | 'sepia' | 'dark'
+  readerLargeText: boolean
   readerFontScale: number
   readerLineHeight: number
   readerListeningRate: number
