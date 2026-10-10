@@ -11,13 +11,19 @@ versioned clip and rebuilding before release.
 ## Authoring
 
 Edit `episodes.json`, not the generated `.twee` files or compiled HTML. Each
-scene contains narration, an NPC line, optional curiosity text, and one or more
-intentions. An intention owns simple/rich chunk sequences, English intent,
-word-order hint, explicit accepted alternatives, reaction and optional callback
-flag. Chunk occurrence IDs distinguish repeated words; identical text remains
-interchangeable. Keep 6–8 exchanges and 3–5 chunks per answer. Never overwrite
-released versions once their definitions change; publish a new version and keep
-old catalogs/runtime available to resume old attempts.
+scene contains a short English transition, NPC dialogue, an English goal clue,
+and a Chinese reaction. Version 2 has exactly three multiple-choice exchanges
+(one correct reply, two contextual distractors), followed by one six-chunk
+sentence-building exchange with two extra chunks. Simple/rich variants currently
+share the same authored language. Each option and reaction has replayable audio.
+Chunk occurrence IDs distinguish repeated words; identical text remains
+interchangeable. Explicit alternatives allow natural word orders. Banks and options
+use an attempt-seeded Fisher–Yates shuffle, stable across repaint and resume.
+
+Version 1 files and saves remain untouched. Revised lessons use content version 2
+and `public/game/v2/`; they start new attempts rather than interpreting old saved
+progress as the new lesson. There is no old-lesson launcher in the current library.
+Never overwrite released versioned resources when publishing future revisions.
 
 The host chooses a variant from actual vocabulary on launch and stores that
 choice. It checks dialogue-plus-answer and answer-only coverage separately.
@@ -68,6 +74,8 @@ to the iframe.
 
 Saves use the current auth user ID or `guest`, episode and version. The App keys
 the player by identity, which unmounts it and stops audio on account changes.
+Pinyin and English goal clues default on. Game settings in the library and player
+persist those defaults per identity on this device, including on resume.
 Each exchange and unfinished sentence is persisted. A separate first-completion
 record and latest-completion record survive replay. Game progress is device-local
 and is not included in the existing cloud sync or backup exports. A concurrent
@@ -85,7 +93,7 @@ player remains mounted when switching display modes.
 
 Original imagery was generated with the built-in ImageGen tool, then downsampled
 with nearest-neighbour resampling and encoded as WebP. Prompts are recorded in
-`art-prompts.json`. Runtime files: `public/game/v1/courtyard.webp` (480×320) and
+`art-prompts.json`. Runtime files: `public/game/v2/courtyard.webp` (480×320) and
 `characters.webp` (384×256, transparent three-character atlas). Decoded art is
 about 984 KiB RGBA. One portrait is shown at a time with a character-name fallback.
 No Nihao Shanghai, Pokémon or Nintendo assets, prose, maps or source code are
@@ -93,8 +101,8 @@ included. Inspiration is limited to everyday conversation quests and retro art.
 
 ## Checks
 
-Unit tests traverse every social-choice path in both language variants, test
+Unit tests traverse each lesson in both language variants, test
 accepted alternatives and duplicate chunks, supported answers, malformed saves,
-identity/version keys and bridge boundaries. Browser tests exercise complete
+identity/version keys, stable shuffles, distractor handling, settings and bridge boundaries. Browser tests exercise complete
 stories, partial reply resume, wrong-answer recovery, mobile layout and offline
 use. Build budgets include every audio branch, not just the happy path.

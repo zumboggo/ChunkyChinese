@@ -1,11 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import source from '../../stories/chengdu/episodes.json'
-import { accepts, freshAttempt, transition, validAttempt, storageKey, validMessage, selectCoverage, flags } from './model'
+import { accepts, freshAttempt, transition, validAttempt, storageKey, validMessage, selectCoverage, flags, shuffled, bank } from './model'
 import type { Episode, Attempt } from './model'
 const episodes = source as Episode[]
 const coverage = { percent: 0, answerPercent: 0, unknown: ['我'], variant: 'simple' as const, supported: true }
-function choose(ep: Episode, a: Attempt, id: string) { a = transition(ep, a, { type: 'showAll' }); return transition(ep, a, { type: 'choose', choiceId: id }) }
+function choose(ep: Episode, a: Attempt, id: string) { void id; a = transition(ep, a, { type: 'showAll' }); return ep.scenes[a.step].kind === 'choice' ? transition(ep, a, { type: 'answer', choiceId: 'correct' }) : a }
 function solve(ep: Episode, a: Attempt) {
+  if (a.solved) return a
   const c = ep.scenes[a.step].choices.find(c => c.id === a.choiceId)!
   for (let index = 0; index < c[a.variant].chunks.length; index++) a = transition(ep, a, { type: 'tile', index })
   return transition(ep, a, { type: 'check' })
@@ -24,14 +25,14 @@ describe('Chengdu authored episodes', () => {
           return next
         }))
       }
-      for (const a of paths) { expect(a.step).toBe(7); expect(a.results.every(r => r.independent)).toBe(true) }
+      for (const a of paths) { expect(a.step).toBe(4); expect(a.results.every(r => r.independent)).toBe(true) }
     })
   }
   it('rejects out-of-order, duplicate, premature and fabricated choices', () => {
     const ep = episodes[0], a = freshAttempt(ep, coverage)
     expect(transition(ep, a, { type: 'next' })).toBe(a)
     expect(transition(ep, a, { type: 'choose', choiceId: 'live' })).toBe(a)
-    let b = choose(ep, a, 'live')
+    let b: Attempt = { ...a, step: 3, choiceId: 'reply', results: Array.from({length:3},()=>({choiceId:'reply',independent:true,errors:0})) }
     expect(transition(ep, b, { type: 'tile', index: -1 })).toBe(b)
     b = transition(ep, b, { type: 'tile', index: 0 })
     expect(transition(ep, b, { type: 'tile', index: 0 })).toBe(b)
@@ -41,7 +42,9 @@ describe('Chengdu authored episodes', () => {
   })
   it('preserves unfinished chunks, flags support and offers a model only after errors', () => {
     const ep = episodes[0]
-    let a = choose(ep, freshAttempt(ep, coverage), 'live')
+    let a = freshAttempt(ep, coverage)
+    for(let i=0;i<3;i++) a=transition(ep,choose(ep,a,'reply'),{type:'next'})
+    a=transition(ep,a,{type:'showAll'})
     expect(transition(ep, a, { type: 'model' })).toBe(a)
     for(let n=0;n<2;n++) {
       a=transition(ep,a,{type:'clear'})
@@ -51,7 +54,7 @@ describe('Chengdu authored episodes', () => {
     expect(a.errors).toBe(2)
     expect(validAttempt(ep, JSON.parse(JSON.stringify(a)))).toBe(true)
     a=transition(ep,a,{type:'model'});a=transition(ep,a,{type:'check'});a=transition(ep,a,{type:'next'})
-    expect(a.results[0].independent).toBe(false)
+    expect(a.results[3].independent).toBe(false)
   })
   it('accepts authored variants and interchangeable occurrences only', () => {
     expect(accepts({ chunks: ['我','明天','去'], english:'', alternatives:[[1,0,2]] }, [1,0,2])).toBe(true)
@@ -62,13 +65,38 @@ describe('Chengdu authored episodes', () => {
     const ep=episodes[0],a=freshAttempt(ep,coverage),b=freshAttempt(ep,coverage)
     expect(a.attemptId).not.toBe(b.attemptId)
     expect(storageKey('one',ep)).not.toBe(storageKey('two',ep))
-    expect(storageKey('one',ep)).not.toBe(storageKey('one',{...ep,version:2}))
+    expect(storageKey('one',ep)).not.toBe(storageKey('one',{...ep,version:1}))
     expect(flags(ep,a)).toEqual([])
   })
   it('does not pretend unfamiliar vocabulary meets the target', () => {
     const c=selectCoverage(episodes[0],[])
     expect(c.supported).toBe(true);expect(c.percent).toBe(0);expect(c.answerPercent).toBe(0);expect(c.variant).toBe('simple')
     expect(c.unknown.length).toBeGreaterThan(3)
+  })
+  it('uses stable, varied shuffles and defaults with optional scaffolding', () => {
+    const orders = new Set(Array.from({length:30},(_,i)=>JSON.stringify(shuffled(8,`attempt-${i}`))))
+    expect(orders.size).toBeGreaterThan(10)
+    expect(shuffled(8,'same')).toEqual(shuffled(8,'same'))
+    expect(shuffled(8,'same').sort()).toEqual([0,1,2,3,4,5,6,7])
+    const a=freshAttempt(episodes[0],coverage,[],{pinyin:false,clues:false})
+    expect(a.pinyin).toBe(false);expect(a.clues).toBe(false)
+    expect(transition(episodes[0],a,{type:'clues'}).clues).toBe(true)
+  })
+  it('wrong replies do not advance or become independent answers; distractors are covered and rejected', () => {
+    for(const ep of episodes) {
+      let a=transition(ep,freshAttempt(ep,coverage),{type:'showAll'})
+      for(const option of ep.scenes[0].options!.filter(o=>!o.correct)) {
+        a=transition(ep,a,{type:'answer',choiceId:option.id})
+        expect(a.solved).toBe(false);expect(a.choiceId).toBe(null)
+      }
+      a=transition(ep,a,{type:'answer',choiceId:'correct'})
+      expect(validAttempt(ep,a)).toBe(true)
+      a=transition(ep,a,{type:'next'})
+      expect(a.results[0].independent).toBe(false)
+      const answer=ep.scenes[3].choices[0].simple
+      expect(bank(answer)).toHaveLength(8)
+      expect(accepts(answer,[0,1,2,3,4,6])).toBe(false)
+    }
   })
   it('requires exact source, origin, protocol and launch channel', () => {
     const frame={} as Window, other={} as Window

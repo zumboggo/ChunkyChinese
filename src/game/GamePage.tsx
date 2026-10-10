@@ -1,13 +1,16 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import type { HotkeySettings, VocabWord } from '../types'
 import catalog from './catalog.json'
-import { flags, freshAttempt, selectCoverage, storageKey, transition, validAttempt, validMessage } from './model'
-import type { Attempt, Episode } from './model'
+import { bank, shuffled, flags, freshAttempt, selectCoverage, storageKey, transition, validAttempt, validMessage } from './model'
+import type { Attempt, Episode, Preferences } from './model'
 import './game.css'
 
 const episodes = catalog as Episode[]
-const base = `${import.meta.env.BASE_URL}game/v1/`
+const base = `${import.meta.env.BASE_URL}game/v2/`
 const GAME_CACHE = 'chunky-game-v1'
+function readPreferences(identity: string): Preferences {
+  try { const value = JSON.parse(localStorage.getItem(`chunky-game:preferences:${encodeURIComponent(identity)}`) ?? '{}'); return { pinyin: value.pinyin !== false, clues: value.clues !== false } } catch { return { pinyin: true, clues: true } }
+}
 function readAttempt(identity: string, ep: Episode, suffix = ''): Attempt | undefined {
   const raw = localStorage.getItem(storageKey(identity, ep) + suffix)
   if (!raw) return undefined
@@ -27,6 +30,7 @@ function loadLibrary(identity: string) {
   } catch (e) { return { saved, completed, error: e instanceof Error ? e.message : 'Local game saves are unavailable.' } }
 }
 export default function GamePage({ identity, words, hotkeys }: { identity: string; words: VocabWord[]; hotkeys: HotkeySettings }) {
+  const [preferences, setPreferences] = useState(() => readPreferences(identity))
   const [initial] = useState(() => loadLibrary(identity))
   const profiles = useMemo(() => Object.fromEntries(episodes.map(ep => [ep.id, selectCoverage(ep, words)])), [words])
   const [selected, setSelected] = useState<Episode | null>(null)
@@ -75,7 +79,9 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
 
   function postState(state = current.current) {
     if (!state) return
-    frame.current?.contentWindow?.postMessage({ protocol: 'chunky-game-v1', channel, type: 'state', state,
+    const scene = selected?.scenes[state.step]
+    const answer = scene?.choices.find(c => c.id === state.choiceId)?.[state.variant]
+    frame.current?.contentWindow?.postMessage({ protocol: 'chunky-game-v1', channel, type: 'state', state, order: shuffled(scene?.kind === 'choice' ? scene.options?.length ?? 0 : answer ? bank(answer).length : 0, `${state.attemptId}:${state.step}`),
       hotkeys: [hotkeys.choiceA, hotkeys.choiceB, hotkeys.choiceC, hotkeys.choiceD, hotkeys.choiceE, hotkeys.choiceF], playKey: hotkeys.playPause }, location.origin)
   }
   function leave() {
@@ -109,6 +115,10 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
         if (stored && (stored.attemptId !== prev.attemptId || stored.revision > prev.revision)) {
           setError('Progress changed in another tab. Return to Game and reload the page to continue safely.'); postState(prev); return
         }
+        if (m.action?.type === 'pinyin' || m.action?.type === 'clues') {
+          const value = { pinyin: next.pinyin, clues: next.clues }
+          localStorage.setItem(`chunky-game:preferences:${encodeURIComponent(identity)}`, JSON.stringify(value)); setPreferences(value)
+        }
         localStorage.setItem(storageKey(identity, selected!), JSON.stringify(next))
         if (next.step === selected!.scenes.length) {
           const key = storageKey(identity, selected!)
@@ -132,7 +142,7 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
     try {
       const previous = readAttempt(identity, ep)
       const callbacks = episodes.filter(e => e.id !== ep.id).flatMap(e => flags(e, readAttempt(identity, e, ':complete')))
-      const a = !replay && previous ? previous : freshAttempt(ep, profiles[ep.id], callbacks)
+      const a = !replay && previous ? { ...previous, ...preferences } : freshAttempt(ep, profiles[ep.id], callbacks, preferences)
       localStorage.setItem(storageKey(identity, ep), JSON.stringify(a))
       setWindowed(false); current.current = a; setAttempt(a); setSelected(ep); setChannel(crypto.randomUUID()); setPlaying(true); setSaved(s => ({ ...s, [ep.id]: a }))
     } catch (e) { setError(e instanceof Error ? e.message : 'Could not start a saved game.') }
@@ -151,15 +161,20 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
       <p className="game-save-status">Saved on this device · {offline}</p>
       <iframe key={`${selected.id}:${channel}`} ref={frame} title={`${selected.title} — playable Twine episode`} src={`${base}${selected.id}.html#channel=${channel}`} onLoad={() => { postState(); frame.current?.contentWindow?.focus() }} />
     </> : <>
+      <details className="game-settings"><summary>Game settings</summary><p>These defaults apply to all episodes on this device for this account. You can also change them during a conversation.</p>{(['pinyin', 'clues'] as const).map(key => <label key={key}><input type="checkbox" checked={preferences[key]} onChange={event => {
+        const next = { ...preferences, [key]: event.target.checked }
+        try { localStorage.setItem(`chunky-game:preferences:${encodeURIComponent(identity)}`, JSON.stringify(next)); setPreferences(next) } catch { setError('Could not save your Game settings on this device.') }
+      }} /> {key === 'pinyin' ? 'Show pinyin by default' : 'Show English goal clues by default'}</label>)}</details>
+      <p className="game-small">Revised lessons start fresh; earlier episode progress is preserved separately.</p>
       <div className="game-world"><nav className="game-map" aria-label="People in the neighbourhood">
         {episodes.map((ep, i) => <button key={ep.id} disabled={!storageOkay} onClick={() => setSelected(ep)}>{['Talk to Ms Lin', 'Meet Chen', 'Visit Ms Zhou'][i]}<small>{ep.place}</small></button>)}
       </nav><div><span>Three conversations. One neighbourhood.</span><p>Meet someone. Find the words. See where the afternoon goes.</p></div></div>
-      <p className="game-intro">Play as yourself, an English teacher learning Chinese in Chengdu. Choose someone to talk to, then tap familiar pieces into a reply. There is time to think, ask again, and try another way.</p>
+      <p className="game-intro">Play as yourself, an English teacher learning Chinese in Chengdu. Read and listen to three conversations, choosing the reply that fits. Then build a longer sentence from a mixed word bank. There is time to think, ask again, and try another way.</p>
       <p className="game-small">Fictional neighbours and places · Mandarin dialogue · no music · local progress only</p>
       <div className="game-episodes">{episodes.map((ep, index) => {
         const a = saved[ep.id], done = completed[ep.id], coverage = profiles[ep.id]
         return <article key={ep.id} className="game-card">
-          <div className="game-card-top"><span>0{index + 1} / {ep.place}</span><span>{done ? '✓ Completed' : a ? `${a.step} / 7 exchanges` : '5–8 minutes'}</span></div>
+          <div className="game-card-top"><span>0{index + 1} / {ep.place}</span><span>{done ? '✓ Completed' : a ? `${a.step} / ${ep.scenes.length} exchanges` : '4 conversations'}</span></div>
           <h2>{ep.title}</h2><p>{ep.subtitle}</p>
           <p className="game-small">{coverage.percent}% familiar language · {coverage.answerPercent}% familiar reply vocabulary · {Math.ceil((ep.bytes ?? 0) / 1024)} KB download</p>
           <button disabled={!storageOkay} onClick={() => setSelected(ep)}>{a && a.step < ep.scenes.length ? 'Continue' : done ? 'Revisit episode' : index === 0 ? 'Start here' : 'Explore episode'} →</button>
