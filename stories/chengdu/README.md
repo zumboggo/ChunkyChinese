@@ -78,8 +78,8 @@ Opened episodes cache their static HTML, shared WebP art and audio in
 `chunky-game-v1`. The service worker handles game HTML before its app-shell
 navigation fallback. Nothing from the game is added to install-time precaching.
 Text remains playable if an image/audio request fails. Cache failures and storage
-failures are visible. Fullscreen is optional; the same player remains mounted
-when switching display modes.
+failures are visible. Episodes open in a full-window view; native fullscreen is optional. The same
+player remains mounted when switching display modes.
 
 ## Art and provenance
 

@@ -950,7 +950,7 @@ function App() {
         if (cancelled) return
         const email = state.user?.email ?? null
         setCloudUserEmail(email)
-      setGameIdentity(state.user?.id ?? 'guest')
+        setGameIdentity(state.user?.id ?? 'guest')
         setCloudSync((current) => ({
           ...current,
           status: !state.configured ? 'unconfigured' : email ? 'idle' : 'signed-out',
@@ -3432,7 +3432,7 @@ function App() {
           <span className="nav-label">Reader</span>
         </button>
         <button type="button" className={screen === 'game' ? 'active' : ''} onClick={() => setScreen('game')} aria-label="Game" title="Game">
-          <span aria-hidden="true" className="game-nav-icon">▦</span><span className="nav-label">Game</span>
+          <svg aria-hidden="true" className="game-nav-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M7 6h10c3 0 4 4 4 8s-2 5-4 2l-1-1H8l-1 1c-2 3-4 2-4-2s1-8 4-8Z"/><path d="M7 8v6M4 11h6"/><circle cx="16" cy="10" r=".8" fill="currentColor"/><circle cx="18" cy="12" r=".8" fill="currentColor"/></svg><span className="nav-label">Game</span>
         </button>
         <button
           type="button"

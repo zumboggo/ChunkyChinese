@@ -6,6 +6,7 @@ Config.ui.stowBarInitially = true;
 Config.passages.nobr = true;
 const channel = new URLSearchParams(location.hash.slice(1)).get('channel');
 let snapshot = null;
+let pending = false;
 let hotkeys = ['1','2','3','4','5','6'];
 let playKey = 'p';
 const characters = {lin:['Ms Lin · my neighbour',0],chen:['Chen · my colleague',1],zhou:['Ms Zhou · teahouse owner',2]};
@@ -13,7 +14,7 @@ function send(type, payload = {}) {
   if (parent === window || !channel) return;
   parent.postMessage({protocol:'chunky-game-v1',channel,type,...payload},location.origin);
 }
-function act(type, extra = {}) { send('action',{revision:snapshot.revision,action:{type,...extra}}); }
+function act(type, extra = {}) { if(pending)return;pending=true;send('action',{revision:snapshot.revision,action:{type,...extra}}); }
 function el(tag, text, cls) { const n=document.createElement(tag); if(text!==undefined)n.textContent=text; if(cls)n.className=cls; return n; }
 function button(label, fn, key) { const b=el('button',label); b.type='button'; b.onclick=fn; if(key)b.dataset.key=key; return b; }
 function speak(audio) { if(audio)send('audio',{audio}); }
@@ -35,6 +36,7 @@ function render(root) {
     return;
   }
   const char=characters[scene.speaker];
+  const c=scene.choices.find(c=>c.id===a.choiceId);
   const art=el('div',undefined,'scene-art');
   const portrait=el('img',undefined,'portrait');portrait.src='characters.webp';portrait.alt='';portrait.style.setProperty('--person',char[1]);portrait.onerror=()=>portrait.remove();
   // A clipped atlas shows only the current interlocutor, with their name as fallback.
@@ -44,18 +46,18 @@ function render(root) {
   const heading=el('h1',scene.title);heading.tabIndex=-1;panel.append(heading);
   if(scene.callback && a.callbacks.includes(scene.callback.flag))panel.append(el('p',scene.callback.text,'callback'));
   // Assistive technology gets the full narrative immediately; visual pacing is optional.
-  const sr=el('div',scene.paragraphs.join(' '),'sr-only');panel.append(sr);
-  scene.paragraphs.slice(0,a.paragraph+1).forEach(t=>{const p=el('p',t);p.setAttribute('aria-hidden','true');panel.append(p)});
+  if(c){const moment=el('details');moment.append(el('summary','Recall this moment'),el('p',scene.paragraphs.join(' ')));panel.append(moment)}
+  else {const sr=el('div',scene.paragraphs.join(' '),'sr-only');panel.append(sr);
+  scene.paragraphs.slice(0,a.paragraph+1).forEach(t=>{const p=el('p',t);p.setAttribute('aria-hidden','true');panel.append(p)})}
   if(a.paragraph<scene.paragraphs.length) {
     panel.append(button('Next',()=>act('reveal'),'next'),button('Show all',()=>act('showAll'),'showAll'));root.append(panel);return;
   }
   zhLine(scene.line,panel);
   panel.append(button(a.pinyin?'Pinyin: on':'Pinyin: off',()=>act('pinyin'),'pinyin'));
-  const aside=el('section',undefined,'aside');aside.append(button(scene.aside.question,()=>act('aside'),'aside'));if(a.aside)aside.append(el('p',scene.aside.answer));panel.append(aside);
+  const aside=el('section',undefined,'aside');aside.append(button(scene.aside.question,()=>act('aside'),'aside'));if(a.aside)aside.append(el('p',scene.aside.answer));if(!c)panel.append(aside);
   const recall=el('details');recall.append(el('summary','Recall the conversation'));
   a.results.forEach((r,i)=>{const s=ep.scenes[i],c=s.choices.find(c=>c.id===r.choiceId);recall.append(el('p',`${s.line.zh} — ${c[a.variant].chunks.join('')}`),el('p',c.response))});
-  if(!a.results.length)recall.append(el('p',scene.paragraphs.join(' ')));panel.append(recall);
-  const c=scene.choices.find(c=>c.id===a.choiceId);
+  if(!a.results.length)recall.append(el('p',scene.paragraphs.join(' ')));if(!c)panel.append(recall);
   if(!c) {
     panel.append(el('h2','What do I want to say?'));
     scene.choices.forEach((choice,i)=>{const b=button(`${i+1}. ${choice.label}`,()=>act('choose',{choiceId:choice.id}),`choice-${i}`);b.dataset.shortcut=hotkeys[i];panel.append(b)});
@@ -78,12 +80,14 @@ function render(root) {
     if(a.solved){panel.append(el('p',c.response,'response'),button('▶ Hear my reply',()=>speak(answer.audio),'reply'),button(a.step===ep.scenes.length-1?'Finish episode':'Continue',()=>act('next'),'continue'))}
     panel.append(el('small','Keys 1–5 choose chunks. Tab moves between controls. P replays the speaker.','keyboard-help'));
   }
+  if(c){const more=el('details');more.append(el('summary','More conversation & recall'),aside,recall);panel.append(more)}
   root.append(panel);
 }
 Macro.add('chengduScene',{handler:function(){const root=el('main',undefined,'chengdu');this.output.append(root);render(root)}});
 window.addEventListener('message',event=>{
   const m=event.data;
   if(event.source!==parent||event.origin!==location.origin||m?.protocol!=='chunky-game-v1'||m.channel!==channel||m.type!=='state'||!m.state||m.state.episodeId!==setup.episode.id||m.state.version!==setup.episode.version)return;
+  pending=false;
   const before=snapshot;
   snapshot=m.state;
   if(Array.isArray(m.hotkeys))hotkeys=m.hotkeys;
@@ -92,6 +96,7 @@ window.addEventListener('message',event=>{
   const focusKey=document.activeElement?.dataset?.key;
   if(State.passage!==passage)Engine.play(passage);
   else {const root=document.querySelector('.chengdu');if(root)render(root)}
+  if(before && (before.step!==snapshot.step || (!before.choiceId && snapshot.choiceId)))window.scrollTo(0,0);
   if(before){const controls=Array.from(document.querySelectorAll('button'));const focus=controls.find(b=>b.dataset.key===focusKey&&!b.disabled)||controls.find(b=>b.dataset.key==='continue')||controls.find(b=>b.dataset.shortcut&&!b.disabled)||document.querySelector('h1');focus?.focus({preventScroll:true})}
 });
 window.addEventListener('keydown',event=>{

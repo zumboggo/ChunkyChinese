@@ -41,10 +41,18 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
   const current = useRef<Attempt | undefined>(undefined)
   const [channel, setChannel] = useState(() => crypto.randomUUID())
   const library = useRef<HTMLElement>(null)
+  const preview = useRef<HTMLElement>(null)
   const [windowed, setWindowed] = useState(true)
   const storageOkay = !initial.error
 
   useEffect(() => () => { audio.current?.pause() }, [])
+  useEffect(() => { if (selected && !playing) preview.current?.scrollIntoView({ block: 'start' }) }, [selected, playing])
+  useEffect(() => {
+    if (!playing || windowed) return
+    const previous = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = previous }
+  }, [playing, windowed])
 
   useEffect(() => {
     if (!playing || !selected) return
@@ -92,13 +100,14 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
         return
       }
       const prev = current.current
-      if (m.type !== 'action' || !prev || m.revision !== prev.revision) return
+      if (m.type !== 'action' || !prev) return
+      if (m.revision !== prev.revision) { postState(prev); return }
       const next = transition(selected!, prev, m.action)
-      if (next === prev) return
+      if (next === prev) { postState(prev); return }
       try {
         const stored = readAttempt(identity, selected!)
         if (stored && (stored.attemptId !== prev.attemptId || stored.revision > prev.revision)) {
-          setError('Progress changed in another tab. Return to Game and reload the page to continue safely.'); return
+          setError('Progress changed in another tab. Return to Game and reload the page to continue safely.'); postState(prev); return
         }
         localStorage.setItem(storageKey(identity, selected!), JSON.stringify(next))
         if (next.step === selected!.scenes.length) {
@@ -107,7 +116,7 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
           localStorage.setItem(`${key}:complete`, JSON.stringify(next))
           setCompleted(c => ({ ...c, [selected!.id]: next }))
         }
-      } catch { setError('Your latest action could not be saved. Free some device storage, then try that action again.'); return }
+      } catch { setError('Your latest action could not be saved. Free some device storage, then try that action again.'); postState(prev); return }
       audio.current?.pause()
       current.current = next; setAttempt(next); setSaved(s => ({ ...s, [selected!.id]: next })); postState(next)
     }
@@ -125,23 +134,26 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
       const callbacks = episodes.filter(e => e.id !== ep.id).flatMap(e => flags(e, readAttempt(identity, e, ':complete')))
       const a = !replay && previous ? previous : freshAttempt(ep, profiles[ep.id], callbacks)
       localStorage.setItem(storageKey(identity, ep), JSON.stringify(a))
-      current.current = a; setAttempt(a); setSelected(ep); setChannel(crypto.randomUUID()); setPlaying(true); setSaved(s => ({ ...s, [ep.id]: a }))
+      setWindowed(false); current.current = a; setAttempt(a); setSelected(ep); setChannel(crypto.randomUUID()); setPlaying(true); setSaved(s => ({ ...s, [ep.id]: a }))
     } catch (e) { setError(e instanceof Error ? e.message : 'Could not start a saved game.') }
   }
 
-  return <section className={`game-page ${playing && !windowed ? 'game-expanded' : ''}`} ref={library} style={{ '--game-background': `url("${base}courtyard.webp")` } as CSSProperties} aria-label="Game">
+  return <section className={`game-page ${playing ? 'game-playing' : ''} ${playing && !windowed ? 'game-expanded' : ''}`} ref={library} style={{ '--game-background': `url("${base}courtyard.webp")` } as CSSProperties} aria-label="Game">
     <header className="game-heading"><div><p className="game-kicker">SMALL ADVENTURES · CHENGDU</p><h1>{playing ? selected?.title : 'A little more at home'}</h1></div>
       {playing && <div className="game-toolbar"><button onClick={leave}>← Game library</button><button onClick={() => {
         if (document.fullscreenElement === library.current) { void document.exitFullscreen().catch(() => {}); setWindowed(true) }
         else { setWindowed(w => !w); if (windowed) void library.current?.requestFullscreen?.().catch(() => {}) }
+        frame.current?.contentWindow?.focus()
       }}>{windowed ? 'Expand' : 'Window'}</button></div>}
     </header>
     {error && <p className="game-notice" role="alert">{error}</p>}
     {playing && selected && attempt ? <>
       <p className="game-save-status">Saved on this device · {offline}</p>
-      <iframe key={`${selected.id}:${channel}`} ref={frame} title={`${selected.title} — playable Twine episode`} src={`${base}${selected.id}.html#channel=${channel}`} onLoad={() => postState()} />
+      <iframe key={`${selected.id}:${channel}`} ref={frame} title={`${selected.title} — playable Twine episode`} src={`${base}${selected.id}.html#channel=${channel}`} onLoad={() => { postState(); frame.current?.contentWindow?.focus() }} />
     </> : <>
-      <div className="game-world"><div><span>Three conversations. One neighbourhood.</span><p>Meet someone. Find the words. See where the afternoon goes.</p></div></div>
+      <div className="game-world"><nav className="game-map" aria-label="People in the neighbourhood">
+        {episodes.map((ep, i) => <button key={ep.id} disabled={!storageOkay} onClick={() => setSelected(ep)}>{['Talk to Ms Lin', 'Meet Chen', 'Visit Ms Zhou'][i]}<small>{ep.place}</small></button>)}
+      </nav><div><span>Three conversations. One neighbourhood.</span><p>Meet someone. Find the words. See where the afternoon goes.</p></div></div>
       <p className="game-intro">Play as yourself, an English teacher learning Chinese in Chengdu. Choose someone to talk to, then tap familiar pieces into a reply. There is time to think, ask again, and try another way.</p>
       <p className="game-small">Fictional neighbours and places · Mandarin dialogue · no music · local progress only</p>
       <div className="game-episodes">{episodes.map((ep, index) => {
@@ -155,7 +167,7 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
       })}</div>
       {selected && (() => {
         const coverage = saved[selected.id]?.coverage ?? profiles[selected.id]
-        return <section className="game-preview" aria-label="Episode preview">
+        return <section ref={preview} className="game-preview" aria-label="Episode preview">
           <h2>{selected.title}</h2><p>{selected.subtitle}</p>
           <p>{coverage.supported ? 'Supported play: some language is still unfamiliar. Pinyin, meanings, hints, and worked answers are available throughout.' : 'This episode meets the 95% familiar-language target for both dialogue and replies.'}</p>
           <p>Focus words: {selected.newWords.join(' · ')}</p>
