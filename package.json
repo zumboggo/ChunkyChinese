@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/check-startup-budget.mjs",
+    "build": "npm run game:check && tsc -b && vite build && node scripts/check-startup-budget.mjs",
     "check:bundle": "node scripts/check-startup-budget.mjs",
     "lint": "eslint .",
     "test": "vitest run",
@@ -24,7 +24,10 @@
     "generate:nav-icons": "node scripts/generate-nav-icons-ideogram.mjs",
     "clean:lms-vocab": "node scripts/clean-lms-vocab.mjs --write",
     "validate:lms-vocab": "node scripts/clean-lms-vocab.mjs",
-    "verify:reader-pack": "node scripts/verify-reader-pack.mjs"
+    "verify:reader-pack": "node scripts/verify-reader-pack.mjs",
+    "game:audio": "node scripts/build-game.mjs --audio",
+    "game:build": "node scripts/build-game.mjs",
+    "game:check": "node scripts/build-game.mjs --check"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.2",

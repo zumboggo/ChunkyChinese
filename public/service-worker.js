@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-chinese-v71'
+const CACHE_VERSION = 'chunky-chinese-v72'
 const COURSE_OFFLINE_CACHE = 'chunky-listening-course-v1'
 const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'
 const SENTENCE_OFFLINE_CACHE = 'chunky-sentence-listening-v1'
@@ -93,6 +93,20 @@ self.addEventListener('fetch', (event) => {
 
   if (url.pathname.startsWith(`${APP_BASE}listening/`)) {
     event.respondWith(courseOfflineFirst(request))
+    return
+  }
+
+  // Game assets are versioned and cached only when an episode opens. Never
+  // substitute the app shell for an unavailable Twine document.
+  if (url.pathname.startsWith(`${APP_BASE}game/`)) {
+    event.respondWith((async () => {
+      const cache = await caches.open('chunky-game-v1')
+      const hit = await cache.match(request, { ignoreSearch: true })
+      if (hit) return hit
+      const response = await fetch(request)
+      if (response.ok) await cache.put(request, response.clone())
+      return response
+    })())
     return
   }
 

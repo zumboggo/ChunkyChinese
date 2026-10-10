@@ -11686,3 +11686,6 @@ main.app-shell {
 .reader-large-text .reader-interlinear-gloss { font-size: 1.4rem; line-height: 1.4; max-width: 100%; overflow-wrap: anywhere; white-space: normal; }
 .reader-playlist-screen.reader-large-text .reader-translation { font-size: 1.65rem; line-height: 1.6; overflow-wrap: anywhere; }
 .reader-large-text .reader-reading-area { max-height: none; overflow: visible; }
+/* Six destinations fit the same floating navigation on phones. */
+.app-bottom-nav { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.game-nav-icon { font-size: 27px; line-height: 1; }

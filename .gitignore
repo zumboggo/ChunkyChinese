@@ -80,3 +80,7 @@ tools/comic-pack-builder/raw-images/
 tools/comic-pack-builder/split-images/
 tools/comic-pack-builder/**/__pycache__/
 tools/comic-pack-builder/**/*.pyc
+
+# Versioned authored game dialogue
+!public/game/**/audio/
+!public/game/**/audio/*.m4a

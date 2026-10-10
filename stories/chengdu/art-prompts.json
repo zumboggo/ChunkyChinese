@@ -1,0 +1,11 @@
+{
+  "tool": "Built-in image_gen",
+  "background": "Original 16-bit pixel art game background, SNES era limited jade green warm amber cream palette, crisp pixels, no text no logos. Wide landscape Chengdu neighbourhood courtyard in gentle morning light, tiled roofs, apartment entrance on left, school gate in middle distance, small open teahouse on right with bamboo chairs and tea table, ginkgo tree, potted plants, bicycle, warm lived-in charming detail. Eye-level oblique view, unoccupied foreground for dialogue portraits. 3:2 image. Not an existing game location. This is a reusable background for a Chinese learning visual novel.",
+  "backgroundEdit": "Remove all writing and real school names; preserve composition and palette.",
+  "portraits": "A single transparent sprite atlas for an original 16-bit SNES pixel art Chinese learning visual novel, three full-body adult character sprites equally spaced left center right, exactly three columns, no text no shadow background. Left: friendly Chinese woman neighbour age 55, short grey black hair, jade cardigan, canvas grocery bag. Center: Chinese man colleague age 35 with round glasses, blue shirt, books under arm. Right: Chinese woman teahouse owner age 45, rust orange apron, holds small white teapot. All have warm neutral attentive expressions, facing viewer slight three-quarter, consistent pixels, large simple readable silhouettes. Each occupies own third with generous transparent margins and no overlap. Limited warm jade amber cream palette. Transparent background actual alpha.",
+  "outputs": [
+    "public/game/v1/courtyard.webp",
+    "public/game/v1/characters.webp"
+  ],
+  "processing": "Nearest-neighbour downsampling and WebP encoding; portrait alpha preserved."
+}

@@ -231,8 +231,9 @@ import {
 
 const UniversalImporter = lazy(() => import('./UniversalImporter').then((module) => ({ default: module.UniversalImporter })))
 const ListeningCourse = lazy(() => import('./ListeningCourse'))
+const GamePage = lazy(() => import('./game/GamePage'))
 
-type Screen = 'listeningCourse' | 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'readingTexts' | 'words'
+type Screen = 'game' | 'listeningCourse' | 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'readingTexts' | 'words'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
 type FlashcardFrontMode = 'text' | 'audio' | 'reverse'
 type ReaderTheme = UserSettings['readerTheme']
@@ -636,6 +637,7 @@ function App() {
   const [aiStorySettings, setAiStorySettings] = useState<AiStorySettings>(DEFAULT_AI_STORY_SETTINGS)
   const [aiKeyDraft, setAiKeyDraft] = useState('')
   const [azureKeyDraft, setAzureKeyDraft] = useState('')
+  const [gameIdentity, setGameIdentity] = useState<string | undefined>(undefined)
   const [cloudUserEmail, setCloudUserEmail] = useState<string | null>(null)
   const [cloudSync, setCloudSync] = useState<CloudSyncUiState>({
     status: isSupabaseConfigured ? 'signed-out' : 'unconfigured',
@@ -948,6 +950,7 @@ function App() {
         if (cancelled) return
         const email = state.user?.email ?? null
         setCloudUserEmail(email)
+      setGameIdentity(state.user?.id ?? 'guest')
         setCloudSync((current) => ({
           ...current,
           status: !state.configured ? 'unconfigured' : email ? 'idle' : 'signed-out',
@@ -971,6 +974,7 @@ function App() {
     const unsubscribe = onCloudAuthChange((state) => {
       const email = state.user?.email ?? null
       setCloudUserEmail(email)
+      setGameIdentity(state.user?.id ?? 'guest')
       setCloudSync((current) => ({
         ...current,
         status: !state.configured ? 'unconfigured' : email ? 'idle' : 'signed-out',
@@ -2874,6 +2878,7 @@ function App() {
     try {
       await signOutOfCloud()
       setCloudUserEmail(null)
+      setGameIdentity('guest')
       setCloudSync((current) => ({
         ...current,
         status: 'signed-out',
@@ -3382,6 +3387,9 @@ function App() {
         </motion.section>
       )}
 
+      {screen === 'game' && <Suspense fallback={<p>Opening Game…</p>}>
+        {gameIdentity ? <GamePage key={gameIdentity} identity={gameIdentity} words={activeWords} hotkeys={hotkeys} /> : <p>Checking your local game identity…</p>}
+      </Suspense>}
       <nav className="app-bottom-nav" aria-label="Main navigation">
         <button
           type="button"
@@ -3422,6 +3430,9 @@ function App() {
         >
           <span className="nav-icon nav-reading" aria-hidden="true" />
           <span className="nav-label">Reader</span>
+        </button>
+        <button type="button" className={screen === 'game' ? 'active' : ''} onClick={() => setScreen('game')} aria-label="Game" title="Game">
+          <span aria-hidden="true" className="game-nav-icon">▦</span><span className="nav-label">Game</span>
         </button>
         <button
           type="button"

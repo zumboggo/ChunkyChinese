@@ -1,0 +1,143 @@
+:: StoryTitle
+A weekend plan, almost
+
+:: StoryData
+{"ifid":"DB0A0310-85B7-4CDA-A2B0-000000000002","format":"SugarCube","format-version":"2.37.3","start":"Start"}
+
+:: StoryScript [script]
+setup.episode={"id":"weekend","version":1,"title":"A weekend plan, almost","subtitle":"Find a shared interest. Agree on the same day.","place":"School gate","newWords":["周末","有空","星期六"],"ending":"I put the meeting in my calendar. The plan is modest: a conversation and a cup of tea. It is also clear, which feels like a useful kind of victory.","scenes":[{"title":"The kettle conference","speaker":"chen","paragraphs":["At school, I reach the kettle at the same time as Chen, a colleague with round glasses and a stack of exercise books.","We have exchanged plenty of “hello”s. Today he asks a question that could turn into a real conversation. I want to find something we both enjoy."],"line":{"zh":"你周末有空吗？","english":"Are you free this weekend?","pinyin":"nǐ zhōu mò yǒu kōng ma ？","audio":"audio/ddf31935456f9a389761.m4a"},"choices":[{"id":"free","label":"Say that I am free on Saturday","simple":{"chunks":["我","星期六","有空"],"english":"I am free on Saturday.","alternatives":[[1,0,2]],"pinyin":["wǒ","xīng qī liù","yǒu kōng"],"audio":"audio/34e0a35d2cfdd7e1ecd1.m4a"},"response":"Chen puts down the books. A possible plan has his attention.","hint":"Put the time before 有空.","rich":{"chunks":["我","星期六","有空"],"english":"I am free on Saturday.","alternatives":[[1,0,2]],"pinyin":["wǒ","xīng qī liù","yǒu kōng"],"audio":"audio/34e0a35d2cfdd7e1ecd1.m4a"}},{"id":"ask","label":"Ask about his weekend first","simple":{"chunks":["你","周末","做什么"],"english":"What do you do on the weekend?","pinyin":["nǐ","zhōu mò","zuò shén me"],"audio":"audio/f202ccd46a979163faf6.m4a"},"response":"He points to a book, then draws a cup in the air. We may have found common ground.","hint":"Put 周末 between 你 and 做什么.","rich":{"chunks":["你","周末","做什么"],"english":"What do you do on the weekend?","pinyin":["nǐ","zhōu mò","zuò shén me"],"audio":"audio/f202ccd46a979163faf6.m4a"}}],"aside":{"question":"Ask about the stack of books","answer":"Chen balances them with the expertise of someone who has tried carrying one too many. We both quietly move our tea farther from the edge."},"callback":{"flag":"tea-accepted","text":"I remember accepting Ms Lin’s invitation. Perhaps I can introduce two people instead of trying to hold two separate plans."},"id":"exchange-1"},{"title":"Something in common","speaker":"chen","paragraphs":["Chen tells me he likes books and tea. I can answer about either.","I do not need to invent an impressive hobby. A genuine small interest gives us somewhere to begin."],"line":{"zh":"你喜欢做什么？","english":"What do you like doing?","pinyin":"nǐ xǐ huan zuò shén me ？","audio":"audio/1e1537be41fb37f88d76.m4a"},"choices":[{"id":"books","label":"Talk about reading","simple":{"chunks":["我","喜欢","看书"],"english":"I like reading.","pinyin":["wǒ","xǐ huan","kàn shū"],"audio":"audio/2ceb31b0396f0d99c9d9.m4a"},"response":"He points to the least battered book in his stack and tells me it is his own. That explains the careful balancing.","hint":"喜欢 comes before the activity.","rich":{"chunks":["我","很","喜欢","看书"],"english":"I really like reading.","pinyin":["wǒ","hěn","xǐ huan","kàn shū"],"audio":"audio/75b8ff7d11d331162d62.m4a"},"flag":"books"},{"id":"tea","label":"Talk about tea","simple":{"chunks":["我","喜欢","喝茶"],"english":"I like drinking tea.","pinyin":["wǒ","xǐ huan","hē chá"],"audio":"audio/f0b3687deddbedd6df75.m4a"},"response":"He lifts his mug. There is already evidence for this shared interest.","hint":"喜欢 comes before the activity.","rich":{"chunks":["我","也","喜欢","喝茶"],"english":"I like drinking tea too.","pinyin":["wǒ","yě","xǐ huan","hē chá"],"audio":"audio/0a99e5f80c685e4f501c.m4a"},"flag":"tea"}],"aside":{"question":"Keep the conversation going","answer":"A shared interest need not be a grand passion. “I like tea” can be enough to suggest doing something together."},"id":"exchange-2"},{"title":"Make the invitation","speaker":"chen","paragraphs":["The kettle clicks off. Chen has not reached for his books yet.","I think of the courtyard teahouse: close enough to describe, quiet enough to practise a conversation. I decide to invite him."],"line":{"zh":"我们去哪里？","english":"Where shall we go?","pinyin":"wǒ men qù nǎ lǐ ？","audio":"audio/44bc04a9a5cae39086e0.m4a"},"choices":[{"id":"invite","label":"Suggest going for tea together","simple":{"chunks":["我们","一起","去喝茶","吧"],"english":"Let’s go for tea together.","pinyin":["wǒ men","yì qǐ","qù hē chá","ba"],"audio":"audio/2f0a00c06ba6e3cd48e5.m4a"},"response":"Chen agrees. Now there are two people imagining the same sort of afternoon.","hint":"吧 softens a suggestion; keep it at the end.","rich":{"chunks":["我们","一起","去喝茶","吧"],"english":"Let’s go for tea together.","pinyin":["wǒ men","yì qǐ","qù hē chá","ba"],"audio":"audio/2f0a00c06ba6e3cd48e5.m4a"}}],"aside":{"question":"Describe the teahouse simply","answer":"I can point to its location on a map when we finish. Knowing the exact address matters more than pretending I can already explain every turn."},"id":"exchange-3"},{"title":"Two calendars, two days","speaker":"chen","paragraphs":["Chen says a day and types it into his phone. I glance at the screen: Sunday.","I meant Saturday. If I only smile now, one of us will be drinking a very lonely cup of tea. I need to correct the day without making the mix-up a big event."],"line":{"zh":"星期天，对吗？","english":"Sunday, right?","pinyin":"xīng qī tiān ， duì ma ？","audio":"audio/3de6753e78cbb068e431.m4a"},"choices":[{"id":"correct","label":"Clarify: Saturday, not Sunday","simple":{"chunks":["是","星期六","不是","星期天"],"english":"It is Saturday, not Sunday.","pinyin":["shì","xīng qī liù","bú shì","xīng qī tiān"],"audio":"audio/7487824b67e7d4f35c3e.m4a"},"response":"He checks the screen, laughs, and changes the day. We have caught the problem while it is still small.","hint":"Use 是 X, 不是 Y to contrast the two days.","rich":{"chunks":["是","星期六","不是","星期天"],"english":"It is Saturday, not Sunday.","pinyin":["shì","xīng qī liù","bú shì","xīng qī tiān"],"audio":"audio/7487824b67e7d4f35c3e.m4a"}}],"aside":{"question":"Compare the two day names","answer":"星期六 means Saturday. 星期天 means Sunday. I listen for the last part rather than treating the whole phrase as one long blur."},"id":"exchange-4"},{"title":"A time we can keep","speaker":"chen","paragraphs":["Chen draws a little sun above the corrected date. Afternoon works better for him.","I can suggest two or three. Both are real options; the useful part is making one clear."],"line":{"zh":"下午几点？","english":"What time in the afternoon?","pinyin":"xià wǔ jǐ diǎn ？","audio":"audio/e5750e50debe22f7c770.m4a"},"choices":[{"id":"two","label":"Suggest two in the afternoon","simple":{"chunks":["我们","下午两点","见","吧"],"english":"Let’s meet at two in the afternoon.","pinyin":["wǒ men","xià wǔ liǎng diǎn","jiàn","ba"],"audio":"audio/14e356f6b2b3383f775a.m4a"},"response":"He enters two o’clock. I enter it too. Matching calendars are a surprisingly satisfying sight.","hint":"The time goes before 见.","rich":{"chunks":["我们","下午两点","见","吧"],"english":"Let’s meet at two in the afternoon.","pinyin":["wǒ men","xià wǔ liǎng diǎn","jiàn","ba"],"audio":"audio/14e356f6b2b3383f775a.m4a"},"flag":"two"},{"id":"three","label":"Suggest three in the afternoon","simple":{"chunks":["我们","下午三点","见","吧"],"english":"Let’s meet at three in the afternoon.","pinyin":["wǒ men","xià wǔ sān diǎn","jiàn","ba"],"audio":"audio/3def4da18406bbc14ac4.m4a"},"response":"He enters three o’clock. There is time for lunch first, and nobody has to guess.","hint":"The time goes before 见.","rich":{"chunks":["我们","下午三点","见","吧"],"english":"Let’s meet at three in the afternoon.","pinyin":["wǒ men","xià wǔ sān diǎn","jiàn","ba"],"audio":"audio/3def4da18406bbc14ac4.m4a"},"flag":"three"}],"aside":{"question":"Check the map together","answer":"I show him the teahouse near my courtyard. He saves the pin. We have a place as well as a day and a time."},"id":"exchange-5"},{"title":"Someone else might come","speaker":"chen","paragraphs":["I mention a neighbour who knows the teahouse owner. Chen asks whether she will be there too.","I can suggest inviting her, or explain that I do not know yet. I should not promise someone else’s afternoon for them."],"line":{"zh":"你的朋友也来吗？","english":"Is your friend coming too?","pinyin":"nǐ de péng yǒu yě lái ma ？","audio":"audio/3c6360a0b7fa9e9a7540.m4a"},"choices":[{"id":"invite-lin","label":"Suggest asking her","simple":{"chunks":["我们","可以","问问","她"],"english":"We can ask her.","pinyin":["wǒ men","kě yǐ","wèn wèn","tā"],"audio":"audio/4426b05502ec0c16b94c.m4a"},"response":"Chen nods. Asking leaves Ms Lin free to decide for herself.","hint":"可以 goes before 问问.","rich":{"chunks":["我们","可以","问问","她"],"english":"We can ask her.","pinyin":["wǒ men","kě yǐ","wèn wèn","tā"],"audio":"audio/4426b05502ec0c16b94c.m4a"},"flag":"ask-lin"},{"id":"unsure","label":"Say that I do not know yet","simple":{"chunks":["我","还","不知道"],"english":"I do not know yet.","pinyin":["wǒ","hái","bù zhī dào"],"audio":"audio/4189e77e40376e832837.m4a"},"response":"That answer turns out to be enough. Chen has no objection to a plan with one detail still open.","hint":"还 belongs before 不知道.","rich":{"chunks":["我","还","不知道"],"english":"I do not know yet.","pinyin":["wǒ","hái","bù zhī dào"],"audio":"audio/4189e77e40376e832837.m4a"},"flag":"unsure"}],"aside":{"question":"Remember Ms Lin’s invitation","answer":"Whether I accepted or postponed it, the conversation gave me a way to ask again. A polite answer need not close a door."},"id":"exchange-6"},{"title":"Say it once more","speaker":"chen","paragraphs":["The bell interrupts us. Chen collects his books, and I reach for my mug.","Before we leave, I want to confirm the day we corrected. Saying it once more now is easier than explaining an empty table later."],"line":{"zh":"好，周末见！","english":"Okay, see you this weekend!","pinyin":"hǎo ， zhōu mò jiàn ！","audio":"audio/ba69f80133320f91836c.m4a"},"choices":[{"id":"confirm","label":"Confirm Saturday before leaving","simple":{"chunks":["好","我们","星期六","见"],"english":"Okay, see you on Saturday.","alternatives":[[0,2,1,3]],"pinyin":["hǎo","wǒ men","xīng qī liù","jiàn"],"audio":"audio/9735e389ad83c15ddd52.m4a"},"response":"Chen points at the corrected calendar entry. We both laugh about Sunday, which is now free to remain Sunday.","hint":"Put the meeting time before 见.","rich":{"chunks":["好","我们","星期六","见"],"english":"Okay, see you on Saturday.","alternatives":[[0,2,1,3]],"pinyin":["hǎo","wǒ men","xīng qī liù","jiàn"],"audio":"audio/9735e389ad83c15ddd52.m4a"}}],"aside":{"question":"Recall what changed","answer":"I found a shared interest, suggested an activity, and corrected a misunderstanding. The correction helped the conversation rather than spoiling it."},"id":"exchange-7"}],"resources":["weekend.html","courtyard.webp","characters.webp","audio/ddf31935456f9a389761.m4a","audio/34e0a35d2cfdd7e1ecd1.m4a","audio/f202ccd46a979163faf6.m4a","audio/1e1537be41fb37f88d76.m4a","audio/2ceb31b0396f0d99c9d9.m4a","audio/75b8ff7d11d331162d62.m4a","audio/f0b3687deddbedd6df75.m4a","audio/0a99e5f80c685e4f501c.m4a","audio/44bc04a9a5cae39086e0.m4a","audio/2f0a00c06ba6e3cd48e5.m4a","audio/3de6753e78cbb068e431.m4a","audio/7487824b67e7d4f35c3e.m4a","audio/e5750e50debe22f7c770.m4a","audio/14e356f6b2b3383f775a.m4a","audio/3def4da18406bbc14ac4.m4a","audio/3c6360a0b7fa9e9a7540.m4a","audio/4426b05502ec0c16b94c.m4a","audio/4189e77e40376e832837.m4a","audio/ba69f80133320f91836c.m4a","audio/9735e389ad83c15ddd52.m4a"]};
+/* Presentation only. The parent owns identity, validation, audio and local saves. */
+Config.history.maxStates = 1;
+Config.history.controls = false;
+Config.saves.isAllowed = () => false;
+Config.ui.stowBarInitially = true;
+Config.passages.nobr = true;
+const channel = new URLSearchParams(location.hash.slice(1)).get('channel');
+let snapshot = null;
+let hotkeys = ['1','2','3','4','5','6'];
+let playKey = 'p';
+const characters = {lin:['Ms Lin · my neighbour',0],chen:['Chen · my colleague',1],zhou:['Ms Zhou · teahouse owner',2]};
+function send(type, payload = {}) {
+  if (parent === window || !channel) return;
+  parent.postMessage({protocol:'chunky-game-v1',channel,type,...payload},location.origin);
+}
+function act(type, extra = {}) { send('action',{revision:snapshot.revision,action:{type,...extra}}); }
+function el(tag, text, cls) { const n=document.createElement(tag); if(text!==undefined)n.textContent=text; if(cls)n.className=cls; return n; }
+function button(label, fn, key) { const b=el('button',label); b.type='button'; b.onclick=fn; if(key)b.dataset.key=key; return b; }
+function speak(audio) { if(audio)send('audio',{audio}); }
+function zhLine(line, root) {
+  const p=el('p',line.zh,'chinese'); p.lang='zh-CN'; root.append(p);
+  if(snapshot.pinyin)root.append(el('p',line.pinyin,'pinyin'));
+  root.append(button('▶ Hear Mandarin',()=>speak(line.audio),'hear'));
+  root.append(button(snapshot.meaning?'Hide meaning':'Show meaning',()=>act('meaning'),'meaning'));
+  if(snapshot.meaning)root.append(el('p',line.english,'translation'));
+}
+function render(root) {
+  root.replaceChildren();
+  if (!snapshot) { root.append(el('p',parent===window?'Open this episode from Game in Chunky Chinese to save your progress.':'Opening your conversation…')); return; }
+  const a=snapshot, ep=setup.episode, scene=ep.scenes[a.step];
+  if(!scene) {
+    root.append(el('p','EPISODE COMPLETE','eyebrow'),el('h1','Things I can now say'),el('p',ep.ending));
+    a.results.forEach((r,i)=>{const c=ep.scenes[i].choices.find(c=>c.id===r.choiceId),ans=c[a.variant];const card=el('section',undefined,'receipt');const line=el('p',ans.chunks.join(''),'chinese');line.lang='zh-CN';card.append(line,el('p',ans.english),el('small',r.independent?'Independently':'With support'),button('▶ Hear my sentence',()=>speak(ans.audio)));root.append(card)});
+    root.append(el('p','Recognition guides difficulty; these conversations do not change your flashcard ratings.'),button('Back to Game',()=>send('exit'),'exit'));
+    return;
+  }
+  const char=characters[scene.speaker];
+  const art=el('div',undefined,'scene-art');
+  const portrait=el('img',undefined,'portrait');portrait.src='characters.webp';portrait.alt='';portrait.style.setProperty('--person',char[1]);portrait.onerror=()=>portrait.remove();
+  // A clipped atlas shows only the current interlocutor, with their name as fallback.
+  const crop=el('div',undefined,'portrait-crop');crop.append(portrait);art.append(crop,el('span',ep.place,'place'));root.append(art);
+  const panel=el('section',undefined,'dialogue');
+  panel.append(el('p',`${a.step+1} / ${ep.scenes.length} · ${char[0]}`,'eyebrow'));
+  const heading=el('h1',scene.title);heading.tabIndex=-1;panel.append(heading);
+  if(scene.callback && a.callbacks.includes(scene.callback.flag))panel.append(el('p',scene.callback.text,'callback'));
+  // Assistive technology gets the full narrative immediately; visual pacing is optional.
+  const sr=el('div',scene.paragraphs.join(' '),'sr-only');panel.append(sr);
+  scene.paragraphs.slice(0,a.paragraph+1).forEach(t=>{const p=el('p',t);p.setAttribute('aria-hidden','true');panel.append(p)});
+  if(a.paragraph<scene.paragraphs.length) {
+    panel.append(button('Next',()=>act('reveal'),'next'),button('Show all',()=>act('showAll'),'showAll'));root.append(panel);return;
+  }
+  zhLine(scene.line,panel);
+  panel.append(button(a.pinyin?'Pinyin: on':'Pinyin: off',()=>act('pinyin'),'pinyin'));
+  const aside=el('section',undefined,'aside');aside.append(button(scene.aside.question,()=>act('aside'),'aside'));if(a.aside)aside.append(el('p',scene.aside.answer));panel.append(aside);
+  const recall=el('details');recall.append(el('summary','Recall the conversation'));
+  a.results.forEach((r,i)=>{const s=ep.scenes[i],c=s.choices.find(c=>c.id===r.choiceId);recall.append(el('p',`${s.line.zh} — ${c[a.variant].chunks.join('')}`),el('p',c.response))});
+  if(!a.results.length)recall.append(el('p',scene.paragraphs.join(' ')));panel.append(recall);
+  const c=scene.choices.find(c=>c.id===a.choiceId);
+  if(!c) {
+    panel.append(el('h2','What do I want to say?'));
+    scene.choices.forEach((choice,i)=>{const b=button(`${i+1}. ${choice.label}`,()=>act('choose',{choiceId:choice.id}),`choice-${i}`);b.dataset.shortcut=hotkeys[i];panel.append(b)});
+  } else {
+    const answer=c[a.variant];
+    panel.append(el('h2',c.label),el('p',answer.english,'intention'));
+    const selected=el('div',undefined,'sentence');selected.setAttribute('aria-label','My sentence');
+    a.tiles.forEach((id,pos)=>{const b=button(answer.chunks[id],()=>act('remove',{index:pos}),`remove-${pos}`);b.lang='zh-CN';b.disabled=a.solved;b.setAttribute('aria-label',`Remove ${answer.chunks[id]}`);selected.append(b)});
+    if(!a.tiles.length)selected.append(el('span','Tap chunks below to build your reply.','empty'));panel.append(selected);
+    const bank=el('div',undefined,'chunks');bank.setAttribute('aria-label','Available chunks');
+    const order=answer.chunks.map((_,i)=>i).reverse();
+    order.forEach((id,pos)=>{const b=button('',()=>act('tile',{index:id}),`tile-${id}`);b.disabled=a.tiles.includes(id)||a.solved;b.dataset.shortcut=hotkeys[pos];b.append(el('small',String(pos+1)),el('span',answer.chunks[id]));b.lang='zh-CN';if(a.pinyin)b.append(el('small',answer.pinyin[id]));bank.append(b)});panel.append(bank);
+    const controls=el('div',undefined,'controls');
+    if(!a.solved) {
+      controls.append(button('Undo',()=>act('undo'),'undo'),button('Clear',()=>act('clear'),'clear'),button('Hint',()=>act('hint'),'hint'),button('Check',()=>act('check'),'check'));
+      if(a.errors>=2)controls.append(button('Show worked answer',()=>act('model'),'model'));
+    }
+    panel.append(controls);
+    if(a.feedback){const f=el('p',a.feedback,'feedback');f.setAttribute('role','status');panel.append(f)}
+    if(a.solved){panel.append(el('p',c.response,'response'),button('▶ Hear my reply',()=>speak(answer.audio),'reply'),button(a.step===ep.scenes.length-1?'Finish episode':'Continue',()=>act('next'),'continue'))}
+    panel.append(el('small','Keys 1–5 choose chunks. Tab moves between controls. P replays the speaker.','keyboard-help'));
+  }
+  root.append(panel);
+}
+Macro.add('chengduScene',{handler:function(){const root=el('main',undefined,'chengdu');this.output.append(root);render(root)}});
+window.addEventListener('message',event=>{
+  const m=event.data;
+  if(event.source!==parent||event.origin!==location.origin||m?.protocol!=='chunky-game-v1'||m.channel!==channel||m.type!=='state'||!m.state||m.state.episodeId!==setup.episode.id||m.state.version!==setup.episode.version)return;
+  const before=snapshot;
+  snapshot=m.state;
+  if(Array.isArray(m.hotkeys))hotkeys=m.hotkeys;
+  if(typeof m.playKey==='string')playKey=m.playKey;
+  const passage=snapshot.step===setup.episode.scenes.length?'Ending':`Scene${snapshot.step+1}`;
+  const focusKey=document.activeElement?.dataset?.key;
+  if(State.passage!==passage)Engine.play(passage);
+  else {const root=document.querySelector('.chengdu');if(root)render(root)}
+  if(before){const controls=Array.from(document.querySelectorAll('button'));const focus=controls.find(b=>b.dataset.key===focusKey&&!b.disabled)||controls.find(b=>b.dataset.key==='continue')||controls.find(b=>b.dataset.shortcut&&!b.disabled)||document.querySelector('h1');focus?.focus({preventScroll:true})}
+});
+window.addEventListener('keydown',event=>{
+  if(event.ctrlKey||event.metaKey||event.altKey||event.repeat||!snapshot)return;
+  if(event.key.toLowerCase()===playKey.toLowerCase()){event.preventDefault();speak(setup.episode.scenes[snapshot.step]?.line.audio);return}
+  const b=Array.from(document.querySelectorAll('button[data-shortcut]')).find(b=>b.dataset.shortcut?.toLowerCase()===event.key.toLowerCase()&&!b.disabled);
+  if(b){event.preventDefault();b.click()}
+});
+$(document).one(':storyready',()=>send('ready'));
+
+
+:: StoryStylesheet [stylesheet]
+:root{color-scheme:light;font-family:system-ui,sans-serif;color:#253b32;background:#f5efdf}body{margin:0;background:#f5efdf;color:#253b32}#ui-bar,#story-title{display:none}#story{margin:0;padding:0}#passages{max-width:820px;margin:auto}.passage{padding:0}.chengdu{padding:0 0 24px}.scene-art{height:205px;position:relative;background:#b9c9a3 url('courtyard.webp') center 52%/cover;image-rendering:pixelated;border-bottom:5px solid #37654a;overflow:hidden}.portrait-crop{position:absolute;width:97px;height:194px;bottom:0;right:12%;overflow:hidden}.portrait{height:194px;width:291px;max-width:none;position:absolute;left:calc(var(--person) * -97px);image-rendering:pixelated}.place{position:absolute;left:18px;top:18px;background:#183d30;color:#fff6df;padding:8px 15px;border:2px solid #dbba75;font-weight:700}.dialogue,.chengdu>h1,.chengdu>p,.receipt{margin:0;padding:18px 24px}.dialogue p{line-height:1.65;margin:10px 0}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#456251}.dialogue h1,.chengdu>h1{font-size:25px;line-height:1.2;margin:10px 0 18px}h2{font-size:18px;margin-top:22px}.chinese{font-size:25px!important;line-height:1.6!important;font-family:system-ui,sans-serif}.pinyin{color:#625540;font-size:15px}.translation,.intention{color:#52634f}.callback{border-left:3px solid #c19850;padding:8px 12px;background:#efe4c9}button{font:inherit;min-height:44px;color:#254332;background:#fffdf7;border:2px solid #9ba991;border-radius:8px;padding:9px 13px;margin:4px;cursor:pointer;box-shadow:0 2px 0 #c9c5b4}button:hover{background:#eee8cc;border-color:#446e4e}button:focus-visible,summary:focus-visible{outline:3px solid #b46a27;outline-offset:3px}button:disabled{opacity:.4;cursor:default}button[data-key=check],button[data-key=continue],button[data-key=next]{background:#285d42;color:#fff;border-color:#285d42}.sentence{display:flex;gap:4px;align-items:center;flex-wrap:wrap;min-height:72px;background:#eee7d4;border:2px dashed #a2ad94;border-radius:12px;padding:9px;margin:12px 0}.sentence button{font-size:23px;margin:2px}.empty{font-size:14px;color:#6b745f}.chunks{display:flex;flex-wrap:wrap;gap:5px}.chunks button{display:flex;flex-direction:column;align-items:center;min-width:68px;font-size:23px}.chunks small{font-size:12px;color:#59654b}.feedback{background:#e7ead7;padding:12px;border-radius:8px}.response{border-left:4px solid #b9853a;padding:12px}.aside{margin-top:16px}details{margin:12px 0;font-size:14px}summary{cursor:pointer;min-height:32px}.receipt{border-top:1px solid #c5cab8}.receipt small{display:inline-block;color:#47624a}.keyboard-help{display:block;color:#68715f;margin-top:14px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:460px){.dialogue{padding:16px}.scene-art{height:165px}.portrait-crop{right:8%;height:154px;width:77px}.portrait{height:154px;width:231px;left:calc(var(--person) * -77px)}.dialogue h1{font-size:22px}.chunks button{font-size:21px;padding:8px;min-width:56px}.keyboard-help{display:none}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+
+:: Start
+<<chengduScene>>
+
+:: Scene1
+<<chengduScene>>
+
+:: Scene2
+<<chengduScene>>
+
+:: Scene3
+<<chengduScene>>
+
+:: Scene4
+<<chengduScene>>
+
+:: Scene5
+<<chengduScene>>
+
+:: Scene6
+<<chengduScene>>
+
+:: Scene7
+<<chengduScene>>
+
+:: Ending
+<<chengduScene>>

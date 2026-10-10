@@ -1,0 +1,1371 @@
+[
+  {
+    "id": "neighbour",
+    "version": 1,
+    "title": "The neighbour who remembers me",
+    "subtitle": "A greeting becomes a small invitation.",
+    "place": "Courtyard",
+    "newWords": [
+      "邻居",
+      "英语",
+      "喝茶"
+    ],
+    "ending": "I leave with a name, a wave, and something to say next time. The courtyard is the same size. Somehow it feels less anonymous.",
+    "scenes": [
+      {
+        "title": "Someone knows my face",
+        "speaker": "lin",
+        "paragraphs": [
+          "I step into the courtyard before school. My bag catches the door, which makes a much louder entrance than I intended.",
+          "A woman with a canvas shopping bag smiles. This is Ms Lin, the neighbour I have nodded to all week. Today she waits for more than a nod. I want to introduce myself before I have to leave."
+        ],
+        "line": {
+          "zh": "你好！你住这里吗？",
+          "english": "Hello! Do you live here?"
+        },
+        "choices": [
+          {
+            "id": "live",
+            "label": "Say that I live here",
+            "simple": {
+              "chunks": [
+                "我",
+                "住",
+                "这里"
+              ],
+              "english": "I live here."
+            },
+            "response": "Ms Lin points upstairs, then at herself. Two people in one building have finally become neighbours.",
+            "hint": "Put the person first, then what they do. Keep the question particle at the end.",
+            "rich": {
+              "chunks": [
+                "我",
+                "也",
+                "住",
+                "这里"
+              ],
+              "english": "I live here too."
+            }
+          },
+          {
+            "id": "greet",
+            "label": "Return her greeting",
+            "simple": {
+              "chunks": [
+                "你好",
+                "很高兴",
+                "认识你"
+              ],
+              "english": "Hello, nice to meet you."
+            },
+            "response": "She shifts the shopping bag to shake my hand. We are officially past the nodding stage.",
+            "hint": "Keep the greeting first; 很高兴 belongs before 认识你.",
+            "rich": {
+              "chunks": [
+                "你好",
+                "很高兴",
+                "认识你"
+              ],
+              "english": "Hello, nice to meet you."
+            }
+          }
+        ],
+        "aside": {
+          "question": "Look at her shopping bag",
+          "answer": "A spring onion sticks out like a green flag. She notices me looking and tucks it back in. It immediately escapes again."
+        },
+        "id": "exchange-1"
+      },
+      {
+        "title": "A name to remember",
+        "speaker": "lin",
+        "paragraphs": [
+          "Ms Lin introduces herself slowly. I repeat her surname once, and she nods.",
+          "A scooter rolls past. For a moment I consider letting its engine do all the talking. Instead, I offer my name."
+        ],
+        "line": {
+          "zh": "我姓林。你叫什么名字？",
+          "english": "My surname is Lin. What is your name?"
+        },
+        "choices": [
+          {
+            "id": "name",
+            "label": "Introduce myself as David",
+            "simple": {
+              "chunks": [
+                "你好",
+                "我",
+                "叫",
+                "大卫"
+              ],
+              "english": "Hello, my name is David."
+            },
+            "response": "“David,” she repeats carefully. She gives my name the same attention I gave hers.",
+            "hint": "叫 comes between 我 and the name.",
+            "rich": {
+              "chunks": [
+                "你好",
+                "我",
+                "叫",
+                "大卫"
+              ],
+              "english": "Hello, my name is David."
+            }
+          }
+        ],
+        "aside": {
+          "question": "Ask how to address her",
+          "answer": "Ms Lin gestures to herself and repeats her surname. “Ms Lin” is a comfortable name for this fictional neighbour; I do not need a complicated title to begin."
+        },
+        "id": "exchange-2"
+      },
+      {
+        "title": "The books give me away",
+        "speaker": "lin",
+        "paragraphs": [
+          "She notices the books in my bag and points toward the school gate.",
+          "I want to explain my work, not deliver my entire employment history beside a bicycle rack. One clear sentence will do."
+        ],
+        "line": {
+          "zh": "你是老师吗？",
+          "english": "Are you a teacher?"
+        },
+        "choices": [
+          {
+            "id": "teacher",
+            "label": "Explain that I teach English",
+            "simple": {
+              "chunks": [
+                "我",
+                "是",
+                "英语老师"
+              ],
+              "english": "I am an English teacher."
+            },
+            "response": "Ms Lin grins and mimes a classroom full of raised hands. I mime a very large cup of coffee. We both understand.",
+            "hint": "Use 我 + 是 + the occupation.",
+            "rich": {
+              "chunks": [
+                "我",
+                "在学校",
+                "教",
+                "英语"
+              ],
+              "english": "I teach English at school."
+            }
+          }
+        ],
+        "aside": {
+          "question": "Notice what she remembers",
+          "answer": "She remembers seeing me carry books yesterday. It is a small kindness: someone has been paying attention."
+        },
+        "id": "exchange-3"
+      },
+      {
+        "title": "One sentence too fast",
+        "speaker": "lin",
+        "paragraphs": [
+          "Her next question comes with a smile, a gesture, and more syllables than I can comfortably hold.",
+          "I catch “Chinese.” The rest has already left the station. I could nod, but then I would have agreed to something I do not understand."
+        ],
+        "line": {
+          "zh": "你在学中文吗？",
+          "english": "Are you learning Chinese?"
+        },
+        "choices": [
+          {
+            "id": "repeat",
+            "label": "Ask her to say it again",
+            "simple": {
+              "chunks": [
+                "请",
+                "再说",
+                "一遍"
+              ],
+              "english": "Please say it again."
+            },
+            "response": "She repeats the question slowly, without making a performance of my difficulty. This is a conversation, not an exam.",
+            "hint": "再 goes before 说; 一遍 tells how many repetitions.",
+            "rich": {
+              "chunks": [
+                "请",
+                "再",
+                "说一遍",
+                "好吗"
+              ],
+              "english": "Could you please say it again?"
+            }
+          },
+          {
+            "id": "slow",
+            "label": "Ask her to speak a little slowly",
+            "simple": {
+              "chunks": [
+                "请",
+                "说",
+                "慢一点"
+              ],
+              "english": "Please speak a little more slowly."
+            },
+            "response": "She slows down. The words separate themselves into something I can answer.",
+            "hint": "慢一点 describes how to speak, so it follows 说.",
+            "rich": {
+              "chunks": [
+                "请",
+                "说",
+                "慢一点"
+              ],
+              "english": "Please speak a little more slowly."
+            }
+          }
+        ],
+        "aside": {
+          "question": "Recall what I heard",
+          "answer": "She is asking whether I am learning Chinese. Asking for repetition keeps the conversation alive; it does not mean I have failed."
+        },
+        "id": "exchange-4"
+      },
+      {
+        "title": "A small honest answer",
+        "speaker": "lin",
+        "paragraphs": [
+          "This time I hear the question. Ms Lin waits, balancing her bag on the bicycle seat.",
+          "I can say a little. That is different from saying nothing."
+        ],
+        "line": {
+          "zh": "你会说中文吗？",
+          "english": "Can you speak Chinese?"
+        },
+        "choices": [
+          {
+            "id": "little",
+            "label": "Say that I speak a little",
+            "simple": {
+              "chunks": [
+                "我",
+                "会说",
+                "一点",
+                "中文"
+              ],
+              "english": "I can speak a little Chinese."
+            },
+            "response": "She holds her fingers a little apart, then opens her hand wider: a little can grow.",
+            "hint": "一点 belongs before 中文 here.",
+            "rich": {
+              "chunks": [
+                "我",
+                "会说",
+                "一点",
+                "中文"
+              ],
+              "english": "I can speak a little Chinese."
+            }
+          },
+          {
+            "id": "learning",
+            "label": "Say that I am learning",
+            "simple": {
+              "chunks": [
+                "我",
+                "在学",
+                "中文"
+              ],
+              "english": "I am learning Chinese."
+            },
+            "response": "She nods toward herself as if volunteering to be part of the practice.",
+            "hint": "在学 means “am learning.”",
+            "rich": {
+              "chunks": [
+                "我",
+                "每天",
+                "都学",
+                "中文"
+              ],
+              "english": "I study Chinese every day."
+            }
+          }
+        ],
+        "aside": {
+          "question": "Ask about her morning",
+          "answer": "She points to her shopping bag, then the teahouse. Shopping first, tea later. Her morning has a sensible order."
+        },
+        "id": "exchange-5"
+      },
+      {
+        "title": "Ask something back",
+        "speaker": "lin",
+        "paragraphs": [
+          "The clock above the gate reminds me that I still have a job to get to. But I do not want to disappear immediately after talking about myself.",
+          "Across the courtyard, a woman is setting cups on a table. Ms Lin waves to her. I can ask about the place or about her plans."
+        ],
+        "line": {
+          "zh": "那边可以喝茶。",
+          "english": "You can drink tea over there."
+        },
+        "choices": [
+          {
+            "id": "tea",
+            "label": "Ask whether she likes tea",
+            "simple": {
+              "chunks": [
+                "你",
+                "喜欢",
+                "喝茶",
+                "吗"
+              ],
+              "english": "Do you like drinking tea?"
+            },
+            "response": "She laughs and points at her cup-shaped hand. That appears to be a very enthusiastic yes.",
+            "hint": "Keep 吗 at the end.",
+            "rich": {
+              "chunks": [
+                "你",
+                "喜欢",
+                "喝茶",
+                "吗"
+              ],
+              "english": "Do you like drinking tea?"
+            },
+            "flag": "likes-tea"
+          },
+          {
+            "id": "weekend",
+            "label": "Ask if she is free on the weekend",
+            "simple": {
+              "chunks": [
+                "你",
+                "周末",
+                "有空",
+                "吗"
+              ],
+              "english": "Are you free on the weekend?",
+              "alternatives": [
+                [
+                  1,
+                  0,
+                  2,
+                  3
+                ]
+              ]
+            },
+            "response": "She considers, then points to Saturday on her phone. There may be a conversation with more time in it.",
+            "hint": "Put 周末 before 有空.",
+            "rich": {
+              "chunks": [
+                "你",
+                "周末",
+                "有空",
+                "吗"
+              ],
+              "english": "Are you free on the weekend?",
+              "alternatives": [
+                [
+                  1,
+                  0,
+                  2,
+                  3
+                ]
+              ]
+            },
+            "flag": "weekend"
+          }
+        ],
+        "aside": {
+          "question": "Look toward the teahouse",
+          "answer": "The owner catches our wave. Ms Lin calls her Ms Zhou. I have not met her yet, but I now have another face to recognise."
+        },
+        "id": "exchange-6"
+      },
+      {
+        "title": "An invitation, not a test",
+        "speaker": "lin",
+        "paragraphs": [
+          "Ms Lin offers to meet for tea on Saturday. I check the time: I can still reach school without running.",
+          "I can accept, or leave the invitation for another day. Either way, I want to answer warmly and clearly."
+        ],
+        "line": {
+          "zh": "星期六一起喝茶，好吗？",
+          "english": "Shall we have tea together on Saturday?"
+        },
+        "choices": [
+          {
+            "id": "accept",
+            "label": "Accept the invitation",
+            "simple": {
+              "chunks": [
+                "好",
+                "我们",
+                "星期六",
+                "见"
+              ],
+              "english": "Okay, see you on Saturday.",
+              "alternatives": [
+                [
+                  0,
+                  2,
+                  1,
+                  3
+                ]
+              ]
+            },
+            "response": "She taps Saturday on her phone and waves me toward school. I walk away with an actual plan.",
+            "hint": "We comes before the meeting time in this version.",
+            "rich": {
+              "chunks": [
+                "好",
+                "我们",
+                "星期六",
+                "见"
+              ],
+              "english": "Okay, see you on Saturday.",
+              "alternatives": [
+                [
+                  0,
+                  2,
+                  1,
+                  3
+                ]
+              ]
+            },
+            "flag": "tea-accepted"
+          },
+          {
+            "id": "decline",
+            "label": "Thank her and suggest another day",
+            "simple": {
+              "chunks": [
+                "谢谢",
+                "我们",
+                "改天",
+                "喝茶"
+              ],
+              "english": "Thank you; let’s have tea another day."
+            },
+            "response": "She nods, with no sign of offence. An invitation can stay open without becoming a promise.",
+            "hint": "改天 means another day; put it before 喝茶.",
+            "rich": {
+              "chunks": [
+                "谢谢",
+                "我们",
+                "改天",
+                "喝茶"
+              ],
+              "english": "Thank you; let’s have tea another day."
+            },
+            "flag": "tea-later"
+          }
+        ],
+        "aside": {
+          "question": "Remember the first greeting",
+          "answer": "This morning began with a nod. Now I can introduce myself, explain my work, and ask for help when a sentence is too fast."
+        },
+        "id": "exchange-7"
+      }
+    ]
+  },
+  {
+    "id": "weekend",
+    "version": 1,
+    "title": "A weekend plan, almost",
+    "subtitle": "Find a shared interest. Agree on the same day.",
+    "place": "School gate",
+    "newWords": [
+      "周末",
+      "有空",
+      "星期六"
+    ],
+    "ending": "I put the meeting in my calendar. The plan is modest: a conversation and a cup of tea. It is also clear, which feels like a useful kind of victory.",
+    "scenes": [
+      {
+        "title": "The kettle conference",
+        "speaker": "chen",
+        "paragraphs": [
+          "At school, I reach the kettle at the same time as Chen, a colleague with round glasses and a stack of exercise books.",
+          "We have exchanged plenty of “hello”s. Today he asks a question that could turn into a real conversation. I want to find something we both enjoy."
+        ],
+        "line": {
+          "zh": "你周末有空吗？",
+          "english": "Are you free this weekend?"
+        },
+        "choices": [
+          {
+            "id": "free",
+            "label": "Say that I am free on Saturday",
+            "simple": {
+              "chunks": [
+                "我",
+                "星期六",
+                "有空"
+              ],
+              "english": "I am free on Saturday.",
+              "alternatives": [
+                [
+                  1,
+                  0,
+                  2
+                ]
+              ]
+            },
+            "response": "Chen puts down the books. A possible plan has his attention.",
+            "hint": "Put the time before 有空.",
+            "rich": {
+              "chunks": [
+                "我",
+                "星期六",
+                "有空"
+              ],
+              "english": "I am free on Saturday.",
+              "alternatives": [
+                [
+                  1,
+                  0,
+                  2
+                ]
+              ]
+            }
+          },
+          {
+            "id": "ask",
+            "label": "Ask about his weekend first",
+            "simple": {
+              "chunks": [
+                "你",
+                "周末",
+                "做什么"
+              ],
+              "english": "What do you do on the weekend?"
+            },
+            "response": "He points to a book, then draws a cup in the air. We may have found common ground.",
+            "hint": "Put 周末 between 你 and 做什么.",
+            "rich": {
+              "chunks": [
+                "你",
+                "周末",
+                "做什么"
+              ],
+              "english": "What do you do on the weekend?"
+            }
+          }
+        ],
+        "aside": {
+          "question": "Ask about the stack of books",
+          "answer": "Chen balances them with the expertise of someone who has tried carrying one too many. We both quietly move our tea farther from the edge."
+        },
+        "callback": {
+          "flag": "tea-accepted",
+          "text": "I remember accepting Ms Lin’s invitation. Perhaps I can introduce two people instead of trying to hold two separate plans."
+        },
+        "id": "exchange-1"
+      },
+      {
+        "title": "Something in common",
+        "speaker": "chen",
+        "paragraphs": [
+          "Chen tells me he likes books and tea. I can answer about either.",
+          "I do not need to invent an impressive hobby. A genuine small interest gives us somewhere to begin."
+        ],
+        "line": {
+          "zh": "你喜欢做什么？",
+          "english": "What do you like doing?"
+        },
+        "choices": [
+          {
+            "id": "books",
+            "label": "Talk about reading",
+            "simple": {
+              "chunks": [
+                "我",
+                "喜欢",
+                "看书"
+              ],
+              "english": "I like reading."
+            },
+            "response": "He points to the least battered book in his stack and tells me it is his own. That explains the careful balancing.",
+            "hint": "喜欢 comes before the activity.",
+            "rich": {
+              "chunks": [
+                "我",
+                "很",
+                "喜欢",
+                "看书"
+              ],
+              "english": "I really like reading."
+            },
+            "flag": "books"
+          },
+          {
+            "id": "tea",
+            "label": "Talk about tea",
+            "simple": {
+              "chunks": [
+                "我",
+                "喜欢",
+                "喝茶"
+              ],
+              "english": "I like drinking tea."
+            },
+            "response": "He lifts his mug. There is already evidence for this shared interest.",
+            "hint": "喜欢 comes before the activity.",
+            "rich": {
+              "chunks": [
+                "我",
+                "也",
+                "喜欢",
+                "喝茶"
+              ],
+              "english": "I like drinking tea too."
+            },
+            "flag": "tea"
+          }
+        ],
+        "aside": {
+          "question": "Keep the conversation going",
+          "answer": "A shared interest need not be a grand passion. “I like tea” can be enough to suggest doing something together."
+        },
+        "id": "exchange-2"
+      },
+      {
+        "title": "Make the invitation",
+        "speaker": "chen",
+        "paragraphs": [
+          "The kettle clicks off. Chen has not reached for his books yet.",
+          "I think of the courtyard teahouse: close enough to describe, quiet enough to practise a conversation. I decide to invite him."
+        ],
+        "line": {
+          "zh": "我们去哪里？",
+          "english": "Where shall we go?"
+        },
+        "choices": [
+          {
+            "id": "invite",
+            "label": "Suggest going for tea together",
+            "simple": {
+              "chunks": [
+                "我们",
+                "一起",
+                "去喝茶",
+                "吧"
+              ],
+              "english": "Let’s go for tea together."
+            },
+            "response": "Chen agrees. Now there are two people imagining the same sort of afternoon.",
+            "hint": "吧 softens a suggestion; keep it at the end.",
+            "rich": {
+              "chunks": [
+                "我们",
+                "一起",
+                "去喝茶",
+                "吧"
+              ],
+              "english": "Let’s go for tea together."
+            }
+          }
+        ],
+        "aside": {
+          "question": "Describe the teahouse simply",
+          "answer": "I can point to its location on a map when we finish. Knowing the exact address matters more than pretending I can already explain every turn."
+        },
+        "id": "exchange-3"
+      },
+      {
+        "title": "Two calendars, two days",
+        "speaker": "chen",
+        "paragraphs": [
+          "Chen says a day and types it into his phone. I glance at the screen: Sunday.",
+          "I meant Saturday. If I only smile now, one of us will be drinking a very lonely cup of tea. I need to correct the day without making the mix-up a big event."
+        ],
+        "line": {
+          "zh": "星期天，对吗？",
+          "english": "Sunday, right?"
+        },
+        "choices": [
+          {
+            "id": "correct",
+            "label": "Clarify: Saturday, not Sunday",
+            "simple": {
+              "chunks": [
+                "是",
+                "星期六",
+                "不是",
+                "星期天"
+              ],
+              "english": "It is Saturday, not Sunday."
+            },
+            "response": "He checks the screen, laughs, and changes the day. We have caught the problem while it is still small.",
+            "hint": "Use 是 X, 不是 Y to contrast the two days.",
+            "rich": {
+              "chunks": [
+                "是",
+                "星期六",
+                "不是",
+                "星期天"
+              ],
+              "english": "It is Saturday, not Sunday."
+            }
+          }
+        ],
+        "aside": {
+          "question": "Compare the two day names",
+          "answer": "星期六 means Saturday. 星期天 means Sunday. I listen for the last part rather than treating the whole phrase as one long blur."
+        },
+        "id": "exchange-4"
+      },
+      {
+        "title": "A time we can keep",
+        "speaker": "chen",
+        "paragraphs": [
+          "Chen draws a little sun above the corrected date. Afternoon works better for him.",
+          "I can suggest two or three. Both are real options; the useful part is making one clear."
+        ],
+        "line": {
+          "zh": "下午几点？",
+          "english": "What time in the afternoon?"
+        },
+        "choices": [
+          {
+            "id": "two",
+            "label": "Suggest two in the afternoon",
+            "simple": {
+              "chunks": [
+                "我们",
+                "下午两点",
+                "见",
+                "吧"
+              ],
+              "english": "Let’s meet at two in the afternoon."
+            },
+            "response": "He enters two o’clock. I enter it too. Matching calendars are a surprisingly satisfying sight.",
+            "hint": "The time goes before 见.",
+            "rich": {
+              "chunks": [
+                "我们",
+                "下午两点",
+                "见",
+                "吧"
+              ],
+              "english": "Let’s meet at two in the afternoon."
+            },
+            "flag": "two"
+          },
+          {
+            "id": "three",
+            "label": "Suggest three in the afternoon",
+            "simple": {
+              "chunks": [
+                "我们",
+                "下午三点",
+                "见",
+                "吧"
+              ],
+              "english": "Let’s meet at three in the afternoon."
+            },
+            "response": "He enters three o’clock. There is time for lunch first, and nobody has to guess.",
+            "hint": "The time goes before 见.",
+            "rich": {
+              "chunks": [
+                "我们",
+                "下午三点",
+                "见",
+                "吧"
+              ],
+              "english": "Let’s meet at three in the afternoon."
+            },
+            "flag": "three"
+          }
+        ],
+        "aside": {
+          "question": "Check the map together",
+          "answer": "I show him the teahouse near my courtyard. He saves the pin. We have a place as well as a day and a time."
+        },
+        "id": "exchange-5"
+      },
+      {
+        "title": "Someone else might come",
+        "speaker": "chen",
+        "paragraphs": [
+          "I mention a neighbour who knows the teahouse owner. Chen asks whether she will be there too.",
+          "I can suggest inviting her, or explain that I do not know yet. I should not promise someone else’s afternoon for them."
+        ],
+        "line": {
+          "zh": "你的朋友也来吗？",
+          "english": "Is your friend coming too?"
+        },
+        "choices": [
+          {
+            "id": "invite-lin",
+            "label": "Suggest asking her",
+            "simple": {
+              "chunks": [
+                "我们",
+                "可以",
+                "问问",
+                "她"
+              ],
+              "english": "We can ask her."
+            },
+            "response": "Chen nods. Asking leaves Ms Lin free to decide for herself.",
+            "hint": "可以 goes before 问问.",
+            "rich": {
+              "chunks": [
+                "我们",
+                "可以",
+                "问问",
+                "她"
+              ],
+              "english": "We can ask her."
+            },
+            "flag": "ask-lin"
+          },
+          {
+            "id": "unsure",
+            "label": "Say that I do not know yet",
+            "simple": {
+              "chunks": [
+                "我",
+                "还",
+                "不知道"
+              ],
+              "english": "I do not know yet."
+            },
+            "response": "That answer turns out to be enough. Chen has no objection to a plan with one detail still open.",
+            "hint": "还 belongs before 不知道.",
+            "rich": {
+              "chunks": [
+                "我",
+                "还",
+                "不知道"
+              ],
+              "english": "I do not know yet."
+            },
+            "flag": "unsure"
+          }
+        ],
+        "aside": {
+          "question": "Remember Ms Lin’s invitation",
+          "answer": "Whether I accepted or postponed it, the conversation gave me a way to ask again. A polite answer need not close a door."
+        },
+        "id": "exchange-6"
+      },
+      {
+        "title": "Say it once more",
+        "speaker": "chen",
+        "paragraphs": [
+          "The bell interrupts us. Chen collects his books, and I reach for my mug.",
+          "Before we leave, I want to confirm the day we corrected. Saying it once more now is easier than explaining an empty table later."
+        ],
+        "line": {
+          "zh": "好，周末见！",
+          "english": "Okay, see you this weekend!"
+        },
+        "choices": [
+          {
+            "id": "confirm",
+            "label": "Confirm Saturday before leaving",
+            "simple": {
+              "chunks": [
+                "好",
+                "我们",
+                "星期六",
+                "见"
+              ],
+              "english": "Okay, see you on Saturday.",
+              "alternatives": [
+                [
+                  0,
+                  2,
+                  1,
+                  3
+                ]
+              ]
+            },
+            "response": "Chen points at the corrected calendar entry. We both laugh about Sunday, which is now free to remain Sunday.",
+            "hint": "Put the meeting time before 见.",
+            "rich": {
+              "chunks": [
+                "好",
+                "我们",
+                "星期六",
+                "见"
+              ],
+              "english": "Okay, see you on Saturday.",
+              "alternatives": [
+                [
+                  0,
+                  2,
+                  1,
+                  3
+                ]
+              ]
+            }
+          }
+        ],
+        "aside": {
+          "question": "Recall what changed",
+          "answer": "I found a shared interest, suggested an activity, and corrected a misunderstanding. The correction helped the conversation rather than spoiling it."
+        },
+        "id": "exchange-7"
+      }
+    ]
+  },
+  {
+    "id": "teahouse",
+    "version": 1,
+    "title": "One more cup",
+    "subtitle": "Introduce two people. Let the afternoon change.",
+    "place": "Teahouse",
+    "newWords": [
+      "同事",
+      "下雨",
+      "等一下"
+    ],
+    "ending": "Rain taps the roof while I finish my tea. I have introduced people, asked questions, and changed a plan. My Chinese is still small. The afternoon has made room for it.",
+    "scenes": [
+      {
+        "title": "The right table",
+        "speaker": "zhou",
+        "paragraphs": [
+          "I step into the neighbourhood teahouse. Ms Zhou, the owner, catches a cup before it rolls off a tray. She looks pleased that I have not arrived during the catching part.",
+          "Chen is nearby, looking for a table. Ms Lin is already here after shopping. Whether invited or simply passing through, she has found the best chair."
+        ],
+        "line": {
+          "zh": "你好！请坐。喝什么茶？",
+          "english": "Hello! Please sit. What tea would you like?"
+        },
+        "choices": [
+          {
+            "id": "hot",
+            "label": "Ask for hot tea",
+            "simple": {
+              "chunks": [
+                "我",
+                "想喝",
+                "热茶"
+              ],
+              "english": "I would like hot tea."
+            },
+            "response": "Ms Zhou sets out a warm cup. Steam curls upward while I take off my bag.",
+            "hint": "想喝 goes before the drink.",
+            "rich": {
+              "chunks": [
+                "我",
+                "想要",
+                "一杯",
+                "热茶"
+              ],
+              "english": "I would like a cup of hot tea."
+            }
+          },
+          {
+            "id": "water",
+            "label": "Ask for water first",
+            "simple": {
+              "chunks": [
+                "请",
+                "给我",
+                "一杯水"
+              ],
+              "english": "Please give me a glass of water."
+            },
+            "response": "Water arrives without fuss. I have time to settle in before choosing tea.",
+            "hint": "请 softens the request; the drink follows 给我.",
+            "rich": {
+              "chunks": [
+                "请",
+                "给我",
+                "一杯水"
+              ],
+              "english": "Please give me a glass of water."
+            }
+          }
+        ],
+        "aside": {
+          "question": "Notice the room",
+          "answer": "Bamboo chairs scrape gently across the floor. Nobody seems in a hurry to make a cup of tea into a schedule."
+        },
+        "callback": {
+          "flag": "three",
+          "text": "My phone shows the three-o’clock meeting I arranged with Chen. This time our calendars and our feet agree."
+        },
+        "id": "exchange-1"
+      },
+      {
+        "title": "Put two names together",
+        "speaker": "lin",
+        "paragraphs": [
+          "Ms Lin waves Chen toward our table. He looks at me, waiting for an introduction.",
+          "I know who everyone is. They do not. This is a small piece of useful Chinese I can supply."
+        ],
+        "line": {
+          "zh": "这是谁？",
+          "english": "Who is this?"
+        },
+        "choices": [
+          {
+            "id": "colleague",
+            "label": "Introduce Chen as my colleague",
+            "simple": {
+              "chunks": [
+                "这是",
+                "我的",
+                "同事"
+              ],
+              "english": "This is my colleague."
+            },
+            "response": "Chen introduces himself. Ms Lin makes room for his chair, and I no longer have to carry both sides of the conversation.",
+            "hint": "我的 describes 同事; keep those together.",
+            "rich": {
+              "chunks": [
+                "这是",
+                "我的同事",
+                "他",
+                "姓陈"
+              ],
+              "english": "This is my colleague; his surname is Chen."
+            }
+          }
+        ],
+        "aside": {
+          "question": "Introduce Ms Lin too",
+          "answer": "I gesture toward Ms Lin and say her name. Chen greets her. Names and a welcoming gesture do some of the work while I learn the longer sentence."
+        },
+        "id": "exchange-2"
+      },
+      {
+        "title": "The question comes back",
+        "speaker": "chen",
+        "paragraphs": [
+          "Chen asks Ms Lin about the book beside her cup. She tells him it belongs to the owner.",
+          "The question turns back toward me. I can ask Chen about reading, or include Ms Lin by asking about tea."
+        ],
+        "line": {
+          "zh": "你想聊什么？",
+          "english": "What would you like to talk about?"
+        },
+        "choices": [
+          {
+            "id": "reading",
+            "label": "Ask Chen about reading",
+            "simple": {
+              "chunks": [
+                "你",
+                "喜欢",
+                "看书",
+                "吗"
+              ],
+              "english": "Do you like reading?"
+            },
+            "response": "Chen leans forward. He describes a book in short sentences, checking that I can follow.",
+            "hint": "Put 吗 at the end.",
+            "rich": {
+              "chunks": [
+                "你",
+                "喜欢",
+                "看书",
+                "吗"
+              ],
+              "english": "Do you like reading?"
+            },
+            "flag": "asked-books"
+          },
+          {
+            "id": "tea",
+            "label": "Ask Ms Lin about tea",
+            "simple": {
+              "chunks": [
+                "你",
+                "喜欢",
+                "喝茶",
+                "吗"
+              ],
+              "english": "Do you like drinking tea?"
+            },
+            "response": "Ms Lin lifts her cup with a theatrical seriousness. Even before the answer, I understand her position.",
+            "hint": "Put 吗 at the end.",
+            "rich": {
+              "chunks": [
+                "你",
+                "喜欢",
+                "喝茶",
+                "吗"
+              ],
+              "english": "Do you like drinking tea?"
+            },
+            "flag": "asked-tea"
+          }
+        ],
+        "aside": {
+          "question": "Ask a follow-up about the book",
+          "answer": "Chen shows me the cover rather than reciting a complicated summary. I can ask someone to show me something as well as explain it."
+        },
+        "callback": {
+          "flag": "books",
+          "text": "I remember telling Chen that I like reading. He has brought a book to show me; our last conversation has travelled with him."
+        },
+        "id": "exchange-3"
+      },
+      {
+        "title": "One detail about my life",
+        "speaker": "lin",
+        "paragraphs": [
+          "Ms Lin points to Chen’s book and remembers the books in my bag outside the courtyard.",
+          "She asks about school. I can explain what I teach or where I work. There is no need to list every class."
+        ],
+        "line": {
+          "zh": "你教什么？",
+          "english": "What do you teach?"
+        },
+        "choices": [
+          {
+            "id": "english",
+            "label": "Say that I teach English",
+            "simple": {
+              "chunks": [
+                "我",
+                "教",
+                "英语"
+              ],
+              "english": "I teach English."
+            },
+            "response": "Chen nods, then slowly tells Ms Lin that we work together. A familiar fact becomes a conversation among three people.",
+            "hint": "教 is the verb; 英语 is what I teach.",
+            "rich": {
+              "chunks": [
+                "我",
+                "在学校",
+                "教",
+                "英语"
+              ],
+              "english": "I teach English at school."
+            }
+          },
+          {
+            "id": "teacher",
+            "label": "Explain that I am a teacher",
+            "simple": {
+              "chunks": [
+                "我",
+                "是",
+                "英语老师"
+              ],
+              "english": "I am an English teacher."
+            },
+            "response": "Ms Lin remembers the courtyard conversation. This time I say the sentence without searching quite so hard.",
+            "hint": "是 links 我 with the occupation.",
+            "rich": {
+              "chunks": [
+                "我",
+                "是",
+                "英语老师"
+              ],
+              "english": "I am an English teacher."
+            }
+          }
+        ],
+        "aside": {
+          "question": "Notice the callback",
+          "answer": "I have used the same idea in two places now. The person listening has changed; the sentence still works."
+        },
+        "id": "exchange-4"
+      },
+      {
+        "title": "A word under the rain",
+        "speaker": "zhou",
+        "paragraphs": [
+          "A sudden pattering begins on the roof. Ms Zhou looks outside and says something while moving a chair away from the doorway.",
+          "I hear the first words, then rain swallows the rest. This is exactly what a request for repetition is for."
+        ],
+        "line": {
+          "zh": "下雨了。等一下再走吧。",
+          "english": "It is raining. Wait a little before leaving."
+        },
+        "choices": [
+          {
+            "id": "repeat",
+            "label": "Ask Ms Zhou to repeat that",
+            "simple": {
+              "chunks": [
+                "请",
+                "再说",
+                "一遍"
+              ],
+              "english": "Please say it again."
+            },
+            "response": "She points to the rain, then the dry chairs, and repeats herself. The room supplies clues as well as words.",
+            "hint": "再 goes before 说; 一遍 finishes the request.",
+            "rich": {
+              "chunks": [
+                "请",
+                "再说",
+                "一遍"
+              ],
+              "english": "Please say it again."
+            }
+          },
+          {
+            "id": "slow",
+            "label": "Ask her to speak more slowly",
+            "simple": {
+              "chunks": [
+                "请",
+                "说",
+                "慢一点"
+              ],
+              "english": "Please speak a little more slowly."
+            },
+            "response": "She repeats it more slowly. I catch both the weather and her practical suggestion.",
+            "hint": "慢一点 follows 说.",
+            "rich": {
+              "chunks": [
+                "请",
+                "说",
+                "慢一点"
+              ],
+              "english": "Please speak a little more slowly."
+            }
+          }
+        ],
+        "aside": {
+          "question": "Look outside",
+          "answer": "The courtyard stones are darkening. Waiting here would be comfortable; leaving would mean finding an umbrella."
+        },
+        "id": "exchange-5"
+      },
+      {
+        "title": "Change the plan",
+        "speaker": "chen",
+        "paragraphs": [
+          "Chen looks at the rain, then at the nearly empty teapot. We had thought about a walk. The weather has another suggestion.",
+          "I can propose waiting here or asking for an umbrella. Both keep the afternoon moving, in different ways."
+        ],
+        "line": {
+          "zh": "我们现在走吗？",
+          "english": "Shall we leave now?"
+        },
+        "choices": [
+          {
+            "id": "wait",
+            "label": "Suggest waiting here a little",
+            "simple": {
+              "chunks": [
+                "我们",
+                "在这里",
+                "等一下",
+                "吧"
+              ],
+              "english": "Let’s wait here a little."
+            },
+            "response": "Ms Zhou refills the pot. The walk becomes a longer conversation, which was most of the point anyway.",
+            "hint": "Place 在这里 before 等一下.",
+            "rich": {
+              "chunks": [
+                "我们",
+                "在这里",
+                "等一下",
+                "吧"
+              ],
+              "english": "Let’s wait here a little."
+            },
+            "flag": "wait"
+          },
+          {
+            "id": "umbrella",
+            "label": "Suggest borrowing an umbrella",
+            "simple": {
+              "chunks": [
+                "我们",
+                "借一把伞",
+                "再走",
+                "吧"
+              ],
+              "english": "Let’s borrow an umbrella before leaving."
+            },
+            "response": "Ms Zhou points to a spare umbrella. We agree to return it; the next visit now has a small purpose.",
+            "hint": "再走 comes after borrowing the umbrella.",
+            "rich": {
+              "chunks": [
+                "我们",
+                "借一把伞",
+                "再走",
+                "吧"
+              ],
+              "english": "Let’s borrow an umbrella before leaving."
+            },
+            "flag": "umbrella"
+          }
+        ],
+        "aside": {
+          "question": "Consider what matters",
+          "answer": "The afternoon does not need to follow the original plan to go well. I need language for changing it together."
+        },
+        "id": "exchange-6"
+      },
+      {
+        "title": "Leave the next conversation open",
+        "speaker": "zhou",
+        "paragraphs": [
+          "Eventually the rain softens. I have my bag, Chen has his book, and Ms Lin has somehow acquired another spring onion.",
+          "I want to thank Ms Zhou and leave warmly. I do not need a perfect final speech. I need something I can say again next time."
+        ],
+        "line": {
+          "zh": "下次再来！",
+          "english": "Come again next time!"
+        },
+        "choices": [
+          {
+            "id": "thanks",
+            "label": "Thank her and say goodbye",
+            "simple": {
+              "chunks": [
+                "谢谢",
+                "我们",
+                "下次",
+                "再见"
+              ],
+              "english": "Thank you; see you next time."
+            },
+            "response": "Ms Zhou waves from the doorway. The next greeting already feels a little easier.",
+            "hint": "下次 sets the time for 再见.",
+            "rich": {
+              "chunks": [
+                "谢谢",
+                "我们",
+                "下次",
+                "再见"
+              ],
+              "english": "Thank you; see you next time."
+            }
+          },
+          {
+            "id": "again",
+            "label": "Suggest tea together again",
+            "simple": {
+              "chunks": [
+                "我们",
+                "下次",
+                "一起喝茶",
+                "吧"
+              ],
+              "english": "Let’s have tea together next time."
+            },
+            "response": "Ms Lin raises one finger as if putting it straight into her calendar. Chen laughs and checks which day she means.",
+            "hint": "Keep 吧 at the end of the suggestion.",
+            "rich": {
+              "chunks": [
+                "我们",
+                "下次",
+                "一起喝茶",
+                "吧"
+              ],
+              "english": "Let’s have tea together next time."
+            }
+          }
+        ],
+        "aside": {
+          "question": "Recall the afternoon",
+          "answer": "I introduced a colleague, asked about an interest, explained my work, and asked for repetition. Familiar pieces made a new conversation."
+        },
+        "id": "exchange-7"
+      }
+    ]
+  }
+]
