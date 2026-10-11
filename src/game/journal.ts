@@ -106,7 +106,7 @@ export function applyAction(j: Journal,ep: Episode,w: World,action: Action): Jou
     if(moved.step===ep.scenes.length){
       const first=next.events[`complete:${ep.id}`]===undefined
       completion(next,ep,w);if(check&&!moved.memoryEligible.includes(check.fact))add(next.facts,check.fact);r.first??=structuredClone(moved);r.completed=structuredClone(moved)
-      if(first)moved.notice+=(moved.notice?' · ':'')+'Friendship +2 with each participant · Belonging milestone earned'
+      if(first)moved.notice+=(moved.notice?' · ':'')+`Friendship +2 with each participant · ${w.milestones[ep.milestone].title}`
     }
   }
   unlock(next,w);next.revision++;return next
