@@ -1,0 +1,297 @@
+{
+  "id": "neighbour",
+  "version": 4,
+  "title": "The neighbour who remembers me",
+  "subtitle": "A greeting becomes a small invitation.",
+  "place": "Courtyard",
+  "newWords": [
+    "邻居",
+    "英语",
+    "喝茶"
+  ],
+  "ending": "I leave for school with a Saturday invitation and a way to ask for help. Ms Lin knows my name now. The next greeting will be easier.",
+  "scenes": [
+    {
+      "id": "conversation-1",
+      "title": "Someone knows my face",
+      "speaker": "lin",
+      "paragraphs": [
+        "I step into the courtyard before school. My bag catches the door; Ms Lin, the neighbour I have nodded to all week, smiles at my noisy entrance. Today she waits for more than a nod."
+      ],
+      "line": {
+        "zh": "你好！你也住这里吗？",
+        "english": "Hello! Do you live here too?"
+      },
+      "kind": "choice",
+      "clue": "Answer her question about where you live.",
+      "choices": [
+        {
+          "id": "reply",
+          "label": "Answer her question about where you live.",
+          "simple": {
+            "chunks": [
+              "对",
+              "我",
+              "也住",
+              "这里"
+            ],
+            "english": "Yes, I live here too."
+          },
+          "rich": {
+            "chunks": [
+              "对",
+              "我",
+              "也住",
+              "这里"
+            ],
+            "english": "Yes, I live here too."
+          },
+          "hint": "Listen again and look for the part that answers the question.",
+          "response": "",
+          "responseLine": {
+            "zh": "我也住这里。很高兴认识你！",
+            "english": "I live here too. Nice to meet you!"
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "correct",
+          "correct": true,
+          "simple": "对我也住这里",
+          "rich": "对我也住这里"
+        },
+        {
+          "id": "wrong-1",
+          "simple": "我在这里喝茶。",
+          "rich": "我在这里喝茶。",
+          "feedback": "She is asking where you live, rather than where you drink tea."
+        },
+        {
+          "id": "wrong-2",
+          "simple": "你是我的老师。",
+          "rich": "你是我的老师。",
+          "feedback": "Look for 住: she is asking about living here."
+        }
+      ],
+      "aside": {
+        "question": "Recall this moment",
+        "answer": "I step into the courtyard before school. My bag catches the door; Ms Lin, the neighbour I have nodded to all week, smiles at my noisy entrance. Today she waits for more than a nod."
+      }
+    },
+    {
+      "id": "conversation-2",
+      "title": "The books give me away",
+      "speaker": "lin",
+      "paragraphs": [
+        "I introduce myself as David. Ms Lin repeats my name carefully, then notices the books in my bag. One clear sentence about my work will do."
+      ],
+      "line": {
+        "zh": "大卫，你在学校教什么？",
+        "english": "David, what do you teach at school?"
+      },
+      "kind": "choice",
+      "clue": "Tell her which subject you teach.",
+      "choices": [
+        {
+          "id": "reply",
+          "label": "Tell her which subject you teach.",
+          "simple": {
+            "chunks": [
+              "我",
+              "在学校",
+              "教",
+              "英语"
+            ],
+            "english": "I teach English at school."
+          },
+          "rich": {
+            "chunks": [
+              "我",
+              "在学校",
+              "教",
+              "英语"
+            ],
+            "english": "I teach English at school."
+          },
+          "hint": "Listen again and look for the part that answers the question.",
+          "response": "",
+          "responseLine": {
+            "zh": "英语！你是英语老师。",
+            "english": "English! You are an English teacher."
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "correct",
+          "correct": true,
+          "simple": "我在学校教英语",
+          "rich": "我在学校教英语"
+        },
+        {
+          "id": "wrong-1",
+          "simple": "我在学校学中文。",
+          "rich": "我在学校学中文。",
+          "feedback": "学 means to study; listen for 教 in her question."
+        },
+        {
+          "id": "wrong-2",
+          "simple": "我星期六有空。",
+          "rich": "我星期六有空。",
+          "feedback": "That answers when you are free. She is asking about your work."
+        }
+      ],
+      "aside": {
+        "question": "Recall this moment",
+        "answer": "I introduce myself as David. Ms Lin repeats my name carefully, then notices the books in my bag. One clear sentence about my work will do."
+      }
+    },
+    {
+      "id": "conversation-3",
+      "title": "An invitation across the courtyard",
+      "speaker": "lin",
+      "paragraphs": [
+        "Across the courtyard, Ms Zhou sets cups on a table. Ms Lin waves, then takes out her calendar. I would like to accept her invitation; first I need to catch which day she means."
+      ],
+      "line": {
+        "zh": "你星期六有空吗？我们一起喝茶吧。",
+        "english": "Are you free on Saturday? Let’s have tea together."
+      },
+      "kind": "choice",
+      "clue": "Listen for the day she suggests, then accept for that day.",
+      "choices": [
+        {
+          "id": "reply",
+          "label": "Listen for the day she suggests, then accept for that day.",
+          "simple": {
+            "chunks": [
+              "好",
+              "我",
+              "星期六",
+              "有空"
+            ],
+            "english": "Okay, I am free on Saturday."
+          },
+          "rich": {
+            "chunks": [
+              "好",
+              "我",
+              "星期六",
+              "有空"
+            ],
+            "english": "Okay, I am free on Saturday."
+          },
+          "hint": "Listen for the day she suggests, then accept for that day.",
+          "response": "",
+          "responseLine": {
+            "zh": "好，星期六见！我喜欢喝茶。",
+            "english": "Great, see you on Saturday! I enjoy drinking tea."
+          },
+          "flag": "tea-accepted"
+        }
+      ],
+      "options": [
+        {
+          "id": "correct",
+          "correct": true,
+          "simple": "好我星期六有空",
+          "rich": "好我星期六有空"
+        },
+        {
+          "id": "wrong-1",
+          "simple": "好，我星期天有空。",
+          "rich": "好，我星期天有空。",
+          "feedback": "Listen again for the day."
+        },
+        {
+          "id": "wrong-2",
+          "simple": "好，我星期五有空。",
+          "rich": "好，我星期五有空。",
+          "feedback": "Listen again for the day."
+        }
+      ],
+      "aside": {
+        "question": "Recall this moment",
+        "answer": "Across the courtyard, Ms Zhou sets cups on a table. Ms Lin waves, then takes out her calendar. I would like to accept her invitation; first I need to catch which day she means."
+      },
+      "promptMode": "listen",
+      "learnFacts": [
+        "lin-tea"
+      ]
+    },
+    {
+      "id": "conversation-4",
+      "title": "One more thing before school",
+      "speaker": "lin",
+      "paragraphs": [
+        "Ms Lin adds a question just as a scooter passes. I catch “Chinese,” but not enough to answer confidently. I can ask for help and still keep this conversation going."
+      ],
+      "line": {
+        "zh": "你每天都学中文吗？",
+        "english": "Do you study Chinese every day?"
+      },
+      "kind": "build",
+      "clue": "Say you did not understand, then politely ask her to repeat.",
+      "choices": [
+        {
+          "id": "reply",
+          "label": "Say you did not understand, then politely ask her to repeat.",
+          "simple": {
+            "chunks": [
+              "我",
+              "没听懂",
+              "请",
+              "再",
+              "说",
+              "一遍"
+            ],
+            "english": "I did not understand. Please say it again.",
+            "distractors": [
+              "昨天",
+              "吗"
+            ]
+          },
+          "rich": {
+            "chunks": [
+              "我",
+              "没听懂",
+              "请",
+              "再",
+              "说",
+              "一遍"
+            ],
+            "english": "I did not understand. Please say it again.",
+            "distractors": [
+              "昨天",
+              "吗"
+            ]
+          },
+          "hint": "Start with 我没听懂. 请 introduces the request; 再 goes before 说.",
+          "response": "",
+          "responseLine": {
+            "zh": "好。你每天都学中文吗？",
+            "english": "Of course. Do you study Chinese every day?"
+          }
+        }
+      ],
+      "aside": {
+        "question": "Recall this moment",
+        "answer": "Ms Lin adds a question just as a scooter passes. I catch “Chinese,” but not enough to answer confidently. I can ask for help and still keep this conversation going."
+      }
+    }
+  ],
+  "order": 1,
+  "ifid": "AEF60201-1C96-4CF3-A614-34A800F69ECE",
+  "location": "courtyard",
+  "mapLabel": "Talk to Ms Lin",
+  "participants": [
+    "lin"
+  ],
+  "milestone": "known-name",
+  "vocabularyRefs": [
+    "邻居",
+    "英语",
+    "喝茶"
+  ]
+}

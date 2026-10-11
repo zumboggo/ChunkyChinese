@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
-import source from '../../stories/chengdu/episodes.json'
+import source from './catalog.json'
 import { accepts, freshAttempt, transition, validAttempt, storageKey, validMessage, selectCoverage, flags, shuffled, bank } from './model'
 import type { Episode, Attempt } from './model'
-const episodes = source as Episode[]
+const episodes = source as unknown as Episode[]
 const coverage = { percent: 0, answerPercent: 0, unknown: ['我'], variant: 'simple' as const, supported: true }
 function choose(ep: Episode, a: Attempt, id: string) { void id; a = transition(ep, a, { type: 'showAll' }); if(ep.scenes[a.step].promptMode === 'listen') a = transition(ep,a,{type:'heard'}); return ep.scenes[a.step].kind === 'choice' ? transition(ep, a, { type: 'answer', choiceId: 'correct' }) : a }
 function solve(ep: Episode, a: Attempt) {
@@ -95,8 +95,8 @@ describe('Chengdu authored episodes', () => {
       a=transition(ep,a,{type:'next'})
       expect(a.results[0].independent).toBe(false)
       const answer=ep.scenes[3].choices[0].simple
-      expect(bank(answer)).toHaveLength(8)
-      expect(accepts(answer,[0,1,2,3,4,6])).toBe(false)
+      expect(bank(answer)).toHaveLength(answer.chunks.length+answer.distractors!.length)
+      expect(accepts(answer,[...answer.chunks.slice(0,-1).map((_,i)=>i),answer.chunks.length])).toBe(false)
     }
   })
   it('listening requires heard audio or transcript support, persists support, and resets it', () => {

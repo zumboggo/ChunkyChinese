@@ -1,0 +1,330 @@
+{
+  "id": "weekend",
+  "version": 4,
+  "title": "A weekend plan, almost",
+  "subtitle": "Find a shared interest. Agree on the same day.",
+  "place": "School gate",
+  "newWords": [
+    "周末",
+    "有空",
+    "星期六"
+  ],
+  "ending": "Our calendars finally agree: Saturday, two in the afternoon. I found something in common and caught a small misunderstanding before it became an empty table.",
+  "scenes": [
+    {
+      "id": "conversation-1",
+      "title": "The kettle conference",
+      "speaker": "chen",
+      "paragraphs": [
+        "At school, I reach the kettle at the same time as Chen, a colleague with round glasses and a precarious stack of books. I remember Ms Lin’s invitation for Saturday. Perhaps these two plans can become one."
+      ],
+      "line": {
+        "zh": "你周末有空吗？",
+        "english": "Are you free this weekend?"
+      },
+      "kind": "choice",
+      "clue": "Tell Chen you are free on Saturday.",
+      "choices": [
+        {
+          "id": "reply",
+          "label": "Tell Chen you are free on Saturday.",
+          "simple": {
+            "chunks": [
+              "我",
+              "星期六",
+              "有空"
+            ],
+            "english": "I am free on Saturday."
+          },
+          "rich": {
+            "chunks": [
+              "我",
+              "星期六",
+              "有空"
+            ],
+            "english": "I am free on Saturday."
+          },
+          "hint": "Listen again and look for the part that answers the question.",
+          "response": "",
+          "responseLine": {
+            "zh": "太好了！我也有空。",
+            "english": "Great! I am free too."
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "correct",
+          "correct": true,
+          "simple": "我星期六有空",
+          "rich": "我星期六有空"
+        },
+        {
+          "id": "wrong-1",
+          "simple": "我在学校教英语。",
+          "rich": "我在学校教英语。",
+          "feedback": "He is asking about availability, not your job."
+        },
+        {
+          "id": "wrong-2",
+          "simple": "我昨天去了学校。",
+          "rich": "我昨天去了学校。",
+          "feedback": "昨天 refers to yesterday; listen for 周末."
+        }
+      ],
+      "aside": {
+        "question": "Recall this moment",
+        "answer": "At school, I reach the kettle at the same time as Chen, a colleague with round glasses and a precarious stack of books. I remember Ms Lin’s invitation for Saturday. Perhaps these two plans can become one."
+      }
+    },
+    {
+      "id": "conversation-2",
+      "title": "Something in common",
+      "speaker": "chen",
+      "paragraphs": [
+        "Chen sets down the books and tells me how he likes to relax. We may have something in common. I listen for his favourite activity before replying."
+      ],
+      "line": {
+        "zh": "我喜欢喝茶。你呢？",
+        "english": "I like drinking tea. What about you?"
+      },
+      "kind": "choice",
+      "clue": "Listen for his interest, then say you share it.",
+      "choices": [
+        {
+          "id": "reply",
+          "label": "Listen for his interest, then say you share it.",
+          "simple": {
+            "chunks": [
+              "我",
+              "也",
+              "喜欢",
+              "喝茶"
+            ],
+            "english": "I like drinking tea too."
+          },
+          "rich": {
+            "chunks": [
+              "我",
+              "也",
+              "喜欢",
+              "喝茶"
+            ],
+            "english": "I like drinking tea too."
+          },
+          "hint": "Listen for his interest, then say you share it.",
+          "response": "",
+          "responseLine": {
+            "zh": "那我们一起去喝茶吧！我也喜欢看书。",
+            "english": "Then let’s have tea together! I also enjoy reading."
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "correct",
+          "correct": true,
+          "simple": "我也喜欢喝茶",
+          "rich": "我也喜欢喝茶"
+        },
+        {
+          "id": "wrong-1",
+          "simple": "我也喜欢看书。",
+          "rich": "我也喜欢看书。",
+          "feedback": "Listen again for the activity."
+        },
+        {
+          "id": "wrong-2",
+          "simple": "我也喜欢跑步。",
+          "rich": "我也喜欢跑步。",
+          "feedback": "Listen again for the activity."
+        }
+      ],
+      "aside": {
+        "question": "Recall this moment",
+        "answer": "Chen sets down the books and tells me how he likes to relax. We may have something in common. I listen for his favourite activity before replying."
+      },
+      "promptMode": "listen",
+      "learnFacts": [
+        "chen-books"
+      ]
+    },
+    {
+      "id": "conversation-3",
+      "title": "Two calendars, two days",
+      "speaker": "chen",
+      "paragraphs": [
+        "I show Chen the teahouse on a map. He types a day into his phone: Sunday. I meant Saturday. One of us will have a very lonely cup of tea if I only smile now."
+      ],
+      "line": {
+        "zh": "星期天，对吗？",
+        "english": "Sunday, right?"
+      },
+      "kind": "choice",
+      "clue": "Correct the day: Saturday, not Sunday.",
+      "choices": [
+        {
+          "id": "reply",
+          "label": "Correct the day: Saturday, not Sunday.",
+          "simple": {
+            "chunks": [
+              "是",
+              "星期六",
+              "不是",
+              "星期天"
+            ],
+            "english": "It is Saturday, not Sunday."
+          },
+          "rich": {
+            "chunks": [
+              "是",
+              "星期六",
+              "不是",
+              "星期天"
+            ],
+            "english": "It is Saturday, not Sunday."
+          },
+          "hint": "Listen again and look for the part that answers the question.",
+          "response": "",
+          "responseLine": {
+            "zh": "哦，星期六！下午两点，可以吗？",
+            "english": "Oh, Saturday! Is two in the afternoon okay?"
+          }
+        }
+      ],
+      "options": [
+        {
+          "id": "correct",
+          "correct": true,
+          "simple": "是星期六不是星期天",
+          "rich": "是星期六不是星期天"
+        },
+        {
+          "id": "wrong-1",
+          "simple": "对，星期天见。",
+          "rich": "对，星期天见。",
+          "feedback": "That agrees to Sunday. Check the day on his screen."
+        },
+        {
+          "id": "wrong-2",
+          "simple": "星期六我没有空。",
+          "rich": "星期六我没有空。",
+          "feedback": "That says you are busy on Saturday, which is your planned day."
+        }
+      ],
+      "aside": {
+        "question": "Recall this moment",
+        "answer": "I show Chen the teahouse on a map. He types a day into his phone: Sunday. I meant Saturday. One of us will have a very lonely cup of tea if I only smile now."
+      }
+    },
+    {
+      "id": "conversation-4",
+      "title": "Say it once more",
+      "speaker": "chen",
+      "paragraphs": [
+        "Two o’clock works. We save the same map pin, and Chen corrects his calendar. The bell rings before I put away my phone. One final sentence can hold the whole plan together."
+      ],
+      "line": {
+        "zh": "好，我们什么时候见？",
+        "english": "Okay, when shall we meet?"
+      },
+      "kind": "build",
+      "clue": "Confirm that you will meet on Saturday at two in the afternoon.",
+      "choices": [
+        {
+          "id": "reply",
+          "label": "Confirm that you will meet on Saturday at two in the afternoon.",
+          "simple": {
+            "chunks": [
+              "我们",
+              "星期六",
+              "下午",
+              "两点",
+              "见",
+              "吧"
+            ],
+            "english": "Let’s meet on Saturday at two in the afternoon.",
+            "distractors": [
+              "星期天",
+              "上午"
+            ],
+            "alternatives": [
+              [
+                1,
+                2,
+                3,
+                0,
+                4,
+                5
+              ],
+              [
+                1,
+                0,
+                2,
+                3,
+                4,
+                5
+              ]
+            ]
+          },
+          "rich": {
+            "chunks": [
+              "我们",
+              "星期六",
+              "下午",
+              "两点",
+              "见",
+              "吧"
+            ],
+            "english": "Let’s meet on Saturday at two in the afternoon.",
+            "distractors": [
+              "星期天",
+              "上午"
+            ],
+            "alternatives": [
+              [
+                1,
+                2,
+                3,
+                0,
+                4,
+                5
+              ],
+              [
+                1,
+                0,
+                2,
+                3,
+                4,
+                5
+              ]
+            ]
+          },
+          "hint": "Put the day before 下午两点, then 见. 吧 finishes the suggestion.",
+          "response": "",
+          "responseLine": {
+            "zh": "好！星期六下午两点见！",
+            "english": "Great! See you Saturday at two in the afternoon!"
+          }
+        }
+      ],
+      "aside": {
+        "question": "Recall this moment",
+        "answer": "Two o’clock works. We save the same map pin, and Chen corrects his calendar. The bell rings before I put away my phone. One final sentence can hold the whole plan together."
+      }
+    }
+  ],
+  "order": 2,
+  "ifid": "DAEF50D7-BFA9-4FA4-80B6-FB94FFDEBE1E",
+  "location": "school",
+  "mapLabel": "Meet Chen",
+  "participants": [
+    "chen"
+  ],
+  "milestone": "colleague-plan",
+  "vocabularyRefs": [
+    "周末",
+    "有空",
+    "星期六"
+  ]
+}

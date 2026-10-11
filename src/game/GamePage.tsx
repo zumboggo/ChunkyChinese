@@ -1,45 +1,32 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import type { HotkeySettings, VocabWord } from '../types'
 import catalog from './catalog.json'
-import { bank, shuffled, flags, freshAttempt, selectCoverage, storageKey, transition, validAttempt, validMessage } from './model'
-import type { Attempt, Episode, Preferences, Action } from './model'
+import worldSource from './world.json'
+import { applyAction, changePreferences, emptyJournal, friendshipLevel, journalKey, readJournal, recordKey, startEpisode, totalXP, writeJournal } from './journal'
+import type { Journal } from './journal'
+import { bank, flags, shuffled, selectCoverage, validMessage } from './model'
+import type { Attempt, Episode, World, Action } from './model'
 import './game.css'
 
-const episodes = catalog as Episode[]
-const base = `${import.meta.env.BASE_URL}game/v3/`
+const episodes = catalog as unknown as Episode[]
+const base = import.meta.env.BASE_URL
+const world = worldSource as World
 const GAME_CACHE = 'chunky-game-v1'
-function readPreferences(identity: string): Preferences {
-  try { const value = JSON.parse(localStorage.getItem(`chunky-game:preferences:${encodeURIComponent(identity)}`) ?? '{}'); return { pinyin: value.pinyin !== false, clues: value.clues !== false } } catch { return { pinyin: true, clues: true } }
-}
-function readAttempt(identity: string, ep: Episode, suffix = ''): Attempt | undefined {
-  const raw = localStorage.getItem(storageKey(identity, ep) + suffix)
-  if (!raw) return undefined
-  const value: unknown = JSON.parse(raw)
-  if (!validAttempt(ep, value)) throw new Error('Saved game data is incompatible. It has not been changed.')
-  return value
-}
-function loadLibrary(identity: string) {
-  const saved: Record<string, Attempt> = {}, completed: Record<string, Attempt> = {}
-  try {
-    for (const ep of episodes) {
-      const a = readAttempt(identity, ep), done = readAttempt(identity, ep, ':complete')
-      if (a) saved[ep.id] = a
-      if (done) completed[ep.id] = done
-    }
-    return { saved, completed, error: '' }
-  } catch (e) { return { saved, completed, error: e instanceof Error ? e.message : 'Local game saves are unavailable.' } }
-}
+function load(identity: string) { try { return { journal: readJournal(localStorage,identity,episodes,world), error:'' } } catch(e) { return {journal:emptyJournal(),error:e instanceof Error?e.message:'Local progress unavailable.'} } }
 export default function GamePage({ identity, words, hotkeys }: { identity: string; words: VocabWord[]; hotkeys: HotkeySettings }) {
-  const [preferences, setPreferences] = useState(() => readPreferences(identity))
-  const [initial] = useState(() => loadLibrary(identity))
+  const [initial] = useState(() => load(identity))
+  const [progress, setProgress] = useState(initial.journal)
+  const journal = useRef(initial.journal)
+  const preferences = progress.preferences
+  const saved = Object.fromEntries(episodes.flatMap(ep => { const a=progress.records[recordKey(ep)]?.current;return a?[[ep.id,a]]:[] }))
+  const completed = Object.fromEntries(episodes.map(ep => [ep.id, Boolean(progress.events[`complete:${ep.id}`])]))
   const profiles = useMemo(() => Object.fromEntries(episodes.map(ep => [ep.id, selectCoverage(ep, words)])), [words])
   const [selected, setSelected] = useState<Episode | null>(null)
   const [playing, setPlaying] = useState(false)
   const [attempt, setAttempt] = useState<Attempt | undefined>()
+  const [settingsBusy,setSettingsBusy]=useState(false)
   const [error, setError] = useState(initial.error)
   const [offline, setOffline] = useState('')
-  const [saved, setSaved] = useState<Record<string, Attempt>>(initial.saved)
-  const [completed, setCompleted] = useState<Record<string, Attempt>>(initial.completed)
   const frame = useRef<HTMLIFrameElement>(null)
   const audio = useRef<HTMLAudioElement | null>(null)
   const current = useRef<Attempt | undefined>(undefined)
@@ -68,7 +55,7 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
           const url = `${base}${path}`
           if (await cache.match(url)) return
           const response = await fetch(url)
-          if (!response.ok || (path.endsWith('.m4a') && !(response.headers.get('content-type') ?? '').startsWith('audio/'))) throw new Error(path)
+          if (!response.ok || response.status === 206 || (path.endsWith('.m4a') && !(response.headers.get('content-type') ?? '').startsWith('audio/'))) throw new Error(path)
           await cache.put(url, response)
         }))
         if (!cancelled) setOffline(results.some(r => r.status === 'rejected') ? 'Some files could not be downloaded. Reopen online to finish offline preparation.' : 'Episode downloaded · available offline on this device')
@@ -77,11 +64,19 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
     return () => { cancelled = true }
   }, [playing, selected])
 
+  async function persist(next: Journal, previous = journal.current) {
+    const save = () => { writeJournal(localStorage,identity,previous,next);journal.current=next;setProgress(next) }
+    if(navigator.locks)await navigator.locks.request(journalKey(identity),save)
+    else save()
+  }
+  function playback(speaker: string | null) {
+    frame.current?.contentWindow?.postMessage({protocol:'chunky-game-v1',channel,type:'playback',speaker,attemptId:current.current?.attemptId,step:current.current?.step},location.origin)
+  }
   function postState(state = current.current) {
     if (!state) return
     const scene = selected?.scenes[state.step]
     const answer = scene?.choices.find(c => c.id === state.choiceId)?.[state.variant]
-    frame.current?.contentWindow?.postMessage({ protocol: 'chunky-game-v1', channel, type: 'state', state, order: shuffled(scene?.kind === 'choice' ? scene.options?.length ?? 0 : answer ? bank(answer).length : 0, `${state.attemptId}:${state.step}`),
+    frame.current?.contentWindow?.postMessage({ protocol: 'chunky-game-v1', channel, type: 'state', state, progress: { xp: totalXP(journal.current), friendships: journal.current.friendships, facts: journal.current.facts, milestones: journal.current.milestones, unlocked: journal.current.unlocked, events: journal.current.events }, order: shuffled(scene?.kind === 'choice' ? scene.options?.length ?? 0 : answer ? bank(answer).length : 0, `${state.attemptId}:${state.step}`),
       hotkeys: [hotkeys.choiceA, hotkeys.choiceB, hotkeys.choiceC, hotkeys.choiceD, hotkeys.choiceE, hotkeys.choiceF], playKey: hotkeys.playPause }, location.origin)
   }
   function leave() {
@@ -92,30 +87,14 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
   }
   useEffect(() => {
     if (!playing || !selected) return
-    function commitAction(action: Action) {
-      const prev = current.current
-      if (!prev) return
-      const next = transition(selected!, prev, action)
-      if (next === prev) { postState(prev); return }
-      try {
-        const stored = readAttempt(identity, selected!)
-        if (stored && (stored.attemptId !== prev.attemptId || stored.revision > prev.revision)) {
-          setError('Progress changed in another tab. Return to Game and reload the page to continue safely.'); postState(prev); return
-        }
-        if (action?.type === 'pinyin' || action?.type === 'clues') {
-          const value = { pinyin: next.pinyin, clues: next.clues }
-          localStorage.setItem(`chunky-game:preferences:${encodeURIComponent(identity)}`, JSON.stringify(value)); setPreferences(value)
-        }
-        localStorage.setItem(storageKey(identity, selected!), JSON.stringify(next))
-        if (next.step === selected!.scenes.length) {
-          const key = storageKey(identity, selected!)
-          if (!localStorage.getItem(`${key}:first`)) localStorage.setItem(`${key}:first`, JSON.stringify(next))
-          localStorage.setItem(`${key}:complete`, JSON.stringify(next))
-          setCompleted(c => ({ ...c, [selected!.id]: next }))
-        }
-      } catch { setError('Your latest action could not be saved. Free some device storage, then try that action again.'); postState(prev); return }
-      audio.current?.pause()
-      current.current = next; setAttempt(next); setSaved(s => ({ ...s, [selected!.id]: next })); postState(next)
+    async function commitAction(action: Action) {
+      const prev=current.current
+      if(!prev)return
+      const before=journal.current,next=applyAction(before,selected!,world,action)
+      if(next===before){postState(prev);return}
+      try { await persist(next,before) } catch(e) {setError(e instanceof Error?e.message:'Your action could not be saved. Please retry.');postState(prev);return}
+      audio.current?.pause();playback(null)
+      current.current=next.records[recordKey(selected!)]?.current;setAttempt(current.current);postState()
     }
     function receive(event: MessageEvent) {
       if (!validMessage(event, frame.current?.contentWindow ?? null, location.origin, channel)) return
@@ -123,16 +102,25 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
       if (m.type === 'ready') { postState(); return }
       if (m.type === 'exit') { leave(); return }
       if (m.type === 'audio') {
-        if (typeof m.audio !== 'string' || !selected!.resources?.includes(m.audio) || !m.audio.startsWith('audio/')) return
+        if (typeof m.audio !== 'string' || !selected!.resources?.includes(m.audio) || !m.audio.startsWith('game/audio/')) return
         audio.current?.pause()
         const sound = new Audio(`${base}${m.audio}`); audio.current = sound
         const started = current.current
+        const scene=started&&selected!.scenes[started.step]
+        const bonus=started?.bonusId?world.bonuses[started.bonusId]:undefined
+        const check=selected!.memoryCheck
+        const npcSpeaker = m.role==='npc' ? (bonus && bonus.line.audio===m.audio ? bonus.character : scene && (scene.line.audio===m.audio || scene.choices.some(c=>c.responseLine?.audio===m.audio)) ? scene.speaker : started?.step===selected!.scenes.length && check && [check.question.audio,check.introduction.audio].includes(m.audio) ? check.speaker : null) : null
         const isPrompt = started && selected!.scenes[started.step]?.promptMode === 'listen' && selected!.scenes[started.step].line.audio === m.audio
-        const stillCurrent = () => audio.current === sound && current.current?.attemptId === started?.attemptId && current.current?.step === started?.step
-        sound.onended = () => { if (isPrompt && stillCurrent()) commitAction({ type: 'heard' }) }
+        const stillCurrent = () => audio.current === sound && current.current?.attemptId === started?.attemptId && current.current?.step === started?.step && current.current?.bonusId === started?.bonusId
+        sound.onplaying=()=>{if(stillCurrent())playback(npcSpeaker)}
+        sound.onpause=()=>{if(audio.current===sound)playback(null)}
+        sound.onended = () => { if(stillCurrent()){playback(null);if(isPrompt)void commitAction({ type: 'heard' })} }
+        let failed=false
         const unavailable = () => {
-          if (!stillCurrent()) return
-          if (isPrompt) commitAction({ type: 'transcript' })
+          if (failed || !stillCurrent()) return
+          failed=true
+          playback(null)
+          if (isPrompt) void commitAction({ type: 'transcript' })
           setError(isPrompt ? 'This question’s audio is unavailable. The transcript is available for supported play.' : 'This audio clip is unavailable. You can continue using the text.')
         }
         sound.onerror = unavailable
@@ -145,7 +133,7 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
       }
       if (m.type !== 'action' || !current.current) return
       if (m.revision !== current.current.revision || m.action?.type === 'heard') { postState(); return }
-      commitAction(m.action)
+      void commitAction(m.action)
     }
     window.addEventListener('message', receive)
     return () => window.removeEventListener('message', receive)
@@ -153,20 +141,18 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playing, selected, identity, channel, hotkeys])
 
-  function launch(ep: Episode, replay = false) {
-    setError('')
-    setOffline('Preparing this episode for offline play…')
+  async function launch(ep: Episode, replay = false) {
+    setError('');setOffline('Preparing this episode for offline play…')
     try {
-      const previous = readAttempt(identity, ep)
-      const callbacks = episodes.filter(e => e.id !== ep.id).flatMap(e => flags(e, readAttempt(identity, e, ':complete')))
-      const a = !replay && previous ? { ...previous, ...preferences } : freshAttempt(ep, profiles[ep.id], callbacks, preferences)
-      localStorage.setItem(storageKey(identity, ep), JSON.stringify(a))
-      setWindowed(false); current.current = a; setAttempt(a); setSelected(ep); setChannel(crypto.randomUUID()); setPlaying(true); setSaved(s => ({ ...s, [ep.id]: a }))
-    } catch (e) { setError(e instanceof Error ? e.message : 'Could not start a saved game.') }
+      const previous=journal.current,next=startEpisode(previous,ep,profiles[ep.id],replay,episodes.flatMap(other=>flags(other,previous.records[recordKey(other)]?.completed)))
+      await persist(next,previous)
+      const a=next.records[recordKey(ep)].current!
+      setWindowed(false);current.current=a;setAttempt(a);setSelected(ep);setChannel(crypto.randomUUID());setPlaying(true)
+    } catch(e) {setError(e instanceof Error?e.message:'Could not start this episode.')}
   }
 
-  return <section className={`game-page ${playing ? 'game-playing' : ''} ${playing && !windowed ? 'game-expanded' : ''}`} ref={library} style={{ '--game-background': `url("${base}courtyard.webp")` } as CSSProperties} aria-label="Game">
-    <header className="game-heading"><div><p className="game-kicker">SMALL ADVENTURES · CHENGDU</p><h1>{playing ? selected?.title : 'A little more at home'}</h1></div>
+  return <section className={`game-page ${playing ? 'game-playing' : ''} ${playing && !windowed ? 'game-expanded' : ''}`} ref={library} style={{ '--game-background': `url("${base}${world.locations[episodes[0].location].background}")` } as CSSProperties} aria-label="Game">
+    <header className="game-heading"><div><p className="game-kicker">SMALL ADVENTURES · CHENGDU</p><h1>{playing ? selected?.title : 'Become a familiar face'}</h1></div>
       {playing && <div className="game-toolbar"><button onClick={leave}>← Game library</button><button onClick={() => {
         if (document.fullscreenElement === library.current) { void document.exitFullscreen().catch(() => {}); setWindowed(true) }
         else { setWindowed(w => !w); if (windowed) void library.current?.requestFullscreen?.().catch(() => {}) }
@@ -176,16 +162,19 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
     {error && <p className="game-notice" role="alert">{error}</p>}
     {playing && selected && attempt ? <>
       <p className="game-save-status">Saved on this device · {offline}</p>
-      <iframe key={`${selected.id}:${channel}`} ref={frame} title={`${selected.title} — playable Twine episode`} src={`${base}${selected.id}.html#channel=${channel}`} onLoad={() => { postState(); frame.current?.contentWindow?.focus() }} />
+      <iframe key={`${selected.id}:${channel}`} ref={frame} title={`${selected.title} — playable Twine episode`} src={`${base}${selected.document}#channel=${channel}`} onLoad={() => { postState(); frame.current?.contentWindow?.focus() }} />
     </> : <>
-      <details className="game-settings"><summary>Game settings</summary><p>These defaults apply to all episodes on this device for this account. You can also change them during a conversation.</p>{(['pinyin', 'clues'] as const).map(key => <label key={key}><input type="checkbox" checked={preferences[key]} onChange={event => {
+      <details className="game-settings"><summary>Game settings</summary><p>These defaults apply to all episodes on this device for this account. You can also change them during a conversation.</p>{(['pinyin', 'clues', 'motion'] as const).map(key => <label key={key}><input type="checkbox" disabled={settingsBusy} checked={preferences[key]} onChange={event => {
         const next = { ...preferences, [key]: event.target.checked }
-        try { localStorage.setItem(`chunky-game:preferences:${encodeURIComponent(identity)}`, JSON.stringify(next)); setPreferences(next) } catch { setError('Could not save your Game settings on this device.') }
-      }} /> {key === 'pinyin' ? 'Show pinyin by default' : 'Show English goal clues by default'}</label>)}</details>
-      <p className="game-small">Revised lessons start fresh; earlier episode progress is preserved separately.</p>
+        setSettingsBusy(true);setProgress(p=>({...p,preferences:next}))
+        void persist(changePreferences(journal.current,next)).catch(e=>{setProgress(journal.current);setError(e instanceof Error?e.message:'Could not save settings.')}).finally(()=>setSettingsBusy(false))
+      }} /> {key === 'pinyin' ? 'Show pinyin by default' : key === 'clues' ? 'Show English goal clues by default' : 'Animate portraits and scene fades (respects reduced motion)'}</label>)}<p role="status">{settingsBusy?'Saving settings…':'Settings saved on this device.'}</p></details>
+      {progress.legacyNotice && <p className="game-small">Earlier completions have been credited. Updated episodes start fresh; unfinished earlier attempts remain saved separately.</p>}
+      <section className="game-journey" aria-label="Neighbourhood progress"><h2>{world.goal.title}</h2><p><strong>{totalXP(progress)} Language XP</strong> · {progress.milestones.filter(id=>world.goal.milestones.includes(id)).length} / {world.goal.milestones.length} Belonging milestones</p>{world.goal.milestones.map(id=><p key={id}>{progress.milestones.includes(id)?'✓':'○'} {world.milestones[id].title}</p>)}{progress.milestones.includes(world.goal.id)&&<strong>✦ Familiar face earned</strong>}</section>
+      <details className="game-notebook"><summary>People I know</summary>{Object.entries(world.characters).map(([id,c])=><article key={id}><h3>{c.name} · {progress.friendships[id]??0} Friendship</h3><p>{friendshipLevel(progress.friendships[id]??0)} · {c.role}</p>{progress.facts.filter(f=>world.facts[f]?.character===id).map(f=><p key={f}><span lang="zh-CN">{world.facts[f].line.zh}</span> — {world.facts[f].line.english}</p>)}{!progress.facts.some(f=>world.facts[f]?.character===id)&&<p>Personal details will appear here as you encounter them.</p>}{Object.entries(world.bonuses).filter(([bid,b])=>b.character===id&&progress.unlocked.includes(bid)).map(([bid,b])=><p key={bid}>Unlocked: {b.title} · revisit an episode with {c.name} to enjoy this moment.</p>)}</article>)}</details>
       <div className="game-world"><nav className="game-map" aria-label="People in the neighbourhood">
-        {episodes.map((ep, i) => <button key={ep.id} disabled={!storageOkay} onClick={() => setSelected(ep)}>{['Talk to Ms Lin', 'Meet Chen', 'Visit Ms Zhou'][i]}<small>{ep.place}</small></button>)}
-      </nav><div><span>Three conversations. One neighbourhood.</span><p>Meet someone. Find the words. See where the afternoon goes.</p></div></div>
+        {episodes.map(ep => <button key={ep.id} disabled={!storageOkay} onClick={() => setSelected(ep)}>{ep.mapLabel}<small>{ep.place}</small></button>)}
+      </nav><div><span>Small conversations. One neighbourhood.</span><p>Meet someone. Find the words. See where the afternoon goes.</p></div></div>
       <p className="game-intro">Play as yourself, an English teacher learning Chinese in Chengdu. Read and listen to three conversations, choosing the reply that fits. Then build a longer sentence from a mixed word bank. There is time to think, ask again, and try another way.</p>
       <p className="game-small">Fictional neighbours and places · Mandarin dialogue · no music · local progress only</p>
       <div className="game-episodes">{episodes.map((ep, index) => {
@@ -209,6 +198,7 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
           })}</div></details>}
           <p className="game-small">These are fictional people. Your choices are private and saved only in this browser. Reading familiarity is a starting point, not a speaking score.</p>
           {saved[selected.id]?.step !== selected.scenes.length && <button disabled={!storageOkay} onClick={() => launch(selected)}>{saved[selected.id] ? 'Continue conversation' : 'Enter the neighbourhood'}</button>}
+          {saved[selected.id]?.step === selected.scenes.length && <button disabled={!storageOkay} onClick={() => launch(selected)}>Return to the ending and friendship moments</button>}
           {saved[selected.id] && <button disabled={!storageOkay} onClick={() => launch(selected, true)}>{saved[selected.id].step === selected.scenes.length ? 'Replay from the beginning' : 'Restart this episode'}</button>}
           <button onClick={() => setSelected(null)}>Close preview</button>
         </section>

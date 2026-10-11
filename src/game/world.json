@@ -1,0 +1,141 @@
+{
+  "characters": {
+    "lin": {
+      "name": "Ms Lin",
+      "role": "my neighbour",
+      "portrait": {
+        "asset": "game/art/50f24f287923-characters.webp",
+        "column": 0,
+        "columns": 3
+      },
+      "greeting": {
+        "zh": "大卫，又见面了！",
+        "english": "David, nice to see you again!",
+        "pinyin": "dà wèi ， yòu jiàn miàn le ！",
+        "audio": "game/audio/339b8a93e23c5b5e542e.m4a"
+      }
+    },
+    "chen": {
+      "name": "Chen",
+      "role": "my colleague",
+      "portrait": {
+        "asset": "game/art/50f24f287923-characters.webp",
+        "column": 1,
+        "columns": 3
+      },
+      "greeting": {
+        "zh": "大卫，今天怎么样？",
+        "english": "David, how is your day?",
+        "pinyin": "dà wèi ， jīn tiān zěn me yàng ？",
+        "audio": "game/audio/9dcbacf0b665790d1e32.m4a"
+      }
+    },
+    "zhou": {
+      "name": "Ms Zhou",
+      "role": "teahouse owner",
+      "portrait": {
+        "asset": "game/art/50f24f287923-characters.webp",
+        "column": 2,
+        "columns": 3
+      },
+      "greeting": {
+        "zh": "大卫，欢迎回来！",
+        "english": "David, welcome back!",
+        "pinyin": "dà wèi ， huān yíng huí lái ！",
+        "audio": "game/audio/794111b5f0e6be913a54.m4a"
+      }
+    }
+  },
+  "locations": {
+    "courtyard": {
+      "name": "Courtyard",
+      "background": "game/art/d10672c8e469-courtyard.webp"
+    },
+    "school": {
+      "name": "School",
+      "background": "game/art/d10672c8e469-courtyard.webp"
+    },
+    "teahouse": {
+      "name": "Teahouse",
+      "background": "game/art/d10672c8e469-courtyard.webp"
+    }
+  },
+  "facts": {
+    "lin-tea": {
+      "character": "lin",
+      "line": {
+        "zh": "我喜欢喝茶。",
+        "english": "Ms Lin enjoys tea.",
+        "pinyin": "wǒ xǐ huan hē chá 。",
+        "audio": "game/audio/ca69e7e18d1fe59bd676.m4a"
+      }
+    },
+    "chen-books": {
+      "character": "chen",
+      "line": {
+        "zh": "我也喜欢看书。",
+        "english": "Chen also enjoys reading.",
+        "pinyin": "wǒ yě xǐ huan kàn shū 。",
+        "audio": "game/audio/e6bbe0e8d9019f92cce3.m4a"
+      }
+    }
+  },
+  "bonuses": {
+    "lin-friendly": {
+      "character": "lin",
+      "threshold": 4,
+      "title": "The escaped spring onion",
+      "narration": "Ms Lin points at her shopping bag. The spring onion is making another escape. She catches it and offers me a seat.",
+      "line": {
+        "zh": "坐一下吧。我们聊聊天。",
+        "english": "Sit for a while. Let’s have a chat.",
+        "pinyin": "zuò yí xià ba 。 wǒ men liáo liáo tiān 。",
+        "audio": "game/audio/a77f6cff8bd1cad8e284.m4a"
+      }
+    },
+    "chen-friendly": {
+      "character": "chen",
+      "threshold": 4,
+      "title": "A book for next time",
+      "narration": "Chen has remembered that I am learning. He shows me a short book instead of the enormous one at the bottom of his stack.",
+      "line": {
+        "zh": "这本书很有意思。下次给你看。",
+        "english": "This book is interesting. I’ll show you next time.",
+        "pinyin": "zhè běn shū hěn yǒu yì sī 。 xià cì gěi nǐ kàn 。",
+        "audio": "game/audio/875e6385153a86fc475b.m4a"
+      }
+    },
+    "zhou-friendly": {
+      "character": "zhou",
+      "threshold": 4,
+      "title": "My usual chair",
+      "narration": "Ms Zhou moves a chair into the afternoon shade before I ask. Becoming a regular seems to involve someone remembering where I like to sit.",
+      "line": {
+        "zh": "还是坐这里吧。这里很舒服。",
+        "english": "Sit here again. It is comfortable here.",
+        "pinyin": "hái shì zuò zhè lǐ ba 。 zhè lǐ hěn shū fú 。",
+        "audio": "game/audio/f17afedbc6108ab34be5.m4a"
+      }
+    }
+  },
+  "milestones": {
+    "known-name": {
+      "title": "A neighbour knows my name"
+    },
+    "colleague-plan": {
+      "title": "A plan with a colleague"
+    },
+    "familiar-table": {
+      "title": "A familiar table"
+    }
+  },
+  "goal": {
+    "id": "familiar-face",
+    "title": "Familiar face",
+    "milestones": [
+      "known-name",
+      "colleague-plan",
+      "familiar-table"
+    ]
+  }
+}

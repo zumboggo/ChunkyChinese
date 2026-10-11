@@ -1,113 +1,148 @@
-# Small adventures in Chengdu
+# A living Chengdu neighbourhood
 
-Three original, linked personal-learning episodes. The people, courtyard, school,
-and teahouse are fictional. No grades, live AI dialogue, timers, lives, or FSRS
-writes. The narrator is David, an English teacher learning Chinese. Mandarin
-speech uses the installed macOS Tingting synthetic voice (165 words/minute),
-compressed to mono AAC at 32 kbps. There is no music. This is synthetic speech,
-not a native-speaker recording; pronunciation can be revised by replacing a
-versioned clip and rebuilding before release.
+**Become a familiar face** is an ongoing, platonic neighbourhood adventure. David
+plays an English teacher learning Chinese. People and places are fictional.
+All episodes stay selectable. No timers, lives, music, grades, live AI dialogue,
+or flashcard/FSRS changes. Mandarin uses synthetic macOS Tingting speech at
+165 words/minute, compressed to mono AAC at 32 kbps.
 
-## Authoring
+## Add an episode
 
-Edit `episodes.json`, not the generated `.twee` files or compiled HTML. Each
-scene contains a short English transition, NPC dialogue, an English goal clue,
-and a Chinese reaction. Version 3 has exactly three multiple-choice exchanges
-(one correct reply, two contextual distractors), followed by one six-chunk
-sentence-building exchange with two extra chunks. Simple/rich variants currently
-share the same authored language. Each option and reaction has replayable audio. One of the three choice exchanges
-uses `promptMode: "listen"`: its transcript, pinyin and meaning stay hidden until
-success or an explicit transcript request. The host unlocks answers when the prompt
-finishes playing, or when transcript support is requested. Replay does not count as
-support. Missing prompt audio reveals a supported transcript; playback permission
-errors offer retry or transcript. Transcript/heard state is saved and reset per scene.
-Chunk occurrence IDs distinguish repeated words; identical text remains
-interchangeable. Explicit alternatives allow natural word orders. Banks and options
-use an attempt-seeded Fisher–Yates shuffle, stable across repaint and resume.
-
-Version 1 and 2 files and saves remain untouched. Revised lessons use content version 3
-and `public/game/v3/`; they start new attempts rather than interpreting old saved
-progress as the new lesson. There is no old-lesson launcher in the current library.
-Never overwrite released versioned resources when publishing future revisions.
-
-The host chooses a variant from actual vocabulary on launch and stores that
-choice. It checks dialogue-plus-answer and answer-only coverage separately.
-Unknown tokens are shown honestly in supported play. Three declared focus words
-are an authoring budget, not a claim that each learner knows every other word.
-A completed puzzle does not constitute speaking mastery or an FSRS rating.
-
-## Build
-
-Use official **Tweego 2.1.1** from
-https://github.com/tmedwards/tweego/releases/tag/v2.1.1 . Extract the compiler to
-a persistent local tools directory and set `TWEEGO` to its executable. SugarCube
-**2.37.3** is vendored with its upstream license under `vendor/twine/`.
+Author `episodes/<stable-id>.json`; the build discovers every file. Shared cast,
+portrait atlas metadata, locations, facts, bonus conversations, milestones and
+the initial Belonging collection live in `world.json`. A new episode does not
+require editing React navigation, the player or a portrait index.
 
 ```
-TWEEGO=/absolute/path/to/tweego npm run game:build
+npm run game:new -- buying-fruit --title "Buying fruit" --character lin --location courtyard
+FFMPEG=/absolute/path/to/ffmpeg npm run game:audio -- --episode buying-fruit
+TWEEGO=/absolute/path/to/tweego npm run game:build -- --episode buying-fruit
 npm run game:check
-npm test
-npm run build
-npx playwright test tests/game.spec.ts
 ```
 
-Generated Twee, compiled HTML, the host catalog and SHA-256 build manifest are
-committed. CI checks for stale content/assets without requiring the compiler.
-The build rejects invalid chunk sequences, empty audio, excessive focus words,
-and episodes over 3 MB. Ordinary app builds do not generate images or audio.
+The scaffold creates a valid starter lesson, unique story IFID, ID/version,
+library entry/order and milestone. Replace its sample dialogue with the requested
+topic before delivery. It never overwrites an existing episode. Registered
+characters/locations can be selected with flags. Add new people or places to the
+shared world metadata and artwork; no custom player code is needed.
 
-To regenerate authored dialogue on macOS, install FFmpeg and use:
+Each episode has three multiple-choice exchanges (one correct Chinese reply and
+two contextual distractors), exactly one listening-only prompt among them, then a
+5–7 chunk builder with 1–2 unused distractors. Both authored simple/rich variants
+are required; current introductory episodes use identical variants. All paths
+lead through those four exchanges to an ending. English transitions and short
+goal clues scaffold the conversation without giving away listening answers.
+Pinyin and clues default on, with identity-local preferences. Stronger hints,
+meanings, transcript support and worked answers remain available. Shuffle order
+is stable within an attempt and varies on replay. Identical chunk occurrences
+are interchangeable; natural alternative sequences must be explicitly authored.
+
+`promptMode: "listen"` hides transcript, pinyin and meaning until success or
+requested support. The host enables replies after actual prompt playback ends.
+Replay alone is free; transcripts count as support. Missing audio opens supported
+text play. Browser permission errors offer retry or transcript.
+
+Content fields include stable `id`, `ifid`, content `version`, `order`, `location`,
+`mapLabel`, relationship `participants`, `milestone`, `vocabularyRefs`, story text,
+and `scenes`. Vocabulary references document practice targets; actual coverage
+uses the app's tokenizer and recognition categories at launch. Prompts, replies,
+distractors, reactions and optional content are counted; required answers are
+checked separately. Aim for 95% known occurrences and at most three new focus
+words, otherwise show an honest unfamiliar-word preview and supported version.
+
+A scene's `learnFacts` references facts naturally stated in its reaction.
+`memoryCheck` references an encountered fact and supplies stable event ID,
+speaker, question, factual options, repair, and unknown-fact introduction. See
+`teahouse.json` for an example. A free **People I know** notebook records details.
+Facts known when an attempt starts determine memory-test eligibility throughout
+that attempt. A previously unknown fact is introduced without penalty.
+Shared `bonuses` specify character, friendship threshold, title, narration and
+Chinese line. They are optional, unscored ending scenes, outside the four lessons.
+
+## Rewards and saves
+
+React owns transitions, vocabulary, audio and progression. Twine presents content
+and requests actions through a source/origin/channel/revision-validated bridge.
+Its audio requests must match the current episode resource allowlist. It cannot
+award itself points or assert listening completion. No credentials enter Twine.
+
+- **Language XP:** 4 per independent exchange, 2 after errors or explicit support,
+  capped at 16 per episode. Default pinyin, goal clues and replay cost nothing.
+  Replays improve only the prior episode best. XP is practice, not mastery.
+- **Friendship:** first completion gives +2 to each declared participant once.
+  Levels are New acquaintance 0, Familiar 2, Friendly 4, Trusted 8. Memory checks
+  give +1 for remembering or −1 for forgetting, once per stable event. An immediate
+  repair restores the actual lost point, including correctly handling a zero floor.
+  Grammar errors, ordinary comprehension mistakes and help never lower friendship.
+  Friendly unlocks stay permanent after setbacks. Keep event IDs stable across
+  versions; never reuse an old ID for a different memory event.
+- **Belonging:** named completion milestones; the first three earn Familiar face.
+  Future episodes add achievements without ending the journey.
+
+`src/game/journal.ts` writes an attempt and its effects atomically to
+`chunky-game:journal:1:<encoded identity>`. It contains current/first/latest
+attempts, best XP, friendships, encountered facts, milestones, unlocked bonuses
+and processed reward IDs. Web Locks and revision comparison prevent stale tabs
+from overwriting newer progress. The App remounts Game on identity changes and
+stops audio. Progress is device-local; browser data removal clears it. Cloud sync
+and existing backup exports do not include it.
+
+Legacy v1/v2/v3 completions migrate once: milestones, one-time participant rewards
+and normalized XP capped at 16 (seven-exchange results are scaled). Migration does
+not invent encountered facts. Old incomplete attempts remain untouched; updated
+lessons start fresh with an explanation. Released assets and earlier sources stay
+in place. Bump content versions for incompatible changes; retain immutable paths.
+
+Portraits bob 2px, moving slightly more during that NPC's actual audio. Response
+previews never animate the NPC; pause/end/error/interruption/navigation stop
+speaking motion. Scene and bonus changes fade for 200ms with input protection
+and focus restoration. Tile taps and settings do not fade. Motion has a saved
+setting; system reduced motion overrides it. Mouth-frame animation is deferred.
+
+## Build and assets
+
+Use **Tweego 2.1.1** and vendored **SugarCube 2.37.3** (`vendor/twine/`, license
+included). Tweego releases: https://github.com/tmedwards/tweego/releases/tag/v2.1.1
 
 ```
 FFMPEG=/absolute/path/to/ffmpeg npm run game:audio
 TWEEGO=/absolute/path/to/tweego npm run game:build
+npm test
+GITHUB_PAGES=true npm run build
+GAME_PRODUCTION_TEST=1 PLAYWRIGHT_BASE_URL=http://127.0.0.1:4173/ChunkyChinese/ npx playwright test tests/game.spec.ts
 ```
 
-The speech service must be available to `say`; sandboxed macOS execution may
-produce empty files. Generation rejects empty output. All branches and both
-variants have pre-generated clips. Update the voice/encoding cache key if these
-settings change. No API keys are needed or embedded.
+Audio generation hashes text/voice settings and reuses unchanged clips, including
+legacy clips. `say` needs access to the installed macOS speech service; sandboxed
+runs may create empty output, which is rejected. Change the audio cache key when
+changing voice/encoding. Ordinary app builds only verify generated outputs.
 
-## Runtime and saves
+Generated files: `generated/*.twee`, `src/game/catalog.json`, `src/game/world.json`,
+`build-manifest.json`, and `public/game/episodes/<id>/v<version>/index.html`.
+Shared audio/art use content-addressed paths under `public/game/audio/` and
+`public/game/art/`. Commit generated files with source. `--episode` compiles one
+changed episode; shared presentation/content changes can require a full build.
+Validation checks references, unique IDs, answer alternatives, listening format,
+memory prerequisites, resource hashes and the 3MB total per-episode download cap.
+Story/art target is under 1MB. Only the opened episode's resources are downloaded
+and cached; nothing is added to startup precaching. Missing art leaves a named
+speaker; missing audio leaves usable text. Partial audio responses are served but
+never incorrectly stored as full clips by the service worker.
 
-React owns the vocabulary snapshot, audio playback, localStorage and transitions.
-Twine supplies compiled passages and the reusable `chengduScene` macro. It sends
-intents, not trusted saved totals. The bridge validates source window, same origin,
-protocol, per-launch channel and expected revision. Audio requests must match
-this episode's asset allowlist. All content is authored; no credentials are sent
-to the iframe.
+Original artwork was generated with ImageGen and downsampled using nearest-neighbour
+resampling to WebP; see `art-prompts.json`. `assets/characters.webp` is a transparent
+384×256 three-character atlas; `assets/courtyard.webp` is 480×320. CSS uses shared
+atlas metadata rather than hardcoded character positions. No Nihao Shanghai or
+Nintendo artwork, prose, maps or source code is included.
 
-Saves use the current auth user ID or `guest`, episode and version. The App keys
-the player by identity, which unmounts it and stops audio on account changes.
-Pinyin and English goal clues default on. Game settings in the library and player
-persist those defaults per identity on this device, including on resume.
-Each exchange and unfinished sentence is persisted. A separate first-completion
-record and latest-completion record survive replay. Game progress is device-local
-and is not included in the existing cloud sync or backup exports. A concurrent
-tab's newer attempt is never overwritten; the second tab asks the learner to
-reload. Clearing browser data clears these local records.
+## Verification
 
-Opened episodes cache their static HTML, shared WebP art and audio in
-`chunky-game-v1`. The service worker handles game HTML before its app-shell
-navigation fallback. Nothing from the game is added to install-time precaching.
-Text remains playable if an image/audio request fails. Cache failures and storage
-failures are visible. Episodes open in a full-window view; native fullscreen is optional. The same
-player remains mounted when switching display modes.
-
-## Art and provenance
-
-Original imagery was generated with the built-in ImageGen tool, then downsampled
-with nearest-neighbour resampling and encoded as WebP. Prompts are recorded in
-`art-prompts.json`. Runtime files: `public/game/v3/courtyard.webp` (480×320) and
-`characters.webp` (384×256, transparent three-character atlas). Decoded art is
-about 984 KiB RGBA. One portrait is shown at a time with a character-name fallback.
-No Nihao Shanghai, Pokémon or Nintendo assets, prose, maps or source code are
-included. Inspiration is limited to everyday conversation quests and retro art.
-
-## Checks
-
-Unit tests traverse each lesson in both language variants, test
-accepted alternatives and duplicate chunks, supported answers, malformed saves,
-identity/version keys, stable shuffles, distractor handling, settings and bridge boundaries. Browser tests exercise complete
-stories, partial reply resume, wrong-answer recovery, mobile layout and offline
-use. Build budgets include every audio branch, not just the happy path.
+Model tests traverse both language variants, alternatives, duplicate chunks,
+listening support, shuffle/resume and malformed messages/saves. Journal tests
+cover one-time rewards, best-XP improvements, memory eligibility, repair/zero-floor,
+permanent unlocks, atomic conflicts, identity boundaries and repeatable migration.
+Browser tests cover all three complete stories, audio and motion, settings,
+keyboard/controller mappings, phone layout, notebook, optional memory/bonus
+scenes, replay and offline reopening. Run a scaffold in an isolated temporary
+project to verify fourth-episode discovery and targeted compilation. Use the
+production startup-size check and verify the actual deployed release.

@@ -5,15 +5,18 @@ export interface Line { zh: string; english: string; pinyin?: string; audio?: st
 export interface Answer { chunks: string[]; distractors?: string[]; distractorPinyin?: string[]; english: string; alternatives?: number[][]; pinyin?: string[]; audio?: string }
 export interface Choice { id: string; label: string; simple: Answer; rich: Answer; hint: string; response: string; responseLine?: Line; flag?: string }
 export interface ReplyOption { id: string; simple: string; rich: string; simplePinyin?: string; richPinyin?: string; simpleAudio?: string; richAudio?: string; correct?: boolean; feedback?: string }
-export interface Preferences { pinyin: boolean; clues: boolean }
-export interface Scene { promptMode?: 'text' | 'listen'; kind?: 'choice' | 'build'; clue?: string; options?: ReplyOption[]; id: string; title: string; speaker: string; paragraphs: string[]; line: Line; choices: Choice[]; aside: { question: string; answer: string }; callback?: { flag: string; text: string } }
-export interface Episode { id: string; version: number; title: string; subtitle: string; place: string; newWords: string[]; ending: string; scenes: Scene[]; resources?: string[]; bytes?: number }
+export interface Preferences { pinyin: boolean; clues: boolean; motion?: boolean }
+export interface Scene { learnFacts?: string[]; promptMode?: 'text' | 'listen'; kind?: 'choice' | 'build'; clue?: string; options?: ReplyOption[]; id: string; title: string; speaker: string; paragraphs: string[]; line: Line; choices: Choice[]; aside: { question: string; answer: string }; callback?: { flag: string; text: string } }
+export interface Character { name: string; role: string; portrait: { asset: string; column: number; columns: number }; greeting: Line }
+export interface MemoryCheck { id: string; fact: string; speaker: string; question: Line; options: { id: string; line: Line; correct?: boolean }[]; repair: Line; introduction: Line }
+export interface World { characters: Record<string, Character>; locations: Record<string, { name: string; background: string }>; facts: Record<string, { character: string; line: Line }>; bonuses: Record<string, { character: string; threshold: number; title: string; narration: string; line: Line }>; milestones: Record<string, { title: string }>; goal: { id: string; title: string; milestones: string[] } }
+export interface Episode { ifid: string; order: number; location: string; mapLabel: string; participants: string[]; milestone: string; vocabularyRefs: string[]; document?: string; world?: World; memoryCheck?: MemoryCheck; id: string; version: number; title: string; subtitle: string; place: string; newWords: string[]; ending: string; scenes: Scene[]; resources?: string[]; bytes?: number }
 export interface Coverage { percent: number; answerPercent: number; unknown: string[]; variant: 'simple' | 'rich'; supported: boolean }
 export interface Result { choiceId: string; independent: boolean; errors: number }
 export interface Attempt {
   episodeId: string; version: number; attemptId: string; revision: number; variant: 'simple' | 'rich'; coverage: Coverage;
   step: number; choiceId: string | null; tiles: number[]; errors: number; hinted: boolean; model: boolean; solved: boolean;
-  transcript: boolean; heard: boolean; paragraph: number; meaning: boolean; pinyin: boolean; clues: boolean; aside: boolean; feedback: string; results: Result[]; callbacks: string[]
+  motion: boolean; bonusId: string | null; memoryEligible: string[]; notice: string; transcript: boolean; heard: boolean; paragraph: number; meaning: boolean; pinyin: boolean; clues: boolean; aside: boolean; feedback: string; results: Result[]; callbacks: string[]
 }
 export type Action = { type: string; index?: number; choiceId?: string }
 
@@ -21,6 +24,9 @@ export function measureCoverage(ep: Episode, words: VocabWord[], variant: 'simpl
   const texts = ep.scenes.map(s => s.line.zh)
   const answers = ep.scenes.flatMap(s => s.choices.map(c => c[variant].chunks.join('')))
   texts.push(...ep.scenes.flatMap(s => [...(s.options ?? []).map(o => o[variant]), ...s.choices.flatMap(c => [c.responseLine?.zh ?? '', ...(c[variant].distractors ?? [])])]))
+  const w=ep.world
+  if(w)texts.push(...ep.participants.flatMap(id=>[w.characters[id].greeting.zh,...Object.values(w.bonuses).filter(b=>b.character===id).map(b=>b.line.zh)]),...ep.scenes.flatMap(s=>(s.learnFacts??[]).map(id=>w.facts[id].line.zh)))
+  if(ep.memoryCheck)texts.push(ep.memoryCheck.question.zh,ep.memoryCheck.repair.zh,ep.memoryCheck.introduction.zh,...ep.memoryCheck.options.map(o=>o.line.zh))
   const inspect = (lines: string[]) => lines.flatMap(t => tokenizeReaderText(t, words).filter(t => t.isChinese))
   const tokens = inspect([...texts, ...answers]), answerTokens = inspect(answers)
   const known = (ts: typeof tokens) => ts.filter(t => readerComprehensionCategory(t.word) === 'known').length
@@ -36,7 +42,7 @@ export function selectCoverage(ep: Episode, words: VocabWord[]): Coverage {
 export function freshAttempt(ep: Episode, coverage: Coverage, callbacks: string[] = [], preferences: Preferences = { pinyin: true, clues: true }): Attempt {
   return { episodeId: ep.id, version: ep.version, attemptId: crypto.randomUUID(), revision: 0, variant: coverage.variant, coverage,
     step: 0, choiceId: ep.scenes[0].kind === 'build' ? ep.scenes[0].choices[0].id : null, tiles: [], errors: 0, hinted: false, model: false, solved: false, paragraph: 0,
-    transcript: false, heard: false, meaning: false, pinyin: preferences.pinyin, clues: preferences.clues, aside: false, feedback: '', results: [], callbacks }
+    motion: preferences.motion !== false, bonusId: null, memoryEligible: [], notice: '', transcript: false, heard: false, meaning: false, pinyin: preferences.pinyin, clues: preferences.clues, aside: false, feedback: '', results: [], callbacks }
 }
 export function selectedChoice(ep: Episode, a: Attempt) { return ep.scenes[a.step]?.choices.find(c => c.id === a.choiceId) }
 export function bank(answer: Answer): string[] { return [...answer.chunks, ...(answer.distractors ?? [])] }
@@ -70,6 +76,7 @@ export function transition(ep: Episode, previous: Attempt, action: Action): Atte
     case 'heard':
       if (scene.promptMode !== 'listen' || a.heard) return previous
       a.heard = true; break
+    case 'motion': a.motion = !a.motion; break
     case 'clues': a.clues = !a.clues; break
     case 'answer': {
       if (scene.promptMode === 'listen' && !a.heard && !a.transcript) return previous
@@ -96,7 +103,7 @@ export function transition(ep: Episode, previous: Attempt, action: Action): Atte
       a.tiles.splice(action.index!, 1); a.feedback = ''; break
     case 'undo': if (a.solved) return previous; a.tiles.pop(); a.feedback = ''; break
     case 'clear': if (a.solved) return previous; a.tiles = []; a.feedback = ''; break
-    case 'hint': if (a.solved) return previous; a.hinted = true; a.feedback = choice?.hint ?? scene.clue ?? ''; break
+    case 'hint': if (a.solved) return previous; if(scene.kind==='build')a.hinted = true; a.feedback = choice?.hint ?? scene.clue ?? ''; break
     case 'model':
       if (!answer || a.solved || a.errors < 2) return previous
       a.model = true; a.hinted = true; a.tiles = answer.chunks.map((_, i) => i); a.feedback = 'Read the worked answer, then Check to use it.'; break
@@ -131,7 +138,8 @@ export function validAttempt(ep: Episode, value: unknown): value is Attempt {
     !Number.isInteger(a.errors) || a.errors < 0 || typeof a.feedback !== 'string' || !a.coverage || a.coverage.variant !== a.variant ||
     !Array.isArray(a.coverage.unknown) || !a.coverage.unknown.every(w => typeof w === 'string') ||
     ![a.coverage.percent,a.coverage.answerPercent].every(n => Number.isFinite(n) && n >= 0 && n <= 100) || typeof a.coverage.supported !== 'boolean' ||
-    ![a.transcript,a.heard,a.hinted,a.model,a.solved,a.meaning,a.pinyin,a.clues,a.aside].every(b => typeof b === 'boolean') || !Number.isInteger(a.paragraph) || a.paragraph < 0) return false
+    ![a.motion,a.transcript,a.heard,a.hinted,a.model,a.solved,a.meaning,a.pinyin,a.clues,a.aside].every(b => typeof b === 'boolean') || !Number.isInteger(a.paragraph) || a.paragraph < 0) return false
+  if (!Array.isArray(a.memoryEligible) || !a.memoryEligible.every(x => typeof x === 'string') || typeof a.notice !== 'string' || (a.bonusId !== null && typeof a.bonusId !== 'string')) return false
   if (!a.results.every((r, i) => r && ep.scenes[i].choices.some(c => c.id === r.choiceId) && typeof r.independent === 'boolean' && Number.isInteger(r.errors) && r.errors >= 0)) return false
   const scene = ep.scenes[a.step]
   if (!scene) return a.choiceId === null && a.tiles.length === 0 && !a.solved

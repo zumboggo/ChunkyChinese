@@ -1,7 +1,7 @@
 import { test, expect, type Page } from '@playwright/test'
 import { readFileSync } from 'node:fs'
-import type { Episode } from '../src/game/model'
-const episodes = JSON.parse(readFileSync(new URL('../stories/chengdu/episodes.json', import.meta.url), 'utf8')) as Episode[]
+import type { Episode, Attempt } from '../src/game/model'
+const episodes = JSON.parse(readFileSync(new URL('../src/game/catalog.json', import.meta.url), 'utf8')) as Episode[]
 async function open(page: Page, index=0) {
   await page.goto('./')
   await page.getByRole('button',{name:'Game',exact:true}).click()
@@ -34,9 +34,9 @@ test('three Chinese choices then a longer builder in every episode; resume, supp
       await f.getByRole('button',{name:'Continue',exact:true}).click()
     }
     await f.getByRole('button',{name:'Show all',exact:true}).click()
-    await expect(f.locator('.chunks button')).toHaveCount(8)
+    await expect(f.locator('.chunks button')).toHaveCount(ep.scenes[3].choices[0].simple.chunks.length+(ep.scenes[3].choices[0].simple.distractors?.length??0))
     const order=await f.locator('.chunks button').evaluateAll(bs=>bs.map(b=>(b as HTMLElement).dataset.key))
-    expect(order).not.toEqual(Array.from({length:8},(_,i)=>`tile-${7-i}`))
+    expect(order).not.toEqual(Array.from({length:order.length},(_,i)=>`tile-${order.length-1-i}`))
     await f.locator('[data-key="tile-0"]').click()
     await page.getByRole('button',{name:'← Game library'}).click()
     await page.locator('.game-card').nth(index).getByRole('button').click()
@@ -51,11 +51,11 @@ test('three Chinese choices then a longer builder in every episode; resume, supp
     await expect(f.getByText('With support',{exact:true})).toHaveCount(index===0?1:0)
     await f.getByRole('button',{name:'Back to Game',exact:true}).click()
   }
-  const records=await page.evaluate(()=>Object.entries(localStorage).filter(([k])=>k.startsWith('chunky-game:')&&k.endsWith(':first')))
-  expect(records).toHaveLength(3)
+  const records=await page.evaluate(()=>Object.values(JSON.parse(localStorage.getItem('chunky-game:journal:1:guest')!).records).map((r:unknown)=>(r as {first?:Attempt}).first))
+  expect(records).toHaveLength(episodes.length)
   await page.locator('.game-card').first().getByRole('button').click()
   await page.getByRole('button',{name:'Replay from the beginning',exact:true}).click()
-  expect(await page.evaluate(()=>Object.entries(localStorage).filter(([k])=>k.startsWith('chunky-game:')&&k.endsWith(':first')))).toEqual(records)
+  expect(await page.evaluate(()=>Object.values(JSON.parse(localStorage.getItem('chunky-game:journal:1:guest')!).records).map((r:unknown)=>(r as {first?:Attempt}).first))).toEqual(records)
 })
 test('scaffolding settings persist across reload, new episodes and resume',async({page})=>{
   let f=await open(page)
@@ -74,6 +74,7 @@ test('scaffolding settings persist across reload, new episodes and resume',async
   await expect(page.getByLabel('Show English goal clues by default')).not.toBeChecked()
   await page.getByLabel('Show pinyin by default').check()
   await page.getByLabel('Show English goal clues by default').check()
+  await expect(page.getByLabel('Show English goal clues by default')).toBeEnabled()
   f=await open(page,1)
   await f.getByRole('button',{name:'Show all',exact:true}).click()
   await expect(f.locator('.goal-clue')).toBeVisible()
@@ -81,10 +82,10 @@ test('scaffolding settings persist across reload, new episodes and resume',async
 })
 test('controller choices, missing artwork, reduced motion and wrong-frame rejection',async({page})=>{
   await page.emulateMedia({reducedMotion:'reduce'})
-  await page.route('**/characters.webp',r=>r.abort())
+  await page.route('**/*characters.webp',r=>r.abort())
   const f=await open(page)
   await expect(f.getByText(/Ms Lin · my neighbour/)).toBeVisible()
-  const key='chunky-game:v1:guest:neighbour:3'
+  const key='chunky-game:journal:1:guest'
   const before=await page.evaluate(k=>localStorage.getItem(k),key)
   await page.evaluate(()=>{const frame=document.querySelector('iframe')!;const channel=new URL(frame.src).hash.split('channel=')[1];window.postMessage({protocol:'chunky-game-v1',channel,type:'action',revision:0,action:{type:'showAll'}},location.origin)})
   expect(await page.evaluate(k=>localStorage.getItem(k),key)).toBe(before)
@@ -108,7 +109,7 @@ test('opened episode and all Mandarin options replay offline',async({page,contex
   await expect(f.locator('.reply-option')).toHaveCount(3)
   const durations=await page.evaluate(async()=>{
     const cache=await caches.open('chunky-game-v1')
-    const urls=(await cache.keys()).filter(r=>r.url.includes('/game/v3/')&&r.url.endsWith('.m4a'))
+    const urls=(await cache.keys()).filter(r=>r.url.includes('/game/audio/')&&r.url.endsWith('.m4a'))
     return Promise.all(urls.map(r=>new Promise<number>((resolve,reject)=>{const a=new Audio(r.url);a.preload='metadata';const timer=setTimeout(()=>reject(new Error('Audio timeout')),10000);a.onloadedmetadata=()=>{clearTimeout(timer);resolve(a.duration)};a.onerror=()=>{clearTimeout(timer);reject(new Error(r.url))}})))
   })
   expect(durations.length).toBeGreaterThan(12)
@@ -129,7 +130,7 @@ test('opened episode and all Mandarin options replay offline',async({page,contex
   await f.locator('[data-key="option-0"]').click()
   await f.getByRole('button',{name:'Continue',exact:true}).click()
   await expect(f.getByRole('heading',{name:ep.scenes[1].title,exact:true})).toBeVisible()
-  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('chunky-game:v1:guest:teahouse:3')!))
+  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('chunky-game:journal:1:guest')!).records['teahouse:4'].current)
   expect(saved.results[0].independent).toBe(false)
   expect(saved.transcript).toBe(false)
   await page.getByRole('button',{name:'← Game library'}).click()
@@ -145,3 +146,85 @@ test('opened episode and all Mandarin options replay offline',async({page,contex
   await expect(f.getByText(line,{exact:true})).toBeVisible()
   await expect(f.locator('[data-key="option-0"]')).toBeEnabled()
  })
+
+async function completeQuick(page:Page,index:number){
+ const ep=episodes[index],f=await open(page,index)
+ for(let i=0;i<4;i++){
+  await f.getByRole('button',{name:'Show all',exact:true}).click()
+  if(ep.scenes[i].promptMode==='listen')await f.getByRole('button',{name:'Show transcript',exact:true}).click()
+  if(i<3)await f.locator('[data-key="option-0"]').click()
+  else{for(let n=0;n<ep.scenes[i].choices[0].simple.chunks.length;n++)await f.locator(`[data-key="tile-${n}"]`).click();await f.getByRole('button',{name:'Check',exact:true}).click()}
+  await f.getByRole('button',{name:i===3?'Finish episode':'Continue',exact:true}).click()
+ }
+ await expect(f.getByRole('heading',{name:'Things I can now say'})).toBeVisible()
+ return f
+}
+test('friendships, notebook, optional memory repair and bonus persist through reload',async({page})=>{
+ test.setTimeout(90000)
+ let f=await completeQuick(page,0)
+ await f.locator('.people-book summary').click();await expect(f.locator('.people-book')).toContainText('Ms Lin enjoys tea.')
+ await completeQuick(page,1)
+ f=await completeQuick(page,2)
+ await expect(f.locator('[data-key="memory-coffee"]')).toBeVisible()
+ await f.locator('[data-key="memory-coffee"]').click()
+ await expect(f.locator('.journey-hud')).toContainText('Ms Lin: 3 Friendship')
+ await expect(f.locator('[data-key="bonus-lin-friendly"]')).toBeVisible()
+ await f.locator('[data-key="repair"]').click()
+ await expect(f.locator('.journey-hud')).toContainText('Ms Lin: 4 Friendship')
+ for(const id of ['lin','chen']){
+  await f.locator(`[data-key="bonus-${id}-friendly"]`).click()
+  await expect(f.locator('[data-key="closeBonus"]')).toBeVisible()
+  await f.locator('[data-key="closeBonus"]').click()
+  await expect(f.getByRole('heading',{name:'Things I can now say'})).toBeVisible()
+ }
+ await page.reload();await page.getByRole('button',{name:'Game',exact:true}).click()
+ await expect(page.getByText('✦ Familiar face earned')).toBeVisible()
+ await page.locator('.game-card').nth(2).getByRole('button').click()
+ await page.getByRole('button',{name:'Return to the ending and friendship moments',exact:true}).click()
+ await expect(f.locator('[data-key="memory-tea"]')).toHaveCount(0)
+ await expect(f.locator('[data-key="repair"]')).toHaveCount(0)
+ await expect(f.locator('[data-key="bonus-lin-friendly"]')).toBeVisible()
+})
+test('portrait follows NPC audio only, stops on interruption, and motion preferences control fades',async({page})=>{
+ const f=await open(page)
+ await f.getByRole('button',{name:'Show all',exact:true}).click()
+ await expect(f.locator('.portrait-crop')).toHaveClass(/alive/)
+ await f.locator('[data-key="hear"]').click()
+ await expect(f.locator('.portrait-crop')).toHaveClass(/speaking/)
+ await f.getByRole('button',{name:'Hear response 1',exact:true}).click()
+ await expect(f.locator('.portrait-crop')).not.toHaveClass(/speaking/)
+ await f.locator('summary').filter({hasText:'Game settings'}).click()
+ await f.getByRole('button',{name:'Motion: on',exact:true}).click()
+ await expect(f.locator('.portrait-crop')).not.toHaveClass(/alive/)
+ await f.getByRole('button',{name:'Motion: off',exact:true}).click()
+ await page.emulateMedia({reducedMotion:'reduce'})
+ await expect(f.locator('.portrait-crop')).not.toHaveClass(/alive/)
+ await f.locator('[data-key="option-0"]').click()
+ await f.getByRole('button',{name:'Continue',exact:true}).click()
+ expect(await f.locator('.chengdu').evaluate(n=>n.getAnimations().length)).toBe(0)
+ await page.emulateMedia({reducedMotion:'no-preference'})
+ await f.getByRole('button',{name:'Show all',exact:true}).click()
+ // Both desktop and phone controllers send the configured numeric key.
+ const key=await f.locator('[data-key="option-0"]').getAttribute('data-shortcut')
+ await page.keyboard.press(key!)
+ await f.getByRole('button',{name:'Continue',exact:true}).click()
+ await expect(f.locator('.chengdu h1')).toBeFocused()
+ await expect(f.locator('.portrait-crop')).toHaveClass(/alive/)
+})
+test('standalone teahouse introduces unknown facts and all shared bonus portraits work',async({page})=>{
+ const f=await completeQuick(page,2)
+ await expect(f.locator('[data-key="memory-tea"]')).toHaveCount(0)
+ await f.locator('.people-book summary').click()
+ await expect(f.locator('.people-book')).toContainText('Ms Lin enjoys tea.')
+ // Fixture represents a later adventure reaching Friendly with the owner.
+ await page.getByRole('button',{name:'← Game library'}).click()
+ await page.evaluate(()=>{const key='chunky-game:journal:1:guest',j=JSON.parse(localStorage.getItem(key)!);j.friendships.zhou=4;j.unlocked.push('zhou-friendly');j.revision++;localStorage.setItem(key,JSON.stringify(j))})
+ await page.reload();await page.getByRole('button',{name:'Game',exact:true}).click()
+ await page.locator('.game-card').nth(2).getByRole('button').click()
+ await page.getByRole('button',{name:'Return to the ending and friendship moments',exact:true}).click()
+ await f.locator('[data-key="bonus-zhou-friendly"]').click()
+ await expect(f.locator('.portrait-crop')).toHaveAttribute('data-speaker','zhou')
+ await expect(f.getByRole('heading',{name:'My usual chair'})).toBeVisible()
+ await f.locator('[data-key="hear"]').click()
+ await expect(f.locator('.portrait-crop')).toHaveClass(/speaking/)
+})

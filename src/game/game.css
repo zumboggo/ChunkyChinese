@@ -4,3 +4,4 @@
 
 .game-world{position:relative}.game-map{position:absolute;top:20px;left:16px;right:16px;display:flex;justify-content:space-between;gap:8px}.game-map button{font-size:12px;padding:8px 10px;background:#244a38ed;color:#fff9df;border:1px solid #e2c589;margin:0;box-shadow:0 3px 0 #243f2b}.game-map small{display:block;font-size:10px;opacity:.8;margin-top:2px}.game-preview{scroll-margin-top:20px}@media(max-width:460px){.game-map{left:10px;right:10px;gap:5px}.game-map button{font-size:10px;padding:6px}.game-map small{font-size:9px}}
 .game-settings{margin:1rem 0;padding:1rem;border:1px solid #9ba991;border-radius:12px}.game-settings label{display:flex;align-items:center;gap:10px;min-height:44px}.game-settings input{width:20px;height:20px}
+.game-journey,.game-notebook{padding:16px;margin:16px 0;border:1px solid #9ba991;border-radius:12px;background:#f8f4e8}.game-journey p{margin:8px 0}.game-notebook article{border-top:1px solid #d1d7c5;padding:12px 0}

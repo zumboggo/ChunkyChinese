@@ -27,7 +27,8 @@
     "verify:reader-pack": "node scripts/verify-reader-pack.mjs",
     "game:audio": "node scripts/build-game.mjs --audio",
     "game:build": "node scripts/build-game.mjs",
-    "game:check": "node scripts/build-game.mjs --check"
+    "game:check": "node scripts/build-game.mjs --check",
+    "game:new": "node scripts/new-game-episode.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.2",
