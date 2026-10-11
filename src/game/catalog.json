@@ -1,7 +1,7 @@
 [
   {
     "id": "neighbour",
-    "version": 2,
+    "version": 3,
     "title": "The neighbour who remembers me",
     "subtitle": "A greeting becomes a small invitation.",
     "place": "Courtyard",
@@ -217,7 +217,7 @@
         "title": "An invitation across the courtyard",
         "speaker": "lin",
         "paragraphs": [
-          "A woman across the courtyard sets cups on a table. Ms Lin waves: that is Ms Zhou, who runs the teahouse. I have to leave for school now, but Saturday sounds possible."
+          "Across the courtyard, Ms Zhou sets cups on a table. Ms Lin waves, then takes out her calendar. I would like to accept her invitation; first I need to catch which day she means."
         ],
         "line": {
           "zh": "你星期六有空吗？我们一起喝茶吧。",
@@ -226,11 +226,11 @@
           "audio": "audio/37b38177af1fb7324f5f.m4a"
         },
         "kind": "choice",
-        "clue": "Accept the invitation for Saturday.",
+        "clue": "Listen for the day she suggests, then accept for that day.",
         "choices": [
           {
             "id": "reply",
-            "label": "Accept the invitation for Saturday.",
+            "label": "Listen for the day she suggests, then accept for that day.",
             "simple": {
               "chunks": [
                 "好",
@@ -265,7 +265,7 @@
               ],
               "audio": "audio/d97463dc2b70f7feca9c.m4a"
             },
-            "hint": "Listen again and look for the part that answers the question.",
+            "hint": "Listen for the day she suggests, then accept for that day.",
             "response": "",
             "responseLine": {
               "zh": "好，星期六见！",
@@ -289,29 +289,30 @@
           },
           {
             "id": "wrong-1",
-            "simple": "我昨天喝了茶。",
-            "rich": "我昨天喝了茶。",
-            "feedback": "昨天 is yesterday; this invitation is about Saturday.",
-            "simplePinyin": "wǒ zuó tiān hē le chá 。",
-            "simpleAudio": "audio/d34897891c8b535f39e6.m4a",
-            "richPinyin": "wǒ zuó tiān hē le chá 。",
-            "richAudio": "audio/d34897891c8b535f39e6.m4a"
+            "simple": "好，我星期天有空。",
+            "rich": "好，我星期天有空。",
+            "feedback": "Listen again for the day.",
+            "simplePinyin": "hǎo ， wǒ xīng qī tiān yǒu kōng 。",
+            "simpleAudio": "audio/61801ecf736ccf147f67.m4a",
+            "richPinyin": "hǎo ， wǒ xīng qī tiān yǒu kōng 。",
+            "richAudio": "audio/61801ecf736ccf147f67.m4a"
           },
           {
             "id": "wrong-2",
-            "simple": "谢谢，我星期六没有空。",
-            "rich": "谢谢，我星期六没有空。",
-            "feedback": "没有空 declines the invitation. Your goal is to accept.",
-            "simplePinyin": "xiè xiè ， wǒ xīng qī liù méi yǒu kōng 。",
-            "simpleAudio": "audio/aa961ae0e9a33bf9cb2a.m4a",
-            "richPinyin": "xiè xiè ， wǒ xīng qī liù méi yǒu kōng 。",
-            "richAudio": "audio/aa961ae0e9a33bf9cb2a.m4a"
+            "simple": "好，我星期五有空。",
+            "rich": "好，我星期五有空。",
+            "feedback": "Listen again for the day.",
+            "simplePinyin": "hǎo ， wǒ xīng qī wǔ yǒu kōng 。",
+            "simpleAudio": "audio/df9efc1284d404f0cf19.m4a",
+            "richPinyin": "hǎo ， wǒ xīng qī wǔ yǒu kōng 。",
+            "richAudio": "audio/df9efc1284d404f0cf19.m4a"
           }
         ],
         "aside": {
           "question": "Recall this moment",
-          "answer": "A woman across the courtyard sets cups on a table. Ms Lin waves: that is Ms Zhou, who runs the teahouse. I have to leave for school now, but Saturday sounds possible."
-        }
+          "answer": "Across the courtyard, Ms Zhou sets cups on a table. Ms Lin waves, then takes out her calendar. I would like to accept her invitation; first I need to catch which day she means."
+        },
+        "promptMode": "listen"
       },
       {
         "id": "conversation-4",
@@ -421,17 +422,17 @@
       "audio/37b38177af1fb7324f5f.m4a",
       "audio/d97463dc2b70f7feca9c.m4a",
       "audio/e1f94b4997f911613dca.m4a",
-      "audio/d34897891c8b535f39e6.m4a",
-      "audio/aa961ae0e9a33bf9cb2a.m4a",
+      "audio/61801ecf736ccf147f67.m4a",
+      "audio/df9efc1284d404f0cf19.m4a",
       "audio/179a3177dca4fbb16115.m4a",
       "audio/e625627575e7cf2e3223.m4a",
       "audio/5f602d839a95fa1ee996.m4a"
     ],
-    "bytes": 889444
+    "bytes": 891566
   },
   {
     "id": "weekend",
-    "version": 2,
+    "version": 3,
     "title": "A weekend plan, almost",
     "subtitle": "Find a shared interest. Agree on the same day.",
     "place": "School gate",
@@ -543,7 +544,7 @@
         "title": "Something in common",
         "speaker": "chen",
         "paragraphs": [
-          "Chen sets down the books and lifts his mug. There is already some evidence for what he enjoys. I decide to ask him to the courtyard teahouse."
+          "Chen sets down the books and tells me how he likes to relax. We may have something in common. I listen for his favourite activity before replying."
         ],
         "line": {
           "zh": "我喜欢喝茶。你呢？",
@@ -552,11 +553,11 @@
           "audio": "audio/f95a840cde3279fb282e.m4a"
         },
         "kind": "choice",
-        "clue": "Tell him you share his interest.",
+        "clue": "Listen for his interest, then say you share it.",
         "choices": [
           {
             "id": "reply",
-            "label": "Tell him you share his interest.",
+            "label": "Listen for his interest, then say you share it.",
             "simple": {
               "chunks": [
                 "我",
@@ -591,7 +592,7 @@
               ],
               "audio": "audio/0a99e5f80c685e4f501c.m4a"
             },
-            "hint": "Listen again and look for the part that answers the question.",
+            "hint": "Listen for his interest, then say you share it.",
             "response": "",
             "responseLine": {
               "zh": "那我们一起去喝茶吧！",
@@ -614,29 +615,30 @@
           },
           {
             "id": "wrong-1",
-            "simple": "我不喜欢喝茶。",
-            "rich": "我不喜欢喝茶。",
-            "feedback": "不喜欢 expresses the opposite of a shared interest.",
-            "simplePinyin": "wǒ bù xǐ huan hē chá 。",
-            "simpleAudio": "audio/d2cf98c7fa8c6e642a20.m4a",
-            "richPinyin": "wǒ bù xǐ huan hē chá 。",
-            "richAudio": "audio/d2cf98c7fa8c6e642a20.m4a"
+            "simple": "我也喜欢看书。",
+            "rich": "我也喜欢看书。",
+            "feedback": "Listen again for the activity.",
+            "simplePinyin": "wǒ yě xǐ huan kàn shū 。",
+            "simpleAudio": "audio/e6bbe0e8d9019f92cce3.m4a",
+            "richPinyin": "wǒ yě xǐ huan kàn shū 。",
+            "richAudio": "audio/e6bbe0e8d9019f92cce3.m4a"
           },
           {
             "id": "wrong-2",
-            "simple": "我星期天没有空。",
-            "rich": "我星期天没有空。",
-            "feedback": "That gives your availability, rather than answering 你呢 about tea.",
-            "simplePinyin": "wǒ xīng qī tiān méi yǒu kōng 。",
-            "simpleAudio": "audio/41754ce0892288625b70.m4a",
-            "richPinyin": "wǒ xīng qī tiān méi yǒu kōng 。",
-            "richAudio": "audio/41754ce0892288625b70.m4a"
+            "simple": "我也喜欢跑步。",
+            "rich": "我也喜欢跑步。",
+            "feedback": "Listen again for the activity.",
+            "simplePinyin": "wǒ yě xǐ huan pǎo bù 。",
+            "simpleAudio": "audio/407b6547575afe3f2f22.m4a",
+            "richPinyin": "wǒ yě xǐ huan pǎo bù 。",
+            "richAudio": "audio/407b6547575afe3f2f22.m4a"
           }
         ],
         "aside": {
           "question": "Recall this moment",
-          "answer": "Chen sets down the books and lifts his mug. There is already some evidence for what he enjoys. I decide to ask him to the courtyard teahouse."
-        }
+          "answer": "Chen sets down the books and tells me how he likes to relax. We may have something in common. I listen for his favourite activity before replying."
+        },
+        "promptMode": "listen"
       },
       {
         "id": "conversation-3",
@@ -877,8 +879,8 @@
       "audio/f95a840cde3279fb282e.m4a",
       "audio/0a99e5f80c685e4f501c.m4a",
       "audio/63d9d2ab4827443f6259.m4a",
-      "audio/d2cf98c7fa8c6e642a20.m4a",
-      "audio/41754ce0892288625b70.m4a",
+      "audio/e6bbe0e8d9019f92cce3.m4a",
+      "audio/407b6547575afe3f2f22.m4a",
       "audio/3de6753e78cbb068e431.m4a",
       "audio/7487824b67e7d4f35c3e.m4a",
       "audio/78cda40dd6f6a73bf68b.m4a",
@@ -888,11 +890,11 @@
       "audio/a6469e8ce380ba7d846c.m4a",
       "audio/2516e78141c4bef0f968.m4a"
     ],
-    "bytes": 889290
+    "bytes": 888911
   },
   {
     "id": "teahouse",
-    "version": 2,
+    "version": 3,
     "title": "One more cup",
     "subtitle": "Introduce two people. Let the afternoon change.",
     "place": "Teahouse",
@@ -908,20 +910,20 @@
         "title": "The right table",
         "speaker": "zhou",
         "paragraphs": [
-          "I arrive at the neighbourhood teahouse on Saturday. Ms Zhou catches a cup before it rolls off a tray. Chen is looking for a table; Ms Lin has already found the best chair. I would like hot tea."
+          "I arrive at the neighbourhood teahouse. Chen is looking for a table; Ms Lin has found the best chair. Ms Zhou explains what she can serve today. I listen before ordering."
         ],
         "line": {
-          "zh": "你好！想喝什么？",
-          "english": "Hello! What would you like to drink?",
-          "pinyin": "nǐ hǎo ！ xiǎng hē shén me ？",
-          "audio": "audio/57c966daf9624d1589ed.m4a"
+          "zh": "你好！今天只有热茶，想喝一杯吗？",
+          "english": "Hello! Today we only have hot tea. Would you like a cup?",
+          "pinyin": "nǐ hǎo ！ jīn tiān zhǐ yǒu rè chá ， xiǎng hē yì bēi ma ？",
+          "audio": "audio/ad0d81911a4ad4c514a6.m4a"
         },
         "kind": "choice",
-        "clue": "Ask for a cup of hot tea.",
+        "clue": "Listen for the drink available today, then order it.",
         "choices": [
           {
             "id": "reply",
-            "label": "Ask for a cup of hot tea.",
+            "label": "Listen for the drink available today, then order it.",
             "simple": {
               "chunks": [
                 "我",
@@ -956,7 +958,7 @@
               ],
               "audio": "audio/281e5ee3c7bab8770e06.m4a"
             },
-            "hint": "Listen again and look for the part that answers the question.",
+            "hint": "Listen for the drink available today, then order it.",
             "response": "",
             "responseLine": {
               "zh": "好，一杯热茶。请坐！",
@@ -979,29 +981,30 @@
           },
           {
             "id": "wrong-1",
-            "simple": "我想喝一杯冷水。",
-            "rich": "我想喝一杯冷水。",
-            "feedback": "冷水 is cold water; your goal is hot tea.",
-            "simplePinyin": "wǒ xiǎng hē yì bēi lěng shuǐ 。",
-            "simpleAudio": "audio/d9770b6c95bc4c7843f4.m4a",
-            "richPinyin": "wǒ xiǎng hē yì bēi lěng shuǐ 。",
-            "richAudio": "audio/d9770b6c95bc4c7843f4.m4a"
+            "simple": "我想要一杯冷茶。",
+            "rich": "我想要一杯冷茶。",
+            "feedback": "Listen again for the drink she can serve.",
+            "simplePinyin": "wǒ xiǎng yào yì bēi lěng chá 。",
+            "simpleAudio": "audio/331c31aca370b38e5b14.m4a",
+            "richPinyin": "wǒ xiǎng yào yì bēi lěng chá 。",
+            "richAudio": "audio/331c31aca370b38e5b14.m4a"
           },
           {
             "id": "wrong-2",
-            "simple": "我喜欢看书。",
-            "rich": "我喜欢看书。",
-            "feedback": "She is asking about a drink, not a hobby.",
-            "simplePinyin": "wǒ xǐ huan kàn shū 。",
-            "simpleAudio": "audio/ad5f01eaedc41a756d05.m4a",
-            "richPinyin": "wǒ xǐ huan kàn shū 。",
-            "richAudio": "audio/ad5f01eaedc41a756d05.m4a"
+            "simple": "我想要一杯冷水。",
+            "rich": "我想要一杯冷水。",
+            "feedback": "Listen again for the drink she can serve.",
+            "simplePinyin": "wǒ xiǎng yào yì bēi lěng shuǐ 。",
+            "simpleAudio": "audio/f951e6f97a5ece211cbb.m4a",
+            "richPinyin": "wǒ xiǎng yào yì bēi lěng shuǐ 。",
+            "richAudio": "audio/f951e6f97a5ece211cbb.m4a"
           }
         ],
         "aside": {
           "question": "Recall this moment",
-          "answer": "I arrive at the neighbourhood teahouse on Saturday. Ms Zhou catches a cup before it rolls off a tray. Chen is looking for a table; Ms Lin has already found the best chair. I would like hot tea."
-        }
+          "answer": "I arrive at the neighbourhood teahouse. Chen is looking for a table; Ms Lin has found the best chair. Ms Zhou explains what she can serve today. I listen before ordering."
+        },
+        "promptMode": "listen"
       },
       {
         "id": "conversation-2",
@@ -1294,11 +1297,11 @@
       "teahouse.html",
       "courtyard.webp",
       "characters.webp",
-      "audio/57c966daf9624d1589ed.m4a",
+      "audio/ad0d81911a4ad4c514a6.m4a",
       "audio/281e5ee3c7bab8770e06.m4a",
       "audio/72069022f25aeb8e393b.m4a",
-      "audio/d9770b6c95bc4c7843f4.m4a",
-      "audio/ad5f01eaedc41a756d05.m4a",
+      "audio/331c31aca370b38e5b14.m4a",
+      "audio/f951e6f97a5ece211cbb.m4a",
       "audio/9e9b8cc4dcedcb052f47.m4a",
       "audio/13d853d7cd050b04a1ab.m4a",
       "audio/b39f9dceb82a54383151.m4a",
@@ -1313,6 +1316,6 @@
       "audio/1efda7758d760bf6ff88.m4a",
       "audio/0f948cb978b2e7812101.m4a"
     ],
-    "bytes": 880658
+    "bytes": 890480
   }
 ]

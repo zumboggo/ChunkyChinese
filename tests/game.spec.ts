@@ -18,6 +18,11 @@ test('three Chinese choices then a longer builder in every episode; resume, supp
       await expect(f.locator('.reply-option')).toHaveCount(3)
       await expect(f.locator('.reply-option .pinyin')).toHaveCount(3)
       await expect(f.locator('.goal-clue')).toBeVisible()
+      if(ep.scenes[i].promptMode==='listen'){
+        await expect(f.locator('.dialogue > .chinese')).toHaveCount(0)
+        await f.getByRole('button',{name:'▶ Listen',exact:true}).click()
+        await expect(f.locator('[data-key="option-0"]')).toBeEnabled({timeout:20000})
+      }
       if(index===0&&i===0) {
         await page.screenshot({path:info.outputPath('conversation.png'),fullPage:true})
         await f.locator('[data-key="option-1"]').click()
@@ -79,7 +84,7 @@ test('controller choices, missing artwork, reduced motion and wrong-frame reject
   await page.route('**/characters.webp',r=>r.abort())
   const f=await open(page)
   await expect(f.getByText(/Ms Lin · my neighbour/)).toBeVisible()
-  const key='chunky-game:v1:guest:neighbour:2'
+  const key='chunky-game:v1:guest:neighbour:3'
   const before=await page.evaluate(k=>localStorage.getItem(k),key)
   await page.evaluate(()=>{const frame=document.querySelector('iframe')!;const channel=new URL(frame.src).hash.split('channel=')[1];window.postMessage({protocol:'chunky-game-v1',channel,type:'action',revision:0,action:{type:'showAll'}},location.origin)})
   expect(await page.evaluate(k=>localStorage.getItem(k),key)).toBe(before)
@@ -103,9 +108,40 @@ test('opened episode and all Mandarin options replay offline',async({page,contex
   await expect(f.locator('.reply-option')).toHaveCount(3)
   const durations=await page.evaluate(async()=>{
     const cache=await caches.open('chunky-game-v1')
-    const urls=(await cache.keys()).filter(r=>r.url.includes('/game/v2/')&&r.url.endsWith('.m4a'))
+    const urls=(await cache.keys()).filter(r=>r.url.includes('/game/v3/')&&r.url.endsWith('.m4a'))
     return Promise.all(urls.map(r=>new Promise<number>((resolve,reject)=>{const a=new Audio(r.url);a.preload='metadata';const timer=setTimeout(()=>reject(new Error('Audio timeout')),10000);a.onloadedmetadata=()=>{clearTimeout(timer);resolve(a.duration)};a.onerror=()=>{clearTimeout(timer);reject(new Error(r.url))}})))
   })
   expect(durations.length).toBeGreaterThan(12)
   expect(durations.every(n=>n>0&&Number.isFinite(n))).toBe(true)
 })
+
+ test('listening transcript is optional, survives resume and marks support; missing audio recovers',async({page,context})=>{
+  const ep=episodes[2],line=ep.scenes[0].line.zh
+  let f=await open(page,2)
+  await f.getByRole('button',{name:'Show all',exact:true}).click()
+  await expect(f.getByText(line,{exact:true})).toHaveCount(0)
+  await expect(f.getByRole('button',{name:'Show meaning',exact:true})).toHaveCount(0)
+  await expect(f.locator('[data-key="option-0"]')).toBeDisabled()
+  await f.getByRole('button',{name:'Show transcript',exact:true}).click()
+  await expect(f.getByText(line,{exact:true})).toBeVisible()
+  f=await open(page,2)
+  await expect(f.getByText(line,{exact:true})).toBeVisible()
+  await f.locator('[data-key="option-0"]').click()
+  await f.getByRole('button',{name:'Continue',exact:true}).click()
+  await expect(f.getByRole('heading',{name:ep.scenes[1].title,exact:true})).toBeVisible()
+  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('chunky-game:v1:guest:teahouse:3')!))
+  expect(saved.results[0].independent).toBe(false)
+  expect(saved.transcript).toBe(false)
+  await page.getByRole('button',{name:'← Game library'}).click()
+  await page.locator('.game-card').nth(2).getByRole('button').click()
+  await page.getByRole('button',{name:'Restart this episode',exact:true}).click()
+  await f.getByRole('button',{name:'Show all',exact:true}).click()
+  await expect(f.getByText(line,{exact:true})).toHaveCount(0)
+  await expect(page.getByText(/Episode downloaded/)).toBeVisible()
+  await page.evaluate(async()=>{await caches.delete('chunky-game-v1')})
+  await context.setOffline(true)
+  await f.getByRole('button',{name:'▶ Listen',exact:true}).click()
+  await expect(page.getByRole('alert')).toContainText('transcript',{timeout:15000})
+  await expect(f.getByText(line,{exact:true})).toBeVisible()
+  await expect(f.locator('[data-key="option-0"]')).toBeEnabled()
+ })

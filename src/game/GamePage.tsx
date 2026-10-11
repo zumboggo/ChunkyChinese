@@ -2,11 +2,11 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import type { HotkeySettings, VocabWord } from '../types'
 import catalog from './catalog.json'
 import { bank, shuffled, flags, freshAttempt, selectCoverage, storageKey, transition, validAttempt, validMessage } from './model'
-import type { Attempt, Episode, Preferences } from './model'
+import type { Attempt, Episode, Preferences, Action } from './model'
 import './game.css'
 
 const episodes = catalog as Episode[]
-const base = `${import.meta.env.BASE_URL}game/v2/`
+const base = `${import.meta.env.BASE_URL}game/v3/`
 const GAME_CACHE = 'chunky-game-v1'
 function readPreferences(identity: string): Preferences {
   try { const value = JSON.parse(localStorage.getItem(`chunky-game:preferences:${encodeURIComponent(identity)}`) ?? '{}'); return { pinyin: value.pinyin !== false, clues: value.clues !== false } } catch { return { pinyin: true, clues: true } }
@@ -92,30 +92,17 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
   }
   useEffect(() => {
     if (!playing || !selected) return
-    function receive(event: MessageEvent) {
-      if (!validMessage(event, frame.current?.contentWindow ?? null, location.origin, channel)) return
-      const m = event.data
-      if (m.type === 'ready') { postState(); return }
-      if (m.type === 'exit') { leave(); return }
-      if (m.type === 'audio') {
-        if (typeof m.audio !== 'string' || !selected!.resources?.includes(m.audio) || !m.audio.startsWith('audio/')) return
-        audio.current?.pause()
-        const sound = new Audio(`${base}${m.audio}`); audio.current = sound
-        sound.onerror = () => setError('This audio clip is unavailable. You can continue using the text.')
-        void sound.play().catch(() => setError('Audio could not play. Tap Hear Mandarin to retry; the text is still available.'))
-        return
-      }
+    function commitAction(action: Action) {
       const prev = current.current
-      if (m.type !== 'action' || !prev) return
-      if (m.revision !== prev.revision) { postState(prev); return }
-      const next = transition(selected!, prev, m.action)
+      if (!prev) return
+      const next = transition(selected!, prev, action)
       if (next === prev) { postState(prev); return }
       try {
         const stored = readAttempt(identity, selected!)
         if (stored && (stored.attemptId !== prev.attemptId || stored.revision > prev.revision)) {
           setError('Progress changed in another tab. Return to Game and reload the page to continue safely.'); postState(prev); return
         }
-        if (m.action?.type === 'pinyin' || m.action?.type === 'clues') {
+        if (action?.type === 'pinyin' || action?.type === 'clues') {
           const value = { pinyin: next.pinyin, clues: next.clues }
           localStorage.setItem(`chunky-game:preferences:${encodeURIComponent(identity)}`, JSON.stringify(value)); setPreferences(value)
         }
@@ -129,6 +116,36 @@ export default function GamePage({ identity, words, hotkeys }: { identity: strin
       } catch { setError('Your latest action could not be saved. Free some device storage, then try that action again.'); postState(prev); return }
       audio.current?.pause()
       current.current = next; setAttempt(next); setSaved(s => ({ ...s, [selected!.id]: next })); postState(next)
+    }
+    function receive(event: MessageEvent) {
+      if (!validMessage(event, frame.current?.contentWindow ?? null, location.origin, channel)) return
+      const m = event.data
+      if (m.type === 'ready') { postState(); return }
+      if (m.type === 'exit') { leave(); return }
+      if (m.type === 'audio') {
+        if (typeof m.audio !== 'string' || !selected!.resources?.includes(m.audio) || !m.audio.startsWith('audio/')) return
+        audio.current?.pause()
+        const sound = new Audio(`${base}${m.audio}`); audio.current = sound
+        const started = current.current
+        const isPrompt = started && selected!.scenes[started.step]?.promptMode === 'listen' && selected!.scenes[started.step].line.audio === m.audio
+        const stillCurrent = () => audio.current === sound && current.current?.attemptId === started?.attemptId && current.current?.step === started?.step
+        sound.onended = () => { if (isPrompt && stillCurrent()) commitAction({ type: 'heard' }) }
+        const unavailable = () => {
+          if (!stillCurrent()) return
+          if (isPrompt) commitAction({ type: 'transcript' })
+          setError(isPrompt ? 'This question’s audio is unavailable. The transcript is available for supported play.' : 'This audio clip is unavailable. You can continue using the text.')
+        }
+        sound.onerror = unavailable
+        void sound.play().catch(e => {
+          if (!stillCurrent() || e?.name === 'AbortError') return
+          if (e?.name === 'NotAllowedError') setError('Tap Listen again to allow audio, or choose Show transcript for supported play.')
+          else unavailable()
+        })
+        return
+      }
+      if (m.type !== 'action' || !current.current) return
+      if (m.revision !== current.current.revision || m.action?.type === 'heard') { postState(); return }
+      commitAction(m.action)
     }
     window.addEventListener('message', receive)
     return () => window.removeEventListener('message', receive)

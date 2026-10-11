@@ -6,14 +6,14 @@ export interface Answer { chunks: string[]; distractors?: string[]; distractorPi
 export interface Choice { id: string; label: string; simple: Answer; rich: Answer; hint: string; response: string; responseLine?: Line; flag?: string }
 export interface ReplyOption { id: string; simple: string; rich: string; simplePinyin?: string; richPinyin?: string; simpleAudio?: string; richAudio?: string; correct?: boolean; feedback?: string }
 export interface Preferences { pinyin: boolean; clues: boolean }
-export interface Scene { kind?: 'choice' | 'build'; clue?: string; options?: ReplyOption[]; id: string; title: string; speaker: string; paragraphs: string[]; line: Line; choices: Choice[]; aside: { question: string; answer: string }; callback?: { flag: string; text: string } }
+export interface Scene { promptMode?: 'text' | 'listen'; kind?: 'choice' | 'build'; clue?: string; options?: ReplyOption[]; id: string; title: string; speaker: string; paragraphs: string[]; line: Line; choices: Choice[]; aside: { question: string; answer: string }; callback?: { flag: string; text: string } }
 export interface Episode { id: string; version: number; title: string; subtitle: string; place: string; newWords: string[]; ending: string; scenes: Scene[]; resources?: string[]; bytes?: number }
 export interface Coverage { percent: number; answerPercent: number; unknown: string[]; variant: 'simple' | 'rich'; supported: boolean }
 export interface Result { choiceId: string; independent: boolean; errors: number }
 export interface Attempt {
   episodeId: string; version: number; attemptId: string; revision: number; variant: 'simple' | 'rich'; coverage: Coverage;
   step: number; choiceId: string | null; tiles: number[]; errors: number; hinted: boolean; model: boolean; solved: boolean;
-  paragraph: number; meaning: boolean; pinyin: boolean; clues: boolean; aside: boolean; feedback: string; results: Result[]; callbacks: string[]
+  transcript: boolean; heard: boolean; paragraph: number; meaning: boolean; pinyin: boolean; clues: boolean; aside: boolean; feedback: string; results: Result[]; callbacks: string[]
 }
 export type Action = { type: string; index?: number; choiceId?: string }
 
@@ -36,7 +36,7 @@ export function selectCoverage(ep: Episode, words: VocabWord[]): Coverage {
 export function freshAttempt(ep: Episode, coverage: Coverage, callbacks: string[] = [], preferences: Preferences = { pinyin: true, clues: true }): Attempt {
   return { episodeId: ep.id, version: ep.version, attemptId: crypto.randomUUID(), revision: 0, variant: coverage.variant, coverage,
     step: 0, choiceId: ep.scenes[0].kind === 'build' ? ep.scenes[0].choices[0].id : null, tiles: [], errors: 0, hinted: false, model: false, solved: false, paragraph: 0,
-    meaning: false, pinyin: preferences.pinyin, clues: preferences.clues, aside: false, feedback: '', results: [], callbacks }
+    transcript: false, heard: false, meaning: false, pinyin: preferences.pinyin, clues: preferences.clues, aside: false, feedback: '', results: [], callbacks }
 }
 export function selectedChoice(ep: Episode, a: Attempt) { return ep.scenes[a.step]?.choices.find(c => c.id === a.choiceId) }
 export function bank(answer: Answer): string[] { return [...answer.chunks, ...(answer.distractors ?? [])] }
@@ -64,8 +64,15 @@ export function transition(ep: Episode, previous: Attempt, action: Action): Atte
   const scene = ep.scenes[a.step], choice = selectedChoice(ep, a), answer = choice?.[a.variant]
   if (!scene) return previous
   switch (action.type) {
+    case 'transcript':
+      if (scene.promptMode !== 'listen' || a.solved || a.transcript) return previous
+      a.transcript = true; a.hinted = true; break
+    case 'heard':
+      if (scene.promptMode !== 'listen' || a.heard) return previous
+      a.heard = true; break
     case 'clues': a.clues = !a.clues; break
     case 'answer': {
+      if (scene.promptMode === 'listen' && !a.heard && !a.transcript) return previous
       if (scene.kind !== 'choice' || a.solved || a.paragraph < scene.paragraphs.length) return previous
       const option = scene.options?.find(o => o.id === action.choiceId)
       if (!option) return previous
@@ -74,7 +81,7 @@ export function transition(ep: Episode, previous: Attempt, action: Action): Atte
       break
     }
     case 'pinyin': a.pinyin = !a.pinyin; break
-    case 'meaning': a.meaning = !a.meaning; break
+    case 'meaning': if (scene.promptMode === 'listen' && !a.transcript && !a.solved) return previous; a.meaning = !a.meaning; break
     case 'aside': a.aside = !a.aside; break
     case 'reveal': a.paragraph = Math.min(scene.paragraphs.length, a.paragraph + 1); break
     case 'showAll': a.paragraph = scene.paragraphs.length; break
@@ -103,7 +110,7 @@ export function transition(ep: Episode, previous: Attempt, action: Action): Atte
       if (!a.solved || !choice) return previous
       a.results.push({ choiceId: choice.id, independent: !a.hinted && a.errors === 0, errors: a.errors })
       a.step += 1; a.choiceId = ep.scenes[a.step]?.kind === 'build' ? ep.scenes[a.step].choices[0].id : null; a.tiles = []; a.errors = 0; a.hinted = false; a.model = false; a.solved = false
-      a.paragraph = 0; a.meaning = false; a.aside = false; a.feedback = ''; break
+      a.transcript = false; a.heard = false; a.paragraph = 0; a.meaning = false; a.aside = false; a.feedback = ''; break
     default: return previous
   }
   a.revision += 1
@@ -124,10 +131,11 @@ export function validAttempt(ep: Episode, value: unknown): value is Attempt {
     !Number.isInteger(a.errors) || a.errors < 0 || typeof a.feedback !== 'string' || !a.coverage || a.coverage.variant !== a.variant ||
     !Array.isArray(a.coverage.unknown) || !a.coverage.unknown.every(w => typeof w === 'string') ||
     ![a.coverage.percent,a.coverage.answerPercent].every(n => Number.isFinite(n) && n >= 0 && n <= 100) || typeof a.coverage.supported !== 'boolean' ||
-    ![a.hinted,a.model,a.solved,a.meaning,a.pinyin,a.clues,a.aside].every(b => typeof b === 'boolean') || !Number.isInteger(a.paragraph) || a.paragraph < 0) return false
+    ![a.transcript,a.heard,a.hinted,a.model,a.solved,a.meaning,a.pinyin,a.clues,a.aside].every(b => typeof b === 'boolean') || !Number.isInteger(a.paragraph) || a.paragraph < 0) return false
   if (!a.results.every((r, i) => r && ep.scenes[i].choices.some(c => c.id === r.choiceId) && typeof r.independent === 'boolean' && Number.isInteger(r.errors) && r.errors >= 0)) return false
   const scene = ep.scenes[a.step]
   if (!scene) return a.choiceId === null && a.tiles.length === 0 && !a.solved
+  if (scene.promptMode === 'listen' && ((a.transcript && !a.hinted) || (a.solved && !a.heard && !a.transcript))) return false
   if (a.paragraph > scene.paragraphs.length) return false
   const c = selectedChoice(ep, a)
   if (a.choiceId !== null && !c) return false

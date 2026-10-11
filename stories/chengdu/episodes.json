@@ -1,7 +1,7 @@
 [
   {
     "id": "neighbour",
-    "version": 2,
+    "version": 3,
     "title": "The neighbour who remembers me",
     "subtitle": "A greeting becomes a small invitation.",
     "place": "Courtyard",
@@ -153,18 +153,18 @@
         "title": "An invitation across the courtyard",
         "speaker": "lin",
         "paragraphs": [
-          "A woman across the courtyard sets cups on a table. Ms Lin waves: that is Ms Zhou, who runs the teahouse. I have to leave for school now, but Saturday sounds possible."
+          "Across the courtyard, Ms Zhou sets cups on a table. Ms Lin waves, then takes out her calendar. I would like to accept her invitation; first I need to catch which day she means."
         ],
         "line": {
           "zh": "你星期六有空吗？我们一起喝茶吧。",
           "english": "Are you free on Saturday? Let’s have tea together."
         },
         "kind": "choice",
-        "clue": "Accept the invitation for Saturday.",
+        "clue": "Listen for the day she suggests, then accept for that day.",
         "choices": [
           {
             "id": "reply",
-            "label": "Accept the invitation for Saturday.",
+            "label": "Listen for the day she suggests, then accept for that day.",
             "simple": {
               "chunks": [
                 "好",
@@ -183,7 +183,7 @@
               ],
               "english": "Okay, I am free on Saturday."
             },
-            "hint": "Listen again and look for the part that answers the question.",
+            "hint": "Listen for the day she suggests, then accept for that day.",
             "response": "",
             "responseLine": {
               "zh": "好，星期六见！",
@@ -201,21 +201,22 @@
           },
           {
             "id": "wrong-1",
-            "simple": "我昨天喝了茶。",
-            "rich": "我昨天喝了茶。",
-            "feedback": "昨天 is yesterday; this invitation is about Saturday."
+            "simple": "好，我星期天有空。",
+            "rich": "好，我星期天有空。",
+            "feedback": "Listen again for the day."
           },
           {
             "id": "wrong-2",
-            "simple": "谢谢，我星期六没有空。",
-            "rich": "谢谢，我星期六没有空。",
-            "feedback": "没有空 declines the invitation. Your goal is to accept."
+            "simple": "好，我星期五有空。",
+            "rich": "好，我星期五有空。",
+            "feedback": "Listen again for the day."
           }
         ],
         "aside": {
           "question": "Recall this moment",
-          "answer": "A woman across the courtyard sets cups on a table. Ms Lin waves: that is Ms Zhou, who runs the teahouse. I have to leave for school now, but Saturday sounds possible."
-        }
+          "answer": "Across the courtyard, Ms Zhou sets cups on a table. Ms Lin waves, then takes out her calendar. I would like to accept her invitation; first I need to catch which day she means."
+        },
+        "promptMode": "listen"
       },
       {
         "id": "conversation-4",
@@ -281,7 +282,7 @@
   },
   {
     "id": "weekend",
-    "version": 2,
+    "version": 3,
     "title": "A weekend plan, almost",
     "subtitle": "Find a shared interest. Agree on the same day.",
     "place": "School gate",
@@ -363,18 +364,18 @@
         "title": "Something in common",
         "speaker": "chen",
         "paragraphs": [
-          "Chen sets down the books and lifts his mug. There is already some evidence for what he enjoys. I decide to ask him to the courtyard teahouse."
+          "Chen sets down the books and tells me how he likes to relax. We may have something in common. I listen for his favourite activity before replying."
         ],
         "line": {
           "zh": "我喜欢喝茶。你呢？",
           "english": "I like drinking tea. What about you?"
         },
         "kind": "choice",
-        "clue": "Tell him you share his interest.",
+        "clue": "Listen for his interest, then say you share it.",
         "choices": [
           {
             "id": "reply",
-            "label": "Tell him you share his interest.",
+            "label": "Listen for his interest, then say you share it.",
             "simple": {
               "chunks": [
                 "我",
@@ -393,7 +394,7 @@
               ],
               "english": "I like drinking tea too."
             },
-            "hint": "Listen again and look for the part that answers the question.",
+            "hint": "Listen for his interest, then say you share it.",
             "response": "",
             "responseLine": {
               "zh": "那我们一起去喝茶吧！",
@@ -410,21 +411,22 @@
           },
           {
             "id": "wrong-1",
-            "simple": "我不喜欢喝茶。",
-            "rich": "我不喜欢喝茶。",
-            "feedback": "不喜欢 expresses the opposite of a shared interest."
+            "simple": "我也喜欢看书。",
+            "rich": "我也喜欢看书。",
+            "feedback": "Listen again for the activity."
           },
           {
             "id": "wrong-2",
-            "simple": "我星期天没有空。",
-            "rich": "我星期天没有空。",
-            "feedback": "That gives your availability, rather than answering 你呢 about tea."
+            "simple": "我也喜欢跑步。",
+            "rich": "我也喜欢跑步。",
+            "feedback": "Listen again for the activity."
           }
         ],
         "aside": {
           "question": "Recall this moment",
-          "answer": "Chen sets down the books and lifts his mug. There is already some evidence for what he enjoys. I decide to ask him to the courtyard teahouse."
-        }
+          "answer": "Chen sets down the books and tells me how he likes to relax. We may have something in common. I listen for his favourite activity before replying."
+        },
+        "promptMode": "listen"
       },
       {
         "id": "conversation-3",
@@ -594,7 +596,7 @@
   },
   {
     "id": "teahouse",
-    "version": 2,
+    "version": 3,
     "title": "One more cup",
     "subtitle": "Introduce two people. Let the afternoon change.",
     "place": "Teahouse",
@@ -610,18 +612,18 @@
         "title": "The right table",
         "speaker": "zhou",
         "paragraphs": [
-          "I arrive at the neighbourhood teahouse on Saturday. Ms Zhou catches a cup before it rolls off a tray. Chen is looking for a table; Ms Lin has already found the best chair. I would like hot tea."
+          "I arrive at the neighbourhood teahouse. Chen is looking for a table; Ms Lin has found the best chair. Ms Zhou explains what she can serve today. I listen before ordering."
         ],
         "line": {
-          "zh": "你好！想喝什么？",
-          "english": "Hello! What would you like to drink?"
+          "zh": "你好！今天只有热茶，想喝一杯吗？",
+          "english": "Hello! Today we only have hot tea. Would you like a cup?"
         },
         "kind": "choice",
-        "clue": "Ask for a cup of hot tea.",
+        "clue": "Listen for the drink available today, then order it.",
         "choices": [
           {
             "id": "reply",
-            "label": "Ask for a cup of hot tea.",
+            "label": "Listen for the drink available today, then order it.",
             "simple": {
               "chunks": [
                 "我",
@@ -640,7 +642,7 @@
               ],
               "english": "I would like a cup of hot tea."
             },
-            "hint": "Listen again and look for the part that answers the question.",
+            "hint": "Listen for the drink available today, then order it.",
             "response": "",
             "responseLine": {
               "zh": "好，一杯热茶。请坐！",
@@ -657,21 +659,22 @@
           },
           {
             "id": "wrong-1",
-            "simple": "我想喝一杯冷水。",
-            "rich": "我想喝一杯冷水。",
-            "feedback": "冷水 is cold water; your goal is hot tea."
+            "simple": "我想要一杯冷茶。",
+            "rich": "我想要一杯冷茶。",
+            "feedback": "Listen again for the drink she can serve."
           },
           {
             "id": "wrong-2",
-            "simple": "我喜欢看书。",
-            "rich": "我喜欢看书。",
-            "feedback": "She is asking about a drink, not a hobby."
+            "simple": "我想要一杯冷水。",
+            "rich": "我想要一杯冷水。",
+            "feedback": "Listen again for the drink she can serve."
           }
         ],
         "aside": {
           "question": "Recall this moment",
-          "answer": "I arrive at the neighbourhood teahouse on Saturday. Ms Zhou catches a cup before it rolls off a tray. Chen is looking for a table; Ms Lin has already found the best chair. I would like hot tea."
-        }
+          "answer": "I arrive at the neighbourhood teahouse. Chen is looking for a table; Ms Lin has found the best chair. Ms Zhou explains what she can serve today. I listen before ordering."
+        },
+        "promptMode": "listen"
       },
       {
         "id": "conversation-2",

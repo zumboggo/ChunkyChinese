@@ -12,16 +12,21 @@ versioned clip and rebuilding before release.
 
 Edit `episodes.json`, not the generated `.twee` files or compiled HTML. Each
 scene contains a short English transition, NPC dialogue, an English goal clue,
-and a Chinese reaction. Version 2 has exactly three multiple-choice exchanges
+and a Chinese reaction. Version 3 has exactly three multiple-choice exchanges
 (one correct reply, two contextual distractors), followed by one six-chunk
 sentence-building exchange with two extra chunks. Simple/rich variants currently
-share the same authored language. Each option and reaction has replayable audio.
+share the same authored language. Each option and reaction has replayable audio. One of the three choice exchanges
+uses `promptMode: "listen"`: its transcript, pinyin and meaning stay hidden until
+success or an explicit transcript request. The host unlocks answers when the prompt
+finishes playing, or when transcript support is requested. Replay does not count as
+support. Missing prompt audio reveals a supported transcript; playback permission
+errors offer retry or transcript. Transcript/heard state is saved and reset per scene.
 Chunk occurrence IDs distinguish repeated words; identical text remains
 interchangeable. Explicit alternatives allow natural word orders. Banks and options
 use an attempt-seeded Fisher–Yates shuffle, stable across repaint and resume.
 
-Version 1 files and saves remain untouched. Revised lessons use content version 2
-and `public/game/v2/`; they start new attempts rather than interpreting old saved
+Version 1 and 2 files and saves remain untouched. Revised lessons use content version 3
+and `public/game/v3/`; they start new attempts rather than interpreting old saved
 progress as the new lesson. There is no old-lesson launcher in the current library.
 Never overwrite released versioned resources when publishing future revisions.
 
@@ -93,7 +98,7 @@ player remains mounted when switching display modes.
 
 Original imagery was generated with the built-in ImageGen tool, then downsampled
 with nearest-neighbour resampling and encoded as WebP. Prompts are recorded in
-`art-prompts.json`. Runtime files: `public/game/v2/courtyard.webp` (480×320) and
+`art-prompts.json`. Runtime files: `public/game/v3/courtyard.webp` (480×320) and
 `characters.webp` (384×256, transparent three-character atlas). Decoded art is
 about 984 KiB RGBA. One portrait is shown at a time with a character-name fallback.
 No Nihao Shanghai, Pokémon or Nintendo assets, prose, maps or source code are

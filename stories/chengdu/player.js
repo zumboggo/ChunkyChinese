@@ -54,7 +54,10 @@ function render(root) {
   if(a.paragraph<scene.paragraphs.length) {
     panel.append(button('Next',()=>act('reveal'),'next'),button('Show all',()=>act('showAll'),'showAll'));root.append(panel);return;
   }
-  zhLine(scene.line,panel);
+  if(scene.promptMode==='listen' && !a.transcript && !a.solved){
+    const listen=el('section',undefined,'listening-prompt');listen.append(el('p','Listen closely…','chinese'),button(a.heard?'▶ Replay':'▶ Listen',()=>speak(scene.line.audio),'hear'),button('Show transcript',()=>act('transcript'),'transcript'));
+    listen.append(el('p',a.heard?'Choose the reply that fits. You can replay as often as you like.':'Listen to the full question, then choose a reply. Or use Show transcript for support.'));panel.append(listen);
+  } else zhLine(scene.line,panel);
   const settings=el('details',undefined,'settings');settings.open=settingsOpen;settings.ontoggle=()=>{settingsOpen=settings.open};settings.append(el('summary','Game settings'),button(a.pinyin?'Pinyin: on':'Pinyin: off',()=>act('pinyin'),'pinyin'),button(a.clues?'English clues: on':'English clues: off',()=>act('clues'),'clues'));panel.append(settings);
   if(a.clues)panel.append(el('p',scene.clue,'goal-clue'));
   else if(!a.solved && scene.kind==='choice')panel.append(button('Hint',()=>act('hint'),'hint'));
@@ -63,7 +66,7 @@ function render(root) {
   if(!a.results.length)recall.append(el('p',scene.paragraphs.join(' ')));
   if(scene.kind==='choice') {
     const responses=el('div',undefined,'reply-options');
-    order.forEach((id,pos)=>{const option=scene.options[id];if(!option)return;const card=el('div',undefined,'reply-option');const b=button('',()=>act('answer',{choiceId:option.id}),`option-${id}`);b.disabled=a.solved;b.dataset.shortcut=hotkeys[pos]||String(pos+1);b.append(el('small',String(pos+1)),el('span',option[a.variant],'chinese'));b.lang='zh-CN';if(a.pinyin)b.append(el('span',option[`${a.variant}Pinyin`],'pinyin'));card.append(b,button('▶',()=>speak(option[`${a.variant}Audio`]),`listen-${id}`));card.lastChild.setAttribute('aria-label',`Hear response ${pos+1}`);responses.append(card)});panel.append(responses);
+    order.forEach((id,pos)=>{const option=scene.options[id];if(!option)return;const card=el('div',undefined,'reply-option');const b=button('',()=>act('answer',{choiceId:option.id}),`option-${id}`);b.disabled=a.solved||(scene.promptMode==='listen'&&!a.heard&&!a.transcript);b.dataset.shortcut=hotkeys[pos]||String(pos+1);b.append(el('small',String(pos+1)),el('span',option[a.variant],'chinese'));b.lang='zh-CN';if(a.pinyin)b.append(el('span',option[`${a.variant}Pinyin`],'pinyin'));card.append(b,button('▶',()=>speak(option[`${a.variant}Audio`]),`listen-${id}`));card.lastChild.setAttribute('aria-label',`Hear response ${pos+1}`);responses.append(card)});panel.append(responses);
   } else if(c) {
     const answer=c[a.variant], chunks=[...answer.chunks,...(answer.distractors||[])], pinyin=[...answer.pinyin,...(answer.distractorPinyin||[])];
     const selected=el('div',undefined,'sentence');selected.setAttribute('aria-label','My sentence');

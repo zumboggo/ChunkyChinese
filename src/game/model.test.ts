@@ -4,7 +4,7 @@ import { accepts, freshAttempt, transition, validAttempt, storageKey, validMessa
 import type { Episode, Attempt } from './model'
 const episodes = source as Episode[]
 const coverage = { percent: 0, answerPercent: 0, unknown: ['我'], variant: 'simple' as const, supported: true }
-function choose(ep: Episode, a: Attempt, id: string) { void id; a = transition(ep, a, { type: 'showAll' }); return ep.scenes[a.step].kind === 'choice' ? transition(ep, a, { type: 'answer', choiceId: 'correct' }) : a }
+function choose(ep: Episode, a: Attempt, id: string) { void id; a = transition(ep, a, { type: 'showAll' }); if(ep.scenes[a.step].promptMode === 'listen') a = transition(ep,a,{type:'heard'}); return ep.scenes[a.step].kind === 'choice' ? transition(ep, a, { type: 'answer', choiceId: 'correct' }) : a }
 function solve(ep: Episode, a: Attempt) {
   if (a.solved) return a
   const c = ep.scenes[a.step].choices.find(c => c.id === a.choiceId)!
@@ -85,6 +85,7 @@ describe('Chengdu authored episodes', () => {
   it('wrong replies do not advance or become independent answers; distractors are covered and rejected', () => {
     for(const ep of episodes) {
       let a=transition(ep,freshAttempt(ep,coverage),{type:'showAll'})
+      if(ep.scenes[0].promptMode==='listen')a=transition(ep,a,{type:'heard'})
       for(const option of ep.scenes[0].options!.filter(o=>!o.correct)) {
         a=transition(ep,a,{type:'answer',choiceId:option.id})
         expect(a.solved).toBe(false);expect(a.choiceId).toBe(null)
@@ -97,6 +98,24 @@ describe('Chengdu authored episodes', () => {
       expect(bank(answer)).toHaveLength(8)
       expect(accepts(answer,[0,1,2,3,4,6])).toBe(false)
     }
+  })
+  it('listening requires heard audio or transcript support, persists support, and resets it', () => {
+    const ep=episodes[2]
+    let a=transition(ep,freshAttempt(ep,coverage),{type:'showAll'})
+    expect(transition(ep,a,{type:'answer',choiceId:'correct'})).toBe(a)
+    expect(transition(ep,a,{type:'meaning'})).toBe(a)
+    a=transition(ep,a,{type:'pinyin'})
+    expect(a.transcript).toBe(false)
+    const heard=transition(ep,a,{type:'heard'})
+    expect(heard.hinted).toBe(false)
+    expect(transition(ep,transition(ep,heard,{type:'answer',choiceId:'correct'}),{type:'next'}).results[0].independent).toBe(true)
+    a=transition(ep,a,{type:'transcript'})
+    expect(a.hinted).toBe(true)
+    expect(validAttempt(ep,JSON.parse(JSON.stringify(a)))).toBe(true)
+    expect(validAttempt(ep,{...a,hinted:false})).toBe(false)
+    a=transition(ep,transition(ep,a,{type:'answer',choiceId:'correct'}),{type:'next'})
+    expect(a.results[0].independent).toBe(false)
+    expect(a.transcript).toBe(false);expect(a.heard).toBe(false)
   })
   it('requires exact source, origin, protocol and launch channel', () => {
     const frame={} as Window, other={} as Window
