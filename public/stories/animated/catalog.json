@@ -1,3 +1,7 @@
 [
-  {"id":"moonlight-01-v1","path":"moonlight-01.json"}
+  {
+    "id": "moonlight-01-v2",
+    "path": "moonlight-01-v2.json",
+    "resumeFrom": "moonlight-01-v1"
+  }
 ]

@@ -2,3 +2,28 @@
 
 @media(min-width:900px){.game-page .lg\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .game-page input[type=checkbox],.game-page input[type=radio]{display:inline-block;width:20px;height:20px;min-height:0;margin:0 8px 0 0;vertical-align:middle;padding:0}.game-playing{position:fixed;inset:0;z-index:1100;max-width:none;overflow:auto;margin:0;border-radius:0;padding:14px max(14px,calc((100vw - 1040px)/2));box-sizing:border-box}.game-playing header h1{font-size:22px;margin:0}.game-playing .game-kicker,.game-playing header>p:last-child,.game-playing>p[role=status]{display:none}.game-playing>label{display:inline-flex;align-items:center;font-size:13px}.game-playing>.animated-story{margin-top:8px}.game-playing .story-stage-living{height:48vh;min-height:260px;max-height:470px}.game-playing .story-dialogue{min-height:100px}.game-playing .story-dialogue button{display:inline-block;width:auto}.game-playing .story-dialogue:has(h2) button{display:block;width:100%}.game-playing .story-dialogue .chinese-line{font-size:26px;margin:5px 0}.game-playing .story-dialogue .pinyin{margin:3px 0}.game-playing footer{padding:8px 16px}@media(max-width:600px){.game-playing{padding:10px}.game-playing .story-stage-living{height:39vh;min-height:240px}.game-playing header h1{font-size:19px}.game-playing .story-dialogue .chinese-line{font-size:23px}}
+
+/* Same pinyin / Chinese / contextual gloss stack as Reader, without nested buttons. */
+.game-page .episode-line { margin: 16px 0; }
+.game-page .episode-interlinear { display:flex; flex-wrap:wrap; justify-content:flex-start; align-items:flex-start; gap:1rem 0; margin:0; max-width:100%; text-align:center; }
+.game-page .episode-interlinear .reader-interlinear-chunk { display:grid; grid-template-rows:auto; align-content:start; gap:.25rem; min-width:0; max-width:100%; padding:.2rem .75rem; border-right:1px solid #d6dbce; border-radius:0; background:transparent; }
+.game-page .episode-interlinear .reader-interlinear-chunk:last-child { border-right-color:transparent; }
+.game-page .episode-interlinear strong { font-family:'LXGW WenKai',serif; font-size:1.65rem; line-height:1.35; font-weight:600; color:#263e36; overflow-wrap:anywhere; }
+.game-page .episode-interlinear .reader-interlinear-pinyin { font:600 .85rem/1.35 system-ui,sans-serif; color:#405743; opacity:1; white-space:normal; overflow-wrap:anywhere; }
+.game-page .episode-interlinear .reader-interlinear-gloss { font:.9rem/1.35 Georgia,serif; color:#615e58; opacity:1; max-width:12rem; overflow-wrap:anywhere; }
+.game-page .story-dialogue .episode-choice { display:block; width:100%; box-sizing:border-box; margin:12px 0 5px; padding:16px 12px; border:2px solid #6e8a7c; border-radius:14px; background:#fffdf7; text-align:left; }
+.game-page .story-dialogue .episode-choice:hover { background:#edf3e9; border-color:#315c48; }
+.game-page .story-dialogue .episode-choice:focus-visible { outline:3px solid #bd8735; outline-offset:3px; }
+@media(max-width:900px) {
+ .game-playing .animated-story:has(.episode-interlinear) .story-stage-living { height:28vh; min-height:180px; max-height:245px; }
+}
+@media(max-width:600px) {
+ .game-page .episode-interlinear { gap:.8rem 0; }
+ .game-page .episode-interlinear .reader-interlinear-chunk { padding:.15rem .5rem; }
+ .game-page .episode-interlinear strong { font-size:1.45rem; }
+ .game-page .episode-interlinear .reader-interlinear-pinyin { font-size:.75rem; }
+ .game-page .episode-interlinear .reader-interlinear-gloss { font-size:.8rem; max-width:10rem; }
+ .game-page .story-dialogue .episode-choice { padding:12px 6px; }
+}
+
+.game-page .story-dialogue button[aria-label^="Hear option:"] { display:inline-flex; width:auto; margin:0 0 8px; font-size:.85rem; }

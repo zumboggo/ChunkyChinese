@@ -27,3 +27,10 @@ Source packages live in `stories/animated`; `npm run game:audio -- --episode=gat
 ## Checks
 
 `npm test`, `npm run game:parity`, `GITHUB_PAGES=true npm run build`, and `npx playwright test tests/game.spec.ts` cover the shared renderer integration, callbacks/replay, action outcomes, ZIP round trip, unsafe asset rejection, actual Mandarin playback, native (no iframe) UI, phone/desktop, local version immutability and resume. The app-shell budget remains in place. Published/imported packages embed all scene media and are stored locally for reopening; the service worker handles the app shell.
+# Interlinear Chinese presentation
+
+Chinese line metadata can include `interlinear: [{chinese, pinyin, gloss}]`, using Reader's `ReaderInterlinearChunk` type. Concatenated Chinese must exactly reproduce the dialogue/option key. Use natural short phrases and contextual English glosses. `EpisodeInterlinear` uses Reader's three-row styling; choices contain non-interactive chunk spans inside one bordered button, with audio outside. Pinyin and chunk-meaning toggles are independent, while full-sentence English remains optional. Missing chunks retain the legacy sentence layout.
+
+`game:audio` and `game:build` fill missing pinyin, preserving reviewed pronunciations. Changed wording creates a new exact-text entry; replace stale chunk metadata rather than attaching it to new text. Validation rejects incomplete or mismatched chunks; ZIP exports preserve them.
+
+Moonlight 01's active catalog release is `moonlight-01-v2.json`. Its script, assets and audio are unchanged from v1. The catalog's optional `resumeFrom` can carry device/account-scoped progress forward only when the previous cached package's script matches exactly. A restart always starts fresh; new-version progress takes precedence. Original packages and old attempts remain intact.

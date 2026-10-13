@@ -9,7 +9,7 @@ const directory=resolve(root,'stories/animated'),cache=resolve(root,'.local/stor
 for(const file of readdirSync(directory).filter(f=>f.endsWith('.json')&&(!chosen||f===chosen+'.json'))){
  const pack=JSON.parse(readFileSync(resolve(directory,file),'utf8')),c=compileStory(pack.script,pack.assets);if(c.errors.length)throw Error(JSON.stringify(c.errors))
  pack.chinese??={lines:{}};const texts=[...new Set(c.story.nodes.flatMap(n=>n.type==='say'?[n.text]:n.type==='choice'?n.options.map(o=>o.text):[]).filter(t=>/[\u3400-\u9fff]/u.test(t)))];
- for(const text of texts){const line=pack.chinese.lines[text]??={};line.pinyin=pinyin(text);if(only)continue
+ for(const text of texts){const line=pack.chinese.lines[text]??={};line.pinyin??=pinyin(text);for(const chunk of line.interlinear??[])chunk.pinyin??=pinyin(chunk.chinese);if(only)continue
   const key=createHash('sha256').update('Tingting:165:AAC:32000:'+text).digest('hex');const output=resolve(cache,key+'.m4a')
   if(!statSync(output,{throwIfNoEntry:false})?.size){const input=resolve(cache,key+'.txt');writeFileSync(input,text);const pcm=resolve(cache,key+'.aiff');execFileSync('/usr/bin/say',['-v','Tingting','-r','165','-f',input,'-o',pcm]);execFileSync('/usr/bin/afconvert',['-f','m4af','-d','aac ','-b','32000',pcm,output]);}
   if(statSync(output).size<100)throw Error('Empty speech file: '+text)
