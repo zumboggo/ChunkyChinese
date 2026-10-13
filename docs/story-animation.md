@@ -34,3 +34,7 @@ Chinese line metadata can include `interlinear: [{chinese, pinyin, gloss}]`, usi
 `game:audio` and `game:build` fill missing pinyin, preserving reviewed pronunciations. Changed wording creates a new exact-text entry; replace stale chunk metadata rather than attaching it to new text. Validation rejects incomplete or mismatched chunks; ZIP exports preserve them.
 
 Moonlight 01's active catalog release is `moonlight-01-v2.json`. Its script, assets and audio are unchanged from v1. The catalog's optional `resumeFrom` can carry device/account-scoped progress forward only when the previous cached package's script matches exactly. A restart always starts fresh; new-version progress takes precedence. Original packages and old attempts remain intact.
+
+## Faster episode authoring
+
+Use [the reusable episode workflow](episode-authoring.md) for the pinned series source, 100-word assumed-familiar supplement, vocabulary-first `.story` audit and bounded VPN publishing helper. These authoring tools do not change the shared animation runtime or flashcard state.

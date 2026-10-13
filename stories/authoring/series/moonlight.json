@@ -1,0 +1,41 @@
+{
+  "id": "moonlight",
+  "title": "The Legendary Moonlight Sculptor",
+  "source": {
+    "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
+    "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
+    "chapter": "OEBPS/Text/LMS_B01_Chapter_01.xhtml",
+    "nextStart": "After several days they obtained a new house",
+    "nextEndBefore": "After being robbed to the tune of 3,000,000,000 won"
+  },
+  "completed": [
+    {
+      "episode": "moonlight-01-v2",
+      "end": "Hyun lists Weed at 50,000 won for one day, then sleeps."
+    },
+    {
+      "episode": "moonlight-02",
+      "end": "CTS Media buys Weed for 3,090,000,000 won. Hyun verifies the money and shares the bankbook and hope with Grandmother. Stop before moving and hospital treatment."
+    }
+  ],
+  "assetsFrom": "stories/animated/moonlight-02.json",
+  "vocabularySupplement": "stories/authoring/common-familiar-100.json",
+  "coverage": {
+    "min": 95,
+    "max": 98
+  },
+  "defaults": {
+    "scope": "One small dramatic development; source fidelity determines the boundary.",
+    "choices": "Usually 2–3 brief reconnecting choices, with a distinct response and callbacks where useful.",
+    "length": "Usually 40–60 voiced entries; flexible, not a quota.",
+    "assets": "Reuse current cast and appropriate settings. New characters use polished SVG.",
+    "language": "Simplified Mandarin, natural phrases, contextual glosses and reviewed pinyin.",
+    "voice": "Tingting, 165 wpm, AAC 32 kbps; exact-text cache.",
+    "memory": "Within-episode variables only; no invented cross-episode memory."
+  },
+  "continuity": [
+    "Grandmother is ill; keep her offstage resting until the source calls for a change.",
+    "The CTS Media caller is on the telephone, not in the home.",
+    "The next section contains the move, hospital treatment and debt collectors. Read the source before defining episode 3; no new episode is authorized by a tooling request."
+  ]
+}

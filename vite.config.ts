@@ -27,7 +27,7 @@ export default defineConfig({
   // cache so it doesn't contend with an already-running `npm run dev`.
   cacheDir: process.env.PORT ? `node_modules/.vite-${process.env.PORT}` : undefined,
   test: {
-    include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
+    include: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'scripts/lib/**/*.test.js'],
     exclude: ['tests/**', 'node_modules/**', 'dist/**'],
   },
 })
