@@ -3,5 +3,9 @@
     "id": "moonlight-01-v2",
     "path": "moonlight-01-v2.json",
     "resumeFrom": "moonlight-01-v1"
+  },
+  {
+    "id": "moonlight-02-v1",
+    "path": "moonlight-02.json"
   }
 ]
