@@ -7,5 +7,9 @@
   {
     "id": "moonlight-02-v1",
     "path": "moonlight-02.json"
+  },
+  {
+    "id": "moonlight-03-v1",
+    "path": "moonlight-03.json"
   }
 ]
