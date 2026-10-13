@@ -1,0 +1,18 @@
+import {describe,it,expect} from 'vitest'
+import {readFileSync} from 'node:fs'
+import {compileStory,initialStoryState,settleStory,advanceStory,replayStory} from './shared/engine/story-engine.js'
+import {EMOTIONS,AUTO_ACTING,validateRig} from './shared/engine/acting-library.js'
+import {actionFrames} from './shared/components/action-motion'
+import {buildChoice,routeToChoice} from './shared/components/authoring-tools'
+import {validateChinese,size,exportPackage,importPackage,type ChinesePackage} from './package'
+const pack=JSON.parse(readFileSync('stories/animated/gate-in-the-mist.json','utf8')) as ChinesePackage
+function route(option:string){const {story}=compileStory(pack.script,pack.assets);let s=settleStory(story,initialStoryState(story,1));const steps:(string|null)[]=[],texts:string[]=[],actions:string[]=[];while(!s.ended){const n=story.nodes[s.cursor];if(n.text)texts.push(n.text);if(n.type==='act')actions.push(n.action);const choice=n.type==='choice'?option:null;steps.push(choice);s=advanceStory(story,s,choice)}return {s,steps,texts,actions,story}}
+describe('native Chinese Story 2',()=>{
+ it('validates playable shared rigs, pinyin, audio and package budget',()=>{expect(validateChinese(pack).errors).toEqual([]);expect(size(pack)).toBeLessThan(5_000_000);for(const c of Object.values(pack.assets.characters))expect(validateRig(c.rig)).toBeNull();for(const l of Object.values(pack.chinese!.lines)){expect(l.pinyin).toBeTruthy();expect(l.audio).toMatch(/^data:audio\/mp4;base64,/)}for(const emotion of EMOTIONS)expect(AUTO_ACTING[emotion]).toBeTruthy()})
+ it('preserves distinct branches, attack outcomes and callback memory after replay',()=>{const talk=route('listen'),fight=route('rush');expect(talk.actions).toEqual([]);expect(fight.actions).toEqual(['attack-blocked']);expect(talk.s.variables.listened).toBe(true);expect(fight.s.variables.listened).toBe(false);expect(talk.texts).toContain('你先听了我说的话。现在，我也听你说。');expect(fight.texts).toContain('下次先说话，好吗？');expect(replayStory(fight.story,fight.steps,1)).toEqual(fight.s)})
+ it('uses the shared reachable-state preview and callback builder',()=>{expect(routeToChoice(pack,'approach').node.options).toHaveLength(2);const built=buildChoice(pack,'promise','Guide',[{text:'Stay',emotion:'relieved',response:'谢谢。',callback:'You stayed.'},{text:'Leave',emotion:'worried',response:'再见。',callback:'You left.'}],true);expect(built.callback).toContain('if');expect(built.declaration).toContain('hidden')})
+ it('keeps paired actions planted after choreography',()=>{for(const action of ['attack','attack-blocked','attack-dodged','give']){const f=actionFrames(action,-1,100);expect(f.actor.at(-1)?.transform).toBe('translateX(0)');expect(f.target.at(-1)?.transform).toBe('translateX(0)')}})
+ it('rejects malformed rigs, remote assets and oversized audio',()=>{const p=structuredClone(pack);p.assets.characters.Guide.rig.preset='invented';expect(validateChinese(p).errors.length).toBeGreaterThan(0);p.assets.backgrounds.rift.src='https://example.com/a.webp';expect(validateChinese(p).errors.some(e=>e.message.includes('remote'))).toBe(true);const q=structuredClone(pack);q.chinese!.lines['x']={audio:'data:audio/mp4;base64,'+'A'.repeat(7_000_000)};expect(validateChinese(q).errors.some(e=>e.message.includes('5 MB'))).toBe(true)})
+ it('round-trips the native ZIP with the same script, rigs, pinyin and speech',async()=>{const blob=await exportPackage(pack);const file=new File([await blob.arrayBuffer()],'episode.zip'); // JSZip on Node accepts bytes; browser accepts Files.
+ const imported=await importPackage(Object.assign(file,{arrayBuffer:file.arrayBuffer.bind(file)}));expect(imported).toEqual(pack)})
+})

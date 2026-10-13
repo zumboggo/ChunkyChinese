@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'chunky-chinese-v77'
+const CACHE_VERSION = 'chunky-chinese-v78'
 const COURSE_OFFLINE_CACHE = 'chunky-listening-course-v1'
 const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'
 const SENTENCE_OFFLINE_CACHE = 'chunky-sentence-listening-v1'
@@ -93,22 +93,6 @@ self.addEventListener('fetch', (event) => {
 
   if (url.pathname.startsWith(`${APP_BASE}listening/`)) {
     event.respondWith(courseOfflineFirst(request))
-    return
-  }
-
-  // Game assets are versioned and cached only when an episode opens. Never
-  // substitute the app shell for an unavailable Twine document.
-  if (url.pathname.startsWith(`${APP_BASE}game/`)) {
-    event.respondWith((async () => {
-      const cache = await caches.open('chunky-game-v1').catch(() => null)
-      const hit = await cache?.match(request, { ignoreSearch: true }).catch(() => undefined)
-      if (hit) return hit
-      const response = await fetch(request)
-      // Media requests can return HTTP 206. Cache.put rejects partial responses;
-      // a cache write must never turn a successful audio response into a failure.
-      if (cache && response.status === 200) await cache.put(request, response.clone()).catch(() => {})
-      return response
-    })())
     return
   }
 

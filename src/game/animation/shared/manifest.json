@@ -1,0 +1,111 @@
+{
+  "repository": "https://github.com/zumboggo/Learningisfun",
+  "commit": "47825c71898618e480ca03a58eec8115c9c0ccd5",
+  "files": [
+    {
+      "source": "functions/learning-content/src/story-engine.js",
+      "target": "engine/story-engine.js",
+      "sha256": "1830af4a011c6ba083f2e3e73b8f6ac7a68f598fb23109fa3432174f7e659656"
+    },
+    {
+      "source": "functions/learning-content/src/story-engine.d.ts",
+      "target": "engine/story-engine.d.ts",
+      "sha256": "f5e71731b21540d54614c899196a1cfed2e0c4a3de0760a428e0b932050f0222"
+    },
+    {
+      "source": "functions/learning-content/src/acting-library.js",
+      "target": "engine/acting-library.js",
+      "sha256": "f84ce17d93a35b087d5febef1943105c3f6376d6619bd7c3cfcb853a5ecf7ada"
+    },
+    {
+      "source": "functions/learning-content/src/acting-library.d.ts",
+      "target": "engine/acting-library.d.ts",
+      "sha256": "1d459ecfed4b93e8fe83dcdaf99ab86f4c4a2a2951d2baefe765e47ea8407264"
+    },
+    {
+      "source": "functions/learning-content/src/scene-beats.js",
+      "target": "engine/scene-beats.js",
+      "sha256": "2f042663335f7791938b45634e05ec7b3cfa210cab8dd8d52a67bf8201371066"
+    },
+    {
+      "source": "functions/learning-content/src/scene-beats.d.ts",
+      "target": "engine/scene-beats.d.ts",
+      "sha256": "2d8cc0cc52d64d061a6a319a346563e7976cf747dce980b089f4f6796f6d6743"
+    },
+    {
+      "source": "functions/learning-content/src/character-builder.js",
+      "target": "engine/character-builder.js",
+      "sha256": "9bf826289b71ede100c8bbe9ae44911a8d1f63a7d0a6f36fd5a15b2ca63d04d5"
+    },
+    {
+      "source": "functions/learning-content/src/character-builder.d.ts",
+      "target": "engine/character-builder.d.ts",
+      "sha256": "25779f922ac24c21e3071d1a3c8707a3baab652b075357701b4857a3e506d8e7"
+    },
+    {
+      "source": "src/components/animated/BackgroundLibrary.tsx",
+      "target": "components/BackgroundLibrary.tsx",
+      "sha256": "e7fb537e3f2599bdf8ee87ac28a70b4c3e4edf28276c9b3421a923672587f514"
+    },
+    {
+      "source": "src/components/animated/CartoonActor.tsx",
+      "target": "components/CartoonActor.tsx",
+      "sha256": "4a1cf3356604faae97689119ae9ee35087617c1da82c9c6216a6da63eaaefb1f"
+    },
+    {
+      "source": "src/components/animated/PuppetActor.tsx",
+      "target": "components/PuppetActor.tsx",
+      "sha256": "c86de35a855cbf3b0976c5c80f35e4e8046ac71350fbfac7326cbe44948d49c6"
+    },
+    {
+      "source": "src/components/animated/StoryStage.tsx",
+      "target": "components/StoryStage.tsx",
+      "sha256": "30edeeda07eab11d3384d1a93e7758da01a968e8898178ff4cd85ecef5532d60"
+    },
+    {
+      "source": "src/components/animated/action-motion.ts",
+      "target": "components/action-motion.ts",
+      "sha256": "1e510be014358a3e02f81dfe9ad25ac60eea8b640b7729e5ee74dd8d82dc1367"
+    },
+    {
+      "source": "src/components/animated/character-geometry.ts",
+      "target": "components/character-geometry.ts",
+      "sha256": "965cb1def1f315b91ce53c03582f483bbd4288b52f8a64133b6df45349eb8007"
+    },
+    {
+      "source": "src/components/animated/story-player.css",
+      "target": "components/story-player.css",
+      "sha256": "96a89ba22cf9037867af19a6c685b1c06f4e45720be8255f629c8801016fdae1"
+    },
+    {
+      "source": "src/components/animated/ActingLibrary.tsx",
+      "target": "components/ActingLibrary.tsx",
+      "sha256": "edb4a882fba8d65f67fc6f7debb575816923ee7ae2efca16871c01e39fdb64ea"
+    },
+    {
+      "source": "src/components/animated/ActionLibrary.tsx",
+      "target": "components/ActionLibrary.tsx",
+      "sha256": "d05178eb75ff2af19822e40519cfaa24504e456509890d67ab4c90f57dcac665"
+    },
+    {
+      "source": "src/components/animated/CharacterBuilder.tsx",
+      "target": "components/CharacterBuilder.tsx",
+      "sha256": "995160b2542af9ea1ec36c158241a0bdaa6878ecde3a5124522c6fbda260c054"
+    },
+    {
+      "source": "src/components/animated/SceneBeatLibrary.tsx",
+      "target": "components/SceneBeatLibrary.tsx",
+      "sha256": "8c1f64adb655b95b9dfdf29da0a7f76b2b5f00958df0543aef3f40912de47b74"
+    },
+    {
+      "source": "src/components/animated/ChoiceWorkshop.tsx",
+      "target": "components/ChoiceWorkshop.tsx",
+      "sha256": "56aaedd836ab1f43dc2da0255d975f33573e72f8bfc79c5a6094695d9ffa4c8a"
+    },
+    {
+      "source": "src/components/animated/authoring-tools.ts",
+      "target": "components/authoring-tools.ts",
+      "sha256": "5fa5cf563357030cc0fb5ef458dc4e08a698aab9315955bc310dd857bee5e393"
+    }
+  ]
+}
