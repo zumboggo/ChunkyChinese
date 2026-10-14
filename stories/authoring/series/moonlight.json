@@ -5,7 +5,7 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_01.xhtml",
-    "nextStart": "After being robbed to the tune of 3,000,000,000 won",
+    "nextStart": "Using part of the remaining money, Lee Hyun registered",
     "nextEndBefore": "Lee Hyun’s cold eyes stared at the monitor."
   },
   "completed": [
@@ -20,9 +20,13 @@
     {
       "episode": "moonlight-03-v1",
       "end": "Debt collectors take three billion won, return 90 million and the IOU, and leave after Han Jinsup’s five-year challenge. Stop before the three days of despair."
+    },
+    {
+      "episode": "moonlight-04-v1",
+      "end": "On the third day Hyun finds hope of earning again. Ninety million remains, fifty million is reserved for the house contract, forty million is available. He will not pay a cancellation penalty. Stops before registering for martial arts."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-03-v2.json",
+  "assetsFrom": "stories/animated/moonlight-04.json",
   "vocabularySupplement": "stories/authoring/common-familiar-100.json",
   "coverage": {
     "min": 95,
@@ -38,10 +42,10 @@
     "memory": "Within-episode variables only; no invented cross-episode memory."
   },
   "continuity": [
-    "Grandmother remains hospitalized. Hyun has 90 million won left before the new-home contract expense; the old debt is paid.",
-    "Han Jinsup challenged Hyun to make three billion won within five years. No blow landed in the hospital.",
-    "Episode 3 stops at the immediate aftermath. Read the next pinned passage before defining episode 4.",
-    "Reuse Hyun and the new hospital/collector cast from episode 3; the home background remains available in episode 2. Phone staging uses moonlight-02-v2 without changing its source events."
+    "Grandmother remains hospitalized. The old debt is paid. Hyun has ninety million won left, of which fifty million is reserved for the house and forty million is available.",
+    "Hyun has recovered enough hope to prepare to earn again. No martial arts registration or training-year montage has happened yet.",
+    "Episode 4 choices change inner responses only; the house contract remains in place. No cross-episode memory is assumed.",
+    "Use the revised cast recipes and episode 4 home asset. Start the next episode at martial arts registration."
   ],
   "castRecipes": "stories/characters/lms-cast.json"
 }

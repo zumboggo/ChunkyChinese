@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test'
 test('categories, independent reading aids, persistent preferences and next episode',async({page},info)=>{
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
- await expect(page.locator('.episode-strip button')).toHaveText(['01Before the First Bid','02An Impossible Number','03The Price of Safety'])
+ await expect(page.locator('.episode-strip button')).toHaveText(['01Before the First Bid','02An Impossible Number','03The Price of Safety','04Once More'])
  await page.getByRole('button',{name:/Daily Life Small moments/}).click()
  await expect(page.getByText('No Daily Life episodes yet.',{exact:false})).toBeVisible()
  await page.getByRole('button',{name:/LMS A new world/}).click()
@@ -34,5 +34,6 @@ test('categories, independent reading aids, persistent preferences and next epis
   const choices=page.locator('.episode-choice');if(await choices.count())await choices.first().click();else await page.getByRole('button',{name:'Continue →',exact:true}).click()
  }
  await expect(page.getByRole('heading',{name:'Scene complete',exact:true})).toBeVisible()
- await expect(page.getByRole('button',{name:'Next Episode →',exact:true})).toHaveCount(0)
+ await page.getByRole('button',{name:'Next Episode →',exact:true}).click()
+ await expect(page.getByRole('heading',{name:'Moonlight Sculptor 04 · Once More',exact:true})).toBeVisible()
 })
