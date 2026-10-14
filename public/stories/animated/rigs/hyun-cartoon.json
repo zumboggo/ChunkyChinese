@@ -1,0 +1,25 @@
+{
+  "name": "李贤 · Lee Hyun",
+  "version": 3,
+  "provenance": "Approved Hyun B and expression refinement, imagegen concept references 2026-10-14. Translated by hand into articulated SVG: angular cheeks, layered hair, family warmth and eager reward expressions. Original fictional interpretation, not official art.",
+  "expressions": {},
+  "rig": {
+    "version": 2,
+    "preset": "cartoon-v1",
+    "style": "manga",
+    "finish": "polished",
+    "palette": {
+      "skin": "#d2aa86",
+      "hair": "#282624",
+      "shirt": "#4f686b",
+      "trim": "#d7cbb0"
+    },
+    "appearance": {
+      "age": "adult",
+      "hair": "tousled",
+      "face": "scrappy",
+      "eyes": "keen",
+      "outfit": "workshirt"
+    }
+  }
+}

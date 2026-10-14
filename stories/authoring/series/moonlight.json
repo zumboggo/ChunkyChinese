@@ -26,7 +26,7 @@
       "end": "On the third day Hyun finds hope of earning again. Ninety million remains, fifty million is reserved for the house contract, forty million is available. He will not pay a cancellation penalty. Stops before registering for martial arts."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-04.json",
+  "assetsFrom": "stories/animated/moonlight-04-v2.json",
   "vocabularySupplement": "stories/authoring/common-familiar-100.json",
   "coverage": {
     "min": 95,
@@ -36,7 +36,7 @@
     "scope": "One small dramatic development; source fidelity determines the boundary.",
     "choices": "Usually 2–3 brief reconnecting choices, with a distinct response and callbacks where useful.",
     "length": "Usually 40–60 voiced entries; flexible, not a quota.",
-    "assets": "Reuse the version 2 LMS cast from stories/characters/lms-cast.json, built by npm run game:cast. Weed uses a lean face, keen eyes, tousled black hair and a slate work shirt. All facial expressions remain articulated SVG. New characters use polished SVG.",
+    "assets": "Reuse the approved option-B SVG cast from stories/characters/lms-cast.json. Hyun has a scrappy face and tousled hair; his sister has a spirited face, ponytail and rust overshirt. Use happy/relieved for broad family warmth and excited/proud for reward anticipation. Sister is available in the reusable cast; add her only when the source places her in the scene.",
     "language": "Simplified Mandarin, natural phrases, contextual glosses and reviewed pinyin.",
     "voice": "Tingting, 165 wpm, AAC 32 kbps; exact-text cache.",
     "memory": "Within-episode variables only; no invented cross-episode memory."

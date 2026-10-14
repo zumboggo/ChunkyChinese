@@ -1,0 +1,25 @@
+{
+  "name": "妹妹 · Hyun’s sister",
+  "version": 1,
+  "provenance": "Approved Sister B imagegen concept, 2026-10-14. Original fictional SVG interpretation with practical ponytail, alert eyes and rust overshirt. Reusable cast member; not inserted into scenes where she is absent.",
+  "expressions": {},
+  "rig": {
+    "version": 2,
+    "preset": "cartoon-v1",
+    "style": "manga",
+    "finish": "polished",
+    "palette": {
+      "skin": "#e0b595",
+      "hair": "#302a27",
+      "shirt": "#9b5b45",
+      "trim": "#e4d8be"
+    },
+    "appearance": {
+      "age": "teen",
+      "hair": "ponytail",
+      "face": "spirited",
+      "eyes": "keen",
+      "outfit": "workshirt"
+    }
+  }
+}

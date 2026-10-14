@@ -23,3 +23,19 @@ Grandmother: an elderly face with age lines, gentle eyes, swept silver hair and 
 Cast-only package equality tests protect story/audio continuity. Shared rig tests cover expression overrides, legal schema, continuous arms and attached props. Desktop/phone browser checks cover all twenty expressions, reduced motion, fists, full-body framing, phone attachment, episode continuation and audio. Preview PNGs are saved in ignored `.local/cast/`.
 
 Shared backend deployment: `6acedfaf67aa76b65b53`, verified Active in Appwrite on 2026-10-14 before the frontend push.
+
+## Option B SVG refinement — 2026-10-14
+
+David selected Hyun B and Sister B, then requested a larger tender smile for family and an eager smile for possible rewards. Reference sheets remain at `../../../output/imagegen/lms-cast-round-3/` (`hyun-b.png`, `hyun-b-expressions-v2.png`, `sister-b.png`, with generation prompts). These are art references, not embedded runtime images.
+
+The shared renderer now provides opt-in `scrappy` and `spirited` face modules and `ponytail` hair. Hyun version 3 uses angular cheek shadows, layered fringe shapes, warm skin highlights, almond eyes, articulated eyebrows, lips and eyelids. Sister version 1 uses a softer related face, a low ponytail and rust work shirt. `happy`/`relieved` lift cheeks and soften brows around a broader tooth-showing smile; `excited`/`proud` brighten the eyes for anticipation. Speech preserves a smile instead of replacing it with an unrelated neutral mouth. Existing finite gesture timing, blink scheduling and reduced-motion behavior remain shared. A slight eased ponytail follow-through follows the head; it does not run its own loop.
+
+Available in Meet the LMS cast and the studio's Reusable cast selector. Sister is not inserted into existing episodes because she is absent from those scenes. Presentation releases 01-v5, 02-v5, 03-v4 and 04-v2 retain their predecessors' script, Chinese annotations, audio, choices and background assets. Their catalog records preserve immediate previous-release resume links. Old package files are not rebuilt by the cast generator.
+
+### Research applied
+
+- [SVGator: animate an SVG character](https://www.svgator.com/tutorials/how-to-animate-an-svg-character): group parts around anatomical origins; ease movement and delay secondary parts. Applied to head-attached feature groups and restrained ponytail follow-through, retaining the existing finite gesture controller.
+- [MDN: SVG gradients](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorials/SVG_from_scratch/Gradients): reuse named gradient definitions for scalable shading. Palette-derived gradients are combined with sparse cheek/nose/fringe shadow planes; no heavy blur filters or raster face texture.
+- [MDN: transform-origin](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/transform-origin): SVG defaults differ from HTML. Explicit SVG coordinate pivots keep hair, face and body aligned, rather than relying on bounding-box defaults.
+
+Eye clip paths keep irises inside the animated eyelids. Every instance uses unique IDs so two speakers cannot pick up each other's clipping or gradients. Face shape presets opt in to the new geometry; old cast recipes retain their previous heads.
