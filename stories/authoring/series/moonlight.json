@@ -4,10 +4,10 @@
   "source": {
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
-    "chapter": "OEBPS/Text/LMS_B01_Chapter_01.xhtml",
-    "nextStart": "Lee Hyun’s cold eyes stared at the monitor.",
-    "nextEndBefore": "When the message came, Lee Hyun shouted without any hesitation.",
-    "continuationNote": "This bounded excerpt reaches the connection prompt near the end of Chapter 1. The next sentence is Hyun saying Yes. For episode 6, inspect that ending and the beginning of Chapter 2 before choosing a full dramatic boundary; do not skip capsule purchase or his Yes."
+    "chapter": "OEBPS/Text/LMS_B01_Chapter_02.xhtml",
+    "nextStart": "In Royal Road, there are over a hundred major cities and thousands of towns.",
+    "nextEndBefore": "The moment the instructor saw Weed walk in the entrance, his eyes glared fiercely.",
+    "continuationNote": "Episode 6 finished character creation and skipped the tutorial; do not repeat the purchase or setup. Continue with the flash of light and arrival in Serabourg, his amazement, public movement tests and embarrassment, then his choice to head for the Training Hall. The bounded excerpt ends just before meeting the instructor."
   },
   "completed": [
     {
@@ -29,9 +29,13 @@
     {
       "episode": "moonlight-05-v1",
       "end": "Hyun completes a year of martial-arts training and game research. Royal Road reaches over 75% of the global game market and over 90% of Korean gamers; its royal wars dominate broadcasts. He is satisfied it has developed as expected. Stop before his cold gaze at the monitor and buying the capsule."
+    },
+    {
+      "episode": "moonlight-06-v1",
+      "end": "Hyun buys the capsule for ten million won, immediately says Yes, creates Weed as a male human without changing his appearance, selects Serabourg in Rosenheim, and skips the introduction to save time at three hundred thousand won per month. Stops before the flash and arrival in the city."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-05.json",
+  "assetsFrom": "stories/animated/moonlight-06.json",
   "vocabularySupplement": "stories/authoring/common-familiar-100.json",
   "coverage": {
     "min": 95,
@@ -47,10 +51,10 @@
     "memory": "Within-episode variables only; no invented cross-episode memory."
   },
   "continuity": [
-    "Grandmother remains hospitalized. The old debt is paid. Before the training year, ninety million won remained, fifty million was reserved for the house, and forty million was available. Do not invent the exact balance after training expenses.",
-    "A full year of martial-arts training, game research and observation of Royal Road has passed. Hyun has chosen Royal Road; he has not yet purchased its capsule or entered the game.",
-    "Episode 5 choices change his internal emphasis, with callbacks inside that episode only. No cross-episode memory is assumed.",
-    "Reuse approved LMS cast and the home asset. Continue at the monitor and capsule purchase."
+    "Grandmother remains hospitalized and the old debt is paid. Do not invent an exact current balance after the training year and capsule purchase.",
+    "The capsule cost ten million won; playing costs three hundred thousand won per month. Hyun has created Weed as a male human with unchanged appearance, and selected Serabourg in Rosenheim. He has not yet appeared in the city.",
+    "Episode 6 choices change internal reflections about spending and his name, with callbacks inside that episode only. No cross-episode memory is assumed.",
+    "Reuse approved LMS cast. Episode 6 includes home and abstract account-creation starfield assets; neither is a depiction of Serabourg. His appearance and movement on entering the city need source-faithful staging."
   ],
   "castRecipes": "stories/characters/lms-cast.json"
 }
