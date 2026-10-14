@@ -37,5 +37,11 @@
     "id": "prop-rehearsal-v1",
     "path": "prop-rehearsal.json",
     "category": "practice"
+  },
+  {
+    "id": "moonlight-06-v1",
+    "category": "lms",
+    "episode": 6,
+    "path": "moonlight-06.json"
   }
 ]

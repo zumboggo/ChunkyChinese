@@ -1,0 +1,883 @@
+{
+  "一年过去了。今天，我不再只是坐在电脑前。": {
+    "english": "A year has passed. Today, I am no longer just sitting at the computer.",
+    "interlinear": [
+      {
+        "chinese": "一年过去了。",
+        "gloss": "A year has passed.",
+        "pinyin": "yì nián guò qù le 。"
+      },
+      {
+        "chinese": "今天，",
+        "gloss": "Today,",
+        "pinyin": "jīn tiān ，"
+      },
+      {
+        "chinese": "我不再只是",
+        "gloss": "I am no longer just",
+        "pinyin": "wǒ bú zài zhǐ shì"
+      },
+      {
+        "chinese": "坐在电脑前。",
+        "gloss": "sitting at the computer.",
+        "pinyin": "zuò zài diàn nǎo qián 。"
+      }
+    ],
+    "pinyin": "yì nián guò qù le 。 jīn tiān ， wǒ bú zài zhǐ shì zuò zài diàn nǎo qián 。"
+  },
+  "我要买游戏胶囊，进去玩皇家之路。": {
+    "english": "I am going to buy a gaming capsule, go in and play Royal Road.",
+    "interlinear": [
+      {
+        "chinese": "我要买",
+        "gloss": "I am going to buy",
+        "pinyin": "wǒ yào mǎi"
+      },
+      {
+        "chinese": "游戏胶囊，",
+        "gloss": "a gaming capsule,",
+        "pinyin": "yóu xì jiāo náng ，"
+      },
+      {
+        "chinese": "进去玩",
+        "gloss": "go in and play",
+        "pinyin": "jìn qù wán"
+      },
+      {
+        "chinese": "皇家之路。",
+        "gloss": "Royal Road.",
+        "pinyin": "huáng jiā zhī lù 。"
+      }
+    ],
+    "pinyin": "wǒ yào mǎi yóu xì jiāo náng ， jìn qù wán huáng jiā zhī lù 。"
+  },
+  "游戏胶囊要一千万韩元。": {
+    "english": "The gaming capsule costs ten million won.",
+    "interlinear": [
+      {
+        "chinese": "游戏胶囊",
+        "gloss": "The gaming capsule",
+        "pinyin": "yóu xì jiāo náng"
+      },
+      {
+        "chinese": "要一千万韩元。",
+        "gloss": "costs ten million won.",
+        "pinyin": "yào yì qiān wàn hán yuán 。"
+      }
+    ],
+    "pinyin": "yóu xì jiāo náng yào yì qiān wàn hán yuán 。"
+  },
+  "一千万……光是想一想，我就想哭。": {
+    "english": "Ten million… Just thinking about it, I want to cry.",
+    "interlinear": [
+      {
+        "chinese": "一千万……",
+        "gloss": "Ten million…",
+        "pinyin": "yì qiān wàn … …"
+      },
+      {
+        "chinese": "光是想一想，",
+        "gloss": "Just thinking about it,",
+        "pinyin": "guāng shì xiǎng yi xiǎng ，"
+      },
+      {
+        "chinese": "我就想哭。",
+        "gloss": "I want to cry.",
+        "pinyin": "wǒ jiù xiǎng kū 。"
+      }
+    ],
+    "pinyin": "yì qiān wàn … … guāng shì xiǎng yi xiǎng ， wǒ jiù xiǎng kū 。"
+  },
+  "这么多钱，真让人心疼。": {
+    "english": "So much money— it really hurts to spend it.",
+    "interlinear": [
+      {
+        "chinese": "这么多钱，",
+        "gloss": "So much money—",
+        "pinyin": "zhè me duō qián ，"
+      },
+      {
+        "chinese": "真让人心疼。",
+        "gloss": "it really hurts to spend it.",
+        "pinyin": "zhēn ràng rén xīn téng 。"
+      }
+    ],
+    "pinyin": "zhè me duō qián ， zhēn ràng rén xīn téng 。"
+  },
+  "我已经为这一天准备了一年。": {
+    "english": "I have already for this day prepared for a year.",
+    "interlinear": [
+      {
+        "chinese": "我已经",
+        "gloss": "I have already",
+        "pinyin": "wǒ yǐ jīng"
+      },
+      {
+        "chinese": "为这一天",
+        "gloss": "for this day",
+        "pinyin": "wèi zhè yì tiān"
+      },
+      {
+        "chinese": "准备了一年。",
+        "gloss": "prepared for a year.",
+        "pinyin": "zhǔn bèi le yì nián 。"
+      }
+    ],
+    "pinyin": "wǒ yǐ jīng wèi zhè yì tiān zhǔn bèi le yì nián 。"
+  },
+  "身体疼的时候，我没有哭。可是，这些钱……": {
+    "english": "When my body hurt, I did not cry. But all this money…",
+    "interlinear": [
+      {
+        "chinese": "身体疼的时候，",
+        "gloss": "When my body hurt,",
+        "pinyin": "shēn tǐ téng de shí hòu ，"
+      },
+      {
+        "chinese": "我没有哭。",
+        "gloss": "I did not cry.",
+        "pinyin": "wǒ méi yǒu kū 。"
+      },
+      {
+        "chinese": "可是，",
+        "gloss": "But",
+        "pinyin": "kě shì ，"
+      },
+      {
+        "chinese": "这些钱……",
+        "gloss": "all this money…",
+        "pinyin": "zhè xiē qián … …"
+      }
+    ],
+    "pinyin": "shēn tǐ téng de shí hòu ， wǒ méi yǒu kū 。 kě shì ， zhè xiē qián … …"
+  },
+  "学了一年。现在，我要进去看看了。": {
+    "english": "A year of learning. Now, I am going in to see for myself.",
+    "interlinear": [
+      {
+        "chinese": "学了一年。",
+        "gloss": "A year of learning.",
+        "pinyin": "xué le yì nián 。"
+      },
+      {
+        "chinese": "现在，",
+        "gloss": "Now,",
+        "pinyin": "xiàn zài ，"
+      },
+      {
+        "chinese": "我要进去看看了。",
+        "gloss": "I am going in to see for myself.",
+        "pinyin": "wǒ yào jìn qù kàn kàn le 。"
+      }
+    ],
+    "pinyin": "xué le yì nián 。 xiàn zài ， wǒ yào jìn qù kàn kàn le 。"
+  },
+  "我还是买了。贵得我都快哭了。": {
+    "english": "I bought it anyway. So expensive that I almost cried.",
+    "interlinear": [
+      {
+        "chinese": "我还是买了。",
+        "gloss": "I bought it anyway.",
+        "pinyin": "wǒ hái shì mǎi le 。"
+      },
+      {
+        "chinese": "贵得",
+        "gloss": "So expensive that",
+        "pinyin": "guì de"
+      },
+      {
+        "chinese": "我都快哭了。",
+        "gloss": "I almost cried.",
+        "pinyin": "wǒ dōu kuài kū le 。"
+      }
+    ],
+    "pinyin": "wǒ hái shì mǎi le 。 guì de wǒ dōu kuài kū le 。"
+  },
+  "这是投资。想在里面得到钱，就得先进去。": {
+    "english": "This is an investment. To earn money in there, I have to get in first.",
+    "interlinear": [
+      {
+        "chinese": "这是投资。",
+        "gloss": "This is an investment.",
+        "pinyin": "zhè shì tóu zī 。"
+      },
+      {
+        "chinese": "想在里面得到钱，",
+        "gloss": "To earn money in there,",
+        "pinyin": "xiǎng zài lǐ miàn dé dào qián ，"
+      },
+      {
+        "chinese": "就得先进去。",
+        "gloss": "I have to get in first.",
+        "pinyin": "jiù děi xiān jìn qù 。"
+      }
+    ],
+    "pinyin": "zhè shì tóu zī 。 xiǎng zài lǐ miàn dé dào qián ， jiù děi xiān jìn qù 。"
+  },
+  "我一直提醒自己：这是投资，是必须花的钱。": {
+    "english": "I keep reminding myself: this is an investment, money I have to spend.",
+    "interlinear": [
+      {
+        "chinese": "我一直提醒自己：",
+        "gloss": "I keep reminding myself:",
+        "pinyin": "wǒ yì zhí tí xǐng zì jǐ ："
+      },
+      {
+        "chinese": "这是投资，",
+        "gloss": "this is an investment,",
+        "pinyin": "zhè shì tóu zī ，"
+      },
+      {
+        "chinese": "是必须花的钱。",
+        "gloss": "money I have to spend.",
+        "pinyin": "shì bì xū huā de qián 。"
+      }
+    ],
+    "pinyin": "wǒ yì zhí tí xǐng zì jǐ ： zhè shì tóu zī ， shì bì xū huā de qián 。"
+  },
+  "准备好了。真的要开始了。": {
+    "english": "All ready. It is really about to begin.",
+    "interlinear": [
+      {
+        "chinese": "准备好了。",
+        "gloss": "All ready.",
+        "pinyin": "zhǔn bèi hǎo le 。"
+      },
+      {
+        "chinese": "真的要开始了。",
+        "gloss": "It is really about to begin.",
+        "pinyin": "zhēn de yào kāi shǐ le 。"
+      }
+    ],
+    "pinyin": "zhǔn bèi hǎo le 。 zhēn de yào kāi shǐ le 。"
+  },
+  "我觉得自己好像一个战士，马上就要走进战场。": {
+    "english": "I feel that I am like a warrior, about to step onto the battlefield.",
+    "interlinear": [
+      {
+        "chinese": "我觉得自己",
+        "gloss": "I feel that I",
+        "pinyin": "wǒ jué de zì jǐ"
+      },
+      {
+        "chinese": "好像一个战士，",
+        "gloss": "am like a warrior,",
+        "pinyin": "hǎo xiàng yí gè zhàn shì ，"
+      },
+      {
+        "chinese": "马上就要",
+        "gloss": "about to",
+        "pinyin": "mǎ shàng jiù yào"
+      },
+      {
+        "chinese": "走进战场。",
+        "gloss": "step onto the battlefield.",
+        "pinyin": "zǒu jìn zhàn chǎng 。"
+      }
+    ],
+    "pinyin": "wǒ jué de zì jǐ hǎo xiàng yí gè zhàn shì ， mǎ shàng jiù yào zǒu jìn zhàn chǎng 。"
+  },
+  "是！": {
+    "english": "Yes!",
+    "interlinear": [
+      {
+        "chinese": "是！",
+        "gloss": "Yes!",
+        "pinyin": "shì ！"
+      }
+    ],
+    "pinyin": "shì ！"
+  },
+  "四周好像没有边。我看不到别人。": {
+    "english": "The space around me seems endless. I cannot see anyone else.",
+    "interlinear": [
+      {
+        "chinese": "四周好像没有边。",
+        "gloss": "The space around me seems endless.",
+        "pinyin": "sì zhōu hǎo xiàng méi yǒu biān 。"
+      },
+      {
+        "chinese": "我看不到别人。",
+        "gloss": "I cannot see anyone else.",
+        "pinyin": "wǒ kàn bú dào bié rén 。"
+      }
+    ],
+    "pinyin": "sì zhōu hǎo xiàng méi yǒu biān 。 wǒ kàn bú dào bié rén 。"
+  },
+  "谁在说话？": {
+    "english": "Who is speaking?",
+    "interlinear": [
+      {
+        "chinese": "谁在说话？",
+        "gloss": "Who is speaking?",
+        "pinyin": "shuí zài shuō huà ？"
+      }
+    ],
+    "pinyin": "shuí zài shuō huà ？"
+  },
+  "我又看看四周。没有人。": {
+    "english": "I look around again. Nobody is there.",
+    "interlinear": [
+      {
+        "chinese": "我又看看四周。",
+        "gloss": "I look around again.",
+        "pinyin": "wǒ yòu kàn kàn sì zhōu 。"
+      },
+      {
+        "chinese": "没有人。",
+        "gloss": "Nobody is there.",
+        "pinyin": "méi yǒu rén 。"
+      }
+    ],
+    "pinyin": "wǒ yòu kàn kàn sì zhōu 。 méi yǒu rén 。"
+  },
+  "原来是游戏在问我。要开始了。": {
+    "english": "So it is the game asking me. It is about to begin.",
+    "interlinear": [
+      {
+        "chinese": "原来是游戏在问我。",
+        "gloss": "So it is the game asking me.",
+        "pinyin": "yuán lái shì yóu xì zài wèn wǒ 。"
+      },
+      {
+        "chinese": "要开始了。",
+        "gloss": "It is about to begin.",
+        "pinyin": "yào kāi shǐ le 。"
+      }
+    ],
+    "pinyin": "yuán lái shì yóu xì zài wèn wǒ 。 yào kāi shǐ le 。"
+  },
+  "要开一个新账号吗？": {
+    "english": "Do you want to open a new account?",
+    "interlinear": [
+      {
+        "chinese": "要开一个",
+        "gloss": "Do you want to open a",
+        "pinyin": "yào kāi yí gè"
+      },
+      {
+        "chinese": "新账号吗？",
+        "gloss": "new account?",
+        "pinyin": "xīn zhàng hào ma ？"
+      }
+    ],
+    "pinyin": "yào kāi yí gè xīn zhàng hào ma ？"
+  },
+  "请选择你的名字……": {
+    "english": "Please choose your name…",
+    "interlinear": [
+      {
+        "chinese": "请选择",
+        "gloss": "Please choose",
+        "pinyin": "qǐng xuǎn zé"
+      },
+      {
+        "chinese": "你的名字……",
+        "gloss": "your name…",
+        "pinyin": "nǐ de míng zì … …"
+      }
+    ],
+    "pinyin": "qǐng xuǎn zé nǐ de míng zì … …"
+  },
+  "杂草。": {
+    "english": "Weed.",
+    "interlinear": [
+      {
+        "chinese": "杂草。",
+        "gloss": "Weed.",
+        "pinyin": "zá cǎo 。"
+      }
+    ],
+    "pinyin": "zá cǎo 。"
+  },
+  "再小的草，也能活下去。": {
+    "english": "Even the smallest blade of grass can keep on living.",
+    "interlinear": [
+      {
+        "chinese": "再小的草，",
+        "gloss": "Even the smallest blade of grass",
+        "pinyin": "zài xiǎo de cǎo ，"
+      },
+      {
+        "chinese": "也能活下去。",
+        "gloss": "can keep on living.",
+        "pinyin": "yě néng huó xià qù 。"
+      }
+    ],
+    "pinyin": "zài xiǎo de cǎo ， yě néng huó xià qù 。"
+  },
+  "我还是喜欢这个名字。": {
+    "english": "I still like this name.",
+    "interlinear": [
+      {
+        "chinese": "我还是喜欢",
+        "gloss": "I still like",
+        "pinyin": "wǒ hái shì xǐ huan"
+      },
+      {
+        "chinese": "这个名字。",
+        "gloss": "this name.",
+        "pinyin": "zhè ge míng zì 。"
+      }
+    ],
+    "pinyin": "wǒ hái shì xǐ huan zhè ge míng zì 。"
+  },
+  "小一点也没关系。我还在这里。": {
+    "english": "Being a little small does not matter. I am still here.",
+    "interlinear": [
+      {
+        "chinese": "小一点",
+        "gloss": "Being a little small",
+        "pinyin": "xiǎo yì diǎn"
+      },
+      {
+        "chinese": "也没关系。",
+        "gloss": "does not matter.",
+        "pinyin": "yě méi guān xì 。"
+      },
+      {
+        "chinese": "我还在这里。",
+        "gloss": "I am still here.",
+        "pinyin": "wǒ hái zài zhè lǐ 。"
+      }
+    ],
+    "pinyin": "xiǎo yì diǎn yě méi guān xì 。 wǒ hái zài zhè lǐ 。"
+  },
+  "叫这个名字，我觉得很好。": {
+    "english": "Going by this name, I feel good.",
+    "interlinear": [
+      {
+        "chinese": "叫这个名字，",
+        "gloss": "Going by this name,",
+        "pinyin": "jiào zhè ge míng zì ，"
+      },
+      {
+        "chinese": "我觉得很好。",
+        "gloss": "I feel good.",
+        "pinyin": "wǒ jué de hěn hǎo 。"
+      }
+    ],
+    "pinyin": "jiào zhè ge míng zì ， wǒ jué de hěn hǎo 。"
+  },
+  "你要做男人、女人，或者……": {
+    "english": "Do you want to be a man, a woman, or…",
+    "interlinear": [
+      {
+        "chinese": "你要做",
+        "gloss": "Do you want to be",
+        "pinyin": "nǐ yào zuò"
+      },
+      {
+        "chinese": "男人、女人，",
+        "gloss": "a man, a woman,",
+        "pinyin": "nán rén 、 nǚ rén ，"
+      },
+      {
+        "chinese": "或者……",
+        "gloss": "or…",
+        "pinyin": "huò zhě … …"
+      }
+    ],
+    "pinyin": "nǐ yào zuò nán rén 、 nǚ rén ， huò zhě … …"
+  },
+  "男人！": {
+    "english": "A man!",
+    "interlinear": [
+      {
+        "chinese": "男人！",
+        "gloss": "A man!",
+        "pinyin": "nán rén ！"
+      }
+    ],
+    "pinyin": "nán rén ！"
+  },
+  "皇家之路有四十九个种族。你可以选择……": {
+    "english": "Royal Road has forty-nine races. You can choose…",
+    "interlinear": [
+      {
+        "chinese": "皇家之路",
+        "gloss": "Royal Road",
+        "pinyin": "huáng jiā zhī lù"
+      },
+      {
+        "chinese": "有四十九个种族。",
+        "gloss": "has forty-nine races.",
+        "pinyin": "yǒu sì shí jiǔ gè zhǒng zú 。"
+      },
+      {
+        "chinese": "你可以选择……",
+        "gloss": "You can choose…",
+        "pinyin": "nǐ kě yǐ xuǎn zé … …"
+      }
+    ],
+    "pinyin": "huáng jiā zhī lù yǒu sì shí jiǔ gè zhǒng zú 。 nǐ kě yǐ xuǎn zé … …"
+  },
+  "人类！": {
+    "english": "Human!",
+    "interlinear": [
+      {
+        "chinese": "人类！",
+        "gloss": "Human!",
+        "pinyin": "rén lèi ！"
+      }
+    ],
+    "pinyin": "rén lèi ！"
+  },
+  "你可以让自己变成其他样子……": {
+    "english": "You can make yourself take on a different appearance…",
+    "interlinear": [
+      {
+        "chinese": "你可以",
+        "gloss": "You can",
+        "pinyin": "nǐ kě yǐ"
+      },
+      {
+        "chinese": "让自己变成",
+        "gloss": "make yourself take on",
+        "pinyin": "ràng zì jǐ biàn chéng"
+      },
+      {
+        "chinese": "其他样子……",
+        "gloss": "a different appearance…",
+        "pinyin": "qí tā yàng zi … …"
+      }
+    ],
+    "pinyin": "nǐ kě yǐ ràng zì jǐ biàn chéng qí tā yàng zi … …"
+  },
+  "就用我现在的样子。": {
+    "english": "Just use the way I look now.",
+    "interlinear": [
+      {
+        "chinese": "就用",
+        "gloss": "Just use",
+        "pinyin": "jiù yòng"
+      },
+      {
+        "chinese": "我现在的样子。",
+        "gloss": "the way I look now.",
+        "pinyin": "wǒ xiàn zài de yàng zi 。"
+      }
+    ],
+    "pinyin": "jiù yòng wǒ xiàn zài de yàng zi 。"
+  },
+  "账号开好了。你会有什么职业，会有多强，游戏开始后……": {
+    "english": "Your account is ready. What profession you will have, how strong you will be, after the game begins…",
+    "interlinear": [
+      {
+        "chinese": "账号开好了。",
+        "gloss": "Your account is ready.",
+        "pinyin": "zhàng hào kāi hǎo le 。"
+      },
+      {
+        "chinese": "你会有什么职业，",
+        "gloss": "What profession you will have,",
+        "pinyin": "nǐ huì yǒu shén me zhí yè ，"
+      },
+      {
+        "chinese": "会有多强，",
+        "gloss": "how strong you will be,",
+        "pinyin": "huì yǒu duō qiáng ，"
+      },
+      {
+        "chinese": "游戏开始后……",
+        "gloss": "after the game begins…",
+        "pinyin": "yóu xì kāi shǐ hòu … …"
+      }
+    ],
+    "pinyin": "zhàng hào kāi hǎo le 。 nǐ huì yǒu shén me zhí yè ， huì yǒu duō qiáng ， yóu xì kāi shǐ hòu … …"
+  },
+  "不用说了！": {
+    "english": "Skip it!",
+    "interlinear": [
+      {
+        "chinese": "不用说了！",
+        "gloss": "Skip it!",
+        "pinyin": "bú yòng shuō le ！"
+      }
+    ],
+    "pinyin": "bú yòng shuō le ！"
+  },
+  "请选择你要开始的城市和国家。": {
+    "english": "Please choose the city and kingdom where you want to start.",
+    "interlinear": [
+      {
+        "chinese": "请选择",
+        "gloss": "Please choose",
+        "pinyin": "qǐng xuǎn zé"
+      },
+      {
+        "chinese": "你要开始的",
+        "gloss": "the one where you want to start:",
+        "pinyin": "nǐ yào kāi shǐ de"
+      },
+      {
+        "chinese": "城市和国家。",
+        "gloss": "city and kingdom.",
+        "pinyin": "chéng shì hé guó jiā 。"
+      }
+    ],
+    "pinyin": "qǐng xuǎn zé nǐ yào kāi shǐ de chéng shì hé guó jiā 。"
+  },
+  "罗森海姆的塞拉堡！": {
+    "english": "The Citadel of Serabourg, in Rosenheim!",
+    "interlinear": [
+      {
+        "chinese": "罗森海姆的",
+        "gloss": "of Rosenheim—",
+        "pinyin": "luó sēn hǎi mǔ de"
+      },
+      {
+        "chinese": "塞拉堡！",
+        "gloss": "the Citadel of Serabourg!",
+        "pinyin": "sài lā bǎo ！"
+      }
+    ],
+    "pinyin": "luó sēn hǎi mǔ de sài lā bǎo ！"
+  },
+  "去哪里，我早就想好了。": {
+    "english": "Where to go, I decided long ago.",
+    "interlinear": [
+      {
+        "chinese": "去哪里，",
+        "gloss": "Where to go,",
+        "pinyin": "qù nǎ lǐ ，"
+      },
+      {
+        "chinese": "我早就想好了。",
+        "gloss": "I decided long ago.",
+        "pinyin": "wǒ zǎo jiù xiǎng hǎo le 。"
+      }
+    ],
+    "pinyin": "qù nǎ lǐ ， wǒ zǎo jiù xiǎng hǎo le 。"
+  },
+  "欢迎来到这个世界……": {
+    "english": "Welcome to this world…",
+    "interlinear": [
+      {
+        "chinese": "欢迎来到",
+        "gloss": "Welcome to",
+        "pinyin": "huān yíng lái dào"
+      },
+      {
+        "chinese": "这个世界……",
+        "gloss": "this world…",
+        "pinyin": "zhè ge shì jiè … …"
+      }
+    ],
+    "pinyin": "huān yíng lái dào zhè ge shì jiè … …"
+  },
+  "我连一秒钟都不想浪费。要做什么，我都已经想好了。": {
+    "english": "I do not want to waste even a second. I have already planned everything I will do.",
+    "interlinear": [
+      {
+        "chinese": "我连一秒钟",
+        "gloss": "I do not want even one second",
+        "pinyin": "wǒ lián yì miǎo zhōng"
+      },
+      {
+        "chinese": "都不想浪费。",
+        "gloss": "to go to waste.",
+        "pinyin": "dōu bù xiǎng làng fèi 。"
+      },
+      {
+        "chinese": "要做什么，",
+        "gloss": "What to do,",
+        "pinyin": "yào zuò shén me ，"
+      },
+      {
+        "chinese": "我都已经想好了。",
+        "gloss": "I have already planned it all.",
+        "pinyin": "wǒ dōu yǐ jīng xiǎng hǎo le 。"
+      }
+    ],
+    "pinyin": "wǒ lián yì miǎo zhōng dōu bù xiǎng làng fèi 。 yào zuò shén me ， wǒ dōu yǐ jīng xiǎng hǎo le 。"
+  },
+  "每个月，玩这个游戏还要花三十万韩元。": {
+    "english": "Every month, playing this game costs another three hundred thousand won.",
+    "interlinear": [
+      {
+        "chinese": "每个月，",
+        "gloss": "Every month,",
+        "pinyin": "měi gè yuè ，"
+      },
+      {
+        "chinese": "玩这个游戏",
+        "gloss": "playing this game",
+        "pinyin": "wán zhè ge yóu xì"
+      },
+      {
+        "chinese": "还要花",
+        "gloss": "costs another",
+        "pinyin": "hái yào huā"
+      },
+      {
+        "chinese": "三十万韩元。",
+        "gloss": "three hundred thousand won.",
+        "pinyin": "sān shí wàn hán yuán 。"
+      }
+    ],
+    "pinyin": "měi gè yuè ， wán zhè ge yóu xì hái yào huā sān shí wàn hán yuán 。"
+  },
+  "买胶囊已经让我心疼。每个月的钱，也不能白花。": {
+    "english": "Buying the capsule already hurt my wallet. The money each month cannot be wasted either.",
+    "interlinear": [
+      {
+        "chinese": "买胶囊",
+        "gloss": "Buying the capsule",
+        "pinyin": "mǎi jiāo náng"
+      },
+      {
+        "chinese": "已经让我心疼。",
+        "gloss": "already hurt my wallet.",
+        "pinyin": "yǐ jīng ràng wǒ xīn téng 。"
+      },
+      {
+        "chinese": "每个月的钱，",
+        "gloss": "The money each month",
+        "pinyin": "měi gè yuè de qián ，"
+      },
+      {
+        "chinese": "也不能白花。",
+        "gloss": "cannot be wasted either.",
+        "pinyin": "yě bù néng bái huā 。"
+      }
+    ],
+    "pinyin": "mǎi jiāo náng yǐ jīng ràng wǒ xīn téng 。 měi gè yuè de qián ， yě bù néng bái huā 。"
+  },
+  "一年都用来准备了。现在，每一分钟都要用好。": {
+    "english": "A whole year went into preparing. Now, every minute must be used well.",
+    "interlinear": [
+      {
+        "chinese": "一年都用来准备了。",
+        "gloss": "A whole year went into preparing.",
+        "pinyin": "yì nián dōu yòng lái zhǔn bèi le 。"
+      },
+      {
+        "chinese": "现在，",
+        "gloss": "Now,",
+        "pinyin": "xiàn zài ，"
+      },
+      {
+        "chinese": "每一分钟",
+        "gloss": "every minute",
+        "pinyin": "měi yì fēn zhōng"
+      },
+      {
+        "chinese": "都要用好。",
+        "gloss": "must be used well.",
+        "pinyin": "dōu yào yòng hǎo 。"
+      }
+    ],
+    "pinyin": "yì nián dōu yòng lái zhǔn bèi le 。 xiàn zài ， měi yì fēn zhōng dōu yào yòng hǎo 。"
+  },
+  "小小的杂草，也要在这个世界活下去。": {
+    "english": "Even a tiny weed will keep on living in this world.",
+    "interlinear": [
+      {
+        "chinese": "小小的杂草，",
+        "gloss": "A tiny weed",
+        "pinyin": "xiǎo xiǎo de zá cǎo ，"
+      },
+      {
+        "chinese": "也要在这个世界",
+        "gloss": "will also, in this world,",
+        "pinyin": "yě yào zài zhè ge shì jiè"
+      },
+      {
+        "chinese": "活下去。",
+        "gloss": "keep on living.",
+        "pinyin": "huó xià qù 。"
+      }
+    ],
+    "pinyin": "xiǎo xiǎo de zá cǎo ， yě yào zài zhè ge shì jiè huó xià qù 。"
+  },
+  "还是这个名字。接下来，要在这里走自己的路。": {
+    "english": "Still the same name. Next, here I will make my own way.",
+    "interlinear": [
+      {
+        "chinese": "还是这个名字。",
+        "gloss": "Still the same name.",
+        "pinyin": "hái shì zhè ge míng zì 。"
+      },
+      {
+        "chinese": "接下来，",
+        "gloss": "Next,",
+        "pinyin": "jiē xià lái ，"
+      },
+      {
+        "chinese": "要在这里",
+        "gloss": "here I will",
+        "pinyin": "yào zài zhè lǐ"
+      },
+      {
+        "chinese": "走自己的路。",
+        "gloss": "make my own way.",
+        "pinyin": "zǒu zì jǐ de lù 。"
+      }
+    ],
+    "pinyin": "hái shì zhè ge míng zì 。 jiē xià lái ， yào zài zhè lǐ zǒu zì jǐ de lù 。"
+  },
+  "我跳过了说明，选好了要去的地方。": {
+    "english": "I skipped the introduction and chose where to go.",
+    "interlinear": [
+      {
+        "chinese": "我跳过了说明，",
+        "gloss": "I skipped the introduction",
+        "pinyin": "wǒ tiào guò le shuō míng ，"
+      },
+      {
+        "chinese": "选好了",
+        "gloss": "and chose",
+        "pinyin": "xuǎn hǎo le"
+      },
+      {
+        "chinese": "要去的地方。",
+        "gloss": "where to go.",
+        "pinyin": "yào qù de dì fāng 。"
+      }
+    ],
+    "pinyin": "wǒ tiào guò le shuō míng ， xuǎn hǎo le yào qù de dì fāng 。"
+  },
+  "准备了一年。现在，让我进去吧。": {
+    "english": "A year of preparation. Now, let me in.",
+    "interlinear": [
+      {
+        "chinese": "准备了一年。",
+        "gloss": "A year of preparation.",
+        "pinyin": "zhǔn bèi le yì nián 。"
+      },
+      {
+        "chinese": "现在，",
+        "gloss": "Now,",
+        "pinyin": "xiàn zài ，"
+      },
+      {
+        "chinese": "让我进去吧。",
+        "gloss": "let me in.",
+        "pinyin": "ràng wǒ jìn qù ba 。"
+      }
+    ],
+    "pinyin": "zhǔn bèi le yì nián 。 xiàn zài ， ràng wǒ jìn qù ba 。"
+  },
+  "接下来，就是走进那个世界。": {
+    "english": "Next is stepping into that world.",
+    "interlinear": [
+      {
+        "chinese": "接下来，",
+        "gloss": "Next",
+        "pinyin": "jiē xià lái ，"
+      },
+      {
+        "chinese": "就是走进",
+        "gloss": "is stepping into",
+        "pinyin": "jiù shì zǒu jìn"
+      },
+      {
+        "chinese": "那个世界。",
+        "gloss": "that world.",
+        "pinyin": "nà ge shì jiè 。"
+      }
+    ],
+    "pinyin": "jiē xià lái ， jiù shì zǒu jìn nà ge shì jiè 。"
+  }
+}
