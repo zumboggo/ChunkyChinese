@@ -5,8 +5,9 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_01.xhtml",
-    "nextStart": "Using part of the remaining money, Lee Hyun registered",
-    "nextEndBefore": "Lee Hyun’s cold eyes stared at the monitor."
+    "nextStart": "Lee Hyun’s cold eyes stared at the monitor.",
+    "nextEndBefore": "When the message came, Lee Hyun shouted without any hesitation.",
+    "continuationNote": "This bounded excerpt reaches the connection prompt near the end of Chapter 1. The next sentence is Hyun saying Yes. For episode 6, inspect that ending and the beginning of Chapter 2 before choosing a full dramatic boundary; do not skip capsule purchase or his Yes."
   },
   "completed": [
     {
@@ -24,9 +25,13 @@
     {
       "episode": "moonlight-04-v1",
       "end": "On the third day Hyun finds hope of earning again. Ninety million remains, fifty million is reserved for the house contract, forty million is available. He will not pay a cancellation penalty. Stops before registering for martial arts."
+    },
+    {
+      "episode": "moonlight-05-v1",
+      "end": "Hyun completes a year of martial-arts training and game research. Royal Road reaches over 75% of the global game market and over 90% of Korean gamers; its royal wars dominate broadcasts. He is satisfied it has developed as expected. Stop before his cold gaze at the monitor and buying the capsule."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-04-v2.json",
+  "assetsFrom": "stories/animated/moonlight-05.json",
   "vocabularySupplement": "stories/authoring/common-familiar-100.json",
   "coverage": {
     "min": 95,
@@ -42,10 +47,10 @@
     "memory": "Within-episode variables only; no invented cross-episode memory."
   },
   "continuity": [
-    "Grandmother remains hospitalized. The old debt is paid. Hyun has ninety million won left, of which fifty million is reserved for the house and forty million is available.",
-    "Hyun has recovered enough hope to prepare to earn again. No martial arts registration or training-year montage has happened yet.",
-    "Episode 4 choices change inner responses only; the house contract remains in place. No cross-episode memory is assumed.",
-    "Use the revised cast recipes and episode 4 home asset. Start the next episode at martial arts registration."
+    "Grandmother remains hospitalized. The old debt is paid. Before the training year, ninety million won remained, fifty million was reserved for the house, and forty million was available. Do not invent the exact balance after training expenses.",
+    "A full year of martial-arts training, game research and observation of Royal Road has passed. Hyun has chosen Royal Road; he has not yet purchased its capsule or entered the game.",
+    "Episode 5 choices change his internal emphasis, with callbacks inside that episode only. No cross-episode memory is assumed.",
+    "Reuse approved LMS cast and the home asset. Continue at the monitor and capsule purchase."
   ],
   "castRecipes": "stories/characters/lms-cast.json"
 }
