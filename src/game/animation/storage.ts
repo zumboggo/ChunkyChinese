@@ -6,12 +6,15 @@ export async function read<T>(key:string):Promise<T|undefined>{return (await dat
 export async function write(key:string,value:unknown){return (await database()).put('records',value,key)}
 export const scope=(identity:string)=>`story2:${encodeURIComponent(identity)}:`
 export interface Release {id:string;pack:ChinesePackage;created:string;resumeFrom?:string;category?:'daily-life'|'lms'|'practice';episode?:number}
-/** Presentation-only revisions can reuse a prior attempt when the script is identical. */
+/** These commands settle without consuming a saved step. Keep every dialogue,
+ * choice, label, variable and branching instruction identical for safe replay. */
+export const playbackScript=(script:string)=>script.split('\n').filter(line=>!/^(scene|show|move|camera|rest|react|prop|effect) /.test(line.trim())).join('\n')
+/** Visual-only revisions replay the same steps without rewriting old attempts. */
 export async function progressForRelease(identity:string,release:Release):Promise<StoryProgress|undefined>{
  const current=await read<StoryProgress>(scope(identity)+'progress:'+release.id)
  if(current||!release.resumeFrom)return current
  const previous=await read<ChinesePackage>('bundled:'+release.resumeFrom)
- if(previous?.script!==release.pack.script)return undefined
+ if(!previous||playbackScript(previous.script)!==playbackScript(release.pack.script))return undefined
  return read<StoryProgress>(scope(identity)+'progress:'+release.resumeFrom)
 }
 export async function publish(identity:string,pack:ChinesePackage){const encoded=new TextEncoder().encode(JSON.stringify(pack));const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',encoded))).map(n=>n.toString(16).padStart(2,'0')).join('');const existing=await read<Release>(scope(identity)+'release:'+digest);if(existing)return existing;const release={id:digest,pack:structuredClone(pack),created:new Date().toISOString()};await write(scope(identity)+'release:'+digest,release);return release}

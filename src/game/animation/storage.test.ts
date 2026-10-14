@@ -29,3 +29,13 @@ it('carries presentation-only resume forward without changing the old attempt or
  expect((await progressForRelease(id,release))?.steps).toEqual([null,null])
  expect(await read(scope(id)+'progress:'+oldId)).toEqual(attempt)
 })
+
+it('resumes visual-only staging revisions but refuses changes to dialogue or branches',async()=>{
+ const id=crypto.randomUUID(),oldId='visual-old-'+id,attempt={steps:[null],quizzes:[],seed:9}
+ await write('bundled:'+oldId,pack);await saveProgress(id,oldId,attempt)
+ const updated={...pack,script:pack.script.replace('story 2','story 2\ncamera wide')}
+ const release={id:'visual-new-'+id,created:'',pack:updated,resumeFrom:oldId}
+ expect(await progressForRelease(id,release)).toEqual(attempt)
+ expect(await progressForRelease(id,{...release,pack:{...updated,script:updated.script+'\nI: A new line.'}})).toBeUndefined()
+ expect(await read(scope(id)+'progress:'+oldId)).toEqual(attempt)
+})

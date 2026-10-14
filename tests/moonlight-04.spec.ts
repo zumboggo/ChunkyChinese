@@ -34,7 +34,7 @@ for(const route of ['family','money'])test(`Moonlight 04 ${route}: revised cast,
  await expect(page.getByRole('button',{name:'Next Episode →',exact:true})).toHaveCount(0)
 })
 test('one failed download leaves other episodes visible and retry restores it',async({page})=>{
- let fail=true;await page.route('**/stories/animated/moonlight-02-v3.json',route=>fail?route.abort():route.continue())
+ let fail=true;await page.route('**/stories/animated/moonlight-02-v4.json',route=>fail?route.abort():route.continue())
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
  await expect(page.getByRole('button',{name:'01 Before the First Bid',exact:true})).toBeVisible()
  await expect(page.getByRole('button',{name:'03 The Price of Safety',exact:true})).toBeVisible()
