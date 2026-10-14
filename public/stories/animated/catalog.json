@@ -28,6 +28,12 @@
     "resumeFrom": "moonlight-04-v1"
   },
   {
+    "id": "moonlight-05-v1",
+    "path": "moonlight-05.json",
+    "category": "lms",
+    "episode": 5
+  },
+  {
     "id": "prop-rehearsal-v1",
     "path": "prop-rehearsal.json",
     "category": "practice"

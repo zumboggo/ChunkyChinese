@@ -1,11 +1,11 @@
 import {test,expect} from '@playwright/test'
 for(const route of ['family','money'])test(`Moonlight 04 ${route}: revised cast, choices, audio and resume`,async({page},info)=>{
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
- await expect(page.locator('.episode-strip button')).toHaveCount(4)
+ await expect(page.locator('.episode-strip button')).toHaveCount(5)
  await page.getByRole('button',{name:'04 Once More',exact:true}).click()
  await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
  await page.getByLabel('Reduced motion',{exact:true}).check()
- await expect(page.locator('[data-face="lean"]')).toHaveCount(1)
+ await expect(page.locator('[data-face="scrappy"]')).toHaveCount(1)
  let choices=0,callback=false,heard=false,resumed=false
  for(let i=0;i<50;i++){
   if(await page.getByRole('heading',{name:'Scene complete',exact:true}).isVisible())break
@@ -31,10 +31,10 @@ for(const route of ['family','money'])test(`Moonlight 04 ${route}: revised cast,
  }
  expect({choices,callback,heard,resumed}).toEqual({choices:2,callback:true,heard:true,resumed:true})
  await expect(page.getByRole('heading',{name:'Scene complete',exact:true})).toBeVisible()
- await expect(page.getByRole('button',{name:'Next Episode →',exact:true})).toHaveCount(0)
+ await expect(page.getByRole('button',{name:'Next Episode →',exact:true})).toHaveCount(1)
 })
 test('one failed download leaves other episodes visible and retry restores it',async({page})=>{
- let fail=true;await page.route('**/stories/animated/moonlight-02-v4.json',route=>fail?route.abort():route.continue())
+ let fail=true;await page.route('**/stories/animated/moonlight-02-v5.json',route=>fail?route.abort():route.continue())
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
  await expect(page.getByRole('button',{name:'01 Before the First Bid',exact:true})).toBeVisible()
  await expect(page.getByRole('button',{name:'03 The Price of Safety',exact:true})).toBeVisible()
@@ -44,9 +44,9 @@ test('one failed download leaves other episodes visible and retry restores it',a
  await expect(page.getByRole('status').first()).toContainText('Draft saved')
  await expect(page.getByRole('button',{name:'Retry episode downloads'})).toBeVisible()
  fail=false;await page.getByRole('button',{name:'Retry episode downloads'}).click()
- await expect(page.locator('.episode-strip button')).toHaveCount(4)
+ await expect(page.locator('.episode-strip button')).toHaveCount(5)
  await expect(page.getByRole('alert')).toHaveCount(0)
  await page.context().setOffline(true)
  await page.getByRole('button',{name:'04 Once More',exact:true}).click();await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
- await expect(page.locator('[data-face="lean"]')).toHaveCount(1)
+ await expect(page.locator('[data-face="scrappy"]')).toHaveCount(1)
 })

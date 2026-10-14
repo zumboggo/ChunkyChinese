@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test'
 test('categories, independent reading aids, persistent preferences and next episode',async({page},info)=>{
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
- await expect(page.locator('.episode-strip button')).toHaveText(['01Before the First Bid','02An Impossible Number','03The Price of Safety','04Once More'])
+ await expect(page.locator('.episode-strip button')).toHaveText(['01Before the First Bid','02An Impossible Number','03The Price of Safety','04Once More','05A Year Before the Game'])
  await page.getByRole('button',{name:/Daily Life Small moments/}).click()
  await expect(page.getByText('No Daily Life episodes yet.',{exact:false})).toBeVisible()
  await page.getByRole('button',{name:/LMS A new world/}).click()
