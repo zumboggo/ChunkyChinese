@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test'
 for(const route of ['count','listen'] as const)test(`Moonlight 03 ${route}: paired staging, handoff, callback and resume`,async({page},testInfo)=>{
- await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
- const card=page.locator('article').filter({has:page.getByRole('heading',{name:'Moonlight Sculptor 03 · The Price of Safety',exact:true})})
+ await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click();await page.getByRole('button',{name:'03 The Price of Safety',exact:true}).click()
+ const card=page.locator('article').filter({has:page.getByRole('heading',{name:'The Price of Safety',exact:true})})
  await card.getByRole('button',{name:'Restart episode',exact:true}).click()
  await page.getByLabel('Reduced motion',{exact:true}).check()
  const options=route==='count'?['问清楚：为什么变成这么多？','想到妹妹，不能让她出事。','记住他们拿走的钱。']:['先听听他们怎么说。','看看奶奶，让她放心。','记住家人很怕的样子。']
@@ -18,7 +18,7 @@ for(const route of ['count','listen'] as const)test(`Moonlight 03 ${route}: pair
    const text=(await page.locator('.episode-line strong').allTextContents()).join('')
    if(text==='30亿？父亲只借了1亿！'){
     await expect(page.locator('.story-stage svg')).toHaveCount(2)
-    await page.getByRole('button',{name:'Listen / Replay',exact:true}).click();await expect(page.locator('svg.puppet-speaking')).toHaveCount(1);heard=true
+    await page.getByRole('button',{name:'Play audio',exact:true}).click();await expect(page.locator('svg.puppet-speaking')).toHaveCount(1);heard=true
     if(route==='count')await page.screenshot({path:'.local/moonlight-03-'+testInfo.project.name.replaceAll(' ','-')+'.png',fullPage:true})
    }
    if(route==='count' && text.includes('我看看手里的存折'))await page.getByLabel('Reduced motion',{exact:true}).uncheck()
@@ -26,7 +26,7 @@ for(const route of ['count','listen'] as const)test(`Moonlight 03 ${route}: pair
     handoff=true;await expect(page.locator('.story-stage svg')).toHaveCount(2)
     await expect(page.getByRole('button',{name:'Continue →',exact:true})).toBeEnabled()
     await page.getByLabel('Reduced motion',{exact:true}).check()
-    await page.getByRole('button',{name:'← Story library',exact:true}).click();await card.getByRole('button',{name:'Play / resume episode',exact:true}).click()
+    await page.getByRole('button',{name:'← Story library',exact:true}).click();await page.getByRole('button',{name:'03 The Price of Safety',exact:true}).click();await card.getByRole('button',{name:'Play / resume episode',exact:true}).click()
     await expect(page.getByText('I hand over the bankbook. The man takes it.',{exact:true})).toBeVisible()
    }
    if(text.includes(route==='count'?'我刚才只希望妹妹不会出事':'我刚才让奶奶别怕'))callback=true

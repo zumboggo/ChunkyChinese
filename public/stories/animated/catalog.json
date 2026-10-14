@@ -2,18 +2,25 @@
   {
     "id": "moonlight-01-v2",
     "path": "moonlight-01-v2.json",
-    "resumeFrom": "moonlight-01-v1"
+    "resumeFrom": "moonlight-01-v1",
+    "category": "lms",
+    "episode": 1
   },
   {
     "id": "moonlight-02-v2",
-    "path": "moonlight-02-v2.json"
+    "path": "moonlight-02-v2.json",
+    "category": "lms",
+    "episode": 2
   },
   {
     "id": "moonlight-03-v1",
-    "path": "moonlight-03.json"
+    "path": "moonlight-03.json",
+    "category": "lms",
+    "episode": 3
   },
   {
     "id": "prop-rehearsal-v1",
-    "path": "prop-rehearsal.json"
+    "path": "prop-rehearsal.json",
+    "category": "practice"
   }
 ]

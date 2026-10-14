@@ -5,7 +5,7 @@ const database=()=>openDB('ChunkyChineseStory2',1,{upgrade(db){db.createObjectSt
 export async function read<T>(key:string):Promise<T|undefined>{return (await database()).get('records',key)}
 export async function write(key:string,value:unknown){return (await database()).put('records',value,key)}
 export const scope=(identity:string)=>`story2:${encodeURIComponent(identity)}:`
-export interface Release {id:string;pack:ChinesePackage;created:string;resumeFrom?:string}
+export interface Release {id:string;pack:ChinesePackage;created:string;resumeFrom?:string;category?:'daily-life'|'lms'|'practice';episode?:number}
 /** Presentation-only revisions can reuse a prior attempt when the script is identical. */
 export async function progressForRelease(identity:string,release:Release):Promise<StoryProgress|undefined>{
  const current=await read<StoryProgress>(scope(identity)+'progress:'+release.id)

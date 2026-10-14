@@ -1,6 +1,7 @@
 import {test,expect} from '@playwright/test'
 test('visible props persist, actions finish, and reduced motion shows projectiles',async({page},info)=>{
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
+ await page.getByText('Practice & demonstrations',{exact:true}).click()
  const card=page.locator('article').filter({has:page.getByRole('heading',{name:'Props & fantasy actions · Rehearsal',exact:true})})
  await card.getByRole('button',{name:'Restart episode',exact:true}).click()
  const next=page.getByRole('button',{name:'Continue →',exact:true})
@@ -16,7 +17,7 @@ test('visible props persist, actions finish, and reduced motion shows projectile
  await page.getByLabel('Reduced motion',{exact:true}).check();await next.click()
  await expect(page.getByRole('img',{name:'Arrow flight',exact:true})).toBeVisible()
  await page.screenshot({path:'.local/props-bow-'+info.project.name+'.png',fullPage:true})
- await page.getByRole('button',{name:'← Story library',exact:true}).click();await card.getByRole('button',{name:'Play / resume episode',exact:true}).click()
+ await page.getByRole('button',{name:'← Story library',exact:true}).click();await page.getByText('Practice & demonstrations',{exact:true}).click();await card.getByRole('button',{name:'Play / resume episode',exact:true}).click()
  await expect(page.locator('[data-prop=bow]')).toHaveCount(1)
  await next.click();await expect(page.locator('[data-prop=bow]')).toHaveCount(0)
  await next.click();await expect(page.getByRole('img',{name:'Magic beam',exact:true})).toBeVisible()
@@ -26,6 +27,7 @@ test('visible props persist, actions finish, and reduced motion shows projectile
 })
 test('arrow and beam animate once and disappear before Continue',async({page},info)=>{
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
+ await page.getByText('Practice & demonstrations',{exact:true}).click()
  const card=page.locator('article').filter({has:page.getByRole('heading',{name:'Props & fantasy actions · Rehearsal',exact:true})})
  await card.getByRole('button',{name:'Restart episode',exact:true}).click()
  await page.getByLabel('Reduced motion',{exact:true}).check()
