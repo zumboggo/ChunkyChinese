@@ -5,8 +5,8 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_01.xhtml",
-    "nextStart": "After several days they obtained a new house",
-    "nextEndBefore": "After being robbed to the tune of 3,000,000,000 won"
+    "nextStart": "After being robbed to the tune of 3,000,000,000 won",
+    "nextEndBefore": "Lee Hyun’s cold eyes stared at the monitor."
   },
   "completed": [
     {
@@ -16,9 +16,13 @@
     {
       "episode": "moonlight-02",
       "end": "CTS Media buys Weed for 3,090,000,000 won. Hyun verifies the money and shares the bankbook and hope with Grandmother. Stop before moving and hospital treatment."
+    },
+    {
+      "episode": "moonlight-03-v1",
+      "end": "Debt collectors take three billion won, return 90 million and the IOU, and leave after Han Jinsup’s five-year challenge. Stop before the three days of despair."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-02.json",
+  "assetsFrom": "stories/animated/moonlight-03.json",
   "vocabularySupplement": "stories/authoring/common-familiar-100.json",
   "coverage": {
     "min": 95,
@@ -34,8 +38,9 @@
     "memory": "Within-episode variables only; no invented cross-episode memory."
   },
   "continuity": [
-    "Grandmother is ill; keep her offstage resting until the source calls for a change.",
-    "The CTS Media caller is on the telephone, not in the home.",
-    "The next section contains the move, hospital treatment and debt collectors. Read the source before defining episode 3; no new episode is authorized by a tooling request."
+    "Grandmother remains hospitalized. Hyun has 90 million won left before the new-home contract expense; the old debt is paid.",
+    "Han Jinsup challenged Hyun to make three billion won within five years. No blow landed in the hospital.",
+    "Episode 3 stops at the immediate aftermath. Read the next pinned passage before defining episode 4.",
+    "Reuse Hyun and the new hospital/collector cast from episode 3; the home background remains available in episode 2. Phone staging uses moonlight-02-v2 without changing its source events."
   ]
 }
