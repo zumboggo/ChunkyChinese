@@ -27,13 +27,14 @@
     "verify:reader-pack": "node scripts/verify-reader-pack.mjs",
     "game:audio": "node scripts/build-story-audio.mjs",
     "game:build": "node scripts/build-story-audio.mjs --pinyin-only",
-    "game:check": "node scripts/check-story-packages.mjs",
+    "game:check": "node scripts/build-lms-cast.mjs --check && node scripts/check-story-packages.mjs",
     "game:sync": "node scripts/sync-story-animation.mjs",
     "game:parity": "node scripts/sync-story-animation.mjs --check",
     "game:source": "python3 scripts/episode-source.py",
     "game:draft": "node scripts/check-story-vocabulary.mjs",
     "game:publish": "python3 scripts/publish-episode.py",
-    "game:workflow-test": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts/tests -p \"test_episode*.py\""
+    "game:workflow-test": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts/tests -p \"test_episode*.py\"",
+    "game:cast": "node scripts/build-lms-cast.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.2",

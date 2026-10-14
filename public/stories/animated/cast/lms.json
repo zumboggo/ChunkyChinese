@@ -1,0 +1,102 @@
+{
+  "Hyun": {
+    "name": "李贤 · Lee Hyun",
+    "version": 2,
+    "provenance": "Original reusable polished SVG interpretation for the personal LMS adaptation; imagegen concept sheet 2026-10-14, translated into shared articulated vector geometry. Not official artwork. All expressions remain animated vector layers.",
+    "expressions": {},
+    "rig": {
+      "version": 2,
+      "preset": "cartoon-v1",
+      "style": "manga",
+      "finish": "polished",
+      "palette": {
+        "skin": "#dcb08c",
+        "hair": "#23272b",
+        "shirt": "#4f686b",
+        "trim": "#d7cbb0"
+      },
+      "appearance": {
+        "age": "adult",
+        "hair": "tousled",
+        "face": "lean",
+        "eyes": "keen",
+        "outfit": "workshirt"
+      }
+    }
+  },
+  "Grandma": {
+    "name": "奶奶 · Grandmother",
+    "version": 2,
+    "provenance": "Original reusable polished SVG interpretation for the personal LMS adaptation; imagegen concept sheet 2026-10-14, translated into shared articulated vector geometry. Not official artwork. All expressions remain animated vector layers.",
+    "expressions": {},
+    "rig": {
+      "version": 2,
+      "preset": "cartoon-v1",
+      "style": "manga",
+      "finish": "polished",
+      "palette": {
+        "skin": "#d9b592",
+        "hair": "#bab5aa",
+        "shirt": "#796573",
+        "trim": "#e8dcc4"
+      },
+      "appearance": {
+        "age": "elder",
+        "hair": "bun",
+        "face": "oval",
+        "eyes": "gentle",
+        "outfit": "cardigan"
+      }
+    }
+  },
+  "Collector": {
+    "name": "要钱的男人 · Collector",
+    "version": 2,
+    "provenance": "Original reusable polished SVG interpretation for the personal LMS adaptation; imagegen concept sheet 2026-10-14, translated into shared articulated vector geometry. Not official artwork. All expressions remain animated vector layers.",
+    "expressions": {},
+    "rig": {
+      "version": 2,
+      "preset": "cartoon-v1",
+      "style": "manga",
+      "finish": "polished",
+      "palette": {
+        "skin": "#d8af8d",
+        "hair": "#a88b53",
+        "shirt": "#414750",
+        "trim": "#e5dfd1"
+      },
+      "appearance": {
+        "age": "adult",
+        "hair": "layered",
+        "face": "lean",
+        "eyes": "keen",
+        "outfit": "suit"
+      }
+    }
+  },
+  "Leader": {
+    "name": "Han Jinsup · Leader",
+    "version": 2,
+    "provenance": "Original reusable polished SVG interpretation for the personal LMS adaptation; imagegen concept sheet 2026-10-14, translated into shared articulated vector geometry. Not official artwork. All expressions remain animated vector layers.",
+    "expressions": {},
+    "rig": {
+      "version": 2,
+      "preset": "cartoon-v1",
+      "style": "manga",
+      "finish": "polished",
+      "palette": {
+        "skin": "#cda17f",
+        "hair": "#27292e",
+        "shirt": "#293846",
+        "trim": "#d7d9d6"
+      },
+      "appearance": {
+        "age": "adult",
+        "hair": "swept",
+        "face": "broad",
+        "eyes": "narrow",
+        "outfit": "suit"
+      }
+    }
+  }
+}

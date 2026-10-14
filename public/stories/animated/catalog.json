@@ -1,22 +1,24 @@
 [
   {
-    "id": "moonlight-01-v2",
-    "path": "moonlight-01-v2.json",
-    "resumeFrom": "moonlight-01-v1",
+    "id": "moonlight-01-v3",
+    "path": "moonlight-01-v3.json",
+    "resumeFrom": "moonlight-01-v2",
     "category": "lms",
     "episode": 1
   },
   {
-    "id": "moonlight-02-v2",
-    "path": "moonlight-02-v2.json",
+    "id": "moonlight-02-v3",
+    "path": "moonlight-02-v3.json",
     "category": "lms",
-    "episode": 2
+    "episode": 2,
+    "resumeFrom": "moonlight-02-v2"
   },
   {
-    "id": "moonlight-03-v1",
-    "path": "moonlight-03.json",
+    "id": "moonlight-03-v2",
+    "path": "moonlight-03-v2.json",
     "category": "lms",
-    "episode": 3
+    "episode": 3,
+    "resumeFrom": "moonlight-03-v1"
   },
   {
     "id": "prop-rehearsal-v1",

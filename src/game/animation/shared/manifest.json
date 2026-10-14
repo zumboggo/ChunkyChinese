@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/zumboggo/Learningisfun",
-  "commit": "d85f1d3ae30a0887ec09fdc966110cbed3733f05",
+  "commit": "95cc446af939f8f2f723369b60cc6c348dccc719",
   "files": [
     {
       "source": "functions/learning-content/src/story-engine.js",
@@ -15,7 +15,7 @@
     {
       "source": "functions/learning-content/src/acting-library.js",
       "target": "engine/acting-library.js",
-      "sha256": "3176ce21a9cdbb97d8085ca8c8a036eda2cb07787ffb804b6cdb5bdb095c428a"
+      "sha256": "efebdc097a801b10bf9d67fa386e0e01420a66ad4e1ab276d4d7c8b98c2ad7cd"
     },
     {
       "source": "functions/learning-content/src/acting-library.d.ts",
@@ -50,7 +50,7 @@
     {
       "source": "src/components/animated/CartoonActor.tsx",
       "target": "components/CartoonActor.tsx",
-      "sha256": "a73ca1f1a0f3f5ea88a14e08309c82cf25d6775636216ad1050a068fcce9af05"
+      "sha256": "866a7feeafc2fd43ebef7c4e721ed4092b7657df8888eb2779877b412dbe18c7"
     },
     {
       "source": "src/components/animated/PuppetActor.tsx",
@@ -70,7 +70,7 @@
     {
       "source": "src/components/animated/character-geometry.ts",
       "target": "components/character-geometry.ts",
-      "sha256": "ef6d7e4a76549965e6dd72373c853b72f13da55ed6bfbb17017cd015b8862c15"
+      "sha256": "ef3175f9a386a2f33716e80f7a8c94a9ae5b63f4b3bc2204843f3c0b27d2f262"
     },
     {
       "source": "src/components/animated/story-player.css",
@@ -90,7 +90,7 @@
     {
       "source": "src/components/animated/CharacterBuilder.tsx",
       "target": "components/CharacterBuilder.tsx",
-      "sha256": "995160b2542af9ea1ec36c158241a0bdaa6878ecde3a5124522c6fbda260c054"
+      "sha256": "eae1b15d55457953229a9113bf89da344dfe853c54a41f3fe1a9d4fa20a75e90"
     },
     {
       "source": "src/components/animated/SceneBeatLibrary.tsx",
