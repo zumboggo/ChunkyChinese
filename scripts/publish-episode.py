@@ -83,6 +83,38 @@ def verify_live(sha):
             time.sleep(15)
     print(f'LIVE VERIFIED: {sha}\n{SITE}',flush=True)
 
+def bookkeeping_only(paths):
+    return bool(paths) and all(Path(p).parent.as_posix()=='stories/authoring/series' and Path(p).suffix=='.json' for p in paths)
+
+def validate_series_records(paths):
+    for path in paths:
+        record=json.loads(Path(path).read_text())
+        if not record.get('id') or not isinstance(record.get('completed'),list):
+            raise StopPublish('Invalid series record: '+path)
+        source=record.get('source',{})
+        if not all(isinstance(source.get(k),str) and source[k] for k in ('epub','sha256','chapter','nextStart','nextEndBefore')):
+            raise StopPublish('Incomplete source boundary: '+path)
+        if not Path(record.get('assetsFrom','')).is_file():
+            raise StopPublish('Missing reusable assets: '+path)
+
+def publication_plan(sha):
+    # Compare every unpublished commit with the actual remote, not just HEAD~1.
+    remote=require(['git','ls-remote','origin','refs/heads/main']).split()
+    if not remote: raise StopPublish('Cannot determine the current remote main commit.')
+    base=remote[0]
+    receipt_path=Path('.local/publish-receipts',sha+'.json')
+    if base==sha:
+        if receipt_path.exists():
+            receipt=json.loads(receipt_path.read_text())
+            if receipt.get('sha')==sha and receipt.get('mode')=='bookkeeping':
+                return {'sha':sha,'base':base,'mode':'bookkeeping','paths':receipt['paths']}
+        return {'sha':sha,'base':base,'mode':'release','paths':[]}
+    if run(['git','cat-file','-e',base+'^{commit}'])[0]: require(['git','fetch','origin',base],120)
+    if run(['git','merge-base','--is-ancestor',base,sha])[0]:
+        raise StopPublish('Remote main is not an ancestor of this commit. Inspect divergence; no force push attempted.')
+    paths=require(['git','diff','--name-only',base,sha]).splitlines()
+    return {'sha':sha,'base':base,'mode':'bookkeeping' if bookkeeping_only(paths) else 'release','paths':paths}
+
 def main():
     p=argparse.ArgumentParser(description=__doc__); modes=p.add_mutually_exclusive_group();modes.add_argument('--push',action='store_true');modes.add_argument('--verify-only',action='store_true');p.add_argument('--wait-minutes',type=int,default=10)
     a=p.parse_args()
@@ -93,10 +125,26 @@ def main():
     print(f'Target: {REPO} main ← {sha}',flush=True)
     if not a.push and not a.verify_only:
         print('Dry run. --push runs checks, pushes this exact commit, waits for Pages and verifies live assets. --verify-only only checks publication.');return
+    plan=publication_plan(sha)
+    if plan['mode']=='bookkeeping':
+        validate_series_records(plan['paths'])
+        if a.push:
+            require(['npm','run','game:workflow-test'],240)
+            if require(['git','status','--porcelain']) or require(['git','rev-parse','HEAD'])!=sha:
+                raise StopPublish('Checkout changed during checks; inspect it before publishing.')
+            receipt=Path('.local/publish-receipts',sha+'.json');receipt.parent.mkdir(parents=True,exist_ok=True)
+            receipt.write_text(json.dumps(plan,indent=2)+'\n')
+            if plan['base']!=sha: push_commit(sha)
+        if require(['git','ls-remote','origin','refs/heads/main']).split()[0]!=sha:
+            raise StopPublish('Bookkeeping commit is not confirmed on remote main.')
+        print('SERIES RECORD SAVED: '+sha+'\nNo app deployment requested; the playable release is unchanged.',flush=True)
+        return
     if a.push:
         checks=[['npm','test'],['npm','run','game:workflow-test'],['npm','run','game:parity'],['npm','run','build'],['node','scripts/check-client-secrets.mjs']]
         for command in checks:
+            started=time.monotonic()
             print('Check: '+' '.join(command),flush=True);require(command,240,{**os.environ,'GITHUB_PAGES':'true'})
+            print(f'Completed in {time.monotonic()-started:.1f}s',flush=True)
         # Recheck the tree after checks; never publish files different from those validated.
         if require(['git','status','--porcelain']) or require(['git','rev-parse','HEAD'])!=sha:raise StopPublish('Checkout changed during checks; inspect it before publishing.')
         push_commit(sha)

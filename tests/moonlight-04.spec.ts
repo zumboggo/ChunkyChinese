@@ -1,7 +1,9 @@
 import {test,expect} from '@playwright/test'
+import catalog from '../public/stories/animated/catalog.json'
+const episodeCount=catalog.filter(e=>e.category==='lms').length
 for(const route of ['family','money'])test(`Moonlight 04 ${route}: revised cast, choices, audio and resume`,async({page},info)=>{
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
- await expect(page.locator('.episode-strip button')).toHaveCount(5)
+ await expect(page.locator('.episode-strip button')).toHaveCount(episodeCount)
  await page.getByRole('button',{name:'04 Once More',exact:true}).click()
  await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
  await page.getByLabel('Reduced motion',{exact:true}).check()
@@ -44,7 +46,7 @@ test('one failed download leaves other episodes visible and retry restores it',a
  await expect(page.getByRole('status').first()).toContainText('Draft saved')
  await expect(page.getByRole('button',{name:'Retry episode downloads'})).toBeVisible()
  fail=false;await page.getByRole('button',{name:'Retry episode downloads'}).click()
- await expect(page.locator('.episode-strip button')).toHaveCount(5)
+ await expect(page.locator('.episode-strip button')).toHaveCount(episodeCount)
  await expect(page.getByRole('alert')).toHaveCount(0)
  await page.context().setOffline(true)
  await page.getByRole('button',{name:'04 Once More',exact:true}).click();await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()

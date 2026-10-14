@@ -28,3 +28,9 @@ describe('vocabulary-first episode audit',()=>{
   expect(supplement.words).toEqual(expect.arrayContaining(['不','也','因为','先','吧']))
  })
 })
+
+it('reports English and mixed exposure without inflating Mandarin familiarity',()=>{
+ const script='story 2\nI: 我。\nI: English bridge.\nI: 我 play.\nchoice c\noption a "我" -> done\noption b "English option" -> done\nlabel done\nend\n'
+ const r=auditVocabulary({...pack,script},[{word:'我',known:true}])
+ for(const route of r.routes){expect(route.percent).toBe(100);expect(route.exposure).toEqual({mandarin:2,english:2,mixed:1,totalEntries:5,mandarinEntryPercent:60})}
+})

@@ -10,7 +10,7 @@ it('episode 4 has complete interlinear speech, approved cast and ordered catalog
  expect(pack.script).toBe(readFileSync('stories/animated/source/moonlight-04.story','utf8'))
  const previous=JSON.parse(readFileSync('stories/animated/moonlight-02-v3.json','utf8'))
  expect(pack.assets.characters.Hyun).toEqual(previous.assets.characters.Hyun)
- expect(bundledCatalog.filter(e=>e.category==='lms').map(e=>e.episode)).toEqual([1,2,3,4,5])
+ const numbers=bundledCatalog.filter(e=>e.category==='lms').map(e=>e.episode);expect(numbers).toEqual(Array.from({length:numbers.length},(_,i)=>i+1))
  expect(chineseTexts(pack)).toHaveLength(38)
  for(const text of chineseTexts(pack)){const l=pack.chinese!.lines[text];expect(l.interlinear?.map(c=>c.chinese).join('')).toBe(text);expect(l.interlinear?.every(c=>c.gloss&&c.pinyin)).toBe(true);expect(l.audio).toMatch(/^data:audio\/mp4;base64,/);expect(l.english).toBeTruthy()}
 })

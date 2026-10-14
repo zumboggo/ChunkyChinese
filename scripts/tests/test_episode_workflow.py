@@ -1,4 +1,5 @@
-import hashlib, importlib.util, sys, tempfile, unittest, zipfile
+from unittest.mock import patch
+import hashlib, importlib.util, sys, tempfile, unittest, zipfile, os, json
 from pathlib import Path
 
 def load(name,filename):
@@ -22,6 +23,51 @@ class SourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'exactly once'):source.extract(self.record)
 
 class PublishTests(unittest.TestCase):
+    def test_bookkeeping_filter_is_narrow_and_matches_workflow(self):
+        self.assertTrue(publish.bookkeeping_only(['stories/authoring/series/moonlight.json']))
+        for paths in ([],['stories/authoring/series/a.json','src/App.tsx'],['stories/authoring/common-familiar-100.json'],['stories/authoring/series/nested/a.json'],['stories/authoring/series/a.md']):
+            self.assertFalse(publish.bookkeeping_only(paths))
+        workflow=Path('.github/workflows/deploy-pages.yml').read_text()
+        self.assertIn("'stories/authoring/series/*.json'",workflow)
+
+    def test_plan_compares_all_unpublished_commits(self):
+        calls=[]
+        def require(args,*extra):
+            calls.append(args)
+            if args[1]=='ls-remote':return 'remote refs/heads/main'
+            if args[1]=='diff':return 'stories/authoring/series/moonlight.json\nsrc/App.tsx'
+            return ''
+        with patch.object(publish,'require',require),patch.object(publish,'run',return_value=(0,'','')):
+            result=publish.publication_plan('local')
+        self.assertEqual(result['mode'],'release')
+        self.assertIn(['git','diff','--name-only','remote','local'],calls)
+
+    def test_divergent_remote_cannot_be_pushed(self):
+        with patch.object(publish,'require',return_value='remote refs/heads/main'),patch.object(publish,'run',side_effect=[(0,'',''),(1,'','')]):
+            with self.assertRaisesRegex(publish.StopPublish,'ancestor'):publish.publication_plan('local')
+
+    def test_bookkeeping_push_never_builds_or_waits_for_pages(self):
+        with tempfile.TemporaryDirectory() as directory:
+            old=os.getcwd();os.chdir(directory)
+            try:
+                Path('assets.json').write_text('{}')
+                path='stories/authoring/series/test.json';Path(path).parent.mkdir(parents=True)
+                Path(path).write_text(json.dumps({'id':'test','completed':[],'assetsFrom':'assets.json','source':{k:'present' for k in ('epub','sha256','chapter','nextStart','nextEndBefore')}}))
+                calls=[]
+                def require(args,*extra):
+                    calls.append(args)
+                    if args[:3]==['git','remote','get-url']:return publish.ORIGIN
+                    if args[:2]==['git','rev-parse']:return 'sha'
+                    if args[:2]==['git','ls-remote']:return 'sha refs/heads/main'
+                    return ''
+                plan={'sha':'sha','base':'previous','mode':'bookkeeping','paths':[path]}
+                with patch.object(sys,'argv',['publish','--push']),patch.object(publish,'require',require),patch.object(publish,'publication_plan',return_value=plan),patch.object(publish,'push_commit') as push,patch.object(publish,'wait_deployment') as wait,patch.object(publish,'verify_live') as live:
+                    publish.main()
+                    push.assert_called_once_with('sha');wait.assert_not_called();live.assert_not_called()
+                self.assertNotIn(['npm','run','build'],calls)
+                self.assertTrue(Path('.local/publish-receipts/sha.json').exists())
+            finally:os.chdir(old)
+
     def test_command_timeout_is_bounded(self):
         code,_,error=publish.run([sys.executable,'-c','import time; time.sleep(10)'],timeout=.05)
         self.assertEqual(code,124);self.assertIn('timed out',error)

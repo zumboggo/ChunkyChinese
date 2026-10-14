@@ -18,6 +18,7 @@ if(flags.report){const out=resolve(flags.report),privateRoot=resolve('.local')+'
 if(flags.series||flags.summary){
  console.log(`${report.routes.length} routes · ${report.range.min.toFixed(2)}–${report.range.max.toFixed(2)}% familiar · ${report.passes?'PASS':'REVISE'} (target ${report.target.min}–${report.target.max}%)`)
  console.log(`${report.knownWords} reviewed-known + ${report.assumedAdditionalWords} assumed familiar = ${report.effectiveFamiliarWords} unique words`)
+ console.log('Mandarin exposure by route (entries, not listening time): '+report.routes.map(r=>`${r.exposure.mandarinEntryPercent.toFixed(1)}% · ${r.exposure.mandarin} Mandarin / ${r.exposure.english} English / ${r.exposure.mixed} mixed`).join('; '))
  console.log('Unfamiliar words (maximum occurrences on one route): '+report.unknownFrequency.map(w=>`${w.word} ×${w.maxPerRoute}`).join(', '))
 }else console.log(JSON.stringify(report,null,2))
 if(!report.passes)process.exitCode=1
