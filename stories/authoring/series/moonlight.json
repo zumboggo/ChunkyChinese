@@ -5,9 +5,9 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_02.xhtml",
-    "nextStart": "-Five hours later-",
-    "nextEndBefore": "Was it an illusion that the scarecrow looked like it shivered at that very moment?",
-    "continuationNote": "Episode 8 ends after the first strength increase. Episode 9 covers the next stat increases and brief food break; advance anchors only after verified publication."
+    "nextStart": "Was it an illusion that the scarecrow looked like it shivered at that very moment?",
+    "nextEndBefore": "Three weeks had passed in game time.",
+    "continuationNote": "Episode 9 ends after Hyun eats and resumes striking the dummy. Next cover the onlookers’ debate, Pluto’s explanation of the long-term benefit and cost, Hyun’s enjoyment of progress, and the instructor’s approval. Stop before the three-week time jump."
   },
   "completed": [
     {
@@ -41,9 +41,13 @@
     {
       "episode": "moonlight-08-v3",
       "end": "Instructor guidance, repeated dummy strikes, first strength +1 after six hours and first stats window. Level remains 1, strength is 11. Stops before -Five hours later-."
+    },
+    {
+      "episode": "moonlight-09-v1",
+      "end": "Vitality and agility each rise by one; Hyun opens inventory with water and ten rye breads, eats briefly and returns to dummy training despite onlookers. Stop before the scarecrow shivering question."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-08-v3.json",
+  "assetsFrom": "stories/animated/moonlight-09.json",
   "vocabularySupplement": "stories/authoring/common-familiar-100.json",
   "coverage": {
     "min": 95,
@@ -60,23 +64,16 @@
   },
   "continuity": [
     "Grandmother remains hospitalized and the old debt is paid. Do not invent an exact current balance.",
-    "Hyun has entered Royal Road as Weed in Serabourg, reached Training Hall and practised on a dummy for six hours. Strength has increased from 10 to 11; level remains 1 and he has no profession. Continue before the source’s next five-hour training passage.",
-    "Two small choices in episode 8 affect reflections about privacy and proof of progress, with callbacks inside this episode only. No cross-episode choice memory is assumed.",
+    "Hyun has taken a brief food break after vitality and agility each rose by one, seen water and ten rye breads in his inventory, and resumed dummy practice. Strength remains 11 and level remains 1; no profession has been gained.",
+    "Episode 9 choices concern hunger/thirst and attention to onlookers, with within-episode callbacks only. Do not assume cross-episode choice memory.",
     "Reuse the approved Hyun design and Training Hall assets. The visible sword is stylized silver; the source practice weapon is wooden."
   ],
   "castRecipes": "stories/characters/lms-cast.json",
-  "pendingPublication": [
-    {
-      "episode": "moonlight-09-v1",
-      "package": "stories/animated/moonlight-09.json",
-      "status": "Prepared; phone/desktop verification and publication pending.",
-      "end": "Vitality and agility each rise by one; Hyun opens inventory with water and ten rye breads, eats briefly and returns to dummy training despite onlookers. Stop before the scarecrow shivering question."
-    }
-  ],
+  "pendingPublication": [],
   "localContinuation": {
-    "note": "Published story boundary is after episode 8. Revision v3 is live and changes directing only.",
-    "nextStart": "-Five hours later-",
-    "nextEndBefore": "Was it an illusion that the scarecrow looked like it shivered at that very moment?",
-    "assetsFrom": "stories/animated/moonlight-08-v3.json"
+    "note": "Published story boundary is after episode 9.",
+    "nextStart": "Was it an illusion that the scarecrow looked like it shivered at that very moment?",
+    "nextEndBefore": "Three weeks had passed in game time.",
+    "assetsFrom": "stories/animated/moonlight-09.json"
   }
 }
