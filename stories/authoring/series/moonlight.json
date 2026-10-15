@@ -39,11 +39,11 @@
       "end": "Arrival in Serabourg, public movement tests, humiliation and decision to go to Training Hall. Stops before instructor introduction."
     },
     {
-      "episode": "moonlight-08-v2",
+      "episode": "moonlight-08-v3",
       "end": "Instructor guidance, repeated dummy strikes, first strength +1 after six hours and first stats window. Level remains 1, strength is 11. Stops before -Five hours later-."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-08-v2.json",
+  "assetsFrom": "stories/animated/moonlight-08-v3.json",
   "vocabularySupplement": "stories/authoring/common-familiar-100.json",
   "coverage": {
     "min": 95,
@@ -65,16 +65,9 @@
     "Reuse the approved Hyun design and Training Hall assets. The visible sword is stylized silver; the source practice weapon is wooden."
   ],
   "castRecipes": "stories/characters/lms-cast.json",
-  "pendingPublication": [
-    {
-      "episode": "moonlight-08-v3",
-      "package": "stories/animated/moonlight-08-v3.json",
-      "status": "Camera and atmosphere revision pending publication; v2 is live.",
-      "end": "Instructor guidance, repeated dummy strikes, first strength +1 after six hours and first stats window. Level remains 1, strength is 11. Stops before -Five hours later-."
-    }
-  ],
+  "pendingPublication": [],
   "localContinuation": {
-    "note": "Published story boundary is after episode 8. Revision v3 changes directing only.",
+    "note": "Published story boundary is after episode 8. Revision v3 is live and changes directing only.",
     "nextStart": "-Five hours later-",
     "nextEndBefore": "Was it an illusion that the scarecrow looked like it shivered at that very moment?",
     "assetsFrom": "stories/animated/moonlight-08-v3.json"
