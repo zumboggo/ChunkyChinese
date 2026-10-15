@@ -1,0 +1,1072 @@
+{
+  "我走进训练场。教官马上看我。": {
+    "interlinear": [
+      {
+        "chinese": "我走进",
+        "gloss": "I walk into",
+        "pinyin": "wǒ zǒu jìn"
+      },
+      {
+        "chinese": "训练场。",
+        "gloss": "the Training Hall",
+        "pinyin": "xùn liàn chǎng 。"
+      },
+      {
+        "chinese": "教官",
+        "gloss": "the instructor",
+        "pinyin": "jiào guān"
+      },
+      {
+        "chinese": "马上看我。",
+        "gloss": "immediately looks at me",
+        "pinyin": "mǎ shàng kàn wǒ 。"
+      }
+    ],
+    "pinyin": "wǒ zǒu jìn xùn liàn chǎng 。 jiào guān mǎ shàng kàn wǒ 。"
+  },
+  "年轻人，你是刚来的吧？": {
+    "interlinear": [
+      {
+        "chinese": "年轻人，",
+        "gloss": "young man",
+        "pinyin": "nián qīng rén ，"
+      },
+      {
+        "chinese": "你是",
+        "gloss": "you are",
+        "pinyin": "nǐ shì"
+      },
+      {
+        "chinese": "刚来的吧？",
+        "gloss": "a new arrival, aren't you?",
+        "pinyin": "gāng lái de ba ？"
+      }
+    ],
+    "pinyin": "nián qīng rén ， nǐ shì gāng lái de ba ？"
+  },
+  "第一天就让别人取笑，我心里还不舒服。": {
+    "interlinear": [
+      {
+        "chinese": "第一天",
+        "gloss": "on the first day",
+        "pinyin": "dì yī tiān"
+      },
+      {
+        "chinese": "就让别人取笑，",
+        "gloss": "already being laughed at by others",
+        "pinyin": "jiù ràng bié rén qǔ xiào ，"
+      },
+      {
+        "chinese": "我心里",
+        "gloss": "inside",
+        "pinyin": "wǒ xīn lǐ"
+      },
+      {
+        "chinese": "还不舒服。",
+        "gloss": "I still feel uncomfortable",
+        "pinyin": "hái bù shū fú 。"
+      }
+    ],
+    "pinyin": "dì yī tiān jiù ràng bié rén qǔ xiào ， wǒ xīn lǐ hái bù shū fú 。"
+  },
+  "是的。": {
+    "interlinear": [
+      {
+        "chinese": "是的。",
+        "gloss": "Yes",
+        "pinyin": "shì de 。"
+      }
+    ],
+    "pinyin": "shì de 。"
+  },
+  "以后要打怪物，就必须学会用剑。": {
+    "interlinear": [
+      {
+        "chinese": "以后",
+        "gloss": "later",
+        "pinyin": "yǐ hòu"
+      },
+      {
+        "chinese": "要打怪物，",
+        "gloss": "to fight monsters",
+        "pinyin": "yào dǎ guài wù ，"
+      },
+      {
+        "chinese": "就必须",
+        "gloss": "you must",
+        "pinyin": "jiù bì xū"
+      },
+      {
+        "chinese": "学会用剑。",
+        "gloss": "learn to use a sword",
+        "pinyin": "xué huì yòng jiàn 。"
+      }
+    ],
+    "pinyin": "yǐ hòu yào dǎ guài wù ， jiù bì xū xué huì yòng jiàn 。"
+  },
+  "需要我教你吗？": {
+    "interlinear": [
+      {
+        "chinese": "需要",
+        "gloss": "do you need",
+        "pinyin": "xū yào"
+      },
+      {
+        "chinese": "我教你吗？",
+        "gloss": "me to teach you?",
+        "pinyin": "wǒ jiào nǐ ma ？"
+      }
+    ],
+    "pinyin": "xū yào wǒ jiào nǐ ma ？"
+  },
+  "找一个没人在用的稻草人，想怎么打都可以。": {
+    "interlinear": [
+      {
+        "chinese": "找一个",
+        "gloss": "find one",
+        "pinyin": "zhǎo yí gè"
+      },
+      {
+        "chinese": "没人在用的",
+        "gloss": "that nobody is using",
+        "pinyin": "méi rén zài yòng de"
+      },
+      {
+        "chinese": "稻草人，",
+        "gloss": "training dummy",
+        "pinyin": "dào cǎo rén ，"
+      },
+      {
+        "chinese": "想怎么打",
+        "gloss": "however you want to hit it",
+        "pinyin": "xiǎng zěn me dǎ"
+      },
+      {
+        "chinese": "都可以。",
+        "gloss": "is fine",
+        "pinyin": "dōu kě yǐ 。"
+      }
+    ],
+    "pinyin": "zhǎo yí gè méi rén zài yòng de dào cǎo rén ， xiǎng zěn me dǎ dōu kě yǐ 。"
+  },
+  "前面有木头做的剑。可以用那把剑。": {
+    "interlinear": [
+      {
+        "chinese": "前面",
+        "gloss": "in front",
+        "pinyin": "qián miàn"
+      },
+      {
+        "chinese": "有",
+        "gloss": "there are",
+        "pinyin": "yǒu"
+      },
+      {
+        "chinese": "木头做的剑。",
+        "gloss": "swords made of wood",
+        "pinyin": "mù tou zuò de jiàn 。"
+      },
+      {
+        "chinese": "可以用",
+        "gloss": "you can use",
+        "pinyin": "kě yǐ yòng"
+      },
+      {
+        "chinese": "那把剑。",
+        "gloss": "that sword",
+        "pinyin": "nà bǎ jiàn 。"
+      }
+    ],
+    "pinyin": "qián miàn yǒu mù tou zuò de jiàn 。 kě yǐ yòng nà bǎ jiàn 。"
+  },
+  "谢谢。这样就很好，不用再说了。": {
+    "interlinear": [
+      {
+        "chinese": "谢谢。",
+        "gloss": "Thank you",
+        "pinyin": "xiè xiè 。"
+      },
+      {
+        "chinese": "这样就很好，",
+        "gloss": "that's fine",
+        "pinyin": "zhè yàng jiù hěn hǎo ，"
+      },
+      {
+        "chinese": "不用再说了。",
+        "gloss": "there's no need to explain more",
+        "pinyin": "bú yòng zài shuō le 。"
+      }
+    ],
+    "pinyin": "xiè xiè 。 zhè yàng jiù hěn hǎo ， bú yòng zài shuō le 。"
+  },
+  "希望你有好运气。": {
+    "interlinear": [
+      {
+        "chinese": "希望你",
+        "gloss": "I hope you",
+        "pinyin": "xī wàng nǐ"
+      },
+      {
+        "chinese": "有好运气。",
+        "gloss": "have good luck",
+        "pinyin": "yǒu hǎo yùn qì 。"
+      }
+    ],
+    "pinyin": "xī wàng nǐ yǒu hǎo yùn qì 。"
+  },
+  "找个离别人远一点的地方。": {
+    "interlinear": [
+      {
+        "chinese": "找个",
+        "gloss": "find a",
+        "pinyin": "zhǎo gè"
+      },
+      {
+        "chinese": "离别人",
+        "gloss": "from other people",
+        "pinyin": "lí bié rén"
+      },
+      {
+        "chinese": "远一点的地方。",
+        "gloss": "place a little farther away",
+        "pinyin": "yuǎn yì diǎn de dì fāng 。"
+      }
+    ],
+    "pinyin": "zhǎo gè lí bié rén yuǎn yì diǎn de dì fāng 。"
+  },
+  "我想马上开始练习。": {
+    "interlinear": [
+      {
+        "chinese": "我想",
+        "gloss": "I want to",
+        "pinyin": "wǒ xiǎng"
+      },
+      {
+        "chinese": "马上开始",
+        "gloss": "start right away",
+        "pinyin": "mǎ shàng kāi shǐ"
+      },
+      {
+        "chinese": "练习。",
+        "gloss": "practicing",
+        "pinyin": "liàn xí 。"
+      }
+    ],
+    "pinyin": "wǒ xiǎng mǎ shàng kāi shǐ liàn xí 。"
+  },
+  "这里没有路上那么多人看我吧。": {
+    "interlinear": [
+      {
+        "chinese": "这里",
+        "gloss": "here",
+        "pinyin": "zhè lǐ"
+      },
+      {
+        "chinese": "没有",
+        "gloss": "there aren't",
+        "pinyin": "méi yǒu"
+      },
+      {
+        "chinese": "路上那么多人",
+        "gloss": "as many people as in the street",
+        "pinyin": "lù shang nà me duō rén"
+      },
+      {
+        "chinese": "看我吧。",
+        "gloss": "watching me, I hope",
+        "pinyin": "kàn wǒ ba 。"
+      }
+    ],
+    "pinyin": "zhè lǐ méi yǒu lù shang nà me duō rén kàn wǒ ba 。"
+  },
+  "不再想刚才的事了。先用剑练习。": {
+    "interlinear": [
+      {
+        "chinese": "不再想",
+        "gloss": "stop thinking about",
+        "pinyin": "bú zài xiǎng"
+      },
+      {
+        "chinese": "刚才的事了。",
+        "gloss": "what just happened",
+        "pinyin": "gāng cái de shì le 。"
+      },
+      {
+        "chinese": "先用剑",
+        "gloss": "first use the sword",
+        "pinyin": "xiān yòng jiàn"
+      },
+      {
+        "chinese": "练习。",
+        "gloss": "to practice",
+        "pinyin": "liàn xí 。"
+      }
+    ],
+    "pinyin": "bú zài xiǎng gāng cái de shì le 。 xiān yòng jiàn liàn xí 。"
+  },
+  "剑在手里。我走到最远的地方，找到一个稻草人。": {
+    "interlinear": [
+      {
+        "chinese": "剑在手里。",
+        "gloss": "The sword is in my hand",
+        "pinyin": "jiàn zài shǒu lǐ 。"
+      },
+      {
+        "chinese": "我走到",
+        "gloss": "I walk to",
+        "pinyin": "wǒ zǒu dào"
+      },
+      {
+        "chinese": "最远的地方，",
+        "gloss": "the farthest spot",
+        "pinyin": "zuì yuǎn de dì fāng ，"
+      },
+      {
+        "chinese": "找到",
+        "gloss": "and find",
+        "pinyin": "zhǎo dào"
+      },
+      {
+        "chinese": "一个稻草人。",
+        "gloss": "a training dummy",
+        "pinyin": "yí gè dào cǎo rén 。"
+      }
+    ],
+    "pinyin": "jiàn zài shǒu lǐ 。 wǒ zǒu dào zuì yuǎn de dì fāng ， zhǎo dào yí gè dào cǎo rén 。"
+  },
+  "它不说话。我也不说话。": {
+    "interlinear": [
+      {
+        "chinese": "它不说话。",
+        "gloss": "It doesn't speak",
+        "pinyin": "tā bù shuō huà 。"
+      },
+      {
+        "chinese": "我也不说话。",
+        "gloss": "Neither do I",
+        "pinyin": "wǒ yě bù shuō huà 。"
+      }
+    ],
+    "pinyin": "tā bù shuō huà 。 wǒ yě bù shuō huà 。"
+  },
+  "一下。": {
+    "interlinear": [
+      {
+        "chinese": "一下。",
+        "gloss": "One strike",
+        "pinyin": "yí xià 。"
+      }
+    ],
+    "pinyin": "yí xià 。"
+  },
+  "两下。": {
+    "interlinear": [
+      {
+        "chinese": "两下。",
+        "gloss": "Two strikes",
+        "pinyin": "liǎng xià 。"
+      }
+    ],
+    "pinyin": "liǎng xià 。"
+  },
+  "三下。我慢慢觉得，手里的剑不那么奇怪了。": {
+    "interlinear": [
+      {
+        "chinese": "三下。",
+        "gloss": "Three strikes",
+        "pinyin": "sān xià 。"
+      },
+      {
+        "chinese": "我慢慢觉得，",
+        "gloss": "gradually I feel",
+        "pinyin": "wǒ màn màn jué de ，"
+      },
+      {
+        "chinese": "手里的剑",
+        "gloss": "the sword in my hand",
+        "pinyin": "shǒu lǐ de jiàn"
+      },
+      {
+        "chinese": "不那么奇怪了。",
+        "gloss": "is less unfamiliar",
+        "pinyin": "bú nà me qí guài le 。"
+      }
+    ],
+    "pinyin": "sān xià 。 wǒ màn màn jué de ， shǒu lǐ de jiàn bú nà me qí guài le 。"
+  },
+  "手要知道怎么动。只有想法，没有用。": {
+    "interlinear": [
+      {
+        "chinese": "手要知道",
+        "gloss": "my hands need to know",
+        "pinyin": "shǒu yào zhī dào"
+      },
+      {
+        "chinese": "怎么动。",
+        "gloss": "how to move",
+        "pinyin": "zěn me dòng 。"
+      },
+      {
+        "chinese": "只有想法，",
+        "gloss": "only having ideas",
+        "pinyin": "zhǐ yǒu xiǎng fǎ ，"
+      },
+      {
+        "chinese": "没有用。",
+        "gloss": "is no use",
+        "pinyin": "méi yǒu yòng 。"
+      }
+    ],
+    "pinyin": "shǒu yào zhī dào zěn me dòng 。 zhǐ yǒu xiǎng fǎ ， méi yǒu yòng 。"
+  },
+  "新来的四个星期，我不能离开城市去打怪物，等级也不会变。": {
+    "interlinear": [
+      {
+        "chinese": "新来的",
+        "gloss": "after arriving",
+        "pinyin": "xīn lái de"
+      },
+      {
+        "chinese": "四个星期，",
+        "gloss": "for four weeks",
+        "pinyin": "sì gè xīng qī ，"
+      },
+      {
+        "chinese": "我不能",
+        "gloss": "I cannot",
+        "pinyin": "wǒ bù néng"
+      },
+      {
+        "chinese": "离开城市",
+        "gloss": "leave the city",
+        "pinyin": "lí kāi chéng shì"
+      },
+      {
+        "chinese": "去打怪物，",
+        "gloss": "to fight monsters",
+        "pinyin": "qù dǎ guài wù ，"
+      },
+      {
+        "chinese": "等级",
+        "gloss": "my level",
+        "pinyin": "děng jí"
+      },
+      {
+        "chinese": "也不会变。",
+        "gloss": "won't change either",
+        "pinyin": "yě bú huì biàn 。"
+      }
+    ],
+    "pinyin": "xīn lái de sì gè xīng qī ， wǒ bù néng lí kāi chéng shì qù dǎ guài wù ， děng jí yě bú huì biàn 。"
+  },
+  "别人做任务，得到钱，也认识更多人。": {
+    "interlinear": [
+      {
+        "chinese": "别人做任务，",
+        "gloss": "others do quests",
+        "pinyin": "bié rén zuò rèn wu ，"
+      },
+      {
+        "chinese": "得到钱，",
+        "gloss": "earn money",
+        "pinyin": "dé dào qián ，"
+      },
+      {
+        "chinese": "也认识",
+        "gloss": "and get to know",
+        "pinyin": "yě rèn shi"
+      },
+      {
+        "chinese": "更多人。",
+        "gloss": "more people",
+        "pinyin": "gèng duō rén 。"
+      }
+    ],
+    "pinyin": "bié rén zuò rèn wu ， dé dào qián ， yě rèn shi gèng duō rén 。"
+  },
+  "我还是在打面前的它。": {
+    "interlinear": [
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "还是在打",
+        "gloss": "am still hitting",
+        "pinyin": "hái shì zài dǎ"
+      },
+      {
+        "chinese": "面前的它。",
+        "gloss": "it in front of me",
+        "pinyin": "miàn qián de tā 。"
+      }
+    ],
+    "pinyin": "wǒ hái shì zài dǎ miàn qián de tā 。"
+  },
+  "这里有差不多一千个草做的人，也有很多木头做的剑。": {
+    "interlinear": [
+      {
+        "chinese": "这里有",
+        "gloss": "there are",
+        "pinyin": "zhè lǐ yǒu"
+      },
+      {
+        "chinese": "差不多一千个",
+        "gloss": "about a thousand",
+        "pinyin": "chà bù duō yì qiān gè"
+      },
+      {
+        "chinese": "草做的人，",
+        "gloss": "figures made of straw",
+        "pinyin": "cǎo zuò de rén ，"
+      },
+      {
+        "chinese": "也有很多",
+        "gloss": "and many",
+        "pinyin": "yě yǒu hěn duō"
+      },
+      {
+        "chinese": "木头做的剑。",
+        "gloss": "wooden swords",
+        "pinyin": "mù tou zuò de jiàn 。"
+      }
+    ],
+    "pinyin": "zhè lǐ yǒu chà bù duō yì qiān gè cǎo zuò de rén ， yě yǒu hěn duō mù tou zuò de jiàn 。"
+  },
+  "可是，大家开始看我了。": {
+    "interlinear": [
+      {
+        "chinese": "可是，",
+        "gloss": "but",
+        "pinyin": "kě shì ，"
+      },
+      {
+        "chinese": "大家",
+        "gloss": "everyone",
+        "pinyin": "dà jiā"
+      },
+      {
+        "chinese": "开始看我了。",
+        "gloss": "has started watching me",
+        "pinyin": "kāi shǐ kàn wǒ le 。"
+      }
+    ],
+    "pinyin": "kě shì ， dà jiā kāi shǐ kàn wǒ le 。"
+  },
+  "这个人真强！": {
+    "interlinear": [
+      {
+        "chinese": "这个人",
+        "gloss": "this person",
+        "pinyin": "zhè ge rén"
+      },
+      {
+        "chinese": "真强！",
+        "gloss": "is really tough!",
+        "pinyin": "zhēn qiáng ！"
+      }
+    ],
+    "pinyin": "zhè ge rén zhēn qiáng ！"
+  },
+  "我听到声音，手却没有停。": {
+    "interlinear": [
+      {
+        "chinese": "我听到声音，",
+        "gloss": "I hear their voices",
+        "pinyin": "wǒ tīng dào shēng yīn ，"
+      },
+      {
+        "chinese": "手",
+        "gloss": "my hand",
+        "pinyin": "shǒu"
+      },
+      {
+        "chinese": "却没有停。",
+        "gloss": "doesn't stop, though",
+        "pinyin": "què méi yǒu tíng 。"
+      }
+    ],
+    "pinyin": "wǒ tīng dào shēng yīn ， shǒu què méi yǒu tíng 。"
+  },
+  "怎么会有人一直这样练习？": {
+    "interlinear": [
+      {
+        "chinese": "怎么会有人",
+        "gloss": "how can someone",
+        "pinyin": "zěn me huì yǒu rén"
+      },
+      {
+        "chinese": "一直这样",
+        "gloss": "keep doing this",
+        "pinyin": "yì zhí zhè yàng"
+      },
+      {
+        "chinese": "练习？",
+        "gloss": "practicing?",
+        "pinyin": "liàn xí ？"
+      }
+    ],
+    "pinyin": "zěn me huì yǒu rén yì zhí zhè yàng liàn xí ？"
+  },
+  "一下都不休息？": {
+    "interlinear": [
+      {
+        "chinese": "一下",
+        "gloss": "even for a moment",
+        "pinyin": "yí xià"
+      },
+      {
+        "chinese": "都不休息？",
+        "gloss": "he doesn't rest?",
+        "pinyin": "dōu bù xiū xi ？"
+      }
+    ],
+    "pinyin": "yí xià dōu bù xiū xi ？"
+  },
+  "想看就看吧。我有要做的事。": {
+    "interlinear": [
+      {
+        "chinese": "想看就看吧。",
+        "gloss": "Let them watch if they want",
+        "pinyin": "xiǎng kàn jiù kàn ba 。"
+      },
+      {
+        "chinese": "我有",
+        "gloss": "I have",
+        "pinyin": "wǒ yǒu"
+      },
+      {
+        "chinese": "要做的事。",
+        "gloss": "something to do",
+        "pinyin": "yào zuò de shì 。"
+      }
+    ],
+    "pinyin": "xiǎng kàn jiù kàn ba 。 wǒ yǒu yào zuò de shì 。"
+  },
+  "我想知道，这样练习会不会有用。": {
+    "interlinear": [
+      {
+        "chinese": "我想知道，",
+        "gloss": "I want to know",
+        "pinyin": "wǒ xiǎng zhī dào ，"
+      },
+      {
+        "chinese": "这样练习",
+        "gloss": "practicing like this",
+        "pinyin": "zhè yàng liàn xí"
+      },
+      {
+        "chinese": "会不会有用。",
+        "gloss": "whether it will help",
+        "pinyin": "huì bu huì yǒu yòng 。"
+      }
+    ],
+    "pinyin": "wǒ xiǎng zhī dào ， zhè yàng liàn xí huì bu huì yǒu yòng 。"
+  },
+  "他们说他们的。我做我的。": {
+    "interlinear": [
+      {
+        "chinese": "他们说他们的。",
+        "gloss": "Let them talk",
+        "pinyin": "tā men shuō tā men de 。"
+      },
+      {
+        "chinese": "我做我的。",
+        "gloss": "I'll do my own thing",
+        "pinyin": "wǒ zuò wǒ de 。"
+      }
+    ],
+    "pinyin": "tā men shuō tā men de 。 wǒ zuò wǒ de 。"
+  },
+  "现在没有变，不是说以后也不会变。": {
+    "interlinear": [
+      {
+        "chinese": "现在没有变，",
+        "gloss": "nothing has changed yet",
+        "pinyin": "xiàn zài méi yǒu biàn ，"
+      },
+      {
+        "chinese": "不是说",
+        "gloss": "doesn't mean",
+        "pinyin": "bú shì shuō"
+      },
+      {
+        "chinese": "以后也不会变。",
+        "gloss": "it won't change later",
+        "pinyin": "yǐ hòu yě bú huì biàn 。"
+      }
+    ],
+    "pinyin": "xiàn zài méi yǒu biàn ， bú shì shuō yǐ hòu yě bú huì biàn 。"
+  },
+  "汗越来越多。衣服已经贴在身上了。": {
+    "interlinear": [
+      {
+        "chinese": "汗",
+        "gloss": "sweat",
+        "pinyin": "hàn"
+      },
+      {
+        "chinese": "越来越多。",
+        "gloss": "keeps increasing",
+        "pinyin": "yuè lái yuè duō 。"
+      },
+      {
+        "chinese": "衣服",
+        "gloss": "my clothes",
+        "pinyin": "yī fu"
+      },
+      {
+        "chinese": "已经",
+        "gloss": "already",
+        "pinyin": "yǐ jīng"
+      },
+      {
+        "chinese": "贴在身上了。",
+        "gloss": "cling to my body",
+        "pinyin": "tiē zài shēn shàng le 。"
+      }
+    ],
+    "pinyin": "hàn yuè lái yuè duō 。 yī fu yǐ jīng tiē zài shēn shàng le 。"
+  },
+  "我没有休息。一下，又一下。": {
+    "interlinear": [
+      {
+        "chinese": "我没有休息。",
+        "gloss": "I haven't rested",
+        "pinyin": "wǒ méi yǒu xiū xi 。"
+      },
+      {
+        "chinese": "一下，",
+        "gloss": "one strike",
+        "pinyin": "yí xià ，"
+      },
+      {
+        "chinese": "又一下。",
+        "gloss": "then another",
+        "pinyin": "yòu yí xià 。"
+      }
+    ],
+    "pinyin": "wǒ méi yǒu xiū xi 。 yí xià ， yòu yí xià 。"
+  },
+  "六个小时过去了。": {
+    "interlinear": [
+      {
+        "chinese": "六个小时",
+        "gloss": "six hours",
+        "pinyin": "liù gè xiǎo shí"
+      },
+      {
+        "chinese": "过去了。",
+        "gloss": "have passed",
+        "pinyin": "guò qù le 。"
+      }
+    ],
+    "pinyin": "liù gè xiǎo shí guò qù le 。"
+  },
+  "这时候，我听到系统的声音。": {
+    "interlinear": [
+      {
+        "chinese": "这时候，",
+        "gloss": "at that moment",
+        "pinyin": "zhè shí hòu ，"
+      },
+      {
+        "chinese": "我听到",
+        "gloss": "I hear",
+        "pinyin": "wǒ tīng dào"
+      },
+      {
+        "chinese": "系统的声音。",
+        "gloss": "the system's voice",
+        "pinyin": "xì tǒng de shēng yīn 。"
+      }
+    ],
+    "pinyin": "zhè shí hòu ， wǒ tīng dào xì tǒng de shēng yīn 。"
+  },
+  "力量增加了一点。": {
+    "interlinear": [
+      {
+        "chinese": "力量",
+        "gloss": "strength",
+        "pinyin": "lì liàng"
+      },
+      {
+        "chinese": "增加了",
+        "gloss": "has increased by",
+        "pinyin": "zēng jiā le"
+      },
+      {
+        "chinese": "一点。",
+        "gloss": "one point",
+        "pinyin": "yì diǎn 。"
+      }
+    ],
+    "pinyin": "lì liàng zēng jiā le yì diǎn 。"
+  },
+  "真的变强了？": {
+    "interlinear": [
+      {
+        "chinese": "真的",
+        "gloss": "really",
+        "pinyin": "zhēn de"
+      },
+      {
+        "chinese": "变强了？",
+        "gloss": "got stronger?",
+        "pinyin": "biàn qiáng le ？"
+      }
+    ],
+    "pinyin": "zhēn de biàn qiáng le ？"
+  },
+  "手里的剑，好像轻了一点。": {
+    "interlinear": [
+      {
+        "chinese": "手里的剑，",
+        "gloss": "the sword in my hand",
+        "pinyin": "shǒu lǐ de jiàn ，"
+      },
+      {
+        "chinese": "好像",
+        "gloss": "seems",
+        "pinyin": "hǎo xiàng"
+      },
+      {
+        "chinese": "轻了一点。",
+        "gloss": "a little lighter",
+        "pinyin": "qīng le yì diǎn 。"
+      }
+    ],
+    "pinyin": "shǒu lǐ de jiàn ， hǎo xiàng qīng le yì diǎn 。"
+  },
+  "刚才我想知道有没有用。现在，我知道了。": {
+    "interlinear": [
+      {
+        "chinese": "刚才",
+        "gloss": "earlier",
+        "pinyin": "gāng cái"
+      },
+      {
+        "chinese": "我想知道",
+        "gloss": "I wanted to know",
+        "pinyin": "wǒ xiǎng zhī dào"
+      },
+      {
+        "chinese": "有没有用。",
+        "gloss": "whether it worked",
+        "pinyin": "yǒu méi yǒu yòng 。"
+      },
+      {
+        "chinese": "现在，",
+        "gloss": "now",
+        "pinyin": "xiàn zài ，"
+      },
+      {
+        "chinese": "我知道了。",
+        "gloss": "I know",
+        "pinyin": "wǒ zhī dào le 。"
+      }
+    ],
+    "pinyin": "gāng cái wǒ xiǎng zhī dào yǒu méi yǒu yòng 。 xiàn zài ， wǒ zhī dào le 。"
+  },
+  "一直做下去，终于变了。": {
+    "interlinear": [
+      {
+        "chinese": "一直做下去，",
+        "gloss": "keep at it",
+        "pinyin": "yì zhí zuò xià qù ，"
+      },
+      {
+        "chinese": "终于变了。",
+        "gloss": "at last something changed",
+        "pinyin": "zhōng yú biàn le 。"
+      }
+    ],
+    "pinyin": "yì zhí zuò xià qù ， zhōng yú biàn le 。"
+  },
+  "我来这里，不只是为了不让别人看。": {
+    "interlinear": [
+      {
+        "chinese": "我来这里，",
+        "gloss": "I came here",
+        "pinyin": "wǒ lái zhè lǐ ，"
+      },
+      {
+        "chinese": "不只是为了",
+        "gloss": "for more than just",
+        "pinyin": "bù zhǐ shì wèi le"
+      },
+      {
+        "chinese": "不让别人看。",
+        "gloss": "keeping others from watching",
+        "pinyin": "bú ràng bié rén kàn 。"
+      }
+    ],
+    "pinyin": "wǒ lái zhè lǐ ， bù zhǐ shì wèi le bú ràng bié rén kàn 。"
+  },
+  "刚才开始练习。现在，我还想拿着它。": {
+    "interlinear": [
+      {
+        "chinese": "刚才",
+        "gloss": "earlier",
+        "pinyin": "gāng cái"
+      },
+      {
+        "chinese": "开始练习。",
+        "gloss": "I began practicing",
+        "pinyin": "kāi shǐ liàn xí 。"
+      },
+      {
+        "chinese": "现在，",
+        "gloss": "now",
+        "pinyin": "xiàn zài ，"
+      },
+      {
+        "chinese": "我还想",
+        "gloss": "I still want to",
+        "pinyin": "wǒ hái xiǎng"
+      },
+      {
+        "chinese": "拿着它。",
+        "gloss": "hold it",
+        "pinyin": "ná zhe tā 。"
+      }
+    ],
+    "pinyin": "gāng cái kāi shǐ liàn xí 。 xiàn zài ， wǒ hái xiǎng ná zhe tā 。"
+  },
+  "打开属性窗口。": {
+    "interlinear": [
+      {
+        "chinese": "打开",
+        "gloss": "open",
+        "pinyin": "dǎ kāi"
+      },
+      {
+        "chinese": "属性窗口。",
+        "gloss": "the stats window",
+        "pinyin": "shǔ xìng chuāng kǒu 。"
+      }
+    ],
+    "pinyin": "dǎ kāi shǔ xìng chuāng kǒu 。"
+  },
+  "我的名字是杂草。等级还是一，职业还是没有。": {
+    "interlinear": [
+      {
+        "chinese": "我的名字",
+        "gloss": "my name",
+        "pinyin": "wǒ de míng zì"
+      },
+      {
+        "chinese": "是杂草。",
+        "gloss": "is Weed",
+        "pinyin": "shì zá cǎo 。"
+      },
+      {
+        "chinese": "等级",
+        "gloss": "my level",
+        "pinyin": "děng jí"
+      },
+      {
+        "chinese": "还是一，",
+        "gloss": "is still one",
+        "pinyin": "hái shì yī ，"
+      },
+      {
+        "chinese": "职业",
+        "gloss": "my profession",
+        "pinyin": "zhí yè"
+      },
+      {
+        "chinese": "还是没有。",
+        "gloss": "is still none",
+        "pinyin": "hái shì méi yǒu 。"
+      }
+    ],
+    "pinyin": "wǒ de míng zì shì zá cǎo 。 děng jí hái shì yī ， zhí yè hái shì méi yǒu 。"
+  },
+  "力量是十一。只是多了一点，我还不强。": {
+    "interlinear": [
+      {
+        "chinese": "力量是十一。",
+        "gloss": "Strength is eleven",
+        "pinyin": "lì liàng shì shí yī 。"
+      },
+      {
+        "chinese": "只是",
+        "gloss": "it's only",
+        "pinyin": "zhǐ shì"
+      },
+      {
+        "chinese": "多了一点，",
+        "gloss": "one point more",
+        "pinyin": "duō le yì diǎn ，"
+      },
+      {
+        "chinese": "我还不强。",
+        "gloss": "I'm not strong yet",
+        "pinyin": "wǒ hái bù qiáng 。"
+      }
+    ],
+    "pinyin": "lì liàng shì shí yī 。 zhǐ shì duō le yì diǎn ， wǒ hái bù qiáng 。"
+  },
+  "但是，这一点，是我一直练习才得到的。": {
+    "interlinear": [
+      {
+        "chinese": "但是，",
+        "gloss": "but",
+        "pinyin": "dàn shì ，"
+      },
+      {
+        "chinese": "这一点，",
+        "gloss": "this one point",
+        "pinyin": "zhè yì diǎn ，"
+      },
+      {
+        "chinese": "是我",
+        "gloss": "is what I",
+        "pinyin": "shì wǒ"
+      },
+      {
+        "chinese": "一直练习",
+        "gloss": "kept practicing",
+        "pinyin": "yì zhí liàn xí"
+      },
+      {
+        "chinese": "才得到的。",
+        "gloss": "to earn",
+        "pinyin": "cái dé dào de 。"
+      }
+    ],
+    "pinyin": "dàn shì ， zhè yì diǎn ， shì wǒ yì zhí liàn xí cái dé dào de 。"
+  },
+  "面前还是那个稻草人。手里的剑，又动了。": {
+    "interlinear": [
+      {
+        "chinese": "面前",
+        "gloss": "in front of me",
+        "pinyin": "miàn qián"
+      },
+      {
+        "chinese": "还是",
+        "gloss": "is still",
+        "pinyin": "hái shì"
+      },
+      {
+        "chinese": "那个稻草人。",
+        "gloss": "the same training dummy",
+        "pinyin": "nà ge dào cǎo rén 。"
+      },
+      {
+        "chinese": "手里的剑，",
+        "gloss": "the sword in my hand",
+        "pinyin": "shǒu lǐ de jiàn ，"
+      },
+      {
+        "chinese": "又动了。",
+        "gloss": "moves again",
+        "pinyin": "yòu dòng le 。"
+      }
+    ],
+    "pinyin": "miàn qián hái shì nà ge dào cǎo rén 。 shǒu lǐ de jiàn ， yòu dòng le 。"
+  }
+}

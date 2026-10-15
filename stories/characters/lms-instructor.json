@@ -1,0 +1,22 @@
+{
+  "id": "Instructor",
+  "name": "教官 · Instructor",
+  "version": 1,
+  "finish": "polished",
+  "appearance": {
+    "age": "adult",
+    "hair": "cropped",
+    "face": "broad",
+    "eyes": "narrow",
+    "outfit": "tunic",
+    "facialHair": "full"
+  },
+  "palette": {
+    "skin": "#bd987b",
+    "hair": "#55514a",
+    "shirt": "#796e55",
+    "trim": "#bba778",
+    "beard": "#55514a"
+  },
+  "provenance": "Original fictional Training Hall instructor, shared polished SVG character; not official artwork."
+}
