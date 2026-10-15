@@ -1,0 +1,905 @@
+{
+  "我还在练习。那个稻草人，好像也怕了。": {
+    "english": "I am still practicing. That straw dummy, seems frightened too.",
+    "interlinear": [
+      {
+        "chinese": "我还在练习。",
+        "gloss": "I am still practicing.",
+        "pinyin": "wǒ hái zài liàn xí 。"
+      },
+      {
+        "chinese": "那个稻草人，",
+        "gloss": "That straw dummy,",
+        "pinyin": "nà ge dào cǎo rén ，"
+      },
+      {
+        "chinese": "好像也怕了。",
+        "gloss": "seems frightened too.",
+        "pinyin": "hǎo xiàng yě pà le 。"
+      }
+    ],
+    "pinyin": "wǒ hái zài liàn xí 。 nà ge dào cǎo rén ， hǎo xiàng yě pà le 。"
+  },
+  "是我看错了吗？剑又打了下去。": {
+    "english": "Am I imagining it? The sword strikes again.",
+    "interlinear": [
+      {
+        "chinese": "是我看错了吗？",
+        "gloss": "Am I imagining it?",
+        "pinyin": "shì wǒ kàn cuò le ma ？"
+      },
+      {
+        "chinese": "剑又打了下去。",
+        "gloss": "The sword strikes again.",
+        "pinyin": "jiàn yòu dǎ le xià qù 。"
+      }
+    ],
+    "pinyin": "shì wǒ kàn cuò le ma ？ jiàn yòu dǎ le xià qù 。"
+  },
+  "为什么一直打这个东西？": {
+    "english": "Why keep hitting this thing?",
+    "interlinear": [
+      {
+        "chinese": "为什么",
+        "gloss": "Why",
+        "pinyin": "wèi shén me"
+      },
+      {
+        "chinese": "一直打这个东西？",
+        "gloss": "keep hitting this thing?",
+        "pinyin": "yì zhí dǎ zhè ge dōng xi ？"
+      }
+    ],
+    "pinyin": "wèi shén me yì zhí dǎ zhè ge dōng xi ？"
+  },
+  "想学会打，出去打兔子不是更好吗？": {
+    "english": "If you want to learn to fight, going out to fight rabbits would be better, wouldn't it?",
+    "interlinear": [
+      {
+        "chinese": "想学会打，",
+        "gloss": "If you want to learn to fight,",
+        "pinyin": "xiǎng xué huì dǎ ，"
+      },
+      {
+        "chinese": "出去打兔子",
+        "gloss": "going out to fight rabbits",
+        "pinyin": "chū qù dǎ tù zi"
+      },
+      {
+        "chinese": "不是更好吗？",
+        "gloss": "would be better, wouldn't it?",
+        "pinyin": "bú shì gèng hǎo ma ？"
+      }
+    ],
+    "pinyin": "xiǎng xué huì dǎ ， chū qù dǎ tù zi bú shì gèng hǎo ma ？"
+  },
+  "大家又在说我了。我不能离开城市，又能去哪里呢？": {
+    "english": "Everyone is talking about me again. I cannot leave the city, so where else could I go?",
+    "interlinear": [
+      {
+        "chinese": "大家又在说我了。",
+        "gloss": "Everyone is talking about me again.",
+        "pinyin": "dà jiā yòu zài shuō wǒ le 。"
+      },
+      {
+        "chinese": "我不能离开城市，",
+        "gloss": "I cannot leave the city,",
+        "pinyin": "wǒ bù néng lí kāi chéng shì ，"
+      },
+      {
+        "chinese": "又能去哪里呢？",
+        "gloss": "so where else could I go?",
+        "pinyin": "yòu néng qù nǎ lǐ ne ？"
+      }
+    ],
+    "pinyin": "dà jiā yòu zài shuō wǒ le 。 wǒ bù néng lí kāi chéng shì ， yòu néng qù nǎ lǐ ne ？"
+  },
+  "你看，只是一直打。好像在生气。": {
+    "english": "Look, just hitting over and over. As if angry.",
+    "interlinear": [
+      {
+        "chinese": "你看，",
+        "gloss": "Look,",
+        "pinyin": "nǐ kàn ，"
+      },
+      {
+        "chinese": "只是一直打。",
+        "gloss": "just hitting over and over.",
+        "pinyin": "zhǐ shì yì zhí dǎ 。"
+      },
+      {
+        "chinese": "好像在生气。",
+        "gloss": "As if angry.",
+        "pinyin": "hǎo xiàng zài shēng qì 。"
+      }
+    ],
+    "pinyin": "nǐ kàn ， zhǐ shì yì zhí dǎ 。 hǎo xiàng zài shēng qì 。"
+  },
+  "一个骑士也开始说话了。": {
+    "english": "One knight starts speaking too.",
+    "interlinear": [
+      {
+        "chinese": "一个骑士",
+        "gloss": "One knight",
+        "pinyin": "yí gè qí shì"
+      },
+      {
+        "chinese": "也开始说话了。",
+        "gloss": "starts speaking too.",
+        "pinyin": "yě kāi shǐ shuō huà le 。"
+      }
+    ],
+    "pinyin": "yí gè qí shì yě kāi shǐ shuō huà le 。"
+  },
+  "也许是想让属性变好。": {
+    "english": "Perhaps the aim is to improve the stats.",
+    "interlinear": [
+      {
+        "chinese": "也许是想",
+        "gloss": "Perhaps the aim is",
+        "pinyin": "yě xǔ shì xiǎng"
+      },
+      {
+        "chinese": "让属性变好。",
+        "gloss": "to improve the stats.",
+        "pinyin": "ràng shǔ xìng biàn hǎo 。"
+      }
+    ],
+    "pinyin": "yě xǔ shì xiǎng ràng shǔ xìng biàn hǎo 。"
+  },
+  "只打这个东西，也能变强？": {
+    "english": "Just hitting this thing, can make you stronger too?",
+    "interlinear": [
+      {
+        "chinese": "只打这个东西，",
+        "gloss": "Just hitting this thing,",
+        "pinyin": "zhǐ dǎ zhè ge dōng xi ，"
+      },
+      {
+        "chinese": "也能变强？",
+        "gloss": "can make you stronger too?",
+        "pinyin": "yě néng biàn qiáng ？"
+      }
+    ],
+    "pinyin": "zhǐ dǎ zhè ge dōng xi ， yě néng biàn qiáng ？"
+  },
+  "对，可以。": {
+    "english": "Yes, it can.",
+    "interlinear": [
+      {
+        "chinese": "对，可以。",
+        "gloss": "Yes, it can.",
+        "pinyin": "duì ， kě yǐ 。"
+      }
+    ],
+    "pinyin": "duì ， kě yǐ 。"
+  },
+  "这个人叫普鲁托。等级不低，知道的也多。": {
+    "english": "This man is called Pluto. His level is not low, and he knows a lot.",
+    "interlinear": [
+      {
+        "chinese": "这个人叫普鲁托。",
+        "gloss": "This man is called Pluto.",
+        "pinyin": "zhè ge rén jiào pǔ lǔ tuō 。"
+      },
+      {
+        "chinese": "等级不低，",
+        "gloss": "His level is not low,",
+        "pinyin": "děng jí bù dī ，"
+      },
+      {
+        "chinese": "知道的也多。",
+        "gloss": "and he knows a lot.",
+        "pinyin": "zhī dào de yě duō 。"
+      }
+    ],
+    "pinyin": "zhè ge rén jiào pǔ lǔ tuō 。 děng jí bù dī ， zhī dào de yě duō 。"
+  },
+  "那为什么大家还要那么累，去升级？": {
+    "english": "Then why does everyone still work so hard to level up?",
+    "interlinear": [
+      {
+        "chinese": "那为什么大家",
+        "gloss": "Then why does everyone",
+        "pinyin": "nà wèi shén me dà jiā"
+      },
+      {
+        "chinese": "还要那么累，",
+        "gloss": "still work so hard",
+        "pinyin": "hái yào nà me lèi ，"
+      },
+      {
+        "chinese": "去升级？",
+        "gloss": "to level up?",
+        "pinyin": "qù shēng jí ？"
+      }
+    ],
+    "pinyin": "nà wèi shén me dà jiā hái yào nà me lèi ， qù shēng jí ？"
+  },
+  "身体一直用，体力就会慢慢变好。": {
+    "english": "Keep using your body, and your vitality will slowly improve.",
+    "interlinear": [
+      {
+        "chinese": "身体一直用，",
+        "gloss": "Keep using your body,",
+        "pinyin": "shēn tǐ yì zhí yòng ，"
+      },
+      {
+        "chinese": "体力就会慢慢变好。",
+        "gloss": "and your vitality will slowly improve.",
+        "pinyin": "tǐ lì jiù huì màn màn biàn hǎo 。"
+      }
+    ],
+    "pinyin": "shēn tǐ yì zhí yòng ， tǐ lì jiù huì màn màn biàn hǎo 。"
+  },
+  "用魔法也是一样。一直用，也会变。": {
+    "english": "It is the same with using magic. Keep using it, and things will change too.",
+    "interlinear": [
+      {
+        "chinese": "用魔法也是一样。",
+        "gloss": "It is the same with using magic.",
+        "pinyin": "yòng mó fǎ yě shì yí yàng 。"
+      },
+      {
+        "chinese": "一直用，",
+        "gloss": "Keep using it,",
+        "pinyin": "yì zhí yòng ，"
+      },
+      {
+        "chinese": "也会变。",
+        "gloss": "and things will change too.",
+        "pinyin": "yě huì biàn 。"
+      }
+    ],
+    "pinyin": "yòng mó fǎ yě shì yí yàng 。 yì zhí yòng ， yě huì biàn 。"
+  },
+  "可是，打半天，可能只多一点、两点。": {
+    "english": "But, hit for half a day, and you might gain only one or two points.",
+    "interlinear": [
+      {
+        "chinese": "可是，",
+        "gloss": "But,",
+        "pinyin": "kě shì ，"
+      },
+      {
+        "chinese": "打半天，",
+        "gloss": "hit for half a day,",
+        "pinyin": "dǎ bàn tiān ，"
+      },
+      {
+        "chinese": "可能只多一点、两点。",
+        "gloss": "and you might gain only one or two points.",
+        "pinyin": "kě néng zhǐ duō yì diǎn 、 liǎng diǎn 。"
+      }
+    ],
+    "pinyin": "kě shì ， dǎ bàn tiān ， kě néng zhǐ duō yì diǎn 、 liǎng diǎn 。"
+  },
+  "等级每升一级，却能多五点。": {
+    "english": "Every time you gain a level, you get five more points instead.",
+    "interlinear": [
+      {
+        "chinese": "等级每升一级，",
+        "gloss": "Every time you gain a level,",
+        "pinyin": "děng jí měi shēng yì jí ，"
+      },
+      {
+        "chinese": "却能多五点。",
+        "gloss": "you get five more points instead.",
+        "pinyin": "què néng duō wǔ diǎn 。"
+      }
+    ],
+    "pinyin": "děng jí měi shēng yì jí ， què néng duō wǔ diǎn 。"
+  },
+  "旁边一个女人觉得，这样做真是太傻了。": {
+    "english": "A woman nearby thinks doing this is really foolish.",
+    "interlinear": [
+      {
+        "chinese": "旁边一个女人觉得，",
+        "gloss": "A woman nearby thinks",
+        "pinyin": "páng biān yí gè nǚ rén jué de ，"
+      },
+      {
+        "chinese": "这样做真是太傻了。",
+        "gloss": "doing this is really foolish.",
+        "pinyin": "zhè yàng zuò zhēn shì tài shǎ le 。"
+      }
+    ],
+    "pinyin": "páng biān yí gè nǚ rén jué de ， zhè yàng zuò zhēn shì tài shǎ le 。"
+  },
+  "想听听，这样做到底有什么用。": {
+    "english": "Listen to find out what use this really has.",
+    "interlinear": [
+      {
+        "chinese": "想听听，",
+        "gloss": "Listen to find out",
+        "pinyin": "xiǎng tīng tīng ，"
+      },
+      {
+        "chinese": "这样做到底有什么用。",
+        "gloss": "what use this really has.",
+        "pinyin": "zhè yàng zuò dào dǐ yǒu shén me yòng 。"
+      }
+    ],
+    "pinyin": "xiǎng tīng tīng ， zhè yàng zuò dào dǐ yǒu shén me yòng 。"
+  },
+  "先不想别人的话。": {
+    "english": "Set other people's words aside for now.",
+    "interlinear": [
+      {
+        "chinese": "先不想别人的话。",
+        "gloss": "Set other people's words aside for now.",
+        "pinyin": "xiān bù xiǎng bié rén de huà 。"
+      }
+    ],
+    "pinyin": "xiān bù xiǎng bié rén de huà 。"
+  },
+  "这个人知道我的想法吗？": {
+    "english": "Does this man understand what I am thinking?",
+    "interlinear": [
+      {
+        "chinese": "这个人",
+        "gloss": "Does this man",
+        "pinyin": "zhè ge rén"
+      },
+      {
+        "chinese": "知道我的想法吗？",
+        "gloss": "understand what I am thinking?",
+        "pinyin": "zhī dào wǒ de xiǎng fǎ ma ？"
+      }
+    ],
+    "pinyin": "zhè ge rén zhī dào wǒ de xiǎng fǎ ma ？"
+  },
+  "一点、两点，也是我一直练习得到的。": {
+    "english": "One point, two points, I earned them by keeping at my practice.",
+    "interlinear": [
+      {
+        "chinese": "一点、两点，",
+        "gloss": "One point, two points,",
+        "pinyin": "yì diǎn 、 liǎng diǎn ，"
+      },
+      {
+        "chinese": "也是我一直练习得到的。",
+        "gloss": "I earned them by keeping at my practice.",
+        "pinyin": "yě shì wǒ yì zhí liàn xí dé dào de 。"
+      }
+    ],
+    "pinyin": "yì diǎn 、 liǎng diǎn ， yě shì wǒ yì zhí liàn xí dé dào de 。"
+  },
+  "不，这样做有用。": {
+    "english": "No, doing this is useful.",
+    "interlinear": [
+      {
+        "chinese": "不，",
+        "gloss": "No,",
+        "pinyin": "bù ，"
+      },
+      {
+        "chinese": "这样做有用。",
+        "gloss": "doing this is useful.",
+        "pinyin": "zhè yàng zuò yǒu yòng 。"
+      }
+    ],
+    "pinyin": "bù ， zhè yàng zuò yǒu yòng 。"
+  },
+  "什么？": {
+    "english": "What?",
+    "interlinear": [
+      {
+        "chinese": "什么？",
+        "gloss": "What?",
+        "pinyin": "shén me ？"
+      }
+    ],
+    "pinyin": "shén me ？"
+  },
+  "等级越高，再改变就越难。": {
+    "english": "The higher your level, the harder it becomes to raise it again.",
+    "interlinear": [
+      {
+        "chinese": "等级越高，",
+        "gloss": "The higher your level,",
+        "pinyin": "děng jí yuè gāo ，"
+      },
+      {
+        "chinese": "再改变就越难。",
+        "gloss": "the harder it becomes to raise it again.",
+        "pinyin": "zài gǎi biàn jiù yuè nán 。"
+      }
+    ],
+    "pinyin": "děng jí yuè gāo ， zài gǎi biàn jiù yuè nán 。"
+  },
+  "打比自己差的怪物，得到的经验很少。": {
+    "english": "Fight monsters weaker than yourself, and you gain very little experience.",
+    "interlinear": [
+      {
+        "chinese": "打比自己差的怪物，",
+        "gloss": "Fight monsters weaker than yourself,",
+        "pinyin": "dǎ bǐ zì jǐ chà de guài wù ，"
+      },
+      {
+        "chinese": "得到的经验很少。",
+        "gloss": "and you gain very little experience.",
+        "pinyin": "dé dào de jīng yàn hěn shǎo 。"
+      }
+    ],
+    "pinyin": "dǎ bǐ zì jǐ chà de guài wù ， dé dào de jīng yàn hěn shǎo 。"
+  },
+  "一开始就多练习，以后打起来更容易。": {
+    "english": "Practice more from the beginning, and fighting will be easier later.",
+    "interlinear": [
+      {
+        "chinese": "一开始就多练习，",
+        "gloss": "Practice more from the beginning,",
+        "pinyin": "yì kāi shǐ jiù duō liàn xí ，"
+      },
+      {
+        "chinese": "以后打起来更容易。",
+        "gloss": "and fighting will be easier later.",
+        "pinyin": "yǐ hòu dǎ qǐ lái gèng róng yì 。"
+      }
+    ],
+    "pinyin": "yì kāi shǐ jiù duō liàn xí ， yǐ hòu dǎ qǐ lái gèng róng yì 。"
+  },
+  "今天做的事，以后一直会有用。": {
+    "english": "What you do today will keep helping you in the future.",
+    "interlinear": [
+      {
+        "chinese": "今天做的事，",
+        "gloss": "What you do today",
+        "pinyin": "jīn tiān zuò de shì ，"
+      },
+      {
+        "chinese": "以后一直会有用。",
+        "gloss": "will keep helping you in the future.",
+        "pinyin": "yǐ hòu yì zhí huì yǒu yòng 。"
+      }
+    ],
+    "pinyin": "jīn tiān zuò de shì ， yǐ hòu yì zhí huì yǒu yòng 。"
+  },
+  "那你也这样做过吧？大家知道了，不都会来吗？": {
+    "english": "Then you must have done this too, right? If everyone knew, wouldn't they all come?",
+    "interlinear": [
+      {
+        "chinese": "那你也这样做过吧？",
+        "gloss": "Then you must have done this too, right?",
+        "pinyin": "nà nǐ yě zhè yàng zuò guò ba ？"
+      },
+      {
+        "chinese": "大家知道了，",
+        "gloss": "If everyone knew,",
+        "pinyin": "dà jiā zhī dào le ，"
+      },
+      {
+        "chinese": "不都会来吗？",
+        "gloss": "wouldn't they all come?",
+        "pinyin": "bù dōu huì lái ma ？"
+      }
+    ],
+    "pinyin": "nà nǐ yě zhè yàng zuò guò ba ？ dà jiā zhī dào le ， bù dōu huì lái ma ？"
+  },
+  "不一定。知道，不是说就会去做。": {
+    "english": "Not necessarily. Knowing does not mean you will do it.",
+    "interlinear": [
+      {
+        "chinese": "不一定。",
+        "gloss": "Not necessarily.",
+        "pinyin": "bù yí dìng 。"
+      },
+      {
+        "chinese": "知道，",
+        "gloss": "Knowing",
+        "pinyin": "zhī dào ，"
+      },
+      {
+        "chinese": "不是说就会去做。",
+        "gloss": "does not mean you will do it.",
+        "pinyin": "bú shì shuō jiù huì qù zuò 。"
+      }
+    ],
+    "pinyin": "bù yí dìng 。 zhī dào ， bú shì shuō jiù huì qù zuò 。"
+  },
+  "为了多一点力量，你愿意打十个小时吗？": {
+    "english": "For one more point of strength, would you hit for ten hours?",
+    "interlinear": [
+      {
+        "chinese": "为了多一点力量，",
+        "gloss": "For one more point of strength,",
+        "pinyin": "wèi le duō yì diǎn lì liàng ，"
+      },
+      {
+        "chinese": "你愿意打十个小时吗？",
+        "gloss": "would you hit for ten hours?",
+        "pinyin": "nǐ yuàn yì dǎ shí gè xiǎo shí ma ？"
+      }
+    ],
+    "pinyin": "wèi le duō yì diǎn lì liàng ， nǐ yuàn yì dǎ shí gè xiǎo shí ma ？"
+  },
+  "刚才问得很快的人，现在不说话了。": {
+    "english": "The person asking questions so quickly a moment ago is now silent.",
+    "interlinear": [
+      {
+        "chinese": "刚才问得很快的人，",
+        "gloss": "The person asking questions so quickly a moment ago",
+        "pinyin": "gāng cái wèn de hěn kuài de rén ，"
+      },
+      {
+        "chinese": "现在不说话了。",
+        "gloss": "is now silent.",
+        "pinyin": "xiàn zài bù shuō huà le 。"
+      }
+    ],
+    "pinyin": "gāng cái wèn de hěn kuài de rén ， xiàn zài bù shuō huà le 。"
+  },
+  "而且，不能一直这样变强。这个东西太差了。": {
+    "english": "Besides, you cannot keep getting stronger this way forever. This thing is too weak an opponent.",
+    "interlinear": [
+      {
+        "chinese": "而且，",
+        "gloss": "Besides,",
+        "pinyin": "ér qiě ，"
+      },
+      {
+        "chinese": "不能一直这样变强。",
+        "gloss": "you cannot keep getting stronger this way forever.",
+        "pinyin": "bù néng yì zhí zhè yàng biàn qiáng 。"
+      },
+      {
+        "chinese": "这个东西太差了。",
+        "gloss": "This thing is too weak an opponent.",
+        "pinyin": "zhè ge dōng xi tài chà le 。"
+      }
+    ],
+    "pinyin": "ér qiě ， bù néng yì zhí zhè yàng biàn qiáng 。 zhè ge dōng xi tài chà le 。"
+  },
+  "我想，力量最多也就多四十点吧。": {
+    "english": "I think, the strength gain is capped at about forty points.",
+    "interlinear": [
+      {
+        "chinese": "我想，",
+        "gloss": "I think,",
+        "pinyin": "wǒ xiǎng ，"
+      },
+      {
+        "chinese": "力量最多也就多四十点吧。",
+        "gloss": "the strength gain is capped at about forty points.",
+        "pinyin": "lì liàng zuì duō yě jiù duō sì shí diǎn ba 。"
+      }
+    ],
+    "pinyin": "wǒ xiǎng ， lì liàng zuì duō yě jiù duō sì shí diǎn ba 。"
+  },
+  "要打至少一个月。你愿意吗？": {
+    "english": "You would have to hit for at least a month. Would you want to?",
+    "interlinear": [
+      {
+        "chinese": "要打至少一个月。",
+        "gloss": "You would have to hit for at least a month.",
+        "pinyin": "yào dǎ zhì shǎo yí gè yuè 。"
+      },
+      {
+        "chinese": "你愿意吗？",
+        "gloss": "Would you want to?",
+        "pinyin": "nǐ yuàn yì ma ？"
+      }
+    ],
+    "pinyin": "yào dǎ zhì shǎo yí gè yuè 。 nǐ yuàn yì ma ？"
+  },
+  "我做几天，就不想做了。": {
+    "english": "After doing it for a few days, I would not want to continue.",
+    "interlinear": [
+      {
+        "chinese": "我做几天，",
+        "gloss": "After doing it for a few days,",
+        "pinyin": "wǒ zuò jǐ tiān ，"
+      },
+      {
+        "chinese": "就不想做了。",
+        "gloss": "I would not want to continue.",
+        "pinyin": "jiù bù xiǎng zuò le 。"
+      }
+    ],
+    "pinyin": "wǒ zuò jǐ tiān ， jiù bù xiǎng zuò le 。"
+  },
+  "我还是想找个好用的武器。": {
+    "english": "I would rather find a good weapon.",
+    "interlinear": [
+      {
+        "chinese": "我还是想找个",
+        "gloss": "I would rather find",
+        "pinyin": "wǒ hái shì xiǎng zhǎo gè"
+      },
+      {
+        "chinese": "好用的武器。",
+        "gloss": "a good weapon.",
+        "pinyin": "hǎo yòng de wǔ qì 。"
+      }
+    ],
+    "pinyin": "wǒ hái shì xiǎng zhǎo gè hǎo yòng de wǔ qì 。"
+  },
+  "能让你多四十点力量的东西，不是哪里都有，却也不难找到。": {
+    "english": "An item giving you forty extra strength points is not found everywhere, but it is not hard to find either.",
+    "interlinear": [
+      {
+        "chinese": "能让你多四十点力量的东西，",
+        "gloss": "An item giving you forty extra strength points",
+        "pinyin": "néng ràng nǐ duō sì shí diǎn lì liàng de dōng xi ，"
+      },
+      {
+        "chinese": "不是哪里都有，",
+        "gloss": "is not found everywhere,",
+        "pinyin": "bú shì nǎ lǐ dōu yǒu ，"
+      },
+      {
+        "chinese": "却也不难找到。",
+        "gloss": "but it is not hard to find either.",
+        "pinyin": "què yě bù nán zhǎo dào 。"
+      }
+    ],
+    "pinyin": "néng ràng nǐ duō sì shí diǎn lì liàng de dōng xi ， bú shì nǎ lǐ dōu yǒu ， què yě bù nán zhǎo dào 。"
+  },
+  "这对不能离开城市的新人有用。": {
+    "english": "This is useful for newcomers who cannot leave the city.",
+    "interlinear": [
+      {
+        "chinese": "这对不能离开城市的新人",
+        "gloss": "for newcomers who cannot leave the city, this",
+        "pinyin": "zhè duì bù néng lí kāi chéng shì de xīn rén"
+      },
+      {
+        "chinese": "有用。",
+        "gloss": "is useful",
+        "pinyin": "yǒu yòng 。"
+      }
+    ],
+    "pinyin": "zhè duì bù néng lí kāi chéng shì de xīn rén yǒu yòng 。"
+  },
+  "以前也有人这样做，后来不做了。": {
+    "english": "People used to do this too, but later they stopped.",
+    "interlinear": [
+      {
+        "chinese": "以前也有人这样做，",
+        "gloss": "People used to do this too,",
+        "pinyin": "yǐ qián yě yǒu rén zhè yàng zuò ，"
+      },
+      {
+        "chinese": "后来不做了。",
+        "gloss": "but later they stopped.",
+        "pinyin": "hòu lái bú zuò le 。"
+      }
+    ],
+    "pinyin": "yǐ qián yě yǒu rén zhè yàng zuò ， hòu lái bú zuò le 。"
+  },
+  "太没意思，也太累了。": {
+    "english": "Too boring, and too exhausting.",
+    "interlinear": [
+      {
+        "chinese": "太没意思，",
+        "gloss": "Too boring,",
+        "pinyin": "tài méi yì si ，"
+      },
+      {
+        "chinese": "也太累了。",
+        "gloss": "and too exhausting.",
+        "pinyin": "yě tài lèi le 。"
+      }
+    ],
+    "pinyin": "tài méi yì si ， yě tài lèi le 。"
+  },
+  "没意思？我听着，心里却不这样想。": {
+    "english": "Boring? I listen, but that is not how I feel.",
+    "interlinear": [
+      {
+        "chinese": "没意思？",
+        "gloss": "Boring?",
+        "pinyin": "méi yì si ？"
+      },
+      {
+        "chinese": "我听着，",
+        "gloss": "I listen,",
+        "pinyin": "wǒ tīng zhe ，"
+      },
+      {
+        "chinese": "心里却不这样想。",
+        "gloss": "but that is not how I feel.",
+        "pinyin": "xīn lǐ què bú zhè yàng xiǎng 。"
+      }
+    ],
+    "pinyin": "méi yì si ？ wǒ tīng zhe ， xīn lǐ què bú zhè yàng xiǎng 。"
+  },
+  "想想自己一点点变强。": {
+    "english": "Think about getting stronger bit by bit.",
+    "interlinear": [
+      {
+        "chinese": "想想自己一点点变强。",
+        "gloss": "Think about getting stronger bit by bit.",
+        "pinyin": "xiǎng xiǎng zì jǐ yì diǎn diǎn biàn qiáng 。"
+      }
+    ],
+    "pinyin": "xiǎng xiǎng zì jǐ yì diǎn diǎn biàn qiáng 。"
+  },
+  "想想以后可以得到更多钱。": {
+    "english": "Think about earning more money later.",
+    "interlinear": [
+      {
+        "chinese": "想想以后可以得到更多钱。",
+        "gloss": "Think about earning more money later.",
+        "pinyin": "xiǎng xiǎng yǐ hòu kě yǐ dé dào gèng duō qián 。"
+      }
+    ],
+    "pinyin": "xiǎng xiǎng yǐ hòu kě yǐ dé dào gèng duō qián 。"
+  },
+  "今天比刚来时强一点，这就很好。": {
+    "english": "I am a little stronger today than when I arrived, and that is good.",
+    "interlinear": [
+      {
+        "chinese": "今天比刚来时强一点，",
+        "gloss": "I am a little stronger today than when I arrived,",
+        "pinyin": "jīn tiān bǐ gāng lái shí qiáng yì diǎn ，"
+      },
+      {
+        "chinese": "这就很好。",
+        "gloss": "and that is good.",
+        "pinyin": "zhè jiù hěn hǎo 。"
+      }
+    ],
+    "pinyin": "jīn tiān bǐ gāng lái shí qiáng yì diǎn ， zhè jiù hěn hǎo 。"
+  },
+  "现在多做一点，以后就能多得到一点。": {
+    "english": "Do a little more now, and I can gain a little more later.",
+    "interlinear": [
+      {
+        "chinese": "现在多做一点，",
+        "gloss": "Do a little more now,",
+        "pinyin": "xiàn zài duō zuò yì diǎn ，"
+      },
+      {
+        "chinese": "以后就能多得到一点。",
+        "gloss": "and I can gain a little more later.",
+        "pinyin": "yǐ hòu jiù néng duō dé dào yì diǎn 。"
+      }
+    ],
+    "pinyin": "xiàn zài duō zuò yì diǎn ， yǐ hòu jiù néng duō dé dào yì diǎn 。"
+  },
+  "我更用力地打下去。": {
+    "english": "I strike even harder.",
+    "interlinear": [
+      {
+        "chinese": "我更用力地打下去。",
+        "gloss": "I strike even harder.",
+        "pinyin": "wǒ gèng yòng lì de dǎ xià qù 。"
+      }
+    ],
+    "pinyin": "wǒ gèng yòng lì de dǎ xià qù 。"
+  },
+  "刚才想知道为什么。原来，也有人觉得这样做有用。": {
+    "english": "A moment ago I wanted to know why. It turns out, someone else thinks this is useful too.",
+    "interlinear": [
+      {
+        "chinese": "刚才想知道为什么。",
+        "gloss": "A moment ago I wanted to know why.",
+        "pinyin": "gāng cái xiǎng zhī dào wèi shén me 。"
+      },
+      {
+        "chinese": "原来，",
+        "gloss": "It turns out,",
+        "pinyin": "yuán lái ，"
+      },
+      {
+        "chinese": "也有人觉得这样做有用。",
+        "gloss": "someone else thinks this is useful too.",
+        "pinyin": "yě yǒu rén jué de zhè yàng zuò yǒu yòng 。"
+      }
+    ],
+    "pinyin": "gāng cái xiǎng zhī dào wèi shén me 。 yuán lái ， yě yǒu rén jué de zhè yàng zuò yǒu yòng 。"
+  },
+  "刚才不想听别人的话。现在，我还是做自己的事。": {
+    "english": "A moment ago I did not want to listen to others. Now, I am still doing my own thing.",
+    "interlinear": [
+      {
+        "chinese": "刚才不想听别人的话。",
+        "gloss": "A moment ago I did not want to listen to others.",
+        "pinyin": "gāng cái bù xiǎng tīng bié rén de huà 。"
+      },
+      {
+        "chinese": "现在，",
+        "gloss": "Now,",
+        "pinyin": "xiàn zài ，"
+      },
+      {
+        "chinese": "我还是做自己的事。",
+        "gloss": "I am still doing my own thing.",
+        "pinyin": "wǒ hái shì zuò zì jǐ de shì 。"
+      }
+    ],
+    "pinyin": "gāng cái bù xiǎng tīng bié rén de huà 。 xiàn zài ， wǒ hái shì zuò zì jǐ de shì 。"
+  },
+  "身体更强，就能打更强的怪物，也能得到更多钱。": {
+    "english": "With a stronger body, I can fight stronger monsters, and earn more money too.",
+    "interlinear": [
+      {
+        "chinese": "身体更强，",
+        "gloss": "With a stronger body,",
+        "pinyin": "shēn tǐ gèng qiáng ，"
+      },
+      {
+        "chinese": "就能打更强的怪物，",
+        "gloss": "I can fight stronger monsters,",
+        "pinyin": "jiù néng dǎ gèng qiáng de guài wù ，"
+      },
+      {
+        "chinese": "也能得到更多钱。",
+        "gloss": "and earn more money too.",
+        "pinyin": "yě néng dé dào gèng duō qián 。"
+      }
+    ],
+    "pinyin": "shēn tǐ gèng qiáng ， jiù néng dǎ gèng qiáng de guài wù ， yě néng dé dào gèng duō qián 。"
+  },
+  "一点点变强，以后能做的事就更多了。": {
+    "english": "Get stronger bit by bit, and there will be more I can do later.",
+    "interlinear": [
+      {
+        "chinese": "一点点变强，",
+        "gloss": "Get stronger bit by bit,",
+        "pinyin": "yì diǎn diǎn biàn qiáng ，"
+      },
+      {
+        "chinese": "以后能做的事就更多了。",
+        "gloss": "and there will be more I can do later.",
+        "pinyin": "yǐ hòu néng zuò de shì jiù gèng duō le 。"
+      }
+    ],
+    "pinyin": "yì diǎn diǎn biàn qiáng ， yǐ hòu néng zuò de shì jiù gèng duō le 。"
+  },
+  "大家觉得没意思。我却从来没有这么开心。": {
+    "english": "Everyone thinks it is boring. Yet I have never been this happy.",
+    "interlinear": [
+      {
+        "chinese": "大家觉得没意思。",
+        "gloss": "Everyone thinks it is boring.",
+        "pinyin": "dà jiā jué de méi yì si 。"
+      },
+      {
+        "chinese": "我却从来没有这么开心。",
+        "gloss": "Yet I have never been this happy.",
+        "pinyin": "wǒ què cóng lái méi yǒu zhè me kāi xīn 。"
+      }
+    ],
+    "pinyin": "dà jiā jué de méi yì si 。 wǒ què cóng lái méi yǒu zhè me kāi xīn 。"
+  },
+  "我还是在练习。教官一直在看我。": {
+    "english": "I am still practicing. The instructor has been watching me all along.",
+    "interlinear": [
+      {
+        "chinese": "我还是在练习。",
+        "gloss": "I am still practicing.",
+        "pinyin": "wǒ hái shì zài liàn xí 。"
+      },
+      {
+        "chinese": "教官一直在看我。",
+        "gloss": "The instructor has been watching me all along.",
+        "pinyin": "jiào guān yì zhí zài kàn wǒ 。"
+      }
+    ],
+    "pinyin": "wǒ hái shì zài liàn xí 。 jiào guān yì zhí zài kàn wǒ 。"
+  },
+  "大家只觉得这样太累。教官的眼里，却是满意。": {
+    "english": "Everyone just thinks this is exhausting. In the instructor's eyes, there is approval instead.",
+    "interlinear": [
+      {
+        "chinese": "大家只觉得这样太累。",
+        "gloss": "Everyone just thinks this is exhausting.",
+        "pinyin": "dà jiā zhǐ jué de zhè yàng tài lèi 。"
+      },
+      {
+        "chinese": "教官的眼里，",
+        "gloss": "In the instructor's eyes,",
+        "pinyin": "jiào guān de yǎn lǐ ，"
+      },
+      {
+        "chinese": "却是满意。",
+        "gloss": "there is approval instead.",
+        "pinyin": "què shì mǎn yì 。"
+      }
+    ],
+    "pinyin": "dà jiā zhǐ jué de zhè yàng tài lèi 。 jiào guān de yǎn lǐ ， què shì mǎn yì 。"
+  }
+}
