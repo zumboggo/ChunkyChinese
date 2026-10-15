@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Publish a committed, checked checkout with bounded VPN retries; no force pushes."""
-import argparse, hashlib, json, os, signal, subprocess, time
+import argparse, hashlib, json, os, signal, subprocess, time, runpy
 from pathlib import Path
 
 REPO='zumboggo/ChunkyChinese'
@@ -116,16 +116,30 @@ def publication_plan(sha):
     return {'sha':sha,'base':base,'mode':'bookkeeping' if bookkeeping_only(paths) else 'release','paths':paths}
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__); modes=p.add_mutually_exclusive_group();modes.add_argument('--push',action='store_true');modes.add_argument('--verify-only',action='store_true');p.add_argument('--wait-minutes',type=int,default=10)
+    p=argparse.ArgumentParser(description=__doc__); modes=p.add_mutually_exclusive_group();modes.add_argument('--push',action='store_true');modes.add_argument('--verify-only',action='store_true');p.add_argument('--wait-minutes',type=int,default=10);p.add_argument('--continuation',help='Prepared continuation JSON; applies only after live verification')
     a=p.parse_args()
+    if a.continuation and not a.push:p.error('--continuation requires --push; --verify-only remains read-only')
     if not 1<=a.wait_minutes<=30:p.error('--wait-minutes must be 1–30')
     if require(['git','remote','get-url','--push','origin'])!=ORIGIN: raise StopPublish('Unexpected push remote. This helper is scoped to ChunkyChinese.')
-    if require(['git','status','--porcelain']): raise StopPublish('Commit the intended files first; the helper never stages, commits or discards work.')
+    continuation_module=runpy.run_path(str(Path(__file__).with_name('episode-continuation.py')))
+    candidate=continuation_module['load_candidate'](a.continuation) if a.continuation else None
+    if require(['git','status','--porcelain']): raise StopPublish('Commit intended release files first; the helper never stages or discards release changes.')
     sha=require(['git','rev-parse','HEAD'])
     print(f'Target: {REPO} main ← {sha}',flush=True)
     if not a.push and not a.verify_only:
         print('Dry run. --push runs checks, pushes this exact commit, waits for Pages and verifies live assets. --verify-only only checks publication.');return
+    if candidate:
+        receipts=Path('.local/publish-receipts')
+        for receipt in sorted(receipts.glob('*-continuation.json')):
+            saved=json.loads(receipt.read_text())
+            if saved.get('finalSha')==sha and saved.get('candidate')==candidate:
+                verify_live(saved['releaseSha'])
+                continuation_module['finish'](candidate,saved['releaseSha'],require,push_commit)
+                return
+        if continuation_module['digest'](candidate['recordPath'])!=candidate['baseHash']:
+            raise StopPublish('Series record changed; regenerate the continuation candidate.')
     plan=publication_plan(sha)
+    if candidate and plan['mode']=='bookkeeping':raise StopPublish('Continuation needs a verified playable release, not a record-only commit.')
     if plan['mode']=='bookkeeping':
         validate_series_records(plan['paths'])
         if a.push:
@@ -149,6 +163,7 @@ def main():
         if require(['git','status','--porcelain']) or require(['git','rev-parse','HEAD'])!=sha:raise StopPublish('Checkout changed during checks; inspect it before publishing.')
         push_commit(sha)
     wait_deployment(sha,a.wait_minutes);verify_live(sha)
+    if candidate: continuation_module['finish'](candidate,sha,require,push_commit)
 if __name__=='__main__':
     try: main()
-    except (StopPublish,FileNotFoundError,KeyError) as e: raise SystemExit(str(e))
+    except (StopPublish,FileNotFoundError,KeyError,ValueError) as e: raise SystemExit(str(e))

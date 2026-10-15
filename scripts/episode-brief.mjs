@@ -1,0 +1,11 @@
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {resolve,dirname,sep} from 'node:path';
+import {vocabularyBrief} from './lib/episode-brief.mjs';
+const args=Object.fromEntries(process.argv.slice(2).map(a=>{const i=a.indexOf('=');if(i<0)throw Error('Use --series=moonlight --vocab=PRIVATE.json --terms=PRIVATE.json --output=.local/brief.json');return [a.slice(2,i),a.slice(i+1)]}));
+if(!/^[a-z0-9-]+$/.test(args.series??''))throw Error('Provide --series.');
+const read=p=>JSON.parse(readFileSync(p,'utf8')),record=read(`stories/authoring/series/${args.series}.json`),output=resolve(args.output??'.local/episode-brief.json');
+if(!output.startsWith(resolve('.local')+sep))throw Error('Keep learner-specific briefs under .local/.');
+const terms=vocabularyBrief(read(args.vocab),read(record.vocabularySupplement).words,read(args.terms));
+const brief={boundary:{start:record.source.nextStart,endBefore:record.source.nextEndBefore},assetsFrom:record.assetsFrom,terms,note:'Exact word membership only. Alternatives are author-supplied candidates, not verified synonyms. Review natural Mandarin and run the full draft audit; this does not change familiarity or flashcards.'};
+mkdirSync(dirname(output),{recursive:true});writeFileSync(output,JSON.stringify(brief,null,2)+'\n');
+console.log(terms.map(t=>`${t.word}: ${t.status}${t.alternatives.length?' | candidates: '+t.alternatives.map(a=>`${a.word} (${a.status})`).join(', '):''}`).join('\n'));console.log('Private brief: '+output);

@@ -17,7 +17,7 @@ if(flags.init){
  const series=flags.series??'moonlight';if(!/^[a-z0-9-]+$/.test(series))throw Error('Invalid series')
  const record=read(`stories/authoring/series/${series}.json`),path=resolve(base,'plan.json')
  if(existsSync(path))throw Error('Plan already exists: '+path)
- write(path,{id,series,title:'',description:'',assetsFrom:record.assetsFrom,script:resolve(base,'episode.story'),annotations:resolve(base,'lines.json'),lexicon:[],sources:[],planning:{sourceBoundary:'',dramaticChange:'',essentialNewWords:[],englishNarrationPurpose:'',choicesAndCallbacks:[]},pinyinReviewed:false,routes:[],catalog:{id:id+'-v1',category:'lms',episode:0}})
+ write(path,{id,series,title:'',description:'',assetsFrom:record.assetsFrom,script:resolve(base,'episode.story'),annotations:resolve(base,'lines.json'),lexicon:[],sources:[],planning:{sourceBoundary:'',dramaticChange:'',essentialNewWords:[],englishNarrationPurpose:'',choicesAndCallbacks:[]},pinyinReviewed:false,continuation:{end:'',nextStart:'',nextEndBefore:'',note:''},routes:[],catalog:{id:id+'-v1',category:'lms',episode:0}})
  writeFileSync(resolve(base,'episode.story'),'story 2\nlabel opening\nI: 我准备好了。\nend\n');write(resolve(base,'lines.json'),{})
  console.log('Created '+path+'; fill the compact plan, then run --draft first.');process.exit(0)
 }

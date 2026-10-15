@@ -36,7 +36,9 @@
     "game:workflow-test": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts/tests -p \"test_episode*.py\"",
     "game:cast": "node scripts/build-lms-cast.mjs",
     "game:episode": "node scripts/prepare-episode.mjs",
-    "game:episode:test": "node scripts/test-episode.mjs"
+    "game:episode:test": "node scripts/test-episode.mjs",
+    "game:brief": "node scripts/episode-brief.mjs",
+    "game:continuation": "python3 scripts/prepare-continuation.py"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.2",

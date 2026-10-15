@@ -5,6 +5,8 @@ type Beat={type:string;text:string;option?:string}
 type Fixture={packagePath:string;routes:{choices:string[];beats:Beat[]}[]}
 const fixture:Fixture=process.env.EPISODE_FIXTURE?JSON.parse(readFileSync(process.env.EPISODE_FIXTURE,'utf8')):{packagePath:'',routes:[]}
 for(const [index,route] of fixture.routes.entries())test(`authoring route ${index+1}: ${route.choices.join('/')}`,async({page},info)=>{
+ const retryTargets=JSON.parse(process.env.EPISODE_RETRY_TARGETS??'[]') as {title:string;project:string}[]
+ test.skip(retryTargets.length>0&&!retryTargets.some(t=>t.title===info.title&&t.project===info.project.name),'Outside diagnostic retry')
  const pack=JSON.parse(readFileSync(fixture.packagePath,'utf8')) as ChinesePackage
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
  await expect(page.locator('.game-page > p[role=status]').first()).toContainText(/Stories and drafts|Draft saved/ )
