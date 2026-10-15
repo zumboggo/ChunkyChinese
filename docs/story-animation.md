@@ -38,3 +38,9 @@ Moonlight 01's active catalog release is `moonlight-01-v2.json`. Its script, ass
 ## Faster episode authoring
 
 Use [the reusable episode workflow](episode-authoring.md) for the pinned series source, 100-word assumed-familiar supplement, vocabulary-first `.story` audit and bounded VPN publishing helper. These authoring tools do not change the shared animation runtime or flashcard state.
+
+## Continuous acting and attention (2026-10-15)
+
+The shared player now runs finite reactions alongside dialogue. Use `perform Hyun sword-strike Dummy repeat 3 tiring` before a Mandarin line for bounded repeated training; Continue cancels the sequence. `express Hyun embarrassed` retains props, pose and facing. `look Hyun Instructor`, `look Hyun down`, `away`, `front` and `auto` direct attention. Polished/hybrid eyes follow the target; emotional gestures no longer restart on unrelated narration. Dummy characters can declare `impact: "anchored"` for base-pivot sway. Reduced motion skips transient sequences; resume restores the held state.
+
+Episode 8 v2 demonstrates these changes with unchanged Mandarin/audio and a separate saved-progress identity. Original v1 is retained. Shared implementation and detailed authoring guidance live in Learning is Fun (`docs/scene-continuity.md`); synchronize with `game:sync` and verify `game:parity`.

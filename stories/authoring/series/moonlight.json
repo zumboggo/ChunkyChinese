@@ -65,9 +65,9 @@
       "end": "Arrival in Serabourg, public movement tests, humiliation and decision to go to Training Hall. Stops before instructor introduction."
     },
     {
-      "episode": "moonlight-08-v1",
-      "package": "stories/animated/moonlight-08.json",
-      "status": "Created and validated locally; not published.",
+      "episode": "moonlight-08-v2",
+      "package": "stories/animated/moonlight-08-v2.json",
+      "status": "Revised staging validated locally; v1 preserved. Publication pending.",
       "end": "Instructor guidance, repeated dummy strikes, first strength +1 after six hours and first stats window. Level remains 1, strength is 11. Stops before -Five hours later-."
     }
   ],
@@ -75,6 +75,6 @@
     "note": "For a new local installment, continue after episode 8. Published continuation above remains after episode 6 until publication is confirmed.",
     "nextStart": "-Five hours later-",
     "nextEndBefore": "Was it an illusion that the scarecrow looked like it shivered at that very moment?",
-    "assetsFrom": "stories/animated/moonlight-08.json"
+    "assetsFrom": "stories/animated/moonlight-08-v2.json"
   }
 }

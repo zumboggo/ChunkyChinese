@@ -1,16 +1,16 @@
 {
   "repository": "https://github.com/zumboggo/Learningisfun",
-  "commit": "8678d017713af5ccc5908c325b35511a043f3c6d",
+  "commit": "8e4d47156086301a37466e4ad42ce2b8c1a006fe",
   "files": [
     {
       "source": "functions/learning-content/src/story-engine.js",
       "target": "engine/story-engine.js",
-      "sha256": "3ee5b853f0d9b849727eb9c691b3f2cc661a20d283bd6a05d31989bc8eefebca"
+      "sha256": "8a6fd1ee2dd6e1bcd4d34ef67e03f31df25a5dcbcbb5e206683d97ef5c0e5717"
     },
     {
       "source": "functions/learning-content/src/story-engine.d.ts",
       "target": "engine/story-engine.d.ts",
-      "sha256": "84c01841e6f013ccd9261b9dc51963bd2b39b98f84cff851e79261994ea18bd1"
+      "sha256": "9e693c26be21cabd7db40679a26cacd91811cab9f45011f935d7427027301f5a"
     },
     {
       "source": "functions/learning-content/src/acting-library.js",
@@ -50,12 +50,12 @@
     {
       "source": "src/components/animated/CartoonActor.tsx",
       "target": "components/CartoonActor.tsx",
-      "sha256": "0ffe2414bd1490fd8fe7e0b4ce4bd391394846c02c1ba829bb7d895abfbb647e"
+      "sha256": "e48fc6fc574bef3384656557a1eb30d6f921b14542ce38f1b3c3c2abf462333a"
     },
     {
       "source": "src/components/animated/RefinedFace.tsx",
       "target": "components/RefinedFace.tsx",
-      "sha256": "a154d23eef887232591914cd7b6d090c4c4110c91753774e15cc22b9725ab57e"
+      "sha256": "9da0f8b36e14df223ac05cf3693394e994bb411372b660193eaa66bf2840a1ed"
     },
     {
       "source": "src/components/animated/MountedActor.tsx",
@@ -65,17 +65,22 @@
     {
       "source": "src/components/animated/PuppetActor.tsx",
       "target": "components/PuppetActor.tsx",
-      "sha256": "a54541c64e5ea094e9ac4c2759783891e4a7939cd3686d6f5cda48113c528eef"
+      "sha256": "5a37b8026e7d28c97b05f6baa3aac0d775c3a76111917e32c8fdfd7ea17fded9"
     },
     {
       "source": "src/components/animated/StoryStage.tsx",
       "target": "components/StoryStage.tsx",
-      "sha256": "187c095f327b19415372db724ea9db85c3a90b7a7508decd9a811184fa428165"
+      "sha256": "da50da65dedfdc1708ec8976dc6b81e71d9f57e2f19e063a04460754d56593ac"
     },
     {
       "source": "src/components/animated/action-motion.ts",
       "target": "components/action-motion.ts",
-      "sha256": "eab2e061be61eb4bb2f93427aea56da110b0cffb04383a7c9907816a56e22204"
+      "sha256": "1af9a2189646561efffef351df6ce019c2c48ec12f9f083bcc7229754667cea9"
+    },
+    {
+      "source": "src/components/animated/scene-motion.ts",
+      "target": "components/scene-motion.ts",
+      "sha256": "a0476186022ab4575d88a01bf001544bbd36cae22462bd05eccc49a27de84c77"
     },
     {
       "source": "src/components/animated/character-geometry.ts",

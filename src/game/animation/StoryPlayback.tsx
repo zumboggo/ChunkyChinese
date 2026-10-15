@@ -1,7 +1,7 @@
 import {useEffect,useMemo,useRef,useState} from 'react'
 import {advanceStory,compileStory,replayStory,quizScore,type StoryState} from './shared/engine/story-engine.js'
 import StoryStage from './shared/components/StoryStage'
-import {performAction} from './shared/components/action-motion'
+import {playSceneMotion} from './shared/components/scene-motion'
 import './shared/components/story-player.css'
 import type {ChinesePackage} from './package'
 import EpisodeInterlinear from './EpisodeInterlinear'
@@ -13,6 +13,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  const [state,setState]=useState<StoryState|null>(()=>compiled.story?replayStory(compiled.story,initial?.steps??[],initial?.seed??1):null)
  const [system,setSystem]=useState(()=>matchMedia('(prefers-reduced-motion: reduce)').matches),[responses,setResponses]=useState<Record<string,string>>({}),[speaking,setSpeaking]=useState(false),[audioPlaying,setAudioPlaying]=useState(false),[busy,setBusy]=useState(false),[error,setError]=useState(''),[history,setHistory]=useState(false)
  const reduced=preferred||system,root=useRef<HTMLDivElement>(null),generation=useRef(0),lock=useRef(false),sound=useRef<HTMLAudioElement|null>(null)
+ const motion=useRef<AbortController|null>(null);
  const current=state&&compiled.story?.nodes[state.cursor]
  const preference=(name:string)=>{try{return JSON.parse(localStorage.getItem(preferencesKey)??'{}')[name]!==false}catch{return true}}
  const [showPinyin,setShowPinyin]=useState(()=>preference('pinyin')),[showGloss,setShowGloss]=useState(()=>preference('english')),[answers,setAnswers]=useState<number[]>([-1,-1,-1,-1])
@@ -32,36 +33,35 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   if(!quiz&&v.current?.type==='choice'&&root.current?.querySelector('.episode-choice')){if(i>=0&&v.current.options[i]){e.preventDefault();if(!v.busy)v.advance(v.current.options[i].id)}return}
   if(key==='arrowright'||key==='1'){e.preventDefault();if(!v.busy)root.current?.querySelector<HTMLButtonElement>('[data-next]:not(:disabled)')?.click()}
  };window.addEventListener('keydown',handler);return()=>window.removeEventListener('keydown',handler)},[hotkeys])
- useEffect(()=>{if(initial?.steps.length||!current||current.type!=='act'||!root.current)return;const token=++generation.current;lock.current=true;setBusy(true);void performAction(root.current,current,reduced,setResponses,()=>token===generation.current).finally(()=>{if(token===generation.current){lock.current=false;setBusy(false)}})
- // Only a fresh launch plays its opening action; resume restores the held caption.
+ useEffect(()=>{if(initial?.steps.length||!current||!root.current)return;const controller=new AbortController();motion.current=controller;void playSceneMotion(root.current,state?.cues||[],current,reduced,setResponses,controller.signal);return()=>controller.abort();
+ // Resume restores held state without replaying transient motion.
  // eslint-disable-next-line react-hooks/exhaustive-deps
  },[])
 
  useEffect(()=>{const m=matchMedia('(prefers-reduced-motion: reduce)');const f=()=>setSystem(m.matches);m.addEventListener('change',f);return()=>m.removeEventListener('change',f)},[])
- useEffect(()=>()=>{generation.current++;sound.current?.pause();root.current?.getAnimations?.({subtree:true}).forEach(a=>a.cancel())},[])
- useEffect(()=>{if(reduced)root.current?.getAnimations?.({subtree:true}).forEach(a=>a.finish())},[reduced])
+ useEffect(()=>()=>{generation.current++;motion.current?.abort();sound.current?.pause();root.current?.getAnimations?.({subtree:true}).forEach(a=>a.cancel())},[])
+ useEffect(()=>{if(reduced){motion.current?.abort();setResponses({});}},[reduced])
  const animate=async(el:HTMLElement|null,frames:Keyframe[],duration=420)=>{if(reduced||!el?.animate)return;try{await el.animate(frames,{duration,easing:'ease-in-out'}).finished}catch{/* navigation cancellation */}}
  async function advance(option:string|null){
   if(!state||!compiled.story||state.ended||lock.current)return
-  lock.current=true;setBusy(true);sound.current?.pause();sound.current=null;setAudioPlaying(false);setSpeaking(false);setError('');const token=++generation.current
+  motion.current?.abort();setResponses({});lock.current=true;setBusy(true);sound.current?.pause();sound.current=null;setAudioPlaying(false);setSpeaking(false);setError('');const token=++generation.current
   try{
    const next=advanceStory(compiled.story,state,option)
    for(const id of Object.keys(state.stage.actors)){if(!next.stage.actors[id])await animate(root.current?.querySelector(`[data-actor="${id}"]`)??null,[{opacity:1,transform:'translateX(0)'},{opacity:0,transform:'translateX(65px)'}]);if(token!==generation.current)return}
    const p={...progress,steps:[...progress.steps,option]};setState(next);setProgress(p);onProgress?.(p)
    await new Promise<void>(r=>requestAnimationFrame(()=>r()))
-   for(const n of next.cues??[]){if(token!==generation.current)return;const el=root.current?.querySelector<HTMLElement>(n.actor?`[data-actor="${n.actor}"]`:'.story-world')??null
-    if(n.type==='react'){setResponses({[n.actor]:n.action});await animate(el,[{opacity:1},{opacity:1}],pack.assets.characters[n.actor]?.rig?.preset==='cartoon-v1'?1900:650);if(token===generation.current)setResponses({})}
-    else if(n.type==='show'&&!state.stage.actors[n.actor])await animate(el,[{opacity:0,transform:'translateX(-45px)'},{opacity:1,transform:'translateX(0)'}])
-    else if(n.type==='effect'||(n.type==='move'&&n.action!=='exit')){const transforms:Record<string,string[]>={enter:['translateX(-70px)','translateX(0)'],nod:['translateY(0)','translateY(10px)','translateY(0)'],shake:['translateX(-8px)','translateX(8px)','translateX(0)'],bounce:['translateY(0)','translateY(-25px)','translateY(0)'],recoil:['rotate(0)','rotate(-5deg)','rotate(0)'],closeup:['scale(1)','scale(1.08)','scale(1)'],magic:['scale(.6) rotate(-4deg)','scale(1.08) rotate(2deg)','scale(1)']};await animate(el,(transforms[n.action]??['scale(.98)','scale(1)']).map((transform,i)=>({transform,opacity:(n.action==='fade'||n.action==='magic')&&i===0?0:1})),n.action==='magic'?850:420)}
-   }
-   if(token===generation.current&&compiled.story.nodes[next.cursor]?.type==='act'&&root.current)await performAction(root.current,compiled.story.nodes[next.cursor],reduced,setResponses,()=>token===generation.current)
+   if(token!==generation.current)return;
+   const controller=new AbortController();motion.current=controller;
+   const cues=(next.cues||[]).map(n=>({...n,entering:n.type==='show'&&!state.stage.actors[n.actor]}));
+   if(root.current)void playSceneMotion(root.current,cues,compiled.story.nodes[next.cursor],reduced,setResponses,controller.signal);
+
   }finally{if(token===generation.current){lock.current=false;setBusy(false);root.current?.querySelector<HTMLButtonElement>('[data-next]')?.focus()}}
  }
  function play(text=current?.text,npc=true){const clip=pack.chinese?.lines[text]?.audio??(text==null?sound.current?.getAttribute('src'):undefined);if(!clip)return;if(sound.current?.getAttribute('src')===clip){const a=sound.current;if(!a.paused){a.pause();return}if(!a.ended){void a.play().catch(()=>setError('Audio could not play. Try Play again or continue with the text.'));return}}sound.current?.pause();setSpeaking(false);const a=new Audio(clip);sound.current=a;const active=()=>sound.current===a;a.onplaying=()=>{if(active()){setAudioPlaying(true);setSpeaking(npc&&current?.type==='say'&&current.actor!=='I')}};a.onpause=a.onended=()=>{if(active()){setSpeaking(false);setAudioPlaying(false)}};a.onerror=()=>{if(active()){setSpeaking(false);setAudioPlaying(false);setError('Audio unavailable. You can continue with the text.')}};void a.play().catch(()=>{if(active()){setSpeaking(false);setAudioPlaying(false);setError('Audio could not play. Try Play again or continue with the text.')}})}
 
  if(compiled.errors.length||!state)return <div role="alert">{compiled.errors.map(e=><p key={e.line+e.message}>Line {e.line}: {e.message}</p>)}</div>
  return <div className="animated-story story-modern" ref={root}>
-  <StoryStage pack={pack} state={state} current={current} speaking={speaking&&!busy&&!state.ended} reduced={reduced} responses={responses}/>
+  <StoryStage pack={pack} state={state} current={current} speaking={speaking&&!state.ended} reduced={reduced} responses={responses}/>
   <div className="story-meters">{Object.entries(compiled.story.variables).filter(([,v])=>(v as {visible:boolean}).visible).map(([id])=><span key={id}>{id}: {String(state.variables[id])}</span>)}</div>
   {!state.ended&&<div className="reading-controls" aria-label="Reading aids"><button aria-label="English" aria-pressed={showGloss} onClick={()=>setShowGloss(!showGloss)}>English <span aria-hidden="true">{showGloss?'●':'○'}</span></button><button aria-label="Pinyin" aria-pressed={showPinyin} onClick={()=>setShowPinyin(!showPinyin)}>Pinyin <span aria-hidden="true">{showPinyin?'●':'○'}</span></button></div>}
   <section className="story-dialogue" aria-live="polite">{state.ended?<><h2>{pack.quiz.length===4?(score!==null&&score>=75?'Complete':'Four questions before we return'):'Scene complete'}</h2>{pack.quiz.length===4&&<>{score!==null&&<p>{score}/100 · {score>=75?'Complete':'Review and retry'}</p>}{(score===null||score<75)&&<><div data-quiz>{pack.quiz.map((q,i)=><fieldset key={i}><legend>{q.prompt}</legend>{q.options.map((o,j)=><button key={j} aria-pressed={answers[i]===j} onClick={()=>setAnswers(answers.map((a,k)=>k===i?j:a))}>{j+1}. {o}</button>)}{score!==null&&<p>{q.explanation}</p>}</fieldset>)}</div><button data-next disabled={answers.includes(-1)} onClick={()=>{const p={...progress,quizzes:[...progress.quizzes,answers]};setProgress(p);onProgress?.(p);setAnswers([-1,-1,-1,-1])}}>Check answers</button></>}</>}{onNextEpisode&&(pack.quiz.length!==4||(score!==null&&score>=75))&&<button className="next-episode" data-next onClick={onNextEpisode}>Next Episode →</button>}{onComplete&&<button data-next onClick={onComplete}>Continue to the conversation</button>}</>:current.type==='choice'?<><h2>What do I do?</h2>{current.options.map((o:{id:string;text:string},i:number)=><div key={o.id}><button className="episode-choice" aria-label={o.text} data-next disabled={busy} onClick={()=>void advance(o.id)}><span aria-hidden="true">{i+1}. </span><EpisodeInterlinear text={o.text} line={pack.chinese?.lines[o.text]} showPinyin={showPinyin} showGloss={showGloss}/></button>{pack.chinese?.lines[o.text]?.audio&&<button className="audio-play" aria-label={'Hear option: '+o.text} onClick={()=>play(o.text,false)}><PlayIcon/></button>}</div>)}</>:<><strong>{current.type==='act'||current.beat?'On the scene':current.actor==='I'?'My story':pack.assets.characters[current.actor]?.name}</strong>{line?.interlinear?.length?<div className="episode-line"><EpisodeInterlinear text={current.text} line={line} showPinyin={showPinyin} showGloss={showGloss}/></div>:<><p className={/[\u3400-\u9fff]/u.test(current.text)?'chinese-line':undefined} lang={/[\u3400-\u9fff]/u.test(current.text)?'zh-CN':undefined}>{current.text}</p>{showPinyin&&line?.pinyin&&<p className="pinyin">{line.pinyin}</p>}</>}{showGloss&&line?.english&&!!line.interlinear?.length&&<details className="sentence-translation"><summary>Sentence meaning</summary><p>{line.english}</p></details>}{showGloss&&line?.english&&!line.interlinear?.length&&<p className="sentence-meaning">{line.english}</p>}{line?.audio&&<button className="audio-play" aria-label={audioPlaying?"Pause audio":"Play audio"} title="Play / pause (Space)" onClick={()=>play()}>{audioPlaying?'Pause':<PlayIcon/>}</button>}<button data-next disabled={busy} onClick={()=>void advance(null)}>{busy?'Action playing…':'Continue →'}</button></>}{error&&<p role="status">{error}</p>}</section>
