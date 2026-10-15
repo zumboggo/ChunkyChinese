@@ -44,3 +44,11 @@ Use [the reusable episode workflow](episode-authoring.md) for the pinned series 
 The shared player now runs finite reactions alongside dialogue. Use `perform Hyun sword-strike Dummy repeat 3 tiring` before a Mandarin line for bounded repeated training; Continue cancels the sequence. `express Hyun embarrassed` retains props, pose and facing. `look Hyun Instructor`, `look Hyun down`, `away`, `front` and `auto` direct attention. Polished/hybrid eyes follow the target; emotional gestures no longer restart on unrelated narration. Dummy characters can declare `impact: "anchored"` for base-pivot sway. Reduced motion skips transient sequences; resume restores the held state.
 
 Episode 8 v2 demonstrates these changes with unchanged Mandarin/audio and a separate saved-progress identity. Original v1 is retained. Shared implementation and detailed authoring guidance live in Learning is Fun (`docs/scene-continuity.md`); synchronize with `game:sync` and verify `game:parity`.
+
+## Responsive shots and optional atmosphere (2026-10-15)
+
+Episode 8 v3 adds fitted two-person and sword-training shots, eased listener close-ups, subtle dust, hall ambience and timed sword impacts. Mandarin, annotations, choices and recorded audio are unchanged; v1/v2 remain available and v3 has separate progress.
+
+Shared camera commands include `camera listener Hyun over 0.65`, `camera speaker over 0.4`, `camera two Hyun Instructor cut`, and `camera action Hyun Dummy cut`. Scene commands include `ambience hall`, `environment dust`, and `sound chime`; use `none` to clear ambience/environment. See upstream `docs/scene-continuity.md` for full syntax.
+
+Sound & atmosphere starts off. Readers can enable ambience, effects and captions independently and adjust their volumes and Mandarin voice volume. Sound ducks under voice and stops on leaving or completing an episode. Reduced motion removes particles and transient action animation. Sound effects are locally synthesized, with no new audio downloads.

@@ -5,8 +5,8 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_02.xhtml",
-    "nextStart": "In Royal Road, there are over a hundred major cities and thousands of towns.",
-    "nextEndBefore": "The moment the instructor saw Weed walk in the entrance, his eyes glared fiercely.",
+    "nextStart": "-Five hours later-",
+    "nextEndBefore": "Was it an illusion that the scarecrow looked like it shivered at that very moment?",
     "continuationNote": "Episode 6 finished character creation and skipped the tutorial; do not repeat the purchase or setup. Continue with the flash of light and arrival in Serabourg, his amazement, public movement tests and embarrassment, then his choice to head for the Training Hall. The bounded excerpt ends just before meeting the instructor."
   },
   "completed": [
@@ -33,9 +33,17 @@
     {
       "episode": "moonlight-06-v1",
       "end": "Hyun buys the capsule for ten million won, immediately says Yes, creates Weed as a male human without changing his appearance, selects Serabourg in Rosenheim, and skips the introduction to save time at three hundred thousand won per month. Stops before the flash and arrival in the city."
+    },
+    {
+      "episode": "moonlight-07-v1",
+      "end": "Arrival in Serabourg, public movement tests, humiliation and decision to go to Training Hall. Stops before instructor introduction."
+    },
+    {
+      "episode": "moonlight-08-v2",
+      "end": "Instructor guidance, repeated dummy strikes, first strength +1 after six hours and first stats window. Level remains 1, strength is 11. Stops before -Five hours later-."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-06.json",
+  "assetsFrom": "stories/animated/moonlight-08-v2.json",
   "vocabularySupplement": "stories/authoring/common-familiar-100.json",
   "coverage": {
     "min": 95,
@@ -51,30 +59,24 @@
     "memory": "Within-episode variables only; no invented cross-episode memory."
   },
   "continuity": [
-    "Grandmother remains hospitalized and the old debt is paid. Do not invent an exact current balance after the training year and capsule purchase.",
-    "The capsule cost ten million won; playing costs three hundred thousand won per month. Hyun has created Weed as a male human with unchanged appearance, and selected Serabourg in Rosenheim. He has not yet appeared in the city.",
-    "Episode 6 choices change internal reflections about spending and his name, with callbacks inside that episode only. No cross-episode memory is assumed.",
-    "Reuse approved LMS cast. Episode 6 includes home and abstract account-creation starfield assets; neither is a depiction of Serabourg. His appearance and movement on entering the city need source-faithful staging."
+    "Grandmother remains hospitalized and the old debt is paid. Do not invent an exact current balance.",
+    "Hyun has entered Royal Road as Weed in Serabourg, reached Training Hall and practised on a dummy for six hours. Strength has increased from 10 to 11; level remains 1 and he has no profession. Continue before the source’s next five-hour training passage.",
+    "Two small choices in episode 8 affect reflections about privacy and proof of progress, with callbacks inside this episode only. No cross-episode choice memory is assumed.",
+    "Reuse the approved Hyun design and Training Hall assets. The visible sword is stylized silver; the source practice weapon is wooden."
   ],
   "castRecipes": "stories/characters/lms-cast.json",
   "pendingPublication": [
     {
-      "episode": "moonlight-07-v1",
-      "package": "stories/animated/moonlight-07.json",
-      "status": "Created and validated locally; not published.",
-      "end": "Arrival in Serabourg, public movement tests, humiliation and decision to go to Training Hall. Stops before instructor introduction."
-    },
-    {
-      "episode": "moonlight-08-v2",
-      "package": "stories/animated/moonlight-08-v2.json",
-      "status": "Revised staging validated locally; v1 preserved. Publication pending.",
+      "episode": "moonlight-08-v3",
+      "package": "stories/animated/moonlight-08-v3.json",
+      "status": "Camera and atmosphere revision pending publication; v2 is live.",
       "end": "Instructor guidance, repeated dummy strikes, first strength +1 after six hours and first stats window. Level remains 1, strength is 11. Stops before -Five hours later-."
     }
   ],
   "localContinuation": {
-    "note": "For a new local installment, continue after episode 8. Published continuation above remains after episode 6 until publication is confirmed.",
+    "note": "Published story boundary is after episode 8. Revision v3 changes directing only.",
     "nextStart": "-Five hours later-",
     "nextEndBefore": "Was it an illusion that the scarecrow looked like it shivered at that very moment?",
-    "assetsFrom": "stories/animated/moonlight-08-v2.json"
+    "assetsFrom": "stories/animated/moonlight-08-v3.json"
   }
 }

@@ -1,21 +1,21 @@
 {
   "repository": "https://github.com/zumboggo/Learningisfun",
-  "commit": "8e4d47156086301a37466e4ad42ce2b8c1a006fe",
+  "commit": "4af0125c67c63a1d0798c8b393c3d3cf3808d789",
   "files": [
     {
       "source": "functions/learning-content/src/story-engine.js",
       "target": "engine/story-engine.js",
-      "sha256": "8a6fd1ee2dd6e1bcd4d34ef67e03f31df25a5dcbcbb5e206683d97ef5c0e5717"
+      "sha256": "0b6f41b5babfda54108e7693d43aece3e7f29488193b0328d6419e1918125411"
     },
     {
       "source": "functions/learning-content/src/story-engine.d.ts",
       "target": "engine/story-engine.d.ts",
-      "sha256": "9e693c26be21cabd7db40679a26cacd91811cab9f45011f935d7427027301f5a"
+      "sha256": "ef53da08a5b1c190830e0c72de80af79c2b9daf3a086896c8476a98537b5a3c9"
     },
     {
       "source": "functions/learning-content/src/acting-library.js",
       "target": "engine/acting-library.js",
-      "sha256": "c9df7c71489e8a29d9c8191ad8d06ba5b50a141a9963efb225766d9cd6e59a7e"
+      "sha256": "989ae2bf0702eb50947d6cbc29c50bd46e178ce8c47966b6b8e7dcdb738be46b"
     },
     {
       "source": "functions/learning-content/src/acting-library.d.ts",
@@ -70,17 +70,32 @@
     {
       "source": "src/components/animated/StoryStage.tsx",
       "target": "components/StoryStage.tsx",
-      "sha256": "da50da65dedfdc1708ec8976dc6b81e71d9f57e2f19e063a04460754d56593ac"
+      "sha256": "6ccd43872a43912c3fe4c3990fdd047740d48b879633b41d14a8ba15e41ef055"
     },
     {
       "source": "src/components/animated/action-motion.ts",
       "target": "components/action-motion.ts",
-      "sha256": "1af9a2189646561efffef351df6ce019c2c48ec12f9f083bcc7229754667cea9"
+      "sha256": "6c356a301544b275062c317a9a78cfa0e360303dedb41894b62b710ab11b0a0b"
     },
     {
       "source": "src/components/animated/scene-motion.ts",
       "target": "components/scene-motion.ts",
-      "sha256": "a0476186022ab4575d88a01bf001544bbd36cae22462bd05eccc49a27de84c77"
+      "sha256": "19289f15e6b2c9f1d096c98f2cfe5554d6e1eb3b9b2d9b8fa304886f10a17c3f"
+    },
+    {
+      "source": "src/components/animated/camera-framing.ts",
+      "target": "components/camera-framing.ts",
+      "sha256": "f6a64303d5df68d95c35526ba9c20e9eb0d1e7da871967a1e6c79613e98f2dad"
+    },
+    {
+      "source": "src/components/animated/scene-sound.ts",
+      "target": "components/scene-sound.ts",
+      "sha256": "d866bfd5246d47518e5786422143b34ff65ffc48240b31f68127b3b13228bdb0"
+    },
+    {
+      "source": "src/components/animated/StoryAtmosphere.tsx",
+      "target": "components/StoryAtmosphere.tsx",
+      "sha256": "e1b9c6d4657139e5786ec603def0911eaec9cb88447ead8a89b80135a848c13e"
     },
     {
       "source": "src/components/animated/character-geometry.ts",
@@ -90,12 +105,12 @@
     {
       "source": "src/components/animated/story-player.css",
       "target": "components/story-player.css",
-      "sha256": "557f705fd622b0483be0e26f26ef1f6847307f53dcdd65a1a2f00893ca2bb108"
+      "sha256": "c352ec313480966bfd5a32568ee6fdf187a2431a02e80382fcc10935d216bf57"
     },
     {
       "source": "src/components/animated/ActingLibrary.tsx",
       "target": "components/ActingLibrary.tsx",
-      "sha256": "edb4a882fba8d65f67fc6f7debb575816923ee7ae2efca16871c01e39fdb64ea"
+      "sha256": "24106a29c7022d373b13367c45ff6786c02b494bbf04bd4713ee0d81f5cf29c0"
     },
     {
       "source": "src/components/animated/ActionLibrary.tsx",
