@@ -5,9 +5,9 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_02.xhtml",
-    "nextStart": "Was it an illusion that the scarecrow looked like it shivered at that very moment?",
-    "nextEndBefore": "Three weeks had passed in game time.",
-    "continuationNote": "Episode 9 ends after Hyun eats and resumes striking the dummy. Next cover the onlookers’ debate, Pluto’s explanation of the long-term benefit and cost, Hyun’s enjoyment of progress, and the instructor’s approval. Stop before the three-week time jump."
+    "nextStart": "Three weeks had passed in game time.",
+    "nextEndBefore": "*Rumble* At that moment, Weed’s stomach decided it was time to eat.",
+    "continuationNote": "Continue with the three-week time jump, new stats and Sword Mastery progress, then Hyun’s concern about finishing training before the four-week restriction ends. Stop before the hunger/lunch scene."
   },
   "completed": [
     {
@@ -45,9 +45,13 @@
     {
       "episode": "moonlight-09-v1",
       "end": "Vitality and agility each rise by one; Hyun opens inventory with water and ten rye breads, eats briefly and returns to dummy training despite onlookers. Stop before the scarecrow shivering question."
+    },
+    {
+      "episode": "moonlight-10-v1",
+      "end": "The onlookers debate training; Pluto explains persistent benefits, estimated forty-point strength limit and the time cost. Hyun enjoys progress and continues; the instructor silently approves. Stop before the three-week jump."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-09.json",
+  "assetsFrom": "stories/animated/moonlight-10.json",
   "vocabularySupplement": "stories/authoring/common-familiar-100.json",
   "coverage": {
     "min": 95,
@@ -64,16 +68,16 @@
   },
   "continuity": [
     "Grandmother remains hospitalized and the old debt is paid. Do not invent an exact current balance.",
-    "Hyun has taken a brief food break after vitality and agility each rose by one, seen water and ten rye breads in his inventory, and resumed dummy practice. Strength remains 11 and level remains 1; no profession has been gained.",
-    "Episode 9 choices concern hunger/thirst and attention to onlookers, with within-episode callbacks only. Do not assume cross-episode choice memory.",
-    "Reuse the approved Hyun design and Training Hall assets. The visible sword is stylized silver; the source practice weapon is wooden."
+    "Hyun continues dummy practice after overhearing Pluto explain its lasting benefit and estimated limit. No new level or stat gain occurs in episode 10; the instructor approves silently.",
+    "Episode 10 choices concern listening to the explanation and motivation through progress or money. Callbacks are within this episode only.",
+    "Reuse Hyun, Instructor, Dummy, Watcher and the new Pluto polished SVG pack. Source practice sword is wooden; visible weapon remains approved silver styling. Pluto’s source armor is represented by a stylized silver/gold tunic."
   ],
   "castRecipes": "stories/characters/lms-cast.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published story boundary is after episode 9.",
-    "nextStart": "Was it an illusion that the scarecrow looked like it shivered at that very moment?",
-    "nextEndBefore": "Three weeks had passed in game time.",
-    "assetsFrom": "stories/animated/moonlight-09.json"
+    "note": "Published through moonlight-10-v1",
+    "nextStart": "Three weeks had passed in game time.",
+    "nextEndBefore": "*Rumble* At that moment, Weed’s stomach decided it was time to eat.",
+    "assetsFrom": "stories/animated/moonlight-10.json"
   }
 }
