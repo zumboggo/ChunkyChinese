@@ -1,0 +1,751 @@
+{
+  "又过了五个小时。我还在这里练习。": {
+    "english": "Another five hours pass. I am still practicing here.",
+    "interlinear": [
+      {
+        "chinese": "又过了五个小时。",
+        "gloss": "Another five hours pass.",
+        "pinyin": "yòu guò le wǔ gè xiǎo shí 。"
+      },
+      {
+        "chinese": "我还在这里练习。",
+        "gloss": "I am still practicing here.",
+        "pinyin": "wǒ hái zài zhè lǐ liàn xí 。"
+      }
+    ],
+    "pinyin": "yòu guò le wǔ gè xiǎo shí 。 wǒ hái zài zhè lǐ liàn xí 。"
+  },
+  "手里的剑，一次又一次打在它身上。": {
+    "english": "The sword in my hand, again and again, strikes its body.",
+    "interlinear": [
+      {
+        "chinese": "手里的剑，",
+        "gloss": "The sword in my hand,",
+        "pinyin": "shǒu lǐ de jiàn ，"
+      },
+      {
+        "chinese": "一次又一次",
+        "gloss": "again and again,",
+        "pinyin": "yí cì yòu yí cì"
+      },
+      {
+        "chinese": "打在它身上。",
+        "gloss": "strikes its body.",
+        "pinyin": "dǎ zài tā shēn shàng 。"
+      }
+    ],
+    "pinyin": "shǒu lǐ de jiàn ， yí cì yòu yí cì dǎ zài tā shēn shàng 。"
+  },
+  "系统的声音又来了。体力多了一点。": {
+    "english": "The system's voice comes again. Vitality has gone up by one point.",
+    "interlinear": [
+      {
+        "chinese": "系统的声音",
+        "gloss": "The system's voice",
+        "pinyin": "xì tǒng de shēng yīn"
+      },
+      {
+        "chinese": "又来了。",
+        "gloss": "comes again.",
+        "pinyin": "yòu lái le 。"
+      },
+      {
+        "chinese": "体力",
+        "gloss": "Vitality",
+        "pinyin": "tǐ lì"
+      },
+      {
+        "chinese": "多了一点。",
+        "gloss": "has gone up by one point.",
+        "pinyin": "duō le yì diǎn 。"
+      }
+    ],
+    "pinyin": "xì tǒng de shēng yīn yòu lái le 。 tǐ lì duō le yì diǎn 。"
+  },
+  "敏捷也多了一点。两个数字几乎同时变了。": {
+    "english": "Agility has also gone up by one point. The two numbers change almost at the same time.",
+    "interlinear": [
+      {
+        "chinese": "敏捷",
+        "gloss": "Agility",
+        "pinyin": "mǐn jié"
+      },
+      {
+        "chinese": "也多了一点。",
+        "gloss": "has also gone up by one point.",
+        "pinyin": "yě duō le yì diǎn 。"
+      },
+      {
+        "chinese": "两个数字",
+        "gloss": "The two numbers",
+        "pinyin": "liǎng gè shù zì"
+      },
+      {
+        "chinese": "几乎同时变了。",
+        "gloss": "change almost at the same time.",
+        "pinyin": "jī hū tóng shí biàn le 。"
+      }
+    ],
+    "pinyin": "mǐn jié yě duō le yì diǎn 。 liǎng gè shù zì jī hū tóng shí biàn le 。"
+  },
+  "啊……终于可以休息一下了。": {
+    "english": "Ah... finally I can rest for a moment.",
+    "interlinear": [
+      {
+        "chinese": "啊……",
+        "gloss": "Ah...",
+        "pinyin": "a … …"
+      },
+      {
+        "chinese": "终于可以",
+        "gloss": "finally I can",
+        "pinyin": "zhōng yú kě yǐ"
+      },
+      {
+        "chinese": "休息一下了。",
+        "gloss": "rest for a moment.",
+        "pinyin": "xiū xi yí xià le 。"
+      }
+    ],
+    "pinyin": "a … … zhōng yú kě yǐ xiū xi yí xià le 。"
+  },
+  "我不再拿着剑。现在发现，身体已经很累了。": {
+    "english": "I am no longer holding the sword. Now I realize, my body is already exhausted.",
+    "interlinear": [
+      {
+        "chinese": "我不再拿着剑。",
+        "gloss": "I am no longer holding the sword.",
+        "pinyin": "wǒ bú zài ná zhe jiàn 。"
+      },
+      {
+        "chinese": "现在发现，",
+        "gloss": "Now I realize,",
+        "pinyin": "xiàn zài fā xiàn ，"
+      },
+      {
+        "chinese": "身体已经很累了。",
+        "gloss": "my body is already exhausted.",
+        "pinyin": "shēn tǐ yǐ jīng hěn lèi le 。"
+      }
+    ],
+    "pinyin": "wǒ bú zài ná zhe jiàn 。 xiàn zài fā xiàn ， shēn tǐ yǐ jīng hěn lèi le 。"
+  },
+  "这么长时间，没吃东西，也没喝水。": {
+    "english": "All this time, I have eaten nothing, and drunk no water.",
+    "interlinear": [
+      {
+        "chinese": "这么长时间，",
+        "gloss": "All this time,",
+        "pinyin": "zhè me cháng shí jiān ，"
+      },
+      {
+        "chinese": "没吃东西，",
+        "gloss": "I have eaten nothing,",
+        "pinyin": "méi chī dōng xi ，"
+      },
+      {
+        "chinese": "也没喝水。",
+        "gloss": "and drunk no water.",
+        "pinyin": "yě méi hē shuǐ 。"
+      }
+    ],
+    "pinyin": "zhè me cháng shí jiān ， méi chī dōng xi ， yě méi hē shuǐ 。"
+  },
+  "口好干。我也好饿。": {
+    "english": "My mouth is so dry. I am so hungry too.",
+    "interlinear": [
+      {
+        "chinese": "口好干。",
+        "gloss": "My mouth is so dry.",
+        "pinyin": "kǒu hǎo gān 。"
+      },
+      {
+        "chinese": "我也好饿。",
+        "gloss": "I am so hungry too.",
+        "pinyin": "wǒ yě hǎo è 。"
+      }
+    ],
+    "pinyin": "kǒu hǎo gān 。 wǒ yě hǎo è 。"
+  },
+  "先想想水。": {
+    "english": "Think about water first.",
+    "interlinear": [
+      {
+        "chinese": "先想想水。",
+        "gloss": "Think about water first.",
+        "pinyin": "xiān xiǎng xiǎng shuǐ 。"
+      }
+    ],
+    "pinyin": "xiān xiǎng xiǎng shuǐ 。"
+  },
+  "先想想吃的。": {
+    "english": "Think about food first.",
+    "interlinear": [
+      {
+        "chinese": "先想想吃的。",
+        "gloss": "Think about food first.",
+        "pinyin": "xiān xiǎng xiǎng chī de 。"
+      }
+    ],
+    "pinyin": "xiān xiǎng xiǎng chī de 。"
+  },
+  "有水就好了。": {
+    "english": "If only I had water.",
+    "interlinear": [
+      {
+        "chinese": "有水就好了。",
+        "gloss": "If only I had water.",
+        "pinyin": "yǒu shuǐ jiù hǎo le 。"
+      }
+    ],
+    "pinyin": "yǒu shuǐ jiù hǎo le 。"
+  },
+  "现在，一点吃的也好。": {
+    "english": "Right now, even a little food would do.",
+    "interlinear": [
+      {
+        "chinese": "现在，",
+        "gloss": "Right now,",
+        "pinyin": "xiàn zài ，"
+      },
+      {
+        "chinese": "一点吃的也好。",
+        "gloss": "even a little food would do.",
+        "pinyin": "yì diǎn chī de yě hǎo 。"
+      }
+    ],
+    "pinyin": "xiàn zài ， yì diǎn chī de yě hǎo 。"
+  },
+  "打开背包。": {
+    "english": "Open inventory.",
+    "interlinear": [
+      {
+        "chinese": "打开背包。",
+        "gloss": "Open inventory.",
+        "pinyin": "dǎ kāi bēi bāo 。"
+      }
+    ],
+    "pinyin": "dǎ kāi bēi bāo 。"
+  },
+  "我的东西出现在眼前。": {
+    "english": "My belongings appear before my eyes.",
+    "interlinear": [
+      {
+        "chinese": "我的东西",
+        "gloss": "My belongings",
+        "pinyin": "wǒ de dōng xi"
+      },
+      {
+        "chinese": "出现在眼前。",
+        "gloss": "appear before my eyes.",
+        "pinyin": "chū xiàn zài yǎn qián 。"
+      }
+    ],
+    "pinyin": "wǒ de dōng xi chū xiàn zài yǎn qián 。"
+  },
+  "水，还有十块面包。": {
+    "english": "Water, and ten pieces of bread.",
+    "interlinear": [
+      {
+        "chinese": "水，",
+        "gloss": "Water,",
+        "pinyin": "shuǐ ，"
+      },
+      {
+        "chinese": "还有十块面包。",
+        "gloss": "and ten pieces of bread.",
+        "pinyin": "hái yǒu shí kuài miàn bāo 。"
+      }
+    ],
+    "pinyin": "shuǐ ， hái yǒu shí kuài miàn bāo 。"
+  },
+  "就这些？": {
+    "english": "That's all?",
+    "interlinear": [
+      {
+        "chinese": "就这些？",
+        "gloss": "That's all?",
+        "pinyin": "jiù zhè xiē ？"
+      }
+    ],
+    "pinyin": "jiù zhè xiē ？"
+  },
+  "我再看一次。只有这些。": {
+    "english": "I look once more. There is only this.",
+    "interlinear": [
+      {
+        "chinese": "我再看一次。",
+        "gloss": "I look once more.",
+        "pinyin": "wǒ zài kàn yí cì 。"
+      },
+      {
+        "chinese": "只有这些。",
+        "gloss": "There is only this.",
+        "pinyin": "zhǐ yǒu zhè xiē 。"
+      }
+    ],
+    "pinyin": "wǒ zài kàn yí cì 。 zhǐ yǒu zhè xiē 。"
+  },
+  "想要更多东西，就得自己去找。": {
+    "english": "If I want more things, I have to find them myself.",
+    "interlinear": [
+      {
+        "chinese": "想要更多东西，",
+        "gloss": "If I want more things,",
+        "pinyin": "xiǎng yào gèng duō dōng xi ，"
+      },
+      {
+        "chinese": "就得自己去找。",
+        "gloss": "I have to find them myself.",
+        "pinyin": "jiù děi zì jǐ qù zhǎo 。"
+      }
+    ],
+    "pinyin": "xiǎng yào gèng duō dōng xi ， jiù děi zì jǐ qù zhǎo 。"
+  },
+  "其他新来的人做简单的任务，得到钱。": {
+    "english": "Other newcomers do simple quests, and get money.",
+    "interlinear": [
+      {
+        "chinese": "其他新来的人",
+        "gloss": "Other newcomers",
+        "pinyin": "qí tā xīn lái de rén"
+      },
+      {
+        "chinese": "做简单的任务，",
+        "gloss": "do simple quests,",
+        "pinyin": "zuò jiǎn dān de rèn wu ，"
+      },
+      {
+        "chinese": "得到钱。",
+        "gloss": "and get money.",
+        "pinyin": "dé dào qián 。"
+      }
+    ],
+    "pinyin": "qí tā xīn lái de rén zuò jiǎn dān de rèn wu ， dé dào qián 。"
+  },
+  "可我一分钟也不想等。": {
+    "english": "But I do not want to wait even a minute.",
+    "interlinear": [
+      {
+        "chinese": "可我",
+        "gloss": "But I",
+        "pinyin": "kě wǒ"
+      },
+      {
+        "chinese": "一分钟也不想等。",
+        "gloss": "do not want to wait even a minute.",
+        "pinyin": "yì fēn zhōng yě bù xiǎng děng 。"
+      }
+    ],
+    "pinyin": "kě wǒ yì fēn zhōng yě bù xiǎng děng 。"
+  },
+  "我拿出水和一块面包。": {
+    "english": "I take out water and a piece of bread.",
+    "interlinear": [
+      {
+        "chinese": "我拿出水",
+        "gloss": "I take out water",
+        "pinyin": "wǒ ná chū shuǐ"
+      },
+      {
+        "chinese": "和一块面包。",
+        "gloss": "and a piece of bread.",
+        "pinyin": "hé yí kuài miàn bāo 。"
+      }
+    ],
+    "pinyin": "wǒ ná chū shuǐ hé yí kuài miàn bāo 。"
+  },
+  "这是黑麦面包。我吃了一小口。": {
+    "english": "This is rye bread. I take a small bite.",
+    "interlinear": [
+      {
+        "chinese": "这是黑麦面包。",
+        "gloss": "This is rye bread.",
+        "pinyin": "zhè shì hēi mài miàn bāo 。"
+      },
+      {
+        "chinese": "我吃了一小口。",
+        "gloss": "I take a small bite.",
+        "pinyin": "wǒ chī le yì xiǎo kǒu 。"
+      }
+    ],
+    "pinyin": "zhè shì hēi mài miàn bāo 。 wǒ chī le yì xiǎo kǒu 。"
+  },
+  "我不再那么饿了。系统里的满足感也高了一点。": {
+    "english": "I am not so hungry anymore. The satisfaction stat in the system has risen a little too.",
+    "interlinear": [
+      {
+        "chinese": "我不再那么饿了。",
+        "gloss": "I am not so hungry anymore.",
+        "pinyin": "wǒ bú zài nà me è le 。"
+      },
+      {
+        "chinese": "系统里的满足感",
+        "gloss": "The satisfaction stat in the system",
+        "pinyin": "xì tǒng lǐ de mǎn zú gǎn"
+      },
+      {
+        "chinese": "也高了一点。",
+        "gloss": "has risen a little too.",
+        "pinyin": "yě gāo le yì diǎn 。"
+      }
+    ],
+    "pinyin": "wǒ bú zài nà me è le 。 xì tǒng lǐ de mǎn zú gǎn yě gāo le yì diǎn 。"
+  },
+  "刚才只想着水。原来，也这么需要吃东西。": {
+    "english": "A moment ago I was thinking only of water. It turns out, I needed food this much too.",
+    "interlinear": [
+      {
+        "chinese": "刚才只想着水。",
+        "gloss": "A moment ago I was thinking only of water.",
+        "pinyin": "gāng cái zhǐ xiǎng zhe shuǐ 。"
+      },
+      {
+        "chinese": "原来，",
+        "gloss": "It turns out,",
+        "pinyin": "yuán lái ，"
+      },
+      {
+        "chinese": "也这么需要吃东西。",
+        "gloss": "I needed food this much too.",
+        "pinyin": "yě zhè me xū yào chī dōng xi 。"
+      }
+    ],
+    "pinyin": "gāng cái zhǐ xiǎng zhe shuǐ 。 yuán lái ， yě zhè me xū yào chī dōng xi 。"
+  },
+  "刚才只想着吃的。这一小口，已经不一样了。": {
+    "english": "A moment ago I was thinking only of food. This small bite, has already made a difference.",
+    "interlinear": [
+      {
+        "chinese": "刚才只想着吃的。",
+        "gloss": "A moment ago I was thinking only of food.",
+        "pinyin": "gāng cái zhǐ xiǎng zhe chī de 。"
+      },
+      {
+        "chinese": "这一小口，",
+        "gloss": "This small bite,",
+        "pinyin": "zhè yì xiǎo kǒu ，"
+      },
+      {
+        "chinese": "已经不一样了。",
+        "gloss": "has already made a difference.",
+        "pinyin": "yǐ jīng bù yí yàng le 。"
+      }
+    ],
+    "pinyin": "gāng cái zhǐ xiǎng zhe chī de 。 zhè yì xiǎo kǒu ， yǐ jīng bù yí yàng le 。"
+  },
+  "每五个小时，就要吃一次东西。": {
+    "english": "Every five hours, I need to eat something.",
+    "interlinear": [
+      {
+        "chinese": "每五个小时，",
+        "gloss": "Every five hours,",
+        "pinyin": "měi wǔ gè xiǎo shí ，"
+      },
+      {
+        "chinese": "就要吃一次东西。",
+        "gloss": "I need to eat something.",
+        "pinyin": "jiù yào chī yí cì dōng xi 。"
+      }
+    ],
+    "pinyin": "měi wǔ gè xiǎo shí ， jiù yào chī yí cì dōng xi 。"
+  },
+  "如果一直这样练习，就要多吃几次。": {
+    "english": "If I keep practicing like this, I need to eat more often.",
+    "interlinear": [
+      {
+        "chinese": "如果一直这样练习，",
+        "gloss": "If I keep practicing like this,",
+        "pinyin": "rú guǒ yì zhí zhè yàng liàn xí ，"
+      },
+      {
+        "chinese": "就要多吃几次。",
+        "gloss": "I need to eat more often.",
+        "pinyin": "jiù yào duō chī jǐ cì 。"
+      }
+    ],
+    "pinyin": "rú guǒ yì zhí zhè yàng liàn xí ， jiù yào duō chī jǐ cì 。"
+  },
+  "可是，一定要吃得很饱吗？": {
+    "english": "But, must I eat until I am completely full?",
+    "interlinear": [
+      {
+        "chinese": "可是，",
+        "gloss": "But,",
+        "pinyin": "kě shì ，"
+      },
+      {
+        "chinese": "一定要吃得很饱吗？",
+        "gloss": "must I eat until I am completely full?",
+        "pinyin": "yí dìng yào chī de hěn bǎo ma ？"
+      }
+    ],
+    "pinyin": "kě shì ， yí dìng yào chī de hěn bǎo ma ？"
+  },
+  "不用。能活着，就可以了。": {
+    "english": "No need. As long as I can stay alive, that will do.",
+    "interlinear": [
+      {
+        "chinese": "不用。",
+        "gloss": "No need.",
+        "pinyin": "bú yòng 。"
+      },
+      {
+        "chinese": "能活着，",
+        "gloss": "As long as I can stay alive,",
+        "pinyin": "néng huó zhe ，"
+      },
+      {
+        "chinese": "就可以了。",
+        "gloss": "that will do.",
+        "pinyin": "jiù kě yǐ le 。"
+      }
+    ],
+    "pinyin": "bú yòng 。 néng huó zhe ， jiù kě yǐ le 。"
+  },
+  "很快，我就吃完了。": {
+    "english": "Very soon, I finish eating.",
+    "interlinear": [
+      {
+        "chinese": "很快，",
+        "gloss": "Very soon,",
+        "pinyin": "hěn kuài ，"
+      },
+      {
+        "chinese": "我就吃完了。",
+        "gloss": "I finish eating.",
+        "pinyin": "wǒ jiù chī wán le 。"
+      }
+    ],
+    "pinyin": "hěn kuài ， wǒ jiù chī wán le 。"
+  },
+  "剑又在手里。我站到那个稻草人面前。": {
+    "english": "The sword is in my hand again. I step up in front of that straw dummy.",
+    "interlinear": [
+      {
+        "chinese": "剑又在手里。",
+        "gloss": "The sword is in my hand again.",
+        "pinyin": "jiàn yòu zài shǒu lǐ 。"
+      },
+      {
+        "chinese": "我站到",
+        "gloss": "I step up",
+        "pinyin": "wǒ zhàn dào"
+      },
+      {
+        "chinese": "那个稻草人面前。",
+        "gloss": "in front of that straw dummy.",
+        "pinyin": "nà ge dào cǎo rén miàn qián 。"
+      }
+    ],
+    "pinyin": "jiàn yòu zài shǒu lǐ 。 wǒ zhàn dào nà ge dào cǎo rén miàn qián 。"
+  },
+  "那个人又开始了！": {
+    "english": "That guy has started again!",
+    "interlinear": [
+      {
+        "chinese": "那个人又开始了！",
+        "gloss": "That guy has started again!",
+        "pinyin": "nà ge rén yòu kāi shǐ le ！"
+      }
+    ],
+    "pinyin": "nà ge rén yòu kāi shǐ le ！"
+  },
+  "我听到了。手里还是拿着剑。": {
+    "english": "I hear it. I am still holding the sword.",
+    "interlinear": [
+      {
+        "chinese": "我听到了。",
+        "gloss": "I hear it.",
+        "pinyin": "wǒ tīng dào le 。"
+      },
+      {
+        "chinese": "手里还是拿着剑。",
+        "gloss": "I am still holding the sword.",
+        "pinyin": "shǒu lǐ hái shì ná zhe jiàn 。"
+      }
+    ],
+    "pinyin": "wǒ tīng dào le 。 shǒu lǐ hái shì ná zhe jiàn 。"
+  },
+  "那个人是不是疯了？": {
+    "english": "Has that guy gone crazy?",
+    "interlinear": [
+      {
+        "chinese": "那个人是不是疯了？",
+        "gloss": "Has that guy gone crazy?",
+        "pinyin": "nà ge rén shì bu shì fēng le ？"
+      }
+    ],
+    "pinyin": "nà ge rén shì bu shì fēng le ？"
+  },
+  "听听那些人还说什么。": {
+    "english": "Listen to what else those people say.",
+    "interlinear": [
+      {
+        "chinese": "听听那些人还说什么。",
+        "gloss": "Listen to what else those people say.",
+        "pinyin": "tīng tīng nà xiē rén hái shuō shén me 。"
+      }
+    ],
+    "pinyin": "tīng tīng nà xiē rén hái shuō shén me 。"
+  },
+  "继续想怎么练习。": {
+    "english": "Keep thinking about how to practice.",
+    "interlinear": [
+      {
+        "chinese": "继续想怎么练习。",
+        "gloss": "Keep thinking about how to practice.",
+        "pinyin": "jì xù xiǎng zěn me liàn xí 。"
+      }
+    ],
+    "pinyin": "jì xù xiǎng zěn me liàn xí 。"
+  },
+  "我只是练习。那些人却越说越奇怪。": {
+    "english": "I am only practicing. Yet what those people say gets stranger and stranger.",
+    "interlinear": [
+      {
+        "chinese": "我只是练习。",
+        "gloss": "I am only practicing.",
+        "pinyin": "wǒ zhǐ shì liàn xí 。"
+      },
+      {
+        "chinese": "那些人却越说越奇怪。",
+        "gloss": "Yet what those people say gets stranger and stranger.",
+        "pinyin": "nà xiē rén què yuè shuō yuè qí guài 。"
+      }
+    ],
+    "pinyin": "wǒ zhǐ shì liàn xí 。 nà xiē rén què yuè shuō yuè qí guài 。"
+  },
+  "别人的话，不能帮我变强。": {
+    "english": "Other people's words, cannot help me grow stronger.",
+    "interlinear": [
+      {
+        "chinese": "别人的话，",
+        "gloss": "Other people's words,",
+        "pinyin": "bié rén de huà ，"
+      },
+      {
+        "chinese": "不能帮我变强。",
+        "gloss": "cannot help me grow stronger.",
+        "pinyin": "bù néng bāng wǒ biàn qiáng 。"
+      }
+    ],
+    "pinyin": "bié rén de huà ， bù néng bāng wǒ biàn qiáng 。"
+  },
+  "那个人是不是很恨那个东西？": {
+    "english": "Does that guy really hate that thing?",
+    "interlinear": [
+      {
+        "chinese": "那个人是不是",
+        "gloss": "Does that guy",
+        "pinyin": "nà ge rén shì bu shì"
+      },
+      {
+        "chinese": "很恨那个东西？",
+        "gloss": "really hate that thing?",
+        "pinyin": "hěn hèn nà ge dōng xi ？"
+      }
+    ],
+    "pinyin": "nà ge rén shì bu shì hěn hèn nà ge dōng xi ？"
+  },
+  "那个东西不变成几块，那个人不会停吧。": {
+    "english": "If that thing doesn't break into pieces, that guy won't stop, will he?",
+    "interlinear": [
+      {
+        "chinese": "那个东西",
+        "gloss": "If that thing",
+        "pinyin": "nà ge dōng xi"
+      },
+      {
+        "chinese": "不变成几块，",
+        "gloss": "doesn't break into pieces,",
+        "pinyin": "bú biàn chéng jǐ kuài ，"
+      },
+      {
+        "chinese": "那个人不会停吧。",
+        "gloss": "that guy won't stop, will he?",
+        "pinyin": "nà ge rén bú huì tíng ba 。"
+      }
+    ],
+    "pinyin": "nà ge dōng xi bú biàn chéng jǐ kuài ， nà ge rén bú huì tíng ba 。"
+  },
+  "大家在看我。我在看手里的剑。": {
+    "english": "Everyone is watching me. I am looking at the sword in my hand.",
+    "interlinear": [
+      {
+        "chinese": "大家在看我。",
+        "gloss": "Everyone is watching me.",
+        "pinyin": "dà jiā zài kàn wǒ 。"
+      },
+      {
+        "chinese": "我在看手里的剑。",
+        "gloss": "I am looking at the sword in my hand.",
+        "pinyin": "wǒ zài kàn shǒu lǐ de jiàn 。"
+      }
+    ],
+    "pinyin": "dà jiā zài kàn wǒ 。 wǒ zài kàn shǒu lǐ de jiàn 。"
+  },
+  "那些人以为我在生气。我只是不想停。": {
+    "english": "Those people think I am angry. I just do not want to stop.",
+    "interlinear": [
+      {
+        "chinese": "那些人以为",
+        "gloss": "Those people think",
+        "pinyin": "nà xiē rén yǐ wéi"
+      },
+      {
+        "chinese": "我在生气。",
+        "gloss": "I am angry.",
+        "pinyin": "wǒ zài shēng qì 。"
+      },
+      {
+        "chinese": "我只是不想停。",
+        "gloss": "I just do not want to stop.",
+        "pinyin": "wǒ zhǐ shì bù xiǎng tíng 。"
+      }
+    ],
+    "pinyin": "nà xiē rén yǐ wéi wǒ zài shēng qì 。 wǒ zhǐ shì bù xiǎng tíng 。"
+  },
+  "刚才想的是练习。现在，就接着做。": {
+    "english": "A moment ago I was thinking about practice. Now, I will keep at it.",
+    "interlinear": [
+      {
+        "chinese": "刚才想的是练习。",
+        "gloss": "A moment ago I was thinking about practice.",
+        "pinyin": "gāng cái xiǎng de shì liàn xí 。"
+      },
+      {
+        "chinese": "现在，",
+        "gloss": "Now,",
+        "pinyin": "xiàn zài ，"
+      },
+      {
+        "chinese": "就接着做。",
+        "gloss": "I will keep at it.",
+        "pinyin": "jiù jiē zhe zuò 。"
+      }
+    ],
+    "pinyin": "gāng cái xiǎng de shì liàn xí 。 xiàn zài ， jiù jiē zhe zuò 。"
+  },
+  "不休息了。面前还是它，下一剑还是我来。": {
+    "english": "The break is over. It is still there before me, and the next strike is still mine to make.",
+    "interlinear": [
+      {
+        "chinese": "不休息了。",
+        "gloss": "The break is over.",
+        "pinyin": "bù xiū xi le 。"
+      },
+      {
+        "chinese": "面前还是它，",
+        "gloss": "It is still there before me,",
+        "pinyin": "miàn qián hái shì tā ，"
+      },
+      {
+        "chinese": "下一剑还是我来。",
+        "gloss": "and the next strike is still mine to make.",
+        "pinyin": "xià yí jiàn hái shì wǒ lái 。"
+      }
+    ],
+    "pinyin": "bù xiū xi le 。 miàn qián hái shì tā ， xià yí jiàn hái shì wǒ lái 。"
+  }
+}

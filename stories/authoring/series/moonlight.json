@@ -7,7 +7,7 @@
     "chapter": "OEBPS/Text/LMS_B01_Chapter_02.xhtml",
     "nextStart": "-Five hours later-",
     "nextEndBefore": "Was it an illusion that the scarecrow looked like it shivered at that very moment?",
-    "continuationNote": "Episode 6 finished character creation and skipped the tutorial; do not repeat the purchase or setup. Continue with the flash of light and arrival in Serabourg, his amazement, public movement tests and embarrassment, then his choice to head for the Training Hall. The bounded excerpt ends just before meeting the instructor."
+    "continuationNote": "Episode 8 ends after the first strength increase. Episode 9 covers the next stat increases and brief food break; advance anchors only after verified publication."
   },
   "completed": [
     {
@@ -65,7 +65,14 @@
     "Reuse the approved Hyun design and Training Hall assets. The visible sword is stylized silver; the source practice weapon is wooden."
   ],
   "castRecipes": "stories/characters/lms-cast.json",
-  "pendingPublication": [],
+  "pendingPublication": [
+    {
+      "episode": "moonlight-09-v1",
+      "package": "stories/animated/moonlight-09.json",
+      "status": "Prepared; phone/desktop verification and publication pending.",
+      "end": "Vitality and agility each rise by one; Hyun opens inventory with water and ten rye breads, eats briefly and returns to dummy training despite onlookers. Stop before the scarecrow shivering question."
+    }
+  ],
   "localContinuation": {
     "note": "Published story boundary is after episode 8. Revision v3 is live and changes directing only.",
     "nextStart": "-Five hours later-",

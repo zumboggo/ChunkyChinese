@@ -24,6 +24,8 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
    const option=page.getByRole('button',{name:beat.text,exact:true});await expect(option).toBeEnabled()
    const chunks=option.locator('.reader-interlinear-chunk');if(pack.chinese?.lines[beat.text])await expect(chunks.first()).toBeVisible()
    expect(await option.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true)
+   // Keep the previous Continue pointer off the new choice edge: the global hover lift can oscillate there.
+   await page.mouse.move(0,0)
    await page.screenshot({path:info.outputPath(`choice-${i}.png`),fullPage:true});await option.click()
   }else{
    await expect.poll(currentText).toBe(beat.text)
