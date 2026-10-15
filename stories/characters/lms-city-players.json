@@ -1,0 +1,42 @@
+[
+  {
+    "id": "Player",
+    "name": "路过的玩家 · Passing player",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "cropped",
+      "face": "angular",
+      "eyes": "narrow",
+      "outfit": "tunic"
+    },
+    "palette": {
+      "skin": "#c79a78",
+      "hair": "#45372c",
+      "shirt": "#7c6146",
+      "trim": "#cbb793"
+    },
+    "provenance": "Original fictional passing player for LMS episode 7; leather-coloured tunic, shared polished SVG rig, not official art."
+  },
+  {
+    "id": "Other",
+    "name": "另一个玩家 · Another player",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "long",
+      "face": "round",
+      "eyes": "gentle",
+      "outfit": "tunic"
+    },
+    "palette": {
+      "skin": "#e2b595",
+      "hair": "#33333b",
+      "shirt": "#5b6d72",
+      "trim": "#b6b8aa"
+    },
+    "provenance": "Original fictional passing player for LMS episode 7; shared polished SVG rig, not official art."
+  }
+]

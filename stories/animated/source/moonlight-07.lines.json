@@ -1,0 +1,1332 @@
+{
+  "一道光过去，我已经站在塞拉堡的路上。": {
+    "interlinear": [
+      {
+        "chinese": "一道光",
+        "gloss": "a flash of light",
+        "pinyin": "yí dào guāng"
+      },
+      {
+        "chinese": "过去，",
+        "gloss": "passes",
+        "pinyin": "guò qù ，"
+      },
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "已经",
+        "gloss": "already",
+        "pinyin": "yǐ jīng"
+      },
+      {
+        "chinese": "站在",
+        "gloss": "am standing in",
+        "pinyin": "zhàn zài"
+      },
+      {
+        "chinese": "塞拉堡的",
+        "gloss": "Serabourg's",
+        "pinyin": "sāi lā bǎo de"
+      },
+      {
+        "chinese": "路上。",
+        "gloss": "street",
+        "pinyin": "lù shang 。"
+      }
+    ],
+    "pinyin": "yí dào guāng guò qù ， wǒ yǐ jīng zhàn zài sāi lā bǎo de lù shang 。"
+  },
+  "四周都是人。有人在买东西，有人在说话。": {
+    "interlinear": [
+      {
+        "chinese": "四周",
+        "gloss": "all around",
+        "pinyin": "sì zhōu"
+      },
+      {
+        "chinese": "都是人。",
+        "gloss": "there are people everywhere",
+        "pinyin": "dōu shì rén 。"
+      },
+      {
+        "chinese": "有人",
+        "gloss": "some people",
+        "pinyin": "yǒu rén"
+      },
+      {
+        "chinese": "在买东西，",
+        "gloss": "are shopping",
+        "pinyin": "zài mǎi dōng xi ，"
+      },
+      {
+        "chinese": "有人",
+        "gloss": "some people",
+        "pinyin": "yǒu rén"
+      },
+      {
+        "chinese": "在说话。",
+        "gloss": "are talking",
+        "pinyin": "zài shuō huà 。"
+      }
+    ],
+    "pinyin": "sì zhōu dōu shì rén 。 yǒu rén zài mǎi dōng xi ， yǒu rén zài shuō huà 。"
+  },
+  "这……真的是游戏吗？": {
+    "interlinear": [
+      {
+        "chinese": "这……",
+        "gloss": "This…",
+        "pinyin": "zhè … …"
+      },
+      {
+        "chinese": "真的是",
+        "gloss": "really is",
+        "pinyin": "zhēn de shì"
+      },
+      {
+        "chinese": "游戏吗？",
+        "gloss": "a game?",
+        "pinyin": "yóu xì ma ？"
+      }
+    ],
+    "pinyin": "zhè … … zhēn de shì yóu xì ma ？"
+  },
+  "我站着不动，看看四周，又看看下面的地。": {
+    "interlinear": [
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "站着不动，",
+        "gloss": "stand still",
+        "pinyin": "zhàn zhe bú dòng ，"
+      },
+      {
+        "chinese": "看看四周，",
+        "gloss": "look around",
+        "pinyin": "kàn kàn sì zhōu ，"
+      },
+      {
+        "chinese": "又看看",
+        "gloss": "then look at",
+        "pinyin": "yòu kàn kàn"
+      },
+      {
+        "chinese": "下面的地。",
+        "gloss": "the ground below",
+        "pinyin": "xià miàn de dì 。"
+      }
+    ],
+    "pinyin": "wǒ zhàn zhe bú dòng ， kàn kàn sì zhōu ， yòu kàn kàn xià miàn de dì 。"
+  },
+  "站在地上，感觉也是真的。": {
+    "interlinear": [
+      {
+        "chinese": "站在地上，",
+        "gloss": "standing on the ground",
+        "pinyin": "zhàn zài dì shàng ，"
+      },
+      {
+        "chinese": "感觉",
+        "gloss": "the feeling",
+        "pinyin": "gǎn jué"
+      },
+      {
+        "chinese": "也是真的。",
+        "gloss": "is real too",
+        "pinyin": "yě shì zhēn de 。"
+      }
+    ],
+    "pinyin": "zhàn zài dì shàng ， gǎn jué yě shì zhēn de 。"
+  },
+  "这里和真的世界一样！": {
+    "interlinear": [
+      {
+        "chinese": "这里",
+        "gloss": "this place",
+        "pinyin": "zhè lǐ"
+      },
+      {
+        "chinese": "和真的世界",
+        "gloss": "and the real world",
+        "pinyin": "hé zhēn de shì jiè"
+      },
+      {
+        "chinese": "一样！",
+        "gloss": "are alike!",
+        "pinyin": "yí yàng ！"
+      }
+    ],
+    "pinyin": "zhè lǐ hé zhēn de shì jiè yí yàng ！"
+  },
+  "先看看我的身体。": {
+    "interlinear": [
+      {
+        "chinese": "先看看",
+        "gloss": "first look at",
+        "pinyin": "xiān kàn kàn"
+      },
+      {
+        "chinese": "我的身体。",
+        "gloss": "my body",
+        "pinyin": "wǒ de shēn tǐ 。"
+      }
+    ],
+    "pinyin": "xiān kàn kàn wǒ de shēn tǐ 。"
+  },
+  "声音、人、房子……我真的进来了！": {
+    "interlinear": [
+      {
+        "chinese": "声音、",
+        "gloss": "sounds,",
+        "pinyin": "shēng yīn 、"
+      },
+      {
+        "chinese": "人、",
+        "gloss": "people,",
+        "pinyin": "rén 、"
+      },
+      {
+        "chinese": "房子……",
+        "gloss": "houses…",
+        "pinyin": "fáng zi … …"
+      },
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "真的",
+        "gloss": "really",
+        "pinyin": "zhēn de"
+      },
+      {
+        "chinese": "进来了！",
+        "gloss": "have entered!",
+        "pinyin": "jìn lái le ！"
+      }
+    ],
+    "pinyin": "shēng yīn 、 rén 、 fáng zi … … wǒ zhēn de jìn lái le ！"
+  },
+  "我站在这里。可是，我的身体还在家里。": {
+    "interlinear": [
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "站在这里。",
+        "gloss": "am standing here",
+        "pinyin": "zhàn zài zhè lǐ 。"
+      },
+      {
+        "chinese": "可是，",
+        "gloss": "but",
+        "pinyin": "kě shì ，"
+      },
+      {
+        "chinese": "我的身体",
+        "gloss": "my body",
+        "pinyin": "wǒ de shēn tǐ"
+      },
+      {
+        "chinese": "还在家里。",
+        "gloss": "is still at home",
+        "pinyin": "hái zài jiā lǐ 。"
+      }
+    ],
+    "pinyin": "wǒ zhàn zài zhè lǐ 。 kě shì ， wǒ de shēn tǐ hái zài jiā lǐ 。"
+  },
+  "看那个人，一定是新来的。": {
+    "interlinear": [
+      {
+        "chinese": "看那个人，",
+        "gloss": "look at that person",
+        "pinyin": "kàn nà ge rén ，"
+      },
+      {
+        "chinese": "一定是",
+        "gloss": "must be",
+        "pinyin": "yí dìng shì"
+      },
+      {
+        "chinese": "新来的。",
+        "gloss": "a newcomer",
+        "pinyin": "xīn lái de 。"
+      }
+    ],
+    "pinyin": "kàn nà ge rén ， yí dìng shì xīn lái de 。"
+  },
+  "他们是在说我。我还没有动。": {
+    "interlinear": [
+      {
+        "chinese": "他们",
+        "gloss": "they",
+        "pinyin": "tā men"
+      },
+      {
+        "chinese": "是在说我。",
+        "gloss": "are talking about me",
+        "pinyin": "shì zài shuō wǒ 。"
+      },
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "还没有动。",
+        "gloss": "still haven't moved",
+        "pinyin": "hái méi yǒu dòng 。"
+      }
+    ],
+    "pinyin": "tā men shì zài shuō wǒ 。 wǒ hái méi yǒu dòng 。"
+  },
+  "他以前没玩过这样的游戏吧。": {
+    "interlinear": [
+      {
+        "chinese": "他",
+        "gloss": "he",
+        "pinyin": "tā"
+      },
+      {
+        "chinese": "以前",
+        "gloss": "before",
+        "pinyin": "yǐ qián"
+      },
+      {
+        "chinese": "没玩过",
+        "gloss": "hasn't played",
+        "pinyin": "méi wán guò"
+      },
+      {
+        "chinese": "这样的游戏吧。",
+        "gloss": "this kind of game, has he?",
+        "pinyin": "zhè yàng de yóu xì ba 。"
+      }
+    ],
+    "pinyin": "tā yǐ qián méi wán guò zhè yàng de yóu xì ba 。"
+  },
+  "是啊……我的样子一定很奇怪。": {
+    "interlinear": [
+      {
+        "chinese": "是啊……",
+        "gloss": "Yes…",
+        "pinyin": "shì a … …"
+      },
+      {
+        "chinese": "我的样子",
+        "gloss": "the way I look",
+        "pinyin": "wǒ de yàng zi"
+      },
+      {
+        "chinese": "一定",
+        "gloss": "must",
+        "pinyin": "yí dìng"
+      },
+      {
+        "chinese": "很奇怪。",
+        "gloss": "be very strange",
+        "pinyin": "hěn qí guài 。"
+      }
+    ],
+    "pinyin": "shì a … … wǒ de yàng zi yí dìng hěn qí guài 。"
+  },
+  "没错。这里是皇家之路，也是我要工作的地方。": {
+    "interlinear": [
+      {
+        "chinese": "没错。",
+        "gloss": "That's right",
+        "pinyin": "méi cuò 。"
+      },
+      {
+        "chinese": "这里是",
+        "gloss": "this is",
+        "pinyin": "zhè lǐ shì"
+      },
+      {
+        "chinese": "皇家之路，",
+        "gloss": "Royal Road",
+        "pinyin": "huáng jiā zhī lù ，"
+      },
+      {
+        "chinese": "也是",
+        "gloss": "and also",
+        "pinyin": "yě shì"
+      },
+      {
+        "chinese": "我要工作的",
+        "gloss": "where I will work",
+        "pinyin": "wǒ yào gōng zuò de"
+      },
+      {
+        "chinese": "地方。",
+        "gloss": "the place",
+        "pinyin": "dì fāng 。"
+      }
+    ],
+    "pinyin": "méi cuò 。 zhè lǐ shì huáng jiā zhī lù ， yě shì wǒ yào gōng zuò de dì fāng 。"
+  },
+  "准备了一年，真的进来，还是不一样。": {
+    "interlinear": [
+      {
+        "chinese": "准备了一年，",
+        "gloss": "after preparing for a year",
+        "pinyin": "zhǔn bèi le yì nián ，"
+      },
+      {
+        "chinese": "真的进来，",
+        "gloss": "actually entering",
+        "pinyin": "zhēn de jìn lái ，"
+      },
+      {
+        "chinese": "还是不一样。",
+        "gloss": "still feels different",
+        "pinyin": "hái shì bù yí yàng 。"
+      }
+    ],
+    "pinyin": "zhǔn bèi le yì nián ， zhēn de jìn lái ， hái shì bù yí yàng 。"
+  },
+  "我慢慢平静下来。这里的人穿着盔甲或者皮衣。": {
+    "interlinear": [
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "慢慢",
+        "gloss": "gradually",
+        "pinyin": "màn màn"
+      },
+      {
+        "chinese": "平静下来。",
+        "gloss": "calm down",
+        "pinyin": "píng jìng xià lái 。"
+      },
+      {
+        "chinese": "这里的人",
+        "gloss": "the people here",
+        "pinyin": "zhè lǐ de rén"
+      },
+      {
+        "chinese": "穿着",
+        "gloss": "are wearing",
+        "pinyin": "chuān zhe"
+      },
+      {
+        "chinese": "盔甲",
+        "gloss": "armor",
+        "pinyin": "kuī jiǎ"
+      },
+      {
+        "chinese": "或者皮衣。",
+        "gloss": "or leather clothes",
+        "pinyin": "huò zhě pí yī 。"
+      }
+    ],
+    "pinyin": "wǒ màn màn píng jìng xià lái 。 zhè lǐ de rén chuān zhe kuī jiǎ huò zhě pí yī 。"
+  },
+  "旁边的木头上有地图，也有怎么玩的说明。": {
+    "interlinear": [
+      {
+        "chinese": "旁边的",
+        "gloss": "nearby",
+        "pinyin": "páng biān de"
+      },
+      {
+        "chinese": "木头上",
+        "gloss": "on a wooden board",
+        "pinyin": "mù tou shàng"
+      },
+      {
+        "chinese": "有地图，",
+        "gloss": "there is a map",
+        "pinyin": "yǒu dì tú ，"
+      },
+      {
+        "chinese": "也有",
+        "gloss": "and also",
+        "pinyin": "yě yǒu"
+      },
+      {
+        "chinese": "怎么玩的说明。",
+        "gloss": "instructions on how to play",
+        "pinyin": "zěn me wán de shuō míng 。"
+      }
+    ],
+    "pinyin": "páng biān de mù tou shàng yǒu dì tú ， yě yǒu zěn me wán de shuō míng 。"
+  },
+  "好，开始吧。": {
+    "interlinear": [
+      {
+        "chinese": "好，",
+        "gloss": "All right,",
+        "pinyin": "hǎo ，"
+      },
+      {
+        "chinese": "开始吧。",
+        "gloss": "let's begin",
+        "pinyin": "kāi shǐ ba 。"
+      }
+    ],
+    "pinyin": "hǎo ， kāi shǐ ba 。"
+  },
+  "我蹲下，再站起来，看看身体能不能这样动。": {
+    "interlinear": [
+      {
+        "chinese": "我蹲下，",
+        "gloss": "I crouch down",
+        "pinyin": "wǒ dūn xià ，"
+      },
+      {
+        "chinese": "再站起来，",
+        "gloss": "then stand up",
+        "pinyin": "zài zhàn qǐ lái ，"
+      },
+      {
+        "chinese": "看看",
+        "gloss": "to see",
+        "pinyin": "kàn kàn"
+      },
+      {
+        "chinese": "身体",
+        "gloss": "whether my body",
+        "pinyin": "shēn tǐ"
+      },
+      {
+        "chinese": "能不能",
+        "gloss": "can",
+        "pinyin": "néng bu néng"
+      },
+      {
+        "chinese": "这样动。",
+        "gloss": "move like this",
+        "pinyin": "zhè yàng dòng 。"
+      }
+    ],
+    "pinyin": "wǒ dūn xià ， zài zhàn qǐ lái ， kàn kàn shēn tǐ néng bu néng zhè yàng dòng 。"
+  },
+  "在这里，我的身体能做什么？": {
+    "interlinear": [
+      {
+        "chinese": "在这里，",
+        "gloss": "here",
+        "pinyin": "zài zhè lǐ ，"
+      },
+      {
+        "chinese": "我的身体",
+        "gloss": "my body",
+        "pinyin": "wǒ de shēn tǐ"
+      },
+      {
+        "chinese": "能做什么？",
+        "gloss": "can do what?",
+        "pinyin": "néng zuò shén me ？"
+      }
+    ],
+    "pinyin": "zài zhè lǐ ， wǒ de shēn tǐ néng zuò shén me ？"
+  },
+  "我还要跳，还要打。都得好好练习。": {
+    "interlinear": [
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "还要跳，",
+        "gloss": "also need to jump",
+        "pinyin": "hái yào tiào ，"
+      },
+      {
+        "chinese": "还要打。",
+        "gloss": "and punch",
+        "pinyin": "hái yào dǎ 。"
+      },
+      {
+        "chinese": "都得",
+        "gloss": "all of it needs",
+        "pinyin": "dōu děi"
+      },
+      {
+        "chinese": "好好练习。",
+        "gloss": "proper practice",
+        "pinyin": "hǎo hǎo liàn xí 。"
+      }
+    ],
+    "pinyin": "wǒ hái yào tiào ， hái yào dǎ 。 dōu děi hǎo hǎo liàn xí 。"
+  },
+  "那个人现在又在做什么？": {
+    "interlinear": [
+      {
+        "chinese": "那个人",
+        "gloss": "that person",
+        "pinyin": "nà ge rén"
+      },
+      {
+        "chinese": "现在",
+        "gloss": "now",
+        "pinyin": "xiàn zài"
+      },
+      {
+        "chinese": "又在做什么？",
+        "gloss": "what is he doing this time?",
+        "pinyin": "yòu zài zuò shén me ？"
+      }
+    ],
+    "pinyin": "nà ge rén xiàn zài yòu zài zuò shén me ？"
+  },
+  "我听到了，却还想再动一动。": {
+    "interlinear": [
+      {
+        "chinese": "我听到了，",
+        "gloss": "I heard it",
+        "pinyin": "wǒ tīng dào le ，"
+      },
+      {
+        "chinese": "却还想",
+        "gloss": "but still want to",
+        "pinyin": "què hái xiǎng"
+      },
+      {
+        "chinese": "再动一动。",
+        "gloss": "move a little more",
+        "pinyin": "zài dòng yi dòng 。"
+      }
+    ],
+    "pinyin": "wǒ tīng dào le ， què hái xiǎng zài dòng yi dòng 。"
+  },
+  "先练习，不要想他们说的话。": {
+    "interlinear": [
+      {
+        "chinese": "先练习，",
+        "gloss": "practice first",
+        "pinyin": "xiān liàn xí ，"
+      },
+      {
+        "chinese": "不要想",
+        "gloss": "don't think about",
+        "pinyin": "bú yào xiǎng"
+      },
+      {
+        "chinese": "他们说的话。",
+        "gloss": "what they're saying",
+        "pinyin": "tā men shuō de huà 。"
+      }
+    ],
+    "pinyin": "xiān liàn xí ， bú yào xiǎng tā men shuō de huà 。"
+  },
+  "真想找个没人的地方。": {
+    "interlinear": [
+      {
+        "chinese": "真想",
+        "gloss": "I really want to",
+        "pinyin": "zhēn xiǎng"
+      },
+      {
+        "chinese": "找个",
+        "gloss": "find a",
+        "pinyin": "zhǎo gè"
+      },
+      {
+        "chinese": "没人的地方。",
+        "gloss": "place with no one around",
+        "pinyin": "méi rén de dì fāng 。"
+      }
+    ],
+    "pinyin": "zhēn xiǎng zhǎo gè méi rén de dì fāng 。"
+  },
+  "再来一下。我得知道身体能不能动。": {
+    "interlinear": [
+      {
+        "chinese": "再来一下。",
+        "gloss": "One more try",
+        "pinyin": "zài lái yí xià 。"
+      },
+      {
+        "chinese": "我得知道",
+        "gloss": "I need to know",
+        "pinyin": "wǒ děi zhī dào"
+      },
+      {
+        "chinese": "身体",
+        "gloss": "whether my body",
+        "pinyin": "shēn tǐ"
+      },
+      {
+        "chinese": "能不能动。",
+        "gloss": "can move",
+        "pinyin": "néng bu néng dòng 。"
+      }
+    ],
+    "pinyin": "zài lái yí xià 。 wǒ děi zhī dào shēn tǐ néng bu néng dòng 。"
+  },
+  "大家都在看我……我怎么选了这里？": {
+    "interlinear": [
+      {
+        "chinese": "大家",
+        "gloss": "everyone",
+        "pinyin": "dà jiā"
+      },
+      {
+        "chinese": "都在看我……",
+        "gloss": "is looking at me…",
+        "pinyin": "dōu zài kàn wǒ … …"
+      },
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "怎么",
+        "gloss": "why",
+        "pinyin": "zěn me"
+      },
+      {
+        "chinese": "选了这里？",
+        "gloss": "did I choose this place?",
+        "pinyin": "xuǎn le zhè lǐ ？"
+      }
+    ],
+    "pinyin": "dà jiā dōu zài kàn wǒ … … wǒ zěn me xuǎn le zhè lǐ ？"
+  },
+  "他大概还不习惯。他想知道身体能不能动。": {
+    "interlinear": [
+      {
+        "chinese": "他",
+        "gloss": "he",
+        "pinyin": "tā"
+      },
+      {
+        "chinese": "大概",
+        "gloss": "probably",
+        "pinyin": "dà gài"
+      },
+      {
+        "chinese": "还不习惯。",
+        "gloss": "isn't used to it yet",
+        "pinyin": "hái bù xí guàn 。"
+      },
+      {
+        "chinese": "他想知道",
+        "gloss": "he wants to know",
+        "pinyin": "tā xiǎng zhī dào"
+      },
+      {
+        "chinese": "身体",
+        "gloss": "whether his body",
+        "pinyin": "shēn tǐ"
+      },
+      {
+        "chinese": "能不能动。",
+        "gloss": "can move",
+        "pinyin": "néng bu néng dòng 。"
+      }
+    ],
+    "pinyin": "tā dà gài hái bù xí guàn 。 tā xiǎng zhī dào shēn tǐ néng bu néng dòng 。"
+  },
+  "可是，为什么要在这么多人的地方这样做？": {
+    "interlinear": [
+      {
+        "chinese": "可是，",
+        "gloss": "but",
+        "pinyin": "kě shì ，"
+      },
+      {
+        "chinese": "为什么",
+        "gloss": "why",
+        "pinyin": "wèi shén me"
+      },
+      {
+        "chinese": "要在",
+        "gloss": "do it in",
+        "pinyin": "yào zài"
+      },
+      {
+        "chinese": "这么多人的",
+        "gloss": "such a crowded",
+        "pinyin": "zhè me duō rén de"
+      },
+      {
+        "chinese": "地方",
+        "gloss": "place",
+        "pinyin": "dì fāng"
+      },
+      {
+        "chinese": "这样做？",
+        "gloss": "like this?",
+        "pinyin": "zhè yàng zuò ？"
+      }
+    ],
+    "pinyin": "kě shì ， wèi shén me yào zài zhè me duō rén de dì fāng zhè yàng zuò ？"
+  },
+  "这一次，我不能再假装没听到了。": {
+    "interlinear": [
+      {
+        "chinese": "这一次，",
+        "gloss": "this time",
+        "pinyin": "zhè yí cì ，"
+      },
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "不能再",
+        "gloss": "can no longer",
+        "pinyin": "bù néng zài"
+      },
+      {
+        "chinese": "假装",
+        "gloss": "pretend",
+        "pinyin": "jiǎ zhuāng"
+      },
+      {
+        "chinese": "没听到了。",
+        "gloss": "I didn't hear it",
+        "pinyin": "méi tīng dào le 。"
+      }
+    ],
+    "pinyin": "zhè yí cì ， wǒ bù néng zài jiǎ zhuāng méi tīng dào le 。"
+  },
+  "可恶！": {
+    "interlinear": [
+      {
+        "chinese": "可恶！",
+        "gloss": "Damn it!",
+        "pinyin": "kě wù ！"
+      }
+    ],
+    "pinyin": "kě wù ！"
+  },
+  "我很快走开，不想再让他们看了。": {
+    "interlinear": [
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "很快走开，",
+        "gloss": "quickly walk away",
+        "pinyin": "hěn kuài zǒu kāi ，"
+      },
+      {
+        "chinese": "不想再",
+        "gloss": "don't want to keep",
+        "pinyin": "bù xiǎng zài"
+      },
+      {
+        "chinese": "让他们看了。",
+        "gloss": "letting them watch",
+        "pinyin": "ràng tā men kàn le 。"
+      }
+    ],
+    "pinyin": "wǒ hěn kuài zǒu kāi ， bù xiǎng zài ràng tā men kàn le 。"
+  },
+  "离开那些人以后，我慢慢停下来。": {
+    "interlinear": [
+      {
+        "chinese": "离开",
+        "gloss": "after leaving",
+        "pinyin": "lí kāi"
+      },
+      {
+        "chinese": "那些人以后，",
+        "gloss": "those people behind",
+        "pinyin": "nà xiē rén yǐ hòu ，"
+      },
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "慢慢停下来。",
+        "gloss": "gradually come to a stop",
+        "pinyin": "màn màn tíng xià lái 。"
+      }
+    ],
+    "pinyin": "lí kāi nà xiē rén yǐ hòu ， wǒ màn màn tíng xià lái 。"
+  },
+  "我以为自己可以不听。可是，我错了。": {
+    "interlinear": [
+      {
+        "chinese": "我以为",
+        "gloss": "I thought",
+        "pinyin": "wǒ yǐ wéi"
+      },
+      {
+        "chinese": "自己",
+        "gloss": "I myself",
+        "pinyin": "zì jǐ"
+      },
+      {
+        "chinese": "可以不听。",
+        "gloss": "could ignore it",
+        "pinyin": "kě yǐ bù tīng 。"
+      },
+      {
+        "chinese": "可是，",
+        "gloss": "but",
+        "pinyin": "kě shì ，"
+      },
+      {
+        "chinese": "我错了。",
+        "gloss": "I was wrong",
+        "pinyin": "wǒ cuò le 。"
+      }
+    ],
+    "pinyin": "wǒ yǐ wéi zì jǐ kě yǐ bù tīng 。 kě shì ， wǒ cuò le 。"
+  },
+  "下次，要练习，就找个没人的地方。": {
+    "interlinear": [
+      {
+        "chinese": "下次，",
+        "gloss": "next time",
+        "pinyin": "xià cì ，"
+      },
+      {
+        "chinese": "要练习，",
+        "gloss": "if I want to practice",
+        "pinyin": "yào liàn xí ，"
+      },
+      {
+        "chinese": "就找个",
+        "gloss": "I'll find a",
+        "pinyin": "jiù zhǎo gè"
+      },
+      {
+        "chinese": "没人的地方。",
+        "gloss": "place with nobody around",
+        "pinyin": "méi rén de dì fāng 。"
+      }
+    ],
+    "pinyin": "xià cì ， yào liàn xí ， jiù zhǎo gè méi rén de dì fāng 。"
+  },
+  "新来的人，第一个星期不能离开开始的城市。": {
+    "interlinear": [
+      {
+        "chinese": "新来的人，",
+        "gloss": "newcomers",
+        "pinyin": "xīn lái de rén ，"
+      },
+      {
+        "chinese": "第一个星期",
+        "gloss": "for the first week",
+        "pinyin": "dì yī gè xīng qī"
+      },
+      {
+        "chinese": "不能离开",
+        "gloss": "cannot leave",
+        "pinyin": "bù néng lí kāi"
+      },
+      {
+        "chinese": "开始的城市。",
+        "gloss": "their starting city",
+        "pinyin": "kāi shǐ de chéng shì 。"
+      }
+    ],
+    "pinyin": "xīn lái de rén ， dì yī gè xīng qī bù néng lí kāi kāi shǐ de chéng shì 。"
+  },
+  "现实里的一个星期，在游戏里是四个星期。": {
+    "interlinear": [
+      {
+        "chinese": "现实里的",
+        "gloss": "in the real world",
+        "pinyin": "xiàn shí lǐ de"
+      },
+      {
+        "chinese": "一个星期，",
+        "gloss": "one week",
+        "pinyin": "yí gè xīng qī ，"
+      },
+      {
+        "chinese": "在游戏里",
+        "gloss": "inside the game",
+        "pinyin": "zài yóu xì lǐ"
+      },
+      {
+        "chinese": "是四个星期。",
+        "gloss": "is four weeks",
+        "pinyin": "shì sì gè xīng qī 。"
+      }
+    ],
+    "pinyin": "xiàn shí lǐ de yí gè xīng qī ， zài yóu xì lǐ shì sì gè xīng qī 。"
+  },
+  "四个星期。我在这里做什么呢？": {
+    "interlinear": [
+      {
+        "chinese": "四个星期。",
+        "gloss": "Four weeks",
+        "pinyin": "sì gè xīng qī 。"
+      },
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "在这里",
+        "gloss": "here",
+        "pinyin": "zài zhè lǐ"
+      },
+      {
+        "chinese": "做什么呢？",
+        "gloss": "what should I do?",
+        "pinyin": "zuò shén me ne ？"
+      }
+    ],
+    "pinyin": "sì gè xīng qī 。 wǒ zài zhè lǐ zuò shén me ne ？"
+  },
+  "有人做简单的任务，有人学做衣服、打铁、做饭。": {
+    "interlinear": [
+      {
+        "chinese": "有人",
+        "gloss": "some people",
+        "pinyin": "yǒu rén"
+      },
+      {
+        "chinese": "做简单的任务，",
+        "gloss": "do simple quests",
+        "pinyin": "zuò jiǎn dān de rèn wu ，"
+      },
+      {
+        "chinese": "有人",
+        "gloss": "some people",
+        "pinyin": "yǒu rén"
+      },
+      {
+        "chinese": "学做衣服、",
+        "gloss": "learn to make clothes,",
+        "pinyin": "xué zuò yī fu 、"
+      },
+      {
+        "chinese": "打铁、",
+        "gloss": "work as blacksmiths,",
+        "pinyin": "dǎ tiě 、"
+      },
+      {
+        "chinese": "做饭。",
+        "gloss": "or cook",
+        "pinyin": "zuò fàn 。"
+      }
+    ],
+    "pinyin": "yǒu rén zuò jiǎn dān de rèn wu ， yǒu rén xué zuò yī fu 、 dǎ tiě 、 zuò fàn 。"
+  },
+  "也有人在图书馆或者商店工作，想得到一些钱。": {
+    "interlinear": [
+      {
+        "chinese": "也有人",
+        "gloss": "others also",
+        "pinyin": "yě yǒu rén"
+      },
+      {
+        "chinese": "在图书馆",
+        "gloss": "in libraries",
+        "pinyin": "zài tú shū guǎn"
+      },
+      {
+        "chinese": "或者商店",
+        "gloss": "or shops",
+        "pinyin": "huò zhě shāng diàn"
+      },
+      {
+        "chinese": "工作，",
+        "gloss": "work",
+        "pinyin": "gōng zuò ，"
+      },
+      {
+        "chinese": "想得到",
+        "gloss": "hoping to earn",
+        "pinyin": "xiǎng dé dào"
+      },
+      {
+        "chinese": "一些钱。",
+        "gloss": "some money",
+        "pinyin": "yì xiē qián 。"
+      }
+    ],
+    "pinyin": "yě yǒu rén zài tú shū guǎn huò zhě shāng diàn gōng zuò ， xiǎng dé dào yì xiē qián 。"
+  },
+  "在中间的大广场，有人买卖东西，也有人找一起出去的人。": {
+    "interlinear": [
+      {
+        "chinese": "在中间的",
+        "gloss": "in the central",
+        "pinyin": "zài zhōng jiān de"
+      },
+      {
+        "chinese": "大广场，",
+        "gloss": "large square",
+        "pinyin": "dà guǎng chǎng ，"
+      },
+      {
+        "chinese": "有人",
+        "gloss": "some people",
+        "pinyin": "yǒu rén"
+      },
+      {
+        "chinese": "买卖东西，",
+        "gloss": "buy and sell things",
+        "pinyin": "mǎi mài dōng xi ，"
+      },
+      {
+        "chinese": "也有人",
+        "gloss": "others",
+        "pinyin": "yě yǒu rén"
+      },
+      {
+        "chinese": "找",
+        "gloss": "look for",
+        "pinyin": "zhǎo"
+      },
+      {
+        "chinese": "一起出去的人。",
+        "gloss": "people to go out with",
+        "pinyin": "yì qǐ chū qù de rén 。"
+      }
+    ],
+    "pinyin": "zài zhōng jiān de dà guǎng chǎng ， yǒu rén mǎi mài dōng xi ， yě yǒu rén zhǎo yì qǐ chū qù de rén 。"
+  },
+  "他们有他们的办法。": {
+    "interlinear": [
+      {
+        "chinese": "他们",
+        "gloss": "they",
+        "pinyin": "tā men"
+      },
+      {
+        "chinese": "有",
+        "gloss": "have",
+        "pinyin": "yǒu"
+      },
+      {
+        "chinese": "他们的办法。",
+        "gloss": "their own ways",
+        "pinyin": "tā men de bàn fǎ 。"
+      }
+    ],
+    "pinyin": "tā men yǒu tā men de bàn fǎ 。"
+  },
+  "这里好像真的世界。可我不是来看美丽的房子的。": {
+    "interlinear": [
+      {
+        "chinese": "这里",
+        "gloss": "this place",
+        "pinyin": "zhè lǐ"
+      },
+      {
+        "chinese": "好像",
+        "gloss": "seems like",
+        "pinyin": "hǎo xiàng"
+      },
+      {
+        "chinese": "真的世界。",
+        "gloss": "the real world",
+        "pinyin": "zhēn de shì jiè 。"
+      },
+      {
+        "chinese": "可我",
+        "gloss": "but I",
+        "pinyin": "kě wǒ"
+      },
+      {
+        "chinese": "不是来",
+        "gloss": "didn't come to",
+        "pinyin": "bú shì lái"
+      },
+      {
+        "chinese": "看",
+        "gloss": "look at",
+        "pinyin": "kàn"
+      },
+      {
+        "chinese": "美丽的房子的。",
+        "gloss": "beautiful houses",
+        "pinyin": "měi lì de fáng zi de 。"
+      }
+    ],
+    "pinyin": "zhè lǐ hǎo xiàng zhēn de shì jiè 。 kě wǒ bú shì lái kàn měi lì de fáng zi de 。"
+  },
+  "身体能动。接下来，就要好好练习了。": {
+    "interlinear": [
+      {
+        "chinese": "身体能动。",
+        "gloss": "My body can move",
+        "pinyin": "shēn tǐ néng dòng 。"
+      },
+      {
+        "chinese": "接下来，",
+        "gloss": "next",
+        "pinyin": "jiē xià lái ，"
+      },
+      {
+        "chinese": "就要",
+        "gloss": "it's time to",
+        "pinyin": "jiù yào"
+      },
+      {
+        "chinese": "好好练习了。",
+        "gloss": "practice properly",
+        "pinyin": "hǎo hǎo liàn xí le 。"
+      }
+    ],
+    "pinyin": "shēn tǐ néng dòng 。 jiē xià lái ， jiù yào hǎo hǎo liàn xí le 。"
+  },
+  "我要去训练场。": {
+    "interlinear": [
+      {
+        "chinese": "我要去",
+        "gloss": "I'm going to",
+        "pinyin": "wǒ yào qù"
+      },
+      {
+        "chinese": "训练场。",
+        "gloss": "the Training Hall",
+        "pinyin": "xùn liàn chǎng 。"
+      }
+    ],
+    "pinyin": "wǒ yào qù xùn liàn chǎng 。"
+  },
+  "谁都可以去训练场，想在里面多久都可以。": {
+    "interlinear": [
+      {
+        "chinese": "谁都可以",
+        "gloss": "anyone can",
+        "pinyin": "shuí dōu kě yǐ"
+      },
+      {
+        "chinese": "去训练场，",
+        "gloss": "go to the Training Hall",
+        "pinyin": "qù xùn liàn chǎng ，"
+      },
+      {
+        "chinese": "想在里面多久",
+        "gloss": "however long they want to stay inside",
+        "pinyin": "xiǎng zài lǐ miàn duō jiǔ"
+      },
+      {
+        "chinese": "都可以。",
+        "gloss": "is allowed",
+        "pinyin": "dōu kě yǐ 。"
+      }
+    ],
+    "pinyin": "shuí dōu kě yǐ qù xùn liàn chǎng ， xiǎng zài lǐ miàn duō jiǔ dōu kě yǐ 。"
+  },
+  "大家一般去那里试新的技能，很少有人一进游戏就去练习。": {
+    "interlinear": [
+      {
+        "chinese": "大家一般",
+        "gloss": "people usually",
+        "pinyin": "dà jiā yì bān"
+      },
+      {
+        "chinese": "去那里",
+        "gloss": "go there",
+        "pinyin": "qù nà lǐ"
+      },
+      {
+        "chinese": "试新的技能，",
+        "gloss": "to test new skills",
+        "pinyin": "shì xīn de jì néng ，"
+      },
+      {
+        "chinese": "很少有人",
+        "gloss": "very few people",
+        "pinyin": "hěn shǎo yǒu rén"
+      },
+      {
+        "chinese": "一进游戏",
+        "gloss": "as soon as they enter the game",
+        "pinyin": "yí jìn yóu xì"
+      },
+      {
+        "chinese": "就去练习。",
+        "gloss": "go straight to practice",
+        "pinyin": "jiù qù liàn xí 。"
+      }
+    ],
+    "pinyin": "dà jiā yì bān qù nà lǐ shì xīn de jì néng ， hěn shǎo yǒu rén yí jìn yóu xì jiù qù liàn xí 。"
+  },
+  "很多人觉得，在那里练习，没什么用。": {
+    "interlinear": [
+      {
+        "chinese": "很多人觉得，",
+        "gloss": "many people think",
+        "pinyin": "hěn duō rén jué de ，"
+      },
+      {
+        "chinese": "在那里练习，",
+        "gloss": "practicing there",
+        "pinyin": "zài nà lǐ liàn xí ，"
+      },
+      {
+        "chinese": "没什么用。",
+        "gloss": "isn't much use",
+        "pinyin": "méi shén me yòng 。"
+      }
+    ],
+    "pinyin": "hěn duō rén jué de ， zài nà lǐ liàn xí ， méi shén me yòng 。"
+  },
+  "我还是要去。": {
+    "interlinear": [
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "还是要去。",
+        "gloss": "am going anyway",
+        "pinyin": "hái shì yào qù 。"
+      }
+    ],
+    "pinyin": "wǒ hái shì yào qù 。"
+  },
+  "我走向训练场。这一次，我知道自己要去哪里。": {
+    "interlinear": [
+      {
+        "chinese": "我走向",
+        "gloss": "I head toward",
+        "pinyin": "wǒ zǒu xiàng"
+      },
+      {
+        "chinese": "训练场。",
+        "gloss": "the Training Hall",
+        "pinyin": "xùn liàn chǎng 。"
+      },
+      {
+        "chinese": "这一次，",
+        "gloss": "this time",
+        "pinyin": "zhè yí cì ，"
+      },
+      {
+        "chinese": "我知道",
+        "gloss": "I know",
+        "pinyin": "wǒ zhī dào"
+      },
+      {
+        "chinese": "自己",
+        "gloss": "I myself",
+        "pinyin": "zì jǐ"
+      },
+      {
+        "chinese": "要去哪里。",
+        "gloss": "where I'm going",
+        "pinyin": "yào qù nǎ lǐ 。"
+      }
+    ],
+    "pinyin": "wǒ zǒu xiàng xùn liàn chǎng 。 zhè yí cì ， wǒ zhī dào zì jǐ yào qù nǎ lǐ 。"
+  }
+}
