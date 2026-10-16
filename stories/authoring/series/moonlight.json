@@ -5,9 +5,9 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_02.xhtml",
-    "nextStart": "While Weed was busy devouring lunch, the instructor suddenly asked,",
-    "nextEndBefore": "Weed expected the instructor to change the topic of the conversation,",
-    "continuationNote": "Next cover the Sculpture Mastery question, Hyun reading the instructor’s sword-centered values, his disparaging reply and their increased affinity. Stop before the moonlight-carving rumor."
+    "nextStart": "Weed expected the instructor to change the topic of the conversation,",
+    "nextEndBefore": "Weed barely held a whisper of triumph at bay.",
+    "continuationNote": "Cover the rumor of carving moonlight, its royal-knight source, and the instructor’s request. End with the E-level quest offer, before Hyun evaluates or accepts it."
   },
   "completed": [
     {
@@ -57,9 +57,13 @@
     {
       "episode": "moonlight-12-v1",
       "end": "Hunger and dwindling bread lead Hyun to flatter the instructor, share his lunch and recognize their growing affinity. Stop before the Sculpture Mastery question."
+    },
+    {
+      "episode": "moonlight-13-v1",
+      "end": "Over lunch Hyun echoes the instructor’s disdain for Sculpture Mastery, wins greater affinity, and privately recognizes their shared criticism as a shortcut to approval. Stops before the moonlight-carving rumor."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-12.json",
+  "assetsFrom": "stories/animated/moonlight-13.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -77,15 +81,15 @@
   "continuity": [
     "Grandmother remains hospitalized and the old debt is paid. Do not invent an exact current balance.",
     "Three in-game weeks have passed. Training gains are STR +28, AGI +25, VIT +22; Sword Mastery Beginner level 3 at 0%, +30% attack and +9% speed. Fighting Spirit and Endurance have appeared.",
-    "Bread is dwindling. Hyun has just shared the instructor’s lunch after flattering him. The instructor hopes Hyun will remember him when famous; their affinity has grown.",
-    "Episode 12 choices concern bread/money and promise/thanks, with within-episode callbacks only. Next is the question about Sculpture Mastery, before the moonlight-carving rumor."
+    "Hyun is sharing the instructor’s lunch. He has disparaged Sculpture Mastery to please the sword-centered instructor, increasing their affinity. He has not yet heard the moonlight-carving rumor or accepted a quest.",
+    "Episode 13 choices concern interpreting the instructor and phrasing his reply; callbacks remain within this episode."
   ],
   "castRecipes": "stories/characters/lms-cast.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through moonlight-12-v1",
-    "nextStart": "While Weed was busy devouring lunch, the instructor suddenly asked,",
-    "nextEndBefore": "Weed expected the instructor to change the topic of the conversation,",
-    "assetsFrom": "stories/animated/moonlight-12.json"
+    "note": "Published through moonlight-13-v1",
+    "nextStart": "Weed expected the instructor to change the topic of the conversation,",
+    "nextEndBefore": "Weed barely held a whisper of triumph at bay.",
+    "assetsFrom": "stories/animated/moonlight-13.json"
   }
 }
