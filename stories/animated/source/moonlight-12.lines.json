@@ -1,0 +1,926 @@
+{
+  "我还在练习，肚子却先叫起来了。": {
+    "english": "I am still training, but my stomach starts growling first.",
+    "interlinear": [
+      {
+        "chinese": "我还在练习，",
+        "gloss": "I am still training,",
+        "pinyin": "wǒ hái zài liàn xí ，"
+      },
+      {
+        "chinese": "肚子却",
+        "gloss": "but my stomach",
+        "pinyin": "dù zi què"
+      },
+      {
+        "chinese": "先叫起来了。",
+        "gloss": "starts growling first.",
+        "pinyin": "xiān jiào qǐ lái le 。"
+      }
+    ],
+    "pinyin": "wǒ hái zài liàn xí ， dù zi què xiān jiào qǐ lái le 。"
+  },
+  "又饿了……现在不是吃饭的时候吧。": {
+    "english": "Hungry again… Surely now is not the time to eat.",
+    "interlinear": [
+      {
+        "chinese": "又饿了……",
+        "gloss": "Hungry again…",
+        "pinyin": "yòu è le … …"
+      },
+      {
+        "chinese": "现在不是",
+        "gloss": "Surely now is not",
+        "pinyin": "xiàn zài bú shì"
+      },
+      {
+        "chinese": "吃饭的时候吧。",
+        "gloss": "the time to eat.",
+        "pinyin": "chī fàn de shí hòu ba 。"
+      }
+    ],
+    "pinyin": "yòu è le … … xiàn zài bú shì chī fàn de shí hòu ba 。"
+  },
+  "练习的效果来得慢，面包却吃得太快。": {
+    "english": "The results of training come slowly, but the bread gets eaten too quickly.",
+    "interlinear": [
+      {
+        "chinese": "练习的效果",
+        "gloss": "The results of training",
+        "pinyin": "liàn xí de xiào guǒ"
+      },
+      {
+        "chinese": "来得慢，",
+        "gloss": "come slowly,",
+        "pinyin": "lái de màn ，"
+      },
+      {
+        "chinese": "面包却",
+        "gloss": "but the bread",
+        "pinyin": "miàn bāo què"
+      },
+      {
+        "chinese": "吃得太快。",
+        "gloss": "gets eaten too quickly.",
+        "pinyin": "chī de tài kuài 。"
+      }
+    ],
+    "pinyin": "liàn xí de xiào guǒ lái de màn ， miàn bāo què chī de tài kuài 。"
+  },
+  "水喝完了，可以去外面再拿。面包吃完了，就得花钱买。": {
+    "english": "When the water runs out, I can go outside and get more. When the bread runs out, I have to pay for more.",
+    "interlinear": [
+      {
+        "chinese": "水喝完了，",
+        "gloss": "When the water runs out,",
+        "pinyin": "shuǐ hē wán le ，"
+      },
+      {
+        "chinese": "可以去外面",
+        "gloss": "I can go outside",
+        "pinyin": "kě yǐ qù wài miàn"
+      },
+      {
+        "chinese": "再拿。",
+        "gloss": "and get more.",
+        "pinyin": "zài ná 。"
+      },
+      {
+        "chinese": "面包吃完了，",
+        "gloss": "When the bread runs out,",
+        "pinyin": "miàn bāo chī wán le ，"
+      },
+      {
+        "chinese": "就得花钱买。",
+        "gloss": "I have to pay for more.",
+        "pinyin": "jiù děi huā qián mǎi 。"
+      }
+    ],
+    "pinyin": "shuǐ hē wán le ， kě yǐ qù wài miàn zài ná 。 miàn bāo chī wán le ， jiù děi huā qián mǎi 。"
+  },
+  "想想还有几个面包。": {
+    "english": "Think about how many loaves are left.",
+    "interlinear": [
+      {
+        "chinese": "想想",
+        "gloss": "Think about",
+        "pinyin": "xiǎng xiǎng"
+      },
+      {
+        "chinese": "还有几个面包。",
+        "gloss": "how many loaves are left.",
+        "pinyin": "hái yǒu jǐ gè miàn bāo 。"
+      }
+    ],
+    "pinyin": "xiǎng xiǎng hái yǒu jǐ gè miàn bāo 。"
+  },
+  "想想买面包的钱。": {
+    "english": "Think about the money for bread.",
+    "interlinear": [
+      {
+        "chinese": "想想",
+        "gloss": "Think about",
+        "pinyin": "xiǎng xiǎng"
+      },
+      {
+        "chinese": "买面包的钱。",
+        "gloss": "the money for bread.",
+        "pinyin": "mǎi miàn bāo de qián 。"
+      }
+    ],
+    "pinyin": "xiǎng xiǎng mǎi miàn bāo de qián 。"
+  },
+  "再这样吃下去，很快就没有了。": {
+    "english": "If I keep eating like this, soon there will be none left.",
+    "interlinear": [
+      {
+        "chinese": "再这样",
+        "gloss": "If I keep",
+        "pinyin": "zài zhè yàng"
+      },
+      {
+        "chinese": "吃下去，",
+        "gloss": "eating like this,",
+        "pinyin": "chī xià qù ，"
+      },
+      {
+        "chinese": "很快就没有了。",
+        "gloss": "soon there will be none left.",
+        "pinyin": "hěn kuài jiù méi yǒu le 。"
+      }
+    ],
+    "pinyin": "zài zhè yàng chī xià qù ， hěn kuài jiù méi yǒu le 。"
+  },
+  "进来是为了钱，怎么先花钱吃饭了？": {
+    "english": "I came here for money; why am I already paying to eat?",
+    "interlinear": [
+      {
+        "chinese": "进来是",
+        "gloss": "I came here",
+        "pinyin": "jìn lái shì"
+      },
+      {
+        "chinese": "为了钱，",
+        "gloss": "for money;",
+        "pinyin": "wèi le qián ，"
+      },
+      {
+        "chinese": "怎么先花钱",
+        "gloss": "why am I already paying",
+        "pinyin": "zěn me xiān huā qián"
+      },
+      {
+        "chinese": "吃饭了？",
+        "gloss": "to eat?",
+        "pinyin": "chī fàn le ？"
+      }
+    ],
+    "pinyin": "jìn lái shì wèi le qián ， zěn me xiān huā qián chī fàn le ？"
+  },
+  "这时候，饭菜的香味过来了。": {
+    "english": "Just then, the aroma of food drifts over.",
+    "interlinear": [
+      {
+        "chinese": "这时候，",
+        "gloss": "Just then,",
+        "pinyin": "zhè shí hòu ，"
+      },
+      {
+        "chinese": "饭菜的香味",
+        "gloss": "the aroma of food",
+        "pinyin": "fàn cài de xiāng wèi"
+      },
+      {
+        "chinese": "过来了。",
+        "gloss": "drifts over.",
+        "pinyin": "guò lái le 。"
+      }
+    ],
+    "pinyin": "zhè shí hòu ， fàn cài de xiāng wèi guò lái le 。"
+  },
+  "谁在吃饭？闻起来真好！": {
+    "english": "Who is eating? It smells wonderful!",
+    "interlinear": [
+      {
+        "chinese": "谁在吃饭？",
+        "gloss": "Who is eating?",
+        "pinyin": "shuí zài chī fàn ？"
+      },
+      {
+        "chinese": "闻起来",
+        "gloss": "It smells",
+        "pinyin": "wén qǐ lái"
+      },
+      {
+        "chinese": "真好！",
+        "gloss": "wonderful!",
+        "pinyin": "zhēn hǎo ！"
+      }
+    ],
+    "pinyin": "shuí zài chī fàn ？ wén qǐ lái zhēn hǎo ！"
+  },
+  "教官正在拿出自己的午饭。我的手停了，眼睛也跟着过去了。": {
+    "english": "The instructor is taking out his lunch. My hands stop, and my eyes follow it over.",
+    "interlinear": [
+      {
+        "chinese": "教官正在",
+        "gloss": "The instructor is",
+        "pinyin": "jiào guān zhèng zài"
+      },
+      {
+        "chinese": "拿出",
+        "gloss": "taking out",
+        "pinyin": "ná chū"
+      },
+      {
+        "chinese": "自己的午饭。",
+        "gloss": "his lunch.",
+        "pinyin": "zì jǐ de wǔ fàn 。"
+      },
+      {
+        "chinese": "我的手停了，",
+        "gloss": "My hands stop,",
+        "pinyin": "wǒ de shǒu tíng le ，"
+      },
+      {
+        "chinese": "眼睛也",
+        "gloss": "and my eyes",
+        "pinyin": "yǎn jīng yě"
+      },
+      {
+        "chinese": "跟着过去了。",
+        "gloss": "follow it over.",
+        "pinyin": "gēn zhe guò qù le 。"
+      }
+    ],
+    "pinyin": "jiào guān zhèng zài ná chū zì jǐ de wǔ fàn 。 wǒ de shǒu tíng le ， yǎn jīng yě gēn zhe guò qù le 。"
+  },
+  "教官！您好啊！": {
+    "english": "Instructor! Hello there!",
+    "interlinear": [
+      {
+        "chinese": "教官！",
+        "gloss": "Instructor!",
+        "pinyin": "jiào guān ！"
+      },
+      {
+        "chinese": "您好啊！",
+        "gloss": "Hello there!",
+        "pinyin": "nín hǎo a ！"
+      }
+    ],
+    "pinyin": "jiào guān ！ nín hǎo a ！"
+  },
+  "我走过去。要是我有尾巴，现在一定已经动起来了。": {
+    "english": "I walk over. If I had a tail, by now it would surely already be wagging.",
+    "interlinear": [
+      {
+        "chinese": "我走过去。",
+        "gloss": "I walk over.",
+        "pinyin": "wǒ zǒu guò qù 。"
+      },
+      {
+        "chinese": "要是我有尾巴，",
+        "gloss": "If I had a tail,",
+        "pinyin": "yào shi wǒ yǒu wěi ba ，"
+      },
+      {
+        "chinese": "现在一定",
+        "gloss": "by now it would surely",
+        "pinyin": "xiàn zài yí dìng"
+      },
+      {
+        "chinese": "已经动起来了。",
+        "gloss": "already be wagging.",
+        "pinyin": "yǐ jīng dòng qǐ lái le 。"
+      }
+    ],
+    "pinyin": "wǒ zǒu guò qù 。 yào shi wǒ yǒu wěi ba ， xiàn zài yí dìng yǐ jīng dòng qǐ lái le 。"
+  },
+  "哦，是你啊！怎么过来了？": {
+    "english": "Oh, it is you! What brings you over?",
+    "interlinear": [
+      {
+        "chinese": "哦，",
+        "gloss": "Oh,",
+        "pinyin": "ò ，"
+      },
+      {
+        "chinese": "是你啊！",
+        "gloss": "it is you!",
+        "pinyin": "shì nǐ a ！"
+      },
+      {
+        "chinese": "怎么过来了？",
+        "gloss": "What brings you over?",
+        "pinyin": "zěn me guò lái le ？"
+      }
+    ],
+    "pinyin": "ò ， shì nǐ a ！ zěn me guò lái le ？"
+  },
+  "一个人吃饭，不会太安静了吗？我来和您说说话。": {
+    "english": "Eating alone, is it not too quiet? I have come to chat with you.",
+    "interlinear": [
+      {
+        "chinese": "一个人吃饭，",
+        "gloss": "Eating alone,",
+        "pinyin": "yí gè rén chī fàn ，"
+      },
+      {
+        "chinese": "不会太安静了吗？",
+        "gloss": "is it not too quiet?",
+        "pinyin": "bú huì tài ān jìng le ma ？"
+      },
+      {
+        "chinese": "我来和您",
+        "gloss": "I have come",
+        "pinyin": "wǒ lái hé nín"
+      },
+      {
+        "chinese": "说说话。",
+        "gloss": "to chat with you.",
+        "pinyin": "shuō shuō huà 。"
+      }
+    ],
+    "pinyin": "yí gè rén chī fàn ， bú huì tài ān jìng le ma ？ wǒ lái hé nín shuō shuō huà 。"
+  },
+  "话刚说完，肚子又叫了一声。这次比我说得还清楚。": {
+    "english": "As soon as I finish speaking, my stomach growls again. This time it speaks even more clearly than I do.",
+    "interlinear": [
+      {
+        "chinese": "话刚说完，",
+        "gloss": "As soon as I finish speaking,",
+        "pinyin": "huà gāng shuō wán ，"
+      },
+      {
+        "chinese": "肚子又叫了一声。",
+        "gloss": "my stomach growls again.",
+        "pinyin": "dù zi yòu jiào le yì shēng 。"
+      },
+      {
+        "chinese": "这次比我",
+        "gloss": "This time it speaks",
+        "pinyin": "zhè cì bǐ wǒ"
+      },
+      {
+        "chinese": "说得还清楚。",
+        "gloss": "even more clearly than I do.",
+        "pinyin": "shuō de hái qīng chu 。"
+      }
+    ],
+    "pinyin": "huà gāng shuō wán ， dù zi yòu jiào le yì shēng 。 zhè cì bǐ wǒ shuō de hái qīng chu 。"
+  },
+  "你是饿了吧？来，坐在我旁边。": {
+    "english": "You are hungry, are you not? Come, sit beside me.",
+    "interlinear": [
+      {
+        "chinese": "你是饿了吧？",
+        "gloss": "You are hungry, are you not?",
+        "pinyin": "nǐ shì è le ba ？"
+      },
+      {
+        "chinese": "来，",
+        "gloss": "Come,",
+        "pinyin": "lái ，"
+      },
+      {
+        "chinese": "坐在我旁边。",
+        "gloss": "sit beside me.",
+        "pinyin": "zuò zài wǒ páng biān 。"
+      }
+    ],
+    "pinyin": "nǐ shì è le ba ？ lái ， zuò zài wǒ páng biān 。"
+  },
+  "我带得多，两个人也吃不完。": {
+    "english": "I brought plenty; even two people could not finish it.",
+    "interlinear": [
+      {
+        "chinese": "我带得多，",
+        "gloss": "I brought plenty;",
+        "pinyin": "wǒ dài de duō ，"
+      },
+      {
+        "chinese": "两个人也",
+        "gloss": "even two people",
+        "pinyin": "liǎng gè rén yě"
+      },
+      {
+        "chinese": "吃不完。",
+        "gloss": "could not finish it.",
+        "pinyin": "chī bù wán 。"
+      }
+    ],
+    "pinyin": "wǒ dài de duō ， liǎng gè rén yě chī bù wán 。"
+  },
+  "谢谢您！": {
+    "english": "Thank you!",
+    "interlinear": [
+      {
+        "chinese": "谢谢您！",
+        "gloss": "Thank you!",
+        "pinyin": "xiè xie nín ！"
+      }
+    ],
+    "pinyin": "xiè xie nín ！"
+  },
+  "刚才还在担心面包，现在面前就是午饭。": {
+    "english": "A moment ago I was worrying about bread; now right before me is lunch.",
+    "interlinear": [
+      {
+        "chinese": "刚才还在",
+        "gloss": "A moment ago I was",
+        "pinyin": "gāng cái hái zài"
+      },
+      {
+        "chinese": "担心面包，",
+        "gloss": "worrying about bread;",
+        "pinyin": "dān xīn miàn bāo ，"
+      },
+      {
+        "chinese": "现在面前",
+        "gloss": "now right before me",
+        "pinyin": "xiàn zài miàn qián"
+      },
+      {
+        "chinese": "就是午饭。",
+        "gloss": "is lunch.",
+        "pinyin": "jiù shì wǔ fàn 。"
+      }
+    ],
+    "pinyin": "gāng cái hái zài dān xīn miàn bāo ， xiàn zài miàn qián jiù shì wǔ fàn 。"
+  },
+  "刚才还在担心花钱，现在可以好好吃饭了。": {
+    "english": "A moment ago I was worrying about spending money; now I can have a proper meal.",
+    "interlinear": [
+      {
+        "chinese": "刚才还在",
+        "gloss": "A moment ago I was",
+        "pinyin": "gāng cái hái zài"
+      },
+      {
+        "chinese": "担心花钱，",
+        "gloss": "worrying about spending money;",
+        "pinyin": "dān xīn huā qián ，"
+      },
+      {
+        "chinese": "现在可以",
+        "gloss": "now I can",
+        "pinyin": "xiàn zài kě yǐ"
+      },
+      {
+        "chinese": "好好吃饭了。",
+        "gloss": "have a proper meal.",
+        "pinyin": "hǎo hǎo chī fàn le 。"
+      }
+    ],
+    "pinyin": "gāng cái hái zài dān xīn huā qián ， xiàn zài kě yǐ hǎo hǎo chī fàn le 。"
+  },
+  "不用谢。以后你会成为了不起的冒险者，能请你吃饭，我也很开心。": {
+    "english": "No need to thank me. One day you will become a great adventurer; being able to treat you to a meal makes me happy too.",
+    "interlinear": [
+      {
+        "chinese": "不用谢。",
+        "gloss": "No need to thank me.",
+        "pinyin": "bú yòng xiè 。"
+      },
+      {
+        "chinese": "以后你会成为",
+        "gloss": "One day you will become",
+        "pinyin": "yǐ hòu nǐ huì chéng wéi"
+      },
+      {
+        "chinese": "了不起的冒险者，",
+        "gloss": "a great adventurer;",
+        "pinyin": "liǎo bù qǐ de mào xiǎn zhě ，"
+      },
+      {
+        "chinese": "能请你吃饭，",
+        "gloss": "being able to treat you to a meal",
+        "pinyin": "néng qǐng nǐ chī fàn ，"
+      },
+      {
+        "chinese": "我也很开心。",
+        "gloss": "makes me happy too.",
+        "pinyin": "wǒ yě hěn kāi xīn 。"
+      }
+    ],
+    "pinyin": "bú yòng xiè 。 yǐ hòu nǐ huì chéng wéi liǎo bù qǐ de mào xiǎn zhě ， néng qǐng nǐ chī fàn ， wǒ yě hěn kāi xīn 。"
+  },
+  "我还没有离开城市，教官已经想到那么远了。": {
+    "english": "I have not even left the city, and the instructor is already thinking that far ahead.",
+    "interlinear": [
+      {
+        "chinese": "我还没有",
+        "gloss": "I have not even",
+        "pinyin": "wǒ hái méi yǒu"
+      },
+      {
+        "chinese": "离开城市，",
+        "gloss": "left the city,",
+        "pinyin": "lí kāi chéng shì ，"
+      },
+      {
+        "chinese": "教官已经",
+        "gloss": "and the instructor is already",
+        "pinyin": "jiào guān yǐ jīng"
+      },
+      {
+        "chinese": "想到那么远了。",
+        "gloss": "thinking that far ahead.",
+        "pinyin": "xiǎng dào nà me yuǎn le 。"
+      }
+    ],
+    "pinyin": "wǒ hái méi yǒu lí kāi chéng shì ， jiào guān yǐ jīng xiǎng dào nà me yuǎn le 。"
+  },
+  "有一天，城市外面的人也会听说你的名字。": {
+    "english": "One day, people beyond the city will also hear your name.",
+    "interlinear": [
+      {
+        "chinese": "有一天，",
+        "gloss": "One day,",
+        "pinyin": "yǒu yì tiān ，"
+      },
+      {
+        "chinese": "城市外面的人",
+        "gloss": "people beyond the city",
+        "pinyin": "chéng shì wài miàn de rén"
+      },
+      {
+        "chinese": "也会听说",
+        "gloss": "will also hear",
+        "pinyin": "yě huì tīng shuō"
+      },
+      {
+        "chinese": "你的名字。",
+        "gloss": "your name.",
+        "pinyin": "nǐ de míng zì 。"
+      }
+    ],
+    "pinyin": "yǒu yì tiān ， chéng shì wài miàn de rén yě huì tīng shuō nǐ de míng zì 。"
+  },
+  "到了那个时候，可别忘记我啊。": {
+    "english": "When that time comes, do remember me.",
+    "interlinear": [
+      {
+        "chinese": "到了那个时候，",
+        "gloss": "When that time comes,",
+        "pinyin": "dào le nà ge shí hòu ，"
+      },
+      {
+        "chinese": "可别忘记我啊。",
+        "gloss": "do remember me.",
+        "pinyin": "kě bié wàng jì wǒ a 。"
+      }
+    ],
+    "pinyin": "dào le nà ge shí hòu ， kě bié wàng jì wǒ a 。"
+  },
+  "我一定会记得您。": {
+    "english": "I will certainly remember you.",
+    "interlinear": [
+      {
+        "chinese": "我一定会",
+        "gloss": "I will certainly",
+        "pinyin": "wǒ yí dìng huì"
+      },
+      {
+        "chinese": "记得您。",
+        "gloss": "remember you.",
+        "pinyin": "jì de nín 。"
+      }
+    ],
+    "pinyin": "wǒ yí dìng huì jì de nín 。"
+  },
+  "您对我这么好，我怎么会忘记呢？": {
+    "english": "You are so kind to me; how could I forget?",
+    "interlinear": [
+      {
+        "chinese": "您对我这么好，",
+        "gloss": "You are so kind to me;",
+        "pinyin": "nín duì wǒ zhè me hǎo ，"
+      },
+      {
+        "chinese": "我怎么会忘记呢？",
+        "gloss": "how could I forget?",
+        "pinyin": "wǒ zěn me huì wàng jì ne ？"
+      }
+    ],
+    "pinyin": "nín duì wǒ zhè me hǎo ， wǒ zěn me huì wàng jì ne ？"
+  },
+  "以后大家知道我，也会知道是谁请我吃饭的。": {
+    "english": "When people know me one day, they will also know who treated me to a meal.",
+    "interlinear": [
+      {
+        "chinese": "以后大家知道我，",
+        "gloss": "When people know me one day,",
+        "pinyin": "yǐ hòu dà jiā zhī dào wǒ ，"
+      },
+      {
+        "chinese": "也会知道",
+        "gloss": "they will also know",
+        "pinyin": "yě huì zhī dào"
+      },
+      {
+        "chinese": "是谁请我吃饭的。",
+        "gloss": "who treated me to a meal.",
+        "pinyin": "shì shuí qǐng wǒ chī fàn de 。"
+      }
+    ],
+    "pinyin": "yǐ hòu dà jiā zhī dào wǒ ， yě huì zhī dào shì shuí qǐng wǒ chī fàn de 。"
+  },
+  "今天的午饭，我会好好记在心里。": {
+    "english": "Today's lunch I will carefully keep in my heart.",
+    "interlinear": [
+      {
+        "chinese": "今天的午饭，",
+        "gloss": "Today's lunch",
+        "pinyin": "jīn tiān de wǔ fàn ，"
+      },
+      {
+        "chinese": "我会好好",
+        "gloss": "I will carefully",
+        "pinyin": "wǒ huì hǎo hǎo"
+      },
+      {
+        "chinese": "记在心里。",
+        "gloss": "keep in my heart.",
+        "pinyin": "jì zài xīn lǐ 。"
+      }
+    ],
+    "pinyin": "jīn tiān de wǔ fàn ， wǒ huì hǎo hǎo jì zài xīn lǐ 。"
+  },
+  "教官听了很开心。我也终于吃上了午饭。": {
+    "english": "Hearing that makes the instructor very happy. I finally get to eat lunch too.",
+    "interlinear": [
+      {
+        "chinese": "教官听了",
+        "gloss": "Hearing that makes the instructor",
+        "pinyin": "jiào guān tīng le"
+      },
+      {
+        "chinese": "很开心。",
+        "gloss": "very happy.",
+        "pinyin": "hěn kāi xīn 。"
+      },
+      {
+        "chinese": "我也终于",
+        "gloss": "I finally",
+        "pinyin": "wǒ yě zhōng yú"
+      },
+      {
+        "chinese": "吃上了午饭。",
+        "gloss": "get to eat lunch too.",
+        "pinyin": "chī shàng le wǔ fàn 。"
+      }
+    ],
+    "pinyin": "jiào guān tīng le hěn kāi xīn 。 wǒ yě zhōng yú chī shàng le wǔ fàn 。"
+  },
+  "我坐在教官旁边，一口接着一口。": {
+    "english": "I sit beside the instructor, eating one mouthful after another.",
+    "interlinear": [
+      {
+        "chinese": "我坐在",
+        "gloss": "I sit",
+        "pinyin": "wǒ zuò zài"
+      },
+      {
+        "chinese": "教官旁边，",
+        "gloss": "beside the instructor,",
+        "pinyin": "jiào guān páng biān ，"
+      },
+      {
+        "chinese": "一口接着一口。",
+        "gloss": "eating one mouthful after another.",
+        "pinyin": "yì kǒu jiē zhe yì kǒu 。"
+      }
+    ],
+    "pinyin": "wǒ zuò zài jiào guān páng biān ， yì kǒu jiē zhe yì kǒu 。"
+  },
+  "真好吃！": {
+    "english": "Delicious!",
+    "interlinear": [
+      {
+        "chinese": "真好吃！",
+        "gloss": "Delicious!",
+        "pinyin": "zhēn hǎo chī ！"
+      }
+    ],
+    "pinyin": "zhēn hǎo chī ！"
+  },
+  "为了吃饭，说了这么多好听的话，我也觉得自己有点可怜。": {
+    "english": "For a meal, I have said so many flattering things that even I find myself a little pitiful.",
+    "interlinear": [
+      {
+        "chinese": "为了吃饭，",
+        "gloss": "For a meal,",
+        "pinyin": "wèi le chī fàn ，"
+      },
+      {
+        "chinese": "说了这么多",
+        "gloss": "I have said so many",
+        "pinyin": "shuō le zhè me duō"
+      },
+      {
+        "chinese": "好听的话，",
+        "gloss": "flattering things",
+        "pinyin": "hǎo tīng de huà ，"
+      },
+      {
+        "chinese": "我也觉得自己",
+        "gloss": "that even I find myself",
+        "pinyin": "wǒ yě jué de zì jǐ"
+      },
+      {
+        "chinese": "有点可怜。",
+        "gloss": "a little pitiful.",
+        "pinyin": "yǒu diǎn kě lián 。"
+      }
+    ],
+    "pinyin": "wèi le chī fàn ， shuō le zhè me duō hǎo tīng de huà ， wǒ yě jué de zì jǐ yǒu diǎn kě lián 。"
+  },
+  "不过，教官是游戏里的人。跟游戏里的人说点好话，也没关系吧？": {
+    "english": "Still, the instructor is a character in the game. To someone in a game, saying a few flattering things is no big deal, right?",
+    "interlinear": [
+      {
+        "chinese": "不过，",
+        "gloss": "Still,",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "教官是",
+        "gloss": "the instructor is",
+        "pinyin": "jiào guān shì"
+      },
+      {
+        "chinese": "游戏里的人。",
+        "gloss": "a character in the game.",
+        "pinyin": "yóu xì lǐ de rén 。"
+      },
+      {
+        "chinese": "跟游戏里的人",
+        "gloss": "To someone in a game,",
+        "pinyin": "gēn yóu xì lǐ de rén"
+      },
+      {
+        "chinese": "说点好话，",
+        "gloss": "saying a few flattering things",
+        "pinyin": "shuō diǎn hǎo huà ，"
+      },
+      {
+        "chinese": "也没关系吧？",
+        "gloss": "is no big deal, right?",
+        "pinyin": "yě méi guān xì ba ？"
+      }
+    ],
+    "pinyin": "bú guò ， jiào guān shì yóu xì lǐ de rén 。 gēn yóu xì lǐ de rén shuō diǎn hǎo huà ， yě méi guān xì ba ？"
+  },
+  "肚子里有了东西，心里也舒服了。": {
+    "english": "With food in my stomach, I feel better inside too.",
+    "interlinear": [
+      {
+        "chinese": "肚子里",
+        "gloss": "With food",
+        "pinyin": "dù zi lǐ"
+      },
+      {
+        "chinese": "有了东西，",
+        "gloss": "in my stomach,",
+        "pinyin": "yǒu le dōng xi ，"
+      },
+      {
+        "chinese": "心里也",
+        "gloss": "I feel",
+        "pinyin": "xīn lǐ yě"
+      },
+      {
+        "chinese": "舒服了。",
+        "gloss": "better inside too.",
+        "pinyin": "shū fú le 。"
+      }
+    ],
+    "pinyin": "dù zi lǐ yǒu le dōng xi ， xīn lǐ yě shū fú le 。"
+  },
+  "刚才说一定会记得教官。这三个星期，教官也一直记得我。": {
+    "english": "I just said I would certainly remember the instructor. For these three weeks, the instructor has also always remembered me.",
+    "interlinear": [
+      {
+        "chinese": "刚才说",
+        "gloss": "I just said",
+        "pinyin": "gāng cái shuō"
+      },
+      {
+        "chinese": "一定会记得教官。",
+        "gloss": "I would certainly remember the instructor.",
+        "pinyin": "yí dìng huì jì de jiào guān 。"
+      },
+      {
+        "chinese": "这三个星期，",
+        "gloss": "For these three weeks,",
+        "pinyin": "zhè sān gè xīng qī ，"
+      },
+      {
+        "chinese": "教官也一直",
+        "gloss": "the instructor has also always",
+        "pinyin": "jiào guān yě yì zhí"
+      },
+      {
+        "chinese": "记得我。",
+        "gloss": "remembered me.",
+        "pinyin": "jì de wǒ 。"
+      }
+    ],
+    "pinyin": "gāng cái shuō yí dìng huì jì de jiào guān 。 zhè sān gè xīng qī ， jiào guān yě yì zhí jì de wǒ 。"
+  },
+  "刚才说不会忘记。这三个星期，教官对我真的很好。": {
+    "english": "I just said I would not forget. For these three weeks, the instructor has been very kind to me.",
+    "interlinear": [
+      {
+        "chinese": "刚才说",
+        "gloss": "I just said",
+        "pinyin": "gāng cái shuō"
+      },
+      {
+        "chinese": "不会忘记。",
+        "gloss": "I would not forget.",
+        "pinyin": "bú huì wàng jì 。"
+      },
+      {
+        "chinese": "这三个星期，",
+        "gloss": "For these three weeks,",
+        "pinyin": "zhè sān gè xīng qī ，"
+      },
+      {
+        "chinese": "教官对我",
+        "gloss": "the instructor has",
+        "pinyin": "jiào guān duì wǒ"
+      },
+      {
+        "chinese": "真的很好。",
+        "gloss": "been very kind to me.",
+        "pinyin": "zhēn de hěn hǎo 。"
+      }
+    ],
+    "pinyin": "gāng cái shuō bú huì wàng jì 。 zhè sān gè xīng qī ， jiào guān duì wǒ zhēn de hěn hǎo 。"
+  },
+  "三个星期，变好的不只是身体。我和教官，也越来越了解对方了。": {
+    "english": "Over three weeks, what has improved is more than my body. The instructor and I have increasingly come to know each other.",
+    "interlinear": [
+      {
+        "chinese": "三个星期，",
+        "gloss": "Over three weeks,",
+        "pinyin": "sān gè xīng qī ，"
+      },
+      {
+        "chinese": "变好的",
+        "gloss": "what has improved",
+        "pinyin": "biàn hǎo de"
+      },
+      {
+        "chinese": "不只是身体。",
+        "gloss": "is more than my body.",
+        "pinyin": "bù zhǐ shì shēn tǐ 。"
+      },
+      {
+        "chinese": "我和教官，",
+        "gloss": "The instructor and I",
+        "pinyin": "wǒ hé jiào guān ，"
+      },
+      {
+        "chinese": "也越来越",
+        "gloss": "have increasingly",
+        "pinyin": "yě yuè lái yuè"
+      },
+      {
+        "chinese": "了解对方了。",
+        "gloss": "come to know each other.",
+        "pinyin": "liǎo jiě duì fāng le 。"
+      }
+    ],
+    "pinyin": "sān gè xīng qī ， biàn hǎo de bù zhǐ shì shēn tǐ 。 wǒ hé jiào guān ， yě yuè lái yuè liǎo jiě duì fāng le 。"
+  },
+  "今天，这样的交情变成了面前的午饭。": {
+    "english": "Today, this friendship has turned into the lunch in front of me.",
+    "interlinear": [
+      {
+        "chinese": "今天，",
+        "gloss": "Today,",
+        "pinyin": "jīn tiān ，"
+      },
+      {
+        "chinese": "这样的交情",
+        "gloss": "this friendship",
+        "pinyin": "zhè yàng de jiāo qíng"
+      },
+      {
+        "chinese": "变成了",
+        "gloss": "has turned into",
+        "pinyin": "biàn chéng le"
+      },
+      {
+        "chinese": "面前的午饭。",
+        "gloss": "the lunch in front of me.",
+        "pinyin": "miàn qián de wǔ fàn 。"
+      }
+    ],
+    "pinyin": "jīn tiān ， zhè yàng de jiāo qíng biàn chéng le miàn qián de wǔ fàn 。"
+  }
+}
