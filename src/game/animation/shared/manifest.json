@@ -1,16 +1,16 @@
 {
   "repository": "https://github.com/zumboggo/Learningisfun",
-  "commit": "70c51be61db0dce7bf2b80dc073e07cb946eeda2",
+  "commit": "a5310f6d88d90280d163a36d4c16f42ea0ab5146",
   "files": [
     {
       "source": "functions/learning-content/src/story-engine.js",
       "target": "engine/story-engine.js",
-      "sha256": "0b6f41b5babfda54108e7693d43aece3e7f29488193b0328d6419e1918125411"
+      "sha256": "64371ce4980b38b105ec5050ffd8dcdcdd94704af200d7a591950ac8f3fe1a45"
     },
     {
       "source": "functions/learning-content/src/story-engine.d.ts",
       "target": "engine/story-engine.d.ts",
-      "sha256": "ef53da08a5b1c190830e0c72de80af79c2b9daf3a086896c8476a98537b5a3c9"
+      "sha256": "afd262a030071b2f41c028f2b18e3590c1f071ff23045d6d364de23965d39ceb"
     },
     {
       "source": "functions/learning-content/src/acting-library.js",
@@ -43,6 +43,16 @@
       "sha256": "25779f922ac24c21e3071d1a3c8707a3baab652b075357701b4857a3e506d8e7"
     },
     {
+      "source": "src/components/animated/ActivityRunner.tsx",
+      "target": "components/ActivityRunner.tsx",
+      "sha256": "4b7fbfce2a428451bb4d30e1c9d82765021ddba678994893d4207606ddd83d35"
+    },
+    {
+      "source": "src/components/animated/activity-motion.ts",
+      "target": "components/activity-motion.ts",
+      "sha256": "1487141d793fb6b3e25b9f3d8776652a73632e2bbb901420df1fb0228baf01cb"
+    },
+    {
       "source": "src/components/animated/BackgroundLibrary.tsx",
       "target": "components/BackgroundLibrary.tsx",
       "sha256": "e7fb537e3f2599bdf8ee87ac28a70b4c3e4edf28276c9b3421a923672587f514"
@@ -50,7 +60,7 @@
     {
       "source": "src/components/animated/CartoonActor.tsx",
       "target": "components/CartoonActor.tsx",
-      "sha256": "e48fc6fc574bef3384656557a1eb30d6f921b14542ce38f1b3c3c2abf462333a"
+      "sha256": "5acda812699321822c13203bf20a453e6729e24b3c41390836332a4e5c7874db"
     },
     {
       "source": "src/components/animated/RefinedFace.tsx",
@@ -65,17 +75,17 @@
     {
       "source": "src/components/animated/PuppetActor.tsx",
       "target": "components/PuppetActor.tsx",
-      "sha256": "5a37b8026e7d28c97b05f6baa3aac0d775c3a76111917e32c8fdfd7ea17fded9"
+      "sha256": "b45430a89e19eaf78398356cda9207180fc271b103ca4cfa85e08f5d41ed17da"
     },
     {
       "source": "src/components/animated/StoryStage.tsx",
       "target": "components/StoryStage.tsx",
-      "sha256": "6ccd43872a43912c3fe4c3990fdd047740d48b879633b41d14a8ba15e41ef055"
+      "sha256": "670aea2092e88f2df3e3b17eeb99c518fcafab394b6ef3b9c821c91726c466d5"
     },
     {
       "source": "src/components/animated/action-motion.ts",
       "target": "components/action-motion.ts",
-      "sha256": "6c356a301544b275062c317a9a78cfa0e360303dedb41894b62b710ab11b0a0b"
+      "sha256": "0759225de33f579573e559f17e7788ea10855c555173b128b633d92c7f03fdf9"
     },
     {
       "source": "src/components/animated/scene-motion.ts",
@@ -90,7 +100,7 @@
     {
       "source": "src/components/animated/scene-sound.ts",
       "target": "components/scene-sound.ts",
-      "sha256": "d866bfd5246d47518e5786422143b34ff65ffc48240b31f68127b3b13228bdb0"
+      "sha256": "7c113a6c67bcc8f3613c4008563c9ef657c96719e25c2e1cfb3493de606c8a88"
     },
     {
       "source": "src/components/animated/StoryAtmosphere.tsx",
@@ -100,12 +110,12 @@
     {
       "source": "src/components/animated/character-geometry.ts",
       "target": "components/character-geometry.ts",
-      "sha256": "f7f38a3c0ff8505f6ca4d49f3db5017bab3d069c12beb0874549db3a247db653"
+      "sha256": "3c72807652850057d268e8ae1ae02a6a9da1da67d6f0e7ca5ccf293d233490bd"
     },
     {
       "source": "src/components/animated/story-player.css",
       "target": "components/story-player.css",
-      "sha256": "c7ee668ba0829b2b3125d0e501fbd563c2ce76a21b9e7eeebe120fefa05a50cb"
+      "sha256": "2a7b3faf2795fa92d05199b115f7556f30ffecc596d7a0af9207f70e0ec4d69d"
     },
     {
       "source": "src/components/animated/ActingLibrary.tsx",

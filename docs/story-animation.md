@@ -52,3 +52,7 @@ Episode 8 v3 adds fitted two-person and sword-training shots, eased listener clo
 Shared camera commands include `camera listener Hyun over 0.65`, `camera speaker over 0.4`, `camera two Hyun Instructor cut`, and `camera action Hyun Dummy cut`. Scene commands include `ambience hall`, `environment dust`, and `sound chime`; use `none` to clear ambience/environment. See upstream `docs/scene-continuity.md` for full syntax.
 
 Sound & atmosphere starts off. Readers can enable ambience, effects and captions independently and adjust their volumes and Mandarin voice volume. Sound ducks under voice and stops on leaving or completing an episode. Reduced motion removes particles and transient action animation. Sound effects are locally synthesized, with no new audio downloads.
+
+## Sustained activities
+
+The shared player supports optional articulated walking, mirrored scrolling landscapes and ongoing sword practice with recovery. See [scene activities](scene-activities.md) for syntax, staging, interruptions and selective-use guidance. Existing episodes keep their authored staging.

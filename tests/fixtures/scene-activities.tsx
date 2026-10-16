@@ -1,0 +1,13 @@
+import {createRoot} from 'react-dom/client';
+import {useState} from 'react';
+import StoryStage from '../../src/game/animation/shared/components/StoryStage';
+import {compileStory,replayStory,advanceStory} from '../../src/game/animation/shared/engine/story-engine';
+import '../../src/game/animation/shared/components/story-player.css';
+const pack=await (await fetch('/stories/animated/moonlight-08-v3.json')).json();
+const landscape='<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650"><rect width="1200" height="650" fill="#cbe4e9"/><path d="M0 360 Q180 170 400 320 T800 300 T1200 360 V650 H0Z" fill="#94b39f"/><path d="M0 430 Q300 360 600 430 T1200 430 V650 H0Z" fill="#c3c696"/><path d="M0 570 Q300 540 600 570 T1200 570 V650 H0Z" fill="#d8bc8e"/></svg>';
+pack.assets.backgrounds.road={src:'data:image/svg+xml,'+encodeURIComponent(landscape),loop:'mirror'};
+const training=new URLSearchParams(location.search).has('training');
+pack.script=training?'story 2\nscene hall\nshow Hyun determined left\nshow Dummy neutral right\ncamera action Hyun Dummy cut\nactivity Hyun train Dummy tiring\nHyun: One more set.\nHyun: Then I can decide.\nend':'story 2\nscene road\nshow Hyun neutral center\ncamera wide\nactivity Hyun walk right steady\nscroll Hyun\nHyun: I have time to think.\nHyun: Which promise should I keep?\nend';
+const {story,errors}=compileStory(pack.script,pack.assets);if(errors.length)throw Error(JSON.stringify(errors));
+function Rehearsal(){const [state,setState]=useState(()=>replayStory(story,[],1)),[reduced,setReduced]=useState(false);const current=story.nodes[state.cursor];return <main className="animated-story" style={{maxWidth:950,margin:'20px auto',fontFamily:'system-ui'}}><StoryStage pack={pack} state={state} current={current} speaking reduced={reduced}/><p>{current.text}</p><button onClick={()=>setState(advanceStory(story,state,null))} disabled={state.ended}>Continue</button><label><input type="checkbox" checked={reduced} onChange={e=>setReduced(e.target.checked)}/>Reduced motion</label></main>};
+createRoot(document.getElementById('root')!).render(<Rehearsal/>);

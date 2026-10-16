@@ -6,7 +6,7 @@ const root=resolve(import.meta.dirname,'..');
 const source=resolve(process.argv.find(a=>a.startsWith('--source='))?.slice(9)||resolve(root,'../../Learning is Fun/implementation'));
 const check=process.argv.includes('--check');
 const engine=['story-engine','acting-library','scene-beats','character-builder'].flatMap(n=>['js','d.ts'].map(ext=>`functions/learning-content/src/${n}.${ext}`));
-const components=['BackgroundLibrary.tsx','CartoonActor.tsx','RefinedFace.tsx','MountedActor.tsx','PuppetActor.tsx','StoryStage.tsx','action-motion.ts','scene-motion.ts','camera-framing.ts','scene-sound.ts','StoryAtmosphere.tsx','character-geometry.ts','story-player.css','ActingLibrary.tsx','ActionLibrary.tsx','CharacterBuilder.tsx','SceneBeatLibrary.tsx','ChoiceWorkshop.tsx','authoring-tools.ts'];
+const components=['ActivityRunner.tsx','activity-motion.ts','BackgroundLibrary.tsx','CartoonActor.tsx','RefinedFace.tsx','MountedActor.tsx','PuppetActor.tsx','StoryStage.tsx','action-motion.ts','scene-motion.ts','camera-framing.ts','scene-sound.ts','StoryAtmosphere.tsx','character-geometry.ts','story-player.css','ActingLibrary.tsx','ActionLibrary.tsx','CharacterBuilder.tsx','SceneBeatLibrary.tsx','ChoiceWorkshop.tsx','authoring-tools.ts'];
 const entries=[...engine.map(path=>[path,`engine/${path.split('/').at(-1)}`]),...components.map(name=>[`src/components/animated/${name}`,`components/${name}`])];
 const manifest={repository:'https://github.com/zumboggo/Learningisfun',commit:execFileSync('git',['rev-parse','HEAD'],{cwd:source,encoding:'utf8'}).trim(),files:[]};
 for(const [path,dest] of entries){
