@@ -94,4 +94,4 @@ npx vitest run scripts/lib/episode-vocabulary.test.js
 
 Plan a physical task only when it serves the scene. Walking while planning and training while thinking can sustain several thought beats, then pause for fatigue, another person or a decision. Use stillness and closer framing for that interruption. There is no activity quota.
 
-See [scene activities](scene-activities.md) for persistent walking, suitable mirrored travel backgrounds, ongoing sword practice, recovery and interruption commands. Record chosen activities in `planning.sceneActivities`; an empty list is valid. `perform` remains useful for a finite action beneath one readable beat. Sitting and eating still need additional runtime support; narrative descriptions do not animate them.
+See [scene activities](scene-activities.md) for persistent walking, suitable mirrored travel backgrounds, ongoing sword practice, recovery and interruption commands. Record chosen activities in `planning.sceneActivities`; an empty list is valid. `perform` remains useful for a finite action beneath one readable beat. Eating now has a bowl-and-spoon loop; sitting still needs additional runtime support.
