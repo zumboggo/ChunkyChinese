@@ -37,7 +37,7 @@ Moonlight 01's active catalog release is `moonlight-01-v2.json`. Its script, ass
 
 ## Faster episode authoring
 
-Use [the reusable episode workflow](episode-authoring.md) for the pinned series source, 100-word assumed-familiar supplement, vocabulary-first `.story` audit and bounded VPN publishing helper. These authoring tools do not change the shared animation runtime or flashcard state.
+Use [the reusable episode workflow](episode-authoring.md) for the pinned series source, series-selected assumed-familiar supplement, vocabulary-first `.story` audit and bounded VPN publishing helper. These authoring tools do not change the shared animation runtime or flashcard state.
 
 ## Continuous acting and attention (2026-10-15)
 

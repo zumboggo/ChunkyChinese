@@ -60,7 +60,7 @@
     }
   ],
   "assetsFrom": "stories/animated/moonlight-12.json",
-  "vocabularySupplement": "stories/authoring/common-familiar-100.json",
+  "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
     "max": 98

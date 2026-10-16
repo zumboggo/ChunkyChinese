@@ -1,0 +1,402 @@
+{
+  "version": 1,
+  "authorizedOn": "2026-10-16",
+  "purpose": "Assumed familiarity for Moonlight episode authoring. Includes the original 100 common words and user-authorized vocabulary repeated in released episodes 1–12. Exposure is not reviewed mastery and does not change flashcards.",
+  "base": "stories/authoring/common-familiar-100.json",
+  "method": "One active release per episode. Count the maximum occurrences on one reachable route per episode, then sum. Whole lexical entries were reviewed; grammatical combinations, word fragments and proper names were excluded. No assumption about which route the learner played.",
+  "words": [
+    "不",
+    "也",
+    "想",
+    "到",
+    "上",
+    "下",
+    "先",
+    "因为",
+    "吧",
+    "三",
+    "十",
+    "四",
+    "五",
+    "零",
+    "千",
+    "以前",
+    "一直",
+    "正好",
+    "总是",
+    "虽然",
+    "而且",
+    "只是",
+    "可能",
+    "能够",
+    "请",
+    "没关系",
+    "不客气",
+    "没事",
+    "不必",
+    "曾经",
+    "从来",
+    "一般",
+    "一共",
+    "一切",
+    "喂",
+    "哦",
+    "您",
+    "咱们",
+    "大概",
+    "大约",
+    "几点",
+    "小时候",
+    "早饭",
+    "午饭",
+    "晚饭",
+    "米饭",
+    "菜",
+    "汤",
+    "肉",
+    "鸡蛋",
+    "水",
+    "茶",
+    "牛奶",
+    "面条",
+    "饺子",
+    "包子",
+    "饭",
+    "碗",
+    "筷子",
+    "勺子",
+    "盘子",
+    "热",
+    "温暖",
+    "凉快",
+    "舒服",
+    "饿",
+    "渴",
+    "饱",
+    "病",
+    "疼",
+    "医院",
+    "超市",
+    "饭店",
+    "餐厅",
+    "厕所",
+    "洗手间",
+    "厨房",
+    "左边",
+    "右边",
+    "旁边",
+    "对面",
+    "中间",
+    "里面",
+    "这么",
+    "至少",
+    "刚刚",
+    "贵",
+    "付钱",
+    "现金",
+    "地铁",
+    "车站",
+    "火车",
+    "飞机",
+    "票",
+    "分钟",
+    "半",
+    "忙",
+    "快",
+    "写",
+    "汉字",
+    "韩元",
+    "奶奶",
+    "账号",
+    "亿",
+    "怪物",
+    "力量",
+    "删除",
+    "稻草人",
+    "赚",
+    "训练场",
+    "高",
+    "存折",
+    "试",
+    "级",
+    "杂草",
+    "他",
+    "属性",
+    "体力",
+    "敏捷",
+    "差",
+    "百分之",
+    "肚子",
+    "大学",
+    "拍卖",
+    "借",
+    "警察",
+    "合同",
+    "违约金",
+    "野兽",
+    "技能",
+    "投资",
+    "数字"
+  ],
+  "repeatedEpisodeWords": [
+    {
+      "word": "韩元",
+      "occurrences": 16,
+      "episodes": [
+        1,
+        2,
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "word": "奶奶",
+      "occurrences": 13,
+      "episodes": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "word": "账号",
+      "occurrences": 10,
+      "episodes": [
+        1,
+        2,
+        6
+      ]
+    },
+    {
+      "word": "亿",
+      "occurrences": 7,
+      "episodes": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "word": "怪物",
+      "occurrences": 6,
+      "episodes": [
+        8,
+        10,
+        11
+      ]
+    },
+    {
+      "word": "力量",
+      "occurrences": 7,
+      "episodes": [
+        8,
+        10,
+        11
+      ]
+    },
+    {
+      "word": "删除",
+      "occurrences": 5,
+      "episodes": [
+        1
+      ]
+    },
+    {
+      "word": "稻草人",
+      "occurrences": 5,
+      "episodes": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "word": "赚",
+      "occurrences": 4,
+      "episodes": [
+        4,
+        5
+      ]
+    },
+    {
+      "word": "训练场",
+      "occurrences": 4,
+      "episodes": [
+        7,
+        8
+      ]
+    },
+    {
+      "word": "高",
+      "occurrences": 3,
+      "episodes": [
+        1,
+        9,
+        10
+      ]
+    },
+    {
+      "word": "存折",
+      "occurrences": 3,
+      "episodes": [
+        2,
+        3
+      ]
+    },
+    {
+      "word": "试",
+      "occurrences": 3,
+      "episodes": [
+        5,
+        7
+      ]
+    },
+    {
+      "word": "级",
+      "occurrences": 3,
+      "episodes": [
+        5,
+        10,
+        11
+      ]
+    },
+    {
+      "word": "杂草",
+      "occurrences": 3,
+      "episodes": [
+        6,
+        8
+      ]
+    },
+    {
+      "word": "他",
+      "occurrences": 3,
+      "episodes": [
+        7
+      ]
+    },
+    {
+      "word": "属性",
+      "occurrences": 3,
+      "episodes": [
+        8,
+        10,
+        11
+      ]
+    },
+    {
+      "word": "体力",
+      "occurrences": 3,
+      "episodes": [
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "word": "敏捷",
+      "occurrences": 3,
+      "episodes": [
+        9,
+        11
+      ]
+    },
+    {
+      "word": "差",
+      "occurrences": 3,
+      "episodes": [
+        10,
+        11
+      ]
+    },
+    {
+      "word": "百分之",
+      "occurrences": 3,
+      "episodes": [
+        11
+      ]
+    },
+    {
+      "word": "肚子",
+      "occurrences": 3,
+      "episodes": [
+        12
+      ]
+    },
+    {
+      "word": "大学",
+      "occurrences": 2,
+      "episodes": [
+        1
+      ]
+    },
+    {
+      "word": "拍卖",
+      "occurrences": 2,
+      "episodes": [
+        1,
+        2
+      ]
+    },
+    {
+      "word": "借",
+      "occurrences": 2,
+      "episodes": [
+        3
+      ]
+    },
+    {
+      "word": "警察",
+      "occurrences": 2,
+      "episodes": [
+        3
+      ]
+    },
+    {
+      "word": "合同",
+      "occurrences": 2,
+      "episodes": [
+        4
+      ]
+    },
+    {
+      "word": "违约金",
+      "occurrences": 2,
+      "episodes": [
+        4
+      ]
+    },
+    {
+      "word": "野兽",
+      "occurrences": 2,
+      "episodes": [
+        5
+      ]
+    },
+    {
+      "word": "技能",
+      "occurrences": 2,
+      "episodes": [
+        5,
+        7
+      ]
+    },
+    {
+      "word": "投资",
+      "occurrences": 2,
+      "episodes": [
+        6
+      ]
+    },
+    {
+      "word": "数字",
+      "occurrences": 2,
+      "episodes": [
+        9,
+        11
+      ]
+    }
+  ]
+}

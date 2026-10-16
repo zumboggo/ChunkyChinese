@@ -17,7 +17,7 @@ npm run game:episode -- --plan=.local/episodes/moonlight-06/plan.json --vocab=.l
 npm run game:episode -- --plan=.local/episodes/moonlight-06/plan.json --vocab=.local/episode-vocab.json --stage
 ```
 
-The initialized plan provides paths for the plain `.story` and exact-text `lines.json` annotations. Paths are relative to the app checkout unless absolute. Complete the short planning fields first: source boundary, one dramatic change, essential new vocabulary, why any English narration is needed, and choice → response → callback. Draft against the vocabulary export before annotating. Do not fill the plan with source-book passages or private learning records intended for publication.
+The initialized plan provides paths for the plain `.story` and exact-text `lines.json` annotations. Paths are relative to the app checkout unless absolute. Complete the short planning fields first: source boundary, one dramatic change, essential new vocabulary, why any English narration is needed, and choice → response → callback. Use `sceneActivities` to note what characters physically do during dialogue/thought, what interrupts it, and the supported cues/framing. This is an authoring aid, not a new runtime command or a required gesture count. Draft against the vocabulary export before annotating. Do not fill the plan with source-book passages or private learning records intended for publication.
 
 The annotation file maps exact Mandarin strings to `{pinyin?, english?, interlinear: [{chinese, pinyin?, gloss}]}`. Audio is generated from exact text through the existing Tingting cache. Optional pinyin is filled automatically; review contextual readings, especially 得 and 只, then save corrections in this annotation file. Set `pinyinReviewed: true` only after that review. Do not substitute English narration just to raise familiarity: compare the separate Mandarin exposure report and preserve the story's intended immersion.
 
@@ -41,7 +41,9 @@ A passing run is not a substitute for reading the story, reviewing pinyin and in
 
 ## Vocabulary policy
 
-`stories/authoring/common-familiar-100.json` contains exactly 100 common words David authorized on 2026-10-13 to count as assumed familiar. It is an authoring supplement, not an FSRS update or evidence of reviewed mastery. Merge it with the current private vocabulary export by word, with reviewed-known membership taking priority. The initial union is 804 reviewed-known + 100 assumed = 904 unique familiar words. A later export may overlap the supplement, so the added count can shrink. Never mutate the original export or flashcard schedule.
+Read the supplement path from the series record. Moonlight now uses `stories/authoring/moonlight-familiar-words.json`: the original 100 common words plus 32 repeated episode words authorized on 2026-10-16. `common-familiar-100.json` remains unchanged for historical audits. The expanded file records occurrence evidence across the active releases of episodes 1–12, using maximum occurrences on one reachable route per episode, then summing across episodes. Alternate branches and superseded releases are not added together. Whole words were reviewed to avoid fragments such as 量 from 力量 or 金 from 违约金; grammatical combinations and proper names were excluded.
+
+This is assumed familiarity for authoring, not an FSRS update or evidence of reviewed mastery. Merge with the current private export by word, giving reviewed-known membership priority. The current snapshot has 804 reviewed-known + 132 assumed = 936 unique familiar words. A later export may overlap the supplement, so report the actual union. Never mutate the original export or flashcard schedule. New additions require explicit authorization; repeated exposure does not automatically promote future words.
 
 Generic supplemental words are tracked in the repository; the learner's export, per-route reports and extracted book passages belong only in ignored `.local/`. The series-aware draft command applies the supplement. Historical positional audits remain baseline-only unless `--supplement=PATH` is explicitly supplied, so previously reported episode coverage remains reproducible.
 
@@ -61,7 +63,7 @@ npm run game:audio -- --episode=moonlight-03
 npm run game:check
 ```
 
-The episode-03 paths illustrate the next authoring invocation; this workflow update does not create episode 3. `--lexicon` and `--report` are optional. A `.story` can also be checked without a series using `--assets-from=stories/animated/moonlight-02.json` and `--supplement=stories/authoring/common-familiar-100.json`. Existing JSON packages are accepted too. Do not add lexical items to the supplement to make a failing draft pass; revise the draft or get separate authorization for new assumptions.
+The episode-03 paths illustrate the next authoring invocation; this workflow update does not create episode 3. `--lexicon` and `--report` are optional. A `.story` can also be checked without a series using `--assets-from=stories/animated/moonlight-02.json` and `--supplement=stories/authoring/common-familiar-100.json`. Existing JSON packages are accepted too. Do not add lexical items to the supplement to make a failing draft pass; revise the draft or use separately authorized new assumptions.
 
 The source reader fails on a fingerprint mismatch, missing/nonunique anchors, reversed boundaries or an oversized excerpt. Use `--epub=PATH` if the same file has moved; it must still match the fingerprint. No wildcard fallback is used.
 
@@ -87,3 +89,13 @@ Regression checks for the workflow:
 npm run game:workflow-test
 npx vitest run scripts/lib/episode-vocabulary.test.js
 ```
+
+## Physical activity during dialogue
+
+Plan what a character is doing before deciding the shots. In a training scene, let several thought beats accompany strokes, then stop for fatigue, a sound, another person or a decision. Reserve a close reaction for that interruption; return to the task when the story does. In a journey scene, prefer supported arrivals, attention shifts and scene changes until a real walking activity exists. Do not substitute constant hand gestures or camera cuts for physical action.
+
+The current engine supports `perform Actor action [Target] repeat 1..6 steady|tiring` beneath the next readable entry. Continue cancels it, and its repetitions are finite. To show training on a later line, author another cue there. `express`, `look`, props and resting states provide continuity between performances. The runtime does not currently support persistent walking, ongoing training across Continue, scrolling backgrounds, sitting or eating actions. Narrative descriptions of those activities are not rendered motions.
+
+A 2026-10-16 audit of the active LMS releases found no `perform` cues in episodes 1–7, then 6/3/2/3/1 cues respectively in episodes 8–12. This is evidence of sparse activity, not a minimum quota. Episodes 1–3 already have many camera cues; more cuts alone will not supply a physical task.
+
+The most useful runtime extension would be an explicit persistent activity state, initially training and walking. It should continue across ordinary dialogue, blend speech without replacing the working arms, pause for deliberate reactions/choices when appropriate, restore on resume without duplicating transient impacts, and clear on scene/actor exit. Walking also needs a grounded gait and a separate seamlessly repeating background layer; moving the whole stage would move the characters too. Keep pace variations and recovery pauses purposeful. Provide reduced motion and a pause control; pause while hidden and cancel on unmount. Add these through the canonical Learning is Fun implementation, then synchronize and verify both players. These are proposed capabilities, not current script commands.
