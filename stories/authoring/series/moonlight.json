@@ -5,9 +5,9 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_02.xhtml",
-    "nextStart": "Three weeks had passed in game time.",
-    "nextEndBefore": "*Rumble* At that moment, Weed’s stomach decided it was time to eat.",
-    "continuationNote": "Continue with the three-week time jump, new stats and Sword Mastery progress, then Hyun’s concern about finishing training before the four-week restriction ends. Stop before the hunger/lunch scene."
+    "nextStart": "*Rumble* At that moment, Weed’s stomach decided it was time to eat.",
+    "nextEndBefore": "While Weed was busy devouring lunch, the instructor suddenly asked,",
+    "continuationNote": "Next cover dwindling bread, the smell of the instructor’s lunch, Hyun’s flattery, the shared meal, and growing affinity. Stop before the instructor asks about Sculpture Mastery."
   },
   "completed": [
     {
@@ -49,9 +49,13 @@
     {
       "episode": "moonlight-10-v1",
       "end": "The onlookers debate training; Pluto explains persistent benefits, estimated forty-point strength limit and the time cost. Hyun enjoys progress and continues; the instructor silently approves. Stop before the three-week jump."
+    },
+    {
+      "episode": "moonlight-11-v1",
+      "end": "After three weeks of game time, Fighting Spirit and Endurance appear; Sword Mastery is Beginner level 3 at 0%, with +30% attack power and +9% attack speed. Gains are STR +28, AGI +25, VIT +22. Hyun resolves to finish before the four-week city restriction ends. Stop before the hunger interruption."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-10.json",
+  "assetsFrom": "stories/animated/moonlight-11.json",
   "vocabularySupplement": "stories/authoring/common-familiar-100.json",
   "coverage": {
     "min": 95,
@@ -68,16 +72,16 @@
   },
   "continuity": [
     "Grandmother remains hospitalized and the old debt is paid. Do not invent an exact current balance.",
-    "Hyun continues dummy practice after overhearing Pluto explain its lasting benefit and estimated limit. No new level or stat gain occurs in episode 10; the instructor approves silently.",
-    "Episode 10 choices concern listening to the explanation and motivation through progress or money. Callbacks are within this episode only.",
-    "Reuse Hyun, Instructor, Dummy, Watcher and the new Pluto polished SVG pack. Source practice sword is wooden; visible weapon remains approved silver styling. Pluto’s source armor is represented by a stylized silver/gold tunic."
+    "Three in-game weeks have passed. Training gains stated in the source are STR +28, AGI +25 and VIT +22; do not confuse gains with final totals. New stats are Fighting Spirit and Endurance. Sword Mastery is Beginner level 3 (0%), +30% attack power and +9% attack speed.",
+    "Hyun wants to finish dummy training before the four-week city restriction ends. The next event is hunger and dwindling bread, followed by lunch with the instructor.",
+    "Episode 11 choices concern fatigue/repetition and gains/time. They have only within-episode callbacks. Reuse the approved cast and hall; visible sword remains stylized silver although the source weapon is wooden."
   ],
   "castRecipes": "stories/characters/lms-cast.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through moonlight-10-v1",
-    "nextStart": "Three weeks had passed in game time.",
-    "nextEndBefore": "*Rumble* At that moment, Weed’s stomach decided it was time to eat.",
-    "assetsFrom": "stories/animated/moonlight-10.json"
+    "note": "Published through moonlight-11-v1",
+    "nextStart": "*Rumble* At that moment, Weed’s stomach decided it was time to eat.",
+    "nextEndBefore": "While Weed was busy devouring lunch, the instructor suddenly asked,",
+    "assetsFrom": "stories/animated/moonlight-11.json"
   }
 }
