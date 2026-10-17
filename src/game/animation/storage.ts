@@ -17,6 +17,12 @@ export async function progressForRelease(identity:string,release:Release):Promis
  if(!previous||playbackScript(previous.script)!==playbackScript(release.pack.script))return undefined
  return read<StoryProgress>(scope(identity)+'progress:'+release.resumeFrom)
 }
-export async function publish(identity:string,pack:ChinesePackage){const encoded=new TextEncoder().encode(JSON.stringify(pack));const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',encoded))).map(n=>n.toString(16).padStart(2,'0')).join('');const existing=await read<Release>(scope(identity)+'release:'+digest);if(existing)return existing;const release={id:digest,pack:structuredClone(pack),created:new Date().toISOString()};await write(scope(identity)+'release:'+digest,release);return release}
+export async function publish(identity:string,pack:ChinesePackage){const encoded=new TextEncoder().encode(JSON.stringify(pack));const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',encoded))).map(n=>n.toString(16).padStart(2,'0')).join('');const existing=await read<Release>(scope(identity)+'release:'+digest);if(existing)return existing;const episode=pack.title.match(/^Moonlight(?: Sculptor)?\s+(\d+)\b/i);const release:Release={id:digest,pack:structuredClone(pack),created:new Date().toISOString(),...(episode?{category:'lms' as const,episode:Number(episode[1])}:{})};await write(scope(identity)+'release:'+digest,release);return release}
 export async function releases(identity:string):Promise<Release[]>{const db=await database(),keys=await db.getAllKeys('records');return Promise.all(keys.filter(k=>String(k).startsWith(scope(identity)+'release:')).map(k=>db.get('records',k)))}
-export async function saveProgress(identity:string,id:string,value:StoryProgress){await write(scope(identity)+'progress:'+id,value)}
+export async function saveProgress(identity:string,id:string,value:StoryProgress,release?:Release){
+ const db=await database(),tx=db.transaction('records','readwrite')
+ await tx.store.put(value,scope(identity)+'progress:'+id)
+ if(release)await tx.store.put(release,scope(identity)+'latest-played')
+ await tx.done
+}
+export const latestPlayed=(identity:string)=>read<Release>(scope(identity)+'latest-played')

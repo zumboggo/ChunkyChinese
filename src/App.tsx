@@ -232,6 +232,7 @@ import {
 const UniversalImporter = lazy(() => import('./UniversalImporter').then((module) => ({ default: module.UniversalImporter })))
 const ListeningCourse = lazy(() => import('./ListeningCourse'))
 const GamePage = lazy(() => import('./game/GamePage'))
+const EpisodeUpload = lazy(() => import('./game/EpisodeUpload'))
 
 type Screen = 'game' | 'listeningCourse' | 'dashboard' | 'reader' | 'settings' | 'lesson' | 'flashcards' | 'readingTexts' | 'words'
 type FlashcardQueueMode = 'mixed' | 'due' | 'new'
@@ -3782,6 +3783,7 @@ function App() {
           </div>
 
           <div className="settings-sections">
+            {gameIdentity && <Suspense fallback={<p>Loading episode upload…</p>}><EpisodeUpload key={gameIdentity} identity={gameIdentity}/></Suspense>}
             <details className="settings-group" open>
               <summary className="settings-group-summary">Flight mode</summary>
               <div className="import-grid">

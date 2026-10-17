@@ -39,3 +39,23 @@ it('resumes visual-only staging revisions but refuses changes to dialogue or bra
  expect(await progressForRelease(id,{...release,pack:{...updated,script:updated.script+'\nI: A new line.'}})).toBeUndefined()
  expect(await read(scope(id)+'progress:'+oldId)).toEqual(attempt)
 })
+
+it('tracks the last played release with its progress, independently for each account',async()=>{
+ const identity=crypto.randomUUID(),first=await publish(identity,pack)
+ const second=await publish(identity,{...pack,title:'Second episode'})
+ const {latestPlayed}=await import('./storage')
+ expect(await latestPlayed(identity)).toBeUndefined()
+ await saveProgress(identity,first.id,{steps:[null],quizzes:[],seed:7},first)
+ await saveProgress(identity,second.id,{steps:[],quizzes:[],seed:8},second)
+ expect((await latestPlayed(identity))?.id).toBe(second.id)
+ await saveProgress(identity,first.id,{steps:[null,null],quizzes:[],seed:7},first)
+ expect((await latestPlayed(identity))?.id).toBe(first.id)
+ expect((await progressForRelease(identity,first))?.steps).toEqual([null,null])
+ expect(await latestPlayed('other-'+identity)).toBeUndefined()
+})
+
+it('places imported Moonlight episodes in LMS in numeric order',async()=>{
+ const release=await publish(crypto.randomUUID(),{...pack,title:'Moonlight 14 — Can You Carve Moonlight?'})
+ expect(release.category).toBe('lms')
+ expect(release.episode).toBe(14)
+})

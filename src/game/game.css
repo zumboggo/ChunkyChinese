@@ -35,3 +35,22 @@
 .game-page details.sentence-translation{padding:0;margin:10px 0;border:0;color:#62756b;font-size:13px}.sentence-translation summary{font-weight:400}.sentence-translation p{font-family:Georgia,serif;font-size:15px}
 .lms-cast{margin-top:24px}.lms-cast>label{display:inline-block;margin-right:20px}.lms-cast-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.lms-cast-grid article{background:#fffcf5;border:1px solid #d8d7c7;border-radius:16px;overflow:hidden;text-align:center;padding:12px}.lms-portrait{height:340px;background:radial-gradient(ellipse at 50% 40%,#f1e9d6,transparent 70%)}.lms-portrait svg{height:100%;width:100%;max-height:none}.lms-cast-grid h3{font:18px Georgia,serif;margin:12px 0 6px}.lms-cast-grid p{font-size:12px;line-height:1.5;color:#65726a}@media(max-width:600px){.lms-cast-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lms-portrait{height:280px}}
 .lms-portrait{overflow:hidden;border-radius:10px}.lms-portrait svg{overflow:hidden}
+
+/* Scale the reading content without enlarging navigation or the stage. */
+.game-page .game-resume .episode-primary{width:100%;margin:12px 0 0;min-height:64px;font-size:24px;font-weight:700}
+.game-resume p{margin:6px 0 18px;color:#65726a}
+.game-playing>label.game-text-size{float:none;display:inline-flex;gap:8px;margin-right:12px}
+.game-page .episode-interlinear strong{font-size:calc(1.65rem * var(--game-text-scale,1))}
+.game-page .episode-interlinear .reader-interlinear-pinyin{font-size:calc(.85rem * var(--game-text-scale,1))}
+.game-page .episode-interlinear .reader-interlinear-gloss{font-size:calc(.9rem * var(--game-text-scale,1))}
+.game-page .story-dialogue .chinese-line{font-size:calc(26px * var(--game-text-scale,1));overflow-wrap:anywhere}
+.game-page .story-dialogue .pinyin{font-size:calc(15px * var(--game-text-scale,1))}
+.game-page .sentence-meaning{font-size:calc(1rem * var(--game-text-scale,1))}
+.game-page .sentence-translation p{font-size:calc(15px * var(--game-text-scale,1))}
+.game-page .episode-choice{font-size:calc(1rem * var(--game-text-scale,1));overflow-wrap:anywhere}
+@media(max-width:600px){
+ .game-page .episode-interlinear strong{font-size:calc(1.45rem * var(--game-text-scale,1))}
+ .game-page .episode-interlinear .reader-interlinear-pinyin{font-size:calc(.75rem * var(--game-text-scale,1))}
+ .game-page .episode-interlinear .reader-interlinear-gloss{font-size:calc(.8rem * var(--game-text-scale,1))}
+ .game-playing .story-dialogue .chinese-line{font-size:calc(23px * var(--game-text-scale,1))}
+}
