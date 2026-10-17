@@ -13,7 +13,12 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
  await page.getByLabel('Import episode ZIP / JSON').setInputFiles(fixture.packagePath)
  await expect(page.getByLabel('Episode title',{exact:true})).toHaveValue(pack.title)
  await page.getByRole('button',{name:'Publish to my library',exact:true}).click()
- const open=async()=>{await page.getByRole('button',{name:/Daily Life Small moments/}).click();await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()}
+ const open=async()=>{
+  const category=/^Moonlight(?: Sculptor)?\s+\d+\b/i.test(pack.title)?/LMS A new world/:/Daily Life Small moments/
+  await page.getByRole('button',{name:category}).click()
+  await page.locator('.episode-strip button').filter({hasText:pack.title}).last().click()
+  await page.locator('.featured-episode').getByRole('button',{name:'Play / resume episode',exact:true}).click()
+ }
  await open()
  if(index%2)await page.getByLabel('Reduced motion',{exact:true}).check()
  let heard=false,resumed=false

@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'game-upload-resume-text-20261017'
+const CACHE_VERSION = 'episode-dd908175368a'
 const COURSE_OFFLINE_CACHE = 'chunky-listening-course-v1'
 const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'
 const SENTENCE_OFFLINE_CACHE = 'chunky-sentence-listening-v1'

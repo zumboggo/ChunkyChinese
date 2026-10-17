@@ -1,0 +1,1165 @@
+{
+  "教官还在等我说话。我差一点就笑了。": {
+    "english": "The instructor is still waiting for me to speak. I almost laugh.",
+    "interlinear": [
+      {
+        "chinese": "教官",
+        "gloss": "the instructor",
+        "pinyin": "jiào guān"
+      },
+      {
+        "chinese": "还在",
+        "gloss": "is still",
+        "pinyin": "hái zài"
+      },
+      {
+        "chinese": "等我说话。",
+        "gloss": "waiting for me to speak.",
+        "pinyin": "děng wǒ shuō huà 。"
+      },
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "差一点",
+        "gloss": "almost",
+        "pinyin": "chà yì diǎn"
+      },
+      {
+        "chinese": "就笑了。",
+        "gloss": "laughed.",
+        "pinyin": "jiù xiào le 。"
+      }
+    ],
+    "pinyin": "jiào guān hái zài děng wǒ shuō huà 。 wǒ chà yì diǎn jiù xiào le 。"
+  },
+  "这个任务，可能很特别。": {
+    "english": "This quest may be very unusual.",
+    "interlinear": [
+      {
+        "chinese": "这个任务，",
+        "gloss": "This quest,",
+        "pinyin": "zhè ge rèn wu ，"
+      },
+      {
+        "chinese": "可能",
+        "gloss": "may be",
+        "pinyin": "kě néng"
+      },
+      {
+        "chinese": "很特别。",
+        "gloss": "very unusual.",
+        "pinyin": "hěn tè bié 。"
+      }
+    ],
+    "pinyin": "zhè ge rèn wu ， kě néng hěn tè bié 。"
+  },
+  "谁会和教官这么好？": {
+    "english": "Who would get along this well with the instructor?",
+    "interlinear": [
+      {
+        "chinese": "谁会",
+        "gloss": "Who would",
+        "pinyin": "shuí huì"
+      },
+      {
+        "chinese": "和教官",
+        "gloss": "with the instructor",
+        "pinyin": "hé jiào guān"
+      },
+      {
+        "chinese": "这么好？",
+        "gloss": "get along this well?",
+        "pinyin": "zhè me hǎo ？"
+      }
+    ],
+    "pinyin": "shuí huì hé jiào guān zhè me hǎo ？"
+  },
+  "谁会在这里练习三个星期？": {
+    "english": "Who would practice here for three weeks?",
+    "interlinear": [
+      {
+        "chinese": "谁会",
+        "gloss": "Who would",
+        "pinyin": "shuí huì"
+      },
+      {
+        "chinese": "在这里",
+        "gloss": "here",
+        "pinyin": "zài zhè lǐ"
+      },
+      {
+        "chinese": "练习",
+        "gloss": "practice",
+        "pinyin": "liàn xí"
+      },
+      {
+        "chinese": "三个星期？",
+        "gloss": "for three weeks?",
+        "pinyin": "sān gè xīng qī ？"
+      }
+    ],
+    "pinyin": "shuí huì zài zhè lǐ liàn xí sān gè xīng qī ？"
+  },
+  "别人忙着去外面。我却来这里，和教官一起吃午饭。": {
+    "english": "Others are busy heading outside. I come here instead and eat lunch with the instructor.",
+    "interlinear": [
+      {
+        "chinese": "别人",
+        "gloss": "Others",
+        "pinyin": "bié rén"
+      },
+      {
+        "chinese": "忙着",
+        "gloss": "are busy",
+        "pinyin": "máng zhe"
+      },
+      {
+        "chinese": "去外面。",
+        "gloss": "going outside.",
+        "pinyin": "qù wài miàn 。"
+      },
+      {
+        "chinese": "我却",
+        "gloss": "But I",
+        "pinyin": "wǒ què"
+      },
+      {
+        "chinese": "来这里，",
+        "gloss": "come here,",
+        "pinyin": "lái zhè lǐ ，"
+      },
+      {
+        "chinese": "和教官",
+        "gloss": "with the instructor",
+        "pinyin": "hé jiào guān"
+      },
+      {
+        "chinese": "一起",
+        "gloss": "together",
+        "pinyin": "yì qǐ"
+      },
+      {
+        "chinese": "吃午饭。",
+        "gloss": "eat lunch.",
+        "pinyin": "chī wǔ fàn 。"
+      }
+    ],
+    "pinyin": "bié rén máng zhe qù wài miàn 。 wǒ què lái zhè lǐ ， hé jiào guān yì qǐ chī wǔ fàn 。"
+  },
+  "别人学会了就走。我却对着木头人，练习了三个星期。": {
+    "english": "Others learn a skill and leave. I have spent three weeks practicing against a wooden dummy.",
+    "interlinear": [
+      {
+        "chinese": "别人",
+        "gloss": "Others",
+        "pinyin": "bié rén"
+      },
+      {
+        "chinese": "学会了",
+        "gloss": "learn it",
+        "pinyin": "xué huì le"
+      },
+      {
+        "chinese": "就走。",
+        "gloss": "and leave.",
+        "pinyin": "jiù zǒu 。"
+      },
+      {
+        "chinese": "我却",
+        "gloss": "But I",
+        "pinyin": "wǒ què"
+      },
+      {
+        "chinese": "对着",
+        "gloss": "face",
+        "pinyin": "duì zhe"
+      },
+      {
+        "chinese": "木头人，",
+        "gloss": "the wooden dummy,",
+        "pinyin": "mù tou rén ，"
+      },
+      {
+        "chinese": "练习了",
+        "gloss": "and have practiced for",
+        "pinyin": "liàn xí le"
+      },
+      {
+        "chinese": "三个星期。",
+        "gloss": "three weeks.",
+        "pinyin": "sān gè xīng qī 。"
+      }
+    ],
+    "pinyin": "bié rén xué huì le jiù zǒu 。 wǒ què duì zhe mù tou rén ， liàn xí le sān gè xīng qī 。"
+  },
+  "要在这个城市开始，还要和教官这么好。": {
+    "english": "You have to start in this city and get along this well with the instructor.",
+    "interlinear": [
+      {
+        "chinese": "要",
+        "gloss": "You have to",
+        "pinyin": "yào"
+      },
+      {
+        "chinese": "在这个城市",
+        "gloss": "in this city",
+        "pinyin": "zài zhè ge chéng shì"
+      },
+      {
+        "chinese": "开始，",
+        "gloss": "start,",
+        "pinyin": "kāi shǐ ，"
+      },
+      {
+        "chinese": "还要",
+        "gloss": "and also",
+        "pinyin": "hái yào"
+      },
+      {
+        "chinese": "和教官",
+        "gloss": "with the instructor",
+        "pinyin": "hé jiào guān"
+      },
+      {
+        "chinese": "这么好。",
+        "gloss": "get along this well.",
+        "pinyin": "zhè me hǎo 。"
+      }
+    ],
+    "pinyin": "yào zài zhè ge chéng shì kāi shǐ ， hái yào hé jiào guān zhè me hǎo 。"
+  },
+  "要认真练习用剑，却没有学过雕刻。": {
+    "english": "You must practice swordsmanship seriously, yet never have learned sculpting.",
+    "interlinear": [
+      {
+        "chinese": "要",
+        "gloss": "You must",
+        "pinyin": "yào"
+      },
+      {
+        "chinese": "认真",
+        "gloss": "seriously",
+        "pinyin": "rèn zhēn"
+      },
+      {
+        "chinese": "练习用剑，",
+        "gloss": "practice using a sword,",
+        "pinyin": "liàn xí yòng jiàn ，"
+      },
+      {
+        "chinese": "却",
+        "gloss": "yet",
+        "pinyin": "què"
+      },
+      {
+        "chinese": "没有学过",
+        "gloss": "never have learned",
+        "pinyin": "méi yǒu xué guò"
+      },
+      {
+        "chinese": "雕刻。",
+        "gloss": "sculpting.",
+        "pinyin": "diāo kè 。"
+      }
+    ],
+    "pinyin": "yào rèn zhēn liàn xí yòng jiàn ， què méi yǒu xué guò diāo kè 。"
+  },
+  "最后，还得正好和他一起说雕刻不好。": {
+    "english": "Finally, you must happen to join him in saying that sculpting is no good.",
+    "interlinear": [
+      {
+        "chinese": "最后，",
+        "gloss": "Finally,",
+        "pinyin": "zuì hòu ，"
+      },
+      {
+        "chinese": "还得",
+        "gloss": "you also have to",
+        "pinyin": "hái děi"
+      },
+      {
+        "chinese": "正好",
+        "gloss": "happen to",
+        "pinyin": "zhèng hǎo"
+      },
+      {
+        "chinese": "和他一起",
+        "gloss": "with him",
+        "pinyin": "hé tā yì qǐ"
+      },
+      {
+        "chinese": "说",
+        "gloss": "say",
+        "pinyin": "shuō"
+      },
+      {
+        "chinese": "雕刻不好。",
+        "gloss": "that sculpting is no good.",
+        "pinyin": "diāo kè bù hǎo 。"
+      }
+    ],
+    "pinyin": "zuì hòu ， hái děi zhèng hǎo hé tā yì qǐ shuō diāo kè bù hǎo 。"
+  },
+  "这么多条件，我全都做到了。": {
+    "english": "So many conditions, and I have met every one.",
+    "interlinear": [
+      {
+        "chinese": "这么多条件，",
+        "gloss": "So many conditions,",
+        "pinyin": "zhè me duō tiáo jiàn ，"
+      },
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "全都",
+        "gloss": "every one",
+        "pinyin": "quán dōu"
+      },
+      {
+        "chinese": "做到了。",
+        "gloss": "have met.",
+        "pinyin": "zuò dào le 。"
+      }
+    ],
+    "pinyin": "zhè me duō tiáo jiàn ， wǒ quán dōu zuò dào le 。"
+  },
+  "更好的是，这只是个E级任务。": {
+    "english": "Even better, this is only an E-rank quest.",
+    "interlinear": [
+      {
+        "chinese": "更好的是，",
+        "gloss": "Even better,",
+        "pinyin": "gèng hǎo de shì ，"
+      },
+      {
+        "chinese": "这",
+        "gloss": "this",
+        "pinyin": "zhè"
+      },
+      {
+        "chinese": "只是",
+        "gloss": "is only",
+        "pinyin": "zhǐ shì"
+      },
+      {
+        "chinese": "个E级任务。",
+        "gloss": "an E-rank quest.",
+        "pinyin": "gè E jí rèn wu 。"
+      }
+    ],
+    "pinyin": "gèng hǎo de shì ， zhè zhǐ shì gè E jí rèn wu 。"
+  },
+  "我身上的钱快没有了，面包也不多了。": {
+    "english": "The money I have is almost gone, and my bread is running low too.",
+    "interlinear": [
+      {
+        "chinese": "我身上的钱",
+        "gloss": "The money I have",
+        "pinyin": "wǒ shēn shàng de qián"
+      },
+      {
+        "chinese": "快没有了，",
+        "gloss": "is nearly gone,",
+        "pinyin": "kuài méi yǒu le ，"
+      },
+      {
+        "chinese": "面包",
+        "gloss": "and bread",
+        "pinyin": "miàn bāo"
+      },
+      {
+        "chinese": "也不多了。",
+        "gloss": "is running low too.",
+        "pinyin": "yě bù duō le 。"
+      }
+    ],
+    "pinyin": "wǒ shēn shàng de qián kuài méi yǒu le ， miàn bāo yě bù duō le 。"
+  },
+  "先别笑，认真一点。": {
+    "english": "Don't smile yet. Look a little more serious.",
+    "interlinear": [
+      {
+        "chinese": "先别笑，",
+        "gloss": "Don't smile yet,",
+        "pinyin": "xiān bié xiào ，"
+      },
+      {
+        "chinese": "认真一点。",
+        "gloss": "look a little more serious.",
+        "pinyin": "rèn zhēn yì diǎn 。"
+      }
+    ],
+    "pinyin": "xiān bié xiào ， rèn zhēn yì diǎn 。"
+  },
+  "先别想面包，看着教官。": {
+    "english": "Stop thinking about bread for now. Look at the instructor.",
+    "interlinear": [
+      {
+        "chinese": "先别想面包，",
+        "gloss": "Stop thinking about bread for now,",
+        "pinyin": "xiān bié xiǎng miàn bāo ，"
+      },
+      {
+        "chinese": "看着教官。",
+        "gloss": "look at the instructor.",
+        "pinyin": "kàn zhe jiào guān 。"
+      }
+    ],
+    "pinyin": "xiān bié xiǎng miàn bāo ， kàn zhe jiào guān 。"
+  },
+  "我不笑了，认认真真地想这个问题。": {
+    "english": "I stop smiling and consider the question very seriously.",
+    "interlinear": [
+      {
+        "chinese": "我不笑了，",
+        "gloss": "I stop smiling,",
+        "pinyin": "wǒ bú xiào le ，"
+      },
+      {
+        "chinese": "认认真真地",
+        "gloss": "very seriously",
+        "pinyin": "rèn rèn zhēn zhēn de"
+      },
+      {
+        "chinese": "想",
+        "gloss": "and think about",
+        "pinyin": "xiǎng"
+      },
+      {
+        "chinese": "这个问题。",
+        "gloss": "this question.",
+        "pinyin": "zhè ge wèn tí 。"
+      }
+    ],
+    "pinyin": "wǒ bú xiào le ， rèn rèn zhēn zhēn de xiǎng zhè ge wèn tí 。"
+  },
+  "我不再想面包，认真地看教官。": {
+    "english": "I stop thinking about bread and look attentively at the instructor.",
+    "interlinear": [
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "不再",
+        "gloss": "no longer",
+        "pinyin": "bú zài"
+      },
+      {
+        "chinese": "想面包，",
+        "gloss": "think about bread,",
+        "pinyin": "xiǎng miàn bāo ，"
+      },
+      {
+        "chinese": "认真地",
+        "gloss": "and attentively",
+        "pinyin": "rèn zhēn de"
+      },
+      {
+        "chinese": "看教官。",
+        "gloss": "look at the instructor.",
+        "pinyin": "kàn jiào guān 。"
+      }
+    ],
+    "pinyin": "wǒ bú zài xiǎng miàn bāo ， rèn zhēn de kàn jiào guān 。"
+  },
+  "能帮您做这个任务，是我的荣幸。": {
+    "english": "It is my honor to help you with this quest.",
+    "interlinear": [
+      {
+        "chinese": "能帮您",
+        "gloss": "Being able to help you",
+        "pinyin": "néng bāng nín"
+      },
+      {
+        "chinese": "做这个任务，",
+        "gloss": "with this quest,",
+        "pinyin": "zuò zhè ge rèn wu ，"
+      },
+      {
+        "chinese": "是",
+        "gloss": "is",
+        "pinyin": "shì"
+      },
+      {
+        "chinese": "我的荣幸。",
+        "gloss": "my honor.",
+        "pinyin": "wǒ de róng xìng 。"
+      }
+    ],
+    "pinyin": "néng bāng nín zuò zhè ge rèn wu ， shì wǒ de róng xìng 。"
+  },
+  "虽然我不相信，真的有人能把月光做成东西。": {
+    "english": "Although I don't believe anyone can really make something out of moonlight.",
+    "interlinear": [
+      {
+        "chinese": "虽然",
+        "gloss": "Although",
+        "pinyin": "suī rán"
+      },
+      {
+        "chinese": "我不相信，",
+        "gloss": "I don't believe",
+        "pinyin": "wǒ bù xiāng xìn ，"
+      },
+      {
+        "chinese": "真的有人",
+        "gloss": "someone really",
+        "pinyin": "zhēn de yǒu rén"
+      },
+      {
+        "chinese": "能",
+        "gloss": "could",
+        "pinyin": "néng"
+      },
+      {
+        "chinese": "把月光",
+        "gloss": "take moonlight and",
+        "pinyin": "bǎ yuè guāng"
+      },
+      {
+        "chinese": "做成东西。",
+        "gloss": "make something out of it.",
+        "pinyin": "zuò chéng dōng xī 。"
+      }
+    ],
+    "pinyin": "suī rán wǒ bù xiāng xìn ， zhēn de yǒu rén néng bǎ yuè guāng zuò chéng dōng xī 。"
+  },
+  "不过，我会去问清楚。": {
+    "english": "Still, I will go and find out for certain.",
+    "interlinear": [
+      {
+        "chinese": "不过，",
+        "gloss": "Still,",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "我会",
+        "gloss": "I will",
+        "pinyin": "wǒ huì"
+      },
+      {
+        "chinese": "去问清楚。",
+        "gloss": "go and find out for certain.",
+        "pinyin": "qù wèn qīng chǔ 。"
+      }
+    ],
+    "pinyin": "bú guò ， wǒ huì qù wèn qīng chǔ 。"
+  },
+  "我接受了任务。": {
+    "english": "I have accepted the quest.",
+    "interlinear": [
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "接受了",
+        "gloss": "have accepted",
+        "pinyin": "jiē shòu le"
+      },
+      {
+        "chinese": "任务。",
+        "gloss": "the quest.",
+        "pinyin": "rèn wu 。"
+      }
+    ],
+    "pinyin": "wǒ jiē shòu le rèn wu 。"
+  },
+  "谢谢你，韦德。这个任务就给你了。": {
+    "english": "Thank you, Weed. The quest is yours now.",
+    "interlinear": [
+      {
+        "chinese": "谢谢你，",
+        "gloss": "Thank you,",
+        "pinyin": "xiè xiè nǐ ，"
+      },
+      {
+        "chinese": "韦德。",
+        "gloss": "Weed.",
+        "pinyin": "wéi dé 。"
+      },
+      {
+        "chinese": "这个任务",
+        "gloss": "This quest",
+        "pinyin": "zhè ge rèn wu"
+      },
+      {
+        "chinese": "就给你了。",
+        "gloss": "is now yours.",
+        "pinyin": "jiù gěi nǐ le 。"
+      }
+    ],
+    "pinyin": "xiè xiè nǐ ， wéi dé 。 zhè ge rèn wu jiù gěi nǐ le 。"
+  },
+  "我会把事情问明白。": {
+    "english": "I will get to the bottom of this.",
+    "interlinear": [
+      {
+        "chinese": "我会",
+        "gloss": "I will",
+        "pinyin": "wǒ huì"
+      },
+      {
+        "chinese": "把事情",
+        "gloss": "take this matter and",
+        "pinyin": "bǎ shì qing"
+      },
+      {
+        "chinese": "问明白。",
+        "gloss": "get to the bottom of it.",
+        "pinyin": "wèn míng bai 。"
+      }
+    ],
+    "pinyin": "wǒ huì bǎ shì qing wèn míng bai 。"
+  },
+  "我会回来跟您说。": {
+    "english": "I will come back and tell you.",
+    "interlinear": [
+      {
+        "chinese": "我会回来",
+        "gloss": "I will come back",
+        "pinyin": "wǒ huì huí lái"
+      },
+      {
+        "chinese": "跟您说。",
+        "gloss": "and tell you.",
+        "pinyin": "gēn nín shuō 。"
+      }
+    ],
+    "pinyin": "wǒ huì huí lái gēn nín shuō 。"
+  },
+  "我会把事情问明白，再来跟您说。": {
+    "english": "I will get to the bottom of this, then come back and tell you.",
+    "interlinear": [
+      {
+        "chinese": "我会",
+        "gloss": "I will",
+        "pinyin": "wǒ huì"
+      },
+      {
+        "chinese": "把事情",
+        "gloss": "take this matter and",
+        "pinyin": "bǎ shì qing"
+      },
+      {
+        "chinese": "问明白，",
+        "gloss": "get to the bottom of it,",
+        "pinyin": "wèn míng bai ，"
+      },
+      {
+        "chinese": "再来",
+        "gloss": "then return",
+        "pinyin": "zài lái"
+      },
+      {
+        "chinese": "跟您说。",
+        "gloss": "and tell you.",
+        "pinyin": "gēn nín shuō 。"
+      }
+    ],
+    "pinyin": "wǒ huì bǎ shì qing wèn míng bai ， zài lái gēn nín shuō 。"
+  },
+  "等我问到了，就回来跟您说。": {
+    "english": "Once I have found out, I will come back and tell you.",
+    "interlinear": [
+      {
+        "chinese": "等我问到了，",
+        "gloss": "Once I have found out,",
+        "pinyin": "děng wǒ wèn dào le ，"
+      },
+      {
+        "chinese": "就回来",
+        "gloss": "I'll come back",
+        "pinyin": "jiù huí lái"
+      },
+      {
+        "chinese": "跟您说。",
+        "gloss": "and tell you.",
+        "pinyin": "gēn nín shuō 。"
+      }
+    ],
+    "pinyin": "děng wǒ wèn dào le ， jiù huí lái gēn nín shuō 。"
+  },
+  "先拿着这些钱。": {
+    "english": "Take this money for now.",
+    "interlinear": [
+      {
+        "chinese": "先",
+        "gloss": "For now",
+        "pinyin": "xiān"
+      },
+      {
+        "chinese": "拿着",
+        "gloss": "take and keep",
+        "pinyin": "ná zhe"
+      },
+      {
+        "chinese": "这些钱。",
+        "gloss": "this money.",
+        "pinyin": "zhè xiē qián 。"
+      }
+    ],
+    "pinyin": "xiān ná zhe zhè xiē qián 。"
+  },
+  "教官给了我两枚银币。": {
+    "english": "The instructor gives me two silver coins.",
+    "interlinear": [
+      {
+        "chinese": "教官",
+        "gloss": "The instructor",
+        "pinyin": "jiào guān"
+      },
+      {
+        "chinese": "给了我",
+        "gloss": "gave me",
+        "pinyin": "gěi le wǒ"
+      },
+      {
+        "chinese": "两枚银币。",
+        "gloss": "two silver coins.",
+        "pinyin": "liǎng méi yín bì 。"
+      }
+    ],
+    "pinyin": "jiào guān gěi le wǒ liǎng méi yín bì 。"
+  },
+  "还没出门，钱已经到了手里。": {
+    "english": "Before I have even gone out, the money is already in my hands.",
+    "interlinear": [
+      {
+        "chinese": "还没出门，",
+        "gloss": "Before I have even gone out,",
+        "pinyin": "hái méi chū mén ，"
+      },
+      {
+        "chinese": "钱",
+        "gloss": "the money",
+        "pinyin": "qián"
+      },
+      {
+        "chinese": "已经",
+        "gloss": "has already",
+        "pinyin": "yǐ jīng"
+      },
+      {
+        "chinese": "到了手里。",
+        "gloss": "reached my hands.",
+        "pinyin": "dào le shǒu lǐ 。"
+      }
+    ],
+    "pinyin": "hái méi chū mén ， qián yǐ jīng dào le shǒu lǐ 。"
+  },
+  "我手里有了钱，心里一下子放心了。": {
+    "english": "With money in my hands, I feel relieved all at once.",
+    "interlinear": [
+      {
+        "chinese": "我手里",
+        "gloss": "In my hands",
+        "pinyin": "wǒ shǒu lǐ"
+      },
+      {
+        "chinese": "有了钱，",
+        "gloss": "there is now money,",
+        "pinyin": "yǒu le qián ，"
+      },
+      {
+        "chinese": "心里",
+        "gloss": "and inside",
+        "pinyin": "xīn lǐ"
+      },
+      {
+        "chinese": "一下子",
+        "gloss": "all at once",
+        "pinyin": "yí xià zi"
+      },
+      {
+        "chinese": "放心了。",
+        "gloss": "I feel relieved.",
+        "pinyin": "fàng xīn le 。"
+      }
+    ],
+    "pinyin": "wǒ shǒu lǐ yǒu le qián ， xīn lǐ yí xià zi fàng xīn le 。"
+  },
+  "好好说声谢谢。": {
+    "english": "Give him a proper thank-you.",
+    "interlinear": [
+      {
+        "chinese": "好好",
+        "gloss": "Properly",
+        "pinyin": "hǎo hao"
+      },
+      {
+        "chinese": "说声谢谢。",
+        "gloss": "say thank you.",
+        "pinyin": "shuō shēng xiè xiè 。"
+      }
+    ],
+    "pinyin": "hǎo hao shuō shēng xiè xiè 。"
+  },
+  "先把钱收好。": {
+    "english": "Put the money away safely first.",
+    "interlinear": [
+      {
+        "chinese": "先",
+        "gloss": "First",
+        "pinyin": "xiān"
+      },
+      {
+        "chinese": "把钱",
+        "gloss": "take the money and",
+        "pinyin": "bǎ qián"
+      },
+      {
+        "chinese": "收好。",
+        "gloss": "put it away safely.",
+        "pinyin": "shōu hǎo 。"
+      }
+    ],
+    "pinyin": "xiān bǎ qián shōu hǎo 。"
+  },
+  "谢谢您，教官。": {
+    "english": "Thank you, instructor.",
+    "interlinear": [
+      {
+        "chinese": "谢谢您，",
+        "gloss": "Thank you,",
+        "pinyin": "xiè xiè nín ，"
+      },
+      {
+        "chinese": "教官。",
+        "gloss": "instructor.",
+        "pinyin": "jiào guān 。"
+      }
+    ],
+    "pinyin": "xiè xiè nín ， jiào guān 。"
+  },
+  "我小心地把钱收起来。现在，钱就在我这里了。": {
+    "english": "I carefully put the money away. Now it is right here with me.",
+    "interlinear": [
+      {
+        "chinese": "我",
+        "gloss": "I",
+        "pinyin": "wǒ"
+      },
+      {
+        "chinese": "小心地",
+        "gloss": "carefully",
+        "pinyin": "xiǎo xīn de"
+      },
+      {
+        "chinese": "把钱",
+        "gloss": "take the money and",
+        "pinyin": "bǎ qián"
+      },
+      {
+        "chinese": "收起来。",
+        "gloss": "put it away.",
+        "pinyin": "shōu qǐ lái 。"
+      },
+      {
+        "chinese": "现在，",
+        "gloss": "Now,",
+        "pinyin": "xiàn zài ，"
+      },
+      {
+        "chinese": "钱",
+        "gloss": "the money",
+        "pinyin": "qián"
+      },
+      {
+        "chinese": "就在",
+        "gloss": "is right",
+        "pinyin": "jiù zài"
+      },
+      {
+        "chinese": "我这里了。",
+        "gloss": "here with me.",
+        "pinyin": "wǒ zhè lǐ le 。"
+      }
+    ],
+    "pinyin": "wǒ xiǎo xīn de bǎ qián shōu qǐ lái 。 xiàn zài ， qián jiù zài wǒ zhè lǐ le 。"
+  },
+  "你先去一个地方。": {
+    "english": "There is somewhere you should go first.",
+    "interlinear": [
+      {
+        "chinese": "你先",
+        "gloss": "You should first",
+        "pinyin": "nǐ xiān"
+      },
+      {
+        "chinese": "去",
+        "gloss": "go to",
+        "pinyin": "qù"
+      },
+      {
+        "chinese": "一个地方。",
+        "gloss": "a certain place.",
+        "pinyin": "yí gè dì fāng 。"
+      }
+    ],
+    "pinyin": "nǐ xiān qù yí gè dì fāng 。"
+  },
+  "去雕刻店，问问那边的人。": {
+    "english": "Go to the sculpture shop and ask the people there.",
+    "interlinear": [
+      {
+        "chinese": "去雕刻店，",
+        "gloss": "Go to the sculpture shop,",
+        "pinyin": "qù diāo kè diàn ，"
+      },
+      {
+        "chinese": "问问",
+        "gloss": "and ask",
+        "pinyin": "wèn wèn"
+      },
+      {
+        "chinese": "那边的人。",
+        "gloss": "the people there.",
+        "pinyin": "nà biān de rén 。"
+      }
+    ],
+    "pinyin": "qù diāo kè diàn ， wèn wèn nà biān de rén 。"
+  },
+  "就是卖雕刻的店，对吗？": {
+    "english": "You mean the shop that sells sculptures, right?",
+    "interlinear": [
+      {
+        "chinese": "就是",
+        "gloss": "You mean",
+        "pinyin": "jiù shì"
+      },
+      {
+        "chinese": "卖雕刻的店，",
+        "gloss": "the shop that sells sculptures,",
+        "pinyin": "mài diāo kè de diàn ，"
+      },
+      {
+        "chinese": "对吗？",
+        "gloss": "right?",
+        "pinyin": "duì ma ？"
+      }
+    ],
+    "pinyin": "jiù shì mài diāo kè de diàn ， duì ma ？"
+  },
+  "对，先去那里问一下。": {
+    "english": "Yes. Go there first and ask around.",
+    "interlinear": [
+      {
+        "chinese": "对，",
+        "gloss": "Yes,",
+        "pinyin": "duì ，"
+      },
+      {
+        "chinese": "先去那里",
+        "gloss": "go there first",
+        "pinyin": "xiān qù nà lǐ"
+      },
+      {
+        "chinese": "问一下。",
+        "gloss": "and ask around.",
+        "pinyin": "wèn yí xià 。"
+      }
+    ],
+    "pinyin": "duì ， xiān qù nà lǐ wèn yí xià 。"
+  },
+  "好，我知道了。": {
+    "english": "All right, I understand.",
+    "interlinear": [
+      {
+        "chinese": "好，",
+        "gloss": "All right,",
+        "pinyin": "hǎo ，"
+      },
+      {
+        "chinese": "我知道了。",
+        "gloss": "I understand.",
+        "pinyin": "wǒ zhī dào le 。"
+      }
+    ],
+    "pinyin": "hǎo ， wǒ zhī dào le 。"
+  },
+  "原来，和教官一起吃午饭，还能得到这样的任务。": {
+    "english": "So eating lunch with the instructor can even get you a quest like this.",
+    "interlinear": [
+      {
+        "chinese": "原来，",
+        "gloss": "So it turns out,",
+        "pinyin": "yuán lái ，"
+      },
+      {
+        "chinese": "和教官",
+        "gloss": "with the instructor",
+        "pinyin": "hé jiào guān"
+      },
+      {
+        "chinese": "一起吃午饭，",
+        "gloss": "eating lunch together,",
+        "pinyin": "yì qǐ chī wǔ fàn ，"
+      },
+      {
+        "chinese": "还能",
+        "gloss": "can even",
+        "pinyin": "hái néng"
+      },
+      {
+        "chinese": "得到",
+        "gloss": "get you",
+        "pinyin": "dé dào"
+      },
+      {
+        "chinese": "这样的任务。",
+        "gloss": "a quest like this.",
+        "pinyin": "zhè yàng de rèn wu 。"
+      }
+    ],
+    "pinyin": "yuán lái ， hé jiào guān yì qǐ chī wǔ fàn ， hái néng dé dào zhè yàng de rèn wu 。"
+  },
+  "三个星期对着木头人，现在终于有了新的任务。": {
+    "english": "After three weeks facing a wooden dummy, I finally have a new quest.",
+    "interlinear": [
+      {
+        "chinese": "三个星期",
+        "gloss": "For three weeks",
+        "pinyin": "sān gè xīng qī"
+      },
+      {
+        "chinese": "对着木头人，",
+        "gloss": "I faced a wooden dummy,",
+        "pinyin": "duì zhe mù tou rén ，"
+      },
+      {
+        "chinese": "现在",
+        "gloss": "and now",
+        "pinyin": "xiàn zài"
+      },
+      {
+        "chinese": "终于",
+        "gloss": "at last",
+        "pinyin": "zhōng yú"
+      },
+      {
+        "chinese": "有了",
+        "gloss": "I have",
+        "pinyin": "yǒu le"
+      },
+      {
+        "chinese": "新的任务。",
+        "gloss": "a new quest.",
+        "pinyin": "xīn de rèn wu 。"
+      }
+    ],
+    "pinyin": "sān gè xīng qī duì zhe mù tou rén ， xiàn zài zhōng yú yǒu le xīn de rèn wu 。"
+  },
+  "钱到手了。不过，说过要问明白的事，也得去做。": {
+    "english": "The money is in my hands. But I still have to do what I said: get to the bottom of this.",
+    "interlinear": [
+      {
+        "chinese": "钱到手了。",
+        "gloss": "The money is in my hands.",
+        "pinyin": "qián dào shǒu le 。"
+      },
+      {
+        "chinese": "不过，",
+        "gloss": "But,",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "说过",
+        "gloss": "having said",
+        "pinyin": "shuō guò"
+      },
+      {
+        "chinese": "要问明白的事，",
+        "gloss": "I would get to the bottom of this,",
+        "pinyin": "yào wèn míng bai de shì ，"
+      },
+      {
+        "chinese": "也得",
+        "gloss": "I still have to",
+        "pinyin": "yě děi"
+      },
+      {
+        "chinese": "去做。",
+        "gloss": "go and do it.",
+        "pinyin": "qù zuò 。"
+      }
+    ],
+    "pinyin": "qián dào shǒu le 。 bú guò ， shuō guò yào wèn míng bai de shì ， yě děi qù zuò 。"
+  },
+  "钱到手了。不过，我还得回来，把结果跟教官说。": {
+    "english": "The money is in my hands. But I still have to return and tell the instructor what I find out.",
+    "interlinear": [
+      {
+        "chinese": "钱到手了。",
+        "gloss": "The money is in my hands.",
+        "pinyin": "qián dào shǒu le 。"
+      },
+      {
+        "chinese": "不过，",
+        "gloss": "But,",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "我还得",
+        "gloss": "I still have to",
+        "pinyin": "wǒ hái děi"
+      },
+      {
+        "chinese": "回来，",
+        "gloss": "come back,",
+        "pinyin": "huí lái ，"
+      },
+      {
+        "chinese": "把结果",
+        "gloss": "take the result and",
+        "pinyin": "bǎ jié guǒ"
+      },
+      {
+        "chinese": "跟教官说。",
+        "gloss": "tell the instructor.",
+        "pinyin": "gēn jiào guān shuō 。"
+      }
+    ],
+    "pinyin": "qián dào shǒu le 。 bú guò ， wǒ hái děi huí lái ， bǎ jié guǒ gēn jiào guān shuō 。"
+  },
+  "两枚银币，一个任务。现在，该去雕刻店了。": {
+    "english": "Two silver coins, one quest. Now it is time to go to the sculpture shop.",
+    "interlinear": [
+      {
+        "chinese": "两枚银币，",
+        "gloss": "Two silver coins,",
+        "pinyin": "liǎng méi yín bì ，"
+      },
+      {
+        "chinese": "一个任务。",
+        "gloss": "one quest.",
+        "pinyin": "yí gè rèn wu 。"
+      },
+      {
+        "chinese": "现在，",
+        "gloss": "Now,",
+        "pinyin": "xiàn zài ，"
+      },
+      {
+        "chinese": "该去",
+        "gloss": "it's time to go to",
+        "pinyin": "gāi qù"
+      },
+      {
+        "chinese": "雕刻店了。",
+        "gloss": "the sculpture shop.",
+        "pinyin": "diāo kè diàn le 。"
+      }
+    ],
+    "pinyin": "liǎng méi yín bì ， yí gè rèn wu 。 xiàn zài ， gāi qù diāo kè diàn le 。"
+  }
+}
