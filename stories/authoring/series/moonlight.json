@@ -5,9 +5,9 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_02.xhtml",
-    "nextStart": "Weed barely held a whisper of triumph at bay.",
-    "nextEndBefore": "A piece or rye bread, while literally tasteless,",
-    "continuationNote": "Hyun recognizes the unusual quest conditions, accepts the E-level investigation, and receives two silver coins plus advice to start at the sculpture shop. Stop before the bread-price calculation."
+    "nextStart": "A piece or rye bread, while literally tasteless,",
+    "nextEndBefore": "Many years of first-hand experience of habitual famine",
+    "continuationNote": "Finish the chapter’s bread calculation: three coppers each, one silver equals one hundred coppers, two silvers buy sixty-six breads plus change; further rewards expected. The final famine sentence remains at the next boundary. Inspect the end of Chapter 2 and the start of Chapter 3 deliberately when planning the following source scope."
   },
   "completed": [
     {
@@ -65,9 +65,13 @@
     {
       "episode": "moonlight-14-v1",
       "end": "The instructor describes the moonlight-carving rumor, names his predecessor Mellium as a Royal Knight, and asks Hyun to investigate. The E-level quest offer appears with friendship, no Sculpture Mastery, and dedication-to-sword conditions. It is not accepted yet."
+    },
+    {
+      "episode": "moonlight-15-v1",
+      "end": "Hyun recognizes the rare quest conditions, accepts the E-level investigation, receives two silver coins as an advance, and is advised to begin at the sculpture shop. Stops before the bread-price calculation."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-14.json",
+  "assetsFrom": "stories/animated/moonlight-15.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -84,17 +88,17 @@
   },
   "continuity": [
     "Grandmother remains hospitalized and the old debt is paid. Do not invent an exact current balance.",
-    "Three in-game weeks have passed. Training gains are STR +28, AGI +25, VIT +22; Sword Mastery Beginner level 3 at 0%, +30% attack and +9% speed. Fighting Spirit and Endurance have appeared.",
-    "Over lunch the instructor described a man rumored to have carved moonlight and named his predecessor Mellium, now a Royal Knight, as his source. He trusts Hyun and has offered an E-level investigation quest.",
-    "The quest requires close friendship with the instructor, no Sculpture Mastery, and trust earned through dedication to sword practice. Hyun has not accepted or received any payment yet.",
-    "Episode 14 choices concern the stone/light explanation and the instructor’s trust/sword preference. Callbacks are within the episode."
+    "Three in-game weeks have passed. Training gains and Sword Mastery remain as previously recorded.",
+    "Hyun has accepted the E-level moonlight-sculpting investigation and received two silver coins as advance payment, not a completion reward.",
+    "The instructor advised beginning at the sculpture shop. Hyun has not left the Training Hall, visited the shop, or completed the quest.",
+    "Bread-price arithmetic is not covered yet. Episode 15 has four choices: two immediate-only responses and two within-episode callbacks; no cross-episode choice memory."
   ],
   "castRecipes": "stories/characters/lms-cast.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through moonlight-14-v1",
-    "nextStart": "Weed barely held a whisper of triumph at bay.",
-    "nextEndBefore": "A piece or rye bread, while literally tasteless,",
-    "assetsFrom": "stories/animated/moonlight-14.json"
+    "note": "Published through moonlight-15-v1",
+    "nextStart": "A piece or rye bread, while literally tasteless,",
+    "nextEndBefore": "Many years of first-hand experience of habitual famine",
+    "assetsFrom": "stories/animated/moonlight-15.json"
   }
 }
