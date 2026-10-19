@@ -4,10 +4,10 @@
   "source": {
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
-    "chapter": "OEBPS/Text/LMS_B01_Chapter_02.xhtml",
-    "nextStart": "A piece or rye bread, while literally tasteless,",
-    "nextEndBefore": "Many years of first-hand experience of habitual famine",
-    "continuationNote": "Finish the chapter’s bread calculation: three coppers each, one silver equals one hundred coppers, two silvers buy sixty-six breads plus change; further rewards expected. The final famine sentence remains at the next boundary. Inspect the end of Chapter 2 and the start of Chapter 3 deliberately when planning the following source scope."
+    "chapter": "OEBPS/Text/LMS_B01_Chapter_03.xhtml",
+    "nextStart": "Then, he casually shot a glance at the statues that were on display.",
+    "nextEndBefore": "Weed relished the statues on display at leisure.",
+    "continuationNote": "Weed saves the exchange by flattering the shop’s golden two-headed eagle and professing artistic interest; the keeper invites him to sit, gives cold honeyed water and allows a tour. Stop before Weed’s private business analysis of the statues."
   },
   "completed": [
     {
@@ -69,9 +69,13 @@
     {
       "episode": "moonlight-15-v1",
       "end": "Hyun recognizes the rare quest conditions, accepts the E-level investigation, receives two silver coins as an advance, and is advised to begin at the sculpture shop. Stops before the bread-price calculation."
+    },
+    {
+      "episode": "moonlight-16-v1",
+      "end": "Weed calculates that two silver coins buy sixty-six breads plus change, fills his canteen, walks the city and enters the sculpture shop. The shopkeeper judges his clothing, refuses to hear his question and tells him to leave. Weed slowly retreats toward the doorway; no flattery or statue examination yet."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-15.json",
+  "assetsFrom": "stories/animated/moonlight-16.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -88,17 +92,18 @@
   },
   "continuity": [
     "Grandmother remains hospitalized and the old debt is paid. Do not invent an exact current balance.",
-    "Three in-game weeks have passed. Training gains and Sword Mastery remain as previously recorded.",
-    "Hyun has accepted the E-level moonlight-sculpting investigation and received two silver coins as advance payment, not a completion reward.",
-    "The instructor advised beginning at the sculpture shop. Hyun has not left the Training Hall, visited the shop, or completed the quest.",
-    "Bread-price arithmetic is not covered yet. Episode 15 has four choices: two immediate-only responses and two within-episode callbacks; no cross-episode choice memory."
+    "Training gains and Sword Mastery remain as previously recorded. The four-week city restriction has not expired.",
+    "The E-level moonlight-sculpting investigation is accepted. Two silver coins were paid in advance; one silver equals one hundred coppers and a rye bread costs three coppers. Weed has calculated sixty-six breads plus change, not bought or eaten sixty-six breads.",
+    "Weed filled his canteen at the fountain and reached the sculpture shop beside a jewelry shop. His beginner clothing provoked a cold welcome.",
+    "The keeper has refused even to hear the question. Weed is retreating toward the doorway but has not left, praised the statues, or learned anything about moonlight sculpting.",
+    "Episode 16 has four choices and within-episode callbacks only. The shopkeeper’s conversion and honeyed water remain ahead."
   ],
   "castRecipes": "stories/characters/lms-cast.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through moonlight-15-v1",
-    "nextStart": "A piece or rye bread, while literally tasteless,",
-    "nextEndBefore": "Many years of first-hand experience of habitual famine",
-    "assetsFrom": "stories/animated/moonlight-15.json"
+    "note": "Published through moonlight-16-v1",
+    "nextStart": "Then, he casually shot a glance at the statues that were on display.",
+    "nextEndBefore": "Weed relished the statues on display at leisure.",
+    "assetsFrom": "stories/animated/moonlight-16.json"
   }
 }
