@@ -98,5 +98,27 @@
       "trim": "#e4d8be"
     },
     "provenance": "Approved Sister B imagegen concept, 2026-10-14. Original fictional SVG interpretation with practical ponytail, alert eyes and rust overshirt. Reusable cast member; not inserted into scenes where she is absent."
+  },
+  {
+    "id": "Shopkeeper",
+    "name": "店主 · Sculpture shopkeeper",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "side-part",
+      "face": "round",
+      "eyes": "narrow",
+      "facialHair": "full",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#d1b093",
+      "hair": "#51463e",
+      "beard": "#51463e",
+      "shirt": "#68725a",
+      "trim": "#bda377"
+    },
+    "provenance": "Original fictional sculpture-shop keeper for the personal LMS adaptation. Shared polished SVG builder, distinct round face, tidy side-part, short beard and muted sage merchant robe; not official artwork."
   }
 ]

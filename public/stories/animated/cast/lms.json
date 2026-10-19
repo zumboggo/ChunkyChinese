@@ -123,5 +123,32 @@
         "outfit": "workshirt"
       }
     }
+  },
+  "Shopkeeper": {
+    "name": "店主 · Sculpture shopkeeper",
+    "version": 1,
+    "provenance": "Original fictional sculpture-shop keeper for the personal LMS adaptation. Shared polished SVG builder, distinct round face, tidy side-part, short beard and muted sage merchant robe; not official artwork.",
+    "expressions": {},
+    "rig": {
+      "version": 2,
+      "preset": "cartoon-v1",
+      "style": "manga",
+      "finish": "polished",
+      "palette": {
+        "skin": "#d1b093",
+        "hair": "#51463e",
+        "shirt": "#68725a",
+        "beard": "#51463e",
+        "trim": "#bda377"
+      },
+      "appearance": {
+        "age": "adult",
+        "hair": "side-part",
+        "face": "round",
+        "eyes": "narrow",
+        "facialHair": "full",
+        "outfit": "robe"
+      }
+    }
   }
 }
