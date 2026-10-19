@@ -55,7 +55,9 @@ class PreparationTests(unittest.TestCase):
    old=os.getcwd();os.chdir(directory)
    try:
     book=Path('book.epub')
-    with zipfile.ZipFile(book,'w') as z:z.writestr('chapter','<p>Next start. Next end.</p>')
+    with zipfile.ZipFile(book,'w') as z:
+     z.writestr('chapter','<p>Next start. Next end.</p>')
+     z.writestr('next-chapter','<p>Later start. Later end.</p>')
     record=Path('stories/authoring/series/test.json');record.parent.mkdir(parents=True)
     record.write_text(json.dumps({'id':'test','completed':[],'source':{'epub':str(book.resolve()),'sha256':hashlib.sha256(book.read_bytes()).hexdigest(),'chapter':'chapter','nextStart':'old','nextEndBefore':'old end'}}))
     package=Path('stories/animated/new.json');package.parent.mkdir(parents=True);package.write_text('{}\n')
@@ -66,6 +68,11 @@ class PreparationTests(unittest.TestCase):
     # Use the real EPUB validator at its known script path inside the isolated workspace.
     Path('scripts').mkdir();Path('scripts/episode-source.py').write_text((BASE/'episode-source.py').read_text())
     result=prep.prepare('plan.json','report.json');self.assertEqual(result['nextRecord']['completed'][0]['episode'],'new-v1');self.assertEqual(json.loads(record.read_text())['completed'],[])
+    plan=json.loads(Path('plan.json').read_text());plan['continuation'].update(chapter='next-chapter',nextStart='Later start.',nextEndBefore='Later end.');Path('plan.json').write_text(json.dumps(plan))
+    result=prep.prepare('plan.json','report.json');self.assertEqual(result['nextRecord']['source']['chapter'],'next-chapter');self.assertEqual(json.loads(record.read_text())['source']['chapter'],'chapter')
+    plan['continuation']['chapter']='missing';Path('plan.json').write_text(json.dumps(plan))
+    with self.assertRaises(KeyError):prep.prepare('plan.json','report.json')
+    plan['continuation']['chapter']='next-chapter';Path('plan.json').write_text(json.dumps(plan))
     package.write_text('changed')
     with self.assertRaisesRegex(ValueError,'differs'):prep.prepare('plan.json','report.json')
     report['phases']=[];Path('report.json').write_text(json.dumps(report))

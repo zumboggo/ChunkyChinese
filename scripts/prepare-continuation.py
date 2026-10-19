@@ -24,6 +24,9 @@ def prepare(plan_path, report_path):
     record['pendingPublication']=[e for e in record.get('pendingPublication',[]) if e['episode']!=release]
     record['assetsFrom']=package.as_posix()
     record['source'].update({k:continuation[k] for k in ('nextStart','nextEndBefore')})
+    if 'chapter' in continuation:
+        if not isinstance(continuation['chapter'],str) or not continuation['chapter'].strip():raise ValueError('chapter must be a nonempty EPUB entry name.')
+        record['source']['chapter']=continuation['chapter']
     record['source']['continuationNote']=continuation.get('note',continuation['end'])
     if 'continuity' in continuation:
         if not isinstance(continuation['continuity'],list) or not all(isinstance(x,str) for x in continuation['continuity']):raise ValueError('continuity must be a list of notes.')
