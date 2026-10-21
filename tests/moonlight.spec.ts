@@ -4,7 +4,7 @@ for(const route of ['promise','humor'] as const)test(`Moonlight ${route}: audio,
  await page.locator('article').filter({has:page.getByRole('heading',{name:'Before the First Bid',exact:true})}).getByRole('button',{name:'Restart episode',exact:true}).click()
  await expect(page.locator('.episode-line')).toContainText('李贤。')
  await expect(page.locator('.story-stage svg')).toHaveCount(1)
- await page.getByLabel('Reduced motion',{exact:true}).check()
+ await page.emulateMedia({reducedMotion:'reduce'})
  await page.getByRole('button',{name:'Continue →',exact:true}).click()
  await page.getByRole('button',{name:'Play audio',exact:true}).click()
  await expect(page.locator('svg.puppet-speaking')).toHaveCount(1)
@@ -33,7 +33,7 @@ for(const route of ['promise','humor'] as const)test(`Moonlight ${route}: audio,
 test('interlinear help toggles and whole-choice keyboard selection',async({page})=>{
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
  await page.locator('article').filter({has:page.getByRole('heading',{name:'Before the First Bid',exact:true})}).getByRole('button',{name:'Restart episode',exact:true}).click()
- await page.getByLabel('Reduced motion',{exact:true}).check()
+ await page.emulateMedia({reducedMotion:'reduce'})
  await expect(page.locator('.episode-line .reader-interlinear-chunk')).toHaveCount(7)
  await expect(page.locator('.episode-line .reader-interlinear-gloss').first()).toBeVisible()
  await page.getByRole('button',{name:'Pinyin',exact:true}).click()

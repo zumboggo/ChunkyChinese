@@ -52,7 +52,7 @@ test('resume and reduced motion restore the pose without replaying strikes',asyn
  await page.getByRole('button',{name:'Play demonstration'}).click()
  await expect(page.locator('[data-actor="Hyun"]')).toHaveAttribute('data-gaze','down')
  await expect(page.locator('svg[data-response]')).toHaveCount(0)
- await page.getByLabel('Reduced motion',{exact:true}).check()
+ await page.emulateMedia({reducedMotion:'reduce'})
  await expect(page.locator('.puppet-still')).toHaveCount(2)
  await page.getByRole('button',{name:'Continue →',exact:true}).click()
  await expect(page.getByRole('button',{name:'Continue →',exact:true})).toBeEnabled()

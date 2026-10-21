@@ -9,7 +9,7 @@ test('reusable cast expresses all emotions and keeps articulated hands and props
  }
  await page.getByLabel('Full figure',{exact:true}).check();await page.getByLabel('Animate gestures',{exact:true}).check();await page.getByLabel('Expression',{exact:true}).selectOption('angry');await expect(gallery.locator('[data-hand="fist"]')).toHaveCount(10)
  await page.getByLabel('Animate gestures',{exact:true}).uncheck();await page.getByLabel('Expression',{exact:true}).selectOption('neutral');await gallery.screenshot({path:'.local/cast/full-'+info.project.name+'.png'})
- await page.getByRole('button',{name:'02 An Impossible Number',exact:true}).click();await page.getByRole('button',{name:'Restart episode',exact:true}).click();await page.getByLabel('Reduced motion',{exact:true}).check()
+ await page.getByRole('button',{name:'02 An Impossible Number',exact:true}).click();await page.getByRole('button',{name:'Restart episode',exact:true}).click();await page.emulateMedia({reducedMotion:'reduce'})
  for(let i=0;i<40&&!await page.locator('[data-prop="phone"]').count();i++){
   if(await page.locator('.episode-choice').count())await page.locator('.episode-choice').first().click();else await page.getByRole('button',{name:'Continue →',exact:true}).click()
  }

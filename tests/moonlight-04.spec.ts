@@ -6,7 +6,7 @@ for(const route of ['family','money'])test(`Moonlight 04 ${route}: revised cast,
  await expect(page.locator('.episode-strip button')).toHaveCount(episodeCount)
  await page.getByRole('button',{name:'04 Once More',exact:true}).click()
  await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
- await page.getByLabel('Reduced motion',{exact:true}).check()
+ await page.emulateMedia({reducedMotion:'reduce'})
  await expect(page.locator('[data-face="scrappy"]')).toHaveCount(1)
  let choices=0,callback=false,heard=false,resumed=false
  for(let i=0;i<50;i++){

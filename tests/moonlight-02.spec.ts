@@ -3,7 +3,7 @@ for(const route of ['medicine','clothes'] as const)test(`Moonlight 02 ${route}: 
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click();await page.getByRole('button',{name:'02 An Impossible Number',exact:true}).click()
  const card=page.locator('article').filter({has:page.getByRole('heading',{name:'An Impossible Number',exact:true})})
  await card.getByRole('button',{name:'Restart episode',exact:true}).click()
- await page.getByLabel('Reduced motion',{exact:true}).check()
+ await page.emulateMedia({reducedMotion:'reduce'})
  const selections=route==='medicine'?['想想看医生的钱。','心里想想：也许是游戏里的钱？','说说以后的家。']:['想想工作穿的衣服。','心里想想：也许她找错人了？','说说回学校的事。']
  let choices=0,heard=false,number=false,remembered=false
  for(let i=0;i<75;i++){
@@ -53,7 +53,7 @@ for(const route of ['medicine','clothes'] as const)test(`Moonlight 02 ${route}: 
    else await page.getByRole('button',{name:'Continue →',exact:true}).click()
   }
   await expect(page.locator('.episode-line')).toContainText('你再说一次！')
-  await page.getByLabel('Reduced motion',{exact:true}).uncheck()
+  await page.emulateMedia({reducedMotion:'no-preference'})
   await page.getByRole('button',{name:'Play audio',exact:true}).click()
   await expect(page.locator('svg.puppet-speaking')).toHaveCount(1)
   await page.screenshot({path:'.local/moonlight-02-'+testInfo.project.name.replaceAll(' ','-')+'.png',fullPage:true})

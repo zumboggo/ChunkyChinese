@@ -49,7 +49,7 @@ test('face framing, two-shots and action shots work with optional ducked sound',
  await expect(page.getByText('[Sword strikes straw]',{exact:true})).toBeVisible();await expect(next).toBeEnabled()
  await stage.screenshot({path:`test-results/action-frame-${test.info().project.name.replaceAll(' ','-')}.png`})
  await next.click();await expect(page.getByText('[A bright chime]',{exact:true})).toBeVisible()
- await page.getByLabel('Reduced motion',{exact:true}).check();await expect(page.locator('.story-environment')).toHaveCount(0);await expect(page.locator('.story-camera')).toHaveCSS('transition-duration','0s')
+ await page.emulateMedia({reducedMotion:'reduce'});await expect(page.locator('.story-environment')).toHaveCount(0);await expect(page.locator('.story-camera')).toHaveCSS('transition-duration','0s')
  await next.click();await expect(page.locator('.story-sound-caption')).toHaveText(/\s*/)
  await page.getByRole('button',{name:'← Story library',exact:true}).click()
  await expect.poll(()=>page.evaluate(()=>(window as any).__soundContexts[0]?.state)).toBe('closed')

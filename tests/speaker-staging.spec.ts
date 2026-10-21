@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test'
 for(const episode of ['01 Before the First Bid','02 An Impossible Number','03 The Price of Safety'])test(`${episode}: Grandma appears and speaks on screen`,async({page},info)=>{
- await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click();await page.getByRole('button',{name:episode,exact:true}).click();await page.getByRole('button',{name:'Play / resume episode',exact:true}).click();await page.getByLabel('Reduced motion',{exact:true}).check()
+ await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click();await page.getByRole('button',{name:episode,exact:true}).click();await page.getByRole('button',{name:'Play / resume episode',exact:true}).click();await page.emulateMedia({reducedMotion:'reduce'})
  let seen=false
  for(let i=0;i<90;i++){
   if(await page.locator('.story-dialogue').innerText().then(s=>s.includes('奶奶 ·'))){

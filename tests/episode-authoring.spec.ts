@@ -20,7 +20,7 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
   await page.locator('.featured-episode').getByRole('button',{name:'Play / resume episode',exact:true}).click()
  }
  await open()
- if(index%2)await page.getByLabel('Reduced motion',{exact:true}).check()
+ if(index%2)await page.emulateMedia({reducedMotion:'reduce'})
  let heard=false,resumed=false
  const currentText=()=>page.evaluate(()=>{
   const line=document.querySelector('.episode-line')

@@ -3,7 +3,7 @@ for(const route of ['count','listen'] as const)test(`Moonlight 03 ${route}: pair
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click();await page.getByRole('button',{name:'03 The Price of Safety',exact:true}).click()
  const card=page.locator('article').filter({has:page.getByRole('heading',{name:'The Price of Safety',exact:true})})
  await card.getByRole('button',{name:'Restart episode',exact:true}).click()
- await page.getByLabel('Reduced motion',{exact:true}).check()
+ await page.emulateMedia({reducedMotion:'reduce'})
  const options=route==='count'?['问清楚：为什么变成这么多？','想到妹妹，不能让她出事。','记住他们拿走的钱。']:['先听听他们怎么说。','看看奶奶，让她放心。','记住家人很怕的样子。']
  let choices=0,handoff=false,callback=false,heard=false
  for(let i=0;i<85;i++){
@@ -21,11 +21,11 @@ for(const route of ['count','listen'] as const)test(`Moonlight 03 ${route}: pair
     await page.getByRole('button',{name:'Play audio',exact:true}).click();await expect(page.locator('svg.puppet-speaking')).toHaveCount(1);heard=true
     if(route==='count')await page.screenshot({path:'.local/moonlight-03-'+testInfo.project.name.replaceAll(' ','-')+'.png',fullPage:true})
    }
-   if(route==='count' && text.includes('我看看手里的存折'))await page.getByLabel('Reduced motion',{exact:true}).uncheck()
+   if(route==='count' && text.includes('我看看手里的存折'))await page.emulateMedia({reducedMotion:'no-preference'})
    if(await page.getByText('I hand over the bankbook. The man takes it.',{exact:true}).isVisible()){
     handoff=true;await expect(page.locator('.story-stage svg')).toHaveCount(2)
     await expect(page.getByRole('button',{name:'Continue →',exact:true})).toBeEnabled()
-    await page.getByLabel('Reduced motion',{exact:true}).check()
+    await page.emulateMedia({reducedMotion:'reduce'})
     await page.getByRole('button',{name:'← Story library',exact:true}).click();await page.getByRole('button',{name:'03 The Price of Safety',exact:true}).click();await card.getByRole('button',{name:'Play / resume episode',exact:true}).click()
     await expect(page.getByText('I hand over the bankbook. The man takes it.',{exact:true})).toBeVisible()
    }

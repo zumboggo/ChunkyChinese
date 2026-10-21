@@ -54,3 +54,8 @@
  .game-page .episode-interlinear .reader-interlinear-gloss{font-size:calc(.8rem * var(--game-text-scale,1))}
  .game-playing .story-dialogue .chinese-line{font-size:calc(23px * var(--game-text-scale,1))}
 }
+
+/* Keep playback full-width below the library and text-size controls. */
+.game-playing .animated-story{clear:both}
+.game-page .reading-controls{padding:4px 2px 10px}
+.game-page .story-atmosphere details{margin-top:0}

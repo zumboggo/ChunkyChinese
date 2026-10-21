@@ -10,7 +10,7 @@ test('categories, independent reading aids, persistent preferences and next epis
  await page.getByRole('button',{name:/LMS A new world/}).click()
  await page.screenshot({path:'.local/design/library-'+info.project.name+'.png',fullPage:true})
  await page.getByRole('button',{name:'Restart episode',exact:true}).click()
- await page.getByLabel('Reduced motion',{exact:true}).check()
+ await page.emulateMedia({reducedMotion:'reduce'})
  await page.screenshot({path:'.local/design/player-'+info.project.name+'.png',fullPage:true})
  const english=page.getByRole('button',{name:'English',exact:true}),pinyin=page.getByRole('button',{name:'Pinyin',exact:true})
  await expect(page.locator('.reader-interlinear-gloss').first()).toBeVisible()

@@ -3,7 +3,7 @@ for(const route of ['stronger','future'])test(`Moonlight 05 ${route}: choices, a
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
  await page.getByRole('button',{name:'05 A Year Before the Game',exact:true}).click()
  await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
- if(route==='future')await page.getByLabel('Reduced motion',{exact:true}).check()
+ if(route==='future')await page.emulateMedia({reducedMotion:'reduce'})
  await expect(page.locator('[data-face="scrappy"]')).toHaveCount(1)
  let choices=0,callbacks=0,heard=false,resumed=false
  for(let i=0;i<65;i++){
