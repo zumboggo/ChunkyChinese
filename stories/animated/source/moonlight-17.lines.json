@@ -1,0 +1,909 @@
+{
+  "我快走到门口了，又看了一眼店里的雕像。": {
+    "pinyin": "wǒ kuài zǒu dào mén kǒu le ， yòu kàn le yì yǎn diàn lǐ de diāo xiàng 。",
+    "english": "I had almost reached the door when I took another look at the statues in the shop",
+    "interlinear": [
+      {
+        "chinese": "我快走到门口了，",
+        "pinyin": "wǒ kuài zǒu dào mén kǒu le ，",
+        "gloss": "I had almost reached the door"
+      },
+      {
+        "chinese": "又看了一眼",
+        "pinyin": "yòu kàn le yì yǎn",
+        "gloss": "when I took another look at"
+      },
+      {
+        "chinese": "店里的雕像。",
+        "pinyin": "diàn lǐ de diāo xiàng 。",
+        "gloss": "the statues in the shop"
+      }
+    ]
+  },
+  "真了不起！": {
+    "pinyin": "zhēn liǎo bù qǐ ！",
+    "english": "Truly amazing!",
+    "interlinear": [
+      {
+        "chinese": "真了不起！",
+        "pinyin": "zhēn liǎo bù qǐ ！",
+        "gloss": "Truly amazing!"
+      }
+    ]
+  },
+  "你说哪一个？": {
+    "pinyin": "nǐ shuō nǎ yí gè ？",
+    "english": "Which one do you mean?",
+    "interlinear": [
+      {
+        "chinese": "你说哪一个？",
+        "pinyin": "nǐ shuō nǎ yí gè ？",
+        "gloss": "Which one do you mean?"
+      }
+    ]
+  },
+  "那只金子做的老鹰，有两个头的那个。": {
+    "pinyin": "nà zhī jīn zi zuò de lǎo yīng ， yǒu liǎng gè tóu de nà ge 。",
+    "english": "That eagle made of gold—the one with two heads.",
+    "interlinear": [
+      {
+        "chinese": "那只",
+        "pinyin": "nà zhī",
+        "gloss": "That"
+      },
+      {
+        "chinese": "金子做的老鹰，",
+        "pinyin": "jīn zi zuò de lǎo yīng ，",
+        "gloss": "eagle made of gold,"
+      },
+      {
+        "chinese": "有两个头的那个。",
+        "pinyin": "yǒu liǎng gè tóu de nà ge 。",
+        "gloss": "the one with two heads."
+      }
+    ]
+  },
+  "这么好的东西，是给国王做的吗？": {
+    "pinyin": "zhè me hǎo de dōng xi ， shì gěi guó wáng zuò de ma ？",
+    "english": "Something this fine— was it made for the king?",
+    "interlinear": [
+      {
+        "chinese": "这么好的东西，",
+        "pinyin": "zhè me hǎo de dōng xi ，",
+        "gloss": "Something this fine—"
+      },
+      {
+        "chinese": "是给国王做的吗？",
+        "pinyin": "shì gěi guó wáng zuò de ma ？",
+        "gloss": "was it made for the king?"
+      }
+    ]
+  },
+  "它好像真的会动。": {
+    "pinyin": "tā hǎo xiàng zhēn de huì dòng 。",
+    "english": "It seems as though it could really move.",
+    "interlinear": [
+      {
+        "chinese": "它好像",
+        "pinyin": "tā hǎo xiàng",
+        "gloss": "It seems as though"
+      },
+      {
+        "chinese": "真的会动。",
+        "pinyin": "zhēn de huì dòng 。",
+        "gloss": "it could really move."
+      }
+    ]
+  },
+  "做它的人，一定很了不起。": {
+    "pinyin": "zuò tā de rén ， yí dìng hěn liǎo bù qǐ 。",
+    "english": "The person who made it must be remarkable.",
+    "interlinear": [
+      {
+        "chinese": "做它的人，",
+        "pinyin": "zuò tā de rén ，",
+        "gloss": "The person who made it"
+      },
+      {
+        "chinese": "一定很了不起。",
+        "pinyin": "yí dìng hěn liǎo bù qǐ 。",
+        "gloss": "must be remarkable."
+      }
+    ]
+  },
+  "真的会动？你再说说。": {
+    "pinyin": "zhēn de huì dòng ？ nǐ zài shuō shuo 。",
+    "english": "Really move? Tell me more.",
+    "interlinear": [
+      {
+        "chinese": "真的会动？",
+        "pinyin": "zhēn de huì dòng ？",
+        "gloss": "Really move?"
+      },
+      {
+        "chinese": "你再说说。",
+        "pinyin": "nǐ zài shuō shuo 。",
+        "gloss": "Tell me more."
+      }
+    ]
+  },
+  "你知道它好在哪里？": {
+    "pinyin": "nǐ zhī dào tā hǎo zài nǎ lǐ ？",
+    "english": "Can you tell what makes it so good?",
+    "interlinear": [
+      {
+        "chinese": "你知道",
+        "pinyin": "nǐ zhī dào",
+        "gloss": "Can you tell"
+      },
+      {
+        "chinese": "它好在哪里？",
+        "pinyin": "tā hǎo zài nǎ lǐ ？",
+        "gloss": "what makes it so good?"
+      }
+    ]
+  },
+  "我差点以为，它真的会动呢！": {
+    "pinyin": "wǒ chà diǎn yǐ wéi ， tā zhēn de huì dòng ne ！",
+    "english": "I almost thought it really could move!",
+    "interlinear": [
+      {
+        "chinese": "我差点以为，",
+        "pinyin": "wǒ chà diǎn yǐ wéi ，",
+        "gloss": "I almost thought"
+      },
+      {
+        "chinese": "它真的会动呢！",
+        "pinyin": "tā zhēn de huì dòng ne ！",
+        "gloss": "it really could move!"
+      }
+    ]
+  },
+  "能在这里看见它，真是太好了。": {
+    "pinyin": "néng zài zhè lǐ kàn jiàn tā ， zhēn shì tài hǎo le 。",
+    "english": "Getting to see it here is wonderful.",
+    "interlinear": [
+      {
+        "chinese": "能在这里看见它，",
+        "pinyin": "néng zài zhè lǐ kàn jiàn tā ，",
+        "gloss": "Getting to see it here"
+      },
+      {
+        "chinese": "真是太好了。",
+        "pinyin": "zhēn shì tài hǎo le 。",
+        "gloss": "is wonderful."
+      }
+    ]
+  },
+  "这么好的东西，就应该放在您这里。": {
+    "pinyin": "zhè me hǎo de dōng xi ， jiù yīng gāi fàng zài nín zhè lǐ 。",
+    "english": "Something this fine belongs in a shop like yours.",
+    "interlinear": [
+      {
+        "chinese": "这么好的东西，",
+        "pinyin": "zhè me hǎo de dōng xi ，",
+        "gloss": "Something this fine"
+      },
+      {
+        "chinese": "就应该放在",
+        "pinyin": "jiù yīng gāi fàng zài",
+        "gloss": "belongs right here"
+      },
+      {
+        "chinese": "您这里。",
+        "pinyin": "nín zhè lǐ 。",
+        "gloss": "in your shop."
+      }
+    ]
+  },
+  "他嘴上没说什么，脸上却慢慢有了笑。": {
+    "pinyin": "tā zuǐ shàng méi shuō shén me ， liǎn shàng què màn màn yǒu le xiào 。",
+    "english": "Out loud, he said nothing, but on his face a smile slowly appeared.",
+    "interlinear": [
+      {
+        "chinese": "他嘴上",
+        "pinyin": "tā zuǐ shàng",
+        "gloss": "Out loud, he"
+      },
+      {
+        "chinese": "没说什么，",
+        "pinyin": "méi shuō shén me ，",
+        "gloss": "said nothing,"
+      },
+      {
+        "chinese": "脸上却",
+        "pinyin": "liǎn shàng què",
+        "gloss": "but on his face"
+      },
+      {
+        "chinese": "慢慢有了笑。",
+        "pinyin": "màn màn yǒu le xiào 。",
+        "gloss": "a smile slowly appeared."
+      }
+    ]
+  },
+  "原来，你也喜欢雕刻？": {
+    "pinyin": "yuán lái ， nǐ yě xǐ huan diāo kè ？",
+    "english": "So, you like sculpture too?",
+    "interlinear": [
+      {
+        "chinese": "原来，",
+        "pinyin": "yuán lái ，",
+        "gloss": "So,"
+      },
+      {
+        "chinese": "你也喜欢雕刻？",
+        "pinyin": "nǐ yě xǐ huan diāo kè ？",
+        "gloss": "you like sculpture too?"
+      }
+    ]
+  },
+  "刚才他还要我出去。现在，他愿意听我说话了。": {
+    "pinyin": "gāng cái tā hái yào wǒ chū qù 。 xiàn zài ， tā yuàn yì tīng wǒ shuō huà le 。",
+    "english": "Just a moment ago, he still wanted me out. Now, he is willing to listen to me.",
+    "interlinear": [
+      {
+        "chinese": "刚才",
+        "pinyin": "gāng cái",
+        "gloss": "Just a moment ago,"
+      },
+      {
+        "chinese": "他还要我出去。",
+        "pinyin": "tā hái yào wǒ chū qù 。",
+        "gloss": "he still wanted me out."
+      },
+      {
+        "chinese": "现在，",
+        "pinyin": "xiàn zài ，",
+        "gloss": "Now,"
+      },
+      {
+        "chinese": "他愿意听我说话了。",
+        "pinyin": "tā yuàn yì tīng wǒ shuō huà le 。",
+        "gloss": "he is willing to listen to me."
+      }
+    ]
+  },
+  "看这些东西，心里就安静了。": {
+    "pinyin": "kàn zhè xiē dōng xi ， xīn lǐ jiù ān jìng le 。",
+    "english": "Looking at these things puts my mind at peace.",
+    "interlinear": [
+      {
+        "chinese": "看这些东西，",
+        "pinyin": "kàn zhè xiē dōng xi ，",
+        "gloss": "Looking at these things"
+      },
+      {
+        "chinese": "心里就安静了。",
+        "pinyin": "xīn lǐ jiù ān jìng le 。",
+        "gloss": "puts my mind at peace."
+      }
+    ]
+  },
+  "这么美的东西，谁会不喜欢呢？": {
+    "pinyin": "zhè me měi de dōng xi ， shuí huì bù xǐ huan ne ？",
+    "english": "Things this beautiful— who could dislike them?",
+    "interlinear": [
+      {
+        "chinese": "这么美的东西，",
+        "pinyin": "zhè me měi de dōng xi ，",
+        "gloss": "Things this beautiful—"
+      },
+      {
+        "chinese": "谁会不喜欢呢？",
+        "pinyin": "shuí huì bù xǐ huan ne ？",
+        "gloss": "who could dislike them?"
+      }
+    ]
+  },
+  "能让你心里安静，你就多看看。": {
+    "pinyin": "néng ràng nǐ xīn lǐ ān jìng ， nǐ jiù duō kàn kan 。",
+    "english": "If it puts your mind at peace, take a longer look.",
+    "interlinear": [
+      {
+        "chinese": "能让你",
+        "pinyin": "néng ràng nǐ",
+        "gloss": "If it can make"
+      },
+      {
+        "chinese": "心里安静，",
+        "pinyin": "xīn lǐ ān jìng ，",
+        "gloss": "your mind peaceful,"
+      },
+      {
+        "chinese": "你就多看看。",
+        "pinyin": "nǐ jiù duō kàn kan 。",
+        "gloss": "take a longer look."
+      }
+    ]
+  },
+  "你喜欢，就在这里好好看吧。": {
+    "pinyin": "nǐ xǐ huan ， jiù zài zhè lǐ hǎo hǎo kàn ba 。",
+    "english": "If you like them, stay here and have a good look.",
+    "interlinear": [
+      {
+        "chinese": "你喜欢，",
+        "pinyin": "nǐ xǐ huan ，",
+        "gloss": "If you like them,"
+      },
+      {
+        "chinese": "就在这里",
+        "pinyin": "jiù zài zhè lǐ",
+        "gloss": "stay here and"
+      },
+      {
+        "chinese": "好好看吧。",
+        "pinyin": "hǎo hǎo kàn ba 。",
+        "gloss": "have a good look."
+      }
+    ]
+  },
+  "我只希望，自己也能多了解一点。": {
+    "pinyin": "wǒ zhǐ xī wàng ， zì jǐ yě néng duō liǎo jiě yì diǎn 。",
+    "english": "I only hope that I too can understand a little more.",
+    "interlinear": [
+      {
+        "chinese": "我只希望，",
+        "pinyin": "wǒ zhǐ xī wàng ，",
+        "gloss": "I only hope"
+      },
+      {
+        "chinese": "自己也能",
+        "pinyin": "zì jǐ yě néng",
+        "gloss": "that I too can"
+      },
+      {
+        "chinese": "多了解一点。",
+        "pinyin": "duō liǎo jiě yì diǎn 。",
+        "gloss": "understand a little more."
+      }
+    ]
+  },
+  "来，坐吧。正好和我说说话。": {
+    "pinyin": "lái ， zuò ba 。 zhèng hǎo hé wǒ shuō shuo huà 。",
+    "english": "Come, sit down. You can keep me company for a little while.",
+    "interlinear": [
+      {
+        "chinese": "来，坐吧。",
+        "pinyin": "lái ， zuò ba 。",
+        "gloss": "Come, sit down."
+      },
+      {
+        "chinese": "正好",
+        "pinyin": "zhèng hǎo",
+        "gloss": "You can"
+      },
+      {
+        "chinese": "和我说说话。",
+        "pinyin": "hé wǒ shuō shuo huà 。",
+        "gloss": "keep me company with a little conversation."
+      }
+    ]
+  },
+  "谢谢您。": {
+    "pinyin": "xiè xie nín 。",
+    "english": "Thank you.",
+    "interlinear": [
+      {
+        "chinese": "谢谢您。",
+        "pinyin": "xiè xie nín 。",
+        "gloss": "Thank you."
+      }
+    ]
+  },
+  "刚才没时间听我的问题，现在却有时间和我说话了。": {
+    "pinyin": "gāng cái méi shí jiān tīng wǒ de wèn tí ， xiàn zài què yǒu shí jiān hé wǒ shuō huà le 。",
+    "english": "Earlier he had no time to hear my question, but now he has time to talk with me.",
+    "interlinear": [
+      {
+        "chinese": "刚才没时间",
+        "pinyin": "gāng cái méi shí jiān",
+        "gloss": "Earlier he had no time"
+      },
+      {
+        "chinese": "听我的问题，",
+        "pinyin": "tīng wǒ de wèn tí ，",
+        "gloss": "to hear my question,"
+      },
+      {
+        "chinese": "现在却有时间",
+        "pinyin": "xiàn zài què yǒu shí jiān",
+        "gloss": "but now he has time"
+      },
+      {
+        "chinese": "和我说话了。",
+        "pinyin": "hé wǒ shuō huà le 。",
+        "gloss": "to talk with me."
+      }
+    ]
+  },
+  "要不要喝点茶？": {
+    "pinyin": "yào bu yào hē diǎn chá ？",
+    "english": "Would you like some tea?",
+    "interlinear": [
+      {
+        "chinese": "要不要",
+        "pinyin": "yào bu yào",
+        "gloss": "Would you like"
+      },
+      {
+        "chinese": "喝点茶？",
+        "pinyin": "hē diǎn chá ？",
+        "gloss": "some tea?"
+      }
+    ]
+  },
+  "如果有冰的蜂蜜水，就太好了。": {
+    "pinyin": "rú guǒ yǒu bīng de fēng mì shuǐ ， jiù tài hǎo le 。",
+    "english": "If you have cold honey water, that would be wonderful.",
+    "interlinear": [
+      {
+        "chinese": "如果有",
+        "pinyin": "rú guǒ yǒu",
+        "gloss": "If you have"
+      },
+      {
+        "chinese": "冰的蜂蜜水，",
+        "pinyin": "bīng de fēng mì shuǐ ，",
+        "gloss": "cold honey water,"
+      },
+      {
+        "chinese": "就太好了。",
+        "pinyin": "jiù tài hǎo le 。",
+        "gloss": "that would be wonderful."
+      }
+    ]
+  },
+  "没有的话，给我一点冷水就好。": {
+    "pinyin": "méi yǒu de huà ， gěi wǒ yì diǎn lěng shuǐ jiù hǎo 。",
+    "english": "If not, a little cold water will do.",
+    "interlinear": [
+      {
+        "chinese": "没有的话，",
+        "pinyin": "méi yǒu de huà ，",
+        "gloss": "If not,"
+      },
+      {
+        "chinese": "给我一点冷水",
+        "pinyin": "gěi wǒ yì diǎn lěng shuǐ",
+        "gloss": "a little cold water"
+      },
+      {
+        "chinese": "就好。",
+        "pinyin": "jiù hǎo 。",
+        "gloss": "will do."
+      }
+    ]
+  },
+  "有，当然有！": {
+    "pinyin": "yǒu ， dāng rán yǒu ！",
+    "english": "Yes, of course I do!",
+    "interlinear": [
+      {
+        "chinese": "有，",
+        "pinyin": "yǒu ，",
+        "gloss": "Yes,"
+      },
+      {
+        "chinese": "当然有！",
+        "pinyin": "dāng rán yǒu ！",
+        "gloss": "of course I do!"
+      }
+    ]
+  },
+  "他给我拿来了蜂蜜水。": {
+    "pinyin": "tā gěi wǒ ná lái le fēng mì shuǐ 。",
+    "english": "He brought me honey water.",
+    "interlinear": [
+      {
+        "chinese": "他给我",
+        "pinyin": "tā gěi wǒ",
+        "gloss": "He"
+      },
+      {
+        "chinese": "拿来了",
+        "pinyin": "ná lái le",
+        "gloss": "brought me"
+      },
+      {
+        "chinese": "蜂蜜水。",
+        "pinyin": "fēng mì shuǐ 。",
+        "gloss": "honey water."
+      }
+    ]
+  },
+  "我喝了一口。又冷又甜，真好喝。": {
+    "pinyin": "wǒ hē le yì kǒu 。 yòu lěng yòu tián ， zhēn hǎo hē 。",
+    "english": "I took a sip. Cold and sweet, it tasted wonderful.",
+    "interlinear": [
+      {
+        "chinese": "我喝了一口。",
+        "pinyin": "wǒ hē le yì kǒu 。",
+        "gloss": "I took a sip."
+      },
+      {
+        "chinese": "又冷又甜，",
+        "pinyin": "yòu lěng yòu tián ，",
+        "gloss": "Cold and sweet,"
+      },
+      {
+        "chinese": "真好喝。",
+        "pinyin": "zhēn hǎo hē 。",
+        "gloss": "it tasted wonderful."
+      }
+    ]
+  },
+  "这几天，真的太累了。": {
+    "pinyin": "zhè jǐ tiān ， zhēn de tài lèi le 。",
+    "english": "These past few days have been exhausting.",
+    "interlinear": [
+      {
+        "chinese": "这几天，",
+        "pinyin": "zhè jǐ tiān ，",
+        "gloss": "These past few days"
+      },
+      {
+        "chinese": "真的太累了。",
+        "pinyin": "zhēn de tài lèi le 。",
+        "gloss": "have been exhausting."
+      }
+    ]
+  },
+  "这水，来得正好。": {
+    "pinyin": "zhè shuǐ ， lái de zhèng hǎo 。",
+    "english": "This drink came at just the right time.",
+    "interlinear": [
+      {
+        "chinese": "这水，",
+        "pinyin": "zhè shuǐ ，",
+        "gloss": "This drink"
+      },
+      {
+        "chinese": "来得正好。",
+        "pinyin": "lái de zhèng hǎo 。",
+        "gloss": "came at just the right time."
+      }
+    ]
+  },
+  "喝下去，好像连身上的累都少了一点。": {
+    "pinyin": "hē xià qù ， hǎo xiàng lián shēn shàng de lèi dōu shǎo le yì diǎn 。",
+    "english": "As I drank it, even the tiredness in my body seemed to ease a little.",
+    "interlinear": [
+      {
+        "chinese": "喝下去，",
+        "pinyin": "hē xià qù ，",
+        "gloss": "As I drank it,"
+      },
+      {
+        "chinese": "好像连",
+        "pinyin": "hǎo xiàng lián",
+        "gloss": "it seemed even"
+      },
+      {
+        "chinese": "身上的累",
+        "pinyin": "shēn shàng de lèi",
+        "gloss": "the tiredness in my body"
+      },
+      {
+        "chinese": "都少了一点。",
+        "pinyin": "dōu shǎo le yì diǎn 。",
+        "gloss": "eased a little."
+      }
+    ]
+  },
+  "我又喝了一口，终于能好好休息一下了。": {
+    "pinyin": "wǒ yòu hē le yì kǒu ， zhōng yú néng hǎo hǎo xiū xi yí xià le 。",
+    "english": "I took another sip, finally able to take a proper little rest.",
+    "interlinear": [
+      {
+        "chinese": "我又喝了一口，",
+        "pinyin": "wǒ yòu hē le yì kǒu ，",
+        "gloss": "I took another sip,"
+      },
+      {
+        "chinese": "终于能",
+        "pinyin": "zhōng yú néng",
+        "gloss": "finally able to"
+      },
+      {
+        "chinese": "好好休息一下了。",
+        "pinyin": "hǎo hǎo xiū xi yí xià le 。",
+        "gloss": "take a proper little rest."
+      }
+    ]
+  },
+  "现在，说说吧。到底什么事让你这么担心？": {
+    "pinyin": "xiàn zài ， shuō shuo ba 。 dào dǐ shén me shì ràng nǐ zhè me dān xīn ？",
+    "english": "Now, tell me. Just what is worrying you so much?",
+    "interlinear": [
+      {
+        "chinese": "现在，说说吧。",
+        "pinyin": "xiàn zài ， shuō shuo ba 。",
+        "gloss": "Now, tell me."
+      },
+      {
+        "chinese": "到底什么事",
+        "pinyin": "dào dǐ shén me shì",
+        "gloss": "Just what"
+      },
+      {
+        "chinese": "让你这么担心？",
+        "pinyin": "ràng nǐ zhè me dān xīn ？",
+        "gloss": "is worrying you so much?"
+      }
+    ]
+  },
+  "是有个问题，想请您帮忙。": {
+    "pinyin": "shì yǒu gè wèn tí ， xiǎng qǐng nín bāng máng 。",
+    "english": "There is a question I would like your help with.",
+    "interlinear": [
+      {
+        "chinese": "是有个问题，",
+        "pinyin": "shì yǒu gè wèn tí ，",
+        "gloss": "There is a question"
+      },
+      {
+        "chinese": "想请您帮忙。",
+        "pinyin": "xiǎng qǐng nín bāng máng 。",
+        "gloss": "I would like your help with."
+      }
+    ]
+  },
+  "不过，能不能先让我看看这些雕像？": {
+    "pinyin": "bú guò ， néng bu néng xiān ràng wǒ kàn kan zhè xiē diāo xiàng ？",
+    "english": "But may I have a look at these statues first?",
+    "interlinear": [
+      {
+        "chinese": "不过，",
+        "pinyin": "bú guò ，",
+        "gloss": "But first,"
+      },
+      {
+        "chinese": "能不能",
+        "pinyin": "néng bu néng",
+        "gloss": "may I"
+      },
+      {
+        "chinese": "先让我看看",
+        "pinyin": "xiān ràng wǒ kàn kan",
+        "gloss": "have a look at"
+      },
+      {
+        "chinese": "这些雕像？",
+        "pinyin": "zhè xiē diāo xiàng ？",
+        "gloss": "these statues?"
+      }
+    ]
+  },
+  "现在就走，我会一直想着这里的东西。": {
+    "pinyin": "xiàn zài jiù zǒu ， wǒ huì yì zhí xiǎng zhe zhè lǐ de dōng xi 。",
+    "english": "If I leave right now, I will keep thinking about the things here.",
+    "interlinear": [
+      {
+        "chinese": "现在就走，",
+        "pinyin": "xiàn zài jiù zǒu ，",
+        "gloss": "If I leave right now,"
+      },
+      {
+        "chinese": "我会一直想着",
+        "pinyin": "wǒ huì yì zhí xiǎng zhe",
+        "gloss": "I will keep thinking about"
+      },
+      {
+        "chinese": "这里的东西。",
+        "pinyin": "zhè lǐ de dōng xi 。",
+        "gloss": "the things here."
+      }
+    ]
+  },
+  "我还想多看一会儿。": {
+    "pinyin": "wǒ hái xiǎng duō kàn yí huì er 。",
+    "english": "I would still like to look a little longer.",
+    "interlinear": [
+      {
+        "chinese": "我还想",
+        "pinyin": "wǒ hái xiǎng",
+        "gloss": "I would still like to"
+      },
+      {
+        "chinese": "多看一会儿。",
+        "pinyin": "duō kàn yí huì er 。",
+        "gloss": "look a little longer."
+      }
+    ]
+  },
+  "那就先别走。": {
+    "pinyin": "nà jiù xiān bié zǒu 。",
+    "english": "Then do not leave just yet.",
+    "interlinear": [
+      {
+        "chinese": "那就先别走。",
+        "pinyin": "nà jiù xiān bié zǒu 。",
+        "gloss": "Then do not leave just yet."
+      }
+    ]
+  },
+  "好啊，你慢慢看。": {
+    "pinyin": "hǎo a ， nǐ màn màn kàn 。",
+    "english": "Of course, take your time looking.",
+    "interlinear": [
+      {
+        "chinese": "好啊，",
+        "pinyin": "hǎo a ，",
+        "gloss": "Of course,"
+      },
+      {
+        "chinese": "你慢慢看。",
+        "pinyin": "nǐ màn màn kàn 。",
+        "gloss": "take your time looking."
+      }
+    ]
+  },
+  "我的事可以等。这么好的东西，我想先好好看看。": {
+    "pinyin": "wǒ de shì kě yǐ děng 。 zhè me hǎo de dōng xi ， wǒ xiǎng xiān hǎo hǎo kàn kan 。",
+    "english": "My business can wait. Things this fine— I would first like to have a proper look.",
+    "interlinear": [
+      {
+        "chinese": "我的事可以等。",
+        "pinyin": "wǒ de shì kě yǐ děng 。",
+        "gloss": "My business can wait."
+      },
+      {
+        "chinese": "这么好的东西，",
+        "pinyin": "zhè me hǎo de dōng xi ，",
+        "gloss": "Things this fine—"
+      },
+      {
+        "chinese": "我想先",
+        "pinyin": "wǒ xiǎng xiān",
+        "gloss": "I would first like to"
+      },
+      {
+        "chinese": "好好看看。",
+        "pinyin": "hǎo hǎo kàn kan 。",
+        "gloss": "have a proper look."
+      }
+    ]
+  },
+  "做出好东西，就是给喜欢它的人看的。": {
+    "pinyin": "zuò chū hǎo dōng xi ， jiù shì gěi xǐ huan tā de rén kàn de 。",
+    "english": "Fine things are made for people who appreciate them to see.",
+    "interlinear": [
+      {
+        "chinese": "做出好东西，",
+        "pinyin": "zuò chū hǎo dōng xi ，",
+        "gloss": "Making something fine"
+      },
+      {
+        "chinese": "就是给",
+        "pinyin": "jiù shì gěi",
+        "gloss": "is precisely for"
+      },
+      {
+        "chinese": "喜欢它的人",
+        "pinyin": "xǐ huan tā de rén",
+        "gloss": "people who appreciate it"
+      },
+      {
+        "chinese": "看的。",
+        "pinyin": "kàn de 。",
+        "gloss": "to see."
+      }
+    ]
+  },
+  "你想看多久，就看多久。": {
+    "pinyin": "nǐ xiǎng kàn duō jiǔ ， jiù kàn duō jiǔ 。",
+    "english": "However long you want to look, look that long.",
+    "interlinear": [
+      {
+        "chinese": "你想看多久，",
+        "pinyin": "nǐ xiǎng kàn duō jiǔ ，",
+        "gloss": "However long you want to look,"
+      },
+      {
+        "chinese": "就看多久。",
+        "pinyin": "jiù kàn duō jiǔ 。",
+        "gloss": "look that long."
+      }
+    ]
+  },
+  "我还没问出那个问题，却已经不用走了。": {
+    "pinyin": "wǒ hái méi wèn chū nà ge wèn tí ， què yǐ jīng bú yòng zǒu le 。",
+    "english": "I still have not asked that question, but already I no longer have to leave.",
+    "interlinear": [
+      {
+        "chinese": "我还没",
+        "pinyin": "wǒ hái méi",
+        "gloss": "I still have not"
+      },
+      {
+        "chinese": "问出那个问题，",
+        "pinyin": "wèn chū nà ge wèn tí ，",
+        "gloss": "asked that question,"
+      },
+      {
+        "chinese": "却已经",
+        "pinyin": "què yǐ jīng",
+        "gloss": "but already"
+      },
+      {
+        "chinese": "不用走了。",
+        "pinyin": "bú yòng zǒu le 。",
+        "gloss": "I no longer have to leave."
+      }
+    ]
+  },
+  "同样的衣服，同样的人。他对我说的话，全变了。": {
+    "pinyin": "tóng yàng de yī fu ， tóng yàng de rén 。 tā duì wǒ shuō de huà ， quán biàn le 。",
+    "english": "The same clothes, the same person. The words he says to me have all changed.",
+    "interlinear": [
+      {
+        "chinese": "同样的衣服，",
+        "pinyin": "tóng yàng de yī fu ，",
+        "gloss": "The same clothes,"
+      },
+      {
+        "chinese": "同样的人。",
+        "pinyin": "tóng yàng de rén 。",
+        "gloss": "the same person."
+      },
+      {
+        "chinese": "他对我说的话，",
+        "pinyin": "tā duì wǒ shuō de huà ，",
+        "gloss": "The words he says to me"
+      },
+      {
+        "chinese": "全变了。",
+        "pinyin": "quán biàn le 。",
+        "gloss": "have all changed."
+      }
+    ]
+  },
+  "看来，他想要的，是一个愿意认真看这些东西的人。": {
+    "pinyin": "kàn lái ， tā xiǎng yào de ， shì yí gè yuàn yì rèn zhēn kàn zhè xiē dōng xi de rén 。",
+    "english": "It seems he wants someone willing to look carefully at these things.",
+    "interlinear": [
+      {
+        "chinese": "看来，",
+        "pinyin": "kàn lái ，",
+        "gloss": "It seems"
+      },
+      {
+        "chinese": "他想要的，",
+        "pinyin": "tā xiǎng yào de ，",
+        "gloss": "what he wants"
+      },
+      {
+        "chinese": "是一个",
+        "pinyin": "shì yí gè",
+        "gloss": "is someone"
+      },
+      {
+        "chinese": "愿意认真看",
+        "pinyin": "yuàn yì rèn zhēn kàn",
+        "gloss": "willing to look carefully at"
+      },
+      {
+        "chinese": "这些东西的人。",
+        "pinyin": "zhè xiē dōng xi de rén 。",
+        "gloss": "these things."
+      }
+    ]
+  },
+  "那我就先好好看看。": {
+    "pinyin": "nà wǒ jiù xiān hǎo hǎo kàn kan 。",
+    "english": "Then first I will take a good look.",
+    "interlinear": [
+      {
+        "chinese": "那我就先",
+        "pinyin": "nà wǒ jiù xiān",
+        "gloss": "Then first I will"
+      },
+      {
+        "chinese": "好好看看。",
+        "pinyin": "hǎo hǎo kàn kan 。",
+        "gloss": "take a good look."
+      }
+    ]
+  }
+}
