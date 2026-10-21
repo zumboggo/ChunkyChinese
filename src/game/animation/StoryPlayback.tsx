@@ -58,7 +58,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
    const cues=(next.cues||[]).map(n=>({...n,entering:n.type==='show'&&!state.stage.actors[n.actor]}));
    if(root.current)void playSceneMotion(root.current,cues,compiled.story.nodes[next.cursor],reduced,setResponses,controller.signal);
 
-  }finally{if(token===generation.current){lock.current=false;setBusy(false);root.current?.querySelector<HTMLButtonElement>('[data-next]')?.focus()}}
+  }finally{if(token===generation.current){lock.current=false;setBusy(false);root.current?.querySelector<HTMLButtonElement>('[data-next]')?.focus({preventScroll:true})}}
  }
  function play(text=current?.text,npc=true){const clip=pack.chinese?.lines[text]?.audio??(text==null?sound.current?.getAttribute('src'):undefined);if(!clip)return;if(sound.current?.getAttribute('src')===clip){const a=sound.current;if(!a.paused){a.pause();return}if(!a.ended){void a.play().catch(()=>setError('Audio could not play. Try Play again or continue with the text.'));return}}sound.current?.pause();setSpeaking(false);const a=new Audio(clip);a.volume=voiceVolume;sound.current=a;const active=()=>sound.current===a;a.onplaying=()=>{if(active()){setAudioPlaying(true);setSpeaking(npc&&current?.type==='say'&&current.actor!=='I')}};a.onpause=a.onended=()=>{if(active()){setSpeaking(false);setAudioPlaying(false)}};a.onerror=()=>{if(active()){setSpeaking(false);setAudioPlaying(false);setError('Audio unavailable. You can continue with the text.')}};void a.play().catch(()=>{if(active()){setSpeaking(false);setAudioPlaying(false);setError('Audio could not play. Try Play again or continue with the text.')}})}
 

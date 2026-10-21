@@ -13,6 +13,7 @@ import LmsCast from './LmsCast'
 import EpisodeLibrary, {nextEpisode} from './EpisodeLibrary'
 import {loadBundledLibrary,type CatalogEntry} from './bundledLibrary'
 import './game.css'
+import './night-cinema.css'
 export default function GamePage({identity,hotkeys}:{identity:string;hotkeys:HotkeySettings;words:VocabWord[]}){
  const [recent,setRecent]=useState<Release|null>(null)
  const [textSize,setTextSize]=useState(()=>{try{const n=Number(localStorage.getItem(scope(identity)+'text-size'));return Number.isInteger(n)&&n>=0&&n<7?n:0}catch{return 0}})

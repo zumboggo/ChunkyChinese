@@ -84,6 +84,7 @@ test('game keyboard continues, chooses and pauses audio without activating focus
  await expect(page.locator('.episode-choice').first()).toBeVisible()
  await page.keyboard.press('ArrowRight')
  await expect(page.locator('.episode-choice').first()).toBeVisible()
+ await expect(page.locator('.episode-choice').first()).toBeEnabled()
  await page.keyboard.press('2')
  await expect(page.getByText('The keeper lunges. Lan blocks, and both step back. Nobody is hurt.',{exact:true})).toBeVisible()
 })
