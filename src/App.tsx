@@ -528,13 +528,7 @@ function MilestoneJourney({
 
 function App() {
   const startupResume = useMemo(() => loadStartupResumeState(), [])
-  const [screen, setScreen] = useState<Screen>(() => {
-    if (startupResume?.destination === 'flashcards') return 'flashcards'
-    if (startupResume?.destination === 'listeningCourse') return 'listeningCourse'
-    if (startupResume?.destination === 'sentenceListening') return 'listeningCourse'
-    if (startupResume?.destination === 'reader') return 'reader'
-    return 'dashboard'
-  })
+  const [screen, setScreen] = useState<Screen>('game')
   const [words, setWords] = useState<VocabWord[]>([])
   const [, setSentences] = useState<Sentence[]>([])
   const [, setAudioClips] = useState<AudioClip[]>([])
@@ -894,7 +888,6 @@ function App() {
             setReaderSentenceIndex(startupResume.sentenceIndex ?? 0)
           } else if (startupResume?.destination === 'reader') {
             clearStartupResumeState()
-            setScreen('dashboard')
           }
           setLatestReaderProgress(await getLatestReaderProgress(booksWithScripture))
         }
