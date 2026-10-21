@@ -5,9 +5,9 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_03.xhtml",
-    "nextStart": "Weed relished the statues on display at leisure.",
-    "nextEndBefore": "As Weed was looking for the right moment to say his farewells and leave,",
-    "continuationNote": "Weed privately judges the sculpture market, asks about moonlight carving fifty years ago, hears confirmation and completes the first investigation. Stop before the keeper proposes the next quest."
+    "nextStart": "As Weed was looking for the right moment to say his farewells and leave,",
+    "nextEndBefore": "Keeping down a sudden impulse to hum a tune, Weed headed straight to a pub across the street.",
+    "continuationNote": "The keeper asks Weed to investigate Queen Evane’s link to the sculptor. The E-level serial quest warns of Royal Knights’ hostility; Weed hesitates, accepts and is directed to a bard. Stop before he leaves for the pub."
   },
   "completed": [
     {
@@ -77,9 +77,13 @@
     {
       "episode": "moonlight-17-v1",
       "end": "Weed praises the golden two-headed eagle and professes artistic interest, winning an invitation to sit and talk. The keeper gives him cold honeyed water and permission to tour the statues. Stops before Weed privately evaluates sculpting as a business; the moonlight question is still unasked."
+    },
+    {
+      "episode": "moonlight-18-v1",
+      "end": "Weed privately dismisses sculpting as a poor way to earn money, asks about moonlight carving fifty years ago, and hears confirmation from the keeper via reliable royal patrons. The E-level investigation completes; reward remains unclaimed. He intends to return to the instructor but has not left."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-17.json",
+  "assetsFrom": "stories/animated/moonlight-18.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -100,15 +104,17 @@
     "The E-level moonlight-sculpting investigation is accepted. Two silver coins were paid in advance; one silver equals one hundred coppers and a rye bread costs three coppers. Weed has calculated sixty-six breads plus change, not bought or eaten sixty-six breads.",
     "Weed filled his canteen at the fountain and reached the sculpture shop beside a jewelry shop. His beginner clothing provoked a cold welcome.",
     "The keeper now welcomes Weed after praise of the golden two-headed eagle. Weed drank cold honeyed water and may view the statues as long as he likes.",
-    "The question about carving moonlight is still unasked. No business analysis of sculpting or quest completion yet.",
-    "Episode 17 has four local choices with immediate responses and no saved variables or later callbacks."
+    "Weed has privately judged sculpting a poor business but has not said this to the keeper.",
+    "The keeper confirmed the fifty-year-old moonlight-carving story through reliable royal patrons. The first E-level investigation is complete; Weed has not returned to the instructor or claimed the reward.",
+    "How the moonlight was carved remains unknown. No Queen Evane revelation or second quest yet. Weed is still inside the shop.",
+    "Episode 18 uses four immediate-response choices, no variables or later callbacks."
   ],
   "castRecipes": "stories/characters/lms-cast.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through moonlight-17-v1",
-    "nextStart": "Weed relished the statues on display at leisure.",
-    "nextEndBefore": "As Weed was looking for the right moment to say his farewells and leave,",
-    "assetsFrom": "stories/animated/moonlight-17.json"
+    "note": "Published through moonlight-18-v1",
+    "nextStart": "As Weed was looking for the right moment to say his farewells and leave,",
+    "nextEndBefore": "Keeping down a sudden impulse to hum a tune, Weed headed straight to a pub across the street.",
+    "assetsFrom": "stories/animated/moonlight-18.json"
   }
 }
