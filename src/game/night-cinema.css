@@ -19,7 +19,7 @@
 .game-playing .story-atmosphere summary {padding:10px 0;min-height:44px;box-sizing:border-box;font-size:13px;font-weight:500;letter-spacing:.025em}
 .game-playing .story-atmosphere label {color:var(--cinema-muted);font-size:13px}
 .game-playing input {accent-color:var(--cinema-gold)}
-.game-playing .reading-controls {gap:8px;padding:0 0 10px}
+.game-playing .reading-controls {flex-wrap:wrap;gap:8px;padding:0 0 10px}
 .game-playing .reading-controls button {background:#10263b;border:1px solid #61748b;color:var(--cinema-muted);padding:6px 16px;min-height:44px;border-radius:24px;box-shadow:none;font-size:13px}
 .game-playing .reading-controls button[aria-pressed=true] {background:#142b40;border-color:var(--cinema-gold);color:var(--cinema-ink)}
 .game-playing .reading-controls button span {color:var(--cinema-gold)}
