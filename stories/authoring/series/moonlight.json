@@ -5,9 +5,9 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_03.xhtml",
-    "nextStart": "The bard glanced around the pub and added cautiously",
-    "nextEndBefore": "The bard told Weed the way to the house of the lady’s maid.",
-    "continuationNote": "The bard describes their shared village, Zahab’s carvings and promise, separation when she became a royal maid, and the later fulfillment at court. He directs Weed toward an eyewitness maid. Stop before directions and the visit."
+    "nextStart": "The bard told Weed the way to the house of the lady’s maid.",
+    "nextEndBefore": "On that day, Brent Kingdom, which bordered on Rosenheim, dispatched a band of assassins.",
+    "continuationNote": "Weed visits the retired maid, hears her account of the queen’s initial heartbreak when Zahab arrives carrying a sword instead of a carving knife. Stop before the assassination attack."
   },
   "completed": [
     {
@@ -89,9 +89,13 @@
     {
       "episode": "moonlight-20-v1",
       "end": "Weed finds a middle-aged native bard after searching pubs. Flattery fails; he accidentally produces a silver coin without having made change, and the bard takes it. Weed learns the queen and sculptor loved each other since childhood and realizes why the Royal Knights might silence the inquiry. Still with the bard; no village history or promise yet."
+    },
+    {
+      "episode": "moonlight-21-v1",
+      "end": "The bard tells Weed of Zahab and the queen’s childhood, gifts, separation and promise. He corrects Weed’s assumption that the promise failed: she called his later work the world’s most beautiful. The bard refers Weed to the living eyewitness maid; no directions or visit yet."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-20.json",
+  "assetsFrom": "stories/animated/moonlight-21.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -113,15 +117,17 @@
     "Weed spent one of the instructor’s two silver coins on the bard because he had not changed the advance into smaller copper coins. One silver remains; no additional purchase or reward has occurred.",
     "Weed visited several pubs and found a knowledgeable native bard in his forties. Compliments failed; the bard demanded payment and took one silver coin.",
     "The Sculptor’s Past serial quest remains active. Weed now knows the late queen and sculptor loved each other since childhood, and understands why the Royal Knights might silence inquiries to preserve her reputation.",
-    "Weed is still with the bard. Their village history, the sculptor’s name, their promise and the maid’s account have not yet been told.",
-    "Episode 20 uses four immediate-response choices; no variables or later callbacks."
+    "Weed has heard that the queen and Zahab grew up together, she carried his carved gifts and hoped to marry him. They separated when she was chosen as a royal maid.",
+    "Zahab promised her the world’s most beautiful sculpture. The bard says he fulfilled the promise many years later at court; the queen was deeply moved. What he made is still unknown to Weed.",
+    "The bard admits his knowledge is secondhand and refers Weed to a living maid who attended the queen and witnessed that day. Directions and the visit have not happened yet.",
+    "Episode 21 uses four immediate-response choices with no variables or later callbacks."
   ],
   "castRecipes": "stories/characters/lms-cast.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through moonlight-20-v1",
-    "nextStart": "The bard glanced around the pub and added cautiously",
-    "nextEndBefore": "The bard told Weed the way to the house of the lady’s maid.",
-    "assetsFrom": "stories/animated/moonlight-20.json"
+    "note": "Published through moonlight-21-v1",
+    "nextStart": "The bard told Weed the way to the house of the lady’s maid.",
+    "nextEndBefore": "On that day, Brent Kingdom, which bordered on Rosenheim, dispatched a band of assassins.",
+    "assetsFrom": "stories/animated/moonlight-21.json"
   }
 }
