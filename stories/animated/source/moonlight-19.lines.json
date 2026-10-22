@@ -1,0 +1,822 @@
+{
+  "我想说再见，老板却又说话了。": {
+    "english": "I was about to say goodbye, but the shopkeeper spoke again.",
+    "interlinear": [
+      {
+        "chinese": "我想说再见，",
+        "gloss": "I was about to say goodbye,",
+        "pinyin": "wǒ xiǎng shuō zài jiàn ，"
+      },
+      {
+        "chinese": "老板却又说话了。",
+        "gloss": "but the shopkeeper spoke again.",
+        "pinyin": "lǎo bǎn què yòu shuō huà le 。"
+      }
+    ],
+    "pinyin": "wǒ xiǎng shuō zài jiàn ， lǎo bǎn què yòu shuō huà le 。"
+  },
+  "不过，他是怎么雕刻月光的，我还不知道。": {
+    "english": "However, how did he carve moonlight? I still don't know.",
+    "interlinear": [
+      {
+        "chinese": "不过，",
+        "gloss": "However,",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "他是怎么",
+        "gloss": "how did he",
+        "pinyin": "tā shì zěn me"
+      },
+      {
+        "chinese": "雕刻月光的，",
+        "gloss": "carve moonlight?",
+        "pinyin": "diāo kè yuè guāng de ，"
+      },
+      {
+        "chinese": "我还不知道。",
+        "gloss": "I still don't know.",
+        "pinyin": "wǒ hái bù zhī dào 。"
+      }
+    ],
+    "pinyin": "bú guò ， tā shì zěn me diāo kè yuè guāng de ， wǒ hái bù zhī dào 。"
+  },
+  "王宫来的客人，没有跟您说吗？": {
+    "english": "The visitors from the palace— didn't they tell you?",
+    "interlinear": [
+      {
+        "chinese": "王宫来的客人，",
+        "gloss": "The visitors from the palace—",
+        "pinyin": "wáng gōng lái de kè rén ，"
+      },
+      {
+        "chinese": "没有跟您说吗？",
+        "gloss": "didn't they tell you?",
+        "pinyin": "méi yǒu gēn nín shuō ma ？"
+      }
+    ],
+    "pinyin": "wáng gōng lái de kè rén ， méi yǒu gēn nín shuō ma ？"
+  },
+  "说到这里，他们就不愿意说了。": {
+    "english": "When the story reaches this point, they won't say any more.",
+    "interlinear": [
+      {
+        "chinese": "说到这里，",
+        "gloss": "When the story reaches this point,",
+        "pinyin": "shuō dào zhè lǐ ，"
+      },
+      {
+        "chinese": "他们就不愿意说了。",
+        "gloss": "they won't say any more.",
+        "pinyin": "tā men jiù bú yuàn yì shuō le 。"
+      }
+    ],
+    "pinyin": "shuō dào zhè lǐ ， tā men jiù bú yuàn yì shuō le 。"
+  },
+  "越不说，就越想知道了。": {
+    "english": "The less they say, the more you want to know.",
+    "interlinear": [
+      {
+        "chinese": "越不说，",
+        "gloss": "The less they say,",
+        "pinyin": "yuè bù shuō ，"
+      },
+      {
+        "chinese": "就越想知道了。",
+        "gloss": "the more you want to know.",
+        "pinyin": "jiù yuè xiǎng zhī dào le 。"
+      }
+    ],
+    "pinyin": "yuè bù shuō ， jiù yuè xiǎng zhī dào le 。"
+  },
+  "也许，他们不想让别人知道吧。": {
+    "english": "Perhaps they don't want others to know.",
+    "interlinear": [
+      {
+        "chinese": "也许，",
+        "gloss": "Perhaps",
+        "pinyin": "yě xǔ ，"
+      },
+      {
+        "chinese": "他们不想让别人知道吧。",
+        "gloss": "they don't want others to know.",
+        "pinyin": "tā men bù xiǎng ràng bié rén zhī dào ba 。"
+      }
+    ],
+    "pinyin": "yě xǔ ， tā men bù xiǎng ràng bié rén zhī dào ba 。"
+  },
+  "是啊，我也一直在想这事。": {
+    "english": "Yes, I've kept wondering about it too.",
+    "interlinear": [
+      {
+        "chinese": "是啊，",
+        "gloss": "Yes,",
+        "pinyin": "shì a ，"
+      },
+      {
+        "chinese": "我也一直在想这事。",
+        "gloss": "I've kept wondering about it too.",
+        "pinyin": "wǒ yě yì zhí zài xiǎng zhè shì 。"
+      }
+    ],
+    "pinyin": "shì a ， wǒ yě yì zhí zài xiǎng zhè shì 。"
+  },
+  "可能吧。不过，他们说到了一个人。": {
+    "english": "Perhaps. But they did mention someone.",
+    "interlinear": [
+      {
+        "chinese": "可能吧。",
+        "gloss": "Perhaps.",
+        "pinyin": "kě néng ba 。"
+      },
+      {
+        "chinese": "不过，",
+        "gloss": "But",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "他们说到了一个人。",
+        "gloss": "they did mention someone.",
+        "pinyin": "tā men shuō dào le yí gè rén 。"
+      }
+    ],
+    "pinyin": "kě néng ba 。 bú guò ， tā men shuō dào le yí gè rén 。"
+  },
+  "这事，和已经去世的王后有关。": {
+    "english": "This matter involves the late queen.",
+    "interlinear": [
+      {
+        "chinese": "这事，",
+        "gloss": "This matter",
+        "pinyin": "zhè shì ，"
+      },
+      {
+        "chinese": "和已经去世的王后有关。",
+        "gloss": "involves the late queen.",
+        "pinyin": "hé yǐ jīng qù shì de wáng hòu yǒu guān 。"
+      }
+    ],
+    "pinyin": "zhè shì ， hé yǐ jīng qù shì de wáng hòu yǒu guān 。"
+  },
+  "王后伊凡。一个新的名字。": {
+    "english": "Queen Evane. A new name.",
+    "interlinear": [
+      {
+        "chinese": "王后伊凡。",
+        "gloss": "Queen Evane.",
+        "pinyin": "wáng hòu yī fán 。"
+      },
+      {
+        "chinese": "一个新的名字。",
+        "gloss": "A new name.",
+        "pinyin": "yí gè xīn de míng zi 。"
+      }
+    ],
+    "pinyin": "wáng hòu yī fán 。 yí gè xīn de míng zi 。"
+  },
+  "我只是来问一个故事，怎么又说到她了？": {
+    "english": "I only came to ask about a story; how did she enter into it?",
+    "interlinear": [
+      {
+        "chinese": "我只是来问一个故事，",
+        "gloss": "I only came to ask about a story;",
+        "pinyin": "wǒ zhǐ shì lái wèn yí gè gù shi ，"
+      },
+      {
+        "chinese": "怎么又说到她了？",
+        "gloss": "how did she enter into it?",
+        "pinyin": "zěn me yòu shuō dào tā le ？"
+      }
+    ],
+    "pinyin": "wǒ zhǐ shì lái wèn yí gè gù shi ， zěn me yòu shuō dào tā le ？"
+  },
+  "你能不能帮我问问？": {
+    "english": "Could you ask around for me?",
+    "interlinear": [
+      {
+        "chinese": "你能不能",
+        "gloss": "Could you",
+        "pinyin": "nǐ néng bu néng"
+      },
+      {
+        "chinese": "帮我问问？",
+        "gloss": "ask around for me?",
+        "pinyin": "bāng wǒ wèn wen ？"
+      }
+    ],
+    "pinyin": "nǐ néng bu néng bāng wǒ wèn wen ？"
+  },
+  "我想知道，她和那个人，到底发生过什么。": {
+    "english": "I want to know what she and that man actually had between them.",
+    "interlinear": [
+      {
+        "chinese": "我想知道，",
+        "gloss": "I want to know",
+        "pinyin": "wǒ xiǎng zhī dào ，"
+      },
+      {
+        "chinese": "她和那个人，",
+        "gloss": "what she and that man",
+        "pinyin": "tā hé nà ge rén ，"
+      },
+      {
+        "chinese": "到底发生过什么。",
+        "gloss": "actually had between them.",
+        "pinyin": "dào dǐ fā shēng guò shén me 。"
+      }
+    ],
+    "pinyin": "wǒ xiǎng zhī dào ， tā hé nà ge rén ， dào dǐ fā shēng guò shén me 。"
+  },
+  "新任务出现了：雕刻家的过去。": {
+    "english": "A new quest appeared: The Sculptor's Past.",
+    "interlinear": [
+      {
+        "chinese": "新任务出现了：",
+        "gloss": "A new quest appeared:",
+        "pinyin": "xīn rèn wu chū xiàn le ："
+      },
+      {
+        "chinese": "雕刻家的过去。",
+        "gloss": "The Sculptor's Past.",
+        "pinyin": "diāo kè jiā de guò qù 。"
+      }
+    ],
+    "pinyin": "xīn rèn wu chū xiàn le ： diāo kè jiā de guò qù 。"
+  },
+  "还是E级任务。": {
+    "english": "It's still an E-rank quest.",
+    "interlinear": [
+      {
+        "chinese": "还是E级任务。",
+        "gloss": "It's still an E-rank quest.",
+        "pinyin": "hái shì E jí rèn wu 。"
+      }
+    ],
+    "pinyin": "hái shì E jí rèn wu 。"
+  },
+  "可是，下面还有一个警告。": {
+    "english": "But there's a warning underneath.",
+    "interlinear": [
+      {
+        "chinese": "可是，",
+        "gloss": "But",
+        "pinyin": "kě shì ，"
+      },
+      {
+        "chinese": "下面还有一个警告。",
+        "gloss": "there's a warning underneath.",
+        "pinyin": "xià miàn hái yǒu yí gè jǐng gào 。"
+      }
+    ],
+    "pinyin": "kě shì ， xià miàn hái yǒu yí gè jǐng gào 。"
+  },
+  "要是王家骑士发现我在问这事，他们会对我有敌意。": {
+    "english": "If the Royal Knights discover I'm asking about this, they'll become hostile toward me.",
+    "interlinear": [
+      {
+        "chinese": "要是王家骑士发现",
+        "gloss": "If the Royal Knights discover",
+        "pinyin": "yào shi wáng jiā qí shì fā xiàn"
+      },
+      {
+        "chinese": "我在问这事，",
+        "gloss": "I'm asking about this,",
+        "pinyin": "wǒ zài wèn zhè shì ，"
+      },
+      {
+        "chinese": "他们会对我有敌意。",
+        "gloss": "they'll become hostile toward me.",
+        "pinyin": "tā men huì duì wǒ yǒu dí yì 。"
+      }
+    ],
+    "pinyin": "yào shi wáng jiā qí shì fā xiàn wǒ zài wèn zhè shì ， tā men huì duì wǒ yǒu dí yì 。"
+  },
+  "只是问问，他们也会不喜欢我？": {
+    "english": "Just for asking, they'll dislike me?",
+    "interlinear": [
+      {
+        "chinese": "只是问问，",
+        "gloss": "Just for asking,",
+        "pinyin": "zhǐ shì wèn wen ，"
+      },
+      {
+        "chinese": "他们也会不喜欢我？",
+        "gloss": "they'll dislike me?",
+        "pinyin": "tā men yě huì bù xǐ huan wǒ ？"
+      }
+    ],
+    "pinyin": "zhǐ shì wèn wen ， tā men yě huì bù xǐ huan wǒ ？"
+  },
+  "这样的任务，奖励会更多吧？": {
+    "english": "For a quest like this, the rewards should be greater, right?",
+    "interlinear": [
+      {
+        "chinese": "这样的任务，",
+        "gloss": "For a quest like this,",
+        "pinyin": "zhè yàng de rèn wu ，"
+      },
+      {
+        "chinese": "奖励会更多吧？",
+        "gloss": "the rewards should be greater, right?",
+        "pinyin": "jiǎng lì huì gèng duō ba ？"
+      }
+    ],
+    "pinyin": "zhè yàng de rèn wu ， jiǎng lì huì gèng duō ba ？"
+  },
+  "任务不难，也不是谁都愿意跟我说。": {
+    "english": "The quest isn't difficult, but that doesn't mean everyone will talk to me.",
+    "interlinear": [
+      {
+        "chinese": "任务不难，",
+        "gloss": "The quest isn't difficult,",
+        "pinyin": "rèn wu bù nán ，"
+      },
+      {
+        "chinese": "也不是谁都愿意跟我说。",
+        "gloss": "but that doesn't mean everyone will talk to me.",
+        "pinyin": "yě bú shì shuí dōu yuàn yì gēn wǒ shuō 。"
+      }
+    ],
+    "pinyin": "rèn wu bù nán ， yě bú shì shuí dōu yuàn yì gēn wǒ shuō 。"
+  },
+  "奖励再好，也要能把任务做好啊。": {
+    "english": "However good the rewards, I still have to be able to complete the quest.",
+    "interlinear": [
+      {
+        "chinese": "奖励再好，",
+        "gloss": "However good the rewards,",
+        "pinyin": "jiǎng lì zài hǎo ，"
+      },
+      {
+        "chinese": "也要能把任务做好啊。",
+        "gloss": "I still have to be able to complete the quest.",
+        "pinyin": "yě yào néng bǎ rèn wu zuò hǎo a 。"
+      }
+    ],
+    "pinyin": "jiǎng lì zài hǎo ， yě yào néng bǎ rèn wu zuò hǎo a 。"
+  },
+  "等一下。这是一个接着一个的任务！": {
+    "english": "Wait. These quests come one after another!",
+    "interlinear": [
+      {
+        "chinese": "等一下。",
+        "gloss": "Wait.",
+        "pinyin": "děng yí xià 。"
+      },
+      {
+        "chinese": "这是一个接着一个的任务！",
+        "gloss": "These quests come one after another!",
+        "pinyin": "zhè shì yí gè jiē zhe yí gè de rèn wu ！"
+      }
+    ],
+    "pinyin": "děng yí xià 。 zhè shì yí gè jiē zhe yí gè de rèn wu ！"
+  },
+  "做完一个任务，就会出现下一个。": {
+    "english": "Finish one quest, and the next one appears.",
+    "interlinear": [
+      {
+        "chinese": "做完一个任务，",
+        "gloss": "Finish one quest,",
+        "pinyin": "zuò wán yí gè rèn wu ，"
+      },
+      {
+        "chinese": "就会出现下一个。",
+        "gloss": "and the next one appears.",
+        "pinyin": "jiù huì chū xiàn xià yí gè 。"
+      }
+    ],
+    "pinyin": "zuò wán yí gè rèn wu ， jiù huì chū xiàn xià yí gè 。"
+  },
+  "这样的任务，奖励会越来越好。": {
+    "english": "With quests like these, the rewards get better and better.",
+    "interlinear": [
+      {
+        "chinese": "这样的任务，",
+        "gloss": "With quests like these,",
+        "pinyin": "zhè yàng de rèn wu ，"
+      },
+      {
+        "chinese": "奖励会越来越好。",
+        "gloss": "the rewards get better and better.",
+        "pinyin": "jiǎng lì huì yuè lái yuè hǎo 。"
+      }
+    ],
+    "pinyin": "zhè yàng de rèn wu ， jiǎng lì huì yuè lái yuè hǎo 。"
+  },
+  "我低头看自己的手。因为太开心，手都在抖。": {
+    "english": "I look down at my hands. I'm so excited that they're trembling.",
+    "interlinear": [
+      {
+        "chinese": "我低头看自己的手。",
+        "gloss": "I look down at my hands.",
+        "pinyin": "wǒ dī tóu kàn zì jǐ de shǒu 。"
+      },
+      {
+        "chinese": "因为太开心，",
+        "gloss": "I'm so excited",
+        "pinyin": "yīn wèi tài kāi xīn ，"
+      },
+      {
+        "chinese": "手都在抖。",
+        "gloss": "that they're trembling.",
+        "pinyin": "shǒu dōu zài dǒu 。"
+      }
+    ],
+    "pinyin": "wǒ dī tóu kàn zì jǐ de shǒu 。 yīn wèi tài kāi xīn ， shǒu dōu zài dǒu 。"
+  },
+  "可任务也会越来越难。": {
+    "english": "But the quests will get harder and harder too.",
+    "interlinear": [
+      {
+        "chinese": "可任务也会越来越难。",
+        "gloss": "But the quests will get harder and harder too.",
+        "pinyin": "kě rèn wu yě huì yuè lái yuè nán 。"
+      }
+    ],
+    "pinyin": "kě rèn wu yě huì yuè lái yuè nán 。"
+  },
+  "我现在只有一级，不能只想着奖励。": {
+    "english": "I'm only level one right now; I can't think only about rewards.",
+    "interlinear": [
+      {
+        "chinese": "我现在只有一级，",
+        "gloss": "I'm only level one right now;",
+        "pinyin": "wǒ xiàn zài zhǐ yǒu yī jí ，"
+      },
+      {
+        "chinese": "不能只想着奖励。",
+        "gloss": "I can't think only about rewards.",
+        "pinyin": "bù néng zhǐ xiǎng zhe jiǎng lì 。"
+      }
+    ],
+    "pinyin": "wǒ xiàn zài zhǐ yǒu yī jí ， bù néng zhǐ xiǎng zhe jiǎng lì 。"
+  },
+  "在城市里找人，问问这些事，我还可以。": {
+    "english": "Finding people in the city and asking about things— that I can manage.",
+    "interlinear": [
+      {
+        "chinese": "在城市里找人，",
+        "gloss": "Finding people in the city",
+        "pinyin": "zài chéng shì lǐ zhǎo rén ，"
+      },
+      {
+        "chinese": "问问这些事，",
+        "gloss": "and asking about things—",
+        "pinyin": "wèn wen zhè xiē shì ，"
+      },
+      {
+        "chinese": "我还可以。",
+        "gloss": "that I can manage.",
+        "pinyin": "wǒ hái kě yǐ 。"
+      }
+    ],
+    "pinyin": "zài chéng shì lǐ zhǎo rén ， wèn wen zhè xiē shì ， wǒ hái kě yǐ 。"
+  },
+  "真要去打，我现在可做不到。": {
+    "english": "If it actually comes to fighting, I can't manage that yet.",
+    "interlinear": [
+      {
+        "chinese": "真要去打，",
+        "gloss": "If it actually comes to fighting,",
+        "pinyin": "zhēn yào qù dǎ ，"
+      },
+      {
+        "chinese": "我现在可做不到。",
+        "gloss": "I can't manage that yet.",
+        "pinyin": "wǒ xiàn zài kě zuò bú dào 。"
+      }
+    ],
+    "pinyin": "zhēn yào qù dǎ ， wǒ xiàn zài kě zuò bú dào 。"
+  },
+  "我现在的能力还很低，怕帮不了您。": {
+    "english": "My abilities are still very limited; I'm afraid I won't be able to help you.",
+    "interlinear": [
+      {
+        "chinese": "我现在的能力还很低，",
+        "gloss": "My abilities are still very limited;",
+        "pinyin": "wǒ xiàn zài de néng lì hái hěn dī ，"
+      },
+      {
+        "chinese": "怕帮不了您。",
+        "gloss": "I'm afraid I won't be able to help you.",
+        "pinyin": "pà bāng bù liǎo nín 。"
+      }
+    ],
+    "pinyin": "wǒ xiàn zài de néng lì hái hěn dī ， pà bāng bù liǎo nín 。"
+  },
+  "我相信你能做好。": {
+    "english": "I believe you can do it well.",
+    "interlinear": [
+      {
+        "chinese": "我相信你能做好。",
+        "gloss": "I believe you can do it well.",
+        "pinyin": "wǒ xiāng xìn nǐ néng zuò hǎo 。"
+      }
+    ],
+    "pinyin": "wǒ xiāng xìn nǐ néng zuò hǎo 。"
+  },
+  "你做事小心，就不会出事。": {
+    "english": "If you're careful, you'll stay out of trouble.",
+    "interlinear": [
+      {
+        "chinese": "你做事小心，",
+        "gloss": "If you're careful,",
+        "pinyin": "nǐ zuò shì xiǎo xīn ，"
+      },
+      {
+        "chinese": "就不会出事。",
+        "gloss": "you'll stay out of trouble.",
+        "pinyin": "jiù bú huì chū shì 。"
+      }
+    ],
+    "pinyin": "nǐ zuò shì xiǎo xīn ， jiù bú huì chū shì 。"
+  },
+  "可我也不是什么都能做啊。": {
+    "english": "But I'm not someone who can do everything.",
+    "interlinear": [
+      {
+        "chinese": "可我也不是",
+        "gloss": "But I'm not someone",
+        "pinyin": "kě wǒ yě bú shì"
+      },
+      {
+        "chinese": "什么都能做啊。",
+        "gloss": "who can do everything.",
+        "pinyin": "shén me dōu néng zuò a 。"
+      }
+    ],
+    "pinyin": "kě wǒ yě bú shì shén me dōu néng zuò a 。"
+  },
+  "您这么相信我，我就更怕做不好了。": {
+    "english": "With you having so much faith in me, I'm even more afraid of doing badly.",
+    "interlinear": [
+      {
+        "chinese": "您这么相信我，",
+        "gloss": "With you having so much faith in me,",
+        "pinyin": "nín zhè me xiāng xìn wǒ ，"
+      },
+      {
+        "chinese": "我就更怕做不好了。",
+        "gloss": "I'm even more afraid of doing badly.",
+        "pinyin": "wǒ jiù gèng pà zuò bù hǎo le 。"
+      }
+    ],
+    "pinyin": "nín zhè me xiāng xìn wǒ ， wǒ jiù gèng pà zuò bù hǎo le 。"
+  },
+  "我请你帮忙问问，不是要你什么都会。": {
+    "english": "I'm asking you to help ask around, not to know how to do everything.",
+    "interlinear": [
+      {
+        "chinese": "我请你帮忙问问，",
+        "gloss": "I'm asking you to help ask around,",
+        "pinyin": "wǒ qǐng nǐ bāng máng wèn wen ，"
+      },
+      {
+        "chinese": "不是要你什么都会。",
+        "gloss": "not to know how to do everything.",
+        "pinyin": "bú shì yào nǐ shén me dōu huì 。"
+      }
+    ],
+    "pinyin": "wǒ qǐng nǐ bāng máng wèn wen ， bú shì yào nǐ shén me dōu huì 。"
+  },
+  "你知道要小心，这就很好。": {
+    "english": "You know you need to be careful; that's a good thing.",
+    "interlinear": [
+      {
+        "chinese": "你知道要小心，",
+        "gloss": "You know you need to be careful;",
+        "pinyin": "nǐ zhī dào yào xiǎo xīn ，"
+      },
+      {
+        "chinese": "这就很好。",
+        "gloss": "that's a good thing.",
+        "pinyin": "zhè jiù hěn hǎo 。"
+      }
+    ],
+    "pinyin": "nǐ zhī dào yào xiǎo xīn ， zhè jiù hěn hǎo 。"
+  },
+  "他没有因为我的话，就不让我帮忙了。": {
+    "english": "What I said hasn't made him stop wanting my help.",
+    "interlinear": [
+      {
+        "chinese": "他没有因为我的话，",
+        "gloss": "What I said hasn't",
+        "pinyin": "tā méi yǒu yīn wèi wǒ de huà ，"
+      },
+      {
+        "chinese": "就不让我帮忙了。",
+        "gloss": "made him stop wanting my help.",
+        "pinyin": "jiù bú ràng wǒ bāng máng le 。"
+      }
+    ],
+    "pinyin": "tā méi yǒu yīn wèi wǒ de huà ， jiù bú ràng wǒ bāng máng le 。"
+  },
+  "您都这么说了，那我就试试吧。": {
+    "english": "Since you put it that way, I'll give it a try.",
+    "interlinear": [
+      {
+        "chinese": "您都这么说了，",
+        "gloss": "Since you put it that way,",
+        "pinyin": "nín dōu zhè me shuō le ，"
+      },
+      {
+        "chinese": "那我就试试吧。",
+        "gloss": "I'll give it a try.",
+        "pinyin": "nà wǒ jiù shì shi ba 。"
+      }
+    ],
+    "pinyin": "nín dōu zhè me shuō le ， nà wǒ jiù shì shi ba 。"
+  },
+  "我接受了任务。": {
+    "english": "I accepted the quest.",
+    "interlinear": [
+      {
+        "chinese": "我接受了任务。",
+        "gloss": "I accepted the quest.",
+        "pinyin": "wǒ jiē shòu le rèn wu 。"
+      }
+    ],
+    "pinyin": "wǒ jiē shòu le rèn wu 。"
+  },
+  "谢谢你。": {
+    "english": "Thank you.",
+    "interlinear": [
+      {
+        "chinese": "谢谢你。",
+        "gloss": "Thank you.",
+        "pinyin": "xiè xie nǐ 。"
+      }
+    ],
+    "pinyin": "xiè xie nǐ 。"
+  },
+  "想知道她的事，你可以去问诗人。": {
+    "english": "To find out about her, you can go ask a bard.",
+    "interlinear": [
+      {
+        "chinese": "想知道她的事，",
+        "gloss": "To find out about her,",
+        "pinyin": "xiǎng zhī dào tā de shì ，"
+      },
+      {
+        "chinese": "你可以去问诗人。",
+        "gloss": "you can go ask a bard.",
+        "pinyin": "nǐ kě yǐ qù wèn shī rén 。"
+      }
+    ],
+    "pinyin": "xiǎng zhī dào tā de shì ， nǐ kě yǐ qù wèn shī rén 。"
+  },
+  "他知道很久以前的故事，也知道人们现在在说什么。": {
+    "english": "He knows tales from long ago, and what people are talking about now.",
+    "interlinear": [
+      {
+        "chinese": "他知道很久以前的故事，",
+        "gloss": "He knows tales from long ago,",
+        "pinyin": "tā zhī dào hěn jiǔ yǐ qián de gù shi ，"
+      },
+      {
+        "chinese": "也知道人们现在在说什么。",
+        "gloss": "and what people are talking about now.",
+        "pinyin": "yě zhī dào rén men xiàn zài zài shuō shén me 。"
+      }
+    ],
+    "pinyin": "tā zhī dào hěn jiǔ yǐ qián de gù shi ， yě zhī dào rén men xiàn zài zài shuō shén me 。"
+  },
+  "以前的故事，现在的事，他都知道？": {
+    "english": "Old stories and current affairs— he knows both?",
+    "interlinear": [
+      {
+        "chinese": "以前的故事，",
+        "gloss": "Old stories",
+        "pinyin": "yǐ qián de gù shi ，"
+      },
+      {
+        "chinese": "现在的事，",
+        "gloss": "and current affairs—",
+        "pinyin": "xiàn zài de shì ，"
+      },
+      {
+        "chinese": "他都知道？",
+        "gloss": "he knows both?",
+        "pinyin": "tā dōu zhī dào ？"
+      }
+    ],
+    "pinyin": "yǐ qián de gù shi ， xiàn zài de shì ， tā dōu zhī dào ？"
+  },
+  "那我去问的时候，也得小心了。": {
+    "english": "Then when I go to ask, I'll need to be careful too.",
+    "interlinear": [
+      {
+        "chinese": "那我去问的时候，",
+        "gloss": "Then when I go to ask,",
+        "pinyin": "nà wǒ qù wèn de shí hòu ，"
+      },
+      {
+        "chinese": "也得小心了。",
+        "gloss": "I'll need to be careful too.",
+        "pinyin": "yě děi xiǎo xīn le 。"
+      }
+    ],
+    "pinyin": "nà wǒ qù wèn de shí hòu ， yě děi xiǎo xīn le 。"
+  },
+  "对，所以我让你去找他。": {
+    "english": "Yes, that's why I'm sending you to him.",
+    "interlinear": [
+      {
+        "chinese": "对，",
+        "gloss": "Yes,",
+        "pinyin": "duì ，"
+      },
+      {
+        "chinese": "所以我让你去找他。",
+        "gloss": "that's why I'm sending you to him.",
+        "pinyin": "suǒ yǐ wǒ ràng nǐ qù zhǎo tā 。"
+      }
+    ],
+    "pinyin": "duì ， suǒ yǐ wǒ ràng nǐ qù zhǎo tā 。"
+  },
+  "对，这事不能到处说。": {
+    "english": "Yes, you can't talk about this everywhere.",
+    "interlinear": [
+      {
+        "chinese": "对，",
+        "gloss": "Yes,",
+        "pinyin": "duì ，"
+      },
+      {
+        "chinese": "这事不能到处说。",
+        "gloss": "you can't talk about this everywhere.",
+        "pinyin": "zhè shì bù néng dào chù shuō 。"
+      }
+    ],
+    "pinyin": "duì ， zhè shì bù néng dào chù shuō 。"
+  },
+  "千万小心。不要让人说王家的坏话。": {
+    "english": "Be very careful. Don't cause people to speak ill of the royal family.",
+    "interlinear": [
+      {
+        "chinese": "千万小心。",
+        "gloss": "Be very careful.",
+        "pinyin": "qiān wàn xiǎo xīn 。"
+      },
+      {
+        "chinese": "不要让人说王家的坏话。",
+        "gloss": "Don't cause people to speak ill of the royal family.",
+        "pinyin": "bú yào ràng rén shuō wáng jiā de huài huà 。"
+      }
+    ],
+    "pinyin": "qiān wàn xiǎo xīn 。 bú yào ràng rén shuō wáng jiā de huài huà 。"
+  },
+  "我记住了：去找诗人，也要小心说话。": {
+    "english": "I'll remember: find the bard, and be careful what I say.",
+    "interlinear": [
+      {
+        "chinese": "我记住了：",
+        "gloss": "I'll remember:",
+        "pinyin": "wǒ jì zhù le ："
+      },
+      {
+        "chinese": "去找诗人，",
+        "gloss": "find the bard,",
+        "pinyin": "qù zhǎo shī rén ，"
+      },
+      {
+        "chinese": "也要小心说话。",
+        "gloss": "and be careful what I say.",
+        "pinyin": "yě yào xiǎo xīn shuō huà 。"
+      }
+    ],
+    "pinyin": "wǒ jì zhù le ： qù zhǎo shī rén ， yě yào xiǎo xīn shuō huà 。"
+  },
+  "本来只是来问一个故事，现在却有了新的任务。": {
+    "english": "I'd only come to ask about a story, but now I have a new quest.",
+    "interlinear": [
+      {
+        "chinese": "本来只是来问一个故事，",
+        "gloss": "I'd only come to ask about a story,",
+        "pinyin": "běn lái zhǐ shì lái wèn yí gè gù shi ，"
+      },
+      {
+        "chinese": "现在却有了新的任务。",
+        "gloss": "but now I have a new quest.",
+        "pinyin": "xiàn zài què yǒu le xīn de rèn wu 。"
+      }
+    ],
+    "pinyin": "běn lái zhǐ shì lái wèn yí gè gù shi ， xiàn zài què yǒu le xīn de rèn wu 。"
+  },
+  "她和雕刻家，到底发生过什么？": {
+    "english": "She and the sculptor— what really happened between them?",
+    "interlinear": [
+      {
+        "chinese": "她和雕刻家，",
+        "gloss": "She and the sculptor—",
+        "pinyin": "tā hé diāo kè jiā ，"
+      },
+      {
+        "chinese": "到底发生过什么？",
+        "gloss": "what really happened between them?",
+        "pinyin": "dào dǐ fā shēng guò shén me ？"
+      }
+    ],
+    "pinyin": "tā hé diāo kè jiā ， dào dǐ fā shēng guò shén me ？"
+  }
+}
