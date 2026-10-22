@@ -133,5 +133,11 @@
     "category": "lms",
     "episode": 21,
     "path": "moonlight-21.json"
+  },
+  {
+    "id": "moonlight-22-v1",
+    "category": "lms",
+    "episode": 22,
+    "path": "moonlight-22.json"
   }
 ]

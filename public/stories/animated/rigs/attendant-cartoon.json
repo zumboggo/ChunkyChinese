@@ -1,0 +1,25 @@
+{
+  "name": "侍女 · Former attendant",
+  "version": 1,
+  "provenance": "Original fictional retired attendant of Queen Evane. Silver bob, angular elder face and muted blue robe, built with shared polished SVG geometry; not official artwork.",
+  "expressions": {},
+  "rig": {
+    "version": 2,
+    "preset": "cartoon-v1",
+    "style": "manga",
+    "finish": "polished",
+    "palette": {
+      "skin": "#d8b697",
+      "hair": "#b8b9bc",
+      "shirt": "#526b82",
+      "trim": "#d6c6a4"
+    },
+    "appearance": {
+      "age": "elder",
+      "hair": "bob",
+      "face": "angular",
+      "eyes": "gentle",
+      "outfit": "robe"
+    }
+  }
+}

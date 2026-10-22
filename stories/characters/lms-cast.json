@@ -140,5 +140,25 @@
       "trim": "#c7ad73"
     },
     "provenance": "Original fictional middle-aged Serabourg bard, approximately forty as in the source. Swept brown hair, lean face and muted plum tunic, built with shared polished SVG geometry; not official artwork."
+  },
+  {
+    "id": "Attendant",
+    "name": "侍女 · Former attendant",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "elder",
+      "hair": "bob",
+      "face": "angular",
+      "eyes": "gentle",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#d8b697",
+      "hair": "#b8b9bc",
+      "shirt": "#526b82",
+      "trim": "#d6c6a4"
+    },
+    "provenance": "Original fictional retired attendant of Queen Evane. Silver bob, angular elder face and muted blue robe, built with shared polished SVG geometry; not official artwork."
   }
 ]
