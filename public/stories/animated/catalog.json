@@ -101,13 +101,23 @@
     "id": "moonlight-15-v1",
     "category": "lms",
     "episode": 15,
-    "path": "moonlight-15.json"
+    "path": "moonlight-15.json",
+    "intro": {
+      "src": "stories/animated/cutscenes/moonlight-15-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-15-intro.jpg",
+      "title": "A rare opportunity"
+    }
   },
   {
     "id": "moonlight-16-v1",
     "category": "lms",
     "episode": 16,
-    "path": "moonlight-16.json"
+    "path": "moonlight-16.json",
+    "intro": {
+      "src": "stories/animated/cutscenes/moonlight-16-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-16-intro.jpg",
+      "title": "Two silver coins"
+    }
   },
   {
     "id": "moonlight-17-v1",

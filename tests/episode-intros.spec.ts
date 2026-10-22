@@ -7,6 +7,21 @@ async function openEpisode(page:Page,episode:number){
  await page.getByRole('button',{name:'Restart episode',exact:true}).click()
 }
 
+for(const episode of [15,16])test(`episode ${episode} intro is six seconds at 480p with sound and leads into reading`,async({page},info)=>{
+ await page.emulateMedia({reducedMotion:'reduce'})
+ await openEpisode(page,episode)
+ const video=page.locator('.episode-intro video')
+ await expect.poll(()=>video.evaluate(element=>{
+  const media=element as HTMLVideoElement
+  return {duration:media.duration,width:media.videoWidth,height:media.videoHeight,muted:media.muted}
+ })).toEqual({duration:6,width:854,height:480,muted:false})
+ await page.screenshot({path:'.local/design/intro-'+episode+'-'+info.project.name+'.png',fullPage:true})
+ await page.getByRole('button',{name:'Play intro with sound',exact:true}).click()
+ await expect.poll(()=>video.evaluate(element=>(element as HTMLVideoElement).currentTime)).toBeGreaterThan(0)
+ await expect(page.locator('.animated-story')).toBeVisible({timeout:12000})
+ await expect(page.getByRole('button',{name:'Continue →',exact:true})).toBeVisible()
+})
+
 test('painted intro plays with sound, ends into reading, and does not repeat on resume',async({page},info)=>{
  await page.emulateMedia({reducedMotion:'reduce'})
  await openEpisode(page,14)

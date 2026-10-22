@@ -32,6 +32,48 @@
       "reused_existing_clip": true
     },
     {
+      "episode": 15,
+      "release_id": "moonlight-15-v1",
+      "title": "A rare opportunity",
+      "src": "stories/animated/cutscenes/moonlight-15-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-15-intro.jpg",
+      "prediction_id": "jw1nbbkrbsrmw0d1cgxa3snbbr",
+      "seed": 42213,
+      "video_prompt": "An adult man sits at a wooden dining table in a medieval hall. In the painted anime style of the input image, his eyes widen slightly in realization. He straightens his posture and gives a small confident smile. Steam rises from the bowl. Slow gentle camera push. Six seconds, one continuous shot. Audio: quiet dining hall room tone, a soft dish clink and a brief plucked string musical phrase. No dialogue.",
+      "art_prompt": "Use case: illustration-story. Generate one beautiful landscape 16:9 hand-painted fantasy anime film still, the opening frame of an episode intro. Use the supplied portrait as STRICT identity and art-style reference: Weed / Lee Hyun, young adult Korean man with warm tan complexion, scrappy angular face, layered tousled near-black hair, keen brown eyes, practical muted teal open workshirt over ivory undershirt. Preserve the exquisite painted brushwork, intricate texture, softly luminous warm medieval stone-and-timber lunch hall, golden window light and hand-drawn 2D finish. New framing and expression: chest-up three-quarter view, Weed pauses at the lunch table, gazing slightly up and to the right at something just outside frame. His eyes have just widened with dawning realization; a restrained calculating smile is beginning at one corner of his mouth. He has realized that an apparently easy task may be a rare lucky opportunity. Intense, intelligent, mischievous, resourceful; no broad happy grin. A steaming bowl remains low in foreground. One character only; no typography, HUD, quest windows, symbols, collage, speech bubbles, watermark or text. Detailed beautiful cinematic anime portrait with room to animate his gaze and expression.",
+      "provider_metrics": {
+        "model_variant": "with_audio",
+        "predict_time": 48.428461219,
+        "resolution_target": "480p",
+        "token_output_count": 60682,
+        "total_time": 48.47196563,
+        "video_output_duration_seconds": 6
+      },
+      "reused_existing_clip": false,
+      "retry_explicitly_authorized": true
+    },
+    {
+      "episode": 16,
+      "release_id": "moonlight-16-v1",
+      "title": "Two silver coins",
+      "src": "stories/animated/cutscenes/moonlight-16-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-16-intro.jpg",
+      "prediction_id": "d9n2drw8ynrmy0d1cgx97zd3zr",
+      "seed": 42213,
+      "video_prompt": "An adult man at a wooden dining table examines two silver coins in his open palm. Preserve the painted anime style, facial appearance, teal shirt and hall of the input image. He slowly closes his fingers around the coins and gives a small pleased smile. Restrained natural movement. Six seconds, one continuous shot. Audio: a small metallic coin clink, soft cloth rustle, quiet hall ambience and a short plucked string musical phrase. No dialogue.",
+      "art_prompt": "Use case: illustration-story. Generate a beautiful detailed landscape 16:9 HAND-PAINTED FANTASY ANIME film still using the supplied image as strict character identity and rendering reference. Same Weed / Lee Hyun: young adult Korean man, angular scrappy face, warm tan skin, tousled near-black hair, keen brown eyes, muted teal open workshirt over ivory undershirt, luminous painterly textures and warm window rim light. Same medieval timber-and-stone lunch hall. New medium close-up composition: Weed holds his own open palm just above the wooden table, looking down at EXACTLY TWO simple round SILVER COINS resting on it. His palm and the two coins are fully visible in lower foreground, anatomically natural hand with five fingers. His face above and behind the palm shows intense delighted surprise and the beginning of a mischievous calculating grin. The coins are SILVER, not gold. Exactly one hand visible, no second person or handoff, no wallet. Captures the tangible payoff after receiving advance payment and realizing he can afford food. Cinematic composition that keeps both face and coins readable for six-second animation. Beautiful hand-drawn 2D anime, delicate brushwork and softly painted hall depth. No text, labels, HUD, collage, watermark, modern objects, armor or other characters.",
+      "provider_metrics": {
+        "model_variant": "with_audio",
+        "predict_time": 53.837113381,
+        "resolution_target": "480p",
+        "token_output_count": 60682,
+        "total_time": 53.848273396,
+        "video_output_duration_seconds": 6
+      },
+      "reused_existing_clip": false,
+      "retry_explicitly_authorized": true
+    },
+    {
       "episode": 17,
       "release_id": "moonlight-17-v1",
       "title": "The golden eagle",
@@ -52,16 +94,23 @@
       "art_prompt": "Use case: illustration-story. One exquisite detailed landscape 16:9 HAND-PAINTED FANTASY ANIME film still. Use input as strict identity and rendering reference for Weed/Lee Hyun: young adult Korean man with angular scrappy warm tan face, tousled layered near-black hair, keen brown eyes, muted teal open workshirt and ivory undershirt. Same luminous fine painterly brushwork, intricate textured drawing, cinematic warm light, 2D anime. DIFFERENT LOCATION: inside a beautiful medieval sculpture shop, polished carved wooden shelves, stone and bronze statuettes in soft background, slant of light through shop window. Weed is at the left in a three-quarter chest-up view near the exit, body angled toward the door but head turned back to look toward a magnificent GOLDEN TWO-HEADED EAGLE SCULPTURE displayed at the right on a wooden pedestal. Both distinct eagle heads must be visibly readable, facing opposite directions, one sculpted eagle body with spread wings. Clearly an INANIMATE GOLD METAL ARTWORK, not a living eagle. Weed's expression is alert, intrigued, a sudden clever idea forming; one eyebrow raised and the hint of a sly smile. Visual focus connects Weed's gaze with the statue. Atmosphere of a discovery that could change his fortunes. Character and statue both fully readable, no extra people, labels, inscriptions, typography, text, collage, watermark or magical effects."
     }
   ],
-  "pending": [
+  "failed_attempts": [
     {
       "episode": 15,
-      "status": "Provider rejected input; replacement requires explicit user approval",
-      "failed_prediction_id": "x7yqrkqsvxrmw0d1ca19pbz3sw"
+      "prediction_id": "x7yqrkqsvxrmw0d1ca19pbz3sw",
+      "status": "failed",
+      "reason": "Provider rejected input; retry explicitly authorized by user",
+      "billing_policy": "Failed public-model runs are not charged",
+      "billing_policy_url": "https://replicate.com/docs/topics/billing"
     },
     {
       "episode": 16,
-      "status": "Provider rejected input; replacement requires explicit user approval",
-      "failed_prediction_id": "pj0cbzg66hrmt0d1ca1s2jywn8"
+      "prediction_id": "pj0cbzg66hrmt0d1ca1s2jywn8",
+      "status": "failed",
+      "reason": "Provider rejected input; retry explicitly authorized by user",
+      "billing_policy": "Failed public-model runs are not charged",
+      "billing_policy_url": "https://replicate.com/docs/topics/billing"
     }
-  ]
+  ],
+  "new_video_estimated_total_usd": 0.45
 }
