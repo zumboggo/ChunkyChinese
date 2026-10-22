@@ -1,0 +1,12 @@
+import {createRoot} from 'react-dom/client';
+import {useState} from 'react';
+import StoryStage from '../../src/game/animation/shared/components/StoryStage';
+import {compileStory,replayStory} from '../../src/game/animation/shared/engine/story-engine';
+import '../../src/game/animation/shared/components/story-player.css';
+const pack=await (await fetch('/stories/animated/moonlight-18.json')).json();
+if(new URLSearchParams(location.search).has('hybrid'))pack.assets.characters=await (await fetch('/fixture-cast.json')).json();
+const a=pack.assets.characters.Hyun?'Hyun':'Lin',b=pack.assets.characters.Shopkeeper?'Shopkeeper':'Hepting';
+pack.script=`story 2\nscene shop\nshow ${a} neutral left\nshow ${b} skeptical right\ncamera two ${a} ${b} cut\n${a}: Will you listen?\nexpress ${b} happy\n${a}: I kept your letter.\n${b}: You kept it?\nlook ${a} front\nI: A private thought.\nprop ${a} sword\n${b}: Be careful.\nend`;
+const {story,errors}=compileStory(pack.script,pack.assets);if(errors.length)throw Error(JSON.stringify(errors));
+function Rehearsal(){const [steps,setSteps]=useState<null[]>([]),[reduced,setReduced]=useState(false),[voice,setVoice]=useState(false),[mount,setMount]=useState(0);const state=replayStory(story,steps,1),current=story.nodes[state.cursor];return <main className="animated-story" style={{maxWidth:950,margin:'20px auto',fontFamily:'system-ui'}}><StoryStage key={mount} pack={pack} state={state} current={current} speaking={voice} reduced={reduced}/><p>{current.text}</p><button onClick={()=>setSteps([...steps,null])} disabled={state.ended}>Continue</button><label><input type="checkbox" checked={reduced} onChange={e=>setReduced(e.target.checked)}/>Reduced motion</label><label><input type="checkbox" checked={voice} onChange={e=>setVoice(e.target.checked)}/>Speaking</label><button onClick={()=>setMount(mount+1)}>Replay saved steps</button></main>};
+createRoot(document.getElementById('root')!).render(<Rehearsal/>);

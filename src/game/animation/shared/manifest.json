@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/zumboggo/Learningisfun",
-  "commit": "add22efe3c538f11edde6e662d6b0754fde6008c",
+  "commit": "e3b2f7517fffc47cb23b2c2397b842a0d6624a2f",
   "files": [
     {
       "source": "functions/learning-content/src/story-engine.js",
@@ -60,12 +60,12 @@
     {
       "source": "src/components/animated/CartoonActor.tsx",
       "target": "components/CartoonActor.tsx",
-      "sha256": "3063852ced0768370fdd253b4e78914eda00d9981427385b5d81adc915bf2bdc"
+      "sha256": "5efce35256e94ce6e33c53bd2f3bd3849fa9037f906e45a9254d84662bb64f23"
     },
     {
       "source": "src/components/animated/RefinedFace.tsx",
       "target": "components/RefinedFace.tsx",
-      "sha256": "9da0f8b36e14df223ac05cf3693394e994bb411372b660193eaa66bf2840a1ed"
+      "sha256": "1ff1fe2e0ef70ef0a4d2aa82c5fc52d30bd64d5bf7144b1b64bd17a2572a67fc"
     },
     {
       "source": "src/components/animated/MountedActor.tsx",
@@ -75,12 +75,12 @@
     {
       "source": "src/components/animated/PuppetActor.tsx",
       "target": "components/PuppetActor.tsx",
-      "sha256": "b45430a89e19eaf78398356cda9207180fc271b103ca4cfa85e08f5d41ed17da"
+      "sha256": "c4e611c7bb2bdd912bdd0cdd191d71573192594bf566c57977a49676e98bf53a"
     },
     {
       "source": "src/components/animated/StoryStage.tsx",
       "target": "components/StoryStage.tsx",
-      "sha256": "95086614bb71dfccbe227c69d860130798e7ec8207d52a12dbfd7514bcc76ce9"
+      "sha256": "41b9b00b466edaf06954b2e06ad7dba868c0d7862fe475a6009a6bdc430d3152"
     },
     {
       "source": "src/components/animated/action-motion.ts",
@@ -115,7 +115,7 @@
     {
       "source": "src/components/animated/story-player.css",
       "target": "components/story-player.css",
-      "sha256": "a6707242c9f95d5374255210fa6e5402fdc520ae336b1b70b4b3080e0398c455"
+      "sha256": "e6ade9b7bef9bf8d3d28f2e979d57a60bcc26f7b47a6de1df3ff312071b8ec36"
     },
     {
       "source": "src/components/animated/ActingLibrary.tsx",
