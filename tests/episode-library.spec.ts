@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test'
 import {readFileSync} from 'node:fs'
-import catalog from '../public/stories/animated/catalog.json'
+const catalog=JSON.parse(readFileSync('public/stories/animated/catalog.json','utf8')) as {category?:string;episode?:number;path:string}[]
 const episodeLabels=catalog.filter(e=>e.category==='lms').sort((a,b)=>(a.episode??0)-(b.episode??0)).map(e=>String(e.episode).padStart(2,'0')+JSON.parse(readFileSync('stories/animated/'+e.path,'utf8')).title.replace(/^Moonlight Sculptor\s*\d+\s*·\s*/,''))
 test('categories, independent reading aids, persistent preferences and next episode',async({page},info)=>{
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()

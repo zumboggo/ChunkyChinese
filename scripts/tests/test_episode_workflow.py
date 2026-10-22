@@ -23,6 +23,11 @@ class SourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'exactly once'):source.extract(self.record)
 
 class PublishTests(unittest.TestCase):
+    def test_live_fetch_preserves_binary_video_bytes(self):
+        content=b'\x00\xff\x80ftypisom\x00'
+        with patch.object(publish.subprocess,'run',return_value=publish.subprocess.CompletedProcess([],0,content,b'')):
+            self.assertEqual(publish.fetch('https://example.com/intro.mp4'),content)
+
     def test_bookkeeping_filter_is_narrow_and_matches_workflow(self):
         self.assertTrue(publish.bookkeeping_only(['stories/authoring/series/moonlight.json']))
         for paths in ([],['stories/authoring/series/a.json','src/App.tsx'],['stories/authoring/common-familiar-100.json'],['stories/authoring/series/nested/a.json'],['stories/authoring/series/a.md']):

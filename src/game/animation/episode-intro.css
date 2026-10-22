@@ -1,0 +1,9 @@
+.episode-intro{max-width:1000px;margin:20px auto 30px;background:#10191e;border:1px solid #405156;border-radius:18px;overflow:hidden;color:#eee9df}
+.episode-intro-heading{padding:20px 24px 16px}
+.episode-intro-heading p{margin:0 0 6px;color:#d7b573;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem}
+.game-page .episode-intro-heading h2{margin:0;color:#eee9df;font-family:Georgia,serif;font-size:clamp(1.35rem,4vw,2rem);line-height:1.25}
+.episode-intro video{display:block;width:100%;aspect-ratio:16/9;background:#060b0e;object-fit:contain}
+.episode-intro-actions{display:flex;flex-wrap:wrap;gap:12px;padding:18px 24px 6px}
+.episode-intro-actions button{min-height:44px}
+.episode-intro .episode-intro-hint,.episode-intro>[role=status]{padding:0 24px 18px;margin:10px 0 0;color:#bbc8cb;font-size:.85rem}
+@media(max-width:600px){.episode-intro{margin:12px 0 22px;border-radius:12px}.episode-intro-heading{padding:16px}.episode-intro-actions{padding:14px 16px 4px}.episode-intro .episode-intro-hint,.episode-intro>[role=status]{padding:0 16px 16px}}

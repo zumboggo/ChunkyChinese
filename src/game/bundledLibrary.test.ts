@@ -26,3 +26,10 @@ it('rejects invalid packages individually without caching them',async()=>{
  vi.stubGlobal('fetch',vi.fn().mockResolvedValue(new Response('{}')))
  expect(await loadBundledLibrary(vi.fn(),catalog)).toEqual(catalog);expect(write).not.toHaveBeenCalled()
 })
+it('attaches current intro metadata even when the immutable episode is cached',async()=>{
+ vi.mocked(read).mockResolvedValue(pack)
+ const intro={src:'stories/animated/cutscenes/test.mp4',poster:'stories/animated/cutscenes/test.jpg',title:'A realization'}
+ const loaded=vi.fn()
+ expect(await loadBundledLibrary(loaded,[{...catalog[0],intro}])).toEqual([])
+ expect(loaded.mock.calls[0][0]).toMatchObject({id:'one',intro,pack})
+})

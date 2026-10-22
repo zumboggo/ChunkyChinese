@@ -15,4 +15,10 @@ Read the series JSON and this page first. Use `docs/episode-authoring.md` for un
 
 Keep one yielding publishing process; check it about once a minute instead of repeatedly reading unchanged logs. The helper handles network retries. If bookkeeping push fails after its commit, rerun the same command; its local receipt identifies the already-verified release. If interrupted while the record is dirty, inspect the diff before committing/recovering; the clean-tree safeguard intentionally stops automatic publication.
 
+## Optional video introductions
+
+Bundled catalog entries may include `intro: {src, poster, title}` with app-relative media under `stories/animated/cutscenes/`. Use a six-second MP4 with generated sound and a JPEG poster. The current preference is 480p, audio enabled, at most $0.15 per successful clip; do not automatically submit paid replacement generations. Save model, prompts, prediction IDs and pricing in `stories/authoring/moonlight-cutscenes.json`.
+
+Introductions sit outside the immutable Story 2 package. Starting or restarting an episode shows its intro; saved reading progress bypasses it. Video completion or Skip starts the story. Sound remains enabled, with a Play button when the browser requires a gesture; reduced-motion readers choose whether to play. A missing intro can always be skipped. Do not embed videos into existing packages, change release IDs, or regenerate Mandarin audio to add an intro. Package checks and the publishing helper validate and verify the referenced media too.
+
 Do not broaden familiarity, regenerate unchanged audio, alter prior releases, or bypass the full final phone/desktop check. No classroom assignments are part of this workflow.

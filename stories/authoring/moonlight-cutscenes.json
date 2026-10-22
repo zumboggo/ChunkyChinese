@@ -1,0 +1,67 @@
+{
+  "style": "Hand-painted fantasy anime",
+  "preferences": {
+    "resolution": "480p",
+    "generate_audio": true,
+    "duration_seconds": 6,
+    "maximum_usd_per_successful_clip": 0.15,
+    "automatic_paid_retries": false
+  },
+  "model": "bytedance/seedance-1.5-pro",
+  "pricing_url": "https://replicate.com/bytedance/seedance-1.5-pro",
+  "usd_per_output_second": 0.025,
+  "delivery": "854x480, six seconds, generated audio; intros stored outside immutable episode packages",
+  "clips": [
+    {
+      "episode": 14,
+      "release_id": "moonlight-14-v1",
+      "title": "A knowing smile",
+      "src": "stories/animated/cutscenes/moonlight-14-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-14-intro.jpg",
+      "prediction_id": "62vb9ep8qhrmt0d1c9vtpqfgar",
+      "seed": 42213,
+      "video_prompt": "A single continuous six-second shot. Animate the supplied anime image while preserving its exact drawing style, facial identity, tousled dark hair, teal workshirt, ivory undershirt and warm medieval lunch hall. Weed slowly lifts his gaze toward the person across the table, narrows his eyes slightly, and develops a knowing mischievous closed-mouth grin. Subtle breathing and one natural blink. Gentle steam rises from the bowl. Restrained hand-drawn character animation, very gentle slow camera push toward the face, steady background, no cuts. His mouth remains closed; no speaking. AUDIO: quiet reverberant lunch-hall room tone, delicate offscreen tableware clinks, a very brief playful plucked-string musical accent as the grin appears, natural balanced audible mix. No dialogue, speech, narration, lyrics, captions or text.",
+      "provider_metrics": {
+        "model_variant": "with_audio",
+        "predict_time": 45.40267059,
+        "resolution_target": "480p",
+        "token_output_count": 60682,
+        "total_time": 45.416119108,
+        "video_output_duration_seconds": 6
+      },
+      "reused_existing_clip": true
+    },
+    {
+      "episode": 17,
+      "release_id": "moonlight-17-v1",
+      "title": "The golden eagle",
+      "src": "stories/animated/cutscenes/moonlight-17-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-17-intro.jpg",
+      "prediction_id": "1zxhx20jtxrmw0d1ca1v2hqnqg",
+      "seed": 42213,
+      "video_prompt": "Six-second continuous hand-painted fantasy anime shot. Preserve the exact character identity, teal workshirt, ivory undershirt, detailed painterly drawing and warm light of the input image. Restrained natural motion, stable anatomy and background, no cuts, no text, captions or HUD. No dialogue, speech, narration or lyrics. Weed halts at the sculpture shop doorway. He turns his gaze and head slightly toward the golden two-headed eagle statue displayed beside him, his expression changing from disappointment to alert intrigue and a tiny clever smile. A glint of window light slides across the gold as the camera drifts gently toward the statue. Both eagle heads, wings and body remain absolutely motionless: it is a rigid inanimate metal sculpture, never a living bird. AUDIO: soft bootstep stopping, faint wooden floor creak, quiet shop ambience, one restrained curious plucked-string musical accent. No voices.",
+      "provider_metrics": {
+        "model_variant": "with_audio",
+        "predict_time": 45.663711747,
+        "resolution_target": "480p",
+        "token_output_count": 60682,
+        "total_time": 45.673825718,
+        "video_output_duration_seconds": 6
+      },
+      "reused_existing_clip": false,
+      "art_prompt": "Use case: illustration-story. One exquisite detailed landscape 16:9 HAND-PAINTED FANTASY ANIME film still. Use input as strict identity and rendering reference for Weed/Lee Hyun: young adult Korean man with angular scrappy warm tan face, tousled layered near-black hair, keen brown eyes, muted teal open workshirt and ivory undershirt. Same luminous fine painterly brushwork, intricate textured drawing, cinematic warm light, 2D anime. DIFFERENT LOCATION: inside a beautiful medieval sculpture shop, polished carved wooden shelves, stone and bronze statuettes in soft background, slant of light through shop window. Weed is at the left in a three-quarter chest-up view near the exit, body angled toward the door but head turned back to look toward a magnificent GOLDEN TWO-HEADED EAGLE SCULPTURE displayed at the right on a wooden pedestal. Both distinct eagle heads must be visibly readable, facing opposite directions, one sculpted eagle body with spread wings. Clearly an INANIMATE GOLD METAL ARTWORK, not a living eagle. Weed's expression is alert, intrigued, a sudden clever idea forming; one eyebrow raised and the hint of a sly smile. Visual focus connects Weed's gaze with the statue. Atmosphere of a discovery that could change his fortunes. Character and statue both fully readable, no extra people, labels, inscriptions, typography, text, collage, watermark or magical effects."
+    }
+  ],
+  "pending": [
+    {
+      "episode": 15,
+      "status": "Provider rejected input; replacement requires explicit user approval",
+      "failed_prediction_id": "x7yqrkqsvxrmw0d1ca19pbz3sw"
+    },
+    {
+      "episode": 16,
+      "status": "Provider rejected input; replacement requires explicit user approval",
+      "failed_prediction_id": "pj0cbzg66hrmt0d1ca1s2jywn8"
+    }
+  ]
+}

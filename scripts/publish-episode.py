@@ -44,9 +44,13 @@ def push_commit(sha,runner=run,sleeper=time.sleep,attempts=3):
 
 def fetch(url,json_data=False):
     # curl uses the host/VPN configuration; never alter DNS, proxy or SSL verification.
-    code,out,err=run(['curl','--connect-timeout','10','--max-time','20','--fail','--silent','--show-error',url],25)
-    if code: raise ConnectionError(err[-500:])
-    return json.loads(out) if json_data else out.encode('utf-8')
+    # Keep bytes intact: release verification also hashes MP4/JPEG intro media.
+    try:
+        result=subprocess.run(['curl','--connect-timeout','10','--max-time','20','--fail','--silent','--show-error',url],stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=25)
+    except subprocess.TimeoutExpired as error:
+        raise ConnectionError('Live asset request timed out') from error
+    if result.returncode: raise ConnectionError(result.stderr.decode('utf-8',errors='replace')[-500:])
+    return json.loads(result.stdout) if json_data else result.stdout
 
 def select_run(data,sha):
     matches=[r for r in data.get('workflow_runs',[]) if r.get('head_sha')==sha and r.get('name')=='Deploy GitHub Pages' and r.get('head_branch')=='main']
@@ -71,6 +75,7 @@ def wait_deployment(sha,minutes=10):
 def verify_live(sha):
     catalog=json.loads(Path('public/stories/animated/catalog.json').read_text())
     files=['stories/animated/catalog.json','service-worker.js']+['stories/animated/'+e['path'] for e in catalog]
+    files += [e['intro'][kind] for e in catalog if e.get('intro') for kind in ('src','poster')]
     for relative in files:
         expected=hashlib.sha256(Path('public',relative).read_bytes()).hexdigest()
         for attempt in range(3):

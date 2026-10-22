@@ -90,7 +90,12 @@
     "id": "moonlight-14-v1",
     "category": "lms",
     "episode": 14,
-    "path": "moonlight-14.json"
+    "path": "moonlight-14.json",
+    "intro": {
+      "src": "stories/animated/cutscenes/moonlight-14-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-14-intro.jpg",
+      "title": "A knowing smile"
+    }
   },
   {
     "id": "moonlight-15-v1",
@@ -108,7 +113,12 @@
     "id": "moonlight-17-v1",
     "category": "lms",
     "episode": 17,
-    "path": "moonlight-17.json"
+    "path": "moonlight-17.json",
+    "intro": {
+      "src": "stories/animated/cutscenes/moonlight-17-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-17-intro.jpg",
+      "title": "The golden eagle"
+    }
   },
   {
     "id": "moonlight-18-v1",

@@ -5,7 +5,8 @@ const database=()=>openDB('ChunkyChineseStory2',1,{upgrade(db){db.createObjectSt
 export async function read<T>(key:string):Promise<T|undefined>{return (await database()).get('records',key)}
 export async function write(key:string,value:unknown){return (await database()).put('records',value,key)}
 export const scope=(identity:string)=>`story2:${encodeURIComponent(identity)}:`
-export interface Release {id:string;pack:ChinesePackage;created:string;resumeFrom?:string;category?:'daily-life'|'lms'|'practice';episode?:number}
+export interface EpisodeIntroMedia {src:string;poster:string;title:string}
+export interface Release {id:string;pack:ChinesePackage;created:string;resumeFrom?:string;category?:'daily-life'|'lms'|'practice';episode?:number;intro?:EpisodeIntroMedia}
 /** These commands settle without consuming a saved step. Keep every dialogue,
  * choice, label, variable and branching instruction identical for safe replay. */
 export const playbackScript=(script:string)=>script.split('\n').filter(line=>!/^(scene|show|move|camera|rest|react|prop|effect) /.test(line.trim())).join('\n')

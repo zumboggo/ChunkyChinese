@@ -19,7 +19,7 @@ export async function loadBundledLibrary(onLoaded:(release:Release)=>void, catal
    // A storage quota failure must not prevent online playback.
    await write(key,pack).catch(()=>undefined)
   }
-  onLoaded({id:entry.id,pack,created:'',resumeFrom:entry.resumeFrom,category:entry.category,episode:entry.episode})
+  onLoaded({id:entry.id,pack,created:'',resumeFrom:entry.resumeFrom,category:entry.category,episode:entry.episode,intro:entry.intro})
  }))
  return catalog.filter((_,i)=>results[i].status==='rejected')
 }
