@@ -5,9 +5,9 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_03.xhtml",
-    "nextStart": "As Weed was looking for the right moment to say his farewells and leave,",
-    "nextEndBefore": "Keeping down a sudden impulse to hum a tune, Weed headed straight to a pub across the street.",
-    "continuationNote": "The keeper asks Weed to investigate Queen Evane’s link to the sculptor. The E-level serial quest warns of Royal Knights’ hostility; Weed hesitates, accepts and is directed to a bard. Stop before he leaves for the pub."
+    "nextStart": "Keeping down a sudden impulse to hum a tune, Weed headed straight to a pub across the street.",
+    "nextEndBefore": "The bard glanced around the pub and added cautiously",
+    "continuationNote": "Weed searches pubs for a knowledgeable native bard, tries flattery instead of payment, loses one silver through failure to change it into smaller coins, and learns that the queen and sculptor loved each other since childhood. Stop before their village history and promise."
   },
   "completed": [
     {
@@ -81,9 +81,13 @@
     {
       "episode": "moonlight-18-v1",
       "end": "Weed privately dismisses sculpting as a poor way to earn money, asks about moonlight carving fifty years ago, and hears confirmation from the keeper via reliable royal patrons. The E-level investigation completes; reward remains unclaimed. He intends to return to the instructor but has not left."
+    },
+    {
+      "episode": "moonlight-19-v1",
+      "end": "The keeper asks Weed to investigate the late Queen Evane and the sculptor. Weed recognizes a serial quest, weighs the Royal Knights’ hostility and his level-one limits, accepts after reassurance, and is directed to a bard. Still inside the shop; no bard visit or payment yet."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-18.json",
+  "assetsFrom": "stories/animated/moonlight-19.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -100,21 +104,21 @@
   },
   "continuity": [
     "Grandmother remains hospitalized and the old debt is paid. Do not invent an exact current balance.",
-    "Training gains and Sword Mastery remain as previously recorded. The four-week city restriction has not expired.",
-    "The E-level moonlight-sculpting investigation is accepted. Two silver coins were paid in advance; one silver equals one hundred coppers and a rye bread costs three coppers. Weed has calculated sixty-six breads plus change, not bought or eaten sixty-six breads.",
-    "Weed filled his canteen at the fountain and reached the sculpture shop beside a jewelry shop. His beginner clothing provoked a cold welcome.",
-    "The keeper now welcomes Weed after praise of the golden two-headed eagle. Weed drank cold honeyed water and may view the statues as long as he likes.",
-    "Weed has privately judged sculpting a poor business but has not said this to the keeper.",
-    "The keeper confirmed the fifty-year-old moonlight-carving story through reliable royal patrons. The first E-level investigation is complete; Weed has not returned to the instructor or claimed the reward.",
-    "How the moonlight was carved remains unknown. No Queen Evane revelation or second quest yet. Weed is still inside the shop.",
-    "Episode 18 uses four immediate-response choices, no variables or later callbacks."
+    "Training gains and Sword Mastery remain as previously recorded. Weed is level one and the four-week city restriction has not expired.",
+    "The first E-level moonlight-sculpting investigation is complete. Weed has not returned to the instructor or claimed the reward.",
+    "The two-silver advance remains with Weed; he has not spent it. One silver equals one hundred coppers; rye bread costs three coppers. He calculated sixty-six breads plus change, not bought them.",
+    "Weed is still in the sculpture shop, welcomed after flattery and cold honeyed water. His negative judgment of sculpting as a business remains private.",
+    "The keeper revealed the late Queen Evane’s involvement and offered the E-level Sculptor’s Past serial quest. Weed accepted after expressing doubt and receiving reassurance.",
+    "The quest warns that Royal Knights will become hostile if they discover his inquiry. The keeper directed him to a bard and warned against harming the royal family’s reputation.",
+    "The queen’s relationship to the sculptor is still unknown. Weed has not left for the pub, met the bard, paid a coin or heard the love story.",
+    "Episode 19 uses four immediate-response choices, no variables or later callbacks."
   ],
   "castRecipes": "stories/characters/lms-cast.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through moonlight-18-v1",
-    "nextStart": "As Weed was looking for the right moment to say his farewells and leave,",
-    "nextEndBefore": "Keeping down a sudden impulse to hum a tune, Weed headed straight to a pub across the street.",
-    "assetsFrom": "stories/animated/moonlight-18.json"
+    "note": "Published through moonlight-19-v1",
+    "nextStart": "Keeping down a sudden impulse to hum a tune, Weed headed straight to a pub across the street.",
+    "nextEndBefore": "The bard glanced around the pub and added cautiously",
+    "assetsFrom": "stories/animated/moonlight-19.json"
   }
 }
