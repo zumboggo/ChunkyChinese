@@ -10,6 +10,7 @@ test('categories, independent reading aids, persistent preferences and next epis
  await page.getByRole('button',{name:/LMS A new world/}).click()
  await page.screenshot({path:'.local/design/library-'+info.project.name+'.png',fullPage:true})
  await page.getByRole('button',{name:'Restart episode',exact:true}).click()
+ await page.getByRole('button',{name:'Skip intro →',exact:true}).click()
  await page.emulateMedia({reducedMotion:'reduce'})
  await page.screenshot({path:'.local/design/player-'+info.project.name+'.png',fullPage:true})
  const english=page.getByRole('button',{name:'English',exact:true}),pinyin=page.getByRole('button',{name:'Pinyin',exact:true})
@@ -20,6 +21,7 @@ test('categories, independent reading aids, persistent preferences and next epis
  await english.click();await expect(page.locator('.reader-interlinear-gloss').first()).toBeVisible()
  await page.getByRole('button',{name:'← Story library',exact:true}).click()
  await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
+ await page.getByRole('button',{name:'Skip intro →',exact:true}).click()
  await expect(pinyin).toHaveAttribute('aria-pressed','false');await expect(english).toHaveAttribute('aria-pressed','true')
  for(let i=0;i<100;i++){
   if(await page.getByRole('heading',{name:'Scene complete',exact:true}).count())break

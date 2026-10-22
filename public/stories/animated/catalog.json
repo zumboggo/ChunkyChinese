@@ -4,7 +4,13 @@
     "path": "moonlight-01-v5.json",
     "resumeFrom": "moonlight-01-v4",
     "category": "lms",
-    "episode": 1
+    "episode": 1,
+    "intro": {
+      "src": "stories/animated/cutscenes/moonlight-01-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-01-intro.jpg",
+      "title": "Between two worlds",
+      "durationSeconds": 13
+    }
   },
   {
     "id": "moonlight-02-v5",

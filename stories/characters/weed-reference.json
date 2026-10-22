@@ -1,0 +1,35 @@
+{
+  "character": "Weed / Lee Hyun",
+  "approved_date": "2026-10-23",
+  "user_preference": "The LMS novel covers show exactly how David pictures Weed. These supersede the earlier Hyun B and teal-shirt generated portraits as the visual references for future generated artwork and cutscenes.",
+  "style": "Detailed dark Korean fantasy manhwa; layered near-black hair, lean angular youthful adult face, keen eyes, a lean athletic silhouette, restrained intensity and occasional calculating smile. Preserve facial identity; clothing follows the scene.",
+  "primary_reference": "stories/characters/references/weed/lms-11-15.webp",
+  "references": [
+    {
+      "path": "stories/characters/references/weed/lms-01-05.webp",
+      "role": "Profile and modern clothing; the protagonist between the petrol station and fantasy portal.",
+      "sha256": "bb456320532f380e5a4064ec686b32e8e7b0d89867cb5ec435071d749e4826c4"
+    },
+    {
+      "path": "stories/characters/references/weed/lms-06-10.webp",
+      "role": "Foreground dark-haired sculptor holding the chisel. The standing armored man behind him is a different character.",
+      "sha256": "fd056cd5e5cc9db74cc8212d184e6a35a3833f19c5c3a81ad45bf830035b0c91"
+    },
+    {
+      "path": "stories/characters/references/weed/lms-11-15.webp",
+      "role": "Primary face and style reference: foreground dark-haired sculptor beside the luminous bust; not the other adventurers.",
+      "sha256": "c38fcf525055c7ce85c836ab0f6e77f1cd5a12efab9a3a0bb7ce0710419c9bac"
+    },
+    {
+      "path": "stories/characters/references/weed/lms-16-20.webp",
+      "role": "Back view, silhouette, dark clothes, and moonlit atmosphere; not a facial reference.",
+      "sha256": "a64111f70daf88bf00882f5036190de0a0f54ed4b78237845b9489a2973d233c"
+    }
+  ],
+  "source": {
+    "repository_revision": "db4b69f3^",
+    "original_directory": "public/reader-packs/lms-books/images/covers",
+    "note": "Original reader-cover images recovered from repository history before the private-storage migration."
+  },
+  "scope": "Reference artwork for future generation. Existing articulated rigs and immutable released packages retain their original provenance."
+}

@@ -17,7 +17,9 @@ Keep one yielding publishing process; check it about once a minute instead of re
 
 ## Optional video introductions
 
-Bundled catalog entries may include `intro: {src, poster, title}` with app-relative media under `stories/animated/cutscenes/`. Use a six-second MP4 with generated sound and a JPEG poster. The current preference is 480p, audio enabled, at most $0.15 per successful clip; do not automatically submit paid replacement generations. Save model, prompts, prediction IDs and pricing in `stories/authoring/moonlight-cutscenes.json`.
+Bundled catalog entries may include `intro: {src, poster, title, durationSeconds?}` with app-relative media under `stories/animated/cutscenes/`. Use an MP4 with generated sound and a JPEG poster. Six seconds is the default; set `durationSeconds` for a different total playback length. The current preference is 480p, audio enabled, at most $0.15 per successful clip; do not automatically submit paid replacement generations. Episode 1 has a specifically approved $0.25 ten-second Seedance shot followed by a three-second title card (13 seconds total); that exception does not increase the default budget.
+
+Use `stories/characters/weed-reference.json` and its original novel covers for future Weed artwork. Generated cutscene speech defaults to **English**; include exact dialogue in the prompt. Mandarin lesson TTS remains Mandarin. Add exact titles during postproduction. Save model, prompts, prediction IDs and pricing in `stories/authoring/moonlight-cutscenes.json`.
 
 Introductions sit outside the immutable Story 2 package. Starting or restarting an episode shows its intro; saved reading progress bypasses it. Video completion or Skip starts the story. Sound remains enabled, with a Play button when the browser requires a gesture; reduced-motion readers choose whether to play. A missing intro can always be skipped. Do not embed videos into existing packages, change release IDs, or regenerate Mandarin audio to add an intro. Package checks and the publishing helper validate and verify the referenced media too.
 

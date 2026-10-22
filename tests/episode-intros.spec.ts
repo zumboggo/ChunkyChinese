@@ -3,7 +3,7 @@ import {test,expect,type Page} from '@playwright/test'
 async function openEpisode(page:Page,episode:number){
  await page.goto('/')
  await page.getByRole('button',{name:'Game',exact:true}).click()
- await page.locator('.episode-strip button').filter({hasText:new RegExp('^'+episode)}).click()
+ await page.locator('.episode-strip button').filter({hasText:new RegExp('^'+String(episode).padStart(2,'0'))}).click()
  await page.getByRole('button',{name:'Restart episode',exact:true}).click()
 }
 
@@ -71,4 +71,27 @@ test('blocked autoplay keeps sound enabled and missing media never blocks the st
  await expect(page.getByRole('status').filter({hasText:'The intro could not load.'})).toBeVisible()
  await page.getByRole('button',{name:'Continue to episode →',exact:true}).click()
  await expect(page.locator('.animated-story')).toBeVisible()
+})
+
+
+test('series opener includes the ten-second shot and title card before Episode 1',async({page},info)=>{
+ await page.emulateMedia({reducedMotion:'reduce'})
+ await openEpisode(page,1)
+ const video=page.locator('.episode-intro video')
+ await expect.poll(()=>video.evaluate(element=>{
+  const media=element as HTMLVideoElement
+  return {duration:media.duration,width:media.videoWidth,height:media.videoHeight,muted:media.muted}
+ })).toEqual({duration:13,width:480,height:720,muted:false})
+ await expect(page.locator('.episode-intro-hint')).toContainText('13 seconds')
+ await page.getByRole('button',{name:'Play intro with sound',exact:true}).click()
+ await expect.poll(()=>video.evaluate(element=>(element as HTMLVideoElement).currentTime)).toBeGreaterThan(0)
+ await video.evaluate(element=>{(element as HTMLVideoElement).currentTime=10.5})
+ await expect.poll(()=>video.evaluate(element=>(element as HTMLVideoElement).currentTime)).toBeGreaterThan(10.5)
+ await page.screenshot({path:'.local/design/intro-01-title-'+info.project.name+'.png',fullPage:true})
+ await expect(page.locator('.animated-story')).toBeVisible({timeout:8000})
+ await page.getByRole('button',{name:'Continue →',exact:true}).click()
+ await page.getByRole('button',{name:'← Story library',exact:true}).click()
+ await page.getByRole('button',{name:'Resume',exact:true}).click()
+ await expect(page.locator('.animated-story')).toBeVisible()
+ await expect(page.locator('.episode-intro')).toHaveCount(0)
 })

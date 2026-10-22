@@ -134,5 +134,6 @@
     "nextStart": "On that day, Brent Kingdom, which bordered on Rosenheim, dispatched a band of assassins.",
     "nextEndBefore": "Then, a mysterious flashback flittered before Weed’s eyes.",
     "assetsFrom": "stories/animated/moonlight-22.json"
-  }
+  },
+  "characterReferences": "stories/characters/weed-reference.json"
 }

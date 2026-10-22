@@ -1,17 +1,60 @@
 {
-  "style": "Hand-painted fantasy anime",
+  "style": "Detailed Korean fantasy manhwa from the approved original LMS novel covers",
   "preferences": {
     "resolution": "480p",
     "generate_audio": true,
     "duration_seconds": 6,
     "maximum_usd_per_successful_clip": 0.15,
-    "automatic_paid_retries": false
+    "automatic_paid_retries": false,
+    "dialogue_language": "English"
   },
   "model": "bytedance/seedance-1.5-pro",
   "pricing_url": "https://replicate.com/bytedance/seedance-1.5-pro",
   "usd_per_output_second": 0.025,
-  "delivery": "854x480, six seconds, generated audio; intros stored outside immutable episode packages",
+  "delivery": "480p with generated sound; six seconds by default. Episode 1 uses a ten-second portrait shot plus three-second title card. Intros stored outside immutable episode packages.",
   "clips": [
+    {
+      "episode": 1,
+      "release_id": "moonlight-01-v5",
+      "title": "Between two worlds",
+      "src": "stories/animated/cutscenes/moonlight-01-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-01-intro.jpg",
+      "duration_seconds": 13,
+      "generated_duration_seconds": 10,
+      "title_duration_seconds": 3,
+      "title_card": "The Legendary Moonlight Sculptor",
+      "prediction_id": "ab3jjf19pdrmr0d1cj39y0ddcm",
+      "seed": 88613,
+      "video_prompt": "A single continuous ten-second cinematic shot in the exact detailed dark Korean fantasy manhwa style of the input cover. Preserve the adult Korean protagonist's facial identity, layered black hair, dark hooded clothes, hands, tools, rainy petrol station and brilliant blue portal into the vast castle world. Keep the portrait composition. 0–2 seconds: the blue portal ripples, rain reflections shimmer and wind moves his hair and hood. 2–5 seconds: he glances toward the glowing fantasy castle, then turns his face slightly enough for a clear three-quarter profile and says exactly once, in clear natural ENGLISH: \"That's where I need to go.\" His voice is a young adult man, quiet, resolved and full of restrained wonder; naturally synchronized lips. 5–10 seconds: he turns his gaze back toward the castle, shifts his weight forward with new purpose, and the camera gently pushes toward the portal as luminous particles drift upward. Keep the tools stable, no new characters. AUDIO: the exact English line is clearly audible in the foreground; soft rain, an airy electric portal hum and restrained cinematic music remain beneath the voice. All speech must be English. No additional words, foreign-language speech, subtitles, text, logos, title graphics or cuts. The title will be added separately after the generated shot.",
+      "settings": {
+        "resolution": "480p",
+        "generate_audio": true,
+        "duration": 10,
+        "fps": 24,
+        "camera_fixed": false,
+        "seed": 88613
+      },
+      "dialogue_language": "English",
+      "dialogue_exact": "That's where I need to go.",
+      "reference": "stories/characters/references/weed/lms-01-05.webp",
+      "estimated_usd": 0.25,
+      "budget_exception": "User explicitly approved $0.25 for this opener only.",
+      "provider_metrics": {
+        "model_variant": "with_audio",
+        "predict_time": 64.949026607,
+        "resolution_target": "480p",
+        "token_output_count": 99111,
+        "total_time": 64.959940388,
+        "video_output_duration_seconds": 10
+      },
+      "verification": {
+        "local_transcription": "That's where I need to go.",
+        "recognizer": "faster-whisper tiny.en, local CPU",
+        "delivered_dimensions": "480x720",
+        "delivered_duration_seconds": 13,
+        "sha256": "85d7eed074d0919cf856f2a89acdb54f4fd9037e5f6a1d8dba64cfd381faa20f"
+      }
+    },
     {
       "episode": 14,
       "release_id": "moonlight-14-v1",
@@ -112,5 +155,6 @@
       "billing_policy_url": "https://replicate.com/docs/topics/billing"
     }
   ],
-  "new_video_estimated_total_usd": 0.45
+  "new_video_estimated_total_usd": 0.45,
+  "character_references": "stories/characters/weed-reference.json"
 }

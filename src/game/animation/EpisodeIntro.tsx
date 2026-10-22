@@ -55,6 +55,6 @@ export default function EpisodeIntro({intro,onDone,hotkeys}:{intro:EpisodeIntroM
    {needsPlay&&!failed&&<button className="episode-primary" onClick={play}>Play intro with sound</button>}
    <button onClick={onDone}>{failed?'Continue to episode →':'Skip intro →'}</button>
   </div>
-  {failed?<p role="status">The intro could not load. You can continue with the story.</p>:<p className="episode-intro-hint">6 seconds · Sound on · 1 / →: skip</p>}
+  {failed?<p role="status">The intro could not load. You can continue with the story.</p>:<p className="episode-intro-hint">{intro.durationSeconds??6} seconds · Sound on · 1 / →: skip</p>}
  </section>
 }
