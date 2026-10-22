@@ -5,9 +5,9 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_03.xhtml",
-    "nextStart": "Keeping down a sudden impulse to hum a tune, Weed headed straight to a pub across the street.",
-    "nextEndBefore": "The bard glanced around the pub and added cautiously",
-    "continuationNote": "Weed searches pubs for a knowledgeable native bard, tries flattery instead of payment, loses one silver through failure to change it into smaller coins, and learns that the queen and sculptor loved each other since childhood. Stop before their village history and promise."
+    "nextStart": "The bard glanced around the pub and added cautiously",
+    "nextEndBefore": "The bard told Weed the way to the house of the lady’s maid.",
+    "continuationNote": "The bard describes their shared village, Zahab’s carvings and promise, separation when she became a royal maid, and the later fulfillment at court. He directs Weed toward an eyewitness maid. Stop before directions and the visit."
   },
   "completed": [
     {
@@ -85,9 +85,13 @@
     {
       "episode": "moonlight-19-v1",
       "end": "The keeper asks Weed to investigate the late Queen Evane and the sculptor. Weed recognizes a serial quest, weighs the Royal Knights’ hostility and his level-one limits, accepts after reassurance, and is directed to a bard. Still inside the shop; no bard visit or payment yet."
+    },
+    {
+      "episode": "moonlight-20-v1",
+      "end": "Weed finds a middle-aged native bard after searching pubs. Flattery fails; he accidentally produces a silver coin without having made change, and the bard takes it. Weed learns the queen and sculptor loved each other since childhood and realizes why the Royal Knights might silence the inquiry. Still with the bard; no village history or promise yet."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-19.json",
+  "assetsFrom": "stories/animated/moonlight-20.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -106,19 +110,18 @@
     "Grandmother remains hospitalized and the old debt is paid. Do not invent an exact current balance.",
     "Training gains and Sword Mastery remain as previously recorded. Weed is level one and the four-week city restriction has not expired.",
     "The first E-level moonlight-sculpting investigation is complete. Weed has not returned to the instructor or claimed the reward.",
-    "The two-silver advance remains with Weed; he has not spent it. One silver equals one hundred coppers; rye bread costs three coppers. He calculated sixty-six breads plus change, not bought them.",
-    "Weed is still in the sculpture shop, welcomed after flattery and cold honeyed water. His negative judgment of sculpting as a business remains private.",
-    "The keeper revealed the late Queen Evane’s involvement and offered the E-level Sculptor’s Past serial quest. Weed accepted after expressing doubt and receiving reassurance.",
-    "The quest warns that Royal Knights will become hostile if they discover his inquiry. The keeper directed him to a bard and warned against harming the royal family’s reputation.",
-    "The queen’s relationship to the sculptor is still unknown. Weed has not left for the pub, met the bard, paid a coin or heard the love story.",
-    "Episode 19 uses four immediate-response choices, no variables or later callbacks."
+    "Weed spent one of the instructor’s two silver coins on the bard because he had not changed the advance into smaller copper coins. One silver remains; no additional purchase or reward has occurred.",
+    "Weed visited several pubs and found a knowledgeable native bard in his forties. Compliments failed; the bard demanded payment and took one silver coin.",
+    "The Sculptor’s Past serial quest remains active. Weed now knows the late queen and sculptor loved each other since childhood, and understands why the Royal Knights might silence inquiries to preserve her reputation.",
+    "Weed is still with the bard. Their village history, the sculptor’s name, their promise and the maid’s account have not yet been told.",
+    "Episode 20 uses four immediate-response choices; no variables or later callbacks."
   ],
   "castRecipes": "stories/characters/lms-cast.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through moonlight-19-v1",
-    "nextStart": "Keeping down a sudden impulse to hum a tune, Weed headed straight to a pub across the street.",
-    "nextEndBefore": "The bard glanced around the pub and added cautiously",
-    "assetsFrom": "stories/animated/moonlight-19.json"
+    "note": "Published through moonlight-20-v1",
+    "nextStart": "The bard glanced around the pub and added cautiously",
+    "nextEndBefore": "The bard told Weed the way to the house of the lady’s maid.",
+    "assetsFrom": "stories/animated/moonlight-20.json"
   }
 }
