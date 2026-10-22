@@ -99,7 +99,7 @@
   },
   "defaults": {
     "scope": "One small dramatic development; source fidelity determines the boundary.",
-    "choices": "Usually 4–5 brief reconnecting choices per route, including about two local choices that change the next text panel and rejoin without later callbacks or saved variables.",
+    "choices": "Usually 4–5 brief reconnecting choice moments per route, with distinct immediate responses. All may be local choices without later callbacks or saved variables.",
     "length": "Usually 40–60 voiced entries; flexible, not a quota.",
     "assets": "Reuse the approved option-B SVG cast from stories/characters/lms-cast.json. Hyun has a scrappy face and tousled hair; his sister has a spirited face, ponytail and rust overshirt. Use happy/relieved for broad family warmth and excited/proud for reward anticipation. Sister is available in the reusable cast; add her only when the source places her in the scene.",
     "language": "Simplified Mandarin, natural phrases, contextual glosses and reviewed pinyin.",
