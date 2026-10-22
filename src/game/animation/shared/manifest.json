@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/zumboggo/Learningisfun",
-  "commit": "e3b2f7517fffc47cb23b2c2397b842a0d6624a2f",
+  "commit": "c6b6f0372ef4635c40205cf60aa1bf255953af09",
   "files": [
     {
       "source": "functions/learning-content/src/story-engine.js",
@@ -80,7 +80,7 @@
     {
       "source": "src/components/animated/StoryStage.tsx",
       "target": "components/StoryStage.tsx",
-      "sha256": "41b9b00b466edaf06954b2e06ad7dba868c0d7862fe475a6009a6bdc430d3152"
+      "sha256": "9deab94fd4910fccd8bd8f25f03b17a61604dbd60890fe661268eb30d715d968"
     },
     {
       "source": "src/components/animated/action-motion.ts",
@@ -105,7 +105,7 @@
     {
       "source": "src/components/animated/StoryAtmosphere.tsx",
       "target": "components/StoryAtmosphere.tsx",
-      "sha256": "e1b9c6d4657139e5786ec603def0911eaec9cb88447ead8a89b80135a848c13e"
+      "sha256": "dd037feac6e336dad1a4c545b46b33c6aad8db382c1b7adb81078c16cd3e3840"
     },
     {
       "source": "src/components/animated/character-geometry.ts",
@@ -115,7 +115,7 @@
     {
       "source": "src/components/animated/story-player.css",
       "target": "components/story-player.css",
-      "sha256": "e6ade9b7bef9bf8d3d28f2e979d57a60bcc26f7b47a6de1df3ff312071b8ec36"
+      "sha256": "f48cc566b2bb656d4413ca381794ba5bd445a76f380d7bdc2755f20523582bda"
     },
     {
       "source": "src/components/animated/ActingLibrary.tsx",
