@@ -1,9 +1,9 @@
 {
-  "version": 1,
-  "authorizedOn": "2026-10-16",
-  "purpose": "Assumed familiarity for Moonlight episode authoring. Includes the original 100 common words and user-authorized vocabulary repeated in released episodes 1–12. Exposure is not reviewed mastery and does not change flashcards.",
+  "version": 2,
+  "authorizedOn": "2026-10-22",
+  "purpose": "Assumed familiarity for Moonlight episode authoring: original common words, prior authorized additions and reviewed vocabulary repeated in the active releases of episodes 1–20. Exposure is not reviewed mastery and does not change flashcards.",
   "base": "stories/authoring/common-familiar-100.json",
-  "method": "One active release per episode. Count the maximum occurrences on one reachable route per episode, then sum. Whole lexical entries were reviewed; grammatical combinations, word fragments and proper names were excluded. No assumption about which route the learner played.",
+  "method": "One active release per episode; sum maximum occurrences on one reachable route per episode. Count all visible choice options, but never add mutually exclusive branch responses together. Whole lexical units and useful fixed expressions reviewed; productive grammatical combinations, word fragments, numeric false matches and proper names excluded. Repetition means at least two occurrences across the corpus, possibly within one episode. No assumption about which route the learner played.",
   "words": [
     "不",
     "也",
@@ -136,7 +136,71 @@
     "野兽",
     "技能",
     "投资",
-    "数字"
+    "数字",
+    "好好",
+    "雕刻",
+    "有用",
+    "越来越",
+    "月光",
+    "枚",
+    "不再",
+    "拿出",
+    "要是",
+    "花钱",
+    "做到",
+    "王宫",
+    "店",
+    "走进",
+    "拿走",
+    "力气",
+    "变得",
+    "不一定",
+    "进来",
+    "骑士",
+    "客人",
+    "雕像",
+    "全都",
+    "最多",
+    "眼前",
+    "多久",
+    "接着",
+    "没意思",
+    "跟着",
+    "了不起",
+    "了解",
+    "交情",
+    "石头",
+    "差点",
+    "王后",
+    "雕刻家",
+    "王家",
+    "每年",
+    "早就",
+    "地上",
+    "听起来",
+    "好日子",
+    "哪怕",
+    "到处",
+    "日子",
+    "心疼",
+    "说明",
+    "没错",
+    "才",
+    "新人",
+    "您好",
+    "好听",
+    "对方",
+    "一下子",
+    "看起来",
+    "月亮",
+    "比不上",
+    "门口",
+    "蜂蜜",
+    "同样",
+    "完成",
+    "有关",
+    "口袋",
+    "相爱"
   ],
   "repeatedEpisodeWords": [
     {
@@ -396,6 +460,1313 @@
       "episodes": [
         9,
         11
+      ]
+    }
+  ],
+  "expansions": [
+    {
+      "authorizedOn": "2026-10-22",
+      "episodes": [
+        1,
+        20
+      ],
+      "minimumOccurrences": 2,
+      "releases": [
+        {
+          "episode": 1,
+          "id": "moonlight-01-v5",
+          "path": "moonlight-01-v5.json",
+          "sha256": "848f091a1621b086b84e58abeabba6d54817a5cd5cc108314e57c7eb869dcc04"
+        },
+        {
+          "episode": 2,
+          "id": "moonlight-02-v5",
+          "path": "moonlight-02-v5.json",
+          "sha256": "e6d4ca4ffa8229747c24b14b88dacb82eb455ffbd5e8f35a5c51151d71ce0de8"
+        },
+        {
+          "episode": 3,
+          "id": "moonlight-03-v4",
+          "path": "moonlight-03-v4.json",
+          "sha256": "e345392a1f452d04f9a549671cdf8b1684f3baa5b238c8785d25d3ce17172c4f"
+        },
+        {
+          "episode": 4,
+          "id": "moonlight-04-v2",
+          "path": "moonlight-04-v2.json",
+          "sha256": "7c3e6a5e0db2d4edc071478d8f168fed25ff5b18866bf52ffac28571a0bbe12a"
+        },
+        {
+          "episode": 5,
+          "id": "moonlight-05-v1",
+          "path": "moonlight-05.json",
+          "sha256": "4e33529c37b6e28d2c2f8e6767678e6232151abe87ce3c49fc9e5e399900c9e7"
+        },
+        {
+          "episode": 6,
+          "id": "moonlight-06-v1",
+          "path": "moonlight-06.json",
+          "sha256": "e578bbebe7af73b8d9a886777d5845d1a877b538098048c63872dd29ddb1bee4"
+        },
+        {
+          "episode": 7,
+          "id": "moonlight-07-v1",
+          "path": "moonlight-07.json",
+          "sha256": "1039eb6102117d48560fdc19f4a37fd104e93ed34e009110aa64a55756a05cf4"
+        },
+        {
+          "episode": 8,
+          "id": "moonlight-08-v3",
+          "path": "moonlight-08-v3.json",
+          "sha256": "7ce696b7ed7852df23f1e716bfa56386e5c801bbfe861a541b3509e7d226f508"
+        },
+        {
+          "episode": 9,
+          "id": "moonlight-09-v1",
+          "path": "moonlight-09.json",
+          "sha256": "1e5714e5ddc8ce199160ae0169629f7f3c778854e48afdae1bab8df19bb9acc5"
+        },
+        {
+          "episode": 10,
+          "id": "moonlight-10-v1",
+          "path": "moonlight-10.json",
+          "sha256": "223b621d84291caab3b19ee10ca1a2a28657c8dda3ad6ef5e79d26c337f58f04"
+        },
+        {
+          "episode": 11,
+          "id": "moonlight-11-v1",
+          "path": "moonlight-11.json",
+          "sha256": "269180d5e9f19dcaf44ff30c91fe90dcce7d6506cde45d1a8757546d5dcb6315"
+        },
+        {
+          "episode": 12,
+          "id": "moonlight-12-v1",
+          "path": "moonlight-12.json",
+          "sha256": "be7bc26cfed2b5c6af15899232b03cfc9635a464fe692c83307bd55951f894b6"
+        },
+        {
+          "episode": 13,
+          "id": "moonlight-13-v1",
+          "path": "moonlight-13.json",
+          "sha256": "e0c7e4636bd1fac58f44d73f77d7a6abcaf28d72b6ce89f36f352ac97c151aa3"
+        },
+        {
+          "episode": 14,
+          "id": "moonlight-14-v1",
+          "path": "moonlight-14.json",
+          "sha256": "5ae8faeb5e4933e239c387f533692f9ab7eb3ee581e5f18fd071387e9a83406b"
+        },
+        {
+          "episode": 15,
+          "id": "moonlight-15-v1",
+          "path": "moonlight-15.json",
+          "sha256": "b0bef5cdce945f298ec41f90584b7160c0cda7d5777f31fce7bef30a098b52f7"
+        },
+        {
+          "episode": 16,
+          "id": "moonlight-16-v1",
+          "path": "moonlight-16.json",
+          "sha256": "130f04aa62d95575f21ccd220aa910e9fb9e886b1b66f4e7b29043779b1f5e95"
+        },
+        {
+          "episode": 17,
+          "id": "moonlight-17-v1",
+          "path": "moonlight-17.json",
+          "sha256": "276290d9377f6760b6df7f33531cd95e5f261f93d1406587eb4016f36fe30ab3"
+        },
+        {
+          "episode": 18,
+          "id": "moonlight-18-v1",
+          "path": "moonlight-18.json",
+          "sha256": "5f26cc03c0e6af42c9d4cddaf8955c41eaa37f113e256e6e4ff46b8f826074cb"
+        },
+        {
+          "episode": 19,
+          "id": "moonlight-19-v1",
+          "path": "moonlight-19.json",
+          "sha256": "239e4c96d88df00ebc1e656a2fe61951978904ba87768684422ce98cf276bf57"
+        },
+        {
+          "episode": 20,
+          "id": "moonlight-20-v1",
+          "path": "moonlight-20.json",
+          "sha256": "3f67bb2b9f74b30d2cd66cb1083cad6839e1930e1ccbb56c22a73c8d929f4224"
+        }
+      ],
+      "segmentationLexicon": [
+        "雕刻家",
+        "训练场",
+        "王家",
+        "王宫",
+        "王后",
+        "伊凡",
+        "罗斯海姆",
+        "塞拉堡",
+        "李贤",
+        "韩元",
+        "银币",
+        "铜币",
+        "违约金",
+        "百分之",
+        "稻草人",
+        "好好",
+        "雕刻",
+        "有用",
+        "月光",
+        "越来越",
+        "做到",
+        "枚",
+        "拿出",
+        "要是",
+        "花钱",
+        "店",
+        "千万",
+        "走进",
+        "力气",
+        "变得",
+        "进来",
+        "骑士",
+        "客人",
+        "雕像",
+        "全都",
+        "拿走",
+        "最多",
+        "不一定",
+        "多久",
+        "接着",
+        "没意思",
+        "跟着",
+        "了不起",
+        "了解",
+        "交情",
+        "石头",
+        "差点",
+        "每年",
+        "早就",
+        "地上",
+        "听起来",
+        "好日子",
+        "不再",
+        "哪怕",
+        "日子",
+        "眼前",
+        "心疼",
+        "关系",
+        "说明",
+        "没错",
+        "新人",
+        "您好",
+        "好听",
+        "对方",
+        "一下子",
+        "看起来",
+        "月亮",
+        "比不上",
+        "门口",
+        "蜂蜜",
+        "同样",
+        "要不",
+        "完成",
+        "有关",
+        "口袋",
+        "相爱",
+        "在一起",
+        "到处",
+        "种族",
+        "贵族",
+        "刚才",
+        "条件",
+        "要不要",
+        "做到底",
+        "雕刻店"
+      ],
+      "added": [
+        {
+          "word": "好好",
+          "occurrences": 22,
+          "episodes": [
+            {
+              "episode": 1,
+              "count": 1
+            },
+            {
+              "episode": 2,
+              "count": 4
+            },
+            {
+              "episode": 3,
+              "count": 3
+            },
+            {
+              "episode": 4,
+              "count": 1
+            },
+            {
+              "episode": 5,
+              "count": 1
+            },
+            {
+              "episode": 7,
+              "count": 2
+            },
+            {
+              "episode": 12,
+              "count": 2
+            },
+            {
+              "episode": 15,
+              "count": 1
+            },
+            {
+              "episode": 16,
+              "count": 3
+            },
+            {
+              "episode": 17,
+              "count": 4
+            }
+          ]
+        },
+        {
+          "word": "雕刻",
+          "occurrences": 16,
+          "episodes": [
+            {
+              "episode": 13,
+              "count": 6
+            },
+            {
+              "episode": 14,
+              "count": 2
+            },
+            {
+              "episode": 15,
+              "count": 3
+            },
+            {
+              "episode": 17,
+              "count": 1
+            },
+            {
+              "episode": 18,
+              "count": 2
+            },
+            {
+              "episode": 19,
+              "count": 1
+            },
+            {
+              "episode": 20,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "有用",
+          "occurrences": 9,
+          "episodes": [
+            {
+              "episode": 4,
+              "count": 1
+            },
+            {
+              "episode": 5,
+              "count": 1
+            },
+            {
+              "episode": 8,
+              "count": 1
+            },
+            {
+              "episode": 10,
+              "count": 4
+            },
+            {
+              "episode": 11,
+              "count": 1
+            },
+            {
+              "episode": 20,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "越来越",
+          "occurrences": 7,
+          "episodes": [
+            {
+              "episode": 2,
+              "count": 1
+            },
+            {
+              "episode": 3,
+              "count": 2
+            },
+            {
+              "episode": 8,
+              "count": 1
+            },
+            {
+              "episode": 12,
+              "count": 1
+            },
+            {
+              "episode": 19,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "月光",
+          "occurrences": 7,
+          "episodes": [
+            {
+              "episode": 14,
+              "count": 2
+            },
+            {
+              "episode": 15,
+              "count": 1
+            },
+            {
+              "episode": 18,
+              "count": 2
+            },
+            {
+              "episode": 19,
+              "count": 1
+            },
+            {
+              "episode": 20,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "枚",
+          "occurrences": 7,
+          "episodes": [
+            {
+              "episode": 15,
+              "count": 2
+            },
+            {
+              "episode": 16,
+              "count": 3
+            },
+            {
+              "episode": 18,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "不再",
+          "occurrences": 6,
+          "episodes": [
+            {
+              "episode": 4,
+              "count": 1
+            },
+            {
+              "episode": 6,
+              "count": 1
+            },
+            {
+              "episode": 8,
+              "count": 1
+            },
+            {
+              "episode": 9,
+              "count": 2
+            },
+            {
+              "episode": 15,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "拿出",
+          "occurrences": 5,
+          "episodes": [
+            {
+              "episode": 3,
+              "count": 1
+            },
+            {
+              "episode": 4,
+              "count": 1
+            },
+            {
+              "episode": 9,
+              "count": 1
+            },
+            {
+              "episode": 12,
+              "count": 1
+            },
+            {
+              "episode": 20,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "要是",
+          "occurrences": 5,
+          "episodes": [
+            {
+              "episode": 11,
+              "count": 2
+            },
+            {
+              "episode": 12,
+              "count": 1
+            },
+            {
+              "episode": 18,
+              "count": 1
+            },
+            {
+              "episode": 19,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "花钱",
+          "occurrences": 5,
+          "episodes": [
+            {
+              "episode": 12,
+              "count": 3
+            },
+            {
+              "episode": 16,
+              "count": 1
+            },
+            {
+              "episode": 18,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "做到",
+          "occurrences": 5,
+          "episodes": [
+            {
+              "episode": 14,
+              "count": 3
+            },
+            {
+              "episode": 15,
+              "count": 1
+            },
+            {
+              "episode": 18,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "王宫",
+          "occurrences": 5,
+          "episodes": [
+            {
+              "episode": 14,
+              "count": 1
+            },
+            {
+              "episode": 18,
+              "count": 2
+            },
+            {
+              "episode": 19,
+              "count": 1
+            },
+            {
+              "episode": 20,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "店",
+          "occurrences": 5,
+          "episodes": [
+            {
+              "episode": 15,
+              "count": 1
+            },
+            {
+              "episode": 16,
+              "count": 3
+            },
+            {
+              "episode": 17,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "走进",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "episode": 3,
+              "count": 1
+            },
+            {
+              "episode": 6,
+              "count": 2
+            },
+            {
+              "episode": 8,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "拿走",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "episode": 3,
+              "count": 1
+            },
+            {
+              "episode": 4,
+              "count": 2
+            },
+            {
+              "episode": 20,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "力气",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "episode": 3,
+              "count": 1
+            },
+            {
+              "episode": 4,
+              "count": 1
+            },
+            {
+              "episode": 11,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "变得",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "episode": 5,
+              "count": 2
+            },
+            {
+              "episode": 11,
+              "count": 1
+            },
+            {
+              "episode": 18,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "不一定",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "episode": 5,
+              "count": 1
+            },
+            {
+              "episode": 10,
+              "count": 1
+            },
+            {
+              "episode": 14,
+              "count": 1
+            },
+            {
+              "episode": 18,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "进来",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "episode": 7,
+              "count": 2
+            },
+            {
+              "episode": 11,
+              "count": 1
+            },
+            {
+              "episode": 12,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "骑士",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "episode": 10,
+              "count": 1
+            },
+            {
+              "episode": 14,
+              "count": 1
+            },
+            {
+              "episode": 19,
+              "count": 1
+            },
+            {
+              "episode": 20,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "客人",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "episode": 16,
+              "count": 2
+            },
+            {
+              "episode": 18,
+              "count": 1
+            },
+            {
+              "episode": 19,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "雕像",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "episode": 17,
+              "count": 2
+            },
+            {
+              "episode": 18,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "全都",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "episode": 1,
+              "count": 1
+            },
+            {
+              "episode": 15,
+              "count": 1
+            },
+            {
+              "episode": 16,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "最多",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "episode": 5,
+              "count": 2
+            },
+            {
+              "episode": 10,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "眼前",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "episode": 5,
+              "count": 1
+            },
+            {
+              "episode": 9,
+              "count": 1
+            },
+            {
+              "episode": 14,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "多久",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "episode": 7,
+              "count": 1
+            },
+            {
+              "episode": 17,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "接着",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "episode": 9,
+              "count": 1
+            },
+            {
+              "episode": 12,
+              "count": 1
+            },
+            {
+              "episode": 19,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "没意思",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "episode": 10,
+              "count": 3
+            }
+          ]
+        },
+        {
+          "word": "跟着",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "episode": 12,
+              "count": 1
+            },
+            {
+              "episode": 13,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "了不起",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "episode": 12,
+              "count": 1
+            },
+            {
+              "episode": 17,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "了解",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "episode": 12,
+              "count": 1
+            },
+            {
+              "episode": 14,
+              "count": 1
+            },
+            {
+              "episode": 17,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "交情",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "episode": 12,
+              "count": 1
+            },
+            {
+              "episode": 13,
+              "count": 1
+            },
+            {
+              "episode": 14,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "石头",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "episode": 14,
+              "count": 2
+            },
+            {
+              "episode": 18,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "差点",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "episode": 17,
+              "count": 1
+            },
+            {
+              "episode": 18,
+              "count": 1
+            },
+            {
+              "episode": 20,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "王后",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "episode": 19,
+              "count": 2
+            },
+            {
+              "episode": 20,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "雕刻家",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "episode": 19,
+              "count": 2
+            },
+            {
+              "episode": 20,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "王家",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "episode": 19,
+              "count": 2
+            },
+            {
+              "episode": 20,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "每年",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 3,
+              "count": 1
+            },
+            {
+              "episode": 18,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "早就",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 3,
+              "count": 1
+            },
+            {
+              "episode": 6,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "地上",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 3,
+              "count": 1
+            },
+            {
+              "episode": 7,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "听起来",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 3,
+              "count": 1
+            },
+            {
+              "episode": 4,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "好日子",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 4,
+              "count": 1
+            },
+            {
+              "episode": 5,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "哪怕",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 5,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "到处",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 5,
+              "count": 1
+            },
+            {
+              "episode": 19,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "日子",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 5,
+              "count": 1
+            },
+            {
+              "episode": 16,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "心疼",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 6,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "说明",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 6,
+              "count": 1
+            },
+            {
+              "episode": 7,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "没错",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 7,
+              "count": 1
+            },
+            {
+              "episode": 13,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "才",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 8,
+              "count": 1
+            },
+            {
+              "episode": 20,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "新人",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 10,
+              "count": 1
+            },
+            {
+              "episode": 16,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "您好",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 12,
+              "count": 1
+            },
+            {
+              "episode": 16,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "好听",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 12,
+              "count": 1
+            },
+            {
+              "episode": 20,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "对方",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 12,
+              "count": 1
+            },
+            {
+              "episode": 20,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "一下子",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 13,
+              "count": 1
+            },
+            {
+              "episode": 15,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "看起来",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 13,
+              "count": 1
+            },
+            {
+              "episode": 14,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "月亮",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 14,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "比不上",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 14,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "门口",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 16,
+              "count": 1
+            },
+            {
+              "episode": 17,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "蜂蜜",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 17,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "同样",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 17,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "完成",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 18,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "有关",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 19,
+              "count": 1
+            },
+            {
+              "episode": 20,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "口袋",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 20,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "相爱",
+          "occurrences": 2,
+          "episodes": [
+            {
+              "episode": 20,
+              "count": 2
+            }
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "word": "皇家之路",
+          "reason": "Proper game title."
+        },
+        {
+          "word": "千万",
+          "reason": "Counts mix numeric ten-million expressions with the caution adverb; do not infer repeated exposure to one meaning."
+        },
+        {
+          "word": "雕刻店",
+          "reason": "Transparent shop compound; retain the separately reviewed lexical units 雕刻 and 店."
+        },
+        {
+          "word": "在一起",
+          "reason": "Productive combination of familiar 在 and 一起; not promoted as a new word."
+        }
       ]
     }
   ]
