@@ -150,5 +150,30 @@
         "outfit": "robe"
       }
     }
+  },
+  "Bard": {
+    "name": "诗人 · Bard",
+    "version": 1,
+    "provenance": "Original fictional middle-aged Serabourg bard, approximately forty as in the source. Swept brown hair, lean face and muted plum tunic, built with shared polished SVG geometry; not official artwork.",
+    "expressions": {},
+    "rig": {
+      "version": 2,
+      "preset": "cartoon-v1",
+      "style": "manga",
+      "finish": "polished",
+      "palette": {
+        "skin": "#d7b08b",
+        "hair": "#78604b",
+        "shirt": "#78536d",
+        "trim": "#c7ad73"
+      },
+      "appearance": {
+        "age": "adult",
+        "hair": "swept",
+        "face": "lean",
+        "eyes": "keen",
+        "outfit": "tunic"
+      }
+    }
   }
 }
