@@ -219,5 +219,17 @@
       "durationSeconds": 9
     },
     "path": "moonlight-24.json"
+  },
+  {
+    "id": "moonlight-25-v1",
+    "category": "lms",
+    "episode": 25,
+    "intro": {
+      "src": "stories/animated/cutscenes/moonlight-25-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-25-intro.jpg",
+      "title": "I cannot cancel?",
+      "durationSeconds": 9
+    },
+    "path": "moonlight-25.json"
   }
 ]
