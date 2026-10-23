@@ -5,9 +5,9 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_03.xhtml",
-    "nextStart": "On that day, Brent Kingdom, which bordered on Rosenheim, dispatched a band of assassins.",
-    "nextEndBefore": "Then, a mysterious flashback flittered before Weed’s eyes.",
-    "continuationNote": "Continue the attendant’s firsthand account: assassination attack, Zahab’s arrival and promise, moonlight carving and song, queen’s tears, assassins scatter. Stop before the system flashback or quest completion."
+    "nextStart": "The old maid took something bundled up from deep inside a drawer.",
+    "nextEndBefore": "He bid farewell to the old lady’s maid, and went back to the sculpture stop.",
+    "continuationNote": "Receive knife and wooden statue; unavoidable A-level last-wish quest and four useful skills. Stop before farewell and reward collection."
   },
   "completed": [
     {
@@ -97,9 +97,17 @@
     {
       "episode": "moonlight-22-v1",
       "end": "Weed visits the retired attendant. Her eyewitness account explains the queen’s initial heartbreak when Zahab arrived carrying a sword instead of a carving knife. Weed understands the apparent broken trust but does not yet know how the sword fulfilled the promise. Stops before the assassination account."
+    },
+    {
+      "episode": "moonlight-23-v1",
+      "end": "The attendant recounts the assassination, Zahab’s moonlight carving and song, the queen’s tears and fleeing assassins. Weed understands how the sword fulfilled the promise. Stop before the system flashback."
+    },
+    {
+      "episode": "moonlight-24-v1",
+      "end": "The flashback confirms Zahab’s promise; The Sculptor’s Past completes and Weed rises from level one to three. He refuses Moonlight Sculptor twice to pursue income, thanks the attendant, and accepts an offered present. No items, new skills or A-level quest yet."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-22.json",
+  "assetsFrom": "stories/animated/moonlight-24.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -116,24 +124,21 @@
   },
   "continuity": [
     "Grandmother remains hospitalized and the old debt is paid. Do not invent an exact current balance.",
-    "Training gains and Sword Mastery remain as previously recorded. Weed is level one and the four-week city restriction has not expired.",
+    "Training stats and Sword Mastery remain unchanged; Weed is now level three after The Sculptor’s Past. The four-week restriction has not expired.",
     "The first E-level moonlight-sculpting investigation is complete. Weed has not returned to the instructor or claimed the reward.",
     "Weed spent one of the instructor’s two silver coins on the bard because he had not changed the advance into smaller copper coins. One silver remains; no additional purchase or reward has occurred.",
-    "Weed visited several pubs and found a knowledgeable native bard in his forties. Compliments failed; the bard demanded payment and took one silver coin.",
-    "The Sculptor’s Past serial quest remains active. Weed now knows the late queen and sculptor loved each other since childhood, and understands why the Royal Knights might silence inquiries to preserve her reputation.",
-    "Weed has heard that the queen and Zahab grew up together, she carried his carved gifts and hoped to marry him. They separated when she was chosen as a royal maid.",
-    "Zahab promised her the world’s most beautiful sculpture. The bard says he fulfilled the promise many years later at court; the queen was deeply moved. What he made is still unknown to Weed.",
-    "Weed followed the bard’s directions and visited the retired attendant at home. She welcomed his questions and identified herself as an eyewitness who cared for the queen.",
-    "The attendant says the queen initially resented Zahab’s arrival with a sword rather than a carving knife. She had trusted that he and their childhood promise would never change. Weed now understands her hurt, but has not heard the assassination or moonlight-carving account.",
-    "Episode 22 uses four immediate-response choices with no variables or later callbacks."
+    "The Sculptor’s Past is complete. Zahab’s mastery and fulfilled promise are confirmed.",
+    "Weed twice refused Moonlight Sculptor for financial reasons; no class conversion.",
+    "Weed remains at the attendant’s home. He thanked her and accepted an offered small present; no items, new skills or A-level quest yet.",
+    "Episodes 23 and 24 each use four immediate-response choices without saved variables."
   ],
   "castRecipes": "stories/characters/lms-lineup-cast.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through moonlight-22-v1",
-    "nextStart": "On that day, Brent Kingdom, which bordered on Rosenheim, dispatched a band of assassins.",
-    "nextEndBefore": "Then, a mysterious flashback flittered before Weed’s eyes.",
-    "assetsFrom": "stories/animated/moonlight-22.json"
+    "note": "Published through moonlight-24-v1",
+    "nextStart": "The old maid took something bundled up from deep inside a drawer.",
+    "nextEndBefore": "He bid farewell to the old lady’s maid, and went back to the sculpture stop.",
+    "assetsFrom": "stories/animated/moonlight-24.json"
   },
   "characterReferences": "stories/characters/lms-reference.json",
   "castBundle": "public/stories/animated/cast/lms-lineup.json"
