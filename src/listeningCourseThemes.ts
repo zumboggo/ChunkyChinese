@@ -3,6 +3,7 @@ export const courseThemes = [
   { id: 'deliveries', label: 'Deliveries' },
   { id: 'school', label: 'School' },
   { id: 'taxi', label: 'Taxis & getting around' },
+  { id: 'lms-story', label: 'LMS story' },
   { id: 'lms', label: 'LMS · Legendary Moonlight Sculptor' },
 ] as const
 
