@@ -427,5 +427,159 @@
   "lineup_intro_estimated_total_usd": 0.45,
   "decision_intro_estimated_total_usd": 0.12,
   "pricing_verified_date": "2026-10-23",
-  "pricing_note": "Last verified 480p cost-mode rate; reverify exact current billable settings and remaining clip budget before every paid request."
+  "pricing_note": "Last verified 480p cost-mode rate; reverify exact current billable settings and remaining clip budget before every paid request.",
+  "pending_clips": [
+    {
+      "episode": 23,
+      "status": "awaiting_episode_authoring",
+      "title": "A promise in moonlight",
+      "src": "stories/animated/cutscenes/moonlight-23-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-23-intro.jpg",
+      "durationSeconds": 9,
+      "model": "prunaai/p-video-2-pro",
+      "prediction_id": "c1t3j2zd99rmt0d1cshr80njd0",
+      "settings": {
+        "resolution": "480p",
+        "duration": 6,
+        "mode": "cost",
+        "prompt_upsampler": "off",
+        "aspect_ratio": "16:9",
+        "seed": 88623
+      },
+      "dialogue_exact": "Let me show you.",
+      "dialogue_language": "English",
+      "video_prompt": "Animate the supplied image in one continuous shot. Preserve its exact character identity, art style, clothing, lighting and background.\n\nVISUAL BEAT: Zahab gives the offscreen queen a calm reassuring smile, speaks the line early, then makes ONE small controlled tilt of his sword. The blue moonbeam separates into a few luminous sculptural fragments along the blade. Keep his grip, face, sword and background stable. No fighting or second action. After speaking his lips remain closed.\nRestrained natural motion and a gentle camera push. No added characters, props, cuts, captions or text.\n\nSPOKEN WORDS — THE COMPLETE DIALOGUE:\n\"Let me show you.\"\n\nOne mature adult male voice, quiet, warm and assured, clearly audible above quiet ambience. Speak ONLY the quoted words, exactly once, in English, with synchronized lips. Do not speak the scene directions. No additional words, repetition, paraphrasing, filler sounds, humming, singing, narration or other voices. Finish the line early; afterward his mouth stays closed while he quietly reacts. Background sound contains no voices or vocals.\n\nSix-second shot. Complete the quoted line in the first half of the shot; the remaining time is a silent closed-mouth reaction with quiet room tone only.\n",
+      "imagegen_prompt": "Use case: illustration-story. One exquisite landscape 16:9 cinematic fantasy anime/manhwa opening frame. The supplied main-cast lineup is a reference for rendering style ONLY, not for the new man's face. Scene: moonlit royal palace garden during an unseen attack, elegant stone balustrade, dark roses, marble arch and silver-blue moonbeams, tense but beautiful. Subject: Zahab, a DISTINCT ORIGINAL SUPPORTING CHARACTER, an adult master sculptor and swordsman about forty, mature lean angular face, long near-black hair tied low, clean-shaven, slate-blue and charcoal traveling coat with muted silver trim, not Weed, not Geomchi or any person in the lineup. Medium waist-up three-quarter framing, one steady sword held safely upright in his right hand, his other hand relaxed and clearly separated. He turns a small calm reassuring smile toward the queen OFFSCREEN as he prepares to show her a promised sculpture made of moonlight. A thin silver-blue moonbeam touches the blade; tiny luminous fragments are just beginning to gather around it. His unobstructed face and mouth clearly readable for one short spoken line. Rich detailed luminous anime/manhwa illustration, fine ink, painterly cel shading, dramatic moonlit rim light, source-grounded restrained imminent action, stable anatomically clear grip. Only Zahab visible. No attack wounds, blood, other figures, floating text, UI, captions, names, watermark, collage or reference labels. This is not a poster lineup; one grounded film still, first frame for one small sword motion.",
+      "reference": "stories/characters/references/lms-main-cast-lineup.png",
+      "estimated_usd": 0.06,
+      "paid_predictions": 1,
+      "provider_metrics": {
+        "billing": {
+          "fps": 24,
+          "mode": "cost",
+          "model_variant": "cost",
+          "resolution_target": "480p",
+          "turbo": true,
+          "video_output_duration_seconds": 6
+        },
+        "fps": 24,
+        "inference_provider": "verda",
+        "metadata": {
+          "execution_time": {
+            "model_execution_time": 6.549,
+            "prompt_upsampler_execution_time": 0,
+            "total_execution_time": 47.545
+          }
+        },
+        "mode": "cost",
+        "model_variant": "cost",
+        "predict_time": 49.196559275,
+        "prompt_upsampler": "off",
+        "prompt_upsampler_fallback": false,
+        "resolution_target": "480p",
+        "total_time": 49.2437956,
+        "turbo": true,
+        "video_output_count": 1,
+        "video_output_duration_seconds": 6
+      },
+      "verification": {
+        "dimensions": [
+          854,
+          480
+        ],
+        "fps": 24,
+        "hold_seconds": 3.0,
+        "motion_seconds": 6.0,
+        "reaction_hold_seconds": 0.0,
+        "total_seconds": 9.0,
+        "decoded_audio_seconds": 9.00275,
+        "audio_non_silent": true,
+        "audio_starts_after_hold": true,
+        "hold_mean_pixel_difference": 0.0022565378610460577,
+        "sha256": "668b0317a12da9fd95eca301ce6382219c5f0f633bb5b00de427fff0ac8e1750",
+        "expected_dialogue": "Let me show you.",
+        "speech_check": "pass",
+        "review": "Sampled frames inspected; exact-word speech, soundtrack and still-hold checks passed. Full acting/lip-sync review available in comparison gallery.",
+        "transcription": "Let me show you."
+      },
+      "source_note": "Provisional next chapter-3 passage after Episode 22; confirm against final episode script before attaching. No release ID created.",
+      "character_note": "Zahab is an original supporting-character design; supplied cast lineup used for style, not his identity."
+    },
+    {
+      "episode": 24,
+      "status": "awaiting_episode_authoring",
+      "title": "An impossible refusal",
+      "src": "stories/animated/cutscenes/moonlight-24-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-24-intro.jpg",
+      "durationSeconds": 9,
+      "model": "prunaai/p-video-2-pro",
+      "prediction_id": "m2v2h2fwkhrmw0d1cshtbep330",
+      "settings": {
+        "resolution": "480p",
+        "duration": 6,
+        "mode": "cost",
+        "prompt_upsampler": "off",
+        "aspect_ratio": "16:9",
+        "seed": 88623
+      },
+      "dialogue_exact": "I refuse.",
+      "dialogue_language": "English",
+      "video_prompt": "Animate the supplied image in one continuous shot. Preserve its exact character identity, art style, clothing, lighting and background.\n\nVISUAL BEAT: Weed states his decision with calm resolve. His raised palm moves forward just a few centimeters in ONE restrained refusal gesture, then holds. A tiny calculating smile settles afterward. Keep fingers, hand anatomy, face and background stable. After speaking his lips remain closed.\nRestrained natural motion and a gentle camera push. No added characters, props, cuts, captions or text.\n\nSPOKEN WORDS — THE COMPLETE DIALOGUE:\n\"I refuse.\"\n\nOne young adult male voice as Weed, calm, firm and understated, clearly audible above quiet ambience. Speak ONLY the quoted words, exactly once, in English, with synchronized lips. Do not speak the scene directions. No additional words, repetition, paraphrasing, filler sounds, humming, singing, narration or other voices. Finish the line early; afterward his mouth stays closed while he quietly reacts. Background sound contains no voices or vocals.\n\nSix-second shot. Complete the quoted line in the first half of the shot; the remaining time is a silent closed-mouth reaction with quiet room tone only.\n",
+      "imagegen_prompt": "Use case: illustration-story. One beautiful landscape 16:9 cinematic fantasy anime/manhwa opening frame for Moonlight Sculptor Episode 24. STRICT identity and style reference: ONLY the CENTRAL Weed / Lee Hyun from the supplied lineup. Preserve his exact tousled warm brown hair, keen amber eyes, lean angular young adult face, ivory rolled-sleeve shirt, fitted brown leather craftsman vest/harness and wrist guards, fine luminous detailed ink/cel-painted finish. Scene: the modest retired palace attendant's home, wooden table, blue woven curtain, warm afternoon window light, softly blurred ceramic jars and blue textile in background, matching the quiet setting of his recent visit. Chest-to-waist medium three-quarter portrait. Weed is seated, holding one open palm low at chest level with five natural separated fingers in a small firm refusal gesture, other hand resting out of focus on table. His expression is calmly resolute and calculating, a restrained knowing half-smile: he has just been offered a rare hidden class and refuses because his priority is earning money. Eyes look slightly toward an unseen offer in front of him; no actual UI rendered. Clear unobstructed mouth for a brief English line. Strong decision moment, cinematic warm/cool depth. Only Weed visible. No coins, weapons, other characters, glowing hand magic, floating windows, text, captions, labels, watermark or collage. The supplied lineup is only for identity/style; do not reproduce any of its other people or the statue.",
+      "reference": "stories/characters/references/lms-main-cast-lineup.png",
+      "estimated_usd": 0.06,
+      "paid_predictions": 1,
+      "provider_metrics": {
+        "billing": {
+          "fps": 24,
+          "mode": "cost",
+          "model_variant": "cost",
+          "resolution_target": "480p",
+          "turbo": true,
+          "video_output_duration_seconds": 6
+        },
+        "fps": 24,
+        "inference_provider": "verda",
+        "metadata": {
+          "execution_time": {
+            "model_execution_time": 6.545,
+            "prompt_upsampler_execution_time": 0,
+            "total_execution_time": 52.109
+          }
+        },
+        "mode": "cost",
+        "model_variant": "cost",
+        "predict_time": 54.896645536,
+        "prompt_upsampler": "off",
+        "prompt_upsampler_fallback": false,
+        "resolution_target": "480p",
+        "total_time": 54.910148747,
+        "turbo": true,
+        "video_output_count": 1,
+        "video_output_duration_seconds": 6
+      },
+      "verification": {
+        "dimensions": [
+          854,
+          480
+        ],
+        "fps": 24,
+        "hold_seconds": 3.0,
+        "motion_seconds": 2.4166666666666665,
+        "reaction_hold_seconds": 3.5833333333333335,
+        "total_seconds": 9.0,
+        "decoded_audio_seconds": 9.00275,
+        "audio_non_silent": true,
+        "audio_starts_after_hold": true,
+        "hold_mean_pixel_difference": 0.004778981264637002,
+        "sha256": "b4d258a1aa74c6199e72d753736bc820b8c5eb6814a9da0606a93a46c8b88fa8",
+        "expected_dialogue": "I refuse.",
+        "speech_check": "pass",
+        "review": "Sampled frames inspected; exact-word speech, soundtrack and still-hold checks passed. Full acting/lip-sync review available in comparison gallery.",
+        "transcription": "I refuse."
+      },
+      "source_note": "Provisional next chapter-3 passage after Episode 22; confirm against final episode script before attaching. No release ID created.",
+      "local_cleanup": "Removed repeated line after first delivery; 2.4167 seconds of motion followed by closed-mouth reaction hold. No paid retry."
+    }
+  ]
 }
