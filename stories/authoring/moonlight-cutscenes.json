@@ -556,6 +556,89 @@
       "source_note": "Matched to the authored Chapter 3 episode and attached through catalog intro metadata.",
       "local_cleanup": "Removed repeated line after first delivery; 2.4167 seconds of motion followed by closed-mouth reaction hold. No paid retry.",
       "release_id": "moonlight-24-v1"
+    },
+    {
+      "episode": 25,
+      "release_id": "moonlight-25-v1",
+      "status": "integrated",
+      "title": "I cannot cancel?",
+      "src": "stories/animated/cutscenes/moonlight-25-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-25-intro.jpg",
+      "durationSeconds": 9,
+      "generated_duration_seconds": 6,
+      "still_hold_seconds": 3,
+      "model": "prunaai/p-video-2-pro",
+      "prediction_id": "ack4j4g61drmt0d1cx29gm0zyg",
+      "settings": {
+        "resolution": "480p",
+        "duration": 6,
+        "mode": "cost",
+        "prompt_upsampler": "off",
+        "aspect_ratio": "16:9",
+        "seed": 88625
+      },
+      "dialogue_exact": "I cannot cancel?",
+      "dialogue_language": "English",
+      "video_prompt": "Animate the supplied image in one continuous six-second shot. Preserve exact character, face, costume, old carving knife, wooden figurine, lighting, anime style and room. Weed looks down at the knife; his brow creases with dawning dismay. He lifts his gaze slightly toward an unseen task message, asks his short question once, and then holds the worried closed-mouth reaction. Keep hands and knife still. Very gentle camera push. No new props, people, text or cuts.\n\nSPOKEN WORDS — THE COMPLETE DIALOGUE:\n\"I cannot cancel?\"\n\nOne young adult male voice, quiet disbelieving concern, clearly audible in ENGLISH, exactly the three words once. Finish in the first half of the shot. No extra words, repeated words, paraphrases, fillers, humming, singing, narration or other voices. After the line, lips closed for the remaining time. Quiet indoor room tone beneath dialogue, no vocals or music.",
+      "imagegen_prompt": "Approved central Weed identity. Quiet attendant home; Weed holding a small carving knife, dawning dismay at an obligation he cannot refuse. Built-in imagegen with main-cast lineup reference. Warm detailed anime/manhwa, no text.",
+      "reference": "stories/characters/references/lms-main-cast-lineup.png",
+      "estimated_usd": 0.06,
+      "paid_predictions": 1,
+      "pricing_url": "https://replicate.com/prunaai/p-video-2-pro",
+      "pricing_verified_date": "2026-10-23",
+      "pricing_note": "Live pricing tier cost/480p: $0.01 per output second, native sound, prompt upsampler off, six seconds = $0.06. Generation helper also verified billing configuration before submission.",
+      "provider_metrics": {
+        "billing": {
+          "fps": 24,
+          "mode": "cost",
+          "model_variant": "cost",
+          "resolution_target": "480p",
+          "turbo": true,
+          "video_output_duration_seconds": 6
+        },
+        "fps": 24,
+        "inference_provider": "modal",
+        "metadata": {
+          "execution_time": {
+            "model_execution_time": 4.827,
+            "prompt_upsampler_execution_time": 0,
+            "total_execution_time": 12.118
+          }
+        },
+        "mode": "cost",
+        "model_variant": "cost",
+        "predict_time": 14.04210693,
+        "prompt_upsampler": "off",
+        "prompt_upsampler_fallback": false,
+        "resolution_target": "480p",
+        "total_time": 14.076799547,
+        "turbo": true,
+        "video_output_count": 1,
+        "video_output_duration_seconds": 6
+      },
+      "verification": {
+        "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/output/cutscenes/moonlight-25-2026-10-23/moonlight-25-native.mp4",
+        "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/output/cutscenes/moonlight-25-2026-10-23/intro.mp4",
+        "dimensions": [
+          854,
+          480
+        ],
+        "fps": 24,
+        "hold_seconds": 3.0,
+        "motion_seconds": 6.0,
+        "reaction_hold_seconds": 0.0,
+        "total_seconds": 9.0,
+        "decoded_audio_seconds": 9.00275,
+        "audio_non_silent": true,
+        "audio_starts_after_hold": true,
+        "hold_mean_pixel_difference": 0.011424180327868853,
+        "sha256": "54024072aea6e1e4449f19c416c6e8b7087cde6cb25b2bec62ac347f77bb5a50",
+        "expected_dialogue": "I cannot cancel?",
+        "speech_check": "pass",
+        "review": "One visual/listening review remains; automated checks do not prove natural acting or lip sync.",
+        "transcription": "I cannot cancel."
+      },
+      "source_note": "Teaser previews uncancellable quest after accepting Zahab’s knife; no cancellation attempt changes the fixed source outcome."
     }
   ],
   "failed_attempts": [
