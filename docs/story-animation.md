@@ -56,3 +56,7 @@ Sound & atmosphere starts off. Readers can enable ambience, effects and captions
 ## Sustained activities
 
 The shared player supports optional articulated walking, mirrored scrolling landscapes and ongoing sword practice with recovery. See [scene activities](scene-activities.md) for syntax, staging, interruptions and selective-use guidance. Existing episodes keep their authored staging.
+
+## Reader navigation
+
+The episode player handles Left Arrow to return one displayed story beat and Right Arrow to continue. Returning rebuilds the scene from the saved route with its original seed, removes the latest step, and saves the earlier position. Returning across a choice lets the reader choose a different route. Left Arrow at the first beat does nothing; typing, settings and open player panels keep their own keyboard controls. This behavior belongs to the player, so existing and future episode packages need no special script commands.
