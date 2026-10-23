@@ -402,36 +402,10 @@
         "total_requested_clip_estimated_usd": 0.06
       },
       "usd_per_output_second": 0.01
-    }
-  ],
-  "failed_attempts": [
-    {
-      "episode": 15,
-      "prediction_id": "x7yqrkqsvxrmw0d1ca19pbz3sw",
-      "status": "failed",
-      "reason": "Provider rejected input; retry explicitly authorized by user",
-      "billing_policy": "Failed public-model runs are not charged",
-      "billing_policy_url": "https://replicate.com/docs/topics/billing"
     },
     {
-      "episode": 16,
-      "prediction_id": "pj0cbzg66hrmt0d1ca1s2jywn8",
-      "status": "failed",
-      "reason": "Provider rejected input; retry explicitly authorized by user",
-      "billing_policy": "Failed public-model runs are not charged",
-      "billing_policy_url": "https://replicate.com/docs/topics/billing"
-    }
-  ],
-  "new_video_estimated_total_usd": 0.45,
-  "character_references": "stories/characters/lms-reference.json",
-  "lineup_intro_estimated_total_usd": 0.45,
-  "decision_intro_estimated_total_usd": 0.12,
-  "pricing_verified_date": "2026-10-23",
-  "pricing_note": "Last verified 480p cost-mode rate; reverify exact current billable settings and remaining clip budget before every paid request.",
-  "pending_clips": [
-    {
       "episode": 23,
-      "status": "awaiting_episode_authoring",
+      "status": "integrated",
       "title": "A promise in moonlight",
       "src": "stories/animated/cutscenes/moonlight-23-intro.mp4",
       "poster": "stories/animated/cutscenes/moonlight-23-intro.jpg",
@@ -502,12 +476,13 @@
         "review": "Sampled frames inspected; exact-word speech, soundtrack and still-hold checks passed. Full acting/lip-sync review available in comparison gallery.",
         "transcription": "Let me show you."
       },
-      "source_note": "Provisional next chapter-3 passage after Episode 22; confirm against final episode script before attaching. No release ID created.",
-      "character_note": "Zahab is an original supporting-character design; supplied cast lineup used for style, not his identity."
+      "source_note": "Matched to the authored Chapter 3 episode and attached through catalog intro metadata.",
+      "character_note": "Zahab is an original supporting-character design; supplied cast lineup used for style, not his identity.",
+      "release_id": "moonlight-23-v1"
     },
     {
       "episode": 24,
-      "status": "awaiting_episode_authoring",
+      "status": "integrated",
       "title": "An impossible refusal",
       "src": "stories/animated/cutscenes/moonlight-24-intro.mp4",
       "poster": "stories/animated/cutscenes/moonlight-24-intro.jpg",
@@ -578,8 +553,34 @@
         "review": "Sampled frames inspected; exact-word speech, soundtrack and still-hold checks passed. Full acting/lip-sync review available in comparison gallery.",
         "transcription": "I refuse."
       },
-      "source_note": "Provisional next chapter-3 passage after Episode 22; confirm against final episode script before attaching. No release ID created.",
-      "local_cleanup": "Removed repeated line after first delivery; 2.4167 seconds of motion followed by closed-mouth reaction hold. No paid retry."
+      "source_note": "Matched to the authored Chapter 3 episode and attached through catalog intro metadata.",
+      "local_cleanup": "Removed repeated line after first delivery; 2.4167 seconds of motion followed by closed-mouth reaction hold. No paid retry.",
+      "release_id": "moonlight-24-v1"
     }
-  ]
+  ],
+  "failed_attempts": [
+    {
+      "episode": 15,
+      "prediction_id": "x7yqrkqsvxrmw0d1ca19pbz3sw",
+      "status": "failed",
+      "reason": "Provider rejected input; retry explicitly authorized by user",
+      "billing_policy": "Failed public-model runs are not charged",
+      "billing_policy_url": "https://replicate.com/docs/topics/billing"
+    },
+    {
+      "episode": 16,
+      "prediction_id": "pj0cbzg66hrmt0d1ca1s2jywn8",
+      "status": "failed",
+      "reason": "Provider rejected input; retry explicitly authorized by user",
+      "billing_policy": "Failed public-model runs are not charged",
+      "billing_policy_url": "https://replicate.com/docs/topics/billing"
+    }
+  ],
+  "new_video_estimated_total_usd": 0.45,
+  "character_references": "stories/characters/lms-reference.json",
+  "lineup_intro_estimated_total_usd": 0.45,
+  "decision_intro_estimated_total_usd": 0.12,
+  "pricing_verified_date": "2026-10-23",
+  "pricing_note": "Last verified 480p cost-mode rate; reverify exact current billable settings and remaining clip budget before every paid request.",
+  "pending_clips": []
 }

@@ -195,5 +195,29 @@
       "title": "Why bring a sword?",
       "durationSeconds": 9
     }
+  },
+  {
+    "id": "moonlight-23-v1",
+    "category": "lms",
+    "episode": 23,
+    "intro": {
+      "src": "stories/animated/cutscenes/moonlight-23-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-23-intro.jpg",
+      "title": "A promise in moonlight",
+      "durationSeconds": 9
+    },
+    "path": "moonlight-23.json"
+  },
+  {
+    "id": "moonlight-24-v1",
+    "category": "lms",
+    "episode": 24,
+    "intro": {
+      "src": "stories/animated/cutscenes/moonlight-24-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-24-intro.jpg",
+      "title": "An impossible refusal",
+      "durationSeconds": 9
+    },
+    "path": "moonlight-24.json"
   }
 ]
