@@ -16,7 +16,7 @@ it('keeps themed navigation in the theme even across gaps in lesson numbers', ()
   const ids = lessonsInTheme(lessons, 'deliveries').map(item => item.id)
   expect(nextCourseLesson(ids, 'listening-013', true)).toBe('listening-015')
   expect(nextCourseLesson(ids, 'listening-015', true)).toBeNull()
-  expect(lessonsInTheme(lessons, 'all')).toHaveLength(30)
+  expect(lessonsInTheme(lessons, 'all')).toHaveLength(33)
   expect(lessons.every(lesson => courseThemes.some(theme => theme.id === lesson.theme))).toBe(true)
 })
 

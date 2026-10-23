@@ -8175,6 +8175,39 @@
       "provider": "MiniMax Audio",
       "voice": "Standup Guy",
       "segments": []
+    },
+    {
+      "id": "listening-031",
+      "title": "The Account I Almost Deleted",
+      "file": "listening-031-b4cb2128.mp3",
+      "seconds": 495.307755,
+      "withinTarget": false,
+      "provider": "MiniMax Audio",
+      "model": "speech-2.8-hd",
+      "voice": "Office Man - Deep,Husky,Grounded",
+      "segments": []
+    },
+    {
+      "id": "listening-032",
+      "title": "One More Strike",
+      "file": "listening-032-84850e0b.mp3",
+      "seconds": 260.728163,
+      "withinTarget": false,
+      "provider": "MiniMax Audio",
+      "model": "speech-2.8-hd",
+      "voice": "Weed",
+      "segments": []
+    },
+    {
+      "id": "listening-033",
+      "title": "The Price of Moonlight",
+      "file": "listening-033-99ca342f.mp3",
+      "seconds": 295.000816,
+      "withinTarget": true,
+      "provider": "MiniMax Audio",
+      "model": "speech-2.8-hd",
+      "voice": "Weed",
+      "segments": []
     }
   ]
 }

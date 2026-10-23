@@ -35,4 +35,16 @@ test('short listening lessons offer navigation, pinyin, counts, and auto-next on
   await expect(page.getByRole('heading', { name: 'The Courage to Continue' })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Next lesson' })).toBeDisabled()
 
+  await page.getByRole('combobox', { name: 'Theme', exact: true }).selectOption('lms-story')
+  await expect(page.getByRole('heading', { name: 'The Account I Almost Deleted' })).toBeVisible()
+  await expect(page.getByRole('combobox', { name: 'Choose a lesson', exact: true }).locator('option')).toHaveCount(3)
+  await expect(page.locator('.listening-course-meta')).toContainText('LESSON 31 OF 33')
+  await expect(page.locator('audio')).toHaveAttribute('src', /listening-031-.*\.mp3/)
+  await page.getByRole('button', { name: 'Next lesson' }).click()
+  await expect(page.getByRole('heading', { name: 'One More Strike' })).toBeVisible()
+  await page.getByRole('button', { name: 'Next lesson' }).click()
+  await expect(page.getByRole('heading', { name: 'The Price of Moonlight' })).toBeVisible()
+  await expect(page.locator('audio')).toHaveAttribute('src', /listening-033-.*\.mp3/)
+  await expect(page.getByRole('button', { name: 'Next lesson' })).toBeDisabled()
+
 })

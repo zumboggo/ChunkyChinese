@@ -2287,5 +2287,960 @@
     "dialogueQuestion": "",
     "dialogueAnswer": "",
     "closing": []
+  },
+  {
+    "id": "listening-031",
+    "theme": "lms-story",
+    "title": "The Account I Almost Deleted",
+    "objective": "Weed remembers the game account he almost deleted. Short Chinese phrases are followed by English. Narrated by Office Man.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "账号",
+        "en": "account",
+        "sourceConcept": null
+      },
+      {
+        "zh": "删除",
+        "en": "delete",
+        "sourceConcept": null
+      },
+      {
+        "zh": "拍卖",
+        "en": "auction",
+        "sourceConcept": null
+      },
+      {
+        "zh": "答应",
+        "en": "promise",
+        "sourceConcept": null
+      },
+      {
+        "zh": "家人",
+        "en": "family",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "我差一点，就按下去了。",
+      "en": "I almost pressed it."
+    },
+    "ladder": [
+      {
+        "zh": "删除账号。",
+        "en": "Delete account."
+      },
+      {
+        "zh": "几个字，就能结束那么多年的努力。",
+        "en": "A few words could end years of effort."
+      },
+      {
+        "zh": "可那天晚上，我的手停住了。",
+        "en": "But that night, my hand stopped."
+      },
+      {
+        "zh": "我叫李贤。",
+        "en": "My name is Lee Hyun."
+      },
+      {
+        "zh": "在游戏里，大家叫我 Weed。",
+        "en": "In the game, people call me Weed."
+      },
+      {
+        "zh": "那时候，我有两个世界。",
+        "en": "Back then, I had two worlds."
+      },
+      {
+        "zh": "一个世界里，我什么都有。",
+        "en": "In one, I had everything."
+      },
+      {
+        "zh": "另一个世界里，奶奶连看病的钱都没有。",
+        "en": "In the other, Grandmother couldn't afford a doctor."
+      },
+      {
+        "zh": "那天回家，她躺在床上。",
+        "en": "When I came home, she was lying in bed."
+      },
+      {
+        "zh": "她问我，妹妹回来了吗？",
+        "en": "She asked whether my sister was home."
+      },
+      {
+        "zh": "我说，还没有。",
+        "en": "I said, not yet."
+      },
+      {
+        "zh": "她让我照顾妹妹。",
+        "en": "She asked me to look after her."
+      },
+      {
+        "zh": "我答应了。",
+        "en": "I promised I would."
+      },
+      {
+        "zh": "可是，答应很容易。",
+        "en": "But a promise is easy."
+      },
+      {
+        "zh": "买药的时候，人家要的不是答应。",
+        "en": "At the pharmacy, promises aren't what they want."
+      },
+      {
+        "zh": "人家要钱。",
+        "en": "They want money."
+      },
+      {
+        "zh": "我回到房间，打开旧电脑。",
+        "en": "I went to my room and started the old computer."
+      },
+      {
+        "zh": "它很慢。",
+        "en": "It was slow."
+      },
+      {
+        "zh": "穷人的电脑，也懂得节省力气。",
+        "en": "Even a poor man's computer saves its energy."
+      },
+      {
+        "zh": "我等着，想起第二天的事。",
+        "en": "I waited, thinking about tomorrow."
+      },
+      {
+        "zh": "我要找工作。",
+        "en": "I needed a job."
+      },
+      {
+        "zh": "还需要一身像样的衣服。",
+        "en": "And some decent clothes."
+      },
+      {
+        "zh": "游戏打开了。",
+        "en": "The game opened."
+      },
+      {
+        "zh": "那里有我的装备，我的成绩。",
+        "en": "There was my equipment, everything I'd achieved."
+      },
+      {
+        "zh": "我的等级，已经不能再高了。",
+        "en": "My level couldn't go any higher."
+      },
+      {
+        "zh": "再强的对手，我也打得过。",
+        "en": "I could beat even the strongest opponents."
+      },
+      {
+        "zh": "可是我看着屏幕，笑不出来。",
+        "en": "But looking at the screen, I couldn't smile."
+      },
+      {
+        "zh": "这些东西，能给奶奶买药吗？",
+        "en": "Could any of this buy Grandmother medicine?"
+      },
+      {
+        "zh": "我准备删除账号。",
+        "en": "I was ready to delete my account."
+      },
+      {
+        "zh": "以后，把时间用来工作。",
+        "en": "From now on, I'd spend my time working."
+      },
+      {
+        "zh": "电脑又问了一次。",
+        "en": "The computer asked again."
+      },
+      {
+        "zh": "真的要删除吗？",
+        "en": "Did I really want to delete it?"
+      },
+      {
+        "zh": "我看着那几个字。",
+        "en": "I stared at those words."
+      },
+      {
+        "zh": "等等。",
+        "en": "Wait."
+      },
+      {
+        "zh": "有人买游戏账号，对不对？",
+        "en": "People bought game accounts, didn't they?"
+      },
+      {
+        "zh": "那我为什么要白白扔掉？",
+        "en": "Then why was I throwing mine away?"
+      },
+      {
+        "zh": "我找到了拍卖的地方。",
+        "en": "I found an auction site."
+      },
+      {
+        "zh": "想看看别人的价格，竟然还要付钱。",
+        "en": "Even checking other prices cost money."
+      },
+      {
+        "zh": "还没赚钱，先花钱？",
+        "en": "Spend money before earning any?"
+      },
+      {
+        "zh": "这种开头，我不喜欢。",
+        "en": "I didn't like that beginning."
+      },
+      {
+        "zh": "我把等级和装备展示出来。",
+        "en": "I displayed my level and equipment."
+      },
+      {
+        "zh": "五万韩元起拍。",
+        "en": "Bidding started at fifty thousand won."
+      },
+      {
+        "zh": "只等一天。",
+        "en": "Just one day."
+      },
+      {
+        "zh": "也许，够买找工作的衣服。",
+        "en": "Perhaps it would buy clothes for job hunting."
+      },
+      {
+        "zh": "然后，我去睡了。",
+        "en": "Then I went to sleep."
+      },
+      {
+        "zh": "我以为，只会有几个人看看。",
+        "en": "I thought a few people might look."
+      },
+      {
+        "zh": "后来才知道，我错得多厉害。",
+        "en": "Later, I learned how wrong I was."
+      },
+      {
+        "zh": "最后，买下账号的是一家媒体公司。",
+        "en": "In the end, a media company bought the account."
+      },
+      {
+        "zh": "价格是三十亿九千万韩元。",
+        "en": "The price was three billion, ninety million won."
+      },
+      {
+        "zh": "我看了一遍，又看一遍。",
+        "en": "I looked once. Then again."
+      },
+      {
+        "zh": "这么多零，真的不是看错了？",
+        "en": "All those zeros. Was I seeing things?"
+      },
+      {
+        "zh": "我确认钱真的到了。",
+        "en": "I checked that the money had really arrived."
+      },
+      {
+        "zh": "然后，把存折拿给奶奶看。",
+        "en": "Then I showed Grandmother the bankbook."
+      },
+      {
+        "zh": "那时候，我想到的不是好装备。",
+        "en": "At that moment, I wasn't thinking about equipment."
+      },
+      {
+        "zh": "是医院，是房子。",
+        "en": "I thought about a hospital. A home."
+      },
+      {
+        "zh": "是妹妹以后可以去大学。",
+        "en": "About my sister being able to attend university."
+      },
+      {
+        "zh": "我们终于可以喘口气了。",
+        "en": "At last, we could breathe."
+      },
+      {
+        "zh": "后来，还有很多难事。",
+        "en": "Many hard things still lay ahead."
+      },
+      {
+        "zh": "钱，并没有让所有问题消失。",
+        "en": "Money didn't make every problem disappear."
+      },
+      {
+        "zh": "但我一直记得那个晚上。",
+        "en": "But I've always remembered that night."
+      },
+      {
+        "zh": "我的手，停在删除按钮前。",
+        "en": "My hand, resting before the delete button."
+      },
+      {
+        "zh": "我本来想结束一个故事。",
+        "en": "I'd meant to end a story."
+      },
+      {
+        "zh": "没想到，给自己留下了一个开始。",
+        "en": "Instead, I'd left myself a beginning."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-032",
+    "theme": "lms-story",
+    "title": "One More Strike",
+    "objective": "Weed remembers the training nobody understood. Short Chinese phrases are followed by English. Narrated by Weed.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "练习",
+        "en": "practice",
+        "sourceConcept": null
+      },
+      {
+        "zh": "力量",
+        "en": "strength",
+        "sourceConcept": null
+      },
+      {
+        "zh": "继续",
+        "en": "continue",
+        "sourceConcept": null
+      },
+      {
+        "zh": "进步",
+        "en": "progress",
+        "sourceConcept": null
+      },
+      {
+        "zh": "时间",
+        "en": "time",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "六个小时。",
+      "en": "Six hours."
+    },
+    "ladder": [
+      {
+        "zh": "你知道六个小时，可以做多少事吗？",
+        "en": "Do you know how much you can do in six hours?"
+      },
+      {
+        "zh": "我只做了一件。",
+        "en": "I did just one thing."
+      },
+      {
+        "zh": "打一个不会还手的稻草人。",
+        "en": "I hit a straw dummy that couldn't hit back."
+      },
+      {
+        "zh": "听起来，我很会挑对手。",
+        "en": "Sounds like I chose my opponent well."
+      },
+      {
+        "zh": "那是我刚进入王国之路的时候。",
+        "en": "That was when I first entered Royal Road."
+      },
+      {
+        "zh": "我来到塞拉堡。",
+        "en": "I arrived in Serabourg."
+      },
+      {
+        "zh": "新的身体，新的城市。",
+        "en": "A new body. A new city."
+      },
+      {
+        "zh": "连走路的感觉，都那么真实。",
+        "en": "Even walking felt real."
+      },
+      {
+        "zh": "我试着动一动，跳一跳。",
+        "en": "I tried moving, then jumping."
+      },
+      {
+        "zh": "别人看我的眼神，可不太友好。",
+        "en": "The looks people gave me weren't very friendly."
+      },
+      {
+        "zh": "好吧，丢脸不收钱。",
+        "en": "Well, embarrassment was free."
+      },
+      {
+        "zh": "我还能承受。",
+        "en": "I could afford that."
+      },
+      {
+        "zh": "新手有四个星期，不能离开城市。",
+        "en": "Beginners couldn't leave the city for four weeks."
+      },
+      {
+        "zh": "别人可能觉得，这是等待。",
+        "en": "Others might call that waiting."
+      },
+      {
+        "zh": "我觉得，这是时间。",
+        "en": "I called it time."
+      },
+      {
+        "zh": "而时间，不能白白浪费。",
+        "en": "And time mustn't be wasted."
+      },
+      {
+        "zh": "所以，我去了训练场。",
+        "en": "So I went to the training hall."
+      },
+      {
+        "zh": "教官让我练习。",
+        "en": "The instructor set me to work."
+      },
+      {
+        "zh": "我握住剑，面对稻草人。",
+        "en": "I gripped my sword and faced the dummy."
+      },
+      {
+        "zh": "一下。再一下。",
+        "en": "One strike. Then another."
+      },
+      {
+        "zh": "开始的时候，我还想着奖励。",
+        "en": "At first, I thought about rewards."
+      },
+      {
+        "zh": "后来，我只想着下一剑。",
+        "en": "Later, I thought only about the next strike."
+      },
+      {
+        "zh": "手臂累了，就调整动作。",
+        "en": "When my arms tired, I adjusted my movement."
+      },
+      {
+        "zh": "身体不想动，我还是继续。",
+        "en": "My body wanted to stop. I kept going."
+      },
+      {
+        "zh": "终于，一条消息出现了。",
+        "en": "At last, a message appeared."
+      },
+      {
+        "zh": "力量增加一点。",
+        "en": "Strength increased by one."
+      },
+      {
+        "zh": "只有一点。",
+        "en": "Just one point."
+      },
+      {
+        "zh": "花了六个小时。",
+        "en": "It had taken six hours."
+      },
+      {
+        "zh": "你也许会笑。",
+        "en": "You might laugh."
+      },
+      {
+        "zh": "可我看着那个数字，真的很高兴。",
+        "en": "But looking at that number, I was truly happy."
+      },
+      {
+        "zh": "这不是别人送的。",
+        "en": "Nobody had given it to me."
+      },
+      {
+        "zh": "是我一下、一下，练出来的。",
+        "en": "I'd earned it, strike by strike."
+      },
+      {
+        "zh": "后来，体力和敏捷也增加了。",
+        "en": "Later, vitality and agility increased too."
+      },
+      {
+        "zh": "肚子却有自己的意见。",
+        "en": "My stomach, however, had its own opinion."
+      },
+      {
+        "zh": "它不想听力量增加了多少。",
+        "en": "It didn't care how much strength I'd gained."
+      },
+      {
+        "zh": "它想吃饭。",
+        "en": "It wanted food."
+      },
+      {
+        "zh": "我打开背包。",
+        "en": "I opened my inventory."
+      },
+      {
+        "zh": "水，还有十个黑麦面包。",
+        "en": "Water, and ten rye breads."
+      },
+      {
+        "zh": "吃一点，喝一点。",
+        "en": "A little food. A little water."
+      },
+      {
+        "zh": "然后，回去练习。",
+        "en": "Then back to practice."
+      },
+      {
+        "zh": "旁边的人开始议论。",
+        "en": "The people nearby started talking."
+      },
+      {
+        "zh": "一直打这个，有什么用？",
+        "en": "What was the point of hitting this thing?"
+      },
+      {
+        "zh": "出去打兔子，不是更好吗？",
+        "en": "Wouldn't fighting rabbits be better?"
+      },
+      {
+        "zh": "我听见了。",
+        "en": "I heard them."
+      },
+      {
+        "zh": "可是，他们的话不能替我挥剑。",
+        "en": "But their words couldn't swing my sword for me."
+      },
+      {
+        "zh": "有个骑士，叫普鲁托。",
+        "en": "There was a knight called Pluto."
+      },
+      {
+        "zh": "他知道，这种练习有用。",
+        "en": "He knew this practice mattered."
+      },
+      {
+        "zh": "现在多练一点，以后就会更强。",
+        "en": "Train a little more now, and you'd be stronger later."
+      },
+      {
+        "zh": "可是，要花很多时间。",
+        "en": "But it took a great deal of time."
+      },
+      {
+        "zh": "对别人来说，太慢了。",
+        "en": "For others, it was too slow."
+      },
+      {
+        "zh": "对我来说，只要有用，就继续。",
+        "en": "For me, if it worked, I'd keep going."
+      },
+      {
+        "zh": "三个星期过去了。",
+        "en": "Three weeks passed."
+      },
+      {
+        "zh": "我的身体，已经不一样了。",
+        "en": "My body was different now."
+      },
+      {
+        "zh": "力量，敏捷，体力，都在提高。",
+        "en": "Strength, agility, vitality—all were improving."
+      },
+      {
+        "zh": "剑也越来越听话。",
+        "en": "The sword obeyed me more and more."
+      },
+      {
+        "zh": "可我的等级，还是一级。",
+        "en": "But my level was still one."
+      },
+      {
+        "zh": "看等级的人，会以为我什么都没做。",
+        "en": "Anyone looking at my level would think I'd done nothing."
+      },
+      {
+        "zh": "有些进步，别人看不见。",
+        "en": "Some progress is invisible to other people."
+      },
+      {
+        "zh": "后来，面包越来越少。",
+        "en": "Later, the bread began running out."
+      },
+      {
+        "zh": "我注意到教官的午饭。",
+        "en": "I noticed the instructor's lunch."
+      },
+      {
+        "zh": "练剑需要努力。",
+        "en": "Sword practice required effort."
+      },
+      {
+        "zh": "想吃顿好饭，有时候也需要说话的本事。",
+        "en": "Getting a good meal sometimes required skill with words."
+      },
+      {
+        "zh": "我说了些好听的话。",
+        "en": "I said some flattering things."
+      },
+      {
+        "zh": "他愿意和我一起吃。",
+        "en": "He was willing to share his meal."
+      },
+      {
+        "zh": "我当然很感谢。",
+        "en": "Of course I was grateful."
+      },
+      {
+        "zh": "肚子比我更感谢。",
+        "en": "My stomach was even more grateful."
+      },
+      {
+        "zh": "那顿饭，后来带来了一个任务。",
+        "en": "That meal eventually led to a quest."
+      },
+      {
+        "zh": "可那时，我还不知道。",
+        "en": "But I didn't know that yet."
+      },
+      {
+        "zh": "我只知道，今天比昨天强了一点。",
+        "en": "I only knew I was a little stronger than yesterday."
+      },
+      {
+        "zh": "稻草人还在那里。",
+        "en": "The dummy was still there."
+      },
+      {
+        "zh": "我又举起了剑。",
+        "en": "I raised my sword again."
+      },
+      {
+        "zh": "再来一下。",
+        "en": "One more strike."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
+  },
+  {
+    "id": "listening-033",
+    "theme": "lms-story",
+    "title": "The Price of Moonlight",
+    "objective": "Weed recalls the promise behind the moonlight sculpture. Short Chinese phrases are followed by English. Narrated by Weed.",
+    "prerequisites": [],
+    "focus": [
+      {
+        "zh": "银币",
+        "en": "silver coin",
+        "sourceConcept": null
+      },
+      {
+        "zh": "雕刻",
+        "en": "carve",
+        "sourceConcept": null
+      },
+      {
+        "zh": "月光",
+        "en": "moonlight",
+        "sourceConcept": null
+      },
+      {
+        "zh": "约定",
+        "en": "promise",
+        "sourceConcept": null
+      },
+      {
+        "zh": "礼物",
+        "en": "gift",
+        "sourceConcept": null
+      }
+    ],
+    "opening": {
+      "zh": "我曾经花了一枚银币，买一个故事。",
+      "en": "Once, I paid a silver coin for a story."
+    },
+    "ladder": [
+      {
+        "zh": "直到现在，想起来还有点心疼。",
+        "en": "Even now, remembering it hurts a little."
+      },
+      {
+        "zh": "可是那个故事，我没有忘。",
+        "en": "But I haven't forgotten that story."
+      },
+      {
+        "zh": "事情从两枚银币开始。",
+        "en": "It began with two silver coins."
+      },
+      {
+        "zh": "教官让我调查一个传闻。",
+        "en": "The instructor asked me to investigate a rumor."
+      },
+      {
+        "zh": "有人，能雕刻月光。",
+        "en": "Someone could carve moonlight."
+      },
+      {
+        "zh": "我先想到的，却是面包。",
+        "en": "My first thought, however, was bread."
+      },
+      {
+        "zh": "两枚银币，能买六十六个面包。",
+        "en": "Two silver coins could buy sixty-six loaves."
+      },
+      {
+        "zh": "还有找零。",
+        "en": "With change left over."
+      },
+      {
+        "zh": "这么重要的事，当然要算清楚。",
+        "en": "Naturally, something this important needed careful calculation."
+      },
+      {
+        "zh": "我去了雕刻店。",
+        "en": "I went to the sculpture shop."
+      },
+      {
+        "zh": "老板看了看我的衣服。",
+        "en": "The shopkeeper looked at my clothes."
+      },
+      {
+        "zh": "他连问题都不想听，就让我走。",
+        "en": "He told me to leave without hearing my question."
+      },
+      {
+        "zh": "我慢慢退到门口。",
+        "en": "I slowly backed toward the door."
+      },
+      {
+        "zh": "然后，看见了那只金色的双头鹰。",
+        "en": "Then I noticed the golden two-headed eagle."
+      },
+      {
+        "zh": "我开始赞美它。",
+        "en": "I began praising it."
+      },
+      {
+        "zh": "老板的态度，终于变了。",
+        "en": "At last, the shopkeeper's attitude changed."
+      },
+      {
+        "zh": "他让我坐下，还给我蜂蜜水。",
+        "en": "He offered me a seat, and honey water."
+      },
+      {
+        "zh": "原来，有时候开门的不是钥匙。",
+        "en": "Apparently, sometimes a key doesn't open the door."
+      },
+      {
+        "zh": "是几句好听的话。",
+        "en": "A few pleasing words do."
+      },
+      {
+        "zh": "他确认了月光雕刻的传闻。",
+        "en": "He confirmed the rumor about carving moonlight."
+      },
+      {
+        "zh": "还让我调查王后和雕刻师的过去。",
+        "en": "He also asked me to investigate the queen and the sculptor."
+      },
+      {
+        "zh": "于是，我去找吟游诗人。",
+        "en": "So I went looking for a bard."
+      },
+      {
+        "zh": "这次，好听的话不管用了。",
+        "en": "This time, flattering words didn't work."
+      },
+      {
+        "zh": "我拿出钱，却忘了先换零钱。",
+        "en": "I took out money, forgetting to get smaller change first."
+      },
+      {
+        "zh": "一枚银币，就这样到了他手里。",
+        "en": "And just like that, a silver coin was in his hand."
+      },
+      {
+        "zh": "我还没来得及心疼，他已经开始讲了。",
+        "en": "Before I could mourn it properly, he'd begun his story."
+      },
+      {
+        "zh": "雕刻师叫扎哈布。",
+        "en": "The sculptor's name was Zahab."
+      },
+      {
+        "zh": "他和后来的王后，从小就认识。",
+        "en": "He and the future queen had known each other as children."
+      },
+      {
+        "zh": "他用木头，雕刻她的样子。",
+        "en": "He carved her likeness in wood."
+      },
+      {
+        "zh": "她收下了那个礼物。",
+        "en": "She accepted the gift."
+      },
+      {
+        "zh": "他还许下一个约定。",
+        "en": "He also made a promise."
+      },
+      {
+        "zh": "有一天，要送她世界上最美的雕像。",
+        "en": "One day, he'd give her the world's most beautiful sculpture."
+      },
+      {
+        "zh": "后来，她成了王后。",
+        "en": "Later, she became queen."
+      },
+      {
+        "zh": "他们分开了。",
+        "en": "They were separated."
+      },
+      {
+        "zh": "我以为，这又是一个没有实现的约定。",
+        "en": "I thought this was another unfulfilled promise."
+      },
+      {
+        "zh": "可诗人说，我想错了。",
+        "en": "But the bard said I was wrong."
+      },
+      {
+        "zh": "她说，他后来的作品，是世界上最美的。",
+        "en": "She'd called his later work the most beautiful in the world."
+      },
+      {
+        "zh": "为了弄清楚，我去找老侍女。",
+        "en": "To understand, I went to the elderly attendant."
+      },
+      {
+        "zh": "她亲眼见过那一夜。",
+        "en": "She had witnessed that night herself."
+      },
+      {
+        "zh": "扎哈布回来的时候，拿着一把剑。",
+        "en": "When Zahab returned, he was carrying a sword."
+      },
+      {
+        "zh": "不是小时候的雕刻小刀。",
+        "en": "Not the carving knife from his childhood."
+      },
+      {
+        "zh": "王后很伤心。",
+        "en": "The queen was heartbroken."
+      },
+      {
+        "zh": "她以为，他已经忘了。",
+        "en": "She thought he'd forgotten."
+      },
+      {
+        "zh": "对他来说，也许只是一句话。",
+        "en": "Perhaps, to him, it had only been words."
+      },
+      {
+        "zh": "对她来说，却是等了那么多年的约定。",
+        "en": "To her, it was a promise she'd waited years for."
+      },
+      {
+        "zh": "然后，刺客出现了。",
+        "en": "Then the assassins appeared."
+      },
+      {
+        "zh": "他们要杀国王和王后。",
+        "en": "They meant to kill the king and queen."
+      },
+      {
+        "zh": "扎哈布举起了剑。",
+        "en": "Zahab raised his sword."
+      },
+      {
+        "zh": "月光，随着剑动了起来。",
+        "en": "The moonlight moved with it."
+      },
+      {
+        "zh": "那把剑，不只是武器。",
+        "en": "That sword wasn't merely a weapon."
+      },
+      {
+        "zh": "在他手里，它也能雕刻。",
+        "en": "In his hands, it could carve too."
+      },
+      {
+        "zh": "他一边挥剑，一边唱歌。",
+        "en": "He sang as he moved his sword."
+      },
+      {
+        "zh": "王后流下了眼泪。",
+        "en": "Tears ran down the queen's face."
+      },
+      {
+        "zh": "刺客逃走了。",
+        "en": "The assassins fled."
+      },
+      {
+        "zh": "他没有忘记约定。",
+        "en": "He hadn't forgotten his promise."
+      },
+      {
+        "zh": "他只是用了她没想到的方法。",
+        "en": "He'd fulfilled it in a way she hadn't imagined."
+      },
+      {
+        "zh": "任务完成，我升到了三级。",
+        "en": "The quest ended, and I rose to level three."
+      },
+      {
+        "zh": "系统让我选择月光雕刻师。",
+        "en": "The system offered me the Moonlight Sculptor class."
+      },
+      {
+        "zh": "我拒绝了。两次。",
+        "en": "I refused. Twice."
+      },
+      {
+        "zh": "别这样看我。",
+        "en": "Don't look at me like that."
+      },
+      {
+        "zh": "月光很美，可我还得赚钱。",
+        "en": "Moonlight was beautiful, but I still needed to earn money."
+      },
+      {
+        "zh": "老侍女又送了我礼物。",
+        "en": "Then the attendant offered me gifts."
+      },
+      {
+        "zh": "一把雕刻小刀，一个木头雕像。",
+        "en": "A carving knife. A wooden statue."
+      },
+      {
+        "zh": "还有一个，不能取消的任务。",
+        "en": "And a quest that couldn't be cancelled."
+      },
+      {
+        "zh": "我要找到扎哈布，学会他的歌。",
+        "en": "I had to find Zahab and learn his song."
+      },
+      {
+        "zh": "在她去世以前，回来唱给她听。",
+        "en": "Then return and sing it before she died."
+      },
+      {
+        "zh": "我看着手里的小刀。",
+        "en": "I looked at the little knife in my hand."
+      },
+      {
+        "zh": "为了查一个传闻，我走到这里。",
+        "en": "I'd come this far to investigate a rumor."
+      },
+      {
+        "zh": "现在，别人的约定，落到了我手里。",
+        "en": "Now someone else's promise rested in my hands."
+      },
+      {
+        "zh": "有些礼物，收下才知道有多重。",
+        "en": "Some gifts reveal their weight only after you accept them."
+      }
+    ],
+    "transfers": [],
+    "dialogue": [],
+    "dialogueQuestion": "",
+    "dialogueAnswer": "",
+    "closing": []
   }
 ]
