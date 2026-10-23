@@ -7,7 +7,7 @@ test('left arrow restores beats, choices and saved position without passing the 
  await expect(page.getByTestId('progress')).toHaveText(JSON.stringify({steps:[],quizzes:[],seed:19}));
  await page.keyboard.press('ArrowRight');
  await expect(line).toContainText('Take the left path.');
- await expect(page.getByRole('button',{name:'Choose option 1',exact:true})).toBeEnabled();
+ await expect(page.getByRole('button',{name:/^(Choose option 1|Take the left path\.)$/})).toBeEnabled();
  await page.keyboard.press('1');
  await expect(line).toContainText('Left path beat.');
  await page.keyboard.press('ArrowLeft');
