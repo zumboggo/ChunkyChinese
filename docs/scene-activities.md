@@ -54,7 +54,7 @@ Use a few consecutive meal beats, then an interruption or change of attention. F
 ## Interruptions and lifetime
 
 - `activity Actor pause|resume|stop` holds, restarts or removes activity state. Paused walking holds its phase; paused training cancels its stroke and resumes with a fresh stroke. Saved progress restores activity configuration, not exact animation phase.
-- Activities pause during choices, when the document is hidden, under reduced motion, at story end and through the reader's **Pause scene motion** button. Authored `react`, `perform` and `act` cues pause affected activities for that readable beat; ordinary dialogue then resumes them. For a longer reaction, explicitly pause and later resume.
+- Activities pause during choices, when the document is hidden, under reduced motion, at story end and through the reader's **Pause scene motion** setting. Authored `react`, `perform` and `act` cues pause affected activities for that readable beat; ordinary dialogue then resumes them. For a longer reaction, explicitly pause and later resume.
 - A scene change, re-staging with `show`, actor/target exit, a held `rest` or explicit `prop` change clears the affected activity. A newly started activity replaces conflicting activity on its actor or target. Start a new activity after changing equipment or staging.
 - Keep action participants fully visible. Use wide or fitted action shots for practice and medium/wide for walking. Stop or pause physical work before an important facial close-up. Do not stack multiple performances on the same body.
 - `perform ... repeat ...` remains a finite performance on one readable beat, canceled on Continue. Use it for a short gesture or demonstration; use `activity` for ongoing work.

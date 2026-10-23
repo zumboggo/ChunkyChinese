@@ -11,7 +11,16 @@ const entries=[...engine.map(path=>[path,`engine/${path.split('/').at(-1)}`]),..
 const manifest={repository:'https://github.com/zumboggo/Learningisfun',commit:execFileSync('git',['rev-parse','HEAD'],{cwd:source,encoding:'utf8'}).trim(),files:[]};
 for(const [path,dest] of entries){
  const original=readFileSync(resolve(source,path),'utf8');
- const content=original.replaceAll('../../../functions/learning-content/src/','../engine/');
+ let content=original.replaceAll('../../../functions/learning-content/src/','../engine/');
+ // Chunky Chinese owns motion preferences in episode Settings. Keep upstream
+ // renderer updates from restoring the old control between scene and dialogue.
+ if(dest==='components/StoryStage.tsx')content=content
+  .replace('motionPaused,onMotionPause,hideMotionControl=false','motionPaused=false')
+  .replace(';onMotionPause?:(paused:boolean)=>void;hideMotionControl?:boolean','')
+  .replace('const [localPaused,setLocalPaused]=useState(false),[hidden,setHidden]','const [hidden,setHidden]')
+  .replace('const paused=motionPaused??localPaused,setPaused=onMotionPause??setLocalPaused;','const paused=motionPaused;')
+  .split('\n').filter(line=>!line.includes('{!hideMotionControl&&')).join('\n');
+ if(dest==='components/story-player.css')content=content.split('\n').filter(line=>!line.startsWith('.story-motion-toggle{')).join('\n');
  const target=resolve(root,'src/game/animation/shared',dest);
  if(check){if(readFileSync(target,'utf8')!==content)throw Error(`Shared animation drift: ${dest}`);}
  else{mkdirSync(dirname(target),{recursive:true});writeFileSync(target,content);}

@@ -8,9 +8,9 @@ for(const mode of ['walking','training','eating'])test(`persistent ${mode} respo
  await expect(page.locator('[data-activity]')).not.toHaveAttribute('data-activity-paused','true');
  await page.waitForTimeout(650);
  await page.screenshot({path:info.outputPath('activity.png'),fullPage:true});
- await page.getByRole('button',{name:'Pause scene motion'}).click();
+ await expect(page.getByRole('button',{name:/scene motion/})).toHaveCount(0);await page.locator('summary').click();await page.getByLabel('Pause scene motion',{exact:true}).check();
  await expect(page.locator('[data-activity]')).toHaveAttribute('data-activity-paused','true');
- await page.getByRole('button',{name:'Resume scene motion'}).click();
+ await page.getByLabel('Pause scene motion',{exact:true}).uncheck();
  await page.getByLabel('Reduced motion',{exact:true}).check();
  await expect(page.locator('[data-activity]')).toHaveAttribute('data-activity-paused','true');
  const width=await page.evaluate(()=>({body:document.body.scrollWidth,viewport:innerWidth}));expect(width.body).toBeLessThanOrEqual(width.viewport);

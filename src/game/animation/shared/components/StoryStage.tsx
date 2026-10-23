@@ -6,11 +6,11 @@ import PuppetActor from './PuppetActor';
 import MountedActor from './MountedActor';
 import {armGeometry} from './character-geometry';
 import {ACTIONS,POSES} from '../engine/acting-library.js';
-export default function StoryStage({pack,state,current,speaking,reduced,responses={},motionPaused,onMotionPause,hideMotionControl=false}:{pack:StoryPackage;state:StoryState;current:any;speaking:boolean;reduced:boolean;responses?:Record<string,string>;motionPaused?:boolean;onMotionPause?:(paused:boolean)=>void;hideMotionControl?:boolean}){
+export default function StoryStage({pack,state,current,speaking,reduced,responses={},motionPaused=false}:{pack:StoryPackage;state:StoryState;current:any;speaking:boolean;reduced:boolean;responses?:Record<string,string>;motionPaused?:boolean}){
  const [activityResponses,setActivityResponses]=useState<Record<string,Record<string,string>>>({});
  const onActivityResponse=useCallback((actor:string,value:Record<string,string>)=>setActivityResponses(old=>({...old,[actor]:value})),[]);
- const [localPaused,setLocalPaused]=useState(false),[hidden,setHidden]=useState(()=>typeof document!=='undefined'&&document.hidden);
- const paused=motionPaused??localPaused,setPaused=onMotionPause??setLocalPaused;
+ const [hidden,setHidden]=useState(()=>typeof document!=='undefined'&&document.hidden);
+ const paused=motionPaused;
  useEffect(()=>{const update=()=>setHidden(document.hidden);document.addEventListener('visibilitychange',update);return()=>document.removeEventListener('visibilitychange',update);},[]);
  const suspended=paused||hidden||reduced||state.ended||current?.type==='choice';
  const transient=[...(state.cues||[]).filter(n=>['react','perform'].includes(n.type)),...(current?.type==='act'?[current]:[])];
@@ -74,7 +74,6 @@ export default function StoryStage({pack,state,current,speaking,reduced,response
   </div>
   {pack.assets.backgrounds[state.stage.background||'']?.vignette==='memory'&&<div className="story-memory-haze" aria-hidden="true"/>}
  </div>
-  {!hideMotionControl&&actors.some(([id])=>!!pack.assets.characters[id].rig)&&!state.ended&&<button className="story-motion-toggle" aria-pressed={paused} onClick={()=>setPaused(!paused)}>{paused?'Resume scene motion':'Pause scene motion'}</button>}
  </>;
 }
 
