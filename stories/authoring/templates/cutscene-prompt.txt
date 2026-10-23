@@ -1,0 +1,9 @@
+Animate the supplied image in one continuous shot. Preserve its exact character identity, art style, clothing, lighting and background.
+
+VISUAL BEAT: {one_source_grounded_action_or_emotional_change}
+Restrained natural motion and a gentle camera push. No added characters, props, cuts, captions or text.
+
+SPOKEN WORDS — THE COMPLETE DIALOGUE:
+"{exact_english_line}"
+
+{speaker_voice_and_emotion}, clearly audible above quiet ambience. Speak ONLY the quoted words, exactly once, in English, with synchronized lips. Do not speak the scene directions. No additional words, repetition, paraphrasing, filler sounds, humming, singing, narration or other voices. Finish the line early; afterward his mouth stays closed while he quietly reacts. Background sound contains no voices or vocals.

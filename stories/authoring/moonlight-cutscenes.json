@@ -1,24 +1,23 @@
 {
-  "style": "Detailed Korean fantasy manhwa from the approved original LMS novel covers",
+  "style": "Approved main-cast lineup: detailed luminous fantasy anime/manhwa.",
   "preferences": {
     "resolution": "480p",
     "generate_audio": true,
     "duration_seconds": 6,
-    "maximum_usd_per_successful_clip": 0.15,
     "automatic_paid_retries": false,
     "dialogue_language": "English",
     "direction": "Source-grounded emotional peak or tension; one meaningful action or short English phrase, with clear foreground audio.",
-    "optional_still_hold_seconds": [
-      2,
-      4
-    ],
     "maximum_total_usd_per_requested_clip": 0.15,
-    "spending_rule": "Hard cap across all providers, including all paid retries and variants of the same requested clip. Verify exact current billable settings and maximum charge before submission; skip uncertain pricing. Only explicit stated-dollar approval for specified clips creates an exception."
+    "spending_rule": "Hard cap across all providers, including all paid retries and variants of the same requested clip. Verify exact current billable settings and maximum charge before submission; skip uncertain pricing. Only explicit stated-dollar approval for specified clips creates an exception.",
+    "mode": "cost",
+    "prompt_upsampler": "off",
+    "dialogue_rule": "Only the exact supplied English words, once. No additions, repetition, paraphrase, fillers, humming, singing, narration or other voices. After the line, mouth closed and quiet ambience only.",
+    "still_hold_seconds": 3
   },
-  "model": "bytedance/seedance-1.5-pro",
-  "pricing_url": "https://replicate.com/bytedance/seedance-1.5-pro",
-  "usd_per_output_second": 0.025,
-  "delivery": "480p with generated sound; six seconds by default. Episode 1 uses a ten-second portrait shot plus three-second title card. Intros stored outside immutable episode packages.",
+  "model": "prunaai/p-video-2-pro",
+  "pricing_url": "https://replicate.com/prunaai/p-video-2-pro",
+  "usd_per_output_second": 0.01,
+  "delivery": "Default: three-second thinking still followed by six generated seconds at 480p with native audio (nine seconds total). Holds may be adjusted for the scene. Intros remain outside immutable episode packages; historical clip settings are recorded individually.",
   "clips": [
     {
       "episode": 1,
@@ -60,7 +59,10 @@
         "delivered_dimensions": "480x720",
         "delivered_duration_seconds": 13,
         "sha256": "85d7eed074d0919cf856f2a89acdb54f4fd9037e5f6a1d8dba64cfd381faa20f"
-      }
+      },
+      "model": "bytedance/seedance-1.5-pro",
+      "pricing_url": "https://replicate.com/bytedance/seedance-1.5-pro",
+      "usd_per_output_second": 0.025
     },
     {
       "episode": 14,
@@ -79,7 +81,10 @@
         "total_time": 45.416119108,
         "video_output_duration_seconds": 6
       },
-      "reused_existing_clip": true
+      "reused_existing_clip": true,
+      "model": "bytedance/seedance-1.5-pro",
+      "pricing_url": "https://replicate.com/bytedance/seedance-1.5-pro",
+      "usd_per_output_second": 0.025
     },
     {
       "episode": 15,
@@ -100,7 +105,10 @@
         "video_output_duration_seconds": 6
       },
       "reused_existing_clip": false,
-      "retry_explicitly_authorized": true
+      "retry_explicitly_authorized": true,
+      "model": "bytedance/seedance-1.5-pro",
+      "pricing_url": "https://replicate.com/bytedance/seedance-1.5-pro",
+      "usd_per_output_second": 0.025
     },
     {
       "episode": 16,
@@ -121,7 +129,10 @@
         "video_output_duration_seconds": 6
       },
       "reused_existing_clip": false,
-      "retry_explicitly_authorized": true
+      "retry_explicitly_authorized": true,
+      "model": "bytedance/seedance-1.5-pro",
+      "pricing_url": "https://replicate.com/bytedance/seedance-1.5-pro",
+      "usd_per_output_second": 0.025
     },
     {
       "episode": 17,
@@ -141,7 +152,10 @@
         "video_output_duration_seconds": 6
       },
       "reused_existing_clip": false,
-      "art_prompt": "Use case: illustration-story. One exquisite detailed landscape 16:9 HAND-PAINTED FANTASY ANIME film still. Use input as strict identity and rendering reference for Weed/Lee Hyun: young adult Korean man with angular scrappy warm tan face, tousled layered near-black hair, keen brown eyes, muted teal open workshirt and ivory undershirt. Same luminous fine painterly brushwork, intricate textured drawing, cinematic warm light, 2D anime. DIFFERENT LOCATION: inside a beautiful medieval sculpture shop, polished carved wooden shelves, stone and bronze statuettes in soft background, slant of light through shop window. Weed is at the left in a three-quarter chest-up view near the exit, body angled toward the door but head turned back to look toward a magnificent GOLDEN TWO-HEADED EAGLE SCULPTURE displayed at the right on a wooden pedestal. Both distinct eagle heads must be visibly readable, facing opposite directions, one sculpted eagle body with spread wings. Clearly an INANIMATE GOLD METAL ARTWORK, not a living eagle. Weed's expression is alert, intrigued, a sudden clever idea forming; one eyebrow raised and the hint of a sly smile. Visual focus connects Weed's gaze with the statue. Atmosphere of a discovery that could change his fortunes. Character and statue both fully readable, no extra people, labels, inscriptions, typography, text, collage, watermark or magical effects."
+      "art_prompt": "Use case: illustration-story. One exquisite detailed landscape 16:9 HAND-PAINTED FANTASY ANIME film still. Use input as strict identity and rendering reference for Weed/Lee Hyun: young adult Korean man with angular scrappy warm tan face, tousled layered near-black hair, keen brown eyes, muted teal open workshirt and ivory undershirt. Same luminous fine painterly brushwork, intricate textured drawing, cinematic warm light, 2D anime. DIFFERENT LOCATION: inside a beautiful medieval sculpture shop, polished carved wooden shelves, stone and bronze statuettes in soft background, slant of light through shop window. Weed is at the left in a three-quarter chest-up view near the exit, body angled toward the door but head turned back to look toward a magnificent GOLDEN TWO-HEADED EAGLE SCULPTURE displayed at the right on a wooden pedestal. Both distinct eagle heads must be visibly readable, facing opposite directions, one sculpted eagle body with spread wings. Clearly an INANIMATE GOLD METAL ARTWORK, not a living eagle. Weed's expression is alert, intrigued, a sudden clever idea forming; one eyebrow raised and the hint of a sly smile. Visual focus connects Weed's gaze with the statue. Atmosphere of a discovery that could change his fortunes. Character and statue both fully readable, no extra people, labels, inscriptions, typography, text, collage, watermark or magical effects.",
+      "model": "bytedance/seedance-1.5-pro",
+      "pricing_url": "https://replicate.com/bytedance/seedance-1.5-pro",
+      "usd_per_output_second": 0.025
     },
     {
       "episode": 18,
@@ -172,7 +186,10 @@
         "video_output_duration_seconds": 6
       },
       "video_sha256": "fb564c3355c2999f120599ab4c33b6ede79f246102fe2441a06aa9b5b1d65ef7",
-      "audio_postproduction": "Adjusted generated sound using loudnorm I=-20 LUFS, true peak -2 dB, LRA 7; delivered AAC stereo at 48 kHz."
+      "audio_postproduction": "Adjusted generated sound using loudnorm I=-20 LUFS, true peak -2 dB, LRA 7; delivered AAC stereo at 48 kHz.",
+      "model": "bytedance/seedance-1.5-pro",
+      "pricing_url": "https://replicate.com/bytedance/seedance-1.5-pro",
+      "usd_per_output_second": 0.025
     },
     {
       "episode": 19,
@@ -203,7 +220,10 @@
         "video_output_duration_seconds": 6
       },
       "video_sha256": "683005f5b783450a9feed151ce548ac9574bb47e6fb5a69745b3c9bdbf798321",
-      "audio_postproduction": "Adjusted generated sound using loudnorm I=-20 LUFS, true peak -2 dB, LRA 7; delivered AAC stereo at 48 kHz."
+      "audio_postproduction": "Adjusted generated sound using loudnorm I=-20 LUFS, true peak -2 dB, LRA 7; delivered AAC stereo at 48 kHz.",
+      "model": "bytedance/seedance-1.5-pro",
+      "pricing_url": "https://replicate.com/bytedance/seedance-1.5-pro",
+      "usd_per_output_second": 0.025
     },
     {
       "episode": 20,
@@ -234,7 +254,10 @@
         "video_output_duration_seconds": 6
       },
       "video_sha256": "2dbe1810e4f6d5ff45bd45f7cca8f7a5ed6ba026303cc6382bb5f71224aa90cc",
-      "audio_postproduction": "Adjusted generated sound using loudnorm I=-20 LUFS, true peak -2 dB, LRA 7; delivered AAC stereo at 48 kHz."
+      "audio_postproduction": "Adjusted generated sound using loudnorm I=-20 LUFS, true peak -2 dB, LRA 7; delivered AAC stereo at 48 kHz.",
+      "model": "bytedance/seedance-1.5-pro",
+      "pricing_url": "https://replicate.com/bytedance/seedance-1.5-pro",
+      "usd_per_output_second": 0.025
     },
     {
       "episode": 21,
@@ -305,7 +328,8 @@
         "motion_start_mean_pixel_difference": 0.006966399947957325,
         "paid_predictions": 1,
         "total_requested_clip_estimated_usd": 0.06
-      }
+      },
+      "usd_per_output_second": 0.01
     },
     {
       "episode": 22,
@@ -376,7 +400,8 @@
         "motion_start_mean_pixel_difference": 0.0014279208951340097,
         "paid_predictions": 1,
         "total_requested_clip_estimated_usd": 0.06
-      }
+      },
+      "usd_per_output_second": 0.01
     }
   ],
   "failed_attempts": [
@@ -400,5 +425,7 @@
   "new_video_estimated_total_usd": 0.45,
   "character_references": "stories/characters/lms-reference.json",
   "lineup_intro_estimated_total_usd": 0.45,
-  "decision_intro_estimated_total_usd": 0.12
+  "decision_intro_estimated_total_usd": 0.12,
+  "pricing_verified_date": "2026-10-23",
+  "pricing_note": "Last verified 480p cost-mode rate; reverify exact current billable settings and remaining clip budget before every paid request."
 }
