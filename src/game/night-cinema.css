@@ -77,3 +77,18 @@
 .game-playing .episode-settings-panel label {color:var(--cinema-ink)}
 .game-playing .episode-settings-panel .story-atmosphere {margin:0;padding:0}
 .game-playing .episode-settings-panel .reading-controls {justify-content:flex-start;padding:0}
+
+.game-playing .chunk-view-settings {border:1px solid #526071;border-radius:12px;padding:12px;display:flex;flex-wrap:wrap;gap:12px}
+.game-playing .chunk-view-settings legend {color:var(--cinema-gold)}
+.game-playing .chunk-view-settings p {flex-basis:100%;font-size:13px;margin:0;color:var(--cinema-muted)}
+.game-playing .story-dialogue button.episode-chunk {display:inline-flex;flex-direction:column;align-items:center;gap:6px;background:transparent;border:0;border-right:1px solid #526071;border-radius:0;box-shadow:none;min-height:44px;margin:0;padding:2px 12px;font-weight:400;white-space:normal;max-width:100%}
+.game-playing .story-dialogue button.episode-chunk[aria-expanded=true] {background:#233a4c;border-radius:8px;outline:1px solid #cfaa6a}
+.game-playing .story-dialogue .episode-chunk .reader-interlinear-gloss {white-space:normal}
+.game-playing .chunk-placeholder {color:var(--cinema-muted);font-size:14px}
+.game-playing .episode-choice-card {padding:14px 0;border-bottom:1px solid #526071}
+.game-playing .episode-choice-card>.episode-interlinear {display:flex;margin-bottom:12px}
+.game-playing .episode-choice-card>button.episode-choice {display:inline-flex;width:auto;min-height:44px;padding:8px 18px}
+.game-playing .episode-up-next {margin-top:20px;padding-top:16px;border-top:1px solid #526071}
+.game-playing .episode-up-next h3 {color:var(--cinema-ink);font-size:20px;margin:8px 0}
+.game-playing .episode-up-next>p {color:var(--cinema-muted)}
+.game-playing .episode-up-next .next-episode {width:100%}
