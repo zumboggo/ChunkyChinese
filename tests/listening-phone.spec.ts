@@ -4,6 +4,7 @@ test.use({ serviceWorkers: 'block', viewport: { width: 390, height: 844 } })
 
 test('short listening lessons offer navigation, pinyin, counts, and auto-next on a phone', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' })
+  await page.getByRole('button', { name: 'Go to dashboard', exact: true }).click()
   await page.locator('.dashboard-mode-card.listen-start').click()
   await expect(page.getByRole('heading', { name: 'A drink before we begin' })).toBeVisible()
   await expect(page.locator('.listening-course-count')).toHaveText('Listened 0 times')
@@ -24,6 +25,8 @@ test('short listening lessons offer navigation, pinyin, counts, and auto-next on
   await expect(page.locator('.listening-phrase-pinyin').first()).not.toBeEmpty()
   await expect(page.getByText('Previous listening modes', { exact: true })).toHaveCount(0)
   await page.reload()
+  await page.getByRole('button', { name: 'Go to dashboard', exact: true }).click()
+  await page.locator('.dashboard-mode-card.listen-start').click()
   await expect(page.getByRole('combobox', { name: 'Theme', exact: true })).toHaveValue('school')
   await expect(page.getByRole('switch', { name: 'Auto-next' })).toBeChecked()
   await expect(page.getByRole('heading', { name: 'The Missing Assignment' })).toBeVisible()
