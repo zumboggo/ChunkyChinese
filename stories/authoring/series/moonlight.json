@@ -4,10 +4,10 @@
   "source": {
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
-    "chapter": "OEBPS/Text/LMS_B01_Chapter_03.xhtml",
-    "nextStart": "He bid farewell to the old lady’s maid, and went back to the sculpture stop.",
-    "nextEndBefore": "A quest that was undisclosed to the public similar to the quest he just undertook, was rare.",
-    "continuationNote": "Farewell, shopkeeper and instructor rewards, stat allocation, temptation to quest versus returning to sword training. Inspect chapter transition before setting the subsequent boundary."
+    "chapter": "OEBPS/Text/LMS_B01_Chapter_04.xhtml",
+    "nextStart": "The civilization of the Versailles Continent dawned approximately one million and eight thousand years ago.",
+    "nextEndBefore": "Several high level users saw through Weed’s intentions to improve strength and other stats.",
+    "continuationNote": "Compress the four-race history faithfully as context, then the four-week training rumor and users mistaking Weed for a quest NPC. He refuses offered gifts and explains he is a user; the misunderstanding grows. Stop before high-level recruitment."
   },
   "completed": [
     {
@@ -109,9 +109,13 @@
     {
       "episode": "moonlight-25-v1",
       "end": "Weed receives Zahab’s carving knife and wooden statue. Follow Zahab’s Last Wish arrives as an uncancellable A-level quest: become a master sculptor, find Zahab, learn A Sculpture’s Heart and sing it to the attendant before she dies. Gray Pass is forbidden and extremely dangerous. He gains Item Identification, Sculpture Mastery, Repair and Handicraft without changing class, and has two quest slots left. Still at the attendant’s home; no farewell or rewards collected."
+    },
+    {
+      "episode": "moonlight-26-v1",
+      "end": "Weed leaves the attendant, receives two silver coins from the shopkeeper and one from the instructor. Five silver earned gross including the original two; after the bard’s one-silver payment, four remain. Still level three; level-up bonus points divided equally between Strength and Agility. Tempted by further quests, he picks up the wooden sword and returns to training. Chapter 3 complete."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-25.json",
+  "assetsFrom": "stories/animated/moonlight-26.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -129,22 +133,22 @@
   "continuity": [
     "Grandmother remains hospitalized and the old debt is paid. Do not invent an exact current balance.",
     "Training stats and Sword Mastery remain unchanged; Weed is now level three after The Sculptor’s Past. The four-week restriction has not expired.",
-    "The first E-level moonlight-sculpting investigation is complete. Weed has not returned to the instructor or claimed the reward.",
-    "Weed spent one of the instructor’s two silver coins on the bard because he had not changed the advance into smaller copper coins. One silver remains; no additional purchase or reward has occurred.",
     "The Sculptor’s Past is complete. Zahab’s mastery and fulfilled promise are confirmed.",
     "Weed twice refused Moonlight Sculptor for financial reasons; no class conversion.",
     "Weed has the carving knife and wooden statue, four practical skills, and uncancellable A-level Zahab’s Last Wish. No class conversion; his level remains three. Two quest slots remain.",
     "He must learn A Sculpture’s Heart from Zahab and return to sing it before the attendant dies. Zahab was last seen heading for Gray Pass.",
-    "Still at the attendant’s home; shopkeeper and instructor rewards remain unclaimed. One silver remains.",
-    "Episode 25 uses four immediate-response choices with no saved variables."
+    "Both shopkeeper and instructor rewards are now collected. Gross earned silver is five including the original advance; the bard took one, leaving four. No further spending.",
+    "Level-up bonus points are split equally into Strength and Agility; no invented numeric point allocation. Still level three.",
+    "Weed has returned to dummy training with his wooden sword. Chapter 3 is complete.",
+    "Episode 26 has four immediate-response choices and no saved variables."
   ],
   "castRecipes": "stories/characters/lms-lineup-cast.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through moonlight-25-v1",
-    "nextStart": "He bid farewell to the old lady’s maid, and went back to the sculpture stop.",
-    "nextEndBefore": "A quest that was undisclosed to the public similar to the quest he just undertook, was rare.",
-    "assetsFrom": "stories/animated/moonlight-25.json"
+    "note": "Published through moonlight-26-v1",
+    "nextStart": "The civilization of the Versailles Continent dawned approximately one million and eight thousand years ago.",
+    "nextEndBefore": "Several high level users saw through Weed’s intentions to improve strength and other stats.",
+    "assetsFrom": "stories/animated/moonlight-26.json"
   },
   "characterReferences": "stories/characters/lms-reference.json",
   "castBundle": "public/stories/animated/cast/lms-lineup.json"
