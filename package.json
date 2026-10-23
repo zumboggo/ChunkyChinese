@@ -27,7 +27,7 @@
     "verify:reader-pack": "node scripts/verify-reader-pack.mjs",
     "game:audio": "node scripts/build-story-audio.mjs",
     "game:build": "node scripts/build-story-audio.mjs --pinyin-only",
-    "game:check": "node scripts/build-lms-cast.mjs --check && node scripts/check-story-packages.mjs",
+    "game:check": "node scripts/build-lms-cast.mjs --check && node scripts/build-lms-lineup.mjs --check && node scripts/check-story-packages.mjs",
     "game:sync": "node scripts/sync-story-animation.mjs",
     "game:parity": "node scripts/sync-story-animation.mjs --check",
     "game:source": "python3 scripts/episode-source.py",
@@ -38,7 +38,8 @@
     "game:episode": "node scripts/prepare-episode.mjs",
     "game:episode:test": "node scripts/test-episode.mjs",
     "game:brief": "node scripts/episode-brief.mjs",
-    "game:continuation": "python3 scripts/prepare-continuation.py"
+    "game:continuation": "python3 scripts/prepare-continuation.py",
+    "game:cast:lineup": "node scripts/build-lms-lineup.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.2",

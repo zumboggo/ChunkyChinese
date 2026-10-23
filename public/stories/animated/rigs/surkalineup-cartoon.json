@@ -1,0 +1,25 @@
+{
+  "name": "Surka",
+  "version": 1,
+  "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged.",
+  "expressions": {},
+  "rig": {
+    "version": 2,
+    "preset": "cartoon-v1",
+    "style": "manga",
+    "finish": "polished",
+    "palette": {
+      "skin": "#e7b798",
+      "hair": "#593a30",
+      "shirt": "#af4936",
+      "trim": "#eee0bf"
+    },
+    "appearance": {
+      "age": "adult",
+      "hair": "ponytail",
+      "face": "spirited",
+      "eyes": "keen",
+      "outfit": "tunic"
+    }
+  }
+}

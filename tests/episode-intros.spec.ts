@@ -7,7 +7,7 @@ async function openEpisode(page:Page,episode:number){
  await page.getByRole('button',{name:'Restart episode',exact:true}).click()
 }
 
-for(const episode of [15,16])test(`episode ${episode} intro is six seconds at 480p with sound and leads into reading`,async({page},info)=>{
+for(const episode of [15,16,18,19,20])test(`episode ${episode} intro is six seconds at 480p with sound and leads into reading`,async({page},info)=>{
  await page.emulateMedia({reducedMotion:'reduce'})
  await openEpisode(page,episode)
  const video=page.locator('.episode-intro video')

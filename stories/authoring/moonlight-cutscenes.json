@@ -135,6 +135,99 @@
       },
       "reused_existing_clip": false,
       "art_prompt": "Use case: illustration-story. One exquisite detailed landscape 16:9 HAND-PAINTED FANTASY ANIME film still. Use input as strict identity and rendering reference for Weed/Lee Hyun: young adult Korean man with angular scrappy warm tan face, tousled layered near-black hair, keen brown eyes, muted teal open workshirt and ivory undershirt. Same luminous fine painterly brushwork, intricate textured drawing, cinematic warm light, 2D anime. DIFFERENT LOCATION: inside a beautiful medieval sculpture shop, polished carved wooden shelves, stone and bronze statuettes in soft background, slant of light through shop window. Weed is at the left in a three-quarter chest-up view near the exit, body angled toward the door but head turned back to look toward a magnificent GOLDEN TWO-HEADED EAGLE SCULPTURE displayed at the right on a wooden pedestal. Both distinct eagle heads must be visibly readable, facing opposite directions, one sculpted eagle body with spread wings. Clearly an INANIMATE GOLD METAL ARTWORK, not a living eagle. Weed's expression is alert, intrigued, a sudden clever idea forming; one eyebrow raised and the hint of a sly smile. Visual focus connects Weed's gaze with the statue. Atmosphere of a discovery that could change his fortunes. Character and statue both fully readable, no extra people, labels, inscriptions, typography, text, collage, watermark or magical effects."
+    },
+    {
+      "episode": 18,
+      "release_id": "moonlight-18-v1",
+      "title": "The moonlight question",
+      "src": "stories/animated/cutscenes/moonlight-18-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-18-intro.jpg",
+      "durationSeconds": 6,
+      "prediction_id": "9dqj8jb00srmw0d1cr6t9r0wac",
+      "reference": "stories/characters/references/lms-main-cast-lineup.png",
+      "imagegen_prompt": "Detailed beautiful 16:9 cinematic anime film still. Use ONLY central Weed / Lee Hyun from the reference lineup as strict face, hair and costume reference: brown tousled hair, amber eyes, ivory shirt, brown leather harness and bracers. Medium waist-up shot in a warm medieval sculpture shop, stone statues and dusty window light. Weed pauses beside a stone sculpture, turning his keen gaze toward someone just offscreen with a subtle intrigued smile. Only Weed visible. Preserve reference style and identity. No text, labels, HUD or watermark. Opening frame for Episode 18, suitable for restrained six-second animation.",
+      "video_prompt": "Six seconds, one continuous cinematic anime/manhwa shot. Preserve the supplied drawing style, Weed’s exact face, tousled brown hair, ivory shirt, brown leather vest/harness and wrist guards. Natural small movements, stable anatomy and background. Weed glances from the stone statue toward the offscreen shopkeeper. One eyebrow rises slightly and a restrained knowing smile appears as he leans forward with intrigue. Gentle camera push. AUDIO: softly reverberant shop room tone, a small offscreen wood creak, delicate cloth rustle and a brief curious plucked-string musical phrase. No dialogue, speech, lyrics, captions, HUD or text. The tool in his gloved hand stays still; he is examining the sculpture, not carving or striking it.",
+      "settings": {
+        "resolution": "480p",
+        "generate_audio": true,
+        "duration": 6,
+        "fps": 24,
+        "camera_fixed": false,
+        "seed": 88618
+      },
+      "estimated_usd": 0.15,
+      "provider_metrics": {
+        "model_variant": "with_audio",
+        "predict_time": 45.463994488,
+        "resolution_target": "480p",
+        "token_output_count": 60682,
+        "total_time": 45.474794445,
+        "video_output_duration_seconds": 6
+      },
+      "video_sha256": "fb564c3355c2999f120599ab4c33b6ede79f246102fe2441a06aa9b5b1d65ef7",
+      "audio_postproduction": "Adjusted generated sound using loudnorm I=-20 LUFS, true peak -2 dB, LRA 7; delivered AAC stereo at 48 kHz."
+    },
+    {
+      "episode": 19,
+      "release_id": "moonlight-19-v1",
+      "title": "An enticing risk",
+      "src": "stories/animated/cutscenes/moonlight-19-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-19-intro.jpg",
+      "durationSeconds": 6,
+      "prediction_id": "ephpzxx8h9rmw0d1cr6s0mjbj4",
+      "reference": "stories/characters/references/lms-main-cast-lineup.png",
+      "imagegen_prompt": "Use case: illustration-story. One exquisite detailed landscape 16:9 fantasy anime/manhwa film still, opening frame of Moonlight Sculptor Episode 19. Input is a STRICT identity and style reference: use ONLY the central Weed / Lee Hyun: tousled warm dark-brown hair, amber-brown eyes, lean angular youthful adult face, ivory open-collar rolled-sleeve shirt, fitted brown leather craftsman vest/harness and belt pouches, leather wrist guards. Preserve his exact identity and luminous hand-drawn finish from this reference. Scene: medieval sculpture shop in late afternoon, stone and wooden sculptures on soft-focus shelves, warm window light, moody cool shadows. Waist-up three-quarter view of Weed looking down at his own two visible empty hands held near his waist, a slight tremble beginning in his fingertips; his expression combines delighted realization about a chain of quests with sudden caution about danger from royal knights. Small controlled smile, alert eyes, believable five-finger anatomy. Only one character, no weapons in hands. Cinematic atmospheric depth, finely inked face, rich painterly cel shading. A single grounded scene; no floating quest panels, no HUD, no coins, no extra characters, no caption, no reference labels, no typography, no watermark.",
+      "video_prompt": "Six seconds, one continuous cinematic anime/manhwa shot. Preserve the supplied drawing style, Weed’s exact face, tousled brown hair, ivory shirt, brown leather vest/harness and wrist guards. Natural small movements, stable anatomy and background. Weed looks down at his empty hands; the fingertips tremble very slightly with excitement. He steadies them, then raises his gaze, the smile softening into alert resolve. Gentle camera push, warm dust in window light. AUDIO: quiet shop room tone, faint leather creak, a restrained rising musical accent that settles into a curious note. No dialogue, speech, lyrics, captions, HUD or text.",
+      "settings": {
+        "resolution": "480p",
+        "generate_audio": true,
+        "duration": 6,
+        "fps": 24,
+        "camera_fixed": false,
+        "seed": 88618
+      },
+      "estimated_usd": 0.15,
+      "provider_metrics": {
+        "model_variant": "with_audio",
+        "predict_time": 48.544674516,
+        "resolution_target": "480p",
+        "token_output_count": 60682,
+        "total_time": 48.555680985,
+        "video_output_duration_seconds": 6
+      },
+      "video_sha256": "683005f5b783450a9feed151ce548ac9574bb47e6fb5a69745b3c9bdbf798321",
+      "audio_postproduction": "Adjusted generated sound using loudnorm I=-20 LUFS, true peak -2 dB, LRA 7; delivered AAC stereo at 48 kHz."
+    },
+    {
+      "episode": 20,
+      "release_id": "moonlight-20-v1",
+      "title": "The price of a secret",
+      "src": "stories/animated/cutscenes/moonlight-20-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-20-intro.jpg",
+      "durationSeconds": 6,
+      "prediction_id": "2pzpvpzsasrmy0d1cr4sx883xc",
+      "reference": "stories/characters/references/lms-main-cast-lineup.png",
+      "imagegen_prompt": "Use case: illustration-story. One beautiful detailed 16:9 landscape cinematic fantasy anime/manhwa still for Moonlight Sculptor Episode 20. Input lineup is STRICT identity and rendering reference for the CENTRAL Weed / Lee Hyun only: tousled warm dark-brown hair, amber-brown keen eyes, lean angular youthful adult face, ivory rolled-sleeve open collar shirt, fitted brown leather craftsman vest/harness, leather wrist guards, belt pouches. Preserve that exact character's identity and exquisite luminous detailed anime/manhwa finish. Scene: warm dim medieval tavern, wooden table in foreground, amber candle and window lighting, soft blurred timber background. Weed is seated on left in medium waist-up three-quarter framing, holding out EXACTLY ONE silver coin between thumb and forefinger just above the table, reluctant worried disbelief on his face as he pays for a secret. At right sits an unpictured supporting character, NOT anyone from the lineup: a lean middle-aged male bard, about forty, swept brown hair, muted plum tunic with subtle gold trim, his left hand open waiting for payment, a simple lute resting beside him. Both readable faces and the coin dominate. Their hands separated, before the handoff, anatomically clear. Intimate comic tension and intrigue, no crowd. No glowing coin, magic HUD, subtitles, names, labels, text, watermark, reference lineup reproduction, extra people or extra coins. Keep Weed's face and costume faithful to the labeled central reference.",
+      "video_prompt": "Six seconds, one continuous cinematic anime/manhwa shot. Preserve the supplied drawing style, Weed’s exact face, tousled brown hair, ivory shirt, brown leather vest/harness and wrist guards. Natural small movements, stable anatomy and background. Weed reluctantly extends the single silver coin a little farther toward the bard’s waiting palm; his fingers keep holding the coin throughout. The bard gives a tiny expectant nod. Weed’s brows tighten with rueful disbelief. Keep both hands separate; no handoff, extra coins or fingers. Gentle camera push. AUDIO: quiet tavern room tone, subtle cloth rustle, one soft lute-string pluck with a wry musical accent. No dialogue, speech, lyrics, captions, HUD or text.",
+      "settings": {
+        "resolution": "480p",
+        "generate_audio": true,
+        "duration": 6,
+        "fps": 24,
+        "camera_fixed": false,
+        "seed": 88618
+      },
+      "estimated_usd": 0.15,
+      "provider_metrics": {
+        "model_variant": "with_audio",
+        "predict_time": 56.414608121,
+        "resolution_target": "480p",
+        "token_output_count": 60682,
+        "total_time": 56.456656278,
+        "video_output_duration_seconds": 6
+      },
+      "video_sha256": "2dbe1810e4f6d5ff45bd45f7cca8f7a5ed6ba026303cc6382bb5f71224aa90cc",
+      "audio_postproduction": "Adjusted generated sound using loudnorm I=-20 LUFS, true peak -2 dB, LRA 7; delivered AAC stereo at 48 kHz."
     }
   ],
   "failed_attempts": [
@@ -156,5 +249,6 @@
     }
   ],
   "new_video_estimated_total_usd": 0.45,
-  "character_references": "stories/characters/weed-reference.json"
+  "character_references": "stories/characters/lms-reference.json",
+  "lineup_intro_estimated_total_usd": 0.45
 }

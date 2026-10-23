@@ -1,9 +1,9 @@
 {
   "character": "Weed / Lee Hyun",
   "approved_date": "2026-10-23",
-  "user_preference": "The LMS novel covers show exactly how David pictures Weed. These supersede the earlier Hyun B and teal-shirt generated portraits as the visual references for future generated artwork and cutscenes.",
-  "style": "Detailed dark Korean fantasy manhwa; layered near-black hair, lean angular youthful adult face, keen eyes, a lean athletic silhouette, restrained intensity and occasional calculating smile. Preserve facial identity; clothing follows the scene.",
-  "primary_reference": "stories/characters/references/weed/lms-11-15.webp",
+  "user_preference": "Superseded by the user-provided main cast lineup on 2026-10-23. Use stories/characters/lms-reference.json for future work; these cover references remain historical.",
+  "style": "Use the current approved main-cast lineup: tousled brown hair, amber eyes, angular youthful adult face, ivory shirt and brown leather harness. See current_reference_manifest for exact identity and scene guidance.",
+  "primary_reference": "stories/characters/references/lms-main-cast-lineup.png",
   "references": [
     {
       "path": "stories/characters/references/weed/lms-01-05.webp",
@@ -31,5 +31,7 @@
     "original_directory": "public/reader-packs/lms-books/images/covers",
     "note": "Original reader-cover images recovered from repository history before the private-storage migration."
   },
-  "scope": "Reference artwork for future generation. Existing articulated rigs and immutable released packages retain their original provenance."
+  "scope": "Reference artwork for future generation. Existing articulated rigs and immutable released packages retain their original provenance.",
+  "current_reference_manifest": "stories/characters/lms-reference.json",
+  "historical_cover_style": "Detailed dark Korean fantasy manhwa; layered near-black hair, lean angular youthful adult face, keen eyes, a lean athletic silhouette, restrained intensity and occasional calculating smile. Preserve facial identity; clothing follows the scene."
 }

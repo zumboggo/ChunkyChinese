@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/zumboggo/Learningisfun",
-  "commit": "c6b6f0372ef4635c40205cf60aa1bf255953af09",
+  "commit": "a8c4eca655e196438b517673f4c5cf33b41a88c3",
   "files": [
     {
       "source": "functions/learning-content/src/story-engine.js",
@@ -60,7 +60,7 @@
     {
       "source": "src/components/animated/CartoonActor.tsx",
       "target": "components/CartoonActor.tsx",
-      "sha256": "5efce35256e94ce6e33c53bd2f3bd3849fa9037f906e45a9254d84662bb64f23"
+      "sha256": "fb7c603cf5c26324dae9059895d96fab24a63f1585805ec2057a53f6abecc562"
     },
     {
       "source": "src/components/animated/RefinedFace.tsx",

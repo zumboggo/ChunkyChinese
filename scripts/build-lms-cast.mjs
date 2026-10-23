@@ -12,7 +12,7 @@ for(const [id,character] of Object.entries(cast)){
  output(`public/stories/animated/rigs/${id.toLowerCase()}-cartoon.json`,character)
  library.push({id,name:character.name})
 }
-output(libraryPath,library,false)
+output(libraryPath,library.sort((a,b)=>a.id.localeCompare(b.id)),false)
 // New immutable presentation releases: every line, clip and branch stays byte-for-byte equivalent as data.
 for(const [from,to] of [['moonlight-01-v4','moonlight-01-v5'],['moonlight-02-v4','moonlight-02-v5'],['moonlight-03-v3','moonlight-03-v4'],['moonlight-04','moonlight-04-v2']]){
  const pack=JSON.parse(readFileSync(`stories/animated/${from}.json`,'utf8'))

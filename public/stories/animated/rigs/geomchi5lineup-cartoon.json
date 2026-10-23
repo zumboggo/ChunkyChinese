@@ -1,0 +1,25 @@
+{
+  "name": "Geomchi disciple 5",
+  "version": 1,
+  "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged. Disciples numbered from left to right after Geomchi.",
+  "expressions": {},
+  "rig": {
+    "version": 2,
+    "preset": "cartoon-v1",
+    "style": "manga",
+    "finish": "polished",
+    "palette": {
+      "skin": "#dab18d",
+      "hair": "#302b27",
+      "shirt": "#302f2c",
+      "trim": "#9f8a5e"
+    },
+    "appearance": {
+      "age": "adult",
+      "hair": "layered",
+      "face": "scrappy",
+      "eyes": "keen",
+      "outfit": "robe"
+    }
+  }
+}

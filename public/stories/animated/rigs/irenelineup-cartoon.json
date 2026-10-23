@@ -1,0 +1,25 @@
+{
+  "name": "Irene",
+  "version": 1,
+  "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged.",
+  "expressions": {},
+  "rig": {
+    "version": 2,
+    "preset": "cartoon-v1",
+    "style": "manga",
+    "finish": "polished",
+    "palette": {
+      "skin": "#f0c9ae",
+      "hair": "#c79961",
+      "shirt": "#f2ecdc",
+      "trim": "#b8954f"
+    },
+    "appearance": {
+      "age": "adult",
+      "hair": "long",
+      "face": "oval",
+      "eyes": "gentle",
+      "outfit": "robe"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "approved_date": "2026-10-23",
+  "scope": "Primary reference for all future Chinese LMS episode SVG characters, stills and cutscenes. Only include characters present in the source scene.",
+  "primary_reference": "stories/characters/references/lms-main-cast-lineup.png",
+  "sha256": "9976cf58d1b2fb614e2f82d2ce3a9aa7a36f40583721fbe3bc2214fee8d3d6b2",
+  "supersedes": "Previous Weed novel-cover and Hyun B references; preserve historical provenance and released packages.",
+  "characters": {
+    "Hyun": "Top center Weed / Lee Hyun. Tousled brown hair, amber eyes, ivory rolled-sleeve shirt, brown leather vest/harness, wrist guards, belts and pouches. Clever angular youthful adult face.",
+    "Pale": "Far left label Pale: honey-brown high ponytail, green eyes, green/ivory ranger outfit, leaf hair accent and bow. Follow this supplied depiction.",
+    "Irene": "Upper left, long honey-blonde hair, blue eyes, ivory and gold cleric robes and blue-jewel staff.",
+    "Seoyoon": "Upper left-center, long straight black hair, violet eyes, ivory and purple swordfighter outfit.",
+    "Surka": "Upper right-center, dark brown high ponytail, amber eyes, red and ivory martial-artist clothing, dark wrist wraps.",
+    "Romuna": "Upper right, long lavender hair, violet eyes, large purple witch hat, dark purple and gold mage dress.",
+    "Mapan": "Right of Romuna, round adult face, curly brown hair, joyful eyes, green and gold merchant robe, belt and pouches.",
+    "Hwaryeong": "Far right, long flowing black hair, warm brown eyes, red and gold dancer outfit and gold jewelry.",
+    "Geomchi": "Lower left, broad mature man, rugged face, long dark hair, dark beard, black/charcoal open martial robes and gold trim, sword.",
+    "GeomchiDisciples": "Five distinct young adult dark-haired men along lower row, black and charcoal martial robes with muted gold trim; preserve individual hair and face differences."
+  },
+  "supporting_characters": "Shopkeeper, Bard, Grandmother, Sister, Collector and Leader are not identified in this lineup; retain established designs until supplied otherwise.",
+  "svg_limits": "Shared articulated SVG uses supported stylized clothing and hair shapes; approximate costumes with available tunic/robe/workshirt bases. Hat, bow, jewelry, harness detail and exact silhouette may require a future renderer extension; do not claim exact reproduction.",
+  "style": "Detailed luminous fantasy anime/manhwa illustration, confident fine ink, rich warm cel shading and painterly depth. Preserve the supplied faces and costume identities, with scene-appropriate wardrobe when necessary."
+}

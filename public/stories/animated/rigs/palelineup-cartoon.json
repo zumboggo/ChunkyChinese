@@ -1,0 +1,25 @@
+{
+  "name": "Pale",
+  "version": 1,
+  "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged.",
+  "expressions": {},
+  "rig": {
+    "version": 2,
+    "preset": "cartoon-v1",
+    "style": "manga",
+    "finish": "polished",
+    "palette": {
+      "skin": "#edc4a1",
+      "hair": "#bb8341",
+      "shirt": "#477148",
+      "trim": "#efe5c7"
+    },
+    "appearance": {
+      "age": "adult",
+      "hair": "ponytail",
+      "face": "spirited",
+      "eyes": "keen",
+      "outfit": "tunic"
+    }
+  }
+}

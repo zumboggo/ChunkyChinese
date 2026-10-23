@@ -109,7 +109,7 @@
     "scope": "One small dramatic development; source fidelity determines the boundary.",
     "choices": "Usually 4–5 brief reconnecting choice moments per route, with distinct immediate responses. All may be local choices without later callbacks or saved variables.",
     "length": "Usually 40–60 voiced entries; flexible, not a quota.",
-    "assets": "Reuse the approved option-B SVG cast from stories/characters/lms-cast.json. Hyun has a scrappy face and tousled hair; his sister has a spirited face, ponytail and rust overshirt. Use happy/relieved for broad family warmth and excited/proud for reward anticipation. Sister is available in the reusable cast; add her only when the source places her in the scene.",
+    "assets": "Use the approved main-cast lineup and supported polished SVG approximations in stories/characters/lms-lineup-cast.json for future episodes. Preserve source appearances; do not insert absent cast. Supporting roles not pictured retain established designs.",
     "language": "Simplified Mandarin, natural phrases, contextual glosses and reviewed pinyin.",
     "voice": "Tingting, 165 wpm, AAC 32 kbps; exact-text cache.",
     "memory": "Within-episode variables only; no invented cross-episode memory."
@@ -127,7 +127,7 @@
     "The attendant says the queen initially resented Zahab’s arrival with a sword rather than a carving knife. She had trusted that he and their childhood promise would never change. Weed now understands her hurt, but has not heard the assassination or moonlight-carving account.",
     "Episode 22 uses four immediate-response choices with no variables or later callbacks."
   ],
-  "castRecipes": "stories/characters/lms-cast.json",
+  "castRecipes": "stories/characters/lms-lineup-cast.json",
   "pendingPublication": [],
   "localContinuation": {
     "note": "Published through moonlight-22-v1",
@@ -135,5 +135,6 @@
     "nextEndBefore": "Then, a mysterious flashback flittered before Weed’s eyes.",
     "assetsFrom": "stories/animated/moonlight-22.json"
   },
-  "characterReferences": "stories/characters/weed-reference.json"
+  "characterReferences": "stories/characters/lms-reference.json",
+  "castBundle": "public/stories/animated/cast/lms-lineup.json"
 }

@@ -1,0 +1,26 @@
+{
+  "name": "Geomchi",
+  "version": 1,
+  "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged.",
+  "expressions": {},
+  "rig": {
+    "version": 2,
+    "preset": "cartoon-v1",
+    "style": "manga",
+    "finish": "polished",
+    "palette": {
+      "skin": "#c69a75",
+      "hair": "#322a23",
+      "shirt": "#302e2c",
+      "trim": "#aa8f61"
+    },
+    "appearance": {
+      "age": "adult",
+      "hair": "long",
+      "face": "broad",
+      "eyes": "narrow",
+      "outfit": "robe",
+      "facialHair": "full"
+    }
+  }
+}

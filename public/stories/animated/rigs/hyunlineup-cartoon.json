@@ -1,0 +1,25 @@
+{
+  "name": "李贤 · Lee Hyun",
+  "version": 4,
+  "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged.",
+  "expressions": {},
+  "rig": {
+    "version": 2,
+    "preset": "cartoon-v1",
+    "style": "manga",
+    "finish": "polished",
+    "palette": {
+      "skin": "#e5bb98",
+      "hair": "#49372b",
+      "shirt": "#eee5d2",
+      "trim": "#735035"
+    },
+    "appearance": {
+      "age": "adult",
+      "hair": "tousled",
+      "face": "angular",
+      "eyes": "keen",
+      "outfit": "workshirt"
+    }
+  }
+}

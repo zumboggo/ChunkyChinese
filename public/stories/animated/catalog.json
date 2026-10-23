@@ -140,19 +140,37 @@
     "id": "moonlight-18-v1",
     "category": "lms",
     "episode": 18,
-    "path": "moonlight-18.json"
+    "path": "moonlight-18.json",
+    "intro": {
+      "src": "stories/animated/cutscenes/moonlight-18-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-18-intro.jpg",
+      "title": "The moonlight question",
+      "durationSeconds": 6
+    }
   },
   {
     "id": "moonlight-19-v1",
     "category": "lms",
     "episode": 19,
-    "path": "moonlight-19.json"
+    "path": "moonlight-19.json",
+    "intro": {
+      "src": "stories/animated/cutscenes/moonlight-19-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-19-intro.jpg",
+      "title": "An enticing risk",
+      "durationSeconds": 6
+    }
   },
   {
     "id": "moonlight-20-v1",
     "category": "lms",
     "episode": 20,
-    "path": "moonlight-20.json"
+    "path": "moonlight-20.json",
+    "intro": {
+      "src": "stories/animated/cutscenes/moonlight-20-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-20-intro.jpg",
+      "title": "The price of a secret",
+      "durationSeconds": 6
+    }
   },
   {
     "id": "moonlight-21-v1",

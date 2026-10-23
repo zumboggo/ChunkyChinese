@@ -1,0 +1,425 @@
+[
+  {
+    "id": "Hyun",
+    "name": "李贤 · Lee Hyun",
+    "version": 4,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "tousled",
+      "face": "angular",
+      "eyes": "keen",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#e5bb98",
+      "hair": "#49372b",
+      "shirt": "#eee5d2",
+      "trim": "#735035"
+    },
+    "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged."
+  },
+  {
+    "id": "Pale",
+    "name": "Pale",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "ponytail",
+      "face": "spirited",
+      "eyes": "keen",
+      "outfit": "tunic"
+    },
+    "palette": {
+      "skin": "#edc4a1",
+      "hair": "#bb8341",
+      "shirt": "#477148",
+      "trim": "#efe5c7"
+    },
+    "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged."
+  },
+  {
+    "id": "Irene",
+    "name": "Irene",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "long",
+      "face": "oval",
+      "eyes": "gentle",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#f0c9ae",
+      "hair": "#c79961",
+      "shirt": "#f2ecdc",
+      "trim": "#b8954f"
+    },
+    "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged."
+  },
+  {
+    "id": "Seoyoon",
+    "name": "Seoyoon",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "long",
+      "face": "lean",
+      "eyes": "keen",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#eac1ab",
+      "hair": "#24232c",
+      "shirt": "#eee9e3",
+      "trim": "#58415f"
+    },
+    "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged."
+  },
+  {
+    "id": "Surka",
+    "name": "Surka",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "ponytail",
+      "face": "spirited",
+      "eyes": "keen",
+      "outfit": "tunic"
+    },
+    "palette": {
+      "skin": "#e7b798",
+      "hair": "#593a30",
+      "shirt": "#af4936",
+      "trim": "#eee0bf"
+    },
+    "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged."
+  },
+  {
+    "id": "Romuna",
+    "name": "Romuna",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "long",
+      "face": "angular",
+      "eyes": "keen",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#eac1b7",
+      "hair": "#8b6798",
+      "shirt": "#463153",
+      "trim": "#b09553"
+    },
+    "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged."
+  },
+  {
+    "id": "Mapan",
+    "name": "Mapan",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "side-part",
+      "face": "round",
+      "eyes": "gentle",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#e4bb98",
+      "hair": "#65472f",
+      "shirt": "#47634a",
+      "trim": "#c5a569"
+    },
+    "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged."
+  },
+  {
+    "id": "Hwaryeong",
+    "name": "Hwaryeong",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "long",
+      "face": "oval",
+      "eyes": "keen",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#deb08e",
+      "hair": "#302825",
+      "shirt": "#a34536",
+      "trim": "#c4a15c"
+    },
+    "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged."
+  },
+  {
+    "id": "Geomchi",
+    "name": "Geomchi",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "long",
+      "face": "broad",
+      "eyes": "narrow",
+      "outfit": "robe",
+      "facialHair": "full"
+    },
+    "palette": {
+      "skin": "#c69a75",
+      "hair": "#322a23",
+      "shirt": "#302e2c",
+      "trim": "#aa8f61"
+    },
+    "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged."
+  },
+  {
+    "id": "Geomchi1",
+    "name": "Geomchi disciple 1",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "long",
+      "face": "lean",
+      "eyes": "keen",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#dab18d",
+      "hair": "#302b27",
+      "shirt": "#302f2c",
+      "trim": "#9f8a5e"
+    },
+    "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged. Disciples numbered from left to right after Geomchi."
+  },
+  {
+    "id": "Geomchi2",
+    "name": "Geomchi disciple 2",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "tousled",
+      "face": "angular",
+      "eyes": "keen",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#dab18d",
+      "hair": "#302b27",
+      "shirt": "#302f2c",
+      "trim": "#9f8a5e"
+    },
+    "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged. Disciples numbered from left to right after Geomchi."
+  },
+  {
+    "id": "Geomchi3",
+    "name": "Geomchi disciple 3",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "side-part",
+      "face": "lean",
+      "eyes": "keen",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#dab18d",
+      "hair": "#302b27",
+      "shirt": "#302f2c",
+      "trim": "#9f8a5e"
+    },
+    "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged. Disciples numbered from left to right after Geomchi."
+  },
+  {
+    "id": "Geomchi4",
+    "name": "Geomchi disciple 4",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "swept",
+      "face": "spirited",
+      "eyes": "keen",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#dab18d",
+      "hair": "#302b27",
+      "shirt": "#302f2c",
+      "trim": "#9f8a5e"
+    },
+    "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged. Disciples numbered from left to right after Geomchi."
+  },
+  {
+    "id": "Geomchi5",
+    "name": "Geomchi disciple 5",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "layered",
+      "face": "scrappy",
+      "eyes": "keen",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#dab18d",
+      "hair": "#302b27",
+      "shirt": "#302f2c",
+      "trim": "#9f8a5e"
+    },
+    "provenance": "Based on David’s approved Fantasy RPG hero lineup poster (2026-10-23). Hand-authored supported polished articulated SVG approximation; costume details beyond shared geometry are not reproduced. Future episodes only; original released packs remain unchanged. Disciples numbered from left to right after Geomchi."
+  },
+  {
+    "id": "Grandma",
+    "name": "奶奶 · Grandmother",
+    "version": 2,
+    "finish": "polished",
+    "appearance": {
+      "age": "elder",
+      "hair": "bun",
+      "face": "oval",
+      "eyes": "gentle",
+      "outfit": "cardigan"
+    },
+    "palette": {
+      "skin": "#d9b592",
+      "hair": "#bab5aa",
+      "shirt": "#796573",
+      "trim": "#e8dcc4"
+    },
+    "provenance": "Original reusable polished SVG interpretation for the personal LMS adaptation; imagegen concept sheet 2026-10-14, translated into shared articulated vector geometry. Not official artwork. All expressions remain animated vector layers."
+  },
+  {
+    "id": "Collector",
+    "name": "要钱的男人 · Collector",
+    "version": 2,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "layered",
+      "face": "lean",
+      "eyes": "keen",
+      "outfit": "suit"
+    },
+    "palette": {
+      "skin": "#d8af8d",
+      "hair": "#a88b53",
+      "shirt": "#414750",
+      "trim": "#e5dfd1"
+    },
+    "provenance": "Original reusable polished SVG interpretation for the personal LMS adaptation; imagegen concept sheet 2026-10-14, translated into shared articulated vector geometry. Not official artwork. All expressions remain animated vector layers."
+  },
+  {
+    "id": "Leader",
+    "name": "Han Jinsup · Leader",
+    "version": 2,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "swept",
+      "face": "broad",
+      "eyes": "narrow",
+      "outfit": "suit"
+    },
+    "palette": {
+      "skin": "#cda17f",
+      "hair": "#27292e",
+      "shirt": "#293846",
+      "trim": "#d7d9d6"
+    },
+    "provenance": "Original reusable polished SVG interpretation for the personal LMS adaptation; imagegen concept sheet 2026-10-14, translated into shared articulated vector geometry. Not official artwork. All expressions remain animated vector layers."
+  },
+  {
+    "id": "Sister",
+    "name": "妹妹 · Hyun’s sister",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "teen",
+      "hair": "ponytail",
+      "face": "spirited",
+      "eyes": "keen",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#e0b595",
+      "hair": "#302a27",
+      "shirt": "#9b5b45",
+      "trim": "#e4d8be"
+    },
+    "provenance": "Approved Sister B imagegen concept, 2026-10-14. Original fictional SVG interpretation with practical ponytail, alert eyes and rust overshirt. Reusable cast member; not inserted into scenes where she is absent."
+  },
+  {
+    "id": "Shopkeeper",
+    "name": "店主 · Sculpture shopkeeper",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "side-part",
+      "face": "round",
+      "eyes": "narrow",
+      "facialHair": "full",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#d1b093",
+      "hair": "#51463e",
+      "beard": "#51463e",
+      "shirt": "#68725a",
+      "trim": "#bda377"
+    },
+    "provenance": "Original fictional sculpture-shop keeper for the personal LMS adaptation. Shared polished SVG builder, distinct round face, tidy side-part, short beard and muted sage merchant robe; not official artwork."
+  },
+  {
+    "id": "Bard",
+    "name": "诗人 · Bard",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "swept",
+      "face": "lean",
+      "eyes": "keen",
+      "outfit": "tunic"
+    },
+    "palette": {
+      "skin": "#d7b08b",
+      "hair": "#78604b",
+      "shirt": "#78536d",
+      "trim": "#c7ad73"
+    },
+    "provenance": "Original fictional middle-aged Serabourg bard, approximately forty as in the source. Swept brown hair, lean face and muted plum tunic, built with shared polished SVG geometry; not official artwork."
+  },
+  {
+    "id": "Attendant",
+    "name": "侍女 · Former attendant",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "elder",
+      "hair": "bob",
+      "face": "angular",
+      "eyes": "gentle",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#d8b697",
+      "hair": "#b8b9bc",
+      "shirt": "#526b82",
+      "trim": "#d6c6a4"
+    },
+    "provenance": "Original fictional retired attendant of Queen Evane. Silver bob, angular elder face and muted blue robe, built with shared polished SVG geometry; not official artwork."
+  }
+]
