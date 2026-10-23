@@ -96,7 +96,7 @@ test('series opener includes the ten-second shot and title card before Episode 1
  await expect(page.locator('.episode-intro')).toHaveCount(0)
 })
 
-for(const episode of [21,22,23,24,25])test(`episode ${episode} decision hold flows automatically into a spoken clip`,async({page},info)=>{
+for(const episode of [21,22,23,24,25,26])test(`episode ${episode} decision hold flows automatically into a spoken clip`,async({page},info)=>{
  await page.emulateMedia({reducedMotion:'reduce'})
  await openEpisode(page,episode)
  const video=page.locator('.episode-intro video')

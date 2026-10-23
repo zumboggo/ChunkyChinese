@@ -1,0 +1,713 @@
+{
+  "离开老侍女的家，我回到雕像店。任务做完了，奖励还没拿呢。": {
+    "english": "After leaving the elderly attendant's home, I return to the sculpture shop. The quests are done, but I have not collected the rewards yet.",
+    "pinyin": "lí kāi lǎo shì nǚ de jiā ， wǒ huí dào diāo xiàng diàn 。 rèn wu zuò wán le ， jiǎng lì hái méi ná ne 。",
+    "interlinear": [
+      {
+        "chinese": "离开老侍女的家，",
+        "gloss": "After leaving the elderly attendant's home,",
+        "pinyin": "lí kāi lǎo shì nǚ de jiā ，"
+      },
+      {
+        "chinese": "我回到雕像店。",
+        "gloss": "I return to the sculpture shop.",
+        "pinyin": "wǒ huí dào diāo xiàng diàn 。"
+      },
+      {
+        "chinese": "任务做完了，",
+        "gloss": "The quests are done,",
+        "pinyin": "rèn wu zuò wán le ，"
+      },
+      {
+        "chinese": "奖励还没拿呢。",
+        "gloss": "but I have not collected the rewards yet.",
+        "pinyin": "jiǎng lì hái méi ná ne 。"
+      }
+    ]
+  },
+  "维德，这么快就知道是怎么回事了！真是谢谢你。": {
+    "english": "Weed, you found out what happened so quickly! Thank you so much.",
+    "pinyin": "wéi dé ， zhè me kuài jiù zhī dào shì zěn me huí shì le ！ zhēn shì xiè xiè nǐ 。",
+    "interlinear": [
+      {
+        "chinese": "维德，",
+        "gloss": "Weed,",
+        "pinyin": "wéi dé ，"
+      },
+      {
+        "chinese": "这么快就知道是怎么回事了！",
+        "gloss": "you found out what happened so quickly!",
+        "pinyin": "zhè me kuài jiù zhī dào shì zěn me huí shì le ！"
+      },
+      {
+        "chinese": "真是谢谢你。",
+        "gloss": "Thank you so much.",
+        "pinyin": "zhēn shì xiè xiè nǐ 。"
+      }
+    ]
+  },
+  "让你去做这个任务，看来我没找错人。": {
+    "english": "Having you do this quest, it seems I chose the right person.",
+    "pinyin": "ràng nǐ qù zuò zhè ge rèn wu ， kàn lái wǒ méi zhǎo cuò rén 。",
+    "interlinear": [
+      {
+        "chinese": "让你去做这个任务，",
+        "gloss": "Having you do this quest,",
+        "pinyin": "ràng nǐ qù zuò zhè ge rèn wu ，"
+      },
+      {
+        "chinese": "看来我没找错人。",
+        "gloss": "it seems I chose the right person.",
+        "pinyin": "kàn lái wǒ méi zhǎo cuò rén 。"
+      }
+    ]
+  },
+  "能帮上忙，我也很开心。": {
+    "english": "I could help, and I am happy about that too.",
+    "pinyin": "néng bāng shàng máng ， wǒ yě hěn kāi xīn 。",
+    "interlinear": [
+      {
+        "chinese": "能帮上忙，",
+        "gloss": "I could help,",
+        "pinyin": "néng bāng shàng máng ，"
+      },
+      {
+        "chinese": "我也很开心。",
+        "gloss": "and I am happy about that too.",
+        "pinyin": "wǒ yě hěn kāi xīn 。"
+      }
+    ]
+  },
+  "谢谢您愿意相信我。": {
+    "english": "Thank you for being willing to trust me.",
+    "pinyin": "xiè xiè nín yuàn yì xiāng xìn wǒ 。",
+    "interlinear": [
+      {
+        "chinese": "谢谢您",
+        "gloss": "Thank you",
+        "pinyin": "xiè xiè nín"
+      },
+      {
+        "chinese": "愿意相信我。",
+        "gloss": "for being willing to trust me.",
+        "pinyin": "yuàn yì xiāng xìn wǒ 。"
+      }
+    ]
+  },
+  "我点点头。老板很开心，接下来，是不是该给奖励了？": {
+    "english": "I nod. The shopkeeper is happy; next, is it time for the reward?",
+    "pinyin": "wǒ diǎn diǎn tóu 。 lǎo bǎn hěn kāi xīn ， jiē xià lái ， shì bu shì gāi gěi jiǎng lì le ？",
+    "interlinear": [
+      {
+        "chinese": "我点点头。",
+        "gloss": "I nod.",
+        "pinyin": "wǒ diǎn diǎn tóu 。"
+      },
+      {
+        "chinese": "老板很开心，",
+        "gloss": "The shopkeeper is happy;",
+        "pinyin": "lǎo bǎn hěn kāi xīn ，"
+      },
+      {
+        "chinese": "接下来，",
+        "gloss": "next,",
+        "pinyin": "jiē xià lái ，"
+      },
+      {
+        "chinese": "是不是该给奖励了？",
+        "gloss": "is it time for the reward?",
+        "pinyin": "shì bu shì gāi gěi jiǎng lì le ？"
+      }
+    ]
+  },
+  "他第一次见我时，可不是这样。现在，终于觉得找对人了。": {
+    "english": "When he first saw me, he certainly was not like this. Now, he finally thinks he found the right person.",
+    "pinyin": "tā dì yī cì jiàn wǒ shí ， kě bú shì zhè yàng 。 xiàn zài ， zhōng yú jué de zhǎo duì rén le 。",
+    "interlinear": [
+      {
+        "chinese": "他第一次见我时，",
+        "gloss": "When he first saw me,",
+        "pinyin": "tā dì yī cì jiàn wǒ shí ，"
+      },
+      {
+        "chinese": "可不是这样。",
+        "gloss": "he certainly was not like this.",
+        "pinyin": "kě bú shì zhè yàng 。"
+      },
+      {
+        "chinese": "现在，",
+        "gloss": "Now,",
+        "pinyin": "xiàn zài ，"
+      },
+      {
+        "chinese": "终于觉得找对人了。",
+        "gloss": "he finally thinks he found the right person.",
+        "pinyin": "zhōng yú jué de zhǎo duì rén le 。"
+      }
+    ]
+  },
+  "老板给了我两枚银币。拿到手里的钱，才是真的。": {
+    "english": "The shopkeeper gives me two silver coins. Money actually in my hand is the real thing.",
+    "pinyin": "lǎo bǎn gěi le wǒ liǎng méi yín bì 。 ná dào shǒu lǐ de qián ， cái shì zhēn de 。",
+    "interlinear": [
+      {
+        "chinese": "老板给了我两枚银币。",
+        "gloss": "The shopkeeper gives me two silver coins.",
+        "pinyin": "lǎo bǎn gěi le wǒ liǎng méi yín bì 。"
+      },
+      {
+        "chinese": "拿到手里的钱，",
+        "gloss": "Money actually in my hand",
+        "pinyin": "ná dào shǒu lǐ de qián ，"
+      },
+      {
+        "chinese": "才是真的。",
+        "gloss": "is the real thing.",
+        "pinyin": "cái shì zhēn de 。"
+      }
+    ]
+  },
+  "吟游诗人拿走的那枚银币，终于赚回来了！": {
+    "english": "The bard took that silver coin; I have finally earned it back!",
+    "pinyin": "yín yóu shī rén ná zǒu de nà méi yín bì ， zhōng yú zhuàn huí lái le ！",
+    "interlinear": [
+      {
+        "chinese": "吟游诗人",
+        "gloss": "The bard",
+        "pinyin": "yín yóu shī rén"
+      },
+      {
+        "chinese": "拿走的那枚银币，",
+        "gloss": "took that silver coin;",
+        "pinyin": "ná zǒu de nà méi yín bì ，"
+      },
+      {
+        "chinese": "终于赚回来了！",
+        "gloss": "I have finally earned it back!",
+        "pinyin": "zhōng yú zhuàn huí lái le ！"
+      }
+    ]
+  },
+  "我想想那一枚银币。": {
+    "english": "I think about that one silver coin.",
+    "pinyin": "wǒ xiǎng xiǎng nà yì méi yín bì 。",
+    "interlinear": [
+      {
+        "chinese": "我想想",
+        "gloss": "I think about",
+        "pinyin": "wǒ xiǎng xiǎng"
+      },
+      {
+        "chinese": "那一枚银币。",
+        "gloss": "that one silver coin.",
+        "pinyin": "nà yì méi yín bì 。"
+      }
+    ]
+  },
+  "我看看这两枚银币。": {
+    "english": "I look at these two silver coins.",
+    "pinyin": "wǒ kàn kàn zhè liǎng méi yín bì 。",
+    "interlinear": [
+      {
+        "chinese": "我看看",
+        "gloss": "I look at",
+        "pinyin": "wǒ kàn kàn"
+      },
+      {
+        "chinese": "这两枚银币。",
+        "gloss": "these two silver coins.",
+        "pinyin": "zhè liǎng méi yín bì 。"
+      }
+    ]
+  },
+  "那时候，一不小心就让他拿走了。现在想起来，还是心疼。": {
+    "english": "Back then, one careless moment let him take it. Even thinking about it now, it still hurts.",
+    "pinyin": "nà shí hòu ， yí bù xiǎo xīn jiù ràng tā ná zǒu le 。 xiàn zài xiǎng qǐ lái ， hái shì xīn téng 。",
+    "interlinear": [
+      {
+        "chinese": "那时候，",
+        "gloss": "Back then,",
+        "pinyin": "nà shí hòu ，"
+      },
+      {
+        "chinese": "一不小心",
+        "gloss": "one careless moment",
+        "pinyin": "yí bù xiǎo xīn"
+      },
+      {
+        "chinese": "就让他拿走了。",
+        "gloss": "let him take it.",
+        "pinyin": "jiù ràng tā ná zǒu le 。"
+      },
+      {
+        "chinese": "现在想起来，",
+        "gloss": "Even thinking about it now,",
+        "pinyin": "xiàn zài xiǎng qǐ lái ，"
+      },
+      {
+        "chinese": "还是心疼。",
+        "gloss": "it still hurts.",
+        "pinyin": "hái shì xīn téng 。"
+      }
+    ]
+  },
+  "两枚！不只把花出去的钱赚回来，还多了一枚。": {
+    "english": "Two coins! Not only did I earn back what I spent, there is another coin on top.",
+    "pinyin": "liǎng méi ！ bù zhǐ bǎ huā chū qù de qián zhuàn huí lái ， hái duō le yì méi 。",
+    "interlinear": [
+      {
+        "chinese": "两枚！",
+        "gloss": "Two coins!",
+        "pinyin": "liǎng méi ！"
+      },
+      {
+        "chinese": "不只把花出去的钱赚回来，",
+        "gloss": "Not only did I earn back what I spent,",
+        "pinyin": "bù zhǐ bǎ huā chū qù de qián zhuàn huí lái ，"
+      },
+      {
+        "chinese": "还多了一枚。",
+        "gloss": "there is another coin on top.",
+        "pinyin": "hái duō le yì méi 。"
+      }
+    ]
+  },
+  "我又回到训练场。教官也说我做得好，还给了一枚银币。": {
+    "english": "I return to the training hall. The instructor also says I did well, and gives me another silver coin.",
+    "pinyin": "wǒ yòu huí dào xùn liàn chǎng 。 jiào guān yě shuō wǒ zuò de hǎo ， hái gěi le yì méi yín bì 。",
+    "interlinear": [
+      {
+        "chinese": "我又回到训练场。",
+        "gloss": "I return to the training hall.",
+        "pinyin": "wǒ yòu huí dào xùn liàn chǎng 。"
+      },
+      {
+        "chinese": "教官也说我做得好，",
+        "gloss": "The instructor also says I did well,",
+        "pinyin": "jiào guān yě shuō wǒ zuò de hǎo ，"
+      },
+      {
+        "chinese": "还给了一枚银币。",
+        "gloss": "and gives me another silver coin.",
+        "pinyin": "hái gěi le yì méi yín bì 。"
+      }
+    ]
+  },
+  "做得不错。": {
+    "english": "Well done.",
+    "pinyin": "zuò de bú cuò 。",
+    "interlinear": [
+      {
+        "chinese": "做得不错。",
+        "gloss": "Well done.",
+        "pinyin": "zuò de bú cuò 。"
+      }
+    ]
+  },
+  "一开始的两枚，老板的两枚，还有教官的一枚。": {
+    "english": "The original two, the shopkeeper's two, and the instructor's one.",
+    "pinyin": "yì kāi shǐ de liǎng méi ， lǎo bǎn de liǎng méi ， hái yǒu jiào guān de yì méi 。",
+    "interlinear": [
+      {
+        "chinese": "一开始的两枚，",
+        "gloss": "The original two,",
+        "pinyin": "yì kāi shǐ de liǎng méi ，"
+      },
+      {
+        "chinese": "老板的两枚，",
+        "gloss": "the shopkeeper's two,",
+        "pinyin": "lǎo bǎn de liǎng méi ，"
+      },
+      {
+        "chinese": "还有教官的一枚。",
+        "gloss": "and the instructor's one.",
+        "pinyin": "hái yǒu jiào guān de yì méi 。"
+      }
+    ]
+  },
+  "这次，前前后后，一共拿到了五枚银币。": {
+    "english": "This time, all told, I received five silver coins in total.",
+    "pinyin": "zhè cì ， qián qián hòu hòu ， yí gòng ná dào le wǔ méi yín bì 。",
+    "interlinear": [
+      {
+        "chinese": "这次，",
+        "gloss": "This time,",
+        "pinyin": "zhè cì ，"
+      },
+      {
+        "chinese": "前前后后，",
+        "gloss": "all told,",
+        "pinyin": "qián qián hòu hòu ，"
+      },
+      {
+        "chinese": "一共拿到了五枚银币。",
+        "gloss": "I received five silver coins in total.",
+        "pinyin": "yí gòng ná dào le wǔ méi yín bì 。"
+      }
+    ]
+  },
+  "给吟游诗人花了一枚，手里还有四枚。": {
+    "english": "One was spent on the bard; I still have four in hand.",
+    "pinyin": "gěi yín yóu shī rén huā le yì méi ， shǒu lǐ hái yǒu sì méi 。",
+    "interlinear": [
+      {
+        "chinese": "给吟游诗人花了一枚，",
+        "gloss": "One was spent on the bard;",
+        "pinyin": "gěi yín yóu shī rén huā le yì méi ，"
+      },
+      {
+        "chinese": "手里还有四枚。",
+        "gloss": "I still have four in hand.",
+        "pinyin": "shǒu lǐ hái yǒu sì méi 。"
+      }
+    ]
+  },
+  "钱赚到了，我也已经从一级，变成了三级。": {
+    "english": "I earned money, and I have already gone from level one to level three.",
+    "pinyin": "qián zhuàn dào le ， wǒ yě yǐ jīng cóng yī jí ， biàn chéng le sān jí 。",
+    "interlinear": [
+      {
+        "chinese": "钱赚到了，",
+        "gloss": "I earned money,",
+        "pinyin": "qián zhuàn dào le ，"
+      },
+      {
+        "chinese": "我也已经从一级，",
+        "gloss": "and I have already gone from level one",
+        "pinyin": "wǒ yě yǐ jīng cóng yī jí ，"
+      },
+      {
+        "chinese": "变成了三级。",
+        "gloss": "to level three.",
+        "pinyin": "biàn chéng le sān jí 。"
+      }
+    ]
+  },
+  "我想想手里的剑会不会更有力。": {
+    "english": "I consider whether the sword in my hand will strike harder.",
+    "pinyin": "wǒ xiǎng xiǎng shǒu lǐ de jiàn huì bu huì gèng yǒu lì 。",
+    "interlinear": [
+      {
+        "chinese": "我想想",
+        "gloss": "I consider",
+        "pinyin": "wǒ xiǎng xiǎng"
+      },
+      {
+        "chinese": "手里的剑会不会更有力。",
+        "gloss": "whether the sword in my hand will strike harder.",
+        "pinyin": "shǒu lǐ de jiàn huì bu huì gèng yǒu lì 。"
+      }
+    ]
+  },
+  "我想想自己会不会更快。": {
+    "english": "I consider whether I will be quicker.",
+    "pinyin": "wǒ xiǎng xiǎng zì jǐ huì bu huì gèng kuài 。",
+    "interlinear": [
+      {
+        "chinese": "我想想",
+        "gloss": "I consider",
+        "pinyin": "wǒ xiǎng xiǎng"
+      },
+      {
+        "chinese": "自己会不会更快。",
+        "gloss": "whether I will be quicker.",
+        "pinyin": "zì jǐ huì bu huì gèng kuài 。"
+      }
+    ]
+  },
+  "力量越大，同样的一剑，也就更有力。": {
+    "english": "The greater my Strength, the same sword strike will have more force.",
+    "pinyin": "lì liàng yuè dà ， tóng yàng de yí jiàn ， yě jiù gèng yǒu lì 。",
+    "interlinear": [
+      {
+        "chinese": "力量越大，",
+        "gloss": "The greater my Strength,",
+        "pinyin": "lì liàng yuè dà ，"
+      },
+      {
+        "chinese": "同样的一剑，",
+        "gloss": "the same sword strike",
+        "pinyin": "tóng yàng de yí jiàn ，"
+      },
+      {
+        "chinese": "也就更有力。",
+        "gloss": "will have more force.",
+        "pinyin": "yě jiù gèng yǒu lì 。"
+      }
+    ]
+  },
+  "敏捷提高了，出剑的时候，也就更快了。": {
+    "english": "With increased Agility, when I swing the sword, it will be quicker too.",
+    "pinyin": "mǐn jié tí gāo le ， chū jiàn de shí hòu ， yě jiù gèng kuài le 。",
+    "interlinear": [
+      {
+        "chinese": "敏捷提高了，",
+        "gloss": "With increased Agility,",
+        "pinyin": "mǐn jié tí gāo le ，"
+      },
+      {
+        "chinese": "出剑的时候，",
+        "gloss": "when I swing the sword,",
+        "pinyin": "chū jiàn de shí hòu ，"
+      },
+      {
+        "chinese": "也就更快了。",
+        "gloss": "it will be quicker too.",
+        "pinyin": "yě jiù gèng kuài le 。"
+      }
+    ]
+  },
+  "为什么不再接一个任务呢？": {
+    "english": "Why not take another quest?",
+    "pinyin": "wèi shén me bú zài jiē yí gè rèn wu ne ？",
+    "interlinear": [
+      {
+        "chinese": "为什么",
+        "gloss": "Why",
+        "pinyin": "wèi shén me"
+      },
+      {
+        "chinese": "不再接一个任务呢？",
+        "gloss": "not take another quest?",
+        "pinyin": "bú zài jiē yí gè rèn wu ne ？"
+      }
+    ]
+  },
+  "我刚出去一次，就拿到了钱，等级也提高了。": {
+    "english": "I just went out once, and got money, and my level increased too.",
+    "pinyin": "wǒ gāng chū qù yí cì ， jiù ná dào le qián ， děng jí yě tí gāo le 。",
+    "interlinear": [
+      {
+        "chinese": "我刚出去一次，",
+        "gloss": "I just went out once,",
+        "pinyin": "wǒ gāng chū qù yí cì ，"
+      },
+      {
+        "chinese": "就拿到了钱，",
+        "gloss": "and got money,",
+        "pinyin": "jiù ná dào le qián ，"
+      },
+      {
+        "chinese": "等级也提高了。",
+        "gloss": "and my level increased too.",
+        "pinyin": "děng jí yě tí gāo le 。"
+      }
+    ]
+  },
+  "再去找个任务，好像比一直打木头人有意思多了。": {
+    "english": "Finding another quest seems better than continually striking a training dummy: much more interesting.",
+    "pinyin": "zài qù zhǎo gè rèn wu ， hǎo xiàng bǐ yì zhí dǎ mù tou rén yǒu yì si duō le 。",
+    "interlinear": [
+      {
+        "chinese": "再去找个任务，",
+        "gloss": "Finding another quest",
+        "pinyin": "zài qù zhǎo gè rèn wu ，"
+      },
+      {
+        "chinese": "好像比一直打木头人",
+        "gloss": "seems better than continually striking a training dummy:",
+        "pinyin": "hǎo xiàng bǐ yì zhí dǎ mù tou rén"
+      },
+      {
+        "chinese": "有意思多了。",
+        "gloss": "much more interesting.",
+        "pinyin": "yǒu yì si duō le 。"
+      }
+    ]
+  },
+  "我想想刚到手的奖励。": {
+    "english": "I think about the reward I have just received.",
+    "pinyin": "wǒ xiǎng xiǎng gāng dào shǒu de jiǎng lì 。",
+    "interlinear": [
+      {
+        "chinese": "我想想",
+        "gloss": "I think about",
+        "pinyin": "wǒ xiǎng xiǎng"
+      },
+      {
+        "chinese": "刚到手的奖励。",
+        "gloss": "the reward I have just received.",
+        "pinyin": "gāng dào shǒu de jiǎng lì 。"
+      }
+    ]
+  },
+  "我看看那把一直用的木剑。": {
+    "english": "I look at the wooden sword I have been using all along.",
+    "pinyin": "wǒ kàn kàn nà bǎ yì zhí yòng de mù jiàn 。",
+    "interlinear": [
+      {
+        "chinese": "我看看",
+        "gloss": "I look at",
+        "pinyin": "wǒ kàn kàn"
+      },
+      {
+        "chinese": "那把一直用的木剑。",
+        "gloss": "the wooden sword I have been using all along.",
+        "pinyin": "nà bǎ yì zhí yòng de mù jiàn 。"
+      }
+    ]
+  },
+  "钱当然很好。可这么特别的任务，不是想找就能找到的。": {
+    "english": "Money is certainly good. But a quest this special cannot be found just because you want one.",
+    "pinyin": "qián dāng rán hěn hǎo 。 kě zhè me tè bié de rèn wu ， bú shì xiǎng zhǎo jiù néng zhǎo dào de 。",
+    "interlinear": [
+      {
+        "chinese": "钱当然很好。",
+        "gloss": "Money is certainly good.",
+        "pinyin": "qián dāng rán hěn hǎo 。"
+      },
+      {
+        "chinese": "可这么特别的任务，",
+        "gloss": "But a quest this special",
+        "pinyin": "kě zhè me tè bié de rèn wu ，"
+      },
+      {
+        "chinese": "不是想找就能找到的。",
+        "gloss": "cannot be found just because you want one.",
+        "pinyin": "bú shì xiǎng zhǎo jiù néng zhǎo dào de 。"
+      }
+    ]
+  },
+  "我已经练习了这么久。刚赚到一点钱，就不练习了吗？": {
+    "english": "I have already practiced for so long. I have only just earned a little money; am I going to stop practicing now?",
+    "pinyin": "wǒ yǐ jīng liàn xí le zhè me jiǔ 。 gāng zhuàn dào yì diǎn qián ， jiù bú liàn xí le ma ？",
+    "interlinear": [
+      {
+        "chinese": "我已经练习了这么久。",
+        "gloss": "I have already practiced for so long.",
+        "pinyin": "wǒ yǐ jīng liàn xí le zhè me jiǔ 。"
+      },
+      {
+        "chinese": "刚赚到一点钱，",
+        "gloss": "I have only just earned a little money;",
+        "pinyin": "gāng zhuàn dào yì diǎn qián ，"
+      },
+      {
+        "chinese": "就不练习了吗？",
+        "gloss": "am I going to stop practicing now?",
+        "pinyin": "jiù bú liàn xí le ma ？"
+      }
+    ]
+  },
+  "心里还想去接任务，我却又拿出了木剑。": {
+    "english": "In my heart I still want to take a quest, yet I take out my wooden sword again.",
+    "pinyin": "xīn lǐ hái xiǎng qù jiē rèn wu ， wǒ què yòu ná chū le mù jiàn 。",
+    "interlinear": [
+      {
+        "chinese": "心里还想去接任务，",
+        "gloss": "In my heart I still want to take a quest,",
+        "pinyin": "xīn lǐ hái xiǎng qù jiē rèn wu ，"
+      },
+      {
+        "chinese": "我却又拿出了木剑。",
+        "gloss": "yet I take out my wooden sword again.",
+        "pinyin": "wǒ què yòu ná chū le mù jiàn 。"
+      }
+    ]
+  },
+  "木剑又打在木头人身上。我回来了。": {
+    "english": "The wooden sword strikes the dummy again. I am back.",
+    "pinyin": "mù jiàn yòu dǎ zài mù tou rén shēn shàng 。 wǒ huí lái le 。",
+    "interlinear": [
+      {
+        "chinese": "木剑又打在木头人身上。",
+        "gloss": "The wooden sword strikes the dummy again.",
+        "pinyin": "mù jiàn yòu dǎ zài mù tou rén shēn shàng 。"
+      },
+      {
+        "chinese": "我回来了。",
+        "gloss": "I am back.",
+        "pinyin": "wǒ huí lái le 。"
+      }
+    ]
+  },
+  "这次任务给的奖励，对我这个等级来说，已经很多了。": {
+    "english": "The rewards from this quest, for someone at my level, were already very generous.",
+    "pinyin": "zhè cì rèn wu gěi de jiǎng lì ， duì wǒ zhè ge děng jí lái shuō ， yǐ jīng hěn duō le 。",
+    "interlinear": [
+      {
+        "chinese": "这次任务给的奖励，",
+        "gloss": "The rewards from this quest,",
+        "pinyin": "zhè cì rèn wu gěi de jiǎng lì ，"
+      },
+      {
+        "chinese": "对我这个等级来说，",
+        "gloss": "for someone at my level,",
+        "pinyin": "duì wǒ zhè ge děng jí lái shuō ，"
+      },
+      {
+        "chinese": "已经很多了。",
+        "gloss": "were already very generous.",
+        "pinyin": "yǐ jīng hěn duō le 。"
+      }
+    ]
+  },
+  "可这样的好事，不会每次都有。眼前能做的，还是练习。": {
+    "english": "But good fortune like this does not happen every time. What I can do right now is practice.",
+    "pinyin": "kě zhè yàng de hǎo shì ， bú huì měi cì dōu yǒu 。 yǎn qián néng zuò de ， hái shì liàn xí 。",
+    "interlinear": [
+      {
+        "chinese": "可这样的好事，",
+        "gloss": "But good fortune like this",
+        "pinyin": "kě zhè yàng de hǎo shì ，"
+      },
+      {
+        "chinese": "不会每次都有。",
+        "gloss": "does not happen every time.",
+        "pinyin": "bú huì měi cì dōu yǒu 。"
+      },
+      {
+        "chinese": "眼前能做的，",
+        "gloss": "What I can do right now",
+        "pinyin": "yǎn qián néng zuò de ，"
+      },
+      {
+        "chinese": "还是练习。",
+        "gloss": "is practice.",
+        "pinyin": "hái shì liàn xí 。"
+      }
+    ]
+  },
+  "这一次，我选木剑。它能带我走到哪里？": {
+    "english": "This time, I choose the wooden sword. How far can it take me?",
+    "pinyin": "zhè yí cì ， wǒ xuǎn mù jiàn 。 tā néng dài wǒ zǒu dào nǎ lǐ ？",
+    "interlinear": [
+      {
+        "chinese": "这一次，",
+        "gloss": "This time,",
+        "pinyin": "zhè yí cì ，"
+      },
+      {
+        "chinese": "我选木剑。",
+        "gloss": "I choose the wooden sword.",
+        "pinyin": "wǒ xuǎn mù jiàn 。"
+      },
+      {
+        "chinese": "它能带我走到哪里？",
+        "gloss": "How far can it take me?",
+        "pinyin": "tā néng dài wǒ zǒu dào nǎ lǐ ？"
+      }
+    ]
+  },
+  "等级提高以后得到的点数，我一半用来提高力量，一半用来提高敏捷。": {
+    "english": "The points from leveling up, I use half to increase Strength, and half to increase Agility.",
+    "pinyin": "děng jí tí gāo yǐ hòu dé dào de diǎn shù ， wǒ yí bàn yòng lái tí gāo lì liàng ， yí bàn yòng lái tí gāo mǐn jié 。",
+    "interlinear": [
+      {
+        "chinese": "等级提高以后得到的点数，",
+        "gloss": "The points from leveling up,",
+        "pinyin": "děng jí tí gāo yǐ hòu dé dào de diǎn shù ，"
+      },
+      {
+        "chinese": "我一半用来提高力量，",
+        "gloss": "I use half to increase Strength,",
+        "pinyin": "wǒ yí bàn yòng lái tí gāo lì liàng ，"
+      },
+      {
+        "chinese": "一半用来提高敏捷。",
+        "gloss": "and half to increase Agility.",
+        "pinyin": "yí bàn yòng lái tí gāo mǐn jié 。"
+      }
+    ]
+  }
+}

@@ -231,5 +231,17 @@
       "durationSeconds": 9
     },
     "path": "moonlight-25.json"
+  },
+  {
+    "id": "moonlight-26-v1",
+    "category": "lms",
+    "episode": 26,
+    "intro": {
+      "src": "stories/animated/cutscenes/moonlight-26-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-26-intro.jpg",
+      "title": "Another quest?",
+      "durationSeconds": 9
+    },
+    "path": "moonlight-26.json"
   }
 ]
