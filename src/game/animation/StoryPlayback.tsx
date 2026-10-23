@@ -26,7 +26,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  const [showPinyin,setShowPinyin]=useState<boolean>(()=>preference('pinyin',true)),[showGloss,setShowGloss]=useState<boolean>(()=>preference('english',true)),[answers,setAnswers]=useState<number[]>([-1,-1,-1,-1])
  useEffect(()=>{try{localStorage.setItem(preferencesKey,JSON.stringify({pinyin:showPinyin,english:showGloss,autoplay:autoPlay,voiceVolume,reduceMotion,motionPaused}))}catch{/* Display preferences are optional on restricted devices. */}},[preferencesKey,showPinyin,showGloss,autoPlay,voiceVolume,reduceMotion,motionPaused])
  const line=pack.chinese?.lines[current?.text],score=pack.quiz.length===4&&progress.quizzes.length?quizScore(pack.quiz,progress.quizzes.at(-1)!):null
- const latest=useRef({advance:(o:string|null)=>{void advance(o)},play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy});latest.current={advance:(o:string|null)=>{void advance(o)},play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy}
+ const latest=useRef({advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy});latest.current={advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy}
  // Run once for each newly displayed story state, including resumed episodes.
  useEffect(()=>{
   if(!autoPlay||state?.ended||current?.type==='choice'||!line?.audio)return;
@@ -37,6 +37,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   const target=e.target as HTMLElement|null
   if(e.defaultPrevented||e.repeat||e.ctrlKey||e.metaKey||e.altKey||target?.closest('input,textarea,select,.episode-settings,[contenteditable="true"]'))return
   const v=latest.current,key=e.key.toLowerCase()
+  if(key==='arrowleft'){e.preventDefault();v.back();return}
   if(key===' '||key===(hotkeys?.playPause??'p').toLowerCase()){e.preventDefault();if(!v.busy)v.play();return}
   const fixed=['1','2','3','4'].indexOf(key)
   const custom=[hotkeys?.choiceA??'1',hotkeys?.choiceB??'2',hotkeys?.choiceC??'3',hotkeys?.choiceD??'4',hotkeys?.choiceE??'5',hotkeys?.choiceF??'6'].findIndex(k=>k.toLowerCase()===key)
@@ -55,6 +56,14 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  useEffect(()=>()=>{generation.current++;motion.current?.abort();sound.current?.pause();root.current?.getAnimations?.({subtree:true}).forEach(a=>a.cancel())},[])
  useEffect(()=>{if(reduced){motion.current?.abort();setResponses({});}},[reduced])
  const animate=async(el:HTMLElement|null,frames:Keyframe[],duration=420)=>{if(reduced||!el?.animate)return;try{await el.animate(frames,{duration,easing:'ease-in-out'}).finished}catch{/* navigation cancellation */}}
+ function back(){
+  if(!compiled.story||!progress.steps.length)return
+  generation.current++;motion.current?.abort();sound.current?.pause();sound.current=null
+  root.current?.getAnimations?.({subtree:true}).forEach(a=>a.cancel())
+  lock.current=false;setBusy(false);setSpeaking(false);setAudioPlaying(false);setResponses({});setError('');setAnswers([-1,-1,-1,-1])
+  const p={...progress,steps:progress.steps.slice(0,-1)}
+  setState(replayStory(compiled.story,p.steps,p.seed));setProgress(p);onProgress?.(p)
+ }
  async function advance(option:string|null){
   if(!state||!compiled.story||state.ended||lock.current)return
   motion.current?.abort();setResponses({});lock.current=true;setBusy(true);sound.current?.pause();sound.current=null;setAudioPlaying(false);setSpeaking(false);setError('');const token=++generation.current
@@ -102,7 +111,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   <div className="story-meters">{Object.entries(compiled.story.variables).filter(([,v])=>(v as {visible:boolean}).visible).map(([id])=><span key={id}>{id}: {String(state.variables[id])}</span>)}</div>
   <section className="story-dialogue" aria-live="polite">{state.ended?<><h2>{pack.quiz.length===4?(score!==null&&score>=75?'Complete':'Four questions before we return'):'Scene complete'}</h2>{pack.quiz.length===4&&<>{score!==null&&<p>{score}/100 · {score>=75?'Complete':'Review and retry'}</p>}{(score===null||score<75)&&<><div data-quiz>{pack.quiz.map((q,i)=><fieldset key={i}><legend>{q.prompt}</legend>{q.options.map((o,j)=><button key={j} aria-pressed={answers[i]===j} onClick={()=>setAnswers(answers.map((a,k)=>k===i?j:a))}>{j+1}. {o}</button>)}{score!==null&&<p>{q.explanation}</p>}</fieldset>)}</div><button data-next disabled={answers.includes(-1)} onClick={()=>{const p={...progress,quizzes:[...progress.quizzes,answers]};setProgress(p);onProgress?.(p);setAnswers([-1,-1,-1,-1])}}>Check answers</button></>}</>}{onNextEpisode&&(pack.quiz.length!==4||(score!==null&&score>=75))&&<button className="next-episode" data-next onClick={onNextEpisode}>Next Episode →</button>}{onComplete&&<button data-next onClick={onComplete}>Continue to the conversation</button>}</>:current.type==='choice'?<><h2>What do I do?</h2>{current.options.map((o:{id:string;text:string},i:number)=><div key={o.id}><button className="episode-choice" aria-label={o.text} data-next disabled={busy} onClick={()=>void advance(o.id)}><span aria-hidden="true">{i+1}. </span><EpisodeInterlinear text={o.text} line={pack.chinese?.lines[o.text]} showPinyin={showPinyin} showGloss={showGloss}/></button>{pack.chinese?.lines[o.text]?.audio&&<button className="audio-play" aria-label={'Hear option: '+o.text} onClick={()=>play(o.text,false)}><PlayIcon/></button>}</div>)}</>:<><strong>{current.type==='act'||current.beat?'On the scene':current.actor==='I'?'My story':pack.assets.characters[current.actor]?.name}</strong>{line?.interlinear?.length?<div className="episode-line"><EpisodeInterlinear text={current.text} line={line} showPinyin={showPinyin} showGloss={showGloss}/></div>:<><p className={/[\u3400-\u9fff]/u.test(current.text)?'chinese-line':undefined} lang={/[\u3400-\u9fff]/u.test(current.text)?'zh-CN':undefined}>{current.text}</p>{showPinyin&&line?.pinyin&&<p className="pinyin">{line.pinyin}</p>}</>}{showGloss&&line?.english&&!!line.interlinear?.length&&<details className="sentence-translation"><summary>Sentence meaning</summary><p>{line.english}</p></details>}{showGloss&&line?.english&&!line.interlinear?.length&&<p className="sentence-meaning">{line.english}</p>}{line?.audio&&<button className="audio-play" aria-label={audioPlaying?"Pause audio":"Play audio"} title="Play / pause (Space)" onClick={()=>play()}>{audioPlaying?'Pause':<PlayIcon/>}</button>}<button data-next disabled={busy} onClick={()=>void advance(null)}>{busy?'Action playing…':'Continue →'}</button></>}{error&&<p role="status">{error}</p>}</section>
 
-  <footer><p className="game-key-hints">1–4: choose · Space: play / pause · → or 1: continue</p><button aria-expanded={history} onClick={()=>setHistory(!history)}>Recall the conversation</button></footer>{history&&<aside>{state.history.map((h,i)=><p key={i}>{pack.assets.characters[h.actor]?.name??'I'}: {h.text}</p>)}</aside>}
+  <footer><p className="game-key-hints">1–4: choose · Space: play / pause · ←: back · → or 1: continue</p><button aria-expanded={history} onClick={()=>setHistory(!history)}>Recall the conversation</button></footer>{history&&<aside>{state.history.map((h,i)=><p key={i}>{pack.assets.characters[h.actor]?.name??'I'}: {h.text}</p>)}</aside>}
  </div>
 }
 
