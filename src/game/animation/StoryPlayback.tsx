@@ -1,5 +1,5 @@
-import StoryAtmosphere from './shared/components/StoryAtmosphere'
-import {useEffect,useMemo,useRef,useState} from 'react'
+import EpisodeAtmosphere from './EpisodeAtmosphere'
+import {useEffect,useMemo,useRef,useState,type ReactNode} from 'react'
 import {advanceStory,compileStory,replayStory,quizScore,type StoryState} from './shared/engine/story-engine.js'
 import StoryStage from './shared/components/StoryStage'
 import {playSceneMotion} from './shared/components/scene-motion'
@@ -8,20 +8,22 @@ import type {ChinesePackage} from './package'
 import EpisodeInterlinear from './EpisodeInterlinear'
 import type {HotkeySettings} from '../../types'
 export interface StoryProgress {steps:(string|null)[];quizzes:number[][];seed:number}
-export default function StoryPlayback({pack,initial,onProgress,reduced:preferred=false,onComplete,onNextEpisode,preferencesKey='story2:display',hotkeys}:{pack:ChinesePackage;initial?:StoryProgress;onProgress?:(p:StoryProgress)=>void;reduced?:boolean;debug?:boolean;onComplete?:()=>void;onNextEpisode?:()=>void;preferencesKey?:string;hotkeys?:HotkeySettings}) {
+export default function StoryPlayback({pack,initial,onProgress,reduced:preferred=false,onComplete,onNextEpisode,preferencesKey='story2:display',hotkeys,settingsContent}:{pack:ChinesePackage;initial?:StoryProgress;onProgress?:(p:StoryProgress)=>void;reduced?:boolean;debug?:boolean;onComplete?:()=>void;onNextEpisode?:()=>void;preferencesKey?:string;hotkeys?:HotkeySettings;settingsContent?:ReactNode}) {
  const compiled=useMemo(()=>compileStory(pack.script,pack.assets),[pack])
  const [progress,setProgress]=useState<StoryProgress>(initial??{steps:[],quizzes:[],seed:1})
  const [state,setState]=useState<StoryState|null>(()=>compiled.story?replayStory(compiled.story,initial?.steps??[],initial?.seed??1):null)
  const [system,setSystem]=useState(()=>matchMedia('(prefers-reduced-motion: reduce)').matches),[responses,setResponses]=useState<Record<string,string>>({}),[speaking,setSpeaking]=useState(false),[audioPlaying,setAudioPlaying]=useState(false),[busy,setBusy]=useState(false),[error,setError]=useState(''),[history,setHistory]=useState(false)
- const [voiceVolume,setVoiceVolume]=useState(1)
+ const preference=<T extends boolean|number,>(name:string,fallback:T):T=>{try{const value=JSON.parse(localStorage.getItem(preferencesKey)??'{}')?.[name];return typeof value===typeof fallback?value:fallback}catch{return fallback}}
+ const [voiceVolume,setVoiceVolume]=useState<number>(()=>{const v=preference('voiceVolume',1);return typeof v==='number'&&v>=0&&v<=1?v:1})
+ const [reduceMotion,setReduceMotion]=useState<boolean>(()=>preference('reduceMotion',false))
  useEffect(()=>{if(sound.current)sound.current.volume=voiceVolume},[voiceVolume])
- const reduced=preferred||system,root=useRef<HTMLDivElement>(null),generation=useRef(0),lock=useRef(false),sound=useRef<HTMLAudioElement|null>(null)
+ const reduced=preferred||system||reduceMotion,root=useRef<HTMLDivElement>(null),generation=useRef(0),lock=useRef(false),sound=useRef<HTMLAudioElement|null>(null)
  const motion=useRef<AbortController|null>(null);
  const current=state&&compiled.story?.nodes[state.cursor]
- const preference=(name:string,fallback=true)=>{try{return JSON.parse(localStorage.getItem(preferencesKey)??'{}')[name]??fallback}catch{return fallback}}
- const [autoPlay,setAutoPlay]=useState(()=>preference('autoplay',false))
- const [showPinyin,setShowPinyin]=useState(()=>preference('pinyin')),[showGloss,setShowGloss]=useState(()=>preference('english')),[answers,setAnswers]=useState<number[]>([-1,-1,-1,-1])
- useEffect(()=>{try{localStorage.setItem(preferencesKey,JSON.stringify({pinyin:showPinyin,english:showGloss,autoplay:autoPlay}))}catch{/* Display preferences are optional on restricted devices. */}},[preferencesKey,showPinyin,showGloss,autoPlay])
+
+ const [autoPlay,setAutoPlay]=useState<boolean>(()=>preference('autoplay',false))
+ const [showPinyin,setShowPinyin]=useState<boolean>(()=>preference('pinyin',true)),[showGloss,setShowGloss]=useState<boolean>(()=>preference('english',true)),[answers,setAnswers]=useState<number[]>([-1,-1,-1,-1])
+ useEffect(()=>{try{localStorage.setItem(preferencesKey,JSON.stringify({pinyin:showPinyin,english:showGloss,autoplay:autoPlay,voiceVolume,reduceMotion}))}catch{/* Display preferences are optional on restricted devices. */}},[preferencesKey,showPinyin,showGloss,autoPlay,voiceVolume,reduceMotion])
  const line=pack.chinese?.lines[current?.text],score=pack.quiz.length===4&&progress.quizzes.length?quizScore(pack.quiz,progress.quizzes.at(-1)!):null
  const latest=useRef({advance:(o:string|null)=>{void advance(o)},play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy});latest.current={advance:(o:string|null)=>{void advance(o)},play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy}
  // Run once for each newly displayed story state, including resumed episodes.
@@ -32,7 +34,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  },[autoPlay,state,current,line?.audio])
  useEffect(()=>{const handler=(e:KeyboardEvent)=>{
   const target=e.target as HTMLElement|null
-  if(e.defaultPrevented||e.repeat||e.ctrlKey||e.metaKey||e.altKey||target?.closest('input,textarea,select,[contenteditable="true"]'))return
+  if(e.defaultPrevented||e.repeat||e.ctrlKey||e.metaKey||e.altKey||target?.closest('input,textarea,select,.episode-settings,[contenteditable="true"]'))return
   const v=latest.current,key=e.key.toLowerCase()
   if(key===' '||key===(hotkeys?.playPause??'p').toLowerCase()){e.preventDefault();if(!v.busy)v.play();return}
   const fixed=['1','2','3','4'].indexOf(key)
@@ -87,9 +89,14 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   }
   void advance(null);
  }}>
-  {!state.ended&&<StoryAtmosphere root={root} preset={state.ended?'none':state.stage.ambience} ducked={audioPlaying&&voiceVolume>0} voiceVolume={voiceVolume} onVoiceVolume={setVoiceVolume}/>}
+  <details className="episode-settings" onKeyDown={e=>{if(e.key==='Escape'){e.currentTarget.open=false;e.currentTarget.querySelector('summary')?.focus();}}}>
+   <summary>Settings</summary><div className="episode-settings-panel">
+   {settingsContent}
+  {!state.ended&&<EpisodeAtmosphere preferencesKey={preferencesKey+':sound'} root={root} preset={state.ended?'none':state.stage.ambience} ducked={audioPlaying&&voiceVolume>0} voiceVolume={voiceVolume} onVoiceVolume={setVoiceVolume}/>}
   {!state.ended&&<div className="reading-controls" aria-label="Reading aids"><button aria-label="Play" title="Automatically play voice when text appears" aria-pressed={autoPlay} onClick={()=>{setAutoPlay(!autoPlay);if(autoPlay){sound.current?.pause();setSpeaking(false);setAudioPlaying(false)}}}>Play <span aria-hidden="true">{autoPlay?'●':'○'}</span></button><button aria-label="English" aria-pressed={showGloss} onClick={()=>setShowGloss(!showGloss)}>English <span aria-hidden="true">{showGloss?'●':'○'}</span></button><button aria-label="Pinyin" aria-pressed={showPinyin} onClick={()=>setShowPinyin(!showPinyin)}>Pinyin <span aria-hidden="true">{showPinyin?'●':'○'}</span></button></div>}
-  <StoryStage pack={pack} state={state} current={current} speaking={speaking&&!state.ended} reduced={reduced} responses={responses}/>
+   <label><input type="checkbox" checked={reduceMotion} onChange={e=>setReduceMotion(e.target.checked)}/> Reduce motion</label>
+   </div></details>
+  <StoryStage pack={pack} state={state} current={current} speaking={speaking&&!state.ended} reduced={reduced} responses={responses} hideMotionControl/>
   <div className="story-meters">{Object.entries(compiled.story.variables).filter(([,v])=>(v as {visible:boolean}).visible).map(([id])=><span key={id}>{id}: {String(state.variables[id])}</span>)}</div>
   <section className="story-dialogue" aria-live="polite">{state.ended?<><h2>{pack.quiz.length===4?(score!==null&&score>=75?'Complete':'Four questions before we return'):'Scene complete'}</h2>{pack.quiz.length===4&&<>{score!==null&&<p>{score}/100 · {score>=75?'Complete':'Review and retry'}</p>}{(score===null||score<75)&&<><div data-quiz>{pack.quiz.map((q,i)=><fieldset key={i}><legend>{q.prompt}</legend>{q.options.map((o,j)=><button key={j} aria-pressed={answers[i]===j} onClick={()=>setAnswers(answers.map((a,k)=>k===i?j:a))}>{j+1}. {o}</button>)}{score!==null&&<p>{q.explanation}</p>}</fieldset>)}</div><button data-next disabled={answers.includes(-1)} onClick={()=>{const p={...progress,quizzes:[...progress.quizzes,answers]};setProgress(p);onProgress?.(p);setAnswers([-1,-1,-1,-1])}}>Check answers</button></>}</>}{onNextEpisode&&(pack.quiz.length!==4||(score!==null&&score>=75))&&<button className="next-episode" data-next onClick={onNextEpisode}>Next Episode →</button>}{onComplete&&<button data-next onClick={onComplete}>Continue to the conversation</button>}</>:current.type==='choice'?<><h2>What do I do?</h2>{current.options.map((o:{id:string;text:string},i:number)=><div key={o.id}><button className="episode-choice" aria-label={o.text} data-next disabled={busy} onClick={()=>void advance(o.id)}><span aria-hidden="true">{i+1}. </span><EpisodeInterlinear text={o.text} line={pack.chinese?.lines[o.text]} showPinyin={showPinyin} showGloss={showGloss}/></button>{pack.chinese?.lines[o.text]?.audio&&<button className="audio-play" aria-label={'Hear option: '+o.text} onClick={()=>play(o.text,false)}><PlayIcon/></button>}</div>)}</>:<><strong>{current.type==='act'||current.beat?'On the scene':current.actor==='I'?'My story':pack.assets.characters[current.actor]?.name}</strong>{line?.interlinear?.length?<div className="episode-line"><EpisodeInterlinear text={current.text} line={line} showPinyin={showPinyin} showGloss={showGloss}/></div>:<><p className={/[\u3400-\u9fff]/u.test(current.text)?'chinese-line':undefined} lang={/[\u3400-\u9fff]/u.test(current.text)?'zh-CN':undefined}>{current.text}</p>{showPinyin&&line?.pinyin&&<p className="pinyin">{line.pinyin}</p>}</>}{showGloss&&line?.english&&!!line.interlinear?.length&&<details className="sentence-translation"><summary>Sentence meaning</summary><p>{line.english}</p></details>}{showGloss&&line?.english&&!line.interlinear?.length&&<p className="sentence-meaning">{line.english}</p>}{line?.audio&&<button className="audio-play" aria-label={audioPlaying?"Pause audio":"Play audio"} title="Play / pause (Space)" onClick={()=>play()}>{audioPlaying?'Pause':<PlayIcon/>}</button>}<button data-next disabled={busy} onClick={()=>void advance(null)}>{busy?'Action playing…':'Continue →'}</button></>}{error&&<p role="status">{error}</p>}</section>
 
