@@ -68,3 +68,12 @@
  .game-playing .story-stage-living,.game-playing .animated-story:has(.episode-interlinear) .story-stage-living {height:clamp(180px,29svh,280px);min-height:180px;max-height:280px}
 }
 @media(pointer:coarse) {.game-playing .game-key-hints {display:none}}
+
+/* Keep preferences out of the story's visual flow until requested. */
+.game-playing .episode-settings {margin:0 0 4px;padding:0;border:0;border-radius:0;background:transparent;position:relative;text-align:right}
+.game-playing .episode-settings>summary {display:inline-flex;align-items:center;min-height:44px;padding:0 12px;cursor:pointer;color:var(--cinema-muted);font-size:13px;list-style:none}
+.game-playing .episode-settings>summary::-webkit-details-marker {display:none}
+.game-playing .episode-settings-panel {text-align:left;padding:16px;border:1px solid #526071;border-radius:14px;background:#10263b;display:grid;gap:16px}
+.game-playing .episode-settings-panel label {color:var(--cinema-ink)}
+.game-playing .episode-settings-panel .story-atmosphere {margin:0;padding:0}
+.game-playing .episode-settings-panel .reading-controls {justify-content:flex-start;padding:0}
