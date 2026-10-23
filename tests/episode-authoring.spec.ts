@@ -54,6 +54,7 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
     await page.reload();await page.getByRole('button',{name:'Game',exact:true}).click();await open()
     await expect.poll(currentText).toBe(beat.text);resumed=true
    }
+   if(i===route.beats.length-1)await page.screenshot({path:info.outputPath('ending.png'),fullPage:true})
    await page.getByRole('button',{name:'Continue →',exact:true}).click()
   }
  }

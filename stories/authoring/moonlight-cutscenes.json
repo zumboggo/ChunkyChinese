@@ -639,6 +639,92 @@
         "transcription": "I cannot cancel."
       },
       "source_note": "Teaser previews uncancellable quest after accepting Zahab’s knife; no cancellation attempt changes the fixed source outcome."
+    },
+    {
+      "episode": 26,
+      "release_id": "moonlight-26-v1",
+      "status": "integrated",
+      "src": "stories/animated/cutscenes/moonlight-26-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-26-intro.jpg",
+      "title": "Another quest?",
+      "durationSeconds": 9,
+      "generated_duration_seconds": 6,
+      "still_hold_seconds": 3,
+      "used_motion_seconds": 3,
+      "reaction_hold_seconds": 3,
+      "model": "prunaai/p-video-2-pro",
+      "prediction_id": "d1n80wfbf5rmr0d1cxh8qhjqmc",
+      "settings": {
+        "resolution": "480p",
+        "duration": 6,
+        "mode": "cost",
+        "prompt_upsampler": "off",
+        "aspect_ratio": "16:9",
+        "seed": 88626
+      },
+      "dialogue_exact": "Another quest?",
+      "dialogue_language": "English",
+      "video_prompt": "Animate the supplied image in one continuous six-second shot. Strictly preserve Weed’s face, hair, costume, hand anatomy, wooden practice sword, bench, training hall and detailed anime style. His hovering hand hesitates above the sword grip. He briefly glances aside as a tempting idea occurs, asks the short question, then looks down at the sword again, lips closed. Keep his hand above the grip without picking it up; do not reveal his final decision. One restrained emotional beat, subtle breathing, very gentle camera push. No extra characters, props, sword changes, text or cuts.\n\nSPOKEN WORDS — THE COMPLETE DIALOGUE:\n\"Another quest?\"\n\nOne young adult male voice, quiet and tempted, clearly audible above soft training-hall room tone. Speak ONLY the two quoted words, exactly once, in ENGLISH, during the first half of the shot, with synchronized lips. No extra words, repetition, paraphrase, fillers, humming, singing, narration or other voices. After speaking, keep his mouth closed and hold the thoughtful reaction. Quiet ambience only afterward; no music or background voices.",
+      "imagegen_prompt": "Use case: illustration-story. One exquisite landscape 16:9 cinematic fantasy anime/manhwa first frame for Moonlight Sculptor Episode 26. STRICT identity and rendering reference: ONLY central Weed / Lee Hyun from the supplied lineup. Same tousled warm brown hair, amber eyes, lean angular young adult face, ivory rolled-sleeve shirt, brown leather vest/harness and wrist guards. Interior medieval training hall, timber rafters, stone walls, soft dusty afternoon light, a simple training dummy blurred in the far background. Medium waist-up three-quarter portrait. Weed stands next to a plain wooden bench with a blunt WOODEN practice sword resting horizontally on it. His one visible hand hovers just above the wooden sword grip, not yet grasping it. He looks down at the familiar practice sword with a restrained, conflicted calculating half-smile. He has just earned quest money and is tempted to seek another quest, but this sword represents the training waiting for him. One quiet meaningful decision moment. Keep face and hand clear and anatomically natural. Other hand below frame. Detailed luminous fantasy anime finish with cinematic warm rim light and cool shadows. Only Weed visible. No coins, metal sword, armor, UI, writing, text, captions, symbols, other people, collage or watermark. Do not show the decision completed; first frame of one small hesitation.",
+      "reference": "stories/characters/references/lms-main-cast-lineup.png",
+      "estimated_usd": 0.06,
+      "paid_predictions": 1,
+      "pricing_url": "https://replicate.com/prunaai/p-video-2-pro",
+      "pricing_verified_date": "2026-10-23",
+      "pricing_note": "Fresh billing configuration cost/480p $0.01 per output second, zero reference image fee, native audio, prompt_upsampler off; six seconds maximum $0.06.",
+      "provider_metrics": {
+        "billing": {
+          "fps": 24,
+          "mode": "cost",
+          "model_variant": "cost",
+          "resolution_target": "480p",
+          "turbo": true,
+          "video_output_duration_seconds": 6
+        },
+        "fps": 24,
+        "inference_provider": "modal",
+        "metadata": {
+          "execution_time": {
+            "model_execution_time": 4.742,
+            "prompt_upsampler_execution_time": 0,
+            "total_execution_time": 12.825
+          }
+        },
+        "mode": "cost",
+        "model_variant": "cost",
+        "predict_time": 14.552805657,
+        "prompt_upsampler": "off",
+        "prompt_upsampler_fallback": false,
+        "resolution_target": "480p",
+        "total_time": 14.586655857,
+        "turbo": true,
+        "video_output_count": 1,
+        "video_output_duration_seconds": 6
+      },
+      "verification": {
+        "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/output/cutscenes/moonlight-26-2026-10-23/speech-excerpt.mkv",
+        "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/output/cutscenes/moonlight-26-2026-10-23/intro-final.mp4",
+        "dimensions": [
+          854,
+          480
+        ],
+        "fps": 24,
+        "hold_seconds": 3.0,
+        "motion_seconds": 3.0,
+        "reaction_hold_seconds": 3.0,
+        "total_seconds": 9.0,
+        "decoded_audio_seconds": 9.00275,
+        "audio_non_silent": true,
+        "audio_starts_after_hold": true,
+        "hold_mean_pixel_difference": 0.00273224043715847,
+        "sha256": "4eae4ae93bb8aa316a406e984b16776b4523361748f2d7bc68c921a35280cfdd",
+        "expected_dialogue": "Another quest?",
+        "speech_check": "pass",
+        "review": "One visual/listening review remains; automated checks do not prove natural acting or lip sync.",
+        "transcription": "Another quest."
+      },
+      "local_cleanup": "Native generation added words before the intended phrase. Local word timestamps identify Another quest after 2.93s. Used native excerpt from 2.96s to the end, exact first-frame three-second hold and final closed-mouth reaction hold. Final local ASR confirms only Another quest; no paid retry.",
+      "source_note": "Weed’s private temptation to seek another quest before returning to his wooden sword. Teaser withholds his decision."
     }
   ],
   "failed_attempts": [
