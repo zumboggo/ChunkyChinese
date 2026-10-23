@@ -95,3 +95,22 @@ test('series opener includes the ten-second shot and title card before Episode 1
  await expect(page.locator('.animated-story')).toBeVisible()
  await expect(page.locator('.episode-intro')).toHaveCount(0)
 })
+
+for(const episode of [21,22])test(`episode ${episode} decision hold flows automatically into a spoken clip`,async({page},info)=>{
+ await page.emulateMedia({reducedMotion:'reduce'})
+ await openEpisode(page,episode)
+ const video=page.locator('.episode-intro video')
+ await expect.poll(()=>video.evaluate(element=>{
+  const media=element as HTMLVideoElement
+  return {duration:media.duration,width:media.videoWidth,height:media.videoHeight,muted:media.muted}
+ })).toEqual({duration:9,width:854,height:480,muted:false})
+ await expect(page.locator('.episode-intro-hint')).toContainText('9 seconds')
+ await page.getByRole('button',{name:'Play intro with sound',exact:true}).click()
+ await expect.poll(()=>video.evaluate(element=>(element as HTMLVideoElement).currentTime)).toBeGreaterThan(0)
+ await page.screenshot({path:'.local/design/intro-'+episode+'-hold-'+info.project.name+'.png',fullPage:true})
+ await expect.poll(()=>video.evaluate(element=>(element as HTMLVideoElement).currentTime),{timeout:6000}).toBeGreaterThan(3.2)
+ await expect(video).toHaveJSProperty('paused',false)
+ await page.screenshot({path:'.local/design/intro-'+episode+'-motion-'+info.project.name+'.png',fullPage:true})
+ await expect(page.locator('.animated-story')).toBeVisible({timeout:10000})
+ await expect(page.getByRole('button',{name:'Continue →',exact:true})).toBeVisible()
+})

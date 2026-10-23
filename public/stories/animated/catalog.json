@@ -176,12 +176,24 @@
     "id": "moonlight-21-v1",
     "category": "lms",
     "episode": 21,
-    "path": "moonlight-21.json"
+    "path": "moonlight-21.json",
+    "intro": {
+      "src": "stories/animated/cutscenes/moonlight-21-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-21-intro.jpg",
+      "title": "A promise remembered",
+      "durationSeconds": 9
+    }
   },
   {
     "id": "moonlight-22-v1",
     "category": "lms",
     "episode": 22,
-    "path": "moonlight-22.json"
+    "path": "moonlight-22.json",
+    "intro": {
+      "src": "stories/animated/cutscenes/moonlight-22-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-22-intro.jpg",
+      "title": "Why bring a sword?",
+      "durationSeconds": 9
+    }
   }
 ]

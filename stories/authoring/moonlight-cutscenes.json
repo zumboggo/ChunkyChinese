@@ -6,7 +6,14 @@
     "duration_seconds": 6,
     "maximum_usd_per_successful_clip": 0.15,
     "automatic_paid_retries": false,
-    "dialogue_language": "English"
+    "dialogue_language": "English",
+    "direction": "Source-grounded emotional peak or tension; one meaningful action or short English phrase, with clear foreground audio.",
+    "optional_still_hold_seconds": [
+      2,
+      4
+    ],
+    "maximum_total_usd_per_requested_clip": 0.15,
+    "spending_rule": "Hard cap across all providers, including all paid retries and variants of the same requested clip. Verify exact current billable settings and maximum charge before submission; skip uncertain pricing. Only explicit stated-dollar approval for specified clips creates an exception."
   },
   "model": "bytedance/seedance-1.5-pro",
   "pricing_url": "https://replicate.com/bytedance/seedance-1.5-pro",
@@ -228,6 +235,148 @@
       },
       "video_sha256": "2dbe1810e4f6d5ff45bd45f7cca8f7a5ed6ba026303cc6382bb5f71224aa90cc",
       "audio_postproduction": "Adjusted generated sound using loudnorm I=-20 LUFS, true peak -2 dB, LRA 7; delivered AAC stereo at 48 kHz."
+    },
+    {
+      "episode": 21,
+      "release_id": "moonlight-21-v1",
+      "src": "stories/animated/cutscenes/moonlight-21-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-21-intro.jpg",
+      "title": "A promise remembered",
+      "durationSeconds": 9,
+      "model": "prunaai/p-video-2-pro",
+      "prediction_id": "g4b5gbf47drmt0d1crebhc0mdc",
+      "generated_duration_seconds": 6,
+      "still_hold_seconds": 3,
+      "used_motion_seconds": 3.5416666666666665,
+      "reaction_hold_seconds": 2.4583333333333335,
+      "local_cleanup": "Removed unwanted trailing generated speech after 3.5 seconds; held the closed-mouth reaction frame. No paid retries.",
+      "hold_method": "Exact first video frame cloned in the same MP4; automatic transition to motion, three-second quiet lead-in.",
+      "dialogue_exact": "He kept his promise.",
+      "dialogue_language": "English",
+      "video_prompt": "A single continuous six-second cinematic anime/manhwa shot. Strictly preserve the supplied image’s character, face, brown hair, amber eyes, ivory shirt, leather harness, art style, lighting and background. Only one character visible. His calculating expression softens into a small warm realization. He lifts his gaze slightly toward the offscreen storyteller, then quietly says the line with genuine respect. One natural blink, a restrained half smile afterward. Hands stay still. TIMING: first second silent thought; during seconds 1–3 Weed says exactly once, in clear natural ENGLISH: \"He kept his promise.\" Seconds 3–6 hold the emotional aftermath with subtle breathing. AUDIO: one young adult male voice, natural intimate delivery, foreground dialogue clearly audible and lips synchronized; quiet room tone and a delicate restrained musical accent stay beneath the voice. All speech English, no extra words, voices or narration. No singing, text, captions, HUD, cuts, extra characters or props. Very gentle camera push. Make this one meaningful emotional beat, not a sequence of gestures.",
+      "imagegen_prompt": "Use case: illustration-story. Create a beautiful landscape 16:9 cinematic fantasy anime/manhwa frame for Moonlight Sculptor Episode 21, a moment of emotional realization. STRICT identity and style reference: attached main cast lineup, ONLY the central Weed / Lee Hyun. Same tousled warm brown hair, amber eyes, lean angular youthful adult face, ivory rolled-sleeve shirt, brown leather craftsman's harness/vest and wrist guards. Same exquisite luminous detailed drawing, rich painterly cel shading and fine ink. Medium chest-up three-quarter portrait of Weed seated at a wooden table in a warm medieval tavern at evening, candlelight and timber windows blurred behind. His hands rest relaxed low near table, no objects or coin. His gaze is toward an offscreen storyteller: a small softened knowing smile, eyebrows gently lifting, thoughtful warmth replacing his usual calculation as he realizes a separated lover never forgot a promise. Quiet emotional resonance, restrained expression suitable for a three-second thinking hold then one brief spoken line. Clear unobstructed mouth for lip sync. ONLY Weed visible. Keep exact face/hair/outfit from central labeled lineup; do not copy the other people or carried statue. No text, names, subtitles, HUD, labels, watermark, collage or extra characters.",
+      "settings": {
+        "resolution": "480p",
+        "duration": 6,
+        "mode": "cost",
+        "prompt_upsampler": "off",
+        "aspect_ratio": "16:9",
+        "seed": 88621
+      },
+      "audio": "Generated voice and ambience; loudnorm I=-18 LUFS / TP=-2 dB before three-second audio delay.",
+      "reference": "stories/characters/references/lms-main-cast-lineup.png",
+      "estimated_usd": 0.06,
+      "pricing_url": "https://replicate.com/prunaai/p-video-2-pro",
+      "provider_metrics": {
+        "billing": {
+          "fps": 24,
+          "mode": "cost",
+          "model_variant": "cost",
+          "resolution_target": "480p",
+          "turbo": true,
+          "video_output_duration_seconds": 6
+        },
+        "fps": 24,
+        "inference_provider": "modal",
+        "metadata": {
+          "execution_time": {
+            "model_execution_time": 4.755,
+            "prompt_upsampler_execution_time": 0,
+            "total_execution_time": 12.427
+          }
+        },
+        "mode": "cost",
+        "model_variant": "cost",
+        "predict_time": 13.565464042,
+        "prompt_upsampler": "off",
+        "prompt_upsampler_fallback": false,
+        "resolution_target": "480p",
+        "total_time": 13.579619932,
+        "turbo": true,
+        "video_output_count": 1,
+        "video_output_duration_seconds": 6
+      },
+      "video_sha256": "ab02709584b348c28691c184ce2c0980f1930d39f90344c41a39271c3aca05cc",
+      "verification": {
+        "local_transcription": "Hmm, he kept his promise.",
+        "recognizer": "Local faster-whisper base.en with VAD",
+        "silent_thinking_hold_verified": true,
+        "hold_mean_pixel_difference": 0.016887034868592245,
+        "motion_start_mean_pixel_difference": 0.006966399947957325,
+        "paid_predictions": 1,
+        "total_requested_clip_estimated_usd": 0.06
+      }
+    },
+    {
+      "episode": 22,
+      "release_id": "moonlight-22-v1",
+      "src": "stories/animated/cutscenes/moonlight-22-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-22-intro.jpg",
+      "title": "Why bring a sword?",
+      "durationSeconds": 9,
+      "model": "prunaai/p-video-2-pro",
+      "prediction_id": "mrwdp4e3e1rmr0d1cresc1yv2r",
+      "generated_duration_seconds": 6,
+      "still_hold_seconds": 3,
+      "used_motion_seconds": 3.5416666666666665,
+      "reaction_hold_seconds": 2.4583333333333335,
+      "local_cleanup": "Removed unwanted trailing generated speech after 3.5 seconds; held the closed-mouth reaction frame. No paid retries.",
+      "hold_method": "Exact first video frame cloned in the same MP4; automatic transition to motion, three-second quiet lead-in.",
+      "dialogue_exact": "Why bring a sword?",
+      "dialogue_language": "English",
+      "video_prompt": "A single continuous six-second cinematic anime/manhwa shot. Strictly preserve the supplied image’s character, face, brown hair, amber eyes, ivory shirt, leather harness, art style, lighting and background. Only one character visible. His eyes narrow thoughtfully and his brow furrows in empathetic concern. He tilts his head very slightly toward the offscreen elderly storyteller, asks the line with quiet puzzled urgency, then holds her gaze waiting for an answer. Hands stay still. TIMING: first second silent thought; during seconds 1–3 Weed says exactly once, in clear natural ENGLISH: \"Why bring a sword?\" Seconds 3–6 hold the emotional aftermath with subtle breathing. AUDIO: one young adult male voice, natural intimate delivery, foreground dialogue clearly audible and lips synchronized; quiet room tone and a delicate restrained musical accent stay beneath the voice. All speech English, no extra words, voices or narration. No singing, text, captions, HUD, cuts, extra characters or props. Very gentle camera push. Make this one meaningful emotional beat, not a sequence of gestures.",
+      "imagegen_prompt": "Use case: illustration-story. Create one exquisite landscape 16:9 cinematic fantasy anime/manhwa opening frame for Moonlight Sculptor Episode 22. STRICT identity/style reference: the central Weed / Lee Hyun in supplied lineup ONLY. Preserve exact tousled warm brown hair, amber eyes, lean angular youthful adult face, ivory rolled-sleeve shirt, brown leather vest/harness, wrist guards and beautiful detailed luminous anime finish. Scene: modest retired palace attendant's home, quiet cozy medieval room, muted blue textiles, soft late-afternoon window light, a wooden table, subtle warm/cool chiaroscuro. Chest-up three-quarter close portrait of Weed seated with his hands low and out of focus, his gaze angled toward an offscreen elderly storyteller. His brows knit, eyes sharpen with sudden concern and puzzlement, lips gently parted as he has just heard a sculptor came to the palace carrying a sword. Thoughtful tension and empathy, not aggression. The expressive face and clear visible mouth are primary, suitable for a three-second thinking hold then a short question. Only Weed visible. No weapon actually shown, no carving tools, queen portraits, coins, other characters, HUD, captions, names, labels, text, watermark or collage. Same central reference face and costume, scene-appropriate quiet mood.",
+      "settings": {
+        "resolution": "480p",
+        "duration": 6,
+        "mode": "cost",
+        "prompt_upsampler": "off",
+        "aspect_ratio": "16:9",
+        "seed": 88621
+      },
+      "audio": "Generated voice and ambience; loudnorm I=-18 LUFS / TP=-2 dB before three-second audio delay.",
+      "reference": "stories/characters/references/lms-main-cast-lineup.png",
+      "estimated_usd": 0.06,
+      "pricing_url": "https://replicate.com/prunaai/p-video-2-pro",
+      "provider_metrics": {
+        "billing": {
+          "fps": 24,
+          "mode": "cost",
+          "model_variant": "cost",
+          "resolution_target": "480p",
+          "turbo": true,
+          "video_output_duration_seconds": 6
+        },
+        "fps": 24,
+        "inference_provider": "modal",
+        "metadata": {
+          "execution_time": {
+            "model_execution_time": 4.816,
+            "prompt_upsampler_execution_time": 0,
+            "total_execution_time": 12.712
+          }
+        },
+        "mode": "cost",
+        "model_variant": "cost",
+        "predict_time": 14.047737894,
+        "prompt_upsampler": "off",
+        "prompt_upsampler_fallback": false,
+        "resolution_target": "480p",
+        "total_time": 14.061709983,
+        "turbo": true,
+        "video_output_count": 1,
+        "video_output_duration_seconds": 6
+      },
+      "video_sha256": "a908059af078605ab2ec40e60e8e7b7c06312d9373b9f6837944818ac917d77e",
+      "verification": {
+        "local_transcription": "Hmm, why bring a sword?",
+        "recognizer": "Local faster-whisper base.en with VAD",
+        "silent_thinking_hold_verified": true,
+        "hold_mean_pixel_difference": 0.023240307051782465,
+        "motion_start_mean_pixel_difference": 0.0014279208951340097,
+        "paid_predictions": 1,
+        "total_requested_clip_estimated_usd": 0.06
+      }
     }
   ],
   "failed_attempts": [
@@ -250,5 +399,6 @@
   ],
   "new_video_estimated_total_usd": 0.45,
   "character_references": "stories/characters/lms-reference.json",
-  "lineup_intro_estimated_total_usd": 0.45
+  "lineup_intro_estimated_total_usd": 0.45,
+  "decision_intro_estimated_total_usd": 0.12
 }
