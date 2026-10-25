@@ -18,5 +18,13 @@
   },
   "supporting_characters": "Shopkeeper, Bard, Grandmother, Sister, Collector and Leader are not identified in this lineup; retain established designs until supplied otherwise.",
   "svg_limits": "Shared articulated SVG uses supported stylized clothing and hair shapes; approximate costumes with available tunic/robe/workshirt bases. Hat, bow, jewelry, harness detail and exact silhouette may require a future renderer extension; do not claim exact reproduction.",
-  "style": "Detailed luminous fantasy anime/manhwa illustration, confident fine ink, rich warm cel shading and painterly depth. Preserve the supplied faces and costume identities, with scene-appropriate wardrobe when necessary."
+  "style": "Detailed luminous fantasy anime/manhwa illustration, confident fine ink, rich warm cel shading and painterly depth. Preserve the supplied faces and costume identities, with scene-appropriate wardrobe when necessary.",
+  "game_svg_overrides": {
+    "Hyun": {
+      "approved_date": "2026-10-25",
+      "reference": "docs/design/weed-option-a.svg",
+      "implementation": "src/game/animation/WeedOptionA.tsx",
+      "description": "David approved Option A, the scrappy optimist: lean athletic Korean teen, near-black tousled hair, amber-brown eyes, lopsided grin and slate-teal rolled work shirt. Supersedes the lineup for Weed in the game SVG. Other characters retain the lineup direction."
+    }
+  }
 }

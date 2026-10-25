@@ -39,3 +39,11 @@ Available in Meet the LMS cast and the studio's Reusable cast selector. Sister i
 - [MDN: transform-origin](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/transform-origin): SVG defaults differ from HTML. Explicit SVG coordinate pivots keep hair, face and body aligned, rather than relying on bounding-box defaults.
 
 Eye clip paths keep irises inside the animated eyelids. Every instance uses unique IDs so two speakers cannot pick up each other's clipping or gradients. Face shape presets opt in to the new geometry; old cast recipes retain their previous heads.
+
+## Weed Option A — 2026-10-25
+
+David approved the **scrappy optimist** SVG concept: lean Korean teen, tousled near-black hair, warm amber-brown eyes, angular youthful face, lopsided tooth-showing grin, rolled slate-teal work shirt, tapered waist and belt. The approved concept is saved as `docs/design/weed-option-a.svg`.
+
+`src/game/animation/WeedOptionA.tsx` translates that art into the existing articulated rig. It uses shared blink, speech, gaze, head-turn, gesture and activity state, including worried/startled expressions and warm/eager smiles. All Weed/Hyun appearances use it, including cached episodes and mounted scenes. Other cast members retain their existing designs. Immutable packages, scripts, audio, choices, progress and saved accounts are unchanged.
+
+The Chunky Chinese art override is explicitly reapplied by `scripts/weed-option-a-overlay.mjs` during shared-animation synchronization. The original shared renderer remains pinned in the manifest; the local face and costume are not edits to the upstream Learning is Fun app. The October 23 lineup remains the reference for other characters; this approved Option A supersedes its Weed direction for the game SVG.
