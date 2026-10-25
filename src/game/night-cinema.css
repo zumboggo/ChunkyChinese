@@ -92,3 +92,6 @@
 .game-playing .episode-up-next h3 {color:var(--cinema-ink);font-size:20px;margin:8px 0}
 .game-playing .episode-up-next>p {color:var(--cinema-muted)}
 .game-playing .episode-up-next .next-episode {width:100%}
+
+.game-playing .episode-restart-controls {display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px}
+.game-playing .episode-restart-controls button {background:#10263b;border:1px solid #61748b;color:var(--cinema-ink);padding:8px 16px;min-height:44px;border-radius:24px;font-size:13px}
