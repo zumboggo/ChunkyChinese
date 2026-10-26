@@ -4,6 +4,7 @@ import {randomUUID} from 'node:crypto'
 import {spawnSync} from 'node:child_process'
 import assert from 'node:assert/strict'
 import {auditVocabulary} from './lib/episode-vocabulary.mjs'
+import {generateEpisodeEnglish} from './lib/episode-english-audio.mjs'
 import {addEpisodeAudio} from './lib/episode-audio.mjs'
 import {stageEpisodeRelease} from './lib/episode-stage.mjs'
 import {episodeRoutes,checkRouteExpectations} from './lib/episode-plan.mjs'
@@ -49,6 +50,7 @@ try{
    const errors=validateChinese(pack).errors;if(errors.length)throw Error(JSON.stringify(errors))
   })
   const audio=await phase('audio',()=>addEpisodeAudio(pack));report.audio=audio
+  await phase('English pocket audio',()=>generateEpisodeEnglish([pack],{maxEstimatedCost:5}))
   await phase('package and ZIP',async()=>{
    const errors=validateChinese(pack).errors;if(errors.length)throw Error(JSON.stringify(errors))
    const zip=await exportPackage(pack);assert.deepEqual(await importPackage(new File([zip],'episode.zip')),pack)

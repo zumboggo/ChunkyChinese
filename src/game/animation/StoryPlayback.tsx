@@ -6,6 +6,7 @@ import {playSceneMotion} from './shared/components/scene-motion'
 import './shared/components/story-player.css'
 import type {ChinesePackage} from './package'
 import EpisodeInterlinear from './EpisodeInterlinear'
+import PocketAudioPlayer from './PocketAudioPlayer'
 import AudioModeDialog, {type AudioModeOptions} from './AudioModeDialog'
 import {playAudioModeLine,speakAudioMode,waitForAudioMode} from './audioMode'
 import type {HotkeySettings} from '../../types'
@@ -26,6 +27,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
 
  const [audioModeOpen,setAudioModeOpen]=useState(false),[audioModeRunning,setAudioModeRunning]=useState(false),[audioModePaused,setAudioModePaused]=useState(false),[audioModeStatus,setAudioModeStatus]=useState('')
  const [audioModeOptions,setAudioModeOptions]=useState<AudioModeOptions>(()=>({english:preference('audioModeEnglish',false),englishPause:[0,1,2,3,5,10].includes(preference('audioModeEnglishPause',3))?preference('audioModeEnglishPause',3):3,automaticChoices:preference('audioModeAutomaticChoices',false),choiceDelay:[0,3,5,10].includes(preference('audioModeChoiceDelay',0))?preference('audioModeChoiceDelay',0):0}))
+ const [pocketSession,setPocketSession]=useState<{start:StoryProgress;options:AudioModeOptions}|null>(null)
  const audioModeController=useRef<AbortController|null>(null)
  function stopAudioMode(){audioModeController.current?.abort();setAudioModeRunning(false);setAudioModePaused(false);setAudioModeStatus('')}
  function pauseAudioMode(){audioModeController.current?.abort();setAudioModePaused(true)}
@@ -79,6 +81,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
 
  useEffect(()=>{const handler=(e:KeyboardEvent)=>{
   const target=e.target as HTMLElement|null
+  if(pocketSession)return
   if(e.defaultPrevented||e.repeat||e.ctrlKey||e.metaKey||e.altKey||target?.closest('input,textarea,select,.episode-chunk,.episode-settings,dialog,[contenteditable="true"]'))return
   const v=latest.current,key=e.key.toLowerCase()
   if(key==='arrowleft'){e.preventDefault();v.back();return}
@@ -90,7 +93,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   if(quiz&&fixed>=0){const field=target?.closest('fieldset')??quiz.querySelector('fieldset:not(:has(button[aria-pressed="true"]))');if(field){e.preventDefault();field.querySelectorAll<HTMLButtonElement>('button')[fixed]?.click();return}}
   if(!quiz&&v.current?.type==='choice'&&root.current?.querySelector('.episode-choice')){if(i>=0&&v.current.options[i]){e.preventDefault();if(!v.busy)v.advance(v.current.options[i].id)}return}
   if(key==='arrowright'||key==='1'){e.preventDefault();if(!v.busy)root.current?.querySelector<HTMLButtonElement>('[data-next]:not(:disabled)')?.click()}
- };window.addEventListener('keydown',handler);return()=>window.removeEventListener('keydown',handler)},[hotkeys])
+ };window.addEventListener('keydown',handler);return()=>window.removeEventListener('keydown',handler)},[hotkeys,pocketSession])
  useEffect(()=>{if(initial?.steps.length||!current||!root.current)return;const controller=new AbortController();motion.current=controller;void playSceneMotion(root.current,state?.cues||[],current,reduced,setResponses,controller.signal);return()=>controller.abort();
  // Resume restores held state without replaying transient motion.
  // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -126,6 +129,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  function play(text=current?.text,npc=true,restart=false,standalone=false){if(standalone)stopAudioMode();if(audioModeRunning&&!standalone){if(audioModePaused){setError('');setAudioModePaused(false)}else pauseAudioMode();return}const clip=pack.chinese?.lines[text]?.audio??(text==null?sound.current?.getAttribute('src'):undefined);if(!clip)return;if(!restart&&sound.current?.getAttribute('src')===clip){const a=sound.current;if(!a.paused){a.pause();return}if(!a.ended){void a.play().catch(()=>setError('Audio could not play. Try Play again or continue with the text.'));return}}sound.current?.pause();setSpeaking(false);const a=new Audio(clip);a.volume=voiceVolume;sound.current=a;const active=()=>sound.current===a;a.onplaying=()=>{if(active()){setAudioPlaying(true);setSpeaking(npc&&current?.type==='say'&&current.actor!=='I')}};a.onpause=a.onended=()=>{if(active()){setSpeaking(false);setAudioPlaying(false)}};a.onerror=()=>{if(active()){setSpeaking(false);setAudioPlaying(false);setError('Audio unavailable. You can continue with the text.')}};void a.play().catch(()=>{if(active()){setSpeaking(false);setAudioPlaying(false);setError('Audio could not play. Try Play again or continue with the text.')}})}
 
  if(compiled.errors.length||!state)return <div role="alert">{compiled.errors.map(e=><p key={e.line+e.message}>Line {e.line}: {e.message}</p>)}</div>
+ if(pocketSession)return <PocketAudioPlayer pack={pack} start={pocketSession.start} options={pocketSession.options} volume={voiceVolume} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss} onSave={p=>onProgress?.(p)} onExit={p=>{setProgress(p);setState(replayStory(compiled.story,p.steps,p.seed));onProgress?.(p);setPocketSession(null)}}/>
  return <div className="animated-story story-modern" ref={root} onClick={event=>{
   if(busy||state.ended||current.type==='choice'||window.getSelection()?.toString())return;
   const target=event.target as HTMLElement;
@@ -148,7 +152,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
    {audioModeRunning&&!state.ended&&<button type="button" onClick={()=>{if(audioModePaused){setError('');setAudioModePaused(false)}else pauseAudioMode()}}>{audioModePaused?'Resume Audio Mode':'Pause Audio Mode'}</button>}
    {audioModeRunning&&<span role="status">{state.ended?'Episode complete':audioModePaused?'Audio Mode paused':audioModeStatus}</span>}
   </div>
-  <AudioModeDialog open={audioModeOpen} running={audioModeRunning} options={audioModeOptions} onOptions={setAudioModeOptions} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss} onChinese={setShowChinese} onPinyin={setShowPinyin} onGloss={setShowGloss} onClose={()=>setAudioModeOpen(false)} onStart={()=>{setError('');setAudioModePaused(false);setAudioModeRunning(true);setAudioModeOpen(false)}} onStop={()=>{stopAudioMode();setAudioModeOpen(false)}}/>
+  <AudioModeDialog onPocket={()=>{stopAudioMode();generation.current++;lock.current=false;setBusy(false);sound.current?.pause();motion.current?.abort();setAutoPlay(false);setAudioModeOpen(false);setPocketSession({start:progress,options:{...audioModeOptions}})}} open={audioModeOpen} running={audioModeRunning} options={audioModeOptions} onOptions={setAudioModeOptions} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss} onChinese={setShowChinese} onPinyin={setShowPinyin} onGloss={setShowGloss} onClose={()=>setAudioModeOpen(false)} onStart={()=>{setError('');setAudioModePaused(false);setAudioModeRunning(true);setAudioModeOpen(false)}} onStop={()=>{stopAudioMode();setAudioModeOpen(false)}}/>
   <details className="episode-settings" onKeyDown={e=>{if(e.key==='Escape'){e.currentTarget.open=false;e.currentTarget.querySelector('summary')?.focus();}}}>
    <summary>Settings</summary><div className="episode-settings-panel">
    {settingsContent}

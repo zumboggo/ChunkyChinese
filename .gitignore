@@ -80,3 +80,8 @@ tools/comic-pack-builder/raw-images/
 tools/comic-pack-builder/split-images/
 tools/comic-pack-builder/**/__pycache__/
 tools/comic-pack-builder/**/*.pyc
+
+# Reviewed English episode recordings for pocket listening.
+!public/stories/audio/
+!public/stories/audio/*.m4a
+!public/stories/audio/english.json

@@ -161,3 +161,30 @@ Supabase whenever the authenticated device is online.
 
 Lesson 20 intentionally retains the supplied 4:45 taxi destination recording,
 including its recall pauses; its duration is flagged outside the original target.
+
+### Audio Mode and pocket listening
+
+In The Game, **Audio Mode** saves Chinese/English speech, translation pause,
+independent text visibility, and manual/automatic story-choice preferences across
+all episodes on the device. **Prepare pocket listening** builds a single recording
+before playback. Tap its Play control, then lock the phone. Once prepared, that
+session can play without a network connection; the download link also saves a WAV
+for a separate audio player. Android media controls support play, pause, and seek.
+Actual screen-lock behavior still needs testing on the user's Android device.
+
+Automatic pocket listening selects a route in advance and speaks only the chosen
+responses. Manual mode stops at the next choice. Returning to the story restores
+the scene matching the recording's current position. Preparation is limited to
+30 minutes per recording and does not persist the combined track across reloads.
+
+English recordings use Replicate `jaaari/kokoro-82m`, voice `af_bella`, cached by
+SHA-256 of the exact translation in `public/stories/audio/`. Credentials and
+prediction receipts stay under the user's private local directories. The standard
+`game:episode` workflow generates missing English recordings for future episodes.
+For existing catalog entries, run `npm run game:audio:english -- --dry-run`, then
+`npm run game:audio:english -- --max-estimated-cost=5` with generation authorization.
+That flag checks the published per-run estimate before submitting; it is **not** a
+hard billing cap because this model is billed by runtime. Completed predictions
+are reused after failures. Uncertain submissions stop for inspection rather than
+being submitted twice. Audio conversion uses macOS `afconvert`, or `ffmpeg` on
+other systems. Commit generated `.m4a` files and `english.json` with episode changes.
