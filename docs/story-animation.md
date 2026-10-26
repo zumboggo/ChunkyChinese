@@ -64,3 +64,13 @@ The episode player handles Left Arrow to return one displayed story beat and Rig
 ## Shared angles and conversational performances (2026-10-27)
 
 Synced upstream orientation state (`orient Actor auto|front|three-quarter|profile`), reusable vector angle geometry, optional embedded hybrid view artwork with facial anchors, and twelve finite gesture-specific timing profiles. Existing package bytes remain intact. Props, held poses and contact activities keep their stable geometry. The approved Weed Option A and young Kvothe overlays preserve their custom faces until matching angle assets are supplied; they still use the improved shared performances. Upstream `docs/character-angles.md` documents the recipe contract and comparison rehearsal. Add shared files through the sync list, never edit vendored files directly.
+
+## Chinese custom angle release v2 (2026-10-27)
+
+Weed Option A and young Kvothe now use identity-specific vector three-quarter and profile silhouettes in both directions. Their original front components are unchanged. `src/game/animation/chinese-angle-designs-v2.ts` holds approved-design adaptations; the canonical Learning is Fun `VectorAngleDesign`/`AngleFace` contract supplies animation and mirroring. The local sync overlays attach this data and retain costumes, cuffs, cloak and slung lute. Jonathan’s existing polished adult/robe avatar uses ordinary shared angles; no poster likeness or private photo is used.
+
+The additive `lms-lineup-angles-v2.json` and `wind-angles-v2.json` bundles are selected for future installments. `scripts/build-chinese-angle-cast.mjs --check` verifies them without modifying prior cast bundles. Existing released JSON/ZIP packages and attempts remain intact.
+
+Game → Chinese cast · angles and acting compares all twelve cues, cast swaps, front/three-quarter/profile, facing, full/close framing, held objects, pause and reduced motion. It uses cached Mandarin audio and interlinear text. Settings are local to this rehearsal; no student results are created. Practice & demonstrations → Chinese cast · Angles and acting v1 exercises Continue, both directions, held sword, contact and normal saved progress in the real player. This maintenance rehearsal has no teaser or classroom assignment.
+
+Limitations: props, contact, activities and held rests deliberately use stable front geometry; no rear views, new handoff mechanics, sitting upgrade or phoneme synchronization. Kvothe’s lute is a slung costume accessory, not a playable instrument. Versioned vector designs are part of the shared host runtime, so exported ZIPs require this runtime for these custom faces.

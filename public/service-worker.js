@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'episode-ec6487fc4d22'
+const CACHE_VERSION = 'chinese-angles-v2-20261027'
 const COURSE_OFFLINE_CACHE = 'chunky-listening-course-v1'
 const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'
 const SENTENCE_OFFLINE_CACHE = 'chunky-sentence-listening-v1'

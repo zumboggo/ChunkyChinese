@@ -20,8 +20,7 @@ export function weedOptionAOverlay(content){
  replace('tailored?<g', 'weedOptionA?<WeedOptionAShirt/>:tailored?<g');
  replace('{finish&&<g data-fabric-detail', '{finish&&!weedOptionA&&<g data-fabric-detail');
  replace('refined?<RefinedFace', 'weedOptionA?<WeedOptionAFace id={gradientId} emotion={emotion} blink={blink} mouth={mouth} startled={startled} laughing={laughing} firm={firm} worried={worried} turn={yaw} gazeX={gazeX} gazeY={gazeY} reduced={reduced}/>:refined?<RefinedFace');
- // Preserve this approved custom face until it has matching angle art; the shared
- // acting improvements still apply, without substituting a generic profile.
- replace('const view=characterAngle(character.rig,', "const view=characterAngle((actorId==='Hyun'||/Weed|Lee Hyun|李贤/.test(character.name))&&!character.rig.views?{...character.rig,preset:'teen-v1'}:character.rig,");
+ replace(" const occupied=", " angleDesigns=angleDesigns||((actorId==='Hyun'||/Weed|Lee Hyun|李贤/.test(character.name))?weedAnglesV2:undefined);\n const occupied=");
+ replace("import RefinedFace from './RefinedFace';", "import RefinedFace from './RefinedFace';\nimport {weedAnglesV2} from '../../chinese-angle-designs-v2';");
  return content;
 }

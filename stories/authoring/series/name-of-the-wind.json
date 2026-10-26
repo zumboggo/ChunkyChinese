@@ -42,7 +42,7 @@
   ],
   "locationBible": "docs/name-of-the-wind-series.md",
   "castRecipes": "stories/characters/wind-cast.json",
-  "castBundle": "public/stories/animated/cast/wind.json",
+  "castBundle": "public/stories/animated/cast/wind-angles-v2.json",
   "pendingPublication": [],
   "localContinuation": {
     "note": "Published through wind-02-v1",

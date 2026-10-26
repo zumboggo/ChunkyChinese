@@ -445,5 +445,10 @@
       "title": "The Voices Beneath the Water · Episode 2: The Last Door",
       "description": "Travel to Neri for water. A failing pump traps Tao below: your preparations and decisions determine who survives, how much water returns, and whether An still stands beside you. Short Mandarin with audio, pinyin and meanings."
     }
+  },
+  {
+    "id": "chinese-angles-v1",
+    "path": "chinese-angles-v1.json",
+    "category": "practice"
   }
 ]

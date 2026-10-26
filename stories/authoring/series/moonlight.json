@@ -151,5 +151,5 @@
     "assetsFrom": "stories/animated/moonlight-26.json"
   },
   "characterReferences": "stories/characters/lms-reference.json",
-  "castBundle": "public/stories/animated/cast/lms-lineup.json"
+  "castBundle": "public/stories/animated/cast/lms-lineup-angles-v2.json"
 }

@@ -28,7 +28,7 @@
     "game:audio:english": "node scripts/generate-episode-english.mjs",
     "game:audio": "node scripts/build-story-audio.mjs",
     "game:build": "node scripts/build-story-audio.mjs --pinyin-only",
-    "game:check": "node scripts/build-lms-cast.mjs --check && node scripts/build-lms-lineup.mjs --check && node scripts/check-story-packages.mjs && node scripts/check-episode-english.mjs",
+    "game:check": "node scripts/build-chinese-angle-cast.mjs --check && node scripts/build-lms-cast.mjs --check && node scripts/build-lms-lineup.mjs --check && node scripts/check-story-packages.mjs && node scripts/check-episode-english.mjs",
     "game:sync": "node scripts/sync-story-animation.mjs",
     "game:parity": "node scripts/sync-story-animation.mjs --check",
     "game:source": "python3 scripts/episode-source.py",
