@@ -5,17 +5,21 @@
     "epub": "~/Downloads/The Name of the Wind (the Kingkiller Chronicle_ Day One) -- Patrick Rothfuss -- 2007 -- DAW Books -- 229a6d8bec267eb43ccf5defe3fd33da -- Anna’s Archive.epub",
     "sha256": "351fc00f48897db57ee727714f8f5879627eceee9aadf484216793291ee16860",
     "chapter": "OEBPS/section5.xhtml",
-    "nextStart": "“Now Taborlin needed to escape,",
-    "nextEndBefore": "“I’d give a good piece for such a thing these days,”",
-    "continuationNote": "Taborlin’s escape, the tinker and Kote’s first intervention. Stop before Shep’s concern and debate."
+    "nextStart": "“I’d give a good piece for such a thing these days,”",
+    "nextEndBefore": "Carter stepped into the light,",
+    "continuationNote": "Shep’s unease, contradictory Chandrian accounts and argument; stop at Carter’s shocking entrance before describing his injuries."
   },
   "completed": [
     {
       "episode": "wind-01-v1",
       "end": "Supper interrupts Cob; the regulars are ready for the escape story. No escape or Carter arrival yet."
+    },
+    {
+      "episode": "wind-02-v1",
+      "end": "Cob resolves the escape and amulet story; Kote supplies the saying, then retreats in embarrassment. No Carter arrival yet."
     }
   ],
-  "assetsFrom": "stories/animated/wind-01.json",
+  "assetsFrom": "stories/animated/wind-02.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -41,9 +45,9 @@
   "castBundle": "public/stories/animated/cast/wind.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through wind-01-v1",
-    "nextStart": "“Now Taborlin needed to escape,",
-    "nextEndBefore": "“I’d give a good piece for such a thing these days,”",
-    "assetsFrom": "stories/animated/wind-01.json"
+    "note": "Published through wind-02-v1",
+    "nextStart": "“I’d give a good piece for such a thing these days,”",
+    "nextEndBefore": "Carter stepped into the light,",
+    "assetsFrom": "stories/animated/wind-02.json"
   }
 }
