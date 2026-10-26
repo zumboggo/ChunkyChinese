@@ -11,7 +11,7 @@ for(const entry of [...catalog,{id:'demo',path:'gate-in-the-mist.json'}])it(`${e
   if(n.type==='choice')for(const o of n.options)walk(advanceStory(story!,state,o.id),depth+1);else walk(advanceStory(story!,state,null),depth+1)
  }walk(settleStory(story!,initialStoryState(story!,1)))
 })
-for(const [from,to] of [['moonlight-01-v3','moonlight-01-v4'],['moonlight-02-v3','moonlight-02-v4'],['moonlight-03-v2','moonlight-03-v3']])it(`${to}: preserves audio, choices and resume at every step`,()=>{
+for(const [from,to] of [['jedi-01','jedi-01-v2'],['moonlight-01-v3','moonlight-01-v4'],['moonlight-02-v3','moonlight-02-v4'],['moonlight-03-v2','moonlight-03-v3']])it(`${to}: preserves audio, choices and resume at every step`,()=>{
  const old=read(from),next=read(to),a=compileStory(old.script,old.assets).story!,b=compileStory(next.script,next.assets).story!
  expect(next.chinese).toEqual(old.chinese);expect(next.quiz).toEqual(old.quiz);expect(next.assets).toEqual(old.assets);expect(playbackScript(next.script)).toBe(playbackScript(old.script))
  function walk(state:StoryState,steps:(string|null)[]){const resumed=replayStory(b,steps,19);expect(resumed.ended).toBe(state.ended);expect(resumed.history).toEqual(state.history);expect(resumed.variables).toEqual(state.variables);if(state.ended)return

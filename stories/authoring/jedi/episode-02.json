@@ -129,9 +129,8 @@
       "workflow": "passed",
       "engineParity": "passed",
       "clientSecrets": "passed",
-      "unitTests": "270 passed; one pre-existing jedi-01-v1 offstage Q speaker test failed. Episode 2 speaker/route tests passed."
-    },
-    "publication": "Not published: explicit publication authorization required by automatic approval review. Existing Episode 1 speaker test also blocks the publisher."
+      "unitTests": "Episode 1 repair and Episode 2 staging checks pass; 36 speaker/resume regression checks passed. Full suite is required by the publisher."
+    }
   },
   "teaser": {
     "model": "prunaai/p-video-2-pro",
