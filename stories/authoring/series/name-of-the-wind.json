@@ -5,14 +5,22 @@
     "epub": "~/Downloads/The Name of the Wind (the Kingkiller Chronicle_ Day One) -- Patrick Rothfuss -- 2007 -- DAW Books -- 229a6d8bec267eb43ccf5defe3fd33da -- Anna’s Archive.epub",
     "sha256": "351fc00f48897db57ee727714f8f5879627eceee9aadf484216793291ee16860",
     "chapter": "OEBPS/section5.xhtml",
-    "nextStart": "It was felling night;",
-    "nextEndBefore": "“Now Taborlin needed to escape,",
-    "continuationNote": "Opening also paraphrases the prologue atmosphere from section4.xhtml. End at supper before Cob resumes the escape."
+    "nextStart": "“Now Taborlin needed to escape,",
+    "nextEndBefore": "“I’d give a good piece for such a thing these days,”",
+    "continuationNote": "Taborlin’s escape, the tinker and Kote’s first intervention. Stop before Shep’s concern and debate."
   },
-  "completed": [],
-  "assetsFrom": ".local/episodes/wind-01/assets.json",
+  "completed": [
+    {
+      "episode": "wind-01-v1",
+      "end": "Supper interrupts Cob; the regulars are ready for the escape story. No escape or Carter arrival yet."
+    }
+  ],
+  "assetsFrom": "stories/animated/wind-01.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
-  "coverage": {"min": 95, "max": 98},
+  "coverage": {
+    "min": 95,
+    "max": 98
+  },
   "defaults": {
     "scope": "One small dramatic development; preserve frame narrative and embedded-story boundaries. Do not hurry to the University.",
     "choices": "Usually four brief observation or conversational choices with immediate responses; do not change book events.",
@@ -30,5 +38,12 @@
   ],
   "locationBible": "docs/name-of-the-wind-series.md",
   "castRecipes": "stories/characters/wind-cast.json",
-  "castBundle": "public/stories/animated/cast/wind.json"
+  "castBundle": "public/stories/animated/cast/wind.json",
+  "pendingPublication": [],
+  "localContinuation": {
+    "note": "Published through wind-01-v1",
+    "nextStart": "“Now Taborlin needed to escape,",
+    "nextEndBefore": "“I’d give a good piece for such a thing these days,”",
+    "assetsFrom": "stories/animated/wind-01.json"
+  }
 }
