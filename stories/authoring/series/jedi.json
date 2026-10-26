@@ -1,0 +1,25 @@
+{
+  "id": "jedi",
+  "title": "The Voices Beneath the Water",
+  "source": {
+    "kind": "original",
+    "note": "Original fan adventure requested by David for Jonathan; no source novel or real-person likeness.",
+    "nextStart": "Episode 1: Jonathan arrives and meets An at the landing pad.",
+    "nextEndBefore": "Episode 2: the market accusation and shared soup."
+  },
+  "completed": [],
+  "assetsFrom": "stories/animated/jedi-01.json",
+  "vocabularySupplement": ".local/episodes/jedi-01/supplement.json",
+  "coverage": {
+    "min": 80,
+    "max": 100
+  },
+  "defaults": {
+    "catalogCategory": "jedi",
+    "language": "Short simplified Mandarin, contextual interlinear pinyin and cached audio. Screenshot membership is not reading mastery.",
+    "coverageNote": "New learner: no assessed-known export. The 80% floor measures membership only in the supplied inventory plus proposed glossary, not mastery. All additional basic scaffolding is annotated and audited privately; never promote it to familiar to pass a check."
+  },
+  "continuity": [
+    "Episode 1 begins on a new planet; no facts from later episodes are known."
+  ]
+}

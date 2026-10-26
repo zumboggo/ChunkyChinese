@@ -6,7 +6,7 @@ export async function read<T>(key:string):Promise<T|undefined>{return (await dat
 export async function write(key:string,value:unknown){return (await database()).put('records',value,key)}
 export const scope=(identity:string)=>`story2:${encodeURIComponent(identity)}:`
 export interface EpisodeIntroMedia {src:string;poster:string;title:string;durationSeconds?:number}
-export interface Release {previewOnly?:boolean;id:string;pack:ChinesePackage;created:string;resumeFrom?:string;category?:'daily-life'|'lms'|'name-of-the-wind'|'practice';episode?:number;intro?:EpisodeIntroMedia}
+export interface Release {previewOnly?:boolean;id:string;pack:ChinesePackage;created:string;resumeFrom?:string;category?:'daily-life'|'lms'|'name-of-the-wind'|'jedi'|'practice';episode?:number;intro?:EpisodeIntroMedia}
 /** These commands settle without consuming a saved step. Keep every dialogue,
  * choice, label, variable and branching instruction identical for safe replay. */
 export const playbackScript=(script:string)=>script.split('\n').filter(line=>!/^(scene|show|move|camera|rest|react|prop|effect) /.test(line.trim())).join('\n')
@@ -18,7 +18,7 @@ export async function progressForRelease(identity:string,release:Release):Promis
  if(!previous||playbackScript(previous.script)!==playbackScript(release.pack.script))return undefined
  return read<StoryProgress>(scope(identity)+'progress:'+release.resumeFrom)
 }
-export async function publish(identity:string,pack:ChinesePackage){const encoded=new TextEncoder().encode(JSON.stringify(pack));const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',encoded))).map(n=>n.toString(16).padStart(2,'0')).join('');const existing=await read<Release>(scope(identity)+'release:'+digest);if(existing)return existing;const episode=pack.title.match(/^(?:Moonlight(?: Sculptor)?|The Name of the Wind)\s+(\d+)\b/i);const category=pack.title.startsWith('The Name of the Wind')?'name-of-the-wind' as const:'lms' as const;const release:Release={id:digest,pack:structuredClone(pack),created:new Date().toISOString(),...(episode?{category,episode:Number(episode[1])}:{})};await write(scope(identity)+'release:'+digest,release);return release}
+export async function publish(identity:string,pack:ChinesePackage){const encoded=new TextEncoder().encode(JSON.stringify(pack));const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',encoded))).map(n=>n.toString(16).padStart(2,'0')).join('');const existing=await read<Release>(scope(identity)+'release:'+digest);if(existing)return existing;const episode=pack.title.match(/^(?:Moonlight(?: Sculptor)?|The Name of the Wind|The Voices Beneath the Water\s*·\s*Episode)\s+(\d+)\b/i);const category=pack.title.startsWith('The Name of the Wind')?'name-of-the-wind' as const:pack.title.startsWith('The Voices Beneath the Water')?'jedi' as const:'lms' as const;const release:Release={id:digest,pack:structuredClone(pack),created:new Date().toISOString(),...(episode?{category,episode:Number(episode[1])}:{})};await write(scope(identity)+'release:'+digest,release);return release}
 export async function releases(identity:string):Promise<Release[]>{const db=await database(),keys=await db.getAllKeys('records');return Promise.all(keys.filter(k=>String(k).startsWith(scope(identity)+'release:')).map(k=>db.get('records',k)))}
 export async function saveProgress(identity:string,id:string,value:StoryProgress,release?:Release){
  const db=await database(),tx=db.transaction('records','readwrite')

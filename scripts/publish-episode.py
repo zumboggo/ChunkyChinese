@@ -98,7 +98,8 @@ def validate_series_records(paths):
         if not record.get('id') or not isinstance(record.get('completed'),list):
             raise StopPublish('Invalid series record: '+path)
         source=record.get('source',{})
-        if not all(isinstance(source.get(k),str) and source[k] for k in ('epub','sha256','chapter','nextStart','nextEndBefore')):
+        required=('note','nextStart','nextEndBefore') if source.get('kind')=='original' else ('epub','sha256','chapter','nextStart','nextEndBefore')
+        if not all(isinstance(source.get(k),str) and source[k] for k in required):
             raise StopPublish('Incomplete source boundary: '+path)
         if not Path(record.get('assetsFrom','')).is_file():
             raise StopPublish('Missing reusable assets: '+path)

@@ -1,0 +1,177 @@
+{
+  "id": "jedi-01",
+  "series": "jedi",
+  "title": "The Voices Beneath the Water · Episode 1: Who Is Speaking?",
+  "description": "Play as Jonathan, a Jedi on a new planet. Help a frightened girl find her mother - then discover why a familiar voice keeps calling from an empty room. Short Mandarin lines with audio, pinyin and meanings.",
+  "planning": {
+    "sourceBoundary": "Episode 1 only: arrival, reunion, repeated voice. Do not reveal the artifact or water reserve.",
+    "dramaticChange": "The child reaches her mother safely. The recording establishes that the voice is a repeat, not a person trapped inside.",
+    "essentialNewWords": [
+      "绝地武士",
+      "星球",
+      "水",
+      "影子",
+      "录音"
+    ],
+    "englishNarrationPurpose": "None. Latin names avoid extra Chinese name characters.",
+    "choicesAndCallbacks": [
+      {
+        "id": "approach",
+        "response": "Distinct immediate verbal response on each approach; reconverges before next plot event.",
+        "laterPayoff": "Local only; no cross-episode memory promised."
+      },
+      {
+        "id": "inspect",
+        "response": "Distinct immediate verbal response on each approach; reconverges before next plot event.",
+        "laterPayoff": "Local only; no cross-episode memory promised."
+      },
+      {
+        "id": "response",
+        "response": "Distinct immediate verbal response on each approach; reconverges before next plot event.",
+        "laterPayoff": "Local only; no cross-episode memory promised."
+      },
+      {
+        "id": "goodbye",
+        "response": "Distinct immediate verbal response on each approach; reconverges before next plot event.",
+        "laterPayoff": "Local only; no cross-episode memory promised."
+      }
+    ],
+    "sceneActivities": [
+      {
+        "purpose": "Child approaches, Q demonstrates its moving shadow, daughter moves to mother, group escorts home.",
+        "cues": "move enter, move left/right, show new scene; full-body framing for moves. No implied walking loop."
+      }
+    ],
+    "storyCircle": {
+      "You": "Jonathan arrives accustomed to protecting people from visible dangers.",
+      "Need": "A frightened child needs help finding the source of a familiar voice.",
+      "Go": "He follows her to the empty water store with An and Q.",
+      "Search": "They listen, inspect the doorway and compare what each person heard.",
+      "Find": "The real mother arrives, proving she is not trapped inside.",
+      "Take": "Jonathan must admit he cannot yet explain the voice; he gives up easy reassurance.",
+      "Return": "He escorts the child back to her mother rather than pursuing the sound alone.",
+      "Change": "The child is safe, and he treats the recording as evidence to investigate, not a reason to accuse anyone."
+    },
+    "seasonCircle": [
+      {
+        "stage": "You",
+        "episodes": "Episode 1",
+        "beat": "Jonathan arrives as a capable Jedi, ready to protect people and investigate visible danger."
+      },
+      {
+        "stage": "Need",
+        "episodes": "Episodes 1-3",
+        "beat": "The voices and shortage reveal a deeper need: people must trust a fair process, not merely a powerful visitor."
+      },
+      {
+        "stage": "Go",
+        "episodes": "Episodes 3-5",
+        "beat": "He leaves the landing settlement with people from both communities and enters the damaged landscape and old passage."
+      },
+      {
+        "stage": "Search",
+        "episodes": "Episodes 5-10",
+        "beat": "Rescues, measurements, hiring, school and personal history make him depend on local knowledge and earned trust."
+      },
+      {
+        "stage": "Find",
+        "episodes": "Episodes 11-12",
+        "beat": "The group identifies the false voices, the deep water reserve and a workable recovery plan. Jonathan could try to control the answer himself."
+      },
+      {
+        "stage": "Take",
+        "episodes": "Episodes 12-14",
+        "beat": "He gives up unilateral control and the certainty of a familiar voice. Leaders surrender exclusive access and accept accountability; Q sacrifices its rare power cell. Cooperation carries a real cost."
+      },
+      {
+        "stage": "Return",
+        "episodes": "Episodes 14-15",
+        "beat": "The group comes back from the chamber to ordinary life: water deliveries, school, gardening and a shared table."
+      },
+      {
+        "stage": "Change",
+        "episodes": "Episode 15",
+        "beat": "Jonathan can leave because the communities can check evidence, resolve complaints and share water without him. He has practiced protection through partnership rather than indispensability."
+      }
+    ],
+    "teaser": "At the midpoint, a voice comes from behind the closed door while the mother stands beside Jonathan. Action only: Jonathan turns from the mother to the door.",
+    "vocabularyReview": "Inventory membership is 80.5-82.0%, not reading mastery. Remaining items are basic connective/positional language and a few first-episode essentials, all supplied with contextual chunks, pinyin and audio. This separate new-learner policy does not borrow David’s reviewed list or promote words."
+  },
+  "notice": "This is an original fan adventure set in the Star Wars universe. You play Jonathan as a Jedi Knight; the planet, local people and events were created for this story. Choose Accept to begin.",
+  "routes": [
+    {
+      "choices": [
+        "ask",
+        "shadow",
+        "honest",
+        "promise"
+      ],
+      "contains": [
+        "是Q的影子。",
+        "我没有说话。",
+        "她不是一个问题。她是一个孩子。"
+      ],
+      "endsWith": "没有水的屋子，为什么会有妈妈的声音？"
+    },
+    {
+      "choices": [
+        "show",
+        "sound",
+        "compare",
+        "listen"
+      ],
+      "contains": [
+        "声音一样。可是，不是我说的。",
+        "到了。她安全了。"
+      ],
+      "endsWith": "没有水的屋子，为什么会有妈妈的声音？"
+    }
+  ],
+  "verification": {
+    "deterministicRoutes": 16,
+    "browserRoutes": 2,
+    "devices": [
+      "phone",
+      "desktop"
+    ],
+    "resume": true,
+    "audioEntries": 72,
+    "packageBytes": 1059373
+  },
+  "teaser": {
+    "model": "prunaai/p-video-2-pro",
+    "settings": {
+      "duration": 6,
+      "resolution": "480p",
+      "mode": "cost",
+      "prompt_upsampler": "off",
+      "nativeAudio": true
+    },
+    "verifiedRateUSDPerSecond": 0.01,
+    "maximumGenerationUSD": 0.06,
+    "paidAttempts": 1,
+    "reference": "Frame rendered from the actual episode cast and storage background after built-in image generation failed.",
+    "prompt": "Use the exact illustrated character identities and scene from the reference, preserving original clean dark outlines, flat muted cel colors and costumes. This is an original Star Wars fan adventure. One continuous six-second wide shot. The tan-robed adult Jedi on the left slowly turns his head from the mother on the right toward the CLOSED teal storage-room door behind them, listening with puzzled attention. The mother realizes the same thing and becomes still; the teenage girl stays close beside her. Restrained natural motion, a small worried glance, quiet breathing. No new people or objects. The door stays closed. No combat, no weapon, no reveal. Sound: quiet wind and a little clothing rustle only, with native generated audio. NO speech, words, narration, whispered voices, music, humming or lyrics. All mouths stay closed throughout. No text, logos or titles. End on the thoughtful pause.",
+    "checks": {
+      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-01/native.mp4",
+      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/public/stories/animated/jedi/jedi-01-intro.mp4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "fps": 24,
+      "hold_seconds": 3.0,
+      "motion_seconds": 6.0,
+      "reaction_hold_seconds": 0.0,
+      "total_seconds": 9.0,
+      "decoded_audio_seconds": 9.00275,
+      "audio_non_silent": true,
+      "audio_starts_after_hold": true,
+      "hold_mean_pixel_difference": 0.009528688524590163,
+      "sha256": "c4f7c044857730892e3bcd77f5a0fe41db8f4ae0413e05a792232ee5dfaa48d2",
+      "expected_dialogue": "",
+      "speech_check": "not run",
+      "review": "One visual/listening review remains; automated checks do not prove natural acting or lip sync."
+    }
+  }
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "Jonathan",
+    "name": "Jonathan",
+    "appearance": {
+      "age": "adult",
+      "hair": "swept",
+      "face": "oval",
+      "eyes": "gentle",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#e0b99a",
+      "hair": "#674936",
+      "shirt": "#b49a70",
+      "trim": "#f0e5c8"
+    },
+    "version": 1,
+    "finish": "polished",
+    "provenance": "Original illustrated avatar for the Voices Beneath the Water fan adventure. Not a real-person likeness; no source photographs."
+  },
+  {
+    "id": "An",
+    "name": "An",
+    "appearance": {
+      "age": "adult",
+      "hair": "ponytail",
+      "face": "angular",
+      "eyes": "keen",
+      "outfit": "tunic"
+    },
+    "palette": {
+      "skin": "#c58f67",
+      "hair": "#293338",
+      "shirt": "#4d8285",
+      "trim": "#cfb682"
+    },
+    "version": 1,
+    "finish": "polished",
+    "provenance": "Original illustrated avatar for the Voices Beneath the Water fan adventure. Not a real-person likeness; no source photographs."
+  },
+  {
+    "id": "Child",
+    "name": "女孩 · Girl",
+    "appearance": {
+      "age": "teen",
+      "hair": "bob",
+      "face": "round",
+      "eyes": "gentle",
+      "outfit": "tunic"
+    },
+    "palette": {
+      "skin": "#d8ae89",
+      "hair": "#302e36",
+      "shirt": "#c19b4b",
+      "trim": "#e6d7b4"
+    },
+    "version": 1,
+    "finish": "polished",
+    "provenance": "Original illustrated avatar for the Voices Beneath the Water fan adventure. Not a real-person likeness; no source photographs."
+  },
+  {
+    "id": "Mother",
+    "name": "妈妈 · Mother",
+    "appearance": {
+      "age": "adult",
+      "hair": "bun",
+      "face": "oval",
+      "eyes": "gentle",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#d8ae89",
+      "hair": "#302e36",
+      "shirt": "#87647b",
+      "trim": "#d2b38d"
+    },
+    "version": 1,
+    "finish": "polished",
+    "provenance": "Original illustrated avatar for the Voices Beneath the Water fan adventure. Not a real-person likeness; no source photographs."
+  }
+]

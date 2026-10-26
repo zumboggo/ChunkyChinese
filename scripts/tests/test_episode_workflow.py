@@ -73,6 +73,17 @@ class PublishTests(unittest.TestCase):
                 self.assertTrue(Path('.local/publish-receipts/sha.json').exists())
             finally:os.chdir(old)
 
+    def test_original_series_requires_a_bounded_outline(self):
+        with tempfile.TemporaryDirectory() as directory:
+            assets=Path(directory)/'assets.json';assets.write_text('{}')
+            path=Path(directory)/'series.json'
+            record={'id':'jedi','completed':[],'assetsFrom':str(assets),'source':{'kind':'original','note':'Original adventure','nextStart':'Arrival','nextEndBefore':'Market'}}
+            path.write_text(json.dumps(record));publish.validate_series_records([str(path)])
+            del record['source']['nextEndBefore'];path.write_text(json.dumps(record))
+            with self.assertRaisesRegex(publish.StopPublish,'boundary'):publish.validate_series_records([str(path)])
+            record['source']['nextEndBefore']='Market';del record['source']['kind'];path.write_text(json.dumps(record))
+            with self.assertRaisesRegex(publish.StopPublish,'boundary'):publish.validate_series_records([str(path)])
+
     def test_command_timeout_is_bounded(self):
         code,_,error=publish.run([sys.executable,'-c','import time; time.sleep(10)'],timeout=.05)
         self.assertEqual(code,124);self.assertIn('timed out',error)
