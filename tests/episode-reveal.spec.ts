@@ -10,7 +10,7 @@ async function start(page:Page){
 async function defaults(page:Page,chinese:boolean,pinyin:boolean,english:boolean){
  const settings=page.locator('.episode-settings')
  await settings.locator('summary').click()
- await settings.getByRole('checkbox',{name:'Chinese',exact:true}).setChecked(chinese)
+ await settings.getByRole('checkbox',{name:'Characters',exact:true}).setChecked(chinese)
  await settings.getByRole('checkbox',{name:'Pinyin',exact:true}).setChecked(pinyin)
  await settings.getByRole('checkbox',{name:'English',exact:true}).setChecked(english)
  await settings.locator('summary').click()

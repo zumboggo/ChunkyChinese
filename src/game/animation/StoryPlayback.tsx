@@ -104,11 +104,11 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
    <summary>Settings</summary><div className="episode-settings-panel">
    {settingsContent}
   {!state.ended&&<EpisodeAtmosphere preferencesKey={preferencesKey+':sound'} root={root} preset={state.ended?'none':state.stage.ambience} ducked={audioPlaying&&voiceVolume>0} voiceVolume={voiceVolume} onVoiceVolume={setVoiceVolume}/>}
-   <fieldset className="chunk-view-settings"><legend>Default view</legend><p>Show these before you tap a chunk:</p>
-    <label><input type="checkbox" checked={showChinese} onChange={e=>setShowChinese(e.target.checked)}/> Chinese</label>
+   <fieldset className="chunk-view-settings"><legend>Default view</legend><p>Show these before you tap a chunk. Turn all three off for listening practice:</p>
+    <label><input type="checkbox" checked={showChinese} onChange={e=>setShowChinese(e.target.checked)}/> Characters</label>
     <label><input type="checkbox" checked={showPinyin} onChange={e=>setShowPinyin(e.target.checked)}/> Pinyin</label>
     <label><input type="checkbox" checked={showGloss} onChange={e=>setShowGloss(e.target.checked)}/> English</label>
-    <p><strong>Revealed view:</strong> tap a chunk to add the hidden Chinese, pinyin, or English. Tap again to return to your default view.</p>
+    <p><strong>Revealed view:</strong> tap a chunk to add the hidden characters, pinyin, or English. Tap again to return to your default view.</p>
    </fieldset>
    <label><input type="checkbox" checked={autoPlay} onChange={e=>{setAutoPlay(e.target.checked);if(!e.target.checked){sound.current?.pause();setSpeaking(false);setAudioPlaying(false)}}}/> Automatically play voice</label>
    {onReplayOpening&&<button onClick={onReplayOpening}>Replay opening</button>}
