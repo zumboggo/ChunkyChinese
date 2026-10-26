@@ -7,7 +7,7 @@ for(const file of readdirSync(resolve(root,'stories/animated')).filter(f=>f.ends
 const catalog=JSON.parse(readFileSync(resolve(root,'public/stories/animated/catalog.json'),'utf8'));const ids=new Set();for(const entry of catalog){if(!/^[a-z0-9-]+$/.test(entry.id)||!/^[a-z0-9-]+\.json$/.test(entry.path)||ids.has(entry.id))throw Error('Invalid or duplicate catalog entry');ids.add(entry.id);if(!existsSync(resolve(root,'stories/animated',entry.path)))throw Error('Missing catalog package');}
 for(const entry of catalog)if(entry.intro){
  const {src,poster,title}=entry.intro
- if(typeof title!=='string'||!title.trim()||!/^stories\/animated\/cutscenes\/[a-z0-9-]+\.mp4$/.test(src)||!/^stories\/animated\/cutscenes\/[a-z0-9-]+\.jpg$/.test(poster))throw Error('Invalid episode introduction: '+entry.id)
+ if(typeof title!=='string'||!title.trim()||!/^stories\/animated\/(?:cutscenes|jedi)\/[a-z0-9-]+\.mp4$/.test(src)||!/^stories\/animated\/(?:cutscenes|jedi)\/[a-z0-9-]+(?:\.poster)?\.jpg$/.test(poster))throw Error('Invalid episode introduction: '+entry.id)
  if(!existsSync(resolve(root,'public',src))||!existsSync(resolve(root,'public',poster)))throw Error('Missing introduction media: '+entry.id)
  if(entry.intro.durationSeconds!==undefined&&(!Number.isFinite(entry.intro.durationSeconds)||entry.intro.durationSeconds<=0))throw Error('Invalid introduction duration: '+entry.id)
 }
