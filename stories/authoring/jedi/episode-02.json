@@ -1,0 +1,536 @@
+{
+  "id": "jedi-02",
+  "series": "jedi",
+  "title": "The Voices Beneath the Water · Episode 2: The Last Door",
+  "description": "Travel to Neri for water. A failing pump traps Tao below: your preparations and decisions determine who survives, how much water returns, and whether An still stands beside you. Short Mandarin with audio, pinyin and meanings.",
+  "planning": {
+    "sourceBoundary": "Original episode 2, revised at David’s request: journey to Neri, water-depot accusation, pump rescue and return. Preserve the unexplained repeated voice; do not reveal its source or the deep reserve.",
+    "dramaticChange": "Four material endings: Tao dies/full water; everyone survives/half water; everyone survives/no water plus Tao’s lead; Tao survives/full water/Q destroyed and recording lost. Truth versus concealment independently changes An’s cooperation.",
+    "essentialNewWords": [
+      "绳子",
+      "救",
+      "死",
+      "一半"
+    ],
+    "englishNarrationPurpose": "None; English only in contextual help.",
+    "choicesAndCallbacks": [
+      {
+        "id": "equipment",
+        "response": "Tao appreciates either concern for his safety or the wider need for water.",
+        "laterPayoff": "rope opens Q sacrifice option; battery preserves half water when rescuing."
+      },
+      {
+        "id": "bottle",
+        "response": "Min resents exposure despite receiving personal water, or warns the missing bottle will be noticed.",
+        "laterPayoff": "hidden boolean controls the accusation/confession; honest donation is noted and Jonathan goes thirsty."
+      },
+      {
+        "id": "rescue",
+        "response": "Named person or Q dies, or everyone survives with water loss; the selected result is narrated immediately.",
+        "laterPayoff": "result 0–3 produces different final material outcomes; no random deaths or false safe option."
+      },
+      {
+        "id": "testimony",
+        "response": "An agrees to answer publicly or leaves to give her own account.",
+        "laterPayoff": "Distinct political outcome before material ending; no moral score."
+      }
+    ],
+    "sceneActivities": [
+      {
+        "purpose": "An approaches the lower hatch; Jonathan stops her before the informed rescue choice; Q exits only on its sacrifice branch; Tao enters only on surviving branches; An moves away when concealment breaks their partnership.",
+        "cues": "supported move, react block/reach, listener/two/wide camera; caption describes offstage flooding and rope action honestly."
+      }
+    ],
+    "characterSignatures": {
+      "Jonathan": "Practical questions and personal accountability; restrained stop gesture, worried listening.",
+      "An": "Names the people affected; urgent movement becomes deliberate distance when trust breaks.",
+      "Q": "Concise mechanical facts, then unexpectedly direct desire to live; image-rig movement only.",
+      "Tao": "Dry humour about work; survivor questions water distribution rather than offering uncomplicated gratitude.",
+      "Min": "Short urgent explanations; gratitude and resentment coexist."
+    },
+    "teaser": "At the lower hatch, An reaches to open it and Jonathan raises a hand to stop her. One meaningful action, no dialogue. The visible moment precedes Q’s explanation; no ending spoiler.",
+    "payoff": "The immediate trapped-worker emergency is resolved on every route; the ship leaves with a specific casualty and water outcome.",
+    "freshQuestion": "Who gets the next drink, and can the returning group face the community together?",
+    "continuationPolicy": "Preserve all four material endings in author notes; do not silently choose a universal survival outcome or claim cross-episode save import.",
+    "vocabularyReview": "Simplified after first audit; unchanged source inventory and supplement. Battery replaces unfamiliar battery term; Min is an adult with an ill wife. No membership promotions.",
+    "pinyinReview": "Reviewed sentence and chunk pinyin; corrected 只够 zhǐ gòu, 妻子 qī zi, 空着 kōng zhe; joined Latin names. Reviewed polyphones, neutral tones and glosses.",
+    "futureTeaserArt": "David requested 2026-10-26: ImageGen first, then video. Jon likeness from approved series cover; polished shonen-anime interpretation is welcome. Keep paid video maximum at $0.15."
+  },
+  "notice": "This is an original fan adventure set in the Star Wars universe. You play Jonathan as a Jedi Knight. This episode includes danger, non-graphic death and permanent loss within the episode. Choices change who survives and the ending. Saved choices apply to this episode; later episodes do not yet import them automatically. Choose Accept to begin.",
+  "routes": [
+    {
+      "choices": [
+        "part",
+        "report",
+        "savehalf",
+        "truth"
+      ],
+      "contains": [
+        "他们安全了。不过，只有一半的水。山上的人和河边的人怎么分？"
+      ],
+      "endsWith": "飞船离开了。水给谁？谁来选择？"
+    },
+    {
+      "choices": [
+        "rope",
+        "cover",
+        "sendq",
+        "truth"
+      ],
+      "contains": [
+        "水还在。Q牺牲了。那段录音没有了。",
+        "Min偷水的时候，我知道。我说他可以走。"
+      ],
+      "endsWith": "飞船离开了。水给谁？谁来选择？"
+    },
+    {
+      "choices": [
+        "rope",
+        "report",
+        "saveempty",
+        "silence"
+      ],
+      "contains": [
+        "An走了。她不愿意和我一起回答。我们说的话会不一样。",
+        "我陪你们回去。我知道哪里可以找水。"
+      ],
+      "endsWith": "飞船离开了。水给谁？谁来选择？"
+    },
+    {
+      "choices": [
+        "part",
+        "cover",
+        "sealpart",
+        "silence"
+      ],
+      "contains": [
+        "水安全了。Tao死了。我会记得他。",
+        "我们捎水回去。水够了。Tao没有回来。"
+      ],
+      "endsWith": "飞船离开了。水给谁？谁来选择？"
+    }
+  ],
+  "verification": {
+    "deterministicRoutes": 20,
+    "browserTests": 8,
+    "devices": [
+      "phone",
+      "desktop"
+    ],
+    "resume": true,
+    "packageBytes": 1480996,
+    "vocabularyMembershipPercent": {
+      "min": 87.03241895261846,
+      "max": 89.8936170212766
+    },
+    "visualReview": "Inspected phone rescue choice and desktop final choice. Widened final choice and separated rescued Tao from An; all 8 route tests rerun successfully. Phone choice panels scroll.",
+    "releaseChecks": {
+      "build": "passed",
+      "workflow": "passed",
+      "engineParity": "passed",
+      "clientSecrets": "passed",
+      "unitTests": "270 passed; one pre-existing jedi-01-v1 offstage Q speaker test failed. Episode 2 speaker/route tests passed."
+    },
+    "publication": "Not published: explicit publication authorization required by automatic approval review. Existing Episode 1 speaker test also blocks the publisher."
+  },
+  "teaser": {
+    "model": "prunaai/p-video-2-pro",
+    "settings": {
+      "duration": 6,
+      "resolution": "480p",
+      "mode": "cost",
+      "prompt_upsampler": "off",
+      "nativeAudio": true
+    },
+    "verifiedRateUSDPerSecond": 0.01,
+    "maximumGenerationUSD": 0.06,
+    "paidAttempts": 1,
+    "predictionId": "tcznk2gq5xrmw0d1f2wsjbpxn8",
+    "reference": "Built-in ImageGen shonen-anime interpretation of Jon’s approved series cover; ImageGen precedes video per David’s 2026-10-26 preference.",
+    "sound": "Unrequested native dialogue removed offline. Replaced with original nonverbal mechanical hum, creak and water drops; no additional paid request.",
+    "checks": {
+      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-02/clean-motion.mp4",
+      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/public/stories/animated/jedi/jedi-02-intro.mp4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "fps": 24,
+      "hold_seconds": 3.0,
+      "motion_seconds": 6.0,
+      "reaction_hold_seconds": 0.0,
+      "total_seconds": 9.0,
+      "decoded_audio_seconds": 9.00275,
+      "audio_non_silent": true,
+      "audio_starts_after_hold": true,
+      "hold_mean_pixel_difference": 0.003549473067915691,
+      "sha256": "30b05a88adaa806e0bc4dd1af5e4c9b565b56ce3154d61367961509f879c9aff",
+      "expected_dialogue": "",
+      "speech_check": "Native dialogue detected; final soundtrack replaced with original synthesized nonverbal ambience.",
+      "review": "ImageGen reference and final frame inspected; no paid retry. Authored sound has no speech."
+    },
+    "prompt": "Animate this exact shonen anime illustration, preserving the adult bearded Jedi Jonathan on the left and adult woman An on the right, their faces, clothes, proportions and all setting details. Single continuous six-second shot. ONE meaningful action: Jonathan extends his already-raised open palm slightly further to warn An to stop opening the hatch. An pauses, releases the handle and turns her eyes toward him, realizing the danger. The metal hatch stays CLOSED the entire time. Both hold a tense listening pause. Tiny natural cloak and ponytail movement, subtle warning-light flicker, quiet water trickle. Restrained dramatic anime motion, consistent clean linework, no camera cut, no zoom, no additional people. Native sound: a metallic creak, quiet water trickle, faint machinery hum only. NO speech, words, narration, music, humming voices or lyrics. Both mouths settle closed and remain closed. No lightsaber ignition, no fighting, no door opening, no character injury, no new objects, no text or logos. End on the unresolved silent decision."
+  },
+  "englishAudioOverrides": [
+    {
+      "sha256": "2bfccdc209f98acbbaa83db217c0628eea8c3430091a58a80d828bd44b463e25",
+      "text": "Open the door, save Tao and take half the water home.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Paid output expired; preserved original receipt and avoided a second paid request."
+    },
+    {
+      "sha256": "8accd97abaa50b46ab43c3c6dbfbfbc7df36ce6044dab2269d63d96735ed6922",
+      "text": "The rope can pull someone up. The battery can fix the machine and protect the water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Paid output expired; preserved original receipt and avoided a second paid request."
+    },
+    {
+      "sha256": "53ad421647182baecf5768cb68309de8a282c8eea3e4089ff921d0fcde877e81",
+      "text": "Take the rope. Put people first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Paid output expired; preserved original receipt and avoided a second paid request."
+    },
+    {
+      "sha256": "3e107c98945850b20bc665854fad287413f910bb4814580b400c2d3a97769385",
+      "text": "Take the battery. They need water to drink.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Paid output expired; preserved original receipt and avoided a second paid request."
+    },
+    {
+      "sha256": "07acabf645427588e8233d4d2ec7e9022f88caa4b85ec72eb2a71ddb64158401",
+      "text": "Good. You have not forgotten the person down below.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Paid output expired; preserved original receipt and avoided a second paid request."
+    },
+    {
+      "sha256": "a5e4f2df74b8d3a920b69900ebd3e5d4a480198174af3fc4aa1ea8ed8a9012f4",
+      "text": "Good. If people are safe but the water is gone, what then?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Paid output expired; preserved original receipt and avoided a second paid request."
+    },
+    {
+      "sha256": "ff2ccf1e0fb9895a78dc9b44ffdc9e537a4233a9c0f92f1f2621b013934467b3",
+      "text": "Min secretly takes some water and hides it under his clothes.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "77eb3c12f90d4f17394db569f5a6d097cbfe16a608a13a7e071ffa003e8df43d",
+      "text": "My name is Min. My wife is seriously ill. She cannot wait.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "09887d647d1ba5712801e7634f96107b666b2c7827a058b114ccb66a356aa307",
+      "text": "Thank you. But they will notice there is less water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7661bb49393b4077bf7d263e4e0d8e348982a91463a24fe36efed95943108142",
+      "text": "I know. We share responsibility.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "235ad49d67802002af9dbb3d77b800665c694c678bdc206ed56991d87d623fe2",
+      "text": "The rocks shift. Someone below shouts: Help me!",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3d9adf632327deed85cf88282287a23953dbebc6704727b56668e0ba3dd648c3",
+      "text": "The door is broken! Water is everywhere!",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2970de3c016404cdef756a7b2c035706c29f2fba66ed41228d3deeb8ea898882",
+      "text": "Opening the door can save Tao. But the water will drain away.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f5db355c4ad0bc634e4555b8ca7a8b16bef0b0cefdd5a17cb747cf811690bf09",
+      "text": "Sealing the door protects the water. Tao will die.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2ce9a4525e4442e1d17487eca027379d95bd8d71309267699b6a2620e90bffbb",
+      "text": "The children back there are waiting for water. But Tao is my friend.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a14c974a01b53fde21a7c0f963454184b422b9090dffbc418196489db0abf648",
+      "text": "We have the battery. Tao can get out. We can keep half the water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c76db315b6913fa4604784a39abc0ba599327efa4c903052e74f871ecefaf2aa",
+      "text": "We have a rope. I can go below and pull him out without opening the door.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "47b7b4c20886c0f5cce42d1ee1c41c750f1787e367798e6cba20ddd02e0f883c",
+      "text": "But the water will destroy me. I cannot be repaired or return.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8805065e1ab18e2180ab646bb60e2048a2ad04efa745201d4d2f706135b4b773",
+      "text": "I am willing to sacrifice myself. But I want to live. You could open the door to save him.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "bb5cf7103f37f1998c6f61cee47c00dad70382f1701f635c35b5a20f77f3826a",
+      "text": "Send Q below. Tao and the water are safe; Q is sacrificed.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "85c1ae18daff7a3051934fbc430b1ec77d729de069d094e5a597e12546318800",
+      "text": "Hold the rope. Do not let go.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "205130b720fa56bd7395913de61a3409f96cb7f0eabe2ad047e3f1ad82b00e63",
+      "text": "An and I hold the rope. Q falls silent.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "96d801e8d30c1682dc38ff59d12c48a2d31a57a276fc5183be651fd1321ea7db",
+      "text": "It protected me. It did not get out.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e58cd2222c513b13e265d0dd4dea733cb29171cb2de028a6bf058d2ada89f89d",
+      "text": "The water is still here. Q sacrificed itself. The recording is gone.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "931e9dc74274aca2210f18180c611da81e6325345a2719feead2b8d91d1faf32",
+      "text": "The door seals. Tao falls silent. No one answers.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "423cbacceb09639a6a524720e6f882ae7a9b703546f4cc9392dd12839dec4a8f",
+      "text": "The water is safe. Tao is dead. I will remember him.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c26a5fe8a4be3215f9be8250e7371c66b3d7cd8abced68669fb76212989d8b77",
+      "text": "Beside the ship, An checks the water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "32c26a5090cdb7211c587643215c156861adfe2e268e4115b754be7b743953fe",
+      "text": "Some water is missing here. Min, did you steal it?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ba44152e9bf00346903b91283bada50fc88d5a99e17da1d091b6e6b82ac5ce2f",
+      "text": "The missing water was yours. I remember. You still have not had a drink.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "52939b56532c9393cd2f1e7d2f453ed56bd6603d79eb02d6a6b21c0ea5eae49e",
+      "text": "My wife drank some water and feels much better. What about you?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1c958768a8166847fdcba69a0869fdde92c8dabe1fd871157c50f84f990f0ab3",
+      "text": "When we return, they will ask: what did you do?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a5bf65e01f3c3120480aab0d1ddeea60fb16b40367cb1573ee6e155e24c96635",
+      "text": "Answer honestly. Take responsibility for my choices.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "527ecce37ef244e14a911842ea3d03b2e3ba5119408a88d04bc2511e8b64108c",
+      "text": "Say the machine broke. Leave out our choices.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "589cf425fec02802230d29860a66663b7e4dbcf17d05c685ec23452b44bb04ab",
+      "text": "When Min stole water, I knew. I said he could leave.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c792910a98dfe7409a860d820f0d73270e523a03daf0f9da2c84c721cc8d2c2d",
+      "text": "You told them. But you are willing to share responsibility.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0336d02ef2de63238f1feb1b7ac662a16432b901e9cada617c8f7b5fec3afd3a",
+      "text": "I will say what I know. We will answer together.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a6e551b83feecb8dd27d63ceeb4063fc130366660417d6267432430111055c5d",
+      "text": "We will answer together. They may not be happy, but they will know our choices.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3c4e373bf04aa667c505f97fedb7747f7e0d684b7fd91104735aaad483d1408f",
+      "text": "No. I will not lie for you. I will go back and say what I know.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "23e8be89d8204c050837676cf9a0194d5f7da777ff8416173e4378eb1aa9b576",
+      "text": "An walks away. She will not answer alongside me. Our accounts will differ.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "5b03ac534ba01d761f97e83fce13f5f21c8bf9764af651370c5ff7dd537b4a73",
+      "text": "We take the water back. There is enough. Tao does not return.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e2d6aa426437bbaef02920dda0b0af021c7815d1de5a253d7a575070d1bd7536",
+      "text": "Tao is safe. There is enough water. Q can never return.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0066227f1adb4cee22075166a63d819a1e5c39854b31b63ff2e552aa505c184a",
+      "text": "They are safe. But there is only half the water. How will the hill and river communities share it?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d00d5cc5d26e713baa092299f8e3b98aa908af89556e024f4fe741ca24b2f870",
+      "text": "I will go back with you. I know where to look for water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7ceb4b9ba06e976c60bfae73272396d74192681317e1405e3a6950ab4b24fe7d",
+      "text": "But we cannot wait. Do you really know?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b83e7ab8e44da446ac0892b1dbf0acb053fdff3401c467df52cd8d3c66413feb",
+      "text": "The ship departs. Who gets the water? Who decides?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    }
+  ]
+}

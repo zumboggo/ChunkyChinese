@@ -1,0 +1,42 @@
+[
+  {
+    "id": "Tao",
+    "name": "Tao",
+    "appearance": {
+      "age": "adult",
+      "hair": "cropped",
+      "face": "broad",
+      "eyes": "gentle",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#ad8068",
+      "hair": "#595158",
+      "shirt": "#b38c51",
+      "trim": "#dad1b8"
+    },
+    "version": 1,
+    "finish": "polished",
+    "provenance": "Original adult character for episode 2; no real-person likeness."
+  },
+  {
+    "id": "Min",
+    "name": "Min",
+    "appearance": {
+      "age": "adult",
+      "hair": "tousled",
+      "face": "oval",
+      "eyes": "keen",
+      "outfit": "tunic"
+    },
+    "palette": {
+      "skin": "#d6a582",
+      "hair": "#292d41",
+      "shirt": "#727097",
+      "trim": "#b7adb8"
+    },
+    "version": 1,
+    "finish": "polished",
+    "provenance": "Original adult character for episode 2; no real-person likeness."
+  }
+]

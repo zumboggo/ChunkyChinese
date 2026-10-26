@@ -429,5 +429,21 @@
       "title": "Jonathan lights his saber",
       "durationSeconds": 9
     }
+  },
+  {
+    "id": "jedi-02-v1",
+    "category": "jedi",
+    "episode": 2,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-02-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-02-intro.poster.jpg",
+      "title": "The Last Door",
+      "durationSeconds": 9
+    },
+    "path": "jedi-02.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 2: The Last Door",
+      "description": "Travel to Neri for water. A failing pump traps Tao below: your preparations and decisions determine who survives, how much water returns, and whether An still stands beside you. Short Mandarin with audio, pinyin and meanings."
+    }
   }
 ]
