@@ -3,7 +3,9 @@ async function start(page:Page){
  await page.emulateMedia({reducedMotion:'reduce'})
  await page.goto('/')
  await page.getByRole('button',{name:'Game',exact:true}).click()
- await page.locator('.episode-strip button').filter({hasText:/^01/}).click()
+ await page.getByRole('button',{name:'Restart episode',exact:true}).waitFor()
+ if(await page.getByLabel('Episode',{exact:true}).count())await page.getByLabel('Episode',{exact:true}).selectOption({index:0})
+ else await page.locator('.episode-strip button').filter({hasText:/^01/}).click()
  await page.getByRole('button',{name:'Restart episode',exact:true}).click()
  await page.getByRole('button',{name:'Skip intro →',exact:true}).click()
 }

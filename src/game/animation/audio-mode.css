@@ -1,0 +1,15 @@
+.game-page .audio-mode-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:10px 0}
+.game-page .audio-mode-toolbar button{margin:0;min-height:44px}
+.game-page .audio-mode-toolbar [role=status]{font-size:.85rem;color:#486d54}
+.game-page .audio-mode-dialog{width:min(520px,calc(100vw - 32px));max-height:85dvh;box-sizing:border-box;padding:0;border:1px solid #bfcdbb;border-radius:18px;background:#fffcf5;color:#263e36;box-shadow:0 20px 70px #142e3540}
+.game-page .audio-mode-dialog::backdrop{background:#152d2b99}
+.game-page .audio-mode-panel{padding:24px}
+.game-page .audio-mode-panel h2{margin-top:0;font:28px Georgia,serif}
+.game-page .audio-mode-panel>label{display:grid;gap:8px;margin:16px 0;font-weight:600}
+.game-page .audio-mode-panel select{width:100%;min-height:44px;box-sizing:border-box;font:inherit;background:#fffdf7;color:#263e36;border:1px solid #bfcdbb;border-radius:8px;padding:8px}
+.game-page .audio-mode-panel fieldset{margin:16px 0;border:1px solid #bfcdbb;border-radius:10px}
+.game-page .audio-mode-panel fieldset label{display:inline-flex;align-items:center;gap:6px;min-height:44px;margin-right:12px}
+.game-page .audio-mode-panel .audio-mode-note{font-size:.85rem;line-height:1.5;color:#62756b}
+.game-page .audio-mode-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;margin-top:20px}
+.game-page .audio-mode-actions button{margin:0;min-height:44px}
+@media(max-width:600px){.game-page .audio-mode-panel{padding:18px}.game-page .audio-mode-actions button{flex:1}}
