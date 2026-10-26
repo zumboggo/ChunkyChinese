@@ -17,3 +17,33 @@ test('Jedi water episode starts from the public library', async ({ page }) => {
  await expect(page.locator('.episode-line')).toContainText('我是')
  expect(errors).toEqual([])
 })
+
+for (const feature of ['timeout', 'randomUUID']) test(`episode opens without ${feature}`, async ({page})=>{
+ await page.addInitScript(feature=>{
+  if(feature==='timeout')Object.defineProperty(AbortSignal,'timeout',{value:undefined,configurable:true})
+  else Object.defineProperty(Crypto.prototype,'randomUUID',{value:undefined,configurable:true})
+ },feature)
+ await page.goto('./')
+ await page.getByRole('button',{name:'Game',exact:true}).click()
+ await page.getByLabel('Book',{exact:true}).selectOption('jedi')
+ await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
+ await expect(page.getByRole('button',{name:'Accept',exact:true})).toBeVisible()
+ await page.getByRole('button',{name:'Accept',exact:true}).click()
+ await page.getByRole('button',{name:'Skip intro →',exact:true}).click()
+ await expect(page.locator('.episode-line')).toContainText('我是')
+})
+
+test('download errors appear beside Play and allow retry',async({page})=>{
+ await page.route('**/stories/animated/jedi-01.json',route=>route.fulfill({status:503,body:'Unavailable'}))
+ await page.goto('./')
+ await page.getByRole('button',{name:'Game',exact:true}).click()
+ await page.getByLabel('Book',{exact:true}).selectOption('jedi')
+ const card=page.locator('.featured-episode')
+ const play=card.getByRole('button',{name:'Play / resume episode',exact:true})
+ await play.click()
+ await expect(card.getByRole('status')).toContainText('Could not open this episode')
+ await expect(play).toBeEnabled()
+ await page.unroute('**/stories/animated/jedi-01.json')
+ await play.click()
+ await expect(page.getByRole('button',{name:'Accept',exact:true})).toBeVisible()
+})

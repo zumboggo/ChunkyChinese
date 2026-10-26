@@ -13,9 +13,13 @@ export async function loadBundledEntry(entry:CatalogEntry):Promise<Release>{
  let pack=await read<ChinesePackage>(key).catch(()=>undefined)
  if(pack&&validateChinese(pack).errors.length)pack=undefined
  if(!pack){
-  const response=await fetch(import.meta.env.BASE_URL+'stories/animated/'+entry.path,{signal:AbortSignal.timeout(20000)})
-  if(!response.ok)throw Error('Episode download failed. Choose Play to retry; your saved progress is safe.')
-  pack=await response.json() as ChinesePackage
+  const controller=new AbortController()
+  const timeout=setTimeout(()=>controller.abort(),20000)
+  try {
+   const response=await fetch(import.meta.env.BASE_URL+'stories/animated/'+entry.path,{signal:controller.signal})
+   if(!response.ok)throw Error('Episode download failed. Choose Play to retry; your saved progress is safe.')
+   pack=await response.json() as ChinesePackage
+  } finally {clearTimeout(timeout)}
   if(validateChinese(pack).errors.length)throw Error('Episode needs an updated player')
   await write(key,pack).catch(()=>undefined)
  }
