@@ -487,5 +487,15 @@
       "title": "The Voices Beneath the Water · Episode 3: The Water We Promise",
       "description": "Three preparations before the storm. Balance lives, fair access and tomorrow’s water; your promises and preparations determine who survives and who holds power."
     }
+  },
+  {
+    "id": "moonlight-27-v1",
+    "category": "lms",
+    "episode": 27,
+    "path": "moonlight-27.json",
+    "summary": {
+      "title": "The Player Who Would Not Take Gifts",
+      "description": "Four weeks with a wooden sword make Weed famous for the wrong reason. The more clearly he explains himself, the less the other players believe him."
+    }
   }
 ]

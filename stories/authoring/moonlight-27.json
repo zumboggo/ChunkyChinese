@@ -1,0 +1,77 @@
+{
+  "id": "moonlight-27",
+  "title": "The Player Who Would Not Take Gifts",
+  "description": "Four weeks with a wooden sword make Weed famous for the wrong reason. The more clearly he explains himself, the less the other players believe him.",
+  "sources": [
+    "Personal Mandarin adaptation of The Legendary Moonlight Sculptor, fingerprinted compilation Chapter 4: four-race history compressed as context, then the training rumor and NPC misunderstanding. Stops before high-level recruitment. Branch dialogue is authored within the fixed source events."
+  ],
+  "planning": {
+    "sourceBoundary": "Exact pinned Chapter 4 opening through the explanation of player/NPC identity; no recruitment.",
+    "dramaticChange": "Weed wants uninterrupted practice; players want a special quest. He successfully refuses all gifts and states his identity, but their hopes transform his refusal into evidence. Payoff: dignity and practice preserved. Fresh problem: truth alone cannot end the misunderstanding.",
+    "essentialNewWords": [
+      "精灵",
+      "矮人",
+      "兽人",
+      "钢剑"
+    ],
+    "englishNarrationPurpose": "None.",
+    "choicesAndCallbacks": [
+      {
+        "choice": "rumor",
+        "response": "Attend to gossip / prioritize the next strike",
+        "callback": "none; immediate response then fixed rejoin"
+      },
+      {
+        "choice": "gift",
+        "response": "Polite refusal elicits offer to search / proud refusal elicits reassurance",
+        "callback": "none; immediate response then fixed rejoin"
+      },
+      {
+        "choice": "explain",
+        "response": "Direct identity claim elicits disbelief / challenge elicits comparison with ordinary practice",
+        "callback": "none; immediate response then fixed rejoin"
+      },
+      {
+        "choice": "leave",
+        "response": "Angry request elicits admiration / return-gifts request elicits astonishment",
+        "callback": "none; immediate response then fixed rejoin"
+      }
+    ],
+    "sceneActivities": [
+      {
+        "actor": "Hyun",
+        "target": "Dummy",
+        "activity": "train steady",
+        "purpose": "Persistent work explains rumor; stop when gift offers interrupt, restart for final decision. Action framing preserves contact."
+      }
+    ],
+    "characterSignatures": {
+      "Hyun": "Short practical refusals; private financial humor gives way to offended dignity. Steady training, restrained angry expression.",
+      "Watcher": "An anonymous source crowd representative, hopeful offers and leading questions. Curious then delighted; quiet listener when corrected."
+    },
+    "directing": "Hold pair during gifts; identity claim turns to Watcher listener, distinct question followed by Continue-controlled private aftermath; return pair for instructor evidence.",
+    "teaser": {
+      "moment": "Refusal of food gifts",
+      "action": "Raised palm, bread stays with giver; no speech",
+      "holdSeconds": 3,
+      "generatedSeconds": 6
+    }
+  },
+  "pinyinReviewed": true,
+  "notice": "This episode adapts The Legendary Moonlight Sculptor into a Mandarin adventure. Some dialogue and choices have been added while preserving the novel’s events.",
+  "verification": {
+    "routes": 16,
+    "browserTests": 4,
+    "coveragePercent": [
+      95.02,
+      95.3
+    ],
+    "bytes": 1778235,
+    "teaser": "Prepared still; external video upload and $0.06 charge pending explicit approval after automatic review rejection. No paid video submission.",
+    "limitations": [
+      "Shared practice sword prop has a metal-colored blade; dialogue and teaser identify the source wooden sword. No shared renderer changes made."
+    ],
+    "releaseChecks": "289 unit tests, 19 workflow tests, shared-runtime parity, all package checks, production build and client-secret boundary passed.",
+    "listenerReview": "Eight listener/aftermath beats checked with audio playback on phone and desktop; text remained Continue-controlled. Screenshots inspected. Automated playback does not establish listening quality."
+  }
+}
