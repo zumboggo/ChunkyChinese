@@ -4,9 +4,9 @@
   "source": {
     "kind": "original",
     "note": "Original fan adventure requested by David for Jonathan; no source novel or real-person likeness.",
-    "nextStart": "Episode 3: Return from Neri and the two-community water negotiation. First explicitly restore the player’s episode-2 outcome; there is no automatic cross-episode state import.",
-    "nextEndBefore": "Episode 4: departure to investigate the damaged landscape. Do not reveal the voice artifact or deep water reserve early.",
-    "continuationNote": "David’s request for meaningful danger supersedes the earlier purely reconverging episode-2 outline. Preserve casualties and shipment results. If cross-episode state remains unsupported, let players explicitly choose their prior ending before continuing."
+    "nextStart": "Episode 4: departure to investigate the cracked landscape; explicitly restore the Episode 3 agreement, survivors and remaining water.",
+    "nextEndBefore": "Do not reveal the voice artifact or deep reserve until a later planned discovery.",
+    "continuationNote": "No universal ending; preserve agreement, medical outcome, inherited casualties and promise consequences."
   },
   "completed": [
     {
@@ -22,9 +22,13 @@
       "episode": "jedi-02-v1",
       "end": "Neri water emergency resolved with four material outcomes and two independent truth/cooperation outcomes. Tao or Q may die, or all survive with half/no shipment. No universal outcome selected.",
       "sha256": "ff004d4dd2c948e00b101af2dc46b4bd6d8b803a8e79a113bf5463cac6a4e898"
+    },
+    {
+      "episode": "jedi-03-v1",
+      "end": "Two-community water negotiation ends in hill control, temporary need-based distribution, or earned shared management. Mei survives only with evacuation or treatment. Earlier casualties and An’s independent testimony persist."
     }
   ],
-  "assetsFrom": "stories/animated/jedi-02.json",
+  "assetsFrom": "stories/animated/jedi-03.json",
   "vocabularySupplement": ".local/episodes/jedi-01/supplement.json",
   "coverage": {
     "min": 80,
@@ -42,12 +46,22 @@
     "Jonathan, An and Q travel to Neri for water; Min is an adult with an ill wife; Tao is the pump worker.",
     "Episode 2 has four outcomes: Tao dead/all water/Q alive; everyone alive/half water; everyone alive/no water/Tao offers a lead; Tao alive/all water/Q destroyed and recording lost.",
     "An agrees to answer publicly alongside Jonathan if he tells the truth; she refuses to support concealment and gives her own account.",
-    "The source of the repeated voice remains unexplained. Do not resurrect Tao or Q or restore the lost recording without an explicitly selected compatible route."
+    "The source of the repeated voice remains unexplained. Do not resurrect Tao or Q or restore the lost recording without an explicitly selected compatible route.",
+    "Episode 3: three preparations from pump inspection, both-community hearing, voluntary household reserve contribution and evacuation. Shared management requires inspection and hearing and costs four buckets.",
+    "Mei survives only if evacuated early or treated with four buckets; otherwise she dies. Do not resurrect her.",
+    "Hill control costs six buckets; emergency distribution breaks a prior promise if made; shared management renegotiates it by consent. Carry the actual agreement and remaining water forward."
   ],
   "cover": "public/stories/animated/jedi/series-cover.jpg",
   "coverArt": {
     "method": "Built-in imagegen",
     "reference": "User-supplied photo, man on the left; user requested likeness-based Jedi poster and approved Replicate transfer. Original photo stays private.",
     "prompt": "Fun cinematic Star Wars adventure poster, landscape 16:9. Preserve the man on the left’s facial likeness, hair, beard and build. Cream Jedi tunic and brown robes, eager smile, single unlit lightsaber hilt. Warm gold and cool blue lighting, rocky alien planet, twin suns and stars. No woman, ice cream, text, logos or watermark."
+  },
+  "pendingPublication": [],
+  "localContinuation": {
+    "note": "Published through jedi-03-v1",
+    "nextStart": "Episode 4: departure to investigate the cracked landscape; explicitly restore the Episode 3 agreement, survivors and remaining water.",
+    "nextEndBefore": "Do not reveal the voice artifact or deep reserve until a later planned discovery.",
+    "assetsFrom": "stories/animated/jedi-03.json"
   }
 }
