@@ -37,6 +37,7 @@ test('library scales beyond 100 episodes without downloading every lesson',async
  await expect(page.getByRole('heading',{name:'No matching episodes',exact:true})).toBeVisible()
  await page.getByRole('button',{name:'Clear search',exact:true}).click()
  await page.getByLabel('Book',{exact:true}).selectOption('name-of-the-wind')
+ await page.getByLabel('Episode',{exact:true}).selectOption({index:catalog.filter((e:{category:string})=>e.category==='name-of-the-wind').length-1})
  await expect(page.getByRole('button',{name:'Next →',exact:true})).toBeDisabled()
  await expect(page.locator('body')).toHaveJSProperty('scrollWidth',await page.locator('body').evaluate(e=>e.clientWidth))
  await page.screenshot({path:'.local/notw/library-'+info.project.name+'.png',fullPage:true})

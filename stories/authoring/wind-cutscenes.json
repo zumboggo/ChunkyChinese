@@ -1,0 +1,84 @@
+[
+  {
+    "episode": "wind-01-v1",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "j1z3x37xa5rmw0d1ex7bf7t54m",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off",
+      "audio": "native"
+    },
+    "pricing": {
+      "source": "https://replicate.com/prunaai/p-video-2-pro",
+      "verifiedAt": "2026-10-26",
+      "rateUsdPerSecond": 0.01,
+      "maximumUsd": 0.06,
+      "paidAttempts": 1
+    },
+    "prompt": "Use the reference for the innkeeper character identity: adult man, flame-red tousled hair, lean clean-shaven face, muted green workshirt. Original graphic novel style. At night inside the quiet Waystone Inn, reframe him behind the mahogany bar. One meaningful action: he slowly wipes an already gleaming bar with a white linen cloth, pauses with his hand resting on it, and stares distantly into the empty room. Keep his mouth closed throughout. Restrained natural movement, no dramatic gestures. Warm oil lamp, cold dark stone hearth, muted shadows. Six seconds, one continuous quiet shot. Sound: soft cloth against wood and very faint room ambience only. NO speech, NO words, NO narration, NO music, NO humming. No text, titles or logos. End in a quiet pause. No additional people.",
+    "reference": "Original game-rendered Kote character at the Waystone, matching wind-cast.json.",
+    "finish": {
+      "holdSeconds": 3.0,
+      "motionSeconds": 6.0,
+      "totalSeconds": 9.0,
+      "sourceTrimStartSeconds": 0,
+      "reason": "Full generated motion retained."
+    },
+    "verification": {
+      "speech": "pass",
+      "transcript": "",
+      "audioNonSilent": true,
+      "audioStartsAfterHold": true,
+      "sha256": "df6283064c9aac2acca31444ae2329759ac01ba4a276b2c52c3b9fa534d9a523"
+    },
+    "intro": {
+      "src": "stories/animated/cutscenes/wind-01-intro.mp4",
+      "poster": "stories/animated/cutscenes/wind-01-intro.jpg",
+      "title": "The quiet behind the bar",
+      "durationSeconds": 9
+    }
+  },
+  {
+    "episode": "wind-02-v1",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "pzz8f6s29srmy0d1ex7vszt4xr",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off",
+      "audio": "native"
+    },
+    "pricing": {
+      "source": "https://replicate.com/prunaai/p-video-2-pro",
+      "verifiedAt": "2026-10-26",
+      "rateUsdPerSecond": 0.01,
+      "maximumUsd": 0.06,
+      "paidAttempts": 1
+    },
+    "prompt": "Use the reference for this adult innkeeper identity: flame-red tousled hair, lean clean-shaven face, muted green workshirt, original graphic novel style. Reframe him in the doorway behind the mahogany bar of a quiet rustic inn at night, medium waist-up shot. He unexpectedly speaks with precise calm, then looks slightly embarrassed by the attention of unseen guests. English speech: \"You have forgotten more than half.\" Say exactly those seven English words once, clearly and audibly. No additional words, repetition, paraphrase, fillers, humming, lyrics, narration, or other voices. After speaking, close his mouth and let the uncomfortable silence linger. Minimal natural movement, warm lamp light, quiet room ambience lower than speech. One continuous six-second shot. Only one visible person. No subtitles, text, titles or logos. No magic or action spectacle.",
+    "reference": "Original game-rendered Kote character at the Waystone, matching wind-cast.json.",
+    "finish": {
+      "holdSeconds": 3.0,
+      "motionSeconds": 2.9583333333333335,
+      "totalSeconds": 5.958333333333333,
+      "sourceTrimStartSeconds": 3,
+      "reason": "Remove unrequested speech before the intended line; no paid regeneration."
+    },
+    "verification": {
+      "speech": "pass",
+      "transcript": "You have forgotten more than half",
+      "audioNonSilent": true,
+      "audioStartsAfterHold": true,
+      "sha256": "0afceb4d76c6569b2e603252d671040e560e9ad034ccb55f66a9da73706ec193"
+    },
+    "intro": {
+      "src": "stories/animated/cutscenes/wind-02-intro.mp4",
+      "poster": "stories/animated/cutscenes/wind-02-intro.jpg",
+      "title": "More than half",
+      "durationSeconds": 6
+    }
+  }
+]

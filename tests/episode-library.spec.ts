@@ -24,6 +24,7 @@ test('book selection, resume and the next episode keep their sequence',async({pa
  await expect(page.getByRole('heading',{name:'Moonlight Sculptor 02 · An Impossible Number',exact:true})).toBeVisible()
  await page.getByRole('button',{name:'← Story library',exact:true}).click()
  await books.selectOption('name-of-the-wind')
- await expect(episodes.locator('option')).toHaveCount(1)
+ await expect(episodes.locator('option')).toHaveCount(catalog.filter((e:{category:string})=>e.category==='name-of-the-wind').length)
+ await episodes.selectOption({index:catalog.filter((e:{category:string})=>e.category==='name-of-the-wind').length-1})
  await expect(page.getByRole('button',{name:'Next →',exact:true})).toBeDisabled()
 })

@@ -388,6 +388,29 @@
       "title": "The Name of the Wind 01 · A Story Before Supper",
       "description": "A quiet inn, five familiar guests, and a story interrupted by supper. Listen for what the innkeeper leaves unsaid.",
       "cover": "stories/animated/covers/wind-01-v1.webp"
+    },
+    "intro": {
+      "src": "stories/animated/cutscenes/wind-01-intro.mp4",
+      "poster": "stories/animated/cutscenes/wind-01-intro.jpg",
+      "title": "The quiet behind the bar",
+      "durationSeconds": 9
+    }
+  },
+  {
+    "id": "wind-02-v1",
+    "category": "name-of-the-wind",
+    "episode": 2,
+    "path": "wind-02.json",
+    "summary": {
+      "title": "The Name of the Wind 02 · The Name the Wind Obeys",
+      "description": "A wall without a door. A step into empty air. And an innkeeper who suddenly knows more than he says.",
+      "cover": "stories/animated/covers/wind-02-v1.webp"
+    },
+    "intro": {
+      "src": "stories/animated/cutscenes/wind-02-intro.mp4",
+      "poster": "stories/animated/cutscenes/wind-02-intro.jpg",
+      "title": "More than half",
+      "durationSeconds": 6
     }
   }
 ]

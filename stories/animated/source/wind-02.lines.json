@@ -1,0 +1,980 @@
+{
+  "晚饭还没吃完，老人已经接着讲了。大家都想知道，那个人怎么离开。": {
+    "pinyin": "wǎn fàn hái méi chī wán ， lǎo rén yǐ jīng jiē zhe jiǎng le 。 dà jiā dōu xiǎng zhī dào ， nà ge rén zěn me lí kāi 。",
+    "english": "supper is not finished yet; the old man has already resumed his story; everyone wants to know; how that man gets out",
+    "interlinear": [
+      {
+        "chinese": "晚饭还没吃完，",
+        "pinyin": "wǎn fàn hái méi chī wán ，",
+        "gloss": "supper is not finished yet"
+      },
+      {
+        "chinese": "老人已经接着讲了。",
+        "pinyin": "lǎo rén yǐ jīng jiē zhe jiǎng le 。",
+        "gloss": "the old man has already resumed his story"
+      },
+      {
+        "chinese": "大家都想知道，",
+        "pinyin": "dà jiā dōu xiǎng zhī dào ，",
+        "gloss": "everyone wants to know"
+      },
+      {
+        "chinese": "那个人怎么离开。",
+        "pinyin": "nà ge rén zěn me lí kāi 。",
+        "gloss": "how that man gets out"
+      }
+    ]
+  },
+  "他看了看四周。没有门，也没有窗户，只有石头。没有人能从这里出去。": {
+    "pinyin": "tā kàn le kàn sì zhōu 。 méi yǒu mén ， yě méi yǒu chuāng hu ， zhǐ yǒu shí tou 。 méi yǒu rén néng cóng zhè lǐ chū qù 。",
+    "english": "he looked around; there was no door; nor any window; only stone; no one could get out of here",
+    "interlinear": [
+      {
+        "chinese": "他看了看四周。",
+        "pinyin": "tā kàn le kàn sì zhōu 。",
+        "gloss": "he looked around"
+      },
+      {
+        "chinese": "没有门，",
+        "pinyin": "méi yǒu mén ，",
+        "gloss": "there was no door"
+      },
+      {
+        "chinese": "也没有窗户，",
+        "pinyin": "yě méi yǒu chuāng hu ，",
+        "gloss": "nor any window"
+      },
+      {
+        "chinese": "只有石头。",
+        "pinyin": "zhǐ yǒu shí tou 。",
+        "gloss": "only stone"
+      },
+      {
+        "chinese": "没有人能从这里出去。",
+        "pinyin": "méi yǒu rén néng cóng zhè lǐ chū qù 。",
+        "gloss": "no one could get out of here"
+      }
+    ]
+  },
+  "可是，他知道一切东西的名字。他说的话，石头也得听。": {
+    "pinyin": "kě shì ， tā zhī dào yí qiè dōng xi de míng zi 。 tā shuō de huà ， shí tou yě děi tīng 。",
+    "english": "but; he knew the names of all things; what he said; even stone had to obey",
+    "interlinear": [
+      {
+        "chinese": "可是，",
+        "pinyin": "kě shì ，",
+        "gloss": "but"
+      },
+      {
+        "chinese": "他知道一切东西的名字。",
+        "pinyin": "tā zhī dào yí qiè dōng xi de míng zi 。",
+        "gloss": "he knew the names of all things"
+      },
+      {
+        "chinese": "他说的话，",
+        "pinyin": "tā shuō de huà ，",
+        "gloss": "what he said"
+      },
+      {
+        "chinese": "石头也得听。",
+        "pinyin": "shí tou yě děi tīng 。",
+        "gloss": "even stone had to obey"
+      }
+    ]
+  },
+  "想想那个没有门的房间。": {
+    "pinyin": "xiǎng xiǎng nà ge méi yǒu mén de fáng jiān 。",
+    "english": "think about that; room without a door",
+    "interlinear": [
+      {
+        "chinese": "想想那个",
+        "pinyin": "xiǎng xiǎng nà ge",
+        "gloss": "think about that"
+      },
+      {
+        "chinese": "没有门的房间。",
+        "pinyin": "méi yǒu mén de fáng jiān 。",
+        "gloss": "room without a door"
+      }
+    ]
+  },
+  "想想他知道的名字。": {
+    "pinyin": "xiǎng xiǎng tā zhī dào de míng zi 。",
+    "english": "think about; the names he knows",
+    "interlinear": [
+      {
+        "chinese": "想想",
+        "pinyin": "xiǎng xiǎng",
+        "gloss": "think about"
+      },
+      {
+        "chinese": "他知道的名字。",
+        "pinyin": "tā zhī dào de míng zi 。",
+        "gloss": "the names he knows"
+      }
+    ]
+  },
+  "四周全是石头。这里真的能出去吗？": {
+    "pinyin": "sì zhōu quán shì shí tou 。 zhè lǐ zhēn de néng chū qù ma ？",
+    "english": "stone on every side; can anyone really get out of here",
+    "interlinear": [
+      {
+        "chinese": "四周全是石头。",
+        "pinyin": "sì zhōu quán shì shí tou 。",
+        "gloss": "stone on every side"
+      },
+      {
+        "chinese": "这里真的能出去吗？",
+        "pinyin": "zhè lǐ zhēn de néng chū qù ma ？",
+        "gloss": "can anyone really get out of here"
+      }
+    ]
+  },
+  "知道名字，就能让石头听话？我想听老人说下去。": {
+    "pinyin": "zhī dào míng zi ， jiù néng ràng shí tou tīng huà ？ wǒ xiǎng tīng lǎo rén shuō xià qù 。",
+    "english": "knowing a name; can make stone obey; I want to hear the old man continue",
+    "interlinear": [
+      {
+        "chinese": "知道名字，",
+        "pinyin": "zhī dào míng zi ，",
+        "gloss": "knowing a name"
+      },
+      {
+        "chinese": "就能让石头听话？",
+        "pinyin": "jiù néng ràng shí tou tīng huà ？",
+        "gloss": "can make stone obey"
+      },
+      {
+        "chinese": "我想听老人说下去。",
+        "pinyin": "wǒ xiǎng tīng lǎo rén shuō xià qù 。",
+        "gloss": "I want to hear the old man continue"
+      }
+    ]
+  },
+  "他对石头说：破！石头就破开了，眼前一下子多了一条路。": {
+    "pinyin": "tā duì shí tou shuō ： pò ！ shí tou jiù pò kāi le ， yǎn qián yí xià zi duō le yì tiáo lù 。",
+    "english": "he said to the stone; break; the stone broke open; suddenly a way appeared before him",
+    "interlinear": [
+      {
+        "chinese": "他对石头说：",
+        "pinyin": "tā duì shí tou shuō ：",
+        "gloss": "he said to the stone"
+      },
+      {
+        "chinese": "破！",
+        "pinyin": "pò ！",
+        "gloss": "break"
+      },
+      {
+        "chinese": "石头就破开了，",
+        "pinyin": "shí tou jiù pò kāi le ，",
+        "gloss": "the stone broke open"
+      },
+      {
+        "chinese": "眼前一下子多了一条路。",
+        "pinyin": "yǎn qián yí xià zi duō le yì tiáo lù 。",
+        "gloss": "suddenly a way appeared before him"
+      }
+    ]
+  },
+  "外面是天空。他终于能好好地呼吸了。": {
+    "pinyin": "wài miàn shì tiān kōng 。 tā zhōng yú néng hǎo hǎo de hū xī le 。",
+    "english": "outside was the sky; at last he could breathe freely",
+    "interlinear": [
+      {
+        "chinese": "外面是天空。",
+        "pinyin": "wài miàn shì tiān kōng 。",
+        "gloss": "outside was the sky"
+      },
+      {
+        "chinese": "他终于能好好地呼吸了。",
+        "pinyin": "tā zhōng yú néng hǎo hǎo de hū xī le 。",
+        "gloss": "at last he could breathe freely"
+      }
+    ]
+  },
+  "他走到边上，低头看了一眼，就走了出去。": {
+    "pinyin": "tā zǒu dào biān shàng ， dī tóu kàn le yì yǎn ， jiù zǒu le chū qù 。",
+    "english": "he walked to the edge; looked down once; and stepped out",
+    "interlinear": [
+      {
+        "chinese": "他走到边上，",
+        "pinyin": "tā zǒu dào biān shàng ，",
+        "gloss": "he walked to the edge"
+      },
+      {
+        "chinese": "低头看了一眼，",
+        "pinyin": "dī tóu kàn le yì yǎn ，",
+        "gloss": "looked down once"
+      },
+      {
+        "chinese": "就走了出去。",
+        "pinyin": "jiù zǒu le chū qù 。",
+        "gloss": "and stepped out"
+      }
+    ]
+  },
+  "不会吧！他真的走出去了？": {
+    "pinyin": "bú huì ba ！ tā zhēn de zǒu chū qù le ？",
+    "english": "surely not; he really stepped out",
+    "interlinear": [
+      {
+        "chinese": "不会吧！",
+        "pinyin": "bú huì ba ！",
+        "gloss": "surely not"
+      },
+      {
+        "chinese": "他真的走出去了？",
+        "pinyin": "tā zhēn de zǒu chū qù le ？",
+        "gloss": "he really stepped out"
+      }
+    ]
+  },
+  "对。他掉了下去，却一点也不担心。": {
+    "pinyin": "duì 。 tā diào le xià qù ， què yì diǎn yě bù dān xīn 。",
+    "english": "yes; he fell down; but was not worried at all",
+    "interlinear": [
+      {
+        "chinese": "对。",
+        "pinyin": "duì 。",
+        "gloss": "yes"
+      },
+      {
+        "chinese": "他掉了下去，",
+        "pinyin": "tā diào le xià qù ，",
+        "gloss": "he fell down"
+      },
+      {
+        "chinese": "却一点也不担心。",
+        "pinyin": "què yì diǎn yě bù dān xīn 。",
+        "gloss": "but was not worried at all"
+      }
+    ]
+  },
+  "他知道风的名字。风听了他的话，就接住了他。": {
+    "pinyin": "tā zhī dào fēng de míng zi 。 fēng tīng le tā de huà ， jiù jiē zhù le tā 。",
+    "english": "he knew the name of the wind; the wind obeyed his words; and caught him",
+    "interlinear": [
+      {
+        "chinese": "他知道风的名字。",
+        "pinyin": "tā zhī dào fēng de míng zi 。",
+        "gloss": "he knew the name of the wind"
+      },
+      {
+        "chinese": "风听了他的话，",
+        "pinyin": "fēng tīng le tā de huà ，",
+        "gloss": "the wind obeyed his words"
+      },
+      {
+        "chinese": "就接住了他。",
+        "pinyin": "jiù jiē zhù le tā 。",
+        "gloss": "and caught him"
+      }
+    ]
+  },
+  "风把他送到地上。他好好地站着，一点事也没有。": {
+    "pinyin": "fēng bǎ tā sòng dào dì shàng 。 tā hǎo hǎo de zhàn zhe ， yì diǎn shì yě méi yǒu 。",
+    "english": "the wind carried him to the ground; he stood there safely; nothing was wrong at all",
+    "interlinear": [
+      {
+        "chinese": "风把他送到地上。",
+        "pinyin": "fēng bǎ tā sòng dào dì shàng 。",
+        "gloss": "the wind carried him to the ground"
+      },
+      {
+        "chinese": "他好好地站着，",
+        "pinyin": "tā hǎo hǎo de zhàn zhe ，",
+        "gloss": "he stood there safely"
+      },
+      {
+        "chinese": "一点事也没有。",
+        "pinyin": "yì diǎn shì yě méi yǒu 。",
+        "gloss": "nothing was wrong at all"
+      }
+    ]
+  },
+  "年轻人的眼睛都大了。老人点点头，一点也不觉得奇怪。": {
+    "pinyin": "nián qīng rén de yǎn jing dōu dà le 。 lǎo rén diǎn diǎn tóu ， yì diǎn yě bù jué de qí guài 。",
+    "english": "the young man's eyes went wide; the old man nodded; not finding it strange at all",
+    "interlinear": [
+      {
+        "chinese": "年轻人的眼睛都大了。",
+        "pinyin": "nián qīng rén de yǎn jing dōu dà le 。",
+        "gloss": "the young man's eyes went wide"
+      },
+      {
+        "chinese": "老人点点头，",
+        "pinyin": "lǎo rén diǎn diǎn tóu ，",
+        "gloss": "the old man nodded"
+      },
+      {
+        "chinese": "一点也不觉得奇怪。",
+        "pinyin": "yì diǎn yě bù jué de qí guài 。",
+        "gloss": "not finding it strange at all"
+      }
+    ]
+  },
+  "我刚才还担心他会死。": {
+    "pinyin": "wǒ gāng cái hái dān xīn tā huì sǐ 。",
+    "english": "just now I was worried; he would die",
+    "interlinear": [
+      {
+        "chinese": "我刚才还担心",
+        "pinyin": "wǒ gāng cái hái dān xīn",
+        "gloss": "just now I was worried"
+      },
+      {
+        "chinese": "他会死。",
+        "pinyin": "tā huì sǐ 。",
+        "gloss": "he would die"
+      }
+    ]
+  },
+  "原来，他知道风会帮他。": {
+    "pinyin": "yuán lái ， tā zhī dào fēng huì bāng tā 。",
+    "english": "so that was it; he knew; the wind would help him",
+    "interlinear": [
+      {
+        "chinese": "原来，",
+        "pinyin": "yuán lái ，",
+        "gloss": "so that was it"
+      },
+      {
+        "chinese": "他知道",
+        "pinyin": "tā zhī dào",
+        "gloss": "he knew"
+      },
+      {
+        "chinese": "风会帮他。",
+        "pinyin": "fēng huì bāng tā 。",
+        "gloss": "the wind would help him"
+      }
+    ]
+  },
+  "从那么高的地方掉下来，还能好好地站起来！": {
+    "pinyin": "cóng nà me gāo de dì fāng diào xià lái ， hái néng hǎo hǎo de zhàn qǐ lái ！",
+    "english": "falling from so high up; and still able to stand up unharmed",
+    "interlinear": [
+      {
+        "chinese": "从那么高的地方掉下来，",
+        "pinyin": "cóng nà me gāo de dì fāng diào xià lái ，",
+        "gloss": "falling from so high up"
+      },
+      {
+        "chinese": "还能好好地站起来！",
+        "pinyin": "hái néng hǎo hǎo de zhàn qǐ lái ！",
+        "gloss": "and still able to stand up unharmed"
+      }
+    ]
+  },
+  "没有路的时候，他走向了风。": {
+    "pinyin": "méi yǒu lù de shí hòu ， tā zǒu xiàng le fēng 。",
+    "english": "when there was no path; he stepped toward the wind",
+    "interlinear": [
+      {
+        "chinese": "没有路的时候，",
+        "pinyin": "méi yǒu lù de shí hòu ，",
+        "gloss": "when there was no path"
+      },
+      {
+        "chinese": "他走向了风。",
+        "pinyin": "tā zǒu xiàng le fēng 。",
+        "gloss": "he stepped toward the wind"
+      }
+    ]
+  },
+  "他再看看身上受伤的地方，发现也没什么大事。": {
+    "pinyin": "tā zài kàn kàn shēn shàng shòu shāng de dì fāng ， fā xiàn yě méi shén me dà shì 。",
+    "english": "he looked again at; the injured part of his body; and found it was nothing serious either",
+    "interlinear": [
+      {
+        "chinese": "他再看看",
+        "pinyin": "tā zài kàn kàn",
+        "gloss": "he looked again at"
+      },
+      {
+        "chinese": "身上受伤的地方，",
+        "pinyin": "shēn shàng shòu shāng de dì fāng ，",
+        "gloss": "the injured part of his body"
+      },
+      {
+        "chinese": "发现也没什么大事。",
+        "pinyin": "fā xiàn yě méi shén me dà shì 。",
+        "gloss": "and found it was nothing serious either"
+      }
+    ]
+  },
+  "也许只是运气好。也许，是衣服下面的护身符帮了他。": {
+    "pinyin": "yě xǔ zhǐ shì yùn qì hǎo 。 yě xǔ ， shì yī fu xià miàn de hù shēn fú bāng le tā 。",
+    "english": "perhaps it was just good luck; perhaps; it was the amulet beneath his clothes; that helped him",
+    "interlinear": [
+      {
+        "chinese": "也许只是运气好。",
+        "pinyin": "yě xǔ zhǐ shì yùn qì hǎo 。",
+        "gloss": "perhaps it was just good luck"
+      },
+      {
+        "chinese": "也许，",
+        "pinyin": "yě xǔ ，",
+        "gloss": "perhaps"
+      },
+      {
+        "chinese": "是衣服下面的护身符",
+        "pinyin": "shì yī fu xià miàn de hù shēn fú",
+        "gloss": "it was the amulet beneath his clothes"
+      },
+      {
+        "chinese": "帮了他。",
+        "pinyin": "bāng le tā 。",
+        "gloss": "that helped him"
+      }
+    ]
+  },
+  "什么护身符？": {
+    "pinyin": "shén me hù shēn fú ？",
+    "english": "what amulet",
+    "interlinear": [
+      {
+        "chinese": "什么护身符？",
+        "pinyin": "shén me hù shēn fú ？",
+        "gloss": "what amulet"
+      }
+    ]
+  },
+  "年轻人嘴里还有吃的，就开始问了。老人坐得更舒服了，准备慢慢讲。": {
+    "pinyin": "nián qīng rén zuǐ lǐ hái yǒu chī de ， jiù kāi shǐ wèn le 。 lǎo rén zuò de gèng shū fu le ， zhǔn bèi màn màn jiǎng 。",
+    "english": "the young man still had food in his mouth; but began asking already; the old man settled more comfortably into his seat; ready to tell it at his leisure",
+    "interlinear": [
+      {
+        "chinese": "年轻人嘴里还有吃的，",
+        "pinyin": "nián qīng rén zuǐ lǐ hái yǒu chī de ，",
+        "gloss": "the young man still had food in his mouth"
+      },
+      {
+        "chinese": "就开始问了。",
+        "pinyin": "jiù kāi shǐ wèn le 。",
+        "gloss": "but began asking already"
+      },
+      {
+        "chinese": "老人坐得更舒服了，",
+        "pinyin": "lǎo rén zuò de gèng shū fu le ，",
+        "gloss": "the old man settled more comfortably into his seat"
+      },
+      {
+        "chinese": "准备慢慢讲。",
+        "pinyin": "zhǔn bèi màn màn jiǎng 。",
+        "gloss": "ready to tell it at his leisure"
+      }
+    ]
+  },
+  "几天前，他在路上遇到一个帮人修东西的老人。": {
+    "pinyin": "jǐ tiān qián ， tā zài lù shang yù dào yí gè bāng rén xiū dōng xi de lǎo rén 。",
+    "english": "a few days earlier; he met on the road; an old man who repaired things for people",
+    "interlinear": [
+      {
+        "chinese": "几天前，",
+        "pinyin": "jǐ tiān qián ，",
+        "gloss": "a few days earlier"
+      },
+      {
+        "chinese": "他在路上遇到",
+        "pinyin": "tā zài lù shang yù dào",
+        "gloss": "he met on the road"
+      },
+      {
+        "chinese": "一个帮人修东西的老人。",
+        "pinyin": "yí gè bāng rén xiū dōng xi de lǎo rén 。",
+        "gloss": "an old man who repaired things for people"
+      }
+    ]
+  },
+  "自己的晚饭不多，他还是分了一些给老人吃。": {
+    "pinyin": "zì jǐ de wǎn fàn bù duō ， tā hái shì fēn le yì xiē gěi lǎo rén chī 。",
+    "english": "he did not have much supper himself; but still shared some; for the old man to eat",
+    "interlinear": [
+      {
+        "chinese": "自己的晚饭不多，",
+        "pinyin": "zì jǐ de wǎn fàn bù duō ，",
+        "gloss": "he did not have much supper himself"
+      },
+      {
+        "chinese": "他还是分了一些",
+        "pinyin": "tā hái shì fēn le yì xiē",
+        "gloss": "but still shared some"
+      },
+      {
+        "chinese": "给老人吃。",
+        "pinyin": "gěi lǎo rén chī 。",
+        "gloss": "for the old man to eat"
+      }
+    ]
+  },
+  "这样做就对了。你帮这种人一次，他会还你两次。": {
+    "pinyin": "zhè yàng zuò jiù duì le 。 nǐ bāng zhè zhǒng rén yí cì ， tā huì huán nǐ liǎng cì 。",
+    "english": "that was the right thing to do; help someone like that once; and he will repay you twice",
+    "interlinear": [
+      {
+        "chinese": "这样做就对了。",
+        "pinyin": "zhè yàng zuò jiù duì le 。",
+        "gloss": "that was the right thing to do"
+      },
+      {
+        "chinese": "你帮这种人一次，",
+        "pinyin": "nǐ bāng zhè zhǒng rén yí cì ，",
+        "gloss": "help someone like that once"
+      },
+      {
+        "chinese": "他会还你两次。",
+        "pinyin": "tā huì huán nǐ liǎng cì 。",
+        "gloss": "and he will repay you twice"
+      }
+    ]
+  },
+  "不对！不是这样说的。你连最重要的都不记得了。": {
+    "pinyin": "bú duì ！ bú shì zhè yàng shuō de 。 nǐ lián zuì zhòng yào de dōu bú jì de le 。",
+    "english": "wrong; that is not how it goes; you do not even remember the most important part",
+    "interlinear": [
+      {
+        "chinese": "不对！",
+        "pinyin": "bú duì ！",
+        "gloss": "wrong"
+      },
+      {
+        "chinese": "不是这样说的。",
+        "pinyin": "bú shì zhè yàng shuō de 。",
+        "gloss": "that is not how it goes"
+      },
+      {
+        "chinese": "你连最重要的都不记得了。",
+        "pinyin": "nǐ lián zuì zhòng yào de dōu bú jì de le 。",
+        "gloss": "you do not even remember the most important part"
+      }
+    ]
+  },
+  "想想分出去的那一点晚饭。": {
+    "pinyin": "xiǎng xiǎng fēn chū qù de nà yì diǎn wǎn fàn 。",
+    "english": "think about; that little portion of supper he shared",
+    "interlinear": [
+      {
+        "chinese": "想想",
+        "pinyin": "xiǎng xiǎng",
+        "gloss": "think about"
+      },
+      {
+        "chinese": "分出去的那一点晚饭。",
+        "pinyin": "fēn chū qù de nà yì diǎn wǎn fàn 。",
+        "gloss": "that little portion of supper he shared"
+      }
+    ]
+  },
+  "听听他们到底怎么说。": {
+    "pinyin": "tīng tīng tā men dào dǐ zěn me shuō 。",
+    "english": "listen to; what exactly they are saying",
+    "interlinear": [
+      {
+        "chinese": "听听",
+        "pinyin": "tīng tīng",
+        "gloss": "listen to"
+      },
+      {
+        "chinese": "他们到底怎么说。",
+        "pinyin": "tā men dào dǐ zěn me shuō 。",
+        "gloss": "what exactly they are saying"
+      }
+    ]
+  },
+  "自己也没多少吃的，还愿意分给别人。这可不只是说句好话。": {
+    "pinyin": "zì jǐ yě méi duō shǎo chī de ， hái yuàn yì fēn gěi bié rén 。 zhè kě bù zhǐ shì shuō jù hǎo huà 。",
+    "english": "having little to eat yourself; yet still willing to share with someone else; that is more than just saying something nice",
+    "interlinear": [
+      {
+        "chinese": "自己也没多少吃的，",
+        "pinyin": "zì jǐ yě méi duō shǎo chī de ，",
+        "gloss": "having little to eat yourself"
+      },
+      {
+        "chinese": "还愿意分给别人。",
+        "pinyin": "hái yuàn yì fēn gěi bié rén 。",
+        "gloss": "yet still willing to share with someone else"
+      },
+      {
+        "chinese": "这可不只是说句好话。",
+        "pinyin": "zhè kě bù zhǐ shì shuō jù hǎo huà 。",
+        "gloss": "that is more than just saying something nice"
+      }
+    ]
+  },
+  "两个人都说自己记得，却说得不一样。谁说得对呢？": {
+    "pinyin": "liǎng gè rén dōu shuō zì jǐ jì de ， què shuō de bù yí yàng 。 shuí shuō de duì ne ？",
+    "english": "both men say they remember; yet say it differently; which one has it right",
+    "interlinear": [
+      {
+        "chinese": "两个人都说自己记得，",
+        "pinyin": "liǎng gè rén dōu shuō zì jǐ jì de ，",
+        "gloss": "both men say they remember"
+      },
+      {
+        "chinese": "却说得不一样。",
+        "pinyin": "què shuō de bù yí yàng 。",
+        "gloss": "yet say it differently"
+      },
+      {
+        "chinese": "谁说得对呢？",
+        "pinyin": "shuí shuō de duì ne ？",
+        "gloss": "which one has it right"
+      }
+    ]
+  },
+  "其实，你们连一半都没记住。": {
+    "pinyin": "qí shí ， nǐ men lián yí bàn dōu méi jì zhù 。",
+    "english": "actually; you have not remembered even half",
+    "interlinear": [
+      {
+        "chinese": "其实，",
+        "pinyin": "qí shí ，",
+        "gloss": "actually"
+      },
+      {
+        "chinese": "你们连一半都没记住。",
+        "pinyin": "nǐ men lián yí bàn dōu méi jì zhù 。",
+        "gloss": "you have not remembered even half"
+      }
+    ]
+  },
+  "老板站在后面的门口。今天晚上，他第一次接了大家的话。": {
+    "pinyin": "lǎo bǎn zhàn zài hòu miàn de mén kǒu 。 jīn tiān wǎn shang ， tā dì yī cì jiē le dà jiā de huà 。",
+    "english": "the innkeeper stood in the doorway at the back; this evening; he joined their conversation for the first time",
+    "interlinear": [
+      {
+        "chinese": "老板站在后面的门口。",
+        "pinyin": "lǎo bǎn zhàn zài hòu miàn de mén kǒu 。",
+        "gloss": "the innkeeper stood in the doorway at the back"
+      },
+      {
+        "chinese": "今天晚上，",
+        "pinyin": "jīn tiān wǎn shang ，",
+        "gloss": "this evening"
+      },
+      {
+        "chinese": "他第一次接了大家的话。",
+        "pinyin": "tā dì yī cì jiē le dà jiā de huà 。",
+        "gloss": "he joined their conversation for the first time"
+      }
+    ]
+  },
+  "跟他买卖东西，他一定会还你。白白帮他的忙，他会加倍还你。": {
+    "pinyin": "gēn tā mǎi mài dōng xi ， tā yí dìng huì huán nǐ 。 bái bái bāng tā de máng ， tā huì jiā bèi huán nǐ 。",
+    "english": "trade things with him; and he will certainly repay you; help him freely; and he will repay you twice over",
+    "interlinear": [
+      {
+        "chinese": "跟他买卖东西，",
+        "pinyin": "gēn tā mǎi mài dōng xi ，",
+        "gloss": "trade things with him"
+      },
+      {
+        "chinese": "他一定会还你。",
+        "pinyin": "tā yí dìng huì huán nǐ 。",
+        "gloss": "and he will certainly repay you"
+      },
+      {
+        "chinese": "白白帮他的忙，",
+        "pinyin": "bái bái bāng tā de máng ，",
+        "gloss": "help him freely"
+      },
+      {
+        "chinese": "他会加倍还你。",
+        "pinyin": "tā huì jiā bèi huán nǐ 。",
+        "gloss": "and he will repay you twice over"
+      }
+    ]
+  },
+  "可是，你要是骂他，他就会还你三倍。": {
+    "pinyin": "kě shì ， nǐ yào shi mà tā ， tā jiù huì huán nǐ sān bèi 。",
+    "english": "but; if you insult him; he will repay you threefold",
+    "interlinear": [
+      {
+        "chinese": "可是，",
+        "pinyin": "kě shì ，",
+        "gloss": "but"
+      },
+      {
+        "chinese": "你要是骂他，",
+        "pinyin": "nǐ yào shi mà tā ，",
+        "gloss": "if you insult him"
+      },
+      {
+        "chinese": "他就会还你三倍。",
+        "pinyin": "tā jiù huì huán nǐ sān bèi 。",
+        "gloss": "he will repay you threefold"
+      }
+    ]
+  },
+  "大家看看老板，好像现在才发现他也在这里。": {
+    "pinyin": "dà jiā kàn kàn lǎo bǎn ， hǎo xiàng xiàn zài cái fā xiàn tā yě zài zhè lǐ 。",
+    "english": "everyone looked at the innkeeper; as if only now noticing; that he was there too",
+    "interlinear": [
+      {
+        "chinese": "大家看看老板，",
+        "pinyin": "dà jiā kàn kàn lǎo bǎn ，",
+        "gloss": "everyone looked at the innkeeper"
+      },
+      {
+        "chinese": "好像现在才发现",
+        "pinyin": "hǎo xiàng xiàn zài cái fā xiàn",
+        "gloss": "as if only now noticing"
+      },
+      {
+        "chinese": "他也在这里。",
+        "pinyin": "tā yě zài zhè lǐ 。",
+        "gloss": "that he was there too"
+      }
+    ]
+  },
+  "他们来了这么多次，老板从来没有这样接过话。": {
+    "pinyin": "tā men lái le zhè me duō cì ， lǎo bǎn cóng lái méi yǒu zhè yàng jiē guò huà 。",
+    "english": "they had come so many times; and the innkeeper had never joined in like this",
+    "interlinear": [
+      {
+        "chinese": "他们来了这么多次，",
+        "pinyin": "tā men lái le zhè me duō cì ，",
+        "gloss": "they had come so many times"
+      },
+      {
+        "chinese": "老板从来没有这样接过话。",
+        "pinyin": "lǎo bǎn cóng lái méi yǒu zhè yàng jiē guò huà 。",
+        "gloss": "and the innkeeper had never joined in like this"
+      }
+    ]
+  },
+  "看看安静下来的客人。": {
+    "pinyin": "kàn kàn ān jìng xià lái de kè rén 。",
+    "english": "look at; the guests who have fallen silent",
+    "interlinear": [
+      {
+        "chinese": "看看",
+        "pinyin": "kàn kàn",
+        "gloss": "look at"
+      },
+      {
+        "chinese": "安静下来的客人。",
+        "pinyin": "ān jìng xià lái de kè rén 。",
+        "gloss": "the guests who have fallen silent"
+      }
+    ]
+  },
+  "看看现在的老板。": {
+    "pinyin": "kàn kàn xiàn zài de lǎo bǎn 。",
+    "english": "look at; the innkeeper now",
+    "interlinear": [
+      {
+        "chinese": "看看",
+        "pinyin": "kàn kàn",
+        "gloss": "look at"
+      },
+      {
+        "chinese": "现在的老板。",
+        "pinyin": "xiàn zài de lǎo bǎn 。",
+        "gloss": "the innkeeper now"
+      }
+    ]
+  },
+  "刚才还说个不停的人，现在谁也不说话了。": {
+    "pinyin": "gāng cái hái shuō gè bù tíng de rén ， xiàn zài shuí yě bù shuō huà le 。",
+    "english": "the people who had been talking nonstop; now were all silent",
+    "interlinear": [
+      {
+        "chinese": "刚才还说个不停的人，",
+        "pinyin": "gāng cái hái shuō gè bù tíng de rén ，",
+        "gloss": "the people who had been talking nonstop"
+      },
+      {
+        "chinese": "现在谁也不说话了。",
+        "pinyin": "xiàn zài shuí yě bù shuō huà le 。",
+        "gloss": "now were all silent"
+      }
+    ]
+  },
+  "他知道的比别人多。可是，现在大家一看他，他就不好意思了。": {
+    "pinyin": "tā zhī dào de bǐ bié rén duō 。 kě shì ， xiàn zài dà jiā yí kàn tā ， tā jiù bù hǎo yì si le 。",
+    "english": "he knew more than the others; but; now whenever anyone looked at him; he became embarrassed",
+    "interlinear": [
+      {
+        "chinese": "他知道的比别人多。",
+        "pinyin": "tā zhī dào de bǐ bié rén duō 。",
+        "gloss": "he knew more than the others"
+      },
+      {
+        "chinese": "可是，",
+        "pinyin": "kě shì ，",
+        "gloss": "but"
+      },
+      {
+        "chinese": "现在大家一看他，",
+        "pinyin": "xiàn zài dà jiā yí kàn tā ，",
+        "gloss": "now whenever anyone looked at him"
+      },
+      {
+        "chinese": "他就不好意思了。",
+        "pinyin": "tā jiù bù hǎo yì si le 。",
+        "gloss": "he became embarrassed"
+      }
+    ]
+  },
+  "他在这里才住了大约一年。对这些人来说，他还是个外人。": {
+    "pinyin": "tā zài zhè lǐ cái zhù le dà yuē yì nián 。 duì zhè xiē rén lái shuō ， tā hái shì gè wài rén 。",
+    "english": "he had only lived here for about a year; to these people; he was still an outsider",
+    "interlinear": [
+      {
+        "chinese": "他在这里才住了大约一年。",
+        "pinyin": "tā zài zhè lǐ cái zhù le dà yuē yì nián 。",
+        "gloss": "he had only lived here for about a year"
+      },
+      {
+        "chinese": "对这些人来说，",
+        "pinyin": "duì zhè xiē rén lái shuō ，",
+        "gloss": "to these people"
+      },
+      {
+        "chinese": "他还是个外人。",
+        "pinyin": "tā hái shì gè wài rén 。",
+        "gloss": "he was still an outsider"
+      }
+    ]
+  },
+  "只是以前听别人说过。": {
+    "pinyin": "zhǐ shì yǐ qián tīng bié rén shuō guò 。",
+    "english": "just something I heard someone say before",
+    "interlinear": [
+      {
+        "chinese": "只是以前听别人说过。",
+        "pinyin": "zhǐ shì yǐ qián tīng bié rén shuō guò 。",
+        "gloss": "just something I heard someone say before"
+      }
+    ]
+  },
+  "老人点点头，又接着讲护身符。": {
+    "pinyin": "lǎo rén diǎn diǎn tóu ， yòu jiē zhe jiǎng hù shēn fú 。",
+    "english": "the old man nodded; then resumed telling about the amulet",
+    "interlinear": [
+      {
+        "chinese": "老人点点头，",
+        "pinyin": "lǎo rén diǎn diǎn tóu ，",
+        "gloss": "the old man nodded"
+      },
+      {
+        "chinese": "又接着讲护身符。",
+        "pinyin": "yòu jiē zhe jiǎng hù shēn fú 。",
+        "gloss": "then resumed telling about the amulet"
+      }
+    ]
+  },
+  "那东西本来要一大桶金币才能买到！可老人只收了三枚钱。": {
+    "pinyin": "nà dōng xi běn lái yào yí dà tǒng jīn bì cái néng mǎi dào ！ kě lǎo rén zhǐ shōu le sān méi qián 。",
+    "english": "that thing would normally take; an entire bucket of gold coins; to buy; but the old man charged only three coins",
+    "interlinear": [
+      {
+        "chinese": "那东西本来要",
+        "pinyin": "nà dōng xi běn lái yào",
+        "gloss": "that thing would normally take"
+      },
+      {
+        "chinese": "一大桶金币",
+        "pinyin": "yí dà tǒng jīn bì",
+        "gloss": "an entire bucket of gold coins"
+      },
+      {
+        "chinese": "才能买到！",
+        "pinyin": "cái néng mǎi dào ！",
+        "gloss": "to buy"
+      },
+      {
+        "chinese": "可老人只收了三枚钱。",
+        "pinyin": "kě lǎo rén zhǐ shōu le sān méi qián 。",
+        "gloss": "but the old man charged only three coins"
+      }
+    ]
+  },
+  "一枚铁的，一枚铜的，还有一枚银的。因为他分了晚饭给老人。": {
+    "pinyin": "yì méi tiě de ， yì méi tóng de ， hái yǒu yì méi yín de 。 yīn wèi tā fēn le wǎn fàn gěi lǎo rén 。",
+    "english": "one of iron; one of copper; and one of silver; because he had shared supper with the old man",
+    "interlinear": [
+      {
+        "chinese": "一枚铁的，",
+        "pinyin": "yì méi tiě de ，",
+        "gloss": "one of iron"
+      },
+      {
+        "chinese": "一枚铜的，",
+        "pinyin": "yì méi tóng de ，",
+        "gloss": "one of copper"
+      },
+      {
+        "chinese": "还有一枚银的。",
+        "pinyin": "hái yǒu yì méi yín de 。",
+        "gloss": "and one of silver"
+      },
+      {
+        "chinese": "因为他分了晚饭给老人。",
+        "pinyin": "yīn wèi tā fēn le wǎn fàn gěi lǎo rén 。",
+        "gloss": "because he had shared supper with the old man"
+      }
+    ]
+  },
+  "那东西很黑，也很冷。只要带在身上，就不用怕那些可怕的东西。": {
+    "pinyin": "nà dōng xi hěn hēi ， yě hěn lěng 。 zhǐ yào dài zài shēn shàng ， jiù bú yòng pà nà xiē kě pà de dōng xi 。",
+    "english": "that thing was very black; and very cold; as long as he wore it; he need not fear; those terrible things",
+    "interlinear": [
+      {
+        "chinese": "那东西很黑，",
+        "pinyin": "nà dōng xi hěn hēi ，",
+        "gloss": "that thing was very black"
+      },
+      {
+        "chinese": "也很冷。",
+        "pinyin": "yě hěn lěng 。",
+        "gloss": "and very cold"
+      },
+      {
+        "chinese": "只要带在身上，",
+        "pinyin": "zhǐ yào dài zài shēn shàng ，",
+        "gloss": "as long as he wore it"
+      },
+      {
+        "chinese": "就不用怕",
+        "pinyin": "jiù bú yòng pà",
+        "gloss": "he need not fear"
+      },
+      {
+        "chinese": "那些可怕的东西。",
+        "pinyin": "nà xiē kě pà de dōng xi 。",
+        "gloss": "those terrible things"
+      }
+    ]
+  },
+  "故事里的人安全了。我却还想着老板刚才的话。他还知道什么呢？": {
+    "pinyin": "gù shì lǐ de rén ān quán le 。 wǒ què hái xiǎng zhe lǎo bǎn gāng cái de huà 。 tā hái zhī dào shén me ne ？",
+    "english": "the man in the story was safe; but I was still thinking of; what the innkeeper had just said; what else did he know",
+    "interlinear": [
+      {
+        "chinese": "故事里的人安全了。",
+        "pinyin": "gù shì lǐ de rén ān quán le 。",
+        "gloss": "the man in the story was safe"
+      },
+      {
+        "chinese": "我却还想着",
+        "pinyin": "wǒ què hái xiǎng zhe",
+        "gloss": "but I was still thinking of"
+      },
+      {
+        "chinese": "老板刚才的话。",
+        "pinyin": "lǎo bǎn gāng cái de huà 。",
+        "gloss": "what the innkeeper had just said"
+      },
+      {
+        "chinese": "他还知道什么呢？",
+        "pinyin": "tā hái zhī dào shén me ne ？",
+        "gloss": "what else did he know"
+      }
+    ]
+  }
+}
