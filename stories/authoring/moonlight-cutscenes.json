@@ -725,6 +725,83 @@
       },
       "local_cleanup": "Native generation added words before the intended phrase. Local word timestamps identify Another quest after 2.93s. Used native excerpt from 2.96s to the end, exact first-frame three-second hold and final closed-mouth reaction hold. Final local ASR confirms only Another quest; no paid retry.",
       "source_note": "Weed’s private temptation to seek another quest before returning to his wooden sword. Teaser withholds his decision."
+    },
+    {
+      "episode": 27,
+      "release_id": "moonlight-27-v1",
+      "status": "integrated",
+      "src": "stories/animated/cutscenes/moonlight-27-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-27-intro.jpg",
+      "title": "No gifts, thank you",
+      "durationSeconds": 9,
+      "model": "prunaai/p-video-2-pro",
+      "prediction_id": "f94e627cq1rmy0d1f9z827f8xw",
+      "settings": {
+        "duration": 6,
+        "resolution": "480p",
+        "mode": "cost",
+        "prompt_upsampler": "off",
+        "aspect_ratio": "16:9"
+      },
+      "estimated_usd": 0.06,
+      "paid_predictions": 1,
+      "explicit_user_approval": "Approved $0.06 teaser upload and generation, 2026-10-27",
+      "pricing_verified_date": "2026-10-27",
+      "pricing_url": "https://replicate.com/prunaai/p-video-2-pro",
+      "pricing_note": "Live billing configuration $0.01 per output second, 480p cost, six seconds, native audio, upsampler off. Maximum $0.06.",
+      "video_prompt": "Animate the supplied fantasy anime image in one continuous six-second shot. Preserve Weed face, hair, ivory sleeves, leather vest, wooden sword and all hand anatomy. His raised palm holds a firm refusal; he gives one small head shake. The bread remains in the visitor hand and withdraws slightly, never transferred. Weed keeps his sword low and keeps his mouth closed throughout. Restrained dignity and annoyance, gentle breathing, stationary camera. Only this one action. No new characters, objects, text, cuts or resolution. Native sound: soft cloth rustle and quiet training hall ambience only. No speech, voices, narration, vocalization, singing or music. All mouths remain closed.",
+      "provider_metrics": {
+        "billing": {
+          "fps": 24,
+          "mode": "cost",
+          "model_variant": "cost",
+          "resolution_target": "480p",
+          "turbo": true,
+          "video_output_duration_seconds": 6
+        },
+        "fps": 24,
+        "inference_provider": "modal",
+        "metadata": {
+          "execution_time": {
+            "model_execution_time": 4.79,
+            "prompt_upsampler_execution_time": 0,
+            "total_execution_time": 9.573
+          }
+        },
+        "mode": "cost",
+        "model_variant": "cost",
+        "predict_time": 10.985363221,
+        "prompt_upsampler": "off",
+        "prompt_upsampler_fallback": false,
+        "resolution_target": "480p",
+        "total_time": 11.139912296,
+        "turbo": true,
+        "video_output_count": 1,
+        "video_output_duration_seconds": 6
+      },
+      "verification": {
+        "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/moonlight-27/ambience-native.mp4",
+        "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/moonlight-27/intro-final.mp4",
+        "dimensions": [
+          854,
+          480
+        ],
+        "fps": 24,
+        "hold_seconds": 3.0,
+        "motion_seconds": 5.958333333333333,
+        "reaction_hold_seconds": 0.041666666666666664,
+        "total_seconds": 9.0,
+        "decoded_audio_seconds": 9.00275,
+        "audio_non_silent": true,
+        "audio_starts_after_hold": true,
+        "hold_mean_pixel_difference": 0.0029639929742388757,
+        "sha256": "9093677cf53e1bc7b3ddabb6d49fce8322b9ed59e53760b6cca726e9ea98f688",
+        "expected_dialogue": "",
+        "speech_check": "not run",
+        "review": "Poster, mid-motion and end frames inspected: closed mouth, raised refusal palm, bread withdraws without handoff. Phone/desktop real playback, duration, unmuted audio, transition, skip, reduced-motion choice, resume and missing-media checks passed. Soundtrack is synthesized ambience after native ASR warning; no claim of subjective listening review."
+      },
+      "local_cleanup": "Native speech checker flagged Thank you very much twice. Replaced soundtrack with deterministic synthesized room tone and cloth-rustle noise; no voices in final waveform source. Native visuals retained; no regeneration.",
+      "source_note": "Refusal of unwanted gifts in the Training Hall. Bread stays with giver, wooden practice sword remains with Weed."
     }
   ],
   "failed_attempts": [

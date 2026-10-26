@@ -67,11 +67,39 @@
       95.3
     ],
     "bytes": 1778235,
-    "teaser": "Prepared still; external video upload and $0.06 charge pending explicit approval after automatic review rejection. No paid video submission.",
+    "teaser": "One explicitly approved $0.06 prediction. Nine-second opening: three-second first-frame hold, generated refusal action, locally synthesized room-tone/cloth sound after native audio speech check flagged unwanted words. No paid retry.",
     "limitations": [
       "Shared practice sword prop has a metal-colored blade; dialogue and teaser identify the source wooden sword. No shared renderer changes made."
     ],
     "releaseChecks": "289 unit tests, 19 workflow tests, shared-runtime parity, all package checks, production build and client-secret boundary passed.",
-    "listenerReview": "Eight listener/aftermath beats checked with audio playback on phone and desktop; text remained Continue-controlled. Screenshots inspected. Automated playback does not establish listening quality."
+    "listenerReview": "Eight listener/aftermath beats checked with audio playback on phone and desktop; text remained Continue-controlled. Screenshots inspected. Automated playback does not establish listening quality.",
+    "introBrowser": [
+      {
+        "mode": "desktop",
+        "duration": 9,
+        "dimensions": [
+          854,
+          480
+        ],
+        "sound": true,
+        "playThrough": true,
+        "skip": true,
+        "resumeBypassesIntro": true,
+        "missingMedia": true
+      },
+      {
+        "mode": "phone",
+        "duration": 9,
+        "dimensions": [
+          854,
+          480
+        ],
+        "sound": true,
+        "playThrough": true,
+        "skip": true,
+        "resumeBypassesIntro": true,
+        "missingMedia": true
+      }
+    ]
   }
 }
