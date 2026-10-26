@@ -10,16 +10,28 @@ export function readerTextNeedsPush(local: ReaderTextSyncRecord, remote?: Reader
 }
 
 export async function syncReaderTexts(client: SupabaseClient, userId: string) {
-  const remote: ReaderTextSyncRecord[] = []
+  const { data: shares, error: shareError } = await client.from('study_content_members')
+    .select('owner_id').eq('user_id', userId)
+  if (shareError) throw shareError
+  const ownerIds = [userId, ...(shares ?? []).map(share => share.owner_id as string)]
+  const accessibleRows: TextRow[] = []
   // Page explicitly: the library can grow beyond the API's default row limit.
   for (let offset = 0; ; offset += 100) {
     const { data, error } = await client.from('reader_texts').select('user_id,book_id,book_data,updated_at')
-      .eq('user_id', userId).order('book_id').range(offset, offset + 99)
+      .in('user_id', ownerIds).order('user_id').order('book_id').range(offset, offset + 99)
     if (error) throw error
     const rows = (data ?? []) as TextRow[]
-    remote.push(...rows.map(row => ({bookId: row.book_id, ownerId: userId, updatedAt: row.updated_at, book: row.book_data})))
+    accessibleRows.push(...rows)
     if (rows.length < 100) break
   }
+  // Personal edits take precedence; writes always remain in the learner's account.
+  const selected = new Map<string, TextRow>()
+  for (const row of accessibleRows) {
+    if (!selected.has(row.book_id) || row.user_id === userId) selected.set(row.book_id, row)
+  }
+  const remote: ReaderTextSyncRecord[] = [...selected.values()].map(row => ({
+    bookId: row.book_id, ownerId: userId, updatedAt: row.updated_at, book: row.book_data,
+  }))
   let local = await getReaderTextSyncRecords(userId)
   let pulled = 0
   for (const record of remote) {

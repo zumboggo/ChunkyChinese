@@ -3894,6 +3894,7 @@ function App() {
                       </div>
                     </>
                   )}
+                  <p><a href={`${import.meta.env.BASE_URL}?account=1`}>{cloudUserEmail ? 'Set or change password' : 'Sign in with email and password'}</a></p>
                   <small>{cloudSync.message}</small>
                 </section>
               </div>
