@@ -1,0 +1,471 @@
+{
+  "status": "Planning estimates, not published episodes. Split at dramatic boundaries after reading each passage. Episode 1 includes the prologue; subsequent numbering stays stable once released.",
+  "epubSha256": "351fc00f48897db57ee727714f8f5879627eceee9aadf484216793291ee16860",
+  "chapters": [
+    {
+      "chapter": "CHAPTER ONE  A Place for Demons",
+      "entry": "OEBPS/section5.xhtml",
+      "plannedLessons": 6
+    },
+    {
+      "chapter": "CHAPTER TWO  A Beautiful Day",
+      "entry": "OEBPS/section6.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER THREE  Wood and Word",
+      "entry": "OEBPS/section7.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER FOUR  Halfway to Newarre",
+      "entry": "OEBPS/section8.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER FIVE  Notes",
+      "entry": "OEBPS/section9.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER SIX  The Price of Remembering",
+      "entry": "OEBPS/section10.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER SEVEN  Of Beginnings and the Names of Things",
+      "entry": "OEBPS/section11.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER EIGHT  Thieves, Heretics, and Whores",
+      "entry": "OEBPS/section12.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER NINE  Riding in the Wagon with Ben",
+      "entry": "OEBPS/section13.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER TEN  Alar and Several Stones",
+      "entry": "OEBPS/section14.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER ELEVEN  The Binding of Iron",
+      "entry": "OEBPS/section15.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER TWELVE  Puzzle Pieces Fitting",
+      "entry": "OEBPS/section16.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER THIRTEEN  Interlude\u2014Flesh with Blood Beneath",
+      "entry": "OEBPS/section17.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER FOURTEEN  The Name of the Wind",
+      "entry": "OEBPS/section18.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER FIFTEEN  Distractions and Farewells",
+      "entry": "OEBPS/section19.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER SIXTEEN  Hope",
+      "entry": "OEBPS/section20.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER SEVENTEEN  Interlude\u2014Autumn",
+      "entry": "OEBPS/section21.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER EIGHTEEN  Roads to Safe Places",
+      "entry": "OEBPS/section22.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER NINETEEN  Fingers and Strings",
+      "entry": "OEBPS/section23.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER TWENTY  Bloody Hands Into Stinging Fists",
+      "entry": "OEBPS/section24.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER TWENTY-ONE  Basement, Bread and Bucket",
+      "entry": "OEBPS/section25.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER TWENTY-TWO  A Time for Demons",
+      "entry": "OEBPS/section26.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER TWENTY-THREE  The Burning Wheel",
+      "entry": "OEBPS/section27.xhtml",
+      "plannedLessons": 5
+    },
+    {
+      "chapter": "CHAPTER TWENTY-FOUR  Shadows Themselves",
+      "entry": "OEBPS/section28.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER TWENTY-FIVE  Interlude\u2014Eager for Reasons",
+      "entry": "OEBPS/section29.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER TWENTY-SIX  Lanre Turned",
+      "entry": "OEBPS/section30.xhtml",
+      "plannedLessons": 5
+    },
+    {
+      "chapter": "CHAPTER TWENTY-SEVEN  His Eyes Unveiled",
+      "entry": "OEBPS/section31.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER TWENTY-EIGHT  Tehlu\u2019s Watchful Eyes",
+      "entry": "OEBPS/section32.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER TWENTY-NINE  The Doors of My Mind",
+      "entry": "OEBPS/section33.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER THIRTY  The Broken Binding",
+      "entry": "OEBPS/section34.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER THIRTY-ONE  The Nature of Nobility",
+      "entry": "OEBPS/section35.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER THIRTY-TWO  Coppers, Cobblers and Crowds",
+      "entry": "OEBPS/section36.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER THIRTY-THREE  A Sea of Stars",
+      "entry": "OEBPS/section37.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER THIRTY-FOUR  Yet to Learn",
+      "entry": "OEBPS/section38.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER THIRTY-FIVE  A Parting of Ways",
+      "entry": "OEBPS/section39.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER THIRTY-SIX  Less Talents",
+      "entry": "OEBPS/section40.xhtml",
+      "plannedLessons": 5
+    },
+    {
+      "chapter": "CHAPTER THIRTY-SEVEN  Bright-Eyed",
+      "entry": "OEBPS/section41.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER THIRTY-EIGHT  Sympathy in the Mains",
+      "entry": "OEBPS/section42.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER THIRTY-NINE  Enough Rope",
+      "entry": "OEBPS/section43.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER FORTY  On the Horns",
+      "entry": "OEBPS/section44.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER FORTY-ONE  Friend\u2019s Blood",
+      "entry": "OEBPS/section45.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER FORTY-TWO  Bloodless",
+      "entry": "OEBPS/section46.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER FORTY-THREE  The Flickering Way",
+      "entry": "OEBPS/section47.xhtml",
+      "plannedLessons": 5
+    },
+    {
+      "chapter": "CHAPTER FORTY-FOUR  The Burning Glass",
+      "entry": "OEBPS/section48.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER FORTY-FIVE  Interlude\u2014Some Tavern Tale",
+      "entry": "OEBPS/section49.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER FORTY-SIX  The Ever-Changing Wind",
+      "entry": "OEBPS/section50.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER FORTY-SEVEN  Barbs",
+      "entry": "OEBPS/section51.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER FORTY-EIGHT  Interlude\u2014A Silence of a Different Kind",
+      "entry": "OEBPS/section52.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER FORTY-NINE  The Nature of Wild Things",
+      "entry": "OEBPS/section53.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER FIFTY  Negotiations",
+      "entry": "OEBPS/section54.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER FIFTY-ONE  Tar and Tin",
+      "entry": "OEBPS/section55.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER FIFTY-TWO  Burning",
+      "entry": "OEBPS/section56.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER FIFTY-THREE  Slow Circles",
+      "entry": "OEBPS/section57.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER FIFTY-FOUR  A Place to Burn",
+      "entry": "OEBPS/section58.xhtml",
+      "plannedLessons": 5
+    },
+    {
+      "chapter": "CHAPTER FIFTY-FIVE  Flame and Thunder",
+      "entry": "OEBPS/section59.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER FIFTY-SIX  Patrons, Maids and Metheglin",
+      "entry": "OEBPS/section60.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER FIFTY-SEVEN  Interlude\u2014The Parts that Form Us",
+      "entry": "OEBPS/section61.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER FIFTY-EIGHT  Names for Beginning",
+      "entry": "OEBPS/section62.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER FIFTY-NINE  All This Knowing",
+      "entry": "OEBPS/section63.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER SIXTY  Fortune",
+      "entry": "OEBPS/section64.xhtml",
+      "plannedLessons": 5
+    },
+    {
+      "chapter": "CHAPTER SIXTY-ONE  Jackass Jackass",
+      "entry": "OEBPS/section65.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER SIXTY-TWO  Leaves",
+      "entry": "OEBPS/section66.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER SIXTY-THREE  Walking and Talking",
+      "entry": "OEBPS/section67.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER SIXTY-FOUR  Nine in the Fire",
+      "entry": "OEBPS/section68.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER SIXTY-FIVE  Spark",
+      "entry": "OEBPS/section69.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER SIXTY-SIX  Volatile",
+      "entry": "OEBPS/section70.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER SIXTY-SEVEN  A Matter of Hands",
+      "entry": "OEBPS/section71.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER SIXTY-EIGHT  The Ever-Changing Wind",
+      "entry": "OEBPS/section72.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER SIXTY-NINE  Wind or Women\u2019s Fancy",
+      "entry": "OEBPS/section73.xhtml",
+      "plannedLessons": 5
+    },
+    {
+      "chapter": "CHAPTER SEVENTY  Signs",
+      "entry": "OEBPS/section74.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER SEVENTY-ONE  Strange Attraction",
+      "entry": "OEBPS/section75.xhtml",
+      "plannedLessons": 6
+    },
+    {
+      "chapter": "CHAPTER SEVENTY-TWO  Borrorill",
+      "entry": "OEBPS/section76.xhtml",
+      "plannedLessons": 7
+    },
+    {
+      "chapter": "CHAPTER SEVENTY-THREE  Pegs",
+      "entry": "OEBPS/section77.xhtml",
+      "plannedLessons": 5
+    },
+    {
+      "chapter": "CHAPTER SEVENTY-FOUR  Waystone",
+      "entry": "OEBPS/section78.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER SEVENTY-FIVE  Interlude\u2014Obedience",
+      "entry": "OEBPS/section79.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER SEVENTY-SIX  The Mating Habits of the Common Draccus",
+      "entry": "OEBPS/section80.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER SEVENTY-SEVEN  Bluffs",
+      "entry": "OEBPS/section81.xhtml",
+      "plannedLessons": 6
+    },
+    {
+      "chapter": "CHAPTER SEVENTY-EIGHT  Poison",
+      "entry": "OEBPS/section82.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER SEVENTY-NINE  Sweet Talk",
+      "entry": "OEBPS/section83.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER EIGHTY  Touching Iron",
+      "entry": "OEBPS/section84.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER EIGHTY-ONE  Pride",
+      "entry": "OEBPS/section85.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER EIGHTY-TWO  Ash and Elm...",
+      "entry": "OEBPS/section86.xhtml",
+      "plannedLessons": 4
+    },
+    {
+      "chapter": "CHAPTER EIGHTY-THREE  Return",
+      "entry": "OEBPS/section87.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER EIGHTY-FOUR  A Sudden Storm",
+      "entry": "OEBPS/section88.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER EIGHTY-FIVE  Hands Against Me",
+      "entry": "OEBPS/section89.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER EIGHTY-SIX  The Fire Itself",
+      "entry": "OEBPS/section90.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER EIGHTY-SEVEN  Winter",
+      "entry": "OEBPS/section91.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER EIGHTY-EIGHT  Interlude\u2014Looking",
+      "entry": "OEBPS/section92.xhtml",
+      "plannedLessons": 7
+    },
+    {
+      "chapter": "CHAPTER EIGHTY-NINE  A Pleasant Afternoon",
+      "entry": "OEBPS/section93.xhtml",
+      "plannedLessons": 1
+    },
+    {
+      "chapter": "CHAPTER NINETY  Half-Built Houses",
+      "entry": "OEBPS/section94.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "CHAPTER NINETY-ONE  Worthy of Pursuit",
+      "entry": "OEBPS/section95.xhtml",
+      "plannedLessons": 2
+    },
+    {
+      "chapter": "CHAPTER NINETY-TWO  The Music that Plays",
+      "entry": "OEBPS/section96.xhtml",
+      "plannedLessons": 3
+    },
+    {
+      "chapter": "EPILOGUE  A Silence of Three Parts",
+      "entry": "OEBPS/section97.xhtml",
+      "plannedLessons": 1
+    }
+  ]
+}

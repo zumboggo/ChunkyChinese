@@ -59,3 +59,12 @@
 .game-playing .animated-story{clear:both}
 .game-page .reading-controls{padding:4px 2px 10px}
 .game-page .story-atmosphere details{margin-top:0}
+
+/* Constant-height navigation, including libraries with hundreds of episodes. */
+.episode-navigation{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0 8px}
+.episode-navigation label{display:flex;flex-direction:column;gap:7px;font-size:14px;min-width:0}
+.episode-navigation select,.episode-navigation input{width:100%;min-width:0;min-height:48px;padding:10px 12px;border:1px solid #c9b995;border-radius:10px;background:#fffaf0;color:#292c2a;font:inherit;box-sizing:border-box}
+.episode-navigation .episode-select{grid-column:1/-1}
+.episode-paging{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:22px}
+.episode-paging p{font-size:13px;text-align:center;margin:0}.episode-paging button{min-height:44px}.episode-paging button:disabled{opacity:.4;cursor:default}
+@media(max-width:540px){.episode-navigation{grid-template-columns:1fr;gap:12px}.episode-paging{gap:6px}.episode-paging button{padding:10px}}

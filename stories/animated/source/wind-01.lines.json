@@ -1,0 +1,1178 @@
+{
+  "晚上，旅店很安静。没有风，也没有人唱歌。": {
+    "english": "At night, the inn is quiet. There is no wind, and no one is singing.",
+    "pinyin": "wǎn shang ， lǚ diàn hěn ān jìng 。 méi yǒu fēng ， yě méi yǒu rén chàng gē 。",
+    "interlinear": [
+      {
+        "chinese": "晚上，",
+        "gloss": "at night",
+        "pinyin": "wǎn shang ，"
+      },
+      {
+        "chinese": "旅店",
+        "gloss": "the inn",
+        "pinyin": "lǚ diàn"
+      },
+      {
+        "chinese": "很安静。",
+        "gloss": "is quiet",
+        "pinyin": "hěn ān jìng 。"
+      },
+      {
+        "chinese": "没有风，",
+        "gloss": "there is no wind",
+        "pinyin": "méi yǒu fēng ，"
+      },
+      {
+        "chinese": "也没有人",
+        "gloss": "and no one",
+        "pinyin": "yě méi yǒu rén"
+      },
+      {
+        "chinese": "唱歌。",
+        "gloss": "is singing",
+        "pinyin": "chàng gē 。"
+      }
+    ]
+  },
+  "两个男人坐着喝酒。有些事情让人担心，他们都不想说。": {
+    "english": "Two men sit drinking. Some things worry them, but neither wants to talk about them.",
+    "pinyin": "liǎng gè nán rén zuò zhe hē jiǔ 。 yǒu xiē shì qíng ràng rén dān xīn ， tā men dōu bù xiǎng shuō 。",
+    "interlinear": [
+      {
+        "chinese": "两个男人",
+        "gloss": "two men",
+        "pinyin": "liǎng gè nán rén"
+      },
+      {
+        "chinese": "坐着",
+        "gloss": "sit",
+        "pinyin": "zuò zhe"
+      },
+      {
+        "chinese": "喝酒。",
+        "gloss": "drinking",
+        "pinyin": "hē jiǔ 。"
+      },
+      {
+        "chinese": "有些事情",
+        "gloss": "some things",
+        "pinyin": "yǒu xiē shì qíng"
+      },
+      {
+        "chinese": "让人担心，",
+        "gloss": "are worrying",
+        "pinyin": "ràng rén dān xīn ，"
+      },
+      {
+        "chinese": "他们都",
+        "gloss": "neither of them",
+        "pinyin": "tā men dōu"
+      },
+      {
+        "chinese": "不想说。",
+        "gloss": "wants to discuss them",
+        "pinyin": "bù xiǎng shuō 。"
+      }
+    ]
+  },
+  "红头发的老板还在擦桌子。桌子已经很干净了。": {
+    "english": "The red-haired innkeeper is still wiping the bar. It is already very clean.",
+    "pinyin": "hóng tóu fa de lǎo bǎn hái zài cā zhuō zi 。 zhuō zi yǐ jīng hěn gān jìng le 。",
+    "interlinear": [
+      {
+        "chinese": "红头发的",
+        "gloss": "red-haired",
+        "pinyin": "hóng tóu fa de"
+      },
+      {
+        "chinese": "老板",
+        "gloss": "innkeeper",
+        "pinyin": "lǎo bǎn"
+      },
+      {
+        "chinese": "还在",
+        "gloss": "is still",
+        "pinyin": "hái zài"
+      },
+      {
+        "chinese": "擦桌子。",
+        "gloss": "wiping the bar",
+        "pinyin": "cā zhuō zi 。"
+      },
+      {
+        "chinese": "桌子",
+        "gloss": "the bar",
+        "pinyin": "zhuō zi"
+      },
+      {
+        "chinese": "已经",
+        "gloss": "already",
+        "pinyin": "yǐ jīng"
+      },
+      {
+        "chinese": "很干净了。",
+        "gloss": "is very clean",
+        "pinyin": "hěn gān jìng le 。"
+      }
+    ]
+  },
+  "他看向那边，好像在等什么，又好像什么也不想等了。": {
+    "english": "He looks into the distance, as though waiting for something, yet wanting to wait for nothing at all.",
+    "pinyin": "tā kàn xiàng nà biān ， hǎo xiàng zài děng shén me ， yòu hǎo xiàng shén me yě bù xiǎng děng le 。",
+    "interlinear": [
+      {
+        "chinese": "他",
+        "gloss": "he",
+        "pinyin": "tā"
+      },
+      {
+        "chinese": "看向那边，",
+        "gloss": "looks into the distance",
+        "pinyin": "kàn xiàng nà biān ，"
+      },
+      {
+        "chinese": "好像",
+        "gloss": "as though",
+        "pinyin": "hǎo xiàng"
+      },
+      {
+        "chinese": "在等什么，",
+        "gloss": "waiting for something",
+        "pinyin": "zài děng shén me ，"
+      },
+      {
+        "chinese": "又好像",
+        "gloss": "and yet as though",
+        "pinyin": "yòu hǎo xiàng"
+      },
+      {
+        "chinese": "什么也",
+        "gloss": "anything at all",
+        "pinyin": "shén me yě"
+      },
+      {
+        "chinese": "不想等了。",
+        "gloss": "he no longer wants to wait for",
+        "pinyin": "bù xiǎng děng le 。"
+      }
+    ]
+  },
+  "先看看这间旅店。": {
+    "english": "Look around the inn first.",
+    "pinyin": "xiān kàn kàn zhè jiān lǚ diàn 。",
+    "interlinear": [
+      {
+        "chinese": "先",
+        "gloss": "first",
+        "pinyin": "xiān"
+      },
+      {
+        "chinese": "看看",
+        "gloss": "look at",
+        "pinyin": "kàn kàn"
+      },
+      {
+        "chinese": "这间旅店。",
+        "gloss": "this inn",
+        "pinyin": "zhè jiān lǚ diàn 。"
+      }
+    ]
+  },
+  "先看看老板。": {
+    "english": "Look at the innkeeper first.",
+    "pinyin": "xiān kàn kàn lǎo bǎn 。",
+    "interlinear": [
+      {
+        "chinese": "先",
+        "gloss": "first",
+        "pinyin": "xiān"
+      },
+      {
+        "chinese": "看看老板。",
+        "gloss": "look at the innkeeper",
+        "pinyin": "kàn kàn lǎo bǎn 。"
+      }
+    ]
+  },
+  "杯子、木头和石头都在。少的，是说话声和笑声。": {
+    "english": "The cups, wood and stone are all here. What is missing is conversation and laughter.",
+    "pinyin": "bēi zi 、 mù tou hé shí tou dōu zài 。 shǎo de ， shì shuō huà shēng hé xiào shēng 。",
+    "interlinear": [
+      {
+        "chinese": "杯子、",
+        "gloss": "cups",
+        "pinyin": "bēi zi 、"
+      },
+      {
+        "chinese": "木头",
+        "gloss": "wood",
+        "pinyin": "mù tou"
+      },
+      {
+        "chinese": "和石头",
+        "gloss": "and stone",
+        "pinyin": "hé shí tou"
+      },
+      {
+        "chinese": "都在。",
+        "gloss": "are all here",
+        "pinyin": "dōu zài 。"
+      },
+      {
+        "chinese": "少的，",
+        "gloss": "what is missing",
+        "pinyin": "shǎo de ，"
+      },
+      {
+        "chinese": "是",
+        "gloss": "is",
+        "pinyin": "shì"
+      },
+      {
+        "chinese": "说话声",
+        "gloss": "the sound of talking",
+        "pinyin": "shuō huà shēng"
+      },
+      {
+        "chinese": "和笑声。",
+        "gloss": "and laughter",
+        "pinyin": "hé xiào shēng 。"
+      }
+    ]
+  },
+  "他的手还在动，眼里却没有一点希望。": {
+    "english": "His hands are still moving, but there is no trace of hope in his eyes.",
+    "pinyin": "tā de shǒu hái zài dòng ， yǎn lǐ què méi yǒu yì diǎn xī wàng 。",
+    "interlinear": [
+      {
+        "chinese": "他的手",
+        "gloss": "his hands",
+        "pinyin": "tā de shǒu"
+      },
+      {
+        "chinese": "还在动，",
+        "gloss": "are still moving",
+        "pinyin": "hái zài dòng ，"
+      },
+      {
+        "chinese": "眼里",
+        "gloss": "in his eyes",
+        "pinyin": "yǎn lǐ"
+      },
+      {
+        "chinese": "却没有",
+        "gloss": "yet there is no",
+        "pinyin": "què méi yǒu"
+      },
+      {
+        "chinese": "一点希望。",
+        "gloss": "trace of hope",
+        "pinyin": "yì diǎn xī wàng 。"
+      }
+    ]
+  },
+  "后来，五个老客人又来了。他们坐在吧台边，听老人讲故事。": {
+    "english": "Later, five regulars come again. They sit beside the bar, listening to the old man tell a story.",
+    "pinyin": "hòu lái ， wǔ gè lǎo kè rén yòu lái le 。 tā men zuò zài bā tái biān ， tīng lǎo rén jiǎng gù shì 。",
+    "interlinear": [
+      {
+        "chinese": "后来，",
+        "gloss": "later",
+        "pinyin": "hòu lái ，"
+      },
+      {
+        "chinese": "五个老客人",
+        "gloss": "five regulars",
+        "pinyin": "wǔ gè lǎo kè rén"
+      },
+      {
+        "chinese": "又来了。",
+        "gloss": "come again",
+        "pinyin": "yòu lái le 。"
+      },
+      {
+        "chinese": "他们",
+        "gloss": "they",
+        "pinyin": "tā men"
+      },
+      {
+        "chinese": "坐在",
+        "gloss": "sit",
+        "pinyin": "zuò zài"
+      },
+      {
+        "chinese": "吧台边，",
+        "gloss": "beside the bar",
+        "pinyin": "bā tái biān ，"
+      },
+      {
+        "chinese": "听老人",
+        "gloss": "listening to the old man",
+        "pinyin": "tīng lǎo rén"
+      },
+      {
+        "chinese": "讲故事。",
+        "gloss": "tell a story",
+        "pinyin": "jiǎng gù shì 。"
+      }
+    ]
+  },
+  "老板在后面的房间里，一边听，一边笑。这个故事，他早就知道。": {
+    "english": "The innkeeper listens and smiles in the back room. He already knows this story well.",
+    "pinyin": "lǎo bǎn zài hòu miàn de fáng jiān lǐ ， yì biān tīng ， yì biān xiào 。 zhè ge gù shì ， tā zǎo jiù zhī dào 。",
+    "interlinear": [
+      {
+        "chinese": "老板",
+        "gloss": "the innkeeper",
+        "pinyin": "lǎo bǎn"
+      },
+      {
+        "chinese": "在后面的房间里，",
+        "gloss": "is in the back room",
+        "pinyin": "zài hòu miàn de fáng jiān lǐ ，"
+      },
+      {
+        "chinese": "一边听，",
+        "gloss": "listening",
+        "pinyin": "yì biān tīng ，"
+      },
+      {
+        "chinese": "一边笑。",
+        "gloss": "and smiling",
+        "pinyin": "yì biān xiào 。"
+      },
+      {
+        "chinese": "这个故事，",
+        "gloss": "this story",
+        "pinyin": "zhè ge gù shì ，"
+      },
+      {
+        "chinese": "他早就知道。",
+        "gloss": "he has long known",
+        "pinyin": "tā zǎo jiù zhī dào 。"
+      }
+    ]
+  },
+  "那个有名的人醒来时，发现自己不能离开那座塔。": {
+    "english": "When the famous man wakes, he discovers he cannot leave the tower.",
+    "pinyin": "nà ge yǒu míng de rén xǐng lái shí ， fā xiàn zì jǐ bù néng lí kāi nà zuò tǎ 。",
+    "interlinear": [
+      {
+        "chinese": "那个",
+        "gloss": "that",
+        "pinyin": "nà ge"
+      },
+      {
+        "chinese": "有名的人",
+        "gloss": "famous man",
+        "pinyin": "yǒu míng de rén"
+      },
+      {
+        "chinese": "醒来时，",
+        "gloss": "when he wakes",
+        "pinyin": "xǐng lái shí ，"
+      },
+      {
+        "chinese": "发现",
+        "gloss": "discovers",
+        "pinyin": "fā xiàn"
+      },
+      {
+        "chinese": "自己",
+        "gloss": "he himself",
+        "pinyin": "zì jǐ"
+      },
+      {
+        "chinese": "不能离开",
+        "gloss": "cannot leave",
+        "pinyin": "bù néng lí kāi"
+      },
+      {
+        "chinese": "那座塔。",
+        "gloss": "that tower",
+        "pinyin": "nà zuò tǎ 。"
+      }
+    ]
+  },
+  "剑没了，他的东西也让人拿走了。": {
+    "english": "His sword is gone, and someone has taken his belongings too.",
+    "pinyin": "jiàn méi le ， tā de dōng xī yě ràng rén ná zǒu le 。",
+    "interlinear": [
+      {
+        "chinese": "剑没了，",
+        "gloss": "his sword is gone",
+        "pinyin": "jiàn méi le ，"
+      },
+      {
+        "chinese": "他的东西",
+        "gloss": "his belongings",
+        "pinyin": "tā de dōng xī"
+      },
+      {
+        "chinese": "也让人",
+        "gloss": "have also been",
+        "pinyin": "yě ràng rén"
+      },
+      {
+        "chinese": "拿走了。",
+        "gloss": "taken away",
+        "pinyin": "ná zǒu le 。"
+      }
+    ]
+  },
+  "更可怕的是，那里的火焰变成了蓝色！": {
+    "english": "Worse still, the flames there have turned blue!",
+    "pinyin": "gèng kě pà de shì ， nà lǐ de huǒ yàn biàn chéng le lán sè ！",
+    "interlinear": [
+      {
+        "chinese": "更可怕的是，",
+        "gloss": "what is more frightening",
+        "pinyin": "gèng kě pà de shì ，"
+      },
+      {
+        "chinese": "那里的火焰",
+        "gloss": "the flames there",
+        "pinyin": "nà lǐ de huǒ yàn"
+      },
+      {
+        "chinese": "变成了",
+        "gloss": "have turned",
+        "pinyin": "biàn chéng le"
+      },
+      {
+        "chinese": "蓝色！",
+        "gloss": "blue",
+        "pinyin": "lán sè ！"
+      }
+    ]
+  },
+  "年轻的学徒听得很认真。旁边的三个人早就听过这些故事。": {
+    "english": "The young apprentice listens closely. The other three men have heard these stories long ago.",
+    "pinyin": "nián qīng de xué tú tīng de hěn rèn zhēn 。 páng biān de sān gè rén zǎo jiù tīng guò zhè xiē gù shì 。",
+    "interlinear": [
+      {
+        "chinese": "年轻的学徒",
+        "gloss": "the young apprentice",
+        "pinyin": "nián qīng de xué tú"
+      },
+      {
+        "chinese": "听得",
+        "gloss": "listens",
+        "pinyin": "tīng de"
+      },
+      {
+        "chinese": "很认真。",
+        "gloss": "very attentively",
+        "pinyin": "hěn rèn zhēn 。"
+      },
+      {
+        "chinese": "旁边的三个人",
+        "gloss": "the three men beside him",
+        "pinyin": "páng biān de sān gè rén"
+      },
+      {
+        "chinese": "早就听过",
+        "gloss": "have long heard",
+        "pinyin": "zǎo jiù tīng guò"
+      },
+      {
+        "chinese": "这些故事。",
+        "gloss": "these stories",
+        "pinyin": "zhè xiē gù shì 。"
+      }
+    ]
+  },
+  "想一想蓝色的火焰。": {
+    "english": "Think about the blue flames.",
+    "pinyin": "xiǎng yi xiǎng lán sè de huǒ yàn 。",
+    "interlinear": [
+      {
+        "chinese": "想一想",
+        "gloss": "think about",
+        "pinyin": "xiǎng yi xiǎng"
+      },
+      {
+        "chinese": "蓝色的火焰。",
+        "gloss": "the blue flames",
+        "pinyin": "lán sè de huǒ yàn 。"
+      }
+    ]
+  },
+  "看看大家的表情。": {
+    "english": "Look at everyone’s expressions.",
+    "pinyin": "kàn kàn dà jiā de biǎo qíng 。",
+    "interlinear": [
+      {
+        "chinese": "看看",
+        "gloss": "look at",
+        "pinyin": "kàn kàn"
+      },
+      {
+        "chinese": "大家的表情。",
+        "gloss": "everyone's expressions",
+        "pinyin": "dà jiā de biǎo qíng 。"
+      }
+    ]
+  },
+  "火焰为什么是蓝色的？故事里，这一定不是好事。": {
+    "english": "Why are the flames blue? In this story, that cannot be a good sign.",
+    "pinyin": "huǒ yàn wèi shén me shì lán sè de ？ gù shì lǐ ， zhè yí dìng bú shì hǎo shì 。",
+    "interlinear": [
+      {
+        "chinese": "火焰",
+        "gloss": "the flames",
+        "pinyin": "huǒ yàn"
+      },
+      {
+        "chinese": "为什么",
+        "gloss": "why",
+        "pinyin": "wèi shén me"
+      },
+      {
+        "chinese": "是蓝色的？",
+        "gloss": "are they blue",
+        "pinyin": "shì lán sè de ？"
+      },
+      {
+        "chinese": "故事里，",
+        "gloss": "in this story",
+        "pinyin": "gù shì lǐ ，"
+      },
+      {
+        "chinese": "这一定",
+        "gloss": "this certainly",
+        "pinyin": "zhè yí dìng"
+      },
+      {
+        "chinese": "不是好事。",
+        "gloss": "is not a good sign",
+        "pinyin": "bú shì hǎo shì 。"
+      }
+    ]
+  },
+  "三个人点点头。年轻人还在等老人接着说。": {
+    "english": "The three men nod. The young man is still waiting for the storyteller to continue.",
+    "pinyin": "sān gè rén diǎn diǎn tóu 。 nián qīng rén hái zài děng lǎo rén jiē zhe shuō 。",
+    "interlinear": [
+      {
+        "chinese": "三个人",
+        "gloss": "the three men",
+        "pinyin": "sān gè rén"
+      },
+      {
+        "chinese": "点点头。",
+        "gloss": "nod",
+        "pinyin": "diǎn diǎn tóu 。"
+      },
+      {
+        "chinese": "年轻人",
+        "gloss": "the young man",
+        "pinyin": "nián qīng rén"
+      },
+      {
+        "chinese": "还在等",
+        "gloss": "is still waiting for",
+        "pinyin": "hái zài děng"
+      },
+      {
+        "chinese": "老人",
+        "gloss": "the old man",
+        "pinyin": "lǎo rén"
+      },
+      {
+        "chinese": "接着说。",
+        "gloss": "to go on",
+        "pinyin": "jiē zhe shuō 。"
+      }
+    ]
+  },
+  "孩子，你知道那是什么意思吗？": {
+    "english": "Lad, do you know what that means?",
+    "pinyin": "hái zi ， nǐ zhī dào nà shì shén me yì sī ma ？",
+    "interlinear": [
+      {
+        "chinese": "孩子，",
+        "gloss": "lad",
+        "pinyin": "hái zi ，"
+      },
+      {
+        "chinese": "你知道",
+        "gloss": "do you know",
+        "pinyin": "nǐ zhī dào"
+      },
+      {
+        "chinese": "那是什么意思吗？",
+        "gloss": "what that means",
+        "pinyin": "nà shì shén me yì sī ma ？"
+      }
+    ]
+  },
+  "是钱德里安。": {
+    "english": "It is the Chandrian.",
+    "pinyin": "shì qián dé lǐ ān 。",
+    "interlinear": [
+      {
+        "chinese": "是",
+        "gloss": "it is",
+        "pinyin": "shì"
+      },
+      {
+        "chinese": "钱德里安。",
+        "gloss": "the Chandrian",
+        "pinyin": "qián dé lǐ ān 。"
+      }
+    ]
+  },
+  "对。看见蓝色的火焰，就知道他们来了。": {
+    "english": "Yes. Blue flames tell you they have come.",
+    "pinyin": "duì 。 kàn jiàn lán sè de huǒ yàn ， jiù zhī dào tā men lái le 。",
+    "interlinear": [
+      {
+        "chinese": "对。",
+        "gloss": "yes",
+        "pinyin": "duì 。"
+      },
+      {
+        "chinese": "看见",
+        "gloss": "when you see",
+        "pinyin": "kàn jiàn"
+      },
+      {
+        "chinese": "蓝色的火焰，",
+        "gloss": "blue flames",
+        "pinyin": "lán sè de huǒ yàn ，"
+      },
+      {
+        "chinese": "就知道",
+        "gloss": "you know",
+        "pinyin": "jiù zhī dào"
+      },
+      {
+        "chinese": "他们来了。",
+        "gloss": "they have come",
+        "pinyin": "tā men lái le 。"
+      }
+    ]
+  },
+  "可是，他们怎么找到他的？为什么让他活着？": {
+    "english": "But how did they find him? Why did they let him live?",
+    "pinyin": "kě shì ， tā men zěn me zhǎo dào tā de ？ wèi shén me ràng tā huó zhe ？",
+    "interlinear": [
+      {
+        "chinese": "可是，",
+        "gloss": "but",
+        "pinyin": "kě shì ，"
+      },
+      {
+        "chinese": "他们怎么",
+        "gloss": "how did they",
+        "pinyin": "tā men zěn me"
+      },
+      {
+        "chinese": "找到他的？",
+        "gloss": "find him",
+        "pinyin": "zhǎo dào tā de ？"
+      },
+      {
+        "chinese": "为什么",
+        "gloss": "why",
+        "pinyin": "wèi shén me"
+      },
+      {
+        "chinese": "让他活着？",
+        "gloss": "let him live",
+        "pinyin": "ràng tā huó zhe ？"
+      }
+    ]
+  },
+  "先别问了。听他讲完，你就知道了。": {
+    "english": "Stop asking for now. Hear him out, and you will know.",
+    "pinyin": "xiān bié wèn le 。 tīng tā jiǎng wán ， nǐ jiù zhī dào le 。",
+    "interlinear": [
+      {
+        "chinese": "先别问了。",
+        "gloss": "stop asking for now",
+        "pinyin": "xiān bié wèn le 。"
+      },
+      {
+        "chinese": "听他讲完，",
+        "gloss": "hear him out",
+        "pinyin": "tīng tā jiǎng wán ，"
+      },
+      {
+        "chinese": "你就知道了。",
+        "gloss": "then you will know",
+        "pinyin": "nǐ jiù zhī dào le 。"
+      }
+    ]
+  },
+  "他只是想知道。你喝你的酒吧。": {
+    "english": "He just wants to know. Drink your beer.",
+    "pinyin": "tā zhǐ shì xiǎng zhī dào 。 nǐ hē nǐ de jiǔ ba 。",
+    "interlinear": [
+      {
+        "chinese": "他只是",
+        "gloss": "he just",
+        "pinyin": "tā zhǐ shì"
+      },
+      {
+        "chinese": "想知道。",
+        "gloss": "wants to know",
+        "pinyin": "xiǎng zhī dào 。"
+      },
+      {
+        "chinese": "你喝",
+        "gloss": "you drink",
+        "pinyin": "nǐ hē"
+      },
+      {
+        "chinese": "你的酒吧。",
+        "gloss": "your own beer",
+        "pinyin": "nǐ de jiǔ ba 。"
+      }
+    ]
+  },
+  "我知道那个年轻人怎么想。": {
+    "english": "I understand how the young man feels.",
+    "pinyin": "wǒ zhī dào nà ge nián qīng rén zěn me xiǎng 。",
+    "interlinear": [
+      {
+        "chinese": "我知道",
+        "gloss": "I understand",
+        "pinyin": "wǒ zhī dào"
+      },
+      {
+        "chinese": "那个年轻人",
+        "gloss": "that young man",
+        "pinyin": "nà ge nián qīng rén"
+      },
+      {
+        "chinese": "怎么想。",
+        "gloss": "how he feels",
+        "pinyin": "zěn me xiǎng 。"
+      }
+    ]
+  },
+  "我也想听完故事。": {
+    "english": "I want to hear the whole story too.",
+    "pinyin": "wǒ yě xiǎng tīng wán gù shì 。",
+    "interlinear": [
+      {
+        "chinese": "我也想",
+        "gloss": "I also want",
+        "pinyin": "wǒ yě xiǎng"
+      },
+      {
+        "chinese": "听完故事。",
+        "gloss": "to hear the whole story",
+        "pinyin": "tīng wán gù shì 。"
+      }
+    ]
+  },
+  "越想知道，就越想问个清楚。": {
+    "english": "The more you want to know, the more you want to ask until it is clear.",
+    "pinyin": "yuè xiǎng zhī dào ， jiù yuè xiǎng wèn gè qīng chǔ 。",
+    "interlinear": [
+      {
+        "chinese": "越想知道，",
+        "gloss": "the more you want to know",
+        "pinyin": "yuè xiǎng zhī dào ，"
+      },
+      {
+        "chinese": "就越想",
+        "gloss": "the more you want",
+        "pinyin": "jiù yuè xiǎng"
+      },
+      {
+        "chinese": "问个清楚。",
+        "gloss": "to ask until it is clear",
+        "pinyin": "wèn gè qīng chǔ 。"
+      }
+    ]
+  },
+  "可是，一直这样问，老人就不能接着讲了。": {
+    "english": "But if the questions keep coming, the old man cannot continue.",
+    "pinyin": "kě shì ， yì zhí zhè yàng wèn ， lǎo rén jiù bù néng jiē zhe jiǎng le 。",
+    "interlinear": [
+      {
+        "chinese": "可是，",
+        "gloss": "but",
+        "pinyin": "kě shì ，"
+      },
+      {
+        "chinese": "一直这样问，",
+        "gloss": "if the questions keep coming",
+        "pinyin": "yì zhí zhè yàng wèn ，"
+      },
+      {
+        "chinese": "老人",
+        "gloss": "the old man",
+        "pinyin": "lǎo rén"
+      },
+      {
+        "chinese": "就不能",
+        "gloss": "cannot",
+        "pinyin": "jiù bù néng"
+      },
+      {
+        "chinese": "接着讲了。",
+        "gloss": "continue the story",
+        "pinyin": "jiē zhe jiǎng le 。"
+      }
+    ]
+  },
+  "我的酒早就喝完了！老板还在后面干什么？": {
+    "english": "I finished my beer long ago! What is the innkeeper still doing back there?",
+    "pinyin": "wǒ de jiǔ zǎo jiù hē wán le ！ lǎo bǎn hái zài hòu miàn gàn shén me ？",
+    "interlinear": [
+      {
+        "chinese": "我的酒",
+        "gloss": "my beer",
+        "pinyin": "wǒ de jiǔ"
+      },
+      {
+        "chinese": "早就喝完了！",
+        "gloss": "was finished long ago",
+        "pinyin": "zǎo jiù hē wán le ！"
+      },
+      {
+        "chinese": "老板",
+        "gloss": "the innkeeper",
+        "pinyin": "lǎo bǎn"
+      },
+      {
+        "chinese": "还在后面",
+        "gloss": "is still in the back",
+        "pinyin": "hái zài hòu miàn"
+      },
+      {
+        "chinese": "干什么？",
+        "gloss": "doing what",
+        "pinyin": "gàn shén me ？"
+      }
+    ]
+  },
+  "他用空杯子敲了敲桌子，对着后面的房间大叫。": {
+    "english": "He knocks his empty mug on the bar and calls toward the back room.",
+    "pinyin": "tā yòng kōng bēi zi qiāo le qiāo zhuō zi ， duì zhe hòu miàn de fáng jiān dà jiào 。",
+    "interlinear": [
+      {
+        "chinese": "他",
+        "gloss": "he",
+        "pinyin": "tā"
+      },
+      {
+        "chinese": "用空杯子",
+        "gloss": "with his empty mug",
+        "pinyin": "yòng kōng bēi zi"
+      },
+      {
+        "chinese": "敲了敲桌子，",
+        "gloss": "knocks on the bar",
+        "pinyin": "qiāo le qiāo zhuō zi ，"
+      },
+      {
+        "chinese": "对着",
+        "gloss": "toward",
+        "pinyin": "duì zhe"
+      },
+      {
+        "chinese": "后面的房间",
+        "gloss": "the back room",
+        "pinyin": "hòu miàn de fáng jiān"
+      },
+      {
+        "chinese": "大叫。",
+        "gloss": "calls loudly",
+        "pinyin": "dà jiào 。"
+      }
+    ]
+  },
+  "老板！我们还要喝酒！": {
+    "english": "Innkeeper! We want more beer!",
+    "pinyin": "lǎo bǎn ！ wǒ men hái yào hē jiǔ ！",
+    "interlinear": [
+      {
+        "chinese": "老板！",
+        "gloss": "innkeeper",
+        "pinyin": "lǎo bǎn ！"
+      },
+      {
+        "chinese": "我们",
+        "gloss": "we",
+        "pinyin": "wǒ men"
+      },
+      {
+        "chinese": "还要喝酒！",
+        "gloss": "want more beer",
+        "pinyin": "hái yào hē jiǔ ！"
+      }
+    ]
+  },
+  "老板带来五碗热汤，还有两个面包。": {
+    "english": "The innkeeper brings five bowls of hot stew and two loaves of bread.",
+    "pinyin": "lǎo bǎn dài lái wǔ wǎn rè tāng ， hái yǒu liǎng gè miàn bāo 。",
+    "interlinear": [
+      {
+        "chinese": "老板",
+        "gloss": "the innkeeper",
+        "pinyin": "lǎo bǎn"
+      },
+      {
+        "chinese": "带来",
+        "gloss": "brings",
+        "pinyin": "dài lái"
+      },
+      {
+        "chinese": "五碗热汤，",
+        "gloss": "five bowls of hot stew",
+        "pinyin": "wǔ wǎn rè tāng ，"
+      },
+      {
+        "chinese": "还有",
+        "gloss": "and also",
+        "pinyin": "hái yǒu"
+      },
+      {
+        "chinese": "两个面包。",
+        "gloss": "two loaves of bread",
+        "pinyin": "liǎng gè miàn bāo 。"
+      }
+    ]
+  },
+  "他又给三个客人加了酒，动作很快。": {
+    "english": "He refills three guests’ beer, working quickly.",
+    "pinyin": "tā yòu gěi sān gè kè rén jiā le jiǔ ， dòng zuò hěn kuài 。",
+    "interlinear": [
+      {
+        "chinese": "他又",
+        "gloss": "he also",
+        "pinyin": "tā yòu"
+      },
+      {
+        "chinese": "给三个客人",
+        "gloss": "for three of the guests",
+        "pinyin": "gěi sān gè kè rén"
+      },
+      {
+        "chinese": "加了酒，",
+        "gloss": "refills their beer",
+        "pinyin": "jiā le jiǔ ，"
+      },
+      {
+        "chinese": "动作很快。",
+        "gloss": "working quickly",
+        "pinyin": "dòng zuò hěn kuài 。"
+      }
+    ]
+  },
+  "他没有接着讲故事，只是把晚饭送到大家面前。": {
+    "english": "He does not continue the story; he simply brings everyone their supper.",
+    "pinyin": "tā méi yǒu jiē zhe jiǎng gù shì ， zhǐ shì bǎ wǎn fàn sòng dào dà jiā miàn qián 。",
+    "interlinear": [
+      {
+        "chinese": "他没有",
+        "gloss": "he does not",
+        "pinyin": "tā méi yǒu"
+      },
+      {
+        "chinese": "接着讲故事，",
+        "gloss": "continue the story",
+        "pinyin": "jiē zhe jiǎng gù shì ，"
+      },
+      {
+        "chinese": "只是",
+        "gloss": "he simply",
+        "pinyin": "zhǐ shì"
+      },
+      {
+        "chinese": "把晚饭",
+        "gloss": "the supper",
+        "pinyin": "bǎ wǎn fàn"
+      },
+      {
+        "chinese": "送到",
+        "gloss": "brings before",
+        "pinyin": "sòng dào"
+      },
+      {
+        "chinese": "大家面前。",
+        "gloss": "everyone",
+        "pinyin": "dà jiā miàn qián 。"
+      }
+    ]
+  },
+  "先看看热汤。": {
+    "english": "Look at the hot stew first.",
+    "pinyin": "xiān kàn kàn rè tāng 。",
+    "interlinear": [
+      {
+        "chinese": "先",
+        "gloss": "first",
+        "pinyin": "xiān"
+      },
+      {
+        "chinese": "看看热汤。",
+        "gloss": "look at the hot stew",
+        "pinyin": "kàn kàn rè tāng 。"
+      }
+    ]
+  },
+  "看看讲故事的老人。": {
+    "english": "Look at the old storyteller.",
+    "pinyin": "kàn kàn jiǎng gù shì de lǎo rén 。",
+    "interlinear": [
+      {
+        "chinese": "看看",
+        "gloss": "look at",
+        "pinyin": "kàn kàn"
+      },
+      {
+        "chinese": "讲故事的老人。",
+        "gloss": "the old storyteller",
+        "pinyin": "jiǎng gù shì de lǎo rén 。"
+      }
+    ]
+  },
+  "大家先不听故事了，低头吃起晚饭。": {
+    "english": "Everyone sets the story aside for now and starts eating supper.",
+    "pinyin": "dà jiā xiān bù tīng gù shì le ， dī tóu chī qǐ wǎn fàn 。",
+    "interlinear": [
+      {
+        "chinese": "大家",
+        "gloss": "everyone",
+        "pinyin": "dà jiā"
+      },
+      {
+        "chinese": "先不听故事了，",
+        "gloss": "sets the story aside for now",
+        "pinyin": "xiān bù tīng gù shì le ，"
+      },
+      {
+        "chinese": "低头",
+        "gloss": "lowers their heads",
+        "pinyin": "dī tóu"
+      },
+      {
+        "chinese": "吃起晚饭。",
+        "gloss": "and starts eating supper",
+        "pinyin": "chī qǐ wǎn fàn 。"
+      }
+    ]
+  },
+  "老人也不说话了。他吃得比别人快多了。": {
+    "english": "The old man stops talking too. He eats much faster than the others.",
+    "pinyin": "lǎo rén yě bù shuō huà le 。 tā chī de bǐ bié rén kuài duō le 。",
+    "interlinear": [
+      {
+        "chinese": "老人",
+        "gloss": "the old man",
+        "pinyin": "lǎo rén"
+      },
+      {
+        "chinese": "也不说话了。",
+        "gloss": "also stops talking",
+        "pinyin": "yě bù shuō huà le 。"
+      },
+      {
+        "chinese": "他吃得",
+        "gloss": "he eats",
+        "pinyin": "tā chī de"
+      },
+      {
+        "chinese": "比别人",
+        "gloss": "compared with the others",
+        "pinyin": "bǐ bié rén"
+      },
+      {
+        "chinese": "快多了。",
+        "gloss": "much faster",
+        "pinyin": "kuài duō le 。"
+      }
+    ]
+  },
+  "别人还在吹热汤，老人已经吃完了。": {
+    "english": "The others are still blowing on their hot stew when the old man finishes.",
+    "pinyin": "bié rén hái zài chuī rè tāng ， lǎo rén yǐ jīng chī wán le 。",
+    "interlinear": [
+      {
+        "chinese": "别人",
+        "gloss": "the others",
+        "pinyin": "bié rén"
+      },
+      {
+        "chinese": "还在",
+        "gloss": "are still",
+        "pinyin": "hái zài"
+      },
+      {
+        "chinese": "吹热汤，",
+        "gloss": "blowing on their hot stew",
+        "pinyin": "chuī rè tāng ，"
+      },
+      {
+        "chinese": "老人",
+        "gloss": "the old man",
+        "pinyin": "lǎo rén"
+      },
+      {
+        "chinese": "已经吃完了。",
+        "gloss": "has already finished",
+        "pinyin": "yǐ jīng chī wán le 。"
+      }
+    ]
+  },
+  "好，接着讲。": {
+    "english": "All right, let us go on.",
+    "pinyin": "hǎo ， jiē zhe jiǎng 。",
+    "interlinear": [
+      {
+        "chinese": "好，",
+        "gloss": "all right",
+        "pinyin": "hǎo ，"
+      },
+      {
+        "chinese": "接着讲。",
+        "gloss": "let us go on with the story",
+        "pinyin": "jiē zhe jiǎng 。"
+      }
+    ]
+  },
+  "大家又等着听了。那个人，到底怎么离开那座塔呢？": {
+    "english": "Everyone is waiting to listen again. How will the man get out of that tower?",
+    "pinyin": "dà jiā yòu děng zhe tīng le 。 nà ge rén ， dào dǐ zěn me lí kāi nà zuò tǎ ne ？",
+    "interlinear": [
+      {
+        "chinese": "大家",
+        "gloss": "everyone",
+        "pinyin": "dà jiā"
+      },
+      {
+        "chinese": "又等着听了。",
+        "gloss": "is waiting to listen again",
+        "pinyin": "yòu děng zhe tīng le 。"
+      },
+      {
+        "chinese": "那个人，",
+        "gloss": "that man",
+        "pinyin": "nà ge rén ，"
+      },
+      {
+        "chinese": "到底怎么",
+        "gloss": "how exactly",
+        "pinyin": "dào dǐ zěn me"
+      },
+      {
+        "chinese": "离开",
+        "gloss": "will he leave",
+        "pinyin": "lí kāi"
+      },
+      {
+        "chinese": "那座塔呢？",
+        "gloss": "that tower",
+        "pinyin": "nà zuò tǎ ne ？"
+      }
+    ]
+  }
+}

@@ -6,7 +6,7 @@ export function weedOptionAOverlay(content){
  replace(" const palette=character.rig.palette||{},skin=finish?", " const palette=weedOptionA?{...character.rig.palette,skin:'#dcaf8e',hair:'#282b2a',shirt:'#526d6c',trim:'#718b86'}:character.rig.palette||{},skin=weedOptionA?palette.skin:finish?");
  replace("shirt=finish?", "shirt=weedOptionA?palette.shirt:finish?");
  replace("ink='#344048'", "ink=weedOptionA?'#202c32':'#344048'");
- replace("const trouserBase=historical?", "const trouserBase=weedOptionA?'#263d49':historical?");
+ replace("const trouserBase=", "const trouserBase=weedOptionA?'#263d49':");
  replace("const trousers=finish?", "const trousers=weedOptionA?trouserBase:finish?");
  replace("const handSkin=finish?", "const handSkin=weedOptionA?skin:finish?");
  replace("stroke={longSleeves?shirt:finish?", "stroke={longSleeves?shirt:weedOptionA?skin:finish?");
@@ -17,8 +17,8 @@ export function weedOptionAOverlay(content){
  replace(" const refined=['scrappy'", " const refined=weedOptionA||['scrappy'");
  replace('data-turn={yaw}', 'data-weed-design={weedOptionA?"option-a":undefined} data-turn={yaw}');
  replace("data-age={appearance.age||'teen'}", "data-age={weedOptionA?'teen':appearance.age||'teen'}");
- replace('{tailored?<g', '{weedOptionA?<WeedOptionAShirt/>:tailored?<g');
+ replace('tailored?<g', 'weedOptionA?<WeedOptionAShirt/>:tailored?<g');
  replace('{finish&&<g data-fabric-detail', '{finish&&!weedOptionA&&<g data-fabric-detail');
- replace('{refined?<RefinedFace', '{weedOptionA?<WeedOptionAFace id={gradientId} emotion={emotion} blink={blink} mouth={mouth} startled={startled} laughing={laughing} firm={firm} worried={worried} turn={yaw} gazeX={gazeX} gazeY={gazeY} reduced={reduced}/>:refined?<RefinedFace');
+ replace('refined?<RefinedFace', 'weedOptionA?<WeedOptionAFace id={gradientId} emotion={emotion} blink={blink} mouth={mouth} startled={startled} laughing={laughing} firm={firm} worried={worried} turn={yaw} gazeX={gazeX} gazeY={gazeY} reduced={reduced}/>:refined?<RefinedFace');
  return content;
 }

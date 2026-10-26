@@ -10,6 +10,11 @@
       "poster": "stories/animated/cutscenes/moonlight-01-intro.jpg",
       "title": "Between two worlds",
       "durationSeconds": 13
+    },
+    "summary": {
+      "title": "Moonlight Sculptor 01 · Before the First Bid",
+      "description": "Step into Lee Hyun’s evening at home. A treasured game character, a family to support, and one decision before bed. Book 1, Chapter 1 — opening installment.",
+      "cover": "stories/animated/covers/moonlight-01-v5.webp"
     }
   },
   {
@@ -17,80 +22,145 @@
     "path": "moonlight-02-v5.json",
     "category": "lms",
     "episode": 2,
-    "resumeFrom": "moonlight-02-v4"
+    "resumeFrom": "moonlight-02-v4",
+    "summary": {
+      "title": "Moonlight Sculptor 02 · An Impossible Number",
+      "description": "A strange phone call. A number too large to believe. Follow Lee Hyun from disbelief to a new hope for his family. Book 1, Chapter 1 — second installment. Updated edition with a visible handheld phone during the call.",
+      "cover": "stories/animated/covers/moonlight-02-v5.webp"
+    }
   },
   {
     "id": "moonlight-03-v4",
     "path": "moonlight-03-v4.json",
     "category": "lms",
     "episode": 3,
-    "resumeFrom": "moonlight-03-v3"
+    "resumeFrom": "moonlight-03-v3",
+    "summary": {
+      "title": "Moonlight Sculptor 03 · The Price of Safety",
+      "description": "In a hospital room, the family’s new hope meets an old debt. Choose Hyun’s responses while the book’s events unfold. Book 1, Chapter 1 — third installment.",
+      "cover": "stories/animated/covers/moonlight-03-v4.webp"
+    }
   },
   {
     "id": "moonlight-04-v2",
     "path": "moonlight-04-v2.json",
     "category": "lms",
     "episode": 4,
-    "resumeFrom": "moonlight-04-v1"
+    "resumeFrom": "moonlight-04-v1",
+    "summary": {
+      "title": "Moonlight Sculptor 04 · Once More",
+      "description": "Three days after losing his fortune, Hyun finds a reason to stand up. A home to protect, forty million won to use, and a very unwelcome cancellation fee. Book 1, Chapter 1 — fourth installment.",
+      "cover": "stories/animated/covers/moonlight-04-v2.webp"
+    }
   },
   {
     "id": "moonlight-05-v1",
     "path": "moonlight-05.json",
     "category": "lms",
-    "episode": 5
+    "episode": 5,
+    "summary": {
+      "title": "Moonlight Sculptor 05 · A Year Before the Game",
+      "description": "Hyun leaves the computer to prepare for a new world. A year of aching muscles, crowded walls and careful study leads him to Royal Road. Book 1, Chapter 1 — fifth installment.",
+      "cover": "stories/animated/covers/moonlight-05-v1.webp"
+    }
   },
   {
     "id": "prop-rehearsal-v1",
     "path": "prop-rehearsal.json",
-    "category": "practice"
+    "category": "practice",
+    "summary": {
+      "title": "Props & fantasy actions · Rehearsal",
+      "description": "Try the visible phone, sword, bow and magical beam. An English-language animation preview, separate from the novel.",
+      "cover": "stories/animated/covers/prop-rehearsal-v1.webp"
+    }
   },
   {
     "id": "moonlight-06-v1",
     "category": "lms",
     "episode": 6,
-    "path": "moonlight-06.json"
+    "path": "moonlight-06.json",
+    "summary": {
+      "title": "Moonlight Sculptor 06 · The Price of Entry",
+      "description": "A year of preparation, an expensive capsule, and a familiar name. Step with Hyun into Royal Road’s character creation.",
+      "cover": "stories/animated/covers/moonlight-06-v1.webp"
+    }
   },
   {
     "id": "moonlight-07-v1",
     "category": "lms",
     "episode": 7,
-    "path": "moonlight-07.json"
+    "path": "moonlight-07.json",
+    "summary": {
+      "title": "月光雕刻师 7：大家都在看我",
+      "description": "走进塞拉堡，一切都像真的。可是，为什么大家都在看我？",
+      "cover": "stories/animated/covers/moonlight-07-v1.webp"
+    }
   },
   {
     "id": "moonlight-08-v3",
     "category": "lms",
     "episode": 8,
-    "path": "moonlight-08-v3.json"
+    "path": "moonlight-08-v3.json",
+    "summary": {
+      "title": "月光雕刻师 8：只多了一点",
+      "description": "别人看着，我一直练习。六个小时以后，终于有了一点变化。 Revised with continuous training, fitted reaction shots, and optional hall ambience and sword impacts.",
+      "cover": "stories/animated/covers/moonlight-08-v3.webp"
+    }
   },
   {
     "id": "moonlight-09-v1",
     "category": "lms",
     "episode": 9,
-    "path": "moonlight-09.json"
+    "path": "moonlight-09.json",
+    "summary": {
+      "title": "月光雕刻师 9：休息一下",
+      "description": "身体终于要休息，心里却还想练习。吃一点，再拿起剑。 Includes listener close-ups, repeated dummy strikes and optional hall atmosphere.",
+      "cover": "stories/animated/covers/moonlight-09-v1.webp"
+    }
   },
   {
     "id": "moonlight-10-v1",
     "category": "lms",
     "episode": 10,
-    "path": "moonlight-10.json"
+    "path": "moonlight-10.json",
+    "summary": {
+      "title": "月光雕刻师 10：谁觉得没意思？",
+      "description": "大家都觉得这样练习太累。一个骑士却说，这对以后有用。你听见了，也更清楚自己为什么还在这里。",
+      "cover": "stories/animated/covers/moonlight-10-v1.webp"
+    }
   },
   {
     "id": "moonlight-11-v1",
     "category": "lms",
     "episode": 11,
-    "path": "moonlight-11.json"
+    "path": "moonlight-11.json",
+    "summary": {
+      "title": "月光雕刻师 11：还是太慢了",
+      "description": "三个星期过去，新的本事出现了。可我一边开心，一边觉得：还是太慢了。",
+      "cover": "stories/animated/covers/moonlight-11-v1.webp"
+    }
   },
   {
     "id": "moonlight-12-v1",
     "category": "lms",
     "episode": 12,
-    "path": "moonlight-12.json"
+    "path": "moonlight-12.json",
+    "summary": {
+      "title": "月光雕刻师 12：午饭的香味",
+      "description": "面包快吃完了，教官的午饭却让三周的交情有了新的意义。",
+      "cover": "stories/animated/covers/moonlight-12-v1.webp"
+    }
   },
   {
     "id": "moonlight-13-v1",
     "category": "lms",
     "episode": 13,
-    "path": "moonlight-13.json"
+    "path": "moonlight-13.json",
+    "summary": {
+      "title": "Moonlight 13 — The Answer He Wanted",
+      "description": "A question over lunch. Hyun reads the instructor, chooses his words, and discovers an easy way to win approval.",
+      "cover": "stories/animated/covers/moonlight-13-v1.webp"
+    }
   },
   {
     "id": "moonlight-14-v1",
@@ -101,6 +171,11 @@
       "src": "stories/animated/cutscenes/moonlight-14-intro.mp4",
       "poster": "stories/animated/cutscenes/moonlight-14-intro.jpg",
       "title": "A knowing smile"
+    },
+    "summary": {
+      "title": "Moonlight 14 — Can You Carve Moonlight?",
+      "description": "A laugh about a moon-shaped pebble turns into a request. The instructor’s curiosity tests Weed’s easy agreement.",
+      "cover": "stories/animated/covers/moonlight-14-v1.webp"
     }
   },
   {
@@ -112,6 +187,11 @@
       "src": "stories/animated/cutscenes/moonlight-15-intro.mp4",
       "poster": "stories/animated/cutscenes/moonlight-15-intro.jpg",
       "title": "A rare opportunity"
+    },
+    "summary": {
+      "title": "Moonlight 15 — Two Silver Coins",
+      "description": "Weed hides his delight, accepts the instructor’s unusual quest, and receives two silver coins before taking a single step.",
+      "cover": "stories/animated/covers/moonlight-15-v1.webp"
     }
   },
   {
@@ -123,6 +203,11 @@
       "src": "stories/animated/cutscenes/moonlight-16-intro.mp4",
       "poster": "stories/animated/cutscenes/moonlight-16-intro.jpg",
       "title": "Two silver coins"
+    },
+    "summary": {
+      "title": "Moonlight 16 — Please Leave",
+      "description": "Two silver coins promise a full stomach. But at the sculpture shop, Weed discovers that money is easier to count than goodwill.",
+      "cover": "stories/animated/covers/moonlight-16-v1.webp"
     }
   },
   {
@@ -134,6 +219,11 @@
       "src": "stories/animated/cutscenes/moonlight-17-intro.mp4",
       "poster": "stories/animated/cutscenes/moonlight-17-intro.jpg",
       "title": "The golden eagle"
+    },
+    "summary": {
+      "title": "Moonlight 17 — A Welcome Worth Praising",
+      "description": "A golden two-headed eagle gives Weed a second chance. A few well-chosen words turn dismissal into a cold drink and an invitation to stay.",
+      "cover": "stories/animated/covers/moonlight-17-v1.webp"
     }
   },
   {
@@ -146,6 +236,11 @@
       "poster": "stories/animated/cutscenes/moonlight-18-intro.jpg",
       "title": "The moonlight question",
       "durationSeconds": 6
+    },
+    "summary": {
+      "title": "Moonlight 18 — So It Was True",
+      "description": "Weed sees a poor business in beautiful statues. Then the shopkeeper confirms a story Weed thought impossible.",
+      "cover": "stories/animated/covers/moonlight-18-v1.webp"
     }
   },
   {
@@ -158,6 +253,11 @@
       "poster": "stories/animated/cutscenes/moonlight-19-intro.jpg",
       "title": "An enticing risk",
       "durationSeconds": 6
+    },
+    "summary": {
+      "title": "One More Question",
+      "description": "A second quest draws Weed toward a royal secret. Better rewards sound tempting—until he reads the warning.",
+      "cover": "stories/animated/covers/moonlight-19-v1.webp"
     }
   },
   {
@@ -170,6 +270,11 @@
       "poster": "stories/animated/cutscenes/moonlight-20-intro.jpg",
       "title": "The price of a secret",
       "durationSeconds": 6
+    },
+    "summary": {
+      "title": "The Price of a Secret",
+      "description": "Weed tries to pay a bard in compliments. The bard has another price in mind.",
+      "cover": "stories/animated/covers/moonlight-20-v1.webp"
     }
   },
   {
@@ -182,6 +287,11 @@
       "poster": "stories/animated/cutscenes/moonlight-21-intro.jpg",
       "title": "A promise remembered",
       "durationSeconds": 9
+    },
+    "summary": {
+      "title": "The Promise That Remained",
+      "description": "A childhood promise survives separation. Weed doubts it could ever be kept—until the bard corrects him.",
+      "cover": "stories/animated/covers/moonlight-21-v1.webp"
     }
   },
   {
@@ -194,6 +304,11 @@
       "poster": "stories/animated/cutscenes/moonlight-22-intro.jpg",
       "title": "Why bring a sword?",
       "durationSeconds": 9
+    },
+    "summary": {
+      "title": "The Sword in His Hand",
+      "description": "An eyewitness welcomes Weed—and remembers the moment the queen thought an old promise had been forgotten.",
+      "cover": "stories/animated/covers/moonlight-22-v1.webp"
     }
   },
   {
@@ -206,7 +321,12 @@
       "title": "A promise in moonlight",
       "durationSeconds": 9
     },
-    "path": "moonlight-23.json"
+    "path": "moonlight-23.json",
+    "summary": {
+      "title": "A Promise in Moonlight",
+      "description": "The attendant reveals what Zahab made with his sword—and why the queen never forgot it.",
+      "cover": "stories/animated/covers/moonlight-23-v1.webp"
+    }
   },
   {
     "id": "moonlight-24-v1",
@@ -218,7 +338,12 @@
       "title": "An impossible refusal",
       "durationSeconds": 9
     },
-    "path": "moonlight-24.json"
+    "path": "moonlight-24.json",
+    "summary": {
+      "title": "The Class I Refuse",
+      "description": "A fulfilled promise offers Weed a rare new path. His answer surprises even the system.",
+      "cover": "stories/animated/covers/moonlight-24-v1.webp"
+    }
   },
   {
     "id": "moonlight-25-v1",
@@ -230,7 +355,12 @@
       "title": "I cannot cancel?",
       "durationSeconds": 9
     },
-    "path": "moonlight-25.json"
+    "path": "moonlight-25.json",
+    "summary": {
+      "title": "The Gift I Cannot Refuse",
+      "description": "Zahab’s knife and a wooden statue are valuable gifts. The obligation hidden inside them has no cancel button.",
+      "cover": "stories/animated/covers/moonlight-25-v1.webp"
+    }
   },
   {
     "id": "moonlight-26-v1",
@@ -242,6 +372,22 @@
       "title": "Another quest?",
       "durationSeconds": 9
     },
-    "path": "moonlight-26.json"
+    "path": "moonlight-26.json",
+    "summary": {
+      "title": "Back to the Wooden Sword",
+      "description": "Weed collects the silver he earned. Now another quest is tempting him away from the work he began.",
+      "cover": "stories/animated/covers/moonlight-26-v1.webp"
+    }
+  },
+  {
+    "id": "wind-01-v1",
+    "category": "name-of-the-wind",
+    "episode": 1,
+    "path": "wind-01.json",
+    "summary": {
+      "title": "The Name of the Wind 01 · A Story Before Supper",
+      "description": "A quiet inn, five familiar guests, and a story interrupted by supper. Listen for what the innkeeper leaves unsaid.",
+      "cover": "stories/animated/covers/wind-01-v1.webp"
+    }
   }
 ]

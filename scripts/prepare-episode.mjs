@@ -17,7 +17,7 @@ if(flags.init){
  const series=flags.series??'moonlight';if(!/^[a-z0-9-]+$/.test(series))throw Error('Invalid series')
  const record=read(`stories/authoring/series/${series}.json`),path=resolve(base,'plan.json')
  if(existsSync(path))throw Error('Plan already exists: '+path)
- write(path,{id,series,title:'',description:'',assetsFrom:record.assetsFrom,...(record.castBundle?{castFrom:record.castBundle}:{}),script:resolve(base,'episode.story'),annotations:resolve(base,'lines.json'),lexicon:[],sources:[],planning:{sourceBoundary:'',dramaticChange:'',essentialNewWords:[],englishNarrationPurpose:'',choicesAndCallbacks:[],sceneActivities:[]},pinyinReviewed:false,continuation:{end:'',nextStart:'',nextEndBefore:'',note:''},routes:[],catalog:{id:id+'-v1',category:'lms',episode:0}})
+ write(path,{id,series,title:'',description:'',assetsFrom:record.assetsFrom,...(record.castBundle?{castFrom:record.castBundle}:{}),script:resolve(base,'episode.story'),annotations:resolve(base,'lines.json'),lexicon:[],sources:[],planning:{sourceBoundary:'',dramaticChange:'',essentialNewWords:[],englishNarrationPurpose:'',choicesAndCallbacks:[],sceneActivities:[]},pinyinReviewed:false,continuation:{end:'',nextStart:'',nextEndBefore:'',note:''},routes:[],catalog:{id:id+'-v1',category:record.defaults?.catalogCategory??'lms',episode:0}})
  writeFileSync(resolve(base,'episode.story'),'story 2\nlabel opening\nI: 我准备好了。\nend\n');write(resolve(base,'lines.json'),{})
  console.log('Created '+path+'; fill the compact plan, then run --draft first.');process.exit(0)
 }
@@ -31,7 +31,7 @@ async function phase(name,fn){const start=performance.now();try{const value=awai
 try{
  const assets=read(plan.assetsFrom).assets
  if(plan.castFrom)assets.characters={...assets.characters,...read(plan.castFrom)}
- const script=readFileSync(plan.script,'utf8'),pack={format:2,profile:'chinese',title:plan.title,description:plan.description,script,assets,quiz:[],sources:plan.sources}
+ const script=readFileSync(plan.script,'utf8'),pack={format:2,profile:'chinese',title:plan.title,description:plan.description,script,assets,quiz:[],sources:plan.sources,...(plan.notice?{notice:plan.notice}:{})}
  const vocabulary=await phase('vocabulary',()=>auditVocabulary(pack,read(flags.vocab),{lexicon:plan.lexicon??[],supplement:read(series.vocabularySupplement).words,min:series.coverage.min,max:series.coverage.max}))
  write(resolve(run,'vocabulary.json'),vocabulary)
  console.log(`${vocabulary.range.min.toFixed(2)}–${vocabulary.range.max.toFixed(2)}% familiar; Mandarin entry share ${Math.min(...vocabulary.routes.map(r=>r.exposure.mandarinEntryPercent)).toFixed(1)}–${Math.max(...vocabulary.routes.map(r=>r.exposure.mandarinEntryPercent)).toFixed(1)}% (not listening time).`)

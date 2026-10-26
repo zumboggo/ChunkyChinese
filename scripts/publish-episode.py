@@ -76,7 +76,8 @@ def verify_live(sha):
     catalog=json.loads(Path('public/stories/animated/catalog.json').read_text())
     files=['stories/animated/catalog.json','service-worker.js']+['stories/animated/'+e['path'] for e in catalog]
     files += [e['intro'][kind] for e in catalog if e.get('intro') for kind in ('src','poster')]
-    for relative in files:
+    files += [e['summary']['cover'] for e in catalog if e.get('summary', {}).get('cover')]
+    for relative in dict.fromkeys(files):
         expected=hashlib.sha256(Path('public',relative).read_bytes()).hexdigest()
         for attempt in range(3):
             try:

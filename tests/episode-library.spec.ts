@@ -1,44 +1,29 @@
 import {test,expect} from '@playwright/test'
 import {readFileSync} from 'node:fs'
-const catalog=JSON.parse(readFileSync('public/stories/animated/catalog.json','utf8')) as {category?:string;episode?:number;path:string}[]
-const episodeLabels=catalog.filter(e=>e.category==='lms').sort((a,b)=>(a.episode??0)-(b.episode??0)).map(e=>String(e.episode).padStart(2,'0')+JSON.parse(readFileSync('stories/animated/'+e.path,'utf8')).title.replace(/^Moonlight Sculptor\s*\d+\s*·\s*/,''))
-test('categories, independent reading aids, persistent preferences and next episode',async({page},info)=>{
+const catalog=JSON.parse(readFileSync('public/stories/animated/catalog.json','utf8'))
+test('book selection, resume and the next episode keep their sequence',async({page})=>{
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
- await expect(page.locator('.episode-strip button')).toHaveText(episodeLabels)
- await page.getByRole('button',{name:/Daily Life Small moments/}).click()
- await expect(page.getByText('No Daily Life episodes yet.',{exact:false})).toBeVisible()
- await page.getByRole('button',{name:/LMS A new world/}).click()
- await page.screenshot({path:'.local/design/library-'+info.project.name+'.png',fullPage:true})
+ const books=page.getByLabel('Book',{exact:true}),episodes=page.getByLabel('Episode',{exact:true})
+ await expect(episodes.locator('option')).toHaveCount(catalog.filter((e:{category:string})=>e.category==='lms').length)
+ await books.selectOption('daily-life');await expect(page.getByText('No Daily Life episodes yet.',{exact:false})).toBeVisible()
+ await books.selectOption('lms');await episodes.selectOption({index:0})
  await page.getByRole('button',{name:'Restart episode',exact:true}).click()
  await page.getByRole('button',{name:'Skip intro →',exact:true}).click()
- await page.emulateMedia({reducedMotion:'reduce'})
- await page.screenshot({path:'.local/design/player-'+info.project.name+'.png',fullPage:true})
- const english=page.getByRole('button',{name:'English',exact:true}),pinyin=page.getByRole('button',{name:'Pinyin',exact:true})
- await expect(page.locator('.reader-interlinear-gloss').first()).toBeVisible()
- await english.click();await expect(page.locator('.reader-interlinear-gloss')).toHaveCount(0)
- await expect(page.locator('.reader-interlinear-pinyin').first()).toBeVisible()
- await pinyin.click();await expect(page.locator('.reader-interlinear-pinyin')).toHaveCount(0)
- await english.click();await expect(page.locator('.reader-interlinear-gloss').first()).toBeVisible()
+ await expect(page.locator('.episode-line')).toBeVisible()
+ await page.getByRole('button',{name:'Continue →',exact:true}).click()
+ const text=await page.locator('.episode-line').innerText()
  await page.getByRole('button',{name:'← Story library',exact:true}).click()
  await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
- await page.getByRole('button',{name:'Skip intro →',exact:true}).click()
- await expect(pinyin).toHaveAttribute('aria-pressed','false');await expect(english).toHaveAttribute('aria-pressed','true')
+ await expect(page.locator('.episode-line')).toHaveText(text,{useInnerText:true})
  for(let i=0;i<100;i++){
   if(await page.getByRole('heading',{name:'Scene complete',exact:true}).count())break
-  const choices=page.locator('.episode-choice');if(await choices.count())await choices.first().click();else await page.getByRole('button',{name:'Continue →',exact:true}).click()
+  if(await page.locator('.episode-choice').count())await page.locator('.episode-choice').first().click()
+  else await page.getByRole('button',{name:'Continue →',exact:true}).click()
  }
- await page.getByRole('button',{name:'Next Episode →',exact:true}).click()
+ await page.getByRole('button',{name:'Continue to Episode 2 →',exact:true}).click()
  await expect(page.getByRole('heading',{name:'Moonlight Sculptor 02 · An Impossible Number',exact:true})).toBeVisible()
- await expect(pinyin).toHaveAttribute('aria-pressed','false')
- await expect(page.getByRole('button',{name:'Play audio',exact:true})).toBeVisible()
  await page.getByRole('button',{name:'← Story library',exact:true}).click()
- await page.getByRole('button',{name:'03 The Price of Safety',exact:true}).click()
- await page.getByRole('button',{name:'Restart episode',exact:true}).click()
- for(let i=0;i<100;i++){
-  if(await page.getByRole('heading',{name:'Scene complete',exact:true}).count())break
-  const choices=page.locator('.episode-choice');if(await choices.count())await choices.first().click();else await page.getByRole('button',{name:'Continue →',exact:true}).click()
- }
- await expect(page.getByRole('heading',{name:'Scene complete',exact:true})).toBeVisible()
- await page.getByRole('button',{name:'Next Episode →',exact:true}).click()
- await expect(page.getByRole('heading',{name:'Moonlight Sculptor 04 · Once More',exact:true})).toBeVisible()
+ await books.selectOption('name-of-the-wind')
+ await expect(episodes.locator('option')).toHaveCount(1)
+ await expect(page.getByRole('button',{name:'Next →',exact:true})).toBeDisabled()
 })

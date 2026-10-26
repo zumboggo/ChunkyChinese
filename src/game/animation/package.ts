@@ -3,7 +3,7 @@ import type {ReaderInterlinearChunk} from '../../types'
 import {compileStory,validatePackage,type StoryPackage} from './shared/engine/story-engine.js'
 import {packageAssetEntries,packageContentBytes} from './shared/engine/acting-library.js'
 export interface ChineseLine {pinyin?:string;english?:string;audio?:string;interlinear?:ReaderInterlinearChunk[]}
-export interface ChinesePackage extends StoryPackage {chinese?:{lines:Record<string,ChineseLine>}}
+export interface ChinesePackage extends StoryPackage {notice?:string;chinese?:{lines:Record<string,ChineseLine>}}
 export function entries(pack:ChinesePackage):{src:string}[]{return packageAssetEntries(pack)}
 export function size(pack:ChinesePackage){const copy=structuredClone(pack);let bytes=0;for(const l of Object.values(copy.chinese?.lines??{})){if(l.audio){const data=l.audio.split(',')[1]??'';bytes+=Math.floor(data.length*3/4)-(data.endsWith('==')?2:data.endsWith('=')?1:0);l.audio=''}}return packageContentBytes(copy)+bytes}
 const image=/^data:image\/(webp|png|jpeg);base64,[A-Za-z0-9+/=]+$/

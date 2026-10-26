@@ -1,0 +1,285 @@
+[
+  {
+    "id": "Kote",
+    "name": "科特 · Kote",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "tousled",
+      "face": "lean",
+      "eyes": "keen",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#dfb994",
+      "hair": "#b6502d",
+      "shirt": "#596a59",
+      "trim": "#c9b892"
+    },
+    "provenance": "Original SVG interpretation for Mandarin lessons based on the supplied Patrick Rothfuss novel. No official art or actor likeness. Future cast appearances require source-scene verification."
+  },
+  {
+    "id": "Cob",
+    "name": "老科布 · Old Cob",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "elder",
+      "hair": "cropped",
+      "face": "broad",
+      "eyes": "default",
+      "outfit": "workshirt",
+      "facialHair": "full"
+    },
+    "palette": {
+      "skin": "#dfb994",
+      "hair": "#aaa492",
+      "shirt": "#87714d",
+      "trim": "#c9b892"
+    },
+    "provenance": "Original SVG interpretation for Mandarin lessons based on the supplied Patrick Rothfuss novel. No official art or actor likeness. Future cast appearances require source-scene verification."
+  },
+  {
+    "id": "Graham",
+    "name": "格雷厄姆 · Graham",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "side-part",
+      "face": "round",
+      "eyes": "default",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#dfb994",
+      "hair": "#6c503a",
+      "shirt": "#65767a",
+      "trim": "#c9b892"
+    },
+    "provenance": "Original SVG interpretation for Mandarin lessons based on the supplied Patrick Rothfuss novel. No official art or actor likeness. Future cast appearances require source-scene verification."
+  },
+  {
+    "id": "Jake",
+    "name": "杰克 · Jake",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "cropped",
+      "face": "angular",
+      "eyes": "default",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#dfb994",
+      "hair": "#44372d",
+      "shirt": "#76564c",
+      "trim": "#c9b892"
+    },
+    "provenance": "Original SVG interpretation for Mandarin lessons based on the supplied Patrick Rothfuss novel. No official art or actor likeness. Future cast appearances require source-scene verification."
+  },
+  {
+    "id": "Shep",
+    "name": "谢普 · Shep",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "swept",
+      "face": "lean",
+      "eyes": "default",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#dfb994",
+      "hair": "#544a3f",
+      "shirt": "#6b7150",
+      "trim": "#c9b892"
+    },
+    "provenance": "Original SVG interpretation for Mandarin lessons based on the supplied Patrick Rothfuss novel. No official art or actor likeness. Future cast appearances require source-scene verification."
+  },
+  {
+    "id": "Boy",
+    "name": "铁匠学徒 · The smith’s apprentice",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "teen",
+      "hair": "tousled",
+      "face": "oval",
+      "eyes": "default",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#dfb994",
+      "hair": "#58402f",
+      "shirt": "#9b8662",
+      "trim": "#c9b892"
+    },
+    "provenance": "Original SVG interpretation for Mandarin lessons based on the supplied Patrick Rothfuss novel. No official art or actor likeness. Future cast appearances require source-scene verification."
+  },
+  {
+    "id": "PatronA",
+    "name": "客人 · Patron",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "cropped",
+      "face": "round",
+      "eyes": "default",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#dfb994",
+      "hair": "#6c503a",
+      "shirt": "#65767a",
+      "trim": "#c9b892"
+    },
+    "provenance": "Original SVG interpretation for Mandarin lessons based on the supplied Patrick Rothfuss novel. No official art or actor likeness. Future cast appearances require source-scene verification."
+  },
+  {
+    "id": "PatronB",
+    "name": "客人 · Patron",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "side-part",
+      "face": "lean",
+      "eyes": "default",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#dfb994",
+      "hair": "#544a3f",
+      "shirt": "#76564c",
+      "trim": "#c9b892"
+    },
+    "provenance": "Original SVG interpretation for Mandarin lessons based on the supplied Patrick Rothfuss novel. No official art or actor likeness. Future cast appearances require source-scene verification."
+  },
+  {
+    "id": "Kvothe",
+    "name": "克沃思 · Kvothe",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "teen",
+      "hair": "tousled",
+      "face": "lean",
+      "eyes": "keen",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#dfb994",
+      "hair": "#bc512b",
+      "shirt": "#527565",
+      "trim": "#c9b892"
+    },
+    "provenance": "Original SVG interpretation for Mandarin lessons based on the supplied Patrick Rothfuss novel. No official art or actor likeness. Future cast appearances require source-scene verification."
+  },
+  {
+    "id": "Simmon",
+    "name": "西蒙 · Simmon",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "teen",
+      "hair": "swept",
+      "face": "round",
+      "eyes": "default",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#dfb994",
+      "hair": "#b59655",
+      "shirt": "#738497",
+      "trim": "#c9b892"
+    },
+    "provenance": "Original SVG interpretation for Mandarin lessons based on the supplied Patrick Rothfuss novel. No official art or actor likeness. Future cast appearances require source-scene verification."
+  },
+  {
+    "id": "Wilem",
+    "name": "威廉 · Wilem",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "teen",
+      "hair": "side-part",
+      "face": "angular",
+      "eyes": "default",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#a47754",
+      "hair": "#282725",
+      "shirt": "#726052",
+      "trim": "#c9b892"
+    },
+    "provenance": "Original SVG interpretation for Mandarin lessons based on the supplied Patrick Rothfuss novel. No official art or actor likeness. Future cast appearances require source-scene verification."
+  },
+  {
+    "id": "Manet",
+    "name": "马内特 · Manet",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "elder",
+      "hair": "tousled",
+      "face": "broad",
+      "eyes": "default",
+      "outfit": "workshirt",
+      "facialHair": "full"
+    },
+    "palette": {
+      "skin": "#dfb994",
+      "hair": "#999084",
+      "shirt": "#857663",
+      "trim": "#c9b892"
+    },
+    "provenance": "Original SVG interpretation for Mandarin lessons based on the supplied Patrick Rothfuss novel. No official art or actor likeness. Future cast appearances require source-scene verification."
+  },
+  {
+    "id": "Sovoy",
+    "name": "索沃伊 · Sovoy",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "swept",
+      "face": "angular",
+      "eyes": "default",
+      "outfit": "workshirt",
+      "facialHair": "full"
+    },
+    "palette": {
+      "skin": "#dfb994",
+      "hair": "#523d2d",
+      "shirt": "#726583",
+      "trim": "#c9b892"
+    },
+    "provenance": "Original SVG interpretation for Mandarin lessons based on the supplied Patrick Rothfuss novel. No official art or actor likeness. Future cast appearances require source-scene verification."
+  },
+  {
+    "id": "Hemme",
+    "name": "赫姆 · Master Hemme",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "side-part",
+      "face": "broad",
+      "eyes": "default",
+      "outfit": "robe"
+    },
+    "palette": {
+      "skin": "#dfb994",
+      "hair": "#493b31",
+      "shirt": "#41454b",
+      "trim": "#c9b892"
+    },
+    "provenance": "Original SVG interpretation for Mandarin lessons based on the supplied Patrick Rothfuss novel. No official art or actor likeness. Future cast appearances require source-scene verification."
+  }
+]

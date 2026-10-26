@@ -1,0 +1,34 @@
+{
+  "id": "name-of-the-wind",
+  "title": "The Name of the Wind",
+  "source": {
+    "epub": "~/Downloads/The Name of the Wind (the Kingkiller Chronicle_ Day One) -- Patrick Rothfuss -- 2007 -- DAW Books -- 229a6d8bec267eb43ccf5defe3fd33da -- Anna’s Archive.epub",
+    "sha256": "351fc00f48897db57ee727714f8f5879627eceee9aadf484216793291ee16860",
+    "chapter": "OEBPS/section5.xhtml",
+    "nextStart": "It was felling night;",
+    "nextEndBefore": "“Now Taborlin needed to escape,",
+    "continuationNote": "Opening also paraphrases the prologue atmosphere from section4.xhtml. End at supper before Cob resumes the escape."
+  },
+  "completed": [],
+  "assetsFrom": ".local/episodes/wind-01/assets.json",
+  "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
+  "coverage": {"min": 95, "max": 98},
+  "defaults": {
+    "scope": "One small dramatic development; preserve frame narrative and embedded-story boundaries. Do not hurry to the University.",
+    "choices": "Usually four brief observation or conversational choices with immediate responses; do not change book events.",
+    "length": "40–60 voiced entries, flexible.",
+    "language": "Simplified Mandarin, short interlinear chunks, reviewed pinyin, exact-text Tingting audio.",
+    "staging": "Use the location bible and source-accurate occupancy. Seated speech persists. Lying only where the source supports rest.",
+    "catalogCategory": "name-of-the-wind"
+  },
+  "continuity": [
+    "The frame uses Kote; do not reveal later identity knowledge prematurely.",
+    "Kvothe first sleeps in an upper bunk in Mews, not a four-friend suite.",
+    "Kvothe, Simmon, Wilem and Manet gather in the Mess; Sovoy makes five.",
+    "Hemme teaches in a tiered semicircular theater with a stone demonstration table.",
+    "Five visible characters are a camera selection, not a claim that other people have left."
+  ],
+  "locationBible": "docs/name-of-the-wind-series.md",
+  "castRecipes": "stories/characters/wind-cast.json",
+  "castBundle": "public/stories/animated/cast/wind.json"
+}
