@@ -427,7 +427,14 @@
       "src": "stories/animated/jedi/jedi-01-ignition.mp4",
       "poster": "stories/animated/jedi/jedi-01-ignition.poster.jpg",
       "title": "Jonathan lights his saber",
-      "durationSeconds": 9
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode I · A Voice in the Dry Season",
+        "paragraphs": [
+          "Water is running low. Around a struggling settlement, every full container means another day of cooking, washing, and keeping a family alive. Jonathan, a Jedi far from familiar skies, arrives with An and the droid Q.",
+          "A missing child draws them into the streets. Before Jonathan can understand the settlement’s troubles, he must listen, ask for help, and decide whom to trust. Even a Jedi cannot solve every problem with a blade."
+        ]
+      }
     }
   },
   {
@@ -438,7 +445,14 @@
       "src": "stories/animated/jedi/jedi-02-intro.mp4",
       "poster": "stories/animated/jedi/jedi-02-intro.poster.jpg",
       "title": "The Last Door",
-      "durationSeconds": 9
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode II · The Last Door",
+        "paragraphs": [
+          "The child is home, but the water shortage remains. Behind a closed water store, an unexplained voice has left Jonathan and his companions with questions. Answers will have to wait: the settlement needs a new supply.",
+          "Jonathan, An, and Q travel to Neri, where an aging depot may still hold the water they need. Others have come with urgent needs of their own. When machinery begins to fail, bringing water home may mean deciding what—and whom—they can afford to lose."
+        ]
+      }
     },
     "path": "jedi-02.json",
     "summary": {
@@ -459,7 +473,14 @@
       "src": "stories/animated/jedi/jedi-03-intro.mp4",
       "poster": "stories/animated/jedi/jedi-03-intro.poster.jpg",
       "title": "The Water We Promise",
-      "durationSeconds": 9
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode III · The Water We Promise",
+        "paragraphs": [
+          "The expedition to Neri is over. Jonathan returns with its consequences, and two communities are waiting for water. A storm is approaching; the pump that could sustain them tomorrow needs attention today.",
+          "The hill and river communities both want a guarantee. Min’s seriously ill wife cannot wait for a perfect agreement. There is time for only three preparations before the storm arrives—and a promise that wins help now may stand between someone and the water they need to live."
+        ]
+      }
     },
     "path": "jedi-03.json",
     "summary": {

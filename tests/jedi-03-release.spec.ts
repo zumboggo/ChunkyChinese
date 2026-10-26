@@ -5,6 +5,7 @@ async function openEpisode(page:Page){
  await page.getByLabel('Episode',{exact:true}).selectOption({label:'03 · The Water We Promise'})
  await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
  await page.getByRole('button',{name:'Accept',exact:true}).click()
+ await page.getByRole('button',{name:/Skip context|Continue to teaser/}).click()
 }
 test('episode 3 anime teaser completes into story and restart preserves skip',async({page},info)=>{
  await openEpisode(page)
@@ -16,6 +17,7 @@ test('episode 3 anime teaser completes into story and restart preserves skip',as
  await expect(page.locator('.episode-line')).toContainText('我们回来了')
  await page.getByRole('button',{name:'Restart episode',exact:true}).click()
  await page.getByRole('button',{name:'Accept',exact:true}).click()
+ await page.getByRole('button',{name:/Skip context|Continue to teaser/}).click()
  await page.getByRole('button',{name:'Skip intro →',exact:true}).click()
  await expect(page.locator('.episode-line')).toContainText('我们回来了')
 })

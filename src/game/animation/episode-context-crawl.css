@@ -1,0 +1,11 @@
+.episode-context{perspective:700px;max-width:760px;margin:1rem auto;padding:clamp(16px,4vw,32px);color:#ffe393;background:radial-gradient(ellipse at top,#142338,#05080e 75%);border:1px solid #344257;border-radius:16px;text-align:center;overflow:hidden}
+.game-page .episode-context h2{color:#ffe393;font-size:clamp(1.25rem,4vw,1.8rem);margin:0 0 1rem;letter-spacing:.06em}
+.episode-context-window{height:clamp(300px,48vh,440px);overflow:hidden;perspective:700px}
+.episode-context-text{max-width:620px;margin:auto;text-align:left;font-size:clamp(19px,3vw,25px);line-height:1.65;font-weight:600;transform-origin:50% 100%;}
+.episode-context:not(.is-static) .episode-context-window{transform:rotateX(13deg);transform-origin:50% 100%}
+.game-page .episode-context-text p{color:#ffe393;margin:0 0 1.3em}
+.episode-context-controls{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:20px 0 12px;position:relative}
+.game-page .episode-context-controls button{margin:0;font-size:14px;box-shadow:none;min-height:44px;padding:10px 16px;background:#ffe393;color:#15202c;border:1px solid #ffe393;border-radius:8px;font-weight:700;cursor:pointer}
+.episode-context small{color:#c0cad8}
+.episode-context.is-static .episode-context-window{height:auto;overflow:visible}
+@media(prefers-reduced-motion:reduce){.episode-context-window{height:auto;overflow:visible;transform:none!important}.episode-context-text{transform:none!important}}
