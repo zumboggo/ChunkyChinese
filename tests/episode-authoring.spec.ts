@@ -1,6 +1,8 @@
 import {test,expect} from '@playwright/test'
 import {readFileSync} from 'node:fs'
-import {compileStory} from '../src/game/animation/shared/engine/story-engine.js'
+import {createHash} from 'node:crypto'
+import {compileStory,replayStory} from '../src/game/animation/shared/engine/story-engine.js'
+import {evaluateOutcomeScorecard} from '../src/game/animation/outcomeScorecard'
 import type {ChinesePackage} from '../src/game/animation/package'
 type Beat={type:string;id?:string;text:string;option?:string}
 type Fixture={packagePath:string;routes:{choices:string[];beats:Beat[]}[]}
@@ -17,7 +19,10 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
  const open=async()=>{
   const category=pack.title.startsWith('The Name of the Wind')?'name-of-the-wind':pack.title.startsWith('The Voices Beneath the Water')?'jedi':/^Moonlight(?: Sculptor)?\s+\d+\b/i.test(pack.title)?'lms':'daily-life'
   await page.getByLabel('Book',{exact:true}).selectOption(category)
-  await page.getByLabel('Episode',{exact:true}).selectOption((await page.getByLabel('Episode',{exact:true}).locator('option').filter({hasText:pack.title.replace(/^(?:Moonlight Sculptor\s*\d+\s*·|The Name of the Wind\s*\d+\s*·|.*?Episode\s*\d+\s*[:—–-])\s*/i, '')}).last().getAttribute('value'))!)
+  // A bundled release may have the same title; resume this exact imported package.
+  const releaseId=createHash('sha256').update(JSON.stringify(pack)).digest('hex')
+  await expect(page.getByLabel('Episode',{exact:true}).locator(`option[value="${releaseId}"]`)).toHaveCount(1)
+  await page.getByLabel('Episode',{exact:true}).selectOption(releaseId)
   await page.locator('.featured-episode').getByRole('button',{name:'Play / resume episode',exact:true}).click()
  }
  await open()
@@ -37,7 +42,7 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
    expect(await option.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true)
    // Keep the previous Continue pointer off the new choice edge: the global hover lift can oscillate there.
    await page.mouse.move(0,0)
-   await page.screenshot({path:info.outputPath(`choice-${i}.png`),fullPage:true});await option.click()
+   await page.screenshot({path:info.outputPath(`choice-${i}.png`),fullPage:true});if(pack.outcomeScorecard){await expect(page.locator('.outcome-scorecard')).toHaveCount(0);await page.keyboard.press(String(optionIndex+1))}else await option.click()
   }else{
    await expect.poll(currentText).toBe(beat.text)
    if(!heard&&pack.chinese?.lines[beat.text]?.audio){
@@ -66,4 +71,22 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
  }
  expect(heard).toBe(true);expect(resumed).toBe(true)
  await expect(page.getByRole('heading',{name:'Scene complete',exact:true})).toBeVisible()
+ if(pack.outcomeScorecard){
+  const story=compileStory(pack.script,pack.assets).story
+  const steps=route.beats.map(b=>b.type==='choice'?b.option!:null)
+  const expected=evaluateOutcomeScorecard(pack.outcomeScorecard,replayStory(story,steps,1))
+  const card=page.getByRole('region',{name:'Your outcome'})
+  await expect(card).toContainText(`Balance: ${expected.balance}/100`)
+  for(const c of expected.categories)await expect(card).toContainText(`${c.label}: ${c.score}/100`)
+  for(const f of expected.facts)await expect(card).toContainText(f)
+  expect(await card.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true)
+  await page.screenshot({path:info.outputPath('scorecard.png'),fullPage:true})
+  await card.getByText(expected.facts.at(-1)!,{exact:true}).scrollIntoViewIfNeeded()
+  await expect(card.getByText(expected.facts.at(-1)!,{exact:true})).toBeVisible()
+  await page.screenshot({path:info.outputPath('scorecard-facts.png'),fullPage:true})
+  await expect.poll(()=>page.evaluate(n=>new Promise<boolean>(ok=>{const request=indexedDB.open('ChunkyChineseStory2',1);request.onsuccess=()=>{const db=request.result,r=db.transaction('records').objectStore('records').getAll();r.onsuccess=()=>{ok(r.result.some(v=>v?.steps?.length===n));db.close()}}}),steps.length)).toBe(true)
+  await page.reload();await page.getByRole('button',{name:'Game',exact:true}).click();await open()
+  await expect(page.getByRole('region',{name:'Your outcome'})).toContainText(`Balance: ${expected.balance}/100`)
+ }
+
 })

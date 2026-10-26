@@ -103,3 +103,25 @@ Plan a physical task only when it serves the scene. Walking while planning and t
 See [scene activities](scene-activities.md) for persistent walking, suitable mirrored travel backgrounds, ongoing sword practice, recovery and interruption commands. Record chosen activities in `planning.sceneActivities`; an empty list is valid. `perform` remains useful for a finite action beneath one readable beat. Eating has a bowl-and-spoon loop. Persistent `seated`, `reclining`, and `lying` rests now support quiet indoor scenes; the five stage marks include `far-left` and `far-right`. See [The Name of the Wind location bible](name-of-the-wind-series.md) for room occupancy and source-accurate use.
 
 The book library uses lightweight catalog summaries and loads a full episode only when selected for play or export. After adding older packages without summaries, run `python3 scripts/build-episode-index.py` to create title, description and small cover entries. Book selection and each book’s episode selection persist independently.
+
+### Optional outcome scorecards (Mandarin episodes)
+
+A plan can include `outcomeScorecard`, which the builder preserves in the Chinese
+package and ZIP. It appears only after the story ends; existing packages without
+it keep their usual completion view. It is separate from classroom quiz grades.
+
+Define exactly three `categories` with stable `id`, `label`, `description` and
+`base` (0–100). `rules` contain `when`, category-keyed `points` deltas, and a
+plain-language `reason`. Conditions use `all`, `any`, and/or `none` arrays of
+selected option IDs. Reuse an option ID across alternative choice nodes only
+when it has the same meaning; a rule applies once, even if the option repeats.
+Scores are clamped to 0–100; balance is the rounded cube root of their product.
+
+Add conditional `facts` (`when`, `text`) and numeric `resources` (`variable`,
+`label`, `unit`) for survivors, agreements, promises and supplies. Include a
+`title` and transparent scoring `note`. Validation rejects unknown options,
+variables and categories. Results are derived from replayed choice history and
+variables, not an independently stored score, so Back, restart and resume agree.
+Keep at most four story variables. Audit every route and explicitly distinguish
+inherited conditions from outcomes caused in this episode. The Jedi Episode 3
+authoring record provides a complete example.

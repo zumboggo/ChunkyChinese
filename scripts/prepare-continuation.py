@@ -32,7 +32,10 @@ def prepare(plan_path, report_path):
         if not isinstance(continuation['continuity'],list) or not all(isinstance(x,str) for x in continuation['continuity']):raise ValueError('continuity must be a list of notes.')
         record['continuity']=continuation['continuity']
     record['localContinuation']={'note':'Published through '+release,**{k:continuation[k] for k in ('nextStart','nextEndBefore')},'assetsFrom':package.as_posix()}
-    runpy.run_path('scripts/episode-source.py')['extract'](record)
+    if record['source'].get('kind')!='original':
+        runpy.run_path('scripts/episode-source.py')['extract'](record)
+    elif not isinstance(record['source'].get('note'),str) or not record['source']['note'].strip():
+        raise ValueError('Original episodes require a source note.')
     return {'recordPath':record_path.as_posix(),'baseHash':digest(record_path),'packagePath':package.as_posix(),'packageHash':digest(package),'releaseId':release,'nextRecord':record,'report':{'bytes':report['bytes'],'browser':'full pass','coverage':json.loads((Path(report['run'])/'vocabulary.json').read_text())['range']}}
 
 if __name__=='__main__':

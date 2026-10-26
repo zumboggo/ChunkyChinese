@@ -1,0 +1,1387 @@
+{
+  "我们回来了。在Neri的时候，是什么结局？": {
+    "english": "We have returned. When we were on Neri, what was the outcome?",
+    "interlinear": [
+      {
+        "chinese": "我们回来了。",
+        "gloss": "We have returned.",
+        "pinyin": "wǒ men huí lái le 。"
+      },
+      {
+        "chinese": "在Neri的时候，",
+        "gloss": "When we were on Neri,",
+        "pinyin": "zài Neri de shí hòu ，"
+      },
+      {
+        "chinese": "是什么结局？",
+        "gloss": "what was the outcome?",
+        "pinyin": "shì shén me jié jú ？"
+      }
+    ],
+    "pinyin": "wǒ men huí lái le 。 zài Neri de shí hòu ， shì shén me jié jú ？"
+  },
+  "Tao去世了。Q还在。所有的水捎回来了。": {
+    "english": "Tao died. Q survives. All the water returned.",
+    "interlinear": [
+      {
+        "chinese": "Tao去世了。",
+        "gloss": "Tao died.",
+        "pinyin": "Tao qù shì le 。"
+      },
+      {
+        "chinese": "Q还在。",
+        "gloss": "Q survives.",
+        "pinyin": "Q hái zài 。"
+      },
+      {
+        "chinese": "所有的水捎回来了。",
+        "gloss": "All the water returned.",
+        "pinyin": "suǒ yǒu de shuǐ shāo huí lái le 。"
+      }
+    ],
+    "pinyin": "Tao qù shì le 。 Q hái zài 。 suǒ yǒu de shuǐ shāo huí lái le 。"
+  },
+  "他们安全了，不过只有一半的水。": {
+    "english": "They are safe, but only half the water returned.",
+    "interlinear": [
+      {
+        "chinese": "他们安全了，",
+        "gloss": "They are safe,",
+        "pinyin": "tā men ān quán le ，"
+      },
+      {
+        "chinese": "不过只有一半的水。",
+        "gloss": "but only half the water returned.",
+        "pinyin": "bú guò zhǐ yǒu yí bàn de shuǐ 。"
+      }
+    ],
+    "pinyin": "tā men ān quán le ， bú guò zhǐ yǒu yí bàn de shuǐ 。"
+  },
+  "他们安全了，不过没有水。": {
+    "english": "They are safe, but no water returned.",
+    "interlinear": [
+      {
+        "chinese": "他们安全了，",
+        "gloss": "They are safe,",
+        "pinyin": "tā men ān quán le ，"
+      },
+      {
+        "chinese": "不过没有水。",
+        "gloss": "but no water returned.",
+        "pinyin": "bú guò méi yǒu shuǐ 。"
+      }
+    ],
+    "pinyin": "tā men ān quán le ， bú guò méi yǒu shuǐ 。"
+  },
+  "Tao安全了。Q牺牲了。所有的水捎回来了。": {
+    "english": "Tao is safe. Q sacrificed itself. All the water returned.",
+    "interlinear": [
+      {
+        "chinese": "Tao安全了。",
+        "gloss": "Tao is safe.",
+        "pinyin": "Tao ān quán le 。"
+      },
+      {
+        "chinese": "Q牺牲了。",
+        "gloss": "Q sacrificed itself.",
+        "pinyin": "Q xī shēng le 。"
+      },
+      {
+        "chinese": "所有的水捎回来了。",
+        "gloss": "All the water returned.",
+        "pinyin": "suǒ yǒu de shuǐ shāo huí lái le 。"
+      }
+    ],
+    "pinyin": "Tao ān quán le 。 Q xī shēng le 。 suǒ yǒu de shuǐ shāo huí lái le 。"
+  },
+  "Tao没有回来。Q有录音。去世的人不能回来。": {
+    "english": "Tao did not return. Q has the recording. The dead cannot return.",
+    "interlinear": [
+      {
+        "chinese": "Tao没有回来。",
+        "gloss": "Tao did not return.",
+        "pinyin": "Tao méi yǒu huí lái 。"
+      },
+      {
+        "chinese": "Q有录音。",
+        "gloss": "Q has the recording.",
+        "pinyin": "Q yǒu lù yīn 。"
+      },
+      {
+        "chinese": "去世的人不能回来。",
+        "gloss": "The dead cannot return.",
+        "pinyin": "qù shì de rén bù néng huí lái 。"
+      }
+    ],
+    "pinyin": "Tao méi yǒu huí lái 。 Q yǒu lù yīn 。 qù shì de rén bù néng huí lái 。"
+  },
+  "Tao和Q安全了。我们捎了4桶水回来。": {
+    "english": "Tao and Q are safe. We brought four buckets back.",
+    "interlinear": [
+      {
+        "chinese": "Tao和Q安全了。",
+        "gloss": "Tao and Q are safe.",
+        "pinyin": "Tao hé Q ān quán le 。"
+      },
+      {
+        "chinese": "我们捎了4桶水回来。",
+        "gloss": "We brought four buckets back.",
+        "pinyin": "wǒ men shāo le sì tǒng shuǐ huí lái 。"
+      }
+    ],
+    "pinyin": "Tao hé Q ān quán le 。 wǒ men shāo le sì tǒng shuǐ huí lái 。"
+  },
+  "Tao知道找水的路。不过今天没有水捎回来。": {
+    "english": "Tao knows a route to look for water. But no water returned today.",
+    "interlinear": [
+      {
+        "chinese": "Tao知道找水的路。",
+        "gloss": "Tao knows a route to look for water.",
+        "pinyin": "Tao zhī dào zhǎo shuǐ de lù 。"
+      },
+      {
+        "chinese": "不过今天没有水捎回来。",
+        "gloss": "But no water returned today.",
+        "pinyin": "bú guò jīn tiān méi yǒu shuǐ shāo huí lái 。"
+      }
+    ],
+    "pinyin": "Tao zhī dào zhǎo shuǐ de lù 。 bú guò jīn tiān méi yǒu shuǐ shāo huí lái 。"
+  },
+  "Q没有了。录音没有了。Tao看着Q的地方，不说话。": {
+    "english": "Q is gone. The recording is gone. Tao looks at Q’s place, saying nothing.",
+    "interlinear": [
+      {
+        "chinese": "Q没有了。",
+        "gloss": "Q is gone.",
+        "pinyin": "Q méi yǒu le 。"
+      },
+      {
+        "chinese": "录音没有了。",
+        "gloss": "The recording is gone.",
+        "pinyin": "lù yīn méi yǒu le 。"
+      },
+      {
+        "chinese": "Tao看着Q的地方，",
+        "gloss": "Tao looks at Q’s place,",
+        "pinyin": "Tao kàn zhe Q de dì fang ，"
+      },
+      {
+        "chinese": "不说话。",
+        "gloss": "saying nothing.",
+        "pinyin": "bù shuō huà 。"
+      }
+    ],
+    "pinyin": "Q méi yǒu le 。 lù yīn méi yǒu le 。 Tao kàn zhe Q de dì fang ， bù shuō huà 。"
+  },
+  "在Neri的时候，我没有说谎。": {
+    "english": "On Neri, I told the truth.",
+    "interlinear": [
+      {
+        "chinese": "在Neri的时候，",
+        "gloss": "On Neri,",
+        "pinyin": "zài Neri de shí hòu ，"
+      },
+      {
+        "chinese": "我没有说谎。",
+        "gloss": "I told the truth.",
+        "pinyin": "wǒ méi yǒu shuō huǎng 。"
+      }
+    ],
+    "pinyin": "zài Neri de shí hòu ， wǒ méi yǒu shuō huǎng 。"
+  },
+  "在Neri的时候，我想说谎。": {
+    "english": "On Neri, I tried to conceal the truth.",
+    "interlinear": [
+      {
+        "chinese": "在Neri的时候，",
+        "gloss": "On Neri,",
+        "pinyin": "zài Neri de shí hòu ，"
+      },
+      {
+        "chinese": "我想说谎。",
+        "gloss": "I tried to conceal the truth.",
+        "pinyin": "wǒ xiǎng shuō huǎng 。"
+      }
+    ],
+    "pinyin": "zài Neri de shí hòu ， wǒ xiǎng shuō huǎng 。"
+  },
+  "我答应和你一起回答。今天一样。": {
+    "english": "I promised to answer alongside you. That remains true today.",
+    "interlinear": [
+      {
+        "chinese": "我答应和你一起回答。",
+        "gloss": "I promised to answer alongside you.",
+        "pinyin": "wǒ dā ying hé nǐ yì qǐ huí dá 。"
+      },
+      {
+        "chinese": "今天一样。",
+        "gloss": "That remains true today.",
+        "pinyin": "jīn tiān yí yàng 。"
+      }
+    ],
+    "pinyin": "wǒ dā ying hé nǐ yì qǐ huí dá 。 jīn tiān yí yàng 。"
+  },
+  "我没有替你说谎。今天我不替你回答。": {
+    "english": "I did not lie for you. Today I answer for myself.",
+    "interlinear": [
+      {
+        "chinese": "我没有替你说谎。",
+        "gloss": "I did not lie for you.",
+        "pinyin": "wǒ méi yǒu tì nǐ shuō huǎng 。"
+      },
+      {
+        "chinese": "今天我不替你回答。",
+        "gloss": "Today I answer for myself.",
+        "pinyin": "jīn tiān wǒ bú tì nǐ huí dá 。"
+      }
+    ],
+    "pinyin": "wǒ méi yǒu tì nǐ shuō huǎng 。 jīn tiān wǒ bú tì nǐ huí dá 。"
+  },
+  "山上面的人，和河那里的人，在等水。这里本来有4桶水。": {
+    "english": "The people on the hill and those beside the river are waiting for water. There were four buckets here already.",
+    "interlinear": [
+      {
+        "chinese": "山上面的人，",
+        "gloss": "The people on the hill",
+        "pinyin": "shān shàng miàn de rén ，"
+      },
+      {
+        "chinese": "和河那里的人，",
+        "gloss": "and those beside the river",
+        "pinyin": "hé hé nà lǐ de rén ，"
+      },
+      {
+        "chinese": "在等水。",
+        "gloss": "are waiting for water.",
+        "pinyin": "zài děng shuǐ 。"
+      },
+      {
+        "chinese": "这里本来有4桶水。",
+        "gloss": "There were four buckets here already.",
+        "pinyin": "zhè lǐ běn lái yǒu sì tǒng shuǐ 。"
+      }
+    ],
+    "pinyin": "shān shàng miàn de rén ， hé hé nà lǐ de rén ， zài děng shuǐ 。 zhè lǐ běn lái yǒu sì tǒng shuǐ 。"
+  },
+  "风暴要来了。我们可以做3件事。然后要回来。": {
+    "english": "The storm is coming. We can do three tasks. Then we must return.",
+    "interlinear": [
+      {
+        "chinese": "风暴要来了。",
+        "gloss": "The storm is coming.",
+        "pinyin": "fēng bào yào lái le 。"
+      },
+      {
+        "chinese": "我们可以做3件事。",
+        "gloss": "We can do three tasks.",
+        "pinyin": "wǒ men kě yǐ zuò sān jiàn shì 。"
+      },
+      {
+        "chinese": "然后要回来。",
+        "gloss": "Then we must return.",
+        "pinyin": "rán hòu yào huí lái 。"
+      }
+    ],
+    "pinyin": "fēng bào yào lái le 。 wǒ men kě yǐ zuò sān jiàn shì 。 rán hòu yào huí lái 。"
+  },
+  "慢慢看，慢慢想。没有读书的时间限制。": {
+    "english": "Read slowly, Think carefully. There is no reading time limit.",
+    "interlinear": [
+      {
+        "chinese": "慢慢看，",
+        "gloss": "Read slowly,",
+        "pinyin": "màn màn kàn ，"
+      },
+      {
+        "chinese": "慢慢想。",
+        "gloss": "Think carefully.",
+        "pinyin": "màn màn xiǎng 。"
+      },
+      {
+        "chinese": "没有读书的时间限制。",
+        "gloss": "There is no reading time limit.",
+        "pinyin": "méi yǒu dú shū de shí jiān xiàn zhì 。"
+      }
+    ],
+    "pinyin": "màn màn kàn ， màn màn xiǎng 。 méi yǒu dú shū de shí jiān xiàn zhì 。"
+  },
+  "我妻子Mei有重病。先陪她去山上面。医生有药，有干净的水。": {
+    "english": "My wife Mei is seriously ill. Take her uphill first. The doctor has medicine and clean water.",
+    "interlinear": [
+      {
+        "chinese": "我妻子Mei有重病。",
+        "gloss": "My wife Mei is seriously ill.",
+        "pinyin": "wǒ qī zi Mei yǒu zhòng bìng 。"
+      },
+      {
+        "chinese": "先陪她去山上面。",
+        "gloss": "Take her uphill first.",
+        "pinyin": "xiān péi tā qù shān shàng miàn 。"
+      },
+      {
+        "chinese": "医生有药，",
+        "gloss": "The doctor has medicine",
+        "pinyin": "yī shēng yǒu yào ，"
+      },
+      {
+        "chinese": "有干净的水。",
+        "gloss": "and clean water.",
+        "pinyin": "yǒu gān jìng de shuǐ 。"
+      }
+    ],
+    "pinyin": "wǒ qī zi Mei yǒu zhòng bìng 。 xiān péi tā qù shān shàng miàn 。 yī shēng yǒu yào ， yǒu gān jìng de shuǐ 。"
+  },
+  "她在这里的话，今天晚上要给她4桶水。水不够，她会去世。": {
+    "english": "If she stays here, she needs four buckets tonight. Without enough water, she will die.",
+    "interlinear": [
+      {
+        "chinese": "她在这里的话，",
+        "gloss": "If she stays here,",
+        "pinyin": "tā zài zhè lǐ de huà ，"
+      },
+      {
+        "chinese": "今天晚上要给她4桶水。",
+        "gloss": "she needs four buckets tonight.",
+        "pinyin": "jīn tiān wǎn shàng yào gěi tā sì tǒng shuǐ 。"
+      },
+      {
+        "chinese": "水不够，她会去世。",
+        "gloss": "Without enough water, she will die.",
+        "pinyin": "shuǐ bú gòu ， tā huì qù shì 。"
+      }
+    ],
+    "pinyin": "tā zài zhè lǐ de huà ， jīn tiān wǎn shàng yào gěi tā sì tǒng shuǐ 。 shuǐ bú gòu ， tā huì qù shì 。"
+  },
+  "她要喝水。伤口要洗干净，屋子要干净。": {
+    "english": "She needs drinking water. Her wounds need washing and the sickroom must be clean.",
+    "interlinear": [
+      {
+        "chinese": "她要喝水。",
+        "gloss": "She needs drinking water.",
+        "pinyin": "tā yào hē shuǐ 。"
+      },
+      {
+        "chinese": "伤口要洗干净，",
+        "gloss": "Her wounds need washing",
+        "pinyin": "shāng kǒu yào xǐ gān jìng ，"
+      },
+      {
+        "chinese": "屋子要干净。",
+        "gloss": "and the sickroom must be clean.",
+        "pinyin": "wū zi yào gān jìng 。"
+      }
+    ],
+    "pinyin": "tā yào hē shuǐ 。 shāng kǒu yào xǐ gān jìng ， wū zi yào gān jìng 。"
+  },
+  "还可以做3件事。": {
+    "english": "Three preparation opportunities remain.",
+    "interlinear": [
+      {
+        "chinese": "还可以做3件事。",
+        "gloss": "Three preparation opportunities remain.",
+        "pinyin": "hái kě yǐ zuò sān jiàn shì 。"
+      }
+    ],
+    "pinyin": "hái kě yǐ zuò sān jiàn shì 。"
+  },
+  "检查机器。知道为什么坏了。": {
+    "english": "Inspect the pump. Learn why it failed.",
+    "interlinear": [
+      {
+        "chinese": "检查机器。",
+        "gloss": "Inspect the pump.",
+        "pinyin": "jiǎn chá jī qì 。"
+      },
+      {
+        "chinese": "知道为什么坏了。",
+        "gloss": "Learn why it failed.",
+        "pinyin": "zhī dào wèi shén me huài le 。"
+      }
+    ],
+    "pinyin": "jiǎn chá jī qì 。 zhī dào wèi shén me huài le 。"
+  },
+  "听所有人说的话。考虑一起负责。": {
+    "english": "Hear both communities. Consider shared management.",
+    "interlinear": [
+      {
+        "chinese": "听所有人说的话。",
+        "gloss": "Hear both communities.",
+        "pinyin": "tīng suǒ yǒu rén shuō de huà 。"
+      },
+      {
+        "chinese": "考虑一起负责。",
+        "gloss": "Consider shared management.",
+        "pinyin": "kǎo lǜ yì qǐ fù zé 。"
+      }
+    ],
+    "pinyin": "tīng suǒ yǒu rén shuō de huà 。 kǎo lǜ yì qǐ fù zé 。"
+  },
+  "找偷偷放的水。可以多4桶。": {
+    "english": "Investigate the concealed water. It may add four buckets.",
+    "interlinear": [
+      {
+        "chinese": "找偷偷放的水。",
+        "gloss": "Investigate the concealed water.",
+        "pinyin": "zhǎo tōu tōu fàng de shuǐ 。"
+      },
+      {
+        "chinese": "可以多4桶。",
+        "gloss": "It may add four buckets.",
+        "pinyin": "kě yǐ duō sì tǒng 。"
+      }
+    ],
+    "pinyin": "zhǎo tōu tōu fàng de shuǐ 。 kě yǐ duō sì tǒng 。"
+  },
+  "陪Mei去山上面。医生可以保护她。": {
+    "english": "Evacuate Mei uphill. The doctor can protect her.",
+    "interlinear": [
+      {
+        "chinese": "陪Mei去山上面。",
+        "gloss": "Evacuate Mei uphill.",
+        "pinyin": "péi Mei qù shān shàng miàn 。"
+      },
+      {
+        "chinese": "医生可以保护她。",
+        "gloss": "The doctor can protect her.",
+        "pinyin": "yī shēng kě yǐ bǎo hù tā 。"
+      }
+    ],
+    "pinyin": "péi Mei qù shān shàng miàn 。 yī shēng kě yǐ bǎo hù tā 。"
+  },
+  "我在机器面前弯腰。管子下面有沙。": {
+    "english": "I bend before the pump. There is sand in the lower pipe.",
+    "interlinear": [
+      {
+        "chinese": "我在机器面前弯腰。",
+        "gloss": "I bend before the pump.",
+        "pinyin": "wǒ zài jī qì miàn qián wān yāo 。"
+      },
+      {
+        "chinese": "管子下面有沙。",
+        "gloss": "There is sand in the lower pipe.",
+        "pinyin": "guǎn zi xià miàn yǒu shā 。"
+      }
+    ],
+    "pinyin": "wǒ zài jī qì miàn qián wān yāo 。 guǎn zi xià miàn yǒu shā 。"
+  },
+  "给机器4桶水，沙就出来了。然后可以修好。明天才有水。": {
+    "english": "Give the pump four buckets to flush out the sand. Then it can be repaired. It will yield water tomorrow.",
+    "interlinear": [
+      {
+        "chinese": "给机器4桶水，",
+        "gloss": "Give the pump four buckets",
+        "pinyin": "gěi jī qì sì tǒng shuǐ ，"
+      },
+      {
+        "chinese": "沙就出来了。",
+        "gloss": "to flush out the sand.",
+        "pinyin": "shā jiù chū lái le 。"
+      },
+      {
+        "chinese": "然后可以修好。",
+        "gloss": "Then it can be repaired.",
+        "pinyin": "rán hòu kě yǐ xiū hǎo 。"
+      },
+      {
+        "chinese": "明天才有水。",
+        "gloss": "It will yield water tomorrow.",
+        "pinyin": "míng tiān cái yǒu shuǐ 。"
+      }
+    ],
+    "pinyin": "gěi jī qì sì tǒng shuǐ ， shā jiù chū lái le 。 rán hòu kě yǐ xiū hǎo 。 míng tiān cái yǒu shuǐ 。"
+  },
+  "山上面的人负责机器。河那里的人修管子。他们要一起工作。": {
+    "english": "The hill community built and maintains the pump. The river community repairs the pipes. They need to work together.",
+    "interlinear": [
+      {
+        "chinese": "山上面的人负责机器。",
+        "gloss": "The hill community built and maintains the pump.",
+        "pinyin": "shān shàng miàn de rén fù zé jī qì 。"
+      },
+      {
+        "chinese": "河那里的人修管子。",
+        "gloss": "The river community repairs the pipes.",
+        "pinyin": "hé nà lǐ de rén xiū guǎn zi 。"
+      },
+      {
+        "chinese": "他们要一起工作。",
+        "gloss": "They need to work together.",
+        "pinyin": "tā men yào yì qǐ gōng zuò 。"
+      }
+    ],
+    "pinyin": "shān shàng miàn de rén fù zé jī qì 。 hé nà lǐ de rén xiū guǎn zi 。 tā men yào yì qǐ gōng zuò 。"
+  },
+  "一起检查，一起分水，给所有人看记录，可以吗？": {
+    "english": "Inspect together, distribute water together, show everyone the records, would that work?",
+    "interlinear": [
+      {
+        "chinese": "一起检查，",
+        "gloss": "Inspect together,",
+        "pinyin": "yì qǐ jiǎn chá ，"
+      },
+      {
+        "chinese": "一起分水，",
+        "gloss": "distribute water together,",
+        "pinyin": "yì qǐ fēn shuǐ ，"
+      },
+      {
+        "chinese": "给所有人看记录，",
+        "gloss": "show everyone the records,",
+        "pinyin": "gěi suǒ yǒu rén kàn jì lù ，"
+      },
+      {
+        "chinese": "可以吗？",
+        "gloss": "would that work?",
+        "pinyin": "kě yǐ ma ？"
+      }
+    ],
+    "pinyin": "yì qǐ jiǎn chá ， yì qǐ fēn shuǐ ， gěi suǒ yǒu rén kàn jì lù ， kě yǐ ma ？"
+  },
+  "他们愿意。不过先要修好机器。": {
+    "english": "Both sides are willing. But the pump must be repaired first.",
+    "interlinear": [
+      {
+        "chinese": "他们愿意。",
+        "gloss": "Both sides are willing.",
+        "pinyin": "tā men yuàn yì 。"
+      },
+      {
+        "chinese": "不过先要修好机器。",
+        "gloss": "But the pump must be repaired first.",
+        "pinyin": "bú guò xiān yào xiū hǎo jī qì 。"
+      }
+    ],
+    "pinyin": "tā men yuàn yì 。 bú guò xiān yào xiū hǎo jī qì 。"
+  },
+  "门开了，有4桶水。山上面的人放在这里的。": {
+    "english": "The storage door opens, revealing four buckets. Hill families stored them here.",
+    "interlinear": [
+      {
+        "chinese": "门开了，",
+        "gloss": "The storage door opens,",
+        "pinyin": "mén kāi le ，"
+      },
+      {
+        "chinese": "有4桶水。",
+        "gloss": "revealing four buckets.",
+        "pinyin": "yǒu sì tǒng shuǐ 。"
+      },
+      {
+        "chinese": "山上面的人放在这里的。",
+        "gloss": "Hill families stored them here.",
+        "pinyin": "shān shàng miàn de rén fàng zài zhè lǐ de 。"
+      }
+    ],
+    "pinyin": "mén kāi le ， yǒu sì tǒng shuǐ 。 shān shàng miàn de rén fàng zài zhè lǐ de 。"
+  },
+  "他们害怕明天没有水。我们要记得是谁给的。": {
+    "english": "They fear having no water tomorrow. We must remember who gave it.",
+    "interlinear": [
+      {
+        "chinese": "他们害怕明天没有水。",
+        "gloss": "They fear having no water tomorrow.",
+        "pinyin": "tā men hài pà míng tiān méi yǒu shuǐ 。"
+      },
+      {
+        "chinese": "我们要记得是谁给的。",
+        "gloss": "We must remember who gave it.",
+        "pinyin": "wǒ men yào jì de shì shuí gěi de 。"
+      }
+    ],
+    "pinyin": "tā men hài pà míng tiān méi yǒu shuǐ 。 wǒ men yào jì de shì shuí gěi de 。"
+  },
+  "我记录了是谁给的。他们愿意给所有人4桶水。": {
+    "english": "I record who contributed. They agree to share four buckets with everyone.",
+    "interlinear": [
+      {
+        "chinese": "我记录了是谁给的。",
+        "gloss": "I record who contributed.",
+        "pinyin": "wǒ jì lù le shì shuí gěi de 。"
+      },
+      {
+        "chinese": "他们愿意给所有人4桶水。",
+        "gloss": "They agree to share four buckets with everyone.",
+        "pinyin": "tā men yuàn yì gěi suǒ yǒu rén sì tǒng shuǐ 。"
+      }
+    ],
+    "pinyin": "wǒ jì lù le shì shuí gěi de 。 tā men yuàn yì gěi suǒ yǒu rén sì tǒng shuǐ 。"
+  },
+  "我和Min陪着Mei，慢慢走向山上面。": {
+    "english": "Min and I support Mei as we walk slowly uphill.",
+    "interlinear": [
+      {
+        "chinese": "我和Min陪着Mei，",
+        "gloss": "Min and I support Mei",
+        "pinyin": "wǒ hé Min péi zhe Mei ，"
+      },
+      {
+        "chinese": "慢慢走向山上面。",
+        "gloss": "as we walk slowly uphill.",
+        "pinyin": "màn màn zǒu xiàng shān shàng miàn 。"
+      }
+    ],
+    "pinyin": "wǒ hé Min péi zhe Mei ， màn màn zǒu xiàng shān shàng miàn 。"
+  },
+  "医生接到她了。水够，药够。今天晚上她安全了。": {
+    "english": "The doctor has received her. There is enough water and medicine. She is safe tonight.",
+    "interlinear": [
+      {
+        "chinese": "医生接到她了。",
+        "gloss": "The doctor has received her.",
+        "pinyin": "yī shēng jiē dào tā le 。"
+      },
+      {
+        "chinese": "水够，",
+        "gloss": "There is enough water",
+        "pinyin": "shuǐ gòu ，"
+      },
+      {
+        "chinese": "药够。",
+        "gloss": "and medicine.",
+        "pinyin": "yào gòu 。"
+      },
+      {
+        "chinese": "今天晚上她安全了。",
+        "gloss": "She is safe tonight.",
+        "pinyin": "jīn tiān wǎn shàng tā ān quán le 。"
+      }
+    ],
+    "pinyin": "yī shēng jiē dào tā le 。 shuǐ gòu ， yào gòu 。 jīn tiān wǎn shàng tā ān quán le 。"
+  },
+  "还可以做2件事。": {
+    "english": "Two preparation opportunities remain.",
+    "interlinear": [
+      {
+        "chinese": "还可以做2件事。",
+        "gloss": "Two preparation opportunities remain.",
+        "pinyin": "hái kě yǐ zuò liǎng jiàn shì 。"
+      }
+    ],
+    "pinyin": "hái kě yǐ zuò liǎng jiàn shì 。"
+  },
+  "还可以做1件事。": {
+    "english": "One preparation opportunity remains.",
+    "interlinear": [
+      {
+        "chinese": "还可以做1件事。",
+        "gloss": "One preparation opportunity remains.",
+        "pinyin": "hái kě yǐ zuò yí jiàn shì 。"
+      }
+    ],
+    "pinyin": "hái kě yǐ zuò yí jiàn shì 。"
+  },
+  "风暴来了。我们要停下来。": {
+    "english": "The storm arrives. We must stop going out.",
+    "interlinear": [
+      {
+        "chinese": "风暴来了。",
+        "gloss": "The storm arrives.",
+        "pinyin": "fēng bào lái le 。"
+      },
+      {
+        "chinese": "我们要停下来。",
+        "gloss": "We must stop going out.",
+        "pinyin": "wǒ men yào tíng xià lái 。"
+      }
+    ],
+    "pinyin": "fēng bào lái le 。 wǒ men yào tíng xià lái 。"
+  },
+  "山上面的人愿意给2桶水。不过要求先给他们6桶，而且他们负责机器。": {
+    "english": "The hill community offers two buckets. They require priority access to six buckets and sole control of the pump.",
+    "interlinear": [
+      {
+        "chinese": "山上面的人愿意给2桶水。",
+        "gloss": "The hill community offers two buckets.",
+        "pinyin": "shān shàng miàn de rén yuàn yì gěi liǎng tǒng shuǐ 。"
+      },
+      {
+        "chinese": "不过要求先给他们6桶，",
+        "gloss": "They require priority access to six buckets",
+        "pinyin": "bú guò yāo qiú xiān gěi tā men liù tǒng ，"
+      },
+      {
+        "chinese": "而且他们负责机器。",
+        "gloss": "and sole control of the pump.",
+        "pinyin": "ér qiě tā men fù zé jī qì 。"
+      }
+    ],
+    "pinyin": "shān shàng miàn de rén yuàn yì gěi liǎng tǒng shuǐ 。 bú guò yāo qiú xiān gěi tā men liù tǒng ， ér qiě tā men fù zé jī qì 。"
+  },
+  "他们的孩子要喝水。不过河那里的人没有选择。": {
+    "english": "Their children need water. But river residents have no choice.",
+    "interlinear": [
+      {
+        "chinese": "他们的孩子要喝水。",
+        "gloss": "Their children need water.",
+        "pinyin": "tā men de hái zi yào hē shuǐ 。"
+      },
+      {
+        "chinese": "不过河那里的人没有选择。",
+        "gloss": "But river residents have no choice.",
+        "pinyin": "bú guò hé nà lǐ de rén méi yǒu xuǎn zé 。"
+      }
+    ],
+    "pinyin": "tā men de hái zi yào hē shuǐ 。 bú guò hé nà lǐ de rén méi yǒu xuǎn zé 。"
+  },
+  "答应先给他们6桶，而且他们负责机器。他们就给2桶。": {
+    "english": "Promise their first claim to six buckets and control of the pump. They give two buckets now.",
+    "interlinear": [
+      {
+        "chinese": "答应先给他们6桶，",
+        "gloss": "Promise their first claim to six buckets",
+        "pinyin": "dā ying xiān gěi tā men liù tǒng ，"
+      },
+      {
+        "chinese": "而且他们负责机器。",
+        "gloss": "and control of the pump.",
+        "pinyin": "ér qiě tā men fù zé jī qì 。"
+      },
+      {
+        "chinese": "他们就给2桶。",
+        "gloss": "They give two buckets now.",
+        "pinyin": "tā men jiù gěi liǎng tǒng 。"
+      }
+    ],
+    "pinyin": "dā ying xiān gěi tā men liù tǒng ， ér qiě tā men fù zé jī qì 。 tā men jiù gěi liǎng tǒng 。"
+  },
+  "不答应。他们不给2桶，我们还可以考虑。": {
+    "english": "Do not promise. They do not contribute two buckets, but we can still negotiate.",
+    "interlinear": [
+      {
+        "chinese": "不答应。",
+        "gloss": "Do not promise.",
+        "pinyin": "bù dā ying 。"
+      },
+      {
+        "chinese": "他们不给2桶，",
+        "gloss": "They do not contribute two buckets,",
+        "pinyin": "tā men bù gěi liǎng tǒng ，"
+      },
+      {
+        "chinese": "我们还可以考虑。",
+        "gloss": "but we can still negotiate.",
+        "pinyin": "wǒ men hái kě yǐ kǎo lǜ 。"
+      }
+    ],
+    "pinyin": "bù dā ying 。 tā men bù gěi liǎng tǒng ， wǒ men hái kě yǐ kǎo lǜ 。"
+  },
+  "我记录了你答应的话。以后不一样，要说为什么。": {
+    "english": "I recorded your promise. If it changes later, explain why.",
+    "interlinear": [
+      {
+        "chinese": "我记录了你答应的话。",
+        "gloss": "I recorded your promise.",
+        "pinyin": "wǒ jì lù le nǐ dā ying de huà 。"
+      },
+      {
+        "chinese": "以后不一样，",
+        "gloss": "If it changes later,",
+        "pinyin": "yǐ hòu bù yí yàng ，"
+      },
+      {
+        "chinese": "要说为什么。",
+        "gloss": "explain why.",
+        "pinyin": "yào shuō wèi shén me 。"
+      }
+    ],
+    "pinyin": "wǒ jì lù le nǐ dā ying de huà 。 yǐ hòu bù yí yàng ， yào shuō wèi shén me 。"
+  },
+  "他们捎着2桶水走了。还可以谈话，不过没有那2桶水。": {
+    "english": "They take the two buckets away. We can still talk, but those two buckets are not here.",
+    "interlinear": [
+      {
+        "chinese": "他们捎着2桶水走了。",
+        "gloss": "They take the two buckets away.",
+        "pinyin": "tā men shāo zhe liǎng tǒng shuǐ zǒu le 。"
+      },
+      {
+        "chinese": "还可以谈话，",
+        "gloss": "We can still talk,",
+        "pinyin": "hái kě yǐ tán huà ，"
+      },
+      {
+        "chinese": "不过没有那2桶水。",
+        "gloss": "but those two buckets are not here.",
+        "pinyin": "bú guò méi yǒu nà liǎng tǒng shuǐ 。"
+      }
+    ],
+    "pinyin": "tā men shāo zhe liǎng tǒng shuǐ zǒu le 。 hái kě yǐ tán huà ， bú guò méi yǒu nà liǎng tǒng shuǐ 。"
+  },
+  "我摸着水壶。面前的人伸出手。这一壶水，不能给这个人又给那个人。": {
+    "english": "I hold the flask. People on both sides reach out. This one flask cannot be promised to both.",
+    "interlinear": [
+      {
+        "chinese": "我摸着水壶。",
+        "gloss": "I hold the flask.",
+        "pinyin": "wǒ mō zhe shuǐ hú 。"
+      },
+      {
+        "chinese": "面前的人伸出手。",
+        "gloss": "People on both sides reach out.",
+        "pinyin": "miàn qián de rén shēn chū shǒu 。"
+      },
+      {
+        "chinese": "这一壶水，",
+        "gloss": "This one flask",
+        "pinyin": "zhè yì hú shuǐ ，"
+      },
+      {
+        "chinese": "不能给这个人又给那个人。",
+        "gloss": "cannot be promised to both.",
+        "pinyin": "bù néng gěi zhè ge rén yòu gěi nà ge rén 。"
+      }
+    ],
+    "pinyin": "wǒ mō zhe shuǐ hú 。 miàn qián de rén shēn chū shǒu 。 zhè yì hú shuǐ ， bù néng gěi zhè ge rén yòu gěi nà ge rén 。"
+  },
+  "Mei还在下面。要给她4桶。不够的话，她会去世。": {
+    "english": "Mei is still below. She needs four buckets. Without enough, she will die.",
+    "interlinear": [
+      {
+        "chinese": "Mei还在下面。",
+        "gloss": "Mei is still below.",
+        "pinyin": "Mei hái zài xià miàn 。"
+      },
+      {
+        "chinese": "要给她4桶。",
+        "gloss": "She needs four buckets.",
+        "pinyin": "yào gěi tā sì tǒng 。"
+      },
+      {
+        "chinese": "不够的话，她会去世。",
+        "gloss": "Without enough, she will die.",
+        "pinyin": "bú gòu de huà ， tā huì qù shì 。"
+      }
+    ],
+    "pinyin": "Mei hái zài xià miàn 。 yào gěi tā sì tǒng 。 bú gòu de huà ， tā huì qù shì 。"
+  },
+  "你检查过，听过他们说的话。他们愿意一起负责，不过先要给机器4桶水。": {
+    "english": "You inspected the pump and heard both communities. They agree to manage it together but first four buckets must repair the pump.",
+    "interlinear": [
+      {
+        "chinese": "你检查过，",
+        "gloss": "You inspected the pump",
+        "pinyin": "nǐ jiǎn chá guò ，"
+      },
+      {
+        "chinese": "听过他们说的话。",
+        "gloss": "and heard both communities.",
+        "pinyin": "tīng guò tā men shuō de huà 。"
+      },
+      {
+        "chinese": "他们愿意一起负责，",
+        "gloss": "They agree to manage it together",
+        "pinyin": "tā men yuàn yì yì qǐ fù zé ，"
+      },
+      {
+        "chinese": "不过先要给机器4桶水。",
+        "gloss": "but first four buckets must repair the pump.",
+        "pinyin": "bú guò xiān yào gěi jī qì sì tǒng shuǐ 。"
+      }
+    ],
+    "pinyin": "nǐ jiǎn chá guò ， tīng guò tā men shuō de huà 。 tā men yuàn yì yì qǐ fù zé ， bú guò xiān yào gěi jī qì sì tǒng shuǐ 。"
+  },
+  "他们说可以不先给6桶。给过的2桶，不要求还。": {
+    "english": "They agree to cancel the six-bucket priority. The two buckets already contributed need not be returned.",
+    "interlinear": [
+      {
+        "chinese": "他们说可以不先给6桶。",
+        "gloss": "They agree to cancel the six-bucket priority.",
+        "pinyin": "tā men shuō kě yǐ bù xiān gěi liù tǒng 。"
+      },
+      {
+        "chinese": "给过的2桶，",
+        "gloss": "The two buckets already contributed",
+        "pinyin": "gěi guò de liǎng tǒng ，"
+      },
+      {
+        "chinese": "不要求还。",
+        "gloss": "need not be returned.",
+        "pinyin": "bú yāo qiú huán 。"
+      }
+    ],
+    "pinyin": "tā men shuō kě yǐ bù xiān gěi liù tǒng 。 gěi guò de liǎng tǒng ， bú yāo qiú huán 。"
+  },
+  "给山上面的人6桶。他们负责机器。河那里的人要向他们要水。": {
+    "english": "Transfer six buckets to the hill. They control the pump. River residents must ask them for water.",
+    "interlinear": [
+      {
+        "chinese": "给山上面的人6桶。",
+        "gloss": "Transfer six buckets to the hill.",
+        "pinyin": "gěi shān shàng miàn de rén liù tǒng 。"
+      },
+      {
+        "chinese": "他们负责机器。",
+        "gloss": "They control the pump.",
+        "pinyin": "tā men fù zé jī qì 。"
+      },
+      {
+        "chinese": "河那里的人要向他们要水。",
+        "gloss": "River residents must ask them for water.",
+        "pinyin": "hé nà lǐ de rén yào xiàng tā men yào shuǐ 。"
+      }
+    ],
+    "pinyin": "gěi shān shàng miàn de rén liù tǒng 。 tā men fù zé jī qì 。 hé nà lǐ de rén yào xiàng tā men yào shuǐ 。"
+  },
+  "先给需要水的人。机器不是他们的。他们可能不再相信我。": {
+    "english": "Distribute by need first. Do not grant exclusive pump control. They may stop trusting me.",
+    "interlinear": [
+      {
+        "chinese": "先给需要水的人。",
+        "gloss": "Distribute by need first.",
+        "pinyin": "xiān gěi xū yào shuǐ de rén 。"
+      },
+      {
+        "chinese": "机器不是他们的。",
+        "gloss": "Do not grant exclusive pump control.",
+        "pinyin": "jī qì bú shì tā men de 。"
+      },
+      {
+        "chinese": "他们可能不再相信我。",
+        "gloss": "They may stop trusting me.",
+        "pinyin": "tā men kě néng bú zài xiāng xìn wǒ 。"
+      }
+    ],
+    "pinyin": "xiān gěi xū yào shuǐ de rén 。 jī qì bú shì tā men de 。 tā men kě néng bú zài xiāng xìn wǒ 。"
+  },
+  "给机器4桶水。所有人一起负责。": {
+    "english": "Spend four buckets on repairs. Both communities manage it together.",
+    "interlinear": [
+      {
+        "chinese": "给机器4桶水。",
+        "gloss": "Spend four buckets on repairs.",
+        "pinyin": "gěi jī qì sì tǒng shuǐ 。"
+      },
+      {
+        "chinese": "所有人一起负责。",
+        "gloss": "Both communities manage it together.",
+        "pinyin": "suǒ yǒu rén yì qǐ fù zé 。"
+      }
+    ],
+    "pinyin": "gěi jī qì sì tǒng shuǐ 。 suǒ yǒu rén yì qǐ fù zé 。"
+  },
+  "水不够6桶。不能答应给6桶。": {
+    "english": "There are fewer than six buckets. We cannot promise six.",
+    "interlinear": [
+      {
+        "chinese": "水不够6桶。",
+        "gloss": "There are fewer than six buckets.",
+        "pinyin": "shuǐ bú gòu liù tǒng 。"
+      },
+      {
+        "chinese": "不能答应给6桶。",
+        "gloss": "We cannot promise six.",
+        "pinyin": "bù néng dā ying gěi liù tǒng 。"
+      }
+    ],
+    "pinyin": "shuǐ bú gòu liù tǒng 。 bù néng dā ying gěi liù tǒng 。"
+  },
+  "还不知道怎么办。说一起负责，不够。": {
+    "english": "We have no shared repair plan. Saying we will manage it together is not enough.",
+    "interlinear": [
+      {
+        "chinese": "还不知道怎么办。",
+        "gloss": "We have no shared repair plan.",
+        "pinyin": "hái bù zhī dào zěn me bàn 。"
+      },
+      {
+        "chinese": "说一起负责，",
+        "gloss": "Saying we will manage it together",
+        "pinyin": "shuō yì qǐ fù zé ，"
+      },
+      {
+        "chinese": "不够。",
+        "gloss": "is not enough.",
+        "pinyin": "bú gòu 。"
+      }
+    ],
+    "pinyin": "hái bù zhī dào zěn me bàn 。 shuō yì qǐ fù zé ， bú gòu 。"
+  },
+  "他们有了6桶水。答应明天修机器。不过河那里的人不能选择。": {
+    "english": "They receive six buckets. They promise repairs tomorrow. But river residents cannot decide.",
+    "interlinear": [
+      {
+        "chinese": "他们有了6桶水。",
+        "gloss": "They receive six buckets.",
+        "pinyin": "tā men yǒu le liù tǒng shuǐ 。"
+      },
+      {
+        "chinese": "答应明天修机器。",
+        "gloss": "They promise repairs tomorrow.",
+        "pinyin": "dā ying míng tiān xiū jī qì 。"
+      },
+      {
+        "chinese": "不过河那里的人不能选择。",
+        "gloss": "But river residents cannot decide.",
+        "pinyin": "bú guò hé nà lǐ de rén bù néng xuǎn zé 。"
+      }
+    ],
+    "pinyin": "tā men yǒu le liù tǒng shuǐ 。 dā ying míng tiān xiū jī qì 。 bú guò hé nà lǐ de rén bù néng xuǎn zé 。"
+  },
+  "你说的话不一样了。他们没有要回2桶，不过不愿意帮忙修管子了。": {
+    "english": "You changed your promise. They do not reclaim the two buckets, but refuse further repair help.",
+    "interlinear": [
+      {
+        "chinese": "你说的话不一样了。",
+        "gloss": "You changed your promise.",
+        "pinyin": "nǐ shuō de huà bù yí yàng le 。"
+      },
+      {
+        "chinese": "他们没有要回2桶，",
+        "gloss": "They do not reclaim the two buckets,",
+        "pinyin": "tā men méi yǒu yào huí liǎng tǒng ，"
+      },
+      {
+        "chinese": "不过不愿意帮忙修管子了。",
+        "gloss": "but refuse further repair help.",
+        "pinyin": "bú guò bú yuàn yì bāng máng xiū guǎn zi le 。"
+      }
+    ],
+    "pinyin": "nǐ shuō de huà bù yí yàng le 。 tā men méi yǒu yào huí liǎng tǒng ， bú guò bú yuàn yì bāng máng xiū guǎn zi le 。"
+  },
+  "我们没有说谎。今天晚上先给需要水的人。明天谁修管子？还不知道。": {
+    "english": "We broke no promise. Tonight, water goes to those who need it. Who repairs the pipes tomorrow? That remains unsettled.",
+    "interlinear": [
+      {
+        "chinese": "我们没有说谎。",
+        "gloss": "We broke no promise.",
+        "pinyin": "wǒ men méi yǒu shuō huǎng 。"
+      },
+      {
+        "chinese": "今天晚上先给需要水的人。",
+        "gloss": "Tonight, water goes to those who need it.",
+        "pinyin": "jīn tiān wǎn shàng xiān gěi xū yào shuǐ de rén 。"
+      },
+      {
+        "chinese": "明天谁修管子？",
+        "gloss": "Who repairs the pipes tomorrow?",
+        "pinyin": "míng tiān shuí xiū guǎn zi ？"
+      },
+      {
+        "chinese": "还不知道。",
+        "gloss": "That remains unsettled.",
+        "pinyin": "hái bù zhī dào 。"
+      }
+    ],
+    "pinyin": "wǒ men méi yǒu shuō huǎng 。 jīn tiān wǎn shàng xiān gěi xū yào shuǐ de rén 。 míng tiān shuí xiū guǎn zi ？ hái bù zhī dào 。"
+  },
+  "4桶水给了机器。沙出来了。机器好了，不过今天晚上没有新水。": {
+    "english": "Four buckets went to the pump. The sand is flushed out. The pump works, but there is no new water tonight.",
+    "interlinear": [
+      {
+        "chinese": "4桶水给了机器。",
+        "gloss": "Four buckets went to the pump.",
+        "pinyin": "sì tǒng shuǐ gěi le jī qì 。"
+      },
+      {
+        "chinese": "沙出来了。",
+        "gloss": "The sand is flushed out.",
+        "pinyin": "shā chū lái le 。"
+      },
+      {
+        "chinese": "机器好了，",
+        "gloss": "The pump works,",
+        "pinyin": "jī qì hǎo le ，"
+      },
+      {
+        "chinese": "不过今天晚上没有新水。",
+        "gloss": "but there is no new water tonight.",
+        "pinyin": "bú guò jīn tiān wǎn shàng méi yǒu xīn shuǐ 。"
+      }
+    ],
+    "pinyin": "sì tǒng shuǐ gěi le jī qì 。 shā chū lái le 。 jī qì hǎo le ， bú guò jīn tiān wǎn shàng méi yǒu xīn shuǐ 。"
+  },
+  "他们答应一起负责。所有人可以看记录。不是山上面的人说了就算。": {
+    "english": "Both sides agree to shared management. Everyone can inspect the records. The hill community cannot decide alone.",
+    "interlinear": [
+      {
+        "chinese": "他们答应一起负责。",
+        "gloss": "Both sides agree to shared management.",
+        "pinyin": "tā men dā ying yì qǐ fù zé 。"
+      },
+      {
+        "chinese": "所有人可以看记录。",
+        "gloss": "Everyone can inspect the records.",
+        "pinyin": "suǒ yǒu rén kě yǐ kàn jì lù 。"
+      },
+      {
+        "chinese": "不是山上面的人说了就算。",
+        "gloss": "The hill community cannot decide alone.",
+        "pinyin": "bú shì shān shàng miàn de rén shuō le jiù suàn 。"
+      }
+    ],
+    "pinyin": "tā men dā ying yì qǐ fù zé 。 suǒ yǒu rén kě yǐ kàn jì lù 。 bú shì shān shàng miàn de rén shuō le jiù suàn 。"
+  },
+  "她还在等。4桶水可以保护她。不过明天会少4桶。": {
+    "english": "She is still waiting. Four buckets can save her. But tomorrow there will be four fewer.",
+    "interlinear": [
+      {
+        "chinese": "她还在等。",
+        "gloss": "She is still waiting.",
+        "pinyin": "tā hái zài děng 。"
+      },
+      {
+        "chinese": "4桶水可以保护她。",
+        "gloss": "Four buckets can save her.",
+        "pinyin": "sì tǒng shuǐ kě yǐ bǎo hù tā 。"
+      },
+      {
+        "chinese": "不过明天会少4桶。",
+        "gloss": "But tomorrow there will be four fewer.",
+        "pinyin": "bú guò míng tiān huì shǎo sì tǒng 。"
+      }
+    ],
+    "pinyin": "tā hái zài děng 。 sì tǒng shuǐ kě yǐ bǎo hù tā 。 bú guò míng tiān huì shǎo sì tǒng 。"
+  },
+  "给Mei4桶。保护她。明天再找水。": {
+    "english": "Give Mei four buckets. Save her. Look for water again tomorrow.",
+    "interlinear": [
+      {
+        "chinese": "给Mei4桶。",
+        "gloss": "Give Mei four buckets.",
+        "pinyin": "gěi Mei sì tǒng 。"
+      },
+      {
+        "chinese": "保护她。",
+        "gloss": "Save her.",
+        "pinyin": "bǎo hù tā 。"
+      },
+      {
+        "chinese": "明天再找水。",
+        "gloss": "Look for water again tomorrow.",
+        "pinyin": "míng tiān zài zhǎo shuǐ 。"
+      }
+    ],
+    "pinyin": "gěi Mei sì tǒng 。 bǎo hù tā 。 míng tiān zài zhǎo shuǐ 。"
+  },
+  "水不够4桶。不能陪她去上面了。": {
+    "english": "Fewer than four buckets remain. It is too late to escort her uphill.",
+    "interlinear": [
+      {
+        "chinese": "水不够4桶。",
+        "gloss": "Fewer than four buckets remain.",
+        "pinyin": "shuǐ bú gòu sì tǒng 。"
+      },
+      {
+        "chinese": "不能陪她去上面了。",
+        "gloss": "It is too late to escort her uphill.",
+        "pinyin": "bù néng péi tā qù shàng miàn le 。"
+      }
+    ],
+    "pinyin": "shuǐ bú gòu sì tǒng 。 bù néng péi tā qù shàng miàn le 。"
+  },
+  "医生陪着她。Mei还是去世了。Min说过，先陪她去上面。": {
+    "english": "The doctor stays with her. Mei dies nonetheless. Min had asked: take her uphill first.",
+    "interlinear": [
+      {
+        "chinese": "医生陪着她。",
+        "gloss": "The doctor stays with her.",
+        "pinyin": "yī shēng péi zhe tā 。"
+      },
+      {
+        "chinese": "Mei还是去世了。",
+        "gloss": "Mei dies nonetheless.",
+        "pinyin": "Mei hái shì qù shì le 。"
+      },
+      {
+        "chinese": "Min说过，",
+        "gloss": "Min had asked:",
+        "pinyin": "Min shuō guò ，"
+      },
+      {
+        "chinese": "先陪她去上面。",
+        "gloss": "take her uphill first.",
+        "pinyin": "xiān péi tā qù shàng miàn 。"
+      }
+    ],
+    "pinyin": "yī shēng péi zhe tā 。 Mei hái shì qù shì le 。 Min shuō guò ， xiān péi tā qù shàng miàn 。"
+  },
+  "水还在。她不在了。": {
+    "english": "The water remains. She is gone.",
+    "interlinear": [
+      {
+        "chinese": "水还在。",
+        "gloss": "The water remains.",
+        "pinyin": "shuǐ hái zài 。"
+      },
+      {
+        "chinese": "她不在了。",
+        "gloss": "She is gone.",
+        "pinyin": "tā bú zài le 。"
+      }
+    ],
+    "pinyin": "shuǐ hái zài 。 tā bú zài le 。"
+  },
+  "Mei去世了。我选择不给她水。我会记得。": {
+    "english": "Mei has died. I chose not to give her water. I will remember.",
+    "interlinear": [
+      {
+        "chinese": "Mei去世了。",
+        "gloss": "Mei has died.",
+        "pinyin": "Mei qù shì le 。"
+      },
+      {
+        "chinese": "我选择不给她水。",
+        "gloss": "I chose not to give her water.",
+        "pinyin": "wǒ xuǎn zé bù gěi tā shuǐ 。"
+      },
+      {
+        "chinese": "我会记得。",
+        "gloss": "I will remember.",
+        "pinyin": "wǒ huì jì de 。"
+      }
+    ],
+    "pinyin": "Mei qù shì le 。 wǒ xuǎn zé bù gěi tā shuǐ 。 wǒ huì jì de 。"
+  },
+  "她的呼吸好了。今天晚上安全了。明天我陪你们找水。": {
+    "english": "Her breathing improves. She survives tonight. Tomorrow I will help you look for water.",
+    "interlinear": [
+      {
+        "chinese": "她的呼吸好了。",
+        "gloss": "Her breathing improves.",
+        "pinyin": "tā de hū xī hǎo le 。"
+      },
+      {
+        "chinese": "今天晚上安全了。",
+        "gloss": "She survives tonight.",
+        "pinyin": "jīn tiān wǎn shàng ān quán le 。"
+      },
+      {
+        "chinese": "明天我陪你们找水。",
+        "gloss": "Tomorrow I will help you look for water.",
+        "pinyin": "míng tiān wǒ péi nǐ men zhǎo shuǐ 。"
+      }
+    ],
+    "pinyin": "tā de hū xī hǎo le 。 jīn tiān wǎn shàng ān quán le 。 míng tiān wǒ péi nǐ men zhǎo shuǐ 。"
+  },
+  "上面的医生说，Mei安全了。我们提前走，就不需要这里的4桶水。": {
+    "english": "The doctor uphill says Mei is safe. We left early, so we do not need these four buckets.",
+    "interlinear": [
+      {
+        "chinese": "上面的医生说，",
+        "gloss": "The doctor uphill says",
+        "pinyin": "shàng miàn de yī shēng shuō ，"
+      },
+      {
+        "chinese": "Mei安全了。",
+        "gloss": "Mei is safe.",
+        "pinyin": "Mei ān quán le 。"
+      },
+      {
+        "chinese": "我们提前走，",
+        "gloss": "We left early,",
+        "pinyin": "wǒ men tí qián zǒu ，"
+      },
+      {
+        "chinese": "就不需要这里的4桶水。",
+        "gloss": "so we do not need these four buckets.",
+        "pinyin": "jiù bù xū yào zhè lǐ de sì tǒng shuǐ 。"
+      }
+    ],
+    "pinyin": "shàng miàn de yī shēng shuō ， Mei ān quán le 。 wǒ men tí qián zǒu ， jiù bù xū yào zhè lǐ de sì tǒng shuǐ 。"
+  },
+  "风暴过去了。谁负责水，谁能开门，不一样了。": {
+    "english": "The storm has passed. Who controls the water and who can open the door have changed.",
+    "interlinear": [
+      {
+        "chinese": "风暴过去了。",
+        "gloss": "The storm has passed.",
+        "pinyin": "fēng bào guò qù le 。"
+      },
+      {
+        "chinese": "谁负责水，",
+        "gloss": "Who controls the water",
+        "pinyin": "shuí fù zé shuǐ ，"
+      },
+      {
+        "chinese": "谁能开门，",
+        "gloss": "and who can open the door",
+        "pinyin": "shuí néng kāi mén ，"
+      },
+      {
+        "chinese": "不一样了。",
+        "gloss": "have changed.",
+        "pinyin": "bù yí yàng le 。"
+      }
+    ],
+    "pinyin": "fēng bào guò qù le 。 shuí fù zé shuǐ ， shuí néng kāi mén ， bù yí yàng le 。"
+  },
+  "看那里的石头。有裂缝。明天找水，要考虑这条路。": {
+    "english": "Look at the ground over there. There is a crack. Tomorrow’s search for water must consider this route.",
+    "interlinear": [
+      {
+        "chinese": "看那里的石头。",
+        "gloss": "Look at the ground over there.",
+        "pinyin": "kàn nà lǐ de shí tou 。"
+      },
+      {
+        "chinese": "有裂缝。",
+        "gloss": "There is a crack.",
+        "pinyin": "yǒu liè fèng 。"
+      },
+      {
+        "chinese": "明天找水，",
+        "gloss": "Tomorrow’s search for water",
+        "pinyin": "míng tiān zhǎo shuǐ ，"
+      },
+      {
+        "chinese": "要考虑这条路。",
+        "gloss": "must consider this route.",
+        "pinyin": "yào kǎo lǜ zhè tiáo lù 。"
+      }
+    ],
+    "pinyin": "kàn nà lǐ de shí tou 。 yǒu liè fèng 。 míng tiān zhǎo shuǐ ， yào kǎo lǜ zhè tiáo lù 。"
+  },
+  "先记录今天晚上的选择。明天，我们去看裂缝。": {
+    "english": "First record tonight’s choices. Tomorrow we will investigate the crack.",
+    "interlinear": [
+      {
+        "chinese": "先记录今天晚上的选择。",
+        "gloss": "First record tonight’s choices.",
+        "pinyin": "xiān jì lù jīn tiān wǎn shàng de xuǎn zé 。"
+      },
+      {
+        "chinese": "明天，我们去看裂缝。",
+        "gloss": "Tomorrow we will investigate the crack.",
+        "pinyin": "míng tiān ， wǒ men qù kàn liè fèng 。"
+      }
+    ],
+    "pinyin": "xiān jì lù jīn tiān wǎn shàng de xuǎn zé 。 míng tiān ， wǒ men qù kàn liè fèng 。"
+  },
+  "留下4桶，明天用。Mei今天晚上会去世。": {
+    "english": "Keep four buckets for tomorrow. Mei will die tonight.",
+    "interlinear": [
+      {
+        "chinese": "留下4桶，",
+        "gloss": "Keep four buckets",
+        "pinyin": "liú xià sì tǒng ，"
+      },
+      {
+        "chinese": "明天用。",
+        "gloss": "for tomorrow.",
+        "pinyin": "míng tiān yòng 。"
+      },
+      {
+        "chinese": "Mei今天晚上会去世。",
+        "gloss": "Mei will die tonight.",
+        "pinyin": "Mei jīn tiān wǎn shàng huì qù shì 。"
+      }
+    ],
+    "pinyin": "liú xià sì tǒng ， míng tiān yòng 。 Mei jīn tiān wǎn shàng huì qù shì 。"
+  },
+  "4桶？不是给她一杯水吗？": {
+    "english": "Four buckets? Isn’t it just a cup of water?",
+    "interlinear": [
+      {
+        "chinese": "4桶？",
+        "gloss": "Four buckets?",
+        "pinyin": "sì tǒng ？"
+      },
+      {
+        "chinese": "不是给她一杯水吗？",
+        "gloss": "Isn’t it just a cup of water?",
+        "pinyin": "bú shì gěi tā yì bēi shuǐ ma ？"
+      }
+    ],
+    "pinyin": "sì tǒng ？ bú shì gěi tā yì bēi shuǐ ma ？"
+  }
+}

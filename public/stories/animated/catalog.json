@@ -450,5 +450,21 @@
     "id": "chinese-angles-v1",
     "path": "chinese-angles-v1.json",
     "category": "practice"
+  },
+  {
+    "id": "jedi-03-v1",
+    "category": "jedi",
+    "episode": 3,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-03-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-03-intro.poster.jpg",
+      "title": "The Water We Promise",
+      "durationSeconds": 9
+    },
+    "path": "jedi-03.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 3: The Water We Promise",
+      "description": "Three preparations before the storm. Balance lives, fair access and tomorrow’s water; your promises and preparations determine who survives and who holds power."
+    }
   }
 ]
