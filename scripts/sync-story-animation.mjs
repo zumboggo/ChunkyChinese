@@ -2,6 +2,7 @@ import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
+import {kvotheTroubadourOverlay} from './kvothe-troubadour-overlay.mjs';
 import {weedOptionAOverlay} from './weed-option-a-overlay.mjs';
 const root=resolve(import.meta.dirname,'..');
 const source=resolve(process.argv.find(a=>a.startsWith('--source='))?.slice(9)||resolve(root,'../../Learning is Fun/implementation'));
@@ -22,7 +23,7 @@ for(const [path,dest] of entries){
   .replace('const paused=motionPaused??localPaused,setPaused=onMotionPause??setLocalPaused;','const paused=motionPaused;')
   .split('\n').filter(line=>!line.includes('{!hideMotionControl&&')).join('\n');
  if(dest==='components/story-player.css')content=content.split('\n').filter(line=>!line.startsWith('.story-motion-toggle{')).join('\n');
- if(dest==='components/CartoonActor.tsx')content=weedOptionAOverlay(content);
+ if(dest==='components/CartoonActor.tsx')content=kvotheTroubadourOverlay(weedOptionAOverlay(content));
  const target=resolve(root,'src/game/animation/shared',dest);
  if(check){if(readFileSync(target,'utf8')!==content)throw Error(`Shared animation drift: ${dest}`);}
  else{mkdirSync(dirname(target),{recursive:true});writeFileSync(target,content);}

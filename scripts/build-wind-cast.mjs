@@ -9,7 +9,7 @@ const rows=[
  ['Boy','铁匠学徒 · The smith’s apprentice','teen','tousled','oval','#58402f','#9b8662'],
  ['PatronA','客人 · Patron','adult','cropped','round','#6c503a','#65767a'],
  ['PatronB','客人 · Patron','adult','side-part','lean','#544a3f','#76564c'],
- ['Kvothe','克沃思 · Kvothe','teen','tousled','lean','#bc512b','#527565'],
+ ['Kvothe','克沃思 · Kvothe','teen','tousled','lean','#e87536','#397e5e'],
  ['Simmon','西蒙 · Simmon','teen','swept','round','#b59655','#738497'],
  ['Wilem','威廉 · Wilem','teen','side-part','angular','#282725','#726052'],
  ['Manet','马内特 · Manet','elder','tousled','broad','#999084','#857663'],
