@@ -421,12 +421,12 @@
     "summary": {
       "title": "The Voices Beneath the Water · Episode 1: Who Is Speaking?",
       "description": "Play as Jonathan, a Jedi on a new planet. Help a frightened girl find her mother - then discover why a familiar voice keeps calling from an empty room. Short Mandarin lines with audio, pinyin and meanings.",
-      "cover": "stories/animated/jedi/jedi-01-intro.poster.jpg"
+      "cover": "stories/animated/jedi/series-cover.jpg"
     },
     "intro": {
-      "src": "stories/animated/jedi/jedi-01-intro.mp4",
-      "poster": "stories/animated/jedi/jedi-01-intro.poster.jpg",
-      "title": "Who Is Speaking?",
+      "src": "stories/animated/jedi/jedi-01-ignition.mp4",
+      "poster": "stories/animated/jedi/jedi-01-ignition.poster.jpg",
+      "title": "Jonathan lights his saber",
       "durationSeconds": 9
     }
   }

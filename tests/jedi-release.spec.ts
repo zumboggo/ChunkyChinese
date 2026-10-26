@@ -4,6 +4,9 @@ test('Jedi book, acceptance, intro and saved story survive reload',async({page},
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
  await page.getByLabel('Book',{exact:true}).selectOption('jedi')
  await expect(page.locator('.featured-episode h2')).toHaveText('Who Is Speaking?')
+ await expect(page.locator('.episode-cover')).toHaveAttribute('src',/jedi\/series-cover\.jpg$/)
+ await expect(page.locator('.episode-cover')).toHaveJSProperty('complete',true)
+ await page.screenshot({path:info.outputPath('series-cover.png'),fullPage:true})
  await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
  await expect(page.getByRole('button',{name:'Accept',exact:true})).toBeVisible()
  await page.getByRole('button',{name:'Accept',exact:true}).click()
@@ -28,7 +31,7 @@ test('Jedi book, acceptance, intro and saved story survive reload',async({page},
  await expect(page.getByRole('button',{name:'Accept',exact:true})).toHaveCount(0)
 })
 test('Missing teaser still allows the Jedi story to start',async({page})=>{
- await page.route('**/jedi-01-intro.mp4',r=>r.abort())
+ await page.route('**/jedi-01-ignition.mp4',r=>r.abort())
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
  await page.getByLabel('Book',{exact:true}).selectOption('jedi')
  await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()

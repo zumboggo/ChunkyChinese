@@ -29,5 +29,11 @@
     "The child is safely reunited with her mother.",
     "Q recorded the repeated voice from the dry water store; its source is unexplained.",
     "Jonathan has met An; neither faction has been blamed for the phenomenon."
-  ]
+  ],
+  "cover": "public/stories/animated/jedi/series-cover.jpg",
+  "coverArt": {
+    "method": "Built-in imagegen",
+    "reference": "User-supplied photo, man on the left; user requested likeness-based Jedi poster and approved Replicate transfer. Original photo stays private.",
+    "prompt": "Fun cinematic Star Wars adventure poster, landscape 16:9. Preserve the man on the left’s facial likeness, hair, beard and build. Cream Jedi tunic and brown robes, eager smile, single unlit lightsaber hilt. Warm gold and cool blue lighting, rocky alien planet, twin suns and stars. No woman, ice cream, text, logos or watermark."
+  }
 }

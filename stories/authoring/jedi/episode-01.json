@@ -94,7 +94,7 @@
         "beat": "Jonathan can leave because the communities can check evidence, resolve complaints and share water without him. He has practiced protection through partnership rather than indispensability."
       }
     ],
-    "teaser": "At the midpoint, a voice comes from behind the closed door while the mother stands beside Jonathan. Action only: Jonathan turns from the mother to the door.",
+    "teaser": "User-requested replacement: Jonathan excitedly ignites his lightsaber in the personalized series poster.",
     "vocabularyReview": "Inventory membership is 80.5-82.0%, not reading mastery. Remaining items are basic connective/positional language and a few first-episode essentials, all supplied with contextual chunks, pinyin and audio. This separate new-learner policy does not borrow David’s reviewed list or promote words."
   },
   "notice": "This is an original fan adventure set in the Star Wars universe. You play Jonathan as a Jedi Knight; the planet, local people and events were created for this story. Choose Accept to begin.",
@@ -140,6 +140,7 @@
   },
   "teaser": {
     "model": "prunaai/p-video-2-pro",
+    "predictionId": "bss3pfentsrmw0d1f1gt560ecg",
     "settings": {
       "duration": 6,
       "resolution": "480p",
@@ -149,12 +150,15 @@
     },
     "verifiedRateUSDPerSecond": 0.01,
     "maximumGenerationUSD": 0.06,
+    "totalIncludingPreviousUSD": 0.12,
     "paidAttempts": 1,
-    "reference": "Frame rendered from the actual episode cast and storage background after built-in image generation failed.",
-    "prompt": "Use the exact illustrated character identities and scene from the reference, preserving original clean dark outlines, flat muted cel colors and costumes. This is an original Star Wars fan adventure. One continuous six-second wide shot. The tan-robed adult Jedi on the left slowly turns his head from the mother on the right toward the CLOSED teal storage-room door behind them, listening with puzzled attention. The mother realizes the same thing and becomes still; the teenage girl stays close beside her. Restrained natural motion, a small worried glance, quiet breathing. No new people or objects. The door stays closed. No combat, no weapon, no reveal. Sound: quiet wind and a little clothing rustle only, with native generated audio. NO speech, words, narration, whispered voices, music, humming or lyrics. All mouths stay closed throughout. No text, logos or titles. End on the thoughtful pause.",
+    "pricingCheckedAt": "2026-10-26",
+    "pricingSource": "https://replicate.com/prunaai/p-video-2-pro",
+    "reference": "Built-in imagegen poster using the man on the left of user-supplied photo. User explicitly approved sending generated likeness to Replicate.",
+    "prompt": "Animate the exact man and cinematic Star Wars poster scene in the reference. Preserve his recognizable face, beard, costume and landscape. One continuous six-second shot. He looks eagerly down at the hilt, presses its button, and a single bright BLUE lightsaber blade rapidly extends from the TOP emitter upward, with a crisp electric ignition sound. Blue light washes his face. His eyebrows lift and his smile becomes a huge delighted grin; he gives an excited little shoulder bounce and raises the lit saber triumphantly slightly away from his face. Exuberant joy and wonder, not fighting. Keep the blade straight, attached to the hilt, and visible; only one blade, no extra limbs. Gentle cape movement and cinematic camera push-in. Finish holding the saber with a delighted grin. Native audio: saber ignition, steady energy hum, quiet wind. NO speech, words, narration, vocalizations, humming, lyrics or music. No text or logos.",
     "checks": {
-      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-01/native.mp4",
-      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/public/stories/animated/jedi/jedi-01-intro.mp4",
+      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-01-poster/native.mp4",
+      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-01-poster/jedi-01-ignition.mp4",
       "dimensions": [
         854,
         480
@@ -167,11 +171,50 @@
       "decoded_audio_seconds": 9.00275,
       "audio_non_silent": true,
       "audio_starts_after_hold": true,
-      "hold_mean_pixel_difference": 0.009528688524590163,
-      "sha256": "c4f7c044857730892e3bcd77f5a0fe41db8f4ae0413e05a792232ee5dfaa48d2",
+      "hold_mean_pixel_difference": 0.004654566744730679,
+      "sha256": "fc1abeffecd0bafd98d64baec0448595345ae7f9a1baf54c991a42bf677e753d",
       "expected_dialogue": "",
       "speech_check": "not run",
       "review": "One visual/listening review remains; automated checks do not prove natural acting or lip sync."
+    },
+    "visualReview": "Reviewed ignition and ending frames: one attached blue blade, recognizable hero, exuberant delight. Audio decoded and non-silent; perceptual listening unavailable."
+  },
+  "previousTeasers": [
+    {
+      "model": "prunaai/p-video-2-pro",
+      "settings": {
+        "duration": 6,
+        "resolution": "480p",
+        "mode": "cost",
+        "prompt_upsampler": "off",
+        "nativeAudio": true
+      },
+      "verifiedRateUSDPerSecond": 0.01,
+      "maximumGenerationUSD": 0.06,
+      "paidAttempts": 1,
+      "reference": "Frame rendered from the actual episode cast and storage background after built-in image generation failed.",
+      "prompt": "Use the exact illustrated character identities and scene from the reference, preserving original clean dark outlines, flat muted cel colors and costumes. This is an original Star Wars fan adventure. One continuous six-second wide shot. The tan-robed adult Jedi on the left slowly turns his head from the mother on the right toward the CLOSED teal storage-room door behind them, listening with puzzled attention. The mother realizes the same thing and becomes still; the teenage girl stays close beside her. Restrained natural motion, a small worried glance, quiet breathing. No new people or objects. The door stays closed. No combat, no weapon, no reveal. Sound: quiet wind and a little clothing rustle only, with native generated audio. NO speech, words, narration, whispered voices, music, humming or lyrics. All mouths stay closed throughout. No text, logos or titles. End on the thoughtful pause.",
+      "checks": {
+        "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-01/native.mp4",
+        "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/public/stories/animated/jedi/jedi-01-intro.mp4",
+        "dimensions": [
+          854,
+          480
+        ],
+        "fps": 24,
+        "hold_seconds": 3.0,
+        "motion_seconds": 6.0,
+        "reaction_hold_seconds": 0.0,
+        "total_seconds": 9.0,
+        "decoded_audio_seconds": 9.00275,
+        "audio_non_silent": true,
+        "audio_starts_after_hold": true,
+        "hold_mean_pixel_difference": 0.009528688524590163,
+        "sha256": "c4f7c044857730892e3bcd77f5a0fe41db8f4ae0413e05a792232ee5dfaa48d2",
+        "expected_dialogue": "",
+        "speech_check": "not run",
+        "review": "One visual/listening review remains; automated checks do not prove natural acting or lip sync."
+      }
     }
-  }
+  ]
 }

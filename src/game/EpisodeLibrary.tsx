@@ -4,7 +4,7 @@ export const categoryOf=(r:Release)=>r.category??(r.id.startsWith('moonlight-')?
 export const episodeNumber=(r:Release)=>r.episode??Number(r.id.match(/^moonlight-(\d+)/)?.[1]??0)
 export function orderedEpisodes(items:Release[],category:string){return items.filter(r=>categoryOf(r)===category).sort((a,b)=>episodeNumber(a)-episodeNumber(b)||a.created.localeCompare(b.created)||a.id.localeCompare(b.id))}
 export function nextEpisode(items:Release[],current:Release){if(categoryOf(current)==='practice')return undefined;const list=orderedEpisodes(items,categoryOf(current)),i=list.findIndex(r=>r.id===current.id);return i<0?undefined:list[i+1]}
-const books=[{id:'lms',name:'Legendary Moonlight Sculptor'},{id:'name-of-the-wind',name:'The Name of the Wind'},{id:'jedi',name:'The Voices Beneath the Water'},{id:'daily-life',name:'Daily Life'}]
+const books=[{id:'lms',name:'Legendary Moonlight Sculptor'},{id:'name-of-the-wind',name:'The Name of the Wind'},{id:'jedi',name:'The Voices Beneath the Water',cover:'stories/animated/jedi/series-cover.jpg'},{id:'daily-life',name:'Daily Life'}]
 const shortTitle=(r:Release)=>r.pack.title.replace(/^(?:Moonlight Sculptor\s*\d+\s*·|The Name of the Wind\s*\d+\s*·|.*?Episode\s*\d+\s*[:—–-])\s*/i,'')
 export default function EpisodeLibrary({items,onPlay,onExport,onEdit,preferencesKey='story2:library',opening=false,playMessage=''}:{opening?:boolean;playMessage?:string;preferencesKey?:string;items:Release[];onPlay:(r:Release,restart?:boolean)=>void;onExport:(r:Release)=>void;onEdit:(r:Release)=>void}){
  const saved=()=>{try{const value=JSON.parse(localStorage.getItem(preferencesKey)??'{}');return value&&typeof value==='object'?value:{}}catch{return {}}}
@@ -13,7 +13,7 @@ export default function EpisodeLibrary({items,onPlay,onExport,onEdit,preferences
  const episodes=orderedEpisodes(items,category),filtered=episodes.filter(r=>`${episodeNumber(r)} ${r.pack.title}`.toLowerCase().includes(query.trim().toLowerCase()))
  const active=filtered.find(r=>r.id===selected[category])??filtered[0],index=active?episodes.indexOf(active):-1
  const choose=(r:Release)=>setSelected(old=>({...old,[category]:r.id}))
- const book=books.find(b=>b.id===category)!,background=active&&Object.values(active.pack.assets.backgrounds)[0]?.src
+ const book=books.find(b=>b.id===category)!,background=book.cover?`${import.meta.env.BASE_URL}${book.cover}`:active&&Object.values(active.pack.assets.backgrounds)[0]?.src
  return <div className="episode-library">
   <div className="episode-navigation">
    <label>Book<select aria-label="Book" value={category} onChange={e=>{setCategory(e.target.value);setQuery('')}}>{books.map(b=><option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
