@@ -95,3 +95,23 @@
 
 .game-playing .episode-restart-controls {display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px}
 .game-playing .episode-restart-controls button {background:#10263b;border:1px solid #61748b;color:var(--cinema-ink);padding:8px 16px;min-height:44px;border-radius:24px;font-size:13px}
+
+/* First-time adaptation notices must remain readable before playback mounts. */
+.game-playing .story-disclaimer {
+ color:var(--cinema-ink);
+ background:#10263b;
+ border:1px solid #61748b;
+ border-radius:18px;
+ margin:20px auto;
+ padding:24px;
+}
+.game-playing .story-disclaimer h2 {color:var(--cinema-gold)}
+.game-playing .story-disclaimer p {color:var(--cinema-ink)}
+.game-playing .story-disclaimer button {
+ background:var(--cinema-gold);
+ color:#101d2b;
+ border-color:var(--cinema-gold);
+ min-height:48px;
+ padding:12px 24px;
+ font-weight:700;
+}
