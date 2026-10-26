@@ -4,10 +4,16 @@
   "source": {
     "kind": "original",
     "note": "Original fan adventure requested by David for Jonathan; no source novel or real-person likeness.",
-    "nextStart": "Episode 1: Jonathan arrives and meets An at the landing pad.",
-    "nextEndBefore": "Episode 2: the market accusation and shared soup."
+    "nextStart": "Episode 2: Jonathan and An enter the shared market, where Min is accused of stealing water.",
+    "nextEndBefore": "Episode 3: the two-table negotiation between settlements."
   },
-  "completed": [],
+  "completed": [
+    {
+      "episode": "jedi-01-v1",
+      "end": "Jonathan escorts the child home safely. Her mother stands beside them while her voice repeats from the closed water store. Q records the sound; its cause remains unknown.",
+      "sha256": "9c196a68d626536acfdd647b14845099e5f4eb50386d9ccd2c89966c160dd2e9"
+    }
+  ],
   "assetsFrom": "stories/animated/jedi-01.json",
   "vocabularySupplement": ".local/episodes/jedi-01/supplement.json",
   "coverage": {
@@ -20,6 +26,8 @@
     "coverageNote": "New learner: no assessed-known export. The 80% floor measures membership only in the supplied inventory plus proposed glossary, not mastery. All additional basic scaffolding is annotated and audited privately; never promote it to familiar to pass a check."
   },
   "continuity": [
-    "Episode 1 begins on a new planet; no facts from later episodes are known."
+    "The child is safely reunited with her mother.",
+    "Q recorded the repeated voice from the dry water store; its source is unexplained.",
+    "Jonathan has met An; neither faction has been blamed for the phenomenon."
   ]
 }
