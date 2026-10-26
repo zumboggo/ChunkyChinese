@@ -60,3 +60,7 @@ The shared player supports optional articulated walking, mirrored scrolling land
 ## Reader navigation
 
 The episode player handles Left Arrow to return one displayed story beat and Right Arrow to continue. Returning rebuilds the scene from the saved route with its original seed, removes the latest step, and saves the earlier position. Returning across a choice lets the reader choose a different route. Left Arrow at the first beat does nothing; typing, settings and open player panels keep their own keyboard controls. This behavior belongs to the player, so existing and future episode packages need no special script commands.
+
+## Shared angles and conversational performances (2026-10-27)
+
+Synced upstream orientation state (`orient Actor auto|front|three-quarter|profile`), reusable vector angle geometry, optional embedded hybrid view artwork with facial anchors, and twelve finite gesture-specific timing profiles. Existing package bytes remain intact. Props, held poses and contact activities keep their stable geometry. The approved Weed Option A and young Kvothe overlays preserve their custom faces until matching angle assets are supplied; they still use the improved shared performances. Upstream `docs/character-angles.md` documents the recipe contract and comparison rehearsal. Add shared files through the sync list, never edit vendored files directly.

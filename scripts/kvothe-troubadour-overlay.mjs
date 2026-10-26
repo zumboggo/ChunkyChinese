@@ -12,5 +12,6 @@ export function kvotheTroubadourOverlay(content){
  replace("longSleeves=suit||cardigan","longSleeves=troubadour||suit||cardigan");
  replace("const trouserBase=weedOptionA?","const trouserBase=troubadour?'#444a51':weedOptionA?");
  replace("const shoes=historical?","const shoes=troubadour?'#694336':historical?");
+ replace("const view=characterAngle((actorId===", "const view=characterAngle(actorId==='Kvothe'&&!character.rig.views?{...character.rig,preset:'teen-v1'}:(actorId===");
  return content;
 }
