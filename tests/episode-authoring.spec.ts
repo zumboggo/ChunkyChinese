@@ -17,7 +17,7 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
  const open=async()=>{
   const category=pack.title.startsWith('The Name of the Wind')?'name-of-the-wind':pack.title.startsWith('The Voices Beneath the Water')?'jedi':/^Moonlight(?: Sculptor)?\s+\d+\b/i.test(pack.title)?'lms':'daily-life'
   await page.getByLabel('Book',{exact:true}).selectOption(category)
-  await page.getByLabel('Episode',{exact:true}).selectOption({label:await page.getByLabel('Episode',{exact:true}).locator('option').filter({hasText:pack.title.replace(/^(?:Moonlight Sculptor\s*\d+\s*·|The Name of the Wind\s*\d+\s*·|.*?Episode\s*\d+\s*[:—–-])\s*/i, '')}).last().innerText()})
+  await page.getByLabel('Episode',{exact:true}).selectOption((await page.getByLabel('Episode',{exact:true}).locator('option').filter({hasText:pack.title.replace(/^(?:Moonlight Sculptor\s*\d+\s*·|The Name of the Wind\s*\d+\s*·|.*?Episode\s*\d+\s*[:—–-])\s*/i, '')}).last().getAttribute('value'))!)
   await page.locator('.featured-episode').getByRole('button',{name:'Play / resume episode',exact:true}).click()
  }
  await open()
