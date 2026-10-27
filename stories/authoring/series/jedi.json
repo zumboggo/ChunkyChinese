@@ -4,9 +4,9 @@
   "source": {
     "kind": "original",
     "note": "Original fan adventure requested by David for Jonathan; no source novel or real-person likeness.",
-    "nextStart": "Episode 8: eastern station manual activation request. Carry tower injury/beacon and relay playback/evidence outcomes; discover who requested the repetition without restoring any losses.",
-    "nextEndBefore": "Do not reveal the deep reserve or restore lost people, equipment, archives, recordings, or water.",
-    "continuationNote": "Episode 7 separately discovers recorded water requests routed through dry pipes. Mother never consented to replay; child safe offstage. Destroy loses relay records; preserve leaves playback risk and recorded dissent; isolate requires consenting voice test AND retained station archive, stops playback and retains records. An injury persists; burned beacon prevents transmission. No water or past losses restored. Eastern manual request next; operator and deep reserve unknown."
+    "nextStart": "Episode 9: fulfill eastern station handover or carry disabled-call warning and Ren’s account to the mother. Then pursue the person controlling western water flow; preserve actual key/control outcome and all prior losses.",
+    "nextEndBefore": "Do not restore destroyed records, equipment, people or water. Do not presume forgiveness or that a volunteer has already agreed.",
+    "continuationNote": "Ren admits ordering recorded pleas to repeat because nobody answered. Episode 8: take removes eastern key, blocking old playback requests and new help calls; trust leaves key with Ren, old playback switched off but restart risk remains; shared requires inspection/test, locks old-request switch with Jonathan holding its key while new help calls remain live and Jonathan/An provide interim oversight pending a willing second operator. Ren commits to personal account; written statement optional, no assumed forgiveness. An injury/beacon and all earlier losses, water totals and records remain unchanged. Ren denies controlling western water flow; deep reserve unknown."
   },
   "completed": [
     {
@@ -42,9 +42,13 @@
     {
       "episode": "jedi-07-v1",
       "end": "Episode 7 separately discovers recorded water requests routed through dry pipes. Mother never consented to replay; child safe offstage. Destroy loses relay records; preserve leaves playback risk and recorded dissent; isolate requires consenting voice test AND retained station archive, stops playback and retains records. An injury persists; burned beacon prevents transmission. No water or past losses restored. Eastern manual request next; operator and deep reserve unknown."
+    },
+    {
+      "episode": "jedi-08-v1",
+      "end": "Ren admits ordering recorded pleas to repeat because nobody answered. Episode 8: take removes eastern key, blocking old playback requests and new help calls; trust leaves key with Ren, old playback switched off but restart risk remains; shared requires inspection/test, locks old-request switch with Jonathan holding its key while new help calls remain live and Jonathan/An provide interim oversight pending a willing second operator. Ren commits to personal account; written statement optional, no assumed forgiveness. An injury/beacon and all earlier losses, water totals and records remain unchanged. Ren denies controlling western water flow; deep reserve unknown."
     }
   ],
-  "assetsFrom": "stories/animated/jedi-07.json",
+  "assetsFrom": "stories/animated/jedi-08.json",
   "vocabularySupplement": ".local/episodes/jedi-01/supplement.json",
   "coverage": {
     "min": 80,
@@ -75,7 +79,8 @@
     "Episode 5 outcomes: drain sacrifices station door and lower archive for part; leave preserves door/archive but no part; inspected brace uses retained rope or permanently destroys lightsaber if rope previously lost, takes part, saves archive, requires door repair before next storm. Both return safely; recovered part repairs pipe but valve stays closed and drinking water unchanged.",
     "Northern tower red light is new lead. Voice, deep reserve and origin of closed-station flow remain unexplained.",
     "Episode 6 repairs station door using new spare plate, keeps destroyed archive/equipment gone and home pipe unchanged. Both alive; lift: An uninjured, warning unsent, beacon intact; signal: warning sent, An arm injured and cannot climb/lift; relay after inspect: warning sent, An safe, beacon circuit permanently lost. Stored drinking water unchanged. Upper relay next.",
-    "Episode 7 separately discovers recorded water requests routed through dry pipes. Mother never consented to replay; child safe offstage. Destroy loses relay records; preserve leaves playback risk and recorded dissent; isolate requires consenting voice test AND retained station archive, stops playback and retains records. An injury persists; burned beacon prevents transmission. No water or past losses restored. Eastern manual request next; operator and deep reserve unknown."
+    "Episode 7 separately discovers recorded water requests routed through dry pipes. Mother never consented to replay; child safe offstage. Destroy loses relay records; preserve leaves playback risk and recorded dissent; isolate requires consenting voice test AND retained station archive, stops playback and retains records. An injury persists; burned beacon prevents transmission. No water or past losses restored. Eastern manual request next; operator and deep reserve unknown.",
+    "Ren admits ordering recorded pleas to repeat because nobody answered. Episode 8: take removes eastern key, blocking old playback requests and new help calls; trust leaves key with Ren, old playback switched off but restart risk remains; shared requires inspection/test, locks old-request switch with Jonathan holding its key while new help calls remain live and Jonathan/An provide interim oversight pending a willing second operator. Ren commits to personal account; written statement optional, no assumed forgiveness. An injury/beacon and all earlier losses, water totals and records remain unchanged. Ren denies controlling western water flow; deep reserve unknown."
   ],
   "cover": "public/stories/animated/jedi/series-cover.jpg",
   "coverArt": {
@@ -85,9 +90,9 @@
   },
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through jedi-07-v1",
-    "nextStart": "Episode 8: eastern station manual activation request. Carry tower injury/beacon and relay playback/evidence outcomes; discover who requested the repetition without restoring any losses.",
-    "nextEndBefore": "Do not reveal the deep reserve or restore lost people, equipment, archives, recordings, or water.",
-    "assetsFrom": "stories/animated/jedi-07.json"
+    "note": "Published through jedi-08-v1",
+    "nextStart": "Episode 9: fulfill eastern station handover or carry disabled-call warning and Ren’s account to the mother. Then pursue the person controlling western water flow; preserve actual key/control outcome and all prior losses.",
+    "nextEndBefore": "Do not restore destroyed records, equipment, people or water. Do not presume forgiveness or that a volunteer has already agreed.",
+    "assetsFrom": "stories/animated/jedi-08.json"
   }
 }
