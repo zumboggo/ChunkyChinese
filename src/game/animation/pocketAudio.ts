@@ -12,6 +12,7 @@ export const meaningOf=(line:NonNullable<ChinesePackage['chinese']>['lines'][str
 /** Pick a finite route before playback. No JavaScript or story animations are
  * needed between scenes once the phone has locked. Manual routes stop at a choice. */
 export function planPocketAudio(pack:ChinesePackage,start:StoryProgress,options:AudioModeOptions,random:()=>number=Math.random):PocketPlan{
+ if(options.chinese===false&&!options.english)throw Error('Turn on English or Chinese audio to prepare listening.')
  const compiled=compileStory(pack.script,pack.assets)
  if(compiled.errors.length||!compiled.story)throw Error('This episode could not be prepared.')
  let state=replayStory(compiled.story,start.steps,start.seed)
@@ -22,10 +23,10 @@ export function planPocketAudio(pack:ChinesePackage,start:StoryProgress,options:
   if(node.type==='choice'&&!options.automaticChoices)break
   const option=node.type==='choice'?node.options[Math.min(node.options.length-1,Math.floor(random()*node.options.length))]:null
   const text=option?.text??node.text??'',line=pack.chinese?.lines[text]
-  if(/\p{Script=Han}/u.test(text)&&!line?.audio)throw Error('This episode needs a Chinese recording before pocket listening can be prepared.')
-  const english=line?meaningOf(line):''
-  if(options.english&&line?.audio&&!english)throw Error('This episode needs an English translation before pocket listening can be prepared.')
-  beats.push({steps:[...steps],text,audio:line?.audio,english,silence:option?options.choiceDelay:undefined})
+  if(options.chinese!==false&&/\p{Script=Han}/u.test(text)&&!line?.audio)throw Error('This episode needs a Chinese recording before pocket listening can be prepared.')
+  const english=line?meaningOf(line):(!/\p{Script=Han}/u.test(text)?text:'')
+  if(options.english&&text&&!english)throw Error('This episode needs an English translation before pocket listening can be prepared.')
+  beats.push({steps:[...steps],text,audio:options.chinese!==false?line?.audio:undefined,english,silence:option?options.choiceDelay:undefined})
   steps.push(option?.id??null)
   state=advanceStory(compiled.story,state,option?.id??null)
  }
@@ -68,10 +69,11 @@ export async function preparePocketAudio(pack:ChinesePackage,start:StoryProgress
  for(let i=0;i<plan.beats.length;i++){
   check();const beat=plan.beats[i];onProgress(`Preparing audio ${i+1} of ${plan.beats.length}…`)
   markers.push({at:samples/16000,steps:beat.steps,text:beat.text})
-  if(beat.audio){
-   await clip(beat.audio)
-   if(options.english){silence(options.englishPause);const key=await textDigest(beat.english!);await clip(`${import.meta.env.BASE_URL}stories/audio/${key}.m4a`)}
-  }else silence(1.2)
+  if(beat.audio)await clip(beat.audio)
+  if(options.english&&beat.english){
+   if(beat.audio)silence(options.englishPause)
+   const key=await textDigest(beat.english);await clip(`${import.meta.env.BASE_URL}stories/audio/${key}.m4a`)
+  }else if(!beat.audio)silence(1.2)
   silence(beat.silence??0)
  }
  check()

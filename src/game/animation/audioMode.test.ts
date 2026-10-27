@@ -64,3 +64,24 @@ describe('Audio Mode sequencing',()=>{
   TestAudio.current.onended?.();await rejected
  })
 })
+
+describe('Independent language switches',()=>{
+ it('plays English only without constructing Chinese audio or waiting for a bilingual pause',async()=>{
+  TestAudio.current=undefined as unknown as TestAudio
+  const result=playAudioModeLine({text:'回来了？',line,chinese:false,english:true,pause:10,volume:1,signal:new AbortController().signal})
+  expect(TestAudio.current).toBeUndefined()
+  expect(spoken[0]).toMatchObject({text:'Welcome home.',lang:'en-US'})
+  spoken[0].onend?.();await result
+ })
+ it('is silent with both languages off',async()=>{
+  TestAudio.current=undefined as unknown as TestAudio
+  await playAudioModeLine({text:'回来了？',line,chinese:false,english:false,pause:3,volume:1,signal:new AbortController().signal})
+  expect(TestAudio.current).toBeUndefined();expect(spoken).toHaveLength(0)
+ })
+ it('cancels English-only speech when the slide or toggle changes',async()=>{
+  const controller=new AbortController()
+  const result=playAudioModeLine({text:'回来了？',line,chinese:false,english:true,pause:3,volume:1,signal:controller.signal})
+  const rejected=expect(result).rejects.toMatchObject({name:'AbortError'})
+  controller.abort();await rejected;expect(cancel).toHaveBeenCalledOnce()
+ })
+})

@@ -1,0 +1,8 @@
+.story-slide-toggles{display:flex;flex-wrap:wrap;gap:.65rem 1.2rem;align-items:center;margin:.75rem 0;padding:.7rem;border:1px solid #d4b77655;border-radius:16px;background:#10283a;color:#fff2d8}
+.story-slide-toggles>div{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center}
+.story-slide-toggles span{font-size:.85rem;font-weight:700;margin-right:.15rem;color:#c2cfd9}
+.game-page .animated-story .story-slide-toggles button{margin:0;min-height:44px;border:1px solid #90a5b7;border-radius:999px;padding:.45rem .8rem;background:transparent;color:#d1dce5;font:inherit;font-size:.9rem;box-shadow:none}
+.game-page .animated-story .story-slide-toggles button[aria-pressed=true]{background:#f1d39a;color:#142638;border-color:#f1d39a;font-weight:700}
+.game-page .animated-story .story-slide-toggles button[aria-pressed=true]::before{content:'✓ ';font-weight:800}
+.game-page .animated-story .story-slide-toggles button:focus-visible{outline:3px solid #82d8ff;outline-offset:3px}
+@media(max-width:500px){.story-slide-toggles{gap:.6rem;padding:.6rem}.story-slide-toggles>div{width:100%}.story-slide-toggles span{min-width:3rem}.game-page .animated-story .story-slide-toggles button{padding:.4rem .65rem}}

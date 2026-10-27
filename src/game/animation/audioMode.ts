@@ -26,9 +26,9 @@ export async function speakAudioMode(text:string,lang:string,volume:number,signa
  })
 }
 
-export async function playAudioModeLine({text,line,english,pause,volume,signal,onAudio}:{text:string;line?:ChineseLine;english:boolean;pause:number;volume:number;signal:AbortSignal;onAudio?:(audio:HTMLAudioElement|null)=>void}){
+export async function playAudioModeLine({text,line,chinese=true,english,pause,volume,signal,onAudio}:{text:string;line?:ChineseLine;chinese?:boolean;english:boolean;pause:number;volume:number;signal:AbortSignal;onAudio?:(audio:HTMLAudioElement|null)=>void}){
  if(signal.aborted)throw new DOMException('Stopped','AbortError')
- if(line?.audio){
+ if(chinese&&line?.audio){
   await new Promise<void>((resolve,reject)=>{
    const audio=new Audio(line.audio);audio.volume=volume;onAudio?.(audio)
    const cleanup=()=>{signal.removeEventListener('abort',abort);audio.onended=null;audio.onerror=null;onAudio?.(null)}
@@ -38,12 +38,12 @@ export async function playAudioModeLine({text,line,english,pause,volume,signal,o
    signal.addEventListener('abort',abort,{once:true})
    void audio.play().catch(()=>{if(signal.aborted)return;cleanup();reject(Error('Audio could not start. Tap Resume Audio Mode to try again.'))})
   })
- }else if(/\p{Script=Han}/u.test(text))await speakAudioMode(text,'zh-CN',volume,signal)
+ }else if(chinese&&/\p{Script=Han}/u.test(text))await speakAudioMode(text,'zh-CN',volume,signal)
  // Action-only beats have no dialogue; allow their motion to register before continuing.
- else await waitForAudioMode(1200,signal)
+ else if(chinese)await waitForAudioMode(1200,signal)
  if(english){
-  const meaning=line?.english?.trim()||line?.interlinear?.map(c=>c.gloss).join(' ').trim()
-  if(meaning){await waitForAudioMode(pause*1000,signal);await speakAudioMode(meaning,'en-US',volume,signal)}
+  const meaning=line?.english?.trim()||line?.interlinear?.map(c=>c.gloss).join(' ').trim()||(!/\p{Script=Han}/u.test(text)?text:'')
+  if(meaning){if(chinese)await waitForAudioMode(pause*1000,signal);await speakAudioMode(meaning,'en-US',volume,signal)}
   else if(/\p{Script=Han}/u.test(text))throw Error('This line has no English translation. Choose Chinese to continue.')
  }
 }

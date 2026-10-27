@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test'
-for(const bilingual of [false,true])test(`prepares ${bilingual?'bilingual':'Chinese'} audio, plays offline and resumes the story`,async({page,context})=>{
+for(const language of ['Chinese','English','bilingual'])test(`prepares ${language} audio, plays offline and resumes the story`,async({page,context})=>{
  test.setTimeout(120000)
  await page.emulateMedia({reducedMotion:'reduce'})
  await page.goto('/')
@@ -9,7 +9,8 @@ for(const bilingual of [false,true])test(`prepares ${bilingual?'bilingual':'Chin
  await page.getByRole('button',{name:'Skip intro →',exact:true}).click()
  await page.getByRole('button',{name:'Audio Mode',exact:true}).click()
  const popup=page.getByRole('dialog',{name:'Audio Mode',exact:true})
- if(bilingual)await popup.getByLabel('Spoken language',{exact:true}).selectOption('bilingual')
+ if(language!=='Chinese')await popup.getByRole('checkbox',{name:'English audio',exact:true}).check()
+ if(language==='English')await popup.getByRole('checkbox',{name:'Chinese audio',exact:true}).uncheck()
  await popup.getByRole('button',{name:'Hide all text',exact:true}).click()
  await popup.getByLabel('Story choices',{exact:true}).selectOption('automatic')
  await popup.getByRole('button',{name:'Prepare pocket listening',exact:true}).click()
@@ -27,7 +28,7 @@ for(const bilingual of [false,true])test(`prepares ${bilingual?'bilingual':'Chin
  expect(result.time).toBeGreaterThan(5)
  expect(result.paused).toBe(false)
  expect(result.metadata).toBe('Chunky Chinese')
- await page.screenshot({path:`.local/design/pocket-audio-${bilingual?'bilingual':'chinese'}.png`,fullPage:true})
+ await page.screenshot({path:`.local/design/pocket-audio-${language}.png`,fullPage:true})
  await page.getByRole('button',{name:'Return to story',exact:true}).click()
  await expect(player).toHaveCount(0)
  await expect(page.getByRole('button',{name:'Audio Mode',exact:true})).toBeVisible()
