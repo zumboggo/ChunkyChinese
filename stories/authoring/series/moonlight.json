@@ -5,9 +5,9 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_04.xhtml",
-    "nextStart": "The civilization of the Versailles Continent dawned approximately one million and eight thousand years ago.",
-    "nextEndBefore": "Several high level users saw through Weed’s intentions to improve strength and other stats.",
-    "continuationNote": "Compress the four-race history faithfully as context, then the four-week training rumor and users mistaking Weed for a quest NPC. He refuses offered gifts and explains he is a user; the misunderstanding grows. Stop before high-level recruitment."
+    "nextStart": "Several high level users saw through Weed’s intentions to improve strength and other stats.",
+    "nextEndBefore": "A question suddenly occurred to Weed.",
+    "continuationNote": "Compress clan ambitions as context, show recruitment refusals, final stat gains and completed basic training, instructor praise and Hard Iron Sword reward. Stop before Weed reflects on basic training and asks how many have completed it."
   },
   "completed": [
     {
@@ -113,9 +113,13 @@
     {
       "episode": "moonlight-26-v1",
       "end": "Weed leaves the attendant, receives two silver coins from the shopkeeper and one from the instructor. Five silver earned gross including the original two; after the bard’s one-silver payment, four remain. Still level three; level-up bonus points divided equally between Strength and Agility. Tempted by further quests, he picks up the wooden sword and returns to training. Chapter 3 complete."
+    },
+    {
+      "episode": "moonlight-27-v1",
+      "end": "The four-race history is summarized. After four weeks of practice, players mistake Weed for a quest NPC, offering food, money and a longsword. He refuses everything out of pride, identifies himself as a player and asks them to leave, but his training and daily lunches with the instructor reinforce their belief. Stops before high-level recruitment."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-26.json",
+  "assetsFrom": "stories/animated/moonlight-27.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -139,16 +143,15 @@
     "He must learn A Sculpture’s Heart from Zahab and return to sing it before the attendant dies. Zahab was last seen heading for Gray Pass.",
     "Both shopkeeper and instructor rewards are now collected. Gross earned silver is five including the original advance; the bard took one, leaving four. No further spending.",
     "Level-up bonus points are split equally into Strength and Agility; no invented numeric point allocation. Still level three.",
-    "Weed has returned to dummy training with his wooden sword. Chapter 3 is complete.",
-    "Episode 26 has four immediate-response choices and no saved variables."
+    "Four weeks of training have made Weed the subject of an NPC rumor. He refused food, money and a longsword, explicitly said he was a player and asked the gift-givers to stop interrupting him. They remain convinced he gives quests. No gifts accepted, no recruitment or training-completion reward yet."
   ],
   "castRecipes": "stories/characters/lms-lineup-cast.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through moonlight-26-v1",
-    "nextStart": "The civilization of the Versailles Continent dawned approximately one million and eight thousand years ago.",
-    "nextEndBefore": "Several high level users saw through Weed’s intentions to improve strength and other stats.",
-    "assetsFrom": "stories/animated/moonlight-26.json"
+    "note": "Published through moonlight-27-v1",
+    "nextStart": "Several high level users saw through Weed’s intentions to improve strength and other stats.",
+    "nextEndBefore": "A question suddenly occurred to Weed.",
+    "assetsFrom": "stories/animated/moonlight-27.json"
   },
   "characterReferences": "stories/characters/lms-reference.json",
   "castBundle": "public/stories/animated/cast/lms-lineup-angles-v2.json"
