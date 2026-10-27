@@ -1,0 +1,512 @@
+{
+  "episode": "jedi-07-v1",
+  "title": "The Voices Beneath the Water · Episode 7: Who Owns a Voice?",
+  "planning": {
+    "storytellingVoice": "Intimate character drama: the person behind a familiar voice challenges Jonathan’s account of helping.",
+    "sourceBoundary": "Separately planned discovery: upper relay repeats independently recorded requests through dry service pipes. No recovery of destroyed lower archive or Q recording; no explanation of deep reserve or operator identity.",
+    "dramaticChange": "Jonathan moves from treating a voice as evidence to asking its owner what she consents to.",
+    "earlyCare": "The child’s mother asks why her safe child is still being made to beg.",
+    "essentialNewWords": [
+      "重复",
+      "电线",
+      "声音的主人"
+    ],
+    "englishNarrationPurpose": "Context crawl and optional help; story remains Mandarin.",
+    "choicesAndCallbacks": [
+      "Ask permission or memory; both obtain explicit permission to investigate, never blanket consent.",
+      "Test Jon’s consenting voice or inspect wires; test identifies playback circuit.",
+      "Destroy / preserve active / isolate only with test plus retained archive.",
+      "Mother speaks or Jon records cost; she retains independent judgment."
+    ],
+    "sceneActivities": [
+      "Mother travels in narration; child safely offstage.",
+      "Jon crouches to inspect or isolate; injured An only reads/advises, never climbs or lifts."
+    ],
+    "actingSignature": "Jonathan’s action follows selected intention; An precise and independent; listeners quieter than speakers, shared framing through ordinary dialogue.",
+    "listenerTurn": "Jon stops after Mother denies consent; Mother waits through Jon’s epic phrase and gets the final judgment.",
+    "payoff": "Voice mechanism explained; playback fate and evidence resolved concretely; Mother’s dissent is recorded when preserved active.",
+    "freshQuestion": "Eastern station requests were manually activated. Who asked the machine to repeat?",
+    "teaser": {
+      "dialogue": "A stolen voice is not a promise.",
+      "language": "English",
+      "imagegenFirst": true,
+      "moment": "Jon facing the relay before deciding its fate."
+    }
+  },
+  "verification": {
+    "allBoundRoutes": 108,
+    "validInheritedStates": 3402,
+    "packageBytes": 1925148,
+    "mandarinEntries": 55,
+    "phoneDesktopFullRoutes": 6,
+    "coverage": {
+      "min": 81.92219679633867,
+      "max": 84.13461538461539
+    },
+    "pinyinReview": "Contextual An, neutral 管子/东西, obligation 得 děi, adverb 只 zhǐ and 听得出 de reviewed. Existing familiarity inventory unchanged.",
+    "additionalBrowserChecks": "Opening context, teaser decoding/playback, controller input, failed-media fallback, reduced motion, inherited prerequisites and saved aftermath on phone and desktop."
+  },
+  "video": {
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "2jx36pjwcsrmw0d1fgvr575aew",
+    "mode": "cost",
+    "resolution": "480p",
+    "generatedSeconds": 6,
+    "stillSeconds": 3,
+    "totalSeconds": 9,
+    "nativeSpeech": true,
+    "dialogue": "A stolen voice is not a promise.",
+    "promptUpsampler": "off",
+    "verifiedRateUSDPerSecond": 0.01,
+    "maximumUSD": 0.06,
+    "paidAttempts": 1,
+    "pricingURL": "https://replicate.com/prunaai/p-video-2-pro",
+    "priceCheckedOn": "2026-10-27",
+    "prompt": "Animate this exact reference for six seconds. Jonathan alone says exactly once in clear English: \"A stolen voice is not a promise.\" Start at second 0.5, finish by 4.5, then mouth closed. An on right stays silent, listening with her arm held close. No extra words, repetitions, fillers, narration, singing or other voices. Quiet mechanical hum beneath clearly audible dialogue. One subtle slow push in. Jonathan keeps palm hovering; do not touch switches or resolve the dilemma. Preserve adult identities, clothes, composition. No added characters or text.",
+    "speechCheck": "pass",
+    "transcription": "A stolen voice is not a promise.",
+    "postproduction": "Standard normalization and exact first-frame three-second hold; full motion retained."
+  },
+  "englishAudio": [
+    {
+      "sha256": "01a0e0502d2b8cbb0ee335614675ba008f8aba6daadcc5f3886626c634a8ccdd",
+      "text": "You heard my voice again?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ce38603888a9bbf49f80fc2f3d979ee689b101a3b408e50e02a59b3cf2273e42",
+      "text": "Yes. This time I’m asking you first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9d9d9a10bc2b5686f4cde6a69a82b85a267c32025ddff5fbbec912cea0a84ba9",
+      "text": "My child is safe. Why is my voice still begging for water?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1dcd55a71429e9a234a9df86d0b598ccdf16f570f3346c3af0131d1b16ce018c",
+      "text": "The child stays with a trusted neighbor. Their mother comes with us to the tower.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7a095ea5b5a8ee9d71b73db93f02e3ab497a3b7b73f2c38e137bfa90271faa38",
+      "text": "I bring a recharged battery. It cannot repair a burned-out circuit.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f94644d31e724e3bed77d1984b4427b6c3643a03bca83c18eef2068588a80672",
+      "text": "My arm hasn’t healed. I’m here to read and advise, not to climb or lift.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "482b41261721444348c7eb8c2f43d8a39d88232ff84af1795624ddb1825414d9",
+      "text": "I’ll read the records. First, you two listen.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8b954f68b534b4c971d99a51180e43536cfae40bab812ceb205ff54183fe26c5",
+      "text": "Our warning never went out. On the road we warn each group we meet; we cannot know we have reached everyone.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "992775a4f6cb6073b5280e69d264fd32826ad4537288f0afbce06b2b4fd40f95",
+      "text": "The travelers we meet received the warning and turned back.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "918785806bc20d6b2bd7f4d9d9e45567b28e21f8bba08ea5e429b6e3da1b6eec",
+      "text": "“My child needs water.” Her recorded voice comes from the machine. Her face tightens.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0dfc115040ed5ccb1fb89dd03752a6276351108c027d25a9f37374ed723c94be",
+      "text": "I asked for water at this machine that day. I never agreed to let it keep saying that.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0c04bb31065e19864da045f5d8c7fd603c633044f68640e2d497b65f78c78c37",
+      "text": "I was about to explain a machine. I stop to hear a person.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "275e242e62b81477ba9364f6f52fbebcc19eedeea83c052587a299811802037f",
+      "text": "May we investigate with you?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c6df16e5530e06eae2c5ee33b3d8445c621f773116f472b7810778ca502986df",
+      "text": "What else did you say that day?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9af2a805d6de31ba2b3dc9043a16ea81359eeed3cfea517cd89d1eb3994e2d63",
+      "text": "Yes. You cannot promise my voice to anyone else.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "65f202eab206dd7ed4a2faf5ff9daff4bc3b72f5399adebf40d1355011e61dc9",
+      "text": "I said my child was frightened. What I’m saying now is: ask me first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c724ff8528b91ae85f65740f0c5e1e2338cb662907409c6185461d164edbf04c",
+      "text": "May we investigate together?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8de866692afadde142692281c7f738316c7085579844ae24cc8090f6c6282c80",
+      "text": "Yes. I want to hear it too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "fba266aec8305edbb48c2e8c8167180f00e71a73e85926fc90bd0c466085e0af",
+      "text": "This upper relay routes recorded requests through dry service pipes. That is how the voice came from below.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a677c3a7f2c64dfdb66538b4587e9123a1019b78a725c42d63557332bc86de68",
+      "text": "This is independent evidence in the upper relay, not the earlier recording.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ebb03a3bfb3a6a3780698a15a0c085f19c1726c51e1b04e0f57dfb8dd3dc5b5c",
+      "text": "With my consent, test my own voice.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a0916b9d9d8d6c5db13dd03dcf8b71d2f28dff1f97ffc7538e58f8733e16f900",
+      "text": "Record nobody new; inspect the wiring.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "612306e26e6fa9ada35d5b77330308b83af56a0631df240045bd8050321f0881",
+      "text": "I consent to this one test. Stop it afterward: “We are here.”",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "314002a19b3616a9277e8eb09c2bd3ee8c3afd553f895acf382c91d0abee250d",
+      "text": "My voice repeats from a pipe below. The mother switches off our test.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "57edd1f71f19ab765b27f0615a1cc444282a8d3581e4552ed518a2543363420a",
+      "text": "I can hear the repeated recording. Someone below is not answering us.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "6a7df0e630121390f25f215cf525ed5b9319ae6f157ac55205378e92acf775c0",
+      "text": "The test identifies playback. We still need the old station’s wiring record to isolate it safely.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9ecba0042adfef5218bc83462342589444b2fdb1c9d86f6812c1204979e59f17",
+      "text": "I inspect the cables. Their shared connections do not identify a safe playback-only cutoff.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "de4681f92cb4b9853e67c2dfc2c56311f7fe631c57fd325965413d0bf23ea4e3",
+      "text": "The old station archive is gone. We cannot pretend we know the safe isolation point.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4a6df64622b2760d2ee669d671e4743343ba40e486d34adc90accb583dc7dc30",
+      "text": "We still have the old station archive. Its wiring diagram is available.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "26e83f282311dff7dfb8c6c35a2e3c870acbee04a40284b1aaf5aa8303b1bdc8",
+      "text": "This local switch only pauses it. Another outside request will restart playback.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "20d25032a0259d032749aac90c9fff8dbb7978de8de6456b822ca7a33c6bce42",
+      "text": "Destroy the relay and playback stops permanently. Its remaining evidence is destroyed too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "183bbfacf7ae23f551cbc67ce9752015843bc61aa76b971a3d2e95c3a2350bf7",
+      "text": "Preserve it and we can investigate who used it. My voice can still be replayed.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "408135fca6bd4964518c7d3d2ef044dfe85e152c3fbc9d51f3c51e30132cb99d",
+      "text": "A stolen voice is not a promise.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "30e2b76c298d65401979926f3de9822fe9754d53c493e2ce346d8ee02e65cd3d",
+      "text": "She does not nod. She waits for what I will do.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "57db0d7566de0d9aa88077163c2115dc9ae79333c9df4e8b950466f00c930edb",
+      "text": "Destroy the relay and its remaining evidence.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "895bb68003eb65882ae2b9590f5b0b9c2b613a3820b25c629e4e9a6e7099ad4e",
+      "text": "Keep the active relay despite the risk of more playback.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f0fccad5d38d1e9ff34bb513180f1bf0af950de96d859889c570753818bce9ef",
+      "text": "Use the test and preserved diagram to isolate playback.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c920612e43b9a2891a4c658dace532c3e3e273c254ad2ea0e366675c00af1ec3",
+      "text": "I smash the relay with a stone. The playback and its remaining records are gone.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "09acc993c71fc9d098bbbed308fde058e50ead48f12d17b66531466b670b7870",
+      "text": "At least I won’t hear it again. We still don’t know who did this.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "33c94d1a995cfdba4c21014d8e40abddb57fc8b2729481a168aaf260e87ca2fd",
+      "text": "I secure the relay room and post warnings by the pipe outlets. They are a safeguard, not an end to playback.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8c6c0741571d0cab8b07f26e67d98d33170be754558dce5f2c029ec45b1a44d4",
+      "text": "I did not consent. Put that in your record too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "97de0bd97aa2d912791b4a2472820aae37f025103f5e8c78a54467994cbcc170",
+      "text": "An reads the preserved diagram aloud. I isolate the playback circuit identified by our test.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7da43c34aab5bbfeb6e0a08e5558b9e604d409a18d1b9dfb03a774d06b0eea99",
+      "text": "The voice has stopped. The records remain. Now you can listen to me.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e6ed714e1b6882005a6bc1b3e76529538859e2e503c5b698699b4cc71370f61e",
+      "text": "The mother takes a slow breath. I do not tell her how she should feel.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "58c2f8dc9a5059e93cbfad604b377949f420024286e4eb37953cefdc110f7fc8",
+      "text": "You should tell your own experience.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b3ee99e50418c50e97c02d17d339637d3f6489469b1f315b14feb7a192610311",
+      "text": "I will record my choice and what it cost.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b684268b34702cd25867942bec60f358a9a510848d73a4825bd45953cb445bd7",
+      "text": "I will. Including the parts I did not like.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c1ba7bcfe436d2df8c6cc3af1c4fab882800e9ec353dc3c5e1eebeaa2f010254",
+      "text": "Write it clearly. Investigation cannot give my consent for me.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "6a724aee8c90e78436434331d44046324ca2bbb8ddf25ae19dbff270ce133867",
+      "text": "The beacon’s circuit burned out. We must carry our findings home ourselves.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "019d0f42eb59b3352816acc213111276201d9a4166364c4725c8e0aa80c70d14",
+      "text": "Using the tower’s working message circuit, we send a warning: do not follow the recorded voices.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "982be12121d0348678b72c849d39450e8a635a9f7341fc95b324cffda508e65e",
+      "text": "We return safely. Stored drinking water is unchanged.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "738d332092f3687322ec16b53b1274155ef37111f8c4bb8ec2e23c08dde27e4c",
+      "text": "Before we left, I copied the label on its casing: “Eastern station request. Manual activation.”",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "beb23ef93096657fea681ff5c807797874c307c024c603137147e4800f427b43",
+      "text": "A machine can repeat. Who asked it to speak again?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "70e824ccb91401c737cdda64cc026039a2fb06efa0bd2d6c1a69d4974ba2d828",
+      "text": "Next we go east. Ask the people before the machine.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "29b7dc42c43463fbbeda82370a9470e6b554265aade49523d8df4200469847ed",
+      "text": "Now I know how the voice reached us. I still don’t know who wanted us to hear it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    }
+  ]
+}

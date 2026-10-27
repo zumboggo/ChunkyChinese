@@ -1,0 +1,456 @@
+{
+  "episode": "jedi-06-v1",
+  "title": "The Voices Beneath the Water · Episode 6: One Last Signal",
+  "planning": {
+    "storytellingVoice": "Immediate drama: time pressure reveals whose safety Jonathan prioritizes.",
+    "sourceBoundary": "Original northern tower continuation. Reveal upper relay lead only; reserve and repeated voice unexplained.",
+    "dramaticChange": "Jonathan learns to hear An’s agency under pressure, while owning the harm of his chosen rescue.",
+    "earlyCare": "An remembers the station door obligation before pursuing the new clue.",
+    "essentialNewWords": [
+      "铁板",
+      "受伤",
+      "消息"
+    ],
+    "englishNarrationPurpose": "Context crawl and optional help; story remains Mandarin.",
+    "choicesAndCallbacks": [
+      "Opening approach changes An’s response.",
+      "Inspect emergency circuit or secure exit; only inspection unlocks costly beacon sacrifice.",
+      "Free An / warn travelers with injury / sacrifice beacon.",
+      "Account together, allowing An’s separate judgment."
+    ],
+    "sceneActivities": [
+      "Jon clears route only on exit preparation; crouches to inspect; gate injury narrated without unsupported hand contact; An remains grounded and tired afterward.",
+      "Jon repairs prior door; An advises without lifting on every route."
+    ],
+    "actingSignature": "Jonathan’s action follows selected intention; An precise and independent; listeners quieter than speakers, shared framing through ordinary dialogue.",
+    "listenerTurn": "Jon holds after An says not to silence others; An steadies herself afterward, Continue controls pace.",
+    "payoff": "Both return alive; fixed station door; deterministic warning/injury/beacon result.",
+    "freshQuestion": "The upper relay contains the mother’s repeated voice.",
+    "teaser": {
+      "dialogue": "Don’t save me by silencing them.",
+      "language": "English",
+      "imagegenFirst": true,
+      "moment": "An trapped before the battery decision."
+    }
+  },
+  "verification": {
+    "allBoundRoutes": 180,
+    "validInheritedStates": 1134,
+    "packageBytes": 1459807,
+    "mandarinEntries": 48,
+    "phoneDesktopFullRoutes": 6,
+    "coverage": {
+      "min": 86.97068403908794,
+      "max": 87.91946308724832
+    },
+    "pinyinReview": "Contextual An, neutral 管子/东西, obligation 得 děi, adverb 只 zhǐ and 听得出 de reviewed. Existing familiarity inventory unchanged.",
+    "additionalBrowserChecks": "Opening context, teaser decoding/playback, controller input, failed-media fallback, reduced motion, inherited prerequisites and saved aftermath on phone and desktop."
+  },
+  "video": {
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "85v69tc0exrmt0d1fgtt91hy9g",
+    "mode": "cost",
+    "resolution": "480p",
+    "generatedSeconds": 6,
+    "stillSeconds": 3,
+    "totalSeconds": 9,
+    "nativeSpeech": true,
+    "dialogue": "Don’t save me by silencing them.",
+    "promptUpsampler": "off",
+    "verifiedRateUSDPerSecond": 0.01,
+    "maximumUSD": 0.06,
+    "paidAttempts": 1,
+    "pricingURL": "https://replicate.com/prunaai/p-video-2-pro",
+    "priceCheckedOn": "2026-10-27",
+    "prompt": "Animate this exact reference for six seconds. One visible speaker: An on the right inside the stalled cage. An looks directly at Jonathan and says exactly once in clear English: \"Don’t save me by silencing them.\" Start at second 0.5, finish by 4.5, then mouth closed. Jonathan remains silent, hand hovering. No extra speech, repetitions, fillers, narration, singing or additional voices. Quiet wind and metal strain under clearly audible dialogue. Slow subtle push in, adult faces and clothing unchanged. Do not free An or resolve the choice. No blood, text or added characters.",
+    "speechCheck": "pass",
+    "transcription": "Don't save me by silencing them",
+    "postproduction": "Muted native audio before 3.0 seconds to remove an unwanted preliminary utterance, retaining all six seconds of motion and the complete intended line. No paid retry."
+  },
+  "englishAudio": [
+    {
+      "sha256": "fc18280f2bc523b8028759df4abde1770173109cb70b90ea23cec76e74f1cb08",
+      "text": "The northern tower glows red. An checks the door before we enter.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f5c470712caea3d0c2b6aea4472fbf6a15bbce07e006c58acfcb40d78c33996e",
+      "text": "There’s a spare repair plate here. We can carry it back for the station door.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "37b096a07aab4cc93dedb7496aae5d71786b626a1ec9a479591f3bd5a07855ba",
+      "text": "The station door is intact. We’ll leave the spare here.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e6f00116ea200a76f45779026aa786ac592e3a13d5108bb16beac7d4e8faeb66",
+      "text": "On our way back, I’ll repair that door.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "835123dacc850669da255cb1672afb36e963e447956cec4beff751f9d3b8ac4a",
+      "text": "My lightsaber is destroyed. Repairing the door will not restore it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d9d67c7d6bbf80fb2d6ce8a796f4579ab43e80fb9ed047f9115b627cd414ade8",
+      "text": "We have spent the rope. We have no replacement.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "16a66c1706736114622b3e44550f77e23db96e7ceaddc5efe95a944b8702dee7",
+      "text": "If nobody is here, who switched on the light?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2e4c9856a8489370b5908adb0002325327bd7d63e2086caec3ac1328dfa65040",
+      "text": "Find whoever is here.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "660a8375f424d00e82702ce6e6b1a8045cff05f51e0ab42faccfb43ff0ac0de1",
+      "text": "Investigate the machine first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a09b2d484005ad0a109712f7b7579443f0c2c7c3c930f726e1eee89007dc7ea7",
+      "text": "Is anyone here? We’ve come to help.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "eebf9128c92edfc75c422e38cc93cb5cd719d20b283a4f5507882ec54fdcbf0b",
+      "text": "No answer. An watches my face before turning toward the stairs.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ab840eede84730e851daae7777617a0004a15b4f325b87826325a9cc8e4c5e76",
+      "text": "All right. Keep listening for people too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "50e7663bb3d881aa368c04372e5d2439f29ede8cc71ecc03be801ff0adec9e49",
+      "text": "The wind rises. A storm warning flashes on the tower’s message machine.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "29567c8c4be69777367fedbcc66da93dc71145b4dcb155005d172b4dc4e87fee",
+      "text": "Travelers on the road don’t know yet. We need to warn them.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "cf1464110ed0b35a4fba6ebd0dce19d449e55e87c7a0464599f96e7055ba0299",
+      "text": "Inspect the beacon’s emergency circuit.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "84c5650a068340ec6b73ad36652127d82aa30ff50ca5a57d2d0f6239169474df",
+      "text": "Secure a safe route down.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "cf93d5cd3b36eb22cfb882496ddaabaf38e195cc33fb3da8904d7bbb1e81023c",
+      "text": "The beacon’s emergency circuit can power both systems once. It will burn out the navigation light permanently.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "aff205f79dff78f734e2e616a38a7ce788dc6149d250e2b2e632eeb88a217a3d",
+      "text": "I clear stones and open the lower door. Our route down is safe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4ba708ebe290952a59e2cb5d07bb93fafd456f78f622eece7f8a9e0c3c68b523",
+      "text": "An steps into the maintenance cage. A bent rail snaps down and pins her forearm.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a93c788b7fa33169009cdc78c0b607a974228f560bdf6c34dcb073252d3d8a6c",
+      "text": "Don’t pull! My arm is caught under the rail.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c2b86862ebd72e1d4d64fba36c32353498d6bd05e71c4a21ffd24e7c52fc48aa",
+      "text": "I stop reaching and listen.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f6c266f9083db57529d5ce91080fbaac35a8433e6cbd11a34786419b293ed15f",
+      "text": "The battery can release me or transmit the warning. It cannot do both.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0c1839314af36590481a19a2d6811be2e1c2365d9542182a449db407a6c42a21",
+      "text": "I can wrench myself free, but it will injure my arm. I won’t be able to climb or lift for some time.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "56ec24e8b1620f60dc84af2df05bca19308b4f93535719e7e22db49f8face03f",
+      "text": "You want me to choose to hurt you?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d67fab1ae4767a2fe5ae9ecce5f21d9c882007d986a1beb2b233194c903b3cb2",
+      "text": "Don’t save me by silencing them.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7e7549c98ef9607b07cf905eb9dfc5841732a4ad3a89dc3c4d3069668376c273",
+      "text": "She holds my gaze. She means it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "20fd99bd6ed243036cd7c3126a9bf4148a4b28ef9109496daa54797ac7f2079b",
+      "text": "Free An unharmed; lose the warning.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7d41e6f093779140a03f81cc304b4828aa70bd9d1a2eaf72596a8abe46dcf7e8",
+      "text": "Send the warning; An escapes with an injured arm.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "bf34232451f6b36408e65b7c8735e75c6b6c8bd4a1a1a876dac9c4270acd9136",
+      "text": "Burn out the navigation beacon to do both.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "6a5e99090b16da31cbc197335b2e243184bd066aa0ebcb71ffe32d57bfd42afd",
+      "text": "The gate releases. An comes out unharmed. The warning remains unsent.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "634b5f5b9ad15e6a276b2f9c34ec8b40d6a5aadbc49b77fdb98e8676101c7712",
+      "text": "You saved me. Now we owe the people on the road a warning.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b9de24b1c29b329f01792ffcdfe2662b6f09827848da1b5c7353225b0298c4fe",
+      "text": "The warning goes out. An pulls free with a cry. Her arm is injured.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9a2145bc966e65dcb666ef5a8600efed0b25caa548c5ccb025667cede8e871d0",
+      "text": "Don’t touch this arm. I can walk. I cannot lift anything.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7700fbcaa92940988fcedda6cac012967ae2aa8c775d66ef5a4e0ee7106ac318",
+      "text": "I connect the emergency circuit. The gate opens and the warning goes out. The navigation beacon burns out.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f9023aaa5ead92d84ff4ce2671744aad4d6d94315a3e07b6f20515fa61212e12",
+      "text": "I’m all right. But people traveling this way will no longer have this beacon.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "5e73b7ff478514a33e3a8c5844721b6b5c1423015c9538582e3b3ccc2043edf1",
+      "text": "She breathes slowly. I wait until she is steady.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8a8d033da9da58c9a61a865b9036730099d01f032c340a14c8658a3ecf24a3e1",
+      "text": "I will explain exactly what I chose.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "fa1f866720f1da20d1c1285bc748f17c8a8abf319505baffced4fd6c98bf6f2d",
+      "text": "How do you want to tell what happened?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4a0e8aa06f979fcc58ed9e0e07ee19dbd7b1ecef8b07f5640fbe6379131afc35",
+      "text": "Leave room for my account too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "59988c34c795e6f49980a0d93e9ddde127a639f4831094443b3c2f60c20443d4",
+      "text": "Don’t just call me brave. Tell them what the choices cost.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4be8d344b11dad461b152bc9ae88dbd31d7eccdb547983348033a253135d683b",
+      "text": "On our way back, I fit the plate and repair the station door. An supervises without lifting.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d0d6827cd35a98c10ec195daa7b6d651884f99e4a25af5518d716db85ba65a49",
+      "text": "The door works again. The destroyed archive is still gone.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1a41a1a38f28fe9476d42f5b645f13f646dc231e8ec8e81a2bbd297378ee1021",
+      "text": "We promised to repair the door. We have kept that promise.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "251f1685e10665965b025dc76de548fea4b84f1dea05be2104c7cc293d5a7c6c",
+      "text": "The station door and archive are intact. Our home pipe still needs the missing part.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "6201b923eea50c28e1a0c60149b0b90ec3289f58f3cf76315ed530c045379c81",
+      "text": "We both return alive. Our stored drinking water is unchanged.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4fb738dfed5673336804a0c9271e62c31cb5d915f011040c4dbf4d7fadfac256",
+      "text": "In the upper relay I saw a record of that voice. The child’s mother’s voice.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7d2b8c27d1038ec1a112d2065873d15bd1d79b8fc482e9da33466f5151c4097a",
+      "text": "Then we ask her to listen. We do not speak for her.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f4525010d240ab515967a2159e58c40475f30014fec68200d99566ac8704ce13",
+      "text": "This time, I will ask the person whose voice it is.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    }
+  ]
+}

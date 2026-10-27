@@ -1,0 +1,5 @@
+ImageGen prompt
+16:9 shonen anime cinematic teaser, preserve the reference adult Jonathan brown swept hair short beard tan Jedi robes and An dark ponytail teal clothes. Inside a dark upper water relay room, Jonathan left faces a glowing brass playback machine with two distinct switches and a small speaker grille, his open palm between the controls and An on the right. An stands quietly with left arm held close to torso, intent listening face. A faint abstract waveform lights the wall, no ghost or person in waveform. Mood intimate moral confrontation, teal light and amber sparks, strong readable adult faces central phone-safe composition. Jonathan is about to speak, nobody touches switches yet. No lightsaber, no rope, no text, no logos, no added people. Crisp ink and cel shading, epic but restrained.
+
+Final artwork: /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/stories/authoring/jedi/art/jedi-07-reference.png
+Final video: /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/public/stories/animated/jedi/jedi-07-intro.mp4

@@ -1,0 +1,985 @@
+{
+  "塔的灯还开着。An先检查门。": {
+    "pinyin": "tǎ de dēng hái kāi zhe 。 Ān xiān jiǎn chá mén 。",
+    "english": "The northern tower glows red. An checks the door before we enter.",
+    "interlinear": [
+      {
+        "chinese": "塔的灯",
+        "gloss": "The tower beacon",
+        "pinyin": "tǎ de dēng"
+      },
+      {
+        "chinese": "还开着。",
+        "gloss": "is still on.",
+        "pinyin": "hái kāi zhe 。"
+      },
+      {
+        "chinese": "An先检查门。",
+        "gloss": "An checks the door first.",
+        "pinyin": "Ān xiān jiǎn chá mén 。"
+      }
+    ]
+  },
+  "这里有铁板，可以修好从前的门。": {
+    "pinyin": "zhè lǐ yǒu tiě bǎn ， kě yǐ xiū hǎo cóng qián de mén 。",
+    "english": "There’s a spare repair plate here. We can carry it back for the station door.",
+    "interlinear": [
+      {
+        "chinese": "这里有铁板，",
+        "gloss": "Here is a repair plate;",
+        "pinyin": "zhè lǐ yǒu tiě bǎn ，"
+      },
+      {
+        "chinese": "可以修好",
+        "gloss": "it can repair",
+        "pinyin": "kě yǐ xiū hǎo"
+      },
+      {
+        "chinese": "从前的门。",
+        "gloss": "the old door.",
+        "pinyin": "cóng qián de mén 。"
+      }
+    ]
+  },
+  "门还好，铁板先留在这里。": {
+    "pinyin": "mén hái hǎo ， tiě bǎn xiān liú zài zhè lǐ 。",
+    "english": "The station door is intact. We’ll leave the spare here.",
+    "interlinear": [
+      {
+        "chinese": "门还好，",
+        "gloss": "The door still works;",
+        "pinyin": "mén hái hǎo ，"
+      },
+      {
+        "chinese": "铁板先留在这里。",
+        "gloss": "leave the plate here for now.",
+        "pinyin": "tiě bǎn xiān liú zài zhè lǐ 。"
+      }
+    ]
+  },
+  "回去的时候，我来修门。": {
+    "pinyin": "huí qù de shí hòu ， wǒ lái xiū mén 。",
+    "english": "On our way back, I’ll repair that door.",
+    "interlinear": [
+      {
+        "chinese": "回去的时候，",
+        "gloss": "On our way back,",
+        "pinyin": "huí qù de shí hòu ，"
+      },
+      {
+        "chinese": "我来修门。",
+        "gloss": "I will repair the door.",
+        "pinyin": "wǒ lái xiū mén 。"
+      }
+    ]
+  },
+  "光剑已经坏了，修门也不能修好它。": {
+    "pinyin": "guāng jiàn yǐ jīng huài le ， xiū mén yě bù néng xiū hǎo tā 。",
+    "english": "My lightsaber is destroyed. Repairing the door will not restore it.",
+    "interlinear": [
+      {
+        "chinese": "光剑已经坏了，",
+        "gloss": "The lightsaber is already destroyed;",
+        "pinyin": "guāng jiàn yǐ jīng huài le ，"
+      },
+      {
+        "chinese": "修门",
+        "gloss": "repairing the door",
+        "pinyin": "xiū mén"
+      },
+      {
+        "chinese": "也不能修好它。",
+        "gloss": "cannot bring it back.",
+        "pinyin": "yě bù néng xiū hǎo tā 。"
+      }
+    ]
+  },
+  "绳子已经牺牲了。我们没有新的绳子。": {
+    "pinyin": "shéng zi yǐ jīng xī shēng le 。 wǒ men méi yǒu xīn de shéng zi 。",
+    "english": "We have spent the rope. We have no replacement.",
+    "interlinear": [
+      {
+        "chinese": "绳子已经",
+        "gloss": "The rope has already",
+        "pinyin": "shéng zi yǐ jīng"
+      },
+      {
+        "chinese": "牺牲了。",
+        "gloss": "been sacrificed.",
+        "pinyin": "xī shēng le 。"
+      },
+      {
+        "chinese": "我们没有",
+        "gloss": "We have no",
+        "pinyin": "wǒ men méi yǒu"
+      },
+      {
+        "chinese": "新的绳子。",
+        "gloss": "replacement rope.",
+        "pinyin": "xīn de shéng zi 。"
+      }
+    ]
+  },
+  "这里没有人，谁开了灯？": {
+    "pinyin": "zhè lǐ méi yǒu rén ， shuí kāi le dēng ？",
+    "english": "If nobody is here, who switched on the light?",
+    "interlinear": [
+      {
+        "chinese": "这里没有人，",
+        "gloss": "No one is here;",
+        "pinyin": "zhè lǐ méi yǒu rén ，"
+      },
+      {
+        "chinese": "谁开了灯？",
+        "gloss": "who turned on the beacon?",
+        "pinyin": "shuí kāi le dēng ？"
+      }
+    ]
+  },
+  "先找人。": {
+    "pinyin": "xiān zhǎo rén 。",
+    "english": "Find whoever is here.",
+    "interlinear": [
+      {
+        "chinese": "先找人。",
+        "gloss": "Find the person first.",
+        "pinyin": "xiān zhǎo rén 。"
+      }
+    ]
+  },
+  "先看机器。": {
+    "pinyin": "xiān kàn jī qì 。",
+    "english": "Investigate the machine first.",
+    "interlinear": [
+      {
+        "chinese": "先看机器。",
+        "gloss": "Look at the machine first.",
+        "pinyin": "xiān kàn jī qì 。"
+      }
+    ]
+  },
+  "有人吗？我们来帮忙。": {
+    "pinyin": "yǒu rén ma ？ wǒ men lái bāng máng 。",
+    "english": "Is anyone here? We’ve come to help.",
+    "interlinear": [
+      {
+        "chinese": "有人吗？",
+        "gloss": "Is anyone here?",
+        "pinyin": "yǒu rén ma ？"
+      },
+      {
+        "chinese": "我们来帮忙。",
+        "gloss": "We have come to help.",
+        "pinyin": "wǒ men lái bāng máng 。"
+      }
+    ]
+  },
+  "没有人回答。An看着我的脸。": {
+    "pinyin": "méi yǒu rén huí dá 。 Ān kàn zhe wǒ de liǎn 。",
+    "english": "No answer. An watches my face before turning toward the stairs.",
+    "interlinear": [
+      {
+        "chinese": "没有人回答。",
+        "gloss": "Nobody answers.",
+        "pinyin": "méi yǒu rén huí dá 。"
+      },
+      {
+        "chinese": "An看着",
+        "gloss": "An looks at",
+        "pinyin": "Ān kàn zhe"
+      },
+      {
+        "chinese": "我的脸。",
+        "gloss": "my face.",
+        "pinyin": "wǒ de liǎn 。"
+      }
+    ]
+  },
+  "好，不过要耐心听人的声音。": {
+    "pinyin": "hǎo ， bú guò yào nài xīn tīng rén de shēng yīn 。",
+    "english": "All right. Keep listening for people too.",
+    "interlinear": [
+      {
+        "chinese": "好，",
+        "gloss": "All right,",
+        "pinyin": "hǎo ，"
+      },
+      {
+        "chinese": "不过",
+        "gloss": "but",
+        "pinyin": "bú guò"
+      },
+      {
+        "chinese": "要耐心听",
+        "gloss": "listen carefully for",
+        "pinyin": "yào nài xīn tīng"
+      },
+      {
+        "chinese": "人的声音。",
+        "gloss": "people’s voices.",
+        "pinyin": "rén de shēng yīn 。"
+      }
+    ]
+  },
+  "机器报警，风暴要来了。": {
+    "pinyin": "jī qì bào jǐng ， fēng bào yào lái le 。",
+    "english": "The wind rises. A storm warning flashes on the tower’s message machine.",
+    "interlinear": [
+      {
+        "chinese": "机器报警，",
+        "gloss": "The machine sounds an alarm;",
+        "pinyin": "jī qì bào jǐng ，"
+      },
+      {
+        "chinese": "风暴要来了。",
+        "gloss": "a storm is coming.",
+        "pinyin": "fēng bào yào lái le 。"
+      }
+    ]
+  },
+  "那里的人还不知道。我们要提前通知他们。": {
+    "pinyin": "nà lǐ de rén hái bù zhī dào 。 wǒ men yào tí qián tōng zhī tā men 。",
+    "english": "Travelers on the road don’t know yet. We need to warn them.",
+    "interlinear": [
+      {
+        "chinese": "那里的人",
+        "gloss": "The people out there",
+        "pinyin": "nà lǐ de rén"
+      },
+      {
+        "chinese": "还不知道。",
+        "gloss": "do not know yet.",
+        "pinyin": "hái bù zhī dào 。"
+      },
+      {
+        "chinese": "我们要",
+        "gloss": "We need to",
+        "pinyin": "wǒ men yào"
+      },
+      {
+        "chinese": "提前通知他们。",
+        "gloss": "warn them in advance.",
+        "pinyin": "tí qián tōng zhī tā men 。"
+      }
+    ]
+  },
+  "检查灯的电，找别的办法。": {
+    "pinyin": "jiǎn chá dēng de diàn ， zhǎo bié de bàn fǎ 。",
+    "english": "Inspect the beacon’s emergency circuit.",
+    "interlinear": [
+      {
+        "chinese": "检查灯的电，",
+        "gloss": "Check the beacon’s power",
+        "pinyin": "jiǎn chá dēng de diàn ，"
+      },
+      {
+        "chinese": "找别的办法。",
+        "gloss": "for another solution.",
+        "pinyin": "zhǎo bié de bàn fǎ 。"
+      }
+    ]
+  },
+  "先保护下去的路。": {
+    "pinyin": "xiān bǎo hù xià qù de lù 。",
+    "english": "Secure a safe route down.",
+    "interlinear": [
+      {
+        "chinese": "先保护",
+        "gloss": "First secure",
+        "pinyin": "xiān bǎo hù"
+      },
+      {
+        "chinese": "下去的路。",
+        "gloss": "the way down.",
+        "pinyin": "xià qù de lù 。"
+      }
+    ]
+  },
+  "灯还有电。它可以帮忙开门和通知，代价是灯再也不能开。": {
+    "pinyin": "dēng hái yǒu diàn 。 tā kě yǐ bāng máng kāi mén hé tōng zhī ， dài jià shì dēng zài yě bù néng kāi 。",
+    "english": "The beacon’s emergency circuit can power both systems once. It will burn out the navigation light permanently.",
+    "interlinear": [
+      {
+        "chinese": "灯还有电。",
+        "gloss": "The beacon has power.",
+        "pinyin": "dēng hái yǒu diàn 。"
+      },
+      {
+        "chinese": "它可以帮忙",
+        "gloss": "It can help",
+        "pinyin": "tā kě yǐ bāng máng"
+      },
+      {
+        "chinese": "开门和通知，",
+        "gloss": "release the gate and transmit,",
+        "pinyin": "kāi mén hé tōng zhī ，"
+      },
+      {
+        "chinese": "代价是",
+        "gloss": "at the cost of",
+        "pinyin": "dài jià shì"
+      },
+      {
+        "chinese": "灯再也不能开。",
+        "gloss": "a beacon that will never work again.",
+        "pinyin": "dēng zài yě bù néng kāi 。"
+      }
+    ]
+  },
+  "我移动石头，开好下面的门。回去的路安全了。": {
+    "pinyin": "wǒ yí dòng shí tou ， kāi hǎo xià miàn de mén 。 huí qù de lù ān quán le 。",
+    "english": "I clear stones and open the lower door. Our route down is safe.",
+    "interlinear": [
+      {
+        "chinese": "我移动石头，",
+        "gloss": "I move stones",
+        "pinyin": "wǒ yí dòng shí tou ，"
+      },
+      {
+        "chinese": "开好下面的门。",
+        "gloss": "and open the lower door.",
+        "pinyin": "kāi hǎo xià miàn de mén 。"
+      },
+      {
+        "chinese": "回去的路安全了。",
+        "gloss": "Our exit is safe.",
+        "pinyin": "huí qù de lù ān quán le 。"
+      }
+    ]
+  },
+  "An去检查机器。门关了，她的手被挡在下面。": {
+    "pinyin": "Ān qù jiǎn chá jī qì 。 mén guān le ， tā de shǒu bèi dǎng zài xià miàn 。",
+    "english": "An steps into the maintenance cage. A bent rail snaps down and pins her forearm.",
+    "interlinear": [
+      {
+        "chinese": "An去检查机器。",
+        "gloss": "An goes to inspect the mechanism.",
+        "pinyin": "Ān qù jiǎn chá jī qì 。"
+      },
+      {
+        "chinese": "门关了，",
+        "gloss": "The gate closes,",
+        "pinyin": "mén guān le ，"
+      },
+      {
+        "chinese": "她的手",
+        "gloss": "and her arm",
+        "pinyin": "tā de shǒu"
+      },
+      {
+        "chinese": "被挡在下面。",
+        "gloss": "is trapped beneath it.",
+        "pinyin": "bèi dǎng zài xià miàn 。"
+      }
+    ]
+  },
+  "别拉！我的手被挡住了。": {
+    "pinyin": "bié lā ！ wǒ de shǒu bèi dǎng zhù le 。",
+    "english": "Don’t pull! My arm is caught under the rail.",
+    "interlinear": [
+      {
+        "chinese": "别拉！",
+        "gloss": "Don’t pull!",
+        "pinyin": "bié lā ！"
+      },
+      {
+        "chinese": "我的手",
+        "gloss": "My arm",
+        "pinyin": "wǒ de shǒu"
+      },
+      {
+        "chinese": "被挡住了。",
+        "gloss": "is trapped.",
+        "pinyin": "bèi dǎng zhù le 。"
+      }
+    ]
+  },
+  "我停了。先听她说。": {
+    "pinyin": "wǒ tíng le 。 xiān tīng tā shuō 。",
+    "english": "I stop reaching and listen.",
+    "interlinear": [
+      {
+        "chinese": "我停了。",
+        "gloss": "I stop.",
+        "pinyin": "wǒ tíng le 。"
+      },
+      {
+        "chinese": "先听她说。",
+        "gloss": "First I listen.",
+        "pinyin": "xiān tīng tā shuō 。"
+      }
+    ]
+  },
+  "电池不够。开门的话，就不能通知他们。": {
+    "pinyin": "diàn chí bú gòu 。 kāi mén de huà ， jiù bù néng tōng zhī tā men 。",
+    "english": "The battery can release me or transmit the warning. It cannot do both.",
+    "interlinear": [
+      {
+        "chinese": "电池不够。",
+        "gloss": "The battery is insufficient.",
+        "pinyin": "diàn chí bú gòu 。"
+      },
+      {
+        "chinese": "开门的话，",
+        "gloss": "If we release the gate,",
+        "pinyin": "kāi mén de huà ，"
+      },
+      {
+        "chinese": "就不能",
+        "gloss": "we cannot",
+        "pinyin": "jiù bù néng"
+      },
+      {
+        "chinese": "通知他们。",
+        "gloss": "warn them.",
+        "pinyin": "tōng zhī tā men 。"
+      }
+    ]
+  },
+  "我可以出来，不过手会受伤。不能再移动石头。": {
+    "pinyin": "wǒ kě yǐ chū lái ， bú guò shǒu huì shòu shāng 。 bù néng zài yí dòng shí tou 。",
+    "english": "I can wrench myself free, but it will injure my arm. I won’t be able to climb or lift for some time.",
+    "interlinear": [
+      {
+        "chinese": "我可以出来，",
+        "gloss": "I can get out,",
+        "pinyin": "wǒ kě yǐ chū lái ，"
+      },
+      {
+        "chinese": "不过手会受伤。",
+        "gloss": "but my arm will be injured.",
+        "pinyin": "bú guò shǒu huì shòu shāng 。"
+      },
+      {
+        "chinese": "不能再",
+        "gloss": "I will no longer be able to",
+        "pinyin": "bù néng zài"
+      },
+      {
+        "chinese": "移动石头。",
+        "gloss": "move stones.",
+        "pinyin": "yí dòng shí tou 。"
+      }
+    ]
+  },
+  "你要我选择你受伤？": {
+    "pinyin": "nǐ yào wǒ xuǎn zé nǐ shòu shāng ？",
+    "english": "You want me to choose to hurt you?",
+    "interlinear": [
+      {
+        "chinese": "你要我",
+        "gloss": "Do you want me to",
+        "pinyin": "nǐ yào wǒ"
+      },
+      {
+        "chinese": "选择你受伤？",
+        "gloss": "choose your injury?",
+        "pinyin": "xuǎn zé nǐ shòu shāng ？"
+      }
+    ]
+  },
+  "别为了救我，让他们听不到。": {
+    "pinyin": "bié wèi le jiù wǒ ， ràng tā men tīng bú dào 。",
+    "english": "Don’t save me by silencing them.",
+    "interlinear": [
+      {
+        "chinese": "别为了救我，",
+        "gloss": "Don’t save me",
+        "pinyin": "bié wèi le jiù wǒ ，"
+      },
+      {
+        "chinese": "让他们听不到。",
+        "gloss": "by silencing them.",
+        "pinyin": "ràng tā men tīng bú dào 。"
+      }
+    ]
+  },
+  "她看着我，没有犹豫。": {
+    "pinyin": "tā kàn zhe wǒ ， méi yǒu yóu yù 。",
+    "english": "She holds my gaze. She means it.",
+    "interlinear": [
+      {
+        "chinese": "她看着我，",
+        "gloss": "She looks at me",
+        "pinyin": "tā kàn zhe wǒ ，"
+      },
+      {
+        "chinese": "没有犹豫。",
+        "gloss": "without hesitation.",
+        "pinyin": "méi yǒu yóu yù 。"
+      }
+    ]
+  },
+  "电池开门，不能通知他们。": {
+    "pinyin": "diàn chí kāi mén ， bù néng tōng zhī tā men 。",
+    "english": "Free An unharmed; lose the warning.",
+    "interlinear": [
+      {
+        "chinese": "电池开门，",
+        "gloss": "Use the battery to release An;",
+        "pinyin": "diàn chí kāi mén ，"
+      },
+      {
+        "chinese": "不能通知他们。",
+        "gloss": "the warning will not go out.",
+        "pinyin": "bù néng tōng zhī tā men 。"
+      }
+    ]
+  },
+  "通知他们，An的手会受伤。": {
+    "pinyin": "tōng zhī tā men ， Ān de shǒu huì shòu shāng 。",
+    "english": "Send the warning; An escapes with an injured arm.",
+    "interlinear": [
+      {
+        "chinese": "通知他们，",
+        "gloss": "Warn them;",
+        "pinyin": "tōng zhī tā men ，"
+      },
+      {
+        "chinese": "An的手会受伤。",
+        "gloss": "An’s arm will be injured.",
+        "pinyin": "Ān de shǒu huì shòu shāng 。"
+      }
+    ]
+  },
+  "牺牲灯，保护An，通知他们。": {
+    "pinyin": "xī shēng dēng ， bǎo hù Ān ， tōng zhī tā men 。",
+    "english": "Burn out the navigation beacon to do both.",
+    "interlinear": [
+      {
+        "chinese": "牺牲灯，",
+        "gloss": "Sacrifice the beacon",
+        "pinyin": "xī shēng dēng ，"
+      },
+      {
+        "chinese": "保护An，",
+        "gloss": "to protect An",
+        "pinyin": "bǎo hù Ān ，"
+      },
+      {
+        "chinese": "通知他们。",
+        "gloss": "and warn them.",
+        "pinyin": "tōng zhī tā men 。"
+      }
+    ]
+  },
+  "门开了。An出来了，手没有受伤。没有通知他们。": {
+    "pinyin": "mén kāi le 。 Ān chū lái le ， shǒu méi yǒu shòu shāng 。 méi yǒu tōng zhī tā men 。",
+    "english": "The gate releases. An comes out unharmed. The warning remains unsent.",
+    "interlinear": [
+      {
+        "chinese": "门开了。",
+        "gloss": "The gate opens.",
+        "pinyin": "mén kāi le 。"
+      },
+      {
+        "chinese": "An出来了，",
+        "gloss": "An gets out,",
+        "pinyin": "Ān chū lái le ，"
+      },
+      {
+        "chinese": "手没有受伤。",
+        "gloss": "her arm uninjured.",
+        "pinyin": "shǒu méi yǒu shòu shāng 。"
+      },
+      {
+        "chinese": "没有通知他们。",
+        "gloss": "The warning has not gone out.",
+        "pinyin": "méi yǒu tōng zhī tā men 。"
+      }
+    ]
+  },
+  "你救了我。现在，我们要告诉路上的人。": {
+    "pinyin": "nǐ jiù le wǒ 。 xiàn zài ， wǒ men yào gào sù lù shang de rén 。",
+    "english": "You saved me. Now we owe the people on the road a warning.",
+    "interlinear": [
+      {
+        "chinese": "你救了我。",
+        "gloss": "You saved me.",
+        "pinyin": "nǐ jiù le wǒ 。"
+      },
+      {
+        "chinese": "现在，",
+        "gloss": "Now,",
+        "pinyin": "xiàn zài ，"
+      },
+      {
+        "chinese": "我们要告诉",
+        "gloss": "we must tell",
+        "pinyin": "wǒ men yào gào sù"
+      },
+      {
+        "chinese": "路上的人。",
+        "gloss": "the people on the road.",
+        "pinyin": "lù shang de rén 。"
+      }
+    ]
+  },
+  "他们接到信息了。An自己出来，手受伤了。": {
+    "pinyin": "tā men jiē dào xìn xī le 。 Ān zì jǐ chū lái ， shǒu shòu shāng le 。",
+    "english": "The warning goes out. An pulls free with a cry. Her arm is injured.",
+    "interlinear": [
+      {
+        "chinese": "他们接到信息了。",
+        "gloss": "The warning goes out.",
+        "pinyin": "tā men jiē dào xìn xī le 。"
+      },
+      {
+        "chinese": "An自己出来，",
+        "gloss": "An frees herself;",
+        "pinyin": "Ān zì jǐ chū lái ，"
+      },
+      {
+        "chinese": "手受伤了。",
+        "gloss": "her arm is injured.",
+        "pinyin": "shǒu shòu shāng le 。"
+      }
+    ]
+  },
+  "别碰这只手。我可以走，不过不能移动石头。": {
+    "pinyin": "bié pèng zhè zhī shǒu 。 wǒ kě yǐ zǒu ， bú guò bù néng yí dòng shí tou 。",
+    "english": "Don’t touch this arm. I can walk. I cannot lift anything.",
+    "interlinear": [
+      {
+        "chinese": "别碰这只手。",
+        "gloss": "Don’t touch this arm.",
+        "pinyin": "bié pèng zhè zhī shǒu 。"
+      },
+      {
+        "chinese": "我可以走，",
+        "gloss": "I can walk,",
+        "pinyin": "wǒ kě yǐ zǒu ，"
+      },
+      {
+        "chinese": "不过不能移动石头。",
+        "gloss": "but I cannot carry things.",
+        "pinyin": "bú guò bù néng yí dòng shí tou 。"
+      }
+    ]
+  },
+  "灯的电开了门，通知了他们。灯坏了。": {
+    "pinyin": "dēng de diàn kāi le mén ， tōng zhī liǎo tā men 。 dēng huài le 。",
+    "english": "I connect the emergency circuit. The gate opens and the warning goes out. The navigation beacon burns out.",
+    "interlinear": [
+      {
+        "chinese": "灯的电",
+        "gloss": "The beacon’s power",
+        "pinyin": "dēng de diàn"
+      },
+      {
+        "chinese": "开了门，",
+        "gloss": "releases the gate",
+        "pinyin": "kāi le mén ，"
+      },
+      {
+        "chinese": "通知了他们。",
+        "gloss": "and warns them.",
+        "pinyin": "tōng zhī liǎo tā men 。"
+      },
+      {
+        "chinese": "灯坏了。",
+        "gloss": "The beacon burns out.",
+        "pinyin": "dēng huài le 。"
+      }
+    ]
+  },
+  "我没有受伤。不过，那里的人再也看不到灯了。": {
+    "pinyin": "wǒ méi yǒu shòu shāng 。 bú guò ， nà lǐ de rén zài yě kàn bú dào dēng le 。",
+    "english": "I’m all right. But people traveling this way will no longer have this beacon.",
+    "interlinear": [
+      {
+        "chinese": "我没有受伤。",
+        "gloss": "I am uninjured.",
+        "pinyin": "wǒ méi yǒu shòu shāng 。"
+      },
+      {
+        "chinese": "不过，",
+        "gloss": "But",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "那里的人",
+        "gloss": "the people out there",
+        "pinyin": "nà lǐ de rén"
+      },
+      {
+        "chinese": "再也看不到灯了。",
+        "gloss": "will never see this beacon again.",
+        "pinyin": "zài yě kàn bú dào dēng le 。"
+      }
+    ]
+  },
+  "她慢慢呼吸。我耐心等着。": {
+    "pinyin": "tā màn màn hū xī 。 wǒ nài xīn děng zhe 。",
+    "english": "She breathes slowly. I wait until she is steady.",
+    "interlinear": [
+      {
+        "chinese": "她慢慢呼吸。",
+        "gloss": "She breathes slowly.",
+        "pinyin": "tā màn màn hū xī 。"
+      },
+      {
+        "chinese": "我耐心等着。",
+        "gloss": "I wait patiently.",
+        "pinyin": "wǒ nài xīn děng zhe 。"
+      }
+    ]
+  },
+  "我会诚实地说我的选择。": {
+    "pinyin": "wǒ huì chéng shí dì shuō wǒ de xuǎn zé 。",
+    "english": "I will explain exactly what I chose.",
+    "interlinear": [
+      {
+        "chinese": "我会诚实地说",
+        "gloss": "I will explain",
+        "pinyin": "wǒ huì chéng shí dì shuō"
+      },
+      {
+        "chinese": "我的选择。",
+        "gloss": "my choice clearly.",
+        "pinyin": "wǒ de xuǎn zé 。"
+      }
+    ]
+  },
+  "你想怎么说今天的事？": {
+    "pinyin": "nǐ xiǎng zěn me shuō jīn tiān de shì ？",
+    "english": "How do you want to tell what happened?",
+    "interlinear": [
+      {
+        "chinese": "你想怎么",
+        "gloss": "How do you want to",
+        "pinyin": "nǐ xiǎng zěn me"
+      },
+      {
+        "chinese": "说今天的事？",
+        "gloss": "tell today’s story?",
+        "pinyin": "shuō jīn tiān de shì ？"
+      }
+    ]
+  },
+  "我会补充我的经历。": {
+    "pinyin": "wǒ huì bǔ chōng wǒ de jīng lì 。",
+    "english": "Leave room for my account too.",
+    "interlinear": [
+      {
+        "chinese": "我会补充",
+        "gloss": "I will add",
+        "pinyin": "wǒ huì bǔ chōng"
+      },
+      {
+        "chinese": "我的经历。",
+        "gloss": "my own experience.",
+        "pinyin": "wǒ de jīng lì 。"
+      }
+    ]
+  },
+  "别只说我很了不起。要说所有选择的代价。": {
+    "pinyin": "bié zhǐ shuō wǒ hěn liǎo bù qǐ 。 yào shuō suǒ yǒu xuǎn zé de dài jià 。",
+    "english": "Don’t just call me brave. Tell them what the choices cost.",
+    "interlinear": [
+      {
+        "chinese": "别只说",
+        "gloss": "Don’t just say",
+        "pinyin": "bié zhǐ shuō"
+      },
+      {
+        "chinese": "我很了不起。",
+        "gloss": "I was brave.",
+        "pinyin": "wǒ hěn liǎo bù qǐ 。"
+      },
+      {
+        "chinese": "要说",
+        "gloss": "Explain",
+        "pinyin": "yào shuō"
+      },
+      {
+        "chinese": "所有选择的代价。",
+        "gloss": "the cost of every choice.",
+        "pinyin": "suǒ yǒu xuǎn zé de dài jià 。"
+      }
+    ]
+  },
+  "回去的时候，我拿铁板修好从前的门。An检查，不移动石头。": {
+    "pinyin": "huí qù de shí hòu ， wǒ ná tiě bǎn xiū hǎo cóng qián de mén 。 Ān jiǎn chá ， bù yí dòng shí tou 。",
+    "english": "On our way back, I fit the plate and repair the station door. An supervises without lifting.",
+    "interlinear": [
+      {
+        "chinese": "回去的时候，",
+        "gloss": "On our way back,",
+        "pinyin": "huí qù de shí hòu ，"
+      },
+      {
+        "chinese": "我拿铁板",
+        "gloss": "I take the plate",
+        "pinyin": "wǒ ná tiě bǎn"
+      },
+      {
+        "chinese": "修好从前的门。",
+        "gloss": "and repair the old door.",
+        "pinyin": "xiū hǎo cóng qián de mén 。"
+      },
+      {
+        "chinese": "An检查，",
+        "gloss": "An inspects;",
+        "pinyin": "Ān jiǎn chá ，"
+      },
+      {
+        "chinese": "不移动石头。",
+        "gloss": "she does no lifting.",
+        "pinyin": "bù yí dòng shí tou 。"
+      }
+    ]
+  },
+  "门修好了，牺牲的记录不能回来。": {
+    "pinyin": "mén xiū hǎo le ， xī shēng de jì lù bù néng huí lái 。",
+    "english": "The door works again. The destroyed archive is still gone.",
+    "interlinear": [
+      {
+        "chinese": "门修好了，",
+        "gloss": "The door is repaired;",
+        "pinyin": "mén xiū hǎo le ，"
+      },
+      {
+        "chinese": "牺牲的记录",
+        "gloss": "the sacrificed records",
+        "pinyin": "xī shēng de jì lù"
+      },
+      {
+        "chinese": "不能回来。",
+        "gloss": "cannot return.",
+        "pinyin": "bù néng huí lái 。"
+      }
+    ]
+  },
+  "我们答应修门。现在修好了。": {
+    "pinyin": "wǒ men dā ying xiū mén 。 xiàn zài xiū hǎo le 。",
+    "english": "We promised to repair the door. We have kept that promise.",
+    "interlinear": [
+      {
+        "chinese": "我们答应修门。",
+        "gloss": "We promised to repair the door.",
+        "pinyin": "wǒ men dā ying xiū mén 。"
+      },
+      {
+        "chinese": "现在修好了。",
+        "gloss": "Now it is repaired.",
+        "pinyin": "xiàn zài xiū hǎo le 。"
+      }
+    ]
+  },
+  "从前的门和记录还在。家里的管子仍然坏着。": {
+    "pinyin": "cóng qián de mén hé jì lù hái zài 。 jiā lǐ de guǎn zi réng rán huài zhe 。",
+    "english": "The station door and archive are intact. Our home pipe still needs the missing part.",
+    "interlinear": [
+      {
+        "chinese": "从前的门",
+        "gloss": "The station door",
+        "pinyin": "cóng qián de mén"
+      },
+      {
+        "chinese": "和记录还在。",
+        "gloss": "and records remain.",
+        "pinyin": "hé jì lù hái zài 。"
+      },
+      {
+        "chinese": "家里的管子",
+        "gloss": "The pipe at home",
+        "pinyin": "jiā lǐ de guǎn zi"
+      },
+      {
+        "chinese": "仍然坏着。",
+        "gloss": "is still broken.",
+        "pinyin": "réng rán huài zhe 。"
+      }
+    ]
+  },
+  "我们安全回来了。屋子的水没有变多，没有变少。": {
+    "pinyin": "wǒ men ān quán huí lái le 。 wū zi de shuǐ méi yǒu biàn duō ， méi yǒu biàn shǎo 。",
+    "english": "We both return alive. Our stored drinking water is unchanged.",
+    "interlinear": [
+      {
+        "chinese": "我们安全回来了。",
+        "gloss": "We return safely.",
+        "pinyin": "wǒ men ān quán huí lái le 。"
+      },
+      {
+        "chinese": "屋子的水",
+        "gloss": "The stored water",
+        "pinyin": "wū zi de shuǐ"
+      },
+      {
+        "chinese": "没有变多，",
+        "gloss": "has not increased",
+        "pinyin": "méi yǒu biàn duō ，"
+      },
+      {
+        "chinese": "没有变少。",
+        "gloss": "or decreased.",
+        "pinyin": "méi yǒu biàn shǎo 。"
+      }
+    ]
+  },
+  "塔上面的记录有那段声音。孩子妈妈的声音。": {
+    "pinyin": "tǎ shàng miàn de jì lù yǒu nà duàn shēng yīn 。 hái zi mā ma de shēng yīn 。",
+    "english": "In the upper relay I saw a record of that voice. The child’s mother’s voice.",
+    "interlinear": [
+      {
+        "chinese": "塔上面的记录",
+        "gloss": "The record upstairs in the tower",
+        "pinyin": "tǎ shàng miàn de jì lù"
+      },
+      {
+        "chinese": "有那段声音。",
+        "gloss": "contains that voice.",
+        "pinyin": "yǒu nà duàn shēng yīn 。"
+      },
+      {
+        "chinese": "孩子妈妈的声音。",
+        "gloss": "The child’s mother’s voice.",
+        "pinyin": "hái zi mā ma de shēng yīn 。"
+      }
+    ]
+  },
+  "我们要和她一起听。别替她回答。": {
+    "pinyin": "wǒ men yào hé tā yì qǐ tīng 。 bié tì tā huí dá 。",
+    "english": "Then we ask her to listen. We do not speak for her.",
+    "interlinear": [
+      {
+        "chinese": "我们要和她",
+        "gloss": "We must join her",
+        "pinyin": "wǒ men yào hé tā"
+      },
+      {
+        "chinese": "一起听。",
+        "gloss": "in listening.",
+        "pinyin": "yì qǐ tīng 。"
+      },
+      {
+        "chinese": "别替她回答。",
+        "gloss": "Don’t answer for her.",
+        "pinyin": "bié tì tā huí dá 。"
+      }
+    ]
+  },
+  "我要听声音的主人说的话。": {
+    "pinyin": "wǒ yào tīng shēng yīn de zhǔ rén shuō de huà 。",
+    "english": "This time, I will ask the person whose voice it is.",
+    "interlinear": [
+      {
+        "chinese": "我要听",
+        "gloss": "I want to hear",
+        "pinyin": "wǒ yào tīng"
+      },
+      {
+        "chinese": "声音的主人",
+        "gloss": "the owner of the voice",
+        "pinyin": "shēng yīn de zhǔ rén"
+      },
+      {
+        "chinese": "说的话。",
+        "gloss": "speak for herself.",
+        "pinyin": "shuō de huà 。"
+      }
+    ]
+  }
+}

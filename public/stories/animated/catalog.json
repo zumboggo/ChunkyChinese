@@ -549,5 +549,51 @@
       "title": "The Voices Beneath the Water · Episode 5: The Price of the Door",
       "description": "At the closed western station, the part home needs is still protecting something. Carry your evidence forward, inspect before acting, and choose who bears the cost."
     }
+  },
+  {
+    "id": "jedi-06-v1",
+    "category": "jedi",
+    "episode": 6,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-06-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-06-intro.poster.jpg",
+      "title": "One Last Signal",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode VI · One Last Signal",
+        "paragraphs": [
+          "The western station has given Jonathan and An a costly answer. Their part, their records, and their equipment depend on the choice you made. Any promise to repair the station door still matters. Now a red light shines from the northern tower.",
+          "A new storm is approaching. Travelers need a warning, and the tower has only one charged battery. Jonathan has learned to listen before reaching for a solution. Soon, listening may make saving a friend much harder."
+        ]
+      }
+    },
+    "path": "jedi-06.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 6: One Last Signal",
+      "description": "One battery, an injured friend, and travelers who have not heard the storm warning. What will your preparation let you save?"
+    }
+  },
+  {
+    "id": "jedi-07-v1",
+    "category": "jedi",
+    "episode": 7,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-07-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-07-intro.poster.jpg",
+      "title": "Who Owns a Voice?",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode VII · Who Owns a Voice?",
+        "paragraphs": [
+          "The tower’s warning, An’s arm, and the navigation beacon bear the consequences of your last choice. The station door has been repaired where needed; lost records and equipment remain lost. A new lead points into the upper relay.",
+          "The voice asking for water belongs to a mother whose child is already safe. This time Jonathan brings her to hear it herself. Finding out how a machine speaks is only the beginning. Who gets to decide whether it speaks again?"
+        ]
+      }
+    },
+    "path": "jedi-07.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 7: Who Owns a Voice?",
+      "description": "Meet the owner of the borrowed voice. Follow the mechanism, listen to her judgment, and decide what evidence is worth."
+    }
   }
 ]
