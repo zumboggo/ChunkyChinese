@@ -1,7 +1,7 @@
 import {test,expect,type Page} from '@playwright/test'
 async function open(page:Page){
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
- await page.getByLabel('Book',{exact:true}).selectOption('lms');await page.getByLabel('Episode',{exact:true}).selectOption('moonlight-27-v1')
+ await page.getByLabel('Book',{exact:true}).selectOption('lms');await page.getByLabel('Episode',{exact:true}).selectOption('moonlight-27-v2')
  await page.locator('.featured-episode').getByRole('button',{name:'Restart episode',exact:true}).click()
  await page.getByRole('button',{name:'Accept',exact:true}).click();await page.getByRole('button',{name:'Skip intro →',exact:true}).click()
  await expect(page.locator('.story-slide-toggles')).toBeVisible()

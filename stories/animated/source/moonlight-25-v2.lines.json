@@ -1,0 +1,1097 @@
+{
+  "老侍女拿出一个包，慢慢打开，里面有一把小刀。": {
+    "english": "the elderly attendant takes out a bundle, slowly opens it, and inside is a small knife.",
+    "pinyin": "lǎo shì nǚ ná chū yí gè bāo ， màn màn dǎ kāi ， lǐ miàn yǒu yì bǎ xiǎo dāo 。",
+    "interlinear": [
+      {
+        "chinese": "老侍女",
+        "gloss": "the elderly attendant",
+        "pinyin": "lǎo shì nǚ"
+      },
+      {
+        "chinese": "拿出一个包，",
+        "gloss": "takes out a bundle,",
+        "pinyin": "ná chū yí gè bāo ，"
+      },
+      {
+        "chinese": "慢慢打开，",
+        "gloss": "slowly opens it,",
+        "pinyin": "màn màn dǎ kāi ，"
+      },
+      {
+        "chinese": "里面有一把小刀。",
+        "gloss": "and inside is a small knife.",
+        "pinyin": "lǐ miàn yǒu yì bǎ xiǎo dāo 。"
+      }
+    ]
+  },
+  "这把刀，是扎哈布留给王后的。后来，一直在我这里。": {
+    "english": "This knife was Zahab's, left to the queen. Afterward, it stayed with me all this time.",
+    "pinyin": "zhè bǎ dāo ， shì zhā hā bù liú gěi wáng hòu de 。 hòu lái ， yì zhí zài wǒ zhè lǐ 。",
+    "interlinear": [
+      {
+        "chinese": "这把刀，",
+        "gloss": "This knife",
+        "pinyin": "zhè bǎ dāo ，"
+      },
+      {
+        "chinese": "是扎哈布",
+        "gloss": "was Zahab's,",
+        "pinyin": "shì zhā hā bù"
+      },
+      {
+        "chinese": "留给王后的。",
+        "gloss": "left to the queen.",
+        "pinyin": "liú gěi wáng hòu de 。"
+      },
+      {
+        "chinese": "后来，",
+        "gloss": "Afterward,",
+        "pinyin": "hòu lái ，"
+      },
+      {
+        "chinese": "一直在我这里。",
+        "gloss": "it stayed with me all this time.",
+        "pinyin": "yì zhí zài wǒ zhè lǐ 。"
+      }
+    ]
+  },
+  "还有这个木头雕像，也是他做的。请收下吧。": {
+    "english": "And this wooden statue, he made it too. Please accept them.",
+    "pinyin": "hái yǒu zhè ge mù tou diāo xiàng ， yě shì tā zuò de 。 qǐng shōu xià ba 。",
+    "interlinear": [
+      {
+        "chinese": "还有这个木头雕像，",
+        "gloss": "And this wooden statue,",
+        "pinyin": "hái yǒu zhè ge mù tou diāo xiàng ，"
+      },
+      {
+        "chinese": "也是他做的。",
+        "gloss": "he made it too.",
+        "pinyin": "yě shì tā zuò de 。"
+      },
+      {
+        "chinese": "请收下吧。",
+        "gloss": "Please accept them.",
+        "pinyin": "qǐng shōu xià ba 。"
+      }
+    ]
+  },
+  "我接过刀和雕像。雕刻大师做的东西，就是不一样。": {
+    "english": "I take the knife and statue. Things made by a master sculptor really are different.",
+    "pinyin": "wǒ jiē guò dāo hé diāo xiàng 。 diāo kè dà shī zuò de dōng xi ， jiù shì bù yí yàng 。",
+    "interlinear": [
+      {
+        "chinese": "我接过刀和雕像。",
+        "gloss": "I take the knife and statue.",
+        "pinyin": "wǒ jiē guò dāo hé diāo xiàng 。"
+      },
+      {
+        "chinese": "雕刻大师做的东西，",
+        "gloss": "Things made by a master sculptor",
+        "pinyin": "diāo kè dà shī zuò de dōng xi ，"
+      },
+      {
+        "chinese": "就是不一样。",
+        "gloss": "really are different.",
+        "pinyin": "jiù shì bù yí yàng 。"
+      }
+    ]
+  },
+  "这刀这么旧，您一直留着？": {
+    "english": "This knife is so old. Have you kept it all this time?",
+    "interlinear": [
+      {
+        "chinese": "这刀这么旧，",
+        "gloss": "this knife is so old",
+        "pinyin": "zhè dāo zhè me jiù ，"
+      },
+      {
+        "chinese": "您一直留着？",
+        "gloss": "have you kept it all this time",
+        "pinyin": "nín yì zhí liú zhe ？"
+      }
+    ],
+    "pinyin": "zhè dāo zhè me jiù ， nín yì zhí liú zhe ？"
+  },
+  "这个雕像，也是他做的？": {
+    "english": "Did he make this statue too?",
+    "interlinear": [
+      {
+        "chinese": "这个雕像，",
+        "gloss": "this statue",
+        "pinyin": "zhè ge diāo xiàng ，"
+      },
+      {
+        "chinese": "也是他做的？",
+        "gloss": "did he make it too",
+        "pinyin": "yě shì tā zuò de ？"
+      }
+    ],
+    "pinyin": "zhè ge diāo xiàng ， yě shì tā zuò de ？"
+  },
+  "是他做的。你看得出它不一般吧？": {
+    "english": "He made it. You can see it is no ordinary piece?",
+    "interlinear": [
+      {
+        "chinese": "是他做的。",
+        "gloss": "He made it.",
+        "pinyin": "shì tā zuò de 。"
+      },
+      {
+        "chinese": "你看得出",
+        "gloss": "You can see",
+        "pinyin": "nǐ kàn de chū"
+      },
+      {
+        "chinese": "它不一般吧？",
+        "gloss": "it is no ordinary piece",
+        "pinyin": "tā bù yì bān ba ？"
+      }
+    ],
+    "pinyin": "shì tā zuò de 。 nǐ kàn de chū tā bù yì bān ba ？"
+  },
+  "谢谢您。我一定会好好收着。": {
+    "english": "Thank you. I will certainly keep them with care.",
+    "pinyin": "xiè xiè nín 。 wǒ yí dìng huì hǎo hǎo shōu zhe 。",
+    "interlinear": [
+      {
+        "chinese": "谢谢您。",
+        "gloss": "Thank you.",
+        "pinyin": "xiè xiè nín 。"
+      },
+      {
+        "chinese": "我一定会",
+        "gloss": "I will certainly",
+        "pinyin": "wǒ yí dìng huì"
+      },
+      {
+        "chinese": "好好收着。",
+        "gloss": "keep them with care.",
+        "pinyin": "hǎo hǎo shōu zhe 。"
+      }
+    ]
+  },
+  "扎哈布的刀，请一定好好收着。": {
+    "english": "Zahab's knife, please be sure to keep it with care.",
+    "pinyin": "zhā hā bù de dāo ， qǐng yí dìng hǎo hǎo shōu zhe 。",
+    "interlinear": [
+      {
+        "chinese": "扎哈布的刀，",
+        "gloss": "Zahab's knife,",
+        "pinyin": "zhā hā bù de dāo ，"
+      },
+      {
+        "chinese": "请一定",
+        "gloss": "please be sure to",
+        "pinyin": "qǐng yí dìng"
+      },
+      {
+        "chinese": "好好收着。",
+        "gloss": "keep it with care.",
+        "pinyin": "hǎo hǎo shōu zhe 。"
+      }
+    ]
+  },
+  "是，请您放心。": {
+    "english": "Yes, please rest assured.",
+    "pinyin": "shì ， qǐng nín fàng xīn 。",
+    "interlinear": [
+      {
+        "chinese": "是，",
+        "gloss": "Yes,",
+        "pinyin": "shì ，"
+      },
+      {
+        "chinese": "请您放心。",
+        "gloss": "please rest assured.",
+        "pinyin": "qǐng nín fàng xīn 。"
+      }
+    ]
+  },
+  "这些东西，要是卖出去，应该能赚不少钱吧？": {
+    "english": "These things, if I sold them, they should make quite a bit of money, right?",
+    "pinyin": "zhè xiē dōng xi ， yào shi mài chū qù ， yīng gāi néng zhuàn bù shǎo qián ba ？",
+    "interlinear": [
+      {
+        "chinese": "这些东西，",
+        "gloss": "These things,",
+        "pinyin": "zhè xiē dōng xi ，"
+      },
+      {
+        "chinese": "要是卖出去，",
+        "gloss": "if I sold them,",
+        "pinyin": "yào shi mài chū qù ，"
+      },
+      {
+        "chinese": "应该能赚不少钱吧？",
+        "gloss": "they should make quite a bit of money, right?",
+        "pinyin": "yīng gāi néng zhuàn bù shǎo qián ba ？"
+      }
+    ]
+  },
+  "看这个木头雕像，你就能知道扎哈布在哪里。": {
+    "english": "Look at this wooden statue, and you will learn where Zahab is.",
+    "pinyin": "kàn zhè ge mù tou diāo xiàng ， nǐ jiù néng zhī dào zhā hā bù zài nǎ lǐ 。",
+    "interlinear": [
+      {
+        "chinese": "看这个木头雕像，",
+        "gloss": "Look at this wooden statue,",
+        "pinyin": "kàn zhè ge mù tou diāo xiàng ，"
+      },
+      {
+        "chinese": "你就能知道",
+        "gloss": "and you will learn",
+        "pinyin": "nǐ jiù néng zhī dào"
+      },
+      {
+        "chinese": "扎哈布在哪里。",
+        "gloss": "where Zahab is.",
+        "pinyin": "zhā hā bù zài nǎ lǐ 。"
+      }
+    ]
+  },
+  "我不希望以后再也没有人知道，他是怎么雕刻的。": {
+    "english": "I do not want no one in the future to know how he practiced his sculpting.",
+    "pinyin": "wǒ bù xī wàng yǐ hòu zài yě méi yǒu rén zhī dào ， tā shì zěn me diāo kè de 。",
+    "interlinear": [
+      {
+        "chinese": "我不希望",
+        "gloss": "I do not want",
+        "pinyin": "wǒ bù xī wàng"
+      },
+      {
+        "chinese": "以后再也没有人知道，",
+        "gloss": "no one in the future to know",
+        "pinyin": "yǐ hòu zài yě méi yǒu rén zhī dào ，"
+      },
+      {
+        "chinese": "他是怎么雕刻的。",
+        "gloss": "how he practiced his sculpting.",
+        "pinyin": "tā shì zěn me diāo kè de 。"
+      }
+    ]
+  },
+  "我也不希望这样。": {
+    "english": "I do not want that either.",
+    "pinyin": "wǒ yě bù xī wàng zhè yàng 。",
+    "interlinear": [
+      {
+        "chinese": "我也不希望这样。",
+        "gloss": "I do not want that either.",
+        "pinyin": "wǒ yě bù xī wàng zhè yàng 。"
+      }
+    ]
+  },
+  "先不说话，听听她想要什么。": {
+    "english": "Say nothing for now. Hear what she wants.",
+    "interlinear": [
+      {
+        "chinese": "先不说话，",
+        "gloss": "say nothing for now",
+        "pinyin": "xiān bù shuō huà ，"
+      },
+      {
+        "chinese": "听听她想要什么。",
+        "gloss": "hear what she wants",
+        "pinyin": "tīng tīng tā xiǎng yào shén me 。"
+      }
+    ],
+    "pinyin": "xiān bù shuō huà ， tīng tīng tā xiǎng yào shén me 。"
+  },
+  "这把刀，还有什么事要跟我说吗？": {
+    "english": "Is there anything else you want to tell me about this knife?",
+    "interlinear": [
+      {
+        "chinese": "这把刀，",
+        "gloss": "this knife",
+        "pinyin": "zhè bǎ dāo ，"
+      },
+      {
+        "chinese": "还有什么事",
+        "gloss": "is there anything else",
+        "pinyin": "hái yǒu shén me shì"
+      },
+      {
+        "chinese": "要跟我说吗？",
+        "gloss": "you want to tell me",
+        "pinyin": "yào gēn wǒ shuō ma ？"
+      }
+    ],
+    "pinyin": "zhè bǎ dāo ， hái yǒu shén me shì yào gēn wǒ shuō ma ？"
+  },
+  "说起过去，她不笑了。过了这么多年，她还记得那一天。": {
+    "english": "When she speaks of the past, her smile fades. After so many years, she still remembers that day.",
+    "pinyin": "shuō qǐ guò qù ， tā bú xiào le 。 guò le zhè me duō nián ， tā hái jì de nà yì tiān 。",
+    "interlinear": [
+      {
+        "chinese": "说起过去，",
+        "gloss": "When she speaks of the past,",
+        "pinyin": "shuō qǐ guò qù ，"
+      },
+      {
+        "chinese": "她不笑了。",
+        "gloss": "her smile fades.",
+        "pinyin": "tā bú xiào le 。"
+      },
+      {
+        "chinese": "过了这么多年，",
+        "gloss": "After so many years,",
+        "pinyin": "guò le zhè me duō nián ，"
+      },
+      {
+        "chinese": "她还记得那一天。",
+        "gloss": "she still remembers that day.",
+        "pinyin": "tā hái jì de nà yì tiān 。"
+      }
+    ]
+  },
+  "别只当成一把旧刀。他留下的，不只是这个。": {
+    "english": "Do not treat it as just an old knife. He left more than that.",
+    "interlinear": [
+      {
+        "chinese": "别只当成",
+        "gloss": "do not treat it as",
+        "pinyin": "bié zhǐ dàng chéng"
+      },
+      {
+        "chinese": "一把旧刀。",
+        "gloss": "just an old knife.",
+        "pinyin": "yì bǎ jiù dāo 。"
+      },
+      {
+        "chinese": "他留下的，",
+        "gloss": "What he left",
+        "pinyin": "tā liú xià de ，"
+      },
+      {
+        "chinese": "不只是这个。",
+        "gloss": "is more than that",
+        "pinyin": "bù zhǐ shì zhè ge 。"
+      }
+    ],
+    "pinyin": "bié zhǐ dàng chéng yì bǎ jiù dāo 。 tā liú xià de ， bù zhǐ shì zhè ge 。"
+  },
+  "要是能再听一次那天的歌，就好了……": {
+    "english": "If I could hear once more the song from that day, that would be wonderful...",
+    "pinyin": "yào shi néng zài tīng yí cì nà tiān de gē ， jiù hǎo le … …",
+    "interlinear": [
+      {
+        "chinese": "要是能再听一次",
+        "gloss": "If I could hear once more",
+        "pinyin": "yào shi néng zài tīng yí cì"
+      },
+      {
+        "chinese": "那天的歌，",
+        "gloss": "the song from that day,",
+        "pinyin": "nà tiān de gē ，"
+      },
+      {
+        "chinese": "就好了……",
+        "gloss": "that would be wonderful...",
+        "pinyin": "jiù hǎo le … …"
+      }
+    ]
+  },
+  "雕刻的一切秘密，都在那把刀里。": {
+    "english": "All the secrets of sculpting are in that knife.",
+    "pinyin": "diāo kè de yí qiè mì mì ， dōu zài nà bǎ dāo lǐ 。",
+    "interlinear": [
+      {
+        "chinese": "雕刻的一切秘密，",
+        "gloss": "All the secrets of sculpting",
+        "pinyin": "diāo kè de yí qiè mì mì ，"
+      },
+      {
+        "chinese": "都在那把刀里。",
+        "gloss": "are in that knife.",
+        "pinyin": "dōu zài nà bǎ dāo lǐ 。"
+      }
+    ]
+  },
+  "您说什么？": {
+    "english": "What did you say?",
+    "pinyin": "nín shuō shén me ？",
+    "interlinear": [
+      {
+        "chinese": "您说什么？",
+        "gloss": "What did you say?",
+        "pinyin": "nín shuō shén me ？"
+      }
+    ]
+  },
+  "就在扎哈布的刀里。": {
+    "english": "Right inside Zahab's knife.",
+    "pinyin": "jiù zài zhā hā bù de dāo lǐ 。",
+    "interlinear": [
+      {
+        "chinese": "就在",
+        "gloss": "Right inside",
+        "pinyin": "jiù zài"
+      },
+      {
+        "chinese": "扎哈布的刀里。",
+        "gloss": "Zahab's knife.",
+        "pinyin": "zhā hā bù de dāo lǐ 。"
+      }
+    ]
+  },
+  "我低头看看刀。有种感觉：有什么事要来了，而且，我没办法拒绝。": {
+    "english": "I lower my head to look at the knife. I have a feeling: something is coming, and I have no way to refuse it.",
+    "pinyin": "wǒ dī tóu kàn kàn dāo 。 yǒu zhǒng gǎn jué ： yǒu shén me shì yào lái le ， ér qiě ， wǒ méi bàn fǎ jù jué 。",
+    "interlinear": [
+      {
+        "chinese": "我低头看看刀。",
+        "gloss": "I lower my head to look at the knife.",
+        "pinyin": "wǒ dī tóu kàn kàn dāo 。"
+      },
+      {
+        "chinese": "有种感觉：",
+        "gloss": "I have a feeling:",
+        "pinyin": "yǒu zhǒng gǎn jué ："
+      },
+      {
+        "chinese": "有什么事要来了，",
+        "gloss": "something is coming,",
+        "pinyin": "yǒu shén me shì yào lái le ，"
+      },
+      {
+        "chinese": "而且，",
+        "gloss": "and",
+        "pinyin": "ér qiě ，"
+      },
+      {
+        "chinese": "我没办法拒绝。",
+        "gloss": "I have no way to refuse it.",
+        "pinyin": "wǒ méi bàn fǎ jù jué 。"
+      }
+    ]
+  },
+  "新的任务出现了：扎哈布的遗愿。": {
+    "english": "A new quest appears: Zahab's Last Wish.",
+    "pinyin": "xīn de rèn wu chū xiàn le ： zhā hā bù de yí yuàn 。",
+    "interlinear": [
+      {
+        "chinese": "新的任务出现了：",
+        "gloss": "A new quest appears:",
+        "pinyin": "xīn de rèn wu chū xiàn le ："
+      },
+      {
+        "chinese": "扎哈布的遗愿。",
+        "gloss": "Zahab's Last Wish.",
+        "pinyin": "zhā hā bù de yí yuàn 。"
+      }
+    ]
+  },
+  "原来，扎哈布那天没有死。他去了很远的地方，想看看自己的雕刻到底有多强。": {
+    "english": "It turns out Zahab did not die that day. He went to a faraway place, wanting to test just how powerful his sculpting was.",
+    "pinyin": "yuán lái ， zhā hā bù nà tiān méi yǒu sǐ 。 tā qù le hěn yuǎn de dì fāng ， xiǎng kàn kàn zì jǐ de diāo kè dào dǐ yǒu duō qiáng 。",
+    "interlinear": [
+      {
+        "chinese": "原来，",
+        "gloss": "It turns out",
+        "pinyin": "yuán lái ，"
+      },
+      {
+        "chinese": "扎哈布那天没有死。",
+        "gloss": "Zahab did not die that day.",
+        "pinyin": "zhā hā bù nà tiān méi yǒu sǐ 。"
+      },
+      {
+        "chinese": "他去了很远的地方，",
+        "gloss": "He went to a faraway place,",
+        "pinyin": "tā qù le hěn yuǎn de dì fāng ，"
+      },
+      {
+        "chinese": "想看看",
+        "gloss": "wanting to test",
+        "pinyin": "xiǎng kàn kàn"
+      },
+      {
+        "chinese": "自己的雕刻到底有多强。",
+        "gloss": "just how powerful his sculpting was.",
+        "pinyin": "zì jǐ de diāo kè dào dǐ yǒu duō qiáng 。"
+      }
+    ]
+  },
+  "我要先成为雕刻大师，再去找他，学会《雕刻家的心》这首歌。": {
+    "english": "I must become a master sculptor, find him, and learn A Sculptor’s Heart.",
+    "interlinear": [
+      {
+        "chinese": "我要先成为雕刻大师，",
+        "gloss": "I must first become a master sculptor",
+        "pinyin": "wǒ yào xiān chéng wéi diāo kè dà shī ，"
+      },
+      {
+        "chinese": "再去找他，",
+        "gloss": "then find him",
+        "pinyin": "zài qù zhǎo tā ，"
+      },
+      {
+        "chinese": "学会《雕刻家的心》这首歌。",
+        "gloss": "and learn the song A Sculptor’s Heart",
+        "pinyin": "xué huì 《 diāo kè jiā de xīn 》 zhè shǒu gē 。"
+      }
+    ],
+    "pinyin": "wǒ yào xiān chéng wéi diāo kè dà shī ， zài qù zhǎo tā ， xué huì 《 diāo kè jiā de xīn 》 zhè shǒu gē 。"
+  },
+  "再回来唱给她听。她要的不是刀，是那首歌。": {
+    "english": "Then come back and sing it to her. She does not want the knife. She wants the song.",
+    "interlinear": [
+      {
+        "chinese": "再回来",
+        "gloss": "then come back",
+        "pinyin": "zài huí lái"
+      },
+      {
+        "chinese": "唱给她听。",
+        "gloss": "and sing it to her.",
+        "pinyin": "chàng gěi tā tīng 。"
+      },
+      {
+        "chinese": "她要的不是刀，",
+        "gloss": "She does not want the knife",
+        "pinyin": "tā yào de bú shì dāo ，"
+      },
+      {
+        "chinese": "是那首歌。",
+        "gloss": "she wants the song",
+        "pinyin": "shì nà shǒu gē 。"
+      }
+    ],
+    "pinyin": "zài huí lái chàng gěi tā tīng 。 tā yào de bú shì dāo ， shì nà shǒu gē 。"
+  },
+  "最后见到他的人说，他要去灰色山口。": {
+    "english": "The last person to see him said he was heading to Gray Pass.",
+    "pinyin": "zuì hòu jiàn dào tā de rén shuō ， tā yào qù huī sè shān kǒu 。",
+    "interlinear": [
+      {
+        "chinese": "最后见到他的人说，",
+        "gloss": "The last person to see him said",
+        "pinyin": "zuì hòu jiàn dào tā de rén shuō ，"
+      },
+      {
+        "chinese": "他要去灰色山口。",
+        "gloss": "he was heading to Gray Pass.",
+        "pinyin": "tā yào qù huī sè shān kǒu 。"
+      }
+    ]
+  },
+  "这是A级任务。必须在她死以前完成，而且，不能取消！": {
+    "english": "This is an A-level quest. It must be completed before she dies, and it cannot be canceled!",
+    "pinyin": "zhè shì A jí rèn wu 。 bì xū zài tā sǐ yǐ qián wán chéng ， ér qiě ， bù néng qǔ xiāo ！",
+    "interlinear": [
+      {
+        "chinese": "这是A级任务。",
+        "gloss": "This is an A-level quest.",
+        "pinyin": "zhè shì A jí rèn wu 。"
+      },
+      {
+        "chinese": "必须在她死以前完成，",
+        "gloss": "It must be completed before she dies,",
+        "pinyin": "bì xū zài tā sǐ yǐ qián wán chéng ，"
+      },
+      {
+        "chinese": "而且，",
+        "gloss": "and",
+        "pinyin": "ér qiě ，"
+      },
+      {
+        "chinese": "不能取消！",
+        "gloss": "it cannot be canceled!",
+        "pinyin": "bù néng qǔ xiāo ！"
+      }
+    ]
+  },
+  "再找一次取消的地方。": {
+    "english": "Look once more for a way to cancel.",
+    "interlinear": [
+      {
+        "chinese": "再找一次",
+        "gloss": "look once more for",
+        "pinyin": "zài zhǎo yí cì"
+      },
+      {
+        "chinese": "取消的地方。",
+        "gloss": "a way to cancel",
+        "pinyin": "qǔ xiāo de dì fāng 。"
+      }
+    ],
+    "pinyin": "zài zhǎo yí cì qǔ xiāo de dì fāng 。"
+  },
+  "先把自己的等级和任务比一比。": {
+    "english": "Compare my level with the task first.",
+    "interlinear": [
+      {
+        "chinese": "先把自己的等级",
+        "gloss": "first compare my level",
+        "pinyin": "xiān bǎ zì jǐ de děng jí"
+      },
+      {
+        "chinese": "和任务比一比。",
+        "gloss": "with the task",
+        "pinyin": "hé rèn wu bǐ yi bǐ 。"
+      }
+    ],
+    "pinyin": "xiān bǎ zì jǐ de děng jí hé rèn wu bǐ yi bǐ 。"
+  },
+  "没看错，不能取消。刚才拒绝职业那么容易，这次却没得选。": {
+    "english": "I read it correctly: it cannot be canceled. Refusing the class just now was so easy, but this time I have no choice.",
+    "pinyin": "méi kàn cuò ， bù néng qǔ xiāo 。 gāng cái jù jué zhí yè nà me róng yì ， zhè cì què méi dé xuǎn 。",
+    "interlinear": [
+      {
+        "chinese": "没看错，",
+        "gloss": "I read it correctly:",
+        "pinyin": "méi kàn cuò ，"
+      },
+      {
+        "chinese": "不能取消。",
+        "gloss": "it cannot be canceled.",
+        "pinyin": "bù néng qǔ xiāo 。"
+      },
+      {
+        "chinese": "刚才拒绝职业那么容易，",
+        "gloss": "Refusing the class just now was so easy,",
+        "pinyin": "gāng cái jù jué zhí yè nà me róng yì ，"
+      },
+      {
+        "chinese": "这次却没得选。",
+        "gloss": "but this time I have no choice.",
+        "pinyin": "zhè cì què méi dé xuǎn 。"
+      }
+    ]
+  },
+  "我才三级。A级任务？这可不是多练几天就能完成的。": {
+    "english": "I am only level three. An A-level quest? This certainly is not something a few extra days of practice can finish.",
+    "pinyin": "wǒ cái sān jí 。 A jí rèn wu ？ zhè kě bú shì duō liàn jǐ tiān jiù néng wán chéng de 。",
+    "interlinear": [
+      {
+        "chinese": "我才三级。",
+        "gloss": "I am only level three.",
+        "pinyin": "wǒ cái sān jí 。"
+      },
+      {
+        "chinese": "A级任务？",
+        "gloss": "An A-level quest?",
+        "pinyin": "A jí rèn wu ？"
+      },
+      {
+        "chinese": "这可不是",
+        "gloss": "This certainly is not something",
+        "pinyin": "zhè kě bú shì"
+      },
+      {
+        "chinese": "多练几天就能完成的。",
+        "gloss": "a few extra days of practice can finish.",
+        "pinyin": "duō liàn jǐ tiān jiù néng wán chéng de 。"
+      }
+    ]
+  },
+  "三百级的高手，要几个人一起，才能完成B级任务。": {
+    "english": "Experts at level three hundred need several people together just to complete a B-level quest.",
+    "pinyin": "sān bǎi jí de gāo shǒu ， yào jǐ gè rén yì qǐ ， cái néng wán chéng B jí rèn wu 。",
+    "interlinear": [
+      {
+        "chinese": "三百级的高手，",
+        "gloss": "Experts at level three hundred",
+        "pinyin": "sān bǎi jí de gāo shǒu ，"
+      },
+      {
+        "chinese": "要几个人一起，",
+        "gloss": "need several people together",
+        "pinyin": "yào jǐ gè rén yì qǐ ，"
+      },
+      {
+        "chinese": "才能完成B级任务。",
+        "gloss": "just to complete a B-level quest.",
+        "pinyin": "cái néng wán chéng B jí rèn wu 。"
+      }
+    ]
+  },
+  "这次A级任务，我可能要到四百级，才有办法。": {
+    "english": "For this A-level quest, I may need to reach level four hundred before I can handle it.",
+    "pinyin": "zhè cì A jí rèn wu ， wǒ kě néng yào dào sì bǎi jí ， cái yǒu bàn fǎ 。",
+    "interlinear": [
+      {
+        "chinese": "这次A级任务，",
+        "gloss": "For this A-level quest,",
+        "pinyin": "zhè cì A jí rèn wu ，"
+      },
+      {
+        "chinese": "我可能要到四百级，",
+        "gloss": "I may need to reach level four hundred",
+        "pinyin": "wǒ kě néng yào dào sì bǎi jí ，"
+      },
+      {
+        "chinese": "才有办法。",
+        "gloss": "before I can handle it.",
+        "pinyin": "cái yǒu bàn fǎ 。"
+      }
+    ]
+  },
+  "灰色山口，还是大家最不能去的十个地方里的一个。那里的怪物，我现在打不过。": {
+    "english": "Gray Pass is also among the most forbidden ten places for everyone. The monsters there, I cannot beat them now.",
+    "pinyin": "huī sè shān kǒu ， hái shì dà jiā zuì bù néng qù de shí gè dì fāng lǐ de yí gè 。 nà lǐ de guài wù ， wǒ xiàn zài dǎ bú guò 。",
+    "interlinear": [
+      {
+        "chinese": "灰色山口，",
+        "gloss": "Gray Pass",
+        "pinyin": "huī sè shān kǒu ，"
+      },
+      {
+        "chinese": "还是大家最不能去的",
+        "gloss": "is also among the most forbidden",
+        "pinyin": "hái shì dà jiā zuì bù néng qù de"
+      },
+      {
+        "chinese": "十个地方里的一个。",
+        "gloss": "ten places for everyone.",
+        "pinyin": "shí gè dì fāng lǐ de yí gè 。"
+      },
+      {
+        "chinese": "那里的怪物，",
+        "gloss": "The monsters there,",
+        "pinyin": "nà lǐ de guài wù ，"
+      },
+      {
+        "chinese": "我现在打不过。",
+        "gloss": "I cannot beat them now.",
+        "pinyin": "wǒ xiàn zài dǎ bú guò 。"
+      }
+    ]
+  },
+  "而且，一次能接的任务只有三个。有了这个任务，我只能再接两个了。": {
+    "english": "Furthermore, the quests I can hold at once are only three. With this quest, I can only take two more.",
+    "pinyin": "ér qiě ， yí cì néng jiē de rèn wu zhǐ yǒu sān gè 。 yǒu le zhè ge rèn wu ， wǒ zhǐ néng zài jiē liǎng gè le 。",
+    "interlinear": [
+      {
+        "chinese": "而且，",
+        "gloss": "Furthermore,",
+        "pinyin": "ér qiě ，"
+      },
+      {
+        "chinese": "一次能接的任务",
+        "gloss": "the quests I can hold at once",
+        "pinyin": "yí cì néng jiē de rèn wu"
+      },
+      {
+        "chinese": "只有三个。",
+        "gloss": "are only three.",
+        "pinyin": "zhǐ yǒu sān gè 。"
+      },
+      {
+        "chinese": "有了这个任务，",
+        "gloss": "With this quest,",
+        "pinyin": "yǒu le zhè ge rèn wu ，"
+      },
+      {
+        "chinese": "我只能再接两个了。",
+        "gloss": "I can only take two more.",
+        "pinyin": "wǒ zhǐ néng zài jiē liǎng gè le 。"
+      }
+    ]
+  },
+  "我没得选，却要一直带着这个任务。": {
+    "english": "I have no choice, but must keep carrying this quest.",
+    "pinyin": "wǒ méi dé xuǎn ， què yào yì zhí dài zhe zhè ge rèn wu 。",
+    "interlinear": [
+      {
+        "chinese": "我没得选，",
+        "gloss": "I have no choice,",
+        "pinyin": "wǒ méi dé xuǎn ，"
+      },
+      {
+        "chinese": "却要一直带着这个任务。",
+        "gloss": "but must keep carrying this quest.",
+        "pinyin": "què yào yì zhí dài zhe zhè ge rèn wu 。"
+      }
+    ]
+  },
+  "她想再听一次歌。我手里拿着礼物，却在想自己要花多少年。": {
+    "english": "She wants to hear the song once more. I hold the gifts in my hands, but am thinking how many years I will need.",
+    "pinyin": "tā xiǎng zài tīng yí cì gē 。 wǒ shǒu lǐ ná zhe lǐ wù ， què zài xiǎng zì jǐ yào huā duō shào nián 。",
+    "interlinear": [
+      {
+        "chinese": "她想再听一次歌。",
+        "gloss": "She wants to hear the song once more.",
+        "pinyin": "tā xiǎng zài tīng yí cì gē 。"
+      },
+      {
+        "chinese": "我手里拿着礼物，",
+        "gloss": "I hold the gifts in my hands,",
+        "pinyin": "wǒ shǒu lǐ ná zhe lǐ wù ，"
+      },
+      {
+        "chinese": "却在想",
+        "gloss": "but am thinking",
+        "pinyin": "què zài xiǎng"
+      },
+      {
+        "chinese": "自己要花多少年。",
+        "gloss": "how many years I will need.",
+        "pinyin": "zì jǐ yào huā duō shào nián 。"
+      }
+    ]
+  },
+  "不过，新的技能也来了：鉴定术、雕刻术、修理术，还有手工艺。": {
+    "english": "However, new skills arrive too: Item Identification, Sculpture Mastery, Repair, and Handicraft.",
+    "pinyin": "bú guò ， xīn de jì néng yě lái le ： jiàn dìng shù 、 diāo kè shù 、 xiū lǐ shù ， hái yǒu shǒu gōng yì 。",
+    "interlinear": [
+      {
+        "chinese": "不过，",
+        "gloss": "However,",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "新的技能也来了：",
+        "gloss": "new skills arrive too:",
+        "pinyin": "xīn de jì néng yě lái le ："
+      },
+      {
+        "chinese": "鉴定术、",
+        "gloss": "Item Identification,",
+        "pinyin": "jiàn dìng shù 、"
+      },
+      {
+        "chinese": "雕刻术、",
+        "gloss": "Sculpture Mastery,",
+        "pinyin": "diāo kè shù 、"
+      },
+      {
+        "chinese": "修理术，",
+        "gloss": "Repair,",
+        "pinyin": "xiū lǐ shù ，"
+      },
+      {
+        "chinese": "还有手工艺。",
+        "gloss": "and Handicraft.",
+        "pinyin": "hái yǒu shǒu gōng yì 。"
+      }
+    ]
+  },
+  "我没选择那个职业，却学到了四种技能！": {
+    "english": "I did not choose that class, yet I learned four skills!",
+    "pinyin": "wǒ méi xuǎn zé nà ge zhí yè ， què xué dào le sì zhǒng jì néng ！",
+    "interlinear": [
+      {
+        "chinese": "我没选择那个职业，",
+        "gloss": "I did not choose that class,",
+        "pinyin": "wǒ méi xuǎn zé nà ge zhí yè ，"
+      },
+      {
+        "chinese": "却学到了四种技能！",
+        "gloss": "yet I learned four skills!",
+        "pinyin": "què xué dào le sì zhǒng jì néng ！"
+      }
+    ]
+  },
+  "有了修理术，什么钱不用花了？": {
+    "english": "With the repair skill, what expense can I avoid?",
+    "interlinear": [
+      {
+        "chinese": "有了修理术，",
+        "gloss": "with the repair skill",
+        "pinyin": "yǒu le xiū lǐ shù ，"
+      },
+      {
+        "chinese": "什么钱不用花了？",
+        "gloss": "what expense can I avoid",
+        "pinyin": "shén me qián bú yòng huā le ？"
+      }
+    ],
+    "pinyin": "yǒu le xiū lǐ shù ， shén me qián bú yòng huā le ？"
+  },
+  "先别卖便宜了：鉴定术。": {
+    "english": "Avoid selling too cheaply: the identification skill.",
+    "interlinear": [
+      {
+        "chinese": "先别卖便宜了：",
+        "gloss": "first avoid selling too cheaply",
+        "pinyin": "xiān bié mài pián yi le ："
+      },
+      {
+        "chinese": "鉴定术。",
+        "gloss": "the identification skill",
+        "pinyin": "jiàn dìng shù 。"
+      }
+    ],
+    "pinyin": "xiān bié mài pián yi le ： jiàn dìng shù 。"
+  },
+  "东西不能用了，也许就不用花钱找别人了，自己就有办法。": {
+    "english": "When something no longer works, perhaps I will not need to pay someone else; I will be able to handle it myself.",
+    "pinyin": "dōng xi bù néng yòng le ， yě xǔ jiù bú yòng huā qián zhǎo bié rén le ， zì jǐ jiù yǒu bàn fǎ 。",
+    "interlinear": [
+      {
+        "chinese": "东西不能用了，",
+        "gloss": "When something no longer works,",
+        "pinyin": "dōng xi bù néng yòng le ，"
+      },
+      {
+        "chinese": "也许就不用花钱",
+        "gloss": "perhaps I will not need to pay",
+        "pinyin": "yě xǔ jiù bú yòng huā qián"
+      },
+      {
+        "chinese": "找别人了，",
+        "gloss": "someone else;",
+        "pinyin": "zhǎo bié rén le ，"
+      },
+      {
+        "chinese": "自己就有办法。",
+        "gloss": "I will be able to handle it myself.",
+        "pinyin": "zì jǐ jiù yǒu bàn fǎ 。"
+      }
+    ]
+  },
+  "有了这个技能，也许就知道东西能卖多少钱，不会把好东西便宜卖掉。": {
+    "english": "With this skill, perhaps I can tell how much something can sell for, and will not sell something good too cheaply.",
+    "pinyin": "yǒu le zhè ge jì néng ， yě xǔ jiù zhī dào dōng xi néng mài duō shǎo qián ， bú huì bǎ hǎo dōng xi pián yi mài diào 。",
+    "interlinear": [
+      {
+        "chinese": "有了这个技能，",
+        "gloss": "With this skill,",
+        "pinyin": "yǒu le zhè ge jì néng ，"
+      },
+      {
+        "chinese": "也许就知道",
+        "gloss": "perhaps I can tell",
+        "pinyin": "yě xǔ jiù zhī dào"
+      },
+      {
+        "chinese": "东西能卖多少钱，",
+        "gloss": "how much something can sell for,",
+        "pinyin": "dōng xi néng mài duō shǎo qián ，"
+      },
+      {
+        "chinese": "不会把好东西便宜卖掉。",
+        "gloss": "and will not sell something good too cheaply.",
+        "pinyin": "bú huì bǎ hǎo dōng xi pián yi mài diào 。"
+      }
+    ]
+  },
+  "不是自己职业的技能，一般很难学到。这些技能，对我很有用。": {
+    "english": "Skills outside one's own class are usually hard to learn. These skills are very useful to me.",
+    "pinyin": "bú shì zì jǐ zhí yè de jì néng ， yì bān hěn nán xué dào 。 zhè xiē jì néng ， duì wǒ hěn yǒu yòng 。",
+    "interlinear": [
+      {
+        "chinese": "不是自己职业的技能，",
+        "gloss": "Skills outside one's own class",
+        "pinyin": "bú shì zì jǐ zhí yè de jì néng ，"
+      },
+      {
+        "chinese": "一般很难学到。",
+        "gloss": "are usually hard to learn.",
+        "pinyin": "yì bān hěn nán xué dào 。"
+      },
+      {
+        "chinese": "这些技能，",
+        "gloss": "These skills",
+        "pinyin": "zhè xiē jì néng ，"
+      },
+      {
+        "chinese": "对我很有用。",
+        "gloss": "are very useful to me.",
+        "pinyin": "duì wǒ hěn yǒu yòng 。"
+      }
+    ]
+  },
+  "第二个任务就有隐藏职业。我拒绝以后，还有四种有用的技能。": {
+    "english": "The second quest already offered a hidden class. After I refused, there were still four useful skills.",
+    "pinyin": "dì èr gè rèn wù jiù yǒu yǐn cáng zhí yè 。 wǒ jù jué yǐ hòu ， hái yǒu sì zhǒng yǒu yòng de jì néng 。",
+    "interlinear": [
+      {
+        "chinese": "第二个任务",
+        "gloss": "The second quest",
+        "pinyin": "dì èr gè rèn wu"
+      },
+      {
+        "chinese": "就有隐藏职业。",
+        "gloss": "already offered a hidden class.",
+        "pinyin": "jiù yǒu yǐn cáng zhí yè 。"
+      },
+      {
+        "chinese": "我拒绝以后，",
+        "gloss": "After I refused,",
+        "pinyin": "wǒ jù jué yǐ hòu ，"
+      },
+      {
+        "chinese": "还有四种有用的技能。",
+        "gloss": "there were still four useful skills.",
+        "pinyin": "hái yǒu sì zhǒng yǒu yòng de jì néng 。"
+      }
+    ]
+  },
+  "刀我收下了，任务也得收下。可这些技能也有用，先学会再说。": {
+    "english": "I took the knife. I must take the task too. But the skills are useful. Learn them first.",
+    "interlinear": [
+      {
+        "chinese": "刀我收下了，",
+        "gloss": "I took the knife",
+        "pinyin": "dāo wǒ shōu xià le ，"
+      },
+      {
+        "chinese": "任务也得收下。",
+        "gloss": "I must take the task too.",
+        "pinyin": "rèn wu yě de shōu xià 。"
+      },
+      {
+        "chinese": "可这些技能",
+        "gloss": "But these skills",
+        "pinyin": "kě zhè xiē jì néng"
+      },
+      {
+        "chinese": "也有用，",
+        "gloss": "are useful too",
+        "pinyin": "yě yǒu yòng ，"
+      },
+      {
+        "chinese": "先学会再说。",
+        "gloss": "learn them first",
+        "pinyin": "xiān xué huì zài shuō 。"
+      }
+    ],
+    "pinyin": "dāo wǒ shōu xià le ， rèn wu yě de shōu xià 。 kě zhè xiē jì néng yě yǒu yòng ， xiān xué huì zài shuō 。"
+  },
+  "可任务要等我变强，她却不会一直等下去。": {
+    "english": "The task must wait until I grow stronger. She cannot wait forever.",
+    "interlinear": [
+      {
+        "chinese": "可任务要等我变强，",
+        "gloss": "but the task must wait until I grow stronger",
+        "pinyin": "kě rèn wu yào děng wǒ biàn qiáng ，"
+      },
+      {
+        "chinese": "她却不会",
+        "gloss": "and she will not",
+        "pinyin": "tā què bú huì"
+      },
+      {
+        "chinese": "一直等下去。",
+        "gloss": "be able to wait forever",
+        "pinyin": "yì zhí děng xià qù 。"
+      }
+    ],
+    "pinyin": "kě rèn wu yào děng wǒ biàn qiáng ， tā què bú huì yì zhí děng xià qù 。"
+  },
+  "这是王后的东西，我一直好好收着。": {
+    "english": "It belonged to the queen. I have kept it safe all this time.",
+    "pinyin": "zhè shì wáng hòu de dōng xī ， wǒ yì zhí hǎo hǎo shōu zhe 。",
+    "interlinear": [
+      {
+        "chinese": "这是王后的东西，",
+        "gloss": "it belonged to the queen",
+        "pinyin": "zhè shì wáng hòu de dōng xī ，"
+      },
+      {
+        "chinese": "我一直",
+        "gloss": "all this time I have",
+        "pinyin": "wǒ yì zhí"
+      },
+      {
+        "chinese": "好好收着。",
+        "gloss": "kept it safe",
+        "pinyin": "hǎo hǎo shōu zhe 。"
+      }
+    ]
+  }
+}

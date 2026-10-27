@@ -1,0 +1,1493 @@
+{
+  "scope": "Explicitly requested text and choice revision of LMS episodes 16–27",
+  "voice": "Immediate drama",
+  "reason": "Source-supported bargaining, competing desires and difficult choices; quieter tonal variation preserves the attendant’s grief and Weed’s contradictions.",
+  "preservation": "Original packages and saved attempts retained byte-for-byte. New versions start new attempts; prior steps are not replayed against changed text. Existing opening clips and cast retained.",
+  "source": "The fingerprinted user-supplied compilation, Chapter 2 closing, Chapter 3, and Chapter 4 through the NPC misunderstanding. Extracts remain private.",
+  "episodes": [
+    {
+      "episode": 16,
+      "previousRelease": "moonlight-16-v1",
+      "previousPath": "moonlight-16.json",
+      "previousSha256": "130f04aa62d95575f21ccd220aa910e9fb9e886b1b66f4e7b29043779b1f5e95",
+      "release": "moonlight-16-v2",
+      "planning": {
+        "sourceBoundary": "End of Chapter 2 from bread-price arithmetic through famine memory; Chapter 3 begins with fountain, street and sculpture shop. Ends as Weed slowly retreats, before he glances at displayed statues.",
+        "dramaticChange": "Relief about food meets exclusion; politeness fails to win a hearing.",
+        "essentialNewWords": [
+          "铜币",
+          "水壶",
+          "贵族",
+          "客人"
+        ],
+        "englishNarrationPurpose": "None; Mandarin throughout.",
+        "choicesAndCallbacks": [
+          {
+            "choice": "count",
+            "options": [
+              {
+                "id": "food",
+                "intention": "先算算能吃多久。",
+                "immediateResponse": "这么多面包！我终于不用每天担心吃不饱了。"
+              },
+              {
+                "id": "reward",
+                "intention": "任务还没做完，先别开心。",
+                "immediateResponse": "钱是先给的。问题没问清楚，我还不能安心。"
+              }
+            ],
+            "callback": "Existing final private callback retained."
+          },
+          {
+            "choice": "crowd",
+            "options": [
+              {
+                "id": "water",
+                "intention": "多带一点水，不用花钱。",
+                "immediateResponse": "水不用花钱。下次来，也要记得多带一点。"
+              },
+              {
+                "id": "quiet",
+                "intention": "不跟着他们看热闹，先找店。",
+                "immediateResponse": "他们忙他们的。我先把自己的任务做好。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "greeting",
+            "options": [
+              {
+                "id": "respect",
+                "intention": "您忙的话，我说得短一点。",
+                "immediateResponse": "说得短，也要看是什么事。"
+              },
+              {
+                "id": "look",
+                "intention": "您现在有时间听个问题吗？",
+                "immediateResponse": "你先说，找我做什么？"
+              }
+            ],
+            "callback": "Existing final private callback retained."
+          },
+          {
+            "choice": "wait",
+            "options": [
+              {
+                "id": "brief",
+                "intention": "让我问完，我就走。",
+                "immediateResponse": "我问完这个问题就走。"
+              },
+              {
+                "id": "patient",
+                "intention": "不再说了，等他的回答。",
+                "immediateResponse": "我不说话了。他也不说，眼睛却看向门口。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          }
+        ],
+        "sceneActivities": [
+          {
+            "activity": "activity Hyun walk right steady",
+            "purpose": "First attentive city walk carries thoughts about crowds and low-status clothing.",
+            "start": "After filling the canteen at the fountain.",
+            "stop": "At the sculpture shop; no scrolling is used on the fixed town-square background.",
+            "framing": "Wide walking shot, medium at shop entrance; stillness for rejection."
+          },
+          {
+            "activity": "activity Hyun walk left slow",
+            "purpose": "Slow retreat at the rejected request, ending before the source’s glance at the displayed statues.",
+            "start": "Final cliffhanger narration.",
+            "stop": "End of episode.",
+            "framing": "Wide; no scrolling."
+          }
+        ],
+        "conversation": "The shopkeeper wants to dismiss an apparently poor visitor; Weed wants a hearing. Preserve the aborted greeting and denial rather than turning the encounter into helpful exposition.",
+        "storytellingVoice": {
+          "selected": "Immediate drama",
+          "reason": "Weed’s practical desire, competing intentions and costly choices drive this arc. Preserve his opportunism, use quieter space for the attendant, and do not impose an adolescent personality."
+        },
+        "revision": "Explicitly requested revision of episodes 16–27. Fixed source events and boundaries; new release version. Existing art, opening clips and prior saves preserved.",
+        "characterSignatures": {
+          "Hyun": "Practical short questions; polite bargaining aloud, money calculations in private. Under pressure, shorter refusals. Quiet attention at a correction, determined practice afterward.",
+          "Shopkeeper": "Guarded with unknown visitors; expansive when his art is appreciated. Wants genuine attention and an answer to the mystery.",
+          "Bard": "Brief, impatient bargaining; controls the pace and admits where his knowledge ends.",
+          "Attendant": "Speaks as a witness and protector of the queen’s memory; corrects Weed without becoming an exposition prompt.",
+          "Watcher": "Hopeful leading questions; interprets refusals as evidence of a hidden quest."
+        },
+        "directing": "Hold existing pairs through ordinary conversation. Retain reader-controlled listener turns and aftermath; frame newly responsive choice branches. Preserve source cast, props, stage geometry and existing walking/training.",
+        "payoffAndFreshQuestion": "He retreats slowly without abandoning his task; a different approach is needed.",
+        "pinyinReview": "Reviewed new full-line and chunk readings. Corrected context-dependent 只, 得 (complement vs obligation), 成为 and aspectual 了. Existing exact-text annotations reused."
+      },
+      "sourceNotes": [
+        "The Legendary Moonlight Sculptor, Book 1, end of Chapter 2 and opening of Chapter 3, supplied fingerprinted EPUB. Bread-price calculation, filling the canteen, first city walk, sculpture-shop welcome turning cold at his clothing, polite request refused and slow retreat toward the door. Stops before the glance at the statues and flattery. Choice replies elaborate attention and delivery without changing source events."
+      ],
+      "verification": {
+        "deterministicRoutes": 16,
+        "browserRoutes": 2,
+        "devices": [
+          "desktop",
+          "phone"
+        ],
+        "reducedMotion": true,
+        "resume": true,
+        "pinyinReviewed": true,
+        "bytes": 1399219,
+        "listenerReview": "Two contrasting choice responses and following Continue-controlled entries checked on phone and desktop, including reduced motion. Visual screenshots reviewed; audio decoding/playback checked, not a claim of perfect synthetic pronunciation."
+      }
+    },
+    {
+      "episode": 17,
+      "previousRelease": "moonlight-17-v1",
+      "previousPath": "moonlight-17.json",
+      "previousSha256": "276290d9377f6760b6df7f33531cd95e5f261f93d1406587eb4016f36fe30ab3",
+      "release": "moonlight-17-v2",
+      "planning": {
+        "sourceBoundary": "From the glance at displayed statues through permission to view them; before Weed relished the statues on display at leisure.",
+        "dramaticChange": "The rejected visitor earns a seat by noticing what the keeper values.",
+        "essentialNewWords": [
+          "雕像",
+          "老鹰",
+          "金子",
+          "蜂蜜水"
+        ],
+        "englishNarrationPurpose": "None; Mandarin throughout.",
+        "choicesAndCallbacks": [
+          {
+            "choice": "praise",
+            "options": [
+              {
+                "id": "alive",
+                "intention": "它好像真的会动。",
+                "immediateResponse": "你认真看过了？说说看，哪里好？"
+              },
+              {
+                "id": "master",
+                "intention": "做它的人，一定很了不起。",
+                "immediateResponse": "光说了不起可不够。你看出什么来了？"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "interest",
+            "options": [
+              {
+                "id": "peaceful",
+                "intention": "看这些东西，心里就安静了。",
+                "immediateResponse": "外面那么吵，这里倒能让你安心？"
+              },
+              {
+                "id": "beauty",
+                "intention": "这么美的东西，谁会不喜欢呢？",
+                "immediateResponse": "喜欢看的人多，肯认真看的人可不多。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "drink",
+            "options": [
+              {
+                "id": "tired",
+                "intention": "先喝一口，好好休息一下。",
+                "immediateResponse": "喝下去，好像连身上的累都少了一点。"
+              },
+              {
+                "id": "thankful",
+                "intention": "先说谢谢，再接着喝。",
+                "immediateResponse": "这水来得正好。谢谢您，我真的累了。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "tour",
+            "options": [
+              {
+                "id": "regret",
+                "intention": "现在就走，我会一直想着这里的东西。",
+                "immediateResponse": "这回可没人赶你。好好看吧。"
+              },
+              {
+                "id": "linger",
+                "intention": "我还想多看一会儿。",
+                "immediateResponse": "难得有人愿意多看一会儿。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          }
+        ],
+        "sceneActivities": [
+          {
+            "activity": "perform Shopkeeper give Hyun repeat 1 steady",
+            "purpose": "Mime handing over the honeyed water, making the change from rejection to hospitality visible.",
+            "framing": "Two-shot, distinct left/right actors. No unsupported cup prop or sitting pose."
+          }
+        ],
+        "conversation": "Weed wants a hearing; the keeper wants appreciation and company. Weed praises art publicly while privately watching the welcome change. Four reconverging choices, no variables; reaction shots mark the change rather than cutting mechanically at each line.",
+        "storytellingVoice": {
+          "selected": "Immediate drama",
+          "reason": "Weed’s practical desire, competing intentions and costly choices drive this arc. Preserve his opportunism, use quieter space for the attendant, and do not impose an adolescent personality."
+        },
+        "revision": "Explicitly requested revision of episodes 16–27. Fixed source events and boundaries; new release version. Existing art, opening clips and prior saves preserved.",
+        "characterSignatures": {
+          "Hyun": "Practical short questions; polite bargaining aloud, money calculations in private. Under pressure, shorter refusals. Quiet attention at a correction, determined practice afterward.",
+          "Shopkeeper": "Guarded with unknown visitors; expansive when his art is appreciated. Wants genuine attention and an answer to the mystery.",
+          "Bard": "Brief, impatient bargaining; controls the pace and admits where his knowledge ends.",
+          "Attendant": "Speaks as a witness and protector of the queen’s memory; corrects Weed without becoming an exposition prompt.",
+          "Watcher": "Hopeful leading questions; interprets refusals as evidence of a hidden quest."
+        },
+        "directing": "Hold existing pairs through ordinary conversation. Retain reader-controlled listener turns and aftermath; frame newly responsive choice branches. Preserve source cast, props, stage geometry and existing walking/training.",
+        "payoffAndFreshQuestion": "Access is secured, but Weed still must ask his real question.",
+        "pinyinReview": "Reviewed new full-line and chunk readings. Corrected context-dependent 只, 得 (complement vs obligation), 成为 and aspectual 了. Existing exact-text annotations reused."
+      },
+      "sourceNotes": [
+        "Adapted from the supplied fingerprinted Legendary Moonlight Sculptor EPUB, Book 1 Chapter 3: praise of the golden two-headed eagle, invitation to sit, cold honeyed water and permission to view the statues. Stops before the private business appraisal. Local dialogue options elaborate tone without changing source events."
+      ],
+      "verification": {
+        "deterministicRoutes": 16,
+        "browserRoutes": 2,
+        "devices": [
+          "desktop",
+          "phone"
+        ],
+        "reducedMotion": true,
+        "resume": true,
+        "pinyinReviewed": true,
+        "bytes": 1424838,
+        "listenerReview": "Two contrasting choice responses and following Continue-controlled entries checked on phone and desktop, including reduced motion. Visual screenshots reviewed; audio decoding/playback checked, not a claim of perfect synthetic pronunciation."
+      }
+    },
+    {
+      "episode": 18,
+      "previousRelease": "moonlight-18-v1",
+      "previousPath": "moonlight-18.json",
+      "previousSha256": "5f26cc03c0e6af42c9d4cddaf8955c41eaa37f113e256e6e4ff46b8f826074cb",
+      "release": "moonlight-18-v2",
+      "planning": {
+        "sourceBoundary": "Weed relished the statues on display at leisure through intent to return for the reward; stop before As Weed was looking for the right moment to say his farewells and leave.",
+        "dramaticChange": "Private dismissal of sculpture collides with a confirmed impossible feat.",
+        "essentialNewWords": [
+          "王宫",
+          "装备",
+          "证实"
+        ],
+        "englishNarrationPurpose": "None; Mandarin throughout.",
+        "choicesAndCallbacks": [
+          {
+            "choice": "business",
+            "options": [
+              {
+                "id": "price",
+                "intention": "先看价格，三十枚银币呢。",
+                "immediateResponse": "是不少。可是，没有人买，我还是没有钱。"
+              },
+              {
+                "id": "buyers",
+                "intention": "先找买家，谁需要它？",
+                "immediateResponse": "喜欢看的人，不一定愿意花钱买。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "question",
+            "options": [
+              {
+                "id": "doubt",
+                "intention": "这事，真的发生过吗？",
+                "immediateResponse": "你不信？这可不是随便编的故事。"
+              },
+              {
+                "id": "heard",
+                "intention": "您也听说过这事吗？",
+                "immediateResponse": "你总算问对人了。这个故事，我知道。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "response",
+            "options": [
+              {
+                "id": "trust",
+                "intention": "您相信这些客人？",
+                "immediateResponse": "他们常来这里。我不是听谁说都信。"
+              },
+              {
+                "id": "surprised",
+                "intention": "不是只有一个人这么说？",
+                "immediateResponse": "不只一个。来自王宫的客人，我才相信。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "reward",
+            "options": [
+              {
+                "id": "easy",
+                "intention": "先看任务消息，别白高兴。",
+                "immediateResponse": "E级任务，是不难。可刚才，我差点连问题都问不了。"
+              },
+              {
+                "id": "welcome",
+                "intention": "先向他道谢，这话可不好问。",
+                "immediateResponse": "谢谢您。我总算能回去交代了。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          }
+        ],
+        "sceneActivities": [
+          {
+            "activity": "activity Hyun walk right slow",
+            "purpose": "Slow browsing during private business appraisal; pause for the first choice, resume, stop before the conversation.",
+            "framing": "Wide shot with both cast members; fixed shop background, no scrolling."
+          }
+        ],
+        "conversation": "Weed wants reliable confirmation; the keeper enjoys sharing a familiar sculptors’ tale with an appreciative visitor. Keep private financial judgments private. Compress the business analysis before their exchange; no invented revelation about how the moonlight was carved.",
+        "storytellingVoice": {
+          "selected": "Immediate drama",
+          "reason": "Weed’s practical desire, competing intentions and costly choices drive this arc. Preserve his opportunism, use quieter space for the attendant, and do not impose an adolescent personality."
+        },
+        "revision": "Explicitly requested revision of episodes 16–27. Fixed source events and boundaries; new release version. Existing art, opening clips and prior saves preserved.",
+        "characterSignatures": {
+          "Hyun": "Practical short questions; polite bargaining aloud, money calculations in private. Under pressure, shorter refusals. Quiet attention at a correction, determined practice afterward.",
+          "Shopkeeper": "Guarded with unknown visitors; expansive when his art is appreciated. Wants genuine attention and an answer to the mystery.",
+          "Bard": "Brief, impatient bargaining; controls the pace and admits where his knowledge ends.",
+          "Attendant": "Speaks as a witness and protector of the queen’s memory; corrects Weed without becoming an exposition prompt.",
+          "Watcher": "Hopeful leading questions; interprets refusals as evidence of a hidden quest."
+        },
+        "directing": "Hold existing pairs through ordinary conversation. Retain reader-controlled listener turns and aftermath; frame newly responsive choice branches. Preserve source cast, props, stage geometry and existing walking/training.",
+        "payoffAndFreshQuestion": "The investigation completes; how moonlight was carved is still unexplained.",
+        "pinyinReview": "Reviewed new full-line and chunk readings. Corrected context-dependent 只, 得 (complement vs obligation), 成为 and aspectual 了. Existing exact-text annotations reused."
+      },
+      "sourceNotes": [
+        "Adapted from the supplied fingerprinted Legendary Moonlight Sculptor EPUB, Book 1 Chapter 3: private sculpture-market appraisal, inquiry about moonlight carving fifty years ago, confirmation from royal patrons and completed E-level investigation. Stops before the keeper proposes another quest. Choice responses elaborate the existing exchange without changing events."
+      ],
+      "verification": {
+        "deterministicRoutes": 16,
+        "browserRoutes": 2,
+        "devices": [
+          "desktop",
+          "phone"
+        ],
+        "reducedMotion": true,
+        "resume": true,
+        "pinyinReviewed": true,
+        "bytes": 1324729,
+        "listenerReview": "Two contrasting choice responses and following Continue-controlled entries checked on phone and desktop, including reduced motion. Visual screenshots reviewed; audio decoding/playback checked, not a claim of perfect synthetic pronunciation."
+      }
+    },
+    {
+      "episode": 19,
+      "previousRelease": "moonlight-19-v1",
+      "previousPath": "moonlight-19.json",
+      "previousSha256": "239e4c96d88df00ebc1e656a2fe61951978904ba87768684422ce98cf276bf57",
+      "release": "moonlight-19-v2",
+      "planning": {
+        "sourceBoundary": "Pinned chapter 3 passage: keeper asks about Queen Evane; serial quest accepted; bard lead and royal warning. Stop before Weed leaves for the pub.",
+        "dramaticChange": "A profitable lead carries hostility and limits he cannot ignore.",
+        "essentialNewWords": [
+          "王后",
+          "骑士",
+          "敌意",
+          "警告",
+          "雕刻家"
+        ],
+        "englishNarrationPurpose": "None; all readable story text remains Mandarin.",
+        "choicesAndCallbacks": [
+          {
+            "choice": "silence",
+            "options": [
+              {
+                "id": "curious",
+                "intention": "您想知道的，他们偏不说？",
+                "immediateResponse": "是啊。每次都停在最要紧的地方。"
+              },
+              {
+                "id": "careful",
+                "intention": "连他们都不肯说，还要问下去吗？",
+                "immediateResponse": "我也知道得小心。不过，有个人的名字他们提过。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "warning",
+            "options": [
+              {
+                "id": "danger",
+                "intention": "先看警告，别只看奖励。",
+                "immediateResponse": "E级写在上面，骑士的敌意写在下面。我两行都得看。"
+              },
+              {
+                "id": "reward",
+                "intention": "先想后面的机会。",
+                "immediateResponse": "奖励再好，也要能把任务做好啊。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "reassurance",
+            "options": [
+              {
+                "id": "honest",
+                "intention": "可我也不是什么都能做啊。",
+                "immediateResponse": "我要的是消息，不是请你去打仗。"
+              },
+              {
+                "id": "modest",
+                "intention": "您这么相信我，我就更怕做不好了。",
+                "immediateResponse": "只会说自己厉害的人，我还不放心呢。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "lead",
+            "options": [
+              {
+                "id": "stories",
+                "intention": "去找诗人，能问到旧事？",
+                "immediateResponse": "故事和街上的消息，他都知道一些。"
+              },
+              {
+                "id": "discreet",
+                "intention": "我去问，可不会到处说。",
+                "immediateResponse": "这就对了。我想解开疑问，可不想惹出麻烦。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          }
+        ],
+        "sceneActivities": [
+          {
+            "purpose": "A restrained two-person negotiation in the shop; no invented travel or training.",
+            "staging": "Partner gaze, breathing and listener defaults. Hold two-shot during questions and reassurance. Tighten on royal revelation, risk assessment and acceptance hesitation; return to pair for acceptance. Keeper close-up emphasizes final warning.",
+            "interruptions": "Quest offer shifts to private assessment; no prop or activity loop."
+          }
+        ],
+        "storytellingVoice": {
+          "selected": "Immediate drama",
+          "reason": "Weed’s practical desire, competing intentions and costly choices drive this arc. Preserve his opportunism, use quieter space for the attendant, and do not impose an adolescent personality."
+        },
+        "revision": "Explicitly requested revision of episodes 16–27. Fixed source events and boundaries; new release version. Existing art, opening clips and prior saves preserved.",
+        "characterSignatures": {
+          "Hyun": "Practical short questions; polite bargaining aloud, money calculations in private. Under pressure, shorter refusals. Quiet attention at a correction, determined practice afterward.",
+          "Shopkeeper": "Guarded with unknown visitors; expansive when his art is appreciated. Wants genuine attention and an answer to the mystery.",
+          "Bard": "Brief, impatient bargaining; controls the pace and admits where his knowledge ends.",
+          "Attendant": "Speaks as a witness and protector of the queen’s memory; corrects Weed without becoming an exposition prompt.",
+          "Watcher": "Hopeful leading questions; interprets refusals as evidence of a hidden quest."
+        },
+        "directing": "Hold existing pairs through ordinary conversation. Retain reader-controlled listener turns and aftermath; frame newly responsive choice branches. Preserve source cast, props, stage geometry and existing walking/training.",
+        "payoffAndFreshQuestion": "He accepts a bounded inquiry; secrecy now constrains how he asks.",
+        "pinyinReview": "Reviewed new full-line and chunk readings. Corrected context-dependent 只, 得 (complement vs obligation), 成为 and aspectual 了. Existing exact-text annotations reused."
+      },
+      "sourceNotes": [
+        "Adapted from the supplied fingerprinted Legendary Moonlight Sculptor EPUB, Book 1 Chapter 3: the keeper’s request concerning Queen Evane, serial-quest warning, Weed’s hesitation and acceptance, and the bard lead. Ends before he leaves for the pub. Local choice replies elaborate the exchange without changing events."
+      ],
+      "verification": {
+        "deterministicRoutes": 16,
+        "browserRoutes": 2,
+        "devices": [
+          "desktop",
+          "phone"
+        ],
+        "reducedMotion": true,
+        "resume": true,
+        "pinyinReviewed": true,
+        "bytes": 1471816,
+        "listenerReview": "Two contrasting choice responses and following Continue-controlled entries checked on phone and desktop, including reduced motion. Visual screenshots reviewed; audio decoding/playback checked, not a claim of perfect synthetic pronunciation."
+      }
+    },
+    {
+      "episode": 20,
+      "previousRelease": "moonlight-20-v1",
+      "previousPath": "moonlight-20.json",
+      "previousSha256": "3f67bb2b9f74b30d2cd66cb1083cad6839e1930e1ccbb56c22a73c8d929f4224",
+      "release": "moonlight-20-v2",
+      "planning": {
+        "sourceBoundary": "Pinned chapter 3 passage, leaving shop through discovery that queen and sculptor loved each other since childhood; stop before village history.",
+        "dramaticChange": "His successful flattery tactic fails, and his careless payment costs half his money.",
+        "essentialNewWords": [
+          "王后",
+          "亲近",
+          "损失",
+          "口袋"
+        ],
+        "englishNarrationPurpose": "None; Mandarin throughout.",
+        "choicesAndCallbacks": [
+          {
+            "choice": "search",
+            "options": [
+              {
+                "id": "local",
+                "intention": "先问本地的人，别找玩家。",
+                "immediateResponse": "他知道这里的事，可能也知道五十年前的故事。"
+              },
+              {
+                "id": "old",
+                "intention": "先找年纪大些的，听过的事多。",
+                "immediateResponse": "唱得好不好，不是最重要的。知道得多才有用。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "praise",
+            "options": [
+              {
+                "id": "voice",
+                "intention": "光是听您的声音，就让人不想走了。",
+                "immediateResponse": "声音好，也得吃饭。你问不问？"
+              },
+              {
+                "id": "charm",
+                "intention": "年轻的时候，一定有很多女孩喜欢您吧？",
+                "immediateResponse": "别替我操心这些。你不是要问王宫的事吗？"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "decide",
+            "options": [
+              {
+                "id": "quit",
+                "intention": "先想清楚现在离开的代价。",
+                "immediateResponse": "不做，也不会有什么问题。可奖励也拿不到了。"
+              },
+              {
+                "id": "later",
+                "intention": "为后面的奖励，再忍一下。",
+                "immediateResponse": "现在就走，我可能会错过好东西。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "meaning",
+            "options": [
+              {
+                "id": "clarify",
+                "intention": "您说清楚一点，是什么关系？",
+                "immediateResponse": "还要我说多清楚？他们相爱！"
+              },
+              {
+                "id": "friends",
+                "intention": "从小一起玩，也算秘密？",
+                "immediateResponse": "你以为我收钱讲这个？是相爱，不是一起玩！"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          }
+        ],
+        "sceneActivities": [
+          {
+            "purpose": "Weed walks while deciding whom to ask; stops on entering pub.",
+            "staging": "Existing square backdrop and walking activity, then tavern. No scrolling backdrop claimed."
+          },
+          {
+            "purpose": "Comic contrast between flattery and the bard waiting for money.",
+            "staging": "Hold two-shot; reach gestures cue open hand but no unsupported held palm or visible coin. Wider mimed handoff with narration; tighten for loss and love revelation. Breathing and listener defaults between gestures."
+          }
+        ],
+        "storytellingVoice": {
+          "selected": "Immediate drama",
+          "reason": "Weed’s practical desire, competing intentions and costly choices drive this arc. Preserve his opportunism, use quieter space for the attendant, and do not impose an adolescent personality."
+        },
+        "revision": "Explicitly requested revision of episodes 16–27. Fixed source events and boundaries; new release version. Existing art, opening clips and prior saves preserved.",
+        "characterSignatures": {
+          "Hyun": "Practical short questions; polite bargaining aloud, money calculations in private. Under pressure, shorter refusals. Quiet attention at a correction, determined practice afterward.",
+          "Shopkeeper": "Guarded with unknown visitors; expansive when his art is appreciated. Wants genuine attention and an answer to the mystery.",
+          "Bard": "Brief, impatient bargaining; controls the pace and admits where his knowledge ends.",
+          "Attendant": "Speaks as a witness and protector of the queen’s memory; corrects Weed without becoming an exposition prompt.",
+          "Watcher": "Hopeful leading questions; interprets refusals as evidence of a hidden quest."
+        },
+        "directing": "Hold existing pairs through ordinary conversation. Retain reader-controlled listener turns and aftermath; frame newly responsive choice branches. Preserve source cast, props, stage geometry and existing walking/training.",
+        "payoffAndFreshQuestion": "He learns the love affair; the answer must be handled quietly.",
+        "pinyinReview": "Reviewed new full-line and chunk readings. Corrected context-dependent 只, 得 (complement vs obligation), 成为 and aspectual 了. Existing exact-text annotations reused."
+      },
+      "sourceNotes": [
+        "Adapted from the supplied fingerprinted Legendary Moonlight Sculptor EPUB, Book 1 Chapter 3: search for a native bard, failed flattery, accidental silver payment and revelation of the queen’s childhood love. Stops before the bard describes their village and promise. Local choices elaborate intention without altering events."
+      ],
+      "verification": {
+        "deterministicRoutes": 16,
+        "browserRoutes": 2,
+        "devices": [
+          "desktop",
+          "phone"
+        ],
+        "reducedMotion": true,
+        "resume": true,
+        "pinyinReviewed": true,
+        "bytes": 1295097,
+        "listenerReview": "Two contrasting choice responses and following Continue-controlled entries checked on phone and desktop, including reduced motion. Visual screenshots reviewed; audio decoding/playback checked, not a claim of perfect synthetic pronunciation."
+      }
+    },
+    {
+      "episode": 21,
+      "previousRelease": "moonlight-21-v1",
+      "previousPath": "moonlight-21.json",
+      "previousSha256": "ddf72cdc45f42f6ca1d887c585e76c90d2732ee988c307835c46cd2b4f08810c",
+      "release": "moonlight-21-v2",
+      "planning": {
+        "sourceBoundary": "Pinned passage: bard glances around through confirmation that the eyewitness maid is alive; no directions or visit.",
+        "dramaticChange": "Weed prices a gift and assumes failure, then has both assumptions challenged.",
+        "essentialNewWords": [
+          "约定",
+          "宫女",
+          "侍女",
+          "感动"
+        ],
+        "englishNarrationPurpose": "None.",
+        "choicesAndCallbacks": [
+          {
+            "choice": "gifts",
+            "options": [
+              {
+                "id": "keep",
+                "intention": "做得那么好，她才一直带着？",
+                "immediateResponse": "你只问做得好不好。那可是他送的。"
+              },
+              {
+                "id": "craft",
+                "intention": "他小时候就拿雕刻送人？",
+                "immediateResponse": "是送给她的。他可没说要她花钱。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "apart",
+            "options": [
+              {
+                "id": "sad",
+                "intention": "她想和他一起生活，怎么却去了王宫？",
+                "immediateResponse": "她小时候想的，可不是去王宫。"
+              },
+              {
+                "id": "wait",
+                "intention": "人都分开了，还有什么？",
+                "immediateResponse": "你想听到这里就走？他们还有一个约定。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "beauty",
+            "options": [
+              {
+                "id": "person",
+                "intention": "也许，因为那是他做的？",
+                "immediateResponse": "也许。那天我不在那里，我不能说自己知道。"
+              },
+              {
+                "id": "wonder",
+                "intention": "什么样的雕像，能让王后这么说？",
+                "immediateResponse": "这才是该问的问题。不过，得问亲眼看过的人。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "certain",
+            "options": [
+              {
+                "id": "honest",
+                "intention": "那我花了钱，您说的也只是听说？",
+                "immediateResponse": "知道的我已经说了。没见过，就是没见过。"
+              },
+              {
+                "id": "grateful",
+                "intention": "请说说怎么找到她。",
+                "immediateResponse": "我跟你说。她那天也在那里。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          }
+        ],
+        "sceneActivities": [
+          {
+            "purpose": "Quiet telling and listening in the tavern; no invented travel or flashback figures.",
+            "staging": "Bard looks aside then back; hold two-shot for exchange, tighten for Weed’s recognition, incorrect guess and relief. Defaults supply breathing and partner orientation; no sustained activity fits."
+          }
+        ],
+        "storytellingVoice": {
+          "selected": "Immediate drama",
+          "reason": "Weed’s practical desire, competing intentions and costly choices drive this arc. Preserve his opportunism, use quieter space for the attendant, and do not impose an adolescent personality."
+        },
+        "revision": "Explicitly requested revision of episodes 16–27. Fixed source events and boundaries; new release version. Existing art, opening clips and prior saves preserved.",
+        "characterSignatures": {
+          "Hyun": "Practical short questions; polite bargaining aloud, money calculations in private. Under pressure, shorter refusals. Quiet attention at a correction, determined practice afterward.",
+          "Shopkeeper": "Guarded with unknown visitors; expansive when his art is appreciated. Wants genuine attention and an answer to the mystery.",
+          "Bard": "Brief, impatient bargaining; controls the pace and admits where his knowledge ends.",
+          "Attendant": "Speaks as a witness and protector of the queen’s memory; corrects Weed without becoming an exposition prompt.",
+          "Watcher": "Hopeful leading questions; interprets refusals as evidence of a hidden quest."
+        },
+        "directing": "Hold existing pairs through ordinary conversation. Retain reader-controlled listener turns and aftermath; frame newly responsive choice branches. Preserve source cast, props, stage geometry and existing walking/training.",
+        "payoffAndFreshQuestion": "The promise was kept; a living witness can explain how.",
+        "pinyinReview": "Reviewed new full-line and chunk readings. Corrected context-dependent 只, 得 (complement vs obligation), 成为 and aspectual 了. Existing exact-text annotations reused."
+      },
+      "sourceNotes": [
+        "Adapted from the supplied fingerprinted Legendary Moonlight Sculptor EPUB, Book 1 Chapter 3: shared childhood, Zahab’s gifts, separation, the promise fulfilled at court and referral to the living eyewitness maid. Stops before directions to her house and the visit. Local responses develop the existing exchange without changing events."
+      ],
+      "verification": {
+        "deterministicRoutes": 16,
+        "browserRoutes": 2,
+        "devices": [
+          "desktop",
+          "phone"
+        ],
+        "reducedMotion": true,
+        "resume": true,
+        "pinyinReviewed": true,
+        "bytes": 1184654,
+        "listenerReview": "Two contrasting choice responses and following Continue-controlled entries checked on phone and desktop, including reduced motion. Visual screenshots reviewed; audio decoding/playback checked, not a claim of perfect synthetic pronunciation."
+      }
+    },
+    {
+      "episode": 22,
+      "previousRelease": "moonlight-22-v1",
+      "previousPath": "moonlight-22.json",
+      "previousSha256": "2d987a65a6d1d093bc9c46a83ad0ae0f75aa18950dd48313921a94998eea60a7",
+      "release": "moonlight-22-v2",
+      "planning": {
+        "sourceBoundary": "Retired attendant visit through initial disappointment at Zahab carrying a sword; stop before assassins.",
+        "dramaticChange": "The attendant insists on the queen’s trust and hurt, beyond the object Weed asks about.",
+        "essentialNewWords": [
+          "侍女",
+          "约定",
+          "伤心"
+        ],
+        "englishNarrationPurpose": "None.",
+        "choicesAndCallbacks": [
+          {
+            "choice": "welcome",
+            "options": [
+              {
+                "id": "queen",
+                "intention": "您照顾过她，她是什么样的人？",
+                "immediateResponse": "先问她这个人，问得好。我照顾过她。"
+              },
+              {
+                "id": "sculptor",
+                "intention": "那个约定，您也知道吗？",
+                "immediateResponse": "约定的事我知道。不过，你先听听她的事。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "surprise",
+            "options": [
+              {
+                "id": "reunion",
+                "intention": "终于见面了，怎么不开心？",
+                "immediateResponse": "她等了那么久，看见他这样，怎么会开心？"
+              },
+              {
+                "id": "promise",
+                "intention": "她等的是他，还是那个雕像？",
+                "immediateResponse": "在她心里，这两件事分得开吗？"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "sword",
+            "options": [
+              {
+                "id": "work",
+                "intention": "他没带雕像，也没解释吗？",
+                "immediateResponse": "我记得最清楚的，是她看见剑时的样子。"
+              },
+              {
+                "id": "hurt",
+                "intention": "一把剑，就让她不信他了？",
+                "immediateResponse": "不是不信。是一直太相信，才这么伤心。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "meaning",
+            "options": [
+              {
+                "id": "trust",
+                "intention": "先不问雕像，听她说完。",
+                "immediateResponse": "你肯听就好。这些事，我一直记着。"
+              },
+              {
+                "id": "years",
+                "intention": "那么多年，她一直没变过？",
+                "immediateResponse": "她相信他也没变。那天看见剑，她才会那么难过。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          }
+        ],
+        "sceneActivities": [],
+        "storytellingVoice": {
+          "selected": "Immediate drama",
+          "reason": "Weed’s practical desire, competing intentions and costly choices drive this arc. Preserve his opportunism, use quieter space for the attendant, and do not impose an adolescent personality."
+        },
+        "revision": "Explicitly requested revision of episodes 16–27. Fixed source events and boundaries; new release version. Existing art, opening clips and prior saves preserved.",
+        "characterSignatures": {
+          "Hyun": "Practical short questions; polite bargaining aloud, money calculations in private. Under pressure, shorter refusals. Quiet attention at a correction, determined practice afterward.",
+          "Shopkeeper": "Guarded with unknown visitors; expansive when his art is appreciated. Wants genuine attention and an answer to the mystery.",
+          "Bard": "Brief, impatient bargaining; controls the pace and admits where his knowledge ends.",
+          "Attendant": "Speaks as a witness and protector of the queen’s memory; corrects Weed without becoming an exposition prompt.",
+          "Watcher": "Hopeful leading questions; interprets refusals as evidence of a hidden quest."
+        },
+        "directing": "Hold existing pairs through ordinary conversation. Retain reader-controlled listener turns and aftermath; frame newly responsive choice branches. Preserve source cast, props, stage geometry and existing walking/training.",
+        "payoffAndFreshQuestion": "He suspends judgment; the sword still needs explaining.",
+        "pinyinReview": "Reviewed new full-line and chunk readings. Corrected context-dependent 只, 得 (complement vs obligation), 成为 and aspectual 了. Existing exact-text annotations reused."
+      },
+      "sourceNotes": [
+        "Personal Mandarin adaptation of the pinned Chapter 3 passage in The Legendary Moonlight Sculptor; retired attendant visit through the queen’s first disappointment, before the assassination account."
+      ],
+      "verification": {
+        "deterministicRoutes": 16,
+        "browserRoutes": 2,
+        "devices": [
+          "desktop",
+          "phone"
+        ],
+        "reducedMotion": true,
+        "resume": true,
+        "pinyinReviewed": true,
+        "bytes": 914283,
+        "listenerReview": "Two contrasting choice responses and following Continue-controlled entries checked on phone and desktop, including reduced motion. Visual screenshots reviewed; audio decoding/playback checked, not a claim of perfect synthetic pronunciation."
+      }
+    },
+    {
+      "episode": 23,
+      "previousRelease": "moonlight-23-v1",
+      "previousPath": "moonlight-23.json",
+      "previousSha256": "f8ded54f8333110b8310b86939492d52c7158f58934e73f46a4bb31e4567a07a",
+      "release": "moonlight-23-v2",
+      "planning": {
+        "sourceBoundary": "Assassination account through the fulfilled moonlight-sculpture promise; stop before system flashback.",
+        "dramaticChange": "The witness reveals how the apparent betrayal fulfilled the promise.",
+        "essentialNewWords": [
+          "约定",
+          "眼泪",
+          "碎"
+        ],
+        "englishNarrationPurpose": "None; English only in existing video intro.",
+        "choicesAndCallbacks": [
+          {
+            "choice": "danger",
+            "options": [
+              {
+                "id": "queen",
+                "intention": "您那时也在那里？",
+                "immediateResponse": "在。我连自己还能不能活着都不知道。"
+              },
+              {
+                "id": "knights",
+                "intention": "骑士在哪里？没有人能帮忙吗？",
+                "immediateResponse": "他们也走不了。不是不想帮，是过不来。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "warning",
+            "options": [
+              {
+                "id": "leave",
+                "intention": "她叫他走，是想救他？",
+                "immediateResponse": "她自己都危险，还在叫他走。他却笑了。"
+              },
+              {
+                "id": "stay",
+                "intention": "他那时候来，能做什么？",
+                "immediateResponse": "我们都以为要死了。可他没有走，只是笑了笑。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "song",
+            "options": [
+              {
+                "id": "words",
+                "intention": "歌里的话，您还记得吗？",
+                "immediateResponse": "歌里的话我不记得了。可歌名还记得。"
+              },
+              {
+                "id": "face",
+                "intention": "王后还在叫他走吗？",
+                "immediateResponse": "她没有再叫了。她听着歌，眼泪一直流。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "beauty",
+            "options": [
+              {
+                "id": "person",
+                "intention": "换成一块木头，她也会觉得最美？",
+                "immediateResponse": "是啊。就算他只在木头上写个名字，她也会觉得最美。"
+              },
+              {
+                "id": "light",
+                "intention": "不只是王后，您也觉得那么美？",
+                "immediateResponse": "真的。那样的美，我再也没见过。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          }
+        ],
+        "sceneActivities": [],
+        "storytellingVoice": {
+          "selected": "Immediate drama",
+          "reason": "Weed’s practical desire, competing intentions and costly choices drive this arc. Preserve his opportunism, use quieter space for the attendant, and do not impose an adolescent personality."
+        },
+        "revision": "Explicitly requested revision of episodes 16–27. Fixed source events and boundaries; new release version. Existing art, opening clips and prior saves preserved.",
+        "characterSignatures": {
+          "Hyun": "Practical short questions; polite bargaining aloud, money calculations in private. Under pressure, shorter refusals. Quiet attention at a correction, determined practice afterward.",
+          "Shopkeeper": "Guarded with unknown visitors; expansive when his art is appreciated. Wants genuine attention and an answer to the mystery.",
+          "Bard": "Brief, impatient bargaining; controls the pace and admits where his knowledge ends.",
+          "Attendant": "Speaks as a witness and protector of the queen’s memory; corrects Weed without becoming an exposition prompt.",
+          "Watcher": "Hopeful leading questions; interprets refusals as evidence of a hidden quest."
+        },
+        "directing": "Hold existing pairs through ordinary conversation. Retain reader-controlled listener turns and aftermath; frame newly responsive choice branches. Preserve source cast, props, stage geometry and existing walking/training.",
+        "payoffAndFreshQuestion": "The danger and promise resolve; Weed’s claim that sculpture is useless is challenged.",
+        "pinyinReview": "Reviewed new full-line and chunk readings. Corrected context-dependent 只, 得 (complement vs obligation), 成为 and aspectual 了. Existing exact-text annotations reused."
+      },
+      "sourceNotes": [
+        "Personal Mandarin adaptation of fingerprinted first-compilation Chapter 3, The Legendary Moonlight Sculptor. Assassination account through the fulfilled moonlight-sculpture promise; stop before system flashback."
+      ],
+      "verification": {
+        "deterministicRoutes": 16,
+        "browserRoutes": 2,
+        "devices": [
+          "desktop",
+          "phone"
+        ],
+        "reducedMotion": true,
+        "resume": true,
+        "pinyinReviewed": true,
+        "bytes": 981189,
+        "listenerReview": "Two contrasting choice responses and following Continue-controlled entries checked on phone and desktop, including reduced motion. Visual screenshots reviewed; audio decoding/playback checked, not a claim of perfect synthetic pronunciation."
+      }
+    },
+    {
+      "episode": 24,
+      "previousRelease": "moonlight-24-v1",
+      "previousPath": "moonlight-24.json",
+      "previousSha256": "4125c0a022f30f7c54a0c8818b39ab640a992b510c416cfa0b4ac432ec5be9c5",
+      "release": "moonlight-24-v2",
+      "planning": {
+        "sourceBoundary": "System flashback through two class refusals and acceptance of the offered present; before drawer and items.",
+        "dramaticChange": "The successful investigation offers a rare class, but profit still governs his choice.",
+        "essentialNewWords": [
+          "隐藏",
+          "雕刻师"
+        ],
+        "englishNarrationPurpose": "None; English only in existing video intro.",
+        "choicesAndCallbacks": [
+          {
+            "choice": "promise",
+            "options": [
+              {
+                "id": "gift",
+                "intention": "先看礼物，他到底做出了什么？",
+                "immediateResponse": "那只是木头做的，却和她一样。她开心地收下了。"
+              },
+              {
+                "id": "boy",
+                "intention": "先看他的手，小刀怎么动？",
+                "immediateResponse": "小刀上下动着。他认真做，女孩认真看。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "reward",
+            "options": [
+              {
+                "id": "levels",
+                "intention": "先看等级，这一回赚到了。",
+                "immediateResponse": "我还没开心多久，又一条消息出现了。"
+              },
+              {
+                "id": "power",
+                "intention": "再想那把剑，雕刻真没用吗？",
+                "immediateResponse": "刚才的月光那么强，我还能说没用吗？"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "consider",
+            "options": [
+              {
+                "id": "skill",
+                "intention": "先看能学什么，再决定。",
+                "immediateResponse": "那些技能也许很有意思。可是，有意思就能赚钱吗？"
+              },
+              {
+                "id": "money",
+                "intention": "先问能不能赚钱，少见不一定好。",
+                "immediateResponse": "我来这里，是为了赚钱。少见，也不一定能赚钱。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "present",
+            "options": [
+              {
+                "id": "polite",
+                "intention": "您愿意送我，我就好好收下。",
+                "immediateResponse": "那就好。这些东西在我这里很久了。"
+              },
+              {
+                "id": "useful",
+                "intention": "是什么礼物？我当然愿意。",
+                "immediateResponse": "别急，我拿给你看。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          }
+        ],
+        "sceneActivities": [],
+        "storytellingVoice": {
+          "selected": "Immediate drama",
+          "reason": "Weed’s practical desire, competing intentions and costly choices drive this arc. Preserve his opportunism, use quieter space for the attendant, and do not impose an adolescent personality."
+        },
+        "revision": "Explicitly requested revision of episodes 16–27. Fixed source events and boundaries; new release version. Existing art, opening clips and prior saves preserved.",
+        "characterSignatures": {
+          "Hyun": "Practical short questions; polite bargaining aloud, money calculations in private. Under pressure, shorter refusals. Quiet attention at a correction, determined practice afterward.",
+          "Shopkeeper": "Guarded with unknown visitors; expansive when his art is appreciated. Wants genuine attention and an answer to the mystery.",
+          "Bard": "Brief, impatient bargaining; controls the pace and admits where his knowledge ends.",
+          "Attendant": "Speaks as a witness and protector of the queen’s memory; corrects Weed without becoming an exposition prompt.",
+          "Watcher": "Hopeful leading questions; interprets refusals as evidence of a hidden quest."
+        },
+        "directing": "Hold existing pairs through ordinary conversation. Retain reader-controlled listener turns and aftermath; frame newly responsive choice branches. Preserve source cast, props, stage geometry and existing walking/training.",
+        "payoffAndFreshQuestion": "Two refusals preserve his intention; his eager acceptance of a gift opens a new obligation.",
+        "pinyinReview": "Reviewed new full-line and chunk readings. Corrected context-dependent 只, 得 (complement vs obligation), 成为 and aspectual 了. Existing exact-text annotations reused."
+      },
+      "sourceNotes": [
+        "Personal Mandarin adaptation of fingerprinted first-compilation Chapter 3, The Legendary Moonlight Sculptor. System flashback through two class refusals and acceptance of the offered present; before drawer and items."
+      ],
+      "verification": {
+        "deterministicRoutes": 16,
+        "browserRoutes": 2,
+        "devices": [
+          "desktop",
+          "phone"
+        ],
+        "reducedMotion": true,
+        "resume": true,
+        "pinyinReviewed": true,
+        "bytes": 1068202,
+        "listenerReview": "Two contrasting choice responses and following Continue-controlled entries checked on phone and desktop, including reduced motion. Visual screenshots reviewed; audio decoding/playback checked, not a claim of perfect synthetic pronunciation."
+      }
+    },
+    {
+      "episode": 25,
+      "previousRelease": "moonlight-25-v1",
+      "previousPath": "moonlight-25.json",
+      "previousSha256": "10488e174fa3e5b98342a12a83fd0af7e3f1d22c6b79b543e6cb223dab4165b3",
+      "release": "moonlight-25-v2",
+      "planning": {
+        "sourceBoundary": "Pinned drawer-to-farewell boundary; no reward collection or departure.",
+        "dramaticChange": "He accepts valuable objects and discovers the uncancellable responsibility attached.",
+        "essentialNewWords": [
+          "保管",
+          "遗愿",
+          "取消",
+          "禁地",
+          "鉴定术"
+        ],
+        "englishNarrationPurpose": "None. English only in the teaser.",
+        "choicesAndCallbacks": [
+          {
+            "choice": "gift",
+            "options": [
+              {
+                "id": "careful",
+                "intention": "这刀这么旧，您一直留着？",
+                "immediateResponse": "这是王后的东西，我一直好好收着。"
+              },
+              {
+                "id": "statue",
+                "intention": "这个雕像，也是他做的？",
+                "immediateResponse": "是他做的。你看得出它不一般吧？"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "wish",
+            "options": [
+              {
+                "id": "song",
+                "intention": "先不说话，听听她想要什么。",
+                "immediateResponse": "说起过去，她不笑了。过了这么多年，她还记得那一天。"
+              },
+              {
+                "id": "knife",
+                "intention": "这把刀，还有什么事要跟我说吗？",
+                "immediateResponse": "别只当成一把旧刀。他留下的，不只是这个。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "trouble",
+            "options": [
+              {
+                "id": "cancel",
+                "intention": "再找一次取消的地方。",
+                "immediateResponse": "没看错，不能取消。刚才拒绝职业那么容易，这次却没得选。"
+              },
+              {
+                "id": "level",
+                "intention": "先把自己的等级和任务比一比。",
+                "immediateResponse": "我才三级。A级任务？这可不是多练几天就能完成的。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "skills",
+            "options": [
+              {
+                "id": "repair",
+                "intention": "有了修理术，什么钱不用花了？",
+                "immediateResponse": "东西不能用了，也许就不用花钱找别人了，自己就有办法。"
+              },
+              {
+                "id": "identify",
+                "intention": "先别卖便宜了：鉴定术。",
+                "immediateResponse": "有了这个技能，也许就知道东西能卖多少钱，不会把好东西便宜卖掉。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          }
+        ],
+        "sceneActivities": [],
+        "teaser": {
+          "moment": "Uncancellable A-level quest appears after Weed accepts the knife.",
+          "line": "I cannot cancel?",
+          "position": "After the gift and before the difficulty calculation.",
+          "action": "Weed looks down at the old carving knife as calculation becomes dismay.",
+          "holdSeconds": 3,
+          "generatedSeconds": 6
+        },
+        "staging": "Quiet gift exchange, narrated bundle opening and knife handling rather than unsupported prop choreography. Hold pair for exchange, tighten on attendant’s wish, show Weed receiving the consequence, widen at the human cost and return to private calculation. No sustained locomotion is appropriate in this room.",
+        "storytellingVoice": {
+          "selected": "Immediate drama",
+          "reason": "Weed’s practical desire, competing intentions and costly choices drive this arc. Preserve his opportunism, use quieter space for the attendant, and do not impose an adolescent personality."
+        },
+        "revision": "Explicitly requested revision of episodes 16–27. Fixed source events and boundaries; new release version. Existing art, opening clips and prior saves preserved.",
+        "characterSignatures": {
+          "Hyun": "Practical short questions; polite bargaining aloud, money calculations in private. Under pressure, shorter refusals. Quiet attention at a correction, determined practice afterward.",
+          "Shopkeeper": "Guarded with unknown visitors; expansive when his art is appreciated. Wants genuine attention and an answer to the mystery.",
+          "Bard": "Brief, impatient bargaining; controls the pace and admits where his knowledge ends.",
+          "Attendant": "Speaks as a witness and protector of the queen’s memory; corrects Weed without becoming an exposition prompt.",
+          "Watcher": "Hopeful leading questions; interprets refusals as evidence of a hidden quest."
+        },
+        "directing": "Hold existing pairs through ordinary conversation. Retain reader-controlled listener turns and aftermath; frame newly responsive choice branches. Preserve source cast, props, stage geometry and existing walking/training.",
+        "payoffAndFreshQuestion": "Four skills provide a practical benefit; his level and her lifespan make the remaining task uncertain.",
+        "pinyinReview": "Reviewed new full-line and chunk readings. Corrected context-dependent 只, 得 (complement vs obligation), 成为 and aspectual 了. Existing exact-text annotations reused."
+      },
+      "sourceNotes": [
+        "Personal Mandarin adaptation of fingerprinted first-compilation Chapter 3, The Legendary Moonlight Sculptor. Drawer and two gifts through uncancellable A-level last-wish quest, four skills and speculation on final rewards; before farewell."
+      ],
+      "verification": {
+        "deterministicRoutes": 16,
+        "browserRoutes": 2,
+        "devices": [
+          "desktop",
+          "phone"
+        ],
+        "reducedMotion": true,
+        "resume": true,
+        "pinyinReviewed": true,
+        "bytes": 1323047,
+        "listenerReview": "Two contrasting choice responses and following Continue-controlled entries checked on phone and desktop, including reduced motion. Visual screenshots reviewed; audio decoding/playback checked, not a claim of perfect synthetic pronunciation."
+      }
+    },
+    {
+      "episode": 26,
+      "previousRelease": "moonlight-26-v1",
+      "previousPath": "moonlight-26.json",
+      "previousSha256": "00ab71c07c0dea975a0714f8086019ac732d6f62ff299dfe814e93adffa60b9f",
+      "release": "moonlight-26-v2",
+      "planning": {
+        "sourceBoundary": "Pinned farewell-to-return-to-sword excerpt, plus the final two sentences of Chapter 3, inspected alongside the opening of Chapter 4. This deliberately closes Chapter 3 rather than orphaning its explanation.",
+        "dramaticChange": "Others acknowledge his work and pay him; the success tempts him away from training.",
+        "essentialNewWords": [
+          "敏捷",
+          "点数"
+        ],
+        "englishNarrationPurpose": "None; English only in teaser.",
+        "choicesAndCallbacks": [
+          {
+            "choice": "thanks",
+            "options": [
+              {
+                "id": "modest",
+                "intention": "事情问清楚了。您答应的奖励呢？",
+                "immediateResponse": "少不了你的。做成了事，当然要给。"
+              },
+              {
+                "id": "trust",
+                "intention": "您这回有时间听我说话了？",
+                "immediateResponse": "你还记着呢？这次我可真要谢谢你。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "coins",
+            "options": [
+              {
+                "id": "cost",
+                "intention": "先记住，下次要带铜币。",
+                "immediateResponse": "那时候，一不小心就让他拿走了。现在想起来，还是心疼。"
+              },
+              {
+                "id": "gain",
+                "intention": "先算算花了多少，还多了多少。",
+                "immediateResponse": "两枚！不只把花出去的钱赚回来，还多了一枚。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "stats",
+            "options": [
+              {
+                "id": "strong",
+                "intention": "先想想这一剑能多有力。",
+                "immediateResponse": "同样的一把剑，我用起来也会更有力。"
+              },
+              {
+                "id": "quick",
+                "intention": "先想想怎么让剑更快，不只要有力。",
+                "immediateResponse": "敏捷提高了，出剑的时候，也就更快了。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "next",
+            "options": [
+              {
+                "id": "money",
+                "intention": "先问自己：再来一次还会这么好吗？",
+                "immediateResponse": "钱当然很好。可这么特别的任务，不是想找就能找到的。"
+              },
+              {
+                "id": "sword",
+                "intention": "先问自己：练习一半就停？",
+                "immediateResponse": "我已经练习了这么久。刚赚到一点钱，就不练习了吗？"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          }
+        ],
+        "sceneActivities": [
+          {
+            "activity": "train",
+            "actor": "Hyun",
+            "target": "Dummy",
+            "pace": "steady",
+            "purpose": "Resolve hesitation through the supported return to training; keep practice under final thoughts.",
+            "start": "木剑又打在木头人身上。我回来了。",
+            "stop": "Story end suspends the activity.",
+            "interruptions": "No additional interruption after the decision; choices occur before training.",
+            "framing": "camera action Hyun Dummy cut; both participants fully visible."
+          }
+        ],
+        "teaser": {
+          "moment": "After collecting the rewards, Weed is tempted to take another quest before picking up his wooden sword.",
+          "line": "Another quest?",
+          "holdSeconds": 3,
+          "generatedSeconds": 6,
+          "action": "Hesitation over the practice sword, without showing the resolution."
+        },
+        "storytellingVoice": {
+          "selected": "Immediate drama",
+          "reason": "Weed’s practical desire, competing intentions and costly choices drive this arc. Preserve his opportunism, use quieter space for the attendant, and do not impose an adolescent personality."
+        },
+        "revision": "Explicitly requested revision of episodes 16–27. Fixed source events and boundaries; new release version. Existing art, opening clips and prior saves preserved.",
+        "characterSignatures": {
+          "Hyun": "Practical short questions; polite bargaining aloud, money calculations in private. Under pressure, shorter refusals. Quiet attention at a correction, determined practice afterward.",
+          "Shopkeeper": "Guarded with unknown visitors; expansive when his art is appreciated. Wants genuine attention and an answer to the mystery.",
+          "Bard": "Brief, impatient bargaining; controls the pace and admits where his knowledge ends.",
+          "Attendant": "Speaks as a witness and protector of the queen’s memory; corrects Weed without becoming an exposition prompt.",
+          "Watcher": "Hopeful leading questions; interprets refusals as evidence of a hidden quest."
+        },
+        "directing": "Hold existing pairs through ordinary conversation. Retain reader-controlled listener turns and aftermath; frame newly responsive choice branches. Preserve source cast, props, stage geometry and existing walking/training.",
+        "payoffAndFreshQuestion": "He chooses the wooden sword again, showing discipline without losing his love of profit.",
+        "pinyinReview": "Reviewed new full-line and chunk readings. Corrected context-dependent 只, 得 (complement vs obligation), 成为 and aspectual 了. Existing exact-text annotations reused."
+      },
+      "sourceNotes": [
+        "Personal Mandarin adaptation of fingerprinted first-compilation Chapter 3, The Legendary Moonlight Sculptor. Farewell and collection of shopkeeper/instructor rewards through the return to the wooden sword. Includes the chapter’s final two explanatory sentences about rare quests and unusually generous rewards. No Chapter 4 events."
+      ],
+      "verification": {
+        "deterministicRoutes": 16,
+        "browserRoutes": 2,
+        "devices": [
+          "desktop",
+          "phone"
+        ],
+        "reducedMotion": true,
+        "resume": true,
+        "pinyinReviewed": true,
+        "bytes": 1562286,
+        "listenerReview": "Two contrasting choice responses and following Continue-controlled entries checked on phone and desktop, including reduced motion. Visual screenshots reviewed; audio decoding/playback checked, not a claim of perfect synthetic pronunciation."
+      }
+    },
+    {
+      "episode": 27,
+      "previousRelease": "moonlight-27-v1",
+      "previousPath": "moonlight-27.json",
+      "previousSha256": "9de3737543a0d2ac35a99fc9fd321342d2be3e1070444c11e1a554ed23dcc169",
+      "release": "moonlight-27-v2",
+      "planning": {
+        "sourceBoundary": "Exact pinned Chapter 4 opening through the explanation of player/NPC identity; no recruitment.",
+        "dramaticChange": "Players’ desire for a quest turns Weed’s ordinary refusal into supposed evidence.",
+        "essentialNewWords": [
+          "精灵",
+          "矮人",
+          "兽人",
+          "钢剑"
+        ],
+        "englishNarrationPurpose": "None.",
+        "choicesAndCallbacks": [
+          {
+            "choice": "rumor",
+            "options": [
+              {
+                "id": "listen",
+                "intention": "先听听，他们到底想干什么？",
+                "immediateResponse": "他们越说越认真。我不过是在练习，怎么就不是玩家了？"
+              },
+              {
+                "id": "practice",
+                "intention": "不接话，这一剑还要练习。",
+                "immediateResponse": "木剑又打了下去。对我来说，这一下比他们的话重要。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "gift",
+            "options": [
+              {
+                "id": "polite",
+                "intention": "谢谢，可我不需要。",
+                "immediateResponse": "谢谢，可我不需要。"
+              },
+              {
+                "id": "proud",
+                "intention": "我不是来要饭的。",
+                "immediateResponse": "我不是来要饭的。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "explain",
+            "options": [
+              {
+                "id": "plain",
+                "intention": "我也是玩家，和你一样。",
+                "immediateResponse": "我也是玩家，和你一样。"
+              },
+              {
+                "id": "question",
+                "intention": "玩家就不能一直练习吗？",
+                "immediateResponse": "玩家就不能一直练习吗？"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          },
+          {
+            "choice": "leave",
+            "options": [
+              {
+                "id": "direct",
+                "intention": "请让开。我不会给你任务。",
+                "immediateResponse": "请让开。我不会给你任务。"
+              },
+              {
+                "id": "clear",
+                "intention": "剑请拿回去。我有自己的。",
+                "immediateResponse": "剑请拿回去。我有自己的。"
+              }
+            ],
+            "callback": "none; immediate local consequence, fixed canonical rejoin"
+          }
+        ],
+        "sceneActivities": [
+          {
+            "actor": "Hyun",
+            "target": "Dummy",
+            "activity": "train steady",
+            "purpose": "Persistent work explains rumor; stop when gift offers interrupt, restart for final decision. Action framing preserves contact."
+          }
+        ],
+        "characterSignatures": {
+          "Hyun": "Practical short questions; polite bargaining aloud, money calculations in private. Under pressure, shorter refusals. Quiet attention at a correction, determined practice afterward.",
+          "Shopkeeper": "Guarded with unknown visitors; expansive when his art is appreciated. Wants genuine attention and an answer to the mystery.",
+          "Bard": "Brief, impatient bargaining; controls the pace and admits where his knowledge ends.",
+          "Attendant": "Speaks as a witness and protector of the queen’s memory; corrects Weed without becoming an exposition prompt.",
+          "Watcher": "Hopeful leading questions; interprets refusals as evidence of a hidden quest."
+        },
+        "directing": "Hold existing pairs through ordinary conversation. Retain reader-controlled listener turns and aftermath; frame newly responsive choice branches. Preserve source cast, props, stage geometry and existing walking/training.",
+        "teaser": {
+          "moment": "Refusal of food gifts",
+          "action": "Raised palm, bread stays with giver; no speech",
+          "holdSeconds": 3,
+          "generatedSeconds": 6
+        },
+        "storytellingVoice": {
+          "selected": "Immediate drama",
+          "reason": "Weed’s practical desire, competing intentions and costly choices drive this arc. Preserve his opportunism, use quieter space for the attendant, and do not impose an adolescent personality."
+        },
+        "revision": "Explicitly requested revision of episodes 16–27. Fixed source events and boundaries; new release version. Existing art, opening clips and prior saves preserved.",
+        "payoffAndFreshQuestion": "He keeps his dignity and resumes practice; the misunderstanding persists.",
+        "pinyinReview": "Reviewed new full-line and chunk readings. Corrected context-dependent 只, 得 (complement vs obligation), 成为 and aspectual 了. Existing exact-text annotations reused."
+      },
+      "sourceNotes": [
+        "Personal Mandarin adaptation of The Legendary Moonlight Sculptor, fingerprinted compilation Chapter 4: four-race history compressed as context, then the training rumor and NPC misunderstanding. Stops before high-level recruitment. Branch dialogue is authored within the fixed source events."
+      ],
+      "verification": {
+        "deterministicRoutes": 16,
+        "browserRoutes": 2,
+        "devices": [
+          "desktop",
+          "phone"
+        ],
+        "reducedMotion": true,
+        "resume": true,
+        "pinyinReviewed": true,
+        "bytes": 1709032,
+        "listenerReview": "Two contrasting choice responses and following Continue-controlled entries checked on phone and desktop, including reduced motion. Visual screenshots reviewed; audio decoding/playback checked, not a claim of perfect synthetic pronunciation."
+      }
+    }
+  ],
+  "verificationSummary": {
+    "exhaustiveRoutes": 192,
+    "finalBrowserRoutesAcrossDevices": 48,
+    "changedAudio": "Only changed exact text generated; unchanged cached speech reused. Matching English recordings included.",
+    "originalReleases": "All twelve original public packages match their pre-revision Git bytes."
+  }
+}

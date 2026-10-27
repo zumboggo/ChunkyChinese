@@ -1,0 +1,890 @@
+{
+  "她还没讲完，我等着听。": {
+    "english": "She has not finished. I wait and listen.",
+    "interlinear": [
+      {
+        "chinese": "她还没讲完，",
+        "gloss": "she has not finished",
+        "pinyin": "tā hái méi jiǎng wán ，"
+      },
+      {
+        "chinese": "我等着听。",
+        "gloss": "I wait and listen",
+        "pinyin": "wǒ děng zhe tīng 。"
+      }
+    ],
+    "pinyin": "tā hái méi jiǎng wán ， wǒ děng zhe tīng 。"
+  },
+  "扎哈布带来的剑，怎么会变成最美的雕像？": {
+    "pinyin": "zhā hā bù dài lái de jiàn ， zěn me huì biàn chéng zuì měi de diāo xiàng ？",
+    "english": "Zahab's sword that he brought— how could it become the most beautiful sculpture?",
+    "interlinear": [
+      {
+        "chinese": "扎哈布",
+        "pinyin": "zhā hā bù",
+        "gloss": "Zahab's"
+      },
+      {
+        "chinese": "带来的剑，",
+        "pinyin": "dài lái de jiàn ，",
+        "gloss": "sword that he brought—"
+      },
+      {
+        "chinese": "怎么会变成",
+        "pinyin": "zěn me huì biàn chéng",
+        "gloss": "how could it become"
+      },
+      {
+        "chinese": "最美的雕像？",
+        "pinyin": "zuì měi de diāo xiàng ？",
+        "gloss": "the most beautiful sculpture?"
+      }
+    ]
+  },
+  "那一天，旁边那个国家的人，要杀国王和王后。": {
+    "pinyin": "nà yì tiān ， páng biān nà ge guó jiā de rén ， yào shā guó wáng hé wáng hòu 。",
+    "english": "That day, men from the neighboring kingdom wanted to kill the king and queen.",
+    "interlinear": [
+      {
+        "chinese": "那一天，",
+        "pinyin": "nà yì tiān ，",
+        "gloss": "That day,"
+      },
+      {
+        "chinese": "旁边那个国家的人，",
+        "pinyin": "páng biān nà ge guó jiā de rén ，",
+        "gloss": "men from the neighboring kingdom"
+      },
+      {
+        "chinese": "要杀",
+        "pinyin": "yào shā",
+        "gloss": "wanted to kill"
+      },
+      {
+        "chinese": "国王和王后。",
+        "pinyin": "guó wáng hé wáng hòu 。",
+        "gloss": "the king and queen."
+      }
+    ]
+  },
+  "在王宫里？": {
+    "pinyin": "zài wáng gōng lǐ ？",
+    "english": "Inside the palace?",
+    "interlinear": [
+      {
+        "chinese": "在王宫里？",
+        "pinyin": "zài wáng gōng lǐ ？",
+        "gloss": "Inside the palace?"
+      }
+    ]
+  },
+  "就在花园里。我那时候也在那里。": {
+    "pinyin": "jiù zài huā yuán lǐ 。 wǒ nà shí hou yě zài nà lǐ 。",
+    "english": "Right in the garden. At that time I was there too.",
+    "interlinear": [
+      {
+        "chinese": "就在花园里。",
+        "pinyin": "jiù zài huā yuán lǐ 。",
+        "gloss": "Right in the garden."
+      },
+      {
+        "chinese": "我那时候",
+        "pinyin": "wǒ nà shí hou",
+        "gloss": "At that time"
+      },
+      {
+        "chinese": "也在那里。",
+        "pinyin": "yě zài nà lǐ 。",
+        "gloss": "I was there too."
+      }
+    ]
+  },
+  "您那时也在那里？": {
+    "english": "Were you there too?",
+    "interlinear": [
+      {
+        "chinese": "您那时",
+        "gloss": "at that time",
+        "pinyin": "nín nà shí"
+      },
+      {
+        "chinese": "也在那里？",
+        "gloss": "were you there too",
+        "pinyin": "yě zài nà lǐ ？"
+      }
+    ],
+    "pinyin": "nín nà shí yě zài nà lǐ ？"
+  },
+  "骑士在哪里？没有人能帮忙吗？": {
+    "english": "Where were the knights? Could nobody help?",
+    "interlinear": [
+      {
+        "chinese": "骑士在哪里？",
+        "gloss": "Where were the knights?",
+        "pinyin": "qí shì zài nǎ lǐ ？"
+      },
+      {
+        "chinese": "没有人能帮忙吗？",
+        "gloss": "Could nobody help",
+        "pinyin": "méi yǒu rén néng bāng máng ma ？"
+      }
+    ],
+    "pinyin": "qí shì zài nǎ lǐ ？ méi yǒu rén néng bāng máng ma ？"
+  },
+  "在。我连自己还能不能活着都不知道。": {
+    "english": "Yes. I did not even know whether I would survive.",
+    "interlinear": [
+      {
+        "chinese": "在。",
+        "gloss": "Yes.",
+        "pinyin": "zài 。"
+      },
+      {
+        "chinese": "我连自己",
+        "gloss": "even for myself",
+        "pinyin": "wǒ lián zì jǐ"
+      },
+      {
+        "chinese": "还能不能活着",
+        "gloss": "whether I would survive",
+        "pinyin": "hái néng bu néng huó zhe"
+      },
+      {
+        "chinese": "都不知道。",
+        "gloss": "I did not know",
+        "pinyin": "dōu bù zhī dào 。"
+      }
+    ],
+    "pinyin": "zài 。 wǒ lián zì jǐ hái néng bu néng huó zhe dōu bù zhī dào 。"
+  },
+  "他们也走不了。不是不想帮，是过不来。": {
+    "english": "They could not get away either. It was not that they would not help. They could not reach us.",
+    "interlinear": [
+      {
+        "chinese": "他们也走不了。",
+        "gloss": "They could not get away either.",
+        "pinyin": "tā men yě zǒu bù liǎo 。"
+      },
+      {
+        "chinese": "不是不想帮，",
+        "gloss": "It was not unwillingness to help",
+        "pinyin": "bú shì bù xiǎng bāng ，"
+      },
+      {
+        "chinese": "是过不来。",
+        "gloss": "they could not reach us",
+        "pinyin": "shì guò bù lái 。"
+      }
+    ],
+    "pinyin": "tā men yě zǒu bù liǎo 。 bú shì bù xiǎng bāng ， shì guò bù lái 。"
+  },
+  "大家都快要死了，扎哈布却走进了花园。": {
+    "pinyin": "dà jiā dōu kuài yào sǐ le ， zhā hā bù què zǒu jìn le huā yuán 。",
+    "english": "We were all about to die, yet Zahab walked into the garden.",
+    "interlinear": [
+      {
+        "chinese": "大家都快要死了，",
+        "pinyin": "dà jiā dōu kuài yào sǐ le ，",
+        "gloss": "We were all about to die,"
+      },
+      {
+        "chinese": "扎哈布却",
+        "pinyin": "zhā hā bù què",
+        "gloss": "yet Zahab"
+      },
+      {
+        "chinese": "走进了花园。",
+        "pinyin": "zǒu jìn le huā yuán 。",
+        "gloss": "walked into the garden."
+      }
+    ]
+  },
+  "他在那个时候来了？": {
+    "pinyin": "tā zài nà ge shí hou lái le ？",
+    "english": "He came at that moment?",
+    "interlinear": [
+      {
+        "chinese": "他在那个时候",
+        "pinyin": "tā zài nà ge shí hou",
+        "gloss": "He came"
+      },
+      {
+        "chinese": "来了？",
+        "pinyin": "lái le ？",
+        "gloss": "at that moment?"
+      }
+    ]
+  },
+  "王后一看他来了，马上叫他走。": {
+    "pinyin": "wáng hòu yí kàn tā lái le ， mǎ shàng jiào tā zǒu 。",
+    "english": "As soon as the queen saw he had arrived, she told him to leave immediately.",
+    "interlinear": [
+      {
+        "chinese": "王后一看",
+        "pinyin": "wáng hòu yí kàn",
+        "gloss": "As soon as the queen saw"
+      },
+      {
+        "chinese": "他来了，",
+        "pinyin": "tā lái le ，",
+        "gloss": "he had arrived,"
+      },
+      {
+        "chinese": "马上叫他走。",
+        "pinyin": "mǎ shàng jiào tā zǒu 。",
+        "gloss": "she told him to leave immediately."
+      }
+    ]
+  },
+  "她想让他快走。": {
+    "english": "She wanted him to leave quickly.",
+    "interlinear": [
+      {
+        "chinese": "她想让他",
+        "gloss": "she wanted him",
+        "pinyin": "tā xiǎng ràng tā"
+      },
+      {
+        "chinese": "快走。",
+        "gloss": "to leave quickly",
+        "pinyin": "kuài zǒu 。"
+      }
+    ],
+    "pinyin": "tā xiǎng ràng tā kuài zǒu 。"
+  },
+  "她叫他走，是想救他？": {
+    "english": "She told him to leave to save him?",
+    "interlinear": [
+      {
+        "chinese": "她叫他走，",
+        "gloss": "she told him to leave",
+        "pinyin": "tā jiào tā zǒu ，"
+      },
+      {
+        "chinese": "是想救他？",
+        "gloss": "to save him",
+        "pinyin": "shì xiǎng jiù tā ？"
+      }
+    ],
+    "pinyin": "tā jiào tā zǒu ， shì xiǎng jiù tā ？"
+  },
+  "他那时候来，能做什么？": {
+    "english": "He came at that moment. What could he do?",
+    "interlinear": [
+      {
+        "chinese": "他那时候来，",
+        "gloss": "he came at that moment",
+        "pinyin": "tā nà shí hòu lái ，"
+      },
+      {
+        "chinese": "能做什么？",
+        "gloss": "what could he do",
+        "pinyin": "néng zuò shén me ？"
+      }
+    ],
+    "pinyin": "tā nà shí hòu lái ， néng zuò shén me ？"
+  },
+  "她自己都危险，还在叫他走。他却笑了。": {
+    "english": "She was in danger herself and still telling him to leave. But he smiled.",
+    "interlinear": [
+      {
+        "chinese": "她自己都危险，",
+        "gloss": "she was in danger herself",
+        "pinyin": "tā zì jǐ dōu wēi xiǎn ，"
+      },
+      {
+        "chinese": "还在叫他走。",
+        "gloss": "and still telling him to leave.",
+        "pinyin": "hái zài jiào tā zǒu 。"
+      },
+      {
+        "chinese": "他却笑了。",
+        "gloss": "But he smiled",
+        "pinyin": "tā què xiào le 。"
+      }
+    ],
+    "pinyin": "tā zì jǐ dōu wēi xiǎn ， hái zài jiào tā zǒu 。 tā què xiào le 。"
+  },
+  "我们都以为要死了。可他没有走，只是笑了笑。": {
+    "english": "We all thought we would die. But he stayed and smiled.",
+    "interlinear": [
+      {
+        "chinese": "我们都以为",
+        "gloss": "we all thought",
+        "pinyin": "wǒ men dōu yǐ wéi"
+      },
+      {
+        "chinese": "要死了。",
+        "gloss": "we would die.",
+        "pinyin": "yào sǐ le 。"
+      },
+      {
+        "chinese": "可他没有走，",
+        "gloss": "but he did not leave",
+        "pinyin": "kě tā méi yǒu zǒu ，"
+      },
+      {
+        "chinese": "只是笑了笑。",
+        "gloss": "he only smiled",
+        "pinyin": "zhǐ shì xiào le xiào 。"
+      }
+    ],
+    "pinyin": "wǒ men dōu yǐ wéi yào sǐ le 。 kě tā méi yǒu zǒu ， zhǐ shì xiào le xiào 。"
+  },
+  "那么危险，他还在笑？": {
+    "pinyin": "nà me wēi xiǎn ， tā hái zài xiào ？",
+    "english": "It was so dangerous, and he was still smiling?",
+    "interlinear": [
+      {
+        "chinese": "那么危险，",
+        "pinyin": "nà me wēi xiǎn ，",
+        "gloss": "It was so dangerous,"
+      },
+      {
+        "chinese": "他还在笑？",
+        "pinyin": "tā hái zài xiào ？",
+        "gloss": "and he was still smiling?"
+      }
+    ]
+  },
+  "他对她说，要给她看自己做过的、最美的雕像。": {
+    "pinyin": "tā duì tā shuō ， yào gěi tā kàn zì jǐ zuò guò de 、 zuì měi de diāo xiàng 。",
+    "english": "He told her he would show her the most beautiful sculpture he had ever made.",
+    "interlinear": [
+      {
+        "chinese": "他对她说，",
+        "pinyin": "tā duì tā shuō ，",
+        "gloss": "He told her"
+      },
+      {
+        "chinese": "要给她看",
+        "pinyin": "yào gěi tā kàn",
+        "gloss": "he would show her"
+      },
+      {
+        "chinese": "自己做过的、",
+        "pinyin": "zì jǐ zuò guò de 、",
+        "gloss": "that he had ever made—"
+      },
+      {
+        "chinese": "最美的雕像。",
+        "pinyin": "zuì měi de diāo xiàng 。",
+        "gloss": "the most beautiful sculpture"
+      }
+    ]
+  },
+  "人都快要死了，他却还在说雕像？": {
+    "pinyin": "rén dōu kuài yào sǐ le ， tā què hái zài shuō diāo xiàng ？",
+    "english": "People were about to die, yet he was still talking about sculptures?",
+    "interlinear": [
+      {
+        "chinese": "人都快要死了，",
+        "pinyin": "rén dōu kuài yào sǐ le ，",
+        "gloss": "People were about to die,"
+      },
+      {
+        "chinese": "他却还在说",
+        "pinyin": "tā què hái zài shuō",
+        "gloss": "yet he was still talking about"
+      },
+      {
+        "chinese": "雕像？",
+        "pinyin": "diāo xiàng ？",
+        "gloss": "sculptures?"
+      }
+    ]
+  },
+  "就在那时，月光在他的剑下碎开了。": {
+    "pinyin": "jiù zài nà shí ， yuè guāng zài tā de jiàn xià suì kāi le 。",
+    "english": "Just then, the moonlight beneath his sword shattered into pieces.",
+    "interlinear": [
+      {
+        "chinese": "就在那时，",
+        "pinyin": "jiù zài nà shí ，",
+        "gloss": "Just then,"
+      },
+      {
+        "chinese": "月光",
+        "pinyin": "yuè guāng",
+        "gloss": "the moonlight"
+      },
+      {
+        "chinese": "在他的剑下",
+        "pinyin": "zài tā de jiàn xià",
+        "gloss": "beneath his sword"
+      },
+      {
+        "chinese": "碎开了。",
+        "pinyin": "suì kāi le 。",
+        "gloss": "shattered into pieces."
+      }
+    ]
+  },
+  "月光？真的可以雕刻？": {
+    "pinyin": "yuè guāng ？ zhēn de kě yǐ diāo kè ？",
+    "english": "Moonlight? Could it really be carved?",
+    "interlinear": [
+      {
+        "chinese": "月光？",
+        "pinyin": "yuè guāng ？",
+        "gloss": "Moonlight?"
+      },
+      {
+        "chinese": "真的可以雕刻？",
+        "pinyin": "zhēn de kě yǐ diāo kè ？",
+        "gloss": "Could it really be carved?"
+      }
+    ]
+  },
+  "是啊。蓝色的月光，变成了一片一片的光。": {
+    "pinyin": "shì a 。 lán sè de yuè guāng ， biàn chéng le yí piàn yí piàn de guāng 。",
+    "english": "Yes. The blue moonlight turned into fragments of light.",
+    "interlinear": [
+      {
+        "chinese": "是啊。",
+        "pinyin": "shì a 。",
+        "gloss": "Yes."
+      },
+      {
+        "chinese": "蓝色的月光，",
+        "pinyin": "lán sè de yuè guāng ，",
+        "gloss": "The blue moonlight"
+      },
+      {
+        "chinese": "变成了",
+        "pinyin": "biàn chéng le",
+        "gloss": "turned into"
+      },
+      {
+        "chinese": "一片一片的光。",
+        "pinyin": "yí piàn yí piàn de guāng 。",
+        "gloss": "fragments of light."
+      }
+    ]
+  },
+  "他一边雕刻，一边唱歌。": {
+    "pinyin": "tā yì biān diāo kè ， yì biān chàng gē 。",
+    "english": "He carved while singing.",
+    "interlinear": [
+      {
+        "chinese": "他一边雕刻，",
+        "pinyin": "tā yì biān diāo kè ，",
+        "gloss": "He carved"
+      },
+      {
+        "chinese": "一边唱歌。",
+        "pinyin": "yì biān chàng gē 。",
+        "gloss": "while singing."
+      }
+    ]
+  },
+  "歌里的话，您还记得吗？": {
+    "english": "Do you still remember the words of the song?",
+    "interlinear": [
+      {
+        "chinese": "歌里的话，",
+        "gloss": "the words of the song",
+        "pinyin": "gē lǐ de huà ，"
+      },
+      {
+        "chinese": "您还记得吗？",
+        "gloss": "do you still remember",
+        "pinyin": "nín hái jì de ma ？"
+      }
+    ],
+    "pinyin": "gē lǐ de huà ， nín hái jì de ma ？"
+  },
+  "王后还在叫他走吗？": {
+    "english": "Was the queen still telling him to leave?",
+    "interlinear": [
+      {
+        "chinese": "王后还在",
+        "gloss": "was the queen still",
+        "pinyin": "wáng hòu hái zài"
+      },
+      {
+        "chinese": "叫他走吗？",
+        "gloss": "telling him to leave",
+        "pinyin": "jiào tā zǒu ma ？"
+      }
+    ],
+    "pinyin": "wáng hòu hái zài jiào tā zǒu ma ？"
+  },
+  "歌里的话我不记得了。可歌名还记得。": {
+    "english": "I do not remember the words. But I still remember the title.",
+    "interlinear": [
+      {
+        "chinese": "歌里的话",
+        "gloss": "the song’s words",
+        "pinyin": "gē lǐ de huà"
+      },
+      {
+        "chinese": "我不记得了。",
+        "gloss": "I do not remember.",
+        "pinyin": "wǒ bú jì de le 。"
+      },
+      {
+        "chinese": "可歌名",
+        "gloss": "But the title",
+        "pinyin": "kě gē míng"
+      },
+      {
+        "chinese": "还记得。",
+        "gloss": "I still remember",
+        "pinyin": "hái jì de 。"
+      }
+    ],
+    "pinyin": "gē lǐ de huà wǒ bú jì de le 。 kě gē míng hái jì de 。"
+  },
+  "她没有再叫了。她听着歌，眼泪一直流。": {
+    "english": "She stopped calling out. She listened to the song, tears falling.",
+    "interlinear": [
+      {
+        "chinese": "她没有再叫了。",
+        "gloss": "She stopped calling out.",
+        "pinyin": "tā méi yǒu zài jiào le 。"
+      },
+      {
+        "chinese": "她听着歌，",
+        "gloss": "She listened to the song",
+        "pinyin": "tā tīng zhe gē ，"
+      },
+      {
+        "chinese": "眼泪一直流。",
+        "gloss": "and her tears kept falling",
+        "pinyin": "yǎn lèi yì zhí liú 。"
+      }
+    ],
+    "pinyin": "tā méi yǒu zài jiào le 。 tā tīng zhe gē ， yǎn lèi yì zhí liú 。"
+  },
+  "可是歌名，我一直记得，叫《雕刻家的心》。": {
+    "pinyin": "kě shì gē míng ， wǒ yì zhí jì de ， jiào 《 diāo kè jiā de xīn 》 。",
+    "english": "But the song's name I have always remembered: it was called The Sculptor's Heart.",
+    "interlinear": [
+      {
+        "chinese": "可是歌名，",
+        "pinyin": "kě shì gē míng ，",
+        "gloss": "But the song's name"
+      },
+      {
+        "chinese": "我一直记得，",
+        "pinyin": "wǒ yì zhí jì de ，",
+        "gloss": "I have always remembered:"
+      },
+      {
+        "chinese": "叫《雕刻家的心》。",
+        "pinyin": "jiào 《 diāo kè jiā de xīn 》 。",
+        "gloss": "it was called The Sculptor's Heart."
+      }
+    ]
+  },
+  "王后一边听，眼泪就一直流下来。": {
+    "pinyin": "wáng hòu yì biān tīng ， yǎn lèi jiù yì zhí liú xià lái 。",
+    "english": "As the queen listened, her tears kept flowing down.",
+    "interlinear": [
+      {
+        "chinese": "王后一边听，",
+        "pinyin": "wáng hòu yì biān tīng ，",
+        "gloss": "As the queen listened,"
+      },
+      {
+        "chinese": "眼泪就一直",
+        "pinyin": "yǎn lèi jiù yì zhí",
+        "gloss": "her tears kept"
+      },
+      {
+        "chinese": "流下来。",
+        "pinyin": "liú xià lái 。",
+        "gloss": "flowing down."
+      }
+    ]
+  },
+  "对她来说，那就是世界上最美的雕像。": {
+    "pinyin": "duì tā lái shuō ， nà jiù shì shì jiè shàng zuì měi de diāo xiàng 。",
+    "english": "To her, that was the most beautiful sculpture in the world.",
+    "interlinear": [
+      {
+        "chinese": "对她来说，",
+        "pinyin": "duì tā lái shuō ，",
+        "gloss": "To her,"
+      },
+      {
+        "chinese": "那就是",
+        "pinyin": "nà jiù shì",
+        "gloss": "that was"
+      },
+      {
+        "chinese": "世界上最美的雕像。",
+        "pinyin": "shì jiè shàng zuì měi de diāo xiàng 。",
+        "gloss": "the most beautiful sculpture in the world."
+      }
+    ]
+  },
+  "那把剑没有让他忘记约定。那是他完成约定的办法。": {
+    "pinyin": "nà bǎ jiàn méi yǒu ràng tā wàng jì yuē dìng 。 nà shì tā wán chéng yuē dìng de bàn fǎ 。",
+    "english": "That sword did not make him forget the promise. It was his way of fulfilling it.",
+    "interlinear": [
+      {
+        "chinese": "那把剑",
+        "pinyin": "nà bǎ jiàn",
+        "gloss": "That sword"
+      },
+      {
+        "chinese": "没有让他",
+        "pinyin": "méi yǒu ràng tā",
+        "gloss": "did not make him"
+      },
+      {
+        "chinese": "忘记约定。",
+        "pinyin": "wàng jì yuē dìng 。",
+        "gloss": "forget the promise."
+      },
+      {
+        "chinese": "那是他",
+        "pinyin": "nà shì tā",
+        "gloss": "It was his"
+      },
+      {
+        "chinese": "完成约定的办法。",
+        "pinyin": "wán chéng yuē dìng de bàn fǎ 。",
+        "gloss": "way of fulfilling it."
+      }
+    ]
+  },
+  "换成一块木头，她也会觉得最美？": {
+    "english": "Would she have called even a piece of wood the most beautiful?",
+    "interlinear": [
+      {
+        "chinese": "换成一块木头，",
+        "gloss": "even a piece of wood",
+        "pinyin": "huàn chéng yí kuài mù tou ，"
+      },
+      {
+        "chinese": "她也会觉得最美？",
+        "gloss": "would she have called it the most beautiful",
+        "pinyin": "tā yě huì jué de zuì měi ？"
+      }
+    ],
+    "pinyin": "huàn chéng yí kuài mù tou ， tā yě huì jué de zuì měi ？"
+  },
+  "不只是王后，您也觉得那么美？": {
+    "english": "Did you find it that beautiful too, not just the queen?",
+    "interlinear": [
+      {
+        "chinese": "不只是王后，",
+        "gloss": "not just the queen",
+        "pinyin": "bù zhǐ shì wáng hòu ，"
+      },
+      {
+        "chinese": "您也觉得那么美？",
+        "gloss": "did you find it that beautiful too",
+        "pinyin": "nín yě jué de nà me měi ？"
+      }
+    ],
+    "pinyin": "bù zhǐ shì wáng hòu ， nín yě jué de nà me měi ？"
+  },
+  "是啊。就算他只在木头上写个名字，她也会觉得最美。": {
+    "pinyin": "shì a 。 jiù suàn tā zhǐ zài mù tou shàng xiě gè míng zi ， tā yě huì jué de zuì měi 。",
+    "english": "Yes. Even if he only wrote a name on a piece of wood, she would consider it the most beautiful.",
+    "interlinear": [
+      {
+        "chinese": "是啊。",
+        "pinyin": "shì a 。",
+        "gloss": "Yes."
+      },
+      {
+        "chinese": "就算他只在木头上",
+        "pinyin": "jiù suàn tā zhǐ zài mù tou shàng",
+        "gloss": "even if he only, on a piece of wood,"
+      },
+      {
+        "chinese": "写个名字，",
+        "pinyin": "xiě gè míng zi ，",
+        "gloss": "wrote a name"
+      },
+      {
+        "chinese": "她也会觉得最美。",
+        "pinyin": "tā yě huì jué de zuì měi 。",
+        "gloss": "she would have considered it the most beautiful."
+      }
+    ]
+  },
+  "真的。那样的美，我再也没见过。": {
+    "pinyin": "zhēn de 。 nà yàng de měi ， wǒ zài yě méi jiàn guò 。",
+    "english": "Truly. That kind of beauty I have never seen again.",
+    "interlinear": [
+      {
+        "chinese": "真的。",
+        "pinyin": "zhēn de 。",
+        "gloss": "Truly."
+      },
+      {
+        "chinese": "那样的美，",
+        "pinyin": "nà yàng de měi ，",
+        "gloss": "That kind of beauty"
+      },
+      {
+        "chinese": "我再也没见过。",
+        "pinyin": "wǒ zài yě méi jiàn guò 。",
+        "gloss": "I have never seen again."
+      }
+    ]
+  },
+  "可那晚的月光，也是真的美得让人说不出话。": {
+    "pinyin": "kě nà wǎn de yuè guāng ， yě shì zhēn de měi de ràng rén shuō bù chū huà 。",
+    "english": "But that night's moonlight really was so beautiful it left people speechless.",
+    "interlinear": [
+      {
+        "chinese": "可那晚的月光，",
+        "pinyin": "kě nà wǎn de yuè guāng ，",
+        "gloss": "But that night's moonlight"
+      },
+      {
+        "chinese": "也是真的",
+        "pinyin": "yě shì zhēn de",
+        "gloss": "really was"
+      },
+      {
+        "chinese": "美得让人说不出话。",
+        "pinyin": "měi de ràng rén shuō bù chū huà 。",
+        "gloss": "so beautiful it left people speechless."
+      }
+    ]
+  },
+  "那些要杀他们的人，一看这月光，全都跑了。": {
+    "pinyin": "nà xiē yào shā tā men de rén ， yí kàn zhè yuè guāng ， quán dōu pǎo le 。",
+    "english": "Those who wanted to kill them took one look at this moonlight and all fled.",
+    "interlinear": [
+      {
+        "chinese": "那些要杀他们的人，",
+        "pinyin": "nà xiē yào shā tā men de rén ，",
+        "gloss": "Those who wanted to kill them"
+      },
+      {
+        "chinese": "一看这月光，",
+        "pinyin": "yí kàn zhè yuè guāng ，",
+        "gloss": "took one look at this moonlight"
+      },
+      {
+        "chinese": "全都跑了。",
+        "pinyin": "quán dōu pǎo le 。",
+        "gloss": "and all fled."
+      }
+    ]
+  },
+  "所以，他真的做到了。": {
+    "pinyin": "suǒ yǐ ， tā zhēn de zuò dào le 。",
+    "english": "So he really did it.",
+    "interlinear": [
+      {
+        "chinese": "所以，",
+        "pinyin": "suǒ yǐ ，",
+        "gloss": "So"
+      },
+      {
+        "chinese": "他真的做到了。",
+        "pinyin": "tā zhēn de zuò dào le 。",
+        "gloss": "he really did it."
+      }
+    ]
+  },
+  "是啊。他没有忘记，也完成了对她说过的话。": {
+    "pinyin": "shì a 。 tā méi yǒu wàng jì ， yě wán chéng le duì tā shuō guò de huà 。",
+    "english": "Yes. He did not forget and fulfilled what he had told her.",
+    "interlinear": [
+      {
+        "chinese": "是啊。",
+        "pinyin": "shì a 。",
+        "gloss": "Yes."
+      },
+      {
+        "chinese": "他没有忘记，",
+        "pinyin": "tā méi yǒu wàng jì ，",
+        "gloss": "He did not forget"
+      },
+      {
+        "chinese": "也完成了",
+        "pinyin": "yě wán chéng le",
+        "gloss": "and fulfilled"
+      },
+      {
+        "chinese": "对她说过的话。",
+        "pinyin": "duì tā shuō guò de huà 。",
+        "gloss": "what he had told her."
+      }
+    ]
+  },
+  "大家都以为没有希望了，他却让约定成了真的。": {
+    "english": "Everyone thought there was no hope. He made the promise come true.",
+    "interlinear": [
+      {
+        "chinese": "大家都以为",
+        "gloss": "everyone thought",
+        "pinyin": "dà jiā dōu yǐ wéi"
+      },
+      {
+        "chinese": "没有希望了，",
+        "gloss": "there was no hope",
+        "pinyin": "méi yǒu xī wàng le ，"
+      },
+      {
+        "chinese": "他却让约定",
+        "gloss": "but he made the promise",
+        "pinyin": "tā què ràng yuē dìng"
+      },
+      {
+        "chinese": "成了真的。",
+        "gloss": "come true",
+        "pinyin": "chéng le zhēn de 。"
+      }
+    ],
+    "pinyin": "dà jiā dōu yǐ wéi méi yǒu xī wàng le ， tā què ràng yuē dìng chéng le zhēn de 。"
+  },
+  "过了这么多年，我还是一直记得那一晚。": {
+    "pinyin": "guò le zhè me duō nián ， wǒ hái shì yì zhí jì de nà yì wǎn 。",
+    "english": "After so many years, I still remember that night.",
+    "interlinear": [
+      {
+        "chinese": "过了这么多年，",
+        "pinyin": "guò le zhè me duō nián ，",
+        "gloss": "After so many years,"
+      },
+      {
+        "chinese": "我还是",
+        "pinyin": "wǒ hái shì",
+        "gloss": "I still"
+      },
+      {
+        "chinese": "一直记得那一晚。",
+        "pinyin": "yì zhí jì de nà yì wǎn 。",
+        "gloss": "remember that night."
+      }
+    ]
+  },
+  "我说雕刻没用。可那些人见了月光，全跑了。": {
+    "english": "I said sculpting was useless. Those people saw the moonlight and all ran away.",
+    "interlinear": [
+      {
+        "chinese": "我说雕刻没用。",
+        "gloss": "I said sculpting was useless.",
+        "pinyin": "wǒ shuō diāo kè méi yòng 。"
+      },
+      {
+        "chinese": "可那些人",
+        "gloss": "But those people",
+        "pinyin": "kě nà xiē rén"
+      },
+      {
+        "chinese": "见了月光，",
+        "gloss": "saw the moonlight",
+        "pinyin": "jiàn le yuè guāng ，"
+      },
+      {
+        "chinese": "全跑了。",
+        "gloss": "and all ran away",
+        "pinyin": "quán pǎo le 。"
+      }
+    ],
+    "pinyin": "wǒ shuō diāo kè méi yòng 。 kě nà xiē rén jiàn le yuè guāng ， quán pǎo le 。"
+  }
+}

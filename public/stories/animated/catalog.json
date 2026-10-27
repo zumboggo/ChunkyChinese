@@ -195,10 +195,10 @@
     }
   },
   {
-    "id": "moonlight-16-v1",
+    "id": "moonlight-16-v2",
     "category": "lms",
     "episode": 16,
-    "path": "moonlight-16.json",
+    "path": "moonlight-16-v2.json",
     "intro": {
       "src": "stories/animated/cutscenes/moonlight-16-intro.mp4",
       "poster": "stories/animated/cutscenes/moonlight-16-intro.jpg",
@@ -211,10 +211,10 @@
     }
   },
   {
-    "id": "moonlight-17-v1",
+    "id": "moonlight-17-v2",
     "category": "lms",
     "episode": 17,
-    "path": "moonlight-17.json",
+    "path": "moonlight-17-v2.json",
     "intro": {
       "src": "stories/animated/cutscenes/moonlight-17-intro.mp4",
       "poster": "stories/animated/cutscenes/moonlight-17-intro.jpg",
@@ -227,10 +227,10 @@
     }
   },
   {
-    "id": "moonlight-18-v1",
+    "id": "moonlight-18-v2",
     "category": "lms",
     "episode": 18,
-    "path": "moonlight-18.json",
+    "path": "moonlight-18-v2.json",
     "intro": {
       "src": "stories/animated/cutscenes/moonlight-18-intro.mp4",
       "poster": "stories/animated/cutscenes/moonlight-18-intro.jpg",
@@ -244,10 +244,10 @@
     }
   },
   {
-    "id": "moonlight-19-v1",
+    "id": "moonlight-19-v2",
     "category": "lms",
     "episode": 19,
-    "path": "moonlight-19.json",
+    "path": "moonlight-19-v2.json",
     "intro": {
       "src": "stories/animated/cutscenes/moonlight-19-intro.mp4",
       "poster": "stories/animated/cutscenes/moonlight-19-intro.jpg",
@@ -261,10 +261,10 @@
     }
   },
   {
-    "id": "moonlight-20-v1",
+    "id": "moonlight-20-v2",
     "category": "lms",
     "episode": 20,
-    "path": "moonlight-20.json",
+    "path": "moonlight-20-v2.json",
     "intro": {
       "src": "stories/animated/cutscenes/moonlight-20-intro.mp4",
       "poster": "stories/animated/cutscenes/moonlight-20-intro.jpg",
@@ -278,10 +278,10 @@
     }
   },
   {
-    "id": "moonlight-21-v1",
+    "id": "moonlight-21-v2",
     "category": "lms",
     "episode": 21,
-    "path": "moonlight-21.json",
+    "path": "moonlight-21-v2.json",
     "intro": {
       "src": "stories/animated/cutscenes/moonlight-21-intro.mp4",
       "poster": "stories/animated/cutscenes/moonlight-21-intro.jpg",
@@ -295,10 +295,10 @@
     }
   },
   {
-    "id": "moonlight-22-v1",
+    "id": "moonlight-22-v2",
     "category": "lms",
     "episode": 22,
-    "path": "moonlight-22.json",
+    "path": "moonlight-22-v2.json",
     "intro": {
       "src": "stories/animated/cutscenes/moonlight-22-intro.mp4",
       "poster": "stories/animated/cutscenes/moonlight-22-intro.jpg",
@@ -312,7 +312,7 @@
     }
   },
   {
-    "id": "moonlight-23-v1",
+    "id": "moonlight-23-v2",
     "category": "lms",
     "episode": 23,
     "intro": {
@@ -321,7 +321,7 @@
       "title": "A promise in moonlight",
       "durationSeconds": 9
     },
-    "path": "moonlight-23.json",
+    "path": "moonlight-23-v2.json",
     "summary": {
       "title": "A Promise in Moonlight",
       "description": "The attendant reveals what Zahab made with his sword—and why the queen never forgot it.",
@@ -329,7 +329,7 @@
     }
   },
   {
-    "id": "moonlight-24-v1",
+    "id": "moonlight-24-v2",
     "category": "lms",
     "episode": 24,
     "intro": {
@@ -338,7 +338,7 @@
       "title": "An impossible refusal",
       "durationSeconds": 9
     },
-    "path": "moonlight-24.json",
+    "path": "moonlight-24-v2.json",
     "summary": {
       "title": "The Class I Refuse",
       "description": "A fulfilled promise offers Weed a rare new path. His answer surprises even the system.",
@@ -346,7 +346,7 @@
     }
   },
   {
-    "id": "moonlight-25-v1",
+    "id": "moonlight-25-v2",
     "category": "lms",
     "episode": 25,
     "intro": {
@@ -355,7 +355,7 @@
       "title": "I cannot cancel?",
       "durationSeconds": 9
     },
-    "path": "moonlight-25.json",
+    "path": "moonlight-25-v2.json",
     "summary": {
       "title": "The Gift I Cannot Refuse",
       "description": "Zahab’s knife and a wooden statue are valuable gifts. The obligation hidden inside them has no cancel button.",
@@ -363,7 +363,7 @@
     }
   },
   {
-    "id": "moonlight-26-v1",
+    "id": "moonlight-26-v2",
     "category": "lms",
     "episode": 26,
     "intro": {
@@ -372,7 +372,7 @@
       "title": "Another quest?",
       "durationSeconds": 9
     },
-    "path": "moonlight-26.json",
+    "path": "moonlight-26-v2.json",
     "summary": {
       "title": "Back to the Wooden Sword",
       "description": "Weed collects the silver he earned. Now another quest is tempting him away from the work he began.",
@@ -489,10 +489,10 @@
     }
   },
   {
-    "id": "moonlight-27-v1",
+    "id": "moonlight-27-v2",
     "category": "lms",
     "episode": 27,
-    "path": "moonlight-27.json",
+    "path": "moonlight-27-v2.json",
     "summary": {
       "title": "The Player Who Would Not Take Gifts",
       "description": "Four weeks with a wooden sword make Weed famous for the wrong reason. The more clearly he explains himself, the less the other players believe him."
