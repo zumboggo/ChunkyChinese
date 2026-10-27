@@ -1,0 +1,5 @@
+.game-page .episode-continuity{max-width:760px;margin:1rem auto;padding:24px;background:#102338;color:#ecf1f5;border:1px solid #687b8d;border-radius:16px}
+.game-page .episode-continuity p,.game-page .episode-continuity li{color:#e0e8ef;line-height:1.65}
+.game-page .episode-continuity button{display:block;width:100%;min-height:48px;margin:12px 0;padding:12px 16px;text-align:left}
+.game-page .episode-continuity h2,.game-page .episode-continuity h3{color:#ffe393}
+.episode-continuity li{margin:10px 0}

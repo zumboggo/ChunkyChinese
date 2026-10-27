@@ -503,5 +503,28 @@
       "title": "No gifts, thank you",
       "durationSeconds": 9
     }
+  },
+  {
+    "id": "jedi-04-v1",
+    "category": "jedi",
+    "episode": 4,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-04-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-04-intro.poster.jpg",
+      "title": "The Line We Hold",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode IV · The Line We Hold",
+        "paragraphs": [
+          "The storm has passed. The communities must live with yesterday’s agreement, its promises, and its losses. Now a crack in the hills threatens the pipes beneath their homes. Jonathan and An set out to discover what has broken.",
+          "Jonathan wants something useful to bring back. An wants a partner who will listen when she says stop. Beyond the crack, a little water and an old diagram may offer a way forward—but bringing everything home could cost more than they expect."
+        ]
+      }
+    },
+    "path": "jedi-04.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 4: The Line We Hold",
+      "description": "Beyond the storm’s crack, Jonathan must learn when to hold on—and when to listen. Recover a sample, a route, or both at a cost. A story-led expedition with lasting material outcomes, without points."
+    }
   }
 ]

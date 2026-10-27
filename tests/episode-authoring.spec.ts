@@ -27,6 +27,7 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
  }
  await open()
  if(pack.notice)await page.getByRole('button',{name:'Accept',exact:true}).click()
+ if(pack.continuity){for(const field of pack.continuity.fields){await expect(page.getByRole('region',{name:'Previous episode outcome'}).getByRole('heading',{name:field.label,exact:true})).toBeVisible();await page.keyboard.press('1')}await page.getByRole('button',{name:'1 · Confirm outcome',exact:true}).click()}
  if(index%2)await page.emulateMedia({reducedMotion:'reduce'})
  let heard=false,resumed=false
  const currentText=()=>page.evaluate(()=>{

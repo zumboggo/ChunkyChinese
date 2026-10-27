@@ -1,10 +1,11 @@
+import {validateContinuity,type ContinuityDefinition} from './continuity.ts'
 import JSZip from 'jszip'
 import {validateOutcomeScorecard,type OutcomeScorecard} from './outcomeScorecard.ts'
 import type {ReaderInterlinearChunk} from '../../types'
 import {compileStory,validatePackage,type StoryPackage} from './shared/engine/story-engine.js'
 import {packageAssetEntries,packageContentBytes} from './shared/engine/acting-library.js'
 export interface ChineseLine {pinyin?:string;english?:string;audio?:string;interlinear?:ReaderInterlinearChunk[]}
-export interface ChinesePackage extends StoryPackage {outcomeScorecard?:OutcomeScorecard;notice?:string;chinese?:{lines:Record<string,ChineseLine>}}
+export interface ChinesePackage extends StoryPackage {continuity?:ContinuityDefinition;outcomeScorecard?:OutcomeScorecard;notice?:string;chinese?:{lines:Record<string,ChineseLine>}}
 export function entries(pack:ChinesePackage):{src:string}[]{return packageAssetEntries(pack)}
 export function size(pack:ChinesePackage){const copy=structuredClone(pack);let bytes=0;for(const l of Object.values(copy.chinese?.lines??{})){if(l.audio){const data=l.audio.split(',')[1]??'';bytes+=Math.floor(data.length*3/4)-(data.endsWith('==')?2:data.endsWith('=')?1:0);l.audio=''}}return packageContentBytes(copy)+bytes}
 const image=/^data:image\/(webp|png|jpeg);base64,[A-Za-z0-9+/=]+$/
@@ -15,6 +16,7 @@ export function validateChinese(pack:ChinesePackage){
   const result=validatePackage(pack)
   // Classroom quizzes are optional for personal Mandarin adventures.
   const errors=result.errors.filter(e=>!(Array.isArray(pack.quiz)&&pack.quiz.length===0&&e.message.startsWith('Add four questions')))
+  for(const message of validateContinuity(pack.continuity))errors.push({line:1,message})
   if(result.story)for(const message of validateOutcomeScorecard(pack.outcomeScorecard,result.story))errors.push({line:1,message})
   if(entries(pack).some(a=>!image.test(a.src)&&!audio.test(a.src)))errors.push({line:1,message:'Embed images/audio in the package; remote or executable assets are not allowed.'})
   for(const l of Object.values(pack.chinese?.lines??{})){if(!l||typeof l!=='object'||l.pinyin!==undefined&&typeof l.pinyin!=='string'||l.english!==undefined&&typeof l.english!=='string'||l.audio!==undefined&&!audio.test(l.audio))errors.push({line:1,message:'Invalid Chinese text or embedded audio.'})}

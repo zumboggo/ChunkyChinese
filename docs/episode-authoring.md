@@ -125,3 +125,11 @@ variables, not an independently stored score, so Back, restart and resume agree.
 Keep at most four story variables. Audit every route and explicitly distinguish
 inherited conditions from outcomes caused in this episode. The Jedi Episode 3
 authoring record provides a complete example.
+
+## Optional continuity recap
+
+A Chinese package may include `continuity: {sourceId, title, fields, states}`. Each field has an `id`, `label`, and options `{value,label,when?}`. Source conditions use `all`, `any`, and `none` arrays of prior choice-option IDs; a `sourceVariable` instead reads a terminal numeric/string value. `states` is an explicit table of valid value arrays, one entry per field. Generate that table from all reachable prior endings, not guessed combinations. Definitions are validated and survive JSON/ZIP round trips.
+
+After Accept, a completed save for the exact bundled source release can prefill the recap. Incomplete, missing, unreadable or incompatible saves never select an ending automatically. The learner confirms the result or selects a valid outcome through a filtered, paginated recap (buttons 1–3 select; 4 shows more). Only then does the opening crawl/teaser begin. Confirmation stores a bounded `continuity` snapshot alongside the current attempt’s saved steps. Later changes to the prior attempt do not overwrite it; restarting the episode starts a new confirmation. The snapshot can be reviewed during play and survives resume and intro replay.
+
+This snapshot is context, not extra script variables or an implicit branching instruction. An episode that needs different story branches must explicitly author those behaviors. Episode 4 keeps inherited resources and casualties unchanged; its new evidence/rope outcomes use three bounded script booleans. Original episode packages, source saves, and quiz/scorecard behavior are unaffected. Importing a package carries its recap definition, not someone else’s private saved attempt.
