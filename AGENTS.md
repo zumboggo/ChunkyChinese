@@ -11,3 +11,7 @@
 # Episode creation and publication
 
 When David requests “create an episode” (including a new episode in an existing series), this explicitly authorizes creating, validating, and publishing the completed episode to its established destination, including the normal commit, push, deployment, live verification, and series-continuation updates. Do not ask for a separate publication confirmation. Draft-only, brainstorming, and explicit requests not to publish remain unpublished. This does not authorize classroom assignment or Canvas posting. Preference explicitly confirmed on October 27, 2026.
+
+# Efficient episode authoring
+
+Start episode work with `game:preflight` and the compact private brief in `.local/authoring/`; use verified paths and current runtime cue options. Audit a short opening before drafting the full episode. Never dump full packages, embedded media, or continuity tables into tool output. Follow `docs/episode-quickstart.md` for compact continuity, shared browser helpers, and incremental publishing. Preserve final route/audio/phone checks; let the publisher own the final build.

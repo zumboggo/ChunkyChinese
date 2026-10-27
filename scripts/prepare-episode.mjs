@@ -3,6 +3,7 @@ import {resolve} from 'node:path'
 import {randomUUID} from 'node:crypto'
 import {spawnSync} from 'node:child_process'
 import assert from 'node:assert/strict'
+import {compactContinuity} from '../src/game/animation/continuity.ts'
 import {auditVocabulary} from './lib/episode-vocabulary.mjs'
 import {generateEpisodeEnglish} from './lib/episode-english-audio.mjs'
 import {addEpisodeAudio} from './lib/episode-audio.mjs'
@@ -22,8 +23,10 @@ if(flags.init){
  writeFileSync(resolve(base,'episode.story'),'story 2\nlabel opening\nI: 我准备好了。\nend\n');write(resolve(base,'lines.json'),{})
  console.log('Created '+path+'; fill the compact plan, then run --draft first.');process.exit(0)
 }
-if(!flags.vocab)throw Error('Provide --vocab; private learning data stays under .local/.')
 const plan=read(flags.plan)
+const authoringConfig=`.local/authoring/${plan.series}.json`
+flags.vocab??=existsSync(authoringConfig)?read(authoringConfig).vocab:undefined
+if(!flags.vocab)throw Error('Run game:preflight -- --series=SERIES --vocab=PRIVATE_JSON first, or provide --vocab.')
 if(typeof plan.series!=='string'||!/^[a-z0-9-]+$/.test(plan.series))throw Error('Invalid series ID')
 const series=read(`stories/authoring/series/${plan.series}.json`)
 const run=resolve(base,new Date().toISOString().replaceAll(':','-')+'-'+randomUUID().slice(0,8));mkdirSync(run,{recursive:true})
@@ -32,7 +35,7 @@ async function phase(name,fn){const start=performance.now();try{const value=awai
 try{
  const assets=read(plan.assetsFrom).assets
  if(plan.castFrom)assets.characters={...assets.characters,...read(plan.castFrom)}
- const script=readFileSync(plan.script,'utf8'),pack={format:2,profile:'chinese',title:plan.title,description:plan.description,script,assets,quiz:[],sources:plan.sources,...(plan.notice?{notice:plan.notice}:{}),...(plan.continuity?{continuity:plan.continuity}:{}),...(plan.outcomeScorecard?{outcomeScorecard:plan.outcomeScorecard}:{})}
+ const script=readFileSync(plan.script,'utf8'),pack={format:2,profile:'chinese',title:plan.title,description:plan.description,script,assets,quiz:[],sources:plan.sources,...(plan.notice?{notice:plan.notice}:{}),...(plan.continuity?{continuity:compactContinuity(plan.continuity)}:{}),...(plan.outcomeScorecard?{outcomeScorecard:plan.outcomeScorecard}:{})}
  const vocabulary=await phase('vocabulary',()=>auditVocabulary(pack,read(flags.vocab),{lexicon:plan.lexicon??[],supplement:read(series.vocabularySupplement).words,min:series.coverage.min,max:series.coverage.max}))
  write(resolve(run,'vocabulary.json'),vocabulary)
  console.log(`${vocabulary.range.min.toFixed(2)}–${vocabulary.range.max.toFixed(2)}% familiar; Mandarin entry share ${Math.min(...vocabulary.routes.map(r=>r.exposure.mandarinEntryPercent)).toFixed(1)}–${Math.max(...vocabulary.routes.map(r=>r.exposure.mandarinEntryPercent)).toFixed(1)}% (not listening time).`)

@@ -1,5 +1,5 @@
 import {useEffect,useState} from 'react'
-import {validSnapshot,type ContinuityDefinition,type ContinuitySnapshot} from './continuity'
+import {continuityOptions,validSnapshot,type ContinuityDefinition,type ContinuitySnapshot} from './continuity'
 import type {HotkeySettings} from '../../types'
 import './episode-continuity.css'
 export function ContinuitySummary({definition,snapshot}:{definition:ContinuityDefinition;snapshot:ContinuitySnapshot}){
@@ -8,7 +8,7 @@ export function ContinuitySummary({definition,snapshot}:{definition:ContinuityDe
 export default function EpisodeContinuity({definition,initial,onDone,hotkeys}:{definition:ContinuityDefinition;initial?:ContinuitySnapshot;onDone:(s:ContinuitySnapshot)=>void;hotkeys?:HotkeySettings}){
  const [values,setValues]=useState<string[]>(()=>validSnapshot(definition,initial)?initial.values:[])
  const [field,setField]=useState(0),[page,setPage]=useState(0),[review,setReview]=useState(()=>validSnapshot(definition,initial))
- const options=definition.fields[field].options.filter(o=>definition.states.some(row=>row[field]===o.value&&values.slice(0,field).every((v,i)=>v===row[i])))
+ const options=definition.fields[field].options.filter(o=>continuityOptions(definition,values.slice(0,field)).includes(o.value))
  const visible=options.slice(page*3,page*3+3),snapshot={sourceId:definition.sourceId,values}
  function choose(value:string){const next=[...values.slice(0,field),value];setValues(next);setPage(0);if(field===definition.fields.length-1)setReview(true);else setField(field+1)}
  useEffect(()=>{

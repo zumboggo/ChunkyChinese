@@ -34,5 +34,10 @@ def finish(candidate,release_sha,require,push_commit):
     bookkeeping.write_text(json.dumps({'sha':final_sha,'mode':'bookkeeping','paths':[str(path)]})+'\n')
     push_commit(final_sha)
     if require(['git','ls-remote','origin','refs/heads/main']).split()[0]!=final_sha:raise ValueError('Continuation push not confirmed; retry the same command.')
+    verified=Path('.local/publish-receipts','live-'+release_sha+'.json')
+    if verified.exists():
+        evidence=json.loads(verified.read_text())
+        if evidence.get('sha')==release_sha and evidence.get('verified') is True:
+            Path('.local/publish-receipts','live-'+final_sha+'.json').write_text(json.dumps({**evidence,'sha':final_sha,'releaseSha':release_sha})+'\n')
     print('CONTINUATION SAVED: '+final_sha,flush=True)
     print('RELEASE SUMMARY: '+json.dumps({'release':c['releaseId'],**c.get('report',{})},ensure_ascii=False),flush=True)

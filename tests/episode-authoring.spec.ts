@@ -1,3 +1,4 @@
+import {chooseEpisodeOption} from './helpers/episode-controls'
 import {test,expect} from '@playwright/test'
 import {readFileSync} from 'node:fs'
 import {createHash} from 'node:crypto'
@@ -43,7 +44,7 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
    expect(await option.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true)
    // Keep the previous Continue pointer off the new choice edge: the global hover lift can oscillate there.
    await page.mouse.move(0,0)
-   await page.screenshot({path:info.outputPath(`choice-${i}.png`),fullPage:true});if(pack.outcomeScorecard){await expect(page.locator('.outcome-scorecard')).toHaveCount(0);await page.keyboard.press(String(optionIndex+1))}else await option.click()
+   await page.screenshot({path:info.outputPath(`choice-${i}.png`),fullPage:true});if(pack.outcomeScorecard){await expect(page.locator('.outcome-scorecard')).toHaveCount(0);await page.keyboard.press(String(optionIndex+1))}else await chooseEpisodeOption(page,optionIndex)
   }else{
    await expect.poll(currentText).toBe(beat.text)
    if(!heard&&pack.chinese?.lines[beat.text]?.audio){

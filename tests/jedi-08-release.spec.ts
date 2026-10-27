@@ -1,3 +1,4 @@
+import {chooseEpisodeOption} from './helpers/episode-controls'
 import {test,expect,type Page} from '@playwright/test'
 import {readFileSync} from 'node:fs'
 import {compileStory,replayStory,advanceStory} from '../src/game/animation/shared/engine/story-engine.js'
@@ -28,7 +29,7 @@ for(const n of [8]){
   await expect(page.locator('.episode-line')).toContainText('慢慢呼吸');await page.getByRole('button',{name:'Pause audio',exact:true}).click();await page.locator('.story-stage').scrollIntoViewIfNeeded();await page.screenshot({path:info.outputPath('aftermath.png'),fullPage:true})
   await savedSteps(page,steps.length+1,id);await page.reload();await page.getByRole('button',{name:'Game',exact:true}).click();await page.getByRole('button',{name:'Resume',exact:true}).click();await expect(page.locator('.episode-line')).toContainText('慢慢呼吸')
   await nextLine(page);await page.getByRole('button',{name:'Continue →',exact:true}).click();await expect(page.locator('.episode-choice-card')).toHaveCount(route==='shared'?3:2)
-  await page.getByRole('button',{name:`Choose option ${route==='shared'?3:route==='trust'?2:1}`,exact:true}).click();await expect(page.locator('.episode-line')).toContainText(route==='shared'?'锁好开关':route==='trust'?'Ren收好钥匙':'Ren给我钥匙')
+  await chooseEpisodeOption(page,route==='shared'?2:route==='trust'?1:0);await expect(page.locator('.episode-line')).toContainText(route==='shared'?'锁好开关':route==='trust'?'Ren收好钥匙':'Ren给我钥匙')
   await savedSteps(page,steps.length+4,id);await page.reload();await page.getByRole('button',{name:'Game',exact:true}).click();await page.getByRole('button',{name:'Resume',exact:true}).click();await expect(page.locator('.episode-line')).toContainText(route==='shared'?'锁好开关':route==='trust'?'Ren收好钥匙':'Ren给我钥匙')
  })
 }

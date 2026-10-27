@@ -26,10 +26,12 @@ class ContinuationTests(unittest.TestCase):
    if args[1:3]==['remote','get-url']:return p.ORIGIN
    if args[1]=='rev-parse':return 'release'
    return ''
-  with patch.object(sys,'argv',['publish','--push','--continuation=candidate.json']),patch.object(p,'require',require),patch.object(p,'publication_plan',return_value={'mode':'release'}),patch.object(p,'push_commit'),patch.object(p,'wait_deployment'),patch.object(p,'verify_live',side_effect=p.StopPublish('not live')):
+  with patch.object(sys,'argv',['publish','--push','--continuation=candidate.json']),patch.object(p,'require',require),patch.object(p,'publication_plan',return_value={'mode':'release','sha':'release','base':'previous','paths':[]}),patch.object(p,'push_commit'),patch.object(p,'wait_deployment'),patch.object(p,'verify_live',side_effect=p.StopPublish('not live')):
    with self.assertRaisesRegex(p.StopPublish,'not live'):p.main()
   self.assertEqual(self.record.read_text(),'{}')
  def test_finish_push_retry_reuses_commit_and_receipt(self):
+  evidence=Path('.local/publish-receipts');evidence.mkdir(parents=True)
+  (evidence/'live-release.json').write_text(json.dumps({'sha':'release','verified':True}))
   head=['release'];commits=[];pushes=[]
   def require(args):
    if args[1]=='rev-parse':return head[0]
@@ -41,7 +43,9 @@ class ContinuationTests(unittest.TestCase):
    pushes.append(sha)
    if len(pushes)==1:raise RuntimeError('lost connection')
   with self.assertRaisesRegex(RuntimeError,'lost connection'):c.finish(self.candidate,'release',require,push)
+  self.assertFalse((evidence/'live-bookkeeping.json').exists())
   c.finish(self.candidate,'release',require,push)
+  self.assertEqual(json.loads((evidence/'live-bookkeeping.json').read_text())['releaseSha'],'release')
   self.assertEqual(len(commits),1);self.assertEqual(pushes,['bookkeeping','bookkeeping']);self.assertEqual(json.loads(self.record.read_text()),self.candidate['nextRecord'])
  def test_head_change_prevents_record_write(self):
   with self.assertRaisesRegex(ValueError,'HEAD changed'):c.finish(self.candidate,'release',lambda a:'other' if a[1]=='rev-parse' else '',lambda _:None)
