@@ -15,7 +15,7 @@ const secretPatterns = [
   ['Supabase secret key', /sb_secret_[A-Za-z0-9._-]{20,}/gu],
   ['OpenRouter API key', /sk-or-v1-[A-Za-z0-9]{20,}/gu],
   ['Stripe live secret key', /sk_live_[A-Za-z0-9]{20,}/gu],
-  ['Google API key', /AIza[A-Za-z0-9_-]{30,}/gu],
+  ['Google API key', /(?<![A-Za-z0-9_-])AIza[A-Za-z0-9_-]{30,}(?![A-Za-z0-9_-])/gu],
   ['AWS access key', /(?<![A-Za-z0-9])AKIA[A-Z0-9]{16}(?![A-Za-z0-9])/gu],
   ['private key material', /-----BEGIN (?:EC |OPENSSH |RSA )?PRIVATE KEY-----/gu],
 ]
