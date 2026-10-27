@@ -4,9 +4,9 @@
   "source": {
     "kind": "original",
     "note": "Original fan adventure requested by David for Jonathan; no source novel or real-person likeness.",
-    "nextStart": "Episode 4: departure to investigate the cracked landscape; explicitly restore the Episode 3 agreement, survivors and remaining water.",
-    "nextEndBefore": "Do not reveal the voice artifact or deep reserve until a later planned discovery.",
-    "continuationNote": "No universal ending; preserve agreement, medical outcome, inherited casualties and promise consequences."
+    "nextStart": "Episode 5: plan the expedition to the western closed station. Restore Episode 4 evidence/rope outcome and its carried Episode 3 continuity.",
+    "nextEndBefore": "Do not explain the repeated voice or reveal the deep reserve before a separately planned discovery.",
+    "continuationNote": "The sample is not drinkable supply. A copied map gives the safe route; without it, route-finding is required. A sample enables testing; without it, water remains untested. The origin of flow from a closed station remains unresolved."
   },
   "completed": [
     {
@@ -26,9 +26,13 @@
     {
       "episode": "jedi-03-v1",
       "end": "Two-community water negotiation ends in hill control, temporary need-based distribution, or earned shared management. Mei survives only with evacuation or treatment. Earlier casualties and An’s independent testimony persist."
+    },
+    {
+      "episode": "jedi-04-v1",
+      "end": "Jonathan and An isolate the damaged pipe and return unharmed. Player recovers a sample, a copied route, or both by abandoning the anchored rope. Prior survivors, promises, agreement and stored water persist in the confirmed continuity snapshot. Jonathan learns to respect An’s stop signal and expertise."
     }
   ],
-  "assetsFrom": "stories/animated/jedi-03.json",
+  "assetsFrom": "stories/animated/jedi-04.json",
   "vocabularySupplement": ".local/episodes/jedi-01/supplement.json",
   "coverage": {
     "min": 80,
@@ -49,7 +53,11 @@
     "The source of the repeated voice remains unexplained. Do not resurrect Tao or Q or restore the lost recording without an explicitly selected compatible route.",
     "Episode 3: three preparations from pump inspection, both-community hearing, voluntary household reserve contribution and evacuation. Shared management requires inspection and hearing and costs four buckets.",
     "Mei survives only if evacuated early or treated with four buckets; otherwise she dies. Do not resurrect her.",
-    "Hill control costs six buckets; emergency distribution breaks a prior promise if made; shared management renegotiates it by consent. Carry the actual agreement and remaining water forward."
+    "Hill control costs six buckets; emergency distribution breaks a prior promise if made; shared management renegotiates it by consent. Carry the actual agreement and remaining water forward.",
+    "Episode 4 confirms a valid Episode 3 continuity snapshot before play; it preserves exact drinking water, earlier deaths, agreement, promise and An’s previous testimony.",
+    "Jonathan and An return from the crack unharmed after isolating a damaged western pipe. Its sample is for testing, never drinking supply.",
+    "Episode 4 evidence: bottle = sample and rope retained, no route; diagram = remembered/copied route and rope retained, no sample; both = sample and route, anchored rope sacrificed. Only prior anchoring unlocks both.",
+    "Jonathan respects An’s stop signal and lets her make the first record. The closed western station still sends water; its cause, the earlier voice and deep reserve remain unexplained."
   ],
   "cover": "public/stories/animated/jedi/series-cover.jpg",
   "coverArt": {
@@ -59,9 +67,9 @@
   },
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through jedi-03-v1",
-    "nextStart": "Episode 4: departure to investigate the cracked landscape; explicitly restore the Episode 3 agreement, survivors and remaining water.",
-    "nextEndBefore": "Do not reveal the voice artifact or deep reserve until a later planned discovery.",
-    "assetsFrom": "stories/animated/jedi-03.json"
+    "note": "Published through jedi-04-v1",
+    "nextStart": "Episode 5: plan the expedition to the western closed station. Restore Episode 4 evidence/rope outcome and its carried Episode 3 continuity.",
+    "nextEndBefore": "Do not explain the repeated voice or reveal the deep reserve before a separately planned discovery.",
+    "assetsFrom": "stories/animated/jedi-04.json"
   }
 }
