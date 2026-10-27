@@ -76,6 +76,7 @@ label easy
 I: E级任务，是不难。可刚才，我差点连问题都问不了。
 goto finish
 label welcome
+camera two Hyun Shopkeeper cut
 Hyun [happy]: 谢谢您。我总算能回去交代了。
 Shopkeeper [neutral]: 能帮上忙就好。
 label finish

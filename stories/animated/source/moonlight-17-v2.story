@@ -65,6 +65,7 @@ label tired
 I: 喝下去，好像连身上的累都少了一点。
 goto question
 label thankful
+camera two Hyun Shopkeeper cut
 Hyun [relieved]: 这水来得正好。谢谢您，我真的累了。
 Shopkeeper [happy]: 你慢慢喝。
 label question
