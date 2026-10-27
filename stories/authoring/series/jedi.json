@@ -4,9 +4,9 @@
   "source": {
     "kind": "original",
     "note": "Original fan adventure requested by David for Jonathan; no source novel or real-person likeness.",
-    "nextStart": "Episode 7: invite the child’s mother to inspect the upper relay; preserve tower outcomes, resolve how her recorded voice travels while keeping operator and reserve unknown.",
+    "nextStart": "Episode 8: eastern station manual activation request. Carry tower injury/beacon and relay playback/evidence outcomes; discover who requested the repetition without restoring any losses.",
     "nextEndBefore": "Do not reveal the deep reserve or restore lost people, equipment, archives, recordings, or water.",
-    "continuationNote": "Episode 6 repairs station door using new spare plate, keeps destroyed archive/equipment gone and home pipe unchanged. Both alive; lift: An uninjured, warning unsent, beacon intact; signal: warning sent, An arm injured and cannot climb/lift; relay after inspect: warning sent, An safe, beacon circuit permanently lost. Stored drinking water unchanged. Upper relay next."
+    "continuationNote": "Episode 7 separately discovers recorded water requests routed through dry pipes. Mother never consented to replay; child safe offstage. Destroy loses relay records; preserve leaves playback risk and recorded dissent; isolate requires consenting voice test AND retained station archive, stops playback and retains records. An injury persists; burned beacon prevents transmission. No water or past losses restored. Eastern manual request next; operator and deep reserve unknown."
   },
   "completed": [
     {
@@ -38,9 +38,13 @@
     {
       "episode": "jedi-06-v1",
       "end": "Episode 6 repairs station door using new spare plate, keeps destroyed archive/equipment gone and home pipe unchanged. Both alive; lift: An uninjured, warning unsent, beacon intact; signal: warning sent, An arm injured and cannot climb/lift; relay after inspect: warning sent, An safe, beacon circuit permanently lost. Stored drinking water unchanged. Upper relay next."
+    },
+    {
+      "episode": "jedi-07-v1",
+      "end": "Episode 7 separately discovers recorded water requests routed through dry pipes. Mother never consented to replay; child safe offstage. Destroy loses relay records; preserve leaves playback risk and recorded dissent; isolate requires consenting voice test AND retained station archive, stops playback and retains records. An injury persists; burned beacon prevents transmission. No water or past losses restored. Eastern manual request next; operator and deep reserve unknown."
     }
   ],
-  "assetsFrom": "stories/animated/jedi-06.json",
+  "assetsFrom": "stories/animated/jedi-07.json",
   "vocabularySupplement": ".local/episodes/jedi-01/supplement.json",
   "coverage": {
     "min": 80,
@@ -70,7 +74,8 @@
     "Episode 5 preserves all Episode 3/4 continuity. Retained sample tests unsafe; without sample water remains untested. Map gives safe approach; without map they follow the pipe to find a route.",
     "Episode 5 outcomes: drain sacrifices station door and lower archive for part; leave preserves door/archive but no part; inspected brace uses retained rope or permanently destroys lightsaber if rope previously lost, takes part, saves archive, requires door repair before next storm. Both return safely; recovered part repairs pipe but valve stays closed and drinking water unchanged.",
     "Northern tower red light is new lead. Voice, deep reserve and origin of closed-station flow remain unexplained.",
-    "Episode 6 repairs station door using new spare plate, keeps destroyed archive/equipment gone and home pipe unchanged. Both alive; lift: An uninjured, warning unsent, beacon intact; signal: warning sent, An arm injured and cannot climb/lift; relay after inspect: warning sent, An safe, beacon circuit permanently lost. Stored drinking water unchanged. Upper relay next."
+    "Episode 6 repairs station door using new spare plate, keeps destroyed archive/equipment gone and home pipe unchanged. Both alive; lift: An uninjured, warning unsent, beacon intact; signal: warning sent, An arm injured and cannot climb/lift; relay after inspect: warning sent, An safe, beacon circuit permanently lost. Stored drinking water unchanged. Upper relay next.",
+    "Episode 7 separately discovers recorded water requests routed through dry pipes. Mother never consented to replay; child safe offstage. Destroy loses relay records; preserve leaves playback risk and recorded dissent; isolate requires consenting voice test AND retained station archive, stops playback and retains records. An injury persists; burned beacon prevents transmission. No water or past losses restored. Eastern manual request next; operator and deep reserve unknown."
   ],
   "cover": "public/stories/animated/jedi/series-cover.jpg",
   "coverArt": {
@@ -80,9 +85,9 @@
   },
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through jedi-06-v1",
-    "nextStart": "Episode 7: invite the child’s mother to inspect the upper relay; preserve tower outcomes, resolve how her recorded voice travels while keeping operator and reserve unknown.",
+    "note": "Published through jedi-07-v1",
+    "nextStart": "Episode 8: eastern station manual activation request. Carry tower injury/beacon and relay playback/evidence outcomes; discover who requested the repetition without restoring any losses.",
     "nextEndBefore": "Do not reveal the deep reserve or restore lost people, equipment, archives, recordings, or water.",
-    "assetsFrom": "stories/animated/jedi-06.json"
+    "assetsFrom": "stories/animated/jedi-07.json"
   }
 }
