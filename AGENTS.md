@@ -5,3 +5,5 @@
 - In Flashcards, swiping is the primary rating method; do not show Again, Hard, Good, or Easy rating buttons.
 - Flashcard keyboard ratings follow Choice A through Choice D in order: Again, Hard, Good, Easy.
 - After implementing user-requested code changes, commit and push to GitHub unless the user explicitly asks not to.
+
+- Every new episode opening teaser includes one cool or epic spoken phrase by Jon or another character that foreshadows the highest-tension moment. Generate ImageGen artwork first, then verify exact video pricing within the $0.15 total clip cap. Use English for teaser speech and Mandarin for lesson audio.

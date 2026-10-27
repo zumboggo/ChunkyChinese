@@ -1,0 +1,668 @@
+{
+  "id": "jedi-05",
+  "series": "jedi",
+  "title": "The Voices Beneath the Water · Episode 5: The Price of the Door",
+  "description": "At the closed western station, the part home needs is still protecting something. Carry your evidence forward, inspect before acting, and choose who bears the cost.",
+  "notice": "An original Star Wars fan adventure. Play Jonathan in short Mandarin with pinyin, English help and recorded audio. Confirm your earlier outcome first; it shapes the equipment and options in this attempt. Four story choices, lasting material consequences, no value scores. Reading has no time limit.",
+  "planning": {
+    "storytellingVoice": "Immediate drama: a useful part is also a working safeguard; pressure exposes who bears the cost. Strongest fit, no random tie-break needed.",
+    "sourceBoundary": "Original continuation of Episode 4, western station expedition; no explanation of the voice or deep reserve.",
+    "dramaticChange": "Jonathan moves from bringing something home at any cost toward naming and personally bearing the cost. An remains a technical partner with an independent account.",
+    "earlyCare": "An shares her last biscuit; Jonathan divides it, making care reciprocal.",
+    "essentialNewWords": [
+      "零件",
+      "绳子",
+      "风暴",
+      "塔"
+    ],
+    "englishNarrationPurpose": "Recap, context and optional help only.",
+    "choicesAndCallbacks": [
+      {
+        "id": "intention",
+        "response": "Urgency for home versus concern about unseen cost; An challenges or builds on the intention."
+      },
+      {
+        "id": "preparation",
+        "response": "Inspect barrier or secure exit. Inspection unlocks a material sacrifice alternative, never a hidden correct line."
+      },
+      {
+        "id": "decision",
+        "response": "Part/door-and-records/personal equipment. Inspection required for brace; retained rope is sacrificed, or absent rope requires destroying Jon’s lightsaber."
+      },
+      {
+        "id": "account",
+        "response": "Shared account versus Jon leading with his cost; An insists on independent judgment."
+      }
+    ],
+    "sceneActivities": [
+      "Share biscuit in narration; walk only when route-finding is required; crouch for inspection; An braces during warning, releases in aftermath; repair at home if part recovered."
+    ],
+    "listenerTurn": "Jon stops reaching after An’s warning. Later hold An as she releases and steadies herself; Jon waits, allowing reader-controlled aftermath.",
+    "payoff": "Both return safely. Part repairs pipe but valve remains closed; alternatively preserve door and records. Stored potable water and prior survival remain unchanged.",
+    "freshQuestion": "Northern tower light appears; who is there? Water origin, repeated voice and deep reserve unresolved.",
+    "teaser": {
+      "moment": "Jon hovering beside working valve while An holds barrier; before irreversible decision.",
+      "dialogue": "If we take this, who pays the price?",
+      "language": "English",
+      "imagegenFirst": true
+    },
+    "pinyinReview": "All full lines and contextual chunks reviewed, including An, 管子, 绳子, 东西, and multi-pronunciation 得. Annotated accessible new terms; inventory unchanged.",
+    "vocabularyReview": "Revised against the unchanged 388-word series inventory. No familiarity expansion or known-status changes."
+  },
+  "continuation": {
+    "end": "Western station expedition completed. Both return safely; stored water and prior continuity unchanged. Player either takes part by draining empty lower archive (door/records lost), leaves part preserving door/records, or after inspection braces with retained rope / destroys lightsaber if rope lost, preserving records temporarily and committing to repair before next storm. Recovered part repairs home pipe but valve stays closed. Sample routes show unsafe water; no-sample route remains untested.",
+    "nextStart": "Episode 6: northern tower red light. Restore Episode 5 part/door/archive/equipment outcome plus all carried continuity. If temporary brace was used, repair obligation before next storm remains urgent.",
+    "nextEndBefore": "Do not reveal the deep reserve or explain the repeated voice without a separately planned discovery.",
+    "note": "Do not restore spent rope or destroyed lightsaber. Neither repaired pipe nor tested unsafe sample adds potable water. The station flow origin remains unknown.",
+    "continuity": [
+      "The child from episode 1 is safe with her mother.",
+      "Jonathan, An and Q travel to Neri for water; Min is an adult with an ill wife; Tao is the pump worker.",
+      "Episode 2 has four outcomes: Tao dead/all water/Q alive; everyone alive/half water; everyone alive/no water/Tao offers a lead; Tao alive/all water/Q destroyed and recording lost.",
+      "An agrees to answer publicly alongside Jonathan if he tells the truth; she refuses to support concealment and gives her own account.",
+      "The source of the repeated voice remains unexplained. Do not resurrect Tao or Q or restore the lost recording without an explicitly selected compatible route.",
+      "Episode 3: three preparations from pump inspection, both-community hearing, voluntary household reserve contribution and evacuation. Shared management requires inspection and hearing and costs four buckets.",
+      "Mei survives only if evacuated early or treated with four buckets; otherwise she dies. Do not resurrect her.",
+      "Hill control costs six buckets; emergency distribution breaks a prior promise if made; shared management renegotiates it by consent. Carry the actual agreement and remaining water forward.",
+      "Episode 4 confirms a valid Episode 3 continuity snapshot before play; it preserves exact drinking water, earlier deaths, agreement, promise and An’s previous testimony.",
+      "Jonathan and An return from the crack unharmed after isolating a damaged western pipe. Its sample is for testing, never drinking supply.",
+      "Episode 4 evidence: bottle = sample and rope retained, no route; diagram = remembered/copied route and rope retained, no sample; both = sample and route, anchored rope sacrificed. Only prior anchoring unlocks both.",
+      "Jonathan respects An’s stop signal and lets her make the first record. The closed western station still sends water; its cause, the earlier voice and deep reserve remain unexplained.",
+      "Episode 5 preserves all Episode 3/4 continuity. Retained sample tests unsafe; without sample water remains untested. Map gives safe approach; without map they follow the pipe to find a route.",
+      "Episode 5 outcomes: drain sacrifices station door and lower archive for part; leave preserves door/archive but no part; inspected brace uses retained rope or permanently destroys lightsaber if rope previously lost, takes part, saves archive, requires door repair before next storm. Both return safely; recovered part repairs pipe but valve stays closed and drinking water unchanged.",
+      "Northern tower red light is new lead. Voice, deep reserve and origin of closed-station flow remain unexplained."
+    ]
+  },
+  "routes": [
+    {
+      "choices": [
+        "cost",
+        "inspect",
+        "brace-rope",
+        "responsibility"
+      ],
+      "contains": [
+        "管子修好了。水干净了，就可以开。"
+      ],
+      "endsWith": "我记录今天的收获，然后记录所有的代价。"
+    },
+    {
+      "choices": [
+        "home",
+        "exit",
+        "drain",
+        "together"
+      ],
+      "contains": [
+        "水去下面了。门坏了，从前的记录没了。"
+      ],
+      "endsWith": "我记录今天的收获，然后记录所有的代价。"
+    },
+    {
+      "choices": [
+        "cost",
+        "exit",
+        "leave",
+        "responsibility"
+      ],
+      "contains": [
+        "管子还坏着，开关还关着。旧站的门和记录还在。"
+      ],
+      "endsWith": "我记录今天的收获，然后记录所有的代价。"
+    }
+  ],
+  "catalog": {
+    "id": "jedi-05-v1",
+    "category": "jedi",
+    "episode": 5,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-05-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-05-intro.poster.jpg",
+      "title": "The Price of the Door",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode V · The Price of the Door",
+        "paragraphs": [
+          "The storm is over, but the communities still live with their agreement, their losses, and the water they have left. Jonathan and An have isolated a damaged pipe. The evidence they carried home now points toward a western station that was supposed to be closed.",
+          "Somewhere inside may be the part their homes need. Yet a thing that looks abandoned may still be doing a vital job. Jonathan has learned to listen when An says stop. Now he must decide what bringing something home is worth—and who should pay."
+        ]
+      }
+    }
+  },
+  "sources": [
+    {
+      "title": "Original continuation",
+      "note": "Continues the verified Episode 4 western-station boundary while preserving carried Episode 3 continuity. Voice and deep reserve remain unexplained."
+    }
+  ],
+  "verification": {
+    "packageBytes": 1664200,
+    "packageSHA256": "6e806f2c9faabc10f57cd8990f43bc7a4a281837eb798912f8825dbe8245432c",
+    "storyRoutes": 60,
+    "validInheritedStates": 378,
+    "priorCombinationsChecked": 7560,
+    "stagingPhoneDesktop": "6 passed",
+    "releasePhoneDesktop": "10 passed",
+    "episode4Compatibility": "10 passed",
+    "allEquipmentVocabulary": [
+      {
+        "evidence": 0,
+        "range": {
+          "min": 89.6103896103896,
+          "max": 92.24376731301939
+        },
+        "routes": 20
+      },
+      {
+        "evidence": 1,
+        "range": {
+          "min": 88.8586956521739,
+          "max": 91.56976744186046
+        },
+        "routes": 20
+      },
+      {
+        "evidence": 2,
+        "range": {
+          "min": 89.65517241379311,
+          "max": 91.52542372881356
+        },
+        "routes": 20
+      }
+    ],
+    "audioEntries": 57,
+    "audioPlayback": "Browser decode/play/pause verified; all Mandarin cached. Teaser exact speech checked with local base.en recognition; no claim of human listening review.",
+    "visualReview": "Generated first/motion/end frames and phone/desktop choice/aftermath captures inspected. Earlier packages unchanged."
+  },
+  "teaser": {
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "t8jq64537hrmw0d1fesvjr4v8w",
+    "mode": "cost",
+    "resolution": "480p",
+    "motionSeconds": 6,
+    "stillSeconds": 3,
+    "promptUpsampler": "off",
+    "nativeAudio": true,
+    "rateUSDPerSecond": 0.01,
+    "maximumUSD": 0.06,
+    "paidAttempts": 1,
+    "prompt": "Animate this exact shonen anime reference, preserving adult Jonathan and An, faces, clothes and station layout. One continuous six-second shot, subtle slow push toward Jonathan. Jonathan keeps his hand hovering beside the brass ring and looks at An with grave resolve. Jonathan alone says in clear natural English exactly once: \"If we take this, who pays the price?\" Speak from second 0.3 through second 4.5, then close his mouth. An keeps her hands on the lever, listens with tense eyes and does not speak. No additional words, repetition, fillers, humming, narration, lyrics or other voices. Quiet metal strain and distant water under the speech. Do not remove the ring, move the door, resolve the choice, add characters or text. Subtle breathing and light dust only. Native English dialogue must be clearly audible.",
+    "checks": {
+      "dimensions": [
+        854,
+        480
+      ],
+      "fps": 24,
+      "hold_seconds": 3.0,
+      "motion_seconds": 6.0,
+      "reaction_hold_seconds": 0.0,
+      "total_seconds": 9.0,
+      "decoded_audio_seconds": 9.00275,
+      "audio_non_silent": true,
+      "audio_starts_after_hold": true,
+      "hold_mean_pixel_difference": 0.0025102459016393443,
+      "sha256": "53c0398a187b711bad2433a45d257d302c551596b838095c471990a9aad25583",
+      "expected_dialogue": "If we take this, who pays the price?",
+      "speech_check": "pass",
+      "transcription": "If we take this, who pays the price?"
+    },
+    "artworkPrompts": "stories/authoring/jedi/art/jedi-05-prompts.txt"
+  },
+  "englishAudioOverrides": [
+    {
+      "sha256": "c00c304ca6ee01af3441cc25b3fa70deb1614651fae033754b8d7c0ec368f66c",
+      "text": "We didn’t bring the route. We must find our way first. The sample is not drinking water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "cf6365188051d5bdbb14bcb5f85848905733ea6354607b4cc0c33b3aef24407c",
+      "text": "We take the safe upper path shown in the record.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "14b073f61f758aa29ada520fccdd112d4adfb020dded21cdd6f0a408e7500bc3",
+      "text": "We reach the station without having to search for a route.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9649aff997bc8e58005f45fd5ea9aff8fdc8ab0aba0eb1a9b39284a0a019798a",
+      "text": "The old station’s door is open. No one is inside.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a06b099f63fc9ab705a992a6b6d2026fd3dc7245794b8cad142f49acc0f86e5d",
+      "text": "This part could repair our pipe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "36083eb5eaec9b37a318e985a27d4846f26ba2ca26d4b855b4bbe42104893437",
+      "text": "Don’t take it yet! It is still part of the door’s water barrier.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a4bddaf75156ff0b785885931f094cccd205ddc35876e5475be0a37aede4b137",
+      "text": "The people at home are still waiting.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8e3c17f09177cbdce380b18e81a431a674f2bec7abe59cae39e7ed866fbef045",
+      "text": "If we take this, who pays the price?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "277b117c97017bc79b2bd84726e56e0d0ecfa727b41f1378bf4fe251682fc304",
+      "text": "Let’s find out. Don’t make people we cannot see pay for us.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e31280521ccf0fe131edefa4a512db6197c63fc5fdfdf7908c8cef6fc623523a",
+      "text": "An uses the station’s equipment to test the sample we brought.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "97aa6d4686e023d8b064978e83ed0bdeb8dee513dcb599f06614947b79f1ac86",
+      "text": "We have no sample to test. We still cannot treat this water as drinkable.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4e4fa2379040532da0c439262f296d139878418a998ea335f70887da0d1d7be6",
+      "text": "The water is getting louder. Do we inspect the door or prepare our exit first?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "edb7635fefb51fa042f5462324c24a8c0655f17ee34ffc41dcce7a2018457ca2",
+      "text": "Inspect the door for another solution.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "29ccfaaa902db05528acbf60e77843e7a6e52e99b64166cefaeb60b834788aa5",
+      "text": "Make sure we have a safe way out.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "60e33d7d4c41135f17ce13f9cb5162e85c594ae16f674b4eb52281c6677efab8",
+      "text": "We can brace the door here, but we must leave something behind.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8843852326682724c3f673f24f0e64186746a14c0ff168711fe5cb866fc9d084",
+      "text": "Our rope can hold it while we take the part. We must return before the next storm to repair the door.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "86210e65271ec274c0ad5c75415e38b6a6c6cccc11b7b998ab65da5063a915b5",
+      "text": "We left the rope in the crack. My lightsaber could brace this spot.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7b8889eaf084e48fa388c117abaea33bf6475e560f227f204063e70c94e93855",
+      "text": "It could, but it will destroy the lightsaber. We would still need to repair the door before the next storm.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "cba161ec85fa7c48f82a2f32d4b1163c2ac9e6887a7487b064746d61a6f3edb0",
+      "text": "I clear the exit and open the way out.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "674754c2f3acc835a23611031bbf3480f9a74014e67bd0bc262d67245a395517",
+      "text": "Our exit is safe, but we have not inspected the water barrier.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c8796beab4d0e38be4c874674089bd54d75a0ffd32798e4165f6f8945439717a",
+      "text": "The water is coming! I can hold it for now. Listen.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "93dd3682914d498ae676246741c73ff6af1b58de1049d6fa0b2a1e8f1115ba02",
+      "text": "If we take the part directly, the door fails. Water drains into an empty lower room and destroys its old records.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2b57c93eda2223c7908335ceb2463cfd1f1a68ff6a7a37554a942ab7411139b2",
+      "text": "We can leave safely. If we leave the part, the door and records stay intact, but we cannot repair the pipe at home yet.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "73e06b25e2c59e272899e9999e9543d5e919d19d2ebe18bcf99bad891ae0b8fd",
+      "text": "Take the part; sacrifice the old records and door.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "945a7691fd0e859a5241e9e299223611a773785cfed1fa634e1a94a91ed9ded5",
+      "text": "Leave the part; preserve the door and records.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "6827e4ab0460bedb2ecdc2a04e5a275d704df78c83236b5bbe90b89e7947db0e",
+      "text": "Sacrifice our rope to brace the door and take the part.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9bb9d5b119fdd4ff45287cb597cbbee9f01c2b51568904a63c2d8d062a924849",
+      "text": "Destroy my lightsaber to brace the door and take the part.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c16bc28b1d38f07614cdbab30d3b01a9d45a8a21601dfc295c613f9de40c59d4",
+      "text": "I take the part. We step back together.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "738b8a4132d9e2f69dcccbc70db0882bddc061231e371ce192b9cc93f6481673",
+      "text": "The water drains below. The door has failed, and the old records are gone.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9de9ccd32a8be944ab9fcb32d1a03546ee3a42c2871d58989c6259895989855a",
+      "text": "The door still works. We return without the part, and must explain why.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "eb25dd516abaac64303a872c368ffe8c025c3861c8884d271e8696064f9e3025",
+      "text": "Following our inspection, we brace the door with the rope and take the part.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2ef278084e5312b7cd28df832676d101611e7b96d1b2f0af56e9e0868c3b26bd",
+      "text": "Can you bear to lose it?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a4410518a6d09ca4befda6091a445f515835b6c4870eb77d8e053e659bae6ad2",
+      "text": "This is my choice. Someone else is not paying for me.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f84a51c35cfbb3155f83e4bc144f7010d4a90af89a71ec1ca16c30f48809c8d6",
+      "text": "I take the part and leave the broken lightsaber bracing the door.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3a4c177ee3f588e9921b0950220aff7ce12bf90f731c6902b7bfad673d04c51b",
+      "text": "The records are safe, but the door is only temporarily secured. We commit to returning to repair it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "15c74a51369124528f39539dd23ebe24c4cad0e8ca9e93eaefa2c57c7e84d263",
+      "text": "We will explain the cost together.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "31ab2d07e50356f19cf811cc7b403d1bb20fd4371c1fbcee001538c5468771c6",
+      "text": "I will name the cost of my choice first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f62f0cda7fb8da2a27783f5253a59e35ae70324f9a014ec879db786182023edf",
+      "text": "Good. What we gained and what we lost. We say both.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "13c027800f37e17bed6cfadde02e83083299f2d8f5f0460648b321111041c4c8",
+      "text": "We return safely. None of the stored drinking water has been used or added to.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "333317d88fc6618b6b5ee086d34fb15f32d13142e45355d1300908c5ddd9188e",
+      "text": "An repairs the damaged pipe with the part, but keeps its water valve closed.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c48598797c1e78978d457a60b287f979277aae6611efba835f19dae8f6c8f968",
+      "text": "The pipe is repaired. We can open it only when we find safe water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "735b5a08e898e81ddac9ddbcefb9c521268f967c068bcfe5e0c81ce7771515ea",
+      "text": "Our pipe remains broken and closed. The station’s door and records remain intact.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e11572f3b207993e603696333af5bc869ec112f190e6115eda4e2b5d87812789",
+      "text": "As we left, I saw a red light come on at the northern tower.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "41647588b2085cc0e6eca8124c717e9b8308eec70a3df80f482a9880aa123200",
+      "text": "The old station is closed. Who is in that tower?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ee8dee0cad64dec9eb7fb5dd04eff9220769394db40e2f1a0d4dc4df60f85a6b",
+      "text": "An gives me the last snack.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1287ef6d0ec53d061364dc5ebc7541cf3ffa39da11e65b817659f3e7bd5a3593",
+      "text": "Don’t you want some?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0143408f0566d189cad256f6c35fcb0c4495da83426a6b6acca23f0c4432521a",
+      "text": "I do. Let’s share it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0475d3337e08c8f010446c4bcfd786cd4b0453544f72f231a9660f09ebbc70f1",
+      "text": "I divide the snack and eat with her.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "dea2f3ca159fd51b0098ff3710dc4340e1dcf54474b2dccb63c357d6eadd92e6",
+      "text": "We follow the pipe slowly to find our way. We must take care.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4c9a0e4fd56d4dd23fe83bb28cdd439399a255ecf42bccbaab8570a81f8bb977",
+      "text": "I stop and look at the part.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "33a618b5605601b8ac74b31b63cd10eba4519fab59c7703a823e82d382726273",
+      "text": "I know. But we cannot sacrifice everyone’s safety to repair a pipe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "60020ae16d843cffbdba7a68341d27a2bd7fd077ba26d1fa69f7acc35c53b0f7",
+      "text": "The water is not clean and cannot be drunk. Repairing the pipe does not make the water clean.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "945587a57583097f280cd0db1d64a16759a620ef9e325f2c504f7a6c898396cb",
+      "text": "I switch off my lightsaber and wedge it under the door. The door crushes it beyond use.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e96aeb8d77bb7876f7f0c97536770443ed4bf26829b3c52cbc1b55f0ef4bfc89",
+      "text": "An lets go of the door. She breathes slowly, and I wait patiently.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a667708178b6427b55f246089cf2fbb15bf7b6efbe131a3ebe035712ab71f536",
+      "text": "I will add my account. Sharing responsibility does not mean you speak for everyone.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "576fc4a995bbf6413464fa202257405bb9e972b988dec24a61f3885935d20032",
+      "text": "We don’t know yet. We must investigate, without forgetting today’s cost.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "93fcc6ed60bc7c981fbd77a512e6ac9e04131d8cbfd1f99d061d0f57cfd7e217",
+      "text": "I record today’s gains, then every cost.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    }
+  ]
+}

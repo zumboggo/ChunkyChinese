@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'story-slide-toggles-v1'
+const CACHE_VERSION = 'jedi-05-with-slide-toggles-v1'
 const COURSE_OFFLINE_CACHE = 'chunky-listening-course-v1'
 const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'
 const SENTENCE_OFFLINE_CACHE = 'chunky-sentence-listening-v1'

@@ -1,4 +1,4 @@
-import {validateContinuity,type ContinuityDefinition} from './continuity.ts'
+import {validateContinuityBindings,validateContinuity,type ContinuityDefinition} from './continuity.ts'
 import JSZip from 'jszip'
 import {validateOutcomeScorecard,type OutcomeScorecard} from './outcomeScorecard.ts'
 import type {ReaderInterlinearChunk} from '../../types'
@@ -16,7 +16,7 @@ export function validateChinese(pack:ChinesePackage){
   const result=validatePackage(pack)
   // Classroom quizzes are optional for personal Mandarin adventures.
   const errors=result.errors.filter(e=>!(Array.isArray(pack.quiz)&&pack.quiz.length===0&&e.message.startsWith('Add four questions')))
-  for(const message of validateContinuity(pack.continuity))errors.push({line:1,message})
+  for(const message of [...validateContinuity(pack.continuity),...validateContinuityBindings(pack.script,pack.continuity,pack.assets)])errors.push({line:1,message})
   if(result.story)for(const message of validateOutcomeScorecard(pack.outcomeScorecard,result.story))errors.push({line:1,message})
   if(entries(pack).some(a=>!image.test(a.src)&&!audio.test(a.src)))errors.push({line:1,message:'Embed images/audio in the package; remote or executable assets are not allowed.'})
   for(const l of Object.values(pack.chinese?.lines??{})){if(!l||typeof l!=='object'||l.pinyin!==undefined&&typeof l.pinyin!=='string'||l.english!==undefined&&typeof l.english!=='string'||l.audio!==undefined&&!audio.test(l.audio))errors.push({line:1,message:'Invalid Chinese text or embedded audio.'})}

@@ -526,5 +526,28 @@
       "title": "The Voices Beneath the Water · Episode 4: The Line We Hold",
       "description": "Beyond the storm’s crack, Jonathan must learn when to hold on—and when to listen. Recover a sample, a route, or both at a cost. A story-led expedition with lasting material outcomes, without points."
     }
+  },
+  {
+    "id": "jedi-05-v1",
+    "category": "jedi",
+    "episode": 5,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-05-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-05-intro.poster.jpg",
+      "title": "The Price of the Door",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode V · The Price of the Door",
+        "paragraphs": [
+          "The storm is over, but the communities still live with their agreement, their losses, and the water they have left. Jonathan and An have isolated a damaged pipe. The evidence they carried home now points toward a western station that was supposed to be closed.",
+          "Somewhere inside may be the part their homes need. Yet a thing that looks abandoned may still be doing a vital job. Jonathan has learned to listen when An says stop. Now he must decide what bringing something home is worth—and who should pay."
+        ]
+      }
+    },
+    "path": "jedi-05.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 5: The Price of the Door",
+      "description": "At the closed western station, the part home needs is still protecting something. Carry your evidence forward, inspect before acting, and choose who bears the cost."
+    }
   }
 ]
