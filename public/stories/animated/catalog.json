@@ -595,5 +595,28 @@
       "title": "The Voices Beneath the Water · Episode 7: Who Owns a Voice?",
       "description": "Meet the owner of the borrowed voice. Follow the mechanism, listen to her judgment, and decide what evidence is worth."
     }
+  },
+  {
+    "id": "jedi-08-v1",
+    "category": "jedi",
+    "episode": 8,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-08-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-08-intro.poster.jpg",
+      "title": "Your Own Voice",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode VIII · Your Own Voice",
+        "paragraphs": [
+          "The repeated pleas came from recorded requests sent through dry pipes. Your choices decided the upper relay’s fate. Injuries, lost records, and damaged equipment remain part of the journey. A label points to a manual command from the eastern station.",
+          "Jonathan and An follow that lead. Somewhere beyond the empty pipes, a person chose to make those voices speak again. Finding that person may answer one question—and make the next decision harder."
+        ]
+      }
+    },
+    "path": "jedi-08.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 8: Your Own Voice",
+      "description": "Meet the operator behind the repeated voices. A confession, a control key, and three ways to answer for what happened."
+    }
   }
 ]

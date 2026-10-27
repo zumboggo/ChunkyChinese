@@ -11,7 +11,7 @@ export function validateContinuity(value:unknown):string[]{
  const fail=['Invalid continuity recap definition']
  if(!value||typeof value!=='object')return fail
  const d=value as ContinuityDefinition
- if(typeof d.sourceId!=='string'||!/^[a-z0-9-]+$/.test(d.sourceId)||typeof d.title!=='string'||!d.title.trim()||!Array.isArray(d.fields)||!d.fields.length||d.fields.length>12||!Array.isArray(d.states)||!d.states.length||d.states.length>4096)return fail
+ if(typeof d.sourceId!=='string'||!/^[a-z0-9-]+$/.test(d.sourceId)||typeof d.title!=='string'||!d.title.trim()||!Array.isArray(d.fields)||!d.fields.length||d.fields.length>12||!Array.isArray(d.states)||!d.states.length||d.states.length>16384)return fail
  const ids=new Set<string>()
  for(const f of d.fields){
   if(!f||typeof f.id!=='string'||ids.has(f.id)||typeof f.label!=='string'||!Array.isArray(f.options)||!f.options.length||f.options.length>32||f.sourceVariable!==undefined&&typeof f.sourceVariable!=='string')return fail

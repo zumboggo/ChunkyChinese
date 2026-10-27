@@ -1,0 +1,20 @@
+{
+  "id": "Ren",
+  "name": "Ren",
+  "version": 1,
+  "appearance": {
+    "age": "adult",
+    "hair": "cropped",
+    "face": "broad",
+    "eyes": "narrow",
+    "outfit": "workshirt"
+  },
+  "palette": {
+    "skin": "#ac7958",
+    "hair": "#48413e",
+    "shirt": "#925136",
+    "trim": "#cfb682"
+  },
+  "finish": "polished",
+  "provenance": "Original eastern station operator, first introduced in Episode 8; no real-person likeness."
+}
