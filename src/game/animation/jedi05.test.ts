@@ -7,7 +7,7 @@ const pack=JSON.parse(readFileSync('stories/animated/jedi-05.json','utf8')) as C
 const prior=JSON.parse(readFileSync('stories/animated/jedi-04.json','utf8')) as ChinesePackage
 const d=pack.continuity!
 function walk(story:ReturnType<typeof compileStory>['story'],onEnd:(s:StoryState,steps:(string|null)[])=>void){
- function visit(s:StoryState,steps:(string|null)[]){if(s.ended){onEnd(s,steps);return}const n=story.nodes[s.cursor];for(const choice of n.type==='choice'?n.options.map(o=>o.id):[null])visit(advanceStory(story,s,choice),[...steps,choice])}
+ function visit(s:StoryState,steps:(string|null)[]){if(s.ended){onEnd(s,steps);return}const n=story.nodes[s.cursor];for(const choice of n.type==='choice'?n.options.map((o:{id:string})=>o.id):[null])visit(advanceStory(story,s,choice),[...steps,choice])}
  visit(replayStory(story,[],1),[])
 }
 it('carries all prior continuity and equipment outcomes without resurrecting losses',()=>{
