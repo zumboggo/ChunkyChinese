@@ -171,7 +171,8 @@
     ],
     "audioEntries": 57,
     "audioPlayback": "Browser decode/play/pause verified; all Mandarin cached. Teaser exact speech checked with local base.en recognition; no claim of human listening review.",
-    "visualReview": "Generated first/motion/end frames and phone/desktop choice/aftermath captures inspected. Earlier packages unchanged."
+    "visualReview": "Generated first/motion/end frames and phone/desktop choice/aftermath captures inspected. Earlier packages unchanged.",
+    "integratedControls": "Rebased onto independent audio/text toggles update fbd3d0ea; full contrasting routes 6 passed again, Episode 5 release checks 10 passed, Episode 4 checks 10 passed and toggle checks 4 passed. Automatic Mandarin playback and pause verified."
   },
   "teaser": {
     "model": "prunaai/p-video-2-pro",
