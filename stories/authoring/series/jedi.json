@@ -4,9 +4,9 @@
   "source": {
     "kind": "original",
     "note": "Original fan adventure requested by David for Jonathan; no source novel or real-person likeness.",
-    "nextStart": "Episode 6: northern tower red light. Restore Episode 5 part/door/archive/equipment outcome plus all carried continuity. If temporary brace was used, repair obligation before next storm remains urgent.",
-    "nextEndBefore": "Do not reveal the deep reserve or explain the repeated voice without a separately planned discovery.",
-    "continuationNote": "Do not restore spent rope or destroyed lightsaber. Neither repaired pipe nor tested unsafe sample adds potable water. The station flow origin remains unknown."
+    "nextStart": "Episode 7: invite the child’s mother to inspect the upper relay; preserve tower outcomes, resolve how her recorded voice travels while keeping operator and reserve unknown.",
+    "nextEndBefore": "Do not reveal the deep reserve or restore lost people, equipment, archives, recordings, or water.",
+    "continuationNote": "Episode 6 repairs station door using new spare plate, keeps destroyed archive/equipment gone and home pipe unchanged. Both alive; lift: An uninjured, warning unsent, beacon intact; signal: warning sent, An arm injured and cannot climb/lift; relay after inspect: warning sent, An safe, beacon circuit permanently lost. Stored drinking water unchanged. Upper relay next."
   },
   "completed": [
     {
@@ -34,9 +34,13 @@
     {
       "episode": "jedi-05-v1",
       "end": "Western station expedition completed. Both return safely; stored water and prior continuity unchanged. Player either takes part by draining empty lower archive (door/records lost), leaves part preserving door/records, or after inspection braces with retained rope / destroys lightsaber if rope lost, preserving records temporarily and committing to repair before next storm. Recovered part repairs home pipe but valve stays closed. Sample routes show unsafe water; no-sample route remains untested."
+    },
+    {
+      "episode": "jedi-06-v1",
+      "end": "Episode 6 repairs station door using new spare plate, keeps destroyed archive/equipment gone and home pipe unchanged. Both alive; lift: An uninjured, warning unsent, beacon intact; signal: warning sent, An arm injured and cannot climb/lift; relay after inspect: warning sent, An safe, beacon circuit permanently lost. Stored drinking water unchanged. Upper relay next."
     }
   ],
-  "assetsFrom": "stories/animated/jedi-05.json",
+  "assetsFrom": "stories/animated/jedi-06.json",
   "vocabularySupplement": ".local/episodes/jedi-01/supplement.json",
   "coverage": {
     "min": 80,
@@ -65,7 +69,8 @@
     "Jonathan respects An’s stop signal and lets her make the first record. The closed western station still sends water; its cause, the earlier voice and deep reserve remain unexplained.",
     "Episode 5 preserves all Episode 3/4 continuity. Retained sample tests unsafe; without sample water remains untested. Map gives safe approach; without map they follow the pipe to find a route.",
     "Episode 5 outcomes: drain sacrifices station door and lower archive for part; leave preserves door/archive but no part; inspected brace uses retained rope or permanently destroys lightsaber if rope previously lost, takes part, saves archive, requires door repair before next storm. Both return safely; recovered part repairs pipe but valve stays closed and drinking water unchanged.",
-    "Northern tower red light is new lead. Voice, deep reserve and origin of closed-station flow remain unexplained."
+    "Northern tower red light is new lead. Voice, deep reserve and origin of closed-station flow remain unexplained.",
+    "Episode 6 repairs station door using new spare plate, keeps destroyed archive/equipment gone and home pipe unchanged. Both alive; lift: An uninjured, warning unsent, beacon intact; signal: warning sent, An arm injured and cannot climb/lift; relay after inspect: warning sent, An safe, beacon circuit permanently lost. Stored drinking water unchanged. Upper relay next."
   ],
   "cover": "public/stories/animated/jedi/series-cover.jpg",
   "coverArt": {
@@ -75,9 +80,9 @@
   },
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through jedi-05-v1",
-    "nextStart": "Episode 6: northern tower red light. Restore Episode 5 part/door/archive/equipment outcome plus all carried continuity. If temporary brace was used, repair obligation before next storm remains urgent.",
-    "nextEndBefore": "Do not reveal the deep reserve or explain the repeated voice without a separately planned discovery.",
-    "assetsFrom": "stories/animated/jedi-05.json"
+    "note": "Published through jedi-06-v1",
+    "nextStart": "Episode 7: invite the child’s mother to inspect the upper relay; preserve tower outcomes, resolve how her recorded voice travels while keeping operator and reserve unknown.",
+    "nextEndBefore": "Do not reveal the deep reserve or restore lost people, equipment, archives, recordings, or water.",
+    "assetsFrom": "stories/animated/jedi-06.json"
   }
 }
