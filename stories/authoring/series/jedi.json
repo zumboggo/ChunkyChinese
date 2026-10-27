@@ -4,9 +4,9 @@
   "source": {
     "kind": "original",
     "note": "Original fan adventure requested by David for Jonathan; no source novel or real-person likeness.",
-    "nextStart": "Episode 5: plan the expedition to the western closed station. Restore Episode 4 evidence/rope outcome and its carried Episode 3 continuity.",
-    "nextEndBefore": "Do not explain the repeated voice or reveal the deep reserve before a separately planned discovery.",
-    "continuationNote": "The sample is not drinkable supply. A copied map gives the safe route; without it, route-finding is required. A sample enables testing; without it, water remains untested. The origin of flow from a closed station remains unresolved."
+    "nextStart": "Episode 6: northern tower red light. Restore Episode 5 part/door/archive/equipment outcome plus all carried continuity. If temporary brace was used, repair obligation before next storm remains urgent.",
+    "nextEndBefore": "Do not reveal the deep reserve or explain the repeated voice without a separately planned discovery.",
+    "continuationNote": "Do not restore spent rope or destroyed lightsaber. Neither repaired pipe nor tested unsafe sample adds potable water. The station flow origin remains unknown."
   },
   "completed": [
     {
@@ -30,9 +30,13 @@
     {
       "episode": "jedi-04-v1",
       "end": "Jonathan and An isolate the damaged pipe and return unharmed. Player recovers a sample, a copied route, or both by abandoning the anchored rope. Prior survivors, promises, agreement and stored water persist in the confirmed continuity snapshot. Jonathan learns to respect An’s stop signal and expertise."
+    },
+    {
+      "episode": "jedi-05-v1",
+      "end": "Western station expedition completed. Both return safely; stored water and prior continuity unchanged. Player either takes part by draining empty lower archive (door/records lost), leaves part preserving door/records, or after inspection braces with retained rope / destroys lightsaber if rope lost, preserving records temporarily and committing to repair before next storm. Recovered part repairs home pipe but valve stays closed. Sample routes show unsafe water; no-sample route remains untested."
     }
   ],
-  "assetsFrom": "stories/animated/jedi-04.json",
+  "assetsFrom": "stories/animated/jedi-05.json",
   "vocabularySupplement": ".local/episodes/jedi-01/supplement.json",
   "coverage": {
     "min": 80,
@@ -58,7 +62,10 @@
     "Episode 4 confirms a valid Episode 3 continuity snapshot before play; it preserves exact drinking water, earlier deaths, agreement, promise and An’s previous testimony.",
     "Jonathan and An return from the crack unharmed after isolating a damaged western pipe. Its sample is for testing, never drinking supply.",
     "Episode 4 evidence: bottle = sample and rope retained, no route; diagram = remembered/copied route and rope retained, no sample; both = sample and route, anchored rope sacrificed. Only prior anchoring unlocks both.",
-    "Jonathan respects An’s stop signal and lets her make the first record. The closed western station still sends water; its cause, the earlier voice and deep reserve remain unexplained."
+    "Jonathan respects An’s stop signal and lets her make the first record. The closed western station still sends water; its cause, the earlier voice and deep reserve remain unexplained.",
+    "Episode 5 preserves all Episode 3/4 continuity. Retained sample tests unsafe; without sample water remains untested. Map gives safe approach; without map they follow the pipe to find a route.",
+    "Episode 5 outcomes: drain sacrifices station door and lower archive for part; leave preserves door/archive but no part; inspected brace uses retained rope or permanently destroys lightsaber if rope previously lost, takes part, saves archive, requires door repair before next storm. Both return safely; recovered part repairs pipe but valve stays closed and drinking water unchanged.",
+    "Northern tower red light is new lead. Voice, deep reserve and origin of closed-station flow remain unexplained."
   ],
   "cover": "public/stories/animated/jedi/series-cover.jpg",
   "coverArt": {
@@ -68,9 +75,9 @@
   },
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through jedi-04-v1",
-    "nextStart": "Episode 5: plan the expedition to the western closed station. Restore Episode 4 evidence/rope outcome and its carried Episode 3 continuity.",
-    "nextEndBefore": "Do not explain the repeated voice or reveal the deep reserve before a separately planned discovery.",
-    "assetsFrom": "stories/animated/jedi-04.json"
+    "note": "Published through jedi-05-v1",
+    "nextStart": "Episode 6: northern tower red light. Restore Episode 5 part/door/archive/equipment outcome plus all carried continuity. If temporary brace was used, repair obligation before next storm remains urgent.",
+    "nextEndBefore": "Do not reveal the deep reserve or explain the repeated voice without a separately planned discovery.",
+    "assetsFrom": "stories/animated/jedi-05.json"
   }
 }
