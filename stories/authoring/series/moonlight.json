@@ -5,9 +5,9 @@
     "epub": "~/Downloads/The Legendary Moonlight Sculptor_ 1st Compilation -- NAM Heesung -- The Legendary Moonlight Sculptor 1, 2017 -- d902199879d0f6204814ff5f0f3fc400 -- Anna’s Archive.epub",
     "sha256": "599247d75c15a5f6ae55528a603abd5c53c0843b26f27eb8418ad6f979df0f81",
     "chapter": "OEBPS/Text/LMS_B01_Chapter_04.xhtml",
-    "nextStart": "Several high level users saw through Weed’s intentions to improve strength and other stats.",
-    "nextEndBefore": "A question suddenly occurred to Weed.",
-    "continuationNote": "Compress clan ambitions as context, show recruitment refusals, final stat gains and completed basic training, instructor praise and Hard Iron Sword reward. Stop before Weed reflects on basic training and asks how many have completed it."
+    "nextStart": "A question suddenly occurred to Weed.",
+    "nextEndBefore": "Suddenly, the instructor asked in a low voice,",
+    "continuationNote": "Explain permanent base stats briefly, reveal other graduates and undiscovered higher training, then instructor offers Litvart expedition. Weed declines because he has no class. Stop before the private class conversation; preserve the source’s apparent 3,800 hundred typo as 3,800 graduates, not 380,000."
   },
   "completed": [
     {
@@ -117,9 +117,13 @@
     {
       "episode": "moonlight-27-v1",
       "end": "The four-race history is summarized. After four weeks of practice, players mistake Weed for a quest NPC, offering food, money and a longsword. He refuses everything out of pride, identifies himself as a player and asks them to leave, but his training and daily lunches with the instructor reinforce their belief. Stops before high-level recruitment."
+    },
+    {
+      "episode": "moonlight-28-v1",
+      "end": "Weed refuses all high-level recruitment, completes four weeks of basic training, gains strength/agility/vitality +1, fame +20 and health +100, receives instructor praise and Hard Iron Sword. Ends on the words basic training, before he asks about other graduates."
     }
   ],
-  "assetsFrom": "stories/animated/moonlight-27.json",
+  "assetsFrom": "stories/animated/moonlight-28.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -136,22 +140,22 @@
   },
   "continuity": [
     "Grandmother remains hospitalized and the old debt is paid. Do not invent an exact current balance.",
-    "Training stats and Sword Mastery remain unchanged; Weed is now level three after The Sculptor’s Past. The four-week restriction has not expired.",
+    "Weed remains level three and has completed four weeks of basic training. Final gains in this passage: Strength +1, Agility +1, Vitality +1, Fame +20, Health +100. No additional level-up or class conversion.",
     "The Sculptor’s Past is complete. Zahab’s mastery and fulfilled promise are confirmed.",
     "Weed twice refused Moonlight Sculptor for financial reasons; no class conversion.",
     "Weed has the carving knife and wooden statue, four practical skills, and uncancellable A-level Zahab’s Last Wish. No class conversion; his level remains three. Two quest slots remain.",
     "He must learn A Sculpture’s Heart from Zahab and return to sing it before the attendant dies. Zahab was last seen heading for Gray Pass.",
     "Both shopkeeper and instructor rewards are now collected. Gross earned silver is five including the original advance; the bard took one, leaving four. No further spending.",
     "Level-up bonus points are split equally into Strength and Agility; no invented numeric point allocation. Still level three.",
-    "Four weeks of training have made Weed the subject of an NPC rumor. He refused food, money and a longsword, explicitly said he was a player and asked the gift-givers to stop interrupting him. They remain convinced he gives quests. No gifts accepted, no recruitment or training-completion reward yet."
+    "After refusing the quest-seeking crowd’s gifts, Weed also refused every high-level recruitment offer. Basic training is complete; the instructor admits his initial misjudgment and rewards Weed with Hard Iron Sword. The next source begins before Weed asks how many others have completed training."
   ],
   "castRecipes": "stories/characters/lms-lineup-cast.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through moonlight-27-v1",
-    "nextStart": "Several high level users saw through Weed’s intentions to improve strength and other stats.",
-    "nextEndBefore": "A question suddenly occurred to Weed.",
-    "assetsFrom": "stories/animated/moonlight-27.json"
+    "note": "Published through moonlight-28-v1",
+    "nextStart": "A question suddenly occurred to Weed.",
+    "nextEndBefore": "Suddenly, the instructor asked in a low voice,",
+    "assetsFrom": "stories/animated/moonlight-28.json"
   },
   "characterReferences": "stories/characters/lms-reference.json",
   "castBundle": "public/stories/animated/cast/lms-lineup-angles-v2.json"
