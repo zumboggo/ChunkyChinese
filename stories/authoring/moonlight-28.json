@@ -1,0 +1,155 @@
+{
+  "id": "moonlight-28",
+  "title": "Moonlight 28 · A Sword of My Own",
+  "description": "Powerful players offer Weed everything he needs. He refuses—and learns what four weeks of stubborn practice have really earned him.",
+  "sources": [
+    "Personal Mandarin adaptation of The Legendary Moonlight Sculptor, Chapter 4: high-level recruitment, refusal, completed training and Hard Iron Sword. Stops before the question about other graduates. Dialogue branches are authored; canonical events and rewards are preserved."
+  ],
+  "planning": {
+    "voice": "Immediate drama",
+    "voiceReason": "Explicit user choice; competing recruitment and training intentions, followed by an earned relationship turn.",
+    "sourceBoundary": "Pinned Chapter 4 recruitment through basic-training sword, before A question suddenly occurred to Weed.",
+    "promise": "Weed wants to finish the strength he has worked for; recruiters offer funded advancement, testing whether he will abandon his solitary method.",
+    "earlyCare": "Four weeks of costly repetitive effort visible through the worn practice sword.",
+    "dramaticChange": "Recruiters recognize his value; his refusal commits him to finish. The instructor openly revises his initial low opinion, and Weed accepts praise with calculated flattery.",
+    "localPayoff": "Training maximized, exact five stat rewards, instructor respect and Hard Iron Sword.",
+    "continuingQuestion": "The word basic recasts four weeks of effort as only a beginning; no later graduate-count question is asked yet.",
+    "essentialNewWords": [
+      "名声",
+      "基础",
+      "硬铁剑"
+    ],
+    "englishNarrationPurpose": "None.",
+    "choicesAndCallbacks": [
+      {
+        "choice": "offer",
+        "intentions": "Ask why / prioritize practice",
+        "immediateResponses": "Recruiter reveals mutual advantage / uses persistence as reason to recruit",
+        "laterPayoff": "none; local expression only",
+        "rejoin": "clan context"
+      },
+      {
+        "choice": "refuse",
+        "intentions": "Decline support / separate goals",
+        "immediateResponses": "Recruiter questions rejected support / challenges limited horizon; Weed resolves both refusals",
+        "laterPayoff": "none; local expression only",
+        "rejoin": "training"
+      },
+      {
+        "choice": "gains",
+        "intentions": "Value strength / inspect fame",
+        "immediateResponses": "Private satisfaction in effort / practical price-and-respect calculation",
+        "laterPayoff": "none; local expression only",
+        "rejoin": "instructor visit"
+      },
+      {
+        "choice": "praise",
+        "intentions": "Credit teaching / credit help",
+        "immediateResponses": "Instructor claims teaching credit / enjoys having his value recognized",
+        "laterPayoff": "none; local expression only",
+        "rejoin": "reward"
+      }
+    ],
+    "conversation": "Recruiter wants a useful future ally; Weed insists on finishing his own work. Instructor wants achievement recognized as good teaching; Weed wants goodwill and knows how to flatter. Solo kingdom context is compressed to three beats.",
+    "characterSignatures": {
+      "Hyun": "Brief practical refusals; tired private relief; formal public flattery conceals calculation. Restrained expression and persistent training.",
+      "Watcher": "Anonymous high-level recruiter representative, generous promises and strategic follow-up; quiet surprise at rejection.",
+      "Instructor": "Proud direct evaluation, willing admission of error, hearty self-satisfaction when praised."
+    },
+    "directing": "Pair through recruiter exchange. Action framing for training, stop at stat sound. Pair with instructor; camera listener Hyun on admission of error, Continue-controlled private aftermath, pair for both gratitude branches and sword.",
+    "sceneActivities": [
+      {
+        "actor": "Hyun",
+        "activity": "train Dummy steady",
+        "purpose": "Resumed work realizes refusal, interrupted permanently by final stat reward."
+      }
+    ],
+    "teaser": {
+      "moment": "Weed refuses funded advancement",
+      "dialogue": "I’ll earn my own strength.",
+      "adaptation": "Authored English condensation of fixed refusal and training commitment.",
+      "holdSeconds": 3,
+      "generatedSeconds": 6
+    }
+  },
+  "pinyinReviewed": true,
+  "notice": "This episode adapts The Legendary Moonlight Sculptor into a Mandarin adventure. Some dialogue and choices have been added while preserving the novel’s events.",
+  "verification": {
+    "routes": 16,
+    "browserTests": 4,
+    "coveragePercent": {
+      "min": 95.45454545454545,
+      "max": 95.83333333333333
+    },
+    "bytes": 1653585,
+    "audio": {
+      "entries": 45,
+      "generated": 44,
+      "reused": 1
+    },
+    "vocabularyPolicy": "804 reviewed-known plus 196 distinct authorized assumed-familiar words; no expansion.",
+    "limitations": [
+      "Sword exchange is narrated, not an animated handoff. The existing practice sword prop is metal-colored; the text identifies it as wood."
+    ],
+    "listenerReview": "Twelve listener, aftermath and rejoined-response beats played with audio across two routes on phone and desktop, including reduced motion. Screenshots inspected; each aftermath remains until Continue. Automated playback and speech recognition do not establish subjective listening quality.",
+    "introBrowser": [
+      {
+        "mode": "desktop",
+        "duration": 9,
+        "dimensions": [
+          854,
+          480
+        ],
+        "sound": true,
+        "playThrough": true,
+        "skip": true,
+        "resumeBypassesIntro": true,
+        "missingMedia": true
+      },
+      {
+        "mode": "phone",
+        "duration": 9,
+        "dimensions": [
+          854,
+          480
+        ],
+        "sound": true,
+        "playThrough": true,
+        "skip": true,
+        "resumeBypassesIntro": true,
+        "missingMedia": true
+      }
+    ],
+    "speakerStaging": "52 active-episode staging checks passed."
+  },
+  "teaser": {
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "rk9sgrh7cnrmt0d1g10tw18wt0",
+    "settings": {
+      "prompt": "Animate this exact reference for six seconds. Weed alone says exactly once in clear English: \"I'll earn my own strength.\" Start at second 0.5, finish by 4.5, then mouth closed. No extra words, repetitions, paraphrases, fillers, humming, narration, singing or other voices. Quiet training-hall room tone beneath clearly audible dialogue. One subtle slow push in. His grip on the wooden practice sword firms slightly; keep sword safely down. Tired but unyielding, eyes steady toward the unseen recruiter. Preserve face, clothes and anatomy. No added people, text, magic or battle.",
+      "image": "local episode-render reference",
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "aspect_ratio": "16:9",
+      "prompt_upsampler": "off",
+      "enable_safety_filter": true
+    },
+    "pricingVerifiedAt": "2026-10-28T02:05:11.072Z",
+    "pricingSource": "https://replicate.com/prunaai/p-video-2-pro",
+    "rateUsdPerSecond": 0.01,
+    "maximumChargeUsd": 0.06,
+    "paidAttempts": 1,
+    "generatedSeconds": 6,
+    "holdSeconds": 3,
+    "totalSeconds": 9,
+    "speechCheck": "I'll earn my own strength.",
+    "offlineFinish": "Preserved native source privately. Muted soundtrack before 3.5 seconds, before the verified intended phrase beginning at 3.8 seconds, to remove unwanted leading speech. Full six-second motion retained, three-second first-frame hold prepended. No paid retry.",
+    "art": {
+      "tool": "built-in imagegen",
+      "reference": "stories/characters/references/lms-main-cast-lineup.png",
+      "output": "stories/authoring/moonlight-28/teaser-reference.png",
+      "prompt": "Single landscape fantasy manhwa still: approved central Weed identity in slate-teal rolled work shirt, wooden sword safely lowered in warm stone-and-timber training hall, tired but quietly unyielding toward an unseen recruiter; no other people, text or magic."
+    }
+  }
+}

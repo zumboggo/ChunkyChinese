@@ -1,0 +1,912 @@
+{
+  "跟我们一起吧。一直到一百级，你需要什么，我们都给。": {
+    "english": "Join us. Until you reach level one hundred, we will give you whatever you need.",
+    "pinyin": "gēn wǒ men yì qǐ ba 。 yì zhí dào yì bǎi jí ， nǐ xū yào shén me ， wǒ men dōu gěi 。",
+    "interlinear": [
+      {
+        "chinese": "跟我们一起吧。",
+        "pinyin": "gēn wǒ men yì qǐ ba 。",
+        "gloss": "join us"
+      },
+      {
+        "chinese": "一直到一百级，",
+        "pinyin": "yì zhí dào yì bǎi jí ，",
+        "gloss": "all the way to level one hundred"
+      },
+      {
+        "chinese": "你需要什么，",
+        "pinyin": "nǐ xū yào shén me ，",
+        "gloss": "whatever you need"
+      },
+      {
+        "chinese": "我们都给。",
+        "pinyin": "wǒ men dōu gěi 。",
+        "gloss": "we will give it all"
+      }
+    ]
+  },
+  "我手里还拿着木剑。四个星期的练习，让这些高手走到我面前。": {
+    "english": "I am still holding my wooden sword. Four weeks of practice have brought these expert players to me.",
+    "pinyin": "wǒ shǒu lǐ hái ná zhe mù jiàn 。 sì gè xīng qī de liàn xí ， ràng zhè xiē gāo shǒu zǒu dào wǒ miàn qián 。",
+    "interlinear": [
+      {
+        "chinese": "我手里",
+        "pinyin": "wǒ shǒu lǐ",
+        "gloss": "in my hand"
+      },
+      {
+        "chinese": "还拿着木剑。",
+        "pinyin": "hái ná zhe mù jiàn 。",
+        "gloss": "I still hold a wooden sword"
+      },
+      {
+        "chinese": "四个星期的练习，",
+        "pinyin": "sì gè xīng qī de liàn xí ，",
+        "gloss": "four weeks of practice"
+      },
+      {
+        "chinese": "让这些高手",
+        "pinyin": "ràng zhè xiē gāo shǒu",
+        "gloss": "have made these experts"
+      },
+      {
+        "chinese": "走到我面前。",
+        "pinyin": "zǒu dào wǒ miàn qián 。",
+        "gloss": "come up to me"
+      }
+    ]
+  },
+  "你知道我也是玩家？": {
+    "english": "You know I am a player too?",
+    "pinyin": "nǐ zhī dào wǒ yě shì wán jiā ？",
+    "interlinear": [
+      {
+        "chinese": "你知道",
+        "pinyin": "nǐ zhī dào",
+        "gloss": "you know"
+      },
+      {
+        "chinese": "我也是玩家？",
+        "pinyin": "wǒ yě shì wán jiā ？",
+        "gloss": "I am a player too"
+      }
+    ]
+  },
+  "当然。你想让力量更强，我们知道。": {
+    "english": "Of course. We know you are trying to increase your strength.",
+    "pinyin": "dāng rán 。 nǐ xiǎng ràng lì liàng gèng qiáng ， wǒ men zhī dào 。",
+    "interlinear": [
+      {
+        "chinese": "当然。",
+        "pinyin": "dāng rán 。",
+        "gloss": "of course"
+      },
+      {
+        "chinese": "你想让力量更强，",
+        "pinyin": "nǐ xiǎng ràng lì liàng gèng qiáng ，",
+        "gloss": "you want to grow stronger"
+      },
+      {
+        "chinese": "我们知道。",
+        "pinyin": "wǒ men zhī dào 。",
+        "gloss": "we know"
+      }
+    ]
+  },
+  "这次，他们知道我不是给任务的人。他们想要的是我。": {
+    "english": "This time, they know I am not a quest giver. I am the one they want.",
+    "pinyin": "zhè cì ， tā men zhī dào wǒ bú shì gěi rèn wu de rén 。 tā men xiǎng yào de shì wǒ 。",
+    "interlinear": [
+      {
+        "chinese": "这次，",
+        "pinyin": "zhè cì ，",
+        "gloss": "this time"
+      },
+      {
+        "chinese": "他们知道",
+        "pinyin": "tā men zhī dào",
+        "gloss": "they know"
+      },
+      {
+        "chinese": "我不是给任务的人。",
+        "pinyin": "wǒ bú shì gěi rèn wu de rén 。",
+        "gloss": "I am not a quest giver"
+      },
+      {
+        "chinese": "他们想要的是我。",
+        "pinyin": "tā men xiǎng yào de shì wǒ 。",
+        "gloss": "I am the one they want"
+      }
+    ]
+  },
+  "为什么愿意帮我这么多？": {
+    "english": "Why are you willing to help me so much?",
+    "pinyin": "wèi shén me yuàn yì bāng wǒ zhè me duō ？",
+    "interlinear": [
+      {
+        "chinese": "为什么",
+        "pinyin": "wèi shén me",
+        "gloss": "why"
+      },
+      {
+        "chinese": "愿意帮我这么多？",
+        "pinyin": "yuàn yì bāng wǒ zhè me duō ？",
+        "gloss": "are you willing to help me so much"
+      }
+    ]
+  },
+  "我还要练习。": {
+    "english": "I still have practice to do.",
+    "pinyin": "wǒ hái yào liàn xí 。",
+    "interlinear": [
+      {
+        "chinese": "我还要练习。",
+        "pinyin": "wǒ hái yào liàn xí 。",
+        "gloss": "I still have practice to do"
+      }
+    ]
+  },
+  "因为我们需要你这样的人。你变强，我们也会更强。": {
+    "english": "Because we need people like you. When you grow stronger, so do we.",
+    "pinyin": "yīn wèi wǒ men xū yào nǐ zhè yàng de rén 。 nǐ biàn qiáng ， wǒ men yě huì gèng qiáng 。",
+    "interlinear": [
+      {
+        "chinese": "因为",
+        "pinyin": "yīn wèi",
+        "gloss": "because"
+      },
+      {
+        "chinese": "我们需要你这样的人。",
+        "pinyin": "wǒ men xū yào nǐ zhè yàng de rén 。",
+        "gloss": "we need people like you"
+      },
+      {
+        "chinese": "你变强，",
+        "pinyin": "nǐ biàn qiáng ，",
+        "gloss": "you grow stronger"
+      },
+      {
+        "chinese": "我们也会更强。",
+        "pinyin": "wǒ men yě huì gèng qiáng 。",
+        "gloss": "we will grow stronger too"
+      }
+    ]
+  },
+  "我们知道。所以才来找你。我们可以一起变强。": {
+    "english": "We know. That is why we came to you. We can grow stronger together.",
+    "pinyin": "wǒ men zhī dào 。 suǒ yǐ cái lái zhǎo nǐ 。 wǒ men kě yǐ yì qǐ biàn qiáng 。",
+    "interlinear": [
+      {
+        "chinese": "我们知道。",
+        "pinyin": "wǒ men zhī dào 。",
+        "gloss": "we know"
+      },
+      {
+        "chinese": "所以才来找你。",
+        "pinyin": "suǒ yǐ cái lái zhǎo nǐ 。",
+        "gloss": "that is why we came to you"
+      },
+      {
+        "chinese": "我们可以一起变强。",
+        "pinyin": "wǒ men kě yǐ yì qǐ biàn qiáng 。",
+        "gloss": "we can grow stronger together"
+      }
+    ]
+  },
+  "高手们想要的不只是一群人。他们想有自己的国家，自己的国王。": {
+    "english": "These experts want more than a group of people. They want a country of their own, with their own king.",
+    "pinyin": "gāo shǒu men xiǎng yào de bù zhǐ shì yì qún rén 。 tā men xiǎng yǒu zì jǐ de guó jiā ， zì jǐ de guó wáng 。",
+    "interlinear": [
+      {
+        "chinese": "高手们想要的",
+        "pinyin": "gāo shǒu men xiǎng yào de",
+        "gloss": "what the experts want"
+      },
+      {
+        "chinese": "不只是一群人。",
+        "pinyin": "bù zhǐ shì yì qún rén 。",
+        "gloss": "is more than a group of people"
+      },
+      {
+        "chinese": "他们想有",
+        "pinyin": "tā men xiǎng yǒu",
+        "gloss": "they want to have"
+      },
+      {
+        "chinese": "自己的国家，",
+        "pinyin": "zì jǐ de guó jiā ，",
+        "gloss": "their own country"
+      },
+      {
+        "chinese": "自己的国王。",
+        "pinyin": "zì jǐ de guó wáng 。",
+        "gloss": "their own king"
+      }
+    ]
+  },
+  "城市里的钱，可以用来盖房子、做剑，也可以让更多人去战斗。": {
+    "english": "The cities’ money can build houses and make swords, or send more people into battle.",
+    "pinyin": "chéng shì lǐ de qián ， kě yǐ yòng lái gài fáng zi 、 zuò jiàn ， yě kě yǐ ràng gèng duō rén qù zhàn dòu 。",
+    "interlinear": [
+      {
+        "chinese": "城市里的钱，",
+        "pinyin": "chéng shì lǐ de qián ，",
+        "gloss": "money from the cities"
+      },
+      {
+        "chinese": "可以用来盖房子、做剑，",
+        "pinyin": "kě yǐ yòng lái gài fáng zi 、 zuò jiàn ，",
+        "gloss": "can be used to build houses and make swords"
+      },
+      {
+        "chinese": "也可以",
+        "pinyin": "yě kě yǐ",
+        "gloss": "can also"
+      },
+      {
+        "chinese": "让更多人去战斗。",
+        "pinyin": "ràng gèng duō rén qù zhàn dòu 。",
+        "gloss": "send more people into battle"
+      }
+    ]
+  },
+  "他们看我的剑，想的却是以后的天下。": {
+    "english": "They look at my sword, but their minds are on the world they might rule.",
+    "pinyin": "tā men kàn wǒ de jiàn ， xiǎng de què shì yǐ hòu de tiān xià 。",
+    "interlinear": [
+      {
+        "chinese": "他们看我的剑，",
+        "pinyin": "tā men kàn wǒ de jiàn ，",
+        "gloss": "they look at my sword"
+      },
+      {
+        "chinese": "想的却是",
+        "pinyin": "xiǎng de què shì",
+        "gloss": "but what they are thinking about is"
+      },
+      {
+        "chinese": "以后的天下。",
+        "pinyin": "yǐ hòu de tiān xià 。",
+        "gloss": "the world of the future"
+      }
+    ]
+  },
+  "谢谢。我还是自己来。": {
+    "english": "Thank you. I will manage on my own.",
+    "pinyin": "xiè xiè 。 wǒ hái shì zì jǐ lái 。",
+    "interlinear": [
+      {
+        "chinese": "谢谢。",
+        "pinyin": "xiè xiè 。",
+        "gloss": "thank you"
+      },
+      {
+        "chinese": "我还是自己来。",
+        "pinyin": "wǒ hái shì zì jǐ lái 。",
+        "gloss": "I will still do it myself"
+      }
+    ]
+  },
+  "你们有你们的事，我有我的。": {
+    "english": "You have your work. I have mine.",
+    "pinyin": "nǐ men yǒu nǐ men de shì ， wǒ yǒu wǒ de 。",
+    "interlinear": [
+      {
+        "chinese": "你们有你们的事，",
+        "pinyin": "nǐ men yǒu nǐ men de shì ，",
+        "gloss": "you have your own business"
+      },
+      {
+        "chinese": "我有我的。",
+        "pinyin": "wǒ yǒu wǒ de 。",
+        "gloss": "I have mine"
+      }
+    ]
+  },
+  "连一百级以前的帮助，也不要？": {
+    "english": "You do not even want support up to level one hundred?",
+    "pinyin": "lián yì bǎi jí yǐ qián de bāng zhù ， yě bú yào ？",
+    "interlinear": [
+      {
+        "chinese": "连一百级以前的帮助，",
+        "pinyin": "lián yì bǎi jí yǐ qián de bāng zhù ，",
+        "gloss": "even support before level one hundred"
+      },
+      {
+        "chinese": "也不要？",
+        "pinyin": "yě bú yào ？",
+        "gloss": "you do not want"
+      }
+    ]
+  },
+  "不要。我要自己变强。": {
+    "english": "No. I want to become stronger on my own.",
+    "pinyin": "bú yào 。 wǒ yào zì jǐ biàn qiáng 。",
+    "interlinear": [
+      {
+        "chinese": "不要。",
+        "pinyin": "bú yào 。",
+        "gloss": "no"
+      },
+      {
+        "chinese": "我要自己变强。",
+        "pinyin": "wǒ yào zì jǐ biàn qiáng 。",
+        "gloss": "I want to become stronger on my own"
+      }
+    ]
+  },
+  "我们想走得更远。你就想一直留在这里？": {
+    "english": "We want to go further. Do you just want to stay here forever?",
+    "pinyin": "wǒ men xiǎng zǒu de gèng yuǎn 。 nǐ jiù xiǎng yì zhí liú zài zhè lǐ ？",
+    "interlinear": [
+      {
+        "chinese": "我们想走得更远。",
+        "pinyin": "wǒ men xiǎng zǒu de gèng yuǎn 。",
+        "gloss": "we want to go further"
+      },
+      {
+        "chinese": "你就想",
+        "pinyin": "nǐ jiù xiǎng",
+        "gloss": "do you just want"
+      },
+      {
+        "chinese": "一直留在这里？",
+        "pinyin": "yì zhí liú zài zhè lǐ ？",
+        "gloss": "to stay here all the time"
+      }
+    ]
+  },
+  "先把这里的事做完。": {
+    "english": "First, finish what I came here to do.",
+    "pinyin": "xiān bǎ zhè lǐ de shì zuò wán 。",
+    "interlinear": [
+      {
+        "chinese": "先把这里的事做完。",
+        "pinyin": "xiān bǎ zhè lǐ de shì zuò wán 。",
+        "gloss": "first finish the work here"
+      }
+    ]
+  },
+  "来找我的人不只一个。我对他们都说了不。": {
+    "english": "More than one person approaches me. I say no to every one of them.",
+    "pinyin": "lái zhǎo wǒ de rén bù zhǐ yí gè 。 wǒ duì tā men dōu shuō le bù 。",
+    "interlinear": [
+      {
+        "chinese": "来找我的人",
+        "pinyin": "lái zhǎo wǒ de rén",
+        "gloss": "the people who come to me"
+      },
+      {
+        "chinese": "不只一个。",
+        "pinyin": "bù zhǐ yí gè 。",
+        "gloss": "number more than one"
+      },
+      {
+        "chinese": "我对他们",
+        "pinyin": "wǒ duì tā men",
+        "gloss": "to all of them"
+      },
+      {
+        "chinese": "都说了不。",
+        "pinyin": "dōu shuō le bù 。",
+        "gloss": "I said no"
+      }
+    ]
+  },
+  "木剑又打在木头人身上。一下，再一下。": {
+    "english": "The wooden sword strikes the dummy again. Once. Then again.",
+    "pinyin": "mù jiàn yòu dǎ zài mù tou rén shēn shàng 。 yí xià ， zài yí xià 。",
+    "interlinear": [
+      {
+        "chinese": "木剑又打在",
+        "pinyin": "mù jiàn yòu dǎ zài",
+        "gloss": "the wooden sword strikes again"
+      },
+      {
+        "chinese": "木头人身上。",
+        "pinyin": "mù tou rén shēn shàng 。",
+        "gloss": "against the wooden dummy"
+      },
+      {
+        "chinese": "一下，",
+        "pinyin": "yí xià ，",
+        "gloss": "once"
+      },
+      {
+        "chinese": "再一下。",
+        "pinyin": "zài yí xià 。",
+        "gloss": "then again"
+      }
+    ]
+  },
+  "突然，游戏里有了声音：力量、敏捷、体力，都多了一点。": {
+    "english": "Suddenly, the game sounds: strength, agility, and vitality have each increased by one.",
+    "pinyin": "tū rán ， yóu xì lǐ yǒu le shēng yīn ： lì liàng 、 mǐn jié 、 tǐ lì ， dōu duō le yì diǎn 。",
+    "interlinear": [
+      {
+        "chinese": "突然，",
+        "pinyin": "tū rán ，",
+        "gloss": "suddenly"
+      },
+      {
+        "chinese": "游戏里有了声音：",
+        "pinyin": "yóu xì lǐ yǒu le shēng yīn ：",
+        "gloss": "a sound comes from the game"
+      },
+      {
+        "chinese": "力量、敏捷、体力，",
+        "pinyin": "lì liàng 、 mǐn jié 、 tǐ lì ，",
+        "gloss": "strength, agility, and vitality"
+      },
+      {
+        "chinese": "都多了一点。",
+        "pinyin": "dōu duō le yì diǎn 。",
+        "gloss": "have each increased by one point"
+      }
+    ]
+  },
+  "名声多了二十点，生命多了一百点。我的剑停在半空。": {
+    "english": "Fame increases by twenty, health by one hundred. My sword stops in midair.",
+    "pinyin": "míng shēng duō le èr shí diǎn ， shēng mìng duō le yì bǎi diǎn 。 wǒ de jiàn tíng zài bàn kōng 。",
+    "interlinear": [
+      {
+        "chinese": "名声多了二十点，",
+        "pinyin": "míng shēng duō le èr shí diǎn ，",
+        "gloss": "fame increases by twenty points"
+      },
+      {
+        "chinese": "生命多了一百点。",
+        "pinyin": "shēng mìng duō le yì bǎi diǎn 。",
+        "gloss": "health increases by one hundred points"
+      },
+      {
+        "chinese": "我的剑",
+        "pinyin": "wǒ de jiàn",
+        "gloss": "my sword"
+      },
+      {
+        "chinese": "停在半空。",
+        "pinyin": "tíng zài bàn kōng 。",
+        "gloss": "stops in midair"
+      }
+    ]
+  },
+  "终于……做到了。": {
+    "english": "At last... I did it.",
+    "pinyin": "zhōng yú … … zuò dào le 。",
+    "interlinear": [
+      {
+        "chinese": "终于……",
+        "pinyin": "zhōng yú … …",
+        "gloss": "at last"
+      },
+      {
+        "chinese": "做到了。",
+        "pinyin": "zuò dào le 。",
+        "gloss": "I did it"
+      }
+    ]
+  },
+  "我不再看眼前的木头人，长长地出了口气。四个星期啊。": {
+    "english": "I stop looking at the dummy in front of me and let out a long breath. Four whole weeks.",
+    "pinyin": "wǒ bú zài kàn yǎn qián de mù tou rén ， cháng cháng de chū le kǒu qì 。 sì gè xīng qī a 。",
+    "interlinear": [
+      {
+        "chinese": "我不再看",
+        "pinyin": "wǒ bú zài kàn",
+        "gloss": "I stop looking at"
+      },
+      {
+        "chinese": "眼前的木头人，",
+        "pinyin": "yǎn qián de mù tou rén ，",
+        "gloss": "the wooden dummy before me"
+      },
+      {
+        "chinese": "长长地出了口气。",
+        "pinyin": "cháng cháng de chū le kǒu qì 。",
+        "gloss": "I let out a long breath"
+      },
+      {
+        "chinese": "四个星期啊。",
+        "pinyin": "sì gè xīng qī a 。",
+        "gloss": "four whole weeks"
+      }
+    ]
+  },
+  "在这个训练场里，我已经不能再这样变强了。": {
+    "english": "I have reached the limit of the strength I can gain this way in this training hall.",
+    "pinyin": "zài zhè ge xùn liàn chǎng lǐ ， wǒ yǐ jīng bù néng zài zhè yàng biàn qiáng le 。",
+    "interlinear": [
+      {
+        "chinese": "在这个训练场里，",
+        "pinyin": "zài zhè ge xùn liàn chǎng lǐ ，",
+        "gloss": "in this training hall"
+      },
+      {
+        "chinese": "我已经不能",
+        "pinyin": "wǒ yǐ jīng bù néng",
+        "gloss": "I can no longer"
+      },
+      {
+        "chinese": "再这样变强了。",
+        "pinyin": "zài zhè yàng biàn qiáng le 。",
+        "gloss": "grow stronger this way"
+      }
+    ]
+  },
+  "看看自己终于得到的力量。": {
+    "english": "Look at the strength I have finally earned.",
+    "pinyin": "kàn kàn zì jǐ zhōng yú dé dào de lì liàng 。",
+    "interlinear": [
+      {
+        "chinese": "看看自己",
+        "pinyin": "kàn kàn zì jǐ",
+        "gloss": "look at my own"
+      },
+      {
+        "chinese": "终于得到的力量。",
+        "pinyin": "zhōng yú dé dào de lì liàng 。",
+        "gloss": "hard-earned strength"
+      }
+    ]
+  },
+  "看看新的名声。": {
+    "english": "Look at the fame I have gained.",
+    "pinyin": "kàn kàn xīn de míng shēng 。",
+    "interlinear": [
+      {
+        "chinese": "看看",
+        "pinyin": "kàn kàn",
+        "gloss": "look at"
+      },
+      {
+        "chinese": "新的名声。",
+        "pinyin": "xīn de míng shēng 。",
+        "gloss": "the new fame"
+      }
+    ]
+  },
+  "每天都一样的练习，终于有了结果。我不是白白站在这里的。": {
+    "english": "The same practice every day has finally paid off. All that time here was not wasted.",
+    "pinyin": "měi tiān dōu yí yàng de liàn xí ， zhōng yú yǒu le jié guǒ 。 wǒ bú shì bái bái zhàn zài zhè lǐ de 。",
+    "interlinear": [
+      {
+        "chinese": "每天都一样的练习，",
+        "pinyin": "měi tiān dōu yí yàng de liàn xí ，",
+        "gloss": "the same practice every day"
+      },
+      {
+        "chinese": "终于有了结果。",
+        "pinyin": "zhōng yú yǒu le jié guǒ 。",
+        "gloss": "has finally produced results"
+      },
+      {
+        "chinese": "我不是",
+        "pinyin": "wǒ bú shì",
+        "gloss": "I have not"
+      },
+      {
+        "chinese": "白白站在这里的。",
+        "pinyin": "bái bái zhàn zài zhè lǐ de 。",
+        "gloss": "stood here for nothing"
+      }
+    ]
+  },
+  "名声高了，买东西会更便宜，别人也会更认真地听我说话。这也不错。": {
+    "english": "Higher fame means cheaper goods, and people will take what I say more seriously. That is not bad either.",
+    "pinyin": "míng shēng gāo le ， mǎi dōng xi huì gèng pián yi ， bié rén yě huì gèng rèn zhēn de tīng wǒ shuō huà 。 zhè yě bú cuò 。",
+    "interlinear": [
+      {
+        "chinese": "名声高了，",
+        "pinyin": "míng shēng gāo le ，",
+        "gloss": "with higher fame"
+      },
+      {
+        "chinese": "买东西会更便宜，",
+        "pinyin": "mǎi dōng xi huì gèng pián yi ，",
+        "gloss": "buying things will be cheaper"
+      },
+      {
+        "chinese": "别人也会更认真地",
+        "pinyin": "bié rén yě huì gèng rèn zhēn de",
+        "gloss": "others will also more seriously"
+      },
+      {
+        "chinese": "听我说话。",
+        "pinyin": "tīng wǒ shuō huà 。",
+        "gloss": "listen to me speak"
+      },
+      {
+        "chinese": "这也不错。",
+        "pinyin": "zhè yě bú cuò 。",
+        "gloss": "that is not bad either"
+      }
+    ]
+  },
+  "做得好。": {
+    "english": "Well done.",
+    "pinyin": "zuò de hǎo 。",
+    "interlinear": [
+      {
+        "chinese": "做得好。",
+        "pinyin": "zuò de hǎo 。",
+        "gloss": "well done"
+      }
+    ]
+  },
+  "谢谢您，教官。": {
+    "english": "Thank you, Instructor.",
+    "pinyin": "xiè xiè nín ， jiào guān 。",
+    "interlinear": [
+      {
+        "chinese": "谢谢您，",
+        "pinyin": "xiè xiè nín ，",
+        "gloss": "thank you"
+      },
+      {
+        "chinese": "教官。",
+        "pinyin": "jiào guān 。",
+        "gloss": "Instructor"
+      }
+    ]
+  },
+  "一开始，我真没想到，你能做到这样。": {
+    "english": "At first, I really did not think you could achieve this.",
+    "pinyin": "yì kāi shǐ ， wǒ zhēn méi xiǎng dào ， nǐ néng zuò dào zhè yàng 。",
+    "interlinear": [
+      {
+        "chinese": "一开始，",
+        "pinyin": "yì kāi shǐ ，",
+        "gloss": "at first"
+      },
+      {
+        "chinese": "我真没想到，",
+        "pinyin": "wǒ zhēn méi xiǎng dào ，",
+        "gloss": "I really did not expect"
+      },
+      {
+        "chinese": "你能做到这样。",
+        "pinyin": "nǐ néng zuò dào zhè yàng 。",
+        "gloss": "you could achieve this"
+      }
+    ]
+  },
+  "是我看错了。我对你很满意。": {
+    "english": "I misjudged you. I am very pleased with you.",
+    "pinyin": "shì wǒ kàn cuò le 。 wǒ duì nǐ hěn mǎn yì 。",
+    "interlinear": [
+      {
+        "chinese": "是我看错了。",
+        "pinyin": "shì wǒ kàn cuò le 。",
+        "gloss": "I was wrong about you"
+      },
+      {
+        "chinese": "我对你很满意。",
+        "pinyin": "wǒ duì nǐ hěn mǎn yì 。",
+        "gloss": "I am very pleased with you"
+      }
+    ]
+  },
+  "从前，他不相信我。现在，他自己对我说，他看错了。": {
+    "english": "Before, he did not believe in me. Now he is telling me himself that he was wrong.",
+    "pinyin": "cóng qián ， tā bù xiāng xìn wǒ 。 xiàn zài ， tā zì jǐ duì wǒ shuō ， tā kàn cuò le 。",
+    "interlinear": [
+      {
+        "chinese": "从前，",
+        "pinyin": "cóng qián ，",
+        "gloss": "before"
+      },
+      {
+        "chinese": "他不相信我。",
+        "pinyin": "tā bù xiāng xìn wǒ 。",
+        "gloss": "he did not believe in me"
+      },
+      {
+        "chinese": "现在，",
+        "pinyin": "xiàn zài ，",
+        "gloss": "now"
+      },
+      {
+        "chinese": "他自己对我说，",
+        "pinyin": "tā zì jǐ duì wǒ shuō ，",
+        "gloss": "he tells me himself"
+      },
+      {
+        "chinese": "他看错了。",
+        "pinyin": "tā kàn cuò le 。",
+        "gloss": "he was wrong about me"
+      }
+    ]
+  },
+  "都是您教得好。": {
+    "english": "It is all thanks to your excellent teaching.",
+    "pinyin": "dōu shì nín jiāo de hǎo 。",
+    "interlinear": [
+      {
+        "chinese": "都是您教得好。",
+        "pinyin": "dōu shì nín jiāo de hǎo 。",
+        "gloss": "it is all because you taught me well"
+      }
+    ]
+  },
+  "没有您的帮助，我做不到。": {
+    "english": "I could not have done it without your help.",
+    "pinyin": "méi yǒu nín de bāng zhù ， wǒ zuò bú dào 。",
+    "interlinear": [
+      {
+        "chinese": "没有您的帮助，",
+        "pinyin": "méi yǒu nín de bāng zhù ，",
+        "gloss": "without your help"
+      },
+      {
+        "chinese": "我做不到。",
+        "pinyin": "wǒ zuò bú dào 。",
+        "gloss": "I could not do it"
+      }
+    ]
+  },
+  "哈哈！这话说得对！": {
+    "english": "Ha! You are absolutely right!",
+    "pinyin": "hā hā ！ zhè huà shuō de duì ！",
+    "interlinear": [
+      {
+        "chinese": "哈哈！",
+        "pinyin": "hā hā ！",
+        "gloss": "ha"
+      },
+      {
+        "chinese": "这话说得对！",
+        "pinyin": "zhè huà shuō de duì ！",
+        "gloss": "you are right about that"
+      }
+    ]
+  },
+  "哈哈！现在知道我的好了吧！": {
+    "english": "Ha! Now you see how good I have been to you!",
+    "pinyin": "hā hā ！ xiàn zài zhī dào wǒ de hǎo le ba ！",
+    "interlinear": [
+      {
+        "chinese": "哈哈！",
+        "pinyin": "hā hā ！",
+        "gloss": "ha"
+      },
+      {
+        "chinese": "现在知道",
+        "pinyin": "xiàn zài zhī dào",
+        "gloss": "now you know"
+      },
+      {
+        "chinese": "我的好了吧！",
+        "pinyin": "wǒ de hǎo le ba ！",
+        "gloss": "how good I have been to you"
+      }
+    ]
+  },
+  "他一听这话就开心。我早知道，怎么让教官更开心。": {
+    "english": "Those words make him happy at once. I have long known how to please the instructor.",
+    "pinyin": "tā yì tīng zhè huà jiù kāi xīn 。 wǒ zǎo zhī dào ， zěn me ràng jiào guān gèng kāi xīn 。",
+    "interlinear": [
+      {
+        "chinese": "他一听这话",
+        "pinyin": "tā yì tīng zhè huà",
+        "gloss": "as soon as he hears this"
+      },
+      {
+        "chinese": "就开心。",
+        "pinyin": "jiù kāi xīn 。",
+        "gloss": "he is happy"
+      },
+      {
+        "chinese": "我早知道，",
+        "pinyin": "wǒ zǎo zhī dào ，",
+        "gloss": "I have long known"
+      },
+      {
+        "chinese": "怎么让教官更开心。",
+        "pinyin": "zěn me ràng jiào guān gèng kāi xīn 。",
+        "gloss": "how to make the instructor happier"
+      }
+    ]
+  },
+  "教官拿来一把剑，给了我。": {
+    "english": "The instructor brings over a sword and gives it to me.",
+    "pinyin": "jiào guān ná lái yì bǎ jiàn ， gěi le wǒ 。",
+    "interlinear": [
+      {
+        "chinese": "教官拿来一把剑，",
+        "pinyin": "jiào guān ná lái yì bǎ jiàn ，",
+        "gloss": "the instructor brings a sword"
+      },
+      {
+        "chinese": "给了我。",
+        "pinyin": "gěi le wǒ 。",
+        "gloss": "and gives it to me"
+      }
+    ]
+  },
+  "这把剑是……？": {
+    "english": "This sword is...?",
+    "pinyin": "zhè bǎ jiàn shì … … ？",
+    "interlinear": [
+      {
+        "chinese": "这把剑是……？",
+        "pinyin": "zhè bǎ jiàn shì … … ？",
+        "gloss": "this sword is"
+      }
+    ]
+  },
+  "你的。完成基础训练的人，都能得到这把剑。": {
+    "english": "Yours. Everyone who completes basic training receives this sword.",
+    "pinyin": "nǐ de 。 wán chéng jī chǔ xùn liàn de rén ， dōu néng dé dào zhè bǎ jiàn 。",
+    "interlinear": [
+      {
+        "chinese": "你的。",
+        "pinyin": "nǐ de 。",
+        "gloss": "yours"
+      },
+      {
+        "chinese": "完成基础训练的人，",
+        "pinyin": "wán chéng jī chǔ xùn liàn de rén ，",
+        "gloss": "people who finish basic training"
+      },
+      {
+        "chinese": "都能得到这把剑。",
+        "pinyin": "dōu néng dé dào zhè bǎ jiàn 。",
+        "gloss": "all receive this sword"
+      }
+    ]
+  },
+  "游戏里出现了几个字：得到硬铁剑。": {
+    "english": "A few words appear in the game: Hard Iron Sword acquired.",
+    "pinyin": "yóu xì lǐ chū xiàn le jǐ gè zì ： dé dào yìng tiě jiàn 。",
+    "interlinear": [
+      {
+        "chinese": "游戏里出现了几个字：",
+        "pinyin": "yóu xì lǐ chū xiàn le jǐ gè zì ：",
+        "gloss": "a few words appear in the game"
+      },
+      {
+        "chinese": "得到硬铁剑。",
+        "pinyin": "dé dào yìng tiě jiàn 。",
+        "gloss": "Hard Iron Sword acquired"
+      }
+    ]
+  },
+  "基础训练……": {
+    "english": "Basic training...",
+    "pinyin": "jī chǔ xùn liàn … …",
+    "interlinear": [
+      {
+        "chinese": "基础训练……",
+        "pinyin": "jī chǔ xùn liàn … …",
+        "gloss": "basic training"
+      }
+    ]
+  },
+  "我拿着这把剑。四个星期，终于做完的，原来只是“基础”。": {
+    "english": "I hold the sword. Four weeks of work, finally finished—and it turns out that was only the basics.",
+    "pinyin": "wǒ ná zhe zhè bǎ jiàn 。 sì gè xīng qī ， zhōng yú zuò wán de ， yuán lái zhǐ shì “ jī chǔ ” 。",
+    "interlinear": [
+      {
+        "chinese": "我拿着这把剑。",
+        "pinyin": "wǒ ná zhe zhè bǎ jiàn 。",
+        "gloss": "I hold this sword"
+      },
+      {
+        "chinese": "四个星期，",
+        "pinyin": "sì gè xīng qī ，",
+        "gloss": "four weeks"
+      },
+      {
+        "chinese": "终于做完的，",
+        "pinyin": "zhōng yú zuò wán de ，",
+        "gloss": "what I have finally completed"
+      },
+      {
+        "chinese": "原来只是“基础”。",
+        "pinyin": "yuán lái zhǐ shì “ jī chǔ ” 。",
+        "gloss": "turns out to be only the basics"
+      }
+    ]
+  }
+}

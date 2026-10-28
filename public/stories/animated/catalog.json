@@ -779,5 +779,21 @@
       "title": "The Voices Beneath the Water · Episode 15: Stronger Together",
       "description": "As the wind rises, three people must coordinate their different strengths to protect the repaired supply."
     }
+  },
+  {
+    "id": "moonlight-28-v1",
+    "category": "lms",
+    "episode": 28,
+    "path": "moonlight-28.json",
+    "summary": {
+      "title": "Moonlight 28 · A Sword of My Own",
+      "description": "Powerful players offer Weed everything he needs. He refuses—and learns what four weeks of stubborn practice have really earned him."
+    },
+    "intro": {
+      "src": "stories/animated/cutscenes/moonlight-28-intro.mp4",
+      "poster": "stories/animated/cutscenes/moonlight-28-intro.poster.jpg",
+      "title": "I’ll earn my own strength.",
+      "durationSeconds": 9
+    }
   }
 ]
