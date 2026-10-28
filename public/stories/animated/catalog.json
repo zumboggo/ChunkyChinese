@@ -687,5 +687,51 @@
       "title": "The Voices Beneath the Water · Episode 11: Before We Trust",
       "description": "The repaired line faces its first test. A disappointing result becomes useful evidence, and a small new delivery brings measurable hope."
     }
+  },
+  {
+    "id": "jedi-12-v1",
+    "category": "jedi",
+    "episode": 12,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-12-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-12-intro.poster.jpg",
+      "title": "Hope Is Not Proof",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode 12 · Hope Is Not Proof",
+        "paragraphs": [
+          "The repaired connection holds pressure, but the drinking-water valves remain closed. Yesterday’s sealed delivery added two buckets; every earlier loss and agreement still matters.",
+          "The supply ship remains docked. Its crew will help clean and test the line today, while families wait for water they can safely drink."
+        ]
+      }
+    },
+    "path": "jedi-12.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 12: Hope Is Not Proof",
+      "description": "A missing label stops the final water check. Jonathan must defend a delay he hates."
+    }
+  },
+  {
+    "id": "jedi-13-v1",
+    "category": "jedi",
+    "episode": 13,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-13-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-13-intro.poster.jpg",
+      "title": "The First Water",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode 13 · The First Water",
+        "paragraphs": [
+          "Fresh, correctly identified samples have passed the ship crew’s water checks. The repaired line is cleared, but its valves remain closed until a controlled transfer.",
+          "Four measured buckets are ready in the ship’s potable tank. Jonathan, An and Min must bring them into storage, honoring the promises made before the repair."
+        ]
+      }
+    },
+    "path": "jedi-13.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 13: The First Water",
+      "description": "The tested line finally carries drinking water. Min discovers that keeping a promise begins with ordinary work."
+    }
   }
 ]

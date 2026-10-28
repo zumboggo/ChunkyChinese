@@ -1,0 +1,494 @@
+{
+  "episode": "jedi-12-v1",
+  "title": "The Voices Beneath the Water · Episode 12: Hope Is Not Proof",
+  "planning": {
+    "storytellingVoice": "Immediate drama",
+    "voiceReason": "Competing immediate needs and pressure to release water drive the confrontation.",
+    "earlyCare": "Mother asks the tired workers to rest before confronting Jonathan.",
+    "desire": "Release the repaired line safely today.",
+    "obstacle": "An unlabelled sample cannot prove the repaired line is safe; delay feels like abandonment.",
+    "dramaticChange": "Jonathan accepts public responsibility for a necessary delay instead of hiding behind An.",
+    "sourceBoundary": "Next day after Episode 11; ship remains docked, supplies separate maintenance flush water. Stored drinking water stays unchanged.",
+    "sceneActivities": [
+      "Mother offers the offstage workers rest before confronting Jon; Jon holds an attentive stillness as the cost of waiting lands. Crew sample handling is narrated; An watches without lifting or climbing."
+    ],
+    "actingSignature": {
+      "Jonathan": "Plain practical questions; open hand at a boundary, quiet attention afterward.",
+      "An": "Specific limits and short questions; supported seated rest while reviewing, no assumed healing.",
+      "Min": "Urgent explanations soften into admitting uncertainty; rests attentive when corrected.",
+      "Mother": "Concrete requests and accurate accounting; no presumed forgiveness or renewed station shift."
+    },
+    "listenerTurn": "Pair → Mother says waiting also costs them → listener Jonathan → short held response accepting responsibility → pair.",
+    "payoff": "Fresh correctly labelled samples pass the trained ship crew’s full drinking-water clearance after the prescribed wait; repaired line remains isolated until controlled transfer. Stored water unchanged.",
+    "freshQuestion": "Tomorrow’s controlled first transfer must prove the promise works in practice.",
+    "teaser": {
+      "dialogue": "Hope is not proof.",
+      "moment": "Jonathan refuses an unsupported early release."
+    },
+    "convergence": "Four local two-option choices rejoin; twelve existing memory fields only; no resurrection or restoration of losses."
+  },
+  "video": {
+    "src": "stories/animated/jedi/jedi-12-intro.mp4",
+    "poster": "stories/animated/jedi/jedi-12-intro.poster.jpg",
+    "dialogue": "Hope is not proof.",
+    "totalSeconds": 9,
+    "stillSeconds": 3,
+    "motionSeconds": 6,
+    "model": "prunaai/p-video-2-pro",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off"
+    },
+    "verifiedUSDPerSecond": 0.01,
+    "maximumCostUSD": 0.06,
+    "paidRequests": 1,
+    "predictionId": "gzb6qb94a9rmr0d1g0a9xq2x24",
+    "prompt": "Animate this exact reference for six seconds. Jonathan alone says exactly once in clear English: \"Hope is not proof.\" Begin at second 0.5, finish by second 4.5, then close his mouth. No other words, repetitions, paraphrases, fillers, humming, narration, singing or other voices. Quiet wind beneath clearly audible dialogue. Keep the valve closed and his open palm steady. No water appears. Subtle breath and restrained slow camera push. Preserve adult face, beard, costume and anatomy. No other characters or text.",
+    "reference": "stories/authoring/jedi/art/episode-12-reference.png",
+    "nativeSpeech": true,
+    "checks": {
+      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-12/native.mp4",
+      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-12/intro.mp4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "fps": 24,
+      "hold_seconds": 3.0,
+      "motion_seconds": 6.0,
+      "reaction_hold_seconds": 0.0,
+      "total_seconds": 9.0,
+      "decoded_audio_seconds": 9.00275,
+      "audio_non_silent": true,
+      "audio_starts_after_hold": true,
+      "hold_mean_pixel_difference": 0.004903395784543326,
+      "sha256": "59341955474a8b2281f070687a16c9d0a41f4dc6d2e3d793d809299393f59f6a",
+      "expected_dialogue": "Hope is not proof.",
+      "speech_check": "pass",
+      "review": "One visual/listening review remains; automated checks do not prove natural acting or lip sync.",
+      "transcription": "Hope is not proof."
+    }
+  },
+  "continuation": {
+    "end": "Fresh correctly labelled samples pass the trained ship crew’s full drinking-water clearance after the prescribed wait; repaired line remains isolated until controlled transfer. Stored water unchanged.",
+    "nextStart": "Episode 13: controlled first transfer from the docked supply ship potable tank through the cleared repaired line.",
+    "nextEndBefore": "Do not reopen resolved mysteries, restore losses or change allocation agreements without consent. One shared plot; local choices rejoin.",
+    "note": "Current water always comes from the preceding terminal water variable. Other historical fields carry unchanged."
+  },
+  "englishAudio": [
+    {
+      "sha256": "1d8e99d169c89765899bbe7b82c13d98c63b7604578d704daacd4564b18ae360",
+      "text": "Mother asks the workers to rest first, then comes over to me.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8bad29ed34d9b87d4493de969135629d3ac2364d62dd53f458cb27d0630d3d0b",
+      "text": "My child is still waiting. Can we drink the water here today?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c78750a0bb2b5d31d35d3933518a90c1d5ba0ec52b8d32cda75d69a67c8748ba",
+      "text": "It still needs testing. I know you were waiting before, too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "879ef56affbc3c9e3cacc8bc04d8edac489a80e97882bdbc0f6b68be9572583b",
+      "text": "I will ask when the testing will finish.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "68a79beca7fbbd6eecf168c718c7e24ce68b4aa8b3111a992b85c04c33aa9b59",
+      "text": "I will wait with you. I will not slip away.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "38513d611b0465fa748f0c4f682524e0638a81f022f3a4c8e45c49b6fd2e4478",
+      "text": "Answer honestly. Do not say it will be soon just to reassure me.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8686115429fdb7cef826ea8ee460f226b01152493edd2672b1008b5c08150132",
+      "text": "Staying with me does not give my child water to drink.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "bed1f8e97e3bc309f9674a8cd0c3c471f4116a0706369eda136223febadc24bc",
+      "text": "You know we are waiting. But waiting for water has a cost.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "bc906cf3c593f3c9e48205f75dae0f9f623a4b8348790db2044013eb57f5c249",
+      "text": "I do not answer. I look at the closed pipe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2c1b70f5a06d38839d3f01030c1fb530453697aff367d63fae625eb76cd4d9e9",
+      "text": "How will we test it today? I will explain it to them.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e3b4eaf028166e0d2cc8faee9cded3753d61725ba57d789229f33a01e7d6aa9d",
+      "text": "The ship is still here. Its crew brings water for cleaning without using up our drinking water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3ff07bcadca6856d63ff00a3588fb0b2c13b0da9b3971da077f4d5e0557913b5",
+      "text": "The crew first separates the pipes. The cleaning water will not become drinking water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "020503a7438148eef362b934e408ca17bf37d4fd5ae805312b49147514c3dc97",
+      "text": "The cleaning is finished. Here is a sample we can test.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "daf885b20fde067ace96e9193c28592ee745fdb9a9302f507f42ba1aa6b9562c",
+      "text": "Where is the label? Where did this sample come from?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9c8fd8e2fe4c8604727955e34e630fa8e7c33d9a82f5102a17c55c89ff96a23f",
+      "text": "I do not know. Someone left it here. I assumed they had recorded it properly.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "efcac114773fc5894b78762161ead85dac08cd1ab834d3eaa11e7d1f77d1d0ad",
+      "text": "First, find someone who knows.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1e06523b131feed96d5fec69f1d2397c21e093c555684fbbec94573a21530882",
+      "text": "Check the records first. We must not lie.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d1ec2323c4453f246e6769c0f1fd0a03c35d108508ca5b1100042f2a8583505b",
+      "text": "We ask people separately. Nobody can answer.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "603d971a6583cfd41195c392e3b0d72f17c7afd17d1c748a103c6451f6c35214",
+      "text": "There is no record. We cannot answer for someone else.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "000e318a73b7d3d26a0ba392fa6f8a6e66cac761180b6776ccce7bd13ff25f7d",
+      "text": "The water looks clean. Can we open it early?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "389f8cf5e4b9898802db9d7f08fe5c7687ea406f62af2daa8fc9fb0ed0123727",
+      "text": "Wanting it to pass does not mean it has passed. We cannot open it without proper testing.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4d7261653f2b9c25d5a3b4d9a63a90a8783eb8b7a208d38937bb82f9f9c7bf30",
+      "text": "They will say all we do is make everyone wait!",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "691133c498d73d63fe3964703a934a224caefb20641956e4cb5ae42070aa389f",
+      "text": "I will explain that I will not agree to open the water early.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f1ba855dd801c10b12c6151975333ce668994a33b03e06c38e375ed27d48d426",
+      "text": "We will explain together. We will not leave An responsible alone.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ffb285cc472c0168d2c9aa9b3b8f5301b67700de00ec65b77324ff1ea904cb39",
+      "text": "Are you not afraid they will criticize you?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "aef6bfa2551c27f3b7a29f59b71da7ed8eb27c81255b32c482ff7cd47430bea2",
+      "text": "I am. But fear does not excuse carelessness.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "80d2ba93fac48d8934a8962be2df0392b5b8132490005fc3db08e9ef025a198d",
+      "text": "All right. I will explain the tests. You explain why we must wait.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "75100e61302d2a525c374bd46139ba6f519d4a562dbe940afb20c561fabfc0fa",
+      "text": "The crew takes fresh samples. An watches without lifting anything. Min records the place and time and attaches the labels.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "43884e53cbb8a47b8a0fa54394de19cf3ae027a7bb132c3370538b34275fa3de",
+      "text": "This time, we know where the samples came from. But testing takes time.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3712939df7b4a17e05711ae00f2dd5ed62b7595089e6f3a3a4a43d0d7dec4f0a",
+      "text": "Must my child still wait today?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ba5022fb851b5f8c0efb76a660da1d0ce562cd6da958d92d68a9a27a0b36bc8f",
+      "text": "I cannot promise in advance. But I will come back and explain.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "760394084436e0413dd404c66c988a864ef87507169a1db6a19d00c8d4997adb",
+      "text": "I will ask someone to see how we can help. But we must still honor the water allocation we promised.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "5a5ecc847c4e4d79222649b0647bbedf569d163eda9709a28aff2752a7245939",
+      "text": "All right. Come back whether it passes or fails. Do not make me search for you.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0fc28ccccf081d965986b16bc973876ea4099ff0ef43f059a402fa68f5b34ea3",
+      "text": "All right. We must not sacrifice someone else in trying to help.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4c53a676123f6c51e3ec992e339b6ebe77b3325bef95a772e00e7557560339ae",
+      "text": "I promise. We keep the water we already have and remain responsible for the allocation we promised.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "87d32abf007a6312a5e32903db0b610ad3528a453c64917236ae9d06b88eba26",
+      "text": "After the required wait, the crew completes all the tests and brings the results.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e47f73cc14abd0ab796c18f5c29fa2f9e4f92cadab98f2f4bf02006fd3b2eb40",
+      "text": "Are the labels correct about where and when the water was taken?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e24ca8af51a90a59e17db38bcfa862aef86c1882bcced30473358c82e3683c3b",
+      "text": "They are all correct. These are not the earlier unlabelled samples.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "eddfc97cf121384e33885883f218d3fa4c70aa3fdad5eb1131214db24b1cf8af",
+      "text": "Can this section of pipe carry drinking water now?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "dafd304c09aad93d871dab7459432968eb96e4149371670d0a2b7eda8bab8769",
+      "text": "The crew confirms it passed. Tomorrow we will start with four buckets, test it slowly, and keep clear records.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "471ad286f5eefabfaa03fddf929f9547825871ea293b904c3e01f83a8b4bfb44",
+      "text": "I am back. The tests passed. We have no extra water today; tomorrow we will start with four buckets.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7949a371ce0204ada984a867f1b7f810eb2928e211042e4c1720435a82e5b3a7",
+      "text": "Then tomorrow, bring water, not just words.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f364c75726333bf3cb9748f9bc88f2c03e41599babba0e2917fd6c8993c72cd2",
+      "text": "I will bring water. We must take responsibility for our promises.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "6bd13dbaddb07d46e30d1ce491774ce5a8410d56f52f8ed4497f85bd95083a93",
+      "text": "We secure the closed pipe and keep the records. The tests have passed, but our promise is not yet fulfilled.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    }
+  ],
+  "artwork": {
+    "generator": "Built-in imagegen",
+    "savedPath": "stories/authoring/jedi/art/episode-12-reference.png",
+    "reference": "stories/authoring/jedi/art/episode-11-reference.png",
+    "promptSummary": "New cinematic 16:9 anime frame. Preserve adult Jon’s brown hair, beard, cream tunic and brown robe. Tired but resolute beside a closed red valve at a desert-world water station, open hand between viewer and valve. One visible adult, no flowing water, weapons, text, logos or watermark."
+  },
+  "verification": {
+    "reportStatus": "passed",
+    "packageBytes": 1468093,
+    "phases": [
+      {
+        "name": "vocabulary",
+        "seconds": 0.02505833299999999,
+        "status": "passed"
+      },
+      {
+        "name": "routes, source assertions and resume",
+        "seconds": 0.15749425000000003,
+        "status": "passed"
+      },
+      {
+        "name": "annotations",
+        "seconds": 0.003593166999999994,
+        "status": "passed"
+      },
+      {
+        "name": "audio",
+        "seconds": 21.031989167000003,
+        "status": "passed"
+      },
+      {
+        "name": "English pocket audio",
+        "seconds": 0.0977242499999993,
+        "status": "passed"
+      },
+      {
+        "name": "package and ZIP",
+        "seconds": 0.07929591699999947,
+        "status": "passed"
+      },
+      {
+        "name": "phone and desktop",
+        "seconds": 33.475115375,
+        "status": "passed"
+      },
+      {
+        "name": "stage new release",
+        "seconds": 0.014093041000000086,
+        "status": "passed"
+      }
+    ],
+    "familiarity": {
+      "min": 81.39013452914799,
+      "max": 82.48337028824834
+    },
+    "pinyin": "Reviewed complete lines and contextual chunks; corrected only-adverb zhi and numeric bucket pinyin.",
+    "teaser": "Native speech recognition exact pass, 3-second first-frame hold and 6-second motion verified; motion/end frames inspected.",
+    "continuity": "54,432 histories preserve all losses and agreements; Episode 11 delivery carried from actual terminal water. All 160 routes per new episode converge; Episode 12 adds zero, Episode 13 adds exactly four buckets; replay does not double-count.",
+    "releaseBrowser": "12 checks passed on phone and desktop: complete teaser transition, duration, reduced motion, unavailable media, resumed listener scene with Mandarin audio and reader-controlled aftermath. Full staged opposing routes also passed for each episode."
+  }
+}
