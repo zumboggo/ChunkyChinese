@@ -624,8 +624,8 @@
     "category": "jedi",
     "episode": 9,
     "intro": {
-      "src": "stories/animated/jedi/jedi-08-intro.mp4",
-      "poster": "stories/animated/jedi/jedi-08-intro.poster.jpg",
+      "src": "stories/animated/jedi/jedi-09-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-09-intro.poster.jpg",
       "title": "What Remains",
       "durationSeconds": 9,
       "context": {
@@ -640,6 +640,52 @@
     "summary": {
       "title": "The Voices Beneath the Water · Episode 9: What Remains",
       "description": "Ren answers in person. The western water finally gives up its secret. Remember every loss and promise, then choose how to begin one shared future."
+    }
+  },
+  {
+    "id": "jedi-10-v1",
+    "category": "jedi",
+    "episode": 10,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-10-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-10-intro.poster.jpg",
+      "title": "The Strength to Stop",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode X · The Strength to Stop",
+        "paragraphs": [
+          "The voices have been explained and the failing western bypass is closed. Jonathan, An and Min promised to return together to repair the town’s supply. Earlier losses and promises remain part of the work.",
+          "At dawn, new maintenance parts await them. A supply ship is due that afternoon, and Min wants everything ready. But a stubborn connection will test more than Jonathan’s strength."
+        ]
+      }
+    },
+    "path": "jedi-10.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 10: The Strength to Stop",
+      "description": "Jonathan, An and Min begin the promised repair. A stubborn joint tests whether helping means using more strength—or listening sooner."
+    }
+  },
+  {
+    "id": "jedi-11-v1",
+    "category": "jedi",
+    "episode": 11,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-11-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-11-intro.poster.jpg",
+      "title": "Before We Trust",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode XI · Before We Trust",
+        "paragraphs": [
+          "The new connection is fitted, but the water valves remain closed. A repair that looks complete has not yet earned anyone’s trust. No drinking water has been used or created.",
+          "Jonathan, An and Min prepare an isolated test. The afternoon supply ship is approaching. They must learn what the evidence says before hope becomes another promise they cannot keep."
+        ]
+      }
+    },
+    "path": "jedi-11.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 11: Before We Trust",
+      "description": "The repaired line faces its first test. A disappointing result becomes useful evidence, and a small new delivery brings measurable hope."
     }
   }
 ]

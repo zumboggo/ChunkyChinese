@@ -1,0 +1,507 @@
+{
+  "episode": "jedi-10-v1",
+  "title": "The Voices Beneath the Water · Episode 10: The Strength to Stop",
+  "planning": {
+    "storytellingVoice": "Immediate drama: a repair deadline makes restraint difficult.",
+    "sourceBoundary": "Episode 10: the same shared morning repair of the town water supply on every route. Past losses, key choices and promises remain remembered context. Start with people arriving for work and a concrete repair task, not another hidden controller or repeated-voice mystery.",
+    "dramaticChange": "Jonathan trusts An’s stop signal even while he wants to prove useful. Min stops treating haste as proof of care.",
+    "earlyCare": "Min has brought new maintenance parts and made a safe place for An to inspect without lifting.",
+    "desire": "Complete the shared repair before the scheduled afternoon supply ship.",
+    "obstacle": "A misaligned connection resists force. The deadline tempts Jon and Min to push harder.",
+    "essentialNewWords": [
+      "接口",
+      "支架"
+    ],
+    "englishNarrationPurpose": "Optional help only; narrative and choices stay Mandarin.",
+    "choicesAndCallbacks": [
+      "Ask An to lead or admit uncertainty: different replies, same safety briefing.",
+      "Challenge Min’s haste or name his worry: different accountability exchange.",
+      "Inspect the gap or ask how it fits: both reveal wrong alignment.",
+      "Explain the stop or invite Min to pause: same safe reset and completed dry repair."
+    ],
+    "sceneActivities": [
+      "Jonathan crouches to inspect; finite reach and recoil indicate attempted alignment, then hands relax at the stop. An stays on level ground and never lifts. Tool support and fittings are narrated."
+    ],
+    "actingSignature": {
+      "Jonathan": "Plain practical questions; open hand at a boundary, quiet attention afterward.",
+      "An": "Specific limits and short questions; supported seated rest while reviewing, no assumed healing.",
+      "Min": "Urgent explanations soften into admitting uncertainty; rests attentive when corrected.",
+      "Mother": "Concrete requests and accurate accounting; no presumed forgiveness or renewed station shift."
+    },
+    "listenerTurn": "Two-shot → An says being asked to stop is not rejection → listener Jonathan holds response → shared action.",
+    "payoff": "Misaligned new joint is seated correctly with supports, dry repair completed; valves remain closed and no water is added or used.",
+    "freshQuestion": "Can the repaired line pass a proper test?",
+    "teaser": {
+      "dialogue": "Strength means knowing when to stop.",
+      "moment": "Jon stops the forced fit before the joint is damaged."
+    },
+    "convergence": "Every local choice rejoins. No extra historical fields, deaths or restored losses. Episode 11 adds exactly two delivered buckets on every route."
+  },
+  "video": {
+    "src": "stories/animated/jedi/jedi-10-intro.mp4",
+    "poster": "stories/animated/jedi/jedi-10-intro.poster.jpg",
+    "dialogue": "Strength means knowing when to stop.",
+    "totalSeconds": 9,
+    "stillSeconds": 3,
+    "motionSeconds": 6,
+    "model": "prunaai/p-video-2-pro",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off"
+    },
+    "verifiedUSDPerSecond": 0.01,
+    "maximumCostUSD": 0.06,
+    "paidRequests": 1,
+    "predictionId": "awbva14nqsrmr0d1fzr82vfseg",
+    "prompt": "Animate this exact reference for six seconds. Jonathan alone says exactly once in clear English: \"Strength means knowing when to stop.\" Begin at second 0.5, finish by second 4.5, then close his mouth. No other words, repetitions, paraphrases, fillers, humming, narration, singing or other voices. Quiet wind and mechanical ambience beneath clearly audible dialogue. Keep his palm raised in a calm stop signal. The supported pipe coupling remains stationary. No new objects appear. Subtle breath and slow camera push. Preserve adult face, beard, costume and anatomy. No other characters or text.",
+    "reference": "stories/authoring/jedi/art/episode-10-reference.png",
+    "nativeSpeech": false,
+    "audioNote": "Replaced unwanted native speech offline with free macOS Daniel voice, 165 words/minute. Approximate mouth synchronization. No paid retry.",
+    "checks": {
+      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-10/dubbed-clear.mp4",
+      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-10/intro-clear.mp4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "fps": 24,
+      "hold_seconds": 3.0,
+      "motion_seconds": 5.958333333333333,
+      "reaction_hold_seconds": 0.0,
+      "total_seconds": 8.958333333333334,
+      "decoded_audio_seconds": 8.96,
+      "audio_non_silent": true,
+      "audio_starts_after_hold": true,
+      "hold_mean_pixel_difference": 0.005052205308352849,
+      "sha256": "1807270cf1df9d8a06688fa8394cca65c756cf8f7c912f9e93851c1d8e74302e",
+      "expected_dialogue": "Strength means knowing when to stop.",
+      "speech_check": "pass",
+      "review": "One visual/listening review remains; automated checks do not prove natural acting or lip sync.",
+      "transcription": "Strength means knowing when to stop."
+    }
+  },
+  "continuation": {
+    "end": "Misaligned new joint is seated correctly with supports, dry repair completed; valves remain closed and no water is added or used.",
+    "nextStart": "Episode 11: test the isolated repaired line, preserve the closed drinking-water valves until cleaning and clearance, and receive the scheduled ship delivery.",
+    "nextEndBefore": "Do not resurrect people or restore destroyed items. No reopened voice or hidden-reserve mystery. Keep local choices within one common storyline; preserve actual water totals and earlier agreements.",
+    "note": "One common plot, with remembered choices. Misaligned new joint is seated correctly with supports, dry repair completed; valves remain closed and no water is added or used."
+  },
+  "englishAudio": [
+    {
+      "sha256": "73bfeab16ab6052743e059c251b90787655a65125134e33f4aa383dc61a0cace",
+      "text": "Min arrives early today, bringing new parts and setting them on the support.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c083ccfcadbbaf7d30fe150d6f2d7868ba732fca55a58536f25dd5b8d8236886",
+      "text": "An, you can inspect from here. I will carry the heavy things.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "42bc0e78fb8238cce0f852e8cd6336d0439fee794a3f2087d1698fcefc8c55be",
+      "text": "All right. But if anyone says stop, we all stop.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3c6860dfc5638a72cbd4a5ad43b13adcc6d51f566929458f794a04960ece08ad",
+      "text": "You lead the inspection. I will follow your advice.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "db51a699e3421dfdab03fb7fceddda275347b0daae78bdad5244f56ab22fe060",
+      "text": "I have the Force. But I do not really know how to repair this.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1afeed7074c23026287152d2c9a742eff616313846e643e7b0d452703902f8a2",
+      "text": "Then watch first. We must be patient, not careless.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e04769775137f38023ddb52342d8abdf89ac2579a4ce1a2b90d32dd08169e3ff",
+      "text": "You can learn. The real danger is not understanding and being afraid to say so.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0237666868f99a0cc4a242c55a3ec90ef9e7d81660bca4309fb7ae977e292f91",
+      "text": "What should we inspect first?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "6bf3cf0e1a3818902f1c73c5fc4465942f7d4e1267aedad55236128d6135f8bc",
+      "text": "The water is shut off and the power isolated. First, check whether the support is safe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e032fbd8d21ff15b86eef80d33540710542d005090e12523be89797594fb5829",
+      "text": "I inspect first. All the tools and parts Min brought are recorded.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "306a37c83ec5dc5712eb21e7e4a3bb5505bf7ab51657add222f5ee2e35e25495",
+      "text": "A ship is bringing clean water this afternoon. I want the repair finished before it arrives.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b788af26e9c22480ae12196fa3c2e0601e35dbf33b9fa6222d1403223c9b382d",
+      "text": "We cannot sacrifice safety to finish early.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1b72b0b5c95d81f8603c452af95f47fdd61a40a31d60355d81802d7d20f4b370",
+      "text": "Are you afraid they will be disappointed?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3e5976be5f0647ae6b08e13f251ce09aa19cdb7e9476d5d78bcbcd125e3877f7",
+      "text": "I know. But they are still waiting.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f198097296c5530b5f5c79b426c0047ca5579bb8b37b97cd0d2c2c2c22ff63f2",
+      "text": "They need water and safety. Being careless will not help them.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e9770b7eee542bd75b307b1efaaa4fee0d39497af4c8be5c66bef7efc5f70c4c",
+      "text": "I am afraid they remember me opening the water in secret and do not trust me to repair it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "77007412f5f1441be7f40a4dc54126dfded65780855416299acacc40b1f2305c",
+      "text": "Work honestly today. We cannot ask them to forget the past.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ad99d610f13b4df94a266a81b721ae2311f238989755aa404e99aae59dcd9331",
+      "text": "Min finishes checking. We move the part slowly, but the joint does not fit.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d9b16609cbe02d91556a5a48b7e88355b765506b19c001b3bd0b73de47041c6f",
+      "text": "I have the Force. I can help.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d7af9ac4db799ac9e92e388a8dfc671634be32c86e094fdb10c19ade5d960fbc",
+      "text": "Stop. This is not aligned correctly. More Force will damage the pipe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "71196dc5fa96a4c163cb1df69924a2ab5fa34f9494976a9bc92a1e7ddd2aa91f",
+      "text": "I stop. The support beneath the part protects us. Everyone is safe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "81bba5cea22eb9a99704536fbae5c09962edd0116602aaf69a815a7afcb0ce1b",
+      "text": "I want to help. Am I being careless too?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e7e60050decf4afe1dc3584d18f72d194c22d49bf7682661b7e8cb3e8e16b832",
+      "text": "Asking you to stop does not mean rejecting you. First, look.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c6b4eed01370fbfa0ec5d74de8906c02026a894512e911ff3e1257f2f363e3bb",
+      "text": "I do not answer. I stop and watch patiently.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "962444a33cbc8356f9ff8f6abdadefaaddd024165c79d8eb29573038e7d90c8d",
+      "text": "What is wrong here?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0428a4ad72846b0ae8e447279ea7366fb19c28c119108fcf8872353f91b70472",
+      "text": "Please explain what this part does.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4c051e888e2e428df08e6530568a660166f7c30724dc5f550caea39f2d29ed1f",
+      "text": "The two sides are not aligned. That is the problem, not a lack of Force.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "da26ea0469659575bb24e639dbe4f1a1aa4754a26acfd2ab6f689e4cd7e5445b",
+      "text": "It protects the pipes. If this is wrong, the pipes will be damaged.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "104577d440b3f17775a3d3c4541a0cef25a49454fb714ab9c3e9c35613f42967",
+      "text": "Strength means knowing when to stop.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "dfb4a88bb0c67c46b9096e5faf178ebf96e34f4cd8c0984067b40e7c49dc252d",
+      "text": "I was careless. Are you still willing to work with me?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "82265146210b46ea02ab7057c32ac0ac3364449ed945f58fb68a522d50eb46e1",
+      "text": "Yes. But we check first, then repair.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0992b65433757757df483bfe699dc49846ea312823714a85f41391f7680ca16c",
+      "text": "Breathe first. Then we can try together.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "38f56cd81ea40f4222dd3f60692e3ec2b86f420ac51ad3a7fbac61b3f557daf1",
+      "text": "All right. Watch here while I move it slowly. If anything is wrong, we stop.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "782752e997be8f097cca190fe4f850f824a43de582dd12cf7736b55df90add29",
+      "text": "All right. I will be patient. You can speak freely.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "714bd550b15c692b7210e36319b77ee0941b4dcc0e3903fc5822494b9d78fef3",
+      "text": "We move the support first, then try again. An watches us.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8012d340096728ff68e871ec09d048533db12076d94bc89cbcc21f3647c219a6",
+      "text": "How about now?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a75c858e6c9137f5b02987e568725ce98c15bb23dd393e170ef1196806de079a",
+      "text": "That is right. Stop while I inspect it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "5591ff0e0b33cf4c1737bac1a45604aa688e14de6e37c3acc84d3be77abfc583",
+      "text": "An inspects carefully without carrying anything. When she nods, we secure the joint.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "35987d7e00c673b7400ac7ae28b7e9a5ce51f0e279ebeb06ca8534309c931a5a",
+      "text": "It is repaired. I relied on the Force, but it turns out I still had a lesson to learn.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "316a6c58402db72da3977e8e6b1ef81558780bf21dbd3c8f83f5c530d44ea5b2",
+      "text": "You still have the Force. Now you have patience too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d687eee625f0b0d25f193867b89d0e740d020ebfc199eb0114a4edadfe7420ca",
+      "text": "Can we turn on the water now?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "37a2ce22c9a3e86da922821c91b711a61149014a4f39e72c277b339e53902629",
+      "text": "Not yet. Looking repaired does not mean it passes. First, we must test it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0b87a3db07c9776c0d6015bca97e43705ab162fa74f86e8c29967b8f12061400",
+      "text": "We finish the record. The old pipe remains shut, and our drinking water has not increased.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "882454fc191c3df344f68428170ec0fb05783ec0658a28051375d348514598fb",
+      "text": "When the ship arrives, I will answer honestly. We still need to test it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3c3536bbff70e2292618898c2645ca288a50d1e7c74552f38fe7d74fe05773ab",
+      "text": "No one demands that we turn on the water. Together, we prepare for the test.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    }
+  ],
+  "verification": {
+    "reportStatus": "passed",
+    "packageBytes": 1437139,
+    "phases": [
+      {
+        "name": "vocabulary",
+        "seconds": 0.038038208999999996,
+        "status": "passed"
+      },
+      {
+        "name": "routes, source assertions and resume",
+        "seconds": 0.172628125,
+        "status": "passed"
+      },
+      {
+        "name": "annotations",
+        "seconds": 0.003934082999999987,
+        "status": "passed"
+      },
+      {
+        "name": "audio",
+        "seconds": 22.251796,
+        "status": "passed"
+      },
+      {
+        "name": "English pocket audio",
+        "seconds": 0.1102165840000016,
+        "status": "passed"
+      },
+      {
+        "name": "package and ZIP",
+        "seconds": 0.07943108299999949,
+        "status": "passed"
+      },
+      {
+        "name": "phone and desktop",
+        "seconds": 36.297629291999996,
+        "status": "passed"
+      },
+      {
+        "name": "stage new release",
+        "seconds": 0.014655666999999085,
+        "status": "passed"
+      }
+    ],
+    "familiarity": {
+      "min": 86.26943005181347,
+      "max": 88.14432989690722
+    },
+    "pinyin": "Human-reviewed whole lines and chunks; names and polyphones corrected.",
+    "teaser": "Exact speech, 3-second first-frame hold, 6-second motion verified. Motion/end frames inspected.",
+    "continuity": "All 54,432 valid histories carry unchanged. All 16 Episode 10 routes and all 160 water-bound Episode 11 routes pass ending and replay checks.",
+    "releaseBrowser": "22 phone/desktop checks passed: new teasers 9–11, reduced-motion/unavailable media, prior memories and resumed listener/aftermath. Final Episode 11 camera correction additionally rechecked on both viewports."
+  }
+}

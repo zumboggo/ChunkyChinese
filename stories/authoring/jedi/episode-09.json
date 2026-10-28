@@ -64,13 +64,49 @@
     "limits": "Finite surface tank and dry local underground cistern resolve this arc; no claim that all groundwater on the planet is absent. Old key control and potential replay risk remain remembered consequences, not another mystery."
   },
   "video": {
-    "reusedFrom": "jedi-08-v1",
-    "src": "stories/animated/jedi/jedi-08-intro.mp4",
-    "dialogue": "Then answer with your own voice.",
+    "src": "stories/animated/jedi/jedi-09-intro.mp4",
+    "poster": "stories/animated/jedi/jedi-09-intro.poster.jpg",
+    "dialogue": "We remember what our choices cost.",
     "totalSeconds": 9,
-    "newPaidRequests": 0,
-    "costUSD": 0,
-    "reason": "Approved callback to the promise fulfilled in the opening. Built-in ImageGen rejected the new image at output moderation; no workaround or paid video retry."
+    "stillSeconds": 3,
+    "motionSeconds": 6,
+    "model": "prunaai/p-video-2-pro",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off"
+    },
+    "verifiedUSDPerSecond": 0.01,
+    "maximumCostUSD": 0.06,
+    "paidRequests": 1,
+    "predictionId": "33d0fvyjg5rmr0d1fzqrfsm54c",
+    "prompt": "Animate this exact reference for six seconds. Jonathan alone says exactly once in clear English: \"We remember what our choices cost.\" Begin at second 0.5, finish by second 4.5, then close his mouth. No other words, repetitions, paraphrases, fillers, humming, narration, singing or other voices. Quiet wind and mechanical ambience beneath clearly audible dialogue. Keep his hands lowered out of frame. His expression is quietly resolute; no new objects or actions. Subtle breath and slow camera push. Preserve adult face, beard, costume and anatomy. No other characters or text.",
+    "reference": "stories/authoring/jedi/art/episode-09-reference.png",
+    "nativeSpeech": true,
+    "audioNote": "Native generated speech verified exact.",
+    "checks": {
+      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-09/native.mp4",
+      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-09/new-intro.mp4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "fps": 24,
+      "hold_seconds": 3.0,
+      "motion_seconds": 6.0,
+      "reaction_hold_seconds": 0.0,
+      "total_seconds": 9.0,
+      "decoded_audio_seconds": 9.00275,
+      "audio_non_silent": true,
+      "audio_starts_after_hold": true,
+      "hold_mean_pixel_difference": 0.005430327868852459,
+      "sha256": "59738405f72f7a6e3a472c73b4668d38e645923bdbf3dc27289447dbb27834c9",
+      "expected_dialogue": "We remember what our choices cost.",
+      "speech_check": "pass",
+      "review": "One visual/listening review remains; automated checks do not prove natural acting or lip sync.",
+      "transcription": "We remember what our choices cost."
+    }
   },
   "englishAudio": [
     {
@@ -693,5 +729,16 @@
       "Ren personally accounts to Mother without obtaining forgiveness. Eastern key ownership and old-playback state unchanged; take uses a doorstep message point, trust retains Ren’s control under public scrutiny, shared gains Mother’s explicit one-shift consent and trained oversight. Min admits the western bypass serves a separate external cooling pipes for the sick shelter. Finite surface cistern feeds it by gravity; local underground cistern empty, no secret drinkable reserve. All routes close the failing bypass, preserve losses and water totals, and commit to restoring the town supply together at dawn. One main storyline henceforth; choices remembered, not multiplying plot branches.",
       "David’s October 28 instruction: Episode 9 closes the old threads. From now on, retain memory of prior choices but use one main storyline. Local choices rejoin; do not multiply persistent branches."
     ]
-  }
+  },
+  "previousTeasers": [
+    {
+      "reusedFrom": "jedi-08-v1",
+      "src": "stories/animated/jedi/jedi-08-intro.mp4",
+      "dialogue": "Then answer with your own voice.",
+      "totalSeconds": 9,
+      "newPaidRequests": 0,
+      "costUSD": 0,
+      "reason": "Approved callback to the promise fulfilled in the opening. Built-in ImageGen rejected the new image at output moderation; no workaround or paid video retry."
+    }
+  ]
 }
