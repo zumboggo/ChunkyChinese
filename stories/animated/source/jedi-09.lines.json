@@ -1,0 +1,1586 @@
+{
+  "Ren在屋子外面等。妈妈答应了，他慢慢走来。": {
+    "pinyin": "Rén zài wū zi wài miàn děng 。 mā ma dā ying le ， tā màn màn zǒu lái 。",
+    "english": "Ren waits outside the house. When Mother agrees, he approaches slowly.",
+    "interlinear": [
+      {
+        "chinese": "Ren在屋子外面等。",
+        "gloss": "Ren waits outside the house",
+        "pinyin": "Rén zài wū zi wài miàn děng 。"
+      },
+      {
+        "chinese": "妈妈答应了，",
+        "gloss": "Mother agrees",
+        "pinyin": "mā ma dā ying le ，"
+      },
+      {
+        "chinese": "他慢慢走来。",
+        "gloss": "he slowly approaches",
+        "pinyin": "tā màn màn zǒu lái 。"
+      }
+    ]
+  },
+  "孩子在睡觉。请小声说。": {
+    "pinyin": "hái zi zài shuì jiào 。 qǐng xiǎo shēng shuō 。",
+    "english": "The child is asleep. Please speak quietly.",
+    "interlinear": [
+      {
+        "chinese": "孩子在睡觉。",
+        "gloss": "the child is sleeping",
+        "pinyin": "hái zi zài shuì jiào 。"
+      },
+      {
+        "chinese": "请小声说。",
+        "gloss": "please speak quietly",
+        "pinyin": "qǐng xiǎo shēng shuō 。"
+      }
+    ]
+  },
+  "Ren，亲自回答。不要替她说话。": {
+    "pinyin": "Rén ， qīn zì huí dá 。 bú yào tì tā shuō huà 。",
+    "english": "Ren, answer for yourself. Do not speak for her.",
+    "interlinear": [
+      {
+        "chinese": "Ren，",
+        "gloss": "Ren",
+        "pinyin": "Rén ，"
+      },
+      {
+        "chinese": "亲自回答。",
+        "gloss": "answer in person",
+        "pinyin": "qīn zì huí dá 。"
+      },
+      {
+        "chinese": "不要替她说话。",
+        "gloss": "do not speak for her",
+        "pinyin": "bú yào tì tā shuō huà 。"
+      }
+    ]
+  },
+  "你不愿意听的话，我们可以等。": {
+    "pinyin": "nǐ bú yuàn yì tīng de huà ， wǒ men kě yǐ děng 。",
+    "english": "If you do not want to hear this, we can wait.",
+    "interlinear": [
+      {
+        "chinese": "你不愿意听的话，",
+        "gloss": "if you do not want to listen",
+        "pinyin": "nǐ bú yuàn yì tīng de huà ，"
+      },
+      {
+        "chinese": "我们可以等。",
+        "gloss": "we can wait",
+        "pinyin": "wǒ men kě yǐ děng 。"
+      }
+    ]
+  },
+  "是我要求机器再说的。我想，人们会来帮忙。": {
+    "pinyin": "shì wǒ yāo qiú jī qì zài shuō de 。 wǒ xiǎng ， rén men huì lái bāng máng 。",
+    "english": "I asked the machine to repeat it. I thought people would come to help.",
+    "interlinear": [
+      {
+        "chinese": "是我要求机器再说的。",
+        "gloss": "I asked the machine to speak again",
+        "pinyin": "shì wǒ yāo qiú jī qì zài shuō de 。"
+      },
+      {
+        "chinese": "我想，",
+        "gloss": "I thought",
+        "pinyin": "wǒ xiǎng ，"
+      },
+      {
+        "chinese": "人们会来帮忙。",
+        "gloss": "people would come to help",
+        "pinyin": "rén men huì lái bāng máng 。"
+      }
+    ]
+  },
+  "我愿意听。不过，不要替我回答。": {
+    "pinyin": "wǒ yuàn yì tīng 。 bú guò ， bú yào tì wǒ huí dá 。",
+    "english": "I am willing to listen. But do not answer for me.",
+    "interlinear": [
+      {
+        "chinese": "我愿意听。",
+        "gloss": "I am willing to listen",
+        "pinyin": "wǒ yuàn yì tīng 。"
+      },
+      {
+        "chinese": "不过，",
+        "gloss": "but",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "不要替我回答。",
+        "gloss": "do not answer for me",
+        "pinyin": "bú yào tì wǒ huí dá 。"
+      }
+    ]
+  },
+  "是我要求机器再说的。你没有答应，我还叫它说。": {
+    "pinyin": "shì wǒ yāo qiú jī qì zài shuō de 。 nǐ méi yǒu dā ying ， wǒ hái jiào tā shuō 。",
+    "english": "I asked the machine to repeat it. You had not agreed, and I made it speak anyway.",
+    "interlinear": [
+      {
+        "chinese": "是我要求机器再说的。",
+        "gloss": "I asked the machine to repeat it",
+        "pinyin": "shì wǒ yāo qiú jī qì zài shuō de 。"
+      },
+      {
+        "chinese": "你没有答应，",
+        "gloss": "you had not agreed",
+        "pinyin": "nǐ méi yǒu dā ying ，"
+      },
+      {
+        "chinese": "我还叫它说。",
+        "gloss": "I still made it speak",
+        "pinyin": "wǒ hái jiào tā shuō 。"
+      }
+    ]
+  },
+  "我会诚实地记录这些事。你可以看，也可以不要。": {
+    "pinyin": "wǒ huì chéng shí de jì lù zhè xiē shì 。 nǐ kě yǐ kàn ， yě kě yǐ bú yào 。",
+    "english": "I will make an honest record. You may read it, or refuse it.",
+    "interlinear": [
+      {
+        "chinese": "我会诚实地记录这些事。",
+        "gloss": "I will record these things honestly",
+        "pinyin": "wǒ huì chéng shí de jì lù zhè xiē shì 。"
+      },
+      {
+        "chinese": "你可以看，",
+        "gloss": "you can read it",
+        "pinyin": "nǐ kě yǐ kàn ，"
+      },
+      {
+        "chinese": "也可以不要。",
+        "gloss": "or refuse it",
+        "pinyin": "yě kě yǐ bú yào 。"
+      }
+    ]
+  },
+  "我愿意听。不表示我原谅你了。": {
+    "pinyin": "wǒ yuàn yì tīng 。 bù biǎo shì wǒ yuán liàng nǐ le 。",
+    "english": "I am willing to listen. That does not mean I forgive you.",
+    "interlinear": [
+      {
+        "chinese": "我愿意听。",
+        "gloss": "I am willing to listen",
+        "pinyin": "wǒ yuàn yì tīng 。"
+      },
+      {
+        "chinese": "不表示",
+        "gloss": "that does not mean",
+        "pinyin": "bù biǎo shì"
+      },
+      {
+        "chinese": "我原谅你了。",
+        "gloss": "I have forgiven you",
+        "pinyin": "wǒ yuán liàng nǐ le 。"
+      }
+    ]
+  },
+  "我知道。": {
+    "pinyin": "wǒ zhī dào 。",
+    "english": "I know.",
+    "interlinear": [
+      {
+        "chinese": "我知道。",
+        "gloss": "I know",
+        "pinyin": "wǒ zhī dào 。"
+      }
+    ]
+  },
+  "他不再要求她回答。妈妈慢慢坐下来。": {
+    "pinyin": "tā bú zài yāo qiú tā huí dá 。 mā ma màn màn zuò xià lái 。",
+    "english": "He stops asking for an answer. Mother sits down slowly.",
+    "interlinear": [
+      {
+        "chinese": "他不再要求她回答。",
+        "gloss": "he stops asking her to answer",
+        "pinyin": "tā bú zài yāo qiú tā huí dá 。"
+      },
+      {
+        "chinese": "妈妈慢慢坐下来。",
+        "gloss": "Mother slowly sits down",
+        "pinyin": "mā ma màn màn zuò xià lái 。"
+      }
+    ]
+  },
+  "我们可以怎样帮忙？": {
+    "pinyin": "wǒ men kě yǐ zěn yàng bāng máng ？",
+    "english": "How can we help?",
+    "interlinear": [
+      {
+        "chinese": "我们可以",
+        "gloss": "how can we",
+        "pinyin": "wǒ men kě yǐ"
+      },
+      {
+        "chinese": "怎样帮忙？",
+        "gloss": "help",
+        "pinyin": "zěn yàng bāng máng ？"
+      }
+    ]
+  },
+  "谁可以替你回答？": {
+    "pinyin": "shuí kě yǐ tì nǐ huí dá ？",
+    "english": "Who may answer for you?",
+    "interlinear": [
+      {
+        "chinese": "谁可以",
+        "gloss": "who may",
+        "pinyin": "shuí kě yǐ"
+      },
+      {
+        "chinese": "替你回答？",
+        "gloss": "answer for you",
+        "pinyin": "tì nǐ huí dá ？"
+      }
+    ]
+  },
+  "先通知朋友。要帮忙的话，可以去哪里找你们？": {
+    "pinyin": "xiān tōng zhī péng you 。 yào bāng máng de huà ， kě yǐ qù nǎ lǐ zhǎo nǐ men ？",
+    "english": "Tell our friends first. If they need help, where can they find you?",
+    "interlinear": [
+      {
+        "chinese": "先通知朋友。",
+        "gloss": "tell our friends first",
+        "pinyin": "xiān tōng zhī péng you 。"
+      },
+      {
+        "chinese": "要帮忙的话，",
+        "gloss": "if they need help",
+        "pinyin": "yào bāng máng de huà ，"
+      },
+      {
+        "chinese": "可以去哪里找你们？",
+        "gloss": "where can they find you",
+        "pinyin": "kě yǐ qù nǎ lǐ zhǎo nǐ men ？"
+      }
+    ]
+  },
+  "不可以替我回答。要我的声音，就先和我沟通。": {
+    "pinyin": "bù kě yǐ tì wǒ huí dá 。 yào wǒ de shēng yīn ， jiù xiān hé wǒ gōu tōng 。",
+    "english": "No one may answer for me. If you want my voice, talk to me first.",
+    "interlinear": [
+      {
+        "chinese": "不可以替我回答。",
+        "gloss": "no one may answer for me",
+        "pinyin": "bù kě yǐ tì wǒ huí dá 。"
+      },
+      {
+        "chinese": "要我的声音，",
+        "gloss": "if you want my voice",
+        "pinyin": "yào wǒ de shēng yīn ，"
+      },
+      {
+        "chinese": "就先和我沟通。",
+        "gloss": "talk to me first",
+        "pinyin": "jiù xiān hé wǒ gōu tōng 。"
+      }
+    ]
+  },
+  "好。是你选择，不是我。": {
+    "pinyin": "hǎo 。 shì nǐ xuǎn zé ， bú shì wǒ 。",
+    "english": "All right. You choose, not me.",
+    "interlinear": [
+      {
+        "chinese": "好。",
+        "gloss": "all right",
+        "pinyin": "hǎo 。"
+      },
+      {
+        "chinese": "是你选择，",
+        "gloss": "you choose",
+        "pinyin": "shì nǐ xuǎn zé ，"
+      },
+      {
+        "chinese": "不是我。",
+        "gloss": "not me",
+        "pinyin": "bú shì wǒ 。"
+      }
+    ]
+  },
+  "我捎走了钥匙。机器接不到新的要求了。": {
+    "pinyin": "wǒ shāo zǒu le yào shi 。 jī qì jiē bú dào xīn de yāo qiú le 。",
+    "english": "I took the key away. The machine can no longer receive new requests.",
+    "interlinear": [
+      {
+        "chinese": "我捎走了钥匙。",
+        "gloss": "I took the key away",
+        "pinyin": "wǒ shāo zǒu le yào shi 。"
+      },
+      {
+        "chinese": "机器接不到新的要求了。",
+        "gloss": "the machine cannot receive new requests",
+        "pinyin": "jī qì jiē bú dào xīn de yāo qiú le 。"
+      }
+    ]
+  },
+  "今天，我在这里等。要帮忙的话，可以来找我。": {
+    "pinyin": "jīn tiān ， wǒ zài zhè lǐ děng 。 yào bāng máng de huà ， kě yǐ lái zhǎo wǒ 。",
+    "english": "I will wait here today. Anyone who needs help can come to me.",
+    "interlinear": [
+      {
+        "chinese": "今天，",
+        "gloss": "today",
+        "pinyin": "jīn tiān ，"
+      },
+      {
+        "chinese": "我在这里等。",
+        "gloss": "I will wait here",
+        "pinyin": "wǒ zài zhè lǐ děng 。"
+      },
+      {
+        "chinese": "要帮忙的话，",
+        "gloss": "if help is needed",
+        "pinyin": "yào bāng máng de huà ，"
+      },
+      {
+        "chinese": "可以来找我。",
+        "gloss": "people can come to me",
+        "pinyin": "kě yǐ lái zhǎo wǒ 。"
+      }
+    ]
+  },
+  "我们记录了这个消息。钥匙还在我这里。": {
+    "pinyin": "wǒ men jì lù le zhè ge xiāo xi 。 yào shi hái zài wǒ zhè lǐ 。",
+    "english": "We write down the notice. I still hold the key.",
+    "interlinear": [
+      {
+        "chinese": "我们记录了这个消息。",
+        "gloss": "we write down this notice",
+        "pinyin": "wǒ men jì lù le zhè ge xiāo xi 。"
+      },
+      {
+        "chinese": "钥匙还在我这里。",
+        "gloss": "I still have the key",
+        "pinyin": "yào shi hái zài wǒ zhè lǐ 。"
+      }
+    ]
+  },
+  "钥匙还在Ren那里。新的要求可以传来。": {
+    "pinyin": "yào shi hái zài Rén nà lǐ 。 xīn de yāo qiú kě yǐ chuán lái 。",
+    "english": "Ren still has the key. New requests can come through.",
+    "interlinear": [
+      {
+        "chinese": "钥匙还在Ren那里。",
+        "gloss": "Ren still has the key",
+        "pinyin": "yào shi hái zài Rén nà lǐ 。"
+      },
+      {
+        "chinese": "新的要求可以传来。",
+        "gloss": "new requests can come through",
+        "pinyin": "xīn de yāo qiú kě yǐ chuán lái 。"
+      }
+    ]
+  },
+  "我还可以开从前的声音。不过，我不会开。今天的要求，我都会记录。": {
+    "pinyin": "wǒ hái kě yǐ kāi cóng qián de shēng yīn 。 bú guò ， wǒ bú huì kāi 。 jīn tiān de yāo qiú ， wǒ dōu huì jì lù 。",
+    "english": "I can still turn on the old voices. But I will not. I will record every request today.",
+    "interlinear": [
+      {
+        "chinese": "我还可以开从前的声音。",
+        "gloss": "I can still turn on the old voices",
+        "pinyin": "wǒ hái kě yǐ kāi cóng qián de shēng yīn 。"
+      },
+      {
+        "chinese": "不过，",
+        "gloss": "but",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "我不会开。",
+        "gloss": "I will not",
+        "pinyin": "wǒ bú huì kāi 。"
+      },
+      {
+        "chinese": "今天的要求，",
+        "gloss": "today's requests",
+        "pinyin": "jīn tiān de yāo qiú ，"
+      },
+      {
+        "chinese": "我都会记录。",
+        "gloss": "I will record them all",
+        "pinyin": "wǒ dōu huì jì lù 。"
+      }
+    ]
+  },
+  "我会看记录。相信你，不表示不检查。": {
+    "pinyin": "wǒ huì kàn jì lù 。 xiāng xìn nǐ ， bù biǎo shì bù jiǎn chá 。",
+    "english": "I will read the records. Trusting you does not mean never checking.",
+    "interlinear": [
+      {
+        "chinese": "我会看记录。",
+        "gloss": "I will read the records",
+        "pinyin": "wǒ huì kàn jì lù 。"
+      },
+      {
+        "chinese": "相信你，",
+        "gloss": "trusting you",
+        "pinyin": "xiāng xìn nǐ ，"
+      },
+      {
+        "chinese": "不表示不检查。",
+        "gloss": "does not mean never checking",
+        "pinyin": "bù biǎo shì bù jiǎn chá 。"
+      }
+    ]
+  },
+  "从前声音的开关锁好了。钥匙在我这里。新的要求还开着。": {
+    "pinyin": "cóng qián shēng yīn de kāi guān suǒ hǎo le 。 yào shi zài wǒ zhè lǐ 。 xīn de yāo qiú hái kāi zhe 。",
+    "english": "The old-voice switch is locked, and I hold its key. New requests can still come through.",
+    "interlinear": [
+      {
+        "chinese": "从前声音的开关锁好了。",
+        "gloss": "the switch for the old voices is locked",
+        "pinyin": "cóng qián shēng yīn de kāi guān suǒ hǎo le 。"
+      },
+      {
+        "chinese": "钥匙在我这里。",
+        "gloss": "I have its key",
+        "pinyin": "yào shi zài wǒ zhè lǐ 。"
+      },
+      {
+        "chinese": "新的要求还开着。",
+        "gloss": "new requests remain enabled",
+        "pinyin": "xīn de yāo qiú hái kāi zhe 。"
+      }
+    ]
+  },
+  "今天，我愿意帮忙看着。只帮今天。孩子和我一起去安全的屋子。": {
+    "pinyin": "jīn tiān ， wǒ yuàn yì bāng máng kàn zhe 。 zhǐ bāng jīn tiān 。 hái zi hé wǒ yì qǐ qù ān quán de wū zi 。",
+    "english": "I will help keep watch today. Only today. The child will come with me to the safe house.",
+    "interlinear": [
+      {
+        "chinese": "今天，",
+        "gloss": "today",
+        "pinyin": "jīn tiān ，"
+      },
+      {
+        "chinese": "我愿意帮忙看着。",
+        "gloss": "I am willing to help keep watch",
+        "pinyin": "wǒ yuàn yì bāng máng kàn zhe 。"
+      },
+      {
+        "chinese": "只帮今天。",
+        "gloss": "only today",
+        "pinyin": "zhǐ bāng jīn tiān 。"
+      },
+      {
+        "chinese": "孩子和我",
+        "gloss": "the child and I",
+        "pinyin": "hái zi hé wǒ"
+      },
+      {
+        "chinese": "一起去安全的屋子。",
+        "gloss": "will go together to the safe house",
+        "pinyin": "yì qǐ qù ān quán de wū zi 。"
+      }
+    ]
+  },
+  "好。我教你接到要求以后，怎么回答。": {
+    "pinyin": "hǎo 。 wǒ jiāo nǐ jiē dào yāo qiú yǐ hòu ， zěn me huí dá 。",
+    "english": "All right. I will teach you how to answer a request when it comes in.",
+    "interlinear": [
+      {
+        "chinese": "好。",
+        "gloss": "all right",
+        "pinyin": "hǎo 。"
+      },
+      {
+        "chinese": "我教你",
+        "gloss": "I will teach you",
+        "pinyin": "wǒ jiāo nǐ"
+      },
+      {
+        "chinese": "接到要求以后，",
+        "gloss": "after receiving a request",
+        "pinyin": "jiē dào yāo qiú yǐ hòu ，"
+      },
+      {
+        "chinese": "怎么回答。",
+        "gloss": "how to answer",
+        "pinyin": "zěn me huí dá 。"
+      }
+    ]
+  },
+  "她试一试。Ren接到信息，回答了。从前的声音没有传来。": {
+    "pinyin": "tā shì yi shì 。 Rén jiē dào xìn xī ， huí dá le 。 cóng qián de shēng yīn méi yǒu chuán lái 。",
+    "english": "She tries it. Ren receives her message and answers. No old voices come through.",
+    "interlinear": [
+      {
+        "chinese": "她试一试。",
+        "gloss": "she tries it",
+        "pinyin": "tā shì yi shì 。"
+      },
+      {
+        "chinese": "Ren接到信息，",
+        "gloss": "Ren receives the message",
+        "pinyin": "Rén jiē dào xìn xī ，"
+      },
+      {
+        "chinese": "回答了。",
+        "gloss": "and answers",
+        "pinyin": "huí dá le 。"
+      },
+      {
+        "chinese": "从前的声音没有传来。",
+        "gloss": "the old voices do not come through",
+        "pinyin": "cóng qián de shēng yīn méi yǒu chuán lái 。"
+      }
+    ]
+  },
+  "Ren记录了从前的选择，向妈妈说明。妈妈没有表示原谅。": {
+    "pinyin": "Rén jì lù le cóng qián de xuǎn zé ， xiàng mā ma shuō míng 。 mā ma méi yǒu biǎo shì yuán liàng 。",
+    "english": "Ren records his past choices and explains them to Mother. She does not offer forgiveness.",
+    "interlinear": [
+      {
+        "chinese": "Ren记录了从前的选择，",
+        "gloss": "Ren records his earlier choices",
+        "pinyin": "Rén jì lù le cóng qián de xuǎn zé ，"
+      },
+      {
+        "chinese": "向妈妈说明。",
+        "gloss": "and explains them to Mother",
+        "pinyin": "xiàng mā ma shuō míng 。"
+      },
+      {
+        "chinese": "妈妈没有表示原谅。",
+        "gloss": "Mother does not say she forgives him",
+        "pinyin": "mā ma méi yǒu biǎo shì yuán liàng 。"
+      }
+    ]
+  },
+  "这里，我负责。明天要朋友帮忙，我会先和他们沟通，不替他们答应。": {
+    "pinyin": "zhè lǐ ， wǒ fù zé 。 míng tiān yào péng you bāng máng ， wǒ huì xiān hé tā men gōu tōng ， bú tì tā men dā ying 。",
+    "english": "I am responsible here. If I need help tomorrow, I will ask my friends first, not agree for them.",
+    "interlinear": [
+      {
+        "chinese": "这里，",
+        "gloss": "here",
+        "pinyin": "zhè lǐ ，"
+      },
+      {
+        "chinese": "我负责。",
+        "gloss": "I am responsible",
+        "pinyin": "wǒ fù zé 。"
+      },
+      {
+        "chinese": "明天要朋友帮忙，",
+        "gloss": "if I need friends to help tomorrow",
+        "pinyin": "míng tiān yào péng you bāng máng ，"
+      },
+      {
+        "chinese": "我会先和他们沟通，",
+        "gloss": "I will speak with them first",
+        "pinyin": "wǒ huì xiān hé tā men gōu tōng ，"
+      },
+      {
+        "chinese": "不替他们答应。",
+        "gloss": "not agree on their behalf",
+        "pinyin": "bú tì tā men dā ying 。"
+      }
+    ]
+  },
+  "我们慢慢去西边。An走平路，不爬，也不搬东西。": {
+    "pinyin": "wǒ men màn màn qù xī biān 。 Ān zǒu píng lù ， bù pá ， yě bù bān dōng xi 。",
+    "english": "We head west slowly. An takes the level path, without climbing or carrying anything.",
+    "interlinear": [
+      {
+        "chinese": "我们慢慢去西边。",
+        "gloss": "we head west slowly",
+        "pinyin": "wǒ men màn màn qù xī biān 。"
+      },
+      {
+        "chinese": "An走平路，",
+        "gloss": "An takes the level path",
+        "pinyin": "Ān zǒu píng lù ，"
+      },
+      {
+        "chinese": "不爬，",
+        "gloss": "without climbing",
+        "pinyin": "bù pá ，"
+      },
+      {
+        "chinese": "也不搬东西。",
+        "gloss": "or carrying things",
+        "pinyin": "yě bù bān dōng xi 。"
+      }
+    ]
+  },
+  "我们沟通好了。不过，从前牺牲的人和东西，没有回来。": {
+    "pinyin": "wǒ men gōu tōng hǎo le 。 bú guò ， cóng qián xī shēng de rén hé dōng xi ， méi yǒu huí lái 。",
+    "english": "We have talked things through. But the people and things we lost have not come back.",
+    "interlinear": [
+      {
+        "chinese": "我们沟通好了。",
+        "gloss": "we have talked things through",
+        "pinyin": "wǒ men gōu tōng hǎo le 。"
+      },
+      {
+        "chinese": "不过，",
+        "gloss": "but",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "从前牺牲的人和东西，",
+        "gloss": "the people and things we lost before",
+        "pinyin": "cóng qián xī shēng de rén hé dōng xi ，"
+      },
+      {
+        "chinese": "没有回来。",
+        "gloss": "have not come back",
+        "pinyin": "méi yǒu huí lái 。"
+      }
+    ]
+  },
+  "我记得。牺牲了什么，答应了什么，我们都要记得。": {
+    "pinyin": "wǒ jì de 。 xī shēng le shén me ， dā ying le shén me ， wǒ men dōu yào jì de 。",
+    "english": "I remember. We must remember what we lost and what we promised.",
+    "interlinear": [
+      {
+        "chinese": "我记得。",
+        "gloss": "I remember",
+        "pinyin": "wǒ jì de 。"
+      },
+      {
+        "chinese": "牺牲了什么，",
+        "gloss": "what was lost",
+        "pinyin": "xī shēng le shén me ，"
+      },
+      {
+        "chinese": "答应了什么，",
+        "gloss": "what was promised",
+        "pinyin": "dā ying le shén me ，"
+      },
+      {
+        "chinese": "我们都要记得。",
+        "gloss": "we must remember all of it",
+        "pinyin": "wǒ men dōu yào jì de 。"
+      }
+    ]
+  },
+  "门修好了。Min在门前看管子。管子里的水还在流。": {
+    "pinyin": "mén xiū hǎo le 。 Mín zài mén qián kàn guǎn zi 。 guǎn zi lǐ de shuǐ hái zài liú 。",
+    "english": "The door has been repaired. Min watches a pipe by the door. Water still flows inside it.",
+    "interlinear": [
+      {
+        "chinese": "门修好了。",
+        "gloss": "the door has been repaired",
+        "pinyin": "mén xiū hǎo le 。"
+      },
+      {
+        "chinese": "Min在门前看管子。",
+        "gloss": "Min watches a pipe by the door",
+        "pinyin": "Mín zài mén qián kàn guǎn zi 。"
+      },
+      {
+        "chinese": "管子里的水还在流。",
+        "gloss": "water is still flowing inside it",
+        "pinyin": "guǎn zi lǐ de shuǐ hái zài liú 。"
+      }
+    ]
+  },
+  "别喝。这里的水，不是给人喝的。": {
+    "pinyin": "bié hē 。 zhè lǐ de shuǐ ， bú shì gěi rén hē de 。",
+    "english": "Do not drink it. This water is not for drinking.",
+    "interlinear": [
+      {
+        "chinese": "别喝。",
+        "gloss": "do not drink it",
+        "pinyin": "bié hē 。"
+      },
+      {
+        "chinese": "这里的水，",
+        "gloss": "the water here",
+        "pinyin": "zhè lǐ de shuǐ ，"
+      },
+      {
+        "chinese": "不是给人喝的。",
+        "gloss": "is not for drinking",
+        "pinyin": "bú shì gěi rén hē de 。"
+      }
+    ]
+  },
+  "是你开了这里的水吗？": {
+    "pinyin": "shì nǐ kāi le zhè lǐ de shuǐ ma ？",
+    "english": "Did you turn on this water?",
+    "interlinear": [
+      {
+        "chinese": "是你",
+        "gloss": "was it you who",
+        "pinyin": "shì nǐ"
+      },
+      {
+        "chinese": "开了这里的水吗？",
+        "gloss": "turned on this water",
+        "pinyin": "kāi le zhè lǐ de shuǐ ma ？"
+      }
+    ]
+  },
+  "为什么从前没有告诉我们？": {
+    "pinyin": "wèi shén me cóng qián méi yǒu gào sù wǒ men ？",
+    "english": "Why did you not tell us before?",
+    "interlinear": [
+      {
+        "chinese": "为什么从前",
+        "gloss": "why did you not earlier",
+        "pinyin": "wèi shén me cóng qián"
+      },
+      {
+        "chinese": "没有告诉我们？",
+        "gloss": "tell us",
+        "pinyin": "méi yǒu gào sù wǒ men ？"
+      }
+    ]
+  },
+  "是我。这里的管子是我接的。水流过那边的屋子。": {
+    "pinyin": "shì wǒ 。 zhè lǐ de guǎn zi shì wǒ jiē de 。 shuǐ liú guò nà biān de wū zi 。",
+    "english": "I did. I connected this pipe. The water passes that house over there.",
+    "interlinear": [
+      {
+        "chinese": "是我。",
+        "gloss": "it was me",
+        "pinyin": "shì wǒ 。"
+      },
+      {
+        "chinese": "这里的管子",
+        "gloss": "the pipe here",
+        "pinyin": "zhè lǐ de guǎn zi"
+      },
+      {
+        "chinese": "是我接的。",
+        "gloss": "was connected by me",
+        "pinyin": "shì wǒ jiē de 。"
+      },
+      {
+        "chinese": "水流过那边的屋子。",
+        "gloss": "water passes that house",
+        "pinyin": "shuǐ liú guò nà biān de wū zi 。"
+      }
+    ]
+  },
+  "我害怕你们说我偷水，不听我为什么开它。": {
+    "pinyin": "wǒ hài pà nǐ men shuō wǒ tōu shuǐ ， bù tīng wǒ wèi shén me kāi tā 。",
+    "english": "I was afraid you would call it stealing without hearing why I turned it on.",
+    "interlinear": [
+      {
+        "chinese": "我害怕",
+        "gloss": "I was afraid",
+        "pinyin": "wǒ hài pà"
+      },
+      {
+        "chinese": "你们说我偷水，",
+        "gloss": "you would say I was stealing water",
+        "pinyin": "nǐ men shuō wǒ tōu shuǐ ，"
+      },
+      {
+        "chinese": "不听我为什么开它。",
+        "gloss": "without hearing why I turned it on",
+        "pinyin": "bù tīng wǒ wèi shén me kāi tā 。"
+      }
+    ]
+  },
+  "我会听。不过，所有的代价，你要说明。": {
+    "pinyin": "wǒ huì tīng 。 bú guò ， suǒ yǒu de dài jià ， nǐ yào shuō míng 。",
+    "english": "I will listen. But you must explain every cost.",
+    "interlinear": [
+      {
+        "chinese": "我会听。",
+        "gloss": "I will listen",
+        "pinyin": "wǒ huì tīng 。"
+      },
+      {
+        "chinese": "不过，",
+        "gloss": "but",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "所有的代价，",
+        "gloss": "every cost",
+        "pinyin": "suǒ yǒu de dài jià ，"
+      },
+      {
+        "chinese": "你要说明。",
+        "gloss": "you must explain",
+        "pinyin": "nǐ yào shuō míng 。"
+      }
+    ]
+  },
+  "Mei还活着。她和其他病人，都要凉快的屋子。": {
+    "pinyin": "Méi hái huó zhe 。 tā hé qí tā bìng rén ， dōu yào liáng kuai de wū zi 。",
+    "english": "Mei is still alive. She and the other patients need somewhere cool.",
+    "interlinear": [
+      {
+        "chinese": "Mei还活着。",
+        "gloss": "Mei is still alive",
+        "pinyin": "Méi hái huó zhe 。"
+      },
+      {
+        "chinese": "她和其他病人，",
+        "gloss": "she and the other patients",
+        "pinyin": "tā hé qí tā bìng rén ，"
+      },
+      {
+        "chinese": "都要凉快的屋子。",
+        "gloss": "all need a cool room",
+        "pinyin": "dōu yào liáng kuai de wū zi 。"
+      }
+    ]
+  },
+  "Mei去世了。我救不了她。不过，还有病人要帮忙。": {
+    "pinyin": "Méi qù shì le 。 wǒ jiù bù liǎo tā 。 bú guò ， hái yǒu bìng rén yào bāng máng 。",
+    "english": "Mei died. I could not save her. But other patients still need help.",
+    "interlinear": [
+      {
+        "chinese": "Mei去世了。",
+        "gloss": "Mei died",
+        "pinyin": "Méi qù shì le 。"
+      },
+      {
+        "chinese": "我救不了她。",
+        "gloss": "I could not save her",
+        "pinyin": "wǒ jiù bù liǎo tā 。"
+      },
+      {
+        "chinese": "不过，",
+        "gloss": "but",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "还有病人要帮忙。",
+        "gloss": "other patients still need help",
+        "pinyin": "hái yǒu bìng rén yào bāng máng 。"
+      }
+    ]
+  },
+  "我没有忘记她。": {
+    "pinyin": "wǒ méi yǒu wàng jì tā 。",
+    "english": "I have not forgotten her.",
+    "interlinear": [
+      {
+        "chinese": "我没有忘记她。",
+        "gloss": "I have not forgotten her",
+        "pinyin": "wǒ méi yǒu wàng jì tā 。"
+      }
+    ]
+  },
+  "Min慢慢呼吸。我耐心等他回答。": {
+    "pinyin": "Mín màn màn hū xī 。 wǒ nài xīn děng tā huí dá 。",
+    "english": "Min breathes slowly. I wait patiently for him to answer.",
+    "interlinear": [
+      {
+        "chinese": "Min慢慢呼吸。",
+        "gloss": "Min breathes slowly",
+        "pinyin": "Mín màn màn hū xī 。"
+      },
+      {
+        "chinese": "我耐心等他回答。",
+        "gloss": "I wait patiently for his answer",
+        "pinyin": "wǒ nài xīn děng tā huí dá 。"
+      }
+    ]
+  },
+  "水在屋子外面的管子里，保护屋子，不让它太热。病人不喝这些水。": {
+    "pinyin": "shuǐ zài wū zi wài miàn de guǎn zi lǐ ， bǎo hù wū zi ， bú ràng tā tài rè 。 bìng rén bù hē zhè xiē shuǐ 。",
+    "english": "Water runs through pipes outside the house, keeping it from getting too hot. The patients do not drink it.",
+    "interlinear": [
+      {
+        "chinese": "水在屋子外面的管子里，",
+        "gloss": "water runs through pipes outside the house",
+        "pinyin": "shuǐ zài wū zi wài miàn de guǎn zi lǐ ，"
+      },
+      {
+        "chinese": "保护屋子，",
+        "gloss": "protecting the house",
+        "pinyin": "bǎo hù wū zi ，"
+      },
+      {
+        "chinese": "不让它太热。",
+        "gloss": "from getting too hot",
+        "pinyin": "bú ràng tā tài rè 。"
+      },
+      {
+        "chinese": "病人不喝这些水。",
+        "gloss": "the patients do not drink this water",
+        "pinyin": "bìng rén bù hē zhè xiē shuǐ 。"
+      }
+    ]
+  },
+  "水从哪里来？地下还有水吗？": {
+    "pinyin": "shuǐ cóng nǎ lǐ lái ？ dì xià hái yǒu shuǐ ma ？",
+    "english": "Where does the water come from? Is there still water underground?",
+    "interlinear": [
+      {
+        "chinese": "水从哪里来？",
+        "gloss": "where does the water come from",
+        "pinyin": "shuǐ cóng nǎ lǐ lái ？"
+      },
+      {
+        "chinese": "地下还有水吗？",
+        "gloss": "is there still water below ground",
+        "pinyin": "dì xià hái yǒu shuǐ ma ？"
+      }
+    ]
+  },
+  "先找水从哪里来。": {
+    "pinyin": "xiān zhǎo shuǐ cóng nǎ lǐ lái 。",
+    "english": "First, find where the water comes from.",
+    "interlinear": [
+      {
+        "chinese": "先找",
+        "gloss": "first find",
+        "pinyin": "xiān zhǎo"
+      },
+      {
+        "chinese": "水从哪里来。",
+        "gloss": "where the water comes from",
+        "pinyin": "shuǐ cóng nǎ lǐ lái 。"
+      }
+    ]
+  },
+  "先检查水流到哪里。": {
+    "pinyin": "xiān jiǎn chá shuǐ liú dào nǎ lǐ 。",
+    "english": "First, check where the water goes.",
+    "interlinear": [
+      {
+        "chinese": "先检查",
+        "gloss": "first check",
+        "pinyin": "xiān jiǎn chá"
+      },
+      {
+        "chinese": "水流到哪里。",
+        "gloss": "where the water goes",
+        "pinyin": "shuǐ liú dào nǎ lǐ 。"
+      }
+    ]
+  },
+  "我检查管子。水是山上水箱里的，不是地下的。": {
+    "pinyin": "wǒ jiǎn chá guǎn zi 。 shuǐ shì shān shàng shuǐ xiāng lǐ de ， bú shì dì xià de 。",
+    "english": "I inspect the pipe. The water comes from the hilltop tank, not underground.",
+    "interlinear": [
+      {
+        "chinese": "我检查管子。",
+        "gloss": "I inspect the pipe",
+        "pinyin": "wǒ jiǎn chá guǎn zi 。"
+      },
+      {
+        "chinese": "水是山上水箱里的，",
+        "gloss": "the water is from the tank on the hill",
+        "pinyin": "shuǐ shì shān shàng shuǐ xiāng lǐ de ，"
+      },
+      {
+        "chinese": "不是地下的。",
+        "gloss": "not from below ground",
+        "pinyin": "bú shì dì xià de 。"
+      }
+    ]
+  },
+  "上面的水，可以流到下面。不需要开机器。": {
+    "pinyin": "shàng miàn de shuǐ ， kě yǐ liú dào xià miàn 。 bù xū yào kāi jī qì 。",
+    "english": "The water above can flow downward. The machine does not need to run.",
+    "interlinear": [
+      {
+        "chinese": "上面的水，",
+        "gloss": "the water above",
+        "pinyin": "shàng miàn de shuǐ ，"
+      },
+      {
+        "chinese": "可以流到下面。",
+        "gloss": "can flow downward",
+        "pinyin": "kě yǐ liú dào xià miàn 。"
+      },
+      {
+        "chinese": "不需要开机器。",
+        "gloss": "there is no need to start the machine",
+        "pinyin": "bù xū yào kāi jī qì 。"
+      }
+    ]
+  },
+  "我检查屋子外面的管子。下面有水箱，水都在这里。": {
+    "pinyin": "wǒ jiǎn chá wū zi wài miàn de guǎn zi 。 xià miàn yǒu shuǐ xiāng ， shuǐ dōu zài zhè lǐ 。",
+    "english": "I inspect the pipes outside the house. A tank below collects the water.",
+    "interlinear": [
+      {
+        "chinese": "我检查屋子外面的管子。",
+        "gloss": "I check the pipes outside the house",
+        "pinyin": "wǒ jiǎn chá wū zi wài miàn de guǎn zi 。"
+      },
+      {
+        "chinese": "下面有水箱，",
+        "gloss": "there is a tank below",
+        "pinyin": "xià miàn yǒu shuǐ xiāng ，"
+      },
+      {
+        "chinese": "水都在这里。",
+        "gloss": "the water collects here",
+        "pinyin": "shuǐ dōu zài zhè lǐ 。"
+      }
+    ]
+  },
+  "喝水的管子是分开的。我们还要检查上面。": {
+    "pinyin": "hē shuǐ de guǎn zi shì fēn kāi de 。 wǒ men hái yào jiǎn chá shàng miàn 。",
+    "english": "The drinking-water pipes are separate. We must check above as well.",
+    "interlinear": [
+      {
+        "chinese": "喝水的管子",
+        "gloss": "the drinking-water pipes",
+        "pinyin": "hē shuǐ de guǎn zi"
+      },
+      {
+        "chinese": "是分开的。",
+        "gloss": "are separate",
+        "pinyin": "shì fēn kāi de 。"
+      },
+      {
+        "chinese": "我们还要检查上面。",
+        "gloss": "we must check above as well",
+        "pinyin": "wǒ men hái yào jiǎn chá shàng miàn 。"
+      }
+    ]
+  },
+  "Min陪我们检查。山上有水箱，屋子外面有管子，下面还有水箱。管子连着它们。": {
+    "pinyin": "Mín péi wǒ men jiǎn chá 。 shān shàng yǒu shuǐ xiāng ， wū zi wài miàn yǒu guǎn zi ， xià miàn hái yǒu shuǐ xiāng 。 guǎn zi lián zhe tā men 。",
+    "english": "Min shows us the whole route: a tank on the hill, pipes outside the house, and another tank below. The pipes connect them.",
+    "interlinear": [
+      {
+        "chinese": "Min陪我们检查。",
+        "gloss": "Min accompanies our inspection",
+        "pinyin": "Mín péi wǒ men jiǎn chá 。"
+      },
+      {
+        "chinese": "山上有水箱，",
+        "gloss": "there is a tank on the hill",
+        "pinyin": "shān shàng yǒu shuǐ xiāng ，"
+      },
+      {
+        "chinese": "屋子外面有管子，",
+        "gloss": "pipes outside the house",
+        "pinyin": "wū zi wài miàn yǒu guǎn zi ，"
+      },
+      {
+        "chinese": "下面还有水箱。",
+        "gloss": "and another tank below",
+        "pinyin": "xià miàn hái yǒu shuǐ xiāng 。"
+      },
+      {
+        "chinese": "管子连着它们。",
+        "gloss": "the pipes connect them",
+        "pinyin": "guǎn zi lián zhe tā men 。"
+      }
+    ]
+  },
+  "上面的水越来越少。没有水补充。下面的水不干净，不能喝。": {
+    "pinyin": "shàng miàn de shuǐ yuè lái yuè shǎo 。 méi yǒu shuǐ bǔ chōng 。 xià miàn de shuǐ bù gān jìng ， bù néng hē 。",
+    "english": "The upper supply keeps shrinking, with no water to replenish it. The water below is dirty and cannot be drunk.",
+    "interlinear": [
+      {
+        "chinese": "上面的水越来越少。",
+        "gloss": "the upper water supply keeps shrinking",
+        "pinyin": "shàng miàn de shuǐ yuè lái yuè shǎo 。"
+      },
+      {
+        "chinese": "没有水补充。",
+        "gloss": "no water replenishes it",
+        "pinyin": "méi yǒu shuǐ bǔ chōng 。"
+      },
+      {
+        "chinese": "下面的水不干净，",
+        "gloss": "the water below is not clean",
+        "pinyin": "xià miàn de shuǐ bù gān jìng ，"
+      },
+      {
+        "chinese": "不能喝。",
+        "gloss": "it cannot be drunk",
+        "pinyin": "bù néng hē 。"
+      }
+    ]
+  },
+  "我们开小门，检查地下的水池。那里没有水，都是干石头。": {
+    "pinyin": "wǒ men kāi xiǎo mén ， jiǎn chá dì xià de shuǐ chí 。 nà lǐ méi yǒu shuǐ ， dōu shì gān shí tou 。",
+    "english": "We open the small door and inspect the underground cistern. There is no water, only dry stone.",
+    "interlinear": [
+      {
+        "chinese": "我们开小门，",
+        "gloss": "we open the small door",
+        "pinyin": "wǒ men kāi xiǎo mén ，"
+      },
+      {
+        "chinese": "检查地下的水池。",
+        "gloss": "and inspect the underground cistern",
+        "pinyin": "jiǎn chá dì xià de shuǐ chí 。"
+      },
+      {
+        "chinese": "那里没有水，",
+        "gloss": "there is no water there",
+        "pinyin": "nà lǐ méi yǒu shuǐ ，"
+      },
+      {
+        "chinese": "都是干石头。",
+        "gloss": "only dry stone",
+        "pinyin": "dōu shì gān shí tou 。"
+      }
+    ]
+  },
+  "从前的声音是录音。从前的水还在流，没有新的水。": {
+    "pinyin": "cóng qián de shēng yīn shì lù yīn 。 cóng qián de shuǐ hái zài liú ， méi yǒu xīn de shuǐ 。",
+    "english": "The old voices were recordings. The old water supply is still flowing. There is no new water.",
+    "interlinear": [
+      {
+        "chinese": "从前的声音是录音。",
+        "gloss": "the old voices were recordings",
+        "pinyin": "cóng qián de shēng yīn shì lù yīn 。"
+      },
+      {
+        "chinese": "从前的水还在流，",
+        "gloss": "the old water supply is still flowing",
+        "pinyin": "cóng qián de shuǐ hái zài liú ，"
+      },
+      {
+        "chinese": "没有新的水。",
+        "gloss": "there is no new water",
+        "pinyin": "méi yǒu xīn de shuǐ 。"
+      }
+    ]
+  },
+  "是我开了水。不过，我不是水的主人。": {
+    "pinyin": "shì wǒ kāi le shuǐ 。 bú guò ， wǒ bú shì shuǐ de zhǔ rén 。",
+    "english": "I turned on the water. But I do not own it.",
+    "interlinear": [
+      {
+        "chinese": "是我开了水。",
+        "gloss": "I turned on the water",
+        "pinyin": "shì wǒ kāi le shuǐ 。"
+      },
+      {
+        "chinese": "不过，",
+        "gloss": "but",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "我不是水的主人。",
+        "gloss": "I do not own it",
+        "pinyin": "wǒ bú shì shuǐ de zhǔ rén 。"
+      }
+    ]
+  },
+  "管子漏水了。Min叫我们去安全的地方。": {
+    "pinyin": "guǎn zi lòu shuǐ le 。 Mín jiào wǒ men qù ān quán de dì fang 。",
+    "english": "The pipe begins leaking. Min tells us to move somewhere safe.",
+    "interlinear": [
+      {
+        "chinese": "管子漏水了。",
+        "gloss": "the pipe begins leaking",
+        "pinyin": "guǎn zi lòu shuǐ le 。"
+      },
+      {
+        "chinese": "Min叫我们",
+        "gloss": "Min tells us",
+        "pinyin": "Mín jiào wǒ men"
+      },
+      {
+        "chinese": "去安全的地方。",
+        "gloss": "to move somewhere safe",
+        "pinyin": "qù ān quán de dì fang 。"
+      }
+    ]
+  },
+  "管子快坏了。我知道。不过，我不敢关。": {
+    "pinyin": "guǎn zi kuài huài le 。 wǒ zhī dào 。 bú guò ， wǒ bù gǎn guān 。",
+    "english": "The pipe is about to fail. I know. But I could not bring myself to shut it off.",
+    "interlinear": [
+      {
+        "chinese": "管子快坏了。",
+        "gloss": "the pipe is about to fail",
+        "pinyin": "guǎn zi kuài huài le 。"
+      },
+      {
+        "chinese": "我知道。",
+        "gloss": "I know",
+        "pinyin": "wǒ zhī dào 。"
+      },
+      {
+        "chinese": "不过，",
+        "gloss": "but",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "我不敢关。",
+        "gloss": "I could not bring myself to shut it off",
+        "pinyin": "wǒ bù gǎn guān 。"
+      }
+    ]
+  },
+  "不关，管子会破。病人可以先去凉快的山洞，朋友陪他们。": {
+    "pinyin": "bù guān ， guǎn zi huì pò 。 bìng rén kě yǐ xiān qù liáng kuai de shān dòng ， péng you péi tā men 。",
+    "english": "If we leave it running, the pipe will burst. The patients can move to the cool cave first, with friends to accompany them.",
+    "interlinear": [
+      {
+        "chinese": "不关，",
+        "gloss": "if we do not shut it off",
+        "pinyin": "bù guān ，"
+      },
+      {
+        "chinese": "管子会破。",
+        "gloss": "the pipe will burst",
+        "pinyin": "guǎn zi huì pò 。"
+      },
+      {
+        "chinese": "病人可以先去",
+        "gloss": "the patients can first go to",
+        "pinyin": "bìng rén kě yǐ xiān qù"
+      },
+      {
+        "chinese": "凉快的山洞，",
+        "gloss": "the cool cave",
+        "pinyin": "liáng kuai de shān dòng ，"
+      },
+      {
+        "chinese": "朋友陪他们。",
+        "gloss": "with friends accompanying them",
+        "pinyin": "péng you péi tā men 。"
+      }
+    ]
+  },
+  "好。先通知他们。大家安全了，就关水。": {
+    "pinyin": "hǎo 。 xiān tōng zhī tā men 。 dà jiā ān quán le ， jiù guān shuǐ 。",
+    "english": "All right. Tell them first. Once everyone is safe, we will shut off the water.",
+    "interlinear": [
+      {
+        "chinese": "好。",
+        "gloss": "all right",
+        "pinyin": "hǎo 。"
+      },
+      {
+        "chinese": "先通知他们。",
+        "gloss": "tell them first",
+        "pinyin": "xiān tōng zhī tā men 。"
+      },
+      {
+        "chinese": "大家安全了，",
+        "gloss": "once everyone is safe",
+        "pinyin": "dà jiā ān quán le ，"
+      },
+      {
+        "chinese": "就关水。",
+        "gloss": "we will shut off the water",
+        "pinyin": "jiù guān shuǐ 。"
+      }
+    ]
+  },
+  "Min回去说明。朋友答应帮忙。病人安全移动以后，他回来了。": {
+    "pinyin": "Mín huí qù shuō míng 。 péng you dā ying bāng máng 。 bìng rén ān quán yí dòng yǐ hòu ， tā huí lái le 。",
+    "english": "Min goes back to explain. Friends agree to help. He returns after the patients have moved safely.",
+    "interlinear": [
+      {
+        "chinese": "Min回去说明。",
+        "gloss": "Min returns to explain",
+        "pinyin": "Mín huí qù shuō míng 。"
+      },
+      {
+        "chinese": "朋友答应帮忙。",
+        "gloss": "friends agree to help",
+        "pinyin": "péng you dā ying bāng máng 。"
+      },
+      {
+        "chinese": "病人安全移动以后，",
+        "gloss": "after the patients have moved safely",
+        "pinyin": "bìng rén ān quán yí dòng yǐ hòu ，"
+      },
+      {
+        "chinese": "他回来了。",
+        "gloss": "he comes back",
+        "pinyin": "tā huí lái le 。"
+      }
+    ]
+  },
+  "我陪你。我们一起关。": {
+    "pinyin": "wǒ péi nǐ 。 wǒ men yì qǐ guān 。",
+    "english": "I will stay with you. We will shut it off together.",
+    "interlinear": [
+      {
+        "chinese": "我陪你。",
+        "gloss": "I will stay with you",
+        "pinyin": "wǒ péi nǐ 。"
+      },
+      {
+        "chinese": "我们一起关。",
+        "gloss": "we will shut it off together",
+        "pinyin": "wǒ men yì qǐ guān 。"
+      }
+    ]
+  },
+  "你亲自关。我在这里看着。": {
+    "pinyin": "nǐ qīn zì guān 。 wǒ zài zhè lǐ kàn zhe 。",
+    "english": "Shut it off yourself. I will watch from here.",
+    "interlinear": [
+      {
+        "chinese": "你亲自关。",
+        "gloss": "you shut it off yourself",
+        "pinyin": "nǐ qīn zì guān 。"
+      },
+      {
+        "chinese": "我在这里看着。",
+        "gloss": "I will watch from here",
+        "pinyin": "wǒ zài zhè lǐ kàn zhe 。"
+      }
+    ]
+  },
+  "好。你看着管子，我关水。": {
+    "pinyin": "hǎo 。 nǐ kàn zhe guǎn zi ， wǒ guān shuǐ 。",
+    "english": "All right. You watch the pipe, and I will shut off the water.",
+    "interlinear": [
+      {
+        "chinese": "好。",
+        "gloss": "all right",
+        "pinyin": "hǎo 。"
+      },
+      {
+        "chinese": "你看着管子，",
+        "gloss": "you watch the pipe",
+        "pinyin": "nǐ kàn zhe guǎn zi ，"
+      },
+      {
+        "chinese": "我关水。",
+        "gloss": "I will shut off the water",
+        "pinyin": "wǒ guān shuǐ 。"
+      }
+    ]
+  },
+  "我点头。Min慢慢关好开关，水停下来。": {
+    "pinyin": "wǒ diǎn tóu 。 Mín màn màn guān hǎo kāi guān ， shuǐ tíng xià lái 。",
+    "english": "I nod. Min slowly closes the control, and the water stops.",
+    "interlinear": [
+      {
+        "chinese": "我点头。",
+        "gloss": "I nod",
+        "pinyin": "wǒ diǎn tóu 。"
+      },
+      {
+        "chinese": "Min慢慢关好开关，",
+        "gloss": "Min slowly closes the control",
+        "pinyin": "Mín màn màn guān hǎo kāi guān ，"
+      },
+      {
+        "chinese": "水停下来。",
+        "gloss": "the water stops",
+        "pinyin": "shuǐ tíng xià lái 。"
+      }
+    ]
+  },
+  "我会负责。我来关。": {
+    "pinyin": "wǒ huì fù zé 。 wǒ lái guān 。",
+    "english": "I will take responsibility. I will shut it off.",
+    "interlinear": [
+      {
+        "chinese": "我会负责。",
+        "gloss": "I will take responsibility",
+        "pinyin": "wǒ huì fù zé 。"
+      },
+      {
+        "chinese": "我来关。",
+        "gloss": "I will shut it off",
+        "pinyin": "wǒ lái guān 。"
+      }
+    ]
+  },
+  "Min关好开关。我检查管子，水停了。": {
+    "pinyin": "Mín guān hǎo kāi guān 。 wǒ jiǎn chá guǎn zi ， shuǐ tíng le 。",
+    "english": "Min closes the control. I inspect the pipe. The water has stopped.",
+    "interlinear": [
+      {
+        "chinese": "Min关好开关。",
+        "gloss": "Min closes the control",
+        "pinyin": "Mín guān hǎo kāi guān 。"
+      },
+      {
+        "chinese": "我检查管子，",
+        "gloss": "I inspect the pipe",
+        "pinyin": "wǒ jiǎn chá guǎn zi ，"
+      },
+      {
+        "chinese": "水停了。",
+        "gloss": "the water has stopped",
+        "pinyin": "shuǐ tíng le 。"
+      }
+    ]
+  },
+  "我们记录了水箱和坏管子。能喝的水没有变多。": {
+    "pinyin": "wǒ men jì lù le shuǐ xiāng hé huài guǎn zi 。 néng hē de shuǐ méi yǒu biàn duō 。",
+    "english": "We record the tanks and the damaged pipe. Our drinking water has not increased.",
+    "interlinear": [
+      {
+        "chinese": "我们记录了水箱和坏管子。",
+        "gloss": "we record the tanks and the damaged pipe",
+        "pinyin": "wǒ men jì lù le shuǐ xiāng hé huài guǎn zi 。"
+      },
+      {
+        "chinese": "能喝的水没有变多。",
+        "gloss": "our drinking water has not increased",
+        "pinyin": "néng hē de shuǐ méi yǒu biàn duō 。"
+      }
+    ]
+  },
+  "从前答应的事，还要负责。修管子，不表示可以重新分水。": {
+    "pinyin": "cóng qián dā ying de shì ， hái yào fù zé 。 xiū guǎn zi ， bù biǎo shì kě yǐ chóng xīn fēn shuǐ 。",
+    "english": "We must still honor our earlier promises. Repairing the pipes does not let us redistribute the water.",
+    "interlinear": [
+      {
+        "chinese": "从前答应的事，",
+        "gloss": "what we promised before",
+        "pinyin": "cóng qián dā ying de shì ，"
+      },
+      {
+        "chinese": "还要负责。",
+        "gloss": "we must still honor",
+        "pinyin": "hái yào fù zé 。"
+      },
+      {
+        "chinese": "修管子，",
+        "gloss": "repairing the pipes",
+        "pinyin": "xiū guǎn zi ，"
+      },
+      {
+        "chinese": "不表示可以重新分水。",
+        "gloss": "does not mean we may redistribute the water",
+        "pinyin": "bù biǎo shì kě yǐ chóng xīn fēn shuǐ 。"
+      }
+    ]
+  },
+  "明天，我来修。不会偷偷开水了。": {
+    "pinyin": "míng tiān ， wǒ lái xiū 。 bú huì tōu tōu kāi shuǐ le 。",
+    "english": "I will come to repair it tomorrow. I will not turn on the water in secret.",
+    "interlinear": [
+      {
+        "chinese": "明天，",
+        "gloss": "tomorrow",
+        "pinyin": "míng tiān ，"
+      },
+      {
+        "chinese": "我来修。",
+        "gloss": "I will come to repair it",
+        "pinyin": "wǒ lái xiū 。"
+      },
+      {
+        "chinese": "不会偷偷开水了。",
+        "gloss": "I will not turn on the water in secret",
+        "pinyin": "bú huì tōu tōu kāi shuǐ le 。"
+      }
+    ]
+  },
+  "我们一起修。首先，管子要安全。然后，找能喝的水。": {
+    "pinyin": "wǒ men yì qǐ xiū 。 shǒu xiān ， guǎn zi yào ān quán 。 rán hòu ， zhǎo néng hē de shuǐ 。",
+    "english": "We will repair it together. First, make the pipes safe. Then find water we can drink.",
+    "interlinear": [
+      {
+        "chinese": "我们一起修。",
+        "gloss": "we will repair it together",
+        "pinyin": "wǒ men yì qǐ xiū 。"
+      },
+      {
+        "chinese": "首先，",
+        "gloss": "first",
+        "pinyin": "shǒu xiān ，"
+      },
+      {
+        "chinese": "管子要安全。",
+        "gloss": "the pipes must be safe",
+        "pinyin": "guǎn zi yào ān quán 。"
+      },
+      {
+        "chinese": "然后，",
+        "gloss": "then",
+        "pinyin": "rán hòu ，"
+      },
+      {
+        "chinese": "找能喝的水。",
+        "gloss": "find water we can drink",
+        "pinyin": "zhǎo néng hē de shuǐ 。"
+      }
+    ]
+  },
+  "不去找藏起来的人了？": {
+    "pinyin": "bú qù zhǎo cáng qǐ lái de rén le ？",
+    "english": "No more searching for someone hiding from us?",
+    "interlinear": [
+      {
+        "chinese": "不去找",
+        "gloss": "we are not going to look for",
+        "pinyin": "bú qù zhǎo"
+      },
+      {
+        "chinese": "藏起来的人了？",
+        "gloss": "someone hiding anymore",
+        "pinyin": "cáng qǐ lái de rén le ？"
+      }
+    ]
+  },
+  "不去了。人就在这里。我们知道要修什么了。": {
+    "pinyin": "bú qù le 。 rén jiù zài zhè lǐ 。 wǒ men zhī dào yào xiū shén me le 。",
+    "english": "No. The people are right here. We know what needs repairing now.",
+    "interlinear": [
+      {
+        "chinese": "不去了。",
+        "gloss": "no",
+        "pinyin": "bú qù le 。"
+      },
+      {
+        "chinese": "人就在这里。",
+        "gloss": "the people are right here",
+        "pinyin": "rén jiù zài zhè lǐ 。"
+      },
+      {
+        "chinese": "我们知道要修什么了。",
+        "gloss": "we know what needs repairing now",
+        "pinyin": "wǒ men zhī dào yào xiū shén me le 。"
+      }
+    ]
+  },
+  "我们记得从前的代价。明天，不管从前选择了什么，我们一起修。": {
+    "pinyin": "wǒ men jì de cóng qián de dài jià 。 míng tiān ， bù guǎn cóng qián xuǎn zé le shén me ， wǒ men yì qǐ xiū 。",
+    "english": "We remember what our choices cost. Whatever we chose before, tomorrow we will repair this together.",
+    "interlinear": [
+      {
+        "chinese": "我们记得从前的代价。",
+        "gloss": "we remember the costs of the past",
+        "pinyin": "wǒ men jì de cóng qián de dài jià 。"
+      },
+      {
+        "chinese": "明天，",
+        "gloss": "tomorrow",
+        "pinyin": "míng tiān ，"
+      },
+      {
+        "chinese": "不管从前选择了什么，",
+        "gloss": "whatever we chose before",
+        "pinyin": "bù guǎn cóng qián xuǎn zé le shén me ，"
+      },
+      {
+        "chinese": "我们一起修。",
+        "gloss": "we will repair it together",
+        "pinyin": "wǒ men yì qǐ xiū 。"
+      }
+    ]
+  },
+  "明天，我们一起回来修管子。": {
+    "pinyin": "míng tiān ， wǒ men yì qǐ huí lái xiū guǎn zi 。",
+    "english": "Tomorrow, we will return together to repair the pipes.",
+    "interlinear": [
+      {
+        "chinese": "明天，",
+        "gloss": "tomorrow",
+        "pinyin": "míng tiān ，"
+      },
+      {
+        "chinese": "我们一起回来",
+        "gloss": "we will return together",
+        "pinyin": "wǒ men yì qǐ huí lái"
+      },
+      {
+        "chinese": "修管子。",
+        "gloss": "to repair the pipes",
+        "pinyin": "xiū guǎn zi 。"
+      }
+    ]
+  }
+}

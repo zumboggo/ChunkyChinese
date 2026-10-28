@@ -1,0 +1,697 @@
+{
+  "episode": "jedi-09-v1",
+  "title": "The Voices Beneath the Water · Episode 9: What Remains",
+  "planning": {
+    "storytellingVoice": "Intimate character drama: accountability and grief turn into a shared practical commitment.",
+    "sourceBoundary": "Resolve Ren’s account and eastern watch, identify Min’s temporary western bypass, establish finite surface cistern and empty deep reserve, close unsafe bypass, converge on rebuilding the town supply.",
+    "dramaticChange": "Jonathan stops treating every problem as something he can decide for others; he asks people to own their actions and helps them undertake one common repair.",
+    "earlyCare": "Ren waits outside rather than intruding on the mother and child.",
+    "desire": "Finish the promises already made and learn where the unexplained water comes from.",
+    "obstacle": "Apology does not earn forgiveness; Min’s useful cooling water is not drinking water and the failing bypass cannot safely continue.",
+    "essentialNewWords": [
+      "水箱",
+      "水池",
+      "漏水"
+    ],
+    "englishNarrationPurpose": "Optional help and context only; narrative stays Mandarin.",
+    "choicesAndCallbacks": [
+      "Opening: speak plainly or give Mother room; different reply, same truthful account.",
+      "Mother: offer practical help or ask what she wants; no forced forgiveness.",
+      "Min: ask about water or his secrecy; distinct motive reply, same explanation.",
+      "Inspection: follow inlet or inspect outlet; different observation, both physically trace the same closed cooling circuit and finite tank.",
+      "Closure: turn control with Min or ask him to close it; same safe shutdown and shared morning repair, different accountability exchange."
+    ],
+    "sceneActivities": [
+      "Ren waits for permission; Mother sits during the reader-controlled aftermath using supported seated rest.",
+      "Jonathan and An approach by level path; An never climbs, lifts or operates a heavy control.",
+      "Jonathan crouches to inspect the pipe; Min guides inspection and operates the stop lever."
+    ],
+    "actingSignature": {
+      "Jonathan": "Plain questions become invitations to act together; stops and listens after Mother refuses easy closure.",
+      "Mother": "Specific boundaries and requests; guarded stillness softens toward work, never automatic forgiveness.",
+      "Ren": "Owns actions in short first-person statements; waits for permission and respects refusal.",
+      "An": "Precise practical limits, independent voice; stays on safe ground.",
+      "Min": "Protective, defensive explanations; names grief or worry without using it as an excuse."
+    },
+    "listenerTurn": "Jonathan/Ren pair → Mother says she can hear without forgiving → Ren listener shot and short answer → shared frame. Jonathan/Min pair → Mei alive/dead memory → Jonathan listener holds a reader-controlled response → shared inspection.",
+    "payoff": "Mother hears Ren; current eastern calls/watch arrangements explicitly settled without changing old key ownership. Min admits opening a temporary cooling bypass; flow comes from finite surface tank, not a secret deep reserve. Deep well gauge and inspection show empty. Everyone agrees to shut failing bypass and work on the town supply at dawn.",
+    "freshQuestion": "No unresolved mystery from this arc. Next episode begins the common practical work of rebuilding a safe supply; past choices remain memory and consequences, not separate plot trunks.",
+    "teaser": {
+      "dialogue": "Then answer with your own voice.",
+      "moment": "Approved Episode 8 callback: Ren’s promise becomes the opening confrontation with Mother.",
+      "reuse": "stories/animated/jedi/jedi-08-intro.mp4",
+      "reason": "New ImageGen attempt rejected at output moderation; reuse approved suitable clip without a paid retry."
+    },
+    "convergence": "One common ending and future objective on every path. No resurrection, restored equipment, restored recordings, invented water, forced forgiveness, or assumed volunteer consent."
+  },
+  "verification": {
+    "allBoundRoutes": 192,
+    "validInheritedMemories": 54432,
+    "continuityGraphNodes": 57,
+    "commonEnding": "Tomorrow, we will return together to repair the pipes.",
+    "packageBytes": 2142863,
+    "mandarinEntries": 74,
+    "englishEntries": 74,
+    "audioDecodeChecks": 148,
+    "phoneDesktopFullRoutes": 4,
+    "additionalBrowserChecks": "10 passed: new context and existing callback teaser, missing-media fallback, reduced motion, three inherited histories, listener aftermath, reload and common ending on phone and desktop.",
+    "coverage": {
+      "min": 84,
+      "max": 85.57844690966719
+    },
+    "pinyinReview": "Reviewed every sentence and chunk. Corrected only zhi3, teaching jiao1, pipe guan3 zi, looking at pipe kan4, Min/Mei, neutral dongxi, pengyou and xiaoxi. Vocabulary inventory unchanged.",
+    "visualReview": "Inspected phone opening wrapping and listener framing, and desktop aftermath and ending. Water-system objects and transfers are narrated; established cast/scenery reused.",
+    "limits": "Finite surface tank and dry local underground cistern resolve this arc; no claim that all groundwater on the planet is absent. Old key control and potential replay risk remain remembered consequences, not another mystery."
+  },
+  "video": {
+    "reusedFrom": "jedi-08-v1",
+    "src": "stories/animated/jedi/jedi-08-intro.mp4",
+    "dialogue": "Then answer with your own voice.",
+    "totalSeconds": 9,
+    "newPaidRequests": 0,
+    "costUSD": 0,
+    "reason": "Approved callback to the promise fulfilled in the opening. Built-in ImageGen rejected the new image at output moderation; no workaround or paid video retry."
+  },
+  "englishAudio": [
+    {
+      "sha256": "a323c187970fcbc777d9c280a335dcb2fc3bdf2799cae1bf42e57fbd68412938",
+      "text": "Ren waits outside the house. When Mother agrees, he approaches slowly.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "25dce53d92b7ded223d2e726e55e7363606afa7b8a4734227c0d2614a4e44fea",
+      "text": "The child is asleep. Please speak quietly.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "bfe95d0203f6a7748ea8816e170f053c4a9188dc035add0827a6d7a4628e57f6",
+      "text": "Ren, answer for yourself. Do not speak for her.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "68d0a96677087f4c6788a8f2b561c1d263b592afb88ccbda61161619a1fbe864",
+      "text": "If you do not want to hear this, we can wait.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "900b1af0c7cae5ab0981f9124f374d90e93d318f6d6e05c5503c9144a3a46af2",
+      "text": "I asked the machine to repeat it. I thought people would come to help.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "364a233f1b35dd894be75ccc69d96b6976fc35c4ce84beb4803fc3406cb9a21a",
+      "text": "I am willing to listen. But do not answer for me.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4ea3003161c6764d9c4b7b86d7a7b17f5bc3ee5691fdafae7abdbf0e52143e7f",
+      "text": "I asked the machine to repeat it. You had not agreed, and I made it speak anyway.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "799c646b5b600f7cbcbf3e5627e8fc45ac7beca4135b33447cbfc39114721d48",
+      "text": "I will make an honest record. You may read it, or refuse it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "992fa7f5161c341cca9bfd8c1c84526c855c52d9ea209f7bbcc695a6edd72e5f",
+      "text": "I am willing to listen. That does not mean I forgive you.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "45b3c6001b6b95569b2e2ca0584b2d5e169321859dc5f75c93acf53f1400cac1",
+      "text": "I know.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "373206dee4ef28a1d3587de4844d2bd19afbc31db87aa704d786b710d758e34b",
+      "text": "He stops asking for an answer. Mother sits down slowly.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7b56e0d0b308abe4d3df797881fcda8b3dbafc8273566fe9ca5bb3d3c0e74305",
+      "text": "How can we help?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "370428cd986e94eb70eb198b56c6373965f8e2df0df6081a10639a50b715a15e",
+      "text": "Who may answer for you?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3cab509028de2d1749816d80fa73ccfafe7c632f5f3530d2229313e01421a818",
+      "text": "Tell our friends first. If they need help, where can they find you?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f71999995d8ee26bd9e6cc3ca9d753db2a30f8df35aeaed19ae17f9371a6027f",
+      "text": "No one may answer for me. If you want my voice, talk to me first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ec8ea5e811bde4ece2769fdc2a6cef49368c1ffcdcd2e46c5e68a75ba9041384",
+      "text": "All right. You choose, not me.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "5903d2d417d16d941a20d11808f57f274cb1d06a0b94bd1dbea5f132b5353f1e",
+      "text": "I took the key away. The machine can no longer receive new requests.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a8886a5523ebc9c00a1a932dd77d73542fbf7584e494f76edbe4a667d58b91d0",
+      "text": "I will wait here today. Anyone who needs help can come to me.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "30790e4ceb47819a1771f186c043150cb497c5736ea9b2e12ea8559cf35f80c8",
+      "text": "We write down the notice. I still hold the key.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0f72a711f5c16ad0de3870b3c055f0ff05c29e3f8042c4cab117f82cbafd6fb4",
+      "text": "Ren still has the key. New requests can come through.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "674bf2fb751673774fb650a59668506f4d5dc3a5a0ca5225094c6935f43a046f",
+      "text": "I can still turn on the old voices. But I will not. I will record every request today.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "cffbdb39e11467d887fc24cff42592800267129bfbb85a3b1035aee21b3bf486",
+      "text": "I will read the records. Trusting you does not mean never checking.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8bfd1d5f894b33579ed769bd16178cbb9601b4e46d7f95be0da128dd33bc7908",
+      "text": "The old-voice switch is locked, and I hold its key. New requests can still come through.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "240c7f59e4807454f9ff383898417e1f1432ba153937d243fd2aa2567f365c46",
+      "text": "I will help keep watch today. Only today. The child will come with me to the safe house.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "82b9077da02cccd611ef67cf1225ba52ed598be0f8181f5157abb9ca9a6f92e4",
+      "text": "All right. I will teach you how to answer a request when it comes in.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "597cdcc06d037b28ef9777135a49caada8fa11f2aaf25a5bab15ee07e23ad137",
+      "text": "She tries it. Ren receives her message and answers. No old voices come through.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0543d7bca10a6279ba757b3f03deee3d83afa1e1165107b64a43c81b843fc66f",
+      "text": "Ren records his past choices and explains them to Mother. She does not offer forgiveness.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "291983a3ca9c14d2a9986df8fa16f7810d915d43c862bb306fee51cd23977147",
+      "text": "I am responsible here. If I need help tomorrow, I will ask my friends first, not agree for them.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "73325dab8b7e72a20abe0b54442ff8872e5dec1b09ab0421d794105b22beabf3",
+      "text": "We head west slowly. An takes the level path, without climbing or carrying anything.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0421d874cfd8a51e7e52cdd602e983c6ba263b7f462a298ace48513b7de861c0",
+      "text": "We have talked things through. But the people and things we lost have not come back.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "805fa230d970751864268ae26cbd0b5e9d50f8df457b74f1e224479b4ffb2cef",
+      "text": "I remember. We must remember what we lost and what we promised.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "654a263ada5b2cb41756e97121cf8d2e1e04d6fc6007c3b357a4abbfbc15a1be",
+      "text": "The door has been repaired. Min watches a pipe by the door. Water still flows inside it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "cb2617e3125b9e6845df24052b073cc93f2a29cf5fbe077ae3279266bbb5b0f8",
+      "text": "Do not drink it. This water is not for drinking.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "33eadb4b67d785fd0bafd69a20e3261dd717ee4609ba623867aea2adaa28294c",
+      "text": "Did you turn on this water?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7cdd339542698af93db6b17d5ca39dde602ffdc4ae8ea9c05599e412d3fe2741",
+      "text": "Why did you not tell us before?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7c1461bcfe9a5d7108cdbe604ccde91c11f5bcedc3d3458f352d2d69aa2b905d",
+      "text": "I did. I connected this pipe. The water passes that house over there.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f795a0f960b4b6015382002387f0fdbf2d975160f00782db9127d4c948d1c86a",
+      "text": "I was afraid you would call it stealing without hearing why I turned it on.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b2f30748b4043f7421c85565cb406d722c4e97d8507d979479bffaaac97e2631",
+      "text": "I will listen. But you must explain every cost.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f0c3ba0d7f40ecf50a4fa927596b9f208793822e0b945da90816699abe5e80f2",
+      "text": "Mei is still alive. She and the other patients need somewhere cool.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a52683316c582faed10c90ca0e08a6508394d06ab60842669dc6ec1955386079",
+      "text": "Mei died. I could not save her. But other patients still need help.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b0680d884c682b869473d21efc1f29436eb2ba5c19475723610e2916c3bf8d7f",
+      "text": "I have not forgotten her.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0fc650a3d05d62dec4ee50709a5d4d3046ef3cfc2cd5725a506f45536a3feb07",
+      "text": "Min breathes slowly. I wait patiently for him to answer.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a0b1eb75d5aafceb60536aba26cddfb4b8b1f1ffaa3ea9ac1a79139fb9a8bb02",
+      "text": "Water runs through pipes outside the house, keeping it from getting too hot. The patients do not drink it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "32d017620750166b9c5d9d78fa8e0f6b2c3667ca643210ecce0b9996e69c9a1e",
+      "text": "Where does the water come from? Is there still water underground?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c2aa32d0809982a3b45de97be25364c1115f3f268d8190c3de691a3945ee50cc",
+      "text": "First, find where the water comes from.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e78d728d150eb0d54ad62db10ca05e8a22d7dc1973c41e890bc3abfb46088ba9",
+      "text": "First, check where the water goes.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e5f6985c918d29b95cd1310613965b6f3c64be2bb787531580b926bc747055c8",
+      "text": "I inspect the pipe. The water comes from the hilltop tank, not underground.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3144b1fbf1c6a10aeb30e3e4b527b76b6200785c27ff64df3225b1d909b11fdc",
+      "text": "The water above can flow downward. The machine does not need to run.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9657be6b6696783a3a43fba04252e621eb33096d85385615514dcfd4501e7273",
+      "text": "I inspect the pipes outside the house. A tank below collects the water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e760de41d34e5c0393c8d29ede1df8dfaaf29431bd8430a902ff665149ce8946",
+      "text": "The drinking-water pipes are separate. We must check above as well.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "96e4bedd610d9e4880a88c27756ab728fc9cfc833bc4d6935e70b74a88edea15",
+      "text": "Min shows us the whole route: a tank on the hill, pipes outside the house, and another tank below. The pipes connect them.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "278606c80be0f6d203771e1932290494f8acb449d890513ab498ace4058ed576",
+      "text": "The upper supply keeps shrinking, with no water to replenish it. The water below is dirty and cannot be drunk.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "5c567f72f5b2234f5d607518702259078f7d5f60ba9ceaca590d889e76ae4e4b",
+      "text": "We open the small door and inspect the underground cistern. There is no water, only dry stone.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1f67974090489d35370f8d7fb302a857f778a34dc3f593b9312e70dca4f599a2",
+      "text": "The old voices were recordings. The old water supply is still flowing. There is no new water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "568700980dd2b83b6b964c5f4366e6c14087e409de5b7bf5493cae95a150f22b",
+      "text": "I turned on the water. But I do not own it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "de6cbc24a36a264b05c8c220fbe42a164c54dee742d9c861bd4e66941ad62cbf",
+      "text": "The pipe begins leaking. Min tells us to move somewhere safe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "46346b3ee26faa32a23941a68ded56bb7cc42e60e5c333b877c4157e2a66be81",
+      "text": "The pipe is about to fail. I know. But I could not bring myself to shut it off.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e0d9763886f1f58231150d2043867a3b99035d3c90c02fba5090d29cdf234354",
+      "text": "If we leave it running, the pipe will burst. The patients can move to the cool cave first, with friends to accompany them.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c54e79586badbe6f16df9a0d0664293a1e855476ea2d7e00588002c611f0bc3e",
+      "text": "All right. Tell them first. Once everyone is safe, we will shut off the water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8a0a442a5663a166c24111da1cd8a2e0fd5784b527135fae2227f7582f632f4c",
+      "text": "Min goes back to explain. Friends agree to help. He returns after the patients have moved safely.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2e8aa851a9d062d377a133a511148a550a40e68cf94db14e475573f9b96d6f03",
+      "text": "I will stay with you. We will shut it off together.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e4f2a84d2c3d1225f528e13e76a6edc78455a6c539f7d5d5ae48a3de5874d812",
+      "text": "Shut it off yourself. I will watch from here.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0ea63ca471fdac42f0da7a62b758678be784d68c2aa950c7aa457cad3a8de111",
+      "text": "All right. You watch the pipe, and I will shut off the water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4ab1182dd99cfb3c0c963cbf7b1aa6dffba35b195a2be01bd4402eca76aadcf7",
+      "text": "I nod. Min slowly closes the control, and the water stops.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "6afa467f845ad6ebaa65d91db68985edc42718fa8d96d1d8af647466f6a1d501",
+      "text": "I will take responsibility. I will shut it off.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e33760e83f7e5fefa7db6b919ffc4911a2a6f88d4612b001a2b02655567c7e8f",
+      "text": "Min closes the control. I inspect the pipe. The water has stopped.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8fd3e127d3a6024976cc34aad6fd9cf3dd78f0bc4b70470152aa4a6de398d425",
+      "text": "We record the tanks and the damaged pipe. Our drinking water has not increased.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "5113e8186d79587768db8415ee6a03d50e1ab46d88f347d21f9a50c30ba72755",
+      "text": "We must still honor our earlier promises. Repairing the pipes does not let us redistribute the water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f3330fa345f4a121a1c4610c4117a4ca10af0f0cb0fa9fb8e6bfa16012aefd53",
+      "text": "I will come to repair it tomorrow. I will not turn on the water in secret.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "496b47f7a45ced752b76473356d004736b1a6858ed5f43214205b7a7f3b9f52e",
+      "text": "We will repair it together. First, make the pipes safe. Then find water we can drink.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "bfeda4d493d9cb443d16df121dc8cc6c94fdf587d5a8c0142d1f7491f34b681a",
+      "text": "No more searching for someone hiding from us?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8c6950957bdcf001f834f59ad62d9ff8131fbc1ee499922207d7d243c2bafad7",
+      "text": "No. The people are right here. We know what needs repairing now.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4d682be777f55d5651c7c0078eddb8bcecb2ba85630d61842d529cc3454ad111",
+      "text": "We remember what our choices cost. Whatever we chose before, tomorrow we will repair this together.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c5dfef2bff8264eeb85fea33657b751583884c722dcc3e4af53d1ee87f0f90c2",
+      "text": "Tomorrow, we will return together to repair the pipes.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    }
+  ],
+  "continuation": {
+    "end": "Ren personally accounts to Mother without obtaining forgiveness. Eastern key ownership and old-playback state unchanged; take uses a doorstep message point, trust retains Ren’s control under public scrutiny, shared gains Mother’s explicit one-shift consent and trained oversight. Min admits the western bypass serves a separate external cooling pipes for the sick shelter. Finite surface cistern feeds it by gravity; local underground cistern empty, no secret drinkable reserve. All routes close the failing bypass, preserve losses and water totals, and commit to restoring the town supply together at dawn. One main storyline henceforth; choices remembered, not multiplying plot branches.",
+    "nextStart": "Episode 10: the same shared morning repair of the town water supply on every route. Past losses, key choices and promises remain remembered context. Start with people arriving for work and a concrete repair task, not another hidden controller or repeated-voice mystery.",
+    "nextEndBefore": "Do not reopen the resolved voice/bypass/deep-reserve mystery, resurrect anyone, restore lost items or invent drinking water. Keep one main plot with local expressive choices; track physical resources honestly.",
+    "note": "Explicit user request: all threads converge now; memory of choices continues, one main storyline going forward.",
+    "continuity": [
+      "The child from episode 1 is safe with her mother.",
+      "Jonathan, An and Q travel to Neri for water; Min is an adult with an ill wife; Tao is the pump worker.",
+      "Episode 2 has four outcomes: Tao dead/all water/Q alive; everyone alive/half water; everyone alive/no water/Tao offers a lead; Tao alive/all water/Q destroyed and recording lost.",
+      "An agrees to answer publicly alongside Jonathan if he tells the truth; she refuses to support concealment and gives her own account.",
+      "The source of the repeated voice remains unexplained. Do not resurrect Tao or Q or restore the lost recording without an explicitly selected compatible route.",
+      "Episode 3: three preparations from pump inspection, both-community hearing, voluntary household reserve contribution and evacuation. Shared management requires inspection and hearing and costs four buckets.",
+      "Mei survives only if evacuated early or treated with four buckets; otherwise she dies. Do not resurrect her.",
+      "Hill control costs six buckets; emergency distribution breaks a prior promise if made; shared management renegotiates it by consent. Carry the actual agreement and remaining water forward.",
+      "Episode 4 confirms a valid Episode 3 continuity snapshot before play; it preserves exact drinking water, earlier deaths, agreement, promise and An’s previous testimony.",
+      "Jonathan and An return from the crack unharmed after isolating a damaged western pipe. Its sample is for testing, never drinking supply.",
+      "Episode 4 evidence: bottle = sample and rope retained, no route; diagram = remembered/copied route and rope retained, no sample; both = sample and route, anchored rope sacrificed. Only prior anchoring unlocks both.",
+      "Jonathan respects An’s stop signal and lets her make the first record. The closed western station still sends water; its cause, the earlier voice and deep reserve remain unexplained.",
+      "Episode 5 preserves all Episode 3/4 continuity. Retained sample tests unsafe; without sample water remains untested. Map gives safe approach; without map they follow the pipe to find a route.",
+      "Episode 5 outcomes: drain sacrifices station door and lower archive for part; leave preserves door/archive but no part; inspected brace uses retained rope or permanently destroys lightsaber if rope previously lost, takes part, saves archive, requires door repair before next storm. Both return safely; recovered part repairs pipe but valve stays closed and drinking water unchanged.",
+      "Northern tower red light is new lead. Voice, deep reserve and origin of closed-station flow remain unexplained.",
+      "Episode 6 repairs station door using new spare plate, keeps destroyed archive/equipment gone and home pipe unchanged. Both alive; lift: An uninjured, warning unsent, beacon intact; signal: warning sent, An arm injured and cannot climb/lift; relay after inspect: warning sent, An safe, beacon circuit permanently lost. Stored drinking water unchanged. Upper relay next.",
+      "Episode 7 separately discovers recorded water requests routed through dry pipes. Mother never consented to replay; child safe offstage. Destroy loses relay records; preserve leaves playback risk and recorded dissent; isolate requires consenting voice test AND retained station archive, stops playback and retains records. An injury persists; burned beacon prevents transmission. No water or past losses restored. Eastern manual request next; operator and deep reserve unknown.",
+      "Ren admits ordering recorded pleas to repeat because nobody answered. Episode 8: take removes eastern key, blocking old playback requests and new help calls; trust leaves key with Ren, old playback switched off but restart risk remains; shared requires inspection/test, locks old-request switch with Jonathan holding its key while new help calls remain live and Jonathan/An provide interim oversight pending a willing second operator. Ren commits to personal account; written statement optional, no assumed forgiveness. An injury/beacon and all earlier losses, water totals and records remain unchanged. Ren denies controlling western water flow; deep reserve unknown.",
+      "Ren personally accounts to Mother without obtaining forgiveness. Eastern key ownership and old-playback state unchanged; take uses a doorstep message point, trust retains Ren’s control under public scrutiny, shared gains Mother’s explicit one-shift consent and trained oversight. Min admits the western bypass serves a separate external cooling pipes for the sick shelter. Finite surface cistern feeds it by gravity; local underground cistern empty, no secret drinkable reserve. All routes close the failing bypass, preserve losses and water totals, and commit to restoring the town supply together at dawn. One main storyline henceforth; choices remembered, not multiplying plot branches.",
+      "David’s October 28 instruction: Episode 9 closes the old threads. From now on, retain memory of prior choices but use one main storyline. Local choices rejoin; do not multiply persistent branches."
+    ]
+  }
+}

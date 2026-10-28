@@ -15,3 +15,7 @@ When David requests “create an episode” (including a new episode in an exist
 # Efficient episode authoring
 
 Start episode work with `game:preflight` and the compact private brief in `.local/authoring/`; use verified paths and current runtime cue options. Audit a short opening before drafting the full episode. Never dump full packages, embedded media, or continuity tables into tool output. Follow `docs/episode-quickstart.md` for compact continuity, shared browser helpers, and incremental publishing. Preserve final route/audio/phone checks; let the publisher own the final build.
+
+# Jedi storyline convergence
+
+From Episode 9 onward, keep one main storyline. Close the earlier voice and western-water threads in Episode 9, while retaining memory of choices, deaths, injuries, equipment losses, water totals and promises. Later choices may change conversations and callbacks, but should rejoin the common plot rather than multiply persistent story branches. David explicitly requested this on October 28, 2026.

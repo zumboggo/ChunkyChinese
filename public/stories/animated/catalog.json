@@ -618,5 +618,28 @@
       "title": "The Voices Beneath the Water · Episode 8: Your Own Voice",
       "description": "Meet the operator behind the repeated voices. A confession, a control key, and three ways to answer for what happened."
     }
+  },
+  {
+    "id": "jedi-09-v1",
+    "category": "jedi",
+    "episode": 9,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-08-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-08-intro.poster.jpg",
+      "title": "What Remains",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode IX · What Remains",
+        "paragraphs": [
+          "Ren has admitted ordering the recorded pleas to repeat. Jonathan and An promised to bring his own account home and settle responsibility for the eastern station. Their earlier losses, injuries and decisions still matter.",
+          "One question remains: why does water still flow through the closed western station? Before another journey begins, the people who carry these choices must finish what they started—and decide how to work together."
+        ]
+      }
+    },
+    "path": "jedi-09.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 9: What Remains",
+      "description": "Ren answers in person. The western water finally gives up its secret. Remember every loss and promise, then choose how to begin one shared future."
+    }
   }
 ]
