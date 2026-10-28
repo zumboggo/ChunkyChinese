@@ -1,0 +1,23 @@
+[
+  {
+    "id": "Edda",
+    "name": "Edda",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "elder",
+      "hair": "bun",
+      "glasses": "none",
+      "outfit": "workshirt",
+      "face": "round",
+      "eyes": "gentle"
+    },
+    "palette": {
+      "skin": "#b77f5d",
+      "hair": "#b1a99b",
+      "shirt": "#65805b",
+      "trim": "#d9bf88"
+    },
+    "provenance": "Original new gardener for Jedi Episode 21; no prior character or real-person likeness."
+  }
+]

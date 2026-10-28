@@ -887,5 +887,51 @@
       "title": "The Voices Beneath the Water · Episode 19: Who Gets to Apply?",
       "description": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment."
     }
+  },
+  {
+    "id": "jedi-20-v1",
+    "category": "jedi",
+    "episode": 20,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-20-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-20-intro.poster.jpg",
+      "title": "A Fair Trial",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode 20 · A Fair Trial",
+        "paragraphs": [
+          "Applications have been accepted fairly. Ryn’s preliminary assessment is complete, but references and a formal interview still stand between the crew and paid repair work.",
+          "The learning centre remains closed. Min wants a fair decision and a quick reopening; looking important may be easier than making a responsible promise."
+        ]
+      }
+    },
+    "path": "jedi-20.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 20: A Fair Trial",
+      "description": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits."
+    }
+  },
+  {
+    "id": "jedi-21-v1",
+    "category": "jedi",
+    "episode": 21,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-21-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-21-intro.poster.jpg",
+      "title": "Leave Room for the Bees",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode 21 · Leave Room for the Bees",
+        "paragraphs": [
+          "A qualified repair crew has accepted clear paid terms. The damaged learning centre remains closed, while the teaching garden needs a safe route and affordable supplies.",
+          "Jon is ready to clear the path. A small nest near the old route will test whether being protective always means taking action."
+        ]
+      }
+    },
+    "path": "jedi-21.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 21: Leave Room for the Bees",
+      "description": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community."
+    }
   }
 ]

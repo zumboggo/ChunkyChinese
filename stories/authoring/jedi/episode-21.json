@@ -1,0 +1,979 @@
+{
+  "episode": "jedi-21-v1",
+  "title": "The Voices Beneath the Water · Episode 21: Leave Room for the Bees",
+  "planning": {
+    "storytellingVoice": "Immediate drama",
+    "voiceReason": "A mistaken intervention threatens the garden and calls for restraint.",
+    "earlyCare": "Jon wants children to have a safe path and stops to straighten a fallen garden sign.",
+    "desire": "Make the teaching garden safe for children.",
+    "obstacle": "Jon mistakes a nest near the old route for an enemy to remove.",
+    "dramaticChange": "Jon learns that protection can mean leaving space and redirecting people.",
+    "sourceBoundary": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
+    "sceneActivities": [
+      "Jon approaches a closed garden path, stops well back from the nest, lowers his hands and helps mark an alternate route. A trained specialist manages the isolated area offstage. No handling or striking bees."
+    ],
+    "actingSignature": {
+      "Jonathan": "Plain practical questions; open hand at a boundary, quiet attention afterward.",
+      "An": "Specific limits and short questions; supported seated rest while reviewing, no assumed healing.",
+      "Min": "Urgent explanations soften into admitting uncertainty; rests attentive when corrected.",
+      "Mother": "Concrete requests and accurate accounting; no presumed forgiveness or renewed station shift.",
+      "Sela": "Patient concrete questions; does not reach for private report. Quiet open posture and attentive gaze.",
+      "Ivo": "Begins with explanations and permissions; shifts to asking his son. Guarded hands, then release into attentive rest.",
+      "Edda": "Firm stop and clear safety boundary; calm practical answers while Jonathan lowers his hand."
+    },
+    "listenerTurn": "Gardener Edda tells Jon the bees are not attacking; listener Jon; he lowers his hand and waits.",
+    "payoff": "A safe garden route and appropriate specialist care protect both people and pollinators; a local grower's donation supports the opening-day stall.",
+    "freshQuestion": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
+    "teaser": {
+      "dialogue": "We can leave them room.",
+      "moment": "Jon stands beyond a garden barrier and quietly lowers his open hand, watching a bee visit flowers while leaving space."
+    },
+    "convergence": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
+    "artDirection": "Funny humanizing moment or thoughtful pause, requested by David after Episode 18 paper-wolf teaser. No spectacle detached from story.",
+    "targetVocabulary": [
+      "四季",
+      "花期",
+      "五颜六色",
+      "鲜花",
+      "蜂窝",
+      "蜜蜂",
+      "蜇",
+      "刺儿",
+      "拍打",
+      "一窝蜂",
+      "采",
+      "蜜",
+      "进攻",
+      "鼻青脸肿",
+      "涂",
+      "似的",
+      "群"
+    ],
+    "reviewVocabulary": [
+      "错过",
+      "歧视",
+      "善于",
+      "信心",
+      "面试",
+      "试用期",
+      "录用",
+      "加班",
+      "自信",
+      "形象",
+      "名牌",
+      "选美",
+      "打扮",
+      "普遍",
+      "超过",
+      "以上"
+    ]
+  },
+  "video": {
+    "src": "stories/animated/jedi/jedi-21-intro.mp4",
+    "poster": "stories/animated/jedi/jedi-21-intro.poster.jpg",
+    "dialogue": "We can leave them room.",
+    "totalSeconds": 9,
+    "stillSeconds": 3,
+    "motionSeconds": 6.0,
+    "reactionHoldSeconds": 0.0,
+    "nativeGeneratedSeconds": 6,
+    "editNote": "Full six-second native motion retained after the three-second opening hold.",
+    "model": "prunaai/p-video-2-pro",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off"
+    },
+    "verifiedUSDPerSecond": 0.01,
+    "maximumCostUSD": 0.06,
+    "paidRequests": 1,
+    "predictionId": "f5h6y02jnhrmt0d1g5zbxbwrzc",
+    "prompt": "Animate this exact reference for six seconds. Jon alone says exactly once in clear English: \"We can leave them room.\" The quoted sentence is the entire script; no additional speech before or after. Begin at second 0.5, finish by second 3.5, then mouth closed and silent thoughtful pause. No narration, repetition, paraphrase, other voices, humming, singing or fillers. Clear soft male voice above quiet garden wind. Jon gently lowers his raised hand to his side and watches the bee visiting the flower beyond the wooden barrier. He remains well back and does not touch or approach bee. Bee stays on flowers, never comes toward face. Gentle robe and flower motion. Fixed camera, no cuts. Preserve identity, body, hands, barrier and flowers; no new objects, people, magic, weapons or text.",
+    "reference": "stories/authoring/jedi/art/episode-21-reference.png",
+    "nativeSpeech": true,
+    "checks": {
+      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-21/native.mp4",
+      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-21/intro.mp4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "fps": 24,
+      "hold_seconds": 3.0,
+      "motion_seconds": 6.0,
+      "reaction_hold_seconds": 0.0,
+      "total_seconds": 9.0,
+      "decoded_audio_seconds": 9.00275,
+      "audio_non_silent": true,
+      "audio_starts_after_hold": true,
+      "hold_mean_pixel_difference": 0.002783469945355191,
+      "sha256": "42967473549ecf1e62f746b0f4c72e2a7aabd75b5ae16cb46afc6fb64dac0e9e",
+      "expected_dialogue": "We can leave them room.",
+      "speech_check": "pass",
+      "review": "Opening, motion and ending frames visually inspected; exact speech verified by local ASR. Final browser playback tested separately.",
+      "transcription": "We can leave them room"
+    }
+  },
+  "continuation": {
+    "end": "Edda, the garden keeper, helps Jonathan replace the urge to attack with patient protection. A qualified specialist inspects the nest area; the old path is isolated pending appropriate management and an alternate path is checked safe. Edda’s grower relative promises seedlings for the opening stall; this is a promise, not delivered stock. No station water is used. Repairs and the centre reopening remain pending.",
+    "nextStart": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
+    "nextEndBefore": "Preserve all historical memories, losses, injury limits, allocations and water. One shared storyline.",
+    "note": "Follow approved vocabulary allocation; check meaningful use on every shared route."
+  },
+  "targetAudit": {
+    "episode": 21,
+    "routeCount": 16,
+    "targets": [
+      {
+        "word": "四季",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "对。四季不一样，鲜花开的时间也不一样。",
+          "不能要求四季都一样。和人的性格一样，不必什么都一样。"
+        ]
+      },
+      {
+        "word": "花期",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "五颜六色很好看，不过，花期也要考虑。",
+          "花期不一样，就不会一起开，一起结束？"
+        ]
+      },
+      {
+        "word": "五颜六色",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "这里为什么有五颜六色的鲜花？不只是为了形象吧？",
+          "五颜六色的花，孩子看了会高兴吧。",
+          "五颜六色很好看，不过，花期也要考虑。"
+        ]
+      },
+      {
+        "word": "鲜花",
+        "minDistinctSpokenEntries": 5,
+        "examples": [
+          "蜜蜂在鲜花上采蜜，不是要蜇你。",
+          "这里为什么有五颜六色的鲜花？不只是为了形象吧？",
+          "对。四季不一样，鲜花开的时间也不一样。",
+          "孩子可以来采鲜花吗？",
+          "你们保护了鲜花，也给孩子找到了安全的路。不是赶走一切才有作用。"
+        ]
+      },
+      {
+        "word": "蜂窝",
+        "minDistinctSpokenEntries": 5,
+        "examples": [
+          "我看见一群蜜蜂。从前走的路旁边有蜂窝。",
+          "蜂窝在那里，孩子怎么办？",
+          "不是进攻。我们别从那里走，也别靠近蜂窝。",
+          "我在这里提醒别人，不会去碰蜂窝。",
+          "我不想看见你鼻青脸肿地回来，不是叫你去试一试。我们保护人，也保护蜂窝。",
+          "先在这里告诉别人，不要去蜂窝旁边。",
+          "我们不需要搬蜂窝，更不要求孩子冒险。"
+        ]
+      },
+      {
+        "word": "蜜蜂",
+        "minDistinctSpokenEntries": 9,
+        "examples": [
+          "我看见一群蜜蜂。从前走的路旁边有蜂窝。",
+          "我可以赶走蜜蜂。和进攻的时候一样。",
+          "蜜蜂在鲜花上采蜜，不是要蜇你。",
+          "蜜蜂不是来进攻你的。保护这里，不一定要赶走蜜蜂。",
+          "我们可以给蜜蜂留地方。我不必总像在进攻似的。",
+          "不是选美。花给蜜蜂食物，蜜蜂也给植物帮忙。",
+          "先看哪里可以采，不能为了打扮，就不考虑蜜蜂。",
+          "蜜是蜜蜂的食物，不是给我们随便拿的。",
+          "我们不歧视应聘的人，也不该小看蜜蜂。不过，也不能说一切都安全。"
+        ]
+      },
+      {
+        "word": "蜇",
+        "minDistinctSpokenEntries": 4,
+        "examples": [
+          "蜜蜂在鲜花上采蜜，不是要蜇你。",
+          "我害怕被蜇，它们有刺儿吧？",
+          "会蜇人，我们不去碰。不能拍打。",
+          "我还没有被蜇，就想到鼻青脸肿了。"
+        ]
+      },
+      {
+        "word": "刺儿",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我害怕被蜇，它们有刺儿吧？",
+          "有刺儿，不表示要进攻。不是叫你冒险。"
+        ]
+      },
+      {
+        "word": "拍打",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "会蜇人，我们不去碰。不能拍打。",
+          "害怕的时候，我就想拍打，我太着急了。"
+        ]
+      },
+      {
+        "word": "一窝蜂",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "我们不能一窝蜂地过去。我先检查别的路。",
+          "像害怕错过面试似的，我们有时候一窝蜂地过去。",
+          "合格的人来了，先检查安全。我们没有一窝蜂地过去。"
+        ]
+      },
+      {
+        "word": "采",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "蜜蜂在鲜花上采蜜，不是要蜇你。",
+          "孩子可以来采鲜花吗？",
+          "先看哪里可以采，不能为了打扮，就不考虑蜜蜂。"
+        ]
+      },
+      {
+        "word": "蜜",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "蜜蜂在鲜花上采蜜，不是要蜇你。",
+          "蜜是蜜蜂的食物，不是给我们随便拿的。",
+          "这里的蜜，不是我们的。我记得从前答应过的话。"
+        ]
+      },
+      {
+        "word": "进攻",
+        "minDistinctSpokenEntries": 5,
+        "examples": [
+          "我可以赶走蜜蜂。和进攻的时候一样。",
+          "不是进攻。我们别从那里走，也别靠近蜂窝。",
+          "蜜蜂不是来进攻你的。保护这里，不一定要赶走蜜蜂。",
+          "我们可以给蜜蜂留地方。我不必总像在进攻似的。",
+          "有刺儿，不表示要进攻。不是叫你冒险。"
+        ]
+      },
+      {
+        "word": "鼻青脸肿",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我还没有被蜇，就想到鼻青脸肿了。",
+          "我不想看见你鼻青脸肿地回来，不是叫你去试一试。我们保护人，也保护蜂窝。"
+        ]
+      },
+      {
+        "word": "涂",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "这块旧牌子要涂颜色，不过，先搬到安全的地方。",
+          "涂的时候，别让孩子走进来。等干了，再放回去。"
+        ]
+      },
+      {
+        "word": "似的",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我们可以给蜜蜂留地方。我不必总像在进攻似的。",
+          "像害怕错过面试似的，我们有时候一窝蜂地过去。"
+        ]
+      },
+      {
+        "word": "群",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我看见一群蜜蜂。从前走的路旁边有蜂窝。",
+          "一群人急着过去，会变得很复杂。"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "word": "错过",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "歧视",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "善于",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "信心",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "面试",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "试用期",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "录用",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "加班",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "自信",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "形象",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "名牌",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "选美",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "打扮",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "普遍",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "超过",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "以上",
+        "minSpokenEntries": 1
+      }
+    ],
+    "method": "Distinct spoken entries per completed route; choice labels excluded. 蜜 excludes occurrences embedded in 蜜蜂; all target examples reviewed in context. Full semantic/pinyin human review accompanies counts."
+  },
+  "artwork": {
+    "generator": "Built-in ImageGen",
+    "reference": "stories/authoring/jedi/art/episode-21-reference.png",
+    "direction": "Funny humanizing moment or thoughtful pause, requested by David after Episode 18 paper-wolf teaser. No spectacle detached from story."
+  },
+  "englishAudio": [
+    {
+      "sha256": "b9a3ae7d2bdde152b8f4bbedc09db24660bdd8d9ae16fe1f960048db5a8b7061",
+      "text": "I inspect this path, wanting to protect the children who come to learn.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1f1ea2a749e5a0ebd9c3885527e7f18a85b78cf033ee2461a062dd651f2e6357",
+      "text": "The interviews are over, today we are responsible for inspecting the path.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "fde2237603c9a4008c010d66d6dbef1f8695e6036d634e1117e85c168e70424d",
+      "text": "The people hired know the requirements; their probation pay has been agreed too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "87a681b8b20fb49bdc6504b28de2f81dde92cedd354cd9eeadcf71884261867b",
+      "text": "I feel confident; I do not want to miss any place that needs checking.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "cda856bbc1ee7ac7919e8e963c7043332c115667f5a5274ca0060a955c1a3b10",
+      "text": "I see a group of honey bees. There is a nest beside the path we used before.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2966ff583be2a6db67b5e922c7250eda69bb97a81a3c667b8af0cd3819cd95ca",
+      "text": "The nest is over there; what about the children?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0ea61b7ae92697c4d4218914a34f65e5f9d5f7f303b8b73940d475d1c01255a1",
+      "text": "Stop first. I'm Edda; I look after this garden.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2a9196641866614c58ae76d42cc733f12f905b96b87cf905764463ece3216c27",
+      "text": "I can drive the bees away. Just as when going on the attack.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "20f8436a8668c1cb32243bea246dd994e68d1e974e8452a5f081a344702ad70a",
+      "text": "This is not an attack. Let us not walk that way, or approach the nest.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f2598d1151adb6a4a14d91a15d0aa225353815103cf953d4a9f3e9cec4b8432b",
+      "text": "I don't know enough; I'll listen to you first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7e84efc7a9bdd126f537ca2cb26f054fda10a19a98a707404434a25dfb93cce2",
+      "text": "I'll remind people from here; I won't touch the nest.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "eb2234a04295d08ad53c47a35df43070133d558d3210b92396f5fed0381485fc",
+      "text": "The honey bees are gathering nectar on the flowers, not trying to sting you.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0580beb01cd900b0fc995b5e9b6e13f5b6299688e2f6cc22dc928509d02d8aec",
+      "text": "I'm afraid of being stung; they have stingers, right?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8747f759e69ff6b3b355ba5433408ff35970ffe9ab5c1a579151a0a31b8c0f56",
+      "text": "They can sting, so we will not touch them. We must not swat.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "739db06f91480c6bd620d0d1aff196e88afad902108756bb5d559e7197e44183",
+      "text": "When frightened, I feel like swatting, I am being too hasty.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7d6dfbeec63e89b13ef55b1f8399b41d12ebd893900b28e1bf9dde3dd0432b6e",
+      "text": "The bees are not coming to attack you. Protecting this place does not necessarily mean driving the bees away.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "dc685ee8a184d8dab7b8832becb87a41c9dc77118879eefcf065e7e992fd1863",
+      "text": "I slowly lower my hand and stop walking.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "02c629bd690ddf3f97d6d412434425cc94b43ccbe8def7122e0462fa8cf1ba18",
+      "text": "We can leave room for the bees. I need not always act as if I am attacking.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3080d26452fef4d3084033881db7c04ee6d6ad663387f06e808d4114a40d43e4",
+      "text": "A group of people hurrying over would make things very complicated.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b168b14c274cc948009c487db8b16f493a22e3352a86e29030e0847eeaa033f7",
+      "text": "We must not all rush over in a crowd. I will inspect another path first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "17d2deb981d0edbf152c35de3652c9668132c63329f508222aa08e2eeb8c01c9",
+      "text": "As if afraid of missing an interview, sometimes we rush over in a crowd.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "37fb24b3e0b92d3471a026c0dbdc05f4e34550fdee04e6ba7b1d2f342be350f4",
+      "text": "Having a stinger does not mean intending to attack. It is not an invitation to take risks.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a633f6353d13e8bbad0565ab4a82af2439e1a19d19f4fddcd36428ec1b9eab35",
+      "text": "I have not been stung yet, but have already imagined being bruised and swollen.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "5f11928d9b382483d9f80041419e565d43acc54e6f9c9bd8c0daaec5015d4240",
+      "text": "I do not want to see you return bruised and swollen, I am not asking you to try it. We protect people and the nest too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "51d6baaea67bcf52f9b32a4dc90673b83f60fe9ebdb64a263f8458da2fa0c124",
+      "text": "Tell people from here first; do not go beside the nest.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "37dc7d0c3a4638171e8c35dfbc91b65add4411612b7d62b9368c8dee33ebd88c",
+      "text": "I have asked a qualified person to inspect. We will wait and avoid taking risks.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "657b27f2dd984b4e5fd7c36e26b7c04d479b4466a2ba938f9637f35136a6a53a",
+      "text": "We choose a safe path, while the old path stays closed.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "00827d01d718ef01c0c497a7cec0c41ce5a6c0f0e7cf22b6d5ffcb36c0a468eb",
+      "text": "Why are there flowers of so many colors here? It is not only for appearances, is it?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "23922af244317ada3d70034cc8cb43fb5ef974e7a3916ce94aeb781ba663206a",
+      "text": "It isn't a beauty contest. Flowers provide food for bees, and bees help plants too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "74de938e3a8dcf8a1ba1fde4aca9ea0386435596304ecd21678eced27b59076c",
+      "text": "These flowers of many colors— the children will be happy to see them, I think.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ec205e746301df939db7b1d3c0d08ada83f4aa07c608be22c33393b396d99647",
+      "text": "Many colors look beautiful, but flowering times need consideration too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "22bd664487a027f0b7b3991eb8b0c2c9195f571448fc70f8bb70208f50ba72ef",
+      "text": "With different flowering times, they will not all bloom and finish together?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b7ce7c7f903075a8029a92fcfab86ab40204634afdced6aa0415c7473a1f9b15",
+      "text": "Right. The four seasons differ; flowers bloom at different times too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9b6f278610bb4f6c2cf6bf6cc8186f6a096590c40862253855f6098e889f39e9",
+      "text": "We cannot expect all four seasons to be alike. Like people's personalities, not everything has to be alike.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "78aa0a3b589c3c52e01597434673f3e67dd268eb73d35110be66ff868f24cd54",
+      "text": "Can children come to pick flowers?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8372947e87702068437b8d38997f00d7253c119bcda4e9d141e89b3e8e2c189f",
+      "text": "First check where picking is allowed, We cannot think only of decoration and forget the bees.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "030b4e907da76976c2b2a9995d0a495457250e6862ead3a8d389251114b9591c",
+      "text": "I can help without wearing a famous brand. Today is not about dressing up.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "fb348523959ac9d1271cf3cf3ff71184a3982574c81b315f69a4724f78cf593d",
+      "text": "I've even lowered my collar; and you still want a beauty contest?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2d25439b4d075a1e691b4f4b0c4b7d2b4cb11cf551fe83fa3ce18b3241ff9081",
+      "text": "Honey is food for honey bees; it is not ours to take freely.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1df103867646342c1b63afccb3270c79b1ed8681f09005ae2958455790a37a65",
+      "text": "The honey here does not belong to us. I remember what we promised before.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ae717813fdf47cb883ddfe1ae24d1ae290cbeca88b0ae430bfad7899eaa02a32",
+      "text": "Being willing to stop also shows confidence. There is no need to shout.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b1f2a840ee213519cc6d4757d0c1b74cd7fae1faf32484cc592d50999c69c739",
+      "text": "I'll show it to you first instead of deciding on my own which places are safe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "58c914d8fe24062a2c1037849457f41035338df73df4a54448ec4fc706d5f34a",
+      "text": "Recognizing plants does not mean being good at caring for them.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a5e7ceecd960f4d29d3ff53fadef91eb3c6621262fc8628c1842881fb07800fc",
+      "text": "This old sign needs paint, but we'll move it to a safe place first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "891b89f9db5e93f045d1f989d7de4475dd6cbcaf5a2c6d9b7fd8f9181575560f",
+      "text": "While painting, don't let children enter the work area. Let it dry before putting it back.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "526f7cbfed8c05f4d318e89be6809db8b3ae8487f26a251c90d0aab1a7daa05d",
+      "text": "Can I help here without working overtime?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "62e6d9728eae519c6d1391d7219090ab87e7a3476d8cf6c0e5b4da0a9603e96a",
+      "text": "No overtime. If we go beyond the agreed task, we stop, we will not demand that you sacrifice everything for the garden.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "92641d1c568409f611d3f5edddf719ada836059881a88460205eca19bb2be14e",
+      "text": "Even with two or more people, we mustn't be careless. Everyone must know where not to walk.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "6d71aa70ca923ab5710b2e401044f5b8142f81b49041999b7ad49d72015f2a61",
+      "text": "The qualified specialist arrives and checks safety first. We do not rush over in a crowd.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2187f7ebbd3fc1a6bc0d8805d15a29f084782d9a68bff2490033d6e41ce6c8fe",
+      "text": "He confirms this area can remain isolated for now, with appropriate management arranged afterward.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1c52c1fe1dafcfe787fbd1054df311801f14fc831ab2f3e4fec4400b17c647be",
+      "text": "We do not need to move the nest, and certainly will not ask children to take risks.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "44112d4458c4a502e03a36ed62e2897e053cef67c4e067e2847b926534482c71",
+      "text": "The old path is still closed, but another route has been inspected.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "88ec6d14bbf4aa8b91eabb202ea0b6b589b97febaa9e48fff57ee6ededc68b51",
+      "text": "This is a widespread misunderstanding; protection does not mean driving everything away.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "451ee89670f005fcd271796abdc84efcfe323e3f16e2f2757ce72fcb7232ee70",
+      "text": "We do not discriminate against applicants, and we should not underestimate bees either. But I must not claim that everything is safe either.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "645b56cf1e7233fb35e1b70d9b0f04140c6f4618e3d707701fefcb10034fac39",
+      "text": "You are good at inspecting, and need patience to listen too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "77bee886845ad2fb97cafabbf7581d75c72e9f2534bde97a71b80ee7244e046b",
+      "text": "You have protected the flowers, and found a safe route for the children too. Driving everything away is not the only useful action.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e34df57dee4588be0fdb77880bb68a28e6c182720fbd7db76f46eeca4c9f000c",
+      "text": "We still need affordable supplies; what do you suggest?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "10e1ae3ed396fdd38dcc47609a0322c3e772edf3500b1b68e52c4bb7319cbc10",
+      "text": "Things that belong to someone cannot be taken just because we want to help.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c0cefea155aba9546713ad2726daddcc152d8f0ce53ce9c029d0b58ef46901ef",
+      "text": "The grower in my family is willing to donate some seedlings, for the stall on opening day.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "fdfee26006e02c7e2c7b3db92f42423eb043458e3d764c7520d05f825d3a9ff1",
+      "text": "Thank you. We'll record it first rather than treat a promise as an arrival.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e3a32b249c32f2b125d1edbcd936c422f1201660be9df345dcbf3882bf5bad02",
+      "text": "The water is unchanged. We have not used station water today.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4df58a7fd866ae91eb8f5c46cc85cb13788d69494c2cd1be63d048004a0224b8",
+      "text": "The old path is closed and the new route is safe. We can move forward together while leaving room for others.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a0d7916106265f36dc0a3e093ba963b44b682d34083b08b8f9a588f17a7ef3ca",
+      "text": "Listen to Edda’s instructions first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "bd68b85e3a2d2a721eaae6b71e74bbc819dc8b35a8b266d727b688a1e834ae71",
+      "text": "Ask Min to watch the old path first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b3614c53892f87abe452c1660abfa9899f20d812763c85925185cc7ee7205ad0",
+      "text": "Mark the closed path first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2ae85146be7e0ef14f2f34ed338c75d9fe747ca1cad1d0fea34908eab79dc7bb",
+      "text": "Ask a qualified person to inspect.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "21bf0f128ac682a256ba6b7bf210cc5437296d3d1634f12a821db2dd189df303",
+      "text": "Help write a safety notice.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b53feb193cc938f1a8846e6a31c99c952a6d1920398bd9e52bc7afbac990a88d",
+      "text": "Listen to Edda explain what the plants need.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e4df96b914e80f0486aa77096e5f8e4f717e6e67d42b5029d8ffbd21fcddbdac",
+      "text": "Ask what opening day needs first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "36e829481dc8dba4a9ccb45c57c57654480f5024ae979446642b54691405b5a6",
+      "text": "Record what must not be taken first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    }
+  ],
+  "verification": {
+    "reportStatus": "passed",
+    "packageBytes": 2178776,
+    "phases": [
+      {
+        "name": "vocabulary",
+        "seconds": 0.033718208000000006,
+        "status": "passed"
+      },
+      {
+        "name": "routes, source assertions and resume",
+        "seconds": 0.37403508399999996,
+        "status": "passed"
+      },
+      {
+        "name": "annotations",
+        "seconds": 0.0046694999999999705,
+        "status": "passed"
+      },
+      {
+        "name": "audio",
+        "seconds": 33.738896166,
+        "status": "passed"
+      },
+      {
+        "name": "English pocket audio",
+        "seconds": 0.08662741699999606,
+        "status": "passed"
+      },
+      {
+        "name": "package and ZIP",
+        "seconds": 0.11337724999999774,
+        "status": "passed"
+      },
+      {
+        "name": "phone and desktop",
+        "seconds": 50.94474979099999,
+        "status": "passed"
+      },
+      {
+        "name": "stage new release",
+        "seconds": 0.01655975000000035,
+        "status": "passed"
+      }
+    ],
+    "familiarity": {
+      "min": 80.16759776536313,
+      "max": 80.8926080892608
+    },
+    "pinyin": "Complete contextual review, including adverb zhi, modifier de, zhong in planting, kan in guarding, shi de, cir, zhe, shi fu and neutral tones.",
+    "teaser": "Exact English phrase verified in final clip; opening three-second hold and nine-second total. Speech/motion/end frames inspected. Both native six-second clips retained without paid retries.",
+    "continuity": "All 54,432 inherited histories and 160 local route/water combinations per episode preserved.",
+    "vocabulary": "All 19/17 planned targets have at least two distinct meaningful spoken entries on each of 16 routes; all 18/16 scheduled review targets appear in their allocated episode.",
+    "browser": "Full contrasting routes plus teasers, fallback, Mandarin audio, listener aftermath and resume on phone and desktop."
+  }
+}
