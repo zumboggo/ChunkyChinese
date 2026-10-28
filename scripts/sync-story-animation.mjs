@@ -7,12 +7,19 @@ import {weedOptionAOverlay} from './weed-option-a-overlay.mjs';
 const root=resolve(import.meta.dirname,'..');
 const source=resolve(process.argv.find(a=>a.startsWith('--source='))?.slice(9)||resolve(root,'../../Learning is Fun/implementation'));
 const check=process.argv.includes('--check');
+// Release checks verify the recorded dependency, not another project's live edits.
+// An explicit --source keeps the existing opt-in working-tree comparison.
+const pinnedCommit=check&&!process.argv.some(a=>a.startsWith('--source='))
+ ?JSON.parse(readFileSync(resolve(root,'src/game/animation/shared/manifest.json'),'utf8')).commit:undefined;
+if(pinnedCommit&&!/^[a-f0-9]{40}$/.test(pinnedCommit))throw Error('Invalid pinned animation commit');
 const engine=['story-engine','acting-library','scene-beats','character-builder'].flatMap(n=>['js','d.ts'].map(ext=>`functions/learning-content/src/${n}.${ext}`));
 const components=['AngleFace.tsx','character-angles.ts','acting-motion.ts','ActivityRunner.tsx','activity-motion.ts','BackgroundLibrary.tsx','CartoonActor.tsx','RefinedFace.tsx','KevinFace.tsx','MountedActor.tsx','PuppetActor.tsx','StoryStage.tsx','action-motion.ts','scene-motion.ts','camera-framing.ts','scene-sound.ts','StoryAtmosphere.tsx','character-geometry.ts','story-player.css','ActingLibrary.tsx','ActionLibrary.tsx','CharacterBuilder.tsx','SceneBeatLibrary.tsx','ChoiceWorkshop.tsx','authoring-tools.ts'];
 const entries=[...engine.map(path=>[path,`engine/${path.split('/').at(-1)}`]),...components.map(name=>[`src/components/animated/${name}`,`components/${name}`])];
-const manifest={repository:'https://github.com/zumboggo/Learningisfun',commit:execFileSync('git',['rev-parse','HEAD'],{cwd:source,encoding:'utf8'}).trim(),files:[]};
+const manifest={repository:'https://github.com/zumboggo/Learningisfun',commit:pinnedCommit||execFileSync('git',['rev-parse','HEAD'],{cwd:source,encoding:'utf8'}).trim(),files:[]};
 for(const [path,dest] of entries){
- const original=readFileSync(resolve(source,path),'utf8');
+ const original=pinnedCommit
+  ?execFileSync('git',['show',`${pinnedCommit}:${path}`],{cwd:source,encoding:'utf8',maxBuffer:10*1024*1024})
+  :readFileSync(resolve(source,path),'utf8');
  let content=original.replaceAll('../../../functions/learning-content/src/','../engine/');
  // Chunky Chinese owns motion preferences in episode Settings. Keep upstream
  // renderer updates from restoring the old control between scene and dialogue.
