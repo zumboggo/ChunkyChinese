@@ -4,9 +4,9 @@
   "source": {
     "kind": "original",
     "note": "Original fan adventure requested by David for Jonathan; no source novel or real-person likeness.",
-    "nextStart": "Episode 12: one common storyline cleaning and clearing the repaired supply line for drinking water. Everyone now has exactly two more stored drinking-water buckets than their pre-Episode-11 total, from the verified sealed ship delivery. Use Episode 11 terminal water variable for current total; all other memory fields carry unchanged.",
-    "nextEndBefore": "Do not resurrect people or restore destroyed items. No reopened voice or hidden-reserve mystery. Keep local choices within one common storyline; preserve actual water totals and earlier agreements.",
-    "continuationNote": "One common plot, with remembered choices. Independent retest with sound equipment confirms isolated line holds. Pipe still needs cleaning and water-quality clearance. Separately sealed, inspected ship delivery adds two buckets to actual stored drinking water on every route."
+    "nextStart": "Episode 14: deliver according to the remembered allocation agreement, preparing the exposed intake before approaching bad weather. Use Episode 13 terminal water, now pre-Episode-11 water +6.",
+    "nextEndBefore": "Do not reopen resolved mysteries, restore losses or change allocation agreements without consent. One shared plot; local choices rejoin.",
+    "continuationNote": "Current water always comes from the preceding terminal water variable. Other historical fields carry unchanged."
   },
   "completed": [
     {
@@ -58,9 +58,17 @@
     {
       "episode": "jedi-11-v1",
       "end": "Independent retest with sound equipment confirms isolated line holds. Pipe still needs cleaning and water-quality clearance. Separately sealed, inspected ship delivery adds two buckets to actual stored drinking water on every route."
+    },
+    {
+      "episode": "jedi-12-v1",
+      "end": "Fresh correctly labelled samples pass the trained ship crew’s full drinking-water clearance after the prescribed wait; repaired line remains isolated until controlled transfer. Stored water unchanged."
+    },
+    {
+      "episode": "jedi-13-v1",
+      "end": "Exactly four new measured buckets enter storage through the cleared pipe, old total +4. Old allocation agreements retained; no distribution yet. Min volunteers for the delivery work without requesting forgiveness."
     }
   ],
-  "assetsFrom": "stories/animated/jedi-11.json",
+  "assetsFrom": "stories/animated/jedi-13.json",
   "vocabularySupplement": ".local/episodes/jedi-01/supplement.json",
   "coverage": {
     "min": 80,
@@ -97,7 +105,10 @@
     "David’s October 28 instruction: Episode 9 closes the old threads. From now on, retain memory of prior choices but use one main storyline. Local choices rejoin; do not multiply persistent branches.",
     "Misaligned new joint is seated correctly with supports, dry repair completed; valves remain closed and no water is added or used.",
     "Independent retest with sound equipment confirms isolated line holds. Pipe still needs cleaning and water-quality clearance. Separately sealed, inspected ship delivery adds two buckets to actual stored drinking water on every route.",
-    "Episode 12 must use Episode 11 terminal water variable (old remembered water plus exactly 2 delivered buckets). Map the water graph/options forward +2 and sourceVariable water; carry every other historical field unchanged. Never initialize current water from the old pre-delivery memory."
+    "Episode 12 must use Episode 11 terminal water variable (old remembered water plus exactly 2 delivered buckets). Map the water graph/options forward +2 and sourceVariable water; carry every other historical field unchanged. Never initialize current water from the old pre-delivery memory.",
+    "Fresh correctly labelled samples pass the trained ship crew’s full drinking-water clearance after the prescribed wait; repaired line remains isolated until controlled transfer. Stored water unchanged.",
+    "Exactly four new measured buckets enter storage through the cleared pipe, old total +4. Old allocation agreements retained; no distribution yet. Min volunteers for the delivery work without requesting forgiveness.",
+    "Episode 14 must use Episode 13 terminal water (Episode 12/13 starting total +4, or pre-Episode-11 total +6). Map current water graph/options forward +4 and sourceVariable water. All other historical fields carry unchanged. No actual water distribution happened in Episode 13; delivery under the inherited allocation agreement begins next."
   ],
   "cover": "public/stories/animated/jedi/series-cover.jpg",
   "coverArt": {
@@ -107,9 +118,9 @@
   },
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through jedi-11-v1",
-    "nextStart": "Episode 12: one common storyline cleaning and clearing the repaired supply line for drinking water. Everyone now has exactly two more stored drinking-water buckets than their pre-Episode-11 total, from the verified sealed ship delivery. Use Episode 11 terminal water variable for current total; all other memory fields carry unchanged.",
-    "nextEndBefore": "Do not resurrect people or restore destroyed items. No reopened voice or hidden-reserve mystery. Keep local choices within one common storyline; preserve actual water totals and earlier agreements.",
-    "assetsFrom": "stories/animated/jedi-11.json"
+    "note": "Published through jedi-13-v1",
+    "nextStart": "Episode 14: deliver according to the remembered allocation agreement, preparing the exposed intake before approaching bad weather. Use Episode 13 terminal water, now pre-Episode-11 water +6.",
+    "nextEndBefore": "Do not reopen resolved mysteries, restore losses or change allocation agreements without consent. One shared plot; local choices rejoin.",
+    "assetsFrom": "stories/animated/jedi-13.json"
   }
 }
