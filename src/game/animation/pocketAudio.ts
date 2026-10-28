@@ -3,16 +3,16 @@ import type {ChinesePackage} from './package'
 import type {StoryProgress} from './StoryPlayback'
 import type {AudioModeOptions} from './AudioModeDialog'
 
-export interface PocketBeat {steps:(string|null)[];text:string;audio?:string;english?:string;silence?:number}
+export interface PocketBeat {encounter?:1|2;steps:(string|null)[];text:string;audio?:string;english?:string;silence?:number}
 export interface PocketPlan {beats:PocketBeat[];end:StoryProgress;ended:boolean}
-export interface PocketMarker {at:number;steps:(string|null)[];text:string}
+export interface PocketMarker {encounter?:1|2;at:number;steps:(string|null)[];text:string}
 export interface PocketTrack {blob:Blob;duration:number;markers:PocketMarker[];end:StoryProgress;ended:boolean}
 export const meaningOf=(line:NonNullable<ChinesePackage['chinese']>['lines'][string])=>(line.english||line.interlinear?.map(c=>c.gloss).join(' ')||'').trim()
 
 /** Pick a finite route before playback. No JavaScript or story animations are
  * needed between scenes once the phone has locked. Manual routes stop at a choice. */
 export function planPocketAudio(pack:ChinesePackage,start:StoryProgress,options:AudioModeOptions,random:()=>number=Math.random):PocketPlan{
- if(options.chinese===false&&!options.english)throw Error('Turn on English or Chinese audio to prepare listening.')
+ if(options.chinese===false&&!options.english&&!(options.secondEnabled&&(options.second?.chinese||options.second?.english)))throw Error('Turn on English or Chinese audio to prepare listening.')
  const compiled=compileStory(pack.script,pack.assets)
  if(compiled.errors.length||!compiled.story)throw Error('This episode could not be prepared.')
  let state=replayStory(compiled.story,start.steps,start.seed)
@@ -23,10 +23,13 @@ export function planPocketAudio(pack:ChinesePackage,start:StoryProgress,options:
   if(node.type==='choice'&&!options.automaticChoices)break
   const option=node.type==='choice'?node.options[Math.min(node.options.length-1,Math.floor(random()*node.options.length))]:null
   const text=option?.text??node.text??'',line=pack.chinese?.lines[text]
-  if(options.chinese!==false&&/\p{Script=Han}/u.test(text)&&!line?.audio)throw Error('This episode needs a Chinese recording before pocket listening can be prepared.')
-  const english=line?meaningOf(line):(!/\p{Script=Han}/u.test(text)?text:'')
-  if(options.english&&text&&!english)throw Error('This episode needs an English translation before pocket listening can be prepared.')
-  beats.push({steps:[...steps],text,audio:options.chinese!==false?line?.audio:undefined,english,silence:option?options.choiceDelay:undefined})
+  const encounters=options.secondEnabled&&options.second&&node.type!=='choice'?[options,options.second]:[options]
+  for(const [index,encounter] of encounters.entries()){
+   if(encounter.chinese!==false&&/\p{Script=Han}/u.test(text)&&!line?.audio)throw Error('This episode needs a Chinese recording before pocket listening can be prepared.')
+   const english=line?meaningOf(line):(!/\p{Script=Han}/u.test(text)?text:'')
+   if(encounter.english&&text&&!english)throw Error('This episode needs an English translation before pocket listening can be prepared.')
+   beats.push({encounter:index===0?1:2,steps:[...steps],text,audio:encounter.chinese!==false?line?.audio:undefined,english:encounter.english?english:undefined,silence:option?options.choiceDelay:undefined})
+  }
   steps.push(option?.id??null)
   state=advanceStory(compiled.story,state,option?.id??null)
  }
@@ -68,9 +71,9 @@ export async function preparePocketAudio(pack:ChinesePackage,start:StoryProgress
  }
  for(let i=0;i<plan.beats.length;i++){
   check();const beat=plan.beats[i];onProgress(`Preparing audio ${i+1} of ${plan.beats.length}…`)
-  markers.push({at:samples/16000,steps:beat.steps,text:beat.text})
+  markers.push({at:samples/16000,steps:beat.steps,text:beat.text,encounter:beat.encounter})
   if(beat.audio)await clip(beat.audio)
-  if(options.english&&beat.english){
+  if(beat.english){
    if(beat.audio)silence(options.englishPause)
    const key=await textDigest(beat.english);await clip(`${import.meta.env.BASE_URL}stories/audio/${key}.m4a`)
   }else if(!beat.audio)silence(1.2)

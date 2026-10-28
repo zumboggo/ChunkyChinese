@@ -28,16 +28,20 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  const current=state&&compiled.story?.nodes[state.cursor]
 
  const [audioModeOpen,setAudioModeOpen]=useState(false),[audioModeRunning,setAudioModeRunning]=useState(false),[audioModePaused,setAudioModePaused]=useState(false),[audioModeStatus,setAudioModeStatus]=useState('')
- const [audioModeOptions,setAudioModeOptions]=useState<AudioModeOptions>(()=>({chinese:preference('audioModeChinese',true),english:preference('audioModeEnglish',false),englishPause:[0,1,2,3,5,10].includes(preference('audioModeEnglishPause',3))?preference('audioModeEnglishPause',3):3,automaticChoices:preference('audioModeAutomaticChoices',false),choiceDelay:[0,3,5,10].includes(preference('audioModeChoiceDelay',0))?preference('audioModeChoiceDelay',0):0}))
+ const [audioModeOptions,setAudioModeOptions]=useState<AudioModeOptions>(()=>({secondEnabled:preference('audioModeSecondEnabled',true),second:{chinese:preference('secondChineseAudio',true),english:preference('secondEnglishAudio',true),showChinese:preference('secondChineseText',false),showPinyin:preference('secondPinyinText',false),showGloss:preference('secondEnglishText',false)},chinese:preference('audioModeChinese',true),english:preference('audioModeEnglish',false),englishPause:[0,1,2,3,5,10].includes(preference('audioModeEnglishPause',3))?preference('audioModeEnglishPause',3):3,automaticChoices:preference('audioModeAutomaticChoices',false),choiceDelay:[0,3,5,10].includes(preference('audioModeChoiceDelay',0))?preference('audioModeChoiceDelay',0):0}))
  const [pocketSession,setPocketSession]=useState<{start:StoryProgress;options:AudioModeOptions}|null>(null)
  const audioModeController=useRef<AbortController|null>(null)
  function stopAudioMode(){audioModeController.current?.abort();setAudioModeRunning(false);setAudioModePaused(false);setAudioModeStatus('')}
  function pauseAudioMode(){audioModeController.current?.abort();setAudioModePaused(true)}
- const autoPlay=audioModeOptions.chinese!==false||audioModeOptions.english
+ const [encounter,setEncounter]=useState<1|2>(1)
+ const secondEncounter=encounter===2&&audioModeOptions.secondEnabled&&current?.type!=='choice'
+ const activeAudio=secondEncounter?audioModeOptions.second!:audioModeOptions
+ const autoPlay=activeAudio.chinese!==false||activeAudio.english
  const slideAudioController=useRef<AbortController|null>(null)
  const [showChinese,setShowChinese]=useState<boolean>(()=>preference('chinese',true))
  const [showPinyin,setShowPinyin]=useState<boolean>(()=>preference('pinyin',true)),[showGloss,setShowGloss]=useState<boolean>(()=>preference('english',true)),[answers,setAnswers]=useState<number[]>([-1,-1,-1,-1])
- useEffect(()=>{try{localStorage.setItem(preferencesKey,JSON.stringify({chinese:showChinese,pinyin:showPinyin,english:showGloss,autoplay:autoPlay,voiceVolume,reduceMotion,motionPaused,audioModeChinese:audioModeOptions.chinese!==false,audioModeEnglish:audioModeOptions.english,audioModeEnglishPause:audioModeOptions.englishPause,audioModeAutomaticChoices:audioModeOptions.automaticChoices,audioModeChoiceDelay:audioModeOptions.choiceDelay}))}catch{/* Display preferences are optional on restricted devices. */}},[preferencesKey,showChinese,showPinyin,showGloss,autoPlay,voiceVolume,reduceMotion,motionPaused,audioModeOptions])
+ const display=secondEncounter?audioModeOptions.second!:{showChinese,showPinyin,showGloss}
+ useEffect(()=>{try{localStorage.setItem(preferencesKey,JSON.stringify({audioModeSecondEnabled:audioModeOptions.secondEnabled,secondChineseAudio:audioModeOptions.second?.chinese,secondEnglishAudio:audioModeOptions.second?.english,secondChineseText:audioModeOptions.second?.showChinese,secondPinyinText:audioModeOptions.second?.showPinyin,secondEnglishText:audioModeOptions.second?.showGloss,chinese:showChinese,pinyin:showPinyin,english:showGloss,autoplay:autoPlay,voiceVolume,reduceMotion,motionPaused,audioModeChinese:audioModeOptions.chinese!==false,audioModeEnglish:audioModeOptions.english,audioModeEnglishPause:audioModeOptions.englishPause,audioModeAutomaticChoices:audioModeOptions.automaticChoices,audioModeChoiceDelay:audioModeOptions.choiceDelay}))}catch{/* Display preferences are optional on restricted devices. */}},[preferencesKey,showChinese,showPinyin,showGloss,autoPlay,voiceVolume,reduceMotion,motionPaused,audioModeOptions])
  const line=pack.chinese?.lines[current?.text],score=pack.quiz.length===4&&progress.quizzes.length?quizScore(pack.quiz,progress.quizzes.at(-1)!):null
  const latest=useRef({advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy});latest.current={advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy}
  // Run once for each newly displayed story state, including resumed episodes.
@@ -45,18 +49,18 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   if(pocketSession||audioModeRunning||audioModeOpen||!autoPlay||state?.ended||current?.type==='choice')return;
   const frame=requestAnimationFrame(()=>latest.current.playAuto());
   return()=>{cancelAnimationFrame(frame);slideAudioController.current?.abort();};
- },[autoPlay,state,current,audioModeOptions.chinese,audioModeOptions.english,audioModeOptions.englishPause,audioModeRunning,audioModeOpen,pocketSession])
+ },[encounter,autoPlay,state,current,activeAudio.chinese,activeAudio.english,audioModeOptions.englishPause,audioModeRunning,audioModeOpen,pocketSession])
 
  // One cancellable listening sequence per scene. Manual navigation and popup edits
  // abort both the recording and the device voice before a new sequence can start.
  useEffect(()=>{
-  if(!autoPlay||!audioModeRunning||audioModePaused||audioModeOpen||busy||state?.ended||!current)return
+  if(!audioModeRunning||audioModePaused||audioModeOpen||busy||state?.ended||!current)return
   const controller=new AbortController();audioModeController.current=controller
   const signal=controller.signal
   const listen=async(text:string)=>{
    setAudioModeStatus('Listening…');setAudioPlaying(true)
    setSpeaking(current.type==='say'&&current.actor!=='I')
-   try{await playAudioModeLine({text,line:pack.chinese?.lines[text],chinese:audioModeOptions.chinese,english:audioModeOptions.english,pause:audioModeOptions.englishPause,volume:voiceVolume,signal,onAudio:a=>{sound.current=a}})}
+   try{await playAudioModeLine({text,line:pack.chinese?.lines[text],chinese:activeAudio.chinese,english:activeAudio.english,pause:audioModeOptions.englishPause,volume:voiceVolume,signal,onAudio:a=>{sound.current=a}})}
    finally{if(!signal.aborted){setAudioPlaying(false);setSpeaking(false)}}
   }
   void (async()=>{
@@ -74,13 +78,14 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
      }
      if(!signal.aborted)latest.current.advance(option.id)
     }else{
-     await listen(current.text??'')
+     if(autoPlay)await listen(current.text??'')
+     else await waitForAudioMode(1200,signal)
      if(!signal.aborted)latest.current.advance(null)
     }
    }catch(e){if(!signal.aborted){setError(e instanceof Error?e.message:String(e));setAudioModePaused(true)}}
   })()
   return()=>{controller.abort();setAudioPlaying(false);setSpeaking(false);setAudioModeStatus('')}
- },[autoPlay,audioModeRunning,audioModePaused,audioModeOpen,audioModeOptions,busy,state,current,pack,voiceVolume])
+ },[encounter,activeAudio.chinese,activeAudio.english,autoPlay,audioModeRunning,audioModePaused,audioModeOpen,audioModeOptions,busy,state,current,pack,voiceVolume])
 
  useEffect(()=>{const handler=(e:KeyboardEvent)=>{
   const target=e.target as HTMLElement|null
@@ -107,20 +112,25 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  useEffect(()=>{if(reduced){motion.current?.abort();setResponses({});}},[reduced])
  const animate=async(el:HTMLElement|null,frames:Keyframe[],duration=420)=>{if(reduced||!el?.animate)return;try{await el.animate(frames,{duration,easing:'ease-in-out'}).finished}catch{/* navigation cancellation */}}
  function back(){
+  if(encounter===2){slideAudioController.current?.abort();audioModeController.current?.abort();setAudioPlaying(false);setSpeaking(false);setEncounter(1);return}
   if(!compiled.story||!progress.steps.length)return
   slideAudioController.current?.abort();audioModeController.current?.abort();generation.current++;motion.current?.abort();sound.current?.pause();sound.current=null
   root.current?.getAnimations?.({subtree:true}).forEach(a=>a.cancel())
   lock.current=false;setBusy(false);setSpeaking(false);setAudioPlaying(false);setResponses({});setError('');setAnswers([-1,-1,-1,-1])
+  setEncounter(1)
   const p={...progress,steps:progress.steps.slice(0,-1)}
   setState(replayStory(compiled.story,p.steps,p.seed));setProgress(p);onProgress?.(p)
  }
  async function advance(option:string|null){
   if(!state||!compiled.story||state.ended||lock.current)return
+  if(encounter===1&&audioModeOptions.secondEnabled&&current?.type!=='choice'&&current?.text){
+   slideAudioController.current?.abort();audioModeController.current?.abort();sound.current?.pause();setAudioPlaying(false);setSpeaking(false);setError('');setEncounter(2);return
+  }
   slideAudioController.current?.abort();audioModeController.current?.abort();motion.current?.abort();setResponses({});lock.current=true;setBusy(true);sound.current?.pause();sound.current=null;setAudioPlaying(false);setSpeaking(false);setError('');const token=++generation.current
   try{
    const next=advanceStory(compiled.story,state,option)
    for(const id of Object.keys(state.stage.actors)){if(!next.stage.actors[id])await animate(root.current?.querySelector(`[data-actor="${id}"]`)??null,[{opacity:1,transform:'translateX(0)'},{opacity:0,transform:'translateX(65px)'}]);if(token!==generation.current)return}
-   const p={...progress,steps:[...progress.steps,option]};setState(next);setProgress(p);onProgress?.(p)
+   const p={...progress,steps:[...progress.steps,option]};setEncounter(1);setState(next);setProgress(p);onProgress?.(p)
    await new Promise<void>(r=>requestAnimationFrame(()=>r()))
    if(token!==generation.current)return;
    const controller=new AbortController();motion.current=controller;
@@ -137,7 +147,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   if(!autoPlay||!text){setAudioPlaying(false);setSpeaking(false);return}
   const controller=new AbortController();slideAudioController.current=controller
   setError('');setAudioPlaying(true);setSpeaking(npc&&current?.type==='say'&&current.actor!=='I')
-  void playAudioModeLine({text,line:pack.chinese?.lines[text],chinese:audioModeOptions.chinese,english:audioModeOptions.english,pause:audioModeOptions.englishPause,volume:voiceVolume,signal:controller.signal,onAudio:a=>{sound.current=a}})
+  void playAudioModeLine({text,line:pack.chinese?.lines[text],chinese:activeAudio.chinese,english:activeAudio.english,pause:audioModeOptions.englishPause,volume:voiceVolume,signal:controller.signal,onAudio:a=>{sound.current=a}})
    .catch(e=>{if(!controller.signal.aborted)setError(e instanceof Error?e.message:String(e))})
    .finally(()=>{if(slideAudioController.current===controller){slideAudioController.current=null;setAudioPlaying(false);setSpeaking(false)}})
  }
@@ -164,16 +174,17 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  }}>
   <div className="story-slide-toggles" role="group" aria-label="Story audio and text">
    <div role="group" aria-label="Audio"><span>Audio:</span>
-    <button type="button" aria-label="Audio: English" aria-pressed={audioModeOptions.english} onClick={()=>setAudioModeOptions(o=>({...o,english:!o.english}))}>English</button>
-    <button type="button" aria-label="Audio: Chinese" aria-pressed={audioModeOptions.chinese!==false} onClick={()=>setAudioModeOptions(o=>({...o,chinese:o.chinese===false}))}>Chinese</button>
+    <button type="button" aria-label="Audio: English" aria-pressed={activeAudio.english} onClick={()=>setAudioModeOptions(o=>secondEncounter?{...o,second:{...o.second!,english:!o.second!.english}}:{...o,english:!o.english})}>English</button>
+    <button type="button" aria-label="Audio: Chinese" aria-pressed={activeAudio.chinese!==false} onClick={()=>setAudioModeOptions(o=>secondEncounter?{...o,second:{...o.second!,chinese:!o.second!.chinese}}:{...o,chinese:o.chinese===false})}>Chinese</button>
    </div>
    <div role="group" aria-label="Text"><span>Text:</span>
-    <button type="button" aria-label="Text: Pinyin" aria-pressed={showPinyin} onClick={()=>setShowPinyin(v=>!v)}>Pinyin</button>
-    <button type="button" aria-label="Text: Characters" aria-pressed={showChinese} onClick={()=>setShowChinese(v=>!v)}>Characters</button>
-    <button type="button" aria-label="Text: English" aria-pressed={showGloss} onClick={()=>setShowGloss(v=>!v)}>English</button>
+    <button type="button" aria-label="Text: Pinyin" aria-pressed={display.showPinyin} onClick={()=>secondEncounter?setAudioModeOptions(o=>({...o,second:{...o.second!,showPinyin:!o.second!.showPinyin}})):setShowPinyin(v=>!v)}>Pinyin</button>
+    <button type="button" aria-label="Text: Characters" aria-pressed={display.showChinese} onClick={()=>secondEncounter?setAudioModeOptions(o=>({...o,second:{...o.second!,showChinese:!o.second!.showChinese}})):setShowChinese(v=>!v)}>Characters</button>
+    <button type="button" aria-label="Text: English" aria-pressed={display.showGloss} onClick={()=>secondEncounter?setAudioModeOptions(o=>({...o,second:{...o.second!,showGloss:!o.second!.showGloss}})):setShowGloss(v=>!v)}>English</button>
    </div>
   </div>
   <div className="audio-mode-toolbar">
+   {audioModeOptions.secondEnabled&&!state.ended&&current.type!=='choice'&&<span>Encounter {encounter} of 2</span>}
    <button type="button" aria-haspopup="dialog" onClick={()=>{slideAudioController.current?.abort();sound.current?.pause();audioModeController.current?.abort();setAudioModeOpen(true)}}>Audio Mode</button>
    {audioModeRunning&&!state.ended&&<button type="button" onClick={()=>{if(audioModePaused){setError('');setAudioModePaused(false)}else pauseAudioMode()}}>{audioModePaused?'Resume Audio Mode':'Pause Audio Mode'}</button>}
    {audioModeRunning&&<span role="status">{state.ended?'Episode complete':audioModePaused?'Audio Mode paused':audioModeStatus}</span>}
@@ -196,7 +207,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
    </div></details>
   <StoryStage pack={pack} state={state} current={current} speaking={speaking&&!state.ended} reduced={reduced} responses={responses} motionPaused={motionPaused}/>
   <div className="story-meters">{Object.entries(compiled.story.variables).filter(([,v])=>(v as {visible:boolean}).visible).map(([id])=><span key={id}>{id}: {String(state.variables[id])}</span>)}</div>
-  <section className="story-dialogue" aria-live="polite">{state.ended?<>{pack.outcomeScorecard&&<OutcomeScorecard definition={pack.outcomeScorecard} state={state}/>}<h2>{pack.quiz.length===4?(score!==null&&score>=75?'Complete':'Four questions before we return'):'Scene complete'}</h2>{pack.quiz.length===4&&<>{score!==null&&<p>{score}/100 · {score>=75?'Complete':'Review and retry'}</p>}{(score===null||score<75)&&<><div data-quiz>{pack.quiz.map((q,i)=><fieldset key={i}><legend>{q.prompt}</legend>{q.options.map((o,j)=><button key={j} aria-pressed={answers[i]===j} onClick={()=>setAnswers(answers.map((a,k)=>k===i?j:a))}>{j+1}. {o}</button>)}{score!==null&&<p>{q.explanation}</p>}</fieldset>)}</div><button data-next disabled={answers.includes(-1)} onClick={()=>{const p={...progress,quizzes:[...progress.quizzes,answers]};setProgress(p);onProgress?.(p);setAnswers([-1,-1,-1,-1])}}>Check answers</button></>}</>}{onNextEpisode&&(pack.quiz.length!==4||(score!==null&&score>=75))&&<div className="episode-up-next"><p className="game-kicker">UP NEXT</p>{nextEpisodePreview&&<><h3>{nextEpisodePreview.title}</h3><p>{nextEpisodePreview.teaser}</p></>}<button className="next-episode" data-next onClick={onNextEpisode}>Continue to {nextEpisodePreview?.number?`Episode ${nextEpisodePreview.number}`:'next episode'} →</button></div>}{onComplete&&<button data-next onClick={onComplete}>Continue to the conversation</button>}</>:current.type==='choice'?<><h2>What do I do?</h2>{current.options.map((o:{id:string;text:string},i:number)=><div className="episode-choice-card" key={o.id}><EpisodeInterlinear text={o.text} line={pack.chinese?.lines[o.text]} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss} interactive/><button className="episode-choice" aria-label={`Choose option ${i+1}`} data-next disabled={busy} onClick={()=>void advance(o.id)}>Choose {i+1}</button>{autoPlay&&<button className="audio-play" aria-label={'Hear option: '+o.text} onClick={()=>play(o.text,false,false,true)}><PlayIcon/></button>}</div>)}</>:<><strong>{current.type==='act'||current.beat?'On the scene':current.actor==='I'?'My story':pack.assets.characters[current.actor]?.name}</strong><div className="episode-line"><EpisodeInterlinear key={state.cursor} text={current.text} line={line} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss} interactive/></div>{autoPlay&&<button className="audio-play" aria-label={audioPlaying?"Pause audio":"Play audio"} title="Play / pause (Space)" onClick={()=>play()}>{audioPlaying?'Pause':<PlayIcon/>}</button>}<button data-next disabled={busy} onClick={()=>void advance(null)}>{busy?'Action playing…':'Continue →'}</button></>}{error&&<p role="status">{error}</p>}</section>
+  <section className="story-dialogue" aria-live="polite">{state.ended?<>{pack.outcomeScorecard&&<OutcomeScorecard definition={pack.outcomeScorecard} state={state}/>}<h2>{pack.quiz.length===4?(score!==null&&score>=75?'Complete':'Four questions before we return'):'Scene complete'}</h2>{pack.quiz.length===4&&<>{score!==null&&<p>{score}/100 · {score>=75?'Complete':'Review and retry'}</p>}{(score===null||score<75)&&<><div data-quiz>{pack.quiz.map((q,i)=><fieldset key={i}><legend>{q.prompt}</legend>{q.options.map((o,j)=><button key={j} aria-pressed={answers[i]===j} onClick={()=>setAnswers(answers.map((a,k)=>k===i?j:a))}>{j+1}. {o}</button>)}{score!==null&&<p>{q.explanation}</p>}</fieldset>)}</div><button data-next disabled={answers.includes(-1)} onClick={()=>{const p={...progress,quizzes:[...progress.quizzes,answers]};setProgress(p);onProgress?.(p);setAnswers([-1,-1,-1,-1])}}>Check answers</button></>}</>}{onNextEpisode&&(pack.quiz.length!==4||(score!==null&&score>=75))&&<div className="episode-up-next"><p className="game-kicker">UP NEXT</p>{nextEpisodePreview&&<><h3>{nextEpisodePreview.title}</h3><p>{nextEpisodePreview.teaser}</p></>}<button className="next-episode" data-next onClick={onNextEpisode}>Continue to {nextEpisodePreview?.number?`Episode ${nextEpisodePreview.number}`:'next episode'} →</button></div>}{onComplete&&<button data-next onClick={onComplete}>Continue to the conversation</button>}</>:current.type==='choice'?<><h2>What do I do?</h2>{current.options.map((o:{id:string;text:string},i:number)=><div className="episode-choice-card" key={o.id}><EpisodeInterlinear text={o.text} line={pack.chinese?.lines[o.text]} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss} interactive/><button className="episode-choice" aria-label={`Choose option ${i+1}`} data-next disabled={busy} onClick={()=>void advance(o.id)}>Choose {i+1}</button>{autoPlay&&<button className="audio-play" aria-label={'Hear option: '+o.text} onClick={()=>play(o.text,false,false,true)}><PlayIcon/></button>}</div>)}</>:<><strong>{current.type==='act'||current.beat?'On the scene':current.actor==='I'?'My story':pack.assets.characters[current.actor]?.name}</strong><div className="episode-line">{(display.showChinese||display.showPinyin||display.showGloss)&&<EpisodeInterlinear key={`${state.cursor}:${encounter}`} text={current.text} line={line} showChinese={display.showChinese} showPinyin={display.showPinyin} showGloss={display.showGloss} interactive/>}</div>{autoPlay&&<button className="audio-play" aria-label={audioPlaying?"Pause audio":"Play audio"} title="Play / pause (Space)" onClick={()=>play()}>{audioPlaying?'Pause':<PlayIcon/>}</button>}<button data-next disabled={busy} onClick={()=>void advance(null)}>{busy?'Action playing…':'Continue →'}</button></>}{error&&<p role="status">{error}</p>}</section>
 
   <footer><p className="game-key-hints">1–4: choose · Space: play / pause · ←: back · → or 1: continue</p><button aria-expanded={history} onClick={()=>setHistory(!history)}>Recall the conversation</button></footer>{history&&<aside>{state.history.map((h,i)=><p key={i}>{pack.assets.characters[h.actor]?.name??'I'}: {h.text}</p>)}</aside>}
  </div>

@@ -6,6 +6,8 @@ import {pocketPosition,preparePocketAudio,type PocketTrack} from './pocketAudio'
 import EpisodeInterlinear from './EpisodeInterlinear'
 
 export default function PocketAudioPlayer({pack,start,options,volume,showChinese,showPinyin,showGloss,onSave,onExit}:{pack:ChinesePackage;start:StoryProgress;options:AudioModeOptions;volume:number;showChinese:boolean;showPinyin:boolean;showGloss:boolean;onSave:(p:StoryProgress)=>void;onExit:(p:StoryProgress)=>void}){
+ const [encounter,setEncounter]=useState<1|2>(1)
+ const display=encounter===2&&options.second?options.second:{showChinese,showPinyin,showGloss}
  const audio=useRef<HTMLAudioElement>(null),saved=useRef(start),save=useRef(onSave),trackRef=useRef<PocketTrack|null>(null)
  const [track,setTrack]=useState<PocketTrack|null>(null),[url,setUrl]=useState(''),[status,setStatus]=useState('Preparing pocket listening…'),[error,setError]=useState(''),[text,setText]=useState('')
  useEffect(()=>{save.current=onSave},[onSave])
@@ -23,7 +25,7 @@ export default function PocketAudioPlayer({pack,start,options,volume,showChinese
   const sync=()=>{
    const prepared=trackRef.current;if(!prepared)return
    const position=pocketPosition(prepared,element.ended?prepared.duration:element.currentTime)
-   saved.current={...start,steps:position.steps};save.current(saved.current);setText(position.text)
+   saved.current={...start,steps:position.steps};save.current(saved.current);setText(position.text);setEncounter('encounter' in position&&position.encounter===2?2:1)
    if('mediaSession' in navigator&&Number.isFinite(element.duration)&&element.duration>0)try{navigator.mediaSession.setPositionState({duration:element.duration,position:Math.min(element.currentTime,element.duration),playbackRate:element.playbackRate})}catch{/* Optional controls. */}
   }
   const play=()=>{setStatus('Pocket listening is playing. You can lock your phone.');if('mediaSession' in navigator)navigator.mediaSession.playbackState='playing'}
@@ -38,7 +40,7 @@ export default function PocketAudioPlayer({pack,start,options,volume,showChinese
   <h2>Pocket listening</h2><p>{pack.title}</p>
   <p role="status">{error||status}</p>
   {url&&<><audio ref={audio} src={url} controls preload="auto" aria-label="Pocket audio player" onError={()=>setError('This recording could not play. Return to the story and prepare it again.')}/><p>The recording is loaded on your phone for this session. Use your lock screen or headphone controls to pause and resume.</p><a href={url} download="chunky-chinese-pocket.wav">Download this recording</a></>}
-  {text&&(showChinese||showPinyin||showGloss)&&<div className="episode-line"><EpisodeInterlinear text={text} line={pack.chinese?.lines[text]} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss}/></div>}
+  {text&&(display.showChinese||display.showPinyin||display.showGloss)&&<div className="episode-line"><EpisodeInterlinear text={text} line={pack.chinese?.lines[text]} showChinese={display.showChinese} showPinyin={display.showPinyin} showGloss={display.showGloss}/></div>}
   {track&&!track.ended&&<p>This recording stops at the next manual story choice.</p>}
   <button type="button" onClick={()=>{audio.current?.pause();onExit(saved.current)}}>Return to story</button>
  </section>

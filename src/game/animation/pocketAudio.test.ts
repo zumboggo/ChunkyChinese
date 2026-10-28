@@ -20,6 +20,21 @@ describe('pocket audio routes',()=>{
   const state=replayStory(story,manual.end.steps,start.seed)
   expect(state.ended||story.nodes[state.cursor].type==='choice').toBe(true)
  })
+ it('repeats slides with independent audio settings without advancing twice',()=>{
+  const pack=JSON.parse(fs.readFileSync('public/stories/animated/'+catalog[0].path,'utf8')) as ChinesePackage
+  const single=planPocketAudio(pack,start,{...options,english:false,automaticChoices:false})
+  const repeated=planPocketAudio(pack,start,{...options,english:false,automaticChoices:false,secondEnabled:true,second:{chinese:false,english:true,showChinese:false,showPinyin:false,showGloss:false}})
+  expect(repeated.end).toEqual(single.end)
+  expect(repeated.beats).toHaveLength(single.beats.length*2)
+  for(let i=0;i<single.beats.length;i++){
+   const first=repeated.beats[i*2],second=repeated.beats[i*2+1]
+   expect(first.english).toBeUndefined()
+   expect(second.audio).toBeUndefined()
+   expect(second.text).toBe(first.text)
+   expect(second.steps).toEqual(first.steps)
+   expect(second.encounter).toBe(2)
+  }
+ })
  it('maps seeks to the correct scene and completion',()=>{
   const track={markers:[{at:0,steps:[],text:'one'},{at:5,steps:[null],text:'two'}],duration:10,end:{...start,steps:[null,null]}}
   expect(pocketPosition(track,4).text).toBe('one')
