@@ -9,7 +9,7 @@ export default function AudioModeDialog({open,running,options,onOptions,showChin
  return <dialog ref={dialog} className="audio-mode-dialog" aria-labelledby="audio-mode-title" onCancel={onClose} onClick={e=>{if(e.target===e.currentTarget)onClose()}}>
   <div className="audio-mode-panel">
    <h2 id="audio-mode-title">Audio Mode</h2>
-   <p>Listen through the story. Your preferences apply to every episode on this device.</p>
+   <p>Listen through the story. Preferences are saved on this device. Read, then listen is saved separately for LMS and other episodes.</p>
    <h3>First encounter</h3>
    <fieldset><legend>Audio</legend>
     <label><input type="checkbox" checked={options.chinese!==false} onChange={e=>onOptions({...options,chinese:e.target.checked})}/> Chinese audio</label>
@@ -23,8 +23,8 @@ export default function AudioModeDialog({open,running,options,onOptions,showChin
     <label><input type="checkbox" checked={showGloss} onChange={e=>onGloss(e.target.checked)}/> English</label>
     <button type="button" onClick={()=>{onChinese(false);onPinyin(false);onGloss(false)}}>Hide all text</button>
    </fieldset>
-   <h3>Second encounter</h3>
-   <label><input type="checkbox" checked={options.secondEnabled===true} onChange={e=>onOptions({...options,secondEnabled:e.target.checked})}/> Enable second encounter</label>
+   <h3>Read, then listen</h3>
+   <label><input type="checkbox" checked={options.secondEnabled===true} onChange={e=>onOptions({...options,secondEnabled:e.target.checked})}/> Read, then listen</label>
    <p className="audio-mode-note">Continue repeats the same slide with these settings, then advances. Automatic playback follows both encounters. Turn this off to use only the first encounter.</p>
    {options.secondEnabled&&options.second&&<fieldset><legend>Second encounter options</legend>{([
     ['chinese','Chinese audio'],['english','English audio'],['showChinese','Characters'],['showPinyin','Pinyin'],['showGloss','English'],
