@@ -4,9 +4,9 @@
   "source": {
     "kind": "original",
     "note": "Original fan adventure requested by David for Jonathan; no source novel or real-person likeness.",
-    "nextStart": "Episode 14: deliver according to the remembered allocation agreement, preparing the exposed intake before approaching bad weather. Use Episode 13 terminal water, now pre-Episode-11 water +6.",
-    "nextEndBefore": "Do not reopen resolved mysteries, restore losses or change allocation agreements without consent. One shared plot; local choices rejoin.",
-    "continuationNote": "Current water always comes from the preceding terminal water variable. Other historical fields carry unchanged."
+    "nextStart": "Episode 16: after the wind, inspect the protected supply and organize shared maintenance. Use Episode 15 terminal water; all prior losses, promises and the four-bucket delivery remain true.",
+    "nextEndBefore": "One common storyline. Do not restore destroyed items or heal An implicitly. Delivered water is transferred to recipients, not lost or newly available station stock. Follow inherited allocation agreements.",
+    "continuationNote": "Terminal water is the undistributed stock; preserve all other historic fields unchanged."
   },
   "completed": [
     {
@@ -66,9 +66,17 @@
     {
       "episode": "jedi-13-v1",
       "end": "Exactly four new measured buckets enter storage through the cleared pipe, old total +4. Old allocation agreements retained; no distribution yet. Min volunteers for the delivery work without requesting forgiveness."
+    },
+    {
+      "episode": "jedi-14-v1",
+      "end": "All four buckets reach the designated recipients under the existing allocation agreement; undistributed stock decreases by exactly four. Min accepts shared help. They return to prepare the intake."
+    },
+    {
+      "episode": "jedi-15-v1",
+      "end": "New cover and straps secured and checked before dangerous wind; all three withdraw indoors unharmed. Water and prior losses unchanged; agree to inspect after the weather passes."
     }
   ],
-  "assetsFrom": "stories/animated/jedi-13.json",
+  "assetsFrom": "stories/animated/jedi-15.json",
   "vocabularySupplement": ".local/episodes/jedi-01/supplement.json",
   "coverage": {
     "min": 80,
@@ -108,7 +116,10 @@
     "Episode 12 must use Episode 11 terminal water variable (old remembered water plus exactly 2 delivered buckets). Map the water graph/options forward +2 and sourceVariable water; carry every other historical field unchanged. Never initialize current water from the old pre-delivery memory.",
     "Fresh correctly labelled samples pass the trained ship crew’s full drinking-water clearance after the prescribed wait; repaired line remains isolated until controlled transfer. Stored water unchanged.",
     "Exactly four new measured buckets enter storage through the cleared pipe, old total +4. Old allocation agreements retained; no distribution yet. Min volunteers for the delivery work without requesting forgiveness.",
-    "Episode 14 must use Episode 13 terminal water (Episode 12/13 starting total +4, or pre-Episode-11 total +6). Map current water graph/options forward +4 and sourceVariable water. All other historical fields carry unchanged. No actual water distribution happened in Episode 13; delivery under the inherited allocation agreement begins next."
+    "Episode 14 must use Episode 13 terminal water (Episode 12/13 starting total +4, or pre-Episode-11 total +6). Map current water graph/options forward +4 and sourceVariable water. All other historical fields carry unchanged. No actual water distribution happened in Episode 13; delivery under the inherited allocation agreement begins next.",
+    "All four buckets reach the designated recipients under the existing allocation agreement; undistributed stock decreases by exactly four. Min accepts shared help. They return to prepare the intake.",
+    "New cover and straps secured and checked before dangerous wind; all three withdraw indoors unharmed. Water and prior losses unchanged; agree to inspect after the weather passes.",
+    "Episode 16 must use Episode 15 terminal water, values 2 through 20 by twos (pre-Episode-11 total +2 after +2, +4, -4). Four delivered buckets remain with their rightful recipients under the inherited allocation agreement; do not restore them to undistributed station stock. Episode 15 changes no water. Use sourceVariable water and preserve all other historical memory fields unchanged. Continue one main storyline: inspect the storm aftermath and agree shared maintenance. An remains limited; no assumed healing."
   ],
   "cover": "public/stories/animated/jedi/series-cover.jpg",
   "coverArt": {
@@ -118,9 +129,9 @@
   },
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through jedi-13-v1",
-    "nextStart": "Episode 14: deliver according to the remembered allocation agreement, preparing the exposed intake before approaching bad weather. Use Episode 13 terminal water, now pre-Episode-11 water +6.",
-    "nextEndBefore": "Do not reopen resolved mysteries, restore losses or change allocation agreements without consent. One shared plot; local choices rejoin.",
-    "assetsFrom": "stories/animated/jedi-13.json"
+    "note": "Published through jedi-15-v1",
+    "nextStart": "Episode 16: after the wind, inspect the protected supply and organize shared maintenance. Use Episode 15 terminal water; all prior losses, promises and the four-bucket delivery remain true.",
+    "nextEndBefore": "One common storyline. Do not restore destroyed items or heal An implicitly. Delivered water is transferred to recipients, not lost or newly available station stock. Follow inherited allocation agreements.",
+    "assetsFrom": "stories/animated/jedi-15.json"
   }
 }
