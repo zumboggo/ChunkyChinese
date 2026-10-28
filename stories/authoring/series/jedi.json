@@ -4,9 +4,9 @@
   "source": {
     "kind": "original",
     "note": "Original fan adventure requested by David for Jonathan; no source novel or real-person likeness.",
-    "nextStart": "Episode 9: fulfill eastern station handover or carry disabled-call warning and Ren’s account to the mother. Then pursue the person controlling western water flow; preserve actual key/control outcome and all prior losses.",
-    "nextEndBefore": "Do not restore destroyed records, equipment, people or water. Do not presume forgiveness or that a volunteer has already agreed.",
-    "continuationNote": "Ren admits ordering recorded pleas to repeat because nobody answered. Episode 8: take removes eastern key, blocking old playback requests and new help calls; trust leaves key with Ren, old playback switched off but restart risk remains; shared requires inspection/test, locks old-request switch with Jonathan holding its key while new help calls remain live and Jonathan/An provide interim oversight pending a willing second operator. Ren commits to personal account; written statement optional, no assumed forgiveness. An injury/beacon and all earlier losses, water totals and records remain unchanged. Ren denies controlling western water flow; deep reserve unknown."
+    "nextStart": "Episode 10: the same shared morning repair of the town water supply on every route. Past losses, key choices and promises remain remembered context. Start with people arriving for work and a concrete repair task, not another hidden controller or repeated-voice mystery.",
+    "nextEndBefore": "Do not reopen the resolved voice/bypass/deep-reserve mystery, resurrect anyone, restore lost items or invent drinking water. Keep one main plot with local expressive choices; track physical resources honestly.",
+    "continuationNote": "Explicit user request: all threads converge now; memory of choices continues, one main storyline going forward."
   },
   "completed": [
     {
@@ -46,9 +46,13 @@
     {
       "episode": "jedi-08-v1",
       "end": "Ren admits ordering recorded pleas to repeat because nobody answered. Episode 8: take removes eastern key, blocking old playback requests and new help calls; trust leaves key with Ren, old playback switched off but restart risk remains; shared requires inspection/test, locks old-request switch with Jonathan holding its key while new help calls remain live and Jonathan/An provide interim oversight pending a willing second operator. Ren commits to personal account; written statement optional, no assumed forgiveness. An injury/beacon and all earlier losses, water totals and records remain unchanged. Ren denies controlling western water flow; deep reserve unknown."
+    },
+    {
+      "episode": "jedi-09-v1",
+      "end": "Ren personally accounts to Mother without obtaining forgiveness. Eastern key ownership and old-playback state unchanged; take uses a doorstep message point, trust retains Ren’s control under public scrutiny, shared gains Mother’s explicit one-shift consent and trained oversight. Min admits the western bypass serves a separate external cooling pipes for the sick shelter. Finite surface cistern feeds it by gravity; local underground cistern empty, no secret drinkable reserve. All routes close the failing bypass, preserve losses and water totals, and commit to restoring the town supply together at dawn. One main storyline henceforth; choices remembered, not multiplying plot branches."
     }
   ],
-  "assetsFrom": "stories/animated/jedi-08.json",
+  "assetsFrom": "stories/animated/jedi-09.json",
   "vocabularySupplement": ".local/episodes/jedi-01/supplement.json",
   "coverage": {
     "min": 80,
@@ -59,7 +63,7 @@
     "language": "Short simplified Mandarin, contextual interlinear pinyin and cached audio. Screenshot membership is not reading mastery.",
     "coverageNote": "New learner: no assessed-known export. The 80% floor measures membership only in the supplied inventory plus proposed glossary, not mastery. All additional basic scaffolding is annotated and audited privately; never promote it to familiar to pass a check.",
     "teaserArtwork": "ImageGen first, then video. Use Jon’s approved likeness reference; shonen-anime Jedi art is welcome (David, 2026-10-26). Keep generated video at or below $0.15 total per clip, including retries.",
-    "choiceConsequences": "Meaningful danger, morally ambiguous informed choices, survival and material endings can change. Preserve resulting losses; do not silently reconverge them away.",
+    "choiceConsequences": "From Episode 9 onward, preserve memory of previous choices and material losses, but keep one main storyline. Use local expressive choices and callbacks that rejoin the shared plot. Do not multiply permanent narrative branches.",
     "teaserDialogue": "Every opening teaser includes one cool or epic spoken English phrase by Jon or another character, foreshadowing the highest-tension moment. ImageGen first; exact words once, no extra speech. User preference 2026-10-27."
   },
   "continuity": [
@@ -80,7 +84,9 @@
     "Northern tower red light is new lead. Voice, deep reserve and origin of closed-station flow remain unexplained.",
     "Episode 6 repairs station door using new spare plate, keeps destroyed archive/equipment gone and home pipe unchanged. Both alive; lift: An uninjured, warning unsent, beacon intact; signal: warning sent, An arm injured and cannot climb/lift; relay after inspect: warning sent, An safe, beacon circuit permanently lost. Stored drinking water unchanged. Upper relay next.",
     "Episode 7 separately discovers recorded water requests routed through dry pipes. Mother never consented to replay; child safe offstage. Destroy loses relay records; preserve leaves playback risk and recorded dissent; isolate requires consenting voice test AND retained station archive, stops playback and retains records. An injury persists; burned beacon prevents transmission. No water or past losses restored. Eastern manual request next; operator and deep reserve unknown.",
-    "Ren admits ordering recorded pleas to repeat because nobody answered. Episode 8: take removes eastern key, blocking old playback requests and new help calls; trust leaves key with Ren, old playback switched off but restart risk remains; shared requires inspection/test, locks old-request switch with Jonathan holding its key while new help calls remain live and Jonathan/An provide interim oversight pending a willing second operator. Ren commits to personal account; written statement optional, no assumed forgiveness. An injury/beacon and all earlier losses, water totals and records remain unchanged. Ren denies controlling western water flow; deep reserve unknown."
+    "Ren admits ordering recorded pleas to repeat because nobody answered. Episode 8: take removes eastern key, blocking old playback requests and new help calls; trust leaves key with Ren, old playback switched off but restart risk remains; shared requires inspection/test, locks old-request switch with Jonathan holding its key while new help calls remain live and Jonathan/An provide interim oversight pending a willing second operator. Ren commits to personal account; written statement optional, no assumed forgiveness. An injury/beacon and all earlier losses, water totals and records remain unchanged. Ren denies controlling western water flow; deep reserve unknown.",
+    "Ren personally accounts to Mother without obtaining forgiveness. Eastern key ownership and old-playback state unchanged; take uses a doorstep message point, trust retains Ren’s control under public scrutiny, shared gains Mother’s explicit one-shift consent and trained oversight. Min admits the western bypass serves a separate external cooling pipes for the sick shelter. Finite surface cistern feeds it by gravity; local underground cistern empty, no secret drinkable reserve. All routes close the failing bypass, preserve losses and water totals, and commit to restoring the town supply together at dawn. One main storyline henceforth; choices remembered, not multiplying plot branches.",
+    "David’s October 28 instruction: Episode 9 closes the old threads. From now on, retain memory of prior choices but use one main storyline. Local choices rejoin; do not multiply persistent branches."
   ],
   "cover": "public/stories/animated/jedi/series-cover.jpg",
   "coverArt": {
@@ -90,9 +96,9 @@
   },
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through jedi-08-v1",
-    "nextStart": "Episode 9: fulfill eastern station handover or carry disabled-call warning and Ren’s account to the mother. Then pursue the person controlling western water flow; preserve actual key/control outcome and all prior losses.",
-    "nextEndBefore": "Do not restore destroyed records, equipment, people or water. Do not presume forgiveness or that a volunteer has already agreed.",
-    "assetsFrom": "stories/animated/jedi-08.json"
+    "note": "Published through jedi-09-v1",
+    "nextStart": "Episode 10: the same shared morning repair of the town water supply on every route. Past losses, key choices and promises remain remembered context. Start with people arriving for work and a concrete repair task, not another hidden controller or repeated-voice mystery.",
+    "nextEndBefore": "Do not reopen the resolved voice/bypass/deep-reserve mystery, resurrect anyone, restore lost items or invent drinking water. Keep one main plot with local expressive choices; track physical resources honestly.",
+    "assetsFrom": "stories/animated/jedi-09.json"
   }
 }
