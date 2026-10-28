@@ -4,9 +4,9 @@
   "source": {
     "kind": "original",
     "note": "Original fan adventure requested by David for Jonathan; no source novel or real-person likeness.",
-    "nextStart": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
+    "nextStart": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
     "nextEndBefore": "Preserve all historical memories, losses, injury limits, allocations and water. One shared storyline.",
-    "continuationNote": "Follow approved vocabulary plan; independently audit target use on every route."
+    "continuationNote": "Follow approved vocabulary allocation; check meaningful use on every shared route."
   },
   "completed": [
     {
@@ -90,9 +90,17 @@
     {
       "episode": "jedi-19-v1",
       "end": "All applicants have accessible paper submission and written terms, with responses promised tomorrow. Ryn completes a safe ground-level disconnected-pipe assessment under a qualified specialist; references and all applications still require fair review. No hiring promise, roof repair or water change. Jon learns to listen without speaking for applicants."
+    },
+    {
+      "episode": "jedi-20-v1",
+      "end": "Ryn completes the supervised skills assessment and accepts written paid probation terms. All applicants receive replies. Min rejects appearance-based judgment and unpaid overtime. Pipe work is assigned only to qualified staff; roof work needs separately qualified specialists. The centre remains closed pending repairs. Water and all historical consequences remain unchanged."
+    },
+    {
+      "episode": "jedi-21-v1",
+      "end": "Edda, the garden keeper, helps Jonathan replace the urge to attack with patient protection. A qualified specialist inspects the nest area; the old path is isolated pending appropriate management and an alternate path is checked safe. Edda’s grower relative promises seedlings for the opening stall; this is a promise, not delivered stock. No station water is used. Repairs and the centre reopening remain pending."
     }
   ],
-  "assetsFrom": "stories/animated/jedi-19.json",
+  "assetsFrom": "stories/animated/jedi-21.json",
   "vocabularySupplement": ".local/episodes/jedi-01/supplement.json",
   "coverage": {
     "min": 80,
@@ -146,7 +154,10 @@
     "Episodes 16 and 17 change no water or historical memory fields. Episode 18 inherits Episode 17 water through sourceVariable water (2 through 20 by twos). Delivered buckets remain with recipients. Main centre remains closed for roof repairs; only the separately inspected temporary courtyard is ready. Ivo will ask his son about attending; do not assume consent. Follow coverage-plan-16-25.json for Episode 18 targets and Warm, self-questioning adolescent voice.",
     "Temporary learners create useful inspection instructions after Jon learns to listen instead of show off. Children attend optionally; Ivo’s son is not assumed to have attended. Main centre still closed; paid qualified maintenance recruitment is next. All prior memory and water unchanged.",
     "All applicants have accessible paper submission and written terms, with responses promised tomorrow. Ryn completes a safe ground-level disconnected-pipe assessment under a qualified specialist; references and all applications still require fair review. No hiring promise, roof repair or water change. Jon learns to listen without speaking for applicants.",
-    "Episodes 18 and 19 do not change any water or memory. Episode 20 inherits Episode 19 terminal water 2 through 20 by twos through sourceVariable water; delivered buckets stay with recipients. Ryn is a new adult applicant, Vek a new older administrator. Her Episode 19 test was a preliminary safe assessment, not a hiring promise; Episode 20 continues the formal supervised interview and written paid trial terms. The damaged centre remains closed; no implicit healing, resurrection or stock gain. Follow the approved Episode 20 vocabulary allocation."
+    "Episodes 18 and 19 do not change any water or memory. Episode 20 inherits Episode 19 terminal water 2 through 20 by twos through sourceVariable water; delivered buckets stay with recipients. Ryn is a new adult applicant, Vek a new older administrator. Her Episode 19 test was a preliminary safe assessment, not a hiring promise; Episode 20 continues the formal supervised interview and written paid trial terms. The damaged centre remains closed; no implicit healing, resurrection or stock gain. Follow the approved Episode 20 vocabulary allocation.",
+    "Ryn completes the supervised skills assessment and accepts written paid probation terms. All applicants receive replies. Min rejects appearance-based judgment and unpaid overtime. Pipe work is assigned only to qualified staff; roof work needs separately qualified specialists. The centre remains closed pending repairs. Water and all historical consequences remain unchanged.",
+    "Edda, the garden keeper, helps Jonathan replace the urge to attack with patient protection. A qualified specialist inspects the nest area; the old path is isolated pending appropriate management and an alternate path is checked safe. Edda’s grower relative promises seedlings for the opening stall; this is a promise, not delivered stock. No station water is used. Repairs and the centre reopening remain pending.",
+    "Episodes 20 and 21 do not change water or historical memories. Episode 22 inherits Episode 21 terminal water 2 through 20 by twos via sourceVariable water. Delivered buckets remain with recipients; deaths, equipment losses, An injury limits and promises remain binding. Ryn has accepted written paid probation terms for qualified pipe work. Roof repairs require separately qualified specialists and are not yet verified complete; the centre remains closed. Edda is the new garden keeper. The nest area stays isolated for qualified management; a safe alternate path is available. Her relative has promised seedlings, but they are not yet delivered stock. Episode 22 follows the approved food-stall vocabulary allocation, transparent accounts and rejection of unsupported honey claims. Do not take honey from the protected nest or assume free water for the stall."
   ],
   "cover": "public/stories/animated/jedi/series-cover.jpg",
   "coverArt": {
@@ -156,9 +167,9 @@
   },
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through jedi-19-v1",
-    "nextStart": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
+    "note": "Published through jedi-21-v1",
+    "nextStart": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
     "nextEndBefore": "Preserve all historical memories, losses, injury limits, allocations and water. One shared storyline.",
-    "assetsFrom": "stories/animated/jedi-19.json"
+    "assetsFrom": "stories/animated/jedi-21.json"
   }
 }
