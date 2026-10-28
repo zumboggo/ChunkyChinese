@@ -795,5 +795,51 @@
       "title": "I’ll earn my own strength.",
       "durationSeconds": 9
     }
+  },
+  {
+    "id": "jedi-16-v1",
+    "category": "jedi",
+    "episode": 16,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-16-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-16-intro.poster.jpg",
+      "title": "What the Storm Left",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode 16 · What the Storm Left",
+        "paragraphs": [
+          "The storm has passed. The protected intake must be inspected, and the earlier deliveries, losses and agreements still stand.",
+          "Jonathan wants the community to return to ordinary life. Beyond the water station, a damaged learning centre is waiting for a careful decision."
+        ]
+      }
+    },
+    "path": "jedi-16.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 16: What the Storm Left",
+      "description": "After the storm, Jon wants a quick all-clear so the community can resume daily life. An directs a ground-level inspection; the water protection holds, but the learning centre's roof and furniture need work. Jon stops treating speed as proof of competence. They agree to reopen the centre only after trained inspection and repair."
+    }
+  },
+  {
+    "id": "jedi-17-v1",
+    "category": "jedi",
+    "episode": 17,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-17-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-17-intro.poster.jpg",
+      "title": "A Place to Come Back To",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode 17 · A Place to Come Back To",
+        "paragraphs": [
+          "The water protection has held. The damaged learning centre remains closed while qualified repairs are arranged; temporary classes will meet in a separately inspected safe space.",
+          "Mother is helping families return. A teacher named Sela and a parent named Ivo have different ideas about what a child needs to bring back to school."
+        ]
+      }
+    },
+    "path": "jedi-17.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 17: A Place to Come Back To",
+      "description": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing."
+    }
   }
 ]

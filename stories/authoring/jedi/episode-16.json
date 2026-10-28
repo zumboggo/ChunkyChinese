@@ -1,0 +1,872 @@
+{
+  "episode": "jedi-16-v1",
+  "title": "The Voices Beneath the Water · Episode 16: What the Storm Left",
+  "planning": {
+    "storytellingVoice": "Immediate drama",
+    "voiceReason": "Urgent inspection tests Jon’s impulse to rush.",
+    "earlyCare": "Jon notices Min rubbing his cold hands and offers a break.",
+    "desire": "Reopen the centre quickly after checking the water protection.",
+    "obstacle": "Jon confuses a quick glance at the roof with a safe inspection.",
+    "dramaticChange": "Jon accepts An’s stop and separates genuine progress from false reassurance.",
+    "sourceBoundary": "After the storm, Jon wants a quick all-clear so the community can resume daily life. An directs a ground-level inspection; the water protection holds, but the learning centre's roof and furniture need work. Jon stops treating speed as proof of competence. They agree to reopen the centre only after trained inspection and repair.",
+    "sceneActivities": [
+      "Jon inspects ground-level pipe; An remains seated; Min records. At school no entering damaged zone; team returns to safe meeting point."
+    ],
+    "actingSignature": {
+      "Jonathan": "Plain practical questions; open hand at a boundary, quiet attention afterward.",
+      "An": "Specific limits and short questions; supported seated rest while reviewing, no assumed healing.",
+      "Min": "Urgent explanations soften into admitting uncertainty; rests attentive when corrected.",
+      "Mother": "Concrete requests and accurate accounting; no presumed forgiveness or renewed station shift.",
+      "Sela": "Patient concrete questions; does not reach for private report. Quiet open posture and attentive gaze.",
+      "Ivo": "Begins with explanations and permissions; shifts to asking his son. Guarded hands, then release into attentive rest."
+    },
+    "listenerTurn": "An says Jon need not show he can fix everything; listener Jonathan, then one separate nod and restraint entry.",
+    "payoff": "Protection inspected and holding; no stock changed. Learning-centre roof visibly unstable, remains closed. Qualified repair/inspection arranged; safe interim meeting space available, teacher Sela invited to plan temporary lessons.",
+    "freshQuestion": "Can families return to safe temporary classes while trained repairs are organized?",
+    "teaser": {
+      "dialogue": "We rebuild this together.",
+      "moment": "Three adults choose a safe plan together outside the damaged centre."
+    },
+    "convergence": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
+    "artDirection": "Exactly three people, cooperative relationships and equal visual dignity.",
+    "targetVocabulary": [
+      "冒",
+      "冻",
+      "连忙",
+      "迅速",
+      "透",
+      "高度",
+      "摇",
+      "弯",
+      "腰",
+      "擦",
+      "敲",
+      "张",
+      "闭",
+      "严肃",
+      "任何",
+      "复杂",
+      "不得不"
+    ],
+    "reviewVocabulary": []
+  },
+  "video": {
+    "src": "stories/animated/jedi/jedi-16-intro.mp4",
+    "poster": "stories/animated/jedi/jedi-16-intro.poster.jpg",
+    "dialogue": "We rebuild this together.",
+    "totalSeconds": 9,
+    "stillSeconds": 3,
+    "motionSeconds": 3.2916666666666665,
+    "reactionHoldSeconds": 2.7083333333333335,
+    "nativeGeneratedSeconds": 6,
+    "editNote": "Clean first 3.3 seconds; audio through 3.2 seconds, then reaction hold.",
+    "model": "prunaai/p-video-2-pro",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off"
+    },
+    "verifiedUSDPerSecond": 0.01,
+    "maximumCostUSD": 0.06,
+    "paidRequests": 1,
+    "predictionId": "dhst7f3t19rmr0d1g42a8vcpym",
+    "prompt": "Animate this exact reference for six seconds. Only Jon, the brown-haired bearded man in cream and brown at left, speaks. He says exactly once in clear English: \"We rebuild this together.\" Begin at second 0.5, finish by second 4.5, then close his mouth. Other two people silent, mouths closed. No extra words, repetitions, paraphrases, fillers, humming, narration, singing or other voices. Quiet ambience below clear dialogue. Jon listens to An and then speaks. Seated An keeps her left arm resting and points gently with her right hand toward the sheet Min holds. Min holds the sheet still. Preserve all three faces and clothes, anatomy and hands. Exactly three adults visible throughout. Locked medium-wide camera, no zoom or cut, no extra people, new objects, magic or text.",
+    "reference": "stories/authoring/jedi/art/episode-16-reference.png",
+    "nativeSpeech": true,
+    "checks": {
+      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-16/native.mp4",
+      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-16/intro.mp4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "fps": 24,
+      "hold_seconds": 3.0,
+      "motion_seconds": 3.2916666666666665,
+      "reaction_hold_seconds": 2.7083333333333335,
+      "total_seconds": 9.0,
+      "decoded_audio_seconds": 9.00275,
+      "audio_non_silent": true,
+      "audio_starts_after_hold": true,
+      "hold_mean_pixel_difference": 0.002459016393442623,
+      "sha256": "5aee803654dc21c529fcd9fbd6525b62f9425f33c6989ed11e69ff9f273023f2",
+      "expected_dialogue": "We rebuild this together.",
+      "speech_check": "pass",
+      "review": "One visual/listening review remains; automated checks do not prove natural acting or lip sync.",
+      "transcription": "We rebuild this together."
+    }
+  },
+  "continuation": {
+    "end": "Protection inspected and holding; no stock changed. Learning-centre roof visibly unstable, remains closed. Qualified repair/inspection arranged; safe interim meeting space available, teacher Sela invited to plan temporary lessons.",
+    "nextStart": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
+    "nextEndBefore": "Preserve all memory fields, water totals, allocation agreements, deaths, injuries and equipment losses. Keep one shared plot.",
+    "note": "Follow approved vocabulary plan; actual target coverage audited across all routes."
+  },
+  "targetAudit": {
+    "episode": 16,
+    "routeCount": 16,
+    "targets": [
+      {
+        "word": "冒",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "Min拿出自己的杯子。杯子里的热气还在冒。",
+          "还在冒热气，你先拿着暖暖手。"
+        ]
+      },
+      {
+        "word": "冻",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "冻坏了吗？先等一等。",
+          "没有冻坏。我想迅速检查，然后回去。"
+        ]
+      },
+      {
+        "word": "连忙",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我本来想走近，连忙停住了。",
+          "门一开，我连忙叫An先过去。"
+        ]
+      },
+      {
+        "word": "迅速",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "没有冻坏。我想迅速检查，然后回去。",
+          "迅速，不表示安全。先看记录。"
+        ]
+      },
+      {
+        "word": "透",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "任何结论，都要有检查。我还没有看透。",
+          "门边还有水，那张纸已经湿透了。"
+        ]
+      },
+      {
+        "word": "高度",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "房顶只有这个高度，我可以上去看吗？",
+          "知道高度，还不够。房顶还在摇。"
+        ]
+      },
+      {
+        "word": "摇",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "管子没有摇。检查可以结束了吗？",
+          "知道高度，还不够。房顶还在摇。"
+        ]
+      },
+      {
+        "word": "弯",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "这里有一根弯的管子。从前也是弯的吗？",
+          "弯的坏管子先别碰，然后检查修好的管子。别以为自己什么都知道。"
+        ]
+      },
+      {
+        "word": "腰",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我看了很久，腰有点酸。",
+          "腰不舒服，为什么不说？"
+        ]
+      },
+      {
+        "word": "擦",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "风停了。Min擦着脸，没有先去检查。",
+          "我先擦记录，你看下面的名字。"
+        ]
+      },
+      {
+        "word": "敲",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "回去的时候，Min轻轻敲门。",
+          "敲两下，里面的人知道是我们。"
+        ]
+      },
+      {
+        "word": "张",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "一张记录放在An面前。她可以坐着看。",
+          "门边还有水，那张纸已经湿透了。"
+        ]
+      },
+      {
+        "word": "闭",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "风来了。我闭了一下眼睛，等沙过去。",
+          "闭眼睛可以挡沙，闭眼睛也不能保护他们。"
+        ]
+      },
+      {
+        "word": "严肃",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "她的声音很严肃。我停下来，听她说。",
+          "我说得严肃，是因为我相信你会听。"
+        ]
+      },
+      {
+        "word": "任何",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "任何结论，都要有检查。我还没有看透。",
+          "任何人都可以说不安全，不用害怕。"
+        ]
+      },
+      {
+        "word": "复杂",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我看到了。这比我想的复杂。",
+          "既然复杂，我们不得不等会修房顶的人。"
+        ]
+      },
+      {
+        "word": "不得不",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "既然复杂，我们不得不等会修房顶的人。",
+          "我不得不重新选择。不过，仍然答应保护他们。"
+        ]
+      }
+    ],
+    "reviews": [],
+    "method": "Distinct spoken entries per completed route; choice labels excluded. 冒 excludes 冒险; 处 requires reviewed chǔ clauses; 以来 requires real temporal construction. Full semantic/pinyin human review accompanies counts."
+  },
+  "artwork": {
+    "generator": "Built-in ImageGen",
+    "reference": "stories/authoring/jedi/art/episode-16-reference.png",
+    "direction": "Exactly three people, cooperative relationships and equal visual dignity."
+  },
+  "englishAudio": [
+    {
+      "sha256": "a1c8035445d628ab35f9578fc3821d7fc47d2ef720418a23608e73bbf99b692d",
+      "text": "The wind has stopped. Min wipes his face, instead of rushing to inspect.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e544e3db1b8d57997bce477a0bc2b305f6769470e7f88f6d82263effd3b9beef",
+      "text": "Are you freezing? Wait a moment first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a94b97b10d80cff32bc99cf09e096e6d73537f3c46ed1915515feb08d702a043",
+      "text": "I'm not freezing. I want to inspect quickly, then go back.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a53d69948b8cde5efcad730d4439467ae3d75d02fcd1517d78d97165f055712c",
+      "text": "Being quick does not mean being safe. Look at the records first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "bad81690db265c072eae81f966cc919349eb57ca6a80336bbf443bb2c4dd7693",
+      "text": "An has a record sheet in front of her. She can read it sitting down.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e08f733e86a68d644114cb09d8f2f46dcf8bd949214fd941e7df70aa420c4881",
+      "text": "I'll wipe the record first; look at the names below.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "cfdab56e2d4873d1450aacedc98e0bba6a0daf7ae4d9743444bb4be8e5e385c4",
+      "text": "The pipe isn't swaying. Can we finish the inspection?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8d1e36a91644467cd7bfb3f6fa130ce4b51d80d943b1053abfa9b1b8be5f3d28",
+      "text": "Any conclusion needs an inspection behind it. I haven't fully understood it yet.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e29b105b72d51715af73966746c93815e3d3a24cdc441daa3c51108ca9df2153",
+      "text": "Her voice is serious. I stop and listen to her.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d7d0d6a1373daab962db963742fb5d9164a6c07c5b475f2e78d77f7316cb039d",
+      "text": "You check the records; I'll go with Min to inspect the pipe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d6911c70de82a8570b759a816b774e71afedf2e5560fd1f2f557a3cb17da2115",
+      "text": "Anyone can say it is unsafe; there's no need to be afraid.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "675adb2ecc5030f383953a220ff76b01e80975f3460fa5b94934daa0c03c5b18",
+      "text": "What we previously promised to inspect must not be missed today.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "07908a1373c6fb7f608d54d026943d995de8d53ba84669116b23cef7a336b8a9",
+      "text": "An, what do you want to inspect first?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "15eada243ff6ee786aa386dd9ac2ab0d45e00f1185a43c7ef42cd2cba4427649",
+      "text": "First look under the cover. Don't just look on top.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8d8be19d22b309329ff7eb3f02f47bbfd0f67fe01eb1e9658b51207d5fee263c",
+      "text": "From here, I look underneath the pipe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "50604a4013aad52f8e0b377573eab8e7ed735f4ae532308bff9145fd7d9b7357",
+      "text": "There is a bent pipe here. Was it bent before too?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "347080f687d9becdbf6eae1e26c41c3d8dc57f3dbfe7562ff1e865dd2faee769",
+      "text": "Yes. That is the old damaged pipe. The repaired pipe is underneath.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c098df850ed87984f2b586ab1c5fa0057b7105cae766ec54a508b0eb67fb00e1",
+      "text": "Do not touch the bent damaged pipe; then inspect the repaired pipe. Do not assume you know everything.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2477767b7930a392a6d931352278ee3a485ef91ff22250a721c36788ef1a5c38",
+      "text": "I look for a long time; my lower back aches a little.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c635278894cf5698c523e45d0dc42f29da5649e8bcc295955c60558d94658dc8",
+      "text": "If your back is uncomfortable, why not say so?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3c028e8d07d51dfd28cee8573c9c4bc9d63abfb981876d36cdf2b7b643b84159",
+      "text": "I wanted to finish sooner. But I can wait a moment first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e2d8a628d0edca6d22d615009777d254310472bf2334e913839ee3d96485096d",
+      "text": "Min takes out his own cup. Steam is still rising from it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "00c0fff41d28481012d17d8634afb01580f01269f35b72d86799290367b8f63c",
+      "text": "I brought this from home; it isn't water from the station.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1443fc63710f58892dfbec704768477dbb99545729e150658ba0b5d04920a499",
+      "text": "It's still steaming. Hold it to warm your hands first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "cfcf345c2158cbc869ecf6b3f7f8e00190e4199abf3a4bc3029a87ac683324c1",
+      "text": "I'll wait a moment. Then, I'll check the record again.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "033ea032f85a138dc8541afc91a1676abfa07c9f5428e032836a93244544f61d",
+      "text": "The places you've inspected I will inspect too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "62176ed704cb4d4930ffdcb6763fdc2d186893827fa3686ad9944d896fd1517a",
+      "text": "We inspect according to the record and find no damaged parts.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "38e33a93ad3e347b59a4b7d7c7a494b3719645d57ccc2e7c3fbbbeb28d16d0a5",
+      "text": "The cover is still in place, and the pipe isn't leaking. The water supply is unchanged.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "6623b4eb9715a419d63a094a0f1065304509570ae463c057282ea90d6bc0be4c",
+      "text": "We took no extra water and made no new distribution. The record is unchanged.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7da10b29d4ac11ed82327795cf3fffb49d2333b246de018c046ea92762d76856",
+      "text": "Then let's go to the learning centre. Everyone is waiting to return.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b11dfcf20a069a3123f6fa013210b4bc8879e626a5d14f485ec22adae4f212c5",
+      "text": "Outside the centre, An sits in a safe place. We do not open the door.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "316dcf1177474cd42ee0589f4c7ff0e3aad11e9f73944620a50e48dd29b30914",
+      "text": "There is still water beside the door; that sheet of paper is soaked through.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "df0da57f14db17e7ae05b0aedd483bfb2e51f389dc70b30c9119ddc5e7d27d5a",
+      "text": "The roof is only this high; can I go up and look?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "844ae2f5ab3c9cd6f233d2ea1ce35f0f96cb1630f7effb435954753fc1d76c9e",
+      "text": "Knowing the height is not enough. The roof is still swaying.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "437fb0d6c4a65aba8cd5f64ddce05804ce1d9c2a1e53a106f32773e77ee2ac68",
+      "text": "I had wanted to go closer, but quickly stop.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1e5f2076bb2a00061ca0f08a387e541c925c77f5fb4115844211b56988e9be44",
+      "text": "Do not open the door! Everyone is waiting outside.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f77c5196e2eed4bcf97d528049bba1710064713a0e2c29cac3fb3ce1166d3730",
+      "text": "I see it. This is more complicated than I thought.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "642f44dbb4fb1bc662495cc0bd769403922cc11cf3551bc8a5c590b280344033",
+      "text": "Since it is complicated, we have to wait for someone who understands roofs.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f772c66c0c118d4fa1af970ed25fab33fed8fb956f8407164fdb3e8650cd935a",
+      "text": "I wanted to help quickly, but I should not take risks.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "45de4729d729646319319f2eba834ea411542ce2c39fc8d446b68497899e7cc1",
+      "text": "I'll explain it to everyone; I won't say it's safe already.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "6ce48c487041c6f459877627456f4c8a4132dcb238636e99d7a7f55b8c24790e",
+      "text": "People trust me. Will asking them to wait make them sad?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "574fc3abf56e4b19c3ef5aafb234d1a71261b47e04087885ad0fc0617bf8be36",
+      "text": "I sound serious because I trust you to listen.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "aba0462150528a0346ada803788e83e9fe5ae16f9374cf85a13284bfab8710f1",
+      "text": "You do not have to show that you can fix everything. You need to protect the people waiting for your answer.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "733c28346a09449184bf5ad41913d1b8e8264e1072bc06723365886bd3700ef7",
+      "text": "I nod slowly and do not approach that door again.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d8d82c543ff185eb5ac62c523064d3194175dd5fc993246c11da9102613afa52",
+      "text": "I have to make a different choice. But my promise to protect everyone hasn't changed.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c356c49e158b6dd118f648a3b316dac5235b9de837f70446b7193433b6315e2e",
+      "text": "The wind returns. I close my eyes briefly and wait for the sand to pass.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a5c11f45773a1624c6f6b2765fa161692648a7577d36b0a1cd341329e1c6bca8",
+      "text": "Closing your eyes can keep out sand; closing your eyes cannot protect them, either.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a85b3db597332a8c02328e5ba2c40f179ee546301b15f8a74012a89d3640e7ca",
+      "text": "I know. I am willing to study this patiently and listen to you.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "06d7c891f1fe63e576307cba11e491a955c77f238dd57adb7bb140585f71fcd2",
+      "text": "Someone who understands roofs is on the way. Let us return to the safe building and wait.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "494a2a8c4e9814e2ce3bff988eb14eaedf91fbcd667f82ea8aa03f1c153abec0",
+      "text": "When we return, Min knocks gently on the door.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1f3445e98949ee42d53a2998b5c875566c20d8cbe3bf91499c94bbd271b4c890",
+      "text": "Two knocks; the people inside know it is us.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "231c07c9e89528a58469413c762a221da86ed6e51e0e2c4f4daab8de86735b61",
+      "text": "As soon as the door opens, I quickly ask An to go through first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "64900cb1bcc24c176e6ac668854b19481a5a792bbd402bf8dbec8f381a6dd91f",
+      "text": "Let's make this clear first: the centre cannot open yet. Don't put children at risk.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "95a881064a0c92e068d7646fac8107bccc3aeff0f74050684d871cbaf2152705",
+      "text": "The roof specialist says we can wait here, but the centre needs repairs.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ed8c806474d5de1c5fa54bd58fbb787287df019ca6cf8594b0ec4582a15cf63f",
+      "text": "Then where will the children learn?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "63826ddbc45b8355a28bf03d61c946660a519484aa8138f9de425c3dd981f9b1",
+      "text": "We can't just hand them a plan without listening to them.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f412a21cddb02a7a15326380a52c50e527c7cb3729918eac6383db92cd067ce7",
+      "text": "The person teaching the children knows how to help; we can't decide everything for the teacher.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1b36519b727982965014be2572c3a4fdcd506873eb7e1f9085dbe5b2a8d3e7f4",
+      "text": "Mother has gone to find Sela, who teaches the children. Let's listen together.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3e659dcf7dccc1b66a7c2b611451d0d6a6906b98c40baa46a101cc16f916cdac",
+      "text": "First ask someone qualified to inspect another space. Invite everyone only when it is safe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "32603bc44df3a85016a7d73c0c3e877f30d671f0541caade8eeaac883c5698d6",
+      "text": "My promise is to help together, not to decide alone.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "fc59e771a4159c6498d9bd2633db461c727c1354f57764a817393f3eeda17459",
+      "text": "We record which parts of the roof need repair and the children's wish to learn.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a6da33bb833af752ef83919387c0af666f9a6c04fec45f59d458d1bf770cbebd",
+      "text": "The water is unchanged. The centre has not opened yet. But now we know whom to listen to next.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1a985ea2968e1febf2b6d02440a976847cfcca2f1a0dfb90c76b21b999e22382",
+      "text": "Check the earlier records first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3eac5a8d745b8a5383e22983b588441fbcb8339011e8df878b7d9fd785c3899c",
+      "text": "First listen to what An wants to inspect.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1f7e46dd89fe5d7efdccb6f899480f38362f6ebd92acd0cedff1907c07163648",
+      "text": "I will pause instead of saying I am fine.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a476161a8ba11afcd7a78d1f4709cb7d142c49b52fe15e63aac7d483c1b36b00",
+      "text": "We inspect separately and share responsibility.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "91fdda308519c71c105912ba8ec8a3e310129d552705d382081ced2bd98da256",
+      "text": "I should not take a risk like this.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e771c552db675561980ad94bd0f8c5a30048df2e027d790b58304ab49901979c",
+      "text": "First tell them not to open the door.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d53f16f8b83f8033f8c39221b5d268bd61511173057ded79c6f068226f122d2f",
+      "text": "First listen to what parents and children need.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2763c8c67dbab2fbc48cde5d25d93f73c189e0180fc4a2d6404613bdb0754f07",
+      "text": "First find the person who teaches the children.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    }
+  ],
+  "verification": {
+    "reportStatus": "passed",
+    "packageBytes": 2019040,
+    "phases": [
+      {
+        "name": "vocabulary",
+        "seconds": 0.037065667000000004,
+        "status": "passed"
+      },
+      {
+        "name": "routes, source assertions and resume",
+        "seconds": 0.4051057920000001,
+        "status": "passed"
+      },
+      {
+        "name": "annotations",
+        "seconds": 0.004776208999999995,
+        "status": "passed"
+      },
+      {
+        "name": "audio",
+        "seconds": 33.92287949999999,
+        "status": "passed"
+      },
+      {
+        "name": "English pocket audio",
+        "seconds": 0.10041233300000021,
+        "status": "passed"
+      },
+      {
+        "name": "package and ZIP",
+        "seconds": 0.10663079099999595,
+        "status": "passed"
+      },
+      {
+        "name": "phone and desktop",
+        "seconds": 40.247368208,
+        "status": "passed"
+      },
+      {
+        "name": "stage new release",
+        "seconds": 0.02292370800000208,
+        "status": "passed"
+      }
+    ],
+    "familiarity": {
+      "min": 82.01219512195122,
+      "max": 82.65460030165913
+    },
+    "pinyin": "All lines and chunks reviewed contextually, including neutral tones and polyphones.",
+    "teaser": "Exact English line only in final offline edit; three-second opening hold, nine-second total, motion and reaction frames inspected. Native clips preserved privately.",
+    "continuity": "All 54,432 inherited histories preserved; all 160 local route/water combinations pass per episode.",
+    "vocabulary": "All 17 planned targets have at least two distinct meaningful spoken entries on all 16 choice routes; Episode 17 also reviews all 12 planned words.",
+    "browser": "Full contrasting routes, Mandarin audio, opening fallback and listener/aftermath resume on phone and desktop."
+  }
+}

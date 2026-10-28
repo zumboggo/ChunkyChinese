@@ -1,0 +1,1025 @@
+{
+  "episode": "jedi-17-v1",
+  "title": "The Voices Beneath the Water · Episode 17: A Place to Come Back To",
+  "planning": {
+    "storytellingVoice": "Intimate character drama",
+    "voiceReason": "A family’s fear of humiliation changes through being heard.",
+    "earlyCare": "Mother keeps a child’s place beside a friend, while the parent hides a report card.",
+    "desire": "Help a parent bring his son back to temporary classes without humiliation.",
+    "obstacle": "Ivo expects the teacher to judge his absent son by an old report card.",
+    "dramaticChange": "The teacher replaces public judgment with a private conversation; Ivo agrees to ask his son what he needs.",
+    "sourceBoundary": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
+    "sceneActivities": [
+      "Mother and Jon arrange a safe outside meeting space; new teacher Sela and parent Ivo exchange a report without displaying it publicly. Supported rest/look/gesture cues only."
+    ],
+    "actingSignature": {
+      "Jonathan": "Plain practical questions; open hand at a boundary, quiet attention afterward.",
+      "An": "Specific limits and short questions; supported seated rest while reviewing, no assumed healing.",
+      "Min": "Urgent explanations soften into admitting uncertainty; rests attentive when corrected.",
+      "Mother": "Concrete requests and accurate accounting; no presumed forgiveness or renewed station shift.",
+      "Sela": "Patient concrete questions; does not reach for private report. Quiet open posture and attentive gaze.",
+      "Ivo": "Begins with explanations and permissions; shifts to asking his son. Guarded hands, then release into attentive rest."
+    },
+    "listenerTurn": "Sela asks how the son is before looking at the report; listener Ivo, then one separate lowered-hands entry.",
+    "payoff": "Separate temporary learning courtyard inspected and ready. Teacher Sela and parent Ivo agree that the son may visit, speak privately and choose companionship; Ivo will ask him rather than assume consent. Main centre still needs roof repair; all old memory/water unchanged.",
+    "freshQuestion": "Can Jon help the class learn without turning every lesson into a demonstration of his own skill?",
+    "teaser": {
+      "dialogue": "There is a place for you.",
+      "moment": "Jon and Sela welcome Ivo at an empty learner’s place; a folded report remains private."
+    },
+    "convergence": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
+    "artDirection": "Exactly three people, cooperative relationships and equal visual dignity.",
+    "targetVocabulary": [
+      "开学",
+      "班主任",
+      "报到",
+      "班会",
+      "家长",
+      "儿子",
+      "缺课",
+      "成绩单",
+      "想念",
+      "难过",
+      "哭",
+      "做伴",
+      "相处",
+      "处",
+      "性格",
+      "外地",
+      "以来"
+    ],
+    "reviewVocabulary": [
+      "冒",
+      "冻",
+      "连忙",
+      "迅速",
+      "透",
+      "高度",
+      "摇",
+      "弯",
+      "腰",
+      "擦",
+      "敲",
+      "张"
+    ]
+  },
+  "video": {
+    "src": "stories/animated/jedi/jedi-17-intro.mp4",
+    "poster": "stories/animated/jedi/jedi-17-intro.poster.jpg",
+    "dialogue": "There is a place for you.",
+    "totalSeconds": 9,
+    "stillSeconds": 3,
+    "motionSeconds": 2.2916666666666665,
+    "reactionHoldSeconds": 3.7083333333333335,
+    "nativeGeneratedSeconds": 6,
+    "editNote": "Native segment 3.7–6.0 seconds retains the intended line; final reaction hold.",
+    "model": "prunaai/p-video-2-pro",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off"
+    },
+    "verifiedUSDPerSecond": 0.01,
+    "maximumCostUSD": 0.06,
+    "paidRequests": 1,
+    "predictionId": "msv2asmf8srmw0d1g428cze0c4",
+    "prompt": "Animate this exact reference for six seconds. Only Jon, the brown-haired bearded man in cream and brown at left, speaks. He says exactly once in clear English: \"There is a place for you.\" Begin at second 0.5, finish by second 4.5, then close his mouth. Other two people silent, mouths closed. No extra words, repetitions, paraphrases, fillers, humming, narration, singing or other voices. Quiet ambience below clear dialogue. Jon offers a gentle open palm and speaks. Sela listens attentively with hands still. Ivo loosens his grip on his folded report and looks toward Jon. The report stays folded and private. Preserve all three faces and clothes, anatomy and hands. Exactly three adults visible throughout. Locked medium-wide camera, no zoom or cut, no extra people, new objects, magic or text.",
+    "reference": "stories/authoring/jedi/art/episode-17-reference.png",
+    "nativeSpeech": true,
+    "checks": {
+      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-17/clean-segment.mp4",
+      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-17/intro.mp4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "fps": 24,
+      "hold_seconds": 3.0,
+      "motion_seconds": 2.2916666666666665,
+      "reaction_hold_seconds": 3.7083333333333335,
+      "total_seconds": 9.0,
+      "decoded_audio_seconds": 9.00275,
+      "audio_non_silent": true,
+      "audio_starts_after_hold": true,
+      "hold_mean_pixel_difference": 0.0024004683840749413,
+      "sha256": "67ea5384f28fd3b1bbf5afed6f89e539d4bc60e2e0f5a6e7497f5652580f6af6",
+      "expected_dialogue": "There is a place for you.",
+      "speech_check": "pass",
+      "review": "One visual/listening review remains; automated checks do not prove natural acting or lip sync.",
+      "transcription": "There is a place for you."
+    }
+  },
+  "continuation": {
+    "end": "Separate temporary learning courtyard inspected and ready. Teacher Sela and parent Ivo agree that the son may visit, speak privately and choose companionship; Ivo will ask him rather than assume consent. Main centre still needs roof repair; all old memory/water unchanged.",
+    "nextStart": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
+    "nextEndBefore": "Preserve all memory fields, water totals, allocation agreements, deaths, injuries and equipment losses. Keep one shared plot.",
+    "note": "Follow approved vocabulary plan; actual target coverage audited across all routes."
+  },
+  "targetAudit": {
+    "episode": 17,
+    "routeCount": 16,
+    "targets": [
+      {
+        "word": "开学",
+        "minDistinctSpokenEntries": 5,
+        "examples": [
+          "快开学了吗？屋子还没有修好。",
+          "不是在那里开学。Sela说，安全了，孩子才可以来。",
+          "相处要有耐心。开学时候的班会，我们先认识朋友。",
+          "我不再要求他迅速回答。开学的时候，我们可以先来看看。",
+          "开学的时候，我也会来。先听，然后一起学。"
+        ]
+      },
+      {
+        "word": "班主任",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "我本来想，报到，就要先给班主任看成绩单。",
+          "我是Sela，这里的班主任。谢谢你愿意来。",
+          "班主任要先看什么？我可以说明。"
+        ]
+      },
+      {
+        "word": "报到",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我本来想，报到，就要先给班主任看成绩单。",
+          "来报到，先说名字，然后说他要什么。"
+        ]
+      },
+      {
+        "word": "班会",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "相处要有耐心。开学时候的班会，我们先认识朋友。",
+          "班会要求所有人大声回答吗？"
+        ]
+      },
+      {
+        "word": "家长",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "一位家长来到门边。他没有先敲门。",
+          "家长也可以先坐，不用在外面等。"
+        ]
+      },
+      {
+        "word": "儿子",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "我叫Ivo。我儿子不愿意来。",
+          "你儿子今天怎么样？",
+          "我可以先带儿子来看看。不过，我要先听他说。"
+        ]
+      },
+      {
+        "word": "缺课",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "他想念朋友。不过，他缺课太久了。",
+          "有人批评他缺课吗？",
+          "一定要在所有人面前说明为什么缺课吗？"
+        ]
+      },
+      {
+        "word": "成绩单",
+        "minDistinctSpokenEntries": 4,
+        "examples": [
+          "Ivo拿着一张成绩单，没有打开。",
+          "我本来想，报到，就要先给班主任看成绩单。",
+          "我想先知道他好不好，不是先看成绩单。",
+          "没有成绩单，先说什么？",
+          "我们等他。不是等一张好看的成绩单。"
+        ]
+      },
+      {
+        "word": "想念",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "他想念朋友。不过，他缺课太久了。",
+          "想念朋友，又害怕回来。我愿意听他说，也愿意陪他等。"
+        ]
+      },
+      {
+        "word": "难过",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "他不爱大声说话，性格很温和。越叫他回答，他越难过。",
+          "他从外地回来，还是难过，不想说话。"
+        ]
+      },
+      {
+        "word": "哭",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "他从前哭了，说他害怕再被批评。",
+          "从前有人说，哭的孩子不听话。",
+          "哭的时候，他也要有人听。"
+        ]
+      },
+      {
+        "word": "做伴",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "他从前愿意给朋友做伴。现在，他不愿意出来了。",
+          "叫朋友给他做伴，他愿意来这里看看吗？"
+        ]
+      },
+      {
+        "word": "相处",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我们也要研究怎样相处。不是只有孩子要研究。",
+          "相处要有耐心。开学时候的班会，我们先认识朋友。"
+        ]
+      },
+      {
+        "word": "处",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我怕他跟新同学处不好。",
+          "和朋友处得好，不表示他们什么都一样。"
+        ]
+      },
+      {
+        "word": "性格",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "他不爱大声说话，性格很温和。越叫他回答，他越难过。",
+          "不爱大声说话，不表示性格不好。不说话，也不该被批评。",
+          "我们要考虑的，不是孩子的性格，是他们为什么害怕。"
+        ]
+      },
+      {
+        "word": "外地",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "他从外地回来，还是难过，不想说话。",
+          "我从前在外地陪孩子读书。离开朋友，不只是换一张桌子。"
+        ]
+      },
+      {
+        "word": "以来",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "风暴以来，他还没有见到从前的朋友。",
+          "这段时间以来，你们经历了很多。"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "word": "冒",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "冻",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "连忙",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "迅速",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "透",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "高度",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "摇",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "弯",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "腰",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "擦",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "敲",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "张",
+        "minSpokenEntries": 5
+      }
+    ],
+    "method": "Distinct spoken entries per completed route; choice labels excluded. 冒 excludes 冒险; 处 requires reviewed chǔ clauses; 以来 requires real temporal construction. Full semantic/pinyin human review accompanies counts."
+  },
+  "artwork": {
+    "generator": "Built-in ImageGen",
+    "reference": "stories/authoring/jedi/art/episode-17-reference.png",
+    "direction": "Exactly three people, cooperative relationships and equal visual dignity."
+  },
+  "englishAudio": [
+    {
+      "sha256": "c3de0ccf299c6a283a042964f4b8afabc53f3b751edf233d423a4b4275d8b0ea",
+      "text": "Mother wipes a table. I wait with her.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3b67f1a2203974dc629c1d34049b3f9d2f2d4354de765583e8d8a61bf45ea410",
+      "text": "This space has been inspected; the children can learn here for now.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a380ff37f456e99f70269ba44cff660528a9e922dbd06e1a37f8f17cb80d1da6",
+      "text": "Is school starting soon? The building hasn't been repaired yet.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "27c5d24bf1dd149cc37f9723825ee919f04b800c91946e1aa8f98392dfd4192a",
+      "text": "School isn't reopening there. Sela says children can come only when it is safe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "33c5886ca2ff058e803608dd7202d16e9813e34dd60151595a4c0aff53c4e387",
+      "text": "A parent comes to the doorway. He doesn't knock first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ca13b73f53100ce438af8d03b3baef24d7e6d0cbdc0d8bfdddf5a068d113beef",
+      "text": "Mother promptly comes to the doorway and accompanies him over.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "95dde73a1b17a61346a20adf46929243cb79ff3fda9ad379e76d37194586437d",
+      "text": "Parents can sit down too; there's no need to wait outside.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ee37cadb614ad242da45356a737ad7a438f0abab5eea55a9e3035545a965e373",
+      "text": "My name is Ivo. My son doesn't want to come.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "742696bf9614d646e0eddafc5397934ca3cf170765d92e33cbeb5ea0a24fefca",
+      "text": "What is he afraid of?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7add6837f87e23af450473d0a8a5a8fbd4e2c09960b99704e017ebbc6a8634a0",
+      "text": "He misses his friends. But he has missed too much school.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2c28b8b154c956bb0ffa1f2cc3afe4bd840bb2c1dc58e294d33d39229590cb2e",
+      "text": "He misses his friends, yet is afraid to return. I'm willing to listen and wait with him.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9bd2dad8c83b20af1fe79c7476a2516c7ef07cad4b990e3cfab1042ae173f78d",
+      "text": "There's no need to answer quickly. We can take our time talking.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "93e57e41ad8e4e73d21d756dec304cdf16ad7f3656219d9179d48c1761edd721",
+      "text": "What else did he say? I do not want to answer for him.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b10523aee64a04fb565ecf359d85ea27a3e9c838f03afbb129cc0bc351e8ac5f",
+      "text": "He cried before and said he feared being criticized again.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "296b9c1d9437c0574cb36ba70b7033336e388a3ce009b3de5425dbd9737effb3",
+      "text": "I still haven't thought it through: why he is so afraid.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1d91962e6d9246bb3f8c418afa40064e199f78df6e1de4ada5b54332bb00bfb6",
+      "text": "Has someone criticized him for missing school?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e735a6128ad703cda064a9866fe6a99b511793ebac0a92b9c6a971865741e888",
+      "text": "Someone once said children who cry are disobedient.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e02c68c6405d4c36620f31a6e6a89456b88c0d1db92119a723ec8515629f13e6",
+      "text": "When he cries, he still needs someone to listen.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "53475d82261bc88261c20794c9f4528d0efe0e93bb53e2a931f5daadb0cd7148",
+      "text": "He dislikes speaking loudly and has a gentle temperament. The more people press him to answer, the sadder he becomes.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "19302fbd4d5f3d34bdd70acc758145178257dd8c8a8c664e3e06e63f7041aced",
+      "text": "Disliking loud speech does not mean having a bad personality. He should not be criticized for staying quiet either.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "78ea7cf1a40a2f0a7f49e3f9ede3b19c70364f192d0ae48e9ce330d2e0cfc982",
+      "text": "Ivo holds a report card without opening it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1effa62dd6d5a478e7735fe12e9fdac9448c2c1e65528013b88e202a5676da53",
+      "text": "I thought that to register, I had to show the teacher his report card first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9ac6669435767dd756fddc636594f3f6013101e440bbd906440eb1c5cd00b6be",
+      "text": "Let us listen to Sela first instead of answering for her.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "45050453fe5122870170f38fc578b5796b85e6ff9f30163b85aee0aac124098d",
+      "text": "I'm Sela, the class teacher here. Thank you for coming.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "cf53f262cde0a43f59deaff685f76b50e1ebf0015475a0f16d8aaff8555d4640",
+      "text": "What does the class teacher want to see first? I can explain.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "64e1c6b6794eb74e3fa23832d71bfe3a5daa1103be5b79e7208cce56646abe91",
+      "text": "How is your son today?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "78d3951ca8c56e4946c3fbeb158a4f464f7481a2909bba21350ac5aff5d12fd2",
+      "text": "I want to know how he is doing first, rather than look at the report card first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "26f5513c81289b1e5260c57f5663b8e3ac57e5990d3e07c864cd480150bdffd6",
+      "text": "Ivo slowly lowers his hands without opening the paper.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1d62a57172f658ce2f43929233c0c4cd7299bfcabe721de2da469183ed334335",
+      "text": "He came back from elsewhere, but is still sad and unwilling to speak.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a9cecf7a096b701109bc441cdb37d5536720d823b9ab4e91ce201b0e0385ce93",
+      "text": "I used to help children learn elsewhere. Leaving friends behind is more than simply changing desks.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ed6d61547398e71670c646d399ba33e77d3c00269ddcb0bd27d47ee96f926a22",
+      "text": "Since the storm, he hasn't seen that friend again.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3fce9c1808a59a89e0f92fd75b47f508961c01f92e11210290d9528aa0114649",
+      "text": "During this time, you have been through a lot.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "62a746de7bf4f8689cac6ba5ab4c33d3ba9a9e7df66724c982313b6fa99c11da",
+      "text": "Without a report card, what should he say first?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9728bc262e326eaed2302db52d75277adf67f0d6c44e7fd81fe26fb4c884e3f6",
+      "text": "Could he just come and look around first?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b70670494fc9427c3facb0d1bcc59bd12488d66644f4fae5c3683f0fe0c173c9",
+      "text": "When he registers, he can start with his name and what he needs.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d4857a477abd4acab5200d3246d4a21b799d7bdcc630c09427a5d01fb63d4573",
+      "text": "Must he explain his absence in front of everyone?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0d5a448a3f06fc4a2780c58679311857fad4e91176f07e222972f28a5b33eed1",
+      "text": "No need. If he wants to speak, the two of us can talk.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c42477dc7d202bd81b27ce0ea98f54a5de05f47a793508becbd5b0cb9420f6e4",
+      "text": "I'm afraid he won't get along with new classmates.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8e69a74b82995363881e393cc973cbf4eb37a5ed41d8b2d8e1b083d33792ec21",
+      "text": "Getting along with friends doesn't mean they must be alike in everything.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "cbd07087762b39bb12c04d5ab49e8eb5f7ebbd6f9f792eebaf709723ca6876df",
+      "text": "We also need to work out how to get along. Children are not the only ones who need to work on it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "96880b021d50737ab4c782ad21eb3fdea4aaebdcf65fc0a0689f411a3bb8df22",
+      "text": "Getting along takes patience. At the class meeting when school starts, we'll get to know our friends first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "72788412615c0dbd5e2636d9758060e8d31b1bd5df48993ce025af30f86b8c97",
+      "text": "Will everyone have to answer loudly at the class meeting?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3225b7b2aff73b87e17a851543d3d6d1443e91f84099718b23c380579fa41db1",
+      "text": "They can listen first or speak quietly. If they don't want to speak, they can nod.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a98b617afd49b613e27467678d21be5d0b7e14e6b556506b96a0edfacb406414",
+      "text": "I'm willing to listen first too. Sometimes I forget to listen to others.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2dccd2e4e85e780ba931211b6d7bbdbf9df5e8bafb92f72e1ec2914c389574e1",
+      "text": "He used to like keeping his friend company. Now he is unwilling to come out.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ce156a295ea63eb9a738320be55f61a3601c47b174212d3793e00834645a73c7",
+      "text": "If we ask a friend to keep him company, would he come and look around here?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9ca64ebeb9de0b08af0e6824c2fc0d93e617b03396ac19f4c02f944639a1cb44",
+      "text": "I will listen to him first instead of promising for him.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "671ee2924fa96447f9da1a299c3aff16f6054d6a232c627d4a722d9f569bfc95",
+      "text": "With you beside him, he can choose when to speak.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3f32a7da8e8f8ee11dbb6e5e3bccafc9fa2277cdd7d31510805a4fa09423675e",
+      "text": "The friend needs to be willing too. It shouldn't be an order.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "db961e809938718570097d29844b2c7a291273fa421f90696472946fc5d6b714",
+      "text": "The roof hasn't been repaired; will you send them home again?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "313d40aede8bfcca3823d6c93f86ecf83079513b1e5c7081e3507298ad293de5",
+      "text": "They still can't go into the old building. We haven't said it is repaired.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9fdf683ab8f9ae3e56e22c754c136dfad4ce314d75630da877dfbb53fbbd07c3",
+      "text": "Someone has inspected this space carefully. The tables don't wobble, and the roof doesn't leak.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9dc6feed32ecc59b55b639fce4c58c4058ac12cfc20ed1150071ed473f5b9d99",
+      "text": "We have checked the table height too; the children can sit comfortably.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7eb42efca9889cea89668d0ac719cc8f5b7c90f9719ddda535f7de969a1e1690",
+      "text": "What about that bent pipe beside the door?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "852e7830cf337106996f0e61ac9822dbdf2646f97d2d8298faf7a372ecb41155",
+      "text": "That's an old unused pipe; the children won't walk there.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e5cfa10bd13214dac29f0462bddaa388e9958c6de9a6bd3cc488711d68e11dd6",
+      "text": "What we need to consider isn't the child's personality is why they are afraid.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "486e6bcac696470a6045fba43fab3f9989ad9f9b7992c47e2aec2257f3b5d81d",
+      "text": "Ivo taps the table gently and then nods.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "51dd30def2945afb493ccbbdc3c707198fa8c404b434642c3f5b3f9bf886dbb3",
+      "text": "I can bring my son to have a look first. But I need to listen to him first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c6b1f92721c7ce451354be56409f6ef6ffa7bc8b4ccc9f73888e51dce48ffa43",
+      "text": "We'll wait for him. We aren't waiting for an impressive report card.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1ff999b2878d8df1eaba3024b223526af26a0a4971f02421ea3df56a3f9495e0",
+      "text": "Have you finished talking?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7e415c851159e314e414c44be2fe389530caf6819362789cd737280a4a6e4ed7",
+      "text": "I used to think being afraid to come meant being criticized. But I want to listen to him first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "dba17c14ffa2c5eb96df77a84ab75ec3af0961c9af4b00769d5dd94d644ae9f3",
+      "text": "Mother has brought a cup of water from home; steam is still rising from it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d7b876c4117d5ab183888b2c59ee04163c4130c560c9e483fd2f3dfc7d250bcb",
+      "text": "Warm your hands first; don't get chilled. This isn't newly drawn station water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b6ce4ed193b1ca1761394688d10177ca4571dcc251b7b2ecb09455745eddda3a",
+      "text": "Thank you. I'm not freezing. I was simply afraid before.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ea1d92d7dfc2541c597390071bf16137443f684f5a3821b48ae2709c74b1d976",
+      "text": "I've been standing too long; my lower back aches a little. Mother tells me to sit down.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "55e8d3b2fd44c43f5d89402670e41dd7ed3022fccc6cd52dcda8ff6a5570be9a",
+      "text": "I can't just tell others to take their time while refusing to wait myself.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0c84467011bfd4b5c3ebe65166df3a5f730ce86b4912129302117dd18bbeab97",
+      "text": "No demonstration of the Force; I'll listen to what the children say first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "41c792b8fd006397b1b48cd45769e9ccb9c9748812273fb9eb358bd5b187a79b",
+      "text": "You know how to protect them; give them time to think for themselves too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9a85ddb941154350fab88bf3efa24b16713fcd8b9f46d6e5d873de9d52632219",
+      "text": "I won't press him to answer quickly anymore. When school starts, we can come and look around first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8d996a632ef082f6f09c0d9d629c171ec60276945f1dee19c7ca9c821b3a16d7",
+      "text": "The temporary learning space is ready. We still need to share responsibility for the repairs.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e49b6febf94b1a5ac2d32c423b075830f05aade142c0b9f2672528962fc04a2b",
+      "text": "A gust of wind arrives; I close my eyes until the sand passes then open them.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "cedfa603985dd2389a4c38b6368608061ae0054557c9f85bde134246484eefbf",
+      "text": "When school starts, I will come too. First I'll listen, then we'll learn together.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "fcfac123fabbcca1e4f3db31672426dd9fed105fd60fcefced58752918eff4f0",
+      "text": "Sit with Ivo for a moment first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "99d702407a55c24ec48c1c7c81acd887c0330c8ebf7a2c3d0d0476e936b7d820",
+      "text": "First listen to why he is afraid.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "721d60ef9c5b3752ab107707da8e059c04f31e65720e8d140e6980c22197305b",
+      "text": "Listen to Sela explain the registration requirements.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "41b509fca0f541625ebf260bdfd5353df5b0ba5e8d9c3dc4ea34197fe874faf7",
+      "text": "First discuss how the child would like to come.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2caa1106827ab301d2e212fabeea5c0bdcd4be570e0fba522043ac0afb188240",
+      "text": "A parent can stay with him at first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "cf578d3ddfb30a1cb97e73ca869000558763eebf3026f30556501eba7b535b67",
+      "text": "First find out whether the friend wants to keep him company.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "5c9d6eef69eb91bac054144ae7cc0857c3f057a9f674f3ad24723512d8c238a3",
+      "text": "I am willing to listen to the children read first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8afb3cc0480e845ded20244f9dd2d7744bb1bd65a7a83a0b2cadb3e5c31fcfb2",
+      "text": "I am willing to listen to Sela’s requirements.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    }
+  ],
+  "verification": {
+    "reportStatus": "passed",
+    "packageBytes": 2231365,
+    "phases": [
+      {
+        "name": "vocabulary",
+        "seconds": 0.03791408300000001,
+        "status": "passed"
+      },
+      {
+        "name": "routes, source assertions and resume",
+        "seconds": 0.5240364999999999,
+        "status": "passed"
+      },
+      {
+        "name": "annotations",
+        "seconds": 0.0047232910000000175,
+        "status": "passed"
+      },
+      {
+        "name": "audio",
+        "seconds": 0.013498207999999977,
+        "status": "passed"
+      },
+      {
+        "name": "English pocket audio",
+        "seconds": 0.08197912500000007,
+        "status": "passed"
+      },
+      {
+        "name": "package and ZIP",
+        "seconds": 0.120083167,
+        "status": "passed"
+      },
+      {
+        "name": "phone and desktop",
+        "seconds": 50.257978083000005,
+        "status": "passed"
+      },
+      {
+        "name": "stage new release",
+        "seconds": 0.017144166999998562,
+        "status": "passed"
+      }
+    ],
+    "familiarity": {
+      "min": 82.26857887874837,
+      "max": 82.74509803921569
+    },
+    "pinyin": "All lines and chunks reviewed contextually, including neutral tones and polyphones.",
+    "teaser": "Exact English line only in final offline edit; three-second opening hold, nine-second total, motion and reaction frames inspected. Native clips preserved privately.",
+    "continuity": "All 54,432 inherited histories preserved; all 160 local route/water combinations pass per episode.",
+    "vocabulary": "All 17 planned targets have at least two distinct meaningful spoken entries on all 16 choice routes; Episode 17 also reviews all 12 planned words.",
+    "browser": "Full contrasting routes, Mandarin audio, opening fallback and listener/aftermath resume on phone and desktop."
+  }
+}

@@ -1,0 +1,45 @@
+[
+  {
+    "id": "Sela",
+    "name": "Sela · 老师",
+    "appearance": {
+      "age": "adult",
+      "hair": "tousled",
+      "glasses": "round",
+      "outfit": "cardigan",
+      "face": "oval",
+      "eyes": "gentle"
+    },
+    "palette": {
+      "skin": "#ddb08c",
+      "hair": "#8a4e30",
+      "shirt": "#68774d",
+      "trim": "#eee2c7",
+      "glasses": "#544731"
+    },
+    "version": 1,
+    "finish": "polished",
+    "provenance": "Original new adult resident for Jedi Episode 17. Not a returning character or a real-person likeness. Teaser costumes approximated with supported vector recipes."
+  },
+  {
+    "id": "Ivo",
+    "name": "Ivo",
+    "appearance": {
+      "age": "adult",
+      "hair": "cropped",
+      "glasses": "none",
+      "outfit": "workshirt",
+      "face": "broad",
+      "eyes": "gentle"
+    },
+    "palette": {
+      "skin": "#a8724f",
+      "hair": "#29252b",
+      "shirt": "#a76645",
+      "trim": "#40474b"
+    },
+    "version": 1,
+    "finish": "polished",
+    "provenance": "Original new adult resident for Jedi Episode 17. Not a returning character or a real-person likeness. Teaser costumes approximated with supported vector recipes."
+  }
+]

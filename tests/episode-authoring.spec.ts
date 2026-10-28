@@ -68,6 +68,8 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
     await expect.poll(currentText).toBe(beat.text);resumed=true
    }
    if(i===route.beats.length-1)await page.screenshot({path:info.outputPath('ending.png'),fullPage:true})
+   // A changing text height can leave the pointer on the hover-transform edge.
+   await page.mouse.move(0,0)
    await page.getByRole('button',{name:'Continue →',exact:true}).click()
   }
  }

@@ -1,0 +1,1282 @@
+{
+  "妈妈擦着一张桌子。我陪她一起等。": {
+    "english": "Mother wipes a table. I wait with her.",
+    "interlinear": [
+      {
+        "chinese": "妈妈擦着一张桌子。",
+        "gloss": "Mother wipes a table.",
+        "pinyin": "mā ma cā zhe yì zhāng zhuō zi 。"
+      },
+      {
+        "chinese": "我陪她一起等。",
+        "gloss": "I wait with her.",
+        "pinyin": "wǒ péi tā yì qǐ děng 。"
+      }
+    ],
+    "pinyin": "mā ma cā zhe yì zhāng zhuō zi 。 wǒ péi tā yì qǐ děng 。"
+  },
+  "这里检查过了，孩子可以先在这里读书。": {
+    "english": "This space has been inspected; the children can learn here for now.",
+    "interlinear": [
+      {
+        "chinese": "这里检查过了，",
+        "gloss": "This space has been inspected;",
+        "pinyin": "zhè lǐ jiǎn chá guò le ，"
+      },
+      {
+        "chinese": "孩子可以先在这里读书。",
+        "gloss": "the children can learn here for now.",
+        "pinyin": "hái zi kě yǐ xiān zài zhè lǐ dú shū 。"
+      }
+    ],
+    "pinyin": "zhè lǐ jiǎn chá guò le ， hái zi kě yǐ xiān zài zhè lǐ dú shū 。"
+  },
+  "快开学了吗？屋子还没有修好。": {
+    "english": "Is school starting soon? The building hasn't been repaired yet.",
+    "interlinear": [
+      {
+        "chinese": "快开学了吗？",
+        "gloss": "Is school starting soon?",
+        "pinyin": "kuài kāi xué le ma ？"
+      },
+      {
+        "chinese": "屋子还没有修好。",
+        "gloss": "The building hasn't been repaired yet.",
+        "pinyin": "wū zi hái méi yǒu xiū hǎo 。"
+      }
+    ],
+    "pinyin": "kuài kāi xué le ma ？ wū zi hái méi yǒu xiū hǎo 。"
+  },
+  "不是在那里开学。Sela说，安全了，孩子才可以来。": {
+    "english": "School isn't reopening there. Sela says children can come only when it is safe.",
+    "interlinear": [
+      {
+        "chinese": "不是在那里开学。",
+        "gloss": "School isn't reopening there.",
+        "pinyin": "bú shì zài nà lǐ kāi xué 。"
+      },
+      {
+        "chinese": "Sela说，",
+        "gloss": "Sela says",
+        "pinyin": "Sela shuō ，"
+      },
+      {
+        "chinese": "安全了，孩子才可以来。",
+        "gloss": "children can come only when it is safe.",
+        "pinyin": "ān quán le ， hái zi cái kě yǐ lái 。"
+      }
+    ],
+    "pinyin": "bú shì zài nà lǐ kāi xué 。Sela shuō ， ān quán le ， hái zi cái kě yǐ lái 。"
+  },
+  "一位家长来到门边。他没有先敲门。": {
+    "english": "A parent comes to the doorway. He doesn't knock first.",
+    "interlinear": [
+      {
+        "chinese": "一位家长来到门边。",
+        "gloss": "A parent comes to the doorway.",
+        "pinyin": "yí wèi jiā zhǎng lái dào mén biān 。"
+      },
+      {
+        "chinese": "他没有先敲门。",
+        "gloss": "He doesn't knock first.",
+        "pinyin": "tā méi yǒu xiān qiāo mén 。"
+      }
+    ],
+    "pinyin": "yí wèi jiā zhǎng lái dào mén biān 。 tā méi yǒu xiān qiāo mén 。"
+  },
+  "妈妈连忙来到门边，陪他过来。": {
+    "english": "Mother promptly comes to the doorway and accompanies him over.",
+    "interlinear": [
+      {
+        "chinese": "妈妈连忙来到门边，",
+        "gloss": "Mother promptly comes to the doorway",
+        "pinyin": "mā ma lián máng lái dào mén biān ，"
+      },
+      {
+        "chinese": "陪他过来。",
+        "gloss": "and accompanies him over.",
+        "pinyin": "péi tā guò lái 。"
+      }
+    ],
+    "pinyin": "mā ma lián máng lái dào mén biān ， péi tā guò lái 。"
+  },
+  "家长也可以先坐，不用在外面等。": {
+    "english": "Parents can sit down too; there's no need to wait outside.",
+    "interlinear": [
+      {
+        "chinese": "家长也可以先坐，",
+        "gloss": "Parents can sit down too;",
+        "pinyin": "jiā zhǎng yě kě yǐ xiān zuò ，"
+      },
+      {
+        "chinese": "不用在外面等。",
+        "gloss": "there's no need to wait outside.",
+        "pinyin": "bú yòng zài wài miàn děng 。"
+      }
+    ],
+    "pinyin": "jiā zhǎng yě kě yǐ xiān zuò ， bú yòng zài wài miàn děng 。"
+  },
+  "我叫Ivo。我儿子不愿意来。": {
+    "english": "My name is Ivo. My son doesn't want to come.",
+    "interlinear": [
+      {
+        "chinese": "我叫Ivo。",
+        "gloss": "My name is Ivo.",
+        "pinyin": "wǒ jiào Ivo。"
+      },
+      {
+        "chinese": "我儿子不愿意来。",
+        "gloss": "My son doesn't want to come.",
+        "pinyin": "wǒ ér zi bú yuàn yì lái 。"
+      }
+    ],
+    "pinyin": "wǒ jiào Ivo。 wǒ ér zi bú yuàn yì lái 。"
+  },
+  "他害怕什么？": {
+    "english": "What is he afraid of?",
+    "interlinear": [
+      {
+        "chinese": "他害怕什么？",
+        "gloss": "What is he afraid of?",
+        "pinyin": "tā hài pà shén me ？"
+      }
+    ],
+    "pinyin": "tā hài pà shén me ？"
+  },
+  "他想念朋友。不过，他缺课太久了。": {
+    "english": "He misses his friends. But he has missed too much school.",
+    "interlinear": [
+      {
+        "chinese": "他想念朋友。",
+        "gloss": "He misses his friends.",
+        "pinyin": "tā xiǎng niàn péng you 。"
+      },
+      {
+        "chinese": "不过，他缺课太久了。",
+        "gloss": "But he has missed too much school.",
+        "pinyin": "bú guò ， tā quē kè tài jiǔ le 。"
+      }
+    ],
+    "pinyin": "tā xiǎng niàn péng you 。 bú guò ， tā quē kè tài jiǔ le 。"
+  },
+  "想念朋友，又害怕回来。我愿意听他说，也愿意陪他等。": {
+    "english": "He misses his friends, yet is afraid to return. I'm willing to listen and wait with him.",
+    "interlinear": [
+      {
+        "chinese": "想念朋友，",
+        "gloss": "He misses his friends,",
+        "pinyin": "xiǎng niàn péng you ，"
+      },
+      {
+        "chinese": "又害怕回来。",
+        "gloss": "yet is afraid to return.",
+        "pinyin": "yòu hài pà huí lái 。"
+      },
+      {
+        "chinese": "我愿意听他说，",
+        "gloss": "I'm willing to listen",
+        "pinyin": "wǒ yuàn yì tīng tā shuō ，"
+      },
+      {
+        "chinese": "也愿意陪他等。",
+        "gloss": "and wait with him.",
+        "pinyin": "yě yuàn yì péi tā děng 。"
+      }
+    ],
+    "pinyin": "xiǎng niàn péng you ， yòu hài pà huí lái 。 wǒ yuàn yì tīng tā shuō ， yě yuàn yì péi tā děng 。"
+  },
+  "不用迅速回答。我们可以慢慢谈话。": {
+    "english": "There's no need to answer quickly. We can take our time talking.",
+    "interlinear": [
+      {
+        "chinese": "不用迅速回答。",
+        "gloss": "There's no need to answer quickly.",
+        "pinyin": "bú yòng xùn sù huí dá 。"
+      },
+      {
+        "chinese": "我们可以慢慢谈话。",
+        "gloss": "We can take our time talking.",
+        "pinyin": "wǒ men kě yǐ màn màn tán huà 。"
+      }
+    ],
+    "pinyin": "bú yòng xùn sù huí dá 。 wǒ men kě yǐ màn màn tán huà 。"
+  },
+  "他还说了什么？我不想替他回答。": {
+    "english": "What else did he say? I do not want to answer for him.",
+    "interlinear": [
+      {
+        "chinese": "他还说了什么？",
+        "gloss": "What else did he say?",
+        "pinyin": "tā hái shuō le shén me ？"
+      },
+      {
+        "chinese": "我不想替他回答。",
+        "gloss": "I do not want to answer for him.",
+        "pinyin": "wǒ bù xiǎng tì tā huí dá 。"
+      }
+    ],
+    "pinyin": "tā hái shuō le shén me ？ wǒ bù xiǎng tì tā huí dá 。"
+  },
+  "他从前哭了，说他害怕再被批评。": {
+    "english": "He cried before and said he feared being criticized again.",
+    "interlinear": [
+      {
+        "chinese": "他从前哭了，",
+        "gloss": "He cried before",
+        "pinyin": "tā cóng qián kū le ，"
+      },
+      {
+        "chinese": "说他害怕再被批评。",
+        "gloss": "and said he feared being criticized again.",
+        "pinyin": "shuō tā hài pà zài bèi pī píng 。"
+      }
+    ],
+    "pinyin": "tā cóng qián kū le ， shuō tā hài pà zài bèi pī píng 。"
+  },
+  "我还没有想透，他为什么这样害怕。": {
+    "english": "I still haven't thought it through: why he is so afraid.",
+    "interlinear": [
+      {
+        "chinese": "我还没有想透，",
+        "gloss": "I still haven't thought it through:",
+        "pinyin": "wǒ hái méi yǒu xiǎng tòu ，"
+      },
+      {
+        "chinese": "他为什么这样害怕。",
+        "gloss": "why he is so afraid.",
+        "pinyin": "tā wèi shén me zhè yàng hài pà 。"
+      }
+    ],
+    "pinyin": "wǒ hái méi yǒu xiǎng tòu ， tā wèi shén me zhè yàng hài pà 。"
+  },
+  "有人批评他缺课吗？": {
+    "english": "Has someone criticized him for missing school?",
+    "interlinear": [
+      {
+        "chinese": "有人批评他缺课吗？",
+        "gloss": "Has someone criticized him for missing school?",
+        "pinyin": "yǒu rén pī píng tā quē kè ma ？"
+      }
+    ],
+    "pinyin": "yǒu rén pī píng tā quē kè ma ？"
+  },
+  "从前有人说，哭的孩子不听话。": {
+    "english": "Someone once said children who cry are disobedient.",
+    "interlinear": [
+      {
+        "chinese": "从前有人说，",
+        "gloss": "Someone once said",
+        "pinyin": "cóng qián yǒu rén shuō ，"
+      },
+      {
+        "chinese": "哭的孩子不听话。",
+        "gloss": "children who cry are disobedient.",
+        "pinyin": "kū de hái zi bù tīng huà 。"
+      }
+    ],
+    "pinyin": "cóng qián yǒu rén shuō ， kū de hái zi bù tīng huà 。"
+  },
+  "哭的时候，他也要有人听。": {
+    "english": "When he cries, he still needs someone to listen.",
+    "interlinear": [
+      {
+        "chinese": "哭的时候，",
+        "gloss": "When he cries,",
+        "pinyin": "kū de shí hòu ，"
+      },
+      {
+        "chinese": "他也要有人听。",
+        "gloss": "he still needs someone to listen.",
+        "pinyin": "tā yě yào yǒu rén tīng 。"
+      }
+    ],
+    "pinyin": "kū de shí hòu ， tā yě yào yǒu rén tīng 。"
+  },
+  "他不爱大声说话，性格很温和。越叫他回答，他越难过。": {
+    "english": "He dislikes speaking loudly and has a gentle temperament. The more people press him to answer, the sadder he becomes.",
+    "interlinear": [
+      {
+        "chinese": "他不爱大声说话，性格很温和。",
+        "gloss": "He dislikes speaking loudly and has a gentle temperament.",
+        "pinyin": "tā bú ài dà shēng shuō huà ， xìng gé hěn wēn hé 。"
+      },
+      {
+        "chinese": "越叫他回答，",
+        "gloss": "The more people press him to answer,",
+        "pinyin": "yuè jiào tā huí dá ，"
+      },
+      {
+        "chinese": "他越难过。",
+        "gloss": "the sadder he becomes.",
+        "pinyin": "tā yuè nán guò 。"
+      }
+    ],
+    "pinyin": "tā bú ài dà shēng shuō huà ， xìng gé hěn wēn hé 。 yuè jiào tā huí dá ， tā yuè nán guò 。"
+  },
+  "不爱大声说话，不表示性格不好。不说话，也不该被批评。": {
+    "english": "Disliking loud speech does not mean having a bad personality. He should not be criticized for staying quiet either.",
+    "interlinear": [
+      {
+        "chinese": "不爱大声说话，不表示性格不好。",
+        "gloss": "Disliking loud speech does not mean having a bad personality.",
+        "pinyin": "bú ài dà shēng shuō huà ， bù biǎo shì xìng gé bù hǎo 。"
+      },
+      {
+        "chinese": "不说话，也不该被批评。",
+        "gloss": "He should not be criticized for staying quiet either.",
+        "pinyin": "bù shuō huà ， yě bù gāi bèi pī píng 。"
+      }
+    ],
+    "pinyin": "bú ài dà shēng shuō huà ， bù biǎo shì xìng gé bù hǎo 。 bù shuō huà ， yě bù gāi bèi pī píng 。"
+  },
+  "Ivo拿着一张成绩单，没有打开。": {
+    "english": "Ivo holds a report card without opening it.",
+    "interlinear": [
+      {
+        "chinese": "Ivo拿着一张成绩单，",
+        "gloss": "Ivo holds a report card",
+        "pinyin": "Ivo ná zhe yì zhāng chéng jì dān ，"
+      },
+      {
+        "chinese": "没有打开。",
+        "gloss": "without opening it.",
+        "pinyin": "méi yǒu dǎ kāi 。"
+      }
+    ],
+    "pinyin": "Ivo ná zhe yì zhāng chéng jì dān ， méi yǒu dǎ kāi 。"
+  },
+  "我本来想，报到，就要先给班主任看成绩单。": {
+    "english": "I thought that to register, I had to show the teacher his report card first.",
+    "interlinear": [
+      {
+        "chinese": "我本来想，报到，",
+        "gloss": "I thought that to register,",
+        "pinyin": "wǒ běn lái xiǎng ， bào dào ，"
+      },
+      {
+        "chinese": "就要先给班主任看成绩单。",
+        "gloss": "I had to show the teacher his report card first.",
+        "pinyin": "jiù yào xiān gěi bān zhǔ rèn kàn chéng jì dān 。"
+      }
+    ],
+    "pinyin": "wǒ běn lái xiǎng ， bào dào ， jiù yào xiān gěi bān zhǔ rèn kàn chéng jì dān 。"
+  },
+  "我们先听Sela说，不替她回答。": {
+    "english": "Let us listen to Sela first instead of answering for her.",
+    "interlinear": [
+      {
+        "chinese": "我们先听Sela说，",
+        "gloss": "Let us listen to Sela first",
+        "pinyin": "wǒ men xiān tīng Sela shuō ，"
+      },
+      {
+        "chinese": "不替她回答。",
+        "gloss": "instead of answering for her.",
+        "pinyin": "bú tì tā huí dá 。"
+      }
+    ],
+    "pinyin": "wǒ men xiān tīng Sela shuō ， bú tì tā huí dá 。"
+  },
+  "我是Sela，这里的班主任。谢谢你愿意来。": {
+    "english": "I'm Sela, the class teacher here. Thank you for coming.",
+    "interlinear": [
+      {
+        "chinese": "我是Sela，",
+        "gloss": "I'm Sela,",
+        "pinyin": "wǒ shì Sela，"
+      },
+      {
+        "chinese": "这里的班主任。",
+        "gloss": "the class teacher here.",
+        "pinyin": "zhè lǐ de bān zhǔ rèn 。"
+      },
+      {
+        "chinese": "谢谢你愿意来。",
+        "gloss": "Thank you for coming.",
+        "pinyin": "xiè xie nǐ yuàn yì lái 。"
+      }
+    ],
+    "pinyin": "wǒ shì Sela， zhè lǐ de bān zhǔ rèn 。 xiè xie nǐ yuàn yì lái 。"
+  },
+  "班主任要先看什么？我可以说明。": {
+    "english": "What does the class teacher want to see first? I can explain.",
+    "interlinear": [
+      {
+        "chinese": "班主任要先看什么？",
+        "gloss": "What does the class teacher want to see first?",
+        "pinyin": "bān zhǔ rèn yào xiān kàn shén me ？"
+      },
+      {
+        "chinese": "我可以说明。",
+        "gloss": "I can explain.",
+        "pinyin": "wǒ kě yǐ shuō míng 。"
+      }
+    ],
+    "pinyin": "bān zhǔ rèn yào xiān kàn shén me ？ wǒ kě yǐ shuō míng 。"
+  },
+  "你儿子今天怎么样？": {
+    "english": "How is your son today?",
+    "interlinear": [
+      {
+        "chinese": "你儿子今天怎么样？",
+        "gloss": "How is your son today?",
+        "pinyin": "nǐ ér zi jīn tiān zěn me yàng ？"
+      }
+    ],
+    "pinyin": "nǐ ér zi jīn tiān zěn me yàng ？"
+  },
+  "我想先知道他好不好，不是先看成绩单。": {
+    "english": "I want to know how he is doing first, rather than look at the report card first.",
+    "interlinear": [
+      {
+        "chinese": "我想先知道他好不好，",
+        "gloss": "I want to know how he is doing first,",
+        "pinyin": "wǒ xiǎng xiān zhī dao tā hǎo bu hǎo ，"
+      },
+      {
+        "chinese": "不是先看成绩单。",
+        "gloss": "rather than look at the report card first.",
+        "pinyin": "bú shì xiān kàn chéng jì dān 。"
+      }
+    ],
+    "pinyin": "wǒ xiǎng xiān zhī dao tā hǎo bu hǎo ， bú shì xiān kàn chéng jì dān 。"
+  },
+  "Ivo慢慢放下手，没有打开那张纸。": {
+    "english": "Ivo slowly lowers his hands without opening the paper.",
+    "interlinear": [
+      {
+        "chinese": "Ivo慢慢放下手，",
+        "gloss": "Ivo slowly lowers his hands",
+        "pinyin": "Ivo màn màn fàng xià shǒu ，"
+      },
+      {
+        "chinese": "没有打开那张纸。",
+        "gloss": "without opening the paper.",
+        "pinyin": "méi yǒu dǎ kāi nà zhāng zhǐ 。"
+      }
+    ],
+    "pinyin": "Ivo màn màn fàng xià shǒu ， méi yǒu dǎ kāi nà zhāng zhǐ 。"
+  },
+  "他从外地回来，还是难过，不想说话。": {
+    "english": "He came back from elsewhere, but is still sad and unwilling to speak.",
+    "interlinear": [
+      {
+        "chinese": "他从外地回来，",
+        "gloss": "He came back from elsewhere,",
+        "pinyin": "tā cóng wài dì huí lái ，"
+      },
+      {
+        "chinese": "还是难过，不想说话。",
+        "gloss": "but is still sad and unwilling to speak.",
+        "pinyin": "hái shì nán guò ， bù xiǎng shuō huà 。"
+      }
+    ],
+    "pinyin": "tā cóng wài dì huí lái ， hái shì nán guò ， bù xiǎng shuō huà 。"
+  },
+  "我从前在外地陪孩子读书。离开朋友，不只是换一张桌子。": {
+    "english": "I used to help children learn elsewhere. Leaving friends behind is more than simply changing desks.",
+    "interlinear": [
+      {
+        "chinese": "我从前在外地陪孩子读书。",
+        "gloss": "I used to help children learn elsewhere.",
+        "pinyin": "wǒ cóng qián zài wài dì péi hái zi dú shū 。"
+      },
+      {
+        "chinese": "离开朋友，",
+        "gloss": "Leaving friends behind",
+        "pinyin": "lí kāi péng you ，"
+      },
+      {
+        "chinese": "不只是换一张桌子。",
+        "gloss": "is more than simply changing desks.",
+        "pinyin": "bù zhǐ shì huàn yì zhāng zhuō zi 。"
+      }
+    ],
+    "pinyin": "wǒ cóng qián zài wài dì péi hái zi dú shū 。 lí kāi péng you ， bù zhǐ shì huàn yì zhāng zhuō zi 。"
+  },
+  "风暴以来，他还没有见到从前的朋友。": {
+    "english": "Since the storm, he hasn't seen that friend again.",
+    "interlinear": [
+      {
+        "chinese": "风暴以来，",
+        "gloss": "Since the storm,",
+        "pinyin": "fēng bào yǐ lái ，"
+      },
+      {
+        "chinese": "他还没有见到从前的朋友。",
+        "gloss": "he hasn't seen that friend again.",
+        "pinyin": "tā hái méi yǒu jiàn dào cóng qián de péng you 。"
+      }
+    ],
+    "pinyin": "fēng bào yǐ lái ， tā hái méi yǒu jiàn dào cóng qián de péng you 。"
+  },
+  "这段时间以来，你们经历了很多。": {
+    "english": "During this time, you have been through a lot.",
+    "interlinear": [
+      {
+        "chinese": "这段时间以来，",
+        "gloss": "During this time,",
+        "pinyin": "zhè duàn shí jiān yǐ lái ，"
+      },
+      {
+        "chinese": "你们经历了很多。",
+        "gloss": "you have been through a lot.",
+        "pinyin": "nǐ men jīng lì le hěn duō 。"
+      }
+    ],
+    "pinyin": "zhè duàn shí jiān yǐ lái ， nǐ men jīng lì le hěn duō 。"
+  },
+  "没有成绩单，先说什么？": {
+    "english": "Without a report card, what should he say first?",
+    "interlinear": [
+      {
+        "chinese": "没有成绩单，",
+        "gloss": "Without a report card,",
+        "pinyin": "méi yǒu chéng jì dān ，"
+      },
+      {
+        "chinese": "先说什么？",
+        "gloss": "what should he say first?",
+        "pinyin": "xiān shuō shén me ？"
+      }
+    ],
+    "pinyin": "méi yǒu chéng jì dān ， xiān shuō shén me ？"
+  },
+  "他可以先只来看看吗？": {
+    "english": "Could he just come and look around first?",
+    "interlinear": [
+      {
+        "chinese": "他可以先只来看看吗？",
+        "gloss": "Could he just come and look around first?",
+        "pinyin": "tā kě yǐ xiān zhǐ lái kàn kàn ma ？"
+      }
+    ],
+    "pinyin": "tā kě yǐ xiān zhǐ lái kàn kàn ma ？"
+  },
+  "来报到，先说名字，然后说他要什么。": {
+    "english": "When he registers, he can start with his name and what he needs.",
+    "interlinear": [
+      {
+        "chinese": "来报到，",
+        "gloss": "When he registers,",
+        "pinyin": "lái bào dào ，"
+      },
+      {
+        "chinese": "先说名字，",
+        "gloss": "he can start with his name",
+        "pinyin": "xiān shuō míng zì ，"
+      },
+      {
+        "chinese": "然后说他要什么。",
+        "gloss": "and what he needs.",
+        "pinyin": "rán hòu shuō tā yào shén me 。"
+      }
+    ],
+    "pinyin": "lái bào dào ， xiān shuō míng zì ， rán hòu shuō tā yào shén me 。"
+  },
+  "一定要在所有人面前说明为什么缺课吗？": {
+    "english": "Must he explain his absence in front of everyone?",
+    "interlinear": [
+      {
+        "chinese": "一定要在所有人面前说明为什么缺课吗？",
+        "gloss": "Must he explain his absence in front of everyone?",
+        "pinyin": "yí dìng yào zài suǒ yǒu rén miàn qián shuō míng wèi shén me quē kè ma ？"
+      }
+    ],
+    "pinyin": "yí dìng yào zài suǒ yǒu rén miàn qián shuō míng wèi shén me quē kè ma ？"
+  },
+  "不必。他愿意说，我们两个人谈话。": {
+    "english": "No need. If he wants to speak, the two of us can talk.",
+    "interlinear": [
+      {
+        "chinese": "不必。",
+        "gloss": "No need.",
+        "pinyin": "bú bì 。"
+      },
+      {
+        "chinese": "他愿意说，",
+        "gloss": "If he wants to speak,",
+        "pinyin": "tā yuàn yì shuō ，"
+      },
+      {
+        "chinese": "我们两个人谈话。",
+        "gloss": "the two of us can talk.",
+        "pinyin": "wǒ men liǎng gè rén tán huà 。"
+      }
+    ],
+    "pinyin": "bú bì 。 tā yuàn yì shuō ， wǒ men liǎng gè rén tán huà 。"
+  },
+  "我怕他跟新同学处不好。": {
+    "english": "I'm afraid he won't get along with new classmates.",
+    "interlinear": [
+      {
+        "chinese": "我怕他跟新同学处不好。",
+        "gloss": "I'm afraid he won't get along with new classmates.",
+        "pinyin": "wǒ pà tā gēn xīn tóng xué chǔ bù hǎo 。"
+      }
+    ],
+    "pinyin": "wǒ pà tā gēn xīn tóng xué chǔ bù hǎo 。"
+  },
+  "和朋友处得好，不表示他们什么都一样。": {
+    "english": "Getting along with friends doesn't mean they must be alike in everything.",
+    "interlinear": [
+      {
+        "chinese": "和朋友处得好，",
+        "gloss": "Getting along with friends",
+        "pinyin": "hé péng you chǔ de hǎo ，"
+      },
+      {
+        "chinese": "不表示他们什么都一样。",
+        "gloss": "doesn't mean they must be alike in everything.",
+        "pinyin": "bù biǎo shì tā men shén me dōu yí yàng 。"
+      }
+    ],
+    "pinyin": "hé péng you chǔ de hǎo ， bù biǎo shì tā men shén me dōu yí yàng 。"
+  },
+  "我们也要研究怎样相处。不是只有孩子要研究。": {
+    "english": "We also need to work out how to get along. Children are not the only ones who need to work on it.",
+    "interlinear": [
+      {
+        "chinese": "我们也要研究怎样相处。",
+        "gloss": "We also need to work out how to get along.",
+        "pinyin": "wǒ men yě yào yán jiū zěn yàng xiāng chǔ 。"
+      },
+      {
+        "chinese": "不是只有孩子要研究。",
+        "gloss": "Children are not the only ones who need to work on it.",
+        "pinyin": "bú shì zhǐ yǒu hái zi yào yán jiū 。"
+      }
+    ],
+    "pinyin": "wǒ men yě yào yán jiū zěn yàng xiāng chǔ 。 bú shì zhǐ yǒu hái zi yào yán jiū 。"
+  },
+  "相处要有耐心。开学时候的班会，我们先认识朋友。": {
+    "english": "Getting along takes patience. At the class meeting when school starts, we'll get to know our friends first.",
+    "interlinear": [
+      {
+        "chinese": "相处要有耐心。",
+        "gloss": "Getting along takes patience.",
+        "pinyin": "xiāng chǔ yào yǒu nài xīn 。"
+      },
+      {
+        "chinese": "开学时候的班会，",
+        "gloss": "At the class meeting when school starts,",
+        "pinyin": "kāi xué shí hòu de bān huì ，"
+      },
+      {
+        "chinese": "我们先认识朋友。",
+        "gloss": "we'll get to know our friends first.",
+        "pinyin": "wǒ men xiān rèn shi péng you 。"
+      }
+    ],
+    "pinyin": "xiāng chǔ yào yǒu nài xīn 。 kāi xué shí hòu de bān huì ， wǒ men xiān rèn shi péng you 。"
+  },
+  "班会要求所有人大声回答吗？": {
+    "english": "Will everyone have to answer loudly at the class meeting?",
+    "interlinear": [
+      {
+        "chinese": "班会要求所有人大声回答吗？",
+        "gloss": "Will everyone have to answer loudly at the class meeting?",
+        "pinyin": "bān huì yāo qiú suǒ yǒu rén dà shēng huí dá ma ？"
+      }
+    ],
+    "pinyin": "bān huì yāo qiú suǒ yǒu rén dà shēng huí dá ma ？"
+  },
+  "可以先听，也可以小声说。不想说，就点头。": {
+    "english": "They can listen first or speak quietly. If they don't want to speak, they can nod.",
+    "interlinear": [
+      {
+        "chinese": "可以先听，",
+        "gloss": "They can listen first",
+        "pinyin": "kě yǐ xiān tīng ，"
+      },
+      {
+        "chinese": "也可以小声说。",
+        "gloss": "or speak quietly.",
+        "pinyin": "yě kě yǐ xiǎo shēng shuō 。"
+      },
+      {
+        "chinese": "不想说，就点头。",
+        "gloss": "If they don't want to speak, they can nod.",
+        "pinyin": "bù xiǎng shuō ， jiù diǎn tóu 。"
+      }
+    ],
+    "pinyin": "kě yǐ xiān tīng ， yě kě yǐ xiǎo shēng shuō 。 bù xiǎng shuō ， jiù diǎn tóu 。"
+  },
+  "我也愿意先听。我有时候忘了听人说话。": {
+    "english": "I'm willing to listen first too. Sometimes I forget to listen to others.",
+    "interlinear": [
+      {
+        "chinese": "我也愿意先听。",
+        "gloss": "I'm willing to listen first too.",
+        "pinyin": "wǒ yě yuàn yì xiān tīng 。"
+      },
+      {
+        "chinese": "我有时候忘了听人说话。",
+        "gloss": "Sometimes I forget to listen to others.",
+        "pinyin": "wǒ yǒu shí hòu wàng le tīng rén shuō huà 。"
+      }
+    ],
+    "pinyin": "wǒ yě yuàn yì xiān tīng 。 wǒ yǒu shí hòu wàng le tīng rén shuō huà 。"
+  },
+  "他从前愿意给朋友做伴。现在，他不愿意出来了。": {
+    "english": "He used to like keeping his friend company. Now he is unwilling to come out.",
+    "interlinear": [
+      {
+        "chinese": "他从前愿意给朋友做伴。",
+        "gloss": "He used to like keeping his friend company.",
+        "pinyin": "tā cóng qián yuàn yì gěi péng you zuò bàn 。"
+      },
+      {
+        "chinese": "现在，他不愿意出来了。",
+        "gloss": "Now he is unwilling to come out.",
+        "pinyin": "xiàn zài ， tā bú yuàn yì chū lái le 。"
+      }
+    ],
+    "pinyin": "tā cóng qián yuàn yì gěi péng you zuò bàn 。 xiàn zài ， tā bú yuàn yì chū lái le 。"
+  },
+  "叫朋友给他做伴，他愿意来这里看看吗？": {
+    "english": "If we ask a friend to keep him company, would he come and look around here?",
+    "interlinear": [
+      {
+        "chinese": "叫朋友给他做伴，",
+        "gloss": "If we ask a friend to keep him company,",
+        "pinyin": "jiào péng you gěi tā zuò bàn ，"
+      },
+      {
+        "chinese": "他愿意来这里看看吗？",
+        "gloss": "would he come and look around here?",
+        "pinyin": "tā yuàn yì lái zhè lǐ kàn kàn ma ？"
+      }
+    ],
+    "pinyin": "jiào péng you gěi tā zuò bàn ， tā yuàn yì lái zhè lǐ kàn kàn ma ？"
+  },
+  "我先听他说，不替他答应。": {
+    "english": "I will listen to him first instead of promising for him.",
+    "interlinear": [
+      {
+        "chinese": "我先听他说，",
+        "gloss": "I will listen to him first",
+        "pinyin": "wǒ xiān tīng tā shuō ，"
+      },
+      {
+        "chinese": "不替他答应。",
+        "gloss": "instead of promising for him.",
+        "pinyin": "bú tì tā dā ying 。"
+      }
+    ],
+    "pinyin": "wǒ xiān tīng tā shuō ， bú tì tā dā ying 。"
+  },
+  "你陪着，他可以自己选择什么时候说话。": {
+    "english": "With you beside him, he can choose when to speak.",
+    "interlinear": [
+      {
+        "chinese": "你陪着，",
+        "gloss": "With you beside him,",
+        "pinyin": "nǐ péi zhe ，"
+      },
+      {
+        "chinese": "他可以自己选择什么时候说话。",
+        "gloss": "he can choose when to speak.",
+        "pinyin": "tā kě yǐ zì jǐ xuǎn zé shén me shí hòu shuō huà 。"
+      }
+    ],
+    "pinyin": "nǐ péi zhe ， tā kě yǐ zì jǐ xuǎn zé shén me shí hòu shuō huà 。"
+  },
+  "朋友要真的愿意。不是接到一句命令。": {
+    "english": "The friend needs to be willing too. It shouldn't be an order.",
+    "interlinear": [
+      {
+        "chinese": "朋友要真的愿意。",
+        "gloss": "The friend needs to be willing too.",
+        "pinyin": "péng you yào zhēn de yuàn yì 。"
+      },
+      {
+        "chinese": "不是接到一句命令。",
+        "gloss": "It shouldn't be an order.",
+        "pinyin": "bú shì jiē dào yí jù mìng lìng 。"
+      }
+    ],
+    "pinyin": "péng you yào zhēn de yuàn yì 。 bú shì jiē dào yí jù mìng lìng 。"
+  },
+  "房顶还没有修好，会不会又叫他们回去？": {
+    "english": "The roof hasn't been repaired; will you send them home again?",
+    "interlinear": [
+      {
+        "chinese": "房顶还没有修好，",
+        "gloss": "The roof hasn't been repaired;",
+        "pinyin": "fáng dǐng hái méi yǒu xiū hǎo ，"
+      },
+      {
+        "chinese": "会不会又叫他们回去？",
+        "gloss": "will you send them home again?",
+        "pinyin": "huì bu huì yòu jiào tā men huí qù ？"
+      }
+    ],
+    "pinyin": "fáng dǐng hái méi yǒu xiū hǎo ， huì bu huì yòu jiào tā men huí qù ？"
+  },
+  "从前读书的屋子还不能去。我们没有说修好了。": {
+    "english": "They still can't go into the old building. We haven't said it is repaired.",
+    "interlinear": [
+      {
+        "chinese": "从前读书的屋子还不能去。",
+        "gloss": "They still can't go into the old building.",
+        "pinyin": "cóng qián dú shū de wū zi hái bù néng qù 。"
+      },
+      {
+        "chinese": "我们没有说修好了。",
+        "gloss": "We haven't said it is repaired.",
+        "pinyin": "wǒ men méi yǒu shuō xiū hǎo le 。"
+      }
+    ],
+    "pinyin": "cóng qián dú shū de wū zi hái bù néng qù 。 wǒ men méi yǒu shuō xiū hǎo le 。"
+  },
+  "这里有人认真检查过。桌子不会摇，顶上也不会漏水。": {
+    "english": "Someone has inspected this space carefully. The tables don't wobble, and the roof doesn't leak.",
+    "interlinear": [
+      {
+        "chinese": "这里有人认真检查过。",
+        "gloss": "Someone has inspected this space carefully.",
+        "pinyin": "zhè lǐ yǒu rén rèn zhēn jiǎn chá guò 。"
+      },
+      {
+        "chinese": "桌子不会摇，",
+        "gloss": "The tables don't wobble,",
+        "pinyin": "zhuō zi bú huì yáo ，"
+      },
+      {
+        "chinese": "顶上也不会漏水。",
+        "gloss": "and the roof doesn't leak.",
+        "pinyin": "dǐng shàng yě bú huì lòu shuǐ 。"
+      }
+    ],
+    "pinyin": "zhè lǐ yǒu rén rèn zhēn jiǎn chá guò 。 zhuō zi bú huì yáo ， dǐng shàng yě bú huì lòu shuǐ 。"
+  },
+  "桌子的高度也检查过了，孩子可以舒服地坐着。": {
+    "english": "We have checked the table height too; the children can sit comfortably.",
+    "interlinear": [
+      {
+        "chinese": "桌子的高度也检查过了，",
+        "gloss": "We have checked the table height too;",
+        "pinyin": "zhuō zi de gāo dù yě jiǎn chá guò le ，"
+      },
+      {
+        "chinese": "孩子可以舒服地坐着。",
+        "gloss": "the children can sit comfortably.",
+        "pinyin": "hái zi kě yǐ shū fú dì zuò zhe 。"
+      }
+    ],
+    "pinyin": "zhuō zi de gāo dù yě jiǎn chá guò le ， hái zi kě yǐ shū fú dì zuò zhe 。"
+  },
+  "门边那根弯的管子呢？": {
+    "english": "What about that bent pipe beside the door?",
+    "interlinear": [
+      {
+        "chinese": "门边那根弯的管子呢？",
+        "gloss": "What about that bent pipe beside the door?",
+        "pinyin": "mén biān nà gēn wān de guǎn zi ne ？"
+      }
+    ],
+    "pinyin": "mén biān nà gēn wān de guǎn zi ne ？"
+  },
+  "那是从前的坏管子，孩子不会从那里走。": {
+    "english": "That's an old unused pipe; the children won't walk there.",
+    "interlinear": [
+      {
+        "chinese": "那是从前的坏管子，",
+        "gloss": "That's an old unused pipe;",
+        "pinyin": "nà shì cóng qián de huài guǎn zi ，"
+      },
+      {
+        "chinese": "孩子不会从那里走。",
+        "gloss": "the children won't walk there.",
+        "pinyin": "hái zi bú huì cóng nà lǐ zǒu 。"
+      }
+    ],
+    "pinyin": "nà shì cóng qián de huài guǎn zi ， hái zi bú huì cóng nà lǐ zǒu 。"
+  },
+  "我们要考虑的，不是孩子的性格，是他们为什么害怕。": {
+    "english": "What we need to consider isn't the child's personality is why they are afraid.",
+    "interlinear": [
+      {
+        "chinese": "我们要考虑的，",
+        "gloss": "What we need to consider",
+        "pinyin": "wǒ men yào kǎo lǜ de ，"
+      },
+      {
+        "chinese": "不是孩子的性格，",
+        "gloss": "isn't the child's personality",
+        "pinyin": "bú shì hái zi de xìng gé ，"
+      },
+      {
+        "chinese": "是他们为什么害怕。",
+        "gloss": "is why they are afraid.",
+        "pinyin": "shì tā men wèi shén me hài pà 。"
+      }
+    ],
+    "pinyin": "wǒ men yào kǎo lǜ de ， bú shì hái zi de xìng gé ， shì tā men wèi shén me hài pà 。"
+  },
+  "Ivo敲了敲桌子，然后点头。": {
+    "english": "Ivo taps the table gently and then nods.",
+    "interlinear": [
+      {
+        "chinese": "Ivo敲了敲桌子，",
+        "gloss": "Ivo taps the table gently",
+        "pinyin": "Ivo qiāo le qiāo zhuō zi ，"
+      },
+      {
+        "chinese": "然后点头。",
+        "gloss": "and then nods.",
+        "pinyin": "rán hòu diǎn tóu 。"
+      }
+    ],
+    "pinyin": "Ivo qiāo le qiāo zhuō zi ， rán hòu diǎn tóu 。"
+  },
+  "我可以先带儿子来看看。不过，我要先听他说。": {
+    "english": "I can bring my son to have a look first. But I need to listen to him first.",
+    "interlinear": [
+      {
+        "chinese": "我可以先带儿子来看看。",
+        "gloss": "I can bring my son to have a look first.",
+        "pinyin": "wǒ kě yǐ xiān dài ér zi lái kàn kàn 。"
+      },
+      {
+        "chinese": "不过，我要先听他说。",
+        "gloss": "But I need to listen to him first.",
+        "pinyin": "bú guò ， wǒ yào xiān tīng tā shuō 。"
+      }
+    ],
+    "pinyin": "wǒ kě yǐ xiān dài ér zi lái kàn kàn 。 bú guò ， wǒ yào xiān tīng tā shuō 。"
+  },
+  "我们等他。不是等一张好看的成绩单。": {
+    "english": "We'll wait for him. We aren't waiting for an impressive report card.",
+    "interlinear": [
+      {
+        "chinese": "我们等他。",
+        "gloss": "We'll wait for him.",
+        "pinyin": "wǒ men děng tā 。"
+      },
+      {
+        "chinese": "不是等一张好看的成绩单。",
+        "gloss": "We aren't waiting for an impressive report card.",
+        "pinyin": "bú shì děng yì zhāng hǎo kàn de chéng jì dān 。"
+      }
+    ],
+    "pinyin": "wǒ men děng tā 。 bú shì děng yì zhāng hǎo kàn de chéng jì dān 。"
+  },
+  "你们谈话结束了？": {
+    "english": "Have you finished talking?",
+    "interlinear": [
+      {
+        "chinese": "你们谈话结束了？",
+        "gloss": "Have you finished talking?",
+        "pinyin": "nǐ men tán huà jié shù le ？"
+      }
+    ],
+    "pinyin": "nǐ men tán huà jié shù le ？"
+  },
+  "我本来想，不敢来就要被批评。不过，我想先听他说。": {
+    "english": "I used to think being afraid to come meant being criticized. But I want to listen to him first.",
+    "interlinear": [
+      {
+        "chinese": "我本来想，",
+        "gloss": "I used to think",
+        "pinyin": "wǒ běn lái xiǎng ，"
+      },
+      {
+        "chinese": "不敢来就要被批评。",
+        "gloss": "being afraid to come meant being criticized.",
+        "pinyin": "bù gǎn lái jiù yào bèi pī píng 。"
+      },
+      {
+        "chinese": "不过，我想先听他说。",
+        "gloss": "But I want to listen to him first.",
+        "pinyin": "bú guò ， wǒ xiǎng xiān tīng tā shuō 。"
+      }
+    ],
+    "pinyin": "wǒ běn lái xiǎng ， bù gǎn lái jiù yào bèi pī píng 。 bú guò ， wǒ xiǎng xiān tīng tā shuō 。"
+  },
+  "妈妈从家里带来一杯水，热气还在冒。": {
+    "english": "Mother has brought a cup of water from home; steam is still rising from it.",
+    "interlinear": [
+      {
+        "chinese": "妈妈从家里带来一杯水，",
+        "gloss": "Mother has brought a cup of water from home;",
+        "pinyin": "mā ma cóng jiā lǐ dài lái yì bēi shuǐ ，"
+      },
+      {
+        "chinese": "热气还在冒。",
+        "gloss": "steam is still rising from it.",
+        "pinyin": "rè qì hái zài mào 。"
+      }
+    ],
+    "pinyin": "mā ma cóng jiā lǐ dài lái yì bēi shuǐ ， rè qì hái zài mào 。"
+  },
+  "先暖暖手，别冻着。这不是站里新拿的水。": {
+    "english": "Warm your hands first; don't get chilled. This isn't newly drawn station water.",
+    "interlinear": [
+      {
+        "chinese": "先暖暖手，",
+        "gloss": "Warm your hands first;",
+        "pinyin": "xiān nuǎn nuǎn shǒu ，"
+      },
+      {
+        "chinese": "别冻着。",
+        "gloss": "don't get chilled.",
+        "pinyin": "bié dòng zhe 。"
+      },
+      {
+        "chinese": "这不是站里新拿的水。",
+        "gloss": "This isn't newly drawn station water.",
+        "pinyin": "zhè bú shì zhàn lǐ xīn ná de shuǐ 。"
+      }
+    ],
+    "pinyin": "xiān nuǎn nuǎn shǒu ， bié dòng zhe 。 zhè bú shì zhàn lǐ xīn ná de shuǐ 。"
+  },
+  "谢谢。我没有冻坏。我从前只是害怕。": {
+    "english": "Thank you. I'm not freezing. I was simply afraid before.",
+    "interlinear": [
+      {
+        "chinese": "谢谢。我没有冻坏。",
+        "gloss": "Thank you. I'm not freezing.",
+        "pinyin": "xiè xie 。 wǒ méi yǒu dòng huài 。"
+      },
+      {
+        "chinese": "我从前只是害怕。",
+        "gloss": "I was simply afraid before.",
+        "pinyin": "wǒ cóng qián zhǐ shì hài pà 。"
+      }
+    ],
+    "pinyin": "xiè xie 。 wǒ méi yǒu dòng huài 。 wǒ cóng qián zhǐ shì hài pà 。"
+  },
+  "我站得太久，腰有点酸。妈妈叫我先坐。": {
+    "english": "I've been standing too long; my lower back aches a little. Mother tells me to sit down.",
+    "interlinear": [
+      {
+        "chinese": "我站得太久，",
+        "gloss": "I've been standing too long;",
+        "pinyin": "wǒ zhàn de tài jiǔ ，"
+      },
+      {
+        "chinese": "腰有点酸。",
+        "gloss": "my lower back aches a little.",
+        "pinyin": "yāo yǒu diǎn suān 。"
+      },
+      {
+        "chinese": "妈妈叫我先坐。",
+        "gloss": "Mother tells me to sit down.",
+        "pinyin": "mā ma jiào wǒ xiān zuò 。"
+      }
+    ],
+    "pinyin": "wǒ zhàn de tài jiǔ ， yāo yǒu diǎn suān 。 mā ma jiào wǒ xiān zuò 。"
+  },
+  "不能只叫他们慢慢来，我却不愿意等。": {
+    "english": "I can't just tell others to take their time while refusing to wait myself.",
+    "interlinear": [
+      {
+        "chinese": "不能只叫他们慢慢来，",
+        "gloss": "I can't just tell others to take their time",
+        "pinyin": "bù néng zhǐ jiào tā men màn màn lái ，"
+      },
+      {
+        "chinese": "我却不愿意等。",
+        "gloss": "while refusing to wait myself.",
+        "pinyin": "wǒ què bú yuàn yì děng 。"
+      }
+    ],
+    "pinyin": "bù néng zhǐ jiào tā men màn màn lái ， wǒ què bú yuàn yì děng 。"
+  },
+  "不表演原力，先听孩子说的话。": {
+    "english": "No demonstration of the Force; I'll listen to what the children say first.",
+    "interlinear": [
+      {
+        "chinese": "不表演原力，",
+        "gloss": "No demonstration of the Force;",
+        "pinyin": "bù biǎo yǎn yuán lì ，"
+      },
+      {
+        "chinese": "先听孩子说的话。",
+        "gloss": "I'll listen to what the children say first.",
+        "pinyin": "xiān tīng hái zi shuō de huà 。"
+      }
+    ],
+    "pinyin": "bù biǎo yǎn yuán lì ， xiān tīng hái zi shuō de huà 。"
+  },
+  "你会保护他们，也要给他们自己想的时间。": {
+    "english": "You know how to protect them; give them time to think for themselves too.",
+    "interlinear": [
+      {
+        "chinese": "你会保护他们，",
+        "gloss": "You know how to protect them;",
+        "pinyin": "nǐ huì bǎo hù tā men ，"
+      },
+      {
+        "chinese": "也要给他们自己想的时间。",
+        "gloss": "give them time to think for themselves too.",
+        "pinyin": "yě yào gěi tā men zì jǐ xiǎng de shí jiān 。"
+      }
+    ],
+    "pinyin": "nǐ huì bǎo hù tā men ， yě yào gěi tā men zì jǐ xiǎng de shí jiān 。"
+  },
+  "我不再要求他迅速回答。开学的时候，我们可以先来看看。": {
+    "english": "I won't press him to answer quickly anymore. When school starts, we can come and look around first.",
+    "interlinear": [
+      {
+        "chinese": "我不再要求他迅速回答。",
+        "gloss": "I won't press him to answer quickly anymore.",
+        "pinyin": "wǒ bú zài yāo qiú tā xùn sù huí dá 。"
+      },
+      {
+        "chinese": "开学的时候，我们可以先来看看。",
+        "gloss": "When school starts, we can come and look around first.",
+        "pinyin": "kāi xué de shí hòu ， wǒ men kě yǐ xiān lái kàn kàn 。"
+      }
+    ],
+    "pinyin": "wǒ bú zài yāo qiú tā xùn sù huí dá 。 kāi xué de shí hòu ， wǒ men kě yǐ xiān lái kàn kàn 。"
+  },
+  "临时读书的地方准备好了。修屋子，我们还要一起负责。": {
+    "english": "The temporary learning space is ready. We still need to share responsibility for the repairs.",
+    "interlinear": [
+      {
+        "chinese": "临时读书的地方准备好了。",
+        "gloss": "The temporary learning space is ready.",
+        "pinyin": "lín shí dú shū de dì fang zhǔn bèi hǎo le 。"
+      },
+      {
+        "chinese": "修屋子，我们还要一起负责。",
+        "gloss": "We still need to share responsibility for the repairs.",
+        "pinyin": "xiū wū zi ， wǒ men hái yào yì qǐ fù zé 。"
+      }
+    ],
+    "pinyin": "lín shí dú shū de dì fang zhǔn bèi hǎo le 。 xiū wū zi ， wǒ men hái yào yì qǐ fù zé 。"
+  },
+  "一阵风来了，我闭眼等沙过去，然后睁开。": {
+    "english": "A gust of wind arrives; I close my eyes until the sand passes then open them.",
+    "interlinear": [
+      {
+        "chinese": "一阵风来了，",
+        "gloss": "A gust of wind arrives;",
+        "pinyin": "yí zhèn fēng lái le ，"
+      },
+      {
+        "chinese": "我闭眼等沙过去，",
+        "gloss": "I close my eyes until the sand passes",
+        "pinyin": "wǒ bì yǎn děng shā guò qù ，"
+      },
+      {
+        "chinese": "然后睁开。",
+        "gloss": "then open them.",
+        "pinyin": "rán hòu zhēng kāi 。"
+      }
+    ],
+    "pinyin": "yí zhèn fēng lái le ， wǒ bì yǎn děng shā guò qù ， rán hòu zhēng kāi 。"
+  },
+  "开学的时候，我也会来。先听，然后一起学。": {
+    "english": "When school starts, I will come too. First I'll listen, then we'll learn together.",
+    "interlinear": [
+      {
+        "chinese": "开学的时候，我也会来。",
+        "gloss": "When school starts, I will come too.",
+        "pinyin": "kāi xué de shí hòu ， wǒ yě huì lái 。"
+      },
+      {
+        "chinese": "先听，",
+        "gloss": "First I'll listen,",
+        "pinyin": "xiān tīng ，"
+      },
+      {
+        "chinese": "然后一起学。",
+        "gloss": "then we'll learn together.",
+        "pinyin": "rán hòu yì qǐ xué 。"
+      }
+    ],
+    "pinyin": "kāi xué de shí hòu ， wǒ yě huì lái 。 xiān tīng ， rán hòu yì qǐ xué 。"
+  },
+  "先陪Ivo坐一会儿。": {
+    "english": "Sit with Ivo for a moment first.",
+    "interlinear": [
+      {
+        "chinese": "先陪Ivo坐一会儿。",
+        "gloss": "Sit with Ivo for a moment first.",
+        "pinyin": "xiān péi Ivo zuò yí huì er 。"
+      }
+    ],
+    "pinyin": "xiān péi Ivo zuò yí huì er 。"
+  },
+  "先听他为什么害怕。": {
+    "english": "First listen to why he is afraid.",
+    "interlinear": [
+      {
+        "chinese": "先听他为什么害怕。",
+        "gloss": "First listen to why he is afraid.",
+        "pinyin": "xiān tīng tā wèi shén me hài pà 。"
+      }
+    ],
+    "pinyin": "xiān tīng tā wèi shén me hài pà 。"
+  },
+  "听Sela说明报到的要求。": {
+    "english": "Listen to Sela explain the registration requirements.",
+    "interlinear": [
+      {
+        "chinese": "听Sela说明报到的要求。",
+        "gloss": "Listen to Sela explain the registration requirements.",
+        "pinyin": "tīng Sela shuō míng bào dào de yāo qiú 。"
+      }
+    ],
+    "pinyin": "tīng Sela shuō míng bào dào de yāo qiú 。"
+  },
+  "先谈孩子愿意怎么来。": {
+    "english": "First discuss how the child would like to come.",
+    "interlinear": [
+      {
+        "chinese": "先谈孩子愿意怎么来。",
+        "gloss": "First discuss how the child would like to come.",
+        "pinyin": "xiān tán hái zi yuàn yì zěn me lái 。"
+      }
+    ],
+    "pinyin": "xiān tán hái zi yuàn yì zěn me lái 。"
+  },
+  "家长可以先陪着。": {
+    "english": "A parent can stay with him at first.",
+    "interlinear": [
+      {
+        "chinese": "家长可以先陪着。",
+        "gloss": "A parent can stay with him at first.",
+        "pinyin": "jiā zhǎng kě yǐ xiān péi zhe 。"
+      }
+    ],
+    "pinyin": "jiā zhǎng kě yǐ xiān péi zhe 。"
+  },
+  "先听朋友是否愿意做伴。": {
+    "english": "First find out whether the friend wants to keep him company.",
+    "interlinear": [
+      {
+        "chinese": "先听朋友是否愿意做伴。",
+        "gloss": "First find out whether the friend wants to keep him company.",
+        "pinyin": "xiān tīng péng you shì fǒu yuàn yì zuò bàn 。"
+      }
+    ],
+    "pinyin": "xiān tīng péng you shì fǒu yuàn yì zuò bàn 。"
+  },
+  "我愿意先听孩子读书。": {
+    "english": "I am willing to listen to the children read first.",
+    "interlinear": [
+      {
+        "chinese": "我愿意先听孩子读书。",
+        "gloss": "I am willing to listen to the children read first.",
+        "pinyin": "wǒ yuàn yì xiān tīng hái zi dú shū 。"
+      }
+    ],
+    "pinyin": "wǒ yuàn yì xiān tīng hái zi dú shū 。"
+  },
+  "我愿意听Sela的要求。": {
+    "english": "I am willing to listen to Sela’s requirements.",
+    "interlinear": [
+      {
+        "chinese": "我愿意听Sela的要求。",
+        "gloss": "I am willing to listen to Sela’s requirements.",
+        "pinyin": "wǒ yuàn yì tīng Sela de yāo qiú 。"
+      }
+    ],
+    "pinyin": "wǒ yuàn yì tīng Sela de yāo qiú 。"
+  }
+}
