@@ -4,9 +4,9 @@
   "source": {
     "kind": "original",
     "note": "Original fan adventure requested by David for Jonathan; no source novel or real-person likeness.",
-    "nextStart": "Episode 10: the same shared morning repair of the town water supply on every route. Past losses, key choices and promises remain remembered context. Start with people arriving for work and a concrete repair task, not another hidden controller or repeated-voice mystery.",
-    "nextEndBefore": "Do not reopen the resolved voice/bypass/deep-reserve mystery, resurrect anyone, restore lost items or invent drinking water. Keep one main plot with local expressive choices; track physical resources honestly.",
-    "continuationNote": "Explicit user request: all threads converge now; memory of choices continues, one main storyline going forward."
+    "nextStart": "Episode 12: one common storyline cleaning and clearing the repaired supply line for drinking water. Everyone now has exactly two more stored drinking-water buckets than their pre-Episode-11 total, from the verified sealed ship delivery. Use Episode 11 terminal water variable for current total; all other memory fields carry unchanged.",
+    "nextEndBefore": "Do not resurrect people or restore destroyed items. No reopened voice or hidden-reserve mystery. Keep local choices within one common storyline; preserve actual water totals and earlier agreements.",
+    "continuationNote": "One common plot, with remembered choices. Independent retest with sound equipment confirms isolated line holds. Pipe still needs cleaning and water-quality clearance. Separately sealed, inspected ship delivery adds two buckets to actual stored drinking water on every route."
   },
   "completed": [
     {
@@ -50,9 +50,17 @@
     {
       "episode": "jedi-09-v1",
       "end": "Ren personally accounts to Mother without obtaining forgiveness. Eastern key ownership and old-playback state unchanged; take uses a doorstep message point, trust retains Ren’s control under public scrutiny, shared gains Mother’s explicit one-shift consent and trained oversight. Min admits the western bypass serves a separate external cooling pipes for the sick shelter. Finite surface cistern feeds it by gravity; local underground cistern empty, no secret drinkable reserve. All routes close the failing bypass, preserve losses and water totals, and commit to restoring the town supply together at dawn. One main storyline henceforth; choices remembered, not multiplying plot branches."
+    },
+    {
+      "episode": "jedi-10-v1",
+      "end": "Misaligned new joint is seated correctly with supports, dry repair completed; valves remain closed and no water is added or used."
+    },
+    {
+      "episode": "jedi-11-v1",
+      "end": "Independent retest with sound equipment confirms isolated line holds. Pipe still needs cleaning and water-quality clearance. Separately sealed, inspected ship delivery adds two buckets to actual stored drinking water on every route."
     }
   ],
-  "assetsFrom": "stories/animated/jedi-09.json",
+  "assetsFrom": "stories/animated/jedi-11.json",
   "vocabularySupplement": ".local/episodes/jedi-01/supplement.json",
   "coverage": {
     "min": 80,
@@ -86,7 +94,10 @@
     "Episode 7 separately discovers recorded water requests routed through dry pipes. Mother never consented to replay; child safe offstage. Destroy loses relay records; preserve leaves playback risk and recorded dissent; isolate requires consenting voice test AND retained station archive, stops playback and retains records. An injury persists; burned beacon prevents transmission. No water or past losses restored. Eastern manual request next; operator and deep reserve unknown.",
     "Ren admits ordering recorded pleas to repeat because nobody answered. Episode 8: take removes eastern key, blocking old playback requests and new help calls; trust leaves key with Ren, old playback switched off but restart risk remains; shared requires inspection/test, locks old-request switch with Jonathan holding its key while new help calls remain live and Jonathan/An provide interim oversight pending a willing second operator. Ren commits to personal account; written statement optional, no assumed forgiveness. An injury/beacon and all earlier losses, water totals and records remain unchanged. Ren denies controlling western water flow; deep reserve unknown.",
     "Ren personally accounts to Mother without obtaining forgiveness. Eastern key ownership and old-playback state unchanged; take uses a doorstep message point, trust retains Ren’s control under public scrutiny, shared gains Mother’s explicit one-shift consent and trained oversight. Min admits the western bypass serves a separate external cooling pipes for the sick shelter. Finite surface cistern feeds it by gravity; local underground cistern empty, no secret drinkable reserve. All routes close the failing bypass, preserve losses and water totals, and commit to restoring the town supply together at dawn. One main storyline henceforth; choices remembered, not multiplying plot branches.",
-    "David’s October 28 instruction: Episode 9 closes the old threads. From now on, retain memory of prior choices but use one main storyline. Local choices rejoin; do not multiply persistent branches."
+    "David’s October 28 instruction: Episode 9 closes the old threads. From now on, retain memory of prior choices but use one main storyline. Local choices rejoin; do not multiply persistent branches.",
+    "Misaligned new joint is seated correctly with supports, dry repair completed; valves remain closed and no water is added or used.",
+    "Independent retest with sound equipment confirms isolated line holds. Pipe still needs cleaning and water-quality clearance. Separately sealed, inspected ship delivery adds two buckets to actual stored drinking water on every route.",
+    "Episode 12 must use Episode 11 terminal water variable (old remembered water plus exactly 2 delivered buckets). Map the water graph/options forward +2 and sourceVariable water; carry every other historical field unchanged. Never initialize current water from the old pre-delivery memory."
   ],
   "cover": "public/stories/animated/jedi/series-cover.jpg",
   "coverArt": {
@@ -96,9 +107,9 @@
   },
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through jedi-09-v1",
-    "nextStart": "Episode 10: the same shared morning repair of the town water supply on every route. Past losses, key choices and promises remain remembered context. Start with people arriving for work and a concrete repair task, not another hidden controller or repeated-voice mystery.",
-    "nextEndBefore": "Do not reopen the resolved voice/bypass/deep-reserve mystery, resurrect anyone, restore lost items or invent drinking water. Keep one main plot with local expressive choices; track physical resources honestly.",
-    "assetsFrom": "stories/animated/jedi-09.json"
+    "note": "Published through jedi-11-v1",
+    "nextStart": "Episode 12: one common storyline cleaning and clearing the repaired supply line for drinking water. Everyone now has exactly two more stored drinking-water buckets than their pre-Episode-11 total, from the verified sealed ship delivery. Use Episode 11 terminal water variable for current total; all other memory fields carry unchanged.",
+    "nextEndBefore": "Do not resurrect people or restore destroyed items. No reopened voice or hidden-reserve mystery. Keep local choices within one common storyline; preserve actual water totals and earlier agreements.",
+    "assetsFrom": "stories/animated/jedi-11.json"
   }
 }
