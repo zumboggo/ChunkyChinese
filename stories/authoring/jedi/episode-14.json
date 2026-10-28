@@ -1,0 +1,503 @@
+{
+  "episode": "jedi-14-v1",
+  "title": "The Voices Beneath the Water · Episode 14: The Last Door",
+  "planning": {
+    "storytellingVoice": "Intimate character drama",
+    "voiceReason": "A request for help changes the relationship between Min and Mother during an ordinary delivery.",
+    "earlyCare": "Min checks that a hard-to-reach recipient was not omitted; Mother notices his tired hands.",
+    "desire": "Complete the promised delivery under the inherited allocation agreement.",
+    "obstacle": "Min mistakes needing help for failing again, and wants to shoulder the delivery alone.",
+    "dramaticChange": "Min asks for shared help; Mother accepts his practical contribution without declaring forgiveness.",
+    "sourceBoundary": "Deliver exactly four buckets out of undistributed station stock; transfer to rightful recipients according to the already recorded agreement, not a new equal-share rule.",
+    "sceneActivities": [
+      "Jon crouches to inspect the path at the doorway, then rests attentive before the listener close-up. Shared carrying and recipient handover are narrated; the teaser shows the container. No invented runtime prop."
+    ],
+    "actingSignature": {
+      "Jonathan": "Plain practical questions; open hand at a boundary, quiet attention afterward.",
+      "An": "Specific limits and short questions; supported seated rest while reviewing, no assumed healing.",
+      "Min": "Urgent explanations soften into admitting uncertainty; rests attentive when corrected.",
+      "Mother": "Concrete requests and accurate accounting; no presumed forgiveness or renewed station shift."
+    },
+    "listenerTurn": "Pair → Mother says she is asking for help, not asking Min to prove himself → listener Min → quiet acceptance → shared frame.",
+    "payoff": "All four buckets reach the designated recipients under the existing allocation agreement; undistributed stock decreases by exactly four. Min accepts shared help. They return to prepare the intake.",
+    "freshQuestion": "How will they protect the exposed intake as the wind rises?",
+    "teaser": {
+      "dialogue": "No one carries this alone.",
+      "moment": "Jon and Min share a heavy water container while Mother steadies and guides at the last doorway."
+    },
+    "convergence": "Four local two-option choices rejoin; preserve the twelve historical fields and one main plot.",
+    "artDirection": "Exactly three adults; community and connection visible through shared work, mutual attention and equal visual importance. Preserve prior injuries; no solitary hero pose."
+  },
+  "video": {
+    "src": "stories/animated/jedi/jedi-14-intro.mp4",
+    "poster": "stories/animated/jedi/jedi-14-intro.poster.jpg",
+    "dialogue": "No one carries this alone.",
+    "totalSeconds": 9,
+    "stillSeconds": 3,
+    "motionSeconds": 6,
+    "model": "prunaai/p-video-2-pro",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off"
+    },
+    "verifiedUSDPerSecond": 0.01,
+    "maximumCostUSD": 0.06,
+    "paidRequests": 1,
+    "predictionId": "rbdkbtqbpdrmr0d1g0xvfer330",
+    "prompt": "Animate this exact reference for six seconds. Only Jon, the brown-haired bearded man in cream and brown, speaks. He says exactly once in clear English: \"No one carries this alone.\" Begin at second 0.5, finish by second 4.5, then close his mouth. The other two people remain silent with mouths closed. No extra words, repetitions, paraphrases, fillers, humming, narration, singing or other voices. Gentle ambience below clear dialogue. Three adults remain visible. Jon and Min maintain their shared grip on the same container; Mother keeps a gentle supporting hand on Min. Subtle exchanged looks; do not walk or lift further. Preserve all three faces, distinct clothing, body positions, hands and anatomy. Locked medium-wide camera keeps all three in frame; no solo close-up. No new people, objects, text or magic.",
+    "reference": "stories/authoring/jedi/art/episode-14-reference.png",
+    "nativeSpeech": true,
+    "checks": {
+      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-14/native.mp4",
+      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-14/intro.mp4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "fps": 24,
+      "hold_seconds": 3.0,
+      "motion_seconds": 6.0,
+      "reaction_hold_seconds": 0.0,
+      "total_seconds": 9.0,
+      "decoded_audio_seconds": 9.00275,
+      "audio_non_silent": true,
+      "audio_starts_after_hold": true,
+      "hold_mean_pixel_difference": 0.004381342701014832,
+      "sha256": "23a04b41359354de77e5cbeacedb89623d4ca3ef752d5e393bc586452293a5d3",
+      "expected_dialogue": "No one carries this alone.",
+      "speech_check": "pass",
+      "review": "One visual/listening review remains; automated checks do not prove natural acting or lip sync.",
+      "transcription": "No one carries this alone."
+    }
+  },
+  "continuation": {
+    "end": "All four buckets reach the designated recipients under the existing allocation agreement; undistributed stock decreases by exactly four. Min accepts shared help. They return to prepare the intake.",
+    "nextStart": "Episode 15: Jon, Min and An protect the exposed intake before the forecast high wind. Use Episode 14 terminal water: exactly four fewer undistributed buckets; recipients hold those delivered buckets.",
+    "nextEndBefore": "One common storyline. Do not restore destroyed items or heal An implicitly. Delivered water is transferred to recipients, not lost or newly available station stock. Follow inherited allocation agreements.",
+    "note": "Terminal water is the undistributed stock; preserve all other historic fields unchanged."
+  },
+  "englishAudio": [
+    {
+      "sha256": "cbe91f37de1386b25b53df4e3740f1bf8b86e275bb7ea44b86bc25ca5f0794f4",
+      "text": "Min studies the records instead of leaving early. He still remembers the last household.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d0139ab40700224d00dbb7b34c5d2d6648f1ad71930daa39a8632a2cd0ff9a1b",
+      "text": "Would you like help? We can carry it together.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "48328ff4fe6a16c0adf7ef8925dd276824345d3d3268f2b4c37b31b3e446865a",
+      "text": "I promised to bring water. I can take responsibility.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "afea7418317ab74fc651aa3012e48b7614bbacc7c75e4bc5b7de256187cc9a26",
+      "text": "I am asking whether you want help, not asking you to explain how good you are.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "5f8c2bb0fc45ce50f87a4a1c030c1dd290095051e29c82c7695f320d2f0484d3",
+      "text": "First, check who is due to receive water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "28d30dda47339aa63d7aab4c7f3054bfc7c930c777f70b10b123b8abba287491",
+      "text": "Mother, do you know where they are?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "68532048717f9c159c4d726b75cce58ae738d735514aa35bb7f1f970bfb84137",
+      "text": "The record of our promised allocation is still here. I have not secretly changed it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7c3d22438c3f799b7822499073832d51f5f341f0cd46d67640cb55b942a9c37f",
+      "text": "I do. I will go with you. Whatever happens, we remain responsible for our earlier promises.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e6fd8feab7e8943f1fba250b5e8dd2499cd60ce66ea92b7301c9b14a14d01eb9",
+      "text": "We set out with four buckets of water for the people listed in the records. Nobody gets an extra share in advance.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a002a861ac987acdebee2da3695cd79d2127b5d282878bc93f832ad191547df8",
+      "text": "The last household is still waiting. They are afraid we are not coming.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e13c4eaccf12df2bbff3c2edc2a9911b443b82a2b321b97ba79925dd43ed93f8",
+      "text": "Then go and explain that we are still on our way.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4a4bef6c1615319d39736b94ffc66d34d1ffdc6edab9f0213ad4d3a8b27b6284",
+      "text": "I will go ahead and explain. Take your time. Do not take risks to hurry.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a2efcf2f256336889cc0c7c2d90221c4835c9103b73556fb5e9dc9d6246ec1f5",
+      "text": "Stop first and check whether it is safe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "70aef9aa52e035d96d0c5bfad3d46fdd3c8e7eab8f96a9767c1c7e1ed6a27518",
+      "text": "I will carry it with Min. We will share responsibility.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9d5bc5ed72ec7fa2db74176b835fb170a5098227c8da0d67d5421749cde6162f",
+      "text": "Do you no longer believe I can be responsible?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9fcbb6a5e05c2393ba586e895bde864e6190b9591878803353e92a19edf1ddc7",
+      "text": "Stopping does not mean failure. We still remember what we learned before.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c164259ad135ac276bafc8ceb50c52bc4db3bcca01f9a2ce1c105a779364d52b",
+      "text": "I thought they would trust me if I did not ask for help.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d5512dfbb04c8ba7a98a2b92fea06da700014f9f70bf7d55653091da3b4b68e2",
+      "text": "We are here to bring water, not to earn praise.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3a2c5af1f04a1879f66481bad66681f6d065f4e9eeff03e1595f06287b10f611",
+      "text": "There are stones before the last doorway. Mother returns and asks us to set the water down safely first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4b76a5a64660993b53a956a666563301ad82cadfdf5f0c4be0e56de90d5e672a",
+      "text": "It is difficult to walk here. Let us look together. Do not quietly take a risk.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0925575c18abaabd278bec6c014fc1493ca17a513cc84ab8103a288c443896a4",
+      "text": "I check the path beside the stones. Min is still gripping the bucket tightly.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1c53e368b792042594aae725c252a1a1a6e0b1d7d5e3b8754d0be3228f779191",
+      "text": "Min, asking me for help does not mean you have failed.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "24e77f642eab765481ce7f5526555a0157fe51288b7eb5f5645d512a4451fb05",
+      "text": "We will carry it together. You say when to stop.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8e61c5129ba2468b73e2b6152fe182f8e9eb7eeeb6823fb622a9b665d719d9d5",
+      "text": "I am afraid that if I ask for help, people will tell me to leave.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f3ef6d392adb4f3bc409f8448452a7d0d450cb5411f6363cb4813a513422253d",
+      "text": "If I say stop, will you really stop?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a6cb0b4982ea8e4a4943cb4936ec77f0993d555440281d194aca4c683c517b89",
+      "text": "Yes. You watch the path. I will listen to your voice.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "67f6b3a4f104346ae339f14b5b1c23ed596d4b29d75df77c367a07aed8f276e2",
+      "text": "Why are you still willing to stay with me?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9164bf162f8f52bc01768415404a88701a73e33fb41ee8083131c2c94731f959",
+      "text": "Because I need your help, not for you to prove yourself.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0154babeec5c17541caaec5d4c8e305e6df269c480f88ca040ced1ad9500686a",
+      "text": "Min nods slowly. He stops taking risks in silence.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "de3934f816d8d0dfeb34854614dcddadaf87206be310d35492c1d529c3987622",
+      "text": "Jonathan, carry it with me. We need to take it slowly here.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "07bafe15c5f4c4770f394779485a1a75f2c68a8cb020a1f467230aab34c42a8e",
+      "text": "All right. Nobody needs to take responsibility for everything alone.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d141193c3845a1609a42378e76b26b40de3672f63cba3eefac317592e61e6f5b",
+      "text": "We each grip one side of the bucket. Mother helps watch the path beside us. Nobody rushes ahead.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "eb4338eb0a2f63bd24581af5db01e89e667f5c191e08fc627df2421a3b76b8ee",
+      "text": "Stop. Set it down first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3b9b92653322a4f7e80d85e557cfc3f4a585dd2025251e96c7e4b34d9ac9c46f",
+      "text": "We stop together and set the water down safely. Someone comes out of the last home.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1d752c4696ba6a73d990d771786876c10a80b5db87c1198e2473bbaf42a697d5",
+      "text": "We are here. Check the records first, then receive the water.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0433cf15325ad285eb70f6670174d2eacc5a0d5dec520b6e7c9e94a0ed96a8c1",
+      "text": "Everyone has checked. All four buckets have gone to the listed recipients. Nobody secretly took extra.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "6c2d40f96856a93640f2fce1b72d96bd692cac75f16b248bb5994a996f625ae4",
+      "text": "Check the final records together.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c3b572a2b34f2acee1dffde8ed5d57cdf7eaa53679dd094de6e9264f056a244e",
+      "text": "Ask the recipients to confirm as well.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "f2c88987fcc91f7efdb9632ecc893987e3f112593dab211df01525876f440790",
+      "text": "All four buckets have been delivered. The station has four fewer buckets because they went to the recipients, not because they were lost.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "07cbe1dfd80a608f42875c3242dab2c71a20abdb5cdcbd10298003f7077c527a",
+      "text": "They have confirmed. We still honor our promised allocation without secretly changing it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2fdd850c397ac27b15aecd498204cd9b6e3f1f16d29c494bc66e8dd1fc3cbbc8",
+      "text": "Today, do you trust me now?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "104992f0c365f886f1dcd50c5c3a3c3a6e6bafed599669a4e27ed6ba3132a010",
+      "text": "Today, you came. Next time, come again.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2f0c0e6fd65c0e62d359a4b13838c142ee258fdf41250336ce0a7dc2d41e5bee",
+      "text": "All right. Next time, I will ask for help earlier.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "eef67a4f7b32e3c472f68ad90e977fbac4d2f08c906a5bf1b96e86de92543b4f",
+      "text": "We return together. The wind is rising, and the pipes outside still need our protection.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e36c1c05344e14c3fccfb921a6c0609fbc18850f979f1cd1b75e30872d2622b8",
+      "text": "The water has arrived. Next, we will protect the pipes together.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    }
+  ],
+  "verification": {
+    "reportStatus": "passed",
+    "packageBytes": 1443604,
+    "phases": [
+      {
+        "name": "vocabulary",
+        "seconds": 0.044109707999999984,
+        "status": "passed"
+      },
+      {
+        "name": "routes, source assertions and resume",
+        "seconds": 0.15139720799999998,
+        "status": "passed"
+      },
+      {
+        "name": "annotations",
+        "seconds": 0.0040028330000000095,
+        "status": "passed"
+      },
+      {
+        "name": "audio",
+        "seconds": 28.464659375,
+        "status": "passed"
+      },
+      {
+        "name": "English pocket audio",
+        "seconds": 0.09783695900000021,
+        "status": "passed"
+      },
+      {
+        "name": "package and ZIP",
+        "seconds": 0.07816300000000047,
+        "status": "passed"
+      },
+      {
+        "name": "phone and desktop",
+        "seconds": 35.962156375000006,
+        "status": "passed"
+      },
+      {
+        "name": "stage new release",
+        "seconds": 0.01250487499999872,
+        "status": "passed"
+      }
+    ],
+    "familiarity": {
+      "min": 82.36775818639798,
+      "max": 83.95061728395062
+    },
+    "pinyin": "Reviewed complete lines and contextual chunks; corrected hai/yuan, Jonathan, dai zi, zhi kan and numeric bucket pinyin.",
+    "teaser": "Native speech recognition exact pass, 3-second first-frame hold and 6-second motion verified; motion/end frames inspected.",
+    "releaseChecks": "3 continuity tests passed: 54,432 historical states and 160 local routes per episode. 12 browser release tests passed across desktop and phone, including teaser completion, reduced motion/failure, Mandarin playback and resumed listener/aftermath. Screenshots inspected."
+  },
+  "artwork": {
+    "generator": "Built-in ImageGen",
+    "reference": "stories/authoring/jedi/art/episode-14-reference.png",
+    "direction": "Exactly three adults; community and connection visible through shared work, mutual attention and equal visual importance. Preserve prior injuries; no solitary hero pose.",
+    "composition": "Jon and Min share the handles of a water container while Mother supports Min at the last doorway.",
+    "review": "Original image, motion frame and ending frame inspected; exactly three characters remain visible, with shared work and mutual attention."
+  }
+}

@@ -733,5 +733,51 @@
       "title": "The Voices Beneath the Water · Episode 13: The First Water",
       "description": "The tested line finally carries drinking water. Min discovers that keeping a promise begins with ordinary work."
     }
+  },
+  {
+    "id": "jedi-14-v1",
+    "category": "jedi",
+    "episode": 14,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-14-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-14-intro.poster.jpg",
+      "title": "The Last Door",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode 14 · The Last Door",
+        "paragraphs": [
+          "Four measured buckets have arrived through the repaired line. The water is safe, and the earlier allocation agreement still decides where it must go.",
+          "Jonathan, Min and Mother set out to complete the delivery. Bad weather is approaching, but a promise is not finished at the first convenient doorway."
+        ]
+      }
+    },
+    "path": "jedi-14.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 14: The Last Door",
+      "description": "A water delivery becomes a test of whether asking for help can be an act of trust."
+    }
+  },
+  {
+    "id": "jedi-15-v1",
+    "category": "jedi",
+    "episode": 15,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-15-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-15-intro.poster.jpg",
+      "title": "Stronger Together",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode 15 · Stronger Together",
+        "paragraphs": [
+          "The promised four buckets have reached their designated recipients. The delivery changed where the water is held; earlier agreements and losses remain.",
+          "Wind is rising around the exposed intake. Jonathan, Min and An have a new cover and straps from the ship, and a short window to secure them together."
+        ]
+      }
+    },
+    "path": "jedi-15.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 15: Stronger Together",
+      "description": "As the wind rises, three people must coordinate their different strengths to protect the repaired supply."
+    }
   }
 ]

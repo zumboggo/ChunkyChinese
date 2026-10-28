@@ -1,0 +1,842 @@
+{
+  "Min看着记录，没有提前走。他还记得最后一家。": {
+    "pinyin": "Mín kàn zhe jì lù ， méi yǒu tí qián zǒu 。 tā hái jì de zuì hòu yì jiā 。",
+    "english": "Min studies the records instead of leaving early. He still remembers the last household.",
+    "interlinear": [
+      {
+        "chinese": "Min看着记录，",
+        "gloss": "Min studies the records",
+        "pinyin": "Mín kàn zhe jì lù ，"
+      },
+      {
+        "chinese": "没有提前走。",
+        "gloss": "without leaving early.",
+        "pinyin": "méi yǒu tí qián zǒu 。"
+      },
+      {
+        "chinese": "他还记得最后一家。",
+        "gloss": "He still remembers the last household",
+        "pinyin": "tā hái jì de zuì hòu yì jiā 。"
+      }
+    ]
+  },
+  "要帮忙吗？我们可以一起搬。": {
+    "pinyin": "yào bāng máng ma ？ wǒ men kě yǐ yì qǐ bān 。",
+    "english": "Would you like help? We can carry it together.",
+    "interlinear": [
+      {
+        "chinese": "要帮忙吗？",
+        "gloss": "Would you like help?",
+        "pinyin": "yào bāng máng ma ？"
+      },
+      {
+        "chinese": "我们可以一起搬。",
+        "gloss": "We can carry it together",
+        "pinyin": "wǒ men kě yǐ yì qǐ bān 。"
+      }
+    ]
+  },
+  "我答应捎水。我可以负责。": {
+    "pinyin": "wǒ dā ying shāo shuǐ 。 wǒ kě yǐ fù zé 。",
+    "english": "I promised to bring water. I can take responsibility.",
+    "interlinear": [
+      {
+        "chinese": "我答应捎水。",
+        "gloss": "I promised to bring water.",
+        "pinyin": "wǒ dā ying shāo shuǐ 。"
+      },
+      {
+        "chinese": "我可以负责。",
+        "gloss": "I can take responsibility",
+        "pinyin": "wǒ kě yǐ fù zé 。"
+      }
+    ]
+  },
+  "我问你要不要帮忙，不是叫你说明自己多好。": {
+    "pinyin": "wǒ wèn nǐ yào bu yào bāng máng ， bú shì jiào nǐ shuō míng zì jǐ duō hǎo 。",
+    "english": "I am asking whether you want help, not asking you to explain how good you are.",
+    "interlinear": [
+      {
+        "chinese": "我问你要不要帮忙，",
+        "gloss": "I am asking whether you want help,",
+        "pinyin": "wǒ wèn nǐ yào bu yào bāng máng ，"
+      },
+      {
+        "chinese": "不是叫你说明自己多好。",
+        "gloss": "not asking you to explain how good you are",
+        "pinyin": "bú shì jiào nǐ shuō míng zì jǐ duō hǎo 。"
+      }
+    ]
+  },
+  "首先，检查谁要接到水。": {
+    "pinyin": "shǒu xiān ， jiǎn chá shuí yào jiē dào shuǐ 。",
+    "english": "First, check who is due to receive water.",
+    "interlinear": [
+      {
+        "chinese": "首先，",
+        "gloss": "First,",
+        "pinyin": "shǒu xiān ，"
+      },
+      {
+        "chinese": "检查谁要接到水。",
+        "gloss": "check who is due to receive water",
+        "pinyin": "jiǎn chá shuí yào jiē dào shuǐ 。"
+      }
+    ]
+  },
+  "妈妈，你知道他们在哪里吗？": {
+    "pinyin": "mā ma ， nǐ zhī dào tā men zài nǎ lǐ ma ？",
+    "english": "Mother, do you know where they are?",
+    "interlinear": [
+      {
+        "chinese": "妈妈，",
+        "gloss": "Mother,",
+        "pinyin": "mā ma ，"
+      },
+      {
+        "chinese": "你知道他们在哪里吗？",
+        "gloss": "do you know where they are?",
+        "pinyin": "nǐ zhī dào tā men zài nǎ lǐ ma ？"
+      }
+    ]
+  },
+  "从前答应怎样分水，记录还在。我没有偷偷改变。": {
+    "pinyin": "cóng qián dā ying zěn yàng fēn shuǐ ， jì lù hái zài 。 wǒ méi yǒu tōu tōu gǎi biàn 。",
+    "english": "The record of our promised allocation is still here. I have not secretly changed it.",
+    "interlinear": [
+      {
+        "chinese": "从前答应怎样分水，",
+        "gloss": "The water allocation we promised before—",
+        "pinyin": "cóng qián dā ying zěn yàng fēn shuǐ ，"
+      },
+      {
+        "chinese": "记录还在。",
+        "gloss": "the record is still here.",
+        "pinyin": "jì lù hái zài 。"
+      },
+      {
+        "chinese": "我没有偷偷改变。",
+        "gloss": "I have not secretly changed it",
+        "pinyin": "wǒ méi yǒu tōu tōu gǎi biàn 。"
+      }
+    ]
+  },
+  "知道。我陪你们去。不管怎样，从前答应的话还要负责。": {
+    "pinyin": "zhī dào 。 wǒ péi nǐ men qù 。 bù guǎn zěn yàng ， cóng qián dā ying de huà hái yào fù zé 。",
+    "english": "I do. I will go with you. Whatever happens, we remain responsible for our earlier promises.",
+    "interlinear": [
+      {
+        "chinese": "知道。",
+        "gloss": "I do.",
+        "pinyin": "zhī dào 。"
+      },
+      {
+        "chinese": "我陪你们去。",
+        "gloss": "I will go with you.",
+        "pinyin": "wǒ péi nǐ men qù 。"
+      },
+      {
+        "chinese": "不管怎样，",
+        "gloss": "Whatever happens,",
+        "pinyin": "bù guǎn zěn yàng ，"
+      },
+      {
+        "chinese": "从前答应的话还要负责。",
+        "gloss": "we remain responsible for our earlier promises",
+        "pinyin": "cóng qián dā ying de huà hái yào fù zé 。"
+      }
+    ]
+  },
+  "我们捎着4桶水出发，分别送给记录上的人。没有提前给谁多分。": {
+    "pinyin": "wǒ men shāo zhe sì tǒng shuǐ chū fā ， fēn bié sòng gěi jì lù shàng de rén 。 méi yǒu tí qián gěi shuí duō fēn 。",
+    "english": "We set out with four buckets of water for the people listed in the records. Nobody gets an extra share in advance.",
+    "interlinear": [
+      {
+        "chinese": "我们捎着4桶水出发，",
+        "gloss": "We set out with four buckets of water,",
+        "pinyin": "wǒ men shāo zhe sì tǒng shuǐ chū fā ，"
+      },
+      {
+        "chinese": "分别送给记录上的人。",
+        "gloss": "delivering their shares to the people in the records.",
+        "pinyin": "fēn bié sòng gěi jì lù shàng de rén 。"
+      },
+      {
+        "chinese": "没有提前给谁多分。",
+        "gloss": "Nobody gets an extra share in advance",
+        "pinyin": "méi yǒu tí qián gěi shuí duō fēn 。"
+      }
+    ]
+  },
+  "最后一家还在等。他们害怕我们不来了。": {
+    "pinyin": "zuì hòu yì jiā hái zài děng 。 tā men hài pà wǒ men bù lái le 。",
+    "english": "The last household is still waiting. They are afraid we are not coming.",
+    "interlinear": [
+      {
+        "chinese": "最后一家还在等。",
+        "gloss": "The last household is still waiting.",
+        "pinyin": "zuì hòu yì jiā hái zài děng 。"
+      },
+      {
+        "chinese": "他们害怕我们不来了。",
+        "gloss": "They are afraid we are not coming",
+        "pinyin": "tā men hài pà wǒ men bù lái le 。"
+      }
+    ]
+  },
+  "那就去说明：我们还在路上。": {
+    "pinyin": "nà jiù qù shuō míng ： wǒ men hái zài lù shang 。",
+    "english": "Then go and explain that we are still on our way.",
+    "interlinear": [
+      {
+        "chinese": "那就去说明：",
+        "gloss": "Then go and explain:",
+        "pinyin": "nà jiù qù shuō míng ："
+      },
+      {
+        "chinese": "我们还在路上。",
+        "gloss": "we are still on our way",
+        "pinyin": "wǒ men hái zài lù shang 。"
+      }
+    ]
+  },
+  "我先去说明。你们慢慢来，不要为了赶路冒险。": {
+    "pinyin": "wǒ xiān qù shuō míng 。 nǐ men màn màn lái ， bú yào wèi le gǎn lù mào xiǎn 。",
+    "english": "I will go ahead and explain. Take your time. Do not take risks to hurry.",
+    "interlinear": [
+      {
+        "chinese": "我先去说明。",
+        "gloss": "I will go ahead and explain.",
+        "pinyin": "wǒ xiān qù shuō míng 。"
+      },
+      {
+        "chinese": "你们慢慢来，",
+        "gloss": "Take your time;",
+        "pinyin": "nǐ men màn màn lái ，"
+      },
+      {
+        "chinese": "不要为了赶路冒险。",
+        "gloss": "do not take risks to hurry",
+        "pinyin": "bú yào wèi le gǎn lù mào xiǎn 。"
+      }
+    ]
+  },
+  "先停下来，检查安全不安全。": {
+    "pinyin": "xiān tíng xià lái ， jiǎn chá ān quán bù ān quán 。",
+    "english": "Stop first and check whether it is safe.",
+    "interlinear": [
+      {
+        "chinese": "先停下来，",
+        "gloss": "Stop first",
+        "pinyin": "xiān tíng xià lái ，"
+      },
+      {
+        "chinese": "检查安全不安全。",
+        "gloss": "and check whether it is safe",
+        "pinyin": "jiǎn chá ān quán bù ān quán 。"
+      }
+    ]
+  },
+  "我陪Min一起搬，我们一起负责。": {
+    "pinyin": "wǒ péi Mín yì qǐ bān ， wǒ men yì qǐ fù zé 。",
+    "english": "I will carry it with Min. We will share responsibility.",
+    "interlinear": [
+      {
+        "chinese": "我陪Min一起搬，",
+        "gloss": "I will carry it with Min;",
+        "pinyin": "wǒ péi Mín yì qǐ bān ，"
+      },
+      {
+        "chinese": "我们一起负责。",
+        "gloss": "we will share responsibility",
+        "pinyin": "wǒ men yì qǐ fù zé 。"
+      }
+    ]
+  },
+  "你不相信我可以负责了吗？": {
+    "pinyin": "nǐ bù xiāng xìn wǒ kě yǐ fù zé le ma ？",
+    "english": "Do you no longer believe I can be responsible?",
+    "interlinear": [
+      {
+        "chinese": "你不相信我可以负责了吗？",
+        "gloss": "Do you no longer believe I can be responsible?",
+        "pinyin": "nǐ bù xiāng xìn wǒ kě yǐ fù zé le ma ？"
+      }
+    ]
+  },
+  "停，不表示失败。我们还记得从前的教训。": {
+    "pinyin": "tíng ， bù biǎo shì shī bài 。 wǒ men hái jì de cóng qián de jiào xùn 。",
+    "english": "Stopping does not mean failure. We still remember what we learned before.",
+    "interlinear": [
+      {
+        "chinese": "停，",
+        "gloss": "Stopping",
+        "pinyin": "tíng ，"
+      },
+      {
+        "chinese": "不表示失败。",
+        "gloss": "does not mean failure.",
+        "pinyin": "bù biǎo shì shī bài 。"
+      },
+      {
+        "chinese": "我们还记得从前的教训。",
+        "gloss": "We still remember what we learned before",
+        "pinyin": "wǒ men hái jì de cóng qián de jiào xùn 。"
+      }
+    ]
+  },
+  "我本来想，不叫别人帮忙，他们就会相信我。": {
+    "pinyin": "wǒ běn lái xiǎng ， bú jiào bié rén bāng máng ， tā men jiù huì xiāng xìn wǒ 。",
+    "english": "I thought they would trust me if I did not ask for help.",
+    "interlinear": [
+      {
+        "chinese": "我本来想，",
+        "gloss": "I had thought",
+        "pinyin": "wǒ běn lái xiǎng ，"
+      },
+      {
+        "chinese": "不叫别人帮忙，",
+        "gloss": "that if I did not ask for help,",
+        "pinyin": "bú jiào bié rén bāng máng ，"
+      },
+      {
+        "chinese": "他们就会相信我。",
+        "gloss": "they would trust me",
+        "pinyin": "tā men jiù huì xiāng xìn wǒ 。"
+      }
+    ]
+  },
+  "我们要捎水，不是要表扬。": {
+    "pinyin": "wǒ men yào shāo shuǐ ， bú shì yào biǎo yáng 。",
+    "english": "We are here to bring water, not to earn praise.",
+    "interlinear": [
+      {
+        "chinese": "我们要捎水，",
+        "gloss": "We are here to bring water,",
+        "pinyin": "wǒ men yào shāo shuǐ ，"
+      },
+      {
+        "chinese": "不是要表扬。",
+        "gloss": "not to earn praise",
+        "pinyin": "bú shì yào biǎo yáng 。"
+      }
+    ]
+  },
+  "最后一家门前有石头。妈妈回来了，叫我们先把水放好。": {
+    "pinyin": "zuì hòu yì jiā mén qián yǒu shí tou 。 mā ma huí lái le ， jiào wǒ men xiān bǎ shuǐ fàng hǎo 。",
+    "english": "There are stones before the last doorway. Mother returns and asks us to set the water down safely first.",
+    "interlinear": [
+      {
+        "chinese": "最后一家门前有石头。",
+        "gloss": "There are stones before the last doorway.",
+        "pinyin": "zuì hòu yì jiā mén qián yǒu shí tou 。"
+      },
+      {
+        "chinese": "妈妈回来了，",
+        "gloss": "Mother returns",
+        "pinyin": "mā ma huí lái le ，"
+      },
+      {
+        "chinese": "叫我们先把水放好。",
+        "gloss": "and asks us to set the water down safely first",
+        "pinyin": "jiào wǒ men xiān bǎ shuǐ fàng hǎo 。"
+      }
+    ]
+  },
+  "这里不好走。我们一起看，别偷偷冒险。": {
+    "pinyin": "zhè lǐ bù hǎo zǒu 。 wǒ men yì qǐ kàn ， bié tōu tōu mào xiǎn 。",
+    "english": "It is difficult to walk here. Let us look together. Do not quietly take a risk.",
+    "interlinear": [
+      {
+        "chinese": "这里不好走。",
+        "gloss": "It is difficult to walk here.",
+        "pinyin": "zhè lǐ bù hǎo zǒu 。"
+      },
+      {
+        "chinese": "我们一起看，",
+        "gloss": "Let us look together;",
+        "pinyin": "wǒ men yì qǐ kàn ，"
+      },
+      {
+        "chinese": "别偷偷冒险。",
+        "gloss": "do not quietly take a risk",
+        "pinyin": "bié tōu tōu mào xiǎn 。"
+      }
+    ]
+  },
+  "我检查石头旁边的路。Min还紧紧抓着桶。": {
+    "pinyin": "wǒ jiǎn chá shí tou páng biān de lù 。 Mín hái jǐn jǐn zhuā zhe tǒng 。",
+    "english": "I check the path beside the stones. Min is still gripping the bucket tightly.",
+    "interlinear": [
+      {
+        "chinese": "我检查石头旁边的路。",
+        "gloss": "I check the path beside the stones.",
+        "pinyin": "wǒ jiǎn chá shí tou páng biān de lù 。"
+      },
+      {
+        "chinese": "Min还紧紧抓着桶。",
+        "gloss": "Min is still gripping the bucket tightly",
+        "pinyin": "Mín hái jǐn jǐn zhuā zhe tǒng 。"
+      }
+    ]
+  },
+  "Min，叫我帮忙，不表示你失败了。": {
+    "pinyin": "Mín ， jiào wǒ bāng máng ， bù biǎo shì nǐ shī bài le 。",
+    "english": "Min, asking me for help does not mean you have failed.",
+    "interlinear": [
+      {
+        "chinese": "Min，",
+        "gloss": "Min,",
+        "pinyin": "Mín ，"
+      },
+      {
+        "chinese": "叫我帮忙，",
+        "gloss": "asking me for help",
+        "pinyin": "jiào wǒ bāng máng ，"
+      },
+      {
+        "chinese": "不表示你失败了。",
+        "gloss": "does not mean you have failed",
+        "pinyin": "bù biǎo shì nǐ shī bài le 。"
+      }
+    ]
+  },
+  "我们一起搬。你说什么时候停。": {
+    "pinyin": "wǒ men yì qǐ bān 。 nǐ shuō shén me shí hòu tíng 。",
+    "english": "We will carry it together. You say when to stop.",
+    "interlinear": [
+      {
+        "chinese": "我们一起搬。",
+        "gloss": "We will carry it together.",
+        "pinyin": "wǒ men yì qǐ bān 。"
+      },
+      {
+        "chinese": "你说什么时候停。",
+        "gloss": "You say when to stop",
+        "pinyin": "nǐ shuō shén me shí hòu tíng 。"
+      }
+    ]
+  },
+  "我害怕叫人帮忙，别人就叫我走。": {
+    "pinyin": "wǒ hài pà jiào rén bāng máng ， bié rén jiù jiào wǒ zǒu 。",
+    "english": "I am afraid that if I ask for help, people will tell me to leave.",
+    "interlinear": [
+      {
+        "chinese": "我害怕叫人帮忙，",
+        "gloss": "I am afraid that if I ask for help,",
+        "pinyin": "wǒ hài pà jiào rén bāng máng ，"
+      },
+      {
+        "chinese": "别人就叫我走。",
+        "gloss": "people will tell me to leave",
+        "pinyin": "bié rén jiù jiào wǒ zǒu 。"
+      }
+    ]
+  },
+  "我说停，你真的会停吗？": {
+    "pinyin": "wǒ shuō tíng ， nǐ zhēn de huì tíng ma ？",
+    "english": "If I say stop, will you really stop?",
+    "interlinear": [
+      {
+        "chinese": "我说停，",
+        "gloss": "If I say stop,",
+        "pinyin": "wǒ shuō tíng ，"
+      },
+      {
+        "chinese": "你真的会停吗？",
+        "gloss": "will you really stop?",
+        "pinyin": "nǐ zhēn de huì tíng ma ？"
+      }
+    ]
+  },
+  "会。你看着路，我听你的声音。": {
+    "pinyin": "huì 。 nǐ kàn zhe lù ， wǒ tīng nǐ de shēng yīn 。",
+    "english": "Yes. You watch the path. I will listen to your voice.",
+    "interlinear": [
+      {
+        "chinese": "会。",
+        "gloss": "Yes.",
+        "pinyin": "huì 。"
+      },
+      {
+        "chinese": "你看着路，",
+        "gloss": "You watch the path;",
+        "pinyin": "nǐ kàn zhe lù ，"
+      },
+      {
+        "chinese": "我听你的声音。",
+        "gloss": "I will listen to your voice",
+        "pinyin": "wǒ tīng nǐ de shēng yīn 。"
+      }
+    ]
+  },
+  "你为什么还愿意陪我？": {
+    "pinyin": "nǐ wèi shén me hái yuàn yì péi wǒ ？",
+    "english": "Why are you still willing to stay with me?",
+    "interlinear": [
+      {
+        "chinese": "你为什么还愿意陪我？",
+        "gloss": "Why are you still willing to stay with me?",
+        "pinyin": "nǐ wèi shén me hái yuàn yì péi wǒ ？"
+      }
+    ]
+  },
+  "因为我需要你帮忙，不是需要你证明自己。": {
+    "pinyin": "yīn wèi wǒ xū yào nǐ bāng máng ， bú shì xū yào nǐ zhèng míng zì jǐ 。",
+    "english": "Because I need your help, not for you to prove yourself.",
+    "interlinear": [
+      {
+        "chinese": "因为我需要你帮忙，",
+        "gloss": "Because I need your help,",
+        "pinyin": "yīn wèi wǒ xū yào nǐ bāng máng ，"
+      },
+      {
+        "chinese": "不是需要你证明自己。",
+        "gloss": "not for you to prove yourself",
+        "pinyin": "bú shì xū yào nǐ zhèng míng zì jǐ 。"
+      }
+    ]
+  },
+  "Min慢慢点头。他不再偷偷冒险了。": {
+    "pinyin": "Mín màn màn diǎn tóu 。 tā bú zài tōu tōu mào xiǎn le 。",
+    "english": "Min nods slowly. He stops taking risks in silence.",
+    "interlinear": [
+      {
+        "chinese": "Min慢慢点头。",
+        "gloss": "Min nods slowly.",
+        "pinyin": "Mín màn màn diǎn tóu 。"
+      },
+      {
+        "chinese": "他不再偷偷冒险了。",
+        "gloss": "He stops taking risks in silence",
+        "pinyin": "tā bú zài tōu tōu mào xiǎn le 。"
+      }
+    ]
+  },
+  "Jonathan，陪我一起搬。这里要慢慢来。": {
+    "pinyin": "Jonathan ， péi wǒ yì qǐ bān 。 zhè lǐ yào màn màn lái 。",
+    "english": "Jonathan, carry it with me. We need to take it slowly here.",
+    "interlinear": [
+      {
+        "chinese": "Jonathan，",
+        "gloss": "Jonathan,",
+        "pinyin": "Jonathan ，"
+      },
+      {
+        "chinese": "陪我一起搬。",
+        "gloss": "carry it with me.",
+        "pinyin": "péi wǒ yì qǐ bān 。"
+      },
+      {
+        "chinese": "这里要慢慢来。",
+        "gloss": "We need to take it slowly here",
+        "pinyin": "zhè lǐ yào màn màn lái 。"
+      }
+    ]
+  },
+  "好。没有人需要一个人负责所有事。": {
+    "pinyin": "hǎo 。 méi yǒu rén xū yào yí gè rén fù zé suǒ yǒu shì 。",
+    "english": "All right. Nobody needs to take responsibility for everything alone.",
+    "interlinear": [
+      {
+        "chinese": "好。",
+        "gloss": "All right.",
+        "pinyin": "hǎo 。"
+      },
+      {
+        "chinese": "没有人需要",
+        "gloss": "Nobody needs",
+        "pinyin": "méi yǒu rén xū yào"
+      },
+      {
+        "chinese": "一个人负责所有事。",
+        "gloss": "to take responsibility for everything alone",
+        "pinyin": "yí gè rén fù zé suǒ yǒu shì 。"
+      }
+    ]
+  },
+  "我们分别抓好桶的两边，妈妈在旁边帮忙看路。没有人抢着走。": {
+    "pinyin": "wǒ men fēn bié zhuā hǎo tǒng de liǎng biān ， mā ma zài páng biān bāng máng kàn lù 。 méi yǒu rén qiǎng zhe zǒu 。",
+    "english": "We each grip one side of the bucket. Mother helps watch the path beside us. Nobody rushes ahead.",
+    "interlinear": [
+      {
+        "chinese": "我们分别抓好桶的两边，",
+        "gloss": "We each grip one side of the bucket;",
+        "pinyin": "wǒ men fēn bié zhuā hǎo tǒng de liǎng biān ，"
+      },
+      {
+        "chinese": "妈妈在旁边帮忙看路。",
+        "gloss": "Mother helps watch the path beside us.",
+        "pinyin": "mā ma zài páng biān bāng máng kàn lù 。"
+      },
+      {
+        "chinese": "没有人抢着走。",
+        "gloss": "Nobody rushes ahead",
+        "pinyin": "méi yǒu rén qiǎng zhe zǒu 。"
+      }
+    ]
+  },
+  "停。先放下来。": {
+    "pinyin": "tíng 。 xiān fàng xià lái 。",
+    "english": "Stop. Set it down first.",
+    "interlinear": [
+      {
+        "chinese": "停。",
+        "gloss": "Stop.",
+        "pinyin": "tíng 。"
+      },
+      {
+        "chinese": "先放下来。",
+        "gloss": "Set it down first",
+        "pinyin": "xiān fàng xià lái 。"
+      }
+    ]
+  },
+  "我们一起停，把水放好。最后一家的人出来了。": {
+    "pinyin": "wǒ men yì qǐ tíng ， bǎ shuǐ fàng hǎo 。 zuì hòu yì jiā de rén chū lái le 。",
+    "english": "We stop together and set the water down safely. Someone comes out of the last home.",
+    "interlinear": [
+      {
+        "chinese": "我们一起停，",
+        "gloss": "We stop together",
+        "pinyin": "wǒ men yì qǐ tíng ，"
+      },
+      {
+        "chinese": "把水放好。",
+        "gloss": "and set the water down safely.",
+        "pinyin": "bǎ shuǐ fàng hǎo 。"
+      },
+      {
+        "chinese": "最后一家的人出来了。",
+        "gloss": "Someone comes out of the last home",
+        "pinyin": "zuì hòu yì jiā de rén chū lái le 。"
+      }
+    ]
+  },
+  "我们来了。先检查记录，再接水。": {
+    "pinyin": "wǒ men lái le 。 xiān jiǎn chá jì lù ， zài jiē shuǐ 。",
+    "english": "We are here. Check the records first, then receive the water.",
+    "interlinear": [
+      {
+        "chinese": "我们来了。",
+        "gloss": "We are here.",
+        "pinyin": "wǒ men lái le 。"
+      },
+      {
+        "chinese": "先检查记录，",
+        "gloss": "Check the records first,",
+        "pinyin": "xiān jiǎn chá jì lù ，"
+      },
+      {
+        "chinese": "再接水。",
+        "gloss": "then receive the water",
+        "pinyin": "zài jiē shuǐ 。"
+      }
+    ]
+  },
+  "所有人检查好了。4桶水都交给了记录上的人，谁也没有偷偷多拿。": {
+    "pinyin": "suǒ yǒu rén jiǎn chá hǎo le 。 sì tǒng shuǐ dōu jiāo gěi le jì lù shàng de rén ， shuí yě méi yǒu tōu tōu duō ná 。",
+    "english": "Everyone has checked. All four buckets have gone to the listed recipients. Nobody secretly took extra.",
+    "interlinear": [
+      {
+        "chinese": "所有人检查好了。",
+        "gloss": "Everyone has checked.",
+        "pinyin": "suǒ yǒu rén jiǎn chá hǎo le 。"
+      },
+      {
+        "chinese": "4桶水都交给了记录上的人，",
+        "gloss": "All four buckets have gone to the listed recipients;",
+        "pinyin": "sì tǒng shuǐ dōu jiāo gěi le jì lù shàng de rén ，"
+      },
+      {
+        "chinese": "谁也没有偷偷多拿。",
+        "gloss": "nobody secretly took extra",
+        "pinyin": "shuí yě méi yǒu tōu tōu duō ná 。"
+      }
+    ]
+  },
+  "一起检查最后的记录。": {
+    "pinyin": "yì qǐ jiǎn chá zuì hòu de jì lù 。",
+    "english": "Check the final records together.",
+    "interlinear": [
+      {
+        "chinese": "一起检查最后的记录。",
+        "gloss": "Check the final records together",
+        "pinyin": "yì qǐ jiǎn chá zuì hòu de jì lù 。"
+      }
+    ]
+  },
+  "请接到水的人也确认。": {
+    "pinyin": "qǐng jiē dào shuǐ de rén yě què rèn 。",
+    "english": "Ask the recipients to confirm as well.",
+    "interlinear": [
+      {
+        "chinese": "请接到水的人也确认。",
+        "gloss": "Ask the recipients to confirm as well",
+        "pinyin": "qǐng jiē dào shuǐ de rén yě què rèn 。"
+      }
+    ]
+  },
+  "4桶都交好了。站里少了4桶，是捎给他们，不是丢了。": {
+    "pinyin": "sì tǒng dōu jiāo hǎo le 。 zhàn lǐ shǎo le sì tǒng ， shì shāo gěi tā men ， bú shì diū le 。",
+    "english": "All four buckets have been delivered. The station has four fewer buckets because they went to the recipients, not because they were lost.",
+    "interlinear": [
+      {
+        "chinese": "4桶都交好了。",
+        "gloss": "All four buckets have been delivered.",
+        "pinyin": "sì tǒng dōu jiāo hǎo le 。"
+      },
+      {
+        "chinese": "站里少了4桶，",
+        "gloss": "The station has four fewer buckets;",
+        "pinyin": "zhàn lǐ shǎo le sì tǒng ，"
+      },
+      {
+        "chinese": "是捎给他们，",
+        "gloss": "they were brought to the recipients,",
+        "pinyin": "shì shāo gěi tā men ，"
+      },
+      {
+        "chinese": "不是丢了。",
+        "gloss": "not lost",
+        "pinyin": "bú shì diū le 。"
+      }
+    ]
+  },
+  "他们确认了。我们仍然保留从前答应的分水，不偷偷改。": {
+    "pinyin": "tā men què rèn le 。 wǒ men réng rán bǎo liú cóng qián dā ying de fēn shuǐ ， bù tōu tōu gǎi 。",
+    "english": "They have confirmed. We still honor our promised allocation without secretly changing it.",
+    "interlinear": [
+      {
+        "chinese": "他们确认了。",
+        "gloss": "They have confirmed.",
+        "pinyin": "tā men què rèn le 。"
+      },
+      {
+        "chinese": "我们仍然保留",
+        "gloss": "We still honor",
+        "pinyin": "wǒ men réng rán bǎo liú"
+      },
+      {
+        "chinese": "从前答应的分水，",
+        "gloss": "the allocation we promised before,",
+        "pinyin": "cóng qián dā ying de fēn shuǐ ，"
+      },
+      {
+        "chinese": "不偷偷改。",
+        "gloss": "without secretly changing it",
+        "pinyin": "bù tōu tōu gǎi 。"
+      }
+    ]
+  },
+  "今天，你相信我了吗？": {
+    "pinyin": "jīn tiān ， nǐ xiāng xìn wǒ le ma ？",
+    "english": "Today, do you trust me now?",
+    "interlinear": [
+      {
+        "chinese": "今天，",
+        "gloss": "Today,",
+        "pinyin": "jīn tiān ，"
+      },
+      {
+        "chinese": "你相信我了吗？",
+        "gloss": "do you trust me now?",
+        "pinyin": "nǐ xiāng xìn wǒ le ma ？"
+      }
+    ]
+  },
+  "今天，你来了。下次，也要来。": {
+    "pinyin": "jīn tiān ， nǐ lái le 。 xià cì ， yě yào lái 。",
+    "english": "Today, you came. Next time, come again.",
+    "interlinear": [
+      {
+        "chinese": "今天，",
+        "gloss": "Today,",
+        "pinyin": "jīn tiān ，"
+      },
+      {
+        "chinese": "你来了。",
+        "gloss": "you came.",
+        "pinyin": "nǐ lái le 。"
+      },
+      {
+        "chinese": "下次，",
+        "gloss": "Next time,",
+        "pinyin": "xià cì ，"
+      },
+      {
+        "chinese": "也要来。",
+        "gloss": "come again",
+        "pinyin": "yě yào lái 。"
+      }
+    ]
+  },
+  "好。下次，我会提前叫人帮忙。": {
+    "pinyin": "hǎo 。 xià cì ， wǒ huì tí qián jiào rén bāng máng 。",
+    "english": "All right. Next time, I will ask for help earlier.",
+    "interlinear": [
+      {
+        "chinese": "好。",
+        "gloss": "All right.",
+        "pinyin": "hǎo 。"
+      },
+      {
+        "chinese": "下次，",
+        "gloss": "Next time,",
+        "pinyin": "xià cì ，"
+      },
+      {
+        "chinese": "我会提前叫人帮忙。",
+        "gloss": "I will ask for help earlier",
+        "pinyin": "wǒ huì tí qián jiào rén bāng máng 。"
+      }
+    ]
+  },
+  "我们一起回去。风渐渐大了，外面的管子还等着我们保护。": {
+    "pinyin": "wǒ men yì qǐ huí qù 。 fēng jiàn jiàn dà le ， wài miàn de guǎn zi hái děng zhe wǒ men bǎo hù 。",
+    "english": "We return together. The wind is rising, and the pipes outside still need our protection.",
+    "interlinear": [
+      {
+        "chinese": "我们一起回去。",
+        "gloss": "We return together.",
+        "pinyin": "wǒ men yì qǐ huí qù 。"
+      },
+      {
+        "chinese": "风渐渐大了，",
+        "gloss": "The wind is rising,",
+        "pinyin": "fēng jiàn jiàn dà le ，"
+      },
+      {
+        "chinese": "外面的管子",
+        "gloss": "and the pipes outside",
+        "pinyin": "wài miàn de guǎn zi"
+      },
+      {
+        "chinese": "还等着我们保护。",
+        "gloss": "still need our protection",
+        "pinyin": "hái děng zhe wǒ men bǎo hù 。"
+      }
+    ]
+  },
+  "水捎到了。接下来，我们一起保护管子。": {
+    "pinyin": "shuǐ shāo dào le 。 jiē xià lái ， wǒ men yì qǐ bǎo hù guǎn zi 。",
+    "english": "The water has arrived. Next, we will protect the pipes together.",
+    "interlinear": [
+      {
+        "chinese": "水捎到了。",
+        "gloss": "The water has arrived.",
+        "pinyin": "shuǐ shāo dào le 。"
+      },
+      {
+        "chinese": "接下来，",
+        "gloss": "Next,",
+        "pinyin": "jiē xià lái ，"
+      },
+      {
+        "chinese": "我们一起保护管子。",
+        "gloss": "we will protect the pipes together",
+        "pinyin": "wǒ men yì qǐ bǎo hù guǎn zi 。"
+      }
+    ]
+  }
+}
