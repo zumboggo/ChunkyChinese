@@ -1,0 +1,996 @@
+{
+  "episode": "jedi-19-v1",
+  "title": "The Voices Beneath the Water · Episode 19: Who Gets to Apply?",
+  "planning": {
+    "storytellingVoice": "Immediate drama",
+    "voiceReason": "An applicant faces exclusion under a deadline.",
+    "earlyCare": "Jon notices an applicant carefully protecting a worn paper resume.",
+    "desire": "Help a skilled outsider submit an application before the deadline.",
+    "obstacle": "A failed terminal and a qualification shortcut exclude a capable applicant.",
+    "dramaticChange": "He asks the applicant to speak for herself and makes the process accessible to everyone.",
+    "sourceBoundary": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
+    "sceneActivities": [
+      "Jon and Min help at a hiring desk; Ryn carries a paper resume; Vek first refuses then accepts accessible applications. A supervised ground-level sample assessment follows; no actual roof work yet."
+    ],
+    "actingSignature": {
+      "Jonathan": "Plain practical questions; open hand at a boundary, quiet attention afterward.",
+      "An": "Specific limits and short questions; supported seated rest while reviewing, no assumed healing.",
+      "Min": "Urgent explanations soften into admitting uncertainty; rests attentive when corrected.",
+      "Mother": "Concrete requests and accurate accounting; no presumed forgiveness or renewed station shift.",
+      "Sela": "Patient concrete questions; does not reach for private report. Quiet open posture and attentive gaze.",
+      "Ivo": "Begins with explanations and permissions; shifts to asking his son. Guarded hands, then release into attentive rest."
+    },
+    "listenerTurn": "Ryn: I want you to hear me, not speak for me. Listener Jon; he steps back and leaves her the floor.",
+    "payoff": "Applications are accepted fairly; the crew selection proceeds by demonstrated skills and clear duties.",
+    "freshQuestion": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
+    "teaser": {
+      "dialogue": "Let my work speak.",
+      "moment": "Ryn stands at sunset beside the ground-level repair test she has completed, facing the distant damaged centre with determined composure."
+    },
+    "convergence": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
+    "artDirection": "Striking cinematic action, humor or epic horizon; user explicitly lifted prior three-person community composition. Keep identity and episode fidelity.",
+    "targetVocabulary": [
+      "招聘",
+      "应聘",
+      "单位",
+      "工资",
+      "学历",
+      "简历",
+      "对口",
+      "软件",
+      "回复",
+      "唉",
+      "灵通",
+      "前途",
+      "错过",
+      "歧视",
+      "善于",
+      "信心"
+    ],
+    "reviewVocabulary": [
+      "相处",
+      "处",
+      "性格",
+      "外地",
+      "以来",
+      "物理",
+      "化学",
+      "外语",
+      "水平",
+      "及格",
+      "成绩",
+      "题目",
+      "篇",
+      "文章",
+      "精力",
+      "意识到",
+      "阶段"
+    ]
+  },
+  "video": {
+    "src": "stories/animated/jedi/jedi-19-intro.mp4",
+    "poster": "stories/animated/jedi/jedi-19-intro.poster.jpg",
+    "dialogue": "Let my work speak.",
+    "totalSeconds": 9,
+    "stillSeconds": 3,
+    "motionSeconds": 2.2916666666666665,
+    "reactionHoldSeconds": 3.7083333333333335,
+    "nativeGeneratedSeconds": 6,
+    "editNote": "Native segment 3.7-6.0 seconds retains the intended line and removes unwanted opening speech; final reaction hold.",
+    "model": "prunaai/p-video-2-pro",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off"
+    },
+    "verifiedUSDPerSecond": 0.01,
+    "maximumCostUSD": 0.06,
+    "paidRequests": 1,
+    "predictionId": "9kbr6r61t1rmr0d1g4xs4zsaj8",
+    "prompt": "Animate this exact cinematic anime reference for six seconds. Ryn alone speaks EXACTLY ONCE in clear English: \"Let my work speak.\" Begin at second 0.5, finish by second 3.0, then close her mouth and remain silent. No extra words, repetition, paraphrase, fillers, other voices, singing, humming or narration. Clear confident female speech above quiet wind. She holds still beside the secured pipe, lifts her chin slightly and gazes toward the sunset horizon, ponytail moving gently in wind. Keep spanner down and hands anatomically unchanged. Preserve the damaged building, barrier, secured pipe, workbench, identity and clothes. No repairs happening, no magic, weapons, sparks, new people, objects or text. Slow subtle cinematic push, no cut. Silent determined final gaze after the line.",
+    "reference": "stories/authoring/jedi/art/episode-19-reference.png",
+    "nativeSpeech": true,
+    "checks": {
+      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-19/clean-segment.mp4",
+      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-19/intro.mp4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "fps": 24,
+      "hold_seconds": 3.0,
+      "motion_seconds": 2.2916666666666665,
+      "reaction_hold_seconds": 3.7083333333333335,
+      "total_seconds": 9.0,
+      "decoded_audio_seconds": 9.00275,
+      "audio_non_silent": true,
+      "audio_starts_after_hold": true,
+      "hold_mean_pixel_difference": 0.0023394808743169397,
+      "sha256": "00c776782b4b5e6b342b9b20063b59ce079cf2346f2459621afaada3749d8033",
+      "expected_dialogue": "Let my work speak.",
+      "speech_check": "pass",
+      "review": "One visual/listening review remains; automated checks do not prove natural acting or lip sync.",
+      "transcription": "Let my work speak."
+    }
+  },
+  "continuation": {
+    "end": "All applicants have accessible paper submission and written terms, with responses promised tomorrow. Ryn completes a safe ground-level disconnected-pipe assessment under a qualified specialist; references and all applications still require fair review. No hiring promise, roof repair or water change. Jon learns to listen without speaking for applicants.",
+    "nextStart": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
+    "nextEndBefore": "Preserve all historical memories, losses, injury limits, allocations and water. One shared storyline.",
+    "note": "Follow approved vocabulary plan; independently audit target use on every route."
+  },
+  "targetAudit": {
+    "episode": 19,
+    "routeCount": 16,
+    "targets": [
+      {
+        "word": "招聘",
+        "minDistinctSpokenEntries": 4,
+        "examples": [
+          "招聘今天结束，软件却坏了。",
+          "我的信息不灵通，怕错过招聘。",
+          "招聘要求和经历要对口。她说有记录，你还没有看。",
+          "这个单位要招聘负责的人，不是找最会填表的人。"
+        ]
+      },
+      {
+        "word": "应聘",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "来应聘的人怎么办？",
+          "我叫Ryn，从外地来。我想应聘，负责修屋子。",
+          "不只给Ryn一个人开门。其他人也要能应聘。"
+        ]
+      },
+      {
+        "word": "单位",
+        "minDistinctSpokenEntries": 5,
+        "examples": [
+          "我从前的单位，给我一封信，记录了我修过什么。",
+          "学历不高。不过，我修过很多管子，有从前单位的记录。",
+          "这是歧视吗？我也有单位的要求。",
+          "这个单位要招聘负责的人，不是找最会填表的人。",
+          "从前单位的师傅写的。风暴以来，我一直带着它。"
+        ]
+      },
+      {
+        "word": "工资",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "工资是多少？我要负责什么？",
+          "工资和工作时间，这里有记录。我给所有人一样的记录。",
+          "前途不能替代工资。你想知道的，我们会说。"
+        ]
+      },
+      {
+        "word": "学历",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "简历给我，我负责记录。先说学历。",
+          "学历不高。不过，我修过很多管子，有从前单位的记录。",
+          "没有学历，你会用软件吗？"
+        ]
+      },
+      {
+        "word": "简历",
+        "minDistinctSpokenEntries": 6,
+        "examples": [
+          "门边有个姑娘，护着一张旧简历。",
+          "简历给我，我负责记录。先说学历。",
+          "那简历先给我，我记录谁提前来了。",
+          "还要通知所有人，可以用纸上的简历。",
+          "今天记录简历，明天回复。不管录用不录用，我们都回复。",
+          "所有简历都记录了，还要检查所有人的记录。屋子仍然没修好。"
+        ]
+      },
+      {
+        "word": "对口",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "这里要求对口的经历。修过管子，不表示什么都能修。",
+          "招聘要求和经历要对口。她说有记录，你还没有看。"
+        ]
+      },
+      {
+        "word": "软件",
+        "minDistinctSpokenEntries": 4,
+        "examples": [
+          "招聘今天结束，软件却坏了。",
+          "没有学历，你会用软件吗？",
+          "唉，软件坏了，不是我不愿意用。",
+          "不能把软件的问题，变成对人的歧视。"
+        ]
+      },
+      {
+        "word": "回复",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "今天记录简历，明天回复。不管录用不录用，我们都回复。",
+          "水和从前一样，我们还记得从前答应的话。明天，我们等正式的回复。"
+        ]
+      },
+      {
+        "word": "唉",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "唉，软件坏了，不是我不愿意用。",
+          "唉，我本来怕来不及，却没有耐心听你说。"
+        ]
+      },
+      {
+        "word": "灵通",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我的信息不灵通，怕错过招聘。",
+          "谢谢。没有信息灵通的朋友，我也没有被挡在门外。"
+        ]
+      },
+      {
+        "word": "前途",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我想先知道要求，不只听一句前途很好。",
+          "前途不能替代工资。你想知道的，我们会说。"
+        ]
+      },
+      {
+        "word": "错过",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我的信息不灵通，怕错过招聘。",
+          "你没有错过。我们先检查记录。"
+        ]
+      },
+      {
+        "word": "歧视",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "不能把软件的问题，变成对人的歧视。",
+          "这是歧视吗？我也有单位的要求。"
+        ]
+      },
+      {
+        "word": "善于",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我善于检查管子，也善于发现小问题。",
+          "相处的时候，我可能话少。不过，我善于沟通安全的要求。"
+        ]
+      },
+      {
+        "word": "信心",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我有信心，可以检查，不过，想知道你们检查什么。",
+          "我有信心了。不是因为你答应录用，是因为你愿意认真检查。"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "word": "相处",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "处",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "性格",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "外地",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "以来",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "物理",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "化学",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "外语",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "水平",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "及格",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "成绩",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "题目",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "篇",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "文章",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "精力",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "意识到",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "阶段",
+        "minSpokenEntries": 1
+      }
+    ],
+    "method": "Distinct spoken entries per completed route; choice labels excluded. 冒 excludes 冒险; 处 requires reviewed chǔ clauses; 以来 requires real temporal construction. Full semantic/pinyin human review accompanies counts."
+  },
+  "artwork": {
+    "generator": "Built-in ImageGen",
+    "reference": "stories/authoring/jedi/art/episode-19-reference.png",
+    "direction": "Striking cinematic action, humor or epic horizon; user explicitly lifted prior three-person community composition. Keep identity and episode fidelity."
+  },
+  "englishAudio": [
+    {
+      "sha256": "490cf6a2b60c673568e52c38d98344e00e29ebfc32d17b5e6b33e1e9efce6710",
+      "text": "Recruitment closes today, but the software has broken down.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b9412c8b04f216562a7b0f3a538e4511956a1fc64dd5c0374d8548334e0fd230",
+      "text": "What will the applicants do?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "40cbd81ad877e1b2dc4e54461ca88a1f9446999fd02bfc30bd736ea623e61420",
+      "text": "Let's listen to them first instead of sending them away.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "d09e7de9338f398497c3fc0bd2c7eaff768124ccebda61b86a86240dc038a713",
+      "text": "A woman stands beside the doorway, protecting a worn resume.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7bd00190b95fcf7946bb810d5928c6f6d0687ef0ecdb82571a4acf4ccc6cade6",
+      "text": "My name is Ryn; I come from another settlement. I would like to apply to take responsibility for building repairs.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "72a1004ede073b34a3a044d8878bb540b8b07d2f5277eb0714839d81d06d563a",
+      "text": "Welcome. I'm Jon; I help out here.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e71679417c55f01bb06cb2c8ea6b635c790419026bed9f0cfdd0d4c81376b772",
+      "text": "I don't hear news quickly; I was afraid of missing the recruitment.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a9723b5d1f7284159d8ac39061dbed0934ecc82f864c43d4f3907dfd1f00fe33",
+      "text": "You haven't missed it. Let's check the record first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "6e85dcf96f57b85ca90a20e48f93fffae5ecbce465a9611395aae8a85ee6aed1",
+      "text": "My previous employer gave me a letter recording what I have repaired.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0f3faad8c1db1948164b401d6d54c6d1872715b54e6b1c8b819cf4b474bd073b",
+      "text": "Give me your resume; I am responsible for recording it. Tell me your qualifications first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8461626baab54321568495adb3a1b19dbef44f63eeb36a5e0e1f55006e80bbea",
+      "text": "The machine is broken; we can't say she arrived late.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "7061470a703c041af315cc533058afae62359e7974119258830193e2d5156998",
+      "text": "She is willing to speak, let us listen patiently first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3a8b5fd8bfbfa39854866914e81a233de8a5f55f9830d4a805b852c57d4f70b2",
+      "text": "My formal qualifications aren't high. But I've repaired many pipes, and have records from my previous employer.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8c69fdc0f79544de7e8351a24d47a7ba9437787ecd002df493f236bc62f6572e",
+      "text": "This job requires relevant experience. Having repaired pipes doesn't mean you can repair everything.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "087a8c1c5fe346a9272c61360c25c52b472d0c2b9c363317cb7d4bbcda8a6ab9",
+      "text": "I didn't say that. Qualified people need to take responsibility for the roof; I know that.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "ecdf23779b1518f53f20e1839cc1f44d8ac905549bc588b333ebb3806cb3d8de",
+      "text": "Without qualifications, can you use software?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0ecac1a323b6cd745d0bf6c56addb1d22467fd6c1a34b2296c2fdec86577359f",
+      "text": "Ah, the software is broken; it's not that I'm unwilling to use it.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "6dc1d92dc5f18e7770d8d94126ae534aa8e0620dd93e9152fcba7173155138d0",
+      "text": "We can't turn a software problem into discrimination against a person.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "fdeeeec2b5069977de5726fc0ab5f6a882ce365b1d032dfe525a692e652b6adb",
+      "text": "Is that discrimination? I also have requirements from the employer.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "960d7a9f6d2730bf4a950887dbfb8db09081fe3618d0e2de694231f0bc7578f5",
+      "text": "The recruitment requirements and experience need to match. She says she has records; you haven't looked at them yet.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "a11de647ed2ffd60d3747e4248c20e1db2b5cab42fecd53bc95553b2f3b85a77",
+      "text": "I'm good at inspecting pipes and at noticing small problems.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "475dbaca9898f24ae09ba342a7428b7633cc929dfef2f4d4c24c6e5b4099a88c",
+      "text": "But I don't promise to do things I can't do. You can test me.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9f7a2454c4d4ece194702a0b122074f2dfc30d72e496413058ed6ee393b47da3",
+      "text": "I can speak for her, what she means is—",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c9098db9f93a11a13e05a93a6f65bbb349d4ccd8465671b3a9c226e653a03ed5",
+      "text": "I want you to listen to me, not answer for me.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "572a147e1fc03ca68e16a5292c844cfc13b5dee2000406f67c962a41687830c8",
+      "text": "I close my mouth and stop speaking.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "08a9997ef03f166b7c2a2c5becffcf89a5cb2cc5b986848e868df9a7de72e885",
+      "text": "Go ahead. I'm listening.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "84ae0c0291a7c97598768669c2d2f7f56ea9345818d5b247eb87d2772398dd5d",
+      "text": "A broken machine mustn't shut people out. Records on paper deserve a look too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "43c6d9cd925ba68c8af74d2fdf31f43ed925db37f36ff30277f3c1e44d475d1d",
+      "text": "Don't open the door for Ryn alone. Other people must be able to apply too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "28f104f2ae25527eaf6a4828e267db7a14c032721e2c22dc8655c6a1229106dc",
+      "text": "This organization wants to recruit responsible people, not whoever is best at filling out forms.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3391f1b7f767afbaeab1dfa12208c4f62c744c0c235efaca786b5bae6f140a07",
+      "text": "Then give me the resumes now, I will record who arrived before the deadline.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0bb80d2d0b338fbec4face44e18f970774d7274e829d4cf9c154e0fa1c6648c0",
+      "text": "We must also notify everyone that paper resumes are accepted.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e544f6cf2d0b03ead6441b1ece744796ddf07be2381787ea74f28bd72e2e651c",
+      "text": "What is the wage? What would I be responsible for?",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "65f3e4bfd8dc2f5290f5134a7363ee85dbabd3225220780e534cfe2ae2d79982",
+      "text": "The wage and working hours are recorded here. I give everyone the same record.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c4143f885f1e5010c0a69018741cbe60dffcb324ceb35a52fa7dfce2bc2697b9",
+      "text": "I want to know the requirements first rather than just hear that the prospects are good.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "653b2e9306e26a0f75b8641df81ddcf75c90c836a8b7c20b2399fdfcca673a06",
+      "text": "Prospects cannot replace wages. What you want to know, we will explain.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3bec74dcbf7e2fa3919340fac7532bd6327347a56ac647445d07f77b1b993f3d",
+      "text": "We record resumes today, and respond tomorrow. Whether or not someone is hired, we respond to everyone.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "90518aff0d4348ed525b7da7e85855f94e6b6c1e22590af0411da669e3bc51e6",
+      "text": "Thank you. Without friends who hear news quickly, I haven't been shut out.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e60a84fcccfea1c5fdccb492f0186d299ea03e956a189b22e046e908b378910d",
+      "text": "Ah, I was afraid of running out of time; yet had no patience to listen to you.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "76d0729fdb34c6b763a216501b0404fe1a5a809b21de17aadc5f8f3704cf7636",
+      "text": "I am confident and ready to be assessed, but I want to know what you're assessing.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "769bc9dbdc8a15bc201205dc256c9fae9cfb34dc8a9b86b3311a1ecb086352e2",
+      "text": "Safety comes first; then we listen to your conclusions. We do not demand risk-taking.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "66ab71a7f73c2b7bb2a2bbc5c11bb31cc1d8135c24ad619eca7eb7eef44b00db",
+      "text": "Standards must not change secretly. State the requirements first then assess.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "74567dcd527efcb643a102916becac921194b6d474da64b0df19e0fa322c7641",
+      "text": "This is a safe practice area, we won't ask anyone to risk repairing the roof.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "2024919ac00cd89f9fc1dbef68ec0fce2e676d734e31ac629a2435451741cc03",
+      "text": "A qualified specialist inspects the practice area. The old pipe on the table is disconnected from any water supply.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "815ad69cc93ec75f1792b934ea7f42ccde574357cf7051fd6c6e689addef6a65",
+      "text": "At this stage, we are assessing judgment and safety. We are not assessing personality.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c37088f36542ab482f0a2719576e5ff11727ea3813c0ce423bf773f2c159cf0c",
+      "text": "When getting along with others, I may not say much. But I am good at communicating safety requirements.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8f67f538025b47766ebf003f98fb9355a9b740ea7852e3f6a6c00f626ed9b31e",
+      "text": "Being quiet does not mean being hard to get along with. We'll listen to how you investigate.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "61ad544c26b5660ac70c81db8473f40b471d575425d2862848a26527353cf60e",
+      "text": "Physics is relevant to safety. Look at the support beneath the pipe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1850f2c2bd3b0502ddae7e4c5a1dca29273ac5e6070058bc1fd9a095405cfe7d",
+      "text": "But what chemical hazards are present here? I won't touch anything I don't understand.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4adebe743d9c7908ff5d72300c771e5c047b52b0fe46fd34d3fa1c3826e3648a",
+      "text": "There are no chemicals; we're only examining a clean empty pipe.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "74926009711ff2cdd6ecbec6f7916ce8ecc6a831819cb0851385ebed42638fa2",
+      "text": "I don't recognize this foreign-language passage. Please explain it to me first, I mustn't guess.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "740bff9a019230997620b17c15486b7285c5f1b0e7ec05f59b64237539bb8f48",
+      "text": "Admitting what you don't know is part of professional competence too.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "b20b448999ce6bc19796fe535ccaf3122a39b6469b051ad6b62a08a84e799181",
+      "text": "Passing doesn't mean never asking a question. Knowing when to stop also counts in the result.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "36f645f8e6bdd38542c178e172643dd1f1c6be191ad6b89c52759310476852c8",
+      "text": "For this task, I'll inspect this part first. The support hasn't been secured properly.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3b32a6f9923c708164b13b72dfead5e50eb0dc7f25bcfd08990d4958f5a14e00",
+      "text": "She stops first and points it out to the specialist, then secures it again as instructed.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "653804c85a1f49a5c5274734ea3effe1af82ad3c36a8174bf9625a9ac64bc6d7",
+      "text": "Let my work speak. I don't ask you to rely only on my words.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "54e66151f7d72aca45a59e0a0b2202de418a8c3ba7281a2a036fa9d4e28e181b",
+      "text": "Who wrote this article? It contains inspection records.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "933308aec779806afde41286c494b8e21647497c380909d35ec6e058b2139809",
+      "text": "The specialist at my former workplace wrote it. Since the storm, I've kept it with me.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0b4a8a71af731cfc99d2c7ce1086ed84a5f8ab6fc0636537fa6aa1a530e0221f",
+      "text": "You take the effort to keep records, we must also take the effort to check them.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "43c2623457bb87ff8062f6f6800ee3d022a82305a23ea98981f3236cc88793f5",
+      "text": "I'm not demanding that you hire me. I want a real interview.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "8da90e0798374f98a632bdfe8343509f1083e1b3f49616a3a1622995293096d8",
+      "text": "Helping someone, does not mean answering everything for them.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "e6cc90b1b43f0657fceb3925d0c8866999d63fd7609b6f690a00dafe3afccbce",
+      "text": "Let those who come later know what to do; they shouldn't have to face the same rejection again.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "dc392cea9f6c572f0235f76d870f0f616d8c91fc9951f3cb3580e9987d6d77a4",
+      "text": "I realize I mustn't talk about fairness only among friends.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "21eaaffacdc58dc0a2a3192fad8d657e77d781d5f2c7a31be5dd1c2e6f270292",
+      "text": "I feel more confident now. Not because you've promised me a job, but because you're willing to assess me carefully.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "961cf60aca24a6e5ac716b17164173a34067b00a183d2884895b15df2667a50a",
+      "text": "The sunset lights the practice bench. Ryn looks toward the distant building, in no hurry to leave.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "4c63b1e7e9c615a8186fed92b99ad9d47adf8fbe0eb1634a3977c1bb54643775",
+      "text": "All the resumes have been recorded, everyone's records still need checking. The building is still unrepaired.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "9cdd5b98df57e630a5ffc8995a22751cbc63360d30ad04809d04543a1a5c3d71",
+      "text": "The water is the same as before, we still remember our earlier promises. Tomorrow, we'll wait for the official response.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "0c2f0640578a99c238b4b04225277a72717f6bd634c1b8699fb5a0efaba22d75",
+      "text": "Record when she arrived first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3c8a57fc7b33f62534ba09a4ae756375f551e8f33599fb6b7de385e24d78f369",
+      "text": "Listen to her experience first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "3740c6ca8f4eb93a6076add306537152077d98fbae674d5fc4468bab3f1e21af",
+      "text": "Ask them to accept the written records.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "1a3ba7096996c9b07db79333fe7f0fd68e7ccdaf7068f6fe24894cfbf34f1c19",
+      "text": "Ask for everyone to have the same options.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "45df5025985b1027a36ee5893d2d0c4048b06ba7070c34b26cec717d3d2d9f00",
+      "text": "Explain the requirements to everyone first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "32a8865a64a13a0b8cc91bd10594bdf3ebfc4f04f0fe088ed9a4822323056284",
+      "text": "Inspect the practice area first.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "c44c17c3b4b2f360ec4e849d330e1342bcc8824e9baddac061addcf96ce97fd5",
+      "text": "Listen to applicants first in future.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    },
+    {
+      "sha256": "fce150feb1415b1cbc69873286f5d24beb66c9f851fdbbcdebcf360dea3d0225",
+      "text": "Record today’s procedure.",
+      "provider": "macOS on-device speech",
+      "voice": "Samantha",
+      "costUSD": 0,
+      "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+    }
+  ],
+  "verification": {
+    "reportStatus": "passed",
+    "packageBytes": 2215856,
+    "phases": [
+      {
+        "name": "vocabulary",
+        "seconds": 0.04083074999999999,
+        "status": "passed"
+      },
+      {
+        "name": "routes, source assertions and resume",
+        "seconds": 0.470133375,
+        "status": "passed"
+      },
+      {
+        "name": "annotations",
+        "seconds": 0.004658500000000004,
+        "status": "passed"
+      },
+      {
+        "name": "audio",
+        "seconds": 36.79910887500001,
+        "status": "passed"
+      },
+      {
+        "name": "English pocket audio",
+        "seconds": 0.10281645800000115,
+        "status": "passed"
+      },
+      {
+        "name": "package and ZIP",
+        "seconds": 0.12038991600000008,
+        "status": "passed"
+      },
+      {
+        "name": "phone and desktop",
+        "seconds": 48.12168162500001,
+        "status": "passed"
+      },
+      {
+        "name": "stage new release",
+        "seconds": 0.01907408399999258,
+        "status": "passed"
+      }
+    ],
+    "familiarity": {
+      "min": 80.9775429326288,
+      "max": 81.95187165775401
+    },
+    "pinyin": "Complete contextual review, including classifier zhi versus adverb zhi, zhicheng, chu in xiangchu, dao/diao context, neutral tones, kan guanzi and modifier de.",
+    "teaser": "Exact English phrase verified in final clip; opening three-second hold and nine-second total. Speech/motion/end frames inspected. Episode 19 unwanted opening speech removed locally without paid retry.",
+    "continuity": "All 54,432 inherited histories and 160 local route/water combinations per episode preserved.",
+    "vocabulary": "All 18/16 planned targets have at least two distinct meaningful spoken entries on each of 16 routes; all 17 scheduled review targets appear in each episode.",
+    "browser": "Full contrasting routes plus teasers, fallback, Mandarin audio, listener aftermath and resume on phone and desktop."
+  }
+}

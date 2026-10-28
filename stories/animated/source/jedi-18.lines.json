@@ -1,0 +1,1291 @@
+{
+  "我提前来到这里，检查物理课要用的小木桥。": {
+    "english": "I arrive early to check the little wooden bridge for the physics lesson.",
+    "interlinear": [
+      {
+        "chinese": "我提前来到这里，",
+        "gloss": "I arrive early",
+        "pinyin": "wǒ tí qián lái dào zhè lǐ ，"
+      },
+      {
+        "chinese": "检查物理课要用的小木桥。",
+        "gloss": "to check the little wooden bridge for the physics lesson.",
+        "pinyin": "jiǎn chá wù lǐ kè yào yòng de xiǎo mù qiáo 。"
+      }
+    ],
+    "pinyin": "wǒ tí qián lái dào zhè lǐ ， jiǎn chá wù lǐ kè yào yòng de xiǎo mù qiáo 。"
+  },
+  "今天的物理课，我们一起研究。": {
+    "english": "Today's physics lesson is something we will investigate together.",
+    "interlinear": [
+      {
+        "chinese": "今天的物理课，",
+        "gloss": "Today's physics lesson",
+        "pinyin": "jīn tiān de wù lǐ kè ，"
+      },
+      {
+        "chinese": "我们一起研究。",
+        "gloss": "is something we will investigate together.",
+        "pinyin": "wǒ men yì qǐ yán jiū 。"
+      }
+    ],
+    "pinyin": "jīn tiān de wù lǐ kè ， wǒ men yì qǐ yán jiū 。"
+  },
+  "你希望他们研究什么？": {
+    "english": "What do you hope they will investigate?",
+    "interlinear": [
+      {
+        "chinese": "你希望他们研究什么？",
+        "gloss": "What do you hope they will investigate?",
+        "pinyin": "nǐ xī wàng tā men yán jiū shén me ？"
+      }
+    ],
+    "pinyin": "nǐ xī wàng tā men yán jiū shén me ？"
+  },
+  "桥为什么会倒。他们愿意研究，不只是听话。": {
+    "english": "Why a bridge falls down. They are willing to investigate, rather than simply follow orders.",
+    "interlinear": [
+      {
+        "chinese": "桥为什么会倒。",
+        "gloss": "Why a bridge falls down.",
+        "pinyin": "qiáo wèi shén me huì dǎo 。"
+      },
+      {
+        "chinese": "他们愿意研究，",
+        "gloss": "They are willing to investigate,",
+        "pinyin": "tā men yuàn yì yán jiū ，"
+      },
+      {
+        "chinese": "不只是听话。",
+        "gloss": "rather than simply follow orders.",
+        "pinyin": "bù zhǐ shì tīng huà 。"
+      }
+    ],
+    "pinyin": "qiáo wèi shén me huì dǎo 。 tā men yuàn yì yán jiū ， bù zhǐ shì tīng huà 。"
+  },
+  "先说题目，然后听他们回答。": {
+    "english": "Start with the question, then listen to their answers.",
+    "interlinear": [
+      {
+        "chinese": "先说题目，",
+        "gloss": "Start with the question,",
+        "pinyin": "xiān shuō tí mù ，"
+      },
+      {
+        "chinese": "然后听他们回答。",
+        "gloss": "then listen to their answers.",
+        "pinyin": "rán hòu tīng tā men huí dá 。"
+      }
+    ],
+    "pinyin": "xiān shuō tí mù ， rán hòu tīng tā men huí dá 。"
+  },
+  "我想念从前一起读书的朋友。缺课的孩子，不应该害怕成绩。": {
+    "english": "I miss the friends I used to study with. Children who have missed school should not have to fear their scores.",
+    "interlinear": [
+      {
+        "chinese": "我想念从前一起读书的朋友。",
+        "gloss": "I miss the friends I used to study with.",
+        "pinyin": "wǒ xiǎng niàn cóng qián yì qǐ dú shū de péng you 。"
+      },
+      {
+        "chinese": "缺课的孩子，",
+        "gloss": "Children who have missed school",
+        "pinyin": "quē kè de hái zi ，"
+      },
+      {
+        "chinese": "不应该害怕成绩。",
+        "gloss": "should not have to fear their scores.",
+        "pinyin": "bú yīng gāi hài pà chéng jì 。"
+      }
+    ],
+    "pinyin": "wǒ xiǎng niàn cóng qián yì qǐ dú shū de péng you 。 quē kè de hái zi ， bú yīng gāi hài pà chéng jì 。"
+  },
+  "今天不看成绩单，我们一起试一试。": {
+    "english": "We won't look at report cards today; we'll try together.",
+    "interlinear": [
+      {
+        "chinese": "今天不看成绩单，",
+        "gloss": "We won't look at report cards today;",
+        "pinyin": "jīn tiān bú kàn chéng jì dān ，"
+      },
+      {
+        "chinese": "我们一起试一试。",
+        "gloss": "we'll try together.",
+        "pinyin": "wǒ men yì qǐ shì yi shì 。"
+      }
+    ],
+    "pinyin": "jīn tiān bú kàn chéng jì dān ， wǒ men yì qǐ shì yi shì 。"
+  },
+  "我是班主任，我负责保护孩子，不只是批评成绩。": {
+    "english": "I am the class teacher; I am responsible for protecting the children, not simply criticizing their scores.",
+    "interlinear": [
+      {
+        "chinese": "我是班主任，",
+        "gloss": "I am the class teacher;",
+        "pinyin": "wǒ shì bān zhǔ rèn ，"
+      },
+      {
+        "chinese": "我负责保护孩子，",
+        "gloss": "I am responsible for protecting the children,",
+        "pinyin": "wǒ fù zé bǎo hù hái zi ，"
+      },
+      {
+        "chinese": "不只是批评成绩。",
+        "gloss": "not simply criticizing their scores.",
+        "pinyin": "bù zhǐ shì pī píng chéng jì 。"
+      }
+    ],
+    "pinyin": "wǒ shì bān zhǔ rèn ， wǒ fù zé bǎo hù hái zi ， bù zhǐ shì pī píng chéng jì 。"
+  },
+  "开学不是比赛。先陪他们，叫他们安心。": {
+    "english": "The start of school is not a competition. Stay with them first and help them feel at ease.",
+    "interlinear": [
+      {
+        "chinese": "开学不是比赛。",
+        "gloss": "The start of school is not a competition.",
+        "pinyin": "kāi xué bú shì bǐ sài 。"
+      },
+      {
+        "chinese": "先陪他们，叫他们安心。",
+        "gloss": "Stay with them first and help them feel at ease.",
+        "pinyin": "xiān péi tā men ， jiào tā men ān xīn 。"
+      }
+    ],
+    "pinyin": "kāi xué bú shì bǐ sài 。 xiān péi tā men ， jiào tā men ān xīn 。"
+  },
+  "家长可以一起研究吗？": {
+    "english": "Can parents investigate with us?",
+    "interlinear": [
+      {
+        "chinese": "家长可以一起研究吗？",
+        "gloss": "Can parents investigate with us?",
+        "pinyin": "jiā zhǎng kě yǐ yì qǐ yán jiū ma ？"
+      }
+    ],
+    "pinyin": "jiā zhǎng kě yǐ yì qǐ yán jiū ma ？"
+  },
+  "可以。Ivo还在和儿子谈话，我们不替他们答应。": {
+    "english": "Yes. Ivo is still talking with his son; we won't decide for them.",
+    "interlinear": [
+      {
+        "chinese": "可以。",
+        "gloss": "Yes.",
+        "pinyin": "kě yǐ 。"
+      },
+      {
+        "chinese": "Ivo还在和儿子谈话，",
+        "gloss": "Ivo is still talking with his son;",
+        "pinyin": "Ivo hái zài hé ér zi tán huà ，"
+      },
+      {
+        "chinese": "我们不替他们答应。",
+        "gloss": "we won't decide for them.",
+        "pinyin": "wǒ men bú tì tā men dā ying 。"
+      }
+    ],
+    "pinyin": "kě yǐ 。Ivo hái zài hé ér zi tán huà ， wǒ men bú tì tā men dā ying 。"
+  },
+  "你是班主任，这个题目合格吗？": {
+    "english": "You're the class teacher; Is this question suitable?",
+    "interlinear": [
+      {
+        "chinese": "你是班主任，",
+        "gloss": "You're the class teacher;",
+        "pinyin": "nǐ shì bān zhǔ rèn ，"
+      },
+      {
+        "chinese": "这个题目合格吗？",
+        "gloss": "Is this question suitable?",
+        "pinyin": "zhè ge tí mù hé gé ma ？"
+      }
+    ],
+    "pinyin": "nǐ shì bān zhǔ rèn ， zhè ge tí mù hé gé ma ？"
+  },
+  "你先试一试，然后批评我。": {
+    "english": "Try it first and then give me criticism.",
+    "interlinear": [
+      {
+        "chinese": "你先试一试，",
+        "gloss": "Try it first",
+        "pinyin": "nǐ xiān shì yi shì ，"
+      },
+      {
+        "chinese": "然后批评我。",
+        "gloss": "and then give me criticism.",
+        "pinyin": "rán hòu pī píng wǒ 。"
+      }
+    ],
+    "pinyin": "nǐ xiān shì yi shì ， rán hòu pī píng wǒ 。"
+  },
+  "我不替孩子回答。不过，我可以检查安全。": {
+    "english": "I will not answer for the children. But I can check safety.",
+    "interlinear": [
+      {
+        "chinese": "我不替孩子回答。",
+        "gloss": "I will not answer for the children.",
+        "pinyin": "wǒ bú tì hái zi huí dá 。"
+      },
+      {
+        "chinese": "不过，我可以检查安全。",
+        "gloss": "But I can check safety.",
+        "pinyin": "bú guò ， wǒ kě yǐ jiǎn chá ān quán 。"
+      }
+    ],
+    "pinyin": "wǒ bú tì hái zi huí dá 。 bú guò ， wǒ kě yǐ jiǎn chá ān quán 。"
+  },
+  "木桥只有手掌那么大。我放下两块小石头。": {
+    "english": "The wooden bridge is only the size of a palm. I set down two small stones.",
+    "interlinear": [
+      {
+        "chinese": "木桥只有手掌那么大。",
+        "gloss": "The wooden bridge is only the size of a palm.",
+        "pinyin": "mù qiáo zhǐ yǒu shǒu zhǎng nà me dà 。"
+      },
+      {
+        "chinese": "我放下两块小石头。",
+        "gloss": "I set down two small stones.",
+        "pinyin": "wǒ fàng xià liǎng kuài xiǎo shí tou 。"
+      }
+    ],
+    "pinyin": "mù qiáo zhǐ yǒu shǒu zhǎng nà me dà 。 wǒ fàng xià liǎng kuài xiǎo shí tou 。"
+  },
+  "看，物理可以回答，为什么这里要有支撑。": {
+    "english": "Look, physics can answer why this part needs support.",
+    "interlinear": [
+      {
+        "chinese": "看，物理可以回答，",
+        "gloss": "Look, physics can answer",
+        "pinyin": "kàn ， wù lǐ kě yǐ huí dá ，"
+      },
+      {
+        "chinese": "为什么这里要有支撑。",
+        "gloss": "why this part needs support.",
+        "pinyin": "wèi shén me zhè lǐ yào yǒu zhī chēng 。"
+      }
+    ],
+    "pinyin": "kàn ， wù lǐ kě yǐ huí dá ， wèi shén me zhè lǐ yào yǒu zhī chēng 。"
+  },
+  "他们还不知道为什么，你会怎么检查？": {
+    "english": "They still do not know why; how will you check?",
+    "interlinear": [
+      {
+        "chinese": "他们还不知道为什么，",
+        "gloss": "They still do not know why;",
+        "pinyin": "tā men hái bù zhī dao wèi shén me ，"
+      },
+      {
+        "chinese": "你会怎么检查？",
+        "gloss": "how will you check?",
+        "pinyin": "nǐ huì zěn me jiǎn chá ？"
+      }
+    ],
+    "pinyin": "tā men hái bù zhī dao wèi shén me ， nǐ huì zěn me jiǎn chá ？"
+  },
+  "先看这只狼。它要过桥。": {
+    "english": "First look at this wolf. It wants to cross the bridge.",
+    "interlinear": [
+      {
+        "chinese": "先看这只狼。",
+        "gloss": "First look at this wolf.",
+        "pinyin": "xiān kàn zhè zhī láng 。"
+      },
+      {
+        "chinese": "它要过桥。",
+        "gloss": "It wants to cross the bridge.",
+        "pinyin": "tā yào guò qiáo 。"
+      }
+    ],
+    "pinyin": "xiān kàn zhè zhī láng 。 tā yào guò qiáo 。"
+  },
+  "我碰了一下木桥，桥倒了，纸狼正好贴在我的鼻子上。": {
+    "english": "I nudge the bridge; it falls, and the paper wolf lands right on my nose.",
+    "interlinear": [
+      {
+        "chinese": "我碰了一下木桥，",
+        "gloss": "I nudge the bridge;",
+        "pinyin": "wǒ pèng le yí xià mù qiáo ，"
+      },
+      {
+        "chinese": "桥倒了，",
+        "gloss": "it falls,",
+        "pinyin": "qiáo dǎo le ，"
+      },
+      {
+        "chinese": "纸狼正好贴在我的鼻子上。",
+        "gloss": "and the paper wolf lands right on my nose.",
+        "pinyin": "zhǐ láng zhèng hǎo tiē zài wǒ de bí zi shàng 。"
+      }
+    ],
+    "pinyin": "wǒ pèng le yí xià mù qiáo ， qiáo dǎo le ， zhǐ láng zhèng hǎo tiē zài wǒ de bí zi shàng 。"
+  },
+  "狼可不听我的话。它有自己的计划。": {
+    "english": "The wolf doesn't follow my orders. It has its own plans.",
+    "interlinear": [
+      {
+        "chinese": "狼可不听我的话。",
+        "gloss": "The wolf doesn't follow my orders.",
+        "pinyin": "láng kě bù tīng wǒ de huà 。"
+      },
+      {
+        "chinese": "它有自己的计划。",
+        "gloss": "It has its own plans.",
+        "pinyin": "tā yǒu zì jǐ de jì huà 。"
+      }
+    ],
+    "pinyin": "láng kě bù tīng wǒ de huà 。 tā yǒu zì jǐ de jì huà 。"
+  },
+  "你的水平，现在由狼来检查了。": {
+    "english": "Your skill level is now being checked by the wolf.",
+    "interlinear": [
+      {
+        "chinese": "你的水平，",
+        "gloss": "Your skill level",
+        "pinyin": "nǐ de shuǐ píng ，"
+      },
+      {
+        "chinese": "现在由狼来检查了。",
+        "gloss": "is now being checked by the wolf.",
+        "pinyin": "xiàn zài yóu láng lái jiǎn chá le 。"
+      }
+    ],
+    "pinyin": "nǐ de shuǐ píng ， xiàn zài yóu láng lái jiǎn chá le 。"
+  },
+  "我本来想叫人说我了不起，现在倒像个傻孩子。": {
+    "english": "I wanted people to say I was impressive, but now I look like a silly child.",
+    "interlinear": [
+      {
+        "chinese": "我本来想叫人说我了不起，",
+        "gloss": "I wanted people to say I was impressive,",
+        "pinyin": "wǒ běn lái xiǎng jiào rén shuō wǒ liǎo bù qǐ ，"
+      },
+      {
+        "chinese": "现在倒像个傻孩子。",
+        "gloss": "but now I look like a silly child.",
+        "pinyin": "xiàn zài dào xiàng gè shǎ hái zi 。"
+      }
+    ],
+    "pinyin": "wǒ běn lái xiǎng jiào rén shuō wǒ liǎo bù qǐ ， xiàn zài dào xiàng gè shǎ hái zi 。"
+  },
+  "一次不成功，不表示人傻。我们研究为什么会这样，不批评谁丢面子。": {
+    "english": "One unsuccessful attempt does not mean someone is stupid. We investigate why this happens, rather than criticize someone for losing face.",
+    "interlinear": [
+      {
+        "chinese": "一次不成功，不表示人傻。",
+        "gloss": "One unsuccessful attempt does not mean someone is stupid.",
+        "pinyin": "yí cì bù chéng gōng ， bù biǎo shì rén shǎ 。"
+      },
+      {
+        "chinese": "我们研究为什么会这样，",
+        "gloss": "We investigate why this happens,",
+        "pinyin": "wǒ men yán jiū wèi shén me huì zhè yàng ，"
+      },
+      {
+        "chinese": "不批评谁丢面子。",
+        "gloss": "rather than criticize someone for losing face.",
+        "pinyin": "bù pī píng shuí diū miàn zi 。"
+      }
+    ],
+    "pinyin": "yí cì bù chéng gōng ， bù biǎo shì rén shǎ 。 wǒ men yán jiū wèi shén me huì zhè yàng ， bù pī píng shuí diū miàn zi 。"
+  },
+  "我意识到，我急着说，没有耐心听。": {
+    "english": "I realize I was rushing to speak, without patience to listen.",
+    "interlinear": [
+      {
+        "chinese": "我意识到，",
+        "gloss": "I realize",
+        "pinyin": "wǒ yì shí dào ，"
+      },
+      {
+        "chinese": "我急着说，没有耐心听。",
+        "gloss": "I was rushing to speak, without patience to listen.",
+        "pinyin": "wǒ jí zhe shuō ， méi yǒu nài xīn tīng 。"
+      }
+    ],
+    "pinyin": "wǒ yì shí dào ， wǒ jí zhe shuō ， méi yǒu nài xīn tīng 。"
+  },
+  "刚才我太骄傲了。连纸狼也不满意。": {
+    "english": "I was too proud just now. Even the paper wolf was unimpressed.",
+    "interlinear": [
+      {
+        "chinese": "刚才我太骄傲了。",
+        "gloss": "I was too proud just now.",
+        "pinyin": "gāng cái wǒ tài jiāo ào le 。"
+      },
+      {
+        "chinese": "连纸狼也不满意。",
+        "gloss": "Even the paper wolf was unimpressed.",
+        "pinyin": "lián zhǐ láng yě bù mǎn yì 。"
+      }
+    ],
+    "pinyin": "gāng cái wǒ tài jiāo ào le 。 lián zhǐ láng yě bù mǎn yì 。"
+  },
+  "哪里最复杂？我愿意听。": {
+    "english": "Which part is most complicated? I'm willing to listen.",
+    "interlinear": [
+      {
+        "chinese": "哪里最复杂？",
+        "gloss": "Which part is most complicated?",
+        "pinyin": "nǎ lǐ zuì fù zá ？"
+      },
+      {
+        "chinese": "我愿意听。",
+        "gloss": "I'm willing to listen.",
+        "pinyin": "wǒ yuàn yì tīng 。"
+      }
+    ],
+    "pinyin": "nǎ lǐ zuì fù zá ？ wǒ yuàn yì tīng 。"
+  },
+  "你有精力表演，还要有耐心等他们研究。": {
+    "english": "You have the energy to perform, and must also have patience while they investigate.",
+    "interlinear": [
+      {
+        "chinese": "你有精力表演，",
+        "gloss": "You have the energy to perform,",
+        "pinyin": "nǐ yǒu jīng lì biǎo yǎn ，"
+      },
+      {
+        "chinese": "还要有耐心等他们研究。",
+        "gloss": "and must also have patience while they investigate.",
+        "pinyin": "hái yào yǒu nài xīn děng tā men yán jiū 。"
+      }
+    ],
+    "pinyin": "nǐ yǒu jīng lì biǎo yǎn ， hái yào yǒu nài xīn děng tā men yán jiū 。"
+  },
+  "你要陪他们研究，不是叫人相信你什么都知道。": {
+    "english": "You need to investigate alongside them, not persuade people that you know everything.",
+    "interlinear": [
+      {
+        "chinese": "你要陪他们研究，",
+        "gloss": "You need to investigate alongside them,",
+        "pinyin": "nǐ yào péi tā men yán jiū ，"
+      },
+      {
+        "chinese": "不是叫人相信你什么都知道。",
+        "gloss": "not persuade people that you know everything.",
+        "pinyin": "bú shì jiào rén xiāng xìn nǐ shén me dōu zhī dao 。"
+      }
+    ],
+    "pinyin": "nǐ yào péi tā men yán jiū ， bú shì jiào rén xiāng xìn nǐ shén me dōu zhī dao 。"
+  },
+  "我放下手，等她说完。": {
+    "english": "I lower my hands and wait for her to finish.",
+    "interlinear": [
+      {
+        "chinese": "我放下手，",
+        "gloss": "I lower my hands",
+        "pinyin": "wǒ fàng xià shǒu ，"
+      },
+      {
+        "chinese": "等她说完。",
+        "gloss": "and wait for her to finish.",
+        "pinyin": "děng tā shuō wán 。"
+      }
+    ],
+    "pinyin": "wǒ fàng xià shǒu ， děng tā shuō wán 。"
+  },
+  "这个阶段，先听他们说题目是什么。": {
+    "english": "At this stage, First hear them say what the question is.",
+    "interlinear": [
+      {
+        "chinese": "这个阶段，",
+        "gloss": "At this stage,",
+        "pinyin": "zhè ge jiē duàn ，"
+      },
+      {
+        "chinese": "先听他们说题目是什么。",
+        "gloss": "First hear them say what the question is.",
+        "pinyin": "xiān tīng tā men shuō tí mù shì shén me 。"
+      }
+    ],
+    "pinyin": "zhè ge jiē duàn ， xiān tīng tā men shuō tí mù shì shén me 。"
+  },
+  "好。下一阶段，请他们说结论。": {
+    "english": "Good. At the next stage, ask them to state their conclusion.",
+    "interlinear": [
+      {
+        "chinese": "好。下一阶段，",
+        "gloss": "Good. At the next stage,",
+        "pinyin": "hǎo 。 xià yì jiē duàn ，"
+      },
+      {
+        "chinese": "请他们说结论。",
+        "gloss": "ask them to state their conclusion.",
+        "pinyin": "qǐng tā men shuō jié lùn 。"
+      }
+    ],
+    "pinyin": "hǎo 。 xià yì jiē duàn ， qǐng tā men shuō jié lùn 。"
+  },
+  "及格的要求是什么？桥不倒，就及格吗？": {
+    "english": "What is the requirement for passing? Do they pass if the bridge stays up?",
+    "interlinear": [
+      {
+        "chinese": "及格的要求是什么？",
+        "gloss": "What is the requirement for passing?",
+        "pinyin": "jí gé de yāo qiú shì shén me ？"
+      },
+      {
+        "chinese": "桥不倒，就及格吗？",
+        "gloss": "Do they pass if the bridge stays up?",
+        "pinyin": "qiáo bù dǎo ， jiù jí gé ma ？"
+      }
+    ],
+    "pinyin": "jí gé de yāo qiú shì shén me ？ qiáo bù dǎo ， jiù jí gé ma ？"
+  },
+  "及格要会说明原因，不是碰巧成功。": {
+    "english": "Passing means being able to explain the reason, not succeeding by chance.",
+    "interlinear": [
+      {
+        "chinese": "及格要会说明原因，",
+        "gloss": "Passing means being able to explain the reason,",
+        "pinyin": "jí gé yào huì shuō míng yuán yīn ，"
+      },
+      {
+        "chinese": "不是碰巧成功。",
+        "gloss": "not succeeding by chance.",
+        "pinyin": "bú shì pèng qiǎo chéng gōng 。"
+      }
+    ],
+    "pinyin": "jí gé yào huì shuō míng yuán yīn ， bú shì pèng qiǎo chéng gōng 。"
+  },
+  "今天，能回答为什么，比只求表扬更值得骄傲。": {
+    "english": "Today, being able to answer why is worth more pride than merely seeking praise.",
+    "interlinear": [
+      {
+        "chinese": "今天，能回答为什么，",
+        "gloss": "Today, being able to answer why",
+        "pinyin": "jīn tiān ， néng huí dá wèi shén me ，"
+      },
+      {
+        "chinese": "比只求表扬更值得骄傲。",
+        "gloss": "is worth more pride than merely seeking praise.",
+        "pinyin": "bǐ zhī qiú biǎo yáng gèng zhí dé jiāo ào 。"
+      }
+    ],
+    "pinyin": "jīn tiān ， néng huí dá wèi shén me ， bǐ zhī qiú biǎo yáng gèng zhí dé jiāo ào 。"
+  },
+  "成绩要有作用，不能叫他们害怕回答。": {
+    "english": "Scores need to serve a purpose, rather than make them afraid to answer.",
+    "interlinear": [
+      {
+        "chinese": "成绩要有作用，",
+        "gloss": "Scores need to serve a purpose,",
+        "pinyin": "chéng jì yào yǒu zuò yòng ，"
+      },
+      {
+        "chinese": "不能叫他们害怕回答。",
+        "gloss": "rather than make them afraid to answer.",
+        "pinyin": "bù néng jiào tā men hài pà huí dá 。"
+      }
+    ],
+    "pinyin": "chéng jì yào yǒu zuò yòng ， bù néng jiào tā men hài pà huí dá 。"
+  },
+  "我会严格检查安全，不过，不用严厉的语气。": {
+    "english": "I will check safety strictly, but without a harsh tone.",
+    "interlinear": [
+      {
+        "chinese": "我会严格检查安全，",
+        "gloss": "I will check safety strictly,",
+        "pinyin": "wǒ huì yán gé jiǎn chá ān quán ，"
+      },
+      {
+        "chinese": "不过，不用严厉的语气。",
+        "gloss": "but without a harsh tone.",
+        "pinyin": "bú guò ， bú yòng yán lì de yǔ qì 。"
+      }
+    ],
+    "pinyin": "wǒ huì yán gé jiǎn chá ān quán ， bú guò ， bú yòng yán lì de yǔ qì 。"
+  },
+  "严厉地批评，会叫人再也不敢试一试。": {
+    "english": "Harsh criticism can make someone afraid ever to try again.",
+    "interlinear": [
+      {
+        "chinese": "严厉地批评，",
+        "gloss": "Harsh criticism",
+        "pinyin": "yán lì de pī píng ，"
+      },
+      {
+        "chinese": "会叫人再也不敢试一试。",
+        "gloss": "can make someone afraid ever to try again.",
+        "pinyin": "huì jiào rén zài yě bù gǎn shì yi shì 。"
+      }
+    ],
+    "pinyin": "yán lì de pī píng ， huì jiào rén zài yě bù gǎn shì yi shì 。"
+  },
+  "我从纸狼的旁边，拿起一张熊掌的图。": {
+    "english": "Beside the paper wolf, I pick up a picture of a bear's paw.",
+    "interlinear": [
+      {
+        "chinese": "我从纸狼的旁边，",
+        "gloss": "Beside the paper wolf,",
+        "pinyin": "wǒ cóng zhǐ láng de páng biān ，"
+      },
+      {
+        "chinese": "拿起一张熊掌的图。",
+        "gloss": "I pick up a picture of a bear's paw.",
+        "pinyin": "ná qǐ yì zhāng xióng zhǎng de tú 。"
+      }
+    ],
+    "pinyin": "wǒ cóng zhǐ láng de páng biān ， ná qǐ yì zhāng xióng zhǎng de tú 。"
+  },
+  "熊掌比狼的脚大。看这张图，研究压力，好吗？": {
+    "english": "A bear's paw is larger than a wolf's foot. Shall we study pressure by looking at this picture?",
+    "interlinear": [
+      {
+        "chinese": "熊掌比狼的脚大。",
+        "gloss": "A bear's paw is larger than a wolf's foot.",
+        "pinyin": "xióng zhǎng bǐ láng de jiǎo dà 。"
+      },
+      {
+        "chinese": "看这张图，研究压力，好吗？",
+        "gloss": "Shall we study pressure by looking at this picture?",
+        "pinyin": "kàn zhè zhāng tú ， yán jiū yā lì ， hǎo ma ？"
+      }
+    ],
+    "pinyin": "xióng zhǎng bǐ láng de jiǎo dà 。 kàn zhè zhāng tú ， yán jiū yā lì ， hǎo ma ？"
+  },
+  "可以，不过先说，我们研究的是模型。不是让孩子去碰真正的熊掌。": {
+    "english": "Yes, but first explain that we are investigating a model. We are not asking children to touch a real bear's paw.",
+    "interlinear": [
+      {
+        "chinese": "可以，不过先说，",
+        "gloss": "Yes, but first explain",
+        "pinyin": "kě yǐ ， bú guò xiān shuō ，"
+      },
+      {
+        "chinese": "我们研究的是模型。",
+        "gloss": "that we are investigating a model.",
+        "pinyin": "wǒ men yán jiū de shì mó xíng 。"
+      },
+      {
+        "chinese": "不是让孩子去碰真正的熊掌。",
+        "gloss": "We are not asking children to touch a real bear's paw.",
+        "pinyin": "bú shì ràng hái zi qù pèng zhēn zhèng de xióng zhǎng 。"
+      }
+    ],
+    "pinyin": "kě yǐ ， bú guò xiān shuō ， wǒ men yán jiū de shì mó xíng 。 bú shì ràng hái zi qù pèng zhēn zhèng de xióng zhǎng 。"
+  },
+  "这里有一篇文章，说的是狼和熊掌的故事。": {
+    "english": "Here is an article about the wolf and the bear's paw.",
+    "interlinear": [
+      {
+        "chinese": "这里有一篇文章，",
+        "gloss": "Here is an article",
+        "pinyin": "zhè lǐ yǒu yì piān wén zhāng ，"
+      },
+      {
+        "chinese": "说的是狼和熊掌的故事。",
+        "gloss": "about the wolf and the bear's paw.",
+        "pinyin": "shuō de shì láng hé xióng zhǎng de gù shì 。"
+      }
+    ],
+    "pinyin": "zhè lǐ yǒu yì piān wén zhāng ， shuō de shì láng hé xióng zhǎng de gù shì 。"
+  },
+  "这篇文章，孩子读书的时候会害怕吗？": {
+    "english": "This article— Will the children feel afraid while reading?",
+    "interlinear": [
+      {
+        "chinese": "这篇文章，",
+        "gloss": "This article—",
+        "pinyin": "zhè piān wén zhāng ，"
+      },
+      {
+        "chinese": "孩子读书的时候会害怕吗？",
+        "gloss": "Will the children feel afraid while reading?",
+        "pinyin": "hái zi dú shū de shí hòu huì hài pà ma ？"
+      }
+    ],
+    "pinyin": "zhè piān wén zhāng ， hái zi dú shū de shí hòu huì hài pà ma ？"
+  },
+  "文章里外语很多。我本来想表示我有水平。": {
+    "english": "The article contains many foreign-language words. I wanted to show that I was capable.",
+    "interlinear": [
+      {
+        "chinese": "文章里外语很多。",
+        "gloss": "The article contains many foreign-language words.",
+        "pinyin": "wén zhāng lǐ wài yǔ hěn duō 。"
+      },
+      {
+        "chinese": "我本来想表示我有水平。",
+        "gloss": "I wanted to show that I was capable.",
+        "pinyin": "wǒ běn lái xiǎng biǎo shì wǒ yǒu shuǐ píng 。"
+      }
+    ],
+    "pinyin": "wén zhāng lǐ wài yǔ hěn duō 。 wǒ běn lái xiǎng biǎo shì wǒ yǒu shuǐ píng 。"
+  },
+  "外语不是坏处。不过，先说外语是什么意思，读书的人就知道你说什么。": {
+    "english": "A foreign language is not a disadvantage. But first explain what the foreign words mean, then readers will know what you are saying.",
+    "interlinear": [
+      {
+        "chinese": "外语不是坏处。",
+        "gloss": "A foreign language is not a disadvantage.",
+        "pinyin": "wài yǔ bú shì huài chù 。"
+      },
+      {
+        "chinese": "不过，先说外语是什么意思，",
+        "gloss": "But first explain what the foreign words mean,",
+        "pinyin": "bú guò ， xiān shuō wài yǔ shì shén me yì si ，"
+      },
+      {
+        "chinese": "读书的人就知道你说什么。",
+        "gloss": "then readers will know what you are saying.",
+        "pinyin": "dú shū de rén jiù zhī dao nǐ shuō shén me 。"
+      }
+    ],
+    "pinyin": "wài yǔ bú shì huài chù 。 bú guò ， xiān shuō wài yǔ shì shén me yì si ， dú shū de rén jiù zhī dao nǐ shuō shén me 。"
+  },
+  "我还有化学的记录。今天一起研究吗？": {
+    "english": "I also have chemistry notes. Should we study them together today?",
+    "interlinear": [
+      {
+        "chinese": "我还有化学的记录。",
+        "gloss": "I also have chemistry notes.",
+        "pinyin": "wǒ hái yǒu huà xué de jì lù 。"
+      },
+      {
+        "chinese": "今天一起研究吗？",
+        "gloss": "Should we study them together today?",
+        "pinyin": "jīn tiān yì qǐ yán jiū ma ？"
+      }
+    ],
+    "pinyin": "wǒ hái yǒu huà xué de jì lù 。 jīn tiān yì qǐ yán jiū ma ？"
+  },
+  "化学不属于今天的题目。今天不混合任何东西。": {
+    "english": "Chemistry is not part of today's topic. We won't mix anything today.",
+    "interlinear": [
+      {
+        "chinese": "化学不属于今天的题目。",
+        "gloss": "Chemistry is not part of today's topic.",
+        "pinyin": "huà xué bù shǔ yú jīn tiān de tí mù 。"
+      },
+      {
+        "chinese": "今天不混合任何东西。",
+        "gloss": "We won't mix anything today.",
+        "pinyin": "jīn tiān bú hùn hé rèn hé dōng xi 。"
+      }
+    ],
+    "pinyin": "huà xué bù shǔ yú jīn tiān de tí mù 。 jīn tiān bú hùn hé rèn hé dōng xi 。"
+  },
+  "不要求他们知道一切。先一起研究这座桥。": {
+    "english": "I will not expect them to know everything. First we will investigate this bridge together.",
+    "interlinear": [
+      {
+        "chinese": "不要求他们知道一切。",
+        "gloss": "I will not expect them to know everything.",
+        "pinyin": "bú yāo qiú tā men zhī dao yí qiè 。"
+      },
+      {
+        "chinese": "先一起研究这座桥。",
+        "gloss": "First we will investigate this bridge together.",
+        "pinyin": "xiān yì qǐ yán jiū zhè zuò qiáo 。"
+      }
+    ],
+    "pinyin": "bú yāo qiú tā men zhī dao yí qiè 。 xiān yì qǐ yán jiū zhè zuò qiáo 。"
+  },
+  "不要求他们表扬，先听他们知道了什么。": {
+    "english": "I will not ask them to praise it; I will first listen to what they have learned.",
+    "interlinear": [
+      {
+        "chinese": "不要求他们表扬，",
+        "gloss": "I will not ask them to praise it;",
+        "pinyin": "bú yāo qiú tā men biǎo yáng ，"
+      },
+      {
+        "chinese": "先听他们知道了什么。",
+        "gloss": "I will first listen to what they have learned.",
+        "pinyin": "xiān tīng tā men zhī dao le shén me 。"
+      }
+    ],
+    "pinyin": "bú yāo qiú tā men biǎo yáng ， xiān tīng tā men zhī dao le shén me 。"
+  },
+  "你的决心很好。不过，有决心也要有耐心。": {
+    "english": "Your determination is good. But determination needs patience too.",
+    "interlinear": [
+      {
+        "chinese": "你的决心很好。",
+        "gloss": "Your determination is good.",
+        "pinyin": "nǐ de jué xīn hěn hǎo 。"
+      },
+      {
+        "chinese": "不过，有决心也要有耐心。",
+        "gloss": "But determination needs patience too.",
+        "pinyin": "bú guò ， yǒu jué xīn yě yào yǒu nài xīn 。"
+      }
+    ],
+    "pinyin": "nǐ de jué xīn hěn hǎo 。 bú guò ， yǒu jué xīn yě yào yǒu nài xīn 。"
+  },
+  "我的决心不是让人表扬我。我要陪他们研究。": {
+    "english": "My determination is not about winning praise. I want to investigate alongside them.",
+    "interlinear": [
+      {
+        "chinese": "我的决心不是让人表扬我。",
+        "gloss": "My determination is not about winning praise.",
+        "pinyin": "wǒ de jué xīn bú shì ràng rén biǎo yáng wǒ 。"
+      },
+      {
+        "chinese": "我要陪他们研究。",
+        "gloss": "I want to investigate alongside them.",
+        "pinyin": "wǒ yào péi tā men yán jiū 。"
+      }
+    ],
+    "pinyin": "wǒ de jué xīn bú shì ràng rén biǎo yáng wǒ 。 wǒ yào péi tā men yán jiū 。"
+  },
+  "我们擦干净桌子，留下简单的图和说明。": {
+    "english": "We wipe the table clean, leaving simple pictures and instructions.",
+    "interlinear": [
+      {
+        "chinese": "我们擦干净桌子，",
+        "gloss": "We wipe the table clean,",
+        "pinyin": "wǒ men cā gān jìng zhuō zi ，"
+      },
+      {
+        "chinese": "留下简单的图和说明。",
+        "gloss": "leaving simple pictures and instructions.",
+        "pinyin": "liú xià jiǎn dān de tú hé shuō míng 。"
+      }
+    ],
+    "pinyin": "wǒ men cā gān jìng zhuō zi ， liú xià jiǎn dān de tú hé shuō míng 。"
+  },
+  "班会结束了？我来报到，给你们帮忙，检查记录。": {
+    "english": "Has the class meeting finished? I'm reporting for duty to help you check the records.",
+    "interlinear": [
+      {
+        "chinese": "班会结束了？",
+        "gloss": "Has the class meeting finished?",
+        "pinyin": "bān huì jié shù le ？"
+      },
+      {
+        "chinese": "我来报到，",
+        "gloss": "I'm reporting for duty",
+        "pinyin": "wǒ lái bào dào ，"
+      },
+      {
+        "chinese": "给你们帮忙，检查记录。",
+        "gloss": "to help you check the records.",
+        "pinyin": "gěi nǐ men bāng máng ， jiǎn chá jì lù 。"
+      }
+    ],
+    "pinyin": "bān huì jié shù le ？ wǒ lái bào dào ， gěi nǐ men bāng máng ， jiǎn chá jì lù 。"
+  },
+  "孩子还没来。我们提前试一试，不要求孩子替我们检查一切。": {
+    "english": "The children have not arrived yet. We try it out in advance, instead of expecting the children to check everything for us.",
+    "interlinear": [
+      {
+        "chinese": "孩子还没来。",
+        "gloss": "The children have not arrived yet.",
+        "pinyin": "hái zi hái méi lái 。"
+      },
+      {
+        "chinese": "我们提前试一试，",
+        "gloss": "We try it out in advance,",
+        "pinyin": "wǒ men tí qián shì yi shì ，"
+      },
+      {
+        "chinese": "不要求孩子替我们检查一切。",
+        "gloss": "instead of expecting the children to check everything for us.",
+        "pinyin": "bú yāo qiú hái zi tì wǒ men jiǎn chá yí qiè 。"
+      }
+    ],
+    "pinyin": "hái zi hái méi lái 。 wǒ men tí qián shì yi shì ， bú yāo qiú hái zi tì wǒ men jiǎn chá yí qiè 。"
+  },
+  "家长想知道，孩子难过的时候怎么办。": {
+    "english": "Parents want to know what happens when a child is upset.",
+    "interlinear": [
+      {
+        "chinese": "家长想知道，",
+        "gloss": "Parents want to know",
+        "pinyin": "jiā zhǎng xiǎng zhī dao ，"
+      },
+      {
+        "chinese": "孩子难过的时候怎么办。",
+        "gloss": "what happens when a child is upset.",
+        "pinyin": "hái zi nán guò de shí hòu zěn me bàn 。"
+      }
+    ],
+    "pinyin": "jiā zhǎng xiǎng zhī dao ， hái zi nán guò de shí hòu zěn me bàn 。"
+  },
+  "想哭，可以哭。愿意的话，可以请朋友做伴。": {
+    "english": "If they need to cry, they can cry. If they want, they can ask a friend to keep them company.",
+    "interlinear": [
+      {
+        "chinese": "想哭，可以哭。",
+        "gloss": "If they need to cry, they can cry.",
+        "pinyin": "xiǎng kū ， kě yǐ kū 。"
+      },
+      {
+        "chinese": "愿意的话，",
+        "gloss": "If they want,",
+        "pinyin": "yuàn yì de huà ，"
+      },
+      {
+        "chinese": "可以请朋友做伴。",
+        "gloss": "they can ask a friend to keep them company.",
+        "pinyin": "kě yǐ qǐng péng you zuò bàn 。"
+      }
+    ],
+    "pinyin": "xiǎng kū ， kě yǐ kū 。 yuàn yì de huà ， kě yǐ qǐng péng you zuò bàn 。"
+  },
+  "今天不要求成绩。缺课的人也可以先看。": {
+    "english": "No scores are required today. Those who missed lessons can watch first too.",
+    "interlinear": [
+      {
+        "chinese": "今天不要求成绩。",
+        "gloss": "No scores are required today.",
+        "pinyin": "jīn tiān bú yāo qiú chéng jì 。"
+      },
+      {
+        "chinese": "缺课的人也可以先看。",
+        "gloss": "Those who missed lessons can watch first too.",
+        "pinyin": "quē kè de rén yě kě yǐ xiān kàn 。"
+      }
+    ],
+    "pinyin": "jīn tiān bú yāo qiú chéng jì 。 quē kè de rén yě kě yǐ xiān kàn 。"
+  },
+  "然后，孩子来到这里，分别选择坐在哪里。": {
+    "english": "Then the children arrive here, each choosing where to sit.",
+    "interlinear": [
+      {
+        "chinese": "然后，孩子来到这里，",
+        "gloss": "Then the children arrive here,",
+        "pinyin": "rán hòu ， hái zi lái dào zhè lǐ ，"
+      },
+      {
+        "chinese": "分别选择坐在哪里。",
+        "gloss": "each choosing where to sit.",
+        "pinyin": "fēn bié xuǎn zé zuò zài nǎ lǐ 。"
+      }
+    ],
+    "pinyin": "rán hòu ， hái zi lái dào zhè lǐ ， fēn bié xuǎn zé zuò zài nǎ lǐ 。"
+  },
+  "有人先看图，有人小声读书，没有人被要求表演。": {
+    "english": "Some look at the pictures first, some read quietly, no one is asked to perform.",
+    "interlinear": [
+      {
+        "chinese": "有人先看图，",
+        "gloss": "Some look at the pictures first,",
+        "pinyin": "yǒu rén xiān kàn tú ，"
+      },
+      {
+        "chinese": "有人小声读书，",
+        "gloss": "some read quietly,",
+        "pinyin": "yǒu rén xiǎo shēng dú shū ，"
+      },
+      {
+        "chinese": "没有人被要求表演。",
+        "gloss": "no one is asked to perform.",
+        "pinyin": "méi yǒu rén bèi yāo qiú biǎo yǎn 。"
+      }
+    ],
+    "pinyin": "yǒu rén xiān kàn tú ， yǒu rén xiǎo shēng dú shū ， méi yǒu rén bèi yāo qiú biǎo yǎn 。"
+  },
+  "我渐渐意识到，小声回答也表示他在研究。": {
+    "english": "I gradually realize that a quiet answer can also show careful thought.",
+    "interlinear": [
+      {
+        "chinese": "我渐渐意识到，",
+        "gloss": "I gradually realize",
+        "pinyin": "wǒ jiàn jiàn yì shí dào ，"
+      },
+      {
+        "chinese": "小声回答也表示他在研究。",
+        "gloss": "that a quiet answer can also show careful thought.",
+        "pinyin": "xiǎo shēng huí dá yě biǎo shì tā zài yán jiū 。"
+      }
+    ],
+    "pinyin": "wǒ jiàn jiàn yì shí dào ， xiǎo shēng huí dá yě biǎo shì tā zài yán jiū 。"
+  },
+  "他们还有精力，不过，先别给他们复杂的题目。": {
+    "english": "They still have energy; but do not give them complicated questions yet.",
+    "interlinear": [
+      {
+        "chinese": "他们还有精力，",
+        "gloss": "They still have energy;",
+        "pinyin": "tā men hái yǒu jīng lì ，"
+      },
+      {
+        "chinese": "不过，先别给他们复杂的题目。",
+        "gloss": "but do not give them complicated questions yet.",
+        "pinyin": "bú guò ， xiān bié gěi tā men fù zá de tí mù 。"
+      }
+    ],
+    "pinyin": "tā men hái yǒu jīng lì ， bú guò ， xiān bié gěi tā men fù zá de tí mù 。"
+  },
+  "孩子修改了记录，叫我们分别看。": {
+    "english": "The children revise the notes, and ask us to look at them separately.",
+    "interlinear": [
+      {
+        "chinese": "孩子修改了记录，",
+        "gloss": "The children revise the notes,",
+        "pinyin": "hái zi xiū gǎi le jì lù ，"
+      },
+      {
+        "chinese": "叫我们分别看。",
+        "gloss": "and ask us to look at them separately.",
+        "pinyin": "jiào wǒ men fēn bié kàn 。"
+      }
+    ],
+    "pinyin": "hái zi xiū gǎi le jì lù ， jiào wǒ men fēn bié kàn 。"
+  },
+  "现在我知道怎么办了。先检查支撑，再放石头。": {
+    "english": "Now I know what to do. Check the support first then place the stones.",
+    "interlinear": [
+      {
+        "chinese": "现在我知道怎么办了。",
+        "gloss": "Now I know what to do.",
+        "pinyin": "xiàn zài wǒ zhī dao zěn me bàn le 。"
+      },
+      {
+        "chinese": "先检查支撑，",
+        "gloss": "Check the support first",
+        "pinyin": "xiān jiǎn chá zhī chēng ，"
+      },
+      {
+        "chinese": "再放石头。",
+        "gloss": "then place the stones.",
+        "pinyin": "zài fàng shí tou 。"
+      }
+    ],
+    "pinyin": "xiàn zài wǒ zhī dao zěn me bàn le 。 xiān jiǎn chá zhī chēng ， zài fàng shí tou 。"
+  },
+  "我为他们骄傲，不是为我的表演骄傲。": {
+    "english": "I am proud of them, not proud of my performance.",
+    "interlinear": [
+      {
+        "chinese": "我为他们骄傲，",
+        "gloss": "I am proud of them,",
+        "pinyin": "wǒ wèi tā men jiāo ào ，"
+      },
+      {
+        "chinese": "不是为我的表演骄傲。",
+        "gloss": "not proud of my performance.",
+        "pinyin": "bú shì wèi wǒ de biǎo yǎn jiāo ào 。"
+      }
+    ],
+    "pinyin": "wǒ wèi tā men jiāo ào ， bú shì wèi wǒ de biǎo yǎn jiāo ào 。"
+  },
+  "他们知道为什么了，还给我们帮忙了。": {
+    "english": "They now know why, and have helped us too.",
+    "interlinear": [
+      {
+        "chinese": "他们知道为什么了，",
+        "gloss": "They now know why,",
+        "pinyin": "tā men zhī dao wèi shén me le ，"
+      },
+      {
+        "chinese": "还给我们帮忙了。",
+        "gloss": "and have helped us too.",
+        "pinyin": "hái gěi wǒ men bāng máng le 。"
+      }
+    ],
+    "pinyin": "tā men zhī dao wèi shén me le ， hái gěi wǒ men bāng máng le 。"
+  },
+  "不过，屋子的门仍然闭着。模型不是修房顶的资格。": {
+    "english": "But the building's door remains closed. A model does not qualify anyone to repair a roof.",
+    "interlinear": [
+      {
+        "chinese": "不过，屋子的门仍然闭着。",
+        "gloss": "But the building's door remains closed.",
+        "pinyin": "bú guò ， wū zi de mén réng rán bì zhe 。"
+      },
+      {
+        "chinese": "模型不是修房顶的资格。",
+        "gloss": "A model does not qualify anyone to repair a roof.",
+        "pinyin": "mó xíng bú shì xiū fáng dǐng de zī gé 。"
+      }
+    ],
+    "pinyin": "bú guò ， wū zi de mén réng rán bì zhe 。 mó xíng bú shì xiū fáng dǐng de zī gé 。"
+  },
+  "我们不得不找合格的人，负责修屋子。": {
+    "english": "We need to find qualified people to take responsibility for repairing the building.",
+    "interlinear": [
+      {
+        "chinese": "我们不得不找合格的人，",
+        "gloss": "We need to find qualified people",
+        "pinyin": "wǒ men bù dé bù zhǎo hé gé de rén ，"
+      },
+      {
+        "chinese": "负责修屋子。",
+        "gloss": "to take responsibility for repairing the building.",
+        "pinyin": "fù zé xiū wū zi 。"
+      }
+    ],
+    "pinyin": "wǒ men bù dé bù zhǎo hé gé de rén ， fù zé xiū wū zi 。"
+  },
+  "这次先给别人看，不要求他们表扬我。": {
+    "english": "This time I will show it to others first, without demanding their praise.",
+    "interlinear": [
+      {
+        "chinese": "这次先给别人看，",
+        "gloss": "This time I will show it to others first,",
+        "pinyin": "zhè cì xiān gěi bié rén kàn ，"
+      },
+      {
+        "chinese": "不要求他们表扬我。",
+        "gloss": "without demanding their praise.",
+        "pinyin": "bú yāo qiú tā men biǎo yáng wǒ 。"
+      }
+    ],
+    "pinyin": "zhè cì xiān gěi bié rén kàn ， bú yāo qiú tā men biǎo yáng wǒ 。"
+  },
+  "我愿意帮忙，不过，不替合格的人答应。": {
+    "english": "I'm willing to help, but I will not make promises on behalf of qualified people.",
+    "interlinear": [
+      {
+        "chinese": "我愿意帮忙，",
+        "gloss": "I'm willing to help,",
+        "pinyin": "wǒ yuàn yì bāng máng ，"
+      },
+      {
+        "chinese": "不过，不替合格的人答应。",
+        "gloss": "but I will not make promises on behalf of qualified people.",
+        "pinyin": "bú guò ， bú tì hé gé de rén dā ying 。"
+      }
+    ],
+    "pinyin": "wǒ yuàn yì bāng máng ， bú guò ， bú tì hé gé de rén dā ying 。"
+  },
+  "水的记录和从前一样。修房顶的人，要知道我们从前答应了什么。": {
+    "english": "The water record is the same as before. The people repairing the roof need to know what we promised before.",
+    "interlinear": [
+      {
+        "chinese": "水的记录和从前一样。",
+        "gloss": "The water record is the same as before.",
+        "pinyin": "shuǐ de jì lù hé cóng qián yí yàng 。"
+      },
+      {
+        "chinese": "修房顶的人，",
+        "gloss": "The people repairing the roof",
+        "pinyin": "xiū fáng dǐng de rén ，"
+      },
+      {
+        "chinese": "要知道我们从前答应了什么。",
+        "gloss": "need to know what we promised before.",
+        "pinyin": "yào zhī dao wǒ men cóng qián dā ying le shén me 。"
+      }
+    ],
+    "pinyin": "shuǐ de jì lù hé cóng qián yí yàng 。 xiū fáng dǐng de rén ， yào zhī dao wǒ men cóng qián dā ying le shén me 。"
+  },
+  "我严肃地说，任何人都不能冒险，安全要放在前面。": {
+    "english": "I'm saying this seriously: No one can take risks; safety must come first.",
+    "interlinear": [
+      {
+        "chinese": "我严肃地说，",
+        "gloss": "I'm saying this seriously:",
+        "pinyin": "wǒ yán sù de shuō ，"
+      },
+      {
+        "chinese": "任何人都不能冒险，",
+        "gloss": "No one can take risks;",
+        "pinyin": "rèn hé rén dōu bù néng mào xiǎn ，"
+      },
+      {
+        "chinese": "安全要放在前面。",
+        "gloss": "safety must come first.",
+        "pinyin": "ān quán yào fàng zài qián miàn 。"
+      }
+    ],
+    "pinyin": "wǒ yán sù de shuō ， rèn hé rén dōu bù néng mào xiǎn ， ān quán yào fàng zài qián miàn 。"
+  },
+  "今天的小桥倒了，我们倒是知道要先找谁了。": {
+    "english": "Today's little bridge fell, but now we know whom we need to find first.",
+    "interlinear": [
+      {
+        "chinese": "今天的小桥倒了，",
+        "gloss": "Today's little bridge fell,",
+        "pinyin": "jīn tiān de xiǎo qiáo dǎo le ，"
+      },
+      {
+        "chinese": "我们倒是知道要先找谁了。",
+        "gloss": "but now we know whom we need to find first.",
+        "pinyin": "wǒ men dào shì zhī dao yào xiān zhǎo shuí le 。"
+      }
+    ],
+    "pinyin": "jīn tiān de xiǎo qiáo dǎo le ， wǒ men dào shì zhī dao yào xiān zhǎo shuí le 。"
+  },
+  "先听班主任的要求。": {
+    "english": "First listen to the class teacher’s requirements.",
+    "interlinear": [
+      {
+        "chinese": "先听班主任的要求。",
+        "gloss": "First listen to the class teacher’s requirements.",
+        "pinyin": "xiān tīng bān zhǔ rèn de yāo qiú 。"
+      }
+    ],
+    "pinyin": "xiān tīng bān zhǔ rèn de yāo qiú 。"
+  },
+  "先请Sela试一试。": {
+    "english": "Ask Sela to try it first.",
+    "interlinear": [
+      {
+        "chinese": "先请Sela试一试。",
+        "gloss": "Ask Sela to try it first.",
+        "pinyin": "xiān qǐng Sela shì yi shì 。"
+      }
+    ],
+    "pinyin": "xiān qǐng Sela shì yi shì 。"
+  },
+  "承认自己太骄傲了。": {
+    "english": "Admit that I was too proud.",
+    "interlinear": [
+      {
+        "chinese": "承认自己太骄傲了。",
+        "gloss": "Admit that I was too proud.",
+        "pinyin": "chéng rèn zì jǐ tài jiāo ào le 。"
+      }
+    ],
+    "pinyin": "chéng rèn zì jǐ tài jiāo ào le 。"
+  },
+  "请Sela说明哪里不清楚。": {
+    "english": "Ask Sela what was unclear.",
+    "interlinear": [
+      {
+        "chinese": "请Sela说明哪里不清楚。",
+        "gloss": "Ask Sela what was unclear.",
+        "pinyin": "qǐng Sela shuō míng nǎ lǐ bù qīng chǔ 。"
+      }
+    ],
+    "pinyin": "qǐng Sela shuō míng nǎ lǐ bù qīng chǔ 。"
+  },
+  "先写清楚一个题目。": {
+    "english": "Write one clear question first.",
+    "interlinear": [
+      {
+        "chinese": "先写清楚一个题目。",
+        "gloss": "Write one clear question first.",
+        "pinyin": "xiān xiě qīng chǔ yí gè tí mù 。"
+      }
+    ],
+    "pinyin": "xiān xiě qīng chǔ yí gè tí mù 。"
+  },
+  "先请别人读文章。": {
+    "english": "Ask someone else to read the article first.",
+    "interlinear": [
+      {
+        "chinese": "先请别人读文章。",
+        "gloss": "Ask someone else to read the article first.",
+        "pinyin": "xiān qǐng bié rén dú wén zhāng 。"
+      }
+    ],
+    "pinyin": "xiān qǐng bié rén dú wén zhāng 。"
+  },
+  "我帮忙写招聘的说明。": {
+    "english": "Help write the recruitment information.",
+    "interlinear": [
+      {
+        "chinese": "我帮忙写招聘的说明。",
+        "gloss": "Help write the recruitment information.",
+        "pinyin": "wǒ bāng máng xiě zhāo pìn de shuō míng 。"
+      }
+    ],
+    "pinyin": "wǒ bāng máng xiě zhāo pìn de shuō míng 。"
+  },
+  "我先请专业的人检查要求。": {
+    "english": "Ask a specialist to check the requirements first.",
+    "interlinear": [
+      {
+        "chinese": "我先请专业的人检查要求。",
+        "gloss": "Ask a specialist to check the requirements first.",
+        "pinyin": "wǒ xiān qǐng zhuān yè de rén jiǎn chá yāo qiú 。"
+      }
+    ],
+    "pinyin": "wǒ xiān qǐng zhuān yè de rén jiǎn chá yāo qiú 。"
+  }
+}

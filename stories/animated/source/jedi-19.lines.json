@@ -1,0 +1,1266 @@
+{
+  "招聘今天结束，软件却坏了。": {
+    "english": "Recruitment closes today, but the software has broken down.",
+    "interlinear": [
+      {
+        "chinese": "招聘今天结束，",
+        "gloss": "Recruitment closes today,",
+        "pinyin": "zhāo pìn jīn tiān jié shù ，"
+      },
+      {
+        "chinese": "软件却坏了。",
+        "gloss": "but the software has broken down.",
+        "pinyin": "ruǎn jiàn què huài le 。"
+      }
+    ],
+    "pinyin": "zhāo pìn jīn tiān jié shù ， ruǎn jiàn què huài le 。"
+  },
+  "来应聘的人怎么办？": {
+    "english": "What will the applicants do?",
+    "interlinear": [
+      {
+        "chinese": "来应聘的人怎么办？",
+        "gloss": "What will the applicants do?",
+        "pinyin": "lái yìng pìn de rén zěn me bàn ？"
+      }
+    ],
+    "pinyin": "lái yìng pìn de rén zěn me bàn ？"
+  },
+  "先听他们说，别叫他们回去。": {
+    "english": "Let's listen to them first instead of sending them away.",
+    "interlinear": [
+      {
+        "chinese": "先听他们说，",
+        "gloss": "Let's listen to them first",
+        "pinyin": "xiān tīng tā men shuō ，"
+      },
+      {
+        "chinese": "别叫他们回去。",
+        "gloss": "instead of sending them away.",
+        "pinyin": "bié jiào tā men huí qù 。"
+      }
+    ],
+    "pinyin": "xiān tīng tā men shuō ， bié jiào tā men huí qù 。"
+  },
+  "门边有个姑娘，护着一张旧简历。": {
+    "english": "A woman stands beside the doorway, protecting a worn resume.",
+    "interlinear": [
+      {
+        "chinese": "门边有个姑娘，",
+        "gloss": "A woman stands beside the doorway,",
+        "pinyin": "mén biān yǒu gè gū niang ，"
+      },
+      {
+        "chinese": "护着一张旧简历。",
+        "gloss": "protecting a worn resume.",
+        "pinyin": "hù zhe yì zhāng jiù jiǎn lì 。"
+      }
+    ],
+    "pinyin": "mén biān yǒu gè gū niang ， hù zhe yì zhāng jiù jiǎn lì 。"
+  },
+  "我叫Ryn，从外地来。我想应聘，负责修屋子。": {
+    "english": "My name is Ryn; I come from another settlement. I would like to apply to take responsibility for building repairs.",
+    "interlinear": [
+      {
+        "chinese": "我叫Ryn，",
+        "gloss": "My name is Ryn;",
+        "pinyin": "wǒ jiào Ryn，"
+      },
+      {
+        "chinese": "从外地来。",
+        "gloss": "I come from another settlement.",
+        "pinyin": "cóng wài dì lái 。"
+      },
+      {
+        "chinese": "我想应聘，负责修屋子。",
+        "gloss": "I would like to apply to take responsibility for building repairs.",
+        "pinyin": "wǒ xiǎng yìng pìn ， fù zé xiū wū zi 。"
+      }
+    ],
+    "pinyin": "wǒ jiào Ryn， cóng wài dì lái 。 wǒ xiǎng yìng pìn ， fù zé xiū wū zi 。"
+  },
+  "欢迎。我叫Jon，我给这里帮忙。": {
+    "english": "Welcome. I'm Jon; I help out here.",
+    "interlinear": [
+      {
+        "chinese": "欢迎。",
+        "gloss": "Welcome.",
+        "pinyin": "huān yíng 。"
+      },
+      {
+        "chinese": "我叫Jon，",
+        "gloss": "I'm Jon;",
+        "pinyin": "wǒ jiào Jon，"
+      },
+      {
+        "chinese": "我给这里帮忙。",
+        "gloss": "I help out here.",
+        "pinyin": "wǒ gěi zhè lǐ bāng máng 。"
+      }
+    ],
+    "pinyin": "huān yíng 。 wǒ jiào Jon， wǒ gěi zhè lǐ bāng máng 。"
+  },
+  "我的信息不灵通，怕错过招聘。": {
+    "english": "I don't hear news quickly; I was afraid of missing the recruitment.",
+    "interlinear": [
+      {
+        "chinese": "我的信息不灵通，",
+        "gloss": "I don't hear news quickly;",
+        "pinyin": "wǒ de xìn xī bù líng tōng ，"
+      },
+      {
+        "chinese": "怕错过招聘。",
+        "gloss": "I was afraid of missing the recruitment.",
+        "pinyin": "pà cuò guò zhāo pìn 。"
+      }
+    ],
+    "pinyin": "wǒ de xìn xī bù líng tōng ， pà cuò guò zhāo pìn 。"
+  },
+  "你没有错过。我们先检查记录。": {
+    "english": "You haven't missed it. Let's check the record first.",
+    "interlinear": [
+      {
+        "chinese": "你没有错过。",
+        "gloss": "You haven't missed it.",
+        "pinyin": "nǐ méi yǒu cuò guò 。"
+      },
+      {
+        "chinese": "我们先检查记录。",
+        "gloss": "Let's check the record first.",
+        "pinyin": "wǒ men xiān jiǎn chá jì lù 。"
+      }
+    ],
+    "pinyin": "nǐ méi yǒu cuò guò 。 wǒ men xiān jiǎn chá jì lù 。"
+  },
+  "我从前的单位，给我一封信，记录了我修过什么。": {
+    "english": "My previous employer gave me a letter recording what I have repaired.",
+    "interlinear": [
+      {
+        "chinese": "我从前的单位，",
+        "gloss": "My previous employer",
+        "pinyin": "wǒ cóng qián de dān wèi ，"
+      },
+      {
+        "chinese": "给我一封信，",
+        "gloss": "gave me a letter",
+        "pinyin": "gěi wǒ yì fēng xìn ，"
+      },
+      {
+        "chinese": "记录了我修过什么。",
+        "gloss": "recording what I have repaired.",
+        "pinyin": "jì lù le wǒ xiū guò shén me 。"
+      }
+    ],
+    "pinyin": "wǒ cóng qián de dān wèi ， gěi wǒ yì fēng xìn ， jì lù le wǒ xiū guò shén me 。"
+  },
+  "简历给我，我负责记录。先说学历。": {
+    "english": "Give me your resume; I am responsible for recording it. Tell me your qualifications first.",
+    "interlinear": [
+      {
+        "chinese": "简历给我，我负责记录。",
+        "gloss": "Give me your resume; I am responsible for recording it.",
+        "pinyin": "jiǎn lì gěi wǒ ， wǒ fù zé jì lù 。"
+      },
+      {
+        "chinese": "先说学历。",
+        "gloss": "Tell me your qualifications first.",
+        "pinyin": "xiān shuō xué lì 。"
+      }
+    ],
+    "pinyin": "jiǎn lì gěi wǒ ， wǒ fù zé jì lù 。 xiān shuō xué lì 。"
+  },
+  "机器坏了，不能说她来晚了。": {
+    "english": "The machine is broken; we can't say she arrived late.",
+    "interlinear": [
+      {
+        "chinese": "机器坏了，",
+        "gloss": "The machine is broken;",
+        "pinyin": "jī qì huài le ，"
+      },
+      {
+        "chinese": "不能说她来晚了。",
+        "gloss": "we can't say she arrived late.",
+        "pinyin": "bù néng shuō tā lái wǎn le 。"
+      }
+    ],
+    "pinyin": "jī qì huài le ， bù néng shuō tā lái wǎn le 。"
+  },
+  "她愿意说，我们先耐心听。": {
+    "english": "She is willing to speak, let us listen patiently first.",
+    "interlinear": [
+      {
+        "chinese": "她愿意说，",
+        "gloss": "She is willing to speak,",
+        "pinyin": "tā yuàn yì shuō ，"
+      },
+      {
+        "chinese": "我们先耐心听。",
+        "gloss": "let us listen patiently first.",
+        "pinyin": "wǒ men xiān nài xīn tīng 。"
+      }
+    ],
+    "pinyin": "tā yuàn yì shuō ， wǒ men xiān nài xīn tīng 。"
+  },
+  "学历不高。不过，我修过很多管子，有从前单位的记录。": {
+    "english": "My formal qualifications aren't high. But I've repaired many pipes, and have records from my previous employer.",
+    "interlinear": [
+      {
+        "chinese": "学历不高。",
+        "gloss": "My formal qualifications aren't high.",
+        "pinyin": "xué lì bù gāo 。"
+      },
+      {
+        "chinese": "不过，我修过很多管子，",
+        "gloss": "But I've repaired many pipes,",
+        "pinyin": "bú guò ， wǒ xiū guò hěn duō guǎn zi ，"
+      },
+      {
+        "chinese": "有从前单位的记录。",
+        "gloss": "and have records from my previous employer.",
+        "pinyin": "yǒu cóng qián dān wèi de jì lù 。"
+      }
+    ],
+    "pinyin": "xué lì bù gāo 。 bú guò ， wǒ xiū guò hěn duō guǎn zi ， yǒu cóng qián dān wèi de jì lù 。"
+  },
+  "这里要求对口的经历。修过管子，不表示什么都能修。": {
+    "english": "This job requires relevant experience. Having repaired pipes doesn't mean you can repair everything.",
+    "interlinear": [
+      {
+        "chinese": "这里要求对口的经历。",
+        "gloss": "This job requires relevant experience.",
+        "pinyin": "zhè lǐ yāo qiú duì kǒu de jīng lì 。"
+      },
+      {
+        "chinese": "修过管子，",
+        "gloss": "Having repaired pipes",
+        "pinyin": "xiū guò guǎn zi ，"
+      },
+      {
+        "chinese": "不表示什么都能修。",
+        "gloss": "doesn't mean you can repair everything.",
+        "pinyin": "bù biǎo shì shén me dōu néng xiū 。"
+      }
+    ],
+    "pinyin": "zhè lǐ yāo qiú duì kǒu de jīng lì 。 xiū guò guǎn zi ， bù biǎo shì shén me dōu néng xiū 。"
+  },
+  "我没有这样说。房顶要合格的人负责，我知道。": {
+    "english": "I didn't say that. Qualified people need to take responsibility for the roof; I know that.",
+    "interlinear": [
+      {
+        "chinese": "我没有这样说。",
+        "gloss": "I didn't say that.",
+        "pinyin": "wǒ méi yǒu zhè yàng shuō 。"
+      },
+      {
+        "chinese": "房顶要合格的人负责，",
+        "gloss": "Qualified people need to take responsibility for the roof;",
+        "pinyin": "fáng dǐng yào hé gé de rén fù zé ，"
+      },
+      {
+        "chinese": "我知道。",
+        "gloss": "I know that.",
+        "pinyin": "wǒ zhī dao 。"
+      }
+    ],
+    "pinyin": "wǒ méi yǒu zhè yàng shuō 。 fáng dǐng yào hé gé de rén fù zé ， wǒ zhī dao 。"
+  },
+  "没有学历，你会用软件吗？": {
+    "english": "Without qualifications, can you use software?",
+    "interlinear": [
+      {
+        "chinese": "没有学历，",
+        "gloss": "Without qualifications,",
+        "pinyin": "méi yǒu xué lì ，"
+      },
+      {
+        "chinese": "你会用软件吗？",
+        "gloss": "can you use software?",
+        "pinyin": "nǐ huì yòng ruǎn jiàn ma ？"
+      }
+    ],
+    "pinyin": "méi yǒu xué lì ， nǐ huì yòng ruǎn jiàn ma ？"
+  },
+  "唉，软件坏了，不是我不愿意用。": {
+    "english": "Ah, the software is broken; it's not that I'm unwilling to use it.",
+    "interlinear": [
+      {
+        "chinese": "唉，软件坏了，",
+        "gloss": "Ah, the software is broken;",
+        "pinyin": "ài ， ruǎn jiàn huài le ，"
+      },
+      {
+        "chinese": "不是我不愿意用。",
+        "gloss": "it's not that I'm unwilling to use it.",
+        "pinyin": "bú shì wǒ bú yuàn yì yòng 。"
+      }
+    ],
+    "pinyin": "ài ， ruǎn jiàn huài le ， bú shì wǒ bú yuàn yì yòng 。"
+  },
+  "不能把软件的问题，变成对人的歧视。": {
+    "english": "We can't turn a software problem into discrimination against a person.",
+    "interlinear": [
+      {
+        "chinese": "不能把软件的问题，",
+        "gloss": "We can't turn a software problem",
+        "pinyin": "bù néng bǎ ruǎn jiàn de wèn tí ，"
+      },
+      {
+        "chinese": "变成对人的歧视。",
+        "gloss": "into discrimination against a person.",
+        "pinyin": "biàn chéng duì rén de qí shì 。"
+      }
+    ],
+    "pinyin": "bù néng bǎ ruǎn jiàn de wèn tí ， biàn chéng duì rén de qí shì 。"
+  },
+  "这是歧视吗？我也有单位的要求。": {
+    "english": "Is that discrimination? I also have requirements from the employer.",
+    "interlinear": [
+      {
+        "chinese": "这是歧视吗？",
+        "gloss": "Is that discrimination?",
+        "pinyin": "zhè shì qí shì ma ？"
+      },
+      {
+        "chinese": "我也有单位的要求。",
+        "gloss": "I also have requirements from the employer.",
+        "pinyin": "wǒ yě yǒu dān wèi de yāo qiú 。"
+      }
+    ],
+    "pinyin": "zhè shì qí shì ma ？ wǒ yě yǒu dān wèi de yāo qiú 。"
+  },
+  "招聘要求和经历要对口。她说有记录，你还没有看。": {
+    "english": "The recruitment requirements and experience need to match. She says she has records; you haven't looked at them yet.",
+    "interlinear": [
+      {
+        "chinese": "招聘要求和经历要对口。",
+        "gloss": "The recruitment requirements and experience need to match.",
+        "pinyin": "zhāo pìn yāo qiú hé jīng lì yào duì kǒu 。"
+      },
+      {
+        "chinese": "她说有记录，",
+        "gloss": "She says she has records;",
+        "pinyin": "tā shuō yǒu jì lù ，"
+      },
+      {
+        "chinese": "你还没有看。",
+        "gloss": "you haven't looked at them yet.",
+        "pinyin": "nǐ hái méi yǒu kàn 。"
+      }
+    ],
+    "pinyin": "zhāo pìn yāo qiú hé jīng lì yào duì kǒu 。 tā shuō yǒu jì lù ， nǐ hái méi yǒu kàn 。"
+  },
+  "我善于检查管子，也善于发现小问题。": {
+    "english": "I'm good at inspecting pipes and at noticing small problems.",
+    "interlinear": [
+      {
+        "chinese": "我善于检查管子，",
+        "gloss": "I'm good at inspecting pipes",
+        "pinyin": "wǒ shàn yú jiǎn chá guǎn zi ，"
+      },
+      {
+        "chinese": "也善于发现小问题。",
+        "gloss": "and at noticing small problems.",
+        "pinyin": "yě shàn yú fā xiàn xiǎo wèn tí 。"
+      }
+    ],
+    "pinyin": "wǒ shàn yú jiǎn chá guǎn zi ， yě shàn yú fā xiàn xiǎo wèn tí 。"
+  },
+  "不过，我不答应不会做的事。你可以考我。": {
+    "english": "But I don't promise to do things I can't do. You can test me.",
+    "interlinear": [
+      {
+        "chinese": "不过，我不答应不会做的事。",
+        "gloss": "But I don't promise to do things I can't do.",
+        "pinyin": "bú guò ， wǒ bù dā ying bú huì zuò de shì 。"
+      },
+      {
+        "chinese": "你可以考我。",
+        "gloss": "You can test me.",
+        "pinyin": "nǐ kě yǐ kǎo wǒ 。"
+      }
+    ],
+    "pinyin": "bú guò ， wǒ bù dā ying bú huì zuò de shì 。 nǐ kě yǐ kǎo wǒ 。"
+  },
+  "我可以替她说，她的意思是——": {
+    "english": "I can speak for her, what she means is—",
+    "interlinear": [
+      {
+        "chinese": "我可以替她说，",
+        "gloss": "I can speak for her,",
+        "pinyin": "wǒ kě yǐ tì tā shuō ，"
+      },
+      {
+        "chinese": "她的意思是——",
+        "gloss": "what she means is—",
+        "pinyin": "tā de yì si shì ——"
+      }
+    ],
+    "pinyin": "wǒ kě yǐ tì tā shuō ， tā de yì si shì ——"
+  },
+  "我想请你听我说，不是替我回答。": {
+    "english": "I want you to listen to me, not answer for me.",
+    "interlinear": [
+      {
+        "chinese": "我想请你听我说，",
+        "gloss": "I want you to listen to me,",
+        "pinyin": "wǒ xiǎng qǐng nǐ tīng wǒ shuō ，"
+      },
+      {
+        "chinese": "不是替我回答。",
+        "gloss": "not answer for me.",
+        "pinyin": "bú shì tì wǒ huí dá 。"
+      }
+    ],
+    "pinyin": "wǒ xiǎng qǐng nǐ tīng wǒ shuō ， bú shì tì wǒ huí dá 。"
+  },
+  "我闭上嘴，没有接着说。": {
+    "english": "I close my mouth and stop speaking.",
+    "interlinear": [
+      {
+        "chinese": "我闭上嘴，",
+        "gloss": "I close my mouth",
+        "pinyin": "wǒ bì shàng zuǐ ，"
+      },
+      {
+        "chinese": "没有接着说。",
+        "gloss": "and stop speaking.",
+        "pinyin": "méi yǒu jiē zhe shuō 。"
+      }
+    ],
+    "pinyin": "wǒ bì shàng zuǐ ， méi yǒu jiē zhe shuō 。"
+  },
+  "你说吧。我听着。": {
+    "english": "Go ahead. I'm listening.",
+    "interlinear": [
+      {
+        "chinese": "你说吧。",
+        "gloss": "Go ahead.",
+        "pinyin": "nǐ shuō ba 。"
+      },
+      {
+        "chinese": "我听着。",
+        "gloss": "I'm listening.",
+        "pinyin": "wǒ tīng zhe 。"
+      }
+    ],
+    "pinyin": "nǐ shuō ba 。 wǒ tīng zhe 。"
+  },
+  "坏机器不能挡住人。纸上的记录也值得看。": {
+    "english": "A broken machine mustn't shut people out. Records on paper deserve a look too.",
+    "interlinear": [
+      {
+        "chinese": "坏机器不能挡住人。",
+        "gloss": "A broken machine mustn't shut people out.",
+        "pinyin": "huài jī qì bù néng dǎng zhù rén 。"
+      },
+      {
+        "chinese": "纸上的记录也值得看。",
+        "gloss": "Records on paper deserve a look too.",
+        "pinyin": "zhǐ shàng de jì lù yě zhí dé kàn 。"
+      }
+    ],
+    "pinyin": "huài jī qì bù néng dǎng zhù rén 。 zhǐ shàng de jì lù yě zhí dé kàn 。"
+  },
+  "不只给Ryn一个人开门。其他人也要能应聘。": {
+    "english": "Don't open the door for Ryn alone. Other people must be able to apply too.",
+    "interlinear": [
+      {
+        "chinese": "不只给Ryn一个人开门。",
+        "gloss": "Don't open the door for Ryn alone.",
+        "pinyin": "bù zhī gěi Ryn yí gè rén kāi mén 。"
+      },
+      {
+        "chinese": "其他人也要能应聘。",
+        "gloss": "Other people must be able to apply too.",
+        "pinyin": "qí tā rén yě yào néng yìng pìn 。"
+      }
+    ],
+    "pinyin": "bù zhī gěi Ryn yí gè rén kāi mén 。 qí tā rén yě yào néng yìng pìn 。"
+  },
+  "这个单位要招聘负责的人，不是找最会填表的人。": {
+    "english": "This organization wants to recruit responsible people, not whoever is best at filling out forms.",
+    "interlinear": [
+      {
+        "chinese": "这个单位要招聘负责的人，",
+        "gloss": "This organization wants to recruit responsible people,",
+        "pinyin": "zhè ge dān wèi yào zhāo pìn fù zé de rén ，"
+      },
+      {
+        "chinese": "不是找最会填表的人。",
+        "gloss": "not whoever is best at filling out forms.",
+        "pinyin": "bú shì zhǎo zuì huì tián biǎo de rén 。"
+      }
+    ],
+    "pinyin": "zhè ge dān wèi yào zhāo pìn fù zé de rén ， bú shì zhǎo zuì huì tián biǎo de rén 。"
+  },
+  "那简历先给我，我记录谁提前来了。": {
+    "english": "Then give me the resumes now, I will record who arrived before the deadline.",
+    "interlinear": [
+      {
+        "chinese": "那简历先给我，",
+        "gloss": "Then give me the resumes now,",
+        "pinyin": "nà jiǎn lì xiān gěi wǒ ，"
+      },
+      {
+        "chinese": "我记录谁提前来了。",
+        "gloss": "I will record who arrived before the deadline.",
+        "pinyin": "wǒ jì lù shuí tí qián lái le 。"
+      }
+    ],
+    "pinyin": "nà jiǎn lì xiān gěi wǒ ， wǒ jì lù shuí tí qián lái le 。"
+  },
+  "还要通知所有人，可以用纸上的简历。": {
+    "english": "We must also notify everyone that paper resumes are accepted.",
+    "interlinear": [
+      {
+        "chinese": "还要通知所有人，",
+        "gloss": "We must also notify everyone",
+        "pinyin": "hái yào tōng zhī suǒ yǒu rén ，"
+      },
+      {
+        "chinese": "可以用纸上的简历。",
+        "gloss": "that paper resumes are accepted.",
+        "pinyin": "kě yǐ yòng zhǐ shàng de jiǎn lì 。"
+      }
+    ],
+    "pinyin": "hái yào tōng zhī suǒ yǒu rén ， kě yǐ yòng zhǐ shàng de jiǎn lì 。"
+  },
+  "工资是多少？我要负责什么？": {
+    "english": "What is the wage? What would I be responsible for?",
+    "interlinear": [
+      {
+        "chinese": "工资是多少？",
+        "gloss": "What is the wage?",
+        "pinyin": "gōng zī shì duō shǎo ？"
+      },
+      {
+        "chinese": "我要负责什么？",
+        "gloss": "What would I be responsible for?",
+        "pinyin": "wǒ yào fù zé shén me ？"
+      }
+    ],
+    "pinyin": "gōng zī shì duō shǎo ？ wǒ yào fù zé shén me ？"
+  },
+  "工资和工作时间，这里有记录。我给所有人一样的记录。": {
+    "english": "The wage and working hours are recorded here. I give everyone the same record.",
+    "interlinear": [
+      {
+        "chinese": "工资和工作时间，",
+        "gloss": "The wage and working hours",
+        "pinyin": "gōng zī hé gōng zuò shí jiān ，"
+      },
+      {
+        "chinese": "这里有记录。",
+        "gloss": "are recorded here.",
+        "pinyin": "zhè lǐ yǒu jì lù 。"
+      },
+      {
+        "chinese": "我给所有人一样的记录。",
+        "gloss": "I give everyone the same record.",
+        "pinyin": "wǒ gěi suǒ yǒu rén yí yàng de jì lù 。"
+      }
+    ],
+    "pinyin": "gōng zī hé gōng zuò shí jiān ， zhè lǐ yǒu jì lù 。 wǒ gěi suǒ yǒu rén yí yàng de jì lù 。"
+  },
+  "我想先知道要求，不只听一句前途很好。": {
+    "english": "I want to know the requirements first rather than just hear that the prospects are good.",
+    "interlinear": [
+      {
+        "chinese": "我想先知道要求，",
+        "gloss": "I want to know the requirements first",
+        "pinyin": "wǒ xiǎng xiān zhī dao yāo qiú ，"
+      },
+      {
+        "chinese": "不只听一句前途很好。",
+        "gloss": "rather than just hear that the prospects are good.",
+        "pinyin": "bù zhī tīng yí jù qián tú hěn hǎo 。"
+      }
+    ],
+    "pinyin": "wǒ xiǎng xiān zhī dao yāo qiú ， bù zhī tīng yí jù qián tú hěn hǎo 。"
+  },
+  "前途不能替代工资。你想知道的，我们会说。": {
+    "english": "Prospects cannot replace wages. What you want to know, we will explain.",
+    "interlinear": [
+      {
+        "chinese": "前途不能替代工资。",
+        "gloss": "Prospects cannot replace wages.",
+        "pinyin": "qián tú bù néng tì dài gōng zī 。"
+      },
+      {
+        "chinese": "你想知道的，",
+        "gloss": "What you want to know,",
+        "pinyin": "nǐ xiǎng zhī dao de ，"
+      },
+      {
+        "chinese": "我们会说。",
+        "gloss": "we will explain.",
+        "pinyin": "wǒ men huì shuō 。"
+      }
+    ],
+    "pinyin": "qián tú bù néng tì dài gōng zī 。 nǐ xiǎng zhī dao de ， wǒ men huì shuō 。"
+  },
+  "今天记录简历，明天回复。不管录用不录用，我们都回复。": {
+    "english": "We record resumes today, and respond tomorrow. Whether or not someone is hired, we respond to everyone.",
+    "interlinear": [
+      {
+        "chinese": "今天记录简历，",
+        "gloss": "We record resumes today,",
+        "pinyin": "jīn tiān jì lù jiǎn lì ，"
+      },
+      {
+        "chinese": "明天回复。",
+        "gloss": "and respond tomorrow.",
+        "pinyin": "míng tiān huí fù 。"
+      },
+      {
+        "chinese": "不管录用不录用，",
+        "gloss": "Whether or not someone is hired,",
+        "pinyin": "bù guǎn lù yòng bú lù yòng ，"
+      },
+      {
+        "chinese": "我们都回复。",
+        "gloss": "we respond to everyone.",
+        "pinyin": "wǒ men dōu huí fù 。"
+      }
+    ],
+    "pinyin": "jīn tiān jì lù jiǎn lì ， míng tiān huí fù 。 bù guǎn lù yòng bú lù yòng ， wǒ men dōu huí fù 。"
+  },
+  "谢谢。没有信息灵通的朋友，我也没有被挡在门外。": {
+    "english": "Thank you. Without friends who hear news quickly, I haven't been shut out.",
+    "interlinear": [
+      {
+        "chinese": "谢谢。",
+        "gloss": "Thank you.",
+        "pinyin": "xiè xie 。"
+      },
+      {
+        "chinese": "没有信息灵通的朋友，",
+        "gloss": "Without friends who hear news quickly,",
+        "pinyin": "méi yǒu xìn xī líng tōng de péng you ，"
+      },
+      {
+        "chinese": "我也没有被挡在门外。",
+        "gloss": "I haven't been shut out.",
+        "pinyin": "wǒ yě méi yǒu bèi dǎng zài mén wài 。"
+      }
+    ],
+    "pinyin": "xiè xie 。 méi yǒu xìn xī líng tōng de péng you ， wǒ yě méi yǒu bèi dǎng zài mén wài 。"
+  },
+  "唉，我本来怕来不及，却没有耐心听你说。": {
+    "english": "Ah, I was afraid of running out of time; yet had no patience to listen to you.",
+    "interlinear": [
+      {
+        "chinese": "唉，我本来怕来不及，",
+        "gloss": "Ah, I was afraid of running out of time;",
+        "pinyin": "ài ， wǒ běn lái pà lái bù jí ，"
+      },
+      {
+        "chinese": "却没有耐心听你说。",
+        "gloss": "yet had no patience to listen to you.",
+        "pinyin": "què méi yǒu nài xīn tīng nǐ shuō 。"
+      }
+    ],
+    "pinyin": "ài ， wǒ běn lái pà lái bù jí ， què méi yǒu nài xīn tīng nǐ shuō 。"
+  },
+  "我有信心，可以检查，不过，想知道你们检查什么。": {
+    "english": "I am confident and ready to be assessed, but I want to know what you're assessing.",
+    "interlinear": [
+      {
+        "chinese": "我有信心，可以检查，",
+        "gloss": "I am confident and ready to be assessed,",
+        "pinyin": "wǒ yǒu xìn xīn ， kě yǐ jiǎn chá ，"
+      },
+      {
+        "chinese": "不过，想知道你们检查什么。",
+        "gloss": "but I want to know what you're assessing.",
+        "pinyin": "bú guò ， xiǎng zhī dao nǐ men jiǎn chá shén me 。"
+      }
+    ],
+    "pinyin": "wǒ yǒu xìn xīn ， kě yǐ jiǎn chá ， bú guò ， xiǎng zhī dao nǐ men jiǎn chá shén me 。"
+  },
+  "先看安全，然后听你的结论。不要求冒险。": {
+    "english": "Safety comes first; then we listen to your conclusions. We do not demand risk-taking.",
+    "interlinear": [
+      {
+        "chinese": "先看安全，",
+        "gloss": "Safety comes first;",
+        "pinyin": "xiān kàn ān quán ，"
+      },
+      {
+        "chinese": "然后听你的结论。",
+        "gloss": "then we listen to your conclusions.",
+        "pinyin": "rán hòu tīng nǐ de jié lùn 。"
+      },
+      {
+        "chinese": "不要求冒险。",
+        "gloss": "We do not demand risk-taking.",
+        "pinyin": "bú yāo qiú mào xiǎn 。"
+      }
+    ],
+    "pinyin": "xiān kàn ān quán ， rán hòu tīng nǐ de jié lùn 。 bú yāo qiú mào xiǎn 。"
+  },
+  "标准不能偷偷变。先说要求，然后检查。": {
+    "english": "Standards must not change secretly. State the requirements first then assess.",
+    "interlinear": [
+      {
+        "chinese": "标准不能偷偷变。",
+        "gloss": "Standards must not change secretly.",
+        "pinyin": "biāo zhǔn bù néng tōu tōu biàn 。"
+      },
+      {
+        "chinese": "先说要求，",
+        "gloss": "State the requirements first",
+        "pinyin": "xiān shuō yāo qiú ，"
+      },
+      {
+        "chinese": "然后检查。",
+        "gloss": "then assess.",
+        "pinyin": "rán hòu jiǎn chá 。"
+      }
+    ],
+    "pinyin": "biāo zhǔn bù néng tōu tōu biàn 。 xiān shuō yāo qiú ， rán hòu jiǎn chá 。"
+  },
+  "这里是安全的练习区，不会叫人去冒险修房顶。": {
+    "english": "This is a safe practice area, we won't ask anyone to risk repairing the roof.",
+    "interlinear": [
+      {
+        "chinese": "这里是安全的练习区，",
+        "gloss": "This is a safe practice area,",
+        "pinyin": "zhè lǐ shì ān quán de liàn xí qū ，"
+      },
+      {
+        "chinese": "不会叫人去冒险修房顶。",
+        "gloss": "we won't ask anyone to risk repairing the roof.",
+        "pinyin": "bú huì jiào rén qù mào xiǎn xiū fáng dǐng 。"
+      }
+    ],
+    "pinyin": "zhè lǐ shì ān quán de liàn xí qū ， bú huì jiào rén qù mào xiǎn xiū fáng dǐng 。"
+  },
+  "合格的师傅检查了练习区。桌上是没有接水的旧管子。": {
+    "english": "A qualified specialist inspects the practice area. The old pipe on the table is disconnected from any water supply.",
+    "interlinear": [
+      {
+        "chinese": "合格的师傅检查了练习区。",
+        "gloss": "A qualified specialist inspects the practice area.",
+        "pinyin": "hé gé de shī fu jiǎn chá le liàn xí qū 。"
+      },
+      {
+        "chinese": "桌上是没有接水的旧管子。",
+        "gloss": "The old pipe on the table is disconnected from any water supply.",
+        "pinyin": "zhuō shàng shì méi yǒu jiē shuǐ de jiù guǎn zi 。"
+      }
+    ],
+    "pinyin": "hé gé de shī fu jiǎn chá le liàn xí qū 。 zhuō shàng shì méi yǒu jiē shuǐ de jiù guǎn zi 。"
+  },
+  "这一阶段，检查的是判断和安全。不是检查性格。": {
+    "english": "At this stage, we are assessing judgment and safety. We are not assessing personality.",
+    "interlinear": [
+      {
+        "chinese": "这一阶段，",
+        "gloss": "At this stage,",
+        "pinyin": "zhè yì jiē duàn ，"
+      },
+      {
+        "chinese": "检查的是判断和安全。",
+        "gloss": "we are assessing judgment and safety.",
+        "pinyin": "jiǎn chá de shì pàn duàn hé ān quán 。"
+      },
+      {
+        "chinese": "不是检查性格。",
+        "gloss": "We are not assessing personality.",
+        "pinyin": "bú shì jiǎn chá xìng gé 。"
+      }
+    ],
+    "pinyin": "zhè yì jiē duàn ， jiǎn chá de shì pàn duàn hé ān quán 。 bú shì jiǎn chá xìng gé 。"
+  },
+  "相处的时候，我可能话少。不过，我善于沟通安全的要求。": {
+    "english": "When getting along with others, I may not say much. But I am good at communicating safety requirements.",
+    "interlinear": [
+      {
+        "chinese": "相处的时候，",
+        "gloss": "When getting along with others,",
+        "pinyin": "xiāng chǔ de shí hòu ，"
+      },
+      {
+        "chinese": "我可能话少。",
+        "gloss": "I may not say much.",
+        "pinyin": "wǒ kě néng huà shǎo 。"
+      },
+      {
+        "chinese": "不过，我善于沟通安全的要求。",
+        "gloss": "But I am good at communicating safety requirements.",
+        "pinyin": "bú guò ， wǒ shàn yú gōu tōng ān quán de yāo qiú 。"
+      }
+    ],
+    "pinyin": "xiāng chǔ de shí hòu ， wǒ kě néng huà shǎo 。 bú guò ， wǒ shàn yú gōu tōng ān quán de yāo qiú 。"
+  },
+  "话少，不表示处不好。我们先听你怎么研究。": {
+    "english": "Being quiet does not mean being hard to get along with. We'll listen to how you investigate.",
+    "interlinear": [
+      {
+        "chinese": "话少，不表示处不好。",
+        "gloss": "Being quiet does not mean being hard to get along with.",
+        "pinyin": "huà shǎo ， bù biǎo shì chǔ bù hǎo 。"
+      },
+      {
+        "chinese": "我们先听你怎么研究。",
+        "gloss": "We'll listen to how you investigate.",
+        "pinyin": "wǒ men xiān tīng nǐ zěn me yán jiū 。"
+      }
+    ],
+    "pinyin": "huà shǎo ， bù biǎo shì chǔ bù hǎo 。 wǒ men xiān tīng nǐ zěn me yán jiū 。"
+  },
+  "物理和安全有关系。你看管子下面的支撑。": {
+    "english": "Physics is relevant to safety. Look at the support beneath the pipe.",
+    "interlinear": [
+      {
+        "chinese": "物理和安全有关系。",
+        "gloss": "Physics is relevant to safety.",
+        "pinyin": "wù lǐ hé ān quán yǒu guān xì 。"
+      },
+      {
+        "chinese": "你看管子下面的支撑。",
+        "gloss": "Look at the support beneath the pipe.",
+        "pinyin": "nǐ kàn guǎn zi xià miàn de zhī chēng 。"
+      }
+    ],
+    "pinyin": "wù lǐ hé ān quán yǒu guān xì 。 nǐ kàn guǎn zi xià miàn de zhī chēng 。"
+  },
+  "不过，这里有什么化学危险？我不会碰不知道的东西。": {
+    "english": "But what chemical hazards are present here? I won't touch anything I don't understand.",
+    "interlinear": [
+      {
+        "chinese": "不过，这里有什么化学危险？",
+        "gloss": "But what chemical hazards are present here?",
+        "pinyin": "bú guò ， zhè lǐ yǒu shén me huà xué wēi xiǎn ？"
+      },
+      {
+        "chinese": "我不会碰不知道的东西。",
+        "gloss": "I won't touch anything I don't understand.",
+        "pinyin": "wǒ bú huì pèng bù zhī dao de dōng xi 。"
+      }
+    ],
+    "pinyin": "bú guò ， zhè lǐ yǒu shén me huà xué wēi xiǎn ？ wǒ bú huì pèng bù zhī dao de dōng xi 。"
+  },
+  "没有化学品，我们只看干净的空管子。": {
+    "english": "There are no chemicals; we're only examining a clean empty pipe.",
+    "interlinear": [
+      {
+        "chinese": "没有化学品，",
+        "gloss": "There are no chemicals;",
+        "pinyin": "méi yǒu huà xué pǐn ，"
+      },
+      {
+        "chinese": "我们只看干净的空管子。",
+        "gloss": "we're only examining a clean empty pipe.",
+        "pinyin": "wǒ men zhī kàn gān jìng de kōng guǎn zi 。"
+      }
+    ],
+    "pinyin": "méi yǒu huà xué pǐn ， wǒ men zhī kàn gān jìng de kōng guǎn zi 。"
+  },
+  "这段外语，我不认识。你先给我说说，我不能猜。": {
+    "english": "I don't recognize this foreign-language passage. Please explain it to me first, I mustn't guess.",
+    "interlinear": [
+      {
+        "chinese": "这段外语，我不认识。",
+        "gloss": "I don't recognize this foreign-language passage.",
+        "pinyin": "zhè duàn wài yǔ ， wǒ bú rèn shi 。"
+      },
+      {
+        "chinese": "你先给我说说，",
+        "gloss": "Please explain it to me first,",
+        "pinyin": "nǐ xiān gěi wǒ shuō shuō ，"
+      },
+      {
+        "chinese": "我不能猜。",
+        "gloss": "I mustn't guess.",
+        "pinyin": "wǒ bù néng cāi 。"
+      }
+    ],
+    "pinyin": "zhè duàn wài yǔ ， wǒ bú rèn shi 。 nǐ xiān gěi wǒ shuō shuō ， wǒ bù néng cāi 。"
+  },
+  "承认不知道，也是专业水平的一部分。": {
+    "english": "Admitting what you don't know is part of professional competence too.",
+    "interlinear": [
+      {
+        "chinese": "承认不知道，",
+        "gloss": "Admitting what you don't know",
+        "pinyin": "chéng rèn bù zhī dao ，"
+      },
+      {
+        "chinese": "也是专业水平的一部分。",
+        "gloss": "is part of professional competence too.",
+        "pinyin": "yě shì zhuān yè shuǐ píng de yí bù fen 。"
+      }
+    ],
+    "pinyin": "chéng rèn bù zhī dao ， yě shì zhuān yè shuǐ píng de yí bù fen 。"
+  },
+  "及格不是一声不问。知道什么时候停，也在成绩里。": {
+    "english": "Passing doesn't mean never asking a question. Knowing when to stop also counts in the result.",
+    "interlinear": [
+      {
+        "chinese": "及格不是一声不问。",
+        "gloss": "Passing doesn't mean never asking a question.",
+        "pinyin": "jí gé bú shì yì shēng bú wèn 。"
+      },
+      {
+        "chinese": "知道什么时候停，",
+        "gloss": "Knowing when to stop",
+        "pinyin": "zhī dao shén me shí hòu tíng ，"
+      },
+      {
+        "chinese": "也在成绩里。",
+        "gloss": "also counts in the result.",
+        "pinyin": "yě zài chéng jì lǐ 。"
+      }
+    ],
+    "pinyin": "jí gé bú shì yì shēng bú wèn 。 zhī dao shén me shí hòu tíng ， yě zài chéng jì lǐ 。"
+  },
+  "这个题目，我先检查这里。支撑没有固定好。": {
+    "english": "For this task, I'll inspect this part first. The support hasn't been secured properly.",
+    "interlinear": [
+      {
+        "chinese": "这个题目，",
+        "gloss": "For this task,",
+        "pinyin": "zhè ge tí mù ，"
+      },
+      {
+        "chinese": "我先检查这里。",
+        "gloss": "I'll inspect this part first.",
+        "pinyin": "wǒ xiān jiǎn chá zhè lǐ 。"
+      },
+      {
+        "chinese": "支撑没有固定好。",
+        "gloss": "The support hasn't been secured properly.",
+        "pinyin": "zhī chēng méi yǒu gù dìng hǎo 。"
+      }
+    ],
+    "pinyin": "zhè ge tí mù ， wǒ xiān jiǎn chá zhè lǐ 。 zhī chēng méi yǒu gù dìng hǎo 。"
+  },
+  "她先停下来，指给师傅看，然后按要求重新固定。": {
+    "english": "She stops first and points it out to the specialist, then secures it again as instructed.",
+    "interlinear": [
+      {
+        "chinese": "她先停下来，",
+        "gloss": "She stops first",
+        "pinyin": "tā xiān tíng xià lái ，"
+      },
+      {
+        "chinese": "指给师傅看，",
+        "gloss": "and points it out to the specialist,",
+        "pinyin": "zhǐ gěi shī fu kàn ，"
+      },
+      {
+        "chinese": "然后按要求重新固定。",
+        "gloss": "then secures it again as instructed.",
+        "pinyin": "rán hòu àn yāo qiú chóng xīn gù dìng 。"
+      }
+    ],
+    "pinyin": "tā xiān tíng xià lái ， zhǐ gěi shī fu kàn ， rán hòu àn yāo qiú chóng xīn gù dìng 。"
+  },
+  "让我的工作来回答。不要求你只相信我的话。": {
+    "english": "Let my work speak. I don't ask you to rely only on my words.",
+    "interlinear": [
+      {
+        "chinese": "让我的工作来回答。",
+        "gloss": "Let my work speak.",
+        "pinyin": "ràng wǒ de gōng zuò lái huí dá 。"
+      },
+      {
+        "chinese": "不要求你只相信我的话。",
+        "gloss": "I don't ask you to rely only on my words.",
+        "pinyin": "bú yāo qiú nǐ zhī xiāng xìn wǒ de huà 。"
+      }
+    ],
+    "pinyin": "ràng wǒ de gōng zuò lái huí dá 。 bú yāo qiú nǐ zhī xiāng xìn wǒ de huà 。"
+  },
+  "这篇文章是谁写的？上面有检查记录。": {
+    "english": "Who wrote this article? It contains inspection records.",
+    "interlinear": [
+      {
+        "chinese": "这篇文章是谁写的？",
+        "gloss": "Who wrote this article?",
+        "pinyin": "zhè piān wén zhāng shì shuí xiě de ？"
+      },
+      {
+        "chinese": "上面有检查记录。",
+        "gloss": "It contains inspection records.",
+        "pinyin": "shàng miàn yǒu jiǎn chá jì lù 。"
+      }
+    ],
+    "pinyin": "zhè piān wén zhāng shì shuí xiě de ？ shàng miàn yǒu jiǎn chá jì lù 。"
+  },
+  "从前单位的师傅写的。风暴以来，我一直带着它。": {
+    "english": "The specialist at my former workplace wrote it. Since the storm, I've kept it with me.",
+    "interlinear": [
+      {
+        "chinese": "从前单位的师傅写的。",
+        "gloss": "The specialist at my former workplace wrote it.",
+        "pinyin": "cóng qián dān wèi de shī fu xiě de 。"
+      },
+      {
+        "chinese": "风暴以来，",
+        "gloss": "Since the storm,",
+        "pinyin": "fēng bào yǐ lái ，"
+      },
+      {
+        "chinese": "我一直带着它。",
+        "gloss": "I've kept it with me.",
+        "pinyin": "wǒ yì zhí dài zhe tā 。"
+      }
+    ],
+    "pinyin": "cóng qián dān wèi de shī fu xiě de 。 fēng bào yǐ lái ， wǒ yì zhí dài zhe tā 。"
+  },
+  "你有精力记录，我们还要有精力检查。": {
+    "english": "You take the effort to keep records, we must also take the effort to check them.",
+    "interlinear": [
+      {
+        "chinese": "你有精力记录，",
+        "gloss": "You take the effort to keep records,",
+        "pinyin": "nǐ yǒu jīng lì jì lù ，"
+      },
+      {
+        "chinese": "我们还要有精力检查。",
+        "gloss": "we must also take the effort to check them.",
+        "pinyin": "wǒ men hái yào yǒu jīng lì jiǎn chá 。"
+      }
+    ],
+    "pinyin": "nǐ yǒu jīng lì jì lù ， wǒ men hái yào yǒu jīng lì jiǎn chá 。"
+  },
+  "我不是要求你们一定录用。我想有一次真正的面试。": {
+    "english": "I'm not demanding that you hire me. I want a real interview.",
+    "interlinear": [
+      {
+        "chinese": "我不是要求你们一定录用。",
+        "gloss": "I'm not demanding that you hire me.",
+        "pinyin": "wǒ bú shì yāo qiú nǐ men yí dìng lù yòng 。"
+      },
+      {
+        "chinese": "我想有一次真正的面试。",
+        "gloss": "I want a real interview.",
+        "pinyin": "wǒ xiǎng yǒu yí cì zhēn zhèng de miàn shì 。"
+      }
+    ],
+    "pinyin": "wǒ bú shì yāo qiú nǐ men yí dìng lù yòng 。 wǒ xiǎng yǒu yí cì zhēn zhèng de miàn shì 。"
+  },
+  "给人帮忙，不是替他回答一切。": {
+    "english": "Helping someone, does not mean answering everything for them.",
+    "interlinear": [
+      {
+        "chinese": "给人帮忙，",
+        "gloss": "Helping someone,",
+        "pinyin": "gěi rén bāng máng ，"
+      },
+      {
+        "chinese": "不是替他回答一切。",
+        "gloss": "does not mean answering everything for them.",
+        "pinyin": "bú shì tì tā huí dá yí qiè 。"
+      }
+    ],
+    "pinyin": "gěi rén bāng máng ， bú shì tì tā huí dá yí qiè 。"
+  },
+  "让后来的人知道怎么办，不必再碰一次钉子。": {
+    "english": "Let those who come later know what to do; they shouldn't have to face the same rejection again.",
+    "interlinear": [
+      {
+        "chinese": "让后来的人知道怎么办，",
+        "gloss": "Let those who come later know what to do;",
+        "pinyin": "ràng hòu lái de rén zhī dao zěn me bàn ，"
+      },
+      {
+        "chinese": "不必再碰一次钉子。",
+        "gloss": "they shouldn't have to face the same rejection again.",
+        "pinyin": "bú bì zài pèng yí cì dīng zi 。"
+      }
+    ],
+    "pinyin": "ràng hòu lái de rén zhī dao zěn me bàn ， bú bì zài pèng yí cì dīng zi 。"
+  },
+  "我意识到，我不能只在朋友面前讲公平。": {
+    "english": "I realize I mustn't talk about fairness only among friends.",
+    "interlinear": [
+      {
+        "chinese": "我意识到，",
+        "gloss": "I realize",
+        "pinyin": "wǒ yì shí dào ，"
+      },
+      {
+        "chinese": "我不能只在朋友面前讲公平。",
+        "gloss": "I mustn't talk about fairness only among friends.",
+        "pinyin": "wǒ bù néng zhī zài péng you miàn qián jiǎng gōng píng 。"
+      }
+    ],
+    "pinyin": "wǒ yì shí dào ， wǒ bù néng zhī zài péng you miàn qián jiǎng gōng píng 。"
+  },
+  "我有信心了。不是因为你答应录用，是因为你愿意认真检查。": {
+    "english": "I feel more confident now. Not because you've promised me a job, but because you're willing to assess me carefully.",
+    "interlinear": [
+      {
+        "chinese": "我有信心了。",
+        "gloss": "I feel more confident now.",
+        "pinyin": "wǒ yǒu xìn xīn le 。"
+      },
+      {
+        "chinese": "不是因为你答应录用，",
+        "gloss": "Not because you've promised me a job,",
+        "pinyin": "bú shì yīn wèi nǐ dā ying lù yòng ，"
+      },
+      {
+        "chinese": "是因为你愿意认真检查。",
+        "gloss": "but because you're willing to assess me carefully.",
+        "pinyin": "shì yīn wèi nǐ yuàn yì rèn zhēn jiǎn chá 。"
+      }
+    ],
+    "pinyin": "wǒ yǒu xìn xīn le 。 bú shì yīn wèi nǐ dā ying lù yòng ， shì yīn wèi nǐ yuàn yì rèn zhēn jiǎn chá 。"
+  },
+  "夕阳照着练习台。Ryn看向远处的屋子，没有急着走。": {
+    "english": "The sunset lights the practice bench. Ryn looks toward the distant building, in no hurry to leave.",
+    "interlinear": [
+      {
+        "chinese": "夕阳照着练习台。",
+        "gloss": "The sunset lights the practice bench.",
+        "pinyin": "xī yáng zhào zhe liàn xí tái 。"
+      },
+      {
+        "chinese": "Ryn看向远处的屋子，",
+        "gloss": "Ryn looks toward the distant building,",
+        "pinyin": "Ryn kàn xiàng yuǎn chù de wū zi ，"
+      },
+      {
+        "chinese": "没有急着走。",
+        "gloss": "in no hurry to leave.",
+        "pinyin": "méi yǒu jí zhe zǒu 。"
+      }
+    ],
+    "pinyin": "xī yáng zhào zhe liàn xí tái 。Ryn kàn xiàng yuǎn chù de wū zi ， méi yǒu jí zhe zǒu 。"
+  },
+  "所有简历都记录了，还要检查所有人的记录。屋子仍然没修好。": {
+    "english": "All the resumes have been recorded, everyone's records still need checking. The building is still unrepaired.",
+    "interlinear": [
+      {
+        "chinese": "所有简历都记录了，",
+        "gloss": "All the resumes have been recorded,",
+        "pinyin": "suǒ yǒu jiǎn lì dōu jì lù le ，"
+      },
+      {
+        "chinese": "还要检查所有人的记录。",
+        "gloss": "everyone's records still need checking.",
+        "pinyin": "hái yào jiǎn chá suǒ yǒu rén de jì lù 。"
+      },
+      {
+        "chinese": "屋子仍然没修好。",
+        "gloss": "The building is still unrepaired.",
+        "pinyin": "wū zi réng rán méi xiū hǎo 。"
+      }
+    ],
+    "pinyin": "suǒ yǒu jiǎn lì dōu jì lù le ， hái yào jiǎn chá suǒ yǒu rén de jì lù 。 wū zi réng rán méi xiū hǎo 。"
+  },
+  "水和从前一样，我们还记得从前答应的话。明天，我们等正式的回复。": {
+    "english": "The water is the same as before, we still remember our earlier promises. Tomorrow, we'll wait for the official response.",
+    "interlinear": [
+      {
+        "chinese": "水和从前一样，",
+        "gloss": "The water is the same as before,",
+        "pinyin": "shuǐ hé cóng qián yí yàng ，"
+      },
+      {
+        "chinese": "我们还记得从前答应的话。",
+        "gloss": "we still remember our earlier promises.",
+        "pinyin": "wǒ men hái jì de cóng qián dā ying de huà 。"
+      },
+      {
+        "chinese": "明天，我们等正式的回复。",
+        "gloss": "Tomorrow, we'll wait for the official response.",
+        "pinyin": "míng tiān ， wǒ men děng zhèng shì de huí fù 。"
+      }
+    ],
+    "pinyin": "shuǐ hé cóng qián yí yàng ， wǒ men hái jì de cóng qián dā ying de huà 。 míng tiān ， wǒ men děng zhèng shì de huí fù 。"
+  },
+  "先记录她来到的时间。": {
+    "english": "Record when she arrived first.",
+    "interlinear": [
+      {
+        "chinese": "先记录她来到的时间。",
+        "gloss": "Record when she arrived first.",
+        "pinyin": "xiān jì lù tā lái dào de shí jiān 。"
+      }
+    ],
+    "pinyin": "xiān jì lù tā lái dào de shí jiān 。"
+  },
+  "先听她的经历。": {
+    "english": "Listen to her experience first.",
+    "interlinear": [
+      {
+        "chinese": "先听她的经历。",
+        "gloss": "Listen to her experience first.",
+        "pinyin": "xiān tīng tā de jīng lì 。"
+      }
+    ],
+    "pinyin": "xiān tīng tā de jīng lì 。"
+  },
+  "要求接收纸上的记录。": {
+    "english": "Ask them to accept the written records.",
+    "interlinear": [
+      {
+        "chinese": "要求接收纸上的记录。",
+        "gloss": "Ask them to accept the written records.",
+        "pinyin": "yāo qiú jiē shōu zhǐ shàng de jì lù 。"
+      }
+    ],
+    "pinyin": "yāo qiú jiē shōu zhǐ shàng de jì lù 。"
+  },
+  "要求所有人都有一样的选择。": {
+    "english": "Ask for everyone to have the same options.",
+    "interlinear": [
+      {
+        "chinese": "要求所有人都有一样的选择。",
+        "gloss": "Ask for everyone to have the same options.",
+        "pinyin": "yāo qiú suǒ yǒu rén dōu yǒu yí yàng de xuǎn zé 。"
+      }
+    ],
+    "pinyin": "yāo qiú suǒ yǒu rén dōu yǒu yí yàng de xuǎn zé 。"
+  },
+  "先把要求说给所有人听。": {
+    "english": "Explain the requirements to everyone first.",
+    "interlinear": [
+      {
+        "chinese": "先把要求说给所有人听。",
+        "gloss": "Explain the requirements to everyone first.",
+        "pinyin": "xiān bǎ yāo qiú shuō gěi suǒ yǒu rén tīng 。"
+      }
+    ],
+    "pinyin": "xiān bǎ yāo qiú shuō gěi suǒ yǒu rén tīng 。"
+  },
+  "先检查练习的地方。": {
+    "english": "Inspect the practice area first.",
+    "interlinear": [
+      {
+        "chinese": "先检查练习的地方。",
+        "gloss": "Inspect the practice area first.",
+        "pinyin": "xiān jiǎn chá liàn xí de dì fang 。"
+      }
+    ],
+    "pinyin": "xiān jiǎn chá liàn xí de dì fang 。"
+  },
+  "以后先听应聘的人说。": {
+    "english": "Listen to applicants first in future.",
+    "interlinear": [
+      {
+        "chinese": "以后先听应聘的人说。",
+        "gloss": "Listen to applicants first in future.",
+        "pinyin": "yǐ hòu xiān tīng yìng pìn de rén shuō 。"
+      }
+    ],
+    "pinyin": "yǐ hòu xiān tīng yìng pìn de rén shuō 。"
+  },
+  "把今天的办法记录下来。": {
+    "english": "Record today’s procedure.",
+    "interlinear": [
+      {
+        "chinese": "把今天的办法记录下来。",
+        "gloss": "Record today’s procedure.",
+        "pinyin": "bǎ jīn tiān de bàn fǎ jì lù xià lái 。"
+      }
+    ],
+    "pinyin": "bǎ jīn tiān de bàn fǎ jì lù xià lái 。"
+  }
+}

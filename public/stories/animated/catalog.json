@@ -841,5 +841,51 @@
       "title": "The Voices Beneath the Water · Episode 17: A Place to Come Back To",
       "description": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing."
     }
+  },
+  {
+    "id": "jedi-18-v1",
+    "category": "jedi",
+    "episode": 18,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-18-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-18-intro.poster.jpg",
+      "title": "The Test That Helps",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode 18 · The Test That Helps",
+        "paragraphs": [
+          "The damaged learning centre remains closed. A separately inspected courtyard is ready for temporary lessons; earlier losses, promises and water allocations still stand.",
+          "Jon has offered to help Sela teach. He has prepared a tiny bridge, two paper animals and rather more confidence than the lesson requires."
+        ]
+      }
+    },
+    "path": "jedi-18.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 18: The Test That Helps",
+      "description": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows."
+    }
+  },
+  {
+    "id": "jedi-19-v1",
+    "category": "jedi",
+    "episode": 19,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-19-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-19-intro.poster.jpg",
+      "title": "Who Gets to Apply?",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode 19 · Who Gets to Apply?",
+        "paragraphs": [
+          "Temporary lessons have produced clear instructions for the learning centre. The roof still needs qualified repairs, and the community is recruiting paid staff.",
+          "An applicant from another settlement arrives before the deadline with practical experience and a paper resume. The application terminal has stopped working."
+        ]
+      }
+    },
+    "path": "jedi-19.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 19: Who Gets to Apply?",
+      "description": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment."
+    }
   }
 ]

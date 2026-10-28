@@ -1,0 +1,45 @@
+[
+  {
+    "id": "Ryn",
+    "name": "Ryn",
+    "appearance": {
+      "age": "adult",
+      "hair": "ponytail",
+      "glasses": "none",
+      "outfit": "workshirt",
+      "face": "angular",
+      "eyes": "keen"
+    },
+    "palette": {
+      "skin": "#bd8664",
+      "hair": "#292a34",
+      "shirt": "#477c82",
+      "trim": "#d7b37b"
+    },
+    "version": 1,
+    "finish": "polished",
+    "provenance": "New original adult resident for Jedi Episode 19, unrelated to earlier lost characters; no real-person likeness."
+  },
+  {
+    "id": "Vek",
+    "name": "Vek",
+    "appearance": {
+      "age": "elder",
+      "hair": "side-part",
+      "glasses": "round",
+      "outfit": "suit",
+      "face": "lean",
+      "eyes": "narrow"
+    },
+    "palette": {
+      "skin": "#d4af91",
+      "hair": "#8e9396",
+      "shirt": "#636a7d",
+      "trim": "#e1d9bf",
+      "glasses": "#4a4d53"
+    },
+    "version": 1,
+    "finish": "polished",
+    "provenance": "New original adult resident for Jedi Episode 19, unrelated to earlier lost characters; no real-person likeness."
+  }
+]
