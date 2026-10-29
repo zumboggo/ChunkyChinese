@@ -4,7 +4,7 @@
   "source": {
     "kind": "original",
     "note": "Original fan adventure requested by David for Jonathan; no source novel or real-person likeness.",
-    "nextStart": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
+    "nextStart": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
     "nextEndBefore": "Preserve all historical memories, losses, injury limits, allocations and water. One shared storyline.",
     "continuationNote": "Follow approved vocabulary allocation; check meaningful use on every shared route."
   },
@@ -98,9 +98,17 @@
     {
       "episode": "jedi-21-v1",
       "end": "Edda, the garden keeper, helps Jonathan replace the urge to attack with patient protection. A qualified specialist inspects the nest area; the old path is isolated pending appropriate management and an alternate path is checked safe. Edda’s grower relative promises seedlings for the opening stall; this is a promise, not delivered stock. No station water is used. Repairs and the centre reopening remain pending."
+    },
+    {
+      "episode": "jedi-22-v1",
+      "end": "Tavi and Min complete the courtyard food stall. Tavi withdraws unsupported honey claims and explains the correction. Costs, her pay, income and remaining supplies funds are recorded; the funds are restricted to agreed centre supplies. Tavi brought the soup ingredients, cooking water and documented purchased honey; no station water or garden honey was used. Seedlings remain promised but undelivered. The centre remains closed pending repairs. Jon replaces an elaborate banquet speech with listening and a simple shared meal."
+    },
+    {
+      "episode": "jedi-23-v1",
+      "end": "Jon, Ryn, Min and Sela reject Orr’s unsupported instant-repair promise and decorative upgrade. The sample is returned. Approved materials are purchased with documented supplies funds; qualified pipe and roof specialists complete their respective repairs over several days and sign off on their work. Final safety inspection is still pending, so the centre remains closed. Repair test water came from the specialists; all historical drinking-water balances and memories are unchanged. The next task is preparing opening-day photographs while awaiting inspection."
     }
   ],
-  "assetsFrom": "stories/animated/jedi-21.json",
+  "assetsFrom": "stories/animated/jedi-23.json",
   "vocabularySupplement": ".local/episodes/jedi-01/supplement.json",
   "coverage": {
     "min": 80,
@@ -117,7 +125,8 @@
       "path": "stories/authoring/jedi/coverage-plan-16-25.json",
       "status": "Planned only; preserve actual completed episode boundary",
       "instruction": "For Episodes 16–25, use the exact per-episode original-list targets in this plan: 13–19 new targets, 60–80 short voiced entries where needed, two meaningful intended-sense uses on every shared route plus scheduled review. Verify actual target coverage separately from familiar-word share. Keep one main storyline and prior choice memory. Optional Episode 26 reviews the final 18 targets."
-    }
+    },
+    "openingArtworkVariety": "Each new episode uses a visibly different genre, medium or artistic tradition from around the world, with the recognizable main character as the focal subject. Preserve the approved identity reference and carry the style into generated motion. Episode 22 used warm gouache; Episode 23 used Chinese ink wash. Choose a distinct next style. David reaffirmed this on 2026-10-29."
   },
   "continuity": [
     "The child from episode 1 is safe with her mother.",
@@ -157,7 +166,10 @@
     "Episodes 18 and 19 do not change any water or memory. Episode 20 inherits Episode 19 terminal water 2 through 20 by twos through sourceVariable water; delivered buckets stay with recipients. Ryn is a new adult applicant, Vek a new older administrator. Her Episode 19 test was a preliminary safe assessment, not a hiring promise; Episode 20 continues the formal supervised interview and written paid trial terms. The damaged centre remains closed; no implicit healing, resurrection or stock gain. Follow the approved Episode 20 vocabulary allocation.",
     "Ryn completes the supervised skills assessment and accepts written paid probation terms. All applicants receive replies. Min rejects appearance-based judgment and unpaid overtime. Pipe work is assigned only to qualified staff; roof work needs separately qualified specialists. The centre remains closed pending repairs. Water and all historical consequences remain unchanged.",
     "Edda, the garden keeper, helps Jonathan replace the urge to attack with patient protection. A qualified specialist inspects the nest area; the old path is isolated pending appropriate management and an alternate path is checked safe. Edda’s grower relative promises seedlings for the opening stall; this is a promise, not delivered stock. No station water is used. Repairs and the centre reopening remain pending.",
-    "Episodes 20 and 21 do not change water or historical memories. Episode 22 inherits Episode 21 terminal water 2 through 20 by twos via sourceVariable water. Delivered buckets remain with recipients; deaths, equipment losses, An injury limits and promises remain binding. Ryn has accepted written paid probation terms for qualified pipe work. Roof repairs require separately qualified specialists and are not yet verified complete; the centre remains closed. Edda is the new garden keeper. The nest area stays isolated for qualified management; a safe alternate path is available. Her relative has promised seedlings, but they are not yet delivered stock. Episode 22 follows the approved food-stall vocabulary allocation, transparent accounts and rejection of unsupported honey claims. Do not take honey from the protected nest or assume free water for the stall."
+    "Episodes 20 and 21 do not change water or historical memories. Episode 22 inherits Episode 21 terminal water 2 through 20 by twos via sourceVariable water. Delivered buckets remain with recipients; deaths, equipment losses, An injury limits and promises remain binding. Ryn has accepted written paid probation terms for qualified pipe work. Roof repairs require separately qualified specialists and are not yet verified complete; the centre remains closed. Edda is the new garden keeper. The nest area stays isolated for qualified management; a safe alternate path is available. Her relative has promised seedlings, but they are not yet delivered stock. Episode 22 follows the approved food-stall vocabulary allocation, transparent accounts and rejection of unsupported honey claims. Do not take honey from the protected nest or assume free water for the stall.",
+    "Tavi and Min complete the courtyard food stall. Tavi withdraws unsupported honey claims and explains the correction. Costs, her pay, income and remaining supplies funds are recorded; the funds are restricted to agreed centre supplies. Tavi brought the soup ingredients, cooking water and documented purchased honey; no station water or garden honey was used. Seedlings remain promised but undelivered. The centre remains closed pending repairs. Jon replaces an elaborate banquet speech with listening and a simple shared meal.",
+    "Jon, Ryn, Min and Sela reject Orr’s unsupported instant-repair promise and decorative upgrade. The sample is returned. Approved materials are purchased with documented supplies funds; qualified pipe and roof specialists complete their respective repairs over several days and sign off on their work. Final safety inspection is still pending, so the centre remains closed. Repair test water came from the specialists; all historical drinking-water balances and memories are unchanged. The next task is preparing opening-day photographs while awaiting inspection.",
+    "Episodes 22 and 23 retain all historical choice memory, deaths, injury limits, equipment losses, promises and water balances. Episode 24 inherits terminal water 2 through 20 by twos. Tavi supplied cooking water; specialists supplied repair-test water; neither drew from station stock. The qualified crew has completed repairs, but final safety inspection is still pending and the centre stays closed. Funds and expenses are documented; no decorative upgrade was purchased. Seedlings remain a promise until delivered. Follow Episode 24 photographs and appearance/relationships vocabulary allocation; introduce the resident couple without altering existing relationships or survivors."
   ],
   "cover": "public/stories/animated/jedi/series-cover.jpg",
   "coverArt": {
@@ -167,9 +179,9 @@
   },
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through jedi-21-v1",
-    "nextStart": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
+    "note": "Published through jedi-23-v1",
+    "nextStart": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
     "nextEndBefore": "Preserve all historical memories, losses, injury limits, allocations and water. One shared storyline.",
-    "assetsFrom": "stories/animated/jedi-21.json"
+    "assetsFrom": "stories/animated/jedi-23.json"
   }
 }
