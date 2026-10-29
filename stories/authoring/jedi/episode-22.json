@@ -1,0 +1,458 @@
+{
+  "episode": "jedi-22-v1",
+  "title": "The Voices Beneath the Water · Episode 22: What the Stall Is For",
+  "planning": {
+    "storytellingVoice": "Warm, self-questioning adolescent",
+    "voiceReason": "Small practical mistakes and gentle self-directed humour expose Jon’s grand ideas about helping; no change to his age or identity.",
+    "earlyCare": "Jon wants workers to eat and the centre to have supplies.",
+    "desire": "Raise a transparent supplies budget without making visitors feel poor.",
+    "obstacle": "Grand banquet ambitions, prices and exaggerated honey advertising.",
+    "dramaticChange": "Jon accepts that good soup matters more than looking grand; the cook corrects her claims.",
+    "sceneActivities": [
+      "Jon prepares a comically solemn speech beside a small soup bowl; serving and accounting happen in the courtyard."
+    ],
+    "actingSignature": {
+      "Jonathan": "Self-directed humour and practical questions; open palms become quiet attention when corrected.",
+      "Min": "Worries about appearances but now asks whose needs a decision serves; gentle teasing.",
+      "Tavi": "Proud practical cook; starts defending her stall, then corrects the sign without excuses.",
+      "Orr": "Smooth confident vendor; evasive when asked for checkable evidence.",
+      "Ryn": "Specific technical limits, insists on matching materials to inspected requirements.",
+      "Sela": "Patient questions that require plain explanations rather than impressive language."
+    },
+    "listenerTurn": "Tavi tells Jon a meal need not be a performance; listener Jonathan then lowers his speech notes.",
+    "payoff": "The stall raises a documented supplies budget without changing the drinking-water inventory offscreen; preparations can continue.",
+    "freshQuestion": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
+    "teaser": {
+      "speaker": "Jonathan",
+      "dialogue": "My speech is longer than the soup.",
+      "moment": "Jon looks from his grand speech notes to one small bowl, amused at himself."
+    },
+    "convergence": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
+    "artDirection": "Gouache storybook painting; preserve approved Jon likeness and the specific episode moment.",
+    "identityReference": "public/stories/animated/jedi/series-cover.jpg",
+    "targetVocabulary": [
+      "卖",
+      "卖掉",
+      "生意",
+      "香味",
+      "汤",
+      "顿",
+      "蜂蜜",
+      "减肥",
+      "安神",
+      "甜蜜",
+      "宴会",
+      "聚餐",
+      "趁",
+      "临",
+      "既",
+      "于是",
+      "哈哈",
+      "忍不住"
+    ],
+    "reviewVocabulary": [
+      "以下",
+      "达到",
+      "目的",
+      "碰钉子",
+      "爱面子",
+      "留面子",
+      "丢面子",
+      "四季",
+      "花期",
+      "五颜六色",
+      "鲜花",
+      "蜂窝",
+      "蜜蜂",
+      "蜇",
+      "刺儿",
+      "拍打",
+      "一窝蜂",
+      "采",
+      "蜜"
+    ]
+  },
+  "video": {
+    "src": "stories/animated/jedi/jedi-22-intro.mp4",
+    "poster": "stories/animated/jedi/jedi-22-intro.poster.jpg",
+    "dialogue": "My speech is longer than the soup.",
+    "totalSeconds": 9,
+    "stillSeconds": 3,
+    "motionSeconds": 6.0,
+    "reactionHoldSeconds": 0.0,
+    "nativeGeneratedSeconds": 6,
+    "editNote": "Full six-second native motion retained after the three-second opening hold.",
+    "model": "prunaai/p-video-2-pro",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off"
+    },
+    "verifiedUSDPerSecond": 0.01,
+    "maximumCostUSD": 0.06,
+    "paidRequests": 1,
+    "predictionId": "rj26q2h09nrmw0d1gpf8hthf48",
+    "prompt": "Animate this exact reference for six seconds. One visible speaker, Jon, says exactly once in clear English: \"My speech is longer than the soup.\" The quoted line is the entire script. No other words, fillers, repetitions, narration, humming, singing or other voices. Speak from second 0.5 to second 3.7, then keep the mouth closed. Clear warm male speech above very quiet courtyard ambience. He glances from his absurdly long speech paper to the small soup bowl, lowers the paper slightly and gives a sheepish smile. Preserve the textured gouache painting and brush shapes throughout. Keep his recognizable face, short hair, beard, clothes and anatomy consistent. Static camera, gentle small movement. No added objects, people, writing or overlays.",
+    "reference": "stories/authoring/jedi/art/episode-22-reference.png",
+    "nativeSpeech": true,
+    "checks": {
+      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-22/native.mp4",
+      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-22/intro.mp4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "fps": 24,
+      "hold_seconds": 3.0,
+      "motion_seconds": 6.0,
+      "reaction_hold_seconds": 0.0,
+      "total_seconds": 9.0,
+      "decoded_audio_seconds": 9.00275,
+      "audio_non_silent": true,
+      "audio_starts_after_hold": true,
+      "hold_mean_pixel_difference": 0.004979020296643247,
+      "sha256": "7a86b365cbc0c6c2fb20acca83c8de558952c068b1dcd237377eb4bc446f6157",
+      "expected_dialogue": "My speech is longer than the soup.",
+      "speech_check": "pass",
+      "review": "Opening, speech/motion and ending frames inspected; exact speech verified by local ASR; final browser playback verified.",
+      "transcription": "My speech is longer than the soup"
+    }
+  },
+  "continuation": {
+    "end": "Tavi and Min complete the courtyard food stall. Tavi withdraws unsupported honey claims and explains the correction. Costs, her pay, income and remaining supplies funds are recorded; the funds are restricted to agreed centre supplies. Tavi brought the soup ingredients, cooking water and documented purchased honey; no station water or garden honey was used. Seedlings remain promised but undelivered. The centre remains closed pending repairs. Jon replaces an elaborate banquet speech with listening and a simple shared meal.",
+    "nextStart": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
+    "nextEndBefore": "Preserve all historical memories, losses, injury limits, allocations and water. One shared storyline.",
+    "note": "Follow approved vocabulary allocation; check meaningful use on every shared route."
+  },
+  "targetAudit": {
+    "episode": 22,
+    "routeCount": 16,
+    "targets": [
+      {
+        "word": "卖",
+        "minDistinctSpokenEntries": 7,
+        "examples": [
+          "你卖汤，也卖蜂蜜吗？",
+          "卖蜂蜜的人和费用都有记录，不是花园的蜜。",
+          "想卖掉，不表示可以说谎话。减肥的结论，你检查过吗？",
+          "别临开门才检查。既要负责地卖，也要诚实说。",
+          "我们卖掉汤和蜂蜜，不能把信心也卖掉。",
+          "从前答应的花苗还没有到。不能提前卖。",
+          "汤和蜂蜜都卖掉了。所有人检查费用，把剩下的钱记录下来。"
+        ]
+      },
+      {
+        "word": "卖掉",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "想卖掉，不表示可以说谎话。减肥的结论，你检查过吗？",
+          "我们卖掉汤和蜂蜜，不能把信心也卖掉。",
+          "汤和蜂蜜都卖掉了。所有人检查费用，把剩下的钱记录下来。"
+        ]
+      },
+      {
+        "word": "生意",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "今天的生意在院子里，屋子没有开门。",
+          "别人也这样说，我想生意成功。",
+          "今天的生意结束了。屋子还要修，不能提前开门。"
+        ]
+      },
+      {
+        "word": "香味",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我叫Tavi，今天负责聚餐。汤的香味怎么样？",
+          "这香味让我忍不住笑。我的讲话比这碗汤还长。"
+        ]
+      },
+      {
+        "word": "汤",
+        "minDistinctSpokenEntries": 10,
+        "examples": [
+          "我叫Tavi，今天负责聚餐。汤的香味怎么样？",
+          "这香味让我忍不住笑。我的讲话比这碗汤还长。",
+          "哈哈，汤没有要求你说话。先看看价格。",
+          "汤和蜂蜜，还有做汤的水，从Tavi那里来。没有动站里的水。",
+          "你卖汤，也卖蜂蜜吗？",
+          "你的结论可靠吗？我想喝汤，不想听谎话。",
+          "我不再说减肥、安神，只说汤和蜂蜜多少钱。",
+          "我们卖掉汤和蜂蜜，不能把信心也卖掉。",
+          "趁汤还热，请所有人吃吧。",
+          "汤和蜂蜜都卖掉了。所有人检查费用，把剩下的钱记录下来。"
+        ]
+      },
+      {
+        "word": "顿",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "修屋子的人很认真。我想请他们吃一顿。",
+          "我想保护所有人，不过，一顿聚餐不用进攻。",
+          "不用害怕丢面子。好好吃一顿，就值得骄傲。"
+        ]
+      },
+      {
+        "word": "蜂蜜",
+        "minDistinctSpokenEntries": 7,
+        "examples": [
+          "汤和蜂蜜，还有做汤的水，从Tavi那里来。没有动站里的水。",
+          "你卖汤，也卖蜂蜜吗？",
+          "卖蜂蜜的人和费用都有记录，不是花园的蜜。",
+          "我写了广告，蜂蜜可以减肥，也可以安神。",
+          "我不再说减肥、安神，只说汤和蜂蜜多少钱。",
+          "我们卖掉汤和蜂蜜，不能把信心也卖掉。",
+          "汤和蜂蜜都卖掉了。所有人检查费用，把剩下的钱记录下来。"
+        ]
+      },
+      {
+        "word": "减肥",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "我写了广告，蜂蜜可以减肥，也可以安神。",
+          "想卖掉，不表示可以说谎话。减肥的结论，你检查过吗？",
+          "我不再说减肥、安神，只说汤和蜂蜜多少钱。"
+        ]
+      },
+      {
+        "word": "安神",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "我写了广告，蜂蜜可以减肥，也可以安神。",
+          "没有。安神的结论，我不知道是否可靠。我不能这样答应。",
+          "我不再说减肥、安神，只说汤和蜂蜜多少钱。"
+        ]
+      },
+      {
+        "word": "甜蜜",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "广告写得甜蜜，不表示结论可靠。",
+          "我想留下甜蜜的记忆，不是叫人上当。今天临开门才检查，我先改。"
+        ]
+      },
+      {
+        "word": "宴会",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "今天聚餐，我想办宴会。",
+          "那不办宴会了吗？我害怕钱少的人碰钉子。"
+        ]
+      },
+      {
+        "word": "聚餐",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "今天聚餐，我想办宴会。",
+          "我叫Tavi，今天负责聚餐。汤的香味怎么样？",
+          "我想保护所有人，不过，一顿聚餐不用进攻。"
+        ]
+      },
+      {
+        "word": "趁",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我们趁所有人在这里，先说明要求。",
+          "趁汤还热，请所有人吃吧。"
+        ]
+      },
+      {
+        "word": "临",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我想留下甜蜜的记忆，不是叫人上当。今天临开门才检查，我先改。",
+          "别临开门才检查。既要负责地卖，也要诚实说。"
+        ]
+      },
+      {
+        "word": "既",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "别临开门才检查。既要负责地卖，也要诚实说。",
+          "既想帮忙，又不愿意听批评，就不能真正帮忙。"
+        ]
+      },
+      {
+        "word": "于是",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "于是，Tavi改了广告。她诚实地向所有人说明。",
+          "所有人听了要求，于是慢慢走过来。"
+        ]
+      },
+      {
+        "word": "哈哈",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "哈哈，汤没有要求你说话。先看看价格。",
+          "哈哈，你的讲话可以休息了。所有人可以吃了。"
+        ]
+      },
+      {
+        "word": "忍不住",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "这香味让我忍不住笑。我的讲话比这碗汤还长。",
+          "我忍不住笑起来。不是在笑别人。"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "word": "以下",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "达到",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "目的",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "碰钉子",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "爱面子",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "留面子",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "丢面子",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "四季",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "花期",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "五颜六色",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "鲜花",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "蜂窝",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "蜜蜂",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "蜇",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "刺儿",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "拍打",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "一窝蜂",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "采",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "蜜",
+        "minSpokenEntries": 10
+      }
+    ],
+    "method": "Distinct spoken entries per completed route; choice labels excluded. 蜜 excludes occurrences embedded in 蜜蜂; all target examples reviewed in context. Full semantic/pinyin human review accompanies counts."
+  },
+  "artwork": {
+    "generator": "Built-in ImageGen",
+    "reference": "stories/authoring/jedi/art/episode-22-reference.png",
+    "direction": "Gouache storybook painting; preserve approved Jon likeness and the specific episode moment.",
+    "prompt": "Create a landscape 16:9 opening frame in warm hand-painted gouache on textured paper. Use the approved series poster as an identity reference: Jon’s broad friendly face, short tousled light-brown hair, full brown beard, adult age, sturdy build, cream tunic and brown robe. Jon sits at a humble courtyard food-stall table with a small bowl of steaming soup and an absurdly long speech sheet, amused at himself. One character, clear face and hands, no readable text, logo or weapon. Preserve opaque brush shapes and dry-brush texture.",
+    "promptNote": "Condensed final generation direction",
+    "style": "Gouache storybook painting",
+    "identityReference": "public/stories/animated/jedi/series-cover.jpg"
+  },
+  "englishAudio": {
+    "localRecordings": [
+      {
+        "sha256": "43ab4682a1adf5a2b803e449ee4d9dc6f210147b3ea7e269405016b9cbf502f9",
+        "text": "The repair workers are conscientious. I want to treat them to a meal.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      }
+    ],
+    "completionProvider": "Existing episode builder: jaaari/kokoro-82m, cached by exact text; private prediction receipts retained. Local speech stalled after one recording in Episode 22."
+  },
+  "verification": {
+    "reportStatus": "passed",
+    "packageBytes": 2036293,
+    "phases": [
+      {
+        "name": "vocabulary",
+        "seconds": 0.04026637499999999,
+        "status": "passed"
+      },
+      {
+        "name": "routes, source assertions and resume",
+        "seconds": 0.27483979199999997,
+        "status": "passed"
+      },
+      {
+        "name": "annotations",
+        "seconds": 0.004004834000000017,
+        "status": "passed"
+      },
+      {
+        "name": "audio",
+        "seconds": 30.095761333000002,
+        "status": "passed"
+      },
+      {
+        "name": "English pocket audio",
+        "seconds": 39.847561,
+        "status": "passed"
+      },
+      {
+        "name": "package and ZIP",
+        "seconds": 0.10035466700000688,
+        "status": "passed"
+      },
+      {
+        "name": "phone and desktop",
+        "seconds": 42.463087165999994,
+        "status": "passed"
+      },
+      {
+        "name": "stage new release",
+        "seconds": 0.01941608300000371,
+        "status": "passed"
+      }
+    ],
+    "familiarity": {
+      "min": 80.68535825545172,
+      "max": 81.41732283464567
+    },
+    "pinyin": "Complete contextual review: adverb zhi, modifier de, complement de, shengyi neutral tone, wei le and huan gei for returning the sample.",
+    "teaser": "Exact English line verified with local ASR; opening, motion and ending frames inspected. Six generated seconds plus three-second still; no paid retry.",
+    "continuity": "All 54,432 inherited histories and 160 local route/water combinations per episode preserved.",
+    "vocabulary": "All 18 planned targets have at least two distinct meaningful spoken entries on every one of 16 routes; all 19/17 scheduled review targets appear on each route of their allocated episode.",
+    "browser": "Full contrasting routes plus teaser playback, fallback, Mandarin audio, listener aftermath and resume on phone and desktop."
+  }
+}

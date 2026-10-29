@@ -1,0 +1,416 @@
+{
+  "episode": "jedi-23-v1",
+  "title": "The Voices Beneath the Water · Episode 23: A Promise Worth Believing",
+  "planning": {
+    "storytellingVoice": "Immediate drama",
+    "voiceReason": "A persuasive offer tests the crew’s judgment and shared budget.",
+    "earlyCare": "Jon protects the money neighbours earned at the stall.",
+    "desire": "Buy necessary repair materials without wasting the shared budget.",
+    "obstacle": "A vendor uses true surface details to hide an unsupported repair promise.",
+    "dramaticChange": "Jon trades a triumphant accusation for a patient explanation a learner can check.",
+    "sceneActivities": [
+      "Jon studies a decorative golden fitting while Ryn inspects the material record; they refuse the unsupported offer."
+    ],
+    "actingSignature": {
+      "Jonathan": "Self-directed humour and practical questions; open palms become quiet attention when corrected.",
+      "Min": "Worries about appearances but now asks whose needs a decision serves; gentle teasing.",
+      "Tavi": "Proud practical cook; starts defending her stall, then corrects the sign without excuses.",
+      "Orr": "Smooth confident vendor; evasive when asked for checkable evidence.",
+      "Ryn": "Specific technical limits, insists on matching materials to inspected requirements.",
+      "Sela": "Patient questions that require plain explanations rather than impressive language."
+    },
+    "listenerTurn": "Sela asks Jon for reasons she can check; listener Jonathan then sets the gold fitting down.",
+    "payoff": "The centre keeps its funds and completes the necessary repairs through the approved crew; inspection and the opening programme remain.",
+    "freshQuestion": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
+    "teaser": {
+      "speaker": "Jonathan",
+      "dialogue": "A promise is not a repair.",
+      "moment": "Jon thoughtfully sets a flashy golden fitting down, choosing evidence over polish."
+    },
+    "convergence": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
+    "artDirection": "Chinese ink wash; preserve approved Jon likeness and the specific episode moment.",
+    "identityReference": "public/stories/animated/jedi/series-cover.jpg",
+    "targetVocabulary": [
+      "哲学家",
+      "哲学",
+      "现实",
+      "坏处",
+      "列",
+      "绝对",
+      "显然",
+      "巧妙",
+      "谎话",
+      "语气",
+      "自然",
+      "侥幸",
+      "上当",
+      "记忆",
+      "变成",
+      "变得",
+      "值得",
+      "从来没"
+    ],
+    "reviewVocabulary": [
+      "进攻",
+      "鼻青脸肿",
+      "涂",
+      "似的",
+      "群",
+      "卖",
+      "卖掉",
+      "生意",
+      "香味",
+      "汤",
+      "顿",
+      "蜂蜜",
+      "减肥",
+      "安神",
+      "甜蜜",
+      "宴会",
+      "聚餐"
+    ]
+  },
+  "video": {
+    "src": "stories/animated/jedi/jedi-23-intro.mp4",
+    "poster": "stories/animated/jedi/jedi-23-intro.poster.jpg",
+    "dialogue": "A promise is not a repair.",
+    "totalSeconds": 9,
+    "stillSeconds": 3,
+    "motionSeconds": 6.0,
+    "reactionHoldSeconds": 0.0,
+    "nativeGeneratedSeconds": 6,
+    "editNote": "Full six-second native motion retained after the three-second opening hold.",
+    "model": "prunaai/p-video-2-pro",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off"
+    },
+    "verifiedUSDPerSecond": 0.01,
+    "maximumCostUSD": 0.06,
+    "paidRequests": 1,
+    "predictionId": "b943n49bx5rmw0d1gpfa2gj7yg",
+    "prompt": "Animate this exact reference for six seconds. One visible speaker, Jon, says exactly once in clear English: \"A promise is not a repair.\" The quoted line is the entire script. No other words, fillers, repetitions, narration, humming, singing or other voices. Speak from second 0.5 to second 3.7, then keep the mouth closed. Clear warm male speech above very quiet courtyard ambience. He thoughtfully lowers the decorative gold fitting onto the table, briefly looks at the plain fitting and rests quietly. Preserve the Chinese ink-wash style, calligraphic brush lines, soft washes and empty ivory paper throughout; do not turn it into photography. Keep his recognizable face, short hair, beard, clothes and anatomy consistent. Static camera, gentle small movement. No added objects, people, writing or overlays.",
+    "reference": "stories/authoring/jedi/art/episode-23-reference.png",
+    "nativeSpeech": true,
+    "checks": {
+      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-23/native.mp4",
+      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-23/intro.mp4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "fps": 24,
+      "hold_seconds": 3.0,
+      "motion_seconds": 6.0,
+      "reaction_hold_seconds": 0.0,
+      "total_seconds": 9.0,
+      "decoded_audio_seconds": 9.00275,
+      "audio_non_silent": true,
+      "audio_starts_after_hold": true,
+      "hold_mean_pixel_difference": 0.005693793911007026,
+      "sha256": "a867ba01e7f3ed769c4af62ad1ebef2fc90755dd9f9b91ec593eb6ebe4ed7cd3",
+      "expected_dialogue": "A promise is not a repair.",
+      "speech_check": "pass",
+      "review": "Opening, speech/motion and ending frames inspected; exact speech verified by local ASR; final browser playback verified.",
+      "transcription": "A promise is not a repair."
+    }
+  },
+  "continuation": {
+    "end": "Jon, Ryn, Min and Sela reject Orr’s unsupported instant-repair promise and decorative upgrade. The sample is returned. Approved materials are purchased with documented supplies funds; qualified pipe and roof specialists complete their respective repairs over several days and sign off on their work. Final safety inspection is still pending, so the centre remains closed. Repair test water came from the specialists; all historical drinking-water balances and memories are unchanged. The next task is preparing opening-day photographs while awaiting inspection.",
+    "nextStart": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
+    "nextEndBefore": "Preserve all historical memories, losses, injury limits, allocations and water. One shared storyline.",
+    "note": "Follow approved vocabulary allocation; check meaningful use on every shared route."
+  },
+  "targetAudit": {
+    "episode": 23,
+    "routeCount": 16,
+    "targets": [
+      {
+        "word": "哲学家",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我在研究哲学。哲学家在文章里问，为什么相信别人？",
+          "这是结论。哲学家还问你怎样知道。"
+        ]
+      },
+      {
+        "word": "哲学",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "我在研究哲学。哲学家在文章里问，为什么相信别人？",
+          "这是结论。哲学家还问你怎样知道。",
+          "哲学不必很复杂。我想知道现实的要求。"
+        ]
+      },
+      {
+        "word": "现实",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "现实是我们要保护孩子。不能只考虑打扮。",
+          "哲学不必很复杂。我想知道现实的要求。"
+        ]
+      },
+      {
+        "word": "坏处",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "不合格有什么坏处？我想听你说明。",
+          "坏处是可能漏水，不能保证安全。先检查材料的记录。"
+        ]
+      },
+      {
+        "word": "列",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "请列出你负责什么，不负责什么。",
+          "我们列出他说过什么，检查是否可靠。"
+        ]
+      },
+      {
+        "word": "绝对",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "绝对能修好吗？你还没有检查屋子。",
+          "绝对合格。看，金色的。"
+        ]
+      },
+      {
+        "word": "显然",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "显然，你没有检查过这里。不过，你答应今天开门。",
+          "显然，我要检查我的结论。不能变成不愿意听的人。"
+        ]
+      },
+      {
+        "word": "巧妙",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我巧妙地涂了颜色，好看，别人自然会相信。",
+          "谎话可能既有真的，又有假的。这就是他的巧妙手法。"
+        ]
+      },
+      {
+        "word": "谎话",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "他在说谎话，我们不能上当。",
+          "谎话可能既有真的，又有假的。这就是他的巧妙手法。"
+        ]
+      },
+      {
+        "word": "语气",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "你害怕我的语气吗？我有信心。",
+          "语气不能表示合格。你还没有回复我的要求。"
+        ]
+      },
+      {
+        "word": "自然",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我巧妙地涂了颜色，好看，别人自然会相信。",
+          "这看起来很自然，不过，不能表示合格。"
+        ]
+      },
+      {
+        "word": "侥幸",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "先买，再检查。你们可能会侥幸成功。",
+          "不能靠侥幸保护人。所有人要知道代价。"
+        ]
+      },
+      {
+        "word": "上当",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "你可以卖掉，我们不能因为着急就上当。",
+          "他在说谎话，我们不能上当。"
+        ]
+      },
+      {
+        "word": "记忆",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "汤的香味还记得，不过，记忆不能替我们检查。",
+          "这会留在我的记忆里。愿意听，结论才会变得清楚。"
+        ]
+      },
+      {
+        "word": "变成",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "他说好看，然后变成安全的保证。",
+          "显然，我要检查我的结论。不能变成不愿意听的人。"
+        ]
+      },
+      {
+        "word": "变得",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "你的结论变得清楚了。我可以继续检查。",
+          "这会留在我的记忆里。愿意听，结论才会变得清楚。"
+        ]
+      },
+      {
+        "word": "值得",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "那顿聚餐值得记住。聚餐不是只为了吃。",
+          "值得相信的人，愿意说明限度，不害怕检查。"
+        ]
+      },
+      {
+        "word": "从来没",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "金色的，真好看，我从来没骗你。",
+          "你很严厉。我从来没听过这样的要求。"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "word": "进攻",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "鼻青脸肿",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "涂",
+        "minSpokenEntries": 3
+      },
+      {
+        "word": "似的",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "群",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "卖",
+        "minSpokenEntries": 4
+      },
+      {
+        "word": "卖掉",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "生意",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "香味",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "汤",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "顿",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "蜂蜜",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "减肥",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "安神",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "甜蜜",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "宴会",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "聚餐",
+        "minSpokenEntries": 2
+      }
+    ],
+    "method": "Distinct spoken entries per completed route; choice labels excluded. 蜜 excludes occurrences embedded in 蜜蜂; all target examples reviewed in context. Full semantic/pinyin human review accompanies counts."
+  },
+  "artwork": {
+    "generator": "Built-in ImageGen",
+    "reference": "stories/authoring/jedi/art/episode-23-reference.png",
+    "direction": "Chinese ink wash; preserve approved Jon likeness and the specific episode moment.",
+    "prompt": "Create a wide 16:9 Chinese ink-wash illustration of the friendly bearded adult man in the reference, keeping his recognizable short tousled hair, broad face, sturdy build, cream tunic and brown robe. He sits quietly at a wooden workbench, thoughtfully comparing a decorative golden plumbing fitting in his hand with a plain one on the table. One person, waist-up view, face clearly visible. Traditional brush-and-ink aesthetic on ivory paper: flowing black contours, soft gray washes, dry brush texture, abundant empty paper, and a tiny muted gold accent on the fitting. Spare brush strokes suggest a courtyard in the background. Asymmetrical composition with the man toward the left and open paper to the right. Gentle, thoughtful atmosphere. No lettering or logos. Make the entire image a brush painting rather than a realistic photograph.",
+    "promptNote": "Exact final successful generation prompt",
+    "style": "Chinese ink wash",
+    "identityReference": "public/stories/animated/jedi/series-cover.jpg"
+  },
+  "englishAudio": {
+    "localRecordings": [],
+    "completionProvider": "Existing episode builder: jaaari/kokoro-82m, cached by exact text; private prediction receipts retained. Local speech stalled after one recording in Episode 22."
+  },
+  "verification": {
+    "reportStatus": "passed",
+    "packageBytes": 2144424,
+    "phases": [
+      {
+        "name": "vocabulary",
+        "seconds": 0.04498016700000001,
+        "status": "passed"
+      },
+      {
+        "name": "routes, source assertions and resume",
+        "seconds": 0.40393570800000006,
+        "status": "passed"
+      },
+      {
+        "name": "annotations",
+        "seconds": 0.004423207999999931,
+        "status": "passed"
+      },
+      {
+        "name": "audio",
+        "seconds": 32.222840874999996,
+        "status": "passed"
+      },
+      {
+        "name": "English pocket audio",
+        "seconds": 41.043796083,
+        "status": "passed"
+      },
+      {
+        "name": "package and ZIP",
+        "seconds": 0.10742450000000826,
+        "status": "passed"
+      },
+      {
+        "name": "phone and desktop",
+        "seconds": 45.959656208999995,
+        "status": "passed"
+      },
+      {
+        "name": "stage new release",
+        "seconds": 0.023214667000007468,
+        "status": "passed"
+      }
+    ],
+    "familiarity": {
+      "min": 81.18518518518519,
+      "max": 81.87221396731054
+    },
+    "pinyin": "Complete contextual review: adverb zhi, modifier de, complement de, shengyi neutral tone, wei le and huan gei for returning the sample.",
+    "teaser": "Exact English line verified with local ASR; opening, motion and ending frames inspected. Six generated seconds plus three-second still; no paid retry.",
+    "continuity": "All 54,432 inherited histories and 160 local route/water combinations per episode preserved.",
+    "vocabulary": "All 18 planned targets have at least two distinct meaningful spoken entries on every one of 16 routes; all 19/17 scheduled review targets appear on each route of their allocated episode.",
+    "browser": "Full contrasting routes plus teaser playback, fallback, Mandarin audio, listener aftermath and resume on phone and desktop."
+  }
+}

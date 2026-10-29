@@ -933,5 +933,51 @@
       "title": "The Voices Beneath the Water · Episode 21: Leave Room for the Bees",
       "description": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community."
     }
+  },
+  {
+    "id": "jedi-22-v1",
+    "category": "jedi",
+    "episode": 22,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-22-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-22-intro.poster.jpg",
+      "title": "What the Stall Is For",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode 22 · What the Stall Is For",
+        "paragraphs": [
+          "The garden has a safe alternate path. Its old path remains closed, and the learning centre still needs repairs before children can return.",
+          "Min and a local cook are raising money for agreed supplies. Jon arrives ready to make the occasion grand; a small bowl of soup may change his plans."
+        ]
+      }
+    },
+    "path": "jedi-22.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 22: What the Stall Is For",
+      "description": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige."
+    }
+  },
+  {
+    "id": "jedi-23-v1",
+    "category": "jedi",
+    "episode": 23,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-23-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-23-intro.poster.jpg",
+      "title": "A Promise Worth Believing",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode 23 · A Promise Worth Believing",
+        "paragraphs": [
+          "The courtyard stall has raised a recorded budget for essential supplies. Qualified workers are ready, but the learning centre is still closed.",
+          "A vendor offers a quick solution and a gleaming improvement. Jon must decide what makes a promise worth trusting—and explain it to someone who is listening."
+        ]
+      }
+    },
+    "path": "jedi-23.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 23: A Promise Worth Believing",
+      "description": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials."
+    }
   }
 ]

@@ -1,0 +1,1035 @@
+{
+  "修屋子的人很认真。我想请他们吃一顿。": {
+    "english": "The repair workers are conscientious. I want to treat them to a meal.",
+    "interlinear": [
+      {
+        "chinese": "修屋子的人很认真。",
+        "gloss": "The repair workers are conscientious.",
+        "pinyin": "xiū wū zi de rén hěn rèn zhēn 。"
+      },
+      {
+        "chinese": "我想请他们吃一顿。",
+        "gloss": "I want to treat them to a meal.",
+        "pinyin": "wǒ xiǎng qǐng tā men chī yí dùn 。"
+      }
+    ],
+    "pinyin": "xiū wū zi de rén hěn rèn zhēn 。 wǒ xiǎng qǐng tā men chī yí dùn 。"
+  },
+  "今天聚餐，我想办宴会。": {
+    "english": "Today we are eating together; I want to hold a banquet.",
+    "interlinear": [
+      {
+        "chinese": "今天聚餐，",
+        "gloss": "Today we are eating together;",
+        "pinyin": "jīn tiān jù cān ，"
+      },
+      {
+        "chinese": "我想办宴会。",
+        "gloss": "I want to hold a banquet.",
+        "pinyin": "wǒ xiǎng bàn yàn huì 。"
+      }
+    ],
+    "pinyin": "jīn tiān jù cān ， wǒ xiǎng bàn yàn huì 。"
+  },
+  "我们的目的是让屋子安全，不是表示我们多有钱。": {
+    "english": "Our aim is to make the building safe; not to show how rich we are.",
+    "interlinear": [
+      {
+        "chinese": "我们的目的是让屋子安全，",
+        "gloss": "Our aim is to make the building safe;",
+        "pinyin": "wǒ men de mù dì shì ràng wū zi ān quán ，"
+      },
+      {
+        "chinese": "不是表示我们多有钱。",
+        "gloss": "not to show how rich we are.",
+        "pinyin": "bú shì biǎo shì wǒ men duō yǒu qián 。"
+      }
+    ],
+    "pinyin": "wǒ men de mù dì shì ràng wū zi ān quán ， bú shì biǎo shì wǒ men duō yǒu qián 。"
+  },
+  "我还是爱面子。我想保护所有人，不过，先考虑了形象。": {
+    "english": "I still care about appearances. I want to protect everyone, but I considered appearances first.",
+    "interlinear": [
+      {
+        "chinese": "我还是爱面子。",
+        "gloss": "I still care about appearances.",
+        "pinyin": "wǒ hái shì ài miàn zi 。"
+      },
+      {
+        "chinese": "我想保护所有人，",
+        "gloss": "I want to protect everyone,",
+        "pinyin": "wǒ xiǎng bǎo hù suǒ yǒu rén ，"
+      },
+      {
+        "chinese": "不过，先考虑了形象。",
+        "gloss": "but I considered appearances first.",
+        "pinyin": "bú guò ， xiān kǎo lǜ le xíng xiàng 。"
+      }
+    ],
+    "pinyin": "wǒ hái shì ài miàn zi 。 wǒ xiǎng bǎo hù suǒ yǒu rén ， bú guò ， xiān kǎo lǜ le xíng xiàng 。"
+  },
+  "我叫Tavi，今天负责聚餐。汤的香味怎么样？": {
+    "english": "I'm Tavi; I'm responsible for today's shared meal. How is the aroma of the soup?",
+    "interlinear": [
+      {
+        "chinese": "我叫Tavi，",
+        "gloss": "I'm Tavi;",
+        "pinyin": "wǒ jiào Tavi，"
+      },
+      {
+        "chinese": "今天负责聚餐。",
+        "gloss": "I'm responsible for today's shared meal.",
+        "pinyin": "jīn tiān fù zé jù cān 。"
+      },
+      {
+        "chinese": "汤的香味怎么样？",
+        "gloss": "How is the aroma of the soup?",
+        "pinyin": "tāng de xiāng wèi zěn me yàng ？"
+      }
+    ],
+    "pinyin": "wǒ jiào Tavi， jīn tiān fù zé jù cān 。 tāng de xiāng wèi zěn me yàng ？"
+  },
+  "这香味让我忍不住笑。我的讲话比这碗汤还长。": {
+    "english": "This aroma makes me smile despite myself. My speech is longer than this bowl of soup.",
+    "interlinear": [
+      {
+        "chinese": "这香味让我忍不住笑。",
+        "gloss": "This aroma makes me smile despite myself.",
+        "pinyin": "zhè xiāng wèi ràng wǒ rěn bú zhù xiào 。"
+      },
+      {
+        "chinese": "我的讲话比这碗汤还长。",
+        "gloss": "My speech is longer than this bowl of soup.",
+        "pinyin": "wǒ de jiǎng huà bǐ zhè wǎn tāng hái cháng 。"
+      }
+    ],
+    "pinyin": "zhè xiāng wèi ràng wǒ rěn bú zhù xiào 。 wǒ de jiǎng huà bǐ zhè wǎn tāng hái cháng 。"
+  },
+  "哈哈，汤没有要求你说话。先看看价格。": {
+    "english": "Ha ha, the soup did not ask you to give a speech. Look at the prices first.",
+    "interlinear": [
+      {
+        "chinese": "哈哈，汤没有要求你说话。",
+        "gloss": "Ha ha, the soup did not ask you to give a speech.",
+        "pinyin": "hā hā ， tāng méi yǒu yāo qiú nǐ shuō huà 。"
+      },
+      {
+        "chinese": "先看看价格。",
+        "gloss": "Look at the prices first.",
+        "pinyin": "xiān kàn kàn jià gé 。"
+      }
+    ],
+    "pinyin": "hā hā ， tāng méi yǒu yāo qiú nǐ shuō huà 。 xiān kàn kàn jià gé 。"
+  },
+  "我们趁所有人在这里，先说明要求。": {
+    "english": "While everyone is here, let us explain the requirements first.",
+    "interlinear": [
+      {
+        "chinese": "我们趁所有人在这里，",
+        "gloss": "While everyone is here,",
+        "pinyin": "wǒ men chèn suǒ yǒu rén zài zhè lǐ ，"
+      },
+      {
+        "chinese": "先说明要求。",
+        "gloss": "let us explain the requirements first.",
+        "pinyin": "xiān shuō míng yāo qiú 。"
+      }
+    ],
+    "pinyin": "wǒ men chèn suǒ yǒu rén zài zhè lǐ ， xiān shuō míng yāo qiú 。"
+  },
+  "我想保护所有人，不过，一顿聚餐不用进攻。": {
+    "english": "I want to protect everyone, but a shared meal does not need an attack.",
+    "interlinear": [
+      {
+        "chinese": "我想保护所有人，",
+        "gloss": "I want to protect everyone,",
+        "pinyin": "wǒ xiǎng bǎo hù suǒ yǒu rén ，"
+      },
+      {
+        "chinese": "不过，一顿聚餐不用进攻。",
+        "gloss": "but a shared meal does not need an attack.",
+        "pinyin": "bú guò ， yí dùn jù cān bú yòng jìn gōng 。"
+      }
+    ],
+    "pinyin": "wǒ xiǎng bǎo hù suǒ yǒu rén ， bú guò ， yí dùn jù cān bú yòng jìn gōng 。"
+  },
+  "你负责，我先听你的要求。": {
+    "english": "You're in charge; I'll listen to your requirements first.",
+    "interlinear": [
+      {
+        "chinese": "你负责，",
+        "gloss": "You're in charge;",
+        "pinyin": "nǐ fù zé ，"
+      },
+      {
+        "chinese": "我先听你的要求。",
+        "gloss": "I'll listen to your requirements first.",
+        "pinyin": "wǒ xiān tīng nǐ de yāo qiú 。"
+      }
+    ],
+    "pinyin": "nǐ fù zé ， wǒ xiān tīng nǐ de yāo qiú 。"
+  },
+  "今天的生意在院子里，屋子没有开门。": {
+    "english": "Today’s business takes place in the courtyard, the building has not opened.",
+    "interlinear": [
+      {
+        "chinese": "今天的生意在院子里，",
+        "gloss": "Today’s business takes place in the courtyard,",
+        "pinyin": "jīn tiān de shēng yi zài yuàn zi lǐ ，"
+      },
+      {
+        "chinese": "屋子没有开门。",
+        "gloss": "the building has not opened.",
+        "pinyin": "wū zi méi yǒu kāi mén 。"
+      }
+    ],
+    "pinyin": "jīn tiān de shēng yi zài yuàn zi lǐ ， wū zi méi yǒu kāi mén 。"
+  },
+  "汤和蜂蜜，还有做汤的水，从Tavi那里来。没有动站里的水。": {
+    "english": "The soup and honey, and the water for making soup, come from Tavi. We have not touched the station's water.",
+    "interlinear": [
+      {
+        "chinese": "汤和蜂蜜，还有做汤的水，",
+        "gloss": "The soup and honey, and the water for making soup,",
+        "pinyin": "tāng hé fēng mì ， hái yǒu zuò tāng de shuǐ ，"
+      },
+      {
+        "chinese": "从Tavi那里来。",
+        "gloss": "come from Tavi.",
+        "pinyin": "cóng Tavi nà lǐ lái 。"
+      },
+      {
+        "chinese": "没有动站里的水。",
+        "gloss": "We have not touched the station's water.",
+        "pinyin": "méi yǒu dòng zhàn lǐ de shuǐ 。"
+      }
+    ],
+    "pinyin": "tāng hé fēng mì ， hái yǒu zuò tāng de shuǐ ， cóng Tavi nà lǐ lái 。 méi yǒu dòng zhàn lǐ de shuǐ 。"
+  },
+  "所有费用记录好了，我的工资也记录好了。": {
+    "english": "All costs have been recorded; My pay has been recorded too.",
+    "interlinear": [
+      {
+        "chinese": "所有费用记录好了，",
+        "gloss": "All costs have been recorded;",
+        "pinyin": "suǒ yǒu fèi yòng jì lù hǎo le ，"
+      },
+      {
+        "chinese": "我的工资也记录好了。",
+        "gloss": "My pay has been recorded too.",
+        "pinyin": "wǒ de gōng zī yě jì lù hǎo le 。"
+      }
+    ],
+    "pinyin": "suǒ yǒu fèi yòng jì lù hǎo le ， wǒ de gōng zī yě jì lù hǎo le 。"
+  },
+  "你卖汤，也卖蜂蜜吗？": {
+    "english": "You sell soup, and honey too?",
+    "interlinear": [
+      {
+        "chinese": "你卖汤，",
+        "gloss": "You sell soup,",
+        "pinyin": "nǐ mài tāng ，"
+      },
+      {
+        "chinese": "也卖蜂蜜吗？",
+        "gloss": "and honey too?",
+        "pinyin": "yě mài fēng mì ma ？"
+      }
+    ],
+    "pinyin": "nǐ mài tāng ， yě mài fēng mì ma ？"
+  },
+  "卖蜂蜜的人和费用都有记录，不是花园的蜜。": {
+    "english": "The honey seller and cost are both recorded; it is not honey from the garden.",
+    "interlinear": [
+      {
+        "chinese": "卖蜂蜜的人和费用都有记录，",
+        "gloss": "The honey seller and cost are both recorded;",
+        "pinyin": "mài fēng mì de rén hé fèi yòng dōu yǒu jì lù ，"
+      },
+      {
+        "chinese": "不是花园的蜜。",
+        "gloss": "it is not honey from the garden.",
+        "pinyin": "bú shì huā yuán de mì 。"
+      }
+    ],
+    "pinyin": "mài fēng mì de rén hé fèi yòng dōu yǒu jì lù ， bú shì huā yuán de mì 。"
+  },
+  "蜂窝还隔开着，蜜蜂没有答应给我们蜜。": {
+    "english": "The nest area is still isolated; the bees did not agree to give us their honey.",
+    "interlinear": [
+      {
+        "chinese": "蜂窝还隔开着，",
+        "gloss": "The nest area is still isolated;",
+        "pinyin": "fēng wō hái gé kāi zhe ，"
+      },
+      {
+        "chinese": "蜜蜂没有答应给我们蜜。",
+        "gloss": "the bees did not agree to give us their honey.",
+        "pinyin": "mì fēng méi yǒu dā ying gěi wǒ men mì 。"
+      }
+    ],
+    "pinyin": "fēng wō hái gé kāi zhe ， mì fēng méi yǒu dā ying gěi wǒ men mì 。"
+  },
+  "不能去采，也不能拍打，小心被蜇。": {
+    "english": "We must not go and collect it, and must not swat them; beware of being stung.",
+    "interlinear": [
+      {
+        "chinese": "不能去采，",
+        "gloss": "We must not go and collect it,",
+        "pinyin": "bù néng qù cǎi ，"
+      },
+      {
+        "chinese": "也不能拍打，",
+        "gloss": "and must not swat them;",
+        "pinyin": "yě bù néng pāi dǎ ，"
+      },
+      {
+        "chinese": "小心被蜇。",
+        "gloss": "beware of being stung.",
+        "pinyin": "xiǎo xīn bèi zhē 。"
+      }
+    ],
+    "pinyin": "bù néng qù cǎi ， yě bù néng pāi dǎ ， xiǎo xīn bèi zhē 。"
+  },
+  "我写了广告，蜂蜜可以减肥，也可以安神。": {
+    "english": "I've written an advertisement: honey can help people lose weight and calm their minds.",
+    "interlinear": [
+      {
+        "chinese": "我写了广告，",
+        "gloss": "I've written an advertisement:",
+        "pinyin": "wǒ xiě le guǎng gào ，"
+      },
+      {
+        "chinese": "蜂蜜可以减肥，也可以安神。",
+        "gloss": "honey can help people lose weight and calm their minds.",
+        "pinyin": "fēng mì kě yǐ jiǎn féi ， yě kě yǐ ān shén 。"
+      }
+    ],
+    "pinyin": "wǒ xiě le guǎng gào ， fēng mì kě yǐ jiǎn féi ， yě kě yǐ ān shén 。"
+  },
+  "你的结论可靠吗？我想喝汤，不想听谎话。": {
+    "english": "Is your conclusion reliable? I want to drink soup, not listen to false claims.",
+    "interlinear": [
+      {
+        "chinese": "你的结论可靠吗？",
+        "gloss": "Is your conclusion reliable?",
+        "pinyin": "nǐ de jié lùn kě kào ma ？"
+      },
+      {
+        "chinese": "我想喝汤，",
+        "gloss": "I want to drink soup,",
+        "pinyin": "wǒ xiǎng hē tāng ，"
+      },
+      {
+        "chinese": "不想听谎话。",
+        "gloss": "not listen to false claims.",
+        "pinyin": "bù xiǎng tīng huǎng huà 。"
+      }
+    ],
+    "pinyin": "nǐ de jié lùn kě kào ma ？ wǒ xiǎng hē tāng ， bù xiǎng tīng huǎng huà 。"
+  },
+  "别人也这样说，我想生意成功。": {
+    "english": "Other people say it too; I want the business to succeed.",
+    "interlinear": [
+      {
+        "chinese": "别人也这样说，",
+        "gloss": "Other people say it too;",
+        "pinyin": "bié rén yě zhè yàng shuō ，"
+      },
+      {
+        "chinese": "我想生意成功。",
+        "gloss": "I want the business to succeed.",
+        "pinyin": "wǒ xiǎng shēng yi chéng gōng 。"
+      }
+    ],
+    "pinyin": "bié rén yě zhè yàng shuō ， wǒ xiǎng shēng yi chéng gōng 。"
+  },
+  "想卖掉，不表示可以说谎话。减肥的结论，你检查过吗？": {
+    "english": "Wanting to sell it does not justify false claims. Have you checked the weight-loss claim?",
+    "interlinear": [
+      {
+        "chinese": "想卖掉，不表示可以说谎话。",
+        "gloss": "Wanting to sell it does not justify false claims.",
+        "pinyin": "xiǎng mài diào ， bù biǎo shì kě yǐ shuō huǎng huà 。"
+      },
+      {
+        "chinese": "减肥的结论，你检查过吗？",
+        "gloss": "Have you checked the weight-loss claim?",
+        "pinyin": "jiǎn féi de jié lùn ， nǐ jiǎn chá guò ma ？"
+      }
+    ],
+    "pinyin": "xiǎng mài diào ， bù biǎo shì kě yǐ shuō huǎng huà 。 jiǎn féi de jié lùn ， nǐ jiǎn chá guò ma ？"
+  },
+  "没有。安神的结论，我不知道是否可靠。我不能这样答应。": {
+    "english": "No. I do not know whether the calming claim is reliable either. I cannot promise that.",
+    "interlinear": [
+      {
+        "chinese": "没有。安神的结论，我不知道是否可靠。",
+        "gloss": "No. I do not know whether the calming claim is reliable either.",
+        "pinyin": "méi yǒu 。 ān shén de jié lùn ， wǒ bù zhī dao shì fǒu kě kào 。"
+      },
+      {
+        "chinese": "我不能这样答应。",
+        "gloss": "I cannot promise that.",
+        "pinyin": "wǒ bù néng zhè yàng dā ying 。"
+      }
+    ],
+    "pinyin": "méi yǒu 。 ān shén de jié lùn ， wǒ bù zhī dao shì fǒu kě kào 。 wǒ bù néng zhè yàng dā ying 。"
+  },
+  "我陪你改，不用等有人批评。": {
+    "english": "I will help you correct it; we do not need to wait for criticism.",
+    "interlinear": [
+      {
+        "chinese": "我陪你改，",
+        "gloss": "I will help you correct it;",
+        "pinyin": "wǒ péi nǐ gǎi ，"
+      },
+      {
+        "chinese": "不用等有人批评。",
+        "gloss": "we do not need to wait for criticism.",
+        "pinyin": "bú yòng děng yǒu rén pī píng 。"
+      }
+    ],
+    "pinyin": "wǒ péi nǐ gǎi ， bú yòng děng yǒu rén pī píng 。"
+  },
+  "我陪你说明，不替你说谎话。": {
+    "english": "I'll help you explain; I will not make false claims for you.",
+    "interlinear": [
+      {
+        "chinese": "我陪你说明，",
+        "gloss": "I'll help you explain;",
+        "pinyin": "wǒ péi nǐ shuō míng ，"
+      },
+      {
+        "chinese": "不替你说谎话。",
+        "gloss": "I will not make false claims for you.",
+        "pinyin": "bú tì nǐ shuō huǎng huà 。"
+      }
+    ],
+    "pinyin": "wǒ péi nǐ shuō míng ， bú tì nǐ shuō huǎng huà 。"
+  },
+  "我不再说减肥、安神，只说汤和蜂蜜多少钱。": {
+    "english": "I will stop making weight-loss and calming claims and state only how much the soup and honey cost.",
+    "interlinear": [
+      {
+        "chinese": "我不再说减肥、安神，",
+        "gloss": "I will stop making weight-loss and calming claims",
+        "pinyin": "wǒ bú zài shuō jiǎn féi 、 ān shén ，"
+      },
+      {
+        "chinese": "只说汤和蜂蜜多少钱。",
+        "gloss": "and state only how much the soup and honey cost.",
+        "pinyin": "zhǐ shuō tāng hé fēng mì duō shǎo qián 。"
+      }
+    ],
+    "pinyin": "wǒ bú zài shuō jiǎn féi 、 ān shén ， zhǐ shuō tāng hé fēng mì duō shǎo qián 。"
+  },
+  "于是，Tavi改了广告。她诚实地向所有人说明。": {
+    "english": "So Tavi corrects the advertisement. She explains honestly to everyone.",
+    "interlinear": [
+      {
+        "chinese": "于是，Tavi改了广告。",
+        "gloss": "So Tavi corrects the advertisement.",
+        "pinyin": "yú shì ，Tavi gǎi le guǎng gào 。"
+      },
+      {
+        "chinese": "她诚实地向所有人说明。",
+        "gloss": "She explains honestly to everyone.",
+        "pinyin": "tā chéng shí de xiàng suǒ yǒu rén shuō míng 。"
+      }
+    ],
+    "pinyin": "yú shì ，Tavi gǎi le guǎng gào 。 tā chéng shí de xiàng suǒ yǒu rén shuō míng 。"
+  },
+  "广告写得甜蜜，不表示结论可靠。": {
+    "english": "The advertisement makes things sound sweet, but that does not make its claims reliable.",
+    "interlinear": [
+      {
+        "chinese": "广告写得甜蜜，",
+        "gloss": "The advertisement makes things sound sweet,",
+        "pinyin": "guǎng gào xiě de tián mì ，"
+      },
+      {
+        "chinese": "不表示结论可靠。",
+        "gloss": "but that does not make its claims reliable.",
+        "pinyin": "bù biǎo shì jié lùn kě kào 。"
+      }
+    ],
+    "pinyin": "guǎng gào xiě de tián mì ， bù biǎo shì jié lùn kě kào 。"
+  },
+  "我想留下甜蜜的记忆，不是叫人上当。今天临开门才检查，我先改。": {
+    "english": "I want to leave sweet memories, not deceive people. We only checked just before opening today; I will correct it first.",
+    "interlinear": [
+      {
+        "chinese": "我想留下甜蜜的记忆，",
+        "gloss": "I want to leave sweet memories,",
+        "pinyin": "wǒ xiǎng liú xià tián mì de jì yì ，"
+      },
+      {
+        "chinese": "不是叫人上当。",
+        "gloss": "not deceive people.",
+        "pinyin": "bú shì jiào rén shàng dàng 。"
+      },
+      {
+        "chinese": "今天临开门才检查，",
+        "gloss": "We only checked just before opening today;",
+        "pinyin": "jīn tiān lín kāi mén cái jiǎn chá ，"
+      },
+      {
+        "chinese": "我先改。",
+        "gloss": "I will correct it first.",
+        "pinyin": "wǒ xiān gǎi 。"
+      }
+    ],
+    "pinyin": "wǒ xiǎng liú xià tián mì de jì yì ， bú shì jiào rén shàng dàng 。 jīn tiān lín kāi mén cái jiǎn chá ， wǒ xiān gǎi 。"
+  },
+  "别临开门才检查。既要负责地卖，也要诚实说。": {
+    "english": "Do not wait until just before opening to check. We must sell responsibly and speak honestly.",
+    "interlinear": [
+      {
+        "chinese": "别临开门才检查。",
+        "gloss": "Do not wait until just before opening to check.",
+        "pinyin": "bié lín kāi mén cái jiǎn chá 。"
+      },
+      {
+        "chinese": "既要负责地卖，",
+        "gloss": "We must sell responsibly",
+        "pinyin": "jì yào fù zé de mài ，"
+      },
+      {
+        "chinese": "也要诚实说。",
+        "gloss": "and speak honestly.",
+        "pinyin": "yě yào chéng shí shuō 。"
+      }
+    ],
+    "pinyin": "bié lín kāi mén cái jiǎn chá 。 jì yào fù zé de mài ， yě yào chéng shí shuō 。"
+  },
+  "既想帮忙，又不愿意听批评，就不能真正帮忙。": {
+    "english": "Since we want to help yet resist criticism, we cannot truly help.",
+    "interlinear": [
+      {
+        "chinese": "既想帮忙，",
+        "gloss": "Since we want to help",
+        "pinyin": "jì xiǎng bāng máng ，"
+      },
+      {
+        "chinese": "又不愿意听批评，",
+        "gloss": "yet resist criticism,",
+        "pinyin": "yòu bú yuàn yì tīng pī píng ，"
+      },
+      {
+        "chinese": "就不能真正帮忙。",
+        "gloss": "we cannot truly help.",
+        "pinyin": "jiù bù néng zhēn zhèng bāng máng 。"
+      }
+    ],
+    "pinyin": "jì xiǎng bāng máng ， yòu bú yuàn yì tīng pī píng ， jiù bù néng zhēn zhèng bāng máng 。"
+  },
+  "我们卖掉汤和蜂蜜，不能把信心也卖掉。": {
+    "english": "We sell the soup and honey, but must not sell away people's trust too.",
+    "interlinear": [
+      {
+        "chinese": "我们卖掉汤和蜂蜜，",
+        "gloss": "We sell the soup and honey,",
+        "pinyin": "wǒ men mài diào tāng hé fēng mì ，"
+      },
+      {
+        "chinese": "不能把信心也卖掉。",
+        "gloss": "but must not sell away people's trust too.",
+        "pinyin": "bù néng bǎ xìn xīn yě mài diào 。"
+      }
+    ],
+    "pinyin": "wǒ men mài diào tāng hé fēng mì ， bù néng bǎ xìn xīn yě mài diào 。"
+  },
+  "那不办宴会了吗？我害怕钱少的人碰钉子。": {
+    "english": "So are we not holding a banquet? I am afraid people with little money will face rejection.",
+    "interlinear": [
+      {
+        "chinese": "那不办宴会了吗？",
+        "gloss": "So are we not holding a banquet?",
+        "pinyin": "nà bú bàn yàn huì le ma ？"
+      },
+      {
+        "chinese": "我害怕钱少的人碰钉子。",
+        "gloss": "I am afraid people with little money will face rejection.",
+        "pinyin": "wǒ hài pà qián shǎo de rén pèng dīng zi 。"
+      }
+    ],
+    "pinyin": "nà bú bàn yàn huì le ma ？ wǒ hài pà qián shǎo de rén pèng dīng zi 。"
+  },
+  "所有人要吃饭，不是来看你表演。": {
+    "english": "People need a meal, not a performance from you.",
+    "interlinear": [
+      {
+        "chinese": "所有人要吃饭，不是来看你表演。",
+        "gloss": "People need a meal, not a performance from you.",
+        "pinyin": "suǒ yǒu rén yào chī fàn ， bú shì lái kàn nǐ biǎo yǎn 。"
+      }
+    ],
+    "pinyin": "suǒ yǒu rén yào chī fàn ， bú shì lái kàn nǐ biǎo yǎn 。"
+  },
+  "我放下讲话的纸，先听别人说。": {
+    "english": "I lower my speech notes and listen to the others first.",
+    "interlinear": [
+      {
+        "chinese": "我放下讲话的纸，",
+        "gloss": "I lower my speech notes",
+        "pinyin": "wǒ fàng xià jiǎng huà de zhǐ ，"
+      },
+      {
+        "chinese": "先听别人说。",
+        "gloss": "and listen to the others first.",
+        "pinyin": "xiān tīng bié rén shuō 。"
+      }
+    ],
+    "pinyin": "wǒ fàng xià jiǎng huà de zhǐ ， xiān tīng bié rén shuō 。"
+  },
+  "我想给所有人留面子，不过，叫他们等我说话。": {
+    "english": "I wanted to help everyone feel respected, but I made them wait for my speech.",
+    "interlinear": [
+      {
+        "chinese": "我想给所有人留面子，",
+        "gloss": "I wanted to help everyone feel respected,",
+        "pinyin": "wǒ xiǎng gěi suǒ yǒu rén liú miàn zi ，"
+      },
+      {
+        "chinese": "不过，叫他们等我说话。",
+        "gloss": "but I made them wait for my speech.",
+        "pinyin": "bú guò ， jiào tā men děng wǒ shuō huà 。"
+      }
+    ],
+    "pinyin": "wǒ xiǎng gěi suǒ yǒu rén liú miàn zi ， bú guò ， jiào tā men děng wǒ shuō huà 。"
+  },
+  "不用害怕丢面子。好好吃一顿，就值得骄傲。": {
+    "english": "There is no need to fear embarrassment. Eating a good meal is something to be proud of.",
+    "interlinear": [
+      {
+        "chinese": "不用害怕丢面子。",
+        "gloss": "There is no need to fear embarrassment.",
+        "pinyin": "bú yòng hài pà diū miàn zi 。"
+      },
+      {
+        "chinese": "好好吃一顿，",
+        "gloss": "Eating a good meal",
+        "pinyin": "hǎo hǎo chī yí dùn ，"
+      },
+      {
+        "chinese": "就值得骄傲。",
+        "gloss": "is something to be proud of.",
+        "pinyin": "jiù zhí dé jiāo ào 。"
+      }
+    ],
+    "pinyin": "bú yòng hài pà diū miàn zi 。 hǎo hǎo chī yí dùn ， jiù zhí dé jiāo ào 。"
+  },
+  "哈哈，你的讲话可以休息了。所有人可以吃了。": {
+    "english": "Ha ha, your speech can take a rest. Everyone can eat now.",
+    "interlinear": [
+      {
+        "chinese": "哈哈，你的讲话可以休息了。",
+        "gloss": "Ha ha, your speech can take a rest.",
+        "pinyin": "hā hā ， nǐ de jiǎng huà kě yǐ xiū xi le 。"
+      },
+      {
+        "chinese": "所有人可以吃了。",
+        "gloss": "Everyone can eat now.",
+        "pinyin": "suǒ yǒu rén kě yǐ chī le 。"
+      }
+    ],
+    "pinyin": "hā hā ， nǐ de jiǎng huà kě yǐ xiū xi le 。 suǒ yǒu rén kě yǐ chī le 。"
+  },
+  "我忍不住笑起来。不是在笑别人。": {
+    "english": "I cannot help laughing. I am not laughing at someone else.",
+    "interlinear": [
+      {
+        "chinese": "我忍不住笑起来。",
+        "gloss": "I cannot help laughing.",
+        "pinyin": "wǒ rěn bú zhù xiào qǐ lái 。"
+      },
+      {
+        "chinese": "不是在笑别人。",
+        "gloss": "I am not laughing at someone else.",
+        "pinyin": "bú shì zài xiào bié rén 。"
+      }
+    ],
+    "pinyin": "wǒ rěn bú zhù xiào qǐ lái 。 bú shì zài xiào bié rén 。"
+  },
+  "我来帮忙记录，不要求别人陪我爱面子。": {
+    "english": "I'll help with the records; I will not ask others to indulge my concern for appearances.",
+    "interlinear": [
+      {
+        "chinese": "我来帮忙记录，",
+        "gloss": "I'll help with the records;",
+        "pinyin": "wǒ lái bāng máng jì lù ，"
+      },
+      {
+        "chinese": "不要求别人陪我爱面子。",
+        "gloss": "I will not ask others to indulge my concern for appearances.",
+        "pinyin": "bú yāo qiú bié rén péi wǒ ài miàn zi 。"
+      }
+    ],
+    "pinyin": "wǒ lái bāng máng jì lù ， bú yāo qiú bié rén péi wǒ ài miàn zi 。"
+  },
+  "不能因为钱少就碰钉子。先说明要求。": {
+    "english": "People must not face rejection because they have little money. Explain the requirements first.",
+    "interlinear": [
+      {
+        "chinese": "不能因为钱少就碰钉子。",
+        "gloss": "People must not face rejection because they have little money.",
+        "pinyin": "bù néng yīn wèi qián shǎo jiù pèng dīng zi 。"
+      },
+      {
+        "chinese": "先说明要求。",
+        "gloss": "Explain the requirements first.",
+        "pinyin": "xiān shuō míng yāo qiú 。"
+      }
+    ],
+    "pinyin": "bù néng yīn wèi qián shǎo jiù pèng dīng zi 。 xiān shuō míng yāo qiú 。"
+  },
+  "每份五块以下，自愿多给的钱分别记录。": {
+    "english": "Each portion costs five credits or less; voluntary extra contributions are recorded separately.",
+    "interlinear": [
+      {
+        "chinese": "每份五块以下，",
+        "gloss": "Each portion costs five credits or less;",
+        "pinyin": "měi fèn wǔ kuài yǐ xià ，"
+      },
+      {
+        "chinese": "自愿多给的钱分别记录。",
+        "gloss": "voluntary extra contributions are recorded separately.",
+        "pinyin": "zì yuàn duō gěi de qián fēn bié jì lù 。"
+      }
+    ],
+    "pinyin": "měi fèn wǔ kuài yǐ xià ， zì yuàn duō gěi de qián fēn bié jì lù 。"
+  },
+  "费用和收入分别记录，剩下的钱，只能为屋子用。": {
+    "english": "Costs and income are recorded separately; The remaining money may only be used for the building.",
+    "interlinear": [
+      {
+        "chinese": "费用和收入分别记录，",
+        "gloss": "Costs and income are recorded separately;",
+        "pinyin": "fèi yòng hé shōu rù fēn bié jì lù ，"
+      },
+      {
+        "chinese": "剩下的钱，只能为屋子用。",
+        "gloss": "The remaining money may only be used for the building.",
+        "pinyin": "shèng xià de qián ， zhǐ néng wèi wū zi yòng 。"
+      }
+    ],
+    "pinyin": "fèi yòng hé shōu rù fēn bié jì lù ， shèng xià de qián ， zhǐ néng wèi wū zi yòng 。"
+  },
+  "从前答应的花苗还没有到。不能提前卖。": {
+    "english": "The previously promised seedlings have not arrived yet. They cannot be sold in advance.",
+    "interlinear": [
+      {
+        "chinese": "从前答应的花苗还没有到。",
+        "gloss": "The previously promised seedlings have not arrived yet.",
+        "pinyin": "cóng qián dā ying de huā miáo hái méi yǒu dào 。"
+      },
+      {
+        "chinese": "不能提前卖。",
+        "gloss": "They cannot be sold in advance.",
+        "pinyin": "bù néng tí qián mài 。"
+      }
+    ],
+    "pinyin": "cóng qián dā ying de huā miáo hái méi yǒu dào 。 bù néng tí qián mài 。"
+  },
+  "五颜六色的鲜花不能随便采，花期和四季也要考虑。": {
+    "english": "The colorful flowers cannot be picked freely; flowering times and the seasons must be considered too.",
+    "interlinear": [
+      {
+        "chinese": "五颜六色的鲜花不能随便采，",
+        "gloss": "The colorful flowers cannot be picked freely;",
+        "pinyin": "wǔ yán liù sè de xiān huā bù néng suí biàn cǎi ，"
+      },
+      {
+        "chinese": "花期和四季也要考虑。",
+        "gloss": "flowering times and the seasons must be considered too.",
+        "pinyin": "huā qī hé sì jì yě yào kǎo lǜ 。"
+      }
+    ],
+    "pinyin": "wǔ yán liù sè de xiān huā bù néng suí biàn cǎi ， huā qī hé sì jì yě yào kǎo lǜ 。"
+  },
+  "有刺儿，不表示要进攻。我们保护蜜蜂，也保护人的路。": {
+    "english": "Having a stinger does not mean intending to attack. We protect the bees and people's path too.",
+    "interlinear": [
+      {
+        "chinese": "有刺儿，不表示要进攻。",
+        "gloss": "Having a stinger does not mean intending to attack.",
+        "pinyin": "yǒu cìr ， bù biǎo shì yào jìn gōng 。"
+      },
+      {
+        "chinese": "我们保护蜜蜂，",
+        "gloss": "We protect the bees",
+        "pinyin": "wǒ men bǎo hù mì fēng ，"
+      },
+      {
+        "chinese": "也保护人的路。",
+        "gloss": "and people's path too.",
+        "pinyin": "yě bǎo hù rén de lù 。"
+      }
+    ],
+    "pinyin": "yǒu cìr ， bù biǎo shì yào jìn gōng 。 wǒ men bǎo hù mì fēng ， yě bǎo hù rén de lù 。"
+  },
+  "不要一窝蜂地来。达到安全要求，才能继续。": {
+    "english": "Do not rush over in a crowd. Meet the safety requirements before proceeding.",
+    "interlinear": [
+      {
+        "chinese": "不要一窝蜂地来。",
+        "gloss": "Do not rush over in a crowd.",
+        "pinyin": "bú yào yì wō fēng de lái 。"
+      },
+      {
+        "chinese": "达到安全要求，",
+        "gloss": "Meet the safety requirements",
+        "pinyin": "dá dào ān quán yāo qiú ，"
+      },
+      {
+        "chinese": "才能继续。",
+        "gloss": "before proceeding.",
+        "pinyin": "cái néng jì xù 。"
+      }
+    ],
+    "pinyin": "bú yào yì wō fēng de lái 。 dá dào ān quán yāo qiú ， cái néng jì xù 。"
+  },
+  "所有人听了要求，于是慢慢走过来。": {
+    "english": "Everyone hears the instructions and then approaches slowly.",
+    "interlinear": [
+      {
+        "chinese": "所有人听了要求，",
+        "gloss": "Everyone hears the instructions",
+        "pinyin": "suǒ yǒu rén tīng le yāo qiú ，"
+      },
+      {
+        "chinese": "于是慢慢走过来。",
+        "gloss": "and then approaches slowly.",
+        "pinyin": "yú shì màn màn zǒu guò lái 。"
+      }
+    ],
+    "pinyin": "suǒ yǒu rén tīng le yāo qiú ， yú shì màn màn zǒu guò lái 。"
+  },
+  "趁汤还热，请所有人吃吧。": {
+    "english": "While the soup is still warm, please eat.",
+    "interlinear": [
+      {
+        "chinese": "趁汤还热，",
+        "gloss": "While the soup is still warm,",
+        "pinyin": "chèn tāng hái rè ，"
+      },
+      {
+        "chinese": "请所有人吃吧。",
+        "gloss": "please eat.",
+        "pinyin": "qǐng suǒ yǒu rén chī ba 。"
+      }
+    ],
+    "pinyin": "chèn tāng hái rè ， qǐng suǒ yǒu rén chī ba 。"
+  },
+  "我的目的不是叫人表扬我。所有人一起吃，比我说话好。": {
+    "english": "My aim is not to make people praise me. Eating together is better than my speech.",
+    "interlinear": [
+      {
+        "chinese": "我的目的不是叫人表扬我。",
+        "gloss": "My aim is not to make people praise me.",
+        "pinyin": "wǒ de mù dì bú shì jiào rén biǎo yáng wǒ 。"
+      },
+      {
+        "chinese": "所有人一起吃，比我说话好。",
+        "gloss": "Eating together is better than my speech.",
+        "pinyin": "suǒ yǒu rén yì qǐ chī ， bǐ wǒ shuō huà hǎo 。"
+      }
+    ],
+    "pinyin": "wǒ de mù dì bú shì jiào rén biǎo yáng wǒ 。 suǒ yǒu rén yì qǐ chī ， bǐ wǒ shuō huà hǎo 。"
+  },
+  "我说，你检查。所有人一起负责。": {
+    "english": "I will read it aloud and you check. Everyone takes responsibility together.",
+    "interlinear": [
+      {
+        "chinese": "我说，你检查。",
+        "gloss": "I will read it aloud and you check.",
+        "pinyin": "wǒ shuō ， nǐ jiǎn chá 。"
+      },
+      {
+        "chinese": "所有人一起负责。",
+        "gloss": "Everyone takes responsibility together.",
+        "pinyin": "suǒ yǒu rén yì qǐ fù zé 。"
+      }
+    ],
+    "pinyin": "wǒ shuō ， nǐ jiǎn chá 。 suǒ yǒu rén yì qǐ fù zé 。"
+  },
+  "你愿意听，我很感动。今天的批评值得听。": {
+    "english": "I am moved by your willingness to listen. Today’s criticism is worth hearing.",
+    "interlinear": [
+      {
+        "chinese": "你愿意听，我很感动。",
+        "gloss": "I am moved by your willingness to listen.",
+        "pinyin": "nǐ yuàn yì tīng ， wǒ hěn gǎn dòng 。"
+      },
+      {
+        "chinese": "今天的批评值得听。",
+        "gloss": "Today’s criticism is worth hearing.",
+        "pinyin": "jīn tiān de pī píng zhí dé tīng 。"
+      }
+    ],
+    "pinyin": "nǐ yuàn yì tīng ， wǒ hěn gǎn dòng 。 jīn tiān de pī píng zhí dé tīng 。"
+  },
+  "汤和蜂蜜都卖掉了。所有人检查费用，把剩下的钱记录下来。": {
+    "english": "The soup and honey have sold out. Everyone checks the costs and records the remaining money.",
+    "interlinear": [
+      {
+        "chinese": "汤和蜂蜜都卖掉了。",
+        "gloss": "The soup and honey have sold out.",
+        "pinyin": "tāng hé fēng mì dōu mài diào le 。"
+      },
+      {
+        "chinese": "所有人检查费用，",
+        "gloss": "Everyone checks the costs",
+        "pinyin": "suǒ yǒu rén jiǎn chá fèi yòng ，"
+      },
+      {
+        "chinese": "把剩下的钱记录下来。",
+        "gloss": "and records the remaining money.",
+        "pinyin": "bǎ shèng xià de qián jì lù xià lái 。"
+      }
+    ],
+    "pinyin": "tāng hé fēng mì dōu mài diào le 。 suǒ yǒu rén jiǎn chá fèi yòng ， bǎ shèng xià de qián jì lù xià lái 。"
+  },
+  "不能偷偷用钱，所有人要知道结论。": {
+    "english": "We must not spend the money secretly; everyone must know the outcome.",
+    "interlinear": [
+      {
+        "chinese": "不能偷偷用钱，",
+        "gloss": "We must not spend the money secretly;",
+        "pinyin": "bù néng tōu tōu yòng qián ，"
+      },
+      {
+        "chinese": "所有人要知道结论。",
+        "gloss": "everyone must know the outcome.",
+        "pinyin": "suǒ yǒu rén yào zhī dao jié lùn 。"
+      }
+    ],
+    "pinyin": "bù néng tōu tōu yòng qián ， suǒ yǒu rén yào zhī dao jié lùn 。"
+  },
+  "今天的生意结束了。屋子还要修，不能提前开门。": {
+    "english": "Today's business is finished. The building still needs repairs; we cannot open early.",
+    "interlinear": [
+      {
+        "chinese": "今天的生意结束了。",
+        "gloss": "Today's business is finished.",
+        "pinyin": "jīn tiān de shēng yi jié shù le 。"
+      },
+      {
+        "chinese": "屋子还要修，",
+        "gloss": "The building still needs repairs;",
+        "pinyin": "wū zi hái yào xiū ，"
+      },
+      {
+        "chinese": "不能提前开门。",
+        "gloss": "we cannot open early.",
+        "pinyin": "bù néng tí qián kāi mén 。"
+      }
+    ],
+    "pinyin": "jīn tiān de shēng yi jié shù le 。 wū zi hái yào xiū ， bù néng tí qián kāi mén 。"
+  },
+  "水和从前一样。然后，我们按记录买用品。": {
+    "english": "The water is unchanged. Next, we will buy supplies according to the record.",
+    "interlinear": [
+      {
+        "chinese": "水和从前一样。",
+        "gloss": "The water is unchanged.",
+        "pinyin": "shuǐ hé cóng qián yí yàng 。"
+      },
+      {
+        "chinese": "然后，我们按记录买用品。",
+        "gloss": "Next, we will buy supplies according to the record.",
+        "pinyin": "rán hòu ， wǒ men àn jì lù mǎi yòng pǐn 。"
+      }
+    ],
+    "pinyin": "shuǐ hé cóng qián yí yàng 。 rán hòu ， wǒ men àn jì lù mǎi yòng pǐn 。"
+  },
+  "承认自己爱面子。": {
+    "english": "Admit that I care about appearances.",
+    "interlinear": [
+      {
+        "chinese": "承认自己爱面子。",
+        "gloss": "Admit that I care about appearances.",
+        "pinyin": "chéng rèn zì jǐ ài miàn zi 。"
+      }
+    ],
+    "pinyin": "chéng rèn zì jǐ ài miàn zi 。"
+  },
+  "先听Tavi的要求。": {
+    "english": "Listen to Tavi’s requirements first.",
+    "interlinear": [
+      {
+        "chinese": "先听Tavi的要求。",
+        "gloss": "Listen to Tavi’s requirements first.",
+        "pinyin": "xiān tīng Tavi de yāo qiú 。"
+      }
+    ],
+    "pinyin": "xiān tīng Tavi de yāo qiú 。"
+  },
+  "先诚实地改广告。": {
+    "english": "Correct the advertisement honestly first.",
+    "interlinear": [
+      {
+        "chinese": "先诚实地改广告。",
+        "gloss": "Correct the advertisement honestly first.",
+        "pinyin": "xiān chéng shí de gǎi guǎng gào 。"
+      }
+    ],
+    "pinyin": "xiān chéng shí de gǎi guǎng gào 。"
+  },
+  "向等着的人说明。": {
+    "english": "Explain to those who are waiting.",
+    "interlinear": [
+      {
+        "chinese": "向等着的人说明。",
+        "gloss": "Explain to those who are waiting.",
+        "pinyin": "xiàng děng zhe de rén shuō míng 。"
+      }
+    ],
+    "pinyin": "xiàng děng zhe de rén shuō míng 。"
+  },
+  "不要求像宴会一样。": {
+    "english": "Do not insist on making it a banquet.",
+    "interlinear": [
+      {
+        "chinese": "不要求像宴会一样。",
+        "gloss": "Do not insist on making it a banquet.",
+        "pinyin": "bú yāo qiú xiàng yàn huì yí yàng 。"
+      }
+    ],
+    "pinyin": "bú yāo qiú xiàng yàn huì yí yàng 。"
+  },
+  "先听所有人的要求。": {
+    "english": "Listen to everyone’s requirements first.",
+    "interlinear": [
+      {
+        "chinese": "先听所有人的要求。",
+        "gloss": "Listen to everyone’s requirements first.",
+        "pinyin": "xiān tīng suǒ yǒu rén de yāo qiú 。"
+      }
+    ],
+    "pinyin": "xiān tīng suǒ yǒu rén de yāo qiú 。"
+  },
+  "和Min一起检查记录。": {
+    "english": "Check the records with Min.",
+    "interlinear": [
+      {
+        "chinese": "和Min一起检查记录。",
+        "gloss": "Check the records with Min.",
+        "pinyin": "hé Min yì qǐ jiǎn chá jì lù 。"
+      }
+    ],
+    "pinyin": "hé Min yì qǐ jiǎn chá jì lù 。"
+  },
+  "先感谢Tavi。": {
+    "english": "Thank Tavi first.",
+    "interlinear": [
+      {
+        "chinese": "先感谢Tavi。",
+        "gloss": "Thank Tavi first.",
+        "pinyin": "xiān gǎn xiè Tavi。"
+      }
+    ],
+    "pinyin": "xiān gǎn xiè Tavi。"
+  }
+}

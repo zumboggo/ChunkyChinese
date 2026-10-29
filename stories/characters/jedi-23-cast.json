@@ -1,0 +1,23 @@
+[
+  {
+    "id": "Orr",
+    "name": "Orr",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "side-part",
+      "glasses": "none",
+      "outfit": "suit",
+      "face": "angular",
+      "eyes": "keen"
+    },
+    "palette": {
+      "skin": "#d6aa85",
+      "hair": "#38332d",
+      "shirt": "#526777",
+      "trim": "#c8ac63"
+    },
+    "provenance": "Original adult vendor for Episode 23; no real-person likeness."
+  }
+]

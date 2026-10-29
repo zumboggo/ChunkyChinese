@@ -1,0 +1,23 @@
+[
+  {
+    "id": "Tavi",
+    "name": "Tavi",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "bob",
+      "glasses": "none",
+      "outfit": "workshirt",
+      "face": "round",
+      "eyes": "gentle"
+    },
+    "palette": {
+      "skin": "#c88f68",
+      "hair": "#49352e",
+      "shirt": "#af6549",
+      "trim": "#e8cf9d"
+    },
+    "provenance": "Original adult resident cook for Episode 22; no real-person likeness."
+  }
+]
