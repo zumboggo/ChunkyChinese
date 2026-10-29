@@ -173,6 +173,14 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   }
   void advance(null);
  }}>
+  <div className="audio-mode-toolbar">
+   {audioModeOptions.secondEnabled&&!state.ended&&current.type!=='choice'&&<span>Encounter {encounter} of 2</span>}
+   {audioModeRunning&&!state.ended&&<button type="button" onClick={()=>{if(audioModePaused){setError('');setAudioModePaused(false)}else pauseAudioMode()}}>{audioModePaused?'Resume Audio Mode':'Pause Audio Mode'}</button>}
+   {audioModeRunning&&<span role="status">{state.ended?'Episode complete':audioModePaused?'Audio Mode paused':audioModeStatus}</span>}
+  </div>
+  <AudioModeDialog onPocket={()=>{stopAudioMode();generation.current++;lock.current=false;setBusy(false);sound.current?.pause();motion.current?.abort();setAudioModeOpen(false);setPocketSession({start:progress,options:{...audioModeOptions}})}} open={audioModeOpen} running={audioModeRunning} options={audioModeOptions} onOptions={setAudioModeOptions} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss} onChinese={setShowChinese} onPinyin={setShowPinyin} onGloss={setShowGloss} onClose={()=>setAudioModeOpen(false)} onStart={()=>{setError('');setAudioModePaused(false);setAudioModeRunning(true);setAudioModeOpen(false)}} onStop={()=>{stopAudioMode();setAudioModeOpen(false)}}/>
+  <details className="episode-settings" onKeyDown={e=>{if(e.key==='Escape'){e.currentTarget.open=false;e.currentTarget.querySelector('summary')?.focus();}}}>
+   <summary>Controls <span aria-hidden="true">⌄</span></summary><div className="episode-settings-panel">
   <div className="story-slide-toggles" role="group" aria-label="Story audio and text">
    <div role="group" aria-label="Audio"><span>Audio:</span>
     <button type="button" aria-label="Audio: English" aria-pressed={activeAudio.english} onClick={()=>setAudioModeOptions(o=>secondEncounter?{...o,second:{...o.second!,english:!o.second!.english}}:{...o,english:!o.english})}>English</button>
@@ -184,28 +192,17 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
     <button type="button" aria-label="Text: English" aria-pressed={display.showGloss} onClick={()=>secondEncounter?setAudioModeOptions(o=>({...o,second:{...o.second!,showGloss:!o.second!.showGloss}})):setShowGloss(v=>!v)}>English</button>
    </div>
   </div>
-  <div className="audio-mode-toolbar">
-   {audioModeOptions.secondEnabled&&!state.ended&&current.type!=='choice'&&<span>Encounter {encounter} of 2</span>}
    <button type="button" aria-haspopup="dialog" onClick={()=>{slideAudioController.current?.abort();sound.current?.pause();audioModeController.current?.abort();setAudioModeOpen(true)}}>Audio Mode</button>
-   {audioModeRunning&&!state.ended&&<button type="button" onClick={()=>{if(audioModePaused){setError('');setAudioModePaused(false)}else pauseAudioMode()}}>{audioModePaused?'Resume Audio Mode':'Pause Audio Mode'}</button>}
-   {audioModeRunning&&<span role="status">{state.ended?'Episode complete':audioModePaused?'Audio Mode paused':audioModeStatus}</span>}
-  </div>
-  <AudioModeDialog onPocket={()=>{stopAudioMode();generation.current++;lock.current=false;setBusy(false);sound.current?.pause();motion.current?.abort();setAudioModeOpen(false);setPocketSession({start:progress,options:{...audioModeOptions}})}} open={audioModeOpen} running={audioModeRunning} options={audioModeOptions} onOptions={setAudioModeOptions} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss} onChinese={setShowChinese} onPinyin={setShowPinyin} onGloss={setShowGloss} onClose={()=>setAudioModeOpen(false)} onStart={()=>{setError('');setAudioModePaused(false);setAudioModeRunning(true);setAudioModeOpen(false)}} onStop={()=>{stopAudioMode();setAudioModeOpen(false)}}/>
-  <details className="episode-settings" onKeyDown={e=>{if(e.key==='Escape'){e.currentTarget.open=false;e.currentTarget.querySelector('summary')?.focus();}}}>
-   <summary>Settings</summary><div className="episode-settings-panel">
+
    {settingsContent}
+   <details className="cinema-preferences"><summary>Sound & motion</summary>
   {!state.ended&&<EpisodeAtmosphere preferencesKey={preferencesKey+':sound'} root={root} preset={state.ended?'none':state.stage.ambience} ducked={audioPlaying&&voiceVolume>0} voiceVolume={voiceVolume} onVoiceVolume={setVoiceVolume}/>}
-   <fieldset className="chunk-view-settings"><legend>Default view</legend><p>Show these before you tap a chunk. Turn all three off for listening practice:</p>
-    <label><input type="checkbox" checked={showChinese} onChange={e=>setShowChinese(e.target.checked)}/> Characters</label>
-    <label><input type="checkbox" checked={showPinyin} onChange={e=>setShowPinyin(e.target.checked)}/> Pinyin</label>
-    <label><input type="checkbox" checked={showGloss} onChange={e=>setShowGloss(e.target.checked)}/> English</label>
-    <p><strong>Revealed view:</strong> tap a chunk to add the hidden characters, pinyin, or English. Tap again to return to your default view.</p>
-   </fieldset>
+   <p className="cinema-chunk-help">Tap a chunk to reveal hidden characters, pinyin, or English. Tap again to return to your default view.</p>
 
    {onReplayOpening&&<button onClick={onReplayOpening}>Replay opening</button>}
    <label><input type="checkbox" checked={motionPaused} onChange={e=>setMotionPaused(e.target.checked)}/> Pause scene motion</label>
    <label><input type="checkbox" checked={reduceMotion} onChange={e=>setReduceMotion(e.target.checked)}/> Reduce motion</label>
-   </div></details>
+   </details></div></details>
   <StoryStage pack={pack} state={state} current={current} speaking={speaking&&!state.ended} reduced={reduced} responses={responses} motionPaused={motionPaused}/>
   <div className="story-meters">{Object.entries(compiled.story.variables).filter(([,v])=>(v as {visible:boolean}).visible).map(([id])=><span key={id}>{id}: {String(state.variables[id])}</span>)}</div>
   <section className="story-dialogue" aria-live="polite">{state.ended?<>{pack.outcomeScorecard&&<OutcomeScorecard definition={pack.outcomeScorecard} state={state}/>}<h2>{pack.quiz.length===4?(score!==null&&score>=75?'Complete':'Four questions before we return'):'Scene complete'}</h2>{pack.quiz.length===4&&<>{score!==null&&<p>{score}/100 · {score>=75?'Complete':'Review and retry'}</p>}{(score===null||score<75)&&<><div data-quiz>{pack.quiz.map((q,i)=><fieldset key={i}><legend>{q.prompt}</legend>{q.options.map((o,j)=><button key={j} aria-pressed={answers[i]===j} onClick={()=>setAnswers(answers.map((a,k)=>k===i?j:a))}>{j+1}. {o}</button>)}{score!==null&&<p>{q.explanation}</p>}</fieldset>)}</div><button data-next disabled={answers.includes(-1)} onClick={()=>{const p={...progress,quizzes:[...progress.quizzes,answers]};setProgress(p);onProgress?.(p);setAnswers([-1,-1,-1,-1])}}>Check answers</button></>}</>}{onNextEpisode&&(pack.quiz.length!==4||(score!==null&&score>=75))&&<div className="episode-up-next"><p className="game-kicker">UP NEXT</p>{nextEpisodePreview&&<><h3>{nextEpisodePreview.title}</h3><p>{nextEpisodePreview.teaser}</p></>}<button className="next-episode" data-next onClick={onNextEpisode}>Continue to {nextEpisodePreview?.number?`Episode ${nextEpisodePreview.number}`:'next episode'} →</button></div>}{onComplete&&<button data-next onClick={onComplete}>Continue to the conversation</button>}</>:current.type==='choice'?<><h2>What do I do?</h2>{current.options.map((o:{id:string;text:string},i:number)=><div className="episode-choice-card" key={o.id}><EpisodeInterlinear text={o.text} line={pack.chinese?.lines[o.text]} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss} interactive/><button className="episode-choice" aria-label={`Choose option ${i+1}`} data-next disabled={busy} onClick={()=>void advance(o.id)}>Choose {i+1}</button>{autoPlay&&<button className="audio-play" aria-label={'Hear option: '+o.text} onClick={()=>play(o.text,false,false,true)}><PlayIcon/></button>}</div>)}</>:<><strong>{current.type==='act'||current.beat?'On the scene':current.actor==='I'?'My story':pack.assets.characters[current.actor]?.name}</strong><div className="episode-line">{(display.showChinese||display.showPinyin||display.showGloss)&&<EpisodeInterlinear key={`${state.cursor}:${encounter}`} text={current.text} line={line} showChinese={display.showChinese} showPinyin={display.showPinyin} showGloss={display.showGloss} interactive/>}</div>{autoPlay&&<button className="audio-play" aria-label={audioPlaying?"Pause audio":"Play audio"} title="Play / pause (Space)" onClick={()=>play()}>{audioPlaying?'Pause':<PlayIcon/>}</button>}<button data-next disabled={busy} onClick={()=>void advance(null)}>{busy?'Action playing…':'Continue →'}</button></>}{error&&<p role="status">{error}</p>}</section>

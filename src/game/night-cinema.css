@@ -115,3 +115,44 @@
  padding:12px 24px;
  font-weight:700;
 }
+
+.game-playing .cinema-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.game-playing .cinema-header h1{flex:1;min-width:0;font-size:20px;line-height:1.35;margin:0;text-wrap:balance}
+.game-playing .cinema-back{flex:none;width:44px;min-height:44px;margin:0;padding:0;border:0;background:transparent;color:var(--cinema-ink);font:32px/1 system-ui}
+.game-playing details.cinema-more{position:relative;flex:none;margin:0;padding:0;border:0;background:transparent}
+.game-playing .cinema-more>summary{display:grid;place-items:center;width:44px;min-height:44px;list-style:none;font-size:24px;color:var(--cinema-gold);border-radius:50%}
+.game-playing .cinema-more>summary::-webkit-details-marker{display:none}
+.game-playing .cinema-more[open]>summary{background:#20364a}
+.game-playing .cinema-more .episode-restart-controls{position:absolute;right:0;top:48px;z-index:30;width:190px;display:grid;gap:6px;margin:0;padding:10px;background:#10263b;border:1px solid #61748b;border-radius:16px;box-shadow:0 12px 32px #0006}
+.game-playing .cinema-more button{margin:0;text-align:left}
+.game-playing .audio-mode-toolbar{float:left;max-width:calc(100% - 130px);min-height:44px;margin:0 0 10px;font-size:13px;color:var(--cinema-muted)}
+.game-playing .audio-mode-toolbar:empty{display:none}
+.game-playing .audio-mode-toolbar button{background:#10263b;color:var(--cinema-gold);border-color:#61748b;font-size:12px}
+.game-playing .audio-mode-toolbar [role=status]{color:var(--cinema-muted)}
+.game-playing .episode-settings{margin:0 0 12px;min-height:44px}
+.game-playing .episode-settings>summary{border:1px solid #cfaa6a;border-radius:24px;color:var(--cinema-gold);gap:12px;padding:0 16px}
+.game-playing .episode-settings[open]>summary{background:#20364a;margin-bottom:10px}
+.game-playing .episode-settings[open]>summary span{transform:rotate(180deg)}
+.game-playing .episode-settings-panel{clear:both;gap:12px}
+.game-playing .episode-settings-panel .story-slide-toggles{margin:0;padding:0;border:0;background:transparent}
+.game-playing .episode-settings-panel>button{justify-self:start;margin:0;background:#152d43;color:var(--cinema-ink);border-color:#61748b;border-radius:24px}
+.game-playing .episode-settings-panel .game-text-size{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0;font-size:14px}
+.game-playing .episode-settings-panel .game-text-size select{max-width:65%;min-height:44px}
+.game-playing .episode-settings-panel details.cinema-preferences{margin:0;padding:0;border:0}
+.game-playing .cinema-preferences>summary{min-height:44px;display:flex;align-items:center;color:var(--cinema-muted);font-size:13px}
+.game-playing .cinema-preferences>summary::after{content:'⌄';margin-left:auto}
+.game-playing .cinema-preferences[open]>summary::after{content:'⌃'}
+.game-playing .cinema-chunk-help{font-size:13px;color:var(--cinema-muted)}
+.game-playing .story-stage-living{clear:both}
+.game-playing .story-dialogue button[data-next]:not(.episode-choice){border-radius:28px;box-shadow:none;min-width:180px}
+.game-playing .animated-story footer>button{display:flex;align-items:center;justify-content:space-between;width:100%;border:1px solid #61748b;border-radius:14px;padding:12px 16px;text-decoration:none;text-align:left}
+.game-playing .animated-story footer>button::after{content:'⌄';margin-left:12px}
+.game-playing .animated-story footer>button[aria-expanded=true]::after{content:'⌃'}
+@media(max-width:600px){
+ .game-playing .cinema-header{gap:6px;margin-bottom:8px}
+ .game-playing .cinema-header h1{font-size:17px}
+ .game-playing .story-stage-living,.game-playing .animated-story:has(.episode-interlinear) .story-stage-living{height:clamp(170px,26svh,240px);min-height:170px;max-height:240px}
+ .game-playing .story-dialogue button[data-next]:not(.episode-choice){min-width:0;width:calc(100% - 78px);margin:6px 0;vertical-align:middle}
+ .game-playing .story-dialogue:has(.episode-up-next) button[data-next],.game-playing .story-dialogue:has(h2) button[data-next]:not(.episode-choice){width:100%}
+ .game-playing .game-key-hints{display:none}
+}
