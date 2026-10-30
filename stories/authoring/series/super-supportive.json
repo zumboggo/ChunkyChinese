@@ -4,18 +4,26 @@
   "source": {
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
-    "chapter": "OEBPS/Text/0002_TWO_Mistakes.xhtml",
-    "nextStart": "“I’m glad,” said Hannah.",
-    "nextEndBefore": "Alden’s vision blurred.",
-    "continuationNote": "The bubble explanation and truth about the disaster; allow grief and aftermath when extending boundary deliberately."
+    "chapter": "OEBPS/Text/0003_THREE_90_seconds.xhtml",
+    "nextStart": "Time passed. Things changed.",
+    "nextEndBefore": "At midnight, the house was still noisy,",
+    "continuationNote": "Years pass; life with Aunt Connie, coach concern, a noisy home and the System homework. Stop before the midnight research."
   },
   "completed": [
     {
       "episode": "supportive-01-v1",
       "end": "Hannah agrees to ask about the shrapnel and admires Alden’s scar; he feels heard. The cause of his parents’ deaths is not yet explained."
+    },
+    {
+      "episode": "supportive-02-v1",
+      "end": "Hannah explains the bubble and the pursuit to the empty building. Alden learns that even his rescuer does not fully understand her powers."
+    },
+    {
+      "episode": "supportive-03-v1",
+      "end": "Hannah admits counting the wrong floor. Alden cries and shouts for everyone to leave; Hannah goes while Amanda approaches, the opposite of what he wanted."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-01.json",
+  "assetsFrom": "stories/animated/supportive-03.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -29,19 +37,19 @@
     "language": "Simplified Mandarin, interlinear chunks, reviewed pinyin, cached Mandarin audio."
   },
   "continuity": [
-    "Alden remains a child in hospital; design A is the later teenage reference.",
-    "Wummy was rescued with him. His parents are dead; he still seeks the full explanation.",
-    "Hannah has consent to visit, has promised to ask about the saw fragment, and has admired his purple scar.",
-    "No persistent branch changes to source events.",
-    "Intimate character drama, quiet local payoffs, occasional source-supported perspective shifts."
+    "Hannah answered Alden honestly and accepted responsibility for stabilizing the eighth floor instead of the seventh.",
+    "Arjun was acting on Hannah’s incorrect assurance; Alden’s parents died when the fight crossed the street into their apartment.",
+    "Alden’s grief drove Hannah away even though he wanted her to stay. Amanda remained.",
+    "Next chapter moves forward in time to Alden living with Aunt Connie, aged eleven during the baseball and homework scenes.",
+    "Approved A remains the identity anchor; adjust age faithfully. Local choices do not alter canonical events."
   ],
   "castRecipes": "stories/characters/super-supportive/cast.json",
   "castBundle": "public/stories/animated/cast/super-supportive.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-01-v1",
-    "nextStart": "“I’m glad,” said Hannah.",
-    "nextEndBefore": "Alden’s vision blurred.",
-    "assetsFrom": "stories/animated/supportive-01.json"
+    "note": "Published through supportive-03-v1",
+    "nextStart": "Time passed. Things changed.",
+    "nextEndBefore": "At midnight, the house was still noisy,",
+    "assetsFrom": "stories/animated/supportive-03.json"
   }
 }
