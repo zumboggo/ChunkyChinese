@@ -1,4 +1,4 @@
-import {chooseEpisodeOption} from './helpers/episode-controls'
+import {chooseEpisodeOption,continueEpisode,reviewEpisodeLine} from './helpers/episode-controls'
 import {test,expect} from '@playwright/test'
 import {readFileSync} from 'node:fs'
 import {createHash} from 'node:crypto'
@@ -6,7 +6,7 @@ import {compileStory,replayStory} from '../src/game/animation/shared/engine/stor
 import {evaluateOutcomeScorecard} from '../src/game/animation/outcomeScorecard'
 import type {ChinesePackage} from '../src/game/animation/package'
 type Beat={type:string;id?:string;text:string;option?:string}
-type Fixture={packagePath:string;routes:{choices:string[];beats:Beat[]}[]}
+type Fixture={packagePath:string;routes:{choices:string[];beats:Beat[]}[];review?:{lines:string[]};catalog?:{id:string;category:string;intro?:{src:string;poster:string;durationSeconds?:number}}}
 const fixture:Fixture=process.env.EPISODE_FIXTURE?JSON.parse(readFileSync(process.env.EPISODE_FIXTURE,'utf8')):{packagePath:'',routes:[]}
 for(const [index,route] of fixture.routes.entries())test(`authoring route ${index+1}: ${route.choices.join('/')}`,async({page},info)=>{
  const retryTargets=JSON.parse(process.env.EPISODE_RETRY_TARGETS??'[]') as {title:string;project:string}[]
@@ -49,6 +49,7 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
    await page.screenshot({path:info.outputPath(`choice-${i}.png`),fullPage:true});if(pack.outcomeScorecard){await expect(page.locator('.outcome-scorecard')).toHaveCount(0);await page.keyboard.press(String(optionIndex+1))}else await chooseEpisodeOption(page,optionIndex)
   }else{
    await expect.poll(currentText).toBe(beat.text)
+   if(fixture.review?.lines.includes(beat.text))await reviewEpisodeLine(page,beat.text,info.outputPath(`directed-${i}.png`))
    if(!heard&&pack.chinese?.lines[beat.text]?.audio){
     await page.locator('.episode-settings > summary').click()
     for(const name of ['Pinyin','English']){const b=page.getByRole('button',{name:`Text: ${name}`,exact:true});if(await b.getAttribute('aria-pressed')==='true')await b.click();await expect(page.locator(name==='Pinyin'?'.reader-interlinear-pinyin':'.reader-interlinear-gloss')).toHaveCount(0);await b.click();await expect(b).toHaveAttribute('aria-pressed','true')}
@@ -72,8 +73,7 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
    }
    if(i===route.beats.length-1)await page.screenshot({path:info.outputPath('ending.png'),fullPage:true})
    // A changing text height can leave the pointer on the hover-transform edge.
-   await page.mouse.move(0,0)
-   await page.getByRole('button',{name:'Continue →',exact:true}).click()
+   await continueEpisode(page)
   }
  }
  expect(heard).toBe(true);expect(resumed).toBe(true)
@@ -96,4 +96,25 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
   await expect(page.getByRole('region',{name:'Your outcome'})).toContainText(`Balance: ${expected.balance}/100`)
  }
 
+})
+
+if(fixture.catalog?.intro)test('planned opening plays with sound and transitions into this episode',async({page},info)=>{
+ const pack=JSON.parse(readFileSync(fixture.packagePath,'utf8')) as ChinesePackage
+ const id='authoring-intro-preview',path='authoring-intro-preview.json',entry={...fixture.catalog,id,path,summary:{title:pack.title,description:pack.description}}
+ const catalog=JSON.parse(readFileSync('public/stories/animated/catalog.json','utf8'))
+ await page.route('**/public/stories/animated/catalog.json*',route=>route.fulfill({contentType:'application/javascript',body:'export default '+JSON.stringify([...catalog,entry])}))
+ await page.route('**/stories/animated/'+path,route=>route.fulfill({json:pack}))
+ await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
+ await page.getByRole('button',{name:'Choose story',exact:true}).click()
+ await page.getByLabel('Book',{exact:true}).selectOption(entry.category!)
+ await expect(page.getByLabel('Episode',{exact:true}).locator(`option[value="${id}"]`)).toHaveCount(1)
+ await page.getByLabel('Episode',{exact:true}).selectOption(id)
+ await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
+ if(pack.notice)await page.getByRole('button',{name:'Accept',exact:true}).click()
+ const video=page.locator('.episode-intro video')
+ await expect(video).toBeVisible()
+ await expect.poll(()=>video.evaluate(v=>({duration:(v as HTMLVideoElement).duration,muted:(v as HTMLVideoElement).muted}))).toEqual({duration:entry.intro!.durationSeconds,muted:false})
+ await page.screenshot({path:info.outputPath('opening.png'),fullPage:true})
+ const play=page.getByRole('button',{name:'Play intro with sound',exact:true});if(await play.isVisible())await play.click()
+ await expect(page.locator('.animated-story')).toBeVisible({timeout:20000})
 })

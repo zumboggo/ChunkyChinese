@@ -23,6 +23,10 @@ def prepare(plan_path, report_path):
     record['completed'].append({'episode':release,'end':continuation['end']})
     record['pendingPublication']=[e for e in record.get('pendingPublication',[]) if e['episode']!=release]
     record['assetsFrom']=package.as_posix()
+    for key in ('castRecipes','castBundle'):
+        if key in continuation:
+            if not Path(continuation[key]).is_file():raise ValueError('Missing continuation cast: '+key)
+            record[key]=continuation[key]
     record['source'].update({k:continuation[k] for k in ('nextStart','nextEndBefore')})
     if 'chapter' in continuation:
         if not isinstance(continuation['chapter'],str) or not continuation['chapter'].strip():raise ValueError('chapter must be a nonempty EPUB entry name.')
@@ -38,8 +42,23 @@ def prepare(plan_path, report_path):
         raise ValueError('Original episodes require a source note.')
     return {'recordPath':record_path.as_posix(),'baseHash':digest(record_path),'packagePath':package.as_posix(),'packageHash':digest(package),'releaseId':release,'nextRecord':record,'report':{'bytes':report['bytes'],'browser':'full pass','coverage':json.loads((Path(report['run'])/'vocabulary.json').read_text())['range']}}
 
+def merge_candidates(paths):
+    candidates=[json.loads(Path(p).read_text()) for p in paths]
+    if not candidates:raise ValueError('Provide candidates in episode order.')
+    first=candidates[0];base=first['nextRecord']['completed'][:-1];releases=[]
+    for c in candidates:
+        if (c['recordPath'],c['baseHash'],c['nextRecord']['completed'][:-1])!=(first['recordPath'],first['baseHash'],base):raise ValueError('Batch candidates must share the same unchanged series baseline.')
+        if digest(c['packagePath'])!=c['packageHash']:raise ValueError('Batch package changed after verification.')
+        if c['releaseId'] in releases:raise ValueError('Duplicate batch episode.')
+        releases.append(c['releaseId'])
+    final=candidates[-1]
+    final['nextRecord']['completed']=base+[c['nextRecord']['completed'][-1] for c in candidates]
+    final['batchVerifiedReleases']=[{k:c[k] for k in ('releaseId','packagePath','packageHash')} for c in candidates]
+    return final
+
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--plan',required=True);p.add_argument('--report',required=True);p.add_argument('--output',default='.local/continuation.json');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--plan');p.add_argument('--report');p.add_argument('--merge',nargs='+');p.add_argument('--output',default='.local/continuation.json');a=p.parse_args()
+    if bool(a.merge)==bool(a.plan or a.report) or (not a.merge and not (a.plan and a.report)):p.error('Use --plan and --report, or --merge candidates in episode order.')
     output=Path(a.output).resolve()
     if Path('.local').resolve() not in output.parents:p.error('Keep the candidate under .local/.')
-    candidate=prepare(a.plan,a.report);output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(candidate,ensure_ascii=False,indent=2)+'\n');print('Prepared continuation: '+str(output))
+    candidate=merge_candidates(a.merge) if a.merge else prepare(a.plan,a.report);output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(candidate,ensure_ascii=False,indent=2)+'\n');print('Prepared continuation: '+str(output))

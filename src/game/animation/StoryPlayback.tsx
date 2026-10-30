@@ -156,7 +156,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
 
  if(compiled.errors.length||!state)return <div role="alert">{compiled.errors.map(e=><p key={e.line+e.message}>Line {e.line}: {e.message}</p>)}</div>
  if(pocketSession)return <PocketAudioPlayer pack={pack} start={pocketSession.start} options={pocketSession.options} volume={voiceVolume} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss} onSave={p=>onProgress?.(p)} onExit={p=>{setProgress(p);setState(replayStory(compiled.story,p.steps,p.seed));onProgress?.(p);setPocketSession(null)}}/>
- return <div className="animated-story story-modern" ref={root} onClick={event=>{
+ return <div className="animated-story story-modern" data-story-step={`${state.cursor}:${encounter}`} ref={root} onClick={event=>{
   if(busy||state.ended||current.type==='choice'||window.getSelection()?.toString())return;
   const target=event.target as HTMLElement;
   if(target.closest('button,a,input,select,textarea,label,summary,details,dialog,.reading-controls,.story-atmosphere,footer,aside'))return;

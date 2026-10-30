@@ -55,3 +55,71 @@ New packages automatically compact continuity into a suffix-sharing decision gra
 Use the shared `chooseEpisodeOption` browser helper rather than copying controller timing assumptions. Keep final complete phone/desktop routes, pinyin review and visual/audio inspection. The publisher owns the final production build; do not run a duplicate build immediately before it unless debugging a build problem.
 
 Live verification uses four bounded parallel downloads. With a verified baseline receipt, it checks changed public assets, new/changed catalog references, the catalog, service worker, and matching build entry/version/JS/CSS. Unknown baselines safely receive a full library check. Receipts survive push retries and record-only continuation commits. `game:publish -- --verify-only --full-verify` performs a full audit when requested; no recurring automation is created. The publisher rechecks remote main immediately before pushing and stops on concurrent changes. No force push, skipped required tests, or automatic paid retries.
+
+## Plan-driven authoring (routine episodes)
+
+Use the same workflow for LMS, Super Supportive and other established series. One episode is the shortest path to a playable result. For a requested batch, finish each script/language package in order, reuse cached assets, and publish the batch once. Do not reopen the full conversation or all skill references; read the compact preflight brief and references for capabilities actually being changed.
+
+1. Run preflight. It checks remote ancestry, pinned animation dependencies, dirty checkout state, speech encoding and video tools. Its output points to the detailed private brief rather than dumping the whole runtime catalog. Resolve a missing dependency now. A dirty checkout is not permission to stash, delete or commit another task's files.
+2. Initialize with `game:episode -- --init=ID --series=SERIES`. This creates the plan, script and **one `authoring.json`** and extracts the pinned EPUB passage when applicable. Reuse `assetsFrom` for unchanged scenes/cast. Fill source attribution, outline, desired ending and source assertions in the plan.
+3. Audit the opening, finish the script, then `game:episode -- --plan=PLAN --draft --freeze`. Freeze is permitted only after vocabulary passes. It creates one annotation row per unique line/choice. Later script edits invalidate language review; re-audit and freeze again, retaining unchanged rows.
+4. Fill each row with a natural full English translation and contextual chunks. Run `game:assemble -- --plan=PLAN` to generate sentence/chunk pinyin and a private `pinyin-review.txt`. Correct readings **in `authoring.json`**, then run `game:assemble -- --plan=PLAN --reviewed` after inspecting them. Generated pinyin is a proposal; the review hash records exactly the language data approved. Do not use mechanical global polyphone replacements.
+5. Fill `plan.review.lines` with exact consequential dialogue and aftermath text to inspect. Stage with `game:episode -- --plan=PLAN --stage`. This assembles assets and annotations, checks all engine routes/replay and source assertions, reuses audio, chooses browser routes covering every reachable beat/option, checks both device sizes, plays the designated lines and captures screenshots. It also tests the planned opening's sound and transition. Inspect those screenshots; do not write another playback script.
+6. Successful staging writes the immutable package, public-safe `stories/authoring/ID.json` and private `continuation.json` automatically. If continuation validation fails, fix its source anchors and use `game:continuation` with the passing stage report; do not restage an immutable release.
+7. Commit only intended files, then `game:publish -- --push --continuation=CANDIDATE`. If concurrent work makes the checkout dirty, use `game:release -- --ref=COMMIT --push --continuation=CANDIDATE`: this runs the same publisher from an isolated committed snapshot, retains failed worktrees for diagnosis, copies verification receipts back, and leaves the active authoring checkout unchanged. It creates a `codex/release-*` reference for the verified continuation commit.
+
+The single authoring input uses this shape (paths are relative to the app root):
+
+```json
+{
+  "castRecipes": "stories/characters/my-series/cast-next.json",
+  "backgrounds": {
+    "field": {"name": "Empty field after practice", "file": ".local/episodes/my-episode/field.png"}
+  },
+  "lines": [{
+    "chinese": "我来了。",
+    "english": "I'm here.",
+    "pinyin": "wǒ lái le",
+    "chunks": [{"chinese": "我来了。", "gloss": "I'm here.", "pinyin": "wǒ lái le"}]
+  }]
+}
+```
+
+`castRecipes` is optional; use existing character recipes and the supported builder, not a one-off compiler. New cast bundles are versioned and carried into continuation. `backgrounds` only lists additions/replacements for this new episode; PNG/JPEG/WebP files are embedded automatically. For newly authored vector scenery, `game:background -- --source=SCENE.svg --output=.local/episodes/ID/scene.png` renders self-contained shapes. This is not an image-editing substitute for imagegen. Unchanged assets cost no regeneration.
+
+For opening media, optionally add this to the plan after generation and offline checks:
+
+```json
+{
+  "media": {
+    "image": ".local/episodes/ID/reference.png",
+    "video": ".local/episodes/ID/final.mp4",
+    "poster": ".local/episodes/ID/final.poster.jpg",
+    "checks": ".local/episodes/ID/final.checks.json",
+    "provenance": {
+      "scene": "The specific event shown in this episode",
+      "style": "The chosen medium",
+      "identityReference": "stories/characters/series/approved.png",
+      "model": "The actual video model",
+      "predictionId": "The saved prediction ID",
+      "verifiedMaximumUsd": 0.06,
+      "paidAttempts": 1
+    }
+  },
+  "review": {"lines": ["Exact dialogue to inspect", "Exact reader-held aftermath"]}
+}
+```
+
+Assembly verifies the video's hash and passing audio/speech report, copies only final media, and generates catalog metadata and provenance. Image generation and paid video requests remain explicit, with fresh exact pricing and the $0.15 total cap. Nothing in assembly purchases media. Keep checks, source excerpts, intermediate soundtracks and learner data private. Spoken-number normalization accepts “ninety”/“90” while retaining extra words for review.
+
+For a batch, initialize the next episode with `--init=NEXT_ID --series=SERIES --after=PREVIOUS_CANDIDATE` to inherit its verified assets and next source boundary without advancing the live series. Then merge prepared candidates **in source order** with `game:continuation -- --merge CANDIDATE1 CANDIDATE2 --output=.local/batch-continuation.json`; all candidates must share an unchanged series baseline. The publisher validates every batch package hash. Never hand-edit a merged continuation.
+
+## Fast checks and measurable delays
+
+All reachable engine routes and replay states are checked. Stateless, reconverging choices use a browser set covering every authored beat, ending and option; persistent-state stories remain exhaustive. Use `--all-browser-routes` for deliberate exhaustive UI diagnosis. Keep source-specific assertions in `plan.routes`; a small browser set does not reduce those checks. Reviewer-selected lines and intro playback run in the normal suite, with observable step transitions (including repeated identical lines), rather than fragile screenshot-loop sleeps.
+
+English audio defaults to two workers (maximum four), a single writer lock and bounded Retry-After/backoff. Explicit 429 rejections can retry; accepted predictions resume polling, and uncertain POST outcomes stop without resubmission. If a process is killed while holding the lock, confirm it has stopped before removing `.local/episode-english-kokoro/generation.lock`. Reuse saved receipts and completed audio.
+
+Phase reports now save start/end timestamps before and after each phase, including failures. For an unexplained conversation delay, use `game:timing -- --transcript=EXACT_SESSION_FILE --turn=EXACT_TURN_ID`. It reads only the selected turn's event metadata and incremental usage, deduplicates response IDs, labels gaps with/without a pending tool, and outputs no conversation text or images. It cannot diagnose model/network internals and never calls an unrecorded gap “authoring time.” Do not sum cumulative counters or turn token counts into unverified dollar estimates.
+
+Avoid raw package dumps, base64 output and repeated whole-file reads. Inspect summaries and relevant fields. Run focused regression tests while changing tools; let the publisher own the final full suite/build. Do not generate a new paid clip or voice recording merely to test workflow code.

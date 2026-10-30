@@ -33,10 +33,14 @@ def extract(record, epub=None, limit=16000):
     return passage
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__); p.add_argument('--series',required=True); p.add_argument('--epub'); p.add_argument('--limit',type=int,default=16000); p.add_argument('--output')
+    p=argparse.ArgumentParser(description=__doc__); p.add_argument('--series',required=True); p.add_argument('--epub'); p.add_argument('--record'); p.add_argument('--limit',type=int,default=16000); p.add_argument('--output')
     a=p.parse_args()
     if not re.fullmatch('[a-z0-9-]+',a.series): p.error('Invalid series ID')
-    record=json.loads(Path(f'stories/authoring/series/{a.series}.json').read_text()); passage=extract(record,a.epub,a.limit)
+    record_path=Path(a.record) if a.record else Path(f'stories/authoring/series/{a.series}.json')
+    if a.record and Path('.local').resolve() not in record_path.resolve().parents:p.error('Override source records must remain under .local/.')
+    record=json.loads(record_path.read_text())
+    if record.get('id')!=a.series:p.error('Source record series mismatch.')
+    passage=extract(record,a.epub,a.limit)
     if a.output:
         out=Path(a.output).resolve(); private=Path('.local').resolve()
         if private not in out.parents: p.error('Extracted book text must stay in ignored .local/.')

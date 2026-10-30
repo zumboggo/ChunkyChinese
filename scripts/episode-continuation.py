@@ -9,6 +9,11 @@ def load_candidate(path):
     if digest(package)!=c['packageHash']:raise ValueError('Episode changed after continuation preparation.')
     catalog=json.loads(Path('public/stories/animated/catalog.json').read_text())
     if not any(e['id']==c['releaseId'] and e['path']==package.name for e in catalog):raise ValueError('Continuation release is not in the catalog.')
+    for entry in c.get('batchVerifiedReleases',[]):
+        p=Path(entry['packagePath'])
+        if p.parent.as_posix()!='stories/animated' or p.suffix!='.json' or digest(p)!=entry['packageHash']:raise ValueError('Batch package changed after verification.')
+        if not any(e['id']==entry['releaseId'] and e['path']==p.name for e in catalog):raise ValueError('Batch release is not in catalog.')
+        if not any(e['episode']==entry['releaseId'] for e in c['nextRecord']['completed']):raise ValueError('Batch episode missing from continuation.')
     n=c['nextRecord']
     if n['id']!=record.stem or n['assetsFrom']!=package.as_posix() or n['completed'][-1]['episode']!=c['releaseId']:raise ValueError('Continuation identity mismatch.')
     return c

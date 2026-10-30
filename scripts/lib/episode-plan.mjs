@@ -34,3 +34,18 @@ export function checkRouteExpectations(routes,expectations){
  if(routes.length>1&&selected.length<2)throw Error('Plan at least two contrasting browser routes.')
  return selected
 }
+
+/** Cover every reachable authored beat/option, while avoiding redundant cross-products.
+ * Stateful stories remain exhaustive: text coverage cannot prove variable behavior. */
+export function selectBrowserRoutes(routes,pack,{all=false}={}){
+ if(all||pack.continuity||pack.outcomeScorecard||/^\s*(variable|set|inc|dec|add|roll|if|chance)\b/m.test(pack.script))return routes
+ const keys=r=>new Set(r.beats.map(b=>JSON.stringify([b.type,b.id,b.option,b.text])))
+ const remaining=new Set(routes.flatMap(r=>[...keys(r)])),selected=[]
+ while(remaining.size){
+  const best=routes.filter(r=>!selected.includes(r)).map(r=>({r,score:[...keys(r)].filter(k=>remaining.has(k)).length})).sort((a,b)=>b.score-a.score)[0]
+  if(!best?.score)throw Error('Browser route coverage is incomplete')
+  selected.push(best.r);for(const k of keys(best.r))remaining.delete(k)
+ }
+ if(routes.length>1&&selected.length<2)selected.push(routes.find(r=>r!==selected[0]))
+ return selected
+}

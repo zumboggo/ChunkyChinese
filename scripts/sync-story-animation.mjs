@@ -4,8 +4,9 @@ import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {kvotheTroubadourOverlay} from './kvothe-troubadour-overlay.mjs';
 import {weedOptionAOverlay} from './weed-option-a-overlay.mjs';
+import {animationSource} from './lib/episode-dependencies.mjs';
 const root=resolve(import.meta.dirname,'..');
-const source=resolve(process.argv.find(a=>a.startsWith('--source='))?.slice(9)||resolve(root,'../../Learning is Fun/implementation'));
+const source=animationSource(root,process.argv.find(a=>a.startsWith('--source='))?.slice(9));
 const check=process.argv.includes('--check');
 // Release checks verify the recorded dependency, not another project's live edits.
 // An explicit --source keeps the existing opt-in working-tree comparison.

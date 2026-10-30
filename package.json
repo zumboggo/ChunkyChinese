@@ -41,7 +41,11 @@
     "game:brief": "node scripts/episode-brief.mjs",
     "game:continuation": "python3 scripts/prepare-continuation.py",
     "game:cast:lineup": "node scripts/build-lms-lineup.mjs",
-    "game:preflight": "node scripts/episode-preflight.mjs"
+    "game:preflight": "node scripts/episode-preflight.mjs",
+    "game:assemble": "node scripts/assemble-episode.mjs",
+    "game:background": "node scripts/render-episode-background.mjs",
+    "game:release": "python3 scripts/release-episode.py",
+    "game:timing": "python3 scripts/episode-timing.py"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.2",

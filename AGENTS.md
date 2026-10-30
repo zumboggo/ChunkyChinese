@@ -14,7 +14,7 @@ When David requests “create an episode” (including a new episode in an exist
 
 # Efficient episode authoring
 
-Start episode work with `game:preflight` and the compact private brief in `.local/authoring/`; use verified paths and current runtime cue options. Audit a short opening before drafting the full episode. Never dump full packages, embedded media, or continuity tables into tool output. Follow `docs/episode-quickstart.md` for compact continuity, shared browser helpers, and incremental publishing. Preserve final route/audio/phone checks; let the publisher own the final build.
+Start episode work with `game:preflight` and the compact private brief in `.local/authoring/`; use verified paths and current runtime cue options. Audit a short opening before drafting the full episode. Never dump full packages, embedded media, or continuity tables into tool output. Follow `docs/episode-quickstart.md` for compact continuity, shared browser helpers, and incremental publishing. Use the plan-driven freeze/assembly/review flow in that guide instead of per-episode helper scripts. Preserve exhaustive engine checks and the complete selected phone/desktop suite, and integrate directed playback review into it. Preflight must check dependency paths and concurrent work; use the isolated release helper when appropriate. Let the publisher own the final build.
 
 # Jedi storyline convergence
 

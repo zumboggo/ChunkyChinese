@@ -3,6 +3,7 @@
 import argparse, hashlib, json, os, signal, subprocess, time, runpy, re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+from datetime import datetime, timezone
 
 REPO='zumboggo/ChunkyChinese'
 ORIGIN=f'https://github.com/{REPO}.git'
@@ -189,6 +190,9 @@ def main():
                 return
         if continuation_module['digest'](candidate['recordPath'])!=candidate['baseHash']:
             raise StopPublish('Series record changed; regenerate the continuation candidate.')
+    timing=Path('.local/publish-receipts',sha+'-timing.jsonl');timing.parent.mkdir(parents=True,exist_ok=True)
+    def mark(phase,event):
+        with timing.open('a') as log:log.write(json.dumps({'at':datetime.now(timezone.utc).isoformat(),'phase':phase,'event':event})+'\n')
     plan=publication_plan(sha)
     if candidate and plan['mode']=='bookkeeping':raise StopPublish('Continuation needs a verified playable release, not a record-only commit.')
     if plan['mode']=='bookkeeping':
@@ -208,7 +212,11 @@ def main():
         checks=[['npm','test'],['npm','run','game:workflow-test'],['npm','run','game:parity'],['npm','run','build'],['node','scripts/check-client-secrets.mjs']]
         for command in checks:
             started=time.monotonic()
-            print('Check: '+' '.join(command),flush=True);require(command,240,{**os.environ,'GITHUB_PAGES':'true'})
+            name=' '.join(command);mark(name,'started')
+            print('Check: '+name,flush=True)
+            try:require(command,240,{**os.environ,'GITHUB_PAGES':'true'})
+            except Exception:mark(name,'failed');raise
+            mark(name,'finished')
             print(f'Completed in {time.monotonic()-started:.1f}s',flush=True)
         # Recheck the tree after checks; never publish files different from those validated.
         if require(['git','status','--porcelain']) or require(['git','rev-parse','HEAD'])!=sha:raise StopPublish('Checkout changed during checks; inspect it before publishing.')
@@ -217,7 +225,9 @@ def main():
         receipt=Path('.local/publish-receipts',sha+'.json');receipt.parent.mkdir(parents=True,exist_ok=True)
         receipt.write_text(json.dumps(plan)+'\n')
         push_commit(sha)
-    wait_deployment(sha,a.wait_minutes);verify_live(sha,plan,full=a.full_verify)
+    mark('deployment','started')
+    wait_deployment(sha,a.wait_minutes);mark('deployment','finished')
+    mark('live verification','started');verify_live(sha,plan,full=a.full_verify);mark('live verification','finished')
     if candidate: continuation_module['finish'](candidate,sha,require,push_commit)
 if __name__=='__main__':
     try: main()

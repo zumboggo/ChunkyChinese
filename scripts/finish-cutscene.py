@@ -4,6 +4,23 @@ import argparse, array, hashlib, json, math, os, re, shutil, subprocess, wave
 from pathlib import Path
 
 
+def normalize_speech(text):
+    """Conservative English integer normalization; retain every other word."""
+    units=dict(zip('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen'.split(),range(20)))
+    tens=dict(zip('twenty thirty forty fifty sixty seventy eighty ninety'.split(),range(20,100,10)))
+    words=re.findall(r"[a-z]+|[0-9]+",text.lower());out=[];i=0
+    while i<len(words):
+        word=words[i]
+        if word in tens:
+            value=tens[word]
+            if i+1<len(words) and words[i+1] in units and 0<units[words[i+1]]<10:i+=1;value+=units[words[i]]
+            out.append(str(value))
+        elif word in units:out.append(str(units[word]))
+        else:out.append(word)
+        i+=1
+    return ' '.join(out)
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--source',required=True,type=Path)
@@ -79,8 +96,7 @@ def main():
         model=WhisperModel(a.speech_model,device='cpu',compute_type='int8',download_root=str(a.speech_cache) if a.speech_cache else None,local_files_only=True)
         segments,_=model.transcribe(str(a.output),language='en',beam_size=5,vad_filter=True)
         transcript=' '.join(s.text.strip() for s in segments)
-        normalize=lambda text:''.join(c.lower() for c in text if c.isalnum())
-        report.update(speech_check='pass' if normalize(transcript)==normalize(a.dialogue) else 'review extra/missing words',transcription=transcript)
+        report.update(speech_check='pass' if normalize_speech(transcript)==normalize_speech(a.dialogue) else 'review extra/missing words',transcription=transcript)
     report_path=a.output.with_suffix('.checks.json');report_path.write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps({'output':str(a.output),'report':str(report_path),'speech_check':report['speech_check'],'total_seconds':duration}))
     if report['speech_check'].startswith('review'):raise SystemExit(2)
