@@ -1,0 +1,372 @@
+{
+  "id": "supportive-04",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 4: Waiting After the Game",
+  "description": "At eleven, Alden waits for Aunt Connie after baseball. Love and reliability turn out to be different things.",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-supplied EPUB, chapter THREE: 90 seconds. Simplified Mandarin adaptation with local reconverging choices, not an official translation."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Chapter THREE opening through homework, before midnight research.",
+    "dramaticChange": "Alden defends Connie while relying on a coach who actually stays.",
+    "essentialNewWords": [
+      "教练",
+      "阿姨",
+      "棒球",
+      "冰淇淋",
+      "耳机",
+      "秒",
+      "网站",
+      "系统",
+      "力量",
+      "受伤"
+    ],
+    "englishNarrationPurpose": "None. Mandarin narrative and choices.",
+    "choicesAndCallbacks": [
+      "Four local conversational or attentional choices, immediate distinct responses, no persistent canonical changes."
+    ],
+    "sceneActivities": [
+      "Standing at field, then apartment and seated desk."
+    ],
+    "storytellingVoice": "Intimate character drama",
+    "voiceReason": "Source-grounded contrast between a child’s self-reliance and the care adults do or do not provide.",
+    "teaser": {
+      "style": "Layered cut-paper collage and opaque gouache",
+      "reference": "stories/characters/super-supportive/alden-approved-a.png",
+      "age": 11,
+      "speaker": "Alden",
+      "line": "You don't have to wait.",
+      "sourceMoment": "Alden tells the coach he need not wait at the baseball field.",
+      "sceneSpecificity": "Unique episode event and location; identity reference does not supply composition or scenery."
+    },
+    "pinyinReview": "Sentence and phrase readings manually reviewed; corrected contextual de/dei, zhi, jiao, zhao, zhe and neutral tones. Natural full English translations reviewed separately.",
+    "limitations": [
+      "Vector cast uses youngest supported teen proportions for eleven-year-old Alden; original artwork follows source age. Support gesture approximates the narrated hug."
+    ],
+    "signatures": {
+      "Alden": "Concrete observations, protective loyalty and restrained questions.",
+      "Connie": "Immediate affectionate care amid everyday disorganization.",
+      "Coach": "Plainspoken concern backed by staying."
+    },
+    "directing": "Hold shared views through ordinary conversation, move to listener for emotional aftermath; seated desk and reclining bedtime states follow the scene.",
+    "earlyCare": "The coach stays with Alden.",
+    "desire": "Defend Connie and manage ordinary life.",
+    "obstacle": "Connie loves him but is unreliable.",
+    "payoff": "The coach stays; Alden still wants powers.",
+    "newUncertainty": "The old night still troubles him.",
+    "openingArtRule": "Every opening depicts a specific event in this episode, with its own location, action and composition. Preserve approved character identity while varying medium. Never reuse the reference image’s scene merely to preserve likeness."
+  },
+  "continuation": {
+    "end": "Alden finishes his System homework but cannot sleep in the noisy apartment.",
+    "chapter": "OEBPS/Text/0003_THREE_90_seconds.xhtml",
+    "nextStart": "At midnight, the house was still noisy,",
+    "nextEndBefore": "It took a long while for Alden to convince his aunt he was fine.",
+    "note": "Continue source in order, maintaining age eleven and reconverging local choices.",
+    "continuity": [
+      "Alden is eleven and lives with Aunt Connie.",
+      "Connie is unreliable in ordinary life but loves Alden and responds immediately to his cry.",
+      "Alden wants powers; the ninety-second interval remains a question, not a settled explanation."
+    ]
+  },
+  "routes": [
+    {
+      "choices": [
+        "defend",
+        "capable",
+        "noise",
+        "help"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    },
+    {
+      "choices": [
+        "defend",
+        "capable",
+        "noise",
+        "power"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    },
+    {
+      "choices": [
+        "defend",
+        "capable",
+        "visitors",
+        "help"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    },
+    {
+      "choices": [
+        "defend",
+        "capable",
+        "visitors",
+        "power"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    },
+    {
+      "choices": [
+        "defend",
+        "concern",
+        "noise",
+        "help"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    },
+    {
+      "choices": [
+        "defend",
+        "concern",
+        "noise",
+        "power"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    },
+    {
+      "choices": [
+        "defend",
+        "concern",
+        "visitors",
+        "help"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    },
+    {
+      "choices": [
+        "defend",
+        "concern",
+        "visitors",
+        "power"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    },
+    {
+      "choices": [
+        "release",
+        "capable",
+        "noise",
+        "help"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    },
+    {
+      "choices": [
+        "release",
+        "capable",
+        "noise",
+        "power"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    },
+    {
+      "choices": [
+        "release",
+        "capable",
+        "visitors",
+        "help"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    },
+    {
+      "choices": [
+        "release",
+        "capable",
+        "visitors",
+        "power"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    },
+    {
+      "choices": [
+        "release",
+        "concern",
+        "noise",
+        "help"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    },
+    {
+      "choices": [
+        "release",
+        "concern",
+        "noise",
+        "power"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    },
+    {
+      "choices": [
+        "release",
+        "concern",
+        "visitors",
+        "help"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    },
+    {
+      "choices": [
+        "release",
+        "concern",
+        "visitors",
+        "power"
+      ],
+      "contains": [
+        "他还是在这里，跟我一起等。没有因为我说不用，就真的走了。",
+        "我只想了一下，就选了“想”。"
+      ],
+      "endsWith": "我想要力量。可是，三年前的那个晚上，还有一些事情，我一直想不明白。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-04-v1",
+    "category": "super-supportive",
+    "episode": 4,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-04.mp4",
+      "poster": "stories/animated/cutscenes/supportive-04.poster.jpg",
+      "title": "You don't have to wait.",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "image": "stories/characters/super-supportive/opening-04.png",
+    "imageGenerator": "built-in imagegen",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "style": "Layered cut-paper collage and opaque gouache",
+    "scene": "Alden tells the coach he need not wait at the baseball field.",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "artt1z1w7xrmt0d1hes93f65h4",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off",
+      "nativeAudio": true
+    },
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "pricingTier": {
+      "criteria": [
+        {
+          "description": "cost",
+          "subtype": "string",
+          "title": "model variant",
+          "type": "equals",
+          "value": "cost"
+        },
+        {
+          "description": "480p",
+          "subtype": "string",
+          "title": "target resolution",
+          "type": "equals",
+          "value": "480p"
+        }
+      ],
+      "description": "480p resolution, cost mode",
+      "prices": [
+        {
+          "description": "or 100 seconds for $1",
+          "metric": "video_output_duration_seconds",
+          "metric_display": "second of output video",
+          "price": "$0.01",
+          "title": "per second of output video",
+          "type": "per-unit"
+        }
+      ],
+      "title": "480p cost"
+    },
+    "videoPrompt": "Animate the supplied illustration in one continuous six-second shot. Preserve layered torn-paper collage and opaque gouache. Eleven-year-old Alden stands at the empty baseball dugout and looks to his unseen coach on the right. He speaks with quiet defensive concern, a tiny glance down afterward. Hands stay in his pockets; no walking or new characters. Preserve face, age, hair, clothing, location and medium exactly. Only Alden speaks, a natural quiet young boy voice. ENTIRE SPOKEN SCRIPT, in clear ENGLISH exactly once: \"You don't have to wait.\". Speak only these words between 0.5 and 3 seconds with synchronized lips, then mouth stays closed for the rest. No extra words, repetition, paraphrase, filler, humming, singing, narration or other voices. Very soft environmental ambience below foreground speech. No cuts, extra props, flashy effects or captions. One restrained emotional beat.",
+    "checks": {
+      "sha256": "109afd9ea21ceb3f1ad4a3abdcded95df047f5836dbde3b0bd2e583efff3205c",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9.0,
+      "hold_seconds": 3.0,
+      "motion_seconds": 6.0,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "You don't have to wait."
+    },
+    "imagePromptBrief": "Layered cut-paper collage and opaque gouache. Eleven-year-old approved Alden identity. Alden tells the coach he need not wait at the baseball field.. Episode-specific location, action and composition."
+  },
+  "verification": {
+    "pinyinReviewed": true,
+    "teaserReview": "Reference and ending frames visually inspected. ASR checks intended English line, decoded non-silent audio and nine-second duration verified.",
+    "packageBytes": 1259050,
+    "reachableRoutes": 16,
+    "familiarityPercent": {
+      "min": 95.89285714285714,
+      "max": 95.97902097902097
+    },
+    "mandarinEntryPercent": 100,
+    "browser": "32/32 tests passed: all sixteen choice routes on phone and desktop, including audio, language help and save/resume.",
+    "directedPlayback": "Both contrasting choice routes on phone and desktop: nine-second intro, actual Mandarin playback, listener close-ups and Continue-held aftermath checked. Screenshots inspected; reduced motion included."
+  }
+}

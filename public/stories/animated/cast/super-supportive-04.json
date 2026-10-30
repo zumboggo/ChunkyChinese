@@ -1,0 +1,76 @@
+{
+  "Alden": {
+    "name": "阿登 · Alden",
+    "version": 2,
+    "provenance": "Alden at eleven, identity from approved A; neutral sports shirt approximates baseball clothing. Existing youngest teen body preset remains a documented approximation.",
+    "expressions": {},
+    "rig": {
+      "version": 2,
+      "preset": "cartoon-v1",
+      "style": "manga",
+      "finish": "polished",
+      "palette": {
+        "skin": "#e9c6ad",
+        "hair": "#65462f",
+        "shirt": "#e9e4cb",
+        "trim": "#31584e"
+      },
+      "appearance": {
+        "age": "teen",
+        "face": "oval",
+        "eyes": "gentle",
+        "hair": "tousled",
+        "outfit": "workshirt"
+      }
+    }
+  },
+  "Coach": {
+    "name": "教练 · Coach",
+    "version": 1,
+    "provenance": "Original visual interpretation of Alden’s baseball coach; firm protective voice from chapter THREE.",
+    "expressions": {},
+    "rig": {
+      "version": 2,
+      "preset": "cartoon-v1",
+      "style": "manga",
+      "finish": "polished",
+      "palette": {
+        "skin": "#bd8c6e",
+        "hair": "#493c31",
+        "shirt": "#31584e",
+        "trim": "#e9e4cb"
+      },
+      "appearance": {
+        "age": "adult",
+        "face": "broad",
+        "hair": "cropped",
+        "outfit": "workshirt"
+      }
+    }
+  },
+  "Connie": {
+    "name": "康妮阿姨 · Aunt Connie",
+    "version": 1,
+    "provenance": "Original visual interpretation of Aunt Connie; source establishes bleached hair and affectionate but unreliable parenting. Supported swept hair approximates wild bleached hair.",
+    "expressions": {},
+    "rig": {
+      "version": 2,
+      "preset": "cartoon-v1",
+      "style": "manga",
+      "finish": "polished",
+      "palette": {
+        "skin": "#e9bda4",
+        "hair": "#e2cc89",
+        "shirt": "#ad5576",
+        "trim": "#e7b793"
+      },
+      "appearance": {
+        "age": "adult",
+        "face": "round",
+        "eyes": "gentle",
+        "hair": "swept",
+        "outfit": "cardigan"
+      }
+    }
+  }
+}

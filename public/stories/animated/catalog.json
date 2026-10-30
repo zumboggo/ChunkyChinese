@@ -1027,5 +1027,37 @@
       "title": "Super Supportive · Episode 3: One Floor Too High",
       "description": "A small error in a desperate battle changes everything. Hannah tells Alden what happened."
     }
+  },
+  {
+    "id": "supportive-04-v1",
+    "category": "super-supportive",
+    "episode": 4,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-04.mp4",
+      "poster": "stories/animated/cutscenes/supportive-04.poster.jpg",
+      "title": "You don't have to wait.",
+      "durationSeconds": 9
+    },
+    "path": "supportive-04.json",
+    "summary": {
+      "title": "Super Supportive · Episode 4: Waiting After the Game",
+      "description": "At eleven, Alden waits for Aunt Connie after baseball. Love and reliability turn out to be different things."
+    }
+  },
+  {
+    "id": "supportive-05-v1",
+    "category": "super-supportive",
+    "episode": 5,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-05.mp4",
+      "poster": "stories/animated/cutscenes/supportive-05.poster.jpg",
+      "title": "Ninety seconds?",
+      "durationSeconds": 9
+    },
+    "path": "supportive-05.json",
+    "summary": {
+      "title": "Super Supportive · Episode 5: Ninety Seconds",
+      "description": "A midnight search turns up a detail Alden cannot let go. He tests an unsettling question—and discovers how fast someone can come."
+    }
   }
 ]

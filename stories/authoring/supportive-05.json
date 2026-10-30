@@ -1,0 +1,374 @@
+{
+  "id": "supportive-05",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 5: Ninety Seconds",
+  "description": "A midnight search turns up a detail Alden cannot let go. He tests an unsettling question—and discovers how fast someone can come.",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-supplied EPUB, chapter THREE: 90 seconds. Simplified Mandarin adaptation with local reconverging choices, not an official translation."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Chapter THREE midnight research through the eight-second stopwatch result, before next-day aftermath.",
+    "dramaticChange": "A frightening experiment reveals Connie’s immediate care and deepens the unanswered timing question.",
+    "essentialNewWords": [
+      "教练",
+      "阿姨",
+      "棒球",
+      "冰淇淋",
+      "耳机",
+      "秒",
+      "网站",
+      "系统",
+      "力量",
+      "受伤"
+    ],
+    "englishNarrationPurpose": "None. Mandarin narrative and choices.",
+    "choicesAndCallbacks": [
+      "Four local conversational or attentional choices, immediate distinct responses, no persistent canonical changes."
+    ],
+    "sceneActivities": [
+      "Seated research; interruption for breathing, then reclining in bed and Connie’s urgent entrance. Supported rests and gestures; no literal typing or stopwatch rig claimed."
+    ],
+    "storytellingVoice": "Intimate character drama",
+    "voiceReason": "Source-grounded contrast between a child’s self-reliance and the care adults do or do not provide.",
+    "teaser": {
+      "style": "Textured impasto oil painting on linen",
+      "reference": "stories/characters/super-supportive/alden-approved-a.png",
+      "age": 11,
+      "speaker": "Alden",
+      "line": "Ninety seconds?",
+      "sourceMoment": "Alden studies the ninety-second gap in Marv’s account at his desk.",
+      "sceneSpecificity": "Unique episode event and location; identity reference does not supply composition or scenery."
+    },
+    "pinyinReview": "Sentence and phrase readings manually reviewed; corrected contextual de/dei, zhi, jiao, zhao, zhe and neutral tones. Natural full English translations reviewed separately.",
+    "limitations": [
+      "Vector cast uses youngest supported teen proportions for eleven-year-old Alden; original artwork follows source age. Support gesture approximates the narrated hug."
+    ],
+    "signatures": {
+      "Alden": "Concrete observations, protective loyalty and restrained questions.",
+      "Connie": "Immediate affectionate care amid everyday disorganization.",
+      "Coach": "Plainspoken concern backed by staying."
+    },
+    "directing": "Hold shared views through ordinary conversation, move to listener for emotional aftermath; seated desk and reclining bedtime states follow the scene.",
+    "earlyCare": "Hannah’s honest account still helps Alden find the truth.",
+    "desire": "Understand the ninety-second interval.",
+    "obstacle": "Online cruelty and incomplete memories.",
+    "payoff": "Connie reaches him in eight seconds.",
+    "newUncertainty": "Why did ninety seconds pass that night?",
+    "soloNarrationReason": "Source scene is solitary research and memory until Connie enters; inventing a conversational partner would distort it.",
+    "openingArtRule": "Every opening depicts a specific event in this episode, with its own location, action and composition. Preserve approved character identity while varying medium. Never reuse the reference image’s scene merely to preserve likeness."
+  },
+  "continuation": {
+    "end": "Alden tests the response time; Connie reaches and comforts him in eight seconds. The ninety-second question remains unresolved.",
+    "chapter": "OEBPS/Text/0003_THREE_90_seconds.xhtml",
+    "nextStart": "It took a long while for Alden to convince his aunt he was fine.",
+    "nextEndBefore": "CALL ME IF YOU OR ALDEN EVER NEED ANYTHING",
+    "note": "Continue source in order, maintaining age eleven and reconverging local choices.",
+    "continuity": [
+      "Alden is eleven and lives with Aunt Connie.",
+      "Connie is unreliable in ordinary life but loves Alden and responds immediately to his cry.",
+      "Alden wants powers; the ninety-second interval remains a question, not a settled explanation."
+    ]
+  },
+  "routes": [
+    {
+      "choices": [
+        "remember",
+        "ability",
+        "wummy",
+        "dream"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    },
+    {
+      "choices": [
+        "remember",
+        "ability",
+        "wummy",
+        "stumble"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    },
+    {
+      "choices": [
+        "remember",
+        "ability",
+        "eyes",
+        "dream"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    },
+    {
+      "choices": [
+        "remember",
+        "ability",
+        "eyes",
+        "stumble"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    },
+    {
+      "choices": [
+        "remember",
+        "difference",
+        "wummy",
+        "dream"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    },
+    {
+      "choices": [
+        "remember",
+        "difference",
+        "wummy",
+        "stumble"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    },
+    {
+      "choices": [
+        "remember",
+        "difference",
+        "eyes",
+        "dream"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    },
+    {
+      "choices": [
+        "remember",
+        "difference",
+        "eyes",
+        "stumble"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    },
+    {
+      "choices": [
+        "compare",
+        "ability",
+        "wummy",
+        "dream"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    },
+    {
+      "choices": [
+        "compare",
+        "ability",
+        "wummy",
+        "stumble"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    },
+    {
+      "choices": [
+        "compare",
+        "ability",
+        "eyes",
+        "dream"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    },
+    {
+      "choices": [
+        "compare",
+        "ability",
+        "eyes",
+        "stumble"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    },
+    {
+      "choices": [
+        "compare",
+        "difference",
+        "wummy",
+        "dream"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    },
+    {
+      "choices": [
+        "compare",
+        "difference",
+        "wummy",
+        "stumble"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    },
+    {
+      "choices": [
+        "compare",
+        "difference",
+        "eyes",
+        "dream"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    },
+    {
+      "choices": [
+        "compare",
+        "difference",
+        "eyes",
+        "stumble"
+      ],
+      "contains": [
+        "九十秒？",
+        "时间停在八秒。"
+      ],
+      "endsWith": "她在这里，我很安全。可那个九十秒的问题，还没有离开我的心里。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-05-v1",
+    "category": "super-supportive",
+    "episode": 5,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-05.mp4",
+      "poster": "stories/animated/cutscenes/supportive-05.poster.jpg",
+      "title": "Ninety seconds?",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "image": "stories/characters/super-supportive/opening-05.png",
+    "imageGenerator": "built-in imagegen",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "style": "Textured impasto oil painting on linen",
+    "scene": "Alden studies the ninety-second gap in Marv’s account at his desk.",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "yvz5p0tfg5rmt0d1hes9c172xg",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off",
+      "nativeAudio": true
+    },
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "pricingTier": {
+      "criteria": [
+        {
+          "description": "cost",
+          "subtype": "string",
+          "title": "model variant",
+          "type": "equals",
+          "value": "cost"
+        },
+        {
+          "description": "480p",
+          "subtype": "string",
+          "title": "target resolution",
+          "type": "equals",
+          "value": "480p"
+        }
+      ],
+      "description": "480p resolution, cost mode",
+      "prices": [
+        {
+          "description": "or 100 seconds for $1",
+          "metric": "video_output_duration_seconds",
+          "metric_display": "second of output video",
+          "price": "$0.01",
+          "title": "per second of output video",
+          "type": "per-unit"
+        }
+      ],
+      "title": "480p cost"
+    },
+    "videoPrompt": "Animate the supplied illustration in one continuous six-second shot. Preserve thick impasto oil paint and chiaroscuro. Eleven-year-old Alden sits at his computer desk at midnight; his brow draws together as he studies the screen, then he quietly asks himself the question and holds his puzzled gaze. Hands stay beside keyboard, no typing. Headphones remain around neck. No new characters or screen text. Preserve face, age, hair, clothing, location and medium exactly. Only Alden speaks, a natural quiet young boy voice. ENTIRE SPOKEN SCRIPT, in clear ENGLISH exactly once: \"Ninety seconds?\". Speak only these words between 0.5 and 3 seconds with synchronized lips, then mouth stays closed for the rest. No extra words, repetition, paraphrase, filler, humming, singing, narration or other voices. Very soft environmental ambience below foreground speech. No cuts, extra props, flashy effects or captions. One restrained emotional beat.",
+    "checks": {
+      "sha256": "2645dfcc0fe5cd21911016e4317f6edefde2bd156fd5c6dba999205762ce7788",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9.0,
+      "hold_seconds": 3.0,
+      "motion_seconds": 6.0,
+      "audio_non_silent": true,
+      "speech_check": "pass after numeric normalization: 90 equals ninety",
+      "transcription": "90 seconds.",
+      "audioCleanup": "Source audio ends at 1.54 seconds, the measured end of the intended sentence; removed generated extra words offline. Original six-second motion preserved."
+    },
+    "imagePromptBrief": "Textured impasto oil painting on linen. Eleven-year-old approved Alden identity. Alden studies the ninety-second gap in Marv’s account at his desk.. Episode-specific location, action and composition."
+  },
+  "verification": {
+    "pinyinReviewed": true,
+    "teaserReview": "Reference and ending frames visually inspected. ASR checks intended English line, decoded non-silent audio and nine-second duration verified.",
+    "packageBytes": 1680925,
+    "reachableRoutes": 16,
+    "familiarityPercent": {
+      "min": 95.19704433497537,
+      "max": 95.43325526932084
+    },
+    "mandarinEntryPercent": 100,
+    "browser": "32/32 tests passed: all sixteen choice routes on phone and desktop, including audio, language help and save/resume.",
+    "directedPlayback": "Both contrasting choice routes on phone and desktop: nine-second intro, actual Mandarin playback, listener close-ups and Continue-held aftermath checked. Screenshots inspected; reduced motion included."
+  }
+}
