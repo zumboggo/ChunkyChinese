@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0003_THREE_90_seconds.xhtml",
-    "nextStart": "Time passed. Things changed.",
-    "nextEndBefore": "At midnight, the house was still noisy,",
-    "continuationNote": "Years pass; life with Aunt Connie, coach concern, a noisy home and the System homework. Stop before the midnight research."
+    "nextStart": "It took a long while for Alden to convince his aunt he was fine.",
+    "nextEndBefore": "CALL ME IF YOU OR ALDEN EVER NEED ANYTHING",
+    "continuationNote": "Continue source in order, maintaining age eleven and reconverging local choices."
   },
   "completed": [
     {
@@ -21,9 +21,17 @@
     {
       "episode": "supportive-03-v1",
       "end": "Hannah admits counting the wrong floor. Alden cries and shouts for everyone to leave; Hannah goes while Amanda approaches, the opposite of what he wanted."
+    },
+    {
+      "episode": "supportive-04-v1",
+      "end": "Alden finishes his System homework but cannot sleep in the noisy apartment."
+    },
+    {
+      "episode": "supportive-05-v1",
+      "end": "Alden tests the response time; Connie reaches and comforts him in eight seconds. The ninety-second question remains unresolved."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-03.json",
+  "assetsFrom": "stories/animated/supportive-05.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -34,22 +42,21 @@
     "scope": "Intimate character drama. Preserve quiet episodes and substantial local payoffs. Occasional source-supported perspective shifts welcomed.",
     "choices": "Four local observation or conversational choices; preserve canonical events.",
     "length": "40–60 voiced entries, flexible.",
-    "language": "Simplified Mandarin, interlinear chunks, reviewed pinyin, cached Mandarin audio."
+    "language": "Simplified Mandarin, interlinear chunks, reviewed pinyin, cached Mandarin audio.",
+    "openingArt": "Each opening depicts an episode-specific event, location, action and composition. Preserve approved character identity while experimenting with a distinct art medium each episode. Identity references must not cause repeated scenery."
   },
   "continuity": [
-    "Hannah answered Alden honestly and accepted responsibility for stabilizing the eighth floor instead of the seventh.",
-    "Arjun was acting on Hannah’s incorrect assurance; Alden’s parents died when the fight crossed the street into their apartment.",
-    "Alden’s grief drove Hannah away even though he wanted her to stay. Amanda remained.",
-    "Next chapter moves forward in time to Alden living with Aunt Connie, aged eleven during the baseball and homework scenes.",
-    "Approved A remains the identity anchor; adjust age faithfully. Local choices do not alter canonical events."
+    "Alden is eleven and lives with Aunt Connie.",
+    "Connie is unreliable in ordinary life but loves Alden and responds immediately to his cry.",
+    "Alden wants powers; the ninety-second interval remains a question, not a settled explanation."
   ],
-  "castRecipes": "stories/characters/super-supportive/cast.json",
-  "castBundle": "public/stories/animated/cast/super-supportive.json",
+  "castRecipes": "stories/characters/super-supportive/cast-05.json",
+  "castBundle": "public/stories/animated/cast/super-supportive-05.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-03-v1",
-    "nextStart": "Time passed. Things changed.",
-    "nextEndBefore": "At midnight, the house was still noisy,",
-    "assetsFrom": "stories/animated/supportive-03.json"
+    "note": "Published through supportive-05-v1",
+    "nextStart": "It took a long while for Alden to convince his aunt he was fine.",
+    "nextEndBefore": "CALL ME IF YOU OR ALDEN EVER NEED ANYTHING",
+    "assetsFrom": "stories/animated/supportive-05.json"
   }
 }
