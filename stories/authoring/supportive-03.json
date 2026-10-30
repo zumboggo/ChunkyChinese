@@ -1,0 +1,197 @@
+{
+  "id": "supportive-03",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 3: One Floor Too High",
+  "description": "A small error in a desperate battle changes everything. Hannah tells Alden what happened.",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "Mandarin adaptation of the user-supplied EPUB, chapter TWO: Mistakes. Simplified dialogue and local reconverging choices; not an official translation."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "TWO: Mistakes, from “We managed to chase the villain in there,” Hannah said. through the final paragraph; excludes author note.",
+    "dramaticChange": "Alden learns the human mistake behind the disaster; explanation does not quiet his grief.",
+    "essentialNewWords": [
+      "银色",
+      "魔法",
+      "能力",
+      "受伤",
+      "力量",
+      "英雄",
+      "坏人",
+      "保护",
+      "七楼",
+      "八楼",
+      "窗户"
+    ],
+    "englishNarrationPurpose": "None; all readable story entries and choices are Mandarin.",
+    "choicesAndCallbacks": [
+      "Four local attention or conversation intentions with immediate distinct responses; no persistent changes to canonical events."
+    ],
+    "sceneActivities": [
+      "Seated hospital conversation; hands and gaze carry tension. No looping exercise or travel."
+    ],
+    "storytellingVoice": "Intimate character drama",
+    "voiceReason": "A child seeking concrete truth and a rescuer struggling to answer him; source-supported vulnerability drives the scene.",
+    "signatures": {
+      "Alden": "Short concrete questions; attentive stillness gives way to clutching blankets and loss of composure.",
+      "Hannah": "Hesitant but precise answers; speaks directly about responsibility, pauses under strain.",
+      "Amanda": "Protective immediate response in the final scene; no invented speech beyond comfort."
+    },
+    "directing": "Hold shared pair through ordinary answers; frame Alden when the decisive disclosure lands, then Continue-controlled aftermath. Preserve seated states.",
+    "teaser": {
+      "style": "Charcoal and muted soft pastel on gray paper",
+      "reference": "stories/characters/super-supportive/alden-approved-a.png",
+      "speaker": "Hannah",
+      "line": "I made a terrible mistake.",
+      "sourceMoment": "Hannah admits her error before explaining the floor numbers."
+    },
+    "pinyinReview": "Manually reviewed sentence and chunk readings; corrected hai/huan, dei/de, zhi, shu (count), xuan zhong, neutral tones and le. Full English translations reviewed separately.",
+    "earlyCare": "Alden waits through Hannah’s silence because he needs to understand what happened.",
+    "desire": "Understand how the battle crossed into his home.",
+    "obstacle": "Hannah must admit her mistake; facts cannot contain Alden’s grief.",
+    "payoff": "Hannah gives the precise cause and accepts responsibility without blaming her partner.",
+    "newUncertainty": "Alden wants Hannah to stay but cannot express it; how will he live with the truth?",
+    "limitations": [
+      "Reusable vector cast preserves the existing approximation and seated childhood staging; generated opening artwork uses the approved age-adjusted Alden likeness."
+    ]
+  },
+  "continuation": {
+    "end": "Hannah admits counting the wrong floor. Alden cries and shouts for everyone to leave; Hannah goes while Amanda approaches, the opposite of what he wanted.",
+    "chapter": "OEBPS/Text/0003_THREE_90_seconds.xhtml",
+    "nextStart": "Time passed. Things changed.",
+    "nextEndBefore": "At midnight, the house was still noisy,",
+    "note": "Years pass; life with Aunt Connie, coach concern, a noisy home and the System homework. Stop before the midnight research.",
+    "continuity": [
+      "Hannah answered Alden honestly and accepted responsibility for stabilizing the eighth floor instead of the seventh.",
+      "Arjun was acting on Hannah’s incorrect assurance; Alden’s parents died when the fight crossed the street into their apartment.",
+      "Alden’s grief drove Hannah away even though he wanted her to stay. Amanda remained.",
+      "Next chapter moves forward in time to Alden living with Aunt Connie, aged eleven during the baseball and homework scenes.",
+      "Approved A remains the identity anchor; adjust age faithfully. Local choices do not alter canonical events."
+    ]
+  },
+  "routes": [
+    {
+      "choices": [
+        "partner",
+        "face",
+        "listen",
+        "stop"
+      ],
+      "contains": [
+        "他在里面打。可他能不能用出自己的力量，还得看外面的她。",
+        "我看看她。这一次，我不要好听的话。我要知道发生了什么。",
+        "可我太急了，数错了窗户。我让八楼变强了，不是七楼。",
+        "我想让自己不要哭。可是，我做不到。心里那种难受，怎么也停不下来。",
+        "出去！别管我！"
+      ],
+      "endsWith": "我想要什么，连自己都不能说清楚。她已经跟我说清楚了事情。现在，她却走了。"
+    },
+    {
+      "choices": [
+        "outside",
+        "wait",
+        "hold",
+        "pillow"
+      ],
+      "contains": [
+        "她没有进去。可是，房子里面和外面的人，都需要她。",
+        "我还是不能放松下来。她的声音很近，我却觉得有点远。",
+        "可我太急了，数错了窗户。我让八楼变强了，不是七楼。",
+        "我不想让她看我的脸。可是，我已经开始哭了。",
+        "出去！别管我！"
+      ],
+      "endsWith": "我想要什么，连自己都不能说清楚。她已经跟我说清楚了事情。现在，她却走了。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-03-v1",
+    "category": "super-supportive",
+    "episode": 3,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-03.mp4",
+      "poster": "stories/animated/cutscenes/supportive-03.poster.jpg",
+      "title": "I made a terrible mistake.",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "image": "stories/characters/super-supportive/opening-03.png",
+    "imageGenerator": "built-in imagegen",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "ageReference": "Episode 1 childhood hospital artwork",
+    "style": "Charcoal and muted soft pastel on gray paper",
+    "scene": "Hannah admits her error before explaining the floor numbers.",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "m53rhkst9drmy0d1hd8rwrqd0r",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off",
+      "nativeAudio": true
+    },
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "pricingTier": {
+      "criteria": [
+        {
+          "description": "cost",
+          "subtype": "string",
+          "title": "model variant",
+          "type": "equals",
+          "value": "cost"
+        },
+        {
+          "description": "480p",
+          "subtype": "string",
+          "title": "target resolution",
+          "type": "equals",
+          "value": "480p"
+        }
+      ],
+      "description": "480p resolution, cost mode",
+      "prices": [
+        {
+          "description": "or 100 seconds for $1",
+          "metric": "video_output_duration_seconds",
+          "metric_display": "second of output video",
+          "price": "$0.01",
+          "title": "per second of output video",
+          "type": "per-unit"
+        }
+      ],
+      "title": "480p cost"
+    },
+    "videoPrompt": "Animate this exact charcoal and pastel hospital illustration in one continuous six-second shot. Preserve identities, ages, costumes, room, framing, paper texture and medium. Hannah, the woman on the RIGHT with brown braids is the ONLY speaker. The entire spoken script in clear natural ENGLISH, exactly once: \"I made a terrible mistake.\". Speak only those words between seconds 0.5 and 3.5, with synchronized lips; afterward mouth closed. No extra words, repetition, paraphrase, filler, humming, singing, narration or other voices. Quiet restrained emotional delivery, clearly above very soft rain ambience. Tiny natural eye/head movement; hands stay still on blanket or knees. No camera cuts, no new objects, no injuries. Hannah confesses with sorrow. Alden on the LEFT listens silently, mouth closed, his expression becoming tense; preserve his small child proportions.",
+    "checks": {
+      "sha256": "fcd8c95b5f0489629e597d6921cfda500cb7360d0ba18a03bf9c5ac2cdeb8273",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9.0,
+      "hold_seconds": 3.0,
+      "motion_seconds": 6.0,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "I made a terrible mistake."
+    },
+    "imagePromptBrief": "Illustration-story, landscape 16:9. Use approved A and Episode 1 hospital image for identity only. Eight-year-old Alden in blue star pajamas, Wummy, and Hannah with two brown braids and navy jacket. Expressive charcoal and soft pastel on gray toothy paper: smudged masses, erased highlights, rough hatching, dusty blue and ochre, visible sketch marks. Alden in bed left with watchful uncertainty and hands on blanket; Hannah seated right, bowed shoulders and hands joined on knees before admitting her mistake. Both faces visible, Alden the main focus. Rainy hospital daylight. No text, logos, injuries or supernatural effects."
+  },
+  "verification": {
+    "packageBytes": 1281993,
+    "reachableRoutes": 16,
+    "familiarityPercent": {
+      "min": 95.02262443438914,
+      "max": 95.32428355957768
+    },
+    "mandarinEntryPercent": 100,
+    "browser": "4/4 tests passed: two contrasting routes on phone and desktop, including audio, help toggles and save/resume",
+    "pinyinReviewed": true,
+    "directedPlayback": "Both choice routes on phone and desktop: bundled intro transitions, actual Mandarin playback, listener close-ups and Continue-held aftermath checked. Screenshots inspected; reduced-motion route included.",
+    "teaserReview": "Reference and end frames inspected for identity and medium; exact English ASR, non-silent sound, three-second hold and nine-second playback verified. No paid retries."
+  }
+}

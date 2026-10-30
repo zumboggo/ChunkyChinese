@@ -1,0 +1,187 @@
+{
+  "id": "supportive-02",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 2: Inside the Silver Bubble",
+  "description": "Alden asks Hannah for the truth about the night his parents died.",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "Mandarin adaptation of the user-supplied EPUB, chapter TWO: Mistakes. Simplified dialogue and local reconverging choices; not an official translation."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "TWO: Mistakes, from “I’m glad,” said Hannah. through the choice of the empty building; ends before “We managed to chase the villain in there,” Hannah said.",
+    "dramaticChange": "Answers replace comforting evasions.",
+    "essentialNewWords": [
+      "银色",
+      "魔法",
+      "能力",
+      "受伤",
+      "力量",
+      "英雄",
+      "坏人",
+      "保护",
+      "七楼",
+      "八楼",
+      "窗户"
+    ],
+    "englishNarrationPurpose": "None; all readable story entries and choices are Mandarin.",
+    "choicesAndCallbacks": [
+      "Four local attention or conversation intentions with immediate distinct responses; no persistent changes to canonical events."
+    ],
+    "sceneActivities": [
+      "Seated hospital conversation; hands and gaze carry tension. No looping exercise or travel."
+    ],
+    "storytellingVoice": "Intimate character drama",
+    "voiceReason": "A child seeking concrete truth and a rescuer struggling to answer him; source-supported vulnerability drives the scene.",
+    "signatures": {
+      "Alden": "Short concrete questions; attentive stillness gives way to clutching blankets and loss of composure.",
+      "Hannah": "Hesitant but precise answers; speaks directly about responsibility, pauses under strain.",
+      "Amanda": "Protective immediate response in the final scene; no invented speech beyond comfort."
+    },
+    "directing": "Hold shared pair through ordinary answers; frame Alden when the decisive disclosure lands, then Continue-controlled aftermath. Preserve seated states.",
+    "teaser": {
+      "style": "Chinese ink wash on xuan paper with sparse indigo",
+      "reference": "stories/characters/super-supportive/alden-approved-a.png",
+      "speaker": "Alden",
+      "line": "Why did he kill my parents?",
+      "sourceMoment": "Alden asks for the reason behind the disaster."
+    },
+    "pinyinReview": "Manually reviewed sentence and chunk readings; corrected hai/huan, dei/de, zhi, shu (count), xuan zhong, neutral tones and le. Full English translations reviewed separately.",
+    "earlyCare": "Alden wants answers instead of kind but empty words.",
+    "desire": "Understand the bubble and how the disaster reached his street.",
+    "obstacle": "Hannah’s discomfort and the complexity of what happened.",
+    "payoff": "The bubble and pursuit are explained; Alden sees Hannah’s honesty about the limits of her knowledge.",
+    "newUncertainty": "How did the fight in the empty building reach his bedroom?",
+    "limitations": [
+      "Reusable vector cast preserves the existing approximation and seated childhood staging; generated opening artwork uses the approved age-adjusted Alden likeness."
+    ]
+  },
+  "continuation": {
+    "end": "Hannah explains the bubble and the pursuit to the empty building. Alden learns that even his rescuer does not fully understand her powers.",
+    "nextStart": "“We managed to chase the villain in there,” Hannah said.",
+    "nextEndBefore": "A note from Sleyca",
+    "note": "Hannah’s role, wrong-floor admission and Alden’s grief; complete chapter TWO."
+  },
+  "routes": [
+    {
+      "choices": [
+        "person",
+        "askpower",
+        "whatkind",
+        "relief"
+      ],
+      "contains": [
+        "那天在我房间里的，就是那个坏人吗？",
+        "他能拿走别人的力量和生命，变成自己的。他害的人越多，自己就越强。",
+        "我记得那种安静。她不是什么都知道，却真的让我活了下来。",
+        "对。那是我们最先看见的空房子。"
+      ],
+      "endsWith": "现在我知道了，他们为什么会来到我家对面。可那个人，最后怎么会进了我的房间？"
+    },
+    {
+      "choices": [
+        "parents",
+        "keepgoing",
+        "bubble",
+        "surprise"
+      ],
+      "contains": [
+        "是那个人让我爸爸妈妈死的吗？",
+        "对。用那个来说明，你可能更容易明白。",
+        "我以为，她一定什么都明白。她说自己也不清楚，还要好好想想。",
+        "对。那是我们最先看见的空房子。"
+      ],
+      "endsWith": "现在我知道了，他们为什么会来到我家对面。可那个人，最后怎么会进了我的房间？"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-02-v1",
+    "category": "super-supportive",
+    "episode": 2,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-02.mp4",
+      "poster": "stories/animated/cutscenes/supportive-02.poster.jpg",
+      "title": "Why did he kill my parents?",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "image": "stories/characters/super-supportive/opening-02.png",
+    "imageGenerator": "built-in imagegen",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "ageReference": "Episode 1 childhood hospital artwork",
+    "style": "Chinese ink wash on xuan paper with sparse indigo",
+    "scene": "Alden asks for the reason behind the disaster.",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "5ajfarhac9rmw0d1hd8vt0tjk0",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off",
+      "nativeAudio": true
+    },
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "pricingTier": {
+      "criteria": [
+        {
+          "description": "cost",
+          "subtype": "string",
+          "title": "model variant",
+          "type": "equals",
+          "value": "cost"
+        },
+        {
+          "description": "480p",
+          "subtype": "string",
+          "title": "target resolution",
+          "type": "equals",
+          "value": "480p"
+        }
+      ],
+      "description": "480p resolution, cost mode",
+      "prices": [
+        {
+          "description": "or 100 seconds for $1",
+          "metric": "video_output_duration_seconds",
+          "metric_display": "second of output video",
+          "price": "$0.01",
+          "title": "per second of output video",
+          "type": "per-unit"
+        }
+      ],
+      "title": "480p cost"
+    },
+    "videoPrompt": "Animate this exact ink-wash hospital illustration in one continuous six-second shot. Preserve identities, ages, costumes, room, framing, paper texture and medium. The eight-year-old boy Alden, alone in the image is the ONLY speaker. The entire spoken script in clear natural ENGLISH, exactly once: \"Why did he kill my parents?\". Speak only those words between seconds 0.5 and 3.5, with synchronized lips; afterward mouth closed. No extra words, repetition, paraphrase, filler, humming, singing, narration or other voices. Quiet restrained emotional delivery, clearly above very soft rain ambience. Tiny natural eye/head movement; hands stay still on blanket or knees. No camera cuts, no new objects, no injuries. The boy asks with urgent quiet seriousness, then holds his gaze toward the unseen woman.",
+    "checks": {
+      "sha256": "1bfc5ef1e210dac8a8e5341176e4bed4e39d3e7ba914aaae7911cf492334bbf5",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9.0,
+      "hold_seconds": 3.0,
+      "motion_seconds": 6.0,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "Why did he kill my parents?"
+    },
+    "imagePromptBrief": "Illustration-story, landscape 16:9. Use Alden A and Episode 1 hospital image for identity only. Preserve eight-year-old Alden’s ordinary face, brown eyes, small straight nose, tousled brown fringe, blue star pajamas and Wummy. Expressive Chinese ink-wash on textured xuan paper: calligraphic contours, dry-brush hair, gray washes, sparse indigo and warm ochre, paper negative space. Alden propped in hospital bed, hands clutching blanket, medium chest-up three-quarter portrait, questioning brow, looking toward offscreen Hannah. Rain-streaked window. No literal magic bubble, text, logos or visible injuries."
+  },
+  "verification": {
+    "packageBytes": 1358183,
+    "reachableRoutes": 16,
+    "familiarityPercent": {
+      "min": 95.24517087667162,
+      "max": 95.55555555555556
+    },
+    "mandarinEntryPercent": 100,
+    "browser": "4/4 tests passed: two contrasting routes on phone and desktop, including audio, help toggles and save/resume",
+    "pinyinReviewed": true,
+    "directedPlayback": "Both choice routes on phone and desktop: bundled intro transitions, actual Mandarin playback, listener close-ups and Continue-held aftermath checked. Screenshots inspected; reduced-motion route included.",
+    "teaserReview": "Reference and end frames inspected for identity and medium; exact English ASR, non-silent sound, three-second hold and nine-second playback verified. No paid retries."
+  }
+}

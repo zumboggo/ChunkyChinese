@@ -995,5 +995,37 @@
       "title": "Super Supportive · Episode 1: Someone Who Answers",
       "description": "Two weeks after the disaster, young Alden receives a visitor. A small, unexpected conversation gives him something he has been missing: someone who takes his questions seriously."
     }
+  },
+  {
+    "id": "supportive-02-v1",
+    "category": "super-supportive",
+    "episode": 2,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-02.mp4",
+      "poster": "stories/animated/cutscenes/supportive-02.poster.jpg",
+      "title": "Why did he kill my parents?",
+      "durationSeconds": 9
+    },
+    "path": "supportive-02.json",
+    "summary": {
+      "title": "Super Supportive · Episode 2: Inside the Silver Bubble",
+      "description": "Alden asks Hannah for the truth about the night his parents died."
+    }
+  },
+  {
+    "id": "supportive-03-v1",
+    "category": "super-supportive",
+    "episode": 3,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-03.mp4",
+      "poster": "stories/animated/cutscenes/supportive-03.poster.jpg",
+      "title": "I made a terrible mistake.",
+      "durationSeconds": 9
+    },
+    "path": "supportive-03.json",
+    "summary": {
+      "title": "Super Supportive · Episode 3: One Floor Too High",
+      "description": "A small error in a desperate battle changes everything. Hannah tells Alden what happened."
+    }
   }
 ]
