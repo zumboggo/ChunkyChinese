@@ -4,9 +4,9 @@
   "source": {
     "kind": "original",
     "note": "Original fan adventure requested by David for Jonathan; no source novel or real-person likeness.",
-    "nextStart": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
-    "nextEndBefore": "Preserve all historical memories, losses, injury limits, allocations and water. One shared storyline.",
-    "continuationNote": "Follow approved vocabulary allocation; check meaningful use on every shared route."
+    "nextStart": "Current Jedi story arc complete. No further episode planned or authorized by this boundary. Future optional review must preserve all historical memory and shared duties.",
+    "nextEndBefore": "Do not undo prior deaths, injuries, equipment losses, promises or water allocations.",
+    "continuationNote": "Final episode of the approved 16–25 vocabulary plan. Any future sequel is a separate request."
   },
   "completed": [
     {
@@ -106,9 +106,17 @@
     {
       "episode": "jedi-23-v1",
       "end": "Jon, Ryn, Min and Sela reject Orr’s unsupported instant-repair promise and decorative upgrade. The sample is returned. Approved materials are purchased with documented supplies funds; qualified pipe and roof specialists complete their respective repairs over several days and sign off on their work. Final safety inspection is still pending, so the centre remains closed. Repair test water came from the specialists; all historical drinking-water balances and memories are unchanged. The next task is preparing opening-day photographs while awaiting inspection."
+    },
+    {
+      "episode": "jedi-24-v1",
+      "end": "The residents Luma and Daro and young adult Nia choose community photographs after Jon listens to appearance worries and respects consent. They choose images of helping and relationships; nobody is required to appear or disclose private memories. The centre remains closed pending final inspection. Water and historical consequences are unchanged."
+    },
+    {
+      "episode": "jedi-25-v1",
+      "end": "Final safety inspection clears the repaired centre for its agreed use. Nia and Daro agree low-volume music and quiet conversation times after a sound check. The promised seedlings and their separate watering supply arrive. Qualified nest management is complete; the old garden path remains closed and the checked alternate route is used. Tavi supplies the shared meal and its cooking water. Sela presents learner writing and consented photographs. Named, consenting duties are recorded: Ryn paid pipe inspections under agreed trial terms, Vek records issues and arranges qualified roof/other work and replacements, Sela reading activities, Edda safe garden route, Jonathan scheduled shifts. Absence is reported; substitutes must consent and be qualified; safety failures close the centre. An limitations, all deaths, losses, promises, allocations and station water remain binding. Jon accepts membership rather than indispensability. The current story arc is complete."
     }
   ],
-  "assetsFrom": "stories/animated/jedi-23.json",
+  "assetsFrom": "stories/animated/jedi-25.json",
   "vocabularySupplement": ".local/episodes/jedi-01/supplement.json",
   "coverage": {
     "min": 80,
@@ -118,15 +126,15 @@
     "catalogCategory": "jedi",
     "language": "Short simplified Mandarin, contextual interlinear pinyin and cached audio. Screenshot membership is not reading mastery.",
     "coverageNote": "New learner: no assessed-known export. The 80% floor measures membership only in the supplied inventory plus proposed glossary, not mastery. All additional basic scaffolding is annotated and audited privately; never promote it to familiar to pass a check.",
-    "teaserArtwork": "ImageGen first, then video. Use Jon’s approved likeness reference; shonen-anime Jedi art is welcome (David, 2026-10-26). Keep generated video at or below $0.15 total per clip, including retries.",
+    "teaserArtwork": "Built-in ImageGen first with approved Jon identity. Visibly varied worldwide art styles tied to the current episode; maximum total video charge $0.15 per clip including retries.",
     "choiceConsequences": "From Episode 9 onward, preserve memory of previous choices and material losses, but keep one main storyline. Use local expressive choices and callbacks that rejoin the shared plot. Do not multiply permanent narrative branches.",
     "teaserDialogue": "Every opening teaser includes one cool or epic spoken English phrase by Jon or another character, foreshadowing the highest-tension moment. ImageGen first; exact words once, no extra speech. User preference 2026-10-27.",
     "vocabularyCoveragePlan": {
       "path": "stories/authoring/jedi/coverage-plan-16-25.json",
-      "status": "Planned only; preserve actual completed episode boundary",
-      "instruction": "For Episodes 16–25, use the exact per-episode original-list targets in this plan: 13–19 new targets, 60–80 short voiced entries where needed, two meaningful intended-sense uses on every shared route plus scheduled review. Verify actual target coverage separately from familiar-word share. Keep one main storyline and prior choice memory. Optional Episode 26 reviews the final 18 targets."
+      "status": "Complete through Episode 25: all 170 allocated gap words verified twice per route; 294 original inventory words covered contextually. Exposure is not mastery.",
+      "instruction": "Current arc and coverage plan complete. No automatic Episode 26. Future user-requested review preserves historical memories and community duties."
     },
-    "openingArtworkVariety": "Each new episode uses a visibly different genre, medium or artistic tradition from around the world, with the recognizable main character as the focal subject. Preserve the approved identity reference and carry the style into generated motion. Episode 22 used warm gouache; Episode 23 used Chinese ink wash. Choose a distinct next style. David reaffirmed this on 2026-10-29."
+    "openingArtworkVariety": "Each new episode uses a visibly distinct worldwide art tradition or medium and recognizable Jon, tied directly to the episode content. Episode 24 used Ghanaian Asafo-inspired appliqué; Episode 25 used luminous Art Nouveau stained glass."
   },
   "continuity": [
     "The child from episode 1 is safe with her mother.",
@@ -169,7 +177,10 @@
     "Episodes 20 and 21 do not change water or historical memories. Episode 22 inherits Episode 21 terminal water 2 through 20 by twos via sourceVariable water. Delivered buckets remain with recipients; deaths, equipment losses, An injury limits and promises remain binding. Ryn has accepted written paid probation terms for qualified pipe work. Roof repairs require separately qualified specialists and are not yet verified complete; the centre remains closed. Edda is the new garden keeper. The nest area stays isolated for qualified management; a safe alternate path is available. Her relative has promised seedlings, but they are not yet delivered stock. Episode 22 follows the approved food-stall vocabulary allocation, transparent accounts and rejection of unsupported honey claims. Do not take honey from the protected nest or assume free water for the stall.",
     "Tavi and Min complete the courtyard food stall. Tavi withdraws unsupported honey claims and explains the correction. Costs, her pay, income and remaining supplies funds are recorded; the funds are restricted to agreed centre supplies. Tavi brought the soup ingredients, cooking water and documented purchased honey; no station water or garden honey was used. Seedlings remain promised but undelivered. The centre remains closed pending repairs. Jon replaces an elaborate banquet speech with listening and a simple shared meal.",
     "Jon, Ryn, Min and Sela reject Orr’s unsupported instant-repair promise and decorative upgrade. The sample is returned. Approved materials are purchased with documented supplies funds; qualified pipe and roof specialists complete their respective repairs over several days and sign off on their work. Final safety inspection is still pending, so the centre remains closed. Repair test water came from the specialists; all historical drinking-water balances and memories are unchanged. The next task is preparing opening-day photographs while awaiting inspection.",
-    "Episodes 22 and 23 retain all historical choice memory, deaths, injury limits, equipment losses, promises and water balances. Episode 24 inherits terminal water 2 through 20 by twos. Tavi supplied cooking water; specialists supplied repair-test water; neither drew from station stock. The qualified crew has completed repairs, but final safety inspection is still pending and the centre stays closed. Funds and expenses are documented; no decorative upgrade was purchased. Seedlings remain a promise until delivered. Follow Episode 24 photographs and appearance/relationships vocabulary allocation; introduce the resident couple without altering existing relationships or survivors."
+    "Episodes 22 and 23 retain all historical choice memory, deaths, injury limits, equipment losses, promises and water balances. Episode 24 inherits terminal water 2 through 20 by twos. Tavi supplied cooking water; specialists supplied repair-test water; neither drew from station stock. The qualified crew has completed repairs, but final safety inspection is still pending and the centre stays closed. Funds and expenses are documented; no decorative upgrade was purchased. Seedlings remain a promise until delivered. Follow Episode 24 photographs and appearance/relationships vocabulary allocation; introduce the resident couple without altering existing relationships or survivors.",
+    "The residents Luma and Daro and young adult Nia choose community photographs after Jon listens to appearance worries and respects consent. They choose images of helping and relationships; nobody is required to appear or disclose private memories. The centre remains closed pending final inspection. Water and historical consequences are unchanged.",
+    "Final safety inspection clears the repaired centre for its agreed use. Nia and Daro agree low-volume music and quiet conversation times after a sound check. The promised seedlings and their separate watering supply arrive. Qualified nest management is complete; the old garden path remains closed and the checked alternate route is used. Tavi supplies the shared meal and its cooking water. Sela presents learner writing and consented photographs. Named, consenting duties are recorded: Ryn paid pipe inspections under agreed trial terms, Vek records issues and arranges qualified roof/other work and replacements, Sela reading activities, Edda safe garden route, Jonathan scheduled shifts. Absence is reported; substitutes must consent and be qualified; safety failures close the centre. An limitations, all deaths, losses, promises, allocations and station water remain binding. Jon accepts membership rather than indispensability. The current story arc is complete.",
+    "Episodes 24 and 25 complete the current storyline and preserve all twelve memory fields, losses, limitations and water totals 2 through 20. The centre is cleared and open under recorded shared duties. No further episode is scheduled; a future sequel or review requires a new request."
   ],
   "cover": "public/stories/animated/jedi/series-cover.jpg",
   "coverArt": {
@@ -179,9 +190,9 @@
   },
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through jedi-23-v1",
-    "nextStart": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
-    "nextEndBefore": "Preserve all historical memories, losses, injury limits, allocations and water. One shared storyline.",
-    "assetsFrom": "stories/animated/jedi-23.json"
+    "note": "Published through jedi-25-v1",
+    "nextStart": "Current Jedi story arc complete. No further episode planned or authorized by this boundary. Future optional review must preserve all historical memory and shared duties.",
+    "nextEndBefore": "Do not undo prior deaths, injuries, equipment losses, promises or water allocations.",
+    "assetsFrom": "stories/animated/jedi-25.json"
   }
 }
