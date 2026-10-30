@@ -1,0 +1,168 @@
+{
+  "id": "supportive-01",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 1: Someone Who Answers",
+  "description": "Two weeks after the disaster, young Alden receives a visitor. A small, unexpected conversation gives him something he has been missing: someone who takes his questions seriously.",
+  "castFrom": "public/stories/animated/cast/super-supportive.json",
+  "lexicon": [
+    "伤疤",
+    "锯片",
+    "玩具",
+    "游戏机",
+    "受伤",
+    "女英雄",
+    "收藏品"
+  ],
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "Based on the user-supplied EPUB: chapter TWO: Mistakes through the scar exchange; brief memories from ONE: The Boy in the Bubble. Not an official translation. No permission or public-domain status inferred from web availability."
+    }
+  ],
+  "planning": {
+    "storytellingVoice": "Intimate character drama",
+    "voiceReason": "David selected intimate character drama and quiet local payoffs, welcoming source-supported perspective shifts.",
+    "sourceBoundary": "Chapter 2 opening through “It doesn’t hurt much anymore.” Brief rescue recollections from chapter 1; no later explanation of the disaster.",
+    "earlyCare": "Alden keeps Wummy close and wants adults to tell him the truth.",
+    "desire": "Be taken seriously and learn what happened.",
+    "obstacle": "Adults avoid his questions, while Hannah struggles with guilt.",
+    "dramaticChange": "Alden discovers he can speak comfortably to Hannah; she accepts his unusual curiosity.",
+    "payoff": "Hannah agrees to ask about the shrapnel and takes his scar seriously.",
+    "newUncertainty": "Will she answer the painful question about his parents?",
+    "essentialNewWords": [
+      "伤疤",
+      "锯片",
+      "女英雄",
+      "受伤",
+      "紫色"
+    ],
+    "englishNarrationPurpose": "None. All story beats and choices in Mandarin.",
+    "choicesAndCallbacks": [
+      "Look out the window / at Wummy: different private observations, rejoin visitor.",
+      "Quiet nod / attentive nod: different acknowledgment of consent; rejoin seated conversation.",
+      "Ask what the fragment was / say he never saw it: distinct opening question, rejoin explanation.",
+      "Invite her to see scar / describe its color: distinct exchange, rejoin her enthusiasm. No persistent variables."
+    ],
+    "sceneActivities": [
+      "Alden remains seated/reclining at the bed; Hannah first stands at a distance, sits only after his nod; restrained gestures accompany the metal size explanation.",
+      "Stillness during listening is intentional; no compulsory walk or training loop."
+    ],
+    "signatures": {
+      "Alden": "Short direct questions, concrete childlike curiosity, watchful stillness and rare pleased expression.",
+      "Hannah": "Hesitant openings, permission before approaching, matter-of-fact answers; warmth offsets guarded guilt.",
+      "Amanda": "Protective, practical permission and reassurance."
+    },
+    "directing": "Shared pair through ordinary replies; Hannah listener at Alden’s unusual request; Alden listener for her offer and enthusiastic scar response; aftermath persists until Continue.",
+    "teaser": {
+      "style": "Colored pencil and translucent watercolor, rainy daylight",
+      "reference": "stories/characters/super-supportive/alden-approved-a.png",
+      "speaker": "Alden, childhood interpretation",
+      "line": "Do you want to see my scar?",
+      "sourceMoment": "The final scar exchange, before showing the scar."
+    },
+    "limitations": [
+      "Approved design A is preserved in the teaser and reference library. The reusable vector cast is an approximation; its youngest body preset is teen, staged seated for this childhood opening.",
+      "Hannah’s tied-back brown hair is approximated by the supported ponytail shape; opening art shows braids."
+    ],
+    "pinyinReview": "Reviewed full sentences and chunks; corrected contextual polyphones and neutral tones."
+  },
+  "pinyinReviewed": true,
+  "continuation": {
+    "end": "Hannah agrees to ask about the shrapnel and admires Alden’s scar; he feels heard. The cause of his parents’ deaths is not yet explained.",
+    "nextStart": "“I’m glad,” said Hannah.",
+    "nextEndBefore": "Alden’s vision blurred.",
+    "note": "The bubble explanation and truth about the disaster; allow grief and aftermath when extending boundary deliberately.",
+    "continuity": [
+      "Alden remains a child in hospital; design A is the later teenage reference.",
+      "Wummy was rescued with him. His parents are dead; he still seeks the full explanation.",
+      "Hannah has consent to visit, has promised to ask about the saw fragment, and has admired his purple scar.",
+      "No persistent branch changes to source events.",
+      "Intimate character drama, quiet local payoffs, occasional source-supported perspective shifts."
+    ]
+  },
+  "catalog": {
+    "id": "supportive-01-v1",
+    "category": "super-supportive",
+    "episode": 1,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-01.mp4",
+      "poster": "stories/animated/cutscenes/supportive-01.poster.jpg",
+      "title": "Do you want to see my scar?",
+      "durationSeconds": 9
+    }
+  },
+  "notice": "A private Mandarin learning adaptation of Sleyca’s Super Supportive. Dialogue is simplified and brief choices rejoin the novel’s events. This opening takes place during Alden’s childhood and includes bereavement and recollections of injury.",
+  "assetsFrom": "stories/animated/supportive-01.json",
+  "script": "stories/animated/source/supportive-01.story",
+  "annotations": "stories/animated/source/supportive-01.lines.json",
+  "routes": [
+    {
+      "choices": [
+        "window",
+        "nod",
+        "curious",
+        "direct"
+      ],
+      "contains": [
+        "我想见她！她在哪里？",
+        "想。也帮我问问，能不能把它给我。",
+        "当然想看！"
+      ],
+      "endsWith": "可我还有最重要的问题没有问。那天晚上，爸爸妈妈到底出了什么事？"
+    },
+    {
+      "choices": [
+        "wummy",
+        "welcome",
+        "unseen",
+        "purple"
+      ],
+      "contains": [
+        "它还在这里。那天晚上，她连它也一起带走了。",
+        "那里有一道紫色的伤疤。你想看看吗？",
+        "现在已经不怎么疼了。"
+      ],
+      "endsWith": "可我还有最重要的问题没有问。那天晚上，爸爸妈妈到底出了什么事？"
+    }
+  ],
+  "media": {
+    "model": "prunaai/p-video-2-pro",
+    "mode": "cost",
+    "resolution": "480p",
+    "generatedSeconds": 6,
+    "holdSeconds": 3,
+    "totalSeconds": 9,
+    "verifiedPricePerSecondUsd": 0.01,
+    "maximumClipCostUsd": 0.06,
+    "paidAttempts": 1,
+    "predictionId": "keb41yyvqdrmt0d1hbsvjwh8y4",
+    "dialogue": "Do you want to see my scar?",
+    "artReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "speechCheck": "Exact transcript matched using cached base.en model."
+  },
+  "verification": {
+    "deterministicRoutes": 16,
+    "browserRoutes": 2,
+    "browserProjects": [
+      "desktop",
+      "phone"
+    ],
+    "checks": [
+      "all route replay/resume assertions",
+      "full route phone/desktop playback",
+      "Mandarin audio decode, play and pause",
+      "pinyin and English toggles",
+      "reload and resume",
+      "nine-second intro with sound and automatic story transition",
+      "listener framing and reader-controlled aftermath screenshots"
+    ],
+    "familiarityPercent": [
+      95.17133956386293,
+      95.39170506912443
+    ],
+    "packageBytes": 1362371,
+    "teaserSpeechTranscript": "Do you want to see my scar?",
+    "visualReview": "Reviewed phone reading, Alden listener at Hannah’s response, and desktop Hannah reaction. Vector designs are stylized approximations; approved A identity retained in art reference and childhood teaser."
+  }
+}

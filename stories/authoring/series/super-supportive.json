@@ -1,0 +1,33 @@
+{
+  "id": "super-supportive",
+  "title": "Super Supportive",
+  "source": {
+    "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
+    "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
+    "chapter": "OEBPS/Text/0002_TWO_Mistakes.xhtml",
+    "nextStart": "Alden lay in his hospital bed,",
+    "nextEndBefore": "“I’m glad,” said Hannah.",
+    "continuationNote": "Episode 1: hospital visit through the scar exchange, with brief faithful memories of chapter 1. Alden is a third-grade child, not yet his teenage self."
+  },
+  "completed": [],
+  "assetsFrom": ".local/episodes/supportive-01/assets.json",
+  "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
+  "coverage": {
+    "min": 95,
+    "max": 98
+  },
+  "defaults": {
+    "catalogCategory": "super-supportive",
+    "scope": "Intimate character drama. Preserve quiet episodes and substantial local payoffs. Occasional source-supported perspective shifts welcomed.",
+    "choices": "Four local observation or conversational choices; preserve canonical events.",
+    "length": "40–60 voiced entries, flexible.",
+    "language": "Simplified Mandarin, interlinear chunks, reviewed pinyin, cached Mandarin audio."
+  },
+  "continuity": [
+    "Approved Alden appearance: design A, quiet warmth, brown tousled hair, soft oval face, brown eyes, genuine situational smile.",
+    "Opening takes place in childhood; teenage design A is the later identity reference.",
+    "Keep Wummy, parental loss, Hannah’s care and her guilt source-faithful."
+  ],
+  "castRecipes": "stories/characters/super-supportive/cast.json",
+  "castBundle": "public/stories/animated/cast/super-supportive.json"
+}

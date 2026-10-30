@@ -59,3 +59,9 @@ it('places imported Moonlight episodes in LMS in numeric order',async()=>{
  expect(release.category).toBe('lms')
  expect(release.episode).toBe(14)
 })
+
+it('keeps an imported Super Supportive episode in its own series',async()=>{
+ const release=await publish(crypto.randomUUID(),{...pack,title:'Super Supportive · Episode 1: Someone Who Answers'})
+ expect(release.category).toBe('super-supportive')
+ expect(release.episode).toBe(1)
+})

@@ -5,7 +5,7 @@ export function stageEpisodeRelease({id,plan,pack,root=process.cwd()}){
  if(!/^[a-z0-9-]+$/.test(id))throw Error('Invalid episode ID')
  if(plan.pinyinReviewed!==true)throw Error('Review the generated pinyin, save corrections in annotations, then set pinyinReviewed: true.')
  const catalogPath=resolve(root,'public/stories/animated/catalog.json'),catalog=JSON.parse(readFileSync(catalogPath,'utf8')),entry=plan.catalog
- if(!entry||!/^[a-z0-9-]+$/.test(entry.id)||!['lms','name-of-the-wind','jedi','daily-life','practice'].includes(entry.category)||entry.category!=='practice'&&(!Number.isInteger(entry.episode)||entry.episode<1))throw Error('Complete catalog identity/category/episode.')
+ if(!entry||!/^[a-z0-9-]+$/.test(entry.id)||!['lms','name-of-the-wind','jedi','super-supportive','daily-life','practice'].includes(entry.category)||entry.category!=='practice'&&(!Number.isInteger(entry.episode)||entry.episode<1))throw Error('Complete catalog identity/category/episode.')
  const targets=[`stories/animated/${id}.json`,`public/stories/animated/${id}.json`,`stories/animated/source/${id}.story`,`stories/animated/source/${id}.lines.json`].map(p=>resolve(root,p))
  if(targets.some(existsSync)||catalog.some(e=>e.id===entry.id||e.path===id+'.json'||e.category===entry.category&&e.episode===entry.episode))throw Error('Release already exists; published packages are never overwritten.')
  const sw=resolve(root,'public/service-worker.js'),text=readFileSync(sw,'utf8')

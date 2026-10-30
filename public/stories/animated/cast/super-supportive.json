@@ -1,0 +1,77 @@
+{
+  "Alden": {
+    "name": "阿登 · Alden",
+    "version": 1,
+    "provenance": "Childhood interpretation of David-approved design A (2026-10-30): soft oval/round face, medium brown tousled hair, gentle brown-eyed appearance and situational genuine smile. Current reusable vector renderer approximates approved art; teen is its youngest supported body preset, used seated for the childhood prologue. Pale blue hospital clothes; teenage hoodie reference retained separately.",
+    "expressions": {},
+    "rig": {
+      "version": 2,
+      "preset": "cartoon-v1",
+      "style": "manga",
+      "finish": "polished",
+      "palette": {
+        "skin": "#e9c6ad",
+        "hair": "#65462f",
+        "shirt": "#b8cbdc",
+        "trim": "#e4ebee"
+      },
+      "appearance": {
+        "age": "teen",
+        "face": "round",
+        "eyes": "gentle",
+        "hair": "tousled",
+        "outfit": "cardigan"
+      }
+    }
+  },
+  "Hannah": {
+    "name": "汉娜 · Hannah",
+    "version": 1,
+    "provenance": "Source-based interpretation: brown hair, blue motorcycle jacket; vector ponytail approximates tied-back braids, exact braids retained in opening art. Warm public manner with guilt beneath it.",
+    "expressions": {},
+    "rig": {
+      "version": 2,
+      "preset": "cartoon-v1",
+      "style": "manga",
+      "finish": "polished",
+      "palette": {
+        "skin": "#e4b99e",
+        "hair": "#694734",
+        "shirt": "#334b66",
+        "trim": "#657282"
+      },
+      "appearance": {
+        "age": "adult",
+        "face": "oval",
+        "eyes": "gentle",
+        "hair": "ponytail",
+        "outfit": "cardigan"
+      }
+    }
+  },
+  "Amanda": {
+    "name": "护士 · Nurse Amanda",
+    "version": 1,
+    "provenance": "Original visual interpretation of Nurse Amanda from the supplied chapter.",
+    "expressions": {},
+    "rig": {
+      "version": 2,
+      "preset": "cartoon-v1",
+      "style": "manga",
+      "finish": "polished",
+      "palette": {
+        "skin": "#bd8c6e",
+        "hair": "#45372f",
+        "shirt": "#779f9d",
+        "trim": "#dfe7e0"
+      },
+      "appearance": {
+        "age": "adult",
+        "face": "broad",
+        "eyes": "default",
+        "hair": "bun",
+        "outfit": "workshirt"
+      }
+    }
+  }
+}

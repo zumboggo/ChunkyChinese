@@ -18,7 +18,9 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
  await expect(page.getByLabel('Episode title',{exact:true})).toHaveValue(pack.title)
  await page.getByRole('button',{name:'Publish to my library',exact:true}).click()
  const open=async()=>{
-  const category=pack.title.startsWith('The Name of the Wind')?'name-of-the-wind':pack.title.startsWith('The Voices Beneath the Water')?'jedi':/^Moonlight(?: Sculptor)?\s+\d+\b/i.test(pack.title)?'lms':'daily-life'
+  const category=pack.title.startsWith('Super Supportive')?'super-supportive':pack.title.startsWith('The Name of the Wind')?'name-of-the-wind':pack.title.startsWith('The Voices Beneath the Water')?'jedi':/^Moonlight(?: Sculptor)?\s+\d+\b/i.test(pack.title)?'lms':'daily-life'
+  const chooser=page.getByRole('button',{name:'Choose story',exact:true})
+  if(await chooser.getAttribute('aria-expanded')!=='true')await chooser.click()
   await page.getByLabel('Book',{exact:true}).selectOption(category)
   // A bundled release may have the same title; resume this exact imported package.
   const releaseId=createHash('sha256').update(JSON.stringify(pack)).digest('hex')
@@ -48,11 +50,12 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
   }else{
    await expect.poll(currentText).toBe(beat.text)
    if(!heard&&pack.chinese?.lines[beat.text]?.audio){
-    await page.locator('.episode-settings summary').click()
-    for(const name of ['Pinyin','English']){const b=page.getByRole('checkbox',{name,exact:true});await b.uncheck();await expect(page.locator(name==='Pinyin'?'.reader-interlinear-pinyin':'.reader-interlinear-gloss')).toHaveCount(0);await b.check()}
-    await page.locator('.episode-settings summary').click()
+    await page.locator('.episode-settings > summary').click()
+    for(const name of ['Pinyin','English']){const b=page.getByRole('button',{name:`Text: ${name}`,exact:true});if(await b.getAttribute('aria-pressed')==='true')await b.click();await expect(page.locator(name==='Pinyin'?'.reader-interlinear-pinyin':'.reader-interlinear-gloss')).toHaveCount(0);await b.click();await expect(b).toHaveAttribute('aria-pressed','true')}
+    await page.locator('.episode-settings > summary').click()
     const src=pack.chinese.lines[beat.text].audio!
     expect(await page.evaluate(async src=>{const ctx=new AudioContext();try{return (await ctx.decodeAudioData(await (await fetch(src)).arrayBuffer())).duration}finally{await ctx.close()}},src)).toBeGreaterThan(0)
+    const pause=page.getByRole('button',{name:'Pause audio',exact:true});if(await pause.isVisible())await pause.click()
     await page.getByRole('button',{name:'Play audio',exact:true}).click();await expect(page.getByRole('button',{name:'Pause audio',exact:true})).toBeVisible()
     await page.getByRole('button',{name:'Pause audio',exact:true}).click();heard=true
     await page.screenshot({path:info.outputPath('reading.png'),fullPage:true})

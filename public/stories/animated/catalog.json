@@ -979,5 +979,21 @@
       "title": "The Voices Beneath the Water · Episode 23: A Promise Worth Believing",
       "description": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials."
     }
+  },
+  {
+    "id": "supportive-01-v1",
+    "category": "super-supportive",
+    "episode": 1,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-01.mp4",
+      "poster": "stories/animated/cutscenes/supportive-01.poster.jpg",
+      "title": "Do you want to see my scar?",
+      "durationSeconds": 9
+    },
+    "path": "supportive-01.json",
+    "summary": {
+      "title": "Super Supportive · Episode 1: Someone Who Answers",
+      "description": "Two weeks after the disaster, young Alden receives a visitor. A small, unexpected conversation gives him something he has been missing: someone who takes his questions seriously."
+    }
   }
 ]
