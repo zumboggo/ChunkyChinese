@@ -1,0 +1,1045 @@
+{
+  "throughEpisode": 25,
+  "originalInventoryWords": 294,
+  "originalWordsWithContextualUse": 294,
+  "segmentationWholeWordMatches": 288,
+  "segmentationCasesReviewed": {
+    "群": "Classifier in 一群蜜蜂 / 一群人; a grammatical number-classifier phrase, not an unrelated longer word.",
+    "列": "Verb list in 列出; 出 is its directional/result complement.",
+    "紧": "Tight/firm in 紧紧拉着绳子; ordinary reduplication of 紧.",
+    "刺儿": "The complete noun 刺儿 appears; segmentation splits the erhua suffix.",
+    "透": "Through/thoroughly as result complement in 看透.",
+    "篇": "Classifier in 一篇文章; grammatical number-classifier phrase."
+  },
+  "missingOriginalWords": [],
+  "allocatedGapTargets": 170,
+  "minimumDistinctSpokenUsesPerTargetOnEveryAllocatedRoute": 2,
+  "newFinalEpisodeTargets": {
+    "24": 17,
+    "25": 13
+  },
+  "method": "Compiled source dialogue and choices across Episodes 1–25 checked against original inventory retained in the earlier private audit. Exact and Intl.Segmenter boundaries counted separately; six segmentation exceptions reviewed in linguistic context. Per-episode target records verify distinct spoken entries on all 16 local routes, excluding choice labels. Earlier released packages remain unchanged. This measures exposure, never assessed mastery.",
+  "allocatedTargetEvidence": [
+    {
+      "word": "冒",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "Min拿出自己的杯子。杯子里的热气还在冒。"
+    },
+    {
+      "word": "冻",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "冻坏了吗？先等一等。"
+    },
+    {
+      "word": "连忙",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我本来想走近，连忙停住了。"
+    },
+    {
+      "word": "迅速",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "没有冻坏。我想迅速检查，然后回去。"
+    },
+    {
+      "word": "透",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "任何结论，都要有检查。我还没有看透。"
+    },
+    {
+      "word": "高度",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "房顶只有这个高度，我可以上去看吗？"
+    },
+    {
+      "word": "摇",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "管子没有摇。检查可以结束了吗？"
+    },
+    {
+      "word": "弯",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "这里有一根弯的管子。从前也是弯的吗？"
+    },
+    {
+      "word": "腰",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我看了很久，腰有点酸。"
+    },
+    {
+      "word": "擦",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "风停了。Min擦着脸，没有先去检查。"
+    },
+    {
+      "word": "敲",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "回去的时候，Min轻轻敲门。"
+    },
+    {
+      "word": "张",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "一张记录放在An面前。她可以坐着看。"
+    },
+    {
+      "word": "闭",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "风来了。我闭了一下眼睛，等沙过去。"
+    },
+    {
+      "word": "严肃",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "她的声音很严肃。我停下来，听她说。"
+    },
+    {
+      "word": "任何",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "任何结论，都要有检查。我还没有看透。"
+    },
+    {
+      "word": "复杂",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我看到了。这比我想的复杂。"
+    },
+    {
+      "word": "不得不",
+      "episode": 16,
+      "minimumDistinctSpokenUses": 2,
+      "example": "既然复杂，我们不得不等会修房顶的人。"
+    },
+    {
+      "word": "开学",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 5,
+      "example": "快开学了吗？屋子还没有修好。"
+    },
+    {
+      "word": "班主任",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 3,
+      "example": "我本来想，报到，就要先给班主任看成绩单。"
+    },
+    {
+      "word": "报到",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我本来想，报到，就要先给班主任看成绩单。"
+    },
+    {
+      "word": "班会",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 2,
+      "example": "相处要有耐心。开学时候的班会，我们先认识朋友。"
+    },
+    {
+      "word": "家长",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 2,
+      "example": "一位家长来到门边。他没有先敲门。"
+    },
+    {
+      "word": "儿子",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 3,
+      "example": "我叫Ivo。我儿子不愿意来。"
+    },
+    {
+      "word": "缺课",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 3,
+      "example": "他想念朋友。不过，他缺课太久了。"
+    },
+    {
+      "word": "成绩单",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 4,
+      "example": "Ivo拿着一张成绩单，没有打开。"
+    },
+    {
+      "word": "想念",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 2,
+      "example": "他想念朋友。不过，他缺课太久了。"
+    },
+    {
+      "word": "难过",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 2,
+      "example": "他不爱大声说话，性格很温和。越叫他回答，他越难过。"
+    },
+    {
+      "word": "哭",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 3,
+      "example": "他从前哭了，说他害怕再被批评。"
+    },
+    {
+      "word": "做伴",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 2,
+      "example": "他从前愿意给朋友做伴。现在，他不愿意出来了。"
+    },
+    {
+      "word": "相处",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我们也要研究怎样相处。不是只有孩子要研究。"
+    },
+    {
+      "word": "处",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我怕他跟新同学处不好。"
+    },
+    {
+      "word": "性格",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 3,
+      "example": "他不爱大声说话，性格很温和。越叫他回答，他越难过。"
+    },
+    {
+      "word": "外地",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 2,
+      "example": "他从外地回来，还是难过，不想说话。"
+    },
+    {
+      "word": "以来",
+      "episode": 17,
+      "minimumDistinctSpokenUses": 2,
+      "example": "风暴以来，他还没有见到从前的朋友。"
+    },
+    {
+      "word": "物理",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 3,
+      "example": "我提前来到这里，检查物理课要用的小木桥。"
+    },
+    {
+      "word": "化学",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我还有化学的记录。今天一起研究吗？"
+    },
+    {
+      "word": "外语",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 2,
+      "example": "文章里外语很多。我本来想表示我有水平。"
+    },
+    {
+      "word": "水平",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 2,
+      "example": "你的水平，现在由狼来检查了。"
+    },
+    {
+      "word": "及格",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 2,
+      "example": "及格的要求是什么？桥不倒，就及格吗？"
+    },
+    {
+      "word": "成绩",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 5,
+      "example": "我想念从前一起读书的朋友。缺课的孩子，不应该害怕成绩。"
+    },
+    {
+      "word": "题目",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 4,
+      "example": "先说题目，然后听他们回答。"
+    },
+    {
+      "word": "篇",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 2,
+      "example": "这里有一篇文章，说的是狼和熊掌的故事。"
+    },
+    {
+      "word": "文章",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 3,
+      "example": "这里有一篇文章，说的是狼和熊掌的故事。"
+    },
+    {
+      "word": "精力",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 2,
+      "example": "你有精力表演，还要有耐心等他们研究。"
+    },
+    {
+      "word": "意识到",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我意识到，我急着说，没有耐心听。"
+    },
+    {
+      "word": "阶段",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 2,
+      "example": "这个阶段，先听他们说题目是什么。"
+    },
+    {
+      "word": "决心",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 2,
+      "example": "你的决心很好。不过，有决心也要有耐心。"
+    },
+    {
+      "word": "骄傲",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 2,
+      "example": "刚才我太骄傲了。连纸狼也不满意。"
+    },
+    {
+      "word": "严厉",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我会严格检查安全，不过，不用严厉的语气。"
+    },
+    {
+      "word": "傻",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我本来想叫人说我了不起，现在倒像个傻孩子。"
+    },
+    {
+      "word": "熊掌",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 4,
+      "example": "我从纸狼的旁边，拿起一张熊掌的图。"
+    },
+    {
+      "word": "狼",
+      "episode": 18,
+      "minimumDistinctSpokenUses": 7,
+      "example": "先看这只狼。它要过桥。"
+    },
+    {
+      "word": "招聘",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 4,
+      "example": "招聘今天结束，软件却坏了。"
+    },
+    {
+      "word": "应聘",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 2,
+      "example": "来应聘的人怎么办？"
+    },
+    {
+      "word": "单位",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 5,
+      "example": "我从前的单位，给我一封信，记录了我修过什么。"
+    },
+    {
+      "word": "工资",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 3,
+      "example": "工资是多少？我要负责什么？"
+    },
+    {
+      "word": "学历",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 3,
+      "example": "简历给我，我负责记录。先说学历。"
+    },
+    {
+      "word": "简历",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 6,
+      "example": "门边有个姑娘，护着一张旧简历。"
+    },
+    {
+      "word": "对口",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 2,
+      "example": "这里要求对口的经历。修过管子，不表示什么都能修。"
+    },
+    {
+      "word": "软件",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 4,
+      "example": "招聘今天结束，软件却坏了。"
+    },
+    {
+      "word": "回复",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 2,
+      "example": "今天记录简历，明天回复。不管录用不录用，我们都回复。"
+    },
+    {
+      "word": "唉",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 2,
+      "example": "唉，软件坏了，不是我不愿意用。"
+    },
+    {
+      "word": "灵通",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我的信息不灵通，怕错过招聘。"
+    },
+    {
+      "word": "前途",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我想先知道要求，不只听一句前途很好。"
+    },
+    {
+      "word": "错过",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我的信息不灵通，怕错过招聘。"
+    },
+    {
+      "word": "歧视",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 2,
+      "example": "不能把软件的问题，变成对人的歧视。"
+    },
+    {
+      "word": "善于",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我善于检查管子，也善于发现小问题。"
+    },
+    {
+      "word": "信心",
+      "episode": 19,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我有信心，可以检查，不过，想知道你们检查什么。"
+    },
+    {
+      "word": "面试",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 3,
+      "example": "今天的面试，不能叫应聘的人碰钉子。"
+    },
+    {
+      "word": "试用期",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 3,
+      "example": "好，先说试用期。师傅会陪你检查管子。"
+    },
+    {
+      "word": "录用",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 3,
+      "example": "有工资。录用的要求，我们一起看记录。"
+    },
+    {
+      "word": "加班",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 3,
+      "example": "有人要求你们晚上来，不算加班。"
+    },
+    {
+      "word": "自信",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 2,
+      "example": "招聘要有耐心，不只看谁自信。"
+    },
+    {
+      "word": "形象",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 2,
+      "example": "形象好，别人就相信我吧。"
+    },
+    {
+      "word": "名牌",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 2,
+      "example": "这件衣服不是名牌吧？我们要考虑单位的形象。"
+    },
+    {
+      "word": "选美",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 2,
+      "example": "今天不是选美。你不用替衣领面试。"
+    },
+    {
+      "word": "打扮",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 2,
+      "example": "打扮一下，会不会更自信？"
+    },
+    {
+      "word": "普遍",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 2,
+      "example": "为了迅速开门，有人说这种要求很普遍。"
+    },
+    {
+      "word": "超过",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 2,
+      "example": "好，每天六小时以下。超过这个时间，首先谈话，确定工资和意愿。"
+    },
+    {
+      "word": "以上",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 2,
+      "example": "六小时以上的安排，不能偷偷加上，对吗？"
+    },
+    {
+      "word": "以下",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 3,
+      "example": "好，每天六小时以下。超过这个时间，首先谈话，确定工资和意愿。"
+    },
+    {
+      "word": "达到",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 2,
+      "example": "昨天的练习达到要求，今天还要检查。"
+    },
+    {
+      "word": "目的",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我的目的不是批评你们，是知道我答应了什么。"
+    },
+    {
+      "word": "碰钉子",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 2,
+      "example": "今天的面试，不能叫应聘的人碰钉子。"
+    },
+    {
+      "word": "爱面子",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我承认我爱面子。不过，不能叫别人替我牺牲。"
+    },
+    {
+      "word": "留面子",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 2,
+      "example": "你要给他们留面子，也要考虑我们需要时间。"
+    },
+    {
+      "word": "丢面子",
+      "episode": 20,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我有决心，不过，我也害怕。我害怕给单位丢面子。"
+    },
+    {
+      "word": "四季",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 2,
+      "example": "对。四季不一样，鲜花开的时间也不一样。"
+    },
+    {
+      "word": "花期",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 2,
+      "example": "五颜六色很好看，不过，花期也要考虑。"
+    },
+    {
+      "word": "五颜六色",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 3,
+      "example": "这里为什么有五颜六色的鲜花？不只是为了形象吧？"
+    },
+    {
+      "word": "鲜花",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 5,
+      "example": "蜜蜂在鲜花上采蜜，不是要蜇你。"
+    },
+    {
+      "word": "蜂窝",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 5,
+      "example": "我看见一群蜜蜂。从前走的路旁边有蜂窝。"
+    },
+    {
+      "word": "蜜蜂",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 9,
+      "example": "我看见一群蜜蜂。从前走的路旁边有蜂窝。"
+    },
+    {
+      "word": "蜇",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 4,
+      "example": "蜜蜂在鲜花上采蜜，不是要蜇你。"
+    },
+    {
+      "word": "刺儿",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我害怕被蜇，它们有刺儿吧？"
+    },
+    {
+      "word": "拍打",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 2,
+      "example": "会蜇人，我们不去碰。不能拍打。"
+    },
+    {
+      "word": "一窝蜂",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 3,
+      "example": "我们不能一窝蜂地过去。我先检查别的路。"
+    },
+    {
+      "word": "采",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 3,
+      "example": "蜜蜂在鲜花上采蜜，不是要蜇你。"
+    },
+    {
+      "word": "蜜",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 3,
+      "example": "蜜蜂在鲜花上采蜜，不是要蜇你。"
+    },
+    {
+      "word": "进攻",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 5,
+      "example": "我可以赶走蜜蜂。和进攻的时候一样。"
+    },
+    {
+      "word": "鼻青脸肿",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我还没有被蜇，就想到鼻青脸肿了。"
+    },
+    {
+      "word": "涂",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 2,
+      "example": "这块旧牌子要涂颜色，不过，先搬到安全的地方。"
+    },
+    {
+      "word": "似的",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我们可以给蜜蜂留地方。我不必总像在进攻似的。"
+    },
+    {
+      "word": "群",
+      "episode": 21,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我看见一群蜜蜂。从前走的路旁边有蜂窝。"
+    },
+    {
+      "word": "卖",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 7,
+      "example": "你卖汤，也卖蜂蜜吗？"
+    },
+    {
+      "word": "卖掉",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 3,
+      "example": "想卖掉，不表示可以说谎话。减肥的结论，你检查过吗？"
+    },
+    {
+      "word": "生意",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 3,
+      "example": "今天的生意在院子里，屋子没有开门。"
+    },
+    {
+      "word": "香味",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我叫Tavi，今天负责聚餐。汤的香味怎么样？"
+    },
+    {
+      "word": "汤",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 10,
+      "example": "我叫Tavi，今天负责聚餐。汤的香味怎么样？"
+    },
+    {
+      "word": "顿",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 2,
+      "example": "修屋子的人很认真。我想请他们吃一顿。"
+    },
+    {
+      "word": "蜂蜜",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 7,
+      "example": "汤和蜂蜜，还有做汤的水，从Tavi那里来。没有动站里的水。"
+    },
+    {
+      "word": "减肥",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 3,
+      "example": "我写了广告，蜂蜜可以减肥，也可以安神。"
+    },
+    {
+      "word": "安神",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 3,
+      "example": "我写了广告，蜂蜜可以减肥，也可以安神。"
+    },
+    {
+      "word": "甜蜜",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 2,
+      "example": "广告写得甜蜜，不表示结论可靠。"
+    },
+    {
+      "word": "宴会",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 2,
+      "example": "今天聚餐，我想办宴会。"
+    },
+    {
+      "word": "聚餐",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 2,
+      "example": "今天聚餐，我想办宴会。"
+    },
+    {
+      "word": "趁",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我们趁所有人在这里，先说明要求。"
+    },
+    {
+      "word": "临",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我想留下甜蜜的记忆，不是叫人上当。今天临开门才检查，我先改。"
+    },
+    {
+      "word": "既",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 2,
+      "example": "别临开门才检查。既要负责地卖，也要诚实说。"
+    },
+    {
+      "word": "于是",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 2,
+      "example": "于是，Tavi改了广告。她诚实地向所有人说明。"
+    },
+    {
+      "word": "哈哈",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 2,
+      "example": "哈哈，汤没有要求你说话。先看看价格。"
+    },
+    {
+      "word": "忍不住",
+      "episode": 22,
+      "minimumDistinctSpokenUses": 2,
+      "example": "这香味让我忍不住笑。我的讲话比这碗汤还长。"
+    },
+    {
+      "word": "哲学家",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我在研究哲学。哲学家在文章里问，为什么相信别人？"
+    },
+    {
+      "word": "哲学",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 3,
+      "example": "我在研究哲学。哲学家在文章里问，为什么相信别人？"
+    },
+    {
+      "word": "现实",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "现实是我们要保护孩子。不能只考虑打扮。"
+    },
+    {
+      "word": "坏处",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "不合格有什么坏处？我想听你说明。"
+    },
+    {
+      "word": "列",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "请列出你负责什么，不负责什么。"
+    },
+    {
+      "word": "绝对",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "绝对能修好吗？你还没有检查屋子。"
+    },
+    {
+      "word": "显然",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "显然，你没有检查过这里。不过，你答应今天开门。"
+    },
+    {
+      "word": "巧妙",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我巧妙地涂了颜色，好看，别人自然会相信。"
+    },
+    {
+      "word": "谎话",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "他在说谎话，我们不能上当。"
+    },
+    {
+      "word": "语气",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "你害怕我的语气吗？我有信心。"
+    },
+    {
+      "word": "自然",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我巧妙地涂了颜色，好看，别人自然会相信。"
+    },
+    {
+      "word": "侥幸",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "先买，再检查。你们可能会侥幸成功。"
+    },
+    {
+      "word": "上当",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "你可以卖掉，我们不能因为着急就上当。"
+    },
+    {
+      "word": "记忆",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "汤的香味还记得，不过，记忆不能替我们检查。"
+    },
+    {
+      "word": "变成",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "他说好看，然后变成安全的保证。"
+    },
+    {
+      "word": "变得",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "你的结论变得清楚了。我可以继续检查。"
+    },
+    {
+      "word": "值得",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "那顿聚餐值得记住。聚餐不是只为了吃。"
+    },
+    {
+      "word": "从来没",
+      "episode": 23,
+      "minimumDistinctSpokenUses": 2,
+      "example": "金色的，真好看，我从来没骗你。"
+    },
+    {
+      "word": "亲密",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 2,
+      "example": "临开门，我们要亲密的照片。我可以帮忙，不过不必拍我。"
+    },
+    {
+      "word": "娶",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我娶你的时候，你很自信。"
+    },
+    {
+      "word": "老婆",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 3,
+      "example": "我的老婆是宝贝。皱纹又不是坏处。"
+    },
+    {
+      "word": "丈夫",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 2,
+      "example": "丈夫可以这样想。我不能因为你的感情，就没有烦恼。"
+    },
+    {
+      "word": "老公",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 2,
+      "example": "老公，你近视，看我不够清楚。"
+    },
+    {
+      "word": "感情",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 3,
+      "example": "丈夫可以这样想。我不能因为你的感情，就没有烦恼。"
+    },
+    {
+      "word": "青春",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 3,
+      "example": "从前的青春。我看着照片发呆，不想看今天的我。"
+    },
+    {
+      "word": "宝贝",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我的老婆是宝贝。皱纹又不是坏处。"
+    },
+    {
+      "word": "口红",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我涂口红吧。我愿意，不是为了别人。"
+    },
+    {
+      "word": "痘痘",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 3,
+      "example": "我叫Nia。我负责照片，不过，我有痘痘，不想进去。"
+    },
+    {
+      "word": "皱纹",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 3,
+      "example": "我的皱纹很难看。我不愿意拍。"
+    },
+    {
+      "word": "近视",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 2,
+      "example": "老公，你近视，看我不够清楚。"
+    },
+    {
+      "word": "难看",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我的皱纹很难看。我不愿意拍。"
+    },
+    {
+      "word": "烦恼",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 3,
+      "example": "丈夫可以这样想。我不能因为你的感情，就没有烦恼。"
+    },
+    {
+      "word": "发呆",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 2,
+      "example": "从前的青春。我看着照片发呆，不想看今天的我。"
+    },
+    {
+      "word": "走下坡路",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 2,
+      "example": "显然，我在走下坡路。青春过去，别人还想看我吗？"
+    },
+    {
+      "word": "神经",
+      "episode": 24,
+      "minimumDistinctSpokenUses": 2,
+      "example": "所有人的神经很紧张。我先放下相机。"
+    },
+    {
+      "word": "迷",
+      "episode": 25,
+      "minimumDistinctSpokenUses": 2,
+      "example": "那还用说！我是音乐迷，我负责音乐。"
+    },
+    {
+      "word": "迷住",
+      "episode": 25,
+      "minimumDistinctSpokenUses": 2,
+      "example": "这姑娘的声音迷住我了。我想给所有人听。"
+    },
+    {
+      "word": "迷上",
+      "episode": 25,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我迷上这姑娘的音乐，是因为难过的时候她陪着我。"
+    },
+    {
+      "word": "姑娘",
+      "episode": 25,
+      "minimumDistinctSpokenUses": 2,
+      "example": "这姑娘的声音迷住我了。我想给所有人听。"
+    },
+    {
+      "word": "精神",
+      "episode": 25,
+      "minimumDistinctSpokenUses": 2,
+      "example": "你不满意吗？我想叫所有人精神起来。"
+    },
+    {
+      "word": "挨",
+      "episode": 25,
+      "minimumDistinctSpokenUses": 3,
+      "example": "得了，我关掉吧。我一时得意，又挨批评了。"
+    },
+    {
+      "word": "消除",
+      "episode": 25,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我不是要求消除所有声音。我们要一起考虑。"
+    },
+    {
+      "word": "倒是",
+      "episode": 25,
+      "minimumDistinctSpokenUses": 2,
+      "example": "我倒是想听见老婆说话。几乎听不见了。"
+    },
+    {
+      "word": "得了",
+      "episode": 25,
+      "minimumDistinctSpokenUses": 2,
+      "example": "得了，我关掉吧。我一时得意，又挨批评了。"
+    },
+    {
+      "word": "一时",
+      "episode": 25,
+      "minimumDistinctSpokenUses": 2,
+      "example": "得了，我关掉吧。我一时得意，又挨批评了。"
+    },
+    {
+      "word": "可不是吗",
+      "episode": 25,
+      "minimumDistinctSpokenUses": 2,
+      "example": "可不是吗，我迷上音乐，不能要求所有人和我一样。"
+    },
+    {
+      "word": "那还用说",
+      "episode": 25,
+      "minimumDistinctSpokenUses": 2,
+      "example": "那还用说！我是音乐迷，我负责音乐。"
+    },
+    {
+      "word": "哪能",
+      "episode": 25,
+      "minimumDistinctSpokenUses": 2,
+      "example": "哪能要求她冒险？我们仍然按她的限度安排。"
+    }
+  ],
+  "sourceAudit": "Prior original-list inventory from Known Word List audit; source export and familiarity supplement unchanged."
+}

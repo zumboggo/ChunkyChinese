@@ -1,0 +1,16 @@
+{
+  "generator": "Built-in ImageGen",
+  "identityReference": "public/stories/animated/jedi/series-cover.jpg",
+  "outputs": [
+    {
+      "episode": 24,
+      "path": "stories/authoring/jedi/art/episode-24-reference.png",
+      "prompt": "Create a landscape 16:9 episode opening artwork. Reference image is ONLY Jon's identity: same broad friendly adult face, short tousled light brown hair, trimmed full brown beard, sturdy build, cream tunic and brown robe; no weapon. Completely change medium and scene. Original narrative textile artwork inspired by Ghanaian Fante Asafo appliqué craftsmanship: bold flat cut cotton silhouettes, clearly visible hand stitching, woven fibers, vivid vermilion ground, cobalt, ivory, emerald and yellow cloth, rhythmic triangular fabric border. Not a copy of an existing flag, no national flags, lettering, sacred motifs or logos. Jon is prominent waist up, three-quarter face, holding a small plain camera lowered at chest height, listening with kind serious attention to an older woman with gray bun and plum cardigan beside a cord displaying three small community photographs as stitched miniatures of people working together. She holds one photo tentatively; her wrinkles are visible and dignified. Focus emotional scene is consent to being seen, not a heroic battle. Exactly two main people. Strong flat graphic composition and tactile fabric with embroidered recognizable face details, not photorealism or oil painting. All objects and faces entirely made of fabric, no inset photographic face. Designed to animate gently later."
+    },
+    {
+      "episode": 25,
+      "path": "stories/authoring/jedi/art/episode-25-reference.png",
+      "prompt": "Landscape 16:9 opening artwork for a community story finale. Use reference only for protagonist Jon identity: same broad friendly adult face, short tousled light brown hair, full trimmed brown beard, sturdy build, cream tunic brown robe. No weapon. Render ENTIRE scene as spectacular luminous secular Art Nouveau stained-glass art: chunky cobalt and turquoise translucent glass, pale aquamarine clear facets, plum and rose accents, bright ivory light through a large open doorway, sinuous dark lead outlines, all face planes and clothing constructed of glass facets. No photographic faces or painted realistic inserts, no fabric texture, no religious imagery, text or logos. Jon stands three-quarter foreground just to the left of an open community-centre doorway, gently stepping aside and extending an open palm to leave room for others. On right a young adult brown-skinned woman with black ponytail and blue workshirt holds a small portable music player and thoughtfully lowers its volume; an elderly brown-skinned man with round glasses and green workshirt waits beside her. Exactly three people. Behind them inside the doorway are a small community photograph display and a simple shared meal table; a tray of little seedlings near the threshold. Quiet inclusive victory, not battle or coronation. Strong graphic silhouette and jewel-like transmission of light, museum-quality crafted glass with visible bubbles. Opening image must visually foreshadow the question of whether everyone can enter and belong. Wide stable composition suitable for six seconds of subtle animation."
+    }
+  ]
+}

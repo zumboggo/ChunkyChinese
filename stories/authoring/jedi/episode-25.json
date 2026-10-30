@@ -1,0 +1,902 @@
+{
+  "episode": "jedi-25-v1",
+  "title": "The Voices Beneath the Water · Episode 25: The Door Opens",
+  "planning": {
+    "storytellingVoice": "Intimate character drama",
+    "voiceReason": "People make room for different needs in a shared celebration.",
+    "desire": "Final inspection clears the centre for its agreed use. An enthusiastic young adult volunteer overwhelms the opening programme with their favourite music, while a neighbour worries that quieter visitors will be left out. Jon helps them make room for one another. The shared meal, garden route, learner writing and photographs become parts of one community event.",
+    "payoff": "The centre opens with a named maintenance rota, consent-based responsibilities and continuity intact. Jon's role shifts from indispensable rescuer to one accountable member of the community.",
+    "targetVocabulary": [
+      "迷",
+      "迷住",
+      "迷上",
+      "姑娘",
+      "精神",
+      "挨",
+      "消除",
+      "倒是",
+      "得了",
+      "一时",
+      "可不是吗",
+      "那还用说",
+      "哪能"
+    ],
+    "reviewVocabulary": [
+      "上当",
+      "记忆",
+      "变成",
+      "变得",
+      "值得",
+      "从来没",
+      "亲密",
+      "娶",
+      "老婆",
+      "丈夫",
+      "老公",
+      "感情",
+      "青春",
+      "宝贝",
+      "口红",
+      "痘痘",
+      "皱纹",
+      "近视"
+    ],
+    "convergence": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
+    "identityReference": "public/stories/animated/jedi/series-cover.jpg",
+    "earlyCare": "Jon listens without forcing participation.",
+    "obstacle": "Others need room to choose, while Jon is tempted to organize their feelings for them.",
+    "dramaticChange": "Jon gives up control and listens to a concrete request.",
+    "sceneActivities": [
+      "Jon sways to music, stops at Daro’s request and steps aside; the group tests the volume, reviews duties and shares a meal."
+    ],
+    "listenerTurn": "Pair → Daro asks for room → listener Jon → stops swaying and steps aside → pair.",
+    "actingSignature": {
+      "Jonathan": "Warm practical questions; open hands become attentive stillness when corrected.",
+      "Luma": "Dry humour with her husband, direct about consent; worry gives way to self-chosen participation.",
+      "Daro": "Affectionate and blunt; shifts from easy reassurance to concrete requests.",
+      "Nia": "Enthusiastic young adult; defensive retreat becomes a practical offer.",
+      "Ryn": "Precise technical limits and agreed working terms.",
+      "Sela": "Plain patient questions, respects voluntary participation."
+    },
+    "teaser": {
+      "speaker": "Jonathan",
+      "dialogue": "An open door needs room for everyone.",
+      "moment": "Jon steps aside after Daro points out that opening a door is not enough."
+    },
+    "artDirection": "Luminous Art Nouveau stained glass: cobalt, turquoise and rose facets, curving dark lead outlines; Jon steps aside at the doorway while Nia lowers the music and Daro waits.",
+    "freshQuestion": "The arc closes; the community now practices shared responsibility beyond this story."
+  },
+  "video": {
+    "src": "stories/animated/jedi/jedi-25-intro.mp4",
+    "poster": "stories/animated/jedi/jedi-25-intro.poster.jpg",
+    "dialogue": "An open door needs room for everyone.",
+    "totalSeconds": 9,
+    "stillSeconds": 3,
+    "motionSeconds": 3.5833333333333335,
+    "reactionHoldSeconds": 2.4166666666666665,
+    "nativeGeneratedSeconds": 6,
+    "editNote": "Removed native 0–2.4s lead-in after word-level ASR identified unwanted speech at 0.69–1.49s and the intended line at 2.75–5.87s. Retained 3.583s motion after a 3s first-frame hold, then 2.417s final reaction hold; nine seconds total. Native source preserved; no paid retry.",
+    "model": "prunaai/p-video-2-pro",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off"
+    },
+    "verifiedUSDPerSecond": 0.01,
+    "maximumCostUSD": 0.06,
+    "paidRequests": 1,
+    "predictionId": "2phyc7c2s9rmt0d1hfcscta318",
+    "prompt": "Animate this exact luminous stained-glass artwork for six seconds. Preserve the lead outlines, jewel-colored translucent glass facets and all three character identities throughout. One visible speaker, Jon, says exactly once in clear warm English: \"An open door needs room for everyone.\" The quoted words are the entire script. Speak from second 0.5 to 3.8, then keep his mouth closed. No extra words, repetitions, fillers, singing, humming, narration or other voices. Jon gently steps a little to the side of the doorway with his open palm inviting others through; the young woman turns the volume down on her player and the older man gives a subtle appreciative nod. Simple gentle movement, fixed camera, no new people or objects, no overlays. Keep the artistic stained-glass medium rather than becoming realistic. Clear dialogue above very quiet ambience, no music.",
+    "reference": "stories/authoring/jedi/art/episode-25-reference.png",
+    "nativeSpeech": true,
+    "checks": {
+      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-25/clean-native.mp4",
+      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-25/intro.mp4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "fps": 24,
+      "hold_seconds": 3.0,
+      "motion_seconds": 3.5833333333333335,
+      "reaction_hold_seconds": 2.4166666666666665,
+      "total_seconds": 9.0,
+      "decoded_audio_seconds": 9.00275,
+      "audio_non_silent": true,
+      "audio_starts_after_hold": true,
+      "hold_mean_pixel_difference": 0.0037251170960187355,
+      "sha256": "294b5239293b07094f4d00e81b26caef1f4c067b2709b390a04d42ab2958705b",
+      "expected_dialogue": "An open door needs room for everyone.",
+      "speech_check": "pass",
+      "review": "Frames inspected and exact final speech verified by local ASR; playback and fallbacks checked in browser.",
+      "transcription": "An open door needs room for everyone."
+    }
+  },
+  "continuation": {
+    "end": "Final safety inspection clears the repaired centre for its agreed use. Nia and Daro agree low-volume music and quiet conversation times after a sound check. The promised seedlings and their separate watering supply arrive. Qualified nest management is complete; the old garden path remains closed and the checked alternate route is used. Tavi supplies the shared meal and its cooking water. Sela presents learner writing and consented photographs. Named, consenting duties are recorded: Ryn paid pipe inspections under agreed trial terms, Vek records issues and arranges qualified roof/other work and replacements, Sela reading activities, Edda safe garden route, Jonathan scheduled shifts. Absence is reported; substitutes must consent and be qualified; safety failures close the centre. An limitations, all deaths, losses, promises, allocations and station water remain binding. Jon accepts membership rather than indispensability. The current story arc is complete.",
+    "nextStart": "Current Jedi story arc complete. No further episode planned or authorized by this boundary. Future optional review must preserve all historical memory and shared duties.",
+    "nextEndBefore": "Do not undo prior deaths, injuries, equipment losses, promises or water allocations.",
+    "note": "Final episode of the approved 16–25 vocabulary plan. Any future sequel is a separate request."
+  },
+  "targetAudit": {
+    "episode": 25,
+    "routeCount": 16,
+    "targets": [
+      {
+        "word": "迷",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "那还用说！我是音乐迷，我负责音乐。",
+          "我是读书迷。文章可以迷住我，不过，我不会叫你非读不可。"
+        ]
+      },
+      {
+        "word": "迷住",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "这姑娘的声音迷住我了。我想给所有人听。",
+          "我是读书迷。文章可以迷住我，不过，我不会叫你非读不可。"
+        ]
+      },
+      {
+        "word": "迷上",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我迷上这姑娘的音乐，是因为难过的时候她陪着我。",
+          "可不是吗，我迷上音乐，不能要求所有人和我一样。"
+        ]
+      },
+      {
+        "word": "姑娘",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "这姑娘的声音迷住我了。我想给所有人听。",
+          "我迷上这姑娘的音乐，是因为难过的时候她陪着我。"
+        ]
+      },
+      {
+        "word": "精神",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "你不满意吗？我想叫所有人精神起来。",
+          "你想叫所有人精神起来。不过，他也愿意做伴。"
+        ]
+      },
+      {
+        "word": "挨",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "得了，我关掉吧。我一时得意，又挨批评了。",
+          "那还用说。开门是为了相处，不是为了挨骂。",
+          "得了，我也不想挨骂。我先试一试。"
+        ]
+      },
+      {
+        "word": "消除",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我不是要求消除所有声音。我们要一起考虑。",
+          "不能保证消除所有烦恼。不过，可以耐心地听。"
+        ]
+      },
+      {
+        "word": "倒是",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我倒是想听见老婆说话。几乎听不见了。",
+          "倒是可以先小声谈话，然后再有一小段音乐。"
+        ]
+      },
+      {
+        "word": "得了",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "得了，我关掉吧。我一时得意，又挨批评了。",
+          "得了，我也不想挨骂。我先试一试。"
+        ]
+      },
+      {
+        "word": "一时",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "得了，我关掉吧。我一时得意，又挨批评了。",
+          "一时的得意，不用变成争吵。先考虑所有人的要求。"
+        ]
+      },
+      {
+        "word": "可不是吗",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "可不是吗，我迷上音乐，不能要求所有人和我一样。",
+          "可不是吗！时间提前说明，我可以选择。"
+        ]
+      },
+      {
+        "word": "那还用说",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "那还用说！我是音乐迷，我负责音乐。",
+          "那还用说。开门是为了相处，不是为了挨骂。"
+        ]
+      },
+      {
+        "word": "哪能",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "哪能要求她冒险？我们仍然按她的限度安排。",
+          "哪能替所有人选择？你就是我们的朋友。"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "word": "上当",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "记忆",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "变成",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "变得",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "值得",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "从来没",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "亲密",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "娶",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "老婆",
+        "minSpokenEntries": 2
+      },
+      {
+        "word": "丈夫",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "老公",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "感情",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "青春",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "宝贝",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "口红",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "痘痘",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "皱纹",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "近视",
+        "minSpokenEntries": 1
+      }
+    ],
+    "method": "Distinct spoken entries per completed route; choice labels excluded. 蜜 excludes occurrences embedded in 蜜蜂; all target examples reviewed in context. Full semantic/pinyin human review accompanies counts."
+  },
+  "artwork": {
+    "generator": "Built-in ImageGen",
+    "reference": "stories/authoring/jedi/art/episode-25-reference.png",
+    "direction": "Luminous Art Nouveau stained glass: cobalt, turquoise and rose facets, curving dark lead outlines; Jon steps aside at the doorway while Nia lowers the music and Daro waits.",
+    "identityReference": "public/stories/animated/jedi/series-cover.jpg"
+  },
+  "englishAudio": {
+    "localRecordings": [
+      {
+        "sha256": "8e110cfe04c2dc4be66e8eeea7b5306a2079b87cd7a978850d9e76f2de247ca1",
+        "text": "The final safety inspection is complete. The centre can open for its agreed use.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "55208c0a3e0359c86470ff9bc541019d822f323bd28a897c98ac816b0328c5c0",
+        "text": "The specialists have signed. I am responsible for the pipes, qualified specialists still inspect the roof.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "720b56477cf84bc5ed69a64ac3f9e0499445bde2a1039e08fe9b59f449c3776b",
+        "text": "I have never felt so relieved. But we must remain responsible after opening.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "d74a6fc1c5a62dfc1b59e986528581ecf589a2c8410945278406a357f29b13c5",
+        "text": "Of course! I am a music fan; I am responsible for the music.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "f031dc8c5d6ada7ab63e3353969fc9e41336731eb2201b8bb5f622edcf7ceb8d",
+        "text": "Nia turns on the player; the sound is loud. I cannot help swaying along.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "4d7561e69f07789c35938bd24eb2021209155c8bf605c7d96109945173e67b3f",
+        "text": "This young woman's voice has captivated me. I want everyone to hear it.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "e25abcb2dec713c6f17fb014a1d06549148cb8684a621e37acb289912f707018",
+        "text": "I, on the other hand, would like to hear my wife speak. Right now I can hardly hear her.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "1e311f3f73dac88dbf8ddb9979cf4aa2541928f413bc6229bca7eea742e16f69",
+        "text": "Are you not happy with it? I want to lift everyone's spirits.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "4ae1c18ab16555330ba523c97a56658310c6962b489ccf85ecf71c0bb786321d",
+        "text": "Let us lower the volume first; we need to talk.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "333528d27a243289c9b46e9f4381b9e6b1bbf9549900fd00801a979a8dc2206e",
+        "text": "I am willing to listen, but I do not want to be driven out by the noise.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "d58324625024d104de8a1691424992fbb77d6590c1577c52d73001c032a1f11a",
+        "text": "Fine, I will turn it off. I got carried away for a moment and have been criticized again.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "b892e39801cc1143ff838d9be4213dcf74ec39cfd8c697fc51569e26f90218c9",
+        "text": "You wanted to lift everyone's spirits. But he wants to stay too.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "214cd63630b5a6200b36130b665c51a6a3dfb89e9e96418181c5f936e6d441ba",
+        "text": "I am not asking you to eliminate all sound. We need to think together.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "d27fe0d2b68e240e3314d943bc392077beea054392ac8cfa2d9b53f5031b6c40",
+        "text": "I became hooked on this young woman's music because it kept me company when I was sad.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "3f5ed4eb26b132d5eca068c9339f8c43300fd57fb1acdfea6fd16f27318597b5",
+        "text": "I believe your good intentions. But we cannot consider only the loudest people.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "fc75ac7e5ddefc8d8fda375246b632cd1f678686ba4a4ec4272e30429a3ab86c",
+        "text": "The door is open, but there must still be room for me.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "cc35a4a15e8aae3cf35675ab3bfa5de1847e8e713b63599261fb1da693f36ac9",
+        "text": "I stop swaying along. I step aside a little to let him pass.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "d25c033e90f57104e0bdee633ba9f8164ab006586b432c08275da0cb7893fd5d",
+        "text": "The door is open; everyone should have room. I cannot consider only whether I am happy.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "2fd3ae0883a05e29a072f9e018908e00607a2e95343f64fc5a80db36a34c7be2",
+        "text": "Then I will lower the volume first. I want to hear what you need.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "4a05936c56df8f6a98e8e13229a0f64348b2d138aa77e0daa7c3ef77287b3455",
+        "text": "I am a reading enthusiast. An article can captivate me, but I will not demand that you read it.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "b217453016fcf55155775d36ea5bcbe362acfe15be67354b359198f67c3ac313",
+        "text": "Exactly; I fell in love with music, but cannot demand that everyone be like me.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "e00b89a4420ce07634be5e89715a334733e08dd7f842739c74126e7fa012ff9e",
+        "text": "I want to talk quietly with friends. I do not want to silence you all day.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "2da35a3e9326d2657d70d6e96027513c347651f3583c2b629558ec71afe8ee17",
+        "text": "I will list the times first, and we can consider them together.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "75d7dca60adebbcaa7e58d3ccd74350d0f4f41b0a0c2ad3249ab2116bdb33494",
+        "text": "A moment of happiness need not become an argument. First consider who wants to do what.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "f73e2fc08af0160bf24aabb6342eb2c1962be42ec87eb088069725fe2f883ace",
+        "text": "We could actually begin with quiet conversation and have a short period of music afterward.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "015ee9a68724fe38f30ebb478d87248b003643c24bd7af41bf116740f4001349",
+        "text": "Exactly! Explain the times in advance and I can choose.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "3f6de55545a7669748ee217e75422330e793e31c8616a6ec271a66dc99456369",
+        "text": "I will keep the volume low, without interfering with conversation. Tell me if it is uncomfortable.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "005e300e1c4d26bfaec3c03cc1a37e06846ce720c21365dc8d18ebbdc0cd677e",
+        "text": "We cannot promise to eliminate every worry. But we can keep listening.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "9aad5beb523cc954f577b99bdc8ed986e3f11ef6a71b2c76abe9814b667cd4b5",
+        "text": "Of course. We open the doors to be together, not to get yelled at.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "ec319ded714cc2e1d0435f24dd84cc0450cb009e6f13ffbbf330b13d95d2e1ea",
+        "text": "All right, I do not want to get yelled at either. I will try first.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "c09dbab60e01fb09473bfb7f91671ff1ece32a70cf4c067a798ccd1ce301cfa8",
+        "text": "We try the sound and everyone agrees. The music stops and we talk.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "f08823ddf6b8f3758054fa740ab0ae536f5fe2207cba768f539b5fd74ba0f1a6",
+        "text": "My relative has delivered the promised seedlings. I have checked them; this time they are an actual delivery.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "b49bb064afa1fb5c149a754b0edf049cbdaf7aa9f4b51e0e1e36d3e1a15e439d",
+        "text": "What about the garden path? I remember the nest.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "a8b5d68fd632bca0e502e7cc50594f0cf53b1cd64bde06dfc4248e9903854c08",
+        "text": "Qualified specialists have completed the management work. The inspected safe route can be used; the old path remains closed; there is no need to take risks.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "ed2c95655c9066ff98436e87f0d488bb55555e8841ade0c40b102c08476d2b9a",
+        "text": "My relative brought the water the seedlings need. We do not take station water or anyone else's allocation.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "e8cf451542731840a282b60f7141d152881f8ba1781b290cc53b377e1705ce13",
+        "text": "I no longer attack bees. Protecting them also protects people.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "b7f08501fd5af1dd8a414c00cf191fed3d07ed655d5208988524afd3411ab3ae",
+        "text": "The writing and photographs are in place. Those who want to read can read; those who do not want to speak can listen first.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "e4a0551a1bd69de274421682128c8a8bee47b069fad0f2719ed8361e341c9528",
+        "text": "What about An? We cannot require her to take risks just because we are opening.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "7dd858f04d4dae6a342f7316757353b45c4ed75997004676f321e9744ce2cad3",
+        "text": "How could we demand that she take risks? We still arrange things within her limitations.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "66b3007dc7f32ee11533faa43847ccab09c68ffed522f8ca1926ca773a47ecdb",
+        "text": "My probation and pay follow the agreement; they must not turn into unpaid overtime.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "e91c0feb0418252100eb643334508928d3593c1a4863b85b04a650ed2efb4925",
+        "text": "Anyone unwilling can decline. I will not agree on someone else's behalf.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "1dc46c8bba3b784a20df25e09567f440c99463dba209c3e4aec27334c1389a57",
+        "text": "I agree to regular pipe inspections. Vek agrees to record problems and contact qualified workers.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "7489f9a482cd69fc69c468fdb7d058537ff89003ad6363d8f819ec1de93c89be",
+        "text": "I agree to take responsibility for reading activities; Edda agrees to check the garden's safe route.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "dd431e15e0624ac7af7f6a145c0a8ade7037e817ca61be2cb63c2d81a2695f3c",
+        "text": "I agree to take my scheduled shifts. Everyone's agreed times and duties are recorded.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "c7ef0542dd34dcea7876978fd522bcf737cc12537711df5b4239520b8add14bf",
+        "text": "Anyone unable to come contacts Vek beforehand; we find a willing, qualified substitute. If there is a safety issue, we close first.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "8ca728049b868ae47f73e7905b17f6544b1cc5489568289f9c809f1802b66c37",
+        "text": "The soup is ready. I brought the ingredients and water; costs and pay are recorded.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "a64b6657f24079e72b8c94a58ed9bb539e18dc99291ef942611ead948058ada6",
+        "text": "Thank you. We will not be deceived again just to keep up appearances.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "4f40c33ae6af77ed86c88d56060b13dbbcfab3830256031dca887c2404914180",
+        "text": "The husband and wife in the photographs are not there for a beauty contest. My husband works alongside me; this affection lasts longer than youth.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "163b2ef6aa0b204c60ebd6355a73a4663a36da48751728c3254b1906d9ae8f25",
+        "text": "Your lipstick looks lovely. The wrinkles are there too, and I see the real you.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "5650ac8e08a1b69c3570cfecdaa28899f0d6bf4213bbdd177407c54878deea27",
+        "text": "He married me; he did not buy a treasure. His willingness to listen makes us close.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "e958ab279782d1af1fb42cd10bf6a3d4fb92e674d96663f6451ebd84aa241dec",
+        "text": "Nia has not hidden her acne and Daro has not hidden his glasses for short-sightedness. They chose how to present themselves.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "dc2afe7c9c77f3823ae6738ea782b46d6861560be5a5ac044b409e0fbc504534",
+        "text": "I will sit here, no need to ask me to stand in front.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "5a8330e3d1a31f17e25ff1ce4d61ee2f3777ed70b96d2a71538d3741f0b5e66a",
+        "text": "Ask first, then serve. You are getting better at listening.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "330122b8b03aa00b01db2dabd39e1154c934653d729b6a03fa47f0c60c3ca093",
+        "text": "I never imagined I would become willing to wait. Before, I wanted to answer for everyone.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "ca6a9e9d015d7537b79d2dcd50596f8ed0e2edaaa3fe75a09d6a66a167c8f859",
+        "text": "How could anyone choose for everyone else? You are our friend.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "d7055ce5a9bb719423fe6320ce7e19a2bfd726bb1cc57acb0bdfe8df17ff0a08",
+        "text": "What is worth remembering is not only that the door opened. I need not become everyone's answer.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "462984f8899c63347c14cd4f7fde2a1169e8bb4c6ed03cafbbaa19f7df346736",
+        "text": "We eat together and listen together. The memories of the past have not vanished; today's experiences will become memories too.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "22868adc766e62db171715ab4fdd55de69fcb3dd644331e1ad1a7439403a29eb",
+        "text": "The water is unchanged; our promises still count. The door is open, and I am one member of this community.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "0854c290e119d596ea018a9e2626c7f9f5567d72fcef43a8964c516436a244f8",
+        "text": "Lower the volume first.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "6deaf6f9fbaf965a13c984659b563535de9ea8d472a9115fb35e74809bbb308c",
+        "text": "Ask what Daro needs.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "ea41c19285cd386dfffdcf578052f85cbef88f55e42dc415ad427456b102234b",
+        "text": "Begin with quiet conversation.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "53e9cd6281d0c652637aac30461d0a9cd7ed8f5a6fdfc79dbc2195c9ab54ce25",
+        "text": "Consider the schedule together.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "39b42d664ddd9541b77a4dd66eee44cebb0afa154d4e1c8077cdfdf2da811311",
+        "text": "Explain everyone’s limits first.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "8ab069f393ba97089c55bbd4fb9ecb0785b596023de4de169bb3cdd5b7bd328d",
+        "text": "Ask who is willing to take responsibility.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "379716279b6f569e20b21239e590a6f8cd0c3a4241e78ea2716f2ff515014728",
+        "text": "Sit together with everyone.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "7d8436a538460d6fb502adc326319f5a4934a0a43bcc8ea277e05216ed6a139e",
+        "text": "Ask who wants soup first.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      }
+    ],
+    "completionProvider": "Cached jaaari/kokoro-82m recordings retained; missing English lines completed with free macOS Samantha speech after remote HTTP 429. Exact-text hash cache; provider records retained."
+  },
+  "verification": {
+    "reportStatus": "passed",
+    "packageBytes": 2219921,
+    "phases": [
+      {
+        "name": "vocabulary",
+        "seconds": 0.032815584,
+        "status": "passed"
+      },
+      {
+        "name": "routes, source assertions and resume",
+        "seconds": 0.349199583,
+        "status": "passed"
+      },
+      {
+        "name": "annotations",
+        "seconds": 0.0049158749999999715,
+        "status": "passed"
+      },
+      {
+        "name": "audio",
+        "seconds": 0.014924374999999998,
+        "status": "passed"
+      },
+      {
+        "name": "English pocket audio",
+        "seconds": 0.09406400000000002,
+        "status": "passed"
+      },
+      {
+        "name": "package and ZIP",
+        "seconds": 0.10957412499999998,
+        "status": "passed"
+      },
+      {
+        "name": "phone and desktop",
+        "seconds": 34.014462584,
+        "status": "passed"
+      },
+      {
+        "name": "stage new release",
+        "seconds": 0.016622000000003027,
+        "status": "passed"
+      }
+    ],
+    "familiarity": {
+      "min": 80.21828103683492,
+      "max": 81.0738255033557
+    },
+    "pinyin": "Full contextual review: adverb zhi, modifier/complement de, ai for enduring criticism, yinwei, dāying, neutral shihou and jingshen adjective.",
+    "teaser": "Exact English line verified with local ASR. Opening, motion and ending frames inspected; nine-second finished clip. One $0.06 paid request per clip; Episode 25 lead-in removed locally with measured word timings.",
+    "continuity": "All 54,432 inherited histories and 160 local route/water combinations per episode preserved; all 48 prior source/public packages byte-identical.",
+    "vocabulary": "All 13 new targets have at least two distinct meaningful spoken entries on every one of 16 routes; all 18 scheduled review targets appear on each route. Full 170-target plan verified; all 294 original inventory words have contextual exposure.",
+    "browser": "Full contrasting routes plus teaser playback, fallback, Mandarin audio, listener aftermath and resume on phone and desktop."
+  }
+}

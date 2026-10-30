@@ -1,6 +1,6 @@
 {
   "series": "jedi",
-  "status": "Planning only; does not advance publication or mark vocabulary covered",
+  "status": "All 170 allocated targets verified in Episodes 16–25; original 294-word inventory covered in context. Exposure is not mastery.",
   "scope": "Episodes 16–25; 170 previously uncovered original targets",
   "recommendedEpisodes": 10,
   "optionalReviewEpisode": 26,
@@ -17,7 +17,7 @@
     "New supporting residents have distinct identities; do not resurrect Tao, Q or Mei or borrow an uncertain relationship.",
     "Repair and hiring choices rejoin one main storyline; no new permanent branches.",
     "No revival of the resolved secret-reserve or recorded-voice mysteries.",
-    "Use at most three principal characters per teaser image; favour shared work and connection."
+    "Opening artwork varies visibly by episode; Episode 24 uses Ghanaian appliqué influence and Episode 25 stained glass, each tied to its scene and Jon identity."
   ],
   "verification": [
     "Match all 170 targets exactly once to a first-introduction episode; validation passed.",
@@ -57,7 +57,7 @@
       "voiceReason": "Urgent inspection tests Jon’s impulse to rush.",
       "dialogueTarget": "60–80 short voiced entries, flexibly up to 85 if emotional pauses need room; approximately 4 local choices that rejoin.",
       "choiceRule": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
-      "status": "Planned, not authored or verified",
+      "status": "Authored and route-audited; see episode release and verification record.",
       "reviewTargets": []
     },
     {
@@ -89,7 +89,7 @@
       "voiceReason": "A family’s fear of humiliation changes through being heard.",
       "dialogueTarget": "60–80 short voiced entries, flexibly up to 85 if emotional pauses need room; approximately 4 local choices that rejoin.",
       "choiceRule": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
-      "status": "Planned, not authored or verified",
+      "status": "Authored and route-audited; see episode release and verification record.",
       "reviewTargets": [
         "冒",
         "冻",
@@ -135,7 +135,7 @@
       "voiceReason": "Jon’s awkward teaching attempt lets him question his own confidence; preserve his established age and personality.",
       "dialogueTarget": "60–80 short voiced entries, flexibly up to 85 if emotional pauses need room; approximately 4 local choices that rejoin.",
       "choiceRule": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
-      "status": "Planned, not authored or verified",
+      "status": "Authored and route-audited; see episode release and verification record.",
       "reviewTargets": [
         "闭",
         "严肃",
@@ -184,7 +184,7 @@
       "voiceReason": "An applicant faces exclusion under a deadline.",
       "dialogueTarget": "60–80 short voiced entries, flexibly up to 85 if emotional pauses need room; approximately 4 local choices that rejoin.",
       "choiceRule": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
-      "status": "Planned, not authored or verified",
+      "status": "Authored and route-audited; see episode release and verification record.",
       "reviewTargets": [
         "相处",
         "处",
@@ -236,7 +236,7 @@
       "voiceReason": "Competing ideas of fairness and competence shape a consequential hiring decision.",
       "dialogueTarget": "60–80 short voiced entries, flexibly up to 85 if emotional pauses need room; approximately 4 local choices that rejoin.",
       "choiceRule": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
-      "status": "Planned, not authored or verified",
+      "status": "Authored and route-audited; see episode release and verification record.",
       "reviewTargets": [
         "决心",
         "骄傲",
@@ -287,7 +287,7 @@
       "voiceReason": "A mistaken intervention threatens the garden and calls for restraint.",
       "dialogueTarget": "60–80 short voiced entries, flexibly up to 85 if emotional pauses need room; approximately 4 local choices that rejoin.",
       "choiceRule": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
-      "status": "Planned, not authored or verified",
+      "status": "Authored and route-audited; see episode release and verification record.",
       "reviewTargets": [
         "错过",
         "歧视",
@@ -337,7 +337,7 @@
       "voiceReason": "Small practical mistakes and gentle self-directed humour expose Jon’s grand ideas about helping; no change to his age or identity.",
       "dialogueTarget": "60–80 short voiced entries, flexibly up to 85 if emotional pauses need room; approximately 4 local choices that rejoin.",
       "choiceRule": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
-      "status": "Planned, not authored or verified",
+      "status": "Authored and route-audited; see episode release and verification record.",
       "reviewTargets": [
         "以下",
         "达到",
@@ -390,7 +390,7 @@
       "voiceReason": "A persuasive offer tests the crew’s judgment and shared budget.",
       "dialogueTarget": "60–80 short voiced entries, flexibly up to 85 if emotional pauses need room; approximately 4 local choices that rejoin.",
       "choiceRule": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
-      "status": "Planned, not authored or verified",
+      "status": "Authored and route-audited; see episode release and verification record.",
       "reviewTargets": [
         "进攻",
         "鼻青脸肿",
@@ -440,7 +440,7 @@
       "voiceReason": "Being seen and accepted matters more than outward appearance.",
       "dialogueTarget": "60–80 short voiced entries, flexibly up to 85 if emotional pauses need room; approximately 4 local choices that rejoin.",
       "choiceRule": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
-      "status": "Planned, not authored or verified",
+      "status": "Authored and route-audited; see episode release and verification record.",
       "reviewTargets": [
         "趁",
         "临",
@@ -487,7 +487,7 @@
       "voiceReason": "People make room for different needs in a shared celebration.",
       "dialogueTarget": "60–80 short voiced entries, flexibly up to 85 if emotional pauses need room; approximately 4 local choices that rejoin.",
       "choiceRule": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
-      "status": "Planned, not authored or verified",
+      "status": "Authored and route-audited; see episode release and verification record.",
       "reviewTargets": [
         "上当",
         "记忆",
@@ -519,7 +519,7 @@
       "reviewEpisode": 17,
       "previousCoverage": "Component only",
       "context": "Use 冒 as emit/rise out: 锅里冒着热气。 Do not count 冒险. In Episode 16, a resident brings a warm drink after the cold inspection.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "冻",
@@ -529,7 +529,7 @@
       "reviewEpisode": 17,
       "previousCoverage": "Not found in intended sense",
       "context": "After the storm, Jon wants a quick all-clear so the community can resume daily life. An directs a ground-level inspection; the water protection holds, but the learning centre's roof and furniture need work. Jon stops treating speed as proof of competence. They agree to reopen the centre only after trained inspection and repair.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "连忙",
@@ -539,7 +539,7 @@
       "reviewEpisode": 17,
       "previousCoverage": "Not found in intended sense",
       "context": "After the storm, Jon wants a quick all-clear so the community can resume daily life. An directs a ground-level inspection; the water protection holds, but the learning centre's roof and furniture need work. Jon stops treating speed as proof of competence. They agree to reopen the centre only after trained inspection and repair.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "迅速",
@@ -549,7 +549,7 @@
       "reviewEpisode": 17,
       "previousCoverage": "Not found in intended sense",
       "context": "After the storm, Jon wants a quick all-clear so the community can resume daily life. An directs a ground-level inspection; the water protection holds, but the learning centre's roof and furniture need work. Jon stops treating speed as proof of competence. They agree to reopen the centre only after trained inspection and repair.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "透",
@@ -559,7 +559,7 @@
       "reviewEpisode": 17,
       "previousCoverage": "Not found in intended sense",
       "context": "After the storm, Jon wants a quick all-clear so the community can resume daily life. An directs a ground-level inspection; the water protection holds, but the learning centre's roof and furniture need work. Jon stops treating speed as proof of competence. They agree to reopen the centre only after trained inspection and repair.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "高度",
@@ -569,7 +569,7 @@
       "reviewEpisode": 17,
       "previousCoverage": "Not found in intended sense",
       "context": "After the storm, Jon wants a quick all-clear so the community can resume daily life. An directs a ground-level inspection; the water protection holds, but the learning centre's roof and furniture need work. Jon stops treating speed as proof of competence. They agree to reopen the centre only after trained inspection and repair.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "摇",
@@ -579,7 +579,7 @@
       "reviewEpisode": 17,
       "previousCoverage": "Not found in intended sense",
       "context": "After the storm, Jon wants a quick all-clear so the community can resume daily life. An directs a ground-level inspection; the water protection holds, but the learning centre's roof and furniture need work. Jon stops treating speed as proof of competence. They agree to reopen the centre only after trained inspection and repair.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "弯",
@@ -589,7 +589,7 @@
       "reviewEpisode": 17,
       "previousCoverage": "Component only",
       "context": "Use the adjective or verb itself: 这根管子是弯的。 Do not rely on 弯腰.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "腰",
@@ -599,7 +599,7 @@
       "reviewEpisode": 17,
       "previousCoverage": "Component only",
       "context": "Use the body noun: 我的腰有点酸。 Spoken by an uninjured worker taking a break, not an assumed recovery for An.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "擦",
@@ -609,7 +609,7 @@
       "reviewEpisode": 17,
       "previousCoverage": "Not found in intended sense",
       "context": "After the storm, Jon wants a quick all-clear so the community can resume daily life. An directs a ground-level inspection; the water protection holds, but the learning centre's roof and furniture need work. Jon stops treating speed as proof of competence. They agree to reopen the centre only after trained inspection and repair.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "敲",
@@ -619,7 +619,7 @@
       "reviewEpisode": 17,
       "previousCoverage": "Not found in intended sense",
       "context": "After the storm, Jon wants a quick all-clear so the community can resume daily life. An directs a ground-level inspection; the water protection holds, but the learning centre's roof and furniture need work. Jon stops treating speed as proof of competence. They agree to reopen the centre only after trained inspection and repair.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "张",
@@ -629,7 +629,7 @@
       "reviewEpisode": 17,
       "previousCoverage": "Not found in intended sense",
       "context": "Use a classifier in dialogue, e.g. 一张检查表, rather than as a character-name substring.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "闭",
@@ -639,7 +639,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "After the storm, Jon wants a quick all-clear so the community can resume daily life. An directs a ground-level inspection; the water protection holds, but the learning centre's roof and furniture need work. Jon stops treating speed as proof of competence. They agree to reopen the centre only after trained inspection and repair.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "严肃",
@@ -649,7 +649,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "After the storm, Jon wants a quick all-clear so the community can resume daily life. An directs a ground-level inspection; the water protection holds, but the learning centre's roof and furniture need work. Jon stops treating speed as proof of competence. They agree to reopen the centre only after trained inspection and repair.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "任何",
@@ -659,7 +659,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "After the storm, Jon wants a quick all-clear so the community can resume daily life. An directs a ground-level inspection; the water protection holds, but the learning centre's roof and furniture need work. Jon stops treating speed as proof of competence. They agree to reopen the centre only after trained inspection and repair.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "复杂",
@@ -669,7 +669,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "After the storm, Jon wants a quick all-clear so the community can resume daily life. An directs a ground-level inspection; the water protection holds, but the learning centre's roof and furniture need work. Jon stops treating speed as proof of competence. They agree to reopen the centre only after trained inspection and repair.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "不得不",
@@ -679,7 +679,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "After the storm, Jon wants a quick all-clear so the community can resume daily life. An directs a ground-level inspection; the water protection holds, but the learning centre's roof and furniture need work. Jon stops treating speed as proof of competence. They agree to reopen the centre only after trained inspection and repair.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "开学",
@@ -689,7 +689,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "班主任",
@@ -699,7 +699,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "报到",
@@ -709,7 +709,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "班会",
@@ -719,7 +719,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "家长",
@@ -729,7 +729,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "儿子",
@@ -739,7 +739,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "缺课",
@@ -749,7 +749,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "成绩单",
@@ -759,7 +759,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "想念",
@@ -769,7 +769,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "难过",
@@ -779,7 +779,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "哭",
@@ -789,7 +789,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "做伴",
@@ -799,7 +799,7 @@
       "reviewEpisode": 18,
       "previousCoverage": "Not found in intended sense",
       "context": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "相处",
@@ -809,7 +809,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "处",
@@ -819,7 +819,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Component only",
       "context": "Use chǔ, get along: 我们慢慢处，就知道怎样帮忙。 Do not count 别处 or 到处 (chù).",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "性格",
@@ -829,7 +829,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "外地",
@@ -839,7 +839,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "The centre's teacher, introduced as a new resident rather than a replacement for anyone lost, wants displaced learners to return. A parent worries that absences and old report cards will humiliate their son. Mother helps arrange temporary classes and companionship. The teacher listens before setting the return plan; An contributes without lifting or climbing.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "以来",
@@ -849,7 +849,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "Use an actual time expression: 风暴以来，孩子们一直没有来上课。 Do not count the letters across 可以来.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "物理",
@@ -859,7 +859,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "化学",
@@ -869,7 +869,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "外语",
@@ -879,7 +879,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "水平",
@@ -889,7 +889,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "及格",
@@ -899,7 +899,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "成绩",
@@ -909,7 +909,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "题目",
@@ -919,7 +919,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "篇",
@@ -929,7 +929,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "文章",
@@ -939,7 +939,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "精力",
@@ -949,7 +949,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "意识到",
@@ -959,7 +959,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "阶段",
@@ -969,7 +969,7 @@
       "reviewEpisode": 19,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "决心",
@@ -979,7 +979,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "骄傲",
@@ -989,7 +989,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "严厉",
@@ -999,7 +999,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "傻",
@@ -1009,7 +1009,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon offers an overconfident demonstration at the temporary class. A teacher helps him turn a confusing exercise into a useful test of how people learn: simple physical models, translated labels, and a short illustrated story with a bear's paw and a wolf. His awkward demonstration earns a laugh; he learns to ask what the learners need rather than show what he knows.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "熊掌",
@@ -1019,7 +1019,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "An illustrated classroom story: 图里的熊举起一只熊掌。 This is a visible paw in a book, not an unrelated banquet dish.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "狼",
@@ -1029,7 +1029,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "The same classroom story features a wolf; do not create a separate animal-adventure plot.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "招聘",
@@ -1039,7 +1039,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "应聘",
@@ -1049,7 +1049,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "单位",
@@ -1059,7 +1059,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "工资",
@@ -1069,7 +1069,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "学历",
@@ -1079,7 +1079,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "简历",
@@ -1089,7 +1089,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "对口",
@@ -1099,7 +1099,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "软件",
@@ -1109,7 +1109,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "回复",
@@ -1119,7 +1119,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "唉",
@@ -1129,7 +1129,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "灵通",
@@ -1139,7 +1139,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "前途",
@@ -1149,7 +1149,7 @@
       "reviewEpisode": 20,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "错过",
@@ -1159,7 +1159,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "歧视",
@@ -1169,7 +1169,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "善于",
@@ -1179,7 +1179,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "信心",
@@ -1189,7 +1189,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "A community hiring notice offers paid maintenance and centre-support work. A new applicant from another settlement has useful experience but no prestigious qualification. A broken application terminal and a dismissive gatekeeper threaten to exclude them. Jon and Min insist on a paper alternative and a relevant practical assessment.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "面试",
@@ -1199,7 +1199,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "试用期",
@@ -1209,7 +1209,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "录用",
@@ -1219,7 +1219,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "加班",
@@ -1229,7 +1229,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "自信",
@@ -1239,7 +1239,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "形象",
@@ -1249,7 +1249,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "名牌",
@@ -1259,7 +1259,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "选美",
@@ -1269,7 +1269,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "Contrast an appearance-based interview with a skills test: 这是面试，不是选美。 A later reply reuses the word.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "打扮",
@@ -1279,7 +1279,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "普遍",
@@ -1289,7 +1289,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "超过",
@@ -1299,7 +1299,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "以上",
@@ -1309,7 +1309,7 @@
       "reviewEpisode": 21,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "以下",
@@ -1319,7 +1319,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "达到",
@@ -1329,7 +1329,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "目的",
@@ -1339,7 +1339,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "碰钉子",
@@ -1349,7 +1349,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "爱面子",
@@ -1359,7 +1359,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "留面子",
@@ -1369,7 +1369,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "丢面子",
@@ -1379,7 +1379,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "Candidates face a supervised practical interview. One assessor judges clothes and confidence instead of competence; another wants unpaid overtime to rush the opening. Min, sensitive about his own reputation, backs a fair skills test and written paid trial terms. The group rejects appearance-based selection and sets realistic staffing limits.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "四季",
@@ -1389,7 +1389,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "花期",
@@ -1399,7 +1399,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "五颜六色",
@@ -1409,7 +1409,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "鲜花",
@@ -1419,7 +1419,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "蜂窝",
@@ -1429,7 +1429,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "蜜蜂",
@@ -1439,7 +1439,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "蜇",
@@ -1449,7 +1449,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "刺儿",
@@ -1459,7 +1459,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "拍打",
@@ -1469,7 +1469,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "一窝蜂",
@@ -1479,7 +1479,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "采",
@@ -1489,7 +1489,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "蜜",
@@ -1499,7 +1499,7 @@
       "reviewEpisode": 22,
       "previousCoverage": "Not found in intended sense",
       "context": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "进攻",
@@ -1509,7 +1509,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "Jon mistakenly calls for an attack on the nest; another character challenges that framing. The group chooses a safe route.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "鼻青脸肿",
@@ -1519,7 +1519,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "A gardener recalls a previous rush at a nest that left someone 鼻青脸肿; it motivates restraint now. Do not injure the cast merely to insert the word.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "涂",
@@ -1529,7 +1529,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "似的",
@@ -1539,7 +1539,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "群",
@@ -1549,7 +1549,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "The crew clears the centre's neglected teaching garden. Jon mistakes a nest near the path for an enemy to remove. A knowledgeable gardener redirects the group before anyone rushes at it or strikes the insects. They cordon off the area and work on a safe section, learning why flowers and pollinators matter to the community.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "卖",
@@ -1559,7 +1559,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "卖掉",
@@ -1569,7 +1569,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "生意",
@@ -1579,7 +1579,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "香味",
@@ -1589,7 +1589,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "汤",
@@ -1599,7 +1599,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "顿",
@@ -1609,7 +1609,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "蜂蜜",
@@ -1619,7 +1619,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "减肥",
@@ -1629,7 +1629,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "The same advertisement makes an unverified 减肥 claim; the cook removes it. Keep the scene about honest trading, not dieting advice.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "安神",
@@ -1639,7 +1639,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "A customer challenges an unverified 安神 claim on a honey advertisement; the cook removes it. No therapeutic claim is endorsed.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "甜蜜",
@@ -1649,7 +1649,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "宴会",
@@ -1659,7 +1659,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "聚餐",
@@ -1669,7 +1669,7 @@
       "reviewEpisode": 23,
       "previousCoverage": "Not found in intended sense",
       "context": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "趁",
@@ -1679,7 +1679,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "临",
@@ -1689,7 +1689,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "Use just before an event: 临开门，Min又看了一遍价格。 Not merely an unrelated longer word.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "既",
@@ -1699,7 +1699,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "于是",
@@ -1709,7 +1709,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "哈哈",
@@ -1719,7 +1719,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "忍不住",
@@ -1729,7 +1729,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "Min and a resident cook run a small food stall to fund approved centre supplies. Jon imagines a grand feast, then discovers that prices, portions and ordinary soup matter more. A customer challenges an exaggerated honey advertisement; the cook removes its weight-loss and calming claims. They choose a shared meal and transparent accounts over prestige.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "哲学家",
@@ -1739,7 +1739,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "哲学",
@@ -1749,7 +1749,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "现实",
@@ -1759,7 +1759,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "坏处",
@@ -1769,7 +1769,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "列",
@@ -1779,7 +1779,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "绝对",
@@ -1789,7 +1789,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "显然",
@@ -1799,7 +1799,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "巧妙",
@@ -1809,7 +1809,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "谎话",
@@ -1819,7 +1819,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "语气",
@@ -1829,7 +1829,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "自然",
@@ -1839,7 +1839,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "侥幸",
@@ -1849,7 +1849,7 @@
       "reviewEpisode": 24,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "上当",
@@ -1859,7 +1859,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "记忆",
@@ -1869,7 +1869,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "变成",
@@ -1879,7 +1879,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "变得",
@@ -1889,7 +1889,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "值得",
@@ -1899,7 +1899,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "从来没",
@@ -1909,7 +1909,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "A confident vendor promises an instant repair and tries to sell a decorative upgrade as essential. Jon notices a clever use of true details to hide a false promise. A learner's question from a philosophy reading forces him to explain his reasoning plainly. The crew checks evidence, refuses the offer and uses the agreed budget for necessary materials.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "亲密",
@@ -1919,7 +1919,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "娶",
@@ -1929,7 +1929,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "A newly introduced spouse recounts their own marriage; do not assume Min’s wife survived.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "老婆",
@@ -1939,7 +1939,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "Used naturally between the newly introduced couple, not an assumed surviving relationship for Min.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "丈夫",
@@ -1949,7 +1949,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "Refers to the newly introduced couple.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "老公",
@@ -1959,7 +1959,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "Informal address within the newly introduced couple.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "感情",
@@ -1969,7 +1969,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "青春",
@@ -1979,7 +1979,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "宝贝",
@@ -1989,7 +1989,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "口红",
@@ -1999,7 +1999,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "痘痘",
@@ -2009,7 +2009,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "皱纹",
@@ -2019,7 +2019,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "近视",
@@ -2029,7 +2029,7 @@
       "reviewEpisode": 25,
       "previousCoverage": "Not found in intended sense",
       "context": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "难看",
@@ -2039,7 +2039,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "烦恼",
@@ -2049,7 +2049,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "发呆",
@@ -2059,7 +2059,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "走下坡路",
@@ -2069,7 +2069,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "神经",
@@ -2079,7 +2079,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "迷",
@@ -2089,7 +2089,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "Use fan as a word: 他是音乐迷。 Also give an explicit reply using 迷 in context, not only 迷上/迷住.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "迷住",
@@ -2099,7 +2099,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "Final inspection clears the centre for its agreed use. An enthusiastic young adult volunteer overwhelms the opening programme with their favourite music, while a neighbour worries that quieter visitors will be left out. Jon helps them make room for one another. The shared meal, garden route, learner writing and photographs become parts of one community event.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "迷上",
@@ -2109,7 +2109,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "Final inspection clears the centre for its agreed use. An enthusiastic young adult volunteer overwhelms the opening programme with their favourite music, while a neighbour worries that quieter visitors will be left out. Jon helps them make room for one another. The shared meal, garden route, learner writing and photographs become parts of one community event.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "姑娘",
@@ -2119,7 +2119,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "Final inspection clears the centre for its agreed use. An enthusiastic young adult volunteer overwhelms the opening programme with their favourite music, while a neighbour worries that quieter visitors will be left out. Jon helps them make room for one another. The shared meal, garden route, learner writing and photographs become parts of one community event.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "精神",
@@ -2129,7 +2129,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "Final inspection clears the centre for its agreed use. An enthusiastic young adult volunteer overwhelms the opening programme with their favourite music, while a neighbour worries that quieter visitors will be left out. Jon helps them make room for one another. The shared meal, garden route, learner writing and photographs become parts of one community event.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "挨",
@@ -2139,7 +2139,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "Use āi, next to: 这两张桌子挨着放。 Not ái, suffer/endure.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "消除",
@@ -2149,7 +2149,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "Final inspection clears the centre for its agreed use. An enthusiastic young adult volunteer overwhelms the opening programme with their favourite music, while a neighbour worries that quieter visitors will be left out. Jon helps them make room for one another. The shared meal, garden route, learner writing and photographs become parts of one community event.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "倒是",
@@ -2159,7 +2159,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "Final inspection clears the centre for its agreed use. An enthusiastic young adult volunteer overwhelms the opening programme with their favourite music, while a neighbour worries that quieter visitors will be left out. Jon helps them make room for one another. The shared meal, garden route, learner writing and photographs become parts of one community event.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "得了",
@@ -2169,7 +2169,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "Final inspection clears the centre for its agreed use. An enthusiastic young adult volunteer overwhelms the opening programme with their favourite music, while a neighbour worries that quieter visitors will be left out. Jon helps them make room for one another. The shared meal, garden route, learner writing and photographs become parts of one community event.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "一时",
@@ -2179,7 +2179,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "Final inspection clears the centre for its agreed use. An enthusiastic young adult volunteer overwhelms the opening programme with their favourite music, while a neighbour worries that quieter visitors will be left out. Jon helps them make room for one another. The shared meal, garden route, learner writing and photographs become parts of one community event.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "可不是吗",
@@ -2189,7 +2189,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "Final inspection clears the centre for its agreed use. An enthusiastic young adult volunteer overwhelms the opening programme with their favourite music, while a neighbour worries that quieter visitors will be left out. Jon helps them make room for one another. The shared meal, garden route, learner writing and photographs become parts of one community event.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "那还用说",
@@ -2199,7 +2199,7 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "Final inspection clears the centre for its agreed use. An enthusiastic young adult volunteer overwhelms the opening programme with their favourite music, while a neighbour worries that quieter visitors will be left out. Jon helps them make room for one another. The shared meal, garden route, learner writing and photographs become parts of one community event.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     },
     {
       "word": "哪能",
@@ -2209,11 +2209,12 @@
       "reviewEpisode": 26,
       "previousCoverage": "Not found in intended sense",
       "context": "Final inspection clears the centre for its agreed use. An enthusiastic young adult volunteer overwhelms the opening programme with their favourite music, while a neighbour worries that quieter visitors will be left out. Jon helps them make room for one another. The shared meal, garden route, learner writing and photographs become parts of one community event.",
-      "status": "Planned, not yet covered"
+      "status": "Verified: at least two distinct meaningful spoken entries on every route of the allocated episode."
     }
   ],
   "optional26": {
     "title": "The First Week Without a Rescue",
     "purpose": "A light maintenance-and-classroom follow-up recycles the final 18 words, checks whether the centre works without Jon directing everything, and closes any measured exposure gaps. No additional original targets are assigned."
-  }
+  },
+  "coverageAudit": "stories/authoring/jedi/coverage-complete-25.json"
 }

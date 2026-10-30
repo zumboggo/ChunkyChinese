@@ -1,0 +1,65 @@
+[
+  {
+    "id": "Luma",
+    "name": "Luma",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "elder",
+      "hair": "bun",
+      "glasses": "none",
+      "outfit": "cardigan",
+      "face": "round",
+      "eyes": "gentle"
+    },
+    "palette": {
+      "skin": "#af7958",
+      "hair": "#bcb5a6",
+      "shirt": "#843f66",
+      "trim": "#e8cf9d"
+    },
+    "provenance": "Original older adult resident; married to Daro."
+  },
+  {
+    "id": "Daro",
+    "name": "Daro",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "elder",
+      "hair": "cropped",
+      "glasses": "round",
+      "outfit": "workshirt",
+      "face": "broad",
+      "eyes": "gentle"
+    },
+    "palette": {
+      "skin": "#b9815d",
+      "hair": "#b8b4a9",
+      "shirt": "#47675a",
+      "trim": "#d3bb82"
+    },
+    "provenance": "Original older adult resident; married to Luma."
+  },
+  {
+    "id": "Nia",
+    "name": "Nia",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "hair": "ponytail",
+      "glasses": "none",
+      "outfit": "workshirt",
+      "face": "oval",
+      "eyes": "keen"
+    },
+    "palette": {
+      "skin": "#8d5d44",
+      "hair": "#292523",
+      "shirt": "#586ba0",
+      "trim": "#dac28f"
+    },
+    "provenance": "Original young adult volunteer and music enthusiast."
+  }
+]

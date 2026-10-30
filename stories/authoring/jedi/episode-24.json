@@ -1,0 +1,897 @@
+{
+  "episode": "jedi-24-v1",
+  "title": "The Voices Beneath the Water · Episode 24: Who the Opening Is For",
+  "planning": {
+    "storytellingVoice": "Intimate character drama",
+    "voiceReason": "Being seen and accepted matters more than outward appearance.",
+    "desire": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances.",
+    "payoff": "The display honours real people across generations, including optional private memories of past losses without changing who survived.",
+    "targetVocabulary": [
+      "亲密",
+      "娶",
+      "老婆",
+      "丈夫",
+      "老公",
+      "感情",
+      "青春",
+      "宝贝",
+      "口红",
+      "痘痘",
+      "皱纹",
+      "近视",
+      "难看",
+      "烦恼",
+      "发呆",
+      "走下坡路",
+      "神经"
+    ],
+    "reviewVocabulary": [
+      "趁",
+      "临",
+      "既",
+      "于是",
+      "哈哈",
+      "忍不住",
+      "哲学家",
+      "哲学",
+      "现实",
+      "坏处",
+      "列",
+      "绝对",
+      "显然",
+      "巧妙",
+      "谎话",
+      "语气",
+      "自然",
+      "侥幸"
+    ],
+    "convergence": "Every target gets two distinct meaningful uses on the common path; optional choice text is not the sole exposure. Choices change tone, approach and acknowledgment, not permanent plot branches.",
+    "identityReference": "public/stories/animated/jedi/series-cover.jpg",
+    "earlyCare": "Jon listens without forcing participation.",
+    "obstacle": "Others need room to choose, while Jon is tempted to organize their feelings for them.",
+    "dramaticChange": "Jon gives up control and listens to a concrete request.",
+    "sceneActivities": [
+      "Jon puts down his camera to listen; residents select photographs after explicit consent."
+    ],
+    "listenerTurn": "Pair → Luma asks to choose → listener Jon → hand leaves camera → pair.",
+    "actingSignature": {
+      "Jonathan": "Warm practical questions; open hands become attentive stillness when corrected.",
+      "Luma": "Dry humour with her husband, direct about consent; worry gives way to self-chosen participation.",
+      "Daro": "Affectionate and blunt; shifts from easy reassurance to concrete requests.",
+      "Nia": "Enthusiastic young adult; defensive retreat becomes a practical offer.",
+      "Ryn": "Precise technical limits and agreed working terms.",
+      "Sela": "Plain patient questions, respects voluntary participation."
+    },
+    "teaser": {
+      "speaker": "Jonathan",
+      "dialogue": "You choose how you are seen.",
+      "moment": "Jon lowers the camera after Luma asks to decide for herself."
+    },
+    "artDirection": "Ghanaian Fante Asafo-inspired narrative cotton appliqué: visible stitching, saturated red, cobalt and green, triangular border; Jon and Luma beside consented community photographs. Original composition, no copied flag or sacred emblems.",
+    "freshQuestion": "Will the opening programme make room for everyone?"
+  },
+  "video": {
+    "src": "stories/animated/jedi/jedi-24-intro.mp4",
+    "poster": "stories/animated/jedi/jedi-24-intro.poster.jpg",
+    "dialogue": "You choose how you are seen.",
+    "totalSeconds": 9,
+    "stillSeconds": 3,
+    "motionSeconds": 6.0,
+    "reactionHoldSeconds": 0.0,
+    "nativeGeneratedSeconds": 6,
+    "editNote": "Full six-second native motion retained after the three-second opening hold.",
+    "model": "prunaai/p-video-2-pro",
+    "settings": {
+      "mode": "cost",
+      "resolution": "480p",
+      "duration": 6,
+      "prompt_upsampler": "off"
+    },
+    "verifiedUSDPerSecond": 0.01,
+    "maximumCostUSD": 0.06,
+    "paidRequests": 1,
+    "predictionId": "w7ky6328esrmt0d1hfabzwn45m",
+    "prompt": "Animate the provided textile artwork for six seconds, keeping its stitched appliqué medium, cotton fibers, bold flat cloth colors and all character identities. One visible speaker, Jon, says exactly once in clear warm English: \"You choose how you are seen.\" This quoted line is the entire script. Speak from 0.5 to 3.7 seconds, then close his mouth. No extra words, repetition, fillers, singing, humming, narration or other voices. Jon thoughtfully lowers his camera slightly and listens; the older woman holds her chosen photograph and gives a small nod without speaking. Gentle cloth-cutout motion, fixed camera, no realistic rendering or style change. Clear speech above quiet courtyard ambience, no music, no overlays or added objects.",
+    "reference": "stories/authoring/jedi/art/episode-24-reference.png",
+    "nativeSpeech": true,
+    "checks": {
+      "source": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-24/native.mp4",
+      "output": "/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/.local/episodes/jedi-24/intro.mp4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "fps": 24,
+      "hold_seconds": 3.0,
+      "motion_seconds": 6.0,
+      "reaction_hold_seconds": 0.0,
+      "total_seconds": 9.0,
+      "decoded_audio_seconds": 9.00275,
+      "audio_non_silent": true,
+      "audio_starts_after_hold": true,
+      "hold_mean_pixel_difference": 0.007945452771272444,
+      "sha256": "71e79f4a73fd15fedacd81724f7c832af66df7105648d7c01011fae76e890add",
+      "expected_dialogue": "You choose how you are seen.",
+      "speech_check": "pass",
+      "review": "Frames inspected and exact final speech verified by local ASR; playback and fallbacks checked in browser.",
+      "transcription": "You choose how you are seen."
+    }
+  },
+  "continuation": {
+    "end": "The residents Luma and Daro and young adult Nia choose community photographs after Jon listens to appearance worries and respects consent. They choose images of helping and relationships; nobody is required to appear or disclose private memories. The centre remains closed pending final inspection. Water and historical consequences are unchanged.",
+    "nextStart": "Final inspection clears the centre for its agreed use. An enthusiastic young adult volunteer overwhelms the opening programme with their favourite music, while a neighbour worries that quieter visitors will be left out. Jon helps them make room for one another. The shared meal, garden route, learner writing and photographs become parts of one community event.",
+    "nextEndBefore": "Do not undo prior deaths, injuries, equipment losses, promises or water allocations.",
+    "note": "Proceed to Episode 25 and close the arc."
+  },
+  "targetAudit": {
+    "episode": 24,
+    "routeCount": 16,
+    "targets": [
+      {
+        "word": "亲密",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "临开门，我们要亲密的照片。我可以帮忙，不过不必拍我。",
+          "亲密的感情值得保护。不过，不能要求所有人表示亲密。"
+        ]
+      },
+      {
+        "word": "娶",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我娶你的时候，你很自信。",
+          "我娶你，不是买照片。我想陪着你。"
+        ]
+      },
+      {
+        "word": "老婆",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "我的老婆是宝贝。皱纹又不是坏处。",
+          "老婆，这样可以吗？我陪着你，不挡着你。",
+          "口红是你的选择。丈夫要听老婆的要求。"
+        ]
+      },
+      {
+        "word": "丈夫",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "丈夫可以这样想。我不能因为你的感情，就没有烦恼。",
+          "口红是你的选择。丈夫要听老婆的要求。"
+        ]
+      },
+      {
+        "word": "老公",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "老公，你近视，看我不够清楚。",
+          "老公，你可以帮忙。别只负责表扬。"
+        ]
+      },
+      {
+        "word": "感情",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "丈夫可以这样想。我不能因为你的感情，就没有烦恼。",
+          "亲密的感情值得保护。不过，不能要求所有人表示亲密。",
+          "既要考虑感情，又要给他们选择。不能只考虑照片。"
+        ]
+      },
+      {
+        "word": "青春",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "从前的青春。我看着照片发呆，不想看今天的我。",
+          "显然，我在走下坡路。青春过去，别人还想看我吗？",
+          "难看也不必说谎话。我想知道，没有青春，我还有什么值得别人看。"
+        ]
+      },
+      {
+        "word": "宝贝",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我的老婆是宝贝。皱纹又不是坏处。",
+          "宝贝，看看这张。我忘了戴眼镜。"
+        ]
+      },
+      {
+        "word": "口红",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我涂口红吧。我愿意，不是为了别人。",
+          "口红是你的选择。丈夫要听老婆的要求。"
+        ]
+      },
+      {
+        "word": "痘痘",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "我叫Nia。我负责照片，不过，我有痘痘，不想进去。",
+          "痘痘叫我不敢看人。别人说没事，我还是紧张。",
+          "我不藏痘痘。我愿意给别人看我帮忙的时候。"
+        ]
+      },
+      {
+        "word": "皱纹",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "我的皱纹很难看。我不愿意拍。",
+          "我的老婆是宝贝。皱纹又不是坏处。",
+          "我选择这张。我有皱纹，不过，我愿意。"
+        ]
+      },
+      {
+        "word": "近视",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "老公，你近视，看我不够清楚。",
+          "我近视，要戴眼镜。不过，眼镜没有解决她的烦恼。"
+        ]
+      },
+      {
+        "word": "难看",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "我的皱纹很难看。我不愿意拍。",
+          "难看也不必说谎话。我想知道，没有青春，我还有什么值得别人看。",
+          "我也怕自己难看。有时候，我笑得太用力。"
+        ]
+      },
+      {
+        "word": "烦恼",
+        "minDistinctSpokenEntries": 3,
+        "examples": [
+          "丈夫可以这样想。我不能因为你的感情，就没有烦恼。",
+          "姑娘，你也有烦恼？我以为年轻人都自然地笑。",
+          "我近视，要戴眼镜。不过，眼镜没有解决她的烦恼。"
+        ]
+      },
+      {
+        "word": "发呆",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "从前的青春。我看着照片发呆，不想看今天的我。",
+          "我不想发呆了。我想陪Nia选择照片。"
+        ]
+      },
+      {
+        "word": "走下坡路",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "显然，我在走下坡路。青春过去，别人还想看我吗？",
+          "别说你在走下坡路。你可以难过，不过，你仍然有选择。"
+        ]
+      },
+      {
+        "word": "神经",
+        "minDistinctSpokenEntries": 2,
+        "examples": [
+          "所有人的神经很紧张。我先放下相机。",
+          "我的神经渐渐不紧张了。于是，我愿意拍了。"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "word": "趁",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "临",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "既",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "于是",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "哈哈",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "忍不住",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "哲学家",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "哲学",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "现实",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "坏处",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "列",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "绝对",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "显然",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "巧妙",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "谎话",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "语气",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "自然",
+        "minSpokenEntries": 1
+      },
+      {
+        "word": "侥幸",
+        "minSpokenEntries": 1
+      }
+    ],
+    "method": "Distinct spoken entries per completed route; choice labels excluded. 蜜 excludes occurrences embedded in 蜜蜂; all target examples reviewed in context. Full semantic/pinyin human review accompanies counts."
+  },
+  "artwork": {
+    "generator": "Built-in ImageGen",
+    "reference": "stories/authoring/jedi/art/episode-24-reference.png",
+    "direction": "Ghanaian Fante Asafo-inspired narrative cotton appliqué: visible stitching, saturated red, cobalt and green, triangular border; Jon and Luma beside consented community photographs. Original composition, no copied flag or sacred emblems.",
+    "identityReference": "public/stories/animated/jedi/series-cover.jpg",
+    "traditionReference": "https://collections.rom.on.ca/en/objects/251378/asafo-flag"
+  },
+  "englishAudio": {
+    "localRecordings": [
+      {
+        "sha256": "6027df3311b9bc001e40be9f2c5c74920f2b7896ee9ed1f2a51b417240607ef4",
+        "text": "The centre still cannot open. First we consider the photographs.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "f82e78623784ff155f7711d34d344f7266922cdfbdf968ca264cd6a7505e509e",
+        "text": "My wrinkles look ugly. I do not want to be photographed.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "48a3ae3c2baf67d2efe298b61136304d9584cbb0269169f2ed0caebc42e62845",
+        "text": "When I married you, you were confident.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "7c9b2f1b76b481a2e401ebdc7cfd3e694ca9e0e4f398e4d1385a90c6d420ad8a",
+        "text": "Husband, you are short-sighted; you cannot see clearly.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "5548a3e9e09fcee81f7410b3da3373ccd44ee492aae80b68789c52c70309584e",
+        "text": "What do you want other people to see? I will listen first.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "60aaf3f817fd68a8d0a20bc2ba2d9cee8bf532fe4a9ab0634da97e47fab92b99",
+        "text": "There is no hurry. If you do not agree, I will not take one.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "6f66be2459fe5632206bd5821d6e7d2e084b333651b10356da1c2da4c3ff9af8",
+        "text": "Clearly, I am going downhill. With youth gone, will anyone still want to look at me?",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "cdb6a3960f080012319a8f1b9261fb5e7da2f72771b9fed5ccb5904ebd874c42",
+        "text": "Even if I look ugly, you need not tell lies. I want to know whether, without youth, there is still anything in me worth seeing.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "bb5764eb89d5b5d8526a03f97ea1af6105cae280a009599a860e56a4772c0d34",
+        "text": "My name is Nia. I am responsible for the photographs, but I have acne and do not want to be in them.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "b560430336ceeecdfc772d4447d811902a7a8df89ed6bb2a88f2012870028acf",
+        "text": "Young woman, you have worries too? I thought young people all smiled naturally.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "a4a05e2a30c331342587e879cc73de719d45a04eea5d8d224bb15ae896b1c30b",
+        "text": "Acne makes me afraid to look at people. People say it is nothing, but I am still nervous.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "ca26cd58ccfc1404ca7b7be675941a104a6839d0c2f9dfb1be12f61ecd6f676c",
+        "text": "I am short-sighted and need glasses. But glasses have not solved her worries.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "c80d0d1c032a9e07353d3f1bf09f5d1f90d6e38a4f8576fe5a351b043200e94b",
+        "text": "Everyone's nerves are tense. I will put down the camera first.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "b363489b1034c2b64a84214631165ab72133161532892adbd32fb2d1b199d712",
+        "text": "I put down the camera and listen to them first.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "108b36ef17251b708b7fa773498ce08e616302fbb96e81099233925fb4d7aacd",
+        "text": "I too fear looking ugly. Sometimes I smile too hard.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "eb8ac97f6744797b22ec138021a95c5a8682d56b1fcd5cf2849d81253137ae26",
+        "text": "I want to continue, but do not ask me to smile yet.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "388174fda7aa69b5dc3d48ff47716d48418db32a0c7aac6eeb699db213d947b3",
+        "text": "As opening day approaches, we need photographs that show closeness. I can help, but you need not photograph me.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "7ff2f8fbf6d44c92474ecd16713fb5d7b78338a72661ffbae62e990e47fc6b48",
+        "text": "I want to photograph you when you help. You are willing to help first.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "191ebf328918803499d23ce95740ee7bdac5695bda6e28acd8acac9ea4c740d6",
+        "text": "That will not be a beauty-contest photograph. You are not just trying to praise me, are you?",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "093d8ff2365c7f563c85f93062f66dee2d1845145323b951f5681906c26caea2",
+        "text": "I married you; I did not buy a photograph. I wanted to be with you.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "7cca5bcb0750f5865b9ec765130c4be9fb6802119385c0664c7cbf7712a83b19",
+        "text": "I want to choose for myself, not have someone else decide for me.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "358be9438b1c655453c3a1a3480cb746631ae6656f550110c14261f688aa523f",
+        "text": "My hand moves away from the camera. I wait for her to continue.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "1a40f69608a5e5411cee6f8409f571cd5593fee8e3cb61386c3fe9a8f84815b6",
+        "text": "The photograph is yours. You can choose one, or choose none.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "3fd02538adeab8ad7dfeeb72aa638fadc98637b4ca39ab23a0234d445493095e",
+        "text": "Then I want to see the photograph of me helping. But show it to me first.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "112095965ae1b611f1e860fca8429609edf3ab0a63282ef93d1248cf9f71bc66",
+        "text": "Dear wife, is this all right? I will keep you company without getting in your way.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "879fc4d3e71128e3f588b27c151575bacc4862f068f90089b19f625198b66c5f",
+        "text": "Husband, you can help me. Do not only take responsibility for saying nice things.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "8f97e628a6440c75d68b1a8df1219874f5202cc36efabc311550dce7af887202",
+        "text": "Close affection is worth protecting. But we cannot require everyone to show closeness.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "7e1486899e9e958cf9d08148b67f3205ae6bd97476859d325f7f0c14ab18c1e8",
+        "text": "We must both consider feelings and let them choose for themselves. We cannot think only about the photograph.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "fc7c399bea29a38b95386c9b271b8a003a86e51544d45f2b7a879891a71e0253",
+        "text": "I will put on lipstick. I want to; it is not for someone else.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "015fcae54463b032f67dbc1cc83c73c8c7dc7b7fc6e93d47b7da704a3881feb2",
+        "text": "Lipstick is your choice. A husband must listen to his wife's wishes too.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "603957704619c4afc9d5675d066b6c635d3c94324356ffa4dc89e2d81164ed5b",
+        "text": "My acne can stay in the photograph. I want people to see me helping.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "765846a631336801d0d8b6164e0062cf3b4367f0d0019fd441df22e156ac19e7",
+        "text": "First we will list the wishes. There is no need to cleverly protect appearances.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "964d122b468eda668e4007f0719067958bc50fcbfe6f30d8fe43e7d913bb1c70",
+        "text": "I will help; ask me before you take the picture.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "17fc726e14aef21b25b6100ce46f03e2bcd2ff8a5acfd1480cea1da0e88f3b96",
+        "text": "Right here will do. I want to keep him company.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "23b6c75ec78238ef84bbcf3dbb6d57952136ef9db96fd0f4571472ef8e0f9573",
+        "text": "After receiving consent, I take the photograph. They examine it themselves and decide which one to use.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "2916be3be14dfca0d8c7c29f955d0fca7bf5cf88ac3a77991bb2ae4fa4b22731",
+        "text": "Darling, look at this one. I forgot to put on my glasses.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "d3e8dac9963125f8910eb4ffe699c548417045c4cf7083e3ae409e302d1051f3",
+        "text": "Ha! You cannot help laughing, and I feel less nervous.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "c10805a77e6ac6460183587a122a5f349a58916b70b3c209bbb9c8bef800e423",
+        "text": "This is not mere luck. You were willing to listen, so I dare to continue.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "c62cdfef1cad7994ab3e4d151f3176ac679641c43cdd36447abf3d237e8dbad3",
+        "text": "I studied philosophy before and wanted to become a philosopher.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "3ae02cbd194e830b93b0e8aeb0fa6a943abd0caa85d8846ae1bbc7538a0fdcba",
+        "text": "The reality is that you must listen first. Do not consider only conclusions.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "2e750683dba6a3836a2dd5e564fb95755e19958b52bcaba6fe25f5f3eed2aafe",
+        "text": "Your tone is serious. I will remember.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "f4016afb5c1a69150c76396846f51ebadedc54413511a97f093171c37df700e0",
+        "text": "Do not say you are going downhill. You can feel sad and still keep choosing.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "c0945b58998e104aa624798ebd93c61f25ac61bf18d29d05350d1a34a9beb888",
+        "text": "I do not feel like staring into space now. I want to help Nia choose a photograph.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "7750ff49f1b0cdc6b3f84f3e51aa4b9dc3235664604b4d25877213938eff7231",
+        "text": "My nerves have finally relaxed. So I want to be in one too.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "f05617036ba21425437c43381e488c0d9318d64d727b1cb228cc790741c06924",
+        "text": "While we are still together, let us ask who wants a photograph.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "c37d71e71bca06c7c012a950cfdca3cf1bf5d3d8747fb788ccf1c5a94825992d",
+        "text": "People can participate without being photographed. I am willing to tell them that.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "36e88f4409a42b8fb097967000089f1bfb3f84597202aa3cc0c9e3a6b97f39c8",
+        "text": "They can leave it unsigned. I will not consent on someone else's behalf.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "ba3527364bb2b3592e96689e3a14f3653820176e0fa6b7a525c76eff44784ff6",
+        "text": "The photographs are arranged according to the agreed wishes. No one is required to be included.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "115d196d4d259fdc4fa4c2a4279ef09192298611598d649898a063b48119f38f",
+        "text": "We still remember those we miss. We need not hand over every memory.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "9517f7937397568cdabc33b804b2598da2d2f098c0ff0eb65c114b68855f48e2",
+        "text": "I want to use this one. I have wrinkles, but I want to.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "89f65ab323e8a10965bc4653d035b4b5891a06b3840641d0ff746db3880be5e0",
+        "text": "The photographs are ready. Once the inspection is finished, we can open.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "0079ea909801a366bd104c45e3e51f94b1732fb0a1f8d7584743c7ec68801875",
+        "text": "The water is unchanged. The photographs are checked; the centre still awaits its final inspection.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "b259bd85d020504fdc728f2554b172deeb6365d4f1a9f3cf46a403d288fb7f02",
+        "text": "Ask about her worries.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "0e3ed285c8ecab8c5cd7487521e533ecdfdaeed07ac30e4a916fde56a94ad9bf",
+        "text": "Wait for her to speak.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "f775e51580af875faa60dab7b18011d8232efd159d7818b334fb62e2e3f4bb92",
+        "text": "Share my own nervousness.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "8627798609d99e0b16a3882f7d1584c362e55eb1752737576e349f7c60fa62ff",
+        "text": "Ask whether they want a break.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "887809406f2b995dbd370ab694142d3baa63db661e34e9228d5e9bed63fa0faa",
+        "text": "Photograph people helping together.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "1f983af3ad5820ee61f6d8c27c95c11f20db3894b89cbc31659924c285d0f1d9",
+        "text": "Listen to their wishes first.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "ff2a21334be0ae8f224b18c8dc17352cfeb5054e39b926f7985c5027e4572dd4",
+        "text": "People can join us without being photographed.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      },
+      {
+        "sha256": "935bed403b5d92b91933339931cee208d94643d95db2bcd329c5450a90a21a34",
+        "text": "Let each person choose whether to add their name.",
+        "provider": "macOS on-device speech",
+        "voice": "Samantha",
+        "costUSD": 0,
+        "reason": "Free on-device completion; existing provider receipts preserved; no network calls."
+      }
+    ],
+    "completionProvider": "Cached jaaari/kokoro-82m recordings retained; missing English lines completed with free macOS Samantha speech after remote HTTP 429. Exact-text hash cache; provider records retained."
+  },
+  "verification": {
+    "reportStatus": "passed",
+    "packageBytes": 2033899,
+    "phases": [
+      {
+        "name": "vocabulary",
+        "seconds": 0.03127466699999999,
+        "status": "passed"
+      },
+      {
+        "name": "routes, source assertions and resume",
+        "seconds": 0.335875792,
+        "status": "passed"
+      },
+      {
+        "name": "annotations",
+        "seconds": 0.004556291999999985,
+        "status": "passed"
+      },
+      {
+        "name": "audio",
+        "seconds": 0.014482458000000009,
+        "status": "passed"
+      },
+      {
+        "name": "English pocket audio",
+        "seconds": 0.11213399999999996,
+        "status": "passed"
+      },
+      {
+        "name": "package and ZIP",
+        "seconds": 0.10570875,
+        "status": "passed"
+      },
+      {
+        "name": "phone and desktop",
+        "seconds": 31.993763375000004,
+        "status": "passed"
+      },
+      {
+        "name": "stage new release",
+        "seconds": 0.014794958000002224,
+        "status": "passed"
+      }
+    ],
+    "familiarity": {
+      "min": 84.05572755417957,
+      "max": 85.47140649149922
+    },
+    "pinyin": "Full contextual review: adverb zhi, modifier/complement de, ai for enduring criticism, yinwei, dāying, neutral shihou and jingshen adjective.",
+    "teaser": "Exact English line verified with local ASR. Opening, motion and ending frames inspected; nine-second finished clip. One $0.06 paid request per clip; Episode 25 lead-in removed locally with measured word timings.",
+    "continuity": "All 54,432 inherited histories and 160 local route/water combinations per episode preserved; all 48 prior source/public packages byte-identical.",
+    "vocabulary": "All 17 new targets have at least two distinct meaningful spoken entries on every one of 16 routes; all 18 scheduled review targets appear on each route. Full 170-target plan verified; all 294 original inventory words have contextual exposure.",
+    "browser": "Full contrasting routes plus teaser playback, fallback, Mandarin audio, listener aftermath and resume on phone and desktop."
+  }
+}

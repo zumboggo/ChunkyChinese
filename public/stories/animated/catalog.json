@@ -1059,5 +1059,51 @@
       "title": "Super Supportive · Episode 5: Ninety Seconds",
       "description": "A midnight search turns up a detail Alden cannot let go. He tests an unsettling question—and discovers how fast someone can come."
     }
+  },
+  {
+    "id": "jedi-24-v1",
+    "category": "jedi",
+    "episode": 24,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-24-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-24-intro.poster.jpg",
+      "title": "Who the Opening Is For",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode 24 · Who the Opening Is For",
+        "paragraphs": [
+          "The repairs are complete, but the centre awaits its final inspection. In the courtyard, residents prepare photographs for opening day.",
+          "Luma does not want her wrinkles on display, and Nia is embarrassed by her acne. Jon must learn when to put the camera down."
+        ]
+      }
+    },
+    "path": "jedi-24.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 24: Who the Opening Is For",
+      "description": "A newly introduced resident couple prepares an opening display of community photographs and memories. One partner hides from the camera, convinced that wrinkles and ageing make them unworthy of being seen. A younger adult worries about acne; Jon listens instead of offering easy reassurance. They choose photographs that show relationships and work, not idealized appearances."
+    }
+  },
+  {
+    "id": "jedi-25-v1",
+    "category": "jedi",
+    "episode": 25,
+    "intro": {
+      "src": "stories/animated/jedi/jedi-25-intro.mp4",
+      "poster": "stories/animated/jedi/jedi-25-intro.poster.jpg",
+      "title": "The Door Opens",
+      "durationSeconds": 9,
+      "context": {
+        "title": "Episode 25 · The Door Opens",
+        "paragraphs": [
+          "The centre has passed its final inspection. The photographs, learner writing, garden and shared meal are ready to become one community gathering.",
+          "Nia wants everyone to hear the music she loves. Daro wants to hear the person beside him. An open door may still leave someone outside."
+        ]
+      }
+    },
+    "path": "jedi-25.json",
+    "summary": {
+      "title": "The Voices Beneath the Water · Episode 25: The Door Opens",
+      "description": "Final inspection clears the centre for its agreed use. An enthusiastic young adult volunteer overwhelms the opening programme with their favourite music, while a neighbour worries that quieter visitors will be left out. Jon helps them make room for one another. The shared meal, garden route, learner writing and photographs become parts of one community event."
+    }
   }
 ]
