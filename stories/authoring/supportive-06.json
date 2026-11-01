@@ -1,0 +1,153 @@
+{
+  "id": "supportive-06",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 6: Call Me",
+  "description": "An old note lies buried in Connie’s kitchen drawer. Alden finds the courage to call—and an unexpected voice answers.",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-supplied EPUB. End of THREE: 90 seconds and beginning of FOUR: Avowed Communications, through the System forwarding Alden’s call. Simplified Mandarin adaptation; not an official translation."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "From Connie’s overnight reassurance in chapter THREE through “Forwarding you now.” in FOUR. Deliberately includes the note immediately after the saved extraction boundary and the next chapter’s opening; stops before Hannah’s restaurant perspective.",
+    "dramaticChange": "Alden moves from hiding his question to making contact, and discovers Hannah already gave him priority.",
+    "essentialNewWords": [
+      "抽屉",
+      "纸条",
+      "电话号码",
+      "脑子"
+    ],
+    "englishNarrationPurpose": "None; narration, dialogue and choices are Mandarin.",
+    "choicesAndCallbacks": [
+      "Care versus guilt: both keep Connie’s light on.",
+      "Old papers versus schoolwork: both find the pamphlet.",
+      "Promise versus number: distinct observations before the call.",
+      "Wonder versus preparing words: both select audio only, preserving canon."
+    ],
+    "sceneActivities": [
+      "Searching a kitchen drawer gives the solitary scene a physical task; reaching gesture at the discovered note; search stops for memory and phone call."
+    ],
+    "storytellingVoice": "Intimate character drama with restrained situational humor",
+    "voiceReason": "A child’s careful plan meets a bizarre yet welcoming telephone service; tenderness precedes wonder.",
+    "desire": "Find Hannah and ask about the ninety-second interval.",
+    "obstacle": "Guilt, buried contact information, fear of an awkward conversation and an unexpected automated intermediary.",
+    "earlyCare": "Connie’s overpowering fragrance nightlight is a clumsy, sincere act of care.",
+    "payoff": "Hannah has already marked Alden as an important contact.",
+    "newUncertainty": "What will Hannah say about the ninety seconds?",
+    "signatures": {
+      "Alden": "Concrete observations, private embarrassment, careful preparation.",
+      "System": "Bright matter-of-fact politeness about startling magical services."
+    },
+    "directing": "Alden remains alone; narrated System voice avoids inventing a visible avatar. Hold reader-controlled close view after the priority-contact line.",
+    "limitations": [
+      "Youngest supported teen vector proportions stand in for an eleven-year-old; opening art uses child proportions.",
+      "Drawer search and note handling are narrated with a reach gesture, not a claimed articulated prop simulation."
+    ],
+    "teaser": {
+      "speaker": "Alden",
+      "line": "She said I could call.",
+      "scene": "Alden discovers Hannah’s note in Connie’s kitchen drawer.",
+      "style": "Transparent watercolor and delicate ink on cream paper",
+      "reference": "stories/characters/super-supportive/alden-approved-a.png"
+    },
+    "pinyinReview": "Reviewed all sentence and phrase readings. Corrected sleep jue/jiao, only zhi, obligation dei, adverbial de, and contextual neutral tones in dongxi, chouti, mingzi, na ozi, qingchu and related phrases."
+  },
+  "continuation": {
+    "end": "Alden finds Hannah’s note, calls, and learns she listed him as a priority contact. He chooses audio only; the System forwards his call before Hannah answers.",
+    "chapter": "OEBPS/Text/0004_FOUR_Avowed_Communications.xhtml",
+    "nextStart": "“You’re the most boring person in the world. I hope you know that.”",
+    "nextEndBefore": "“You know, maybe before you head to Toronto, you should",
+    "note": "Begin Hannah’s restaurant perspective; next episode may deliberately extend through the incoming call for a substantial local payoff. Preserve source order.",
+    "continuity": [
+      "Alden is eleven and lives with Aunt Connie.",
+      "Connie’s fragrance nightlight follows his false nightmare; he leaves it on out of guilt.",
+      "Hannah has designated Alden a priority contact. He has selected audio only, and the System is forwarding his call.",
+      "The ninety-second question remains unresolved. Alden now thinks he should have thanked Arjun for saving him."
+    ]
+  },
+  "routes": [
+    {
+      "choices": [
+        "care",
+        "old",
+        "promise",
+        "wonder"
+      ],
+      "contains": [
+        "她说，我可以打电话给她。",
+        "我还没说要问什么。可在她那里，我已经是一个很重要的人。"
+      ],
+      "endsWith": "这一次，真的要跟她说话了。那个纸条还在我旁边。九十秒的问题，也还在。"
+    },
+    {
+      "choices": [
+        "guilt",
+        "school",
+        "number",
+        "words"
+      ],
+      "contains": [
+        "她说，我可以打电话给她。",
+        "我还没说要问什么。可在她那里，我已经是一个很重要的人。"
+      ],
+      "endsWith": "这一次，真的要跟她说话了。那个纸条还在我旁边。九十秒的问题，也还在。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-06-v1",
+    "category": "super-supportive",
+    "episode": 6,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-06.mp4",
+      "poster": "stories/animated/cutscenes/supportive-06.poster.jpg",
+      "title": "She said I could call.",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "scene": "Alden finds Hannah’s note in Connie’s kitchen drawer",
+    "style": "Transparent watercolor and delicate ink on cream paper",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "q91cf27xm5rmr0d1jrxtz6bdcw",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "generatedSeconds": 6,
+    "totalSeconds": 9,
+    "videoPrompt": "Animate the supplied watercolor and ink illustration in one continuous six-second shot. Preserve its delicate watercolor medium. Eleven-year-old Alden stands at the open kitchen drawer holding the small note with burgundy pamphlet behind it. His eyes lift slightly from the note with tentative hope; hands remain still. Only Alden is present. Preserve face, child age, hair, clothing and kitchen. Only Alden speaks, a quiet natural young boy voice. ENTIRE SPOKEN SCRIPT in clear ENGLISH exactly once: \"She said I could call.\" Speak only these words between 0.5 and 3 seconds with synchronized lips, then mouth closed and quiet ambience for the rest. No other words, repetition, fillers, humming, singing, narration or voices. No cuts or captions. One restrained emotional beat.",
+    "imageTool": "built-in image_gen",
+    "imagePrompt": "Eleven-year-old Alden discovers a handwritten note inside a burgundy pamphlet in Connie’s overstuffed kitchen drawer; transparent watercolor and ink; approved face and hair, gray shirt, one boy, no readable lettering.",
+    "image": "stories/characters/super-supportive/supportive-06-opening.png",
+    "checks": {
+      "sha256": "e755887779edcd726b3b8b7d4cb83a1056d39abe50b7603e34f4e3e57a6e0940",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 6,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "She said I could call."
+    }
+  },
+  "verification": {
+    "packageBytes": 1792336,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 95.53571428571429,
+      "max": 95.70011025358325
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "她说，我可以打电话给她。",
+      "我还没说要问什么。可在她那里，我已经是一个很重要的人。",
+      "这一次，真的要跟她说话了。那个纸条还在我旁边。九十秒的问题，也还在。"
+    ]
+  }
+}

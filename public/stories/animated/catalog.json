@@ -1105,5 +1105,21 @@
       "title": "The Voices Beneath the Water · Episode 25: The Door Opens",
       "description": "Final inspection clears the centre for its agreed use. An enthusiastic young adult volunteer overwhelms the opening programme with their favourite music, while a neighbour worries that quieter visitors will be left out. Jon helps them make room for one another. The shared meal, garden route, learner writing and photographs become parts of one community event."
     }
+  },
+  {
+    "id": "supportive-06-v1",
+    "category": "super-supportive",
+    "episode": 6,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-06.mp4",
+      "poster": "stories/animated/cutscenes/supportive-06.poster.jpg",
+      "title": "She said I could call.",
+      "durationSeconds": 9
+    },
+    "path": "supportive-06.json",
+    "summary": {
+      "title": "Super Supportive · Episode 6: Call Me",
+      "description": "An old note lies buried in Connie’s kitchen drawer. Alden finds the courage to call—and an unexpected voice answers."
+    }
   }
 ]

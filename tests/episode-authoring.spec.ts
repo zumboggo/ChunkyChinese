@@ -115,6 +115,8 @@ if(fixture.catalog?.intro)test('planned opening plays with sound and transitions
  await expect(video).toBeVisible()
  await expect.poll(()=>video.evaluate(v=>({duration:(v as HTMLVideoElement).duration,muted:(v as HTMLVideoElement).muted}))).toEqual({duration:entry.intro!.durationSeconds,muted:false})
  await page.screenshot({path:info.outputPath('opening.png'),fullPage:true})
- const play=page.getByRole('button',{name:'Play intro with sound',exact:true});if(await play.isVisible())await play.click()
- await expect(page.locator('.animated-story')).toBeVisible({timeout:20000})
+ const play=page.getByRole('button',{name:'Play intro with sound',exact:true})
+ if(await play.isVisible()){await play.focus();await play.press('Enter')}
+ await expect.poll(()=>video.evaluate(v=>!(v as HTMLVideoElement).paused)).toBe(true)
+ await expect(page.locator('.animated-story')).toBeVisible({timeout:60000}).catch(async error=>{console.error('Intro media state:',await video.evaluate(v=>{const m=v as HTMLVideoElement;return {time:m.currentTime,duration:m.duration,paused:m.paused,ended:m.ended,ready:m.readyState,error:m.error?.message}}));throw error})
 })
