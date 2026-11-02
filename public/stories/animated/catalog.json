@@ -1137,5 +1137,21 @@
       "title": "Super Supportive · Episode 7: Highest Priority",
       "description": "Hannah’s farewell brunch becomes an unexpected test of how to help. A familiar voice asks one very specific question."
     }
+  },
+  {
+    "id": "supportive-08-v1",
+    "category": "super-supportive",
+    "episode": 8,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-08.mp4",
+      "poster": "stories/animated/cutscenes/supportive-08.poster.jpg",
+      "title": "It wasn't your fault.",
+      "durationSeconds": 9
+    },
+    "path": "supportive-08.json",
+    "summary": {
+      "title": "Super Supportive · Episode 8: A Promise Across the World",
+      "description": "Alden calls back to explain. Hannah offers more than she realizes."
+    }
   }
 ]

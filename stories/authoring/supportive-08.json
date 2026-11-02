@@ -1,0 +1,156 @@
+{
+  "id": "supportive-08",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 8: A Promise Across the World",
+  "description": "Alden calls back to explain. Hannah offers more than she realizes.",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-supplied EPUB, FOUR: Avowed Communications, second call through the cost of Hannah’s invitation. Mandarin adaptation, not an official translation."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Pinned second call through the end of FOUR, before author note.",
+    "dramaticChange": "Hannah moves from helpless self-reproach to a costly promise of connection.",
+    "essentialNewWords": [
+      "爆炸",
+      "报告",
+      "暑假",
+      "传送",
+      "方便面"
+    ],
+    "englishNarrationPurpose": "None; Hannah first-person narration with clearly separated call locations.",
+    "choicesAndCallbacks": [
+      "Thank Alden or name his care: distinct brief response before promise to tell Arjun.",
+      "Hannah searches for comforting words or something practical: distinct thoughts leading to invitation.",
+      "Alden considers school holiday or travel expense: distinct question and answer before teleport offer.",
+      "Hannah asks if travel is possible or affordable: distinct Cly response leading to fundraiser joke."
+    ],
+    "sceneActivities": [
+      "Hannah’s card game is interrupted by the audio call; seated stillness gives the disclosure room. After the call she searches System contacts, interrupted by Cly."
+    ],
+    "storytellingVoice": "Intimate character drama",
+    "voiceReason": "A grieving child tries to comfort his rescuer, who responds with an impulsive concrete promise.",
+    "desire": "Alden wants Hannah and Arjun to stop blaming themselves; Hannah wants to offer meaningful care.",
+    "obstacle": "His conclusion is an inference, Hannah cannot find the right words, and an overseas invitation carries unknown practical costs.",
+    "earlyCare": "Alden calls back because he left the most important reassurance unsaid.",
+    "payoff": "Alden gives his explanation and asks her to tell Arjun; Hannah invites him to visit.",
+    "newUncertainty": "How will Hannah obtain a pass and afford the teleport in just three weeks?",
+    "signatures": {
+      "Alden": "Prepared rapid explanation becomes slower deliberate reassurance; restrained guarded stance.",
+      "Hannah": "Self-questioning thoughts contrast with warm heroic assurances; still listener then surprised reaction.",
+      "Cly": "Practical directness, dry humor; quiet concern and one sigh."
+    },
+    "directing": "Hold Hannah/Cly pair at restaurant, cut to solitary Alden only when location changes. Consequential disclosure plays on Hannah listening; her uncertain silence stays on a Continue-controlled entry. Invitation returns to shared restaurant shot.",
+    "limitations": [
+      "Other card players’ brief banter is compressed into Hannah’s narration; no invented identities or physical handoffs."
+    ],
+    "teaser": {
+      "speaker": "Alden",
+      "line": "It wasn’t your fault.",
+      "scene": "Alden in Connie’s kitchen on his second audio call to Hannah.",
+      "style": "Handcrafted clay-puppet miniature cinema",
+      "identityReference": "stories/characters/super-supportive/alden-approved-a.png"
+    },
+    "pinyinReview": "Reviewed full sentences and contextual chunks; corrected zhi only, de complements, dei necessity, neutral tones, and spoken Arabic numerals. No script changes after freeze."
+  },
+  "continuation": {
+    "end": "Alden offers his explanation for his parents’ deaths and asks Hannah to tell Thomas. Hannah promises a summer visit and teleport, then learns how costly it will be. School break is in three weeks.",
+    "chapter": "OEBPS/Text/0005_FIVE_The_Nice_One.xhtml",
+    "nextStart": "five years later",
+    "nextEndBefore": "A familiar, bright voice interrupted his inspection.",
+    "note": "Explicit five-year jump: Alden is sixteen, travelling with Jeremy and Boe to alien school. End before the voicemail begins, or extend deliberately for a local payoff. Preserve approved character identity while aging him appropriately.",
+    "continuity": [
+      "Alden’s belief about the first explosions remains his inference, not a confirmed finding.",
+      "Hannah promises an Anesidora day pass and custom teleport for his summer break in three weeks.",
+      "Cly offers fundraising help; personal civilian teleportation is expensive.",
+      "Next chapter jumps five years ahead; do not portray that time jump as immediate continuation."
+    ]
+  },
+  "routes": [
+    {
+      "choices": [
+        "thanks",
+        "words",
+        "summer",
+        "possible"
+      ],
+      "contains": [
+        "可我觉得，他们在第一次爆炸的时候，就已经死了。因为他们没有跟我说话。",
+        "还有三个星期，学校就不上课了。"
+      ],
+      "endsWith": "在那以前，你就多吃点面和豆子吧。"
+    },
+    {
+      "choices": [
+        "care",
+        "action",
+        "travel",
+        "price"
+      ],
+      "contains": [
+        "可我觉得，他们在第一次爆炸的时候，就已经死了。因为他们没有跟我说话。",
+        "还有三个星期，学校就不上课了。"
+      ],
+      "endsWith": "在那以前，你就多吃点面和豆子吧。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-08-v1",
+    "category": "super-supportive",
+    "episode": 8,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-08.mp4",
+      "poster": "stories/animated/cutscenes/supportive-08.poster.jpg",
+      "title": "It wasn't your fault.",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "scene": "Alden tells Hannah it was not her fault during his second audio call from Connie’s kitchen.",
+    "style": "Handcrafted clay-puppet miniature cinema",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "imageTool": "built-in image_gen",
+    "imagePrompt": "Approved quiet eleven-year-old Alden, brown tousled hair, gray shirt and charcoal hoodie, rendered as a clay puppet in a miniature kitchen at night, reassuring an unseen caller beside a small gold System glow.",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "d0qejr51anrmt0d1k6hb90jmkw",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "generatedSeconds": 6,
+    "totalSeconds": 9,
+    "edit": "Native clip retained privately. Removed initial three seconds containing unwanted speech; used approximately three seconds of clean motion with a three-second opening still and final reaction hold. Final ASR matches exact line.",
+    "videoPrompt": "Animate this handcrafted clay-puppet miniature in one continuous six-second shot. Preserve Alden’s face, brown hair, gray shirt, charcoal hoodie and kitchen. He is a quiet eleven-year-old boy reassuring an unseen caller. Subtle breath, blink, then one earnest short line. ENTIRE SPOKEN SCRIPT in English exactly once: \"It wasn’t your fault.\" Natural preadolescent boy voice, clear and gentle, synchronized lips, speech between 0.5 and 3 seconds. Only these exact words, no extra words, repetition, fillers, humming, narration or other voices. Afterwards mouth closed with a quiet concerned listening expression. Hands remain stable on counter and at chest. No handset, no additional people, no scene cuts, no text. Very quiet room ambience below foreground dialogue. Maintain tactile stop-motion clay and miniature cinematography.",
+    "image": "stories/characters/super-supportive/supportive-08-opening.png",
+    "checks": {
+      "sha256": "7d188c3416e90eaeadb33c845002d71b4b2a6c79dca395897c901986f5d536bb",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 2.9583333333333335,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "It wasn't your fault."
+    }
+  },
+  "verification": {
+    "packageBytes": 1618531,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 95.25691699604744,
+      "max": 95.43080939947781
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "我的意思是，他们是在第一次爆炸里死的。那一次，你什么也做不了。所以，你不用伤心了，好吗？",
+      "好……谢谢你。谢谢你打来，跟我说这些。",
+      "我听明白了。你是怕我一直伤心。谢谢你跟我说。",
+      "三个星期？对啊，他住在北边。我刚才还以为，自己有很多时间。"
+    ]
+  }
+}
