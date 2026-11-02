@@ -1,0 +1,157 @@
+{
+  "id": "supportive-09",
+  "series": "super-supportive",
+  "title": "十美元的冬天 · A Ten-Dollar Winter",
+  "description": "五年后，十六岁的阿登和朋友们坐车去上学。车外很冷，车里有笑声，还有一条舍不得放下的旧消息。",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-supplied EPUB, FIVE: The Nice One, five-year jump through Alden requesting his last three voicemails. Mandarin adaptation, not an official translation."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Pinned FIVE opening, ending before the first voicemail.",
+    "dramaticChange": "The boy who comforted Hannah now has a lively social world, yet reaches privately toward her voice.",
+    "essentialNewWords": [
+      "围巾",
+      "恶魔",
+      "留言"
+    ],
+    "englishNarrationPurpose": "None; intimate first-person Mandarin.",
+    "choicesAndCallbacks": [
+      "Notice Jeremy’s clothing or his cold hands; rejoin the ten-dollar dare.",
+      "Respond to Boe’s scarf offer with a question or dry amusement.",
+      "Consider the snack or school; return to the not-a-demon argument.",
+      "Consider putting the phone away or the strange silver mark; both lead to the voicemails."
+    ],
+    "sceneActivities": [
+      "Wait on a snowy platform, board between scenes, then sit while friends banter; Alden privately checks his phone."
+    ],
+    "storytellingVoice": "Intimate character drama",
+    "voiceReason": "The contrast between easy friendship and an involuntary private habit reveals Alden without inventing a new event.",
+    "desire": "Enjoy an ordinary school morning with his friends; hear a familiar voice again.",
+    "obstacle": "Jeremy’s ridiculous cold-weather dare and Alden’s knowledge that replaying messages will make him gloomy.",
+    "earlyCare": "Alden is warmly dressed but worries about a friend who pretends he can beat the cold.",
+    "payoff": "Alden wins the attempted-versus-successful-murder argument; the warmth of friendship becomes tangible.",
+    "newUncertainty": "Why does listening to Hannah’s messages make him sad?",
+    "directing": "Shared three-person framing for the argument; listener close-up on Alden after the laughter, held through the final silence.",
+    "teaser": {
+      "speaker": "Alden",
+      "line": "Play the last three voicemails.",
+      "scene": "Alden seated beside a train window, lifting his phone while snow passes outside.",
+      "style": "Loose watercolor washes and expressive ink on textured paper",
+      "identityReference": "stories/characters/super-supportive/alden-approved-a.png"
+    },
+    "limitations": [
+      "Supported costume presets approximate winter clothing and Jeremy’s sleeveless shirt; narration carries clothing details. Boe’s poster banter is compressed without changing its function. Source green eyes omitted to retain user-approved reference likeness."
+    ],
+    "pinyinReview": "Reviewed all 49 entries and chunks. Corrected contextual zhi, dei necessity, de complements/adverbial particle, zhang appearance, zhe sustained action, bu before yinggai, and neutral lexical syllables.",
+    "signatures": {
+      "Alden": "Dry literal logic in shared framing, then guarded private stillness.",
+      "Jeremy": "Cold arms-crossed protest becomes expansive joking once seated.",
+      "Boe": "Quiet studious appearance contrasted with teasing smile and defensive poster reply."
+    }
+  },
+  "continuation": {
+    "end": "Five years later, Alden and friends trade jokes on their way to alien school; he privately asks to replay his last three voicemails.",
+    "nextStart": "A familiar, bright voice interrupted his inspection.",
+    "nextEndBefore": "Outside the window, buildings raced past.",
+    "note": "The three voicemails reveal Hannah has been missing six months. Preserve uncertainty: a planned funeral is not confirmed death. End with Alden switching off the System; can extend deliberately to the next reflective passage.",
+    "continuity": [
+      "Alden is now sixteen, travelling to alien school with Jeremy and Boe.",
+      "Jeremy endured winter in summer clothes for a ten-dollar dare.",
+      "Alden has System phone access after his first call to Hannah and has retained her messages.",
+      "The voicemails have not yet played in the episode."
+    ],
+    "castRecipes": "stories/characters/super-supportive/cast-09.json",
+    "castBundle": "public/stories/animated/cast/supportive-09.json"
+  },
+  "routes": [
+    {
+      "choices": [
+        "hands",
+        "ask",
+        "snack",
+        "stop"
+      ],
+      "contains": [
+        "五年过去了。现在我十六岁，早上要和两个同学一起坐车去学校。今天特别冷。",
+        "是他想杀人，可是没有做到。",
+        "播放最后三条留言。"
+      ],
+      "endsWith": "我还拿着手机。我在等那个声音。"
+    },
+    {
+      "choices": [
+        "clothes",
+        "smile",
+        "school",
+        "mark"
+      ],
+      "contains": [
+        "五年过去了。现在我十六岁，早上要和两个同学一起坐车去学校。今天特别冷。",
+        "是他想杀人，可是没有做到。",
+        "播放最后三条留言。"
+      ],
+      "endsWith": "我还拿着手机。我在等那个声音。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-09-v1",
+    "category": "super-supportive",
+    "episode": 9,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-09.mp4",
+      "poster": "stories/animated/cutscenes/supportive-09.poster.jpg",
+      "title": "Play the last three voicemails.",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "scene": "Alden seated beside a train window, lifting his phone while snow passes outside.",
+    "style": "Loose watercolor washes and expressive ink on textured paper",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "hbh1cnb6k1rmt0d1k75bn27rjc",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "generatedSeconds": 6,
+    "totalSeconds": 9,
+    "videoPrompt": "Animate the supplied watercolor-and-ink train illustration in one continuous shot. Alden blinks and glances inward, phone held at his ear, snow passing outside. Alden says, \"Play the last three voicemails.\" once in a quiet, thoughtful sixteen-year-old boy voice, in English, with synchronized lips. After speaking he closes his mouth and listens. Only Alden speaks. No extra words or voices. Quiet train ambience. No added characters, props, cuts, captions or text. Preserve his plain gentle face and textured watercolor medium.",
+    "imageTool": "built-in imagegen",
+    "image": "stories/characters/super-supportive/supportive-09-opening.png",
+    "checks": {
+      "sha256": "9982ae076d786a5990eff55e7a6e1a2d1919097ac6679744239d4117920d9f2a",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 6,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "Play the last three voicemails."
+    }
+  },
+  "verification": {
+    "packageBytes": 1385548,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 95.05766062602966,
+      "max": 95.27824620573355
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "有人想杀你，可是你没有死。跟你死了，你觉得哪个比较好？",
+      "他看着我，好像想说什么。至少这一次，我说的话没有错。",
+      "不应该再听了。听完以后，我这一早上，又不会开心了。",
+      "播放最后三条留言。",
+      "没有声音。我看着旁边的金属杆，上面有我的脸。越长大，我看起来越像爸爸。",
+      "我还拿着手机。我在等那个声音。"
+    ]
+  }
+}

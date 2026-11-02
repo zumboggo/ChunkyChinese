@@ -1153,5 +1153,21 @@
       "title": "Super Supportive · Episode 8: A Promise Across the World",
       "description": "Alden calls back to explain. Hannah offers more than she realizes."
     }
+  },
+  {
+    "id": "supportive-09-v1",
+    "category": "super-supportive",
+    "episode": 9,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-09.mp4",
+      "poster": "stories/animated/cutscenes/supportive-09.poster.jpg",
+      "title": "Play the last three voicemails.",
+      "durationSeconds": 9
+    },
+    "path": "supportive-09.json",
+    "summary": {
+      "title": "十美元的冬天 · A Ten-Dollar Winter",
+      "description": "五年后，十六岁的阿登和朋友们坐车去上学。车外很冷，车里有笑声，还有一条舍不得放下的旧消息。"
+    }
   }
 ]
