@@ -1,9 +1,47 @@
-import importlib.util,unittest
+import importlib.util,unittest,sys,tempfile
+from unittest.mock import Mock,patch
 from pathlib import Path
 
 def load(file):
-    spec=importlib.util.spec_from_file_location('test_module',Path(__file__).parents[1]/file);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+    spec=importlib.util.spec_from_file_location('test_module',Path(__file__).parents[1]/file);m=importlib.util.module_from_spec(spec)
+    with patch.object(sys,'path',[str(Path(__file__).parents[1]),*sys.path]):spec.loader.exec_module(m)
+    return m
 speech=load('finish-cutscene.py');timing=load('episode-timing.py')
+runtime=load('episode_speech.py')
+
+class SpeechCacheTests(unittest.TestCase):
+    def test_discovers_project_then_environment_caches_offline(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);project=root/'.local/speech-cache';project.mkdir(parents=True)
+            other=root/'custom';other.mkdir();snapshot=other/'snapshot';snapshot.mkdir()
+            for file in ('model.bin','config.json','tokenizer.json'):(snapshot/file).write_text('test')
+            lookup=Mock(side_effect=[FileNotFoundError('not cached'),str(snapshot)])
+            result=runtime.resolve_speech_model(root=root,environ={'HF_HUB_CACHE':str(other)},home=root,lookup=lookup)
+            self.assertEqual(result['cache'],str(other.resolve()));self.assertEqual(result['modelPath'],str(snapshot.resolve()))
+            self.assertEqual(lookup.call_count,2)
+            for call in lookup.call_args_list:self.assertTrue(call.kwargs['local_files_only'])
+
+    def test_explicit_bad_cache_does_not_silently_fall_back_or_download(self):
+        with tempfile.TemporaryDirectory() as folder:
+            lookup=Mock()
+            with self.assertRaisesRegex(ValueError,'No complete cached'):
+                runtime.resolve_speech_model(cache=Path(folder)/'missing',root=folder,lookup=lookup)
+            lookup.assert_not_called()
+
+    def test_incomplete_snapshot_is_rejected(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);(root/'config.json').write_text('{}')
+            with self.assertRaisesRegex(ValueError,'No complete cached'):
+                runtime.resolve_speech_model(cache=root,lookup=Mock(return_value=str(root)))
+
+    def test_missing_model_stops_before_processing_or_writing_media(self):
+        with tempfile.TemporaryDirectory() as folder:
+            source=Path(folder)/'native.mp4';source.write_bytes(b'kept')
+            output=Path(folder)/'output/final.mp4'
+            with patch.object(sys,'argv',['finish','--source',str(source),'--output',str(output),'--dialogue','Hello.']),patch.dict(sys.modules,{'faster_whisper':Mock()}),patch.object(speech,'resolve_speech_model',side_effect=ValueError('No cached model')),patch.object(speech.subprocess,'run') as run:
+                with self.assertRaises(SystemExit):speech.main()
+                run.assert_not_called()
+            self.assertFalse(output.parent.exists());self.assertEqual(source.read_bytes(),b'kept')
 class EfficiencyTests(unittest.TestCase):
     def test_speech_numbers_without_ignoring_extra_words(self):
         self.assertEqual(speech.normalize_speech('Ninety seconds?'),speech.normalize_speech('90 seconds.'))

@@ -2,6 +2,7 @@
 """Offline cutscene finishing. Never submits predictions or makes paid API calls."""
 import argparse, array, hashlib, json, math, os, re, shutil, subprocess, wave
 from pathlib import Path
+from episode_speech import resolve_speech_model
 
 
 def normalize_speech(text):
@@ -31,8 +32,8 @@ def main():
     p.add_argument('--audio-end',type=float,help='Explicit clean-speech endpoint; never guessed automatically.')
     p.add_argument('--total-seconds',type=float,help='Optional total length; remaining frames hold the final reaction.')
     p.add_argument('--dialogue',default='')
-    p.add_argument('--speech-model',help='Optional single local ASR pass; model must already be cached.')
-    p.add_argument('--speech-cache',type=Path)
+    p.add_argument('--speech-model',help='Cached model or local directory; defaults to base.en when --dialogue is supplied.')
+    p.add_argument('--speech-cache',type=Path,help='Explicit existing cache; otherwise discover the project and Hugging Face caches offline.')
     p.add_argument('--overwrite',action='store_true')
     a=p.parse_args()
     if a.speech_model and not a.dialogue:p.error('--speech-model requires --dialogue.')
@@ -42,6 +43,16 @@ def main():
     if not 0<=a.hold_seconds<=4:p.error('Use a hold from 0 to 4 seconds.')
     for value in [a.motion_seconds,a.audio_end,a.total_seconds]:
         if value is not None and (not math.isfinite(value) or not 0<value<=30):p.error('Durations must be positive and at most 30 seconds.')
+    # Resolve and load before decoding or writing any media, so setup failures are cheap.
+    model = None
+    speech_runtime = None
+    if a.dialogue:
+        try:
+            from faster_whisper import WhisperModel
+            speech_runtime = resolve_speech_model(a.speech_model or 'base.en', a.speech_cache)
+            model = WhisperModel(speech_runtime['modelPath'], device='cpu', compute_type='int8', local_files_only=True)
+        except (ImportError, OSError, ValueError, RuntimeError) as error:
+            p.error(str(error))
     ff=a.ffmpeg or shutil.which('ffmpeg')
     if not ff:
         try:
@@ -91,12 +102,11 @@ def main():
     for label,t in [('poster',0),('motion',hold/fps+motion/fps/2),('end',max(0,duration-.1))]:
         run(['-v','error','-ss',str(t),'-i',str(a.output),'-frames:v','1','-q:v','2',str(a.output.with_suffix('.'+label+'.jpg'))])
     report={'source':str(a.source.resolve()),'output':str(a.output.resolve()),'dimensions':[854,480],'fps':fps,'hold_seconds':hold/fps,'motion_seconds':motion/fps,'reaction_hold_seconds':tail/fps,'total_seconds':duration,'decoded_audio_seconds':len(samples)/8000,'audio_non_silent':True,'audio_starts_after_hold':True,'hold_mean_pixel_difference':hold_diff,'sha256':hashlib.sha256(a.output.read_bytes()).hexdigest(),'expected_dialogue':a.dialogue,'speech_check':'not run','review':'One visual/listening review remains; automated checks do not prove natural acting or lip sync.'}
-    if a.speech_model:
-        from faster_whisper import WhisperModel
-        model=WhisperModel(a.speech_model,device='cpu',compute_type='int8',download_root=str(a.speech_cache) if a.speech_cache else None,local_files_only=True)
+    if model is not None:
         segments,_=model.transcribe(str(a.output),language='en',beam_size=5,vad_filter=True)
         transcript=' '.join(s.text.strip() for s in segments)
         report.update(speech_check='pass' if normalize_speech(transcript)==normalize_speech(a.dialogue) else 'review extra/missing words',transcription=transcript)
+        report['speech_runtime'] = speech_runtime
     report_path=a.output.with_suffix('.checks.json');report_path.write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps({'output':str(a.output),'report':str(report_path),'speech_check':report['speech_check'],'total_seconds':duration}))
     if report['speech_check'].startswith('review'):raise SystemExit(2)

@@ -1,6 +1,14 @@
 import assert from 'node:assert/strict'
 import {compileStory,initialStoryState,settleStory,advanceStory,replayStory} from '../../src/game/animation/shared/engine/story-engine.js'
 
+export function checkSpeakerStaging(state,node,choices=[]){
+ if(node.type!=='say'||node.actor==='I')return
+ const where=`line ${node.line}, route ${choices.join('/')||'opening'}: ${node.text}`
+ if(!state.stage.actors[node.actor])throw Error(`Speaker ${node.actor} is not staged (${where}). Stage the speaker in their location before this line.`)
+ const camera=state.stage.camera
+ if(['medium','close'].includes(camera?.shot)&&camera.actor&&camera.actor!==node.actor)throw Error(`Speaker ${node.actor} is framed on ${camera.actor} (${where}). Use an explicit listener shot for a deliberate reaction.`)
+}
+
 // One deterministic route model is shared by authoring checks and browser previews.
 export function episodeRoutes(pack){
  const {story,errors}=compileStory(pack.script,pack.assets)
@@ -12,6 +20,7 @@ export function episodeRoutes(pack){
   assert.deepEqual(replayStory(story,steps,1),state,'Resume replay differs')
   if(state.ended){routes.push({choices,beats});return}
   const n=story.nodes[state.cursor]
+  checkSpeakerStaging(state,n,choices)
   if(n.type==='choice')for(const o of n.options)visit(advanceStory(story,state,o.id),[...steps,o.id],[...choices,o.id],[...beats,{type:'choice',id:n.id,option:o.id,text:o.text}])
   else visit(advanceStory(story,state,null),[...steps,null],choices,[...beats,{type:n.type,text:n.text}])
  }

@@ -2,12 +2,13 @@ import {it,expect} from 'vitest'
 import {readFileSync} from 'node:fs'
 import {compileStory,initialStoryState,settleStory,advanceStory,replayStory,type StoryState} from './shared/engine/story-engine.js'
 import {playbackScript} from './storage'
+import {checkSpeakerStaging} from '../../../scripts/lib/episode-plan.mjs'
 const read=(name:string)=>JSON.parse(readFileSync('stories/animated/'+name+'.json','utf8'))
 const catalog=JSON.parse(readFileSync('public/stories/animated/catalog.json','utf8'))
 for(const entry of [...catalog,{id:'demo',path:'gate-in-the-mist.json'}])it(`${entry.id}: every named speaker is staged and framed on every route`,()=>{
  const p=read(entry.path.replace('.json','')),{story}=compileStory(p.script,p.assets)
  function walk(state:StoryState,depth=0){expect(depth).toBeLessThan(150);if(state.ended)return;const n=story!.nodes[state.cursor]
-  if(n.type==='say'&&n.actor!=='I'){expect(state.stage.actors,n.text).toHaveProperty(n.actor);if(['medium','close'].includes(state.stage.camera?.shot??'')&&state.stage.camera?.actor)expect(state.stage.camera.actor,n.text).toBe(n.actor)}
+  checkSpeakerStaging(state,n)
   if(n.type==='choice')for(const o of n.options)walk(advanceStory(story!,state,o.id),depth+1);else walk(advanceStory(story!,state,null),depth+1)
  }walk(settleStory(story!,initialStoryState(story!,1)))
 })

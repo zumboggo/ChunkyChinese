@@ -42,6 +42,7 @@ try{
  if(flags.stage&&(existsSync(`stories/animated/${id}.json`)||read('public/stories/animated/catalog.json').some(e=>e.id===plan.catalog?.id)))throw Error('Release already exists; use a new immutable episode ID. No audio or browser work started.')
  const assets=loadAssets(plan)
  const script=readFileSync(plan.script,'utf8'),pack={format:2,profile:'chinese',title:plan.title,description:plan.description,script,assets,quiz:[],sources:plan.sources,...(plan.notice?{notice:plan.notice}:{}),...(plan.continuity?{continuity:compactContinuity(plan.continuity)}:{}),...(plan.outcomeScorecard?{outcomeScorecard:plan.outcomeScorecard}:{})}
+ const routes=await phase('routes, speaker staging and resume',()=>episodeRoutes(pack))
  const vocabulary=await phase('vocabulary',()=>auditVocabulary(pack,read(flags.vocab),{lexicon:plan.lexicon??[],supplement:read(series.vocabularySupplement).words,min:series.coverage.min,max:series.coverage.max}))
  write(resolve(run,'vocabulary.json'),vocabulary)
  console.log(`${vocabulary.range.min.toFixed(2)}–${vocabulary.range.max.toFixed(2)}% familiar; Mandarin entry share ${Math.min(...vocabulary.routes.map(r=>r.exposure.mandarinEntryPercent)).toFixed(1)}–${Math.max(...vocabulary.routes.map(r=>r.exposure.mandarinEntryPercent)).toFixed(1)}% (not listening time).`)
@@ -50,7 +51,7 @@ try{
  if(flags.freeze){if(!flags.draft||!plan.authoring)throw Error('--freeze requires --draft and a plan with authoring.');console.log(JSON.stringify(freezeScript(plan,assets)))}
  if(!flags.draft){
   if(!plan.title?.trim()||!plan.description?.trim()||!plan.sources?.length)throw Error('Complete title, description and source notes.')
-  const routes=await phase('routes, source assertions and resume',()=>{const all=episodeRoutes(pack);checkRouteExpectations(all,plan.routes);return all})
+  await phase('source assertions',()=>checkRouteExpectations(routes,plan.routes))
   const selected=selectBrowserRoutes(routes,pack,{all:!!flags['all-browser-routes']})
   report.routeCoverage={total:routes.length,browser:selected.length,mode:flags['all-browser-routes']?'exhaustive':'beat and option coverage; stateful stories exhaustive'}
   const lines=plan.authoring?compileAnnotations(plan,assets,{requireReview:true}):read(plan.annotations);pack.chinese={lines}

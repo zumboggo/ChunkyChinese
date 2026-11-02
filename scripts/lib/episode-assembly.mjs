@@ -41,9 +41,13 @@ export function compileAnnotations(plan,assets,{reviewed=false,requireReview=fal
   const row=rows.find(r=>r.chinese===chinese)
   if(!row?.english?.trim()||!row.chunks?.length||row.chunks.map(c=>c.chinese).join('')!==chinese||row.chunks.some(c=>!c.gloss?.trim()))throw Error('Complete English and matching phrase chunks: '+chinese)
   lines[chinese]={english:row.english,pinyin:row.pinyin?.trim()||pinyin(chinese,{toneType:'symbol'}),interlinear:row.chunks.map(c=>({chinese:c.chinese,gloss:c.gloss,pinyin:c.pinyin?.trim()||pinyin(c.chinese,{toneType:'symbol'})}))}
+  // Keep proposals where reviewers edit them; never replace a supplied reading.
+  if(!row.pinyin?.trim())row.pinyin=lines[chinese].pinyin
+  for(const [i,chunk] of row.chunks.entries())if(!chunk.pinyin?.trim())chunk.pinyin=lines[chinese].interlinear[i].pinyin
  }
  const hash=digest(JSON.stringify(lines))
  if(requireReview&&state.reviewedHash!==hash)throw Error('Language review missing or changed. Inspect pinyin-review.txt, correct the authoring file, then run game:assemble -- --plan=PLAN --reviewed.')
+ writeJson(privatePath(plan.authoring),author)
  writeJson(privatePath(plan.annotations),lines)
  writeFileSync(privatePath(resolve(dirname(plan.authoring),'pinyin-review.txt')),Object.entries(lines).map(([zh,l])=>`${zh}\n${l.pinyin}\n${l.english}\n${l.interlinear.map(c=>`${c.chinese} [${c.pinyin}] ${c.gloss}`).join(' | ')}`).join('\n\n')+'\n')
  if(reviewed)writeJson(statePath(plan),{...state,reviewedHash:hash,reviewedAt:new Date().toISOString()})

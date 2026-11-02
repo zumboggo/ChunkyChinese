@@ -1,9 +1,5 @@
-Animate the supplied image in one continuous shot. Preserve its exact character identity, art style, clothing, lighting and background.
+Animate the supplied image in one continuous shot, preserving the character, art medium, clothing and setting. {one_source_grounded_action_or_emotional_change}
 
-VISUAL BEAT: {one_source_grounded_action_or_emotional_change}
-Restrained natural motion and a gentle camera push. No added characters, props, cuts, captions or text.
+{speaker_name} says, "{exact_english_line}" once in a {speaker_voice_and_emotion} voice, in English, with synchronized lips. After speaking, the character closes their mouth and listens quietly.
 
-SPOKEN WORDS — THE COMPLETE DIALOGUE:
-"{exact_english_line}"
-
-{speaker_voice_and_emotion}, clearly audible above quiet ambience. Speak ONLY the quoted words, exactly once, in English, with synchronized lips. Do not speak the scene directions. No additional words, repetition, paraphrasing, filler sounds, humming, singing, narration or other voices. Finish the line early; afterward his mouth stays closed while he quietly reacts. Background sound contains no voices or vocals.
+Only that character speaks. No extra words or voices. Quiet ambience beneath the dialogue. No added characters, props, cuts, captions or text.

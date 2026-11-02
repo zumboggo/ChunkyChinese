@@ -1,9 +1,23 @@
 import {describe,it,expect,vi} from 'vitest'
 import {readFileSync,writeFileSync,mkdtempSync,rmSync,mkdirSync} from 'node:fs'
 import {resolve} from 'node:path'
+import {spawnSync} from 'node:child_process'
 import {providerJson,savedPrediction} from './episode-provider.mjs'
 import {episodeRoutes,selectBrowserRoutes,checkRouteExpectations} from './episode-plan.mjs'
 import {freezeScript,compileAnnotations,loadAssets,writeJson} from './episode-assembly.mjs'
+
+it.each(['draft','stage'])('rejects an unstaged phone speaker before vocabulary, audio or media in --%s',mode=>{
+ mkdirSync('.local/episodes',{recursive:true});const base=mkdtempSync(resolve('.local/episodes/staging-test-')),id=base.split('/').at(-1).toLowerCase()
+ try{
+  writeFileSync(base+'/episode.story','story 2\nscene restaurant\nshow Hannah worried center\nAlden: 你好。\nend\n')
+  writeJson(base+'/vocab.json',[])
+  writeJson(base+'/plan.json',{id,series:'super-supportive',script:base+'/episode.story',assetsFrom:'stories/animated/supportive-07.json',catalog:{id:id+'-v1'}})
+  const result=spawnSync(process.execPath,['scripts/prepare-episode.mjs',`--plan=${base}/plan.json`,`--vocab=${base}/vocab.json`,`--${mode}`],{encoding:'utf8'})
+  expect(result.status).toBe(1);expect(result.stderr).toContain('Speaker Alden is not staged')
+  expect(result.stdout).toContain('routes, speaker staging and resume')
+  expect(result.stdout).not.toMatch(/\] (vocabulary|audio|English pocket audio|phone and desktop)/)
+ }finally{rmSync(base,{recursive:true,force:true});rmSync(resolve('.local/episodes',id),{recursive:true,force:true})}
+})
 
 describe('safe audio recovery',()=>{
  it('retries an explicit 429, retaining rejection state until the next attempt',async()=>{
@@ -44,6 +58,24 @@ describe('browser coverage',()=>{
 })
 
 describe('frozen, reviewed authoring assembly',()=>{
+ it('saves editable pinyin proposals without approving them or replacing corrections',()=>{
+  mkdirSync('.local',{recursive:true});const base=mkdtempSync(resolve('.local/pinyin-test-'))
+  try{
+   const plan={script:base+'/episode.story',authoring:base+'/authoring.json',annotations:base+'/lines.json'}
+   const assets={characters:{},backgrounds:{}}
+   writeFileSync(plan.script,'story 2\nI: 我只听着。\nend\n');writeJson(plan.authoring,{lines:[]});freezeScript(plan,assets)
+   writeJson(plan.authoring,{lines:[{chinese:'我只听着。',english:'I only listen.',pinyin:'',chunks:[{chinese:'我只',gloss:'I only',pinyin:'wǒ zhǐ'},{chinese:'听着。',gloss:'listen'}]}]})
+   compileAnnotations(plan,assets)
+   const author=JSON.parse(readFileSync(plan.authoring)),row=author.lines[0]
+   expect(row.pinyin).toBeTruthy();expect(row.chunks[1].pinyin).toBeTruthy();expect(row.chunks[0].pinyin).toBe('wǒ zhǐ')
+   expect(()=>compileAnnotations(plan,assets,{requireReview:true})).toThrow('review')
+   row.pinyin='wǒ zhǐ tīng zhe';writeJson(plan.authoring,author)
+   compileAnnotations(plan,assets,{reviewed:true});compileAnnotations(plan,assets,{requireReview:true})
+   expect(JSON.parse(readFileSync(plan.authoring)).lines[0].pinyin).toBe('wǒ zhǐ tīng zhe')
+   row.chunks[1].pinyin='changed';writeJson(plan.authoring,author)
+   expect(()=>compileAnnotations(plan,assets,{requireReview:true})).toThrow('review')
+  }finally{rmSync(base,{recursive:true,force:true})}
+ })
  it('rejects stale script or changed reviewed language and preserves explicit pinyin',()=>{
   mkdirSync('.local',{recursive:true});const base=mkdtempSync(resolve('.local/assembly-test-'))
   try{
