@@ -4,10 +4,10 @@
   "source": {
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
-    "chapter": "OEBPS/Text/0004_FOUR_Avowed_Communications.xhtml",
-    "nextStart": "“I forgot some of what I wanted to say.”",
-    "nextEndBefore": "A note from Sleyca",
-    "continuationNote": "Continue Alden’s second call, his conclusion about his parents, Hannah’s invitation and the cost of teleportation. Preserve his inference as his belief, not established forensic certainty."
+    "chapter": "OEBPS/Text/0005_FIVE_The_Nice_One.xhtml",
+    "nextStart": "five years later",
+    "nextEndBefore": "A familiar, bright voice interrupted his inspection.",
+    "continuationNote": "Explicit five-year jump: Alden is sixteen, travelling with Jeremy and Boe to alien school. End before the voicemail begins, or extend deliberately for a local payoff. Preserve approved character identity while aging him appropriately."
   },
   "completed": [
     {
@@ -37,9 +37,13 @@
     {
       "episode": "supportive-07-v1",
       "end": "At Cly’s farewell brunch Hannah receives Alden’s call, confirms approximately ninety seconds, and is rattled by his abrupt goodbye. The call notification flashes again and she answers immediately."
+    },
+    {
+      "episode": "supportive-08-v2",
+      "end": "Alden offers his explanation for his parents’ deaths and asks Hannah to tell Thomas. Hannah promises a summer visit and teleport, then learns how costly it will be. School break is in three weeks."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-07.json",
+  "assetsFrom": "stories/animated/supportive-08-v2.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -54,18 +58,18 @@
     "openingArt": "Each opening depicts an episode-specific event, location, action and composition. Preserve approved character identity while experimenting with a distinct art medium each episode. Identity references must not cause repeated scenery."
   },
   "continuity": [
-    "Alden is eleven; the System connects his audio-only call to Hannah.",
-    "Hannah confirms about ninety seconds, possibly less, not an exact timed measurement.",
-    "Cly is leaving for Toronto; Hannah has declined to join her and wants to amplify a compatible partner’s effectiveness.",
-    "Hannah has answered Alden’s second call, but he has not yet told her why the interval matters."
+    "Alden’s belief about the first explosions remains his inference, not a confirmed finding.",
+    "Hannah promises an Anesidora day pass and custom teleport for his summer break in three weeks.",
+    "Cly offers fundraising help; personal civilian teleportation is expensive.",
+    "Next chapter jumps five years ahead; do not portray that time jump as immediate continuation."
   ],
   "castRecipes": "stories/characters/super-supportive/cast-07.json",
   "castBundle": "public/stories/animated/cast/supportive-07.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-07-v1",
-    "nextStart": "“I forgot some of what I wanted to say.”",
-    "nextEndBefore": "A note from Sleyca",
-    "assetsFrom": "stories/animated/supportive-07.json"
+    "note": "Published through supportive-08-v2",
+    "nextStart": "five years later",
+    "nextEndBefore": "A familiar, bright voice interrupted his inspection.",
+    "assetsFrom": "stories/animated/supportive-08-v2.json"
   }
 }
