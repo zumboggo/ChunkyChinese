@@ -4,10 +4,10 @@
   "source": {
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
-    "chapter": "OEBPS/Text/0003_THREE_90_seconds.xhtml",
-    "nextStart": "It took a long while for Alden to convince his aunt he was fine.",
-    "nextEndBefore": "CALL ME IF YOU OR ALDEN EVER NEED ANYTHING",
-    "continuationNote": "Continue source in order, maintaining age eleven and reconverging local choices."
+    "chapter": "OEBPS/Text/0004_FOUR_Avowed_Communications.xhtml",
+    "nextStart": "“You’re the most boring person in the world. I hope you know that.”",
+    "nextEndBefore": "“You know, maybe before you head to Toronto, you should",
+    "continuationNote": "Begin Hannah’s restaurant perspective; next episode may deliberately extend through the incoming call for a substantial local payoff. Preserve source order."
   },
   "completed": [
     {
@@ -29,9 +29,13 @@
     {
       "episode": "supportive-05-v1",
       "end": "Alden tests the response time; Connie reaches and comforts him in eight seconds. The ninety-second question remains unresolved."
+    },
+    {
+      "episode": "supportive-06-v1",
+      "end": "Alden finds Hannah’s note, calls, and learns she listed him as a priority contact. He chooses audio only; the System forwards his call before Hannah answers."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-05.json",
+  "assetsFrom": "stories/animated/supportive-06.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -47,16 +51,17 @@
   },
   "continuity": [
     "Alden is eleven and lives with Aunt Connie.",
-    "Connie is unreliable in ordinary life but loves Alden and responds immediately to his cry.",
-    "Alden wants powers; the ninety-second interval remains a question, not a settled explanation."
+    "Connie’s fragrance nightlight follows his false nightmare; he leaves it on out of guilt.",
+    "Hannah has designated Alden a priority contact. He has selected audio only, and the System is forwarding his call.",
+    "The ninety-second question remains unresolved. Alden now thinks he should have thanked Arjun for saving him."
   ],
   "castRecipes": "stories/characters/super-supportive/cast-05.json",
   "castBundle": "public/stories/animated/cast/super-supportive-05.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-05-v1",
-    "nextStart": "It took a long while for Alden to convince his aunt he was fine.",
-    "nextEndBefore": "CALL ME IF YOU OR ALDEN EVER NEED ANYTHING",
-    "assetsFrom": "stories/animated/supportive-05.json"
+    "note": "Published through supportive-06-v1",
+    "nextStart": "“You’re the most boring person in the world. I hope you know that.”",
+    "nextEndBefore": "“You know, maybe before you head to Toronto, you should",
+    "assetsFrom": "stories/animated/supportive-06.json"
   }
 }
