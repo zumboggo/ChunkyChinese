@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0005_FIVE_The_Nice_One.xhtml",
-    "nextStart": "five years later",
-    "nextEndBefore": "A familiar, bright voice interrupted his inspection.",
-    "continuationNote": "Explicit five-year jump: Alden is sixteen, travelling with Jeremy and Boe to alien school. End before the voicemail begins, or extend deliberately for a local payoff. Preserve approved character identity while aging him appropriately."
+    "nextStart": "A familiar, bright voice interrupted his inspection.",
+    "nextEndBefore": "Outside the window, buildings raced past.",
+    "continuationNote": "The three voicemails reveal Hannah has been missing six months. Preserve uncertainty: a planned funeral is not confirmed death. End with Alden switching off the System; can extend deliberately to the next reflective passage."
   },
   "completed": [
     {
@@ -41,9 +41,13 @@
     {
       "episode": "supportive-08-v2",
       "end": "Alden offers his explanation for his parents’ deaths and asks Hannah to tell Thomas. Hannah promises a summer visit and teleport, then learns how costly it will be. School break is in three weeks."
+    },
+    {
+      "episode": "supportive-09-v1",
+      "end": "Five years later, Alden and friends trade jokes on their way to alien school; he privately asks to replay his last three voicemails."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-08-v2.json",
+  "assetsFrom": "stories/animated/supportive-09.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -58,18 +62,18 @@
     "openingArt": "Each opening depicts an episode-specific event, location, action and composition. Preserve approved character identity while experimenting with a distinct art medium each episode. Identity references must not cause repeated scenery."
   },
   "continuity": [
-    "Alden’s belief about the first explosions remains his inference, not a confirmed finding.",
-    "Hannah promises an Anesidora day pass and custom teleport for his summer break in three weeks.",
-    "Cly offers fundraising help; personal civilian teleportation is expensive.",
-    "Next chapter jumps five years ahead; do not portray that time jump as immediate continuation."
+    "Alden is now sixteen, travelling to alien school with Jeremy and Boe.",
+    "Jeremy endured winter in summer clothes for a ten-dollar dare.",
+    "Alden has System phone access after his first call to Hannah and has retained her messages.",
+    "The voicemails have not yet played in the episode."
   ],
-  "castRecipes": "stories/characters/super-supportive/cast-07.json",
-  "castBundle": "public/stories/animated/cast/supportive-07.json",
+  "castRecipes": "stories/characters/super-supportive/cast-09.json",
+  "castBundle": "public/stories/animated/cast/supportive-09.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-08-v2",
-    "nextStart": "five years later",
-    "nextEndBefore": "A familiar, bright voice interrupted his inspection.",
-    "assetsFrom": "stories/animated/supportive-08-v2.json"
+    "note": "Published through supportive-09-v1",
+    "nextStart": "A familiar, bright voice interrupted his inspection.",
+    "nextEndBefore": "Outside the window, buildings raced past.",
+    "assetsFrom": "stories/animated/supportive-09.json"
   }
 }
