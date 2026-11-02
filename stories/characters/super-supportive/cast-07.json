@@ -1,0 +1,82 @@
+[
+  {
+    "id": "Alden",
+    "name": "阿登 · Alden",
+    "version": 3,
+    "finish": "polished",
+    "appearance": {
+      "age": "teen",
+      "face": "oval",
+      "eyes": "gentle",
+      "hair": "tousled",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#e9c6ad",
+      "hair": "#65462f",
+      "shirt": "#797e85",
+      "trim": "#4b5058"
+    },
+    "provenance": "Alden at eleven, identity from approved A; neutral sports shirt approximates baseball clothing. Existing youngest teen body preset remains a documented approximation. Gray home shirt for the midnight scenes."
+  },
+  {
+    "id": "Connie",
+    "name": "康妮阿姨 · Aunt Connie",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "face": "round",
+      "eyes": "gentle",
+      "hair": "swept",
+      "outfit": "cardigan"
+    },
+    "palette": {
+      "skin": "#e9bda4",
+      "hair": "#e2cc89",
+      "shirt": "#ad5576",
+      "trim": "#e7b793"
+    },
+    "provenance": "Original visual interpretation of Aunt Connie; source establishes bleached hair and affectionate but unreliable parenting. Supported swept hair approximates wild bleached hair."
+  },
+  {
+    "id": "Hannah",
+    "name": "汉娜 · Hannah",
+    "version": 2,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "face": "oval",
+      "eyes": "gentle",
+      "hair": "ponytail",
+      "outfit": "workshirt"
+    },
+    "palette": {
+      "skin": "#e4b99e",
+      "hair": "#694734",
+      "shirt": "#334b66",
+      "trim": "#657282"
+    },
+    "provenance": "Established brown-haired Hannah identity; navy casual shirt for chapter FOUR restaurant scene. Supported ponytail approximates brown braids shown in opening art."
+  },
+  {
+    "id": "Cly",
+    "name": "克莱 · Cly",
+    "version": 1,
+    "finish": "polished",
+    "appearance": {
+      "age": "adult",
+      "face": "oval",
+      "eyes": "keen",
+      "hair": "bun",
+      "outfit": "cardigan"
+    },
+    "palette": {
+      "skin": "#d3a382",
+      "hair": "#242020",
+      "shirt": "#a84946",
+      "trim": "#e6b787"
+    },
+    "provenance": "Original visual interpretation of source Cly: sleek black bun and brown eyes; red casual clothes chosen for farewell brunch."
+  }
+]

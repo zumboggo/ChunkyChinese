@@ -1121,5 +1121,21 @@
       "title": "Super Supportive · Episode 6: Call Me",
       "description": "An old note lies buried in Connie’s kitchen drawer. Alden finds the courage to call—and an unexpected voice answers."
     }
+  },
+  {
+    "id": "supportive-07-v1",
+    "category": "super-supportive",
+    "episode": 7,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-07.mp4",
+      "poster": "stories/animated/cutscenes/supportive-07.poster.jpg",
+      "title": "What can I do for you?",
+      "durationSeconds": 9
+    },
+    "path": "supportive-07.json",
+    "summary": {
+      "title": "Super Supportive · Episode 7: Highest Priority",
+      "description": "Hannah’s farewell brunch becomes an unexpected test of how to help. A familiar voice asks one very specific question."
+    }
   }
 ]

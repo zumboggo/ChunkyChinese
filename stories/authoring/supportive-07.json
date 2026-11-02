@@ -1,0 +1,157 @@
+{
+  "id": "supportive-07",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 7: Highest Priority",
+  "description": "Hannah’s farewell brunch becomes an unexpected test of how to help. A familiar voice asks one very specific question.",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-supplied EPUB, FOUR: Avowed Communications. Hannah’s farewell brunch through Alden’s first call and the second incoming notification. Mandarin adaptation; not an official translation."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Chapter FOUR from Cly teasing Hannah about working at brunch through Hannah immediately answering the second call; before “I forgot some of what I wanted to say.” Deliberately extends the pinned restaurant passage through the first call for its payoff.",
+    "storytellingVoice": "Intimate character drama",
+    "voiceReason": "A capable helper who cannot find the right words for a child; friendship and comic ease make the sudden uncertainty personal.",
+    "dramaticChange": "Hannah moves from confidently defining how she wants to help to confronting a situation she cannot prepare for; Alden gets confirmation of the approximate ninety seconds.",
+    "desire": "Hannah wants to make a partner dramatically more effective, then to respond well to Alden. Cly wants her best friend to join her new life.",
+    "obstacle": "Their powers do not fit Hannah’s support ambitions; the unexpected call triggers guilt and uncertainty about what to say.",
+    "earlyCare": "Hannah has already thought of ways to help Cly despite declining to join her; she is sincerely happy her friend can travel.",
+    "payoff": "Hannah confirms the approximate ninety-second interval without claiming exact measurement.",
+    "newUncertainty": "Alden calls again before she can collect herself. What did he leave unsaid?",
+    "essentialNewWords": [
+      "扑克",
+      "秒",
+      "脑子",
+      "胸口"
+    ],
+    "englishNarrationPurpose": "None. First-person Hannah narration explicitly identified in the opening notice.",
+    "choicesAndCallbacks": [
+      "Missing Cly versus celebrating her opportunity; both lead to the job offer.",
+      "Planning a partnership versus thinking about what helping means; both lead to Cly taking the notebook.",
+      "Warm greeting versus asking why her mother is awake; both preserve the mistaken identity.",
+      "Honesty first versus uncertainty first; both give the same approximate timing with no invented certainty."
+    ],
+    "sceneActivities": [
+      "Seated notebook work interrupted by Cly reaching for it; card game narrated with seated rests; Hannah’s reach to the System interface interrupts the conversation.",
+      "Phone exchange uses cuts between Alden’s kitchen and Hannah’s restaurant, never placing them in the same room."
+    ],
+    "signatures": {
+      "Hannah": "Warm, ambitious about support, suddenly careful and self-questioning.",
+      "Cly": "Playful insistence and proud hard-earned freedom.",
+      "Alden": "Prepared rapid questions, abrupt polite exit."
+    },
+    "directing": "Begin in shared framing. Hold Hannah as listener after Alden’s question and on the reader-controlled anxious aftermath. Return to two-shot for Cly’s concern; end with Hannah reaching for the second call.",
+    "limitations": [
+      "Supported ponytail approximates Hannah’s braids; screen-print opening preserves the braided identity. Card handling is narrated, not a literal rigged prop animation.",
+      "Other party guests remain offscreen and their banter is compressed into source-faithful narration."
+    ],
+    "teaser": {
+      "speaker": "Hannah",
+      "line": "What can I do for you?",
+      "scene": "Recognizing Alden’s voice and dropping her cards at farewell brunch.",
+      "style": "Limited-palette screen-print with halftone texture",
+      "identityReference": "stories/characters/super-supportive/opening-03.png"
+    },
+    "pinyinReview": "Sentence and phrase readings reviewed: contextual de complements, zhi only, zhong hit, wei for, and neutral tones for dongxi, pengyou, benzi, na o zi, mingbai, yisi, shihou and qingchu. No automatic global polyphone replacement."
+  },
+  "continuation": {
+    "end": "At Cly’s farewell brunch Hannah receives Alden’s call, confirms approximately ninety seconds, and is rattled by his abrupt goodbye. The call notification flashes again and she answers immediately.",
+    "chapter": "OEBPS/Text/0004_FOUR_Avowed_Communications.xhtml",
+    "nextStart": "“I forgot some of what I wanted to say.”",
+    "nextEndBefore": "A note from Sleyca",
+    "note": "Continue Alden’s second call, his conclusion about his parents, Hannah’s invitation and the cost of teleportation. Preserve his inference as his belief, not established forensic certainty.",
+    "continuity": [
+      "Alden is eleven; the System connects his audio-only call to Hannah.",
+      "Hannah confirms about ninety seconds, possibly less, not an exact timed measurement.",
+      "Cly is leaving for Toronto; Hannah has declined to join her and wants to amplify a compatible partner’s effectiveness.",
+      "Hannah has answered Alden’s second call, but he has not yet told her why the interval matters."
+    ],
+    "castRecipes": "stories/characters/super-supportive/cast-07.json",
+    "castBundle": "public/stories/animated/cast/supportive-07.json"
+  },
+  "routes": [
+    {
+      "choices": [
+        "friend",
+        "plans",
+        "warm",
+        "honest"
+      ],
+      "contains": [
+        "我手里的扑克掉了。",
+        "好的。谢谢你。再见。"
+      ],
+      "endsWith": "眼前的光又亮了。我还没来得及想清楚，手就已经点了上去。"
+    },
+    {
+      "choices": [
+        "future",
+        "help",
+        "late",
+        "careful"
+      ],
+      "contains": [
+        "我手里的扑克掉了。",
+        "好的。谢谢你。再见。"
+      ],
+      "endsWith": "眼前的光又亮了。我还没来得及想清楚，手就已经点了上去。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-07-v1",
+    "category": "super-supportive",
+    "episode": 7,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-07.mp4",
+      "poster": "stories/animated/cutscenes/supportive-07.poster.jpg",
+      "title": "What can I do for you?",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "scene": "Hannah recognizes Alden’s voice and drops her cards during Cly’s farewell brunch.",
+    "style": "Limited-palette risograph/screen-print with navy, coral and gold halftones",
+    "identityReference": "stories/characters/super-supportive/opening-03.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "7869z4a6f1rmr0d1k698vs0s1r",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "generatedSeconds": 6,
+    "totalSeconds": 9,
+    "videoPrompt": "Animate this screen-print illustration in one continuous six-second shot. Preserve the navy, coral and gold halftone print medium. Hannah sits at a restaurant table with brown twin braids and a dark blue T-shirt. Her fallen playing cards settle; she blinks in surprise, then gathers herself and speaks warmly but nervously to an unseen caller. One visible speaker only. No handset, new people, text, or scene cuts. ENTIRE SPOKEN SCRIPT in English exactly once: \"What can I do for you?\" Speak between 0.5 and 3.5 seconds, natural adult female British voice, synchronized lips. Only these exact words; no extra words, repetitions, fillers, narration, humming or other voices. After the line, mouth closed and a quiet concerned listening expression. Very soft restaurant ambience below clear foreground speech. Preserve face, braids, hands, clothing and all setting details.",
+    "imageTool": "built-in image_gen",
+    "imagePrompt": "Hannah’s established brown braided identity in a navy T-shirt at a Sichuan restaurant table, playing cards falling as she recognizes a caller; abstract gold System light; new limited-palette screen-print medium and no captions.",
+    "image": "stories/characters/super-supportive/supportive-07-opening.png",
+    "checks": {
+      "sha256": "091b9582f28b9cd5550351642ce39010867a7a26e8676922fe63ac2825ebad14",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 6,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "What can I do for you?"
+    }
+  },
+  "verification": {
+    "packageBytes": 1826597,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 95.26372443487621,
+      "max": 95.51760939167556
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "很高兴你打来。有什么我能帮你的吗？",
+      "我说得对吗？他现在十一岁了吧？我一定要好好跟他说。",
+      "眼前的光又亮了。我还没来得及想清楚，手就已经点了上去。"
+    ]
+  }
+}
