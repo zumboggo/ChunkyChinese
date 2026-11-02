@@ -13,10 +13,19 @@ rest Cly seated
 camera two Hannah Cly cut
 Hannah [worried,reassure]: 你说，我听着。
 I: 是阿登。他又打来了。我还在饭店里，大家就在旁边，可现在我只听着他的声音。
-camera listener Hannah cut
+scene kitchen
+show Alden worried center
+rest Alden guarded
+camera listener Alden cut
 Alden [determined,explain]: 我爸爸妈妈死了，不是你的错。我看了很多关于你们的事。
 Alden [determined,explain]: 你的力量，要先知道哪里会爆炸、什么时候爆炸，才能帮上忙。可那天，你不知道。
 Alden [determined,explain]: 那个人也是在那次跟你们打的时候，第一次这样用他的力量。你怎么可能知道呢？
+scene restaurant
+show Hannah worried left
+show Cly worried right
+rest Hannah seated
+rest Cly seated
+camera two Hannah Cly cut
 Hannah [worried,hesitant]: 我……
 scene kitchen
 show Alden determined center
@@ -35,7 +44,18 @@ rest Cly seated
 camera listener Hannah cut
 I: 我的手紧紧拿着身前的衣服，什么也说不了。要说谢谢吗？还是问他，现在好不好？
 I: 我想得太久了。他又说话了。这一次，慢了下来，好像在跟一个小孩子说明白。
+scene kitchen
+show Alden worried center
+rest Alden guarded
+camera listener Alden cut
 Alden [worried,reassure]: 我的意思是，他们是在第一次爆炸里死的。那一次，你什么也做不了。所以，你不用伤心了，好吗？
+scene restaurant
+show Hannah worried left
+show Cly worried right
+rest Hannah seated
+rest Cly seated
+camera two Hannah Cly cut
+camera listener Hannah cut
 choice reply
 option thanks "先谢谢他打来。" -> thanks
 option care "先说自己听明白了。" -> care
@@ -45,7 +65,17 @@ goto tell
 label care
 Hannah [sad,reassure]: 我听明白了。你是怕我一直伤心。谢谢你跟我说。
 label tell
+scene kitchen
+show Alden worried center
+rest Alden guarded
+camera listener Alden cut
 Alden [neutral,phone-talk]: 我没有托马斯先生的电话。你也可以跟他说吗？
+scene restaurant
+show Hannah worried left
+show Cly worried right
+rest Hannah seated
+rest Cly seated
+camera two Hannah Cly cut
 Hannah [worried,reassure]: 好。我马上给他打电话。
 I: 汉娜，快想想办法。这个11岁的孩子在照顾你，你却不知道该说什么。
 choice help
@@ -57,7 +87,17 @@ goto wait
 label action
 I: 我一直想为他做点什么。现在他自己打来了，可我还是不知道怎么办。
 label wait
+scene kitchen
+show Alden worried center
+rest Alden guarded
+camera listener Alden cut
 Alden [neutral,phone-talk]: 那，再见。
+scene restaurant
+show Hannah worried left
+show Cly worried right
+rest Hannah seated
+rest Cly seated
+camera two Hannah Cly cut
 react Hannah reach
 Hannah [worried,insist]: 阿登，等等！你想来阿内西多拉玩吗？我可以给你拿到一天的票。
 I: 我已经说了。这样的票，不是谁都能拿到的。不过，我应该能做到。大概吧。
@@ -82,13 +122,43 @@ rest Cly seated
 camera two Hannah Cly cut
 I: 对了。那里在很远很远的海上，不是坐个飞机就能到的地方。
 Hannah [happy,reassure]: 我给你买一次传送！系统能一下把你送过来。你就跟我说，什么时候能来。
+scene kitchen
+show Alden worried center
+rest Alden guarded
+camera listener Alden cut
 Alden [curious,phone-talk]: 我问问阿姨。不过，她不会不让我去的。
+scene restaurant
+show Hannah worried left
+show Cly worried right
+rest Hannah seated
+rest Cly seated
+camera two Hannah Cly cut
 Hannah [happy,reassure]: 太好了！那就到时候见。
+scene kitchen
+show Alden worried center
+rest Alden guarded
+camera listener Alden cut
 Alden [neutral,phone-talk]: 还有三个星期，学校就不上课了。
+scene restaurant
+show Hannah worried left
+show Cly worried right
+rest Hannah seated
+rest Cly seated
+camera two Hannah Cly cut
 camera listener Hannah cut
 I: 三个星期？对啊，他住在北边。我刚才还以为，自己有很多时间。
 Hannah [happy,reassure]: 好！问过阿姨以后跟我说。我们一定能做到！
+scene kitchen
+show Alden worried center
+rest Alden guarded
+camera listener Alden cut
 Alden [neutral,phone-talk]: 她会说好的。再见。
+scene restaurant
+show Hannah worried left
+show Cly worried right
+rest Hannah seated
+rest Cly seated
+camera two Hannah Cly cut
 react Hannah facepalm
 I: 他又不在了。我把手放在脸上，慢慢往下。刚才……应该还好吧？
 I: 我还是得再看看那天的事，也许再给托马斯打个电话。孩子说的这些，还要好好了解一下。

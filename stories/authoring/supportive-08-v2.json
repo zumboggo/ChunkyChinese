@@ -1,5 +1,5 @@
 {
-  "id": "supportive-08",
+  "id": "supportive-08-v2",
   "series": "super-supportive",
   "title": "Super Supportive · Episode 8: A Promise Across the World",
   "description": "Alden calls back to explain. Hannah offers more than she realizes.",
@@ -42,7 +42,7 @@
       "Hannah": "Self-questioning thoughts contrast with warm heroic assurances; still listener then surprised reaction.",
       "Cly": "Practical directness, dry humor; quiet concern and one sigh."
     },
-    "directing": "Hold Hannah/Cly pair at restaurant, cut to solitary Alden only when location changes. Consequential disclosure plays on Hannah listening; her uncertain silence stays on a Continue-controlled entry. Invitation returns to shared restaurant shot.",
+    "directing": "Audio-only phone call uses explicit kitchen/restaurant cuts so every named speaker is staged. Hannah receives the disclosure on her following reader-held response. Restaurant exchanges retain shared framing.",
     "limitations": [
       "Other card players’ brief banter is compressed into Hannah’s narration; no invented identities or physical handoffs."
     ],
@@ -97,12 +97,12 @@
     }
   ],
   "catalog": {
-    "id": "supportive-08-v1",
+    "id": "supportive-08-v2",
     "category": "super-supportive",
     "episode": 8,
     "intro": {
-      "src": "stories/animated/cutscenes/supportive-08.mp4",
-      "poster": "stories/animated/cutscenes/supportive-08.poster.jpg",
+      "src": "stories/animated/cutscenes/supportive-08-v2.mp4",
+      "poster": "stories/animated/cutscenes/supportive-08-v2.poster.jpg",
       "title": "It wasn't your fault.",
       "durationSeconds": 9
     }
@@ -121,7 +121,7 @@
     "totalSeconds": 9,
     "edit": "Native clip retained privately. Removed initial three seconds containing unwanted speech; used approximately three seconds of clean motion with a three-second opening still and final reaction hold. Final ASR matches exact line.",
     "videoPrompt": "Animate this handcrafted clay-puppet miniature in one continuous six-second shot. Preserve Alden’s face, brown hair, gray shirt, charcoal hoodie and kitchen. He is a quiet eleven-year-old boy reassuring an unseen caller. Subtle breath, blink, then one earnest short line. ENTIRE SPOKEN SCRIPT in English exactly once: \"It wasn’t your fault.\" Natural preadolescent boy voice, clear and gentle, synchronized lips, speech between 0.5 and 3 seconds. Only these exact words, no extra words, repetition, fillers, humming, narration or other voices. Afterwards mouth closed with a quiet concerned listening expression. Hands remain stable on counter and at chest. No handset, no additional people, no scene cuts, no text. Very quiet room ambience below foreground dialogue. Maintain tactile stop-motion clay and miniature cinematography.",
-    "image": "stories/characters/super-supportive/supportive-08-opening.png",
+    "image": "stories/characters/super-supportive/supportive-08-v2-opening.png",
     "checks": {
       "sha256": "7d188c3416e90eaeadb33c845002d71b4b2a6c79dca395897c901986f5d536bb",
       "dimensions": [
@@ -137,7 +137,7 @@
     }
   },
   "verification": {
-    "packageBytes": 1618531,
+    "packageBytes": 1620078,
     "reachableRoutes": 16,
     "browserRoutes": 2,
     "familiarityPercent": {
