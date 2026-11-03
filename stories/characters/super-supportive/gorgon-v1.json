@@ -1,0 +1,10 @@
+{
+  "id": "Gorgon",
+  "version": 1,
+  "type": "static supporting-character image",
+  "image": "stories/characters/super-supportive/gorgon-seated-v1.png",
+  "bundle": "public/stories/animated/cast/supportive-13.json",
+  "source": "Super Supportive, SIX: Gorgon; supplied EPUB",
+  "provenance": "Built-in imagegen original interpretation. Gray skin, black eyes, broad flat four-slit nose, no visible ears, swept horn collar, bound arms/legs. Plain clothing and chair interpretation. Targeted correction removed human ear and corrected four nostrils.",
+  "limitations": "One aligned full-body neutral image. Other expressions fall back to neutral. No articulated acting or lip sync."
+}

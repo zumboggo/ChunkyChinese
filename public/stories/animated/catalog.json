@@ -1217,5 +1217,21 @@
       "title": "好人是我？ · The Nice One",
       "description": "快下车了，朋友们却开始讨论：谁好笑，谁说话难听，谁是好人？杰里米的回答，让阿登不知道说什么。"
     }
+  },
+  {
+    "id": "supportive-13-v1",
+    "category": "super-supportive",
+    "episode": 13,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-13.mp4",
+      "poster": "stories/animated/cutscenes/supportive-13.poster.jpg",
+      "title": "I have a specific dream.",
+      "durationSeconds": 9
+    },
+    "path": "supportive-13.json",
+    "summary": {
+      "title": "你想要什么？ · What Do You Want?",
+      "description": "阿登给戈尔贡带来吃的。他收下了，却问了一个让阿登不太好意思的问题。"
+    }
   }
 ]

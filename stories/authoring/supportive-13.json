@@ -1,0 +1,158 @@
+{
+  "id": "supportive-13",
+  "series": "super-supportive",
+  "title": "你想要什么？ · What Do You Want?",
+  "description": "阿登给戈尔贡带来吃的。他收下了，却问了一个让阿登不太好意思的问题。",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-supplied EPUB, SIX: Gorgon, arrival through Alden’s admission of a specific dream. Simplified Mandarin adaptation with local expressive choices."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Fifteen minutes later, Alden and his friends arrived at the Artonan consulate building. → before It was an embarrassing admission.",
+    "dramaticChange": "Gifts become a question about motives; Alden admits wanting friendship and advice, learns Gorgon cannot provide privileged information, then reveals why he still hopes.",
+    "essentialNewWords": [
+      "热巧克力",
+      "椰奶",
+      "超能力",
+      "梦想"
+    ],
+    "englishNarrationPurpose": "None. Natural Mandarin narration and conversation throughout.",
+    "choicesAndCallbacks": [
+      "Recall refused food / eaten fly: different evidence about unfamiliar tastes; rejoin acceptance.",
+      "Ask permission / promise regular delivery: different Gorgon response; rejoin motive question.",
+      "Lead with friendship / future help: distinct honest admissions and questions; rejoin explanation.",
+      "Ask unable versus unwilling / public information: different explanation of restrictions; rejoin shared limitation. All local, no new persistent variables."
+    ],
+    "sceneActivities": [
+      "Alden arrives carrying drinks; delivery and food handoffs are narrated. Gorgon remains seated and bound in a static illustrated sprite. Alden visibly moves from calm to surprise, embarrassment, concern and resolve; listener framing lets the disclosure land. No unsupported articulated Gorgon acting or food-transfer claim."
+    ],
+    "storytellingVoice": "Immediate drama",
+    "voiceReason": "A gift is interrupted by direct questions about motives and a blunt limit on the hoped-for relationship.",
+    "desire": "Build a friendship with Gorgon that might one day offer informed advice about the System.",
+    "obstacle": "Gorgon can read more than Alden expects, and magical restrictions prohibit privileged information.",
+    "earlyCare": "Alden remembers the refusal of dairy and brings coconut-milk cocoa; he tries to understand a bound nonhuman as an individual.",
+    "payoff": "Alden answers honestly and learns why this hoped-for advisor cannot supply secrets.",
+    "newUncertainty": "Why does Alden think his chances are better than the odds, and what specific dream justifies the effort? The next source passage explains Hannah’s observation.",
+    "directing": "Shared pair at desk → motive question → surprised Alden listener with reader-controlled pause → shared questioning → restrictions → worried Alden listener and observation of bindings → shared odds statement → quiet final admission.",
+    "signatures": {
+      "Alden": "Polite concrete offerings; tentative explanations and self-correction become a quiet firm admission.",
+      "Gorgon": "Clipped refusals and thanks, blunt deductions, dry assessment of usefulness; stillness and unreturned attention keep him distinct."
+    },
+    "vocabulary": {
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "reviewedKnown": 804,
+      "approvedAdditional": 259,
+      "effectiveFamiliarWords": 1063
+    },
+    "teaser": {
+      "speaker": "Alden",
+      "line": "I have a specific dream.",
+      "scene": "At Gorgon’s desk, Alden lowers his voice so his friends cannot hear why he still hopes to be selected.",
+      "style": "Traditional charcoal and white chalk on toned gray paper",
+      "identityReference": "stories/characters/super-supportive/alden-approved-a.png"
+    },
+    "limitations": [
+      "Gorgon uses a reusable static supporting-character image with neutral-expression fallback; no articulated gestures, angle changes or lip sync. Source-dependent voice and movements are narrated.",
+      "Artwork interprets unspecified Gorgon clothing as a plain dark tunic; the four nostrils, black eyes, gray skin, horn collar and magical bindings follow the source.",
+      "Alden cannot confidently infer nonhuman vocal meaning; narration preserves that uncertainty."
+    ],
+    "pinyinReview": "Reviewed all 52 sentence and chunk readings. Corrected yiwei, experiential guo, potential bu, reduplicated verbs and lexical neutral syllables. Verified ye nai, Ge Er Gong, qian fen zhi yi, liao jie, bei and the distinction between wei/wei and de in context."
+  },
+  "continuation": {
+    "end": "Alden brings Gorgon coconut-milk hot chocolate and spicy food. Gorgon challenges his motives. Alden admits hoping for friendship and future System advice, learns that magical restraints prevent secret information, and quietly explains that a friend thought his selection chances might be better than normal. He admits having a specific dream.",
+    "nextStart": "It was an embarrassing admission.",
+    "nextEndBefore": "Icy wind swept through the lobby as the doors opened,",
+    "note": "Continue with Hannah’s observation about Alden staying conscious inside her spell, Gorgon’s limited services, and Alden’s decision to keep bringing food. End after trial-and-error agreement, before girls enter the lobby.",
+    "castBundle": "public/stories/animated/cast/supportive-13.json",
+    "continuity": [
+      "Hannah’s death remains unconfirmed. Alden refers to her past belief without telling his friends the reason for his hopes.",
+      "Gorgon accepted coconut-milk cocoa and spicy giardiniera. His dietary restrictions remain unclear.",
+      "Gorgon is magically bound to the desk and forbidden to disclose nonpublic information.",
+      "Alden openly hoped to befriend Gorgon for future advice; the limit does not end his interest."
+    ]
+  },
+  "routes": [
+    {
+      "choices": [
+        "refused",
+        "permission",
+        "friends",
+        "cannot"
+      ],
+      "contains": [
+        "你知道吗？像你这样的人，得到超能力的可能，连千分之一都不到。"
+      ],
+      "endsWith": "我有一个很具体的梦想。"
+    },
+    {
+      "choices": [
+        "fly",
+        "promise",
+        "advice",
+        "public"
+      ],
+      "contains": [
+        "以前有个朋友觉得，我被系统选择的可能，比一般人大一点。"
+      ],
+      "endsWith": "我有一个很具体的梦想。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-13-v1",
+    "category": "super-supportive",
+    "episode": 13,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-13.mp4",
+      "poster": "stories/animated/cutscenes/supportive-13.poster.jpg",
+      "title": "I have a specific dream.",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "scene": "At Gorgon’s desk, Alden lowers his voice so his friends cannot hear why he still hopes to be selected.",
+    "style": "Traditional charcoal and white chalk on toned gray paper",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "bf1mc1eqyxrmw0d1m0e83qcf0m",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "pricing": "Live 480p cost tier checked 2026-11-03, $0.01/output second; six seconds with native audio and prompt_upsampler off.",
+    "generatedDurationSeconds": 6,
+    "finishing": "Full six seconds retained; three-second exact first-frame hold. Speech check confirms one exact utterance, no extra speech. End frame has closed-mouth listener pose.",
+    "image": "stories/characters/super-supportive/supportive-13-opening.png",
+    "checks": {
+      "sha256": "bbba7688f2449efad38c67c49b4f68b415b6cac88c8a8805e2ab788a578e03f0",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 6,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "I have a specific dream."
+    }
+  },
+  "verification": {
+    "packageBytes": 3077846,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 95.17684887459806,
+      "max": 95.81993569131832
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "可是，你这样给我送东西，是想从我这里得到什么？",
+      "我刚想走，又停了下来。他不是在问吃的东西。",
+      "我看着他身上的光。他不能离开这里，有些话也不能说。",
+      "我有一个很具体的梦想。"
+    ]
+  }
+}
