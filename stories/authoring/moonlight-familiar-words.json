@@ -1,9 +1,9 @@
 {
-  "version": 2,
-  "authorizedOn": "2026-10-22",
-  "purpose": "Assumed familiarity for Moonlight episode authoring: original common words, prior authorized additions and reviewed vocabulary repeated in the active releases of episodes 1–20. Exposure is not reviewed mastery and does not change flashcards.",
+  "version": 3,
+  "authorizedOn": "2026-11-03",
+  "purpose": "Shared assumed-familiar vocabulary for Moonlight, Super Supportive and Name of the Wind episode authoring: original common words plus explicitly authorized, lexically reviewed recurring vocabulary. Latest expansion audits active Super Supportive 1–10 and Moonlight 1–28. Exposure is not reviewed mastery and does not change flashcards.",
   "base": "stories/authoring/common-familiar-100.json",
-  "method": "One active release per episode; sum maximum occurrences on one reachable route per episode. Count all visible choice options, but never add mutually exclusive branch responses together. Whole lexical units and useful fixed expressions reviewed; productive grammatical combinations, word fragments, numeric false matches and proper names excluded. Repetition means at least two occurrences across the corpus, possibly within one episode. No assumption about which route the learner played.",
+  "method": "One active release per episode; sum maximum occurrences on one reachable route per episode. Count all visible choice options, but never add mutually exclusive branch responses together. Whole lexical units and useful fixed expressions are reviewed; productive grammatical combinations, word fragments, numeric false matches and proper names are excluded. Each dated expansion records its corpus and threshold; the 2026-11-03 expansion requires at least three occurrences across at least two episodes. No assumption about which route the learner played.",
   "words": [
     "不",
     "也",
@@ -200,7 +200,70 @@
     "完成",
     "有关",
     "口袋",
-    "相爱"
+    "相爱",
+    "秒",
+    "约定",
+    "岁",
+    "看见",
+    "拿到",
+    "玩家",
+    "木剑",
+    "杀",
+    "阿姨",
+    "见面",
+    "消息",
+    "小刀",
+    "收下",
+    "像",
+    "做事",
+    "侍女",
+    "受伤",
+    "爆炸",
+    "就算",
+    "肯",
+    "被",
+    "有意思",
+    "坏人",
+    "赚钱",
+    "本子",
+    "答应",
+    "还好",
+    "小孩子",
+    "就像",
+    "用力",
+    "不少",
+    "脑子",
+    "些",
+    "不好意思",
+    "只能",
+    "看到",
+    "信",
+    "伤心",
+    "传送",
+    "你好",
+    "没什么",
+    "继续",
+    "魔法",
+    "改变",
+    "件",
+    "向",
+    "高兴",
+    "救",
+    "低头",
+    "银色",
+    "窗户",
+    "往",
+    "上学",
+    "快要",
+    "兔子",
+    "危险",
+    "眼泪",
+    "隐藏",
+    "大师",
+    "下雨",
+    "直接",
+    "被子",
+    "留言"
   ],
   "repeatedEpisodeWords": [
     {
@@ -1768,6 +1831,1861 @@
           "reason": "Productive combination of familiar 在 and 一起; not promoted as a new word."
         }
       ]
+    },
+    {
+      "authorizedOn": "2026-11-03",
+      "scope": [
+        {
+          "series": "super-supportive",
+          "episodes": [
+            1,
+            10
+          ]
+        },
+        {
+          "series": "moonlight",
+          "episodes": [
+            1,
+            28
+          ]
+        }
+      ],
+      "minimumOccurrences": 3,
+      "minimumEpisodes": 2,
+      "method": "For each active catalog release, enumerate every reachable route, include all visible choice options, and take the maximum count per word on a single route. Sum these per-episode maxima. Do not sum exclusive branches or superseded versions. Counts are potential exposure, not a claim about played routes. Lexically review whole words/fixed expressions and exclude proper names, fragments and ambiguous pooled senses.",
+      "releases": [
+        {
+          "category": "lms",
+          "episode": 1,
+          "id": "moonlight-01-v5",
+          "path": "moonlight-01-v5.json",
+          "sha256": "848f091a1621b086b84e58abeabba6d54817a5cd5cc108314e57c7eb869dcc04",
+          "routes": 8
+        },
+        {
+          "category": "lms",
+          "episode": 2,
+          "id": "moonlight-02-v5",
+          "path": "moonlight-02-v5.json",
+          "sha256": "e6d4ca4ffa8229747c24b14b88dacb82eb455ffbd5e8f35a5c51151d71ce0de8",
+          "routes": 8
+        },
+        {
+          "category": "lms",
+          "episode": 3,
+          "id": "moonlight-03-v4",
+          "path": "moonlight-03-v4.json",
+          "sha256": "e345392a1f452d04f9a549671cdf8b1684f3baa5b238c8785d25d3ce17172c4f",
+          "routes": 8
+        },
+        {
+          "category": "lms",
+          "episode": 4,
+          "id": "moonlight-04-v2",
+          "path": "moonlight-04-v2.json",
+          "sha256": "7c3e6a5e0db2d4edc071478d8f168fed25ff5b18866bf52ffac28571a0bbe12a",
+          "routes": 4
+        },
+        {
+          "category": "lms",
+          "episode": 5,
+          "id": "moonlight-05-v1",
+          "path": "moonlight-05.json",
+          "sha256": "4e33529c37b6e28d2c2f8e6767678e6232151abe87ce3c49fc9e5e399900c9e7",
+          "routes": 4
+        },
+        {
+          "category": "lms",
+          "episode": 6,
+          "id": "moonlight-06-v1",
+          "path": "moonlight-06.json",
+          "sha256": "e578bbebe7af73b8d9a886777d5845d1a877b538098048c63872dd29ddb1bee4",
+          "routes": 4
+        },
+        {
+          "category": "lms",
+          "episode": 7,
+          "id": "moonlight-07-v1",
+          "path": "moonlight-07.json",
+          "sha256": "1039eb6102117d48560fdc19f4a37fd104e93ed34e009110aa64a55756a05cf4",
+          "routes": 4
+        },
+        {
+          "category": "lms",
+          "episode": 8,
+          "id": "moonlight-08-v3",
+          "path": "moonlight-08-v3.json",
+          "sha256": "7ce696b7ed7852df23f1e716bfa56386e5c801bbfe861a541b3509e7d226f508",
+          "routes": 4
+        },
+        {
+          "category": "lms",
+          "episode": 9,
+          "id": "moonlight-09-v1",
+          "path": "moonlight-09.json",
+          "sha256": "1e5714e5ddc8ce199160ae0169629f7f3c778854e48afdae1bab8df19bb9acc5",
+          "routes": 4
+        },
+        {
+          "category": "lms",
+          "episode": 10,
+          "id": "moonlight-10-v1",
+          "path": "moonlight-10.json",
+          "sha256": "223b621d84291caab3b19ee10ca1a2a28657c8dda3ad6ef5e79d26c337f58f04",
+          "routes": 4
+        },
+        {
+          "category": "lms",
+          "episode": 11,
+          "id": "moonlight-11-v1",
+          "path": "moonlight-11.json",
+          "sha256": "269180d5e9f19dcaf44ff30c91fe90dcce7d6506cde45d1a8757546d5dcb6315",
+          "routes": 4
+        },
+        {
+          "category": "lms",
+          "episode": 12,
+          "id": "moonlight-12-v1",
+          "path": "moonlight-12.json",
+          "sha256": "be7bc26cfed2b5c6af15899232b03cfc9635a464fe692c83307bd55951f894b6",
+          "routes": 4
+        },
+        {
+          "category": "lms",
+          "episode": 13,
+          "id": "moonlight-13-v1",
+          "path": "moonlight-13.json",
+          "sha256": "e0c7e4636bd1fac58f44d73f77d7a6abcaf28d72b6ce89f36f352ac97c151aa3",
+          "routes": 4
+        },
+        {
+          "category": "lms",
+          "episode": 14,
+          "id": "moonlight-14-v1",
+          "path": "moonlight-14.json",
+          "sha256": "5ae8faeb5e4933e239c387f533692f9ab7eb3ee581e5f18fd071387e9a83406b",
+          "routes": 4
+        },
+        {
+          "category": "lms",
+          "episode": 15,
+          "id": "moonlight-15-v1",
+          "path": "moonlight-15.json",
+          "sha256": "b0bef5cdce945f298ec41f90584b7160c0cda7d5777f31fce7bef30a098b52f7",
+          "routes": 16
+        },
+        {
+          "category": "lms",
+          "episode": 16,
+          "id": "moonlight-16-v2",
+          "path": "moonlight-16-v2.json",
+          "sha256": "35f2ee7722517996378853e3e59a6e1a91463ad34db0c11747cd867e3458c667",
+          "routes": 16
+        },
+        {
+          "category": "lms",
+          "episode": 17,
+          "id": "moonlight-17-v2",
+          "path": "moonlight-17-v2.json",
+          "sha256": "92b18a6a219bea77abde1cce97aa291b48b1ffd375f04cb07a56c41502e09ca6",
+          "routes": 16
+        },
+        {
+          "category": "lms",
+          "episode": 18,
+          "id": "moonlight-18-v2",
+          "path": "moonlight-18-v2.json",
+          "sha256": "c326256f36ac795b5cdf46a1735397c7c53f549d7f2a8384618369ab4a43c766",
+          "routes": 16
+        },
+        {
+          "category": "lms",
+          "episode": 19,
+          "id": "moonlight-19-v2",
+          "path": "moonlight-19-v2.json",
+          "sha256": "b72f0041f841d3e2f18f08f02b2002f750ff90b2835c4aa33600811b1a614629",
+          "routes": 16
+        },
+        {
+          "category": "lms",
+          "episode": 20,
+          "id": "moonlight-20-v2",
+          "path": "moonlight-20-v2.json",
+          "sha256": "2196864f8d9f4f71171e8e9fe53f56cc989f3a4584eb13dc7a53519b01823065",
+          "routes": 16
+        },
+        {
+          "category": "lms",
+          "episode": 21,
+          "id": "moonlight-21-v2",
+          "path": "moonlight-21-v2.json",
+          "sha256": "b165f438537a94aeb1746497ecb586d691a8357d869d8505732f55a34df6bf7c",
+          "routes": 16
+        },
+        {
+          "category": "lms",
+          "episode": 22,
+          "id": "moonlight-22-v2",
+          "path": "moonlight-22-v2.json",
+          "sha256": "8a6622b224e5adc3fa8bc5518ea520ef3fc7f89f17ca529585456806e99c5ac6",
+          "routes": 16
+        },
+        {
+          "category": "lms",
+          "episode": 23,
+          "id": "moonlight-23-v2",
+          "path": "moonlight-23-v2.json",
+          "sha256": "d0e5cb99a57f47a002bb6b01553c1c8de5cfa6eed716306070275b22517ec49e",
+          "routes": 16
+        },
+        {
+          "category": "lms",
+          "episode": 24,
+          "id": "moonlight-24-v2",
+          "path": "moonlight-24-v2.json",
+          "sha256": "15af7ef7725a8230db4ec8457bffb6127b131aef8a5b36fd980fd555a8a1af9c",
+          "routes": 16
+        },
+        {
+          "category": "lms",
+          "episode": 25,
+          "id": "moonlight-25-v2",
+          "path": "moonlight-25-v2.json",
+          "sha256": "c6ab26ba9e9938e802eb8409e2077d09af5150c36b46cbfb8ebe89df4b94bfe8",
+          "routes": 16
+        },
+        {
+          "category": "lms",
+          "episode": 26,
+          "id": "moonlight-26-v2",
+          "path": "moonlight-26-v2.json",
+          "sha256": "ab369d38c7dc061ce77a790ac08ac49b7b27886b96475548e2f96d20f211a52c",
+          "routes": 16
+        },
+        {
+          "category": "lms",
+          "episode": 27,
+          "id": "moonlight-27-v2",
+          "path": "moonlight-27-v2.json",
+          "sha256": "ab250ae4cb277fc029e960639ba5de5c70e2a77801503fd67f9efefbd38bbbd0",
+          "routes": 16
+        },
+        {
+          "category": "lms",
+          "episode": 28,
+          "id": "moonlight-28-v1",
+          "path": "moonlight-28.json",
+          "sha256": "7a7422ed0a7e3be9f7351aa4fd4a01cc5b6f1a925b3207e2482585fbf83db920",
+          "routes": 16
+        },
+        {
+          "category": "super-supportive",
+          "episode": 1,
+          "id": "supportive-01-v1",
+          "path": "supportive-01.json",
+          "sha256": "18b34ebeff6543396b860f66f23d739d6475b02fe055c6f82a31dd2ab8580a9a",
+          "routes": 16
+        },
+        {
+          "category": "super-supportive",
+          "episode": 2,
+          "id": "supportive-02-v1",
+          "path": "supportive-02.json",
+          "sha256": "5e894987ad67626c61e8ad9cf071eca398715c9a4081aa58e9674434539b44c9",
+          "routes": 16
+        },
+        {
+          "category": "super-supportive",
+          "episode": 3,
+          "id": "supportive-03-v1",
+          "path": "supportive-03.json",
+          "sha256": "af293fa7fd074f6963e6fe192c29f8cec43a8552061686a4810a1a76dfcc18ae",
+          "routes": 16
+        },
+        {
+          "category": "super-supportive",
+          "episode": 4,
+          "id": "supportive-04-v1",
+          "path": "supportive-04.json",
+          "sha256": "0dc84b0aa21223a203b2ff97b7e2978d2c2ea9a7ea16bbbd350606536d16d873",
+          "routes": 16
+        },
+        {
+          "category": "super-supportive",
+          "episode": 5,
+          "id": "supportive-05-v1",
+          "path": "supportive-05.json",
+          "sha256": "46e415ed2ec9e6a4be17c9c78a5ca617e68189b21eb0c1c93c16ccea06867be8",
+          "routes": 16
+        },
+        {
+          "category": "super-supportive",
+          "episode": 6,
+          "id": "supportive-06-v1",
+          "path": "supportive-06.json",
+          "sha256": "3a33a09c2c1c8d56bbd25280d6380a8768e60308c391d05761f401d24d5ad6ea",
+          "routes": 16
+        },
+        {
+          "category": "super-supportive",
+          "episode": 7,
+          "id": "supportive-07-v1",
+          "path": "supportive-07.json",
+          "sha256": "0ff87fefad901272cefcebb9c3c1ad11605cc265a956978e5c7a0d5aa5b95a19",
+          "routes": 16
+        },
+        {
+          "category": "super-supportive",
+          "episode": 8,
+          "id": "supportive-08-v2",
+          "path": "supportive-08-v2.json",
+          "sha256": "491e053987f978891bbd37e75204696178ad04290539546faf9cebe53e9ef914",
+          "routes": 16
+        },
+        {
+          "category": "super-supportive",
+          "episode": 9,
+          "id": "supportive-09-v1",
+          "path": "supportive-09.json",
+          "sha256": "d11c957f7b30c855e0ca072fbc9538764dd2fce35d73e01fda2558ac6fb38fa7",
+          "routes": 16
+        },
+        {
+          "category": "super-supportive",
+          "episode": 10,
+          "id": "supportive-10-v1",
+          "path": "supportive-10.json",
+          "sha256": "764167a64bd57a306e66e04664754b676e1b0a92fb06ee801eb59cd610aafea3",
+          "routes": 16
+        }
+      ],
+      "segmentationLexicon": [
+        "汉娜",
+        "阿登",
+        "康妮",
+        "杰里米",
+        "克莱",
+        "托马斯",
+        "李贤",
+        "阿姨",
+        "秒钟",
+        "剑术",
+        "画面",
+        "眼泪",
+        "留言",
+        "兽人",
+        "大师",
+        "雕刻师",
+        "要紧",
+        "不好受",
+        "受伤",
+        "伤疤",
+        "约定",
+        "看见",
+        "玩家",
+        "木剑",
+        "消息",
+        "侍女",
+        "爆炸",
+        "答应",
+        "脑子",
+        "看到",
+        "伤心",
+        "传送",
+        "继续",
+        "魔法",
+        "改变",
+        "高兴",
+        "银色",
+        "窗户",
+        "兔子",
+        "危险",
+        "隐藏",
+        "训练",
+        "见面",
+        "收下",
+        "拿到",
+        "小刀",
+        "赚钱",
+        "做事",
+        "本子",
+        "坏人",
+        "有意思",
+        "不好意思",
+        "用力",
+        "不少",
+        "只能",
+        "还好",
+        "小孩子",
+        "就像",
+        "就算",
+        "快要",
+        "没什么",
+        "你好",
+        "低头",
+        "下雨",
+        "直接",
+        "被子",
+        "上次",
+        "上学",
+        "收到",
+        "名声",
+        "基础",
+        "精灵",
+        "矮人",
+        "锯片",
+        "取消",
+        "提高",
+        "生意",
+        "朋友",
+        "英雄",
+        "角色",
+        "金属",
+        "声音",
+        "楼层",
+        "恶魔",
+        "失踪",
+        "葬礼",
+        "召唤",
+        "围巾",
+        "伤害",
+        "难受",
+        "受不了",
+        "相信",
+        "怀疑",
+        "力量",
+        "敏捷",
+        "武术",
+        "伤到"
+      ],
+      "added": [
+        {
+          "word": "秒",
+          "occurrences": 15,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 5,
+              "count": 8
+            },
+            {
+              "category": "super-supportive",
+              "episode": 6,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 7,
+              "count": 4
+            },
+            {
+              "category": "super-supportive",
+              "episode": 8,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "约定",
+          "occurrences": 13,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 21,
+              "count": 4
+            },
+            {
+              "category": "lms",
+              "episode": 22,
+              "count": 3
+            },
+            {
+              "category": "lms",
+              "episode": 23,
+              "count": 3
+            },
+            {
+              "category": "lms",
+              "episode": 24,
+              "count": 3
+            }
+          ]
+        },
+        {
+          "word": "岁",
+          "occurrences": 8,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 20,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 4,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 7,
+              "count": 2
+            },
+            {
+              "category": "super-supportive",
+              "episode": 8,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 9,
+              "count": 3
+            }
+          ]
+        },
+        {
+          "word": "看见",
+          "occurrences": 8,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 17,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 22,
+              "count": 3
+            },
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 2
+            },
+            {
+              "category": "super-supportive",
+              "episode": 10,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "拿到",
+          "occurrences": 8,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 26,
+              "count": 3
+            },
+            {
+              "category": "super-supportive",
+              "episode": 7,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 8,
+              "count": 3
+            },
+            {
+              "category": "super-supportive",
+              "episode": 9,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "玩家",
+          "occurrences": 8,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 20,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 27,
+              "count": 6
+            },
+            {
+              "category": "lms",
+              "episode": 28,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "木剑",
+          "occurrences": 8,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 26,
+              "count": 2
+            },
+            {
+              "category": "lms",
+              "episode": 27,
+              "count": 4
+            },
+            {
+              "category": "lms",
+              "episode": 28,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "杀",
+          "occurrences": 7,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 23,
+              "count": 2
+            },
+            {
+              "category": "lms",
+              "episode": 24,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 5,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 9,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "阿姨",
+          "occurrences": 7,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 4,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 5,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 6,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 7,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 8,
+              "count": 3
+            }
+          ]
+        },
+        {
+          "word": "见面",
+          "occurrences": 7,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 1,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 22,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 10,
+              "count": 5
+            }
+          ]
+        },
+        {
+          "word": "消息",
+          "occurrences": 7,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 18,
+              "count": 2
+            },
+            {
+              "category": "lms",
+              "episode": 19,
+              "count": 2
+            },
+            {
+              "category": "lms",
+              "episode": 24,
+              "count": 3
+            }
+          ]
+        },
+        {
+          "word": "小刀",
+          "occurrences": 7,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 22,
+              "count": 2
+            },
+            {
+              "category": "lms",
+              "episode": 24,
+              "count": 4
+            },
+            {
+              "category": "lms",
+              "episode": 25,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "收下",
+          "occurrences": 7,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 24,
+              "count": 3
+            },
+            {
+              "category": "lms",
+              "episode": 25,
+              "count": 3
+            },
+            {
+              "category": "lms",
+              "episode": 27,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "像",
+          "occurrences": 6,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 14,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 4,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 5,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 9,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "做事",
+          "occurrences": 6,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 19,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 3,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 4,
+              "count": 2
+            },
+            {
+              "category": "super-supportive",
+              "episode": 7,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 9,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "侍女",
+          "occurrences": 6,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 21,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 22,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 24,
+              "count": 2
+            },
+            {
+              "category": "lms",
+              "episode": 25,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 26,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "受伤",
+          "occurrences": 6,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 1,
+              "count": 3
+            },
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 3,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 5,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "爆炸",
+          "occurrences": 6,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 5,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 7,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 8,
+              "count": 4
+            }
+          ]
+        },
+        {
+          "word": "就算",
+          "occurrences": 5,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 22,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 23,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 24,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 1,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 4,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "肯",
+          "occurrences": 5,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 17,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 19,
+              "count": 2
+            },
+            {
+              "category": "lms",
+              "episode": 20,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 22,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "被",
+          "occurrences": 5,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 18,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 21,
+              "count": 2
+            },
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 8,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "有意思",
+          "occurrences": 5,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 24,
+              "count": 3
+            },
+            {
+              "category": "lms",
+              "episode": 26,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 1,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "坏人",
+          "occurrences": 5,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 2
+            },
+            {
+              "category": "super-supportive",
+              "episode": 3,
+              "count": 2
+            },
+            {
+              "category": "super-supportive",
+              "episode": 5,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "赚钱",
+          "occurrences": 5,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 18,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 24,
+              "count": 4
+            }
+          ]
+        },
+        {
+          "word": "本子",
+          "occurrences": 5,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 6,
+              "count": 2
+            },
+            {
+              "category": "super-supportive",
+              "episode": 7,
+              "count": 3
+            }
+          ]
+        },
+        {
+          "word": "答应",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 21,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 22,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 24,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 26,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "还好",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 1,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 7,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 8,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 9,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "小孩子",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 1,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 6,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 8,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 9,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "就像",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 1,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 3,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 5,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "用力",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 10,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 3,
+              "count": 2
+            },
+            {
+              "category": "super-supportive",
+              "episode": 10,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "不少",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 18,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 20,
+              "count": 2
+            },
+            {
+              "category": "lms",
+              "episode": 25,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "脑子",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 19,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 6,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 7,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "些",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 20,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 1,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 7,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "不好意思",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 20,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 24,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 5,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "只能",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 25,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 4,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 6,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "看到",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 11,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 6,
+              "count": 3
+            }
+          ]
+        },
+        {
+          "word": "信",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 18,
+              "count": 2
+            },
+            {
+              "category": "lms",
+              "episode": 22,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "伤心",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 22,
+              "count": 2
+            },
+            {
+              "category": "super-supportive",
+              "episode": 8,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "传送",
+          "occurrences": 4,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 8,
+              "count": 2
+            },
+            {
+              "category": "super-supportive",
+              "episode": 10,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "你好",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 2,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 6,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 10,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "没什么",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 7,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 7,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 9,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "继续",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 9,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 17,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "魔法",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 10,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 27,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "改变",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 10,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 7,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "件",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 13,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 22,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 7,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "向",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 16,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 18,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "高兴",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 18,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 19,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 7,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "救",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 23,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 1,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "低头",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 25,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 1,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 4,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "银色",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 1,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 9,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "窗户",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 1,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 3,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "往",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 7,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 8,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "上学",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 6,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 8,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 9,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "快要",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 3,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 23,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "兔子",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 10,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 8,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "危险",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 23,
+              "count": 2
+            },
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "眼泪",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 23,
+              "count": 2
+            },
+            {
+              "category": "super-supportive",
+              "episode": 3,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "隐藏",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 24,
+              "count": 2
+            },
+            {
+              "category": "lms",
+              "episode": 25,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "大师",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "lms",
+              "episode": 24,
+              "count": 1
+            },
+            {
+              "category": "lms",
+              "episode": 25,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "下雨",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 1,
+              "count": 2
+            },
+            {
+              "category": "super-supportive",
+              "episode": 5,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "word": "直接",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 6,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "被子",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 2,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 5,
+              "count": 2
+            }
+          ]
+        },
+        {
+          "word": "留言",
+          "occurrences": 3,
+          "episodes": [
+            {
+              "category": "super-supportive",
+              "episode": 9,
+              "count": 1
+            },
+            {
+              "category": "super-supportive",
+              "episode": 10,
+              "count": 2
+            }
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "word": "汉娜",
+          "reason": "Proper names or title; excluded even when frequent."
+        },
+        {
+          "word": "阿登",
+          "reason": "Proper names or title; excluded even when frequent."
+        },
+        {
+          "word": "康妮",
+          "reason": "Proper names or title; excluded even when frequent."
+        },
+        {
+          "word": "克莱",
+          "reason": "Proper names or title; excluded even when frequent."
+        },
+        {
+          "word": "皇家之路",
+          "reason": "Proper names or title; excluded even when frequent."
+        },
+        {
+          "word": "看着",
+          "reason": "Productive grammatical combination of existing words; not a new lexical entry."
+        },
+        {
+          "word": "要不要",
+          "reason": "Productive grammatical combination of existing words; not a new lexical entry."
+        },
+        {
+          "word": "在一起",
+          "reason": "Productive grammatical combination of existing words; not a new lexical entry."
+        },
+        {
+          "word": "千万",
+          "reason": "Numeric and caution-adverb senses are mixed; not promoted from pooled counts."
+        },
+        {
+          "word": "雕刻店",
+          "reason": "Transparent compound; existing 雕刻 and 店 already cover it."
+        },
+        {
+          "word": "受",
+          "reason": "Segmentation/compound ambiguity; prefer reviewed whole terms such as 受伤."
+        },
+        {
+          "word": "伤",
+          "reason": "Segmentation/compound ambiguity; prefer reviewed whole terms such as 受伤."
+        }
+      ],
+      "counts": {
+        "reviewedKnown": 804,
+        "supplementBefore": 196,
+        "added": 63,
+        "supplementAfter": 259,
+        "effectiveBefore": 1000,
+        "effectiveAfter": 1063
+      }
     }
   ]
 }
