@@ -12,7 +12,7 @@ import PocketAudioPlayer from './PocketAudioPlayer'
 import AudioModeDialog, {type AudioModeOptions} from './AudioModeDialog'
 import {playAudioModeLine,speakAudioMode,waitForAudioMode} from './audioMode'
 import type {HotkeySettings} from '../../types'
-export interface StoryProgress {continuity?:import('./continuity').ContinuitySnapshot;steps:(string|null)[];quizzes:number[][];seed:number}
+export interface StoryProgress {attemptId?:string;partialTiming?:boolean;continuity?:import('./continuity').ContinuitySnapshot;steps:(string|null)[];quizzes:number[][];seed:number}
 export default function StoryPlayback({pack,initial,onProgress,reduced:preferred=false,onComplete,onNextEpisode,preferencesKey='story2:display',readThenListenDefault=false,hotkeys,settingsContent,onReplayOpening,nextEpisodePreview}:{pack:ChinesePackage;initial?:StoryProgress;onProgress?:(p:StoryProgress)=>void;reduced?:boolean;debug?:boolean;onComplete?:()=>void;onNextEpisode?:()=>void;preferencesKey?:string;readThenListenDefault?:boolean;hotkeys?:HotkeySettings;settingsContent?:ReactNode;onReplayOpening?:()=>void;nextEpisodePreview?:{number?:number;title:string;teaser:string}}) {
  const compiled=useMemo(()=>compileStory(pack.script,pack.assets),[pack])
  const [progress,setProgress]=useState<StoryProgress>(initial??{steps:[],quizzes:[],seed:1})

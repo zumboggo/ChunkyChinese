@@ -438,7 +438,9 @@ export interface ListeningEvent {
   seconds?: number
   correct?: boolean
   rating?: FsrsRating
-  source?: 'flashcards' | 'lesson-review' | 'active-recall' | 'listening-set' | 'reading'
+  source?: 'flashcards' | 'lesson-review' | 'active-recall' | 'listening-set' | 'reading' | 'game'
+  episodeTitle?: string
+  partialTiming?: boolean
   sessionId?: string
 }
 

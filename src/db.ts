@@ -2066,7 +2066,7 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     minutesToday: (todayHeatmap?.studySeconds ?? 0) / 60,
     clipsCompletedToday: todayEvents.filter((event) => event.type === 'complete').length,
     listeningLessonsToday: todayEvents.filter(
-      (event) => event.type === 'complete' && event.itemType === 'lesson' && event.source !== 'flashcards',
+      (event) => event.type === 'complete' && event.itemType === 'lesson' && event.source !== 'flashcards' && event.source !== 'game',
     ).length,
     knownToday: successfulRatingsToday.length,
     lingqsCreatedToday: todayRatings.length,

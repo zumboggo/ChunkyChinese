@@ -1,3 +1,5 @@
+import {getAllListeningEvents} from './db'
+import {episodeAttempts} from './game/episodeActivity'
 import { DEFAULT_READER_CATEGORIES, normalizeReaderCategory, readerPlacement, type ReaderPlacement } from './readerOrganization'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { lazy, Suspense } from 'react'
@@ -456,6 +458,20 @@ function GoalRing({
   )
 }
 
+function EpisodeGoalRing({count,onClick}:{count:number;onClick:()=>void}) {
+  const outer=38+Math.max(0,count-1)*6
+  const size=outer*2+20
+  return <button type="button" className={`sentence-rep-ring-wrap goal-ring${count ? ' goal-ring-complete' : ''}`} onClick={onClick} aria-label={`${count} episodes finished today. Open The Game.`}>
+    <p className="ring-title">Episodes</p>
+    <svg className="sentence-rep-ring" viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
+      {Array.from({length:Math.max(1,count)},(_,i)=><circle key={i} cx={size/2} cy={size/2} r={38+i*6} fill="none" stroke={count ? (i%2 ? '#a78bfa' : '#22c55e') : '#cbd5e1'} strokeWidth="4" />)}
+      <text x={size/2} y={size/2-2} className="sentence-rep-ring-count">{count}</text>
+      <text x={size/2} y={size/2+12} className="sentence-rep-ring-label">daily goal: 1</text>
+    </svg>
+    <p className="sentence-rep-total">{count ? `${count} finished · goal complete!` : 'Finish one episode'}</p>
+  </button>
+}
+
 const WORD_MILESTONES = Array.from({ length: 14 }, (_, index) => (index + 1) * 250)
 const TREE_STAGE_NAMES = [
   'new sprout', 'young sprout', 'small seedling', 'strong seedling', 'young sapling',
@@ -537,6 +553,7 @@ function App() {
   const [readerPacks, setReaderPacks] = useState<ReaderPack[]>([])
   const [readerBooks, setReaderBooks] = useState<ReaderBook[]>([])
   const [stats, setStats] = useState<DashboardStats>(emptyStats)
+  const [episodeHistory, setEpisodeHistory] = useState<ReturnType<typeof episodeAttempts>>([])
   const [dashboardRange, setDashboardRange] = useState<DashboardRange>('today')
   const [userSettings, setUserSettings] = useState(DEFAULT_USER_SETTINGS)
   const readerSettingsRevision = useRef(0)
@@ -771,7 +788,12 @@ function App() {
     setHostedClipPacks(nextHostedClipPacks)
     setAiStorySettings(nextAiStorySettings)
     setStats(nextStats)
+    setEpisodeHistory(episodeAttempts(await getAllListeningEvents()))
   }, [])
+
+  useEffect(() => {
+    if (screen === 'dashboard') void refresh()
+  }, [screen, refresh])
 
   const handleCloudSyncNow = useCallback(async (silent = false) => {
     if (!isSupabaseConfigured) {
@@ -830,6 +852,14 @@ function App() {
       void handleCloudSyncNow(true)
     }, 1200)
   }, [cloudUserEmail, handleCloudSyncNow])
+
+  useEffect(() => {
+    const updated = () => { if (screen === 'dashboard') { void refresh(); queueCloudSync() } }
+    const failed = () => setLastSummary('Episode activity could not be saved. Check device storage before continuing.')
+    window.addEventListener('episode-activity', updated)
+    window.addEventListener('episode-activity-error', failed)
+    return () => { window.removeEventListener('episode-activity', updated); window.removeEventListener('episode-activity-error', failed) }
+  }, [screen, refresh, queueCloudSync])
 
   useEffect(() => {
     let cancelled = false
@@ -3096,22 +3126,7 @@ function App() {
               unit="cards"
               onClick={startSavedFlashcards}
             />
-            <GoalRing
-              kind="listening"
-              title="Listening"
-              value={stats.listeningLessonsToday}
-              goal={1}
-              unit="lesson"
-              onClick={() => void startModeLesson()}
-            />
-            <GoalRing
-              kind="reading"
-              title="Reading"
-              value={todayReaderStats?.todayPagesRead ?? 0}
-              goal={userSettings.readingGoalPages}
-              unit="pages"
-              onClick={() => void startReaderPlaylistRef.current?.()}
-            />
+            <EpisodeGoalRing count={episodeHistory.filter(row => row.completedAt && new Date(row.completedAt).toDateString() === new Date().toDateString()).length} onClick={() => setScreen('game')} />
           </div>
 
           <div className="mode-start-grid mode-start-grid-three dashboard-mode-list" aria-label="Choose study mode">
@@ -3245,7 +3260,8 @@ function App() {
           )}
 
           <div className="dashboard-progress-grid" id="dashboard-progress">
-            <InfoPanel title="Review heatmap">
+            <InfoPanel title="Study heatmap">
+              <p className="progress-caption">Includes active time in The Game, flashcards, listening and reading.</p>
               {stats.studyHeatmap.some((day) => day.activityCount > 0) ? (
                 <ProgressHeatmap days={stats.studyHeatmap} />
               ) : (
@@ -3256,21 +3272,14 @@ function App() {
                 />
               )}
             </InfoPanel>
-            <InfoPanel title="Vocab Growth" className="vocab-growth-panel">
+            <InfoPanel title="Vocabulary" className="vocab-growth-panel">
+              <p><strong>{activeWords.filter(word => word.status === 'known').length.toLocaleString()}</strong> marked Known · <strong>{wordsKnown.toLocaleString()}</strong> at the mastery threshold</p>
+              <p className="progress-caption">Known is your own assessment, not a claim of perfect recall. The chart below shows flashcard review history; episode completion does not automatically mark words known.</p>
               <VocabGrowthChart points={stats.retentionSeries} />
             </InfoPanel>
-            <InfoPanel title="Reading Progress" className="reading-progress-panel">
-              <ReadingProgressPanel
-                summary={stats.readingProgress}
-                onRebaseline={async () => {
-                  const count = await rebaselineReadingProgress()
-                  if (count > 0) {
-                    await refresh()
-                    queueCloudSync()
-                    setLastSummary('A new reading baseline phase now uses your latest 12 qualified sessions.')
-                  }
-                }}
-              />
+            <InfoPanel title="Episode reading time">
+              <p className="progress-caption">Active time across visits. Pauses after 1 minute without interaction and while hidden. A finish means reaching the story ending. Compare repeat readings of the same episode; episode lengths vary.</p>
+              {episodeHistory.length === 0 ? <p>Start an episode to begin tracking. Earlier reading time cannot be reconstructed.</p> : <div className="episode-time-history"><table><thead><tr><th>Episode / attempt</th><th>Active time</th><th>Status</th></tr></thead><tbody>{episodeHistory.map(row => <tr key={row.id}><td>{row.title}<small>{new Date(row.completedAt ?? row.lastAt).toLocaleDateString()}</small></td><td>{Math.floor(row.seconds / 60)}m {Math.floor(row.seconds % 60)}s</td><td>{row.completedAt ? 'Finished' : 'In progress'}{row.partial && <small>Timing began partway through</small>}</td></tr>)}</tbody></table></div>}
             </InfoPanel>
           </div>
 
@@ -3280,6 +3289,7 @@ function App() {
               <InfoPanel title="Learning process" className="process-chart-panel">
                 <LearningProcessChart points={stats.learningProcessSeries} />
               </InfoPanel>
+              <InfoPanel title="Reading Progress"><ReadingProgressPanel summary={stats.readingProgress} onRebaseline={async () => { await rebaselineReadingProgress(); await refresh(); queueCloudSync() }} /></InfoPanel>
               <InfoPanel title="Reading WPM Trend" className="reading-wpm-trend-panel">
                 {stats.readingSeries.some((point) => point.wpm > 0) ? (
                   <ReadingWpmTrendChart points={stats.readingSeries} />

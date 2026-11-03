@@ -11689,3 +11689,9 @@ main.app-shell {
 /* Six destinations fit the same floating navigation on phones. */
 .app-bottom-nav { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 .game-nav-icon { font-size: 27px; line-height: 1; }
+
+.app-screen-dashboard .rep-rings-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.episode-time-history { max-height: 420px; overflow: auto; }
+.episode-time-history table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.episode-time-history th, .episode-time-history td { text-align: left; padding: 10px 6px; border-bottom: 1px solid #cbd5e144; }
+.episode-time-history small { display: block; opacity: .7; margin-top: 4px; }
