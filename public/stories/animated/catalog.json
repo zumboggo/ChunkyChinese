@@ -1233,5 +1233,21 @@
       "title": "你想要什么？ · What Do You Want?",
       "description": "阿登给戈尔贡带来吃的。他收下了，却问了一个让阿登不太好意思的问题。"
     }
+  },
+  {
+    "id": "supportive-14-v1",
+    "category": "super-supportive",
+    "episode": 14,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-14.mp4",
+      "poster": "stories/animated/cutscenes/supportive-14.poster.jpg",
+      "title": "I'll still bring you food.",
+      "durationSeconds": 9
+    },
+    "path": "supportive-14.json",
+    "summary": {
+      "title": "Super Supportive · Episode 14 · 我还是会来",
+      "description": "他帮不上忙，我为什么还要来？在桌子前，一句话让我们的关系有了变化。"
+    }
   }
 ]

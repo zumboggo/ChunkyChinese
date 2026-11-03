@@ -1,0 +1,160 @@
+{
+  "id": "supportive-14",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 14 · 我还是会来",
+  "description": "他帮不上忙，我为什么还要来？在桌子前，一句话让我们的关系有了变化。",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-supplied EPUB, SIX: Gorgon. From It was an embarrassing admission. through the trial-and-error agreement, before the lobby doors open. Simplified Mandarin adaptation; choices vary local intention without changing canonical events."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "It was an embarrassing admission. → before Icy wind swept through the lobby as the doors opened,",
+    "dramaticChange": "Alden moves from hoping for future help to caring about a constrained individual; Gorgon cautiously discloses a food restriction but cannot explain it.",
+    "essentialNewWords": [
+      "混沌潜能",
+      "登记",
+      "惩罚"
+    ],
+    "englishNarrationPurpose": "None; Mandarin throughout.",
+    "choicesAndCallbacks": [
+      "hope: remember evidence / remember warning; different private emphasis, rejoin uncertainty; no later callback.",
+      "services: ask what help remains / ask if services are special; different direct reply, rejoin universal services; no later callback.",
+      "kindness: lead with promise / acknowledge confinement; different exchange, same canonical offer; no later callback.",
+      "food: ask about meat / examine mistaken assumption; distinct reply about inability rather than preference; rejoin restrictions; no later callback."
+    ],
+    "sceneActivities": [],
+    "storytellingVoice": "Intimate character drama",
+    "voiceReason": "The dramatic turn is a small freely offered kindness after instrumental usefulness is removed.",
+    "desire": "Understand whether his hope is reasonable and build a relationship with Gorgon.",
+    "obstacle": "Uncertain selection prospects and magical restrictions that reach even into requests for food.",
+    "earlyCare": "Alden admits his embarrassing hope without demanding reassurance; he listens when Gorgon lists his limitations.",
+    "payoff": "Alden commits to bringing food with no secret advice in return; they agree to trial and error.",
+    "newUncertainty": "Why can Gorgon not even say which food he needs? Alden suspects cruelty but does not know.",
+    "signatures": {
+      "Alden": "Polite tentative questions; privately checks his own assumptions. Embarrassment gives way to quiet determination and curiosity. Restrained reactions, attentive shared framing.",
+      "Gorgon": "Blunt limits and dry humour; strained disclosure followed by a sardonic closing. Existing static seated image; bodily changes narrated, no unsupported facial/limb animation.",
+      "Hannah": "Warm but qualified recollection, not a present conversation or proof of selection."
+    },
+    "directing": "Hold desk pair through ordinary replies. Frame Alden receiving the exhaustive refusal, then hold his decision on a reader-controlled line. Gorgon’s strained dietary disclosure gets a caption in shared framing, with Alden’s worried reaction and return to conversation.",
+    "teaser": {
+      "speaker": "Alden",
+      "line": "I'll still bring you food.",
+      "scene": "After learning Gorgon cannot give him secret help, Alden freely promises to keep bringing food to the bound desk worker.",
+      "style": "Layered cut-paper collage with visible paper fibres and clean coloured shapes",
+      "identityReference": "stories/characters/super-supportive/alden-approved-a.png"
+    },
+    "limitations": [
+      "Gorgon remains the approved static seated image; narration conveys gaze, breath and vocal strain. No unsupported physical handoff or lip sync.",
+      "Hannah’s past observation is narrated in memory rather than a new scene; her death remains unconfirmed."
+    ],
+    "vocabulary": {
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "reviewedKnown": 804,
+      "approvedAdditional": 259,
+      "effectiveFamiliarWords": 1063
+    },
+    "pinyinReview": "Reviewed all 59 sentence/chunk readings. Corrected zhi for only, dei for obligation, yiwei, neutral experiential guo, potential bu, lexical neutrals and reduplication. Checked zhang da, hun dun qian neng, hai versus huan, zhe, chong zi, zhong, and dang in context."
+  },
+  "continuation": {
+    "end": "Alden recalls Hannah’s uncertain clue about remaining conscious in her bubble. After Gorgon lists his limited public services, Alden promises to keep bringing food. Gorgon strains to explain he is not vegan but cannot name food or make requests. Alden suspects a punitive restriction and proposes trial and error; the reason remains unknown.",
+    "nextStart": "Icy wind swept through the lobby as the doors opened,",
+    "nextEndBefore": "“Tell them to stop it,” Gorgon said.",
+    "note": "Begin with the remaining lobby encounter: Gorgon embarrasses Alden about classmates’ attraction. The pinned short excerpt stops immediately before Gorgon’s final reply; inspect and include the remaining closing reply, then deliberately extend into SEVEN: A Little Delusional for a coherent next installment. Do not skip the chapter-six ending.",
+    "continuity": [
+      "Hannah’s death remains unconfirmed. Her CP idea was a tentative guess, not a diagnosis or promise of selection.",
+      "Gorgon offers the same registration and witnessing services to all visitors, plus pens; no privileged advice or transfer of authority.",
+      "Alden chooses to keep bringing food after learning Gorgon cannot give the hoped-for help.",
+      "Gorgon is not vegan but cannot explain his food restrictions or make requests; the reason is still unknown. Alden suspects punitive cruelty and agrees to trial and error."
+    ]
+  },
+  "routes": [
+    {
+      "choices": [
+        "evidence",
+        "practical",
+        "promise",
+        "meat"
+      ],
+      "contains": [
+        "我还是会给你带吃的。",
+        "那我们就一个一个试试看？"
+      ],
+      "endsWith": "我不知道下次要带什么。可我还是会来。"
+    },
+    {
+      "choices": [
+        "warning",
+        "special",
+        "confinement",
+        "assumption"
+      ],
+      "contains": [
+        "她没有说我一定会被选择。我不能只听自己想听的话。",
+        "下次来，我还会带东西。你有没有特别想吃的？"
+      ],
+      "endsWith": "我不知道下次要带什么。可我还是会来。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-14-v1",
+    "category": "super-supportive",
+    "episode": 14,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-14.mp4",
+      "poster": "stories/animated/cutscenes/supportive-14.poster.jpg",
+      "title": "I'll still bring you food.",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "speaker": "Alden",
+    "line": "I'll still bring you food.",
+    "scene": "After learning Gorgon cannot give him secret help, Alden freely promises to keep bringing food to the bound desk worker.",
+    "style": "Layered cut-paper collage with visible paper fibres and clean coloured shapes",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "y76yf9qd9hrmy0d1m1191egyrg",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "pricing": "Live billing configuration and input schema checked 2026-11-03: 480p cost tier $0.01/output second, six seconds with native audio, prompt_upsampler off. Maximum $0.06.",
+    "generatedDurationSeconds": 6,
+    "finishing": "Full six seconds retained after three-second first-frame hold. Offline speech check passes for exactly one utterance.",
+    "imageGeneration": "Built-in imagegen using approved Alden identity; layered cut-paper collage at the consulate desk.",
+    "image": "stories/characters/super-supportive/supportive-14-opening.png",
+    "checks": {
+      "sha256": "128b0441e75292d512c87f28173aa237dd41e1dd8dfbcb06d989a066634d8d15",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 6,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "I'll still bring you food."
+    }
+  },
+  "verification": {
+    "packageBytes": 3237040,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 95.5965909090909,
+      "max": 96.11650485436893
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "现在你知道了。我帮不上你什么忙，你还想给我送东西吗？",
+      "我看桌子后面的他。他不能走，可我想走就能走。",
+      "我还是会给你带吃的。",
+      "其实，我一点也不明白。连想吃什么，他都不能说？",
+      "我不知道下次要带什么。可我还是会来。"
+    ]
+  }
+}
