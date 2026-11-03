@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0005_FIVE_The_Nice_One.xhtml",
-    "nextStart": "Outside the window, buildings raced past.",
-    "nextEndBefore": "Suddenly, a flip-flop nudged Alden’s shin.",
-    "continuationNote": "City repairs and Skiff’s pursuit lead Alden to remember Hannah’s changing heroic motto and consider why superheroes need support. Preserve his inferences as inferences."
+    "nextStart": "Suddenly, a flip-flop nudged Alden’s shin.",
+    "nextEndBefore": "A note from Sleyca",
+    "continuationNote": "Jeremy brings Alden back to the train stop; friends argue about who is nice, mean or funny, and Jeremy unexpectedly identifies Alden’s persistent wish to be a superhero. End at the chapter’s closing conversation, before the author note."
   },
   "completed": [
     {
@@ -49,9 +49,13 @@
     {
       "episode": "supportive-10-v1",
       "end": "Alden replays Hannah’s summons message and Cly’s two updates. Hannah has been missing six months; her friends propose a funeral on her birthday. Alden switches off the System without answering the teleport invitation. Her death is not confirmed."
+    },
+    {
+      "episode": "supportive-11-v1",
+      "end": "After replaying the messages, Alden sees the repaired city and recalls Hannah’s changed heroic motto. At eleven he found it sad; now he considers Skiff’s emotional burden and why complementary support could change a fight. Hannah’s absence remains unresolved."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-10.json",
+  "assetsFrom": "stories/animated/supportive-11.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -66,19 +70,19 @@
     "openingArt": "Each opening depicts an episode-specific event, location, action and composition. Preserve approved character identity while experimenting with a distinct art medium each episode. Identity references must not cause repeated scenery."
   },
   "continuity": [
-    "Alden is sixteen on the train with Jeremy and Boe.",
-    "Hannah left on her fourth summons six months ago and has not returned.",
-    "Cly proposes a funeral on February thirteenth, Hannah’s birthday, and offers to order Alden a teleport.",
-    "Alden has not accepted the invitation. Hannah’s death remains unconfirmed.",
-    "Alden stops the System after replaying all three messages."
+    "Alden is sixteen on the train; the eleven-year-old island conversation was a memory.",
+    "Hannah has been missing six months; her death remains unconfirmed.",
+    "Alden suspects Skiff’s strained smile reflects the cost of drowning the villain; this is not confirmed.",
+    "Hannah chose support abilities despite their risks and believed complementary heroes could multiply each other’s effectiveness.",
+    "Jeremy is about to nudge Alden because they have reached their stop."
   ],
-  "castRecipes": "stories/characters/super-supportive/cast-09.json",
-  "castBundle": "public/stories/animated/cast/supportive-09.json",
+  "castRecipes": "stories/characters/super-supportive/cast-11.json",
+  "castBundle": "public/stories/animated/cast/supportive-11.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-10-v1",
-    "nextStart": "Outside the window, buildings raced past.",
-    "nextEndBefore": "Suddenly, a flip-flop nudged Alden’s shin.",
-    "assetsFrom": "stories/animated/supportive-10.json"
+    "note": "Published through supportive-11-v1",
+    "nextStart": "Suddenly, a flip-flop nudged Alden’s shin.",
+    "nextEndBefore": "A note from Sleyca",
+    "assetsFrom": "stories/animated/supportive-11.json"
   }
 }
