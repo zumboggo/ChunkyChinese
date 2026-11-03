@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0006_SIX_Gorgon.xhtml",
-    "nextStart": "Fifteen minutes later, Alden and his friends arrived at the Artonan consulate building.",
-    "nextEndBefore": "It was an embarrassing admission.",
-    "continuationNote": "Arrival and food delivery to Gorgon. End after Alden admits his specific dream, before the deeper background about Hannah’s suspicion."
+    "nextStart": "It was an embarrassing admission.",
+    "nextEndBefore": "Icy wind swept through the lobby as the doors opened,",
+    "continuationNote": "Continue with Hannah’s observation about Alden staying conscious inside her spell, Gorgon’s limited services, and Alden’s decision to keep bringing food. End after trial-and-error agreement, before girls enter the lobby."
   },
   "completed": [
     {
@@ -57,9 +57,13 @@
     {
       "episode": "supportive-12-v1",
       "end": "Jeremy brings Alden back to the train stop. Friends tease one another about being funny, mean and nice. Jeremy identifies Alden’s persistent heroic dream beneath his sensible college planning; Alden is embarrassed and Boe is impressed."
+    },
+    {
+      "episode": "supportive-13-v1",
+      "end": "Alden brings Gorgon coconut-milk hot chocolate and spicy food. Gorgon challenges his motives. Alden admits hoping for friendship and future System advice, learns that magical restraints prevent secret information, and quietly explains that a friend thought his selection chances might be better than normal. He admits having a specific dream."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-12.json",
+  "assetsFrom": "stories/animated/supportive-13.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -74,18 +78,18 @@
     "openingArt": "Each opening depicts an episode-specific event, location, action and composition. Preserve approved character identity while experimenting with a distinct art medium each episode. Identity references must not cause repeated scenery."
   },
   "continuity": [
-    "Hannah remains missing; death is unconfirmed.",
-    "Friends know Alden’s superhero ambition. Jeremy sees it as sweet.",
-    "Group walks toward consulate classes.",
-    "Alden has sensible public plans and a persistent heroic dream."
+    "Hannah’s death remains unconfirmed. Alden refers to her past belief without telling his friends the reason for his hopes.",
+    "Gorgon accepted coconut-milk cocoa and spicy giardiniera. His dietary restrictions remain unclear.",
+    "Gorgon is magically bound to the desk and forbidden to disclose nonpublic information.",
+    "Alden openly hoped to befriend Gorgon for future advice; the limit does not end his interest."
   ],
   "castRecipes": "stories/characters/super-supportive/cast-11.json",
-  "castBundle": "public/stories/animated/cast/supportive-11.json",
+  "castBundle": "public/stories/animated/cast/supportive-13.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-12-v1",
-    "nextStart": "Fifteen minutes later, Alden and his friends arrived at the Artonan consulate building.",
-    "nextEndBefore": "It was an embarrassing admission.",
-    "assetsFrom": "stories/animated/supportive-12.json"
+    "note": "Published through supportive-13-v1",
+    "nextStart": "It was an embarrassing admission.",
+    "nextEndBefore": "Icy wind swept through the lobby as the doors opened,",
+    "assetsFrom": "stories/animated/supportive-13.json"
   }
 }
