@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0005_FIVE_The_Nice_One.xhtml",
-    "nextStart": "A familiar, bright voice interrupted his inspection.",
-    "nextEndBefore": "Outside the window, buildings raced past.",
-    "continuationNote": "The three voicemails reveal Hannah has been missing six months. Preserve uncertainty: a planned funeral is not confirmed death. End with Alden switching off the System; can extend deliberately to the next reflective passage."
+    "nextStart": "Outside the window, buildings raced past.",
+    "nextEndBefore": "Suddenly, a flip-flop nudged Alden’s shin.",
+    "continuationNote": "City repairs and Skiff’s pursuit lead Alden to remember Hannah’s changing heroic motto and consider why superheroes need support. Preserve his inferences as inferences."
   },
   "completed": [
     {
@@ -45,9 +45,13 @@
     {
       "episode": "supportive-09-v1",
       "end": "Five years later, Alden and friends trade jokes on their way to alien school; he privately asks to replay his last three voicemails."
+    },
+    {
+      "episode": "supportive-10-v1",
+      "end": "Alden replays Hannah’s summons message and Cly’s two updates. Hannah has been missing six months; her friends propose a funeral on her birthday. Alden switches off the System without answering the teleport invitation. Her death is not confirmed."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-09.json",
+  "assetsFrom": "stories/animated/supportive-10.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -62,18 +66,19 @@
     "openingArt": "Each opening depicts an episode-specific event, location, action and composition. Preserve approved character identity while experimenting with a distinct art medium each episode. Identity references must not cause repeated scenery."
   },
   "continuity": [
-    "Alden is now sixteen, travelling to alien school with Jeremy and Boe.",
-    "Jeremy endured winter in summer clothes for a ten-dollar dare.",
-    "Alden has System phone access after his first call to Hannah and has retained her messages.",
-    "The voicemails have not yet played in the episode."
+    "Alden is sixteen on the train with Jeremy and Boe.",
+    "Hannah left on her fourth summons six months ago and has not returned.",
+    "Cly proposes a funeral on February thirteenth, Hannah’s birthday, and offers to order Alden a teleport.",
+    "Alden has not accepted the invitation. Hannah’s death remains unconfirmed.",
+    "Alden stops the System after replaying all three messages."
   ],
   "castRecipes": "stories/characters/super-supportive/cast-09.json",
   "castBundle": "public/stories/animated/cast/supportive-09.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-09-v1",
-    "nextStart": "A familiar, bright voice interrupted his inspection.",
-    "nextEndBefore": "Outside the window, buildings raced past.",
-    "assetsFrom": "stories/animated/supportive-09.json"
+    "note": "Published through supportive-10-v1",
+    "nextStart": "Outside the window, buildings raced past.",
+    "nextEndBefore": "Suddenly, a flip-flop nudged Alden’s shin.",
+    "assetsFrom": "stories/animated/supportive-10.json"
   }
 }
