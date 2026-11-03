@@ -1169,5 +1169,21 @@
       "title": "十美元的冬天 · A Ten-Dollar Winter",
       "description": "五年后，十六岁的阿登和朋友们坐车去上学。车外很冷，车里有笑声，还有一条舍不得放下的旧消息。"
     }
+  },
+  {
+    "id": "supportive-10-v1",
+    "category": "super-supportive",
+    "episode": 10,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-10.mp4",
+      "poster": "stories/animated/cutscenes/supportive-10.poster.jpg",
+      "title": "We'll hang out when I get back.",
+      "durationSeconds": 5.875
+    },
+    "path": "supportive-10.json",
+    "summary": {
+      "title": "再听一遍 · Listen Again",
+      "description": "三条留言，一次还没等到的见面。阿登听着熟悉的声音，手里的手机越来越紧。"
+    }
   }
 ]

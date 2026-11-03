@@ -1,0 +1,148 @@
+{
+  "id": "supportive-10",
+  "series": "super-supportive",
+  "title": "再听一遍 · Listen Again",
+  "description": "三条留言，一次还没等到的见面。阿登听着熟悉的声音，手里的手机越来越紧。",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-supplied EPUB, FIVE: The Nice One, three saved voicemails through Alden switching off the System. Mandarin adaptation, not official translation."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Three saved voicemails; stop before Outside the window, buildings raced past.",
+    "dramaticChange": "Hannah’s cheerful promise gives way to Cly’s proposed funeral; Alden stops playback without resolving her fate.",
+    "essentialNewWords": [
+      "召唤",
+      "葬礼",
+      "传送"
+    ],
+    "englishNarrationPurpose": "No added English narrative.",
+    "choicesAndCallbacks": [
+      "Voice or smile: distinct private attention, rejoin first recording.",
+      "Visit or ice park: preserve annual promise, rejoin Cly.",
+      "Any day or still away: contrast assurance and absence, rejoin latest message.",
+      "Birthday or mother: attend to different costs, rejoin teleport invitation."
+    ],
+    "sceneActivities": [],
+    "storytellingVoice": "Intimate character drama",
+    "voiceReason": "Recorded affection and Alden’s private bodily response carry this quiet source passage.",
+    "desire": "Hear Hannah’s familiar voice and hold on to her promised return.",
+    "obstacle": "The messages move from a short postponement to six months missing.",
+    "earlyCare": "He can picture her smile with his eyes shut and wonders whether her brightness is for him.",
+    "payoff": "Reveal exactly what the three messages contain; Alden makes the small concrete decision to stop replay.",
+    "newUncertainty": "Will Hannah return, and will Alden accept a teleport to the proposed funeral?",
+    "directing": "Alden remains seated on the train; recorded speech is quoted within his first-person hearing, never staged as live speakers. Listener framing holds the six-month revelation and next reader-controlled bodily response.",
+    "signatures": {
+      "Alden": "Quiet sensory attention; seated, increasingly downcast, tight grip described honestly.",
+      "Hannah": "Bright direct greeting, practical reassurance and specific future plan in a recording.",
+      "Cly": "Initial fluent reassurance gives way to hesitations and careful qualifications."
+    },
+    "teaser": {
+      "speaker": "Hannah",
+      "line": "We’ll hang out when I get back.",
+      "scene": "Hannah leaving the cheerful voicemail before her summons; the promise Alden replays on the train.",
+      "style": "Luminous cut-paper collage with layered paper shadows",
+      "identityReference": "stories/characters/super-supportive/supportive-07-opening.png",
+      "finishing": "Use clean final 2.9 seconds of generated shot after extra early speech; retain three-second first-frame hold."
+    },
+    "pinyinReview": "Reviewed all 43 entries and contextual chunks. Corrected sustained zhe, necessity dei, complement/adverbial de, lexical neutral syllables, reduplicated verbs and experience guo; retained full-tone renwu. Reviewed hai, zhi, date and summon readings.",
+    "limitations": [
+      "Recorded voices are quoted within Alden’s first-person narration; speaker portraits remain offstage to avoid presenting a live conversation. Phone grip is conveyed through text; seated posture and expression carry the visual aftermath."
+    ]
+  },
+  "continuation": {
+    "end": "Alden replays Hannah’s summons message and Cly’s two updates. Hannah has been missing six months; her friends propose a funeral on her birthday. Alden switches off the System without answering the teleport invitation. Her death is not confirmed.",
+    "nextStart": "Outside the window, buildings raced past.",
+    "nextEndBefore": "Suddenly, a flip-flop nudged Alden’s shin.",
+    "note": "City repairs and Skiff’s pursuit lead Alden to remember Hannah’s changing heroic motto and consider why superheroes need support. Preserve his inferences as inferences.",
+    "continuity": [
+      "Alden is sixteen on the train with Jeremy and Boe.",
+      "Hannah left on her fourth summons six months ago and has not returned.",
+      "Cly proposes a funeral on February thirteenth, Hannah’s birthday, and offers to order Alden a teleport.",
+      "Alden has not accepted the invitation. Hannah’s death remains unconfirmed.",
+      "Alden stops the System after replaying all three messages."
+    ]
+  },
+  "routes": [
+    {
+      "choices": [
+        "voice",
+        "annual",
+        "soon",
+        "birthday"
+      ],
+      "contains": [
+        "“她要是还不回来，我们就要为她准备葬礼。”",
+        "“现在已经半年了。我们……跟她一起的那些人，觉得不能一直这样等了。”"
+      ],
+      "endsWith": "我把系统关掉了。"
+    },
+    {
+      "choices": [
+        "face",
+        "park",
+        "away",
+        "mother"
+      ],
+      "contains": [
+        "他跟我说一切都好。可是，这一次说话的人不是她。"
+      ],
+      "endsWith": "我把系统关掉了。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-10-v1",
+    "category": "super-supportive",
+    "episode": 10,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-10.mp4",
+      "poster": "stories/animated/cutscenes/supportive-10.poster.jpg",
+      "title": "We'll hang out when I get back.",
+      "durationSeconds": 5.875
+    }
+  },
+  "teaser": {
+    "scene": "Hannah records her promise to meet Alden when she returns from her summons.",
+    "style": "Layered cut-paper collage",
+    "identityReference": "stories/characters/super-supportive/supportive-07-opening.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "jmtkddcwk5rmt0d1kxmbed03r4",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "pricing": "Live billingConfig 480p cost tier: $0.01 per output second, 6 generated seconds, native audio, prompt_upsampler off.",
+    "finishing": "Trimmed native interval 3.1–6.0 seconds using measured word timing to remove unwanted lead-in speech. Added three-second first-frame hold.",
+    "generatedDurationSeconds": 6,
+    "image": "stories/characters/super-supportive/supportive-10-opening.png",
+    "checks": {
+      "sha256": "bd668d1f626fd1cd0f6effc71b2f7a8647ee83ffb2df33dead1233fedc26f30d",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 5.875,
+      "hold_seconds": 3,
+      "motion_seconds": 2.875,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "We'll hang out when I get back."
+    }
+  },
+  "verification": {
+    "packageBytes": 1153020,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 96.42857142857143,
+      "max": 96.70781893004116
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "“二月十三号。她生日那天。”",
+      "我听着。他说的是我已经知道的日子，可我的心还是跳得很快。",
+      "我把系统关掉了。"
+    ]
+  }
+}
