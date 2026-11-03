@@ -4,10 +4,10 @@
   "source": {
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
-    "chapter": "OEBPS/Text/0005_FIVE_The_Nice_One.xhtml",
-    "nextStart": "Suddenly, a flip-flop nudged Alden’s shin.",
-    "nextEndBefore": "A note from Sleyca",
-    "continuationNote": "Jeremy brings Alden back to the train stop; friends argue about who is nice, mean or funny, and Jeremy unexpectedly identifies Alden’s persistent wish to be a superhero. End at the chapter’s closing conversation, before the author note."
+    "chapter": "OEBPS/Text/0006_SIX_Gorgon.xhtml",
+    "nextStart": "Fifteen minutes later, Alden and his friends arrived at the Artonan consulate building.",
+    "nextEndBefore": "It was an embarrassing admission.",
+    "continuationNote": "Arrival and food delivery to Gorgon. End after Alden admits his specific dream, before the deeper background about Hannah’s suspicion."
   },
   "completed": [
     {
@@ -53,9 +53,13 @@
     {
       "episode": "supportive-11-v1",
       "end": "After replaying the messages, Alden sees the repaired city and recalls Hannah’s changed heroic motto. At eleven he found it sad; now he considers Skiff’s emotional burden and why complementary support could change a fight. Hannah’s absence remains unresolved."
+    },
+    {
+      "episode": "supportive-12-v1",
+      "end": "Jeremy brings Alden back to the train stop. Friends tease one another about being funny, mean and nice. Jeremy identifies Alden’s persistent heroic dream beneath his sensible college planning; Alden is embarrassed and Boe is impressed."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-11.json",
+  "assetsFrom": "stories/animated/supportive-12.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -70,19 +74,18 @@
     "openingArt": "Each opening depicts an episode-specific event, location, action and composition. Preserve approved character identity while experimenting with a distinct art medium each episode. Identity references must not cause repeated scenery."
   },
   "continuity": [
-    "Alden is sixteen on the train; the eleven-year-old island conversation was a memory.",
-    "Hannah has been missing six months; her death remains unconfirmed.",
-    "Alden suspects Skiff’s strained smile reflects the cost of drowning the villain; this is not confirmed.",
-    "Hannah chose support abilities despite their risks and believed complementary heroes could multiply each other’s effectiveness.",
-    "Jeremy is about to nudge Alden because they have reached their stop."
+    "Hannah remains missing; death is unconfirmed.",
+    "Friends know Alden’s superhero ambition. Jeremy sees it as sweet.",
+    "Group walks toward consulate classes.",
+    "Alden has sensible public plans and a persistent heroic dream."
   ],
   "castRecipes": "stories/characters/super-supportive/cast-11.json",
   "castBundle": "public/stories/animated/cast/supportive-11.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-11-v1",
-    "nextStart": "Suddenly, a flip-flop nudged Alden’s shin.",
-    "nextEndBefore": "A note from Sleyca",
-    "assetsFrom": "stories/animated/supportive-11.json"
+    "note": "Published through supportive-12-v1",
+    "nextStart": "Fifteen minutes later, Alden and his friends arrived at the Artonan consulate building.",
+    "nextEndBefore": "It was an embarrassing admission.",
+    "assetsFrom": "stories/animated/supportive-12.json"
   }
 }
