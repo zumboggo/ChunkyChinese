@@ -1,0 +1,1280 @@
+{
+  "系统关掉了。我看窗户外面，房子一座座过去。以前的家，就在这附近。": {
+    "english": "The System is off. I look out the window, as buildings pass one after another. My old home is near here.",
+    "pinyin": "xì tǒng guān diào le 。 wǒ kàn chuāng hu wài miàn ， fáng zi yí zuò zuò guò qù 。 yǐ qián de jiā ， jiù zài zhè fù jìn 。",
+    "interlinear": [
+      {
+        "chinese": "系统关掉了。",
+        "gloss": "The System is off.",
+        "pinyin": "xì tǒng guān diào le 。"
+      },
+      {
+        "chinese": "我看窗户外面，",
+        "gloss": "I look out the window,",
+        "pinyin": "wǒ kàn chuāng hu wài miàn ，"
+      },
+      {
+        "chinese": "房子一座座过去。",
+        "gloss": "as buildings pass one after another.",
+        "pinyin": "fáng zi yí zuò zuò guò qù 。"
+      },
+      {
+        "chinese": "以前的家，",
+        "gloss": "My old home",
+        "pinyin": "yǐ qián de jiā ，"
+      },
+      {
+        "chinese": "就在这附近。",
+        "gloss": "is near here.",
+        "pinyin": "jiù zài zhè fù jìn 。"
+      }
+    ]
+  },
+  "出事的房子已经重新做好了。那个死过很多人的地方，也和以前一样了。": {
+    "english": "The building where it happened has been rebuilt. The place where so many people died also looks the way it used to.",
+    "pinyin": "chū shì de fáng zi yǐ jīng chóng xīn zuò hǎo le 。 nà ge sǐ guo hěn duō rén de dì fang ， yě hé yǐ qián yí yàng le 。",
+    "interlinear": [
+      {
+        "chinese": "出事的房子",
+        "gloss": "The building where it happened",
+        "pinyin": "chū shì de fáng zi"
+      },
+      {
+        "chinese": "已经重新做好了。",
+        "gloss": "has been rebuilt.",
+        "pinyin": "yǐ jīng chóng xīn zuò hǎo le 。"
+      },
+      {
+        "chinese": "那个死过很多人的地方，",
+        "gloss": "The place where so many people died",
+        "pinyin": "nà ge sǐ guo hěn duō rén de dì fang ，"
+      },
+      {
+        "chinese": "也和以前一样了。",
+        "gloss": "also looks the way it used to.",
+        "pinyin": "yě hé yǐ qián yí yàng le 。"
+      }
+    ]
+  },
+  "城市看起来没有伤疤了。至少，眼睛看得见的地方没有。": {
+    "english": "The city seems to have no scars left. At least, none where you can see them.",
+    "pinyin": "chéng shì kàn qǐ lái méi yǒu shāng bā le 。 zhì shǎo ， yǎn jing kàn de jiàn de dì fang méi yǒu 。",
+    "interlinear": [
+      {
+        "chinese": "城市看起来没有伤疤了。",
+        "gloss": "The city seems to have no scars left.",
+        "pinyin": "chéng shì kàn qǐ lái méi yǒu shāng bā le 。"
+      },
+      {
+        "chinese": "至少，",
+        "gloss": "At least,",
+        "pinyin": "zhì shǎo ，"
+      },
+      {
+        "chinese": "眼睛看得见的地方没有。",
+        "gloss": "none where you can see them.",
+        "pinyin": "yǎn jing kàn de jiàn de dì fang méi yǒu 。"
+      }
+    ]
+  },
+  "想想以前的家。": {
+    "english": "Think about your old home.",
+    "pinyin": "xiǎng xiang yǐ qián de jiā 。",
+    "interlinear": [
+      {
+        "chinese": "想想以前的家。",
+        "gloss": "Think about your old home.",
+        "pinyin": "xiǎng xiang yǐ qián de jiā 。"
+      }
+    ]
+  },
+  "想想昨天晚上的消息。": {
+    "english": "Think about last night’s news.",
+    "pinyin": "xiǎng xiang zuó tiān wǎn shang de xiāo xi 。",
+    "interlinear": [
+      {
+        "chinese": "想想昨天晚上的消息。",
+        "gloss": "Think about last night’s news.",
+        "pinyin": "xiǎng xiang zuó tiān wǎn shang de xiāo xi 。"
+      }
+    ]
+  },
+  "我还记得房间在哪里。可外面的房子，看起来像什么也没发生过。": {
+    "english": "I still remember where the rooms were. But the buildings outside look as though nothing ever happened.",
+    "pinyin": "wǒ hái jì de fáng jiān zài nǎ lǐ 。 kě wài miàn de fáng zi ， kàn qǐ lái xiàng shén me yě méi fā shēng guo 。",
+    "interlinear": [
+      {
+        "chinese": "我还记得房间在哪里。",
+        "gloss": "I still remember where the rooms were.",
+        "pinyin": "wǒ hái jì de fáng jiān zài nǎ lǐ 。"
+      },
+      {
+        "chinese": "可外面的房子，",
+        "gloss": "But the buildings outside",
+        "pinyin": "kě wài miàn de fáng zi ，"
+      },
+      {
+        "chinese": "看起来像什么也没发生过。",
+        "gloss": "look as though nothing ever happened.",
+        "pinyin": "kàn qǐ lái xiàng shén me yě méi fā shēng guo 。"
+      }
+    ]
+  },
+  "大家已经在说新的坏人，新的危险了。昨天晚上，又有一个英雄上了电视。": {
+    "english": "People are already talking about new villains and new dangers. Last night, another hero was on television.",
+    "pinyin": "dà jiā yǐ jīng zài shuō xīn de huài rén ， xīn de wēi xiǎn le 。 zuó tiān wǎn shang ， yòu yǒu yí gè yīng xióng shàng le diàn shì 。",
+    "interlinear": [
+      {
+        "chinese": "大家已经在说",
+        "gloss": "People are already talking about",
+        "pinyin": "dà jiā yǐ jīng zài shuō"
+      },
+      {
+        "chinese": "新的坏人，新的危险了。",
+        "gloss": "new villains and new dangers.",
+        "pinyin": "xīn de huài rén ， xīn de wēi xiǎn le 。"
+      },
+      {
+        "chinese": "昨天晚上，",
+        "gloss": "Last night,",
+        "pinyin": "zuó tiān wǎn shang ，"
+      },
+      {
+        "chinese": "又有一个英雄上了电视。",
+        "gloss": "another hero was on television.",
+        "pinyin": "yòu yǒu yí gè yīng xióng shàng le diàn shì 。"
+      }
+    ]
+  },
+  "那个英雄能控制水。他花了一个小时，才让那个能改变地面的坏人停下来。": {
+    "english": "That hero can control water. It took him an hour to stop the villain who could reshape the ground.",
+    "pinyin": "nà ge yīng xióng néng kòng zhì shuǐ 。 tā huā le yí gè xiǎo shí ， cái ràng nà ge néng gǎi biàn dì miàn de huài rén tíng xià lái 。",
+    "interlinear": [
+      {
+        "chinese": "那个英雄能控制水。",
+        "gloss": "That hero can control water.",
+        "pinyin": "nà ge yīng xióng néng kòng zhì shuǐ 。"
+      },
+      {
+        "chinese": "他花了一个小时，",
+        "gloss": "It took him an hour",
+        "pinyin": "tā huā le yí gè xiǎo shí ，"
+      },
+      {
+        "chinese": "才让那个能改变地面的坏人停下来。",
+        "gloss": "to stop the villain who could reshape the ground.",
+        "pinyin": "cái ràng nà ge néng gǎi biàn dì miàn de huài rén tíng xià lái 。"
+      }
+    ]
+  },
+  "有些房子进了水，地下让水走的路也出了问题。不过，受伤的人不多，而且很快就能好。": {
+    "english": "Some buildings were flooded, and underground water channels were damaged too. But few people were injured, and they would recover quickly.",
+    "pinyin": "yǒu xiē fáng zi jìn le shuǐ ， dì xià ràng shuǐ zǒu de lù yě chū le wèn tí 。 bú guò ， shòu shāng de rén bù duō ， ér qiě hěn kuài jiù néng hǎo 。",
+    "interlinear": [
+      {
+        "chinese": "有些房子进了水，",
+        "gloss": "Some buildings were flooded,",
+        "pinyin": "yǒu xiē fáng zi jìn le shuǐ ，"
+      },
+      {
+        "chinese": "地下让水走的路也出了问题。",
+        "gloss": "and underground water channels were damaged too.",
+        "pinyin": "dì xià ràng shuǐ zǒu de lù yě chū le wèn tí 。"
+      },
+      {
+        "chinese": "不过，受伤的人不多，",
+        "gloss": "But few people were injured,",
+        "pinyin": "bú guò ， shòu shāng de rén bù duō ，"
+      },
+      {
+        "chinese": "而且很快就能好。",
+        "gloss": "and they would recover quickly.",
+        "pinyin": "ér qiě hěn kuài jiù néng hǎo 。"
+      }
+    ]
+  },
+  "只有那个坏人，还在医院里，需要医生一直在旁边。他差一点死在水里。": {
+    "english": "Only the villain is still in the hospital, needing doctors constantly nearby. He nearly drowned.",
+    "pinyin": "zhǐ yǒu nà ge huài rén ， hái zài yī yuàn lǐ ， xū yào yī shēng yì zhí zài páng biān 。 tā chà yì diǎn sǐ zài shuǐ lǐ 。",
+    "interlinear": [
+      {
+        "chinese": "只有那个坏人，",
+        "gloss": "Only the villain",
+        "pinyin": "zhǐ yǒu nà ge huài rén ，"
+      },
+      {
+        "chinese": "还在医院里，",
+        "gloss": "is still in the hospital,",
+        "pinyin": "hái zài yī yuàn lǐ ，"
+      },
+      {
+        "chinese": "需要医生一直在旁边。",
+        "gloss": "needing doctors constantly nearby.",
+        "pinyin": "xū yào yī shēng yì zhí zài páng biān 。"
+      },
+      {
+        "chinese": "他差一点死在水里。",
+        "gloss": "He nearly drowned.",
+        "pinyin": "tā chà yì diǎn sǐ zài shuǐ lǐ 。"
+      }
+    ]
+  },
+  "大家觉得，这样已经很好了。他救了人。可是，他笑起来好像很累。": {
+    "english": "People think this is already a good outcome. He saved people. But his smile looks tired.",
+    "pinyin": "dà jiā jué de ， zhè yàng yǐ jīng hěn hǎo le 。 tā jiù le rén 。 kě shì ， tā xiào qǐ lái hǎo xiàng hěn lèi 。",
+    "interlinear": [
+      {
+        "chinese": "大家觉得，",
+        "gloss": "People think",
+        "pinyin": "dà jiā jué de ，"
+      },
+      {
+        "chinese": "这样已经很好了。",
+        "gloss": "this is already a good outcome.",
+        "pinyin": "zhè yàng yǐ jīng hěn hǎo le 。"
+      },
+      {
+        "chinese": "他救了人。",
+        "gloss": "He saved people.",
+        "pinyin": "tā jiù le rén 。"
+      },
+      {
+        "chinese": "可是，他笑起来好像很累。",
+        "gloss": "But his smile looks tired.",
+        "pinyin": "kě shì ， tā xiào qǐ lái hǎo xiàng hěn lèi 。"
+      }
+    ]
+  },
+  "我想起第一次去岛上见她的时候。那年我十一岁，带了一本子的问题，什么都想知道。": {
+    "english": "I remember my first visit to see her on the island. I was eleven that year, with a notebook full of questions, wanting to know everything.",
+    "pinyin": "wǒ xiǎng qǐ dì yī cì qù dǎo shàng jiàn tā de shí hou 。 nà nián wǒ shí yī suì ， dài le yì běn zi de wèn tí ， shén me dōu xiǎng zhī dào 。",
+    "interlinear": [
+      {
+        "chinese": "我想起第一次去岛上见她的时候。",
+        "gloss": "I remember my first visit to see her on the island.",
+        "pinyin": "wǒ xiǎng qǐ dì yī cì qù dǎo shàng jiàn tā de shí hou 。"
+      },
+      {
+        "chinese": "那年我十一岁，",
+        "gloss": "I was eleven that year,",
+        "pinyin": "nà nián wǒ shí yī suì ，"
+      },
+      {
+        "chinese": "带了一本子的问题，",
+        "gloss": "with a notebook full of questions,",
+        "pinyin": "dài le yì běn zi de wèn tí ，"
+      },
+      {
+        "chinese": "什么都想知道。",
+        "gloss": "wanting to know everything.",
+        "pinyin": "shén me dōu xiǎng zhī dào 。"
+      }
+    ]
+  },
+  "那时候，我们面对面坐着。我喝草莓奶昔，我们还一起吃薯条。": {
+    "english": "Back then, we sat across from each other. I drank a strawberry milkshake, and we shared fries.",
+    "pinyin": "nà shí hou ， wǒ men miàn duì miàn zuò zhe 。 wǒ hē cǎo méi nǎi xī ， wǒ men hái yì qǐ chī shǔ tiáo 。",
+    "interlinear": [
+      {
+        "chinese": "那时候，",
+        "gloss": "Back then,",
+        "pinyin": "nà shí hou ，"
+      },
+      {
+        "chinese": "我们面对面坐着。",
+        "gloss": "we sat across from each other.",
+        "pinyin": "wǒ men miàn duì miàn zuò zhe 。"
+      },
+      {
+        "chinese": "我喝草莓奶昔，",
+        "gloss": "I drank a strawberry milkshake,",
+        "pinyin": "wǒ hē cǎo méi nǎi xī ，"
+      },
+      {
+        "chinese": "我们还一起吃薯条。",
+        "gloss": "and we shared fries.",
+        "pinyin": "wǒ men hái yì qǐ chī shǔ tiáo 。"
+      }
+    ]
+  },
+  "以前上大学的时候，老师让我们想想，以后做事，最想记住的是什么。": {
+    "english": "Back when I was in college, our teachers asked us to think about what, in our future work, we most wanted to keep in mind.",
+    "pinyin": "yǐ qián shàng dà xué de shí hou ， lǎo shī ràng wǒ men xiǎng xiang ， yǐ hòu zuò shì ， zuì xiǎng jì zhù de shì shén me 。",
+    "interlinear": [
+      {
+        "chinese": "以前上大学的时候，",
+        "gloss": "Back when I was in college,",
+        "pinyin": "yǐ qián shàng dà xué de shí hou ，"
+      },
+      {
+        "chinese": "老师让我们想想，",
+        "gloss": "our teachers asked us to think about",
+        "pinyin": "lǎo shī ràng wǒ men xiǎng xiang ，"
+      },
+      {
+        "chinese": "以后做事，",
+        "gloss": "what, in our future work,",
+        "pinyin": "yǐ hòu zuò shì ，"
+      },
+      {
+        "chinese": "最想记住的是什么。",
+        "gloss": "we most wanted to keep in mind.",
+        "pinyin": "zuì xiǎng jì zhù de shì shén me 。"
+      }
+    ]
+  },
+  "我说的是：“很高兴能帮忙！”很多人都这样说，对吧？": {
+    "english": "My answer was: “Happy to help!” Lots of people say that, right?",
+    "pinyin": "wǒ shuō de shì ： “ hěn gāo xìng néng bāng máng ！ ” hěn duō rén dōu zhè yàng shuō ， duì ba ？",
+    "interlinear": [
+      {
+        "chinese": "我说的是：",
+        "gloss": "My answer was:",
+        "pinyin": "wǒ shuō de shì ："
+      },
+      {
+        "chinese": "“很高兴能帮忙！”",
+        "gloss": "“Happy to help!”",
+        "pinyin": "“ hěn gāo xìng néng bāng máng ！ ”"
+      },
+      {
+        "chinese": "很多人都这样说，对吧？",
+        "gloss": "Lots of people say that, right?",
+        "pinyin": "hěn duō rén dōu zhè yàng shuō ， duì ba ？"
+      }
+    ]
+  },
+  "可现在做了一段时间，我想说：“我们还可以做得更好。”": {
+    "english": "But now that I have done hero work for a while, I would say, “We could have done that better.”",
+    "pinyin": "kě xiàn zài zuò le yí duàn shí jiān ， wǒ xiǎng shuō ： “ wǒ men hái kě yǐ zuò de gèng hǎo 。 ”",
+    "interlinear": [
+      {
+        "chinese": "可现在做了一段时间，",
+        "gloss": "But now that I have been doing this for a while,",
+        "pinyin": "kě xiàn zài zuò le yí duàn shí jiān ，"
+      },
+      {
+        "chinese": "我想说：",
+        "gloss": "I would say:",
+        "pinyin": "wǒ xiǎng shuō ："
+      },
+      {
+        "chinese": "“我们还可以做得更好。”",
+        "gloss": "“We could do better.”",
+        "pinyin": "“ wǒ men hái kě yǐ zuò de gèng hǎo 。 ”"
+      }
+    ]
+  },
+  "这样说不好。大家不会喜欢这样的英雄。听起来太伤心了。": {
+    "english": "That isn’t a good thing to say. People won’t like a hero like that. It sounds too sad.",
+    "pinyin": "zhè yàng shuō bù hǎo 。 dà jiā bú huì xǐ huan zhè yàng de yīng xióng 。 tīng qǐ lái tài shāng xīn le 。",
+    "interlinear": [
+      {
+        "chinese": "这样说不好。",
+        "gloss": "That isn’t a good thing to say.",
+        "pinyin": "zhè yàng shuō bù hǎo 。"
+      },
+      {
+        "chinese": "大家不会喜欢这样的英雄。",
+        "gloss": "People won’t like a hero like that.",
+        "pinyin": "dà jiā bú huì xǐ huan zhè yàng de yīng xióng 。"
+      },
+      {
+        "chinese": "听起来太伤心了。",
+        "gloss": "It sounds too sad.",
+        "pinyin": "tīng qǐ lái tài shāng xīn le 。"
+      }
+    ]
+  },
+  "问她自己会不会伤心。": {
+    "english": "Ask whether it would make her sad.",
+    "pinyin": "wèn tā zì jǐ huì bu huì shāng xīn 。",
+    "interlinear": [
+      {
+        "chinese": "问她自己会不会伤心。",
+        "gloss": "Ask whether it would make her sad.",
+        "pinyin": "wèn tā zì jǐ huì bu huì shāng xīn 。"
+      }
+    ]
+  },
+  "问这话要对谁说。": {
+    "english": "Ask whom those words are for.",
+    "pinyin": "wèn zhè huà yào duì shuí shuō 。",
+    "interlinear": [
+      {
+        "chinese": "问这话要对谁说。",
+        "gloss": "Ask whom those words are for.",
+        "pinyin": "wèn zhè huà yào duì shuí shuō 。"
+      }
+    ]
+  },
+  "你每天这样跟自己说，不会更伤心吗？": {
+    "english": "If you tell yourself that every day, won’t it make you sadder?",
+    "pinyin": "nǐ měi tiān zhè yàng gēn zì jǐ shuō ， bú huì gèng shāng xīn ma ？",
+    "interlinear": [
+      {
+        "chinese": "你每天这样跟自己说，",
+        "gloss": "If you tell yourself that every day,",
+        "pinyin": "nǐ měi tiān zhè yàng gēn zì jǐ shuō ，"
+      },
+      {
+        "chinese": "不会更伤心吗？",
+        "gloss": "won’t it make you sadder?",
+        "pinyin": "bú huì gèng shāng xīn ma ？"
+      }
+    ]
+  },
+  "也许会吧。可是，我想记住的，不只是做得好的地方。": {
+    "english": "Maybe it will. But what I want to remember isn’t just what went well.",
+    "pinyin": "yě xǔ huì ba 。 kě shì ， wǒ xiǎng jì zhù de ， bù zhǐ shì zuò de hǎo de dì fang 。",
+    "interlinear": [
+      {
+        "chinese": "也许会吧。",
+        "gloss": "Maybe it will.",
+        "pinyin": "yě xǔ huì ba 。"
+      },
+      {
+        "chinese": "可是，我想记住的，",
+        "gloss": "But what I want to remember",
+        "pinyin": "kě shì ， wǒ xiǎng jì zhù de ，"
+      },
+      {
+        "chinese": "不只是做得好的地方。",
+        "gloss": "isn’t just what went well.",
+        "pinyin": "bù zhǐ shì zuò de hǎo de dì fang 。"
+      }
+    ]
+  },
+  "那你还要这样对大家说吗？": {
+    "english": "Then are you still going to say that to everyone?",
+    "pinyin": "nà nǐ hái yào zhè yàng duì dà jiā shuō ma ？",
+    "interlinear": [
+      {
+        "chinese": "那你还要这样对大家说吗？",
+        "gloss": "Then are you still going to say that to everyone?",
+        "pinyin": "nà nǐ hái yào zhè yàng duì dà jiā shuō ma ？"
+      }
+    ]
+  },
+  "不一定。我想，这更像是对我自己说的话。": {
+    "english": "Not necessarily. I think these words are more for myself.",
+    "pinyin": "bù yí dìng 。 wǒ xiǎng ， zhè gèng xiàng shì duì wǒ zì jǐ shuō de huà 。",
+    "interlinear": [
+      {
+        "chinese": "不一定。",
+        "gloss": "Not necessarily.",
+        "pinyin": "bù yí dìng 。"
+      },
+      {
+        "chinese": "我想，",
+        "gloss": "I think",
+        "pinyin": "wǒ xiǎng ，"
+      },
+      {
+        "chinese": "这更像是对我自己说的话。",
+        "gloss": "these words are more for myself.",
+        "pinyin": "zhè gèng xiàng shì duì wǒ zì jǐ shuō de huà 。"
+      }
+    ]
+  },
+  "有了超能力，很容易出错。事情发生得太快，你的脑子还没想好，就已经过去了。": {
+    "english": "With superpowers, it is easy to make mistakes. Things happen too fast. Your brain hasn’t finished thinking before it is all over.",
+    "pinyin": "yǒu le chāo néng lì ， hěn róng yì chū cuò 。 shì qing fā shēng de tài kuài ， nǐ de nǎo zi hái méi xiǎng hǎo ， jiù yǐ jīng guò qù le 。",
+    "interlinear": [
+      {
+        "chinese": "有了超能力，",
+        "gloss": "With superpowers,",
+        "pinyin": "yǒu le chāo néng lì ，"
+      },
+      {
+        "chinese": "很容易出错。",
+        "gloss": "it is easy to make mistakes.",
+        "pinyin": "hěn róng yì chū cuò 。"
+      },
+      {
+        "chinese": "事情发生得太快，",
+        "gloss": "Things happen too fast.",
+        "pinyin": "shì qing fā shēng de tài kuài ，"
+      },
+      {
+        "chinese": "你的脑子还没想好，",
+        "gloss": "Your brain hasn’t finished thinking",
+        "pinyin": "nǐ de nǎo zi hái méi xiǎng hǎo ，"
+      },
+      {
+        "chinese": "就已经过去了。",
+        "gloss": "before it is all over.",
+        "pinyin": "jiù yǐ jīng guò qù le 。"
+      }
+    ]
+  },
+  "有时候，我们觉得一定会发生的事，却不会发生。自己的能力，还有坏人的能力，都可能比自己大太多。": {
+    "english": "Sometimes, things we think must happen don’t happen at all. Our own powers, and the villains’ powers, can all feel much bigger than we are.",
+    "pinyin": "yǒu shí hou ， wǒ men jué de yí dìng huì fā shēng de shì ， què bú huì fā shēng 。 zì jǐ de néng lì ， hái yǒu huài rén de néng lì ， dōu kě néng bǐ zì jǐ dà tài duō 。",
+    "interlinear": [
+      {
+        "chinese": "有时候，",
+        "gloss": "Sometimes,",
+        "pinyin": "yǒu shí hou ，"
+      },
+      {
+        "chinese": "我们觉得一定会发生的事，",
+        "gloss": "things we think must happen",
+        "pinyin": "wǒ men jué de yí dìng huì fā shēng de shì ，"
+      },
+      {
+        "chinese": "却不会发生。",
+        "gloss": "don’t happen at all.",
+        "pinyin": "què bú huì fā shēng 。"
+      },
+      {
+        "chinese": "自己的能力，还有坏人的能力，",
+        "gloss": "Our own powers, and the villains’ powers,",
+        "pinyin": "zì jǐ de néng lì ， hái yǒu huài rén de néng lì ，"
+      },
+      {
+        "chinese": "都可能比自己大太多。",
+        "gloss": "can all feel much bigger than we are.",
+        "pinyin": "dōu kě néng bǐ zì jǐ dà tài duō 。"
+      }
+    ]
+  },
+  "她拿了一根薯条。刚才我还觉得，这只是想说得好听一点。": {
+    "english": "She takes a fry. A moment ago I thought this was just about finding words that sounded nice.",
+    "pinyin": "tā ná le yì gēn shǔ tiáo 。 gāng cái wǒ hái jué de ， zhè zhǐ shì xiǎng shuō de hǎo tīng yì diǎn 。",
+    "interlinear": [
+      {
+        "chinese": "她拿了一根薯条。",
+        "gloss": "She takes a fry.",
+        "pinyin": "tā ná le yì gēn shǔ tiáo 。"
+      },
+      {
+        "chinese": "刚才我还觉得，",
+        "gloss": "A moment ago I thought",
+        "pinyin": "gāng cái wǒ hái jué de ，"
+      },
+      {
+        "chinese": "这只是想说得好听一点。",
+        "gloss": "this was just about finding words that sounded nice.",
+        "pinyin": "zhè zhǐ shì xiǎng shuō de hǎo tīng yì diǎn 。"
+      }
+    ]
+  },
+  "等事情过去，说“我已经很努力了”，很容易。不去看做错的地方，也很容易。": {
+    "english": "When it is over, saying “I tried really hard” is easy. Not looking at the mistakes is easy too.",
+    "pinyin": "děng shì qing guò qù ， shuō “ wǒ yǐ jīng hěn nǔ lì le ” ， hěn róng yì 。 bú qù kàn zuò cuò de dì fang ， yě hěn róng yì 。",
+    "interlinear": [
+      {
+        "chinese": "等事情过去，",
+        "gloss": "When it is over,",
+        "pinyin": "děng shì qing guò qù ，"
+      },
+      {
+        "chinese": "说“我已经很努力了”，",
+        "gloss": "saying “I tried really hard”",
+        "pinyin": "shuō “ wǒ yǐ jīng hěn nǔ lì le ” ，"
+      },
+      {
+        "chinese": "很容易。",
+        "gloss": "is easy.",
+        "pinyin": "hěn róng yì 。"
+      },
+      {
+        "chinese": "不去看做错的地方，",
+        "gloss": "Not looking at the mistakes",
+        "pinyin": "bú qù kàn zuò cuò de dì fang ，"
+      },
+      {
+        "chinese": "也很容易。",
+        "gloss": "is easy too.",
+        "pinyin": "yě hěn róng yì 。"
+      }
+    ]
+  },
+  "因为错的地方，总是那么多。就算你已经很努力，还是会觉得自己一点用也没有。": {
+    "english": "Because the things that went wrong are always so many. Even if you worked really hard, you can still feel completely useless.",
+    "pinyin": "yīn wèi cuò de dì fang ， zǒng shì nà me duō 。 jiù suàn nǐ yǐ jīng hěn nǔ lì ， hái shì huì jué de zì jǐ yì diǎn yòng yě méi yǒu 。",
+    "interlinear": [
+      {
+        "chinese": "因为错的地方，",
+        "gloss": "Because the things that went wrong",
+        "pinyin": "yīn wèi cuò de dì fang ，"
+      },
+      {
+        "chinese": "总是那么多。",
+        "gloss": "are always so many.",
+        "pinyin": "zǒng shì nà me duō 。"
+      },
+      {
+        "chinese": "就算你已经很努力，",
+        "gloss": "Even if you worked really hard,",
+        "pinyin": "jiù suàn nǐ yǐ jīng hěn nǔ lì ，"
+      },
+      {
+        "chinese": "还是会觉得自己一点用也没有。",
+        "gloss": "you can still feel completely useless.",
+        "pinyin": "hái shì huì jué de zì jǐ yì diǎn yòng yě méi yǒu 。"
+      }
+    ]
+  },
+  "问已经很努力了还不行吗。": {
+    "english": "Ask whether trying hard is still not enough.",
+    "pinyin": "wèn yǐ jīng hěn nǔ lì le hái bù xíng ma 。",
+    "interlinear": [
+      {
+        "chinese": "问已经很努力了还不行吗。",
+        "gloss": "Ask whether trying hard is still not enough.",
+        "pinyin": "wèn yǐ jīng hěn nǔ lì le hái bù xíng ma 。"
+      }
+    ]
+  },
+  "问她为什么还要看。": {
+    "english": "Ask why she still wants to look.",
+    "pinyin": "wèn tā wèi shén me hái yào kàn 。",
+    "interlinear": [
+      {
+        "chinese": "问她为什么还要看。",
+        "gloss": "Ask why she still wants to look.",
+        "pinyin": "wèn tā wèi shén me hái yào kàn 。"
+      }
+    ]
+  },
+  "可是，已经很努力了，还不行吗？": {
+    "english": "But if you have already tried really hard, isn’t that enough?",
+    "pinyin": "kě shì ， yǐ jīng hěn nǔ lì le ， hái bù xíng ma ？",
+    "interlinear": [
+      {
+        "chinese": "可是，已经很努力了，",
+        "gloss": "But if you have already tried really hard,",
+        "pinyin": "kě shì ， yǐ jīng hěn nǔ lì le ，"
+      },
+      {
+        "chinese": "还不行吗？",
+        "gloss": "isn’t that enough?",
+        "pinyin": "hái bù xíng ma ？"
+      }
+    ]
+  },
+  "我知道你想说什么。努力过，也不一定每件事都做对。": {
+    "english": "I know what you mean. Having tried hard doesn’t mean you did everything right.",
+    "pinyin": "wǒ zhī dào nǐ xiǎng shuō shén me 。 nǔ lì guo ， yě bù yí dìng měi jiàn shì dōu zuò duì 。",
+    "interlinear": [
+      {
+        "chinese": "我知道你想说什么。",
+        "gloss": "I know what you mean.",
+        "pinyin": "wǒ zhī dào nǐ xiǎng shuō shén me 。"
+      },
+      {
+        "chinese": "努力过，",
+        "gloss": "Having tried hard",
+        "pinyin": "nǔ lì guo ，"
+      },
+      {
+        "chinese": "也不一定每件事都做对。",
+        "gloss": "doesn’t mean you did everything right.",
+        "pinyin": "yě bù yí dìng měi jiàn shì dōu zuò duì 。"
+      }
+    ]
+  },
+  "那你为什么还要去看那些地方？": {
+    "english": "Then why do you still want to look at those things?",
+    "pinyin": "nà nǐ wèi shén me hái yào qù kàn nà xiē dì fang ？",
+    "interlinear": [
+      {
+        "chinese": "那你为什么还要去看那些地方？",
+        "gloss": "Then why do you still want to look at those things?",
+        "pinyin": "nà nǐ wèi shén me hái yào qù kàn nà xiē dì fang ？"
+      }
+    ]
+  },
+  "我想下次少错一点。哪怕只是少一点，也很好。": {
+    "english": "I want to make fewer mistakes next time. Even if it is only a little less, that is still good.",
+    "pinyin": "wǒ xiǎng xià cì shǎo cuò yì diǎn 。 nǎ pà zhǐ shì shǎo yì diǎn ， yě hěn hǎo 。",
+    "interlinear": [
+      {
+        "chinese": "我想下次少错一点。",
+        "gloss": "I want to make fewer mistakes next time.",
+        "pinyin": "wǒ xiǎng xià cì shǎo cuò yì diǎn 。"
+      },
+      {
+        "chinese": "哪怕只是少一点，",
+        "gloss": "Even if it is only a little less,",
+        "pinyin": "nǎ pà zhǐ shì shǎo yì diǎn ，"
+      },
+      {
+        "chinese": "也很好。",
+        "gloss": "that is still good.",
+        "pinyin": "yě hěn hǎo 。"
+      }
+    ]
+  },
+  "所以，我想做那个愿意去看的人。这样，下次也许就能少做错一些事。": {
+    "english": "So, I want to be the person willing to look. That way, perhaps I will get fewer things wrong next time.",
+    "pinyin": "suǒ yǐ ， wǒ xiǎng zuò nà ge yuàn yì qù kàn de rén 。 zhè yàng ， xià cì yě xǔ jiù néng shǎo zuò cuò yì xiē shì 。",
+    "interlinear": [
+      {
+        "chinese": "所以，",
+        "gloss": "So,",
+        "pinyin": "suǒ yǐ ，"
+      },
+      {
+        "chinese": "我想做那个愿意去看的人。",
+        "gloss": "I want to be the person willing to look.",
+        "pinyin": "wǒ xiǎng zuò nà ge yuàn yì qù kàn de rén 。"
+      },
+      {
+        "chinese": "这样，",
+        "gloss": "That way,",
+        "pinyin": "zhè yàng ，"
+      },
+      {
+        "chinese": "下次也许就能少做错一些事。",
+        "gloss": "perhaps I will get fewer things wrong next time.",
+        "pinyin": "xià cì yě xǔ jiù néng shǎo zuò cuò yì xiē shì 。"
+      }
+    ]
+  },
+  "我不再喝东西了。她不是在说怎么让大家喜欢她。": {
+    "english": "I stop drinking. She isn’t talking about how to make everyone like her.",
+    "pinyin": "wǒ bú zài hē dōng xi le 。 tā bú shì zài shuō zěn me ràng dà jiā xǐ huan tā 。",
+    "interlinear": [
+      {
+        "chinese": "我不再喝东西了。",
+        "gloss": "I stop drinking.",
+        "pinyin": "wǒ bú zài hē dōng xi le 。"
+      },
+      {
+        "chinese": "她不是在说",
+        "gloss": "She isn’t talking about",
+        "pinyin": "tā bú shì zài shuō"
+      },
+      {
+        "chinese": "怎么让大家喜欢她。",
+        "gloss": "how to make everyone like her.",
+        "pinyin": "zěn me ràng dà jiā xǐ huan tā 。"
+      }
+    ]
+  },
+  "也许我去看了，和我一起做事的人，就不需要看得那么不好受。": {
+    "english": "Maybe if I look at the mistakes, the people working with me won’t have to examine them so painfully themselves.",
+    "pinyin": "yě xǔ wǒ qù kàn le ， hé wǒ yì qǐ zuò shì de rén ， jiù bù xū yào kàn de nà me bù hǎo shòu 。",
+    "interlinear": [
+      {
+        "chinese": "也许我去看了，",
+        "gloss": "Maybe if I look,",
+        "pinyin": "yě xǔ wǒ qù kàn le ，"
+      },
+      {
+        "chinese": "和我一起做事的人，",
+        "gloss": "the people working with me",
+        "pinyin": "hé wǒ yì qǐ zuò shì de rén ，"
+      },
+      {
+        "chinese": "就不需要看得那么不好受。",
+        "gloss": "won’t have to look so closely and feel so bad.",
+        "pinyin": "jiù bù xū yào kàn de nà me bù hǎo shòu 。"
+      }
+    ]
+  },
+  "和力气特别大，或者能控制别人想法的能力比起来，我的能力，让我心里没那么伤心。": {
+    "english": "Compared with tremendous strength or powers that control other people’s minds, my power is less painful for me emotionally.",
+    "pinyin": "hé lì qi tè bié dà ， huò zhě néng kòng zhì bié rén xiǎng fǎ de néng lì bǐ qǐ lái ， wǒ de néng lì ， ràng wǒ xīn lǐ méi nà me shāng xīn 。",
+    "interlinear": [
+      {
+        "chinese": "和力气特别大，",
+        "gloss": "Compared with tremendous strength",
+        "pinyin": "hé lì qi tè bié dà ，"
+      },
+      {
+        "chinese": "或者能控制别人想法的能力比起来，",
+        "gloss": "or powers that control other people’s minds,",
+        "pinyin": "huò zhě néng kòng zhì bié rén xiǎng fǎ de néng lì bǐ qǐ lái ，"
+      },
+      {
+        "chinese": "我的能力，",
+        "gloss": "my power",
+        "pinyin": "wǒ de néng lì ，"
+      },
+      {
+        "chinese": "让我心里没那么伤心。",
+        "gloss": "is less painful for me emotionally.",
+        "pinyin": "ràng wǒ xīn lǐ méi nà me shāng xīn 。"
+      }
+    ]
+  },
+  "为什么？这有什么不一样？": {
+    "english": "Why? What is different about that?",
+    "pinyin": "wèi shén me ？ zhè yǒu shén me bù yí yàng ？",
+    "interlinear": [
+      {
+        "chinese": "为什么？",
+        "gloss": "Why?",
+        "pinyin": "wèi shén me ？"
+      },
+      {
+        "chinese": "这有什么不一样？",
+        "gloss": "What is different about that?",
+        "pinyin": "zhè yǒu shén me bù yí yàng ？"
+      }
+    ]
+  },
+  "她没有直接跟我说为什么。我那时候不明白，可是，这些年，我一直记着她的话。": {
+    "english": "She doesn’t tell me directly why. I didn’t understand back then, but over these years, I have kept her words in mind.",
+    "pinyin": "tā méi yǒu zhí jiē gēn wǒ shuō wèi shén me 。 wǒ nà shí hou bù míng bai ， kě shì ， zhè xiē nián ， wǒ yì zhí jì zhe tā de huà 。",
+    "interlinear": [
+      {
+        "chinese": "她没有直接跟我说为什么。",
+        "gloss": "She doesn’t tell me directly why.",
+        "pinyin": "tā méi yǒu zhí jiē gēn wǒ shuō wèi shén me 。"
+      },
+      {
+        "chinese": "我那时候不明白，",
+        "gloss": "I didn’t understand back then,",
+        "pinyin": "wǒ nà shí hou bù míng bai ，"
+      },
+      {
+        "chinese": "可是，这些年，",
+        "gloss": "but over these years,",
+        "pinyin": "kě shì ， zhè xiē nián ，"
+      },
+      {
+        "chinese": "我一直记着她的话。",
+        "gloss": "I have kept her words in mind.",
+        "pinyin": "wǒ yì zhí jì zhe tā de huà 。"
+      }
+    ]
+  },
+  "她很少站在大家最容易看见的地方。她选的能力，是为了帮助其他英雄。": {
+    "english": "She rarely stands where everyone can see her most easily. The powers she chooses are meant to help other heroes.",
+    "pinyin": "tā hěn shǎo zhàn zài dà jiā zuì róng yì kàn jiàn de dì fang 。 tā xuǎn de néng lì ， shì wèi le bāng zhù qí tā yīng xióng 。",
+    "interlinear": [
+      {
+        "chinese": "她很少站在大家最容易看见的地方。",
+        "gloss": "She rarely stands where everyone can see her most easily.",
+        "pinyin": "tā hěn shǎo zhàn zài dà jiā zuì róng yì kàn jiàn de dì fang 。"
+      },
+      {
+        "chinese": "她选的能力，",
+        "gloss": "The powers she chooses",
+        "pinyin": "tā xuǎn de néng lì ，"
+      },
+      {
+        "chinese": "是为了帮助其他英雄。",
+        "gloss": "are meant to help other heroes.",
+        "pinyin": "shì wèi le bāng zhù qí tā yīng xióng 。"
+      }
+    ]
+  },
+  "昨天那个人，常常喜欢跟孩子们玩，也常常帮大家做事。他不是喜欢让别人受伤的样子。": {
+    "english": "That man from yesterday likes playing with children and often helps people. He doesn’t seem to enjoy hurting anyone.",
+    "pinyin": "zuó tiān nà ge rén ， cháng cháng xǐ huan gēn hái zi men wán ， yě cháng cháng bāng dà jiā zuò shì 。 tā bú shì xǐ huan ràng bié rén shòu shāng de yàng zi 。",
+    "interlinear": [
+      {
+        "chinese": "昨天那个人，",
+        "gloss": "That man from yesterday",
+        "pinyin": "zuó tiān nà ge rén ，"
+      },
+      {
+        "chinese": "常常喜欢跟孩子们玩，",
+        "gloss": "likes playing with children",
+        "pinyin": "cháng cháng xǐ huan gēn hái zi men wán ，"
+      },
+      {
+        "chinese": "也常常帮大家做事。",
+        "gloss": "and often helps people.",
+        "pinyin": "yě cháng cháng bāng dà jiā zuò shì 。"
+      },
+      {
+        "chinese": "他不是喜欢让别人受伤的样子。",
+        "gloss": "He doesn’t seem to enjoy hurting anyone.",
+        "pinyin": "tā bú shì xǐ huan ràng bié rén shòu shāng de yàng zi 。"
+      }
+    ]
+  },
+  "也许，他不开心，是因为最后只能让水进到那个坏人的身体里，才能让他停下来。": {
+    "english": "Maybe he is unhappy because in the end he had to force water into the villain’s body to stop him.",
+    "pinyin": "yě xǔ ， tā bù kāi xīn ， shì yīn wèi zuì hòu zhǐ néng ràng shuǐ jìn dào nà ge huài rén de shēn tǐ lǐ ， cái néng ràng tā tíng xià lái 。",
+    "interlinear": [
+      {
+        "chinese": "也许，他不开心，",
+        "gloss": "Maybe he is unhappy",
+        "pinyin": "yě xǔ ， tā bù kāi xīn ，"
+      },
+      {
+        "chinese": "是因为最后只能让水进到那个坏人的身体里，",
+        "gloss": "because in the end he had to force water into the villain’s body",
+        "pinyin": "shì yīn wèi zuì hòu zhǐ néng ràng shuǐ jìn dào nà ge huài rén de shēn tǐ lǐ ，"
+      },
+      {
+        "chinese": "才能让他停下来。",
+        "gloss": "to stop him.",
+        "pinyin": "cái néng ràng tā tíng xià lái 。"
+      }
+    ]
+  },
+  "这只是我的想法。可那个坏人停下来的地方是大路上，不是在水里。": {
+    "english": "This is only my guess. But the villain was stopped in the street, not in the water.",
+    "pinyin": "zhè zhǐ shì wǒ de xiǎng fǎ 。 kě nà ge huài rén tíng xià lái de dì fang shì dà lù shang ， bú shì zài shuǐ lǐ 。",
+    "interlinear": [
+      {
+        "chinese": "这只是我的想法。",
+        "gloss": "This is only my guess.",
+        "pinyin": "zhè zhǐ shì wǒ de xiǎng fǎ 。"
+      },
+      {
+        "chinese": "可那个坏人停下来的地方是大路上，",
+        "gloss": "But the villain was stopped in the street,",
+        "pinyin": "kě nà ge huài rén tíng xià lái de dì fang shì dà lù shang ，"
+      },
+      {
+        "chinese": "不是在水里。",
+        "gloss": "not in the water.",
+        "pinyin": "bú shì zài shuǐ lǐ 。"
+      }
+    ]
+  },
+  "旁边都是房子。他不能让一个会在地下走的人，想去哪里就去哪里。他需要一个助手。": {
+    "english": "There were buildings all around. He couldn’t let someone who could move underground go wherever he wanted. He needed a sidekick.",
+    "pinyin": "páng biān dōu shì fáng zi 。 tā bù néng ràng yí gè huì zài dì xià zǒu de rén ， xiǎng qù nǎ lǐ jiù qù nǎ lǐ 。 tā xū yào yí gè zhù shǒu 。",
+    "interlinear": [
+      {
+        "chinese": "旁边都是房子。",
+        "gloss": "There were buildings all around.",
+        "pinyin": "páng biān dōu shì fáng zi 。"
+      },
+      {
+        "chinese": "他不能让一个会在地下走的人，",
+        "gloss": "He couldn’t let someone who could move underground",
+        "pinyin": "tā bù néng ràng yí gè huì zài dì xià zǒu de rén ，"
+      },
+      {
+        "chinese": "想去哪里就去哪里。",
+        "gloss": "go wherever he wanted.",
+        "pinyin": "xiǎng qù nǎ lǐ jiù qù nǎ lǐ 。"
+      },
+      {
+        "chinese": "他需要一个助手。",
+        "gloss": "He needed a sidekick.",
+        "pinyin": "tā xū yào yí gè zhù shǒu 。"
+      }
+    ]
+  },
+  "汉娜就能帮他。等等，这样想不太好。她的球，本来就正好能让那个人不能动。": {
+    "english": "Hannah could help him. Wait—that isn’t the best example. Her bubble would be a perfect way to keep that man from moving.",
+    "pinyin": "hàn nà jiù néng bāng tā 。 děng děng ， zhè yàng xiǎng bú tài hǎo 。 tā de qiú ， běn lái jiù zhèng hǎo néng ràng nà ge rén bù néng dòng 。",
+    "interlinear": [
+      {
+        "chinese": "汉娜就能帮他。",
+        "gloss": "Hannah could help him.",
+        "pinyin": "hàn nà jiù néng bāng tā 。"
+      },
+      {
+        "chinese": "等等，这样想不太好。",
+        "gloss": "Wait—that isn’t the best example.",
+        "pinyin": "děng děng ， zhè yàng xiǎng bú tài hǎo 。"
+      },
+      {
+        "chinese": "她的球，",
+        "gloss": "Her bubble",
+        "pinyin": "tā de qiú ，"
+      },
+      {
+        "chinese": "本来就正好能让那个人不能动。",
+        "gloss": "would be a perfect way to keep that man from moving.",
+        "pinyin": "běn lái jiù zhèng hǎo néng ràng nà ge rén bù néng dòng 。"
+      }
+    ]
+  },
+  "想想能让他更快的人。": {
+    "english": "Think of someone who could make him faster.",
+    "pinyin": "xiǎng xiang néng ràng tā gèng kuài de rén 。",
+    "interlinear": [
+      {
+        "chinese": "想想能让他更快的人。",
+        "gloss": "Think of someone who could make him faster.",
+        "pinyin": "xiǎng xiang néng ràng tā gèng kuài de rén 。"
+      }
+    ]
+  },
+  "想想能从很远的地方帮忙的人。": {
+    "english": "Think of someone who could help from far away.",
+    "pinyin": "xiǎng xiang néng cóng hěn yuǎn de dì fang bāng máng de rén 。",
+    "interlinear": [
+      {
+        "chinese": "想想能从很远的地方帮忙的人。",
+        "gloss": "Think of someone who could help from far away.",
+        "pinyin": "xiǎng xiang néng cóng hěn yuǎn de dì fang bāng máng de rén 。"
+      }
+    ]
+  },
+  "要是有人让他跑得更快，也许还在那片水旁边，就已经让坏人停下来了。": {
+    "english": "If someone could make him run faster, perhaps while they were still by the water, he would have stopped the villain already.",
+    "pinyin": "yào shi yǒu rén ràng tā pǎo de gèng kuài ， yě xǔ hái zài nà piàn shuǐ páng biān ， jiù yǐ jīng ràng huài rén tíng xià lái le 。",
+    "interlinear": [
+      {
+        "chinese": "要是有人让他跑得更快，",
+        "gloss": "If someone could make him run faster,",
+        "pinyin": "yào shi yǒu rén ràng tā pǎo de gèng kuài ，"
+      },
+      {
+        "chinese": "也许还在那片水旁边，",
+        "gloss": "perhaps while they were still by the water,",
+        "pinyin": "yě xǔ hái zài nà piàn shuǐ páng biān ，"
+      },
+      {
+        "chinese": "就已经让坏人停下来了。",
+        "gloss": "he would have stopped the villain already.",
+        "pinyin": "jiù yǐ jīng ràng huài rén tíng xià lái le 。"
+      }
+    ]
+  },
+  "要是有人能从很远的地方打到坏人，他就不一定要一个人做这些事。": {
+    "english": "If someone could hit the villain from far away, he might not have to do all this alone.",
+    "pinyin": "yào shi yǒu rén néng cóng hěn yuǎn de dì fang dǎ dào huài rén ， tā jiù bù yí dìng yào yí gè rén zuò zhè xiē shì 。",
+    "interlinear": [
+      {
+        "chinese": "要是有人能从很远的地方打到坏人，",
+        "gloss": "If someone could hit the villain from far away,",
+        "pinyin": "yào shi yǒu rén néng cóng hěn yuǎn de dì fang dǎ dào huài rén ，"
+      },
+      {
+        "chinese": "他就不一定要一个人做这些事。",
+        "gloss": "he might not have to do all this alone.",
+        "pinyin": "tā jiù bù yí dìng yào yí gè rén zuò zhè xiē shì 。"
+      }
+    ]
+  },
+  "可是，以前有很多英雄带着助手。后来，助手死得太多了，大家就不愿意再这样做。": {
+    "english": "But many heroes used to have sidekicks. Then too many sidekicks died, and people no longer wanted to work that way.",
+    "pinyin": "kě shì ， yǐ qián yǒu hěn duō yīng xióng dài zhe zhù shǒu 。 hòu lái ， zhù shǒu sǐ de tài duō le ， dà jiā jiù bú yuàn yì zài zhè yàng zuò 。",
+    "interlinear": [
+      {
+        "chinese": "可是，以前有很多英雄带着助手。",
+        "gloss": "But many heroes used to have sidekicks.",
+        "pinyin": "kě shì ， yǐ qián yǒu hěn duō yīng xióng dài zhe zhù shǒu 。"
+      },
+      {
+        "chinese": "后来，助手死得太多了，",
+        "gloss": "Then too many sidekicks died,",
+        "pinyin": "hòu lái ， zhù shǒu sǐ de tài duō le ，"
+      },
+      {
+        "chinese": "大家就不愿意再这样做。",
+        "gloss": "and people no longer wanted to work that way.",
+        "pinyin": "dà jiā jiù bú yuàn yì zài zhè yàng zuò 。"
+      }
+    ]
+  },
+  "有一段时间，他们真的遇到能力很强的坏人，活下来的，只有百分之十二。": {
+    "english": "For a time, only twelve percent of sidekicks survived battles against superpowered villains.",
+    "pinyin": "yǒu yí duàn shí jiān ， tā men zhēn de yù dào néng lì hěn qiáng de huài rén ， huó xià lái de ， zhǐ yǒu bǎi fēn zhī shí èr 。",
+    "interlinear": [
+      {
+        "chinese": "有一段时间，",
+        "gloss": "For a time,",
+        "pinyin": "yǒu yí duàn shí jiān ，"
+      },
+      {
+        "chinese": "他们真的遇到能力很强的坏人，",
+        "gloss": "when they faced villains with powerful abilities,",
+        "pinyin": "tā men zhēn de yù dào néng lì hěn qiáng de huài rén ，"
+      },
+      {
+        "chinese": "活下来的，",
+        "gloss": "those who survived",
+        "pinyin": "huó xià lái de ，"
+      },
+      {
+        "chinese": "只有百分之十二。",
+        "gloss": "were only twelve percent.",
+        "pinyin": "zhǐ yǒu bǎi fēn zhī shí èr 。"
+      }
+    ]
+  },
+  "本来，他们只是帮没有能力的人离开危险的地方，或者让大家知道别人在说什么。可坏人不会因为这样，就不杀他们。": {
+    "english": "They were only supposed to help people without powers leave danger or keep everyone in touch. But that wouldn’t stop villains from killing them.",
+    "pinyin": "běn lái ， tā men zhǐ shì bāng méi yǒu néng lì de rén lí kāi wēi xiǎn de dì fang ， huò zhě ràng dà jiā zhī dào bié rén zài shuō shén me 。 kě huài rén bú huì yīn wèi zhè yàng ， jiù bù shā tā men 。",
+    "interlinear": [
+      {
+        "chinese": "本来，",
+        "gloss": "They were supposed to",
+        "pinyin": "běn lái ，"
+      },
+      {
+        "chinese": "他们只是帮没有能力的人离开危险的地方，",
+        "gloss": "help people without powers leave dangerous places,",
+        "pinyin": "tā men zhǐ shì bāng méi yǒu néng lì de rén lí kāi wēi xiǎn de dì fang ，"
+      },
+      {
+        "chinese": "或者让大家知道别人在说什么。",
+        "gloss": "or help everyone communicate.",
+        "pinyin": "huò zhě ràng dà jiā zhī dào bié rén zài shuō shén me 。"
+      },
+      {
+        "chinese": "可坏人不会因为这样，",
+        "gloss": "But that wouldn’t stop villains",
+        "pinyin": "kě huài rén bú huì yīn wèi zhè yàng ，"
+      },
+      {
+        "chinese": "就不杀他们。",
+        "gloss": "from killing them.",
+        "pinyin": "jiù bù shā tā men 。"
+      }
+    ]
+  },
+  "能力没那么强的人，大多留在那里。有些人让大家看他们的能力，用这样的方法赚钱。很少有人还像她一样，选的都是帮助别人的能力。": {
+    "english": "People whose powers are weaker mostly stay on the island. Some show their abilities to audiences, earning money that way. Few people still do what she does, choosing powers that help others.",
+    "pinyin": "néng lì méi nà me qiáng de rén ， dà duō liú zài nà lǐ 。 yǒu xiē rén ràng dà jiā kàn tā men de néng lì ， yòng zhè yàng de fāng fǎ zhuàn qián 。 hěn shǎo yǒu rén hái xiàng tā yí yàng ， xuǎn de dōu shì bāng zhù bié rén de néng lì 。",
+    "interlinear": [
+      {
+        "chinese": "能力没那么强的人，",
+        "gloss": "People whose powers are weaker",
+        "pinyin": "néng lì méi nà me qiáng de rén ，"
+      },
+      {
+        "chinese": "大多留在那里。",
+        "gloss": "mostly stay on the island.",
+        "pinyin": "dà duō liú zài nà lǐ 。"
+      },
+      {
+        "chinese": "有些人让大家看他们的能力，",
+        "gloss": "Some show their abilities to audiences,",
+        "pinyin": "yǒu xiē rén ràng dà jiā kàn tā men de néng lì ，"
+      },
+      {
+        "chinese": "用这样的方法赚钱。",
+        "gloss": "earning money that way.",
+        "pinyin": "yòng zhè yàng de fāng fǎ zhuàn qián 。"
+      },
+      {
+        "chinese": "很少有人还像她一样，",
+        "gloss": "Few people still do what she does,",
+        "pinyin": "hěn shǎo yǒu rén hái xiàng tā yí yàng ，"
+      },
+      {
+        "chinese": "选的都是帮助别人的能力。",
+        "gloss": "choosing powers that help others.",
+        "pinyin": "xuǎn de dōu shì bāng zhù bié rén de néng lì 。"
+      }
+    ]
+  },
+  "这样选，一个人遇到坏人的时候，会更危险。她知道。可是，说到这件事，她的眼睛会亮起来。": {
+    "english": "Choosing that way when facing a villain alone, makes things more dangerous. She knows. But when she talks about it, her eyes light up.",
+    "pinyin": "zhè yàng xuǎn ， yí gè rén yù dào huài rén de shí hou ， huì gèng wēi xiǎn 。 tā zhī dào 。 kě shì ， shuō dào zhè jiàn shì ， tā de yǎn jing huì liàng qǐ lái 。",
+    "interlinear": [
+      {
+        "chinese": "这样选，",
+        "gloss": "Choosing that way",
+        "pinyin": "zhè yàng xuǎn ，"
+      },
+      {
+        "chinese": "一个人遇到坏人的时候，",
+        "gloss": "when facing a villain alone,",
+        "pinyin": "yí gè rén yù dào huài rén de shí hou ，"
+      },
+      {
+        "chinese": "会更危险。",
+        "gloss": "makes things more dangerous.",
+        "pinyin": "huì gèng wēi xiǎn 。"
+      },
+      {
+        "chinese": "她知道。",
+        "gloss": "She knows.",
+        "pinyin": "tā zhī dào 。"
+      },
+      {
+        "chinese": "可是，说到这件事，",
+        "gloss": "But when she talks about it,",
+        "pinyin": "kě shì ， shuō dào zhè jiàn shì ，"
+      },
+      {
+        "chinese": "她的眼睛会亮起来。",
+        "gloss": "her eyes light up.",
+        "pinyin": "tā de yǎn jing huì liàng qǐ lái 。"
+      }
+    ]
+  },
+  "两个人一起打，当然很好。可是，如果一个人的能力，正好能帮上另外一个人呢？": {
+    "english": "Two people fighting together is great, of course. But what if one person’s powers are just right for helping the other?",
+    "pinyin": "liǎng gè rén yì qǐ dǎ ， dāng rán hěn hǎo 。 kě shì ， rú guǒ yí gè rén de néng lì ， zhèng hǎo néng bāng shàng lìng wài yí gè rén ne ？",
+    "interlinear": [
+      {
+        "chinese": "两个人一起打，",
+        "gloss": "Two people fighting together",
+        "pinyin": "liǎng gè rén yì qǐ dǎ ，"
+      },
+      {
+        "chinese": "当然很好。",
+        "gloss": "is great, of course.",
+        "pinyin": "dāng rán hěn hǎo 。"
+      },
+      {
+        "chinese": "可是，如果一个人的能力，",
+        "gloss": "But what if one person’s powers",
+        "pinyin": "kě shì ， rú guǒ yí gè rén de néng lì ，"
+      },
+      {
+        "chinese": "正好能帮上另外一个人呢？",
+        "gloss": "are just right for helping the other?",
+        "pinyin": "zhèng hǎo néng bāng shàng lìng wài yí gè rén ne ？"
+      }
+    ]
+  },
+  "那就不是两个人加起来那么简单了。你们一起能做到的，会比两个人分开做，多得多！": {
+    "english": "Then it isn’t just adding two people together. What you can achieve together is much more than what you could do separately!",
+    "pinyin": "nà jiù bú shì liǎng gè rén jiā qǐ lái nà me jiǎn dān le 。 nǐ men yì qǐ néng zuò dào de ， huì bǐ liǎng gè rén fēn kāi zuò ， duō de duō ！",
+    "interlinear": [
+      {
+        "chinese": "那就不是两个人加起来那么简单了。",
+        "gloss": "Then it isn’t as simple as adding two people together.",
+        "pinyin": "nà jiù bú shì liǎng gè rén jiā qǐ lái nà me jiǎn dān le 。"
+      },
+      {
+        "chinese": "你们一起能做到的，",
+        "gloss": "What you can achieve together",
+        "pinyin": "nǐ men yì qǐ néng zuò dào de ，"
+      },
+      {
+        "chinese": "会比两个人分开做，",
+        "gloss": "compared with what you could do separately,",
+        "pinyin": "huì bǐ liǎng gè rén fēn kāi zuò ，"
+      },
+      {
+        "chinese": "多得多！",
+        "gloss": "is so much more!",
+        "pinyin": "duō de duō ！"
+      }
+    ]
+  },
+  "我看外面的房子。她说的“更好”，不只是再多救一个人。也可能是，让另外一个人不用什么都自己做。": {
+    "english": "I look at the buildings outside. Her idea of “better” isn’t just saving one more person. It might also mean making sure someone else doesn’t have to do everything alone.",
+    "pinyin": "wǒ kàn wài miàn de fáng zi 。 tā shuō de “ gèng hǎo ” ， bù zhǐ shì zài duō jiù yí gè rén 。 yě kě néng shì ， ràng lìng wài yí gè rén bú yòng shén me dōu zì jǐ zuò 。",
+    "interlinear": [
+      {
+        "chinese": "我看外面的房子。",
+        "gloss": "I look at the buildings outside.",
+        "pinyin": "wǒ kàn wài miàn de fáng zi 。"
+      },
+      {
+        "chinese": "她说的“更好”，",
+        "gloss": "Her idea of “better”",
+        "pinyin": "tā shuō de “ gèng hǎo ” ，"
+      },
+      {
+        "chinese": "不只是再多救一个人。",
+        "gloss": "isn’t just saving one more person.",
+        "pinyin": "bù zhǐ shì zài duō jiù yí gè rén 。"
+      },
+      {
+        "chinese": "也可能是，",
+        "gloss": "It might also mean",
+        "pinyin": "yě kě néng shì ，"
+      },
+      {
+        "chinese": "让另外一个人不用什么都自己做。",
+        "gloss": "making sure someone else doesn’t have to do everything alone.",
+        "pinyin": "ràng lìng wài yí gè rén bú yòng shén me dōu zì jǐ zuò 。"
+      }
+    ]
+  }
+}

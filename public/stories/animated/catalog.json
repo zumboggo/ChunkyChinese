@@ -1185,5 +1185,21 @@
       "title": "再听一遍 · Listen Again",
       "description": "三条留言，一次还没等到的见面。阿登听着熟悉的声音，手里的手机越来越紧。"
     }
+  },
+  {
+    "id": "supportive-11-v1",
+    "category": "super-supportive",
+    "episode": 11,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-11.mp4",
+      "poster": "stories/animated/cutscenes/supportive-11.poster.jpg",
+      "title": "We could have done that better.",
+      "durationSeconds": 6.5
+    },
+    "path": "supportive-11.json",
+    "summary": {
+      "title": "还可以更好 · We Could Do Better",
+      "description": "车窗外的城市已经修好了。阿登却想起汉娜说过的话：英雄救了人以后，还要看什么？"
+    }
   }
 ]

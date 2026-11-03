@@ -1,0 +1,159 @@
+{
+  "id": "supportive-11",
+  "series": "super-supportive",
+  "title": "还可以更好 · We Could Do Better",
+  "description": "车窗外的城市已经修好了。阿登却想起汉娜说过的话：英雄救了人以后，还要看什么？",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-supplied EPUB, FIVE: The Nice One, city repairs through Hannah’s explanation of complementary support. Stops before Jeremy nudges Alden. Simplified Mandarin adaptation; Skiff’s motives remain Alden’s inference."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Outside the window, buildings raced past. → before Suddenly, a flip-flop nudged Alden’s shin.",
+    "dramaticChange": "At eleven Alden rejects Hannah’s sad motto; at sixteen he sees why a successful hero may need help and why support can multiply strength.",
+    "essentialNewWords": [
+      "控制",
+      "助手",
+      "超能力"
+    ],
+    "englishNarrationPurpose": "None; first-person Mandarin with a source-grounded remembered conversation.",
+    "choicesAndCallbacks": [
+      "Notice the repaired home or news: different thought, rejoin Skiff.",
+      "Ask whether the motto is sad or who it is for: different Hannah response, rejoin private guideline.",
+      "Ask about effort or looking at errors: different response, rejoin her support motive.",
+      "Consider helping speed or distance: distinct possible support roles; rejoin sidekick danger."
+    ],
+    "sceneActivities": [
+      "Alden sits on the train, watching passing buildings; a remembered seated meal with Hannah interrupts the present. Shared restaurant setting and supported seated rests; food actions are narrated, not claimed as animated handoffs."
+    ],
+    "storytellingVoice": "Intimate character drama",
+    "voiceReason": "A remembered ordinary meal changes how Alden understands a missing mentor and another hero’s strained smile.",
+    "desire": "Understand what Hannah meant and why a hero can save people yet look unhappy.",
+    "obstacle": "The public success story hides emotional costs; Alden’s younger idea of heroism was simpler.",
+    "earlyCare": "He sees his old neighborhood looking repaired while knowing its losses are not erased.",
+    "payoff": "Hannah’s seemingly sad motto becomes a practical commitment to look at mistakes and help others.",
+    "newUncertainty": "Could support change what heroes must do to win, despite the danger to their helpers?",
+    "directing": "Present solo listener frame → remembered two-shot → Hannah’s choice to examine mistakes → young Alden listener and held observation → shared framing → present-day realization. Final remembered line returns to shared pair before present Alden’s interpretation.",
+    "signatures": {
+      "Alden": "At sixteen, careful inferences and modest correction of his own argument; at eleven, direct literal objections and concrete questions.",
+      "Hannah": "Warm, self-questioning explanations; casual food pause while naming difficult consequences, then genuine enthusiasm for support."
+    },
+    "vocabulary": {
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "reviewedKnown": 804,
+      "approvedAdditional": 259,
+      "effectiveFamiliarWords": 1063
+    },
+    "teaser": {
+      "speaker": "Hannah",
+      "line": "We could have done that better.",
+      "scene": "Hannah and eleven-year-old Alden at a table during his first island visit; she offers her changed heroic motto.",
+      "style": "Expressive oil pastel with luminous cobalt shadows and warm peach highlights",
+      "identityReference": "stories/characters/super-supportive/supportive-07-opening.png"
+    },
+    "limitations": [
+      "The youngest supported teen body approximates eleven-year-old Alden; the narration establishes his age explicitly.",
+      "Skiff’s pursuit is described from news and inference; no new scene depicts unverified motive."
+    ],
+    "pinyinReview": "Reviewed 58 complete lines and all chunks. Corrected complement/potential de, lexical neutral syllables (window, news, brain, eyes, things, places, time), experiential guo, reduplication and sentence/chunk discrepancies. Verified chongxin, zhuanqian, caomei, naixi, shu, zhi and hai in context."
+  },
+  "continuation": {
+    "end": "After replaying the messages, Alden sees the repaired city and recalls Hannah’s changed heroic motto. At eleven he found it sad; now he considers Skiff’s emotional burden and why complementary support could change a fight. Hannah’s absence remains unresolved.",
+    "nextStart": "Suddenly, a flip-flop nudged Alden’s shin.",
+    "nextEndBefore": "A note from Sleyca",
+    "note": "Jeremy brings Alden back to the train stop; friends argue about who is nice, mean or funny, and Jeremy unexpectedly identifies Alden’s persistent wish to be a superhero. End at the chapter’s closing conversation, before the author note.",
+    "continuity": [
+      "Alden is sixteen on the train; the eleven-year-old island conversation was a memory.",
+      "Hannah has been missing six months; her death remains unconfirmed.",
+      "Alden suspects Skiff’s strained smile reflects the cost of drowning the villain; this is not confirmed.",
+      "Hannah chose support abilities despite their risks and believed complementary heroes could multiply each other’s effectiveness.",
+      "Jeremy is about to nudge Alden because they have reached their stop."
+    ],
+    "castRecipes": "stories/characters/super-supportive/cast-11.json",
+    "castBundle": "public/stories/animated/cast/supportive-11.json"
+  },
+  "routes": [
+    {
+      "choices": [
+        "home",
+        "sad",
+        "effort",
+        "speed"
+      ],
+      "contains": [
+        "这只是我的想法。可那个坏人停下来的地方是大路上，不是在水里。",
+        "有一段时间，他们真的遇到能力很强的坏人，活下来的，只有百分之十二。"
+      ],
+      "endsWith": "我看外面的房子。她说的“更好”，不只是再多救一个人。也可能是，让另外一个人不用什么都自己做。"
+    },
+    {
+      "choices": [
+        "news",
+        "public",
+        "look",
+        "distance"
+      ],
+      "contains": [
+        "不一定。我想，这更像是对我自己说的话。",
+        "那就不是两个人加起来那么简单了。你们一起能做到的，会比两个人分开做，多得多！"
+      ],
+      "endsWith": "我看外面的房子。她说的“更好”，不只是再多救一个人。也可能是，让另外一个人不用什么都自己做。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-11-v1",
+    "category": "super-supportive",
+    "episode": 11,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-11.mp4",
+      "poster": "stories/animated/cutscenes/supportive-11.poster.jpg",
+      "title": "We could have done that better.",
+      "durationSeconds": 6.5
+    }
+  },
+  "teaser": {
+    "scene": "Hannah tells eleven-year-old Alden her changed heroic motto during his first island visit.",
+    "style": "Expressive oil pastel, cobalt shadows and warm peach highlights",
+    "identityReference": "stories/characters/super-supportive/supportive-07-opening.png and alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "1f781rj8gsrmw0d1kyj9rhn088",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "pricing": "Live 480p cost tier: $0.01/output second, 6 seconds, prompt_upsampler off, native audio.",
+    "generatedDurationSeconds": 6,
+    "finishing": "Removed unwanted early sound by retaining native interval 3.5–6.0 seconds, based on measured speech timing. Three-second exact retained-first-frame hold plus one-second final reaction hold; one paid generation.",
+    "image": "stories/characters/super-supportive/supportive-11-opening.png",
+    "checks": {
+      "sha256": "fe7cfa4f1aa866f6eb5990e0ebb19e8f24773b1c7904376cd10aaf0e826c5d55",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 6.5,
+      "hold_seconds": 3,
+      "motion_seconds": 2.4583333333333335,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "We could have done that better"
+    }
+  },
+  "verification": {
+    "packageBytes": 1936596,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 97.09051724137932,
+      "max": 97.41935483870968
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "所以，我想做那个愿意去看的人。这样，下次也许就能少做错一些事。",
+      "我不再喝东西了。她不是在说怎么让大家喜欢她。",
+      "我看外面的房子。她说的“更好”，不只是再多救一个人。也可能是，让另外一个人不用什么都自己做。"
+    ]
+  }
+}
