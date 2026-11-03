@@ -1,0 +1,157 @@
+{
+  "id": "supportive-12",
+  "series": "super-supportive",
+  "title": "好人是我？ · The Nice One",
+  "description": "快下车了，朋友们却开始讨论：谁好笑，谁说话难听，谁是好人？杰里米的回答，让阿登不知道说什么。",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-supplied EPUB, closing conversation of FIVE: The Nice One. Simplified Mandarin with local expressive choices."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Suddenly, a flip-flop nudged Alden’s shin. → before A note from Sleyca",
+    "dramaticChange": "Friendly teasing unexpectedly exposes Alden’s persistent heroic dream.",
+    "essentialNewWords": [
+      "好人",
+      "好笑",
+      "难听",
+      "英雄"
+    ],
+    "englishNarrationPurpose": "None; Mandarin throughout.",
+    "choicesAndCallbacks": [
+      "Apologize / explain unfinished writing: different Jeremy complaint; rejoin school complaint.",
+      "Tease need for friends / academic future: different protest; rejoin nice-one rebuke.",
+      "Notice serious labels / question self-image: distinct thought; rejoin reserved self-description.",
+      "Think of college pages / rescued cat: distinct thought; rejoin Boe. All local, no new persistent variables."
+    ],
+    "sceneActivities": [
+      "Seated train banter; Alden stands and leaves in narrated action. Cut to snowy street after stairs. Restrained gestures carry conversation; no invented kicking or bag-transfer animation."
+    ],
+    "storytellingVoice": "Warm, self-questioning adolescent",
+    "voiceReason": "Affectionate teasing exposes an awkward sincere ambition; humor stays with the source.",
+    "desire": "Understand why Jeremy calls him the nice one.",
+    "obstacle": "Alden thinks of himself as reserved and sensible; Jeremy sees a childhood heroic wish beneath the planning.",
+    "earlyCare": "Alden apologizes for being distracted and belongs to friends comfortable enough to tease him.",
+    "payoff": "Jeremy sees the desire to rescue others; Boe discovers unexpected insight in Jeremy.",
+    "newUncertainty": "Alden must face how much the superhero dream still matters. The next source conversation with Gorgon develops this, without a manufactured cliffhanger.",
+    "directing": "Train pair, accusation, surprised Alden listener and held genuine surprise; street trio, shared explanation, embarrassed Alden listener and aftermath on both branches, shared Alden/Boe ending.",
+    "signatures": {
+      "Alden": "Quiet teasing, literal questions, restrained surprise then embarrassment.",
+      "Jeremy": "Loud complaints and firm labels become unexpectedly concrete affection.",
+      "Boe": "Dry precise mockery; laughter shifts to genuine surprise."
+    },
+    "vocabulary": {
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "reviewedKnown": 804,
+      "approvedAdditional": 259,
+      "effectiveFamiliarWords": 1063
+    },
+    "teaser": {
+      "speaker": "Alden",
+      "line": "What makes me nice?",
+      "scene": "Alden questions the label on the snowy street after the train.",
+      "style": "Hand-carved woodblock print: gouged contours, wood grain, black/russet/teal ink on cream paper",
+      "identityReference": "stories/characters/super-supportive/alden-approved-a.png"
+    },
+    "limitations": [
+      "Existing vector costumes approximate Jeremy’s sleeveless outfit and Boe’s winter layers. Opening medium changes while established cast stays consistent."
+    ],
+    "pinyinReview": "Reviewed all 45 sentence readings and every chunk. Corrected hao in good student, zhi in only, complement de, experiential guo, neutral lexical syllables and reduplicated verbs; confirmed chuanshang, xialou, huan/hai and named characters in context."
+  },
+  "continuation": {
+    "end": "Jeremy brings Alden back to the train stop. Friends tease one another about being funny, mean and nice. Jeremy identifies Alden’s persistent heroic dream beneath his sensible college planning; Alden is embarrassed and Boe is impressed.",
+    "chapter": "OEBPS/Text/0006_SIX_Gorgon.xhtml",
+    "nextStart": "Fifteen minutes later, Alden and his friends arrived at the Artonan consulate building.",
+    "nextEndBefore": "It was an embarrassing admission.",
+    "note": "Arrival and food delivery to Gorgon. End after Alden admits his specific dream, before the deeper background about Hannah’s suspicion.",
+    "continuity": [
+      "Hannah remains missing; death is unconfirmed.",
+      "Friends know Alden’s superhero ambition. Jeremy sees it as sweet.",
+      "Group walks toward consulate classes.",
+      "Alden has sensible public plans and a persistent heroic dream."
+    ]
+  },
+  "routes": [
+    {
+      "choices": [
+        "sorry",
+        "need",
+        "laugh",
+        "plan"
+      ],
+      "contains": [
+        "因为你想成为英雄啊！"
+      ],
+      "endsWith": "我还真没想到。"
+    },
+    {
+      "choices": [
+        "thinking",
+        "student",
+        "compare",
+        "cat"
+      ],
+      "contains": [
+        "可是，你还是想穿上那种衣服，去把树上的小猫救下来。"
+      ],
+      "endsWith": "我还真没想到。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-12-v1",
+    "category": "super-supportive",
+    "episode": 12,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-12.mp4",
+      "poster": "stories/animated/cutscenes/supportive-12.poster.jpg",
+      "title": "What makes me nice?",
+      "durationSeconds": 8
+    }
+  },
+  "teaser": {
+    "scene": "Alden questions the label on the snowy street after the train.",
+    "style": "Hand-carved woodblock print: gouged contours, wood grain, black/russet/teal ink on cream paper",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "vck0zp2gmsrmt0d1kz3a9jq7dg",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "pricing": "Live billing tier checked 2026-11-03: 480p cost mode $0.01/output second; 6 seconds; prompt_upsampler off; native audio.",
+    "generatedDurationSeconds": 6,
+    "finishing": "Kept native 0–4 seconds, removing repeat measured at 4.82–5.78. Three-second exact first-frame hold, four seconds of motion and one-second closed-mouth reaction hold. One paid generation.",
+    "image": "stories/characters/super-supportive/supportive-12-opening.png",
+    "checks": {
+      "sha256": "ebb8d8b95327108236fcd393bf49c4ca0cbc1f97ac6a68eb9ea238f4b86de650",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 8,
+      "hold_seconds": 3,
+      "motion_seconds": 4,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "What makes me nice?"
+    }
+  },
+  "verification": {
+    "packageBytes": 1181336,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 96.29629629629629,
+      "max": 96.39065817409767
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "你这个给恶魔送吃的家伙！你不是我们三个人里的好人吗？",
+      "我不是在开玩笑。我没想到，他会这样说我。",
+      "我也不知道怎么说。就是……你这样，真的很好。",
+      "我不知道该说什么。这件事，他就这样说了。"
+    ]
+  }
+}

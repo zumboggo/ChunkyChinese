@@ -1201,5 +1201,21 @@
       "title": "还可以更好 · We Could Do Better",
       "description": "车窗外的城市已经修好了。阿登却想起汉娜说过的话：英雄救了人以后，还要看什么？"
     }
+  },
+  {
+    "id": "supportive-12-v1",
+    "category": "super-supportive",
+    "episode": 12,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-12.mp4",
+      "poster": "stories/animated/cutscenes/supportive-12.poster.jpg",
+      "title": "What makes me nice?",
+      "durationSeconds": 8
+    },
+    "path": "supportive-12.json",
+    "summary": {
+      "title": "好人是我？ · The Nice One",
+      "description": "快下车了，朋友们却开始讨论：谁好笑，谁说话难听，谁是好人？杰里米的回答，让阿登不知道说什么。"
+    }
   }
 ]
