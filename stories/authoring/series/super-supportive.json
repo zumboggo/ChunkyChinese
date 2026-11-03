@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0006_SIX_Gorgon.xhtml",
-    "nextStart": "It was an embarrassing admission.",
-    "nextEndBefore": "Icy wind swept through the lobby as the doors opened,",
-    "continuationNote": "Continue with Hannah’s observation about Alden staying conscious inside her spell, Gorgon’s limited services, and Alden’s decision to keep bringing food. End after trial-and-error agreement, before girls enter the lobby."
+    "nextStart": "Icy wind swept through the lobby as the doors opened,",
+    "nextEndBefore": "“Tell them to stop it,” Gorgon said.",
+    "continuationNote": "Begin with the remaining lobby encounter: Gorgon embarrasses Alden about classmates’ attraction. The pinned short excerpt stops immediately before Gorgon’s final reply; inspect and include the remaining closing reply, then deliberately extend into SEVEN: A Little Delusional for a coherent next installment. Do not skip the chapter-six ending."
   },
   "completed": [
     {
@@ -61,9 +61,13 @@
     {
       "episode": "supportive-13-v1",
       "end": "Alden brings Gorgon coconut-milk hot chocolate and spicy food. Gorgon challenges his motives. Alden admits hoping for friendship and future System advice, learns that magical restraints prevent secret information, and quietly explains that a friend thought his selection chances might be better than normal. He admits having a specific dream."
+    },
+    {
+      "episode": "supportive-14-v1",
+      "end": "Alden recalls Hannah’s uncertain clue about remaining conscious in her bubble. After Gorgon lists his limited public services, Alden promises to keep bringing food. Gorgon strains to explain he is not vegan but cannot name food or make requests. Alden suspects a punitive restriction and proposes trial and error; the reason remains unknown."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-13.json",
+  "assetsFrom": "stories/animated/supportive-14.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -78,18 +82,18 @@
     "openingArt": "Each opening depicts an episode-specific event, location, action and composition. Preserve approved character identity while experimenting with a distinct art medium each episode. Identity references must not cause repeated scenery."
   },
   "continuity": [
-    "Hannah’s death remains unconfirmed. Alden refers to her past belief without telling his friends the reason for his hopes.",
-    "Gorgon accepted coconut-milk cocoa and spicy giardiniera. His dietary restrictions remain unclear.",
-    "Gorgon is magically bound to the desk and forbidden to disclose nonpublic information.",
-    "Alden openly hoped to befriend Gorgon for future advice; the limit does not end his interest."
+    "Hannah’s death remains unconfirmed. Her CP idea was a tentative guess, not a diagnosis or promise of selection.",
+    "Gorgon offers the same registration and witnessing services to all visitors, plus pens; no privileged advice or transfer of authority.",
+    "Alden chooses to keep bringing food after learning Gorgon cannot give the hoped-for help.",
+    "Gorgon is not vegan but cannot explain his food restrictions or make requests; the reason is still unknown. Alden suspects punitive cruelty and agrees to trial and error."
   ],
   "castRecipes": "stories/characters/super-supportive/cast-11.json",
   "castBundle": "public/stories/animated/cast/supportive-13.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-13-v1",
-    "nextStart": "It was an embarrassing admission.",
-    "nextEndBefore": "Icy wind swept through the lobby as the doors opened,",
-    "assetsFrom": "stories/animated/supportive-13.json"
+    "note": "Published through supportive-14-v1",
+    "nextStart": "Icy wind swept through the lobby as the doors opened,",
+    "nextEndBefore": "“Tell them to stop it,” Gorgon said.",
+    "assetsFrom": "stories/animated/supportive-14.json"
   }
 }
