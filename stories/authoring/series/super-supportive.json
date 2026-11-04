@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0007_SEVEN_A_Little_Delusional.xhtml",
-    "nextStart": "“Right? I spent the whole class trying to think of reasons for it.",
-    "nextEndBefore": "The unreasonable longing had been worse since Hannah disappeared six months ago.",
-    "continuationNote": "Resume mid-lunch with Alden agreeing. Continue through the guesses, crickets, separation for afternoon classes and wordchaining introspection. Stop before the deeper reflection on Hannah."
+    "nextStart": "The unreasonable longing had been worse since Hannah disappeared six months ago.",
+    "nextEndBefore": "“Do you have a room to sleep in? When everybody leaves?”",
+    "continuationNote": "Cover Hannah’s absence, Jeremy quietly checking on Alden, and the final writing class that keeps Alden from going home. Finish as he returns to Gorgon’s desk before the private conversation."
   },
   "completed": [
     {
@@ -69,9 +69,13 @@
     {
       "episode": "supportive-15-v1",
       "end": "After Gorgon’s embarrassing assessment of classmates, Alden spends history class listing affordable food tests. At lunch he explains Gorgon cannot request food or answer a question about insects; Boe now wants to try feeding him too."
+    },
+    {
+      "episode": "supportive-16-v1",
+      "end": "Lunch speculation about blood and crickets remains only speculation. In wordchaining Alden hears Jeremy mistakenly offer his brain, then recognizes that his own correct words lack focus. He lets himself imagine being selected despite the odds."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-15.json",
+  "assetsFrom": "stories/animated/supportive-16.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -86,18 +90,17 @@
     "openingArt": "Each opening depicts an episode-specific event, location, action and composition. Preserve approved character identity while experimenting with a distinct art medium each episode. Identity references must not cause repeated scenery."
   },
   "continuity": [
-    "Alden proposes testing affordable foods first. Live insects are a theory only.",
-    "Boe is curious and wants to help; no food experiment has yet happened.",
-    "Gorgon cannot request food. His reasons and the reason for the restrictions remain unknown.",
-    "Hannah remains missing."
+    "Hannah remains missing, not confirmed dead.",
+    "Gorgon’s food restrictions remain unresolved. No proposed food test has been carried out.",
+    "Alden has no confirmed selection or powers; the effect of his wordchain is uncertain."
   ],
   "castRecipes": "stories/characters/super-supportive/cast-11.json",
   "castBundle": "public/stories/animated/cast/supportive-13.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-15-v1",
-    "nextStart": "“Right? I spent the whole class trying to think of reasons for it.",
-    "nextEndBefore": "The unreasonable longing had been worse since Hannah disappeared six months ago.",
-    "assetsFrom": "stories/animated/supportive-15.json"
+    "note": "Published through supportive-16-v1",
+    "nextStart": "The unreasonable longing had been worse since Hannah disappeared six months ago.",
+    "nextEndBefore": "“Do you have a room to sleep in? When everybody leaves?”",
+    "assetsFrom": "stories/animated/supportive-16.json"
   }
 }
