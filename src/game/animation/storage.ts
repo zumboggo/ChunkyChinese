@@ -23,7 +23,21 @@ export async function releases(identity:string):Promise<Release[]>{const db=awai
 export async function saveProgress(identity:string,id:string,value:StoryProgress,release?:Release){
  const db=await database(),tx=db.transaction('records','readwrite')
  await tx.store.put(value,scope(identity)+'progress:'+id)
- if(release)await tx.store.put(release,scope(identity)+'latest-played')
+ if(release){
+  await tx.store.put(release,scope(identity)+'latest-played')
+  if(release.category)await tx.store.put(release.id,scope(identity)+'recent:'+release.category)
+ }
  await tx.done
 }
 export const latestPlayed=(identity:string)=>read<Release>(scope(identity)+'latest-played')
+
+export async function seriesResume(identity:string,category:string,episodes:Release[]){
+ const db=await database()
+ const prefix=scope(identity)
+ const recent=await db.get('records',prefix+'recent:'+category)
+ const marked=episodes.find(r=>r.id===recent)
+ if(marked)return marked
+ // Older saves have no per-series bookmark. Recover the furthest opened episode.
+ const keys=new Set(await db.getAllKeys('records',IDBKeyRange.bound(prefix+'progress:',prefix+'progress:\uffff')))
+ return [...episodes].reverse().find(r=>keys.has(prefix+'progress:'+r.id)||(r.resumeFrom&&keys.has(prefix+'progress:'+r.resumeFrom)))
+}

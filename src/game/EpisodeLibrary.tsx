@@ -6,17 +6,25 @@ export function orderedEpisodes(items:Release[],category:string){return items.fi
 export function nextEpisode(items:Release[],current:Release){if(categoryOf(current)==='practice')return undefined;const list=orderedEpisodes(items,categoryOf(current)),i=list.findIndex(r=>r.id===current.id);return i<0?undefined:list[i+1]}
 const books=[{id:'lms',name:'Legendary Moonlight Sculptor'},{id:'name-of-the-wind',name:'The Name of the Wind'},{id:'jedi',name:'The Voices Beneath the Water',cover:'stories/animated/jedi/series-cover.jpg'},{id:'super-supportive',name:'Super Supportive',cover:'stories/animated/super-supportive/series-cover.png'},{id:'daily-life',name:'Daily Life'}]
 const shortTitle=(r:Release)=>r.pack.title.replace(/^(?:Moonlight Sculptor\s*\d+\s*·|The Name of the Wind\s*\d+\s*·|.*?Episode\s*\d+\s*[:—–-])\s*/i,'')
-export default function EpisodeLibrary({items,onPlay,onExport,onEdit,displayControls,resumeControl,preferencesKey='story2:library',opening=false,playMessage=''}:{displayControls?:ReactNode;resumeControl?:ReactNode;opening?:boolean;playMessage?:string;preferencesKey?:string;items:Release[];onPlay:(r:Release,restart?:boolean)=>void;onExport:(r:Release)=>void;onEdit:(r:Release)=>void}){
+export default function EpisodeLibrary({items,onPlay,onExport,onEdit,displayControls,resolveResume,preferencesKey='story2:library',opening=false,playMessage=''}:{displayControls?:ReactNode;resolveResume?:(category:string,episodes:Release[])=>Promise<Release|undefined>;opening?:boolean;playMessage?:string;preferencesKey?:string;items:Release[];onPlay:(r:Release,restart?:boolean)=>void;onExport:(r:Release)=>void;onEdit:(r:Release)=>void}){
  const [panel,setPanel]=useState<'story'|'display'|null>(null)
  const saved=()=>{try{const value=JSON.parse(localStorage.getItem(preferencesKey)??'{}');return value&&typeof value==='object'?value:{}}catch{return {}}}
  const [category,setCategory]=useState(()=>books.some(b=>b.id===saved().category)?saved().category as string:'lms'),[selected,setSelected]=useState<Record<string,string>>(()=>{const value=saved().selected;return value&&typeof value==='object'?value:{}}),[query,setQuery]=useState('')
  useEffect(()=>{try{localStorage.setItem(preferencesKey,JSON.stringify({category,selected}))}catch{/* Selection still works without storage. */}},[category,selected,preferencesKey])
  const episodes=orderedEpisodes(items,category),filtered=episodes.filter(r=>`${episodeNumber(r)} ${r.pack.title}`.toLowerCase().includes(query.trim().toLowerCase()))
+ const [bookmark,setBookmark]=useState<Release>()
+ useEffect(()=>{
+  let active=true
+  void resolveResume?.(category,episodes).then(r=>{if(active)setBookmark(r)}).catch(()=>{if(active)setBookmark(undefined)})
+  return ()=>{active=false}
+ },[category,items,resolveResume])
+ const resume=bookmark&&categoryOf(bookmark)===category?bookmark:undefined
  const active=filtered.find(r=>r.id===selected[category])??filtered[0],index=active?episodes.indexOf(active):-1
  const choose=(r:Release)=>setSelected(old=>({...old,[category]:r.id}))
  const book=books.find(b=>b.id===category)!,background=book.cover?`${import.meta.env.BASE_URL}${book.cover}`:active&&Object.values(active.pack.assets.backgrounds)[0]?.src
  return <div className="episode-library">
-  <div className="library-toolbar"><h1>Game</h1><button className="library-chooser" aria-expanded={panel==='story'} aria-controls="library-story-panel" onClick={()=>setPanel(panel==='story'?null:'story')}>Choose story <span aria-hidden="true">⌄</span></button><button className="library-display" aria-expanded={panel==='display'} aria-controls="library-display-panel" onClick={()=>setPanel(panel==='display'?null:'display')}>Display <span aria-hidden="true">⌄</span></button></div><div id="library-story-panel" className="library-panel" hidden={panel!=='story'}>{resumeControl}<div className="episode-navigation">
+  {resume&&<div className="library-resume"><button disabled={opening} onClick={()=>onPlay(resume)}>Resume</button><span>{resume.pack.title}</span></div>}
+  <div className="library-toolbar"><h1>Game</h1><button className="library-chooser" aria-expanded={panel==='story'} aria-controls="library-story-panel" onClick={()=>setPanel(panel==='story'?null:'story')}>Choose story <span aria-hidden="true">⌄</span></button><button className="library-display" aria-expanded={panel==='display'} aria-controls="library-display-panel" onClick={()=>setPanel(panel==='display'?null:'display')}>Display <span aria-hidden="true">⌄</span></button></div><div id="library-story-panel" className="library-panel" hidden={panel!=='story'}><div className="episode-navigation">
    <label>Book<select aria-label="Book" value={category} onChange={e=>{setCategory(e.target.value);setQuery('')}}>{books.map(b=><option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
    <label>Find an episode<input type="search" aria-label="Find an episode" placeholder="Title or number" value={query} onChange={e=>setQuery(e.target.value)}/></label>
    <label className="episode-select">Episode<select aria-label="Episode" value={active?.id??''} disabled={!filtered.length} onChange={e=>setSelected(old=>({...old,[category]:e.target.value}))}>{filtered.length?filtered.map((r,i)=><option key={r.id} value={r.id}>{String(episodeNumber(r)||i+1).padStart(2,'0')} · {shortTitle(r)}</option>):<option value="">{episodes.length?'No matching episodes':'No episodes yet'}</option>}</select></label>
