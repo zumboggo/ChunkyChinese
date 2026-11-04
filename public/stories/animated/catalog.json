@@ -1249,5 +1249,21 @@
       "title": "Super Supportive · Episode 14 · 我还是会来",
       "description": "他帮不上忙，我为什么还要来？在桌子前，一句话让我们的关系有了变化。"
     }
+  },
+  {
+    "id": "supportive-15-v1",
+    "category": "super-supportive",
+    "episode": 15,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-15.mp4",
+      "poster": "stories/animated/cutscenes/supportive-15.poster.jpg",
+      "title": "He can't tell me.",
+      "durationSeconds": 6.75
+    },
+    "path": "supportive-15.json",
+    "summary": {
+      "title": "他不能告诉我 · He Can’t Tell Me",
+      "description": "下课吃午饭时，阿登问了一个很简单的问题。听见他的回答，两个朋友都停了下来。"
+    }
   }
 ]

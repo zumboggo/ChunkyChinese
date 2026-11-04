@@ -1,0 +1,153 @@
+{
+  "id": "supportive-15",
+  "series": "super-supportive",
+  "title": "他不能告诉我 · He Can’t Tell Me",
+  "description": "下课吃午饭时，阿登问了一个很简单的问题。听见他的回答，两个朋友都停了下来。",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-supplied EPUB: conclusion of SIX: Gorgon including the final reply; SEVEN: A Little Delusional through Boe saying he too wants to try feeding Gorgon. Mandarin adaptation; all theories stay explicitly unconfirmed."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "SIX: Icy wind swept through the lobby → final reply; SEVEN: opening of history class through Boe’s offer at lunch, before Alden answers Right? I spent the whole class...",
+    "storytellingVoice": "Warm, self-questioning adolescent",
+    "voiceReason": "Social embarrassment becomes private amateur detective work; Alden checks his own reasoning and the cost of his guesses.",
+    "dramaticChange": "Gorgon publicly reads attraction but cannot say what he wants to eat. Alden brings the puzzle to his friends; Boe starts to share the curiosity.",
+    "desire": "Find one affordable, useful food experiment.",
+    "obstacle": "Gorgon cannot give even a yes/no answer about food.",
+    "earlyCare": "Alden objects to discussing classmates’ private feelings.",
+    "payoff": "Alden decides to try cheaper foods first and gains an interested ally.",
+    "newUncertainty": "What affordable food can they actually test? Neither the diet nor the restriction is solved.",
+    "essentialNewWords": [
+      "苍蝇",
+      "虫子",
+      "袜子"
+    ],
+    "englishNarrationPurpose": "None. Mandarin story and choices throughout.",
+    "choicesAndCallbacks": [
+      "Notice mirror or monitor: embarrassment versus Gorgon’s indifference.",
+      "List affordable food or frame the question: possible experiment versus cause.",
+      "Question live prey or compare costs: doubt versus savings.",
+      "Lead with refused foods or Gorgon’s correction: evidence versus first-person account. Local branches rejoin; no new lasting variables."
+    ],
+    "sceneActivities": [
+      "Lobby two-shot; seated Alden in the history class making lists; return to friends at the shop counter. Shoes, writing and lunch actions narrated."
+    ],
+    "directing": "Shared lunch discussion → Alden says he cannot tell me → Boe surprised listener and held pause → pair returns for explanation.",
+    "signatures": {
+      "Gorgon": "Dry literal refusal to respect human discretion; existing seated static art.",
+      "Alden": "Awkward social recoil, cautious hypotheses, pragmatic cost test.",
+      "Jeremy": "Concerned about the scary friend.",
+      "Boe": "Dry cheap-food suggestion becomes an earnest question."
+    },
+    "vocabulary": {
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "reviewedKnown": 804,
+      "approvedAdditional": 259,
+      "effectiveFamiliarWords": 1063
+    },
+    "pinyinReview": "Reviewed 45 sentences and their chunk readings; corrected dei for obligation, zhi for only, experiential guo and neutral tones.",
+    "teaser": {
+      "speaker": "Alden",
+      "line": "He can't tell me.",
+      "scene": "At the convenience-store lunch counter, Alden explains that Gorgon cannot tell him what to bring.",
+      "style": "Hand-rendered alcohol marker with translucent raspberry and turquoise dye and black fineliner on ivory paper",
+      "identityReference": "stories/characters/super-supportive/alden-approved-a.png"
+    }
+  },
+  "continuation": {
+    "chapter": "OEBPS/Text/0007_SEVEN_A_Little_Delusional.xhtml",
+    "nextStart": "“Right? I spent the whole class trying to think of reasons for it.",
+    "nextEndBefore": "The unreasonable longing had been worse since Hannah disappeared six months ago.",
+    "end": "After Gorgon’s embarrassing assessment of classmates, Alden spends history class listing affordable food tests. At lunch he explains Gorgon cannot request food or answer a question about insects; Boe now wants to try feeding him too.",
+    "note": "Resume mid-lunch with Alden agreeing. Continue through the guesses, crickets, separation for afternoon classes and wordchaining introspection. Stop before the deeper reflection on Hannah.",
+    "continuity": [
+      "Alden proposes testing affordable foods first. Live insects are a theory only.",
+      "Boe is curious and wants to help; no food experiment has yet happened.",
+      "Gorgon cannot request food. His reasons and the reason for the restrictions remain unknown.",
+      "Hannah remains missing."
+    ]
+  },
+  "routes": [
+    {
+      "choices": [
+        "mirror",
+        "food",
+        "doubt",
+        "refused"
+      ],
+      "contains": [
+        "他不能告诉我。"
+      ],
+      "endsWith": "现在，我也想带点东西给他吃吃看了。"
+    },
+    {
+      "choices": [
+        "screen",
+        "why",
+        "cost",
+        "told"
+      ],
+      "contains": [
+        "他不能告诉我。"
+      ],
+      "endsWith": "现在，我也想带点东西给他吃吃看了。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-15-v1",
+    "category": "super-supportive",
+    "episode": 15,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-15.mp4",
+      "poster": "stories/animated/cutscenes/supportive-15.poster.jpg",
+      "title": "He can't tell me.",
+      "durationSeconds": 6.75
+    }
+  },
+  "teaser": {
+    "scene": "At the convenience-store lunch counter, Alden explains that Gorgon cannot tell him what to bring.",
+    "style": "Hand-rendered alcohol marker with translucent raspberry and turquoise dye and black fineliner on ivory paper",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "x0fm9s6c99rmw0d1mgxayt0h8r",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "pricing": "2026-11-04 live tier: 480p cost, $0.01 per output second, six seconds, native audio, prompt upsampler off.",
+    "generatedDurationSeconds": 6,
+    "finishing": "Kept first 2.75 seconds after word timing located line at 1.01–2.43 seconds and extraneous later speech. Three-second opening hold plus one-second reaction.",
+    "image": "stories/characters/super-supportive/supportive-15-opening.png",
+    "checks": {
+      "sha256": "9aa71da5c893bccee660d03dcf7a2a2708aa14c65a1db73a5b78a166ce75e21c",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 6.75,
+      "hold_seconds": 3,
+      "motion_seconds": 2.75,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "He can't tell me"
+    }
+  },
+  "verification": {
+    "packageBytes": 2920664,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 95.5223880597015,
+      "max": 95.88014981273409
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "他不能告诉我。",
+      "两个人都不吃了，一起看我。",
+      "现在，我也想带点东西给他吃吃看了。"
+    ]
+  }
+}
