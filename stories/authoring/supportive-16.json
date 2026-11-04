@@ -1,0 +1,145 @@
+{
+  "id": "supportive-16",
+  "series": "super-supportive",
+  "title": "心里的平静 · Peace of Mind",
+  "description": "杰里米把一个字说错了，阿登差点笑出来。可他说对了每个字，就真的比朋友更认真吗？",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "Supplied EPUB, SEVEN: A Little Delusional, lunch speculation through wordchaining and Alden’s acknowledgment of unreasonable hope. Mandarin wording, translated wordchain offering and reflective branches are adaptations."
+    }
+  ],
+  "planning": {
+    "storytellingVoice": "Warm, self-questioning adolescent",
+    "voiceReason": "Alden checks his own lunch speculation, then finds that the joke about Jeremy also exposes his own distraction.",
+    "sourceBoundary": "SEVEN: Right? I spent the whole class... through Yep. Delusional.; stop before The unreasonable longing had been worse...",
+    "dramaticChange": "Knowing the words does not guarantee sincere attention. Alden notices the contrast and admits that the unlikely possibility of selection keeps drawing his thoughts back.",
+    "desire": "Offer someone calm while privately hoping to be chosen.",
+    "obstacle": "An ordinary afternoon class keeps bringing his uncertain future to mind.",
+    "earlyCare": "Alden defends Gorgon while acknowledging that his own guesses were outlandish too.",
+    "payoff": "The brain/peace-of-mind mistake lets Alden see the difference between correct pronunciation and intention.",
+    "newUncertainty": "Why has the hope become so hard to put down? The next passage connects it to Hannah.",
+    "choicesAndCallbacks": [
+      "Defend Gorgon / remember own guesses; rejoin cheap-food joke.",
+      "Consider medical work / helping like Hannah; rejoin waiting for selection.",
+      "Think of the possible recipient / listen to Jeremy; rejoin wrong-word revelation.",
+      "Imagine plans changing / hear stories of young people with powers; rejoin admission. All local."
+    ],
+    "sceneActivities": [
+      "Friends at lunch; packet and food actions narrated. Two seated friends in class, shared shot through the mistake; hold on Alden’s self-conscious response."
+    ],
+    "directing": "Lunch trio to Jeremy listener, then classroom pair to the affected Alden and held reflection.",
+    "essentialNewWords": [
+      "蟋蟀",
+      "吸血鬼",
+      "平静"
+    ],
+    "englishNarrationPurpose": "None; Mandarin throughout.",
+    "vocabulary": {
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "reviewedKnown": 804,
+      "approvedAdditional": 259,
+      "effectiveFamiliarWords": 1063
+    },
+    "pinyinReview": "Reviewed all sentence/chunk readings, including adverbial de, complement de, experiential guo, neutral noun endings and reduplication.",
+    "teaser": {
+      "line": "I offer you my peace of mind.",
+      "speaker": "Alden",
+      "scene": "Alden murmurs the peace-of-mind offering on a wordchaining mat.",
+      "style": "Figurative stained glass in lapis and amber with lead outlines",
+      "identityReference": "stories/characters/super-supportive/alden-approved-a.png"
+    }
+  },
+  "continuation": {
+    "end": "Lunch speculation about blood and crickets remains only speculation. In wordchaining Alden hears Jeremy mistakenly offer his brain, then recognizes that his own correct words lack focus. He lets himself imagine being selected despite the odds.",
+    "nextStart": "The unreasonable longing had been worse since Hannah disappeared six months ago.",
+    "nextEndBefore": "“Do you have a room to sleep in? When everybody leaves?”",
+    "note": "Cover Hannah’s absence, Jeremy quietly checking on Alden, and the final writing class that keeps Alden from going home. Finish as he returns to Gorgon’s desk before the private conversation.",
+    "continuity": [
+      "Hannah remains missing, not confirmed dead.",
+      "Gorgon’s food restrictions remain unresolved. No proposed food test has been carried out.",
+      "Alden has no confirmed selection or powers; the effect of his wordchain is uncertain."
+    ]
+  },
+  "routes": [
+    {
+      "choices": [
+        "defend",
+        "mother",
+        "there",
+        "change"
+      ],
+      "contains": [
+        "杰里米好认真。可有个字他说错了。他刚刚答应把自己的脑子送给别人了。"
+      ],
+      "endsWith": "是啊，我是想得有点多。可一天不知道答案，我就还没办法不去想。"
+    },
+    {
+      "choices": [
+        "admit",
+        "hannah",
+        "here",
+        "news"
+      ],
+      "contains": [
+        "杰里米好认真。可有个字他说错了。他刚刚答应把自己的脑子送给别人了。"
+      ],
+      "endsWith": "是啊，我是想得有点多。可一天不知道答案，我就还没办法不去想。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-16-v1",
+    "category": "super-supportive",
+    "episode": 16,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-16.mp4",
+      "poster": "stories/animated/cutscenes/supportive-16.poster.jpg",
+      "title": "I offer you my peace of mind.",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "scene": "Alden murmurs the peace-of-mind offering on a wordchaining mat.",
+    "style": "Figurative stained glass in lapis and amber with lead outlines",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "h5pqvm8bb5rmr0d1mhwrgjt7c0",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "generatedDurationSeconds": 6,
+    "pricing": "Verified 2026-11-04, $0.01 per output second at 480p cost mode, six seconds, native audio, upsampler off.",
+    "finishing": "Full native motion after three-second first-frame hold; exact line passes offline speech check.",
+    "image": "stories/characters/super-supportive/supportive-16-opening.png",
+    "checks": {
+      "sha256": "5fb4d5e702622d6648e1680ef36d5ba01b53c4308fca4acf529cc0bd906a7b82",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 6,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "I offer you my peace of mind."
+    }
+  },
+  "verification": {
+    "packageBytes": 2922847,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 96.44194756554307,
+      "max": 96.6604823747681
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "杰里米好认真。可有个字他说错了。他刚刚答应把自己的脑子送给别人了。",
+      "我差点笑了。再一想，他是真的想给。我的话全说对了，可我的心又在哪里？",
+      "是啊，我是想得有点多。可一天不知道答案，我就还没办法不去想。"
+    ]
+  }
+}

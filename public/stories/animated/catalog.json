@@ -1265,5 +1265,21 @@
       "title": "他不能告诉我 · He Can’t Tell Me",
       "description": "下课吃午饭时，阿登问了一个很简单的问题。听见他的回答，两个朋友都停了下来。"
     }
+  },
+  {
+    "id": "supportive-16-v1",
+    "category": "super-supportive",
+    "episode": 16,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-16.mp4",
+      "poster": "stories/animated/cutscenes/supportive-16.poster.jpg",
+      "title": "I offer you my peace of mind.",
+      "durationSeconds": 9
+    },
+    "path": "supportive-16.json",
+    "summary": {
+      "title": "心里的平静 · Peace of Mind",
+      "description": "杰里米把一个字说错了，阿登差点笑出来。可他说对了每个字，就真的比朋友更认真吗？"
+    }
   }
 ]
