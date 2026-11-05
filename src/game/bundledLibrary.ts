@@ -10,7 +10,7 @@ export function bundledPreviews(catalog:CatalogEntry[]=bundledCatalog):Release[]
 // Large narrated packages need time on slower mobile connections.
 const EPISODE_DOWNLOAD_TIMEOUT_MS=120_000
 const RETRY_DOWNLOAD='Check your connection, then choose Play / resume episode to retry. Your saved progress is safe.'
-export async function loadBundledEntry(entry:CatalogEntry):Promise<Release>{
+export async function loadBundledEntry(entry:CatalogEntry,options:{requireStorage?:boolean;signal?:AbortSignal}={}):Promise<Release>{
  if(!/^[a-z0-9-]+$/.test(entry.id)||!/^[a-z0-9-]+\.json$/.test(entry.path))throw Error('Invalid catalog entry')
  const key='bundled:'+entry.id
  let pack=await read<ChinesePackage>(key).catch(()=>undefined)
@@ -19,14 +19,14 @@ export async function loadBundledEntry(entry:CatalogEntry):Promise<Release>{
   const controller=new AbortController()
   const timeout=setTimeout(()=>controller.abort(),EPISODE_DOWNLOAD_TIMEOUT_MS)
   try {
-   const response=await fetch(import.meta.env.BASE_URL+'stories/animated/'+entry.path,{signal:controller.signal})
+   const response=await fetch(import.meta.env.BASE_URL+'stories/animated/'+entry.path,{signal:options.signal?AbortSignal.any([controller.signal,options.signal]):controller.signal})
    if(!response.ok)throw Error('Episode download failed. Choose Play to retry; your saved progress is safe.')
    pack=await response.json() as ChinesePackage
   } catch {
    throw Error((controller.signal.aborted?'The episode download took too long. ':'The episode could not finish downloading. ')+RETRY_DOWNLOAD)
   } finally {clearTimeout(timeout)}
   if(validateChinese(pack).errors.length)throw Error('Episode needs an updated player')
-  await write(key,pack).catch(()=>undefined)
+  await write(key,pack).catch(error=>{if(options.requireStorage)throw error})
  }
  return {id:entry.id,pack,created:'',resumeFrom:entry.resumeFrom,category:entry.category,episode:entry.episode,intro:entry.intro}
 }

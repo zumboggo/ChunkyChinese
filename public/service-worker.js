@@ -1,4 +1,5 @@
 const CACHE_VERSION = 'episode-ea17a5a39678'
+const EPISODE_OFFLINE_CACHE = 'chunky-episode-downloads-v1'
 const COURSE_OFFLINE_CACHE = 'chunky-listening-course-v1'
 const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'
 const SENTENCE_OFFLINE_CACHE = 'chunky-sentence-listening-v1'
@@ -91,6 +92,11 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url)
   if (url.origin !== self.location.origin || !url.pathname.startsWith(APP_BASE)) return
 
+  if (url.pathname.startsWith(`${APP_BASE}stories/animated/`)) {
+    event.respondWith(episodeOfflineFirst(request))
+    return
+  }
+
   if (url.pathname.startsWith(`${APP_BASE}listening/`)) {
     event.respondWith(courseOfflineFirst(request))
     return
@@ -149,6 +155,10 @@ async function courseOfflineFirst(request) {
   const response = await cache.match(request.url)
   // Range responses are partial files and must never be stored as full MP3s.
   if (!response) return new URL(request.url).pathname.endsWith('.mp3') ? fetch(request) : cacheFirst(request)
+  return rangeResponse(request, response)
+}
+
+async function rangeResponse(request, response) {
   const range = request.headers.get('range')
   if (!range) return response
   const blob = await response.blob()
@@ -163,6 +173,13 @@ async function courseOfflineFirst(request) {
     'Content-Range': `bytes ${start}-${end}/${blob.size}`,
     'Accept-Ranges': 'bytes',
   } })
+}
+
+async function episodeOfflineFirst(request) {
+  const cache = await caches.open(EPISODE_OFFLINE_CACHE)
+  const response = await cache.match(request.url)
+  if (!response) return fetchWithTimeout(request, 120000)
+  return rangeResponse(request, response)
 }
 
 async function networkFirstHtml(request) {
