@@ -101,3 +101,7 @@
 @media(max-width:600px){.game-library{padding:14px;margin-top:8px}.library-toolbar{gap:8px;margin-bottom:14px}.library-toolbar h1{font-size:20px}.library-toolbar summary{padding:11px 12px;font-size:13px}.library-panel{padding:14px}.game-library .episode-cover{height:clamp(180px,29svh,280px)}.game-library .featured-episode>div{padding:16px}.game-library .featured-episode h2{font-size:27px}.game-library .featured-episode p:not(.game-kicker){font-size:13px;line-height:1.5}}
 
 .series-pending-cover{display:block;width:min(100%,320px);height:auto;margin:0 auto 24px;border-radius:8px}
+
+.game-controller-help { font-size: .8rem; opacity: .75; }
+.game-playing .game-controller-help { display: none; }
+.game-page[data-controller] :focus { outline: 3px solid #fbbf24 !important; outline-offset: 4px; box-shadow: 0 0 0 6px #171c30 !important; }
