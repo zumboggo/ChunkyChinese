@@ -20,6 +20,7 @@
     "reader:assets:audit": "python scripts/reader-assets.py audit",
     "reader:audio": "python scripts/reader-assets.py generate-audio",
     "reader:art": "python scripts/reader-assets.py generate-art",
+    "reader:art:just-friends": "python scripts/reader-assets.py generate-just-friends-illustrations",
     "reader:assets:verify": "python scripts/reader-assets.py verify",
     "generate:nav-icons": "node scripts/generate-nav-icons-ideogram.mjs",
     "clean:lms-vocab": "node scripts/clean-lms-vocab.mjs --write",
