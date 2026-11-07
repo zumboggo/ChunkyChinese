@@ -5962,6 +5962,80 @@ kbd {
   color: var(--reader-ink);
 }
 
+/* ── Compact text mode for small 4:3 screens (e.g. Mangmi Air Y 1280×960) ── */
+.reader-compact-text {
+  gap: 6px;
+  padding: clamp(10px, 2.5vw, 20px);
+}
+
+.reader-compact-text .reader-page-meta {
+  font-size: 0.72rem;
+  gap: 6px;
+}
+
+.reader-compact-text .reader-progress-bar {
+  height: 5px;
+}
+
+.reader-compact-text .reader-swipe-zone {
+  gap: 8px;
+  min-height: auto;
+  padding: clamp(10px, 3vw, 22px);
+}
+
+.reader-compact-text .reader-reading-area {
+  font-size: 0.9rem;
+}
+
+.reader-compact-text .reader-translation {
+  font-size: clamp(0.82rem, 1.6vw, 1.05rem);
+  line-height: 1.35;
+}
+
+.reader-compact-text .reader-wpm-dashboard {
+  padding: 6px 14px;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.reader-compact-text .dashboard-metric dt {
+  font-size: 0.6rem;
+}
+
+.reader-compact-text .dashboard-metric dd {
+  font-size: 0.9rem;
+}
+
+.reader-compact-text .reader-bottom-bar {
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.reader-compact-text .reader-bottom-bar button {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+}
+
+.reader-compact-text .reader-illustration {
+  width: min(100%, 380px);
+  margin: 0 auto 8px;
+}
+
+.reader-compact-text .reader-btn-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.reader-compact-text .reader-controls-icon .reader-btn-next {
+  width: 50px;
+  height: 50px;
+}
+
+.reader-compact-text .sentence-menu-btn,
+.reader-compact-text .reader-btn-play {
+  font-size: 0.72rem;
+}
+
 .reader-wpm-dashboard {
   display: flex;
   flex-wrap: wrap;
