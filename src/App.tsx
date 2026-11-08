@@ -3063,6 +3063,7 @@ function App() {
     | 'readerListeningAutoAdvance'
     | 'readerShowEnglish'
     | 'readerStatusHighlight'
+    | 'readerCompactText'
   >>) {
     readerSettingsRevision.current += 1
     setUserSettings(current => {
@@ -3645,6 +3646,7 @@ function App() {
           readerLargeText={userSettings.readerLargeText}
           readerFontScale={userSettings.readerFontScale}
           readerLineHeight={userSettings.readerLineHeight}
+          readerCompactText={userSettings.readerCompactText}
           replayHotkey={hotkeys.choiceF}
           choiceB={hotkeys.choiceB}
           showEnglish={readerShowEnglish}
@@ -4426,6 +4428,15 @@ function App() {
                         onChange={(event) => saveReaderSettings({ readerLineHeight: Number(event.target.value) })}
                       />
                       <small>{userSettings.readerLineHeight.toFixed(2)}x</small>
+                    </label>
+                    <label>
+                      <span>Compact text for small screens</span>
+                      <small>Halves text size so sentences fit on one screen without scrolling. Designed for small 4:3 devices like the Mangmi Air Y.</small>
+                      <input
+                        type="checkbox"
+                        checked={userSettings.readerCompactText}
+                        onChange={(event) => saveReaderSettings({ readerCompactText: event.target.checked })}
+                      />
                     </label>
                   </div>
                   <div className="reader-pinyin-legend" aria-label="Adaptive pinyin legend">
@@ -5588,6 +5599,7 @@ function ReaderMode({
   readerLargeText,
   readerFontScale,
   readerLineHeight,
+  readerCompactText,
   replayHotkey,
   choiceB,
   showEnglish,
@@ -5641,6 +5653,7 @@ function ReaderMode({
   readerLargeText: boolean
   readerFontScale: number
   readerLineHeight: number
+  readerCompactText: boolean
   replayHotkey: string
   choiceB: string
   showEnglish: boolean
@@ -5815,10 +5828,10 @@ function ReaderMode({
         </aside>
 
         <section
-          className="reader-page"
+          className={`reader-page${readerCompactText ? ' reader-compact-text' : ''}`}
           style={{
-            '--reader-font-scale': readerFontScale * (readerLargeText ? 2.5 : 1),
-            '--reader-line-height': readerLineHeight,
+            '--reader-font-scale': readerFontScale * (readerLargeText ? 2.5 : 1) * (readerCompactText ? 0.48 : 1),
+            '--reader-line-height': readerCompactText ? Math.max(readerLineHeight * 0.72, 1.25) : readerLineHeight,
           } as CSSProperties}
         >
           {activeBook && sentence ? (

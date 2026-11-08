@@ -79,6 +79,9 @@ export interface UserSettings {
   readerListeningAutoAdvance: boolean
   readerShowEnglish: boolean
   readerStatusHighlight: boolean
+  /** When true, halves the effective text size so text fits on one screen
+   *  without scrolling — designed for small 4:3 screens like Mangmi Air Y. */
+  readerCompactText: boolean
   sentenceRepeats: number
   sentenceIncludeEnglish: boolean
   sentencePauseFactor: number
