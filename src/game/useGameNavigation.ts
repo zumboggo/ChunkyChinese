@@ -14,6 +14,7 @@ export function useGameNavigation(root: RefObject<HTMLElement | null>) {
   }
   const focus=(el:HTMLElement|undefined)=>{el?.focus({preventScroll:true});el?.scrollIntoView({block:'nearest',inline:'nearest'})}
   const current=()=>controls().find(el=>el===document.activeElement)
+  const playback=()=>section.classList.contains('game-playing')&&Boolean(section.querySelector('.animated-story'))
   function move(delta:number){const items=controls(),index=items.indexOf(document.activeElement as HTMLElement);focus(items[index<0?0:(index+delta+items.length)%items.length])}
   function adjust(delta:number){
    const el=current()
@@ -35,8 +36,42 @@ export function useGameNavigation(root: RefObject<HTMLElement | null>) {
    if(expanded){expanded.click();focus(expanded);return}
    section.querySelector<HTMLButtonElement>('.cinema-back')?.click()
   }
-  function action(key:string){
-   active=true;section!.dataset.controller='true'
+  function choices(){
+   const story=Array.from(section.querySelectorAll<HTMLButtonElement>('.episode-choice:not(:disabled)')).filter(visible)
+   if(story.length)return story
+   const quiz=section.querySelector('[data-quiz]')
+   if(!quiz)return []
+   const focused=(document.activeElement as HTMLElement|null)?.closest('fieldset')
+   const field=focused&&quiz.contains(focused)?focused:quiz.querySelector('fieldset:not(:has(button[aria-pressed="true"]))')
+   return field?Array.from(field.querySelectorAll<HTMLButtonElement>('button:not(:disabled)')).filter(visible):[]
+  }
+  function select(){
+   const options=choices(),el=current()
+   if(options.length){const choice=el&&options.includes(el as HTMLButtonElement)?el:options[0];choice?.click();return}
+   const target=el??Array.from(section.querySelectorAll<HTMLButtonElement>('[data-next]:not(:disabled)')).find(visible)
+   if(target)target.click();else move(1)
+  }
+  function replay(){
+   const story=section.querySelector('.animated-story')
+   if(!story)return
+   const cards=Array.from(section.querySelectorAll<HTMLElement>('.episode-choice-card'))
+   const focused=document.activeElement as HTMLElement|null
+   const card=focused?.closest('.episode-choice-card')
+   const choice=card?Math.max(0,cards.indexOf(card as HTMLElement)):0
+   story.dispatchEvent(new CustomEvent('game-replay-audio',{detail:{choice}}))
+  }
+  function scroll(direction:number){section.scrollBy({top:direction*Math.max(140,section.clientHeight*.4),behavior:'auto'})}
+  function action(key:string,gamepad=false){
+   active=true;section.dataset.controller='true'
+   const story=gamepad&&playback()
+   if(story){
+    if(key==='up'||key==='down'){scroll(key==='up'?-1:1);return}
+    if(key==='left'||key==='right'){adjust(key==='left'?-1:1);return}
+    if(key==='focus-next'){move(1);return}
+    if(key==='select'){select();return}
+    if(key==='choice-two'){choices()[1]?.click();return}
+    if(key==='replay'){replay();return}
+   }
    if(key==='up'||key==='previous')move(-1)
    else if(key==='down'||key==='next')move(1)
    else if(key==='left'||key==='right'){const delta=key==='left'?-1:1;if(!adjust(delta))move(delta)}
@@ -57,17 +92,18 @@ export function useGameNavigation(root: RefObject<HTMLElement | null>) {
    if(!document.hidden&&document.hasFocus()){
     let pads:(Gamepad|null)[]=[]
     try{pads=Array.from(navigator.getGamepads?.()??[])}catch{/* Browser may disable this API. */}
-    const pressed=new Set<string>()
+    const pressed=new Set<string>(),story=playback()
     for(const pad of pads){if(!pad?.connected)continue
      const button=(i:number)=>pad.buttons[i]?.pressed
-     if(button(0))pressed.add('accept');if(button(1))pressed.add('back')
+     if(button(0))pressed.add(story?'focus-next':'accept');if(button(1))pressed.add(story?'replay':'back')
+     if(story&&button(2))pressed.add('select');if(story&&button(3))pressed.add('choice-two')
      if(button(4))pressed.add('previous');if(button(5))pressed.add('next')
      if(button(12)||(pad.axes[1]??0)<-0.55)pressed.add('up')
      if(button(13)||(pad.axes[1]??0)>0.55)pressed.add('down')
      if(button(14)||(pad.axes[0]??0)<-0.55)pressed.add('left')
      if(button(15)||(pad.axes[0]??0)>0.55)pressed.add('right')
     }
-    for(const key of pressed){const fresh=!previous.has(key);if(fresh||(['up','down','left','right','previous','next'].includes(key)&&now>=repeatAt)){action(key);repeatAt=now+(fresh?400:140)}}
+    for(const key of pressed){const fresh=!previous.has(key),repeatable=['up','down','left','right','previous','next'].includes(key);if(fresh||(repeatable&&now>=repeatAt)){action(key,true);const scrolling=story&&['up','down','left','right'].includes(key);repeatAt=now+(fresh?(scrolling?250:400):(scrolling?75:140))}}
     previous=pressed
     if(active&&!current())move(1)
    }else{previous=new Set()}

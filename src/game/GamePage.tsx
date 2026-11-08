@@ -20,7 +20,7 @@ import {bundledCatalog,bundledPreviews,loadBundledEntry,loadBundledLibrary} from
 import {useGameNavigation} from './useGameNavigation'
 import './game.css'
 import './night-cinema.css'
-export default function GamePage({identity,hotkeys}:{identity:string;hotkeys:HotkeySettings;words:VocabWord[]}){
+export default function GamePage({identity,hotkeys,readerCompactText}:{identity:string;hotkeys:HotkeySettings;words:VocabWord[];readerCompactText:boolean}){
  const navigationRoot=useRef<HTMLElement>(null)
  useGameNavigation(navigationRoot)
  const [textSize,setTextSize]=useState(()=>{try{const n=Number(localStorage.getItem(scope(identity)+'text-size'));return Number.isInteger(n)&&n>=0&&n<7?n:0}catch{return 0}})
@@ -39,9 +39,9 @@ export default function GamePage({identity,hotkeys}:{identity:string;hotkeys:Hot
  const textSizeControl=(<label className="game-text-size">Game text size <select aria-label="Game text size" value={textSize} onChange={e=>{const n=Number(e.target.value);setTextSize(n);try{localStorage.setItem(scope(identity)+'text-size',String(n))}catch{setStatus('Text size changed for this visit; device storage is unavailable.')}}}>{Array.from({length:7},(_,i)=><option key={i} value={i}>{i===0?'1 — Default':`${i+1} — ${100+i*15}%`}</option>)}</select></label>)
  const upcoming=playing?nextEpisode([...bundled,...library],playing.release):undefined
  const errors=pack?validateChinese(pack).errors:[]
- return <section ref={navigationRoot} className={`game-page story-studio ${playing?'game-playing':studio?'':'game-library'}`} aria-label="Game" style={{'--game-text-scale':1+textSize*.15} as CSSProperties}>{!playing&&<header><p className="game-kicker">CHINESE THROUGH STORIES</p><h1>{studio?'Episode studio':'Your story starts here'}</h1><p>{studio?'Write the adventure. Choose the cast. Test every turn.':'Immersive adventures with expressive characters, meaningful choices and replayable Mandarin.'}</p></header>}
+ return <section ref={navigationRoot} className={`game-page story-studio ${playing?'game-playing':studio?'':'game-library'}${readerCompactText?' game-compact-text':''}`} aria-label="Game" style={{'--game-text-scale':(1+textSize*.15)*(readerCompactText?0.5:1)} as CSSProperties}>{!playing&&<header><p className="game-kicker">CHINESE THROUGH STORIES</p><h1>{studio?'Episode studio':'Your story starts here'}</h1><p>{studio?'Write the adventure. Choose the cast. Test every turn.':'Immersive adventures with expressive characters, meaningful choices and replayable Mandarin.'}</p></header>}
 
- <p className="game-controller-help">Controller: D-pad / stick to move · A select · B back · LB / RB previous / next control · Left / right adjusts settings</p>
+ <p className="game-controller-help">Controller menus: D-pad / stick to move · A select · B back. Story playback: D-pad / stick to scroll · A next control · X select / choice 1 · Y choice 2 · B replay audio.</p>
  {!playing&&studio&&textSizeControl}
  <p role="status" className={!studio&&!playing&&!/could not|unavailable|error/i.test(status)?'library-quiet-status':undefined}>{status}</p>
  {playing?<><EpisodePlayback releaseId={playing.release.id} onBack={()=>setPlaying(null)} inherited={playing.inherited} key={playing.playbackKey} onRestartEpisode={()=>void play(playing.release,true)} intro={bundledCatalog.find(entry=>entry.id===playing.release.id)?.intro??playing.release.intro} pack={playing.release.pack} initial={playing.progress} settingsContent={textSizeControl} readThenListenDefault={playing.release.category==='lms'} preferencesKey={scope(identity)+'display'} nextEpisodePreview={upcoming?episodePreview(upcoming):undefined} onNextEpisode={upcoming?()=>void play(upcoming):undefined} hotkeys={hotkeys} onProgress={p=>{void saveProgress(identity,playing.release.id,p,playing.release).catch(e=>setStatus('Progress could not be saved: '+String(e)))}}/></>:<>

@@ -156,3 +156,39 @@
  .game-playing .story-dialogue:has(.episode-up-next) button[data-next],.game-playing .story-dialogue:has(h2) button[data-next]:not(.episode-choice){width:100%}
  .game-playing .game-key-hints{display:none}
 }
+
+/* Reader's small-screen setting also provides a denser Game playback layout. */
+.game-page.game-playing.game-compact-text {padding:max(6px,env(safe-area-inset-top)) max(10px,calc((100vw - 1000px)/2)) max(10px,env(safe-area-inset-bottom));line-height:1.25}
+.game-compact-text .cinema-header{gap:6px;margin-bottom:4px;min-height:32px}
+.game-compact-text .cinema-header h1{font-size:14px;line-height:1.15}
+.game-compact-text .cinema-back{width:32px;min-height:32px;font-size:26px}
+.game-compact-text .cinema-more>summary{width:32px;min-height:32px;font-size:20px}
+.game-compact-text .cinema-more .episode-restart-controls{top:36px}
+.game-compact-text>.animated-story{margin-top:2px}
+.game-compact-text .audio-mode-toolbar{min-height:28px;margin-bottom:2px;font-size:10px}
+.game-compact-text .episode-settings{min-height:30px;margin-bottom:4px}
+.game-compact-text .episode-settings>summary{min-height:30px;padding:0 10px;font-size:11px;gap:6px}
+.game-compact-text .story-stage-living,
+.game-compact-text .animated-story:has(.episode-interlinear) .story-stage-living{height:clamp(140px,24svh,220px);min-height:140px;max-height:220px;border-radius:12px 12px 0 0}
+.game-compact-text .story-dialogue{padding:8px 10px;border-radius:0 0 12px 12px}
+.game-compact-text .story-dialogue>strong{font-size:9px;letter-spacing:.08em}
+.game-compact-text .episode-line{margin:5px 0}
+.game-compact-text .episode-interlinear{gap:5px 0}
+.game-compact-text .episode-interlinear .reader-interlinear-chunk{padding:1px 6px;gap:2px}
+.game-compact-text .episode-interlinear strong{line-height:1.2}
+.game-compact-text .episode-interlinear .reader-interlinear-pinyin,
+.game-compact-text .episode-interlinear .reader-interlinear-gloss{line-height:1.2}
+.game-compact-text .story-dialogue button.episode-chunk{min-height:0;padding:1px 6px;gap:2px}
+.game-compact-text .story-dialogue p{margin:4px 0;line-height:1.3}
+.game-compact-text .story-dialogue button{min-height:32px;padding:5px 10px;margin:3px;font-size:11px}
+.game-compact-text .story-dialogue button[data-next]:not(.episode-choice){min-width:110px;min-height:32px;width:auto;margin:3px 0;padding:5px 12px;border-radius:18px}
+.game-compact-text .story-dialogue button.audio-play{width:32px;height:32px;min-height:32px;margin:3px 8px 3px 0;padding:5px}
+.game-compact-text .story-dialogue h2{font-size:15px;line-height:1.2;margin:0 0 5px}
+.game-compact-text .episode-choice-card{padding:4px 0}
+.game-compact-text .episode-choice-card>.episode-interlinear{margin-bottom:4px}
+.game-compact-text .episode-choice-card>button.episode-choice{min-height:32px;padding:5px 10px;margin:3px 0}
+.game-compact-text .story-meters{padding:3px 10px;font-size:10px}
+.game-compact-text .animated-story footer{padding:2px 0}
+.game-compact-text .game-key-hints{display:none}
+.game-compact-text .animated-story footer>button{min-height:28px;padding:3px 8px;font-size:10px}
+.game-compact-text .animated-story aside{padding:8px;font-size:11px}

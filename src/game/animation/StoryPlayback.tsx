@@ -44,7 +44,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  const display=secondEncounter?audioModeOptions.second!:{showChinese,showPinyin,showGloss}
  useEffect(()=>{try{localStorage.setItem(preferencesKey,JSON.stringify({...JSON.parse(localStorage.getItem(preferencesKey)??'{}'),[encounterPreference]:audioModeOptions.secondEnabled,secondChineseAudio:audioModeOptions.second?.chinese,secondEnglishAudio:audioModeOptions.second?.english,secondChineseText:audioModeOptions.second?.showChinese,secondPinyinText:audioModeOptions.second?.showPinyin,secondEnglishText:audioModeOptions.second?.showGloss,chinese:showChinese,pinyin:showPinyin,english:showGloss,autoplay:autoPlay,voiceVolume,reduceMotion,motionPaused,audioModeChinese:audioModeOptions.chinese!==false,audioModeEnglish:audioModeOptions.english,audioModeEnglishPause:audioModeOptions.englishPause,audioModeAutomaticChoices:audioModeOptions.automaticChoices,audioModeChoiceDelay:audioModeOptions.choiceDelay}))}catch{/* Display preferences are optional on restricted devices. */}},[preferencesKey,encounterPreference,showChinese,showPinyin,showGloss,autoPlay,voiceVolume,reduceMotion,motionPaused,audioModeOptions])
  const line=pack.chinese?.lines[current?.text],score=pack.quiz.length===4&&progress.quizzes.length?quizScore(pack.quiz,progress.quizzes.at(-1)!):null
- const latest=useRef({advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy});latest.current={advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy}
+ const latest=useRef({advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),replay:(choice?:number)=>replayAudio(choice),current,busy});latest.current={advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),replay:(choice?:number)=>replayAudio(choice),current,busy}
  // Run once for each newly displayed story state, including resumed episodes.
  useEffect(()=>{
   if(pocketSession||audioModeRunning||audioModeOpen||!autoPlay||state?.ended||current?.type==='choice')return;
@@ -103,6 +103,11 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   if(!quiz&&v.current?.type==='choice'&&root.current?.querySelector('.episode-choice')){if(i>=0&&v.current.options[i]){e.preventDefault();if(!v.busy)v.advance(v.current.options[i].id)}return}
   if(key==='arrowright'||key==='1'){e.preventDefault();if(!v.busy)root.current?.querySelector<HTMLButtonElement>('[data-next]:not(:disabled)')?.click()}
  };window.addEventListener('keydown',handler);return()=>window.removeEventListener('keydown',handler)},[hotkeys,pocketSession])
+ useEffect(()=>{
+  const el=root.current;if(!el)return
+  const replay=(event:Event)=>latest.current.replay((event as CustomEvent<{choice?:number}>).detail?.choice)
+  el.addEventListener('game-replay-audio',replay);return()=>el.removeEventListener('game-replay-audio',replay)
+ },[])
  useEffect(()=>{if(initial?.steps.length||!current||!root.current)return;const controller=new AbortController();motion.current=controller;void playSceneMotion(root.current,state?.cues||[],current,reduced,setResponses,controller.signal);return()=>controller.abort();
  // Resume restores held state without replaying transient motion.
  // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -151,6 +156,12 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   void playAudioModeLine({text,line:pack.chinese?.lines[text],chinese:activeAudio.chinese,english:activeAudio.english,pause:audioModeOptions.englishPause,volume:voiceVolume,signal:controller.signal,onAudio:a=>{sound.current=a}})
    .catch(e=>{if(!controller.signal.aborted)setError(e instanceof Error?e.message:String(e))})
    .finally(()=>{if(slideAudioController.current===controller){slideAudioController.current=null;setAudioPlaying(false);setSpeaking(false)}})
+ }
+
+ function replayAudio(choice=0){
+  if(state?.ended||!current)return
+  if(current.type==='choice'){const option=current.options[choice];if(option)play(option.text,false,true,true)}
+  else play(current.text,true,true)
  }
 
 

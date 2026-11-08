@@ -3393,7 +3393,7 @@ function App() {
       )}
 
       {screen === 'game' && <Suspense fallback={<p>Opening Game…</p>}>
-        {gameIdentity ? <GamePage key={gameIdentity} identity={gameIdentity} words={activeWords} hotkeys={hotkeys} /> : <p>Checking your local game identity…</p>}
+        {gameIdentity ? <GamePage key={gameIdentity} identity={gameIdentity} words={activeWords} hotkeys={hotkeys} readerCompactText={userSettings.readerCompactText} /> : <p>Checking your local game identity…</p>}
       </Suspense>}
       <nav className="app-bottom-nav" aria-label="Main navigation">
         <button
@@ -4431,7 +4431,7 @@ function App() {
                     </label>
                     <label>
                       <span>Compact text for small screens</span>
-                      <small>Halves text size so sentences fit on one screen without scrolling. Designed for small 4:3 devices like the Mangmi Air Y.</small>
+                      <small>Halves Reader text and enables an extra-compact layout in The Game. Designed for small 4:3 devices like the Mangmi Air Y.</small>
                       <input
                         type="checkbox"
                         checked={userSettings.readerCompactText}
