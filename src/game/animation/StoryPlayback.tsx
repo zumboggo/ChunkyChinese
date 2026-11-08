@@ -9,7 +9,7 @@ import './story-toggles.css'
 import type {ChinesePackage} from './package'
 import EpisodeInterlinear from './EpisodeInterlinear'
 import PocketAudioPlayer from './PocketAudioPlayer'
-import AudioModeDialog, {type AudioModeOptions} from './AudioModeDialog'
+import AudioModeDialog, {defaultEncounters,type AudioModeOptions,type EncounterOptions} from './AudioModeDialog'
 import {playAudioModeLine,speakAudioMode,waitForAudioMode} from './audioMode'
 import type {HotkeySettings} from '../../types'
 export interface StoryProgress {attemptId?:string;partialTiming?:boolean;continuity?:import('./continuity').ContinuitySnapshot;steps:(string|null)[];quizzes:number[][];seed:number}
@@ -29,20 +29,36 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
 
  const [audioModeOpen,setAudioModeOpen]=useState(false),[audioModeRunning,setAudioModeRunning]=useState(false),[audioModePaused,setAudioModePaused]=useState(false),[audioModeStatus,setAudioModeStatus]=useState('')
  const encounterPreference=readThenListenDefault?'lmsReadThenListen':'readThenListen'
- const [audioModeOptions,setAudioModeOptions]=useState<AudioModeOptions>(()=>({secondEnabled:preference(encounterPreference,readThenListenDefault),second:{chinese:preference('secondChineseAudio',true),english:preference('secondEnglishAudio',true),showChinese:preference('secondChineseText',false),showPinyin:preference('secondPinyinText',false),showGloss:preference('secondEnglishText',false)},chinese:preference('audioModeChinese',true),english:preference('audioModeEnglish',false),englishPause:[0,1,2,3,5,10].includes(preference('audioModeEnglishPause',3))?preference('audioModeEnglishPause',3):3,automaticChoices:preference('audioModeAutomaticChoices',false),choiceDelay:[0,3,5,10].includes(preference('audioModeChoiceDelay',0))?preference('audioModeChoiceDelay',0):0}))
+ const [audioModeOptions,setAudioModeOptions]=useState<AudioModeOptions>(()=>{
+  let saved:any={};try{saved=JSON.parse(localStorage.getItem(preferencesKey)??'{}')}catch{saved={}}
+  const defaults=defaultEncounters(readThenListenDefault)
+  let encounters:EncounterOptions[]
+  if(Array.isArray(saved.encounters)&&saved.encounters.length===3){
+   encounters=saved.encounters.map((e:Partial<EncounterOptions>,i:number)=>({...defaults[i],...e,enabled:typeof e.enabled==='boolean'?e.enabled:defaults[i].enabled}))
+  }else{
+   encounters=[
+    {enabled:true,chinese:saved.audioModeChinese!==false,english:saved.audioModeEnglish===true,showChinese:saved.chinese!==false,showPinyin:saved.pinyin!==false,showGloss:saved.english!==false},
+    {enabled:saved[encounterPreference]===true,chinese:saved.secondChineseAudio!==false,english:saved.secondEnglishAudio===true,showChinese:saved.secondChineseText===true,showPinyin:saved.secondPinyinText===true,showGloss:saved.secondEnglishText===true},
+    {enabled:false,chinese:true,english:true,showChinese:false,showPinyin:false,showGloss:false},
+   ]
+  }
+  return {encounters,englishPause:[0,1,2,3,5,10].includes(saved.audioModeEnglishPause)?saved.audioModeEnglishPause:3,automaticChoices:saved.audioModeAutomaticChoices===true,choiceDelay:[0,3,5,10].includes(saved.audioModeChoiceDelay)?saved.audioModeChoiceDelay:0}
+ })
  const [pocketSession,setPocketSession]=useState<{start:StoryProgress;options:AudioModeOptions}|null>(null)
  const audioModeController=useRef<AbortController|null>(null)
  function stopAudioMode(){audioModeController.current?.abort();setAudioModeRunning(false);setAudioModePaused(false);setAudioModeStatus('')}
  function pauseAudioMode(){audioModeController.current?.abort();setAudioModePaused(true)}
- const [encounter,setEncounter]=useState<1|2>(1)
- const secondEncounter=encounter===2&&audioModeOptions.secondEnabled&&current?.type!=='choice'
- const activeAudio=secondEncounter?audioModeOptions.second!:audioModeOptions
- const autoPlay=activeAudio.chinese!==false||activeAudio.english
+ const [encounter,setEncounter]=useState<1|2|3>(()=>{const i=audioModeOptions.encounters.findIndex(e=>e.enabled);return ((i>=0?i:0)+1) as 1|2|3})
+ const enabledEncounters:Array<1|2|3>=([1,2,3] as const).filter(n=>audioModeOptions.encounters[n-1]?.enabled)
+ const effectiveEncounters:Array<1|2|3>=enabledEncounters.length?enabledEncounters:[1]
+ const baseEncounter=audioModeOptions.encounters[(effectiveEncounters[0]??1)-1]??audioModeOptions.encounters[0]
+ const activeEncounterOptions=audioModeOptions.encounters[encounter-1]??baseEncounter
+ const autoPlay=activeEncounterOptions.chinese||activeEncounterOptions.english
  const slideAudioController=useRef<AbortController|null>(null)
- const [showChinese,setShowChinese]=useState<boolean>(()=>preference('chinese',true))
- const [showPinyin,setShowPinyin]=useState<boolean>(()=>preference('pinyin',true)),[showGloss,setShowGloss]=useState<boolean>(()=>preference('english',true)),[answers,setAnswers]=useState<number[]>([-1,-1,-1,-1])
- const display=secondEncounter?audioModeOptions.second!:{showChinese,showPinyin,showGloss}
- useEffect(()=>{try{localStorage.setItem(preferencesKey,JSON.stringify({...JSON.parse(localStorage.getItem(preferencesKey)??'{}'),[encounterPreference]:audioModeOptions.secondEnabled,secondChineseAudio:audioModeOptions.second?.chinese,secondEnglishAudio:audioModeOptions.second?.english,secondChineseText:audioModeOptions.second?.showChinese,secondPinyinText:audioModeOptions.second?.showPinyin,secondEnglishText:audioModeOptions.second?.showGloss,chinese:showChinese,pinyin:showPinyin,english:showGloss,autoplay:autoPlay,voiceVolume,reduceMotion,motionPaused,audioModeChinese:audioModeOptions.chinese!==false,audioModeEnglish:audioModeOptions.english,audioModeEnglishPause:audioModeOptions.englishPause,audioModeAutomaticChoices:audioModeOptions.automaticChoices,audioModeChoiceDelay:audioModeOptions.choiceDelay}))}catch{/* Display preferences are optional on restricted devices. */}},[preferencesKey,encounterPreference,showChinese,showPinyin,showGloss,autoPlay,voiceVolume,reduceMotion,motionPaused,audioModeOptions])
+ const showChinese=baseEncounter.showChinese,showPinyin=baseEncounter.showPinyin,showGloss=baseEncounter.showGloss
+ const [answers,setAnswers]=useState<number[]>([-1,-1,-1,-1])
+ const display={showChinese:activeEncounterOptions.showChinese,showPinyin:activeEncounterOptions.showPinyin,showGloss:activeEncounterOptions.showGloss}
+ useEffect(()=>{try{const prev=JSON.parse(localStorage.getItem(preferencesKey)??'{}');localStorage.setItem(preferencesKey,JSON.stringify({...prev,encounters:audioModeOptions.encounters,audioModeEnglishPause:audioModeOptions.englishPause,audioModeAutomaticChoices:audioModeOptions.automaticChoices,audioModeChoiceDelay:audioModeOptions.choiceDelay,voiceVolume,reduceMotion,motionPaused}))}catch{/* Display preferences are optional on restricted devices. */}},[preferencesKey,voiceVolume,reduceMotion,motionPaused,audioModeOptions])
  const line=pack.chinese?.lines[current?.text],score=pack.quiz.length===4&&progress.quizzes.length?quizScore(pack.quiz,progress.quizzes.at(-1)!):null
  const latest=useRef({advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),replay:(choice?:number)=>replayAudio(choice),current,busy});latest.current={advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),replay:(choice?:number)=>replayAudio(choice),current,busy}
  // Run once for each newly displayed story state, including resumed episodes.
@@ -50,7 +66,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   if(pocketSession||audioModeRunning||audioModeOpen||!autoPlay||state?.ended||current?.type==='choice')return;
   const frame=requestAnimationFrame(()=>latest.current.playAuto());
   return()=>{cancelAnimationFrame(frame);slideAudioController.current?.abort();};
- },[encounter,autoPlay,state,current,activeAudio.chinese,activeAudio.english,audioModeOptions.englishPause,audioModeRunning,audioModeOpen,pocketSession])
+ },[encounter,autoPlay,state,current,activeEncounterOptions.chinese,activeEncounterOptions.english,audioModeOptions.englishPause,audioModeRunning,audioModeOpen,pocketSession])
 
  // One cancellable listening sequence per scene. Manual navigation and popup edits
  // abort both the recording and the device voice before a new sequence can start.
@@ -61,14 +77,14 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   const listen=async(text:string)=>{
    setAudioModeStatus('Listening…');setAudioPlaying(true)
    setSpeaking(current.type==='say'&&current.actor!=='I')
-   try{await playAudioModeLine({text,line:pack.chinese?.lines[text],chinese:activeAudio.chinese,english:activeAudio.english,pause:audioModeOptions.englishPause,volume:voiceVolume,signal,onAudio:a=>{sound.current=a}})}
+   try{await playAudioModeLine({text,line:pack.chinese?.lines[text],chinese:activeEncounterOptions.chinese,english:activeEncounterOptions.english,pause:audioModeOptions.englishPause,volume:voiceVolume,signal,onAudio:a=>{sound.current=a}})}
    finally{if(!signal.aborted){setAudioPlaying(false);setSpeaking(false)}}
   }
   void (async()=>{
    try{
     if(current.type==='choice'){
      for(let i=0;i<current.options.length;i++){
-      await speakAudioMode(audioModeOptions.chinese!==false?`选项 ${i+1}`:`Option ${i+1}`,audioModeOptions.chinese!==false?'zh-CN':'en-US',voiceVolume,signal)
+      await speakAudioMode(activeEncounterOptions.chinese?`选项 ${i+1}`:`Option ${i+1}`,activeEncounterOptions.chinese?'zh-CN':'en-US',voiceVolume,signal)
       await listen(current.options[i].text)
      }
      if(!audioModeOptions.automaticChoices){setAudioModeStatus('Choose an option to keep listening.');return}
@@ -86,7 +102,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
    }catch(e){if(!signal.aborted){setError(e instanceof Error?e.message:String(e));setAudioModePaused(true)}}
   })()
   return()=>{controller.abort();setAudioPlaying(false);setSpeaking(false);setAudioModeStatus('')}
- },[encounter,activeAudio.chinese,activeAudio.english,autoPlay,audioModeRunning,audioModePaused,audioModeOpen,audioModeOptions,busy,state,current,pack,voiceVolume])
+ },[encounter,activeEncounterOptions.chinese,activeEncounterOptions.english,autoPlay,audioModeRunning,audioModePaused,audioModeOpen,audioModeOptions,busy,state,current,pack,voiceVolume])
 
  useEffect(()=>{const handler=(e:KeyboardEvent)=>{
   const target=e.target as HTMLElement|null
@@ -94,7 +110,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   if(e.defaultPrevented||e.repeat||e.ctrlKey||e.metaKey||e.altKey||target?.closest('input,textarea,select,.episode-chunk,.episode-settings,.story-slide-toggles,dialog,[contenteditable="true"]'))return
   const v=latest.current,key=e.key.toLowerCase()
   if(key==='arrowleft'){e.preventDefault();v.back();return}
-  if(key===' '||key===(hotkeys?.playPause??'p').toLowerCase()){e.preventDefault();if(!v.busy)v.play();return}
+  if(key===' '||key===(hotkeys?.playPause??'p').toLowerCase()||key==='3'){e.preventDefault();if(!v.busy)v.play();return}
   const fixed=['1','2','3','4'].indexOf(key)
   const custom=[hotkeys?.choiceA??'1',hotkeys?.choiceB??'2',hotkeys?.choiceC??'3',hotkeys?.choiceD??'4',hotkeys?.choiceE??'5',hotkeys?.choiceF??'6'].findIndex(k=>k.toLowerCase()===key)
   const i=fixed>=0?fixed:custom
@@ -118,25 +134,26 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  useEffect(()=>{if(reduced){motion.current?.abort();setResponses({});}},[reduced])
  const animate=async(el:HTMLElement|null,frames:Keyframe[],duration=420)=>{if(reduced||!el?.animate)return;try{await el.animate(frames,{duration,easing:'ease-in-out'}).finished}catch{/* navigation cancellation */}}
  function back(){
-  if(encounter===2){slideAudioController.current?.abort();audioModeController.current?.abort();setAudioPlaying(false);setSpeaking(false);setEncounter(1);return}
+  if(encounter>1){slideAudioController.current?.abort();audioModeController.current?.abort();setAudioPlaying(false);setSpeaking(false);const idx=effectiveEncounters.indexOf(encounter);setEncounter(idx>0?effectiveEncounters[idx-1]:effectiveEncounters[0]);return}
   if(!compiled.story||!progress.steps.length)return
   slideAudioController.current?.abort();audioModeController.current?.abort();generation.current++;motion.current?.abort();sound.current?.pause();sound.current=null
   root.current?.getAnimations?.({subtree:true}).forEach(a=>a.cancel())
   lock.current=false;setBusy(false);setSpeaking(false);setAudioPlaying(false);setResponses({});setError('');setAnswers([-1,-1,-1,-1])
-  setEncounter(1)
+  setEncounter(effectiveEncounters[0])
   const p={...progress,steps:progress.steps.slice(0,-1)}
   setState(replayStory(compiled.story,p.steps,p.seed));setProgress(p);onProgress?.(p)
  }
  async function advance(option:string|null){
   if(!state||!compiled.story||state.ended||lock.current)return
-  if(encounter===1&&audioModeOptions.secondEnabled&&current?.type!=='choice'&&current?.text){
-   slideAudioController.current?.abort();audioModeController.current?.abort();sound.current?.pause();setAudioPlaying(false);setSpeaking(false);setError('');setEncounter(2);return
+  if(current?.type!=='choice'&&current?.text){
+   const idx=effectiveEncounters.indexOf(encounter);const next=effectiveEncounters[idx+1]
+   if(next){slideAudioController.current?.abort();audioModeController.current?.abort();sound.current?.pause();setAudioPlaying(false);setSpeaking(false);setError('');setEncounter(next);return}
   }
   slideAudioController.current?.abort();audioModeController.current?.abort();motion.current?.abort();setResponses({});lock.current=true;setBusy(true);sound.current?.pause();sound.current=null;setAudioPlaying(false);setSpeaking(false);setError('');const token=++generation.current
   try{
    const next=advanceStory(compiled.story,state,option)
    for(const id of Object.keys(state.stage.actors)){if(!next.stage.actors[id])await animate(root.current?.querySelector(`[data-actor="${id}"]`)??null,[{opacity:1,transform:'translateX(0)'},{opacity:0,transform:'translateX(65px)'}]);if(token!==generation.current)return}
-   const p={...progress,steps:[...progress.steps,option]};setEncounter(1);setState(next);setProgress(p);onProgress?.(p)
+   const p={...progress,steps:[...progress.steps,option]};setEncounter(effectiveEncounters[0]);setState(next);setProgress(p);onProgress?.(p)
    await new Promise<void>(r=>requestAnimationFrame(()=>r()))
    if(token!==generation.current)return;
    const controller=new AbortController();motion.current=controller;
@@ -153,7 +170,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   if(!autoPlay||!text){setAudioPlaying(false);setSpeaking(false);return}
   const controller=new AbortController();slideAudioController.current=controller
   setError('');setAudioPlaying(true);setSpeaking(npc&&current?.type==='say'&&current.actor!=='I')
-  void playAudioModeLine({text,line:pack.chinese?.lines[text],chinese:activeAudio.chinese,english:activeAudio.english,pause:audioModeOptions.englishPause,volume:voiceVolume,signal:controller.signal,onAudio:a=>{sound.current=a}})
+  void playAudioModeLine({text,line:pack.chinese?.lines[text],chinese:activeEncounterOptions.chinese,english:activeEncounterOptions.english,pause:audioModeOptions.englishPause,volume:voiceVolume,signal:controller.signal,onAudio:a=>{sound.current=a}})
    .catch(e=>{if(!controller.signal.aborted)setError(e instanceof Error?e.message:String(e))})
    .finally(()=>{if(slideAudioController.current===controller){slideAudioController.current=null;setAudioPlaying(false);setSpeaking(false)}})
  }
@@ -185,22 +202,22 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   void advance(null);
  }}>
   <div className="audio-mode-toolbar">
-   {audioModeOptions.secondEnabled&&!state.ended&&current.type!=='choice'&&<span>Encounter {encounter} of 2</span>}
+   {effectiveEncounters.length>1&&!state.ended&&current.type!=='choice'&&<span>Encounter {effectiveEncounters.indexOf(encounter)+1} of {effectiveEncounters.length}</span>}
    {audioModeRunning&&!state.ended&&<button type="button" onClick={()=>{if(audioModePaused){setError('');setAudioModePaused(false)}else pauseAudioMode()}}>{audioModePaused?'Resume Audio Mode':'Pause Audio Mode'}</button>}
    {audioModeRunning&&<span role="status">{state.ended?'Episode complete':audioModePaused?'Audio Mode paused':audioModeStatus}</span>}
   </div>
-  <AudioModeDialog onPocket={()=>{stopAudioMode();generation.current++;lock.current=false;setBusy(false);sound.current?.pause();motion.current?.abort();setAudioModeOpen(false);setPocketSession({start:progress,options:{...audioModeOptions}})}} open={audioModeOpen} running={audioModeRunning} options={audioModeOptions} onOptions={setAudioModeOptions} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss} onChinese={setShowChinese} onPinyin={setShowPinyin} onGloss={setShowGloss} onClose={()=>setAudioModeOpen(false)} onStart={()=>{setError('');setAudioModePaused(false);setAudioModeRunning(true);setAudioModeOpen(false)}} onStop={()=>{stopAudioMode();setAudioModeOpen(false)}}/>
+  <AudioModeDialog onPocket={()=>{stopAudioMode();generation.current++;lock.current=false;setBusy(false);sound.current?.pause();motion.current?.abort();setAudioModeOpen(false);setPocketSession({start:progress,options:{...audioModeOptions}})}} open={audioModeOpen} running={audioModeRunning} options={audioModeOptions} onOptions={setAudioModeOptions} onClose={()=>setAudioModeOpen(false)} onStart={()=>{setError('');setAudioModePaused(false);setAudioModeRunning(true);setAudioModeOpen(false)}} onStop={()=>{stopAudioMode();setAudioModeOpen(false)}}/>
   <details className="episode-settings" onKeyDown={e=>{if(e.key==='Escape'){e.currentTarget.open=false;e.currentTarget.querySelector('summary')?.focus();}}}>
    <summary>Controls <span aria-hidden="true">⌄</span></summary><div className="episode-settings-panel">
   <div className="story-slide-toggles" role="group" aria-label="Story audio and text">
    <div role="group" aria-label="Audio"><span>Audio:</span>
-    <button type="button" aria-label="Audio: English" aria-pressed={activeAudio.english} onClick={()=>setAudioModeOptions(o=>secondEncounter?{...o,second:{...o.second!,english:!o.second!.english}}:{...o,english:!o.english})}>English</button>
-    <button type="button" aria-label="Audio: Chinese" aria-pressed={activeAudio.chinese!==false} onClick={()=>setAudioModeOptions(o=>secondEncounter?{...o,second:{...o.second!,chinese:!o.second!.chinese}}:{...o,chinese:o.chinese===false})}>Chinese</button>
+    <button type="button" aria-label="Audio: English" aria-pressed={activeEncounterOptions.english} onClick={()=>setAudioModeOptions(o=>({...o,encounters:o.encounters.map((e,i)=>i===encounter-1?{...e,english:!e.english}:e)}))}>English</button>
+    <button type="button" aria-label="Audio: Chinese" aria-pressed={activeEncounterOptions.chinese} onClick={()=>setAudioModeOptions(o=>({...o,encounters:o.encounters.map((e,i)=>i===encounter-1?{...e,chinese:!e.chinese}:e)}))}>Chinese</button>
    </div>
    <div role="group" aria-label="Text"><span>Text:</span>
-    <button type="button" aria-label="Text: Pinyin" aria-pressed={display.showPinyin} onClick={()=>secondEncounter?setAudioModeOptions(o=>({...o,second:{...o.second!,showPinyin:!o.second!.showPinyin}})):setShowPinyin(v=>!v)}>Pinyin</button>
-    <button type="button" aria-label="Text: Characters" aria-pressed={display.showChinese} onClick={()=>secondEncounter?setAudioModeOptions(o=>({...o,second:{...o.second!,showChinese:!o.second!.showChinese}})):setShowChinese(v=>!v)}>Characters</button>
-    <button type="button" aria-label="Text: English" aria-pressed={display.showGloss} onClick={()=>secondEncounter?setAudioModeOptions(o=>({...o,second:{...o.second!,showGloss:!o.second!.showGloss}})):setShowGloss(v=>!v)}>English</button>
+    <button type="button" aria-label="Text: Pinyin" aria-pressed={display.showPinyin} onClick={()=>setAudioModeOptions(o=>({...o,encounters:o.encounters.map((e,i)=>i===encounter-1?{...e,showPinyin:!e.showPinyin}:e)}))}>Pinyin</button>
+    <button type="button" aria-label="Text: Characters" aria-pressed={display.showChinese} onClick={()=>setAudioModeOptions(o=>({...o,encounters:o.encounters.map((e,i)=>i===encounter-1?{...e,showChinese:!e.showChinese}:e)}))}>Characters</button>
+    <button type="button" aria-label="Text: English" aria-pressed={display.showGloss} onClick={()=>setAudioModeOptions(o=>({...o,encounters:o.encounters.map((e,i)=>i===encounter-1?{...e,showGloss:!e.showGloss}:e)}))}>English</button>
    </div>
   </div>
    <button type="button" aria-haspopup="dialog" onClick={()=>{slideAudioController.current?.abort();sound.current?.pause();audioModeController.current?.abort();setAudioModeOpen(true)}}>Audio Mode</button>

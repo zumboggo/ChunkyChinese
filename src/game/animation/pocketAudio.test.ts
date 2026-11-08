@@ -5,7 +5,8 @@ import {compileStory,replayStory} from './shared/engine/story-engine.js'
 import type {ChinesePackage} from './package'
 const catalog=JSON.parse(fs.readFileSync('public/stories/animated/catalog.json','utf8')) as {path:string}[]
 const start={steps:[],quizzes:[],seed:123}
-const options={english:true,englishPause:3,automaticChoices:true,choiceDelay:0}
+const encounter=(enabled:boolean,chinese:boolean,english:boolean)=>({enabled,chinese,english,showChinese:true,showPinyin:true,showGloss:true})
+const options={encounters:[encounter(true,true,true),encounter(false,true,true),encounter(false,true,true)],englishPause:3,automaticChoices:true,choiceDelay:0}
 describe('pocket audio routes',()=>{
  for(const entry of catalog)it(`plans and resumes ${entry.path}`,()=>{
   const pack=JSON.parse(fs.readFileSync('public/stories/animated/'+entry.path,'utf8')) as ChinesePackage
@@ -22,8 +23,8 @@ describe('pocket audio routes',()=>{
  })
  it('repeats slides with independent audio settings without advancing twice',()=>{
   const pack=JSON.parse(fs.readFileSync('public/stories/animated/'+catalog[0].path,'utf8')) as ChinesePackage
-  const single=planPocketAudio(pack,start,{...options,english:false,automaticChoices:false})
-  const repeated=planPocketAudio(pack,start,{...options,english:false,automaticChoices:false,secondEnabled:true,second:{chinese:false,english:true,showChinese:false,showPinyin:false,showGloss:false}})
+  const single=planPocketAudio(pack,start,{...options,encounters:[encounter(true,true,false),encounter(false,true,true),encounter(false,true,true)],automaticChoices:false})
+  const repeated=planPocketAudio(pack,start,{...options,encounters:[encounter(true,true,false),encounter(true,false,true),encounter(false,true,true)],automaticChoices:false})
   expect(repeated.end).toEqual(single.end)
   expect(repeated.beats).toHaveLength(single.beats.length*2)
   for(let i=0;i<single.beats.length;i++){

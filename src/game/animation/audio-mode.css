@@ -10,6 +10,12 @@
 .game-page .audio-mode-panel fieldset{margin:16px 0;border:1px solid #bfcdbb;border-radius:10px}
 .game-page .audio-mode-panel fieldset label{display:inline-flex;align-items:center;gap:6px;min-height:44px;margin-right:12px}
 .game-page .audio-mode-panel .audio-mode-note{font-size:.85rem;line-height:1.5;color:#62756b}
+.game-page .encounter-tabs{display:flex;gap:8px;margin:12px 0}
+.game-page .encounter-tab{flex:1;min-height:44px;border:1px solid #bfcdbb;border-radius:10px;background:#fffdf7;color:#263e36;font-weight:600}
+.game-page .encounter-tab.is-active{background:#245d53;color:#fff;border-color:#245d53}
+.game-page .encounter-tab.is-off{opacity:.55}
+.game-page .encounter-enable{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-weight:600}
+.game-page .audio-mode-panel fieldset fieldset{margin:8px 0;padding:10px}
 .game-page .audio-mode-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;margin-top:20px}
 .game-page .audio-mode-actions button{margin:0;min-height:44px}
 @media(max-width:600px){.game-page .audio-mode-panel{padding:18px}.game-page .audio-mode-actions button{flex:1}}
