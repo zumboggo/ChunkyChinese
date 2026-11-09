@@ -86,6 +86,7 @@ test('published package opens offline from its embedded assets',async({page,cont
 
 test('game keyboard continues, chooses and pauses audio without activating focused Continue',async({page})=>{
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
+ await page.locator('.library-display').click();await page.getByLabel('Game text size').selectOption('1');await page.locator('.library-display').click()
  await page.getByText('Practice & demonstrations',{exact:true}).click()
  await page.getByRole('button',{name:'Play demonstration'}).click()
  await page.emulateMedia({reducedMotion:'reduce'})

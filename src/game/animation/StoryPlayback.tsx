@@ -14,7 +14,7 @@ import {readEncounters,type EncounterSettings} from './encounters'
 import {playAudioModeLine,speakAudioMode,waitForAudioMode} from './audioMode'
 import type {HotkeySettings} from '../../types'
 export interface StoryProgress {attemptId?:string;partialTiming?:boolean;continuity?:import('./continuity').ContinuitySnapshot;steps:(string|null)[];quizzes:number[][];seed:number}
-export default function StoryPlayback({pack,initial,onProgress,reduced:preferred=false,onComplete,onNextEpisode,preferencesKey='story2:display',releaseCategory,hotkeys,settingsContent,onReplayOpening,nextEpisodePreview}:{pack:ChinesePackage;initial?:StoryProgress;onProgress?:(p:StoryProgress)=>void;reduced?:boolean;debug?:boolean;onComplete?:()=>void;onNextEpisode?:()=>void;preferencesKey?:string;releaseCategory?:string;hotkeys?:HotkeySettings;settingsContent?:ReactNode;onReplayOpening?:()=>void;nextEpisodePreview?:{number?:number;title:string;teaser:string}}) {
+export default function StoryPlayback({pack,initial,onProgress,reduced:preferred=false,onComplete,onNextEpisode,preferencesKey='story2:display',releaseCategory,mangmi=false,hotkeys,settingsContent,onReplayOpening,nextEpisodePreview}:{pack:ChinesePackage;initial?:StoryProgress;onProgress?:(p:StoryProgress)=>void;reduced?:boolean;debug?:boolean;onComplete?:()=>void;onNextEpisode?:()=>void;preferencesKey?:string;releaseCategory?:string;mangmi?:boolean;hotkeys?:HotkeySettings;settingsContent?:ReactNode;onReplayOpening?:()=>void;nextEpisodePreview?:{number?:number;title:string;teaser:string}}) {
  const compiled=useMemo(()=>compileStory(pack.script,pack.assets),[pack])
  const [progress,setProgress]=useState<StoryProgress>(initial??{steps:[],quizzes:[],seed:1})
  const [state,setState]=useState<StoryState|null>(()=>compiled.story?replayStory(compiled.story,initial?.steps??[],initial?.seed??1):null)
@@ -92,6 +92,23 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   return()=>{controller.abort();setAudioPlaying(false);setSpeaking(false);setAudioModeStatus('')}
  },[encounter,activeAudio.chinese,activeAudio.english,autoPlay,audioModeRunning,audioModePaused,audioModeOpen,audioModeOptions,busy,state,current,pack,voiceVolume])
 
+ useEffect(()=>{
+  const element=root.current;if(!element||pocketSession)return
+  const handler=(event:Event)=>{
+   const action=(event as CustomEvent<string>).detail
+   if(action==='back'){pauseAudioMode();back(true);return}
+   if(busy)return
+   if(current?.type==='choice'){
+    const option=current.options[action==='continue'?0:1]
+    if(option)void advance(option.id)
+   }else if(action==='continue')element.querySelector<HTMLButtonElement>('[data-next]:not(:disabled)')?.click()
+   else if(action==='audio')play(current?.text,true,true,true)
+  }
+  element.addEventListener('mangmi-action',handler)
+  return()=>element.removeEventListener('mangmi-action',handler)
+ // Bind actions to the current passage without changing keyboard shortcuts.
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ },[state,encounter,busy,audioModeOptions,pocketSession,voiceVolume])
  useEffect(()=>{const handler=(e:KeyboardEvent)=>{
   const target=e.target as HTMLElement|null
   if(pocketSession)return
@@ -116,15 +133,15 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  useEffect(()=>()=>{generation.current++;slideAudioController.current?.abort();motion.current?.abort();sound.current?.pause();root.current?.getAnimations?.({subtree:true}).forEach(a=>a.cancel())},[])
  useEffect(()=>{if(reduced){motion.current?.abort();setResponses({});}},[reduced])
  const animate=async(el:HTMLElement|null,frames:Keyframe[],duration=420)=>{if(reduced||!el?.animate)return;try{await el.animate(frames,{duration,easing:'ease-in-out'}).finished}catch{/* navigation cancellation */}}
- function back(){
-  if(encounter>1&&!state?.ended){slideAudioController.current?.abort();audioModeController.current?.abort();setAudioPlaying(false);setSpeaking(false);setEncounter(n=>n-1);return}
+ function back(sentence=false){
+  if(!sentence&&encounter>1&&!state?.ended){slideAudioController.current?.abort();audioModeController.current?.abort();setAudioPlaying(false);setSpeaking(false);setEncounter(n=>n-1);return}
   if(!compiled.story||!progress.steps.length)return
   slideAudioController.current?.abort();audioModeController.current?.abort();generation.current++;motion.current?.abort();sound.current?.pause();sound.current=null
   root.current?.getAnimations?.({subtree:true}).forEach(a=>a.cancel())
   lock.current=false;setBusy(false);setSpeaking(false);setAudioPlaying(false);setResponses({});setError('');setAnswers([-1,-1,-1,-1])
   const p={...progress,steps:progress.steps.slice(0,-1)}
   const previous=replayStory(compiled.story,p.steps,p.seed)
-  setEncounter(compiled.story.nodes[previous.cursor]?.type==='choice'?1:audioModeOptions.count)
+  setEncounter(sentence||compiled.story.nodes[previous.cursor]?.type==='choice'?1:audioModeOptions.count)
   setState(previous);setProgress(p);onProgress?.(p)
  }
  async function advance(option:string|null){
@@ -179,7 +196,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   void advance(null);
  }}>
   <div className="audio-mode-toolbar">
-   <button type="button" onClick={back} disabled={encounter===1&&!progress.steps.length}>Back</button>
+   <button type="button" onClick={()=>back()} disabled={encounter===1&&!progress.steps.length}>Back</button>
    {!state.ended&&current.type!=='choice'&&<span>Encounter {activeEncounter} of {audioModeOptions.count}</span>}
    {audioModeRunning&&!state.ended&&<button type="button" onClick={()=>{if(audioModePaused){setError('');setAudioModePaused(false)}else pauseAudioMode()}}>{audioModePaused?'Resume playback':'Pause playback'}</button>}
    {audioModeRunning&&<span role="status">{state.ended?'Episode complete':audioModePaused?'Playback paused':audioModeStatus}</span>}
@@ -200,7 +217,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   <div className="story-meters">{Object.entries(compiled.story.variables).filter(([,v])=>(v as {visible:boolean}).visible).map(([id])=><span key={id}>{id}: {String(state.variables[id])}</span>)}</div>
   <section className="story-dialogue" aria-live="polite">{state.ended?<>{pack.outcomeScorecard&&<OutcomeScorecard definition={pack.outcomeScorecard} state={state}/>}<h2>{pack.quiz.length===4?(score!==null&&score>=75?'Complete':'Four questions before we return'):'Scene complete'}</h2>{pack.quiz.length===4&&<>{score!==null&&<p>{score}/100 · {score>=75?'Complete':'Review and retry'}</p>}{(score===null||score<75)&&<><div data-quiz>{pack.quiz.map((q,i)=><fieldset key={i}><legend>{q.prompt}</legend>{q.options.map((o,j)=><button key={j} aria-pressed={answers[i]===j} onClick={()=>setAnswers(answers.map((a,k)=>k===i?j:a))}>{j+1}. {o}</button>)}{score!==null&&<p>{q.explanation}</p>}</fieldset>)}</div><button data-next disabled={answers.includes(-1)} onClick={()=>{const p={...progress,quizzes:[...progress.quizzes,answers]};setProgress(p);onProgress?.(p);setAnswers([-1,-1,-1,-1])}}>Check answers</button></>}</>}{onNextEpisode&&(pack.quiz.length!==4||(score!==null&&score>=75))&&<div className="episode-up-next"><p className="game-kicker">UP NEXT</p>{nextEpisodePreview&&<><h3>{nextEpisodePreview.title}</h3><p>{nextEpisodePreview.teaser}</p></>}<button className="next-episode" data-next onClick={onNextEpisode}>Continue to {nextEpisodePreview?.number?`Episode ${nextEpisodePreview.number}`:'next episode'} →</button></div>}{onComplete&&<button data-next onClick={onComplete}>Continue to the conversation</button>}</>:current.type==='choice'?<><h2>What do I do?</h2>{current.options.map((o:{id:string;text:string},i:number)=><div className="episode-choice-card" key={o.id}><EpisodeInterlinear text={o.text} line={pack.chinese?.lines[o.text]} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss} interactive/><button className="episode-choice" aria-label={`Choose option ${i+1}`} data-next disabled={busy} onClick={()=>void advance(o.id)}>Choose {i+1}</button>{autoPlay&&<button className="audio-play" aria-label={'Hear option: '+o.text} onClick={()=>play(o.text,false,false,true)}><PlayIcon/></button>}</div>)}</>:<><strong>{current.type==='act'||current.beat?'On the scene':current.actor==='I'?'My story':pack.assets.characters[current.actor]?.name}</strong><div className="episode-line">{(display.showChinese||display.showPinyin||display.showGloss)&&<EpisodeInterlinear key={`${state.cursor}:${encounter}`} text={current.text} line={line} showChinese={display.showChinese} showPinyin={display.showPinyin} showGloss={display.showGloss} interactive/>}</div>{autoPlay&&<button className="audio-play" aria-label={audioPlaying?"Pause audio":"Play audio"} title="Play / pause (Space)" onClick={()=>play()}>{audioPlaying?'Pause':<PlayIcon/>}</button>}<button data-next disabled={busy} onClick={()=>void advance(null)}>{busy?'Action playing…':'Continue →'}</button></>}{error&&<p role="status">{error}</p>}</section>
 
-  <footer><p className="game-key-hints">1–4: choose · Space: play / pause · ←: back · → or 1: continue</p><button aria-expanded={history} onClick={()=>setHistory(!history)}>Recall the conversation</button></footer>{history&&<aside>{state.history.map((h,i)=><p key={i}>{pack.assets.characters[h.actor]?.name??'I'}: {h.text}</p>)}</aside>}
+  <footer><p className="game-key-hints">{mangmi?'X: choice A / continue · Y: choice B / replay audio · B: previous sentence · A: next control · D-pad: scroll':'1–4: choose · Space: play / pause · ←: back · → or 1: continue'}</p><button aria-expanded={history} onClick={()=>setHistory(!history)}>Recall the conversation</button></footer>{history&&<aside>{state.history.map((h,i)=><p key={i}>{pack.assets.characters[h.actor]?.name??'I'}: {h.text}</p>)}</aside>}
  </div>
 }
 

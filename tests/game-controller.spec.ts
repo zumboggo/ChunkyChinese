@@ -17,7 +17,7 @@ test('controller browses menus, adjusts settings, and releases held buttons',asy
   await page.waitForTimeout(50)
  }
  await game.locator('.library-display').focus()
- await press(0)
+ await press(2)
  await expect(page.getByLabel('Game text size')).toBeVisible()
  await page.getByLabel('Game text size').focus()
  await press(15)
@@ -56,4 +56,57 @@ test('controller browses menus, adjusts settings, and releases held buttons',asy
  await press(1)
  await expect(game.locator('.library-display')).toBeVisible()
 
+})
+
+test('Mangmi buttons stay in the episode, choose, replay, tab and scroll',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'})
+ await page.addInitScript(()=>{
+  const buttons=Array.from({length:16},()=>({pressed:false,touched:false,value:0}))
+  Object.defineProperty(navigator,'getGamepads',{value:()=>[{connected:true,index:0,mapping:'standard',buttons,axes:[0,0]}]})
+  Object.assign(window,{controllerButtons:buttons,audioStarts:0})
+  HTMLMediaElement.prototype.play=function(){(window as unknown as {audioStarts:number}).audioStarts++;return Promise.resolve()}
+  HTMLMediaElement.prototype.pause=function(){}
+ })
+ async function press(index:number){
+  await page.evaluate(i=>{(window as unknown as {controllerButtons:{pressed:boolean}[]}).controllerButtons[i].pressed=true},index)
+  await page.waitForTimeout(90)
+  await page.evaluate(i=>{(window as unknown as {controllerButtons:{pressed:boolean}[]}).controllerButtons[i].pressed=false},index)
+  await page.waitForTimeout(60)
+ }
+ const step=()=>page.locator('.animated-story').getAttribute('data-story-step')
+ await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
+ await page.locator('.library-display').click()
+ await expect(page.getByLabel('Game text size')).toHaveValue('0')
+ await expect(page.getByLabel('Game text size').locator('option:checked')).toHaveText('1 — Mangmi Air Y')
+ await page.locator('.library-display').click()
+ await page.locator('.practice-library>summary').click();await page.getByRole('button',{name:'Play demonstration',exact:true}).click()
+ const first=await step()
+ await press(1);expect(await step()).toBe(first) // B never exits at the beginning.
+ await press(2);await expect(page.getByText('Encounter 2 of 2',{exact:true})).toBeVisible()
+ await press(2);const second=await step();expect(second).not.toBe(first)
+ const audio=await page.evaluate(()=>(window as unknown as {audioStarts:number}).audioStarts)
+ await press(3);await expect.poll(()=>page.evaluate(()=>(window as unknown as {audioStarts:number}).audioStarts)).toBeGreaterThan(audio)
+ expect(await step()).toBe(second)
+ await press(1);await expect.poll(step).toBe(first) // Previous sentence, not library.
+ await press(1);expect(await step()).toBe(first)
+ await page.locator('.episode-settings>summary').focus()
+ await press(0);await expect(page.locator('.episode-settings>summary')).not.toBeFocused()
+ expect(await step()).toBe(first)
+ await page.locator('.episode-settings>summary').focus();await press(2)
+ await expect(page.getByRole('tab',{name:'Encounter 1'})).toBeVisible()
+ await page.getByRole('group',{name:'Number of encounters'}).getByRole('button',{name:'1',exact:true}).click()
+ await page.getByRole('tab',{name:'Encounter 1'}).focus()
+ await page.evaluate(()=>{document.querySelectorAll('*').forEach(el=>{el.scrollTop=0})});await press(13)
+ await expect.poll(()=>page.evaluate(()=>Array.from(document.querySelectorAll('*')).reduce((sum,el)=>sum+el.scrollTop,0))).toBeGreaterThan(0)
+ await expect(page.getByRole('tab',{name:'Encounter 1'})).toBeFocused()
+ await page.locator('.episode-settings>summary').click()
+ await page.getByRole('button',{name:'Continue →',exact:true}).focus()
+ for(let i=0;i<3;i++)await press(2)
+ await expect(page.getByRole('button',{name:'Choose option 2',exact:true})).toBeVisible()
+ await press(3)
+ await expect(page.getByText('The keeper lunges. Lan blocks, and both step back. Nobody is hurt.',{exact:true})).toBeVisible()
+ await press(1);await expect(page.getByRole('button',{name:'Choose option 1',exact:true})).toBeVisible()
+ await press(2);await expect(page.locator('.episode-line')).toContainText('我们想回家')
+ await page.keyboard.press('Escape');await expect(page.getByRole('button',{name:'Choose option 1',exact:true})).toBeVisible()
+ await expect(page.locator('.animated-story')).toBeVisible()
 })
