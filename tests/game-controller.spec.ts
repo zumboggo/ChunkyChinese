@@ -1,3 +1,4 @@
+import {selectSettings} from './helpers/settings'
 import {test,expect} from '@playwright/test'
 
 test('controller browses menus, adjusts settings, and releases held buttons',async({page})=>{
@@ -75,7 +76,7 @@ test('Mangmi buttons stay in the episode, choose, replay, tab and scroll',async(
  }
  const step=()=>page.locator('.animated-story').getAttribute('data-story-step')
  await page.goto('/');await page.getByRole('button',{name:'Settings',exact:true}).first().click()
- await page.locator('.settings-group-summary').filter({hasText:'Reader'}).click()
+ await selectSettings(page,'Reader')
  await page.getByRole('checkbox',{name:/Mangmi Air Y/}).check()
  await page.getByRole('button',{name:'Game',exact:true}).click()
  await page.locator('.library-display').click()

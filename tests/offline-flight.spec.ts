@@ -1,3 +1,4 @@
+import {selectSettings} from './helpers/settings'
 import { expect, test } from '@playwright/test'
 
 test.use({
@@ -35,7 +36,8 @@ test('cold-starts the cached application shell with no network', async ({ contex
 test('verifies the complete audio libraries, including their final files, offline', async ({ context, page }) => {
   test.setTimeout(360_000)
   await page.goto('/', { waitUntil: 'domcontentloaded' })
-  await page.getByRole('button', { name: 'Settings', exact: true }).click()
+  await page.getByRole('button', { name: 'Settings', exact: true }).first().click()
+  await selectSettings(page,'Flight mode')
   await page.getByRole('button', { name: 'Prepare for flight' }).click()
   await expect(page.locator('.offline-flight-panel .sync-synced')).toHaveText('Ready', {
     timeout: 330_000,
@@ -106,7 +108,8 @@ test('verifies the complete audio libraries, including their final files, offlin
 
 test('offers one-tap flight preparation with clear offline scope', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' })
-  await page.getByRole('button', { name: 'Settings', exact: true }).click()
+  await page.getByRole('button', { name: 'Settings', exact: true }).first().click()
+  await selectSettings(page,'Flight mode')
 
   await expect(page.getByRole('heading', { name: 'Prepare for offline use' })).toBeVisible()
   await expect(page.getByRole('button', { name: /Prepare for flight|Refresh offline bundle/ })).toBeVisible()

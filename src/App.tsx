@@ -1,3 +1,4 @@
+import SettingsWorkspace from './SettingsWorkspace'
 import {getAllListeningEvents} from './db'
 import {episodeAttempts} from './game/episodeActivity'
 import { DEFAULT_READER_CATEGORIES, normalizeReaderCategory, readerPlacement, type ReaderPlacement } from './readerOrganization'
@@ -3779,16 +3780,9 @@ function App() {
       )}
 
       {screen === 'settings' && (
-        <section className="screen">
-          <div className="screen-heading compact">
-            <div>
-              <h1>Settings</h1>
-              <p>Import packs, set study defaults, export progress, and tune controls.</p>
-            </div>
-          </div>
-
-          <div className="settings-sections">
-            {gameIdentity && <Suspense fallback={<p>Loading episode upload…</p>}><EpisodeUpload key={gameIdentity} identity={gameIdentity}/></Suspense>}
+        <section className="screen settings-screen">
+          <h1 className="settings-page-title">Settings</h1>
+          <SettingsWorkspace>
             <details className="settings-group" open>
               <summary className="settings-group-summary">Flight mode</summary>
               <div className="import-grid">
@@ -4081,6 +4075,7 @@ function App() {
             <details className="settings-group">
               <summary className="settings-group-summary">Imports &amp; Packs</summary>
               <div className="import-grid">
+                {gameIdentity && <Suspense fallback={<p>Loading episode upload…</p>}><EpisodeUpload key={gameIdentity} identity={gameIdentity}/></Suspense>}
                 <UniversalImporter
                   onComplete={async (summary) => {
                     setLastSummary(summary)
@@ -4391,12 +4386,12 @@ function App() {
               <summary className="settings-group-summary">Reader</summary>
               <div className="import-grid">
                 <section className="panel reader-settings-panel">
-                  <h2>Reader settings</h2>
-                  <p>Shape Reader into a calm interlinear book view.</p>
-                  <div className="hotkey-grid">
+                  <div className="settings-panel-heading"><div><h2>Reader</h2><p>A comfortable space for Chinese, pinyin, and meaning.</p></div><span className="settings-autosave">Preferences save automatically</span></div>
+                  <div className="reader-preference-rows">
                     <label>
                       <span>Reader theme</span>
                       <select
+                        aria-label="Reader theme"
                         value={userSettings.readerTheme}
                         onChange={(event) => saveReaderSettings({ readerTheme: event.target.value as ReaderTheme })}
                       >
@@ -4412,6 +4407,7 @@ function App() {
                         min={0.82}
                         max={1.35}
                         step={0.01}
+                        aria-label="Chinese font size"
                         value={userSettings.readerFontScale}
                         onChange={(event) => saveReaderSettings({ readerFontScale: Number(event.target.value) })}
                       />
@@ -4424,20 +4420,21 @@ function App() {
                         min={1.45}
                         max={2.35}
                         step={0.05}
+                        aria-label="Line spacing"
                         value={userSettings.readerLineHeight}
                         onChange={(event) => saveReaderSettings({ readerLineHeight: Number(event.target.value) })}
                       />
                       <small>{userSettings.readerLineHeight.toFixed(2)}x</small>
                     </label>
-                    <label>
-                      <span>Mangmi Air Y — Compact text for small screens</span>
-                      <small>Halves Reader text and enables compact Game layout with Mangmi controls: X continue, Y replay audio, B previous sentence, A next control, and D-pad scrolling.</small>
-                      <input
-                        type="checkbox"
-                        checked={userSettings.readerCompactText}
-                        onChange={(event) => saveReaderSettings({ readerCompactText: event.target.checked })}
-                      />
+                  </div>
+                  <div className="mangmi-settings-card">
+                    <label className="mangmi-settings-toggle">
+                      <span className="mangmi-device-icon" aria-hidden="true">✚</span>
+                      <span><strong>Mangmi Air Y</strong><small>Compact text for small screens, with dedicated game controls.</small></span>
+                      <input type="checkbox" checked={userSettings.readerCompactText} onChange={(event) => saveReaderSettings({ readerCompactText: event.target.checked })}/>
                     </label>
+                    <div className="mangmi-button-guide" aria-label="Mangmi controls">{[['X','Continue'],['Y','Replay'],['B','Previous'],['A','Next control']].map(([key,action])=><span key={key}><kbd>{key}</kbd>{action}</span>)}</div>
+                    <p>D-pad to scroll. X and Y choose A and B at story choices.</p>
                   </div>
                   <div className="reader-pinyin-legend" aria-label="Adaptive pinyin legend">
                     <span className="legend-pinyin-known">Known: no pinyin</span>
@@ -4567,7 +4564,7 @@ function App() {
                 </section>
               </div>
             </details>
-          </div>
+          </SettingsWorkspace>
         </section>
       )}
 
