@@ -1653,6 +1653,33 @@ details.settings-group > .import-grid {
   padding: 0 12px 12px;
 }
 
+details.settings-group > .import-grid > :only-child {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 760px) {
+  .settings-sections .import-grid,
+  .settings-sections .hotkey-grid,
+  .settings-sections .magic-link-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .settings-sections .panel {
+    min-width: 0;
+    padding: 16px;
+    overflow-wrap: anywhere;
+  }
+
+  .settings-sections .panel-title-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .settings-sections .pack-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 :root[data-theme='dark'] details.settings-group {
   background: rgba(30, 30, 45, 0.7);
 }

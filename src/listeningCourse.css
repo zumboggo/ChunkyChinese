@@ -68,7 +68,8 @@
  .listening-course { padding: 18px 14px 100px; border-radius: 18px; }
  .listening-course-heading>span:last-child { display: none; }
  .listening-course-heading { margin-bottom: 18px; }
- .listening-course-navigation { grid-template-columns: minmax(0,1fr) 108px; gap: 10px; }
+ .listening-course-navigation { grid-template-columns: minmax(0,1fr); gap: 12px; }
+ .listening-course-jump { grid-template-columns: auto 108px; align-items: center; justify-content: end; gap: 12px; }
  .listening-course-jump input { width: 54px; }
  .listening-course-jump button { padding: 8px; }
  .listening-course-player { padding: 20px 16px 16px; }
