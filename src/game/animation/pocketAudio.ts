@@ -1,18 +1,17 @@
 import {advanceStory,compileStory,replayStory} from './shared/engine/story-engine.js'
 import type {ChinesePackage} from './package'
 import type {StoryProgress} from './StoryPlayback'
-import type {AudioModeOptions} from './AudioModeDialog'
+import type {EncounterSettings} from './encounters'
 
-export interface PocketBeat {encounter?:1|2;steps:(string|null)[];text:string;audio?:string;english?:string;silence?:number}
+export interface PocketBeat {encounter?:number;steps:(string|null)[];text:string;audio?:string;english?:string;silence?:number}
 export interface PocketPlan {beats:PocketBeat[];end:StoryProgress;ended:boolean}
-export interface PocketMarker {encounter?:1|2;at:number;steps:(string|null)[];text:string}
+export interface PocketMarker {encounter?:number;at:number;steps:(string|null)[];text:string}
 export interface PocketTrack {blob:Blob;duration:number;markers:PocketMarker[];end:StoryProgress;ended:boolean}
 export const meaningOf=(line:NonNullable<ChinesePackage['chinese']>['lines'][string])=>(line.english||line.interlinear?.map(c=>c.gloss).join(' ')||'').trim()
 
 /** Pick a finite route before playback. No JavaScript or story animations are
  * needed between scenes once the phone has locked. Manual routes stop at a choice. */
-export function planPocketAudio(pack:ChinesePackage,start:StoryProgress,options:AudioModeOptions,random:()=>number=Math.random):PocketPlan{
- if(options.chinese===false&&!options.english&&!(options.secondEnabled&&(options.second?.chinese||options.second?.english)))throw Error('Turn on English or Chinese audio to prepare listening.')
+export function planPocketAudio(pack:ChinesePackage,start:StoryProgress,options:EncounterSettings,random:()=>number=Math.random):PocketPlan{
  const compiled=compileStory(pack.script,pack.assets)
  if(compiled.errors.length||!compiled.story)throw Error('This episode could not be prepared.')
  let state=replayStory(compiled.story,start.steps,start.seed)
@@ -23,12 +22,12 @@ export function planPocketAudio(pack:ChinesePackage,start:StoryProgress,options:
   if(node.type==='choice'&&!options.automaticChoices)break
   const option=node.type==='choice'?node.options[Math.min(node.options.length-1,Math.floor(random()*node.options.length))]:null
   const text=option?.text??node.text??'',line=pack.chinese?.lines[text]
-  const encounters=options.secondEnabled&&options.second&&node.type!=='choice'?[options,options.second]:[options]
+  const encounters=options.encounters.slice(0,node.type==='choice'?1:options.count)
   for(const [index,encounter] of encounters.entries()){
    if(encounter.chinese!==false&&/\p{Script=Han}/u.test(text)&&!line?.audio)throw Error('This episode needs a Chinese recording before pocket listening can be prepared.')
    const english=line?meaningOf(line):(!/\p{Script=Han}/u.test(text)?text:'')
    if(encounter.english&&text&&!english)throw Error('This episode needs an English translation before pocket listening can be prepared.')
-   beats.push({encounter:index===0?1:2,steps:[...steps],text,audio:encounter.chinese!==false?line?.audio:undefined,english:encounter.english?english:undefined,silence:option?options.choiceDelay:undefined})
+   beats.push({encounter:index+1,steps:[...steps],text,audio:encounter.chinese!==false?line?.audio:undefined,english:encounter.english?english:undefined,silence:(option?options.choiceDelay:0)+(!encounter.chinese&&!encounter.english?options.readingSeconds:0)})
   }
   steps.push(option?.id??null)
   state=advanceStory(compiled.story,state,option?.id??null)
@@ -49,7 +48,7 @@ export function wavHeader(samples:number,rate=16000){
  word(0,'RIFF');v.setUint32(4,36+samples*2,true);word(8,'WAVE');word(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,rate,true);v.setUint32(28,rate*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);word(36,'data');v.setUint32(40,samples*2,true)
  return bytes
 }
-export async function preparePocketAudio(pack:ChinesePackage,start:StoryProgress,options:AudioModeOptions,signal:AbortSignal,onProgress:(text:string)=>void):Promise<PocketTrack>{
+export async function preparePocketAudio(pack:ChinesePackage,start:StoryProgress,options:EncounterSettings,signal:AbortSignal,onProgress:(text:string)=>void):Promise<PocketTrack>{
  const plan=planPocketAudio(pack,start,options)
  if(!plan.beats.length)throw Error(plan.ended?'This episode is complete. Restart it to listen again.':'Choose a story response first, or select automatic choices for hands-free listening.')
  const decoder=new OfflineAudioContext(1,1,16000),parts:BlobPart[]=[],markers:PocketMarker[]=[]
@@ -76,7 +75,7 @@ export async function preparePocketAudio(pack:ChinesePackage,start:StoryProgress
   if(beat.english){
    if(beat.audio)silence(options.englishPause)
    const key=await textDigest(beat.english);await clip(`${import.meta.env.BASE_URL}stories/audio/${key}.m4a`)
-  }else if(!beat.audio)silence(1.2)
+  }
   silence(beat.silence??0)
  }
  check()

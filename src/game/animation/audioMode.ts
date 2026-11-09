@@ -36,7 +36,7 @@ export async function playAudioModeLine({text,line,chinese=true,english,pause,vo
    audio.onended=()=>{cleanup();resolve()}
    audio.onerror=()=>{cleanup();reject(Error('Scene audio could not play. Try again.'))}
    signal.addEventListener('abort',abort,{once:true})
-   void audio.play().catch(()=>{if(signal.aborted)return;cleanup();reject(Error('Audio could not start. Tap Resume Audio Mode to try again.'))})
+   void audio.play().catch(()=>{if(signal.aborted)return;cleanup();reject(Error('Audio could not start. Tap Play or Resume playback to try again.'))})
   })
  }else if(chinese&&/\p{Script=Han}/u.test(text))await speakAudioMode(text,'zh-CN',volume,signal)
  // Action-only beats have no dialogue; allow their motion to register before continuing.

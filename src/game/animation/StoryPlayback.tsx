@@ -9,11 +9,12 @@ import './story-toggles.css'
 import type {ChinesePackage} from './package'
 import EpisodeInterlinear from './EpisodeInterlinear'
 import PocketAudioPlayer from './PocketAudioPlayer'
-import AudioModeDialog, {type AudioModeOptions} from './AudioModeDialog'
+import EncounterControls from './EncounterControls'
+import {readEncounters,type EncounterSettings} from './encounters'
 import {playAudioModeLine,speakAudioMode,waitForAudioMode} from './audioMode'
 import type {HotkeySettings} from '../../types'
 export interface StoryProgress {attemptId?:string;partialTiming?:boolean;continuity?:import('./continuity').ContinuitySnapshot;steps:(string|null)[];quizzes:number[][];seed:number}
-export default function StoryPlayback({pack,initial,onProgress,reduced:preferred=false,onComplete,onNextEpisode,preferencesKey='story2:display',readThenListenDefault=false,hotkeys,settingsContent,onReplayOpening,nextEpisodePreview}:{pack:ChinesePackage;initial?:StoryProgress;onProgress?:(p:StoryProgress)=>void;reduced?:boolean;debug?:boolean;onComplete?:()=>void;onNextEpisode?:()=>void;preferencesKey?:string;readThenListenDefault?:boolean;hotkeys?:HotkeySettings;settingsContent?:ReactNode;onReplayOpening?:()=>void;nextEpisodePreview?:{number?:number;title:string;teaser:string}}) {
+export default function StoryPlayback({pack,initial,onProgress,reduced:preferred=false,onComplete,onNextEpisode,preferencesKey='story2:display',releaseCategory,hotkeys,settingsContent,onReplayOpening,nextEpisodePreview}:{pack:ChinesePackage;initial?:StoryProgress;onProgress?:(p:StoryProgress)=>void;reduced?:boolean;debug?:boolean;onComplete?:()=>void;onNextEpisode?:()=>void;preferencesKey?:string;releaseCategory?:string;hotkeys?:HotkeySettings;settingsContent?:ReactNode;onReplayOpening?:()=>void;nextEpisodePreview?:{number?:number;title:string;teaser:string}}) {
  const compiled=useMemo(()=>compileStory(pack.script,pack.assets),[pack])
  const [progress,setProgress]=useState<StoryProgress>(initial??{steps:[],quizzes:[],seed:1})
  const [state,setState]=useState<StoryState|null>(()=>compiled.story?replayStory(compiled.story,initial?.steps??[],initial?.seed??1):null)
@@ -28,21 +29,24 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  const current=state&&compiled.story?.nodes[state.cursor]
 
  const [audioModeOpen,setAudioModeOpen]=useState(false),[audioModeRunning,setAudioModeRunning]=useState(false),[audioModePaused,setAudioModePaused]=useState(false),[audioModeStatus,setAudioModeStatus]=useState('')
- const encounterPreference=readThenListenDefault?'lmsReadThenListen':'readThenListen'
- const [audioModeOptions,setAudioModeOptions]=useState<AudioModeOptions>(()=>({secondEnabled:preference(encounterPreference,readThenListenDefault),second:{chinese:preference('secondChineseAudio',true),english:preference('secondEnglishAudio',true),showChinese:preference('secondChineseText',false),showPinyin:preference('secondPinyinText',false),showGloss:preference('secondEnglishText',false)},chinese:preference('audioModeChinese',true),english:preference('audioModeEnglish',false),englishPause:[0,1,2,3,5,10].includes(preference('audioModeEnglishPause',3))?preference('audioModeEnglishPause',3):3,automaticChoices:preference('audioModeAutomaticChoices',false),choiceDelay:[0,3,5,10].includes(preference('audioModeChoiceDelay',0))?preference('audioModeChoiceDelay',0):0}))
- const [pocketSession,setPocketSession]=useState<{start:StoryProgress;options:AudioModeOptions}|null>(null)
+ const supportive=releaseCategory==='super-supportive'
+ const encounterPreference=preferencesKey+':encounters:v1:'+(supportive?'super-supportive':'other')
+ const [audioModeOptions,setAudioModeOptions]=useState<EncounterSettings>(()=>readEncounters(encounterPreference,supportive))
+ const [pocketSession,setPocketSession]=useState<{start:StoryProgress;options:EncounterSettings}|null>(null)
  const audioModeController=useRef<AbortController|null>(null)
  function stopAudioMode(){audioModeController.current?.abort();setAudioModeRunning(false);setAudioModePaused(false);setAudioModeStatus('')}
  function pauseAudioMode(){audioModeController.current?.abort();setAudioModePaused(true)}
- const [encounter,setEncounter]=useState<1|2>(1)
- const secondEncounter=encounter===2&&audioModeOptions.secondEnabled&&current?.type!=='choice'
- const activeAudio=secondEncounter?audioModeOptions.second!:audioModeOptions
- const autoPlay=activeAudio.chinese!==false||activeAudio.english
+ const [encounter,setEncounter]=useState(1)
+ const activeEncounter=current?.type==='choice'?1:Math.min(encounter,audioModeOptions.count)
+ const activeAudio=audioModeOptions.encounters[activeEncounter-1]
+ const autoPlay=activeAudio.chinese||activeAudio.english
  const slideAudioController=useRef<AbortController|null>(null)
- const [showChinese,setShowChinese]=useState<boolean>(()=>preference('chinese',true))
- const [showPinyin,setShowPinyin]=useState<boolean>(()=>preference('pinyin',true)),[showGloss,setShowGloss]=useState<boolean>(()=>preference('english',true)),[answers,setAnswers]=useState<number[]>([-1,-1,-1,-1])
- const display=secondEncounter?audioModeOptions.second!:{showChinese,showPinyin,showGloss}
- useEffect(()=>{try{localStorage.setItem(preferencesKey,JSON.stringify({...JSON.parse(localStorage.getItem(preferencesKey)??'{}'),[encounterPreference]:audioModeOptions.secondEnabled,secondChineseAudio:audioModeOptions.second?.chinese,secondEnglishAudio:audioModeOptions.second?.english,secondChineseText:audioModeOptions.second?.showChinese,secondPinyinText:audioModeOptions.second?.showPinyin,secondEnglishText:audioModeOptions.second?.showGloss,chinese:showChinese,pinyin:showPinyin,english:showGloss,autoplay:autoPlay,voiceVolume,reduceMotion,motionPaused,audioModeChinese:audioModeOptions.chinese!==false,audioModeEnglish:audioModeOptions.english,audioModeEnglishPause:audioModeOptions.englishPause,audioModeAutomaticChoices:audioModeOptions.automaticChoices,audioModeChoiceDelay:audioModeOptions.choiceDelay}))}catch{/* Display preferences are optional on restricted devices. */}},[preferencesKey,encounterPreference,showChinese,showPinyin,showGloss,autoPlay,voiceVolume,reduceMotion,motionPaused,audioModeOptions])
+ const [answers,setAnswers]=useState<number[]>([-1,-1,-1,-1])
+ const {showChinese,showPinyin,showGloss}=audioModeOptions.encounters[0]
+ const display=activeAudio
+ function changeOptions(options:EncounterSettings){slideAudioController.current?.abort();audioModeController.current?.abort();sound.current?.pause();setAudioPlaying(false);setSpeaking(false);setEncounter(n=>Math.min(n,options.count));setAudioModeOptions(options)}
+ useEffect(()=>{try{localStorage.setItem(encounterPreference,JSON.stringify(audioModeOptions))}catch{/* Optional on restricted devices. */}},[encounterPreference,audioModeOptions])
+ useEffect(()=>{try{localStorage.setItem(preferencesKey,JSON.stringify({...JSON.parse(localStorage.getItem(preferencesKey)??'{}'),voiceVolume,reduceMotion,motionPaused}))}catch{/* Optional on restricted devices. */}},[preferencesKey,voiceVolume,reduceMotion,motionPaused])
  const line=pack.chinese?.lines[current?.text],score=pack.quiz.length===4&&progress.quizzes.length?quizScore(pack.quiz,progress.quizzes.at(-1)!):null
  const latest=useRef({advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy});latest.current={advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy}
  // Run once for each newly displayed story state, including resumed episodes.
@@ -67,8 +71,8 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   void (async()=>{
    try{
     if(current.type==='choice'){
-     for(let i=0;i<current.options.length;i++){
-      await speakAudioMode(audioModeOptions.chinese!==false?`选项 ${i+1}`:`Option ${i+1}`,audioModeOptions.chinese!==false?'zh-CN':'en-US',voiceVolume,signal)
+     for(let i=0;autoPlay&&i<current.options.length;i++){
+      await speakAudioMode(activeAudio.chinese?`选项 ${i+1}`:`Option ${i+1}`,activeAudio.chinese?'zh-CN':'en-US',voiceVolume,signal)
       await listen(current.options[i].text)
      }
      if(!audioModeOptions.automaticChoices){setAudioModeStatus('Choose an option to keep listening.');return}
@@ -80,7 +84,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
      if(!signal.aborted)latest.current.advance(option.id)
     }else{
      if(autoPlay)await listen(current.text??'')
-     else await waitForAudioMode(1200,signal)
+     else await waitForAudioMode(audioModeOptions.readingSeconds*1000,signal)
      if(!signal.aborted)latest.current.advance(null)
     }
    }catch(e){if(!signal.aborted){setError(e instanceof Error?e.message:String(e));setAudioModePaused(true)}}
@@ -113,19 +117,20 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  useEffect(()=>{if(reduced){motion.current?.abort();setResponses({});}},[reduced])
  const animate=async(el:HTMLElement|null,frames:Keyframe[],duration=420)=>{if(reduced||!el?.animate)return;try{await el.animate(frames,{duration,easing:'ease-in-out'}).finished}catch{/* navigation cancellation */}}
  function back(){
-  if(encounter===2){slideAudioController.current?.abort();audioModeController.current?.abort();setAudioPlaying(false);setSpeaking(false);setEncounter(1);return}
+  if(encounter>1&&!state?.ended){slideAudioController.current?.abort();audioModeController.current?.abort();setAudioPlaying(false);setSpeaking(false);setEncounter(n=>n-1);return}
   if(!compiled.story||!progress.steps.length)return
   slideAudioController.current?.abort();audioModeController.current?.abort();generation.current++;motion.current?.abort();sound.current?.pause();sound.current=null
   root.current?.getAnimations?.({subtree:true}).forEach(a=>a.cancel())
   lock.current=false;setBusy(false);setSpeaking(false);setAudioPlaying(false);setResponses({});setError('');setAnswers([-1,-1,-1,-1])
-  setEncounter(1)
   const p={...progress,steps:progress.steps.slice(0,-1)}
-  setState(replayStory(compiled.story,p.steps,p.seed));setProgress(p);onProgress?.(p)
+  const previous=replayStory(compiled.story,p.steps,p.seed)
+  setEncounter(compiled.story.nodes[previous.cursor]?.type==='choice'?1:audioModeOptions.count)
+  setState(previous);setProgress(p);onProgress?.(p)
  }
  async function advance(option:string|null){
   if(!state||!compiled.story||state.ended||lock.current)return
-  if(encounter===1&&audioModeOptions.secondEnabled&&current?.type!=='choice'&&current?.text){
-   slideAudioController.current?.abort();audioModeController.current?.abort();sound.current?.pause();setAudioPlaying(false);setSpeaking(false);setError('');setEncounter(2);return
+  if(encounter<audioModeOptions.count&&current?.type!=='choice'&&current?.text){
+   slideAudioController.current?.abort();audioModeController.current?.abort();sound.current?.pause();setAudioPlaying(false);setSpeaking(false);setError('');setEncounter(n=>n+1);return
   }
   slideAudioController.current?.abort();audioModeController.current?.abort();motion.current?.abort();setResponses({});lock.current=true;setBusy(true);sound.current?.pause();sound.current=null;setAudioPlaying(false);setSpeaking(false);setError('');const token=++generation.current
   try{
@@ -155,7 +160,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
 
 
  if(compiled.errors.length||!state)return <div role="alert">{compiled.errors.map(e=><p key={e.line+e.message}>Line {e.line}: {e.message}</p>)}</div>
- if(pocketSession)return <PocketAudioPlayer pack={pack} start={pocketSession.start} options={pocketSession.options} volume={voiceVolume} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss} onSave={p=>onProgress?.(p)} onExit={p=>{setProgress(p);setState(replayStory(compiled.story,p.steps,p.seed));onProgress?.(p);setPocketSession(null)}}/>
+ if(pocketSession)return <PocketAudioPlayer pack={pack} start={pocketSession.start} options={pocketSession.options} volume={voiceVolume} onSave={p=>onProgress?.(p)} onExit={p=>{setProgress(p);setState(replayStory(compiled.story,p.steps,p.seed));onProgress?.(p);setEncounter(1);setPocketSession(null)}}/>
  return <div className="animated-story story-modern" data-story-step={`${state.cursor}:${encounter}`} ref={root} onClick={event=>{
   if(busy||state.ended||current.type==='choice'||window.getSelection()?.toString())return;
   const target=event.target as HTMLElement;
@@ -174,26 +179,14 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   void advance(null);
  }}>
   <div className="audio-mode-toolbar">
-   {audioModeOptions.secondEnabled&&!state.ended&&current.type!=='choice'&&<span>Encounter {encounter} of 2</span>}
-   {audioModeRunning&&!state.ended&&<button type="button" onClick={()=>{if(audioModePaused){setError('');setAudioModePaused(false)}else pauseAudioMode()}}>{audioModePaused?'Resume Audio Mode':'Pause Audio Mode'}</button>}
-   {audioModeRunning&&<span role="status">{state.ended?'Episode complete':audioModePaused?'Audio Mode paused':audioModeStatus}</span>}
+   <button type="button" onClick={back} disabled={encounter===1&&!progress.steps.length}>Back</button>
+   {!state.ended&&current.type!=='choice'&&<span>Encounter {activeEncounter} of {audioModeOptions.count}</span>}
+   {audioModeRunning&&!state.ended&&<button type="button" onClick={()=>{if(audioModePaused){setError('');setAudioModePaused(false)}else pauseAudioMode()}}>{audioModePaused?'Resume playback':'Pause playback'}</button>}
+   {audioModeRunning&&<span role="status">{state.ended?'Episode complete':audioModePaused?'Playback paused':audioModeStatus}</span>}
   </div>
-  <AudioModeDialog onPocket={()=>{stopAudioMode();generation.current++;lock.current=false;setBusy(false);sound.current?.pause();motion.current?.abort();setAudioModeOpen(false);setPocketSession({start:progress,options:{...audioModeOptions}})}} open={audioModeOpen} running={audioModeRunning} options={audioModeOptions} onOptions={setAudioModeOptions} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss} onChinese={setShowChinese} onPinyin={setShowPinyin} onGloss={setShowGloss} onClose={()=>setAudioModeOpen(false)} onStart={()=>{setError('');setAudioModePaused(false);setAudioModeRunning(true);setAudioModeOpen(false)}} onStop={()=>{stopAudioMode();setAudioModeOpen(false)}}/>
-  <details className="episode-settings" onKeyDown={e=>{if(e.key==='Escape'){e.currentTarget.open=false;e.currentTarget.querySelector('summary')?.focus();}}}>
+  <details className="episode-settings" onToggle={e=>{const open=e.currentTarget.open;setAudioModeOpen(open);if(open){slideAudioController.current?.abort();audioModeController.current?.abort();sound.current?.pause();setAudioPlaying(false);setSpeaking(false)}}} onKeyDown={e=>{if(e.key==='Escape'){e.currentTarget.open=false;e.currentTarget.querySelector('summary')?.focus();}}}>
    <summary>Controls <span aria-hidden="true">⌄</span></summary><div className="episode-settings-panel">
-  <div className="story-slide-toggles" role="group" aria-label="Story audio and text">
-   <div role="group" aria-label="Audio"><span>Audio:</span>
-    <button type="button" aria-label="Audio: English" aria-pressed={activeAudio.english} onClick={()=>setAudioModeOptions(o=>secondEncounter?{...o,second:{...o.second!,english:!o.second!.english}}:{...o,english:!o.english})}>English</button>
-    <button type="button" aria-label="Audio: Chinese" aria-pressed={activeAudio.chinese!==false} onClick={()=>setAudioModeOptions(o=>secondEncounter?{...o,second:{...o.second!,chinese:!o.second!.chinese}}:{...o,chinese:o.chinese===false})}>Chinese</button>
-   </div>
-   <div role="group" aria-label="Text"><span>Text:</span>
-    <button type="button" aria-label="Text: Pinyin" aria-pressed={display.showPinyin} onClick={()=>secondEncounter?setAudioModeOptions(o=>({...o,second:{...o.second!,showPinyin:!o.second!.showPinyin}})):setShowPinyin(v=>!v)}>Pinyin</button>
-    <button type="button" aria-label="Text: Characters" aria-pressed={display.showChinese} onClick={()=>secondEncounter?setAudioModeOptions(o=>({...o,second:{...o.second!,showChinese:!o.second!.showChinese}})):setShowChinese(v=>!v)}>Characters</button>
-    <button type="button" aria-label="Text: English" aria-pressed={display.showGloss} onClick={()=>secondEncounter?setAudioModeOptions(o=>({...o,second:{...o.second!,showGloss:!o.second!.showGloss}})):setShowGloss(v=>!v)}>English</button>
-   </div>
-  </div>
-   <button type="button" aria-haspopup="dialog" onClick={()=>{slideAudioController.current?.abort();sound.current?.pause();audioModeController.current?.abort();setAudioModeOpen(true)}}>Audio Mode</button>
-
+   <EncounterControls options={audioModeOptions} onChange={changeOptions} supportive={supportive} running={audioModeRunning} onRunning={running=>{slideAudioController.current?.abort();setError('');setAudioModePaused(false);setAudioModeRunning(running)}} onPocket={()=>{stopAudioMode();slideAudioController.current?.abort();generation.current++;lock.current=false;setBusy(false);sound.current?.pause();motion.current?.abort();setAudioModeOpen(false);setPocketSession({start:progress,options:audioModeOptions})}}/>
    {settingsContent}
    <details className="cinema-preferences"><summary>Sound & motion</summary>
   {!state.ended&&<EpisodeAtmosphere preferencesKey={preferencesKey+':sound'} root={root} preset={state.ended?'none':state.stage.ambience} ducked={audioPlaying&&voiceVolume>0} voiceVolume={voiceVolume} onVoiceVolume={setVoiceVolume}/>}

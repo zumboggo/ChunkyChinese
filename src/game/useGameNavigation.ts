@@ -48,6 +48,8 @@ export function useGameNavigation(root: RefObject<HTMLElement | null>) {
    const target=event.target as HTMLElement
    if(target!==document.body&&!section.contains(target))return
    if(target?.matches('textarea,input:not([type="range"]):not([type="checkbox"]):not([type="radio"])')||target?.isContentEditable)return
+   // Passage arrows belong to playback; settings and controller arrows still move focus.
+   if(['ArrowLeft','ArrowRight'].includes(event.key)&&(target.closest('.animated-story')||(target===document.body&&section.querySelector('.animated-story')&&!section.querySelector('.episode-settings[open]')))&&!target.closest('details,input,select,textarea,.episode-chunk'))return
    const key=({ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',Enter:'accept',Escape:'back'} as Record<string,string>)[event.key]
    if(!key)return
    event.preventDefault();event.stopImmediatePropagation()
