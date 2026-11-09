@@ -29,5 +29,8 @@ export default defineConfig({
   test: {
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'scripts/lib/**/*.test.js'],
     exclude: ['tests/**', 'node_modules/**', 'dist/**'],
+    // Route-enumeration tests (e.g. jedi67) replay 100+ story routes and
+    // exceed the default 5s timeout under load.
+    testTimeout: 30000,
   },
 })

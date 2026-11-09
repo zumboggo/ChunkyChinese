@@ -1,5 +1,5 @@
 import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs'
-import {resolve,dirname,extname} from 'node:path'
+import {resolve,dirname,extname,sep} from 'node:path'
 import {createHash} from 'node:crypto'
 import {pinyin} from 'pinyin-pro'
 import {createCharacter} from '../../src/game/animation/shared/engine/character-builder.js'
@@ -7,7 +7,7 @@ import {chineseTexts} from '../../src/game/animation/package.ts'
 export const digest=value=>createHash('sha256').update(value).digest('hex')
 const read=p=>JSON.parse(readFileSync(p,'utf8'))
 export const writeJson=(p,v)=>{mkdirSync(dirname(p),{recursive:true});writeFileSync(p,JSON.stringify(v,null,2)+'\n')}
-const privatePath=p=>{const full=resolve(p);if(!full.startsWith(resolve('.local')+'/'))throw Error('Authoring outputs must stay under .local/');return full}
+const privatePath=p=>{const full=resolve(p);if(!full.startsWith(resolve('.local')+sep))throw Error('Authoring outputs must stay under .local/');return full}
 export function loadAssets(plan){
  const assets=structuredClone(read(plan.assetsFrom).assets)
  if(plan.castFrom)assets.characters={...assets.characters,...read(plan.castFrom)}

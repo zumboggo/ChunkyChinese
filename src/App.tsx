@@ -3063,6 +3063,7 @@ function App() {
     | 'readerListeningAutoAdvance'
     | 'readerShowEnglish'
     | 'readerStatusHighlight'
+    | 'readerCompactText'
   >>) {
     readerSettingsRevision.current += 1
     setUserSettings(current => {
@@ -3392,7 +3393,7 @@ function App() {
       )}
 
       {screen === 'game' && <Suspense fallback={<p>Opening Game…</p>}>
-        {gameIdentity ? <GamePage key={gameIdentity} identity={gameIdentity} words={activeWords} hotkeys={hotkeys} /> : <p>Checking your local game identity…</p>}
+        {gameIdentity ? <GamePage key={gameIdentity} identity={gameIdentity} words={activeWords} hotkeys={hotkeys} readerCompactText={userSettings.readerCompactText} /> : <p>Checking your local game identity…</p>}
       </Suspense>}
       <nav className="app-bottom-nav" aria-label="Main navigation">
         <button
@@ -3645,6 +3646,7 @@ function App() {
           readerLargeText={userSettings.readerLargeText}
           readerFontScale={userSettings.readerFontScale}
           readerLineHeight={userSettings.readerLineHeight}
+          readerCompactText={userSettings.readerCompactText}
           replayHotkey={hotkeys.choiceF}
           choiceB={hotkeys.choiceB}
           showEnglish={readerShowEnglish}
@@ -4426,6 +4428,15 @@ function App() {
                         onChange={(event) => saveReaderSettings({ readerLineHeight: Number(event.target.value) })}
                       />
                       <small>{userSettings.readerLineHeight.toFixed(2)}x</small>
+                    </label>
+                    <label>
+                      <span>Mangmi Air Y — Compact text for small screens</span>
+                      <small>Halves Reader text and enables compact Game layout with Mangmi controls: X continue, Y replay audio, B previous sentence, A next control, and D-pad scrolling.</small>
+                      <input
+                        type="checkbox"
+                        checked={userSettings.readerCompactText}
+                        onChange={(event) => saveReaderSettings({ readerCompactText: event.target.checked })}
+                      />
                     </label>
                   </div>
                   <div className="reader-pinyin-legend" aria-label="Adaptive pinyin legend">
@@ -5588,6 +5599,7 @@ function ReaderMode({
   readerLargeText,
   readerFontScale,
   readerLineHeight,
+  readerCompactText,
   replayHotkey,
   choiceB,
   showEnglish,
@@ -5641,6 +5653,7 @@ function ReaderMode({
   readerLargeText: boolean
   readerFontScale: number
   readerLineHeight: number
+  readerCompactText: boolean
   replayHotkey: string
   choiceB: string
   showEnglish: boolean
@@ -5815,10 +5828,10 @@ function ReaderMode({
         </aside>
 
         <section
-          className="reader-page"
+          className={`reader-page${readerCompactText ? ' reader-compact-text' : ''}`}
           style={{
-            '--reader-font-scale': readerFontScale * (readerLargeText ? 2.5 : 1),
-            '--reader-line-height': readerLineHeight,
+            '--reader-font-scale': readerFontScale * (readerLargeText ? 2.5 : 1) * (readerCompactText ? 0.48 : 1),
+            '--reader-line-height': readerCompactText ? Math.max(readerLineHeight * 0.72, 1.25) : readerLineHeight,
           } as CSSProperties}
         >
           {activeBook && sentence ? (

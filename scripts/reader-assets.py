@@ -33,6 +33,11 @@ from typing import Any, Iterable
 ROOT = Path(__file__).resolve().parents[1]
 PACK_ROOT = ROOT / "public" / "reader-packs"
 ART_PLAN_PATH = ROOT / "scripts" / "reader-art-plan.json"
+JUST_FRIENDS_ROOT = PACK_ROOT / "just-friends"
+JUST_FRIENDS_BOOK_PATH = JUST_FRIENDS_ROOT / "books" / "just-friends.json"
+JUST_FRIENDS_COVER_PATH = JUST_FRIENDS_ROOT / "images" / "covers" / "just-friends.webp"
+JUST_FRIENDS_ILLUSTRATION_DIR = JUST_FRIENDS_ROOT / "images" / "illustrations"
+JUST_FRIENDS_SECTION_SIZE = 8
 VOICE = "cmn-CN-Chirp3-HD-Aoede"
 SPEAKING_RATE = 0.85
 
@@ -537,6 +542,200 @@ def generate_gemini_image(prompt: str, api_key: str, aspect_ratio: str) -> bytes
     return image
 
 
+def generate_gemini_reference_image(
+    prompt: str,
+    reference_path: Path,
+    api_key: str,
+    aspect_ratio: str = "16:9",
+    image_size: str = "2K",
+) -> bytes:
+    """Generate an image while supplying the existing cover as visual context."""
+    model = os.environ.get("GOOGLE_GEMINI_IMAGE_MODEL", "gemini-3.1-flash-image")
+    mime_type = "image/webp" if reference_path.suffix.lower() == ".webp" else "image/jpeg"
+    reference_data = base64.b64encode(reference_path.read_bytes()).decode("ascii")
+    response = request_json(
+        f"https://generativelanguage.googleapis.com/v1/models/{model}:generateContent",
+        {
+            "contents": [
+                {
+                    "role": "user",
+                    "parts": [
+                        {"text": prompt},
+                        {
+                            "inline_data": {
+                                "mime_type": mime_type,
+                                "data": reference_data,
+                            }
+                        },
+                    ],
+                }
+            ],
+            "generationConfig": {
+                "responseModalities": ["IMAGE"],
+                "responseFormat": {
+                    "image": {
+                        "aspectRatio": aspect_ratio,
+                        "imageSize": image_size,
+                    }
+                },
+            },
+        },
+        {"x-goog-api-key": api_key},
+        attempts=5,
+    )
+    image = find_base64_image(response)
+    if not image:
+        raise RuntimeError("Gemini reference-image response did not contain image data")
+    return image
+
+
+def just_friends_sections(book: dict[str, Any]) -> list[dict[str, Any]]:
+    sentences = []
+    for story in book.get("stories", []):
+        for sentence in story.get("sentences", []):
+            sentences.append(
+                {
+                    **sentence,
+                    "chapter": story["chapter"],
+                    "chapterTitle": story["title"],
+                }
+            )
+
+    sections = []
+    for offset in range(0, len(sentences), JUST_FRIENDS_SECTION_SIZE):
+        group = sentences[offset : offset + JUST_FRIENDS_SECTION_SIZE]
+        section_number = len(sections) + 1
+        sections.append(
+            {
+                "number": section_number,
+                "sentenceStart": offset + 1,
+                "sentenceEnd": offset + len(group),
+                "sentences": group,
+                "filename": f"section-{section_number:03d}.webp",
+            }
+        )
+    return sections
+
+
+def just_friends_section_context(section: dict[str, Any]) -> str:
+    chapter_labels = []
+    for sentence in section["sentences"]:
+        label = f"Chapter {sentence['chapter']}, {sentence['chapterTitle']}"
+        if label not in chapter_labels:
+            chapter_labels.append(label)
+    lines = []
+    for index, sentence in enumerate(section["sentences"], section["sentenceStart"]):
+        lines.append(
+            f"{index}. Chinese: {sentence['chinese']}\n"
+            f"   English: {sentence['english']}"
+        )
+    return f"Chapters in this section: {'; '.join(chapter_labels)}.\n" + "\n".join(lines)
+
+
+def just_friends_section_prompt(section: dict[str, Any]) -> str:
+    context = just_friends_section_context(section)
+    return f"""Use case: illustration-story.
+Asset type: wide in-app reader illustration for Just Friends?, section {section['number']}, covering global sentences {section['sentenceStart']}-{section['sentenceEnd']}.
+Reference image: the attached existing Just Friends? cover is the definitive visual reference. Match its cinematic contemporary Chinese manhwa style, realistic stylized proportions, elegant fine linework, painted cel shading, rich indigo/coral/warm-gold palette, atmospheric Guangzhou lighting, detailed urban backgrounds, and mature expressive faces. Preserve the recurring cast's appearance from the cover: Qian Dapeng is the tousle-haired young Chinese man in the dark navy hooded coat; Xie Wendong is the short-haired young Chinese man in the light gray hooded jacket; Zhou Zixin is the confident young Chinese woman with long wavy dark hair, a cream cardigan, white top, blue jeans, and delicate jewelry.
+Primary request: Read the entire story section below before composing the image. Treat all lines as one continuous narrative unit, not as isolated sentence prompts. Identify the section's most visually powerful pivotal moment and portray it with the surrounding relationship context visible through staging, glances, body language, props, and setting. Prioritize emotional tension, jealousy, anticipation, confrontation, surprise, or excitement when supported by this section; do not invent events that occur outside it. Keep character identities, clothing, ages, and relationships consistent with the reference and across the illustration series.
+Composition: cinematic 16:9 landscape frame, visually clear on a phone, one decisive story beat, strong foreground/midground depth, expressive faces and hands, dynamic but natural framing.
+Story context (all sentences in this image's eight-sentence section):
+{context}
+Constraints: base the scene and its details on the whole section above; include only characters and locations supported by that context; contemporary Guangzhou and Sun Yat-sen University details; fully clothed adults; no text, captions, speech bubbles, signs with readable writing, letters, logos, UI, border, signature, or watermark."""
+
+
+def just_friends_section_alt(section: dict[str, Any]) -> str:
+    english = " ".join(sentence["english"].strip() for sentence in section["sentences"])
+    return (
+        f"Just Friends? section {section['number']}, sentences "
+        f"{section['sentenceStart']}-{section['sentenceEnd']}. Full section context: {english}"
+    )
+
+
+def generate_just_friends_illustrations(args: argparse.Namespace) -> None:
+    api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_CLOUD_API_KEY")
+    if not api_key:
+        raise SystemExit("GEMINI_API_KEY or GOOGLE_CLOUD_API_KEY is not configured.")
+    if not JUST_FRIENDS_BOOK_PATH.exists() or not JUST_FRIENDS_COVER_PATH.exists():
+        raise SystemExit("The Just Friends book JSON or cover image is missing.")
+
+    book = read_json(JUST_FRIENDS_BOOK_PATH)
+    all_sections = just_friends_sections(book)
+    selected_sections = all_sections
+    if args.start:
+        selected_sections = [section for section in selected_sections if section["number"] >= args.start]
+    if args.limit:
+        selected_sections = selected_sections[: args.limit]
+
+    print(
+        f"Just Friends: {len(all_sections)} total eight-sentence section(s); "
+        f"{len(selected_sections)} selected; Gemini output {args.image_size}."
+    )
+    for section in selected_sections:
+        destination = JUST_FRIENDS_ILLUSTRATION_DIR / section["filename"]
+        if destination.exists() and not args.replace:
+            print(f"skip section {section['number']} (exists)")
+            continue
+        prompt = just_friends_section_prompt(section)
+        print(
+            f"generating section {section['number']}/{len(all_sections)} "
+            f"(sentences {section['sentenceStart']}-{section['sentenceEnd']})"
+        )
+        if args.dry_run:
+            print(prompt)
+            continue
+        image = generate_gemini_reference_image(
+            prompt,
+            JUST_FRIENDS_COVER_PATH,
+            api_key,
+            aspect_ratio="16:9",
+            image_size=args.image_size,
+        )
+        with tempfile.NamedTemporaryFile(suffix=".image", delete=False) as handle:
+            source = Path(handle.name)
+            source.write_bytes(image)
+        try:
+            process_art_image(
+                source,
+                destination,
+                {"kind": "illustration", "chromaKey": False},
+            )
+        finally:
+            source.unlink(missing_ok=True)
+        print(f"  wrote {destination.relative_to(ROOT)} ({destination.stat().st_size} bytes)")
+
+    if args.dry_run or args.start or args.limit:
+        print("Book metadata unchanged for a dry run or partial generation.")
+        return
+
+    missing = [
+        section["filename"]
+        for section in all_sections
+        if not (JUST_FRIENDS_ILLUSTRATION_DIR / section["filename"]).exists()
+    ]
+    if missing:
+        raise RuntimeError(
+            f"Refusing to write incomplete illustration metadata; {len(missing)} image(s) are missing."
+        )
+
+    book["illustrations"] = [
+        {
+            "id": f"just-friends-section-{section['number']:03d}",
+            "imageFilename": (
+                "reader-packs/just-friends/images/illustrations/"
+                f"{section['filename']}"
+            ),
+            "alt": just_friends_section_alt(section),
+            "prompt": just_friends_section_prompt(section),
+            "sentenceStart": section["sentenceStart"],
+            "sentenceEnd": section["sentenceEnd"],
+        }
+        for section in all_sections
+    ]
+    write_json(JUST_FRIENDS_BOOK_PATH, book)
+    print(f"Wrote {len(all_sections)} section illustration metadata entries.")
+
+
 def process_art_image(source: Path, destination: Path, asset: dict[str, Any]) -> None:
     try:
         from PIL import Image
@@ -677,6 +876,13 @@ def build_parser() -> argparse.ArgumentParser:
     art_parser.add_argument("--replace", action="store_true")
     art_parser.add_argument("--dry-run", action="store_true")
 
+    just_friends_art_parser = subparsers.add_parser("generate-just-friends-illustrations")
+    just_friends_art_parser.add_argument("--replace", action="store_true")
+    just_friends_art_parser.add_argument("--dry-run", action="store_true")
+    just_friends_art_parser.add_argument("--start", type=int)
+    just_friends_art_parser.add_argument("--limit", type=int)
+    just_friends_art_parser.add_argument("--image-size", choices=["1K", "2K", "4K"], default="2K")
+
     install_parser = subparsers.add_parser("install-art")
     install_parser.add_argument("--asset", required=True)
     install_parser.add_argument("--source", required=True)
@@ -700,6 +906,8 @@ def main() -> None:
         generate_audio(args)
     elif args.command == "generate-art":
         generate_art(args)
+    elif args.command == "generate-just-friends-illustrations":
+        generate_just_friends_illustrations(args)
     elif args.command == "install-art":
         install_art(args)
     elif args.command == "verify":

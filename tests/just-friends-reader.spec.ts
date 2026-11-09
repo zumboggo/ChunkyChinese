@@ -19,6 +19,10 @@ test('Just Friends appears as a twelve-chapter graded reader', async ({ page }) 
 
   await justFriendsCard.getByRole('button', { name: 'Start', exact: true }).click()
   await expect(page.locator('.reader-page-meta')).toContainText('Sentence 1 / 329')
+  await expect(page.locator('.reader-illustration img')).toHaveAttribute(
+    'src',
+    /section-001\.webp$/,
+  )
   await expect(page.getByRole('button', { name: '钱, qián' })).toBeVisible()
   await expect(page.getByRole('button', { name: '今年, jīn nián' })).toBeVisible()
 })

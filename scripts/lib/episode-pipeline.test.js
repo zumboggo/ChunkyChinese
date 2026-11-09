@@ -1,13 +1,13 @@
 import {describe,it,expect,vi} from 'vitest'
 import {readFileSync,writeFileSync,mkdtempSync,rmSync,mkdirSync} from 'node:fs'
-import {resolve} from 'node:path'
+import {resolve,basename} from 'node:path'
 import {spawnSync} from 'node:child_process'
 import {providerJson,savedPrediction} from './episode-provider.mjs'
 import {episodeRoutes,selectBrowserRoutes,checkRouteExpectations} from './episode-plan.mjs'
 import {freezeScript,compileAnnotations,loadAssets,writeJson} from './episode-assembly.mjs'
 
 it.each(['draft','stage'])('rejects an unstaged phone speaker before vocabulary, audio or media in --%s',mode=>{
- mkdirSync('.local/episodes',{recursive:true});const base=mkdtempSync(resolve('.local/episodes/staging-test-')),id=base.split('/').at(-1).toLowerCase()
+ mkdirSync('.local/episodes',{recursive:true});const base=mkdtempSync(resolve('.local/episodes/staging-test-')),id=basename(base).toLowerCase()
  try{
   writeFileSync(base+'/episode.story','story 2\nscene restaurant\nshow Hannah worried center\nAlden: 你好。\nend\n')
   writeJson(base+'/vocab.json',[])
@@ -98,7 +98,7 @@ it('keeps variable-changing options exhaustive even without conditional text',()
 
 it('resolves pinned dependencies from the primary checkout when a worktree has no sibling project',async()=>{
  const {execFileSync}=await import('node:child_process'),{animationSource}=await import('./episode-dependencies.mjs')
- mkdirSync('.local',{recursive:true});const base=mkdtempSync(resolve('.local/dependency-test-')),primary=base+'/ChunkyChinese/app',upstream=base+'/Learning is Fun/implementation',worktree=base+'/isolated/app'
+ mkdirSync('.local',{recursive:true});const base=mkdtempSync(resolve('.local/dependency-test-')),primary=resolve(base,'ChunkyChinese','app'),upstream=resolve(base,'Learning is Fun','implementation'),worktree=resolve(base,'isolated','app')
  const git=(cwd,...args)=>execFileSync('git',args,{cwd,encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim()
  try{
   mkdirSync(upstream+'/functions/learning-content/src',{recursive:true});git(upstream,'init','-q');writeFileSync(upstream+'/functions/learning-content/src/story-engine.js','// pinned engine')
