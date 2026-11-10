@@ -4430,11 +4430,11 @@ function App() {
                   <div className="mangmi-settings-card">
                     <label className="mangmi-settings-toggle">
                       <span className="mangmi-device-icon" aria-hidden="true">✚</span>
-                      <span><strong>Mangmi Air Y</strong><small>Compact text for small screens, with dedicated game controls.</small></span>
+                      <span><strong>Small text</strong><small>Compact text for small screens such as Mangmi Air Y, in Reader and Game.</small></span>
                       <input type="checkbox" checked={userSettings.readerCompactText} onChange={(event) => saveReaderSettings({ readerCompactText: event.target.checked })}/>
                     </label>
                     <div className="mangmi-button-guide" aria-label="Mangmi controls">{[['X','Continue'],['Y','Replay'],['B','Previous'],['A','Next control']].map(([key,action])=><span key={key}><kbd>{key}</kbd>{action}</span>)}</div>
-                    <p>D-pad to scroll. X and Y choose A and B at story choices.</p>
+                    <p>Game controls are always enabled, at every text size. D-pad to scroll. X and Y choose A and B at story choices.</p>
                   </div>
                   <div className="reader-pinyin-legend" aria-label="Adaptive pinyin legend">
                     <span className="legend-pinyin-known">Known: no pinyin</span>

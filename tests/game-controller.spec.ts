@@ -1,7 +1,7 @@
 import {selectSettings} from './helpers/settings'
 import {test,expect} from '@playwright/test'
 
-test('controller browses menus, adjusts settings, and releases held buttons',async({page})=>{
+test('keyboard browses menus alongside controller setting adjustments',async({page})=>{
  await page.addInitScript(()=>{
   const buttons=Array.from({length:16},()=>({pressed:false,touched:false,value:0}))
   Object.defineProperty(navigator,'getGamepads',{value:()=>[{connected:true,index:0,mapping:'standard',buttons,axes:[0,0]}]})
@@ -18,25 +18,26 @@ test('controller browses menus, adjusts settings, and releases held buttons',asy
   await page.waitForTimeout(50)
  }
  await game.locator('.library-display').focus()
- await press(0)
+ await page.keyboard.press('Enter')
  await expect(page.getByLabel('Game text size')).toBeVisible()
  await page.getByLabel('Game text size').focus()
  await press(15)
  await expect(page.getByLabel('Game text size')).toHaveValue('1')
- await press(1)
+ await page.keyboard.press('Escape')
  await expect(page.getByLabel('Game text size')).toBeHidden()
  await expect(game.locator('.library-display')).toBeFocused()
- await press(12)
+ await page.keyboard.press('ArrowUp')
  await expect(game.locator('.library-chooser')).toBeFocused()
- await press(0)
+ await page.keyboard.press('Enter')
  await expect(page.getByLabel('Book',{exact:true})).toBeVisible()
- await press(13)
- await press(13)
+ await page.keyboard.press('ArrowDown')
+ await page.keyboard.press('ArrowDown')
  await expect(page.getByLabel('Book',{exact:true})).toBeFocused()
  await press(15)
- await press(13)
+ await page.keyboard.press('ArrowDown')
  await expect(page.getByRole('searchbox',{name:'Find an episode'})).toBeFocused()
- await press(1)
+ await page.getByLabel('Book',{exact:true}).focus()
+ await page.keyboard.press('Escape')
  await expect(page.getByLabel('Book',{exact:true})).toBeHidden()
  await game.locator('.library-display').focus()
  await page.keyboard.press('Enter')
@@ -52,14 +53,14 @@ test('controller browses menus, adjusts settings, and releases held buttons',asy
  await expect(next).toBeEnabled()
  await next.focus()
  const before=await game.locator('.animated-story').innerText()
- await press(0)
+ await page.keyboard.press('Enter')
  await expect(game.locator('.animated-story')).not.toHaveText(before)
- await press(1)
- await expect(game.locator('.library-display')).toBeVisible()
+ await page.keyboard.press('Escape')
+ await expect(game.locator('.animated-story')).toBeVisible()
 
 })
 
-test('Mangmi buttons stay in the episode, choose, replay, tab and scroll',async({page})=>{
+for(const compact of [false,true])test(`Mangmi buttons work with small text ${compact}, alongside keyboard controls`,async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'})
  await page.addInitScript(()=>{
   const buttons=Array.from({length:16},()=>({pressed:false,touched:false,value:0}))
@@ -77,7 +78,7 @@ test('Mangmi buttons stay in the episode, choose, replay, tab and scroll',async(
  const step=()=>page.locator('.animated-story').getAttribute('data-story-step')
  await page.goto('/');await page.getByRole('button',{name:'Settings',exact:true}).first().click()
  await selectSettings(page,'Reader')
- await page.getByRole('checkbox',{name:/Mangmi Air Y/}).check()
+ await page.getByRole('checkbox',{name:/Mangmi Air Y/}).setChecked(compact)
  await page.getByRole('button',{name:'Game',exact:true}).click()
  await page.locator('.library-display').click()
  await expect(page.getByLabel('Game text size')).toHaveValue('0')
@@ -110,7 +111,10 @@ test('Mangmi buttons stay in the episode, choose, replay, tab and scroll',async(
  await press(3)
  await expect(page.getByText('The keeper lunges. Lan blocks, and both step back. Nobody is hurt.',{exact:true})).toBeVisible()
  await press(1);await expect(page.getByRole('button',{name:'Choose option 1',exact:true})).toBeVisible()
- await press(2);await expect(page.locator('.episode-line')).toContainText('我们想回家')
+ await page.keyboard.press('1');await expect(page.locator('.episode-line')).toContainText('我们想回家')
  await page.keyboard.press('Escape');await expect(page.getByRole('button',{name:'Choose option 1',exact:true})).toBeVisible()
+ await page.keyboard.press('2');await expect(page.getByText('The keeper lunges. Lan blocks, and both step back. Nobody is hurt.',{exact:true})).toBeVisible()
+ await page.keyboard.press('b');await expect(page.getByRole('button',{name:'Choose option 1',exact:true})).toBeVisible()
+ await page.keyboard.press('x');await expect(page.locator('.episode-line')).toContainText('我们想回家')
  await expect(page.locator('.animated-story')).toBeVisible()
 })
