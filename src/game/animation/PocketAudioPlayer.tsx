@@ -36,10 +36,28 @@ export default function PocketAudioPlayer({pack,start,options,volume,onSave,onEx
   element.addEventListener('timeupdate',sync);element.addEventListener('seeked',sync);element.addEventListener('play',play);element.addEventListener('pause',pause);element.addEventListener('ended',pause);document.addEventListener('visibilitychange',sync)
   return()=>{sync();element.pause();element.removeEventListener('timeupdate',sync);element.removeEventListener('seeked',sync);element.removeEventListener('play',play);element.removeEventListener('pause',pause);element.removeEventListener('ended',pause);document.removeEventListener('visibilitychange',sync);if('mediaSession' in navigator){for(const action of Object.keys(handlers))try{navigator.mediaSession.setActionHandler(action as MediaSessionAction,null)}catch{/* Optional action. */}navigator.mediaSession.metadata=null;navigator.mediaSession.playbackState='none'}}
  },[url,volume,pack.title,start])
+ function play(){void audio.current?.play().catch(()=>setError('Tap Play in the app to resume audio.'))}
+ function navigate(direction:-1|0|1){
+  const element=audio.current,prepared=trackRef.current
+  if(!element||!prepared)return
+  const position=pocketPosition(prepared,element.currentTime)
+  const step=position.steps.length
+  const previousStep=direction<0?prepared.markers.findLast(m=>m.steps.length<step)?.steps.length:undefined
+  const marker=prepared.markers.find(m=>direction===1?m.steps.length>step:m.steps.length===(direction===0?step:previousStep))
+  if(!marker)return
+  element.pause()
+  element.currentTime=marker.at
+  if(direction===0)play()
+ }
  return <section className="pocket-audio" aria-label="Pocket listening">
   <h2>Pocket listening</h2><p>{pack.title}</p>
   <p role="status">{error||status}</p>
-  {url&&<><audio ref={audio} src={url} controls preload="auto" aria-label="Pocket audio player" onError={()=>setError('This recording could not play. Return to the story and prepare it again.')}/><p>The recording is loaded on your phone for this session. Use your lock screen or headphone controls to pause and resume.</p><a href={url} download="chunky-chinese-pocket.wav">Download this recording</a></>}
+  {url&&<><audio ref={audio} src={url} controls preload="auto" aria-label="Pocket audio player" onError={()=>setError('This recording could not play. Return to the story and prepare it again.')}/><div>
+   <button type="button" data-game-previous onClick={()=>navigate(-1)}>Previous sentence</button>
+   <button type="button" data-game-next onClick={()=>navigate(1)}>Next sentence</button>
+   <button type="button" data-game-replay onClick={()=>navigate(0)}>Replay sentence</button>
+   <button type="button" data-game-playback onClick={()=>{if(audio.current?.paused)play();else audio.current?.pause()}}>Play / pause</button>
+  </div><p>The recording is loaded on your phone for this session. Use your lock screen or headphone controls to pause and resume.</p><a href={url} download="chunky-chinese-pocket.wav">Download this recording</a></>}
   {text&&(display.showChinese||display.showPinyin||display.showGloss)&&<div className="episode-line"><EpisodeInterlinear text={text} line={pack.chinese?.lines[text]} showChinese={display.showChinese} showPinyin={display.showPinyin} showGloss={display.showGloss}/></div>}
   {track&&!track.ended&&<p>This recording stops at the next manual story choice.</p>}
   <button type="button" onClick={()=>{audio.current?.pause();onExit(saved.current)}}>Return to story</button>

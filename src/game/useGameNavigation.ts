@@ -1,14 +1,17 @@
 import {useEffect, type RefObject} from 'react'
 
+const bindings=[[0,'next'],[1,'sentence-back'],[2,'primary'],[3,'secondary'],[4,'previous'],[5,'next'],
+ [12,'up'],[13,'down'],[14,'left'],[15,'right']] as const
+
 // Keep navigation tied to the rendered controls, including newly revealed choices.
 export function useGameNavigation(root: RefObject<HTMLElement | null>) {
  useEffect(()=>{
   const element=root.current
   if(!element)return
   const section:HTMLElement=element
-  let frame=0, previous=new Set<string>(), repeatAt=0
+  let frame=0, previous=new Map<string,number>()
   const visible=(el:HTMLElement)=>{
-   if(!el.getClientRects().length||el.closest('[hidden],[inert]')||getComputedStyle(el).visibility==='hidden')return false
+   if(!el.getClientRects().length||el.closest('[hidden],[inert],[aria-hidden=true]')||getComputedStyle(el).visibility==='hidden')return false
    for(let parent=el.parentElement;parent;parent=parent.parentElement){
     if(parent instanceof HTMLDetailsElement&&!parent.open&&!parent.querySelector(':scope > summary')?.contains(el))return false
    }
@@ -16,7 +19,7 @@ export function useGameNavigation(root: RefObject<HTMLElement | null>) {
   }
   const controls=()=>{
    const dialog=Array.from(section.querySelectorAll<HTMLElement>('dialog[open],[role="dialog"]')).filter(visible).at(-1)
-   return Array.from((dialog??section).querySelectorAll<HTMLElement>('button,a[href],summary,input,select,textarea,[tabindex="0"]')).filter(el=>visible(el)&&!el.matches(':disabled,[aria-disabled="true"]')&&!(section.querySelector('.cinema-back')&&el.matches('.cinema-back')))
+   return Array.from((dialog??section).querySelectorAll<HTMLElement>('button,a[href],summary,input,select,textarea,[tabindex="0"]')).filter(el=>visible(el)&&!el.matches(':disabled,[aria-disabled="true"]'))
   }
   const focus=(el:HTMLElement|undefined)=>{el?.focus({preventScroll:true});el?.scrollIntoView({block:'nearest',inline:'nearest'})}
   const current=()=>controls().find(el=>el===document.activeElement)
@@ -41,46 +44,95 @@ export function useGameNavigation(root: RefObject<HTMLElement | null>) {
    if(expanded){expanded.click();focus(expanded);return}
    section.querySelector<HTMLElement>('.animated-story')?.dispatchEvent(new CustomEvent('mangmi-action',{detail:'back'}))
   }
+  function activate(el:HTMLElement){
+   if(el instanceof HTMLSelectElement){
+    try{el.showPicker()}catch{/* D-pad left and right can still change the selection. */}
+   }else el.click()
+  }
   function action(key:string){
    section!.dataset.controller='true'
    if(key==='up'||key==='previous')move(-1)
    else if(key==='down'||key==='next')move(1)
    else if(key==='left'||key==='right'){const delta=key==='left'?-1:1;if(!adjust(delta))move(delta)}
-   else if(key==='accept'){const el=current();if(el)el.click();else move(1)}
+   else if(key==='accept'){const el=current();if(el)activate(el);else move(1)}
    else if(key==='back')back()
+  }
+  function click(selector:string,index=0){
+   const el=Array.from(section.querySelectorAll<HTMLElement>(selector)).filter(visible)[index]
+   if(!el)return false
+   if(!el.matches(':disabled,[aria-disabled="true"]'))el.click()
+   return true
   }
   function handheld(key:string){
    section.dataset.controller='true'
    if(key==='next'||key==='previous'){move(key==='next'?1:-1);return}
    if(key==='up'||key==='down'){
     // Scroll the nearest scrollable panel, or the document, without moving focus.
-    let el=document.activeElement instanceof HTMLElement?document.activeElement.parentElement:null
-    while(el&&el!==document.body){if(/auto|scroll/.test(getComputedStyle(el).overflowY)&&el.scrollHeight>el.clientHeight){el.scrollBy({top:key==='up'?-90:90});return}el=el.parentElement}
-    window.scrollBy({top:key==='up'?-90:90});return
+    const top=key==='up'?-90:90
+    const canScroll=(el:HTMLElement)=>/^(auto|scroll)$/.test(getComputedStyle(el).overflowY)
+      && (top<0?el.scrollTop>0:el.scrollTop+el.clientHeight<el.scrollHeight-1)
+    let el=current()??section
+    while(el!==document.body){
+     if(canScroll(el)){el.scrollBy({top,behavior:'instant'});return}
+     if(!el.parentElement)break
+     el=el.parentElement
+    }
+    const panel=Array.from(section.querySelectorAll<HTMLElement>('dialog[open],.episode-settings-panel,.story-dialogue,.pocket-audio')).find(el=>visible(el)&&canScroll(el))
+    if(panel)panel.scrollBy({top,behavior:'instant'})
+    else window.scrollBy({top,behavior:'instant'})
+    return
    }
    if(key==='left'||key==='right'){adjust(key==='left'?-1:1);return}
    const story=section.querySelector<HTMLElement>('.animated-story')
-   if(key==='sentence-back'){story?.dispatchEvent(new CustomEvent('mangmi-action',{detail:'back'}));return}
+   if(key==='sentence-back'){
+    if(story)story.dispatchEvent(new CustomEvent('mangmi-action',{detail:'back'}))
+    else click('[data-game-previous]')
+    return
+   }
    if(key==='primary'){
     const el=current()
     // Focused settings remain operable after A tabs to them.
-    if(el?.closest('.episode-settings,dialog,[role="dialog"],.cinema-more')||el?.matches('footer button')){el.click();return}
+    if(el?.closest('.episode-settings,.story-slide-toggles,dialog,[role="dialog"],.cinema-more')){activate(el);return}
     if(story){story.dispatchEvent(new CustomEvent('mangmi-action',{detail:'continue'}));return}
-    if(el&&!el.matches('.cinema-back'))el.click();else move(1)
+    if(click('[data-game-choice]')||click('[data-game-next]'))return
+    if(el&&!el.matches('.cinema-back'))activate(el);else move(1)
    }
-   if(key==='secondary')story?.dispatchEvent(new CustomEvent('mangmi-action',{detail:'audio'}))
+   if(key==='secondary'){
+    if(story)story.dispatchEvent(new CustomEvent('mangmi-action',{detail:'audio'}))
+    else if(!click('[data-game-choice]',1))click('[data-game-replay]')
+   }
   }
   const keyboard=(event:KeyboardEvent)=>{
-   if(event.ctrlKey||event.metaKey||event.altKey)return
+   if(event.defaultPrevented||event.isComposing||event.ctrlKey||event.metaKey||event.altKey)return
    const target=event.target as HTMLElement
    if(target!==document.body&&!section.contains(target))return
    if(target?.matches('textarea,input:not([type="range"]):not([type="checkbox"]):not([type="radio"])')||target?.isContentEditable)return
-   {
-    const handheldKey=({a:'next',b:'sentence-back',x:'primary',y:'secondary',BrowserBack:'sentence-back'} as Record<string,string>)[event.key.length===1?event.key.toLowerCase():event.key]
-    if(handheldKey){event.preventDefault();event.stopImmediatePropagation();if(!event.repeat||['up','down','left','right'].includes(handheldKey))handheld(handheldKey);return}
+   const handheldKey=({a:'next',b:'sentence-back',x:'primary',y:'secondary',BrowserBack:'sentence-back'} as Record<string,string>)[event.key.length===1?event.key.toLowerCase():event.key]
+   if(handheldKey){
+    event.preventDefault();event.stopImmediatePropagation()
+    if(!event.repeat)handheld(handheldKey)
+    return
    }
-   // Passage arrows belong to playback; settings and controller arrows still move focus.
-   if(['ArrowLeft','ArrowRight'].includes(event.key)&&(target.closest('.animated-story')||(target===document.body&&section.querySelector('.animated-story')&&!section.querySelector('.episode-settings[open]')))&&!target.closest('details,input,select,textarea,.episode-chunk'))return
+   const settings=target.closest('details,input,select,textarea,dialog,[role="dialog"]')
+   const story=section.querySelector<HTMLElement>('.animated-story')
+   const passage=story||section.querySelector('.episode-intro,.episode-context,.pocket-audio')
+   // While reading, the keyboard arrows navigate passages even after focusing a chunk.
+   if(!settings&&passage&&(target===document.body||section.classList.contains('game-playing')||passage.contains(target))){
+    if(event.key==='ArrowLeft'||event.key==='ArrowRight'){
+     if(!story&&!event.repeat&&click(event.key==='ArrowLeft'?'[data-game-previous]':'[data-game-next]')){
+      event.preventDefault();event.stopImmediatePropagation()
+     }
+     return
+    }
+    if(event.key===' '&&(story||passage.matches('.episode-intro,.pocket-audio'))){
+     event.preventDefault();event.stopImmediatePropagation()
+     if(!event.repeat){
+      if(story)story.dispatchEvent(new CustomEvent('mangmi-action',{detail:'playback'}))
+      else click('[data-game-playback]')
+     }
+     return
+    }
+   }
    const key=({ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',Enter:'accept',Escape:'back'} as Record<string,string>)[event.key]
    if(!key)return
    event.preventDefault();event.stopImmediatePropagation()
@@ -90,19 +142,26 @@ export function useGameNavigation(root: RefObject<HTMLElement | null>) {
    if(!document.hidden&&document.hasFocus()){
     let pads:(Gamepad|null)[]=[]
     try{pads=Array.from(navigator.getGamepads?.()??[])}catch{/* Browser may disable this API. */}
-    const pressed=new Set<string>()
-    for(const pad of pads){if(!pad?.connected)continue
-     const button=(i:number)=>pad.buttons[i]?.pressed
-     if(button(0))pressed.add('next');if(button(1))pressed.add('sentence-back');if(button(2))pressed.add('primary');if(button(3))pressed.add('secondary')
-     if(button(4))pressed.add('previous');if(button(5))pressed.add('next')
-     if(button(12)||(pad.axes[1]??0)<-0.55)pressed.add('up')
-     if(button(13)||(pad.axes[1]??0)>0.55)pressed.add('down')
-     if(button(14)||(pad.axes[0]??0)<-0.55)pressed.add('left')
-     if(button(15)||(pad.axes[0]??0)>0.55)pressed.add('right')
+    const held=new Map<string,number>()
+    for(const pad of pads){
+     if(!pad?.connected)continue
+     const horizontal=pad.axes[0]??0,vertical=pad.axes[1]??0
+     const directions={12:-vertical,13:vertical,14:-horizontal,15:horizontal} as Record<number,number>
+     for(const [index,key] of bindings){
+      if(!pad.buttons[index]?.pressed&&!(directions[index]>0.55))continue
+      const id=`${pad.index}:${index}`
+      const repeatAt=previous.get(id)
+      if(repeatAt===undefined){
+       handheld(key)
+       held.set(id,now+400)
+      }else if((key==='up'||key==='down')&&now>=repeatAt){
+       handheld(key)
+       held.set(id,now+140)
+      }else held.set(id,repeatAt)
+     }
     }
-    for(const key of pressed){const fresh=!previous.has(key);if(fresh||(['up','down','left','right'].includes(key)&&now>=repeatAt)){handheld(key);repeatAt=now+(fresh?400:140)}}
-    previous=pressed
-   }else{previous=new Set()}
+    previous=held
+   }
    frame=requestAnimationFrame(poll)
   }
   window.addEventListener('keydown',keyboard,true)

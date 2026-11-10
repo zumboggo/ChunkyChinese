@@ -48,7 +48,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  useEffect(()=>{try{localStorage.setItem(encounterPreference,JSON.stringify(audioModeOptions))}catch{/* Optional on restricted devices. */}},[encounterPreference,audioModeOptions])
  useEffect(()=>{try{localStorage.setItem(preferencesKey,JSON.stringify({...JSON.parse(localStorage.getItem(preferencesKey)??'{}'),voiceVolume,reduceMotion,motionPaused}))}catch{/* Optional on restricted devices. */}},[preferencesKey,voiceVolume,reduceMotion,motionPaused])
  const line=pack.chinese?.lines[current?.text],score=pack.quiz.length===4&&progress.quizzes.length?quizScore(pack.quiz,progress.quizzes.at(-1)!):null
- const latest=useRef({advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy});latest.current={advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy}
+ const latest=useRef({advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy,runControllerAction});latest.current={advance:(o:string|null)=>{void advance(o)},back:()=>back(),play:()=>play(),playAuto:()=>play(current?.text,true,true),current,busy,runControllerAction}
  // Run once for each newly displayed story state, including resumed episodes.
  useEffect(()=>{
   if(pocketSession||audioModeRunning||audioModeOpen||!autoPlay||state?.ended||current?.type==='choice')return;
@@ -92,27 +92,27 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   return()=>{controller.abort();setAudioPlaying(false);setSpeaking(false);setAudioModeStatus('')}
  },[encounter,activeAudio.chinese,activeAudio.english,autoPlay,audioModeRunning,audioModePaused,audioModeOpen,audioModeOptions,busy,state,current,pack,voiceVolume])
 
+ function runControllerAction(action:string){
+  if(action==='back'){back(true);return}
+  if(busy)return
+  if(action==='playback'){play(current?.type==='choice'?current.options[0]?.text:current?.text);return}
+  if(current?.type==='choice'){
+   const option=current.options[action==='continue'?0:1]
+   if(option)void advance(option.id)
+   else if(action==='audio')play(current.options[0]?.text,false,true,true)
+  }else if(action==='continue')root.current?.querySelector<HTMLButtonElement>('[data-next]:not(:disabled)')?.click()
+  else if(action==='audio')play(current?.text,true,true,true)
+ }
  useEffect(()=>{
   const element=root.current;if(!element||pocketSession)return
-  const handler=(event:Event)=>{
-   const action=(event as CustomEvent<string>).detail
-   if(action==='back'){pauseAudioMode();back(true);return}
-   if(busy)return
-   if(current?.type==='choice'){
-    const option=current.options[action==='continue'?0:1]
-    if(option)void advance(option.id)
-   }else if(action==='continue')element.querySelector<HTMLButtonElement>('[data-next]:not(:disabled)')?.click()
-   else if(action==='audio')play(current?.text,true,true,true)
-  }
+  const handler=(event:Event)=>latest.current.runControllerAction((event as CustomEvent<string>).detail)
   element.addEventListener('mangmi-action',handler)
   return()=>element.removeEventListener('mangmi-action',handler)
- // Bind actions to the current passage without changing keyboard shortcuts.
- // eslint-disable-next-line react-hooks/exhaustive-deps
- },[state,encounter,busy,audioModeOptions,pocketSession,voiceVolume])
+ },[pocketSession])
  useEffect(()=>{const handler=(e:KeyboardEvent)=>{
   const target=e.target as HTMLElement|null
   if(pocketSession)return
-  if(e.defaultPrevented||e.repeat||e.ctrlKey||e.metaKey||e.altKey||target?.closest('input,textarea,select,.episode-chunk,.episode-settings,.story-slide-toggles,dialog,[contenteditable="true"]'))return
+  if(e.defaultPrevented||e.isComposing||e.repeat||e.ctrlKey||e.metaKey||e.altKey||target?.closest('input,textarea,select,.episode-settings,.story-slide-toggles,dialog,[contenteditable="true"]'))return
   const v=latest.current,key=e.key.toLowerCase()
   if(key==='arrowleft'){e.preventDefault();v.back();return}
   if(key===' '||key===(hotkeys?.playPause??'p').toLowerCase()){e.preventDefault();if(!v.busy)v.play();return}
@@ -136,6 +136,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  function back(sentence=false){
   if(!sentence&&encounter>1&&!state?.ended){slideAudioController.current?.abort();audioModeController.current?.abort();setAudioPlaying(false);setSpeaking(false);setEncounter(n=>n-1);return}
   if(!compiled.story||!progress.steps.length)return
+  if(sentence&&audioModeRunning)pauseAudioMode()
   slideAudioController.current?.abort();audioModeController.current?.abort();generation.current++;motion.current?.abort();sound.current?.pause();sound.current=null
   root.current?.getAnimations?.({subtree:true}).forEach(a=>a.cancel())
   lock.current=false;setBusy(false);setSpeaking(false);setAudioPlaying(false);setResponses({});setError('');setAnswers([-1,-1,-1,-1])
@@ -167,10 +168,10 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   if(audioModeRunning&&!standalone){if(audioModePaused){setError('');setAudioModePaused(false)}else pauseAudioMode();return}
   if(!restart&&slideAudioController.current){slideAudioController.current.abort();slideAudioController.current=null;setAudioPlaying(false);setSpeaking(false);return}
   slideAudioController.current?.abort();sound.current?.pause()
-  if(!autoPlay||!text){setAudioPlaying(false);setSpeaking(false);return}
+  if(!text){setAudioPlaying(false);setSpeaking(false);return}
   const controller=new AbortController();slideAudioController.current=controller
   setError('');setAudioPlaying(true);setSpeaking(npc&&current?.type==='say'&&current.actor!=='I')
-  void playAudioModeLine({text,line:pack.chinese?.lines[text],chinese:activeAudio.chinese,english:activeAudio.english,pause:audioModeOptions.englishPause,volume:voiceVolume,signal:controller.signal,onAudio:a=>{sound.current=a}})
+  void playAudioModeLine({text,line:pack.chinese?.lines[text],chinese:activeAudio.chinese||!autoPlay,english:activeAudio.english,pause:audioModeOptions.englishPause,volume:voiceVolume,signal:controller.signal,onAudio:a=>{sound.current=a}})
    .catch(e=>{if(!controller.signal.aborted)setError(e instanceof Error?e.message:String(e))})
    .finally(()=>{if(slideAudioController.current===controller){slideAudioController.current=null;setAudioPlaying(false);setSpeaking(false)}})
  }
