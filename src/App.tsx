@@ -1,3 +1,4 @@
+import GardenConnection from './GardenConnection'
 import SettingsWorkspace from './SettingsWorkspace'
 import {getAllListeningEvents} from './db'
 import {episodeAttempts} from './game/episodeActivity'
@@ -856,10 +857,12 @@ function App() {
 
   useEffect(() => {
     const updated = () => { if (screen === 'dashboard') { void refresh(); queueCloudSync() } }
+    const completed = () => { queueCloudSync(); if (screen === 'dashboard') void refresh() }
     const failed = () => setLastSummary('Episode activity could not be saved. Check device storage before continuing.')
     window.addEventListener('episode-activity', updated)
     window.addEventListener('episode-activity-error', failed)
-    return () => { window.removeEventListener('episode-activity', updated); window.removeEventListener('episode-activity-error', failed) }
+    window.addEventListener('episode-completed', completed)
+    return () => { window.removeEventListener('episode-activity', updated); window.removeEventListener('episode-activity-error', failed); window.removeEventListener('episode-completed', completed) }
   }, [screen, refresh, queueCloudSync])
 
   useEffect(() => {
@@ -3903,6 +3906,7 @@ function App() {
                   <p><a href={`${import.meta.env.BASE_URL}?account=1`}>{cloudUserEmail ? 'Set or change password' : 'Sign in with email and password'}</a></p>
                   <small>{cloudSync.message}</small>
                 </section>
+                <GardenConnection signedIn={Boolean(cloudUserEmail)} />
               </div>
             </details>
 
