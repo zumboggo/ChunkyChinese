@@ -43,7 +43,7 @@ export default function TrackedEpisode({releaseId, ...props}: ComponentProps<typ
   props.onProgress?.(p)
   if(!done.current&&ended(p)){
    flushRef.current();done.current=true
-   void getDB().then(db=>db.put('listeningEvents',{id:`episode-complete:${attemptId}`,timestamp:new Date().toISOString(),type:'complete',source:'game',itemType:'lesson',itemId:releaseId,sessionId:attemptId,episodeTitle:title,partialTiming,seconds:0})).then(()=>window.dispatchEvent(new Event('episode-activity'))).catch(()=>window.dispatchEvent(new Event('episode-activity-error')))
+   void getDB().then(db=>db.put('listeningEvents',{id:`episode-complete:${attemptId}`,timestamp:new Date().toISOString(),type:'complete',source:'game',itemType:'lesson',itemId:releaseId,sessionId:attemptId,episodeTitle:title,partialTiming,seconds:0})).then(()=>{window.dispatchEvent(new Event('episode-activity'));window.dispatchEvent(new Event('episode-completed'))}).catch(()=>window.dispatchEvent(new Event('episode-activity-error')))
   }
  }}/>
 }
