@@ -78,7 +78,7 @@ function draw(){
  render.end();
 }
 function closeOverlay(){overlay=null;menuIndex=0;helpPage=0;}
-function request(){status=connected?'Loading from phone...':'Waiting for phone...';send({COMMAND:'LOAD'});}
+function request(){lastImage=null;lastImageName=null;Debug.gc();status=connected?'Loading from phone...':'Waiting for phone...';send({COMMAND:'LOAD'});}
 function input(type){
  if(overlay==='about'){
   if(type==='back'){closeOverlay();}else if(type==='select'){
