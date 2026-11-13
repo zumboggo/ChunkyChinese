@@ -1,11 +1,15 @@
 #!/bin/sh
 set -eu
 cd "$(dirname "$0")/.."
-mode=${1:---dev}
-case "$mode" in --check|--dev|--release) ;; *) echo 'Usage: build.sh [--check|--dev|--release]' >&2; exit 2;; esac
+mode=--dev
+episode=supportive-11
+case "${1:-}" in --check|--dev|--release) mode=$1; shift;; esac
+if [ "$#" -gt 0 ]; then episode=$1; shift; fi
+if [ "$#" -gt 0 ]; then echo 'Usage: build.sh [--check|--dev|--release] [episode-id]' >&2; exit 2; fi
+export PEBBLE_EPISODE_ID="$episode"
 # Regenerate only explicitly with npm run scenes; stale artifacts must fail CI.
 node scripts/generate-scenes.mjs --check
-node scripts/export.mjs
+node scripts/export.mjs "$episode"
 node --test tests/*.test.mjs
 [ "$mode" != --check ] || exit 0
 cli=${PEBBLE_CLI:-pebble}
@@ -15,9 +19,9 @@ if [ "$mode" = --release ]; then "$cli" clean; fi
 "$cli" build
 cd ..
 "${PEBBLE_PYTHON:-python3}" scripts/verify-compiled-fonts.py
-node scripts/build-report.mjs
+node scripts/build-report.mjs "$episode"
 if [ "$mode" = --release ]; then
  node preview/train-scene.test.mjs
- python3 scripts/test-emulator.py --install --cli "$cli"
- node scripts/package-release.mjs
+ python3 scripts/test-emulator.py --install --cli "$cli" --episode "$episode"
+ node scripts/package-release.mjs "$episode"
 fi

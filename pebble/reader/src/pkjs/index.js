@@ -1,6 +1,6 @@
 /* Runs inside the Android Pebble app; no separate Android APK is required. */
 var bundled=require('./bundled.json');
-var DEFAULT_URL='https://raw.githubusercontent.com/zumboggo/ChunkyChinese/codex/chengdu-game/pebble/content/supportive-11.json';
+var DEFAULT_URL='https://raw.githubusercontent.com/zumboggo/ChunkyChinese/codex/chengdu-game/pebble/content/'+encodeURIComponent(bundled.id)+'.json';
 var transfer=null,timer=null,lastMessage=null,retries=0;
 function hash(s){var a=1,b=0;for(var i=0;i<s.length;i++){a=(a+s.charCodeAt(i))%65521;b=(b+a)%65521;}return (b*65536+a).toString(16);}
 function wire(pack){var meta={};Object.keys(pack).forEach(function(k){if(k!=='nodes')meta[k]=pack[k];});meta.nodeCount=pack.nodes.length;return [JSON.stringify(meta)].concat(pack.nodes.map(function(n){return JSON.stringify(n);})).join('\n').replace(/[^\x20-\x7e\n]/g,function(c){return '\\u'+('0000'+c.charCodeAt(0).toString(16)).slice(-4);})+'\n';}

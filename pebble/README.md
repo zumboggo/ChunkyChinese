@@ -53,10 +53,10 @@ Requires Node.js, Pebble CLI 5.2.0, SDK 4.44, and the SDK Python environment for
 cd pebble
 PATH="$HOME/.local/bin:$PATH" \
 PEBBLE_PYTHON="$HOME/.local/share/uv/tools/pebble-tool/bin/python" \
-sh scripts/build.sh --dev
+sh scripts/build.sh --dev supportive-11
 ```
 
-This exports Episode 11, checks generated scene data, runs the regression suite, builds incrementally and audits the compiled font. Development builds stay in `reader/build/`. Use `--release` for a clean build and immutable versioned packaging. See [repeatable scene authoring and verification](scenes/README.md) for shared definitions, stable story anchors, browser tests and integrated emulator checks.
+Pass an episode ID to select the bundle (`npm run build -- supportive-10`, `npm run check -- supportive-10`, or `npm run release -- supportive-10` from `pebble/`). Omitting it defaults to Episode 11. This checks generated scene data, runs the regression suite, builds incrementally and audits the compiled font. Development builds stay in `reader/build/`. Use `--release <episode-id>` for a clean build and immutable packaging named `chunky-chinese-time2-<episode-id>-v<app-version>.pbw`. Reports verify the native story inside the built PBW and record its episode/version; the default Refresh URL follows the selected bundle. See [repeatable scene authoring and verification](scenes/README.md) for shared definitions, stable story anchors, browser tests and integrated emulator checks.
 
 `node scripts/export.mjs supportive-11` exports existing reviewed annotations. It never generates substitute pinyin. IDs are stable and versions derive from content. Unsupported script commands or glyphs fail the export. The exporter supports the same Story 2 command subset for future episodes; new cast, scenes, and artwork need explicit adaptation before shipping another episode.
 

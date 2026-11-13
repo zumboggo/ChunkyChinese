@@ -7,8 +7,14 @@ from pathlib import Path
 p=argparse.ArgumentParser(description=__doc__)
 p.add_argument('--install',action='store_true')
 p.add_argument('--cli',default=os.environ.get('PEBBLE_CLI','pebble'))
+p.add_argument('--episode',help='Require this bundled episode and matching build report')
 p.add_argument('--min-free',type=int,default=2048)
 a=p.parse_args();root=Path(__file__).resolve().parents[1]
+pack=json.loads((root/'reader/src/pkjs/bundled.json').read_text())
+if a.episode and a.episode!=pack['id']:p.error('Requested episode does not match the generated bundle')
+report=json.loads((root/'.local/build-report.json').read_text())
+pbw_hash=hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest()
+if report.get('episodeId')!=pack['id'] or report.get('episodeVersion')!=pack['version'] or report['pbwSha256']!=pbw_hash:p.error('Build report does not match episode/PBW; rebuild before emulator testing')
 out=root/'.local'/'emulator';out.mkdir(parents=True,exist_ok=True)
 library=json.loads((root/'scenes/library.json').read_text())
 def run(*args):
@@ -30,6 +36,7 @@ with logfile.open('w') as stream:
     if match:return match
     time.sleep(.2)
    raise AssertionError('Missing log event: '+pattern+'; see '+str(logfile))
+  if a.install:expect(r'Chunky ready'+re.escape(pack['id']+pack['version']),timeout=10)
   press('back');press('down',2);press('select');menu=shot('menu')
   results=[]
   for scene in library['scenes']:
@@ -62,7 +69,7 @@ with logfile.open('w') as stream:
    results.append({'id':scene['id'],'freeBytes':free,'drawAverageMs':avg,'drawMaximumMs':maximum})
    print('PASS '+scene['id'],flush=True)
   assert not re.search(r'INPUT ERROR|TRANSFER ERROR|out of memory|App fault',log(),re.I),'Runtime error; inspect watch.log'
-  (out/'report.json').write_text(json.dumps({'scenes':results,'pbwSha256':hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest(),'physicalWatchTested':False},indent=2)+'\n')
+  (out/'report.json').write_text(json.dumps({'episodeId':pack['id'],'episodeVersion':pack['version'],'scenes':results,'pbwSha256':hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest(),'physicalWatchTested':False},indent=2)+'\n')
  finally:
   logs.terminate()
   try:logs.wait(timeout=5)

@@ -3,7 +3,7 @@ import {nodeAt,nodeCount} from './reader.js';
 // Adler-32 over ASCII wire data; bounded integer arithmetic works on Alloy's float build.
 export function checksum(text){let a=1,b=0;for(let i=0;i<text.length;i++){a=(a+text.charCodeAt(i))%65521;b=(b+a)%65521;}return (b*65536+a).toString(16);}
 export function validate(pack,glyphs,availableArt){
- if(pack?.format!==1||!/^supportive-\d+(?:-v\d+)?$/.test(pack.id)||!/^\w{12}$/.test(pack.version)||(!Array.isArray(pack.nodes)&&typeof pack.nodeAt!=='function')||nodeCount(pack)<1||nodeCount(pack)>160)throw Error('Invalid episode');
+ if(pack?.format!==1||!/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*-\d+(?:-v\d+)?$/.test(pack.id)||!/^\w{12}$/.test(pack.version)||(!Array.isArray(pack.nodes)&&typeof pack.nodeAt!=='function')||nodeCount(pack)<1||nodeCount(pack)>160)throw Error('Invalid episode');
  if(!Number.isInteger(pack.entry)||pack.entry<0||pack.entry>=nodeCount(pack))throw Error('Invalid entry');
  let ending=false;
  const target=t=>{if(!Number.isInteger(t)||t<0||t>=nodeCount(pack))throw Error('Invalid branch');};

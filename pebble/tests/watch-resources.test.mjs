@@ -1,12 +1,14 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {createRequire} from 'node:module';
 import {openWire} from '../reader/src/embeddedjs/wire.js';
 const require=createRequire(import.meta.url),sharp=require('sharp');
+import {selectedPack} from '../scripts/episode-target.mjs';
+import lazy from '../reader/src/embeddedjs/episode.js';
+const pack=selectedPack(new URL('../',import.meta.url),process.env.PEBBLE_EPISODE_ID);
 const pkg=JSON.parse(fs.readFileSync(new URL('../reader/package.json',import.meta.url)));
 test('streamed story resource matches all exported nodes',()=>{
  const wire=fs.readFileSync(new URL('../reader/resources/data/story.ndjson',import.meta.url),'ascii');
- const pack=JSON.parse(fs.readFileSync(new URL('../content/supportive-11.json',import.meta.url)));
  const loaded=openWire(wire.length,(o,n)=>wire.slice(o,o+n));
- assert.equal(loaded.version,pack.version);for(let i=0;i<pack.nodes.length;i++)assert.deepEqual(loaded.nodeAt(i),pack.nodes[i]);
+ assert.equal(loaded.version,pack.version);for(let i=0;i<pack.nodes.length;i++){assert.deepEqual(loaded.nodeAt(i),pack.nodes[i]);assert.deepEqual(lazy.nodeAt(i),pack.nodes[i]);}
 });
 test('bounded portrait runs reproduce every source pixel at Pebble colour precision',async()=>{
  for(const asset of pkg.pebble.resources.media.filter(a=>a.file.startsWith('portraits/'))){
@@ -21,7 +23,6 @@ test('bounded portrait runs reproduce every source pixel at Pebble colour precis
 test('generated flash index reads every bundled node correctly',()=>{
  const wire=fs.readFileSync(new URL('../reader/resources/data/story.ndjson',import.meta.url),'ascii');
  const source=fs.readFileSync(new URL('../reader/src/embeddedjs/bundled.js',import.meta.url),'utf8').replace("import io from './native';",'').replace('export default meta;','return meta;');
- const pack=JSON.parse(fs.readFileSync(new URL('../content/supportive-11.json',import.meta.url)));
  let largest=0;const lazy=new Function('io',source)({readStory(o,n){largest=Math.max(largest,n);assert.ok(n<=2048);return wire.slice(o,o+n);}});
  assert.equal(lazy.version,pack.version);for(let i=0;i<pack.nodes.length;i++)assert.deepEqual(lazy.nodeAt(i),pack.nodes[i]);assert.ok(largest<2048);
 });

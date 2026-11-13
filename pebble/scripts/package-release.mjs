@@ -1,8 +1,12 @@
 import fs from 'node:fs';import crypto from 'node:crypto';
+import {selectedPack} from './episode-target.mjs';
 const root=new URL('../',import.meta.url),version=JSON.parse(fs.readFileSync(new URL('reader/package.json',root))).version;
+const pack=selectedPack(root,process.argv[2]);
 if(!/^\d+\.\d+\.\d+$/.test(version))throw Error('Invalid release version');
 const data=fs.readFileSync(new URL('reader/build/reader.pbw',root)),digest=b=>crypto.createHash('sha256').update(b).digest('hex');
-const target=new URL(`release/chunky-chinese-time2-v${version}.pbw`,root);
+const report=JSON.parse(fs.readFileSync(new URL('.local/build-report.json',root)));
+if(report.appVersion!==version||report.nativeEpisodeVerified!==true||report.episodeId!==pack.id||report.episodeVersion!==pack.version||report.pbwSha256!==digest(data)||report.librarySha256!==digest(fs.readFileSync(new URL('scenes/library.json',root)))||report.episodeSha256!==digest(fs.readFileSync(new URL('content/'+pack.id+'.json',root))))throw Error('Build report does not match this episode/PBW; rebuild before packaging');
+const target=new URL(`release/chunky-chinese-time2-${pack.id}-v${version}.pbw`,root);
 if(fs.existsSync(target)&&digest(fs.readFileSync(target))!==digest(data))throw Error('Released version already exists with different bytes. Bump package.json version; never overwrite a shipped release.');
 fs.mkdirSync(new URL('release/',root),{recursive:true});fs.writeFileSync(target,data);fs.writeFileSync(new URL('release/chunky-chinese-time2.pbw',root),data);
 const files=fs.readdirSync(new URL('release/',root)).filter(f=>f.endsWith('.pbw')).sort();fs.writeFileSync(new URL('release/SHA256SUMS',root),files.map(f=>digest(fs.readFileSync(new URL('release/'+f,root)))+'  release/'+f).join('\n')+'\n');

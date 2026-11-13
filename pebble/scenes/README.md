@@ -44,10 +44,26 @@ Do not place anchors between a choice and its options. Publishing phone copies
 is a separate workflow; this tooling does not modify `public/` phone releases.
 An episode without a direction file has no added animation cues.
 
-Export a future episode with `node scripts/export.mjs <episode-id>`; existing
-cast, font, art and migration assumptions still require deliberate adaptation.
-The build command currently targets bundled Episode 11, not automatic multi-series
-release authoring. New native capabilities still require a PBW installation.
+Build any prepared episode with `npm run build -- <episode-id>` (for example,
+`supportive-10`). `npm run check -- <episode-id>` and `npm run release -- <episode-id>`
+use that same target throughout export, tests, reports and packaging. Omitting the
+ID retains `supportive-11` for backward compatibility. Direct export is also
+available as `node scripts/export.mjs <episode-id>`.
+
+The source must exist at `stories/animated/<episode-id>.json`. Unsupported script
+commands, missing reviewed annotations, unavailable portraits/scenes, missing
+glyphs and oversized packages fail before replacing the generated story. New cast,
+opening/closing art or fonts still need explicit preparation and visual review;
+selecting an episode does not create assets or adapt a different series' narrator.
+New native capabilities still require a PBW installation.
+
+The selected episode gets its own source/route/layout/resource checks; the existing
+Episode 11 tests remain a fixed regression suite. Save migration descriptors are
+emitted only for the matching episode. Refresh defaults to the bundled episode's
+feed; an explicitly configured URL still takes precedence. Publish that content
+feed separately when authorized. Existing downloaded content may remain active on
+the watch; installing a different bundle does not erase it or create a multi-episode
+save library.
 
 ## Repeatable verification
 
@@ -57,13 +73,13 @@ SDK Python environment:
 | Command | Purpose |
 | --- | --- |
 | `npm run scenes` | Regenerate shared artifacts after editing the library |
-| `npm run check` | Fast export, generation drift, content, route, save, resource tests |
+| `npm run check -- <episode-id>` | Selected-episode export, generation drift, content, route, save, resource tests |
 | `npm run test:browser` | Train interaction, native-size, replay, hold and host regressions |
-| `npm run build` | Incremental native build, compiled-font audit, hashed build report |
-| `npm run test:emulator -- --install` | Install into existing Emery, test all five scenes, holds, replay, movement, heap/frame budgets |
-| `npm run release` | Clean build, tests, font audit, browser and integrated emulator tests, immutable versioned packaging |
+| `npm run build -- <episode-id>` | Selected-episode incremental native build, compiled-font audit, hashed build report |
+| `npm run test:emulator -- --install --episode <episode-id>` | Install into existing Emery, test all five scenes, holds, replay, movement, heap/frame budgets |
+| `npm run release -- <episode-id>` | Selected-episode clean build, tests, font audit, browser and integrated emulator tests, immutable versioned packaging |
 
-Development builds stay in `reader/build`; reports/screenshots/logs go to ignored
+Development builds stay in `reader/build` (one current target); reports/screenshots/logs go to ignored
 `.local/`. The emulator runner uses the animation menu and leaves story progress
 alone. It never deletes or resets emulator flash. Without `--install`, start at a
 normal reader screen; a missing expected log/menu fails instead of claiming success.
@@ -76,6 +92,11 @@ retain its report with the candidate PBW hash. For a fresh-install or saved-vers
 upgrade check, use an explicitly prepared emulator and retained old package; this
 runner does not manufacture a clean profile by erasing an existing one.
 
+Build reports include the episode ID/content version, app version and hashes.
+They verify the actual PBW contains the selected native story resource. Packaging
+and emulator checks reject mismatched target/build evidence. Release names include
+the episode: `chunky-chinese-time2-<episode-id>-v<app-version>.pbw`. Legacy release
+filenames remain untouched; the unversioned alias still points to the latest release.
 Release packaging refuses to overwrite a versioned PBW with different bytes;
 bump `reader/package.json` deliberately for a new release. Clean font/resource
 changes before development builds (`pebble clean` inside `reader`); release always

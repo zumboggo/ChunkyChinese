@@ -13,9 +13,9 @@ test('atomic transfer, retries, incomplete and corrupt downloads',()=>{const h=h
 test('reject bad graph, missing art, bad glyph and oversized transfers',()=>{const bad=structuredClone(pack);bad.nodes[0]={type:'goto',to:0};assert.throws(()=>validate(bad,glyphs,()=>true));assert.throws(()=>validate(pack,glyphs,()=>false));assert.throws(()=>harness().t.begin(999999,'abc',pack.version));});
 
 import {openWire} from '../reader/src/embeddedjs/wire.js';
-import lazyPack from '../reader/src/embeddedjs/episode.js';
+
 function ndjson(p){const meta={...p,nodeCount:p.nodes.length};delete meta.nodes;return [meta,...p.nodes].map(x=>JSON.stringify(x).replace(/[^\x20-\x7e]/g,c=>'\\u'+c.charCodeAt(0).toString(16).padStart(4,'0'))).join('\n')+'\n';}
-test('lazy bundled and streamed content match every node without loading a whole file',()=>{const wire=ndjson(pack);let largest=0;const read=(o,n)=>{largest=Math.max(largest,n);return wire.slice(o,o+n);};const streamed=openWire(wire.length,read,{total:wire.length,hash:checksum(wire),version:pack.version});validate(streamed,glyphs,()=>true);assert.equal(streamed.nodeCount,pack.nodes.length);for(let i=0;i<pack.nodes.length;i++){assert.deepEqual(streamed.nodeAt(i),pack.nodes[i]);assert.deepEqual(lazyPack.nodeAt(i),pack.nodes[i]);}assert.ok(largest<5000);assert.throws(()=>openWire(wire.length,read,{total:wire.length,hash:'bad',version:pack.version}));});
+test('streamed content matches every regression node without loading a whole file',()=>{const wire=ndjson(pack);let largest=0;const read=(o,n)=>{largest=Math.max(largest,n);return wire.slice(o,o+n);};const streamed=openWire(wire.length,read,{total:wire.length,hash:checksum(wire),version:pack.version});validate(streamed,glyphs,()=>true);assert.equal(streamed.nodeCount,pack.nodes.length);for(let i=0;i<pack.nodes.length;i++){assert.deepEqual(streamed.nodeAt(i),pack.nodes[i]);}assert.ok(largest<5000);assert.throws(()=>openWire(wire.length,read,{total:wire.length,hash:'bad',version:pack.version}));});
 test('all 16 routes also complete through the downloaded file adapter',()=>{const wire=ndjson(pack),streamed=openWire(wire.length,(o,n)=>wire.slice(o,o+n));for(let mask=0;mask<16;mask++){let s=initial(streamed),choice=0,steps=0;while(current(streamed,s).type!=='end'){if(current(streamed,s).type==='choice'&&s.p===0&&s.e===0&&!s.c)s.o=(mask>>choice++)&1;advance(streamed,s);assert.ok(++steps<1000);}assert.equal(choice,4);assert.ok(s.history.length<=64);}});
 
 const metrics=JSON.parse(fs.readFileSync(new URL('../content/font-metrics.json',import.meta.url)));
@@ -46,7 +46,8 @@ test('all branch responses and canonical rejoins match the original Story 2 path
 test('Chinese closing punctuation is not stranded on its own line',()=>{assert.deepEqual(wrap('想想以前的家。',t=>[...t].length*28),['想想以前的','家。']);});
 
 import {toggleChinese,migrate,migrateLegacy} from '../reader/src/embeddedjs/reader.js';
-import legacy from '../reader/src/embeddedjs/legacy.js';
+import {migrationMap} from '../scripts/migration-map.mjs';
+const legacy=migrationMap(pack,JSON.parse(fs.readFileSync(new URL('../content/legacy-v1-anchors.json',import.meta.url))));
 test('one-pass reading skips the automatic character encounter; Down toggles on demand',()=>{
  const s=initial(pack);while(current(pack,s).type!=='line')advance(pack,s);const n=s.n,p=s.p;
  toggleChinese(s);assert.equal(s.e,1);toggleChinese(s);assert.equal(s.e,0);advance(pack,s);assert.equal(s.e,0);assert.ok(s.n!==n||s.p!==p);
@@ -68,7 +69,7 @@ test('full-screen assets cover every cue; portrait beats doubled',()=>{
  for(const n of pack.nodes.filter(n=>n.type==='reaction'))for(let tile=0;tile<4;tile++)assert.ok(fs.existsSync(new URL('../reader/resources/images/'+n.actor+'-'+n.emotion+'-full-'+tile+'.png',import.meta.url)));
 });
 
-import upgrade from '../reader/src/embeddedjs/upgrade.js';
+const upgrade=migrationMap(pack,JSON.parse(fs.readFileSync(new URL('../content/legacy-v1.1-anchors.json',import.meta.url))));
 import {sceneIds} from '../reader/src/embeddedjs/scenes.js';
 test('all routes contain exactly the five supported animation beats in order',()=>{
  const expected=['train-phone','restaurant-seat','hannah-fry','alden-listens','train-reflection'];

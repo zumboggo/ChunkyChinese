@@ -3,9 +3,14 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {loadDirection, validateDirection} from './story-direction.mjs';
+import {episodeId} from './episode-target.mjs';
+import {migrationMap} from './migration-map.mjs';
+import {validate} from '../reader/src/embeddedjs/transfer.js';
+import art from '../reader/src/embeddedjs/art.js';
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const app=path.resolve(root,'..');
 export function exportEpisode(d,id='supportive-11',direction=loadDirection(id)) {
+ episodeId(id);
  const cues=validateDirection(d.script,id,direction);
  const annotations=d.chinese.lines, nodes=[], labels={}, cast=new Set(); let scene='train', narrator='Alden', choice=null, pending=null, lineNumber=0;
  function phrases(text) {
@@ -46,19 +51,26 @@ export function exportEpisode(d,id='supportive-11',direction=loadDirection(id)) 
   throw Error('Unsupported script command: '+line);
  }
  for(const n of nodes){if(n.type==='goto'){if(labels[n.to]===undefined)throw Error('Missing label');n.to=labels[n.to];}for(const o of n.options||[]){if(labels[o.to]===undefined)throw Error('Missing target');o.to=labels[o.to];}}
- const pack={format:1,id,version:'',title:d.title,shortTitle:d.title.split(' · ').at(-1),number:Number(id.match(/\d+/)[0]),sources:d.sources,notice:d.notice,entry:labels.opening,nodes,cast:[...cast],art:['opening','closing',...new Set(nodes.filter(n=>n.type==='reaction').map(n=>n.actor+'-'+n.emotion))]};
+ const pack={format:1,id,version:'',title:d.title,shortTitle:d.title.split(' · ').at(-1),number:Number(id.match(/-(\d+)(?:-v\d+)?$/)[1]),sources:d.sources,notice:d.notice,entry:labels.opening,nodes,cast:[...cast],art:['opening','closing',...new Set(nodes.filter(n=>n.type==='reaction').map(n=>n.actor+'-'+n.emotion))]};
  pack.version=crypto.createHash('sha256').update(JSON.stringify(pack)).digest('hex').slice(0,12);return pack;
 }
 export function coverage(pack,glyphs){const set=new Set(glyphs);for(const n of pack.nodes)for(const p of [...(n.phrases||[]),...(n.options||[]).flatMap(o=>o.phrases)])for(const c of p.zh+p.py+p.en)if(!set.has(c))throw Error('Unsupported glyph '+c);}
 if(process.argv[1]===fileURLToPath(import.meta.url)){
- const source=process.argv[2]||'supportive-11';
- const d=JSON.parse(fs.readFileSync(path.join(app,'stories/animated',source+'.json')));
- const all=fs.readdirSync(path.join(app,'stories/animated')).filter(f=>/^supportive-.*\.json$/.test(f));let chars='';
+ const args=process.argv.slice(2),positional=args.filter(a=>a!=='--refresh-font');
+ if(positional.length>1)throw Error('Usage: export.mjs [episode-id] [--refresh-font]');
+ const source=episodeId(positional[0]||'supportive-11');
+ const sourcePath=path.join(app,'stories/animated',source+'.json');
+ if(!fs.existsSync(sourcePath))throw Error('Source episode not found: '+source);
+ const d=JSON.parse(fs.readFileSync(sourcePath));
+ const all=[...new Set([...fs.readdirSync(path.join(app,'stories/animated')).filter(f=>/^supportive-.*\.json$/.test(f)),source+'.json'])];let chars='';
  for(const f of all){const d=JSON.parse(fs.readFileSync(path.join(app,'stories/animated',f)));for(const [zh,a] of Object.entries(d.chinese.lines)){chars+=zh+a.pinyin+a.english;for(const c of a.interlinear||[])chars+=c.gloss+c.pinyin;}}
  chars+=Array.from({length:95},(_,i)=>String.fromCharCode(i+32)).join('')+'āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜńňǹḿ，。！？；：、“”‘’…·—';
  const glyphPath=path.join(root,'content/glyphs.txt');
  if(!fs.existsSync(glyphPath)||process.argv.includes('--refresh-font'))fs.writeFileSync(glyphPath,[...new Set(chars.normalize('NFC'))].sort().join(''));
  const pack=exportEpisode(d,source);coverage(pack,fs.readFileSync(glyphPath,'utf8'));
+ const missing=pack.art.filter(n=>!art[n]&&!art[n+'-full']);
+ if(missing.length)throw Error('Portrait/art update needed for '+source+': '+missing.join(', '));
+ validate(pack,fs.readFileSync(glyphPath,'utf8'),n=>!!art[n]||!!art[n+'-full']);
  pack.version=crypto.createHash('sha256').update(JSON.stringify({...pack,version:''})).digest('hex').slice(0,12);
  // Enforce the tested watch memory envelope before shipping a new package.
  const wireRecord=x=>JSON.stringify(x).replace(/[^\x20-\x7e]/g,c=>'\\u'+c.charCodeAt(0).toString(16).padStart(4,'0'));
@@ -70,21 +82,17 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
  const data=JSON.stringify(pack);
  fs.writeFileSync(path.join(root,'content',source+'.json'),data+'\n');
  fs.writeFileSync(path.join(root,'reader/src/pkjs/bundled.json'),data+'\n');
- const legacy=JSON.parse(fs.readFileSync(path.join(root,'content/legacy-v1-anchors.json')));
- const nodeKey=n=>n.type==='line'?n.type+':'+n.speaker+':'+n.phrases.map(p=>p.zh).join(''):n.type==='choice'?'choice:'+n.id:n.type==='reaction'?'reaction:'+n.actor+':'+n.emotion+':'+n.scene:n.type;
- const keys=pack.nodes.map(n=>crypto.createHash('sha256').update(nodeKey(n)).digest('hex'));let cursor=0;
- const indices=legacy.anchors.map(key=>{const i=keys.indexOf(key,cursor);if(i>=0)cursor=i+1;return i;});
- fs.writeFileSync(path.join(root,'reader/src/embeddedjs/legacy.js'),'export default '+JSON.stringify({id:legacy.id,version:legacy.version,target:pack.version,indices})+';\n');
- const upgrade=JSON.parse(fs.readFileSync(path.join(root,'content/legacy-v1.1-anchors.json')));let upgradeCursor=0;
- const upgradeIndices=upgrade.anchors.map(key=>{const i=keys.indexOf(key,upgradeCursor);if(i>=0)upgradeCursor=i+1;return i;});
- fs.writeFileSync(path.join(root,'reader/src/embeddedjs/upgrade.js'),'export default '+JSON.stringify({id:upgrade.id,version:upgrade.version,target:pack.version,indices:upgradeIndices})+';\n');
+ for(const [name,file] of [['legacy','legacy-v1-anchors.json'],['upgrade','legacy-v1.1-anchors.json']]){
+  const previous=JSON.parse(fs.readFileSync(path.join(root,'content',file)));
+  fs.writeFileSync(path.join(root,'reader/src/embeddedjs',name+'.js'),'export default '+JSON.stringify(migrationMap(pack,previous))+';\n');
+ }
  const meta={...pack};delete meta.nodes;
  let byteOffset=records[0].length+1;const spans=records.slice(1).map(r=>{const pair=[byteOffset,r.length];byteOffset+=r.length+1;return pair;});
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/bundled.js'),"import io from './native';\nconst meta="+JSON.stringify({...pack,nodes:undefined,nodeCount:pack.nodes.length})+";\nconst spans="+JSON.stringify(spans)+";\nlet index=-1,node;meta.nodeAt=i=>{if(i<0||i>=spans.length)return undefined;if(index!==i){node=JSON.parse(io.readStory(spans[i][0],spans[i][1]));index=i;}return node;};export default meta;\n");
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/episode.js'),'// Generated: parse only the current node to fit watch RAM.\nconst meta='+JSON.stringify(meta)+';\nconst rows='+JSON.stringify(pack.nodes.map(n=>JSON.stringify(n)))+';\nlet index=-1,node;meta.nodeCount=rows.length;meta.nodeAt=i=>{if(index!==i){node=JSON.parse(rows[i]);index=i;}return node;};export default meta;\n');
  const glyphs=fs.readFileSync(glyphPath,'utf8');const han=[...glyphs].filter(c=>/\p{Script=Han}/u.test(c)).join('');
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/glyphs.js'),'export default '+JSON.stringify(glyphs)+';\n');
- const manifest={ffi:{functions:{showPortrait:{arguments:['uint32_t','uint32_t'],returns:'void'},showScene:{arguments:['uint32_t'],returns:'void'},sceneSelect:{arguments:[],returns:'uint32_t'},storySize:{arguments:[],returns:'uint32_t'},readStory:{arguments:['uint32_t','uint32_t'],returns:'char*'}}},include:['$(MODDABLE)/examples/manifest_mod.json'],modules:{'*':['./main','./native','./bundled','./reader','./layout','./transfer','./glyphs','./art','./wire','./legacy','./upgrade','./scenes']}};
+ const manifest={ffi:{functions:{showPortrait:{arguments:['uint32_t','uint32_t'],returns:'void'},showScene:{arguments:['uint32_t'],returns:'void'},sceneSelect:{arguments:[],returns:'uint32_t'},setBackgroundMotion:{arguments:['uint32_t'],returns:'void'},storySize:{arguments:[],returns:'uint32_t'},readStory:{arguments:['uint32_t','uint32_t'],returns:'char*'}}},include:['$(MODDABLE)/examples/manifest_mod.json'],modules:{'*':['./main','./native','./bundled','./reader','./layout','./transfer','./glyphs','./art','./wire','./legacy','./upgrade','./scenes']}};
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
  console.log(JSON.stringify({id:source,nodes:pack.nodes.length,choices:pack.nodes.filter(n=>n.type==='choice').length,phrases:pack.nodes.reduce((s,n)=>s+(n.phrases?.length||0)+(n.options||[]).reduce((t,o)=>t+o.phrases.length,0),0),bytes:Buffer.byteLength(data),han:han.length}));
 }
