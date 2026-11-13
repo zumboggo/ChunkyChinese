@@ -9,7 +9,7 @@ const bundled=JSON.parse(fs.readFileSync(new URL('../reader/src/pkjs/bundled.jso
 function harness(storage=new Map(),files=new Map()){
  String.fromArrayBuffer=b=>new TextDecoder().decode(b);ArrayBuffer.fromString=s=>new TextEncoder().encode(s).buffer;
  const calls=[],labels=[];let selectResult=1;
- const graphics={showPortrait(){},showScene(id){calls.push(['scene',id]);},setBackgroundMotion(on){calls.push(['ambient',on]);},sceneSelect(){return selectResult;}};
+ const graphics={recipeData(i,v){calls.push(['recipe',i,v]);return 1;},showPortrait(){},showScene(id){calls.push(['scene',id]);},setBackgroundMotion(on){calls.push(['ambient',on]);},sceneSelect(){return selectResult;}};
  class Poco{Font=class{};makeColor(){return 0;}getTextWidth(t){return t.length*10;}begin(){labels.length=0;}end(){}fillRectangle(){}drawText(t,f,c,x,y){labels.push({t,y});}}
  const localStorage={getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)};
  const deps={...completion,...reader,...layout,bundled,legacy:{},upgrade:{},sceneIds,sceneNames,sceneGroups,glyphs:'',art:{},Debug:{gc(){}},graphics,Poco,screen:{},Button:class{},Message:class{},Transfer:class{},validate(){},checksum(){},openWire(){},localStorage,device:{files:{delete:p=>files.delete(p),openFile({path,mode}){if(mode)files.set(path,'');if(!files.has(path))throw Error('No saved file');return {status:()=>({size:ArrayBuffer.fromString(files.get(path)).byteLength}),read:()=>ArrayBuffer.fromString(files.get(path)),write:b=>files.set(path,String.fromArrayBuffer(b)),close(){}};}}},console:{log(){}}};
@@ -42,4 +42,13 @@ test('new bundled episode archives the old position and switching restores it',(
  assert.deepEqual(JSON.parse(files.get('saved-previous-11')),saved);
  h.app.switchEpisode(old);assert.deepEqual(h.app.state,saved);
  h.app.switchEpisode(bundled);assert.equal(h.app.state.id,bundled.id);assert.equal(h.app.state.n,-1);
+});
+
+test('downloaded scenes use their data bridge, preserve hold guard, and replay the same recipe',()=>{
+ const h=harness(),wire='1,1,0,0,0,2,0,0,0,0,0,3400,0,0,0,0';
+ h.app.switchEpisode({id:'supportive-999',version:'abcdef123456',entry:0,nodes:[{type:'animation',id:'download-pause',recipe:wire},{type:'end'}]});
+ h.app.input('select');assert.deepEqual(h.calls.at(-1),['recipe',46,1]);
+ h.setResult(0);h.app.input('select');assert.equal(h.app.state.n,0);
+ const before=h.calls.filter(c=>c[0]==='recipe');h.app.input('down');assert.deepEqual(h.calls.filter(c=>c[0]==='recipe').slice(before.length),before);
+ h.setResult(1);h.app.input('select');assert.equal(h.app.state.n,1);
 });

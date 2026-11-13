@@ -8,10 +8,11 @@ original choreography. Native geometry and prop drawing remain renderer code;
 `ambient_draw.h` implements the shared period/tile rules. Installed IDs 1–25 are
 append-only: 1–5 Episode 11, 6–17 cast gestures, 18–25 background samples.
 The standalone train demo includes the same generated header as the reader.
-This is a tested recipe library, not an arbitrary downloadable animation format.
+Runtime 1.6 also supports [downloadable pose recipes](downloadable.md): new single-character motions and supported combinations can arrive with Refresh. Arbitrary code/assets remain unsupported.
 
 1. Reuse an existing scene ID whenever possible. Never renumber shipped IDs.
-2. For a motion change, edit the library, then run `npm run scenes` in `pebble/`.
+2. For new supported downloadable motion, use inline recipes as described above.
+   For compiled motion changes, edit the library, then run `npm run scenes` in `pebble/`.
    This generates C constants/choreography, the reader's scene inventory, and
    the train browser preview's embedded data. Do not edit generated sections.
 3. Run `npm run check`. It rejects stale generated data, bad keys/contact times,

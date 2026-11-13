@@ -8,6 +8,13 @@
         ],
         "returns": "void"
       },
+      "recipeData": {
+        "arguments": [
+          "uint32_t",
+          "int32_t"
+        ],
+        "returns": "uint32_t"
+      },
       "showScene": {
         "arguments": [
           "uint32_t"

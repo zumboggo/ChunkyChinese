@@ -46,6 +46,6 @@ export function migrate(oldPack,next,s){
 
 export function migrateLegacy(pack,s,legacy){
  if(s.id!==legacy.id||s.version!==legacy.version||pack.id!==legacy.id||pack.version!==legacy.target)return initial(pack);
- const n=s.n===-1?-1:legacy.indices[s.n];if(n===undefined||n< -1)return initial(pack);
+ const n=s.n===-1?-1:typeof legacy.indices==='string'?legacy.indices.charCodeAt(s.n)-33:legacy.indices[s.n];if(n===undefined||n< -1)return initial(pack);
  return restore(pack,{...s,version:pack.version,n,e:0,c:0,page:0,history:[]});
 }

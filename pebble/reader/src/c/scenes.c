@@ -6,7 +6,12 @@ typedef struct { Pt head, shoulder, hip, hand; float angle,gaze,brow,phone; } Po
 typedef enum { TEXT, ESTABLISH, WAITING, PICKUP, HOLD, AFTER } Phase;
 #include "scene_data.h"
 #include "ensemble_data.h"
+#include "downloadable_scene.h"
+static DownloadScene downloaded;
 static uint32_t scene_id;
+static int scene_setting_id(void){return scene_id==DOWNLOADED_SCENE?downloaded.setting:scene_setting[scene_id];}
+static int scene_ambient_id(void){return scene_id==DOWNLOADED_SCENE?downloaded.ambient:scene_ambient[scene_id];}
+static uint32_t scene_duration(void){return scene_id==DOWNLOADED_SCENE?downloaded.keys[downloaded.count-1].t:scene_durations[scene_id];}
 static float world_x,world_y,world_sx=1,world_sy=1;
 static int actor; // 0 present Alden, 1 young Alden, 2 Hannah
 static Layer *canvas;
@@ -52,7 +57,7 @@ static void phone(float x,float y,float angle){float oldx=tx,oldy=ty,oldr=rotati
 #include "ambient_draw.h"
 static void scenery(void){
  box(0,0,200,228,PAPER);
- ambience(scene_time,0);
+ if(scene_id!=DOWNLOADED_SCENE||downloaded.ambient!=6)ambience(scene_time,0);
  SEG(10,115,10,19,NEAR,2);SEG(10,19,190,19,NEAR,2);SEG(190,19,190,115,NEAR,2);SEG(190,115,10,115,NEAR,2);
  SEG(15,110,15,25,RAIL,1);SEG(15,25,185,25,RAIL,1);SEG(185,25,185,110,RAIL,1);
  SEG(0,124,200,124,RAIL,1);SEG(33,143,33,120,RAIL,2);SEG(33,120,173,120,RAIL,2);SEG(173,120,173,143,RAIL,2);
@@ -123,11 +128,12 @@ static void restaurant(uint32_t t){
 static void draw(Layer *layer,GContext *context){
  (void)layer;uint32_t start=time_ms(NULL,NULL);ctx=context;world(0,0,1,1);graphics_context_set_antialiased(ctx,false);
  if(scene_id>5){
-  int setting=scene_setting[scene_id];
-  if(setting==0)scenery();else room_background(setting,scene_time,scene_ambient[scene_id]);
-  if(scene_actor[scene_id]>=0)ensemble_character(scene_actor[scene_id],scene_gesture[scene_id],elapsed);
+  int setting=scene_setting_id();
+  if(setting==0)scenery();else room_background(setting,scene_time,scene_ambient_id());
+  if(scene_id==DOWNLOADED_SCENE)ensemble_character(downloaded.actor,downloaded.keys,downloaded.count,downloaded.prop,elapsed);
+  else if(scene_actor[scene_id]>=0){int g=scene_gesture[scene_id];ensemble_character(scene_actor[scene_id],gestures[g],gesture_counts[g],g==1||g==3,elapsed);}
   else {actor=0;character(poses[POSE_SEATED],false,0);}
-  if(setting!=0)room_props(setting,scene_time);
+  if(setting!=0)room_props(setting,scene_ambient_id()==6?0:scene_time);
  }else if(scene_id>=2&&scene_id<=4){restaurant(elapsed);}else{
   scenery();Pose p;
   if(scene_id==5){p=reflection_pose(elapsed);}else{p=phase==ESTABLISH?blend(poses[POSE_SEATED],poses[POSE_GLANCE],((float)elapsed-PHONE_GLANCE_START)/PHONE_GLANCE_DURATION):phase==WAITING?poses[POSE_GLANCE]:phase==PICKUP?sample(elapsed):poses[key_poses[PHONE_KEY_COUNT-1]];}
@@ -137,12 +143,12 @@ static void draw(Layer *layer,GContext *context){
  }
  uint32_t cost=(time_ms(NULL,NULL)+1000-start)%1000;frames++;render_total+=cost;if(cost>render_max)render_max=cost;
 }
-static bool moving(void){return scene_id&&(phase!=HOLD||(background_motion&&scene_setting[scene_id]!=6));}
+static bool moving(void){return scene_id&&(phase!=HOLD||(background_motion&&scene_setting_id()!=6&&scene_ambient_id()!=6));}
 static void schedule(void);
 static void tick(void *data){
  (void)data;timer=NULL;uint32_t now=now_ms(),dt=now-last_time;last_time=now;if(dt>250)dt=SCENE_FRAME_MS;if(phase!=HOLD)elapsed+=dt;if(background_motion)scene_time=(scene_time+dt)%AMBIENT_PERIOD;
  if(scene_id==1&&phase==ESTABLISH&&elapsed>=PHONE_ESTABLISH){phase=WAITING;elapsed=0;}
- else if(phase!=HOLD&&((scene_id==1&&phase==PICKUP&&elapsed>=scene_durations[scene_id])||(scene_id!=1&&elapsed>=scene_durations[scene_id]))){phase=HOLD;elapsed=scene_durations[scene_id];hold_started=now;APP_LOG(APP_LOG_LEVEL_INFO,"Scene %lu held; free=%lu draw avg/max=%lu/%lu ms",(unsigned long)scene_id,(unsigned long)heap_bytes_free(),(unsigned long)(frames?render_total/frames:0),(unsigned long)render_max);}
+ else if(phase!=HOLD&&((scene_id==1&&phase==PICKUP&&elapsed>=scene_duration())||(scene_id!=1&&elapsed>=scene_duration()))){phase=HOLD;elapsed=scene_duration();hold_started=now;APP_LOG(APP_LOG_LEVEL_INFO,"Scene %lu held; free=%lu draw avg/max=%lu/%lu ms",(unsigned long)scene_id,(unsigned long)heap_bytes_free(),(unsigned long)(frames?render_total/frames:0),(unsigned long)render_max);}
  layer_mark_dirty(canvas);schedule();
 }
 static void schedule(void){if(!timer&&focused&&moving())timer=app_timer_register(phase==HOLD?AMBIENT_FRAME_MS:SCENE_FRAME_MS,tick,NULL);}
@@ -157,7 +163,7 @@ void setBackgroundMotion(uint32_t enabled){
 void showScene(uint32_t id){
  if(!subscribed){app_focus_service_subscribe(focus_changed);subscribed=true;}
  if(timer){app_timer_cancel(timer);timer=NULL;}
- scene_id=id<=SCENE_COUNT?id:0;
+ scene_id=(id<=SCENE_COUNT||id==DOWNLOADED_SCENE)?id:0;
  if(!scene_id){if(canvas)layer_set_hidden(canvas,true);return;}
  if(!canvas){canvas=layer_create(GRect(0,0,200,228));if(canvas)layer_set_update_proc(canvas,draw);}
  if(!canvas){scene_id=0;return;}
@@ -173,3 +179,13 @@ uint32_t sceneSelect(void){
  return 0;
 }
 void destroyScenes(void){if(subscribed){app_focus_service_unsubscribe();subscribed=false;}if(timer){app_timer_cancel(timer);timer=NULL;}if(canvas){layer_destroy(canvas);canvas=NULL;}scene_id=0;}
+
+// Numeric FFI avoids the current firmware's unsupported string-handle bridge.
+uint32_t recipeData(uint32_t index,int32_t value){
+ static int values[46];static uint8_t count;
+ if(index==0)count=0;
+ if(index<46){if(index!=count||value< -12000||value>12000)return 0;values[count++]=value;return 1;}
+ if(index!=46)return 0;
+ DownloadScene next;if(!decode_values(values,count,&next))return 0;
+ if(value){downloaded=next;showScene(DOWNLOADED_SCENE);}return 1;
+}

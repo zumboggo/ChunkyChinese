@@ -24,9 +24,17 @@ function writeFile(path,text){try{device.files.delete(path);}catch{}const bytes=
 function openStored(path,expected){
  const f=device.files.openFile({path});try{return openWire(f.status().size,(offset,count)=>String.fromArrayBuffer(f.read(count,offset)),expected,(offset,count)=>{const file=device.files.openFile({path});try{return String.fromArrayBuffer(file.read(count,offset));}finally{file.close();}},true);}finally{f.close();}
 }
+function loadRecipe(wire,play){
+ if(typeof wire!=='string'||wire.length>512||!/^\d+(?:,-?\d+)*$/.test(wire))return 0;
+ let start=0,index=0;
+ for(let i=0;i<=wire.length;i++)if(i===wire.length||wire.charCodeAt(i)===44){
+  const value=Number(wire.slice(start,i));if(!Number.isInteger(value)||Math.abs(value)>12000||index>=46||!graphics.recipeData(index++,value))return 0;start=i+1;
+ }
+ return graphics.recipeData(46,play);
+}
 const hasArt=name=>!!art[name]||!!art[name+'-full'];
 let pack=bundled,activeSlot=localStorage.getItem('activeEpisode');
-try{if(activeSlot){pack=openStored('episode-'+activeSlot);validate(pack,glyphs,hasArt);}}catch(e){console.log('Using bundled episode',e.message);pack=bundled;activeSlot=null;}
+try{if(activeSlot){pack=openStored('episode-'+activeSlot);validate(pack,glyphs,hasArt,r=>loadRecipe(r,0));}}catch(e){console.log('Using bundled episode',e.message);pack=bundled;activeSlot=null;}
 console.log('Episode opened');Debug.gc();
 let state=initial(pack),saveGeneration=0,upgraded=false;
 // Two generations allow recovery if power is lost while the newest save is written.
@@ -63,13 +71,13 @@ function menuItems(){return overlay==='animations'?[...previewGroups,'Back']:ove
 function previewReturn(){previewScene=0;overlay='scene-list';menuIndex=previewIndex;}
 
 function stopScene(){if(activeScene){graphics.showScene(0);activeScene=0;}}
-function showAnimation(id){
+function showAnimation(id,recipe){
  graphics.showPortrait(0,0);lastImage=null;lastImageName=null;
- if(activeScene!==id){Debug.gc();graphics.showScene(id);activeScene=id;}
+ if(activeScene!==id){Debug.gc();if(id===-1){if(!loadRecipe(recipe,1))throw Error("Invalid scene recipe");}else graphics.showScene(id);activeScene=id;}
 }
 function draw(){
  if(previewScene&&!overlay){showAnimation(previewScene);return;}
- const visible=current(pack,state);if(!overlay&&visible.type==='animation'){showAnimation(sceneIds[visible.id]||0);return;}
+ const visible=current(pack,state);if(!overlay&&visible.type==='animation'){showAnimation(visible.recipe?-1:(sceneIds[visible.id]||0),visible.recipe);return;}
  stopScene();
  if(!overlay&&(visible.type==='opening'||visible.type==='end')){graphics.showPortrait(art[pack.cover||(visible.type==='opening'?'opening':'closing')],visible.type==='opening'?3:4);return;}
  if(!overlay&&visible.type==='reaction'){portrait(visible);return;}
@@ -130,7 +138,7 @@ function input(type){
   if(type==='select'){
    const result=graphics.sceneSelect();
    if(result){stopScene();if(previewScene){previewReturn();}else{advance(pack,state);save();creditCompletion();}}
-  }else if(type==='down'){const id=activeScene;stopScene();showAnimation(id);}
+  }else if(type==='down'){const id=activeScene;stopScene();showAnimation(id,id===-1?current(pack,state).recipe:undefined);}
   else if(type==='up'&&!previewScene){stopScene();previous(state);save();}
   else if(type==='back'){stopScene();if(previewScene){previewReturn();}else{overlay='menu';menuIndex=0;}}
   draw();return;
@@ -158,8 +166,8 @@ const transfer=new Transfer({
  begin(total){staging=activeSlot==='a'?'b':'a';try{device.files.delete('episode-'+staging);}catch{}const f=device.files.openFile({path:'episode-'+staging,mode:'r+',size:total});f.close();},
  write(data,offset){const f=device.files.openFile({path:'episode-'+staging,mode:'r+'});try{f.write(ArrayBuffer.fromString(data),offset);}finally{f.close();}},
  complete(expected){return openStored('episode-'+staging,expected);},
- activate(next){switchEpisode(next);localStorage.setItem('activeEpisode',staging);activeSlot=staging;save();console.log('Episode activated',pack.id,pack.version);}
-},p=>{validate(p,glyphs,hasArt);if(p.id===bundled.id&&(p.version===upgrade.version||p.version===legacy.version))throw Error('Older feed; kept animations');});
+ activate(next){stopScene();previewScene=0;switchEpisode(next);localStorage.setItem('activeEpisode',staging);activeSlot=staging;save();console.log('Episode activated',pack.id,pack.version);}
+},p=>{validate(p,glyphs,hasArt,r=>loadRecipe(r,0));if(p.id===bundled.id&&(p.version===upgrade.version||p.version===legacy.version))throw Error('Older feed; kept animations');});
 let channel;
 function send(obj){queued.push(obj);flush();}
 function flush(){if(channel&&connected&&!sending&&queued.length){const out=queued.shift();try{sending=true;channel.write(new Map(Object.entries(out)));}catch(e){queued.unshift(out);sending=false;console.log('SEND',e.message);}}}
@@ -174,7 +182,7 @@ channel=new Message({input:1024,output:256,keys:['COMMAND','DATA','OFFSET','TOTA
   else if(cmd==='CREDIT_STATUS'){status=m.get('STATUS')||'Garden sync pending';}
   else if(cmd==='BEGIN'){transfer.begin(m.get('TOTAL'),m.get('CHECKSUM'),m.get('VERSION'));status='Downloading 0%';send({COMMAND:'ACK',OFFSET:0});}
   else if(cmd==='CHUNK'){if(checksum(m.get('DATA'))!==m.get('CHECKSUM'))throw Error('Chunk checksum '+m.get('OFFSET')+' '+checksum(m.get('DATA'))+'/'+m.get('CHECKSUM')+' len '+m.get('DATA').length);const offset=transfer.chunk(m.get('OFFSET'),m.get('DATA'));status='Downloading '+Math.floor(offset/transfer.pending.total*100)+'%';send({COMMAND:'ACK',OFFSET:offset});}
-  else if(cmd==='END'){transfer.finish();status='Available offline';send({COMMAND:'DONE',VERSION:pack.version});}
+  else if(cmd==='END'){transfer.finish();status='Available offline';send({COMMAND:'DONE',VERSION:pack.version});draw();}
   else if(cmd==='ERROR'){status=m.get('STATUS')||'Phone unavailable';}
  }catch(e){status=e.message==='Older feed; kept animations'?e.message:'Download rejected';console.log('TRANSFER ERROR',e.message);send({COMMAND:'ERROR',STATUS:String(e.message).slice(0,80)});}if(overlay==='library')draw();}
 });

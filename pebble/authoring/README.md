@@ -92,3 +92,13 @@ cue-plan download and narrow layout. Node tests cover readiness and runtime drif
 Keep the existing fast content/route/save/transfer regression suite for exporter or
 runtime changes; use the full native suite when native capabilities change. Ordinary
 content review never masquerades as a new full-library or hardware certification.
+
+## New motion through Refresh
+
+With a verified 1.6+ runtime, a cue may carry an inline [downloadable recipe](../scenes/downloadable.md).
+Review renders its actual keyframes and preserves them when downloading the cue plan.
+Content export accepts new `download-` IDs when the recorded runtime has schema-1
+capability. Existing catalogue IDs keep their installed bindings. A supported new
+pose sequence or scene combination is content; a new rig, drawing primitive,
+font or asset is still a native change. Recording capability requires the matching
+`downloadable-report.json`, not a manually edited version number.

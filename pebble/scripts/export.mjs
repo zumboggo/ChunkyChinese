@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {validSceneWire} from './downloadable-scene.mjs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
@@ -31,7 +32,7 @@ export function exportEpisode(d,id='supportive-11',direction=loadDirection(id)) 
  for(const raw of d.script.split('\n')){
   const line=raw.trim(); if(!line||line==='story 2')continue;
   let m;
-  if((m=line.match(/^label (\S+)$/))){if(Object.hasOwn(labels,m[1]))throw Error('Duplicate label: '+m[1]);labels[m[1]]=nodes.length;choice=null;if(cues.has(m[1]))nodes.push({type:'animation',id:cues.get(m[1])});continue;}
+  if((m=line.match(/^label (\S+)$/))){if(Object.hasOwn(labels,m[1]))throw Error('Duplicate label: '+m[1]);labels[m[1]]=nodes.length;choice=null;if(cues.has(m[1]))nodes.push({type:'animation',...(typeof cues.get(m[1])==='string'?{id:cues.get(m[1])}:cues.get(m[1]))});continue;}
   if((m=line.match(/^scene (\S+)$/))){scene=m[1];narrator=scene==='restaurant'?'YoungAlden':'Alden';pending={actor:narrator,emotion:'thoughtful',scene};continue;}
   if((m=line.match(/^show (\S+) (\S+)/))){cast.add(m[1]);if(m[1]===narrator)pending={actor:m[1],emotion:emotion(m[1],m[2]),scene};continue;}
   if((m=line.match(/^choice (\S+)$/))){choice={type:'choice',id:m[1],options:[]};nodes.push(choice);continue;}
@@ -71,7 +72,7 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
  const pack=exportEpisode(d,source);coverage(pack,fs.readFileSync(glyphPath,'utf8'));
  const missing=pack.art.filter(n=>!art[n]&&!art[n+'-full']);
  if(missing.length)throw Error('Portrait/art update needed for '+source+': '+missing.join(', '));
- validate(pack,fs.readFileSync(glyphPath,'utf8'),n=>!!art[n]||!!art[n+'-full']);
+ validate(pack,fs.readFileSync(glyphPath,'utf8'),n=>!!art[n]||!!art[n+'-full'],validSceneWire);
  pack.version=crypto.createHash('sha256').update(JSON.stringify({...pack,version:''})).digest('hex').slice(0,12);
  // Enforce the tested watch memory envelope before shipping a new package.
  const wireRecord=x=>JSON.stringify(x).replace(/[^\x20-\x7e]/g,c=>'\\u'+c.charCodeAt(0).toString(16).padStart(4,'0'));
@@ -87,7 +88,7 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
  for(const [name,file] of [['legacy','legacy-v1-anchors.json'],['upgrade','legacy-v1.1-anchors.json']]){
   const previous=JSON.parse(fs.readFileSync(path.join(root,'content',file)));
   const mapping=migrationMap(pack,previous);
-  fs.writeFileSync(path.join(root,'reader/src/embeddedjs',name+'.js'),'export default '+JSON.stringify(mapping).replace(JSON.stringify(mapping.indices),'new Int16Array('+JSON.stringify(mapping.indices)+')')+';\n');
+  fs.writeFileSync(path.join(root,'reader/src/embeddedjs',name+'.js'),'export default '+JSON.stringify({...mapping,indices:mapping.indices.map(n=>String.fromCharCode(n+33)).join('')})+';\n');
  }
  const meta={...pack};delete meta.nodes;
  let byteOffset=records[0].length+1;const spans=records.slice(1).map(r=>{const pair=[byteOffset,r.length];byteOffset+=r.length+1;return pair;});
@@ -96,7 +97,7 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/episode.js'),'// Generated: parse only the current node to fit watch RAM.\nconst meta='+JSON.stringify(meta)+';\nconst rows='+JSON.stringify(pack.nodes.map(n=>JSON.stringify(n)))+';\nlet index=-1,node;meta.nodeCount=rows.length;meta.nodeAt=i=>{if(index!==i){node=JSON.parse(rows[i]);index=i;}return node;};export default meta;\n');
  const glyphs=fs.readFileSync(glyphPath,'utf8');const han=[...glyphs].filter(c=>/\p{Script=Han}/u.test(c)).join('');
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/glyphs.js'),'export default '+JSON.stringify(glyphs)+';\n');
- const manifest={ffi:{functions:{showPortrait:{arguments:['uint32_t','uint32_t'],returns:'void'},showScene:{arguments:['uint32_t'],returns:'void'},sceneSelect:{arguments:[],returns:'uint32_t'},setBackgroundMotion:{arguments:['uint32_t'],returns:'void'},storySize:{arguments:[],returns:'uint32_t'},readStoryNode:{arguments:['uint32_t'],returns:'char*'},readStory:{arguments:['uint32_t','uint32_t'],returns:'char*'}}},include:['$(MODDABLE)/examples/manifest_mod.json'],modules:{'*':['./main','./native','./bundled','./reader','./layout','./transfer','./glyphs','./art','./wire','./legacy','./upgrade','./scenes','./completion']}};
+ const manifest={ffi:{functions:{showPortrait:{arguments:['uint32_t','uint32_t'],returns:'void'},recipeData:{arguments:['uint32_t','int32_t'],returns:'uint32_t'},showScene:{arguments:['uint32_t'],returns:'void'},sceneSelect:{arguments:[],returns:'uint32_t'},setBackgroundMotion:{arguments:['uint32_t'],returns:'void'},storySize:{arguments:[],returns:'uint32_t'},readStoryNode:{arguments:['uint32_t'],returns:'char*'},readStory:{arguments:['uint32_t','uint32_t'],returns:'char*'}}},include:['$(MODDABLE)/examples/manifest_mod.json'],modules:{'*':['./main','./native','./bundled','./reader','./layout','./transfer','./glyphs','./art','./wire','./legacy','./upgrade','./scenes','./completion']}};
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
  console.log(JSON.stringify({id:source,nodes:pack.nodes.length,choices:pack.nodes.filter(n=>n.type==='choice').length,phrases:pack.nodes.reduce((s,n)=>s+(n.phrases?.length||0)+(n.options||[]).reduce((t,o)=>t+o.phrases.length,0),0),bytes:Buffer.byteLength(data),han:han.length}));
 }

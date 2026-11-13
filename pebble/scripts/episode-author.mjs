@@ -29,6 +29,7 @@ if(command==='catalogue'){
  if(command==='content'){
   if(result.errors.length)throw Error(result.errors.join('\n'));
   if(!result.runtime.compatible)throw Error('Content-only export blocked by runtime drift: '+result.runtime.changes.join(', '));
+  if(result.recipeSchema>(loadProfile().recipeSchema||0))throw Error('Install a verified downloadable-scene runtime first');
   if(result.sceneIds.some(id=>!loadProfile().sceneIds.includes(id)))throw Error('Scene is absent from recorded runtime');
   const profile=loadProfile(),relative='.local/content/'+result.id+'/'+result.pack.version+'.json',data=JSON.stringify(result.pack)+'\n',target=new URL(relative,root);
   if(fs.existsSync(target)&&fs.readFileSync(target,'utf8')!==data)throw Error('Immutable content version collision');

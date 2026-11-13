@@ -67,8 +67,8 @@ test('selected '+pack.id+': every branch preserves source text, choices, rejoins
 test('selected migration descriptors belong to this episode only',()=>{
  for(const [generated,file] of [[legacy,'legacy-v1-anchors.json'],[upgrade,'legacy-v1.1-anchors.json']]){
   const previous=JSON.parse(fs.readFileSync(new URL('content/'+file,root)));
-  assert.deepEqual({...generated,indices:Array.from(generated.indices)},migrationMap(pack,previous));assert.equal(generated.id,pack.id);
-  if(previous.id!==pack.id){assert.equal(generated.version,'');assert.deepEqual(Array.from(generated.indices),[]);}
+  assert.deepEqual({...generated,indices:Array.from(generated.indices,c=>typeof c==='string'?c.charCodeAt(0)-33:c)},migrationMap(pack,previous));assert.equal(generated.id,pack.id);
+  if(previous.id!==pack.id){assert.equal(generated.version,'');assert.deepEqual(Array.from(generated.indices,c=>typeof c==='string'?c.charCodeAt(0)-33:c),[]);}
  }
 });
 test('episode IDs reject path traversal and malformed targets before export',()=>{

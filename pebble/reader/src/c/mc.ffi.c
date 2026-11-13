@@ -5,6 +5,7 @@
 txAPI* XS = NULL;
 
 extern void showPortrait(uint32_t arg0, uint32_t arg1);
+extern uint32_t recipeData(uint32_t arg0, int32_t arg1);
 extern void showScene(uint32_t arg0);
 extern uint32_t sceneSelect();
 extern void setBackgroundMotion(uint32_t arg0);
@@ -16,6 +17,13 @@ static void xs_showPortrait(txMachine* the) {
 	uint32_t arg0 = (uint32_t)XS->toUnsigned(the, mxArgv(0));
 	uint32_t arg1 = (uint32_t)XS->toUnsigned(the, mxArgv(1));
 	showPortrait(arg0, arg1);
+}
+
+static void xs_recipeData(txMachine* the) {
+	uint32_t arg0 = (uint32_t)XS->toUnsigned(the, mxArgv(0));
+	int32_t arg1 = (int32_t)XS->toInteger(the, mxArgv(1));
+	uint32_t result = recipeData(arg0, arg1);
+	XS->fromUnsigned(the, mxResult, (txUnsigned)result);
 }
 
 static void xs_showScene(txMachine* the) {
@@ -66,6 +74,10 @@ void fxBuildFFI(txMachine* the, txAPI* api) {
 	XS->newHostFunction(the, xs_showPortrait, 2, 0, 0);
 	XS->push(the, mxThis);
 	XS->defineID(the, XS->id(the, "showPortrait"), 0, 0x0E);
+	XS->pop(the);
+	XS->newHostFunction(the, xs_recipeData, 2, 0, 0);
+	XS->push(the, mxThis);
+	XS->defineID(the, XS->id(the, "recipeData"), 0, 0x0E);
 	XS->pop(the);
 	XS->newHostFunction(the, xs_showScene, 1, 0, 0);
 	XS->push(the, mxThis);

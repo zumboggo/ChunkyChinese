@@ -32,7 +32,10 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
  const lib=readLibrary(),pbw=read('release/chunky-chinese-time2-'+build.episodeId+'-v'+build.appVersion+'.pbw');
  if(!build.nativeEpisodeVerified||build.pbwSha256!==hash(pbw)||emulator.pbwSha256!==build.pbwSha256||build.librarySha256!==hash(read('scenes/library.json')))throw Error('Release package/library and native verification evidence do not agree');
  if(lib.scenes.some(s=>!emulator.scenes?.some(r=>r.id===s.id)))throw Error('Full native scene verification required before recording runtime');
- const profile={schema:1,appVersion:build.appVersion,pbwSha256:build.pbwSha256,evidence:reportDir,sceneIds:lib.scenes.map(s=>s.id),files:runtimeFiles()};
+ const recipeReport=new URL('downloadable-report.json',base);
+ const recipeEvidence=fs.existsSync(recipeReport)?JSON.parse(fs.readFileSync(recipeReport)):null;
+ const recipeSchema=recipeEvidence?.pbwSha256===build.pbwSha256&&recipeEvidence.newRecipesTransferredWithoutRebuild>=2?1:0;
+ const profile={recipeSchema,schema:1,appVersion:build.appVersion,pbwSha256:build.pbwSha256,evidence:reportDir,sceneIds:lib.scenes.map(s=>s.id),files:runtimeFiles()};
  fs.writeFileSync(new URL('authoring/runtime-profile.json',root),JSON.stringify(profile,null,2)+'\n');
  console.log('Recorded verified runtime '+profile.appVersion+'; content-only exports will reject runtime drift.');
 }

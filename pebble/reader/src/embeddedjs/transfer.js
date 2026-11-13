@@ -2,7 +2,7 @@ import {sceneIds} from './scenes.js';
 import {nodeAt,nodeCount} from './reader.js';
 // Adler-32 over ASCII wire data; bounded integer arithmetic works on Alloy's float build.
 export function checksum(text){let a=1,b=0;for(let i=0;i<text.length;i++){a=(a+text.charCodeAt(i))%65521;b=(b+a)%65521;}return (b*65536+a).toString(16);}
-export function validate(pack,glyphs,availableArt){
+export function validate(pack,glyphs,availableArt,recipeValidator=()=>false){
  if(pack?.format!==1||!/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*-\d+(?:-v\d+)?$/.test(pack.id)||!/^\w{12}$/.test(pack.version)||(!Array.isArray(pack.nodes)&&typeof pack.nodeAt!=='function')||nodeCount(pack)<1||nodeCount(pack)>160)throw Error('Invalid episode');
  if(!Number.isInteger(pack.entry)||pack.entry<0||pack.entry>=nodeCount(pack))throw Error('Invalid entry');
  let ending=false;
@@ -11,7 +11,7 @@ export function validate(pack,glyphs,availableArt){
  for(let i=0;i<nodeCount(pack);i++){const n=nodeAt(pack,i);if(!['line','choice','goto','reaction','animation','end'].includes(n.type))throw Error('Unknown node');if(n.type==='end')ending=true;if(n.type==='goto')target(n.to);
  if(n.type==='line'){if(!n.phrases?.length)throw Error('Empty line');n.phrases.forEach(text);}
  if(n.type==='choice'){if(!n.options||n.options.length<2||n.options.length>4)throw Error('Invalid choice');for(const o of n.options){target(o.to);if(!o.phrases?.length)throw Error('Empty choice');o.phrases.forEach(text);}}
- if(n.type==='animation'&&!Object.prototype.hasOwnProperty.call(sceneIds,n.id))throw Error('Animation update needed');
+ if(n.type==='animation'){if(n.recipe!==undefined){if(typeof n.id!=='string'||!/^download-[a-z0-9-]+$/.test(n.id)||n.id.length>64||typeof n.recipe!=='string'||n.recipe.length>512||!recipeValidator(n.recipe))throw Error('Animation recipe update needed');}else if(!Object.prototype.hasOwnProperty.call(sceneIds,n.id))throw Error('Animation update needed');}
  if(n.type==='reaction'&&!availableArt(n.actor+'-'+n.emotion))throw Error('Missing portrait');}
  if(pack.cover&&!availableArt(pack.cover))throw Error('Missing cover');
  if(!ending||!availableArt('opening')||!availableArt('closing'))throw Error('Incomplete episode');

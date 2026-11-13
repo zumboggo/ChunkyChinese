@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {validSceneWire} from './downloadable-scene.mjs';
 import {exportEpisode} from './export.mjs';
 import {episodeId} from './episode-target.mjs';
 import {readLibrary} from './scene-library.mjs';
@@ -16,7 +17,7 @@ export function analyse(id,overrides={}){
  result.missingGlyphs=[...new Set(pack.nodes.flatMap(n=>[...(n.phrases||[]),...(n.options||[]).flatMap(o=>o.phrases)]).flatMap(p=>[...p.zh+p.py+p.en]).filter(c=>!glyphs.includes(c)))];
  if(result.missingArt.length)result.errors.push('Missing portraits: '+result.missingArt.join(', '));
  if(result.missingGlyphs.length)result.errors.push('Missing glyphs: '+result.missingGlyphs.join(''));
- try{validate(pack,glyphs,n=>!!art[n]||!!art[n+'-full']);}catch(e){result.errors.push(e.message);}
+ try{validate(pack,glyphs,n=>!!art[n]||!!art[n+'-full'],validSceneWire);}catch(e){result.errors.push(e.message);}
  const metrics=JSON.parse(read('content/font-metrics.json'));
  try{
   const measure=(s,k)=>[...s].reduce((v,c)=>{if(metrics[k][c]===undefined)throw Error('Unmeasured glyph: '+c);return v+metrics[k][c];},0);
@@ -28,16 +29,16 @@ export function analyse(id,overrides={}){
  const meta={...pack,nodeCount:pack.nodes.length};delete meta.nodes;
  const records=[meta,...pack.nodes].map(wireRecord);result.wireBytes=records.reduce((a,s)=>a+s.length+1,0);result.maxRecordBytes=Math.max(...records.map(s=>s.length+1));
  if(result.wireBytes>65536||result.maxRecordBytes>2048||pack.nodes.length>160)result.errors.push('Episode exceeds reader transfer/resource limits');
- const cues=new Map(((overrides.direction===undefined?loadDirection(id):overrides.direction)?.cues||[]).map(c=>[c.anchor,c.scene]));let previous='',section='opening';
+ const cues=new Map(((overrides.direction===undefined?loadDirection(id):overrides.direction)?.cues||[]).map(c=>[c.anchor,c]));let previous='',section='opening';
  for(const line of source.script.split('\n').map(s=>s.trim())){
-  const label=line.match(/^label (\S+)$/);if(label){if(cues.has(label[1]))result.shots.push({anchor:label[1],scene:cues.get(label[1]),section,passage:previous});else section=label[1];}
+  const label=line.match(/^label (\S+)$/);if(label){if(cues.has(label[1]))result.shots.push({anchor:label[1],scene:cues.get(label[1]).scene,...(cues.get(label[1]).recipe?{recipe:cues.get(label[1]).recipe}:{}),section,passage:previous});else section=label[1];}
   const speech=line.match(/^\w+(?: \[[^\]]+\])?: (.+)$/);if(speech)previous=speech[1];
  }
  const assets=JSON.parse(read('reader/package.json')).pebble.resources.media;
  let used=0,unused=0;for(const [i,a] of assets.entries())if(a.file.startsWith('portraits/')){const size=read('reader/resources/'+a.file).length;const needed=pack.art.some(n=>(art[n]||art[n+'-full'])===i+1);if(needed)used+=size;else unused+=size;}
  result.portraitStorage={usedBytes:used,unusedBytes:unused,note:'Stored RLE resource bytes, not runtime heap savings.'};
- result.sceneIds=[...new Set(result.shots.map(s=>s.scene))];const library=readLibrary();result.totalScenes=library.scenes.length;
- const duration=s=>s.duration+(s.establish||0);result.reviewPlaybackSeconds=library.scenes.filter(s=>result.sceneIds.includes(s.id)).reduce((n,s)=>n+duration(s),0)/1000;result.fullLibraryPlaybackSeconds=library.scenes.reduce((n,s)=>n+duration(s),0)/1000;
+ result.sceneIds=[...new Set(result.shots.filter(s=>!s.recipe).map(s=>s.scene))];const library=readLibrary();result.totalScenes=library.scenes.length;result.recipeSchema=result.shots.some(s=>s.recipe)?1:0;
+ const duration=s=>s.duration+(s.establish||0);result.reviewPlaybackSeconds=library.scenes.filter(s=>result.sceneIds.includes(s.id)).reduce((n,s)=>n+duration(s),0)/1000+result.shots.filter(s=>s.recipe).reduce((n,s)=>n+s.recipe.keys.at(-1)[0],0)/1000;result.fullLibraryPlaybackSeconds=library.scenes.reduce((n,s)=>n+duration(s),0)/1000;
  result.warnings=result.shots.length?[]:['No animation cues are authored for this episode.'];
  return result;
 }

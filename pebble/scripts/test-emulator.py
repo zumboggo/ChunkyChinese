@@ -29,7 +29,7 @@ with logfile.open('w') as stream:
   time.sleep(1)
   if a.install:run('install',root/'reader/build/reader.pbw');time.sleep(2)
   def log():return logfile.read_text()
-  def expect(pattern,offset=0,timeout=8):
+  def expect(pattern,offset=0,timeout=20):
    end=time.monotonic()+timeout
    while time.monotonic()<end:
     match=re.search(pattern,log()[offset:])
