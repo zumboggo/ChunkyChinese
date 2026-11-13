@@ -33,7 +33,7 @@ for(const candidate of saves){try{let raw=readFile(candidate.path);const h=raw.i
 if(localStorage.getItem('readerRevision')!=='2'&&pack.id===bundled.id&&pack.version!==bundled.version){state=pack.version===legacy.version?migrateLegacy(bundled,state,legacy):migrate(pack,bundled,state);upgraded=true;pack=bundled;activeSlot=null;localStorage.removeItem('activeEpisode');}
 localStorage.setItem('readerRevision','2');
 Debug.gc();
-console.log('Save restored',state.n);let overlay=null,menuIndex=0,helpPage=0,status='Available offline',connected=false,sending=false,queued=null,lastImage=null,lastImageName=null;
+console.log('Save restored',state.n);let overlay=null,menuIndex=0,helpPage=0,status='Available offline',connected=false,sending=false,queued=[],lastImage=null,lastImageName=null;
 function save(){try{saveGeneration++;writeFile('progress-'+(saveGeneration%2),JSON.stringify({generation:saveGeneration,state:{...state,history:state.history.slice(-24)}}));}catch(e){status='Save failed - keep app open';console.log('SAVE ERROR',e.message);}}
 if(upgraded)save();
 function measure(text,kind){return render.getTextWidth(text,fonts[kind]);}
@@ -115,14 +115,15 @@ const transfer=new Transfer({
  activate(next){localStorage.setItem('activeEpisode',staging);activeSlot=staging;state=migrate(pack,next,state);pack=next;save();}
 },p=>validate(p,glyphs,hasArt));
 let channel;
-function send(obj){queued=obj;if(channel&&connected&&!sending){try{sending=true;const out=queued;queued=null;channel.write(new Map(Object.entries(out)));}catch(e){queued=obj;sending=false;console.log('SEND',e.message);}}}
+function send(obj){queued.push(obj);flush();}
+function flush(){if(channel&&connected&&!sending&&queued.length){const out=queued.shift();try{sending=true;channel.write(new Map(Object.entries(out)));}catch(e){queued.unshift(out);sending=false;console.log('SEND',e.message);}}}
 channel=new Message({input:1024,output:256,keys:['COMMAND','DATA','OFFSET','TOTAL','CHECKSUM','VERSION','STATUS'],
- onWritable(){connected=true;sending=false;if(queued)send(queued);},
+ onWritable(){connected=true;sending=false;flush();},
  onSuspend(){connected=false;sending=false;},
  onReadable(){const m=this.read();try{
   const cmd=m.get('COMMAND');
   if(cmd==='BEGIN')console.log('Transfer starting',m.get('TOTAL'),m.get('CHECKSUM'));
-  if(cmd==='HELLO'){/* Native handshake. */}
+  if(cmd==='HELLO'){send({COMMAND:'READY'});}
   else if(cmd==='BEGIN'){transfer.begin(m.get('TOTAL'),m.get('CHECKSUM'),m.get('VERSION'));status='Downloading 0%';send({COMMAND:'ACK',OFFSET:0});}
   else if(cmd==='CHUNK'){if(checksum(m.get('DATA'))!==m.get('CHECKSUM'))throw Error('Chunk checksum '+m.get('OFFSET')+' '+checksum(m.get('DATA'))+'/'+m.get('CHECKSUM')+' len '+m.get('DATA').length);const offset=transfer.chunk(m.get('OFFSET'),m.get('DATA'));status='Downloading '+Math.floor(offset/transfer.pending.total*100)+'%';send({COMMAND:'ACK',OFFSET:offset});}
   else if(cmd==='END'){transfer.finish();status='Available offline';send({COMMAND:'DONE',VERSION:pack.version});}

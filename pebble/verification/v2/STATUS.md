@@ -13,11 +13,11 @@ David reported successful installation and use of version 1.0 on his phone/watch
 
 ## Verification
 
-- 37 Node tests pass: all 16 paths match original story responses/rejoins; one-pass progression, optional Chinese, explicit confirmation, save/upgrade migration, refresh, transfer corruption/interruption, and asset/glyph coverage.
+- 38 Node tests pass: all 16 paths match original story responses/rejoins; one-pass progression, optional Chinese, explicit confirmation, save/upgrade migration, refresh, transfer corruption/interruption, and asset/glyph coverage.
 - Native full-screen portrait inspected at 200 × 228. Full-screen images use four tiles and explicit C bitmap destruction, rather than relying on JavaScript bitmap lifetime. The FFI binding passes numbers only; portrait names remain local to the native code.
 - Pinyin/English and optional Chinese screenshots inspected, including the blue speaker caption.
 - Full offline native-renderer route completed to the closing image without allocation errors. Restarted midway and continued from the saved phrase. The layout model requires 269 Select presses versus 500 previously (46% fewer).
-- Final live-feed refresh is being verified after publishing the updated export.
+- Live-feed Refresh downloaded the published 39,890-character package and returned Available offline (`09-refreshed.png`), retaining the ending position. Startup HELLO now retries until the watch acknowledges READY; queued commands are preserved while that handshake completes.
 - Compiled fonts still include all 640 Han characters and tone-marked vowels. No changes to the phone app's released content or saves.
 
 The emulator is SDK 4.44 Emery with its phone simulator. Android settings and pairing are not represented by the phone simulator; real sunlight readability, battery use, and the revised physical button feel need David's feedback.

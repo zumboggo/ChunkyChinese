@@ -16,11 +16,18 @@ function load(){
  req.onload=function(){if(req.status<200||req.status>=300){fallback();return;}try{var p=JSON.parse(req.responseText);if(p.format!==1||!p.nodes||!p.version)throw Error('Bad episode');localStorage.setItem('episode-cache',JSON.stringify(p));begin(p);}catch(e){Pebble.sendAppMessage({COMMAND:'ERROR',STATUS:'Invalid episode download'});}};
  req.onerror=fallback;req.ontimeout=fallback;try{req.send();}catch(e){fallback();}
 }
-function hello(){Pebble.sendAppMessage({COMMAND:'HELLO'},function(){},function(){setTimeout(hello,1500);});}
-Pebble.addEventListener('ready',function(){hello();setTimeout(hello,1500);setTimeout(hello,4000);});
+var helloTimer=null,helloAttempts=0;
+function hello(){
+ if(helloTimer)clearTimeout(helloTimer);
+ if(++helloAttempts>20)return;
+ Pebble.sendAppMessage({COMMAND:'HELLO'},function(){},function(){});
+ helloTimer=setTimeout(hello,1500);
+}
+Pebble.addEventListener('ready',function(){helloAttempts=0;hello();});
 Pebble.addEventListener('appmessage',function(event){
  var m=event.payload;
- if(m.COMMAND==='LOAD')load();
+ if(m.COMMAND==='READY'){if(helloTimer)clearTimeout(helloTimer);helloTimer=null;}
+ else if(m.COMMAND==='LOAD')load();
  else if(m.COMMAND==='ACK'&&transfer){
   clearTimeout(timer);retries=0;var offset=Number(m.OFFSET);
   if(!Number.isInteger(offset)||offset<0||offset>transfer.data.length){stop();return;}
