@@ -7,13 +7,21 @@ try {
  const page=await browser.newPage({viewport:{width:736,height:800}});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.clock.install();
+ // Reproduce the embedded host: a hidden document and echoed saved-state events.
+ await page.evaluate(()=>{
+  Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});
+  window.openai={setWidgetState:async state=>{
+   window.dispatchEvent(new CustomEvent('openai:set_globals',{detail:{globals:{widgetState:state}}}));
+  }};
+ });
  await page.setContent(html);
  const root=page.locator('#alden-train-preview'),select=page.getByRole('button',{name:'Select'}),replay=page.getByRole('button',{name:'Replay'});
  const phase=async()=>root.getAttribute('data-phase');
  const pixels=async()=>page.locator('canvas.large').evaluate(c=>c.toDataURL());
  assert.equal(await phase(),'text');
  await select.click();assert.equal(await phase(),'establish');
- await page.clock.runFor(3100);assert.equal(await phase(),'waiting');
+ const startPixels=await pixels();await page.clock.runFor(1000);assert.notEqual(await pixels(),startPixels,'Animation must move even when host reports hidden');
+ await page.clock.runFor(2100);assert.equal(await phase(),'waiting');
  await page.clock.runFor(15000);assert.equal(await phase(),'waiting');
  await mkdir(new URL('./verification/',import.meta.url),{recursive:true});
  await page.getByRole('checkbox').check();
@@ -27,14 +35,15 @@ try {
  const held=await pixels();await page.clock.runFor(3000);assert.equal(await pixels(),held,'Final pose must stop redrawing');
  await page.screenshot({path:new URL('./verification/hold.png',import.meta.url).pathname});
  await page.keyboard.press('Enter');assert.equal(await phase(),'after');
- await replay.click();assert.equal(await phase(),'text');
- await select.click();await page.clock.runFor(500);await replay.click();
- await page.clock.runFor(6000);assert.equal(await phase(),'text','Replay must cancel old timers');
- await select.click();await page.clock.runFor(3100);await select.click();await page.clock.runFor(4100);
+ await replay.click();assert.equal(await phase(),'establish');
+ await page.clock.runFor(1800);await replay.click();
+ await page.clock.runFor(1800);assert.equal(await phase(),'establish','Replay must cancel old timers');
+ await page.clock.runFor(1400);assert.equal(await phase(),'waiting');
+ await select.click();await page.clock.runFor(4100);
  assert.equal(await phase(),'hold');await select.click();assert.equal(await phase(),'hold','Reject accidental boundary click');
  await page.clock.runFor(600);await select.click();assert.equal(await phase(),'after');
  await page.setViewportSize({width:320,height:800});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=320),true,'No narrow-screen overflow');
  assert.deepEqual(errors,[]);
- console.log('PASS: mouse/Enter flow, indefinite wait, key repeat guard, boundary click guard, frozen hold, replay cancellation, native view, 320px layout, no browser errors.');
+ console.log('PASS: mouse/Enter flow, indefinite wait, key repeat guard, boundary click guard, frozen hold, replay cancellation, native view, 320px layout, hidden-host animation, echoed state events, no browser errors.');
 } finally {await browser.close();}

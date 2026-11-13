@@ -130,20 +130,22 @@
     function stop(){if(timer!==null){clearInterval(timer);timer=null;}}
     function start(){stop();last=performance.now();timer=setInterval(tick,1000/TIMING.fps);}
     function change(next){phase=next;elapsed=0;holdAge=performance.now();ui();draw();if(['establish','waiting','pickup'].includes(phase))start();else stop();}
-    function tick(){if(!root.isConnected){stop();return;}const now=performance.now(),dt=Math.min(now-last,250);last=now;if(document.hidden)return;elapsed+=dt;sceneTime+=dt;
+    function tick(){if(!root.isConnected){stop();return;}const now=performance.now(),dt=Math.min(now-last,250);last=now;elapsed+=dt;sceneTime+=dt;
       if(phase==='establish'&&elapsed>=TIMING.establish){change('waiting');return;}
       if(phase==='pickup'&&elapsed>=TIMING.pickup){change('hold');return;}draw();
     }
     function persist(){try{window.openai?.setWidgetState?.({modelContent:{scene:'Alden on the train',phase},privateContent:{native:root.querySelector('[data-size]').checked}})?.catch(()=>{});}catch{}}
     function activate(){if(phase==='text')change('establish');else if(phase==='waiting')change('pickup');else if(phase==='hold'&&performance.now()-holdAge>=TIMING.holdGuard)change('after');persist();}
     select.addEventListener('click',activate);
-    replay.addEventListener('click',()=>{sceneTime=0;change('text');persist();});
+    replay.addEventListener('click',()=>{sceneTime=0;enterDown=false;change('establish');persist();});
     // A held Enter cannot cross the animation boundary. Preserve native Replay/checkbox keys.
     document.addEventListener('keydown',e=>{if(e.key!=='Enter'||e.target===replay||e.target.tagName==='INPUT')return;e.preventDefault();if(!e.repeat&&!enterDown){enterDown=true;activate();}});
     document.addEventListener('keyup',e=>{if(e.key==='Enter')enterDown=false;});
     window.addEventListener('blur',()=>{enterDown=false;});
     root.querySelector('[data-size]').addEventListener('change',e=>{root.querySelector('[data-native]').hidden=!e.target.checked;persist();});
-    function restore(saved){if(!saved)return;const s=saved.modelContent;if(s?.scene==='Alden on the train'){sceneTime=0;change(['waiting','hold','after'].includes(s.phase)?s.phase:'text');}const show=!!saved.privateContent?.native;root.querySelector('[data-size]').checked=show;root.querySelector('[data-native]').hidden=!show;}
+    // Host state events echo our own saves. Restore display preferences only:
+    // replaying a transient phase here would restart/cancel an active animation.
+    function restore(saved){if(!saved)return;const show=!!saved.privateContent?.native;root.querySelector('[data-size]').checked=show;root.querySelector('[data-native]').hidden=!show;}
     ui();draw();restore(window.openai?.widgetState);
     window.addEventListener('openai:set_globals',e=>restore(e.detail?.globals?.widgetState));
   })();
