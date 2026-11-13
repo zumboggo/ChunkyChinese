@@ -1,0 +1,151 @@
+<div id="alden-train-preview" aria-label="Train scene preview">
+  <style>
+    #alden-train-preview { color: light-dark(#252a30,#e7e9eb); font-family: system-ui,sans-serif; color-scheme: light dark; }
+    #alden-train-preview .scene-views { display:flex; align-items:center; justify-content:center; gap:32px; flex-wrap:wrap; padding:20px 0; }
+    #alden-train-preview figure { margin:0; max-width:100%; }
+    #alden-train-preview canvas { display:block; image-rendering:pixelated; background:#fff; }
+    #alden-train-preview .large { width:400px; max-width:100%; height:auto; }
+    #alden-train-preview figcaption { text-align:center; margin-top:10px; font-size:12px; opacity:.75; }
+    #alden-train-preview .controls { display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; }
+    #alden-train-preview button { font:500 14px system-ui; padding:12px 20px; border:1px solid light-dark(#bac2c7,#626b73); border-radius:8px; background:light-dark(#f2f4f5,#30373d); color:inherit; }
+    #alden-train-preview button[data-action="select"] { background:light-dark(#243a42,#d5e5eb); color:light-dark(#fff,#172c35); border-color:transparent; }
+    #alden-train-preview button:disabled { opacity:.45; }
+    #alden-train-preview label { display:flex; align-items:center; gap:7px; font-size:13px; min-height:44px; }
+    #alden-train-preview .status { text-align:center; font-size:13px; min-height:20px; margin:14px 0 0; }
+    #alden-train-preview [hidden] { display:none; }
+    @media(max-width:450px) { #alden-train-preview .large { width:300px; } }
+  </style>
+  <div class="scene-views viz-dotted-background">
+    <figure><canvas class="large" width="200" height="228" role="img" aria-label="Alden's train journey"></canvas><figcaption>Enlarged · 200 × 228 pixels</figcaption></figure>
+    <figure data-native hidden><canvas class="native" width="200" height="228" role="img" aria-label="The same scene at native pixel size"></canvas><figcaption>Native pixels · physical size varies by screen</figcaption></figure>
+  </div>
+  <div class="controls">
+    <button type="button" data-action="select">Select ↵</button>
+    <button type="button" data-action="replay">Replay</button>
+    <label><input type="checkbox" data-size> Show native size</label>
+  </div>
+  <p class="status" aria-live="polite"></p>
+  <script>
+  (() => {
+    const root=document.getElementById('alden-train-preview');
+    const canvas=root.querySelector('.large'),ctx=canvas.getContext('2d');
+    const native=root.querySelector('.native').getContext('2d');
+    const select=root.querySelector('[data-action="select"]'),replay=root.querySelector('[data-action="replay"]');
+    const status=root.querySelector('.status');
+    // Four-level RGB channels match the Pebble's 64-colour palette.
+    const C={paper:'#ffffff',ink:'#000055',rail:'#aaaaaa',far:'#aaaaaa',near:'#555555',coat:'#555555',shirt:'#aaaaaa',hair:'#aa5500',skin:'#ffaa55',phone:'#005555',glow:'#55aaaa'};
+    const TIMING={establish:3000,pickup:4000,fps:12,holdGuard:450};
+    // Small reusable pose records, independent of the renderer and story state.
+    // head x/y/rotation, shoulder x/y, hip x/y, hand x/y, gaze, brow, phone rotation.
+    const POSES={
+      seated:{head:[78,81,-.08],shoulder:[83,111],hip:[80,146],hand:[115,147],gaze:-1,brow:0,phone:-1.3},
+      glance:{head:[81,84,.16],shoulder:[84,112],hip:[80,146],hand:[115,147],gaze:1,brow:0,phone:-1.3},
+      lean:{head:[87,88,.21],shoulder:[91,116],hip:[81,146],hand:[118,146],gaze:1,brow:0,phone:-1.3},
+      reach:{head:[93,89,.22],shoulder:[98,116],hip:[82,146],hand:[142,148],gaze:1,brow:0,phone:-1.3},
+      lift:{head:[87,84,.12],shoulder:[90,112],hip:[80,146],hand:[132,125],gaze:1,brow:.5,phone:-.5},
+      hold:{head:[82,81,.06],shoulder:[85,111],hip:[80,146],hand:[120,115],gaze:1,brow:1.5,phone:-.12},
+      settle:{head:[82,83,.1],shoulder:[85,112],hip:[80,146],hand:[119,118],gaze:1,brow:.25,phone:-.12}
+    };
+    const KEYS=[{t:0,pose:'glance'},{t:600,pose:'lean'},{t:1450,pose:'reach'},{t:1800,pose:'reach'},{t:2600,pose:'lift'},{t:3250,pose:'hold'},{t:4000,pose:'settle'}];
+    const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
+    function blend(a,b,t){const p={};t=smooth(t);for(const k in a)p[k]=Array.isArray(a[k])?a[k].map((v,i)=>v+(b[k][i]-v)*t):a[k]+(b[k]-a[k])*t;return p;}
+    function sample(ms){for(let i=1;i<KEYS.length;i++){if(ms<=KEYS[i].t)return blend(POSES[KEYS[i-1].pose],POSES[KEYS[i].pose],(ms-KEYS[i-1].t)/(KEYS[i].t-KEYS[i-1].t));}return POSES.settle;}
+    let phase='text',elapsed=0,sceneTime=0,holdAge=0,last=performance.now(),timer=null,enterDown=false;
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function line(points,color,width=1){ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.stroke();}
+    function poly(points,fill){ctx.fillStyle=fill;ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.closePath();ctx.fill();}
+    function circle(x,y,r,fill){ctx.fillStyle=fill;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();}
+    function rect(x,y,w,h,fill){ctx.fillStyle=fill;ctx.fillRect(x,y,w,h);}
+    function scenery(t){
+      rect(0,0,200,228,C.paper);
+      ctx.save();ctx.beginPath();ctx.rect(13,22,174,89);ctx.clip();
+      line([[0,95],[200,95]],C.far);
+      const scroll=reduced?0:t*.007;
+      for(let i=-1;i<7;i++){const x=i*44-scroll%44,h=23+(i+8)%3*13;line([[x,94],[x,94-h],[x+29,94-h],[x+29,94]],C.far);for(let j=0;j<3;j++)line([[x+6+j*7,99-h],[x+6+j*7,103-h]],C.far);}
+      const pole=190-((reduced?0:t*.045)%250);line([[pole,20],[pole,110]],C.near,2);line([[pole-12,33],[pole+13,33]],C.near);
+      ctx.restore();
+      line([[10,115],[10,19],[190,19],[190,115],[10,115]],C.near,2);
+      line([[15,110],[15,25],[185,25],[185,110]],C.rail);
+      line([[0,124],[200,124]],C.rail);
+      // Seat, backrest and perspective floor remain spare and readable.
+      line([[33,143],[33,120],[173,120],[173,143]],C.rail,2);
+      poly([[31,145],[171,145],[184,156],[44,156]],C.paper);
+      line([[31,145],[171,145],[184,156],[44,156],[31,145]],C.near,2);
+      line([[44,157],[44,178],[181,178],[181,157]],C.rail);
+      line([[53,179],[50,196]],C.near,2);line([[170,179],[175,196]],C.near,2);
+      line([[0,199],[200,199]],C.rail);line([[28,200],[0,225]],C.rail);line([[166,200],[199,225]],C.rail);
+    }
+    function phone(x,y,angle){ctx.save();ctx.translate(x,y);ctx.rotate(angle);rect(-5,-9,10,18,C.ink);rect(-3,-6,6,11,C.glow);rect(-1,7,2,1,C.paper);ctx.restore();}
+    function elbow(s,h){const dx=h[0]-s[0],dy=h[1]-s[1],d=Math.max(1,Math.hypot(dx,dy)),a=(26*26-29*29+d*d)/(2*d),b=Math.sqrt(Math.max(0,26*26-a*a));return[s[0]+a*dx/d-b*dy/d,s[1]+a*dy/d+b*dx/d];}
+    function character(p,attached,t){
+      const sway=phase==='hold'||reduced?0:Math.sin(t*.002)*.65;
+      ctx.save();ctx.translate(sway,0);
+      const [hx,hy,angle]=p.head,[sx,sy]=p.shoulder,[ix,iy]=p.hip,hand=p.hand;
+      // Far leg and arm first, then torso and near arm.
+      line([[ix-5,iy],[105,161],[102,190]],C.ink,9);line([[101,191],[112,193]],C.ink,7);
+      line([[ix+4,iy],[123,159],[127,190]],C.ink,10);line([[127,191],[141,193]],C.ink,7);
+      line([[sx-9,sy+2],[sx-15,132],[91,145]],C.ink,9);line([[sx-9,sy+2],[sx-15,132],[91,145]],C.coat,5);circle(92,145,3,C.skin);
+      poly([[sx-13,sy-4],[sx+9,sy-5],[ix+12,iy+2],[ix-12,iy+2]],C.ink);
+      poly([[sx-10,sy-3],[sx+7,sy-3],[ix+9,iy-2],[ix-9,iy-2]],C.coat);
+      poly([[sx-5,sy-4],[sx+4,sy-4],[ix+3,iy-5],[ix-3,iy-5]],C.shirt);
+      line([[sx-8,sy-4],[sx-3,sy+9],[sx-9,sy+13]],C.ink,2);line([[sx+6,sy-3],[sx+2,sy+10],[sx+8,sy+13]],C.ink,2);
+      line([[hx,hy+16],[sx-1,sy-3]],C.skin,6);
+      // Brown swept hair and grey ribbed collar echo the existing Alden art.
+      ctx.save();ctx.translate(hx,hy);ctx.rotate(angle);
+      circle(0,0,18,C.ink);circle(1,1,16,C.skin);circle(-15,3,4,C.skin);
+      poly([[-18,3],[-20,-9],[-15,-8],[-18,-17],[-9,-15],[-5,-22],[1,-18],[10,-19],[8,-15],[17,-11],[20,-4],[13,-7],[11,-2],[5,-10],[-2,-6],[-1,-13],[-11,-4],[-13,6]],C.ink);
+      poly([[-17,-10],[-10,-12],[-4,-18],[0,-14],[9,-16],[5,-11],[-6,-5],[-13,0]],C.hair);
+      const blink=(phase==='waiting'||phase==='establish')&&!reduced&&t%3900>3650;
+      const gaze=p.gaze;
+      if(blink){line([[-6,2],[-2,2]],C.ink);line([[6,2],[10,2]],C.ink);}else{rect(-6+gaze,0,2,3,C.ink);rect(6+gaze,0,2,3,C.ink);}
+      line([[-8,-4-p.brow],[-3,-5-p.brow]],C.ink,1.5);line([[5,-5-p.brow],[10,-4-p.brow]],C.ink,1.5);
+      line([[5,5],[8,6],[5,7]],C.hair);line([[0,11],[5,11.5]],C.ink);
+      ctx.restore();
+      const shoulder=[sx+7,sy+1],e=elbow(shoulder,hand);
+      line([shoulder,e,hand],C.ink,9);line([shoulder,e,hand],C.coat,5);
+      if(attached)phone(hand[0],hand[1]-2,p.phone);
+      circle(hand[0]-2,hand[1]+1,3,C.skin);line([[hand[0]-3,hand[1]],[hand[0]+1,hand[1]+2]],C.skin,2);
+      ctx.restore();
+    }
+    function words(lines,y=58){ctx.fillStyle=C.ink;ctx.font='20px sans-serif';lines.forEach((s,i)=>ctx.fillText(s,14,y+i*28));}
+    function draw(){
+      ctx.imageSmoothingEnabled=false;
+      if(phase==='text'||phase==='after'){
+        rect(0,0,200,228,C.paper);rect(14,23,22,2,C.phone);
+        words(phase==='text'?['The train rocks','gently. Alden’s','phone rests','beside him.']:['He looks at the','screen for a','moment before','reading.']);
+        ctx.fillStyle=C.phone;ctx.font='12px sans-serif';ctx.fillText('ALDEN',14,195);
+      }else{
+        scenery(sceneTime);
+        let pose=phase==='establish'?blend(POSES.seated,POSES.glance,(elapsed-1800)/1200):phase==='waiting'?POSES.glance:phase==='pickup'?sample(elapsed):POSES.settle;
+        const attached=phase==='hold'||(phase==='pickup'&&elapsed>=1450);
+        const sway=phase==='hold'||reduced?0:Math.sin(sceneTime*.002)*.65;
+        if(!attached)phone(142+sway,146,-1.3);
+        character(pose,attached,sceneTime);
+        if(phase==='waiting'){rect(0,204,200,24,C.ink);ctx.fillStyle=C.paper;ctx.font='16px sans-serif';ctx.textAlign='center';ctx.fillText('Pick up the phone',100,221);ctx.textAlign='left';}
+      }
+      native.clearRect(0,0,200,228);native.drawImage(canvas,0,0);
+    }
+    const captions={text:'Select or Enter to continue',establish:'',waiting:'Select or Enter to pick up the phone',pickup:'',hold:'Select or Enter to continue',after:'End of preview · Replay to watch again'};
+    function ui(){root.dataset.phase=phase;status.textContent=captions[phase];select.disabled=['establish','pickup','after'].includes(phase);canvas.setAttribute('aria-label',phase==='text'?'The train rocks gently. Alden’s phone rests beside him.':phase==='after'?'He looks at the screen for a moment before reading.':phase==='waiting'?'Alden looks down at the phone. Select to pick it up.':phase==='hold'?'Alden holds the phone and looks thoughtful. Select to continue.':'Alden sits on a moving train.');}
+    function stop(){if(timer!==null){clearInterval(timer);timer=null;}}
+    function start(){stop();last=performance.now();timer=setInterval(tick,1000/TIMING.fps);}
+    function change(next){phase=next;elapsed=0;holdAge=performance.now();ui();draw();if(['establish','waiting','pickup'].includes(phase))start();else stop();}
+    function tick(){if(!root.isConnected){stop();return;}const now=performance.now(),dt=Math.min(now-last,250);last=now;if(document.hidden)return;elapsed+=dt;sceneTime+=dt;
+      if(phase==='establish'&&elapsed>=TIMING.establish){change('waiting');return;}
+      if(phase==='pickup'&&elapsed>=TIMING.pickup){change('hold');return;}draw();
+    }
+    function persist(){try{window.openai?.setWidgetState?.({modelContent:{scene:'Alden on the train',phase},privateContent:{native:root.querySelector('[data-size]').checked}})?.catch(()=>{});}catch{}}
+    function activate(){if(phase==='text')change('establish');else if(phase==='waiting')change('pickup');else if(phase==='hold'&&performance.now()-holdAge>=TIMING.holdGuard)change('after');persist();}
+    select.addEventListener('click',activate);
+    replay.addEventListener('click',()=>{sceneTime=0;change('text');persist();});
+    // A held Enter cannot cross the animation boundary. Preserve native Replay/checkbox keys.
+    document.addEventListener('keydown',e=>{if(e.key!=='Enter'||e.target===replay||e.target.tagName==='INPUT')return;e.preventDefault();if(!e.repeat&&!enterDown){enterDown=true;activate();}});
+    document.addEventListener('keyup',e=>{if(e.key==='Enter')enterDown=false;});
+    window.addEventListener('blur',()=>{enterDown=false;});
+    root.querySelector('[data-size]').addEventListener('change',e=>{root.querySelector('[data-native]').hidden=!e.target.checked;persist();});
+    function restore(saved){if(!saved)return;const s=saved.modelContent;if(s?.scene==='Alden on the train'){sceneTime=0;change(['waiting','hold','after'].includes(s.phase)?s.phase:'text');}const show=!!saved.privateContent?.native;root.querySelector('[data-size]').checked=show;root.querySelector('[data-native]').hidden=!show;}
+    ui();draw();restore(window.openai?.widgetState);
+    window.addEventListener('openai:set_globals',e=>restore(e.detail?.globals?.widgetState));
+  })();
+  </script>
+</div>
