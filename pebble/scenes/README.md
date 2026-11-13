@@ -121,3 +121,9 @@ then reinstalls to check the ending save. Run it only after tests that need the
 original saved position. It never accesses phone or physical-watch saves.
 Reports and screenshots remain under `.local/emulator/` until selected evidence is
 copied into a release verification directory.
+
+## Routine episode production
+
+Use [the fast authoring workflow](../authoring/README.md) for batched asset preflight,
+a searchable recipe catalogue, episode-only visual review, and guarded content-only
+exports against a recorded native runtime. Native changes retain the full checks above.

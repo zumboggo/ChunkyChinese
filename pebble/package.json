@@ -11,7 +11,14 @@
     "build": "sh scripts/build.sh --dev",
     "release": "sh scripts/build.sh --release",
     "test:browser": "node preview/train-scene.test.mjs",
-    "test:emulator": "python3 scripts/test-emulator.py"
+    "test:emulator": "python3 scripts/test-emulator.py",
+    "catalogue": "node scripts/episode-author.mjs catalogue",
+    "preflight": "node scripts/episode-author.mjs preflight",
+    "review": "node scripts/episode-author.mjs review",
+    "content": "node scripts/episode-author.mjs content",
+    "direct": "node scripts/episode-author.mjs direct",
+    "runtime:record": "node scripts/runtime-profile.mjs",
+    "test:review": "node authoring/review.test.mjs"
   },
   "devDependencies": {
     "sharp": "0.35.3"

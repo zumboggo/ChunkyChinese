@@ -1,10 +1,11 @@
 import fs from 'node:fs';import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {runtimeFiles} from './runtime-profile.mjs';
 import {selectedPack} from './episode-target.mjs';
 const root=new URL('../',import.meta.url),pbw=fs.readFileSync(new URL('reader/build/reader.pbw',root));
 const pack=selectedPack(root,process.argv[2]);
 const verified=JSON.parse(execFileSync(process.env.PEBBLE_PYTHON||'python3',[fileURLToPath(new URL('scripts/verify-build-episode.py',root))],{encoding:'utf8'}));
 const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(new URL(p,root))).digest('hex');
-const report={schema:1,appVersion:verified.appVersion,nativeEpisodeVerified:true,episodeId:pack.id,episodeVersion:pack.version,pbwSha256:crypto.createHash('sha256').update(pbw).digest('hex'),pbwBytes:pbw.length,librarySha256:hash('scenes/library.json'),episodeSha256:hash('content/'+pack.id+'.json'),physicalWatchTested:false};
+const report={schema:1,runtimeFiles:runtimeFiles(),appVersion:verified.appVersion,nativeEpisodeVerified:true,episodeId:pack.id,episodeVersion:pack.version,pbwSha256:crypto.createHash('sha256').update(pbw).digest('hex'),pbwBytes:pbw.length,librarySha256:hash('scenes/library.json'),episodeSha256:hash('content/'+pack.id+'.json'),physicalWatchTested:false};
 fs.mkdirSync(new URL('.local/',root),{recursive:true});fs.writeFileSync(new URL('.local/build-report.json',root),JSON.stringify(report,null,2)+'\n');console.log(report);
