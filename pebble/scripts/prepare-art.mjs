@@ -24,7 +24,11 @@ for(const [name,size] of [['latin',24],['latin',20],['chinese',28]]){
  pkg.pebble.resources.media.push({type:'font',extended:true,name:'FONT_'+name.toUpperCase()+'_'+size,file:'fonts/'+name+'.ttf',characterRegex:'['+[...glyphs].filter(c=>name==='chinese'||!/[\u3400-\u9fff]/.test(c)).map(c=>'\\u'+c.charCodeAt(0).toString(16).padStart(4,'0')).join('')+']'});
  ids['font-'+name+'-'+size]=pkg.pebble.resources.media.length;
 }
-pkg.version='1.1.0';pkg.pebble.configPage='settings.html';pkg.pebble.capabilities=['configurable'];
+pkg.version='1.2.0';pkg.pebble.configPage='settings.html';pkg.pebble.capabilities=['configurable'];
 pkg.pebble.usesPermissions=[{name:'Internet',parameters:{domains:['raw.githubusercontent.com']},reason:'Download your selected Chinese episode package.',required:false}];
 fs.writeFileSync(pkgPath,JSON.stringify(pkg,null,2)+'\n');fs.writeFileSync(path.join(root,'reader/src/embeddedjs/art.js'),'export default '+JSON.stringify(ids)+';\n');
 console.log('Prepared',Object.keys(ids).length,'bitmap resources');
+
+pkg.pebble.resources.media.push({type:'raw',name:'STORY_DATA',file:'data/story.ndjson'});
+fs.writeFileSync(pkgPath,JSON.stringify(pkg,null,2)+'\n');
+await import('./pack-watch-portraits.mjs');

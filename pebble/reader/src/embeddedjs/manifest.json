@@ -7,6 +7,27 @@
           "uint32_t"
         ],
         "returns": "void"
+      },
+      "showScene": {
+        "arguments": [
+          "uint32_t"
+        ],
+        "returns": "void"
+      },
+      "sceneSelect": {
+        "arguments": [],
+        "returns": "uint32_t"
+      },
+      "storySize": {
+        "arguments": [],
+        "returns": "uint32_t"
+      },
+      "readStory": {
+        "arguments": [
+          "uint32_t",
+          "uint32_t"
+        ],
+        "returns": "char*"
       }
     }
   },
@@ -16,14 +37,17 @@
   "modules": {
     "*": [
       "./main",
-      "./episode",
+      "./native",
+      "./bundled",
       "./reader",
       "./layout",
       "./transfer",
       "./glyphs",
       "./art",
       "./wire",
-      "./legacy"
+      "./legacy",
+      "./upgrade",
+      "./scenes"
     ]
   }
 }

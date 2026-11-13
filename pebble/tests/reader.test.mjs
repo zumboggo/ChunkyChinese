@@ -67,3 +67,35 @@ test('full-screen assets cover every cue; portrait beats doubled',()=>{
  assert.equal(pack.nodes.filter(n=>n.type==='reaction').length,24);
  for(const n of pack.nodes.filter(n=>n.type==='reaction'))for(let tile=0;tile<4;tile++)assert.ok(fs.existsSync(new URL('../reader/resources/images/'+n.actor+'-'+n.emotion+'-full-'+tile+'.png',import.meta.url)));
 });
+
+import upgrade from '../reader/src/embeddedjs/upgrade.js';
+import {sceneIds} from '../reader/src/embeddedjs/scenes.js';
+test('all routes contain exactly the five supported animation beats in order',()=>{
+ const expected=['train-phone','restaurant-seat','hannah-fry','alden-listens','train-reflection'];
+ assert.deepEqual(pack.nodes.filter(n=>n.type==='animation').map(n=>n.id),expected);
+ for(let mask=0;mask<16;mask++){
+  const s=initial(pack),seen=[];let choices=0,last=-2;
+  while(current(pack,s).type!=='end'){
+   const n=current(pack,s);
+   if(s.n!==last){last=s.n;if(n.type==='animation'){assert.ok(sceneIds[n.id]);seen.push(n.id);}if(n.type==='choice')s.o=(mask>>choices++)&1;}
+   advance(pack,s);
+  }
+  assert.deepEqual(seen,expected);
+ }
+});
+test('v1.1 update maps every node and preserves the exact phrase and selected choices',()=>{
+ const old=JSON.parse(fs.readFileSync(new URL('../content/legacy-v1.1-anchors.json',import.meta.url)));
+ assert.equal(upgrade.indices.length,old.anchors.length);assert.ok(upgrade.indices.every(i=>i>=0));
+ for(let n=0;n<upgrade.indices.length;n++){
+  const target=pack.nodes[upgrade.indices[n]];
+  if(target.type!=='line')continue;
+  const s={...initial(pack),version:upgrade.version,n,p:target.phrases.length-1,e:1,route:[{id:'city',option:'news'}]};
+  const migrated=migrateLegacy(pack,s,upgrade);
+  assert.equal(migrated.n,upgrade.indices[n]);assert.equal(migrated.p,s.p);assert.equal(migrated.e,0);assert.deepEqual(migrated.route,s.route);
+ }
+});
+test('unknown animation ID cannot activate; animation positions support save/back',()=>{
+ const bad=structuredClone(pack);bad.nodes.find(n=>n.type==='animation').id='uninstalled-scene';assert.throws(()=>validate(bad,glyphs,()=>true),/Animation update needed/);
+ const s=initial(pack);while(current(pack,s).type!=='animation')advance(pack,s);
+ const n=s.n;assert.equal(restore(pack,JSON.parse(JSON.stringify(s))).n,n);advance(pack,s);previous(s);assert.equal(s.n,n);
+});

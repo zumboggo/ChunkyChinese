@@ -1,3 +1,4 @@
+import {sceneIds} from './scenes.js';
 import {nodeAt,nodeCount} from './reader.js';
 // Adler-32 over ASCII wire data; bounded integer arithmetic works on Alloy's float build.
 export function checksum(text){let a=1,b=0;for(let i=0;i<text.length;i++){a=(a+text.charCodeAt(i))%65521;b=(b+a)%65521;}return (b*65536+a).toString(16);}
@@ -7,9 +8,10 @@ export function validate(pack,glyphs,availableArt){
  let ending=false;
  const target=t=>{if(!Number.isInteger(t)||t<0||t>=nodeCount(pack))throw Error('Invalid branch');};
  const text=p=>{for(const k of ['zh','py','en']){if(typeof p[k]!=='string'||!p[k]||p[k].length>2000)throw Error('Invalid phrase');for(const c of p[k])if(!glyphs.includes(c))throw Error('Font update needed');}};
- for(let i=0;i<nodeCount(pack);i++){const n=nodeAt(pack,i);if(!['line','choice','goto','reaction','end'].includes(n.type))throw Error('Unknown node');if(n.type==='end')ending=true;if(n.type==='goto')target(n.to);
+ for(let i=0;i<nodeCount(pack);i++){const n=nodeAt(pack,i);if(!['line','choice','goto','reaction','animation','end'].includes(n.type))throw Error('Unknown node');if(n.type==='end')ending=true;if(n.type==='goto')target(n.to);
  if(n.type==='line'){if(!n.phrases?.length)throw Error('Empty line');n.phrases.forEach(text);}
  if(n.type==='choice'){if(!n.options||n.options.length<2||n.options.length>4)throw Error('Invalid choice');for(const o of n.options){target(o.to);if(!o.phrases?.length)throw Error('Empty choice');o.phrases.forEach(text);}}
+ if(n.type==='animation'&&!Object.prototype.hasOwnProperty.call(sceneIds,n.id))throw Error('Animation update needed');
  if(n.type==='reaction'&&!availableArt(n.actor+'-'+n.emotion))throw Error('Missing portrait');}
  if(!ending||!availableArt('opening')||!availableArt('closing'))throw Error('Incomplete episode');
  // Reject cycles and paths that fall off the package before enabling offline playback.

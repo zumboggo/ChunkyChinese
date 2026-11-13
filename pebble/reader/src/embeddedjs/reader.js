@@ -11,7 +11,7 @@ export function advance(pack,s,pageCount=1){
  const n=current(pack,s);
  if(n.type==='end'){s.history.pop();return s;}
  if(n.type==='opening'){s.n=pack.entry;return s;}
- if(n.type==='reaction'){s.n++;seek(pack,s);return s;}
+ if(n.type==='reaction'||n.type==='animation'){s.n++;seek(pack,s);return s;}
  if(s.page+1<pageCount){s.page++;return s;}s.page=0;
  const list=n.type==='choice'?n.options[s.o].phrases:n.phrases;
  if(s.p+1<list.length){s.p++;s.e=0;return s;}
@@ -38,7 +38,7 @@ export function migrate(oldPack,next,s){
  if(oldPack.version===next.version)return restore(next,s);
  if(s.n===-1)return initial(next);
  const old=current(oldPack,s);
- const key=n=>n.type==='line'?n.type+':'+n.speaker+':'+n.phrases.map(p=>p.zh).join(''):n.type==='choice'?'choice:'+n.id:n.type==='reaction'?'reaction:'+n.actor+':'+n.emotion+':'+n.scene:n.type;
+ const key=n=>n.type==='line'?n.type+':'+n.speaker+':'+n.phrases.map(p=>p.zh).join(''):n.type==='choice'?'choice:'+n.id:n.type==='animation'?'animation:'+n.id:n.type==='reaction'?'reaction:'+n.actor+':'+n.emotion+':'+n.scene:n.type;
  const anchor=key(old);
  for(let i=0;i<nodeCount(next);i++)if(key(nodeAt(next,i))===anchor){return restore(next,{...s,version:next.version,n:i,e:0,c:0,page:0,history:[]});}
  return initial(next);

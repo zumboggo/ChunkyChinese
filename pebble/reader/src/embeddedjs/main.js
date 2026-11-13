@@ -1,17 +1,20 @@
 import Debug from 'debug';
-import FFI from 'ffi';
-const graphics=new FFI();
+import graphics from './native';
 import Poco from 'commodetto/Poco';
 import Button from 'pebble/button';
 import Message from 'pebble/message';
-import bundled from './episode';
+
+import bundled from './bundled';
 import legacy from './legacy';
+import upgrade from './upgrade';
+import {sceneIds,sceneNames} from './scenes';
 import glyphs from './glyphs';
 import art from './art';
 import {initial,current,phrase,advance,previous,browse,restore,toggleChinese,migrate,migrateLegacy} from './reader';
 import {pages,wrap} from './layout';
 import {Transfer,validate,checksum} from './transfer';
 import {openWire} from './wire';
+
 const render=new Poco(screen);
 const fonts={py:new render.Font(art['font-latin-24']),en:new render.Font(art['font-latin-20']),zh:new render.Font(art['font-chinese-28']),small:new render.Font('Gothic-Regular',14)};
 const ink=render.makeColor(0,0,0),paper=render.makeColor(255,255,255),navy=render.makeColor(0,0,85),teal=render.makeColor(0,85,85),grey=render.makeColor(85,85,85);
@@ -29,15 +32,14 @@ let state=initial(pack),saveGeneration=0,upgraded=false;
 console.log('Reading saves');const saves=[];
 for(const slot of [0,1]){try{const raw=readFile('progress-'+slot),match=raw.match(/^\{"generation":(\d+),/);if(match)saves.push({path:'progress-'+slot,generation:Number(match[1])});}catch{}Debug.gc();}
 saves.sort((a,b)=>b.generation-a.generation);
-for(const candidate of saves){try{let raw=readFile(candidate.path);const h=raw.indexOf('"history":['),end=raw.indexOf(']',h);if(h>=0&&end-h>800)raw=raw.slice(0,h)+'"history":[]'+raw.slice(end+1);const saved=JSON.parse(raw);if(saved.state.id===pack.id&&saved.state.version===pack.version){state=restore(pack,saved.state);saveGeneration=saved.generation;break;}else if(saved.state.id===legacy.id&&saved.state.version===legacy.version&&pack.version===legacy.target){state=migrateLegacy(pack,saved.state,legacy);saveGeneration=saved.generation;upgraded=true;break;}}catch{}Debug.gc();}
-if(localStorage.getItem('readerRevision')!=='2'&&pack.id===bundled.id&&pack.version!==bundled.version){state=pack.version===legacy.version?migrateLegacy(bundled,state,legacy):migrate(pack,bundled,state);upgraded=true;pack=bundled;activeSlot=null;localStorage.removeItem('activeEpisode');}
-localStorage.setItem('readerRevision','2');
+for(const candidate of saves){try{let raw=readFile(candidate.path);const h=raw.indexOf('"history":['),end=raw.indexOf(']',h);if(h>=0&&end-h>800)raw=raw.slice(0,h)+'"history":[]'+raw.slice(end+1);const saved=JSON.parse(raw);if(saved.state.id===pack.id&&saved.state.version===pack.version){state=restore(pack,saved.state);saveGeneration=saved.generation;break;}else if(saved.state.id===upgrade.id&&saved.state.version===upgrade.version&&pack.version===upgrade.target){state=migrateLegacy(pack,saved.state,upgrade);saveGeneration=saved.generation;upgraded=true;break;}else if(saved.state.id===legacy.id&&saved.state.version===legacy.version&&pack.version===legacy.target){state=migrateLegacy(pack,saved.state,legacy);saveGeneration=saved.generation;upgraded=true;break;}}catch{}Debug.gc();}
+if(localStorage.getItem('readerRevision')!=='3'&&pack.id===bundled.id&&pack.version!==bundled.version){state=pack.version===legacy.version?migrateLegacy(bundled,state,legacy):migrate(pack,bundled,state);upgraded=true;pack=bundled;activeSlot=null;localStorage.removeItem('activeEpisode');}
+localStorage.setItem('readerRevision','3');
 Debug.gc();
-console.log('Save restored',state.n);let overlay=null,menuIndex=0,helpPage=0,status='Available offline',connected=false,sending=false,queued=[],lastImage=null,lastImageName=null;
+console.log('Save restored',state.n);let overlay=null,menuIndex=0,helpPage=0,status='Available offline',connected=false,sending=false,queued=[],lastImage=null,lastImageName=null,activeScene=0,previewScene=0;
 function save(){try{saveGeneration++;writeFile('progress-'+(saveGeneration%2),JSON.stringify({generation:saveGeneration,state:{...state,history:state.history.slice(-24)}}));}catch(e){status='Save failed - keep app open';console.log('SAVE ERROR',e.message);}}
 if(upgraded)save();
 function measure(text,kind){return render.getTextWidth(text,fonts[kind]);}
-function image(name,x=0,y=0){const id=art[name];if(!id)return;if(lastImageName!==name){lastImage=null;Debug.gc();lastImage=new Poco.PebbleBitmap(id);lastImageName=name;}render.drawBitmap(lastImage,x,y);}
 function text(t,x,y,kind='en',color=ink){render.drawText(t,fonts[kind],color,x,y);}
 function footer(t){render.fillRectangle(navy,0,207,200,21);text(t,8,208,'small',paper);}
 function header(t,tag=''){render.fillRectangle(navy,0,0,200,23);text(t,8,2,'small',paper);if(tag)text(tag,150,2,'small',paper);}
@@ -46,9 +48,18 @@ function portrait(n){
  render.begin();lastImage=null;lastImageName=null;render.fillRectangle(paper,0,0,200,228);render.end();Debug.gc();
  graphics.showPortrait(art[n.actor+'-'+n.emotion+'-full'],n.actor==='Hannah'?1:n.actor==='YoungAlden'?2:0);
 }
-function menuItems(){return overlay==='library'?['Read Episode '+pack.number,'Refresh episode','About this story','Back']:overlay==='restart'?['Keep reading','Restart episode']:['Resume','Refresh episode','Restart','Library'];}
+function menuItems(){return overlay==='animations'?[...sceneNames,'Back']:overlay==='library'?['Read Episode '+pack.number,'Refresh episode','About this story','Back']:overlay==='restart'?['Keep reading','Restart episode']:['Resume','Refresh episode','Animations','Restart','Library'];}
+function stopScene(){if(activeScene){graphics.showScene(0);activeScene=0;}}
+function showAnimation(id){
+ graphics.showPortrait(0,0);lastImage=null;lastImageName=null;
+ if(activeScene!==id){Debug.gc();graphics.showScene(id);activeScene=id;}
+}
 function draw(){
- const visible=current(pack,state);if(!overlay&&visible.type==='reaction'){portrait(visible);return;}
+ if(previewScene&&!overlay){showAnimation(previewScene);return;}
+ const visible=current(pack,state);if(!overlay&&visible.type==='animation'){showAnimation(sceneIds[visible.id]||0);return;}
+ stopScene();
+ if(!overlay&&(visible.type==='opening'||visible.type==='end')){graphics.showPortrait(art[visible.type==='opening'?'opening':'closing'],visible.type==='opening'?3:4);return;}
+ if(!overlay&&visible.type==='reaction'){portrait(visible);return;}
  graphics.showPortrait(0,0);
  render.begin();Debug.gc();render.fillRectangle(paper,0,0,200,228);
  const node=current(pack,state);
@@ -57,13 +68,9 @@ function draw(){
   const body='Super Supportive by Sleyca. A private Mandarin learning adaptation. Original: royalroad.com/fiction/63759. Watch reading progress stays on this watch.';
   const lines=wrap(body,t=>measure(t,'en'));const batch=lines.slice(helpPage*6,helpPage*6+6);batch.forEach((l,i)=>text(l,8,30+i*27));footer((helpPage+1)*6<lines.length?'Select: more   Back: return':'Select: return');
  }else if(overlay){
-  header(overlay==='library'?'Episode library':overlay==='restart'?'Start again?':'Chunky Chinese');
-  menuItems().forEach((item,i)=>{const y=31+i*35;if(i===menuIndex)render.fillRectangle(teal,5,y,190,33);text(item,10,y+3,'en',i===menuIndex?paper:ink);});
+  header(overlay==='animations'?'Animation previews':overlay==='library'?'Episode library':overlay==='restart'?'Start again?':'Chunky Chinese');
+  menuItems().forEach((item,i)=>{const row=itemsHeight();const y=28+i*row;if(i===menuIndex)render.fillRectangle(teal,5,y,190,row-1);text(item,10,y+3,overlay==='animations'?'small':'en',i===menuIndex?paper:ink);});
   footer(overlay==='library'?status:'Up/Down: browse   Select: open');
- }else if(node.type==='opening'||node.type==='end'){
-  image(node.type==='opening'?'opening':'closing');render.fillRectangle(navy,0,163,200,65);
-  text(node.type==='opening'?'We Could Do':'We Could Do',9,164,'en',paper);text(node.type==='opening'?'Better':'Better',9,187,'en',paper);
-  footer(node.type==='opening'?'Episode 11   Select: begin':'Episode complete   Back: menu');
  }else{
   const p=phrase(pack,state),all=pages(p,state.e,measure),page=all[Math.min(state.page,all.length-1)];
   const label=node.type==='choice'?'Your choice '+(state.o+1)+'/'+node.options.length:(node.speaker==='YoungAlden'?'Young Alden':node.speaker);
@@ -77,6 +84,7 @@ function draw(){
  }
  render.end();
 }
+function itemsHeight(){return overlay==='animations'?29:overlay==='menu'?34:35;}
 function closeOverlay(){overlay=null;menuIndex=0;helpPage=0;}
 function request(){lastImage=null;lastImageName=null;Debug.gc();status=connected?'Loading from phone...':'Waiting for phone...';send({COMMAND:'LOAD'});}
 function input(type){
@@ -90,13 +98,24 @@ function input(type){
   const items=menuItems();if(type==='up'||type==='down')menuIndex=(menuIndex+(type==='up'?-1:1)+items.length)%items.length;
   else if(type==='back')closeOverlay();else if(type==='select'){
    const chosen=items[menuIndex];
-   if(chosen==='Resume'||chosen==='Continue'||chosen.startsWith('Read Episode')||chosen==='Keep reading'||chosen==='Back')closeOverlay();
+   if(overlay==='animations'&&menuIndex<5){previewScene=menuIndex+1;closeOverlay();}
+   else if(chosen==='Animations'){overlay='animations';menuIndex=0;}
+   else if(chosen==='Resume'||chosen==='Continue'||chosen.startsWith('Read Episode')||chosen==='Keep reading'||chosen==='Back')closeOverlay();
    else if(chosen==='Restart'){overlay='restart';menuIndex=0;}
    else if(chosen==='Restart episode'){state=initial(pack);save();closeOverlay();}
    else if(chosen==='Library'){overlay='library';menuIndex=0;}
    else if(chosen==='Refresh episode'){overlay='library';menuIndex=1;request();}
    else if(chosen==='About this story'){overlay='about';helpPage=0;}
   }draw();return;
+ }
+ if(previewScene||current(pack,state).type==='animation'){
+  if(type==='select'){
+   const result=graphics.sceneSelect();
+   if(result){stopScene();if(previewScene){previewScene=0;overlay='animations';menuIndex=0;}else{advance(pack,state);save();}}
+  }else if(type==='down'){const id=activeScene;stopScene();showAnimation(id);}
+  else if(type==='up'&&!previewScene){stopScene();previous(state);save();}
+  else if(type==='back'){stopScene();if(previewScene){previewScene=0;overlay='animations';}else overlay='menu';menuIndex=0;}
+  draw();return;
  }
  const n=current(pack,state);
  if(type==='back'){overlay='menu';menuIndex=0;}
@@ -113,7 +132,7 @@ const transfer=new Transfer({
  write(data,offset){const f=device.files.openFile({path:'episode-'+staging,mode:'r+'});try{f.write(ArrayBuffer.fromString(data),offset);}finally{f.close();}},
  complete(expected){return openStored('episode-'+staging,expected);},
  activate(next){localStorage.setItem('activeEpisode',staging);activeSlot=staging;state=migrate(pack,next,state);pack=next;save();}
-},p=>validate(p,glyphs,hasArt));
+},p=>{validate(p,glyphs,hasArt);if(p.id===bundled.id&&(p.version===upgrade.version||p.version===legacy.version))throw Error('Older feed; kept animations');});
 let channel;
 function send(obj){queued.push(obj);flush();}
 function flush(){if(channel&&connected&&!sending&&queued.length){const out=queued.shift();try{sending=true;channel.write(new Map(Object.entries(out)));}catch(e){queued.unshift(out);sending=false;console.log('SEND',e.message);}}}
@@ -128,6 +147,6 @@ channel=new Message({input:1024,output:256,keys:['COMMAND','DATA','OFFSET','TOTA
   else if(cmd==='CHUNK'){if(checksum(m.get('DATA'))!==m.get('CHECKSUM'))throw Error('Chunk checksum '+m.get('OFFSET')+' '+checksum(m.get('DATA'))+'/'+m.get('CHECKSUM')+' len '+m.get('DATA').length);const offset=transfer.chunk(m.get('OFFSET'),m.get('DATA'));status='Downloading '+Math.floor(offset/transfer.pending.total*100)+'%';send({COMMAND:'ACK',OFFSET:offset});}
   else if(cmd==='END'){transfer.finish();status='Available offline';send({COMMAND:'DONE',VERSION:pack.version});}
   else if(cmd==='ERROR'){status=m.get('STATUS')||'Phone unavailable';}
- }catch(e){status='Download rejected';console.log('TRANSFER ERROR',e.message);send({COMMAND:'ERROR',STATUS:String(e.message).slice(0,80)});}if(overlay==='library')draw();}
+ }catch(e){status=e.message==='Older feed; kept animations'?e.message:'Download rejected';console.log('TRANSFER ERROR',e.message);send({COMMAND:'ERROR',STATUS:String(e.message).slice(0,80)});}if(overlay==='library')draw();}
 });
 console.log('Chunky ready',pack.id,pack.version,'node',state.n);draw();

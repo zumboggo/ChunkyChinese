@@ -37,7 +37,17 @@ export function exportEpisode(d,id='supportive-11') {
    if(m[1]!=='I'&&(!nodes.some(n=>n.speaker===speaker)||['sad','determined','excited','confused'].includes((m[2]||'').split(',')[0])))nodes.push({type:'reaction',actor:speaker,emotion:mood,scene});
    lineNumber++;
    if(lineNumber%3===0&&nodes.at(-1)?.type!=='reaction')nodes.push({type:'reaction',actor:speaker,emotion:mood,scene});
-   nodes.push({type:'line',speaker,scene,phrases:phrases(m[3])});continue;
+   nodes.push({type:'line',speaker,scene,phrases:phrases(m[3])});
+   // Five authored beats on the common path, anchored to exact reviewed story text.
+   const beats={
+    '系统关掉了。我看窗户外面，房子一座座过去。以前的家，就在这附近。':'train-phone',
+    '那时候，我们面对面坐着。我喝草莓奶昔，我们还一起吃薯条。':'restaurant-seat',
+    '她拿了一根薯条。刚才我还觉得，这只是想说得好听一点。':'hannah-fry',
+    '我不再喝东西了。她不是在说怎么让大家喜欢她。':'alden-listens',
+    '我看外面的房子。她说的“更好”，不只是再多救一个人。也可能是，让另外一个人不用什么都自己做。':'train-reflection'
+   };
+   if(id==='supportive-11'&&beats[m[3]])nodes.push({type:'animation',id:beats[m[3]]});
+   continue;
   }
   if(/^(rest|camera|express|look|orient|react) /.test(line))continue;
   throw Error('Unsupported script command: '+line);
@@ -62,6 +72,8 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
  const wireMeta={...pack,nodeCount:pack.nodes.length};delete wireMeta.nodes;
  const records=[wireMeta,...pack.nodes].map(wireRecord);
  if(pack.nodes.length>160||records.some(r=>r.length+1>2048)||records.reduce((n,r)=>n+r.length+1,0)>65536)throw Error('Episode exceeds the tested watch memory budget; split it before exporting');
+ fs.mkdirSync(path.join(root,'reader/resources/data'),{recursive:true});
+ fs.writeFileSync(path.join(root,'reader/resources/data/story.ndjson'),records.join('\n')+'\n');
  const data=JSON.stringify(pack);
  fs.writeFileSync(path.join(root,'content',source+'.json'),data+'\n');
  fs.writeFileSync(path.join(root,'reader/src/pkjs/bundled.json'),data+'\n');
@@ -70,11 +82,16 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
  const keys=pack.nodes.map(n=>crypto.createHash('sha256').update(nodeKey(n)).digest('hex'));let cursor=0;
  const indices=legacy.anchors.map(key=>{const i=keys.indexOf(key,cursor);if(i>=0)cursor=i+1;return i;});
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/legacy.js'),'export default '+JSON.stringify({id:legacy.id,version:legacy.version,target:pack.version,indices})+';\n');
+ const upgrade=JSON.parse(fs.readFileSync(path.join(root,'content/legacy-v1.1-anchors.json')));let upgradeCursor=0;
+ const upgradeIndices=upgrade.anchors.map(key=>{const i=keys.indexOf(key,upgradeCursor);if(i>=0)upgradeCursor=i+1;return i;});
+ fs.writeFileSync(path.join(root,'reader/src/embeddedjs/upgrade.js'),'export default '+JSON.stringify({id:upgrade.id,version:upgrade.version,target:pack.version,indices:upgradeIndices})+';\n');
  const meta={...pack};delete meta.nodes;
+ let byteOffset=records[0].length+1;const spans=records.slice(1).map(r=>{const pair=[byteOffset,r.length];byteOffset+=r.length+1;return pair;});
+ fs.writeFileSync(path.join(root,'reader/src/embeddedjs/bundled.js'),"import io from './native';\nconst meta="+JSON.stringify({...pack,nodes:undefined,nodeCount:pack.nodes.length})+";\nconst spans="+JSON.stringify(spans)+";\nlet index=-1,node;meta.nodeAt=i=>{if(i<0||i>=spans.length)return undefined;if(index!==i){node=JSON.parse(io.readStory(spans[i][0],spans[i][1]));index=i;}return node;};export default meta;\n");
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/episode.js'),'// Generated: parse only the current node to fit watch RAM.\nconst meta='+JSON.stringify(meta)+';\nconst rows='+JSON.stringify(pack.nodes.map(n=>JSON.stringify(n)))+';\nlet index=-1,node;meta.nodeCount=rows.length;meta.nodeAt=i=>{if(index!==i){node=JSON.parse(rows[i]);index=i;}return node;};export default meta;\n');
  const glyphs=fs.readFileSync(glyphPath,'utf8');const han=[...glyphs].filter(c=>/\p{Script=Han}/u.test(c)).join('');
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/glyphs.js'),'export default '+JSON.stringify(glyphs)+';\n');
- const manifest={ffi:{functions:{showPortrait:{arguments:['uint32_t','uint32_t'],returns:'void'}}},include:['$(MODDABLE)/examples/manifest_mod.json'],modules:{'*':['./main','./episode','./reader','./layout','./transfer','./glyphs','./art','./wire','./legacy']}};
+ const manifest={ffi:{functions:{showPortrait:{arguments:['uint32_t','uint32_t'],returns:'void'},showScene:{arguments:['uint32_t'],returns:'void'},sceneSelect:{arguments:[],returns:'uint32_t'},storySize:{arguments:[],returns:'uint32_t'},readStory:{arguments:['uint32_t','uint32_t'],returns:'char*'}}},include:['$(MODDABLE)/examples/manifest_mod.json'],modules:{'*':['./main','./native','./bundled','./reader','./layout','./transfer','./glyphs','./art','./wire','./legacy','./upgrade','./scenes']}};
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
  console.log(JSON.stringify({id:source,nodes:pack.nodes.length,choices:pack.nodes.filter(n=>n.type==='choice').length,phrases:pack.nodes.reduce((s,n)=>s+(n.phrases?.length||0)+(n.options||[]).reduce((t,o)=>t+o.phrases.length,0),0),bytes:Buffer.byteLength(data),han:han.length}));
 }
