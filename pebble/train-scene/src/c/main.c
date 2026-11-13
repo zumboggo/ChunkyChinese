@@ -4,17 +4,7 @@
 typedef struct { float x,y; } Pt;
 typedef struct { Pt head, shoulder, hip, hand; float angle,gaze,brow,phone; } Pose;
 typedef enum { TEXT, ESTABLISH, WAITING, PICKUP, HOLD, AFTER } Phase;
-static const Pose poses[] = {
- {{78,81},{83,111},{80,146},{115,147},-.08f,-1,0,-1.3f},
- {{81,84},{84,112},{80,146},{115,147},.16f,1,0,-1.3f},
- {{87,88},{91,116},{81,146},{118,146},.21f,1,0,-1.3f},
- {{93,89},{98,116},{82,146},{142,148},.22f,1,0,-1.3f},
- {{87,84},{90,112},{80,146},{132,125},.12f,1,.5f,-.5f},
- {{82,81},{85,111},{80,146},{120,115},.06f,1,1.5f,-.12f},
- {{82,83},{85,112},{80,146},{119,118},.1f,1,.25f,-.12f}
-};
-static const uint16_t key_times[]={0,600,1450,1800,2600,3250,4000};
-static const uint8_t key_poses[]={1,2,3,3,4,5,6};
+#include "../../../reader/src/c/scene_data.h"
 static Window *window;
 static Layer *canvas;
 static AppTimer *timer;
@@ -49,7 +39,7 @@ static void label(const char *s,int x,int y,int w,int h,const char *font,GColor 
 static float mix(float a,float b,float t){return a+(b-a)*t;}
 static Pt mixp(Pt a,Pt b,float t){return P(mix(a.x,b.x,t),mix(a.y,b.y,t));}
 static Pose blend(Pose a,Pose b,float t){if(t<0)t=0;if(t>1)t=1;t=t*t*(3-2*t);return (Pose){mixp(a.head,b.head,t),mixp(a.shoulder,b.shoulder,t),mixp(a.hip,b.hip,t),mixp(a.hand,b.hand,t),mix(a.angle,b.angle,t),mix(a.gaze,b.gaze,t),mix(a.brow,b.brow,t),mix(a.phone,b.phone,t)};}
-static Pose sample(uint32_t ms){for(int i=1;i<7;i++)if(ms<=key_times[i])return blend(poses[key_poses[i-1]],poses[key_poses[i]],(float)(ms-key_times[i-1])/(key_times[i]-key_times[i-1]));return poses[6];}
+static Pose sample(uint32_t ms){for(int i=1;i<PHONE_KEY_COUNT;i++)if(ms<=key_times[i])return blend(poses[key_poses[i-1]],poses[key_poses[i]],(float)(ms-key_times[i-1])/(key_times[i]-key_times[i-1]));return poses[key_poses[PHONE_KEY_COUNT-1]];}
 static void phone(float x,float y,float angle){float oldx=tx,oldy=ty,oldr=rotation;tx+=x;ty+=y;rotation=angle;box(-5,-9,10,18,INK);box(-3,-6,6,11,GLOW);box(-1,7,2,1,PAPER);tx=oldx;ty=oldy;rotation=oldr;}
 static void scenery(void){
  box(0,0,200,228,PAPER);
@@ -106,11 +96,11 @@ static void draw(Layer *layer,GContext *context){
  label("ALDEN",14,185,180,20,FONT_KEY_GOTHIC_14,PHONE,GTextAlignmentLeft);
  label(phase==TEXT?"Select: begin   Down: replay":"Down: replay   Back: exit",8,207,190,20,FONT_KEY_GOTHIC_14,INK,GTextAlignmentCenter);
  }else{
- scenery();Pose p=phase==ESTABLISH?blend(poses[0],poses[1],((float)elapsed-1800)/1200):phase==WAITING?poses[1]:phase==PICKUP?sample(elapsed):poses[6];
- bool attached=phase==HOLD||(phase==PICKUP&&elapsed>=1450);float sway=phase==HOLD?0:sine(scene_time*.002f)*.65f;
+ scenery();Pose p=phase==ESTABLISH?blend(poses[POSE_SEATED],poses[POSE_GLANCE],((float)elapsed-PHONE_GLANCE_START)/PHONE_GLANCE_DURATION):phase==WAITING?poses[POSE_GLANCE]:phase==PICKUP?sample(elapsed):poses[key_poses[PHONE_KEY_COUNT-1]];
+ bool attached=phase==HOLD||(phase==PICKUP&&elapsed>=PHONE_CONTACT);float sway=phase==HOLD?0:sine(scene_time*.002f)*.65f;
  if(!attached){phone(142+sway,146,-1.3f);}
  character(p,attached,sway);
- if(phase==WAITING){box(0,204,200,24,INK);label("Pick up the phone",0,203,200,25,FONT_KEY_GOTHIC_18_BOLD,PAPER,GTextAlignmentCenter);}
+ if(phase==WAITING){box(0,204,200,24,INK);label(PHONE_PROMPT,0,203,200,25,FONT_KEY_GOTHIC_18_BOLD,PAPER,GTextAlignmentCenter);}
  }
  uint32_t cost=(time_ms(NULL,NULL)+1000-start)%1000;frames++;render_total+=cost;if(cost>render_max)render_max=cost;
 }
@@ -118,11 +108,11 @@ static bool moving(void){return phase==ESTABLISH||phase==WAITING||phase==PICKUP;
 static void schedule(void);
 static void set_phase(Phase next){phase=next;elapsed=0;hold_started=now_ms();if(timer){app_timer_cancel(timer);timer=NULL;}last_time=now_ms();layer_mark_dirty(canvas);schedule();APP_LOG(APP_LOG_LEVEL_INFO,"Phase %d free=%lu frames=%lu draw avg/max=%lu/%lu ms",phase,(unsigned long)heap_bytes_free(),(unsigned long)frames,(unsigned long)(frames?render_total/frames:0),(unsigned long)render_max);}
 static void tick(void *data){(void)data;timer=NULL;uint32_t now=now_ms(),dt=now-last_time;last_time=now;if(dt>250)dt=250;elapsed+=dt;scene_time+=dt;
- if(phase==ESTABLISH&&elapsed>=3000){set_phase(WAITING);return;}if(phase==PICKUP&&elapsed>=4000){set_phase(HOLD);return;}layer_mark_dirty(canvas);schedule();}
-static void schedule(void){if(!timer&&focused&&moving())timer=app_timer_register(83,tick,NULL);}
+ if(phase==ESTABLISH&&elapsed>=PHONE_ESTABLISH){set_phase(WAITING);return;}if(phase==PICKUP&&elapsed>=scene_durations[1]){set_phase(HOLD);return;}layer_mark_dirty(canvas);schedule();}
+static void schedule(void){if(!timer&&focused&&moving())timer=app_timer_register(SCENE_FRAME_MS,tick,NULL);}
 static void select_press(ClickRecognizerRef r,void *c){(void)r;(void)c;select_down=true;pressed_phase=phase;}
 static void select_release(ClickRecognizerRef r,void *c){(void)r;(void)c;if(!select_down)return;select_down=false;if(pressed_phase!=phase)return;
- if(phase==TEXT)set_phase(ESTABLISH);else if(phase==WAITING)set_phase(PICKUP);else if(phase==HOLD&&now_ms()-hold_started>=450)set_phase(AFTER);
+ if(phase==TEXT)set_phase(ESTABLISH);else if(phase==WAITING)set_phase(PICKUP);else if(phase==HOLD&&now_ms()-hold_started>=SCENE_HOLD_GUARD)set_phase(AFTER);
 }
 static void replay_click(ClickRecognizerRef r,void *c){(void)r;(void)c;scene_time=0;select_down=false;set_phase(ESTABLISH);}
 static void clicks(void *context){(void)context;window_raw_click_subscribe(BUTTON_ID_SELECT,select_press,select_release,NULL);window_single_click_subscribe(BUTTON_ID_DOWN,replay_click);}

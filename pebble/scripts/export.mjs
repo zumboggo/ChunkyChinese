@@ -2,9 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {loadDirection, validateDirection} from './story-direction.mjs';
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const app=path.resolve(root,'..');
-export function exportEpisode(d,id='supportive-11') {
+export function exportEpisode(d,id='supportive-11',direction=loadDirection(id)) {
+ const cues=validateDirection(d.script,id,direction);
  const annotations=d.chinese.lines, nodes=[], labels={}, cast=new Set(); let scene='train', narrator='Alden', choice=null, pending=null, lineNumber=0;
  function phrases(text) {
   const a=annotations[text]; if(!a?.interlinear?.length)throw Error('Missing chunks: '+text);
@@ -23,7 +25,7 @@ export function exportEpisode(d,id='supportive-11') {
  for(const raw of d.script.split('\n')){
   const line=raw.trim(); if(!line||line==='story 2')continue;
   let m;
-  if((m=line.match(/^label (\S+)$/))){labels[m[1]]=nodes.length;choice=null;continue;}
+  if((m=line.match(/^label (\S+)$/))){if(Object.hasOwn(labels,m[1]))throw Error('Duplicate label: '+m[1]);labels[m[1]]=nodes.length;choice=null;if(cues.has(m[1]))nodes.push({type:'animation',id:cues.get(m[1])});continue;}
   if((m=line.match(/^scene (\S+)$/))){scene=m[1];narrator=scene==='restaurant'?'YoungAlden':'Alden';pending={actor:narrator,emotion:'thoughtful',scene};continue;}
   if((m=line.match(/^show (\S+) (\S+)/))){cast.add(m[1]);if(m[1]===narrator)pending={actor:m[1],emotion:emotion(m[1],m[2]),scene};continue;}
   if((m=line.match(/^choice (\S+)$/))){choice={type:'choice',id:m[1],options:[]};nodes.push(choice);continue;}
@@ -38,15 +40,6 @@ export function exportEpisode(d,id='supportive-11') {
    lineNumber++;
    if(lineNumber%3===0&&nodes.at(-1)?.type!=='reaction')nodes.push({type:'reaction',actor:speaker,emotion:mood,scene});
    nodes.push({type:'line',speaker,scene,phrases:phrases(m[3])});
-   // Five authored beats on the common path, anchored to exact reviewed story text.
-   const beats={
-    '系统关掉了。我看窗户外面，房子一座座过去。以前的家，就在这附近。':'train-phone',
-    '那时候，我们面对面坐着。我喝草莓奶昔，我们还一起吃薯条。':'restaurant-seat',
-    '她拿了一根薯条。刚才我还觉得，这只是想说得好听一点。':'hannah-fry',
-    '我不再喝东西了。她不是在说怎么让大家喜欢她。':'alden-listens',
-    '我看外面的房子。她说的“更好”，不只是再多救一个人。也可能是，让另外一个人不用什么都自己做。':'train-reflection'
-   };
-   if(id==='supportive-11'&&beats[m[3]])nodes.push({type:'animation',id:beats[m[3]]});
    continue;
   }
   if(/^(rest|camera|express|look|orient|react) /.test(line))continue;

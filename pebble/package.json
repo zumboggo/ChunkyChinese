@@ -5,7 +5,13 @@
   "scripts": {
     "export": "node scripts/export.mjs",
     "test": "node --test tests/*.test.mjs",
-    "art": "node scripts/prepare-art.mjs"
+    "art": "node scripts/prepare-art.mjs",
+    "scenes": "node scripts/generate-scenes.mjs",
+    "check": "sh scripts/build.sh --check",
+    "build": "sh scripts/build.sh --dev",
+    "release": "sh scripts/build.sh --release",
+    "test:browser": "node preview/train-scene.test.mjs",
+    "test:emulator": "python3 scripts/test-emulator.py"
   },
   "devDependencies": {
     "sharp": "0.35.3"

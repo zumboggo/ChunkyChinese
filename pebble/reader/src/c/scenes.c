@@ -1,20 +1,10 @@
 #include <pebble.h>
 
-// Primitive-only port of preview/train-scene.html. No bitmap frames or JS heap.
+// Primitive renderer; shared poses/timing come from scenes/library.json. No bitmap frames or JS heap.
 typedef struct { float x,y; } Pt;
 typedef struct { Pt head, shoulder, hip, hand; float angle,gaze,brow,phone; } Pose;
 typedef enum { TEXT, ESTABLISH, WAITING, PICKUP, HOLD, AFTER } Phase;
-static const Pose poses[] = {
- {{78,81},{83,111},{80,146},{115,147},-.08f,-1,0,-1.3f},
- {{81,84},{84,112},{80,146},{115,147},.16f,1,0,-1.3f},
- {{87,88},{91,116},{81,146},{118,146},.21f,1,0,-1.3f},
- {{93,89},{98,116},{82,146},{142,148},.22f,1,0,-1.3f},
- {{87,84},{90,112},{80,146},{132,125},.12f,1,.5f,-.5f},
- {{82,81},{85,111},{80,146},{120,115},.06f,1,1.5f,-.12f},
- {{82,83},{85,112},{80,146},{119,118},.1f,1,.25f,-.12f}
-};
-static const uint16_t key_times[]={0,600,1450,1800,2600,3250,4000};
-static const uint8_t key_poses[]={1,2,3,3,4,5,6};
+#include "scene_data.h"
 static uint32_t scene_id;
 static float world_x,world_y,world_sx=1,world_sy=1;
 static int actor; // 0 present Alden, 1 young Alden, 2 Hannah
@@ -51,7 +41,7 @@ static void label(const char *s,int x,int y,int w,int h,const char *font,GColor 
 static float mix(float a,float b,float t){return a+(b-a)*t;}
 static Pt mixp(Pt a,Pt b,float t){return P(mix(a.x,b.x,t),mix(a.y,b.y,t));}
 static Pose blend(Pose a,Pose b,float t){if(t<0)t=0;if(t>1)t=1;t=t*t*(3-2*t);return (Pose){mixp(a.head,b.head,t),mixp(a.shoulder,b.shoulder,t),mixp(a.hip,b.hip,t),mixp(a.hand,b.hand,t),mix(a.angle,b.angle,t),mix(a.gaze,b.gaze,t),mix(a.brow,b.brow,t),mix(a.phone,b.phone,t)};}
-static Pose sample(uint32_t ms){for(int i=1;i<7;i++)if(ms<=key_times[i])return blend(poses[key_poses[i-1]],poses[key_poses[i]],(float)(ms-key_times[i-1])/(key_times[i]-key_times[i-1]));return poses[6];}
+static Pose sample(uint32_t ms){for(int i=1;i<PHONE_KEY_COUNT;i++)if(ms<=key_times[i])return blend(poses[key_poses[i-1]],poses[key_poses[i]],(float)(ms-key_times[i-1])/(key_times[i]-key_times[i-1]));return poses[key_poses[PHONE_KEY_COUNT-1]];}
 static void phone(float x,float y,float angle){float oldx=tx,oldy=ty,oldr=rotation;tx+=x;ty+=y;rotation=angle;box(-5,-9,10,18,INK);box(-3,-6,6,11,GLOW);box(-1,7,2,1,PAPER);tx=oldx;ty=oldy;rotation=oldr;}
 static void scenery(void){
  box(0,0,200,228,PAPER);
@@ -108,6 +98,7 @@ static void character(Pose p,bool attached,float sway){
 
 static void world(float x,float y,float sx,float sy){world_x=x;world_y=y;world_sx=sx;world_sy=sy;tx=ty=rotation=0;}
 static float ease(float t){if(t<0)t=0;if(t>1)t=1;return t*t*(3-2*t);}
+#include "scene_choreography.h"
 static void cafe(void){
  box(0,0,200,228,PAPER);
  line(P(14,22),P(186,22),RAIL,1);line(P(14,22),P(14,94),RAIL,1);line(P(186,22),P(186,94),RAIL,1);line(P(14,94),P(186,94),RAIL,1);line(P(100,22),P(100,94),RAIL,1);
@@ -117,52 +108,43 @@ static void cafe(void){
 }
 static void milkshake(float x,float y){POLY(INK,P(x-6,y-12),P(x+6,y-12),P(x+4,y+5),P(x-4,y+5));POLY(GColorMelon,P(x-4,y-10),P(x+4,y-10),P(x+2,y+3),P(x-2,y+3));line(P(x+1,y-11),P(x+2,y-23),INK,1);line(P(x+2,y-23),P(x-2,y-26),INK,1);}
 static void restaurant(uint32_t t){
- cafe();Pose child=poses[0],hannah=poses[1];child.gaze=1;hannah.gaze=1;
- if(scene_id==2){float drop=14*(1-ease(t/1800.f));child.head.y-=drop;child.shoulder.y-=drop;child.hip.y-=drop;child.hand.y-=drop;child.angle=.1f*(1-ease(t/2400.f));hannah.head.y+=sine(t*.002f)*.4f;}
- if(scene_id==3){
-  float take=ease((t-400)/1000.f),raise=ease((t-1600)/1400.f);
-  hannah.hand=mixp(P(115,147),P(139,143),take);hannah.hand=mixp(hannah.hand,P(92,100),raise);hannah.head.x+=take*3;hannah.angle=.16f-.1f*raise;
- }
- if(scene_id==4){
-  float lower=ease((t-500)/1700.f),listen=ease((t-2300)/1400.f);
-  child.hand=mixp(P(93,114),P(115,147),lower);child.head.y=81+listen;child.angle=-.08f+listen*.17f;child.brow=listen;
-  hannah.hand=mixp(P(115,147),P(118,126),ease((t-1200)/1300.f));
- }
+ cafe();Pose child=poses[POSE_SEATED],hannah=poses[POSE_GLANCE];child.gaze=1;hannah.gaze=1;
+ direct_restaurant(t,&child,&hannah);
  world(-4,39,.73f,.73f);actor=1;character(child,false,0);
- if(scene_id==4&&t<2200)milkshake(child.hand.x+1,child.hand.y-4);
+ if(scene_id==4&&t<CUP_RELEASE)milkshake(child.hand.x+1,child.hand.y-4);
  world(204,39,-.73f,.73f);actor=2;character(hannah,false,0);
- if(scene_id==3&&t>=1400){int len=t<3300?11:6;line(P(hannah.hand.x,hannah.hand.y-1),P(hannah.hand.x+1,hannah.hand.y-len),GColorChromeYellow,3);}
+ if(scene_id==3&&t>=FRY_CONTACT){int len=t<FRY_BITE?FRY_LENGTH:FRY_BITTEN_LENGTH;line(P(hannah.hand.x,hannah.hand.y-1),P(hannah.hand.x+1,hannah.hand.y-len),GColorChromeYellow,3);}
  world(0,0,1,1);
  // Table stays below hands so the reach and the prop remain visible.
  POLY(PAPER,P(65,151),P(135,151),P(150,163),P(50,163));
  line(P(65,151),P(135,151),NEAR,2);line(P(135,151),P(150,163),NEAR,2);line(P(150,163),P(50,163),NEAR,2);line(P(50,163),P(65,151),NEAR,2);line(P(62,164),P(59,193),NEAR,2);line(P(138,164),P(141,193),NEAR,2);
  line(P(94,149),P(113,149),RAIL,2);for(int i=0;i<4;i++)line(P(96+i*4,147),P(97+i*4,139),GColorChromeYellow,2);
- if(scene_id!=4||t>=2200)milkshake(78,145);
+ if(scene_id!=4||t>=CUP_RELEASE)milkshake(78,145);
  actor=0;
 }
 static void draw(Layer *layer,GContext *context){
  (void)layer;uint32_t start=time_ms(NULL,NULL);ctx=context;world(0,0,1,1);graphics_context_set_antialiased(ctx,false);
  if(scene_id>=2&&scene_id<=4){restaurant(elapsed);}else{
   scenery();Pose p;
-  if(scene_id==5){p=blend(poses[1],poses[0],elapsed/2400.f);p.hand=P(115,147);p.brow=.4f*ease(elapsed/3300.f);}else{p=phase==ESTABLISH?blend(poses[0],poses[1],((float)elapsed-1800)/1200):phase==WAITING?poses[1]:phase==PICKUP?sample(elapsed):poses[6];}
-  bool attached=scene_id==1&&(phase==HOLD||(phase==PICKUP&&elapsed>=1450));float sway=phase==HOLD?0:sine(scene_time*.002f)*.65f;
+  if(scene_id==5){p=reflection_pose(elapsed);}else{p=phase==ESTABLISH?blend(poses[POSE_SEATED],poses[POSE_GLANCE],((float)elapsed-PHONE_GLANCE_START)/PHONE_GLANCE_DURATION):phase==WAITING?poses[POSE_GLANCE]:phase==PICKUP?sample(elapsed):poses[key_poses[PHONE_KEY_COUNT-1]];}
+  bool attached=scene_id==1&&(phase==HOLD||(phase==PICKUP&&elapsed>=PHONE_CONTACT));float sway=phase==HOLD?0:sine(scene_time*.002f)*.65f;
   if(scene_id==1&&!attached){phone(142+sway,146,-1.3f);}character(p,attached,sway);
-  if(scene_id==1&&phase==WAITING){box(0,204,200,24,INK);label("Pick up the phone",0,203,200,25,FONT_KEY_GOTHIC_18_BOLD,PAPER,GTextAlignmentCenter);}
+  if(scene_id==1&&phase==WAITING){box(0,204,200,24,INK);label(PHONE_PROMPT,0,203,200,25,FONT_KEY_GOTHIC_18_BOLD,PAPER,GTextAlignmentCenter);}
  }
  uint32_t cost=(time_ms(NULL,NULL)+1000-start)%1000;frames++;render_total+=cost;if(cost>render_max)render_max=cost;
 }
 static bool moving(void){return scene_id&&phase!=HOLD;}
 static void schedule(void);
 static void tick(void *data){
- (void)data;timer=NULL;uint32_t now=now_ms(),dt=now-last_time;last_time=now;if(dt>250)dt=83;elapsed+=dt;scene_time+=dt;
- if(scene_id==1&&phase==ESTABLISH&&elapsed>=3000){phase=WAITING;elapsed=0;}
- else if((scene_id==1&&phase==PICKUP&&elapsed>=4000)||(scene_id!=1&&elapsed>=4000)){phase=HOLD;elapsed=4000;hold_started=now;APP_LOG(APP_LOG_LEVEL_INFO,"Scene %lu held; free=%lu draw avg/max=%lu/%lu ms",(unsigned long)scene_id,(unsigned long)heap_bytes_free(),(unsigned long)(frames?render_total/frames:0),(unsigned long)render_max);}
+ (void)data;timer=NULL;uint32_t now=now_ms(),dt=now-last_time;last_time=now;if(dt>250)dt=SCENE_FRAME_MS;elapsed+=dt;scene_time+=dt;
+ if(scene_id==1&&phase==ESTABLISH&&elapsed>=PHONE_ESTABLISH){phase=WAITING;elapsed=0;}
+ else if((scene_id==1&&phase==PICKUP&&elapsed>=scene_durations[scene_id])||(scene_id!=1&&elapsed>=scene_durations[scene_id])){phase=HOLD;elapsed=scene_durations[scene_id];hold_started=now;APP_LOG(APP_LOG_LEVEL_INFO,"Scene %lu held; free=%lu draw avg/max=%lu/%lu ms",(unsigned long)scene_id,(unsigned long)heap_bytes_free(),(unsigned long)(frames?render_total/frames:0),(unsigned long)render_max);}
  layer_mark_dirty(canvas);schedule();
 }
-static void schedule(void){if(!timer&&focused&&moving())timer=app_timer_register(83,tick,NULL);}
+static void schedule(void){if(!timer&&focused&&moving())timer=app_timer_register(SCENE_FRAME_MS,tick,NULL);}
 void showScene(uint32_t id){
  if(timer){app_timer_cancel(timer);timer=NULL;}
- scene_id=id<=5?id:0;
+ scene_id=id<=SCENE_COUNT?id:0;
  if(!scene_id){if(canvas)layer_set_hidden(canvas,true);return;}
  if(!canvas){canvas=layer_create(GRect(0,0,200,228));if(canvas)layer_set_update_proc(canvas,draw);}
  if(!canvas){scene_id=0;return;}
@@ -174,7 +156,7 @@ void showScene(uint32_t id){
 uint32_t sceneSelect(void){
  if(!scene_id)return 2;
  if(scene_id==1&&phase==WAITING){phase=PICKUP;elapsed=0;return 0;}
- if(phase==HOLD&&now_ms()-hold_started>=450)return 1;
+ if(phase==HOLD&&now_ms()-hold_started>=SCENE_HOLD_GUARD)return 1;
  return 0;
 }
 void destroyScenes(void){if(timer){app_timer_cancel(timer);timer=NULL;}if(canvas){layer_destroy(canvas);canvas=NULL;}scene_id=0;}

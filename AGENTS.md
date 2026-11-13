@@ -19,3 +19,7 @@ Start episode work with `game:preflight` and the compact private brief in `.loca
 # Jedi storyline convergence
 
 From Episode 9 onward, keep one main storyline. Close the earlier voice and western-water threads in Episode 9, while retaining memory of choices, deaths, injuries, equipment losses, water totals and promises. Later choices may change conversations and callbacks, but should rejoin the common plot rather than multiply persistent story branches. David explicitly requested this on October 28, 2026.
+
+# Pebble episode authoring
+
+For watch episodes, start with `pebble/scenes/README.md`. Edit shared motion in `pebble/scenes/library.json`, regenerate with `npm run scenes` from `pebble/`, and use `pebble/direction/<episode>.json` to bind installed recipes to persistent Story 2 labels. Never match full prose to place a cue. Run the documented fast checks before native/browser/emulator verification. Development builds must not overwrite versioned release PBWs; preserve phone releases and reading saves.
