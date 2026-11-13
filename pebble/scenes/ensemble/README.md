@@ -1,8 +1,9 @@
-# Reusable ensemble and ambience
+# Ensemble and ambience prototype
 
-Approved browser reference library for Gorgon, Boe and Jeremy, now ported to
-native primitives in reader version 1.3. The shared authoring data generates compact
-native pose tracks and the appended scene catalogue. Phone content and saves are unchanged. Character identity comes from the source/cast references named in
+Reusable browser reference library for Gorgon, Boe and Jeremy, beside the shipped
+native scene catalogue. It does not change installed scene IDs, PBWs, story cues,
+phone content or saves. These designs are proposed for review, not approved native
+capabilities. Character identity comes from the source/cast references named in
 `characters.json`; no generated images or video were used.
 
 - `characters.json`: separate actor profiles and four reusable joint tracks.
@@ -33,8 +34,8 @@ setting does not assert that the character canonically belongs there. His train
 preview, for example, is a background comparison, not an episode scene.
 
 Ambient choices are demonstrations, not automatically applied story events:
-consulate/cafe passersby, train parallax, foliage outside home/classroom windows,
-and low-key crystal-table light. Rain and a cat are separate optional samples. Do not add rain to a source-established
+consulate passersby/cat, train parallax, rain outside cafe/home/classroom windows,
+and low-key trading-room activity lights. Do not add rain to a source-established
 snowy or dry scene, add visitors to a private empty-lobby conversation, or show
 Victor present before his arrival. The basement trading room has no invented
 exterior window. Cat movement is a small silhouette prototype, not a complete
@@ -47,8 +48,8 @@ period; pedestrians/cats enter and exit outside the viewport. No frame sequences
 are stored. The browser rasterizer is antialiased and is not exact Pebble hardware
 rasterization. Palette channels use Pebble's four-level RGB colours.
 
-For every native change, measure the *combined* reader's heap, resource size and draw time.
-Battery impact still requires physical-watch feedback.
+Before native integration, adapt renderer operations to native primitives and
+measure the *combined* reader's heap, resource size, draw time and battery impact.
 Use a lower independent background cadence if necessary. Keep ambience on image/
 scene screens; do not animate behind ordinary interlinear reading by default.
 Stop all native timers on scene exit/app focus loss. A user can freeze ambience;
@@ -58,6 +59,4 @@ renderer additions require a new PBW, not content Refresh alone.
 Tests cover all 24 action/setting combinations across three actors, changes over
  time, held poses with ambience disabled, replay, pause, hidden embedded-host
 behaviour, echoed preferences, narrow layout and exact train-loop continuity.
-Screenshots go to ignored `preview/verification/`. Those tests establish browser
-evidence only; the separate combined-reader emulator suite checks the native port
-with background motion both on and off. See `../../verification/v4/STATUS.md`.
+Screenshots go to ignored `preview/verification/`. This is browser evidence only.

@@ -23,7 +23,6 @@ test('bounded portrait runs reproduce every source pixel at Pebble colour precis
 test('generated flash index reads every bundled node correctly',()=>{
  const wire=fs.readFileSync(new URL('../reader/resources/data/story.ndjson',import.meta.url),'ascii');
  const source=fs.readFileSync(new URL('../reader/src/embeddedjs/bundled.js',import.meta.url),'utf8').replace("import io from './native';",'').replace('export default meta;','return meta;');
- const header=fs.readFileSync(new URL('../reader/src/c/story_index.h',import.meta.url),'utf8');const spans=[...header.matchAll(/\{(\d+),(\d+)\}/g)].map(m=>[+m[1],+m[2]]);
- let largest=0;const lazy=new Function('io',source)({readStoryNode(i){const [o,n]=spans[i];largest=Math.max(largest,n);assert.ok(n<=2048);return wire.slice(o,o+n);}});
+ let largest=0;const lazy=new Function('io',source)({readStory(o,n){largest=Math.max(largest,n);assert.ok(n<=2048);return wire.slice(o,o+n);}});
  assert.equal(lazy.version,pack.version);for(let i=0;i<pack.nodes.length;i++)assert.deepEqual(lazy.nodeAt(i),pack.nodes[i]);assert.ok(largest<2048);
 });

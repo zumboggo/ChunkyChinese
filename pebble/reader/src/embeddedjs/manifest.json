@@ -18,21 +18,9 @@
         "arguments": [],
         "returns": "uint32_t"
       },
-      "setBackgroundMotion": {
-        "arguments": [
-          "uint32_t"
-        ],
-        "returns": "void"
-      },
       "storySize": {
         "arguments": [],
         "returns": "uint32_t"
-      },
-      "readStoryNode": {
-        "arguments": [
-          "uint32_t"
-        ],
-        "returns": "char*"
       },
       "readStory": {
         "arguments": [
