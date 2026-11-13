@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "status": "browser prototype; not installed native watch capabilities",
+  "actors": {
+    "gorgon": {"name":"Gorgon","rig":"gorgon","skin":"#aaaaaa","shirt":"#555555","hair":"#555555","gaze":-1,"blink":false,"source":"stories/characters/super-supportive/gorgon-v1.json"},
+    "boe": {"name":"Boe","rig":"human","skin":"#ffaa55","shirt":"#555555","hair":"#553300","gaze":1,"blink":true,"glasses":true,"scarf":true,"source":"stories/characters/super-supportive/cast-11.json"},
+    "jeremy": {"name":"Jeremy","rig":"human","skin":"#ffaa55","shirt":"#ffffff","hair":"#553300","gaze":1,"blink":true,"source":"stories/characters/super-supportive/cast-11.json"}
+  },
+  "actions": {
+    "listen":{"name":"Listen and settle","duration":4800,"keys":[[0,0,0,0,0],[1200,3,0,0,0.10],[2400,4,0,0,0.10],[3600,1,0,0,0.02],[4800,1,0,0,0.02]]},
+    "offer":{"name":"Offer a cup","duration":4800,"keys":[[0,0,0,0,0],[1000,3,0,0,0.05],[2600,5,22,-13,0.08],[4000,5,22,-13,0.08],[4800,5,22,-13,0.08]]},
+    "think":{"name":"Pause and think","duration":4800,"keys":[[0,0,0,0,0],[1500,-2,-23,-42,-0.10],[3200,-2,-23,-42,-0.10],[4800,0,0,0,0]]},
+    "sip":{"name":"Raise and lower cup","duration":4800,"keys":[[0,0,0,0,0],[1800,2,-15,-39,0.03],[2900,2,-15,-39,0.03],[4800,0,0,0,0]]}
+  }
+}

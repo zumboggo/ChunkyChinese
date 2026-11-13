@@ -1,0 +1,46 @@
+<div id="pebble-ensemble">
+<style>
+#pebble-ensemble {color:light-dark(#252a30,#e7e9eb);color-scheme:light dark;font-family:system-ui,sans-serif;}
+#pebble-ensemble .views{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin:18px 0;}
+#pebble-ensemble figure{margin:0;max-width:100%;} #pebble-ensemble canvas{width:200px;height:auto;max-width:100%;display:block;image-rendering:pixelated;}
+#pebble-ensemble.enlarged canvas{width:300px;} #pebble-ensemble figcaption{text-align:center;margin-top:8px;}
+#pebble-ensemble .controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;}
+#pebble-ensemble label{display:flex;gap:8px;align-items:center;min-height:44px;}
+#pebble-ensemble button,#pebble-ensemble select{font:inherit;color:inherit;background:light-dark(#f2f4f5,#30373d);border:1px solid light-dark(#bac2c7,#626b73);border-radius:7px;padding:10px;min-height:44px;max-width:100%;}
+#pebble-ensemble .status{text-align:center;margin-top:12px;}
+</style>
+<div class="controls">
+<label>Movement <select data-action><option value="listen">Listen and settle</option><option value="offer">Offer a cup</option><option value="think">Pause and think</option><option value="sip">Raise and lower cup</option></select></label>
+<label>Setting <select data-setting><option value="consulate">Consulate · passersby & cat</option><option value="train">Train · seamless scenery</option><option value="meal">Cafe · rainy window</option><option value="home">Home · rain & cat</option><option value="classroom">Classroom · rainy window</option><option value="trading">Trading room · activity lights</option></select></label>
+</div>
+<div class="views viz-dotted-background">
+<figure><canvas width="200" height="228" data-actor="gorgon" role="img" aria-label="Gorgon, a gray alien with a swept horn collar and golden bindings"></canvas><figcaption>Gorgon</figcaption></figure>
+<figure><canvas width="200" height="228" data-actor="boe" role="img" aria-label="Boe, with glasses, a bowl haircut and a striped scarf"></canvas><figcaption>Boe</figcaption></figure>
+<figure><canvas width="200" height="228" data-actor="jeremy" role="img" aria-label="Jeremy, with cropped hair and a white shirt"></canvas><figcaption>Jeremy</figcaption></figure>
+</div>
+<div class="controls"><button type="button" data-replay>Replay gesture</button><button type="button" data-pause>Pause all</button><label><input type="checkbox" data-ambience checked> Background movement</label><label><input type="checkbox" data-size> Enlarge</label></div>
+<div class="status" role="status">200 × 228 · native pixels</div>
+<script>
+/*__DATA__*/
+/*__RENDERER__*/
+(()=>{
+ const root=document.getElementById('pebble-ensemble'),action=root.querySelector('[data-action]'),setting=root.querySelector('[data-setting]'),ambience=root.querySelector('[data-ambience]'),pause=root.querySelector('[data-pause]'),status=root.querySelector('.status');
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ let a=0,b=0,paused=reduced,last=performance.now();ambience.checked=!reduced;
+ function draw(){for(const c of root.querySelectorAll('canvas'))PebbleEnsemble.render(c.getContext('2d'),ENSEMBLE,{actor:c.dataset.actor,action:action.value,setting:setting.value,actionMs:a,ambientMs:b,ambience:ambience.checked});root.dataset.phase=a>=4800?'hold':'playing';}
+ function save(){if(window.openai?.setWidgetState)window.openai.setWidgetState({modelContent:{action:action.value,setting:setting.value,ambience:ambience.checked},privateContent:{enlarged:root.classList.contains('enlarged')}}).catch(()=>{});}
+ function restore(s){if(!s)return;const m=s.modelContent||{};if(ENSEMBLE.actions[m.action])action.value=m.action;if([...setting.options].some(o=>o.value===m.setting))setting.value=m.setting;if(typeof m.ambience==='boolean')ambience.checked=m.ambience;root.classList.toggle('enlarged',!!s.privateContent?.enlarged);root.querySelector('[data-size]').checked=root.classList.contains('enlarged');draw();}
+ function statusUpdate(){pause.textContent=paused?'Play':'Pause all';status.textContent=(a>=4800?'Gesture held':'Gesture playing')+' · '+(ambience.checked?'background loops':'background still')+' · 200 × 228';}
+ function replay(){a=0;paused=false;last=performance.now();draw();statusUpdate();}
+ root.querySelector('[data-replay]').onclick=replay;
+ pause.onclick=()=>{paused=!paused;last=performance.now();statusUpdate();};
+ action.onchange=()=>{replay();save();};setting.onchange=()=>{b=0;draw();save();};ambience.onchange=()=>{draw();statusUpdate();save();};
+ root.querySelector('[data-size]').onchange=e=>{root.classList.toggle('enlarged',e.target.checked);save();};
+ restore(window.openai?.widgetState);window.addEventListener('openai:set_globals',e=>restore(e.detail?.globals?.widgetState));
+ // Embedded previews can report hidden while visible; explicit Pause is authoritative.
+ // The native port must additionally suspend on watch app-focus loss.
+ const timer=setInterval(()=>{if(!root.isConnected){clearInterval(timer);return;}const now=performance.now(),dt=Math.min(250,now-last);last=now;if(paused)return;if(a>=4800&&!ambience.checked)return;a=Math.min(4800,a+dt);b=(b+dt)%PebbleEnsemble.PERIOD;draw();if(a>=4800)statusUpdate();},1000/12);
+ draw();statusUpdate();
+})();
+</script>
+</div>

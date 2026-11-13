@@ -1,0 +1,148 @@
+<div id="pebble-ensemble">
+<style>
+#pebble-ensemble {color:light-dark(#252a30,#e7e9eb);color-scheme:light dark;font-family:system-ui,sans-serif;}
+#pebble-ensemble .views{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin:18px 0;}
+#pebble-ensemble figure{margin:0;max-width:100%;} #pebble-ensemble canvas{width:200px;height:auto;max-width:100%;display:block;image-rendering:pixelated;}
+#pebble-ensemble.enlarged canvas{width:300px;} #pebble-ensemble figcaption{text-align:center;margin-top:8px;}
+#pebble-ensemble .controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;}
+#pebble-ensemble label{display:flex;gap:8px;align-items:center;min-height:44px;}
+#pebble-ensemble button,#pebble-ensemble select{font:inherit;color:inherit;background:light-dark(#f2f4f5,#30373d);border:1px solid light-dark(#bac2c7,#626b73);border-radius:7px;padding:10px;min-height:44px;max-width:100%;}
+#pebble-ensemble .status{text-align:center;margin-top:12px;}
+</style>
+<div class="controls">
+<label>Movement <select data-action><option value="listen">Listen and settle</option><option value="offer">Offer a cup</option><option value="think">Pause and think</option><option value="sip">Raise and lower cup</option></select></label>
+<label>Setting <select data-setting><option value="consulate">Consulate · passersby & cat</option><option value="train">Train · seamless scenery</option><option value="meal">Cafe · rainy window</option><option value="home">Home · rain & cat</option><option value="classroom">Classroom · rainy window</option><option value="trading">Trading room · activity lights</option></select></label>
+</div>
+<div class="views viz-dotted-background">
+<figure><canvas width="200" height="228" data-actor="gorgon" role="img" aria-label="Gorgon, a gray alien with a swept horn collar and golden bindings"></canvas><figcaption>Gorgon</figcaption></figure>
+<figure><canvas width="200" height="228" data-actor="boe" role="img" aria-label="Boe, with glasses, a bowl haircut and a striped scarf"></canvas><figcaption>Boe</figcaption></figure>
+<figure><canvas width="200" height="228" data-actor="jeremy" role="img" aria-label="Jeremy, with cropped hair and a white shirt"></canvas><figcaption>Jeremy</figcaption></figure>
+</div>
+<div class="controls"><button type="button" data-replay>Replay gesture</button><button type="button" data-pause>Pause all</button><label><input type="checkbox" data-ambience checked> Background movement</label><label><input type="checkbox" data-size> Enlarge</label></div>
+<div class="status" role="status">200 × 228 · native pixels</div>
+<script>
+const ENSEMBLE={"schema":1,"status":"browser prototype; not installed native watch capabilities","actors":{"gorgon":{"name":"Gorgon","rig":"gorgon","skin":"#aaaaaa","shirt":"#555555","hair":"#555555","gaze":-1,"blink":false,"source":"stories/characters/super-supportive/gorgon-v1.json"},"boe":{"name":"Boe","rig":"human","skin":"#ffaa55","shirt":"#555555","hair":"#553300","gaze":1,"blink":true,"glasses":true,"scarf":true,"source":"stories/characters/super-supportive/cast-11.json"},"jeremy":{"name":"Jeremy","rig":"human","skin":"#ffaa55","shirt":"#ffffff","hair":"#553300","gaze":1,"blink":true,"source":"stories/characters/super-supportive/cast-11.json"}},"actions":{"listen":{"name":"Listen and settle","duration":4800,"keys":[[0,0,0,0,0],[1200,3,0,0,0.1],[2400,4,0,0,0.1],[3600,1,0,0,0.02],[4800,1,0,0,0.02]]},"offer":{"name":"Offer a cup","duration":4800,"keys":[[0,0,0,0,0],[1000,3,0,0,0.05],[2600,5,22,-13,0.08],[4000,5,22,-13,0.08],[4800,5,22,-13,0.08]]},"think":{"name":"Pause and think","duration":4800,"keys":[[0,0,0,0,0],[1500,-2,-23,-42,-0.1],[3200,-2,-23,-42,-0.1],[4800,0,0,0,0]]},"sip":{"name":"Raise and lower cup","duration":4800,"keys":[[0,0,0,0,0],[1800,2,-15,-39,0.03],[2900,2,-15,-39,0.03],[4800,0,0,0,0]]}}};
+/* Pure Canvas reference renderer. No DOM, timers, assets or installed native IDs.
+   Pose keys: time, head-y, hand-x offset, hand-y offset, head angle. */
+(function(scope){
+ const P={paper:'#ffffff',ink:'#000055',far:'#aaaaaa',near:'#555555',gold:'#aaaa00',teal:'#005555'};
+ const PERIOD=12000,mod=(x,n)=>((x%n)+n)%n;
+ const ease=x=>{x=Math.max(0,Math.min(1,x));return x*x*(3-2*x);};
+ function pose(action,ms){const k=action.keys;for(let i=1;i<k.length;i++)if(ms<=k[i][0]){const t=ease((ms-k[i-1][0])/(k[i][0]-k[i-1][0]));return k[i].slice(1).map((v,j)=>k[i-1][j+1]+(v-k[i-1][j+1])*t);}return k.at(-1).slice(1);}
+ function render(ctx,data,opt){
+ const actor=data.actors[opt.actor],action=data.actions[opt.action];
+ if(!actor||!action)throw Error('Unknown actor or action');
+ const t=opt.ambience===false?0:mod(opt.ambientMs,PERIOD),p=pose(action,opt.actionMs);
+ const line=(pts,c=P.ink,w=1)=>{ctx.beginPath();ctx.strokeStyle=c;ctx.lineWidth=w;ctx.lineCap='round';ctx.lineJoin='round';pts.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.stroke();};
+ const poly=(pts,c)=>{ctx.beginPath();ctx.fillStyle=c;pts.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();ctx.fill();};
+ const box=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(x,y,w,h);};
+ const disc=(x,y,r,c)=>{ctx.beginPath();ctx.fillStyle=c;ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();};
+ function walker(x,y,phase){const a=Math.sin(phase)*5;disc(x,y,3,P.far);line([[x,y+4],[x,y+15]],P.far,2);line([[x-5,y+10-a/2],[x,y+7],[x+5,y+10+a/2]],P.far,2);line([[x-a,y+25],[x,y+15],[x+a,y+25]],P.far,2);}
+ function cat(x,y){const a=Math.sin(t/1000*Math.PI*2)*2;line([[x-8,y+2],[x-8+a,y+8]],P.far,2);line([[x+5,y+2],[x+5-a,y+8]],P.far,2);line([[x-8,y],[x+6,y]],P.far,5);disc(x+9,y-3,4,P.far);poly([[x+6,y-5],[x+6,y-10],[x+10,y-6],[x+13,y-9],[x+13,y-3]],P.far);line([[x-9,y],[x-15,y-4],[x-17,y-9]],P.far,2);}
+ function windowScene(train){
+  ctx.save();ctx.beginPath();ctx.rect(14,21,172,76);ctx.clip();
+  if(train){
+   // Repeated 180px world tile; 1 and 3 complete traversals per 12s.
+   for(let i=-1;i<3;i++){
+    const x=i*180-t*180/PERIOD;
+    for(const [dx,h,w] of [[0,33,28],[42,53,34],[91,25,24],[132,42,30]]){
+     line([[x+dx,96],[x+dx,96-h],[x+dx+w,96-h],[x+dx+w,96]],P.far);
+     for(let j=0;j<3;j++)line([[x+dx+6+j*7,101-h],[x+dx+6+j*7,105-h]],P.far);
+    }
+   }
+   const x=mod(190-t*540/PERIOD,180);for(const q of [x-180,x,x+180]){line([[q,20],[q,97]],P.near,2);line([[q-12,32],[q+12,32]],P.near);}
+  }else{
+   line([[14,85],[40,85],[40,65],[70,65],[70,85],[128,85],[128,56],[160,56],[160,85],[186,85]],P.far);
+   for(let i=0;i<20;i++){const x=16+mod(i*29,170),y=21+mod(i*17+t/1000*38,76);line([[x,y],[x-2,y+7]],P.far);}
+  }
+  ctx.restore();line([[12,99],[12,19],[188,19],[188,99],[12,99]],P.near,2);
+  if(!train)line([[100,19],[100,99]],P.far);
+ }
+ ctx.save();ctx.clearRect(0,0,200,228);box(0,0,200,228,P.paper);
+ const setting=opt.setting;
+ if(setting==='train'||['home','meal','classroom'].includes(setting))windowScene(setting==='train');
+ if(setting==='consulate'){
+  line([[8,18],[192,18],[192,101],[8,101],[8,18]],P.far);line([[151,18],[151,101]],P.far);line([[28,18],[28,101]],P.far);
+  walker(-30+t/12000*270,55,t/1000*Math.PI*2);
+  walker(240-t/12000*270,48,t/1000*Math.PI*2+Math.PI);
+  cat(-25+t/12000*250,107);
+  box(5,111,22,17,P.far);line([[16,111],[13,91],[6,86]],P.near);line([[14,100],[23,90]],P.near);
+ }
+ if(setting==='trading'){
+  line([[14,16],[186,16],[186,112],[14,112],[14,16]],P.far);box(60,22,80,3,P.far);
+  // Breathing activity lights, not a flashing room or invented exterior window.
+  const pulse=(1+Math.cos(t/PERIOD*2*Math.PI))/2;
+  box(156,38,18,26,P.far);for(let i=0;i<3;i++)disc(162+i*4,46,1,pulse>.5?P.near:P.paper);
+ }
+ line([[0,205],[200,205]],P.far);line([[24,205],[5,228]],P.far);line([[177,205],[196,228]],P.far);
+ if(setting==='home')cat(225-t/12000*250,199);
+ // Chair and anchored rear bindings.
+ line([[60,153],[60,119],[119,119],[119,153]],P.far,3);line([[62,157],[60,198]],P.near,3);line([[117,157],[121,198]],P.near,3);
+ const g=actor.rig==='gorgon',hy=78+p[0],hx=g?83:86,hand=[119+p[1],142+p[2]],shoulder=[94,113+p[0]*.3];
+ if(g){line([[12,165],[43,157],[68,140]],P.gold,2);line([[12,165],[44,180],[108,187]],P.gold,2);}
+ line([[78,150],[87,173],[82,197]],P.ink,8);line([[92,150],[113,173],[116,198]],P.ink,8);line([[80,199],[94,200]],P.ink,6);line([[115,199],[129,200]],P.ink,6);
+ poly([[71,108],[98,107],[105,152],[69,152]],P.ink);poly([[74,110],[95,110],[101,148],[73,148]],actor.shirt);
+ line([[75,114],[63,132],[76,146]],P.ink,8);line([[75,114],[63,132],[76,146]],g?actor.skin:actor.shirt,5);disc(76,146,3,actor.skin);
+ line([[85,96],[85,110]],actor.skin,7);
+ ctx.save();ctx.translate(hx,hy);ctx.rotate(p[3]);
+ if(g){
+  // Horns sweep down to a collar, not upright devil horns.
+  for(let side of [-1,1])for(let i=0;i<4;i++)poly([[side*(11+i*2),-15+i*3],[side*(22+i*2),8+i*5],[side*(14+i*2),24+i*2],[side*(17+i),7]],P.near);
+  disc(0,0,21,P.ink);disc(0,0,19,actor.skin);
+  disc(-7,1,4,P.ink);disc(8,1,4,P.ink);
+  poly([[-7,8],[-5,5],[5,5],[8,9]],P.near);for(const x of [-5,-2,2,5])line([[x,7],[x,9]],P.ink);
+  line([[-5,14],[5,14]],P.ink);
+ }else{
+  disc(-17,3,3,actor.skin);disc(17,3,3,actor.skin);disc(0,0,19,P.ink);disc(0,1,17,actor.skin);
+  if(actor.glasses){poly([[-19,1],[-18,-12],[-11,-20],[9,-20],[19,-12],[19,0],[14,-6],[-14,-6]],actor.hair);}
+  else{poly([[-18,-1],[-18,-12],[-12,-18],[-5,-17],[-2,-21],[5,-17],[13,-17],[19,-8],[17,-1],[12,-9],[-10,-8]],actor.hair);}
+  // No ongoing foreground idle: action end is a true held pose.
+  for(const x of [-7,7]){disc(x+actor.gaze,1,1.5,P.ink);if(actor.glasses){ctx.strokeStyle=P.ink;ctx.lineWidth=1.5;ctx.strokeRect(x-5,-4,10,9);}}
+  if(actor.glasses)line([[-2,0],[2,0]],P.ink);
+  line([[-10,-7],[-4,-8]],P.ink);line([[4,-8],[10,-7]],P.ink);line([[1,5],[4,7],[1,8]],P.near);line([[-4,12],[2,13],[6,11]],P.ink);
+ }
+ ctx.restore();
+ if(actor.scarf){line([[73,107],[88,113],[98,106]],'#aaaa55',6);line([[85,113],[80,137]],'#aaaa55',6);for(let i=0;i<4;i++)line([[77,119+i*5],[83,119+i*5]],P.near);}
+ // Two-link arm with fixed segment lengths (same mechanism as train preview).
+ const dx=hand[0]-shoulder[0],dy=hand[1]-shoulder[1],d=Math.hypot(dx,dy),a=(27*27-30*30+d*d)/(2*d),b=Math.sqrt(Math.max(0,27*27-a*a));
+ const elbow=[shoulder[0]+a*dx/d-b*dy/d,shoulder[1]+a*dy/d+b*dx/d];
+ line([shoulder,elbow,hand],P.ink,8);line([shoulder,elbow,hand],g?actor.skin:actor.shirt,5);
+ if(opt.action==='offer'||opt.action==='sip'){
+  box(hand[0]-2,hand[1]-15,13,15,P.teal);line([[hand[0]+11,hand[1]-12],[hand[0]+16,hand[1]-12],[hand[0]+16,hand[1]-4],[hand[0]+11,hand[1]-4]],P.teal,2);
+  line([[hand[0],hand[1]-15],[hand[0]+9,hand[1]-15]],P.paper);
+ }
+ disc(hand[0]-1,hand[1],3,actor.skin);
+ if(g){for(let i=0;i<3;i++)line([[hand[0]-1,hand[1]+i-2],[hand[0]+6,hand[1]+i-3]],actor.skin,1);line([[hand[0]-7,hand[1]-3],[hand[0]-3,hand[1]+3]],P.gold,3);line([[hand[0]-5,hand[1]+1],[45,165],[12,165]],P.gold,1);}
+ // Props foreground, below hands, so gestures remain legible.
+ if(['consulate','meal','trading','classroom'].includes(setting)){
+  const colour=setting==='trading'?'#55aaaa':P.far;
+  line([[133,155],[196,155],[199,164],[126,164],[133,155]],colour,2);line([[135,165],[135,202]],P.far,2);line([[192,165],[192,202]],P.far,2);
+  if(setting==='consulate'){box(163,120,29,24,P.near);box(166,123,23,17,P.far);line([[178,145],[178,154]],P.near,2);}
+  if(setting==='classroom'){poly([[147,146],[176,146],[185,154],[144,154]],P.paper);line([[147,146],[176,146],[185,154],[144,154],[147,146]],P.near);}
+ }
+ ctx.restore();
+ }
+ scope.PebbleEnsemble={render,pose,PERIOD};
+})(globalThis);
+
+(()=>{
+ const root=document.getElementById('pebble-ensemble'),action=root.querySelector('[data-action]'),setting=root.querySelector('[data-setting]'),ambience=root.querySelector('[data-ambience]'),pause=root.querySelector('[data-pause]'),status=root.querySelector('.status');
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ let a=0,b=0,paused=reduced,last=performance.now();ambience.checked=!reduced;
+ function draw(){for(const c of root.querySelectorAll('canvas'))PebbleEnsemble.render(c.getContext('2d'),ENSEMBLE,{actor:c.dataset.actor,action:action.value,setting:setting.value,actionMs:a,ambientMs:b,ambience:ambience.checked});root.dataset.phase=a>=4800?'hold':'playing';}
+ function save(){if(window.openai?.setWidgetState)window.openai.setWidgetState({modelContent:{action:action.value,setting:setting.value,ambience:ambience.checked},privateContent:{enlarged:root.classList.contains('enlarged')}}).catch(()=>{});}
+ function restore(s){if(!s)return;const m=s.modelContent||{};if(ENSEMBLE.actions[m.action])action.value=m.action;if([...setting.options].some(o=>o.value===m.setting))setting.value=m.setting;if(typeof m.ambience==='boolean')ambience.checked=m.ambience;root.classList.toggle('enlarged',!!s.privateContent?.enlarged);root.querySelector('[data-size]').checked=root.classList.contains('enlarged');draw();}
+ function statusUpdate(){pause.textContent=paused?'Play':'Pause all';status.textContent=(a>=4800?'Gesture held':'Gesture playing')+' · '+(ambience.checked?'background loops':'background still')+' · 200 × 228';}
+ function replay(){a=0;paused=false;last=performance.now();draw();statusUpdate();}
+ root.querySelector('[data-replay]').onclick=replay;
+ pause.onclick=()=>{paused=!paused;last=performance.now();statusUpdate();};
+ action.onchange=()=>{replay();save();};setting.onchange=()=>{b=0;draw();save();};ambience.onchange=()=>{draw();statusUpdate();save();};
+ root.querySelector('[data-size]').onchange=e=>{root.classList.toggle('enlarged',e.target.checked);save();};
+ restore(window.openai?.widgetState);window.addEventListener('openai:set_globals',e=>restore(e.detail?.globals?.widgetState));
+ // Embedded previews can report hidden while visible; explicit Pause is authoritative.
+ // The native port must additionally suspend on watch app-focus loss.
+ const timer=setInterval(()=>{if(!root.isConnected){clearInterval(timer);return;}const now=performance.now(),dt=Math.min(250,now-last);last=now;if(paused)return;if(a>=4800&&!ambience.checked)return;a=Math.min(4800,a+dt);b=(b+dt)%PebbleEnsemble.PERIOD;draw();if(a>=4800)statusUpdate();},1000/12);
+ draw();statusUpdate();
+})();
+</script>
+</div>
