@@ -20,28 +20,28 @@
   if(train){
    // Repeated 180px world tile; 1 and 3 complete traversals per 12s.
    for(let i=-1;i<3;i++){
-    const x=i*180-t*180/PERIOD;
+    const x=i*data.ambient.trainTile-t*data.ambient.trainTile*data.ambient.farCycles/PERIOD;
     for(const [dx,h,w] of [[0,33,28],[42,53,34],[91,25,24],[132,42,30]]){
      line([[x+dx,96],[x+dx,96-h],[x+dx+w,96-h],[x+dx+w,96]],P.far);
      for(let j=0;j<3;j++)line([[x+dx+6+j*7,101-h],[x+dx+6+j*7,105-h]],P.far);
     }
    }
-   const x=mod(190-t*540/PERIOD,180);for(const q of [x-180,x,x+180]){line([[q,20],[q,97]],P.near,2);line([[q-12,32],[q+12,32]],P.near);}
+   const x=mod(190-t*data.ambient.trainTile*data.ambient.nearCycles/PERIOD,180);for(const q of [x-180,x,x+180]){line([[q,20],[q,97]],P.near,2);line([[q-12,32],[q+12,32]],P.near);}
   }else{
    line([[14,85],[40,85],[40,65],[70,65],[70,85],[128,85],[128,56],[160,56],[160,85],[186,85]],P.far);
-   for(let i=0;i<20;i++){const x=16+mod(i*29,170),y=21+mod(i*17+t/1000*38,76);line([[x,y],[x-2,y+7]],P.far);}
+   if(rain){for(let i=0;i<20;i++){const x=16+mod(i*29,170),y=21+mod(i*17+t/1000*38,76);line([[x,y],[x-2,y+7]],P.far);}}
+   else if(setting==='meal'){if(t<8000){const x=-20+t*240/8000;walker(x,55,t/1000*Math.PI*2);}}
+   else{const bend=Math.sin(t/PERIOD*Math.PI*2)*3;line([[158,94],[162+bend,53]],P.far,2);line([[161+bend,65],[145+bend,53]],P.far);line([[162+bend,73],[177+bend,59]],P.far);disc(146+bend,53,5,P.far);disc(176+bend,59,5,P.far);disc(163+bend,49,5,P.far);}
   }
   ctx.restore();line([[12,99],[12,19],[188,19],[188,99],[12,99]],P.near,2);
   if(!train)line([[100,19],[100,99]],P.far);
  }
  ctx.save();ctx.clearRect(0,0,200,228);box(0,0,200,228,P.paper);
- const setting=opt.setting;
+ const setting=opt.setting.split('-')[0];const rain=opt.setting.endsWith('-rain'),catEnabled=opt.setting.endsWith('-cat');
  if(setting==='train'||['home','meal','classroom'].includes(setting))windowScene(setting==='train');
  if(setting==='consulate'){
   line([[8,18],[192,18],[192,101],[8,101],[8,18]],P.far);line([[151,18],[151,101]],P.far);line([[28,18],[28,101]],P.far);
-  walker(-30+t/12000*270,55,t/1000*Math.PI*2);
-  walker(240-t/12000*270,48,t/1000*Math.PI*2+Math.PI);
-  cat(-25+t/12000*250,107);
+  if(t<8000)walker(-20+t/8000*240,55,t/1000*Math.PI*2);
   box(5,111,22,17,P.far);line([[16,111],[13,91],[6,86]],P.near);line([[14,100],[23,90]],P.near);
  }
  if(setting==='trading'){
@@ -51,7 +51,7 @@
   box(156,38,18,26,P.far);for(let i=0;i<3;i++)disc(162+i*4,46,1,pulse>.5?P.near:P.paper);
  }
  line([[0,205],[200,205]],P.far);line([[24,205],[5,228]],P.far);line([[177,205],[196,228]],P.far);
- if(setting==='home')cat(225-t/12000*250,199);
+ if(catEnabled)cat(225-t/12000*250,199);
  // Chair and anchored rear bindings.
  line([[60,153],[60,119],[119,119],[119,153]],P.far,3);line([[62,157],[60,198]],P.near,3);line([[117,157],[121,198]],P.near,3);
  const g=actor.rig==='gorgon',hy=78+p[0],hx=g?83:86,hand=[119+p[1],142+p[2]],shoulder=[94,113+p[0]*.3];
