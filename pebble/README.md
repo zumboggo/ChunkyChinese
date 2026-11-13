@@ -5,23 +5,33 @@ Private learning reader for **Episode 11: 还可以更好 · We Could Do Better*
 ## Install on Android
 
 1. Install the current [official Pebble Android app](https://repebble.com/app), pair your **new Pebble Time 2 (Emery)**, and update watch firmware.
-2. Transfer `release/chunky-chinese-time2-v1.2.0.pbw` to your phone. Open it with Pebble from Downloads or the Android share sheet, then install it on your connected watch. [Official sideloading instructions](https://developer.repebble.com/guides/tools-and-resources/testing-with-the-mobile-app/#sideloading-apps).
+2. Transfer `release/chunky-chinese-time2-supportive-11-v1.3.0.pbw` to your phone. Open it with Pebble from Downloads or the Android share sheet, then install it on your connected watch. [Official sideloading instructions](https://developer.repebble.com/guides/tools-and-resources/testing-with-the-mobile-app/#sideloading-apps).
 3. Launch **Chunky Chinese**. Episode 11 is bundled: no account, audio, network download, or separate Android APK is needed to begin.
 4. For future supported packages, use Back → Refresh episode. The companion runs inside the Pebble Android app. Leave both apps open during transfer. The library says **Available offline** after verification. App settings accept an optional HTTPS `raw.githubusercontent.com` episode JSON URL; otherwise the repository's Episode 11 is used. A failed network fetch leaves the current offline episode intact.
 
-If opening the file does not work, use the [Developer Connection](https://developer.repebble.com/guides/tools-and-resources/developer-connection/): enable Dev Connection in the connected watch's menu; run `pebble login`, then `pebble install release/chunky-chinese-time2-v1.2.0.pbw --cloudpebble`. A trusted local-network connection with `--phone PHONE_IP` is another option.
+If opening the file does not work, use the [Developer Connection](https://developer.repebble.com/guides/tools-and-resources/developer-connection/): enable Dev Connection in the connected watch's menu; run `pebble login`, then `pebble install release/chunky-chinese-time2-supportive-11-v1.3.0.pbw --cloudpebble`. A trusted local-network connection with `--phone PHONE_IP` is another option.
 
 Only Emery is included. This package is not for the original Pebble Time, Time Steel, or other older Pebbles. Android pairing and physical-watch readability still need testing on David's watch.
 
-## Version 1.2 — five animated moments
+## Version 1.3 — reusable cast and looping ambience
 
-Install version 1.2 once; Refresh alone cannot add the native renderer. All five moments are bundled offline: train phone pickup, restaurant seating, Hannah taking a fry, young Alden lowering his milkshake to listen, and the final train-window reflection. Each follows its corresponding completed passage on every story route. Text and animation occupy separate screens. The phone scene waits for Select at “Pick up the phone”; other scenes play for about four seconds. All hold their last pose until Select. Down replays; Up returns to the previous reading screen; Back opens the menu.
+Episode 11 keeps the same five animation placements and all story text/choices. Both train scenes now have seamless building/pole parallax; all three restaurant scenes have small, distant passersby with quiet gaps. Foreground actions finish and hold while the background continues. Select still advances deliberately; Down replays.
 
-**Back → Animations** previews any of the five scenes without changing the saved reading position. In previews, Back or Select after completion returns to the preview list. Holding Select does not repeat it.
+**Back → Animations** groups the original scenes, Gorgon, Boe, Jeremy and Backgrounds. Each new character has Listen, Offer a cup, Think and Raise/lower cup previews. They are available for future episodes without inserting them into Episode 11. The background sampler includes train scenery, restaurant/consulate walkers, home/classroom foliage and crystal-table light. Rain and a cat are optional samples, not default story events.
 
-Existing v1.0/v1.1 saves migrate to the same phrase and selected choices. A known older v1.0/v1.1 feed is rejected so refreshing an unpublished/older feed cannot silently remove the installed animations. Future compatible refreshes can rearrange or reuse these five named animation IDs; new poses or scene types still require a PBW update. This release is supplied as a sideloaded file; remote feed publication is separate.
+**Back → Background motion: On/Off** persists across restarts. Off freezes ambience but still plays deliberate gestures. Text screens remain static. Native timers use approximately 12 fps during actions and 6 fps for background-only playback; scene exit and focus loss stop them. Install the new PBW once; Refresh can subsequently reference the installed catalogue but cannot add native actions or assets.
 
-Native primitives draw the animations at a target 12 fps. Static portraits now use row-run resources, drawn through a 512-byte streaming buffer instead of decoding full bitmaps. The bundled story uses a generated flash-resource index and reads at most one 2 KiB record through a shared FFI bridge. The JavaScript runtime reserves 32 KiB for slots, 24 KiB for chunks, and 4 KiB for its stack. Emulator checks and limits are in `verification/v3/STATUS.md`.
+See `verification/v4/STATUS.md` for this release's measured checks and hardware limitations.
+
+## Existing reading experience
+
+The original five moments remain available; Refresh alone cannot add native renderer capabilities. All five moments are bundled offline: train phone pickup, restaurant seating, Hannah taking a fry, young Alden lowering his milkshake to listen, and the final train-window reflection. Each follows its corresponding completed passage on every story route. Text and animation occupy separate screens. The phone scene waits for Select at “Pick up the phone”; other scenes play for about four seconds. All hold their last pose until Select. Down replays; Up returns to the previous reading screen; Back opens the menu.
+
+**Back → Animations → Episode 11** previews the five original scenes without changing the saved reading position. In previews, Back or Select after completion returns to the preview list. Holding Select does not repeat it.
+
+Existing v1.0/v1.1 saves migrate to the same phrase and selected choices. A known older v1.0/v1.1 feed is rejected so refreshing an unpublished/older feed cannot silently remove the installed animations. Future compatible refreshes can rearrange or reuse the installed named animation IDs; new poses or scene types still require a PBW update. This release is supplied as a sideloaded file; remote feed publication is separate.
+
+Native primitives draw the animations at a target 12 fps. Static portraits now use row-run resources, drawn through a 512-byte streaming buffer instead of decoding full bitmaps. The bundled story uses a generated flash-resource index and reads at most one 2 KiB record through a shared FFI bridge. The JavaScript runtime reserves 32 KiB for slots, 20 KiB for chunks, and 4 KiB for its stack. Current emulator checks and limits are in `verification/v4/STATUS.md`.
 
 ## Reading controls
 
@@ -30,7 +40,7 @@ Native primitives draw the animations at a target 12 fps. Static portraits now u
 - The speaker's name appears in small blue text at the bottom left.
 - Up revisits the previous screen (64 recent screens, 24 retained across restarts).
 - At choices, **Up cycles options**, Down toggles Chinese, Select requests confirmation, and **Select: choose** commits. Chinese is optional here too.
-- Back opens Resume / Refresh episode / Restart / Library. Hold Back to exit.
+- Back opens Resume / Refresh episode / Animations / Background motion / Restart / Library. Hold Back to exit.
 - Portraits fill 200 × 228 pixels, without emotion labels. There are 24 portrait beats, up from 12; the same cast artwork is reused. They are static and advance with Select.
 - The default path needs 269 Select presses in the layout model, versus 500 in version 1.0 (46% fewer), including the additional portraits.
 - The original 24-pixel pinyin, 20-pixel English, and optional 28-pixel Chinese fonts remain. Both languages stay visible on continuation pages.
@@ -41,7 +51,7 @@ Native primitives draw the animations at a target 12 fps. Static portraits now u
 
 **Back → Refresh episode** fetches the latest exported story through the phone. The phone's app settings also have **Refresh watch story**; keep the watch app open. A failed fetch says it kept the offline story, instead of quietly treating a cached copy as an update.
 
-Refresh handles text, pinyin, glosses, decisions, and placement of already-installed portraits. New image files, new font glyphs, or changes to button behavior require a new PBW. Install version 1.2 once for the animation renderer; later compatible content edits can use Refresh.
+Refresh handles text, pinyin, glosses, decisions, and placement of already-installed portraits. New image files, new font glyphs, or changes to button behavior require a new PBW. Install version 1.3 once for the expanded animation renderer; later compatible content edits can use Refresh.
 
 The live feed is the JSON export in this existing Chunky Chinese GitHub repository. Author the source episode → export → commit/push → Refresh. No separate database or API key is required. A future Chunky Chinese frontend can serve the same versioned JSON from a static endpoint, or a backend can select a learner's episode and vocabulary; moving to that endpoint would require adding its domain to the phone companion's permissions and URL validation. No private backend credentials are embedded in the watch app, and watch progress remains separate from phone progress.
 
@@ -64,13 +74,13 @@ Pass an episode ID to select the bundle (`npm run build -- supportive-10`, `npm 
 
 ## Architecture
 
-Alloy/Poco reader with native C animation and streamed portrait layers. Five native scene IDs are exposed through a single shared FFI instance. Story records and static portraits load incrementally from resources; animation frames are drawn from coordinates. Phone JSON becomes ASCII NDJSON, transferred in acknowledged 600-character chunks with per-chunk and complete-file Adler-32 checks. Adler-32 detects transfer corruption; it is not an authentication signature. The URL is HTTPS and restricted to raw.githubusercontent.com.
+Alloy/Poco reader with native C animation and streamed portrait layers. Twenty-five native scene IDs are exposed through a single shared FFI instance. Story records and static portraits load incrementally from resources; animation frames are drawn from coordinates. Phone JSON becomes ASCII NDJSON, transferred in acknowledged 600-character chunks with per-chunk and complete-file Adler-32 checks. Adler-32 detects transfer corruption; it is not an authentication signature. The URL is HTTPS and restricted to raw.githubusercontent.com.
 
 The exporter and receiver limit packages to 64 KiB, 160 nodes and 2 KiB per wire record; split larger stories before exporting. Downloads write to the inactive A/B file. Only complete, checksum-valid content with valid graph, glyphs, and already bundled artwork activates. A failed/interrupted transfer retains the previous episode and progress. Reconnect and select Refresh episode to restart an abandoned transfer. This release stores the bundled episode and one active downloaded episode; it is not a multi-episode bookshelf. New art/fonts require a PBW update. Watch reading positions are separate from Chunky Chinese phone saves.
 
 ## Verification
 
-See `verification/v3/STATUS.md` for actual test coverage and remaining hardware checks. Screenshots are native 200 × 228 emulator captures, not mockups. `art/` holds generated source artwork; `reader/resources/images/` contains both 64 × 64 and 48 × 48 portraits and opening/closing images. No public app-store submission was made.
+See `verification/v4/STATUS.md` for actual test coverage and remaining hardware checks. Screenshots are native 200 × 228 emulator captures, not mockups. `art/` holds generated source artwork; `reader/resources/images/` contains both 64 × 64 and 48 × 48 portraits and opening/closing images. No public app-store submission was made.
 
 ## Image budget
 

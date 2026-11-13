@@ -1,0 +1,11 @@
+{
+  "wireBytes": 40101,
+  "version": "73281f5e8202",
+  "pbwSha256": "cc2b542109a74b2271f356cf886a8cf540da25d4ce65999073511a217e0dc368",
+  "interruptedRestartPreservedPosition": true,
+  "incompleteRejected": true,
+  "badChunkRejected": true,
+  "restartAndComplete": true,
+  "duplicateEnd": true,
+  "physicalWatchTested": false
+}

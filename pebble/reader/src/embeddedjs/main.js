@@ -7,7 +7,7 @@ import Message from 'pebble/message';
 import bundled from './bundled';
 import legacy from './legacy';
 import upgrade from './upgrade';
-import {sceneIds,sceneNames} from './scenes';
+import {sceneIds,sceneNames,sceneGroups} from './scenes';
 import glyphs from './glyphs';
 import art from './art';
 import {initial,current,phrase,advance,previous,browse,restore,toggleChinese,migrate,migrateLegacy} from './reader';
@@ -21,7 +21,7 @@ const ink=render.makeColor(0,0,0),paper=render.makeColor(255,255,255),navy=rende
 function readFile(path){const f=device.files.openFile({path});try{return String.fromArrayBuffer(f.read(f.status().size,0));}finally{f.close();}}
 function writeFile(path,text){try{device.files.delete(path);}catch{}const bytes=ArrayBuffer.fromString(text);const f=device.files.openFile({path,mode:'r+',size:bytes.byteLength});try{f.write(bytes,0);}finally{f.close();}}
 function openStored(path,expected){
- const f=device.files.openFile({path});try{return openWire(f.status().size,(offset,count)=>String.fromArrayBuffer(f.read(count,offset)),expected,(offset,count)=>{const file=device.files.openFile({path});try{return String.fromArrayBuffer(file.read(count,offset));}finally{file.close();}});}finally{f.close();}
+ const f=device.files.openFile({path});try{return openWire(f.status().size,(offset,count)=>String.fromArrayBuffer(f.read(count,offset)),expected,(offset,count)=>{const file=device.files.openFile({path});try{return String.fromArrayBuffer(file.read(count,offset));}finally{file.close();}},true);}finally{f.close();}
 }
 const hasArt=name=>!!art[name]||!!art[name+'-full'];
 let pack=bundled,activeSlot=localStorage.getItem('activeEpisode');
@@ -48,7 +48,13 @@ function portrait(n){
  render.begin();lastImage=null;lastImageName=null;render.fillRectangle(paper,0,0,200,228);render.end();Debug.gc();
  graphics.showPortrait(art[n.actor+'-'+n.emotion+'-full'],n.actor==='Hannah'?1:n.actor==='YoungAlden'?2:0);
 }
-function menuItems(){return overlay==='animations'?[...sceneNames,'Back']:overlay==='library'?['Read Episode '+pack.number,'Refresh episode','About this story','Back']:overlay==='restart'?['Keep reading','Restart episode']:['Resume','Refresh episode','Animations','Restart','Library'];}
+const previewGroups=['Episode 11','Gorgon','Boe','Jeremy','Backgrounds'];
+let previewGroup='Episode 11',previewIndex=0,backgroundMotion=localStorage.getItem('backgroundMotion')!=='0';
+graphics.setBackgroundMotion(backgroundMotion?1:0);
+function groupIds(){const ids=[];sceneGroups.forEach((g,i)=>{if(g===previewGroup)ids.push(i+1);});return ids;}
+function menuItems(){return overlay==='animations'?[...previewGroups,'Back']:overlay==='scene-list'?[...groupIds().map(id=>sceneNames[id-1]),'Back']:overlay==='library'?['Read Episode '+pack.number,'Refresh episode','About this story','Back']:overlay==='restart'?['Keep reading','Restart episode']:['Resume','Refresh episode','Animations','Background motion: '+(backgroundMotion?'On':'Off'),'Restart','Library'];}
+function previewReturn(){previewScene=0;overlay='scene-list';menuIndex=previewIndex;}
+
 function stopScene(){if(activeScene){graphics.showScene(0);activeScene=0;}}
 function showAnimation(id){
  graphics.showPortrait(0,0);lastImage=null;lastImageName=null;
@@ -68,8 +74,8 @@ function draw(){
   const body='Super Supportive by Sleyca. A private Mandarin learning adaptation. Original: royalroad.com/fiction/63759. Watch reading progress stays on this watch.';
   const lines=wrap(body,t=>measure(t,'en'));const batch=lines.slice(helpPage*6,helpPage*6+6);batch.forEach((l,i)=>text(l,8,30+i*27));footer((helpPage+1)*6<lines.length?'Select: more   Back: return':'Select: return');
  }else if(overlay){
-  header(overlay==='animations'?'Animation previews':overlay==='library'?'Episode library':overlay==='restart'?'Start again?':'Chunky Chinese');
-  menuItems().forEach((item,i)=>{const row=itemsHeight();const y=28+i*row;if(i===menuIndex)render.fillRectangle(teal,5,y,190,row-1);text(item,10,y+3,overlay==='animations'?'small':'en',i===menuIndex?paper:ink);});
+  header(overlay==='scene-list'?previewGroup:overlay==='animations'?'Animation previews':overlay==='library'?'Episode library':overlay==='restart'?'Start again?':'Chunky Chinese');
+  const top=Math.floor(menuIndex/6)*6;menuItems().slice(top,top+6).forEach((item,j)=>{const i=top+j,row=itemsHeight();const y=28+j*row;if(i===menuIndex)render.fillRectangle(teal,5,y,190,row-1);text(item,10,y+3,'small',i===menuIndex?paper:ink);});
   footer(overlay==='library'?status:'Up/Down: browse   Select: open');
  }else{
   const p=phrase(pack,state),all=pages(p,state.e,measure),page=all[Math.min(state.page,all.length-1)];
@@ -84,7 +90,7 @@ function draw(){
  }
  render.end();
 }
-function itemsHeight(){return overlay==='animations'?29:overlay==='menu'?34:35;}
+function itemsHeight(){return 29;}
 function closeOverlay(){overlay=null;menuIndex=0;helpPage=0;}
 function request(){lastImage=null;lastImageName=null;Debug.gc();status=connected?'Loading from phone...':'Waiting for phone...';send({COMMAND:'LOAD'});}
 function input(type){
@@ -96,9 +102,13 @@ function input(type){
  }
  if(overlay){
   const items=menuItems();if(type==='up'||type==='down')menuIndex=(menuIndex+(type==='up'?-1:1)+items.length)%items.length;
-  else if(type==='back')closeOverlay();else if(type==='select'){
+  else if(type==='back'){if(overlay==='scene-list'){overlay='animations';menuIndex=previewGroups.indexOf(previewGroup);}else if(overlay==='animations'){overlay='menu';menuIndex=2;}else closeOverlay();}else if(type==='select'){
    const chosen=items[menuIndex];
-   if(overlay==='animations'&&menuIndex<5){previewScene=menuIndex+1;closeOverlay();}
+   if(overlay==='animations'&&menuIndex<previewGroups.length){previewGroup=chosen;overlay='scene-list';menuIndex=0;}
+   else if(overlay==='scene-list'&&menuIndex<groupIds().length){previewIndex=menuIndex;previewScene=groupIds()[menuIndex];closeOverlay();}
+   else if(chosen==='Back'&&overlay==='scene-list'){overlay='animations';menuIndex=previewGroups.indexOf(previewGroup);}
+   else if(chosen==='Back'&&overlay==='animations'){overlay='menu';menuIndex=2;}
+   else if(chosen.startsWith('Background motion:')){backgroundMotion=!backgroundMotion;localStorage.setItem('backgroundMotion',backgroundMotion?'1':'0');graphics.setBackgroundMotion(backgroundMotion?1:0);}
    else if(chosen==='Animations'){overlay='animations';menuIndex=0;}
    else if(chosen==='Resume'||chosen==='Continue'||chosen.startsWith('Read Episode')||chosen==='Keep reading'||chosen==='Back')closeOverlay();
    else if(chosen==='Restart'){overlay='restart';menuIndex=0;}
@@ -111,10 +121,10 @@ function input(type){
  if(previewScene||current(pack,state).type==='animation'){
   if(type==='select'){
    const result=graphics.sceneSelect();
-   if(result){stopScene();if(previewScene){previewScene=0;overlay='animations';menuIndex=0;}else{advance(pack,state);save();}}
+   if(result){stopScene();if(previewScene){previewReturn();}else{advance(pack,state);save();}}
   }else if(type==='down'){const id=activeScene;stopScene();showAnimation(id);}
   else if(type==='up'&&!previewScene){stopScene();previous(state);save();}
-  else if(type==='back'){stopScene();if(previewScene){previewScene=0;overlay='animations';}else overlay='menu';menuIndex=0;}
+  else if(type==='back'){stopScene();if(previewScene){previewReturn();}else{overlay='menu';menuIndex=0;}}
   draw();return;
  }
  const n=current(pack,state);

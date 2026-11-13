@@ -28,7 +28,7 @@ test('missing, duplicate, mismatched and unsupported direction fails loudly',()=
 test('scene validation rejects ABI changes and malformed choreography',()=>{
  const bad=mutate=>{const d=readLibrary();mutate(d);assert.throws(()=>validateLibrary(d));};
  bad(d=>d.scenes[0].nativeId=2);bad(d=>d.actions['phone-pickup'].keys[1].t=0);bad(d=>d.actions['phone-pickup'].contact=9000);
- bad(d=>d.scenes[1].actors.child.tracks[0].field='bad');bad(d=>d.scenes[1].actors.child.tracks[0].keys[1].t=5000);bad(d=>d.poses.seated.head[0]=NaN);
+ bad(d=>d.scenes[1].actors.child.tracks[0].field='bad');bad(d=>d.scenes[1].actors.child.tracks[0].keys[1].t=5000);bad(d=>d.poses.seated.head[0]=NaN);bad(d=>d.scenes[6].id='renamed-shipped-scene');bad(d=>d.scenes[1].actors.child.tracks[0].keys[1].value=400);bad(d=>d.scenes[1].actors.child.tracks[0].keys[1].value=1.005);
 });
 test('authoring script and package retain the same stable labels',()=>{
  const script=fs.readFileSync(new URL('../../stories/animated/source/supportive-11.story',import.meta.url),'utf8');

@@ -1,34 +1,56 @@
 // Generated joint tracks; included after primitive math helpers.
+#include <stddef.h>
+typedef struct {uint16_t t;int16_t value;} ScalarKey;
+static float scalar_track(uint32_t t,const ScalarKey *keys,int count){
+ for(int i=1;i<count;i++)if(t<keys[i].t)return mix(keys[i-1].value,keys[i].value,ease((float)(t-keys[i-1].t)/(keys[i].t-keys[i-1].t)))/100;
+ return keys[count-1].value/100.0f;
+}
+static const ScalarKey track_0[]={{0,6700},{1800,8100}};
+static const ScalarKey track_1[]={{0,9700},{1800,11100}};
+static const ScalarKey track_2[]={{0,13200},{1800,14600}};
+static const ScalarKey track_3[]={{0,13300},{1800,14700}};
+static const ScalarKey track_4[]={{0,10},{2400,0}};
+static const ScalarKey track_5[]={{0,11500},{400,11500},{1400,13900},{1600,13900},{3000,9200}};
+static const ScalarKey track_6[]={{0,14700},{400,14700},{1400,14300},{1600,14300},{3000,10000}};
+static const ScalarKey track_7[]={{0,8100},{400,8100},{1400,8400}};
+static const ScalarKey track_8[]={{0,16},{1600,16},{3000,6}};
+static const ScalarKey track_9[]={{0,9300},{500,9300},{2200,11500}};
+static const ScalarKey track_10[]={{0,11400},{500,11400},{2200,14700}};
+static const ScalarKey track_11[]={{0,8100},{2300,8100},{3700,8200}};
+static const ScalarKey track_12[]={{0,-8},{2300,-8},{3700,9}};
+static const ScalarKey track_13[]={{0,0},{2300,0},{3700,100}};
+static const ScalarKey track_14[]={{0,11500},{1200,11500},{2500,11800}};
+static const ScalarKey track_15[]={{0,14700},{1200,14700},{2500,12600}};
 static void direct_restaurant(uint32_t t,Pose *child,Pose *hannah){
  switch(scene_id){
  case 2:
   *child=poses[0]; child->gaze=1;
-  child->head.y=(t<1800?mix(67,81,ease(((float)t-0)/1800)):81);
-  child->shoulder.y=(t<1800?mix(97,111,ease(((float)t-0)/1800)):111);
-  child->hip.y=(t<1800?mix(132,146,ease(((float)t-0)/1800)):146);
-  child->hand.y=(t<1800?mix(133,147,ease(((float)t-0)/1800)):147);
-  child->angle=(t<2400?mix(0.1f,0,ease(((float)t-0)/2400)):0);
+  child->head.y=scalar_track(t,track_0,2);
+  child->shoulder.y=scalar_track(t,track_1,2);
+  child->hip.y=scalar_track(t,track_2,2);
+  child->hand.y=scalar_track(t,track_3,2);
+  child->angle=scalar_track(t,track_4,2);
   *hannah=poses[1]; hannah->gaze=1;
   hannah->head.y+=sine(t*0.002f)*0.4f;
   break;
  case 3:
   *child=poses[0]; child->gaze=1;
   *hannah=poses[1]; hannah->gaze=1;
-  hannah->hand.x=(t<400?mix(115,115,ease(((float)t-0)/400)):(t<1400?mix(115,139,ease(((float)t-400)/1000)):(t<1600?mix(139,139,ease(((float)t-1400)/200)):(t<3000?mix(139,92,ease(((float)t-1600)/1400)):92))));
-  hannah->hand.y=(t<400?mix(147,147,ease(((float)t-0)/400)):(t<1400?mix(147,143,ease(((float)t-400)/1000)):(t<1600?mix(143,143,ease(((float)t-1400)/200)):(t<3000?mix(143,100,ease(((float)t-1600)/1400)):100))));
-  hannah->head.x=(t<400?mix(81,81,ease(((float)t-0)/400)):(t<1400?mix(81,84,ease(((float)t-400)/1000)):84));
-  hannah->angle=(t<1600?mix(0.16f,0.16f,ease(((float)t-0)/1600)):(t<3000?mix(0.16f,0.06f,ease(((float)t-1600)/1400)):0.06f));
+  hannah->hand.x=scalar_track(t,track_5,5);
+  hannah->hand.y=scalar_track(t,track_6,5);
+  hannah->head.x=scalar_track(t,track_7,3);
+  hannah->angle=scalar_track(t,track_8,3);
   break;
  case 4:
   *child=poses[0]; child->gaze=1;
-  child->hand.x=(t<500?mix(93,93,ease(((float)t-0)/500)):(t<2200?mix(93,115,ease(((float)t-500)/1700)):115));
-  child->hand.y=(t<500?mix(114,114,ease(((float)t-0)/500)):(t<2200?mix(114,147,ease(((float)t-500)/1700)):147));
-  child->head.y=(t<2300?mix(81,81,ease(((float)t-0)/2300)):(t<3700?mix(81,82,ease(((float)t-2300)/1400)):82));
-  child->angle=(t<2300?mix(-0.08f,-0.08f,ease(((float)t-0)/2300)):(t<3700?mix(-0.08f,0.09f,ease(((float)t-2300)/1400)):0.09f));
-  child->brow=(t<2300?mix(0,0,ease(((float)t-0)/2300)):(t<3700?mix(0,1,ease(((float)t-2300)/1400)):1));
+  child->hand.x=scalar_track(t,track_9,3);
+  child->hand.y=scalar_track(t,track_10,3);
+  child->head.y=scalar_track(t,track_11,3);
+  child->angle=scalar_track(t,track_12,3);
+  child->brow=scalar_track(t,track_13,3);
   *hannah=poses[1]; hannah->gaze=1;
-  hannah->hand.x=(t<1200?mix(115,115,ease(((float)t-0)/1200)):(t<2500?mix(115,118,ease(((float)t-1200)/1300)):118));
-  hannah->hand.y=(t<1200?mix(147,147,ease(((float)t-0)/1200)):(t<2500?mix(147,126,ease(((float)t-1200)/1300)):126));
+  hannah->hand.x=scalar_track(t,track_14,3);
+  hannah->hand.y=scalar_track(t,track_15,3);
   break;
  }
 }

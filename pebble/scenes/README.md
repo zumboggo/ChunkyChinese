@@ -2,23 +2,28 @@
 
 `library.json` owns shipped IDs/names, poses, pickup contact/keyframes, timing,
 cafe actor joint tracks, fry/cup contact events, and reflection timing.
-Native geometry, settings, character styling and prop drawing remain renderer code.
+`ensemble/characters.json` owns the reusable actor profiles and gesture tracks.
+The generator produces `ensemble_data.h` and the shared menu catalogue as well as
+original choreography. Native geometry and prop drawing remain renderer code;
+`ambient_draw.h` implements the shared period/tile rules. Installed IDs 1–25 are
+append-only: 1–5 Episode 11, 6–17 cast gestures, 18–25 background samples.
 The standalone train demo includes the same generated header as the reader.
 This is a tested recipe library, not an arbitrary downloadable animation format.
 
-1. Reuse an existing scene ID whenever possible. Never renumber the first five.
+1. Reuse an existing scene ID whenever possible. Never renumber shipped IDs.
 2. For a motion change, edit the library, then run `npm run scenes` in `pebble/`.
    This generates C constants/choreography, the reader's scene inventory, and
    the train browser preview's embedded data. Do not edit generated sections.
 3. Run `npm run check`. It rejects stale generated data, bad keys/contact times,
    changed shipped IDs, missing story anchors, unknown scenes, and route regressions.
-4. Review changed motion at 200×228. The browser preview currently covers the
-   train phone scene; use the integrated emulator for the other four scenes.
+4. Review changed motion at 200×228. The train and ensemble browser previews cover shared motion; use the combined
+   reader emulator to verify every native scene and its memory budget.
 
 Joint tracks use scalar fields such as `hand.x`, `head.y`, `angle` and `brow`.
 Keys begin at zero, increase strictly, and interpolate with smoothstep. Values
 hold before/after the key range. Idle motion is an optional sine offset. The
-compiler emits constant C expressions; the watch does not parse this JSON or
+compiler emits compact hundredth-unit key tables (±327.67); extra precision or
+out-of-range values fail validation. The watch does not parse this JSON or
 allocate keyframes. Phone position follows its hand after `contact`.
 
 ## Story anchors
@@ -76,7 +81,7 @@ SDK Python environment:
 | `npm run check -- <episode-id>` | Selected-episode export, generation drift, content, route, save, resource tests |
 | `npm run test:browser` | Train interaction, native-size, replay, hold and host regressions |
 | `npm run build -- <episode-id>` | Selected-episode incremental native build, compiled-font audit, hashed build report |
-| `npm run test:emulator -- --install --episode <episode-id>` | Install into existing Emery, test all five scenes, holds, replay, movement, heap/frame budgets |
+| `npm run test:emulator -- --install --episode <episode-id>` | Install into existing Emery, test all 25 scenes, holds, replay, ambience, saved preference, heap/frame budgets |
 | `npm run release -- <episode-id>` | Selected-episode clean build, tests, font audit, browser and integrated emulator tests, immutable versioned packaging |
 
 Development builds stay in `reader/build` (one current target); reports/screenshots/logs go to ignored
@@ -101,3 +106,18 @@ Release packaging refuses to overwrite a versioned PBW with different bytes;
 bump `reader/package.json` deliberately for a new release. Clean font/resource
 changes before development builds (`pebble clean` inside `reader`); release always
 cleans. Physical-watch review is still required for actual readability/performance.
+
+## Additional native stress checks
+
+After the main emulator suite, use the SDK's Python environment to run
+`scripts/test-emulator-transfer.py` (incomplete/bad chunks, restart, activation and
+duplicate completion) and `scripts/test-emulator-focus.py` (a local emulator-only
+notification interrupts an action; both clocks must freeze). These are local
+protocol tests, not Android companion or physical-watch certification.
+
+`python3 scripts/test-emulator-offline.py` deliberately restarts the emulator's
+reading position and reads the default route with its simulated Bluetooth disabled,
+then reinstalls to check the ending save. Run it only after tests that need the
+original saved position. It never accesses phone or physical-watch saves.
+Reports and screenshots remain under `.local/emulator/` until selected evidence is
+copied into a release verification directory.

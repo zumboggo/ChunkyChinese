@@ -204,7 +204,9 @@
       "glanceStart": 1800,
       "glanceDuration": 1200,
       "prompt": "Pick up the phone",
-      "action": "phone-pickup"
+      "action": "phone-pickup",
+      "group": "Episode 11",
+      "ambient": "train"
     },
     {
       "id": "restaurant-seat",
@@ -292,7 +294,9 @@
             "rate": 0.002
           }
         }
-      }
+      },
+      "group": "Episode 11",
+      "ambient": "walkers"
     },
     {
       "id": "hannah-fry",
@@ -400,7 +404,9 @@
         "bite": 3300,
         "length": 11,
         "bittenLength": 6
-      }
+      },
+      "group": "Episode 11",
+      "ambient": "walkers"
     },
     {
       "id": "alden-listens",
@@ -541,7 +547,9 @@
       },
       "prop": {
         "release": 2200
-      }
+      },
+      "group": "Episode 11",
+      "ambient": "walkers"
     },
     {
       "id": "train-reflection",
@@ -555,7 +563,252 @@
         "duration": 2400,
         "browDuration": 3300,
         "brow": 0.4
+      },
+      "group": "Episode 11",
+      "ambient": "train"
+    },
+    {
+      "id": "gorgon-listen",
+      "nativeId": 6,
+      "name": "Listen and settle",
+      "duration": 4800,
+      "setting": "consulate",
+      "ambient": "walkers",
+      "group": "Gorgon",
+      "ensemble": {
+        "actor": "gorgon",
+        "gesture": "listen"
       }
+    },
+    {
+      "id": "gorgon-offer",
+      "nativeId": 7,
+      "name": "Offer a cup",
+      "duration": 4800,
+      "setting": "consulate",
+      "ambient": "walkers",
+      "group": "Gorgon",
+      "ensemble": {
+        "actor": "gorgon",
+        "gesture": "offer"
+      }
+    },
+    {
+      "id": "gorgon-think",
+      "nativeId": 8,
+      "name": "Pause and think",
+      "duration": 4800,
+      "setting": "consulate",
+      "ambient": "walkers",
+      "group": "Gorgon",
+      "ensemble": {
+        "actor": "gorgon",
+        "gesture": "think"
+      }
+    },
+    {
+      "id": "gorgon-sip",
+      "nativeId": 9,
+      "name": "Raise and lower cup",
+      "duration": 4800,
+      "setting": "consulate",
+      "ambient": "walkers",
+      "group": "Gorgon",
+      "ensemble": {
+        "actor": "gorgon",
+        "gesture": "sip"
+      }
+    },
+    {
+      "id": "boe-listen",
+      "nativeId": 10,
+      "name": "Listen and settle",
+      "duration": 4800,
+      "setting": "cafe",
+      "ambient": "walkers",
+      "group": "Boe",
+      "ensemble": {
+        "actor": "boe",
+        "gesture": "listen"
+      }
+    },
+    {
+      "id": "boe-offer",
+      "nativeId": 11,
+      "name": "Offer a cup",
+      "duration": 4800,
+      "setting": "cafe",
+      "ambient": "walkers",
+      "group": "Boe",
+      "ensemble": {
+        "actor": "boe",
+        "gesture": "offer"
+      }
+    },
+    {
+      "id": "boe-think",
+      "nativeId": 12,
+      "name": "Pause and think",
+      "duration": 4800,
+      "setting": "cafe",
+      "ambient": "walkers",
+      "group": "Boe",
+      "ensemble": {
+        "actor": "boe",
+        "gesture": "think"
+      }
+    },
+    {
+      "id": "boe-sip",
+      "nativeId": 13,
+      "name": "Raise and lower cup",
+      "duration": 4800,
+      "setting": "cafe",
+      "ambient": "walkers",
+      "group": "Boe",
+      "ensemble": {
+        "actor": "boe",
+        "gesture": "sip"
+      }
+    },
+    {
+      "id": "jeremy-listen",
+      "nativeId": 14,
+      "name": "Listen and settle",
+      "duration": 4800,
+      "setting": "cafe",
+      "ambient": "walkers",
+      "group": "Jeremy",
+      "ensemble": {
+        "actor": "jeremy",
+        "gesture": "listen"
+      }
+    },
+    {
+      "id": "jeremy-offer",
+      "nativeId": 15,
+      "name": "Offer a cup",
+      "duration": 4800,
+      "setting": "cafe",
+      "ambient": "walkers",
+      "group": "Jeremy",
+      "ensemble": {
+        "actor": "jeremy",
+        "gesture": "offer"
+      }
+    },
+    {
+      "id": "jeremy-think",
+      "nativeId": 16,
+      "name": "Pause and think",
+      "duration": 4800,
+      "setting": "cafe",
+      "ambient": "walkers",
+      "group": "Jeremy",
+      "ensemble": {
+        "actor": "jeremy",
+        "gesture": "think"
+      }
+    },
+    {
+      "id": "jeremy-sip",
+      "nativeId": 17,
+      "name": "Raise and lower cup",
+      "duration": 4800,
+      "setting": "cafe",
+      "ambient": "walkers",
+      "group": "Jeremy",
+      "ensemble": {
+        "actor": "jeremy",
+        "gesture": "sip"
+      }
+    },
+    {
+      "id": "background-train-train",
+      "nativeId": 18,
+      "name": "Train: passing city",
+      "duration": 800,
+      "setting": "train",
+      "ambient": "train",
+      "group": "Backgrounds",
+      "sample": true
+    },
+    {
+      "id": "background-cafe-walkers",
+      "nativeId": 19,
+      "name": "Cafe: passersby",
+      "duration": 800,
+      "setting": "cafe",
+      "ambient": "walkers",
+      "group": "Backgrounds",
+      "sample": true
+    },
+    {
+      "id": "background-consulate-walkers",
+      "nativeId": 20,
+      "name": "Lobby: passersby",
+      "duration": 800,
+      "setting": "consulate",
+      "ambient": "walkers",
+      "group": "Backgrounds",
+      "sample": true
+    },
+    {
+      "id": "background-home-foliage",
+      "nativeId": 21,
+      "name": "Home: leaves",
+      "duration": 800,
+      "setting": "home",
+      "ambient": "foliage",
+      "group": "Backgrounds",
+      "sample": true
+    },
+    {
+      "id": "background-classroom-foliage",
+      "nativeId": 22,
+      "name": "Classroom: leaves",
+      "duration": 800,
+      "setting": "classroom",
+      "ambient": "foliage",
+      "group": "Backgrounds",
+      "sample": true
+    },
+    {
+      "id": "background-trading-light",
+      "nativeId": 23,
+      "name": "Trading: soft light",
+      "duration": 800,
+      "setting": "trading",
+      "ambient": "light",
+      "group": "Backgrounds",
+      "sample": true
+    },
+    {
+      "id": "background-home-rain",
+      "nativeId": 24,
+      "name": "Optional: rain",
+      "duration": 800,
+      "setting": "home",
+      "ambient": "rain",
+      "group": "Backgrounds",
+      "sample": true
+    },
+    {
+      "id": "background-home-cat",
+      "nativeId": 25,
+      "name": "Optional: cat",
+      "duration": 800,
+      "setting": "home",
+      "ambient": "cat",
+      "group": "Backgrounds",
+      "sample": true
     }
-  ]
+  ],
+  "ambient": {
+    "period": 12000,
+    "fps": 6,
+    "trainTile": 180,
+    "farCycles": 1,
+    "nearCycles": 3
+  }
 }

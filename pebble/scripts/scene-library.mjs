@@ -1,10 +1,11 @@
 import fs from 'node:fs';
 export const libraryPath=new URL('../scenes/library.json',import.meta.url);
-export const shippedIds={'train-phone':1,'restaurant-seat':2,'hannah-fry':3,'alden-listens':4,'train-reflection':5};
+export const shippedIds={"train-phone":1,"restaurant-seat":2,"hannah-fry":3,"alden-listens":4,"train-reflection":5,"gorgon-listen":6,"gorgon-offer":7,"gorgon-think":8,"gorgon-sip":9,"boe-listen":10,"boe-offer":11,"boe-think":12,"boe-sip":13,"jeremy-listen":14,"jeremy-offer":15,"jeremy-think":16,"jeremy-sip":17,"background-train-train":18,"background-cafe-walkers":19,"background-consulate-walkers":20,"background-home-foliage":21,"background-classroom-foliage":22,"background-trading-light":23,"background-home-rain":24,"background-home-cat":25};
 export function validateLibrary(d){
  const fail=s=>{throw Error('Scene library: '+s);};
  if(d.schema!==1||!Number.isInteger(d.fps)||d.fps<1||d.fps>30||!Number.isInteger(d.holdGuard)||d.holdGuard<0)fail('invalid schema/timing');
- if(d.scenes?.length!==5)fail('new recipes require an explicit native renderer extension');
+ if(!Array.isArray(d.scenes)||d.scenes.length<5)fail('missing shipped recipes');
+ if(d.ambient?.period!==12000||d.ambient?.fps!==6||d.ambient?.trainTile!==180||d.ambient?.farCycles!==1||d.ambient?.nearCycles!==3)fail('unsupported ambient timing');
  for(const name of ['seated','glance','lean','reach','lift','hold','settle'])if(!d.poses?.[name])fail('missing required pose '+name);
  const fields={head:3,shoulder:2,hip:2,hand:2,gaze:0,brow:0,phone:0};
  for(const [name,p] of Object.entries(d.poses))for(const [k,n] of Object.entries(fields)){
@@ -21,13 +22,16 @@ export function validateLibrary(d){
   if(!['child','hannah'].includes(name)||!d.poses[a.pose])fail('invalid actor binding');
   for(const tr of a.tracks){
    if(!allowed.has(tr.field)||tr.keys.length<2||tr.keys[0].t!==0)fail('invalid joint track');
-   tr.keys.forEach((k,i)=>{if(!Number.isFinite(k.value)||Math.abs(k.value)>1000||!Number.isInteger(k.t)||k.t<0||k.t>s.duration||(i&&k.t<=tr.keys[i-1].t))fail('invalid joint key');});
+   tr.keys.forEach((k,i)=>{if(!Number.isFinite(k.value)||Math.abs(k.value)>327.67||Math.abs(k.value*100-Math.round(k.value*100))>0.000001||!Number.isInteger(k.t)||k.t<0||k.t>s.duration||(i&&k.t<=tr.keys[i-1].t))fail('invalid joint key');});
   }
   if(a.idle&&(!allowed.has(a.idle.field)||!Number.isFinite(a.idle.rate)||!Number.isFinite(a.idle.amplitude)))fail('invalid idle');
  }
  const ids=new Set();d.scenes.forEach((s,i)=>{
   if(!/^[a-z][a-z0-9-]+$/.test(s.id)||ids.has(s.id)||s.nativeId!==i+1)fail('duplicate/noncontiguous scene ID');ids.add(s.id);
-  if(!['train','cafe'].includes(s.setting)||!s.name||!Number.isInteger(s.duration)||s.duration<=0||s.duration>65535)fail('invalid scene '+s.id);
+  if(!['train','cafe','consulate','home','classroom','trading'].includes(s.setting)||!s.name||!Number.isInteger(s.duration)||s.duration<=0||s.duration>65535)fail('invalid scene '+s.id);
+  if(!['train','walkers','foliage','light','rain','cat'].includes(s.ambient)||typeof s.group!=='string')fail('invalid ambient/group');
+  if(s.nativeId>5&&!s.ensemble&&!s.sample)fail('new recipes require an explicit native renderer extension');
+  if(s.ensemble&&(!['gorgon','boe','jeremy'].includes(s.ensemble.actor)||!['listen','offer','think','sip'].includes(s.ensemble.gesture)||s.duration!==4800))fail('invalid ensemble binding');
   if(s.action&&(!d.actions[s.action]||d.actions[s.action].keys.at(-1).t!==s.duration))fail('action duration mismatch');
  });
  for(const [id,n] of Object.entries(shippedIds))if(d.scenes.find(s=>s.id===id)?.nativeId!==n)fail('shipped ABI changed: '+id);
