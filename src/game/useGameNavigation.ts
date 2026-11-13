@@ -1,6 +1,6 @@
 import {useEffect, type RefObject} from 'react'
 
-const bindings=[[0,'next'],[1,'sentence-back'],[2,'primary'],[3,'secondary'],[4,'previous'],[5,'next'],
+const bindings=[[1,'sentence-back'],[2,'primary'],[3,'secondary'],[4,'previous'],[5,'next'],
  [12,'up'],[13,'down'],[14,'left'],[15,'right']] as const
 
 // Keep navigation tied to the rendered controls, including newly revealed choices.
@@ -91,7 +91,7 @@ export function useGameNavigation(root: RefObject<HTMLElement | null>) {
    }
    if(key==='primary'){
     const el=current()
-    // Focused settings remain operable after A tabs to them.
+    // Focused settings remain operable after keyboard or shoulder-button navigation.
     if(el?.closest('.episode-settings,.story-slide-toggles,dialog,[role="dialog"],.cinema-more')){activate(el);return}
     if(story){story.dispatchEvent(new CustomEvent('mangmi-action',{detail:'continue'}));return}
     if(click('[data-game-choice]')||click('[data-game-next]'))return
@@ -107,7 +107,9 @@ export function useGameNavigation(root: RefObject<HTMLElement | null>) {
    const target=event.target as HTMLElement
    if(target!==document.body&&!section.contains(target))return
    if(target?.matches('textarea,input:not([type="range"]):not([type="checkbox"]):not([type="radio"])')||target?.isContentEditable)return
-   const handheldKey=({a:'next',b:'sentence-back',x:'primary',y:'secondary',BrowserBack:'sentence-back'} as Record<string,string>)[event.key.length===1?event.key.toLowerCase():event.key]
+   // Ignore the handheld A key without affecting text entry above.
+   if(event.key.toLowerCase()==='a'){event.preventDefault();event.stopImmediatePropagation();return}
+   const handheldKey=({b:'sentence-back',x:'primary',y:'secondary',BrowserBack:'sentence-back'} as Record<string,string>)[event.key.length===1?event.key.toLowerCase():event.key]
    if(handheldKey){
     event.preventDefault();event.stopImmediatePropagation()
     if(!event.repeat)handheld(handheldKey)
