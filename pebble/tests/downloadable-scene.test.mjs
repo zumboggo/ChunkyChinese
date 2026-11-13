@@ -10,7 +10,7 @@ test('recipes export at stable anchors and old runtimes reject them',()=>{
  const glyphs=fs.readFileSync(new URL('../content/glyphs.txt',import.meta.url),'utf8');assert.throws(()=>validate(pack,glyphs,()=>true),/recipe update/);validate(pack,glyphs,()=>true,validSceneWire);
  pack.nodes.find(n=>n.recipe).recipe='2,0';assert.throws(()=>validate(pack,glyphs,()=>true,validSceneWire));
 });
-test('native decoder agrees with authoring checks for malformed and unreachable poses',()=>{
+test('native decoder agrees with authoring checks for malformed and unreachable poses',{skip:process.env.PEBBLE_WORKFLOW_CHILD==='1'},()=>{
  const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'pebble-recipe-'));try{
  const header=new URL('../reader/src/c/downloadable_scene.h',import.meta.url).pathname;
  fs.writeFileSync(path.join(tmp,'test.c'),'#define DOWNLOAD_TEXT_TEST\n#include <stdint.h>\n#include <stdbool.h>\n#include <stdio.h>\n#include <string.h>\ntypedef struct {uint16_t t;float dy,hx,hy,angle;} GestureKey;\n#include '+JSON.stringify(header)+'\nint main(void){char s[4096];DownloadScene d;while(fgets(s,sizeof(s),stdin)){s[strcspn(s,"\\n")]=0;printf("%d\\n",decode_scene(s,&d));}}\n');

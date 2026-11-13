@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {analyse,summary} from './episode-analysis.mjs';
 import {readLibrary} from './scene-library.mjs';
 import {episodeId} from './episode-target.mjs';
-import {validateDirection} from './story-direction.mjs';
+import {validateDirection,reactionDirection,loadDirection} from './story-direction.mjs';
 import {root,loadProfile} from './runtime-profile.mjs';
 import {reviewPage} from './review-page.mjs';
 const [command,...args]=process.argv.slice(2);
@@ -12,7 +12,7 @@ const read=p=>fs.readFileSync(new URL(p,root),'utf8');
 function write(relative,data){const file=new URL(relative,root);fs.mkdirSync(new URL('./',file),{recursive:true});fs.writeFileSync(file,data);return fileURLToPath(file);}
 function review(result){
  const library=readLibrary(),ensemble=JSON.parse(read('scenes/ensemble/characters.json'));ensemble.ambient=library.ambient;
- const data={id:result?.id,title:result?.pack?.title||'Pebble recipe catalogue',shots:result?.shots||[],library,ensemble,supported:loadProfile()?.sceneIds||[],messages:result?[...result.errors,...(result.warnings||[]),...(!result.runtime.compatible?['Runtime changes need native verification before content-only export.']:[])]:[]};
+ const data={direction:result?loadDirection(result.id):null,id:result?.id,title:result?.pack?.title||'Pebble recipe catalogue',shots:result?.shots||[],library,ensemble,supported:loadProfile()?.sceneIds||[],messages:result?[...result.errors,...(result.warnings||[]),...(!result.runtime.compatible?['Runtime changes need native verification before content-only export.']:[])]:[]};
  const dir='.local/authoring/'+(result?.id||'catalogue')+'/';
  if(result)write(dir+'review.json',JSON.stringify(summary(result),null,2)+'\n');
  return write(dir+'review.html',reviewPage(data));
@@ -39,5 +39,5 @@ if(command==='catalogue'){
  }
 }else if(command==='direct'){
  if(args.length!==2)throw Error('Usage: direct <episode-id> <cue-plan.json>');const id=episodeId(args[0]),plan=JSON.parse(fs.readFileSync(path.resolve(args[1]))),source=JSON.parse(read('../stories/animated/'+id+'.json'));
- validateDirection(source.script,id,plan);console.log(write('direction/'+id+'.json',JSON.stringify(plan,null,2)+'\n'));console.log(review(analyse(id)));
+ validateDirection(source.script,id,plan);reactionDirection(source.script,plan);console.log(write('direction/'+id+'.json',JSON.stringify(plan,null,2)+'\n'));console.log(review(analyse(id)));
 }else throw Error('Commands: catalogue, preflight <ids...>, review <id>, content <id>, direct <id> <plan.json>');

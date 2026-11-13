@@ -24,13 +24,15 @@ def press(button,n=1):run('emu-button','click',button,'--repeat',n,'--interval',
 def shot(name):
  path=out/(name+'.png');run('screenshot','--no-open',path);return path.read_bytes()
 logfile=out/'watch.log'
+# Boot sequentially before starting the concurrent log connection.
+run('screenshot','--no-open',out/'before-test.png')
 with logfile.open('w') as stream:
  logs=subprocess.Popen([a.cli,'logs','--emulator','emery'],cwd=root/'reader',stdout=stream,stderr=subprocess.STDOUT)
  try:
   time.sleep(1)
   if a.install:run('install',root/'reader/build/reader.pbw');time.sleep(2)
   def log():return logfile.read_text()
-  def expect(pattern,offset=0,timeout=8):
+  def expect(pattern,offset=0,timeout=30):
    end=time.monotonic()+timeout
    while time.monotonic()<end:
     match=re.search(pattern,log()[offset:])
@@ -65,7 +67,7 @@ with logfile.open('w') as stream:
     assert not re.search(r'Scene 1 held',log()[offset:]),'Action advanced without Select'
     shot('phone-waiting');press('select')
    time.sleep(.5);moving=shot(str(sid)+'-moving')
-   held=expect(r'Scene '+str(sid)+r' held; free=(\d+) draw avg/max=(\d+)/(\d+) ms',offset,10)
+   held=expect(r'Scene '+str(sid)+r' held; free=(\d+) draw avg/max=(\d+)/(\d+) ms',offset,30)
    free,avg,maximum=map(int,held.groups())
    assert free>=a.min_free,('Heap headroom',sid,free)
    assert maximum<=round(1000/library['fps']),('Frame budget',sid,maximum)

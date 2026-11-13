@@ -26,3 +26,8 @@ for(const name of [...names,'opening','closing']){
 for(const a of pkg.pebble.resources.media.filter(a=>a.type!=='bitmap'&&!a.file.startsWith('portraits/'))){media.push(a);if(a.type==='font')ids[a.name.toLowerCase().replaceAll('_','-')]=media.length;}
 pkg.pebble.resources.media=media;fs.writeFileSync(pkgPath,JSON.stringify(pkg,null,2)+'\n');fs.writeFileSync(path.join(root,'reader/src/embeddedjs/art.js'),'export default '+JSON.stringify(ids)+';\n');
 console.log('Packed',names.length,'portraits and two cards; raw bytes',fs.readdirSync(rawDir).reduce((sum,f)=>sum+fs.statSync(path.join(rawDir,f)).size,0));
+
+// A single compact string avoids one XS property/key allocation per portrait.
+const ordered=Object.entries(ids).sort((a,b)=>a[1]-b[1]);
+if(ordered.some((x,i)=>x[1]!==i+1))throw Error('Art resource IDs must be contiguous');
+fs.writeFileSync(path.join(root,'reader/src/embeddedjs/art-native.js'),'const names='+JSON.stringify('|'+ordered.map(x=>x[0]).join('|')+'|')+';\nexport default function art(name){const at=names.indexOf("|"+name+"|");if(at<0)return undefined;let id=1;for(let i=0;i<at;i++)if(names.charCodeAt(i)===124)id++;return id;}\n');

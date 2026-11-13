@@ -1,7 +1,7 @@
 {
   "name": "chunky-chinese-pebble",
   "author": "David Hepting",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "keywords": [
     "pebble-app"
   ],
@@ -32,8 +32,18 @@
       "media": [
         {
           "type": "raw",
+          "name": "PORTRAIT_ALDEN_CURIOUS_FULL",
+          "file": "portraits/Alden-curious-full.rle"
+        },
+        {
+          "type": "raw",
           "name": "PORTRAIT_ALDEN_DETERMINED_FULL",
           "file": "portraits/Alden-determined-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_ALDEN_EMBARRASSED_FULL",
+          "file": "portraits/Alden-embarrassed-full.rle"
         },
         {
           "type": "raw",
@@ -47,8 +57,88 @@
         },
         {
           "type": "raw",
+          "name": "PORTRAIT_ALDEN_SKEPTICAL_FULL",
+          "file": "portraits/Alden-skeptical-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_ALDEN_SURPRISED_FULL",
+          "file": "portraits/Alden-surprised-full.rle"
+        },
+        {
+          "type": "raw",
           "name": "PORTRAIT_ALDEN_THOUGHTFUL_FULL",
           "file": "portraits/Alden-thoughtful-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_ALDEN_WARM_FULL",
+          "file": "portraits/Alden-warm-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_ALDEN_WORRIED_FULL",
+          "file": "portraits/Alden-worried-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_BOE_AMUSED_FULL",
+          "file": "portraits/Boe-amused-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_BOE_NEUTRAL_FULL",
+          "file": "portraits/Boe-neutral-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_BOE_SKEPTICAL_FULL",
+          "file": "portraits/Boe-skeptical-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_BOE_SURPRISED_FULL",
+          "file": "portraits/Boe-surprised-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_BOE_THOUGHTFUL_FULL",
+          "file": "portraits/Boe-thoughtful-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_BOE_WORRIED_FULL",
+          "file": "portraits/Boe-worried-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_GORGON_AMUSED_FULL",
+          "file": "portraits/Gorgon-amused-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_GORGON_ATTENTIVE_FULL",
+          "file": "portraits/Gorgon-attentive-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_GORGON_NEUTRAL_FULL",
+          "file": "portraits/Gorgon-neutral-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_GORGON_SERIOUS_FULL",
+          "file": "portraits/Gorgon-serious-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_GORGON_SKEPTICAL_FULL",
+          "file": "portraits/Gorgon-skeptical-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_GORGON_THOUGHTFUL_FULL",
+          "file": "portraits/Gorgon-thoughtful-full.rle"
         },
         {
           "type": "raw",
@@ -84,6 +174,36 @@
           "type": "raw",
           "name": "PORTRAIT_HANNAH_WORRIED_FULL",
           "file": "portraits/Hannah-worried-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_JEREMY_EXCITED_FULL",
+          "file": "portraits/Jeremy-excited-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_JEREMY_NEUTRAL_FULL",
+          "file": "portraits/Jeremy-neutral-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_JEREMY_SURPRISED_FULL",
+          "file": "portraits/Jeremy-surprised-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_JEREMY_THOUGHTFUL_FULL",
+          "file": "portraits/Jeremy-thoughtful-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_JEREMY_WARM_FULL",
+          "file": "portraits/Jeremy-warm-full.rle"
+        },
+        {
+          "type": "raw",
+          "name": "PORTRAIT_JEREMY_WORRIED_FULL",
+          "file": "portraits/Jeremy-worried-full.rle"
         },
         {
           "type": "raw",

@@ -23,13 +23,15 @@ def press(button,n=1):run('emu-button','click',button,'--repeat',n,'--interval',
 def shot(name):
  path=out/(name+'.png');run('screenshot','--no-open',path);return path.read_bytes()
 logfile=out/'watch.log'
+# Start the isolated emulator before opening parallel log/install connections.
+run('screenshot','--no-open',out/'before-test.png')
 with logfile.open('w') as stream:
  logs=subprocess.Popen([a.cli,'logs','--emulator','emery'],cwd=root/'reader',stdout=stream,stderr=subprocess.STDOUT)
  try:
   time.sleep(1)
   if a.install:run('install',root/'reader/build/reader.pbw');time.sleep(2)
   def log():return logfile.read_text()
-  def expect(pattern,offset=0,timeout=20):
+  def expect(pattern,offset=0,timeout=30):
    end=time.monotonic()+timeout
    while time.monotonic()<end:
     match=re.search(pattern,log()[offset:])

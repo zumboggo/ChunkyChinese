@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "episode": "supportive-13",
+  "cover": "Gorgon-neutral-full",
+  "cues": [
+    {
+      "anchor": "watch_13_beat_6",
+      "scene": "gorgon-listen"
+    },
+    {
+      "anchor": "watch_13_beat_13",
+      "scene": "gorgon-think"
+    },
+    {
+      "anchor": "watch_13_beat_22",
+      "scene": "gorgon-think"
+    },
+    {
+      "anchor": "watch_13_beat_24",
+      "scene": "gorgon-listen"
+    },
+    {
+      "anchor": "watch_13_beat_40",
+      "scene": "gorgon-think"
+    },
+    {
+      "anchor": "watch_13_beat_44",
+      "scene": "gorgon-listen"
+    }
+  ],
+  "reactions": [
+    {
+      "anchor": "watch_13_beat_2",
+      "actor": "Gorgon",
+      "emotion": "neutral"
+    },
+    {
+      "anchor": "watch_13_beat_3",
+      "actor": "Alden",
+      "emotion": "warm"
+    },
+    {
+      "anchor": "watch_13_beat_4",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_13_beat_5",
+      "actor": "Alden",
+      "emotion": "curious"
+    },
+    {
+      "anchor": "watch_13_beat_7",
+      "actor": "Gorgon",
+      "emotion": "attentive"
+    },
+    {
+      "anchor": "watch_13_beat_8",
+      "actor": "Alden",
+      "emotion": "thoughtful"
+    },
+    {
+      "anchor": "watch_13_beat_10",
+      "actor": "Alden",
+      "emotion": "curious"
+    },
+    {
+      "anchor": "watch_13_beat_14",
+      "actor": "Alden",
+      "emotion": "warm"
+    },
+    {
+      "anchor": "watch_13_beat_15",
+      "actor": "Gorgon",
+      "emotion": "skeptical"
+    },
+    {
+      "anchor": "watch_13_beat_20",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_13_beat_21",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_13_beat_23",
+      "actor": "Gorgon",
+      "emotion": "skeptical"
+    },
+    {
+      "anchor": "watch_13_beat_25",
+      "actor": "Alden",
+      "emotion": "thoughtful"
+    },
+    {
+      "anchor": "watch_13_beat_26",
+      "actor": "Alden",
+      "emotion": "determined"
+    },
+    {
+      "anchor": "watch_13_beat_31",
+      "actor": "Alden",
+      "emotion": "embarrassed"
+    },
+    {
+      "anchor": "watch_13_beat_32",
+      "actor": "Gorgon",
+      "emotion": "attentive"
+    },
+    {
+      "anchor": "watch_13_beat_33",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_13_beat_38",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_13_beat_39",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_13_beat_41",
+      "actor": "Alden",
+      "emotion": "sad"
+    },
+    {
+      "anchor": "watch_13_beat_43",
+      "actor": "Alden",
+      "emotion": "embarrassed"
+    },
+    {
+      "anchor": "watch_13_beat_45",
+      "actor": "Alden",
+      "emotion": "thoughtful"
+    },
+    {
+      "anchor": "watch_13_beat_46",
+      "actor": "Alden",
+      "emotion": "determined"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import {validSceneWire} from './downloadable-scene.mjs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
-import {loadDirection, validateDirection} from './story-direction.mjs';
+import {loadDirection, validateDirection, reactionDirection} from './story-direction.mjs';
 import {episodeId} from './episode-target.mjs';
 import {migrationMap} from './migration-map.mjs';
 import {validate} from '../reader/src/embeddedjs/transfer.js';
@@ -13,6 +13,7 @@ const app=path.resolve(root,'..');
 export function exportEpisode(d,id='supportive-11',direction=loadDirection(id)) {
  episodeId(id);
  const cues=validateDirection(d.script,id,direction);
+ const reactions=reactionDirection(d.script,direction);
  const animatedCast=new Set(direction?.animatedCast||[]);
  const annotations=d.chinese.lines, nodes=[], labels={}, cast=new Set(); let scene='train', narrator='Alden', choice=null, pending=null, lineNumber=0;
  function phrases(text) {
@@ -32,7 +33,7 @@ export function exportEpisode(d,id='supportive-11',direction=loadDirection(id)) 
  for(const raw of d.script.split('\n')){
   const line=raw.trim(); if(!line||line==='story 2')continue;
   let m;
-  if((m=line.match(/^label (\S+)$/))){if(Object.hasOwn(labels,m[1]))throw Error('Duplicate label: '+m[1]);labels[m[1]]=nodes.length;choice=null;if(cues.has(m[1]))nodes.push({type:'animation',...(typeof cues.get(m[1])==='string'?{id:cues.get(m[1])}:cues.get(m[1]))});continue;}
+  if((m=line.match(/^label (\S+)$/))){if(Object.hasOwn(labels,m[1]))throw Error('Duplicate label: '+m[1]);labels[m[1]]=nodes.length;choice=null;if(cues.has(m[1]))nodes.push({type:'animation',...(typeof cues.get(m[1])==='string'?{id:cues.get(m[1])}:cues.get(m[1]))});if(reactions?.has(m[1]))nodes.push({type:'reaction',...reactions.get(m[1]),scene});continue;}
   if((m=line.match(/^scene (\S+)$/))){scene=m[1];narrator=scene==='restaurant'?'YoungAlden':'Alden';pending={actor:narrator,emotion:'thoughtful',scene};continue;}
   if((m=line.match(/^show (\S+) (\S+)/))){cast.add(m[1]);if(m[1]===narrator)pending={actor:m[1],emotion:emotion(m[1],m[2]),scene};continue;}
   if((m=line.match(/^choice (\S+)$/))){choice={type:'choice',id:m[1],options:[]};nodes.push(choice);continue;}
@@ -41,11 +42,11 @@ export function exportEpisode(d,id='supportive-11',direction=loadDirection(id)) 
   if(line==='end'){nodes.push({type:'end'});continue;}
   if((m=line.match(/^(\w+)(?: \[([^\]]+)\])?: (.+)$/))){
    const speaker=m[1]==='I'?narrator:m[1], mood=emotion(speaker,(m[2]||'neutral').split(',')[0]);
-   if(pending){nodes.push({type:'reaction',...pending});pending=null;}
+   if(pending&&!reactions){nodes.push({type:'reaction',...pending});pending=null;}
    // A portrait at the first dialogue and selected emotional turns, never beside every phrase.
-   if(!animatedCast.has(speaker)&&m[1]!=='I'&&(!nodes.some(n=>n.speaker===speaker)||['sad','determined','excited','confused'].includes((m[2]||'').split(',')[0])))nodes.push({type:'reaction',actor:speaker,emotion:mood,scene});
+   if(!reactions&&!animatedCast.has(speaker)&&m[1]!=='I'&&(!nodes.some(n=>n.speaker===speaker)||['sad','determined','excited','confused'].includes((m[2]||'').split(',')[0])))nodes.push({type:'reaction',actor:speaker,emotion:mood,scene});
    lineNumber++;
-   if(!animatedCast.has(speaker)&&lineNumber%3===0&&nodes.at(-1)?.type!=='reaction')nodes.push({type:'reaction',actor:speaker,emotion:mood,scene});
+   if(!reactions&&!animatedCast.has(speaker)&&lineNumber%3===0&&nodes.at(-1)?.type!=='reaction')nodes.push({type:'reaction',actor:speaker,emotion:mood,scene});
    nodes.push({type:'line',speaker,scene,phrases:phrases(m[3])});
    continue;
   }
@@ -97,7 +98,7 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/episode.js'),'// Generated: parse only the current node to fit watch RAM.\nconst meta='+JSON.stringify(meta)+';\nconst rows='+JSON.stringify(pack.nodes.map(n=>JSON.stringify(n)))+';\nlet index=-1,node;meta.nodeCount=rows.length;meta.nodeAt=i=>{if(index!==i){node=JSON.parse(rows[i]);index=i;}return node;};export default meta;\n');
  const glyphs=fs.readFileSync(glyphPath,'utf8');const han=[...glyphs].filter(c=>/\p{Script=Han}/u.test(c)).join('');
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/glyphs.js'),'export default '+JSON.stringify(glyphs)+';\n');
- const manifest={ffi:{functions:{showPortrait:{arguments:['uint32_t','uint32_t'],returns:'void'},recipeData:{arguments:['uint32_t','int32_t'],returns:'uint32_t'},showScene:{arguments:['uint32_t'],returns:'void'},sceneSelect:{arguments:[],returns:'uint32_t'},setBackgroundMotion:{arguments:['uint32_t'],returns:'void'},storySize:{arguments:[],returns:'uint32_t'},readStoryNode:{arguments:['uint32_t'],returns:'char*'},readStory:{arguments:['uint32_t','uint32_t'],returns:'char*'}}},include:['$(MODDABLE)/examples/manifest_mod.json'],modules:{'*':['./main','./native','./bundled','./reader','./layout','./transfer','./glyphs','./art','./wire','./legacy','./upgrade','./scenes','./completion']}};
+ const manifest={ffi:{functions:{showPortrait:{arguments:['uint32_t','uint32_t'],returns:'void'},recipeData:{arguments:['uint32_t','int32_t'],returns:'uint32_t'},showScene:{arguments:['uint32_t'],returns:'void'},sceneSelect:{arguments:[],returns:'uint32_t'},setBackgroundMotion:{arguments:['uint32_t'],returns:'void'},storySize:{arguments:[],returns:'uint32_t'},readStoryNode:{arguments:['uint32_t'],returns:'char*'},readStory:{arguments:['uint32_t','uint32_t'],returns:'char*'}}},include:['$(MODDABLE)/examples/manifest_mod.json'],modules:{'*':['./main','./native','./bundled','./reader','./layout','./transfer','./glyphs','./art-native','./wire','./legacy','./upgrade','./scenes','./completion']}};
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
  console.log(JSON.stringify({id:source,nodes:pack.nodes.length,choices:pack.nodes.filter(n=>n.type==='choice').length,phrases:pack.nodes.reduce((s,n)=>s+(n.phrases?.length||0)+(n.options||[]).reduce((t,o)=>t+o.phrases.length,0),0),bytes:Buffer.byteLength(data),han:han.length}));
 }

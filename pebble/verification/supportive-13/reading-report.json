@@ -1,0 +1,11 @@
+{
+  "episode": "supportive-13",
+  "animations": 6,
+  "defaultRouteBluetoothDisabled": true,
+  "endingResumedAfterRestart": 83,
+  "newCompletionQueued": true,
+  "newCompletionId": "pebble-mwfkv826-15twjs9",
+  "pbwSha256": "5f238de2e2f5d1d19f3d1d46058b419e548df8ae6dbb985bb1d5453b9001e743",
+  "physicalWatchTested": false,
+  "method": "Full offline automated route and saved-ending comparison passed. Outbox assertion required manual acknowledgement of two older synthetic fixture credits (supportive-13 and supportive-999); the new supportive-13 event then appeared once. No Garden key or real server credit was used."
+}

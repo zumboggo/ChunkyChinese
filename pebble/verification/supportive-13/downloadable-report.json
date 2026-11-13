@@ -1,0 +1,22 @@
+{
+  "newRecipesTransferredWithoutRebuild": 2,
+  "foregroundMovementAndHold": true,
+  "replays": 3,
+  "focusClocksPreserved": true,
+  "sameIdRecipeUpdateReplacedHeldPose": true,
+  "invalidPackageRetainedPrevious": true,
+  "interruptedUpdateRestartAndResume": true,
+  "downloadedPlaybackOffline": true,
+  "backgroundMotionSetting": true,
+  "heldFreeBytes": [
+    3896,
+    3896,
+    3896,
+    3896,
+    3896,
+    3896,
+    3960
+  ],
+  "pbwSha256": "5f238de2e2f5d1d19f3d1d46058b419e548df8ae6dbb985bb1d5453b9001e743",
+  "physicalWatchTested": false
+}

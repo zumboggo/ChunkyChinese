@@ -10,14 +10,14 @@ import legacy from './legacy';
 import upgrade from './upgrade';
 import {sceneIds,sceneNames,sceneGroups} from './scenes';
 import glyphs from './glyphs';
-import art from './art';
+import art from './art-native';
 import {initial,current,phrase,advance,previous,browse,restore,toggleChinese,migrate,migrateLegacy} from './reader';
 import {pages,wrap} from './layout';
 import {Transfer,validate,checksum} from './transfer';
 import {openWire} from './wire';
 
 const render=new Poco(screen);
-const fonts={py:new render.Font(art['font-latin-24']),en:new render.Font(art['font-latin-20']),zh:new render.Font(art['font-chinese-28']),small:new render.Font('Gothic-Regular',14)};
+const fonts={py:new render.Font(art('font-latin-24')),en:new render.Font(art('font-latin-20')),zh:new render.Font(art('font-chinese-28')),small:new render.Font('Gothic-Regular',14)};
 const ink=render.makeColor(0,0,0),paper=render.makeColor(255,255,255),navy=render.makeColor(0,0,85),teal=render.makeColor(0,85,85),grey=render.makeColor(85,85,85);
 function readFile(path){const f=device.files.openFile({path});try{return String.fromArrayBuffer(f.read(f.status().size,0));}finally{f.close();}}
 function writeFile(path,text){try{device.files.delete(path);}catch{}const bytes=ArrayBuffer.fromString(text);const f=device.files.openFile({path,mode:'r+',size:bytes.byteLength});try{f.write(bytes,0);}finally{f.close();}}
@@ -32,7 +32,7 @@ function loadRecipe(wire,play){
  }
  return graphics.recipeData(46,play);
 }
-const hasArt=name=>!!art[name]||!!art[name+'-full'];
+const hasArt=name=>!!art(name)||!!art(name+'-full');
 let pack=bundled,activeSlot=localStorage.getItem('activeEpisode');
 try{if(activeSlot){pack=openStored('episode-'+activeSlot);validate(pack,glyphs,hasArt,r=>loadRecipe(r,0));}}catch(e){console.log('Using bundled episode',e.message);pack=bundled;activeSlot=null;}
 console.log('Episode opened');Debug.gc();
@@ -61,7 +61,7 @@ function header(t,tag=''){render.fillRectangle(navy,0,0,200,23);text(t,8,2,'smal
 function speakerName(n){return (n.speaker||n.actor)==='YoungAlden'?'Young Alden':(n.speaker||n.actor||'Alden');}
 function portrait(n){
  render.begin();lastImage=null;lastImageName=null;render.fillRectangle(paper,0,0,200,228);render.end();Debug.gc();
- graphics.showPortrait(art[n.actor+'-'+n.emotion+'-full'],n.actor==='Hannah'?1:n.actor==='YoungAlden'?2:0);
+ graphics.showPortrait(art(n.actor+'-'+n.emotion+'-full'),n.actor==='Hannah'?1:n.actor==='YoungAlden'?2:n.actor==='Boe'?5:n.actor==='Jeremy'?6:n.actor==='Gorgon'?7:0);
 }
 const previewGroups=[];sceneGroups.forEach(g=>{if(!previewGroups.includes(g))previewGroups.push(g);});
 let previewGroup='Episode 11',previewIndex=0,backgroundMotion=localStorage.getItem('backgroundMotion')!=='0';
@@ -79,7 +79,7 @@ function draw(){
  if(previewScene&&!overlay){showAnimation(previewScene);return;}
  const visible=current(pack,state);if(!overlay&&visible.type==='animation'){showAnimation(visible.recipe?-1:(sceneIds[visible.id]||0),visible.recipe);return;}
  stopScene();
- if(!overlay&&(visible.type==='opening'||visible.type==='end')){graphics.showPortrait(art[pack.cover||(visible.type==='opening'?'opening':'closing')],visible.type==='opening'?3:4);return;}
+ if(!overlay&&(visible.type==='opening'||visible.type==='end')){graphics.showPortrait(art(pack.cover||(visible.type==='opening'?'opening':'closing')),visible.type==='opening'?3:4);return;}
  if(!overlay&&visible.type==='reaction'){portrait(visible);return;}
  graphics.showPortrait(0,0);
  render.begin();Debug.gc();render.fillRectangle(paper,0,0,200,228);

@@ -19,13 +19,13 @@ static void draw_portrait(Layer *layer,GContext *ctx){
   if(x!=200){break;}
   y+=rows;
  }
- if(s_actor>=3){
+ if(s_actor==3||s_actor==4){
   graphics_context_set_fill_color(ctx,GColorOxfordBlue);graphics_fill_rect(ctx,GRect(0,163,200,65),0,GCornerNone);graphics_context_set_text_color(ctx,GColorWhite);
   graphics_draw_text(ctx,EPISODE_TITLE,fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD),GRect(9,161,190,45),GTextOverflowModeWordWrap,GTextAlignmentLeft,NULL);
   graphics_draw_text(ctx,s_actor==3?EPISODE_BEGIN:"Complete | Back: menu",fonts_get_system_font(FONT_KEY_GOTHIC_14),GRect(8,208,190,20),GTextOverflowModeWordWrap,GTextAlignmentLeft,NULL);
  }else{
   graphics_context_set_fill_color(ctx,GColorWhite);graphics_fill_rect(ctx,GRect(0,207,85,21),0,GCornerNone);graphics_context_set_text_color(ctx,GColorOxfordBlue);
-  graphics_draw_text(ctx,s_actor==1?"Hannah":s_actor==2?"Young Alden":"Alden",fonts_get_system_font(FONT_KEY_GOTHIC_14),GRect(5,209,80,19),GTextOverflowModeTrailingEllipsis,GTextAlignmentLeft,NULL);
+  graphics_draw_text(ctx,s_actor==1?"Hannah":s_actor==2?"Young Alden":s_actor==5?"Boe":s_actor==6?"Jeremy":s_actor==7?"Gorgon":"Alden",fonts_get_system_font(FONT_KEY_GOTHIC_14),GRect(5,209,80,19),GTextOverflowModeTrailingEllipsis,GTextAlignmentLeft,NULL);
  }
 }
 void showPortrait(uint32_t resource,uint32_t actor){

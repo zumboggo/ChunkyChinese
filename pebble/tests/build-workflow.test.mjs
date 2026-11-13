@@ -6,7 +6,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 // Exercise the actual shell/export/test pipeline in a disposable checkout, never
-// changing the developer's selected episode. Child suites skip only this wrapper.
+// changing the developer's selected episode. Child suites skip this wrapper and the already-run native compiler check.
 test('build --check selects different episodes and rejects invalid targets without replacing the bundle',
  {skip:process.env.PEBBLE_WORKFLOW_CHILD==='1',timeout:30000},()=>{
  const root=fileURLToPath(new URL('../',import.meta.url)),app=path.dirname(root.replace(/\/$/,''));
@@ -15,7 +15,7 @@ test('build --check selects different episodes and rejects invalid targets witho
   const excluded=new Set(['node_modules','build','release','.local','verification','__pycache__']);
   fs.cpSync(root,copy,{recursive:true,filter:p=>!path.relative(root,p).split(path.sep).some(x=>excluded.has(x))});
   fs.symlinkSync(path.join(root,'node_modules'),path.join(copy,'node_modules'),'dir');
-  for(const name of ['supportive-10.json','supportive-11.json','source/supportive-11.story']){
+  for(const name of ['supportive-10.json','supportive-11.json','source/supportive-11.story','supportive-13.json','source/supportive-13.story']){
    const target=path.join(temp,'stories/animated',name);fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(path.join(app,'stories/animated',name),target);
   }
   const env={...process.env,PEBBLE_WORKFLOW_CHILD:'1'};delete env.NODE_TEST_CONTEXT;

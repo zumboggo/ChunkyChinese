@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {presentationCounts} from './presentation-counts.mjs';
 import {validSceneWire} from './downloadable-scene.mjs';
 import {exportEpisode} from './export.mjs';
 import {episodeId} from './episode-target.mjs';
@@ -40,6 +41,7 @@ export function analyse(id,overrides={}){
  result.sceneIds=[...new Set(result.shots.filter(s=>!s.recipe).map(s=>s.scene))];const library=readLibrary();result.totalScenes=library.scenes.length;result.recipeSchema=result.shots.some(s=>s.recipe)?1:0;
  const duration=s=>s.duration+(s.establish||0);result.reviewPlaybackSeconds=library.scenes.filter(s=>result.sceneIds.includes(s.id)).reduce((n,s)=>n+duration(s),0)/1000+result.shots.filter(s=>s.recipe).reduce((n,s)=>n+s.recipe.keys.at(-1)[0],0)/1000;result.fullLibraryPlaybackSeconds=library.scenes.reduce((n,s)=>n+duration(s),0)/1000;
  result.warnings=result.shots.length?[]:['No animation cues are authored for this episode.'];
+ try{result.presentation=presentationCounts(pack);if(result.presentation.animations.min<5)result.warnings.push('Some routes have fewer than five animated moments.');if(result.presentation.reactions.min<20||result.presentation.reactions.max>25)result.warnings.push('Reaction-shot count falls outside the 20–25 per-route target; review pacing.');}catch(e){result.errors.push(e.message);}
  return result;
 }
 export function summary(result){const {pack,...rest}=result;return {...rest,version:pack?.version,nodeCount:pack?.nodes.length};}

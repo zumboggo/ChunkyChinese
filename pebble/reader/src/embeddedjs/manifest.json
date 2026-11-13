@@ -62,7 +62,7 @@
       "./layout",
       "./transfer",
       "./glyphs",
-      "./art",
+      "./art-native",
       "./wire",
       "./legacy",
       "./upgrade",

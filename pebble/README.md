@@ -1,17 +1,17 @@
 # Chunky Chinese for Pebble Time 2
 
-Episode 12 with six animations and Hearth Garden completion sync: [install and setup](EPISODE-12.md).
+Episode 13 with six animated moments, 23 emotional shots per route, and Hearth Garden completion sync: [install and setup](EPISODE-13.md). Reusable portraits and generation notes: [reaction library](art/REACTIONS.md).
 
-Private learning reader for Super Supportive, adapted from existing Chunky Chinese Story 2 packages. The latest installer bundles **Episode 12: 好人是我？ · The Nice One**; Episode 11 remains supported. Original story: [Super Supportive by Sleyca](https://www.royalroad.com/fiction/63759/super-supportive). Source text, annotations, four decisions, distinct responses, and rejoins are preserved. Phone-app code and saves are untouched.
+Private learning reader for Super Supportive, adapted from existing Chunky Chinese Story 2 packages. The latest installer bundles **Episode 13: What Do You Want?**; Episode 11 remains supported. Original story: [Super Supportive by Sleyca](https://www.royalroad.com/fiction/63759/super-supportive). Source text, annotations, four decisions, distinct responses, and rejoins are preserved. Phone-app code and saves are untouched.
 
 ## Install on Android
 
 1. Install the current [official Pebble Android app](https://repebble.com/app), pair your **new Pebble Time 2 (Emery)**, and update watch firmware.
-2. Transfer `release/chunky-chinese-time2-supportive-12-v1.6.0.pbw` to your phone. Open it with Pebble from Downloads or the Android share sheet, then install it on your connected watch. [Official sideloading instructions](https://developer.repebble.com/guides/tools-and-resources/testing-with-the-mobile-app/#sideloading-apps).
-3. Launch **Chunky Chinese**. Episode 12 is bundled: no account, audio, network download, or separate Android APK is needed to begin.
+2. Transfer `release/chunky-chinese-time2-supportive-13-v1.7.0.pbw` to your phone. Open it with Pebble from Downloads or the Android share sheet, then install it on your connected watch. [Official sideloading instructions](https://developer.repebble.com/guides/tools-and-resources/testing-with-the-mobile-app/#sideloading-apps).
+3. Launch **Chunky Chinese**. Episode 13 is bundled: no account, audio, network download, or separate Android APK is needed to begin.
 4. For future supported packages, use Back → Refresh episode. The companion runs inside the Pebble Android app. Leave both apps open during transfer. The library says **Available offline** after verification. App settings accept an optional HTTPS `raw.githubusercontent.com` episode JSON URL; otherwise the bundled episode's repository feed is used. A failed network fetch leaves the current offline episode intact.
 
-If opening the file does not work, use the [Developer Connection](https://developer.repebble.com/guides/tools-and-resources/developer-connection/): enable Dev Connection in the connected watch's menu; run `pebble login`, then `pebble install release/chunky-chinese-time2-supportive-12-v1.6.0.pbw --cloudpebble`. A trusted local-network connection with `--phone PHONE_IP` is another option.
+If opening the file does not work, use the [Developer Connection](https://developer.repebble.com/guides/tools-and-resources/developer-connection/): enable Dev Connection in the connected watch's menu; run `pebble login`, then `pebble install release/chunky-chinese-time2-supportive-13-v1.7.0.pbw --cloudpebble`. A trusted local-network connection with `--phone PHONE_IP` is another option.
 
 Only Emery is included. This package is not for the original Pebble Time, Time Steel, or other older Pebbles. Android pairing and physical-watch readability still need testing on David's watch.
 
@@ -46,7 +46,7 @@ The original five moments remain available; Refresh alone cannot add native rend
 
 Existing v1.0/v1.1 saves migrate to the same phrase and selected choices. A known older v1.0/v1.1 feed is rejected so refreshing an unpublished/older feed cannot silently remove the installed animations. Future compatible refreshes can rearrange or reuse the installed named animation IDs; the bounded v1.6 recipe format also supports new pose sequences and scene combinations. New renderer capabilities still require a PBW update. This release is supplied as a sideloaded file; remote feed publication is separate.
 
-Native primitives draw the animations at a target 12 fps. Static portraits now use row-run resources, drawn through a 512-byte streaming buffer instead of decoding full bitmaps. The bundled story uses a generated flash-resource index and reads at most one 2 KiB record through a shared FFI bridge. The JavaScript runtime reserves 34 KiB for slots, 14 KiB for chunks, and 4 KiB for its stack. Current emulator checks and limits are in `verification/v6/STATUS.md`.
+Native primitives draw the animations at a target 12 fps. Static portraits now use row-run resources, drawn through a 512-byte streaming buffer instead of decoding full bitmaps. The bundled story uses a generated flash-resource index and reads at most one 2 KiB record through a shared FFI bridge. The JavaScript runtime reserves 34 KiB for slots, 13 KiB for chunks, and 4 KiB for its stack. Current emulator checks and limits are in `verification/v6/STATUS.md`.
 
 ## Reading controls
 

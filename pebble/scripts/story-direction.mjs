@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import art from '../reader/src/embeddedjs/art.js';
 import {encodeScene} from './downloadable-scene.mjs';
 import {readLibrary} from './scene-library.mjs';
 export function loadDirection(id){
@@ -23,4 +24,19 @@ export function validateDirection(script,id,direction){
   else {if(!scenes.has(cue.scene))throw Error('Unsupported scene: '+cue.scene);cues.set(cue.anchor,cue.scene);}
  }
  return cues;
+}
+
+export function reactionDirection(script,direction){
+ const shots=new Map();if(direction?.reactions===undefined)return null;
+ if(!Array.isArray(direction.reactions))throw Error('Invalid reaction direction');
+ const lines=script.split('\n').map(s=>s.trim()).filter(Boolean);
+ const cast=new Set(lines.flatMap(l=>l.match(/^show (\S+)/)?.slice(1)||[]));
+ for(const shot of direction.reactions){
+  const label='label '+shot.anchor,index=lines.indexOf(label);
+  if(index<0||lines.lastIndexOf(label)!==index||!/^\w+(?: \[[^\]]+\])?: .+$/.test(lines[index-1]||''))throw Error('Invalid reaction anchor: '+shot.anchor);
+  if(shots.has(shot.anchor))throw Error('Duplicate reaction anchor: '+shot.anchor);
+  if(!cast.has(shot.actor)||!art[shot.actor+'-'+shot.emotion+'-full'])throw Error('Unsupported reaction: '+shot.actor+'-'+shot.emotion);
+  shots.set(shot.anchor,{actor:shot.actor,emotion:shot.emotion});
+ }
+ return shots;
 }

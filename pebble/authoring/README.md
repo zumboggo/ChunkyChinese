@@ -50,8 +50,7 @@ npm run direct -- supportive-11 /absolute/path/to/supportive-11-direction.json
 
 The command validates every anchor and scene before replacing that episode's
 watch-only direction file, then regenerates its review. Prose, annotations and phone
-releases are not touched. Review the five or so choices together and do one final
-pass; no fixed scene quota or new-animation quota is imposed.
+releases are not touched. Review the complete direction together: at least five animated moments and a target of 20–25 reaction shots on every route. Reuse fitting assets and actions; no new-animation quota is imposed.
 
 ## Content path versus native path
 
@@ -102,3 +101,9 @@ capability. Existing catalogue IDs keep their installed bindings. A supported ne
 pose sequence or scene combination is content; a new rig, drawing primitive,
 font or asset is still a native change. Recording capability requires the matching
 `downloadable-report.json`, not a manually edited version number.
+
+## Pixel reactions and route counts
+
+Use `art/reaction-atlases.json` for named pixel expressions, with `node scripts/prepare-reactions.mjs` to prepare deliberately changed atlases. A native update installs new assets; later compatible episodes reuse them. Add `reactions: [{anchor, actor, emotion}]` to the direction file at persistent labels after complete passages. Explicit reactions replace the legacy automatic cadence for that episode. Animation cue-plan downloads preserve these shots and the cover selection.
+
+Preflight reports minimum/maximum animation and reaction counts across complete choice routes. Aim for 20–25 full-screen emotional shots and require at least five animated moments, using only characters and actions supported by the source. Opening/ending cards do not count. Episode 13 supplies a 16-route example with six animations and 23 reactions on every route.
