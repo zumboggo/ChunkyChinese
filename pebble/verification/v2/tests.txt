@@ -1,0 +1,45 @@
+✔ portable Adler-32 known vector and phone/watch parity (2.704292ms)
+✔ real companion protocol transfers every chunk then activates exactly once (4.325292ms)
+✔ phone startup retries handshake and lost acknowledgements retry the same chunk (1.291958ms)
+✔ refresh fetches a fresh URL; network failure retains the installed episode (0.535125ms)
+✔ phone settings Refresh button requests an immediate download (0.456917ms)
+✔ source remains faithful and exporter deterministic (4.161625ms)
+✔ complete offline route 0 (1.165333ms)
+✔ complete offline route 1 (0.717291ms)
+✔ complete offline route 2 (0.689584ms)
+✔ complete offline route 3 (0.913459ms)
+✔ complete offline route 4 (0.6115ms)
+✔ complete offline route 5 (0.601625ms)
+✔ complete offline route 6 (0.642708ms)
+✔ complete offline route 7 (0.620625ms)
+✔ complete offline route 8 (0.59775ms)
+✔ complete offline route 9 (0.516959ms)
+✔ complete offline route 10 (0.550084ms)
+✔ complete offline route 11 (0.591417ms)
+✔ complete offline route 12 (0.532042ms)
+✔ complete offline route 13 (0.504708ms)
+✔ complete offline route 14 (0.504708ms)
+✔ complete offline route 15 (0.511542ms)
+✔ each encounter, page and route restores; back undoes choice (0.113166ms)
+✔ font includes full tones and rejects novel glyphs (0.447583ms)
+✔ wrapping never loses syllables or characters and paginates (0.253583ms)
+✔ atomic transfer, retries, incomplete and corrupt downloads (3.950167ms)
+✔ reject bad graph, missing art, bad glyph and oversized transfers (1.042333ms)
+✔ lazy bundled and streamed content match every node without loading a whole file (4.687333ms)
+✔ all 16 routes also complete through the downloaded file adapter (3.703583ms)
+✔ every real phrase fits using FreeType font advances at the shipped sizes (7.063834ms)
+✔ all branch responses and canonical rejoins match the original Story 2 paths (1.05975ms)
+✔ Chinese closing punctuation is not stranded on its own line (0.039292ms)
+✔ one-pass reading skips the automatic character encounter; Down toggles on demand (0.041458ms)
+✔ choosing requires an explicit second Select, not a Chinese encounter (0.036125ms)
+✔ portrait-only content updates preserve phrase and choice route (0.217959ms)
+✔ legacy upgrade maps all original node indices and keeps phrase and choices (0.059791ms)
+✔ full-screen assets cover every cue; portrait beats doubled (0.35225ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 84.020458

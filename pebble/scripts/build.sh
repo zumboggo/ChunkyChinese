@@ -11,3 +11,7 @@ cd ..
 "${PEBBLE_PYTHON:-python3}" scripts/verify-compiled-fonts.py
 mkdir -p release
 cp reader/build/reader.pbw release/chunky-chinese-time2.pbw
+
+version=$(node -p "require('./reader/package.json').version")
+cp reader/build/reader.pbw "release/chunky-chinese-time2-v${version}.pbw"
+shasum -a 256 release/chunky-chinese-time2.pbw "release/chunky-chinese-time2-v${version}.pbw" > release/SHA256SUMS

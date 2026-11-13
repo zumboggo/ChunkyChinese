@@ -1,4 +1,6 @@
-# Verification — 2026-11-13
+# Version 1.0 verification — 2026-11-13
+
+For the current 1.1 release, see [v2/STATUS.md](v2/STATUS.md).
 
 ## Automated and build
 

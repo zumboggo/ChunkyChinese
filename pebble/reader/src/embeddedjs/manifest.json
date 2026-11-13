@@ -1,4 +1,15 @@
 {
+  "ffi": {
+    "functions": {
+      "showPortrait": {
+        "arguments": [
+          "uint32_t",
+          "uint32_t"
+        ],
+        "returns": "void"
+      }
+    }
+  },
   "include": [
     "$(MODDABLE)/examples/manifest_mod.json"
   ],
@@ -11,7 +22,8 @@
       "./transfer",
       "./glyphs",
       "./art",
-      "./wire"
+      "./wire",
+      "./legacy"
     ]
   }
 }

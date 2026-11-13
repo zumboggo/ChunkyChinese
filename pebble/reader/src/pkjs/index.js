@@ -11,8 +11,8 @@ function begin(pack){stop();var data=wire(pack);if(data.length>65536)throw Error
 function cached(){try{return JSON.parse(localStorage.getItem('episode-cache'))||bundled;}catch(e){return bundled;}}
 function load(){
  var url=localStorage.getItem('episode-url')||DEFAULT_URL;
- var req=new XMLHttpRequest();req.open('GET',url,true);req.timeout=12000;
- function fallback(){begin(cached());}
+ var req=new XMLHttpRequest();req.open('GET',url+(url.indexOf('?')<0?'?':'&')+'refresh='+Date.now(),true);req.timeout=12000;
+ function fallback(){Pebble.sendAppMessage({COMMAND:'ERROR',STATUS:'No update; kept offline story'});}
  req.onload=function(){if(req.status<200||req.status>=300){fallback();return;}try{var p=JSON.parse(req.responseText);if(p.format!==1||!p.nodes||!p.version)throw Error('Bad episode');localStorage.setItem('episode-cache',JSON.stringify(p));begin(p);}catch(e){Pebble.sendAppMessage({COMMAND:'ERROR',STATUS:'Invalid episode download'});}};
  req.onerror=fallback;req.ontimeout=fallback;try{req.send();}catch(e){fallback();}
 }
@@ -34,5 +34,6 @@ Pebble.addEventListener('webviewclosed',function(event){
  try{var config=JSON.parse(decodeURIComponent(event.response));var url=String(config.url||'').trim();
   if(url&&!/^https:\/\/raw\.githubusercontent\.com\//.test(url))throw Error('Use a raw.githubusercontent.com HTTPS package URL');
   if(url)localStorage.setItem('episode-url',url);else localStorage.removeItem('episode-url');
+  if(config.refresh)load();
  }catch(e){console.log('Settings not changed: '+e.message);}
 });

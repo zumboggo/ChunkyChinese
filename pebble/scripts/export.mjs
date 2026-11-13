@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url';
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const app=path.resolve(root,'..');
 export function exportEpisode(d,id='supportive-11') {
- const annotations=d.chinese.lines, nodes=[], labels={}, cast=new Set(); let scene='train', narrator='Alden', choice=null, pending=null;
+ const annotations=d.chinese.lines, nodes=[], labels={}, cast=new Set(); let scene='train', narrator='Alden', choice=null, pending=null, lineNumber=0;
  function phrases(text) {
   const a=annotations[text]; if(!a?.interlinear?.length)throw Error('Missing chunks: '+text);
   if(a.interlinear.map(c=>c.chinese).join('')!==text)throw Error('Chunk mismatch: '+text);
@@ -35,6 +35,8 @@ export function exportEpisode(d,id='supportive-11') {
    if(pending){nodes.push({type:'reaction',...pending});pending=null;}
    // A portrait at the first dialogue and selected emotional turns, never beside every phrase.
    if(m[1]!=='I'&&(!nodes.some(n=>n.speaker===speaker)||['sad','determined','excited','confused'].includes((m[2]||'').split(',')[0])))nodes.push({type:'reaction',actor:speaker,emotion:mood,scene});
+   lineNumber++;
+   if(lineNumber%3===0&&nodes.at(-1)?.type!=='reaction')nodes.push({type:'reaction',actor:speaker,emotion:mood,scene});
    nodes.push({type:'line',speaker,scene,phrases:phrases(m[3])});continue;
   }
   if(/^(rest|camera|express|look|orient|react) /.test(line))continue;
@@ -63,11 +65,16 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
  const data=JSON.stringify(pack);
  fs.writeFileSync(path.join(root,'content',source+'.json'),data+'\n');
  fs.writeFileSync(path.join(root,'reader/src/pkjs/bundled.json'),data+'\n');
+ const legacy=JSON.parse(fs.readFileSync(path.join(root,'content/legacy-v1-anchors.json')));
+ const nodeKey=n=>n.type==='line'?n.type+':'+n.speaker+':'+n.phrases.map(p=>p.zh).join(''):n.type==='choice'?'choice:'+n.id:n.type==='reaction'?'reaction:'+n.actor+':'+n.emotion+':'+n.scene:n.type;
+ const keys=pack.nodes.map(n=>crypto.createHash('sha256').update(nodeKey(n)).digest('hex'));let cursor=0;
+ const indices=legacy.anchors.map(key=>{const i=keys.indexOf(key,cursor);if(i>=0)cursor=i+1;return i;});
+ fs.writeFileSync(path.join(root,'reader/src/embeddedjs/legacy.js'),'export default '+JSON.stringify({id:legacy.id,version:legacy.version,target:pack.version,indices})+';\n');
  const meta={...pack};delete meta.nodes;
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/episode.js'),'// Generated: parse only the current node to fit watch RAM.\nconst meta='+JSON.stringify(meta)+';\nconst rows='+JSON.stringify(pack.nodes.map(n=>JSON.stringify(n)))+';\nlet index=-1,node;meta.nodeCount=rows.length;meta.nodeAt=i=>{if(index!==i){node=JSON.parse(rows[i]);index=i;}return node;};export default meta;\n');
  const glyphs=fs.readFileSync(glyphPath,'utf8');const han=[...glyphs].filter(c=>/\p{Script=Han}/u.test(c)).join('');
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/glyphs.js'),'export default '+JSON.stringify(glyphs)+';\n');
- const manifest={include:['$(MODDABLE)/examples/manifest_mod.json'],modules:{'*':['./main','./episode','./reader','./layout','./transfer','./glyphs','./art','./wire']}};
+ const manifest={ffi:{functions:{showPortrait:{arguments:['uint32_t','uint32_t'],returns:'void'}}},include:['$(MODDABLE)/examples/manifest_mod.json'],modules:{'*':['./main','./episode','./reader','./layout','./transfer','./glyphs','./art','./wire','./legacy']}};
  fs.writeFileSync(path.join(root,'reader/src/embeddedjs/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
  console.log(JSON.stringify({id:source,nodes:pack.nodes.length,choices:pack.nodes.filter(n=>n.type==='choice').length,phrases:pack.nodes.reduce((s,n)=>s+(n.phrases?.length||0)+(n.options||[]).reduce((t,o)=>t+o.phrases.length,0),0),bytes:Buffer.byteLength(data),han:han.length}));
 }

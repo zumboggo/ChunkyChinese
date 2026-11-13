@@ -12,3 +12,5 @@ The generation brief requested static, restrained pixel art with recognizable co
 Opening: Hannah's conversation with young Alden at the cafe. Closing: present-day Alden reflecting during his train journey. These are static scene illustrations; no animation or paid video was generated.
 
 `prepare-art.mjs` crops the atlas and produces final 64 × 64 and checked 48 × 48 palette PNGs using nearest-neighbor scaling. The source images are larger generation masters; the watch assets are the authored delivery dimensions. All requested 13 expressions are included, with three extra neutral/calm variants for reuse.
+
+Version 1.1 reuses the same 64-pixel portraits, enlarging with nearest-neighbor sampling to a 200 × 228 canvas. Each full-screen portrait is stored as four 200 × 57 strips for deterministic native memory management. No new image-generation calls were made for this revision.

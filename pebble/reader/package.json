@@ -1,7 +1,7 @@
 {
   "name": "chunky-chinese-pebble",
   "author": "David Hepting",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "keywords": [
     "pebble-app"
   ],
@@ -32,225 +32,449 @@
       "media": [
         {
           "type": "bitmap",
-          "name": "IMAGE_ALDEN_DETERMINED_48",
-          "file": "images/Alden-determined-48.png",
+          "name": "IMAGE_ALDEN_DETERMINED_FULL_0",
+          "file": "images/Alden-determined-full-0.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_ALDEN_DETERMINED_64",
-          "file": "images/Alden-determined-64.png",
+          "name": "IMAGE_ALDEN_DETERMINED_FULL_1",
+          "file": "images/Alden-determined-full-1.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_ALDEN_NEUTRAL_48",
-          "file": "images/Alden-neutral-48.png",
+          "name": "IMAGE_ALDEN_DETERMINED_FULL_2",
+          "file": "images/Alden-determined-full-2.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_ALDEN_NEUTRAL_64",
-          "file": "images/Alden-neutral-64.png",
+          "name": "IMAGE_ALDEN_DETERMINED_FULL_3",
+          "file": "images/Alden-determined-full-3.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_ALDEN_SAD_48",
-          "file": "images/Alden-sad-48.png",
+          "name": "IMAGE_ALDEN_NEUTRAL_FULL_0",
+          "file": "images/Alden-neutral-full-0.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_ALDEN_SAD_64",
-          "file": "images/Alden-sad-64.png",
+          "name": "IMAGE_ALDEN_NEUTRAL_FULL_1",
+          "file": "images/Alden-neutral-full-1.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_ALDEN_THOUGHTFUL_48",
-          "file": "images/Alden-thoughtful-48.png",
+          "name": "IMAGE_ALDEN_NEUTRAL_FULL_2",
+          "file": "images/Alden-neutral-full-2.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_ALDEN_THOUGHTFUL_64",
-          "file": "images/Alden-thoughtful-64.png",
+          "name": "IMAGE_ALDEN_NEUTRAL_FULL_3",
+          "file": "images/Alden-neutral-full-3.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_HANNAH_CALM_48",
-          "file": "images/Hannah-calm-48.png",
+          "name": "IMAGE_ALDEN_SAD_FULL_0",
+          "file": "images/Alden-sad-full-0.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_HANNAH_CALM_64",
-          "file": "images/Hannah-calm-64.png",
+          "name": "IMAGE_ALDEN_SAD_FULL_1",
+          "file": "images/Alden-sad-full-1.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_HANNAH_DETERMINED_48",
-          "file": "images/Hannah-determined-48.png",
+          "name": "IMAGE_ALDEN_SAD_FULL_2",
+          "file": "images/Alden-sad-full-2.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_HANNAH_DETERMINED_64",
-          "file": "images/Hannah-determined-64.png",
+          "name": "IMAGE_ALDEN_SAD_FULL_3",
+          "file": "images/Alden-sad-full-3.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_HANNAH_EXCITED_48",
-          "file": "images/Hannah-excited-48.png",
+          "name": "IMAGE_ALDEN_THOUGHTFUL_FULL_0",
+          "file": "images/Alden-thoughtful-full-0.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_HANNAH_EXCITED_64",
-          "file": "images/Hannah-excited-64.png",
+          "name": "IMAGE_ALDEN_THOUGHTFUL_FULL_1",
+          "file": "images/Alden-thoughtful-full-1.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_HANNAH_NEUTRAL_48",
-          "file": "images/Hannah-neutral-48.png",
+          "name": "IMAGE_ALDEN_THOUGHTFUL_FULL_2",
+          "file": "images/Alden-thoughtful-full-2.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_HANNAH_NEUTRAL_64",
-          "file": "images/Hannah-neutral-64.png",
+          "name": "IMAGE_ALDEN_THOUGHTFUL_FULL_3",
+          "file": "images/Alden-thoughtful-full-3.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_HANNAH_SAD_48",
-          "file": "images/Hannah-sad-48.png",
+          "name": "IMAGE_HANNAH_CALM_FULL_0",
+          "file": "images/Hannah-calm-full-0.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_HANNAH_SAD_64",
-          "file": "images/Hannah-sad-64.png",
+          "name": "IMAGE_HANNAH_CALM_FULL_1",
+          "file": "images/Hannah-calm-full-1.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_HANNAH_WARM_48",
-          "file": "images/Hannah-warm-48.png",
+          "name": "IMAGE_HANNAH_CALM_FULL_2",
+          "file": "images/Hannah-calm-full-2.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_HANNAH_WARM_64",
-          "file": "images/Hannah-warm-64.png",
+          "name": "IMAGE_HANNAH_CALM_FULL_3",
+          "file": "images/Hannah-calm-full-3.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_HANNAH_WORRIED_48",
-          "file": "images/Hannah-worried-48.png",
+          "name": "IMAGE_HANNAH_DETERMINED_FULL_0",
+          "file": "images/Hannah-determined-full-0.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_HANNAH_WORRIED_64",
-          "file": "images/Hannah-worried-64.png",
+          "name": "IMAGE_HANNAH_DETERMINED_FULL_1",
+          "file": "images/Hannah-determined-full-1.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_YOUNGALDEN_CONFUSED_48",
-          "file": "images/YoungAlden-confused-48.png",
+          "name": "IMAGE_HANNAH_DETERMINED_FULL_2",
+          "file": "images/Hannah-determined-full-2.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_YOUNGALDEN_CONFUSED_64",
-          "file": "images/YoungAlden-confused-64.png",
+          "name": "IMAGE_HANNAH_DETERMINED_FULL_3",
+          "file": "images/Hannah-determined-full-3.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_YOUNGALDEN_CURIOUS_48",
-          "file": "images/YoungAlden-curious-48.png",
+          "name": "IMAGE_HANNAH_EXCITED_FULL_0",
+          "file": "images/Hannah-excited-full-0.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_YOUNGALDEN_CURIOUS_64",
-          "file": "images/YoungAlden-curious-64.png",
+          "name": "IMAGE_HANNAH_EXCITED_FULL_1",
+          "file": "images/Hannah-excited-full-1.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_YOUNGALDEN_NEUTRAL_48",
-          "file": "images/YoungAlden-neutral-48.png",
+          "name": "IMAGE_HANNAH_EXCITED_FULL_2",
+          "file": "images/Hannah-excited-full-2.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_YOUNGALDEN_NEUTRAL_64",
-          "file": "images/YoungAlden-neutral-64.png",
+          "name": "IMAGE_HANNAH_EXCITED_FULL_3",
+          "file": "images/Hannah-excited-full-3.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_YOUNGALDEN_THOUGHTFUL_48",
-          "file": "images/YoungAlden-thoughtful-48.png",
+          "name": "IMAGE_HANNAH_NEUTRAL_FULL_0",
+          "file": "images/Hannah-neutral-full-0.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_YOUNGALDEN_THOUGHTFUL_64",
-          "file": "images/YoungAlden-thoughtful-64.png",
+          "name": "IMAGE_HANNAH_NEUTRAL_FULL_1",
+          "file": "images/Hannah-neutral-full-1.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_YOUNGALDEN_WORRIED_48",
-          "file": "images/YoungAlden-worried-48.png",
+          "name": "IMAGE_HANNAH_NEUTRAL_FULL_2",
+          "file": "images/Hannah-neutral-full-2.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_YOUNGALDEN_WORRIED_64",
-          "file": "images/YoungAlden-worried-64.png",
+          "name": "IMAGE_HANNAH_NEUTRAL_FULL_3",
+          "file": "images/Hannah-neutral-full-3.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_SAD_FULL_0",
+          "file": "images/Hannah-sad-full-0.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_SAD_FULL_1",
+          "file": "images/Hannah-sad-full-1.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_SAD_FULL_2",
+          "file": "images/Hannah-sad-full-2.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_SAD_FULL_3",
+          "file": "images/Hannah-sad-full-3.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_WARM_FULL_0",
+          "file": "images/Hannah-warm-full-0.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_WARM_FULL_1",
+          "file": "images/Hannah-warm-full-1.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_WARM_FULL_2",
+          "file": "images/Hannah-warm-full-2.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_WARM_FULL_3",
+          "file": "images/Hannah-warm-full-3.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_WORRIED_FULL_0",
+          "file": "images/Hannah-worried-full-0.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_WORRIED_FULL_1",
+          "file": "images/Hannah-worried-full-1.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_WORRIED_FULL_2",
+          "file": "images/Hannah-worried-full-2.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_WORRIED_FULL_3",
+          "file": "images/Hannah-worried-full-3.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_CONFUSED_FULL_0",
+          "file": "images/YoungAlden-confused-full-0.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_CONFUSED_FULL_1",
+          "file": "images/YoungAlden-confused-full-1.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_CONFUSED_FULL_2",
+          "file": "images/YoungAlden-confused-full-2.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_CONFUSED_FULL_3",
+          "file": "images/YoungAlden-confused-full-3.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_CURIOUS_FULL_0",
+          "file": "images/YoungAlden-curious-full-0.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_CURIOUS_FULL_1",
+          "file": "images/YoungAlden-curious-full-1.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_CURIOUS_FULL_2",
+          "file": "images/YoungAlden-curious-full-2.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_CURIOUS_FULL_3",
+          "file": "images/YoungAlden-curious-full-3.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_NEUTRAL_FULL_0",
+          "file": "images/YoungAlden-neutral-full-0.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_NEUTRAL_FULL_1",
+          "file": "images/YoungAlden-neutral-full-1.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_NEUTRAL_FULL_2",
+          "file": "images/YoungAlden-neutral-full-2.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_NEUTRAL_FULL_3",
+          "file": "images/YoungAlden-neutral-full-3.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_THOUGHTFUL_FULL_0",
+          "file": "images/YoungAlden-thoughtful-full-0.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_THOUGHTFUL_FULL_1",
+          "file": "images/YoungAlden-thoughtful-full-1.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_THOUGHTFUL_FULL_2",
+          "file": "images/YoungAlden-thoughtful-full-2.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_THOUGHTFUL_FULL_3",
+          "file": "images/YoungAlden-thoughtful-full-3.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_WORRIED_FULL_0",
+          "file": "images/YoungAlden-worried-full-0.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_WORRIED_FULL_1",
+          "file": "images/YoungAlden-worried-full-1.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_WORRIED_FULL_2",
+          "file": "images/YoungAlden-worried-full-2.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_WORRIED_FULL_3",
+          "file": "images/YoungAlden-worried-full-3.png",
           "memoryFormat": "4BitPalette",
           "spaceOptimization": "memory"
         },

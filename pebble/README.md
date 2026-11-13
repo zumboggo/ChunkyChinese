@@ -5,24 +5,35 @@ Private learning reader for **Episode 11: 还可以更好 · We Could Do Better*
 ## Install on Android
 
 1. Install the current [official Pebble Android app](https://repebble.com/app), pair your **new Pebble Time 2 (Emery)**, and update watch firmware.
-2. Transfer `release/chunky-chinese-time2.pbw` to your phone. Open it with Pebble from Downloads or the Android share sheet, then install it on your connected watch. [Official sideloading instructions](https://developer.repebble.com/guides/tools-and-resources/testing-with-the-mobile-app/#sideloading-apps).
+2. Transfer `release/chunky-chinese-time2-v1.1.0.pbw` to your phone. Open it with Pebble from Downloads or the Android share sheet, then install it on your connected watch. [Official sideloading instructions](https://developer.repebble.com/guides/tools-and-resources/testing-with-the-mobile-app/#sideloading-apps).
 3. Launch **Chunky Chinese**. Episode 11 is bundled: no account, audio, network download, or separate Android APK is needed to begin.
-4. For future supported packages, use Back → Library → Load from phone. The companion runs inside the Pebble Android app. Leave both apps open during transfer. The library says **Available offline** after verification. App settings accept an optional HTTPS `raw.githubusercontent.com` episode JSON URL; otherwise the repository's Episode 11 is used. A failed network fetch falls back to the phone cache or bundled copy.
+4. For future supported packages, use Back → Refresh episode. The companion runs inside the Pebble Android app. Leave both apps open during transfer. The library says **Available offline** after verification. App settings accept an optional HTTPS `raw.githubusercontent.com` episode JSON URL; otherwise the repository's Episode 11 is used. A failed network fetch leaves the current offline episode intact.
 
-If opening the file does not work, use the [Developer Connection](https://developer.repebble.com/guides/tools-and-resources/developer-connection/): enable Dev Connection in the connected watch's menu; run `pebble login`, then `pebble install release/chunky-chinese-time2.pbw --cloudpebble`. A trusted local-network connection with `--phone PHONE_IP` is another option.
+If opening the file does not work, use the [Developer Connection](https://developer.repebble.com/guides/tools-and-resources/developer-connection/): enable Dev Connection in the connected watch's menu; run `pebble login`, then `pebble install release/chunky-chinese-time2-v1.1.0.pbw --cloudpebble`. A trusted local-network connection with `--phone PHONE_IP` is another option.
 
 Only Emery is included. This package is not for the original Pebble Time, Time Steel, or other older Pebbles. Android pairing and physical-watch readability still need testing on David's watch.
 
-## Reading
+## Reading — version 1.1
 
-- Select: advance pages; pinyin/English → pinyin/Chinese → next phrase.
-- Up: previous reading screen (up to 64 recent screens; the latest 24 survive app restarts).
-- Down: reading controls, including English help and 64/48-pixel portrait size.
-- Back: Resume / Restart / Library. Restart requires a second selection. Hold Back to exit.
-- Choices: Up/Down select an option; Select reads its characters; the final **Select: choose** explicitly commits it. Longer options have additional phrase/pages before confirmation.
-- Exact phrase, page, encounter, option, and route save after each action. Two alternating save files protect the prior save during a write.
-- Fonts: 24-pixel pinyin, 20-pixel English, 28-pixel Chinese. Text wraps at measured widths; continuation pages repeat the shorter language when needed to keep both visible.
-- No audio, animation, automatic advances, or timed choices. Portraits appear on separate emotional beats; ordinary screens devote space to text.
+- Pinyin above English is the default. **Select advances immediately** through pages/phrases; there is no compulsory Chinese encounter.
+- **Down (bottom-right) toggles Chinese with pinyin**, then back to English. Select from the Chinese view still advances to the next phrase in English.
+- The speaker's name appears in small blue text at the bottom left.
+- Up revisits the previous screen (64 recent screens, 24 retained across restarts).
+- At choices, **Up cycles options**, Down toggles Chinese, Select requests confirmation, and **Select: choose** commits. Chinese is optional here too.
+- Back opens Resume / Refresh episode / Restart / Library. Hold Back to exit.
+- Portraits fill 200 × 228 pixels, without emotion labels. There are 24 portrait beats, up from 12; the same cast artwork is reused. They are static and advance with Select.
+- The default path needs 269 Select presses in the layout model, versus 500 in version 1.0 (46% fewer), including the additional portraits.
+- The original 24-pixel pinyin, 20-pixel English, and optional 28-pixel Chinese fonts remain. Both languages stay visible on continuation pages.
+- Upgrade migration retains the current phrase and selected route from version 1.0, switching the current view to English. Reordered portrait cues do not force a restart. Recent back-history resets on a content-version change.
+- No audio, animations, timed choices, or automatic story progression.
+
+## Refresh and future integration
+
+**Back → Refresh episode** fetches the latest exported story through the phone. The phone's app settings also have **Refresh watch story**; keep the watch app open. A failed fetch says it kept the offline story, instead of quietly treating a cached copy as an update.
+
+Refresh handles text, pinyin, glosses, decisions, and placement of already-installed portraits. New image files, new font glyphs, or changes to button behavior require a new PBW. Install version 1.1 once for the enlarged images and new controls; later compatible content edits can use Refresh.
+
+The live feed is the JSON export in this existing Chunky Chinese GitHub repository. Author the source episode → export → commit/push → Refresh. No separate database or API key is required. A future Chunky Chinese frontend can serve the same versioned JSON from a static endpoint, or a backend can select a learner's episode and vocabulary; moving to that endpoint would require adding its domain to the phone companion's permissions and URL validation. No private backend credentials are embedded in the watch app, and watch progress remains separate from phone progress.
 
 ## Build and export
 
@@ -35,7 +46,7 @@ PEBBLE_PYTHON="$HOME/.local/share/uv/tools/pebble-tool/bin/python" \
 sh scripts/build.sh
 ```
 
-This deterministically exports Episode 11, runs reader/export/transfer/layout tests, performs a clean Emery build, audits the compiled font, and copies the PBW into `release/`.
+This deterministically exports Episode 11, runs reader/export/transfer/layout/upgrade tests, performs a clean Emery build, audits the compiled font, and copies the PBW into `release/`.
 
 `node scripts/export.mjs supportive-11` exports existing reviewed annotations. It never generates substitute pinyin. IDs are stable and versions derive from content. Unsupported script commands or glyphs fail the export. The exporter supports the same Story 2 command subset for future episodes; new cast, scenes, and artwork need explicit adaptation before shipping another episode.
 
@@ -43,10 +54,18 @@ This deterministically exports Episode 11, runs reader/export/transfer/layout te
 
 ## Architecture
 
-Alloy/Poco renderer + native Pebble PBF fonts and palette bitmaps. The episode is indexed lazily to fit watch RAM. Phone JSON becomes ASCII NDJSON, transferred in acknowledged 600-character chunks with per-chunk and complete-file Adler-32 checks. Adler-32 detects transfer corruption; it is not an authentication signature. The URL is HTTPS and restricted to raw.githubusercontent.com.
+Alloy/Poco renderer + native Pebble PBF fonts and palette bitmaps. A small native C layer draws full-screen portraits in four 200 × 57 strips and immediately frees each bitmap. Each decoded strip is around 5.7 KB, rather than holding the entire 22.8 KB image or relying on JavaScript garbage collection. The episode is indexed lazily to fit watch RAM. Phone JSON becomes ASCII NDJSON, transferred in acknowledged 600-character chunks with per-chunk and complete-file Adler-32 checks. Adler-32 detects transfer corruption; it is not an authentication signature. The URL is HTTPS and restricted to raw.githubusercontent.com.
 
-The exporter and receiver limit packages to 64 KiB, 160 nodes and 2 KiB per wire record; split larger stories before exporting. Downloads write to the inactive A/B file. Only complete, checksum-valid content with valid graph, glyphs, and already bundled artwork activates. A failed/interrupted transfer retains the previous episode and progress. Reconnect and select Load from phone to restart an abandoned transfer. This release stores the bundled episode and one active downloaded episode; it is not a multi-episode bookshelf. New art/fonts require a PBW update. Watch reading positions are separate from Chunky Chinese phone saves.
+The exporter and receiver limit packages to 64 KiB, 160 nodes and 2 KiB per wire record; split larger stories before exporting. Downloads write to the inactive A/B file. Only complete, checksum-valid content with valid graph, glyphs, and already bundled artwork activates. A failed/interrupted transfer retains the previous episode and progress. Reconnect and select Refresh episode to restart an abandoned transfer. This release stores the bundled episode and one active downloaded episode; it is not a multi-episode bookshelf. New art/fonts require a PBW update. Watch reading positions are separate from Chunky Chinese phone saves.
 
 ## Verification
 
 See `verification/STATUS.md` for actual test coverage and remaining hardware checks. Screenshots are native 200 × 228 emulator captures, not mockups. `art/` holds generated source artwork; `reader/resources/images/` contains both 64 × 64 and 48 × 48 portraits and opening/closing images. No public app-store submission was made.
+
+## Image budget
+
+Emery supports 64 display colors; these portraits use a 16-color palette. Pixel art compresses well in storage, but decoded memory depends mainly on dimensions and bit depth, not how simple the drawing looks. A full 200 × 228 image at 4 bits per pixel is 22,800 bytes before headers/palette. Loading one section at a time bounds working memory; repeating a portrait costs no extra stored image.
+
+The Chinese PBF is about 65 KB in the resource package. Removing it could free storage for some images, but it is not all held in working memory and is not required to make the full-screen portraits work. Version 1.1 therefore retains optional Chinese. Enlarging and reusing existing artwork makes no image-generation calls.
+
+[Official Pebble image formats](https://developer.repebble.com/guides/app-resources/images/). New AI artwork uses image-model tokens; pixel styling alone is not a cheaper billing setting. Model, generated dimensions, quality, references, and retries matter; the later 200 × 228 watch conversion is separate. See [OpenAI image-generation cost guidance](https://developers.openai.com/api/docs/guides/image-generation#calculating-costs). Exact built-in-tool token/billing totals are not exposed by this project.
