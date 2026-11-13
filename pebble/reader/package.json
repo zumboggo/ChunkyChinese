@@ -1,0 +1,311 @@
+{
+  "name": "chunky-chinese-pebble",
+  "author": "David Hepting",
+  "version": "1.0.0",
+  "keywords": [
+    "pebble-app"
+  ],
+  "private": true,
+  "dependencies": {},
+  "pebble": {
+    "displayName": "Chunky Chinese",
+    "uuid": "ee2d7d38-8c88-4134-8c1f-a8cf8860d1ee",
+    "projectType": "moddable",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "emery"
+    ],
+    "watchapp": {
+      "watchface": false
+    },
+    "messageKeys": [
+      "COMMAND",
+      "DATA",
+      "OFFSET",
+      "TOTAL",
+      "CHECKSUM",
+      "VERSION",
+      "STATUS"
+    ],
+    "resources": {
+      "media": [
+        {
+          "type": "bitmap",
+          "name": "IMAGE_ALDEN_DETERMINED_48",
+          "file": "images/Alden-determined-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_ALDEN_DETERMINED_64",
+          "file": "images/Alden-determined-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_ALDEN_NEUTRAL_48",
+          "file": "images/Alden-neutral-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_ALDEN_NEUTRAL_64",
+          "file": "images/Alden-neutral-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_ALDEN_SAD_48",
+          "file": "images/Alden-sad-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_ALDEN_SAD_64",
+          "file": "images/Alden-sad-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_ALDEN_THOUGHTFUL_48",
+          "file": "images/Alden-thoughtful-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_ALDEN_THOUGHTFUL_64",
+          "file": "images/Alden-thoughtful-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_CALM_48",
+          "file": "images/Hannah-calm-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_CALM_64",
+          "file": "images/Hannah-calm-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_DETERMINED_48",
+          "file": "images/Hannah-determined-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_DETERMINED_64",
+          "file": "images/Hannah-determined-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_EXCITED_48",
+          "file": "images/Hannah-excited-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_EXCITED_64",
+          "file": "images/Hannah-excited-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_NEUTRAL_48",
+          "file": "images/Hannah-neutral-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_NEUTRAL_64",
+          "file": "images/Hannah-neutral-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_SAD_48",
+          "file": "images/Hannah-sad-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_SAD_64",
+          "file": "images/Hannah-sad-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_WARM_48",
+          "file": "images/Hannah-warm-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_WARM_64",
+          "file": "images/Hannah-warm-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_WORRIED_48",
+          "file": "images/Hannah-worried-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_HANNAH_WORRIED_64",
+          "file": "images/Hannah-worried-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_CONFUSED_48",
+          "file": "images/YoungAlden-confused-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_CONFUSED_64",
+          "file": "images/YoungAlden-confused-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_CURIOUS_48",
+          "file": "images/YoungAlden-curious-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_CURIOUS_64",
+          "file": "images/YoungAlden-curious-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_NEUTRAL_48",
+          "file": "images/YoungAlden-neutral-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_NEUTRAL_64",
+          "file": "images/YoungAlden-neutral-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_THOUGHTFUL_48",
+          "file": "images/YoungAlden-thoughtful-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_THOUGHTFUL_64",
+          "file": "images/YoungAlden-thoughtful-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_WORRIED_48",
+          "file": "images/YoungAlden-worried-48.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_YOUNGALDEN_WORRIED_64",
+          "file": "images/YoungAlden-worried-64.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_CLOSING",
+          "file": "images/closing.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_OPENING",
+          "file": "images/opening.png",
+          "memoryFormat": "4BitPalette",
+          "spaceOptimization": "memory"
+        },
+        {
+          "type": "font",
+          "extended": true,
+          "name": "FONT_LATIN_24",
+          "file": "fonts/latin.ttf",
+          "characterRegex": "[\\u0020\\u0021\\u0022\\u0023\\u0024\\u0025\\u0026\\u0027\\u0028\\u0029\\u002a\\u002b\\u002c\\u002d\\u002e\\u002f\\u0030\\u0031\\u0032\\u0033\\u0034\\u0035\\u0036\\u0037\\u0038\\u0039\\u003a\\u003b\\u003c\\u003d\\u003e\\u003f\\u0040\\u0041\\u0042\\u0043\\u0044\\u0045\\u0046\\u0047\\u0048\\u0049\\u004a\\u004b\\u004c\\u004d\\u004e\\u004f\\u0050\\u0051\\u0052\\u0053\\u0054\\u0055\\u0056\\u0057\\u0058\\u0059\\u005a\\u005b\\u005c\\u005d\\u005e\\u005f\\u0060\\u0061\\u0062\\u0063\\u0064\\u0065\\u0066\\u0067\\u0068\\u0069\\u006a\\u006b\\u006c\\u006d\\u006e\\u006f\\u0070\\u0071\\u0072\\u0073\\u0074\\u0075\\u0076\\u0077\\u0078\\u0079\\u007a\\u007b\\u007c\\u007d\\u007e\\u00b7\\u00e0\\u00e1\\u00e8\\u00e9\\u00ec\\u00ed\\u00f2\\u00f3\\u00f9\\u00fa\\u00fc\\u0101\\u0113\\u011b\\u012b\\u0144\\u0148\\u014d\\u016b\\u01ce\\u01d0\\u01d2\\u01d4\\u01d6\\u01d8\\u01da\\u01dc\\u01f9\\u1e3f\\u2014\\u2018\\u2019\\u201c\\u201d\\u2026\\u3001\\u3002\\uff01\\uff0c\\uff1a\\uff1b\\uff1f]"
+        },
+        {
+          "type": "font",
+          "extended": true,
+          "name": "FONT_LATIN_20",
+          "file": "fonts/latin.ttf",
+          "characterRegex": "[\\u0020\\u0021\\u0022\\u0023\\u0024\\u0025\\u0026\\u0027\\u0028\\u0029\\u002a\\u002b\\u002c\\u002d\\u002e\\u002f\\u0030\\u0031\\u0032\\u0033\\u0034\\u0035\\u0036\\u0037\\u0038\\u0039\\u003a\\u003b\\u003c\\u003d\\u003e\\u003f\\u0040\\u0041\\u0042\\u0043\\u0044\\u0045\\u0046\\u0047\\u0048\\u0049\\u004a\\u004b\\u004c\\u004d\\u004e\\u004f\\u0050\\u0051\\u0052\\u0053\\u0054\\u0055\\u0056\\u0057\\u0058\\u0059\\u005a\\u005b\\u005c\\u005d\\u005e\\u005f\\u0060\\u0061\\u0062\\u0063\\u0064\\u0065\\u0066\\u0067\\u0068\\u0069\\u006a\\u006b\\u006c\\u006d\\u006e\\u006f\\u0070\\u0071\\u0072\\u0073\\u0074\\u0075\\u0076\\u0077\\u0078\\u0079\\u007a\\u007b\\u007c\\u007d\\u007e\\u00b7\\u00e0\\u00e1\\u00e8\\u00e9\\u00ec\\u00ed\\u00f2\\u00f3\\u00f9\\u00fa\\u00fc\\u0101\\u0113\\u011b\\u012b\\u0144\\u0148\\u014d\\u016b\\u01ce\\u01d0\\u01d2\\u01d4\\u01d6\\u01d8\\u01da\\u01dc\\u01f9\\u1e3f\\u2014\\u2018\\u2019\\u201c\\u201d\\u2026\\u3001\\u3002\\uff01\\uff0c\\uff1a\\uff1b\\uff1f]"
+        },
+        {
+          "type": "font",
+          "extended": true,
+          "name": "FONT_CHINESE_28",
+          "file": "fonts/chinese.ttf",
+          "characterRegex": "[\\u0020\\u0021\\u0022\\u0023\\u0024\\u0025\\u0026\\u0027\\u0028\\u0029\\u002a\\u002b\\u002c\\u002d\\u002e\\u002f\\u0030\\u0031\\u0032\\u0033\\u0034\\u0035\\u0036\\u0037\\u0038\\u0039\\u003a\\u003b\\u003c\\u003d\\u003e\\u003f\\u0040\\u0041\\u0042\\u0043\\u0044\\u0045\\u0046\\u0047\\u0048\\u0049\\u004a\\u004b\\u004c\\u004d\\u004e\\u004f\\u0050\\u0051\\u0052\\u0053\\u0054\\u0055\\u0056\\u0057\\u0058\\u0059\\u005a\\u005b\\u005c\\u005d\\u005e\\u005f\\u0060\\u0061\\u0062\\u0063\\u0064\\u0065\\u0066\\u0067\\u0068\\u0069\\u006a\\u006b\\u006c\\u006d\\u006e\\u006f\\u0070\\u0071\\u0072\\u0073\\u0074\\u0075\\u0076\\u0077\\u0078\\u0079\\u007a\\u007b\\u007c\\u007d\\u007e\\u00b7\\u00e0\\u00e1\\u00e8\\u00e9\\u00ec\\u00ed\\u00f2\\u00f3\\u00f9\\u00fa\\u00fc\\u0101\\u0113\\u011b\\u012b\\u0144\\u0148\\u014d\\u016b\\u01ce\\u01d0\\u01d2\\u01d4\\u01d6\\u01d8\\u01da\\u01dc\\u01f9\\u1e3f\\u2014\\u2018\\u2019\\u201c\\u201d\\u2026\\u3001\\u3002\\u4e00\\u4e03\\u4e07\\u4e09\\u4e0a\\u4e0b\\u4e0d\\u4e14\\u4e16\\u4e1a\\u4e1c\\u4e24\\u4e2a\\u4e2d\\u4e3a\\u4e45\\u4e48\\u4e4b\\u4e4e\\u4e50\\u4e5d\\u4e5f\\u4e66\\u4e70\\u4e71\\u4e86\\u4e8b\\u4e8c\\u4e8e\\u4e94\\u4e9b\\u4ea4\\u4eae\\u4eba\\u4ec0\\u4eca\\u4ece\\u4ed6\\u4ed8\\u4ee5\\u4eec\\u4ef6\\u4efb\\u4efd\\u4f19\\u4f1a\\u4f20\\u4f24\\u4f26\\u4f46\\u4f4d\\u4f4e\\u4f4f\\u4f53\\u4f5c\\u4f60\\u4fbf\\u4fe1\\u4fee\\u5012\\u5019\\u501f\\u5047\\u505a\\u505c\\u50cf\\u513f\\u5143\\u5148\\u5149\\u514b\\u5154\\u5165\\u5168\\u516b\\u516c\\u516d\\u5173\\u5174\\u5176\\u5177\\u5185\\u518d\\u5199\\u51b0\\u51b3\\u51b7\\u51c6\\u51e0\\u51fa\\u5206\\u5207\\u521a\\u5220\\u522b\\u5230\\u5236\\u524d\\u529b\\u529e\\u529f\\u52a0\\u52a1\\u52a8\\u52a9\\u52aa\\u5305\\u5316\\u5317\\u533b\\u5341\\u5343\\u5348\\u534a\\u5355\\u535a\\u5371\\u5374\\u5386\\u5389\\u538b\\u5395\\u539f\\u53a8\\u53bb\\u53c8\\u53ca\\u53cb\\u53cd\\u53d1\\u53d7\\u53d8\\u53e3\\u53e5\\u53e6\\u53ea\\u53eb\\u53ec\\u53ef\\u53f2\\u53f7\\u5403\\u540c\\u540d\\u540e\\u5411\\u5417\\u5427\\u542c\\u5438\\u544a\\u5462\\u5468\\u5473\\u547c\\u547d\\u548c\\u5499\\u54c1\\u54cd\\u54ce\\u54df\\u54ea\\u54ed\\u5524\\u554a\\u5589\\u559c\\u559d\\u5634\\u56db\\u56de\\u56e0\\u56ed\\u56f4\\u56fa\\u5728\\u5730\\u574f\\u5750\\u5757\\u57ab\\u57ce\\u5899\\u58eb\\u58f0\\u5904\\u5907\\u590f\\u5916\\u591a\\u591c\\u5927\\u5929\\u592a\\u5931\\u5934\\u5947\\u5957\\u5973\\u5976\\u5979\\u597d\\u5982\\u5988\\u59ae\\u59cb\\u59e8\\u5a1c\\u5b50\\u5b57\\u5b66\\u5b69\\u5b83\\u5b89\\u5b8c\\u5b9a\\u5b9c\\u5b9d\\u5b9e\\u5ba4\\u5bb3\\u5bb6\\u5bb9\\u5bf9\\u5c0f\\u5c11\\u5c14\\u5c31\\u5c45\\u5c49\\u5c5e\\u5c81\\u5c9b\\u5de5\\u5de7\\u5dee\\u5df1\\u5df2\\u5dfe\\u5e02\\u5e08\\u5e0c\\u5e26\\u5e2e\\u5e38\\u5e73\\u5e74\\u5e8a\\u5e94\\u5e95\\u5e97\\u5e9c\\u5ea7\\u5eb7\\u5efa\\u5f00\\u5f3a\\u5f53\\u5f80\\u5f85\\u5f88\\u5f97\\u5fc3\\u5fd8\\u5fd9\\u5feb\\u600e\\u6015\\u601c\\u601d\\u6025\\u602a\\u603b\\u606f\\u6076\\u60c5\\u60e9\\u60f3\\u610f\\u611f\\u613f\\u6162\\u61c2\\u6208\\u620f\\u6210\\u6211\\u6216\\u6234\\u6237\\u623f\\u6240\\u6241\\u624b\\u624d\\u6251\\u6253\\u6258\\u627e\\u628a\\u6293\\u6296\\u62a4\\u62a5\\u62ab\\u62b1\\u62bd\\u62c5\\u62c9\\u62db\\u62e9\\u62ff\\u6362\\u6389\\u63a5\\u63a7\\u649e\\u64ad\\u6536\\u6539\\u653e\\u653f\\u6545\\u6551\\u6559\\u6566\\u6570\\u6587\\u65af\\u65b0\\u65b9\\u65c1\\u65e5\\u65e9\\u65f6\\u660e\\u6613\\u6614\\u661f\\u6628\\u662f\\u665a\\u6691\\u66f4\\u6700\\u6708\\u6709\\u670b\\u670d\\u671b\\u671f\\u672c\\u6735\\u673a\\u6740\\u6746\\u6761\\u6765\\u676f\\u6770\\u677e\\u6795\\u679c\\u6811\\u6821\\u6837\\u6839\\u6848\\u684c\\u68a6\\u68af\\u68d2\\u6905\\u6930\\u695a\\u697c\\u6982\\u6b21\\u6b22\\u6b63\\u6b7b\\u6bb5\\u6bcf\\u6bd4\\u6c14\\u6c34\\u6c38\\u6c42\\u6c49\\u6c8c\\u6ca1\\u6cd5\\u6ce1\\u6cea\\u6d3b\\u6d3e\\u6d41\\u6d77\\u6d88\\u6dc7\\u6dcb\\u6df1\\u6df7\\u6e05\\u6e38\\u6e7f\\u6f5c\\u706f\\u70b8\\u70b9\\u70df\\u70ed\\u7136\\u7167\\u7206\\u7231\\u7238\\u7247\\u725b\\u7269\\u7279\\u732b\\u73a9\\u73b0\\u7403\\u751c\\u751f\\u7528\\u7535\\u7537\\u753b\\u754c\\u7559\\u75a4\\u75bc\\u75c5\\u767b\\u767d\\u767e\\u7684\\u76d2\\u76f4\\u76f8\\u770b\\u771f\\u773c\\u7740\\u775b\\u7761\\u77e5\\u7801\\u7834\\u793c\\u7968\\u79bb\\u79cd\\u79d2\\u7a7a\\u7a7f\\u7a97\\u7ad9\\u7b11\\u7b14\\u7b2c\\u7b49\\u7b54\\u7b80\\u7b97\\u7ba1\\u7c73\\u7c89\\u7cfb\\u7d27\\u7d2b\\u7d2f\\u7ea2\\u7ea6\\u7eaa\\u7eb8\\u7ec3\\u7ec8\\u7ecf\\u7ed9\\u7edf\\u7ee7\\u7eed\\u7f51\\u7f5a\\u7f8e\\u8001\\u8005\\u800c\\u8033\\u804c\\u8089\\u809a\\u80af\\u80f8\\u80fd\\u8111\\u8138\\u81ea\\u81f3\\u8212\\u822c\\u8272\\u8282\\u82b1\\u82cd\\u82f1\\u82f9\\u8349\\u8393\\u83b1\\u83dc\\u8428\\u846c\\u84dd\\u85af\\u85cf\\u866b\\u867e\\u86cb\\u8747\\u87c0\\u87cb\\u8840\\u884c\\u8863\\u889c\\u88ab\\u897f\\u8981\\u89c1\\u89c6\\u89c9\\u89e3\\u8a00\\u8ba1\\u8ba4\\u8ba9\\u8bae\\u8bb0\\u8bb2\\u8bb8\\u8bc1\\u8bc6\\u8bc9\\u8bd5\\u8bdd\\u8be5\\u8bf4\\u8bf7\\u8bfb\\u8bfe\\u8c01\\u8c22\\u8c46\\u8d1d\\u8d21\\u8d35\\u8d5a\\u8d70\\u8d77\\u8d85\\u8d8a\\u8dd1\\u8ddf\\u8def\\u8df3\\u8eab\\u8eba\\u8f66\\u8f6c\\u8f6f\\u8f7b\\u8f83\\u8fa3\\u8fb9\\u8fc7\\u8fd0\\u8fd1\\u8fd8\\u8fd9\\u8fdb\\u8fdc\\u8fde\\u9001\\u9009\\u9020\\u9047\\u904d\\u9053\\u90a3\\u90fd\\u9171\\u9192\\u91cc\\u91cd\\u91cf\\u91d1\\u949f\\u94b1\\u94f6\\u9519\\u952f\\u955c\\u957f\\u95e8\\u95ee\\u95f4\\u95fb\\u963f\\u9644\\u9662\\u9664\\u9669\\u9694\\u96be\\u96c4\\u96e8\\u9700\\u9759\\u9760\\u9762\\u978b\\u97f3\\u987e\\u9898\\u989c\\u98ce\\u98de\\u996d\\u9a6c\\u9a97\\u9ad8\\u9b3c\\u9b54\\u9e21\\uff01\\uff0c\\uff1a\\uff1b\\uff1f]"
+        }
+      ]
+    },
+    "usesPermissions": [
+      {
+        "name": "Internet",
+        "parameters": {
+          "domains": [
+            "raw.githubusercontent.com"
+          ]
+        },
+        "reason": "Download your selected Chinese episode package.",
+        "required": false
+      }
+    ],
+    "configPage": "settings.html",
+    "capabilities": [
+      "configurable"
+    ]
+  }
+}

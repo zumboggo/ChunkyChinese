@@ -1,0 +1,5 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Chunky Chinese</title>
+<style>body{font:18px system-ui;margin:24px;line-height:1.5;color:#142c35}input,button{font:inherit;padding:12px;box-sizing:border-box;width:100%;margin:12px 0}button{background:#174c55;color:white;border:0;border-radius:8px}</style>
+<h1>Chunky Chinese</h1><p>Episode 11 is already on your watch. Reading works without your phone.</p><p>To load an updated episode, choose <b>Library → Load from phone</b> on the watch.</p>
+<label>Optional episode package URL<input id="url" type="url" placeholder="https://raw.githubusercontent.com/…"></label><p>Leave blank for the included Episode 11. Custom packages must use the app’s supported characters and artwork.</p><button id="save">Save settings</button>
+<script>document.getElementById('save').onclick=function(){var url=document.getElementById('url').value.trim();if(url&&!/^https:\/\/raw\.githubusercontent\.com\//.test(url)){alert('Use an HTTPS raw.githubusercontent.com URL.');return;}location.href='pebblejs://close#'+encodeURIComponent(JSON.stringify({url:url}));};</script>

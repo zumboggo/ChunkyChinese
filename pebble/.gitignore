@@ -1,0 +1,6 @@
+reader/build/
+reader/.lock-waf*
+reader/.waf*
+reader/node_modules/
+reader/src/embeddedjs/assets/NotoSansSC.ttf
+.local/

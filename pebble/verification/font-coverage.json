@@ -1,0 +1,17 @@
+{
+  "latin-24": {
+    "glyphs": 139,
+    "bytes": 5477,
+    "missing": 0
+  },
+  "latin-20": {
+    "glyphs": 139,
+    "bytes": 4525,
+    "missing": 0
+  },
+  "chinese-28": {
+    "glyphs": 779,
+    "bytes": 65001,
+    "missing": 0
+  }
+}
