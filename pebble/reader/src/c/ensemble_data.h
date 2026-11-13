@@ -11,7 +11,7 @@ static const uint32_t ensemble_skin[]={0xaaaaaa,0xffaa55,0xffaa55};
 static const uint32_t ensemble_shirt[]={0x555555,0x555555,0xffffff};
 static const uint32_t ensemble_hair[]={0x555555,0x553300,0x553300};
 // Arrays indexed by stable native scene ID; actor -1 uses existing Alden rig.
-static const int8_t scene_actor[]={-1,-1,-1,-1,-1,-1,0,0,0,0,1,1,1,1,2,2,2,2,-1,-1,-1,-1,-1,-1,-1,-1};
-static const uint8_t scene_gesture[]={0,0,0,0,0,0,0,1,2,3,0,1,2,3,0,1,2,3,0,0,0,0,0,0,0,0};
-static const uint8_t scene_setting[]={0,0,1,1,1,0,2,2,2,2,1,1,1,1,1,1,1,1,0,1,2,3,4,5,3,3};
-static const uint8_t scene_ambient[]={0,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,2,2,3,4,5};
+static const int8_t scene_actor[]={-1,-1,-1,-1,-1,-1,0,0,0,0,1,1,1,1,2,2,2,2,-1,-1,-1,-1,-1,-1,-1,-1,2,1,2,2,1};
+static const uint8_t scene_gesture[]={0,0,0,0,0,0,0,1,2,3,0,1,2,3,0,1,2,3,0,0,0,0,0,0,0,0,0,2,2,0,2};
+static const uint8_t scene_setting[]={0,0,1,1,1,0,2,2,2,2,1,1,1,1,1,1,1,1,0,1,2,3,4,5,3,3,0,0,0,6,6};
+static const uint8_t scene_ambient[]={0,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,2,2,3,4,5,0,0,0,2,2};

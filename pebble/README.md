@@ -1,5 +1,7 @@
 # Chunky Chinese for Pebble Time 2
 
+Episode 12 with six animations and Hearth Garden completion sync: [install and setup](EPISODE-12.md).
+
 Private learning reader for **Episode 11: 还可以更好 · We Could Do Better**, adapted from the existing Chunky Chinese Story 2 package. Original story: [Super Supportive by Sleyca](https://www.royalroad.com/fiction/63759/super-supportive). Source text, annotations, four decisions, distinct responses, and rejoins are preserved. Phone-app code and saves are untouched.
 
 ## Install on Android

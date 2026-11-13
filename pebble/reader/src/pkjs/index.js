@@ -1,5 +1,6 @@
 /* Runs inside the Android Pebble app; no separate Android APK is required. */
 var bundled=require('./bundled.json');
+var garden=require('./garden')(Pebble,localStorage,XMLHttpRequest,setTimeout);
 var DEFAULT_URL='https://raw.githubusercontent.com/zumboggo/ChunkyChinese/codex/chengdu-game/pebble/content/'+encodeURIComponent(bundled.id)+'.json';
 var transfer=null,timer=null,lastMessage=null,retries=0;
 function hash(s){var a=1,b=0;for(var i=0;i<s.length;i++){a=(a+s.charCodeAt(i))%65521;b=(b+a)%65521;}return (b*65536+a).toString(16);}
@@ -23,10 +24,11 @@ function hello(){
  Pebble.sendAppMessage({COMMAND:'HELLO'},function(){},function(){});
  helloTimer=setTimeout(hello,1500);
 }
-Pebble.addEventListener('ready',function(){helloAttempts=0;hello();});
+Pebble.addEventListener('ready',function(){helloAttempts=0;hello();garden.flush();});
 Pebble.addEventListener('appmessage',function(event){
  var m=event.payload;
  if(m.COMMAND==='READY'){if(helloTimer)clearTimeout(helloTimer);helloTimer=null;}
+ else if(m.COMMAND==='CREDIT')garden.receive(m.DATA);
  else if(m.COMMAND==='LOAD')load();
  else if(m.COMMAND==='ACK'&&transfer){
   clearTimeout(timer);retries=0;var offset=Number(m.OFFSET);
@@ -41,6 +43,7 @@ Pebble.addEventListener('webviewclosed',function(event){
  try{var config=JSON.parse(decodeURIComponent(event.response));var url=String(config.url||'').trim();
   if(url&&!/^https:\/\/raw\.githubusercontent\.com\//.test(url))throw Error('Use a raw.githubusercontent.com HTTPS package URL');
   if(url)localStorage.setItem('episode-url',url);else localStorage.removeItem('episode-url');
+  garden.configure(config.gardenToken);
   if(config.refresh)load();
  }catch(e){console.log('Settings not changed: '+e.message);}
 });

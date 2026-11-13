@@ -32,7 +32,9 @@ static void ambience(uint32_t t,int kind){
 }
 static void room_background(int setting,uint32_t t,int kind){
  box(0,0,200,228,PAPER);
- if(setting==5){
+ if(setting==6){
+  SEG(0,100,200,100,RAIL,1);SEG(155,100,155,30,RAIL,2);disc(P(155,30),16,RAIL);
+ }else if(setting==5){
   SEG(14,16,186,16,RAIL,1);SEG(14,16,14,112,RAIL,1);SEG(186,16,186,112,RAIL,1);box(60,22,80,3,RAIL);
  }else{
   ambience(t,kind);SEG(12,99,12,19,NEAR,1);SEG(12,19,188,19,NEAR,1);SEG(188,19,188,99,NEAR,1);SEG(188,99,12,99,NEAR,1);SEG(100,19,100,99,RAIL,1);
@@ -40,7 +42,7 @@ static void room_background(int setting,uint32_t t,int kind){
  SEG(0,205,200,205,RAIL,1);SEG(24,205,5,228,RAIL,1);SEG(177,205,196,228,RAIL,1);
 }
 static void room_props(int setting,uint32_t t){
- if(setting==3)return;
+ if(setting==3||setting==6)return;
  GColor c=setting==5?GLOW:RAIL;
  SEG(133,155,196,155,c,2);SEG(196,155,199,164,c,2);SEG(199,164,126,164,c,2);SEG(126,164,133,155,c,2);SEG(135,165,135,202,RAIL,2);SEG(192,165,192,202,RAIL,2);
  if(setting==5){float x=136+positive_mod((float)t*51/AMBIENT_PERIOD,51);line(P(x,157),P(x+6,162),GColorCeleste,1);}

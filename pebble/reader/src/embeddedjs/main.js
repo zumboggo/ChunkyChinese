@@ -1,4 +1,5 @@
 import Debug from 'debug';
+import {beginRun,completionEvent,enqueue,acknowledge} from './completion';
 import graphics from './native';
 import Poco from 'commodetto/Poco';
 import Button from 'pebble/button';
@@ -32,13 +33,19 @@ let state=initial(pack),saveGeneration=0,upgraded=false;
 console.log('Reading saves');const saves=[];
 for(const slot of [0,1]){try{const raw=readFile('progress-'+slot),match=raw.match(/^\{"generation":(\d+),/);if(match)saves.push({path:'progress-'+slot,generation:Number(match[1])});}catch{}Debug.gc();}
 saves.sort((a,b)=>b.generation-a.generation);
-for(const candidate of saves){try{let raw=readFile(candidate.path);const h=raw.indexOf('"history":['),end=raw.indexOf(']',h);if(h>=0&&end-h>800)raw=raw.slice(0,h)+'"history":[]'+raw.slice(end+1);const saved=JSON.parse(raw);if(saved.state.id===pack.id&&saved.state.version===pack.version){state=restore(pack,saved.state);saveGeneration=saved.generation;break;}else if(saved.state.id===upgrade.id&&saved.state.version===upgrade.version&&pack.version===upgrade.target){state=migrateLegacy(pack,saved.state,upgrade);saveGeneration=saved.generation;upgraded=true;break;}else if(saved.state.id===legacy.id&&saved.state.version===legacy.version&&pack.version===legacy.target){state=migrateLegacy(pack,saved.state,legacy);saveGeneration=saved.generation;upgraded=true;break;}}catch{}Debug.gc();}
+let archivedId="";
+for(const candidate of saves){try{let raw=readFile(candidate.path);const h=raw.indexOf('"history":['),end=raw.indexOf(']',h);if(h>=0&&end-h>800)raw=raw.slice(0,h)+'"history":[]'+raw.slice(end+1);const saved=JSON.parse(raw);if(saved.state.id!==pack.id&&saved.state.id!==archivedId&&/^[a-z0-9-]+$/.test(saved.state.id)){writeFile('saved-'+saved.state.id,JSON.stringify(saved.state));archivedId=saved.state.id;}if(saved.state.id===pack.id&&saved.state.version===pack.version){state=restore(pack,saved.state);saveGeneration=saved.generation;break;}else if(saved.state.id===upgrade.id&&saved.state.version===upgrade.version&&pack.version===upgrade.target){state=migrateLegacy(pack,saved.state,upgrade);saveGeneration=saved.generation;upgraded=true;break;}else if(saved.state.id===legacy.id&&saved.state.version===legacy.version&&pack.version===legacy.target){state=migrateLegacy(pack,saved.state,legacy);saveGeneration=saved.generation;upgraded=true;break;}}catch{}Debug.gc();}
 if(localStorage.getItem('readerRevision')!=='3'&&pack.id===bundled.id&&pack.version!==bundled.version){state=pack.version===legacy.version?migrateLegacy(bundled,state,legacy):migrate(pack,bundled,state);upgraded=true;pack=bundled;activeSlot=null;localStorage.removeItem('activeEpisode');}
 localStorage.setItem('readerRevision','3');
 Debug.gc();
 console.log('Save restored',state.n);let overlay=null,menuIndex=0,helpPage=0,status='Available offline',connected=false,sending=false,queued=[],lastImage=null,lastImageName=null,activeScene=0,previewScene=0;
 function save(){try{saveGeneration++;writeFile('progress-'+(saveGeneration%2),JSON.stringify({generation:saveGeneration,state:{...state,history:state.history.slice(-24)}}));}catch(e){status='Save failed - keep app open';console.log('SAVE ERROR',e.message);}}
 if(upgraded)save();
+function pendingCredits(){try{return JSON.parse(localStorage.getItem('episodeCredits')||'[]');}catch{return [];}}
+function storeCredits(events){localStorage.setItem('episodeCredits',JSON.stringify(events));}
+function creditCompletion(){const event=completionEvent(pack,state);if(event&&state.credited!==event.id){storeCredits(enqueue(pendingCredits(),event));save();syncCredits();}}
+function syncCredits(){const first=pendingCredits()[0];if(first&&connected)send({COMMAND:'CREDIT',DATA:JSON.stringify(first)});}
+
 function measure(text,kind){return render.getTextWidth(text,fonts[kind]);}
 function text(t,x,y,kind='en',color=ink){render.drawText(t,fonts[kind],color,x,y);}
 function footer(t){render.fillRectangle(navy,0,207,200,21);text(t,8,208,'small',paper);}
@@ -48,11 +55,11 @@ function portrait(n){
  render.begin();lastImage=null;lastImageName=null;render.fillRectangle(paper,0,0,200,228);render.end();Debug.gc();
  graphics.showPortrait(art[n.actor+'-'+n.emotion+'-full'],n.actor==='Hannah'?1:n.actor==='YoungAlden'?2:0);
 }
-const previewGroups=['Episode 11','Gorgon','Boe','Jeremy','Backgrounds'];
+const previewGroups=[];sceneGroups.forEach(g=>{if(!previewGroups.includes(g))previewGroups.push(g);});
 let previewGroup='Episode 11',previewIndex=0,backgroundMotion=localStorage.getItem('backgroundMotion')!=='0';
 graphics.setBackgroundMotion(backgroundMotion?1:0);
 function groupIds(){const ids=[];sceneGroups.forEach((g,i)=>{if(g===previewGroup)ids.push(i+1);});return ids;}
-function menuItems(){return overlay==='animations'?[...previewGroups,'Back']:overlay==='scene-list'?[...groupIds().map(id=>sceneNames[id-1]),'Back']:overlay==='library'?['Read Episode '+pack.number,'Refresh episode','About this story','Back']:overlay==='restart'?['Keep reading','Restart episode']:['Resume','Refresh episode','Animations','Background motion: '+(backgroundMotion?'On':'Off'),'Restart','Library'];}
+function menuItems(){return overlay==='animations'?[...previewGroups,'Back']:overlay==='scene-list'?[...groupIds().map(id=>sceneNames[id-1]),'Back']:overlay==='library'?['Read Episode '+pack.number,'Refresh episode','About this story',...(pack.id!==bundled.id?['Read included Ep '+bundled.number]:[]),'Back']:overlay==='restart'?['Keep reading','Restart episode']:['Resume','Refresh episode','Animations','Background motion: '+(backgroundMotion?'On':'Off'),'Restart','Library'];}
 function previewReturn(){previewScene=0;overlay='scene-list';menuIndex=previewIndex;}
 
 function stopScene(){if(activeScene){graphics.showScene(0);activeScene=0;}}
@@ -64,7 +71,7 @@ function draw(){
  if(previewScene&&!overlay){showAnimation(previewScene);return;}
  const visible=current(pack,state);if(!overlay&&visible.type==='animation'){showAnimation(sceneIds[visible.id]||0);return;}
  stopScene();
- if(!overlay&&(visible.type==='opening'||visible.type==='end')){graphics.showPortrait(art[visible.type==='opening'?'opening':'closing'],visible.type==='opening'?3:4);return;}
+ if(!overlay&&(visible.type==='opening'||visible.type==='end')){graphics.showPortrait(art[pack.cover||(visible.type==='opening'?'opening':'closing')],visible.type==='opening'?3:4);return;}
  if(!overlay&&visible.type==='reaction'){portrait(visible);return;}
  graphics.showPortrait(0,0);
  render.begin();Debug.gc();render.fillRectangle(paper,0,0,200,228);
@@ -110,6 +117,7 @@ function input(type){
    else if(chosen==='Back'&&overlay==='animations'){overlay='menu';menuIndex=2;}
    else if(chosen.startsWith('Background motion:')){backgroundMotion=!backgroundMotion;localStorage.setItem('backgroundMotion',backgroundMotion?'1':'0');graphics.setBackgroundMotion(backgroundMotion?1:0);}
    else if(chosen==='Animations'){overlay='animations';menuIndex=0;}
+   else if(chosen.startsWith('Read included Ep ')){switchEpisode(bundled);activeSlot=null;localStorage.removeItem('activeEpisode');save();closeOverlay();}
    else if(chosen==='Resume'||chosen==='Continue'||chosen.startsWith('Read Episode')||chosen==='Keep reading'||chosen==='Back')closeOverlay();
    else if(chosen==='Restart'){overlay='restart';menuIndex=0;}
    else if(chosen==='Restart episode'){state=initial(pack);save();closeOverlay();}
@@ -121,7 +129,7 @@ function input(type){
  if(previewScene||current(pack,state).type==='animation'){
   if(type==='select'){
    const result=graphics.sceneSelect();
-   if(result){stopScene();if(previewScene){previewReturn();}else{advance(pack,state);save();}}
+   if(result){stopScene();if(previewScene){previewReturn();}else{advance(pack,state);save();creditCompletion();}}
   }else if(type==='down'){const id=activeScene;stopScene();showAnimation(id);}
   else if(type==='up'&&!previewScene){stopScene();previous(state);save();}
   else if(type==='back'){stopScene();if(previewScene){previewReturn();}else{overlay='menu';menuIndex=0;}}
@@ -132,16 +140,25 @@ function input(type){
  else if(n.type==='choice'&&type==='up'){browse(pack,state,1);save();}
  else if(type==='up'){previous(state);save();}
  else if(type==='down'){if(phrase(pack,state)){toggleChinese(state);save();}else{overlay='menu';menuIndex=0;}}
- else if(type==='select'){const p=phrase(pack,state);advance(pack,state,p?pages(p,state.e,measure).length:1);save();}
+ else if(type==='select'){beginRun(state);const p=phrase(pack,state);advance(pack,state,p?pages(p,state.e,measure).length:1);save();creditCompletion();}
  draw();
 }
 const buttons=new Button({types:['select','up','down','back'],single:true,onPush(down,type){if(down)try{input(type);}catch(e){console.log('INPUT ERROR',e.stack||e.message);status='Reading error';overlay='library';draw();}}});
+// Keep an episode's exact position when selecting a different installed/downloaded story.
+function switchEpisode(next){
+ if(pack.id!==next.id){
+  writeFile('saved-'+pack.id,JSON.stringify(state));
+  let resume;try{resume=JSON.parse(readFile('saved-'+next.id));}catch{}
+  state=restore(next,resume);
+ }else state=migrate(pack,next,state);
+ pack=next;
+}
 let staging=null;
 const transfer=new Transfer({
  begin(total){staging=activeSlot==='a'?'b':'a';try{device.files.delete('episode-'+staging);}catch{}const f=device.files.openFile({path:'episode-'+staging,mode:'r+',size:total});f.close();},
  write(data,offset){const f=device.files.openFile({path:'episode-'+staging,mode:'r+'});try{f.write(ArrayBuffer.fromString(data),offset);}finally{f.close();}},
  complete(expected){return openStored('episode-'+staging,expected);},
- activate(next){localStorage.setItem('activeEpisode',staging);activeSlot=staging;state=migrate(pack,next,state);pack=next;save();}
+ activate(next){switchEpisode(next);localStorage.setItem('activeEpisode',staging);activeSlot=staging;save();console.log('Episode activated',pack.id,pack.version);}
 },p=>{validate(p,glyphs,hasArt);if(p.id===bundled.id&&(p.version===upgrade.version||p.version===legacy.version))throw Error('Older feed; kept animations');});
 let channel;
 function send(obj){queued.push(obj);flush();}
@@ -152,11 +169,13 @@ channel=new Message({input:1024,output:256,keys:['COMMAND','DATA','OFFSET','TOTA
  onReadable(){const m=this.read();try{
   const cmd=m.get('COMMAND');
   if(cmd==='BEGIN')console.log('Transfer starting',m.get('TOTAL'),m.get('CHECKSUM'));
-  if(cmd==='HELLO'){send({COMMAND:'READY'});}
+  if(cmd==='HELLO'){send({COMMAND:'READY'});syncCredits();}
+  else if(cmd==='CREDIT_ACK'){const id=m.get('DATA');if(state.runId===id){state.credited=id;save();}storeCredits(acknowledge(pendingCredits(),id));status='Garden circle synced';syncCredits();}
+  else if(cmd==='CREDIT_STATUS'){status=m.get('STATUS')||'Garden sync pending';}
   else if(cmd==='BEGIN'){transfer.begin(m.get('TOTAL'),m.get('CHECKSUM'),m.get('VERSION'));status='Downloading 0%';send({COMMAND:'ACK',OFFSET:0});}
   else if(cmd==='CHUNK'){if(checksum(m.get('DATA'))!==m.get('CHECKSUM'))throw Error('Chunk checksum '+m.get('OFFSET')+' '+checksum(m.get('DATA'))+'/'+m.get('CHECKSUM')+' len '+m.get('DATA').length);const offset=transfer.chunk(m.get('OFFSET'),m.get('DATA'));status='Downloading '+Math.floor(offset/transfer.pending.total*100)+'%';send({COMMAND:'ACK',OFFSET:offset});}
   else if(cmd==='END'){transfer.finish();status='Available offline';send({COMMAND:'DONE',VERSION:pack.version});}
   else if(cmd==='ERROR'){status=m.get('STATUS')||'Phone unavailable';}
  }catch(e){status=e.message==='Older feed; kept animations'?e.message:'Download rejected';console.log('TRANSFER ERROR',e.message);send({COMMAND:'ERROR',STATUS:String(e.message).slice(0,80)});}if(overlay==='library')draw();}
 });
-console.log('Chunky ready',pack.id,pack.version,'node',state.n);draw();
+console.log('Chunky ready',pack.id,pack.version,'node',state.n);creditCompletion();draw();

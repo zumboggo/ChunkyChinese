@@ -13,12 +13,15 @@ export function validate(pack,glyphs,availableArt){
  if(n.type==='choice'){if(!n.options||n.options.length<2||n.options.length>4)throw Error('Invalid choice');for(const o of n.options){target(o.to);if(!o.phrases?.length)throw Error('Empty choice');o.phrases.forEach(text);}}
  if(n.type==='animation'&&!Object.prototype.hasOwnProperty.call(sceneIds,n.id))throw Error('Animation update needed');
  if(n.type==='reaction'&&!availableArt(n.actor+'-'+n.emotion))throw Error('Missing portrait');}
+ if(pack.cover&&!availableArt(pack.cover))throw Error('Missing cover');
  if(!ending||!availableArt('opening')||!availableArt('closing'))throw Error('Incomplete episode');
  // Reject cycles and paths that fall off the package before enabling offline playback.
- const color=new Uint8Array(nodeCount(pack)),stack=[[pack.entry,0]];
- while(stack.length){const frame=stack[stack.length-1],i=frame[0];target(i);if(!frame[1]){if(color[i]===1)throw Error('Story cycle');if(color[i]===2){stack.pop();continue;}color[i]=1;}
- const n=nodeAt(pack,i);const targets=n.type==='end'?[]:n.type==='goto'?[n.to]:n.type==='choice'?n.options.map(o=>o.to):[i+1];
- if(frame[1]<targets.length){const next=targets[frame[1]++];target(next);if(color[next]===1)throw Error('Story cycle');if(color[next]!==2)stack.push([next,0]);}else{color[i]=2;stack.pop();}}
+ const count=nodeCount(pack),color=new Uint8Array(count),stack=new Uint16Array(count),edges=new Uint8Array(count);let depth=0;
+ stack[0]=pack.entry;
+ while(depth>=0){const i=stack[depth];target(i);if(!edges[depth]){if(color[i]===1)throw Error('Story cycle');if(color[i]===2){depth--;continue;}color[i]=1;}
+ const n=nodeAt(pack,i),branches=n.type==='end'?0:n.type==='choice'?n.options.length:1;
+ if(edges[depth]<branches){const branch=edges[depth]++,next=n.type==='goto'?n.to:n.type==='choice'?n.options[branch].to:i+1;target(next);if(color[next]===1)throw Error('Story cycle');if(color[next]!==2){depth++;stack[depth]=next;edges[depth]=0;}}else{color[i]=2;depth--;}}
+
  return pack;
 }
 export class Transfer {

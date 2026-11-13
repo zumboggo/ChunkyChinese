@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 export const libraryPath=new URL('../scenes/library.json',import.meta.url);
-export const shippedIds={"train-phone":1,"restaurant-seat":2,"hannah-fry":3,"alden-listens":4,"train-reflection":5,"gorgon-listen":6,"gorgon-offer":7,"gorgon-think":8,"gorgon-sip":9,"boe-listen":10,"boe-offer":11,"boe-think":12,"boe-sip":13,"jeremy-listen":14,"jeremy-offer":15,"jeremy-think":16,"jeremy-sip":17,"background-train-train":18,"background-cafe-walkers":19,"background-consulate-walkers":20,"background-home-foliage":21,"background-classroom-foliage":22,"background-trading-light":23,"background-home-rain":24,"background-home-cat":25};
+export const shippedIds={"train-phone":1,"restaurant-seat":2,"hannah-fry":3,"alden-listens":4,"train-reflection":5,"gorgon-listen":6,"gorgon-offer":7,"gorgon-think":8,"gorgon-sip":9,"boe-listen":10,"boe-offer":11,"boe-think":12,"boe-sip":13,"jeremy-listen":14,"jeremy-offer":15,"jeremy-think":16,"jeremy-sip":17,"background-train-train":18,"background-cafe-walkers":19,"background-consulate-walkers":20,"background-home-foliage":21,"background-classroom-foliage":22,"background-trading-light":23,"background-home-rain":24,"background-home-cat":25,"jeremy-train-listen":26,"boe-train-think":27,"jeremy-train-think":28,"jeremy-street-listen":29,"boe-street-think":30};
 export function validateLibrary(d){
  const fail=s=>{throw Error('Scene library: '+s);};
  if(d.schema!==1||!Number.isInteger(d.fps)||d.fps<1||d.fps>30||!Number.isInteger(d.holdGuard)||d.holdGuard<0)fail('invalid schema/timing');
@@ -28,7 +28,7 @@ export function validateLibrary(d){
  }
  const ids=new Set();d.scenes.forEach((s,i)=>{
   if(!/^[a-z][a-z0-9-]+$/.test(s.id)||ids.has(s.id)||s.nativeId!==i+1)fail('duplicate/noncontiguous scene ID');ids.add(s.id);
-  if(!['train','cafe','consulate','home','classroom','trading'].includes(s.setting)||!s.name||!Number.isInteger(s.duration)||s.duration<=0||s.duration>65535)fail('invalid scene '+s.id);
+  if(!['train','cafe','consulate','home','classroom','trading','street'].includes(s.setting)||!s.name||!Number.isInteger(s.duration)||s.duration<=0||s.duration>65535)fail('invalid scene '+s.id);
   if(!['train','walkers','foliage','light','rain','cat'].includes(s.ambient)||typeof s.group!=='string')fail('invalid ambient/group');
   if(s.nativeId>5&&!s.ensemble&&!s.sample)fail('new recipes require an explicit native renderer extension');
   if(s.ensemble&&(!['gorgon','boe','jeremy'].includes(s.ensemble.actor)||!['listen','offer','think','sip'].includes(s.ensemble.gesture)||s.duration!==4800))fail('invalid ensemble binding');

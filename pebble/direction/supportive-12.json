@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "episode": "supportive-12",
+  "animatedCast": [
+    "Boe",
+    "Jeremy"
+  ],
+  "cues": [
+    {
+      "anchor": "watch_arrival",
+      "scene": "jeremy-train-listen"
+    },
+    {
+      "anchor": "watch_boe_teases",
+      "scene": "boe-train-think"
+    },
+    {
+      "anchor": "watch_good_one",
+      "scene": "jeremy-train-think"
+    },
+    {
+      "anchor": "watch_alden_surprised",
+      "scene": "train-reflection"
+    },
+    {
+      "anchor": "watch_sincere",
+      "scene": "jeremy-street-listen"
+    },
+    {
+      "anchor": "watch_boe_reconsiders",
+      "scene": "boe-street-think"
+    }
+  ],
+  "cover": "Alden-thoughtful-full"
+}

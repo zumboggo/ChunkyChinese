@@ -41,7 +41,7 @@ output('reader/src/c/scene_choreography.h',choreography);
 console.log(check?'Scene artifacts current':'Scene artifacts generated');
 
 const ensemble=JSON.parse(fs.readFileSync(new URL('../scenes/ensemble/characters.json',import.meta.url)));
-const actors=Object.keys(ensemble.actors),gestures=Object.keys(ensemble.actions),settings=['train','cafe','consulate','home','classroom','trading'],ambients=['train','walkers','foliage','light','rain','cat'];
+const actors=Object.keys(ensemble.actors),gestures=Object.keys(ensemble.actions),settings=['train','cafe','consulate','home','classroom','trading','street'],ambients=['train','walkers','foliage','light','rain','cat'];
 for(const a of Object.values(ensemble.actions)){
  if(a.duration!==4800||a.keys[0][0]!==0||a.keys.at(-1)[0]!==4800||a.keys.length>5)throw Error('Invalid ensemble timing');
  a.keys.forEach((k,i)=>{if(k.length!==5||k.some(v=>!Number.isFinite(v))||(i&&k[0]<=a.keys[i-1][0]))throw Error('Invalid ensemble key');});

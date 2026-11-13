@@ -59,7 +59,8 @@
       "./wire",
       "./legacy",
       "./upgrade",
-      "./scenes"
+      "./scenes",
+      "./completion"
     ]
   }
 }

@@ -24,6 +24,10 @@ node scripts/build-report.mjs "$episode"
 if [ "$mode" = --release ]; then
  node preview/train-scene.test.mjs
  node preview/ensemble.test.mjs
- python3 scripts/test-emulator.py --install --cli "$cli" --episode "$episode"
+ if [ -n "${PEBBLE_TEST_SCENES:-}" ]; then
+  python3 scripts/test-episode-scenes.py --install --cli "${PEBBLE_EMULATOR_CLI:-$cli}" --episode "$episode" --scenes "$PEBBLE_TEST_SCENES"
+ else
+  python3 scripts/test-emulator.py --install --cli "${PEBBLE_EMULATOR_CLI:-$cli}" --episode "$episode"
+ fi
  node scripts/package-release.mjs "$episode"
 fi

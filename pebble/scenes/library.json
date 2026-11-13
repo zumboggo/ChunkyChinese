@@ -802,6 +802,71 @@
       "ambient": "cat",
       "group": "Backgrounds",
       "sample": true
+    },
+    {
+      "id": "jeremy-train-listen",
+      "nativeId": 26,
+      "name": "Jeremy calls Alden back",
+      "duration": 4800,
+      "setting": "train",
+      "ambient": "train",
+      "group": "Episode 12",
+      "ensemble": {
+        "actor": "jeremy",
+        "gesture": "listen"
+      }
+    },
+    {
+      "id": "boe-train-think",
+      "nativeId": 27,
+      "name": "Boe considers his friend",
+      "duration": 4800,
+      "setting": "train",
+      "ambient": "train",
+      "group": "Episode 12",
+      "ensemble": {
+        "actor": "boe",
+        "gesture": "think"
+      }
+    },
+    {
+      "id": "jeremy-train-think",
+      "nativeId": 28,
+      "name": "Jeremy reacts to the teasing",
+      "duration": 4800,
+      "setting": "train",
+      "ambient": "train",
+      "group": "Episode 12",
+      "ensemble": {
+        "actor": "jeremy",
+        "gesture": "think"
+      }
+    },
+    {
+      "id": "jeremy-street-listen",
+      "nativeId": 29,
+      "name": "Jeremy speaks sincerely",
+      "duration": 4800,
+      "setting": "street",
+      "ambient": "foliage",
+      "group": "Episode 12",
+      "ensemble": {
+        "actor": "jeremy",
+        "gesture": "listen"
+      }
+    },
+    {
+      "id": "boe-street-think",
+      "nativeId": 30,
+      "name": "Boe sees Jeremy differently",
+      "duration": 4800,
+      "setting": "street",
+      "ambient": "foliage",
+      "group": "Episode 12",
+      "ensemble": {
+        "actor": "boe",
+        "gesture": "think"
+      }
     }
   ],
   "ambient": {

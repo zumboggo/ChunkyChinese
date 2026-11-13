@@ -9,8 +9,8 @@ int main(void) {
     .fxBuildFFI = (void *)fxBuildFFI,
     .recordSize = sizeof(ModdableCreationRecord),
     .stack = 4096,
-    .slot = 32768,
-    .chunk = 20480,
+    .slot = 36864,
+    .chunk = 14336,
 #ifdef PBL_DEBUG
     .flags = kModdableCreationFlagDebug,
 #endif

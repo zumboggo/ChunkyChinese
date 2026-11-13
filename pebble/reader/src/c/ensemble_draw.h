@@ -7,10 +7,12 @@ static void ensemble_character(int who,int action_id,uint32_t t){
  float dy=mix(a.dy,b.dy,u),ang=mix(a.angle,b.angle,u);
  Pt hand=P(119+mix(a.hx,b.hx,u),142+mix(a.hy,b.hy,u)),s=P(94,113+dy*.3f);
  bool g=who==0;GColor skin=GColorFromHEX(ensemble_skin[who]),shirt=GColorFromHEX(ensemble_shirt[who]),hair=GColorFromHEX(ensemble_hair[who]),gold=GColorFromHEX(0xaaaa00);
- SEG(60,153,60,119,RAIL,3);SEG(60,119,119,119,RAIL,3);SEG(119,119,119,153,RAIL,3);
- SEG(62,157,60,198,NEAR,3);SEG(117,157,121,198,NEAR,3);
+ bool standing=scene_setting[scene_id]==6;
+ if(!standing){SEG(60,153,60,119,RAIL,3);SEG(60,119,119,119,RAIL,3);SEG(119,119,119,153,RAIL,3);
+ SEG(62,157,60,198,NEAR,3);SEG(117,157,121,198,NEAR,3);}
  if(g){SEG(12,165,43,157,gold,2);SEG(43,157,68,140,gold,2);SEG(12,165,44,180,gold,2);SEG(44,180,108,187,gold,2);}
- SEG(78,150,87,173,INK,8);SEG(87,173,82,197,INK,8);SEG(92,150,113,173,INK,8);SEG(113,173,116,198,INK,8);
+ if(standing){SEG(78,150,80,197,INK,8);SEG(92,150,113,197,INK,8);}
+ else{SEG(78,150,87,173,INK,8);SEG(87,173,82,197,INK,8);SEG(92,150,113,173,INK,8);SEG(113,173,116,198,INK,8);}
  SEG(80,199,94,200,INK,6);SEG(115,199,129,200,INK,6);
  SHAPE(INK,71,108,98,107,105,152,69,152);SHAPE(shirt,74,110,95,110,101,148,73,148);
  SEG(75,114,63,132,INK,8);SEG(63,132,76,146,INK,8);SEG(75,114,63,132,g?skin:shirt,5);SEG(63,132,76,146,g?skin:shirt,5);disc(P(76,146),3,skin);

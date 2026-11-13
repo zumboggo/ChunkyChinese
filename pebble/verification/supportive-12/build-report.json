@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "appVersion": "1.5.0",
+  "nativeEpisodeVerified": true,
+  "episodeId": "supportive-12",
+  "episodeVersion": "8c071e11b3d4",
+  "pbwSha256": "9eb80424d6bcd217a49332137005efaec444c94ee6360ca4a6c21cee14d53e8d",
+  "pbwBytes": 315580,
+  "librarySha256": "10998a761399d67dbcae0670bdbaf741520c0287364a170b3267d7c1b38ece50",
+  "episodeSha256": "998e81578cf7d81cbc3eaff002760b48f3a666c03376c1caa1ee1ed0579f8a69",
+  "physicalWatchTested": false
+}

@@ -10,6 +10,7 @@ export function validateDirection(script,id,direction){
  if(direction.schema!==1||direction.episode!==id||!Array.isArray(direction.cues))throw Error('Invalid story direction');
  const scenes=new Set(readLibrary().scenes.map(s=>s.id)),labels=new Map();
  for(const raw of script.split('\n')){const m=raw.trim().match(/^label (\S+)$/);if(m)labels.set(m[1],(labels.get(m[1])||0)+1);}
+ for(const actor of direction.animatedCast||[]){if(!['Boe','Jeremy'].includes(actor)||!direction.cues.some(c=>c.scene.startsWith(actor.toLowerCase()+'-')))throw Error('Missing animated cast direction: '+actor);}
  const cues=new Map();
  const commands=script.split('\n').map(s=>s.trim()).filter(Boolean);
  for(const cue of direction.cues){

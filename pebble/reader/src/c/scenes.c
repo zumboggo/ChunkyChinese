@@ -137,7 +137,7 @@ static void draw(Layer *layer,GContext *context){
  }
  uint32_t cost=(time_ms(NULL,NULL)+1000-start)%1000;frames++;render_total+=cost;if(cost>render_max)render_max=cost;
 }
-static bool moving(void){return scene_id&&(phase!=HOLD||background_motion);}
+static bool moving(void){return scene_id&&(phase!=HOLD||(background_motion&&scene_setting[scene_id]!=6));}
 static void schedule(void);
 static void tick(void *data){
  (void)data;timer=NULL;uint32_t now=now_ms(),dt=now-last_time;last_time=now;if(dt>250)dt=SCENE_FRAME_MS;if(phase!=HOLD)elapsed+=dt;if(background_motion)scene_time=(scene_time+dt)%AMBIENT_PERIOD;
