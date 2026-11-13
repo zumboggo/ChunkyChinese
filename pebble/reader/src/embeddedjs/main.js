@@ -20,17 +20,22 @@ function openStored(path,expected){
 const hasArt=name=>!!art[name]||!!art[name+'-64'];
 let pack=bundled,activeSlot=localStorage.getItem('activeEpisode');
 try{if(activeSlot){pack=openStored('episode-'+activeSlot);validate(pack,glyphs,hasArt);}}catch(e){console.log('Using bundled episode',e.message);pack=bundled;activeSlot=null;}
+console.log('Episode opened');Debug.gc();
 let state=initial(pack),saveGeneration=0;
 // Two generations allow recovery if power is lost while the newest save is written.
-for(const slot of [0,1])try{const saved=JSON.parse(readFile('progress-'+slot));if(saved.generation>saveGeneration&&saved.state.id===pack.id&&saved.state.version===pack.version){state=restore(pack,saved.state);saveGeneration=saved.generation;}}catch{}
-let overlay=null,menuIndex=0,helpPage=0,status='Available offline',connected=false,sending=false,queued=null,lastImage=null,lastImageName=null;
-function save(){try{saveGeneration++;writeFile('progress-'+(saveGeneration%2),JSON.stringify({generation:saveGeneration,state}));}catch(e){status='Save failed - keep app open';console.log('SAVE ERROR',e.message);}}
+console.log('Reading saves');const saves=[];
+for(const slot of [0,1]){try{const raw=readFile('progress-'+slot),match=raw.match(/^\{"generation":(\d+),/);if(match)saves.push({path:'progress-'+slot,generation:Number(match[1])});}catch{}Debug.gc();}
+saves.sort((a,b)=>b.generation-a.generation);
+for(const candidate of saves){try{let raw=readFile(candidate.path);const h=raw.indexOf('"history":['),end=raw.indexOf(']',h);if(h>=0&&end-h>800)raw=raw.slice(0,h)+'"history":[]'+raw.slice(end+1);const saved=JSON.parse(raw);if(saved.state.id===pack.id&&saved.state.version===pack.version){state=restore(pack,saved.state);saveGeneration=saved.generation;break;}}catch{}Debug.gc();}
+Debug.gc();
+console.log('Save restored',state.n);let overlay=null,menuIndex=0,helpPage=0,status='Available offline',connected=false,sending=false,queued=null,lastImage=null,lastImageName=null;
+function save(){try{saveGeneration++;writeFile('progress-'+(saveGeneration%2),JSON.stringify({generation:saveGeneration,state:{...state,history:state.history.slice(-24)}}));}catch(e){status='Save failed - keep app open';console.log('SAVE ERROR',e.message);}}
 function measure(text,kind){return render.getTextWidth(text,fonts[kind]);}
 function image(name,x=0,y=0){const id=art[name];if(!id)return;if(lastImageName!==name){lastImage=null;Debug.gc();lastImage=new Poco.PebbleBitmap(id);lastImageName=name;}render.drawBitmap(lastImage,x,y);}
 function text(t,x,y,kind='en',color=ink){render.drawText(t,fonts[kind],color,x,y);}
 function footer(t){render.fillRectangle(navy,0,207,200,21);text(t,8,208,'small',paper);}
 function header(t,tag=''){render.fillRectangle(navy,0,0,200,23);text(t,8,2,'small',paper);if(tag)text(tag,150,2,'small',paper);}
-function menuItems(){return overlay==='controls'?['Continue','English help','Previous phrase','Portrait: '+(localStorage.getItem('portraitSize')||'64')]:overlay==='library'?['Read Episode '+pack.number,'Load from phone','About this story','Back']:overlay==='restart'?['Keep reading','Restart episode']:['Resume','Restart','Library'];}
+function menuItems(){return overlay==='controls'?['Continue','English help','Previous screen','Portrait: '+(localStorage.getItem('portraitSize')||'64')]:overlay==='library'?['Read Episode '+pack.number,'Load from phone','About this story','Back']:overlay==='restart'?['Keep reading','Restart episode']:['Resume','Restart','Library'];}
 function draw(){
  render.begin();render.fillRectangle(paper,0,0,200,228);
  const node=current(pack,state);
@@ -81,7 +86,7 @@ function input(type){
    else if(chosen==='Load from phone')request();
    else if(chosen==='English help'){overlay='help';helpPage=0;}
    else if(chosen==='About this story'){overlay='about';helpPage=0;}
-   else if(chosen==='Previous phrase'){previous(state);save();closeOverlay();}
+   else if(chosen==='Previous screen'){previous(state);save();closeOverlay();}
    else if(chosen.startsWith('Portrait:')){localStorage.setItem('portraitSize',chosen.endsWith('64')?'48':'64');}
   }draw();return;
  }

@@ -16,7 +16,7 @@ Only Emery is included. This package is not for the original Pebble Time, Time S
 ## Reading
 
 - Select: advance pages; pinyin/English → pinyin/Chinese → next phrase.
-- Up: previous reading screen (up to 160 recent screens).
+- Up: previous reading screen (up to 64 recent screens; the latest 24 survive app restarts).
 - Down: reading controls, including English help and 64/48-pixel portrait size.
 - Back: Resume / Restart / Library. Restart requires a second selection. Hold Back to exit.
 - Choices: Up/Down select an option; Select reads its characters; the final **Select: choose** explicitly commits it. Longer options have additional phrase/pages before confirmation.
@@ -26,7 +26,7 @@ Only Emery is included. This package is not for the original Pebble Time, Time S
 
 ## Build and export
 
-Requires Node.js, Pebble CLI 5.2.0, SDK 4.44, and Python with fontTools for the compiled-font audit. [SDK / Alloy documentation](https://developer.repebble.com/guides/alloy/). On David's Mac the CLI is in `~/.local/bin`, and the SDK tool Python is `~/.local/share/uv/tools/pebble-tool/bin/python`.
+Requires Node.js, Pebble CLI 5.2.0, SDK 4.44, and the SDK Python environment for the compiled-font audit. See the [SDK installer](https://developer.repebble.com/sdk/); the local commands are `uv tool install pebble-tool --python 3.12` and `pebble sdk install 4.44`. [SDK / Alloy documentation](https://developer.repebble.com/guides/alloy/). On David's Mac the CLI is in `~/.local/bin`, and the SDK tool Python is `~/.local/share/uv/tools/pebble-tool/bin/python`.
 
 ```sh
 cd pebble
@@ -39,13 +39,13 @@ This deterministically exports Episode 11, runs reader/export/transfer/layout te
 
 `node scripts/export.mjs supportive-11` exports existing reviewed annotations. It never generates substitute pinyin. IDs are stable and versions derive from content. Unsupported script commands or glyphs fail the export. The exporter supports the same Story 2 command subset for future episodes; new cast, scenes, and artwork need explicit adaptation before shipping another episode.
 
-`content/glyphs.txt` freezes 640 series Chinese characters plus Latin, punctuation and all pinyin tones, including ü/ǖ/ǘ/ǚ/ǜ. To expand intentionally: export with `--refresh-font`, obtain Noto Sans SC variable font from the [Google Fonts source](https://github.com/google/fonts/tree/main/ofl/notosanssc) as `reader/src/embeddedjs/assets/NotoSansSC.ttf`, run `scripts/prepare-fonts.py`, `node scripts/prepare-art.mjs`, and `scripts/measure-fonts.py`, then rebuild. Font preparation requires fontTools; metrics require freetype-py; artwork preparation requires Sharp. Redistributed subsets carry the SIL OFL in `reader/src/embeddedjs/assets/OFL.txt`.
+`content/glyphs.txt` freezes 640 series Chinese characters plus Latin, punctuation and all pinyin tones, including ü/ǖ/ǘ/ǚ/ǜ. To expand intentionally: export with `--refresh-font`, obtain Noto Sans SC variable font from the [Google Fonts source](https://github.com/google/fonts/tree/main/ofl/notosanssc) as `reader/src/embeddedjs/assets/NotoSansSC.ttf`, run `scripts/prepare-fonts.py`, `node scripts/prepare-art.mjs`, and `scripts/measure-fonts.py`, then rebuild. Font preparation requires fontTools; metrics require freetype-py; artwork preparation requires Sharp (`npm install` in `pebble/`). Tested with Sharp 0.35.3, fontTools 4.68.0, and FreeType 2.13.2. The source NotoSansSC.ttf SHA-256 is `a3041811a78c361b1de50f953c805e0244951c21c5bd412f7232ef0d899af0da`. Redistributed subsets carry the SIL OFL in `reader/src/embeddedjs/assets/OFL.txt`.
 
 ## Architecture
 
 Alloy/Poco renderer + native Pebble PBF fonts and palette bitmaps. The episode is indexed lazily to fit watch RAM. Phone JSON becomes ASCII NDJSON, transferred in acknowledged 600-character chunks with per-chunk and complete-file Adler-32 checks. Adler-32 detects transfer corruption; it is not an authentication signature. The URL is HTTPS and restricted to raw.githubusercontent.com.
 
-Downloads write to the inactive A/B file. Only complete, checksum-valid content with valid graph, glyphs, and already bundled artwork activates. A failed/interrupted transfer retains the previous episode and progress. Reconnect and select Load from phone to restart an abandoned transfer. This release stores the bundled episode and one active downloaded episode; it is not a multi-episode bookshelf. New art/fonts require a PBW update. Watch reading positions are separate from Chunky Chinese phone saves.
+The exporter and receiver limit packages to 64 KiB, 160 nodes and 2 KiB per wire record; split larger stories before exporting. Downloads write to the inactive A/B file. Only complete, checksum-valid content with valid graph, glyphs, and already bundled artwork activates. A failed/interrupted transfer retains the previous episode and progress. Reconnect and select Load from phone to restart an abandoned transfer. This release stores the bundled episode and one active downloaded episode; it is not a multi-episode bookshelf. New art/fonts require a PBW update. Watch reading positions are separate from Chunky Chinese phone saves.
 
 ## Verification
 

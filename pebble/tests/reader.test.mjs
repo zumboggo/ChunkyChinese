@@ -16,7 +16,7 @@ import {openWire} from '../reader/src/embeddedjs/wire.js';
 import lazyPack from '../reader/src/embeddedjs/episode.js';
 function ndjson(p){const meta={...p,nodeCount:p.nodes.length};delete meta.nodes;return [meta,...p.nodes].map(x=>JSON.stringify(x).replace(/[^\x20-\x7e]/g,c=>'\\u'+c.charCodeAt(0).toString(16).padStart(4,'0'))).join('\n')+'\n';}
 test('lazy bundled and streamed content match every node without loading a whole file',()=>{const wire=ndjson(pack);let largest=0;const read=(o,n)=>{largest=Math.max(largest,n);return wire.slice(o,o+n);};const streamed=openWire(wire.length,read,{total:wire.length,hash:checksum(wire),version:pack.version});validate(streamed,glyphs,()=>true);assert.equal(streamed.nodeCount,pack.nodes.length);for(let i=0;i<pack.nodes.length;i++){assert.deepEqual(streamed.nodeAt(i),pack.nodes[i]);assert.deepEqual(lazyPack.nodeAt(i),pack.nodes[i]);}assert.ok(largest<5000);assert.throws(()=>openWire(wire.length,read,{total:wire.length,hash:'bad',version:pack.version}));});
-test('all 16 routes also complete through the downloaded file adapter',()=>{const wire=ndjson(pack),streamed=openWire(wire.length,(o,n)=>wire.slice(o,o+n));for(let mask=0;mask<16;mask++){let s=initial(streamed),choice=0,steps=0;while(current(streamed,s).type!=='end'){if(current(streamed,s).type==='choice'&&s.p===0&&s.e===0)s.o=(mask>>choice++)&1;advance(streamed,s);assert.ok(++steps<1000);}assert.equal(choice,4);assert.ok(s.history.length<=160);}});
+test('all 16 routes also complete through the downloaded file adapter',()=>{const wire=ndjson(pack),streamed=openWire(wire.length,(o,n)=>wire.slice(o,o+n));for(let mask=0;mask<16;mask++){let s=initial(streamed),choice=0,steps=0;while(current(streamed,s).type!=='end'){if(current(streamed,s).type==='choice'&&s.p===0&&s.e===0)s.o=(mask>>choice++)&1;advance(streamed,s);assert.ok(++steps<1000);}assert.equal(choice,4);assert.ok(s.history.length<=64);}});
 
 const metrics=JSON.parse(fs.readFileSync(new URL('../content/font-metrics.json',import.meta.url)));
 test('every real phrase fits using FreeType font advances at the shipped sizes',()=>{
@@ -26,3 +26,21 @@ test('every real phrase fits using FreeType font advances at the shipped sizes',
   assert.ok(ps.flatMap(p=>p.py).join('').replace(/\s/g,'').startsWith(p.py.replace(/\s/g,'')));assert.ok(ps.flatMap(p=>p.lower).join('').replace(/\s/g,'').startsWith((e?p.zh:p.en).replace(/\s/g,'')));for(const page of ps){assert.ok(page.py.length);assert.ok(page.lower.length);}
  }
 });
+
+test('all branch responses and canonical rejoins match the original Story 2 paths',()=>{
+ const script=source.script.split('\n').map(s=>s.trim()),labels=new Map();script.forEach((s,i)=>{const m=s.match(/^label (\S+)/);if(m)labels.set(m[1],i);});
+ for(let mask=0;mask<16;mask++){
+  let i=labels.get('opening'),decision=0,original=[];
+  for(let steps=0;steps<1000;steps++,i++){
+   const line=script[i];if(line==='end')break;
+   if(line.startsWith('choice ')){const options=[];while(script[i+1]?.startsWith('option '))options.push(script[++i].match(/^option (\S+) "([^"]+)" -> (\S+)/));const selected=options[(mask>>decision++)&1];i=labels.get(selected[3]);continue;}
+   const jump=line.match(/^goto (\S+)/);if(jump){i=labels.get(jump[1]);continue;}
+   const speech=line.match(/^\w+(?: \[[^\]]+\])?: (.+)$/);if(speech)original.push(speech[1]);
+  }
+  const state=initial(pack),exported=[];let choices=0,last=-1;
+  while(current(pack,state).type!=='end'){const n=current(pack,state);if(state.n!==last){last=state.n;if(n.type==='line')exported.push(n.phrases.map(p=>p.zh).join(''));if(n.type==='choice')state.o=(mask>>choices++)&1;}advance(pack,state);}
+  assert.equal(decision,4);assert.deepEqual(exported,original,'route '+mask);
+ }
+});
+
+test('Chinese closing punctuation is not stranded on its own line',()=>{assert.deepEqual(wrap('想想以前的家。',t=>[...t].length*28),['想想以前的','家。']);});

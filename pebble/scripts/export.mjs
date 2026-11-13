@@ -55,6 +55,11 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
  if(!fs.existsSync(glyphPath)||process.argv.includes('--refresh-font'))fs.writeFileSync(glyphPath,[...new Set(chars.normalize('NFC'))].sort().join(''));
  const pack=exportEpisode(d,source);coverage(pack,fs.readFileSync(glyphPath,'utf8'));
  pack.version=crypto.createHash('sha256').update(JSON.stringify({...pack,version:''})).digest('hex').slice(0,12);
+ // Enforce the tested watch memory envelope before shipping a new package.
+ const wireRecord=x=>JSON.stringify(x).replace(/[^\x20-\x7e]/g,c=>'\\u'+c.charCodeAt(0).toString(16).padStart(4,'0'));
+ const wireMeta={...pack,nodeCount:pack.nodes.length};delete wireMeta.nodes;
+ const records=[wireMeta,...pack.nodes].map(wireRecord);
+ if(pack.nodes.length>160||records.some(r=>r.length+1>2048)||records.reduce((n,r)=>n+r.length+1,0)>65536)throw Error('Episode exceeds the tested watch memory budget; split it before exporting');
  const data=JSON.stringify(pack);
  fs.writeFileSync(path.join(root,'content',source+'.json'),data+'\n');
  fs.writeFileSync(path.join(root,'reader/src/pkjs/bundled.json'),data+'\n');

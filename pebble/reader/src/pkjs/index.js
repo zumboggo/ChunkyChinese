@@ -7,7 +7,7 @@ function wire(pack){var meta={};Object.keys(pack).forEach(function(k){if(k!=='no
 function stop(){if(timer)clearTimeout(timer);timer=null;transfer=null;lastMessage=null;}
 function send(message,wait){lastMessage=message;if(timer)clearTimeout(timer);Pebble.sendAppMessage(message,function(){if(wait)timer=setTimeout(retry,6000);},function(){timer=setTimeout(retry,2000);});}
 function retry(){if(!lastMessage)return;if(++retries>4){stop();Pebble.sendAppMessage({COMMAND:'ERROR',STATUS:'Reconnect, then load again'});return;}send(lastMessage,true);}
-function begin(pack){stop();var data=wire(pack);if(data.length>500000)throw Error('Episode too large');transfer={data:data,offset:0,version:pack.version};retries=0;send({COMMAND:'BEGIN',TOTAL:data.length,CHECKSUM:hash(data),VERSION:pack.version},true);}
+function begin(pack){stop();var data=wire(pack);if(data.length>65536)throw Error('Episode too large');transfer={data:data,offset:0,version:pack.version};retries=0;send({COMMAND:'BEGIN',TOTAL:data.length,CHECKSUM:hash(data),VERSION:pack.version},true);}
 function cached(){try{return JSON.parse(localStorage.getItem('episode-cache'))||bundled;}catch(e){return bundled;}}
 function load(){
  var url=localStorage.getItem('episode-url')||DEFAULT_URL;

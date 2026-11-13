@@ -7,7 +7,7 @@ export function current(pack,s){if(s.n===-1)return {type:'opening'};return nodeA
 export function phrase(pack,s){const n=current(pack,s);return n.type==='choice'?n.options[s.o].phrases[s.p]:n.phrases?.[s.p];}
 function seek(pack,s){let count=0;while(nodeAt(pack,s.n)?.type==='goto'){s.n=nodeAt(pack,s.n).to;if(++count>nodeCount(pack))throw Error('Story loop');}if(!nodeAt(pack,s.n))throw Error('Missing node');}
 export function advance(pack,s,pageCount=1){
- s.history.push(position(s));if(s.history.length>160)s.history.shift();
+ s.history.push(position(s));if(s.history.length>64)s.history.shift();
  const n=current(pack,s);
  if(n.type==='end'){s.history.pop();return s;}
  if(n.type==='opening'){s.n=pack.entry;return s;}
@@ -23,7 +23,7 @@ export function previous(s){if(s.history.length)assign(s,s.history.pop());return
 export function browse(pack,s,delta){const n=current(pack,s);if(n.type!=='choice')return s;s.o=(s.o+delta+n.options.length)%n.options.length;s.p=0;s.e=0;s.page=0;return s;}
 export function restore(pack,s){
  if(!s||s.id!==pack.id||s.version!==pack.version)return initial(pack);
- try{if(!Array.isArray(s.history)||!Array.isArray(s.route)||s.history.length>160)throw Error();
+ try{if(!Array.isArray(s.history)||!Array.isArray(s.route)||s.history.length>64)throw Error();
  const n=current(pack,s);if(!n||!Number.isInteger(s.n)||!Number.isInteger(s.p)||!Number.isInteger(s.o)||!Number.isInteger(s.page)||s.page<0||s.page>100||![0,1].includes(s.e))throw Error();
  if(n.type==='choice'&&(!n.options[s.o]||!n.options[s.o].phrases[s.p]))throw Error();
  if(n.type==='line'&&!n.phrases[s.p])throw Error();return s;
