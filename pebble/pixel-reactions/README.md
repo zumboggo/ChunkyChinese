@@ -101,3 +101,9 @@ reserved. Read-only polling can recover existing results without buying variants
 ## Selected Shōnen cutout direction
 
 David chose [Shōnen cutout Alden](shonen-cutout/README.md). Its six animated GIF/SVG assets and reusable rig supersede the earlier Chibi art direction for future work, while existing releases remain unchanged.
+
+## Layered Shōnen pilot
+
+The [hybrid prototype](hybrid-prototype/README.md) preserves the approved polished
+artwork and tests neutral → shock → embarrassment → smile in a separate full-reader
+lab build. Review its source-colour and watch-colour previews before expanding.
