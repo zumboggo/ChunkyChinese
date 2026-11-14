@@ -1,0 +1,155 @@
+{
+  "width": 64,
+  "height": 64,
+  "palette": [
+    [
+      255,
+      255,
+      255
+    ],
+    [
+      164,
+      156,
+      163
+    ],
+    [
+      154,
+      146,
+      154
+    ],
+    [
+      153,
+      144,
+      153
+    ],
+    [
+      115,
+      106,
+      114
+    ],
+    [
+      81,
+      69,
+      76
+    ],
+    [
+      57,
+      50,
+      55
+    ],
+    [
+      29,
+      24,
+      27
+    ]
+  ],
+  "poseOrder": [
+    "neutral",
+    "attentive",
+    "thoughtful",
+    "skeptical",
+    "serious",
+    "amused"
+  ],
+  "animations": {
+    "neutral": {
+      "steps": [
+        {
+          "ms": 2050,
+          "pose": 0
+        }
+      ],
+      "hold": true
+    },
+    "attentive": {
+      "steps": [
+        {
+          "ms": 350,
+          "pose": 0
+        },
+        {
+          "ms": 300,
+          "pose": 1
+        },
+        {
+          "ms": 1400,
+          "pose": 1
+        }
+      ],
+      "hold": true
+    },
+    "thoughtful": {
+      "steps": [
+        {
+          "ms": 350,
+          "pose": 0
+        },
+        {
+          "ms": 300,
+          "pose": 2
+        },
+        {
+          "ms": 1400,
+          "pose": 2
+        }
+      ],
+      "hold": true
+    },
+    "skeptical": {
+      "steps": [
+        {
+          "ms": 350,
+          "pose": 0
+        },
+        {
+          "ms": 300,
+          "pose": 3
+        },
+        {
+          "ms": 1400,
+          "pose": 3
+        }
+      ],
+      "hold": true
+    },
+    "serious": {
+      "steps": [
+        {
+          "ms": 350,
+          "pose": 0
+        },
+        {
+          "ms": 300,
+          "pose": 4
+        },
+        {
+          "ms": 1400,
+          "pose": 4
+        }
+      ],
+      "hold": true
+    },
+    "amused": {
+      "steps": [
+        {
+          "ms": 350,
+          "pose": 0
+        },
+        {
+          "ms": 300,
+          "pose": 5
+        },
+        {
+          "ms": 1400,
+          "pose": 5
+        }
+      ],
+      "hold": true
+    }
+  },
+  "artBytes": 7664,
+  "motionBytes": 66,
+  "totalBytes": 7730,
+  "uniqueTiles": 286,
+  "nativeIntegration": false
+}
