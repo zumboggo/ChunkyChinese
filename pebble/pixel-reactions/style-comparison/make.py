@@ -26,7 +26,7 @@ def state(t):
  return s,e
 
 def cutout(s,e):
- angle=5*e-2*s;heady=-3*s+2*e;eyeh=4+3*s-1.8*e;look=2.7*e
+ angle=5*e-2*s;heady=8-3*s+2*e;eyeh=4+3*s-1.8*e;look=2.7*e
  browraise=5*s
  mouth=(f'<ellipse cx="103" cy="137" rx="{3+2*s}" ry="{2+5*s}" fill="#2e1b17"/>' if s>.35 else f'<path d="M93 139 Q103 {140+3*e} 113 {139-3*e}" fill="none" stroke="#2e1b17" stroke-width="2" stroke-linecap="round"/>')
  cheeks='<path d="M69 132 l3 3 m3 -4 l3 3 M126 131 l3 3 m3 -4 l3 3" stroke="#8b5637" stroke-width="1.3"/>' if e>.6 else ''

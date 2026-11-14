@@ -6,7 +6,7 @@
  <path d="M64 173 Q47 175 43 188 L66 207 L55 210 L68 228 L78 228 L76 193 Z M136 173 Q153 175 157 188 L134 207 L145 210 L132 228 L122 228 L124 193 Z" fill="#504e51"/>
  <path d="M67 205 L65 224 M135 205 L137 224" stroke="#b8b6b5" stroke-width="2"/>
  </g>
- <g transform="translate(0 1.8256949661908342) rotate(4.564237415477085 100 164)">
+ <g transform="translate(0 9.825694966190834) rotate(4.564237415477085 100 164)">
  <path d="M50 82 Q43 53 66 34 Q98 14 131 36 Q157 50 153 93 L147 143 L125 159 L74 157 L52 133 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="3"/>
  <ellipse cx="52" cy="113" rx="9" ry="15" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
  <ellipse cx="148" cy="113" rx="9" ry="15" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
