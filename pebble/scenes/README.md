@@ -1,8 +1,10 @@
 # Reusable scene authoring
 
-## Active renderer: visual novel (v1.13)
+## Active renderer: combined visual novel (v1.14)
 
-The v1.13 library adds 18 finite expressions and 12 installed hand performances. See [expression names, scene IDs and spoiler-contained preparation notes](EXPRESSION-PACK.md) and [native previews](../preview/expressions/index.html). Existing episode placements are unchanged.
+The v1.14 combined reader includes the 18 expressions and 12 hand performances introduced in v1.13, together with the five-episode offline queue. [Release and measured memory](../COMBINED-READER.md). See [expression names, scene IDs and spoiler-contained preparation notes](EXPRESSION-PACK.md) and [native previews](../preview/expressions/index.html). Existing episode placements are unchanged.
+
+`npm run scenes` also packs immutable drawing commands and keyframes into flash resources. Edit the source `visual_novel_draw.h` / `visual-novel.json`; do not edit the generated packed header or binary resources.
 
 Episode animations now use the approved pixel characters in close foreground framing, with reusable hands/props and independent room motion. The former full-body primitive renderer is no longer compiled into the reader.
 

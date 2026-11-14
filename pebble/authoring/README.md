@@ -129,3 +129,18 @@ requested actor. See [downloadable recipes](../scenes/downloadable.md).
 ## Publishing to the watch catalogue
 
 Publish the validated episode feed, add its ID to `content/catalogue-source.json`, and run `node scripts/publish-catalogue.mjs` from `pebble/`. Commit and publish the generated `content/catalogue.json` together with the feed. Watches running v1.9.1 can use Library → Update list; compatible new entries do not need a new PBW. See [catalogue behavior and limits](../CATALOGUE.md).
+
+## Combined v1.14 reader
+
+The combined PBW includes the 53 reactions, 42 installed scenes and five-episode
+offline queue. See [combined build and verification](../COMBINED-READER.md).
+Select installed gestures and actor/emotion names from the catalogue; schema-1
+recipe limits and old reaction/scene IDs remain unchanged. The five animated
+moments per route remain placements of reusable performances.
+
+Edit `scenes/visual-novel.json` for installed acting and `reader/src/c/visual_novel_draw.h`
+for shared geometry. `npm run scenes` also generates the streamed stage resource.
+Do not edit `visual_novel_packed.h`, `stage.bin`, `library.bin`, or `story-index.bin`
+by hand. Episode export rebuilds the lookup resource and episode index. Keep the
+verified runtime profile with its exact PBW; restoring the Chinese font or changing
+runtime code requires new memory and transfer verification.

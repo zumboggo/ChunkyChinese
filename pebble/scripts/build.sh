@@ -9,6 +9,7 @@ if [ "$#" -gt 0 ]; then echo 'Usage: build.sh [--check|--dev|--release] [episode
 export PEBBLE_EPISODE_ID="$episode"
 # Regenerate only explicitly with npm run scenes; stale artifacts must fail CI.
 node scripts/generate-scenes.mjs --check
+python3 scripts/pack-stage.py --check
 node scripts/configure-reading.mjs
 python3 scripts/test-scene-art.py
 node scripts/export.mjs "$episode"

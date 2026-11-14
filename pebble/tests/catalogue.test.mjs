@@ -28,3 +28,8 @@ test('watch rejects malformed pages and accepts empty catalogue',()=>{
  assert.throws(()=>validPage({kind:'1',offset:0,total:1,items:[['../secret',1,'Bad','abcdef123456']]}));
  validPage({kind:'groups',offset:0,total:0,items:[]});
 });
+test('offline plan returns only five consecutive successors in the same series',()=>{
+ const t=setup();let result;t.c.next('supportive-100',p=>result=p,()=>assert.fail());t.reply(entries(150));assert.deepEqual(result.map(e=>e[1]),[101,102,103,104,105]);
+ t.c.next('supportive-148',p=>result=p,()=>assert.fail());t.reply(entries(150));assert.deepEqual(result.map(e=>e[1]),[149,150]);
+ const gap=entries(150);gap.episodes=gap.episodes.filter(e=>e.number!==102);t.c.next('supportive-100',p=>result=p,()=>assert.fail());t.reply(gap);assert.deepEqual(result.map(e=>e[1]),[101]);
+});

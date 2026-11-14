@@ -2,6 +2,14 @@
 """Pebble CLI with an isolated store; PEBBLE_TEST_EMULATOR_ROOT selects a separate task."""
 from pathlib import Path
 import os,sys
+if os.environ.get('PEBBLE_TEST_FIXTURE_COMPANION') == '1':
+ import subprocess
+ original_popen=subprocess.Popen
+ def fixture_popen(args,*a,**kw):
+  if isinstance(args,list) and len(args)>2 and args[1:3]==['-m','pypkjs']:
+   args=[args[0],str(Path(__file__).with_name('fixture-companion.py')),*args[3:]]
+  return original_popen(args,*a,**kw)
+ subprocess.Popen=fixture_popen
 from pebble_tool import run_tool
 from pebble_tool.sdk import emulator
 from pebble_tool.util.config import config

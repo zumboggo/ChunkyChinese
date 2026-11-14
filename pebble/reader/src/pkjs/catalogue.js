@@ -30,6 +30,7 @@ module.exports=function(storage,Request,base){
    }
    catalogue(fetch,function(m){if(request===serial)fail(m);});
   },
+  next:function(id,done,fail){if(!validId(id)){fail('Invalid episode');return;}catalogue(function(c,offline){var current=c.episodes.find(function(e){return e.id===id;});if(!current){fail('Episode not in catalogue');return;}var prefix=id.replace(/-\d+(?:-v\d+)?$/,''),items=[];for(var n=current.number+1;n<=current.number+5;n++){var e=c.episodes.find(function(e){return e.number===n&&e.id.replace(/-\d+(?:-v\d+)?$/,'')===prefix;});if(!e)break;items.push([e.id,e.number,e.title,e.version]);}done(items,offline);},fail);},
   validate:validate,page:page
  };
 };

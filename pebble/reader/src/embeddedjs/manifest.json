@@ -58,6 +58,23 @@
           "uint32_t"
         ],
         "returns": "char*"
+      },
+      "memoryFree": {
+        "arguments": [],
+        "returns": "uint32_t"
+      },
+      "libraryText": {
+        "arguments": [
+          "uint32_t"
+        ],
+        "returns": "char*"
+      },
+      "libraryFind": {
+        "arguments": [
+          "uint32_t",
+          "uint32_t"
+        ],
+        "returns": "uint32_t"
       }
     }
   },

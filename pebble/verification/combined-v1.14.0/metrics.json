@@ -1,0 +1,37 @@
+{
+  "appVersion": "1.14.0",
+  "pbwSha256": "46603f4715c66c14ff0319fc8e5d20d119862b268f6faf19ace07e3c59fc6292",
+  "pbwBytes": 254392,
+  "resourceBytes": 156287,
+  "additionalResourceBytesVsOfflineV113": 11799,
+  "additionalResourceBytesVsExpressionV113": 16010,
+  "nativeCodeAndStaticBytes": 14748,
+  "nativeCodeBytes": 13728,
+  "nativeStaticBytes": 1020,
+  "nativeBytesSavedVsExpressionV113": 3610,
+  "minimumMeasuredFreeHeapBytes": 12556,
+  "minimumRequiredFreeHeapBytes": 12288,
+  "heapSamples": 2744,
+  "vmPoolsBytes": {
+    "stack": 4608,
+    "slots": 35840,
+    "strings": 9216
+  },
+  "sharedArtworkCacheBytes": 512,
+  "queuedEpisodeCount": 5,
+  "queuedEpisodeBytes": 105145,
+  "storageProbeAdditionalBytesAtLeast": 458752,
+  "reactionCount": 53,
+  "sceneCount": 42,
+  "sceneAverageMsRange": [
+    25,
+    65
+  ],
+  "maximumSceneDrawMs": 153,
+  "maximumReactionDrawMs": 40,
+  "downloadedRecipesVerified": 26,
+  "installedHandTransfersVerified": 12,
+  "memoryAcceptancePassed": true,
+  "physicalWatchTested": false,
+  "emulatorReconnectRelaunchRequired": true
+}

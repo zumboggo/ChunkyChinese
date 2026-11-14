@@ -13,7 +13,7 @@ test('recipes export at stable anchors and old runtimes reject them',()=>{
 test('native decoder agrees with authoring checks for malformed and unreachable poses',{skip:process.env.PEBBLE_WORKFLOW_CHILD==='1'},()=>{
  const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'pebble-recipe-'));try{
  const header=new URL('../reader/src/c/downloadable_scene.h',import.meta.url).pathname;
- fs.writeFileSync(path.join(tmp,'test.c'),'#define DOWNLOAD_TEXT_TEST\n#include <stdint.h>\n#include <stdbool.h>\n#include <stdio.h>\n#include <string.h>\ntypedef struct {uint16_t t;float dy,hx,hy,angle;} GestureKey;\n#include '+JSON.stringify(header)+'\nint main(void){char s[4096];DownloadScene d;while(fgets(s,sizeof(s),stdin)){s[strcspn(s,"\\n")]=0;printf("%d\\n",decode_scene(s,&d));}}\n');
+ fs.writeFileSync(path.join(tmp,'test.c'),'#define DOWNLOAD_TEXT_TEST\n#include <stdint.h>\n#include <stdbool.h>\n#include <stdio.h>\n#include <string.h>\ntypedef struct {uint16_t t;int16_t dy,hx,hy,angle;} GestureKey;\n#include '+JSON.stringify(header)+'\nint main(void){char s[4096];DownloadScene d;while(fgets(s,sizeof(s),stdin)){s[strcspn(s,"\\n")]=0;printf("%d\\n",decode_scene(s,&d));}}\n');
  execFileSync('cc',['-std=c99','-Wall','-Werror',path.join(tmp,'test.c'),'-o',path.join(tmp,'test')]);
  const cases=[wire,'',wire+',',wire+',0','-1'+wire.slice(1),'0'.repeat(513)+wire,'1e0'+wire.slice(1),wire.replace(',1600,',',0,')];
  for(let actor=0;actor<6;actor++)for(let setting=0;setting<7;setting++)for(let ambient=0;ambient<7;ambient++)for(let hx=-32;hx<=26;hx+=7){const a=wire.split(',');a[1]=actor;a[2]=setting;a[3]=ambient;a[8]=hx;cases.push(a.join(','));}

@@ -14,6 +14,9 @@ extern void setBackgroundMotion(uint32_t arg0);
 extern uint32_t storySize();
 extern char* readStoryNode(uint32_t arg0);
 extern char* readStory(uint32_t arg0, uint32_t arg1);
+extern uint32_t memoryFree();
+extern char* libraryText(uint32_t arg0);
+extern uint32_t libraryFind(uint32_t arg0, uint32_t arg1);
 
 static void xs_portraitReady(txMachine* the) {
 	uint32_t result = portraitReady();
@@ -82,6 +85,29 @@ static void xs_readStory(txMachine* the) {
 	}
 }
 
+static void xs_memoryFree(txMachine* the) {
+	uint32_t result = memoryFree();
+	XS->fromUnsigned(the, mxResult, (txUnsigned)result);
+}
+
+static void xs_libraryText(txMachine* the) {
+	uint32_t arg0 = (uint32_t)XS->toUnsigned(the, mxArgv(0));
+	char* result = libraryText(arg0);
+	if (result) {
+		XS->fromString(the, mxResult, (txString)result);
+		free(result);
+	} else {
+		XS->abort(the, XS_NOT_ENOUGH_MEMORY_EXIT);
+	}
+}
+
+static void xs_libraryFind(txMachine* the) {
+	uint32_t arg0 = (uint32_t)XS->toUnsigned(the, mxArgv(0));
+	uint32_t arg1 = (uint32_t)XS->toUnsigned(the, mxArgv(1));
+	uint32_t result = libraryFind(arg0, arg1);
+	XS->fromUnsigned(the, mxResult, (txUnsigned)result);
+}
+
 void fxBuildFFI(txMachine* the, txAPI* api) {
 	XS = api;
 	XS->newHostFunction(the, xs_portraitReady, 0, 0, 0);
@@ -123,5 +149,17 @@ void fxBuildFFI(txMachine* the, txAPI* api) {
 	XS->newHostFunction(the, xs_readStory, 2, 0, 0);
 	XS->push(the, mxThis);
 	XS->defineID(the, XS->id(the, "readStory"), 0, 0x0E);
+	XS->pop(the);
+	XS->newHostFunction(the, xs_memoryFree, 0, 0, 0);
+	XS->push(the, mxThis);
+	XS->defineID(the, XS->id(the, "memoryFree"), 0, 0x0E);
+	XS->pop(the);
+	XS->newHostFunction(the, xs_libraryText, 1, 0, 0);
+	XS->push(the, mxThis);
+	XS->defineID(the, XS->id(the, "libraryText"), 0, 0x0E);
+	XS->pop(the);
+	XS->newHostFunction(the, xs_libraryFind, 2, 0, 0);
+	XS->push(the, mxThis);
+	XS->defineID(the, XS->id(the, "libraryFind"), 0, 0x0E);
 	XS->pop(the);
 }

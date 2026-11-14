@@ -13,9 +13,9 @@ static void rect(int x,int y,int w,int h,uint32_t c){
 static void portrait(unsigned who,unsigned emotion,uint32_t t,int hx,int hy){
  scenePortraitDraw(ctx,who,emotion,t,hx,hy);
 }
-#include "visual_novel_draw.h"
+#include "visual_novel_packed.h"
 // Keep schema-1 recipe downloads and their validated bounded channels.
-typedef struct {uint16_t t;float dy,hx,hy,angle;} GestureKey;
+typedef struct {uint16_t t;int16_t dy,hx,hy,angle;} GestureKey;
 #include "downloadable_scene.h"
 static DownloadScene downloaded;
 static Layer *canvas;
@@ -25,21 +25,22 @@ static bool focused=true,background_motion=true,subscribed;
 typedef enum {ESTABLISH,WAITING,PLAYING,HOLD} Phase;
 static Phase phase;
 static uint32_t now_ms(void){time_t s;uint16_t ms;time_ms(&s,&ms);return (uint32_t)s*1000+ms;}
-static uint32_t scene_duration(void){return scene_id==DOWNLOADED_SCENE?downloaded.keys[downloaded.count-1].t:vn_scenes[scene_id].duration;}
-static int scene_setting_id(void){return scene_id==DOWNLOADED_SCENE?downloaded.setting:vn_scenes[scene_id].setting;}
-static int scene_ambient_id(void){return scene_id==DOWNLOADED_SCENE?downloaded.ambient:vn_scenes[scene_id].ambient;}
+static uint32_t scene_duration(void){return scene_id==DOWNLOADED_SCENE?downloaded.keys[downloaded.count-1].t:vn_scene(scene_id).duration;}
+static int scene_setting_id(void){return scene_id==DOWNLOADED_SCENE?downloaded.setting:vn_scene(scene_id).setting;}
+static int scene_ambient_id(void){return scene_id==DOWNLOADED_SCENE?downloaded.ambient:vn_scene(scene_id).ambient;}
 static VNKey download_pose(int *hx){
  int i=1;while(i<downloaded.count-1&&elapsed>downloaded.keys[i].t)i++;
- GestureKey a=downloaded.keys[i-1],b=downloaded.keys[i];float f=elapsed>=b.t?1:(float)(elapsed-a.t)/(b.t-a.t);f=f*f*(3-2*f);
- // Retain schema-1 deltas in the closer framing, with the elbow below the crop.
- float dy=a.dy+(b.dy-a.dy)*f,angle=a.angle+(b.angle-a.angle)*f;
- *hx=(int)(angle*10);return (VNKey){0,150+(int)(a.hx+(b.hx-a.hx)*f),194+(int)(a.hy+(b.hy-a.hy)*f),2,(int)dy};
+ GestureKey a=downloaded.keys[i-1],b=downloaded.keys[i];
+ int f=elapsed>=b.t?1024:(int)(elapsed-a.t)*1024/(b.t-a.t);f=f*f*(3072-2*f)/1048576;
+ // Milliradians and fixed-point easing avoid a software floating-point runtime.
+ *hx=(a.angle*1024+(b.angle-a.angle)*f)/102400;
+ return (VNKey){0,150+(a.hx*1024+(b.hx-a.hx)*f)/1024,194+(a.hy*1024+(b.hy-a.hy)*f)/1024,2,(a.dy*1024+(b.dy-a.dy)*f)/1024};
 }
 static void draw(Layer *layer,GContext *context){
  (void)layer;uint32_t began=now_ms();ctx=context;
  unsigned who,action;uint32_t t;VNKey k,*custom=NULL;int hx=0;
  if(scene_id==DOWNLOADED_SCENE){static const uint8_t map[]={4,2,3,1,5,0};who=map[downloaded.actor];action=downloaded.prop?VN_SIP:VN_THINK;k=download_pose(&hx);custom=&k;t=elapsed;}
- else{const VNScene *s=&vn_scenes[scene_id];who=s->actor;action=s->action;t=elapsed*4000/s->duration;if(scene_id==1&&(phase==ESTABLISH||phase==WAITING)){action=VN_LISTEN;t=phase==WAITING?4000:elapsed*4000/VN_ESTABLISH;}}
+ else{const VNScene s=vn_scene(scene_id);who=s.actor;action=s.action;t=elapsed*4000/s.duration;if(scene_id==1&&(phase==ESTABLISH||phase==WAITING)){action=VN_LISTEN;t=phase==WAITING?4000:elapsed*4000/VN_ESTABLISH;}}
  vn_stage(who,action,scene_setting_id(),scene_ambient_id(),t,scene_ambient_id()==6?0:scene_time,custom,hx);
  if(scene_id==1&&phase==WAITING){rect(0,204,200,24,0x000055);graphics_context_set_text_color(ctx,GColorWhite);graphics_draw_text(ctx,"Pick up the phone",fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD),GRect(0,203,200,25),GTextOverflowModeWordWrap,GTextAlignmentCenter,NULL);}
  uint32_t cost=(now_ms()+1000-began)%1000;frames++;render_total+=cost;if(cost>render_max)render_max=cost;
@@ -84,7 +85,7 @@ uint32_t sceneSelect(void){
 }
 void destroyScenes(void){if(subscribed){app_focus_service_unsubscribe();subscribed=false;}cancel();if(canvas){layer_destroy(canvas);canvas=NULL;}scene_id=0;}
 uint32_t recipeData(uint32_t index,int32_t value){
- static int values[46];static uint8_t count;
+ static int16_t values[46];static uint8_t count;
  if(index==0)count=0;
  if(index<46){if(index!=count||value< -12000||value>12000)return 0;values[count++]=value;return 1;}
  if(index!=46)return 0;

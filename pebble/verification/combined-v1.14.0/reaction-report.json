@@ -1,0 +1,380 @@
+{
+  "pbwSha256": "46603f4715c66c14ff0319fc8e5d20d119862b268f6faf19ace07e3c59fc6292",
+  "reactions": [
+    {
+      "id": 0,
+      "actor": "Alden",
+      "emotion": "blink",
+      "freeBytes": 12620,
+      "maxDrawMs": 36
+    },
+    {
+      "id": 1,
+      "actor": "Alden",
+      "emotion": "surprised",
+      "freeBytes": 12620,
+      "maxDrawMs": 30
+    },
+    {
+      "id": 2,
+      "actor": "Alden",
+      "emotion": "thinking",
+      "freeBytes": 12620,
+      "maxDrawMs": 30
+    },
+    {
+      "id": 3,
+      "actor": "Alden",
+      "emotion": "talking",
+      "freeBytes": 12620,
+      "maxDrawMs": 30
+    },
+    {
+      "id": 4,
+      "actor": "Alden",
+      "emotion": "laughing",
+      "freeBytes": 12620,
+      "maxDrawMs": 29
+    },
+    {
+      "id": 5,
+      "actor": "Alden",
+      "emotion": "worried",
+      "freeBytes": 12620,
+      "maxDrawMs": 34
+    },
+    {
+      "id": 6,
+      "actor": "Hannah",
+      "emotion": "blink",
+      "freeBytes": 12620,
+      "maxDrawMs": 30
+    },
+    {
+      "id": 7,
+      "actor": "Hannah",
+      "emotion": "surprised",
+      "freeBytes": 12620,
+      "maxDrawMs": 32
+    },
+    {
+      "id": 8,
+      "actor": "Hannah",
+      "emotion": "thinking",
+      "freeBytes": 12620,
+      "maxDrawMs": 32
+    },
+    {
+      "id": 9,
+      "actor": "Hannah",
+      "emotion": "talking",
+      "freeBytes": 12620,
+      "maxDrawMs": 30
+    },
+    {
+      "id": 10,
+      "actor": "Hannah",
+      "emotion": "laughing",
+      "freeBytes": 12620,
+      "maxDrawMs": 30
+    },
+    {
+      "id": 11,
+      "actor": "Hannah",
+      "emotion": "worried",
+      "freeBytes": 12620,
+      "maxDrawMs": 33
+    },
+    {
+      "id": 12,
+      "actor": "Boe",
+      "emotion": "blink",
+      "freeBytes": 12620,
+      "maxDrawMs": 36
+    },
+    {
+      "id": 13,
+      "actor": "Boe",
+      "emotion": "surprised",
+      "freeBytes": 12620,
+      "maxDrawMs": 36
+    },
+    {
+      "id": 14,
+      "actor": "Boe",
+      "emotion": "thinking",
+      "freeBytes": 12620,
+      "maxDrawMs": 36
+    },
+    {
+      "id": 15,
+      "actor": "Boe",
+      "emotion": "talking",
+      "freeBytes": 12620,
+      "maxDrawMs": 39
+    },
+    {
+      "id": 16,
+      "actor": "Boe",
+      "emotion": "laughing",
+      "freeBytes": 12620,
+      "maxDrawMs": 36
+    },
+    {
+      "id": 17,
+      "actor": "Boe",
+      "emotion": "worried",
+      "freeBytes": 12620,
+      "maxDrawMs": 37
+    },
+    {
+      "id": 18,
+      "actor": "Jeremy",
+      "emotion": "blink",
+      "freeBytes": 12620,
+      "maxDrawMs": 36
+    },
+    {
+      "id": 19,
+      "actor": "Jeremy",
+      "emotion": "surprised",
+      "freeBytes": 12620,
+      "maxDrawMs": 36
+    },
+    {
+      "id": 20,
+      "actor": "Jeremy",
+      "emotion": "thinking",
+      "freeBytes": 12620,
+      "maxDrawMs": 38
+    },
+    {
+      "id": 21,
+      "actor": "Jeremy",
+      "emotion": "talking",
+      "freeBytes": 12620,
+      "maxDrawMs": 36
+    },
+    {
+      "id": 22,
+      "actor": "Jeremy",
+      "emotion": "laughing",
+      "freeBytes": 12620,
+      "maxDrawMs": 36
+    },
+    {
+      "id": 23,
+      "actor": "Jeremy",
+      "emotion": "worried",
+      "freeBytes": 12620,
+      "maxDrawMs": 38
+    },
+    {
+      "id": 24,
+      "actor": "Gorgon",
+      "emotion": "neutral",
+      "freeBytes": 12620,
+      "maxDrawMs": 22
+    },
+    {
+      "id": 25,
+      "actor": "Gorgon",
+      "emotion": "attentive",
+      "freeBytes": 12620,
+      "maxDrawMs": 24
+    },
+    {
+      "id": 26,
+      "actor": "Gorgon",
+      "emotion": "thoughtful",
+      "freeBytes": 12620,
+      "maxDrawMs": 26
+    },
+    {
+      "id": 27,
+      "actor": "Gorgon",
+      "emotion": "skeptical",
+      "freeBytes": 12620,
+      "maxDrawMs": 21
+    },
+    {
+      "id": 28,
+      "actor": "Gorgon",
+      "emotion": "serious",
+      "freeBytes": 12620,
+      "maxDrawMs": 23
+    },
+    {
+      "id": 29,
+      "actor": "Gorgon",
+      "emotion": "amused",
+      "freeBytes": 12620,
+      "maxDrawMs": 23
+    },
+    {
+      "id": 30,
+      "actor": "YoungAlden",
+      "emotion": "neutral",
+      "freeBytes": 12620,
+      "maxDrawMs": 26
+    },
+    {
+      "id": 31,
+      "actor": "YoungAlden",
+      "emotion": "curious",
+      "freeBytes": 12620,
+      "maxDrawMs": 31
+    },
+    {
+      "id": 32,
+      "actor": "YoungAlden",
+      "emotion": "confused",
+      "freeBytes": 12620,
+      "maxDrawMs": 25
+    },
+    {
+      "id": 33,
+      "actor": "YoungAlden",
+      "emotion": "thoughtful",
+      "freeBytes": 12620,
+      "maxDrawMs": 24
+    },
+    {
+      "id": 34,
+      "actor": "YoungAlden",
+      "emotion": "worried",
+      "freeBytes": 12620,
+      "maxDrawMs": 26
+    },
+    {
+      "id": 35,
+      "actor": "Alden",
+      "emotion": "exhausted",
+      "freeBytes": 12620,
+      "maxDrawMs": 29
+    },
+    {
+      "id": 36,
+      "actor": "Alden",
+      "emotion": "holding-back-sadness",
+      "freeBytes": 12620,
+      "maxDrawMs": 31
+    },
+    {
+      "id": 37,
+      "actor": "Alden",
+      "emotion": "quietly-determined",
+      "freeBytes": 12620,
+      "maxDrawMs": 32
+    },
+    {
+      "id": 38,
+      "actor": "Hannah",
+      "emotion": "sheepish",
+      "freeBytes": 12620,
+      "maxDrawMs": 33
+    },
+    {
+      "id": 39,
+      "actor": "Hannah",
+      "emotion": "strained-smile",
+      "freeBytes": 12620,
+      "maxDrawMs": 30
+    },
+    {
+      "id": 40,
+      "actor": "Hannah",
+      "emotion": "reassuring",
+      "freeBytes": 12620,
+      "maxDrawMs": 33
+    },
+    {
+      "id": 41,
+      "actor": "Boe",
+      "emotion": "deadpan-disbelief",
+      "freeBytes": 12620,
+      "maxDrawMs": 40
+    },
+    {
+      "id": 42,
+      "actor": "Boe",
+      "emotion": "uncomfortable-concern",
+      "freeBytes": 12620,
+      "maxDrawMs": 37
+    },
+    {
+      "id": 43,
+      "actor": "Boe",
+      "emotion": "grudging-approval",
+      "freeBytes": 12620,
+      "maxDrawMs": 37
+    },
+    {
+      "id": 44,
+      "actor": "Jeremy",
+      "emotion": "sleepy",
+      "freeBytes": 12620,
+      "maxDrawMs": 35
+    },
+    {
+      "id": 45,
+      "actor": "Jeremy",
+      "emotion": "awkward-concern",
+      "freeBytes": 12620,
+      "maxDrawMs": 38
+    },
+    {
+      "id": 46,
+      "actor": "Jeremy",
+      "emotion": "sincere-encouragement",
+      "freeBytes": 12620,
+      "maxDrawMs": 36
+    },
+    {
+      "id": 47,
+      "actor": "Gorgon",
+      "emotion": "weary-patience",
+      "freeBytes": 12620,
+      "maxDrawMs": 25
+    },
+    {
+      "id": 48,
+      "actor": "Gorgon",
+      "emotion": "restrained-disapproval",
+      "freeBytes": 12620,
+      "maxDrawMs": 25
+    },
+    {
+      "id": 49,
+      "actor": "Gorgon",
+      "emotion": "reluctant-softening",
+      "freeBytes": 12620,
+      "maxDrawMs": 30
+    },
+    {
+      "id": 50,
+      "actor": "YoungAlden",
+      "emotion": "tearful",
+      "freeBytes": 12620,
+      "maxDrawMs": 28
+    },
+    {
+      "id": 51,
+      "actor": "YoungAlden",
+      "emotion": "frightened",
+      "freeBytes": 12620,
+      "maxDrawMs": 36
+    },
+    {
+      "id": 52,
+      "actor": "YoungAlden",
+      "emotion": "small-brave-resolve",
+      "freeBytes": 12620,
+      "maxDrawMs": 28
+    }
+  ],
+  "stableHolds": true,
+  "focusPauseResume": true,
+  "readingPositionPreserved": true,
+  "physicalWatchTested": false
+}

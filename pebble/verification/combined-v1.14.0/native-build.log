@@ -1,0 +1,47 @@
+### -p pebble/emery
+# xsc main.xsb
+# xsl mc.xsa
+Setting top to                           : /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/combined-work/reader 
+Setting out to                           : /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/combined-work/reader/build 
+Checking for program 'webpack'           : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/current/node_modules/.bin/webpack 
+Found Pebble SDK for emery in:           : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/current/sdk-core/pebble/emery 
+Checking for program 'gcc, cc'           : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/4.44/toolchain/arm-none-eabi/bin/arm-none-eabi-gcc 
+Checking for program 'ar'                : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/4.44/toolchain/arm-none-eabi/bin/arm-none-eabi-ar 
+'configure' finished successfully (0.100s)
+Waf: Entering directory `/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/combined-work/reader/build'
+Auto-injected MOD resource for emery from build/mods/emery/mc.xsa
+[ 5/31] Compiling emery | reso: build/mods/emery/mc.xsa -> build/emery/mods/emery/mc.xsa.MOD.reso
+[ 7/31] Compiling emery | reso: resources/data/story-index.bin -> build/emery/resources/data/story-index.bin.STORY_INDEX.reso
+[10/31] Compiling emery | reso: resources/data/library.bin -> build/emery/resources/data/library.bin.LIBRARY.reso
+[14/31] Processing emery | resource_ball: build/emery/resources/portraits/opening.rle.PORTRAIT_OPENING.reso build/emery/resources/portraits/closing.rle.PORTRAIT_CLOSING.reso build/emery/resources/fonts/latin.ttf.FONT_LATIN_24.reso build/emery/resources/fonts/latin.ttf.FONT_LATIN_20.reso build/emery/resources/data/story.ndjson.STORY_DATA.reso build/emery/resources/data/reactions.bin.REACTIONS.reso build/emery/resources/data/library.bin.LIBRARY.reso build/emery/resources/data/stage.bin.STAGE.reso build/emery/resources/data/story-index.bin.STORY_INDEX.reso build/emery/mods/emery/mc.xsa.MOD.reso -> build/emery/system_resources.resball
+[15/31] Creating emery | /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/combined-work/reader/build/emery/appinfo.auto.c:  -> build/emery/appinfo.auto.c
+[19/31] Creating emery | /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/combined-work/reader/build/appinfo.json:  -> build/appinfo.json
+[20/31] Compiling emery | generate_resource_id_definitions: build/emery/system_resources.resball -> build/emery/src/resource_ids.auto.c
+[21/31] Compiling emery | generate_pbpack: build/emery/system_resources.resball -> build/emery/app_resources.pbpack
+[22/31] Compiling emery | generate_resource_id_header: build/emery/system_resources.resball -> build/emery/src/resource_ids.auto.h
+[23/31] Compiling emery | c: build/emery/src/resource_ids.auto.c -> build/emery/src/resource_ids.auto.c.9.o
+[24/31] Compiling emery | c: src/c/portrait.c -> build/src/c/portrait.c.9.o
+[25/31] Compiling emery | c: build/emery/appinfo.auto.c -> build/emery/appinfo.auto.c.9.o
+[26/31] Compiling emery | c: src/c/library_resource.c -> build/src/c/library_resource.c.9.o
+[27/31] Compiling emery | c: src/c/mdbl.c -> build/src/c/mdbl.c.9.o
+[28/31] Compiling emery | c: src/c/story_resource.c -> build/src/c/story_resource.c.9.o
+[29/31] Compiling emery | c: src/c/scenes.c -> build/src/c/scenes.c.9.o
+[30/31] Linking emery | cprogram: build/src/c/library_resource.c.9.o build/src/c/mc.ffi.c.9.o build/src/c/mdbl.c.9.o build/src/c/portrait.c.9.o build/src/c/scenes.c.9.o build/src/c/story_resource.c.9.o build/emery/appinfo.auto.c.9.o build/emery/src/resource_ids.auto.c.9.o build/src/message_keys.auto.c.9.o -> build/emery/pebble-app.elf
+/Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/4.44/toolchain/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: warning: /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/combined-work/reader/build/emery/pebble-app.elf has a LOAD segment with RWX permissions
+
+[31/31] Processing emery | memory_usage_report: build/emery/pebble-app.elf build/emery/app_resources.pbpack
+-------------------------------------------------------
+EMERY APP MEMORY USAGE
+Total size of resources:        156287 bytes / 256.0KB
+Total footprint in RAM:         14748 bytes / 128.0KB
+Free RAM available (heap):      116324 bytes
+------------------------------------------------------- 
+[32/35] Compiling emery | /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/combined-work/reader/build/emery/pebble-app.raw.bin: build/emery/pebble-app.elf -> build/emery/pebble-app.raw.bin
+[34/35] Processing emery | inject-metadata: build/emery/pebble-app.raw.bin build/emery/pebble-app.elf build/emery/app_resources.pbpack -> build/emery/pebble-app.bin
+[35/35] Compiling app_bundle: build/appinfo.json -> build/reader.pbw
+Waf: Leaving directory `/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/combined-work/reader/build'
+'build' finished successfully (0.772s)
+Running Moddable prebuild (release build).
+Running mcrun -m ./src/embeddedjs/manifest.json -f x -p pebble/emery -t build -o ./build/mods/emery/mcrun -s tech.moddable.pebble
+Copied Moddable mod for emery
+Moddable prebuild completed.

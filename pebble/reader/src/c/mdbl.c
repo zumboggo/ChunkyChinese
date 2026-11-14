@@ -4,16 +4,15 @@ extern void destroyScenes(void);
 int main(void) {
   Window *w = window_create();
   window_stack_push(w, false);
-  // Story records and portraits stream from resources; reserve room for the XS archive.
+  // Measured with five offline episodes, transfers, all scenes and reactions.
+  // Fixed pools retain their own headroom; native heap is tested separately.
   ModdableCreationRecord cr = {
     .fxBuildFFI = (void *)fxBuildFFI,
     .recordSize = sizeof(ModdableCreationRecord),
     .stack = 4608,
-    .slot = 32768,
-    .chunk = 11264,
-#ifdef PBL_DEBUG
-    .flags = kModdableCreationFlagDebug,
-#endif
+    .slot = 35840,
+    .chunk = 9216,
+    .flags = kModdableCreationFlagLogInstrumentation,
   };
   moddable_createMachine(&cr);
   destroyScenes();

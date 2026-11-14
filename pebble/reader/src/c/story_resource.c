@@ -9,5 +9,9 @@ char *readStory(uint32_t offset,uint32_t count){
  record[n]=0;return record;
 }
 
-#include "story_index.h"
-char *readStoryNode(uint32_t node){if(node>=sizeof(story_spans)/sizeof(story_spans[0]))return NULL;return readStory(story_spans[node][0],story_spans[node][1]);}
+// The episode-specific index stays in flash alongside the streamed records.
+char *readStoryNode(uint32_t node){
+ ResHandle index=resource_get_handle(RESOURCE_ID_STORY_INDEX);if(node>=resource_size(index)/4)return NULL;
+ uint8_t span[4];resource_load_byte_range(index,node*4,span,sizeof(span));
+ return readStory(span[0]|span[1]<<8,span[2]|span[3]<<8);
+}

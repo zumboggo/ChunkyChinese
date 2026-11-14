@@ -6,7 +6,7 @@
     "export": "node scripts/export.mjs",
     "test": "node --test tests/*.test.mjs",
     "art": "python3 pixel-reactions/build-native.py && node scripts/configure-reading.mjs",
-    "scenes": "node scripts/generate-scenes.mjs",
+    "scenes": "node scripts/generate-scenes.mjs && python3 scripts/pack-stage.py",
     "check": "sh scripts/build.sh --check",
     "build": "sh scripts/build.sh --dev",
     "release": "sh scripts/build.sh --release",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "sharp": "0.35.3",
-    "rolldown": "1.0.3"
+    "rolldown": "1.0.3",
+    "acorn": "8.16.0"
   }
 }

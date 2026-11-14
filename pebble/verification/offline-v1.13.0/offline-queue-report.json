@@ -1,0 +1,20 @@
+{
+  "pbwSha256": "4a9c0bc10d196dd48276ca586f822fb56d7df376d24d2b349a70df1f68a33d8a",
+  "queuedEpisodes": 5,
+  "episodeBytes": [
+    21029,
+    21029,
+    21029,
+    21029,
+    21029
+  ],
+  "queuedBytes": 105145,
+  "allocatableBytesAtLeast": 458752,
+  "cachedBytesDuringProbe": 105145,
+  "prefetchPreservesReading": true,
+  "offlineContinuation": true,
+  "reinstallPreservesQueueAndPosition": true,
+  "interruptedRefillPreservesQueue": true,
+  "normalEpisodeRestored": true,
+  "physicalWatchTested": false
+}

@@ -76,7 +76,10 @@ with (out/'watch.log').open('w') as f:
   run('emu-bt-connection','--connected','no')
   # Turn ambience back on, then reach the second downloaded recipe offline.
   motion(True);press('select');time.sleep(4.5);first=shot('train-held');time.sleep(1.3);assert first!=shot('train-ambient')
-  press('select');shot('offline-ending');run('emu-bt-connection','--connected','yes')
+  press('select');ending=shot('offline-ending');run('emu-bt-connection','--connected','yes')
+  # SDK/QEMU reconnect leaves the existing Moddable channel unwritable (also on v1.12).
+  # Offline playback above stays verified; relaunch before testing later transfers.
+  run('install',root/'reader/build/reader.pbw');time.sleep(2);send('HELLO','READY');assert shot('reconnected-ending')==ending
   log=(out/'watch.log').read_text();assert log.count('Scene 65535 held')>=5,log
   assert not re.search(r'INPUT ERROR|SAVE ERROR|fxAbort|memory full|App fault',log,re.I),log
   values=[int(v) for v in re.findall(r'Scene 65535 held; free=(\d+)',log)];assert min(values)>=12288,values
@@ -95,7 +98,7 @@ with (out/'watch.log').open('w') as f:
     verified.append(name+'/'+action);print('PASS downloaded '+name+'/'+action,flush=True)
   log=(out/'watch.log').read_text();assert not re.search(r'INPUT ERROR|SAVE ERROR|fxAbort|memory full|App fault',log,re.I),log
   values=[int(v) for v in re.findall(r'Scene 65535 held; free=(\d+)',log)];assert min(values)>=12288,values
-  result={'newRecipesTransferredWithoutRebuild':26,'verifiedActors':['gorgon','boe','jeremy','hannah','young-alden','alden'],'newCastGestureChecks':verified,'foregroundMovementAndHold':True,'replays':3,'focusClocksPreserved':True,'sameIdRecipeUpdateReplacedHeldPose':True,'invalidPackageRetainedPrevious':True,'interruptedUpdateRestartAndResume':True,'downloadedPlaybackOffline':True,'backgroundMotionSetting':True,'heldFreeBytes':values,'pbwSha256':hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest(),'physicalWatchTested':False}
+  result={'newRecipesTransferredWithoutRebuild':26,'verifiedActors':['gorgon','boe','jeremy','hannah','young-alden','alden'],'newCastGestureChecks':verified,'foregroundMovementAndHold':True,'replays':3,'focusClocksPreserved':True,'sameIdRecipeUpdateReplacedHeldPose':True,'invalidPackageRetainedPrevious':True,'interruptedUpdateRestartAndResume':True,'downloadedPlaybackOffline':True,'emulatorReconnectRelaunchRequired':True,'backgroundMotionSetting':True,'heldFreeBytes':values,'pbwSha256':hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest(),'physicalWatchTested':False}
   installed=[]
   for scene in json.loads((root/'scenes/library.json').read_text())['scenes'][30:]:
    fixture['version']='handtest%04d'%scene['nativeId'];fixture['nodes']=[{'type':'animation','id':scene['id']},{'type':'end'}]

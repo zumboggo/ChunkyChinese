@@ -1,10 +1,11 @@
-# Expression and hand library (v1.13)
+# Combined reader (v1.14)
 
-This expression-pack branch adds 18 facial reactions (53 total), two cover-eyes performances for each human profile, and Alden's folded-arm chin rest and interrupted sip. Existing episodes, IDs and approved artwork are preserved. See [verified measurements and installation scope](verification/expression-pack-v1.13.0/STATUS.md), [finite native previews](preview/expressions/index.html), and [authoring names and constraints](scenes/EXPRESSION-PACK.md).
+One PBW now includes 53 reactions, 42 installed visual-novel scenes and the
+five-episode offline library. Install it as an update to keep reading positions.
+[Combined installer, measured memory and verification](COMBINED-READER.md).
+The measured minimum free heap is 12,556 bytes in the Emery regression tests.
 
-Use the expression-pack PBW linked below. It is based on v1.12 and does not include the separate offline-library variant; compare the exact package hash before installing. The older renderer history follows.
-
-# Visual-novel renderer update (v1.12)
+## Renderer history: v1.12
 
 The episode animation renderer has been replaced with the approved close-up pixel-character style. Existing scene IDs, source anchors and reading saves are retained. Five animated moments per route now reuse torso/hand performances over separate backgrounds. Room fans and screensavers can continue after the foreground holds; Background motion Off freezes them. All six cast packs share the reaction decoder and its 512-byte cache. No movement below the waist.
 
@@ -19,12 +20,12 @@ Private learning reader for Super Supportive, adapted from existing Chunky Chine
 ## Install on Android
 
 1. Install the current [official Pebble Android app](https://repebble.com/app), pair your **new Pebble Time 2 (Emery)**, and update watch firmware.
-2. Transfer `release/chunky-chinese-time2-supportive-13-v1.13.0.pbw` to your phone. Open it with Pebble from Downloads or the Android share sheet, then install it on your connected watch. [Official sideloading instructions](https://developer.repebble.com/guides/tools-and-resources/testing-with-the-mobile-app/#sideloading-apps).
+2. Transfer `release/chunky-chinese-time2-supportive-13-v1.14.0.pbw` to your phone. Open it with Pebble from Downloads or the Android share sheet, then install it on your connected watch. [Official sideloading instructions](https://developer.repebble.com/guides/tools-and-resources/testing-with-the-mobile-app/#sideloading-apps).
 3. Launch **Chunky Chinese**. Episode 13 is bundled: no account, audio, network download, or separate Android APK is needed to begin.
 4. Use **Back → Library** to browse numbered ranges, see completed episodes, and download or resume one. **Update list** finds newly published episodes. See [the episode catalogue guide](CATALOGUE.md).
 5. For future supported packages, use Back → Refresh episode. The companion runs inside the Pebble Android app. Leave both apps open during transfer. The library says **Available offline** after verification. App settings accept an optional HTTPS `raw.githubusercontent.com` episode JSON URL; otherwise the bundled episode's repository feed is used. A failed network fetch leaves the current offline episode intact.
 
-If opening the file does not work, use the [Developer Connection](https://developer.repebble.com/guides/tools-and-resources/developer-connection/): enable Dev Connection in the connected watch's menu; run `pebble login`, then `pebble install release/chunky-chinese-time2-supportive-13-v1.13.0.pbw --cloudpebble`. A trusted local-network connection with `--phone PHONE_IP` is another option.
+If opening the file does not work, use the [Developer Connection](https://developer.repebble.com/guides/tools-and-resources/developer-connection/): enable Dev Connection in the connected watch's menu; run `pebble login`, then `pebble install release/chunky-chinese-time2-supportive-13-v1.14.0.pbw --cloudpebble`. A trusted local-network connection with `--phone PHONE_IP` is another option.
 
 Only Emery is included. This package is not for the original Pebble Time, Time Steel, or other older Pebbles. Android pairing and physical-watch readability still need testing on David's watch.
 

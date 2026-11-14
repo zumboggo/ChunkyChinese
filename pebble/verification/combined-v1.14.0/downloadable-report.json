@@ -1,0 +1,139 @@
+{
+  "newRecipesTransferredWithoutRebuild": 26,
+  "verifiedActors": [
+    "gorgon",
+    "boe",
+    "jeremy",
+    "hannah",
+    "young-alden",
+    "alden"
+  ],
+  "newCastGestureChecks": [
+    "gorgon/listen",
+    "gorgon/offer",
+    "gorgon/think",
+    "gorgon/sip",
+    "boe/listen",
+    "boe/offer",
+    "boe/think",
+    "boe/sip",
+    "jeremy/listen",
+    "jeremy/offer",
+    "jeremy/think",
+    "jeremy/sip",
+    "hannah/listen",
+    "hannah/offer",
+    "hannah/think",
+    "hannah/sip",
+    "young-alden/listen",
+    "young-alden/offer",
+    "young-alden/think",
+    "young-alden/sip",
+    "alden/listen",
+    "alden/offer",
+    "alden/think",
+    "alden/sip"
+  ],
+  "foregroundMovementAndHold": true,
+  "replays": 3,
+  "focusClocksPreserved": true,
+  "sameIdRecipeUpdateReplacedHeldPose": true,
+  "invalidPackageRetainedPrevious": true,
+  "interruptedUpdateRestartAndResume": true,
+  "downloadedPlaybackOffline": true,
+  "emulatorReconnectRelaunchRequired": true,
+  "backgroundMotionSetting": true,
+  "heldFreeBytes": [
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12816,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752,
+    12752
+  ],
+  "pbwSha256": "46603f4715c66c14ff0319fc8e5d20d119862b268f6faf19ace07e3c59fc6292",
+  "physicalWatchTested": false,
+  "installedHandTransfers": [
+    {
+      "id": "alden-protective-cover",
+      "freeBytes": 12752
+    },
+    {
+      "id": "alden-cover-and-peek",
+      "freeBytes": 12752
+    },
+    {
+      "id": "hannah-protective-cover",
+      "freeBytes": 12752
+    },
+    {
+      "id": "hannah-cover-and-peek",
+      "freeBytes": 12752
+    },
+    {
+      "id": "boe-protective-cover",
+      "freeBytes": 12752
+    },
+    {
+      "id": "boe-cover-and-peek",
+      "freeBytes": 12752
+    },
+    {
+      "id": "jeremy-protective-cover",
+      "freeBytes": 12752
+    },
+    {
+      "id": "jeremy-cover-and-peek",
+      "freeBytes": 12752
+    },
+    {
+      "id": "young-alden-protective-cover",
+      "freeBytes": 12752
+    },
+    {
+      "id": "young-alden-cover-and-peek",
+      "freeBytes": 12752
+    },
+    {
+      "id": "alden-folded-arms",
+      "freeBytes": 12752
+    },
+    {
+      "id": "alden-interrupted-sip",
+      "freeBytes": 12752
+    }
+  ],
+  "transportRetries": 3,
+  "normalEpisodeRestored": true
+}

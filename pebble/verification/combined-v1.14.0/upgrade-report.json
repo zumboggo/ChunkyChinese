@@ -1,0 +1,22 @@
+{
+  "pbwSha256": "46603f4715c66c14ff0319fc8e5d20d119862b268f6faf19ace07e3c59fc6292",
+  "readingPositionAndDisplayPreservedFrom": [
+    "v1.12",
+    "expressions-v1.13",
+    "offline-v1.13"
+  ],
+  "fiveOlderCachedEpisodesPlayableAfterUpgrade": true,
+  "physicalWatchTested": false,
+  "legacyChecks": [
+    {
+      "from": "v1.12",
+      "readingScreenshotSha256": "459e659c896dcd3dbee29ca6727b96b7d4b498b88f3c8e474d9abbbbb976d7bb",
+      "readingPositionAndDisplayPreserved": true
+    },
+    {
+      "from": "expressions-v1.13",
+      "readingScreenshotSha256": "459e659c896dcd3dbee29ca6727b96b7d4b498b88f3c8e474d9abbbbb976d7bb",
+      "readingPositionAndDisplayPreserved": true
+    }
+  ]
+}

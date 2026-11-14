@@ -1,3 +1,4 @@
+import * as offline from '../reader/src/embeddedjs/offline.js';
 import * as nativeScenes from '../reader/src/embeddedjs/scenes-native.js';
 import * as reactions from '../reader/src/embeddedjs/reactions.js';
 import test from 'node:test';
@@ -12,10 +13,10 @@ const bundled=JSON.parse(fs.readFileSync(new URL('../reader/src/pkjs/bundled.jso
 function harness(storage=new Map(),files=new Map()){
  String.fromArrayBuffer=b=>new TextDecoder().decode(b);ArrayBuffer.fromString=s=>new TextEncoder().encode(s).buffer;
  const calls=[],labels=[];let selectResult=1;
- const graphics={portraitReady(){return selectResult;},cardData(index,value){calls.push(['card',index,value]);},recipeData(i,v){calls.push(['recipe',i,v]);return 1;},showPortrait(){},showScene(id){calls.push(['scene',id]);},setBackgroundMotion(on){calls.push(['ambient',on]);},sceneSelect(){return selectResult;}};
+ const graphics={memoryFree(){return 20000;},portraitReady(){return selectResult;},cardData(index,value){calls.push(['card',index,value]);},recipeData(i,v){calls.push(['recipe',i,v]);return 1;},showPortrait(){},showScene(id){calls.push(['scene',id]);},setBackgroundMotion(on){calls.push(['ambient',on]);},sceneSelect(){return selectResult;}};
  class Poco{Font=class{};makeColor(){return 0;}getTextWidth(t){return t.length*10;}begin(){labels.length=0;}end(){}fillRectangle(){}drawText(t,f,c,x,y){labels.push({t,y});}}
  const localStorage={getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)};
- const deps={...nativeScenes,...reactions,...catalogue,...completion,...reader,...layout,bundled,legacy:{},upgrade:{},sceneIds,sceneNames,sceneGroups,glyphs:'',art:()=>0,Debug:{gc(){}},graphics,Poco,screen:{},Button:class{},Message:class{},Transfer:class{},validate(){},checksum(){},openWire(){},localStorage,device:{files:{delete:p=>files.delete(p),openFile({path,mode}){if(mode)files.set(path,'');if(!files.has(path))throw Error('No saved file');return {status:()=>({size:ArrayBuffer.fromString(files.get(path)).byteLength}),read:()=>ArrayBuffer.fromString(files.get(path)),write:b=>files.set(path,String.fromArrayBuffer(b)),close(){}};}}},console:{log(){}}};
+ const deps={...offline,...nativeScenes,...reactions,...catalogue,...completion,...reader,...layout,bundled,legacy:{},upgrade:{},sceneIds,sceneNames,sceneGroups,glyphs:'',art:()=>0,Debug:{gc(){}},graphics,Poco,screen:{},Button:class{},Message:class{},Transfer:class{},validate(){},checksum(){},openWire(){},localStorage,device:{files:{delete:p=>files.delete(p),openFile({path,mode}){if(mode)files.set(path,'');if(!files.has(path))throw Error('No saved file');return {status:()=>({size:ArrayBuffer.fromString(files.get(path)).byteLength}),read:()=>ArrayBuffer.fromString(files.get(path)),write:b=>files.set(path,String.fromArrayBuffer(b)),close(){}};}}},console:{log(){}}};
  const source=fs.readFileSync(new URL('../reader/src/embeddedjs/main.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'');
  const app=new Function(...Object.keys(deps),source+'\nreturn {input,menuItems,switchEpisode,get state(){return state;},get overlay(){return overlay;}};')(...Object.values(deps));
  return {app,calls,labels,storage,setResult:r=>selectResult=r};

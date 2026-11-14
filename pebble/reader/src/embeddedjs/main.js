@@ -16,8 +16,9 @@ import {pages,wrap} from './layout';
 import {Transfer,validate,checksum} from './transfer';
 import {openWire} from './wire';
 import {validPage,localPage,actions} from './catalogue';
+import {Offline,nextPlan} from './offline';
 
-const render=new Poco(screen);
+const render=new Poco(screen,{pixels:200,displayListLength:64});
 const chineseFont=art('font-chinese-28');
 const fonts={py:new render.Font(art('font-latin-24')),en:new render.Font(art('font-latin-20')),zh:chineseFont?new render.Font(chineseFont):null,small:new render.Font('Gothic-Regular',14)};
 const ink=render.makeColor(0,0,0),paper=render.makeColor(255,255,255),navy=render.makeColor(0,0,85),teal=render.makeColor(0,85,85),grey=render.makeColor(85,85,85);
@@ -35,16 +36,22 @@ function loadRecipe(wire,play){
  return graphics.recipeData(46,play);
 }
 const hasArt=name=>!!art(name)||!!art(name+'-full');
+function removeFile(path){try{device.files.delete(path);}catch{}}
+const offline=new Offline({get:()=>localStorage.getItem('offline-index'),set:s=>localStorage.setItem('offline-index',s),remove:path=>{if(!activeSlot||path!==slotPath(activeSlot))removeFile(path);},create(path,size){const f=device.files.openFile({path,mode:'r+',size});f.close();}});
+function slotPath(slot){return slot.startsWith('offline-')?slot:'episode-'+slot;}
 let pack=bundled,activeSlot=localStorage.getItem('activeEpisode');
-try{if(activeSlot){pack=openStored('episode-'+activeSlot);validate(pack,glyphs,hasArt,r=>loadRecipe(r,0));}}catch(e){console.log('Using bundled episode',e.message);pack=bundled;activeSlot=null;}
+try{if(activeSlot){pack=openStored(slotPath(activeSlot));Debug.gc();validate(pack,glyphs,hasArt,r=>loadRecipe(r,0));}}catch(e){console.log('Using bundled episode',e.message);pack=bundled;activeSlot=null;}
 console.log('Episode opened');Debug.gc();
 let state=initial(pack),saveGeneration=0,upgraded=false;
 // Two generations allow recovery if power is lost while the newest save is written.
+function restoreSaved(){
 console.log('Reading saves');const saves=[];
 for(const slot of [0,1]){try{const raw=readFile('progress-'+slot),match=raw.match(/^\{"generation":(\d+),/);if(match)saves.push({path:'progress-'+slot,generation:Number(match[1])});}catch{}Debug.gc();}
 saves.sort((a,b)=>b.generation-a.generation);
 let archivedId="";
 for(const candidate of saves){try{let raw=readFile(candidate.path);const h=raw.indexOf('"history":['),end=raw.indexOf(']',h);if(h>=0&&end-h>800)raw=raw.slice(0,h)+'"history":[]'+raw.slice(end+1);const saved=JSON.parse(raw);if(saved.state.id!==pack.id&&saved.state.id!==archivedId&&/^[a-z0-9-]+$/.test(saved.state.id)){writeFile('saved-'+saved.state.id,JSON.stringify(saved.state));archivedId=saved.state.id;}if(saved.state.id===pack.id&&(saved.state.version===pack.version||saved.state.version===pack.textVersion)){state=restore(pack,saved.state);saveGeneration=saved.generation;upgraded=saved.state.version!==pack.version;break;}else if(saved.state.id===upgrade.id&&saved.state.version===upgrade.version&&pack.version===upgrade.target){state=migrateLegacy(pack,saved.state,upgrade);saveGeneration=saved.generation;upgraded=true;break;}else if(saved.state.id===legacy.id&&saved.state.version===legacy.version&&pack.version===legacy.target){state=migrateLegacy(pack,saved.state,legacy);saveGeneration=saved.generation;upgraded=true;break;}}catch{}Debug.gc();}
+}
+restoreSaved();Debug.gc();
 if(localStorage.getItem('readerRevision')!=='3'&&pack.id===bundled.id&&pack.version!==bundled.version){state=pack.version===legacy.version?migrateLegacy(bundled,state,legacy):migrate(pack,bundled,state);upgraded=true;pack=bundled;activeSlot=null;localStorage.removeItem('activeEpisode');}
 localStorage.setItem('readerRevision','3');
 Debug.gc();
@@ -72,6 +79,20 @@ let previewGroup='Episode 11',previewIndex=0,backgroundMotion=localStorage.getIt
 graphics.setBackgroundMotion(backgroundMotion?1:0);
 function groupIds(){const ids=[];for(let i=1;i<=sceneCount;i++)if(sceneGroup(i)===previewGroup)ids.push(i);return ids;}
 let cataloguePage=null,selectedEpisode=null,catalogueRequest=0,requestedEpisode=null;
+let queuePlan=[],queueSerial=0,queueLoading=null,downloadSerial=0,downloadToken='',queueStatus='Connect phone to fill queue';
+function offlineEntry(id){const e=offline.find(id);if(!e)return null;try{const f=device.files.openFile({path:offline.path(e)});const size=f.status().size;f.close();return size===e[5]?e:null;}catch{return null;}}
+function available(id){return id===pack.id||id===bundled.id||!!offlineEntry(id);}
+function useOffline(id){if(id===pack.id){closeOverlay();return;}const e=offlineEntry(id);const next=id===bundled.id?bundled:e?openStored(offline.path(e)):null;if(!next)throw Error('Episode not downloaded');validate(next,glyphs,hasArt,r=>loadRecipe(r,0));queueLoading=null;downloadToken=String(++downloadSerial);switchEpisode(next);activeSlot=id===bundled.id?null:offline.path(e);if(activeSlot)localStorage.setItem('activeEpisode',activeSlot);else localStorage.removeItem('activeEpisode');save();offline.prune(pack);closeOverlay();refreshQueue();}
+function refreshQueue(){if(requestedEpisode||queueLoading)return;queueSerial++;if(connected){queueStatus='Checking next 5...';send({COMMAND:'QUEUE',DATA:pack.id,VERSION:String(queueSerial)});}else queueStatus='Connect phone to fill queue';}
+function fillQueue(){
+ if(requestedEpisode||queueLoading||!connected)return;
+ const next=queuePlan.find(e=>e[0]!==bundled.id&&(!offlineEntry(e[0])||offlineEntry(e[0])[3]!==e[3]));
+ if(!next){queueStatus=queuePlan.length?queuePlan.length+' / 5 ready offline':'No later episodes published';queuePlan=[];return;}
+ queueLoading=next;downloadToken=String(++downloadSerial);queueStatus='Saving episode '+next[1]+'...';send({COMMAND:'PREFETCH',DATA:next[0],STATUS:downloadToken});
+}
+function offlineItems(){return offline.items.filter(e=>e[0]!==pack.id&&e[1]>pack.number).sort((a,b)=>a[1]-b[1]);}
+function nextOffline(){if(bundled.number===pack.number+1)return [bundled.id,bundled.number];return offlineItems().find(e=>e[1]===pack.number+1);}
+
 function completed(id){
  if(localStorage.getItem('done-'+id)==='1')return true;
  let old;try{old=id===pack.id?state:JSON.parse(readFile('saved-'+id));}catch{}
@@ -83,9 +104,9 @@ function openCatalogue(kind,offset=0){
  overlay='catalogue';menuIndex=0;status='Updating list...';
  send({COMMAND:'CATALOG',DATA:kind,OFFSET:offset,VERSION:String(++catalogueRequest)});
 }
-function episodeAction(){return selectedEpisode[0]===pack.id?'Resume offline':selectedEpisode[0]===bundled.id?'Read offline':'Download / resume';}
+function episodeAction(){return selectedEpisode[0]===pack.id?'Resume offline':available(selectedEpisode[0])?'Read offline':'Download / resume';}
 function catalogueItems(){return [...cataloguePage.items.map(e=>cataloguePage.kind==='groups'?'Episodes '+e[0]+' - '+e[1]:(completed(e[0])?'[x] ':'[ ] ')+e[1]+'. '+e[2]),...actions(cataloguePage)];}
-function menuItems(){return overlay==='catalogue'?catalogueItems():overlay==='episode'?[episodeAction(),'Choose another','Back']:overlay==='animations'?[...previewGroups,'Back']:overlay==='scene-list'?[...groupIds().map(id=>sceneName(id)),'Back']:overlay==='library'?['Browse episodes','Read Episode '+pack.number,'Refresh episode','About this story',...(pack.id!==bundled.id?['Read included Ep '+bundled.number]:[]),'Back']:overlay==='restart'?['Keep reading','Restart episode']:['Resume','Refresh episode','Animations','Background motion: '+(backgroundMotion?'On':'Off'),'Restart','Library'];}
+function menuItems(){return overlay==='offline'?[...offlineItems().map(e=>'Read Ep '+e[1]+': '+e[2]),'Update downloads','Check storage','Back']:overlay==='finished'?[nextOffline()?'Continue to Ep '+nextOffline()[1]:'Next episode not saved','Offline queue','Back']:overlay==='catalogue'?catalogueItems():overlay==='episode'?[episodeAction(),'Choose another','Back']:overlay==='animations'?[...previewGroups,'Back']:overlay==='scene-list'?[...groupIds().map(id=>sceneName(id)),'Back']:overlay==='library'?['Browse episodes','Offline queue','Read Episode '+pack.number,'Refresh episode','About this story',...(pack.id!==bundled.id?['Read included Ep '+bundled.number]:[]),'Back']:overlay==='restart'?['Keep reading','Restart episode']:['Resume','Refresh episode','Animations','Background motion: '+(backgroundMotion?'On':'Off'),'Restart','Library','Offline queue'];}
 function previewReturn(){previewScene=0;overlay='scene-list';menuIndex=previewIndex;}
 
 function stopScene(){if(activeScene){graphics.showScene(0);activeScene=0;}}
@@ -114,9 +135,9 @@ function draw(){
   menuItems().forEach((item,i)=>{const y=130+i*24;if(i===menuIndex)render.fillRectangle(teal,5,y,190,23);text(item,10,y+2,'small',i===menuIndex?paper:ink);});
   footer(status);
  }else if(overlay){
-  header(overlay==='scene-list'?previewGroup:overlay==='animations'?'Animation previews':overlay==='catalogue'?(cataloguePage.kind==='groups'?'Choose episode range':'Episodes '+cataloguePage.kind+' - '+(Number(cataloguePage.kind)+9)):overlay==='library'?'Episode library':overlay==='restart'?'Start again?':'Chunky Chinese');
+  header(overlay==='offline'?'Next 5 offline':overlay==='finished'?'Episode complete':overlay==='scene-list'?previewGroup:overlay==='animations'?'Animation previews':overlay==='catalogue'?(cataloguePage.kind==='groups'?'Choose episode range':'Episodes '+cataloguePage.kind+' - '+(Number(cataloguePage.kind)+9)):overlay==='library'?'Episode library':overlay==='restart'?'Start again?':'Chunky Chinese');
   const top=Math.floor(menuIndex/6)*6;menuItems().slice(top,top+6).forEach((item,j)=>{const i=top+j,row=itemsHeight();const y=28+j*row;if(i===menuIndex)render.fillRectangle(teal,5,y,190,row-1);let label=item;while(label.length&&measure(label,'small')>178)label=label.slice(0,-1);if(label!==item)label=label.slice(0,-2)+'..';text(label,10,y+3,'small',i===menuIndex?paper:ink);});
-  footer(overlay==='library'||overlay==='catalogue'?status:'Up/Down: browse   Select: open');
+  footer(overlay==='offline'?queueStatus:overlay==='finished'?'Select: open':overlay==='library'||overlay==='catalogue'?status:'Up/Down: browse   Select: open');
  }else{
   const p=phrase(pack,state),all=pages(p,state.e,measure),page=all[Math.min(state.page,all.length-1)];
   const label=node.type==='choice'?'Your choice '+(state.o+1)+'/'+node.options.length:(node.speaker==='YoungAlden'?'Young Alden':node.speaker);
@@ -132,7 +153,7 @@ function draw(){
 }
 function itemsHeight(){return 29;}
 function closeOverlay(){overlay=null;menuIndex=0;helpPage=0;cataloguePage=null;selectedEpisode=null;catalogueRequest++;}
-function request(id=pack.id){requestedEpisode=id;lastImage=null;lastImageName=null;Debug.gc();status=connected?'Loading from phone...':'Waiting for phone...';send({COMMAND:'LOAD',DATA:id});}
+function request(id=pack.id){queueLoading=null;queueSerial++;downloadToken=String(++downloadSerial);requestedEpisode=id;lastImage=null;lastImageName=null;Debug.gc();status=connected?'Loading from phone...':'Waiting for phone...';send({COMMAND:'LOAD',DATA:id,STATUS:downloadToken});}
 function input(type){
  if(!overlay&&current(pack,state).type==='reaction'){
   if(type==='select'&&!graphics.portraitReady())return;
@@ -149,8 +170,10 @@ function input(type){
   const items=menuItems();if(type==='up'||type==='down')menuIndex=(menuIndex+(type==='up'?-1:1)+items.length)%items.length;
   else if(type==='back'){if(overlay==='episode'){overlay='catalogue';menuIndex=0;}else if(overlay==='catalogue'){overlay='menu';menuIndex=5;catalogueRequest++;}else if(overlay==='scene-list'){overlay='animations';menuIndex=previewGroups.indexOf(previewGroup);}else if(overlay==='animations'){overlay='menu';menuIndex=2;}else closeOverlay();}else if(type==='select'){
    const chosen=items[menuIndex];
-   if(overlay==='catalogue'){
-    if(menuIndex<cataloguePage.items.length){const e=cataloguePage.items[menuIndex];if(cataloguePage.kind==='groups')openCatalogue(String(e[0]));else{selectedEpisode=e;overlay='episode';menuIndex=0;status=e[0]===pack.id||e[0]===bundled.id?'Available offline':'Select to download';}}
+   if(overlay==='offline'){const e=offlineItems()[menuIndex];if(e)useOffline(e[0]);else if(chosen==='Update downloads'){queueLoading=null;requestedEpisode=null;downloadToken=String(++downloadSerial);refreshQueue();}else if(chosen==='Check storage'){const free=offline.probe();queueStatus=(free>=458752?'>= ':'')+Math.floor(free/1024)+' KiB allocatable';console.log('Offline storage',free,'cached',offline.bytes());}else closeOverlay();}
+   else if(overlay==='finished'){if(menuIndex===0&&nextOffline())useOffline(nextOffline()[0]);else if(menuIndex===1){overlay='offline';menuIndex=0;refreshQueue();}else if(menuIndex===2)closeOverlay();}
+   else if(overlay==='catalogue'){
+    if(menuIndex<cataloguePage.items.length){const e=cataloguePage.items[menuIndex];if(cataloguePage.kind==='groups')openCatalogue(String(e[0]));else{selectedEpisode=e;overlay='episode';menuIndex=0;status=available(e[0])?'Available offline':'Select to download';}}
     else if(chosen==='Choose range')openCatalogue('groups');
     else if(chosen==='Next page')openCatalogue(cataloguePage.kind,cataloguePage.offset+5);
     else if(chosen==='Previous page')openCatalogue(cataloguePage.kind,cataloguePage.offset-5);
@@ -158,7 +181,7 @@ function input(type){
     else{closeOverlay();catalogueRequest++;}
    }
    else if(overlay==='episode'){
-    if(menuIndex===0){if(selectedEpisode[0]===pack.id)closeOverlay();else if(selectedEpisode[0]===bundled.id){switchEpisode(bundled);activeSlot=null;localStorage.removeItem('activeEpisode');save();closeOverlay();}else request(selectedEpisode[0]);}
+    if(menuIndex===0){if(available(selectedEpisode[0]))useOffline(selectedEpisode[0]);else request(selectedEpisode[0]);}
     else{overlay='catalogue';menuIndex=0;}
    }
    else if(overlay==='animations'&&menuIndex<previewGroups.length){previewGroup=chosen;overlay='scene-list';menuIndex=0;}
@@ -166,12 +189,14 @@ function input(type){
    else if(chosen==='Back'&&overlay==='scene-list'){overlay='animations';menuIndex=previewGroups.indexOf(previewGroup);}
    else if(chosen==='Back'&&overlay==='animations'){overlay='menu';menuIndex=2;}
    else if(chosen.startsWith('Background motion:')){backgroundMotion=!backgroundMotion;localStorage.setItem('backgroundMotion',backgroundMotion?'1':'0');graphics.setBackgroundMotion(backgroundMotion?1:0);}
+   else if(chosen==='Offline queue'){overlay='offline';menuIndex=0;refreshQueue();}
    else if(chosen==='Animations'){overlay='animations';menuIndex=0;}
-   else if(chosen.startsWith('Read included Ep ')){switchEpisode(bundled);activeSlot=null;localStorage.removeItem('activeEpisode');save();closeOverlay();}
+   else if(chosen.startsWith('Read included Ep ')){useOffline(bundled.id);}
    else if(chosen==='Resume'||chosen==='Continue'||chosen.startsWith('Read Episode')||chosen==='Keep reading'||chosen==='Back')closeOverlay();
    else if(chosen==='Restart'){overlay='restart';menuIndex=0;}
    else if(chosen==='Restart episode'){state=initial(pack);save();closeOverlay();}
-   else if(chosen==='Library'||chosen==='Browse episodes'){openCatalogue(String(Math.floor((pack.number-1)/10)*10+1));}
+   else if(chosen==='Library'){overlay='library';menuIndex=0;}
+   else if(chosen==='Browse episodes'){openCatalogue(String(Math.floor((pack.number-1)/10)*10+1));}
    else if(chosen==='Refresh episode'){overlay='library';menuIndex=1;request();}
    else if(chosen==='About this story'){overlay='about';helpPage=0;}
   }draw();return;
@@ -190,10 +215,11 @@ function input(type){
  else if(n.type==='choice'&&type==='up'){browse(pack,state,1);save();}
  else if(type==='up'){previous(state);save();}
  else if(type==='down'){if(phrase(pack,state)&&chineseFont&&pack.chinese!==false){toggleChinese(state);save();}else{overlay='menu';menuIndex=0;}}
+ else if(type==='select'&&n.type==='end'){overlay='finished';menuIndex=0;refreshQueue();}
  else if(type==='select'){beginRun(state);const p=phrase(pack,state);advance(pack,state,p?pages(p,state.e,measure).length:1);save();creditCompletion();}
  draw();
 }
-const buttons=new Button({types:['select','up','down','back'],single:true,onPush(down,type){if(down)try{input(type);}catch(e){console.log('INPUT ERROR',e.stack||e.message);status='Reading error';overlay='library';draw();}}});
+const buttons=Debug.gc();new Button({types:['select','up','down','back'],single:true,onPush(down,type){if(down)try{input(type);}catch(e){console.log('INPUT ERROR',e.stack||e.message);status='Reading error';overlay='library';draw();}}});
 // Keep an episode's exact position when selecting a different installed/downloaded story.
 function switchEpisode(next){
  if(pack.id!==next.id){
@@ -206,29 +232,32 @@ function switchEpisode(next){
 }
 let staging=null;
 const transfer=new Transfer({
- begin(total){staging=activeSlot==='a'?'b':'a';try{device.files.delete('episode-'+staging);}catch{}const f=device.files.openFile({path:'episode-'+staging,mode:'r+',size:total});f.close();},
- write(data,offset){const f=device.files.openFile({path:'episode-'+staging,mode:'r+'});try{f.write(ArrayBuffer.fromString(data),offset);}finally{f.close();}},
- complete(expected){return openStored('episode-'+staging,expected);},
- activate(next){stopScene();previewScene=0;switchEpisode(next);localStorage.setItem('activeEpisode',staging);activeSlot=staging;save();console.log('Episode activated',pack.id,pack.version);}
-},p=>{if(requestedEpisode&&p.id!==requestedEpisode)throw Error('Different episode received');validate(p,glyphs,hasArt,r=>loadRecipe(r,0));if(p.id===bundled.id&&(p.version===upgrade.version||p.version===legacy.version))throw Error('Older feed; kept animations');});
+ begin(total){Debug.gc();staging=offline.begin(total,activeSlot);},
+ write(data,offset){const f=device.files.openFile({path:staging,mode:'r+'});try{f.write(ArrayBuffer.fromString(data),offset);}finally{f.close();}},
+ complete(expected){return openStored(staging,expected);},
+ activate(next){offline.commit(next,pack);if(!queueLoading){stopScene();previewScene=0;switchEpisode(next);localStorage.setItem('activeEpisode',staging);activeSlot=staging;save();offline.prune(pack);console.log('Episode activated',pack.id,pack.version);}else console.log('Episode cached',next.id,next.version);}
+},p=>{if(!Number.isInteger(p.number)||p.number<1||typeof p.title!=='string')throw Error('Invalid episode metadata');if(queueLoading&&(p.id!==queueLoading[0]||p.number!==queueLoading[1]||p.version!==queueLoading[3]))throw Error('Different queued episode');if(requestedEpisode&&p.id!==requestedEpisode)throw Error('Different episode received');validate(p,glyphs,hasArt,r=>loadRecipe(r,0));if(p.id===bundled.id&&(p.version===upgrade.version||p.version===legacy.version))throw Error('Older feed; kept animations');});
 let channel;
 function send(obj){queued.push(obj);flush();}
 function flush(){if(channel&&connected&&!sending&&queued.length){const out=queued.shift();try{sending=true;channel.write(new Map(Object.entries(out)));}catch(e){queued.unshift(out);sending=false;console.log('SEND',e.message);}}}
-channel=new Message({input:1024,output:256,keys:['COMMAND','DATA','OFFSET','TOTAL','CHECKSUM','VERSION','STATUS'],
+Debug.gc();channel=new Message({input:768,output:192,keys:['COMMAND','DATA','OFFSET','TOTAL','CHECKSUM','VERSION','STATUS'],
  onWritable(){connected=true;sending=false;flush();},
- onSuspend(){connected=false;sending=false;},
- onReadable(){const m=this.read();try{
+ onSuspend(){connected=false;sending=false;queueLoading=null;downloadToken=String(++downloadSerial);queueStatus='Reconnect to finish queue';},
+ onReadable(){const m=this.read();connected=true;try{
   const cmd=m.get('COMMAND');
+  if(['BEGIN','CHUNK','END'].includes(cmd)&&m.get('STATUS')&&m.get('STATUS')!==downloadToken)return;
   if(cmd==='BEGIN')console.log('Transfer starting',m.get('TOTAL'),m.get('CHECKSUM'));
-  if(cmd==='HELLO'){send({COMMAND:'READY'});syncCredits();}
+  if(cmd==='HELLO'){send({COMMAND:'READY'});syncCredits();if(requestedEpisode)request(requestedEpisode);else if(!queueLoading)refreshQueue();}
+  else if(cmd==='PLAN'&&m.get('VERSION')===String(queueSerial)){queuePlan=nextPlan(JSON.parse(m.get('DATA')),pack);fillQueue();}
+  else if(cmd==='QUEUE_ERROR'&&m.get('VERSION')===String(queueSerial)){queueStatus=m.get('STATUS')||'Queue unavailable';}
   else if(cmd==='CATALOG'&&m.get('VERSION')===String(catalogueRequest)&&overlay==='catalogue'){const page=validPage(JSON.parse(m.get('DATA')));cataloguePage=page;localStorage.setItem('catalogue-page',JSON.stringify(page));menuIndex=0;status=page.offline?'Saved list; phone offline':'[x] Completed | Select: open';}
   else if(cmd==='CATALOG_ERROR'&&m.get('VERSION')===String(catalogueRequest)){status=m.get('STATUS')||'List unavailable; kept story';}
   else if(cmd==='CREDIT_ACK'){const id=m.get('DATA');if(state.runId===id){state.credited=id;save();}storeCredits(acknowledge(pendingCredits(),id));status='Garden circle synced';syncCredits();}
   else if(cmd==='CREDIT_STATUS'){status=m.get('STATUS')||'Garden sync pending';}
-  else if(cmd==='BEGIN'){transfer.begin(m.get('TOTAL'),m.get('CHECKSUM'),m.get('VERSION'));status='Downloading 0%';send({COMMAND:'ACK',OFFSET:0});}
-  else if(cmd==='CHUNK'){if(checksum(m.get('DATA'))!==m.get('CHECKSUM'))throw Error('Chunk checksum '+m.get('OFFSET')+' '+checksum(m.get('DATA'))+'/'+m.get('CHECKSUM')+' len '+m.get('DATA').length);const offset=transfer.chunk(m.get('OFFSET'),m.get('DATA'));status='Downloading '+Math.floor(offset/transfer.pending.total*100)+'%';send({COMMAND:'ACK',OFFSET:offset});}
-  else if(cmd==='END'){transfer.finish();status='Available offline';send({COMMAND:'DONE',VERSION:pack.version});if(requestedEpisode){requestedEpisode=null;closeOverlay();}draw();}
-  else if(cmd==='ERROR'){status=m.get('STATUS')||'Phone unavailable';}
- }catch(e){status=e.message==='Older feed; kept animations'?e.message:'Download rejected';console.log('TRANSFER ERROR',e.message);send({COMMAND:'ERROR',STATUS:String(e.message).slice(0,80)});}if(overlay==='library'||overlay==='catalogue'||overlay==='episode')draw();}
+  else if(cmd==='BEGIN'){if(m.get('DATA')&&!m.get('STATUS')){queueLoading=null;queueSerial++;downloadToken='';}transfer.begin(m.get('TOTAL'),m.get('CHECKSUM'),m.get('VERSION'));status='Downloading 0%';send({COMMAND:'ACK',OFFSET:0,STATUS:downloadToken});}
+  else if(cmd==='CHUNK'){console.log('Transfer heap',graphics.memoryFree());if(checksum(m.get('DATA'))!==m.get('CHECKSUM'))throw Error('Chunk checksum '+m.get('OFFSET')+' '+checksum(m.get('DATA'))+'/'+m.get('CHECKSUM')+' len '+m.get('DATA').length);const offset=transfer.chunk(m.get('OFFSET'),m.get('DATA'));status='Downloading '+Math.floor(offset/transfer.pending.total*100)+'%';send({COMMAND:'ACK',OFFSET:offset,STATUS:downloadToken});}
+  else if(cmd==='END'){const result=transfer.finish();status='Available offline';send({COMMAND:'DONE',VERSION:result.version,DATA:downloadToken});transfer.completed={version:result.version};if(queueLoading){queueLoading=null;fillQueue();}else if(requestedEpisode){requestedEpisode=null;closeOverlay();refreshQueue();}draw();}
+  else if(cmd==='ERROR'&&(!m.get('DATA')||m.get('DATA')===downloadToken)){status=m.get('STATUS')||'Phone unavailable';queueStatus=status;queueLoading=null;requestedEpisode=null;}
+ }catch(e){status=e.message==='Older feed; kept animations'?e.message:'Download rejected';console.log('TRANSFER ERROR',e.message);queueStatus='Download stopped; saved episodes kept';const failedToken=downloadToken;if(queueLoading)downloadToken=String(++downloadSerial);queueLoading=null;send({COMMAND:'ERROR',STATUS:String(e.message).slice(0,80),DATA:failedToken});}if(overlay==='library'||overlay==='catalogue'||overlay==='episode'||overlay==='offline'||overlay==='finished')draw();}
 });
-console.log('Chunky ready',pack.id,pack.version,'node',state.n);creditCompletion();draw();
+console.log('Runtime heap',graphics.memoryFree());console.log('Chunky ready',pack.id,pack.version,'node',state.n);creditCompletion();draw();

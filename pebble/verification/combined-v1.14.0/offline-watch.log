@@ -1,0 +1,459 @@
+[04:04:06] ocess_manager.c:497> Heap Usage for App <Chunky Chi: Total Size <107808B> Used <100324B> Still allocated <20
+[04:04:07] moddable.c:147> evaluating creation record
+[04:04:07] xsHost.c:138> instruments key: Pixels drawn,Frames drawn,Timers,Files,Poco display list used,Piu comm
+[04:04:07] xsHost.c:138> d List used,App bytes free,Chunk used,Chunk available,Slot used,Slot available,Stack us
+[04:04:07] xsHost.c:138> ,Stack available,Garbage collections,Keys used,Modules loaded,Parser used,Floating Poin
+[04:04:07] xsHost.c:138> Promises settled
+[04:04:07] xsHost.c:138> Found mod "pebble.moddable.tech"
+[04:04:07] xsHost.c:138> instruments: 0,0,1,0,0,0,14572,3392,9216,9040,35824,1824,4608,0,181,0,0,0,0
+[04:04:07] xsHost.c:138> Episode opened
+[04:04:07] xsHost.c:138> Reading saves
+[04:04:07] xsHost.c:138> Save restored-1
+[04:04:07] scenes.c:68> Background motion 1
+[04:04:07] xsHost.c:138> Runtime heap14064
+[04:04:07] xsHost.c:138> Chunky readysupportive-136b319cc93962node-1
+[04:04:07] portrait.c:10> Card episode 13: What Do You Want?
+[04:04:07] reactions.inc:31> Reaction 24 started free=12876
+[04:04:08] xsHost.c:138> instruments: 0,0,0,0,0,0,12928,4748,9216,34272,35824,4032,4608,12,184,2,0,3,7
+[04:04:09] xsHost.c:138> Transfer starting21489c160b4e2
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> instruments: 0,0,0,0,0,0,12928,8176,9216,30800,35824,2112,4608,121,184,2,0,563,0
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:09] xsHost.c:138> Transfer heap12732
+[04:04:10] xsHost.c:138> Transfer heap12732
+[04:04:10] xsHost.c:138> Transfer heap12732
+[04:04:10] xsHost.c:138> Transfer heap12732
+[04:04:10] xsHost.c:138> Transfer heap12732
+[04:04:10] xsHost.c:138> Transfer heap12732
+[04:04:10] xsHost.c:138> Episode activatedsupportive-136b319cc93962
+[04:04:10] portrait.c:10> Card episode 13: What Do You Want?
+[04:04:10] reactions.inc:27> Reaction 24 held free=12876 max=23
+[04:04:10] xsHost.c:138> instruments: 0,0,0,0,0,0,12928,6176,9216,35584,35824,2752,4608,561,185,2,0,683,0
+[04:04:11] xsHost.c:138> instruments: 0,0,0,0,0,0,12928,6176,9216,35584,35824,288,4608,0,185,2,0,0,0
+[04:04:11] xsHost.c:138> Transfer starting210293bc99dbc
+[04:04:11] xsHost.c:138> Transfer heap12732
+[04:04:11] xsHost.c:138> Transfer heap12732
+[04:04:11] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Transfer heap12732
+[04:04:12] xsHost.c:138> Episode activatedsupportive-900q94686644900
+[04:04:12] portrait.c:10> Card episode 900: Queue test 900
+[04:04:12] xsHost.c:138> instruments: 0,0,0,0,0,0,12928,9132,9216,33824,35824,2752,4608,826,185,2,0,1242,0
+[04:04:13] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,5128,9216,31056,35824,3488,4608,1,185,2,0,3,0
+[04:04:14] xsHost.c:138> instruments: 0,2,0,0,0,0,12816,5328,9216,31056,35824,3488,4608,2,185,2,0,6,0
+[04:04:15] xsHost.c:138> instruments: 0,2,0,0,0,0,12816,5328,9216,31056,35824,3488,4608,2,185,2,0,6,0
+[04:04:16] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,4764,9216,30928,35824,3488,4608,1,185,2,0,3,0
+[04:04:17] portrait.c:10> Card episode 900: Queue test 900
+[04:04:17] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,5344,9216,33808,35824,3488,4608,1,185,2,0,6,0
+[04:04:18] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,5512,9216,32800,35824,3504,4608,1,185,2,0,28,0
+[04:04:19] xsHost.c:138> Transfer starting21029837d9dc0
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,8752,9216,35216,35824,2416,4608,230,185,2,0,873,0
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:19] xsHost.c:138> Transfer heap12620
+[04:04:20] xsHost.c:138> Episode cachedsupportive-901q94686644901
+[04:04:20] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,7528,9216,34688,35824,2784,4608,599,185,2,0,410,0
+[04:04:21] xsHost.c:138> Transfer starting21029cb319dc4
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Transfer heap12620
+[04:04:21] xsHost.c:138> Episode cachedsupportive-902q94686644902
+[04:04:21] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,7244,9216,33968,35824,2784,4608,828,185,2,0,1262,0
+[04:04:22] xsHost.c:138> Transfer starting2102912f49dc8
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:22] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,8520,9216,34560,35824,2112,4608,21,185,2,0,105,0
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:22] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Transfer heap12620
+[04:04:23] xsHost.c:138> Episode cachedsupportive-903q94686644903
+[04:04:23] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,7528,9216,34688,35824,2784,4608,809,185,2,0,1157,0
+[04:04:24] xsHost.c:138> Transfer starting210295aa89dcc
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,8752,9216,35216,35824,2112,4608,200,185,2,0,752,0
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:24] xsHost.c:138> Transfer heap12620
+[04:04:25] xsHost.c:138> Episode cachedsupportive-904q94686644904
+[04:04:25] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,7528,9216,34688,35824,2784,4608,629,185,2,0,512,0
+[04:04:26] xsHost.c:138> Transfer starting21029a25c9dd0
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Transfer heap12620
+[04:04:26] xsHost.c:138> Episode cachedsupportive-905q94686644905
+[04:04:26] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,6408,9216,33744,35824,2784,4608,839,185,2,0,1267,0
+[04:04:27] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,6408,9216,33744,35824,800,4608,0,185,2,0,0,0
+[04:04:28] ocess_manager.c:497> Heap Usage for App <Chunky Chi: Total Size <108128B> Used <100356B> Still allocated <20
+[04:04:29] moddable.c:147> evaluating creation record
+[04:04:29] xsHost.c:138> instruments key: Pixels drawn,Frames drawn,Timers,Files,Poco display list used,Piu comm
+[04:04:29] xsHost.c:138> d List used,App bytes free,Chunk used,Chunk available,Slot used,Slot available,Stack us
+[04:04:29] xsHost.c:138> ,Stack available,Garbage collections,Keys used,Modules loaded,Parser used,Floating Poin
+[04:04:29] xsHost.c:138> Promises settled
+[04:04:29] xsHost.c:138> Found mod "pebble.moddable.tech"
+[04:04:29] xsHost.c:138> instruments: 0,0,1,0,0,0,14572,3392,9216,9040,35824,1824,4608,0,181,0,0,0,0
+[04:04:30] xsHost.c:138> Episode opened
+[04:04:30] xsHost.c:138> Reading saves
+[04:04:30] xsHost.c:138> Save restored0
+[04:04:30] scenes.c:68> Background motion 1
+[04:04:30] xsHost.c:138> Runtime heap14064
+[04:04:30] xsHost.c:138> Chunky readysupportive-900q94686644900node0
+[04:04:30] xsHost.c:138> instruments: 0,1,0,0,0,0,12880,5568,9216,33392,35824,3984,4608,838,184,2,0,53,7
+[04:04:31] xsHost.c:138> instruments: 0,0,0,0,0,0,12880,5568,9216,33392,35824,288,4608,0,184,2,0,0,0
+[04:04:32] xsHost.c:138> instruments: 0,0,0,0,0,0,12880,5568,9216,33392,35824,288,4608,0,184,2,0,0,0
+[04:04:32] portrait.c:10> Card episode 900: Queue test 900
+[04:04:33] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,8220,9216,33536,35824,3664,4608,3,184,2,0,80,0
+[04:04:34] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,8220,9216,33536,35824,288,4608,0,184,2,0,0,0
+[04:04:35] portrait.c:10> Card episode 901: Queue test 901
+[04:04:35] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,8932,9216,30624,35824,3472,4608,460,184,2,0,20,0
+[04:04:36] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,8932,9216,30624,35824,288,4608,0,184,2,0,0,0
+[04:04:37] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,5512,9216,32800,35824,3504,4608,2,184,2,0,28,0
+[04:04:38] ocess_manager.c:497> Heap Usage for App <Chunky Chi: Total Size <108128B> Used <100356B> Still allocated <20
+[04:04:39] moddable.c:147> evaluating creation record
+[04:04:39] xsHost.c:138> instruments key: Pixels drawn,Frames drawn,Timers,Files,Poco display list used,Piu comm
+[04:04:39] xsHost.c:138> d List used,App bytes free,Chunk used,Chunk available,Slot used,Slot available,Stack us
+[04:04:39] xsHost.c:138> ,Stack available,Garbage collections,Keys used,Modules loaded,Parser used,Floating Poin
+[04:04:39] xsHost.c:138> Promises settled
+[04:04:39] xsHost.c:138> Found mod "pebble.moddable.tech"
+[04:04:39] xsHost.c:138> instruments: 0,0,1,0,0,0,14572,3392,9216,9040,35824,1824,4608,0,181,0,0,0,0
+[04:04:40] xsHost.c:138> Episode opened
+[04:04:40] xsHost.c:138> Reading saves
+[04:04:40] xsHost.c:138> Save restored0
+[04:04:40] scenes.c:68> Background motion 1
+[04:04:40] xsHost.c:138> Runtime heap14064
+[04:04:40] xsHost.c:138> Chunky readysupportive-901q94686644901node0
+[04:04:40] xsHost.c:138> instruments: 0,1,0,0,0,0,12880,5568,9216,33392,35824,3984,4608,838,184,2,0,52,7
+[04:04:41] xsHost.c:138> instruments: 0,0,0,0,0,0,12880,5568,9216,33392,35824,288,4608,0,184,2,0,0,0
+[04:04:42] xsHost.c:138> instruments: 0,0,0,0,0,0,12880,5568,9216,33392,35824,288,4608,0,184,2,0,0,0
+[04:04:43] xsHost.c:138> instruments: 0,2,0,0,0,0,12880,5396,9216,31008,35824,3488,4608,2,184,2,0,34,0
+[04:04:44] xsHost.c:138> instruments: 0,3,0,0,0,0,12880,5396,9216,31008,35824,3488,4608,3,184,2,0,33,0
+[04:04:45] xsHost.c:138> instruments: 0,2,0,0,0,0,12880,5316,9216,30848,35824,3488,4608,2,184,2,0,22,0
+[04:04:46] xsHost.c:138> instruments: 0,1,0,0,0,0,12880,7092,9216,32320,35824,3488,4608,1,184,2,0,11,0
+[04:04:47] xsHost.c:138> instruments: 0,4,0,0,0,0,12880,7208,9216,32320,35824,3488,4608,8,184,2,0,44,0
+[04:04:48] xsHost.c:138> instruments: 0,1,0,0,0,0,12880,7208,9216,32320,35824,3488,4608,2,184,2,0,11,0
+[04:04:48] xsHost.c:138> Offline storage458752cached105145
+[04:04:49] xsHost.c:138> instruments: 0,1,0,0,0,0,12880,7212,9216,32320,35824,3488,4608,2,184,2,0,12,0
+[04:04:50] xsHost.c:138> Transfer starting21029ea109dd4
+[04:04:50] xsHost.c:138> Transfer heap12684
+[04:04:50] xsHost.c:138> instruments: 0,1,0,0,0,0,12880,7104,9216,31904,35824,3504,4608,20,184,2,0,119,0
+[04:04:51] ocess_manager.c:497> Heap Usage for App <Chunky Chi: Total Size <108128B> Used <100356B> Still allocated <20
+[04:04:52] moddable.c:147> evaluating creation record
+[04:04:52] xsHost.c:138> instruments key: Pixels drawn,Frames drawn,Timers,Files,Poco display list used,Piu comm
+[04:04:52] xsHost.c:138> d List used,App bytes free,Chunk used,Chunk available,Slot used,Slot available,Stack us
+[04:04:52] xsHost.c:138> ,Stack available,Garbage collections,Keys used,Modules loaded,Parser used,Floating Poin
+[04:04:52] xsHost.c:138> Promises settled
+[04:04:52] xsHost.c:138> Found mod "pebble.moddable.tech"
+[04:04:52] xsHost.c:138> instruments: 0,0,1,0,0,0,14572,3392,9216,9040,35824,1824,4608,0,181,0,0,0,0
+[04:04:52] xsHost.c:138> Episode opened
+[04:04:52] xsHost.c:138> Reading saves
+[04:04:52] xsHost.c:138> Save restored0
+[04:04:53] scenes.c:68> Background motion 1
+[04:04:53] xsHost.c:138> Runtime heap14064
+[04:04:53] xsHost.c:138> Chunky readysupportive-901q94686644901node0
+[04:04:53] xsHost.c:138> instruments: 0,1,0,0,0,0,12880,5568,9216,33392,35824,3984,4608,838,184,2,0,52,7
+[04:04:54] xsHost.c:138> instruments: 0,0,0,0,0,0,12880,5568,9216,33392,35824,288,4608,0,184,2,0,0,0
+[04:04:55] xsHost.c:138> instruments: 0,0,0,0,0,0,12880,5568,9216,33392,35824,288,4608,0,184,2,0,0,0
+[04:04:55] portrait.c:10> Card episode 901: Queue test 901
+[04:04:56] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,7652,9216,33184,35824,3664,4608,3,184,2,0,80,0
+[04:04:57] portrait.c:10> Card episode 902: Queue test 902
+[04:04:57] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,8300,9216,35376,35824,3472,4608,458,184,2,0,18,0
+[04:04:58] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,8300,9216,35376,35824,800,4608,0,184,2,0,0,0
+[04:04:59] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,5512,9216,32800,35824,3504,4608,3,184,2,0,28,0
+[04:04:59] portrait.c:10> Card episode 902: Queue test 902
+[04:05:00] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,5512,9216,33232,35824,3104,4608,2,184,2,0,52,0
+[04:05:01] portrait.c:10> Card episode 903: Queue test 903
+[04:05:01] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,5040,9216,32944,35824,3664,4608,461,184,2,0,37,0
+[04:05:02] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,5040,9216,32944,35824,800,4608,0,184,2,0,0,0
+[04:05:03] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,5512,9216,32800,35824,3504,4608,1,184,2,0,28,0
+[04:05:03] portrait.c:10> Card episode 903: Queue test 903
+[04:05:04] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,6216,9216,33504,35824,3104,4608,2,184,2,0,52,0
+[04:05:05] portrait.c:10> Card episode 904: Queue test 904
+[04:05:05] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,7440,9216,30560,35824,3664,4608,461,184,2,0,37,0
+[04:05:06] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,7440,9216,30560,35824,800,4608,0,184,2,0,0,0
+[04:05:07] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,5512,9216,32800,35824,3504,4608,1,184,2,0,28,0
+[04:05:07] portrait.c:10> Card episode 904: Queue test 904
+[04:05:08] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,6444,9216,33904,35824,3104,4608,2,184,2,0,52,0
+[04:05:09] portrait.c:10> Card episode 905: Queue test 905
+[04:05:09] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,8252,9216,32592,35824,3664,4608,460,184,2,0,37,0
+[04:05:10] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,8252,9216,32592,35824,800,4608,0,184,2,0,0,0
+[04:05:11] xsHost.c:138> Transfer starting21489c160b4e2
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,8864,9216,32640,35824,3504,4608,204,184,2,0,809,0
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:11] xsHost.c:138> Transfer heap12620
+[04:05:12] xsHost.c:138> Episode activatedsupportive-136b319cc93962
+[04:05:12] portrait.c:10> Card episode 13: What Do You Want?
+[04:05:12] reactions.inc:31> Reaction 24 started free=12620
+[04:05:12] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,8692,9216,33168,35824,2752,4608,616,185,2,0,460,0
+[04:05:13] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,8692,9216,33168,35824,288,4608,0,185,2,0,0,0
+[04:05:14] ocess_manager.c:497> Heap Usage for App <Chunky Chi: Total Size <108128B> Used <100356B> Still allocated <20
+[04:05:15] moddable.c:147> evaluating creation record
+[04:05:15] xsHost.c:138> instruments key: Pixels drawn,Frames drawn,Timers,Files,Poco display list used,Piu comm
+[04:05:15] xsHost.c:138> d List used,App bytes free,Chunk used,Chunk available,Slot used,Slot available,Stack us
+[04:05:15] xsHost.c:138> ,Stack available,Garbage collections,Keys used,Modules loaded,Parser used,Floating Poin
+[04:05:15] xsHost.c:138> Promises settled
+[04:05:15] xsHost.c:138> Found mod "pebble.moddable.tech"
+[04:05:15] xsHost.c:138> instruments: 0,0,1,0,0,0,14572,3392,9216,9040,35824,1824,4608,0,181,0,0,0,0
+[04:05:16] xsHost.c:138> Episode opened
+[04:05:16] xsHost.c:138> Reading saves
+[04:05:16] xsHost.c:138> Save restored-1
+[04:05:16] scenes.c:68> Background motion 1
+[04:05:16] xsHost.c:138> Runtime heap14064
+[04:05:16] xsHost.c:138> Chunky readysupportive-136b319cc93962node-1
+[04:05:16] portrait.c:10> Card episode 13: What Do You Want?
+[04:05:16] reactions.inc:31> Reaction 24 started free=12876
+[04:05:16] xsHost.c:138> instruments: 0,0,0,0,0,0,12928,6096,9216,35312,35824,3984,4608,842,185,2,0,17,7
+[04:05:17] xsHost.c:138> instruments: 0,0,0,0,0,0,12928,8412,9216,34608,35824,1904,4608,1,185,2,0,10,0

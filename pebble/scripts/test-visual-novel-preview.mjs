@@ -5,7 +5,7 @@ import sharp from 'sharp';
 import assert from 'node:assert/strict';
 import {reviewPage} from './review-page.mjs';
 const library=JSON.parse(fs.readFileSync('scenes/library.json')),out='.local/visual-novel';fs.mkdirSync(out,{recursive:true});
-execFileSync('cc',['-O2','scripts/visual-novel-host.c','-o',out+'/render']);
+execFileSync('cc',['-O2','-DPACKED_STAGE','scripts/visual-novel-host.c','-o',out+'/render']);
 const browser=await chromium.launch({headless:true});let checks=0;
 try{const page=await browser.newPage();await page.setContent(reviewPage({library,ensemble:{},shots:[],supported:[],messages:[]}));
  for(const s of library.scenes)for(const t of [0,1800,4000])for(const ambient of [0,1600]){

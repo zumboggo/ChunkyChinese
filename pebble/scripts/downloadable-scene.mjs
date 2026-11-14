@@ -12,9 +12,14 @@ export function validSceneWire(wire){
   const k=a.slice(6+i*5,11+i*5),[t,dy,hx,hy,angle]=k;
   if(t<0||t>12000||(i===0?t!==0:t<=previous[0])||Math.abs(dy)>8||hx< -30||hx>24||hy< -42||hy>8||Math.abs(angle)>300)return false;
   // Segment interpolation stays in the arm's reachable annulus; no elbow singularity.
-  const x=25+hx,y=29+hy-dy*.3;
-  if(x*x+y*y>56*56)return false;
-  if(previous){const px=25+previous[2],py=29+previous[3]-previous[1]*.3,dx=x-px,dy2=y-py,d=dx*dx+dy2*dy2,u=d?Math.max(0,Math.min(1,-(px*dx+py*dy2)/d)):0;if((px+u*dx)**2+(py+u*dy2)**2<64)return false;}
+  // Tenths of a pixel keep the native and authoring boundary checks exact.
+  const x=(25+hx)*10,y=(29+hy)*10-dy*3;
+  if(x*x+y*y>313600)return false;
+  if(previous){const px=(25+previous[2])*10,py=(29+previous[3])*10-previous[1]*3,dx=x-px,dy2=y-py,d=dx*dx+dy2*dy2,dot=-(px*dx+py*dy2);
+   if(!d||dot<=0){if(px*px+py*py<6400)return false;}
+   else if(dot>=d){if(x*x+y*y<6400)return false;}
+   else if((px*dy2-py*dx)**2<6400*d)return false;
+  }
   previous=k;
  }
  return previous[0]>=800;

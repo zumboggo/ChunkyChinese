@@ -6,13 +6,13 @@ export const root=new URL('../',import.meta.url);
 export const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 const read=p=>fs.readFileSync(new URL(p,root));
 export function runtimeFiles(){
- const files=['reader/src/embeddedjs/compiled/main.js','scripts/compact-runtime.mjs','package.json','reading-mode.json','scenes/library.json','scenes/visual-novel.json','scenes/ensemble/characters.json','reader/package.json','reader/src/embeddedjs/manifest.json'];
+ const files=['reader/src/embeddedjs/compiled/main.js','scripts/compact-runtime.mjs','scripts/pack-stage.py','reader/wscript','package.json','reading-mode.json','scenes/library.json','scenes/visual-novel.json','scenes/ensemble/characters.json','reader/package.json','reader/src/embeddedjs/manifest.json'];
  for(const dir of ['reader/src/c/','reader/src/embeddedjs/','reader/src/pkjs/'])for(const name of fs.readdirSync(new URL(dir,root))){
   if(!/\.(c|h|inc|js)$/.test(name)||['story_index.h','bundled.js','episode.js','legacy.js','upgrade.js','mc.ffi.c'].includes(name))continue;
   files.push(dir+name);
  }
  const pkg=JSON.parse(read('reader/package.json'));
- for(const asset of pkg.pebble.resources.media)if(asset.file!=='data/story.ndjson'){
+ for(const asset of pkg.pebble.resources.media)if(!['data/story.ndjson','data/story-index.bin'].includes(asset.file)){
   const p='reader/resources/'+asset.file;if(!fs.existsSync(new URL(p,root)))throw Error('Missing runtime resource: '+p);files.push(p);
  }
  return Object.fromEntries([...new Set(files)].sort().map(p=>[p,hash(read(p))]));

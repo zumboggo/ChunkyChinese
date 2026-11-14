@@ -1,0 +1,141 @@
+[04:09:10] reactions.inc:27> Reaction 24 held free=12904 max=22
+[04:09:10] xsHost.c:138> Transfer starting21489c160b4e2
+[04:09:10] xsHost.c:138> Transfer heap12760
+[04:09:10] xsHost.c:138> TRANSFER ERRORIncomplete download
+[04:09:10] xsHost.c:138> Transfer starting21489c160b4e2
+[04:09:10] xsHost.c:138> Transfer heap12760
+[04:09:11] ocess_manager.c:497> Heap Usage for App <Chunky Chi: Total Size <108128B> Used <100324B> Still allocated <20
+[04:09:12] moddable.c:147> evaluating creation record
+[04:09:12] xsHost.c:138> instruments key: Pixels drawn,Frames drawn,Timers,Files,Poco display list used,Piu comm
+[04:09:12] xsHost.c:138> d List used,App bytes free,Chunk used,Chunk available,Slot used,Slot available,Stack us
+[04:09:12] xsHost.c:138> ,Stack available,Garbage collections,Keys used,Modules loaded,Parser used,Floating Poin
+[04:09:12] xsHost.c:138> Promises settled
+[04:09:12] xsHost.c:138> Found mod "pebble.moddable.tech"
+[04:09:12] xsHost.c:138> instruments: 0,0,1,0,0,0,14572,3392,9216,9040,35824,1824,4608,0,181,0,0,0,0
+[04:09:12] xsHost.c:138> Episode opened
+[04:09:12] xsHost.c:138> Reading saves
+[04:09:12] xsHost.c:138> Save restored-1
+[04:09:12] scenes.c:68> Background motion 1
+[04:09:12] xsHost.c:138> Runtime heap14064
+[04:09:12] xsHost.c:138> Chunky readysupportive-136b319cc93962node-1
+[04:09:12] portrait.c:10> Card episode 13: What Do You Want?
+[04:09:12] reactions.inc:31> Reaction 24 started free=12876
+[04:09:13] xsHost.c:138> instruments: 0,0,0,0,0,0,12928,4748,9216,34272,35824,4032,4608,12,184,2,0,3,7
+[04:09:14] xsHost.c:138> instruments: 0,0,0,0,0,0,12928,5760,9216,31392,35824,1904,4608,1,184,2,0,10,0
+[04:09:15] reactions.inc:27> Reaction 24 held free=12876 max=22
+[04:09:15] xsHost.c:138> Transfer starting21489c160b4e2
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> TRANSFER ERRORChunk checksum 0 e2c1cff6/0 len 600
+[04:09:15] xsHost.c:138> Transfer starting21489c160b4e2
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> instruments: 0,0,0,0,0,0,12928,6060,9216,31296,35824,2096,4608,202,184,2,0,819,0
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:15] xsHost.c:138> Transfer heap12732
+[04:09:16] xsHost.c:138> Episode activatedsupportive-136b319cc93962
+[04:09:16] portrait.c:10> Card episode 13: What Do You Want?
+[04:09:16] portrait.c:10> Card episode 13: What Do You Want?
+[04:09:16] xsHost.c:138> Transfer starting227cb6e4a24
+[04:09:16] xsHost.c:138> Transfer heap12732
+[04:09:16] xsHost.c:138> Episode activatedsupportive-997rxtest123456
+[04:09:16] portrait.c:10> Card episode 997: Reaction card One
+[04:09:16] xsHost.c:138> instruments: 0,0,0,0,0,0,12928,5728,9216,34672,35824,2752,4608,506,185,2,0,453,0
+[04:09:17] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,5144,9216,30976,35824,3488,4608,1,185,2,0,3,0
+[04:09:18] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,5344,9216,30976,35824,3488,4608,1,185,2,0,3,0
+[04:09:19] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,5344,9216,30976,35824,3488,4608,1,185,2,0,3,0
+[04:09:20] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,5344,9216,30976,35824,3488,4608,1,185,2,0,3,0
+[04:09:21] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,5344,9216,30976,35824,3488,4608,1,185,2,0,3,0
+[04:09:22] xsHost.c:138> instruments: 0,2,0,0,0,0,12816,4668,9216,30848,35824,3488,4608,2,185,2,0,6,0
+[04:09:23] portrait.c:10> Card episode 997: Reaction card One
+[04:09:23] reactions.inc:31> Reaction 24 started free=12620
+[04:09:23] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,5388,9216,34688,35824,3104,4608,0,185,2,0,3,0
+[04:09:24] xsHost.c:138> Transfer starting227d84f4a3d
+[04:09:24] xsHost.c:138> Transfer heap12620
+[04:09:24] xsHost.c:138> Episode activatedsupportive-997rxtest123457
+[04:09:24] portrait.c:10> Card episode 997: Reaction card Two
+[04:09:24] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,7576,9216,32448,35824,2720,4608,13,185,2,0,87,0
+[04:09:25] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,7576,9216,32448,35824,288,4608,0,185,2,0,0,0
+[04:09:25] reactions.inc:27> Reaction 24 held free=12620 max=24
+[04:09:26] reactions.inc:31> Reaction 24 started free=12620
+[04:09:26] xsHost.c:138> instruments: 0,1,0,0,0,0,12816,4640,9216,31840,35824,3360,4608,1,185,2,0,10,0
+[04:09:27] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,4640,9216,31840,35824,288,4608,0,185,2,0,0,0
+[04:09:28] reactions.inc:27> Reaction 24 held free=12620 max=22
+[04:09:28] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,4640,9216,31840,35824,288,4608,0,185,2,0,0,0
+[04:09:29] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,4640,9216,31840,35824,288,4608,0,185,2,0,0,0
+[04:09:30] portrait.c:10> Card episode 997: Reaction card Two
+[04:09:30] reactions.inc:31> Reaction 24 started free=12620
+[04:09:30] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,7340,9216,32592,35824,3104,4608,1,185,2,0,42,0
+[04:09:31] xsHost.c:138> Transfer starting21489c160b4e2
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,5556,9216,31504,35824,2096,4608,173,185,2,0,619,0
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:31] xsHost.c:138> Transfer heap12620
+[04:09:32] xsHost.c:138> Episode activatedsupportive-136b319cc93962
+[04:09:32] portrait.c:10> Card episode 13: What Do You Want?
+[04:09:32] reactions.inc:31> Reaction 24 started free=12620
+[04:09:32] xsHost.c:138> instruments: 0,0,0,0,0,0,12816,8712,9216,33152,35824,2752,4608,622,185,2,0,508,0

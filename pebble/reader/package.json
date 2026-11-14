@@ -1,7 +1,7 @@
 {
   "name": "chunky-chinese-pebble",
   "author": "David Hepting",
-  "version": "1.13.0",
+  "version": "1.14.0",
   "keywords": [
     "pebble-app"
   ],
@@ -63,6 +63,21 @@
           "type": "raw",
           "name": "REACTIONS",
           "file": "data/reactions.bin"
+        },
+        {
+          "type": "raw",
+          "name": "LIBRARY",
+          "file": "data/library.bin"
+        },
+        {
+          "type": "raw",
+          "name": "STAGE",
+          "file": "data/stage.bin"
+        },
+        {
+          "type": "raw",
+          "name": "STORY_INDEX",
+          "file": "data/story-index.bin"
         }
       ]
     },
