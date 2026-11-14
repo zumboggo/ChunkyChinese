@@ -1,0 +1,21 @@
+{
+  "phrase": "你打算每天都这样吗？",
+  "pinyin": "nǐ dǎ suan měi tiān dōu zhè yàng ma ？",
+  "english": "Are you going to do this every day?",
+  "source": "Existing Episode 13 Mandarin audio; no new synthesis",
+  "sourceSha256": "97adb88d39dfcd202606fc365d06eeec40328fcdf50d822b167917c7158ba184",
+  "formats": [
+    {
+      "rate": 8000,
+      "bits": 8,
+      "bytes": 15650,
+      "seconds": 1.95625
+    },
+    {
+      "rate": 16000,
+      "bits": 8,
+      "bytes": 31300,
+      "seconds": 1.95625
+    }
+  ]
+}

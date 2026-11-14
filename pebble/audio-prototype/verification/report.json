@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "pbwSha256": "52061d0aa3de12bbd9c50dddc56ad53753b88fc14df05cb94d6dce82af1d0b22",
+  "checks": [
+    "offline resources",
+    "both sample rates complete",
+    "all PCM bytes accepted with matching checksum",
+    "repeat playback",
+    "stop/recovery",
+    "WAV previews match watch PCM"
+  ],
+  "stopReason": 1,
+  "measurements": [
+    {
+      "rate": 8000,
+      "reason": 0,
+      "sent": 15650,
+      "checksum": 1396219667,
+      "idleFree": 127060,
+      "minFree": 127060,
+      "afterFree": 127060,
+      "elapsedMs": 875,
+      "pumpCallbacks": 64
+    },
+    {
+      "rate": 16000,
+      "reason": 0,
+      "sent": 31300,
+      "checksum": 3045910210,
+      "idleFree": 127060,
+      "minFree": 127060,
+      "afterFree": 127060,
+      "elapsedMs": 1851,
+      "pumpCallbacks": 111
+    },
+    {
+      "rate": 8000,
+      "reason": 0,
+      "sent": 15650,
+      "checksum": 1396219667,
+      "idleFree": 127060,
+      "minFree": 127060,
+      "afterFree": 127060,
+      "elapsedMs": 1859,
+      "pumpCallbacks": 64
+    },
+    {
+      "rate": 16000,
+      "reason": 0,
+      "sent": 31300,
+      "checksum": 3045910210,
+      "idleFree": 127060,
+      "minFree": 127060,
+      "afterFree": 127060,
+      "elapsedMs": 2857,
+      "pumpCallbacks": 109
+    }
+  ],
+  "audioBufferBytes": 512,
+  "physicalWatchTested": false,
+  "readerIntegrationTested": false,
+  "systemAudioHeapMeasured": false
+}

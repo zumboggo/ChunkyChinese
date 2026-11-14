@@ -1,0 +1,37 @@
+{
+  "name": "audio-prototype",
+  "author": "David Hepting",
+  "version": "1.0.0",
+  "keywords": [
+    "pebble-app"
+  ],
+  "private": true,
+  "dependencies": {},
+  "pebble": {
+    "displayName": "Chinese Audio A-B",
+    "uuid": "9b3ac961-ab2b-41ec-aed8-562985bd38e3",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "emery"
+    ],
+    "watchapp": {
+      "watchface": false
+    },
+    "messageKeys": [],
+    "resources": {
+      "media": [
+        {
+          "type": "raw",
+          "name": "PHRASE_8000",
+          "file": "phrase-8000.pcm"
+        },
+        {
+          "type": "raw",
+          "name": "PHRASE_16000",
+          "file": "phrase-16000.pcm"
+        }
+      ]
+    }
+  }
+}
