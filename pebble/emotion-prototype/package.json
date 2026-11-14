@@ -1,0 +1,32 @@
+{
+  "name": "emotion-prototype",
+  "author": "David Hepting",
+  "version": "1.0.0",
+  "keywords": [
+    "pebble-app"
+  ],
+  "private": true,
+  "dependencies": {},
+  "pebble": {
+    "displayName": "Alden Reactions",
+    "uuid": "7bc0941d-3cf7-45f4-bbde-23f3504bd588",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "emery"
+    ],
+    "watchapp": {
+      "watchface": false
+    },
+    "messageKeys": [],
+    "resources": {
+      "media": [
+        {
+          "type": "raw",
+          "name": "ALDEN",
+          "file": "alden.rle"
+        }
+      ]
+    }
+  }
+}
