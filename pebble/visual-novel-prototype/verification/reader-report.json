@@ -1,0 +1,13 @@
+{
+  "baselineBooted": true,
+  "integratedBooted": false,
+  "error": "fxMapArchive failed (in ArchivePebbleResource); fxAbort unhandled exception",
+  "baselineCompiledRamBytes": 28676,
+  "integratedCompiledRamBytes": 33864,
+  "additionalCompiledRamBytes": 5188,
+  "baselineResourceBytes": 130825,
+  "integratedResourceBytes": 133587,
+  "baselineHeldReactionFreeHeapBytes": 4892,
+  "integrationRuntimeMeasurements": null,
+  "physicalWatchTested": false
+}

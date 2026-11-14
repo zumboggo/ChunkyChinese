@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": [
+    "three previews",
+    "finite gestures",
+    "independent ambience",
+    "motion off",
+    "individual replay",
+    "pause",
+    "palette selector",
+    "320px layout"
+  ]
+}
