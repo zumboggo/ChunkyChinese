@@ -113,3 +113,10 @@ lab build. Review its source-colour and watch-colour previews before expanding.
 The [64px comparison](compact64/README.md) tests the same Alden reaction with
 16- and 8-entry packed palettes and reusable facial patches. It includes
 side-by-side previews, full-reader measurements, and separate lab PBWs.
+
+## Approved Gentle Sincerity set
+
+The [six-animation Alden set](alden-sincere/README.md) uses Gentle Sincerity as
+the baseline/laugh and Bright Curiosity for shock, with the selected warm peach
+palette. It provides finite previews, reusable patches and verified compact
+resources; native palette conversion/integration is still pending.
