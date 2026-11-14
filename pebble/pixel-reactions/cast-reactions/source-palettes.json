@@ -1,0 +1,347 @@
+{
+  "images": [
+    {
+      "character": "bo",
+      "option": 1,
+      "expression": "shocked",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        96,
+        47,
+        814,
+        858
+      ]
+    },
+    {
+      "character": "bo",
+      "option": 1,
+      "expression": "laughing",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        87,
+        47,
+        805,
+        858
+      ]
+    },
+    {
+      "character": "bo",
+      "option": 2,
+      "expression": "shocked",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        107,
+        52,
+        843,
+        858
+      ]
+    },
+    {
+      "character": "bo",
+      "option": 2,
+      "expression": "laughing",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        60,
+        52,
+        797,
+        858
+      ]
+    },
+    {
+      "character": "bo",
+      "option": 3,
+      "expression": "shocked",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        113,
+        35,
+        846,
+        847
+      ]
+    },
+    {
+      "character": "bo",
+      "option": 3,
+      "expression": "laughing",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        41,
+        35,
+        774,
+        847
+      ]
+    },
+    {
+      "character": "bo",
+      "option": 4,
+      "expression": "shocked",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        66,
+        29,
+        831,
+        855
+      ]
+    },
+    {
+      "character": "bo",
+      "option": 4,
+      "expression": "laughing",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        55,
+        31,
+        821,
+        856
+      ]
+    },
+    {
+      "character": "jeremy",
+      "option": 1,
+      "expression": "shocked",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        164,
+        65,
+        795,
+        811
+      ]
+    },
+    {
+      "character": "jeremy",
+      "option": 1,
+      "expression": "laughing",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        91,
+        65,
+        723,
+        811
+      ]
+    },
+    {
+      "character": "jeremy",
+      "option": 2,
+      "expression": "shocked",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        104,
+        50,
+        784,
+        827
+      ]
+    },
+    {
+      "character": "jeremy",
+      "option": 2,
+      "expression": "laughing",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        104,
+        50,
+        785,
+        827
+      ]
+    },
+    {
+      "character": "jeremy",
+      "option": 3,
+      "expression": "shocked",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        150,
+        42,
+        813,
+        843
+      ]
+    },
+    {
+      "character": "jeremy",
+      "option": 3,
+      "expression": "laughing",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        75,
+        42,
+        738,
+        843
+      ]
+    },
+    {
+      "character": "jeremy",
+      "option": 4,
+      "expression": "shocked",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        110,
+        35,
+        818,
+        844
+      ]
+    },
+    {
+      "character": "jeremy",
+      "option": 4,
+      "expression": "laughing",
+      "dimensions": [
+        64,
+        64
+      ],
+      "colors": 8,
+      "crop": [
+        70,
+        35,
+        777,
+        844
+      ]
+    }
+  ],
+  "palettes": {
+    "bo": [
+      [
+        45,
+        32,
+        28
+      ],
+      [
+        87,
+        51,
+        35
+      ],
+      [
+        152,
+        85,
+        55
+      ],
+      [
+        255,
+        202,
+        158
+      ],
+      [
+        200,
+        149,
+        101
+      ],
+      [
+        62,
+        96,
+        94
+      ],
+      [
+        185,
+        104,
+        75
+      ],
+      [
+        255,
+        255,
+        255
+      ]
+    ],
+    "jeremy": [
+      [
+        50,
+        31,
+        23
+      ],
+      [
+        118,
+        61,
+        35
+      ],
+      [
+        172,
+        99,
+        62
+      ],
+      [
+        255,
+        202,
+        158
+      ],
+      [
+        240,
+        174,
+        135
+      ],
+      [
+        182,
+        90,
+        66
+      ],
+      [
+        231,
+        207,
+        171
+      ],
+      [
+        255,
+        255,
+        255
+      ]
+    ]
+  },
+  "note": "Exact 64px, eight-colour design mockups. Hardware palette mapping is pending."
+}

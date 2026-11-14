@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "animations": 6,
+  "decodedFramesMatch": 31,
+  "packedArtBytes": 2544,
+  "resourceSha256": "da0bcbe93e3a0e4d439a5f3f069f1c52ae0d14d0f2acc5884c08f996b4ed67e5",
+  "colorLimit": 8,
+  "width": 64,
+  "height": 64,
+  "hardwarePaletteVerified": false,
+  "nativePlaybackTested": false,
+  "packedMotionBytes": 216,
+  "combinedPackedBytes": 2760,
+  "motionTableMatches": true
+}

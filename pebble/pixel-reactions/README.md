@@ -120,3 +120,10 @@ The [six-animation Alden set](alden-sincere/README.md) uses Gentle Sincerity as
 the baseline/laugh and Bright Curiosity for shock, with the selected warm peach
 palette. It provides finite previews, reusable patches and verified compact
 resources; native palette conversion/integration is still pending.
+
+## Bo and Jeremy selected animation sets
+
+The [selected cast packs](cast-reactions/README.md) extend the 64px, eight-colour
+workflow with six Bo reactions based on Keen Curiosity and six Jeremy reactions
+based on Playful Spark with the Big-hearted Energy laugh. Source-colour previews
+and compact resources are verified; native integration remains pending.
