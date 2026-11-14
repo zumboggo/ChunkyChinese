@@ -1,0 +1,160 @@
+[02:42:05] ocess_manager.c:497> Heap Usage for App <Chunky Chi: Total Size <104520B> Used <93272B> Still allocated <208
+[02:42:06] moddable.c:147> evaluating creation record
+[02:42:06] xsHost.c:138> Found mod "pebble.moddable.tech"
+[02:42:06] xsHost.c:138> Episode opened
+[02:42:06] xsHost.c:138> Reading saves
+[02:42:06] xsHost.c:138> Save restored-1
+[02:42:06] scenes.c:67> Background motion 0
+[02:42:06] xsHost.c:138> Chunky readysupportive-136b319cc93962node-1
+[02:42:06] portrait.c:10> Card episode 13: What Do You Want?
+[02:42:06] reactions.inc:31> Reaction 24 started free=13748
+[02:42:08] reactions.inc:27> Reaction 24 held free=13748 max=21
+[02:42:11] scenes.c:67> Background motion 1
+[02:42:12] scenes.c:67> Background motion 0
+[02:42:13] portrait.c:10> Card episode 13: What Do You Want?
+[02:42:13] reactions.inc:31> Reaction 24 started free=13440
+[02:42:18] scenes.c:77> Scene 1 started; free=13376
+[02:42:26] scenes.c:56> Scene 1 held; free=13572 draw avg/max=31/36 ms
+[02:42:30] scenes.c:77> Scene 1 started; free=13376
+[02:42:39] scenes.c:56> Scene 1 held; free=13572 draw avg/max=32/59 ms
+[02:42:43] scenes.c:77> Scene 2 started; free=13376
+[02:42:47] scenes.c:56> Scene 2 held; free=13572 draw avg/max=29/101 ms
+[02:42:54] scenes.c:77> Scene 3 started; free=13376
+[02:42:58] scenes.c:56> Scene 3 held; free=13572 draw avg/max=30/38 ms
+[02:43:04] scenes.c:77> Scene 4 started; free=13376
+[02:43:08] scenes.c:56> Scene 4 held; free=13572 draw avg/max=26/29 ms
+[02:43:14] scenes.c:77> Scene 5 started; free=13376
+[02:43:18] scenes.c:56> Scene 5 held; free=13572 draw avg/max=31/38 ms
+[02:43:27] scenes.c:77> Scene 6 started; free=13376
+[02:43:32] scenes.c:56> Scene 6 held; free=13572 draw avg/max=24/26 ms
+[02:43:36] scenes.c:77> Scene 6 started; free=13376
+[02:43:40] scenes.c:56> Scene 6 held; free=13572 draw avg/max=24/26 ms
+[02:43:45] scenes.c:77> Scene 7 started; free=13376
+[02:43:50] scenes.c:56> Scene 7 held; free=13572 draw avg/max=24/29 ms
+[02:43:56] scenes.c:77> Scene 8 started; free=13376
+[02:44:01] scenes.c:56> Scene 8 held; free=13572 draw avg/max=24/27 ms
+[02:44:07] scenes.c:77> Scene 9 started; free=13376
+[02:44:12] scenes.c:56> Scene 9 held; free=13572 draw avg/max=32/95 ms
+[02:44:20] scenes.c:77> Scene 10 started; free=13376
+[02:44:25] scenes.c:56> Scene 10 held; free=13572 draw avg/max=37/42 ms
+[02:44:29] scenes.c:77> Scene 10 started; free=13376
+[02:44:34] scenes.c:56> Scene 10 held; free=13572 draw avg/max=36/41 ms
+[02:44:38] scenes.c:77> Scene 11 started; free=13376
+[02:44:43] scenes.c:56> Scene 11 held; free=13572 draw avg/max=41/87 ms
+[02:44:49] scenes.c:77> Scene 12 started; free=13376
+[02:44:54] scenes.c:56> Scene 12 held; free=13572 draw avg/max=37/41 ms
+[02:45:00] scenes.c:77> Scene 13 started; free=13376
+[02:45:05] scenes.c:56> Scene 13 held; free=13572 draw avg/max=38/46 ms
+[02:45:13] scenes.c:77> Scene 14 started; free=13376
+[02:45:18] scenes.c:56> Scene 14 held; free=13572 draw avg/max=37/41 ms
+[02:45:22] scenes.c:77> Scene 14 started; free=13376
+[02:45:27] scenes.c:56> Scene 14 held; free=13572 draw avg/max=37/41 ms
+[02:45:31] scenes.c:77> Scene 15 started; free=13376
+[02:45:36] scenes.c:56> Scene 15 held; free=13572 draw avg/max=37/73 ms
+[02:45:42] scenes.c:77> Scene 16 started; free=13376
+[02:45:47] scenes.c:56> Scene 16 held; free=13572 draw avg/max=38/47 ms
+[02:45:53] scenes.c:77> Scene 17 started; free=13376
+[02:45:58] scenes.c:56> Scene 17 held; free=13572 draw avg/max=39/178 ms
+[02:46:07] scenes.c:77> Scene 18 started; free=13376
+[02:46:07] scenes.c:56> Scene 18 held; free=13572 draw avg/max=30/32 ms
+[02:46:12] scenes.c:77> Scene 18 started; free=13376
+[02:46:13] scenes.c:56> Scene 18 held; free=13572 draw avg/max=31/36 ms
+[02:46:18] scenes.c:77> Scene 19 started; free=13376
+[02:46:18] scenes.c:56> Scene 19 held; free=13572 draw avg/max=31/33 ms
+[02:46:26] scenes.c:77> Scene 20 started; free=13376
+[02:46:27] scenes.c:56> Scene 20 held; free=13572 draw avg/max=30/32 ms
+[02:46:34] scenes.c:77> Scene 21 started; free=13376
+[02:46:35] scenes.c:56> Scene 21 held; free=13572 draw avg/max=33/44 ms
+[02:46:43] scenes.c:77> Scene 22 started; free=13376
+[02:46:44] scenes.c:56> Scene 22 held; free=13572 draw avg/max=34/44 ms
+[02:46:51] scenes.c:77> Scene 23 started; free=13376
+[02:46:52] scenes.c:56> Scene 23 held; free=13572 draw avg/max=30/32 ms
+[02:47:00] scenes.c:77> Scene 24 started; free=13376
+[02:47:01] scenes.c:56> Scene 24 held; free=13572 draw avg/max=33/36 ms
+[02:47:08] scenes.c:77> Scene 25 started; free=13376
+[02:47:09] scenes.c:56> Scene 25 held; free=13572 draw avg/max=31/34 ms
+[02:47:19] scenes.c:77> Scene 26 started; free=13376
+[02:47:24] scenes.c:56> Scene 26 held; free=13572 draw avg/max=38/46 ms
+[02:47:27] scenes.c:77> Scene 26 started; free=13376
+[02:47:32] scenes.c:56> Scene 26 held; free=13572 draw avg/max=38/49 ms
+[02:47:37] scenes.c:77> Scene 27 started; free=13376
+[02:47:41] scenes.c:56> Scene 27 held; free=13572 draw avg/max=38/48 ms
+[02:47:48] scenes.c:77> Scene 28 started; free=13376
+[02:47:52] scenes.c:56> Scene 28 held; free=13572 draw avg/max=40/94 ms
+[02:47:59] scenes.c:77> Scene 29 started; free=13376
+[02:48:04] scenes.c:56> Scene 29 held; free=13572 draw avg/max=45/119 ms
+[02:48:10] scenes.c:77> Scene 30 started; free=13376
+[02:48:15] scenes.c:56> Scene 30 held; free=13572 draw avg/max=38/45 ms
+[02:48:24] scenes.c:77> Scene 31 started; free=13376
+[02:48:29] scenes.c:56> Scene 31 held; free=13572 draw avg/max=34/45 ms
+[02:48:32] scenes.c:77> Scene 31 started; free=13376
+[02:48:37] scenes.c:56> Scene 31 held; free=13572 draw avg/max=32/36 ms
+[02:48:41] scenes.c:77> Scene 32 started; free=13376
+[02:48:46] scenes.c:56> Scene 32 held; free=13572 draw avg/max=33/41 ms
+[02:48:49] pkjs> [PHONESIM] [WARNING] Exception decoding QemuInboundPacket.footer
+[02:48:49] pkjs> [PHONESIM] [WARNING] Exception decoding QemuInboundPacket.footer
+[02:48:53] scenes.c:77> Scene 33 started; free=13376
+[02:48:58] scenes.c:56> Scene 33 held; free=13572 draw avg/max=31/50 ms
+[02:49:04] scenes.c:77> Scene 34 started; free=13376
+[02:49:09] scenes.c:56> Scene 34 held; free=13572 draw avg/max=31/36 ms
+[02:49:15] scenes.c:77> Scene 35 started; free=13376
+[02:49:20] scenes.c:56> Scene 35 held; free=13572 draw avg/max=39/44 ms
+[02:49:26] scenes.c:77> Scene 36 started; free=13376
+[02:49:31] scenes.c:56> Scene 36 held; free=13572 draw avg/max=39/46 ms
+[02:49:37] scenes.c:77> Scene 37 started; free=13376
+[02:49:42] scenes.c:56> Scene 37 held; free=13572 draw avg/max=37/42 ms
+[02:49:48] scenes.c:77> Scene 38 started; free=13376
+[02:49:52] scenes.c:56> Scene 38 held; free=13572 draw avg/max=38/41 ms
+[02:49:59] scenes.c:77> Scene 39 started; free=13376
+[02:50:04] scenes.c:56> Scene 39 held; free=13572 draw avg/max=29/37 ms
+[02:50:10] scenes.c:77> Scene 40 started; free=13376
+[02:50:15] scenes.c:56> Scene 40 held; free=13572 draw avg/max=29/32 ms
+[02:50:21] scenes.c:77> Scene 41 started; free=13376
+[02:50:26] scenes.c:56> Scene 41 held; free=13572 draw avg/max=36/162 ms
+[02:50:32] scenes.c:77> Scene 42 started; free=13376
+[02:50:37] scenes.c:56> Scene 42 held; free=13572 draw avg/max=31/35 ms
+[02:50:45] portrait.c:10> Card episode 13: What Do You Want?
+[02:50:45] reactions.inc:31> Reaction 24 started free=13376
+[02:50:47] ocess_manager.c:497> Heap Usage for App <Chunky Chi: Total Size <104520B> Used <93272B> Still allocated <208
+[02:50:48] moddable.c:147> evaluating creation record
+[02:50:48] xsHost.c:138> Found mod "pebble.moddable.tech"
+[02:50:48] xsHost.c:138> Episode opened
+[02:50:48] xsHost.c:138> Reading saves
+[02:50:48] xsHost.c:138> Save restored-1
+[02:50:48] scenes.c:67> Background motion 0
+[02:50:48] xsHost.c:138> Chunky readysupportive-136b319cc93962node-1
+[02:50:48] portrait.c:10> Card episode 13: What Do You Want?
+[02:50:48] reactions.inc:31> Reaction 24 started free=13748
+[02:50:52] scenes.c:67> Background motion 1
+[02:50:53] portrait.c:10> Card episode 13: What Do You Want?
+[02:50:53] reactions.inc:31> Reaction 24 started free=13440
+[02:50:57] scenes.c:77> Scene 1 started; free=13376
+[02:51:06] scenes.c:56> Scene 1 held; free=13572 draw avg/max=32/74 ms
+[02:51:18] scenes.c:77> Scene 6 started; free=13376
+[02:51:22] scenes.c:56> Scene 6 held; free=13572 draw avg/max=24/36 ms
+[02:51:34] scenes.c:77> Scene 10 started; free=13376
+[02:51:38] scenes.c:56> Scene 10 held; free=13572 draw avg/max=37/41 ms
+[02:51:49] scenes.c:77> Scene 14 started; free=13376
+[02:51:54] scenes.c:56> Scene 14 held; free=13572 draw avg/max=40/76 ms
+[02:52:05] scenes.c:77> Scene 18 started; free=13376
+[02:52:06] scenes.c:56> Scene 18 held; free=13572 draw avg/max=30/32 ms
+[02:52:12] scenes.c:77> Scene 19 started; free=13376
+[02:52:13] scenes.c:56> Scene 19 held; free=13572 draw avg/max=30/33 ms
+[02:52:19] scenes.c:77> Scene 20 started; free=13376
+[02:52:20] scenes.c:56> Scene 20 held; free=13572 draw avg/max=34/38 ms
+[02:52:26] scenes.c:77> Scene 21 started; free=13376
+[02:52:27] scenes.c:56> Scene 21 held; free=13572 draw avg/max=30/34 ms
+[02:52:33] scenes.c:77> Scene 22 started; free=13376
+[02:52:34] scenes.c:56> Scene 22 held; free=13572 draw avg/max=30/33 ms
+[02:52:40] scenes.c:77> Scene 23 started; free=13376
+[02:52:41] scenes.c:56> Scene 23 held; free=13572 draw avg/max=31/33 ms
+[02:52:47] scenes.c:77> Scene 24 started; free=13376
+[02:52:48] scenes.c:56> Scene 24 held; free=13572 draw avg/max=30/31 ms
+[02:52:54] scenes.c:77> Scene 25 started; free=13376
+[02:52:55] scenes.c:56> Scene 25 held; free=13572 draw avg/max=30/33 ms
+[02:53:03] scenes.c:77> Scene 26 started; free=13376
+[02:53:08] scenes.c:56> Scene 26 held; free=13572 draw avg/max=37/41 ms
+[02:53:20] scenes.c:77> Scene 31 started; free=13376
+[02:53:25] scenes.c:56> Scene 31 held; free=13572 draw avg/max=34/80 ms
+[02:53:43] portrait.c:10> Card episode 13: What Do You Want?
+[02:53:43] reactions.inc:31> Reaction 24 started free=13376

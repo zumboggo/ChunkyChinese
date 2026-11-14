@@ -15,5 +15,10 @@ try{const page=await browser.newPage();await page.setContent(reviewPage({library
   const actual=await sharp(Buffer.from(base64,'base64')).removeAlpha().raw().toBuffer();
   if(!actual.equals(ppm.subarray(header.length))){await sharp(Buffer.from(base64,'base64')).toFile(out+'/mismatch-browser.png');await sharp(ppm.subarray(header.length),{raw:{width:200,height:228,channels:3}}).png().toFile(out+'/mismatch-native.png');let n=0;for(let i=0;i<actual.length;i++)if(actual[i]!==ppm[i+header.length])n++;throw Error(`Raster mismatch ${s.id} action=${t} ambient=${ambient}: ${n} channels`);}checks++;
  }
+ for(const e of JSON.parse(fs.readFileSync('pixel-reactions/native-catalogue.json')))for(const t of [0,300,4000])for(const scale of [2,3]){
+  execFileSync(out+'/render',[String(e.id),String(t),String(scale),out+'/frame.ppm']);const ppm=fs.readFileSync(out+'/frame.ppm'),header=Buffer.from('P6\n200 228\n255\n');
+  const base64=await page.evaluate(({id,t,scale})=>{const c=document.createElement('canvas');c.width=200;c.height=228;VN.reaction(c.getContext('2d'),id,t,scale);return c.toDataURL().split(',')[1];},{id:e.id,t,scale});
+  const actual=await sharp(Buffer.from(base64,'base64')).removeAlpha().raw().toBuffer();assert.ok(actual.equals(ppm.subarray(header.length)),`Reaction mismatch ${e.id} t=${t} scale=${scale}`);checks++;
+ }
  fs.writeFileSync(out+'/browser-parity.json',JSON.stringify({passed:true,pixelExactFrames:checks,renderer:'native C versus browser',physicalWatchTested:false},null,2)+'\n');console.log('PASS '+checks+' pixel-exact native/browser frames');
 }finally{await browser.close();}

@@ -173,5 +173,95 @@
     "actor": "YoungAlden",
     "emotion": "worried",
     "id": 1034
+  },
+  {
+    "actor": "Alden",
+    "emotion": "exhausted",
+    "id": 1035
+  },
+  {
+    "actor": "Alden",
+    "emotion": "holding-back-sadness",
+    "id": 1036
+  },
+  {
+    "actor": "Alden",
+    "emotion": "quietly-determined",
+    "id": 1037
+  },
+  {
+    "actor": "Hannah",
+    "emotion": "sheepish",
+    "id": 1038
+  },
+  {
+    "actor": "Hannah",
+    "emotion": "strained-smile",
+    "id": 1039
+  },
+  {
+    "actor": "Hannah",
+    "emotion": "reassuring",
+    "id": 1040
+  },
+  {
+    "actor": "Boe",
+    "emotion": "deadpan-disbelief",
+    "id": 1041
+  },
+  {
+    "actor": "Boe",
+    "emotion": "uncomfortable-concern",
+    "id": 1042
+  },
+  {
+    "actor": "Boe",
+    "emotion": "grudging-approval",
+    "id": 1043
+  },
+  {
+    "actor": "Jeremy",
+    "emotion": "sleepy",
+    "id": 1044
+  },
+  {
+    "actor": "Jeremy",
+    "emotion": "awkward-concern",
+    "id": 1045
+  },
+  {
+    "actor": "Jeremy",
+    "emotion": "sincere-encouragement",
+    "id": 1046
+  },
+  {
+    "actor": "Gorgon",
+    "emotion": "weary-patience",
+    "id": 1047
+  },
+  {
+    "actor": "Gorgon",
+    "emotion": "restrained-disapproval",
+    "id": 1048
+  },
+  {
+    "actor": "Gorgon",
+    "emotion": "reluctant-softening",
+    "id": 1049
+  },
+  {
+    "actor": "YoungAlden",
+    "emotion": "tearful",
+    "id": 1050
+  },
+  {
+    "actor": "YoungAlden",
+    "emotion": "frightened",
+    "id": 1051
+  },
+  {
+    "actor": "YoungAlden",
+    "emotion": "small-brave-resolve",
+    "id": 1052
   }
 ]

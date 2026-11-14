@@ -1,0 +1,272 @@
+[02:42:18] xsHost.c:138> Transfer starting539c86f9af8
+[02:42:18] xsHost.c:138> Episode activatedsupportive-999abcdef123456
+[02:42:18] portrait.c:10> Card episode 999: Download test
+[02:42:23] portrait.c:10> Card episode 999: Download test
+[02:42:26] scenes.c:67> Background motion 1
+[02:42:27] scenes.c:67> Background motion 0
+[02:42:27] portrait.c:10> Card episode 999: Download test
+[02:42:28] scenes.c:77> Scene 65535 started; free=13376
+[02:42:32] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=35/45 ms
+[02:42:36] scenes.c:77> Scene 65535 started; free=13376
+[02:42:40] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=48/130 ms
+[02:42:42] scenes.c:77> Scene 65535 started; free=13376
+[02:42:46] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=40/109 ms
+[02:42:48] scenes.c:77> Scene 65535 started; free=13376
+[02:42:51] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=38/87 ms
+[02:42:54] scenes.c:77> Scene 65535 started; free=13376
+[02:42:54] scenes.c:63> Scene focus 0 id=65535 action=85 ambient=0
+[02:42:57] scenes.c:63> Scene focus 1 id=65535 action=85 ambient=0
+[02:43:00] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=35/43 ms
+[02:43:01] xsHost.c:138> Transfer starting54056569b34
+[02:43:01] xsHost.c:138> Episode activatedsupportive-999abcdef123457
+[02:43:01] scenes.c:77> Scene 65535 started; free=13376
+[02:43:05] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=35/43 ms
+[02:43:08] xsHost.c:138> Transfer starting480cd0c9017
+[02:43:08] xsHost.c:138> TRANSFER ERRORAnimation recipe update needed
+[02:43:08] xsHost.c:138> Transfer starting480cd0c9017
+[02:43:09] ocess_manager.c:497> Heap Usage for App <Chunky Chi: Total Size <104520B> Used <93272B> Still allocated <208
+[02:43:10] moddable.c:147> evaluating creation record
+[02:43:10] xsHost.c:138> Found mod "pebble.moddable.tech"
+[02:43:10] xsHost.c:138> Episode opened
+[02:43:10] xsHost.c:138> Reading saves
+[02:43:10] xsHost.c:138> Save restored1
+[02:43:10] scenes.c:67> Background motion 0
+[02:43:10] xsHost.c:138> Chunky readysupportive-999abcdef123457node1
+[02:43:17] scenes.c:67> Background motion 1
+[02:43:18] scenes.c:77> Scene 65535 started; free=13440
+[02:43:22] scenes.c:56> Scene 65535 held; free=13636 draw avg/max=37/41 ms
+[02:43:27] portrait.c:10> Card episode 999: Download test
+[02:43:31] scenes.c:67> Background motion 0
+[02:43:32] portrait.c:10> Card episode 999: Download test
+[02:43:32] xsHost.c:138> Transfer starting2942d165500
+[02:43:32] xsHost.c:138> Episode activatedsupportive-999casttest0000
+[02:43:32] portrait.c:10> Card episode 999: Download test
+[02:43:37] portrait.c:10> Card episode 999: Download test
+[02:43:38] scenes.c:77> Scene 65535 started; free=13376
+[02:43:43] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=23/26 ms
+[02:43:47] scenes.c:77> Scene 65535 started; free=13376
+[02:43:52] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=23/27 ms
+[02:43:53] xsHost.c:138> Transfer starting3008ea55ff
+[02:43:53] xsHost.c:138> Episode activatedsupportive-999casttest0001
+[02:43:53] portrait.c:10> Card episode 999: Download test
+[02:43:58] portrait.c:10> Card episode 999: Download test
+[02:43:59] scenes.c:77> Scene 65535 started; free=13376
+[02:44:04] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=23/28 ms
+[02:44:08] xsHost.c:138> Transfer starting33032205b74
+[02:44:08] xsHost.c:138> Episode activatedsupportive-999casttest0002
+[02:44:08] portrait.c:10> Card episode 999: Download test
+[02:44:13] portrait.c:10> Card episode 999: Download test
+[02:44:13] scenes.c:77> Scene 65535 started; free=13376
+[02:44:18] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=25/86 ms
+[02:44:22] xsHost.c:138> Transfer starting2821cbb5239
+[02:44:22] xsHost.c:138> Episode activatedsupportive-999casttest0003
+[02:44:22] portrait.c:10> Card episode 999: Download test
+[02:44:27] portrait.c:10> Card episode 999: Download test
+[02:44:28] scenes.c:77> Scene 65535 started; free=13376
+[02:44:33] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=23/26 ms
+[02:44:36] xsHost.c:138> Transfer starting291e3a553ac
+[02:44:36] xsHost.c:138> Episode activatedsupportive-999casttest0010
+[02:44:36] portrait.c:10> Card episode 999: Download test
+[02:44:41] portrait.c:10> Card episode 999: Download test
+[02:44:42] scenes.c:77> Scene 65535 started; free=13376
+[02:44:47] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=36/60 ms
+[02:44:51] scenes.c:77> Scene 65535 started; free=13376
+[02:44:56] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=35/41 ms
+[02:44:57] xsHost.c:138> Transfer starting297b77f54ab
+[02:44:57] xsHost.c:138> Episode activatedsupportive-999casttest0011
+[02:44:57] portrait.c:10> Card episode 999: Download test
+[02:45:02] portrait.c:10> Card episode 999: Download test
+[02:45:03] scenes.c:77> Scene 65535 started; free=13376
+[02:45:08] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=35/40 ms
+[02:45:12] xsHost.c:138> Transfer starting327b8da5a20
+[02:45:12] xsHost.c:138> Episode activatedsupportive-999casttest0012
+[02:45:12] portrait.c:10> Card episode 999: Download test
+[02:45:16] portrait.c:10> Card episode 999: Download test
+[02:45:17] scenes.c:77> Scene 65535 started; free=13376
+[02:45:22] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=35/41 ms
+[02:45:26] xsHost.c:138> Transfer starting279e33450e5
+[02:45:26] xsHost.c:138> Episode activatedsupportive-999casttest0013
+[02:45:26] portrait.c:10> Card episode 999: Download test
+[02:45:31] portrait.c:10> Card episode 999: Download test
+[02:45:31] scenes.c:77> Scene 65535 started; free=13376
+[02:45:36] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=36/66 ms
+[02:45:40] xsHost.c:138> Transfer starting2942f595504
+[02:45:40] xsHost.c:138> Episode activatedsupportive-999casttest0020
+[02:45:40] portrait.c:10> Card episode 999: Download test
+[02:45:45] portrait.c:10> Card episode 999: Download test
+[02:45:46] scenes.c:77> Scene 65535 started; free=13376
+[02:45:51] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=37/42 ms
+[02:45:55] scenes.c:77> Scene 65535 started; free=13376
+[02:46:00] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=40/162 ms
+[02:46:01] xsHost.c:138> Transfer starting300b475603
+[02:46:01] xsHost.c:138> Episode activatedsupportive-999casttest0021
+[02:46:01] portrait.c:10> Card episode 999: Download test
+[02:46:06] portrait.c:10> Card episode 999: Download test
+[02:46:07] scenes.c:77> Scene 65535 started; free=13376
+[02:46:12] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=37/52 ms
+[02:46:16] xsHost.c:138> Transfer starting33034f55b78
+[02:46:16] xsHost.c:138> Episode activatedsupportive-999casttest0022
+[02:46:16] portrait.c:10> Card episode 999: Download test
+[02:46:21] portrait.c:10> Card episode 999: Download test
+[02:46:21] scenes.c:77> Scene 65535 started; free=13376
+[02:46:26] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=37/47 ms
+[02:46:30] xsHost.c:138> Transfer starting2821ed4523d
+[02:46:30] xsHost.c:138> Episode activatedsupportive-999casttest0023
+[02:46:30] portrait.c:10> Card episode 999: Download test
+[02:46:35] portrait.c:10> Card episode 999: Download test
+[02:46:36] scenes.c:77> Scene 65535 started; free=13376
+[02:46:40] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=37/40 ms
+[02:46:44] xsHost.c:138> Transfer starting29422b454e8
+[02:46:44] xsHost.c:138> Episode activatedsupportive-999casttest0030
+[02:46:44] portrait.c:10> Card episode 999: Download test
+[02:46:49] portrait.c:10> Card episode 999: Download test
+[02:46:50] scenes.c:77> Scene 65535 started; free=13376
+[02:46:55] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=32/36 ms
+[02:46:59] scenes.c:77> Scene 65535 started; free=13376
+[02:47:04] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=32/37 ms
+[02:47:05] xsHost.c:138> Transfer starting300fdec55e7
+[02:47:05] xsHost.c:138> Episode activatedsupportive-999casttest0031
+[02:47:05] portrait.c:10> Card episode 999: Download test
+[02:47:10] portrait.c:10> Card episode 999: Download test
+[02:47:11] scenes.c:77> Scene 65535 started; free=13376
+[02:47:16] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=32/36 ms
+[02:47:20] xsHost.c:138> Transfer starting33024615b5c
+[02:47:20] xsHost.c:138> Episode activatedsupportive-999casttest0032
+[02:47:20] portrait.c:10> Card episode 999: Download test
+[02:47:24] portrait.c:10> Card episode 999: Download test
+[02:47:25] scenes.c:77> Scene 65535 started; free=13376
+[02:47:30] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=32/38 ms
+[02:47:34] xsHost.c:138> Transfer starting28213825221
+[02:47:34] xsHost.c:138> Episode activatedsupportive-999casttest0033
+[02:47:34] portrait.c:10> Card episode 999: Download test
+[02:47:39] portrait.c:10> Card episode 999: Download test
+[02:47:40] scenes.c:77> Scene 65535 started; free=13376
+[02:47:44] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=32/37 ms
+[02:47:48] xsHost.c:138> Transfer starting299335456df
+[02:47:48] xsHost.c:138> Episode activatedsupportive-999casttest0040
+[02:47:48] portrait.c:10> Card episode 999: Download test
+[02:47:53] portrait.c:10> Card episode 999: Download test
+[02:47:54] scenes.c:77> Scene 65535 started; free=13376
+[02:47:59] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=26/49 ms
+[02:48:04] scenes.c:77> Scene 65535 started; free=13376
+[02:48:08] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=25/34 ms
+[02:48:10] xsHost.c:138> Transfer starting3051a6b57de
+[02:48:10] xsHost.c:138> Episode activatedsupportive-999casttest0041
+[02:48:10] portrait.c:10> Card episode 999: Download test
+[02:48:15] portrait.c:10> Card episode 999: Download test
+[02:48:15] scenes.c:77> Scene 65535 started; free=13376
+[02:48:20] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=26/61 ms
+[02:48:24] xsHost.c:138> Transfer starting3357bc85d53
+[02:48:24] xsHost.c:138> Episode activatedsupportive-999casttest0042
+[02:48:24] portrait.c:10> Card episode 999: Download test
+[02:48:29] portrait.c:10> Card episode 999: Download test
+[02:48:30] scenes.c:77> Scene 65535 started; free=13376
+[02:48:35] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=27/92 ms
+[02:48:38] xsHost.c:138> Transfer starting287ca05418
+[02:48:38] xsHost.c:138> Episode activatedsupportive-999casttest0043
+[02:48:38] portrait.c:10> Card episode 999: Download test
+[02:48:43] portrait.c:10> Card episode 999: Download test
+[02:48:44] scenes.c:77> Scene 65535 started; free=13376
+[02:48:49] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=24/36 ms
+[02:48:53] xsHost.c:138> Transfer starting293ba165482
+[02:48:53] xsHost.c:138> Episode activatedsupportive-999casttest0050
+[02:48:53] portrait.c:10> Card episode 999: Download test
+[02:48:58] portrait.c:10> Card episode 999: Download test
+[02:48:58] scenes.c:77> Scene 65535 started; free=13376
+[02:49:03] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=29/32 ms
+[02:49:08] scenes.c:77> Scene 65535 started; free=13376
+[02:49:12] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=29/34 ms
+[02:49:14] xsHost.c:138> Transfer starting29992fa5581
+[02:49:14] xsHost.c:138> Episode activatedsupportive-999casttest0051
+[02:49:14] portrait.c:10> Card episode 999: Download test
+[02:49:19] portrait.c:10> Card episode 999: Download test
+[02:49:19] scenes.c:77> Scene 65535 started; free=13376
+[02:49:24] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=29/34 ms
+[02:49:28] xsHost.c:138> Transfer starting329ad6b5af6
+[02:49:28] xsHost.c:138> Episode activatedsupportive-999casttest0052
+[02:49:28] portrait.c:10> Card episode 999: Download test
+[02:49:33] portrait.c:10> Card episode 999: Download test
+[02:49:34] scenes.c:77> Scene 65535 started; free=13376
+[02:49:39] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=29/35 ms
+[02:49:42] xsHost.c:138> Transfer starting281afaf51bb
+[02:49:42] xsHost.c:138> Episode activatedsupportive-999casttest0053
+[02:49:42] portrait.c:10> Card episode 999: Download test
+[02:49:47] portrait.c:10> Card episode 999: Download test
+[02:49:48] scenes.c:77> Scene 65535 started; free=13376
+[02:49:53] scenes.c:56> Scene 65535 held; free=13572 draw avg/max=29/32 ms
+[02:49:57] xsHost.c:138> Transfer starting2038fbb42f3
+[02:49:57] xsHost.c:138> Episode activatedsupportive-999handtest0031
+[02:49:57] portrait.c:10> Card episode 999: Download test
+[02:50:01] portrait.c:10> Card episode 999: Download test
+[02:50:02] scenes.c:77> Scene 31 started; free=13376
+[02:50:07] scenes.c:56> Scene 31 held; free=13572 draw avg/max=31/40 ms
+[02:50:10] xsHost.c:138> Transfer starting201fb6041b4
+[02:50:10] xsHost.c:138> Episode activatedsupportive-999handtest0032
+[02:50:10] portrait.c:10> Card episode 999: Download test
+[02:50:15] portrait.c:10> Card episode 999: Download test
+[02:50:16] scenes.c:77> Scene 32 started; free=13376
+[02:50:21] scenes.c:56> Scene 32 held; free=13572 draw avg/max=31/37 ms
+[02:50:24] xsHost.c:138> Transfer starting204d67a435f
+[02:50:24] xsHost.c:138> Episode activatedsupportive-999handtest0033
+[02:50:24] portrait.c:10> Card episode 999: Download test
+[02:50:29] portrait.c:10> Card episode 999: Download test
+[02:50:29] scenes.c:77> Scene 33 started; free=13376
+[02:50:34] scenes.c:56> Scene 33 held; free=13572 draw avg/max=30/36 ms
+[02:50:37] xsHost.c:138> Transfer starting20241574220
+[02:50:37] xsHost.c:138> Episode activatedsupportive-999handtest0034
+[02:50:37] portrait.c:10> Card episode 999: Download test
+[02:50:42] portrait.c:10> Card episode 999: Download test
+[02:50:43] scenes.c:77> Scene 34 started; free=13376
+[02:50:48] scenes.c:56> Scene 34 held; free=13572 draw avg/max=30/49 ms
+[02:50:51] xsHost.c:138> Transfer starting20183b4229
+[02:50:51] xsHost.c:138> Episode activatedsupportive-999handtest0035
+[02:50:51] portrait.c:10> Card episode 999: Download test
+[02:50:56] portrait.c:10> Card episode 999: Download test
+[02:50:57] scenes.c:77> Scene 35 started; free=13376
+[02:51:02] scenes.c:56> Scene 35 held; free=13572 draw avg/max=39/79 ms
+[02:51:05] xsHost.c:138> Transfer starting199757240ea
+[02:51:05] xsHost.c:138> Episode activatedsupportive-999handtest0036
+[02:51:05] portrait.c:10> Card episode 999: Download test
+[02:51:10] portrait.c:10> Card episode 999: Download test
+[02:51:11] scenes.c:77> Scene 36 started; free=13376
+[02:51:15] scenes.c:56> Scene 36 held; free=13572 draw avg/max=37/44 ms
+[02:51:18] xsHost.c:138> Transfer starting204dcae4381
+[02:51:18] xsHost.c:138> Episode activatedsupportive-999handtest0037
+[02:51:18] portrait.c:10> Card episode 999: Download test
+[02:51:23] portrait.c:10> Card episode 999: Download test
+[02:51:24] scenes.c:77> Scene 37 started; free=13376
+[02:51:29] scenes.c:56> Scene 37 held; free=13572 draw avg/max=36/39 ms
+[02:51:32] xsHost.c:138> Transfer starting20247474242
+[02:51:32] xsHost.c:138> Episode activatedsupportive-999handtest0038
+[02:51:32] portrait.c:10> Card episode 999: Download test
+[02:51:37] portrait.c:10> Card episode 999: Download test
+[02:51:38] scenes.c:77> Scene 38 started; free=13376
+[02:51:43] scenes.c:56> Scene 38 held; free=13572 draw avg/max=37/54 ms
+[02:51:46] xsHost.c:138> Transfer starting209386d455a
+[02:51:46] xsHost.c:138> Episode activatedsupportive-999handtest0039
+[02:51:46] portrait.c:10> Card episode 999: Download test
+[02:51:51] portrait.c:10> Card episode 999: Download test
+[02:51:52] scenes.c:77> Scene 39 started; free=13376
+[02:51:56] scenes.c:56> Scene 39 held; free=13572 draw avg/max=28/32 ms
+[02:51:59] xsHost.c:138> Transfer starting2079b014412
+[02:51:59] xsHost.c:138> Episode activatedsupportive-999handtest0040
+[02:51:59] portrait.c:10> Card episode 999: Download test
+[02:52:04] portrait.c:10> Card episode 999: Download test
+[02:52:05] scenes.c:77> Scene 40 started; free=13376
+[02:52:10] scenes.c:56> Scene 40 held; free=13572 draw avg/max=27/29 ms
+[02:52:13] xsHost.c:138> Transfer starting198359f40b1
+[02:52:13] xsHost.c:138> Episode activatedsupportive-999handtest0041
+[02:52:13] portrait.c:10> Card episode 999: Download test
+[02:52:18] portrait.c:10> Card episode 999: Download test
+[02:52:19] scenes.c:77> Scene 41 started; free=13376
+[02:52:24] scenes.c:56> Scene 41 held; free=13572 draw avg/max=38/89 ms
+[02:52:27] xsHost.c:138> Transfer starting2024cb14293
+[02:52:27] xsHost.c:138> Episode activatedsupportive-999handtest0042
+[02:52:27] portrait.c:10> Card episode 999: Download test
+[02:52:31] portrait.c:10> Card episode 999: Download test
+[02:52:32] scenes.c:77> Scene 42 started; free=13376
+[02:52:37] scenes.c:56> Scene 42 held; free=13572 draw avg/max=30/33 ms
+[02:52:40] xsHost.c:138> Transfer starting21489c160b4e2
+[02:52:41] xsHost.c:138> Episode activatedsupportive-136b319cc93962
+[02:52:41] portrait.c:10> Card episode 13: What Do You Want?
+[02:52:41] reactions.inc:31> Reaction 24 started free=13376

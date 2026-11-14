@@ -48,3 +48,10 @@ Gorgon and Young Alden pose packs are normalized to cropped AS64 tiles for the
 watch, so all six characters share one decoder. Native descriptors use bounded
 16-bit offsets. Scene catalogue lookups use compact strings instead of persistent
 JavaScript property tables; supported scene IDs and names remain unchanged.
+
+
+## v1.13 additions
+
+The generated catalogue now contains 53 reactions. Original IDs 1000–1034, aliases, palette bytes and all 69 artwork parts remain unchanged; `legacy-fingerprints.json` protects them independently of resource offsets. The 18 additions use sparse patches and finite held timelines. Gorgon and young Alden compose these patches over their neutral pose instead of duplicating portraits. `native-lookups.json` supplies actor groups and legacy-compatible scene cue mappings. The native reader and browser consume generated mappings rather than calculating six-expression offsets.
+
+Run `python3 scripts/test-expression-expansion.py` from `pebble/` for ABI/art checks. The [authoring guide](../scenes/EXPRESSION-PACK.md) lists new names and installed hand performances; [previews](../preview/expressions/index.html) show native-size art and both display scales.

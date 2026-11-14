@@ -79,7 +79,7 @@ with (out/'watch.log').open('w') as f:
   press('select');shot('offline-ending');run('emu-bt-connection','--connected','yes')
   log=(out/'watch.log').read_text();assert log.count('Scene 65535 held')>=5,log
   assert not re.search(r'INPUT ERROR|SAVE ERROR|fxAbort|memory full|App fault',log,re.I),log
-  values=[int(v) for v in re.findall(r'Scene 65535 held; free=(\d+)',log)];assert min(values)>=1500,values
+  values=[int(v) for v in re.findall(r'Scene 65535 held; free=(\d+)',log)];assert min(values)>=12288,values
   assert max(values[:4])-min(values[:4])<=256,values
   # Validate every reusable gesture on each newly installed rig through the data path.
   motion(False)
@@ -94,8 +94,15 @@ with (out/'watch.log').open('w') as f:
     if action=='listen':press('down');time.sleep(5.3);assert end==shot(name+'-replay')
     verified.append(name+'/'+action);print('PASS downloaded '+name+'/'+action,flush=True)
   log=(out/'watch.log').read_text();assert not re.search(r'INPUT ERROR|SAVE ERROR|fxAbort|memory full|App fault',log,re.I),log
-  values=[int(v) for v in re.findall(r'Scene 65535 held; free=(\d+)',log)];assert min(values)>=1500,values
+  values=[int(v) for v in re.findall(r'Scene 65535 held; free=(\d+)',log)];assert min(values)>=12288,values
   result={'newRecipesTransferredWithoutRebuild':26,'verifiedActors':['gorgon','boe','jeremy','hannah','young-alden','alden'],'newCastGestureChecks':verified,'foregroundMovementAndHold':True,'replays':3,'focusClocksPreserved':True,'sameIdRecipeUpdateReplacedHeldPose':True,'invalidPackageRetainedPrevious':True,'interruptedUpdateRestartAndResume':True,'downloadedPlaybackOffline':True,'backgroundMotionSetting':True,'heldFreeBytes':values,'pbwSha256':hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest(),'physicalWatchTested':False}
+  installed=[]
+  for scene in json.loads((root/'scenes/library.json').read_text())['scenes'][30:]:
+   fixture['version']='handtest%04d'%scene['nativeId'];fixture['nodes']=[{'type':'animation','id':scene['id']},{'type':'end'}]
+   transfer(fixture);press('back');press('down',4);press('select');press('down');press('select');at=(out/'watch.log').stat().st_size;press('select');time.sleep(scene['duration']/1000+1)
+   log=(out/'watch.log').read_text()[at:];match=re.search(r'Scene '+str(scene['nativeId'])+r' held; free=(\d+)',log);assert match,scene['id'];assert int(match[1])>=12288
+   final=shot(scene['id']+'-held');time.sleep(.4);assert final==shot(scene['id']+'-still');installed.append({'id':scene['id'],'freeBytes':int(match[1])});print('PASS installed transfer '+scene['id'],flush=True)
+  result['installedHandTransfers']=installed
   transfer(bundled);time.sleep(1)
   final_log=(out/'watch.log').read_text();assert 'Episode activated'+bundled['id']+bundled['version'] in final_log
   assert not re.search(r'INPUT ERROR|SAVE ERROR|fxAbort|memory full|App fault',final_log,re.I),final_log

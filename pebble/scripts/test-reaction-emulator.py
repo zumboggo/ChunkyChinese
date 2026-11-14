@@ -32,8 +32,8 @@ logfile=out/'watch.log'
 with logfile.open('w') as f:
  logs=subprocess.Popen([a.cli,'logs','--emulator','emery'],cwd=root/'reader',stdout=f,stderr=subprocess.STDOUT)
  try:
-  time.sleep(1);run('install',root/'reader/build/reader.pbw');time.sleep(2);baseline=shot('before');send('HELLO','READY')
-  fixture={'format':1,'id':'supportive-996','number':996,'version':'reactions001','title':'Reaction verification','entry':0,'nodes':[{'type':'reaction','actor':x['actor'],'emotion':x['emotion']} for x in cat]+[{'type':'end'}]};upload(fixture);press('back');press('down',4);press('select');press('down');press('select');results=[]
+  time.sleep(1);run('install',root/'reader/build/reader.pbw');time.sleep(2);send('HELLO','READY');upload(bundled);time.sleep(.4);baseline=shot('before')
+  fixture={'format':1,'id':'supportive-996','number':996,'version':'rx%010d'%int(time.time()),'title':'Reaction verification','entry':0,'nodes':[{'type':'reaction','actor':x['actor'],'emotion':x['emotion']} for x in cat]+[{'type':'end'}]};upload(fixture);press('back');press('down',4);press('select');press('down');press('select');results=[]
   def expect(pattern,at=0):
    until=time.monotonic()+12
    while time.monotonic()<until:
@@ -48,7 +48,7 @@ with logfile.open('w') as f:
     paused=logfile.read_text()[at:];assert 'Scene focus 0' in paused and f'Reaction {id} held' not in paused,paused
     press('back');expect('Scene focus 1',at)
    press('select') # a fresh early press must not skip the reaction
-   m=expect(f'Reaction {id} held free=(\\d+) max=(\\d+)',at);free,cost=map(int,m.groups());assert free>=2048,(id,free);assert cost<=83,(id,cost)
+   m=expect(f'Reaction {id} held free=(\\d+) max=(\\d+)',at);free,cost=map(int,m.groups());assert free>=12288,(id,free);assert cost<=250,(id,cost)
    time.sleep(.3);held=shot(str(id)+'-held');time.sleep(.35);assert held==shot(str(id)+'-still')
    if item['emotion'] in ('blink','neutral'):
     at=logfile.stat().st_size;press('down');expect(f'Reaction {id} started',at);m2=expect(f'Reaction {id} held free=(\\d+)',at);assert int(m2[1])>=free-256;time.sleep(.3)

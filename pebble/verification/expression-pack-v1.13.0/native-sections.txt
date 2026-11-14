@@ -1,0 +1,20 @@
+.local/expression-work/reader/build/emery/pebble-app.elf  :
+section                size    addr
+.header                 132       0
+.note.gnu.build-id       36     132
+.text                 16958     168
+.data                    76   17128
+.got                      4   17204
+.got.plt                 12   17208
+.bss                   1140   17220
+.debug_info           35017       0
+.debug_abbrev          4087       0
+.debug_loclists       13573       0
+.debug_aranges          568       0
+.debug_rnglists        1665       0
+.debug_line           21035       0
+.debug_str             5557       0
+.comment                125       0
+.ARM.attributes          43       0
+.debug_frame           1808       0
+Total                101836

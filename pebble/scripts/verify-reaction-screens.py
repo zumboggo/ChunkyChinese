@@ -24,7 +24,8 @@ for idx,(offset,actor,count) in enumerate(anims):
  base,tiled,cheeks,nose=actors[actor];f=struct.unpack_from('<HBBbb',data,offset+(count-1)*6);ms,eyes,mouth,dx,dy=f
  palette=[tuple(((v+42)//85)*85 for v in data[base+8+i*3:base+11+i*3]) for i in range(8)];im=Image.new('RGBA',(64,64),'white')
  if tiled:
-  pos,tile=piece(base,eyes,palette);im.alpha_composite(tile,pos)
+  for part in ([eyes] if mouth==255 else [0,eyes,mouth]):
+   pos,tile=piece(base,part,palette);im.alpha_composite(tile,pos)
  else:
   for part in [0,1,eyes,cheeks,nose,mouth]:
    if part==255:continue

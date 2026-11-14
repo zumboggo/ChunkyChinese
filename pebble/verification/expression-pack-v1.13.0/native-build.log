@@ -1,0 +1,30 @@
+### -p pebble/emery
+Setting top to                           : /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/expression-work/reader
+Setting out to                           : /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/expression-work/reader/build
+Checking for program 'webpack'           : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/current/node_modules/.bin/webpack
+Found Pebble SDK for emery in:           : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/current/sdk-core/pebble/emery
+Checking for program 'gcc, cc'           : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/4.44/toolchain/arm-none-eabi/bin/arm-none-eabi-gcc
+Checking for program 'ar'                : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/4.44/toolchain/arm-none-eabi/bin/arm-none-eabi-ar
+'configure' finished successfully (0.094s)
+Waf: Entering directory `/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/expression-work/reader/build'
+Auto-injected MOD resource for emery from build/mods/emery/mc.xsa
+[22/27] Compiling emery | c: src/c/portrait.c -> build/src/c/portrait.c.9.o
+[26/27] Linking emery | cprogram: build/src/c/mc.ffi.c.9.o build/src/c/mdbl.c.9.o build/src/c/portrait.c.9.o build/src/c/scenes.c.9.o build/src/c/story_resource.c.9.o build/emery/appinfo.auto.c.9.o build/emery/src/resource_ids.auto.c.9.o build/src/message_keys.auto.c.9.o -> build/emery/pebble-app.elf
+/Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/4.44/toolchain/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: warning: /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/expression-work/reader/build/emery/pebble-app.elf has a LOAD segment with RWX permissions
+
+[27/27] Processing emery | memory_usage_report: build/emery/pebble-app.elf build/emery/app_resources.pbpack
+-------------------------------------------------------
+EMERY APP MEMORY USAGE
+Total size of resources:        140277 bytes / 256.0KB
+Total footprint in RAM:         18358 bytes / 128.0KB
+Free RAM available (heap):      112714 bytes
+-------------------------------------------------------
+[28/31] Compiling emery | /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/expression-work/reader/build/emery/pebble-app.raw.bin: build/emery/pebble-app.elf -> build/emery/pebble-app.raw.bin
+[30/31] Processing emery | inject-metadata: build/emery/pebble-app.raw.bin build/emery/pebble-app.elf build/emery/app_resources.pbpack -> build/emery/pebble-app.bin
+[31/31] Compiling app_bundle: build/appinfo.json -> build/reader.pbw
+Waf: Leaving directory `/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/expression-work/reader/build'
+'build' finished successfully (0.371s)
+Running Moddable prebuild (release build).
+Running mcrun -m ./src/embeddedjs/manifest.json -f x -p pebble/emery -t build -o ./build/mods/emery/mcrun -s tech.moddable.pebble
+Copied Moddable mod for emery
+Moddable prebuild completed.

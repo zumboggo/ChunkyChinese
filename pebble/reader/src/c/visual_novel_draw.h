@@ -75,6 +75,27 @@ static void gesture(unsigned prop,VNKey k,uint32_t t,bool arm){
  }
 }
 
+// Shared mirrored palm geometry; thumbs point inward, wrists meet the cuffs.
+static void cover_hand(int x,int y,int side){
+ line(x,y-7,x,y+11,24,pal[0]);box(x-10,y-20,20,3,pal[0]);box(x-8,y-22,16,2,pal[0]);line(x,y-7,x,y+10,20,pal[2]);box(x-8,y-20,16,3,pal[2]);
+ line(x-7*side,y-19,x-7*side,y-3,1,pal[3]);line(x-2*side,y-20,x-2*side,y-4,1,pal[3]);line(x+3*side,y-19,x+3*side,y-4,1,pal[3]);
+ line(x+9*side,y+3,x+14*side,y-5,7,pal[0]);line(x+9*side,y+3,x+14*side,y-5,5,pal[2]);
+}
+static void two_hands(unsigned who,unsigned mode,VNKey k){
+ for(int side=-1;side<=1;side+=2){
+  int start=side<0?49:151,ex=side<0?55:145;
+  int tx=vn_eyes[who][side<0?0:1],ty=vn_eyes[who][2]+5;
+  if(mode==2&&side<0)ty+=k.y*38/100;
+  if(mode==3){tx=side<0?133:66;ty=side<0?170:183;}
+  int x=start+(tx-start)*k.x/100,y=228+(ty-228)*k.x/100;
+  int ey=mode==3?197+(ty-197)*k.x/100:197,wy=mode==3?y:y+15;
+  line(side<0?54:142,166,ex,ey,18,pal[0]);line(side<0?54:142,166,ex,ey,14,pal[4]);
+  line(ex,ey,x,wy,20,pal[0]);line(ex,ey,x,wy,16,pal[4]);
+  if(mode==3)hand(x,y);else cover_hand(x,y,-side);
+  if(mode!=3)line(x-10,y+17,x+10,y+17,3,pal[5]);
+ }
+}
+
 // Muted architectural settings remain distinct from the pixel character.
 static void background(int setting,int ambient,uint32_t t){
  uint32_t exterior=t%12000;
@@ -116,7 +137,7 @@ static void vn_stage(unsigned who,unsigned action,unsigned setting,unsigned ambi
  background(setting,ambient,bg);VNKey k=custom?*custom:vn_pose(action,t);
  torso(who);portrait(who,k.emotion,t,hx,k.head);
  bool arm=vn_props[action]||action==VN_THINK||custom;
- gesture(vn_props[action],k,t,arm);
+ if(vn_hands[action])two_hands(who,vn_hands[action],k);else gesture(vn_props[action],k,t,arm);
  if(who==4&&arm){line(k.x-6,k.y+9,k.x+6,k.y+9,3,0xaaaa00);line(k.x+4,k.y+12,189,204,1,0xaaaa00);}
  if(setting!=6){box(0,207,200,21,0xd6c8b2);line(0,207,200,207,2,DARK);line(0,211,200,211,1,0xf0e6d5);if(setting==1){box(10,201,24,6,0xeee7d8);box(13,199,18,3,0xfdf9ef);}}
 }

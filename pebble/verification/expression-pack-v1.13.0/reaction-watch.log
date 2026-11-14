@@ -1,0 +1,145 @@
+[02:42:08] ocess_manager.c:497> Heap Usage for App <Chunky Chi: Total Size <104520B> Used <93272B> Still allocated <208
+[02:42:10] moddable.c:147> evaluating creation record
+[02:42:10] xsHost.c:138> Found mod "pebble.moddable.tech"
+[02:42:10] xsHost.c:138> Episode opened
+[02:42:10] xsHost.c:138> Reading saves
+[02:42:10] xsHost.c:138> Save restored18
+[02:42:10] scenes.c:67> Background motion 1
+[02:42:10] xsHost.c:138> Chunky readysupportive-996rx1794681593node18
+[02:42:10] reactions.inc:31> Reaction 18 started free=13636
+[02:42:11] xsHost.c:138> Transfer starting21489c160b4e2
+[02:42:11] reactions.inc:27> Reaction 18 held free=13636 max=34
+[02:42:12] xsHost.c:138> Episode activatedsupportive-136b319cc93962
+[02:42:12] portrait.c:10> Card episode 13: What Do You Want?
+[02:42:12] reactions.inc:31> Reaction 24 started free=13440
+[02:42:13] xsHost.c:138> Transfer starting3321cb115f5a
+[02:42:14] xsHost.c:138> Episode activatedsupportive-996rx1794681733
+[02:42:14] portrait.c:10> Card episode 996: Reaction verification
+[02:42:19] portrait.c:10> Card episode 996: Reaction verification
+[02:42:19] reactions.inc:31> Reaction 0 started free=13440
+[02:42:21] reactions.inc:27> Reaction 0 held free=13440 max=29
+[02:42:24] reactions.inc:31> Reaction 0 started free=13440
+[02:42:26] reactions.inc:27> Reaction 0 held free=13440 max=32
+[02:42:27] reactions.inc:31> Reaction 1 started free=13440
+[02:42:29] reactions.inc:27> Reaction 1 held free=13440 max=29
+[02:42:31] reactions.inc:31> Reaction 2 started free=13440
+[02:42:32] scenes.c:63> Scene focus 0 id=0 action=0 ambient=0
+[02:42:35] scenes.c:63> Scene focus 1 id=0 action=0 ambient=0
+[02:42:37] reactions.inc:27> Reaction 2 held free=13440 max=29
+[02:42:41] reactions.inc:31> Reaction 3 started free=13440
+[02:42:43] reactions.inc:27> Reaction 3 held free=13440 max=74
+[02:42:46] reactions.inc:31> Reaction 4 started free=13440
+[02:42:47] reactions.inc:27> Reaction 4 held free=13440 max=28
+[02:42:50] reactions.inc:31> Reaction 5 started free=13440
+[02:42:52] reactions.inc:27> Reaction 5 held free=13440 max=32
+[02:42:55] reactions.inc:31> Reaction 6 started free=13440
+[02:42:57] reactions.inc:27> Reaction 6 held free=13440 max=27
+[02:43:00] reactions.inc:31> Reaction 6 started free=13440
+[02:43:02] reactions.inc:27> Reaction 6 held free=13440 max=28
+[02:43:03] reactions.inc:31> Reaction 7 started free=13440
+[02:43:04] reactions.inc:27> Reaction 7 held free=13440 max=31
+[02:43:07] reactions.inc:31> Reaction 8 started free=13440
+[02:43:09] reactions.inc:27> Reaction 8 held free=13440 max=32
+[02:43:12] reactions.inc:31> Reaction 9 started free=13440
+[02:43:14] reactions.inc:27> Reaction 9 held free=13440 max=30
+[02:43:17] reactions.inc:31> Reaction 10 started free=13440
+[02:43:19] reactions.inc:27> Reaction 10 held free=13440 max=28
+[02:43:22] reactions.inc:31> Reaction 11 started free=13440
+[02:43:24] reactions.inc:27> Reaction 11 held free=13440 max=34
+[02:43:27] reactions.inc:31> Reaction 12 started free=13440
+[02:43:28] reactions.inc:27> Reaction 12 held free=13440 max=36
+[02:43:31] reactions.inc:31> Reaction 12 started free=13440
+[02:43:33] reactions.inc:27> Reaction 12 held free=13440 max=35
+[02:43:34] reactions.inc:31> Reaction 13 started free=13440
+[02:43:36] reactions.inc:27> Reaction 13 held free=13440 max=34
+[02:43:39] reactions.inc:31> Reaction 14 started free=13440
+[02:43:41] reactions.inc:27> Reaction 14 held free=13440 max=34
+[02:43:44] reactions.inc:31> Reaction 15 started free=13440
+[02:43:45] reactions.inc:27> Reaction 15 held free=13440 max=37
+[02:43:48] reactions.inc:31> Reaction 16 started free=13440
+[02:43:50] reactions.inc:27> Reaction 16 held free=13440 max=34
+[02:43:53] reactions.inc:31> Reaction 17 started free=13440
+[02:43:55] reactions.inc:27> Reaction 17 held free=13440 max=38
+[02:43:58] reactions.inc:31> Reaction 18 started free=13440
+[02:44:00] reactions.inc:27> Reaction 18 held free=13440 max=33
+[02:44:03] reactions.inc:31> Reaction 18 started free=13440
+[02:44:04] reactions.inc:27> Reaction 18 held free=13440 max=32
+[02:44:05] reactions.inc:31> Reaction 19 started free=13440
+[02:44:07] reactions.inc:27> Reaction 19 held free=13440 max=37
+[02:44:08] pkjs> [PHONESIM] [WARNING] Exception decoding QemuInboundPacket.footer
+[02:44:08] pkjs> [PHONESIM] [WARNING] Exception decoding QemuInboundPacket.footer
+[02:44:10] reactions.inc:31> Reaction 20 started free=13440
+[02:44:12] reactions.inc:27> Reaction 20 held free=13440 max=41
+[02:44:15] reactions.inc:31> Reaction 21 started free=13440
+[02:44:17] reactions.inc:27> Reaction 21 held free=13440 max=35
+[02:44:20] reactions.inc:31> Reaction 22 started free=13440
+[02:44:22] reactions.inc:27> Reaction 22 held free=13440 max=34
+[02:44:25] reactions.inc:31> Reaction 23 started free=13440
+[02:44:27] reactions.inc:27> Reaction 23 held free=13440 max=39
+[02:44:30] reactions.inc:31> Reaction 24 started free=13440
+[02:44:32] reactions.inc:27> Reaction 24 held free=13440 max=20
+[02:44:35] reactions.inc:31> Reaction 24 started free=13440
+[02:44:37] reactions.inc:27> Reaction 24 held free=13440 max=20
+[02:44:38] reactions.inc:31> Reaction 25 started free=13440
+[02:44:40] reactions.inc:27> Reaction 25 held free=13440 max=23
+[02:44:44] reactions.inc:31> Reaction 26 started free=13440
+[02:44:46] reactions.inc:27> Reaction 26 held free=13440 max=23
+[02:44:49] reactions.inc:31> Reaction 27 started free=13440
+[02:44:51] reactions.inc:27> Reaction 27 held free=13440 max=21
+[02:44:54] reactions.inc:31> Reaction 28 started free=13440
+[02:44:56] reactions.inc:27> Reaction 28 held free=13440 max=22
+[02:44:59] reactions.inc:31> Reaction 29 started free=13440
+[02:45:02] reactions.inc:27> Reaction 29 held free=13440 max=23
+[02:45:05] reactions.inc:31> Reaction 30 started free=13440
+[02:45:07] reactions.inc:27> Reaction 30 held free=13440 max=23
+[02:45:09] reactions.inc:31> Reaction 30 started free=13440
+[02:45:11] reactions.inc:27> Reaction 30 held free=13440 max=24
+[02:45:13] reactions.inc:31> Reaction 31 started free=13440
+[02:45:15] reactions.inc:27> Reaction 31 held free=13440 max=23
+[02:45:17] reactions.inc:31> Reaction 32 started free=13440
+[02:45:20] reactions.inc:27> Reaction 32 held free=13440 max=23
+[02:45:22] reactions.inc:31> Reaction 33 started free=13440
+[02:45:24] reactions.inc:27> Reaction 33 held free=13440 max=23
+[02:45:27] reactions.inc:31> Reaction 34 started free=13440
+[02:45:29] reactions.inc:27> Reaction 34 held free=13440 max=24
+[02:45:32] reactions.inc:31> Reaction 35 started free=13440
+[02:45:34] reactions.inc:27> Reaction 35 held free=13440 max=27
+[02:45:37] reactions.inc:31> Reaction 36 started free=13440
+[02:45:39] reactions.inc:27> Reaction 36 held free=13440 max=31
+[02:45:42] reactions.inc:31> Reaction 37 started free=13440
+[02:45:44] reactions.inc:27> Reaction 37 held free=13440 max=30
+[02:45:46] reactions.inc:31> Reaction 38 started free=13440
+[02:45:48] reactions.inc:27> Reaction 38 held free=13440 max=31
+[02:45:51] reactions.inc:31> Reaction 39 started free=13440
+[02:45:53] reactions.inc:27> Reaction 39 held free=13440 max=29
+[02:45:56] reactions.inc:31> Reaction 40 started free=13440
+[02:45:58] reactions.inc:27> Reaction 40 held free=13440 max=34
+[02:46:00] reactions.inc:31> Reaction 41 started free=13440
+[02:46:02] reactions.inc:27> Reaction 41 held free=13440 max=39
+[02:46:05] reactions.inc:31> Reaction 42 started free=13440
+[02:46:07] reactions.inc:27> Reaction 42 held free=13440 max=34
+[02:46:10] reactions.inc:31> Reaction 43 started free=13440
+[02:46:12] reactions.inc:27> Reaction 43 held free=13440 max=39
+[02:46:14] pkjs> [PHONESIM] [WARNING] Exception decoding QemuInboundPacket.footer
+[02:46:15] reactions.inc:31> Reaction 44 started free=13440
+[02:46:16] reactions.inc:27> Reaction 44 held free=13440 max=68
+[02:46:19] reactions.inc:31> Reaction 45 started free=13440
+[02:46:21] reactions.inc:27> Reaction 45 held free=13440 max=36
+[02:46:24] reactions.inc:31> Reaction 46 started free=13440
+[02:46:26] reactions.inc:27> Reaction 46 held free=13440 max=34
+[02:46:29] reactions.inc:31> Reaction 47 started free=13440
+[02:46:30] reactions.inc:27> Reaction 47 held free=13440 max=24
+[02:46:33] reactions.inc:31> Reaction 48 started free=13440
+[02:46:35] reactions.inc:27> Reaction 48 held free=13440 max=24
+[02:46:38] reactions.inc:31> Reaction 49 started free=13440
+[02:46:40] reactions.inc:27> Reaction 49 held free=13440 max=29
+[02:46:43] reactions.inc:31> Reaction 50 started free=13440
+[02:46:45] reactions.inc:27> Reaction 50 held free=13440 max=27
+[02:46:48] reactions.inc:31> Reaction 51 started free=13440
+[02:46:50] reactions.inc:27> Reaction 51 held free=13440 max=33
+[02:46:53] reactions.inc:31> Reaction 52 started free=13440
+[02:46:54] reactions.inc:27> Reaction 52 held free=13440 max=26
+[02:46:57] xsHost.c:138> Transfer starting21489c160b4e2
+[02:46:57] xsHost.c:138> Episode activatedsupportive-136b319cc93962
+[02:46:57] portrait.c:10> Card episode 13: What Do You Want?
+[02:46:57] reactions.inc:31> Reaction 24 started free=13440

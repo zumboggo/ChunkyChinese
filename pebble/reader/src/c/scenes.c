@@ -11,8 +11,7 @@ static void rect(int x,int y,int w,int h,uint32_t c){
  graphics_fill_rect(ctx,GRect(x,y,w,h),0,GCornerNone);
 }
 static void portrait(unsigned who,unsigned emotion,uint32_t t,int hx,int hy){
- static const uint8_t gorgon[]={0,1,2,4,5,3},young[]={0,1,3,0,1,4};
- scenePortraitDraw(ctx,who,who==4?gorgon[emotion]:who==5?young[emotion]:emotion,t,hx,hy);
+ scenePortraitDraw(ctx,who,emotion,t,hx,hy);
 }
 #include "visual_novel_draw.h"
 // Keep schema-1 recipe downloads and their validated bounded channels.

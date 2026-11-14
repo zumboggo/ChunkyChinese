@@ -867,6 +867,126 @@
         "actor": "boe",
         "gesture": "think"
       }
+    },
+    {
+      "id": "alden-protective-cover",
+      "nativeId": 31,
+      "name": "Alden \u2014 protective cover",
+      "duration": 4800,
+      "setting": "home",
+      "ambient": "foliage",
+      "group": "Hand performances",
+      "visualNovel": true
+    },
+    {
+      "id": "alden-cover-and-peek",
+      "nativeId": 32,
+      "name": "Alden \u2014 cover and peek",
+      "duration": 4800,
+      "setting": "home",
+      "ambient": "foliage",
+      "group": "Hand performances",
+      "visualNovel": true
+    },
+    {
+      "id": "hannah-protective-cover",
+      "nativeId": 33,
+      "name": "Hannah \u2014 protective cover",
+      "duration": 4800,
+      "setting": "home",
+      "ambient": "foliage",
+      "group": "Hand performances",
+      "visualNovel": true
+    },
+    {
+      "id": "hannah-cover-and-peek",
+      "nativeId": 34,
+      "name": "Hannah \u2014 cover and peek",
+      "duration": 4800,
+      "setting": "home",
+      "ambient": "foliage",
+      "group": "Hand performances",
+      "visualNovel": true
+    },
+    {
+      "id": "boe-protective-cover",
+      "nativeId": 35,
+      "name": "Boe \u2014 protective cover",
+      "duration": 4800,
+      "setting": "home",
+      "ambient": "foliage",
+      "group": "Hand performances",
+      "visualNovel": true
+    },
+    {
+      "id": "boe-cover-and-peek",
+      "nativeId": 36,
+      "name": "Boe \u2014 cover and peek",
+      "duration": 4800,
+      "setting": "home",
+      "ambient": "foliage",
+      "group": "Hand performances",
+      "visualNovel": true
+    },
+    {
+      "id": "jeremy-protective-cover",
+      "nativeId": 37,
+      "name": "Jeremy \u2014 protective cover",
+      "duration": 4800,
+      "setting": "home",
+      "ambient": "foliage",
+      "group": "Hand performances",
+      "visualNovel": true
+    },
+    {
+      "id": "jeremy-cover-and-peek",
+      "nativeId": 38,
+      "name": "Jeremy \u2014 cover and peek",
+      "duration": 4800,
+      "setting": "home",
+      "ambient": "foliage",
+      "group": "Hand performances",
+      "visualNovel": true
+    },
+    {
+      "id": "young-alden-protective-cover",
+      "nativeId": 39,
+      "name": "Young Alden \u2014 protective cover",
+      "duration": 4800,
+      "setting": "home",
+      "ambient": "foliage",
+      "group": "Hand performances",
+      "visualNovel": true
+    },
+    {
+      "id": "young-alden-cover-and-peek",
+      "nativeId": 40,
+      "name": "Young Alden \u2014 cover and peek",
+      "duration": 4800,
+      "setting": "home",
+      "ambient": "foliage",
+      "group": "Hand performances",
+      "visualNovel": true
+    },
+    {
+      "id": "alden-folded-arms",
+      "nativeId": 41,
+      "name": "Alden \u2014 folded arms",
+      "duration": 4800,
+      "setting": "classroom",
+      "ambient": "foliage",
+      "group": "Hand performances",
+      "visualNovel": true
+    },
+    {
+      "id": "alden-interrupted-sip",
+      "nativeId": 42,
+      "name": "Alden \u2014 interrupted sip",
+      "duration": 4800,
+      "setting": "home",
+      "ambient": "foliage",
+      "group": "Hand performances",
+      "visualNovel": true
     }
   ],
   "ambient": {

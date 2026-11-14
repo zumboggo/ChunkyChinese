@@ -1,0 +1,22 @@
+{
+  "nativeStaticBytes": 1232,
+  "additionalNativeStaticBytes": 16,
+  "additionalNativeCodeBytes": 952,
+  "pbwSha256": "f26407e154292d69917a5ec3f6c829afb4084b80b2713fa9fe6e27ecf7443235",
+  "baseline": "v1.12.0",
+  "resourceBytes": 140277,
+  "additionalResourceBytes": 4155,
+  "nativeCodeAndStaticBytes": 18358,
+  "additionalNativeCodeAndStaticBytes": 968,
+  "minimumMeasuredFreeHeapBytes": 13376,
+  "sharedArtworkCacheBytes": 512,
+  "artAndTimingBytes": 31949,
+  "sceneAverageMsRange": [
+    24,
+    45
+  ],
+  "maximumSceneDrawMs": 178,
+  "maximumReactionDrawMs": 74,
+  "allAcceptanceBudgetsPassed": true,
+  "physicalWatchTested": false
+}

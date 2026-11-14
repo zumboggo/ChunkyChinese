@@ -10,6 +10,11 @@
         "e99073",
         "505052",
         "aaabaa"
+      ],
+      "coverEyes": [
+        78,
+        112,
+        105
       ]
     },
     {
@@ -20,6 +25,11 @@
         "d68a50",
         "000055",
         "53688c"
+      ],
+      "coverEyes": [
+        82,
+        112,
+        98
       ]
     },
     {
@@ -30,6 +40,11 @@
         "c89565",
         "3e605e",
         "986545"
+      ],
+      "coverEyes": [
+        81,
+        109,
+        101
       ]
     },
     {
@@ -40,6 +55,11 @@
         "f0ae87",
         "ffffff",
         "e7cfab"
+      ],
+      "coverEyes": [
+        82,
+        110,
+        98
       ]
     },
     {
@@ -50,6 +70,11 @@
         "777777",
         "555555",
         "aaaa00"
+      ],
+      "coverEyes": [
+        0,
+        0,
+        0
       ]
     },
     {
@@ -60,6 +85,11 @@
         "aa7755",
         "ffffaa",
         "aaaa55"
+      ],
+      "coverEyes": [
+        82,
+        111,
+        106
       ]
     }
   ],
@@ -458,6 +488,156 @@
           0
         ]
       ]
+    },
+    "protective-cover": {
+      "prop": 0,
+      "hands": 1,
+      "keys": [
+        [
+          0,
+          0,
+          0,
+          5,
+          0
+        ],
+        [
+          500,
+          0,
+          0,
+          5,
+          0
+        ],
+        [
+          2300,
+          100,
+          0,
+          5,
+          0
+        ],
+        [
+          4000,
+          100,
+          0,
+          5,
+          0
+        ]
+      ]
+    },
+    "cover-and-peek": {
+      "prop": 0,
+      "hands": 2,
+      "keys": [
+        [
+          0,
+          0,
+          0,
+          5,
+          0
+        ],
+        [
+          900,
+          100,
+          0,
+          5,
+          0
+        ],
+        [
+          1900,
+          100,
+          0,
+          5,
+          0
+        ],
+        [
+          2900,
+          100,
+          100,
+          5,
+          0
+        ],
+        [
+          4000,
+          100,
+          100,
+          5,
+          0
+        ]
+      ]
+    },
+    "folded-arms": {
+      "prop": 0,
+      "hands": 3,
+      "keys": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1800,
+          100,
+          0,
+          6,
+          8
+        ],
+        [
+          4000,
+          100,
+          0,
+          6,
+          8
+        ]
+      ]
+    },
+    "interrupted-sip": {
+      "prop": 3,
+      "hands": 0,
+      "keys": [
+        [
+          0,
+          150,
+          223,
+          0,
+          0
+        ],
+        [
+          1700,
+          117,
+          171,
+          0,
+          0
+        ],
+        [
+          2000,
+          117,
+          171,
+          1,
+          0
+        ],
+        [
+          2550,
+          117,
+          171,
+          1,
+          0
+        ],
+        [
+          3500,
+          150,
+          223,
+          5,
+          0
+        ],
+        [
+          4000,
+          150,
+          223,
+          5,
+          0
+        ]
+      ]
     }
   },
   "bindings": {
@@ -580,6 +760,54 @@
     "boe-street-think": {
       "actor": "boe",
       "action": "think"
+    },
+    "alden-protective-cover": {
+      "actor": "alden",
+      "action": "protective-cover"
+    },
+    "alden-cover-and-peek": {
+      "actor": "alden",
+      "action": "cover-and-peek"
+    },
+    "hannah-protective-cover": {
+      "actor": "hannah",
+      "action": "protective-cover"
+    },
+    "hannah-cover-and-peek": {
+      "actor": "hannah",
+      "action": "cover-and-peek"
+    },
+    "boe-protective-cover": {
+      "actor": "boe",
+      "action": "protective-cover"
+    },
+    "boe-cover-and-peek": {
+      "actor": "boe",
+      "action": "cover-and-peek"
+    },
+    "jeremy-protective-cover": {
+      "actor": "jeremy",
+      "action": "protective-cover"
+    },
+    "jeremy-cover-and-peek": {
+      "actor": "jeremy",
+      "action": "cover-and-peek"
+    },
+    "young-alden-protective-cover": {
+      "actor": "young-alden",
+      "action": "protective-cover"
+    },
+    "young-alden-cover-and-peek": {
+      "actor": "young-alden",
+      "action": "cover-and-peek"
+    },
+    "alden-folded-arms": {
+      "actor": "alden",
+      "action": "folded-arms"
+    },
+    "alden-interrupted-sip": {
+      "actor": "alden",
+      "action": "interrupted-sip"
     }
   },
   "roomDecor": {
