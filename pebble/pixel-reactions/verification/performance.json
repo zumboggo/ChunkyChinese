@@ -39,5 +39,7 @@
   ],
   "maxDrawMs": 1010,
   "minimumFreeHeapBytes": 128084,
-  "method": "Isolated emulator; no screenshots during playback. Wall-clock measurements, not physical watch CPU timings."
+  "method": "Isolated emulator; no screenshots during playback. Wall-clock measurements, not physical watch CPU timings.",
+  "pbwSha256": "00aba796719190ba41aaff94f74cfffa80376743c1a8636a12223282293c2c6b",
+  "note": "Earlier unoptimized v1.0.0 control run; final v1.0.1 evidence is report.json."
 }

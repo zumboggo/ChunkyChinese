@@ -1,5 +1,8 @@
 {
   "resourcePackageBytes": 9840,
-  "ramBuildFootprintBytes": 2676,
-  "freeHeapAtBuildBytes": 128396
+  "ramBuildFootprintBytes": 2716,
+  "elfTextBytes": 2540,
+  "elfDataBytes": 28,
+  "elfBssBytes": 148,
+  "method": "arm-none-eabi-size on final compiled ELF; loaded code/data and BSS included"
 }
