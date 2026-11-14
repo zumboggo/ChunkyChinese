@@ -8,8 +8,8 @@ int main(void) {
   ModdableCreationRecord cr = {
     .fxBuildFFI = (void *)fxBuildFFI,
     .recordSize = sizeof(ModdableCreationRecord),
-    .stack = 4608,
-    .slot = 32768,
+    .stack = 5120,
+    .slot = 35840,
     .chunk = 11264,
 #ifdef PBL_DEBUG
     .flags = kModdableCreationFlagDebug,

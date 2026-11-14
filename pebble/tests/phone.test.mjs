@@ -23,3 +23,7 @@ test('phone settings Refresh button requests an immediate download',()=>{
 test('startup handshake retries until watch acknowledges readiness',()=>{const c=companion();c.events.ready();c.context.hello();assert.equal(c.sent.filter(m=>m.COMMAND==='HELLO').length,2);c.events.appmessage({payload:{COMMAND:'READY'}});assert.equal(c.context.helloTimer,null);});
 
 test('default Refresh URL follows the selected bundle',()=>{assert.ok(companion().context.DEFAULT_URL.endsWith('/'+pack.id+'.json'));});
+test('transfer tokens ignore old acknowledgements and completion from a superseded request',()=>{
+ const c=companion();c.context.begin(pack,'new');const before=c.sent.length;c.events.appmessage({payload:{COMMAND:'ACK',OFFSET:0,STATUS:'old'}});assert.equal(c.sent.length,before);
+ c.events.appmessage({payload:{COMMAND:'ACK',OFFSET:0,STATUS:'new'}});assert.equal(c.sent.at(-1).STATUS,'new');c.events.appmessage({payload:{COMMAND:'DONE',DATA:'old'}});assert.ok(c.context.transfer);c.events.appmessage({payload:{COMMAND:'DONE',DATA:'new'}});assert.equal(c.context.transfer,null);
+});
