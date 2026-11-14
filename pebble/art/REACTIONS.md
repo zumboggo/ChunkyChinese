@@ -1,5 +1,7 @@
 # Reusable pixel reaction library
 
+Preferred new Alden direction: [Shōnen cutout animations](../pixel-reactions/shonen-cutout/README.md), selected by David after the style comparison. Six actual animated SVG/GIF reactions and the reusable rig are ready for native conversion; the released reader still uses its existing portraits.
+
 New: [32 × 32 five-color Chibi Alden animations](../pixel-reactions/README.md), based on David’s approved hoodie design. Six finite reactions, per-frame assets, previews and a separate Time 2 demo are available for visual review. They are not yet substituted for the released reader’s full-screen portraits.
 
 Generated with the built-in ImageGen tool on 2026-11-14 for David’s Pebble reader. These are original adaptation assets, not official novel artwork. Source masters, crops and palette-packed resources are retained in this repository.

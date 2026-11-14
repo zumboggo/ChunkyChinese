@@ -97,3 +97,7 @@ reserved. Read-only polling can recover existing results without buying variants
 ## Compare animation techniques
 
 [Pixel, cutout and detailed portrait comparison](style-comparison/README.md) shows the same surprised-then-embarrassed reaction on one timeline. Use its interactive page to replay or inspect held poses before choosing a technique.
+
+## Selected Shōnen cutout direction
+
+David chose [Shōnen cutout Alden](shonen-cutout/README.md). Its six animated GIF/SVG assets and reusable rig supersede the earlier Chibi art direction for future work, while existing releases remain unchanged.

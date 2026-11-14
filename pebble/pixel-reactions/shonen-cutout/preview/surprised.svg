@@ -1,0 +1,362 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228"><g visibility="hidden"><set attributeName="visibility" to="visible" begin="0.0s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f0-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f0-head" transform="translate(0 18.0) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f0-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f0-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 97.0 93 109 Q81 118.0 67 109 Z" fill="black"/><path d="M109 109 Q120 97.0 135 109 Q123 118.0 109 109 Z" fill="black"/></mask></defs>
+ <path id="f0-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f0-face)"/>
+ <path id="f0-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 98 Q78 92 91 97 M109 97 Q121 92 135 98" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f0-eye0"><path d="M67 109 Q78 97.0 93 109 Q81 118.0 67 109 Z"/></clipPath></defs><g clip-path="url(#f0-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="7.0" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="5.0" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 97.0 93 109 Q81 118.0 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f0-eye1"><path d="M109 109 Q120 97.0 135 109 Q123 118.0 109 109 Z"/></clipPath></defs><g clip-path="url(#f0-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="7.0" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="5.0" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 97.0 135 109 Q123 118.0 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <path d="M93 139 Q102 139 112 138" fill="none" stroke="#2e1b17" stroke-width="2" stroke-linecap="round"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="0.1s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f1-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f1-head" transform="translate(0 18.0) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f1-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f1-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 97.0 93 109 Q81 118.0 67 109 Z" fill="black"/><path d="M109 109 Q120 97.0 135 109 Q123 118.0 109 109 Z" fill="black"/></mask></defs>
+ <path id="f1-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f1-face)"/>
+ <path id="f1-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 98 Q78 92 91 97 M109 97 Q121 92 135 98" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f1-eye0"><path d="M67 109 Q78 97.0 93 109 Q81 118.0 67 109 Z"/></clipPath></defs><g clip-path="url(#f1-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="7.0" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="5.0" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 97.0 93 109 Q81 118.0 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f1-eye1"><path d="M109 109 Q120 97.0 135 109 Q123 118.0 109 109 Z"/></clipPath></defs><g clip-path="url(#f1-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="7.0" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="5.0" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 97.0 135 109 Q123 118.0 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <path d="M93 139 Q102 139 112 138" fill="none" stroke="#2e1b17" stroke-width="2" stroke-linecap="round"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="0.2s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f2-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f2-head" transform="translate(0 17.758715197713713) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f2-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f2-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 96.94467120181406 93 109 Q81 118.04149659863945 67 109 Z" fill="black"/><path d="M109 109 Q120 96.94467120181406 135 109 Q123 118.04149659863945 109 109 Z" fill="black"/></mask></defs>
+ <path id="f2-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f2-face)"/>
+ <path id="f2-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 97.96047942986719 Q78 91.96047942986719 91 96.96047942986719 M109 96.96047942986719 Q121 91.96047942986719 135 97.96047942986719" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f2-eye0"><path d="M67 109 Q78 96.94467120181406 93 109 Q81 118.04149659863945 67 109 Z"/></clipPath></defs><g clip-path="url(#f2-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="7.032275132275132" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="5.023053665910808" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 96.94467120181406 93 109 Q81 118.04149659863945 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f2-eye1"><path d="M109 109 Q120 96.94467120181406 135 109 Q123 118.04149659863945 109 109 Z"/></clipPath></defs><g clip-path="url(#f2-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="7.032275132275132" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="5.023053665910808" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 96.94467120181406 135 109 Q123 118.04149659863945 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <path d="M93 139 Q102 139 112 138" fill="none" stroke="#2e1b17" stroke-width="2" stroke-linecap="round"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="0.3s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f3-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f3-head" transform="translate(0 16.629968731613324) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f3-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f3-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 95.33469387755102 93 109 Q81 119.24897959183673 67 109 Z" fill="black"/><path d="M109 109 Q120 95.33469387755102 135 109 Q123 119.24897959183673 109 109 Z" fill="black"/></mask></defs>
+ <path id="f3-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f3-face)"/>
+ <path id="f3-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 96.81049562682216 Q78 90.81049562682216 91 95.81049562682216 M109 95.81049562682216 Q121 90.81049562682216 135 96.81049562682216" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f3-eye0"><path d="M67 109 Q78 95.33469387755102 93 109 Q81 119.24897959183673 67 109 Z"/></clipPath></defs><g clip-path="url(#f3-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="7.971428571428571" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="5.693877551020408" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 95.33469387755102 93 109 Q81 119.24897959183673 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f3-eye1"><path d="M109 109 Q120 95.33469387755102 135 109 Q123 119.24897959183673 109 109 Z"/></clipPath></defs><g clip-path="url(#f3-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="7.971428571428571" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="5.693877551020408" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 95.33469387755102 135 109 Q123 119.24897959183673 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="5.297376093294461" ry="5.040816326530612" fill="#2e1b17"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="0.4s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f4-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f4-head" transform="translate(0 15.815079918433705) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f4-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f4-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 92.5002267573696 93 109 Q81 121.3748299319728 67 109 Z" fill="black"/><path d="M109 109 Q120 92.5002267573696 135 109 Q123 121.3748299319728 109 109 Z" fill="black"/></mask></defs>
+ <path id="f4-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f4-face)"/>
+ <path id="f4-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 94.78587625526401 Q78 88.78587625526401 91 93.78587625526401 M109 93.78587625526401 Q121 88.78587625526401 135 94.78587625526401" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f4-eye0"><path d="M67 109 Q78 92.5002267573696 93 109 Q81 121.3748299319728 67 109 Z"/></clipPath></defs><g clip-path="url(#f4-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="9.624867724867727" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="6.874905517762661" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 92.5002267573696 93 109 Q81 121.3748299319728 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f4-eye1"><path d="M109 109 Q120 92.5002267573696 135 109 Q123 121.3748299319728 109 109 Z"/></clipPath></defs><g clip-path="url(#f4-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="9.624867724867727" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="6.874905517762661" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 92.5002267573696 135 109 Q123 121.3748299319728 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="5.803530936183997" ry="6.812358276643992" fill="#2e1b17"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="0.5s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f5-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f5-head" transform="translate(0 15.500729964799518) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f5-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f5-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 89.80181405895692 93 109 Q81 123.39863945578232 67 109 Z" fill="black"/><path d="M109 109 Q120 89.80181405895692 135 109 Q123 123.39863945578232 109 109 Z" fill="black"/></mask></defs>
+ <path id="f5-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f5-face)"/>
+ <path id="f5-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 92.85843861354066 Q78 86.85843861354066 91 91.85843861354066 M109 91.85843861354066 Q121 86.85843861354066 135 92.85843861354066" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f5-eye0"><path d="M67 109 Q78 89.80181405895692 93 109 Q81 123.39863945578232 67 109 Z"/></clipPath></defs><g clip-path="url(#f5-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="11.1989417989418" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="7.9992441421012845" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 89.80181405895692 93 109 Q81 123.39863945578232 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f5-eye1"><path d="M109 109 Q120 89.80181405895692 135 109 Q123 123.39863945578232 109 109 Z"/></clipPath></defs><g clip-path="url(#f5-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="11.1989417989418" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="7.9992441421012845" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 89.80181405895692 135 109 Q123 123.39863945578232 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="6.285390346614837" ry="8.498866213151928" fill="#2e1b17"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="0.6s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f6-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f6-head" transform="translate(0 15.758932656760742) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f6-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f6-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="black"/><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="black"/></mask></defs>
+ <path id="f6-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f6-face)"/>
+ <path id="f6-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 92 Q78 86 91 91 M109 91 Q121 86 135 92" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f6-eye0"><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z"/></clipPath></defs><g clip-path="url(#f6-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f6-eye1"><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z"/></clipPath></defs><g clip-path="url(#f6-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="6.5" ry="9.25" fill="#2e1b17"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="0.7s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f7-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f7-head" transform="translate(0 16.53053686926882) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f7-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f7-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="black"/><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="black"/></mask></defs>
+ <path id="f7-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f7-face)"/>
+ <path id="f7-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 92 Q78 86 91 91 M109 91 Q121 86 135 92" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f7-eye0"><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z"/></clipPath></defs><g clip-path="url(#f7-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f7-eye1"><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z"/></clipPath></defs><g clip-path="url(#f7-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="6.5" ry="9.25" fill="#2e1b17"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="0.8s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f8-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f8-head" transform="translate(0 17.63877737607695) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f8-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f8-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="black"/><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="black"/></mask></defs>
+ <path id="f8-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f8-face)"/>
+ <path id="f8-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 92 Q78 86 91 91 M109 91 Q121 86 135 92" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f8-eye0"><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z"/></clipPath></defs><g clip-path="url(#f8-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f8-eye1"><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z"/></clipPath></defs><g clip-path="url(#f8-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="6.5" ry="9.25" fill="#2e1b17"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="0.9s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f9-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f9-head" transform="translate(0 18.0) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f9-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f9-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="black"/><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="black"/></mask></defs>
+ <path id="f9-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f9-face)"/>
+ <path id="f9-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 92 Q78 86 91 91 M109 91 Q121 86 135 92" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f9-eye0"><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z"/></clipPath></defs><g clip-path="url(#f9-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f9-eye1"><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z"/></clipPath></defs><g clip-path="url(#f9-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="6.5" ry="9.25" fill="#2e1b17"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="1.0s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f10-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f10-head" transform="translate(0 18.0) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f10-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f10-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="black"/><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="black"/></mask></defs>
+ <path id="f10-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f10-face)"/>
+ <path id="f10-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 92 Q78 86 91 91 M109 91 Q121 86 135 92" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f10-eye0"><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z"/></clipPath></defs><g clip-path="url(#f10-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f10-eye1"><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z"/></clipPath></defs><g clip-path="url(#f10-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="6.5" ry="9.25" fill="#2e1b17"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="1.1s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f11-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f11-head" transform="translate(0 18.0) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f11-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f11-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="black"/><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="black"/></mask></defs>
+ <path id="f11-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f11-face)"/>
+ <path id="f11-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 92 Q78 86 91 91 M109 91 Q121 86 135 92" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f11-eye0"><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z"/></clipPath></defs><g clip-path="url(#f11-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f11-eye1"><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z"/></clipPath></defs><g clip-path="url(#f11-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="6.5" ry="9.25" fill="#2e1b17"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="1.2s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f12-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f12-head" transform="translate(0 18.0) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f12-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f12-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="black"/><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="black"/></mask></defs>
+ <path id="f12-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f12-face)"/>
+ <path id="f12-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 92 Q78 86 91 91 M109 91 Q121 86 135 92" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f12-eye0"><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z"/></clipPath></defs><g clip-path="url(#f12-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f12-eye1"><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z"/></clipPath></defs><g clip-path="url(#f12-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="6.5" ry="9.25" fill="#2e1b17"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="1.3s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f13-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f13-head" transform="translate(0 18.0) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f13-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f13-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="black"/><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="black"/></mask></defs>
+ <path id="f13-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f13-face)"/>
+ <path id="f13-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 92 Q78 86 91 91 M109 91 Q121 86 135 92" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f13-eye0"><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z"/></clipPath></defs><g clip-path="url(#f13-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f13-eye1"><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z"/></clipPath></defs><g clip-path="url(#f13-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="6.5" ry="9.25" fill="#2e1b17"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="1.4s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f14-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f14-head" transform="translate(0 18.0) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f14-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f14-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="black"/><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="black"/></mask></defs>
+ <path id="f14-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f14-face)"/>
+ <path id="f14-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 92 Q78 86 91 91 M109 91 Q121 86 135 92" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f14-eye0"><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z"/></clipPath></defs><g clip-path="url(#f14-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f14-eye1"><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z"/></clipPath></defs><g clip-path="url(#f14-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="6.5" ry="9.25" fill="#2e1b17"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="1.5s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f15-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f15-head" transform="translate(0 18.0) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f15-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f15-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="black"/><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="black"/></mask></defs>
+ <path id="f15-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f15-face)"/>
+ <path id="f15-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 92 Q78 86 91 91 M109 91 Q121 86 135 92" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f15-eye0"><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z"/></clipPath></defs><g clip-path="url(#f15-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f15-eye1"><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z"/></clipPath></defs><g clip-path="url(#f15-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="6.5" ry="9.25" fill="#2e1b17"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="1.6s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f16-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f16-head" transform="translate(0 18.0) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f16-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f16-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="black"/><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="black"/></mask></defs>
+ <path id="f16-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f16-face)"/>
+ <path id="f16-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 92 Q78 86 91 91 M109 91 Q121 86 135 92" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f16-eye0"><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z"/></clipPath></defs><g clip-path="url(#f16-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f16-eye1"><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z"/></clipPath></defs><g clip-path="url(#f16-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="6.5" ry="9.25" fill="#2e1b17"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="1.7s" dur="0.1s"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f17-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f17-head" transform="translate(0 18.0) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f17-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f17-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="black"/><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="black"/></mask></defs>
+ <path id="f17-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f17-face)"/>
+ <path id="f17-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 92 Q78 86 91 91 M109 91 Q121 86 135 92" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f17-eye0"><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z"/></clipPath></defs><g clip-path="url(#f17-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f17-eye1"><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z"/></clipPath></defs><g clip-path="url(#f17-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="6.5" ry="9.25" fill="#2e1b17"/>
+ </g></svg></g><g visibility="hidden"><set attributeName="visibility" to="visible" begin="1.8s" fill="freeze"/><svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228" role="img" aria-label="Alden surprised">
+ <g id="f18-body" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M24 228 L29 194 Q32 182 65 175 L135 175 Q168 182 171 194 L176 228" fill="#504e51"/>
+ <path d="M77 164 L75 192 Q100 208 126 192 L124 164" fill="#ffd3aa"/>
+ <path d="M65 188 Q100 207 136 188 L136 228 L65 228 Z" fill="#b8b6b5"/>
+ <path d="M64 174 Q44 175 40 188 L62 207 L53 212 L66 228 L79 228 L77 194 Z M137 174 Q157 175 161 188 L139 207 L148 212 L135 228 L122 228 L124 194 Z" fill="#504e51"/>
+ <path d="M68 205 L66 225 M134 205 L136 225" stroke="#b8b6b5" stroke-width="2.5"/>
+ </g>
+ <g id="f18-head" transform="translate(0 18.0) rotate(0 101 163)">
+ <path d="M51 100 Q40 70 54 50 Q65 35 82 36 Q99 24 126 36 Q147 43 153 63 L148 85 L149 113 L139 137 L64 138 L52 117 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" mask="url(#f18-face)"/>
+ <ellipse cx="54" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="147" cy="113" rx="8" ry="13" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <defs><mask id="f18-face"><rect width="200" height="228" fill="white"/><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="black"/><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="black"/></mask></defs>
+ <path id="f18-face-base" d="M59 77 Q101 57 142 78 L140 126 Q136 147 103 164 Q74 150 61 127 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5" mask="url(#f18-face)"/>
+ <path id="f18-fringe" d="M47 99 Q39 76 49 60 L44 64 Q48 47 69 43 Q71 30 93 30 Q126 28 151 50 L142 48 Q155 61 154 74 L149 69 L151 100 L142 114 L141 88 Q124 83 111 67 Q117 88 130 94 Q108 90 94 71 L100 94 Q85 84 78 70 Q72 91 63 99 L63 82 L55 113 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M87 43 Q104 56 128 60 M97 51 Q118 68 143 72" fill="none" stroke="#2e1b17" stroke-width="1.3"/>
+ <path d="M67 92 Q78 86 91 91 M109 91 Q121 86 135 92" fill="none" stroke="#2e1b17" stroke-width="2.7" stroke-linecap="round"/><defs><clipPath id="f18-eye0"><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z"/></clipPath></defs><g clip-path="url(#f18-eye0)"><ellipse cx="80" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="80" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="78.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M67 109 Q78 88.6 93 109 Q81 124.3 67 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/><defs><clipPath id="f18-eye1"><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z"/></clipPath></defs><g clip-path="url(#f18-eye1)"><ellipse cx="122" cy="110" rx="4.5" ry="11.9" fill="#8b5637"/><ellipse cx="122" cy="110" rx="2.5" ry="8.5" fill="#2e1b17"/><circle cx="120.2" cy="107.5" r="1.5" fill="#ffd3aa"/></g><path d="M109 109 Q120 88.6 135 109 Q123 124.3 109 109 Z" fill="none" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M102 119 l-1 6 3 0" fill="none" stroke="#2e1b17" stroke-width="1.3" stroke-linecap="round"/>
+ <ellipse cx="102" cy="142" rx="6.5" ry="9.25" fill="#2e1b17"/>
+ </g></svg></g></svg>
