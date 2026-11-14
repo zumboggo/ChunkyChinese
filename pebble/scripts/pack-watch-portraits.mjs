@@ -3,6 +3,7 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),sharp=require('sharp');
 const root=path.resolve(import.meta.dirname,'..'),pkgPath=path.join(root,'reader/package.json'),pkg=JSON.parse(fs.readFileSync(pkgPath));
+if(pkg.pebble.resources.media.some(a=>a.name==='REACTIONS'))throw Error('Legacy static installer is disabled for the animated reader. Use npm run art.');
 const names=fs.readdirSync(path.join(root,'reader/resources/images')).filter(f=>f.endsWith('-full-0.png')).map(f=>f.replace('-full-0.png','')).sort();
 const rawDir=path.join(root,'reader/resources/portraits');fs.mkdirSync(rawDir,{recursive:true});
 const ids={},media=[];

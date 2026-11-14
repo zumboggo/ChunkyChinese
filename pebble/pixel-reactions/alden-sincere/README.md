@@ -1,5 +1,9 @@
 # Alden — Gentle Sincerity: six animations
 
+**Reader v1.10.0:** these selected assets now feed the installed-animation build.
+See [native integration](../INTEGRATION.md) and the new PBW release evidence.
+The older standalone-preview limitations below describe the source packs.
+
 User-selected direction: **Gentle Sincerity** is the character baseline and
 laugh; **Bright Curiosity** provides the shocked eyes and mouth. Both approved
 64px reference images are preserved under `source/`. No new paid generation

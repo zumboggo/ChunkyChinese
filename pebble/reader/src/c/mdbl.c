@@ -10,7 +10,7 @@ int main(void) {
     .recordSize = sizeof(ModdableCreationRecord),
     .stack = 4608,
     .slot = 32768,
-    .chunk = 12288,
+    .chunk = 11264,
 #ifdef PBL_DEBUG
     .flags = kModdableCreationFlagDebug,
 #endif

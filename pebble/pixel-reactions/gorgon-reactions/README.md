@@ -1,5 +1,9 @@
 # Gorgon — six restrained reactions
 
+**Reader v1.10.0:** these selected assets now feed the installed-animation build.
+See [native integration](../INTEGRATION.md) and the new PBW release evidence.
+The older standalone-preview limitations below describe the source packs.
+
 Approved existing neutral, attentive, thoughtful, skeptical, serious and amused
 expressions, preserved at 64×64 with one shared eight-colour palette. Near-white
 background pixels are consolidated before quantization. Original PNGs are retained

@@ -8,7 +8,7 @@ import Message from 'pebble/message';
 import bundled from './bundled';
 import legacy from './legacy';
 import upgrade from './upgrade';
-import {sceneIds,sceneNames,sceneGroups} from './scenes';
+import {sceneId,sceneName,sceneGroup,sceneCount} from './scenes-native';
 import glyphs from './glyphs';
 import art from './art-native';
 import {initial,current,phrase,advance,previous,browse,restore,toggleChinese,migrate,migrateLegacy} from './reader';
@@ -62,13 +62,15 @@ function footer(t){render.fillRectangle(navy,0,207,200,21);text(t,8,208,'small',
 function header(t,tag=''){render.fillRectangle(navy,0,0,200,23);text(t,8,2,'small',paper);if(tag)text(tag,150,2,'small',paper);}
 function speakerName(n){return (n.speaker||n.actor)==='YoungAlden'?'Young Alden':(n.speaker||n.actor||'Alden');}
 function portrait(n){
- render.begin();lastImage=null;lastImageName=null;render.fillRectangle(paper,0,0,200,228);render.end();Debug.gc();
+ const key=pack.id+':'+pack.version+':'+state.n;
+ if(lastImageName!==key){graphics.showPortrait(0,0);lastImageName=key;}
+ render.begin();lastImage=null;render.fillRectangle(paper,0,0,200,228);render.end();Debug.gc();
  graphics.showPortrait(art(n.actor+'-'+n.emotion+'-full'),n.actor==='Hannah'?1:n.actor==='YoungAlden'?2:n.actor==='Boe'?5:n.actor==='Jeremy'?6:n.actor==='Gorgon'?7:0);
 }
-const previewGroups=[];sceneGroups.forEach(g=>{if(!previewGroups.includes(g))previewGroups.push(g);});
+const previewGroups=[];for(let i=1;i<=sceneCount;i++){const g=sceneGroup(i);if(!previewGroups.includes(g))previewGroups.push(g);}
 let previewGroup='Episode 11',previewIndex=0,backgroundMotion=localStorage.getItem('backgroundMotion')!=='0';
 graphics.setBackgroundMotion(backgroundMotion?1:0);
-function groupIds(){const ids=[];sceneGroups.forEach((g,i)=>{if(g===previewGroup)ids.push(i+1);});return ids;}
+function groupIds(){const ids=[];for(let i=1;i<=sceneCount;i++)if(sceneGroup(i)===previewGroup)ids.push(i);return ids;}
 let cataloguePage=null,selectedEpisode=null,catalogueRequest=0,requestedEpisode=null;
 function completed(id){
  if(localStorage.getItem('done-'+id)==='1')return true;
@@ -83,7 +85,7 @@ function openCatalogue(kind,offset=0){
 }
 function episodeAction(){return selectedEpisode[0]===pack.id?'Resume offline':selectedEpisode[0]===bundled.id?'Read offline':'Download / resume';}
 function catalogueItems(){return [...cataloguePage.items.map(e=>cataloguePage.kind==='groups'?'Episodes '+e[0]+' - '+e[1]:(completed(e[0])?'[x] ':'[ ] ')+e[1]+'. '+e[2]),...actions(cataloguePage)];}
-function menuItems(){return overlay==='catalogue'?catalogueItems():overlay==='episode'?[episodeAction(),'Choose another','Back']:overlay==='animations'?[...previewGroups,'Back']:overlay==='scene-list'?[...groupIds().map(id=>sceneNames[id-1]),'Back']:overlay==='library'?['Browse episodes','Read Episode '+pack.number,'Refresh episode','About this story',...(pack.id!==bundled.id?['Read included Ep '+bundled.number]:[]),'Back']:overlay==='restart'?['Keep reading','Restart episode']:['Resume','Refresh episode','Animations','Background motion: '+(backgroundMotion?'On':'Off'),'Restart','Library'];}
+function menuItems(){return overlay==='catalogue'?catalogueItems():overlay==='episode'?[episodeAction(),'Choose another','Back']:overlay==='animations'?[...previewGroups,'Back']:overlay==='scene-list'?[...groupIds().map(id=>sceneName(id)),'Back']:overlay==='library'?['Browse episodes','Read Episode '+pack.number,'Refresh episode','About this story',...(pack.id!==bundled.id?['Read included Ep '+bundled.number]:[]),'Back']:overlay==='restart'?['Keep reading','Restart episode']:['Resume','Refresh episode','Animations','Background motion: '+(backgroundMotion?'On':'Off'),'Restart','Library'];}
 function previewReturn(){previewScene=0;overlay='scene-list';menuIndex=previewIndex;}
 
 function stopScene(){if(activeScene){graphics.showScene(0);activeScene=0;}}
@@ -94,11 +96,11 @@ function showAnimation(id,recipe){
 function draw(){
  if(!chineseFont||pack.chinese===false)state.e=0;
  if(previewScene&&!overlay){showAnimation(previewScene);return;}
- const visible=current(pack,state);if(!overlay&&visible.type==='animation'){showAnimation(visible.recipe?-1:(sceneIds[visible.id]||0),visible.recipe);return;}
+ const visible=current(pack,state);if(!overlay&&visible.type==='animation'){showAnimation(visible.recipe?-1:sceneId(visible.id),visible.recipe);return;}
  stopScene();
  if(!overlay&&(visible.type==='opening'||visible.type==='end')){const title=String(pack.shortTitle||pack.title).slice(0,80);for(let i=0;i<title.length;i++)graphics.cardData(i,title.charCodeAt(i));graphics.cardData(80,pack.number);graphics.showPortrait(art(pack.cover||(visible.type==='opening'?'opening':'closing')),visible.type==='opening'?3:4);return;}
  if(!overlay&&visible.type==='reaction'){portrait(visible);return;}
- graphics.showPortrait(0,0);
+ graphics.showPortrait(0,0);lastImageName=null;
  render.begin();Debug.gc();render.fillRectangle(paper,0,0,200,228);
  const node=current(pack,state);
  if(overlay==='about'){
@@ -132,6 +134,11 @@ function itemsHeight(){return 29;}
 function closeOverlay(){overlay=null;menuIndex=0;helpPage=0;cataloguePage=null;selectedEpisode=null;catalogueRequest++;}
 function request(id=pack.id){requestedEpisode=id;lastImage=null;lastImageName=null;Debug.gc();status=connected?'Loading from phone...':'Waiting for phone...';send({COMMAND:'LOAD',DATA:id});}
 function input(type){
+ if(!overlay&&current(pack,state).type==='reaction'){
+  if(type==='select'&&!graphics.portraitReady())return;
+  if(type==='down'){graphics.showPortrait(0,0);draw();return;}
+ }
+
  if(overlay==='about'){
   if(type==='back'){closeOverlay();}else if(type==='select'){
    const body='Super Supportive by Sleyca. A private Mandarin learning adaptation. Original: royalroad.com/fiction/63759. Watch reading progress stays on this watch.';

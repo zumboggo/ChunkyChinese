@@ -154,11 +154,14 @@ static void tick(void *data){
  layer_mark_dirty(canvas);schedule();
 }
 static void schedule(void){if(!timer&&focused&&moving())timer=app_timer_register(phase==HOLD?AMBIENT_FRAME_MS:SCENE_FRAME_MS,tick,NULL);}
+extern void reactionFocus(bool focus);
 static void focus_changed(bool focus){
+ reactionFocus(focus);
  focused=focus;if(timer){app_timer_cancel(timer);timer=NULL;}last_time=now_ms();
  APP_LOG(APP_LOG_LEVEL_INFO,"Scene focus %d id=%lu action=%lu ambient=%lu",focus,(unsigned long)scene_id,(unsigned long)elapsed,(unsigned long)scene_time);if(focus)schedule();
 }
 void setBackgroundMotion(uint32_t enabled){
+ if(!subscribed){app_focus_service_subscribe(focus_changed);subscribed=true;}
  background_motion=enabled!=0;if(timer){app_timer_cancel(timer);timer=NULL;}last_time=now_ms();
  APP_LOG(APP_LOG_LEVEL_INFO,"Background motion %d",background_motion);schedule();
 }

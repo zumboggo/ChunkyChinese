@@ -4,6 +4,8 @@
 
 txAPI* XS = NULL;
 
+extern uint32_t portraitReady();
+extern void cardData(uint32_t arg0, uint32_t arg1);
 extern void showPortrait(uint32_t arg0, uint32_t arg1);
 extern uint32_t recipeData(uint32_t arg0, int32_t arg1);
 extern void showScene(uint32_t arg0);
@@ -12,6 +14,17 @@ extern void setBackgroundMotion(uint32_t arg0);
 extern uint32_t storySize();
 extern char* readStoryNode(uint32_t arg0);
 extern char* readStory(uint32_t arg0, uint32_t arg1);
+
+static void xs_portraitReady(txMachine* the) {
+	uint32_t result = portraitReady();
+	XS->fromUnsigned(the, mxResult, (txUnsigned)result);
+}
+
+static void xs_cardData(txMachine* the) {
+	uint32_t arg0 = (uint32_t)XS->toUnsigned(the, mxArgv(0));
+	uint32_t arg1 = (uint32_t)XS->toUnsigned(the, mxArgv(1));
+	cardData(arg0, arg1);
+}
 
 static void xs_showPortrait(txMachine* the) {
 	uint32_t arg0 = (uint32_t)XS->toUnsigned(the, mxArgv(0));
@@ -71,6 +84,14 @@ static void xs_readStory(txMachine* the) {
 
 void fxBuildFFI(txMachine* the, txAPI* api) {
 	XS = api;
+	XS->newHostFunction(the, xs_portraitReady, 0, 0, 0);
+	XS->push(the, mxThis);
+	XS->defineID(the, XS->id(the, "portraitReady"), 0, 0x0E);
+	XS->pop(the);
+	XS->newHostFunction(the, xs_cardData, 2, 0, 0);
+	XS->push(the, mxThis);
+	XS->defineID(the, XS->id(the, "cardData"), 0, 0x0E);
+	XS->pop(the);
 	XS->newHostFunction(the, xs_showPortrait, 2, 0, 0);
 	XS->push(the, mxThis);
 	XS->defineID(the, XS->id(the, "showPortrait"), 0, 0x0E);

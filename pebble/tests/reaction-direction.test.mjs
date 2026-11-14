@@ -18,11 +18,14 @@ test('Episode 13 gives every route six animations and 23 source-directed reactio
 test('Reaction direction rejects missing, repeated and unsupported shots',()=>{
  for(const reactions of [[{anchor:'missing',actor:'Gorgon',emotion:'neutral'}],[direction.reactions[0],direction.reactions[0]],[{...direction.reactions[0],actor:'Boe'}],[{...direction.reactions[0],emotion:'blinking'}]])assert.throws(()=>reactionDirection(source.script,{...direction,reactions}));
 });
-test('All four new reaction atlases are packed as independent reusable resources',()=>{
+test('Legacy expression aliases resolve to compact animated resources',()=>{
  const atlases=JSON.parse(fs.readFileSync(new URL('../art/reaction-atlases.json',import.meta.url))).atlases;
  const pkg=JSON.parse(fs.readFileSync(new URL('../reader/package.json',import.meta.url)));
  assert.equal(atlases.length,4);
- for(const a of atlases)for(const emotion of a.emotions)assert.ok(pkg.pebble.resources.media.some(r=>r.file==='portraits/'+a.actor+'-'+emotion+'-full.rle'));
+ const aliases=JSON.parse(fs.readFileSync(new URL('../pixel-reactions/native-aliases.json',import.meta.url)));
+ for(const a of atlases)for(const emotion of a.emotions)assert.ok(aliases[a.actor+'-'+emotion+'-full']>=1000);
+ assert.ok(pkg.pebble.resources.media.some(r=>r.name==='REACTIONS'));
+ assert.ok(!pkg.pebble.resources.media.some(r=>/portraits\/.+-full\.rle$/.test(r.file)));
 });
 
 test('compact native lookup matches every packed resource and rejects unknown names',async()=>{
@@ -36,4 +39,13 @@ test('presentation audit counts branch-exclusive visuals per complete route',asy
  assert.deepEqual(presentationCounts(exportEpisode(source,'supportive-13')),{routes:16,animations:{min:6,max:6},reactions:{min:23,max:23}});
  const p={entry:0,nodes:[{type:'choice',options:[{to:1},{to:3}]},{type:'reaction'},{type:'end'},{type:'animation'},{type:'animation'},{type:'end'}]};
  assert.deepEqual(presentationCounts(p),{routes:2,animations:{min:0,max:2},reactions:{min:0,max:1}});
+});
+
+test('compact scene lookup preserves every installed ID, name and group',async()=>{
+ const original=await import('../reader/src/embeddedjs/scenes.js'),compact=await import('../reader/src/embeddedjs/scenes-native.js');
+ assert.equal(compact.sceneCount,original.sceneNames.length);
+ for(const [key,id] of Object.entries(original.sceneIds)){
+  assert.equal(compact.sceneId(key),id);assert.equal(compact.sceneName(id),original.sceneNames[id-1]);assert.equal(compact.sceneGroup(id),original.sceneGroups[id-1]);
+ }
+ for(const key of ['','missing','train','download-test'])assert.equal(compact.sceneId(key),0);
 });

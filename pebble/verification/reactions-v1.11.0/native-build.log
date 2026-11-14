@@ -1,0 +1,58 @@
+### -p pebble/emery
+# xsc main.xsb
+# xsl mc.xsa
+invalid lock file in /private/tmp/hannah-release/pebble/reader
+Setting top to                           : /private/tmp/hannah-release/pebble/reader 
+Setting out to                           : /private/tmp/hannah-release/pebble/reader/build 
+Checking for program 'webpack'           : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/current/node_modules/.bin/webpack 
+Found Pebble SDK for emery in:           : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/current/sdk-core/pebble/emery 
+Checking for program 'gcc, cc'           : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/4.44/toolchain/arm-none-eabi/bin/arm-none-eabi-gcc 
+Checking for program 'ar'                : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/4.44/toolchain/arm-none-eabi/bin/arm-none-eabi-ar 
+'configure' finished successfully (0.087s)
+Waf: Entering directory `/private/tmp/hannah-release/pebble/reader/build'
+Auto-injected MOD resource for emery from build/mods/emery/mc.xsa
+[1/3] Creating message_key_json:  -> build/js/message_keys.json
+[2/3] Creating message_key_definitions:  -> build/src/message_keys.auto.c
+[3/3] Creating message_key_header:  -> build/include/message_keys.auto.h
+[ 4/27] Compiling emery | reso: resources/fonts/latin.ttf -> build/emery/resources/fonts/latin.ttf.FONT_LATIN_20.reso
+[ 5/27] Compiling emery | reso: resources/fonts/latin.ttf -> build/emery/resources/fonts/latin.ttf.FONT_LATIN_24.reso
+[ 6/27] Compiling emery | reso: build/mods/emery/mc.xsa -> build/emery/mods/emery/mc.xsa.MOD.reso
+[ 7/27] Compiling emery | reso: resources/portraits/closing.rle -> build/emery/resources/portraits/closing.rle.PORTRAIT_CLOSING.reso
+[ 8/27] Compiling emery | reso: resources/data/reactions.bin -> build/emery/resources/data/reactions.bin.REACTIONS.reso
+[ 9/27] Compiling emery | reso: resources/portraits/opening.rle -> build/emery/resources/portraits/opening.rle.PORTRAIT_OPENING.reso
+[10/27] Compiling emery | reso: resources/data/story.ndjson -> build/emery/resources/data/story.ndjson.STORY_DATA.reso
+[11/27] Creating emery | /private/tmp/hannah-release/pebble/reader/build/emery/appinfo.auto.c:  -> build/emery/appinfo.auto.c
+[12/27] Compiling emery | subst: /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/current/sdk-core/pebble/common/pebble_app.ld.template -> build/emery/pebble_app.ld.auto
+[13/27] Compiling emery | c: build/src/message_keys.auto.c -> build/src/message_keys.auto.c.9.o
+[14/27] Compiling emery | c: src/c/mc.ffi.c -> build/src/c/mc.ffi.c.9.o
+[15/27] Creating emery | /private/tmp/hannah-release/pebble/reader/build/appinfo.json:  -> build/appinfo.json
+[16/27] Processing emery | resource_ball: build/emery/resources/portraits/opening.rle.PORTRAIT_OPENING.reso build/emery/resources/portraits/closing.rle.PORTRAIT_CLOSING.reso build/emery/resources/fonts/latin.ttf.FONT_LATIN_24.reso build/emery/resources/fonts/latin.ttf.FONT_LATIN_20.reso build/emery/resources/data/story.ndjson.STORY_DATA.reso build/emery/resources/data/reactions.bin.REACTIONS.reso build/emery/mods/emery/mc.xsa.MOD.reso -> build/emery/system_resources.resball
+[17/27] Compiling emery | generate_resource_id_definitions: build/emery/system_resources.resball -> build/emery/src/resource_ids.auto.c
+[18/27] Compiling emery | generate_pbpack: build/emery/system_resources.resball -> build/emery/app_resources.pbpack
+[19/27] Compiling emery | generate_resource_id_header: build/emery/system_resources.resball -> build/emery/src/resource_ids.auto.h
+[20/27] Compiling emery | c: build/emery/src/resource_ids.auto.c -> build/emery/src/resource_ids.auto.c.9.o
+[21/27] Compiling emery | c: src/c/story_resource.c -> build/src/c/story_resource.c.9.o
+[22/27] Compiling emery | c: build/emery/appinfo.auto.c -> build/emery/appinfo.auto.c.9.o
+[23/27] Compiling emery | c: src/c/scenes.c -> build/src/c/scenes.c.9.o
+[24/27] Compiling emery | c: src/c/portrait.c -> build/src/c/portrait.c.9.o
+[25/27] Compiling emery | c: src/c/mdbl.c -> build/src/c/mdbl.c.9.o
+[26/27] Linking emery | cprogram: build/src/c/mc.ffi.c.9.o build/src/c/mdbl.c.9.o build/src/c/portrait.c.9.o build/src/c/scenes.c.9.o build/src/c/story_resource.c.9.o build/emery/appinfo.auto.c.9.o build/emery/src/resource_ids.auto.c.9.o build/src/message_keys.auto.c.9.o -> build/emery/pebble-app.elf
+/Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/4.44/toolchain/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: warning: /private/tmp/hannah-release/pebble/reader/build/emery/pebble-app.elf has a LOAD segment with RWX permissions
+
+[27/27] Processing emery | memory_usage_report: build/emery/pebble-app.elf build/emery/app_resources.pbpack
+-------------------------------------------------------
+EMERY APP MEMORY USAGE
+Total size of resources:        136122 bytes / 256.0KB
+Total footprint in RAM:         28744 bytes / 128.0KB
+Free RAM available (heap):      102328 bytes
+------------------------------------------------------- 
+[28/31] Compiling emery | /private/tmp/hannah-release/pebble/reader/build/emery/pebble-app.raw.bin: build/emery/pebble-app.elf -> build/emery/pebble-app.raw.bin
+[29/31] Processing merge_js: src/pkjs/bundled.json src/pkjs/catalogue.js src/pkjs/garden.js src/pkjs/index.js -> build/pebble-js-app.js build/pebble-js-app.js.map
+[30/31] Processing emery | inject-metadata: build/emery/pebble-app.raw.bin build/emery/pebble-app.elf build/emery/app_resources.pbpack -> build/emery/pebble-app.bin
+[31/31] Compiling app_bundle: build/appinfo.json -> build/reader.pbw
+Waf: Leaving directory `/private/tmp/hannah-release/pebble/reader/build'
+'build' finished successfully (0.701s)
+Running Moddable prebuild (release build).
+Running mcrun -m ./src/embeddedjs/manifest.json -f x -p pebble/emery -t build -o ./build/mods/emery/mcrun -s tech.moddable.pebble
+Copied Moddable mod for emery
+Moddable prebuild completed.

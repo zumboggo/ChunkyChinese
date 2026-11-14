@@ -1,0 +1,2 @@
+PASS: mouse/Enter flow, indefinite wait, key repeat guard, boundary click guard, frozen hold, replay cancellation, native view, 320px layout, hidden-host animation, echoed state events, no browser errors.
+PASS: 24 action/settings combinations × 3 actors, motion, hold, replay, pause, hidden host, echoed state, 320px layout, exact train loop and seam continuity. { exact: 0, edge: 3073, step: 3064 }

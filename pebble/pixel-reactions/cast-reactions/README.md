@@ -1,5 +1,9 @@
 # Bo and Jeremy — selected 64px reactions
 
+**Reader v1.10.0:** these selected assets now feed the installed-animation build.
+See [native integration](../INTEGRATION.md) and the new PBW release evidence.
+The older standalone-preview limitations below describe the source packs.
+
 Twelve completed animation assets, six for each character, in the same
 64×64/eight-colour format as Alden's Gentle Sincerity set.
 

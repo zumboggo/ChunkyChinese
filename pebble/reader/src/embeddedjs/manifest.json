@@ -1,6 +1,10 @@
 {
   "ffi": {
     "functions": {
+      "portraitReady": {
+        "arguments": [],
+        "returns": "uint32_t"
+      },
       "cardData": {
         "arguments": [
           "uint32_t",

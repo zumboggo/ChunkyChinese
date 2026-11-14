@@ -1,5 +1,6 @@
 import {createRequire} from 'node:module';import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} from 'node:url';
 const require=createRequire(import.meta.url);const sharp=require('sharp');const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+if(JSON.parse(fs.readFileSync(path.join(root,'reader/package.json'))).pebble.resources.media.some(a=>a.name==='REACTIONS'))throw Error('Legacy static installer is disabled for the animated reader. Use npm run art.');
 const names=['Hannah-neutral','Hannah-warm','Hannah-worried','Hannah-sad','Hannah-determined','Hannah-excited','YoungAlden-curious','YoungAlden-worried','YoungAlden-confused','YoungAlden-thoughtful','Alden-thoughtful','Alden-sad','Alden-determined','Alden-neutral','YoungAlden-neutral','Hannah-calm'];
 const dest=path.join(root,'reader/resources/images');fs.mkdirSync(dest,{recursive:true});
 const atlas=path.join(root,'art/cast-atlas.png'),meta=await sharp(atlas).metadata();

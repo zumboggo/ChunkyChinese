@@ -1,3 +1,11 @@
+# Installed animated reactions (v1.10.0)
+
+The watch now uses the selected compact 64px animation packs. See
+[reaction integration](../pixel-reactions/INTEGRATION.md) for the installed catalogue,
+legacy emotion aliases and build command. The atlas documentation below is retained
+as source provenance; its full-size static portraits are excluded from the PBW.
+Use `npm run art` to rebuild the compact library.
+
 # Reusable pixel reaction library
 
 Preferred new Alden direction: [Shōnen cutout animations](../pixel-reactions/shonen-cutout/README.md), selected by David after the style comparison. Six actual animated SVG/GIF reactions and the reusable rig are ready for native conversion; the released reader still uses its existing portraits.

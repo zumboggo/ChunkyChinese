@@ -1,0 +1,190 @@
+{
+  "episodeId": "supportive-13",
+  "episodeVersion": "6b319cc93962",
+  "scenes": [
+    {
+      "id": "train-phone",
+      "freeBytes": 4652,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 12
+    },
+    {
+      "id": "restaurant-seat",
+      "freeBytes": 4652,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 10
+    },
+    {
+      "id": "hannah-fry",
+      "freeBytes": 4652,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 11
+    },
+    {
+      "id": "alden-listens",
+      "freeBytes": 4652,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 11
+    },
+    {
+      "id": "train-reflection",
+      "freeBytes": 4652,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 10
+    },
+    {
+      "id": "gorgon-listen",
+      "freeBytes": 4652,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 8
+    },
+    {
+      "id": "gorgon-offer",
+      "freeBytes": 4652,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 10
+    },
+    {
+      "id": "gorgon-think",
+      "freeBytes": 4652,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 8
+    },
+    {
+      "id": "gorgon-sip",
+      "freeBytes": 4652,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 11
+    },
+    {
+      "id": "boe-listen",
+      "freeBytes": 4652,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 13
+    },
+    {
+      "id": "boe-offer",
+      "freeBytes": 4652,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 8
+    },
+    {
+      "id": "boe-think",
+      "freeBytes": 4652,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 6
+    },
+    {
+      "id": "boe-sip",
+      "freeBytes": 4652,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 9
+    },
+    {
+      "id": "jeremy-listen",
+      "freeBytes": 4652,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 10
+    },
+    {
+      "id": "jeremy-offer",
+      "freeBytes": 4652,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 8
+    },
+    {
+      "id": "jeremy-think",
+      "freeBytes": 4652,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 6
+    },
+    {
+      "id": "jeremy-sip",
+      "freeBytes": 4652,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 7
+    },
+    {
+      "id": "background-train-train",
+      "freeBytes": 4652,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 7
+    },
+    {
+      "id": "background-cafe-walkers",
+      "freeBytes": 4652,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 5
+    },
+    {
+      "id": "background-consulate-walkers",
+      "freeBytes": 4652,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 6
+    },
+    {
+      "id": "background-home-foliage",
+      "freeBytes": 4652,
+      "drawAverageMs": 3,
+      "drawMaximumMs": 5
+    },
+    {
+      "id": "background-classroom-foliage",
+      "freeBytes": 4652,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 13
+    },
+    {
+      "id": "background-trading-light",
+      "freeBytes": 4652,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 6
+    },
+    {
+      "id": "background-home-rain",
+      "freeBytes": 4652,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 6
+    },
+    {
+      "id": "background-home-cat",
+      "freeBytes": 4652,
+      "drawAverageMs": 3,
+      "drawMaximumMs": 4
+    },
+    {
+      "id": "jeremy-train-listen",
+      "freeBytes": 4652,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 10
+    },
+    {
+      "id": "boe-train-think",
+      "freeBytes": 4652,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 9
+    },
+    {
+      "id": "jeremy-train-think",
+      "freeBytes": 4652,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 8
+    },
+    {
+      "id": "jeremy-street-listen",
+      "freeBytes": 4652,
+      "drawAverageMs": 2,
+      "drawMaximumMs": 4
+    },
+    {
+      "id": "boe-street-think",
+      "freeBytes": 4652,
+      "drawAverageMs": 3,
+      "drawMaximumMs": 4
+    }
+  ],
+  "motionPreferenceRestart": true,
+  "previewProgressPreserved": true,
+  "pbwSha256": "0705c165efc54cdda59f9c08ec40d4076e6902e8573e9513d52ac111c833a69c",
+  "physicalWatchTested": false
+}

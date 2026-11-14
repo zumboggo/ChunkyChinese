@@ -1,5 +1,5 @@
 """Exercise the real watch receiver via the local emulator (SDK Python required)."""
-import hashlib,json,queue,subprocess,time,uuid,zlib
+import hashlib,json,queue,subprocess,time,uuid,zlib,os
 from pathlib import Path
 from pebble_tool.sdk.emulator import ManagedEmulatorTransport
 from libpebble2.communication import PebbleConnection
@@ -21,7 +21,7 @@ def send(command,expected,**values):
 def begin():send('BEGIN','ACK',TOTAL=len(wire),CHECKSUM=checksum(wire),VERSION=version)
 def chunk(offset):
  data=wire[offset:offset+600];r=send('CHUNK','ACK',OFFSET=offset,DATA=data,CHECKSUM=checksum(data));assert r[keys['OFFSET']]==offset+len(data)
-cli=str(Path.home()/'.local/bin/pebble')
+cli=os.environ.get('PEBBLE_CLI',str(Path.home()/'.local/bin/pebble'))
 def run(*args):return subprocess.run([cli,*map(str,args),'--emulator','emery'],cwd=root/'reader',check=True,capture_output=True,text=True,timeout=60)
 run('screenshot','--no-open',root/'.local/emulator/transfer-before.png')
 send('HELLO','READY');begin();chunk(0)
@@ -37,5 +37,25 @@ begin()
 for offset in range(0,len(wire),600):chunk(offset)
 send('END','DONE');send('END','DONE') # duplicate completion is idempotent
 result={'wireBytes':len(wire),'version':version,'pbwSha256':hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest(),'interruptedRestartPreservedPosition':True,'incompleteRejected':True,'badChunkRejected':True,'restartAndComplete':True,'duplicateEnd':True,'physicalWatchTested':False}
+# A cover can share its compact pose with a reaction; overlays must still update.
+from PIL import Image
+def press(button):run('emu-button','click',button)
+def shot(name):
+ path=root/'.local/emulator'/('reaction-'+name+'.png');run('screenshot','--no-open',path);return Image.open(path).convert('RGB')
+def upload_document(doc):
+ meta={k:v for k,v in doc.items() if k!='nodes'};meta['nodeCount']=len(doc['nodes'])
+ payload='\n'.join(json.dumps(x,ensure_ascii=True,separators=(',',':')) for x in [meta,*doc['nodes']])+'\n'
+ send('BEGIN','ACK',TOTAL=len(payload),CHECKSUM=checksum(payload),VERSION=doc['version'])
+ for offset in range(0,len(payload),600):
+  text=payload[offset:offset+600];send('CHUNK','ACK',OFFSET=offset,DATA=text,CHECKSUM=checksum(text))
+ send('END','DONE');time.sleep(.4)
+fixture={'format':1,'id':'supportive-997','number':997,'version':'rxtest123456','title':'Reaction card One','cover':'Gorgon-neutral-full','entry':0,'nodes':[{'type':'reaction','actor':'Gorgon','emotion':'neutral'},{'type':'end'}]}
+upload_document(fixture);press('back');[press('down') for _ in range(4)];press('select');press('down');press('select');first=shot('opening-one')
+fixture['version']='rxtest123457';fixture['title']='Reaction card Two';upload_document(fixture);second=shot('opening-two');assert first.tobytes()!=second.tobytes(),'Same-cover title did not update'
+press('select');time.sleep(2.5);reaction=shot('held');assert reaction.getpixel((0,170))==(255,255,255),'Opening overlay remained on reaction'
+press('select');ending=shot('ending');assert ending.getpixel((0,170))==second.getpixel((0,170))!=(255,255,255),'Ending card overlay missing'
+result['sameCoverTitleUpdated']=True;result['reactionToEndingOverlayUpdated']=True
+upload_document(json.loads((root/'reader/src/pkjs/bundled.json').read_text()))
+result['normalEpisodeRestored']=True
 (root/'.local/emulator/transfer-report.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
 # Process exit closes the local websocket.

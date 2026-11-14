@@ -8,7 +8,7 @@ const read=p=>fs.readFileSync(new URL(p,root));
 export function runtimeFiles(){
  const files=['reader/src/embeddedjs/compiled/main.js','scripts/compact-runtime.mjs','package.json','reading-mode.json','scenes/library.json','scenes/ensemble/characters.json','reader/package.json','reader/src/embeddedjs/manifest.json'];
  for(const dir of ['reader/src/c/','reader/src/embeddedjs/','reader/src/pkjs/'])for(const name of fs.readdirSync(new URL(dir,root))){
-  if(!/\.(c|h|js)$/.test(name)||['story_index.h','bundled.js','episode.js','legacy.js','upgrade.js','mc.ffi.c'].includes(name))continue;
+  if(!/\.(c|h|inc|js)$/.test(name)||['story_index.h','bundled.js','episode.js','legacy.js','upgrade.js','mc.ffi.c'].includes(name))continue;
   files.push(dir+name);
  }
  const pkg=JSON.parse(read('reader/package.json'));

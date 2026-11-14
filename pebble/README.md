@@ -58,7 +58,7 @@ The original five moments remain available; Refresh alone cannot add native rend
 
 Existing v1.0/v1.1 saves migrate to the same phrase and selected choices. A known older v1.0/v1.1 feed is rejected so refreshing an unpublished/older feed cannot silently remove the installed animations. Future compatible refreshes can rearrange or reuse the installed named animation IDs; the bounded v1.6 recipe format also supports new pose sequences and scene combinations. New renderer capabilities still require a PBW update. This release is supplied as a sideloaded file; remote feed publication is separate.
 
-Native primitives draw the animations at a target 12 fps. Static portraits now use row-run resources, drawn through a 512-byte streaming buffer instead of decoding full bitmaps. The bundled story uses a generated flash-resource index and reads at most one 2 KiB record through a shared FFI bridge. The JavaScript runtime reserves 32 KiB for slots, 12 KiB for chunks, and 4.5 KiB for its stack. Current emulator checks and limits are in `verification/catalogue/STATUS.md`.
+Native primitives draw the scene animations at a target 12 fps. Emotional reactions now use the approved 64×64, eight-colour character packs, streamed through the shared 512-byte buffer and enlarged 3× without smoothing. All 40 old static emotion resources are excluded from the PBW; opening/closing cards remain. See [reaction integration](pixel-reactions/INTEGRATION.md). The bundled story uses a generated flash-resource index and reads at most one 2 KiB record through a shared FFI bridge. The JavaScript runtime reserves 32 KiB for slots, 11 KiB for chunks, and 4.5 KiB for its stack. Current emulator checks and limits are in `verification/reactions-v1.10.0/STATUS.md`.
 
 ## Reading controls
 

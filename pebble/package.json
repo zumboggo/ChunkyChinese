@@ -5,7 +5,7 @@
   "scripts": {
     "export": "node scripts/export.mjs",
     "test": "node --test tests/*.test.mjs",
-    "art": "node scripts/prepare-art.mjs",
+    "art": "python3 pixel-reactions/build-native.py && node scripts/configure-reading.mjs",
     "scenes": "node scripts/generate-scenes.mjs",
     "check": "sh scripts/build.sh --check",
     "build": "sh scripts/build.sh --dev",
