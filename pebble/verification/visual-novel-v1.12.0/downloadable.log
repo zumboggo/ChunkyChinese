@@ -1,0 +1,25 @@
+PASS downloaded gorgon/listen
+PASS downloaded gorgon/offer
+PASS downloaded gorgon/think
+PASS downloaded gorgon/sip
+PASS downloaded boe/listen
+PASS downloaded boe/offer
+PASS downloaded boe/think
+PASS downloaded boe/sip
+PASS downloaded jeremy/listen
+PASS downloaded jeremy/offer
+PASS downloaded jeremy/think
+PASS downloaded jeremy/sip
+PASS downloaded hannah/listen
+PASS downloaded hannah/offer
+PASS downloaded hannah/think
+PASS downloaded hannah/sip
+PASS downloaded young-alden/listen
+PASS downloaded young-alden/offer
+PASS downloaded young-alden/think
+PASS downloaded young-alden/sip
+PASS downloaded alden/listen
+PASS downloaded alden/offer
+PASS downloaded alden/think
+PASS downloaded alden/sip
+{"newRecipesTransferredWithoutRebuild": 26, "verifiedActors": ["gorgon", "boe", "jeremy", "hannah", "young-alden", "alden"], "newCastGestureChecks": ["gorgon/listen", "gorgon/offer", "gorgon/think", "gorgon/sip", "boe/listen", "boe/offer", "boe/think", "boe/sip", "jeremy/listen", "jeremy/offer", "jeremy/think", "jeremy/sip", "hannah/listen", "hannah/offer", "hannah/think", "hannah/sip", "young-alden/listen", "young-alden/offer", "young-alden/think", "young-alden/sip", "alden/listen", "alden/offer", "alden/think", "alden/sip"], "foregroundMovementAndHold": true, "replays": 3, "focusClocksPreserved": true, "sameIdRecipeUpdateReplacedHeldPose": true, "invalidPackageRetainedPrevious": true, "interruptedUpdateRestartAndResume": true, "downloadedPlaybackOffline": true, "backgroundMotionSetting": true, "heldFreeBytes": [16004, 16004, 16004, 16004, 16004, 16004, 16068, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004, 16004], "pbwSha256": "e4ffd4bf2feb6fbec7265ebf370acedb1283e6c831e234b55b1366c5699865f9", "physicalWatchTested": false, "transportRetries": 0, "normalEpisodeRestored": true}

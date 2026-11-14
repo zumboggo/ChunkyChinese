@@ -46,3 +46,17 @@ static void reaction_draw(GContext *ctx){
  uint32_t cost=(time_ms(NULL,NULL)+1000-began)%1000,free=heap_bytes_free();if(cost>reaction_draw_max)reaction_draw_max=cost;if(free<reaction_min_free)reaction_min_free=free;
 }
 
+// Reuse the portrait decoder and its 512-byte cache in visual-novel scenes.
+// This does not start a second timer or allocate a decoded frame.
+void scenePortraitReset(void){reaction_blocks[0]=reaction_blocks[1]=UINT32_MAX;}
+void scenePortraitDraw(GContext *ctx,uint32_t who,uint32_t emotion,uint32_t ms,int head_x,int head_y){
+ static const uint8_t starts[]={0,6,12,18,24,30};
+ if(who>5)return;
+ unsigned id=starts[who]+emotion;if(id>=REACTION_COUNT)return;
+ const ReactionAnim *a=&reaction_anims[id];const ReactionActor *actor=&reaction_actors[who];uint8_t f[6],p[8];unsigned step=0;
+ for(;step+1<a->count;step++){unsigned duration=reaction_u16(a->offset+step*6);if(ms<duration)break;ms-=duration;}
+ reaction_read(a->offset+step*6,f,6);reaction_palette(actor->offset,p);
+ reaction_x=32;reaction_y=43;reaction_scale=2;
+ if(actor->tiled)reaction_piece(ctx,actor->offset,f[2],head_x,head_y,p);
+ else{int dx=(int8_t)f[4]+head_x,dy=(int8_t)f[5]+head_y;reaction_piece(ctx,actor->offset,0,0,0,p);reaction_piece(ctx,actor->offset,1,dx,dy,p);reaction_piece(ctx,actor->offset,f[2],dx,dy,p);reaction_piece(ctx,actor->offset,actor->cheeks,dx,dy,p);reaction_piece(ctx,actor->offset,actor->nose,dx,dy,p);reaction_piece(ctx,actor->offset,f[3],dx,dy,p);}
+}

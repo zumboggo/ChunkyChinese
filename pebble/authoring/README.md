@@ -1,5 +1,8 @@
 # Fast episode authoring
 
+The current scene renderer is the v1.12 visual-novel system: approved pixel character, upper torso, reusable hand/prop action, and independent background. Catalogue/review use this style; edit `scenes/visual-novel.json` for shared acting, `scenes/library.json` for the stable catalogue, and episode direction files for placements. Keep five source-supported animated moments per complete route, reusing these actions. A one-time PBW update is needed before compatible Refresh content can use the new renderer.
+
+
 From `pebble/`, reuse the verified reader for content-only episodes. No compiler,
 image generation or full-library emulator tour is needed for unchanged native
 capabilities. These commands do not publish a feed or change the installed reader.

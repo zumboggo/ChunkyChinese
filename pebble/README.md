@@ -1,3 +1,9 @@
+# Visual-novel renderer update (v1.12)
+
+The episode animation renderer has been replaced with the approved close-up pixel-character style. Existing scene IDs, source anchors and reading saves are retained. Five animated moments per route now reuse torso/hand performances over separate backgrounds. Room fans and screensavers can continue after the foreground holds; Background motion Off freezes them. All six cast packs share the reaction decoder and its 512-byte cache. No movement below the waist.
+
+Use `npm run catalogue` / `npm run review -- <episode>` for the updated authoring preview. Current implementation and compatibility details: [scene workflow](scenes/README.md). The descriptions of older renderer releases below are historical.
+
 # Chunky Chinese for Pebble Time 2
 
 Episode 13 with six animated moments, 23 emotional shots per route, and Hearth Garden completion sync: [install and setup](EPISODE-13.md). Reusable portraits and generation notes: [reaction library](art/REACTIONS.md).

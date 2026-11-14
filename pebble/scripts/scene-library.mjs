@@ -30,7 +30,7 @@ export function validateLibrary(d){
   if(!/^[a-z][a-z0-9-]+$/.test(s.id)||ids.has(s.id)||s.nativeId!==i+1)fail('duplicate/noncontiguous scene ID');ids.add(s.id);
   if(!['train','cafe','consulate','home','classroom','trading','street'].includes(s.setting)||!s.name||!Number.isInteger(s.duration)||s.duration<=0||s.duration>65535)fail('invalid scene '+s.id);
   if(!['train','walkers','foliage','light','rain','cat'].includes(s.ambient)||typeof s.group!=='string')fail('invalid ambient/group');
-  if(s.nativeId>5&&!s.ensemble&&!s.sample)fail('new recipes require an explicit native renderer extension');
+  if(s.nativeId>5&&!s.ensemble&&!s.sample&&s.visualNovel!==true)fail('new recipes require an explicit native renderer binding');
   if(s.ensemble&&(!['gorgon','boe','jeremy'].includes(s.ensemble.actor)||!['listen','offer','think','sip'].includes(s.ensemble.gesture)||s.duration!==4800))fail('invalid ensemble binding');
   if(s.action&&(!d.actions[s.action]||d.actions[s.action].keys.at(-1).t!==s.duration))fail('action duration mismatch');
  });

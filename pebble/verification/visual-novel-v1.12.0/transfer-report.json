@@ -1,0 +1,15 @@
+{
+  "wireBytes": 21489,
+  "version": "6b319cc93962",
+  "pbwSha256": "e4ffd4bf2feb6fbec7265ebf370acedb1283e6c831e234b55b1366c5699865f9",
+  "interruptedRestartPreservedPosition": true,
+  "incompleteRejected": true,
+  "badChunkRejected": true,
+  "restartAndComplete": true,
+  "duplicateEnd": true,
+  "physicalWatchTested": false,
+  "sameCoverTitleUpdated": true,
+  "reactionToEndingOverlayUpdated": true,
+  "normalEpisodeRestored": true,
+  "transportRetries": 0
+}

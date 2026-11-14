@@ -10,7 +10,7 @@
     "check": "sh scripts/build.sh --check",
     "build": "sh scripts/build.sh --dev",
     "release": "sh scripts/build.sh --release",
-    "test:browser": "node preview/train-scene.test.mjs",
+    "test:browser": "node authoring/review.test.mjs && node scripts/test-visual-novel-preview.mjs",
     "test:emulator": "python3 scripts/test-emulator.py",
     "catalogue": "node scripts/episode-author.mjs catalogue",
     "preflight": "node scripts/episode-author.mjs preflight",
@@ -18,7 +18,8 @@
     "content": "node scripts/episode-author.mjs content",
     "direct": "node scripts/episode-author.mjs direct",
     "runtime:record": "node scripts/runtime-profile.mjs",
-    "test:review": "node authoring/review.test.mjs"
+    "test:review": "node authoring/review.test.mjs",
+    "preview:scenes": "python3 scripts/preview-visual-novel.py"
   },
   "devDependencies": {
     "sharp": "0.35.3",

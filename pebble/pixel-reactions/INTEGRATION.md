@@ -1,5 +1,8 @@
 # Compact reaction integration
 
+**Visual-novel reuse (v1.12):** the same decoder and 512-byte cache now draw both 3× reaction shots and 2× characters over scene backgrounds. Exterior-only body masks preserve the original portrait pixels on white and make backgrounds visible around the silhouettes. The combined artwork/timing resource is now 29,256 bytes; the 23,959-byte figure below describes the original v1.10 integration. No second scene artwork resource is installed.
+
+
 The reader replaces all 40 full-size static emotion resources with one streamed
 29,256-byte reaction library. Original portrait masters remain in the repository;
 they are not in the PBW. Opening and closing title-card artwork remains installed.

@@ -1,5 +1,23 @@
 # Reusable scene authoring
 
+## Active renderer: visual novel (v1.12)
+
+Episode animations now use the approved pixel characters in close foreground framing, with reusable hands/props and independent room motion. The former full-body primitive renderer is no longer compiled into the reader.
+
+- `library.json` retains stable IDs, names, duration, setting, ambience and grouping. Existing episode direction files and reading positions remain valid.
+- `visual-novel.json` owns active actor bindings, compact wrist/expression/head timelines, clothing colours and room decoration. Edit this file to change foreground performances; `npm run scenes` validates it and generates `visual_novel_data.h`.
+- `visual_novel_draw.h` draws torso/hand geometry and architectural backgrounds. `portrait.c` supplies the same approved artwork decoder/cache used by full-screen reactions. No full-frame animation buffers or lower-body movement.
+- `npm run catalogue` and `npm run review -- <episode>` now display this renderer. `npm run test:browser` checks authoring interactions and 180 pixel-exact comparisons against native C. `npm run preview:scenes` creates a shareable native-rendered contact sheet and GIF.
+- To add a new fixed actor/action combination, append a stable ID to `library.json` with `visualNovel: true` and add its actor/action binding in `visual-novel.json`. The generator rejects missing or unknown bindings. Regenerate, review and verify a new PBW; never repurpose an existing named ID.
+- Keep at least five source-supported animated moments per complete episode route. Reuse performances across scenes; this is a placement requirement, not five newly made assets.
+- The original interactive phone pickup, fresh-press final hold, Down replay, saved motion toggle and interrupted-focus clocks remain. Home has a fan and screensaver, cafe/classroom a fan, and consulate a screen. Ambient Off freezes all of them without stopping foreground acting.
+- Schema-1 downloads remain accepted for all six cast profiles. Existing head/wrist deltas map into the closer framing; the small angle channel becomes a sideways head lean. Existing cup gestures are supported. New built-in phone/fry timelines require this PBW; schema 1 still downloads only its documented cup/no-prop channels.
+
+The older pose/choreography headers and train/ensemble previews below are retained as historical source and recipe compatibility material. They are not the active renderer or the current authoring preview.
+
+## Historical geometry and stable catalogue
+
+
 `library.json` owns shipped IDs/names, poses, pickup contact/keyframes, timing,
 cafe actor joint tracks, fry/cup contact events, and reflection timing.
 `ensemble/characters.json` owns the reusable actor profiles and gesture tracks.

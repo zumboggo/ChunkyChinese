@@ -84,7 +84,7 @@ with (out/'watch.log').open('w') as f:
   # Validate every reusable gesture on each newly installed rig through the data path.
   motion(False)
   cast=json.loads((root/'scenes/ensemble/characters.json').read_text());verified=[]
-  for who,name in enumerate(['hannah','young-alden','alden'],3):
+  for who,name in enumerate(['gorgon','boe','jeremy','hannah','young-alden','alden']):
    for action,track in cast['actions'].items():
     trackkeys=track.get('downloadKeys',track['keys'])
     values=[1,who,3,2,int(action in ['offer','sip']),len(trackkeys)]
@@ -95,7 +95,7 @@ with (out/'watch.log').open('w') as f:
     verified.append(name+'/'+action);print('PASS downloaded '+name+'/'+action,flush=True)
   log=(out/'watch.log').read_text();assert not re.search(r'INPUT ERROR|SAVE ERROR|fxAbort|memory full|App fault',log,re.I),log
   values=[int(v) for v in re.findall(r'Scene 65535 held; free=(\d+)',log)];assert min(values)>=1500,values
-  result={'newRecipesTransferredWithoutRebuild':14,'verifiedActors':['gorgon','boe','jeremy','hannah','young-alden','alden'],'newCastGestureChecks':verified,'foregroundMovementAndHold':True,'replays':3,'focusClocksPreserved':True,'sameIdRecipeUpdateReplacedHeldPose':True,'invalidPackageRetainedPrevious':True,'interruptedUpdateRestartAndResume':True,'downloadedPlaybackOffline':True,'backgroundMotionSetting':True,'heldFreeBytes':values,'pbwSha256':hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest(),'physicalWatchTested':False}
+  result={'newRecipesTransferredWithoutRebuild':26,'verifiedActors':['gorgon','boe','jeremy','hannah','young-alden','alden'],'newCastGestureChecks':verified,'foregroundMovementAndHold':True,'replays':3,'focusClocksPreserved':True,'sameIdRecipeUpdateReplacedHeldPose':True,'invalidPackageRetainedPrevious':True,'interruptedUpdateRestartAndResume':True,'downloadedPlaybackOffline':True,'backgroundMotionSetting':True,'heldFreeBytes':values,'pbwSha256':hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest(),'physicalWatchTested':False}
   transfer(bundled);time.sleep(1)
   final_log=(out/'watch.log').read_text();assert 'Episode activated'+bundled['id']+bundled['version'] in final_log
   assert not re.search(r'INPUT ERROR|SAVE ERROR|fxAbort|memory full|App fault',final_log,re.I),final_log

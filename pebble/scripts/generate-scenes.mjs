@@ -68,3 +68,6 @@ static const uint8_t scene_setting[]={0,${d.scenes.map(s=>settings.indexOf(s.set
 static const uint8_t scene_ambient[]={0,${d.scenes.map(s=>ambients.indexOf(s.ambient))}};
 `);
 
+// Active foreground renderer; legacy geometry above remains preview/archive data only.
+import {generateVisualNovel} from './generate-visual-novel.mjs';
+generateVisualNovel(check);

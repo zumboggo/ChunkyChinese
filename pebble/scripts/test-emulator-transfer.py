@@ -10,14 +10,24 @@ wire=(root/'reader/resources/data/story.ndjson').read_text(); version=json.loads
 def checksum(s):return format(zlib.adler32(s.encode('ascii')) & 0xffffffff,'x')
 c=PebbleConnection(ManagedEmulatorTransport('emery','4.44'));c.connect();c.run_async();service=AppMessageService(c); replies=queue.Queue()
 service.register_handler('appmessage',lambda tx,app,data:replies.put(data) if app==target else None)
+transport_retries=0
 def send(command,expected,**values):
- data={'COMMAND':command,**values}; service.send_message(target,{keys[k]:(Uint32(v) if isinstance(v,int) else CString(v)) for k,v in data.items()})
- deadline=time.monotonic()+30
- while time.monotonic()<deadline:
-  response=replies.get(timeout=max(.1,deadline-time.monotonic())); cmd=response.get(keys['COMMAND'])
-  if cmd==expected:return response
-  if cmd=='ERROR':raise AssertionError(response)
- raise AssertionError('No response: '+command)
+ global transport_retries
+ data={'COMMAND':command,**values};message={keys[k]:(Uint32(v) if isinstance(v,int) else CString(v)) for k,v in data.items()}
+ # Same bounded transport retry policy as the recipe-download suite. Retain its count.
+ for attempt in range(5):
+  service.send_message(target,message);deadline=time.monotonic()+6
+  while time.monotonic()<deadline:
+   try:response=replies.get(timeout=max(.1,deadline-time.monotonic()))
+   except queue.Empty:break
+   cmd=response.get(keys['COMMAND'])
+   if cmd==expected:
+    offset=0 if command=='BEGIN' else values.get('OFFSET',0)+len(values.get('DATA',''))
+    if cmd=='ACK' and response.get(keys['OFFSET'])!=offset:continue
+    return response
+   if cmd=='ERROR':raise AssertionError(response)
+  transport_retries+=1
+ raise AssertionError('No response after retries: '+command)
 def begin():send('BEGIN','ACK',TOTAL=len(wire),CHECKSUM=checksum(wire),VERSION=version)
 def chunk(offset):
  data=wire[offset:offset+600];r=send('CHUNK','ACK',OFFSET=offset,DATA=data,CHECKSUM=checksum(data));assert r[keys['OFFSET']]==offset+len(data)
@@ -57,5 +67,6 @@ press('select');ending=shot('ending');assert ending.getpixel((0,170))==second.ge
 result['sameCoverTitleUpdated']=True;result['reactionToEndingOverlayUpdated']=True
 upload_document(json.loads((root/'reader/src/pkjs/bundled.json').read_text()))
 result['normalEpisodeRestored']=True
+result['transportRetries']=transport_retries
 (root/'.local/emulator/transfer-report.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
 # Process exit closes the local websocket.

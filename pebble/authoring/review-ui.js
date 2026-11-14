@@ -1,20 +1,15 @@
 (()=>{
-const $=id=>document.getElementById(id),lib=REVIEW.library,data=REVIEW.ensemble,canvas=$('watch'),ctx=canvas.getContext('2d'),drawClassic=classic(ctx,lib);
+const $=id=>document.getElementById(id),lib=REVIEW.library,data=REVIEW.ensemble,canvas=$('watch'),ctx=canvas.getContext('2d');
 const shots=structuredClone(REVIEW.shots||[]);
 for(const shot of shots)if(shot.recipe&&!lib.scenes.some(s=>s.id===shot.scene))lib.scenes.push({id:shot.scene,name:shot.scene,group:'Downloadable',nativeId:65535,setting:shot.recipe.setting,ambient:shot.recipe.ambient,recipe:shot.recipe,duration:shot.recipe.keys.at(-1)[0],ensemble:{actor:shot.recipe.actor,gesture:shot.recipe.prop==='cup'?'sip':'listen'}});
 let shotIndex=shots.length?0:-1,scene=lib.scenes.find(s=>s.id===shots[0]?.scene)||lib.scenes[0],phase='hold',elapsed=0,ambient=0,holdAt=0,paused=false,last=performance.now(),enter=false;
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 $('title').textContent=REVIEW.title||'Pebble recipe catalogue';
 const readiness=$('readiness');for(const text of REVIEW.messages||[]){const p=document.createElement('p');p.className='warning';p.textContent=text;readiness.append(p);}
-function supported(s){return s.nativeId<=5||(['train','cafe','consulate','home','classroom','trading','street'].includes(s.setting)&&(s.ensemble||s.sample));}
+function supported(s){return s.nativeId<=5||(['train','cafe','consulate','home','classroom','trading','street'].includes(s.setting)&&(s.ensemble||s.sample||s.visualNovel));}
 function render(target,s,state,t,a,ambience){
  if(!supported(s)){target.fillStyle='white';target.fillRect(0,0,200,228);return;}
- const renderer=target===ctx?drawClassic:classic(target,lib);
- if(s.nativeId<=5){renderer.draw(s,state,t,ambience?a:0);return;}
- const setting=(s.setting==='cafe'?'meal':s.setting)+(s.ambient==='rain'?'-rain':s.ambient==='cat'?'-cat':'');
- const renderData=s.recipe?{...data,actions:{...data.actions,[s.ensemble.gesture]:{duration:s.duration,keys:s.recipe.keys.map(([t,y,x,h,a])=>[t,y,x,h,a/1000])}}}:data;
- PebbleEnsemble.render(target,renderData,{actor:s.ensemble?.actor||'boe',action:s.ensemble?.gesture||'listen',setting,actionMs:t,ambientMs:a,ambience:ambience&&s.ambient!=='none',ambientKind:s.recipe?s.ambient:undefined,backgroundOnly:!!s.sample});
- if(s.sample)renderer.seated();
+ VN.render(target,s,state,t,ambience?a:0);
 }
 function draw(){render(ctx,scene,phase,elapsed,ambient,$('ambience').checked);canvas.dataset.phase=phase;canvas.dataset.scene=scene.id;}
 function ui(){
@@ -34,6 +29,6 @@ $('select').onclick=activate;$('replay').onclick=()=>{start(scene);paused=false;
 $('episode-tab').onclick=()=>showTab('episode');$('catalogue-tab').onclick=()=>showTab('catalogue');$('search').oninput=cards;$('notes').oninput=()=>{if(shots[shotIndex])shots[shotIndex].note=$('notes').value;};
 $('download').disabled=!REVIEW.id;$('download').onclick=()=>{const plan={...(REVIEW.direction||{}),schema:1,episode:REVIEW.id,cues:shots.map(({anchor,scene,note,recipe})=>({anchor,scene,...(recipe?{recipe}:{}),...(note?{note}:{})}))};const url=URL.createObjectURL(new Blob([JSON.stringify(plan,null,2)+'\n'],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=REVIEW.id+'-direction.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 document.addEventListener('keydown',e=>{if(e.key!=='Enter'||['INPUT','TEXTAREA'].includes(e.target.tagName)||(e.target.tagName==='BUTTON'&&e.target!==$('select')))return;e.preventDefault();if(!e.repeat&&!enter){enter=true;activate();}});document.addEventListener('keyup',e=>{if(e.key==='Enter')enter=false;});window.addEventListener('blur',()=>{enter=false;});
-setInterval(()=>{const now=performance.now(),dt=Math.min(250,now-last);last=now;if(paused||phase==='unavailable')return;if($('ambience').checked)ambient=(ambient+dt)%lib.ambient.period;if(phase!=='waiting'&&phase!=='hold')elapsed+=dt;if(phase==='establish'&&elapsed>=scene.establish){phase='waiting';elapsed=0;}else if(phase==='playing'&&elapsed>=scene.duration){phase='hold';elapsed=scene.duration;holdAt=now;}if(phase!=='hold'||$('ambience').checked)draw();else if(canvas.dataset.phase!=='hold')draw();ui();},1000/lib.fps);
+setInterval(()=>{const now=performance.now(),dt=Math.min(250,now-last);last=now;if(paused||phase==='unavailable')return;if($('ambience').checked)ambient=(ambient+dt)%24000;if(phase!=='waiting'&&phase!=='hold')elapsed+=dt;if(phase==='establish'&&elapsed>=scene.establish){phase='waiting';elapsed=0;}else if(phase==='playing'&&elapsed>=scene.duration){phase='hold';elapsed=scene.duration;holdAt=now;}if(phase!=='hold'||$('ambience').checked)draw();else if(canvas.dataset.phase!=='hold')draw();ui();},1000/lib.fps);
 context();shotList();cards();showTab(shots.length?'episode':'catalogue');start(scene);
 })();

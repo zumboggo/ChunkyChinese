@@ -9,8 +9,8 @@ if [ "$#" -gt 0 ]; then echo 'Usage: build.sh [--check|--dev|--release] [episode
 export PEBBLE_EPISODE_ID="$episode"
 # Regenerate only explicitly with npm run scenes; stale artifacts must fail CI.
 node scripts/generate-scenes.mjs --check
-node scripts/generate-ensemble-preview.mjs --check
 node scripts/configure-reading.mjs
+python3 scripts/test-scene-art.py
 node scripts/export.mjs "$episode"
 node --test tests/*.test.mjs
 [ "$mode" != --check ] || exit 0
@@ -23,8 +23,8 @@ cd ..
 "${PEBBLE_PYTHON:-python3}" scripts/verify-compiled-fonts.py
 node scripts/build-report.mjs "$episode"
 if [ "$mode" = --release ]; then
- node preview/train-scene.test.mjs
- node preview/ensemble.test.mjs
+ node authoring/review.test.mjs
+ node scripts/test-visual-novel-preview.mjs
  if [ -n "${PEBBLE_TEST_SCENES:-}" ]; then
   python3 scripts/test-episode-scenes.py --install --cli "${PEBBLE_EMULATOR_CLI:-$cli}" --episode "$episode" --scenes "$PEBBLE_TEST_SCENES"
  else
