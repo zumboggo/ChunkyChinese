@@ -1,0 +1,66 @@
+{
+  "pbwSha256": "5fb566327d9761e69e9189c6268c31e7276c7c4c9ef01f5446039f88f87e4791",
+  "integratedReader": true,
+  "physicalWatch": false,
+  "resourceBytes": 3872,
+  "sharedStreamBufferBytes": 512,
+  "checks": [
+    "finite reaction holds",
+    "held image stable",
+    "three identical replays",
+    "select returns to menu",
+    "back returns without advancing story",
+    "reader loads after preview",
+    "preview works after opening story"
+  ],
+  "measurements": [
+    {
+      "minFreeHeap": 4020,
+      "maxDrawMs": 10,
+      "avgDrawMs": 8,
+      "draws": 31
+    },
+    {
+      "minFreeHeap": 4020,
+      "maxDrawMs": 10,
+      "avgDrawMs": 7,
+      "draws": 31
+    },
+    {
+      "minFreeHeap": 4020,
+      "maxDrawMs": 10,
+      "avgDrawMs": 7,
+      "draws": 31
+    },
+    {
+      "minFreeHeap": 4020,
+      "maxDrawMs": 10,
+      "avgDrawMs": 7,
+      "draws": 31
+    },
+    {
+      "minFreeHeap": 4020,
+      "maxDrawMs": 10,
+      "avgDrawMs": 7,
+      "draws": 31
+    }
+  ],
+  "minimumFreeHeap": 4020,
+  "maximumDrawMs": 10,
+  "functionalChecksPassed": true,
+  "nativePixelMatch": true,
+  "nativeFootprintBytes": 27876,
+  "previousPrototypeNativeFootprintBytes": 27876,
+  "nativeFootprintSavingBytes": 0,
+  "totalResourceBytes": 204960,
+  "remainingResourceBytes": 57184,
+  "resourceSavingBytes": 41372,
+  "resourceSavingPercent": 91.44,
+  "ordinaryDrawMs": {
+    "min": 3,
+    "median": 8,
+    "max": 10
+  },
+  "clockAnomalies": 0,
+  "timingNote": "Emulator wall-clock samples only; prior prototype had clock discontinuities. Not physical-watch certification."
+}

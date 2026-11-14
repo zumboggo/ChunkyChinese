@@ -107,3 +107,9 @@ David chose [Shōnen cutout Alden](shonen-cutout/README.md). Its six animated GI
 The [hybrid prototype](hybrid-prototype/README.md) preserves the approved polished
 artwork and tests neutral → shock → embarrassment → smile in a separate full-reader
 lab build. Review its source-colour and watch-colour previews before expanding.
+
+## Compact 64px comparison
+
+The [64px comparison](compact64/README.md) tests the same Alden reaction with
+16- and 8-entry packed palettes and reusable facial patches. It includes
+side-by-side previews, full-reader measurements, and separate lab PBWs.

@@ -1,0 +1,38 @@
+{
+  "16": {
+    "resourceBytes": 3872,
+    "resourceSavingPercent": 91.44,
+    "minimumFreeHeap": 4020,
+    "nativeFootprintBytes": 27876,
+    "remainingResourceBytes": 57184,
+    "ordinaryDrawMs": {
+      "min": 3,
+      "median": 8,
+      "max": 10
+    },
+    "clockAnomalies": 0,
+    "nativePixelMatch": true,
+    "pbwSha256": "5fb566327d9761e69e9189c6268c31e7276c7c4c9ef01f5446039f88f87e4791"
+  },
+  "8": {
+    "resourceBytes": 2990,
+    "resourceSavingPercent": 93.39,
+    "minimumFreeHeap": 4020,
+    "nativeFootprintBytes": 27876,
+    "remainingResourceBytes": 58066,
+    "ordinaryDrawMs": {
+      "min": 2,
+      "median": 7,
+      "max": 10
+    },
+    "clockAnomalies": 4,
+    "nativePixelMatch": true,
+    "pbwSha256": "5c6eefb73992187b6bb432400de98517b74060318c30410d128a24f729c84806"
+  },
+  "previous": {
+    "resourceBytes": 45244,
+    "minimumFreeHeap": 4020,
+    "nativeFootprintBytes": 27876,
+    "remainingResourceBytes": 15812
+  }
+}
