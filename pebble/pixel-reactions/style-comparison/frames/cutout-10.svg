@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="228" viewBox="0 0 200 228">
+ <g stroke="#2e1b17" stroke-width="2.5" stroke-linejoin="round">
+ <path d="M16 228 L23 193 Q27 179 66 175 L132 175 Q173 180 178 194 L186 228" fill="#504e51"/>
+ <path d="M74 170 L73 192 Q99 207 127 191 L125 169" fill="#ffd3aa"/>
+ <path d="M66 189 Q100 207 134 189 L134 228 L66 228 Z" fill="#b8b6b5"/>
+ <path d="M64 173 Q47 175 43 188 L66 207 L55 210 L68 228 L78 228 L76 193 Z M136 173 Q153 175 157 188 L134 207 L145 210 L132 228 L122 228 L124 193 Z" fill="#504e51"/>
+ <path d="M67 205 L65 224 M135 205 L137 224" stroke="#b8b6b5" stroke-width="2"/>
+ </g>
+ <g transform="translate(0 -1.454102989269121) rotate(-0.29998050524277486 100 164)">
+ <path d="M50 82 Q43 53 66 34 Q98 14 131 36 Q157 50 153 93 L147 143 L125 159 L74 157 L52 133 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="3"/>
+ <ellipse cx="52" cy="113" rx="9" ry="15" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <ellipse cx="148" cy="113" rx="9" ry="15" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2"/>
+ <path d="M58 76 Q98 54 143 78 L141 126 Q137 151 104 168 Q70 154 60 129 Z" fill="#ffd3aa" stroke="#2e1b17" stroke-width="2.5"/>
+ <path d="M44 85 L40 68 L51 60 L47 48 L64 47 L67 32 L82 37 Q100 20 117 30 L130 25 L134 40 L152 46 L149 60 L161 75 L146 80 L148 99 L136 91 L131 70 Q127 82 121 85 L111 63 L106 83 L93 64 Q82 83 70 89 L72 73 L60 101 L55 90 L49 111 Z" fill="#8b5637" stroke="#2e1b17" stroke-width="3" stroke-linejoin="round"/>
+ <path d="M72 91.1504995257736 Q80 86.60279103591635 89 90.42022153929726 M111 90.42022153929726 Q120 86.60279103591635 129 91.1504995257736" fill="none" stroke="#2e1b17" stroke-width="2.5" stroke-linecap="round"/>
+ <ellipse cx="81.49293764087153" cy="108.18256949661908" rx="3.8" ry="5.490616888592937" fill="#2e1b17"/>
+ <ellipse cx="121.49293764087153" cy="108.18256949661908" rx="3.8" ry="5.490616888592937" fill="#2e1b17"/>
+ <path d="M100 117 l-2 7 5 0" fill="none" stroke="#8b5637" stroke-width="1.5"/>
+ <ellipse cx="103" cy="137" rx="4.2128279883381925" ry="5.03206997084548" fill="#2e1b17"/></g></svg>

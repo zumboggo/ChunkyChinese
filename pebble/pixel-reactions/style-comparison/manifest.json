@@ -1,0 +1,11 @@
+{
+  "durationMs": 1800,
+  "frameMs": 100,
+  "styles": [
+    "pixel",
+    "cutout",
+    "detailed"
+  ],
+  "reaction": "neutral \u2192 surprised \u2192 embarrassed \u2192 hold",
+  "paletteNote": "Pixel and cutout preserve the five-color design roles. Detailed portrait uses shaded artwork. All are design previews, not hardware palette or performance tests."
+}
