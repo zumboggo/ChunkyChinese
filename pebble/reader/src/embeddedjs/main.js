@@ -15,6 +15,7 @@ import {initial,current,phrase,advance,previous,browse,restore,toggleChinese,mig
 import {pages,wrap} from './layout';
 import {Transfer,validate,checksum} from './transfer';
 import {openWire} from './wire';
+import {validPage,localPage,actions} from './catalogue';
 
 const render=new Poco(screen);
 const chineseFont=art('font-chinese-28');
@@ -52,7 +53,7 @@ function save(){try{saveGeneration++;writeFile('progress-'+(saveGeneration%2),JS
 if(upgraded)save();
 function pendingCredits(){try{return JSON.parse(localStorage.getItem('episodeCredits')||'[]');}catch{return [];}}
 function storeCredits(events){localStorage.setItem('episodeCredits',JSON.stringify(events));}
-function creditCompletion(){const event=completionEvent(pack,state);if(event&&state.credited!==event.id){storeCredits(enqueue(pendingCredits(),event));save();syncCredits();}}
+function creditCompletion(){const event=completionEvent(pack,state);if(event)localStorage.setItem('done-'+pack.id,'1');if(event&&state.credited!==event.id){storeCredits(enqueue(pendingCredits(),event));save();syncCredits();}}
 function syncCredits(){const first=pendingCredits()[0];if(first&&connected)send({COMMAND:'CREDIT',DATA:JSON.stringify(first)});}
 
 function measure(text,kind){return render.getTextWidth(text,fonts[kind]);}
@@ -68,7 +69,21 @@ const previewGroups=[];sceneGroups.forEach(g=>{if(!previewGroups.includes(g))pre
 let previewGroup='Episode 11',previewIndex=0,backgroundMotion=localStorage.getItem('backgroundMotion')!=='0';
 graphics.setBackgroundMotion(backgroundMotion?1:0);
 function groupIds(){const ids=[];sceneGroups.forEach((g,i)=>{if(g===previewGroup)ids.push(i+1);});return ids;}
-function menuItems(){return overlay==='animations'?[...previewGroups,'Back']:overlay==='scene-list'?[...groupIds().map(id=>sceneNames[id-1]),'Back']:overlay==='library'?['Read Episode '+pack.number,'Refresh episode','About this story',...(pack.id!==bundled.id?['Read included Ep '+bundled.number]:[]),'Back']:overlay==='restart'?['Keep reading','Restart episode']:['Resume','Refresh episode','Animations','Background motion: '+(backgroundMotion?'On':'Off'),'Restart','Library'];}
+let cataloguePage=null,selectedEpisode=null,catalogueRequest=0,requestedEpisode=null;
+function completed(id){
+ if(localStorage.getItem('done-'+id)==='1')return true;
+ let old;try{old=id===pack.id?state:JSON.parse(readFile('saved-'+id));}catch{}
+ if(old&&old.completedAt){localStorage.setItem('done-'+id,'1');return true;}
+ return false;
+}
+function openCatalogue(kind,offset=0){
+ if(!cataloguePage){try{cataloguePage=validPage(JSON.parse(localStorage.getItem('catalogue-page')));}catch{cataloguePage=localPage(pack);}}
+ overlay='catalogue';menuIndex=0;status='Updating list...';
+ send({COMMAND:'CATALOG',DATA:kind,OFFSET:offset,VERSION:String(++catalogueRequest)});
+}
+function episodeAction(){return selectedEpisode[0]===pack.id?'Resume offline':selectedEpisode[0]===bundled.id?'Read offline':'Download / resume';}
+function catalogueItems(){return [...cataloguePage.items.map(e=>cataloguePage.kind==='groups'?'Episodes '+e[0]+' - '+e[1]:(completed(e[0])?'[x] ':'[ ] ')+e[1]+'. '+e[2]),...actions(cataloguePage)];}
+function menuItems(){return overlay==='catalogue'?catalogueItems():overlay==='episode'?[episodeAction(),'Choose another','Back']:overlay==='animations'?[...previewGroups,'Back']:overlay==='scene-list'?[...groupIds().map(id=>sceneNames[id-1]),'Back']:overlay==='library'?['Browse episodes','Read Episode '+pack.number,'Refresh episode','About this story',...(pack.id!==bundled.id?['Read included Ep '+bundled.number]:[]),'Back']:overlay==='restart'?['Keep reading','Restart episode']:['Resume','Refresh episode','Animations','Background motion: '+(backgroundMotion?'On':'Off'),'Restart','Library'];}
 function previewReturn(){previewScene=0;overlay='scene-list';menuIndex=previewIndex;}
 
 function stopScene(){if(activeScene){graphics.showScene(0);activeScene=0;}}
@@ -81,7 +96,7 @@ function draw(){
  if(previewScene&&!overlay){showAnimation(previewScene);return;}
  const visible=current(pack,state);if(!overlay&&visible.type==='animation'){showAnimation(visible.recipe?-1:(sceneIds[visible.id]||0),visible.recipe);return;}
  stopScene();
- if(!overlay&&(visible.type==='opening'||visible.type==='end')){graphics.showPortrait(art(pack.cover||(visible.type==='opening'?'opening':'closing')),visible.type==='opening'?3:4);return;}
+ if(!overlay&&(visible.type==='opening'||visible.type==='end')){const title=String(pack.shortTitle||pack.title).slice(0,80);for(let i=0;i<title.length;i++)graphics.cardData(i,title.charCodeAt(i));graphics.cardData(80,pack.number);graphics.showPortrait(art(pack.cover||(visible.type==='opening'?'opening':'closing')),visible.type==='opening'?3:4);return;}
  if(!overlay&&visible.type==='reaction'){portrait(visible);return;}
  graphics.showPortrait(0,0);
  render.begin();Debug.gc();render.fillRectangle(paper,0,0,200,228);
@@ -90,10 +105,16 @@ function draw(){
   header('About this story');
   const body='Super Supportive by Sleyca. A private Mandarin learning adaptation. Original: royalroad.com/fiction/63759. Watch reading progress stays on this watch.';
   const lines=wrap(body,t=>measure(t,'en'));const batch=lines.slice(helpPage*6,helpPage*6+6);batch.forEach((l,i)=>text(l,8,30+i*27));footer((helpPage+1)*6<lines.length?'Select: more   Back: return':'Select: return');
+ }else if(overlay==='episode'){
+  header('Episode '+selectedEpisode[1]);
+  wrap(selectedEpisode[2],t=>measure(t,'en')).slice(0,3).forEach((l,i)=>text(l,8,29+i*25));
+  text(completed(selectedEpisode[0])?'Completed':'Not completed',8,107,'small',teal);
+  menuItems().forEach((item,i)=>{const y=130+i*24;if(i===menuIndex)render.fillRectangle(teal,5,y,190,23);text(item,10,y+2,'small',i===menuIndex?paper:ink);});
+  footer(status);
  }else if(overlay){
-  header(overlay==='scene-list'?previewGroup:overlay==='animations'?'Animation previews':overlay==='library'?'Episode library':overlay==='restart'?'Start again?':'Chunky Chinese');
-  const top=Math.floor(menuIndex/6)*6;menuItems().slice(top,top+6).forEach((item,j)=>{const i=top+j,row=itemsHeight();const y=28+j*row;if(i===menuIndex)render.fillRectangle(teal,5,y,190,row-1);text(item,10,y+3,'small',i===menuIndex?paper:ink);});
-  footer(overlay==='library'?status:'Up/Down: browse   Select: open');
+  header(overlay==='scene-list'?previewGroup:overlay==='animations'?'Animation previews':overlay==='catalogue'?(cataloguePage.kind==='groups'?'Choose episode range':'Episodes '+cataloguePage.kind+' - '+(Number(cataloguePage.kind)+9)):overlay==='library'?'Episode library':overlay==='restart'?'Start again?':'Chunky Chinese');
+  const top=Math.floor(menuIndex/6)*6;menuItems().slice(top,top+6).forEach((item,j)=>{const i=top+j,row=itemsHeight();const y=28+j*row;if(i===menuIndex)render.fillRectangle(teal,5,y,190,row-1);let label=item;while(label.length&&measure(label,'small')>178)label=label.slice(0,-1);if(label!==item)label=label.slice(0,-2)+'..';text(label,10,y+3,'small',i===menuIndex?paper:ink);});
+  footer(overlay==='library'||overlay==='catalogue'?status:'Up/Down: browse   Select: open');
  }else{
   const p=phrase(pack,state),all=pages(p,state.e,measure),page=all[Math.min(state.page,all.length-1)];
   const label=node.type==='choice'?'Your choice '+(state.o+1)+'/'+node.options.length:(node.speaker==='YoungAlden'?'Young Alden':node.speaker);
@@ -108,8 +129,8 @@ function draw(){
  render.end();
 }
 function itemsHeight(){return 29;}
-function closeOverlay(){overlay=null;menuIndex=0;helpPage=0;}
-function request(){lastImage=null;lastImageName=null;Debug.gc();status=connected?'Loading from phone...':'Waiting for phone...';send({COMMAND:'LOAD'});}
+function closeOverlay(){overlay=null;menuIndex=0;helpPage=0;cataloguePage=null;selectedEpisode=null;catalogueRequest++;}
+function request(id=pack.id){requestedEpisode=id;lastImage=null;lastImageName=null;Debug.gc();status=connected?'Loading from phone...':'Waiting for phone...';send({COMMAND:'LOAD',DATA:id});}
 function input(type){
  if(overlay==='about'){
   if(type==='back'){closeOverlay();}else if(type==='select'){
@@ -119,9 +140,21 @@ function input(type){
  }
  if(overlay){
   const items=menuItems();if(type==='up'||type==='down')menuIndex=(menuIndex+(type==='up'?-1:1)+items.length)%items.length;
-  else if(type==='back'){if(overlay==='scene-list'){overlay='animations';menuIndex=previewGroups.indexOf(previewGroup);}else if(overlay==='animations'){overlay='menu';menuIndex=2;}else closeOverlay();}else if(type==='select'){
+  else if(type==='back'){if(overlay==='episode'){overlay='catalogue';menuIndex=0;}else if(overlay==='catalogue'){overlay='menu';menuIndex=5;catalogueRequest++;}else if(overlay==='scene-list'){overlay='animations';menuIndex=previewGroups.indexOf(previewGroup);}else if(overlay==='animations'){overlay='menu';menuIndex=2;}else closeOverlay();}else if(type==='select'){
    const chosen=items[menuIndex];
-   if(overlay==='animations'&&menuIndex<previewGroups.length){previewGroup=chosen;overlay='scene-list';menuIndex=0;}
+   if(overlay==='catalogue'){
+    if(menuIndex<cataloguePage.items.length){const e=cataloguePage.items[menuIndex];if(cataloguePage.kind==='groups')openCatalogue(String(e[0]));else{selectedEpisode=e;overlay='episode';menuIndex=0;status=e[0]===pack.id||e[0]===bundled.id?'Available offline':'Select to download';}}
+    else if(chosen==='Choose range')openCatalogue('groups');
+    else if(chosen==='Next page')openCatalogue(cataloguePage.kind,cataloguePage.offset+5);
+    else if(chosen==='Previous page')openCatalogue(cataloguePage.kind,cataloguePage.offset-5);
+    else if(chosen==='Update list')openCatalogue(cataloguePage.kind,cataloguePage.offset);
+    else{closeOverlay();catalogueRequest++;}
+   }
+   else if(overlay==='episode'){
+    if(menuIndex===0){if(selectedEpisode[0]===pack.id)closeOverlay();else if(selectedEpisode[0]===bundled.id){switchEpisode(bundled);activeSlot=null;localStorage.removeItem('activeEpisode');save();closeOverlay();}else request(selectedEpisode[0]);}
+    else{overlay='catalogue';menuIndex=0;}
+   }
+   else if(overlay==='animations'&&menuIndex<previewGroups.length){previewGroup=chosen;overlay='scene-list';menuIndex=0;}
    else if(overlay==='scene-list'&&menuIndex<groupIds().length){previewIndex=menuIndex;previewScene=groupIds()[menuIndex];closeOverlay();}
    else if(chosen==='Back'&&overlay==='scene-list'){overlay='animations';menuIndex=previewGroups.indexOf(previewGroup);}
    else if(chosen==='Back'&&overlay==='animations'){overlay='menu';menuIndex=2;}
@@ -131,7 +164,7 @@ function input(type){
    else if(chosen==='Resume'||chosen==='Continue'||chosen.startsWith('Read Episode')||chosen==='Keep reading'||chosen==='Back')closeOverlay();
    else if(chosen==='Restart'){overlay='restart';menuIndex=0;}
    else if(chosen==='Restart episode'){state=initial(pack);save();closeOverlay();}
-   else if(chosen==='Library'){overlay='library';menuIndex=0;}
+   else if(chosen==='Library'||chosen==='Browse episodes'){openCatalogue(String(Math.floor((pack.number-1)/10)*10+1));}
    else if(chosen==='Refresh episode'){overlay='library';menuIndex=1;request();}
    else if(chosen==='About this story'){overlay='about';helpPage=0;}
   }draw();return;
@@ -157,7 +190,8 @@ const buttons=new Button({types:['select','up','down','back'],single:true,onPush
 // Keep an episode's exact position when selecting a different installed/downloaded story.
 function switchEpisode(next){
  if(pack.id!==next.id){
-  writeFile('saved-'+pack.id,JSON.stringify(state));
+  if(state.completedAt)localStorage.setItem('done-'+pack.id,'1');
+  writeFile('saved-'+pack.id,JSON.stringify({...state,history:state.history.slice(-24)}));
   let resume;try{resume=JSON.parse(readFile('saved-'+next.id));}catch{}
   state=restore(next,resume);
  }else state=migrate(pack,next,state);
@@ -169,7 +203,7 @@ const transfer=new Transfer({
  write(data,offset){const f=device.files.openFile({path:'episode-'+staging,mode:'r+'});try{f.write(ArrayBuffer.fromString(data),offset);}finally{f.close();}},
  complete(expected){return openStored('episode-'+staging,expected);},
  activate(next){stopScene();previewScene=0;switchEpisode(next);localStorage.setItem('activeEpisode',staging);activeSlot=staging;save();console.log('Episode activated',pack.id,pack.version);}
-},p=>{validate(p,glyphs,hasArt,r=>loadRecipe(r,0));if(p.id===bundled.id&&(p.version===upgrade.version||p.version===legacy.version))throw Error('Older feed; kept animations');});
+},p=>{if(requestedEpisode&&p.id!==requestedEpisode)throw Error('Different episode received');validate(p,glyphs,hasArt,r=>loadRecipe(r,0));if(p.id===bundled.id&&(p.version===upgrade.version||p.version===legacy.version))throw Error('Older feed; kept animations');});
 let channel;
 function send(obj){queued.push(obj);flush();}
 function flush(){if(channel&&connected&&!sending&&queued.length){const out=queued.shift();try{sending=true;channel.write(new Map(Object.entries(out)));}catch(e){queued.unshift(out);sending=false;console.log('SEND',e.message);}}}
@@ -180,12 +214,14 @@ channel=new Message({input:1024,output:256,keys:['COMMAND','DATA','OFFSET','TOTA
   const cmd=m.get('COMMAND');
   if(cmd==='BEGIN')console.log('Transfer starting',m.get('TOTAL'),m.get('CHECKSUM'));
   if(cmd==='HELLO'){send({COMMAND:'READY'});syncCredits();}
+  else if(cmd==='CATALOG'&&m.get('VERSION')===String(catalogueRequest)&&overlay==='catalogue'){const page=validPage(JSON.parse(m.get('DATA')));cataloguePage=page;localStorage.setItem('catalogue-page',JSON.stringify(page));menuIndex=0;status=page.offline?'Saved list; phone offline':'[x] Completed | Select: open';}
+  else if(cmd==='CATALOG_ERROR'&&m.get('VERSION')===String(catalogueRequest)){status=m.get('STATUS')||'List unavailable; kept story';}
   else if(cmd==='CREDIT_ACK'){const id=m.get('DATA');if(state.runId===id){state.credited=id;save();}storeCredits(acknowledge(pendingCredits(),id));status='Garden circle synced';syncCredits();}
   else if(cmd==='CREDIT_STATUS'){status=m.get('STATUS')||'Garden sync pending';}
   else if(cmd==='BEGIN'){transfer.begin(m.get('TOTAL'),m.get('CHECKSUM'),m.get('VERSION'));status='Downloading 0%';send({COMMAND:'ACK',OFFSET:0});}
   else if(cmd==='CHUNK'){if(checksum(m.get('DATA'))!==m.get('CHECKSUM'))throw Error('Chunk checksum '+m.get('OFFSET')+' '+checksum(m.get('DATA'))+'/'+m.get('CHECKSUM')+' len '+m.get('DATA').length);const offset=transfer.chunk(m.get('OFFSET'),m.get('DATA'));status='Downloading '+Math.floor(offset/transfer.pending.total*100)+'%';send({COMMAND:'ACK',OFFSET:offset});}
-  else if(cmd==='END'){transfer.finish();status='Available offline';send({COMMAND:'DONE',VERSION:pack.version});draw();}
+  else if(cmd==='END'){transfer.finish();status='Available offline';send({COMMAND:'DONE',VERSION:pack.version});if(requestedEpisode){requestedEpisode=null;closeOverlay();}draw();}
   else if(cmd==='ERROR'){status=m.get('STATUS')||'Phone unavailable';}
- }catch(e){status=e.message==='Older feed; kept animations'?e.message:'Download rejected';console.log('TRANSFER ERROR',e.message);send({COMMAND:'ERROR',STATUS:String(e.message).slice(0,80)});}if(overlay==='library')draw();}
+ }catch(e){status=e.message==='Older feed; kept animations'?e.message:'Download rejected';console.log('TRANSFER ERROR',e.message);send({COMMAND:'ERROR',STATUS:String(e.message).slice(0,80)});}if(overlay==='library'||overlay==='catalogue'||overlay==='episode')draw();}
 });
 console.log('Chunky ready',pack.id,pack.version,'node',state.n);creditCompletion();draw();

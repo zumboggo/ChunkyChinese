@@ -121,3 +121,7 @@ For downloadable main-cast action, use `recipeFromGesture` from
 actor keys are `gorgon`, `boe`, `jeremy`, `hannah`, `young-alden`, and `alden`. Keep
 the two Alden ages distinct. The recorded `recipeActors` list must contain every
 requested actor. See [downloadable recipes](../scenes/downloadable.md).
+
+## Publishing to the watch catalogue
+
+Publish the validated episode feed, add its ID to `content/catalogue-source.json`, and run `node scripts/publish-catalogue.mjs` from `pebble/`. Commit and publish the generated `content/catalogue.json` together with the feed. Watches running v1.9.1 can use Library → Update list; compatible new entries do not need a new PBW. See [catalogue behavior and limits](../CATALOGUE.md).

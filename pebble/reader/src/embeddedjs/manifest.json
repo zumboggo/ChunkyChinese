@@ -1,6 +1,13 @@
 {
   "ffi": {
     "functions": {
+      "cardData": {
+        "arguments": [
+          "uint32_t",
+          "uint32_t"
+        ],
+        "returns": "void"
+      },
       "showPortrait": {
         "arguments": [
           "uint32_t",
@@ -54,20 +61,6 @@
     "$(MODDABLE)/examples/manifest_mod.json"
   ],
   "modules": {
-    "*": [
-      "./main",
-      "./native",
-      "./bundled",
-      "./reader",
-      "./layout",
-      "./transfer",
-      "./glyphs",
-      "./art-native",
-      "./wire",
-      "./legacy",
-      "./upgrade",
-      "./scenes",
-      "./completion"
-    ]
+    "main": "./compiled/main"
   }
 }

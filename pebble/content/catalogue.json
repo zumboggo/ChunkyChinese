@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "episodes": [
+    {
+      "id": "supportive-11",
+      "number": 11,
+      "title": "We Could Do Better",
+      "version": "4bf6fbe6be44"
+    },
+    {
+      "id": "supportive-12",
+      "number": 12,
+      "title": "The Nice One",
+      "version": "c2750cad4181"
+    },
+    {
+      "id": "supportive-13",
+      "number": 13,
+      "title": "What Do You Want?",
+      "version": "6b319cc93962"
+    }
+  ]
+}

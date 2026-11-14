@@ -67,11 +67,7 @@ New native capabilities still require a PBW installation.
 
 The selected episode gets its own source/route/layout/resource checks; the existing
 Episode 11 tests remain a fixed regression suite. Save migration descriptors are
-emitted only for the matching episode. Refresh defaults to the bundled episode's
-feed; an explicitly configured URL still takes precedence. Publish that content
-feed separately when authorized. Existing downloaded content may remain active on
-the watch; installing a different bundle does not erase it or create a multi-episode
-save library.
+emitted only for the matching episode. Refresh uses the current episode's canonical feed; an explicitly configured phone URL still takes precedence for phone refresh. Publish each validated feed together with its catalogue entry. The [watch catalogue](../CATALOGUE.md) retains individual episode saves and completion markers, with one downloaded episode plus the bundle available offline. Installing an update preserves the current download.
 
 ## Repeatable verification
 

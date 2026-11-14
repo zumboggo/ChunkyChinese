@@ -21,6 +21,7 @@
     "test:review": "node authoring/review.test.mjs"
   },
   "devDependencies": {
-    "sharp": "0.35.3"
+    "sharp": "0.35.3",
+    "rolldown": "1.0.3"
   }
 }

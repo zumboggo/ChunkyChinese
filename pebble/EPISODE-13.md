@@ -1,9 +1,9 @@
 # Episode 13 — What Do You Want?
 
-Pebble Time 2 / Emery, Chunky Chinese v1.8.1.
+Pebble Time 2 / Emery, Chunky Chinese v1.9.1.
 
-1. Open `chunky-chinese-time2-supportive-13-v1.8.1.pbw` on your Android phone with the Pebble app. Install over Chunky Chinese; do not uninstall first.
-2. If an earlier downloaded episode opens, use **Back → Library → Read included Ep 13**. Earlier episode positions remain available when those episodes are loaded again. Leave the episode URL blank in phone settings to use Episode 13’s default Refresh feed.
+1. Open `chunky-chinese-time2-supportive-13-v1.9.1.pbw` on your Android phone with the Pebble app. Install over Chunky Chinese; do not uninstall first.
+2. If an earlier downloaded episode opens, use **Back → Library → Episodes 11–20 → Episode 13 → Read offline / Resume offline**. Earlier episode positions remain available when those episodes are loaded again. Leave the episode URL blank in phone settings to use Episode 13’s default Refresh feed.
 3. Read with Select; Up revisits, Down opens reading controls, and Back opens the menu. Animation poses wait for a fresh Select press; Down replays them.
 4. Your Hearth Garden connection key stays in the companion settings. If you have not entered it yet, use the same key as your watchface. Full episode completions queue offline and fill a red Chinese circle after Bluetooth/internet synchronization.
 

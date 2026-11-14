@@ -6,7 +6,7 @@ export const root=new URL('../',import.meta.url);
 export const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 const read=p=>fs.readFileSync(new URL(p,root));
 export function runtimeFiles(){
- const files=['reading-mode.json','scenes/library.json','scenes/ensemble/characters.json','reader/package.json','reader/src/embeddedjs/manifest.json'];
+ const files=['reader/src/embeddedjs/compiled/main.js','scripts/compact-runtime.mjs','package.json','reading-mode.json','scenes/library.json','scenes/ensemble/characters.json','reader/package.json','reader/src/embeddedjs/manifest.json'];
  for(const dir of ['reader/src/c/','reader/src/embeddedjs/','reader/src/pkjs/'])for(const name of fs.readdirSync(new URL(dir,root))){
   if(!/\.(c|h|js)$/.test(name)||['story_index.h','bundled.js','episode.js','legacy.js','upgrade.js','mc.ffi.c'].includes(name))continue;
   files.push(dir+name);
