@@ -1,0 +1,78 @@
+{
+  "sharedPalette": [
+    "ffffff",
+    "392016",
+    "85421f",
+    "c57b39",
+    "ffbc80",
+    "d68a50",
+    "292d43",
+    "53688c"
+  ],
+  "images": [
+    {
+      "file": "1-gentle-warmth-shocked.png",
+      "size": [
+        64,
+        64
+      ],
+      "colors": 8
+    },
+    {
+      "file": "1-gentle-warmth-laughing.png",
+      "size": [
+        64,
+        64
+      ],
+      "colors": 8
+    },
+    {
+      "file": "2-bright-confidence-shocked.png",
+      "size": [
+        64,
+        64
+      ],
+      "colors": 8
+    },
+    {
+      "file": "2-bright-confidence-laughing.png",
+      "size": [
+        64,
+        64
+      ],
+      "colors": 8
+    },
+    {
+      "file": "3-playful-wit-shocked.png",
+      "size": [
+        64,
+        64
+      ],
+      "colors": 8
+    },
+    {
+      "file": "3-playful-wit-laughing.png",
+      "size": [
+        64,
+        64
+      ],
+      "colors": 8
+    },
+    {
+      "file": "4-quiet-heart-shocked.png",
+      "size": [
+        64,
+        64
+      ],
+      "colors": 8
+    },
+    {
+      "file": "4-quiet-heart-laughing.png",
+      "size": [
+        64,
+        64
+      ],
+      "colors": 8
+    }
+  ]
+}
