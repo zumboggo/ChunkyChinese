@@ -89,3 +89,7 @@ and [RD Animation](https://replicate.com/retro-diffusion/rd-animation#pricing).
 `generate.py` reserves charges before each explicit request and never retries a
 paid request automatically. Recheck prices on later dates; ambiguous failures stay
 reserved. Read-only polling can recover existing results without buying variants.
+
+## 48 × 48 comparison
+
+`preview-48/32-vs-48.gif` compares all six reactions at the same displayed size: 32px enlarged 6× and 48px enlarged 4×. The comparison GIF loops; the individual 48px GIFs play once. `characters/alden-chibi-48/` retains the 22 exact 48×48 five-color frames and timing manifest. `compare48.py` derives new pixels from the original high-resolution source, then edits facial clusters at the target resolution. This is a design comparison, not a new watch installer. Four-bit raw pixels would occupy 1,152 bytes per unique frame (2.25× the 32px version); actual packed storage and runtime performance require a separate build.

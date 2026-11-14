@@ -1,0 +1,20 @@
+{
+  "dimensions": [
+    48,
+    48
+  ],
+  "frameCount": 22,
+  "visibleColors": 5,
+  "palette": [
+    "#2e1b17",
+    "#8b5637",
+    "#504e51",
+    "#b8b6b5",
+    "#ffd3aa"
+  ],
+  "alpha": "binary",
+  "derivedFrom": "Original high-resolution Chibi source, not the 32px sprite",
+  "scope": "Design comparison only; no new PBW or reader changes",
+  "indexed4bitBytesPerFrame": 1152,
+  "pixelStorageRatioTo32": 2.25
+}
