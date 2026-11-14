@@ -1,0 +1,43 @@
+{
+  "measurements": [
+    {
+      "emotion": 0,
+      "freeHeapBytes": 128084,
+      "maxDrawMs": 10,
+      "draws": 5
+    },
+    {
+      "emotion": 1,
+      "freeHeapBytes": 128164,
+      "maxDrawMs": 9,
+      "draws": 4
+    },
+    {
+      "emotion": 2,
+      "freeHeapBytes": 128164,
+      "maxDrawMs": 1010,
+      "draws": 3
+    },
+    {
+      "emotion": 3,
+      "freeHeapBytes": 128164,
+      "maxDrawMs": 8,
+      "draws": 4
+    },
+    {
+      "emotion": 4,
+      "freeHeapBytes": 128164,
+      "maxDrawMs": 9,
+      "draws": 4
+    },
+    {
+      "emotion": 5,
+      "freeHeapBytes": 128164,
+      "maxDrawMs": 9,
+      "draws": 3
+    }
+  ],
+  "maxDrawMs": 1010,
+  "minimumFreeHeapBytes": 128084,
+  "method": "Isolated emulator; no screenshots during playback. Wall-clock measurements, not physical watch CPU timings."
+}

@@ -1,0 +1,6 @@
+__pycache__/
+demo/build/
+demo/.lock-waf*
+demo/.waf*
+
+.local/

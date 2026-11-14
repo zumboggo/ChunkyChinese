@@ -1,0 +1,29 @@
+{
+  "name": "alden-pixel-pilot",
+  "author": "David Hepting",
+  "version": "1.0.1",
+  "private": true,
+  "dependencies": {},
+  "pebble": {
+    "displayName": "Alden Pixel Pilot",
+    "uuid": "0a531c4e-e59d-49bb-beb7-3d5ea4313268",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "emery"
+    ],
+    "watchapp": {
+      "watchface": false
+    },
+    "messageKeys": [],
+    "resources": {
+      "media": [
+        {
+          "type": "raw",
+          "name": "ALDEN_PIXEL",
+          "file": "alden.px32"
+        }
+      ]
+    }
+  }
+}

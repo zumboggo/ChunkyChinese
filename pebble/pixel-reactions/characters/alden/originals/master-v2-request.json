@@ -1,0 +1,20 @@
+{
+  "model": "rd-plus",
+  "input": {
+    "prompt": "A 32x32 pixel art RPG dialogue portrait, head and shoulders, facing forward. A thin shy teenage boy with short flat dark brown hair, gentle dark eyes clearly visible, small nose and visible closed mouth, slim face and slender shoulders. Wearing a dark charcoal hoodie with hood DOWN and gray shirt. Hair stays above eyebrows, no hair covering eyes. Quiet thoughtful expression. Clean crisp outlines and distinct eyes, eyebrows, nose and mouth. Head large enough for expressive facial features. Plain white background, no text. Based on the reference boy. No muscles, no broad jaw, no spiky hair. Limited warm natural colors.",
+    "style": "classic",
+    "width": 32,
+    "height": 32,
+    "num_images": 1,
+    "strength": 0.9,
+    "remove_bg": true,
+    "bypass_prompt_expansion": true,
+    "seed": 321412
+  },
+  "files": {
+    "input_image": {
+      "filename": "hoodie-face.png",
+      "sha256": "c41317d1b1bce75f800565fb6aab4ecd5a741e63185ca780dc596da9be6c4841"
+    }
+  }
+}

@@ -1,5 +1,7 @@
 # Reusable pixel reaction library
 
+New: [32 × 32 five-color Chibi Alden animations](../pixel-reactions/README.md), based on David’s approved hoodie design. Six finite reactions, per-frame assets, previews and a separate Time 2 demo are available for visual review. They are not yet substituted for the released reader’s full-screen portraits.
+
 Generated with the built-in ImageGen tool on 2026-11-14 for David’s Pebble reader. These are original adaptation assets, not official novel artwork. Source masters, crops and palette-packed resources are retained in this repository.
 
 `reaction-atlases.json` is the machine-readable catalogue. Each sheet is a 3 × 2 grid in reading order:

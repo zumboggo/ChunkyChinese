@@ -1,0 +1,18 @@
+{
+  "model": "rd-animation",
+  "input": {
+    "prompt": "Head and shoulders dialogue portrait of a slender thoughtful teenage boy, short modest brown hair above eyebrows, gentle visible eyes, narrow soft face, charcoal zip hoodie over gray shirt. Front facing RPG pixel art bust. Subtle looking around and surprised expressions, eyes widen and mouth opens. Shoulders remain still. Consistent face and hoodie. White background. No full body, no walking, no weapons, no huge hair, no strong jaw.",
+    "style": "small_sprites",
+    "width": 32,
+    "height": 32,
+    "return_spritesheet": true,
+    "bypass_prompt_expansion": true,
+    "seed": 321414
+  },
+  "files": {
+    "input_image": {
+      "filename": "hoodie-face.png",
+      "sha256": "c41317d1b1bce75f800565fb6aab4ecd5a741e63185ca780dc596da9be6c4841"
+    }
+  }
+}

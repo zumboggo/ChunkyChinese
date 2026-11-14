@@ -1,0 +1,23 @@
+{
+  "character": "alden",
+  "reference": "../../../../stories/characters/super-supportive/alden-approved-a.png",
+  "appearance": "Use the approved full-app Alden: slim, soft narrow face, thoughtful gentle expression, modest brown hair, charcoal hoodie over a light gray shirt. Avoid broad shoulders, a strong jaw, glamorous features, and exaggerated hair volume.",
+  "framing": "Consistent head and shoulders at exactly 32 by 32 pixels; transparent background; four visible colors shared across all frames, drawn from Pebble's 64-color RGB grid.",
+  "emotions": [
+    "idle",
+    "surprised",
+    "thinking",
+    "talking",
+    "happy",
+    "worried"
+  ],
+  "playback": "Between sentences only. Play a short finite sequence, then hold the final frame with no timer until a fresh Select advances. Never loop while reading or automatically return to idle.",
+  "reviewGate": "Review all six Alden reactions at native size and integer enlargement before generating other characters or replacing reader portraits.",
+  "spending": {
+    "totalMaximumUsd": 1.0,
+    "spentUsd": 0.145,
+    "generationRequestsSubmitted": 4,
+    "pricingVerified": true
+  },
+  "status": "Earlier pilot superseded by user-approved Chibi style; retained for provenance only."
+}

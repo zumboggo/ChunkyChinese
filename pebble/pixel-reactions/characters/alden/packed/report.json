@@ -1,0 +1,17 @@
+{
+  "character": "alden",
+  "sourceFrameCount": 19,
+  "uniqueFrames": 10,
+  "resourceBytes": 3936,
+  "metadataBytes": 96,
+  "bytesPerFrame": 384,
+  "rowScratchBytes": 12,
+  "fullFramePixelBytesAt4bpp": 5120,
+  "estimatedBasePlusPixelPatchBytes": 2103,
+  "format": "2-bit color + 1-bit visibility mask, row-interleaved; identical frames deduplicated",
+  "choice": "Fixed rows bound decoding work and support a 12-byte read buffer. Patch estimate excludes indices and runtime costs; evaluate visually before choosing overlays.",
+  "sha256": "8f9f480e3ac2bc9c4f4abd2f4693829dc74e694dd616e084d04d9afcc5ec3619",
+  "measuredReaderPeakHeap": null,
+  "measuredDrawTimeMs": null,
+  "verification": "Asset storage measured; row buffer is a design requirement, not a runtime measurement. Native integration and emulator benchmarks pending visual review."
+}

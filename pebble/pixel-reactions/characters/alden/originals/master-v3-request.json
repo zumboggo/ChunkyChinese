@@ -1,0 +1,20 @@
+{
+  "model": "rd-plus",
+  "input": {
+    "prompt": "A restrained 32x32 pixel art head-and-shoulders dialogue portrait of a thin thoughtful seventeen-year-old boy from the reference, charcoal gray hoodie and gray T-shirt. Slim long soft face, small visible mouth, two clear brown eyes, subtle eyebrows. SHORT NEAT BROWN HAIR close to scalp, a few simple strands, flat on top, uncovered forehead and ears. Not chibi: small hair volume, long narrow face, delicate neck, narrow shoulders. No giant eyes, no spiky hair, no glamorous strong jaw. Front view. Face occupies most of portrait. Gentle introspective expression, slightly concerned eyebrows and closed lips. Polished readable 1990s RPG portrait with strong pixel clusters. Plain white background.",
+    "style": "classic",
+    "width": 32,
+    "height": 32,
+    "num_images": 1,
+    "strength": 0.7,
+    "remove_bg": true,
+    "bypass_prompt_expansion": true,
+    "seed": 321415
+  },
+  "files": {
+    "input_image": {
+      "filename": "hoodie-face.png",
+      "sha256": "c41317d1b1bce75f800565fb6aab4ecd5a741e63185ca780dc596da9be6c4841"
+    }
+  }
+}

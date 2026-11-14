@@ -1,0 +1,24 @@
+{
+  "model": "rd-plus",
+  "input": {
+    "prompt": "A single head-and-shoulders portrait of the slim thoughtful teenage boy in the reference, Alden. Soft narrow youthful face, modest short brown tousled hair, gentle attentive eyes, slender neck and narrow shoulders, charcoal zip hoodie over a light shirt. Quiet warm neutral expression. Front view. Charming polished retro RPG portrait, crisp pixel clusters, expressive readable face. Head fills most of frame; only upper shoulders at bottom. No muscular build, no square jaw, no glamour, no oversized hair. Exactly four colors, black outlines, charcoal clothing, brown hair shadows, warm peach skin. Transparent background.",
+    "style": "classic",
+    "width": 32,
+    "height": 32,
+    "num_images": 1,
+    "strength": 0.72,
+    "remove_bg": true,
+    "bypass_prompt_expansion": true,
+    "seed": 321411
+  },
+  "files": {
+    "input_image": {
+      "filename": "hoodie-face.png",
+      "sha256": "c41317d1b1bce75f800565fb6aab4ecd5a741e63185ca780dc596da9be6c4841"
+    },
+    "input_palette": {
+      "filename": "palette.png",
+      "sha256": "2b572bd468cec4961502f2371674b0154f43fcf65526aca9916dd0429b19f6c3"
+    }
+  }
+}
