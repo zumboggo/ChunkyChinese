@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import {presentationCounts} from './presentation-counts.mjs';
 import {validSceneWire} from './downloadable-scene.mjs';
-import {exportEpisode} from './export.mjs';
+import {exportEpisode,watchPresentation} from './export.mjs';
 import {episodeId} from './episode-target.mjs';
 import {readLibrary} from './scene-library.mjs';
 import {loadDirection} from './story-direction.mjs';
@@ -12,17 +12,17 @@ import {root,loadProfile,compatibility} from './runtime-profile.mjs';
 const read=p=>fs.readFileSync(new URL(p,root));
 export function analyse(id,overrides={}){
  episodeId(id);const result={id,errors:[],missingArt:[],missingGlyphs:[],shots:[],runtime:compatibility(loadProfile())};
- let source;try{source=overrides.source||JSON.parse(read('../stories/animated/'+id+'.json'));result.pack=exportEpisode(source,id,overrides.direction);}catch(e){result.errors.push(e.message);return result;}
+ let source;try{source=overrides.source||JSON.parse(read('../stories/animated/'+id+'.json'));result.pack=watchPresentation(exportEpisode(source,id,overrides.direction),overrides.chinese);}catch(e){result.errors.push(e.message);return result;}
  const pack=result.pack,glyphs=read('content/glyphs.txt').toString();
  result.missingArt=pack.art.filter(n=>!art[n]&&!art[n+'-full']);
- result.missingGlyphs=[...new Set(pack.nodes.flatMap(n=>[...(n.phrases||[]),...(n.options||[]).flatMap(o=>o.phrases)]).flatMap(p=>[...p.zh+p.py+p.en]).filter(c=>!glyphs.includes(c)))];
+ result.missingGlyphs=[...new Set(pack.nodes.flatMap(n=>[...(n.phrases||[]),...(n.options||[]).flatMap(o=>o.phrases)]).flatMap(p=>[...(p.zh||'')+p.py+p.en]).filter(c=>!glyphs.includes(c)))];
  if(result.missingArt.length)result.errors.push('Missing portraits: '+result.missingArt.join(', '));
  if(result.missingGlyphs.length)result.errors.push('Missing glyphs: '+result.missingGlyphs.join(''));
  try{validate(pack,glyphs,n=>!!art[n]||!!art[n+'-full'],validSceneWire);}catch(e){result.errors.push(e.message);}
  const metrics=JSON.parse(read('content/font-metrics.json'));
  try{
   const measure=(s,k)=>[...s].reduce((v,c)=>{if(metrics[k][c]===undefined)throw Error('Unmeasured glyph: '+c);return v+metrics[k][c];},0);
-  for(const n of pack.nodes)for(const p of [...(n.phrases||[]),...(n.options||[]).flatMap(o=>o.phrases)])for(const mode of [0,1])for(const page of pages(p,mode,measure)){
+  for(const n of pack.nodes)for(const p of [...(n.phrases||[]),...(n.options||[]).flatMap(o=>o.phrases)])for(const mode of (pack.chinese===false?[0]:[0,1]))for(const page of pages(p,mode,measure)){
    if(page.py.length>2||page.lower.length>(mode?2:3)||page.py.some(s=>measure(s,'py')>184)||page.lower.some(s=>measure(s,mode?'zh':'en')>184))throw Error('Phrase exceeds native layout');
   }
  }catch(e){result.errors.push(e.message);}
@@ -38,7 +38,7 @@ export function analyse(id,overrides={}){
  const assets=JSON.parse(read('reader/package.json')).pebble.resources.media;
  let used=0,unused=0;for(const [i,a] of assets.entries())if(a.file.startsWith('portraits/')){const size=read('reader/resources/'+a.file).length;const needed=pack.art.some(n=>(art[n]||art[n+'-full'])===i+1);if(needed)used+=size;else unused+=size;}
  result.portraitStorage={usedBytes:used,unusedBytes:unused,note:'Stored RLE resource bytes, not runtime heap savings.'};
- result.sceneIds=[...new Set(result.shots.filter(s=>!s.recipe).map(s=>s.scene))];const library=readLibrary();result.totalScenes=library.scenes.length;result.recipeSchema=result.shots.some(s=>s.recipe)?1:0;
+ result.sceneIds=[...new Set(result.shots.filter(s=>!s.recipe).map(s=>s.scene))];const library=readLibrary();result.totalScenes=library.scenes.length;result.recipeSchema=result.shots.some(s=>s.recipe)?1:0;result.recipeActors=[...new Set(result.shots.filter(s=>s.recipe).map(s=>s.recipe.actor))];
  const duration=s=>s.duration+(s.establish||0);result.reviewPlaybackSeconds=library.scenes.filter(s=>result.sceneIds.includes(s.id)).reduce((n,s)=>n+duration(s),0)/1000+result.shots.filter(s=>s.recipe).reduce((n,s)=>n+s.recipe.keys.at(-1)[0],0)/1000;result.fullLibraryPlaybackSeconds=library.scenes.reduce((n,s)=>n+duration(s),0)/1000;
  result.warnings=result.shots.length?[]:['No animation cues are authored for this episode.'];
  try{result.presentation=presentationCounts(pack);if(result.presentation.animations.min<5)result.warnings.push('Some routes have fewer than five animated moments.');if(result.presentation.reactions.min<20||result.presentation.reactions.max>25)result.warnings.push('Reaction-shot count falls outside the 20–25 per-route target; review pacing.');}catch(e){result.errors.push(e.message);}

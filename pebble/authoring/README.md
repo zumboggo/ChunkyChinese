@@ -107,3 +107,17 @@ font or asset is still a native change. Recording capability requires the matchi
 Use `art/reaction-atlases.json` for named pixel expressions, with `node scripts/prepare-reactions.mjs` to prepare deliberately changed atlases. A native update installs new assets; later compatible episodes reuse them. Add `reactions: [{anchor, actor, emotion}]` to the direction file at persistent labels after complete passages. Explicit reactions replace the legacy automatic cadence for that episode. Animation cue-plan downloads preserve these shots and the cover selection.
 
 Preflight reports minimum/maximum animation and reaction counts across complete choice routes. Aim for 20–25 full-screen emotional shots and require at least five animated moments, using only characters and actions supported by the source. Opening/ending cards do not count. Episode 13 supplies a 16-route example with six animations and 23 reactions on every route.
+
+## Watch default and main cast (v1.8)
+
+New watch content is pinyin/English only. `reading-mode.json` controls the reversible
+font/export setup; follow [PINYIN-MODE.md](../PINYIN-MODE.md) before restoring Chinese.
+Source Mandarin and phone episodes remain unchanged. A content export requires the
+recorded runtime's `pinyinOnly` capability, and older apps retain their previous
+episode when they reject this new package format.
+
+For downloadable main-cast action, use `recipeFromGesture` from
+`scripts/downloadable-scene.mjs` with `scenes/ensemble/characters.json`. Supported
+actor keys are `gorgon`, `boe`, `jeremy`, `hannah`, `young-alden`, and `alden`. Keep
+the two Alden ages distinct. The recorded `recipeActors` list must contain every
+requested actor. See [downloadable recipes](../scenes/downloadable.md).

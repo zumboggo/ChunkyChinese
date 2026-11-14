@@ -1,0 +1,190 @@
+{
+  "episodeId": "supportive-13",
+  "episodeVersion": "6b319cc93962",
+  "scenes": [
+    {
+      "id": "train-phone",
+      "freeBytes": 4876,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 20
+    },
+    {
+      "id": "restaurant-seat",
+      "freeBytes": 4876,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 8
+    },
+    {
+      "id": "hannah-fry",
+      "freeBytes": 4876,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 12
+    },
+    {
+      "id": "alden-listens",
+      "freeBytes": 4876,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 11
+    },
+    {
+      "id": "train-reflection",
+      "freeBytes": 4876,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 9
+    },
+    {
+      "id": "gorgon-listen",
+      "freeBytes": 4876,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 9
+    },
+    {
+      "id": "gorgon-offer",
+      "freeBytes": 4876,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 8
+    },
+    {
+      "id": "gorgon-think",
+      "freeBytes": 4876,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 6
+    },
+    {
+      "id": "gorgon-sip",
+      "freeBytes": 4876,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 21
+    },
+    {
+      "id": "boe-listen",
+      "freeBytes": 4876,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 8
+    },
+    {
+      "id": "boe-offer",
+      "freeBytes": 4876,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 7
+    },
+    {
+      "id": "boe-think",
+      "freeBytes": 4876,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 6
+    },
+    {
+      "id": "boe-sip",
+      "freeBytes": 4876,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 6
+    },
+    {
+      "id": "jeremy-listen",
+      "freeBytes": 4876,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 6
+    },
+    {
+      "id": "jeremy-offer",
+      "freeBytes": 4876,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 6
+    },
+    {
+      "id": "jeremy-think",
+      "freeBytes": 4876,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 8
+    },
+    {
+      "id": "jeremy-sip",
+      "freeBytes": 4876,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 6
+    },
+    {
+      "id": "background-train-train",
+      "freeBytes": 4876,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 7
+    },
+    {
+      "id": "background-cafe-walkers",
+      "freeBytes": 4876,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 5
+    },
+    {
+      "id": "background-consulate-walkers",
+      "freeBytes": 4876,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 4
+    },
+    {
+      "id": "background-home-foliage",
+      "freeBytes": 4876,
+      "drawAverageMs": 3,
+      "drawMaximumMs": 4
+    },
+    {
+      "id": "background-classroom-foliage",
+      "freeBytes": 4876,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 4
+    },
+    {
+      "id": "background-trading-light",
+      "freeBytes": 4876,
+      "drawAverageMs": 3,
+      "drawMaximumMs": 5
+    },
+    {
+      "id": "background-home-rain",
+      "freeBytes": 4876,
+      "drawAverageMs": 3,
+      "drawMaximumMs": 5
+    },
+    {
+      "id": "background-home-cat",
+      "freeBytes": 4876,
+      "drawAverageMs": 3,
+      "drawMaximumMs": 4
+    },
+    {
+      "id": "jeremy-train-listen",
+      "freeBytes": 4876,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 9
+    },
+    {
+      "id": "boe-train-think",
+      "freeBytes": 4876,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 10
+    },
+    {
+      "id": "jeremy-train-think",
+      "freeBytes": 4876,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 8
+    },
+    {
+      "id": "jeremy-street-listen",
+      "freeBytes": 4876,
+      "drawAverageMs": 2,
+      "drawMaximumMs": 5
+    },
+    {
+      "id": "boe-street-think",
+      "freeBytes": 4876,
+      "drawAverageMs": 3,
+      "drawMaximumMs": 4
+    }
+  ],
+  "motionPreferenceRestart": true,
+  "previewProgressPreserved": true,
+  "pbwSha256": "9cf55d6d76e21b837985975c24643bc766e8369a61f2a6f839835cef1f81c383",
+  "physicalWatchTested": false
+}

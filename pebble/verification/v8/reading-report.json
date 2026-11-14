@@ -1,0 +1,10 @@
+{
+  "episode": "supportive-13",
+  "animations": 6,
+  "defaultRouteBluetoothDisabled": true,
+  "endingResumedAfterRestart": 83,
+  "newCompletionQueued": false,
+  "completionVerification": "Inconclusive: local test phone outbox retained an older synthetic credit; no real Garden account configured. Reading and restart checks passed before that assertion.",
+  "pbwSha256": "9cf55d6d76e21b837985975c24643bc766e8369a61f2a6f839835cef1f81c383",
+  "physicalWatchTested": false
+}

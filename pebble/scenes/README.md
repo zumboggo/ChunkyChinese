@@ -8,6 +8,8 @@ original choreography. Native geometry and prop drawing remain renderer code;
 `ambient_draw.h` implements the shared period/tile rules. Installed IDs 1–25 are
 append-only: 1–5 Episode 11, 6–17 cast gestures, 18–25 background samples.
 The standalone train demo includes the same generated header as the reader.
+Runtime 1.8 extends this to all six main character rigs; use `recipeFromGesture`
+and the verified profile’s actor list for future content.
 Runtime 1.6 also supports [downloadable pose recipes](downloadable.md): new single-character motions and supported combinations can arrive with Refresh. Arbitrary code/assets remain unsupported.
 
 1. Reuse an existing scene ID whenever possible. Never renumber shipped IDs.

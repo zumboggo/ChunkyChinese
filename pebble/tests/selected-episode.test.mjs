@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {episodeId,selectedPack} from '../scripts/episode-target.mjs';
-import {exportEpisode} from '../scripts/export.mjs';
+import {exportEpisode,watchPresentation} from '../scripts/export.mjs';
 import {loadDirection} from '../scripts/story-direction.mjs';
 import {migrationMap} from '../scripts/migration-map.mjs';
 import {validate} from '../reader/src/embeddedjs/transfer.js';
@@ -14,13 +14,13 @@ const root=new URL('../',import.meta.url),pack=selectedPack(root,process.env.PEB
 const source=JSON.parse(fs.readFileSync(new URL('../../stories/animated/'+pack.id+'.json',import.meta.url)));
 const glyphs=fs.readFileSync(new URL('content/glyphs.txt',root),'utf8');
 test('selected '+pack.id+': exact source export, graph, installed art and glyphs',()=>{
- assert.deepEqual(pack,exportEpisode(source,pack.id));
+ assert.deepEqual(pack,watchPresentation(exportEpisode(source,pack.id)));
  validate(pack,glyphs,n=>!!art[n]||!!art[n+'-full']);
 });
 test('selected '+pack.id+': all phrase layouts fit the installed font metrics',()=>{
  const metrics=JSON.parse(fs.readFileSync(new URL('content/font-metrics.json',root)));
  const measure=(t,k)=>[...t].reduce((sum,c)=>{assert.notEqual(metrics[k][c],undefined,'Missing measured glyph '+c);return sum+metrics[k][c];},0);
- for(const node of pack.nodes)for(const phrase of [...(node.phrases||[]),...(node.options||[]).flatMap(o=>o.phrases)])for(const mode of [0,1]){
+ for(const node of pack.nodes)for(const phrase of [...(node.phrases||[]),...(node.options||[]).flatMap(o=>o.phrases)])for(const mode of (pack.chinese===false?[0]:[0,1])){
   for(const page of pages(phrase,mode,measure)){
    assert.ok(page.py.length&&page.py.length<=2);assert.ok(page.lower.length&&page.lower.length<=(mode?2:3));
    for(const line of page.py)assert.ok(measure(line,'py')<=184);
@@ -55,7 +55,7 @@ test('selected '+pack.id+': every branch preserves source text, choices, rejoins
   return [{...s,i:s.i+1}];
  },labels.get('opening'));
  const exported=routes(s=>{
-  const n=pack.nodes[s.i];assert.ok(n);if(n.type==='end')return null;
+  const n=exportEpisode(source,pack.id).nodes[s.i];assert.ok(n);if(n.type==='end')return null;
   if(n.type==='goto')return [{...s,i:n.to}];
   if(n.type==='choice')return n.options.map(o=>({...s,i:o.to,route:[...s.route,n.id+'='+o.id],text:[...s.text,['choice',o.phrases.map(p=>p.zh).join('')]]}));
   if(n.type==='line')s={...s,text:[...s.text,[n.speaker,n.phrases.map(p=>p.zh).join('')]]};
@@ -67,7 +67,7 @@ test('selected '+pack.id+': every branch preserves source text, choices, rejoins
 test('selected migration descriptors belong to this episode only',()=>{
  for(const [generated,file] of [[legacy,'legacy-v1-anchors.json'],[upgrade,'legacy-v1.1-anchors.json']]){
   const previous=JSON.parse(fs.readFileSync(new URL('content/'+file,root)));
-  assert.deepEqual({...generated,indices:Array.from(generated.indices,c=>typeof c==='string'?c.charCodeAt(0)-33:c)},migrationMap(pack,previous));assert.equal(generated.id,pack.id);
+  assert.deepEqual({...generated,indices:Array.from(generated.indices,c=>typeof c==='string'?c.charCodeAt(0)-33:c)},migrationMap({...exportEpisode(source,pack.id),version:pack.version},previous));assert.equal(generated.id,pack.id);
   if(previous.id!==pack.id){assert.equal(generated.version,'');assert.deepEqual(Array.from(generated.indices,c=>typeof c==='string'?c.charCodeAt(0)-33:c),[]);}
  }
 });

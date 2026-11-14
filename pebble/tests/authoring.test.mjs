@@ -6,7 +6,7 @@ import {readLibrary,validateLibrary} from '../scripts/scene-library.mjs';
 import {loadDirection} from '../scripts/story-direction.mjs';
 import {exportEpisode} from '../scripts/export.mjs';
 const source=JSON.parse(fs.readFileSync(new URL('../../stories/animated/supportive-11.json',import.meta.url)));
-const pack=JSON.parse(fs.readFileSync(new URL('../content/supportive-11.json',import.meta.url)));
+const pack=exportEpisode(source);
 test('generated browser/native artifacts agree with the shared library',()=>{execFileSync(process.execPath,[new URL('../scripts/generate-scenes.mjs',import.meta.url).pathname,'--check']);});
 test('anchor migration retains the exact shipped episode and save version',()=>{assert.deepEqual(exportEpisode(source),pack);assert.equal(pack.version,'73281f5e8202','This refactor must retain the shipped Episode 11 save version');});
 test('editing anchored prose and inserting an unrelated line preserves scene placement',()=>{

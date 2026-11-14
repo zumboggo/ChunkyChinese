@@ -7,13 +7,24 @@ Private learning reader for Super Supportive, adapted from existing Chunky Chine
 ## Install on Android
 
 1. Install the current [official Pebble Android app](https://repebble.com/app), pair your **new Pebble Time 2 (Emery)**, and update watch firmware.
-2. Transfer `release/chunky-chinese-time2-supportive-13-v1.7.0.pbw` to your phone. Open it with Pebble from Downloads or the Android share sheet, then install it on your connected watch. [Official sideloading instructions](https://developer.repebble.com/guides/tools-and-resources/testing-with-the-mobile-app/#sideloading-apps).
+2. Transfer `release/chunky-chinese-time2-supportive-13-v1.8.1.pbw` to your phone. Open it with Pebble from Downloads or the Android share sheet, then install it on your connected watch. [Official sideloading instructions](https://developer.repebble.com/guides/tools-and-resources/testing-with-the-mobile-app/#sideloading-apps).
 3. Launch **Chunky Chinese**. Episode 13 is bundled: no account, audio, network download, or separate Android APK is needed to begin.
 4. For future supported packages, use Back → Refresh episode. The companion runs inside the Pebble Android app. Leave both apps open during transfer. The library says **Available offline** after verification. App settings accept an optional HTTPS `raw.githubusercontent.com` episode JSON URL; otherwise the bundled episode's repository feed is used. A failed network fetch leaves the current offline episode intact.
 
-If opening the file does not work, use the [Developer Connection](https://developer.repebble.com/guides/tools-and-resources/developer-connection/): enable Dev Connection in the connected watch's menu; run `pebble login`, then `pebble install release/chunky-chinese-time2-supportive-13-v1.7.0.pbw --cloudpebble`. A trusted local-network connection with `--phone PHONE_IP` is another option.
+If opening the file does not work, use the [Developer Connection](https://developer.repebble.com/guides/tools-and-resources/developer-connection/): enable Dev Connection in the connected watch's menu; run `pebble login`, then `pebble install release/chunky-chinese-time2-supportive-13-v1.8.1.pbw --cloudpebble`. A trusted local-network connection with `--phone PHONE_IP` is another option.
 
 Only Emery is included. This package is not for the original Pebble Time, Time Steel, or other older Pebbles. Android pairing and physical-watch readability still need testing on David's watch.
+
+## Version 1.8 — all main characters, pinyin-only reading
+
+Downloadable recipes now support Hannah, young Alden and present-day Alden as well
+as Gorgon, Boe and Jeremy. All six reuse listen, offer, think and sip timing. New
+recipes within those rigs can arrive through Refresh after installing v1.8.1 once.
+
+The watch now reads pinyin above English. Chinese text and its font are omitted from
+new watch exports/installers, while the full source and reversible build switch are
+retained. See [pinyin mode and restoring Chinese](PINYIN-MODE.md). The default bundle
+is Episode 13; previously downloaded episodes and saves remain separate.
 
 ## Version 1.6 — animations through Refresh
 
@@ -46,19 +57,19 @@ The original five moments remain available; Refresh alone cannot add native rend
 
 Existing v1.0/v1.1 saves migrate to the same phrase and selected choices. A known older v1.0/v1.1 feed is rejected so refreshing an unpublished/older feed cannot silently remove the installed animations. Future compatible refreshes can rearrange or reuse the installed named animation IDs; the bounded v1.6 recipe format also supports new pose sequences and scene combinations. New renderer capabilities still require a PBW update. This release is supplied as a sideloaded file; remote feed publication is separate.
 
-Native primitives draw the animations at a target 12 fps. Static portraits now use row-run resources, drawn through a 512-byte streaming buffer instead of decoding full bitmaps. The bundled story uses a generated flash-resource index and reads at most one 2 KiB record through a shared FFI bridge. The JavaScript runtime reserves 34 KiB for slots, 13 KiB for chunks, and 4 KiB for its stack. Current emulator checks and limits are in `verification/v6/STATUS.md`.
+Native primitives draw the animations at a target 12 fps. Static portraits now use row-run resources, drawn through a 512-byte streaming buffer instead of decoding full bitmaps. The bundled story uses a generated flash-resource index and reads at most one 2 KiB record through a shared FFI bridge. The JavaScript runtime reserves 34 KiB for slots, 11.5 KiB for chunks, and 4.5 KiB for its stack. Current emulator checks and limits are in `verification/v8/STATUS.md`.
 
 ## Reading controls
 
 - Pinyin above English is the default. **Select advances immediately** through pages/phrases; there is no compulsory Chinese encounter.
-- **Down (bottom-right) toggles Chinese with pinyin**, then back to English. Select from the Chinese view still advances to the next phrase in English.
+- **Down (bottom-right) opens reading controls**. Chinese view is currently disabled.
 - The speaker's name appears in small blue text at the bottom left.
-- Up revisits the previous screen (64 recent screens, 24 retained across restarts).
-- At choices, **Up cycles options**, Down toggles Chinese, Select requests confirmation, and **Select: choose** commits. Chinese is optional here too.
+- Up revisits the previous screen (24 recent screens, also retained across restarts).
+- At choices, **Up cycles options**, Down opens controls, Select requests confirmation, and **Select: choose** commits.
 - Back opens Resume / Refresh episode / Animations / Background motion / Restart / Library. Hold Back to exit.
 - Portraits fill 200 × 228 pixels, without emotion labels. There are 24 portrait beats, up from 12; the same cast artwork is reused. They are static and advance with Select.
 - The default path needs 269 Select presses in the layout model, versus 500 in version 1.0 (46% fewer), including the additional portraits.
-- The original 24-pixel pinyin, 20-pixel English, and optional 28-pixel Chinese fonts remain. Both languages stay visible on continuation pages.
+- The 24-pixel pinyin and 20-pixel English fonts remain. Both stay visible on continuation pages; the 28-pixel Chinese setup is retained for future re-enabling.
 - Upgrade migration retains the current phrase and selected route from version 1.0, switching the current view to English. Reordered portrait cues do not force a restart. Recent back-history resets on a content-version change.
 - No audio or timed choices. Animated moments finish on a held pose; story progression always requires Select.
 
@@ -101,6 +112,6 @@ See `verification/v4/STATUS.md` for actual test coverage and remaining hardware 
 
 Emery supports 64 display colors; these portraits use a 16-color palette. Pixel art compresses well in storage, but decoded memory depends mainly on dimensions and bit depth, not how simple the drawing looks. A full 200 × 228 image at 4 bits per pixel is 22,800 bytes before headers/palette. Version 1.2 draws colour runs directly from a 512-byte input buffer; repeating a portrait costs no extra stored image.
 
-The Chinese PBF is about 65 KB in the resource package. Removing it could free storage for some images, but it is not all held in working memory and is not required to make the full-screen portraits work. Version 1.1 therefore retains optional Chinese. Enlarging and reusing existing artwork makes no image-generation calls.
+The Chinese PBF is about 65 KB in the resource package. Removing it could free storage for some images, but it is not all held in working memory and is not required to make the full-screen portraits work. Version 1.1 retained optional Chinese; v1.8 omits it at David’s request (see PINYIN-MODE.md). Enlarging and reusing existing artwork makes no image-generation calls.
 
 [Official Pebble image formats](https://developer.repebble.com/guides/app-resources/images/). New AI artwork uses image-model tokens; pixel styling alone is not a cheaper billing setting. Model, generated dimensions, quality, references, and retries matter; the later 200 × 228 watch conversion is separate. See [OpenAI image-generation cost guidance](https://developers.openai.com/api/docs/guides/image-generation#calculating-costs). Exact built-in-tool token/billing totals are not exposed by this project.

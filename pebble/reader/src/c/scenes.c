@@ -67,6 +67,17 @@ static void scenery(void){
  SEG(53,179,50,196,NEAR,2);SEG(170,179,175,196,NEAR,2);SEG(0,199,200,199,RAIL,1);SEG(28,200,0,225,RAIL,1);SEG(166,200,199,225,RAIL,1);
 }
 static Pt elbow(Pt s,Pt h){float dx=h.x-s.x,dy=h.y-s.y,d=root(dx*dx+dy*dy);if(d<1)d=1;float a=(26*26-29*29+d*d)/(2*d),b=root(26*26-a*a);return P(s.x+a*dx/d-b*dy/d,s.y+a*dy/d+b*dx/d);}
+static void main_cast_head(int identity,float gaze,float brow,bool blink){
+ if(identity==2){
+  disc(P(-11,17),7,HAIR);disc(P(-10,25),5,HAIR);disc(P(12,17),7,HAIR);disc(P(12,25),5,HAIR);
+ }
+ disc(P(0,0),18,INK);disc(P(1,1),16,SKIN);disc(P(-15,3),4,SKIN);
+ SHAPE(INK,-18,3,-20,-9,-15,-8,-18,-17,-9,-15,-5,-22,1,-18,10,-19,8,-15,17,-11,20,-4,13,-7,11,-2,5,-10,-2,-6,-1,-13,-11,-4,-13,6);
+ SHAPE(HAIR,-17,-10,-10,-12,-4,-18,0,-14,9,-16,5,-11,-6,-5,-13,0);
+ if(identity==2){SEG(-12,8,-11,23,HAIR,5);SEG(13,8,13,23,HAIR,5);disc(P(-10,26),2,INK);disc(P(13,26),2,INK);box(-9,5,1,1,HAIR);box(-6,6,1,1,HAIR);box(9,5,1,1,HAIR);}
+ if(blink){SEG(-6,2,-2,2,INK,1);SEG(6,2,10,2,INK,1);}else{box(-6+gaze,0,2,3,INK);box(6+gaze,0,2,3,INK);}
+ line(P(-8,-4-brow),P(-3,-5-brow),INK,1);line(P(5,-5-brow),P(10,-4-brow),INK,1);SEG(5,5,8,6,HAIR,1);SEG(8,6,5,7,HAIR,1);line(P(0,11),P(5,11.5f),INK,1);
+}
 static void character(Pose p,bool attached,float sway){
  tx=sway;float hx=p.head.x,hy=p.head.y,sx=p.shoulder.x,sy=p.shoulder.y,ix=p.hip.x,iy=p.hip.y;
  line(P(ix-5,iy),P(105,161),INK,9);SEG(105,161,102,190,INK,9);SEG(101,191,112,193,INK,7);
@@ -79,16 +90,7 @@ static void character(Pose p,bool attached,float sway){
  }
  line(P(hx,hy+16),P(sx-1,sy-3),SKIN,6);
  tx=sway+hx;ty=hy;rotation=p.angle;
- if(actor==2){
-  disc(P(-11,17),7,HAIR);disc(P(-10,25),5,HAIR);disc(P(12,17),7,HAIR);disc(P(12,25),5,HAIR);
- }
- disc(P(0,0),18,INK);disc(P(1,1),16,SKIN);disc(P(-15,3),4,SKIN);
- SHAPE(INK,-18,3,-20,-9,-15,-8,-18,-17,-9,-15,-5,-22,1,-18,10,-19,8,-15,17,-11,20,-4,13,-7,11,-2,5,-10,-2,-6,-1,-13,-11,-4,-13,6);
- SHAPE(HAIR,-17,-10,-10,-12,-4,-18,0,-14,9,-16,5,-11,-6,-5,-13,0);
- if(actor==2){SEG(-12,8,-11,23,HAIR,5);SEG(13,8,13,23,HAIR,5);disc(P(-10,26),2,INK);disc(P(13,26),2,INK);box(-9,5,1,1,HAIR);box(-6,6,1,1,HAIR);box(9,5,1,1,HAIR);}
- bool blink=(phase==WAITING||phase==ESTABLISH)&&elapsed%3900>3650;
- if(blink){SEG(-6,2,-2,2,INK,1);SEG(6,2,10,2,INK,1);}else{box(-6+p.gaze,0,2,3,INK);box(6+p.gaze,0,2,3,INK);}
- line(P(-8,-4-p.brow),P(-3,-5-p.brow),INK,1);line(P(5,-5-p.brow),P(10,-4-p.brow),INK,1);SEG(5,5,8,6,HAIR,1);SEG(8,6,5,7,HAIR,1);line(P(0,11),P(5,11.5f),INK,1);
+ main_cast_head(actor,p.gaze,p.brow,(phase==WAITING||phase==ESTABLISH)&&elapsed%3900>3650);
  tx=sway;ty=0;rotation=0;
  Pt shoulder=P(sx+7,sy+1),e=elbow(shoulder,p.hand);
  line(shoulder,e,INK,9);line(e,p.hand,INK,9);line(shoulder,e,actor==1?GColorPastelYellow:COAT,5);line(e,p.hand,actor==1?GColorPastelYellow:COAT,5);

@@ -6,7 +6,7 @@ export const root=new URL('../',import.meta.url);
 export const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 const read=p=>fs.readFileSync(new URL(p,root));
 export function runtimeFiles(){
- const files=['scenes/library.json','scenes/ensemble/characters.json','reader/package.json','reader/src/embeddedjs/manifest.json'];
+ const files=['reading-mode.json','scenes/library.json','scenes/ensemble/characters.json','reader/package.json','reader/src/embeddedjs/manifest.json'];
  for(const dir of ['reader/src/c/','reader/src/embeddedjs/','reader/src/pkjs/'])for(const name of fs.readdirSync(new URL(dir,root))){
   if(!/\.(c|h|js)$/.test(name)||['story_index.h','bundled.js','episode.js','legacy.js','upgrade.js','mc.ffi.c'].includes(name))continue;
   files.push(dir+name);
@@ -35,7 +35,8 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
  const recipeReport=new URL('downloadable-report.json',base);
  const recipeEvidence=fs.existsSync(recipeReport)?JSON.parse(fs.readFileSync(recipeReport)):null;
  const recipeSchema=recipeEvidence?.pbwSha256===build.pbwSha256&&recipeEvidence.newRecipesTransferredWithoutRebuild>=2?1:0;
- const profile={recipeSchema,schema:1,appVersion:build.appVersion,pbwSha256:build.pbwSha256,evidence:reportDir,sceneIds:lib.scenes.map(s=>s.id),files:runtimeFiles()};
+ const recipeActors=recipeSchema?(recipeEvidence.verifiedActors||['gorgon','boe','jeremy']):[];
+ const profile={pinyinOnly:!JSON.parse(read('reading-mode.json')).chinese,recipeActors,recipeSchema,schema:1,appVersion:build.appVersion,pbwSha256:build.pbwSha256,evidence:reportDir,sceneIds:lib.scenes.map(s=>s.id),files:runtimeFiles()};
  fs.writeFileSync(new URL('authoring/runtime-profile.json',root),JSON.stringify(profile,null,2)+'\n');
  console.log('Recorded verified runtime '+profile.appVersion+'; content-only exports will reject runtime drift.');
 }

@@ -1,11 +1,11 @@
 // Schema 1: bounded pose data, never executable code. Keep acceptance in sync with downloadable_scene.h.
-export const actors=['gorgon','boe','jeremy'];
+export const actors=['gorgon','boe','jeremy','hannah','young-alden','alden'];
 export const settings=['train','cafe','consulate','home','classroom','trading','street'];
 export const ambients=['train','walkers','foliage','light','rain','cat','none'];
 export function validSceneWire(wire){
  if(typeof wire!=='string'||wire.length>512||!/^\d+(?:,-?\d+)*$/.test(wire))return false;
  const a=wire.split(',').map(Number),[schema,actor,setting,ambient,prop,count]=a;
- if(a.some(v=>!Number.isInteger(v)||Math.abs(v)>12000)||schema!==1||actor<0||actor>2||setting<0||setting>6||ambient<0||ambient>6||prop<0||prop>1||count<2||count>8||a.length!==6+count*5)return false;
+ if(a.some(v=>!Number.isInteger(v)||Math.abs(v)>12000)||schema!==1||actor<0||actor>=actors.length||setting<0||setting>6||ambient<0||ambient>6||prop<0||prop>1||count<2||count>8||a.length!==6+count*5)return false;
  if((setting===0&&ambient!==0&&ambient!==6)||(setting!==0&&ambient===0)||(setting===5&&ambient!==3&&ambient!==6)||(setting!==5&&ambient===3)||(setting===6&&ambient!==6))return false;
  let previous;
  for(let i=0;i<count;i++){
@@ -23,4 +23,11 @@ export function encodeScene(recipe){
  const wire=[1,actors.indexOf(recipe.actor),settings.indexOf(recipe.setting),ambients.indexOf(recipe.ambient),['none','cup'].indexOf(recipe.prop),recipe.keys?.length,...(recipe.keys||[]).flat()].join(',');
  if(!validSceneWire(wire))throw Error('Unsupported downloadable scene: check rig, setting, prop, timing and reachable poses');
  return wire;
+}
+
+// Reuse reviewed gesture timing; downloadKeys can avoid an unsafe interpolated arm path.
+export function recipeFromGesture(cast,actor,gesture,setting,ambient){
+ const action=cast.actions[gesture];if(!cast.actors[actor]||!action)throw Error('Unknown reusable character or gesture');
+ const recipe={actor,setting,ambient,prop:['offer','sip'].includes(gesture)?'cup':'none',keys:(action.downloadKeys||action.keys).map(k=>[...k.slice(0,4),Math.round(k[4]*1000)])};
+ encodeScene(recipe);return recipe;
 }

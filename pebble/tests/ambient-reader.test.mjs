@@ -52,3 +52,11 @@ test('downloaded scenes use their data bridge, preserve hold guard, and replay t
  const before=h.calls.filter(c=>c[0]==='recipe');h.app.input('down');assert.deepEqual(h.calls.filter(c=>c[0]==='recipe').slice(before.length),before);
  h.setResult(1);h.app.input('select');assert.equal(h.app.state.n,1);
 });
+
+test('pinyin-only upgrade keeps the phrase and routes and Down opens controls',()=>{
+ if(bundled.chinese!==false)return;
+ const state=reader.initial(bundled);state.version=bundled.textVersion;state.n=bundled.nodes.findIndex(n=>n.type==='line');state.p=0;state.e=1;state.route=[{id:'past-choice',option:'a'}];
+ const files=new Map([['progress-0',JSON.stringify({generation:3,state})]]),h=harness(new Map([['readerRevision','3']]),files);
+ assert.equal(h.app.state.n,state.n);assert.equal(h.app.state.p,state.p);assert.equal(h.app.state.e,0);assert.deepEqual(h.app.state.route,state.route);
+ h.app.input('down');assert.equal(h.app.overlay,'menu');assert.equal(h.app.state.n,state.n);
+});

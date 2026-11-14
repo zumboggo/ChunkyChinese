@@ -45,10 +45,19 @@ Keep the proven identity and hand-contact geometry; source-faithful acting matte
 more than exhausting the range. Smoothstep interpolation and the final held pose
 are provided by the reader.
 
-Supported actors: `gorgon`, `boe`, `jeremy`. Props: `none`, `cup`. These are
+Runtime 1.6 actors: `gorgon`, `boe`, `jeremy`. Runtime 1.8 also supports
+`hannah`, `young-alden`, and `alden` (present-day). Actor IDs are append-only; old
+runtimes reject the newer IDs. Content export checks `runtime-profile.json`
+`recipeActors` before accepting them. Props: `none`, `cup`. These are
 single-character recipes controlling the head and right arm. They do not add
 walking, new facial channels, two-person transfers or arbitrary body rigs.
 Original Alden/Hannah/young Alden scenes remain available by their compiled IDs.
+The new rigs share the original head renderer: Hannah keeps her braids, young Alden
+has a smaller silhouette and yellow shirt, and present Alden keeps his coat lapels.
+Use `recipeFromGesture(cast, actor, gesture, setting, ambient)` from
+`scripts/downloadable-scene.mjs` with the shared character JSON. It selects
+`downloadKeys` when provided: the think gesture has an intermediate reachable pose
+without changing the shipped native gesture IDs. Review new combinations for story fit.
 
 | Setting | Available ambience |
 | --- | --- |

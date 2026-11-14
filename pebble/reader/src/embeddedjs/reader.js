@@ -7,7 +7,7 @@ export function current(pack,s){if(s.n===-1)return {type:'opening'};return nodeA
 export function phrase(pack,s){const n=current(pack,s);return n.type==='choice'?n.options[s.o].phrases[s.p]:n.phrases?.[s.p];}
 function seek(pack,s){let count=0;while(nodeAt(pack,s.n)?.type==='goto'){s.n=nodeAt(pack,s.n).to;if(++count>nodeCount(pack))throw Error('Story loop');}if(!nodeAt(pack,s.n))throw Error('Missing node');}
 export function advance(pack,s,pageCount=1){
- s.history.push(position(s));if(s.history.length>64)s.history.shift();
+ s.history.push(position(s));if(s.history.length>24)s.history.shift();
  const n=current(pack,s);
  if(n.type==='end'){s.history.pop();return s;}
  if(n.type==='opening'){s.n=pack.entry;return s;}
@@ -22,6 +22,7 @@ export function advance(pack,s,pageCount=1){
 export function previous(s){if(s.history.length)assign(s,s.history.pop());return s;}
 export function browse(pack,s,delta){const n=current(pack,s);if(n.type!=='choice')return s;s.o=(s.o+delta+n.options.length)%n.options.length;s.p=0;s.e=0;s.page=0;s.c=0;return s;}
 export function restore(pack,s){
+ if(s&&s.id===pack.id&&s.version!==pack.version&&s.version===pack.textVersion)s={...s,version:pack.version,e:0,page:s.e?0:s.page,history:[]};
  if(!s||s.id!==pack.id||s.version!==pack.version)return initial(pack);
  try{if(!Array.isArray(s.history)||!Array.isArray(s.route)||s.history.length>64)throw Error();
  const n=current(pack,s);if(!n||!Number.isInteger(s.n)||!Number.isInteger(s.p)||!Number.isInteger(s.o)||!Number.isInteger(s.page)||s.page<0||s.page>100||![0,1].includes(s.e))throw Error();
@@ -35,10 +36,10 @@ export function toggleChinese(s){s.e=s.e?0:1;s.page=0;s.c=0;return s;}
 // Reposition by story content when portrait cues change node indices.
 export function migrate(oldPack,next,s){
  if(oldPack.id!==next.id)return initial(next);
- if(oldPack.version===next.version)return restore(next,s);
+ if(oldPack.version===next.version||oldPack.version===next.textVersion)return restore(next,s);
  if(s.n===-1)return initial(next);
  const old=current(oldPack,s);
- const key=n=>n.type==='line'?n.type+':'+n.speaker+':'+n.phrases.map(p=>p.zh).join(''):n.type==='choice'?'choice:'+n.id:n.type==='animation'?'animation:'+n.id:n.type==='reaction'?'reaction:'+n.actor+':'+n.emotion+':'+n.scene:n.type;
+ const key=n=>n.type==='line'?n.type+':'+n.speaker+':'+n.phrases.map(p=>p.py+'|'+p.en).join(''):n.type==='choice'?'choice:'+n.id:n.type==='animation'?'animation:'+n.id:n.type==='reaction'?'reaction:'+n.actor+':'+n.emotion+':'+n.scene:n.type;
  const anchor=key(old);
  for(let i=0;i<nodeCount(next);i++)if(key(nodeAt(next,i))===anchor){return restore(next,{...s,version:next.version,n:i,e:0,c:0,page:0,history:[]});}
  return initial(next);

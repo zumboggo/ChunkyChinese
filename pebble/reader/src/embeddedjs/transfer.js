@@ -7,7 +7,7 @@ export function validate(pack,glyphs,availableArt,recipeValidator=()=>false){
  if(!Number.isInteger(pack.entry)||pack.entry<0||pack.entry>=nodeCount(pack))throw Error('Invalid entry');
  let ending=false;
  const target=t=>{if(!Number.isInteger(t)||t<0||t>=nodeCount(pack))throw Error('Invalid branch');};
- const text=p=>{for(const k of ['zh','py','en']){if(typeof p[k]!=='string'||!p[k]||p[k].length>2000)throw Error('Invalid phrase');for(const c of p[k])if(!glyphs.includes(c))throw Error('Font update needed');}};
+ const text=p=>{for(const k of (pack.chinese===false?['py','en']:['zh','py','en'])){if(typeof p[k]!=='string'||!p[k]||p[k].length>2000)throw Error('Invalid phrase');for(const c of p[k])if(!glyphs.includes(c))throw Error('Font update needed');}};
  for(let i=0;i<nodeCount(pack);i++){const n=nodeAt(pack,i);if(!['line','choice','goto','reaction','animation','end'].includes(n.type))throw Error('Unknown node');if(n.type==='end')ending=true;if(n.type==='goto')target(n.to);
  if(n.type==='line'){if(!n.phrases?.length)throw Error('Empty line');n.phrases.forEach(text);}
  if(n.type==='choice'){if(!n.options||n.options.length<2||n.options.length>4)throw Error('Invalid choice');for(const o of n.options){target(o.to);if(!o.phrases?.length)throw Error('Empty choice');o.phrases.forEach(text);}}

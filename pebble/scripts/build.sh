@@ -10,6 +10,7 @@ export PEBBLE_EPISODE_ID="$episode"
 # Regenerate only explicitly with npm run scenes; stale artifacts must fail CI.
 node scripts/generate-scenes.mjs --check
 node scripts/generate-ensemble-preview.mjs --check
+node scripts/configure-reading.mjs
 node scripts/export.mjs "$episode"
 node --test tests/*.test.mjs
 [ "$mode" != --check ] || exit 0

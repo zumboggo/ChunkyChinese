@@ -4,7 +4,7 @@
 #define DOWNLOAD_KEYS 8
 typedef struct {uint8_t actor,setting,ambient,prop,count;GestureKey keys[DOWNLOAD_KEYS];} DownloadScene;
 static bool decode_values(const int *v,int n,DownloadScene *out){
- if(n<6||v[0]!=1||v[1]<0||v[1]>2||v[2]<0||v[2]>6||v[3]<0||v[3]>6||v[4]<0||v[4]>1||v[5]<2||v[5]>8||n!=6+v[5]*5)return false;
+ if(n<6||v[0]!=1||v[1]<0||v[1]>5||v[2]<0||v[2]>6||v[3]<0||v[3]>6||v[4]<0||v[4]>1||v[5]<2||v[5]>8||n!=6+v[5]*5)return false;
  int s=v[2],a=v[3];
  if((s==0&&a!=0&&a!=6)||(s!=0&&a==0)||(s==5&&a!=3&&a!=6)||(s!=5&&a==3)||(s==6&&a!=6))return false;
  out->actor=v[1];out->setting=s;out->ambient=a;out->prop=v[4];out->count=v[5];

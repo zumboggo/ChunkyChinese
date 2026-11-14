@@ -17,7 +17,8 @@ import {Transfer,validate,checksum} from './transfer';
 import {openWire} from './wire';
 
 const render=new Poco(screen);
-const fonts={py:new render.Font(art('font-latin-24')),en:new render.Font(art('font-latin-20')),zh:new render.Font(art('font-chinese-28')),small:new render.Font('Gothic-Regular',14)};
+const chineseFont=art('font-chinese-28');
+const fonts={py:new render.Font(art('font-latin-24')),en:new render.Font(art('font-latin-20')),zh:chineseFont?new render.Font(chineseFont):null,small:new render.Font('Gothic-Regular',14)};
 const ink=render.makeColor(0,0,0),paper=render.makeColor(255,255,255),navy=render.makeColor(0,0,85),teal=render.makeColor(0,85,85),grey=render.makeColor(85,85,85);
 function readFile(path){const f=device.files.openFile({path});try{return String.fromArrayBuffer(f.read(f.status().size,0));}finally{f.close();}}
 function writeFile(path,text){try{device.files.delete(path);}catch{}const bytes=ArrayBuffer.fromString(text);const f=device.files.openFile({path,mode:'r+',size:bytes.byteLength});try{f.write(bytes,0);}finally{f.close();}}
@@ -42,7 +43,7 @@ console.log('Reading saves');const saves=[];
 for(const slot of [0,1]){try{const raw=readFile('progress-'+slot),match=raw.match(/^\{"generation":(\d+),/);if(match)saves.push({path:'progress-'+slot,generation:Number(match[1])});}catch{}Debug.gc();}
 saves.sort((a,b)=>b.generation-a.generation);
 let archivedId="";
-for(const candidate of saves){try{let raw=readFile(candidate.path);const h=raw.indexOf('"history":['),end=raw.indexOf(']',h);if(h>=0&&end-h>800)raw=raw.slice(0,h)+'"history":[]'+raw.slice(end+1);const saved=JSON.parse(raw);if(saved.state.id!==pack.id&&saved.state.id!==archivedId&&/^[a-z0-9-]+$/.test(saved.state.id)){writeFile('saved-'+saved.state.id,JSON.stringify(saved.state));archivedId=saved.state.id;}if(saved.state.id===pack.id&&saved.state.version===pack.version){state=restore(pack,saved.state);saveGeneration=saved.generation;break;}else if(saved.state.id===upgrade.id&&saved.state.version===upgrade.version&&pack.version===upgrade.target){state=migrateLegacy(pack,saved.state,upgrade);saveGeneration=saved.generation;upgraded=true;break;}else if(saved.state.id===legacy.id&&saved.state.version===legacy.version&&pack.version===legacy.target){state=migrateLegacy(pack,saved.state,legacy);saveGeneration=saved.generation;upgraded=true;break;}}catch{}Debug.gc();}
+for(const candidate of saves){try{let raw=readFile(candidate.path);const h=raw.indexOf('"history":['),end=raw.indexOf(']',h);if(h>=0&&end-h>800)raw=raw.slice(0,h)+'"history":[]'+raw.slice(end+1);const saved=JSON.parse(raw);if(saved.state.id!==pack.id&&saved.state.id!==archivedId&&/^[a-z0-9-]+$/.test(saved.state.id)){writeFile('saved-'+saved.state.id,JSON.stringify(saved.state));archivedId=saved.state.id;}if(saved.state.id===pack.id&&(saved.state.version===pack.version||saved.state.version===pack.textVersion)){state=restore(pack,saved.state);saveGeneration=saved.generation;upgraded=saved.state.version!==pack.version;break;}else if(saved.state.id===upgrade.id&&saved.state.version===upgrade.version&&pack.version===upgrade.target){state=migrateLegacy(pack,saved.state,upgrade);saveGeneration=saved.generation;upgraded=true;break;}else if(saved.state.id===legacy.id&&saved.state.version===legacy.version&&pack.version===legacy.target){state=migrateLegacy(pack,saved.state,legacy);saveGeneration=saved.generation;upgraded=true;break;}}catch{}Debug.gc();}
 if(localStorage.getItem('readerRevision')!=='3'&&pack.id===bundled.id&&pack.version!==bundled.version){state=pack.version===legacy.version?migrateLegacy(bundled,state,legacy):migrate(pack,bundled,state);upgraded=true;pack=bundled;activeSlot=null;localStorage.removeItem('activeEpisode');}
 localStorage.setItem('readerRevision','3');
 Debug.gc();
@@ -76,6 +77,7 @@ function showAnimation(id,recipe){
  if(activeScene!==id){Debug.gc();if(id===-1){if(!loadRecipe(recipe,1))throw Error("Invalid scene recipe");}else graphics.showScene(id);activeScene=id;}
 }
 function draw(){
+ if(!chineseFont||pack.chinese===false)state.e=0;
  if(previewScene&&!overlay){showAnimation(previewScene);return;}
  const visible=current(pack,state);if(!overlay&&visible.type==='animation'){showAnimation(visible.recipe?-1:(sceneIds[visible.id]||0),visible.recipe);return;}
  stopScene();
@@ -101,7 +103,7 @@ function draw(){
   const list=node.type==='choice'?node.options[state.o].phrases:node.phrases;
   text(speakerName(node),8,188,'small',navy);
   const action=state.page+1<all.length?'more':state.p+1<list.length?'next':node.type==='choice'?(state.c?'choose':'confirm'):'next';
-  footer('Select: '+action+(node.type==='choice'?' | Up: option':' | Down: '+(state.e?'English':'Chinese')));
+  footer('Select: '+action+(node.type==='choice'?' | Up: option':(chineseFont&&pack.chinese!==false?' | Down: '+(state.e?'English':'Chinese'):' | Down: menu')));
  }
  render.end();
 }
@@ -147,7 +149,7 @@ function input(type){
  if(type==='back'){overlay='menu';menuIndex=0;}
  else if(n.type==='choice'&&type==='up'){browse(pack,state,1);save();}
  else if(type==='up'){previous(state);save();}
- else if(type==='down'){if(phrase(pack,state)){toggleChinese(state);save();}else{overlay='menu';menuIndex=0;}}
+ else if(type==='down'){if(phrase(pack,state)&&chineseFont&&pack.chinese!==false){toggleChinese(state);save();}else{overlay='menu';menuIndex=0;}}
  else if(type==='select'){beginRun(state);const p=phrase(pack,state);advance(pack,state,p?pages(p,state.e,measure).length:1);save();creditCompletion();}
  draw();
 }

@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+const root=new URL('../',import.meta.url),read=p=>JSON.parse(fs.readFileSync(new URL(p,root))),config=read('reading-mode.json'),pkg=read('reader/package.json');
+if(typeof config.chinese!=='boolean')throw Error('reading-mode.json must specify chinese: true or false');
+const media=pkg.pebble.resources.media,at=media.findIndex(a=>a.name==='FONT_CHINESE_28');
+if(at>=0)fs.writeFileSync(new URL('content/chinese-font.json',root),JSON.stringify(media[at],null,2)+'\n');
+if(config.chinese&&at<0)media.splice(media.findIndex(a=>a.file==='data/story.ndjson'),0,read('content/chinese-font.json'));
+if(!config.chinese&&at>=0)media.splice(at,1);
+fs.writeFileSync(new URL('reader/package.json',root),JSON.stringify(pkg,null,2)+'\n');
+const ids={};media.forEach((a,i)=>{if(a.file.startsWith('portraits/'))ids[a.file.slice(10,-4)]=i+1;else if(a.type==='font')ids[a.name.toLowerCase().replaceAll('_','-')]=i+1;});
+fs.writeFileSync(new URL('reader/src/embeddedjs/art.js',root),'export default '+JSON.stringify(ids)+';\n');
+const ordered=Object.entries(ids).sort((a,b)=>a[1]-b[1]);if(ordered.some((x,i)=>x[1]!==i+1))throw Error('Art resource IDs must be contiguous');
+fs.writeFileSync(new URL('reader/src/embeddedjs/art-native.js',root),'const names='+JSON.stringify('|'+ordered.map(x=>x[0]).join('|')+'|')+';\nexport default function art(name){const at=names.indexOf("|"+name+"|");if(at<0)return undefined;let id=1;for(let i=0;i<at;i++)if(names.charCodeAt(i)===124)id++;return id;}\n');

@@ -1,0 +1,42 @@
+{
+  "chineseFontBytes": 65001,
+  "episodes": [
+    {
+      "episode": "supportive-11",
+      "withChineseBytes": 40101,
+      "pinyinOnlyBytes": 28738,
+      "savedBytes": 11363,
+      "percentSaved": 28.3,
+      "nodes": 88
+    },
+    {
+      "episode": "supportive-12",
+      "withChineseBytes": 22053,
+      "pinyinOnlyBytes": 16026,
+      "savedBytes": 6027,
+      "percentSaved": 27.3,
+      "nodes": 61
+    },
+    {
+      "episode": "supportive-13",
+      "withChineseBytes": 29474,
+      "pinyinOnlyBytes": 21489,
+      "savedBytes": 7985,
+      "percentSaved": 27.1,
+      "nodes": 84
+    }
+  ],
+  "unchangedLimits": {
+    "wireBytes": 65536,
+    "nodes": 160,
+    "recordBytes": 2048
+  },
+  "installerBytes": {
+    "v1.7.0": 396246,
+    "v1.8.1": 305013
+  },
+  "resourcePackBytes": {
+    "v1.7.0": 273265,
+    "v1.8.1": 200748
+  }
+}

@@ -5,7 +5,8 @@ root=Path(__file__).resolve().parents[1]
 sdk=Path(os.environ.get('PEBBLE_SDK_ROOT',Path.home()/'Library/Application Support/Pebble SDK/SDKs/current'))
 sys.path[:0]=[str(sdk/'sdk-core/pebble/common/waftools'),str(sdk/'sdk-core/pebble/common/tools')]
 glyphs=(root/'content/glyphs.txt').read_text();report={}
-for name,size in [('latin',24),('latin',20),('chinese',28)]:
+chinese=json.loads((root/'reading-mode.json').read_text())['chinese']
+for name,size in [('latin',24),('latin',20)]+([('chinese',28)] if chinese else []):
  p=root/f'reader/build/emery/resources/fonts/{name}.ttf.FONT_{name.upper()}_{size}.reso'
  data=pickle.load(p.open('rb')).data
  version,height,count,wildcard,buckets,codebytes,header,features=struct.unpack('<BBHHBBBB',data[:10])

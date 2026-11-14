@@ -15,6 +15,7 @@ export function wrap(text,measure,width=184){
  if(line.trim())lines.push(line.trim());return lines.length?lines:[''];
 }
 export function pages(phrase,encounter,measure){
+ if(!phrase.zh)encounter=0;
  const py=wrap(phrase.py,t=>measure(t,'py'));
  const lower=wrap(encounter===0?phrase.en:phrase.zh,t=>measure(t,encounter===0?'en':'zh'));
  const per=encounter===0?3:2, count=Math.max(Math.ceil(py.length/2),Math.ceil(lower.length/per));

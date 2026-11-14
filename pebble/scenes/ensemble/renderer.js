@@ -53,6 +53,7 @@
  if(setting==='street'){line([[0,100],[200,100]],P.far);line([[155,100],[155,30]],P.far,2);disc(155,30,16,P.far);}
  line([[0,205],[200,205]],P.far);line([[24,205],[5,228]],P.far);line([[177,205],[196,228]],P.far);
  if(catEnabled&&!opt.ambientKind)cat(225-t/12000*250,199);
+ ctx.save();if(actor.design==='young-alden'){ctx.translate(12,24);ctx.scale(.88,.88);}
  // Chair and anchored rear bindings.
  if(setting!=='street'){line([[60,153],[60,119],[119,119],[119,153]],P.far,3);line([[62,157],[60,198]],P.near,3);line([[117,157],[121,198]],P.near,3);}
  const g=actor.rig==='gorgon',hy=78+p[0],hx=g?83:86,hand=[119+p[1],142+p[2]],shoulder=[94,113+p[0]*.3];
@@ -61,6 +62,7 @@
  poly([[71,108],[98,107],[105,152],[69,152]],P.ink);poly([[74,110],[95,110],[101,148],[73,148]],actor.shirt);
  line([[75,114],[63,132],[76,146]],P.ink,8);line([[75,114],[63,132],[76,146]],g?actor.skin:actor.shirt,5);disc(76,146,3,actor.skin);
  line([[85,96],[85,110]],actor.skin,7);
+ if(actor.design){poly([[80,110],[89,110],[89,145],[81,145]],P.far);if(actor.design==='alden'){line([[75,110],[81,123],[75,128]],P.ink,2);line([[94,110],[89,123],[96,128]],P.ink,2);}}
  ctx.save();ctx.translate(hx,hy);ctx.rotate(p[3]);
  if(g){
   // Horns sweep down to a collar, not upright devil horns.
@@ -69,6 +71,13 @@
   disc(-7,1,4,P.ink);disc(8,1,4,P.ink);
   poly([[-7,8],[-5,5],[5,5],[8,9]],P.near);for(const x of [-5,-2,2,5])line([[x,7],[x,9]],P.ink);
   line([[-5,14],[5,14]],P.ink);
+ }else if(actor.design){
+  if(actor.design==='hannah'){disc(-11,17,7,actor.hair);disc(-10,25,5,actor.hair);disc(12,17,7,actor.hair);disc(12,25,5,actor.hair);}
+  disc(0,0,18,P.ink);disc(1,1,16,actor.skin);disc(-15,3,4,actor.skin);
+  poly([[-18,3],[-20,-9],[-15,-8],[-18,-17],[-9,-15],[-5,-22],[1,-18],[10,-19],[8,-15],[17,-11],[20,-4],[13,-7],[11,-2],[5,-10],[-2,-6],[-1,-13],[-11,-4],[-13,6]],P.ink);
+  poly([[-17,-10],[-10,-12],[-4,-18],[0,-14],[9,-16],[5,-11],[-6,-5],[-13,0]],actor.hair);
+  if(actor.design==='hannah'){line([[-12,8],[-11,23]],actor.hair,5);line([[13,8],[13,23]],actor.hair,5);disc(-10,26,2,P.ink);disc(13,26,2,P.ink);box(-9,5,1,1,actor.hair);box(-6,6,1,1,actor.hair);box(9,5,1,1,actor.hair);}
+  box(-6,0,2,3,P.ink);box(6,0,2,3,P.ink);line([[-8,-4],[-3,-5]],P.ink);line([[5,-5],[10,-4]],P.ink);line([[5,5],[8,6],[5,7]],actor.hair);line([[0,11],[5,12]],P.ink);
  }else{
   disc(-17,3,3,actor.skin);disc(17,3,3,actor.skin);disc(0,0,19,P.ink);disc(0,1,17,actor.skin);
   if(actor.glasses){poly([[-19,1],[-18,-12],[-11,-20],[9,-20],[19,-12],[19,0],[14,-6],[-14,-6]],actor.hair);}
@@ -90,6 +99,7 @@
  }
  disc(hand[0]-1,hand[1],3,actor.skin);
  if(g){for(let i=0;i<3;i++)line([[hand[0]-1,hand[1]+i-2],[hand[0]+6,hand[1]+i-3]],actor.skin,1);line([[hand[0]-7,hand[1]-3],[hand[0]-3,hand[1]+3]],P.gold,3);line([[hand[0]-5,hand[1]+1],[45,165],[12,165]],P.gold,1);}
+ ctx.restore();
  // Props foreground, below hands, so gestures remain legible.
  if(['consulate','meal','trading','classroom'].includes(setting)){
   const colour=setting==='trading'?'#55aaaa':P.far;

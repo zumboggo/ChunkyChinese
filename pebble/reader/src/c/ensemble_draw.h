@@ -1,5 +1,6 @@
 // Native primitive port of ensemble/renderer.js. Pose tracks and actor colours are generated.
 static void ensemble_character(int who,const GestureKey *keys,int count,bool cup,uint32_t t){
+ if(who==4)world(12,24,.88f,.88f);
  int i=1;
  while(i<count-1&&t>keys[i].t)i++;
  GestureKey a=keys[i-1],b=keys[i];float u=ease((float)(t-a.t)/(b.t-a.t));
@@ -16,11 +17,14 @@ static void ensemble_character(int who,const GestureKey *keys,int count,bool cup
  SEG(80,199,94,200,INK,6);SEG(115,199,129,200,INK,6);
  SHAPE(INK,71,108,98,107,105,152,69,152);SHAPE(shirt,74,110,95,110,101,148,73,148);
  SEG(75,114,63,132,INK,8);SEG(63,132,76,146,INK,8);SEG(75,114,63,132,g?skin:shirt,5);SEG(63,132,76,146,g?skin:shirt,5);disc(P(76,146),3,skin);
+ if(who>=3){SHAPE(SHIRT,80,110,89,110,89,145,81,145);if(who==5){SEG(75,110,81,123,INK,2);SEG(81,123,75,128,INK,2);SEG(94,110,89,123,INK,2);SEG(89,123,96,128,INK,2);}}
  SEG(85,96,85,110,skin,7);tx=g?83:86;ty=78+dy;rotation=ang;
  if(g){
   for(int side=-1;side<=1;side+=2)for(int j=0;j<4;j++)POLY(NEAR,P(side*(11+j*2),-15+j*3),P(side*(22+j*2),8+j*5),P(side*(14+j*2),24+j*2),P(side*(17+j),7));
   disc(P(0,0),21,INK);disc(P(0,0),19,skin);disc(P(-7,1),4,INK);disc(P(8,1),4,INK);
   SHAPE(NEAR,-7,8,-5,5,5,5,8,9);for(int j=0;j<4;j++){int x=j<2?-5+j*3:2+(j-2)*3;line(P(x,7),P(x,9),INK,1);}SEG(-5,14,5,14,INK,1);
+ }else if(who>=3){
+  main_cast_head(who==3?2:who==4?1:0,0,0,false);
  }else{
   disc(P(-17,3),3,skin);disc(P(17,3),3,skin);disc(P(0,0),19,INK);disc(P(0,1),17,skin);
   if(who==1){SHAPE(hair,-19,1,-18,-12,-11,-20,9,-20,19,-12,19,0,14,-6,-14,-6);}
@@ -38,4 +42,5 @@ static void ensemble_character(int who,const GestureKey *keys,int count,bool cup
  if(cup){box(hand.x-2,hand.y-15,13,15,PHONE);line(P(hand.x+11,hand.y-12),P(hand.x+16,hand.y-12),PHONE,2);line(P(hand.x+16,hand.y-12),P(hand.x+16,hand.y-4),PHONE,2);line(P(hand.x+16,hand.y-4),P(hand.x+11,hand.y-4),PHONE,2);line(P(hand.x,hand.y-15),P(hand.x+9,hand.y-15),PAPER,1);}
  disc(P(hand.x-1,hand.y),3,skin);
  if(g){for(int j=0;j<3;j++)line(P(hand.x-1,hand.y+j-2),P(hand.x+6,hand.y+j-3),skin,1);line(P(hand.x-7,hand.y-3),P(hand.x-3,hand.y+3),gold,3);line(P(hand.x-5,hand.y+1),P(45,165),gold,1);SEG(45,165,12,165,gold,1);}
+ world(0,0,1,1);
 }
