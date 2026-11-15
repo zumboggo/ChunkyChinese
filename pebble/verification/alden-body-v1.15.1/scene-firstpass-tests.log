@@ -1,0 +1,45 @@
+PASS held train-phone
+PASS held restaurant-seat
+PASS held hannah-fry
+PASS held alden-listens
+PASS held train-reflection
+PASS held gorgon-listen
+PASS held gorgon-offer
+PASS held gorgon-think
+PASS held gorgon-sip
+PASS held boe-listen
+PASS held boe-offer
+PASS held boe-think
+PASS held boe-sip
+PASS held jeremy-listen
+PASS held jeremy-offer
+PASS held jeremy-think
+PASS held jeremy-sip
+PASS held background-train-train
+PASS held background-cafe-walkers
+PASS held background-consulate-walkers
+PASS held background-home-foliage
+PASS held background-classroom-foliage
+PASS held background-trading-light
+PASS held background-home-rain
+PASS held background-home-cat
+PASS held jeremy-train-listen
+PASS held boe-train-think
+PASS held jeremy-train-think
+PASS held jeremy-street-listen
+PASS held boe-street-think
+PASS held alden-protective-cover
+PASS held alden-cover-and-peek
+PASS held hannah-protective-cover
+PASS held hannah-cover-and-peek
+PASS held boe-protective-cover
+PASS held boe-cover-and-peek
+PASS held jeremy-protective-cover
+PASS held jeremy-cover-and-peek
+PASS held young-alden-protective-cover
+PASS held young-alden-cover-and-peek
+PASS held alden-folded-arms
+Traceback (most recent call last):
+  File "/private/tmp/alden-body-prototype/pebble/scripts/test-emulator.py", line 74, in <module>
+    assert avg<=round(1000/library['fps']) and maximum<=250,('Frame budget',sid,avg,maximum)
+AssertionError: ('Frame budget', 42, 84, 175)

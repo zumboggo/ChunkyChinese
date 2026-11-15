@@ -1,0 +1,40 @@
+{
+  "episodeId": "supportive-13",
+  "episodeVersion": "6b319cc93962",
+  "motionPreferenceRestart": true,
+  "previewProgressPreserved": true,
+  "pbwSha256": "86b0384b02beefcbe92ee6cb68ffdd6240f265ef1f32f7ffcbae05597d5fe727",
+  "physicalWatchTested": false,
+  "resumedCompletedScenes": 41,
+  "scenes": [
+    {
+      "id": "background-home-foliage",
+      "freeBytes": 12572,
+      "drawAverageMs": 53,
+      "drawMaximumMs": 55,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "alden-protective-cover",
+      "freeBytes": 12572,
+      "drawAverageMs": 71,
+      "drawMaximumMs": 77,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "alden-cover-and-peek",
+      "freeBytes": 12572,
+      "drawAverageMs": 72,
+      "drawMaximumMs": 77,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "alden-interrupted-sip",
+      "freeBytes": 12572,
+      "drawAverageMs": 78,
+      "drawMaximumMs": 84,
+      "exceededTargetFrame": true
+    }
+  ],
+  "source": "Extracted from completed full native regression, including same-PBW resumed cup check"
+}

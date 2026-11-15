@@ -5,7 +5,7 @@ from libpebble2.communication import PebbleConnection
 from libpebble2.communication.transports.websocket import WebsocketTransport
 from libpebble2.services.appmessage import AppMessageService,CString,Uint32
 from libpebble2.services.notifications import Notifications
-p=argparse.ArgumentParser();p.add_argument('--cli',required=True);p.add_argument('--emulator-info',required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--cli',required=True);p.add_argument('--emulator-info',required=True);p.add_argument('--memory-prefix-only',action='store_true');a=p.parse_args()
 root=Path(__file__).resolve().parents[1];out=root/'.local/downloadable-scenes';out.mkdir(parents=True,exist_ok=True)
 port=json.loads(Path(a.emulator_info).read_text())['emery']['4.44']['pypkjs']['port']
 c=PebbleConnection(WebsocketTransport('ws://localhost:'+str(port)+'/'));c.connect();c.run_async();service=AppMessageService(c);replies=queue.Queue()
@@ -89,6 +89,10 @@ with (out/'watch.log').open('w') as f:
   assert not re.search(r'INPUT ERROR|SAVE ERROR|fxAbort|memory full|App fault',log,re.I),log
   values=[int(v) for v in re.findall(r'Scene 65535 held; free=(\d+)',log)];assert min(values)>=12288,values
   assert max(values[:4])-min(values[:4])<=256,values
+  if a.memory_prefix_only:
+   text=(out/'watch.log').read_text();rows=[list(map(int,x.split(','))) for x in re.findall(r'instruments: ([0-9,]+)',text)]
+   result={'pbwSha256':hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest(),'peakStringPoolBytes':max(x[7] for x in rows),'peakSlotPoolBytes':max(x[9] for x in rows),'peakStackBytes':max(x[11] for x in rows),'physicalWatchTested':False}
+   (out/'memory-prefix.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True);raise SystemExit(0)
   # Validate every reusable gesture on each newly installed rig through the data path.
   motion(False)
   cast=json.loads((root/'scenes/ensemble/characters.json').read_text());verified=[]

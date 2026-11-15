@@ -1,0 +1,372 @@
+{
+  "palette": [
+    [
+      50,
+      27,
+      18
+    ],
+    [
+      150,
+      94,
+      72
+    ],
+    [
+      255,
+      211,
+      170
+    ],
+    [
+      233,
+      144,
+      115
+    ],
+    [
+      80,
+      80,
+      82
+    ],
+    [
+      170,
+      171,
+      170
+    ],
+    [
+      168,
+      102,
+      92
+    ],
+    [
+      255,
+      255,
+      255
+    ]
+  ],
+  "pieces": [
+    {
+      "name": "torso",
+      "width": 64,
+      "height": 27,
+      "bytes": 434
+    },
+    {
+      "name": "sleeve",
+      "width": 9,
+      "height": 18,
+      "bytes": 68
+    },
+    {
+      "name": "grip",
+      "width": 10,
+      "height": 12,
+      "bytes": 75
+    },
+    {
+      "name": "palm",
+      "width": 15,
+      "height": 24,
+      "bytes": 149
+    },
+    {
+      "name": "cup",
+      "width": 17,
+      "height": 15,
+      "bytes": 115
+    },
+    {
+      "name": "palm-mirrored",
+      "width": 15,
+      "height": 24,
+      "bytes": 149
+    },
+    {
+      "name": "sleeve-12-0",
+      "width": 15,
+      "height": 9,
+      "bytes": 68
+    },
+    {
+      "name": "sleeve-12-1",
+      "width": 15,
+      "height": 12,
+      "bytes": 113
+    },
+    {
+      "name": "sleeve-12-2",
+      "width": 14,
+      "height": 14,
+      "bytes": 131
+    },
+    {
+      "name": "sleeve-12-3",
+      "width": 12,
+      "height": 15,
+      "bytes": 117
+    },
+    {
+      "name": "sleeve-12-4",
+      "width": 9,
+      "height": 15,
+      "bytes": 61
+    },
+    {
+      "name": "sleeve-12-5",
+      "width": 12,
+      "height": 15,
+      "bytes": 117
+    },
+    {
+      "name": "sleeve-12-6",
+      "width": 14,
+      "height": 14,
+      "bytes": 131
+    },
+    {
+      "name": "sleeve-12-7",
+      "width": 15,
+      "height": 12,
+      "bytes": 113
+    },
+    {
+      "name": "sleeve-12-8",
+      "width": 15,
+      "height": 9,
+      "bytes": 68
+    },
+    {
+      "name": "sleeve-12-9",
+      "width": 15,
+      "height": 12,
+      "bytes": 113
+    },
+    {
+      "name": "sleeve-12-10",
+      "width": 14,
+      "height": 14,
+      "bytes": 131
+    },
+    {
+      "name": "sleeve-12-11",
+      "width": 12,
+      "height": 15,
+      "bytes": 117
+    },
+    {
+      "name": "sleeve-12-12",
+      "width": 9,
+      "height": 15,
+      "bytes": 61
+    },
+    {
+      "name": "sleeve-12-13",
+      "width": 12,
+      "height": 15,
+      "bytes": 117
+    },
+    {
+      "name": "sleeve-12-14",
+      "width": 14,
+      "height": 14,
+      "bytes": 131
+    },
+    {
+      "name": "sleeve-12-15",
+      "width": 15,
+      "height": 12,
+      "bytes": 113
+    },
+    {
+      "name": "sleeve-24-0",
+      "width": 27,
+      "height": 9,
+      "bytes": 117
+    },
+    {
+      "name": "sleeve-24-1",
+      "width": 26,
+      "height": 16,
+      "bytes": 245
+    },
+    {
+      "name": "sleeve-24-2",
+      "width": 22,
+      "height": 22,
+      "bytes": 291
+    },
+    {
+      "name": "sleeve-24-3",
+      "width": 16,
+      "height": 26,
+      "bytes": 221
+    },
+    {
+      "name": "sleeve-24-4",
+      "width": 9,
+      "height": 27,
+      "bytes": 75
+    },
+    {
+      "name": "sleeve-24-5",
+      "width": 16,
+      "height": 26,
+      "bytes": 221
+    },
+    {
+      "name": "sleeve-24-6",
+      "width": 22,
+      "height": 22,
+      "bytes": 291
+    },
+    {
+      "name": "sleeve-24-7",
+      "width": 26,
+      "height": 16,
+      "bytes": 245
+    },
+    {
+      "name": "sleeve-24-8",
+      "width": 27,
+      "height": 9,
+      "bytes": 133
+    },
+    {
+      "name": "sleeve-24-9",
+      "width": 26,
+      "height": 16,
+      "bytes": 245
+    },
+    {
+      "name": "sleeve-24-10",
+      "width": 22,
+      "height": 22,
+      "bytes": 291
+    },
+    {
+      "name": "sleeve-24-11",
+      "width": 16,
+      "height": 26,
+      "bytes": 221
+    },
+    {
+      "name": "sleeve-24-12",
+      "width": 9,
+      "height": 27,
+      "bytes": 82
+    },
+    {
+      "name": "sleeve-24-13",
+      "width": 16,
+      "height": 26,
+      "bytes": 221
+    },
+    {
+      "name": "sleeve-24-14",
+      "width": 22,
+      "height": 22,
+      "bytes": 291
+    },
+    {
+      "name": "sleeve-24-15",
+      "width": 26,
+      "height": 16,
+      "bytes": 245
+    },
+    {
+      "name": "sleeve-40-0",
+      "width": 43,
+      "height": 9,
+      "bytes": 173
+    },
+    {
+      "name": "sleeve-40-1",
+      "width": 41,
+      "height": 21,
+      "bytes": 488
+    },
+    {
+      "name": "sleeve-40-2",
+      "width": 33,
+      "height": 33,
+      "bytes": 632
+    },
+    {
+      "name": "sleeve-40-3",
+      "width": 21,
+      "height": 41,
+      "bytes": 461
+    },
+    {
+      "name": "sleeve-40-4",
+      "width": 9,
+      "height": 43,
+      "bytes": 75
+    },
+    {
+      "name": "sleeve-40-5",
+      "width": 21,
+      "height": 41,
+      "bytes": 461
+    },
+    {
+      "name": "sleeve-40-6",
+      "width": 33,
+      "height": 33,
+      "bytes": 632
+    },
+    {
+      "name": "sleeve-40-7",
+      "width": 41,
+      "height": 21,
+      "bytes": 488
+    },
+    {
+      "name": "sleeve-40-8",
+      "width": 43,
+      "height": 9,
+      "bytes": 173
+    },
+    {
+      "name": "sleeve-40-9",
+      "width": 41,
+      "height": 21,
+      "bytes": 488
+    },
+    {
+      "name": "sleeve-40-10",
+      "width": 33,
+      "height": 33,
+      "bytes": 632
+    },
+    {
+      "name": "sleeve-40-11",
+      "width": 21,
+      "height": 41,
+      "bytes": 461
+    },
+    {
+      "name": "sleeve-40-12",
+      "width": 9,
+      "height": 43,
+      "bytes": 75
+    },
+    {
+      "name": "sleeve-40-13",
+      "width": 21,
+      "height": 41,
+      "bytes": 461
+    },
+    {
+      "name": "sleeve-40-14",
+      "width": 33,
+      "height": 33,
+      "bytes": 632
+    },
+    {
+      "name": "sleeve-40-15",
+      "width": 41,
+      "height": 21,
+      "bytes": 488
+    }
+  ],
+  "bytes": 13195,
+  "scale": 2
+}

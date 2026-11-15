@@ -7,3 +7,4 @@ static const ReactionAnim reaction_anims[]={{3169,0,5},{3199,0,4},{3223,0,5},{32
 #define REACTION_SCENE_CUES 9
 static const uint8_t reaction_scene_ids[][REACTION_SCENE_CUES]={{0,1,2,3,4,5,35,36,37},{6,7,8,9,10,11,38,39,40},{12,13,14,15,16,17,41,42,43},{18,19,20,21,22,23,44,45,46},{24,25,26,28,29,27,47,48,49},{30,31,33,30,31,34,50,51,52}};
 #define REACTION_COUNT 53
+#define ALDEN_BODY_OFFSET 31949

@@ -1,0 +1,19 @@
+{
+  "pbwSha256": "86b0384b02beefcbe92ee6cb68ffdd6240f265ef1f32f7ffcbae05597d5fe727",
+  "pbwBytes": 269422,
+  "nativeCodeBytes": 14288,
+  "nativeStaticRamBytes": 1044,
+  "nativeCodeAndStaticBytes": 15332,
+  "nativeGrowthBytes": 53,
+  "resourceBytes": 170757,
+  "resourceGrowthBytes": 13818,
+  "artworkGrowthBytes": 13195,
+  "sharedArtCacheBytes": 512,
+  "bodyPaletteBytes": 8,
+  "vmStackBytes": 4224,
+  "vmSlotsBytes": 34816,
+  "vmChunksBytes": 9216,
+  "legacyArtPrefixBytes": 31949,
+  "legacyArtPrefixSha256": "269d9f02b29f12c522432b03238af300ab2785f342a80847bad732a9d2071118",
+  "physicalWatchTested": false
+}

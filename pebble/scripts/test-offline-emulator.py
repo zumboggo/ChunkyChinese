@@ -4,7 +4,7 @@ from pathlib import Path
 from libpebble2.communication import PebbleConnection
 from libpebble2.communication.transports.websocket import WebsocketTransport
 from libpebble2.services.appmessage import AppMessageService,CString,Uint32
-p=argparse.ArgumentParser();p.add_argument('--cli',required=True);p.add_argument('--emulator-info',required=True);p.add_argument('--min-free',type=int,default=12288);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--cli',required=True);p.add_argument('--emulator-info',required=True);p.add_argument('--min-free',type=int,default=12288);p.add_argument('--exercise-body',action='store_true');a=p.parse_args()
 root=Path(__file__).resolve().parents[1];out=root/'.local/offline';out.mkdir(parents=True,exist_ok=True)
 pbw=root/'reader/build/reader.pbw';digest=hashlib.sha256(pbw.read_bytes()).hexdigest()
 def image_without_clock(data):
@@ -41,6 +41,15 @@ def fixture(n):
  line={'type':'line','speaker':'Alden','phrases':[{'py':'hello','en':'hello'}]}
  padding={'type':'line','speaker':'Alden','phrases':[{'py':'hello '*12,'en':'hello '*12}]}
  return {'format':1,'id':'supportive-'+str(n),'number':n,'version':version(n),'title':'Queue test '+str(n),'chinese':False,'entry':0,'nodes':[line,{'type':'end'}]+[padding]*100}
+def preview_scene(id):
+ lib=json.loads((root/'scenes/library.json').read_text())['scenes'];scene=next(s for s in lib if s['nativeId']==id);groups=list(dict.fromkeys(s['group'] for s in lib));siblings=[s['nativeId'] for s in lib if s['group']==scene['group']]
+ press('back');press('down',2);press('select')
+ if groups.index(scene['group']):press('down',groups.index(scene['group']))
+ press('select')
+ if siblings.index(id):press('down',siblings.index(id))
+ press('select')
+def leave_preview():
+ for _ in range(4):press('back')
 logfile=out/'watch.log'
 with logfile.open('w') as f:
  logs=subprocess.Popen([a.cli,'logs','--emulator','emery'],cwd=root/'reader',stdout=f,stderr=subprocess.STDOUT)
@@ -52,8 +61,15 @@ with logfile.open('w') as f:
   sizes=[]
   for n in range(901,906):
    request=expect('PREFETCH');assert request[keys['DATA']]=='supportive-'+str(n);token=request[keys['STATUS']]
-   sizes.append(upload(fixture(n),token));assert shot('after-'+str(n))==reading,'Prefetch changed reading'
+   if n==905 and a.exercise_body:preview_scene(31)
+   sizes.append(upload(fixture(n),token))
+   if n==905 and a.exercise_body:
+    time.sleep(5);shot('download-during-cover');leave_preview()
+   assert shot('after-'+str(n))==reading,'Prefetch changed reading'
    print('PASS cached',n,sizes[-1],flush=True)
+  if a.exercise_body:
+   for sid in [21,31,42]:
+    preview_scene(sid);time.sleep(5);shot('five-cached-scene-'+str(sid));leave_preview();assert shot('after-scene-'+str(sid))==reading
   # Offline: no companion replies. Finish and continue into the saved next episode.
   run('install',pbw);time.sleep(2);assert shot('restart-900')==reading
   press('select');press('select');shot('continue-menu');press('select');shot('opening-901');press('select');read901=shot('reading-901')
@@ -78,7 +94,7 @@ with logfile.open('w') as f:
   text=logfile.read_text();heap=list(map(int,re.findall(r'Transfer heap(\d+)',text)))
   instruments=[list(map(int,x.split(','))) for x in re.findall(r'instruments: ([0-9,]+)',text)]
   heap += [row[6] for row in instruments];assert heap and min(heap)>=a.min_free,(min(heap) if heap else None,'heap limit')
-  result={'minimumMeasuredFreeHeapBytes':min(heap),'heapSamples':len(heap),'peakStringPoolBytes':max(row[7] for row in instruments),'peakSlotPoolBytes':max(row[9] for row in instruments),'peakStackBytes':max(row[11] for row in instruments),'pbwSha256':digest,'queuedEpisodes':5,'episodeBytes':sizes,'queuedBytes':sum(sizes),'allocatableBytesAtLeast':allocatable,'cachedBytesDuringProbe':cached,'prefetchPreservesReading':True,'offlineContinuation':True,'reinstallPreservesQueueAndPosition':True,'interruptedRefillPreservesQueue':True,'normalEpisodeRestored':True,'physicalWatchTested':False}
+  result={'minimumMeasuredFreeHeapBytes':min(heap),'heapSamples':len(heap),'peakStringPoolBytes':max(row[7] for row in instruments),'peakSlotPoolBytes':max(row[9] for row in instruments),'peakStackBytes':max(row[11] for row in instruments),'pbwSha256':digest,'queuedEpisodes':5,'bodyScenesWithFullCache':[21,31,42] if a.exercise_body else [],'prefetchDuringBodyAnimation':a.exercise_body,'episodeBytes':sizes,'queuedBytes':sum(sizes),'allocatableBytesAtLeast':allocatable,'cachedBytesDuringProbe':cached,'prefetchPreservesReading':True,'offlineContinuation':True,'reinstallPreservesQueueAndPosition':True,'interruptedRefillPreservesQueue':True,'normalEpisodeRestored':True,'physicalWatchTested':False}
   (out/'report.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
  finally:
   logs.terminate();logs.wait(timeout=5)

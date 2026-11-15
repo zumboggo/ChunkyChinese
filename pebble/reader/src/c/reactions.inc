@@ -31,11 +31,15 @@ static void reaction_tick(void *unused){
 static void reaction_start(uint32_t id){reaction_stop();if(id>=REACTION_COUNT)return;reaction_blocks[0]=reaction_blocks[1]=UINT32_MAX;reaction_index=id;reaction_step=0;reaction_held=false;reaction_ready=false;reaction_active=true;reaction_min_free=heap_bytes_free();reaction_draw_max=0;reaction_remaining=reaction_u16(reaction_anims[id].offset);reaction_schedule();APP_LOG(APP_LOG_LEVEL_INFO,"Reaction %lu started free=%lu",(unsigned long)id,(unsigned long)heap_bytes_free());}
 static void reaction_palette(uint32_t base,uint8_t *p){uint8_t rgb[24];reaction_read(base+8,rgb,24);for(int i=0;i<8;i++)p[i]=0xc0|(((rgb[i*3]+42)/85)<<4)|(((rgb[i*3+1]+42)/85)<<2)|((rgb[i*3+2]+42)/85);}
 static int reaction_x=4,reaction_y=9,reaction_scale=3;
-static void reaction_run(GContext *ctx,int x,int y,int w,int color){if(w<=0||color<0)return;graphics_context_set_fill_color(ctx,(GColor){.argb=(uint8_t)color});graphics_fill_rect(ctx,GRect(reaction_x+x*reaction_scale,reaction_y+y*reaction_scale,w*reaction_scale,reaction_scale),0,GCornerNone);}
+static void reaction_run(GContext *ctx,int x,int y,int w,int color,int rows){if(w<=0||color<0)return;graphics_context_set_fill_color(ctx,(GColor){.argb=(uint8_t)color});graphics_fill_rect(ctx,GRect(reaction_x+x*reaction_scale,reaction_y+y*reaction_scale,w*reaction_scale,rows*reaction_scale),0,GCornerNone);}
 static void reaction_piece(GContext *ctx,uint32_t base,uint8_t part,int dx,int dy,const uint8_t *p){
  if(part==255){return;}uint32_t at=base+reaction_u32(base+32+part*4);uint8_t h[5];if(!reaction_read(at,h,5))return;int x0=h[0],y0=h[1],w=h[2],height=h[3],alpha=h[4];if(!w||w>64||!height||height>64)return;int stride=(w*3+7)/8,ms=(w+7)/8;at+=5;
- for(int y=0;y<height;y++){uint8_t row[24],mask[8];reaction_read(at+y*stride,row,stride);if(alpha)reaction_read(at+height*stride+y*ms,mask,ms);int last=-1,start=0;
-  for(int x=0;x<=w;x++){int color=-1;if(x<w&&(!alpha||(mask[x/8]&(128>>(x%8))))){int bit=x*3,byte=bit/8,shift=bit%8;uint16_t v=row[byte]<<8;if(byte+1<stride)v|=row[byte+1];color=p[(v>>(13-shift))&7];}if(color!=last){reaction_run(ctx,x0+start+dx,y0+y+dy,x-start,last);start=x;last=color;}}
+ for(int y=0;y<height;){uint8_t row[24],mask[8],repeat=1;
+  if(alpha&4){reaction_read(at++,&repeat,1);if(!repeat||y+repeat>height)return;reaction_read(at,row,stride);at+=stride;reaction_read(at,mask,ms);at+=ms;}
+  else{reaction_read(at+y*(stride+((alpha&2)?ms:0)),row,stride);if(alpha)reaction_read((alpha&2)?at+y*(stride+ms)+stride:at+height*stride+y*ms,mask,ms);}
+  int last=-1,start=0;
+  for(int x=0;x<=w;x++){int color=-1;if(x<w&&(!alpha||(mask[x/8]&(128>>(x%8))))){int bit=x*3,byte=bit/8,shift=bit%8;uint16_t v=row[byte]<<8;if(byte+1<stride)v|=row[byte+1];color=p[(v>>(13-shift))&7];}if(color!=last){reaction_run(ctx,x0+start+dx,y0+y+dy,x-start,last,repeat);start=x;last=color;}}
+  y+=repeat;
  }
 }
 static void reaction_frame(GContext *ctx,const ReactionAnim *a,unsigned step,int hx,int hy){
@@ -58,3 +62,5 @@ void scenePortraitDraw(GContext *ctx,uint32_t who,uint32_t emotion,uint32_t ms,i
  for(;step+1<a->count;step++){unsigned duration=reaction_u16(a->offset+step*6);if(ms<duration)break;ms-=duration;}
  reaction_x=32;reaction_y=43;reaction_scale=2;reaction_frame(ctx,a,step,head_x,head_y);
 }
+
+#include "body_pieces.inc"

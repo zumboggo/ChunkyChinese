@@ -257,7 +257,7 @@ console.log('Save restored',state.n);if(upgraded)save();Debug.gc();new Button({t
 },p=>{if(!Number.isInteger(p.number)||p.number<1||typeof p.title!=='string')throw Error('Invalid episode metadata');if(queueLoading&&(p.id!==queueLoading[0]||p.number!==queueLoading[1]||p.version!==queueLoading[3]))throw Error('Different queued episode');if(requestedEpisode&&p.id!==requestedEpisode)throw Error('Different episode received');validate(p,glyphs,hasArt,r=>loadRecipe(r,0),Debug.gc);if(p.id===bundled.id&&(p.version===upgrade.version||p.version===legacy.version))throw Error('Older feed; kept animations');});
 Debug.gc();channel=new Message({input:768,output:192,keys:['COMMAND','DATA','OFFSET','TOTAL','CHECKSUM','VERSION','STATUS'],
  onWritable(){connected=true;sending=false;flush();},
- onSuspend(){connected=false;sending=false;queueLoading=null;downloadToken=String(++downloadSerial);queueStatus='Reconnect to finish queue';},
+ onSuspend(){connected=false;sending=false;queueLoading=null;downloadToken=String(++downloadSerial);queueStatus='Reconnect to finish queue';Debug.gc();},
  onReadable(){const m=this.read();connected=true;try{
   const cmd=m.get('COMMAND');
   if(['BEGIN','CHUNK','END'].includes(cmd)&&m.get('STATUS')&&m.get('STATUS')!==downloadToken)return;

@@ -28,6 +28,8 @@ static uint32_t heap_bytes_free(void){return 0;}
 #include "../reader/src/c/reactions.inc"
 static void rect(int x,int y,int w,int h,uint32_t c){uint8_t r=((c>>16)&255),g=((c>>8)&255),b=c&255;fill=0xc0|(((r+42)/85)<<4)|(((g+42)/85)<<2)|((b+42)/85);graphics_fill_rect(NULL,GRect(x,y,w,h),0,0);}
 static void portrait(unsigned who,unsigned emotion,uint32_t t,int hx,int hy){scenePortraitDraw(NULL,who,emotion,t,hx,hy);}
+static void bodypiece(unsigned id,int x,int y,int mirror){sceneBodyDraw(NULL,id,x,y,mirror);}
+static void bodysleeve(int x,int y,int xx,int yy){sceneBodySleeve(NULL,x,y,xx,yy);}
 #ifdef PACKED_STAGE
 #include "../reader/src/c/visual_novel_packed.h"
 #else

@@ -1,11 +1,11 @@
 // Browser companion to visual_novel_draw.h: approved streamed pieces, bounded gestures.
 // Uses the watch palette and the same integer rasterization; no old full-body rigs.
-function visualNovel(config,resource,actors,anims,sceneIds){
+function visualNovel(config,resource,actors,anims,sceneIds,bodyOffset){
  const bytes=Uint8Array.from(atob(resource),c=>c.charCodeAt(0)),u16=a=>bytes[a]|bytes[a+1]<<8,u32=a=>(bytes[a]|bytes[a+1]<<8|bytes[a+2]<<16|bytes[a+3]<<24)>>>0;
  const settings=['train','cafe','consulate','home','classroom','trading','street'];
  const color=c=>{if(typeof c==='string')c=parseInt(c,16);return '#'+[c>>16&255,c>>8&255,c&255].map(v=>(Math.floor((v+42)/85)*85).toString(16).padStart(2,'0')).join('');};
  const pieces=new Map();
- function piece(base,id){if(id===255)return null;const key=base+':'+id;if(pieces.has(key))return pieces.get(key);let at=base+u32(base+32+id*4);const [x,y,w,h,alpha]=bytes.slice(at,at+5),stride=Math.ceil(w*3/8),ms=Math.ceil(w/8);at+=5;const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;const ctx=canvas.getContext('2d'),data=ctx.createImageData(w,h),pal=[];for(let i=0;i<8;i++)pal.push([...bytes.slice(base+8+i*3,base+11+i*3)].map(v=>Math.floor((v+42)/85)*85));for(let yy=0;yy<h;yy++)for(let xx=0;xx<w;xx++){if(alpha&&!(bytes[at+h*stride+yy*ms+(xx>>3)]&(128>>(xx%8))))continue;const bit=xx*3,b=Math.floor(bit/8),v=(bytes[at+yy*stride+b]<<8)|(b+1<stride?bytes[at+yy*stride+b+1]:0),rgb=pal[(v>>(13-bit%8))&7],p=(yy*w+xx)*4;data.data.set([...rgb,255],p);}ctx.putImageData(data,0,0);const result={canvas,x,y};pieces.set(key,result);return result;}
+ function piece(base,id){if(id===255)return null;const key=base+':'+id;if(pieces.has(key))return pieces.get(key);let at=base+u32(base+32+id*4);const [x,y,w,h,alpha]=bytes.slice(at,at+5),stride=Math.ceil(w*3/8),ms=Math.ceil(w/8);at+=5;const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;const ctx=canvas.getContext('2d'),data=ctx.createImageData(w,h),pal=[];for(let i=0;i<8;i++)pal.push([...bytes.slice(base+8+i*3,base+11+i*3)].map(v=>Math.floor((v+42)/85)*85));const offsets=[];if(alpha&4){let pos=at;while(offsets.length<h){const n=bytes[pos++];for(let i=0;i<n;i++)offsets.push(pos);pos+=stride+ms;}}for(let yy=0;yy<h;yy++)for(let xx=0;xx<w;xx++){if(alpha&&!(bytes[(alpha&4?offsets[yy]+stride:alpha&2?at+yy*(stride+ms)+stride:at+h*stride+yy*ms)+(xx>>3)]&(128>>(xx%8))))continue;const bit=xx*3,b=Math.floor(bit/8),v=(bytes[(alpha&4?offsets[yy]:at+yy*(stride+(alpha&2?ms:0)))+b]<<8)|(b+1<stride?bytes[(alpha&4?offsets[yy]:at+yy*(stride+(alpha&2?ms:0)))+b+1]:0),rgb=pal[(v>>(13-bit%8))&7],p=(yy*w+xx)*4;data.data.set([...rgb,255],p);}ctx.putImageData(data,0,0);const result={canvas,x,y,data:data.data};pieces.set(key,result);return result;}
  function actor(ctx,who,emotion,t,hx,hy,forced=null,scale=2,ox=32,oy=43){const a=actors[who],anim=anims[forced===null?sceneIds[who][emotion]:forced];let step=0;while(step+1<anim[2]){const d=u16(anim[0]+step*6);if(t<d)break;t-=d;step++;}const f=bytes.slice(anim[0]+step*6,anim[0]+step*6+6),signed=v=>v>127?v-256:v;function draw(id,dx=0,dy=0){const p=piece(a[0],id);if(p)ctx.drawImage(p.canvas,ox+(p.x+dx)*scale,oy+(p.y+dy)*scale,p.canvas.width*scale,p.canvas.height*scale);}if(a[1]){draw(f[3]===255?f[2]:0,hx,hy);if(f[3]!==255){draw(f[2],hx,hy);draw(f[3],hx,hy);}}else{const dx=signed(f[4])+hx,dy=signed(f[5])+hy;draw(0);draw(1,dx,dy);draw(f[2],dx,dy);draw(a[2],dx,dy);draw(a[3],dx,dy);draw(f[3],dx,dy);}}
  function pose(name,t){const keys=config.actions[name].keys;let i=0;while(i+1<keys.length&&t>=keys[i+1][0])i++;const a=[...keys[i]],b=keys[i+1];if(!b)return a;let f=Math.trunc((t-a[0])*1024/(b[0]-a[0]));f=Math.trunc(f*f*(3072-2*f)/1048576);a[1]+=Math.trunc((b[1]-a[1])*f/1024);a[2]+=Math.trunc((b[2]-a[2])*f/1024);return a;}
  return {reaction(ctx,id,t,scale=3){ctx.imageSmoothingEnabled=false;ctx.fillStyle='white';ctx.fillRect(0,0,200,228);actor(ctx,anims[id-1000][1],0,t,0,0,id-1000,scale,4,9);},render(ctx,s,state,time,bg){
@@ -36,7 +36,15 @@ function visualNovel(config,resource,actors,anims,sceneIds){
    line(100,26,100,115,2,LINE);line(7,115,193,115,2,LINE);
    if(setting===0){line(0,123,200,123,2,LINE);line(0,9,200,9,1,LINE);line(10,10,10,24,2,LINE);line(190,10,190,24,2,LINE);}if(setting===4){box(8,131,40,33,LINE);box(10,133,36,29,LIGHT);}const decor=config.roomDecor[s.setting];if(decor&1)fan(17);if(decor&2)monitor(126);
   }
-  poly(ink,45,160,146,160,159,181,163,214,32,214,35,183);poly(shirt,47,163,144,163,154,184,157,213,38,213,41,184);poly(who===4?shirt:trim,86,162,111,162,117,212,81,212);line(78,168,75,211,3,ink);line(119,167,123,211,3,ink);line(81,170,80,187,2,trim);line(116,170,119,187,2,trim);
+  function bodypiece(id,x,y,mirror=0){if(id===3&&mirror)id=5;const p=piece(bodyOffset,id);x=32+Math.trunc((x-32)/2)*2;y=43+Math.trunc((y-43)/2)*2;if(id>=6){x-=2*(p.x>127?p.x-256:p.x);y-=2*(p.y>127?p.y-256:p.y);}ctx.drawImage(p.canvas,x,y,p.canvas.width*2,p.canvas.height*2);}
+  function bodysleeve(x1,y1,x2,y2){
+   const dx=x2-x1,dy=y2-y1,a=Math.abs(dx),b=Math.abs(dy);if(!a&&!b)return;
+   let q=b*256<a*51?0:b*256<a*171?1:b*171<a*256?2:b*51<a*256?3:4;
+   if(dx<0)q=8-q;if(dy<0)q=16-q;
+   const length=Math.trunc((Math.max(a,b)+Math.trunc(3*Math.min(a,b)/8))/2);
+   bodypiece(6+(length<=17?0:length<=30?16:32)+(q&15),x2,y2);
+  }
+  if(who===0)bodypiece(0,32,169);else{poly(ink,45,160,146,160,159,181,163,214,32,214,35,183);poly(shirt,47,163,144,163,154,184,157,213,38,213,41,184);poly(who===4?shirt:trim,86,162,111,162,117,212,81,212);line(78,168,75,211,3,ink);line(119,167,123,211,3,ink);line(81,170,80,187,2,trim);line(116,170,119,187,2,trim);}
   actor(ctx,who,k[3],t,hx,k[4]);
   const prop=config.actions[action].prop,arm=prop||action==='think'||!!s.recipe,x=k[1],y=k[2];
   const mode=config.actions[action].hands||0;
@@ -44,12 +52,20 @@ function visualNovel(config,resource,actors,anims,sceneIds){
    const start=side<0?49:151,ex=side<0?55:145;let tx=config.actors[who].coverEyes[side<0?0:1],ty=config.actors[who].coverEyes[2]+5;
    if(mode===2&&side<0)ty+=Math.trunc(k[2]*38/100);if(mode===3){tx=side<0?133:66;ty=side<0?170:183;}
    const x=start+Math.trunc((tx-start)*k[1]/100),y=228+Math.trunc((ty-228)*k[1]/100),mirror=-side;
-   const ey=mode===3?197+Math.trunc((ty-197)*k[1]/100):197,wy=mode===3?y:y+15;line(side<0?54:142,166,ex,ey,18,ink);line(side<0?54:142,166,ex,ey,14,shirt);line(ex,ey,x,wy,20,ink);line(ex,ey,x,wy,16,shirt);
+   const ey=mode===3?197+Math.trunc((ty-197)*k[1]/100):197,wy=mode===3?y:y+15;if(who===0&&mode!==3){bodysleeve(ex,ey,x,y+20);bodypiece(3,x-14,y-22,side>0);continue;}line(side<0?54:142,166,ex,ey,18,ink);line(side<0?54:142,166,ex,ey,14,shirt);line(ex,ey,x,wy,20,ink);line(ex,ey,x,wy,16,shirt);
    if(mode===3){poly(ink,x-7,y-9,x+3,y-12,x+8,y-7,x+8,y+5,x+1,y+10,x-7,y+5);poly(skin,x-5,y-8,x+2,y-10,x+6,y-6,x+6,y+4,x,y+7,x-5,y+3);line(x-3,y-4,x+2,y-4,1,shade);line(x-3,y,x+3,y,1,shade);}
    else{line(x,y-7,x,y+11,24,ink);box(x-10,y-20,20,3,ink);box(x-8,y-22,16,2,ink);line(x,y-7,x,y+10,20,skin);box(x-8,y-20,16,3,skin);line(x-7*mirror,y-19,x-7*mirror,y-3,1,shade);line(x-2*mirror,y-20,x-2*mirror,y-4,1,shade);line(x+3*mirror,y-19,x+3*mirror,y-4,1,shade);line(x+9*mirror,y+3,x+14*mirror,y-5,7,ink);line(x+9*mirror,y+3,x+14*mirror,y-5,5,skin);}
    if(mode!==3)line(x-10,y+17,x+10,y+17,3,trim);
   }}
-  if(arm&&!mode){line(142,163,153,199,18,ink);line(142,164,153,199,14,shirt);line(153,199,x,y+9,18,ink);line(153,199,x,y+9,14,shirt);line(x-6,y+8,x+6,y+8,3,trim);
+  if(arm&&!mode&&who===0){
+   const x=32+Math.trunc((k[1]-32)/2)*2,y=43+Math.trunc((k[2]-43)/2)*2;
+   bodysleeve(142,163,153,199);bodysleeve(153,199,x,y+14);
+   if(prop===3)bodypiece(4,x-24,y-26);
+   if(prop===2){box(x-17,y-39,26,43,ink);box(x-14,y-36,20,34,0xb3c9c2);box(x-10,y-30,12,3,DARK);box(x-10,y-24,9,2,LINE);box(x-6,y,4,1,trim);}
+   bodypiece(2,x-10,y-12);
+   if(prop===1){const len=t<2400?13:5;line(x-3,y-6,x-3-Math.trunc(len/2),y-6-len,4,0x996633);line(x-3,y-6,x-3-Math.trunc(len/2),y-6-len,2,0xffdd88);}
+  }
+  if(arm&&!mode&&who!==0){line(142,163,153,199,18,ink);line(142,164,153,199,14,shirt);line(153,199,x,y+9,18,ink);line(153,199,x,y+9,14,shirt);line(x-6,y+8,x+6,y+8,3,trim);
    if(prop===2){box(x-17,y-39,26,43,ink);box(x-14,y-36,20,34,0xb3c9c2);box(x-10,y-30,12,3,DARK);box(x-10,y-24,9,2,LINE);box(x-6,y,4,1,trim);}
    if(prop===3){box(x-12,y-24,22,25,ink);box(x-9,y-21,16,21,0xb3c9c2);line(x+10,y-20,x+17,y-18,3,ink);line(x+17,y-18,x+17,y-6,3,ink);line(x+17,y-6,x+10,y-4,3,ink);}
    poly(ink,x-7,y-9,x+3,y-12,x+8,y-7,x+8,y+5,x+1,y+10,x-7,y+5);poly(skin,x-5,y-8,x+2,y-10,x+6,y-6,x+6,y+4,x,y+7,x-5,y+3);line(x-3,y-4,x+2,y-4,1,shade);line(x-3,y,x+3,y,1,shade);

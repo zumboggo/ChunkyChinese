@@ -9,6 +9,7 @@ p.add_argument('--install',action='store_true')
 p.add_argument('--cli',default=os.environ.get('PEBBLE_CLI','pebble'))
 p.add_argument('--episode',help='Require this bundled episode and matching build report')
 p.add_argument('--min-free',type=int,default=12288)
+p.add_argument('--resume-report',help='Resume same-PBW completed scene checks; still runs all ambience and save checks')
 a=p.parse_args();root=Path(__file__).resolve().parents[1]
 pack=json.loads((root/'reader/src/pkjs/bundled.json').read_text())
 if a.episode and a.episode!=pack['id']:p.error('Requested episode does not match the generated bundle')
@@ -17,6 +18,11 @@ pbw_hash=hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest
 if report.get('episodeId')!=pack['id'] or report.get('episodeVersion')!=pack['version'] or report['pbwSha256']!=pbw_hash:p.error('Build report does not match episode/PBW; rebuild before emulator testing')
 out=root/'.local'/'emulator';out.mkdir(parents=True,exist_ok=True)
 library=json.loads((root/'scenes/library.json').read_text())
+prior=json.loads(Path(a.resume_report).read_text()) if a.resume_report else None
+if prior:
+ assert prior['pbwSha256']==pbw_hash and prior['episodeVersion']==pack['version']
+ assert len({s['id'] for s in prior['scenes']})==len(prior['scenes'])
+ assert {s['id'] for s in prior['scenes']}.issubset({s['id'] for s in library['scenes']})
 def image_without_clock(data):
  import io
  from PIL import Image,ImageDraw
@@ -57,12 +63,14 @@ with logfile.open('w') as stream:
    from PIL import Image
    im=Image.frombytes('RGB',(200,228),data)
    return bytes(1 if c in [(0,0,85),(255,170,85),(85,51,0),(170,170,0)] else 0 for c in im.getdata())
-  motion(False);open_groups();groups=list(dict.fromkeys(s['group'] for s in library['scenes']));results=[]
+  motion(False);open_groups();groups=list(dict.fromkeys(s['group'] for s in library['scenes']));results=list(prior['scenes']) if prior else [];verified={s['id'] for s in results}
   # First pass: every action holds exactly with backgrounds disabled.
   for group in groups:
    press('select');scenes=[s for s in library['scenes'] if s['group']==group]
    for i,scene in enumerate(scenes):
-    sid=scene['nativeId'];offset=len(log());press('select');expect(r'Scene '+str(sid)+r' started',offset)
+    sid=scene['nativeId']
+    if scene['id'] in verified:press('down');continue
+    offset=len(log());press('select');expect(r'Scene '+str(sid)+r' started',offset)
     if scene.get('action'):
      time.sleep(scene['establish']/1000+1);assert not re.search(r'Scene 1 held',log()[offset:]);press('select')
     time.sleep(.2);moving=shot(str(sid)+'-moving')
@@ -106,7 +114,7 @@ with logfile.open('w') as stream:
    press('back');press('down')
   press('back');press('back');assert shot('reading-final')==baseline
   assert not re.search(r'INPUT ERROR|TRANSFER ERROR|out of memory|App fault|fxAbort',log(),re.I),'Runtime error; inspect watch.log'
-  (out/'report.json').write_text(json.dumps({'episodeId':pack['id'],'episodeVersion':pack['version'],'scenes':results,'motionPreferenceRestart':True,'previewProgressPreserved':True,'pbwSha256':hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest(),'physicalWatchTested':False},indent=2)+'\n')
+  (out/'report.json').write_text(json.dumps({'episodeId':pack['id'],'episodeVersion':pack['version'],'scenes':results,'motionPreferenceRestart':True,'previewProgressPreserved':True,'pbwSha256':hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest(),'physicalWatchTested':False,'resumedCompletedScenes':len(prior['scenes']) if prior else 0},indent=2)+'\n')
  finally:
   logs.terminate()
   try:logs.wait(timeout=5)

@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+  14288	     52	    992	  15332	   3be4	reader/build/emery/pebble-app.elf

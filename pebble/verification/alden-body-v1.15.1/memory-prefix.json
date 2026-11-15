@@ -1,0 +1,8 @@
+{
+  "pbwSha256": "86b0384b02beefcbe92ee6cb68ffdd6240f265ef1f32f7ffcbae05597d5fe727",
+  "peakStringPoolBytes": 8508,
+  "peakSlotPoolBytes": 34704,
+  "peakStackBytes": 3584,
+  "scenario": "Downloaded-scene suite prefix through offline playback and reconnect relaunch",
+  "physicalWatchTested": false
+}

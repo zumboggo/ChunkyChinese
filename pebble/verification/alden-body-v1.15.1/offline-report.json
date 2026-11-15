@@ -1,0 +1,31 @@
+{
+  "minimumMeasuredFreeHeapBytes": 12376,
+  "heapSamples": 432,
+  "peakStringPoolBytes": 9100,
+  "peakSlotPoolBytes": 34528,
+  "peakStackBytes": 3744,
+  "pbwSha256": "86b0384b02beefcbe92ee6cb68ffdd6240f265ef1f32f7ffcbae05597d5fe727",
+  "queuedEpisodes": 5,
+  "bodyScenesWithFullCache": [
+    21,
+    31,
+    42
+  ],
+  "prefetchDuringBodyAnimation": true,
+  "episodeBytes": [
+    21029,
+    21029,
+    21029,
+    21029,
+    21029
+  ],
+  "queuedBytes": 105145,
+  "allocatableBytesAtLeast": 458752,
+  "cachedBytesDuringProbe": 105145,
+  "prefetchPreservesReading": true,
+  "offlineContinuation": true,
+  "reinstallPreservesQueueAndPosition": true,
+  "interruptedRefillPreservesQueue": true,
+  "normalEpisodeRestored": true,
+  "physicalWatchTested": false
+}

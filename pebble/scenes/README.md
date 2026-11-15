@@ -1,5 +1,11 @@
 # Reusable scene authoring
 
+## Alden body prototype — v1.15.1
+
+This branch adds matching pixel-art torso, sleeves and hands for Alden. See
+[prototype scope, previews and measured budgets](../ALDEN-BODY-PROTOTYPE.md).
+Existing scene IDs and other characters are unchanged.
+
 ## Active renderer: combined visual novel (v1.14)
 
 The v1.14 combined reader includes the 18 expressions and 12 hand performances introduced in v1.13, together with the five-episode offline queue. [Release and measured memory](../COMBINED-READER.md). See [expression names, scene IDs and spoiler-contained preparation notes](EXPRESSION-PACK.md) and [native previews](../preview/expressions/index.html). Existing episode placements are unchanged.

@@ -1,0 +1,82 @@
+[19:29:32] xsHost.c:138> Transfer starting539c86f9af8
+[19:29:32] xsHost.c:138> Transfer heap12652
+[19:29:32] xsHost.c:138> Episode activatedsupportive-999abcdef123456
+[19:29:32] portrait.c:11> Card episode 999: Download test
+[19:29:37] portrait.c:11> Card episode 999: Download test
+[19:29:40] scenes.c:69> Background motion 0
+[19:29:41] portrait.c:11> Card episode 999: Download test
+[19:29:42] scenes.c:79> Scene 65535 started; free=12476
+[19:29:45] scenes.c:58> Scene 65535 held; free=12672 draw avg/max=37/50 ms
+[19:29:50] scenes.c:79> Scene 65535 started; free=12476
+[19:29:54] scenes.c:58> Scene 65535 held; free=12672 draw avg/max=37/52 ms
+[19:29:56] scenes.c:79> Scene 65535 started; free=12476
+[19:29:59] scenes.c:58> Scene 65535 held; free=12672 draw avg/max=37/59 ms
+[19:30:01] scenes.c:79> Scene 65535 started; free=12476
+[19:30:05] scenes.c:58> Scene 65535 held; free=12672 draw avg/max=37/52 ms
+[19:30:07] scenes.c:79> Scene 65535 started; free=12476
+[19:30:07] scenes.c:65> Scene focus 0 id=65535 action=83 ambient=0
+[19:30:10] scenes.c:65> Scene focus 1 id=65535 action=83 ambient=0
+[19:30:13] scenes.c:58> Scene 65535 held; free=12672 draw avg/max=37/55 ms
+[19:30:15] xsHost.c:138> Transfer starting54056569b34
+[19:30:15] xsHost.c:138> Transfer heap12476
+[19:30:15] xsHost.c:138> Episode activatedsupportive-999abcdef123457
+[19:30:15] scenes.c:79> Scene 65535 started; free=12476
+[19:30:18] scenes.c:58> Scene 65535 held; free=12672 draw avg/max=43/172 ms
+[19:30:21] xsHost.c:138> Transfer starting480cd0c9017
+[19:30:21] xsHost.c:138> Transfer heap12476
+[19:30:21] xsHost.c:138> TRANSFER ERRORAnimation recipe update needed
+[19:30:22] xsHost.c:138> Transfer starting480cd0c9017
+[19:30:22] xsHost.c:138> Transfer heap12476
+[19:30:23] ocess_manager.c:497> Heap Usage for App <Chunky Chi: Total Size <107600B> Used <99928B> Still allocated <208
+[19:30:24] moddable.c:147> evaluating creation record
+[19:30:24] xsHost.c:138> instruments key: Pixels drawn,Frames drawn,Timers,Files,Poco display list used,Piu comm
+[19:30:24] xsHost.c:138> d List used,App bytes free,Chunk used,Chunk available,Slot used,Slot available,Stack us
+[19:30:24] xsHost.c:138> ,Stack available,Garbage collections,Keys used,Modules loaded,Parser used,Floating Poin
+[19:30:24] xsHost.c:138> Promises settled
+[19:30:24] xsHost.c:138> Found mod "pebble.moddable.tech"
+[19:30:24] xsHost.c:138> instruments: 0,0,1,0,0,0,14552,3412,9216,9008,34800,1824,4224,0,183,0,0,0,0
+[19:30:24] scenes.c:69> Background motion 0
+[19:30:24] xsHost.c:138> Episode opened
+[19:30:24] xsHost.c:138> Reading saves
+[19:30:24] xsHost.c:138> Save restored1
+[19:30:24] xsHost.c:138> Runtime heap12832
+[19:30:24] xsHost.c:138> Chunky readysupportive-999abcdef123457node1
+[19:30:25] xsHost.c:138> instruments: 0,1,0,0,0,0,12772,8180,9216,33648,34800,3408,4224,35,186,2,0,242,7
+[19:30:26] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,9192,9216,32960,34800,1904,4224,1,186,2,0,10,0
+[19:30:27] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,9192,9216,32960,34800,288,4224,0,186,2,0,0,0
+[19:30:28] xsHost.c:138> instruments: 0,1,0,0,0,0,12772,5296,9216,31360,34800,3568,4224,1,186,2,0,3,0
+[19:30:29] xsHost.c:138> instruments: 0,2,0,0,0,0,12772,5496,9216,31392,34800,3568,4224,2,186,2,0,6,0
+[19:30:30] xsHost.c:138> instruments: 0,1,0,0,0,0,12772,5496,9216,31392,34800,3568,4224,1,186,2,0,3,0
+[19:30:30] scenes.c:69> Background motion 1
+[19:30:31] xsHost.c:138> instruments: 0,2,0,0,0,0,12772,8360,9216,34528,34800,3584,4224,2,186,2,0,17,0
+[19:30:32] scenes.c:79> Scene 65535 started; free=12512
+[19:30:32] xsHost.c:138> instruments: 0,0,0,0,0,0,12708,5588,9216,31024,34800,3360,4224,6,186,2,0,120,0
+[19:30:33] xsHost.c:138> instruments: 0,0,0,0,0,0,12708,5588,9216,31024,34800,288,4224,0,186,2,0,0,0
+[19:30:34] xsHost.c:138> instruments: 0,0,0,0,0,0,12708,5588,9216,31024,34800,288,4224,0,186,2,0,0,0
+[19:30:35] xsHost.c:138> instruments: 0,0,0,0,0,0,12708,5588,9216,31024,34800,288,4224,0,186,2,0,0,0
+[19:30:36] scenes.c:58> Scene 65535 held; free=12708 draw avg/max=37/39 ms
+[19:30:36] xsHost.c:138> instruments: 0,0,0,0,0,0,12708,5588,9216,31024,34800,288,4224,0,186,2,0,0,0
+[19:30:37] xsHost.c:138> instruments: 0,0,0,0,0,0,12708,5588,9216,31024,34800,288,4224,0,186,2,0,0,0
+[19:30:38] xsHost.c:138> instruments: 0,0,0,0,0,0,12708,5588,9216,31024,34800,288,4224,0,186,2,0,0,0
+[19:30:39] xsHost.c:138> instruments: 0,0,0,0,0,0,12708,5588,9216,31024,34800,288,4224,0,186,2,0,0,0
+[19:30:40] portrait.c:11> Card episode 999: Download test
+[19:30:40] xsHost.c:138> instruments: 0,0,0,0,0,0,12644,8036,9216,31296,34800,3184,4224,1,186,2,0,4,0
+[19:30:41] xsHost.c:138> instruments: 0,0,0,0,0,0,12644,8036,9216,31296,34800,288,4224,0,186,2,0,0,0
+[19:30:42] xsHost.c:138> instruments: 0,0,0,0,0,0,12644,8096,9216,31360,34800,800,4224,0,186,2,0,0,0
+[19:30:42] ocess_manager.c:497> Heap Usage for App <Chunky Chi: Total Size <107600B> Used <99960B> Still allocated <208
+[19:30:43] moddable.c:147> evaluating creation record
+[19:30:43] xsHost.c:138> instruments key: Pixels drawn,Frames drawn,Timers,Files,Poco display list used,Piu comm
+[19:30:43] xsHost.c:138> d List used,App bytes free,Chunk used,Chunk available,Slot used,Slot available,Stack us
+[19:30:43] xsHost.c:138> ,Stack available,Garbage collections,Keys used,Modules loaded,Parser used,Floating Poin
+[19:30:43] xsHost.c:138> Promises settled
+[19:30:43] xsHost.c:138> Found mod "pebble.moddable.tech"
+[19:30:43] xsHost.c:138> instruments: 0,0,1,0,0,0,14552,3412,9216,9008,34800,1824,4224,0,183,0,0,0,0
+[19:30:43] scenes.c:69> Background motion 1
+[19:30:44] xsHost.c:138> Episode opened
+[19:30:44] xsHost.c:138> Reading saves
+[19:30:44] xsHost.c:138> Save restored3
+[19:30:44] xsHost.c:138> Runtime heap12832
+[19:30:44] xsHost.c:138> Chunky readysupportive-999abcdef123457node3
+[19:30:44] portrait.c:11> Card episode 999: Download test
+[19:30:44] xsHost.c:138> instruments: 0,0,0,0,0,0,12820,6036,9216,34272,34800,3408,4224,33,186,2,0,233,7
+[19:30:45] xsHost.c:138> instruments: 0,0,0,0,0,0,12820,7592,9216,34352,34800,1904,4224,1,186,2,0,10,0

@@ -16,11 +16,11 @@ static void line(int x,int y,int x2,int y2,int width,uint32_t c){
 }
 typedef char VNWireLayout[(sizeof(VNKey)==8 && sizeof(VNScene)==8)?1:-1];
 // Fixed geometry streams from flash; no retained bitmap or frame allocation.
-static void vn_paint(unsigned start,unsigned count){
+static void vn_paint(unsigned start,unsigned count,int x,int y){
  uint8_t b[16];
  for(unsigned i=0;i<count;i++){
   resource_load_byte_range(resource_get_handle(RESOURCE_ID_STAGE),(start+i)*16,b,16);
-  int16_t v[5];for(int j=0;j<5;j++)v[j]=(int16_t)(b[2+j*2]|b[3+j*2]<<8);
+  int16_t v[5];for(int j=0;j<5;j++){v[j]=(int16_t)(b[2+j*2]|b[3+j*2]<<8);if(b[1]&(1<<j))v[j]+=j&1?y:x;}
   uint32_t color=(uint32_t)b[12]|(uint32_t)b[13]<<8|(uint32_t)b[14]<<16|(uint32_t)b[15]<<24;
   if(color&0x1000000)color=pal[color&7];
   if(b[0])line(v[0],v[1],v[2],v[3],v[4],color);else box(v[0],v[1],v[2],v[3],color);
@@ -36,55 +36,64 @@ static void poly(const int *pts,int n,uint32_t color){
  }for(int i=0;i<count;i++)for(int j=i+1;j<count;j++)if(xs[j]<xs[i]){int a=xs[i];xs[i]=xs[j];xs[j]=a;}for(int i=0;i+1<count;i+=2)box(xs[i],y,xs[i+1]-xs[i]+1,1,color);}
 }
 #define POLY(c,...) do{const int pts[]={__VA_ARGS__};poly(pts,sizeof(pts)/sizeof(int)/2,c);}while(0)
+
+static void vn_polygon(unsigned at,unsigned n,uint32_t color,int x,int y){
+ int p[16];int16_t pair[2];
+ for(unsigned i=0;i<n;i++){resource_load_byte_range(resource_get_handle(RESOURCE_ID_STAGE),at+i*4,(uint8_t *)pair,4);p[i*2]=x+pair[0];p[i*2+1]=y+pair[1];}
+ poly(p,n,color);
+}
 static int bounce(uint32_t t,int span){int x=t%(span*2);return x>span?span*2-x:x;}
 static void room(uint32_t t,int ambience){
- vn_paint(0,4);
+ vn_paint(0,4,0,0);
  // Spare architectural lines contrast deliberately with the warm pixel character.
- vn_paint(4,6);line(31,114,15+bounce(t/1000,6),108,2,0xa2b9a0);
+ vn_paint(4,6,0,0);line(31,114,15+bounce(t/1000,6),108,2,0xa2b9a0);
  // Ceiling fan: four clean held blade orientations, no stored frames.
- vn_paint(10,1);int p=(ambience&1)?(t/200)%4:0;
+ vn_paint(10,1,0,0);int p=(ambience&1)?(t/200)%4:0;
  const int vx[]={22,17,0,-17},vy[]={0,7,10,7};
- line(30-vx[p],29-vy[p],30+vx[p],29+vy[p],3,LINE);line(30+vy[p]*2,29-vx[p]/2,30-vy[p]*2,29+vx[p]/2,2,LINE);vn_paint(11,1);
+ line(30-vx[p],29-vy[p],30+vx[p],29+vy[p],3,LINE);line(30+vy[p]*2,29-vx[p]/2,30-vy[p]*2,29+vx[p]/2,2,LINE);vn_paint(11,1,0,0);
  // Wall monitor stays entirely to the right of the face.
- vn_paint(12,2);
+ vn_paint(12,2,0,0);
  int sx=(ambience&2)?bounce(t/100,24):7,sy=(ambience&2)?bounce(t/150,16):4;
  box(160+sx,71+sy,6,5,LINE);box(162+sx,72+sy,2,2,0xdce6e1);
- vn_paint(14,7);
+ vn_paint(14,7,0,0);
 }
-static const uint16_t vn_key_offsets[]={896,952,1024,1088,1128,1160,1192,1224,1256,1296,1328,1368,1392};
+static const uint16_t vn_key_offsets[]={1392,1448,1520,1584,1624,1656,1688,1720,1752,1792,1824,1864,1888};
 
 static VNKey vn_read_key(unsigned action,unsigned index){VNKey key;resource_load_byte_range(resource_get_handle(RESOURCE_ID_STAGE),vn_key_offsets[action]+index*sizeof(key),(uint8_t *)&key,sizeof(key));return key;}
-static VNScene vn_scene(unsigned id){VNScene scene;resource_load_byte_range(resource_get_handle(RESOURCE_ID_STAGE),1440+id*sizeof(scene),(uint8_t *)&scene,sizeof(scene));return scene;}
+static VNScene vn_scene(unsigned id){VNScene scene;resource_load_byte_range(resource_get_handle(RESOURCE_ID_STAGE),1936+id*sizeof(scene),(uint8_t *)&scene,sizeof(scene));return scene;}
 static VNKey vn_pose(unsigned action,uint32_t t){
  int n=vn_counts[action];VNKey a=vn_read_key(action,n-1);if(t>=a.t)return a;
  a=vn_read_key(action,0);VNKey b=a;for(int i=1;i<n;i++){b=vn_read_key(action,i);if(t<b.t)break;a=b;}
  int f=(t-a.t)*1024/(b.t-a.t);f=f*f*(3072-2*f)/1048576;a.x+=(b.x-a.x)*f/1024;a.y+=(b.y-a.y)*f/1024;return a;
 }
 static void torso(unsigned who){
+ if(who==0){bodypiece(0,32,169,0);return;}
  // Extend the approved hoodie below its crop; no waist/leg movement.
- POLY(pal[0],45,160,146,160,159,181,163,214,32,214,35,183);
- POLY(pal[4],47,163,144,163,154,184,157,213,38,213,41,184);
- POLY(who==4?pal[4]:pal[5],86,162,111,162,117,212,81,212);
- vn_paint(21,4);
+ vn_polygon(2280,6,pal[0],0,0);
+ vn_polygon(2304,6,pal[4],0,0);
+ vn_polygon(2328,4,who==4?pal[4]:pal[5],0,0);
+ vn_paint(21,4,0,0);
 
 }
 static void hand(int x,int y){
- POLY(pal[0],x-7,y-9,x+3,y-12,x+8,y-7,x+8,y+5,x+1,y+10,x-7,y+5);
- POLY(pal[2],x-5,y-8,x+2,y-10,x+6,y-6,x+6,y+4,x,y+7,x-5,y+3);
- line(x-3,y-4,x+2,y-4,1,pal[3]);line(x-3,y,x+3,y,1,pal[3]);
+ vn_polygon(2344,6,pal[0],x,y);
+ vn_polygon(2368,6,pal[2],x,y);
+ vn_paint(25,2,x,y);
 }
-static void gesture(unsigned prop,VNKey k,uint32_t t,bool arm){
+static void gesture(unsigned who,unsigned prop,VNKey k,uint32_t t,bool arm){
  if(!arm){return;}
  int x=k.x,y=k.y;
+ if(who==0){x=32+((x-32)/2)*2;y=43+((y-43)/2)*2;}
  // Elbow hidden by table, shoulder remains fixed. A short forearm enters frame.
- vn_paint(25,2);
- line(153,199,x,y+9,18,pal[0]);line(153,199,x,y+9,14,pal[4]);
- line(x-6,y+8,x+6,y+8,3,pal[5]);
+ if(who==0){bodysleeve(142,163,153,199);bodysleeve(153,199,x,y+14);}
+ else{vn_paint(27,2,0,0);
+ vn_paint(29,3,x,y);}
  if(prop==2){
-  box(x-17,y-39,26,43,pal[0]);box(x-14,y-36,20,34,0xb3c9c2);box(x-10,y-30,12,3,DARK);box(x-10,y-24,9,2,LINE);box(x-6,y,4,1,pal[5]);
+  vn_paint(32,5,x,y);
  }
- if(prop==3){box(x-12,y-24,22,25,pal[0]);box(x-9,y-21,16,21,0xb3c9c2);line(x+10,y-20,x+17,y-18,3,pal[0]);line(x+17,y-18,x+17,y-6,3,pal[0]);line(x+17,y-6,x+10,y-4,3,pal[0]);}
- hand(x,y);
+ if(prop==3&&who==0)bodypiece(4,x-24,y-26,0);
+ else if(prop==3){vn_paint(37,5,x,y);}
+ if(who==0)bodypiece(2,x-10,y-12,0);else hand(x,y);
  if(prop==1){int len=t<2400?13:5;
   line(x-3,y-6,x-3-len/2,y-6-len,4,0x996633);line(x-3,y-6,x-3-len/2,y-6-len,2,0xffdd88);
  }
@@ -92,7 +101,7 @@ static void gesture(unsigned prop,VNKey k,uint32_t t,bool arm){
 
 // Shared mirrored palm geometry; thumbs point inward, wrists meet the cuffs.
 static void cover_hand(int x,int y,int side){
- line(x,y-7,x,y+11,24,pal[0]);box(x-10,y-20,20,3,pal[0]);box(x-8,y-22,16,2,pal[0]);line(x,y-7,x,y+10,20,pal[2]);box(x-8,y-20,16,3,pal[2]);
+ vn_paint(42,5,x,y);
  line(x-7*side,y-19,x-7*side,y-3,1,pal[3]);line(x-2*side,y-20,x-2*side,y-4,1,pal[3]);line(x+3*side,y-19,x+3*side,y-4,1,pal[3]);
  line(x+9*side,y+3,x+14*side,y-5,7,pal[0]);line(x+9*side,y+3,x+14*side,y-5,5,pal[2]);
 }
@@ -104,10 +113,14 @@ static void two_hands(unsigned who,unsigned mode,VNKey k){
   if(mode==3){tx=side<0?133:66;ty=side<0?170:183;}
   int x=start+(tx-start)*k.x/100,y=228+(ty-228)*k.x/100;
   int ey=mode==3?197+(ty-197)*k.x/100:197,wy=mode==3?y:y+15;
+  if(who==0&&mode!=3){
+   bodysleeve(ex,ey,x,y+20);
+   bodypiece(3,x-14,y-22,side>0);continue;
+  }
   line(side<0?54:142,166,ex,ey,18,pal[0]);line(side<0?54:142,166,ex,ey,14,pal[4]);
   line(ex,ey,x,wy,20,pal[0]);line(ex,ey,x,wy,16,pal[4]);
   if(mode==3)hand(x,y);else cover_hand(x,y,-side);
-  if(mode!=3)line(x-10,y+17,x+10,y+17,3,pal[5]);
+  if(mode!=3)vn_paint(47,1,x,y);
  }
 }
 
@@ -116,33 +129,33 @@ static void background(int setting,int ambient,uint32_t t){
  uint32_t exterior=t%12000;
  if(setting==3){
   room(t,vn_decor[setting]);
-  if(ambient==4){for(int i=0;i<4;i++){int x=14+i*8,y=73+(i*11+(int)(exterior*180/12000))%45;line(x,y,x-2,y+5,1,LINE);}}
-  if(ambient==5){int x=4+(int)(exterior*50/12000);if(x>18&&x<34){line(x-5,124,x+3,124,3,LINE);box(x+3,120,5,5,LINE);line(x-6,124,x-9,120,1,LINE);}}
+  if(ambient==4){for(int i=0;i<4;i++){int x=14+i*8,y=73+(i*11+(int)(exterior*180/12000))%45;vn_paint(48,1,x,y);}}
+  if(ambient==5){int x=4+(int)(exterior*50/12000);if(x>18&&x<34){vn_paint(49,3,x,0);}}
   return;
  }
- vn_paint(27,2);
+ vn_paint(52,2,0,0);
  if(setting==6){
-  vn_paint(29,4);return;
+  vn_paint(54,4,0,0);return;
  }
  if(setting==5){
-  vn_paint(33,4);box(148+(t/180)%36,123,8,2,0xb3c9c2);return;
+  vn_paint(58,4,0,0);box(148+(t/180)%36,123,8,2,0xb3c9c2);return;
  }
  // A window, with scenery clipped to its edges by the native/host rectangle backend.
- vn_paint(37,2);
+ vn_paint(62,2,0,0);
  if(ambient==0){
   for(int i=0;i<8;i++){int x=(i*38+380-(int)(exterior*380/12000))%380-40;int y=64+(i%3)*12;
    if(x>10&&x<187){box(x,y,2,112-y,LINE);box(x,y,20<190-x?20:190-x,2,LINE);}}
  }else if(ambient==1){
-  int x=(int)(exterior*240/12000)-20;if(x>14&&x<184){box(x-3,68,6,6,LINE);line(x,75,x,86,3,LINE);int stride=bounce(t/110,6)-3;line(x,85,x-4-stride,99,2,LINE);line(x,85,x+4+stride,99,2,LINE);}
+  int x=(int)(exterior*240/12000)-20;if(x>14&&x<184){vn_paint(64,2,x,0);int stride=bounce(t/110,6)-3;line(x,85,x-4-stride,99,2,LINE);line(x,85,x+4+stride,99,2,LINE);}
  }else if(ambient==4){
-  for(int i=0;i<12;i++){int x=14+i*15,y=32+(i*17+t/25)%70;line(x,y,x-2,y+5,1,LINE);}
- }else if(ambient==5){int x=(int)(exterior*240/12000)-20;if(x>20&&x<177){line(x-8,102,x+6,102,5,LINE);box(x+6,96,7,7,LINE);line(x-9,102,x-15,96,2,LINE);}}
+  for(int i=0;i<12;i++){int x=14+i*15,y=32+(i*17+t/25)%70;vn_paint(66,1,x,y);}
+ }else if(ambient==5){int x=(int)(exterior*240/12000)-20;if(x>20&&x<177){vn_paint(67,3,x,0);}}
  else if(ambient==2){int dx=bounce(t/1000,6)-3;line(166,109,169+dx,57,2,LINE);line(169+dx,72,152+dx,61,4,LINE);line(169+dx,79,183+dx,66,4,LINE);}
- vn_paint(39,2);
- if(setting==0){vn_paint(41,4);}
- if(setting==4){vn_paint(45,2);}
- if(vn_decor[setting]&1){int p=(t/200)%4;const int vx[]={22,17,0,-17},vy[]={0,7,10,7};vn_paint(47,1);line(30-vx[p],17-vy[p],30+vx[p],17+vy[p],3,LINE);line(30+vy[p]*2,17-vx[p]/2,30-vy[p]*2,17+vx[p]/2,2,LINE);vn_paint(48,1);}
- if(vn_decor[setting]&2){vn_paint(49,2);box(160+bounce(t/100,24),131+bounce(t/150,16),6,5,LINE);}
+ vn_paint(70,2,0,0);
+ if(setting==0){vn_paint(72,4,0,0);}
+ if(setting==4){vn_paint(76,2,0,0);}
+ if(vn_decor[setting]&1){int p=(t/200)%4;const int vx[]={22,17,0,-17},vy[]={0,7,10,7};vn_paint(78,1,0,0);line(30-vx[p],17-vy[p],30+vx[p],17+vy[p],3,LINE);line(30+vy[p]*2,17-vx[p]/2,30-vy[p]*2,17+vx[p]/2,2,LINE);vn_paint(79,1,0,0);}
+ if(vn_decor[setting]&2){vn_paint(80,2,0,0);box(160+bounce(t/100,24),131+bounce(t/150,16),6,5,LINE);}
 }
 // portrait backend uses the same cropped-tile decoder as full-screen reactions.
 static void vn_stage(unsigned who,unsigned action,unsigned setting,unsigned ambient,uint32_t t,uint32_t bg,VNKey *custom,int hx){
@@ -150,7 +163,7 @@ static void vn_stage(unsigned who,unsigned action,unsigned setting,unsigned ambi
  background(setting,ambient,bg);VNKey k=custom?*custom:vn_pose(action,t);
  torso(who);portrait(who,k.emotion,t,hx,k.head);
  bool arm=vn_props[action]||action==VN_THINK||custom;
- if(vn_hands[action])two_hands(who,vn_hands[action],k);else gesture(vn_props[action],k,t,arm);
+ if(vn_hands[action])two_hands(who,vn_hands[action],k);else gesture(who,vn_props[action],k,t,arm);
  if(who==4&&arm){line(k.x-6,k.y+9,k.x+6,k.y+9,3,0xaaaa00);line(k.x+4,k.y+12,189,204,1,0xaaaa00);}
- if(setting!=6){vn_paint(51,3);if(setting==1){vn_paint(54,2);}}
+ if(setting!=6){vn_paint(82,3,0,0);if(setting==1){vn_paint(85,2,0,0);}}
 }

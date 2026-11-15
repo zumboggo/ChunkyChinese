@@ -14,6 +14,10 @@ static void rect(int x,int y,int w,int h,uint32_t c){
 static void portrait(unsigned who,unsigned emotion,uint32_t t,int hx,int hy){
  scenePortraitDraw(ctx,who,emotion,t,hx,hy);
 }
+extern void sceneBodyDraw(GContext *,unsigned,int,int,int);
+extern void sceneBodySleeve(GContext *,int,int,int,int);
+static void bodypiece(unsigned id,int x,int y,int mirror){sceneBodyDraw(ctx,id,x,y,mirror);}
+static void bodysleeve(int x,int y,int xx,int yy){sceneBodySleeve(ctx,x,y,xx,yy);}
 #include "visual_novel_packed.h"
 // Keep schema-1 recipe downloads and their validated bounded channels.
 typedef struct {uint16_t t;int16_t dy,hx,hy,angle;} GestureKey;

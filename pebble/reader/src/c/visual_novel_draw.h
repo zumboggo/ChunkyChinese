@@ -45,6 +45,7 @@ static VNKey vn_pose(unsigned action,uint32_t t){
  const VNKey *k=vn_tracks[action];int n=vn_counts[action];if(t>=k[n-1].t)return k[n-1];int i=0;while(i+1<n&&t>=k[i+1].t)i++;VNKey a=k[i],b=k[i+1];int f=(t-a.t)*1024/(b.t-a.t);f=f*f*(3072-2*f)/1048576;a.x+=(b.x-a.x)*f/1024;a.y+=(b.y-a.y)*f/1024;return a;
 }
 static void torso(unsigned who){
+ if(who==0){bodypiece(0,32,169,0);return;}
  // Extend the approved hoodie below its crop; no waist/leg movement.
  POLY(pal[0],45,160,146,160,159,181,163,214,32,214,35,183);
  POLY(pal[4],47,163,144,163,154,184,157,213,38,213,41,184);
@@ -58,18 +59,21 @@ static void hand(int x,int y){
  POLY(pal[2],x-5,y-8,x+2,y-10,x+6,y-6,x+6,y+4,x,y+7,x-5,y+3);
  line(x-3,y-4,x+2,y-4,1,pal[3]);line(x-3,y,x+3,y,1,pal[3]);
 }
-static void gesture(unsigned prop,VNKey k,uint32_t t,bool arm){
+static void gesture(unsigned who,unsigned prop,VNKey k,uint32_t t,bool arm){
  if(!arm){return;}
  int x=k.x,y=k.y;
+ if(who==0){x=32+((x-32)/2)*2;y=43+((y-43)/2)*2;}
  // Elbow hidden by table, shoulder remains fixed. A short forearm enters frame.
- line(142,163,153,199,18,pal[0]);line(142,164,153,199,14,pal[4]);
+ if(who==0){bodysleeve(142,163,153,199);bodysleeve(153,199,x,y+14);}
+ else{line(142,163,153,199,18,pal[0]);line(142,164,153,199,14,pal[4]);
  line(153,199,x,y+9,18,pal[0]);line(153,199,x,y+9,14,pal[4]);
- line(x-6,y+8,x+6,y+8,3,pal[5]);
+ line(x-6,y+8,x+6,y+8,3,pal[5]);}
  if(prop==2){
   box(x-17,y-39,26,43,pal[0]);box(x-14,y-36,20,34,0xb3c9c2);box(x-10,y-30,12,3,DARK);box(x-10,y-24,9,2,LINE);box(x-6,y,4,1,pal[5]);
  }
- if(prop==3){box(x-12,y-24,22,25,pal[0]);box(x-9,y-21,16,21,0xb3c9c2);line(x+10,y-20,x+17,y-18,3,pal[0]);line(x+17,y-18,x+17,y-6,3,pal[0]);line(x+17,y-6,x+10,y-4,3,pal[0]);}
- hand(x,y);
+ if(prop==3&&who==0)bodypiece(4,x-24,y-26,0);
+ else if(prop==3){box(x-12,y-24,22,25,pal[0]);box(x-9,y-21,16,21,0xb3c9c2);line(x+10,y-20,x+17,y-18,3,pal[0]);line(x+17,y-18,x+17,y-6,3,pal[0]);line(x+17,y-6,x+10,y-4,3,pal[0]);}
+ if(who==0)bodypiece(2,x-10,y-12,0);else hand(x,y);
  if(prop==1){int len=t<2400?13:5;
   line(x-3,y-6,x-3-len/2,y-6-len,4,0x996633);line(x-3,y-6,x-3-len/2,y-6-len,2,0xffdd88);
  }
@@ -89,6 +93,10 @@ static void two_hands(unsigned who,unsigned mode,VNKey k){
   if(mode==3){tx=side<0?133:66;ty=side<0?170:183;}
   int x=start+(tx-start)*k.x/100,y=228+(ty-228)*k.x/100;
   int ey=mode==3?197+(ty-197)*k.x/100:197,wy=mode==3?y:y+15;
+  if(who==0&&mode!=3){
+   bodysleeve(ex,ey,x,y+20);
+   bodypiece(3,x-14,y-22,side>0);continue;
+  }
   line(side<0?54:142,166,ex,ey,18,pal[0]);line(side<0?54:142,166,ex,ey,14,pal[4]);
   line(ex,ey,x,wy,20,pal[0]);line(ex,ey,x,wy,16,pal[4]);
   if(mode==3)hand(x,y);else cover_hand(x,y,-side);
@@ -137,7 +145,7 @@ static void vn_stage(unsigned who,unsigned action,unsigned setting,unsigned ambi
  background(setting,ambient,bg);VNKey k=custom?*custom:vn_pose(action,t);
  torso(who);portrait(who,k.emotion,t,hx,k.head);
  bool arm=vn_props[action]||action==VN_THINK||custom;
- if(vn_hands[action])two_hands(who,vn_hands[action],k);else gesture(vn_props[action],k,t,arm);
+ if(vn_hands[action])two_hands(who,vn_hands[action],k);else gesture(who,vn_props[action],k,t,arm);
  if(who==4&&arm){line(k.x-6,k.y+9,k.x+6,k.y+9,3,0xaaaa00);line(k.x+4,k.y+12,189,204,1,0xaaaa00);}
  if(setting!=6){box(0,207,200,21,0xd6c8b2);line(0,207,200,207,2,DARK);line(0,211,200,211,1,0xf0e6d5);if(setting==1){box(10,201,24,6,0xeee7d8);box(13,199,18,3,0xfdf9ef);}}
 }
