@@ -57,7 +57,7 @@ with (out/'watch.log').open('w') as f:
   transfer(fixture);press('back');press('down',4);press('select');press('down');press('select');press('select')
   before=shot('choices');press('select');assert shot('select-no-choice')==before
   run('emu-button','click','select','--duration',800);assert shot('light-no-choice')==before
-  assert 'Reading light 30s' in (out/'watch.log').read_text()
+  assert 'Reading light 120s' in (out/'watch.log').read_text()
   press('up');chosen_a=shot('choice-a');assert chosen_a!=before
   run('emu-button','click','select','--duration',800);assert shot('light-no-page-turn')==chosen_a
   run('install',root/'reader/build/reader.pbw');time.sleep(1);assert shot('saved-a')==chosen_a
@@ -77,9 +77,11 @@ with (out/'watch.log').open('w') as f:
   # A repeated hold extends the timed light without altering the current page.
   run('emu-button','click','select','--duration',800);time.sleep(5)
   offset=(out/'watch.log').stat().st_size;run('emu-button','click','select','--duration',800);time.sleep(31)
+  assert 'Reading light off' not in (out/'watch.log').read_text()[offset:]
+  time.sleep(60);time.sleep(31)
   log=(out/'watch.log').read_text();assert 'Reading light off' in log[offset:];assert shot('after-light-timeout')==chosen_b
   transfer(bundled)
-  result={'pbwSha256':hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest(),'englishChoicesDirectUpDown':True,'selectDoesNotChoose':True,'holdDoesNotChooseOrTurnPage':True,'choiceSavesAndBacktracking':True,'clockTicksWithoutPageTurn':True,'lightRestartsAndTimesOut':True,'physicalWatchTested':False}
+  result={'pbwSha256':hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest(),'englishChoicesDirectUpDown':True,'selectDoesNotChoose':True,'holdDoesNotChooseOrTurnPage':True,'choiceSavesAndBacktracking':True,'clockTicksWithoutPageTurn':True,'lightRestartsAndTimesOut':True,'lightDurationSeconds':120,'physicalWatchTested':False}
   (out/'report.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
  finally:
   logs.terminate();logs.wait(timeout=5)

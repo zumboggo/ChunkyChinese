@@ -8,7 +8,7 @@ p=argparse.ArgumentParser(description=__doc__)
 p.add_argument('--install',action='store_true')
 p.add_argument('--cli',default=os.environ.get('PEBBLE_CLI','pebble'))
 p.add_argument('--episode',help='Require this bundled episode and matching build report')
-p.add_argument('--min-free',type=int,default=12288)
+p.add_argument('--min-free',type=int,default=8192)
 a=p.parse_args();root=Path(__file__).resolve().parents[1]
 pack=json.loads((root/'reader/src/pkjs/bundled.json').read_text())
 if a.episode and a.episode!=pack['id']:p.error('Requested episode does not match the generated bundle')

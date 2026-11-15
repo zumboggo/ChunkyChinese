@@ -1,0 +1,11 @@
+{
+  "pbwSha256": "023dc2b9449888bcde62240d9e1766da1c6dd711f579c5bb463423a529667476",
+  "englishChoicesDirectUpDown": true,
+  "selectDoesNotChoose": true,
+  "holdDoesNotChooseOrTurnPage": true,
+  "choiceSavesAndBacktracking": true,
+  "clockTicksWithoutPageTurn": true,
+  "lightRestartsAndTimesOut": true,
+  "lightDurationSeconds": 120,
+  "physicalWatchTested": false
+}

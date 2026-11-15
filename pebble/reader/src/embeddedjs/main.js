@@ -1,5 +1,6 @@
 import Debug from 'debug';
-import {beginRun,completionEvent,enqueue,acknowledge} from './completion';
+import {beginRun,completionEvent} from './completion';
+import {CreditQueue} from './credit-queue';
 import graphics from './native';
 import Poco from 'commodetto/Poco';
 import Button from 'pebble/button';
@@ -54,10 +55,9 @@ for(const candidate of saves){try{let raw=readFile(candidate.path);const h=raw.i
 let overlay=null,menuIndex=0,helpPage=0,status='Available offline',connected=false,sending=false,queued=[],lastImageName=null,activeScene=0,previewScene=0;
 function save(){try{saveGeneration++;writeFile('progress-'+(saveGeneration%2),JSON.stringify({generation:saveGeneration,state:{...state,history:state.history.slice(-24)}}));}catch(e){status='Save failed - keep app open';console.log('SAVE ERROR',e.message);}}
 
-function pendingCredits(){try{return JSON.parse(localStorage.getItem('episodeCredits')||'[]');}catch{return [];}}
-function storeCredits(events){localStorage.setItem('episodeCredits',JSON.stringify(events));}
-function creditCompletion(){const event=completionEvent(pack,state);if(event)localStorage.setItem('done-'+pack.id,'1');if(event&&state.credited!==event.id){storeCredits(enqueue(pendingCredits(),event));save();syncCredits();}}
-function syncCredits(){const first=pendingCredits()[0];if(first&&connected)send({COMMAND:'CREDIT',DATA:JSON.stringify(first)});}
+const credits=new CreditQueue({get:k=>localStorage.getItem(k),set:(k,v)=>localStorage.setItem(k,v),read:readFile,write:writeFile,remove:removeFile});
+function creditCompletion(){const event=completionEvent(pack,state);if(event)localStorage.setItem('done-'+pack.id,'1');if(event&&state.credited!==event.id){credits.enqueue(event);save();syncCredits();}}
+function syncCredits(){if(!connected)return;const first=credits.peek();if(first)send({COMMAND:'CREDIT',DATA:JSON.stringify(first)});}
 
 function measure(text,kind){return render.getTextWidth(text,fonts[kind]);}
 function text(t,x,y,kind='en',color=ink){render.drawText(t,fonts[kind],color,x,y);}
@@ -82,9 +82,12 @@ function useOffline(id){if(id===pack.id){closeOverlay();return;}const e=offlineE
 function refreshQueue(){if(requestedEpisode||queueLoading)return;queueSerial++;if(connected){queueStatus='Checking next 5...';send({COMMAND:'QUEUE',DATA:pack.id,VERSION:String(queueSerial)});}else queueStatus='Connect phone to fill queue';}
 function fillQueue(){
  if(requestedEpisode||queueLoading||!connected)return;
- const next=queuePlan.find(e=>e[0]!==bundled.id&&(!offlineEntry(e[0])||offlineEntry(e[0])[3]!==e[3]));
- if(!next){queueStatus=queuePlan.length?queuePlan.length+' / 5 ready offline':'No later episodes published';queuePlan=[];return;}
- queueLoading=next;downloadToken=String(++downloadSerial);queueStatus='Saving episode '+next[1]+'...';send({COMMAND:'PREFETCH',DATA:next[0],STATUS:downloadToken});
+ while(queuePlan.length){
+  const next=queuePlan.shift(),saved=offlineEntry(next[0]);
+  if(next[0]===bundled.id||(saved&&saved[3]===next[3]))continue;
+  queueLoading=next;downloadToken=String(++downloadSerial);queueStatus='Saving episode '+next[1]+'...';send({COMMAND:'PREFETCH',DATA:next[0],STATUS:downloadToken});return;
+ }
+ const count=offlineItems().length;queueStatus=count?count+' / 5 ready offline':'No later episodes published';
 }
 function offlineItems(){return offline.items.filter(e=>e[0]!==pack.id&&e[1]>pack.number).sort((a,b)=>a[1]-b[1]);}
 function nextOffline(){if(bundled.number===pack.number+1)return [bundled.id,bundled.number];return offlineItems().find(e=>e[1]===pack.number+1);}
@@ -249,10 +252,10 @@ console.log('Episode opened');Debug.gc();state=initial(pack);if(activeSlot){try{
 if(localStorage.getItem('readerRevision')!=='3'&&pack.id===bundled.id&&pack.version!==bundled.version){state=pack.version===legacy.version?migrateLegacy(bundled,state,legacy):migrate(pack,bundled,state);upgraded=true;pack=bundled;activeSlot=null;localStorage.removeItem('activeEpisode');}
 localStorage.setItem('readerRevision','3');
 Debug.gc();
-console.log('Save restored',state.n);if(upgraded)save();Debug.gc();new Button({types:['select','up','down','back'],single:true,onPush(down,type){if(down)try{input(type);}catch(e){console.log('INPUT ERROR',e.stack||e.message);status='Reading error';overlay='library';draw();}}});graphics.readerControls();Debug.gc();transfer=new Transfer({
+credits.migrate();Debug.gc();console.log('Save restored',state.n);if(upgraded)save();Debug.gc();new Button({types:['select','up','down','back'],single:true,onPush(down,type){if(down)try{input(type);}catch(e){console.log('INPUT ERROR',e.stack||e.message);status='Reading error';overlay='library';draw();}}});graphics.readerControls();Debug.gc();transfer=new Transfer({
  begin(total){Debug.gc();staging=offline.begin(total,activeSlot);},
  write(data,offset){const f=device.files.openFile({path:staging,mode:'r+'});try{f.write(ArrayBuffer.fromString(data),offset);}finally{f.close();}},
- complete(expected){return openStored(staging,expected);},
+ complete(expected){return openStored(staging,expected); },
  activate(next){offline.commit(next,pack);if(!queueLoading){stopScene();previewScene=0;switchEpisode(next);localStorage.setItem('activeEpisode',staging);activeSlot=staging;save();offline.prune(pack);console.log('Episode activated',pack.id,pack.version);}else console.log('Episode cached',next.id,next.version);}
 },p=>{if(!Number.isInteger(p.number)||p.number<1||typeof p.title!=='string')throw Error('Invalid episode metadata');if(queueLoading&&(p.id!==queueLoading[0]||p.number!==queueLoading[1]||p.version!==queueLoading[3]))throw Error('Different queued episode');if(requestedEpisode&&p.id!==requestedEpisode)throw Error('Different episode received');validate(p,glyphs,hasArt,r=>loadRecipe(r,0),Debug.gc);if(p.id===bundled.id&&(p.version===upgrade.version||p.version===legacy.version))throw Error('Older feed; kept animations');});
 Debug.gc();channel=new Message({input:768,output:192,keys:['COMMAND','DATA','OFFSET','TOTAL','CHECKSUM','VERSION','STATUS'],
@@ -267,7 +270,7 @@ Debug.gc();channel=new Message({input:768,output:192,keys:['COMMAND','DATA','OFF
   else if(cmd==='QUEUE_ERROR'&&m.get('VERSION')===String(queueSerial)){queueStatus=m.get('STATUS')||'Queue unavailable';}
   else if(cmd==='CATALOG'&&m.get('VERSION')===String(catalogueRequest)&&overlay==='catalogue'){const page=validPage(JSON.parse(m.get('DATA')));cataloguePage=page;localStorage.setItem('catalogue-page',JSON.stringify(page));menuIndex=0;status=page.offline?'Saved list; phone offline':'[x] Completed | Select: open';}
   else if(cmd==='CATALOG_ERROR'&&m.get('VERSION')===String(catalogueRequest)){status=m.get('STATUS')||'List unavailable; kept story';}
-  else if(cmd==='CREDIT_ACK'){const id=m.get('DATA');if(state.runId===id){state.credited=id;save();}storeCredits(acknowledge(pendingCredits(),id));status='Garden circle synced';syncCredits();}
+  else if(cmd==='CREDIT_ACK'){const id=m.get('DATA');if(state.runId===id){state.credited=id;save();}credits.acknowledge(id);status='Garden circle synced';syncCredits();}
   else if(cmd==='CREDIT_STATUS'){status=m.get('STATUS')||'Garden sync pending';}
   else if(cmd==='BEGIN'){if(m.get('DATA')&&!m.get('STATUS')){queueLoading=null;queueSerial++;downloadToken='';}transfer.begin(m.get('TOTAL'),m.get('CHECKSUM'),m.get('VERSION'));status='Downloading 0%';send({COMMAND:'ACK',OFFSET:0,STATUS:downloadToken});}
   else if(cmd==='CHUNK'){console.log('Transfer heap',graphics.memoryFree());if(checksum(m.get('DATA'))!==m.get('CHECKSUM'))throw Error('Chunk checksum '+m.get('OFFSET')+' '+checksum(m.get('DATA'))+'/'+m.get('CHECKSUM')+' len '+m.get('DATA').length);const offset=transfer.chunk(m.get('OFFSET'),m.get('DATA'));status='Downloading '+Math.floor(offset/transfer.pending.total*100)+'%';send({COMMAND:'ACK',OFFSET:offset,STATUS:downloadToken});}

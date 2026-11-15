@@ -1,0 +1,26 @@
+[
+  {
+    "id": "supportive-14",
+    "version": "8c07ec37817f",
+    "sha256": "43c176ea8d3f7a265823200d4d8e61b7a2659e7ed71844d979b158b293947b06",
+    "source": "https://raw.githubusercontent.com/zumboggo/ChunkyChinese/codex/chengdu-game/pebble/content/supportive-14.json"
+  },
+  {
+    "id": "supportive-15",
+    "version": "ca643f7fcd1e",
+    "sha256": "cacfa346845f1e92e5d57fe794cb95538792c826924d1106a4426ba0d9ea67fa",
+    "source": "https://raw.githubusercontent.com/zumboggo/ChunkyChinese/codex/chengdu-game/pebble/content/supportive-15.json"
+  },
+  {
+    "id": "supportive-16",
+    "version": "a3144343a33c",
+    "sha256": "d31b12f72e531244c428b0f68051a94d9864c54a331e9652f863791811b329b0",
+    "source": "https://raw.githubusercontent.com/zumboggo/ChunkyChinese/codex/chengdu-game/pebble/content/supportive-16.json"
+  },
+  {
+    "id": "supportive-17",
+    "version": "ab4bbc2b243f",
+    "sha256": "4ff25b374be563414aafbff5a4cde0869c9bd89044d2ab4df8b1071969ddc060",
+    "source": "https://raw.githubusercontent.com/zumboggo/ChunkyChinese/codex/chengdu-game/pebble/content/supportive-17.json"
+  }
+]

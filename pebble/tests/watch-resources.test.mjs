@@ -28,3 +28,12 @@ test('generated flash index reads every bundled node correctly',()=>{
  let largest=0;const lazy=new Function('io',source)({readStoryNode(i){const [o,n]=spans[i];largest=Math.max(largest,n);assert.ok(n<=2048);return wire.slice(o,o+n);}});
  assert.equal(lazy.version,pack.version);for(let i=0;i<pack.nodes.length;i++)assert.deepEqual(lazy.nodeAt(i),pack.nodes[i]);assert.ok(largest<2048);
 });
+
+test('streamed index preserves the exact 64 KiB boundary with 16-bit offsets',()=>{
+ const meta=JSON.stringify({format:1,id:'supportive-999',version:'123456789abc',entry:0,nodeCount:40});
+ const rows=[meta,...Array.from({length:39},()=>JSON.stringify({type:'line',phrases:[{py:'hello',en:'hello'}]})),JSON.stringify({type:'end'})];
+ let left=65536-rows.reduce((n,row)=>n+row.length+1,0);
+ for(let i=1;i<rows.length&&left;i++){const n=Math.min(left,2047-rows[i].length);rows[i]+=' '.repeat(n);left-=n;}
+ assert.equal(left,0);const wire=rows.join('\n')+'\n';assert.equal(wire.length,65536);
+ const loaded=openWire(wire.length,(o,n)=>wire.slice(o,o+n));assert.equal(loaded.nodeAt(39).type,'end');assert.equal(loaded.nodeAt(0).phrases[0].en,'hello');
+});

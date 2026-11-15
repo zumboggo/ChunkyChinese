@@ -1,10 +1,10 @@
-# Reading controls — v1.14.2
+# Reading controls — v1.14.3
 
 This update combines the existing 53 reactions, 42 installed scenes and five-episode offline queue with three reading improvements:
 
 - The current watch time appears at the bottom right on reading pages, choices, menus, portraits and scenes. It updates each minute without advancing the story and follows the watch's 12/24-hour preference.
 - Choices show both English options together: **A — press Up** and **B — press Down**. These are the top-right and bottom-right buttons. A short Select press never commits a choice. For unusually long options, Select shows more text. Existing three/four-option downloaded content displays a second pair, C/D, with Select.
-- **Hold the middle-right Select button for 0.6 seconds** to turn on the backlight for 30 seconds. This does not advance a page, choose an option, replay an animation, or open a menu. Another hold restarts the 30 seconds. Short Select presses retain their normal behavior. The light returns to automatic control when the timer ends or the app closes.
+- **Hold the middle-right Select button for 0.6 seconds** to turn on the backlight for two minutes. This does not advance a page, choose an option, replay an animation, or open a menu. Another hold restarts the two minutes. Short Select presses retain their normal behavior. The light returns to automatic control when the timer ends or the app closes.
 
 Back still opens the reader menu. Up still returns to the previous passage when reading ordinary text. Down retains the Chinese/English toggle where Chinese is installed, or opens the menu in the pinyin-only reader. Reading saves and cached episodes are retained when installing this PBW over v1.14.0.
 
@@ -16,7 +16,9 @@ Offline loading, validation and save restoration run after module initialization
 
 Screenshots and measured acceptance results belong in `verification/reading-controls-v1.14.2/`. Screenshot comparisons mask only the clock rectangle; unmodified screenshots are retained for visual inspection. Emulator evidence does not measure physical backlight brightness or physical-watch battery use.
 
-## Verified build
+## Historical v1.14.2 measurements
+
+For the current v1.14.3 memory allocation and measured results, see [DOWNLOAD-MEMORY.md](DOWNLOAD-MEMORY.md). These retained numbers below describe v1.14.2.
 
 - PBW: `release/chunky-chinese-time2-supportive-13-v1.14.2.pbw`, 255,561 bytes.
 - SHA-256: `a3186270d94fff0f18e7d74bb53e074b617bfdc72d33c80a8b0e725b3a978de8`.

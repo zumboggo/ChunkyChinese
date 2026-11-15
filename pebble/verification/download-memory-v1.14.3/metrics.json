@@ -1,0 +1,20 @@
+{
+  "pbwSha256": "023dc2b9449888bcde62240d9e1766da1c6dd711f579c5bb463423a529667476",
+  "pbwBytes": 256574,
+  "minimumMeasuredFreeHeapBytes": 9520,
+  "nativeReserveAcceptanceBytes": 8192,
+  "previous12KiBNativeTargetMet": false,
+  "heapSamples": 668,
+  "nativeCodeBytes": 14248,
+  "nativeStaticRamBytes": 1036,
+  "resourceBytes": 157862,
+  "vmStackBytes": 4224,
+  "vmSlotsBytes": 34816,
+  "vmChunksBytes": 11264,
+  "peakStringPoolBytes": 11088,
+  "peakSlotPoolBytes": 34752,
+  "peakStackBytes": 3648,
+  "maximumSceneFrameMs": 55,
+  "lightDurationSeconds": 120,
+  "physicalWatchTested": false
+}

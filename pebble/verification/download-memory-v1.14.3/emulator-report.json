@@ -1,0 +1,32 @@
+{
+  "episodeId": "supportive-13",
+  "episodeVersion": "6b319cc93962",
+  "scenes": [
+    {
+      "id": "train-phone",
+      "freeBytes": 9716,
+      "drawAverageMs": 39,
+      "drawMaximumMs": 43
+    },
+    {
+      "id": "jeremy-train-listen",
+      "freeBytes": 9716,
+      "drawAverageMs": 48,
+      "drawMaximumMs": 55
+    },
+    {
+      "id": "alden-protective-cover",
+      "freeBytes": 9716,
+      "drawAverageMs": 43,
+      "drawMaximumMs": 48
+    },
+    {
+      "id": "alden-interrupted-sip",
+      "freeBytes": 9716,
+      "drawAverageMs": 41,
+      "drawMaximumMs": 45
+    }
+  ],
+  "pbwSha256": "023dc2b9449888bcde62240d9e1766da1c6dd711f579c5bb463423a529667476",
+  "physicalWatchTested": false
+}

@@ -1,6 +1,6 @@
-# Reading comfort update (v1.14.2)
+# Reading light and download-memory fix (v1.14.3)
 
-Bottom-right clock, English choices with explicit Up/Down labels, and hold Select for a 30-second reading light. [Controls and verification](READING-CONTROLS.md). This remains one PBW with the full animation library and offline queue.
+Bottom-right clock, English choices with explicit Up/Down labels, and hold Select for a two-minute reading light. [Controls](READING-CONTROLS.md) and [download-memory fix](DOWNLOAD-MEMORY.md). This remains one PBW with the full animation library and offline queue.
 
 # Combined reader (v1.14)
 
@@ -24,12 +24,12 @@ Private learning reader for Super Supportive, adapted from existing Chunky Chine
 ## Install on Android
 
 1. Install the current [official Pebble Android app](https://repebble.com/app), pair your **new Pebble Time 2 (Emery)**, and update watch firmware.
-2. Transfer `release/chunky-chinese-time2-supportive-13-v1.14.2.pbw` to your phone. Open it with Pebble from Downloads or the Android share sheet, then install it on your connected watch. [Official sideloading instructions](https://developer.repebble.com/guides/tools-and-resources/testing-with-the-mobile-app/#sideloading-apps).
+2. Transfer `release/chunky-chinese-time2-supportive-13-v1.14.3.pbw` to your phone. Open it with Pebble from Downloads or the Android share sheet, then install it on your connected watch. [Official sideloading instructions](https://developer.repebble.com/guides/tools-and-resources/testing-with-the-mobile-app/#sideloading-apps).
 3. Launch **Chunky Chinese**. Episode 13 is bundled: no account, audio, network download, or separate Android APK is needed to begin.
 4. Use **Back → Library** to browse numbered ranges, see completed episodes, and download or resume one. **Update list** finds newly published episodes. See [the episode catalogue guide](CATALOGUE.md).
 5. For future supported packages, use Back → Refresh episode. The companion runs inside the Pebble Android app. Leave both apps open during transfer. The library says **Available offline** after verification. App settings accept an optional HTTPS `raw.githubusercontent.com` episode JSON URL; otherwise the bundled episode's repository feed is used. A failed network fetch leaves the current offline episode intact.
 
-If opening the file does not work, use the [Developer Connection](https://developer.repebble.com/guides/tools-and-resources/developer-connection/): enable Dev Connection in the connected watch's menu; run `pebble login`, then `pebble install release/chunky-chinese-time2-supportive-13-v1.14.2.pbw --cloudpebble`. A trusted local-network connection with `--phone PHONE_IP` is another option.
+If opening the file does not work, use the [Developer Connection](https://developer.repebble.com/guides/tools-and-resources/developer-connection/): enable Dev Connection in the connected watch's menu; run `pebble login`, then `pebble install release/chunky-chinese-time2-supportive-13-v1.14.3.pbw --cloudpebble`. A trusted local-network connection with `--phone PHONE_IP` is another option.
 
 Only Emery is included. This package is not for the original Pebble Time, Time Steel, or other older Pebbles. Android pairing and physical-watch readability still need testing on David's watch.
 
@@ -82,7 +82,7 @@ Native primitives draw the scene animations at a target 12 fps. Emotional reacti
 - Pinyin above English is the default. **Select advances immediately** through pages/phrases; there is no compulsory Chinese encounter.
 - **Down (bottom-right) opens reading controls**. Chinese view is currently disabled.
 - The speaker's name appears at bottom left; the current time appears at bottom right.
-- **Hold Select (middle-right) for a 30-second reading light**, without turning a page. Another hold restarts the timer.
+- **Hold Select (middle-right) for a two-minute reading light**, without turning a page. Another hold restarts the timer.
 - Up revisits the previous screen (24 recent screens, also retained across restarts).
 - Choices show both English options: **A — press Up** (top-right) and **B — press Down** (bottom-right). Select only pages longer descriptions; it never commits a choice.
 - Back opens Resume / Refresh episode / Animations / Background motion / Restart / Library. Hold Back to exit.

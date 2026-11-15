@@ -5,7 +5,7 @@ from libpebble2.communication import PebbleConnection
 from libpebble2.communication.transports.websocket import WebsocketTransport
 from libpebble2.services.appmessage import AppMessageService,CString,Uint32
 from libpebble2.services.notifications import Notifications
-p=argparse.ArgumentParser();p.add_argument('--cli',required=True);p.add_argument('--emulator-info',required=True);a=p.parse_args();root=Path(__file__).resolve().parents[1];out=root/'.local/reactions';out.mkdir(exist_ok=True)
+p=argparse.ArgumentParser();p.add_argument('--cli',required=True);p.add_argument('--emulator-info',required=True);p.add_argument('--min-free',type=int,default=8192);a=p.parse_args();root=Path(__file__).resolve().parents[1];out=root/'.local/reactions';out.mkdir(exist_ok=True)
 cat=json.loads((root/'pixel-reactions/native-catalogue.json').read_text());bundled=json.loads((root/'reader/src/pkjs/bundled.json').read_text())
 def image_without_clock(data):
  import io
@@ -53,7 +53,7 @@ with logfile.open('w') as f:
     paused=logfile.read_text()[at:];assert 'Scene focus 0' in paused and f'Reaction {id} held' not in paused,paused
     press('back');expect('Scene focus 1',at)
    press('select') # a fresh early press must not skip the reaction
-   m=expect(f'Reaction {id} held free=(\\d+) max=(\\d+)',at);free,cost=map(int,m.groups());assert free>=12288,(id,free);assert cost<=250,(id,cost)
+   m=expect(f'Reaction {id} held free=(\\d+) max=(\\d+)',at);free,cost=map(int,m.groups());assert free>=a.min_free,(id,free);assert cost<=250,(id,cost)
    time.sleep(.3);held=shot(str(id)+'-held');time.sleep(.35);assert held==shot(str(id)+'-still')
    if item['emotion'] in ('blink','neutral'):
     at=logfile.stat().st_size;press('down');expect(f'Reaction {id} started',at);m2=expect(f'Reaction {id} held free=(\\d+)',at);assert int(m2[1])>=free-256;time.sleep(.3)

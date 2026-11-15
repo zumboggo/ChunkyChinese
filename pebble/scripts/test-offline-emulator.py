@@ -4,7 +4,7 @@ from pathlib import Path
 from libpebble2.communication import PebbleConnection
 from libpebble2.communication.transports.websocket import WebsocketTransport
 from libpebble2.services.appmessage import AppMessageService,CString,Uint32
-p=argparse.ArgumentParser();p.add_argument('--cli',required=True);p.add_argument('--emulator-info',required=True);p.add_argument('--min-free',type=int,default=12288);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--cli',required=True);p.add_argument('--emulator-info',required=True);p.add_argument('--min-free',type=int,default=8192);a=p.parse_args()
 root=Path(__file__).resolve().parents[1];out=root/'.local/offline';out.mkdir(parents=True,exist_ok=True)
 pbw=root/'reader/build/reader.pbw';digest=hashlib.sha256(pbw.read_bytes()).hexdigest()
 def image_without_clock(data):

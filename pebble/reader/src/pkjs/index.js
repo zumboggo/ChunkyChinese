@@ -5,7 +5,7 @@ var DEFAULT_URL='https://raw.githubusercontent.com/zumboggo/ChunkyChinese/codex/
 var catalogue=require('./catalogue')(localStorage,XMLHttpRequest,'https://raw.githubusercontent.com/zumboggo/ChunkyChinese/codex/chengdu-game/pebble/content/');
 var transfer=null,timer=null,lastMessage=null,retries=0,loadSerial=0;
 function hash(s){var a=1,b=0;for(var i=0;i<s.length;i++){a=(a+s.charCodeAt(i))%65521;b=(b+a)%65521;}return (b*65536+a).toString(16);}
-function wire(pack){var meta={};Object.keys(pack).forEach(function(k){if(k!=='nodes')meta[k]=pack[k];});meta.nodeCount=pack.nodes.length;return [JSON.stringify(meta)].concat(pack.nodes.map(function(n){return JSON.stringify(n);})).join('\n').replace(/[^\x20-\x7e\n]/g,function(c){return '\\u'+('0000'+c.charCodeAt(0).toString(16)).slice(-4);})+'\n';}
+function wire(pack){var meta={};Object.keys(pack).forEach(function(k){if(['nodes','sources','notice','art','cast'].indexOf(k)<0)meta[k]=pack[k];});meta.nodeCount=pack.nodes.length;return [JSON.stringify(meta)].concat(pack.nodes.map(function(n){return JSON.stringify(n);})).join('\n').replace(/[^\x20-\x7e\n]/g,function(c){return '\\u'+('0000'+c.charCodeAt(0).toString(16)).slice(-4);})+'\n';}
 function stop(){if(timer)clearTimeout(timer);timer=null;transfer=null;lastMessage=null;}
 function send(message,wait){lastMessage=message;if(timer)clearTimeout(timer);Pebble.sendAppMessage(message,function(){if(wait)timer=setTimeout(retry,6000);},function(){timer=setTimeout(retry,2000);});}
 function retry(){if(!lastMessage)return;if(++retries>4){stop();Pebble.sendAppMessage({COMMAND:'ERROR',STATUS:'Reconnect, then load again'});return;}send(lastMessage,true);}

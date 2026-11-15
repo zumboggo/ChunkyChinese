@@ -1,0 +1,18 @@
+{
+  "pbwSha256": "023dc2b9449888bcde62240d9e1766da1c6dd711f579c5bb463423a529667476",
+  "publishedEpisodes": [
+    14,
+    15,
+    16,
+    17
+  ],
+  "completedCurrentWith24HistoryEntriesAndFourChoices": true,
+  "fifthSlotUsesTestOnlyCopyOf14": true,
+  "allFiveDownloadedAndReopenedOffline": true,
+  "restartPreservesPositions": true,
+  "minimumMeasuredFreeHeapBytes": 9584,
+  "peakStringPoolBytes": 11088,
+  "peakSlotPoolBytes": 34720,
+  "heapSamples": 290,
+  "physicalWatchTested": false
+}

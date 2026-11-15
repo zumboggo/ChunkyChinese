@@ -1,4 +1,6 @@
-The v1.14.2 reader shows watch choices in English with direct Up/Down labels. Keep authored decisions to two concise options where possible; Select pages longer descriptions without choosing. Installed scene IDs, emotion names, downloadable schema 1 and the five-episode queue are unchanged. [Reader controls](../READING-CONTROLS.md).
+Current download-memory validation uses actual published next episodes, a completed current episode with 24 history entries and four choices, and a full five-slot queue. Preserve streamed completion credits and the two-minute Select-hold light. See [memory regression notes](../DOWNLOAD-MEMORY.md).
+
+The v1.14.3 reader shows watch choices in English with direct Up/Down labels. Keep authored decisions to two concise options where possible; Select pages longer descriptions without choosing. Installed scene IDs, emotion names, downloadable schema 1 and the five-episode queue are unchanged. [Reader controls](../READING-CONTROLS.md).
 
 # Fast episode authoring
 

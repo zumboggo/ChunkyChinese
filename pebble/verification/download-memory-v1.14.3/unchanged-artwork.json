@@ -1,0 +1,9 @@
+{
+  "reader/resources/data/reactions.bin": "269d9f02b29f12c522432b03238af300ab2785f342a80847bad732a9d2071118",
+  "reader/resources/data/stage.bin": "a41d07bfe152427358c37f1e6b2dd6b855f81987402ca4c59672fd6401b86927",
+  "scenes/library.json": "131c3a06d0fc1a12109d4a8135ec922b12f5bac8908c477057c0d0299a1371d9",
+  "scenes/visual-novel.json": "5ae3d124d3321023bf088280dfa0b511cc85de8c9149fa66d739aefca6fc8897",
+  "reader/src/c/scenes.c": "ea1b6872b84119ce092db24bab894a01c1c497eacb82050054d8dd375de98b39",
+  "reader/src/c/visual_novel_draw.h": "98d0ce805e640418cf80082449dd3ea5369aefeee882a837d6f95c3adca933ff",
+  "reader/src/c/reactions.inc": "bfa856b3a806d9f918fee8bc88b888ef68cfba1273983caef3af75ffd25579f8"
+}

@@ -19,10 +19,11 @@ export function validate(pack,glyphs,availableArt,recipeValidator=()=>false,coll
  // Reject cycles and paths that fall off the package before enabling offline playback.
  const count=nodeCount(pack),color=new Uint8Array(count),stack=new Uint16Array(count),edges=new Uint8Array(count);let depth=0;
  stack[0]=pack.entry;
- while(depth>=0){const i=stack[depth];target(i);if(!edges[depth]){if(color[i]===1)throw Error('Story cycle');if(color[i]===2){depth--;continue;}color[i]=1;}
+ while(depth>=0){if(collect)collect();const i=stack[depth];target(i);if(!edges[depth]){if(color[i]===1)throw Error('Story cycle');if(color[i]===2){depth--;continue;}color[i]=1;}
  const n=nodeAt(pack,i),branches=n.type==='end'?0:n.type==='choice'?n.options.length:1;
  if(edges[depth]<branches){const branch=edges[depth]++,next=n.type==='goto'?n.to:n.type==='choice'?n.options[branch].to:i+1;target(next);if(color[next]===1)throw Error('Story cycle');if(color[next]!==2){depth++;stack[depth]=next;edges[depth]=0;}}else{color[i]=2;depth--;}}
 
+ if(pack.nodeAt)pack.nodeAt(-1);if(collect)collect();
  return pack;
 }
 export class Transfer {

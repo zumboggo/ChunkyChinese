@@ -16,8 +16,8 @@ static void light_done(void *unused){(void)unused;light_timer=NULL;light_enable(
 static void reading_light(ClickRecognizerRef recognizer,void *context){
  (void)recognizer;(void)context;
  if(light_timer)app_timer_cancel(light_timer);
- light_enable(true);light_timer=app_timer_register(30000,light_done,NULL);
- APP_LOG(APP_LOG_LEVEL_INFO,"Reading light 30s; free=%lu",(unsigned long)heap_bytes_free());
+ light_enable(true);light_timer=app_timer_register(120000,light_done,NULL);
+ APP_LOG(APP_LOG_LEVEL_INFO,"Reading light 120s; free=%lu",(unsigned long)heap_bytes_free());
 }
 static void clicks(void *context){if(original_clicks)original_clicks(context);window_long_click_subscribe(BUTTON_ID_SELECT,600,reading_light,NULL);}
 void readerControls(void){

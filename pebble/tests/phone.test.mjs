@@ -27,3 +27,10 @@ test('transfer tokens ignore old acknowledgements and completion from a supersed
  const c=companion();c.context.begin(pack,'new');const before=c.sent.length;c.events.appmessage({payload:{COMMAND:'ACK',OFFSET:0,STATUS:'old'}});assert.equal(c.sent.length,before);
  c.events.appmessage({payload:{COMMAND:'ACK',OFFSET:0,STATUS:'new'}});assert.equal(c.sent.at(-1).STATUS,'new');c.events.appmessage({payload:{COMMAND:'DONE',DATA:'old'}});assert.ok(c.context.transfer);c.events.appmessage({payload:{COMMAND:'DONE',DATA:'new'}});assert.equal(c.context.transfer,null);
 });
+
+test('watch downloads omit duplicate descriptive metadata without changing story nodes',()=>{
+ const c=companion(),source={...pack,sources:[{note:'source'.repeat(1000)}],notice:'notice'.repeat(1000),art:{large:'unused'},cast:['unused']};
+ const rows=c.context.wire(source).trimEnd().split('\n').map(s=>JSON.parse(s));
+ for(const key of ['sources','notice','art','cast'])assert.equal(rows[0][key],undefined);
+ assert.deepEqual(rows.slice(1),source.nodes);assert.equal(rows[0].version,source.version);assert.equal(source.sources[0].note.length,6000);
+});

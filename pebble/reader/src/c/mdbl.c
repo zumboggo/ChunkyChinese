@@ -12,7 +12,7 @@ int main(void) {
     .recordSize = sizeof(ModdableCreationRecord),
     .stack = 4224,
     .slot = 34816,
-    .chunk = 9216,
+    .chunk = 11264,
     .flags = kModdableCreationFlagLogInstrumentation,
   };
   moddable_createMachine(&cr);

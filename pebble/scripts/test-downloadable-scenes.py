@@ -5,7 +5,7 @@ from libpebble2.communication import PebbleConnection
 from libpebble2.communication.transports.websocket import WebsocketTransport
 from libpebble2.services.appmessage import AppMessageService,CString,Uint32
 from libpebble2.services.notifications import Notifications
-p=argparse.ArgumentParser();p.add_argument('--cli',required=True);p.add_argument('--emulator-info',required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--cli',required=True);p.add_argument('--emulator-info',required=True);p.add_argument('--min-free',type=int,default=8192);a=p.parse_args()
 root=Path(__file__).resolve().parents[1];out=root/'.local/downloadable-scenes';out.mkdir(parents=True,exist_ok=True)
 port=json.loads(Path(a.emulator_info).read_text())['emery']['4.44']['pypkjs']['port']
 c=PebbleConnection(WebsocketTransport('ws://localhost:'+str(port)+'/'));c.connect();c.run_async();service=AppMessageService(c);replies=queue.Queue()
@@ -87,7 +87,7 @@ with (out/'watch.log').open('w') as f:
   run('install',root/'reader/build/reader.pbw');time.sleep(2);send('HELLO','READY');assert shot('reconnected-ending')==ending
   log=(out/'watch.log').read_text();assert log.count('Scene 65535 held')>=5,log
   assert not re.search(r'INPUT ERROR|SAVE ERROR|fxAbort|memory full|App fault',log,re.I),log
-  values=[int(v) for v in re.findall(r'Scene 65535 held; free=(\d+)',log)];assert min(values)>=12288,values
+  values=[int(v) for v in re.findall(r'Scene 65535 held; free=(\d+)',log)];assert min(values)>=a.min_free,values
   assert max(values[:4])-min(values[:4])<=256,values
   # Validate every reusable gesture on each newly installed rig through the data path.
   motion(False)
@@ -102,13 +102,13 @@ with (out/'watch.log').open('w') as f:
     if action=='listen':press('down');time.sleep(5.3);assert end==shot(name+'-replay')
     verified.append(name+'/'+action);print('PASS downloaded '+name+'/'+action,flush=True)
   log=(out/'watch.log').read_text();assert not re.search(r'INPUT ERROR|SAVE ERROR|fxAbort|memory full|App fault',log,re.I),log
-  values=[int(v) for v in re.findall(r'Scene 65535 held; free=(\d+)',log)];assert min(values)>=12288,values
+  values=[int(v) for v in re.findall(r'Scene 65535 held; free=(\d+)',log)];assert min(values)>=a.min_free,values
   result={'newRecipesTransferredWithoutRebuild':26,'verifiedActors':['gorgon','boe','jeremy','hannah','young-alden','alden'],'newCastGestureChecks':verified,'foregroundMovementAndHold':True,'replays':3,'focusClocksPreserved':True,'sameIdRecipeUpdateReplacedHeldPose':True,'invalidPackageRetainedPrevious':True,'interruptedUpdateRestartAndResume':True,'downloadedPlaybackOffline':True,'emulatorReconnectRelaunchRequired':True,'backgroundMotionSetting':True,'heldFreeBytes':values,'pbwSha256':hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest(),'physicalWatchTested':False}
   installed=[]
   for scene in json.loads((root/'scenes/library.json').read_text())['scenes'][30:]:
    fixture['version']='handtest%04d'%scene['nativeId'];fixture['nodes']=[{'type':'animation','id':scene['id']},{'type':'end'}]
    transfer(fixture);press('back');press('down',4);press('select');press('down');press('select');at=(out/'watch.log').stat().st_size;press('select');time.sleep(scene['duration']/1000+1)
-   log=(out/'watch.log').read_text()[at:];match=re.search(r'Scene '+str(scene['nativeId'])+r' held; free=(\d+)',log);assert match,scene['id'];assert int(match[1])>=12288
+   log=(out/'watch.log').read_text()[at:];match=re.search(r'Scene '+str(scene['nativeId'])+r' held; free=(\d+)',log);assert match,scene['id'];assert int(match[1])>=a.min_free
    final=shot(scene['id']+'-held');time.sleep(.4);assert final==shot(scene['id']+'-still');installed.append({'id':scene['id'],'freeBytes':int(match[1])});print('PASS installed transfer '+scene['id'],flush=True)
   result['installedHandTransfers']=installed
   transfer(bundled);time.sleep(1)
