@@ -1,3 +1,5 @@
+The v1.14.2 reader shows watch choices in English with direct Up/Down labels. Keep authored decisions to two concise options where possible; Select pages longer descriptions without choosing. Installed scene IDs, emotion names, downloadable schema 1 and the five-episode queue are unchanged. [Reader controls](../READING-CONTROLS.md).
+
 # Fast episode authoring
 
 The current scene renderer is the v1.13 visual-novel system: approved pixel character, upper torso, reusable hand/prop action, and independent background. Catalogue/review use this style; edit `scenes/visual-novel.json` for shared acting, `scenes/library.json` for the stable catalogue, and episode direction files for placements. Keep five source-supported animated moments per complete route, reusing these actions. A one-time PBW update is needed before compatible Refresh content can use the new renderer.

@@ -1,4 +1,5 @@
 #include <pebble.h>
+extern void clockFront(void);
 #include <stdlib.h>
 // The episode renderer replaces the former articulated/full-body engine.
 // Portraits and scenes share one streamed resource and 512-byte read cache.
@@ -42,7 +43,7 @@ static void draw(Layer *layer,GContext *context){
  if(scene_id==DOWNLOADED_SCENE){static const uint8_t map[]={4,2,3,1,5,0};who=map[downloaded.actor];action=downloaded.prop?VN_SIP:VN_THINK;k=download_pose(&hx);custom=&k;t=elapsed;}
  else{const VNScene s=vn_scene(scene_id);who=s.actor;action=s.action;t=elapsed*4000/s.duration;if(scene_id==1&&(phase==ESTABLISH||phase==WAITING)){action=VN_LISTEN;t=phase==WAITING?4000:elapsed*4000/VN_ESTABLISH;}}
  vn_stage(who,action,scene_setting_id(),scene_ambient_id(),t,scene_ambient_id()==6?0:scene_time,custom,hx);
- if(scene_id==1&&phase==WAITING){rect(0,204,200,24,0x000055);graphics_context_set_text_color(ctx,GColorWhite);graphics_draw_text(ctx,"Pick up the phone",fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD),GRect(0,203,200,25),GTextOverflowModeWordWrap,GTextAlignmentCenter,NULL);}
+ if(scene_id==1&&phase==WAITING){rect(0,204,200,24,0x000055);graphics_context_set_text_color(ctx,GColorWhite);graphics_draw_text(ctx,"Pick up the phone",fonts_get_system_font(FONT_KEY_GOTHIC_14),GRect(0,203,128,25),GTextOverflowModeWordWrap,GTextAlignmentCenter,NULL);}
  uint32_t cost=(now_ms()+1000-began)%1000;frames++;render_total+=cost;if(cost>render_max)render_max=cost;
 }
 static bool moving(void){return scene_id&&((phase!=HOLD&&phase!=WAITING)||(phase==HOLD&&hold_elapsed<VN_HOLD_GUARD)||(background_motion&&scene_setting_id()!=6&&scene_ambient_id()!=6));}
@@ -74,7 +75,7 @@ void showScene(uint32_t id){
  if(!canvas){canvas=layer_create(GRect(0,0,200,228));if(canvas)layer_set_update_proc(canvas,draw);}
  if(!canvas){scene_id=0;return;}
  scenePortraitReset();phase=id==1?ESTABLISH:PLAYING;hold_elapsed=elapsed=scene_time=frames=render_total=render_max=0;last_time=now_ms();
- layer_remove_from_parent(canvas);layer_add_child(window_get_root_layer(window_stack_get_top_window()),canvas);layer_set_hidden(canvas,false);layer_mark_dirty(canvas);schedule();
+ layer_remove_from_parent(canvas);layer_add_child(window_get_root_layer(window_stack_get_top_window()),canvas);layer_set_hidden(canvas,false);layer_mark_dirty(canvas);schedule();clockFront();
  APP_LOG(APP_LOG_LEVEL_INFO,"Scene %lu started; free=%lu",(unsigned long)id,(unsigned long)heap_bytes_free());
 }
 uint32_t sceneSelect(void){

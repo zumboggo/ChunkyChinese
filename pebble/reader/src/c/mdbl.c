@@ -1,5 +1,6 @@
 #include <pebble.h>
 extern void destroyPortrait(void);
+extern void destroyReaderControls(void);
 extern void destroyScenes(void);
 int main(void) {
   Window *w = window_create();
@@ -9,12 +10,13 @@ int main(void) {
   ModdableCreationRecord cr = {
     .fxBuildFFI = (void *)fxBuildFFI,
     .recordSize = sizeof(ModdableCreationRecord),
-    .stack = 4608,
-    .slot = 35840,
+    .stack = 4224,
+    .slot = 34816,
     .chunk = 9216,
     .flags = kModdableCreationFlagLogInstrumentation,
   };
   moddable_createMachine(&cr);
+  destroyReaderControls();
   destroyScenes();
   destroyPortrait();
   window_destroy(w);

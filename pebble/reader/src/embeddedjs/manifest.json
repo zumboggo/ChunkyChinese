@@ -1,6 +1,10 @@
 {
   "ffi": {
     "functions": {
+      "readerControls": {
+        "arguments": [],
+        "returns": "void"
+      },
       "portraitReady": {
         "arguments": [],
         "returns": "uint32_t"
@@ -42,19 +46,8 @@
         ],
         "returns": "void"
       },
-      "storySize": {
-        "arguments": [],
-        "returns": "uint32_t"
-      },
       "readStoryNode": {
         "arguments": [
-          "uint32_t"
-        ],
-        "returns": "char*"
-      },
-      "readStory": {
-        "arguments": [
-          "uint32_t",
           "uint32_t"
         ],
         "returns": "char*"

@@ -50,3 +50,10 @@ export function migrateLegacy(pack,s,legacy){
  const n=s.n===-1?-1:typeof legacy.indices==='string'?legacy.indices.charCodeAt(s.n)-33:legacy.indices[s.n];if(n===undefined||n< -1)return initial(pack);
  return restore(pack,{...s,version:pack.version,n,e:0,c:0,page:0,history:[]});
 }
+
+// Direct English choices use the same saved route and reversible history format.
+export function choose(pack,s,option){
+ const n=current(pack,s);if(n.type!=='choice'||!n.options[option])return s;
+ s.o=option;s.p=n.options[option].phrases.length-1;s.page=0;s.c=1;
+ return advance(pack,s);
+}

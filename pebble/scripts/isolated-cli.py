@@ -10,6 +10,10 @@ if os.environ.get('PEBBLE_TEST_FIXTURE_COMPANION') == '1':
    args=[args[0],str(Path(__file__).with_name('fixture-companion.py')),*args[3:]]
   return original_popen(args,*a,**kw)
  subprocess.Popen=fixture_popen
+import pebble_tool
+# Timing-sensitive emulator fixtures must not wait for remote SDK update checks.
+if os.environ.get('PEBBLE_TEST_FIXTURE_COMPANION') == '1':
+ pebble_tool.check_for_updates=lambda:None
 from pebble_tool import run_tool
 from pebble_tool.sdk import emulator
 from pebble_tool.util.config import config

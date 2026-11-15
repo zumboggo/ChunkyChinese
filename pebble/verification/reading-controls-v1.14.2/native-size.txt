@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+  14243	     52	    984	  15279	   3baf	/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/comfort-work/reader/build/emery/pebble-app.elf

@@ -17,11 +17,16 @@ pbw_hash=hashlib.sha256((root/'reader/build/reader.pbw').read_bytes()).hexdigest
 if report.get('episodeId')!=pack['id'] or report.get('episodeVersion')!=pack['version'] or report['pbwSha256']!=pbw_hash:p.error('Build report does not match episode/PBW; rebuild before emulator testing')
 out=root/'.local'/'emulator';out.mkdir(parents=True,exist_ok=True)
 library=json.loads((root/'scenes/library.json').read_text())
+def image_without_clock(data):
+ import io
+ from PIL import Image,ImageDraw
+ image=Image.open(io.BytesIO(data)).convert('RGB');ImageDraw.Draw(image).rectangle((130,207,195,227),fill=(0,0,0));return image.tobytes()
+
 def run(*args):
  return subprocess.run([a.cli,*map(str,args),'--emulator','emery'],cwd=root/'reader',check=True,capture_output=True,text=True,timeout=60)
 def press(button,n=1):run('emu-button','click',button,'--repeat',n,'--interval',180)
 def shot(name):
- path=out/(name+'.png');run('screenshot','--no-open',path);return path.read_bytes()
+ path=out/(name+'.png');run('screenshot','--no-open',path);return image_without_clock(path.read_bytes())
 logfile=out/'watch.log'
 # Start the isolated emulator before opening parallel log/install connections.
 run('screenshot','--no-open',out/'before-test.png')
@@ -50,7 +55,7 @@ with logfile.open('w') as stream:
   def foreground(data):
    import io
    from PIL import Image
-   im=Image.open(io.BytesIO(data)).convert('RGB')
+   im=Image.frombytes('RGB',(200,228),data)
    return bytes(1 if c in [(0,0,85),(255,170,85),(85,51,0),(170,170,0)] else 0 for c in im.getdata())
   motion(False);open_groups();groups=list(dict.fromkeys(s['group'] for s in library['scenes']));results=[]
   # First pass: every action holds exactly with backgrounds disabled.

@@ -13,7 +13,7 @@ const bundled=JSON.parse(fs.readFileSync(new URL('../reader/src/pkjs/bundled.jso
 function harness(storage=new Map(),files=new Map()){
  String.fromArrayBuffer=b=>new TextDecoder().decode(b);ArrayBuffer.fromString=s=>new TextEncoder().encode(s).buffer;
  const calls=[],labels=[];let selectResult=1;
- const graphics={memoryFree(){return 20000;},portraitReady(){return selectResult;},cardData(index,value){calls.push(['card',index,value]);},recipeData(i,v){calls.push(['recipe',i,v]);return 1;},showPortrait(){},showScene(id){calls.push(['scene',id]);},setBackgroundMotion(on){calls.push(['ambient',on]);},sceneSelect(){return selectResult;}};
+ const graphics={readerControls(){},clockFront(){},memoryFree(){return 20000;},portraitReady(){return selectResult;},cardData(index,value){calls.push(['card',index,value]);},recipeData(i,v){calls.push(['recipe',i,v]);return 1;},showPortrait(){},showScene(id){calls.push(['scene',id]);},setBackgroundMotion(on){calls.push(['ambient',on]);},sceneSelect(){return selectResult;}};
  class Poco{Font=class{};makeColor(){return 0;}getTextWidth(t){return t.length*10;}begin(){labels.length=0;}end(){}fillRectangle(){}drawText(t,f,c,x,y){labels.push({t,y});}}
  const localStorage={getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)};
  const deps={...offline,...nativeScenes,...reactions,...catalogue,...completion,...reader,...layout,bundled,legacy:{},upgrade:{},sceneIds,sceneNames,sceneGroups,glyphs:'',art:()=>0,Debug:{gc(){}},graphics,Poco,screen:{},Button:class{},Message:class{},Transfer:class{},validate(){},checksum(){},openWire(){},localStorage,device:{files:{delete:p=>files.delete(p),openFile({path,mode}){if(mode)files.set(path,'');if(!files.has(path))throw Error('No saved file');return {status:()=>({size:ArrayBuffer.fromString(files.get(path)).byteLength}),read:()=>ArrayBuffer.fromString(files.get(path)),write:b=>files.set(path,String.fromArrayBuffer(b)),close(){}};}}},console:{log(){}}};
@@ -73,4 +73,24 @@ test('reaction completion gates Select, replay keeps position, and exit preserve
  h.setResult(1);h.app.input('select');assert.equal(h.app.state.n,1);
  h.setResult(0);h.app.input('select');assert.equal(h.app.state.n,1);
  h.app.input('back');assert.equal(h.app.overlay,'menu');assert.equal(h.app.state.n,1);
+});
+
+test('both English choices have direct button labels and Select never chooses',()=>{
+ const h=harness();const doc={id:'supportive-996',version:'choice123456',entry:0,nodes:[{type:'choice',id:'decision',options:[{id:'a',to:1,phrases:[{py:'bu yao',en:'Stay here.'}]},{id:'b',to:2,phrases:[{py:'zou ba',en:'Go home.'}]}]},{type:'line',speaker:'Alden',phrases:[{py:'a',en:'Path A'}]},{type:'end'}]};
+ h.app.switchEpisode(doc);h.app.input('select');
+ assert.ok(h.labels.some(x=>x.t==='A - press Up'));assert.ok(h.labels.some(x=>x.t==='B - press Down'));
+ assert.ok(h.labels.some(x=>x.t==='Stay here.'));assert.ok(h.labels.some(x=>x.t==='Go home.'));
+ assert.ok(!h.labels.some(x=>x.t==='bu yao'||x.t==='zou ba'));
+ h.app.input('select');assert.equal(h.app.state.n,0);assert.deepEqual(h.app.state.route,[]);
+ h.app.input('down');assert.equal(h.app.state.n,2);assert.deepEqual(h.app.state.route,[{id:'decision',option:'b'}]);
+ reader.previous(h.app.state);h.app.input('up');assert.equal(h.app.state.n,1);assert.deepEqual(h.app.state.route,[{id:'decision',option:'a'}]);
+});
+
+test('long English choices page without disappearing and four-option feeds remain selectable',()=>{
+ const h=harness();const options=['a','b','c','d'].map((id,i)=>({id,to:i+1,phrases:[{py:'hello',en:i===0?'This longer option has many separate words which need several pages to read completely without truncating the decision.':'Short '+id+'.'}]}));
+ h.app.switchEpisode({id:'supportive-994',version:'paging123456',entry:0,nodes:[{type:'choice',id:'four',options},...options.map(()=>({type:'end'}))]});h.app.input('select');
+ h.app.input('select');assert.ok(h.labels.some(x=>x.t==='Short b.'));
+ for(let i=0;i<12&&!h.labels.some(x=>x.t==='C - press Up');i++)h.app.input('select');
+ assert.ok(h.labels.some(x=>x.t==='C - press Up'));assert.ok(h.labels.some(x=>x.t==='D - press Down'));
+ h.app.input('down');assert.equal(h.app.state.n,4);assert.deepEqual(h.app.state.route,[{id:'four',option:'d'}]);
 });

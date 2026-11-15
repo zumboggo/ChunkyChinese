@@ -1,0 +1,21 @@
+/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/.local/comfort-work/reader/build/emery/pebble-app.elf  :
+section                size    addr
+.header                 132       0
+.note.gnu.build-id       36     132
+.text                 14075     168
+.data                    52   14244
+.bss                    984   14296
+.debug_info           39138       0
+.debug_abbrev          4074       0
+.debug_loclists       14350       0
+.debug_aranges           40       0
+.debug_rnglists        1403       0
+.debug_line           17454       0
+.debug_str             6165       0
+.comment                125       0
+.ARM.attributes          43       0
+.debug_frame           2216       0
+.debug_line_str        1080       0
+Total                101367
+
+

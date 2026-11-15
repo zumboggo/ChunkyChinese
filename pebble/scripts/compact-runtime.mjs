@@ -17,9 +17,8 @@ const plugin={name:'streamed-watch-constants',load(id){
  if(id===path.join(root,'scenes-native.js'))return "import io from './native.js';import lookup from './library-native.js';const names="+JSON.stringify(String.fromCharCode(...sceneText.map(e=>e[0])))+",groups="+JSON.stringify(String.fromCharCode(...sceneText.map(e=>e[1])))+";export const sceneCount="+scenes.length+";export const sceneId=name=>lookup(1,name);export const sceneName=id=>io.libraryText(names.charCodeAt(id-1));export const sceneGroup=id=>io.libraryText(groups.charCodeAt(id-1));";
 },transform(code,id){
  if(!id.startsWith(root+path.sep)||id.endsWith('/native.js'))return;
- if(id===path.join(root,'main.js'))code="import BootTimer from 'timer';\n"+code.replace('creditCompletion();draw();','BootTimer.set(()=>{creditCompletion();draw();});').replace('const transfer=new Transfer(', 'let transfer;BootTimer.set(()=>{Debug.gc();transfer=new Transfer(').replace('let channel;', '});\nlet channel;');
+ if(id===path.join(root,'main.js'))code="import BootTimer from 'timer';\n"+code.replace('startReader();', 'BootTimer.set(startReader);');
  const changes=[];function visit(n,parent,depth){if(!n||typeof n!=='object')return;const next=depth+(['FunctionDeclaration','FunctionExpression','ArrowFunctionExpression'].includes(n.type)?1:0);
-  if(id===path.join(root,'main.js')&&((n.type==='NewExpression'&&n.callee.name==='Button')||(n.type==='AssignmentExpression'&&n.left.name==='channel'&&n.right.type==='NewExpression'&&n.right.callee.name==='Message'))){changes.push([n.start,n.start,'BootTimer.set(()=>{Debug.gc();return '],[n.end,n.end,';})']);}
   if(n.type==='Literal'&&typeof n.value==='string'&&n.value.length>=12&&depth>0&&!(parent?.type==='Property'&&parent.key===n&&!parent.computed))changes.push([n.start,n.end,'__watchIO.libraryText('+textId(n.value)+')']);
   for(const [k,v] of Object.entries(n)){if(k==='start'||k==='end')continue;if(Array.isArray(v))v.forEach(c=>visit(c,n,next));else if(v&&typeof v==='object')visit(v,n,next);}
  }visit(parse(code,{ecmaVersion:'latest',sourceType:'module'}),null,0);

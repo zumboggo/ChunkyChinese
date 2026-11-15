@@ -7,10 +7,15 @@ from libpebble2.services.appmessage import AppMessageService,CString,Uint32
 from libpebble2.services.notifications import Notifications
 p=argparse.ArgumentParser();p.add_argument('--cli',required=True);p.add_argument('--emulator-info',required=True);a=p.parse_args();root=Path(__file__).resolve().parents[1];out=root/'.local/reactions';out.mkdir(exist_ok=True)
 cat=json.loads((root/'pixel-reactions/native-catalogue.json').read_text());bundled=json.loads((root/'reader/src/pkjs/bundled.json').read_text())
+def image_without_clock(data):
+ import io
+ from PIL import Image,ImageDraw
+ image=Image.open(io.BytesIO(data)).convert('RGB');ImageDraw.Draw(image).rectangle((130,207,195,227),fill=(0,0,0));return image.tobytes()
+
 def run(*args):return subprocess.run([a.cli,*map(str,args),'--emulator','emery'],cwd=root/'reader',check=True,capture_output=True,text=True,timeout=60)
 def press(key,n=1):run('emu-button','click',key,'--repeat',n,'--interval',180)
 def shot(name):
- f=out/(name+'.png');run('screenshot','--no-open',f);return f.read_bytes()
+ f=out/(name+'.png');run('screenshot','--no-open',f);return image_without_clock(f.read_bytes())
 run('screenshot','--no-open',out/'emulator-before.png')
 port=json.loads(Path(a.emulator_info).read_text())['emery']['4.44']['pypkjs']['port'];c=PebbleConnection(WebsocketTransport('ws://localhost:'+str(port)+'/'));c.connect();c.run_async();service=AppMessageService(c);replies=queue.Queue()
 info=json.loads((root/'reader/build/appinfo.json').read_text());keys=info['messageKeys'];target=uuid.UUID(info['uuid']);service.register_handler('appmessage',lambda tx,app,data:replies.put(data) if app==target else None)

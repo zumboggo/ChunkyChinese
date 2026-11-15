@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "pixelExactFrames": 570,
+  "renderer": "native C versus browser",
+  "physicalWatchTested": false
+}

@@ -7,10 +7,15 @@ from libpebble2.services.appmessage import AppMessageService,CString,Uint32
 p=argparse.ArgumentParser();p.add_argument('--cli',required=True);p.add_argument('--emulator-info',required=True);p.add_argument('--min-free',type=int,default=12288);a=p.parse_args()
 root=Path(__file__).resolve().parents[1];out=root/'.local/offline';out.mkdir(parents=True,exist_ok=True)
 pbw=root/'reader/build/reader.pbw';digest=hashlib.sha256(pbw.read_bytes()).hexdigest()
+def image_without_clock(data):
+ import io
+ from PIL import Image,ImageDraw
+ image=Image.open(io.BytesIO(data)).convert('RGB');ImageDraw.Draw(image).rectangle((130,207,195,227),fill=(0,0,0));return image.tobytes()
+
 def run(*args):return subprocess.run([a.cli,*map(str,args),'--emulator','emery'],cwd=root/'reader',check=True,capture_output=True,text=True,timeout=60)
 def press(key,n=1):run('emu-button','click',key,'--repeat',n,'--interval',180)
 def shot(name):
- f=out/(name+'.png');run('screenshot','--no-open',f);return f.read_bytes()
+ f=out/(name+'.png');run('screenshot','--no-open',f);return image_without_clock(f.read_bytes())
 port=json.loads(Path(a.emulator_info).read_text())['emery']['4.44']['pypkjs']['port'];c=PebbleConnection(WebsocketTransport('ws://localhost:'+str(port)+'/'));c.connect();c.run_async();service=AppMessageService(c);replies=queue.Queue()
 info=json.loads((root/'reader/build/appinfo.json').read_text());keys=info['messageKeys'];target=uuid.UUID(info['uuid']);service.register_handler('appmessage',lambda tx,app,data:replies.put(data) if app==target else None)
 def send(command,**values):service.send_message(target,{keys[k]:(Uint32(v) if isinstance(v,int) else CString(v)) for k,v in {'COMMAND':command,**values}.items()})

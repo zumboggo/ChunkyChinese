@@ -4,6 +4,7 @@
 
 txAPI* XS = NULL;
 
+extern void readerControls();
 extern uint32_t portraitReady();
 extern void cardData(uint32_t arg0, uint32_t arg1);
 extern void showPortrait(uint32_t arg0, uint32_t arg1);
@@ -11,12 +12,14 @@ extern uint32_t recipeData(uint32_t arg0, int32_t arg1);
 extern void showScene(uint32_t arg0);
 extern uint32_t sceneSelect();
 extern void setBackgroundMotion(uint32_t arg0);
-extern uint32_t storySize();
 extern char* readStoryNode(uint32_t arg0);
-extern char* readStory(uint32_t arg0, uint32_t arg1);
 extern uint32_t memoryFree();
 extern char* libraryText(uint32_t arg0);
 extern uint32_t libraryFind(uint32_t arg0, uint32_t arg1);
+
+static void xs_readerControls(txMachine* the) {
+	readerControls();
+}
 
 static void xs_portraitReady(txMachine* the) {
 	uint32_t result = portraitReady();
@@ -57,26 +60,9 @@ static void xs_setBackgroundMotion(txMachine* the) {
 	setBackgroundMotion(arg0);
 }
 
-static void xs_storySize(txMachine* the) {
-	uint32_t result = storySize();
-	XS->fromUnsigned(the, mxResult, (txUnsigned)result);
-}
-
 static void xs_readStoryNode(txMachine* the) {
 	uint32_t arg0 = (uint32_t)XS->toUnsigned(the, mxArgv(0));
 	char* result = readStoryNode(arg0);
-	if (result) {
-		XS->fromString(the, mxResult, (txString)result);
-		free(result);
-	} else {
-		XS->abort(the, XS_NOT_ENOUGH_MEMORY_EXIT);
-	}
-}
-
-static void xs_readStory(txMachine* the) {
-	uint32_t arg0 = (uint32_t)XS->toUnsigned(the, mxArgv(0));
-	uint32_t arg1 = (uint32_t)XS->toUnsigned(the, mxArgv(1));
-	char* result = readStory(arg0, arg1);
 	if (result) {
 		XS->fromString(the, mxResult, (txString)result);
 		free(result);
@@ -110,6 +96,10 @@ static void xs_libraryFind(txMachine* the) {
 
 void fxBuildFFI(txMachine* the, txAPI* api) {
 	XS = api;
+	XS->newHostFunction(the, xs_readerControls, 0, 0, 0);
+	XS->push(the, mxThis);
+	XS->defineID(the, XS->id(the, "readerControls"), 0, 0x0E);
+	XS->pop(the);
 	XS->newHostFunction(the, xs_portraitReady, 0, 0, 0);
 	XS->push(the, mxThis);
 	XS->defineID(the, XS->id(the, "portraitReady"), 0, 0x0E);
@@ -138,17 +128,9 @@ void fxBuildFFI(txMachine* the, txAPI* api) {
 	XS->push(the, mxThis);
 	XS->defineID(the, XS->id(the, "setBackgroundMotion"), 0, 0x0E);
 	XS->pop(the);
-	XS->newHostFunction(the, xs_storySize, 0, 0, 0);
-	XS->push(the, mxThis);
-	XS->defineID(the, XS->id(the, "storySize"), 0, 0x0E);
-	XS->pop(the);
 	XS->newHostFunction(the, xs_readStoryNode, 1, 0, 0);
 	XS->push(the, mxThis);
 	XS->defineID(the, XS->id(the, "readStoryNode"), 0, 0x0E);
-	XS->pop(the);
-	XS->newHostFunction(the, xs_readStory, 2, 0, 0);
-	XS->push(the, mxThis);
-	XS->defineID(the, XS->id(the, "readStory"), 0, 0x0E);
 	XS->pop(the);
 	XS->newHostFunction(the, xs_memoryFree, 0, 0, 0);
 	XS->push(the, mxThis);

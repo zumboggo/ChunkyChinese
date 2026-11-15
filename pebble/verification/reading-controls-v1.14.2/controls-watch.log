@@ -1,0 +1,149 @@
+[15:33:58] xsHost.c:138> Transfer starting71698ebe4d1
+[15:33:58] xsHost.c:138> Transfer heap12604
+[15:33:58] xsHost.c:138> Transfer heap12604
+[15:33:58] xsHost.c:138> Episode activatedsupportive-995comfort12345
+[15:34:03] portrait.c:11> Card episode 995: Reading controls
+[15:34:08] ader_controls.c:20> Reading light 30s; free=12736
+[15:34:12] ader_controls.c:20> Reading light 30s; free=12736
+[15:34:13] ocess_manager.c:497> Heap Usage for App <Chunky Chi: Total Size <107600B> Used <99928B> Still allocated <208
+[15:34:14] moddable.c:147> evaluating creation record
+[15:34:14] xsHost.c:138> instruments key: Pixels drawn,Frames drawn,Timers,Files,Poco display list used,Piu comm
+[15:34:14] xsHost.c:138> d List used,App bytes free,Chunk used,Chunk available,Slot used,Slot available,Stack us
+[15:34:14] xsHost.c:138> ,Stack available,Garbage collections,Keys used,Modules loaded,Parser used,Floating Poin
+[15:34:14] xsHost.c:138> Promises settled
+[15:34:14] xsHost.c:138> Found mod "pebble.moddable.tech"
+[15:34:14] xsHost.c:138> instruments: 0,0,1,0,0,0,14552,3412,9216,9008,34800,1824,4224,0,183,0,0,0,0
+[15:34:15] scenes.c:69> Background motion 1
+[15:34:15] xsHost.c:138> Episode opened
+[15:34:15] xsHost.c:138> Reading saves
+[15:34:15] xsHost.c:138> Save restored1
+[15:34:15] xsHost.c:138> Runtime heap12832
+[15:34:15] xsHost.c:138> Chunky readysupportive-995comfort12345node1
+[15:34:15] xsHost.c:138> instruments: 0,1,0,0,0,0,12772,8720,9216,34400,34800,3408,4224,39,186,2,0,81,7
+[15:34:16] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8720,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:17] xsHost.c:138> instruments: 0,1,0,0,0,0,12772,6596,9216,32576,34800,3648,4224,9,186,2,0,11,0
+[15:34:18] xsHost.c:138> instruments: 0,1,0,0,0,0,12772,9000,9216,32608,34800,3584,4224,2,186,2,0,11,0
+[15:34:19] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,9000,9216,32608,34800,288,4224,0,186,2,0,0,0
+[15:34:20] ocess_manager.c:497> Heap Usage for App <Chunky Chi: Total Size <107600B> Used <99960B> Still allocated <208
+[15:34:21] moddable.c:147> evaluating creation record
+[15:34:21] xsHost.c:138> instruments key: Pixels drawn,Frames drawn,Timers,Files,Poco display list used,Piu comm
+[15:34:21] xsHost.c:138> d List used,App bytes free,Chunk used,Chunk available,Slot used,Slot available,Stack us
+[15:34:21] xsHost.c:138> ,Stack available,Garbage collections,Keys used,Modules loaded,Parser used,Floating Poin
+[15:34:21] xsHost.c:138> Promises settled
+[15:34:21] xsHost.c:138> Found mod "pebble.moddable.tech"
+[15:34:21] xsHost.c:138> instruments: 0,0,1,0,0,0,14552,3412,9216,9008,34800,1824,4224,0,183,0,0,0,0
+[15:34:21] scenes.c:69> Background motion 1
+[15:34:21] xsHost.c:138> Episode opened
+[15:34:21] xsHost.c:138> Reading saves
+[15:34:21] xsHost.c:138> Save restored2
+[15:34:21] xsHost.c:138> Runtime heap12832
+[15:34:21] xsHost.c:138> Chunky readysupportive-995comfort12345node2
+[15:34:22] xsHost.c:138> instruments: 0,1,0,0,0,0,12772,8700,9216,34400,34800,3408,4224,39,186,2,0,81,7
+[15:34:23] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:24] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:25] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:26] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:27] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:29] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:29] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:30] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:31] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:32] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:33] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:34] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:35] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:36] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:37] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:38] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:39] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8700,9216,34400,34800,288,4224,0,186,2,0,0,0
+[15:34:40] xsHost.c:138> instruments: 0,1,0,0,0,0,12772,5324,9216,31392,34800,3568,4224,1,186,2,0,3,0
+[15:34:41] xsHost.c:138> instruments: 0,1,0,0,0,0,12772,8832,9216,31568,34800,3584,4224,2,186,2,0,13,0
+[15:34:42] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:34:43] xsHost.c:138> instruments: 0,1,0,0,0,0,12772,5324,9216,31392,34800,3568,4224,1,186,2,0,3,0
+[15:34:44] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,5324,9216,31392,34800,288,4224,0,186,2,0,0,0
+[15:34:45] xsHost.c:138> instruments: 0,1,0,0,0,0,12772,8832,9216,31568,34800,3584,4224,2,186,2,0,13,0
+[15:34:46] xsHost.c:138> instruments: 0,1,0,0,0,0,12772,5324,9216,31392,34800,3568,4224,1,186,2,0,3,0
+[15:34:47] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,5324,9216,31392,34800,288,4224,0,186,2,0,0,0
+[15:34:48] xsHost.c:138> instruments: 0,1,0,0,0,0,12772,8832,9216,31568,34800,3584,4224,2,186,2,0,13,0
+[15:34:49] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:34:49] ader_controls.c:20> Reading light 30s; free=12772
+[15:34:50] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:34:51] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:34:52] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:34:53] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:34:54] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:34:55] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:34:56] ader_controls.c:20> Reading light 30s; free=12772
+[15:34:56] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:34:57] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:34:58] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:34:59] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:00] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:01] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:02] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:03] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:04] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:05] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:06] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:07] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:08] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:09] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:10] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:11] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:12] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:13] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:14] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:15] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:16] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:17] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:18] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:19] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:20] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:21] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:22] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:23] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:24] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:25] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:26] ader_controls.c:15> Reading light off
+[15:35:26] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:27] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,8832,9216,31568,34800,288,4224,0,186,2,0,0,0
+[15:35:28] xsHost.c:138> Transfer starting21489c160b4e2
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> instruments: 0,0,0,0,0,0,12772,7048,9216,33104,34800,2112,4224,170,186,2,0,441,0
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:28] xsHost.c:138> Transfer heap12576
+[15:35:29] xsHost.c:138> Episode activatedsupportive-136b319cc93962
+[15:35:29] portrait.c:11> Card episode 13: What Do You Want?

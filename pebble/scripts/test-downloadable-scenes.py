@@ -11,6 +11,11 @@ port=json.loads(Path(a.emulator_info).read_text())['emery']['4.44']['pypkjs']['p
 c=PebbleConnection(WebsocketTransport('ws://localhost:'+str(port)+'/'));c.connect();c.run_async();service=AppMessageService(c);replies=queue.Queue()
 info=json.loads((root/'reader/build/appinfo.json').read_text());keys=info['messageKeys'];target=uuid.UUID(info['uuid'])
 service.register_handler('appmessage',lambda tx,app,data:replies.put(data) if app==target else None)
+def image_without_clock(data):
+ import io
+ from PIL import Image,ImageDraw
+ image=Image.open(io.BytesIO(data)).convert('RGB');ImageDraw.Draw(image).rectangle((130,207,195,227),fill=(0,0,0));return image.tobytes()
+
 def run(*args):return subprocess.run([a.cli,*map(str,args),'--emulator','emery'],cwd=root/'reader',check=True,capture_output=True,text=True,timeout=60)
 def press(key,n=1):run('emu-button','click',key,'--repeat',n,'--interval',180)
 def motion(enabled):
@@ -24,7 +29,7 @@ def motion(enabled):
  if int(matches[-1])!=int(enabled):press('select')
  press('back')
 def shot(name):
- file=out/(name+'.png');run('screenshot','--no-open',file);return file.read_bytes()
+ file=out/(name+'.png');run('screenshot','--no-open',file);return image_without_clock(file.read_bytes())
 def checksum(s):return format(zlib.adler32(s.encode('ascii')) & 0xffffffff,'x')
 transport_retries=0
 def send(command,expected,**values):

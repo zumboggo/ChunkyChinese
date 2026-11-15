@@ -1,3 +1,7 @@
+# Reading comfort update (v1.14.2)
+
+Bottom-right clock, English choices with explicit Up/Down labels, and hold Select for a 30-second reading light. [Controls and verification](READING-CONTROLS.md). This remains one PBW with the full animation library and offline queue.
+
 # Combined reader (v1.14)
 
 One PBW now includes 53 reactions, 42 installed visual-novel scenes and the
@@ -20,12 +24,12 @@ Private learning reader for Super Supportive, adapted from existing Chunky Chine
 ## Install on Android
 
 1. Install the current [official Pebble Android app](https://repebble.com/app), pair your **new Pebble Time 2 (Emery)**, and update watch firmware.
-2. Transfer `release/chunky-chinese-time2-supportive-13-v1.14.0.pbw` to your phone. Open it with Pebble from Downloads or the Android share sheet, then install it on your connected watch. [Official sideloading instructions](https://developer.repebble.com/guides/tools-and-resources/testing-with-the-mobile-app/#sideloading-apps).
+2. Transfer `release/chunky-chinese-time2-supportive-13-v1.14.2.pbw` to your phone. Open it with Pebble from Downloads or the Android share sheet, then install it on your connected watch. [Official sideloading instructions](https://developer.repebble.com/guides/tools-and-resources/testing-with-the-mobile-app/#sideloading-apps).
 3. Launch **Chunky Chinese**. Episode 13 is bundled: no account, audio, network download, or separate Android APK is needed to begin.
 4. Use **Back → Library** to browse numbered ranges, see completed episodes, and download or resume one. **Update list** finds newly published episodes. See [the episode catalogue guide](CATALOGUE.md).
 5. For future supported packages, use Back → Refresh episode. The companion runs inside the Pebble Android app. Leave both apps open during transfer. The library says **Available offline** after verification. App settings accept an optional HTTPS `raw.githubusercontent.com` episode JSON URL; otherwise the bundled episode's repository feed is used. A failed network fetch leaves the current offline episode intact.
 
-If opening the file does not work, use the [Developer Connection](https://developer.repebble.com/guides/tools-and-resources/developer-connection/): enable Dev Connection in the connected watch's menu; run `pebble login`, then `pebble install release/chunky-chinese-time2-supportive-13-v1.14.0.pbw --cloudpebble`. A trusted local-network connection with `--phone PHONE_IP` is another option.
+If opening the file does not work, use the [Developer Connection](https://developer.repebble.com/guides/tools-and-resources/developer-connection/): enable Dev Connection in the connected watch's menu; run `pebble login`, then `pebble install release/chunky-chinese-time2-supportive-13-v1.14.2.pbw --cloudpebble`. A trusted local-network connection with `--phone PHONE_IP` is another option.
 
 Only Emery is included. This package is not for the original Pebble Time, Time Steel, or other older Pebbles. Android pairing and physical-watch readability still need testing on David's watch.
 
@@ -71,21 +75,22 @@ The original five moments remain available; Refresh alone cannot add native rend
 
 Existing v1.0/v1.1 saves migrate to the same phrase and selected choices. A known older v1.0/v1.1 feed is rejected so refreshing an unpublished/older feed cannot silently remove the installed animations. Future compatible refreshes can rearrange or reuse the installed named animation IDs; the bounded v1.6 recipe format also supports new pose sequences and scene combinations. New renderer capabilities still require a PBW update. This release is supplied as a sideloaded file; remote feed publication is separate.
 
-Native primitives draw the scene animations at a target 12 fps. Emotional reactions now use the approved 64×64, eight-colour character packs, streamed through the shared 512-byte buffer and enlarged 3× without smoothing. All 40 old static emotion resources are excluded from the PBW; opening/closing cards remain. See [reaction integration](pixel-reactions/INTEGRATION.md). The bundled story uses a generated flash-resource index and reads at most one 2 KiB record through a shared FFI bridge. The JavaScript runtime reserves 32 KiB for slots, 11 KiB for chunks, and 4.5 KiB for its stack. Current emulator checks and limits are in `verification/reactions-v1.10.0/STATUS.md`.
+Native primitives draw the scene animations at a target 12 fps. Emotional reactions now use the approved 64×64, eight-colour character packs, streamed through the shared 512-byte buffer and enlarged 3× without smoothing. All 40 old static emotion resources are excluded from the PBW; opening/closing cards remain. See [reaction integration](pixel-reactions/INTEGRATION.md). The bundled story uses a generated flash-resource index and reads at most one 2 KiB record through a shared FFI bridge. Current memory settings and measured limits are documented in [the reading-controls release](READING-CONTROLS.md).
 
 ## Reading controls
 
 - Pinyin above English is the default. **Select advances immediately** through pages/phrases; there is no compulsory Chinese encounter.
 - **Down (bottom-right) opens reading controls**. Chinese view is currently disabled.
-- The speaker's name appears in small blue text at the bottom left.
+- The speaker's name appears at bottom left; the current time appears at bottom right.
+- **Hold Select (middle-right) for a 30-second reading light**, without turning a page. Another hold restarts the timer.
 - Up revisits the previous screen (24 recent screens, also retained across restarts).
-- At choices, **Up cycles options**, Down opens controls, Select requests confirmation, and **Select: choose** commits.
+- Choices show both English options: **A — press Up** (top-right) and **B — press Down** (bottom-right). Select only pages longer descriptions; it never commits a choice.
 - Back opens Resume / Refresh episode / Animations / Background motion / Restart / Library. Hold Back to exit.
 - Portraits fill 200 × 228 pixels, without emotion labels. There are 24 portrait beats, up from 12; the same cast artwork is reused. They are static and advance with Select.
 - The default path needs 269 Select presses in the layout model, versus 500 in version 1.0 (46% fewer), including the additional portraits.
 - The 24-pixel pinyin and 20-pixel English fonts remain. Both stay visible on continuation pages; the 28-pixel Chinese setup is retained for future re-enabling.
 - Upgrade migration retains the current phrase and selected route from version 1.0, switching the current view to English. Reordered portrait cues do not force a restart. Recent back-history resets on a content-version change.
-- No audio or timed choices. Animated moments finish on a held pose; story progression always requires Select.
+- No audio or timed choices. Animated moments finish on a held pose; ordinary reading and animations advance with a short Select press; choices use their labeled Up/Down buttons.
 
 ## Refresh and future integration
 

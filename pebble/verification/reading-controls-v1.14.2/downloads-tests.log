@@ -1,0 +1,37 @@
+PASS downloaded gorgon/listen
+PASS downloaded gorgon/offer
+PASS downloaded gorgon/think
+PASS downloaded gorgon/sip
+PASS downloaded boe/listen
+PASS downloaded boe/offer
+PASS downloaded boe/think
+PASS downloaded boe/sip
+PASS downloaded jeremy/listen
+PASS downloaded jeremy/offer
+PASS downloaded jeremy/think
+PASS downloaded jeremy/sip
+PASS downloaded hannah/listen
+PASS downloaded hannah/offer
+PASS downloaded hannah/think
+PASS downloaded hannah/sip
+PASS downloaded young-alden/listen
+PASS downloaded young-alden/offer
+PASS downloaded young-alden/think
+PASS downloaded young-alden/sip
+PASS downloaded alden/listen
+PASS downloaded alden/offer
+PASS downloaded alden/think
+PASS downloaded alden/sip
+PASS installed transfer alden-protective-cover
+PASS installed transfer alden-cover-and-peek
+PASS installed transfer hannah-protective-cover
+PASS installed transfer hannah-cover-and-peek
+PASS installed transfer boe-protective-cover
+PASS installed transfer boe-cover-and-peek
+PASS installed transfer jeremy-protective-cover
+PASS installed transfer jeremy-cover-and-peek
+PASS installed transfer young-alden-protective-cover
+PASS installed transfer young-alden-cover-and-peek
+PASS installed transfer alden-folded-arms
+PASS installed transfer alden-interrupted-sip
+{"newRecipesTransferredWithoutRebuild": 26, "verifiedActors": ["gorgon", "boe", "jeremy", "hannah", "young-alden", "alden"], "newCastGestureChecks": ["gorgon/listen", "gorgon/offer", "gorgon/think", "gorgon/sip", "boe/listen", "boe/offer", "boe/think", "boe/sip", "jeremy/listen", "jeremy/offer", "jeremy/think", "jeremy/sip", "hannah/listen", "hannah/offer", "hannah/think", "hannah/sip", "young-alden/listen", "young-alden/offer", "young-alden/think", "young-alden/sip", "alden/listen", "alden/offer", "alden/think", "alden/sip"], "foregroundMovementAndHold": true, "replays": 3, "focusClocksPreserved": true, "sameIdRecipeUpdateReplacedHeldPose": true, "invalidPackageRetainedPrevious": true, "interruptedUpdateRestartAndResume": true, "downloadedPlaybackOffline": true, "emulatorReconnectRelaunchRequired": true, "backgroundMotionSetting": true, "heldFreeBytes": [12672, 12672, 12672, 12672, 12672, 12672, 12708, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644, 12644], "pbwSha256": "a3186270d94fff0f18e7d74bb53e074b617bfdc72d33c80a8b0e725b3a978de8", "physicalWatchTested": false, "installedHandTransfers": [{"id": "alden-protective-cover", "freeBytes": 12644}, {"id": "alden-cover-and-peek", "freeBytes": 12644}, {"id": "hannah-protective-cover", "freeBytes": 12644}, {"id": "hannah-cover-and-peek", "freeBytes": 12644}, {"id": "boe-protective-cover", "freeBytes": 12644}, {"id": "boe-cover-and-peek", "freeBytes": 12644}, {"id": "jeremy-protective-cover", "freeBytes": 12644}, {"id": "jeremy-cover-and-peek", "freeBytes": 12644}, {"id": "young-alden-protective-cover", "freeBytes": 12644}, {"id": "young-alden-cover-and-peek", "freeBytes": 12644}, {"id": "alden-folded-arms", "freeBytes": 12644}, {"id": "alden-interrupted-sip", "freeBytes": 12644}], "transportRetries": 0, "normalEpisodeRestored": true}
