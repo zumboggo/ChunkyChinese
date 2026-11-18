@@ -92,6 +92,21 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url)
   if (url.origin !== self.location.origin || !url.pathname.startsWith(APP_BASE)) return
 
+  if (url.pathname === `${APP_BASE}pebble-reader.html`) {
+    event.respondWith((async () => {
+      const cache = await caches.open('chunky-pebble-trip-v1')
+      try {
+        const response = await fetch(request)
+        if (!response.ok) throw new Error('Reader unavailable')
+        await cache.put(request, response.clone())
+        return response
+      } catch {
+        return await cache.match(request) || new Response('Open Pebble episodes while online first, then try again.', {status: 503, headers: {'Content-Type': 'text/plain'}})
+      }
+    })())
+    return
+  }
+
   if (url.pathname.startsWith(`${APP_BASE}stories/animated/`)) {
     event.respondWith(episodeOfflineFirst(request))
     return
