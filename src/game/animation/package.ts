@@ -1,11 +1,12 @@
 import {validateContinuityBindings,validateContinuity,type ContinuityDefinition} from './continuity.ts'
 import JSZip from 'jszip'
+import {animationCursors,type ReadingPresentation} from './readingPresentation.ts'
 import {validateOutcomeScorecard,type OutcomeScorecard} from './outcomeScorecard.ts'
 import type {ReaderInterlinearChunk} from '../../types'
 import {compileStory,validatePackage,type StoryPackage} from './shared/engine/story-engine.js'
 import {packageAssetEntries,packageContentBytes} from './shared/engine/acting-library.js'
 export interface ChineseLine {pinyin?:string;english?:string;audio?:string;interlinear?:ReaderInterlinearChunk[]}
-export interface ChinesePackage extends StoryPackage {continuity?:ContinuityDefinition;outcomeScorecard?:OutcomeScorecard;notice?:string;chinese?:{lines:Record<string,ChineseLine>}}
+export interface ChinesePackage extends StoryPackage {presentation?:ReadingPresentation;audioLanguage?:'mandarin-only';continuity?:ContinuityDefinition;outcomeScorecard?:OutcomeScorecard;notice?:string;chinese?:{lines:Record<string,ChineseLine>}}
 export function entries(pack:ChinesePackage):{src:string}[]{return packageAssetEntries(pack)}
 export function size(pack:ChinesePackage){const copy=structuredClone(pack);let bytes=0;for(const l of Object.values(copy.chinese?.lines??{})){if(l.audio){const data=l.audio.split(',')[1]??'';bytes+=Math.floor(data.length*3/4)-(data.endsWith('==')?2:data.endsWith('=')?1:0);l.audio=''}}return packageContentBytes(copy)+bytes}
 const image=/^data:image\/(webp|png|jpeg);base64,[A-Za-z0-9+/=]+$/
@@ -14,6 +15,10 @@ export function validateChinese(pack:ChinesePackage){
  try{
   if(!pack||pack.format!==2||!pack.title?.trim()||!pack.assets?.characters||!pack.assets?.backgrounds)throw Error('Use a titled Story 2 package with cast and backgrounds.')
   const result=validatePackage(pack)
+  if(pack.presentation){
+   if(pack.presentation.mode!=='reading'||!Array.isArray(pack.presentation.animationLabels)||pack.presentation.animationLabels.some(l=>typeof l!=='string'))throw Error('Invalid reading presentation')
+   if(result.story)animationCursors(result.story,pack.presentation.animationLabels)
+  }
   // Classroom quizzes are optional for personal Mandarin adventures.
   const errors=result.errors.filter(e=>!(Array.isArray(pack.quiz)&&pack.quiz.length===0&&e.message.startsWith('Add four questions')))
   for(const message of [...validateContinuity(pack.continuity),...validateContinuityBindings(pack.script,pack.continuity,pack.assets)])errors.push({line:1,message})

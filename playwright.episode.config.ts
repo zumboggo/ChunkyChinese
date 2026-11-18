@@ -5,7 +5,7 @@ if(!baseURL||!output||!process.env.EPISODE_FIXTURE)throw Error('Run npm run game
 export default defineConfig({
  testDir:'./tests',testMatch:'episode-authoring.spec.ts',fullyParallel:true,workers:1,timeout:180000,retries:0,
  outputDir:resolve(output,'test-results'),reporter:[['line'],['json',{outputFile:resolve(output,'browser-results.json')}]],
- use:{baseURL,trace:'retain-on-failure'},
+ use:{baseURL,actionTimeout:15000,serviceWorkers:'block',trace:'retain-on-failure'},
  projects:[{name:'desktop',use:{...devices['Desktop Chrome']}},{name:'phone',use:{...devices['Pixel 5']}}],
  webServer:{command:`npm run dev -- --host 127.0.0.1 --port ${new URL(baseURL).port} --strictPort`,url:baseURL,reuseExistingServer:false},
 })

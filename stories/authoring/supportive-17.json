@@ -1,0 +1,182 @@
+{
+  "id": "supportive-17",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 17 · 这里还有一个人",
+  "description": "After a quiet question from Jeremy, Alden finds reasons to stay a little longer.",
+  "presentation": {
+    "mode": "reading",
+    "animationLabels": [
+      "missing_light",
+      "real_adult",
+      "algebra",
+      "too_important",
+      "check_in",
+      "seen",
+      "more_class",
+      "empty_home",
+      "staying_busy",
+      "learning",
+      "still_here",
+      "desk"
+    ]
+  },
+  "audioLanguage": "mandarin-only",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca, Chapter 7: A Little Delusional",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "Adapted from the supplied EPUB, pinned passage from Hannah’s absence to Alden returning to Gorgon’s desk. Choices vary private attention, not canonical events."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Pinned chapter 7 passage; no conversation beyond returning to the desk.",
+    "dramaticChange": "Alden recognizes Hannah mattered more than he admitted, is noticed by Jeremy, and seeks company rather than an empty home.",
+    "essentialNewWords": [],
+    "englishNarrationPurpose": "",
+    "choicesAndCallbacks": [
+      {
+        "id": "remember",
+        "purpose": "Recall practical help or the distance between their worlds",
+        "laterPayoff": "none; private reflection rejoins source events"
+      },
+      {
+        "id": "memory",
+        "purpose": "Recall Hannah’s words or the absence of her light",
+        "laterPayoff": "none; private reflection rejoins source events"
+      },
+      {
+        "id": "reply",
+        "purpose": "Notice Jeremy’s perceptiveness or protect private grief",
+        "laterPayoff": "none; private reflection rejoins source events"
+      },
+      {
+        "id": "study",
+        "purpose": "Focus on symbols or get through the next two hours",
+        "laterPayoff": "none; private reflection rejoins source events"
+      }
+    ],
+    "sceneActivities": [],
+    "storytellingVoice": "Intimate character drama: quiet longing and the difference between being seen and admitting distress.",
+    "desire": "Keep himself occupied and avoid a lonely evening.",
+    "obstacle": "Hannah is missing; Connie is unreliable; the school day ends.",
+    "earlyCare": "A teenager longs for a dependable adult but is embarrassed to need help.",
+    "payoff": "After being seen by Jeremy, Alden finds that Gorgon is still there.",
+    "continuingQuestion": "What can Alden and Gorgon say to each other when everyone else has gone?",
+    "vocabulary": {
+      "reviewedKnown": 804,
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "supplementCount": 259,
+      "effectiveCount": 1063
+    },
+    "direction": "Shared framing for Jeremy’s question, Alden listener shot for being seen, then shared reply. Final two-shot makes company visible; no invented dialogue from Gorgon.",
+    "signatures": {
+      "Alden": "Self-correcting, private vulnerability; lowered gaze and restrained expressions.",
+      "Jeremy": "Brief, perceptive check-in; quiet concern.",
+      "Gorgon": "Silent presence only in this source boundary."
+    },
+    "opening": {
+      "style": "Charcoal with muted ochre and blue soft pastel on textured paper",
+      "moment": "Alden tells Jeremy he is okay while concealing his sadness.",
+      "speaker": "Alden",
+      "dialogue": "嗯，我没事。",
+      "sourceBeat": "answer"
+    }
+  },
+  "continuation": {
+    "end": "Alden recognizes how much Hannah mattered to him, reassures Jeremy without sharing his grief, and stays for writing class to avoid a lonely home. When everyone leaves he returns to Gorgon’s desk.",
+    "nextStart": "“Do you have a room to sleep in? When everybody leaves?”",
+    "nextEndBefore": "But he didn’t want pity.",
+    "note": "Alden asks about Gorgon’s living conditions and loneliness. Gorgon describes his unwanted celebrity; Alden recognizes the cruelty of being unable to escape cameras. Stop before Alden manages his pity and proposes crickets."
+  },
+  "routes": [
+    {
+      "choices": [
+        "help",
+        "voice",
+        "notice",
+        "shapes"
+      ],
+      "contains": [
+        "你还好吗？",
+        "嗯，我没事。",
+        "现在这里只有我。还有戈尔贡。"
+      ],
+      "endsWith": "所以，我又走到他的桌子前。这里还有一个人。"
+    },
+    {
+      "choices": [
+        "distance",
+        "light",
+        "protect",
+        "time"
+      ],
+      "contains": [
+        "她好像带着一种光。现在，我到处找，却哪里都找不到。",
+        "我现在还不想说这些事。"
+      ],
+      "endsWith": "所以，我又走到他的桌子前。这里还有一个人。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-17-v1",
+    "category": "super-supportive",
+    "episode": 17,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-17.mp4",
+      "poster": "stories/animated/cutscenes/supportive-17.poster.jpg",
+      "title": "嗯，我没事。",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "scene": "Alden responds to Jeremy’s quiet check-in during wordchaining class.",
+    "style": "Charcoal with muted ochre and blue soft pastel on textured paper",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "yp48x5mhjdrmw0d1xgbvva0m40",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "language": "Mandarin",
+    "dialogue": "嗯，我没事。",
+    "pricingChecked": "2026-11-18",
+    "pricingUrl": "https://replicate.com/prunaai/p-video-2-pro",
+    "settings": {
+      "duration": 6,
+      "resolution": "480p",
+      "mode": "cost",
+      "prompt_upsampler": "off",
+      "audio": "native"
+    },
+    "image": "stories/characters/super-supportive/supportive-17-opening.png",
+    "checks": {
+      "sha256": "5c3480b639c25c9de5ea8c7a72141318f64f8dcc6c285d0069448ba3c5e772a4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 6,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "嗯 我没事"
+    }
+  },
+  "verification": {
+    "packageBytes": 3325050,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 96.38095238095238,
+      "max": 96.7557251908397
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "你还好吗？",
+      "也许，他真的比我想的更会看人。",
+      "所以，我又走到他的桌子前。这里还有一个人。"
+    ]
+  }
+}

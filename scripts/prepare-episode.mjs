@@ -24,7 +24,7 @@ if(flags.init){
  const record=candidate?.nextRecord??read(recordPath),path=resolve(base,'plan.json')
  if(existsSync(path))throw Error('Plan already exists: '+path)
  if(record.source?.epub){write(resolve(base,'source-record.json'),record);const source=spawnSync('python3',['scripts/episode-source.py','--series',series,'--record',resolve(base,'source-record.json'),'--output',resolve(base,'source.txt')],{stdio:'inherit'});if(source.status!==0)throw Error('Resolve the pinned source before initializing the episode.')}
- write(path,{id,series,title:'',description:'',assetsFrom:record.assetsFrom,...(record.castBundle?{castFrom:record.castBundle}:{}),script:resolve(base,'episode.story'),annotations:resolve(base,'lines.json'),authoring:resolve(base,'authoring.json'),lexicon:[],sources:[],planning:{sourceBoundary:'',dramaticChange:'',essentialNewWords:[],englishNarrationPurpose:'',choicesAndCallbacks:[],sceneActivities:[]},pinyinReviewed:false,continuation:{end:'',nextStart:'',nextEndBefore:'',note:''},routes:[],review:{lines:[]},catalog:{id:id+'-v1',category:record.defaults?.catalogCategory??'lms',episode:0}})
+ write(path,{id,series,title:'',description:'',audioLanguage:'mandarin-only',assetsFrom:record.assetsFrom,...(record.castBundle?{castFrom:record.castBundle}:{}),script:resolve(base,'episode.story'),annotations:resolve(base,'lines.json'),authoring:resolve(base,'authoring.json'),lexicon:[],sources:[],planning:{sourceBoundary:'',dramaticChange:'',essentialNewWords:[],englishNarrationPurpose:'',choicesAndCallbacks:[],sceneActivities:[]},pinyinReviewed:false,continuation:{end:'',nextStart:'',nextEndBefore:'',note:''},routes:[],review:{lines:[]},catalog:{id:id+'-v1',category:record.defaults?.catalogCategory??'lms',episode:0}})
  write(resolve(base,'authoring.json'),{backgrounds:{},castRecipes:null,lines:[]})
  writeFileSync(resolve(base,'episode.story'),'story 2\nlabel opening\nI: 我准备好了。\nend\n');write(resolve(base,'lines.json'),{})
  console.log('Created '+path+'; fill the compact plan, then run --draft first.');process.exit(0)
@@ -41,7 +41,7 @@ async function phase(name,fn){const start=performance.now(),entry={name,started:
 try{
  if(flags.stage&&(existsSync(`stories/animated/${id}.json`)||read('public/stories/animated/catalog.json').some(e=>e.id===plan.catalog?.id)))throw Error('Release already exists; use a new immutable episode ID. No audio or browser work started.')
  const assets=loadAssets(plan)
- const script=readFileSync(plan.script,'utf8'),pack={format:2,profile:'chinese',title:plan.title,description:plan.description,script,assets,quiz:[],sources:plan.sources,...(plan.notice?{notice:plan.notice}:{}),...(plan.continuity?{continuity:compactContinuity(plan.continuity)}:{}),...(plan.outcomeScorecard?{outcomeScorecard:plan.outcomeScorecard}:{})}
+ const script=readFileSync(plan.script,'utf8'),pack={format:2,profile:'chinese',title:plan.title,description:plan.description,script,assets,quiz:[],sources:plan.sources,...(plan.presentation?{presentation:plan.presentation}:{}),...(plan.audioLanguage?{audioLanguage:plan.audioLanguage}:{}),...(plan.notice?{notice:plan.notice}:{}),...(plan.continuity?{continuity:compactContinuity(plan.continuity)}:{}),...(plan.outcomeScorecard?{outcomeScorecard:plan.outcomeScorecard}:{})}
  const routes=await phase('routes, speaker staging and resume',()=>episodeRoutes(pack))
  const vocabulary=await phase('vocabulary',()=>auditVocabulary(pack,read(flags.vocab),{lexicon:plan.lexicon??[],supplement:read(series.vocabularySupplement).words,min:series.coverage.min,max:series.coverage.max}))
  write(resolve(run,'vocabulary.json'),vocabulary)
@@ -65,7 +65,7 @@ try{
    const errors=validateChinese(pack).errors;if(errors.length)throw Error(JSON.stringify(errors))
   })
   const audio=await phase('audio',()=>addEpisodeAudio(pack));report.audio=audio
-  await phase('English pocket audio',()=>generateEpisodeEnglish([pack],{maxEstimatedCost:5}))
+  if(pack.audioLanguage!=='mandarin-only')await phase('English pocket audio',()=>generateEpisodeEnglish([pack],{maxEstimatedCost:5}))
   await phase('package and ZIP',async()=>{
    const errors=validateChinese(pack).errors;if(errors.length)throw Error(JSON.stringify(errors))
    const zip=await exportPackage(pack);assert.deepEqual(await importPackage(new File([zip],'episode.zip')),pack)

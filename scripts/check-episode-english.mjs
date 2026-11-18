@@ -4,6 +4,7 @@ const catalog=JSON.parse(await fs.readFile('public/stories/animated/catalog.json
 const checked=new Set(),missing=[]
 for(const entry of catalog){
  const pack=JSON.parse(await fs.readFile('public/stories/animated/'+entry.path,'utf8'))
+ if(pack.audioLanguage==='mandarin-only')continue
  for(const line of Object.values(pack.chinese?.lines??{})){
   const text=englishText(line);if(!text)continue
   const key=englishKey(text);if(checked.has(key))continue;checked.add(key)

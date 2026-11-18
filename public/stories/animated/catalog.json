@@ -1281,5 +1281,21 @@
       "title": "心里的平静 · Peace of Mind",
       "description": "杰里米把一个字说错了，阿登差点笑出来。可他说对了每个字，就真的比朋友更认真吗？"
     }
+  },
+  {
+    "id": "supportive-17-v1",
+    "category": "super-supportive",
+    "episode": 17,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-17.mp4",
+      "poster": "stories/animated/cutscenes/supportive-17.poster.jpg",
+      "title": "嗯，我没事。",
+      "durationSeconds": 9
+    },
+    "path": "supportive-17.json",
+    "summary": {
+      "title": "Super Supportive · Episode 17 · 这里还有一个人",
+      "description": "After a quiet question from Jeremy, Alden finds reasons to stay a little longer."
+    }
   }
 ]
