@@ -1,0 +1,368 @@
+{
+  "schema": 1,
+  "width": 64,
+  "height": 64,
+  "palette": [
+    [
+      255,
+      255,
+      255
+    ],
+    [
+      57,
+      32,
+      22
+    ],
+    [
+      133,
+      66,
+      31
+    ],
+    [
+      197,
+      123,
+      57
+    ],
+    [
+      255,
+      188,
+      128
+    ],
+    [
+      214,
+      138,
+      80
+    ],
+    [
+      41,
+      45,
+      67
+    ],
+    [
+      83,
+      104,
+      140
+    ]
+  ],
+  "paletteRole": "warm design RGB; hardware remapping pending",
+  "baseline": "Gentle Warmth",
+  "shockReference": "Gentle Warmth",
+  "animations": {
+    "blink": {
+      "durationMs": 1500,
+      "holdLast": true,
+      "frames": [
+        {
+          "ms": 600,
+          "eyes": "eyes-open",
+          "mouth": "mouth-rest",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 110,
+          "eyes": "eyes-blink",
+          "mouth": "mouth-rest",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 180,
+          "eyes": "eyes-open",
+          "mouth": "mouth-rest",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 110,
+          "eyes": "eyes-blink",
+          "mouth": "mouth-rest",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 500,
+          "eyes": "eyes-open",
+          "mouth": "mouth-rest",
+          "dx": 0,
+          "dy": 0
+        }
+      ]
+    },
+    "surprised": {
+      "durationMs": 1260,
+      "holdLast": true,
+      "frames": [
+        {
+          "ms": 300,
+          "eyes": "eyes-open",
+          "mouth": "mouth-rest",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 140,
+          "eyes": "eyes-shock",
+          "mouth": "mouth-small",
+          "dx": 0,
+          "dy": -1
+        },
+        {
+          "ms": 220,
+          "eyes": "eyes-shock",
+          "mouth": "mouth-shock",
+          "dx": 0,
+          "dy": -1
+        },
+        {
+          "ms": 600,
+          "eyes": "eyes-shock",
+          "mouth": "mouth-shock",
+          "dx": 0,
+          "dy": 0
+        }
+      ]
+    },
+    "thinking": {
+      "durationMs": 1960,
+      "holdLast": true,
+      "frames": [
+        {
+          "ms": 300,
+          "eyes": "eyes-open",
+          "mouth": "mouth-rest",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 450,
+          "eyes": "eyes-look",
+          "mouth": "mouth-think",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 450,
+          "eyes": "eyes-look",
+          "mouth": "mouth-think",
+          "dx": -1,
+          "dy": 1
+        },
+        {
+          "ms": 160,
+          "eyes": "eyes-blink",
+          "mouth": "mouth-think",
+          "dx": -1,
+          "dy": 1
+        },
+        {
+          "ms": 600,
+          "eyes": "eyes-look",
+          "mouth": "mouth-think",
+          "dx": -1,
+          "dy": 1
+        }
+      ]
+    },
+    "talking": {
+      "durationMs": 1540,
+      "holdLast": true,
+      "frames": [
+        {
+          "ms": 250,
+          "eyes": "eyes-open",
+          "mouth": "mouth-rest",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 150,
+          "eyes": "eyes-open",
+          "mouth": "mouth-small",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 180,
+          "eyes": "eyes-open",
+          "mouth": "mouth-talk",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 140,
+          "eyes": "eyes-open",
+          "mouth": "mouth-rest",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 180,
+          "eyes": "eyes-open",
+          "mouth": "mouth-talk",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 140,
+          "eyes": "eyes-open",
+          "mouth": "mouth-small",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 500,
+          "eyes": "eyes-open",
+          "mouth": "mouth-rest",
+          "dx": 0,
+          "dy": 0
+        }
+      ]
+    },
+    "laughing": {
+      "durationMs": 1570,
+      "holdLast": true,
+      "frames": [
+        {
+          "ms": 250,
+          "eyes": "eyes-open",
+          "mouth": "mouth-rest",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 180,
+          "eyes": "eyes-laugh",
+          "mouth": "mouth-rest",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 180,
+          "eyes": "eyes-laugh",
+          "mouth": "mouth-laugh",
+          "dx": 0,
+          "dy": -1
+        },
+        {
+          "ms": 180,
+          "eyes": "eyes-laugh",
+          "mouth": "mouth-laugh",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 180,
+          "eyes": "eyes-laugh",
+          "mouth": "mouth-laugh",
+          "dx": 0,
+          "dy": -1
+        },
+        {
+          "ms": 600,
+          "eyes": "eyes-laugh",
+          "mouth": "mouth-laugh",
+          "dx": 0,
+          "dy": 0
+        }
+      ]
+    },
+    "worried": {
+      "durationMs": 1460,
+      "holdLast": true,
+      "frames": [
+        {
+          "ms": 300,
+          "eyes": "eyes-open",
+          "mouth": "mouth-rest",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 400,
+          "eyes": "eyes-look",
+          "mouth": "mouth-worried",
+          "dx": 0,
+          "dy": 0
+        },
+        {
+          "ms": 160,
+          "eyes": "eyes-blink",
+          "mouth": "mouth-worried",
+          "dx": 0,
+          "dy": 1
+        },
+        {
+          "ms": 600,
+          "eyes": "eyes-open",
+          "mouth": "mouth-worried",
+          "dx": 0,
+          "dy": 1
+        }
+      ]
+    }
+  },
+  "patches": [
+    {
+      "name": "body",
+      "bytes": 509
+    },
+    {
+      "name": "head",
+      "bytes": 1409
+    },
+    {
+      "name": "eyes-open",
+      "bytes": 85
+    },
+    {
+      "name": "eyes-shock",
+      "bytes": 85
+    },
+    {
+      "name": "eyes-laugh",
+      "bytes": 85
+    },
+    {
+      "name": "eyes-blink",
+      "bytes": 85
+    },
+    {
+      "name": "eyes-look",
+      "bytes": 85
+    },
+    {
+      "name": "mouth-shock",
+      "bytes": 47
+    },
+    {
+      "name": "mouth-laugh",
+      "bytes": 47
+    },
+    {
+      "name": "mouth-rest",
+      "bytes": 47
+    },
+    {
+      "name": "mouth-small",
+      "bytes": 47
+    },
+    {
+      "name": "mouth-talk",
+      "bytes": 47
+    },
+    {
+      "name": "mouth-think",
+      "bytes": 47
+    },
+    {
+      "name": "mouth-worried",
+      "bytes": 47
+    }
+  ],
+  "packedArtBytes": 2760,
+  "frameBufferRequired": false,
+  "hardwareIntegrated": false,
+  "packedMotionBytes": 216,
+  "combinedPackedBytes": 2976
+}

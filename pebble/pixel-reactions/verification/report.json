@@ -1,0 +1,97 @@
+{
+  "passed": true,
+  "pbwSha256": "ee8a1f4569a2e2081f240b0cf9bf53caf4a6320abe8193403a0ea0900a2b4ab4",
+  "checks": [
+    "six finite reactions",
+    "held screens unchanged",
+    "replay deterministic",
+    "rapid next/previous/replay controls"
+  ],
+  "measurements": [
+    {
+      "emotion": 0,
+      "freeHeapBytes": 128044,
+      "maxDrawMs": 8,
+      "draws": 5
+    },
+    {
+      "emotion": 0,
+      "freeHeapBytes": 128124,
+      "maxDrawMs": 8,
+      "draws": 4
+    },
+    {
+      "emotion": 1,
+      "freeHeapBytes": 128124,
+      "maxDrawMs": 7,
+      "draws": 4
+    },
+    {
+      "emotion": 1,
+      "freeHeapBytes": 128124,
+      "maxDrawMs": 1010,
+      "draws": 4
+    },
+    {
+      "emotion": 2,
+      "freeHeapBytes": 128124,
+      "maxDrawMs": 7,
+      "draws": 3
+    },
+    {
+      "emotion": 2,
+      "freeHeapBytes": 128124,
+      "maxDrawMs": 6,
+      "draws": 3
+    },
+    {
+      "emotion": 3,
+      "freeHeapBytes": 128124,
+      "maxDrawMs": 7,
+      "draws": 4
+    },
+    {
+      "emotion": 3,
+      "freeHeapBytes": 128124,
+      "maxDrawMs": 8,
+      "draws": 4
+    },
+    {
+      "emotion": 4,
+      "freeHeapBytes": 128124,
+      "maxDrawMs": 10,
+      "draws": 4
+    },
+    {
+      "emotion": 4,
+      "freeHeapBytes": 128124,
+      "maxDrawMs": 8,
+      "draws": 4
+    },
+    {
+      "emotion": 5,
+      "freeHeapBytes": 128124,
+      "maxDrawMs": 6,
+      "draws": 3
+    },
+    {
+      "emotion": 5,
+      "freeHeapBytes": 128124,
+      "maxDrawMs": 9,
+      "draws": 3
+    },
+    {
+      "emotion": 5,
+      "freeHeapBytes": 128124,
+      "maxDrawMs": 7,
+      "draws": 3
+    }
+  ],
+  "minimumFreeHeapBytes": 128044,
+  "maxDrawMs": 1010,
+  "rendererStateBytes": 116,
+  "resourceBytes": 5732,
+  "rowBufferBytes": 16,
+  "physicalWatchTested": false,
+  "integratedReaderTested": false
+}

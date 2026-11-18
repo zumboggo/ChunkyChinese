@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "atlases": [
+    {
+      "actor": "Gorgon",
+      "file": "gorgon-reactions-v1.png",
+      "columns": 3,
+      "rows": 2,
+      "emotions": [
+        "neutral",
+        "attentive",
+        "thoughtful",
+        "skeptical",
+        "serious",
+        "amused"
+      ]
+    },
+    {
+      "actor": "Boe",
+      "file": "boe-reactions-v1.png",
+      "columns": 3,
+      "rows": 2,
+      "emotions": [
+        "neutral",
+        "amused",
+        "skeptical",
+        "thoughtful",
+        "worried",
+        "surprised"
+      ]
+    },
+    {
+      "actor": "Jeremy",
+      "file": "jeremy-reactions-v1.png",
+      "columns": 3,
+      "rows": 2,
+      "emotions": [
+        "neutral",
+        "warm",
+        "excited",
+        "thoughtful",
+        "worried",
+        "surprised"
+      ]
+    },
+    {
+      "actor": "Alden",
+      "file": "alden-reactions-v1.png",
+      "columns": 3,
+      "rows": 2,
+      "emotions": [
+        "worried",
+        "surprised",
+        "embarrassed",
+        "warm",
+        "curious",
+        "skeptical"
+      ]
+    }
+  ]
+}

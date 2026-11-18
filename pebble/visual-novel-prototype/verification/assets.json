@@ -1,0 +1,8 @@
+{
+  "sourceSha256": "179553f1693329010abed6dc47cbdf237faba57831a5666dda84101b5d86d287",
+  "sourceArtBytes": 2421,
+  "maskedArtBytes": 2589,
+  "addedBodyMaskBytes": 168,
+  "facePixelsChanged": false,
+  "palette": "Original RGB retained in pack; watch renderer explicitly maps to 64 hardware colours."
+}

@@ -1,0 +1,38 @@
+✔ portable Adler-32 known vector and phone/watch parity (2.543ms)
+✔ real companion protocol transfers every chunk then activates exactly once (3.865333ms)
+✔ phone startup retries handshake and lost acknowledgements retry the same chunk (1.210666ms)
+✔ source remains faithful and exporter deterministic (3.850333ms)
+✔ complete offline route 0 (1.626166ms)
+✔ complete offline route 1 (1.506375ms)
+✔ complete offline route 2 (1.00575ms)
+✔ complete offline route 3 (0.940791ms)
+✔ complete offline route 4 (1.111541ms)
+✔ complete offline route 5 (0.971584ms)
+✔ complete offline route 6 (1.020458ms)
+✔ complete offline route 7 (0.964458ms)
+✔ complete offline route 8 (1.012ms)
+✔ complete offline route 9 (2.27225ms)
+✔ complete offline route 10 (0.896167ms)
+✔ complete offline route 11 (0.900708ms)
+✔ complete offline route 12 (0.94575ms)
+✔ complete offline route 13 (0.939792ms)
+✔ complete offline route 14 (1.05625ms)
+✔ complete offline route 15 (0.940209ms)
+✔ each encounter, page and route restores; back undoes choice (0.141666ms)
+✔ font includes full tones and rejects novel glyphs (0.310083ms)
+✔ wrapping never loses syllables or characters and paginates (0.211167ms)
+✔ atomic transfer, retries, incomplete and corrupt downloads (1.908958ms)
+✔ reject bad graph, missing art, bad glyph and oversized transfers (0.802416ms)
+✔ lazy bundled and streamed content match every node without loading a whole file (2.351292ms)
+✔ all 16 routes also complete through the downloaded file adapter (3.031875ms)
+✔ every real phrase fits using FreeType font advances at the shipped sizes (6.988792ms)
+✔ all branch responses and canonical rejoins match the original Story 2 paths (1.539583ms)
+✔ Chinese closing punctuation is not stranded on its own line (0.031292ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 82.513625

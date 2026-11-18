@@ -1,0 +1,99 @@
+{
+  "character": "alden",
+  "palette": [
+    "#550000",
+    "#555555",
+    "#aa5555",
+    "#ffaaaa"
+  ],
+  "animations": {
+    "idle": [
+      {
+        "file": "idle/0.png",
+        "ms": 600
+      },
+      {
+        "file": "idle/1.png",
+        "ms": 160
+      },
+      {
+        "file": "idle/2.png",
+        "ms": 500
+      }
+    ],
+    "surprised": [
+      {
+        "file": "surprised/0.png",
+        "ms": 240
+      },
+      {
+        "file": "surprised/1.png",
+        "ms": 220
+      },
+      {
+        "file": "surprised/2.png",
+        "ms": 500
+      }
+    ],
+    "thinking": [
+      {
+        "file": "thinking/0.png",
+        "ms": 300
+      },
+      {
+        "file": "thinking/1.png",
+        "ms": 600
+      },
+      {
+        "file": "thinking/2.png",
+        "ms": 500
+      }
+    ],
+    "talking": [
+      {
+        "file": "talking/0.png",
+        "ms": 200
+      },
+      {
+        "file": "talking/1.png",
+        "ms": 200
+      },
+      {
+        "file": "talking/2.png",
+        "ms": 200
+      },
+      {
+        "file": "talking/3.png",
+        "ms": 400
+      }
+    ],
+    "happy": [
+      {
+        "file": "happy/0.png",
+        "ms": 240
+      },
+      {
+        "file": "happy/1.png",
+        "ms": 220
+      },
+      {
+        "file": "happy/2.png",
+        "ms": 500
+      }
+    ],
+    "worried": [
+      {
+        "file": "worried/0.png",
+        "ms": 300
+      },
+      {
+        "file": "worried/1.png",
+        "ms": 350
+      },
+      {
+        "file": "worried/2.png",
+        "ms": 600
+      }
+    ]
+  }
+}

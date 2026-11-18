@@ -1,0 +1,32 @@
+{
+  "name": "visual-novel-prototype",
+  "author": "David Hepting",
+  "version": "1.0.0",
+  "keywords": [
+    "pebble-app"
+  ],
+  "private": true,
+  "dependencies": {},
+  "pebble": {
+    "displayName": "Alden Scene Lab",
+    "uuid": "6bf4b7a8-91ea-419b-89b5-fd5c47dc2095",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "emery"
+    ],
+    "watchapp": {
+      "watchface": false
+    },
+    "messageKeys": [],
+    "resources": {
+      "media": [
+        {
+          "type": "raw",
+          "name": "ALDEN",
+          "file": "alden.bin"
+        }
+      ]
+    }
+  }
+}

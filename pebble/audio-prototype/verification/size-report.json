@@ -1,0 +1,12 @@
+{
+  "audio": {
+    "resourcesBytes": 51058,
+    "ramFootprintBytes": 3780
+  },
+  "staticControl": {
+    "resourcesBytes": 51058,
+    "ramFootprintBytes": 1531
+  },
+  "addedRamFootprintBytes": 2249,
+  "note": "Build footprint includes code and static data, not just heap. Static control omits the audio buffer, streaming, timers and callbacks but retains the same shell and controls. Not an integrated-reader measurement."
+}

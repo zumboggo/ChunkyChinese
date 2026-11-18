@@ -1,0 +1,10 @@
+{
+  "defaultRouteBluetoothDisabled": true,
+  "allFiveStoryScenes": true,
+  "closingCardInspected": true,
+  "heldFreeBytes": 3668,
+  "endingRestartVerified": false,
+  "endingRestartNote": "Concurrent work replaced the shared emulator with a different watch app during reinstall. Exact reading-position and motion preference restart checks passed earlier in emulator-report.json.",
+  "pbwSha256": "cc2b542109a74b2271f356cf886a8cf540da25d4ce65999073511a217e0dc368",
+  "physicalWatchTested": false
+}

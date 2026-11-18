@@ -1,0 +1,203 @@
+
+> build
+> sh scripts/build.sh --dev supportive-13
+
+Scene artifacts current
+{"passed": true, "unchangedApprovedPartsOrPoses": 69, "sourcePacks": ["alden-sincere/alden-sincere.bin", "hannah-sincere/hannah-sincere.bin", "cast-reactions/bo/bo.bin", "cast-reactions/jeremy/jeremy.bin", "gorgon-reactions/gorgon.bin", "YoungAlden original five portraits, shared eight-colour quantization"], "comparison": "Exact RGB pixels composited on white; existing Hannah navy mapping retained."}
+{"id":"supportive-13","nodes":84,"choices":4,"phrases":153,"bytes":17646,"han":640}
+✔ native preview groups are catalogue-driven, scroll within screen and preserve reading state (7.907917ms)
+✔ background toggle persists independently of episode progress and defaults on (2.903167ms)
+✔ new bundled episode archives the old position and switching restores it (14.180042ms)
+✔ downloaded scenes use their data bridge, preserve hold guard, and replay the same recipe (0.802042ms)
+✔ pinyin-only upgrade keeps the phrase and routes and Down opens controls (1.3265ms)
+✔ reaction completion gates Select, replay keeps position, and exit preserves progress (1.193666ms)
+✔ episode review uses the exact export and stable source-order cue context (168.061458ms)
+✔ runtime compatibility detects changed, added and removed files (0.141083ms)
+✔ preflight reports missing glyphs and portraits before creation (23.73225ms)
+✔ invalid direction remains a blocker in the review path (50.787958ms)
+✔ generated browser/native artifacts agree with the shared library (98.236875ms)
+✔ anchor migration retains the exact shipped episode and save version (21.445459ms)
+✔ editing anchored prose and inserting an unrelated line preserves scene placement (5.659958ms)
+✔ missing, duplicate, mismatched and unsupported direction fails loudly (37.712916ms)
+✔ scene validation rejects ABI changes and malformed choreography (24.918667ms)
+✔ authoring script and package retain the same stable labels (0.602708ms)
+✔ build --check selects different episodes and rejects invalid targets without replacing the bundle (5580.607458ms)
+✔ watch Library selects by ID, rejects wrong download, and restores per-episode position (11.50375ms)
+✔ completion survives restarting, switching, acknowledgement and app relaunch; partial reads stay incomplete (4.2045ms)
+✔ stale catalogue response cannot change selection, and offline current episode remains readable (13.117291ms)
+✔ 150 episodes use 15 ranges and bounded five-item pages, including late episodes (4.87675ms)
+✔ invalid or duplicate catalogues cannot replace saved metadata; offline uses last good list (0.549042ms)
+✔ selected episode loads only its canonical feed and must match catalogue identity/version (0.387375ms)
+✔ new selection supersedes older asynchronous fetch (0.092667ms)
+✔ watch rejects malformed pages and accepts empty catalogue (0.117958ms)
+✔ generated native bundle uses only platform imports and preserves public persistence/message keys (2.412916ms)
+✔ all 16 complete routes earn one credit; partial/legacy reads and replayed endings do not earn extras (2.466625ms)
+✔ phone retains offline credit across restart and accepts only matching server acknowledgment (0.8925ms)
+✔ Episode 12 has six directed scenes and uses an installed cover (0.10725ms)
+✔ content CLI exports a new main-cast recipe without a build and rejects an older actor capability (1602.495458ms)
+✔ recipes export at stable anchors and old runtimes reject them (128.491459ms)
+✔ native decoder agrees with authoring checks for malformed and unreachable poses (2944.833416ms)
+✔ all six character profiles reuse four validated gestures without changing shipped actor IDs (0.933583ms)
+✔ portable Adler-32 known vector and phone/watch parity (12.233042ms)
+✔ real companion protocol transfers every chunk then activates exactly once (15.383209ms)
+✔ phone startup retries handshake and lost acknowledgements retry the same chunk (2.050125ms)
+✔ refresh fetches a fresh URL; network failure retains the installed episode (1.058709ms)
+✔ phone settings Refresh button requests an immediate download (13.785333ms)
+✔ startup handshake retries until watch acknowledges readiness (1.411708ms)
+✔ default Refresh URL follows the selected bundle (0.929667ms)
+✔ watch-only pinyin export preserves annotations, graph and reviewed English; Chinese can be re-enabled (3.31725ms)
+✔ switching downloaded text presentation preserves phrase and selected route in both directions (0.178625ms)
+✔ Chinese font build configuration can be restored and removed without losing portrait IDs (226.606333ms)
+✔ archived bilingual episode position converts on later library selection (0.2345ms)
+✔ Episode 13 gives every route six animations and 23 source-directed reaction shots (8.94325ms)
+✔ Reaction direction rejects missing, repeated and unsupported shots (0.28ms)
+✔ Legacy expression aliases resolve to compact animated resources (1.441542ms)
+✔ compact native lookup matches every packed resource and rejects unknown names (1.078958ms)
+✔ presentation audit counts branch-exclusive visuals per complete route (6.4885ms)
+✔ compact scene lookup preserves every installed ID, name and group (8.159708ms)
+✔ source remains faithful and exporter deterministic (25.294792ms)
+✔ complete offline route 0 (0.896583ms)
+✔ complete offline route 1 (0.962416ms)
+✔ complete offline route 2 (0.692ms)
+✔ complete offline route 3 (0.546792ms)
+✔ complete offline route 4 (1.703166ms)
+✔ complete offline route 5 (2.095625ms)
+✔ complete offline route 6 (0.828167ms)
+✔ complete offline route 7 (0.923417ms)
+✔ complete offline route 8 (0.778625ms)
+✔ complete offline route 9 (0.570875ms)
+✔ complete offline route 10 (0.439208ms)
+✔ complete offline route 11 (0.418917ms)
+✔ complete offline route 12 (0.449667ms)
+✔ complete offline route 13 (0.688292ms)
+✔ complete offline route 14 (0.453417ms)
+✔ complete offline route 15 (0.394667ms)
+✔ each encounter, page and route restores; back undoes choice (0.169917ms)
+✔ font includes full tones and rejects novel glyphs (0.385917ms)
+✔ wrapping never loses syllables or characters and paginates (1.437916ms)
+✔ atomic transfer, retries, incomplete and corrupt downloads (2.977292ms)
+✔ reject bad graph, missing art, bad glyph and oversized transfers (0.845166ms)
+✔ streamed content matches every regression node without loading a whole file (18.68225ms)
+✔ all 16 routes also complete through the downloaded file adapter (4.643833ms)
+✔ every real phrase fits using FreeType font advances at the shipped sizes (10.252666ms)
+✔ all branch responses and canonical rejoins match the original Story 2 paths (1.323042ms)
+✔ Chinese closing punctuation is not stranded on its own line (0.045542ms)
+✔ one-pass reading skips the automatic character encounter; Down toggles on demand (0.041833ms)
+✔ choosing requires an explicit second Select, not a Chinese encounter (0.037167ms)
+✔ portrait-only content updates preserve phrase and choice route (0.232209ms)
+✔ legacy upgrade maps all original node indices and keeps phrase and choices (0.062166ms)
+✔ full-screen assets cover every cue; portrait beats doubled (0.3915ms)
+✔ all routes contain exactly the five supported animation beats in order (0.640375ms)
+✔ v1.1 update maps every node and preserves the exact phrase and selected choices (5.077042ms)
+✔ unknown animation ID cannot activate; animation positions support save/back (0.568625ms)
+✔ selected supportive-13: exact source export, graph, installed art and glyphs (6.563833ms)
+✔ selected supportive-13: all phrase layouts fit the installed font metrics (5.813ms)
+✔ selected supportive-13: every branch preserves source text, choices, rejoins and scene anchors (420.686375ms)
+✔ selected migration descriptors belong to this episode only (1.059459ms)
+✔ episode IDs reject path traversal and malformed targets before export (0.389458ms)
+✔ streamed story resource matches all exported nodes (14.292708ms)
+✔ bounded portrait runs reproduce every source pixel at Pebble colour precision (29.295708ms)
+✔ generated flash index reads every bundled node correctly (14.088209ms)
+ℹ tests 93
+ℹ suites 0
+ℹ pass 93
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5633.151
+### -p pebble/emery
+# xsc main.xsb
+# xsl mc.xsa
+Setting top to                           : /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/reader 
+Setting out to                           : /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/reader/build 
+Checking for program 'webpack'           : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/current/node_modules/.bin/webpack 
+Found Pebble SDK for emery in:           : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/current/sdk-core/pebble/emery 
+Checking for program 'gcc, cc'           : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/4.44/toolchain/arm-none-eabi/bin/arm-none-eabi-gcc 
+Checking for program 'ar'                : /Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/4.44/toolchain/arm-none-eabi/bin/arm-none-eabi-ar 
+'configure' finished successfully (0.307s)
+Waf: Entering directory `/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/reader/build'
+Auto-injected MOD resource for emery from build/mods/emery/mc.xsa
+[12/27] Creating emery | /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/reader/build/emery/appinfo.auto.c:  -> build/emery/appinfo.auto.c
+[19/27] Creating emery | /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/reader/build/appinfo.json:  -> build/appinfo.json
+[21/27] Compiling emery | c: build/emery/appinfo.auto.c -> build/emery/appinfo.auto.c.9.o
+[25/27] Compiling emery | c: src/c/scenes.c -> build/src/c/scenes.c.9.o
+[26/27] Linking emery | cprogram: build/src/c/mc.ffi.c.9.o build/src/c/mdbl.c.9.o build/src/c/portrait.c.9.o build/src/c/scenes.c.9.o build/src/c/story_resource.c.9.o build/emery/appinfo.auto.c.9.o build/emery/src/resource_ids.auto.c.9.o build/src/message_keys.auto.c.9.o -> build/emery/pebble-app.elf
+/Users/david.hepting/Library/Application Support/Pebble SDK/SDKs/4.44/toolchain/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: warning: /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/reader/build/emery/pebble-app.elf has a LOAD segment with RWX permissions
+
+[27/27] Processing emery | memory_usage_report: build/emery/pebble-app.elf build/emery/app_resources.pbpack
+-------------------------------------------------------
+EMERY APP MEMORY USAGE
+Total size of resources:        136122 bytes / 256.0KB
+Total footprint in RAM:         17390 bytes / 128.0KB
+Free RAM available (heap):      113682 bytes
+------------------------------------------------------- 
+[28/31] Compiling emery | /Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/reader/build/emery/pebble-app.raw.bin: build/emery/pebble-app.elf -> build/emery/pebble-app.raw.bin
+[30/31] Processing emery | inject-metadata: build/emery/pebble-app.raw.bin build/emery/pebble-app.elf build/emery/app_resources.pbpack -> build/emery/pebble-app.bin
+[31/31] Compiling app_bundle: build/appinfo.json -> build/reader.pbw
+Waf: Leaving directory `/Users/david.hepting/Documents/ChatGPT/ChunkyChinese/app/pebble/reader/build'
+'build' finished successfully (0.426s)
+Running Moddable prebuild (release build).
+Running mcrun -m ./src/embeddedjs/manifest.json -f x -p pebble/emery -t build -o ./build/mods/emery/mcrun -s tech.moddable.pebble
+Copied Moddable mod for emery
+Moddable prebuild completed.
+{"latin-24": {"glyphs": 139, "bytes": 5477, "missing": 0}, "latin-20": {"glyphs": 139, "bytes": 4525, "missing": 0}}
+{
+  schema: 1,
+  runtimeFiles: {
+    'package.json': '773b7f04ccda8e88b72749c3b08e03d4ce4d5515306a864c8be57f369b2a97f9',
+    'reader/package.json': 'bf9f30523c7fd27d6299bc0a3b21668710892b7edb1b57d5c5f435c3fae8130d',
+    'reader/resources/data/reactions.bin': '30254bb896f979af3e668731c70c37bd4f6283581dab057d4348c4b96aaad756',
+    'reader/resources/fonts/latin.ttf': '016061ffd5936bc665705acde1c9af282ecec912948de0ac7cbda599ece6f756',
+    'reader/resources/portraits/closing.rle': '61790313cece0891ba24a9fedf35d8e4c1d20cf082452702b45ccd556904bc80',
+    'reader/resources/portraits/opening.rle': '437e28febf0feb24371eef28fd503e8755aec8b6aacb0c94c96d6bc2897f0366',
+    'reader/src/c/ambient_draw.h': 'fe09ceaea6de7fc13b517df1099b8d6bc9b7f44418a5da1c374833ee53119c9f',
+    'reader/src/c/downloadable_scene.h': '5ccf1974a2cecbc567ad99b3ae8a9ec6a64f0429e9b5c0aeba509ff00ee57e67',
+    'reader/src/c/ensemble_data.h': '2fee92bcc6a0bed93168966f560db898aacc9169b322eb813260da2963702abf',
+    'reader/src/c/ensemble_draw.h': 'd09d2a5ef4851c1c90add11812e16b6473d99fdd30511a3d28290188073ace5c',
+    'reader/src/c/episode_title.h': '00b68eabc597cf18b722be9b3b854633561efe48aadd66812ffa2a1f294f46a5',
+    'reader/src/c/mdbl.c': '52a9d99653efe4d04532e2b45c45e9ee1619e8ae4248b7aacfe729947b732120',
+    'reader/src/c/portrait.c': '3aafada4de4e75751cdfdac20b67475c85a0bbdc313afb68016a48ad7e286c7d',
+    'reader/src/c/reaction_data.h': '086e2003a7d955856b90d78b859dc0a3669cd439a33c8d2b2503123ddae25e1d',
+    'reader/src/c/reactions.inc': '26b51a6db5a1e8ad6b4c8cbbe10309488d618028520f24a77482f3f7262a9af6',
+    'reader/src/c/scene_choreography.h': 'd3ae6d08923dab4755d1c57d5ed34d0ef0b7b6db1d6d7dbd98f3b864c9b0d8e8',
+    'reader/src/c/scene_data.h': '10c584a785665d32c861ab5e246dea42af0949e9e15a0ac9ba32c6b71bc8101c',
+    'reader/src/c/scenes.c': '1009c6450de048d866375f172de12f3b9d4960c4f54d09ce54682bbfa8431594',
+    'reader/src/c/story_resource.c': 'df23dd4f5ca3aa2c15ecf7a398484b53a881821234d38d60f034aeaab4ef9386',
+    'reader/src/c/visual_novel_data.h': '0fbae644ba60fe5d5ae4333c2f818256354d5bb944c4f2fc56048f62594dce13',
+    'reader/src/c/visual_novel_draw.h': 'e5c591c37556657a58af3701e0d9d961edb56c6754e4b2bfc944985f8f24f893',
+    'reader/src/embeddedjs/art-native.js': 'd1f99fc0a78db9709499d8462a8d2df800b1f9f6c92007a1950c1a111d2c26c7',
+    'reader/src/embeddedjs/art.js': '6fe0e89374cd49fc7be506548c2de17a5fceda2c543a55cd71879aa8942f9f7c',
+    'reader/src/embeddedjs/catalogue.js': '1d7427597ef0944e75e0a232c30f980e2fd6f2d9b80b35dfca4b7ed0275e3536',
+    'reader/src/embeddedjs/compiled/main.js': '03d7329e43c02c961ea5a0639d903b99c6fee783cbae714209514ebafe9d3288',
+    'reader/src/embeddedjs/completion.js': '847127d479b8fcd84387102c7b928fd8f90608952604f31a3c3bc1cc2b8eac89',
+    'reader/src/embeddedjs/glyphs.js': '130d7adf730213ff8bc6065e7c5197c91bf72061d408ac01ad4dcdf494f337a2',
+    'reader/src/embeddedjs/layout.js': '98e6f5b6e91c87030a61867776740fd45679f19b9dcd1e0477dd1bdd7810f192',
+    'reader/src/embeddedjs/main.js': '5194f57c9a192ee994bfb826afb7f2ed568dbef1bea7f66ce27d834f879052a1',
+    'reader/src/embeddedjs/manifest.json': '3230a15ab0defdf5929860a243ac4e1d8edbff55237098d77193fa2b9e754382',
+    'reader/src/embeddedjs/native.js': 'c8a36765ff54477fcbdfd09a31c6759e6283f1963b58a677ebe03e1d7a43b3c7',
+    'reader/src/embeddedjs/reactions.js': '5c9531f8abc78162b15509a06a01979a6ba0916116a38cd7f029b437938d7e47',
+    'reader/src/embeddedjs/reader.js': '811d4c8fc2ecc66e965890611149c16d5b40cb75be856087c20d615626c70833',
+    'reader/src/embeddedjs/scenes-native.js': '3e4af165d4296288ec141e446ab05af6bc54d8f70d62d99a774e2e7f8983ffc7',
+    'reader/src/embeddedjs/scenes.js': '80b2807af8cb1c41da04ff3b313053e6342172bb2e013985dd7991dc45891999',
+    'reader/src/embeddedjs/transfer.js': 'c4d7730adb4e34cf7485e9d26283d3ef83474215308accbad5d4c6dee043626e',
+    'reader/src/embeddedjs/wire.js': '87ea0b38b9e0784fe336dccdc8e0e5bb27d06e63262c57e31bf950bb78d72d1b',
+    'reader/src/pkjs/catalogue.js': '78482593d4179313c4e28d9a913f0b07a2506304c1f3c697e9b0ebc43079bdb1',
+    'reader/src/pkjs/garden.js': '9cf5908eb6b8a398ff961942f5b4c7957f778ecd08cea336329fee349710d2c8',
+    'reader/src/pkjs/index.js': 'ba0a9b1fb2a024ad2db6a206799b9b00b53387f43939c0c81e0793f7b3346dc8',
+    'reading-mode.json': 'f590bd84162cccbfac333c03c8e7ab9c25a07fcb7d7d0813cf7058b5cd27143e',
+    'scenes/ensemble/characters.json': '383ba11ecd17f773300104459917b5de9e16e1a997a9d6ff22c554d39bd6d89c',
+    'scenes/library.json': '10998a761399d67dbcae0670bdbaf741520c0287364a170b3267d7c1b38ece50',
+    'scenes/visual-novel.json': '0098f919640ee0a57da4e616a62f7bbd66abc245829b92072b62df0097effa6c',
+    'scripts/compact-runtime.mjs': '70210eef5dea5884c4d0d9afdb76f952d04e1cf7f7af6550b8e568132ab46ffb'
+  },
+  appVersion: '1.12.0',
+  nativeEpisodeVerified: true,
+  episodeId: 'supportive-13',
+  episodeVersion: '6b319cc93962',
+  pbwSha256: 'e4ffd4bf2feb6fbec7265ebf370acedb1283e6c831e234b55b1366c5699865f9',
+  pbwBytes: 233711,
+  librarySha256: '10998a761399d67dbcae0670bdbaf741520c0287364a170b3267d7c1b38ece50',
+  episodeSha256: 'c5d80f2680201f1545390cafd5071890073ef8dac42b74bbd9a4e3fc8637a442',
+  physicalWatchTested: false
+}

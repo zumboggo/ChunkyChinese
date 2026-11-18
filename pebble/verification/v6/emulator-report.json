@@ -1,0 +1,190 @@
+{
+  "episodeId": "supportive-12",
+  "episodeVersion": "8c071e11b3d4",
+  "scenes": [
+    {
+      "id": "train-phone",
+      "freeBytes": 3388,
+      "drawAverageMs": 9,
+      "drawMaximumMs": 17
+    },
+    {
+      "id": "restaurant-seat",
+      "freeBytes": 3388,
+      "drawAverageMs": 9,
+      "drawMaximumMs": 15
+    },
+    {
+      "id": "hannah-fry",
+      "freeBytes": 3388,
+      "drawAverageMs": 10,
+      "drawMaximumMs": 14
+    },
+    {
+      "id": "alden-listens",
+      "freeBytes": 3388,
+      "drawAverageMs": 10,
+      "drawMaximumMs": 15
+    },
+    {
+      "id": "train-reflection",
+      "freeBytes": 3388,
+      "drawAverageMs": 9,
+      "drawMaximumMs": 13
+    },
+    {
+      "id": "gorgon-listen",
+      "freeBytes": 3388,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 14
+    },
+    {
+      "id": "gorgon-offer",
+      "freeBytes": 3388,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 13
+    },
+    {
+      "id": "gorgon-think",
+      "freeBytes": 3388,
+      "drawAverageMs": 8,
+      "drawMaximumMs": 12
+    },
+    {
+      "id": "gorgon-sip",
+      "freeBytes": 3388,
+      "drawAverageMs": 8,
+      "drawMaximumMs": 14
+    },
+    {
+      "id": "boe-listen",
+      "freeBytes": 3388,
+      "drawAverageMs": 8,
+      "drawMaximumMs": 12
+    },
+    {
+      "id": "boe-offer",
+      "freeBytes": 3388,
+      "drawAverageMs": 8,
+      "drawMaximumMs": 62
+    },
+    {
+      "id": "boe-think",
+      "freeBytes": 3388,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 12
+    },
+    {
+      "id": "boe-sip",
+      "freeBytes": 3388,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 30
+    },
+    {
+      "id": "jeremy-listen",
+      "freeBytes": 3388,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 11
+    },
+    {
+      "id": "jeremy-offer",
+      "freeBytes": 3388,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 13
+    },
+    {
+      "id": "jeremy-think",
+      "freeBytes": 3388,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 10
+    },
+    {
+      "id": "jeremy-sip",
+      "freeBytes": 3388,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 10
+    },
+    {
+      "id": "background-train-train",
+      "freeBytes": 3388,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 11
+    },
+    {
+      "id": "background-cafe-walkers",
+      "freeBytes": 3388,
+      "drawAverageMs": 3,
+      "drawMaximumMs": 5
+    },
+    {
+      "id": "background-consulate-walkers",
+      "freeBytes": 3388,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 8
+    },
+    {
+      "id": "background-home-foliage",
+      "freeBytes": 3388,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 6
+    },
+    {
+      "id": "background-classroom-foliage",
+      "freeBytes": 3388,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 6
+    },
+    {
+      "id": "background-trading-light",
+      "freeBytes": 3388,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 5
+    },
+    {
+      "id": "background-home-rain",
+      "freeBytes": 3388,
+      "drawAverageMs": 3,
+      "drawMaximumMs": 5
+    },
+    {
+      "id": "background-home-cat",
+      "freeBytes": 3388,
+      "drawAverageMs": 3,
+      "drawMaximumMs": 7
+    },
+    {
+      "id": "jeremy-train-listen",
+      "freeBytes": 3388,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 11
+    },
+    {
+      "id": "boe-train-think",
+      "freeBytes": 3388,
+      "drawAverageMs": 9,
+      "drawMaximumMs": 12
+    },
+    {
+      "id": "jeremy-train-think",
+      "freeBytes": 3388,
+      "drawAverageMs": 8,
+      "drawMaximumMs": 13
+    },
+    {
+      "id": "jeremy-street-listen",
+      "freeBytes": 3388,
+      "drawAverageMs": 3,
+      "drawMaximumMs": 6
+    },
+    {
+      "id": "boe-street-think",
+      "freeBytes": 3388,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 8
+    }
+  ],
+  "motionPreferenceRestart": true,
+  "previewProgressPreserved": true,
+  "pbwSha256": "4f414adcc2d5a0b1d52696713066dd5daf801544e022e197a919933d475ef3d9",
+  "physicalWatchTested": false
+}

@@ -1,0 +1,143 @@
+{
+  "passed": true,
+  "checks": [
+    "three expressions",
+    "held screens stable",
+    "replay deterministic",
+    "original toggle",
+    "rapid repeated controls"
+  ],
+  "measurements": [
+    {
+      "id": 0,
+      "minFree": 126876,
+      "maxDrawMs": 3,
+      "draws": 2
+    },
+    {
+      "id": 0,
+      "minFree": 126956,
+      "maxDrawMs": 3,
+      "draws": 1
+    },
+    {
+      "id": 0,
+      "minFree": 126956,
+      "maxDrawMs": 3,
+      "draws": 4
+    },
+    {
+      "id": 1,
+      "minFree": 126956,
+      "maxDrawMs": 4,
+      "draws": 2
+    },
+    {
+      "id": 1,
+      "minFree": 126956,
+      "maxDrawMs": 3,
+      "draws": 4
+    },
+    {
+      "id": 1,
+      "minFree": 126956,
+      "maxDrawMs": 4,
+      "draws": 2
+    },
+    {
+      "id": 2,
+      "minFree": 126956,
+      "maxDrawMs": 3,
+      "draws": 2
+    },
+    {
+      "id": 2,
+      "minFree": 126956,
+      "maxDrawMs": 3,
+      "draws": 3
+    },
+    {
+      "id": 2,
+      "minFree": 126956,
+      "maxDrawMs": 3,
+      "draws": 6
+    },
+    {
+      "id": 0,
+      "minFree": 126956,
+      "maxDrawMs": 3,
+      "draws": 6
+    },
+    {
+      "id": 0,
+      "minFree": 126956,
+      "maxDrawMs": 4,
+      "draws": 8
+    },
+    {
+      "id": 0,
+      "minFree": 126956,
+      "maxDrawMs": 4,
+      "draws": 4
+    },
+    {
+      "id": 1,
+      "minFree": 126956,
+      "maxDrawMs": 3,
+      "draws": 2
+    },
+    {
+      "id": 1,
+      "minFree": 126956,
+      "maxDrawMs": 6,
+      "draws": 4
+    },
+    {
+      "id": 1,
+      "minFree": 126956,
+      "maxDrawMs": 4,
+      "draws": 7
+    },
+    {
+      "id": 2,
+      "minFree": 126956,
+      "maxDrawMs": 3,
+      "draws": 2
+    },
+    {
+      "id": 2,
+      "minFree": 126956,
+      "maxDrawMs": 3,
+      "draws": 4
+    },
+    {
+      "id": 2,
+      "minFree": 126956,
+      "maxDrawMs": 3,
+      "draws": 3
+    },
+    {
+      "id": 0,
+      "minFree": 126956,
+      "maxDrawMs": 3,
+      "draws": 5
+    },
+    {
+      "id": 0,
+      "minFree": 126956,
+      "maxDrawMs": 4,
+      "draws": 8
+    },
+    {
+      "id": 0,
+      "minFree": 126956,
+      "maxDrawMs": 3,
+      "draws": 4
+    }
+  ],
+  "baseBytes": 2144,
+  "streamBufferBytes": 512,
+  "pbwSha256": "3653c89845aef5ae82b5f5bb9cbf1a2feae4c63fbc346452f634d3abcdb31b96",
+  "physicalWatchTested": false,
+  "integratedReaderTested": false
+}

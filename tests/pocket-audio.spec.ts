@@ -19,6 +19,13 @@ for(const language of ['Chinese','English','bilingual'])test(`prepares ${languag
  await expect(player).toBeVisible({timeout:90000})
  await expect(page.getByText('Ready. Tap Play, then lock your phone.',{exact:true})).toBeVisible()
  await expect(page.locator('.pocket-audio .episode-line')).toHaveCount(0)
+ await page.keyboard.press('b')
+ await expect(player).toHaveJSProperty('currentTime',0)
+ await page.keyboard.press('x')
+ await expect.poll(()=>player.evaluate((el:HTMLAudioElement)=>el.currentTime)).toBeGreaterThan(0)
+ await page.keyboard.press('b')
+ await expect(player).toHaveJSProperty('currentTime',0)
+ await expect(player).toHaveJSProperty('paused',true)
  await context.setOffline(true)
  const result=await player.evaluate(async(el:HTMLAudioElement)=>{
   await el.play();el.currentTime=5

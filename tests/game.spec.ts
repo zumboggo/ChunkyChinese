@@ -1,3 +1,4 @@
+import {selectSettings} from './helpers/settings'
 import {test,expect,type Page} from '@playwright/test'
 import {readFile} from 'node:fs/promises'
 test.beforeEach(async({page})=>{await page.emulateMedia({reducedMotion:'reduce'});await page.addInitScript(()=>{const original=Storage.prototype.getItem;Storage.prototype.getItem=function(key){const saved=original.call(this,key);if(!saved&&key.includes(':encounters:v1:'))return JSON.stringify({count:1,encounters:Array.from({length:3},()=>({chinese:true,english:false,showChinese:true,showPinyin:true,showGloss:true})),englishPause:3,readingSeconds:5,automaticChoices:false,choiceDelay:0});return saved}})})
@@ -121,6 +122,7 @@ test('game keyboard continues, chooses and pauses audio without activating focus
 test('Settings uploads a playable episode; Resume and seven text sizes survive reload',async({page})=>{
  await page.goto('/')
  await page.getByRole('button',{name:'Settings',exact:true}).first().click()
+ await selectSettings(page,'Imports & Packs')
  await page.getByLabel('Episode ZIP or JSON',{exact:true}).setInputFiles('stories/animated/gate-in-the-mist.json')
  await expect(page.getByRole('status').filter({hasText:'is ready in The Game.'})).toBeVisible()
  await page.getByRole('button',{name:'Game',exact:true}).click()
@@ -134,6 +136,7 @@ test('Settings uploads a playable episode; Resume and seven text sizes survive r
  const zip=await downloadPromise
  const buffer=await readFile((await zip.path())!)
  await page.getByRole('button',{name:'Settings',exact:true}).first().click()
+ await selectSettings(page,'Imports & Packs')
  await page.getByLabel('Episode ZIP or JSON',{exact:true}).setInputFiles({name:'episode.zip',mimeType:'application/zip',buffer})
  await expect(page.getByRole('status').filter({hasText:'is ready in The Game.'})).toBeVisible()
  await page.getByRole('button',{name:'Game',exact:true}).click()

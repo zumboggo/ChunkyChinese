@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "events": [
+    [
+      "0",
+      "249",
+      "249"
+    ],
+    [
+      "1",
+      "249",
+      "249"
+    ]
+  ],
+  "clocksPausedWhileUnfocused": true,
+  "completedAfterResume": true
+}

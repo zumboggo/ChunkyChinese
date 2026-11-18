@@ -1,0 +1,18 @@
+{
+  "dimensions": [
+    32,
+    32
+  ],
+  "visibleColorCount": 5,
+  "palette": [
+    "#2e1b17",
+    "#504e51",
+    "#8b5637",
+    "#b8b6b5",
+    "#ffd3aa"
+  ],
+  "transparency": "binary; white preview background not encoded in sprite",
+  "paletteStatus": "Design palette preserves requested peach skin; not yet mapped to Pebble 64-color hardware palette",
+  "enlargement": "16x nearest-neighbor",
+  "status": "Static user-review asset, no animation"
+}

@@ -1,0 +1,36 @@
+{
+  "scenes": [
+    {
+      "id": "train-phone",
+      "freeBytes": 4036,
+      "drawAverageMs": 9,
+      "drawMaximumMs": 19
+    },
+    {
+      "id": "restaurant-seat",
+      "freeBytes": 4036,
+      "drawAverageMs": 8,
+      "drawMaximumMs": 14
+    },
+    {
+      "id": "hannah-fry",
+      "freeBytes": 4036,
+      "drawAverageMs": 11,
+      "drawMaximumMs": 17
+    },
+    {
+      "id": "alden-listens",
+      "freeBytes": 4036,
+      "drawAverageMs": 9,
+      "drawMaximumMs": 14
+    },
+    {
+      "id": "train-reflection",
+      "freeBytes": 4036,
+      "drawAverageMs": 9,
+      "drawMaximumMs": 12
+    }
+  ],
+  "pbwSha256": "0b91f6a2433d5edc6472a5af7dac22701981d32779f1e4f817905752785c8b2d",
+  "physicalWatchTested": false
+}

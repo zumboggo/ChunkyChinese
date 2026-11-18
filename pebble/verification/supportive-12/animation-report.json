@@ -1,0 +1,44 @@
+{
+  "episodeId": "supportive-12",
+  "episodeVersion": "8c071e11b3d4",
+  "scenes": [
+    {
+      "id": "train-reflection",
+      "freeBytes": 3928,
+      "drawAverageMs": 11,
+      "drawMaximumMs": 18
+    },
+    {
+      "id": "jeremy-train-listen",
+      "freeBytes": 3928,
+      "drawAverageMs": 11,
+      "drawMaximumMs": 16
+    },
+    {
+      "id": "boe-train-think",
+      "freeBytes": 3928,
+      "drawAverageMs": 10,
+      "drawMaximumMs": 17
+    },
+    {
+      "id": "jeremy-train-think",
+      "freeBytes": 3928,
+      "drawAverageMs": 10,
+      "drawMaximumMs": 17
+    },
+    {
+      "id": "jeremy-street-listen",
+      "freeBytes": 3928,
+      "drawAverageMs": 3,
+      "drawMaximumMs": 8
+    },
+    {
+      "id": "boe-street-think",
+      "freeBytes": 3928,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 10
+    }
+  ],
+  "pbwSha256": "9eb80424d6bcd217a49332137005efaec444c94ee6360ca4a6c21cee14d53e8d",
+  "physicalWatchTested": false
+}

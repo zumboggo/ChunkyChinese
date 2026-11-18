@@ -10,6 +10,7 @@ rest Boe seated
 camera two Alden Jeremy cut
 I: 我还在想汉娜的事，朋友已经叫我下车了。
 Jeremy: 我们到了！你怎么了？一直在想什么？
+label watch_arrival
 Alden: 对不起。我在想学校让我们写的东西。
 choice school
 option sorry "对不起，刚才没听到。" -> sorry
@@ -24,6 +25,7 @@ Jeremy: 我为什么要跟你们一起玩？一个星期已经上五天学了，
 camera two Boe Jeremy cut
 Boe: 我们叫你一起来的时候，没想到你真的会来。
 Boe: 你现在想做什么都可以，却跟我们一起上课。我应该很开心，还是应该担心你没有其他朋友？
+label watch_boe_teases
 camera two Alden Jeremy cut
 choice teasing
 option need "你这么需要我们啊？" -> need
@@ -40,10 +42,12 @@ rest Alden relaxed
 express Jeremy shocked
 I: 我拿着包，站起来。他看我的样子，好像我刚才说了什么可怕的话。
 Jeremy: 你这个给恶魔送吃的家伙！你不是我们三个人里的好人吗？
+label watch_good_one
 express Alden surprised
 camera listener Alden cut
 Alden: 是吗？我还真不知道。
 I: 我不是在开玩笑。我没想到，他会这样说我。
+label watch_alden_surprised
 scene street
 show Alden curious left
 show Boe happy center
@@ -74,6 +78,7 @@ Jeremy: 因为你想成为英雄啊！
 Jeremy: 你做事很认真，以后上大学要做什么，你都已经写了很多。
 Jeremy: 可是，你还是想穿上那种衣服，去把树上的小猫救下来。
 Jeremy: 我也不知道怎么说。就是……你这样，真的很好。
+label watch_sincere
 express Alden embarrassed
 camera listener Alden cut
 I: 我不知道该说什么。这件事，他就这样说了。
@@ -92,4 +97,5 @@ Boe: 你看看你现在的脸！
 express Boe confused
 Boe: 等等。也许，他才是我们三个人里看得最清楚的人？
 Boe: 我还真没想到。
+label watch_boe_reconsiders
 end

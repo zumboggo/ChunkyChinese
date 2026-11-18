@@ -39,7 +39,7 @@ export default function EpisodeContextCrawl({context,onDone,hotkeys}:{context:Ep
  return <section className={`episode-context ${full?'is-static':''}`} aria-label="Opening context">
   <h2>{context.title}</h2>
   <div className="episode-context-controls">
-   <button onClick={onDone}>{full?'Continue to teaser →':'Skip context →'}</button>
+   <button data-game-next onClick={onDone}>{full?'Continue to teaser →':'Skip context →'}</button>
    {!full&&<button onClick={toggle}>{paused?'Resume crawl':'Pause crawl'}</button>}
    {!full&&<button onClick={()=>setFull(true)}>Show full text</button>}
   </div>

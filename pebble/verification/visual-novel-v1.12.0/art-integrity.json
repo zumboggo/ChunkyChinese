@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "unchangedApprovedPartsOrPoses": 69,
+  "sourcePacks": [
+    "alden-sincere/alden-sincere.bin",
+    "hannah-sincere/hannah-sincere.bin",
+    "cast-reactions/bo/bo.bin",
+    "cast-reactions/jeremy/jeremy.bin",
+    "gorgon-reactions/gorgon.bin",
+    "YoungAlden original five portraits, shared eight-colour quantization"
+  ],
+  "comparison": "Exact RGB pixels composited on white; existing Hannah navy mapping retained."
+}

@@ -1,0 +1,37 @@
+{
+  "durationMs": 1800,
+  "frameIntervalMs": 100,
+  "playback": "once then hold",
+  "animations": {
+    "blink": {
+      "distinctFrames": 4,
+      "heldFramesIdentical": true,
+      "svgValid": true
+    },
+    "surprised": {
+      "distinctFrames": 9,
+      "heldFramesIdentical": true,
+      "svgValid": true
+    },
+    "thinking": {
+      "distinctFrames": 6,
+      "heldFramesIdentical": true,
+      "svgValid": true
+    },
+    "talking": {
+      "distinctFrames": 13,
+      "heldFramesIdentical": true,
+      "svgValid": true
+    },
+    "laughing": {
+      "distinctFrames": 12,
+      "heldFramesIdentical": true,
+      "svgValid": true
+    },
+    "worried": {
+      "distinctFrames": 6,
+      "heldFramesIdentical": true,
+      "svgValid": true
+    }
+  }
+}

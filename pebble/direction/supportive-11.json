@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "episode": "supportive-11",
+  "cues": [
+    {
+      "anchor": "watch_train_phone",
+      "scene": "train-phone"
+    },
+    {
+      "anchor": "watch_restaurant_seat",
+      "scene": "restaurant-seat"
+    },
+    {
+      "anchor": "watch_hannah_fry",
+      "scene": "hannah-fry"
+    },
+    {
+      "anchor": "watch_alden_listens",
+      "scene": "alden-listens"
+    },
+    {
+      "anchor": "watch_train_reflection",
+      "scene": "train-reflection"
+    }
+  ]
+}

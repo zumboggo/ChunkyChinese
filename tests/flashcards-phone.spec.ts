@@ -1,3 +1,4 @@
+import {selectSettings} from './helpers/settings'
 import { expect, test, type Locator } from '@playwright/test'
 
 test.use({
@@ -53,8 +54,8 @@ async function swipe(
 async function openFlashcards(page: import('@playwright/test').Page) {
   await page.goto('/', { waitUntil: 'domcontentloaded' })
   await expect(page.getByText(/Seeded \d+ LMS target words\./)).toBeVisible({ timeout: 15_000 })
-  await page.getByRole('button', { name: 'Settings', exact: true }).click()
-  await page.locator('summary').filter({ hasText: 'Flashcards' }).click()
+  await page.getByRole('button', { name: 'Settings', exact: true }).first().click()
+  await selectSettings(page,'Flashcards')
   await page.getByLabel('Flashcard queue').selectOption('new')
   await page.getByRole('button', { name: 'Flashcards', exact: true }).click()
   await expect(page.locator('.flashcard.front-side')).toBeVisible()
@@ -135,10 +136,10 @@ test('Flashcards uses swipes and Choice A-D keys without rating buttons', async 
 test('a repeated learning card resets its dismiss animation', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' })
   await expect(page.getByText(/Seeded \d+ LMS target words\./)).toBeVisible({ timeout: 15_000 })
-  await page.getByRole('button', { name: 'Settings', exact: true }).click()
-  await page.locator('summary').filter({ hasText: 'Goals' }).click()
+  await page.getByRole('button', { name: 'Settings', exact: true }).first().click()
+  await selectSettings(page,'Goals')
   await page.getByLabel('Flashcards / Day').fill('1')
-  await page.locator('summary').filter({ hasText: 'Flashcards' }).click()
+  await selectSettings(page,'Flashcards')
   await page.getByLabel('Flashcard queue').selectOption('new')
   await page.getByRole('button', { name: 'Flashcards', exact: true }).click()
 

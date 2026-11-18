@@ -1,0 +1,177 @@
+[
+  {
+    "actor": "Alden",
+    "emotion": "blink",
+    "id": 1000
+  },
+  {
+    "actor": "Alden",
+    "emotion": "surprised",
+    "id": 1001
+  },
+  {
+    "actor": "Alden",
+    "emotion": "thinking",
+    "id": 1002
+  },
+  {
+    "actor": "Alden",
+    "emotion": "talking",
+    "id": 1003
+  },
+  {
+    "actor": "Alden",
+    "emotion": "laughing",
+    "id": 1004
+  },
+  {
+    "actor": "Alden",
+    "emotion": "worried",
+    "id": 1005
+  },
+  {
+    "actor": "Hannah",
+    "emotion": "blink",
+    "id": 1006
+  },
+  {
+    "actor": "Hannah",
+    "emotion": "surprised",
+    "id": 1007
+  },
+  {
+    "actor": "Hannah",
+    "emotion": "thinking",
+    "id": 1008
+  },
+  {
+    "actor": "Hannah",
+    "emotion": "talking",
+    "id": 1009
+  },
+  {
+    "actor": "Hannah",
+    "emotion": "laughing",
+    "id": 1010
+  },
+  {
+    "actor": "Hannah",
+    "emotion": "worried",
+    "id": 1011
+  },
+  {
+    "actor": "Boe",
+    "emotion": "blink",
+    "id": 1012
+  },
+  {
+    "actor": "Boe",
+    "emotion": "surprised",
+    "id": 1013
+  },
+  {
+    "actor": "Boe",
+    "emotion": "thinking",
+    "id": 1014
+  },
+  {
+    "actor": "Boe",
+    "emotion": "talking",
+    "id": 1015
+  },
+  {
+    "actor": "Boe",
+    "emotion": "laughing",
+    "id": 1016
+  },
+  {
+    "actor": "Boe",
+    "emotion": "worried",
+    "id": 1017
+  },
+  {
+    "actor": "Jeremy",
+    "emotion": "blink",
+    "id": 1018
+  },
+  {
+    "actor": "Jeremy",
+    "emotion": "surprised",
+    "id": 1019
+  },
+  {
+    "actor": "Jeremy",
+    "emotion": "thinking",
+    "id": 1020
+  },
+  {
+    "actor": "Jeremy",
+    "emotion": "talking",
+    "id": 1021
+  },
+  {
+    "actor": "Jeremy",
+    "emotion": "laughing",
+    "id": 1022
+  },
+  {
+    "actor": "Jeremy",
+    "emotion": "worried",
+    "id": 1023
+  },
+  {
+    "actor": "Gorgon",
+    "emotion": "neutral",
+    "id": 1024
+  },
+  {
+    "actor": "Gorgon",
+    "emotion": "attentive",
+    "id": 1025
+  },
+  {
+    "actor": "Gorgon",
+    "emotion": "thoughtful",
+    "id": 1026
+  },
+  {
+    "actor": "Gorgon",
+    "emotion": "skeptical",
+    "id": 1027
+  },
+  {
+    "actor": "Gorgon",
+    "emotion": "serious",
+    "id": 1028
+  },
+  {
+    "actor": "Gorgon",
+    "emotion": "amused",
+    "id": 1029
+  },
+  {
+    "actor": "YoungAlden",
+    "emotion": "neutral",
+    "id": 1030
+  },
+  {
+    "actor": "YoungAlden",
+    "emotion": "curious",
+    "id": 1031
+  },
+  {
+    "actor": "YoungAlden",
+    "emotion": "confused",
+    "id": 1032
+  },
+  {
+    "actor": "YoungAlden",
+    "emotion": "thoughtful",
+    "id": 1033
+  },
+  {
+    "actor": "YoungAlden",
+    "emotion": "worried",
+    "id": 1034
+  }
+]

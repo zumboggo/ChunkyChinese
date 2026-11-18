@@ -8,9 +8,10 @@ export default function EpisodeIntro({intro,onDone,hotkeys}:{intro:EpisodeIntroM
  const [needsPlay,setNeedsPlay]=useState(true)
  const [failed,setFailed]=useState(false)
 
- function play(){
+ function play(restart=false){
   const media=video.current
   if(!media||failed)return
+  if(restart)media.currentTime=0
   void media.play().then(()=>setNeedsPlay(false)).catch(()=>setNeedsPlay(true))
  }
 
@@ -52,8 +53,9 @@ export default function EpisodeIntro({intro,onDone,hotkeys}:{intro:EpisodeIntroM
    onPlay={()=>setNeedsPlay(false)} onPause={()=>setNeedsPlay(true)}
    onEnded={onDone} onError={()=>{setFailed(true);setNeedsPlay(false)}}/>
   <div className="episode-intro-actions">
-   {needsPlay&&!failed&&<button className="episode-primary" onClick={play}>Play intro with sound</button>}
-   <button onClick={onDone}>{failed?'Continue to episode →':'Skip intro →'}</button>
+   {!failed&&<button className="episode-primary" data-game-playback onClick={()=>{if(video.current?.paused)play();else video.current?.pause()}}>{needsPlay?'Play intro with sound':'Pause intro'}</button>}
+   {!failed&&<button data-game-replay onClick={()=>play(true)}>Replay intro</button>}
+   <button data-game-next onClick={onDone}>{failed?'Continue to episode →':'Skip intro →'}</button>
   </div>
   {failed?<p role="status">The intro could not load. You can continue with the story.</p>:<p className="episode-intro-hint">{intro.durationSeconds??6} seconds · Sound on · 1 / →: skip</p>}
  </section>

@@ -1,3 +1,4 @@
+import {selectSettings} from './helpers/settings'
 import {test,expect} from '@playwright/test'
 
 test('Reader compact mode also halves Game text and keeps common lines on one small screen',async({page},info)=>{
@@ -5,7 +6,7 @@ test('Reader compact mode also halves Game text and keeps common lines on one sm
  await page.emulateMedia({reducedMotion:'reduce'})
  await page.goto('/')
  await page.getByRole('button',{name:'Settings',exact:true}).first().click()
- await page.locator('.settings-group-summary').filter({hasText:'Reader'}).click()
+ await selectSettings(page,'Reader')
  const toggle=page.getByRole('checkbox',{name:/Compact text for small screens/})
  if(!await toggle.isChecked())await toggle.check()
  await page.getByRole('button',{name:'Game',exact:true}).click()

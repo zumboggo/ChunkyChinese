@@ -5,6 +5,7 @@ show Alden sad left
 rest Alden seated
 camera listener Alden cut
 I: 系统关掉了。我看窗户外面，房子一座座过去。以前的家，就在这附近。
+label watch_train_phone
 I: 出事的房子已经重新做好了。那个死过很多人的地方，也和以前一样了。
 I: 城市看起来没有伤疤了。至少，眼睛看得见的地方没有。
 choice city
@@ -28,6 +29,7 @@ rest YoungAlden seated
 rest Hannah seated
 camera two YoungAlden Hannah cut
 I: 那时候，我们面对面坐着。我喝草莓奶昔，我们还一起吃薯条。
+label watch_restaurant_seat
 Hannah [happy,explain]: 以前上大学的时候，老师让我们想想，以后做事，最想记住的是什么。
 Hannah [happy,explain]: 我说的是：“很高兴能帮忙！”很多人都这样说，对吧？
 Hannah [neutral,hesitant]: 可现在做了一段时间，我想说：“我们还可以做得更好。”
@@ -46,6 +48,7 @@ label private
 Hannah [neutral,explain]: 有了超能力，很容易出错。事情发生得太快，你的脑子还没想好，就已经过去了。
 Hannah [worried,explain]: 有时候，我们觉得一定会发生的事，却不会发生。自己的能力，还有坏人的能力，都可能比自己大太多。
 I: 她拿了一根薯条。刚才我还觉得，这只是想说得好听一点。
+label watch_hannah_fry
 Hannah [neutral,explain]: 等事情过去，说“我已经很努力了”，很容易。不去看做错的地方，也很容易。
 Hannah [sad,hesitant]: 因为错的地方，总是那么多。就算你已经很努力，还是会觉得自己一点用也没有。
 choice mistakes
@@ -63,6 +66,7 @@ Hannah [determined,explain]: 所以，我想做那个愿意去看的人。这样
 express YoungAlden worried
 camera listener YoungAlden cut
 I: 我不再喝东西了。她不是在说怎么让大家喜欢她。
+label watch_alden_listens
 camera two YoungAlden Hannah cut
 Hannah [neutral,hesitant]: 也许我去看了，和我一起做事的人，就不需要看得那么不好受。
 Hannah [neutral,explain]: 和力气特别大，或者能控制别人想法的能力比起来，我的能力，让我心里没那么伤心。
@@ -105,4 +109,5 @@ show Alden determined left
 rest Alden seated
 camera listener Alden cut
 I: 我看外面的房子。她说的“更好”，不只是再多救一个人。也可能是，让另外一个人不用什么都自己做。
+label watch_train_reflection
 end

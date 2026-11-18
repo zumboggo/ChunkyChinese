@@ -1,0 +1,30 @@
+[
+  {
+    "name": "master",
+    "model": "rd-plus",
+    "reservedMilliUsd": 25,
+    "status": "succeeded",
+    "predictionId": "c5se9czwr5rmt0d1v0ra2htb7m"
+  },
+  {
+    "name": "master-v2",
+    "model": "rd-plus",
+    "reservedMilliUsd": 25,
+    "status": "succeeded",
+    "predictionId": "d85vk8adznrmw0d1v0s85c97d8"
+  },
+  {
+    "name": "animation-pilot",
+    "model": "rd-animation",
+    "reservedMilliUsd": 70,
+    "status": "succeeded",
+    "predictionId": "59yyt42x1xrmt0d1v0saybryb0"
+  },
+  {
+    "name": "master-v3",
+    "model": "rd-plus",
+    "reservedMilliUsd": 25,
+    "status": "succeeded",
+    "predictionId": "877dkjw8zsrmy0d1v0srgmhkag"
+  }
+]

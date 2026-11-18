@@ -1,0 +1,17 @@
+{
+  "character": "alden-chibi",
+  "sourceFrameCount": 22,
+  "uniqueFrames": 11,
+  "resourceBytes": 5732,
+  "metadataBytes": 100,
+  "bytesPerFrame": 512,
+  "rowScratchBytes": 16,
+  "fullFramePixelBytesAt4bpp": 5632,
+  "estimatedBasePlusPixelPatchBytes": 2429,
+  "format": "4-bit indices with transparent index 0; identical frames deduplicated",
+  "choice": "Fixed rows bound decoding work and support a 16-byte read buffer. Patch estimate excludes indices and runtime costs; evaluate visually before choosing overlays.",
+  "sha256": "1bf3d59dbcd9cfa71836555e5d6143125769a490d481cc2db0eaed4d6642152f",
+  "measuredReaderPeakHeap": null,
+  "measuredDrawTimeMs": null,
+  "verification": "Asset storage measured; row buffer is a design requirement, not a runtime measurement. Native integration and emulator benchmarks pending visual review."
+}

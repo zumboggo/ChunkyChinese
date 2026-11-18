@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "checks": [
+    "three gestures",
+    "finite holds",
+    "deterministic replay",
+    "fan motion",
+    "screensaver motion",
+    "both motion",
+    "off freezes screen"
+  ],
+  "measurements": [
+    {
+      "shot": 0,
+      "minFree": 124908,
+      "maxDrawMs": 27,
+      "draws": 49
+    },
+    {
+      "shot": 0,
+      "minFree": 124908,
+      "maxDrawMs": 43,
+      "draws": 49
+    },
+    {
+      "shot": 1,
+      "minFree": 124908,
+      "maxDrawMs": 27,
+      "draws": 49
+    },
+    {
+      "shot": 1,
+      "minFree": 124908,
+      "maxDrawMs": 27,
+      "draws": 49
+    },
+    {
+      "shot": 2,
+      "minFree": 124908,
+      "maxDrawMs": 26,
+      "draws": 49
+    },
+    {
+      "shot": 2,
+      "minFree": 124908,
+      "maxDrawMs": 27,
+      "draws": 49
+    }
+  ],
+  "cacheBytes": 512,
+  "artBytes": 2589,
+  "pbwSha256": "0ee488162ed929772a869823786e999ef12252b9f4b9c39287a6edc2955de2c2",
+  "physicalWatchTested": false
+}

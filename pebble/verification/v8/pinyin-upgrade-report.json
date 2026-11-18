@@ -1,0 +1,8 @@
+{
+  "fromApp": "1.7.0",
+  "toApp": "1.8.1",
+  "savedChineseEncounterRestoredAsSamePinyinEnglishPhrase": true,
+  "bundledVersionMigration": true,
+  "pbwSha256": "9cf55d6d76e21b837985975c24643bc766e8369a61f2a6f839835cef1f81c383",
+  "physicalWatchTested": false
+}

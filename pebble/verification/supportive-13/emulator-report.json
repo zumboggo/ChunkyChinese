@@ -1,0 +1,190 @@
+{
+  "episodeId": "supportive-13",
+  "episodeVersion": "2a1cec814aef",
+  "scenes": [
+    {
+      "id": "train-phone",
+      "freeBytes": 3896,
+      "drawAverageMs": 8,
+      "drawMaximumMs": 14
+    },
+    {
+      "id": "restaurant-seat",
+      "freeBytes": 3896,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 12
+    },
+    {
+      "id": "hannah-fry",
+      "freeBytes": 3896,
+      "drawAverageMs": 10,
+      "drawMaximumMs": 15
+    },
+    {
+      "id": "alden-listens",
+      "freeBytes": 3896,
+      "drawAverageMs": 8,
+      "drawMaximumMs": 25
+    },
+    {
+      "id": "train-reflection",
+      "freeBytes": 3896,
+      "drawAverageMs": 8,
+      "drawMaximumMs": 11
+    },
+    {
+      "id": "gorgon-listen",
+      "freeBytes": 3896,
+      "drawAverageMs": 8,
+      "drawMaximumMs": 12
+    },
+    {
+      "id": "gorgon-offer",
+      "freeBytes": 3896,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 11
+    },
+    {
+      "id": "gorgon-think",
+      "freeBytes": 3896,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 13
+    },
+    {
+      "id": "gorgon-sip",
+      "freeBytes": 3896,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 10
+    },
+    {
+      "id": "boe-listen",
+      "freeBytes": 3896,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 11
+    },
+    {
+      "id": "boe-offer",
+      "freeBytes": 3896,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 12
+    },
+    {
+      "id": "boe-think",
+      "freeBytes": 3896,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 10
+    },
+    {
+      "id": "boe-sip",
+      "freeBytes": 3896,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 12
+    },
+    {
+      "id": "jeremy-listen",
+      "freeBytes": 3896,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 8
+    },
+    {
+      "id": "jeremy-offer",
+      "freeBytes": 3896,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 10
+    },
+    {
+      "id": "jeremy-think",
+      "freeBytes": 3896,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 13
+    },
+    {
+      "id": "jeremy-sip",
+      "freeBytes": 3896,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 11
+    },
+    {
+      "id": "background-train-train",
+      "freeBytes": 3896,
+      "drawAverageMs": 7,
+      "drawMaximumMs": 9
+    },
+    {
+      "id": "background-cafe-walkers",
+      "freeBytes": 3896,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 9
+    },
+    {
+      "id": "background-consulate-walkers",
+      "freeBytes": 3896,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 7
+    },
+    {
+      "id": "background-home-foliage",
+      "freeBytes": 3896,
+      "drawAverageMs": 4,
+      "drawMaximumMs": 5
+    },
+    {
+      "id": "background-classroom-foliage",
+      "freeBytes": 3896,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 7
+    },
+    {
+      "id": "background-trading-light",
+      "freeBytes": 3896,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 11
+    },
+    {
+      "id": "background-home-rain",
+      "freeBytes": 3896,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 9
+    },
+    {
+      "id": "background-home-cat",
+      "freeBytes": 3896,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 7
+    },
+    {
+      "id": "jeremy-train-listen",
+      "freeBytes": 3896,
+      "drawAverageMs": 10,
+      "drawMaximumMs": 14
+    },
+    {
+      "id": "boe-train-think",
+      "freeBytes": 3896,
+      "drawAverageMs": 11,
+      "drawMaximumMs": 58
+    },
+    {
+      "id": "jeremy-train-think",
+      "freeBytes": 3896,
+      "drawAverageMs": 11,
+      "drawMaximumMs": 14
+    },
+    {
+      "id": "jeremy-street-listen",
+      "freeBytes": 3896,
+      "drawAverageMs": 5,
+      "drawMaximumMs": 9
+    },
+    {
+      "id": "boe-street-think",
+      "freeBytes": 3896,
+      "drawAverageMs": 6,
+      "drawMaximumMs": 11
+    }
+  ],
+  "motionPreferenceRestart": true,
+  "previewProgressPreserved": true,
+  "pbwSha256": "5f238de2e2f5d1d19f3d1d46058b419e548df8ae6dbb985bb1d5453b9001e743",
+  "physicalWatchTested": false
+}

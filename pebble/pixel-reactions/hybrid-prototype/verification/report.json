@@ -1,0 +1,66 @@
+{
+  "pbwSha256": "2892e98272902517c914aff3e766f8d414aeb6804e1222f3a5895b8f0979f401",
+  "integratedReader": true,
+  "physicalWatch": false,
+  "resourceBytes": 45244,
+  "sharedStreamBufferBytes": 512,
+  "checks": [
+    "finite reaction holds",
+    "held image stable",
+    "three identical replays",
+    "select returns to menu",
+    "back returns without advancing story",
+    "reader loads after preview",
+    "preview works after opening story"
+  ],
+  "measurements": [
+    {
+      "minFreeHeap": 4020,
+      "maxDrawMs": 54,
+      "avgDrawMs": 39,
+      "draws": 31
+    },
+    {
+      "minFreeHeap": 4020,
+      "maxDrawMs": 47,
+      "avgDrawMs": 38,
+      "draws": 31
+    },
+    {
+      "minFreeHeap": 4020,
+      "maxDrawMs": 1042,
+      "avgDrawMs": 104,
+      "draws": 31
+    },
+    {
+      "minFreeHeap": 4020,
+      "maxDrawMs": 4294966339,
+      "avgDrawMs": 138547242,
+      "draws": 31
+    },
+    {
+      "minFreeHeap": 4020,
+      "maxDrawMs": 55,
+      "avgDrawMs": 39,
+      "draws": 31
+    }
+  ],
+  "minimumFreeHeap": 4020,
+  "maximumDrawMs": 4294966339,
+  "functionalChecksPassed": true,
+  "timingReliable": false,
+  "timingNote": "SDK wall-clock measurements include approximately +/-1000 ms discontinuities and unsigned underflow. Raw evidence retained; smoothness/performance is not certified.",
+  "ordinaryDrawSamplesMs": {
+    "min": 31,
+    "median": 39,
+    "max": 55,
+    "count": 149
+  },
+  "anomalousDrawSamples": 6,
+  "nativeFootprintBytes": 27876,
+  "baselineNativeFootprintBytes": 25832,
+  "addedNativeFootprintBytes": 2044,
+  "totalResourceBytes": 246332,
+  "resourceBudgetBytes": 262144,
+  "remainingResourceBytes": 15812
+}

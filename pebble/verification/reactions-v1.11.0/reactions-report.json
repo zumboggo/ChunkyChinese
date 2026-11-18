@@ -1,0 +1,254 @@
+{
+  "pbwSha256": "0705c165efc54cdda59f9c08ec40d4076e6902e8573e9513d52ac111c833a69c",
+  "reactions": [
+    {
+      "id": 0,
+      "actor": "Alden",
+      "emotion": "blink",
+      "freeBytes": 4520,
+      "maxDrawMs": 32
+    },
+    {
+      "id": 1,
+      "actor": "Alden",
+      "emotion": "surprised",
+      "freeBytes": 4520,
+      "maxDrawMs": 30
+    },
+    {
+      "id": 2,
+      "actor": "Alden",
+      "emotion": "thinking",
+      "freeBytes": 4520,
+      "maxDrawMs": 37
+    },
+    {
+      "id": 3,
+      "actor": "Alden",
+      "emotion": "talking",
+      "freeBytes": 4520,
+      "maxDrawMs": 31
+    },
+    {
+      "id": 4,
+      "actor": "Alden",
+      "emotion": "laughing",
+      "freeBytes": 4520,
+      "maxDrawMs": 29
+    },
+    {
+      "id": 5,
+      "actor": "Alden",
+      "emotion": "worried",
+      "freeBytes": 4520,
+      "maxDrawMs": 31
+    },
+    {
+      "id": 6,
+      "actor": "Hannah",
+      "emotion": "blink",
+      "freeBytes": 4520,
+      "maxDrawMs": 33
+    },
+    {
+      "id": 7,
+      "actor": "Hannah",
+      "emotion": "surprised",
+      "freeBytes": 4520,
+      "maxDrawMs": 55
+    },
+    {
+      "id": 8,
+      "actor": "Hannah",
+      "emotion": "thinking",
+      "freeBytes": 4520,
+      "maxDrawMs": 32
+    },
+    {
+      "id": 9,
+      "actor": "Hannah",
+      "emotion": "talking",
+      "freeBytes": 4520,
+      "maxDrawMs": 32
+    },
+    {
+      "id": 10,
+      "actor": "Hannah",
+      "emotion": "laughing",
+      "freeBytes": 4520,
+      "maxDrawMs": 32
+    },
+    {
+      "id": 11,
+      "actor": "Hannah",
+      "emotion": "worried",
+      "freeBytes": 4520,
+      "maxDrawMs": 31
+    },
+    {
+      "id": 12,
+      "actor": "Boe",
+      "emotion": "blink",
+      "freeBytes": 4520,
+      "maxDrawMs": 32
+    },
+    {
+      "id": 13,
+      "actor": "Boe",
+      "emotion": "surprised",
+      "freeBytes": 4520,
+      "maxDrawMs": 30
+    },
+    {
+      "id": 14,
+      "actor": "Boe",
+      "emotion": "thinking",
+      "freeBytes": 4520,
+      "maxDrawMs": 36
+    },
+    {
+      "id": 15,
+      "actor": "Boe",
+      "emotion": "talking",
+      "freeBytes": 4520,
+      "maxDrawMs": 33
+    },
+    {
+      "id": 16,
+      "actor": "Boe",
+      "emotion": "laughing",
+      "freeBytes": 4520,
+      "maxDrawMs": 31
+    },
+    {
+      "id": 17,
+      "actor": "Boe",
+      "emotion": "worried",
+      "freeBytes": 4520,
+      "maxDrawMs": 30
+    },
+    {
+      "id": 18,
+      "actor": "Jeremy",
+      "emotion": "blink",
+      "freeBytes": 4520,
+      "maxDrawMs": 30
+    },
+    {
+      "id": 19,
+      "actor": "Jeremy",
+      "emotion": "surprised",
+      "freeBytes": 4520,
+      "maxDrawMs": 29
+    },
+    {
+      "id": 20,
+      "actor": "Jeremy",
+      "emotion": "thinking",
+      "freeBytes": 4520,
+      "maxDrawMs": 29
+    },
+    {
+      "id": 21,
+      "actor": "Jeremy",
+      "emotion": "talking",
+      "freeBytes": 4520,
+      "maxDrawMs": 33
+    },
+    {
+      "id": 22,
+      "actor": "Jeremy",
+      "emotion": "laughing",
+      "freeBytes": 4520,
+      "maxDrawMs": 28
+    },
+    {
+      "id": 23,
+      "actor": "Jeremy",
+      "emotion": "worried",
+      "freeBytes": 4520,
+      "maxDrawMs": 31
+    },
+    {
+      "id": 24,
+      "actor": "Gorgon",
+      "emotion": "neutral",
+      "freeBytes": 4520,
+      "maxDrawMs": 18
+    },
+    {
+      "id": 25,
+      "actor": "Gorgon",
+      "emotion": "attentive",
+      "freeBytes": 4520,
+      "maxDrawMs": 19
+    },
+    {
+      "id": 26,
+      "actor": "Gorgon",
+      "emotion": "thoughtful",
+      "freeBytes": 4520,
+      "maxDrawMs": 21
+    },
+    {
+      "id": 27,
+      "actor": "Gorgon",
+      "emotion": "skeptical",
+      "freeBytes": 4520,
+      "maxDrawMs": 59
+    },
+    {
+      "id": 28,
+      "actor": "Gorgon",
+      "emotion": "serious",
+      "freeBytes": 4520,
+      "maxDrawMs": 18
+    },
+    {
+      "id": 29,
+      "actor": "Gorgon",
+      "emotion": "amused",
+      "freeBytes": 4520,
+      "maxDrawMs": 20
+    },
+    {
+      "id": 30,
+      "actor": "YoungAlden",
+      "emotion": "neutral",
+      "freeBytes": 4520,
+      "maxDrawMs": 20
+    },
+    {
+      "id": 31,
+      "actor": "YoungAlden",
+      "emotion": "curious",
+      "freeBytes": 4520,
+      "maxDrawMs": 19
+    },
+    {
+      "id": 32,
+      "actor": "YoungAlden",
+      "emotion": "confused",
+      "freeBytes": 4520,
+      "maxDrawMs": 18
+    },
+    {
+      "id": 33,
+      "actor": "YoungAlden",
+      "emotion": "thoughtful",
+      "freeBytes": 4520,
+      "maxDrawMs": 23
+    },
+    {
+      "id": 34,
+      "actor": "YoungAlden",
+      "emotion": "worried",
+      "freeBytes": 4520,
+      "maxDrawMs": 22
+    }
+  ],
+  "stableHolds": true,
+  "focusPauseResume": true,
+  "readingPositionPreserved": true,
+  "physicalWatchTested": false
+}

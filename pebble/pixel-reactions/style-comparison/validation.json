@@ -1,0 +1,25 @@
+{
+  "canvas": [
+    200,
+    228
+  ],
+  "timelineMs": 1800,
+  "frameIntervalMs": 100,
+  "styles": {
+    "pixel": {
+      "uniqueRenderedFrames": 4,
+      "neutralSurpriseEmbarrassedDistinct": true,
+      "finalPoseStable": true
+    },
+    "cutout": {
+      "uniqueRenderedFrames": 10,
+      "neutralSurpriseEmbarrassedDistinct": true,
+      "finalPoseStable": true
+    },
+    "detailed": {
+      "uniqueRenderedFrames": 10,
+      "neutralSurpriseEmbarrassedDistinct": true,
+      "finalPoseStable": true
+    }
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "episodeId": "supportive-13",
+  "episodeVersion": "6b319cc93962",
+  "scenes": [
+    {
+      "id": "train-phone",
+      "freeBytes": 16004,
+      "drawAverageMs": 31,
+      "drawMaximumMs": 48,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "restaurant-seat",
+      "freeBytes": 16004,
+      "drawAverageMs": 23,
+      "drawMaximumMs": 36,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "hannah-fry",
+      "freeBytes": 16004,
+      "drawAverageMs": 32,
+      "drawMaximumMs": 45,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "alden-listens",
+      "freeBytes": 16004,
+      "drawAverageMs": 23,
+      "drawMaximumMs": 34,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "train-reflection",
+      "freeBytes": 16004,
+      "drawAverageMs": 31,
+      "drawMaximumMs": 46,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "gorgon-listen",
+      "freeBytes": 16004,
+      "drawAverageMs": 26,
+      "drawMaximumMs": 85,
+      "exceededTargetFrame": true
+    },
+    {
+      "id": "gorgon-offer",
+      "freeBytes": 16004,
+      "drawAverageMs": 21,
+      "drawMaximumMs": 31,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "gorgon-think",
+      "freeBytes": 16004,
+      "drawAverageMs": 21,
+      "drawMaximumMs": 24,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "gorgon-sip",
+      "freeBytes": 16004,
+      "drawAverageMs": 20,
+      "drawMaximumMs": 27,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "boe-listen",
+      "freeBytes": 16004,
+      "drawAverageMs": 30,
+      "drawMaximumMs": 36,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "boe-offer",
+      "freeBytes": 16004,
+      "drawAverageMs": 32,
+      "drawMaximumMs": 35,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "boe-think",
+      "freeBytes": 16004,
+      "drawAverageMs": 31,
+      "drawMaximumMs": 34,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "boe-sip",
+      "freeBytes": 16004,
+      "drawAverageMs": 33,
+      "drawMaximumMs": 37,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "jeremy-listen",
+      "freeBytes": 16004,
+      "drawAverageMs": 28,
+      "drawMaximumMs": 39,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "jeremy-offer",
+      "freeBytes": 16004,
+      "drawAverageMs": 31,
+      "drawMaximumMs": 33,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "jeremy-think",
+      "freeBytes": 16004,
+      "drawAverageMs": 29,
+      "drawMaximumMs": 33,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "jeremy-sip",
+      "freeBytes": 16004,
+      "drawAverageMs": 31,
+      "drawMaximumMs": 33,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "background-train-train",
+      "freeBytes": 16004,
+      "drawAverageMs": 32,
+      "drawMaximumMs": 34,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "background-cafe-walkers",
+      "freeBytes": 16004,
+      "drawAverageMs": 32,
+      "drawMaximumMs": 38,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "background-consulate-walkers",
+      "freeBytes": 16004,
+      "drawAverageMs": 61,
+      "drawMaximumMs": 173,
+      "exceededTargetFrame": true
+    },
+    {
+      "id": "background-home-foliage",
+      "freeBytes": 16004,
+      "drawAverageMs": 32,
+      "drawMaximumMs": 33,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "background-classroom-foliage",
+      "freeBytes": 16004,
+      "drawAverageMs": 32,
+      "drawMaximumMs": 34,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "background-trading-light",
+      "freeBytes": 16004,
+      "drawAverageMs": 32,
+      "drawMaximumMs": 33,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "background-home-rain",
+      "freeBytes": 16004,
+      "drawAverageMs": 32,
+      "drawMaximumMs": 33,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "background-home-cat",
+      "freeBytes": 16004,
+      "drawAverageMs": 31,
+      "drawMaximumMs": 33,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "jeremy-train-listen",
+      "freeBytes": 16004,
+      "drawAverageMs": 28,
+      "drawMaximumMs": 32,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "boe-train-think",
+      "freeBytes": 16004,
+      "drawAverageMs": 31,
+      "drawMaximumMs": 36,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "jeremy-train-think",
+      "freeBytes": 16004,
+      "drawAverageMs": 29,
+      "drawMaximumMs": 33,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "jeremy-street-listen",
+      "freeBytes": 16004,
+      "drawAverageMs": 28,
+      "drawMaximumMs": 36,
+      "exceededTargetFrame": false
+    },
+    {
+      "id": "boe-street-think",
+      "freeBytes": 16004,
+      "drawAverageMs": 31,
+      "drawMaximumMs": 34,
+      "exceededTargetFrame": false
+    }
+  ],
+  "motionPreferenceRestart": true,
+  "previewProgressPreserved": true,
+  "pbwSha256": "e4ffd4bf2feb6fbec7265ebf370acedb1283e6c831e234b55b1366c5699865f9",
+  "physicalWatchTested": false
+}

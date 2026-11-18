@@ -1,9 +1,11 @@
+import {selectSettings} from './helpers/settings'
 import { test, expect } from '@playwright/test';
 
 test.describe('Chunky Chinese Vocab Smoke Tests', () => {
   test('should load the dashboard and navigate to settings', async ({ page }) => {
     // 1. Load the application
     await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.getByRole('button', { name: 'Go to dashboard' }).click();
 
     // 2. Check the document title
     await expect(page).toHaveTitle('Chunky Chinese');
@@ -13,7 +15,7 @@ test.describe('Chunky Chinese Vocab Smoke Tests', () => {
     await expect(page.locator('.dashboard-mode-card.flashcards-start')).toBeVisible();
 
     // 4. Locate and click the Settings navigation button
-    const settingsButton = page.getByRole('button', { name: 'Settings', exact: true });
+    const settingsButton = page.getByRole('button', { name: 'Settings', exact: true }).first();
     await expect(settingsButton).toBeVisible();
     await settingsButton.click();
 
@@ -26,12 +28,14 @@ test.describe('Chunky Chinese Vocab Smoke Tests', () => {
     expect(await page.locator('.dashboard').count()).toBe(0);
 
     // 6. Verify section inside Settings exists
+    await selectSettings(page,'Account & Sync');
     const cloudSyncHeading = page.locator('h2', { hasText: 'Cloud sync' });
     await expect(cloudSyncHeading).toBeVisible();
   });
 
   test('keeps dashboard study choices user-directed', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.getByRole('button', { name: 'Go to dashboard' }).click();
 
     await expect(page.locator('.dashboard-mode-card.flashcards-start')).toBeVisible();
     await expect(page.locator('.dashboard-mode-card.listen-start')).toBeVisible();
@@ -42,8 +46,9 @@ test.describe('Chunky Chinese Vocab Smoke Tests', () => {
 
   test('lets the learner choose persistent flashcard decks in Settings', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await page.getByRole('button', { name: 'Settings', exact: true }).click();
-    await page.locator('summary').filter({ hasText: 'Flashcards' }).click();
+    await page.getByRole('button', { name: 'Go to dashboard' }).click();
+    await page.getByRole('button', { name: 'Settings', exact: true }).first().click();
+    await selectSettings(page,'Flashcards');
 
     const allDeck = page.getByRole('checkbox', { name: /All/ });
     const originalDeck = page.getByRole('checkbox', { name: /Original Deck/ });
@@ -60,8 +65,8 @@ test.describe('Chunky Chinese Vocab Smoke Tests', () => {
     await expect(readingDeck).toBeChecked();
 
     await page.reload({ waitUntil: 'domcontentloaded' });
-    await page.getByRole('button', { name: 'Settings', exact: true }).click();
-    await page.locator('summary').filter({ hasText: 'Flashcards' }).click();
+    await page.getByRole('button', { name: 'Settings', exact: true }).first().click();
+    await selectSettings(page,'Flashcards');
     await expect(originalDeck).toBeChecked();
     await expect(readingDeck).toBeChecked();
   });
@@ -106,6 +111,7 @@ test.describe('Chunky Chinese Vocab Smoke Tests', () => {
       .catch(() => null);
 
     await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.getByRole('button', { name: 'Go to dashboard' }).click();
     await sentenceDataLoaded;
 
     const sentencesButton = page.locator('.dashboard-mode-card.listen-start');

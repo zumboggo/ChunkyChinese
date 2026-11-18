@@ -1,0 +1,20 @@
+{
+  "dynamicOpeningAndEndingTitles": true,
+  "largeCatalogueEpisodes": 150,
+  "rangePagesTested": 3,
+  "selectedEpisode": 149,
+  "realEpisodesDownloaded": [
+    11
+  ],
+  "exactPositionRestored": [
+    11,
+    13
+  ],
+  "completionMarkerPersisted": true,
+  "interruptedTransferRetainedEpisode": true,
+  "offlineResume": true,
+  "syntheticCreditsOnly": true,
+  "newCompletionCreditCount": 1,
+  "pbwSha256": "58144455f77f55abc06d4d19e9d2e87ee4db0e818dcbb0c7d73b8af3bfa0dca0",
+  "physicalWatchTested": false
+}

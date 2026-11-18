@@ -1,0 +1,116 @@
+{
+  "character": "alden-chibi-48",
+  "dimensions": [
+    48,
+    48
+  ],
+  "palette": [
+    "#2e1b17",
+    "#8b5637",
+    "#504e51",
+    "#b8b6b5",
+    "#ffd3aa"
+  ],
+  "animations": {
+    "idle": [
+      {
+        "file": "idle/0.png",
+        "ms": 600
+      },
+      {
+        "file": "idle/1.png",
+        "ms": 180
+      },
+      {
+        "file": "idle/2.png",
+        "ms": 180
+      },
+      {
+        "file": "idle/3.png",
+        "ms": 500
+      }
+    ],
+    "surprised": [
+      {
+        "file": "surprised/0.png",
+        "ms": 240
+      },
+      {
+        "file": "surprised/1.png",
+        "ms": 200
+      },
+      {
+        "file": "surprised/2.png",
+        "ms": 240
+      },
+      {
+        "file": "surprised/3.png",
+        "ms": 500
+      }
+    ],
+    "thinking": [
+      {
+        "file": "thinking/0.png",
+        "ms": 350
+      },
+      {
+        "file": "thinking/1.png",
+        "ms": 650
+      },
+      {
+        "file": "thinking/2.png",
+        "ms": 550
+      }
+    ],
+    "talking": [
+      {
+        "file": "talking/0.png",
+        "ms": 200
+      },
+      {
+        "file": "talking/1.png",
+        "ms": 200
+      },
+      {
+        "file": "talking/2.png",
+        "ms": 200
+      },
+      {
+        "file": "talking/3.png",
+        "ms": 400
+      }
+    ],
+    "happy": [
+      {
+        "file": "happy/0.png",
+        "ms": 240
+      },
+      {
+        "file": "happy/1.png",
+        "ms": 240
+      },
+      {
+        "file": "happy/2.png",
+        "ms": 240
+      },
+      {
+        "file": "happy/3.png",
+        "ms": 500
+      }
+    ],
+    "worried": [
+      {
+        "file": "worried/0.png",
+        "ms": 300
+      },
+      {
+        "file": "worried/1.png",
+        "ms": 350
+      },
+      {
+        "file": "worried/2.png",
+        "ms": 600
+      }
+    ]
+  }
+}

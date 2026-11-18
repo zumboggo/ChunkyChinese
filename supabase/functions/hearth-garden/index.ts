@@ -1,3 +1,4 @@
+import {watchCompletion} from './completion.ts'
 import {createClient} from 'npm:@supabase/supabase-js@2.106.2'
 const cors={'Access-Control-Allow-Headers':'authorization,apikey,content-type,x-client-info','Access-Control-Allow-Methods':'POST,OPTIONS'}
 const reply=(data:unknown,status=200)=>new Response(JSON.stringify(data),{status,headers:{...cors,'Content-Type':'application/json','Cache-Control':'no-store'}})
@@ -41,6 +42,12 @@ Deno.serve(async req=>{
    for(let offset=0;;offset+=1000){const {data,error}=await db.from('garden_prayers').select('id,credit_day,recorded_at,active').eq('user_id',owner).order('id').range(offset,offset+999);if(error)throw error;prayers.push(...data);if(data.length<1000)break}
    const {data:world,error:w}=await db.rpc('garden_sync',{owner,actions:[]});if(w)throw w
    return respond({version:1,exportedAt:new Date().toISOString(),profile,prayers,world})
+  }
+  if(action==='episode-complete'){
+   const event=watchCompletion(body.completion,owner)
+   const {error}=await db.from('review_events').upsert(event,{onConflict:'user_id,event_id',ignoreDuplicates:true});if(error)throw error
+   const {error:syncError}=await db.rpc('garden_sync',{owner,actions:[]});if(syncError)throw syncError
+   return respond({ack:event.event_data.sessionId})
   }
   if(action!=='sync')return respond({error:'Unknown action'},400)
   if(body.ops!==undefined&&!Array.isArray(body.ops))return respond({error:'Invalid operations'},400)

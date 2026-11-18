@@ -1,0 +1,594 @@
+{
+  "schema": 1,
+  "renderer": "visual-novel",
+  "actors": [
+    {
+      "name": "alden",
+      "palette": [
+        "321b12",
+        "ffd3aa",
+        "e99073",
+        "505052",
+        "aaabaa"
+      ]
+    },
+    {
+      "name": "hannah",
+      "palette": [
+        "392016",
+        "ffbc80",
+        "d68a50",
+        "000055",
+        "53688c"
+      ]
+    },
+    {
+      "name": "boe",
+      "palette": [
+        "2d201c",
+        "ffca9e",
+        "c89565",
+        "3e605e",
+        "986545"
+      ]
+    },
+    {
+      "name": "jeremy",
+      "palette": [
+        "321f17",
+        "ffca9e",
+        "f0ae87",
+        "ffffff",
+        "e7cfab"
+      ]
+    },
+    {
+      "name": "gorgon",
+      "palette": [
+        "333333",
+        "aaaaaa",
+        "777777",
+        "555555",
+        "aaaa00"
+      ]
+    },
+    {
+      "name": "young-alden",
+      "palette": [
+        "332222",
+        "ffaa55",
+        "aa7755",
+        "ffffaa",
+        "aaaa55"
+      ]
+    }
+  ],
+  "actions": {
+    "react": {
+      "prop": 0,
+      "keys": [
+        [
+          0,
+          151,
+          223,
+          0,
+          0
+        ],
+        [
+          550,
+          151,
+          223,
+          0,
+          0
+        ],
+        [
+          720,
+          151,
+          223,
+          1,
+          -1
+        ],
+        [
+          1450,
+          151,
+          223,
+          1,
+          0
+        ],
+        [
+          2300,
+          151,
+          223,
+          2,
+          0
+        ],
+        [
+          3100,
+          151,
+          223,
+          4,
+          0
+        ],
+        [
+          4000,
+          151,
+          223,
+          4,
+          0
+        ]
+      ]
+    },
+    "fry": {
+      "prop": 1,
+      "keys": [
+        [
+          0,
+          150,
+          223,
+          0,
+          0
+        ],
+        [
+          550,
+          150,
+          223,
+          0,
+          0
+        ],
+        [
+          1500,
+          110,
+          144,
+          0,
+          0
+        ],
+        [
+          1900,
+          110,
+          144,
+          1,
+          0
+        ],
+        [
+          2200,
+          110,
+          144,
+          1,
+          0
+        ],
+        [
+          2450,
+          110,
+          144,
+          0,
+          0
+        ],
+        [
+          2850,
+          110,
+          144,
+          0,
+          0
+        ],
+        [
+          3550,
+          150,
+          223,
+          4,
+          0
+        ],
+        [
+          4000,
+          150,
+          223,
+          4,
+          0
+        ]
+      ]
+    },
+    "phone": {
+      "prop": 2,
+      "keys": [
+        [
+          0,
+          151,
+          223,
+          0,
+          0
+        ],
+        [
+          450,
+          151,
+          223,
+          0,
+          0
+        ],
+        [
+          1300,
+          143,
+          153,
+          2,
+          0
+        ],
+        [
+          1900,
+          143,
+          153,
+          2,
+          0
+        ],
+        [
+          2150,
+          143,
+          153,
+          1,
+          -1
+        ],
+        [
+          2700,
+          143,
+          153,
+          1,
+          0
+        ],
+        [
+          3400,
+          151,
+          223,
+          5,
+          0
+        ],
+        [
+          4000,
+          151,
+          223,
+          5,
+          0
+        ]
+      ]
+    },
+    "listen": {
+      "prop": 0,
+      "keys": [
+        [
+          0,
+          150,
+          223,
+          0,
+          0
+        ],
+        [
+          900,
+          150,
+          223,
+          0,
+          0
+        ],
+        [
+          1200,
+          150,
+          223,
+          2,
+          1
+        ],
+        [
+          2800,
+          150,
+          223,
+          2,
+          1
+        ],
+        [
+          4000,
+          150,
+          223,
+          0,
+          0
+        ]
+      ]
+    },
+    "think": {
+      "prop": 0,
+      "keys": [
+        [
+          0,
+          150,
+          223,
+          0,
+          0
+        ],
+        [
+          1500,
+          127,
+          160,
+          2,
+          0
+        ],
+        [
+          2700,
+          127,
+          160,
+          2,
+          0
+        ],
+        [
+          4000,
+          150,
+          223,
+          2,
+          1
+        ]
+      ]
+    },
+    "offer": {
+      "prop": 3,
+      "keys": [
+        [
+          0,
+          150,
+          223,
+          0,
+          0
+        ],
+        [
+          1600,
+          147,
+          175,
+          3,
+          0
+        ],
+        [
+          2700,
+          147,
+          175,
+          3,
+          0
+        ],
+        [
+          4000,
+          147,
+          175,
+          0,
+          0
+        ]
+      ]
+    },
+    "sip": {
+      "prop": 3,
+      "keys": [
+        [
+          0,
+          150,
+          223,
+          0,
+          0
+        ],
+        [
+          1600,
+          112,
+          151,
+          0,
+          0
+        ],
+        [
+          2400,
+          112,
+          151,
+          0,
+          0
+        ],
+        [
+          4000,
+          150,
+          223,
+          0,
+          0
+        ]
+      ]
+    },
+    "settle": {
+      "prop": 0,
+      "keys": [
+        [
+          0,
+          150,
+          223,
+          0,
+          -4
+        ],
+        [
+          1200,
+          150,
+          223,
+          0,
+          0
+        ],
+        [
+          2400,
+          150,
+          223,
+          1,
+          0
+        ],
+        [
+          4000,
+          150,
+          223,
+          0,
+          0
+        ]
+      ]
+    },
+    "lower-cup": {
+      "prop": 3,
+      "keys": [
+        [
+          0,
+          112,
+          151,
+          0,
+          0
+        ],
+        [
+          600,
+          112,
+          151,
+          0,
+          0
+        ],
+        [
+          2200,
+          150,
+          223,
+          0,
+          0
+        ],
+        [
+          3000,
+          150,
+          223,
+          2,
+          1
+        ],
+        [
+          4000,
+          150,
+          223,
+          2,
+          0
+        ]
+      ]
+    }
+  },
+  "bindings": {
+    "train-phone": {
+      "actor": "alden",
+      "action": "phone"
+    },
+    "restaurant-seat": {
+      "actor": "young-alden",
+      "action": "settle"
+    },
+    "hannah-fry": {
+      "actor": "hannah",
+      "action": "fry"
+    },
+    "alden-listens": {
+      "actor": "young-alden",
+      "action": "lower-cup"
+    },
+    "train-reflection": {
+      "actor": "alden",
+      "action": "think"
+    },
+    "gorgon-listen": {
+      "actor": "gorgon",
+      "action": "listen"
+    },
+    "gorgon-offer": {
+      "actor": "gorgon",
+      "action": "offer"
+    },
+    "gorgon-think": {
+      "actor": "gorgon",
+      "action": "think"
+    },
+    "gorgon-sip": {
+      "actor": "gorgon",
+      "action": "sip"
+    },
+    "boe-listen": {
+      "actor": "boe",
+      "action": "listen"
+    },
+    "boe-offer": {
+      "actor": "boe",
+      "action": "offer"
+    },
+    "boe-think": {
+      "actor": "boe",
+      "action": "think"
+    },
+    "boe-sip": {
+      "actor": "boe",
+      "action": "sip"
+    },
+    "jeremy-listen": {
+      "actor": "jeremy",
+      "action": "listen"
+    },
+    "jeremy-offer": {
+      "actor": "jeremy",
+      "action": "offer"
+    },
+    "jeremy-think": {
+      "actor": "jeremy",
+      "action": "think"
+    },
+    "jeremy-sip": {
+      "actor": "jeremy",
+      "action": "sip"
+    },
+    "background-train-train": {
+      "actor": "alden",
+      "action": "settle"
+    },
+    "background-cafe-walkers": {
+      "actor": "alden",
+      "action": "settle"
+    },
+    "background-consulate-walkers": {
+      "actor": "alden",
+      "action": "settle"
+    },
+    "background-home-foliage": {
+      "actor": "alden",
+      "action": "settle"
+    },
+    "background-classroom-foliage": {
+      "actor": "alden",
+      "action": "settle"
+    },
+    "background-trading-light": {
+      "actor": "alden",
+      "action": "settle"
+    },
+    "background-home-rain": {
+      "actor": "alden",
+      "action": "settle"
+    },
+    "background-home-cat": {
+      "actor": "alden",
+      "action": "settle"
+    },
+    "jeremy-train-listen": {
+      "actor": "jeremy",
+      "action": "listen"
+    },
+    "boe-train-think": {
+      "actor": "boe",
+      "action": "think"
+    },
+    "jeremy-train-think": {
+      "actor": "jeremy",
+      "action": "think"
+    },
+    "jeremy-street-listen": {
+      "actor": "jeremy",
+      "action": "listen"
+    },
+    "boe-street-think": {
+      "actor": "boe",
+      "action": "think"
+    }
+  },
+  "roomDecor": {
+    "train": 0,
+    "cafe": 1,
+    "consulate": 2,
+    "home": 3,
+    "classroom": 1,
+    "trading": 0,
+    "street": 0
+  }
+}

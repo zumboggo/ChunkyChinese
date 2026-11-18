@@ -1,0 +1,36 @@
+{
+  "tool": "built-in ImageGen",
+  "date": "2026-11-14",
+  "purpose": "Reusable Pebble portrait atlases",
+  "briefs": [
+    {
+      "actor": "Gorgon",
+      "references": [
+        "cast-atlas.png",
+        "../../stories/characters/super-supportive/gorgon-seated-v1.png"
+      ],
+      "prompt": "Production pixel-art portrait atlas. Exactly three columns by two rows of equal square cells, white backgrounds, no borders, text or symbols. Consistent chest-up identity and costume in each cell. Match the existing cast-atlas chunky retro RPG style, hard square pixel clusters and limited palette, readable when each cell is reduced to 64×64. Six restrained expressions in reading order: neutral averted gaze; attentive listening with slight head tilt; thoughtful downward gaze; skeptical slightly lowered brow; serious firm mouth; quietly amused very small closed-mouth smile. Always black open eyes averted from viewer, gray skin, broad flat nose with four slit nostrils, no ears or hair; swept gray horn collar. Plain dark gray tunic. Not evil, no fangs, no human pink cheeks, no closed eyes or blinking. Keep ample margins around horns."
+    },
+    {
+      "actor": "Boe",
+      "references": [
+        "cast-atlas.png"
+      ],
+      "prompt": "Production pixel-art portrait atlas. Exactly three columns by two rows of equal square cells, white backgrounds, no borders, text or symbols. Consistent chest-up identity and costume in each cell. Match the existing cast-atlas chunky retro RPG style, hard square pixel clusters and limited palette, readable when each cell is reduced to 64×64. Sixteen-year-old boy, slender face, straight dark brown bowl haircut, round black-rim glasses, warm light skin, muted teal winter coat and tan scarf. Expressions: neutral; dry amused half-smile; skeptical raised eyebrow; thoughtful downward gaze; worried for a friend; surprised. Readable eyes through glasses. Not a child, no beard."
+    },
+    {
+      "actor": "Jeremy",
+      "references": [
+        "cast-atlas.png"
+      ],
+      "prompt": "Production pixel-art portrait atlas. Exactly three columns by two rows of equal square cells, white backgrounds, no borders, text or symbols. Consistent chest-up identity and costume in each cell. Match the existing cast-atlas chunky retro RPG style, hard square pixel clusters and limited palette, readable when each cell is reduced to 64×64. Sixteen-year-old outgoing boy, spirited angular teen face, short cropped dark brown hair, light warm skin, off-white sleeveless athletic shirt with muted tan edging, no glasses or scarf. Expressions: neutral attentive; warm smile; excited grin; thoughtful; worried for a friend; surprised. Not a child or bodybuilder, no beard."
+    },
+    {
+      "actor": "Alden",
+      "references": [
+        "cast-atlas.png"
+      ],
+      "prompt": "Production pixel-art portrait atlas. Exactly three columns by two rows of equal square cells, white backgrounds, no borders, text or symbols. Consistent chest-up identity and costume in each cell. Match the existing cast-atlas chunky retro RPG style, hard square pixel clusters and limited palette, readable when each cell is reduced to 64×64. Use only present-day Alden from the charcoal-coat cells: sixteen-year-old boy, tousled auburn brown hair, charcoal winter coat over gray ribbed sweater. Not young Alden in cream shirt or Hannah. Expressions: worried; surprised; embarrassed shy averted gaze; warmly happy subtle smile; curious attentive; skeptical uncertain. Preserve existing face and clothing identity."
+    }
+  ]
+}

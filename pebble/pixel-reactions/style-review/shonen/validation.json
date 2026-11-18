@@ -1,0 +1,16 @@
+{
+  "dimensions": [
+    32,
+    32
+  ],
+  "visibleColors": [
+    "#550000",
+    "#555555",
+    "#aa5500",
+    "#ffaa55"
+  ],
+  "visibleColorCount": 4,
+  "alpha": "binary transparency",
+  "enlargement": "16x nearest-neighbor; backdrop is not part of sprite palette",
+  "status": "Static design awaiting user review; not animated or installed"
+}
