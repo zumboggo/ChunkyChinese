@@ -5,7 +5,9 @@ from pathlib import Path
 from episode_speech import resolve_speech_model
 
 
-def normalize_speech(text):
+def normalize_speech(text, language="en"):
+    if language=="zh":
+        return "".join(re.findall(r"[\u3400-\u9fff]|[a-z0-9]+",text.lower()))
     """Conservative English integer normalization; retain every other word."""
     units=dict(zip('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen'.split(),range(20)))
     tens=dict(zip('twenty thirty forty fifty sixty seventy eighty ninety'.split(),range(20,100,10)))
@@ -32,6 +34,7 @@ def main():
     p.add_argument('--audio-end',type=float,help='Explicit clean-speech endpoint; never guessed automatically.')
     p.add_argument('--total-seconds',type=float,help='Optional total length; remaining frames hold the final reaction.')
     p.add_argument('--dialogue',default='')
+    p.add_argument('--speech-language',choices=['en','zh'],default='en')
     p.add_argument('--speech-model',help='Cached model or local directory; defaults to base.en when --dialogue is supplied.')
     p.add_argument('--speech-cache',type=Path,help='Explicit existing cache; otherwise discover the project and Hugging Face caches offline.')
     p.add_argument('--overwrite',action='store_true')
@@ -49,7 +52,7 @@ def main():
     if a.dialogue:
         try:
             from faster_whisper import WhisperModel
-            speech_runtime = resolve_speech_model(a.speech_model or 'base.en', a.speech_cache)
+            speech_runtime = resolve_speech_model(a.speech_model or ('base' if a.speech_language=='zh' else 'base.en'), a.speech_cache)
             model = WhisperModel(speech_runtime['modelPath'], device='cpu', compute_type='int8', local_files_only=True)
         except (ImportError, OSError, ValueError, RuntimeError) as error:
             p.error(str(error))
@@ -103,10 +106,11 @@ def main():
         run(['-v','error','-ss',str(t),'-i',str(a.output),'-frames:v','1','-q:v','2',str(a.output.with_suffix('.'+label+'.jpg'))])
     report={'source':str(a.source.resolve()),'output':str(a.output.resolve()),'dimensions':[854,480],'fps':fps,'hold_seconds':hold/fps,'motion_seconds':motion/fps,'reaction_hold_seconds':tail/fps,'total_seconds':duration,'decoded_audio_seconds':len(samples)/8000,'audio_non_silent':True,'audio_starts_after_hold':True,'hold_mean_pixel_difference':hold_diff,'sha256':hashlib.sha256(a.output.read_bytes()).hexdigest(),'expected_dialogue':a.dialogue,'speech_check':'not run','review':'One visual/listening review remains; automated checks do not prove natural acting or lip sync.'}
     if model is not None:
-        segments,_=model.transcribe(str(a.output),language='en',beam_size=5,vad_filter=True)
+        segments,_=model.transcribe(str(a.output),language=a.speech_language,beam_size=5,vad_filter=True)
         transcript=' '.join(s.text.strip() for s in segments)
-        report.update(speech_check='pass' if normalize_speech(transcript)==normalize_speech(a.dialogue) else 'review extra/missing words',transcription=transcript)
+        report.update(speech_check='pass' if normalize_speech(transcript,a.speech_language)==normalize_speech(a.dialogue,a.speech_language) else 'review extra/missing words',transcription=transcript)
         report['speech_runtime'] = speech_runtime
+        report['speech_language'] = a.speech_language
     report_path=a.output.with_suffix('.checks.json');report_path.write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps({'output':str(a.output),'report':str(report_path),'speech_check':report['speech_check'],'total_seconds':duration}))
     if report['speech_check'].startswith('review'):raise SystemExit(2)

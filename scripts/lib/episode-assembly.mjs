@@ -79,7 +79,7 @@ export function stageCast(plan,assets){
 }
 export function saveAuthoringRecord(plan,report,vocabulary){
  const path=`stories/authoring/${plan.id}.json`
- const result={...(existsSync(path)?read(path):{}),...Object.fromEntries(['id','series','title','description','sources','planning','continuation','routes','catalog'].filter(k=>plan[k]!==undefined).map(k=>[k,plan[k]]))}
+ const result={...(existsSync(path)?read(path):{}),...Object.fromEntries(['id','series','title','description','presentation','audioLanguage','sources','planning','continuation','routes','catalog'].filter(k=>plan[k]!==undefined).map(k=>[k,plan[k]]))}
  if(plan.media){
   const {sha256,dimensions,total_seconds,hold_seconds,motion_seconds,audio_non_silent,speech_check,transcription}=read(plan.media.checks)
   result.teaser={...plan.media.provenance,image:`stories/characters/${plan.series}/${plan.id}-opening${extname(plan.media.image)}`,checks:{sha256,dimensions,total_seconds,hold_seconds,motion_seconds,audio_non_silent,speech_check,transcription}}

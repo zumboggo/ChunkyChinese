@@ -14,6 +14,22 @@ export function addEpisodeAudio(pack,{cache=resolve('.local/story-audio'),pinyin
   const line=pack.chinese.lines[text]??={};line.pinyin??=pinyin(text)
   for(const chunk of line.interlinear??[])chunk.pinyin??=pinyin(chunk.chinese)
   if(pinyinOnly)continue
+  if(pack.audioLanguage==='mandarin-only'){
+   const speaker=c.story.nodes.find(n=>n.type==='say'&&n.text===text)?.actor
+   const female=['Connie','Hannah','Cly'].includes(speaker)
+   const voice=female?'zh-CN-XiaoxiaoNeural':'zh-CN-YunxiNeural'
+   const key=createHash('sha256').update(`edge:${voice}:rate=-10%:pitch=+0Hz:volume=+0%:audio-24khz-48kbitrate-mono-mp3:${text}`).digest('hex')
+   const output=resolve(cache,key+'.mp3')
+   if((statSync(output,{throwIfNoEntry:false})?.size??0)<100){
+    const input=resolve(cache,key+'.txt'),temp=resolve(cache,key+`.${process.pid}.mp3`)
+    writeFileSync(input,text)
+    execFileSync(process.env.EPISODE_PYTHON||'.local/jedi-tools/bin/python',['scripts/episode-edge-tts.py',input,temp,voice],{timeout:90000})
+    if(statSync(temp).size<100)throw Error('Empty Edge recording')
+    renameSync(temp,output);generated++
+   }else reused++
+   line.audio='data:audio/mpeg;base64,'+readFileSync(output).toString('base64')
+   continue
+  }
   const key=createHash('sha256').update('Tingting:165:AAC:32000:'+text).digest('hex'),output=resolve(cache,key+'.m4a')
   if((statSync(output,{throwIfNoEntry:false})?.size??0)<100){
    const input=resolve(cache,key+'.txt'),pcm=resolve(cache,key+`.${process.pid}.aiff`),temp=resolve(cache,key+`.${process.pid}.m4a`)

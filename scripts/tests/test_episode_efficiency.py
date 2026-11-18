@@ -45,6 +45,8 @@ class SpeechCacheTests(unittest.TestCase):
 class EfficiencyTests(unittest.TestCase):
     def test_speech_numbers_without_ignoring_extra_words(self):
         self.assertEqual(speech.normalize_speech('Ninety seconds?'),speech.normalize_speech('90 seconds.'))
+        self.assertEqual(speech.normalize_speech('嗯，我没事。','zh'),speech.normalize_speech('嗯 我没事','zh'))
+        self.assertNotEqual(speech.normalize_speech('我没事','zh'),speech.normalize_speech('我有事','zh'))
         self.assertEqual(speech.normalize_speech('twenty-one steps'),speech.normalize_speech('21 steps'))
         self.assertNotEqual(speech.normalize_speech('90 seconds second of people'),speech.normalize_speech('Ninety seconds?'))
         self.assertNotEqual(speech.normalize_speech('19 seconds'),speech.normalize_speech('Ninety seconds?'))

@@ -1,0 +1,25 @@
+/* Episode-scoped reading pages: the normal player and old releases keep their layout. */
+.game-page .story-reading .story-dialogue{border:0;border-radius:20px;background:linear-gradient(135deg,#10263a,#091929 75%);padding:clamp(24px,5vw,54px);min-height:65svh;display:flex;flex-direction:column;justify-content:center;box-shadow:none}
+.game-page .story-reading .story-dialogue>.episode-line{margin:28px 0;flex:1;display:flex;align-items:center}
+.game-page .story-reading .episode-interlinear{gap:24px 18px;line-height:1.65;align-content:center}
+.game-page .story-reading .episode-interlinear .reader-interlinear-chunk{gap:6px;max-width:100%;white-space:normal}
+.game-page .story-reading .episode-interlinear strong{font-size:clamp(26px,6.8vw,38px);line-height:1.45;letter-spacing:.02em;text-transform:none}
+.game-page .story-reading .reader-interlinear-pinyin{font-size:clamp(16px,4vw,21px);line-height:1.45}
+.game-page .story-reading .reader-interlinear-gloss{font-size:clamp(15px,3.8vw,19px);line-height:1.45}
+.game-page .story-reading .story-dialogue>[data-next]{position:static;align-self:flex-end;margin-top:24px;min-height:48px}
+.game-page .story-reading .story-dialogue>.audio-play{position:static;align-self:flex-start;min-height:44px;margin:0}
+.game-page .story-reading .story-dialogue>strong{font-size:13px;letter-spacing:.1em;opacity:.65}
+.game-page .story-reading[data-reading-screen=animation] .story-stage{height:45svh;min-height:250px;max-height:480px;border-radius:20px 20px 0 0}
+.game-page .story-reading[data-reading-screen=animation] .story-dialogue{min-height:0;border-radius:0 0 20px 20px;padding:22px 26px}
+.game-page .story-reading[data-reading-screen=animation] .episode-line{margin:16px 0}
+.game-page .story-reading .episode-choice-card{margin:12px 0;padding:16px}
+.game-page .story-reading footer{margin-top:16px}
+@media(max-width:600px){.game-page .story-reading .story-dialogue{padding:24px 20px;min-height:67svh}.game-page .story-reading[data-reading-screen=animation] .story-dialogue{min-height:0;padding:20px}.game-page .story-reading[data-reading-screen=animation] .story-stage{height:40svh;min-height:235px}}
+
+.game-page .story-reading .episode-interlinear .reader-interlinear-chunk{border-right:0;padding:0 4px;overflow-wrap:anywhere}
+.game-page .story-reading[data-reading-screen=animation] .episode-interlinear{gap:10px 12px}
+.game-page .story-reading[data-reading-screen=animation] .episode-interlinear strong{font-size:22px}
+.game-page .story-reading[data-reading-screen=animation] .reader-interlinear-pinyin,.game-page .story-reading[data-reading-screen=animation] .reader-interlinear-gloss{font-size:13px}
+.game-page .story-reading[data-reading-screen=animation] .story-dialogue>.episode-line{margin:8px 0}
+.game-page .story-reading .story-dialogue>.audio-play{font-size:12px;min-width:54px;width:auto;padding:8px}
+.game-page .story-reading .story-dialogue>strong{margin-bottom:4px}

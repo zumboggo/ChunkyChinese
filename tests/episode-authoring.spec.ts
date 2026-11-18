@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs'
 import {createHash} from 'node:crypto'
 import {compileStory,replayStory} from '../src/game/animation/shared/engine/story-engine.js'
 import {evaluateOutcomeScorecard} from '../src/game/animation/outcomeScorecard'
+import {animationCursors} from '../src/game/animation/readingPresentation'
 import type {ChinesePackage} from '../src/game/animation/package'
 type Beat={type:string;id?:string;text:string;option?:string}
 type Fixture={packagePath:string;routes:{choices:string[];beats:Beat[]}[];review?:{lines:string[]};catalog?:{id:string;category:string;intro?:{src:string;poster:string;durationSeconds?:number}}}
@@ -49,17 +50,23 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
    await page.screenshot({path:info.outputPath(`choice-${i}.png`),fullPage:true});if(pack.outcomeScorecard){await expect(page.locator('.outcome-scorecard')).toHaveCount(0);await page.keyboard.press(String(optionIndex+1))}else await chooseEpisodeOption(page,optionIndex)
   }else{
    await expect.poll(currentText).toBe(beat.text)
+   if(pack.presentation?.mode==='reading'){
+    const compiled=compileStory(pack.script,pack.assets).story
+    const cursor=replayStory(compiled,route.beats.slice(0,i).map(b=>b.type==='choice'?b.option!:null),1).cursor
+    const animated=animationCursors(compiled,pack.presentation.animationLabels).has(cursor)
+    await expect(page.locator('.animated-story')).toHaveAttribute('data-reading-screen',animated?'animation':'text')
+    await expect(page.locator('.story-stage')).toHaveCount(animated?1:0)
+    expect(await page.locator('.story-dialogue').evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true)
+    expect(await page.locator('.episode-interlinear strong').first().evaluate(e=>parseFloat(getComputedStyle(e).fontSize))).toBeGreaterThanOrEqual(animated?22:26)
+   }
    if(fixture.review?.lines.includes(beat.text))await reviewEpisodeLine(page,beat.text,info.outputPath(`directed-${i}.png`))
    if(!heard&&pack.chinese?.lines[beat.text]?.audio){
     await page.locator('.episode-settings > summary').click()
-    for(const name of ['Pinyin','English']){const b=page.getByRole('button',{name:`Text: ${name}`,exact:true});if(await b.getAttribute('aria-pressed')==='true')await b.click();await expect(page.locator(name==='Pinyin'?'.reader-interlinear-pinyin':'.reader-interlinear-gloss')).toHaveCount(0);await b.click();await expect(b).toHaveAttribute('aria-pressed','true')}
+    for(const name of ['Pinyin','English text']){const checkbox=page.getByRole('checkbox',{name,exact:true});await checkbox.uncheck();await expect(page.locator(name==='Pinyin'?'.reader-interlinear-pinyin':'.reader-interlinear-gloss')).toHaveCount(0);await checkbox.check();await expect(checkbox).toBeChecked()}
     await page.locator('.episode-settings > summary').click()
     const src=pack.chinese.lines[beat.text].audio!
     expect(await page.evaluate(async src=>{const ctx=new AudioContext();try{return (await ctx.decodeAudioData(await (await fetch(src)).arrayBuffer())).duration}finally{await ctx.close()}},src)).toBeGreaterThan(0)
-    const pause=page.getByRole('button',{name:'Pause audio',exact:true});if(await pause.isVisible())await pause.click()
-    await page.getByRole('button',{name:'Play audio',exact:true}).click();await expect(page.getByRole('button',{name:'Pause audio',exact:true})).toBeVisible()
-    await page.getByRole('button',{name:'Pause audio',exact:true}).click();heard=true
-    await page.screenshot({path:info.outputPath('reading.png'),fullPage:true})
+    await reviewEpisodeLine(page,beat.text,info.outputPath('reading.png'));heard=true
    }
    if(!resumed&&i>=Math.floor(route.beats.length/2)){
     // Wait for the asynchronous IndexedDB save before simulating a hard reload.

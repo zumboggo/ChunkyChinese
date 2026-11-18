@@ -8,6 +8,8 @@ import './shared/components/story-player.css'
 import './story-toggles.css'
 import type {ChinesePackage} from './package'
 import EpisodeInterlinear from './EpisodeInterlinear'
+import {animationCursors} from './readingPresentation'
+import './reading-presentation.css'
 import PocketAudioPlayer from './PocketAudioPlayer'
 import EncounterControls from './EncounterControls'
 import {readEncounters,type EncounterSettings} from './encounters'
@@ -16,6 +18,8 @@ import type {HotkeySettings} from '../../types'
 export interface StoryProgress {attemptId?:string;partialTiming?:boolean;continuity?:import('./continuity').ContinuitySnapshot;steps:(string|null)[];quizzes:number[][];seed:number}
 export default function StoryPlayback({pack,initial,onProgress,reduced:preferred=false,onComplete,onNextEpisode,preferencesKey='story2:display',releaseCategory,hotkeys,settingsContent,onReplayOpening,nextEpisodePreview}:{pack:ChinesePackage;initial?:StoryProgress;onProgress?:(p:StoryProgress)=>void;reduced?:boolean;debug?:boolean;onComplete?:()=>void;onNextEpisode?:()=>void;preferencesKey?:string;releaseCategory?:string;hotkeys?:HotkeySettings;settingsContent?:ReactNode;onReplayOpening?:()=>void;nextEpisodePreview?:{number?:number;title:string;teaser:string}}) {
  const compiled=useMemo(()=>compileStory(pack.script,pack.assets),[pack])
+ const reading=pack.presentation?.mode==='reading'
+ const animationBeats=useMemo(()=>compiled.story&&reading?animationCursors(compiled.story,pack.presentation!.animationLabels):new Set<number>(),[compiled,reading,pack.presentation])
  const [progress,setProgress]=useState<StoryProgress>(initial??{steps:[],quizzes:[],seed:1})
  const [state,setState]=useState<StoryState|null>(()=>compiled.story?replayStory(compiled.story,initial?.steps??[],initial?.seed??1):null)
  const [system,setSystem]=useState(()=>matchMedia('(prefers-reduced-motion: reduce)').matches),[responses,setResponses]=useState<Record<string,string>>({}),[speaking,setSpeaking]=useState(false),[audioPlaying,setAudioPlaying]=useState(false),[busy,setBusy]=useState(false),[error,setError]=useState(''),[history,setHistory]=useState(false)
@@ -30,8 +34,8 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
 
  const [audioModeOpen,setAudioModeOpen]=useState(false),[audioModeRunning,setAudioModeRunning]=useState(false),[audioModePaused,setAudioModePaused]=useState(false),[audioModeStatus,setAudioModeStatus]=useState('')
  const supportive=releaseCategory==='super-supportive'
- const encounterPreference=preferencesKey+':encounters:v1:'+(supportive?'super-supportive':'other')
- const [audioModeOptions,setAudioModeOptions]=useState<EncounterSettings>(()=>readEncounters(encounterPreference,supportive))
+ const encounterPreference=preferencesKey+':encounters:v1:'+(reading?'reading':supportive?'super-supportive':'other')
+ const [audioModeOptions,setAudioModeOptions]=useState<EncounterSettings>(()=>{const options=readEncounters(encounterPreference,supportive);if(reading&&!localStorage.getItem(encounterPreference))options.count=1;return options})
  const [pocketSession,setPocketSession]=useState<{start:StoryProgress;options:EncounterSettings}|null>(null)
  const audioModeController=useRef<AbortController|null>(null)
  function stopAudioMode(){audioModeController.current?.abort();setAudioModeRunning(false);setAudioModePaused(false);setAudioModeStatus('')}
@@ -179,7 +183,8 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
 
  if(compiled.errors.length||!state)return <div role="alert">{compiled.errors.map(e=><p key={e.line+e.message}>Line {e.line}: {e.message}</p>)}</div>
  if(pocketSession)return <PocketAudioPlayer pack={pack} start={pocketSession.start} options={pocketSession.options} volume={voiceVolume} onSave={p=>onProgress?.(p)} onExit={p=>{setProgress(p);setState(replayStory(compiled.story,p.steps,p.seed));onProgress?.(p);setEncounter(1);setPocketSession(null)}}/>
- return <div className="animated-story story-modern" data-story-step={`${state.cursor}:${encounter}`} ref={root} onClick={event=>{
+ const animationScreen=reading&&!state.ended&&animationBeats.has(state.cursor)
+ return <div className={`animated-story story-modern${reading?' story-reading':''}`} data-reading-screen={reading?(animationScreen?'animation':'text'):undefined} data-story-step={`${state.cursor}:${encounter}`} ref={root} onClick={event=>{
   if(busy||state.ended||current.type==='choice'||window.getSelection()?.toString())return;
   const target=event.target as HTMLElement;
   if(target.closest('button,a,input,select,textarea,label,summary,details,dialog,.reading-controls,.story-atmosphere,footer,aside'))return;
@@ -198,7 +203,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  }}>
   <div className="audio-mode-toolbar">
    <button type="button" onClick={()=>back()} disabled={encounter===1&&!progress.steps.length}>Back</button>
-   {!state.ended&&current.type!=='choice'&&<span>Encounter {activeEncounter} of {audioModeOptions.count}</span>}
+   {!reading&&!state.ended&&current.type!=='choice'&&<span>Encounter {activeEncounter} of {audioModeOptions.count}</span>}
    {audioModeRunning&&!state.ended&&<button type="button" onClick={()=>{if(audioModePaused){setError('');setAudioModePaused(false)}else pauseAudioMode()}}>{audioModePaused?'Resume playback':'Pause playback'}</button>}
    {audioModeRunning&&<span role="status">{state.ended?'Episode complete':audioModePaused?'Playback paused':audioModeStatus}</span>}
   </div>
@@ -214,7 +219,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
    <label><input type="checkbox" checked={motionPaused} onChange={e=>setMotionPaused(e.target.checked)}/> Pause scene motion</label>
    <label><input type="checkbox" checked={reduceMotion} onChange={e=>setReduceMotion(e.target.checked)}/> Reduce motion</label>
    </details></div></details>
-  <StoryStage pack={pack} state={state} current={current} speaking={speaking&&!state.ended} reduced={reduced} responses={responses} motionPaused={motionPaused}/>
+  {(!reading||animationScreen)&&<StoryStage pack={pack} state={state} current={current} speaking={speaking&&!state.ended} reduced={reduced} responses={responses} motionPaused={motionPaused}/>}
   <div className="story-meters">{Object.entries(compiled.story.variables).filter(([,v])=>(v as {visible:boolean}).visible).map(([id])=><span key={id}>{id}: {String(state.variables[id])}</span>)}</div>
   <section className="story-dialogue" aria-live="polite">{state.ended?<>{pack.outcomeScorecard&&<OutcomeScorecard definition={pack.outcomeScorecard} state={state}/>}<h2>{pack.quiz.length===4?(score!==null&&score>=75?'Complete':'Four questions before we return'):'Scene complete'}</h2>{pack.quiz.length===4&&<>{score!==null&&<p>{score}/100 · {score>=75?'Complete':'Review and retry'}</p>}{(score===null||score<75)&&<><div data-quiz>{pack.quiz.map((q,i)=><fieldset key={i}><legend>{q.prompt}</legend>{q.options.map((o,j)=><button key={j} aria-pressed={answers[i]===j} onClick={()=>setAnswers(answers.map((a,k)=>k===i?j:a))}>{j+1}. {o}</button>)}{score!==null&&<p>{q.explanation}</p>}</fieldset>)}</div><button data-next disabled={answers.includes(-1)} onClick={()=>{const p={...progress,quizzes:[...progress.quizzes,answers]};setProgress(p);onProgress?.(p);setAnswers([-1,-1,-1,-1])}}>Check answers</button></>}</>}{onNextEpisode&&(pack.quiz.length!==4||(score!==null&&score>=75))&&<div className="episode-up-next"><p className="game-kicker">UP NEXT</p>{nextEpisodePreview&&<><h3>{nextEpisodePreview.title}</h3><p>{nextEpisodePreview.teaser}</p></>}<button className="next-episode" data-next onClick={onNextEpisode}>Continue to {nextEpisodePreview?.number?`Episode ${nextEpisodePreview.number}`:'next episode'} →</button></div>}{onComplete&&<button data-next onClick={onComplete}>Continue to the conversation</button>}</>:current.type==='choice'?<><h2>What do I do?</h2>{current.options.map((o:{id:string;text:string},i:number)=><div className="episode-choice-card" key={o.id}><EpisodeInterlinear text={o.text} line={pack.chinese?.lines[o.text]} showChinese={showChinese} showPinyin={showPinyin} showGloss={showGloss} interactive/><button className="episode-choice" aria-label={`Choose option ${i+1}`} data-next disabled={busy} onClick={()=>void advance(o.id)}>Choose {i+1}</button>{autoPlay&&<button className="audio-play" aria-label={'Hear option: '+o.text} onClick={()=>play(o.text,false,false,true)}><PlayIcon/></button>}</div>)}</>:<><strong>{current.type==='act'||current.beat?'On the scene':current.actor==='I'?'My story':pack.assets.characters[current.actor]?.name}</strong><div className="episode-line">{(display.showChinese||display.showPinyin||display.showGloss)&&<EpisodeInterlinear key={`${state.cursor}:${encounter}`} text={current.text} line={line} showChinese={display.showChinese} showPinyin={display.showPinyin} showGloss={display.showGloss} interactive/>}</div>{autoPlay&&<button className="audio-play" aria-label={audioPlaying?"Pause audio":"Play audio"} title="Play / pause (Space)" onClick={()=>play()}>{audioPlaying?'Pause':<PlayIcon/>}</button>}<button data-next disabled={busy} onClick={()=>void advance(null)}>{busy?'Action playing…':'Continue →'}</button></>}{error&&<p role="status">{error}</p>}</section>
 
