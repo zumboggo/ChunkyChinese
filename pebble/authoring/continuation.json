@@ -1,0 +1,20 @@
+{
+  "series": "super-supportive",
+  "medium": "Pebble watch only",
+  "lastPublishedEpisode": 19,
+  "publishedThisBatch": [
+    18,
+    19
+  ],
+  "sourceSha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
+  "completedThrough": {
+    "chapter": "OEBPS/Text/0007_SEVEN_A_Little_Delusional.xhtml",
+    "end": "Alden promises live crickets, jokes about friendship, winks and says good night. The cost of Gorgon’s melancholy and his diet remain unexplained."
+  },
+  "next": {
+    "episode": 20,
+    "chapter": "OEBPS/Text/0008_EIGHT_Tiger_Shorts.xhtml",
+    "start": "Gorgon didn’t eat the crickets."
+  },
+  "note": "Do not use the separate phone-series tracker to choose the next watch episode. Compact authoring sources omit unused phone media/audio."
+}

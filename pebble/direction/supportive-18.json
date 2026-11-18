@@ -1,0 +1,292 @@
+{
+  "schema": 1,
+  "episode": "supportive-18",
+  "watchTitle": "Not Pity",
+  "cover": "Alden-thoughtful-full",
+  "cues": [
+    {
+      "anchor": "watch_18_beat_4",
+      "scene": "gorgon-listen"
+    },
+    {
+      "anchor": "watch_18_beat_12",
+      "scene": "download-18-alden-think-12",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "anchor": "watch_18_beat_18",
+      "scene": "gorgon-think"
+    },
+    {
+      "anchor": "watch_18_beat_23",
+      "scene": "gorgon-think"
+    },
+    {
+      "anchor": "watch_18_beat_30",
+      "scene": "download-18-alden-think-30",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "anchor": "watch_18_beat_39",
+      "scene": "download-18-alden-listen-39",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      }
+    }
+  ],
+  "reactions": [
+    {
+      "anchor": "watch_18_beat_1",
+      "actor": "Alden",
+      "emotion": "curious"
+    },
+    {
+      "anchor": "watch_18_beat_2",
+      "actor": "Gorgon",
+      "emotion": "neutral"
+    },
+    {
+      "anchor": "watch_18_beat_3",
+      "actor": "Gorgon",
+      "emotion": "attentive"
+    },
+    {
+      "anchor": "watch_18_beat_4",
+      "actor": "Gorgon",
+      "emotion": "neutral"
+    },
+    {
+      "anchor": "watch_18_beat_5",
+      "actor": "Alden",
+      "emotion": "thoughtful"
+    },
+    {
+      "anchor": "watch_18_beat_6",
+      "actor": "Alden",
+      "emotion": "curious"
+    },
+    {
+      "anchor": "watch_18_beat_9",
+      "actor": "Alden",
+      "emotion": "curious"
+    },
+    {
+      "anchor": "watch_18_beat_12",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_18_beat_13",
+      "actor": "Alden",
+      "emotion": "skeptical"
+    },
+    {
+      "anchor": "watch_18_beat_16",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_18_beat_17",
+      "actor": "Alden",
+      "emotion": "curious"
+    },
+    {
+      "anchor": "watch_18_beat_18",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_18_beat_19",
+      "actor": "Gorgon",
+      "emotion": "neutral"
+    },
+    {
+      "anchor": "watch_18_beat_20",
+      "actor": "Alden",
+      "emotion": "thoughtful"
+    },
+    {
+      "anchor": "watch_18_beat_21",
+      "actor": "Alden",
+      "emotion": "sad"
+    },
+    {
+      "anchor": "watch_18_beat_22",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_18_beat_24",
+      "actor": "Gorgon",
+      "emotion": "neutral"
+    },
+    {
+      "anchor": "watch_18_beat_25",
+      "actor": "Gorgon",
+      "emotion": "skeptical"
+    },
+    {
+      "anchor": "watch_18_beat_26",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_18_beat_30",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_18_beat_34",
+      "actor": "Alden",
+      "emotion": "sad"
+    },
+    {
+      "anchor": "watch_18_beat_38",
+      "actor": "Alden",
+      "emotion": "determined"
+    },
+    {
+      "anchor": "watch_18_beat_39",
+      "actor": "Alden",
+      "emotion": "thoughtful"
+    }
+  ]
+}

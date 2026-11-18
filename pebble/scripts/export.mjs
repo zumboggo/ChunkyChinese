@@ -55,7 +55,7 @@ export function exportEpisode(d,id='supportive-11',direction=loadDirection(id)) 
   throw Error('Unsupported script command: '+line);
  }
  for(const n of nodes){if(n.type==='goto'){if(labels[n.to]===undefined)throw Error('Missing label');n.to=labels[n.to];}for(const o of n.options||[]){if(labels[o.to]===undefined)throw Error('Missing target');o.to=labels[o.to];}}
- const pack={format:1,id,version:'',title:d.title,shortTitle:d.title.split(' · ').at(-1),number:Number(id.match(/-(\d+)(?:-v\d+)?$/)[1]),sources:d.sources,notice:d.notice,entry:labels.opening,nodes,cast:[...cast],...(direction?.cover?{cover:direction.cover}:{}),art:['opening','closing',...(direction?.cover?[direction.cover]:[]),...new Set(nodes.filter(n=>n.type==='reaction').map(n=>n.actor+'-'+n.emotion))]};
+ const pack={format:1,id,version:'',title:d.title,shortTitle:direction?.watchTitle||d.title.split(' · ').at(-1),number:Number(id.match(/-(\d+)(?:-v\d+)?$/)[1]),sources:d.sources,notice:d.notice,entry:labels.opening,nodes,cast:[...cast],...(direction?.cover?{cover:direction.cover}:{}),art:['opening','closing',...(direction?.cover?[direction.cover]:[]),...new Set(nodes.filter(n=>n.type==='reaction').map(n=>n.actor+'-'+n.emotion))]};
  pack.version=crypto.createHash('sha256').update(JSON.stringify(pack)).digest('hex').slice(0,12);return pack;
 }
 // Watch-only presentation; approved Mandarin annotations remain in the source package.

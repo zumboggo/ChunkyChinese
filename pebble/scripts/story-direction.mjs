@@ -10,6 +10,7 @@ export function loadDirection(id){
 export function validateDirection(script,id,direction){
  if(!direction)return new Map();
  if(direction.schema!==1||direction.episode!==id||!Array.isArray(direction.cues))throw Error('Invalid story direction');
+ if(direction.watchTitle!==undefined&&(typeof direction.watchTitle!=='string'||!direction.watchTitle.trim()||direction.watchTitle.length>80||!/^[ -~]+$/.test(direction.watchTitle)))throw Error('Watch title must be 1–80 ASCII characters');
  const scenes=new Set(readLibrary().scenes.map(s=>s.id)),labels=new Map();
  for(const raw of script.split('\n')){const m=raw.trim().match(/^label (\S+)$/);if(m)labels.set(m[1],(labels.get(m[1])||0)+1);}
  for(const actor of direction.animatedCast||[]){if(!['Boe','Jeremy'].includes(actor)||!direction.cues.some(c=>c.scene.startsWith(actor.toLowerCase()+'-')))throw Error('Missing animated cast direction: '+actor);}
