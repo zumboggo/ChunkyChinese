@@ -2,14 +2,15 @@ import {describe,it,expect,vi} from 'vitest'
 import {readFileSync} from 'node:fs'
 import ts from 'typescript'
 import {webcrypto} from 'node:crypto'
+import {watchCompletion} from '../supabase/functions/hearth-garden/completion'
 function setup(validToken=false,user=false) {
  let handler:(r:Request)=>Promise<Response>=async()=>new Response()
  const rpc=vi.fn(async(_name:string,args:unknown)=>({data:{state:{day:1},args},error:null}))
  const tokenQuery={select:()=>tokenQuery,eq:()=>tokenQuery,maybeSingle:async()=>({data:validToken?{user_id:'token-owner'}:null,error:null})}
  const db={auth:{getUser:async()=>({data:{user:user?{id:'account-owner'}:null},error:user?null:new Error('bad jwt')})},from:vi.fn(()=>tokenQuery),rpc}
- const source=readFileSync(new URL('../supabase/functions/hearth-garden/index.ts',import.meta.url),'utf8').replace(/^import .*\n/,'')
+ const source=readFileSync(new URL('../supabase/functions/hearth-garden/index.ts',import.meta.url),'utf8').replace(/^import .*\n/gm,'')
  const js=ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.None}}).outputText
- new Function('createClient','Deno','crypto',js)(()=>db,{env:{get:()=>''},serve:(h:typeof handler)=>{handler=h}},webcrypto)
+ new Function('createClient','Deno','crypto','watchCompletion',js)(()=>db,{env:{get:()=>''},serve:(h:typeof handler)=>{handler=h}},webcrypto,watchCompletion)
  const request=(body:unknown,headers:Record<string,string>={})=>handler(new Request('https://example.test',{method:'POST',headers:{'Content-Type':'application/json',...headers},body:JSON.stringify(body)}))
  return {request,db,rpc}
 }
