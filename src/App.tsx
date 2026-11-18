@@ -4466,7 +4466,7 @@ function App() {
                   <label className="toggle-row">
                     <span>
                       <strong>Dark mode</strong>
-                      <small>Use a darker background and softer panels.</small>
+                      <small>Switch between warm ivory and midnight navy in story reading, and use darker app panels.</small>
                     </span>
                     <input
                       type="checkbox"
