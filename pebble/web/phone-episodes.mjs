@@ -24,3 +24,19 @@ export function phoneEpisode(pack,entry){
  result.version=createHash('sha256').update(JSON.stringify(result)).digest('hex').slice(0,12);
  return result;
 }
+
+// Visual-only direction keeps the existing content version and passage indices,
+// so downloaded reader bookmarks survive this presentation update.
+export function attachPixelDirection(pack,source,direction){
+ let hash=2166136261;for(let i=0;i<source.script.length;i++)hash=Math.imul(hash^source.script.charCodeAt(i),16777619);
+ if((hash>>>0).toString(16).padStart(8,'0')!==direction.scriptFingerprint)throw Error('Review pixel direction for the changed script');
+ let anchor='',offset=0,index=0;
+ const lines=pack.nodes.filter(n=>n.type==='line');
+ for(const raw of source.script.split('\n')){const line=raw.trim();if(line.startsWith('label ')){anchor=line.slice(6);offset=0;}
+  else if(/^\w+(?: \[[^\]]+\])?: .+$/.test(line)){
+   const shot=direction.shots.find(s=>s.anchor===anchor&&s.offset===offset);if(!shot)throw Error('Missing pixel direction');lines[index++].pixelShot=shot;offset++;
+  }
+ }
+ if(index!==lines.length)throw Error('Pixel direction count differs from story');
+ pack.presentation='pixel';
+}

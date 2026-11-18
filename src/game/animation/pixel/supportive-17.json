@@ -1,0 +1,252 @@
+{
+  "episode": "supportive-17",
+  "scriptFingerprint": "a4be0b5c",
+  "shots": [
+    {
+      "anchor": "opening",
+      "offset": 0,
+      "scene": "background-classroom-foliage",
+      "durationMs": 2400
+    },
+    {
+      "anchor": "opening",
+      "offset": 1,
+      "reaction": "Alden-holding-back-sadness",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "missing_light",
+      "offset": 0,
+      "reaction": "Alden-thinking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "missing_light",
+      "offset": 1,
+      "reaction": "Alden-blink",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "missing_light",
+      "offset": 2,
+      "reaction": "Alden-thoughtful",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "real_adult",
+      "offset": 0,
+      "reaction": "Alden-worried",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "help",
+      "offset": 0,
+      "reaction": "Alden-blink",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "distance",
+      "offset": 0,
+      "reaction": "Alden-thinking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "school",
+      "offset": 0,
+      "reaction": "Alden-thoughtful",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "algebra",
+      "offset": 0,
+      "reaction": "Alden-surprised",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "algebra",
+      "offset": 1,
+      "reaction": "Alden-worried",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "algebra",
+      "offset": 2,
+      "reaction": "Alden-quietly-determined",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "too_important",
+      "offset": 0,
+      "reaction": "Alden-holding-back-sadness",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "voice",
+      "offset": 0,
+      "reaction": "Alden-thinking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "light",
+      "offset": 0,
+      "reaction": "Alden-holding-back-sadness",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "nowhere",
+      "offset": 0,
+      "scene": "background-classroom-foliage",
+      "durationMs": 2400
+    },
+    {
+      "anchor": "check_in",
+      "offset": 0,
+      "reaction": "Jeremy-talking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "check_in",
+      "offset": 1,
+      "reaction": "Jeremy-awkward-concern",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "check_in",
+      "offset": 2,
+      "reaction": "Alden-exhausted",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "seen",
+      "offset": 0,
+      "reaction": "Alden-surprised",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "notice",
+      "offset": 0,
+      "reaction": "Jeremy-sincere-encouragement",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "protect",
+      "offset": 0,
+      "reaction": "Alden-holding-back-sadness",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "answer",
+      "offset": 0,
+      "reaction": "Alden-talking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "answer",
+      "offset": 1,
+      "scene": "background-classroom-foliage",
+      "durationMs": 2400
+    },
+    {
+      "anchor": "answer",
+      "offset": 2,
+      "reaction": "Alden-thinking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "more_class",
+      "offset": 0,
+      "scene": "background-classroom-foliage",
+      "durationMs": 2400
+    },
+    {
+      "anchor": "more_class",
+      "offset": 1,
+      "reaction": "Alden-thinking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "more_class",
+      "offset": 2,
+      "reaction": "Alden-worried",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "empty_home",
+      "offset": 0,
+      "reaction": "Alden-holding-back-sadness",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "empty_home",
+      "offset": 1,
+      "reaction": "Alden-worried",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "empty_home",
+      "offset": 2,
+      "reaction": "Alden-holding-back-sadness",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "staying_busy",
+      "offset": 0,
+      "reaction": "Alden-quietly-determined",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "shapes",
+      "offset": 0,
+      "reaction": "Alden-thinking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "time",
+      "offset": 0,
+      "reaction": "Alden-quietly-determined",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "cards",
+      "offset": 0,
+      "reaction": "Alden-thinking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "learning",
+      "offset": 0,
+      "reaction": "Alden-quietly-determined",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "learning",
+      "offset": 1,
+      "reaction": "Alden-exhausted",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "learning",
+      "offset": 2,
+      "scene": "background-classroom-foliage",
+      "durationMs": 2400
+    },
+    {
+      "anchor": "still_here",
+      "offset": 0,
+      "scene": "gorgon-listen",
+      "durationMs": 2400
+    },
+    {
+      "anchor": "still_here",
+      "offset": 1,
+      "reaction": "Alden-worried",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "desk",
+      "offset": 0,
+      "reaction": "Gorgon-attentive",
+      "durationMs": 1800
+    }
+  ]
+}

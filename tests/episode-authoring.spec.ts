@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs'
 import {createHash} from 'node:crypto'
 import {compileStory,replayStory} from '../src/game/animation/shared/engine/story-engine.js'
 import {evaluateOutcomeScorecard} from '../src/game/animation/outcomeScorecard'
+import {pixelShots} from '../src/game/animation/pixel/direction'
 import {animationCursors} from '../src/game/animation/readingPresentation'
 import type {ChinesePackage} from '../src/game/animation/package'
 type Beat={type:string;id?:string;text:string;option?:string}
@@ -13,6 +14,7 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
  const retryTargets=JSON.parse(process.env.EPISODE_RETRY_TARGETS??'[]') as {title:string;project:string}[]
  test.skip(retryTargets.length>0&&!retryTargets.some(t=>t.title===info.title&&t.project===info.project.name),'Outside diagnostic retry')
  const pack=JSON.parse(readFileSync(fixture.packagePath,'utf8')) as ChinesePackage
+ const pixelPilot=!!pixelShots(pack.script,compileStory(pack.script,pack.assets).story)
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
  await expect(page.locator('.game-page > p[role=status]').first()).toContainText(/Stories and drafts|Draft saved/ )
  await page.getByLabel('Import episode ZIP / JSON').setInputFiles(fixture.packagePath)
@@ -53,7 +55,7 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
    if(pack.presentation?.mode==='reading'){
     const compiled=compileStory(pack.script,pack.assets).story
     const cursor=replayStory(compiled,route.beats.slice(0,i).map(b=>b.type==='choice'?b.option!:null),1).cursor
-    const animated=animationCursors(compiled,pack.presentation.animationLabels).has(cursor)
+    const animated=!pixelPilot&&animationCursors(compiled,pack.presentation.animationLabels).has(cursor)
     await expect(page.locator('.animated-story')).toHaveAttribute('data-reading-screen',animated?'animation':'text')
     await expect(page.locator('.story-stage')).toHaveCount(animated?1:0)
     expect(await page.locator('.story-dialogue').evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true)
@@ -81,6 +83,19 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
    if(i===route.beats.length-1)await page.screenshot({path:info.outputPath('ending.png'),fullPage:true})
    // A changing text height can leave the pointer on the hover-transform edge.
    await continueEpisode(page)
+   if(pixelPilot){
+    await expect(page.getByText('Encounter 2 of 3',{exact:true})).toBeVisible()
+    await expect(page.locator('.pixel-scene')).toHaveCount(0)
+    await continueEpisode(page)
+    await expect(page.getByText('Encounter 3 of 3',{exact:true})).toBeVisible()
+    await expect(page.locator('.pixel-scene')).toHaveCount(0)
+    await continueEpisode(page)
+    await expect(page.locator('.pixel-scene')).toBeVisible()
+    await expect(page.locator('.episode-line,.story-stage')).toHaveCount(0)
+    await expect(page.locator('.pixel-scene')).toHaveAttribute('data-pixel-phase','held')
+    if(fixture.review?.lines.includes(beat.text))await page.screenshot({path:info.outputPath(`pixel-${i}.png`),fullPage:true})
+    await page.getByRole('button',{name:'Next →',exact:true}).click()
+   }
   }
  }
  expect(heard).toBe(true);expect(resumed).toBe(true)

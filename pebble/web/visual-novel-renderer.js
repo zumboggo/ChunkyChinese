@@ -1,6 +1,6 @@
 // Browser companion to visual_novel_draw.h: approved streamed pieces, bounded gestures.
 // Uses the watch palette and the same integer rasterization; no old full-body rigs.
-function visualNovel(config,resource,actors,anims,sceneIds){
+export function visualNovel(config,resource,actors,anims,sceneIds){
  const bytes=Uint8Array.from(atob(resource),c=>c.charCodeAt(0)),u16=a=>bytes[a]|bytes[a+1]<<8,u32=a=>(bytes[a]|bytes[a+1]<<8|bytes[a+2]<<16|bytes[a+3]<<24)>>>0;
  const settings=['train','cafe','consulate','home','classroom','trading','street'];
  const color=c=>{if(typeof c==='string')c=parseInt(c,16);return '#'+[c>>16&255,c>>8&255,c&255].map(v=>(Math.floor((v+42)/85)*85).toString(16).padStart(2,'0')).join('');};

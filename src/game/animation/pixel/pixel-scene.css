@@ -1,0 +1,8 @@
+.game-page .story-reading>.pixel-scene{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px 0;min-height:calc(100svh - 230px)}
+.pixel-scene canvas{width:200px;height:228px;image-rendering:pixelated;background:#fff;max-width:none;border-radius:0;box-shadow:0 8px 40px #0002}
+@media(min-width:460px) and (min-height:750px){.pixel-scene canvas{width:400px;height:456px}}
+@media(min-width:1100px) and (min-height:1000px){.pixel-scene canvas{width:600px;height:684px}}
+.game-page .pixel-scene p{color:var(--muted);font-size:14px;text-align:center;margin:0}
+.game-page .pixel-scene .reading-navigation{width:100%;max-width:520px;margin-top:auto}
+.game-page .story-reading .pixel-encounter{grid-column:1;grid-row:1;align-self:center;font-size:13px;color:var(--accent);padding:8px 4px}
+.game-page .story-reading:has(.pixel-encounter)>.reading-speaker{display:none}

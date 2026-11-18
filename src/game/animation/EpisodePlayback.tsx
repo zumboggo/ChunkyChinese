@@ -8,10 +8,10 @@ import type {EpisodeIntroMedia} from './storage'
 
 /** Keep the latest story position when replaying the opening film. */
 export default function EpisodePlayback({intro,onRestartEpisode,onBack,inherited,...storyProps}:ComponentProps<typeof StoryPlayback>&{intro?:EpisodeIntroMedia;onBack?:()=>void;onRestartEpisode?:()=>void;inherited?:ContinuitySnapshot}){
- const [accepted,setAccepted]=useState(!storyProps.pack.notice||Boolean(storyProps.initial?.steps.length))
- const [introFinished,setIntroFinished]=useState(!intro||Boolean(storyProps.initial?.steps.length))
+ const [accepted,setAccepted]=useState(!storyProps.pack.notice||Boolean(storyProps.initial?.steps.length||storyProps.initial?.reading))
+ const [introFinished,setIntroFinished]=useState(!intro||Boolean(storyProps.initial?.steps.length||storyProps.initial?.reading))
  const context=validEpisodeContext(intro?.context)?intro.context:undefined
- const [contextFinished,setContextFinished]=useState(Boolean(storyProps.initial?.steps.length))
+ const [contextFinished,setContextFinished]=useState(Boolean(storyProps.initial?.steps.length||storyProps.initial?.reading))
  const [progress,setProgress]=useState(storyProps.initial)
  const [introReplay,setIntroReplay]=useState(0)
  const moreMenu=useRef<HTMLDetailsElement>(null)

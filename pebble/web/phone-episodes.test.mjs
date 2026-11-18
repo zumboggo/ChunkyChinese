@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {phoneEpisode} from './phone-episodes.mjs';
+import {phoneEpisode,attachPixelDirection} from './phone-episodes.mjs';
 const root=new URL('../../public/stories/animated/',import.meta.url);
 const catalog=JSON.parse(fs.readFileSync(new URL('catalog.json',root))).filter(e=>e.category==='super-supportive');
 for(const entry of catalog)test(entry.id+' preserves language and every branch',()=>{
@@ -18,4 +18,13 @@ for(const entry of catalog)test(entry.id+' preserves language and every branch',
  assert.equal(pack.nodes.filter(n=>n.type==='choice').length,source.script.split('\n').filter(l=>l.startsWith('choice ')).length);
  assert.equal(phoneEpisode(source,entry).version,pack.version);
  for(const n of pack.nodes)for(const p of n.phrases||[])assert.ok(p.py&&p.en);
+});
+
+test('pixel direction preserves existing episode 17 bookmark indices and version',()=>{
+ const entry=catalog.find(e=>e.episode===17),source=JSON.parse(fs.readFileSync(new URL(entry.path,root))),pack=phoneEpisode(source,entry),before=structuredClone(pack);
+ const direction=JSON.parse(fs.readFileSync(new URL('../../src/game/animation/pixel/supportive-17.json',import.meta.url)));
+ attachPixelDirection(pack,source,direction);
+ assert.equal(pack.version,before.version);assert.equal(pack.nodes.length,before.nodes.length);
+ assert.equal(pack.nodes.filter(n=>n.pixelShot).length,41);
+ assert.deepEqual(pack.nodes.map(({pixelShot,...node})=>node),before.nodes);
 });

@@ -9,3 +9,9 @@ Phone bookmarks are account-scoped and versioned in localStorage, separate from 
 With Vite running on 127.0.0.1:5190, run `node pebble/web/reader.test.mjs` for full first-choice routes, visuals and bookmarks, and `node pebble/web/offline.test.mjs` for offline reload and episode switching.
 
 Run `node --test pebble/web/phone-episodes.test.mjs` for every converted route and `node pebble/web/catalogue.test.mjs` for full browser playback of the added reading editions. Both browser catalogue/offline checks accept `READER_URL` for live verification.
+
+## Episode 17 phone pilot
+
+The regular player uses the shared exported `visualNovel` renderer and `assets.json` for a separate pixel performance after encounter three. `src/game/animation/pixel/supportive-17.json` directs every readable passage by an existing label and offset within that label. Its script fingerprint prevents applying these shots to an unreviewed revision. Story packages and branching indices remain unchanged; progress records additionally save the encounter and animation phase. Pixel animation never automatically advances the story, including in automatic audio mode, and its final pose waits for a fresh Next press.
+
+The pocket-reader generator attaches the same direction as visual-only metadata to episode 17's existing passages. It retains its content version and indices for old bookmarks; the watch-style pocket reader still uses one reading pass. Rebuild the generated HTML after edits, and test both players. Full phone pilot coverage lives in `tests/episode-pixel.spec.ts` and the episode-authoring suite; all-route shot coverage is in `src/game/animation/pixel/direction.test.ts`.

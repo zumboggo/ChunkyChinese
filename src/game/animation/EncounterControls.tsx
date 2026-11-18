@@ -1,11 +1,11 @@
 import {useState} from 'react'
 import {defaultEncounters,encounterFields,type EncounterSettings} from './encounters'
 import './audio-mode.css'
-export default function EncounterControls({options,onChange,supportive,running,onRunning,onPocket}:{options:EncounterSettings;onChange:(v:EncounterSettings)=>void;supportive:boolean;running:boolean;onRunning:(v:boolean)=>void;onPocket:()=>void}) {
+export default function EncounterControls({fixedCount,options,onChange,supportive,running,onRunning,onPocket}:{fixedCount?:number;options:EncounterSettings;onChange:(v:EncounterSettings)=>void;supportive:boolean;running:boolean;onRunning:(v:boolean)=>void;onPocket:()=>void}) {
  const [selected,setSelected]=useState(0)
  const index=Math.min(selected,options.count-1),encounter=options.encounters[index]
  return <div className="encounter-controls">
-  <div role="group" aria-label="Number of encounters"><span>Encounters:</span>{[1,2,3].map(count=><button type="button" key={count} aria-pressed={options.count===count} onClick={()=>onChange({...options,count})}>{count}</button>)}</div>
+  <div role="group" aria-label="Number of encounters"><span>Encounters:</span>{[1,2,3].map(count=><button type="button" key={count} disabled={fixedCount!==undefined&&count!==fixedCount} aria-pressed={options.count===count} onClick={()=>onChange({...options,count})}>{count}</button>)}</div>
   <div role="tablist" aria-label="Edit encounter">{Array.from({length:options.count},(_,i)=><button type="button" role="tab" id={`encounter-tab-${i}`} aria-controls="encounter-panel" aria-selected={index===i} key={i} onClick={()=>setSelected(i)}>Encounter {i+1}</button>)}</div>
   <div role="tabpanel" id="encounter-panel" aria-labelledby={`encounter-tab-${index}`}>
    {encounterFields.map(([key,label])=><label key={key}><input type="checkbox" checked={encounter[key]} disabled={encounter[key]&&encounterFields.filter(([field])=>encounter[field]).length===1} onChange={e=>onChange({...options,encounters:options.encounters.map((v,i)=>i===index?{...v,[key]:e.target.checked}:v)})}/>{label}</label>)}
