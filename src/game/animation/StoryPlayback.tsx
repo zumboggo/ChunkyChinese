@@ -40,6 +40,10 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  const [pixelActive,setPixelActive]=useState(savedReading?.phase==='pixel'&&!shots?.get(state?.cursor??-1)?.comic)
  const pixelGate=useRef(pixelActive),pixelReady=useRef(false)
  const pixelShot=state?shots?.get(state.cursor):undefined
+ useEffect(()=>{
+  // Reading a long caption can leave the scroll position below the next panel.
+  if(pixelShot?.comic)root.current?.closest('.game-playing')?.scrollTo({top:0,behavior:'instant'})
+ },[state?.cursor,pixelShot?.comic])
  function saveReading(nextEncounter:number,phase:'text'|'pixel'){
   if(!pixelPilot||!state)return
   const p={...progress,reading:{cursor:state.cursor,encounter:nextEncounter,phase}};setProgress(p);onProgress?.(p)

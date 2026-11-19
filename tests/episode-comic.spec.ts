@@ -27,6 +27,7 @@ test('comic stays with the text across encounters, Back, saved legacy phase and 
  await expect(panel).toHaveAttribute('data-comic-panel','supportive-18-1:0')
  await expect(page.locator('.pixel-encounter')).toHaveText('Encounter 3 of 3')
  await next.click();await expect(panel).toHaveAttribute('data-comic-panel','supportive-18-1:1')
+ await expect.poll(()=>page.locator('.game-playing').evaluate(e=>e.scrollTop)).toBe(0)
  await page.keyboard.press('ArrowLeft');await expect(panel).toHaveAttribute('data-comic-panel','supportive-18-1:0')
  expect(errors).toEqual([])
 })
