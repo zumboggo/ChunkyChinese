@@ -1345,5 +1345,21 @@
       "title": "Super Supportive · Episode 20 · 三十只新朋友",
       "description": "Alden brings a meal he is certain will work. Gorgon finds a different use for it."
     }
+  },
+  {
+    "id": "supportive-21-v1",
+    "category": "super-supportive",
+    "episode": 21,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-21.mp4",
+      "poster": "stories/animated/cutscenes/supportive-21.poster.jpg",
+      "title": "我想，我不会去。",
+      "durationSeconds": 9
+    },
+    "path": "supportive-21.json",
+    "summary": {
+      "title": "Super Supportive · Episode 21 · 你会在意",
+      "description": "A food hunt becomes a conversation Alden has been avoiding. Boe has a terrible plan for making it less serious."
+    }
   }
 ]

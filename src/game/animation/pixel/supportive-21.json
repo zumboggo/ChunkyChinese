@@ -1,0 +1,402 @@
+{
+  "episode": "supportive-21",
+  "scriptFingerprint": "343b1c67",
+  "shots": [
+    {
+      "anchor": "opening",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-1",
+        "panel": 0,
+        "alt": "Alden studies the butcher’s display while Boe and Jeremy stand beside him.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-1",
+        "panel": 1,
+        "alt": "Alden studies the tripe behind the glass, searching for another food idea.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-1",
+        "panel": 2,
+        "alt": "Boe looks unusually uncomfortable as he raises a difficult question.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-1",
+        "panel": 2,
+        "alt": "Boe looks unusually uncomfortable as he raises a difficult question.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 4,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-1",
+        "panel": 3,
+        "alt": "Alden looks up from the food case, surprised by Boe’s question.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 5,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-1",
+        "panel": 2,
+        "alt": "Boe looks unusually uncomfortable as he raises a difficult question.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "face",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-1",
+        "panel": 2,
+        "alt": "Boe looks unusually uncomfortable as he raises a difficult question.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "meaning",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-1",
+        "panel": 3,
+        "alt": "Alden looks up from the food case, surprised by Boe’s question.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "glance",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-1",
+        "panel": 4,
+        "alt": "Boe and Jeremy exchange an uneasy glance.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "glance",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-1",
+        "panel": 5,
+        "alt": "Jeremy prepares to speak directly, hands together after cracking his knuckles.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "glass",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 1,
+        "alt": "Alden turns away toward the cold glass; his breath clouds a small patch.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "glass",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 2,
+        "alt": "Alden’s uncertain face is reflected in the butcher’s display glass.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "glass",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 2,
+        "alt": "Alden’s uncertain face is reflected in the butcher’s display glass.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "reasons",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 2,
+        "alt": "Alden’s uncertain face is reflected in the butcher’s display glass.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "reasons",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 2,
+        "alt": "Alden’s uncertain face is reflected in the butcher’s display glass.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "others",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 2,
+        "alt": "Alden’s uncertain face is reflected in the butcher’s display glass.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "place",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 2,
+        "alt": "Alden’s uncertain face is reflected in the butcher’s display glass.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "urging",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 0,
+        "alt": "Jeremy gently urges Alden to attend the funeral.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "urging",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 3,
+        "alt": "Boe quietly agrees that Alden should go.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "care",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 4,
+        "alt": "Jeremy explains firmly but kindly why missing the funeral will hurt Alden.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "care",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 4,
+        "alt": "Jeremy explains firmly but kindly why missing the funeral will hurt Alden.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "care",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 4,
+        "alt": "Jeremy explains firmly but kindly why missing the funeral will hurt Alden.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "missed",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 2,
+        "alt": "Alden’s uncertain face is reflected in the butcher’s display glass.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "matters",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 4,
+        "alt": "Jeremy explains firmly but kindly why missing the funeral will hurt Alden.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "silence",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 5,
+        "alt": "The three boys wait in painful silence beside the counter.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "silence",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-2",
+        "panel": 5,
+        "alt": "The three boys wait in painful silence beside the counter.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "doom",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-3",
+        "panel": 0,
+        "alt": "Boe makes an awkwardly theatrical attempt to break the tension.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "doom",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-3",
+        "panel": 1,
+        "alt": "An obviously imagined comic scene: Alden frees Gorgon while a cartoon city burns behind them.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "picture",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-3",
+        "panel": 1,
+        "alt": "An obviously imagined comic scene: Alden frees Gorgon while a cartoon city burns behind them.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "friend",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-3",
+        "panel": 2,
+        "alt": "Jeremy gives Boe an exaggerated, disapproving sideways glare.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "glare",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-3",
+        "panel": 2,
+        "alt": "Jeremy gives Boe an exaggerated, disapproving sideways glare.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "glare",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-3",
+        "panel": 3,
+        "alt": "Boe shrugs apologetically with a sheepish smile.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "tacos",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-3",
+        "panel": 4,
+        "alt": "Boe points out the tongue tacos in the shop’s display.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "tacos",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-3",
+        "panel": 4,
+        "alt": "Boe points out the tongue tacos in the shop’s display.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "ending",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-3",
+        "panel": 5,
+        "alt": "The boys return to the food question, but Alden remains thoughtful.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "ending",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-21-3",
+        "panel": 5,
+        "alt": "The boys return to the food question, but Alden remains thoughtful.",
+        "aspectRatio": 1.5
+      }
+    }
+  ]
+}
