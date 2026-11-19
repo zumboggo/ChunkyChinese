@@ -4,10 +4,10 @@
   "source": {
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
-    "chapter": "OEBPS/Text/0007_SEVEN_A_Little_Delusional.xhtml",
-    "nextStart": "“I understand. But you really reached all the way",
-    "nextEndBefore": "“Have a good night, Gorgon!”",
-    "continuationNote": "Alden playfully challenges acquaintanceship versus friendship; Gorgon asks whether the crickets are still coming. Include their playful chirp and wink. The farewell immediately follows this boundary, then chapter 8; inspect both before planning the next episode and extend scope deliberately if needed."
+    "chapter": "OEBPS/Text/0008_EIGHT_Tiger_Shorts.xhtml",
+    "nextStart": "In early February, Alden dragged his friends into a carniceria",
+    "nextEndBefore": "Wordchain class that day focused on the request for a trade of luck.",
+    "continuationNote": "The friends question whether Alden’s food mission distracts him from Hannah’s proposed funeral. Preserve uncertainty about her fate and Boe’s awkward humour; stop before wordchain class."
   },
   "completed": [
     {
@@ -85,9 +85,13 @@
     {
       "episode": "supportive-19-v1",
       "end": "Alden proposes live crickets and asks whether unusual food would offend. He notices raw skin under Gorgon’s bindings. Gorgon appreciates his gifts but calls the earlier disclosure a costly moment of melancholy, not a problem for Alden to solve. No food test has occurred; the cost is unexplained."
+    },
+    {
+      "episode": "supportive-20-v1",
+      "end": "Alden playfully insists on friendship. His thirty live crickets go uneaten, but Gorgon privately smiles and releases them into the lobby plants. Weeks later they still chirp; Alden continues bringing one vegetarian and one meat dish without success. The butcher-shop discussion has not begun."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-19.json",
+  "assetsFrom": "stories/animated/supportive-20.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -110,9 +114,9 @@
   "castBundle": "public/stories/animated/cast/supportive-13.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-19-v1",
-    "nextStart": "“I understand. But you really reached all the way",
-    "nextEndBefore": "“Have a good night, Gorgon!”",
-    "assetsFrom": "stories/animated/supportive-19.json"
+    "note": "Published through supportive-20-v1",
+    "nextStart": "In early February, Alden dragged his friends into a carniceria",
+    "nextEndBefore": "Wordchain class that day focused on the request for a trade of luck.",
+    "assetsFrom": "stories/animated/supportive-20.json"
   }
 }
