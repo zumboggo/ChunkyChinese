@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0007_SEVEN_A_Little_Delusional.xhtml",
-    "nextStart": "“Do you have a room to sleep in? When everybody leaves?”",
-    "nextEndBefore": "But he didn’t want pity.",
-    "continuationNote": "Alden asks about Gorgon’s living conditions and loneliness. Gorgon describes his unwanted celebrity; Alden recognizes the cruelty of being unable to escape cameras. Stop before Alden manages his pity and proposes crickets."
+    "nextStart": "But he didn’t want pity.",
+    "nextEndBefore": "“I understand. But you really reached all the way",
+    "continuationNote": "Alden reins in pity, proposes live crickets and checks that unusual offerings will not offend. Gorgon appreciates them but calls his disclosure a costly moment of melancholy. Stop before Alden challenges acquaintanceship versus friendship."
   },
   "completed": [
     {
@@ -77,9 +77,13 @@
     {
       "episode": "supportive-17-v1",
       "end": "Alden recognizes how much Hannah mattered to him, reassures Jeremy without sharing his grief, and stays for writing class to avoid a lonely home. When everyone leaves he returns to Gorgon’s desk."
+    },
+    {
+      "episode": "supportive-18-v1",
+      "end": "Alden learns Gorgon has no room, asks about food and loneliness, and realizes that unwanted attention is cruel because Gorgon cannot escape cameras. He has not yet proposed crickets."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-17.json",
+  "assetsFrom": "stories/animated/supportive-18.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -102,9 +106,9 @@
   "castBundle": "public/stories/animated/cast/supportive-13.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-17-v1",
-    "nextStart": "“Do you have a room to sleep in? When everybody leaves?”",
-    "nextEndBefore": "But he didn’t want pity.",
-    "assetsFrom": "stories/animated/supportive-17.json"
+    "note": "Published through supportive-18-v1",
+    "nextStart": "But he didn’t want pity.",
+    "nextEndBefore": "“I understand. But you really reached all the way",
+    "assetsFrom": "stories/animated/supportive-18.json"
   }
 }
