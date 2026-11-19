@@ -3,7 +3,7 @@ async function openEpisode(page:import('@playwright/test').Page){
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
  await page.getByRole('button',{name:'Choose story',exact:true}).click()
  await page.getByLabel('Book',{exact:true}).selectOption('super-supportive')
- await page.getByLabel('Episode',{exact:true}).selectOption('supportive-17-v1')
+ await page.getByLabel('Episode',{exact:true}).selectOption(process.env.PIXEL_EPISODE_ID||'supportive-17-v1')
  await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
  const accept=page.getByRole('button',{name:'Accept',exact:true});await accept.click()
  const skip=page.getByRole('button',{name:'Skip intro →',exact:true});await skip.click()

@@ -191,7 +191,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   if(pixelGate.current)return
   if(standalone)stopAudioMode()
   if(audioModeRunning&&!standalone){if(audioModePaused){setError('');setAudioModePaused(false)}else pauseAudioMode();return}
-  if(!restart&&slideAudioController.current){slideAudioController.current.abort();slideAudioController.current=null;setAudioPlaying(false);setSpeaking(false);return}
+  if(!restart&&slideAudioController.current&&!slideAudioController.current.signal.aborted){slideAudioController.current.abort();slideAudioController.current=null;setAudioPlaying(false);setSpeaking(false);return}
   slideAudioController.current?.abort();sound.current?.pause()
   if(!text){setAudioPlaying(false);setSpeaking(false);return}
   const controller=new AbortController();slideAudioController.current=controller

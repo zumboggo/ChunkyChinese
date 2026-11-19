@@ -1,5 +1,8 @@
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const entries=JSON.parse(fs.readFileSync(new URL('../../public/stories/animated/catalog.json',import.meta.url))).filter(e=>e.category==='super-supportive').sort((a,b)=>a.episode-b.episode);
+const latest=entries.at(-1).episode;
 const browser=await chromium.launch();
 const context=await browser.newContext({viewport:{width:390,height:844}});
 const page=await context.newPage();
@@ -7,11 +10,11 @@ await page.goto((process.env.READER_URL||'http://127.0.0.1:5190/pebble-reader.ht
 await page.evaluate(async()=>{await navigator.serviceWorker.register('./service-worker.js');await navigator.serviceWorker.ready;});
 await page.reload();
 await page.locator('#save').click();
-await page.getByRole('status').filter({hasText:'All 17 episodes saved'}).waitFor();
+await page.getByRole('status').filter({hasText:`All ${entries.length} episodes saved`}).waitFor();
 await context.setOffline(true);
 await page.reload();
-assert.equal(await page.locator('#episode option').count(),17);
-await page.selectOption('#episode','supportive-17');
+assert.equal(await page.locator('#episode option').count(),entries.length);
+await page.selectOption('#episode','supportive-'+latest);
 assert.ok(await page.locator('.pinyin').textContent());
 await page.locator('#next').click();
 const text=await page.locator('.pinyin').textContent();

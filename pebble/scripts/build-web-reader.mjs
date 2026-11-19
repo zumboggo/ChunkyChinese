@@ -8,8 +8,10 @@ const snapshots=new Map(data.episodes.map(p=>[p.number,p]));
 const catalog=JSON.parse(read('../public/stories/animated/catalog.json')).filter(e=>e.category==='super-supportive').sort((a,b)=>a.episode-b.episode);
 if(new Set(catalog.map(e=>e.episode)).size!==catalog.length)throw Error('Duplicate episode number');
 data.episodes=catalog.map(e=>snapshots.get(e.episode)||phoneEpisode(JSON.parse(read('../public/stories/animated/'+e.path)),e));
-const pilot=catalog.find(e=>e.episode===17);
-if(pilot)attachPixelDirection(data.episodes.find(p=>p.number===17),JSON.parse(read('../public/stories/animated/'+pilot.path)),JSON.parse(read('../src/game/animation/pixel/supportive-17.json')));
+for(const entry of catalog){
+ const directionPath=new URL('../src/game/animation/pixel/supportive-'+entry.episode+'.json',root);
+ if(fs.existsSync(directionPath))attachPixelDirection(data.episodes.find(p=>p.number===entry.episode),JSON.parse(read('../public/stories/animated/'+entry.path)),JSON.parse(fs.readFileSync(directionPath,'utf8')));
+}
 for(const pack of data.episodes)for(const node of pack.nodes){
  if(node.type==='animation'&&!data.library.scenes.some(s=>s.id===node.id))throw Error('Missing scene '+node.id);
  if(node.type==='reaction'&&!data.art[node.actor+'-'+node.emotion+'-full'])throw Error('Missing reaction');

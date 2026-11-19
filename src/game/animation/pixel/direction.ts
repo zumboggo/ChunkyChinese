@@ -1,8 +1,11 @@
-import direction from './supportive-17.json' with {type:'json'}
+import episode17 from './supportive-17.json' with {type:'json'}
+import episode18 from './supportive-18.json' with {type:'json'}
+const directions=[episode17,episode18]
 export interface PixelShot {anchor:string;offset:number;reaction?:string;scene?:string;durationMs:number}
 export function scriptFingerprint(script:string){let hash=2166136261;for(let i=0;i<script.length;i++)hash=Math.imul(hash^script.charCodeAt(i),16777619);return (hash>>>0).toString(16).padStart(8,'0')}
 export function pixelShots(script:string,story:{labels:Record<string,number>;nodes:{type:string}[]}):Map<number,PixelShot>|null{
- if(scriptFingerprint(script)!==direction.scriptFingerprint)return null
+ const direction=directions.find(d=>d.scriptFingerprint===scriptFingerprint(script))
+ if(!direction)return null
  const shots=new Map<number,PixelShot>()
  for(const shot of direction.shots){
   const anchor=story.labels[shot.anchor];if(anchor===undefined)throw Error('Missing pixel direction anchor: '+shot.anchor)

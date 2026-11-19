@@ -1,0 +1,185 @@
+{
+  "id": "supportive-18",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 18 · 不能走开",
+  "description": "A quiet question about where Gorgon sleeps changes how Alden sees the people watching him.",
+  "presentation": {
+    "mode": "reading",
+    "animationLabels": [
+      "opening",
+      "desk",
+      "food",
+      "request",
+      "bound",
+      "blink",
+      "go_home",
+      "alone",
+      "company",
+      "famous",
+      "voice",
+      "hurt",
+      "camera",
+      "ending"
+    ]
+  },
+  "audioLanguage": "mandarin-only",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca, Chapter 7: A Little Delusional",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "Adapted from the supplied EPUB: the room question through Alden recognizing that Gorgon cannot escape cameras. Local choices change private attention only."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Pinned chapter 7 passage: room question to zoo comparison; stop before pity management and crickets.",
+    "dramaticChange": "Alden moves from practical curiosity about food and sleep to recognizing the vulnerability behind unwanted celebrity.",
+    "essentialNewWords": [
+      "拍照",
+      "照片",
+      "玩具"
+    ],
+    "englishNarrationPurpose": "",
+    "choicesAndCallbacks": [
+      {
+        "id": "notice",
+        "purpose": "desk or empty building",
+        "laterPayoff": "none; private reflection rejoins canonical conversation"
+      },
+      {
+        "id": "order",
+        "purpose": "unspecified delivery or online ordering",
+        "laterPayoff": "none; private reflection rejoins canonical conversation"
+      },
+      {
+        "id": "respond",
+        "purpose": "personal loneliness or passing visitors",
+        "laterPayoff": "none; private reflection rejoins canonical conversation"
+      },
+      {
+        "id": "listen",
+        "purpose": "words or unfamiliar vocal tone",
+        "laterPayoff": "none; private reflection rejoins canonical conversation"
+      }
+    ],
+    "sceneActivities": [],
+    "storytellingVoice": "Intimate character drama: two lonely people; concern that accidentally touches a painful subject.",
+    "desire": "Understand how Gorgon lives and keep him company.",
+    "obstacle": "Gorgon deflects concern and cannot leave; Alden cannot read his alien emotional cues.",
+    "earlyCare": "The person everyone passes has no room of his own.",
+    "payoff": "Alden recognizes why the photographs are cruel, rather than merely foolish.",
+    "continuingQuestion": "How can Alden show care without turning Gorgon into an object of pity?",
+    "direction": "Hold the conversation in shared framing; show Alden receiving the dismissal and the celebrity remark; final shared still lets the confinement land. Pixel performances follow each passage only after three encounters.",
+    "signatures": {
+      "Alden": "Tired rambling practical questions, then hesitant attention; thoughtful face and chin-rest.",
+      "Gorgon": "Brief factual replies and deflection; restrained attentive expressions, no human-style crying."
+    },
+    "opening": {
+      "style": "Hand-cut woodblock print in indigo, cream and muted moss",
+      "moment": "Alden rests on the desk and acknowledges the pain of being alone.",
+      "speaker": "Alden",
+      "dialogue": "一个人的时候，有时候真的不好受。",
+      "sourceBeat": "company"
+    },
+    "vocabulary": {
+      "reviewedKnown": 804,
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "supplementCount": 259,
+      "effectiveCount": 1063
+    }
+  },
+  "continuation": {
+    "end": "Alden learns Gorgon has no room, asks about food and loneliness, and realizes that unwanted attention is cruel because Gorgon cannot escape cameras. He has not yet proposed crickets.",
+    "nextStart": "But he didn’t want pity.",
+    "nextEndBefore": "“I understand. But you really reached all the way",
+    "note": "Alden reins in pity, proposes live crickets and checks that unusual offerings will not offend. Gorgon appreciates them but calls his disclosure a costly moment of melancholy. Stop before Alden challenges acquaintanceship versus friendship."
+  },
+  "routes": [
+    {
+      "choices": [
+        "desk",
+        "guess",
+        "self",
+        "words"
+      ],
+      "contains": [
+        "你不用担心我。",
+        "他们给我拍了很多照片。"
+      ],
+      "endsWith": "我可以回家。他却连不想被人看的时候，也不能离开。"
+    },
+    {
+      "choices": [
+        "room",
+        "online",
+        "visitors",
+        "sound"
+      ],
+      "contains": [
+        "我不知道他是什么感觉。可我不能因为不明白，就觉得他没事。"
+      ],
+      "endsWith": "我可以回家。他却连不想被人看的时候，也不能离开。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-18-v1",
+    "category": "super-supportive",
+    "episode": 18,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-18.mp4",
+      "poster": "stories/animated/cutscenes/supportive-18.poster.jpg",
+      "title": "一个人的时候，有时候真的不好受。",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "scene": "Alden at the empty consulate desk, admitting that being alone can hurt.",
+    "style": "Hand-cut woodblock print in indigo, cream and muted moss",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "h5e7agtshnrmy0d1xjk9pmsbm8",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "language": "Mandarin",
+    "dialogue": "一个人的时候，有时候真的不好受。",
+    "pricingChecked": "2026-11-18",
+    "pricingUrl": "https://replicate.com/prunaai/p-video-2-pro",
+    "settings": {
+      "duration": 6,
+      "resolution": "480p",
+      "mode": "cost",
+      "prompt_upsampler": "off",
+      "audio": "native"
+    },
+    "image": "stories/characters/super-supportive/supportive-18-opening.png",
+    "checks": {
+      "sha256": "e3415ef416d9dae8535ff223af550ddd88fded0cd516d9e5d21f128a1e1428c8",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 6,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "一个人的时候 有时候真的不好受"
+    }
+  },
+  "verification": {
+    "packageBytes": 3235817,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 95.66115702479338,
+      "max": 96.09856262833675
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "你不用担心我。",
+      "他的声音跟以前不一样。",
+      "别人想给他拍照，他连走开都做不到。"
+    ]
+  }
+}

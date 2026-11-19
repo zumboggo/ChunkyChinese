@@ -1,11 +1,14 @@
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const entries=JSON.parse(fs.readFileSync(new URL('../../public/stories/animated/catalog.json',import.meta.url))).filter(e=>e.category==='super-supportive').sort((a,b)=>a.episode-b.episode);
+const latest=entries.at(-1).episode;
 const browser=await chromium.launch();const context=await browser.newContext({viewport:{width:390,height:844}});const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
 await page.goto(process.env.READER_URL||'http://127.0.0.1:5190/pebble-reader.html');
-assert.deepEqual(await page.locator('#episode option').evaluateAll(rows=>rows.map(r=>r.value)),Array.from({length:17},(_,i)=>'supportive-'+(i+1)));
-for(let i=1;i<=17;i++){
+assert.deepEqual(await page.locator('#episode option').evaluateAll(rows=>rows.map(r=>r.value)),entries.map(e=>'supportive-'+e.episode));
+for(const {episode:i} of entries){
  await page.selectOption('#episode','supportive-'+i);
- if([11,12,13,17].includes(i))continue; // Original animation routes have their own full-playback suite.
+ if([11,12,13].includes(i)||fs.existsSync(new URL(`../../src/game/animation/pixel/supportive-${i}.json`,import.meta.url)))continue; // Original animation routes have their own full-playback suite.
  await page.locator('#next').click();
  const at=await page.locator('#position').textContent();await page.reload();assert.equal(await page.locator('#position').textContent(),at);
  const result=await page.evaluate(()=>{let steps=0,choices=0;while(document.getElementById('next').textContent!=='Episode complete'){

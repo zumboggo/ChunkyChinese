@@ -1,6 +1,6 @@
 import {createHash} from 'node:crypto';
-// Reuse reviewed language and branches. Only watch-directed snapshots contain
-// pixel performances; do not invent performances for other published stories.
+// Reuse reviewed language and branches. Explicit reviewed pixel direction is
+// attached separately; do not invent performances for undirected stories.
 export function phoneEpisode(pack,entry){
  const nodes=[],labels=new Map();let choice;
  const phrases=text=>{

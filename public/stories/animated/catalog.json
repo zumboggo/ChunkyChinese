@@ -1297,5 +1297,21 @@
       "title": "Super Supportive · Episode 17 · 这里还有一个人",
       "description": "After a quiet question from Jeremy, Alden finds reasons to stay a little longer."
     }
+  },
+  {
+    "id": "supportive-18-v1",
+    "category": "super-supportive",
+    "episode": 18,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-18.mp4",
+      "poster": "stories/animated/cutscenes/supportive-18.poster.jpg",
+      "title": "一个人的时候，有时候真的不好受。",
+      "durationSeconds": 9
+    },
+    "path": "supportive-18.json",
+    "summary": {
+      "title": "Super Supportive · Episode 18 · 不能走开",
+      "description": "A quiet question about where Gorgon sleeps changes how Alden sees the people watching him."
+    }
   }
 ]

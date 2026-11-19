@@ -3,11 +3,12 @@ import {readFileSync} from 'node:fs'
 import {compileStory,advanceStory,replayStory} from '../shared/engine/story-engine.js'
 import {pixelShots} from './direction'
 import data from '../../../../pebble/web/assets.json'
-const pack=JSON.parse(readFileSync('stories/animated/supportive-17.json','utf8'))
-describe('episode 17 pixel pilot',()=>{
+for(const episode of [17,18]){
+const pack=JSON.parse(readFileSync(`stories/animated/supportive-${episode}.json`,'utf8'))
+describe(`episode ${episode} pixel direction`,()=>{
  it('directs every passage on every route using available pixel performances',()=>{
   const story=compileStory(pack.script,pack.assets).story,shots=pixelShots(pack.script,story)!
-  expect(shots.size).toBe(41)
+  expect(shots.size).toBe(story.nodes.filter((n:{type:string})=>['say','act'].includes(n.type)).length)
   for(const shot of shots.values()){
    expect(shot.durationMs).toBeLessThanOrEqual(3000)
    if(shot.scene)expect(data.library.scenes.some(s=>s.id===shot.scene)).toBe(true)
@@ -28,3 +29,5 @@ describe('episode 17 pixel pilot',()=>{
   expect(pixelShots(pack.script+'\n',compileStory(pack.script,pack.assets).story)).toBeNull()
  })
 })
+
+}

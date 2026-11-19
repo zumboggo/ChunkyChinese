@@ -20,11 +20,11 @@ for(const entry of catalog)test(entry.id+' preserves language and every branch',
  for(const n of pack.nodes)for(const p of n.phrases||[])assert.ok(p.py&&p.en);
 });
 
-test('pixel direction preserves existing episode 17 bookmark indices and version',()=>{
- const entry=catalog.find(e=>e.episode===17),source=JSON.parse(fs.readFileSync(new URL(entry.path,root))),pack=phoneEpisode(source,entry),before=structuredClone(pack);
- const direction=JSON.parse(fs.readFileSync(new URL('../../src/game/animation/pixel/supportive-17.json',import.meta.url)));
+for(const episode of [17,18])test(`pixel direction preserves episode ${episode} bookmark indices and version`,()=>{
+ const entry=catalog.find(e=>e.episode===episode),source=JSON.parse(fs.readFileSync(new URL(entry.path,root))),pack=phoneEpisode(source,entry),before=structuredClone(pack);
+ const direction=JSON.parse(fs.readFileSync(new URL(`../../src/game/animation/pixel/supportive-${episode}.json`,import.meta.url)));
  attachPixelDirection(pack,source,direction);
  assert.equal(pack.version,before.version);assert.equal(pack.nodes.length,before.nodes.length);
- assert.equal(pack.nodes.filter(n=>n.pixelShot).length,41);
+ assert.equal(pack.nodes.filter(n=>n.pixelShot).length,pack.nodes.filter(n=>n.type==='line').length);
  assert.deepEqual(pack.nodes.map(({pixelShot,...node})=>node),before.nodes);
 });

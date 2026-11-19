@@ -1,0 +1,240 @@
+{
+  "episode": "supportive-18",
+  "scriptFingerprint": "2e115d44",
+  "shots": [
+    {
+      "anchor": "opening",
+      "offset": 0,
+      "reaction": "Alden-curious",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "opening",
+      "offset": 1,
+      "reaction": "Gorgon-neutral",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "opening",
+      "offset": 2,
+      "scene": "gorgon-listen",
+      "durationMs": 2400
+    },
+    {
+      "anchor": "desk",
+      "offset": 0,
+      "scene": "alden-folded-arms",
+      "durationMs": 2400
+    },
+    {
+      "anchor": "desk",
+      "offset": 1,
+      "reaction": "Alden-curious",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "desk_notice",
+      "offset": 0,
+      "reaction": "Gorgon-thoughtful",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "room_notice",
+      "offset": 0,
+      "reaction": "Alden-thoughtful",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "food",
+      "offset": 0,
+      "reaction": "Alden-talking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "food",
+      "offset": 1,
+      "reaction": "Alden-thinking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "food",
+      "offset": 2,
+      "reaction": "Alden-curious",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "request",
+      "offset": 0,
+      "reaction": "Alden-talking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "request",
+      "offset": 1,
+      "reaction": "Alden-skeptical",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "guess",
+      "offset": 0,
+      "reaction": "Alden-thinking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "online",
+      "offset": 0,
+      "reaction": "Alden-thoughtful",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "bound",
+      "offset": 0,
+      "reaction": "Alden-talking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "blink",
+      "offset": 0,
+      "reaction": "Gorgon-attentive",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "blink",
+      "offset": 1,
+      "reaction": "Alden-surprised",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "go_home",
+      "offset": 0,
+      "reaction": "Gorgon-weary-patience",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "go_home",
+      "offset": 1,
+      "reaction": "Gorgon-serious",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "alone",
+      "offset": 0,
+      "reaction": "Alden-worried",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "self",
+      "offset": 0,
+      "reaction": "Alden-holding-back-sadness",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "visitors",
+      "offset": 0,
+      "reaction": "Gorgon-neutral",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "company",
+      "offset": 0,
+      "reaction": "Alden-talking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "company",
+      "offset": 1,
+      "scene": "gorgon-listen",
+      "durationMs": 2400
+    },
+    {
+      "anchor": "company",
+      "offset": 2,
+      "reaction": "Alden-worried",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "famous",
+      "offset": 0,
+      "reaction": "Gorgon-attentive",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "famous",
+      "offset": 1,
+      "reaction": "Gorgon-serious",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "famous",
+      "offset": 2,
+      "reaction": "Gorgon-neutral",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "famous",
+      "offset": 3,
+      "reaction": "Gorgon-weary-patience",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "voice",
+      "offset": 0,
+      "reaction": "Alden-worried",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "voice",
+      "offset": 1,
+      "reaction": "Alden-thoughtful",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "words",
+      "offset": 0,
+      "reaction": "Alden-thinking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "sound",
+      "offset": 0,
+      "reaction": "Alden-thoughtful",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "hurt",
+      "offset": 0,
+      "reaction": "Alden-worried",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "hurt",
+      "offset": 1,
+      "reaction": "Alden-skeptical",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "camera",
+      "offset": 0,
+      "reaction": "Alden-holding-back-sadness",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "camera",
+      "offset": 1,
+      "reaction": "Gorgon-serious",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "ending",
+      "offset": 0,
+      "reaction": "Gorgon-thoughtful",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "ending",
+      "offset": 1,
+      "scene": "gorgon-listen",
+      "durationMs": 2400
+    }
+  ]
+}
