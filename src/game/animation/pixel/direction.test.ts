@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs'
 import {compileStory,advanceStory,replayStory} from '../shared/engine/story-engine.js'
 import {pixelShots} from './direction'
 import data from '../../../../pebble/web/assets.json'
-for(const episode of [17,18]){
+for(const episode of [17,18,19]){
 const pack=JSON.parse(readFileSync(`stories/animated/supportive-${episode}.json`,'utf8'))
 describe(`episode ${episode} pixel direction`,()=>{
  it('directs every passage on every route using available pixel performances',()=>{

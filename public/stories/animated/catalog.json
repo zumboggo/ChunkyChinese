@@ -1313,5 +1313,21 @@
       "title": "Super Supportive · Episode 18 · 不能走开",
       "description": "A quiet question about where Gorgon sleeps changes how Alden sees the people watching him."
     }
+  },
+  {
+    "id": "supportive-19-v1",
+    "category": "super-supportive",
+    "episode": 19,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-19.mp4",
+      "poster": "stories/animated/cutscenes/supportive-19.poster.jpg",
+      "title": "我想找到你能吃的东西。",
+      "durationSeconds": 9
+    },
+    "path": "supportive-19.json",
+    "summary": {
+      "title": "Super Supportive · Episode 19 · 不是要你解决",
+      "description": "Alden offers an unusual meal, then hears the care and the cost behind Gorgon’s earlier admission."
+    }
   }
 ]

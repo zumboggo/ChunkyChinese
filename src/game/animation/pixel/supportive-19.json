@@ -1,0 +1,222 @@
+{
+  "episode": "supportive-19",
+  "scriptFingerprint": "840b2116",
+  "shots": [
+    {
+      "anchor": "opening",
+      "offset": 0,
+      "reaction": "Alden-worried",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "opening",
+      "offset": 1,
+      "reaction": "Alden-calm",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "opening",
+      "offset": 2,
+      "reaction": "Alden-thoughtful",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "crickets",
+      "offset": 0,
+      "reaction": "Alden-talking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "crickets",
+      "offset": 1,
+      "reaction": "Gorgon-neutral",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "crickets",
+      "offset": 2,
+      "reaction": "Alden-amused",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "waiting",
+      "offset": 0,
+      "scene": "gorgon-listen",
+      "durationMs": 2400
+    },
+    {
+      "anchor": "answer",
+      "offset": 0,
+      "reaction": "Alden-curious",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "quiet",
+      "offset": 0,
+      "reaction": "Alden-calm",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "no_hint",
+      "offset": 0,
+      "reaction": "Gorgon-neutral",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "careful",
+      "offset": 0,
+      "reaction": "Alden-talking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "careful",
+      "offset": 1,
+      "reaction": "Alden-thinking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "careful",
+      "offset": 2,
+      "reaction": "Alden-warm",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "food",
+      "offset": 0,
+      "reaction": "Alden-determined",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "feelings",
+      "offset": 0,
+      "reaction": "Alden-thoughtful",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "different",
+      "offset": 0,
+      "reaction": "Gorgon-weary-patience",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "hands",
+      "offset": 0,
+      "reaction": "Gorgon-thoughtful",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "hands",
+      "offset": 1,
+      "reaction": "Alden-surprised",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "wrists",
+      "offset": 0,
+      "reaction": "Alden-worried",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "missed",
+      "offset": 0,
+      "reaction": "Alden-thinking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "reassurance",
+      "offset": 0,
+      "reaction": "Gorgon-serious",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "reassurance",
+      "offset": 1,
+      "reaction": "Gorgon-reluctant-softening",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "reassurance",
+      "offset": 2,
+      "scene": "gorgon-listen",
+      "durationMs": 2400
+    },
+    {
+      "anchor": "received",
+      "offset": 0,
+      "reaction": "Alden-warm",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "earlier",
+      "offset": 0,
+      "reaction": "Gorgon-thoughtful",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "earlier",
+      "offset": 1,
+      "reaction": "Alden-curious",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "earlier",
+      "offset": 2,
+      "reaction": "Gorgon-neutral",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "cost",
+      "offset": 0,
+      "reaction": "Gorgon-serious",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "cost",
+      "offset": 1,
+      "reaction": "Gorgon-serious",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "listener",
+      "offset": 0,
+      "reaction": "Alden-surprised",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "listener",
+      "offset": 1,
+      "reaction": "Alden-skeptical",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "sadness",
+      "offset": 0,
+      "reaction": "Alden-worried",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "price",
+      "offset": 0,
+      "reaction": "Alden-thinking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "expensive",
+      "offset": 0,
+      "reaction": "Alden-thinking",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "expensive",
+      "offset": 1,
+      "reaction": "Alden-thoughtful",
+      "durationMs": 1800
+    },
+    {
+      "anchor": "ending",
+      "offset": 0,
+      "scene": "gorgon-listen",
+      "durationMs": 2400
+    }
+  ]
+}

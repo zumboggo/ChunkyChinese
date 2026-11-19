@@ -20,7 +20,7 @@ for(const entry of catalog)test(entry.id+' preserves language and every branch',
  for(const n of pack.nodes)for(const p of n.phrases||[])assert.ok(p.py&&p.en);
 });
 
-for(const episode of [17,18])test(`pixel direction preserves episode ${episode} bookmark indices and version`,()=>{
+for(const episode of [17,18,19])test(`pixel direction preserves episode ${episode} bookmark indices and version`,()=>{
  const entry=catalog.find(e=>e.episode===episode),source=JSON.parse(fs.readFileSync(new URL(entry.path,root))),pack=phoneEpisode(source,entry),before=structuredClone(pack);
  const direction=JSON.parse(fs.readFileSync(new URL(`../../src/game/animation/pixel/supportive-${episode}.json`,import.meta.url)));
  attachPixelDirection(pack,source,direction);

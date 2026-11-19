@@ -1,0 +1,996 @@
+{
+  "可他不想让我觉得他可怜。他好像能把这种感觉闻出来。": {
+    "english": "But he does not want my pity. He seems able to smell that feeling.",
+    "pinyin": "kě tā bù xiǎng ràng wǒ jué de tā kě lián 。 tā hǎo xiàng néng bǎ zhè zhǒng gǎn jué wén chū lái 。",
+    "interlinear": [
+      {
+        "chinese": "可他不想",
+        "gloss": "But he doesn't want",
+        "pinyin": "kě tā bù xiǎng"
+      },
+      {
+        "chinese": "让我觉得",
+        "gloss": "me to think",
+        "pinyin": "ràng wǒ jué de"
+      },
+      {
+        "chinese": "他可怜。",
+        "gloss": "he is pitiful.",
+        "pinyin": "tā kě lián 。"
+      },
+      {
+        "chinese": "他好像能",
+        "gloss": "He seems able to",
+        "pinyin": "tā hǎo xiàng néng"
+      },
+      {
+        "chinese": "把这种感觉",
+        "gloss": "this feeling",
+        "pinyin": "bǎ zhè zhǒng gǎn jué"
+      },
+      {
+        "chinese": "闻出来。",
+        "gloss": "smell it out.",
+        "pinyin": "wén chū lái 。"
+      }
+    ]
+  },
+  "我把心里的那种感觉收起来，站直了身体。": {
+    "english": "I rein in that feeling and straighten up.",
+    "pinyin": "wǒ bǎ xīn lǐ de nà zhǒng gǎn jué shōu qǐ lái ， zhàn zhí le shēn tǐ 。",
+    "interlinear": [
+      {
+        "chinese": "我把心里的那种感觉",
+        "gloss": "that feeling inside me",
+        "pinyin": "wǒ bǎ xīn lǐ de nà zhǒng gǎn jué"
+      },
+      {
+        "chinese": "收起来，",
+        "gloss": "I rein it in,",
+        "pinyin": "shōu qǐ lái ，"
+      },
+      {
+        "chinese": "站直了身体。",
+        "gloss": "and straighten up.",
+        "pinyin": "zhàn zhí le shēn tǐ 。"
+      }
+    ]
+  },
+  "我想，还是先说吃的事吧。": {
+    "english": "I think, I'd better talk about food first.",
+    "pinyin": "wǒ xiǎng ， hái shì xiān shuō chī de shì ba 。",
+    "interlinear": [
+      {
+        "chinese": "我想，",
+        "gloss": "I think,",
+        "pinyin": "wǒ xiǎng ，"
+      },
+      {
+        "chinese": "还是先说",
+        "gloss": "I'd better talk about",
+        "pinyin": "hái shì xiān shuō"
+      },
+      {
+        "chinese": "吃的事吧。",
+        "gloss": "food first.",
+        "pinyin": "chī de shì ba 。"
+      }
+    ]
+  },
+  "那，下次我给你带蟋蟀来。活的。": {
+    "english": "Well then, next time I'll bring you crickets. Live ones.",
+    "pinyin": "nà ， xià cì wǒ gěi nǐ dài xī shuài lái 。 huó de 。",
+    "interlinear": [
+      {
+        "chinese": "那，",
+        "gloss": "Well then,",
+        "pinyin": "nà ，"
+      },
+      {
+        "chinese": "下次",
+        "gloss": "next time",
+        "pinyin": "xià cì"
+      },
+      {
+        "chinese": "我给你带",
+        "gloss": "I'll bring you",
+        "pinyin": "wǒ gěi nǐ dài"
+      },
+      {
+        "chinese": "蟋蟀来。",
+        "gloss": "crickets.",
+        "pinyin": "xī shuài lái 。"
+      },
+      {
+        "chinese": "活的。",
+        "gloss": "Live ones.",
+        "pinyin": "huó de 。"
+      }
+    ]
+  },
+  "那声音可不小。": {
+    "english": "That sound will be quite loud.",
+    "pinyin": "nà shēng yīn kě bù xiǎo 。",
+    "interlinear": [
+      {
+        "chinese": "那声音",
+        "gloss": "That sound",
+        "pinyin": "nà shēng yīn"
+      },
+      {
+        "chinese": "可不小。",
+        "gloss": "will be quite loud.",
+        "pinyin": "kě bù xiǎo 。"
+      }
+    ]
+  },
+  "你吃得快一点，就不会了。": {
+    "english": "If you eat a little faster, then it won't be.",
+    "pinyin": "nǐ chī de kuài yì diǎn ， jiù bú huì le 。",
+    "interlinear": [
+      {
+        "chinese": "你吃得",
+        "gloss": "If you eat",
+        "pinyin": "nǐ chī de"
+      },
+      {
+        "chinese": "快一点，",
+        "gloss": "a little faster,",
+        "pinyin": "kuài yì diǎn ，"
+      },
+      {
+        "chinese": "就不会了。",
+        "gloss": "then it won't be.",
+        "pinyin": "jiù bú huì le 。"
+      }
+    ]
+  },
+  "我说完以后，没有马上接着说。我在等他。": {
+    "english": "After I finish speaking, I don't immediately keep talking. I'm waiting for him.",
+    "pinyin": "wǒ shuō wán yǐ hòu ， méi yǒu mǎ shàng jiē zhe shuō 。 wǒ zài děng tā 。",
+    "interlinear": [
+      {
+        "chinese": "我说完以后，",
+        "gloss": "After I finish speaking,",
+        "pinyin": "wǒ shuō wán yǐ hòu ，"
+      },
+      {
+        "chinese": "没有马上接着说。",
+        "gloss": "I don't immediately keep talking.",
+        "pinyin": "méi yǒu mǎ shàng jiē zhe shuō 。"
+      },
+      {
+        "chinese": "我在等他。",
+        "gloss": "I'm waiting for him.",
+        "pinyin": "wǒ zài děng tā 。"
+      }
+    ]
+  },
+  "等他多说一点。": {
+    "english": "Wait for him to say a little more.",
+    "pinyin": "děng tā duō shuō yì diǎn 。",
+    "interlinear": [
+      {
+        "chinese": "等他",
+        "gloss": "Wait for him",
+        "pinyin": "děng tā"
+      },
+      {
+        "chinese": "多说一点。",
+        "gloss": "to say a little more.",
+        "pinyin": "duō shuō yì diǎn 。"
+      }
+    ]
+  },
+  "听听他会不会继续说。": {
+    "english": "Listen to see whether he will keep talking.",
+    "pinyin": "tīng tīng tā huì bu huì jì xù shuō 。",
+    "interlinear": [
+      {
+        "chinese": "听听",
+        "gloss": "Listen to see",
+        "pinyin": "tīng tīng"
+      },
+      {
+        "chinese": "他会不会",
+        "gloss": "whether he will",
+        "pinyin": "tā huì bu huì"
+      },
+      {
+        "chinese": "继续说。",
+        "gloss": "keep talking.",
+        "pinyin": "jì xù shuō 。"
+      }
+    ]
+  },
+  "也许这次，他能让我知道一点，自己到底能吃什么。": {
+    "english": "Maybe this time, he can let me know a little about what he can actually eat.",
+    "pinyin": "yě xǔ zhè cì ， tā néng ràng wǒ zhī dào yì diǎn ， zì jǐ dào dǐ néng chī shén me 。",
+    "interlinear": [
+      {
+        "chinese": "也许这次，",
+        "gloss": "Maybe this time,",
+        "pinyin": "yě xǔ zhè cì ，"
+      },
+      {
+        "chinese": "他能让我知道一点，",
+        "gloss": "he can let me know a little",
+        "pinyin": "tā néng ràng wǒ zhī dào yì diǎn ，"
+      },
+      {
+        "chinese": "自己到底能吃什么。",
+        "gloss": "about what he can actually eat.",
+        "pinyin": "zì jǐ dào dǐ néng chī shén me 。"
+      }
+    ]
+  },
+  "我先不说话，给他一点时间。": {
+    "english": "I keep quiet for now, giving him a little time.",
+    "pinyin": "wǒ xiān bù shuō huà ， gěi tā yì diǎn shí jiān 。",
+    "interlinear": [
+      {
+        "chinese": "我先不说话，",
+        "gloss": "I keep quiet for now,",
+        "pinyin": "wǒ xiān bù shuō huà ，"
+      },
+      {
+        "chinese": "给他一点时间。",
+        "gloss": "giving him a little time.",
+        "pinyin": "gěi tā yì diǎn shí jiān 。"
+      }
+    ]
+  },
+  "可他没有再说。我还是不知道，蟋蟀是不是对的。": {
+    "english": "But he doesn't say anything more. I still don't know whether crickets are the right choice.",
+    "pinyin": "kě tā méi yǒu zài shuō 。 wǒ hái shì bù zhī dào ， xī shuài shì bu shì duì de 。",
+    "interlinear": [
+      {
+        "chinese": "可他没有再说。",
+        "gloss": "But he doesn't say anything more.",
+        "pinyin": "kě tā méi yǒu zài shuō 。"
+      },
+      {
+        "chinese": "我还是不知道，",
+        "gloss": "I still don't know",
+        "pinyin": "wǒ hái shì bù zhī dào ，"
+      },
+      {
+        "chinese": "蟋蟀是不是对的。",
+        "gloss": "whether crickets are the right choice.",
+        "pinyin": "xī shuài shì bu shì duì de 。"
+      }
+    ]
+  },
+  "我不知道你能不能说。不过，我给你带特别奇怪的东西吃，你不会生气吧？": {
+    "english": "I don't know whether you can tell me. But if I bring you really strange things to eat, you won't be upset, will you?",
+    "pinyin": "wǒ bù zhī dào nǐ néng bu néng shuō 。 bú guò ， wǒ gěi nǐ dài tè bié qí guài de dōng xi chī ， nǐ bú huì shēng qì ba ？",
+    "interlinear": [
+      {
+        "chinese": "我不知道",
+        "gloss": "I don't know",
+        "pinyin": "wǒ bù zhī dào"
+      },
+      {
+        "chinese": "你能不能说。",
+        "gloss": "whether you can tell me.",
+        "pinyin": "nǐ néng bu néng shuō 。"
+      },
+      {
+        "chinese": "不过，",
+        "gloss": "But",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "我给你带",
+        "gloss": "if I bring you",
+        "pinyin": "wǒ gěi nǐ dài"
+      },
+      {
+        "chinese": "特别奇怪的东西吃，",
+        "gloss": "really strange things to eat,",
+        "pinyin": "tè bié qí guài de dōng xi chī ，"
+      },
+      {
+        "chinese": "你不会生气吧？",
+        "gloss": "you won't be upset, will you?",
+        "pinyin": "nǐ bú huì shēng qì ba ？"
+      }
+    ]
+  },
+  "你一般吃的，应该跟人吃的很不一样。": {
+    "english": "Your usual food must be very different from what humans eat.",
+    "pinyin": "nǐ yì bān chī de ， yīng gāi gēn rén chī de hěn bù yí yàng 。",
+    "interlinear": [
+      {
+        "chinese": "你一般吃的，",
+        "gloss": "What you normally eat",
+        "pinyin": "nǐ yì bān chī de ，"
+      },
+      {
+        "chinese": "应该跟人吃的",
+        "gloss": "must be, compared with what humans eat,",
+        "pinyin": "yīng gāi gēn rén chī de"
+      },
+      {
+        "chinese": "很不一样。",
+        "gloss": "very different.",
+        "pinyin": "hěn bù yí yàng 。"
+      }
+    ]
+  },
+  "我想找到你能吃的东西。可我不想让你不开心。": {
+    "english": "I want to find things you can eat. But I don't want to make you unhappy.",
+    "pinyin": "wǒ xiǎng zhǎo dào nǐ néng chī de dōng xi 。 kě wǒ bù xiǎng ràng nǐ bù kāi xīn 。",
+    "interlinear": [
+      {
+        "chinese": "我想找到",
+        "gloss": "I want to find",
+        "pinyin": "wǒ xiǎng zhǎo dào"
+      },
+      {
+        "chinese": "你能吃的东西。",
+        "gloss": "things you can eat.",
+        "pinyin": "nǐ néng chī de dōng xi 。"
+      },
+      {
+        "chinese": "可我不想",
+        "gloss": "But I don't want",
+        "pinyin": "kě wǒ bù xiǎng"
+      },
+      {
+        "chinese": "让你不开心。",
+        "gloss": "to make you unhappy.",
+        "pinyin": "ràng nǐ bù kāi xīn 。"
+      }
+    ]
+  },
+  "想想为什么要找。": {
+    "english": "Think about why you want to find it.",
+    "pinyin": "xiǎng xiǎng wèi shén me yào zhǎo 。",
+    "interlinear": [
+      {
+        "chinese": "想想",
+        "gloss": "Think about",
+        "pinyin": "xiǎng xiǎng"
+      },
+      {
+        "chinese": "为什么要找。",
+        "gloss": "why you want to find it.",
+        "pinyin": "wèi shén me yào zhǎo 。"
+      }
+    ]
+  },
+  "想想他的感觉。": {
+    "english": "Think about his feelings.",
+    "pinyin": "xiǎng xiǎng tā de gǎn jué 。",
+    "interlinear": [
+      {
+        "chinese": "想想",
+        "gloss": "Think about",
+        "pinyin": "xiǎng xiǎng"
+      },
+      {
+        "chinese": "他的感觉。",
+        "gloss": "his feelings.",
+        "pinyin": "tā de gǎn jué 。"
+      }
+    ]
+  },
+  "我想帮上忙，不只是拿点东西来试试。": {
+    "english": "I want to be helpful, not just bring things to experiment with.",
+    "pinyin": "wǒ xiǎng bāng shàng máng ， bù zhǐ shì ná diǎn dōng xi lái shì shì 。",
+    "interlinear": [
+      {
+        "chinese": "我想帮上忙，",
+        "gloss": "I want to be helpful,",
+        "pinyin": "wǒ xiǎng bāng shàng máng ，"
+      },
+      {
+        "chinese": "不只是",
+        "gloss": "not just",
+        "pinyin": "bù zhǐ shì"
+      },
+      {
+        "chinese": "拿点东西来试试。",
+        "gloss": "bring things to experiment with.",
+        "pinyin": "ná diǎn dōng xi lái shì shì 。"
+      }
+    ]
+  },
+  "对我来说奇怪的东西，对他来说也许一点都不奇怪。": {
+    "english": "Something that seems strange to me might not seem strange to him at all.",
+    "pinyin": "duì wǒ lái shuō qí guài de dōng xi ， duì tā lái shuō yě xǔ yì diǎn dōu bù qí guài 。",
+    "interlinear": [
+      {
+        "chinese": "对我来说",
+        "gloss": "To me,",
+        "pinyin": "duì wǒ lái shuō"
+      },
+      {
+        "chinese": "奇怪的东西，",
+        "gloss": "something strange",
+        "pinyin": "qí guài de dōng xi ，"
+      },
+      {
+        "chinese": "对他来说",
+        "gloss": "might, to him,",
+        "pinyin": "duì tā lái shuō"
+      },
+      {
+        "chinese": "也许一点都不奇怪。",
+        "gloss": "not be strange at all.",
+        "pinyin": "yě xǔ yì diǎn dōu bù qí guài 。"
+      }
+    ]
+  },
+  "我们这么不一样，想认识对方，真不容易。": {
+    "english": "We are so different; trying to get to know each other really isn't easy.",
+    "pinyin": "wǒ men zhè me bù yí yàng ， xiǎng rèn shi duì fāng ， zhēn bù róng yì 。",
+    "interlinear": [
+      {
+        "chinese": "我们这么不一样，",
+        "gloss": "We are so different;",
+        "pinyin": "wǒ men zhè me bù yí yàng ，"
+      },
+      {
+        "chinese": "想认识对方，",
+        "gloss": "trying to get to know each other",
+        "pinyin": "xiǎng rèn shi duì fāng ，"
+      },
+      {
+        "chinese": "真不容易。",
+        "gloss": "really isn't easy.",
+        "pinyin": "zhēn bù róng yì 。"
+      }
+    ]
+  },
+  "他低下头，看了看自己的手。": {
+    "english": "He lowers his head and looks at his hands.",
+    "pinyin": "tā dī xià tóu ， kàn le kàn zì jǐ de shǒu 。",
+    "interlinear": [
+      {
+        "chinese": "他低下头，",
+        "gloss": "He lowers his head",
+        "pinyin": "tā dī xià tóu ，"
+      },
+      {
+        "chinese": "看了看",
+        "gloss": "and looks at",
+        "pinyin": "kàn le kàn"
+      },
+      {
+        "chinese": "自己的手。",
+        "gloss": "his hands.",
+        "pinyin": "zì jǐ de shǒu 。"
+      }
+    ]
+  },
+  "手腕上，魔法让他的皮肤破了。我以前从来没有看见过。": {
+    "english": "On his wrists, the magic has made his skin raw. Before this, I had never noticed it.",
+    "pinyin": "shǒu wàn shàng ， mó fǎ ràng tā de pí fū pò le 。 wǒ yǐ qián cóng lái méi yǒu kàn jiàn guò 。",
+    "interlinear": [
+      {
+        "chinese": "手腕上，",
+        "gloss": "On his wrists,",
+        "pinyin": "shǒu wàn shàng ，"
+      },
+      {
+        "chinese": "魔法让",
+        "gloss": "the magic has made",
+        "pinyin": "mó fǎ ràng"
+      },
+      {
+        "chinese": "他的皮肤",
+        "gloss": "his skin",
+        "pinyin": "tā de pí fū"
+      },
+      {
+        "chinese": "破了。",
+        "gloss": "raw.",
+        "pinyin": "pò le 。"
+      },
+      {
+        "chinese": "我以前",
+        "gloss": "Before this, I",
+        "pinyin": "wǒ yǐ qián"
+      },
+      {
+        "chinese": "从来没有看见过。",
+        "gloss": "had never noticed it.",
+        "pinyin": "cóng lái méi yǒu kàn jiàn guò 。"
+      }
+    ]
+  },
+  "看看他的手。": {
+    "english": "Look at his hands.",
+    "pinyin": "kàn kàn tā de shǒu 。",
+    "interlinear": [
+      {
+        "chinese": "看看",
+        "gloss": "Look at",
+        "pinyin": "kàn kàn"
+      },
+      {
+        "chinese": "他的手。",
+        "gloss": "his hands.",
+        "pinyin": "tā de shǒu 。"
+      }
+    ]
+  },
+  "想想自己以前没看见的事。": {
+    "english": "Think about what you, before now, hadn't noticed.",
+    "pinyin": "xiǎng xiǎng zì jǐ yǐ qián méi kàn jiàn de shì 。",
+    "interlinear": [
+      {
+        "chinese": "想想",
+        "gloss": "Think about",
+        "pinyin": "xiǎng xiǎng"
+      },
+      {
+        "chinese": "自己以前",
+        "gloss": "what you, before now,",
+        "pinyin": "zì jǐ yǐ qián"
+      },
+      {
+        "chinese": "没看见的事。",
+        "gloss": "hadn't noticed.",
+        "pinyin": "méi kàn jiàn de shì 。"
+      }
+    ]
+  },
+  "那些东西一直在他身上。我现在才看见，它们给他带来了什么。": {
+    "english": "Those things have been on him all along. Only now do I see what they have done to him.",
+    "pinyin": "nà xiē dōng xi yì zhí zài tā shēn shàng 。 wǒ xiàn zài cái kàn jiàn ， tā men gěi tā dài lái le shén me 。",
+    "interlinear": [
+      {
+        "chinese": "那些东西",
+        "gloss": "Those things",
+        "pinyin": "nà xiē dōng xi"
+      },
+      {
+        "chinese": "一直在他身上。",
+        "gloss": "have been on him all along.",
+        "pinyin": "yì zhí zài tā shēn shàng 。"
+      },
+      {
+        "chinese": "我现在才看见，",
+        "gloss": "Only now do I see",
+        "pinyin": "wǒ xiàn zài cái kàn jiàn ，"
+      },
+      {
+        "chinese": "它们给他",
+        "gloss": "what they have",
+        "pinyin": "tā men gěi tā"
+      },
+      {
+        "chinese": "带来了什么。",
+        "gloss": "done to him.",
+        "pinyin": "dài lái le shén me 。"
+      }
+    ]
+  },
+  "我来过这里这么多次，却还有这么多事不知道。": {
+    "english": "I have been here so many times, yet there is still so much I don't know.",
+    "pinyin": "wǒ lái guò zhè lǐ zhè me duō cì ， què hái yǒu zhè me duō shì bù zhī dào 。",
+    "interlinear": [
+      {
+        "chinese": "我来过这里",
+        "gloss": "I have been here",
+        "pinyin": "wǒ lái guò zhè lǐ"
+      },
+      {
+        "chinese": "这么多次，",
+        "gloss": "so many times,",
+        "pinyin": "zhè me duō cì ，"
+      },
+      {
+        "chinese": "却还有这么多事",
+        "gloss": "yet there is still so much",
+        "pinyin": "què hái yǒu zhè me duō shì"
+      },
+      {
+        "chinese": "不知道。",
+        "gloss": "I don't know.",
+        "pinyin": "bù zhī dào 。"
+      }
+    ]
+  },
+  "我不会生气。可是，奥尔登，今天我本来不想跟你说吃的事。": {
+    "english": "I won't be upset. But, Alden, today I had not intended to talk to you about food.",
+    "pinyin": "wǒ bú huì shēng qì 。 kě shì ， ào ěr dēng ， jīn tiān wǒ běn lái bù xiǎng gēn nǐ shuō chī de shì 。",
+    "interlinear": [
+      {
+        "chinese": "我不会生气。",
+        "gloss": "I won't be upset.",
+        "pinyin": "wǒ bú huì shēng qì 。"
+      },
+      {
+        "chinese": "可是，",
+        "gloss": "But,",
+        "pinyin": "kě shì ，"
+      },
+      {
+        "chinese": "奥尔登，",
+        "gloss": "Alden,",
+        "pinyin": "ào ěr dēng ，"
+      },
+      {
+        "chinese": "今天我本来不想",
+        "gloss": "today I had not intended",
+        "pinyin": "jīn tiān wǒ běn lái bù xiǎng"
+      },
+      {
+        "chinese": "跟你说吃的事。",
+        "gloss": "to talk to you about food.",
+        "pinyin": "gēn nǐ shuō chī de shì 。"
+      }
+    ]
+  },
+  "你带来的东西，我一直很喜欢。谢谢你。": {
+    "english": "The things you bring, I have always enjoyed them. Thank you.",
+    "pinyin": "nǐ dài lái de dōng xi ， wǒ yì zhí hěn xǐ huan 。 xiè xiè nǐ 。",
+    "interlinear": [
+      {
+        "chinese": "你带来的东西，",
+        "gloss": "The things you bring,",
+        "pinyin": "nǐ dài lái de dōng xi ，"
+      },
+      {
+        "chinese": "我一直很喜欢。",
+        "gloss": "I have always enjoyed them.",
+        "pinyin": "wǒ yì zhí hěn xǐ huan 。"
+      },
+      {
+        "chinese": "谢谢你。",
+        "gloss": "Thank you.",
+        "pinyin": "xiè xiè nǐ 。"
+      }
+    ]
+  },
+  "我的日子没什么意思。至少，你带来的东西能让我觉得有意思一点。": {
+    "english": "My days are not very interesting. At least the things you bring make them a little more interesting.",
+    "pinyin": "wǒ de rì zi méi shén me yì si 。 zhì shǎo ， nǐ dài lái de dōng xi néng ràng wǒ jué de yǒu yì si yì diǎn 。",
+    "interlinear": [
+      {
+        "chinese": "我的日子",
+        "gloss": "My days",
+        "pinyin": "wǒ de rì zi"
+      },
+      {
+        "chinese": "没什么意思。",
+        "gloss": "aren't very interesting.",
+        "pinyin": "méi shén me yì si 。"
+      },
+      {
+        "chinese": "至少，",
+        "gloss": "At least",
+        "pinyin": "zhì shǎo ，"
+      },
+      {
+        "chinese": "你带来的东西",
+        "gloss": "the things you bring",
+        "pinyin": "nǐ dài lái de dōng xi"
+      },
+      {
+        "chinese": "能让我觉得",
+        "gloss": "can make me feel",
+        "pinyin": "néng ràng wǒ jué de"
+      },
+      {
+        "chinese": "有意思一点。",
+        "gloss": "a little more interested.",
+        "pinyin": "yǒu yì si yì diǎn 。"
+      }
+    ]
+  },
+  "他喜欢那些东西。听他这样说，我知道自己没有白带。": {
+    "english": "He likes those things. Hearing him say that, I know I haven't brought them for nothing.",
+    "pinyin": "tā xǐ huan nà xiē dōng xi 。 tīng tā zhè yàng shuō ， wǒ zhī dào zì jǐ méi yǒu bái dài 。",
+    "interlinear": [
+      {
+        "chinese": "他喜欢那些东西。",
+        "gloss": "He likes those things.",
+        "pinyin": "tā xǐ huan nà xiē dōng xi 。"
+      },
+      {
+        "chinese": "听他这样说，",
+        "gloss": "Hearing him say that,",
+        "pinyin": "tīng tā zhè yàng shuō ，"
+      },
+      {
+        "chinese": "我知道",
+        "gloss": "I know",
+        "pinyin": "wǒ zhī dào"
+      },
+      {
+        "chinese": "自己没有白带。",
+        "gloss": "I haven't brought them for nothing.",
+        "pinyin": "zì jǐ méi yǒu bái dài 。"
+      }
+    ]
+  },
+  "今天早些时候，我说过的话……": {
+    "english": "Earlier today, what I said...",
+    "pinyin": "jīn tiān zǎo xiē shí hou ， wǒ shuō guò de huà … …",
+    "interlinear": [
+      {
+        "chinese": "今天早些时候，",
+        "gloss": "Earlier today,",
+        "pinyin": "jīn tiān zǎo xiē shí hou ，"
+      },
+      {
+        "chinese": "我说过的话……",
+        "gloss": "what I said...",
+        "pinyin": "wǒ shuō guò de huà … …"
+      }
+    ]
+  },
+  "你说，你不是不吃肉的？": {
+    "english": "When you said you are not a vegetarian?",
+    "pinyin": "nǐ shuō ， nǐ bú shì bù chī ròu de ？",
+    "interlinear": [
+      {
+        "chinese": "你说，",
+        "gloss": "You said",
+        "pinyin": "nǐ shuō ，"
+      },
+      {
+        "chinese": "你不是不吃肉的？",
+        "gloss": "you're not someone who doesn't eat meat?",
+        "pinyin": "nǐ bú shì bù chī ròu de ？"
+      }
+    ]
+  },
+  "对，就是那个。": {
+    "english": "Yes, that's the one.",
+    "pinyin": "duì ， jiù shì nà ge 。",
+    "interlinear": [
+      {
+        "chinese": "对，",
+        "gloss": "Yes,",
+        "pinyin": "duì ，"
+      },
+      {
+        "chinese": "就是那个。",
+        "gloss": "that's the one.",
+        "pinyin": "jiù shì nà ge 。"
+      }
+    ]
+  },
+  "那是因为……我那时候有点伤心。那时候，我付出的代价很高。": {
+    "english": "That was because... I felt a little melancholy. It was a costly moment.",
+    "pinyin": "nà shì yīn wèi … … wǒ nà shí hou yǒu diǎn shāng xīn 。 nà shí hou ， wǒ fù chū de dài jià hěn gāo 。",
+    "interlinear": [
+      {
+        "chinese": "那是因为……",
+        "gloss": "That was because...",
+        "pinyin": "nà shì yīn wèi … …"
+      },
+      {
+        "chinese": "我那时候",
+        "gloss": "at that moment I",
+        "pinyin": "wǒ nà shí hou"
+      },
+      {
+        "chinese": "有点伤心。",
+        "gloss": "was a little sad.",
+        "pinyin": "yǒu diǎn shāng xīn 。"
+      },
+      {
+        "chinese": "那时候，",
+        "gloss": "At that moment,",
+        "pinyin": "nà shí hou ，"
+      },
+      {
+        "chinese": "我付出的代价",
+        "gloss": "the price I paid",
+        "pinyin": "wǒ fù chū de dài jià"
+      },
+      {
+        "chinese": "很高。",
+        "gloss": "was high.",
+        "pinyin": "hěn gāo 。"
+      }
+    ]
+  },
+  "这不是要你来解决的问题。": {
+    "english": "This is not a problem for you to solve.",
+    "pinyin": "zhè bú shì yào nǐ lái jiě jué de wèn tí 。",
+    "interlinear": [
+      {
+        "chinese": "这不是",
+        "gloss": "This is not",
+        "pinyin": "zhè bú shì"
+      },
+      {
+        "chinese": "要你来解决的问题。",
+        "gloss": "a problem for you to solve.",
+        "pinyin": "yào nǐ lái jiě jué de wèn tí 。"
+      }
+    ]
+  },
+  "伤心？他今天早些时候，是在伤心？": {
+    "english": "Sad? Earlier today, he was feeling sad?",
+    "pinyin": "shāng xīn ？ tā jīn tiān zǎo xiē shí hou ， shì zài shāng xīn ？",
+    "interlinear": [
+      {
+        "chinese": "伤心？",
+        "gloss": "Sad?",
+        "pinyin": "shāng xīn ？"
+      },
+      {
+        "chinese": "他今天早些时候，",
+        "gloss": "Earlier today, he",
+        "pinyin": "tā jīn tiān zǎo xiē shí hou ，"
+      },
+      {
+        "chinese": "是在伤心？",
+        "gloss": "was feeling sad?",
+        "pinyin": "shì zài shāng xīn ？"
+      }
+    ]
+  },
+  "我还以为，他是在说反话。": {
+    "english": "I had thought he was being sarcastic.",
+    "pinyin": "wǒ hái yǐ wéi ， tā shì zài shuō fǎn huà 。",
+    "interlinear": [
+      {
+        "chinese": "我还以为，",
+        "gloss": "I had thought",
+        "pinyin": "wǒ hái yǐ wéi ，"
+      },
+      {
+        "chinese": "他是在说反话。",
+        "gloss": "he was being sarcastic.",
+        "pinyin": "tā shì zài shuō fǎn huà 。"
+      }
+    ]
+  },
+  "想想他说的伤心。": {
+    "english": "Think about the sadness he mentioned.",
+    "pinyin": "xiǎng xiǎng tā shuō de shāng xīn 。",
+    "interlinear": [
+      {
+        "chinese": "想想",
+        "gloss": "Think about",
+        "pinyin": "xiǎng xiǎng"
+      },
+      {
+        "chinese": "他说的伤心。",
+        "gloss": "the sadness he mentioned.",
+        "pinyin": "tā shuō de shāng xīn 。"
+      }
+    ]
+  },
+  "想想他为什么这样说。": {
+    "english": "Think about why he said that.",
+    "pinyin": "xiǎng xiǎng tā wèi shén me zhè yàng shuō 。",
+    "interlinear": [
+      {
+        "chinese": "想想",
+        "gloss": "Think about",
+        "pinyin": "xiǎng xiǎng"
+      },
+      {
+        "chinese": "他为什么这样说。",
+        "gloss": "why he said that.",
+        "pinyin": "tā wèi shén me zhè yàng shuō 。"
+      }
+    ]
+  },
+  "我连他伤心的时候是什么样子，都没看明白。": {
+    "english": "I did not even recognize what his sadness looked like.",
+    "pinyin": "wǒ lián tā shāng xīn de shí hou shì shén me yàng zi ， dōu méi kàn míng bái 。",
+    "interlinear": [
+      {
+        "chinese": "我连",
+        "gloss": "I even",
+        "pinyin": "wǒ lián"
+      },
+      {
+        "chinese": "他伤心的时候是什么样子，",
+        "gloss": "what his sadness looked like,",
+        "pinyin": "tā shāng xīn de shí hou shì shén me yàng zi ，"
+      },
+      {
+        "chinese": "都没看明白。",
+        "gloss": "failed to recognize",
+        "pinyin": "dōu méi kàn míng bái 。"
+      }
+    ]
+  },
+  "他刚才说的话，到底是什么意思？": {
+    "english": "What he just said, what exactly did it mean?",
+    "pinyin": "tā gāng cái shuō de huà ， dào dǐ shì shén me yì si ？",
+    "interlinear": [
+      {
+        "chinese": "他刚才说的话，",
+        "gloss": "What he just said,",
+        "pinyin": "tā gāng cái shuō de huà ，"
+      },
+      {
+        "chinese": "到底是什么意思？",
+        "gloss": "what exactly did it mean?",
+        "pinyin": "dào dǐ shì shén me yì si ？"
+      }
+    ]
+  },
+  "要是我真去买那些特别少见的肉，花的钱一定不少。": {
+    "english": "If I really went to buy those particularly unusual meats, the money I'd spend would certainly be a lot.",
+    "pinyin": "yào shi wǒ zhēn qù mǎi nà xiē tè bié shǎo jiàn de ròu ， huā de qián yí dìng bù shǎo 。",
+    "interlinear": [
+      {
+        "chinese": "要是我真去买",
+        "gloss": "If I really went to buy",
+        "pinyin": "yào shi wǒ zhēn qù mǎi"
+      },
+      {
+        "chinese": "那些特别少见的肉，",
+        "gloss": "those particularly unusual meats,",
+        "pinyin": "nà xiē tè bié shǎo jiàn de ròu ，"
+      },
+      {
+        "chinese": "花的钱",
+        "gloss": "the money I'd spend",
+        "pinyin": "huā de qián"
+      },
+      {
+        "chinese": "一定不少。",
+        "gloss": "would certainly be a lot.",
+        "pinyin": "yí dìng bù shǎo 。"
+      }
+    ]
+  },
+  "可他说的，是花钱这件事吗？我还不知道。": {
+    "english": "But did he mean spending money? I still do not know.",
+    "pinyin": "kě tā shuō de ， shì huā qián zhè jiàn shì ma ？ wǒ hái bù zhī dào 。",
+    "interlinear": [
+      {
+        "chinese": "可他说的，",
+        "gloss": "But was what he meant",
+        "pinyin": "kě tā shuō de ，"
+      },
+      {
+        "chinese": "是花钱这件事吗？",
+        "gloss": "spending money?",
+        "pinyin": "shì huā qián zhè jiàn shì ma ？"
+      },
+      {
+        "chinese": "我还不知道。",
+        "gloss": "I still don't know.",
+        "pinyin": "wǒ hái bù zhī dào 。"
+      }
+    ]
+  },
+  "我带来的东西，让他的日子好过了一点。这一点，他已经告诉我了。": {
+    "english": "The things I bring make his days a little easier to get through. That much, he has already told me.",
+    "pinyin": "wǒ dài lái de dōng xi ， ràng tā de rì zi hǎo guò le yì diǎn 。 zhè yì diǎn ， tā yǐ jīng gào su wǒ le 。",
+    "interlinear": [
+      {
+        "chinese": "我带来的东西，",
+        "gloss": "The things I bring",
+        "pinyin": "wǒ dài lái de dōng xi ，"
+      },
+      {
+        "chinese": "让他的日子",
+        "gloss": "make his days",
+        "pinyin": "ràng tā de rì zi"
+      },
+      {
+        "chinese": "好过了一点。",
+        "gloss": "a little easier to get through.",
+        "pinyin": "hǎo guò le yì diǎn 。"
+      },
+      {
+        "chinese": "这一点，",
+        "gloss": "That much,",
+        "pinyin": "zhè yì diǎn ，"
+      },
+      {
+        "chinese": "他已经告诉我了。",
+        "gloss": "he has already told me.",
+        "pinyin": "tā yǐ jīng gào su wǒ le 。"
+      }
+    ]
+  }
+}

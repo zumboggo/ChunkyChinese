@@ -1,0 +1,186 @@
+{
+  "id": "supportive-19",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 19 · 不是要你解决",
+  "description": "Alden offers an unusual meal, then hears the care and the cost behind Gorgon’s earlier admission.",
+  "presentation": {
+    "mode": "reading",
+    "animationLabels": [
+      "opening",
+      "crickets",
+      "waiting",
+      "no_hint",
+      "careful",
+      "different",
+      "hands",
+      "reassurance",
+      "received",
+      "earlier",
+      "cost",
+      "listener",
+      "expensive",
+      "ending"
+    ]
+  },
+  "audioLanguage": "mandarin-only",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca, Chapter 7: A Little Delusional",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "Adapted from the supplied EPUB, from Alden suppressing pity through Gorgon’s costly melancholy and Alden’s thoughts about food prices. Choices change private attention, not events."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Pinned chapter 7 passage, before Alden challenges the word acquaintanceship. No food test occurs.",
+    "dramaticChange": "Alden learns his food already brings Gorgon pleasure, but that Gorgon’s disclosure was painful and was not a request to solve his life.",
+    "essentialNewWords": [
+      "蟋蟀",
+      "代价",
+      "手腕",
+      "可怜"
+    ],
+    "englishNarrationPurpose": "",
+    "choicesAndCallbacks": [
+      {
+        "id": "hint",
+        "purpose": "wait for a hint or leave room for a reply",
+        "laterPayoff": "none; private reflection rejoins source conversation"
+      },
+      {
+        "id": "care",
+        "purpose": "practical help or respect for unfamiliar tastes",
+        "laterPayoff": "none; private reflection rejoins source conversation"
+      },
+      {
+        "id": "look",
+        "purpose": "notice the bindings or recognize what Alden overlooked",
+        "laterPayoff": "none; private reflection rejoins source conversation"
+      },
+      {
+        "id": "meaning",
+        "purpose": "unfamiliar sadness or unexplained cost",
+        "laterPayoff": "none; private reflection rejoins source conversation"
+      }
+    ],
+    "sceneActivities": [],
+    "storytellingVoice": "Intimate character drama: awkward humour and practical kindness meet an unfamiliar emotional boundary.",
+    "desire": "Find something Gorgon can eat without pitying or offending him.",
+    "obstacle": "Food restrictions prevent clear hints; Alden cannot read Gorgon’s feelings or understand the cost.",
+    "earlyCare": "Alden tries to replace pity with useful care and a small joke.",
+    "payoff": "Gorgon explicitly appreciates the gifts while setting a boundary: Alden is not responsible for solving his problem.",
+    "continuingQuestion": "What did Gorgon’s moment of melancholy cost him, and what does it mean for these two to be friends?",
+    "direction": "Shared desk conversation, quieter Gorgon reactions; Alden receives the appreciation and the boundary. Reader-held pixel aftermath after all three encounters for each passage.",
+    "signatures": {
+      "Alden": "Well-meaning, joking to deflect pity, earnest practical questions; curiosity settles into uncertainty.",
+      "Gorgon": "Dry reply to crickets, formal distance, honest thanks, then a firm gentle boundary; no invented human crying."
+    },
+    "vocabulary": {
+      "reviewedKnown": 804,
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "supplementCount": 259,
+      "effectiveCount": 1063
+    },
+    "opening": {
+      "style": "Layered cut-paper collage in cream, sage and slate blue",
+      "moment": "Alden offers practical care without wanting to upset Gorgon.",
+      "speaker": "Alden",
+      "dialogue": "我想找到你能吃的东西。",
+      "sourceBeat": "careful"
+    }
+  },
+  "continuation": {
+    "end": "Alden proposes live crickets and asks whether unusual food would offend. He notices raw skin under Gorgon’s bindings. Gorgon appreciates his gifts but calls the earlier disclosure a costly moment of melancholy, not a problem for Alden to solve. No food test has occurred; the cost is unexplained.",
+    "nextStart": "“I understand. But you really reached all the way",
+    "nextEndBefore": "“Have a good night, Gorgon!”",
+    "note": "Alden playfully challenges acquaintanceship versus friendship; Gorgon asks whether the crickets are still coming. Include their playful chirp and wink. The farewell immediately follows this boundary, then chapter 8; inspect both before planning the next episode and extend scope deliberately if needed."
+  },
+  "routes": [
+    {
+      "choices": [
+        "answer",
+        "food",
+        "wrists",
+        "sadness"
+      ],
+      "contains": [
+        "你吃得快一点，就不会了。",
+        "这不是要你来解决的问题。"
+      ],
+      "endsWith": "我带来的东西，让他的日子好过了一点。这一点，他已经告诉我了。"
+    },
+    {
+      "choices": [
+        "quiet",
+        "feelings",
+        "missed",
+        "price"
+      ],
+      "contains": [
+        "他刚才说的话，到底是什么意思？"
+      ],
+      "endsWith": "我带来的东西，让他的日子好过了一点。这一点，他已经告诉我了。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-19-v1",
+    "category": "super-supportive",
+    "episode": 19,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-19.mp4",
+      "poster": "stories/animated/cutscenes/supportive-19.poster.jpg",
+      "title": "我想找到你能吃的东西。",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "scene": "Alden has straightened up at the consulate desk and offers practical care without pity.",
+    "style": "Layered cut-paper collage in cream, sage and slate blue",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "ntxpma4fbxrmy0d1y9j92m1qrw",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "language": "Mandarin",
+    "dialogue": "我想找到你能吃的东西。",
+    "pricingChecked": "2026-11-19",
+    "pricingUrl": "https://replicate.com/prunaai/p-video-2-pro",
+    "settings": {
+      "duration": 6,
+      "resolution": "480p",
+      "mode": "cost",
+      "prompt_upsampler": "off",
+      "audio": "native"
+    },
+    "image": "stories/characters/super-supportive/supportive-19-opening.png",
+    "checks": {
+      "sha256": "1b441762acd1d46b887c4eb5d8148b679144e80a40d24795901d4e6b18419ed4",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 6,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "我想找到你能吃的东西"
+    }
+  },
+  "verification": {
+    "packageBytes": 3074684,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 96.84466019417475,
+      "max": 96.96261682242991
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "你带来的东西，我一直很喜欢。谢谢你。",
+      "这不是要你来解决的问题。",
+      "伤心？他今天早些时候，是在伤心？"
+    ]
+  }
+}
