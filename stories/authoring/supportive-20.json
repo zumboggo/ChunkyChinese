@@ -1,0 +1,173 @@
+{
+  "id": "supportive-20",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 20 · 三十只新朋友",
+  "description": "Alden brings a meal he is certain will work. Gorgon finds a different use for it.",
+  "presentation": {
+    "mode": "reading",
+    "animationLabels": [
+      "opening"
+    ]
+  },
+  "audioLanguage": "mandarin-only",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca, Chapters 7–8",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "Supplied EPUB: the friendship joke and farewell at the end of chapter 7, then chapter 8 through the continued unsuccessful food offerings. Ends before the early-February butcher-shop conversation. Choices vary private attention without changing canonical events."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Deliberately extended beyond the four-line chapter 7 seed through the farewell and opening cricket experiment in chapter 8, stopping before the early-February carniceria scene. Both adjacent passages inspected; no intervening events omitted.",
+    "dramaticChange": "Alden stops measuring this gift solely by whether Gorgon eats it: a hidden smile and living crickets reveal a different kind of success.",
+    "essentialNewWords": [
+      "蟋蟀",
+      "朋友",
+      "抓"
+    ],
+    "englishNarrationPurpose": "",
+    "choicesAndCallbacks": [
+      {
+        "id": "friend",
+        "purpose": "what the word friendship means",
+        "laterPayoff": "none; private response rejoins canonical events"
+      },
+      {
+        "id": "sure",
+        "purpose": "compare insects or reconsider certainty",
+        "laterPayoff": "none; private response rejoins canonical events"
+      },
+      {
+        "id": "smile",
+        "purpose": "notice the private smile or the living gift",
+        "laterPayoff": "none; private response rejoins canonical events"
+      },
+      {
+        "id": "hunt",
+        "purpose": "consider hunting or observe what actually happens",
+        "laterPayoff": "none; private response rejoins canonical events"
+      }
+    ],
+    "sceneActivities": [],
+    "storytellingVoice": "Warm, self-questioning adolescent: canonical overconfidence, bafflement and affectionate determination suit personable first-person Mandarin; humour aimed at Alden’s assumptions.",
+    "desire": "Find food his friend can eat.",
+    "obstacle": "Even live crickets fail; Gorgon cannot explain the restrictions.",
+    "earlyCare": "Alden lightly insists on friendship rather than formal distance.",
+    "payoff": "Gorgon smiles and gives the crickets homes among the lobby plants; the gift matters although it was not eaten.",
+    "continuingQuestion": "What can Gorgon actually eat, and why is Alden so determined to solve this?",
+    "direction": "Comic panels with six images per sheet, held alongside text. Vary wide/detail/reverse/close/imagined insert; exaggerate Alden’s confidence and confusion gently. Gorgon stays restrained except for the source-supported private smile. Preserve current three encounters and native interlinear/audio.",
+    "signatures": {
+      "Alden": "Earnest teenage problem-solver; teasing eyebrow, deliberate wink, then baffled self-correction.",
+      "Gorgon": "Dry cricket question, neutral speech, one surprisingly human private smile."
+    },
+    "vocabulary": {
+      "reviewedKnown": 804,
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "supplementCount": 259,
+      "effectiveCount": 1063
+    },
+    "opening": {
+      "style": "Comic screenprint with tactile halftone shading in teal, ochre and warm cream",
+      "moment": "Alden lightly insists that friendship is the simpler word.",
+      "speaker": "Alden",
+      "dialogue": "明明可以说是朋友啊。",
+      "sourceBeat": "opening"
+    }
+  },
+  "continuation": {
+    "chapter": "OEBPS/Text/0008_EIGHT_Tiger_Shorts.xhtml",
+    "end": "Alden playfully insists on friendship. His thirty live crickets go uneaten, but Gorgon privately smiles and releases them into the lobby plants. Weeks later they still chirp; Alden continues bringing one vegetarian and one meat dish without success. The butcher-shop discussion has not begun.",
+    "nextStart": "In early February, Alden dragged his friends into a carniceria",
+    "nextEndBefore": "Wordchain class that day focused on the request for a trade of luck.",
+    "note": "The friends question whether Alden’s food mission distracts him from Hannah’s proposed funeral. Preserve uncertainty about her fate and Boe’s awkward humour; stop before wordchain class."
+  },
+  "routes": [
+    {
+      "choices": [
+        "word",
+        "compare",
+        "face",
+        "idea"
+      ],
+      "contains": [
+        "结果，他一只也没吃。",
+        "他把它们全都送到了房间的花草里面。"
+      ],
+      "endsWith": "我还是不知道他能吃什么。不过，我看见了他的笑。"
+    },
+    {
+      "choices": [
+        "distance",
+        "certain",
+        "gift",
+        "watch"
+      ],
+      "contains": [
+        "结果，他一只也没吃。"
+      ],
+      "endsWith": "我还是不知道他能吃什么。不过，我看见了他的笑。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-20-v1",
+    "category": "super-supportive",
+    "episode": 20,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-20.mp4",
+      "poster": "stories/animated/cutscenes/supportive-20.poster.jpg",
+      "title": "明明可以说是朋友啊。",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "scene": "Alden lightly insists on friendship at the consulate desk.",
+    "style": "Comic screenprint with tactile halftone shading in teal, ochre and warm cream",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "qz4rkhkw81rmw0d1yh08cskbym",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "language": "Mandarin",
+    "dialogue": "明明可以说是朋友啊。",
+    "pricingChecked": "2026-11-19",
+    "pricingUrl": "https://replicate.com/prunaai/p-video-2-pro",
+    "settings": {
+      "duration": 6,
+      "resolution": "480p",
+      "mode": "cost",
+      "prompt_upsampler": "off",
+      "audio": "native"
+    },
+    "image": "stories/characters/super-supportive/supportive-20-opening.png",
+    "checks": {
+      "sha256": "6b90ff08cdfca0839b232bd49385c3e692b190114f2572418ee1f987d2f1688a",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 6,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "明明可以说是朋友啊"
+    }
+  },
+  "verification": {
+    "packageBytes": 3178276,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 95.83333333333333,
+      "max": 96.73913043478261
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "明明可以说是朋友啊。",
+      "那个笑，真的很像人。我以前可没见过他这样。",
+      "吃的问题还是个问题。可是，那三十只小东西已经有了家。"
+    ]
+  }
+}

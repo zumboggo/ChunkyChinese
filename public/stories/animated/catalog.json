@@ -1329,5 +1329,21 @@
       "title": "Super Supportive · Episode 19 · 不是要你解决",
       "description": "Alden offers an unusual meal, then hears the care and the cost behind Gorgon’s earlier admission."
     }
+  },
+  {
+    "id": "supportive-20-v1",
+    "category": "super-supportive",
+    "episode": 20,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-20.mp4",
+      "poster": "stories/animated/cutscenes/supportive-20.poster.jpg",
+      "title": "明明可以说是朋友啊。",
+      "durationSeconds": 9
+    },
+    "path": "supportive-20.json",
+    "summary": {
+      "title": "Super Supportive · Episode 20 · 三十只新朋友",
+      "description": "Alden brings a meal he is certain will work. Gorgon finds a different use for it."
+    }
   }
 ]

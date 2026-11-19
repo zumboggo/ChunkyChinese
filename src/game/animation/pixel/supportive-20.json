@@ -1,0 +1,402 @@
+{
+  "episode": "supportive-20",
+  "scriptFingerprint": "8e5f3e54",
+  "shots": [
+    {
+      "anchor": "opening",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-1",
+        "panel": 0,
+        "alt": "Alden playfully challenges Gorgon’s distant wording at the desk.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-1",
+        "panel": 0,
+        "alt": "Alden playfully challenges Gorgon’s distant wording at the desk.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-1",
+        "panel": 0,
+        "alt": "Alden playfully challenges Gorgon’s distant wording at the desk.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "word",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-1",
+        "panel": 0,
+        "alt": "Alden playfully challenges Gorgon’s distant wording at the desk.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "distance",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-1",
+        "panel": 0,
+        "alt": "Alden playfully challenges Gorgon’s distant wording at the desk.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "joke",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-1",
+        "panel": 0,
+        "alt": "Alden playfully challenges Gorgon’s distant wording at the desk.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "joke",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-1",
+        "panel": 1,
+        "alt": "Gorgon asks about the crickets with a perfectly neutral expression.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "joke",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-1",
+        "panel": 1,
+        "alt": "Gorgon asks about the crickets with a perfectly neutral expression.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "chirp",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-1",
+        "panel": 2,
+        "alt": "Alden gives a playful, deliberate one-eyed wink.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "chirp",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-1",
+        "panel": 3,
+        "alt": "Alden waves goodbye across the evening lobby.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "arrival",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-1",
+        "panel": 4,
+        "alt": "Alden arrives proudly carrying live crickets.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "arrival",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-1",
+        "panel": 5,
+        "alt": "Alden is comically certain that his cricket plan will work.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "uneaten",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-2",
+        "panel": 0,
+        "alt": "The live crickets remain uneaten in their carrier.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "uneaten",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-2",
+        "panel": 1,
+        "alt": "Alden’s confidence collapses into baffled disbelief.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "compare",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-2",
+        "panel": 2,
+        "alt": "Alden compares a fly with a cricket in an imagined insert.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "certain",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-2",
+        "panel": 1,
+        "alt": "Alden’s confidence collapses into baffled disbelief.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "puzzle",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-2",
+        "panel": 2,
+        "alt": "Alden compares a fly with a cricket in an imagined insert.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "smile",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-2",
+        "panel": 0,
+        "alt": "The live crickets remain uneaten in their carrier.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "smile",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-2",
+        "panel": 3,
+        "alt": "Gorgon privately gives the crickets a small, warm smile.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "smile",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-2",
+        "panel": 3,
+        "alt": "Gorgon privately gives the crickets a small, warm smile.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "face",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-2",
+        "panel": 3,
+        "alt": "Gorgon privately gives the crickets a small, warm smile.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "gift",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-2",
+        "panel": 0,
+        "alt": "The live crickets remain uneaten in their carrier.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "plants",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-2",
+        "panel": 4,
+        "alt": "Gorgon carefully releases the crickets into a potted plant.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "plants",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-2",
+        "panel": 5,
+        "alt": "The crickets settle among the lobby plants.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "hunting",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-3",
+        "panel": 0,
+        "alt": "Alden studies the plants with exaggerated detective-like concentration.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "idea",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-3",
+        "panel": 0,
+        "alt": "Alden studies the plants with exaggerated detective-like concentration.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "watch",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-3",
+        "panel": 1,
+        "alt": "Gorgon stays at his desk instead of chasing the crickets.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "no_chase",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-3",
+        "panel": 1,
+        "alt": "Gorgon stays at his desk instead of chasing the crickets.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "weeks",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-3",
+        "panel": 2,
+        "alt": "Weeks later, a cricket is still alive among the sunlit leaves.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "weeks",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-3",
+        "panel": 0,
+        "alt": "Alden studies the plants with exaggerated detective-like concentration.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "city",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-3",
+        "panel": 0,
+        "alt": "Alden studies the plants with exaggerated detective-like concentration.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "city",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-3",
+        "panel": 3,
+        "alt": "Alden remembers the cat at home with a shared sideways look.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "takeout",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-3",
+        "panel": 4,
+        "alt": "Alden brings both a meat dish and a vegetarian dish.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "takeout",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-3",
+        "panel": 4,
+        "alt": "Alden brings both a meat dish and a vegetarian dish.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "ending",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-3",
+        "panel": 5,
+        "alt": "Alden looks toward a cricket with quiet affection; the food mystery remains.",
+        "aspectRatio": 2.25
+      }
+    },
+    {
+      "anchor": "ending",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-20-3",
+        "panel": 5,
+        "alt": "Alden looks toward a cricket with quiet affection; the food mystery remains.",
+        "aspectRatio": 2.25
+      }
+    }
+  ]
+}

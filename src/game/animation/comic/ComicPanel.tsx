@@ -6,5 +6,5 @@ import './comic-panel.css'
 export default function ComicPanel({shot}:{shot:NonNullable<PixelShot['comic']>}){
  const src=(sheets as Record<string,string>)[shot.sheet]
  if(!src)throw Error('Missing comic sheet: '+shot.sheet)
- return <div className="comic-panel" role="img" aria-label={shot.alt} data-comic-panel={`${shot.sheet}:${shot.panel}`} style={{backgroundImage:`url(${src})`,backgroundPosition:`${shot.panel%2*100}% ${Math.floor(shot.panel/2)*50}%`}}/>
+ return <div className="comic-panel" role="img" aria-label={shot.alt} data-comic-panel={`${shot.sheet}:${shot.panel}`} style={{aspectRatio:shot.aspectRatio??1.5,backgroundImage:`url(${src})`,backgroundPosition:`${shot.panel%2*100}% ${Math.floor(shot.panel/2)*50}%`}}/>
 }

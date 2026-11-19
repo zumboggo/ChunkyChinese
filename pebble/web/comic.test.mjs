@@ -5,7 +5,7 @@ const browser=await chromium.launch();
 const context=await browser.newContext({viewport:{width:390,height:844}});
 const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
 await page.goto(process.env.READER_URL||'http://127.0.0.1:5194/pebble-reader.html');
-await page.selectOption('#episode','supportive-18');
+await page.selectOption('#episode',process.env.COMIC_EPISODE||'supportive-18');
 assert.equal(await page.locator('.comic-panel').count(),1);
 await page.locator('#next').click();const position=await page.locator('#position').textContent();
 await page.locator('#save').click();await page.getByRole('status').filter({hasText:/All \d+ episodes saved/}).waitFor();
@@ -22,7 +22,7 @@ for(const option of [0,1]){
   if(++steps>1000)throw Error('Comic route did not finish');
   const choicesHere=document.querySelectorAll('.choices button');
   if(choicesHere.length){choices++;choicesHere[option].click();}
-  else{const art=document.querySelector('.comic-panel');if(!art)throw Error('Missing comic illustration');panels.add(art.getAttribute('aria-label'));document.getElementById('next').click();}
+  else{const art=document.querySelector('.comic-panel');if(!art)throw Error('Missing comic illustration');const img=new Image();img.src=getComputedStyle(art).backgroundImage.slice(5,-2);const ratio=parseFloat(art.style.aspectRatio)||1.5;const rect=art.getBoundingClientRect();if(Math.abs(rect.width/rect.height-ratio)>.03)throw Error('Distorted comic panel');panels.add(art.getAttribute('aria-label'));document.getElementById('next').click();}
  }return {steps,choices,panels:panels.size}},option);
  assert.equal(result.choices,4);assert.ok(result.panels>=17);console.log('Offline comic route',option,result);
 }

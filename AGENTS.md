@@ -23,3 +23,7 @@ From Episode 9 onward, keep one main storyline. Close the earlier voice and west
 # Pebble episode authoring
 
 For watch episodes, start with `pebble/scenes/README.md`. Edit shared motion in `pebble/scenes/library.json`, regenerate with `npm run scenes` from `pebble/`, and use `pebble/direction/<episode>.json` to bind installed recipes to persistent Story 2 labels. Never match full prose to place a cue. Run the documented fast checks before native/browser/emulator verification. Development builds must not overwrite versioned release PBWs; preserve phone releases and reading saves.
+
+# Chinese episode format names
+
+David’s requested names (2026-11-19): **Comic Episode** uses ImageGen comic panels alongside the text, with varied framing, angles, zoom, action and gently exaggerated humorous reactions where appropriate. Six panels per generated sheet may share one story beat; retain native text/pinyin/English and Mandarin audio. **SVG Episode** uses the established SVG character animation style. **Pebble style Episode** uses the approved close-up pixel character performances. These names select the in-app presentation, not physical-watch installation. Explicit format requests override earlier presentation defaults; preserve each reader’s bookmarks. Keep both Super Supportive app catalogues synchronized. Skills remain unchanged during this comic experiment.

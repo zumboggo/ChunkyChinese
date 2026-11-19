@@ -4,8 +4,8 @@ import {compileStory} from '../shared/engine/story-engine.js'
 import {pixelShots} from '../pixel/direction'
 import sheets from './sheets.json'
 
-it('covers every episode 18 passage and branch with one of eighteen embedded panels',()=>{
- const pack=JSON.parse(readFileSync('stories/animated/supportive-18.json','utf8'))
+it.each([[18,39],[20,36]])('covers episode %i passages and branches with eighteen embedded panels',(episode,count)=>{
+ const pack=JSON.parse(readFileSync(`stories/animated/supportive-${episode}.json`,'utf8'))
  const story=compileStory(pack.script,pack.assets).story
  const shots=pixelShots(pack.script,story)!
  const panels=new Set<string>()
@@ -13,10 +13,11 @@ it('covers every episode 18 passage and branch with one of eighteen embedded pan
   expect(shot.comic).toBeDefined()
   const comic=shot.comic!
   expect(Number.isInteger(comic.panel)&&comic.panel>=0&&comic.panel<6).toBe(true)
+  expect(comic.aspectRatio??1.5).toBeGreaterThanOrEqual(1.5)
   expect(comic.alt.length).toBeGreaterThan(15)
   expect((sheets as Record<string,string>)[comic.sheet]).toMatch(/^data:image\/jpeg;base64,/)
   panels.add(`${comic.sheet}:${comic.panel}`)
  }
  expect(panels.size).toBe(18)
- expect(shots.size).toBe(39)
+ expect(shots.size).toBe(count)
 })
