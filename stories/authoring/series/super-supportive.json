@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0007_SEVEN_A_Little_Delusional.xhtml",
-    "nextStart": "But he didn’t want pity.",
-    "nextEndBefore": "“I understand. But you really reached all the way",
-    "continuationNote": "Alden reins in pity, proposes live crickets and checks that unusual offerings will not offend. Gorgon appreciates them but calls his disclosure a costly moment of melancholy. Stop before Alden challenges acquaintanceship versus friendship."
+    "nextStart": "“I understand. But you really reached all the way",
+    "nextEndBefore": "“Have a good night, Gorgon!”",
+    "continuationNote": "Alden playfully challenges acquaintanceship versus friendship; Gorgon asks whether the crickets are still coming. Include their playful chirp and wink. The farewell immediately follows this boundary, then chapter 8; inspect both before planning the next episode and extend scope deliberately if needed."
   },
   "completed": [
     {
@@ -81,9 +81,13 @@
     {
       "episode": "supportive-18-v1",
       "end": "Alden learns Gorgon has no room, asks about food and loneliness, and realizes that unwanted attention is cruel because Gorgon cannot escape cameras. He has not yet proposed crickets."
+    },
+    {
+      "episode": "supportive-19-v1",
+      "end": "Alden proposes live crickets and asks whether unusual food would offend. He notices raw skin under Gorgon’s bindings. Gorgon appreciates his gifts but calls the earlier disclosure a costly moment of melancholy, not a problem for Alden to solve. No food test has occurred; the cost is unexplained."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-18.json",
+  "assetsFrom": "stories/animated/supportive-19.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -106,9 +110,9 @@
   "castBundle": "public/stories/animated/cast/supportive-13.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-18-v1",
-    "nextStart": "But he didn’t want pity.",
-    "nextEndBefore": "“I understand. But you really reached all the way",
-    "assetsFrom": "stories/animated/supportive-18.json"
+    "note": "Published through supportive-19-v1",
+    "nextStart": "“I understand. But you really reached all the way",
+    "nextEndBefore": "“Have a good night, Gorgon!”",
+    "assetsFrom": "stories/animated/supportive-19.json"
   }
 }
