@@ -4,6 +4,7 @@ import {phoneEpisode,attachPixelDirection} from '../web/phone-episodes.mjs';
 const root=new URL('../',import.meta.url);
 const read=p=>fs.readFileSync(new URL(p,root),'utf8');
 const data=JSON.parse(read('web/assets.json'));
+data.comicSheets=JSON.parse(read('../src/game/animation/comic/sheets.json'));
 const snapshots=new Map(data.episodes.map(p=>[p.number,p]));
 const catalog=JSON.parse(read('../public/stories/animated/catalog.json')).filter(e=>e.category==='super-supportive').sort((a,b)=>a.episode-b.episode);
 if(new Set(catalog.map(e=>e.episode)).size!==catalog.length)throw Error('Duplicate episode number');
@@ -13,6 +14,7 @@ for(const entry of catalog){
  if(fs.existsSync(directionPath))attachPixelDirection(data.episodes.find(p=>p.number===entry.episode),JSON.parse(read('../public/stories/animated/'+entry.path)),JSON.parse(fs.readFileSync(directionPath,'utf8')));
 }
 for(const pack of data.episodes)for(const node of pack.nodes){
+ if(node.pixelShot?.comic&&!data.comicSheets[node.pixelShot.comic.sheet])throw Error('Missing comic sheet');
  if(node.type==='animation'&&!data.library.scenes.some(s=>s.id===node.id))throw Error('Missing scene '+node.id);
  if(node.type==='reaction'&&!data.art[node.actor+'-'+node.emotion+'-full'])throw Error('Missing reaction');
 }

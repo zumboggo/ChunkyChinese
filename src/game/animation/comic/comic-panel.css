@@ -1,0 +1,3 @@
+.story-comic .comic-panel{width:100%;max-width:660px;aspect-ratio:3/2;flex-shrink:0;background-size:200% 300%;background-repeat:no-repeat;border-radius:12px;margin:0 auto 18px;background-color:#e8e4da}
+.story-reading .story-dialogue.story-comic{justify-content:flex-start}
+@media(max-width:600px){.story-comic .comic-panel{border-radius:8px;margin-bottom:14px}.story-reading .story-dialogue.story-comic{padding-top:12px}}

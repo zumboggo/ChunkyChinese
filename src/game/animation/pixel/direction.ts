@@ -2,7 +2,7 @@ import episode17 from './supportive-17.json' with {type:'json'}
 import episode18 from './supportive-18.json' with {type:'json'}
 import episode19 from './supportive-19.json' with {type:'json'}
 const directions=[episode17,episode18,episode19]
-export interface PixelShot {anchor:string;offset:number;reaction?:string;scene?:string;durationMs:number}
+export interface PixelShot {anchor:string;offset:number;reaction?:string;scene?:string;durationMs:number;comic?:{sheet:string;panel:number;alt:string}}
 export function scriptFingerprint(script:string){let hash=2166136261;for(let i=0;i<script.length;i++)hash=Math.imul(hash^script.charCodeAt(i),16777619);return (hash>>>0).toString(16).padStart(8,'0')}
 export function pixelShots(script:string,story:{labels:Record<string,number>;nodes:{type:string}[]}):Map<number,PixelShot>|null{
  const direction=directions.find(d=>d.scriptFingerprint===scriptFingerprint(script))

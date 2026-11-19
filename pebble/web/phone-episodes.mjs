@@ -38,5 +38,5 @@ export function attachPixelDirection(pack,source,direction){
   }
  }
  if(index!==lines.length)throw Error('Pixel direction count differs from story');
- pack.presentation='pixel';
+ pack.presentation=direction.shots.every(s=>s.comic)?'comic':'pixel';
 }

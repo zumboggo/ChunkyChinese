@@ -26,8 +26,15 @@ export async function reviewEpisodeLine(page:Page,text:string,screenshot:string)
   if(await pause.isVisible()){await pause.focus();await pause.press('Enter')}
   await expect(page.getByRole('button',{name:'Play audio',exact:true})).toBeVisible({timeout:1000})
  }).toPass({timeout:10000})
- const play=page.getByRole('button',{name:'Play audio',exact:true});await play.focus();await play.press('Enter')
- await expect(pause).toBeVisible()
+ // Autoplay is scheduled on the next frame. If it starts between the Play
+ // lookup and activation, that activation pauses it; request playback again
+ // and still require an observed playing state before capturing the review.
+ await expect(async()=>{
+  if(await pause.isVisible())return
+  const play=page.getByRole('button',{name:'Play audio',exact:true})
+  await play.focus();await play.press('Enter')
+  await expect(pause).toBeVisible({timeout:1500})
+ }).toPass({timeout:10000,intervals:[200,500]})
  await page.waitForTimeout(900) // Inspect acting during real speech, then the reader-held aftermath.
  await page.screenshot({path:screenshot,fullPage:true})
  if(await pause.isVisible()){await pause.focus();await pause.press('Enter')}

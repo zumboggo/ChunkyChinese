@@ -6,235 +6,430 @@
       "anchor": "opening",
       "offset": 0,
       "reaction": "Alden-curious",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-1",
+        "panel": 0,
+        "alt": "Alden and Gorgon in the empty consulate lobby."
+      }
     },
     {
       "anchor": "opening",
       "offset": 1,
       "reaction": "Gorgon-neutral",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-1",
+        "panel": 1,
+        "alt": "Gorgon explains where he rests."
+      }
     },
     {
       "anchor": "opening",
       "offset": 2,
       "scene": "gorgon-listen",
-      "durationMs": 2400
+      "durationMs": 2400,
+      "comic": {
+        "sheet": "supportive-18-1",
+        "panel": 1,
+        "alt": "Gorgon explains where he rests."
+      }
     },
     {
       "anchor": "desk",
       "offset": 0,
       "scene": "alden-folded-arms",
-      "durationMs": 2400
+      "durationMs": 2400,
+      "comic": {
+        "sheet": "supportive-18-1",
+        "panel": 2,
+        "alt": "Alden rests his chin on his folded arms."
+      }
     },
     {
       "anchor": "desk",
       "offset": 1,
       "reaction": "Alden-curious",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-2",
+        "panel": 0,
+        "alt": "The desk where Gorgon spends both day and night."
+      }
     },
     {
       "anchor": "desk_notice",
       "offset": 0,
       "reaction": "Gorgon-thoughtful",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-2",
+        "panel": 0,
+        "alt": "The desk where Gorgon spends both day and night."
+      }
     },
     {
       "anchor": "room_notice",
       "offset": 0,
       "reaction": "Alden-thoughtful",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-2",
+        "panel": 4,
+        "alt": "Two people in a mostly empty lobby."
+      }
     },
     {
       "anchor": "food",
       "offset": 0,
       "reaction": "Alden-talking",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-1",
+        "panel": 3,
+        "alt": "Alden wonders how Gorgon gets food."
+      }
     },
     {
       "anchor": "food",
       "offset": 1,
       "reaction": "Alden-thinking",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-1",
+        "panel": 3,
+        "alt": "Alden wonders how Gorgon gets food."
+      }
     },
     {
       "anchor": "food",
       "offset": 2,
       "reaction": "Alden-curious",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-2",
+        "panel": 1,
+        "alt": "Alden tries to work out an unspecified food delivery."
+      }
     },
     {
       "anchor": "request",
       "offset": 0,
       "reaction": "Alden-talking",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-2",
+        "panel": 1,
+        "alt": "Alden tries to work out an unspecified food delivery."
+      }
     },
     {
       "anchor": "request",
       "offset": 1,
       "reaction": "Alden-skeptical",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-2",
+        "panel": 2,
+        "alt": "Alden realizes his clever plan would not work."
+      }
     },
     {
       "anchor": "guess",
       "offset": 0,
       "reaction": "Alden-thinking",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-2",
+        "panel": 2,
+        "alt": "Alden realizes his clever plan would not work."
+      }
     },
     {
       "anchor": "online",
       "offset": 0,
       "reaction": "Alden-thoughtful",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-2",
+        "panel": 2,
+        "alt": "Alden realizes his clever plan would not work."
+      }
     },
     {
       "anchor": "bound",
       "offset": 0,
       "reaction": "Alden-talking",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-2",
+        "panel": 3,
+        "alt": "Gorgon listens with deadpan patience."
+      }
     },
     {
       "anchor": "blink",
       "offset": 0,
       "reaction": "Gorgon-attentive",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-1",
+        "panel": 4,
+        "alt": "Gorgon blinks both translucent eyelids."
+      }
     },
     {
       "anchor": "blink",
       "offset": 1,
       "reaction": "Alden-surprised",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-1",
+        "panel": 4,
+        "alt": "Gorgon blinks both translucent eyelids."
+      }
     },
     {
       "anchor": "go_home",
       "offset": 0,
       "reaction": "Gorgon-weary-patience",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-1",
+        "panel": 5,
+        "alt": "Gorgon gently tells Alden to go home."
+      }
     },
     {
       "anchor": "go_home",
       "offset": 1,
       "reaction": "Gorgon-serious",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-1",
+        "panel": 5,
+        "alt": "Gorgon gently tells Alden to go home."
+      }
     },
     {
       "anchor": "alone",
       "offset": 0,
       "reaction": "Alden-worried",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-2",
+        "panel": 4,
+        "alt": "Two people in a mostly empty lobby."
+      }
     },
     {
       "anchor": "self",
       "offset": 0,
       "reaction": "Alden-holding-back-sadness",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-2",
+        "panel": 5,
+        "alt": "Alden admits that being alone can hurt."
+      }
     },
     {
       "anchor": "visitors",
       "offset": 0,
       "reaction": "Gorgon-neutral",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-2",
+        "panel": 4,
+        "alt": "Two people in a mostly empty lobby."
+      }
     },
     {
       "anchor": "company",
       "offset": 0,
       "reaction": "Alden-talking",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-2",
+        "panel": 5,
+        "alt": "Alden admits that being alone can hurt."
+      }
     },
     {
       "anchor": "company",
       "offset": 1,
       "scene": "gorgon-listen",
-      "durationMs": 2400
+      "durationMs": 2400,
+      "comic": {
+        "sheet": "supportive-18-2",
+        "panel": 5,
+        "alt": "Alden admits that being alone can hurt."
+      }
     },
     {
       "anchor": "company",
       "offset": 2,
       "reaction": "Alden-worried",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-2",
+        "panel": 5,
+        "alt": "Alden admits that being alone can hurt."
+      }
     },
     {
       "anchor": "famous",
       "offset": 0,
       "reaction": "Gorgon-attentive",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-3",
+        "panel": 0,
+        "alt": "Gorgon turns back to his computer screens."
+      }
     },
     {
       "anchor": "famous",
       "offset": 1,
       "reaction": "Gorgon-serious",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-3",
+        "panel": 0,
+        "alt": "Gorgon turns back to his computer screens."
+      }
     },
     {
       "anchor": "famous",
       "offset": 2,
       "reaction": "Gorgon-neutral",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-3",
+        "panel": 1,
+        "alt": "An illustration of the Gorgon plush toy he describes."
+      }
     },
     {
       "anchor": "famous",
       "offset": 3,
       "reaction": "Gorgon-weary-patience",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-3",
+        "panel": 2,
+        "alt": "Alden reacts to Gorgon calling himself a minor celebrity."
+      }
     },
     {
       "anchor": "voice",
       "offset": 0,
       "reaction": "Alden-worried",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-3",
+        "panel": 3,
+        "alt": "Alden listens more carefully as the conversation changes."
+      }
     },
     {
       "anchor": "voice",
       "offset": 1,
       "reaction": "Alden-thoughtful",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-3",
+        "panel": 3,
+        "alt": "Alden listens more carefully as the conversation changes."
+      }
     },
     {
       "anchor": "words",
       "offset": 0,
       "reaction": "Alden-thinking",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-3",
+        "panel": 3,
+        "alt": "Alden listens more carefully as the conversation changes."
+      }
     },
     {
       "anchor": "sound",
       "offset": 0,
       "reaction": "Alden-thoughtful",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-3",
+        "panel": 3,
+        "alt": "Alden listens more carefully as the conversation changes."
+      }
     },
     {
       "anchor": "hurt",
       "offset": 0,
       "reaction": "Alden-worried",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-3",
+        "panel": 3,
+        "alt": "Alden listens more carefully as the conversation changes."
+      }
     },
     {
       "anchor": "hurt",
       "offset": 1,
       "reaction": "Alden-skeptical",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-3",
+        "panel": 3,
+        "alt": "Alden listens more carefully as the conversation changes."
+      }
     },
     {
       "anchor": "camera",
       "offset": 0,
       "reaction": "Alden-holding-back-sadness",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-3",
+        "panel": 4,
+        "alt": "Alden imagines the photographs Gorgon cannot escape."
+      }
     },
     {
       "anchor": "camera",
       "offset": 1,
       "reaction": "Gorgon-serious",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-3",
+        "panel": 4,
+        "alt": "Alden imagines the photographs Gorgon cannot escape."
+      }
     },
     {
       "anchor": "ending",
       "offset": 0,
       "reaction": "Gorgon-thoughtful",
-      "durationMs": 1800
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-18-3",
+        "panel": 5,
+        "alt": "Alden can leave through the doors; Gorgon must remain."
+      }
     },
     {
       "anchor": "ending",
       "offset": 1,
       "scene": "gorgon-listen",
-      "durationMs": 2400
+      "durationMs": 2400,
+      "comic": {
+        "sheet": "supportive-18-3",
+        "panel": 5,
+        "alt": "Alden can leave through the doors; Gorgon must remain."
+      }
     }
   ]
 }
