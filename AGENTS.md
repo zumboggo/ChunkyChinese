@@ -6,7 +6,7 @@
 - Flashcard keyboard ratings follow Choice A through Choice D in order: Again, Hard, Good, Easy.
 - After implementing user-requested code changes, commit and push to GitHub unless the user explicitly asks not to.
 
-- Every new episode opening teaser includes one cool or epic spoken phrase by Jon or another character that foreshadows the highest-tension moment. Generate ImageGen artwork first, then verify exact video pricing within the $0.15 total clip cap. Use English for teaser speech and Mandarin for lesson audio.
+- Every new episode opening teaser includes one cool or epic spoken phrase by Jon or another character that foreshadows the highest-tension moment. Generate ImageGen artwork first, then verify exact video pricing within the $0.15 total clip cap. For Chinese episodes, use Mandarin-only speech for both teasers and lessons; retain written English glosses. Never generate English audio unless David explicitly requests it.
 
 # Episode creation and publication
 
@@ -27,3 +27,7 @@ For watch episodes, start with `pebble/scenes/README.md`. Edit shared motion in 
 # Chinese episode format names
 
 David’s requested names (2026-11-19): **Comic Episode** uses ImageGen comic panels alongside the text, with varied framing, angles, zoom, action and gently exaggerated humorous reactions where appropriate. Six panels per generated sheet may share one story beat; retain native text/pinyin/English and Mandarin audio. **SVG Episode** uses the established SVG character animation style. **Pebble style Episode** uses the approved close-up pixel character performances. These names select the in-app presentation, not physical-watch installation. Explicit format requests override earlier presentation defaults; preserve each reader’s bookmarks. Keep both Super Supportive app catalogues synchronized. Skills remain unchanged during this comic experiment.
+
+# Episode efficiency preference (2026-11-20)
+
+For routine next episodes, use a fresh chat with the compact continuation prompt in `docs/super-supportive-next-prompt.md` and the live preflight brief. Follow the batching and recovery checklist in `docs/episode-quickstart.md`. Keep Mandarin-only audio, full required validation, and both app readers. Do not update skills for the comic experiment.
