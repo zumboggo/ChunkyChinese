@@ -45,3 +45,19 @@ it('stops before another episode when cancelled and preserves saved files',async
  await expect(downloadEpisodes(vi.fn(),controller.signal,catalog)).rejects.toThrow()
  expect(loadBundledEntry).toHaveBeenCalledTimes(1)
 })
+it('downloads only the chosen episodes and resumes after an interrupted media file',async()=>{
+ const controller=new AbortController()
+ vi.mocked(loadBundledEntry).mockResolvedValue({id:'two',created:'',pack:{intro:{src:'stories/animated/first.mp4'},other:'stories/animated/second.mp4'}} as never)
+ vi.mocked(fetch).mockImplementation(async url=>{
+  if(String(url).endsWith('second.mp4')){controller.abort();throw Error('connection interrupted')}
+  return new Response('media')
+ })
+ await expect(downloadEpisodes(vi.fn(),controller.signal,[catalog[1]])).rejects.toThrow()
+ expect(saved.has('/stories/animated/first.mp4')).toBe(true)
+ expect(saved.has('/stories/animated/second.mp4')).toBe(false)
+ vi.mocked(fetch).mockClear().mockImplementation(async()=>new Response('media'))
+ expect(await downloadEpisodes(vi.fn(),new AbortController().signal,[catalog[1]])).toMatchObject({done:1,total:1,failed:[]})
+ expect(vi.mocked(loadBundledEntry).mock.calls.every(([entry])=>entry.id==='two')).toBe(true)
+ expect(vi.mocked(fetch).mock.calls.some(([url])=>String(url).endsWith('first.mp4'))).toBe(false)
+ expect(saved.has('/stories/animated/second.mp4')).toBe(true)
+})

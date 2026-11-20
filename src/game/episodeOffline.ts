@@ -44,7 +44,11 @@ export async function downloadEpisodes(onProgress:(p:DownloadProgress)=>void,sig
   onProgress({done,total:catalog.length,title:entry.summary?.title??entry.id,failed:[...failed]})
   try{
    const release=await loadBundledEntry(entry,{requireStorage:true,signal})
-   for(const url of episodeMedia([entry,release.pack]))await media(url)
+   const urls=episodeMedia([entry,release.pack])
+   for(const [index,url] of urls.entries()){
+    onProgress({done,total:catalog.length,title:`${entry.summary?.title??entry.id} · file ${index+1} / ${urls.length}`,failed:[...failed]})
+    await media(url)
+   }
    done++
   }catch(error){if(signal.aborted)throw error;failed.push(entry.summary?.title??entry.id)}
  }

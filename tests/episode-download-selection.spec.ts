@@ -1,0 +1,21 @@
+import {test,expect} from '@playwright/test'
+
+test('selects a series or individual episodes and restores the selection after reopening',async({page})=>{
+ await page.goto('/')
+ await page.getByRole('button',{name:'Game',exact:true}).click()
+ const downloads=page.locator('.episode-downloads')
+ await downloads.getByText('Offline episodes',{exact:true}).click()
+ await downloads.getByRole('button',{name:'Select this series only'}).click()
+ const boxes=downloads.getByRole('checkbox')
+ const count=await boxes.count()
+ expect(count).toBeGreaterThan(0)
+ await expect(downloads.getByText(`${count} episodes selected across all series.`)).toBeVisible()
+ await downloads.getByRole('button',{name:'Clear selection'}).click()
+ await boxes.first().check()
+ await expect(downloads.getByRole('button',{name:'Download / resume selected'})).toBeEnabled()
+ await page.reload()
+ await page.getByRole('button',{name:'Game',exact:true}).click()
+ await downloads.getByText('Offline episodes',{exact:true}).click()
+ await expect(downloads.getByRole('checkbox').first()).toBeChecked()
+ await expect(downloads.getByText('1 episodes selected across all series.')).toBeVisible()
+})
