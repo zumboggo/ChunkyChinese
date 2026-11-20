@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs'
 
 test('comic stays with the text across encounters, Back, saved legacy phase and reload',async({page},info)=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message))
- await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
+ await page.goto(process.env.PLAYWRIGHT_BASE_URL||'/');await page.getByRole('button',{name:'Game',exact:true}).click()
  await page.getByRole('button',{name:'Choose story',exact:true}).click()
  await page.getByLabel('Book',{exact:true}).selectOption('super-supportive')
  await page.getByLabel('Episode',{exact:true}).selectOption('supportive-18-v1')
@@ -38,7 +38,7 @@ test('downloaded comic edition restores artwork, audio and encounter offline',as
  const latest=catalogue.filter((e:{category:string})=>e.category==='super-supportive').sort((a:{episode:number},b:{episode:number})=>a.episode-b.episode).at(-1)
  const pack=JSON.parse(readFileSync('stories/animated/supportive-'+latest.episode+'.json','utf8'))
  test.setTimeout(180000)
- await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
+ await page.goto(process.env.PLAYWRIGHT_BASE_URL||'/');await page.getByRole('button',{name:'Game',exact:true}).click()
  await page.getByText('Offline episodes',{exact:true}).click()
  await page.getByRole('button',{name:'Download all episodes',exact:true}).click()
  await expect(page.getByText(/All \d+ episodes saved for offline play/)).toBeVisible({timeout:150000})

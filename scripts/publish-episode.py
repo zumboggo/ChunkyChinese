@@ -70,6 +70,14 @@ def wait_deployment(sha,minutes=10):
                 if r.get('conclusion')!='success': raise StopPublish('Pages deployment did not succeed: '+str(r.get('conclusion')))
                 return
         except (ConnectionError,ValueError) as e:
+            # An unavailable Actions API must not hide an already deployed build.
+            # Exact asset hashes are still verified by the caller before continuation.
+            try:
+                marker=fetch(SITE+'release.json?release='+sha,True)
+                if isinstance(marker,dict) and marker.get('commit')==sha:
+                    print('Pages: exact release marker is live; verifying all release assets next.',flush=True)
+                    return
+            except (ConnectionError,ValueError): pass
             if time.monotonic()-last_print>=55: print('Pages check waiting for network: '+str(e)[:200],flush=True);last_print=time.monotonic()
         time.sleep(20)
     raise StopPublish('Push succeeded, but deployment was not confirmed within the time limit. Use --verify-only later.')

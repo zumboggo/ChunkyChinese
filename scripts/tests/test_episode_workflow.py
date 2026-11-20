@@ -106,6 +106,17 @@ class PublishTests(unittest.TestCase):
         def run(args,timeout):calls.append(args);return 124,'','timeout'
         with self.assertRaisesRegex(publish.StopPublish,'not confirmed'):publish.push_commit('abc',run,lambda _:None)
         self.assertEqual(len(calls),3)
+    def test_unavailable_actions_accepts_only_exact_live_release_marker(self):
+        for marker,accepted in [({'commit':'abc'},True),({'commit':'older'},False),({},False)]:
+            with self.subTest(marker=marker),patch.object(publish,'fetch',side_effect=[ConnectionError('403'),marker]),patch.object(publish.time,'monotonic',side_effect=[0,1,2,61]),patch.object(publish.time,'sleep'):
+                if accepted: publish.wait_deployment('abc',1)
+                else:
+                    with self.assertRaises(publish.StopPublish): publish.wait_deployment('abc',1)
+    def test_failed_actions_run_never_uses_release_marker(self):
+        run={'id':1,'head_sha':'abc','head_branch':'main','name':'Deploy GitHub Pages','status':'completed','conclusion':'failure'}
+        with patch.object(publish,'fetch',return_value={'workflow_runs':[run]}) as fetch:
+            with self.assertRaisesRegex(publish.StopPublish,'did not succeed'):publish.wait_deployment('abc',1)
+            self.assertEqual(fetch.call_count,1)
     def test_deployment_must_match_commit_branch_and_workflow(self):
         good={'id':1,'head_sha':'abc','head_branch':'main','name':'Deploy GitHub Pages'}
         other={**good,'id':2,'head_sha':'other'}

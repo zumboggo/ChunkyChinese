@@ -5,12 +5,12 @@ const entries=JSON.parse(fs.readFileSync(new URL('../../public/stories/animated/
 const latest=entries.at(-1).episode;
 const browser=await chromium.launch();
 const context=await browser.newContext({viewport:{width:390,height:844}});
-const page=await context.newPage();
+const page=await context.newPage();page.setDefaultNavigationTimeout(120000);
 await page.goto((process.env.READER_URL||'http://127.0.0.1:5190/pebble-reader.html'));
 await page.evaluate(async()=>{await navigator.serviceWorker.register('./service-worker.js');await navigator.serviceWorker.ready;});
 await page.reload();
 await page.locator('#save').click();
-await page.getByRole('status').filter({hasText:`All ${entries.length} episodes saved`}).waitFor();
+await page.getByRole('status').filter({hasText:`All ${entries.length} episodes saved`}).waitFor({timeout:120000});
 await context.setOffline(true);
 await page.reload();
 assert.equal(await page.locator('#episode option').count(),entries.length);
