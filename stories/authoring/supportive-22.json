@@ -1,0 +1,178 @@
+{
+  "id": "supportive-22",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 22 · 一点好运",
+  "description": "A familiar wordchain brings back the night Alden needed it most, and the person who wanted her life to matter.",
+  "presentation": {
+    "mode": "reading",
+    "animationLabels": [
+      "opening"
+    ]
+  },
+  "audioLanguage": "mandarin-only",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca, Chapter 8",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "Pinned wordchain-class passage, through Alden wishing his belief about Hannah brought comfort. No return home, funeral decision, confirmed death, successful spell or actual phone call is added."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Pinned class passage only; stop before dark mood for rest of day and return home.",
+    "storytellingVoice": "Intimate character drama: ordinary practice opens a painful memory. Warm private self-correction, no jokes aimed at loss.",
+    "desire": "Practise the familiar luck chain and keep his thoughts under control.",
+    "obstacle": "The gesture recalls the night he could not make it; uncertainty about Hannah refuses a comforting answer.",
+    "earlyCare": "His mother taught him the chain; he remembers needing it inside Hannah’s protection.",
+    "dramaticChange": "Moves from self-blame toward remembering how seriously Hannah meant to help, yet this does not resolve his grief.",
+    "payoff": "Recognizes Hannah’s sincere determination to make her life matter; honestly admits the thought does not comfort him.",
+    "continuingQuestion": "How will he face the funeral and the unanswered invitation?",
+    "essentialNewWords": [
+      "好运",
+      "葬礼",
+      "手势"
+    ],
+    "englishNarrationPurpose": "",
+    "choicesAndCallbacks": [
+      {
+        "id": "memory",
+        "purpose": "notice familiar words or changed hands",
+        "laterPayoff": "none; private reflection rejoins canonical sequence"
+      },
+      {
+        "id": "stop",
+        "purpose": "interrupt self-blame or return to breathing",
+        "laterPayoff": "none; private reflection rejoins canonical sequence"
+      },
+      {
+        "id": "waiting",
+        "purpose": "consider the unreturned call or the funeral",
+        "laterPayoff": "none; private reflection rejoins canonical sequence"
+      },
+      {
+        "id": "meaning",
+        "purpose": "remember what she said or how seriously she acted",
+        "laterPayoff": "none; private reflection rejoins canonical sequence"
+      }
+    ],
+    "sceneActivities": [
+      {
+        "activity": "wordchain practice",
+        "purpose": "Breathing, inflection and curved hand sign keep class physically present while memories interrupt.",
+        "rendering": "Comic close-ups; no actual successful magic."
+      }
+    ],
+    "direction": "18 panels, broad establishing shots, hand details, profile reaction, soft-edged memories, present-day quiet closeups. Slightly exaggerated classroom reaction and self-correction only; grief stays sincere.",
+    "signatures": {
+      "Alden": "Careful breath and hands, fleeting bitterness, catches his own thought, quiet grief.",
+      "Hannah": "Only in clearly framed memory; freckles, brown braids, navy shirt and earnest determination."
+    },
+    "opening": {
+      "style": "Colored-pencil comic illustration on warm textured paper, indigo and amber crosshatching",
+      "moment": "Alden practices the luck gesture and questions what a little luck could help today.",
+      "speaker": "Alden",
+      "dialogue": "一点好运，能帮我做什么呢？",
+      "sourceBeat": "luck"
+    },
+    "vocabulary": {
+      "reviewedKnown": 804,
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "supplementCount": 259,
+      "effectiveCount": 1063
+    }
+  },
+  "continuation": {
+    "end": "In wordchain class Alden practices the luck request his mother taught him and remembers Hannah’s bubble. He interrupts self-blame, knows he must return Hannah’s friend’s call, and thinks about the funeral ten days away. He believes Hannah is almost certainly gone but has no confirmation. Her sincere wish to make her life matter does not comfort him. No phone call or funeral decision occurs.",
+    "nextStart": "His mood was dark for the rest of the day, even though Jeremy kept trying to cheer him up.",
+    "nextEndBefore": "There was a mewing sound at the front door,",
+    "note": "Alden returns home to Connie’s California note, fears the consequences of neglect and tries to reason himself calm. Crushed bread, chores and strange tiger shorts sharpen his anger. Stop before cat enters."
+  },
+  "routes": [
+    {
+      "choices": [
+        "words",
+        "breath",
+        "call",
+        "said"
+      ],
+      "contains": [
+        "还有十天，就是葬礼了。",
+        "我知道，她很可能已经不在了。可是，谁也没有给我一个清楚的消息。"
+      ],
+      "endsWith": "可是，我还是很难受。"
+    },
+    {
+      "choices": [
+        "hands",
+        "voice",
+        "days",
+        "did"
+      ],
+      "contains": [
+        "人家还在等。我不能一直什么都不说，好像没有这件事一样。"
+      ],
+      "endsWith": "可是，我还是很难受。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-22-v1",
+    "category": "super-supportive",
+    "episode": 22,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-22.mp4",
+      "poster": "stories/animated/cutscenes/supportive-22.poster.jpg",
+      "title": "一点好运，能帮我做什么呢？",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "scene": "Alden practices the luck gesture and questions what a little luck could help today.",
+    "style": "Colored-pencil comic illustration on warm textured paper, indigo and amber crosshatching",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "v8dncnkcgnrmw0d1yvqsxzqpr8",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "language": "Mandarin",
+    "dialogue": "一点好运，能帮我做什么呢？",
+    "pricingChecked": "2026-11-20",
+    "pricingUrl": "https://replicate.com/prunaai/p-video-2-pro",
+    "settings": {
+      "duration": 6,
+      "resolution": "480p",
+      "mode": "cost",
+      "prompt_upsampler": "off",
+      "audio": "native"
+    },
+    "image": "stories/characters/super-supportive/supportive-22-opening.png",
+    "checks": {
+      "sha256": "b196ddad7f62d9185285508e37d0f732d31b31783d2a03b30fafac0d39de8af0",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 6,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "一点好运能帮我做什么呢"
+    }
+  },
+  "verification": {
+    "packageBytes": 3181733,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 96.49122807017544,
+      "max": 96.78800856531049
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "一点好运，能帮我做什么呢？",
+      "不。不能这样想。这个想法，会带我去一个很不好的地方。",
+      "可是，我还是很难受。"
+    ]
+  }
+}

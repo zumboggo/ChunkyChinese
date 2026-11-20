@@ -41,7 +41,7 @@ test('downloaded comic edition restores artwork, audio and encounter offline',as
  await expect(page.getByText(/All \d+ episodes saved for offline play/)).toBeVisible({timeout:150000})
  await page.getByRole('button',{name:'Choose story',exact:true}).click()
  await page.getByLabel('Book',{exact:true}).selectOption('super-supportive')
- await page.getByLabel('Episode',{exact:true}).selectOption('supportive-21-v1')
+ await page.getByLabel('Episode',{exact:true}).selectOption('supportive-22-v1')
  await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
  await page.getByRole('button',{name:'Accept',exact:true}).click()
  await page.getByRole('button',{name:'Skip intro →',exact:true}).click()
@@ -51,10 +51,10 @@ test('downloaded comic edition restores artwork, audio and encounter offline',as
  await page.getByRole('button',{name:'Game',exact:true}).click();await page.locator('.library-resume button').click()
  await expect(page.locator('.pixel-encounter')).toHaveText('Encounter 2 of 3')
  const panel=page.locator('.comic-panel')
- await expect(panel).toHaveAttribute('data-comic-panel','supportive-21-1:0')
+ await expect(panel).toHaveAttribute('data-comic-panel','supportive-22-1:0')
  expect(await panel.evaluate(e=>new Promise<number>((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(image.naturalWidth);image.onerror=reject;image.src=getComputedStyle(e).backgroundImage.slice(5,-2)}))).toBeGreaterThanOrEqual(1000)
- const pack=JSON.parse(readFileSync('stories/animated/supportive-21.json','utf8'))
- const audio=pack.chinese.lines['我又和两个朋友走进了那家店。这里卖的肉，我已经看过很多次了。'].audio
+ const pack=JSON.parse(readFileSync('stories/animated/supportive-22.json','utf8'))
+ const audio=pack.chinese.lines['今天上课，我们学的是怎么说这些话，得到一点好运。'].audio
  expect(await page.evaluate(async src=>{const ctx=new AudioContext();try{return(await ctx.decodeAudioData(await(await fetch(src)).arrayBuffer())).duration}finally{await ctx.close()}},audio)).toBeGreaterThan(0)
  await page.screenshot({path:info.outputPath('comic-offline.png'),fullPage:true})
 })

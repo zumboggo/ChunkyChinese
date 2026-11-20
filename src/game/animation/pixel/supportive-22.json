@@ -1,0 +1,402 @@
+{
+  "episode": "supportive-22",
+  "scriptFingerprint": "89103a15",
+  "shots": [
+    {
+      "anchor": "opening",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-1",
+        "panel": 0,
+        "alt": "Alden quietly practises the luck chain in a winter classroom.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-1",
+        "panel": 2,
+        "alt": "A soft-edged memory: a child learns the curved hand gesture beside his mother’s hands.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-1",
+        "panel": 0,
+        "alt": "Alden quietly practises the luck chain in a winter classroom.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "loud",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-1",
+        "panel": 1,
+        "alt": "Alden raises an eyebrow at another student’s enthusiastic shouting.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "loud",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-1",
+        "panel": 4,
+        "alt": "Alden slows his breathing and concentrates in the present classroom.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "memory",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-1",
+        "panel": 3,
+        "alt": "A remembered younger Alden huddles inside Hannah’s protective bubble.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "words",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-1",
+        "panel": 2,
+        "alt": "A soft-edged memory: a child learns the curved hand gesture beside his mother’s hands.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "hands",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-1",
+        "panel": 5,
+        "alt": "Close-up of Alden’s hands making the delicate curved gesture.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "gesture",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-1",
+        "panel": 5,
+        "alt": "Close-up of Alden’s hands making the delicate curved gesture.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "gesture",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-1",
+        "panel": 3,
+        "alt": "A remembered younger Alden huddles inside Hannah’s protective bubble.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "blame",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-2",
+        "panel": 0,
+        "alt": "Alden briefly sinks into a painful, self-blaming thought.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "blame",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-2",
+        "panel": 1,
+        "alt": "Alden catches the troubling thought and redirects his attention.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "breath",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-1",
+        "panel": 4,
+        "alt": "Alden slows his breathing and concentrates in the present classroom.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "voice",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-2",
+        "panel": 3,
+        "alt": "Alden whispers the practice words and begins again.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "callback",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-2",
+        "panel": 2,
+        "alt": "A thought about an unanswered invitation: a silent phone, not an actual call.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "callback",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-2",
+        "panel": 2,
+        "alt": "A thought about an unanswered invitation: a silent phone, not an actual call.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "call",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-2",
+        "panel": 2,
+        "alt": "A thought about an unanswered invitation: a silent phone, not an actual call.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "days",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 0,
+        "alt": "Alden looks toward the winter window, thinking of the approaching funeral.",
+        "aspectRatio": 1
+      }
+    },
+    {
+      "anchor": "whisper",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-2",
+        "panel": 3,
+        "alt": "Alden whispers the practice words and begins again.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "luck",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-2",
+        "panel": 4,
+        "alt": "An imagined fleck of luck over an open palm; this is a question, not successful magic.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "luck",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-2",
+        "panel": 5,
+        "alt": "The ordinary classroom remains unchanged around Alden.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "ten",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 0,
+        "alt": "Alden looks toward the winter window, thinking of the approaching funeral.",
+        "aspectRatio": 1
+      }
+    },
+    {
+      "anchor": "ten",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 0,
+        "alt": "Alden looks toward the winter window, thinking of the approaching funeral.",
+        "aspectRatio": 1
+      }
+    },
+    {
+      "anchor": "search",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 1,
+        "alt": "A soft-edged memory of Alden searching for answers online.",
+        "aspectRatio": 1
+      }
+    },
+    {
+      "anchor": "search",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 1,
+        "alt": "A soft-edged memory of Alden searching for answers online.",
+        "aspectRatio": 1
+      }
+    },
+    {
+      "anchor": "news",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 2,
+        "alt": "Alden clasps his hands, frustrated by the lack of clear news.",
+        "aspectRatio": 1
+      }
+    },
+    {
+      "anchor": "news",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 2,
+        "alt": "Alden clasps his hands, frustrated by the lack of clear news.",
+        "aspectRatio": 1
+      }
+    },
+    {
+      "anchor": "task",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 2,
+        "alt": "Alden clasps his hands, frustrated by the lack of clear news.",
+        "aspectRatio": 1
+      }
+    },
+    {
+      "anchor": "task",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 3,
+        "alt": "A remembered Hannah, with freckles, brown braids and a navy shirt, looks earnest and determined.",
+        "aspectRatio": 1
+      }
+    },
+    {
+      "anchor": "hannah",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 3,
+        "alt": "A remembered Hannah, with freckles, brown braids and a navy shirt, looks earnest and determined.",
+        "aspectRatio": 1
+      }
+    },
+    {
+      "anchor": "said",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 3,
+        "alt": "A remembered Hannah, with freckles, brown braids and a navy shirt, looks earnest and determined.",
+        "aspectRatio": 1
+      }
+    },
+    {
+      "anchor": "did",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 4,
+        "alt": "An interpretive memory of Hannah making plans, showing how seriously she meant to help.",
+        "aspectRatio": 1
+      }
+    },
+    {
+      "anchor": "work",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 4,
+        "alt": "An interpretive memory of Hannah making plans, showing how seriously she meant to help.",
+        "aspectRatio": 1
+      }
+    },
+    {
+      "anchor": "work",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 3,
+        "alt": "A remembered Hannah, with freckles, brown braids and a navy shirt, looks earnest and determined.",
+        "aspectRatio": 1
+      }
+    },
+    {
+      "anchor": "ending",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 5,
+        "alt": "Alden remains at his classroom desk; the thought has not eased his grief.",
+        "aspectRatio": 1
+      }
+    },
+    {
+      "anchor": "ending",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-22-3",
+        "panel": 5,
+        "alt": "Alden remains at his classroom desk; the thought has not eased his grief.",
+        "aspectRatio": 1
+      }
+    }
+  ]
+}

@@ -1361,5 +1361,21 @@
       "title": "Super Supportive · Episode 21 · 你会在意",
       "description": "A food hunt becomes a conversation Alden has been avoiding. Boe has a terrible plan for making it less serious."
     }
+  },
+  {
+    "id": "supportive-22-v1",
+    "category": "super-supportive",
+    "episode": 22,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-22.mp4",
+      "poster": "stories/animated/cutscenes/supportive-22.poster.jpg",
+      "title": "一点好运，能帮我做什么呢？",
+      "durationSeconds": 9
+    },
+    "path": "supportive-22.json",
+    "summary": {
+      "title": "Super Supportive · Episode 22 · 一点好运",
+      "description": "A familiar wordchain brings back the night Alden needed it most, and the person who wanted her life to matter."
+    }
   }
 ]
