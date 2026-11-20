@@ -28,8 +28,8 @@ export class AppErrorBoundary extends Component<AppErrorBoundaryProps, AppErrorB
           <p className="eyebrow">Recovery</p>
           <h1>Chunky Chinese hit a startup error.</h1>
           <p>
-            Your study data is still stored locally. First try refreshing the app shell cache; if that
-            does not help, clear site data from browser settings.
+            Your study data is still stored locally. Try reloading, or refresh the app shell cache.
+            Your saved progress and downloaded lessons will be kept.
           </p>
           <pre>{this.state.error.message}</pre>
           <div className="button-group">
@@ -49,11 +49,11 @@ export class AppErrorBoundary extends Component<AppErrorBoundaryProps, AppErrorB
 async function resetAppShell() {
   if ('serviceWorker' in navigator) {
     const registrations = await navigator.serviceWorker.getRegistrations()
-    await Promise.all(registrations.map((registration) => registration.unregister()))
+    await Promise.all(registrations.filter((registration) => registration.scope === new URL(import.meta.env.BASE_URL, location.origin).href).map((registration) => registration.unregister()))
   }
   if ('caches' in window) {
     const keys = await caches.keys()
-    await Promise.all(keys.filter((key) => key.startsWith('chunky-chinese-')).map((key) => caches.delete(key)))
+    await Promise.all(keys.filter((key) => key.startsWith('chunky-chinese-') || key.startsWith('episode-')).map((key) => caches.delete(key)))
   }
   window.location.replace(`${window.location.origin}${import.meta.env.BASE_URL}`)
 }

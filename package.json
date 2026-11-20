@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node pebble/scripts/build-web-reader.mjs && npm run game:check && tsc -b && vite build && node scripts/check-startup-budget.mjs && node scripts/write-release.mjs",
+    "build": "node pebble/scripts/build-web-reader.mjs && npm run game:check && tsc -b && vite build && node scripts/build-app-shell.mjs && node scripts/check-startup-budget.mjs && node scripts/write-release.mjs",
     "check:bundle": "node scripts/check-startup-budget.mjs",
     "lint": "eslint .",
     "test": "vitest run",

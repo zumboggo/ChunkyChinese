@@ -1,4 +1,5 @@
-const CACHE_VERSION = 'episode-145510448c09'
+const CACHE_VERSION = 'chunky-chinese-shell-v2'
+const BUILD_ASSETS = []
 const EPISODE_OFFLINE_CACHE = 'chunky-episode-downloads-v1'
 const COURSE_OFFLINE_CACHE = 'chunky-listening-course-v1'
 const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'
@@ -42,12 +43,8 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     (async () => {
-      const keys = await caches.keys()
-      await Promise.all(
-        keys
-          .filter((key) => key.startsWith('chunky-chinese-') && key !== CACHE_VERSION)
-          .map((key) => caches.delete(key)),
-      )
+      // Open tabs may still request chunks from their previous release. Keep
+      // their shells available; explicit shell recovery can remove them safely.
       await self.clients.claim()
     })(),
   )
@@ -152,10 +149,10 @@ async function discoverAppShellUrls() {
     const response = await fetch(`${APP_BASE}index.html`, { cache: 'reload' })
     if (!response.ok) return []
     const html = await response.text()
-    const urls = []
+    const urls = BUILD_ASSETS.map((asset) => `${APP_BASE}${asset}`)
     const assetPattern = /\b(?:src|href)=["']([^"']+\.(?:js|css))["']/g
     for (const match of html.matchAll(assetPattern)) {
-      urls.push(new URL(match[1], self.location.origin).pathname)
+      urls.push(new URL(match[1], `${self.location.origin}${APP_BASE}`).pathname)
     }
     return urls.filter((pathname) => pathname.startsWith(APP_BASE))
   } catch {
@@ -205,7 +202,7 @@ async function networkFirstAsset(request, fallbacks = [request]) {
   const cache = await caches.open(CACHE_VERSION)
   try {
     const response = await fetchWithTimeout(request)
-    if (response.ok) await cache.put(request, response.clone())
+    if (response.ok) await cache.put(request, response.clone()).catch(() => {})
     return response
   } catch {
     for (const fallback of fallbacks) {
@@ -221,8 +218,13 @@ async function cacheFirst(request) {
   const cached = await cache.match(request, { ignoreVary: true })
   if (cached) return cached
 
+  // A tab from the previous release can still use its cached hashed chunks.
+  if (new URL(request.url).pathname.startsWith(`${APP_BASE}assets/`)) {
+    const previous = await caches.match(request, { ignoreVary: true })
+    if (previous) return previous
+  }
   const response = await fetchWithTimeout(request)
-  if (response.ok) await cache.put(request, response.clone())
+  if (response.ok) await cache.put(request, response.clone()).catch(() => {})
   return response
 }
 
