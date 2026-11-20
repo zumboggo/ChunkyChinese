@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0008_EIGHT_Tiger_Shorts.xhtml",
-    "nextStart": "Wordchain class that day focused on the request for a trade of luck.",
-    "nextEndBefore": "His mood was dark for the rest of the day, even though Jeremy kept trying to cheer him up.",
-    "continuationNote": "Alden practices the luck chain linked to his mother and Hannah’s bubble. Grief, unresolved funeral decision and Hannah’s desire to matter. Stop before the return home and Connie’s note; preserve uncertainty about Hannah’s death."
+    "nextStart": "His mood was dark for the rest of the day, even though Jeremy kept trying to cheer him up.",
+    "nextEndBefore": "There was a mewing sound at the front door,",
+    "continuationNote": "Alden returns home to Connie’s California note, fears the consequences of neglect and tries to reason himself calm. Crushed bread, chores and strange tiger shorts sharpen his anger. Stop before cat enters."
   },
   "completed": [
     {
@@ -93,9 +93,13 @@
     {
       "episode": "supportive-21-v1",
       "end": "In the butcher shop Boe questions whether Alden’s food mission avoids Hannah’s funeral. Alden says he probably will not attend because others knew her better. Jeremy urges him to go for his own sake. Boe breaks the painful silence with an absurd prison-break/Chicago-doom joke, gets Jeremy’s glare, and recommends tongue tacos that Alden can eat if Gorgon refuses. No attendance decision or meal outcome."
+    },
+    {
+      "episode": "supportive-22-v1",
+      "end": "In wordchain class Alden practices the luck request his mother taught him and remembers Hannah’s bubble. He interrupts self-blame, knows he must return Hannah’s friend’s call, and thinks about the funeral ten days away. He believes Hannah is almost certainly gone but has no confirmation. Her sincere wish to make her life matter does not comfort him. No phone call or funeral decision occurs."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-21.json",
+  "assetsFrom": "stories/animated/supportive-22.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -118,9 +122,9 @@
   "castBundle": "public/stories/animated/cast/supportive-13.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-21-v1",
-    "nextStart": "Wordchain class that day focused on the request for a trade of luck.",
-    "nextEndBefore": "His mood was dark for the rest of the day, even though Jeremy kept trying to cheer him up.",
-    "assetsFrom": "stories/animated/supportive-21.json"
+    "note": "Published through supportive-22-v1",
+    "nextStart": "His mood was dark for the rest of the day, even though Jeremy kept trying to cheer him up.",
+    "nextEndBefore": "There was a mewing sound at the front door,",
+    "assetsFrom": "stories/animated/supportive-22.json"
   }
 }
