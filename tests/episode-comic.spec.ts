@@ -33,7 +33,10 @@ test('comic stays with the text across encounters, Back, saved legacy phase and 
 })
 
 test('downloaded comic edition restores artwork, audio and encounter offline',async({page,context},info)=>{
- test.skip(!process.env.PLAYWRIGHT_BASE_URL?.includes(':4173'),'Requires the production preview and service worker')
+ test.skip(!process.env.PLAYWRIGHT_BASE_URL?.includes(':4173') && !process.env.PLAYWRIGHT_BASE_URL?.startsWith('https://'),'Requires a production preview or live deployment with its service worker')
+ const catalogue=JSON.parse(readFileSync('public/stories/animated/catalog.json','utf8'))
+ const latest=catalogue.filter((e:{category:string})=>e.category==='super-supportive').sort((a:{episode:number},b:{episode:number})=>a.episode-b.episode).at(-1)
+ const pack=JSON.parse(readFileSync('stories/animated/supportive-'+latest.episode+'.json','utf8'))
  test.setTimeout(180000)
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
  await page.getByText('Offline episodes',{exact:true}).click()
@@ -41,7 +44,7 @@ test('downloaded comic edition restores artwork, audio and encounter offline',as
  await expect(page.getByText(/All \d+ episodes saved for offline play/)).toBeVisible({timeout:150000})
  await page.getByRole('button',{name:'Choose story',exact:true}).click()
  await page.getByLabel('Book',{exact:true}).selectOption('super-supportive')
- await page.getByLabel('Episode',{exact:true}).selectOption('supportive-22-v1')
+ await page.getByLabel('Episode',{exact:true}).selectOption(latest.id)
  await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
  await page.getByRole('button',{name:'Accept',exact:true}).click()
  await page.getByRole('button',{name:'Skip intro →',exact:true}).click()
@@ -51,10 +54,9 @@ test('downloaded comic edition restores artwork, audio and encounter offline',as
  await page.getByRole('button',{name:'Game',exact:true}).click();await page.locator('.library-resume button').click()
  await expect(page.locator('.pixel-encounter')).toHaveText('Encounter 2 of 3')
  const panel=page.locator('.comic-panel')
- await expect(panel).toHaveAttribute('data-comic-panel','supportive-22-1:0')
+ await expect(panel).toHaveAttribute('data-comic-panel',`supportive-${latest.episode}-1:0`)
  expect(await panel.evaluate(e=>new Promise<number>((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(image.naturalWidth);image.onerror=reject;image.src=getComputedStyle(e).backgroundImage.slice(5,-2)}))).toBeGreaterThanOrEqual(1000)
- const pack=JSON.parse(readFileSync('stories/animated/supportive-22.json','utf8'))
- const audio=pack.chinese.lines['今天上课，我们学的是怎么说这些话，得到一点好运。'].audio
+ const audio=(Object.values(pack.chinese.lines)[0] as {audio:string}).audio
  expect(await page.evaluate(async src=>{const ctx=new AudioContext();try{return(await ctx.decodeAudioData(await(await fetch(src)).arrayBuffer())).duration}finally{await ctx.close()}},audio)).toBeGreaterThan(0)
  await page.screenshot({path:info.outputPath('comic-offline.png'),fullPage:true})
 })

@@ -1,11 +1,13 @@
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const count=JSON.parse(fs.readFileSync(new URL('../../public/stories/animated/catalog.json',import.meta.url))).filter(e=>e.category==='super-supportive').length;
 const browser=await chromium.launch();
 const context=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});
 const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
 await page.clock.install();
 await page.goto((process.env.READER_URL||'http://127.0.0.1:5190/pebble-reader.html'));
-assert.equal(await page.locator('#episode option').count(),17);
+assert.equal(await page.locator('#episode option').count(),count);
 for(const id of ['supportive-11','supportive-12','supportive-13']){
  await page.selectOption('#episode',id);
  // Walk the complete first-choice route, shortening only animation wall time.

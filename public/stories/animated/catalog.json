@@ -1377,5 +1377,21 @@
       "title": "Super Supportive · Episode 22 · 一点好运",
       "description": "A familiar wordchain brings back the night Alden needed it most, and the person who wanted her life to matter."
     }
+  },
+  {
+    "id": "supportive-23-v1",
+    "category": "super-supportive",
+    "episode": 23,
+    "path": "supportive-23.json",
+    "summary": {
+      "title": "Super Supportive · Episode 23 · 压扁的面包",
+      "description": "Connie leaves a note. Alden tries to reason his fear away, but a bag of groceries and a pair of tiger shorts make an ordinary evening harder."
+    },
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-23.mp4",
+      "poster": "stories/animated/cutscenes/supportive-23.poster.jpg",
+      "title": "你知道，你不能这样做。",
+      "durationSeconds": 9
+    }
   }
 ]

@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'episode-e0d236bfd3e4'
+const CACHE_VERSION = 'episode-145510448c09'
 const EPISODE_OFFLINE_CACHE = 'chunky-episode-downloads-v1'
 const COURSE_OFFLINE_CACHE = 'chunky-listening-course-v1'
 const READER_OFFLINE_CACHE = 'chunky-reader-downloads-v1'

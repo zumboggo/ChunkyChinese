@@ -1,0 +1,186 @@
+{
+  "id": "supportive-23",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 23 · 压扁的面包",
+  "description": "Connie leaves a note. Alden tries to reason his fear away, but a bag of groceries and a pair of tiger shorts make an ordinary evening harder.",
+  "presentation": {
+    "mode": "reading",
+    "animationLabels": [
+      "opening"
+    ]
+  },
+  "audioLanguage": "mandarin-only",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca, Chapter 8",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "Verified homecoming passage from dark mood through Connie’s chaos. Ends before the cat arrives."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Pinned Chapter 8 homecoming through tiger shorts, before mewing at front door.",
+    "storytellingVoice": "Intimate character drama: an absent guardian and everyday objects expose fear beneath anger.",
+    "desire": "Get through an ordinary evening without being overwhelmed.",
+    "obstacle": "Connie has left again; memories of threatened foster care defeat rational reassurance.",
+    "earlyCare": "He comes home already unhappy to find he must care for himself again.",
+    "dramaticChange": "Reasoning secures his practical future but cannot make the present neglect feel small.",
+    "payoff": "The crushed bread and absurd shorts reveal how thin his usual tolerance has become.",
+    "continuingQuestion": "Why can he not let Connie’s chaos pass around him tonight?",
+    "essentialNewWords": [
+      "面包",
+      "果汁",
+      "短裤",
+      "压扁"
+    ],
+    "englishNarrationPurpose": "",
+    "choicesAndCallbacks": [
+      {
+        "id": "note",
+        "purpose": "notice absence or promised groceries",
+        "laterPayoff": "none; immediate private response rejoins source events"
+      },
+      {
+        "id": "safety",
+        "purpose": "consider money or approaching adulthood",
+        "laterPayoff": "none; immediate private response rejoins source events"
+      },
+      {
+        "id": "bread",
+        "purpose": "notice damage or careless bag",
+        "laterPayoff": "none; immediate private response rejoins source events"
+      },
+      {
+        "id": "shorts",
+        "purpose": "try humor or acknowledge anger",
+        "laterPayoff": "none; immediate private response rejoins source events"
+      }
+    ],
+    "sceneActivities": [
+      {
+        "activity": "Returning, reading note, opening refrigerator, eating",
+        "purpose": "Ordinary tasks uncover fear and irritation.",
+        "rendering": "Source-supported comic panels; chores considered, not falsely completed."
+      }
+    ],
+    "direction": "18 panels with wide rooms, detail inserts, profile and comic deadpan. Memory clearly distinct. No cat, powers or invented confrontation.",
+    "opening": {
+      "style": "Layered cut-paper collage, indigo kitchen and amber fridge light",
+      "moment": "Alden protests Connie’s note alone in the kitchen",
+      "speaker": "Alden",
+      "dialogue": "你知道，你不能这样做。",
+      "sourceBeat": "protest"
+    },
+    "vocabulary": {
+      "reviewedKnown": 804,
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "supplementCount": 259,
+      "effectiveCount": 1063
+    }
+  },
+  "continuation": {
+    "end": "Alden returns to Connie’s California note. Fear of being taken into care resurfaces; he reasons that money and approaching sixteen may protect his independence. Crushed bread, an unpaid electric bill, dirty cups and unfamiliar tiger-striped shorts defeat his attempts to stay calm. Stops before Victor arrives; no phone call or funeral decision.",
+    "nextStart": "There was a mewing sound at the front door,",
+    "nextEndBefore": "No way am I going to sleep anytime soon.",
+    "note": "Victor arrives. Alden searches for missing cat food, suspects Connie or tiger-shorts owner, texts her twice without reply and feeds Victor bologna. Stop before the hard phone call; do not yet decide the funeral."
+  },
+  "routes": [
+    {
+      "choices": [
+        "gone",
+        "money",
+        "flat",
+        "funny"
+      ],
+      "contains": [
+        "可是，我小时候，有一次差一点就被送走了。"
+      ],
+      "endsWith": "今天，我却做不到。我也不知道为什么。"
+    },
+    {
+      "choices": [
+        "food",
+        "age",
+        "bag",
+        "tired"
+      ],
+      "contains": [
+        "她连里面的东西，都没有拿出来，好好地放在该在的地方。"
+      ],
+      "endsWith": "今天，我却做不到。我也不知道为什么。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-23-v1",
+    "category": "super-supportive",
+    "episode": 23,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-23.mp4",
+      "poster": "stories/animated/cutscenes/supportive-23.poster.jpg",
+      "title": "你知道，你不能这样做。",
+      "durationSeconds": 9
+    }
+  },
+  "verification": {
+    "packageBytes": 3509974,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 95.36878216123499,
+      "max": 95.88336192109777
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "你知道，你不能这样做。",
+      "这件事好像不应该让我这么生气。可是，我就是很生气。",
+      "今天，我却做不到。我也不知道为什么。"
+    ]
+  },
+  "teaser": {
+    "scene": "Alden protests Connie’s note alone in the kitchen",
+    "style": "Layered cut-paper collage, indigo kitchen and amber fridge light",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "v3zfehhfp1rmy0d1yy9adt8ab4",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "language": "Mandarin",
+    "dialogue": "你知道，你不能这样做。",
+    "pricingChecked": "2026-11-20",
+    "pricingUrl": "https://replicate.com/prunaai/p-video-2-pro",
+    "settings": {
+      "duration": 6,
+      "resolution": "480p",
+      "mode": "cost",
+      "prompt_upsampler": "off",
+      "audio": "native"
+    },
+    "image": "stories/characters/super-supportive/supportive-23-opening.png",
+    "checks": {
+      "sha256": "5a0a4915471da7e466ad3d37e157ae62f456d90bd5f040cdae3b02fc8d6ad600",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 6,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "你知道你不能这样做"
+    }
+  },
+  "artwork": {
+    "tool": "Built-in ImageGen",
+    "format": "Three equal 2-column by 3-row sheets; 17 selected panels cover 41 passages.",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "promptSet": [
+      "Evening kitchen: arrival, refrigerator note, note detail, hurt protest, discarded note, calming breath. Ink and soft gouache; varied wide, over-shoulder, close and profile shots.",
+      "Practical reassurance, counting resources, younger Alden questioned by male neighbor in soft-edged memory, empty-home vacation gesture, fridge viewpoint, juice bottles pressing bread.",
+      "Crushed bread detail (rejected; reused sheet 2 panel 6), comically affronted face, fried bologna, electricity bill and dirty mugs, tiger-striped shorts, tired quiet closeup.",
+      "Opening: layered textured cut-paper collage, Alden holding crumpled note in indigo kitchen and amber refrigerator light."
+    ],
+    "corrections": "Corrected memory neighbor to a man; excluded inaccurate bread insert. No source text or lettering in images."
+  }
+}

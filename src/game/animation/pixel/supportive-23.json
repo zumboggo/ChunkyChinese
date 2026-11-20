@@ -1,0 +1,457 @@
+{
+  "episode": "supportive-23",
+  "scriptFingerprint": "a6ee588f",
+  "shots": [
+    {
+      "anchor": "opening",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-1",
+        "panel": 0,
+        "alt": "Alden arrives alone in the dim apartment kitchen at seven in the evening.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-1",
+        "panel": 1,
+        "alt": "Over Alden’s shoulder, a note waits on the refrigerator.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-1",
+        "panel": 2,
+        "alt": "A small refrigerator note promises a few days away and groceries.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-1",
+        "panel": 3,
+        "alt": "Alden quietly protests the note, hurt and angry.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "gone",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-1",
+        "panel": 2,
+        "alt": "A small refrigerator note promises a few days away and groceries.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "food",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-1",
+        "panel": 3,
+        "alt": "Alden quietly protests the note, hurt and angry.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "protest",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-1",
+        "panel": 3,
+        "alt": "Alden quietly protests the note, hurt and angry.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "protest",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-1",
+        "panel": 4,
+        "alt": "Alden throws Connie’s note into the wastebasket.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "reason",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-1",
+        "panel": 5,
+        "alt": "Alden takes a breath beside the fridge and tries to think calmly.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "reason",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 1,
+        "alt": "Alden counts the practical reasons he may be able to look after himself.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "reason",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 0,
+        "alt": "Alden considers his future alone at the kitchen table.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "reason",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 1,
+        "alt": "Alden counts the practical reasons he may be able to look after himself.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "money",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 1,
+        "alt": "Alden counts the practical reasons he may be able to look after himself.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "age",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 0,
+        "alt": "Alden considers his future alone at the kitchen table.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "future",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 1,
+        "alt": "Alden counts the practical reasons he may be able to look after himself.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "future",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 0,
+        "alt": "Alden considers his future alone at the kitchen table.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "memory",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 2,
+        "alt": "In a soft-edged childhood memory, a concerned male neighbor questions young Alden.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "memory",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 2,
+        "alt": "In a soft-edged childhood memory, a concerned male neighbor questions young Alden.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "memory",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 2,
+        "alt": "In a soft-edged childhood memory, a concerned male neighbor questions young Alden.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "memory",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 2,
+        "alt": "In a soft-edged childhood memory, a concerned male neighbor questions young Alden.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "memory",
+      "offset": 4,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 2,
+        "alt": "In a soft-edged childhood memory, a concerned male neighbor questions young Alden.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "vacation",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-1",
+        "panel": 5,
+        "alt": "Alden takes a breath beside the fridge and tries to think calmly.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "vacation",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 3,
+        "alt": "Alden spreads his hands, trying to call the empty home a vacation.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "fridge",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 4,
+        "alt": "From inside the refrigerator, Alden examines the groceries.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "fridge",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 5,
+        "alt": "Juice bottles press down on sandwich bread inside a gray grocery bag.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "bread",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 5,
+        "alt": "Juice bottles press down on sandwich bread inside a gray grocery bag.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "bread",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-3",
+        "panel": 1,
+        "alt": "Alden gives the carelessly packed groceries a comically affronted look.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "flat",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-2",
+        "panel": 5,
+        "alt": "Juice bottles press down on sandwich bread inside a gray grocery bag.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "bag",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-3",
+        "panel": 1,
+        "alt": "Alden gives the carelessly packed groceries a comically affronted look.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "anger",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-3",
+        "panel": 1,
+        "alt": "Alden gives the carelessly packed groceries a comically affronted look.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "dinner",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-3",
+        "panel": 2,
+        "alt": "Alden eats fried bologna and mutters to himself.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "dinner",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-3",
+        "panel": 2,
+        "alt": "Alden eats fried bologna and mutters to himself.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "bills",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-3",
+        "panel": 3,
+        "alt": "An unpaid bill sits on the microwave beside dirty coffee mugs.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "bills",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-3",
+        "panel": 3,
+        "alt": "An unpaid bill sits on the microwave beside dirty coffee mugs.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "shorts",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-3",
+        "panel": 4,
+        "alt": "Tiger-striped boxer shorts lie in the living room while fully clothed Alden looks weary.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "shorts",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-3",
+        "panel": 4,
+        "alt": "Tiger-striped boxer shorts lie in the living room while fully clothed Alden looks weary.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "funny",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-3",
+        "panel": 4,
+        "alt": "Tiger-striped boxer shorts lie in the living room while fully clothed Alden looks weary.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "tired",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-3",
+        "panel": 5,
+        "alt": "Alden’s humor fades into a tired, quiet expression.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "ending",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-3",
+        "panel": 5,
+        "alt": "Alden’s humor fades into a tired, quiet expression.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "ending",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-3",
+        "panel": 5,
+        "alt": "Alden’s humor fades into a tired, quiet expression.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "ending",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-23-3",
+        "panel": 5,
+        "alt": "Alden’s humor fades into a tired, quiet expression.",
+        "aspectRatio": 1.5
+      }
+    }
+  ]
+}
