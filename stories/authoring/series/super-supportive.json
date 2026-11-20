@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0008_EIGHT_Tiger_Shorts.xhtml",
-    "nextStart": "His mood was dark for the rest of the day, even though Jeremy kept trying to cheer him up.",
-    "nextEndBefore": "There was a mewing sound at the front door,",
-    "continuationNote": "Alden returns home to Connie’s California note, fears the consequences of neglect and tries to reason himself calm. Crushed bread, chores and strange tiger shorts sharpen his anger. Stop before cat enters."
+    "nextStart": "There was a mewing sound at the front door,",
+    "nextEndBefore": "No way am I going to sleep anytime soon.",
+    "continuationNote": "Victor arrives. Alden searches for missing cat food, suspects Connie or tiger-shorts owner, texts her twice without reply and feeds Victor bologna. Stop before the hard phone call; do not yet decide the funeral."
   },
   "completed": [
     {
@@ -97,9 +97,13 @@
     {
       "episode": "supportive-22-v1",
       "end": "In wordchain class Alden practices the luck request his mother taught him and remembers Hannah’s bubble. He interrupts self-blame, knows he must return Hannah’s friend’s call, and thinks about the funeral ten days away. He believes Hannah is almost certainly gone but has no confirmation. Her sincere wish to make her life matter does not comfort him. No phone call or funeral decision occurs."
+    },
+    {
+      "episode": "supportive-23-v1",
+      "end": "Alden returns to Connie’s California note. Fear of being taken into care resurfaces; he reasons that money and approaching sixteen may protect his independence. Crushed bread, an unpaid electric bill, dirty cups and unfamiliar tiger-striped shorts defeat his attempts to stay calm. Stops before Victor arrives; no phone call or funeral decision."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-22.json",
+  "assetsFrom": "stories/animated/supportive-23.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -122,9 +126,9 @@
   "castBundle": "public/stories/animated/cast/supportive-13.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-22-v1",
-    "nextStart": "His mood was dark for the rest of the day, even though Jeremy kept trying to cheer him up.",
-    "nextEndBefore": "There was a mewing sound at the front door,",
-    "assetsFrom": "stories/animated/supportive-22.json"
+    "note": "Published through supportive-23-v1",
+    "nextStart": "There was a mewing sound at the front door,",
+    "nextEndBefore": "No way am I going to sleep anytime soon.",
+    "assetsFrom": "stories/animated/supportive-23.json"
   }
 }
