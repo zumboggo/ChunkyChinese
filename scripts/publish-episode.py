@@ -117,6 +117,10 @@ def verification_targets(plan=None,full=False,sha=None):
     if Path('dist/release.json').exists() and json.loads(Path('dist/release.json').read_text()).get('commit')==sha:
         targets['release.json']=Path('dist/release.json')
         targets['index.html']=Path('dist/index.html')
+        # The app-shell build injects its cache version and lazy asset list.
+        # Verify those shipped bytes, rather than the public source template.
+        if Path('dist/service-worker.js').is_file():
+            targets['service-worker.js']=Path('dist/service-worker.js')
         for url in re.findall(r'(?:src|href)="([^"\s]+\.(?:js|css))"',Path('dist/index.html').read_text()):
             relative=url.removeprefix('/ChunkyChinese/').lstrip('/')
             if Path('dist',relative).is_file():targets[relative]=Path('dist',relative)

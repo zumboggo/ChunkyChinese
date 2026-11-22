@@ -24,6 +24,9 @@ class IncrementalTests(unittest.TestCase):
  def test_matching_build_only(self):
   Path('dist/assets').mkdir(parents=True);Path('dist/index.html').write_text('<script src="/ChunkyChinese/assets/app.js"></script>');Path('dist/assets/app.js').write_text('ok');Path('dist/release.json').write_text('{"commit":"new"}')
   self.assertIn('assets/app.js',p.verification_targets(sha='new')[0]);self.assertNotIn('index.html',p.verification_targets(sha='other')[0])
+  Path('dist/service-worker.js').write_text('generated worker')
+  self.assertEqual(p.verification_targets(sha='new')[0]['service-worker.js'],Path('dist/service-worker.js'))
+  self.assertEqual(p.verification_targets(sha='other')[0]['service-worker.js'],Path('public/service-worker.js'))
  def test_downloads_are_bounded_parallel_and_receipt_requires_every_hash(self):
   lock=threading.Lock();active=0;peak=0
   def fetch(url):
