@@ -1,0 +1,33 @@
+/* Option B: a quiet reading home, with a 50% taller featured card. */
+.game-library{max-width:760px;padding:24px;background:#fffcf5;border:0;border-radius:22px;color:#10283f}
+.game-library .library-toolbar{display:flex;justify-content:space-between;margin:0 0 20px}
+.game-library .library-toolbar h1{font:600 34px/1.1 Georgia,serif}
+.game-library .library-toolbar button{width:46px;height:46px;display:grid;place-items:center;padding:0;border-radius:14px;background:transparent;color:#285747;border-color:#cbd6ca}
+.game-library .featured-episode{display:grid;grid-template-columns:34% minmax(0,1fr);min-height:210px;padding:16px;gap:18px;align-items:center;border:1px solid #cbd6ca;border-radius:20px;background:#fffdf8;overflow:visible}
+.game-library .featured-episode .episode-cover{width:100%;height:180px;min-height:0;object-fit:cover;border-radius:12px}
+.game-library .featured-episode>div{padding:0;min-width:0}
+.game-library .featured-episode .game-kicker{font-size:10px;line-height:1.6;margin:0 0 8px;color:#42695d}
+.game-library .featured-episode h2{font:500 25px/1.2 Georgia,serif;color:#10283f;margin:0 0 16px;overflow-wrap:anywhere}
+.game-library .featured-episode .episode-primary{padding:12px 10px;margin:0;font-size:14px;min-height:48px;border-radius:12px}
+.game-library .episode-utilities{margin:4px 0 0}
+.game-library .episode-utilities summary{font-size:12px;min-height:32px;cursor:pointer}
+.game-library .episode-utilities[open]{padding-top:8px}
+.game-library .library-stories h2{font:500 25px/1.2 Georgia,serif;margin:28px 0 16px}
+.library-story-list{display:grid;gap:9px}
+.game-library .library-story-list button{display:flex;align-items:center;gap:13px;width:100%;min-height:64px;text-align:left;margin:0;padding:10px 14px;border:1px solid #cbd6ca;border-radius:14px;background:#fffdf8;color:#21483f;font-size:15px;font-weight:650;line-height:1.35}
+.library-story-list button>span:nth-child(2){flex:1}
+.library-story-list button>span:last-child{font:27px/1 Georgia,serif}
+.game-library .library-story-list button[aria-current=true]{background:#edf2e7;border-color:#7e9d8b}
+.library-book-icon{display:grid;place-items:center;flex:none;width:38px;height:38px;background:#285747;color:#fffdf5;border-radius:9px;font:27px/1 Georgia,serif}
+.game-library .library-destination{display:flex;align-items:center;gap:14px;width:100%;margin:22px 0 0;padding:17px 18px;background:transparent;border:1px solid #9eb5aa;border-radius:15px;text-align:left;font-size:18px;font-weight:650}
+.library-destination>span:nth-child(2){flex:1}
+.game-library .library-toolbox{margin:16px 0 0;padding:0;border:1px solid #cbd6ca;border-radius:15px;background:transparent}
+.library-toolbox>summary{display:flex;justify-content:space-between;align-items:center;min-height:62px;padding:12px 18px;font-weight:650;font-size:17px;cursor:pointer;list-style:none;color:#285747}
+.library-toolbox>summary::-webkit-details-marker{display:none}
+.library-toolbox[open]>summary>span{transform:rotate(180deg)}
+.library-toolbox-content{padding:0 14px 16px}
+.game-library .library-panel-close{display:block;margin:0 0 10px auto}
+.game-library button:focus-visible,.game-library summary:focus-visible{outline:3px solid #bd8737;outline-offset:3px}
+.game-library .library-panel[hidden]{display:none}
+@media(min-width:700px){.game-library .featured-episode{min-height:270px;grid-template-columns:32% 1fr;gap:28px;padding:24px}.game-library .featured-episode .episode-cover{height:240px}.game-library .featured-episode h2{font-size:34px}.game-library .featured-episode .game-kicker{font-size:12px}.library-story-list{grid-template-columns:1fr 1fr}}
+@media(max-width:400px){.game-library{padding:16px 12px;margin-top:8px}.game-library .featured-episode{gap:12px;padding:12px;min-height:210px}.game-library .featured-episode h2{font-size:23px}.game-library .featured-episode .episode-primary{font-size:13px}.game-library .library-story-list button{font-size:14px}}

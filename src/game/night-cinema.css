@@ -192,3 +192,9 @@
 .game-compact-text .game-key-hints{display:none}
 .game-compact-text .animated-story footer>button{min-height:28px;padding:3px 8px;font-size:10px}
 .game-compact-text .animated-story aside{padding:8px;font-size:11px}
+
+/* Keep the passage speaker in its own bottom-right row, clear of controls. */
+.game-page .story-dialogue > .episode-speaker {
+ display:block;align-self:flex-end;width:100%;text-align:right;
+ margin:12px 0 0;line-height:1.4;overflow-wrap:anywhere;opacity:1;
+}
