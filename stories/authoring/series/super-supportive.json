@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0008_EIGHT_Tiger_Shorts.xhtml",
-    "nextStart": "There was a mewing sound at the front door,",
-    "nextEndBefore": "No way am I going to sleep anytime soon.",
-    "continuationNote": "Victor arrives. Alden searches for missing cat food, suspects Connie or tiger-shorts owner, texts her twice without reply and feeds Victor bologna. Stop before the hard phone call; do not yet decide the funeral."
+    "nextStart": "No way am I going to sleep anytime soon.",
+    "nextEndBefore": "A note from Sleyca",
+    "continuationNote": "Alden calls Clytem Zhao, reaches voicemail and accepts the funeral invitation. He then prepares to go out and invites Victor to get tuna and meet Gorgon. Stop before the author note and next chapter."
   },
   "completed": [
     {
@@ -101,9 +101,13 @@
     {
       "episode": "supportive-23-v1",
       "end": "Alden returns to Connie’s California note. Fear of being taken into care resurfaces; he reasons that money and approaching sixteen may protect his independence. Crushed bread, an unpaid electric bill, dirty cups and unfamiliar tiger-striped shorts defeat his attempts to stay calm. Stops before Victor arrives; no phone call or funeral decision."
+    },
+    {
+      "episode": "supportive-24-v1",
+      "end": "Victor arrives and Alden welcomes the distraction. Cat food is missing despite a search of cupboards, drawers, fridge and trash. He suspects Connie or the unknown owner of the tiger shorts without evidence. Two messages receive no reply; he gives Victor a small piece of bologna. After showering he dries his hair and tries not to judge Connie. No phone call or funeral decision."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-23.json",
+  "assetsFrom": "stories/animated/supportive-24.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -126,9 +130,9 @@
   "castBundle": "public/stories/animated/cast/supportive-13.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-23-v1",
-    "nextStart": "There was a mewing sound at the front door,",
-    "nextEndBefore": "No way am I going to sleep anytime soon.",
-    "assetsFrom": "stories/animated/supportive-23.json"
+    "note": "Published through supportive-24-v1",
+    "nextStart": "No way am I going to sleep anytime soon.",
+    "nextEndBefore": "A note from Sleyca",
+    "assetsFrom": "stories/animated/supportive-24.json"
   }
 }
