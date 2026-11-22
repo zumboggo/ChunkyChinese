@@ -24,7 +24,7 @@
 .game-page.game-playing .story-reading .episode-settings[open]>summary {background:var(--panel)}
 .game-page.game-playing .story-reading>.story-stage,.game-page.game-playing .story-reading>.story-meters,.game-page.game-playing .story-reading>.story-dialogue,.game-page.game-playing .story-reading>footer,.game-page.game-playing .story-reading>aside {grid-column:1/-1}
 .game-page.game-playing .story-reading .story-dialogue {border:0;border-radius:0;background:transparent;padding:24px 4px 0;min-height:calc(100svh - 240px);box-shadow:none;display:flex;flex-direction:column;color:var(--ink)}
-.game-page.game-playing .story-reading .story-dialogue>strong {display:none}
+.game-page.game-playing .story-reading .story-dialogue>.episode-speaker {display:block;align-self:flex-end;width:100%;text-align:right;margin:12px 0 0;color:var(--muted);font-size:12px;letter-spacing:.06em}
 .game-page.game-playing .story-reading .story-dialogue>.episode-line {margin:10px 0 32px;flex:1;display:flex;align-items:center}
 .game-page.game-playing .story-reading .episode-interlinear {gap:28px 20px;line-height:1.5;align-content:center;justify-content:flex-start}
 .game-page.game-playing .story-reading .episode-interlinear .reader-interlinear-chunk {border:0;padding:0;gap:6px;max-width:100%;white-space:normal;overflow-wrap:anywhere;background:transparent}

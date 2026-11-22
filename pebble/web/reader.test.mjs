@@ -1,7 +1,7 @@
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-const count=JSON.parse(fs.readFileSync(new URL('../../public/stories/animated/catalog.json',import.meta.url))).filter(e=>e.category==='super-supportive').length;
+const count=JSON.parse(fs.readFileSync(new URL('../../public/stories/animated/catalog.json',import.meta.url))).filter(e=>e.category==='super-supportive'&&e.pebble!==false).length;
 const browser=await chromium.launch();
 const context=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});
 const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));

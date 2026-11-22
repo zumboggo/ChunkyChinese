@@ -1,5 +1,7 @@
 # Next Mandarin episode
 
+**Super Supportive delivery (2026-11-22):** regular Comic Episodes only by default. Set new catalogue entries to `pebble: false`; generate Pebble versions only on explicit request. Existing Pebble episodes and bookmarks stay available. This overrides older dual-reader checklist wording below.
+
 Start with `npm run game:preflight -- --series=jedi --vocab=.local/episodes/jedi-01/vocab.json` (use the correct series/export). This fetches remote main without merging, rejects divergence, checks assets, smoke-tests local Mandarin encoding, locates video tools and the existing offline speech model, and writes a compact private brief. Read `.local/authoring/<series>-brief.json` and this page first. Use `docs/episode-authoring.md` for unfamiliar flags; use the current shared acting docs for unfamiliar commands. Read private JSON through selected fields, not raw dumps.
 
 1. `npm run game:episode -- --init=moonlight-10 --series=moonlight`

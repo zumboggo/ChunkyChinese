@@ -1,0 +1,845 @@
+{
+  "门外有猫叫。我马上站起来，去开门。": {
+    "english": "A cat meows outside. I immediately stand up to open the door.",
+    "pinyin": "mén wài yǒu māo jiào 。 wǒ mǎ shàng zhàn qǐ lái ， qù kāi mén 。",
+    "interlinear": [
+      {
+        "chinese": "门外有猫叫。",
+        "gloss": "A cat meows outside.",
+        "pinyin": "mén wài yǒu māo jiào 。"
+      },
+      {
+        "chinese": "我马上站起来，",
+        "gloss": "I immediately stand up",
+        "pinyin": "wǒ mǎ shàng zhàn qǐ lái ，"
+      },
+      {
+        "chinese": "去开门。",
+        "gloss": "to open the door.",
+        "pinyin": "qù kāi mén 。"
+      }
+    ]
+  },
+  "有点其他事做，真好。我不想再想下去了。": {
+    "english": "Having something else to do is a relief. I don't want to keep thinking about it.",
+    "pinyin": "yǒu diǎn qí tā shì zuò ， zhēn hǎo 。 wǒ bù xiǎng zài xiǎng xià qù le 。",
+    "interlinear": [
+      {
+        "chinese": "有点其他事做，",
+        "gloss": "Having something else to do",
+        "pinyin": "yǒu diǎn qí tā shì zuò ，"
+      },
+      {
+        "chinese": "真好。",
+        "gloss": "is a relief.",
+        "pinyin": "zhēn hǎo 。"
+      },
+      {
+        "chinese": "我不想再想下去了。",
+        "gloss": "I don't want to keep thinking about it.",
+        "pinyin": "wǒ bù xiǎng zài xiǎng xià qù le 。"
+      }
+    ]
+  },
+  "维克多，今天晚上，你愿意来我这里了？": {
+    "english": "Victor, tonight, you've decided to visit me?",
+    "pinyin": "wéi kè duō ， jīn tiān wǎn shàng ， nǐ yuàn yì lái wǒ zhè lǐ le ？",
+    "interlinear": [
+      {
+        "chinese": "维克多，",
+        "gloss": "Victor,",
+        "pinyin": "wéi kè duō ，"
+      },
+      {
+        "chinese": "今天晚上，",
+        "gloss": "tonight,",
+        "pinyin": "jīn tiān wǎn shàng ，"
+      },
+      {
+        "chinese": "你愿意来我这里了？",
+        "gloss": "you've decided to visit me?",
+        "pinyin": "nǐ yuàn yì lái wǒ zhè lǐ le ？"
+      }
+    ]
+  },
+  "外面又冷，天气又不好。你为什么还要出去呢？": {
+    "english": "It's cold outside, and the weather is nasty. Why did you go out anyway?",
+    "pinyin": "wài miàn yòu lěng ， tiān qì yòu bù hǎo 。 nǐ wèi shén me hái yào chū qù ne ？",
+    "interlinear": [
+      {
+        "chinese": "外面又冷，",
+        "gloss": "It's cold outside,",
+        "pinyin": "wài miàn yòu lěng ，"
+      },
+      {
+        "chinese": "天气又不好。",
+        "gloss": "and the weather is nasty.",
+        "pinyin": "tiān qì yòu bù hǎo 。"
+      },
+      {
+        "chinese": "你为什么还要出去呢？",
+        "gloss": "Why did you go out anyway?",
+        "pinyin": "nǐ wèi shén me hái yào chū qù ne ？"
+      }
+    ]
+  },
+  "看看来找我的猫。": {
+    "english": "Look at the cat who came to see me.",
+    "pinyin": "kàn kan lái zhǎo wǒ de māo 。",
+    "interlinear": [
+      {
+        "chinese": "看看",
+        "gloss": "Look at",
+        "pinyin": "kàn kan"
+      },
+      {
+        "chinese": "来找我的猫。",
+        "gloss": "the cat who came to see me.",
+        "pinyin": "lái zhǎo wǒ de māo 。"
+      }
+    ]
+  },
+  "看看外面的天气。": {
+    "english": "Look at the weather outside.",
+    "pinyin": "kàn kan wài miàn de tiān qì 。",
+    "interlinear": [
+      {
+        "chinese": "看看",
+        "gloss": "Look at",
+        "pinyin": "kàn kan"
+      },
+      {
+        "chinese": "外面的天气。",
+        "gloss": "the weather outside.",
+        "pinyin": "wài miàn de tiān qì 。"
+      }
+    ]
+  },
+  "刚才，只有我一个人。现在，至少还有它。": {
+    "english": "A moment ago, I was all alone. Now, at least I have him.",
+    "pinyin": "gāng cái ， zhǐ yǒu wǒ yí gè rén 。 xiàn zài ， zhì shǎo hái yǒu tā 。",
+    "interlinear": [
+      {
+        "chinese": "刚才，",
+        "gloss": "A moment ago,",
+        "pinyin": "gāng cái ，"
+      },
+      {
+        "chinese": "只有我一个人。",
+        "gloss": "I was all alone.",
+        "pinyin": "zhǐ yǒu wǒ yí gè rén 。"
+      },
+      {
+        "chinese": "现在，",
+        "gloss": "Now,",
+        "pinyin": "xiàn zài ，"
+      },
+      {
+        "chinese": "至少还有它。",
+        "gloss": "at least I have him.",
+        "pinyin": "zhì shǎo hái yǒu tā 。"
+      }
+    ]
+  },
+  "这样的天气，我可不想出去。不过，它已经回来了。": {
+    "english": "In weather like this, I certainly wouldn't go out. Still, he's back now.",
+    "pinyin": "zhè yàng de tiān qì ， wǒ kě bù xiǎng chū qù 。 bú guò ， tā yǐ jīng huí lái le 。",
+    "interlinear": [
+      {
+        "chinese": "这样的天气，",
+        "gloss": "In weather like this,",
+        "pinyin": "zhè yàng de tiān qì ，"
+      },
+      {
+        "chinese": "我可不想出去。",
+        "gloss": "I certainly wouldn't go out.",
+        "pinyin": "wǒ kě bù xiǎng chū qù 。"
+      },
+      {
+        "chinese": "不过，",
+        "gloss": "Still,",
+        "pinyin": "bú guò ，"
+      },
+      {
+        "chinese": "它已经回来了。",
+        "gloss": "he's back now.",
+        "pinyin": "tā yǐ jīng huí lái le 。"
+      }
+    ]
+  },
+  "它是一只橘色的猫。身体上，还有以前受伤的地方。": {
+    "english": "He's an orange cat. On his body, you can still see where he was hurt before.",
+    "pinyin": "tā shì yì zhī jú sè de māo 。 shēn tǐ shàng ， hái yǒu yǐ qián shòu shāng de dì fāng 。",
+    "interlinear": [
+      {
+        "chinese": "它是一只橘色的猫。",
+        "gloss": "He's an orange cat.",
+        "pinyin": "tā shì yì zhī jú sè de māo 。"
+      },
+      {
+        "chinese": "身体上，",
+        "gloss": "On his body,",
+        "pinyin": "shēn tǐ shàng ，"
+      },
+      {
+        "chinese": "还有以前受伤的地方。",
+        "gloss": "you can still see where he was hurt before.",
+        "pinyin": "hái yǒu yǐ qián shòu shāng de dì fāng 。"
+      }
+    ]
+  },
+  "我给它起名叫维克多。我喜欢想，它和其他猫打过很多次，而且赢了。": {
+    "english": "I named him Victor. I like to imagine he's fought other cats many times and won.",
+    "pinyin": "wǒ gěi tā qǐ míng jiào wéi kè duō 。 wǒ xǐ huan xiǎng ， tā hé qí tā māo dǎ guò hěn duō cì ， ér qiě yíng le 。",
+    "interlinear": [
+      {
+        "chinese": "我给它起名叫维克多。",
+        "gloss": "I named him Victor.",
+        "pinyin": "wǒ gěi tā qǐ míng jiào wéi kè duō 。"
+      },
+      {
+        "chinese": "我喜欢想，",
+        "gloss": "I like to imagine",
+        "pinyin": "wǒ xǐ huan xiǎng ，"
+      },
+      {
+        "chinese": "它和其他猫打过很多次，",
+        "gloss": "he's fought other cats many times",
+        "pinyin": "tā hé qí tā māo dǎ guò hěn duō cì ，"
+      },
+      {
+        "chinese": "而且赢了。",
+        "gloss": "and won.",
+        "pinyin": "ér qiě yíng le 。"
+      }
+    ]
+  },
+  "它在我旁边走来走去，一直叫，还掉了好多毛。": {
+    "english": "He weaves back and forth beside me, meowing constantly, and shedding lots of fur.",
+    "pinyin": "tā zài wǒ páng biān zǒu lái zǒu qù ， yì zhí jiào ， hái diào le hǎo duō máo 。",
+    "interlinear": [
+      {
+        "chinese": "它在我旁边走来走去，",
+        "gloss": "He weaves back and forth beside me,",
+        "pinyin": "tā zài wǒ páng biān zǒu lái zǒu qù ，"
+      },
+      {
+        "chinese": "一直叫，",
+        "gloss": "meowing constantly,",
+        "pinyin": "yì zhí jiào ，"
+      },
+      {
+        "chinese": "还掉了好多毛。",
+        "gloss": "and shedding lots of fur.",
+        "pinyin": "hái diào le hǎo duō máo 。"
+      }
+    ]
+  },
+  "我低下头，摸摸它耳朵后面。它要吃晚饭了。": {
+    "english": "I lower my head and scratch behind his ears. He needs his dinner.",
+    "pinyin": "wǒ dī xià tóu ， mō mo tā ěr duo hòu miàn 。 tā yào chī wǎn fàn le 。",
+    "interlinear": [
+      {
+        "chinese": "我低下头，",
+        "gloss": "I lower my head",
+        "pinyin": "wǒ dī xià tóu ，"
+      },
+      {
+        "chinese": "摸摸它耳朵后面。",
+        "gloss": "and scratch behind his ears.",
+        "pinyin": "mō mo tā ěr duo hòu miàn 。"
+      },
+      {
+        "chinese": "它要吃晚饭了。",
+        "gloss": "He needs his dinner.",
+        "pinyin": "tā yào chī wǎn fàn le 。"
+      }
+    ]
+  },
+  "来，给你找点吃的。": {
+    "english": "Come on, let's find you something to eat.",
+    "pinyin": "lái ， gěi nǐ zhǎo diǎn chī de 。",
+    "interlinear": [
+      {
+        "chinese": "来，",
+        "gloss": "Come on,",
+        "pinyin": "lái ，"
+      },
+      {
+        "chinese": "给你找点吃的。",
+        "gloss": "let's find you something to eat.",
+        "pinyin": "gěi nǐ zhǎo diǎn chī de 。"
+      }
+    ]
+  },
+  "我打开柜子。猫吃的东西一直放在这里，可是现在没有了。": {
+    "english": "I open the cupboard. The cat's food has always been kept here, but now it's gone.",
+    "pinyin": "wǒ dǎ kāi guì zi 。 māo chī de dōng xi yì zhí fàng zài zhè lǐ ， kě shì xiàn zài méi yǒu le 。",
+    "interlinear": [
+      {
+        "chinese": "我打开柜子。",
+        "gloss": "I open the cupboard.",
+        "pinyin": "wǒ dǎ kāi guì zi 。"
+      },
+      {
+        "chinese": "猫吃的东西",
+        "gloss": "The cat's food",
+        "pinyin": "māo chī de dōng xi"
+      },
+      {
+        "chinese": "一直放在这里，",
+        "gloss": "has always been kept here,",
+        "pinyin": "yì zhí fàng zài zhè lǐ ，"
+      },
+      {
+        "chinese": "可是现在没有了。",
+        "gloss": "but now it's gone.",
+        "pinyin": "kě shì xiàn zài méi yǒu le 。"
+      }
+    ]
+  },
+  "不对啊。我记得很清楚，应该还有好几罐。": {
+    "english": "That can't be right. I remember clearly there should be several cans left.",
+    "pinyin": "bú duì a 。 wǒ jì de hěn qīng chǔ ， yīng gāi hái yǒu hǎo jǐ guàn 。",
+    "interlinear": [
+      {
+        "chinese": "不对啊。",
+        "gloss": "That can't be right.",
+        "pinyin": "bú duì a 。"
+      },
+      {
+        "chinese": "我记得很清楚，",
+        "gloss": "I remember clearly",
+        "pinyin": "wǒ jì de hěn qīng chǔ ，"
+      },
+      {
+        "chinese": "应该还有好几罐。",
+        "gloss": "there should be several cans left.",
+        "pinyin": "yīng gāi hái yǒu hǎo jǐ guàn 。"
+      }
+    ]
+  },
+  "上次买那些小虫的时候，我也在那家店给它买了吃的。": {
+    "english": "When I bought those insects last time, at that same shop I also bought him food.",
+    "pinyin": "shàng cì mǎi nà xiē xiǎo chóng de shí hòu ， wǒ yě zài nà jiā diàn gěi tā mǎi le chī de 。",
+    "interlinear": [
+      {
+        "chinese": "上次买那些小虫的时候，",
+        "gloss": "When I bought those insects last time,",
+        "pinyin": "shàng cì mǎi nà xiē xiǎo chóng de shí hòu ，"
+      },
+      {
+        "chinese": "我也在那家店",
+        "gloss": "at that same shop I also",
+        "pinyin": "wǒ yě zài nà jiā diàn"
+      },
+      {
+        "chinese": "给它买了吃的。",
+        "gloss": "bought him food.",
+        "pinyin": "gěi tā mǎi le chī de 。"
+      }
+    ]
+  },
+  "再想想上次买的东西。": {
+    "english": "Think again about what I bought last time.",
+    "pinyin": "zài xiǎng xiang shàng cì mǎi de dōng xi 。",
+    "interlinear": [
+      {
+        "chinese": "再想想",
+        "gloss": "Think again about",
+        "pinyin": "zài xiǎng xiang"
+      },
+      {
+        "chinese": "上次买的东西。",
+        "gloss": "what I bought last time.",
+        "pinyin": "shàng cì mǎi de dōng xi 。"
+      }
+    ]
+  },
+  "也许阿姨拿到其他地方了。": {
+    "english": "Maybe my aunt moved it somewhere else.",
+    "pinyin": "yě xǔ ā yí ná dào qí tā dì fāng le 。",
+    "interlinear": [
+      {
+        "chinese": "也许阿姨",
+        "gloss": "Maybe my aunt",
+        "pinyin": "yě xǔ ā yí"
+      },
+      {
+        "chinese": "拿到其他地方了。",
+        "gloss": "moved it somewhere else.",
+        "pinyin": "ná dào qí tā dì fāng le 。"
+      }
+    ]
+  },
+  "我明明买了。怎么现在一点也没有？": {
+    "english": "I definitely bought it. How can there be none now?",
+    "pinyin": "wǒ míng míng mǎi le 。 zěn me xiàn zài yì diǎn yě méi yǒu ？",
+    "interlinear": [
+      {
+        "chinese": "我明明买了。",
+        "gloss": "I definitely bought it.",
+        "pinyin": "wǒ míng míng mǎi le 。"
+      },
+      {
+        "chinese": "怎么现在一点也没有？",
+        "gloss": "How can there be none now?",
+        "pinyin": "zěn me xiàn zài yì diǎn yě méi yǒu ？"
+      }
+    ]
+  },
+  "也许东西还在，只是放在其他地方了。先找找看。": {
+    "english": "Maybe it's still here, just kept somewhere else. I'll look first.",
+    "pinyin": "yě xǔ dōng xi hái zài ， zhǐ shì fàng zài qí tā dì fāng le 。 xiān zhǎo zhao kàn 。",
+    "interlinear": [
+      {
+        "chinese": "也许东西还在，",
+        "gloss": "Maybe it's still here,",
+        "pinyin": "yě xǔ dōng xi hái zài ，"
+      },
+      {
+        "chinese": "只是放在其他地方了。",
+        "gloss": "just kept somewhere else.",
+        "pinyin": "zhǐ shì fàng zài qí tā dì fāng le 。"
+      },
+      {
+        "chinese": "先找找看。",
+        "gloss": "I'll look first.",
+        "pinyin": "xiān zhǎo zhao kàn 。"
+      }
+    ]
+  },
+  "我又到其他地方找，连抽屉也打开了。": {
+    "english": "I search other places too, even opening the drawers.",
+    "pinyin": "wǒ yòu dào qí tā dì fāng zhǎo ， lián chōu ti yě dǎ kāi le 。",
+    "interlinear": [
+      {
+        "chinese": "我又到其他地方找，",
+        "gloss": "I search other places too,",
+        "pinyin": "wǒ yòu dào qí tā dì fāng zhǎo ，"
+      },
+      {
+        "chinese": "连抽屉也打开了。",
+        "gloss": "even opening the drawers.",
+        "pinyin": "lián chōu ti yě dǎ kāi le 。"
+      }
+    ]
+  },
+  "我又看了冰箱。也没有。那些吃的到底在哪里？": {
+    "english": "I check the fridge again. Not there either. Where on earth is that food?",
+    "pinyin": "wǒ yòu kàn le bīng xiāng 。 yě méi yǒu 。 nà xiē chī de dào dǐ zài nǎ lǐ ？",
+    "interlinear": [
+      {
+        "chinese": "我又看了冰箱。",
+        "gloss": "I check the fridge again.",
+        "pinyin": "wǒ yòu kàn le bīng xiāng 。"
+      },
+      {
+        "chinese": "也没有。",
+        "gloss": "Not there either.",
+        "pinyin": "yě méi yǒu 。"
+      },
+      {
+        "chinese": "那些吃的到底在哪里？",
+        "gloss": "Where on earth is that food?",
+        "pinyin": "nà xiē chī de dào dǐ zài nǎ lǐ ？"
+      }
+    ]
+  },
+  "也许她走以前，给猫吃了太多，然后把空罐子扔了。": {
+    "english": "Maybe before she left, she fed the cat far too much, then threw away the empty cans.",
+    "pinyin": "yě xǔ tā zǒu yǐ qián ， gěi māo chī le tài duō ， rán hòu bǎ kōng guàn zi rēng le 。",
+    "interlinear": [
+      {
+        "chinese": "也许她走以前，",
+        "gloss": "Maybe before she left,",
+        "pinyin": "yě xǔ tā zǒu yǐ qián ，"
+      },
+      {
+        "chinese": "给猫吃了太多，",
+        "gloss": "she fed the cat far too much,",
+        "pinyin": "gěi māo chī le tài duō ，"
+      },
+      {
+        "chinese": "然后把空罐子扔了。",
+        "gloss": "then threw away the empty cans.",
+        "pinyin": "rán hòu bǎ kōng guàn zi rēng le 。"
+      }
+    ]
+  },
+  "我连垃圾都找了，还是没有。什么都没有。": {
+    "english": "I even search the trash, but still nothing. Nothing at all.",
+    "pinyin": "wǒ lián lā jī dōu zhǎo le ， hái shì méi yǒu 。 shén me dōu méi yǒu 。",
+    "interlinear": [
+      {
+        "chinese": "我连垃圾都找了，",
+        "gloss": "I even search the trash,",
+        "pinyin": "wǒ lián lā jī dōu zhǎo le ，"
+      },
+      {
+        "chinese": "还是没有。",
+        "gloss": "but still nothing.",
+        "pinyin": "hái shì méi yǒu 。"
+      },
+      {
+        "chinese": "什么都没有。",
+        "gloss": "Nothing at all.",
+        "pinyin": "shén me dōu méi yǒu 。"
+      }
+    ]
+  },
+  "难道她拿错了，把猫吃的东西也带走了？": {
+    "english": "Could she have made a mistake and taken the cat's food with her too?",
+    "pinyin": "nán dào tā ná cuò le ， bǎ māo chī de dōng xi yě dài zǒu le ？",
+    "interlinear": [
+      {
+        "chinese": "难道她拿错了，",
+        "gloss": "Could she have made a mistake",
+        "pinyin": "nán dào tā ná cuò le ，"
+      },
+      {
+        "chinese": "把猫吃的东西也带走了？",
+        "gloss": "and taken the cat's food with her too?",
+        "pinyin": "bǎ māo chī de dōng xi yě dài zǒu le ？"
+      }
+    ]
+  },
+  "我又看了一眼那条有老虎花纹的短裤。": {
+    "english": "I glance again at those tiger-striped shorts.",
+    "pinyin": "wǒ yòu kàn le yì yǎn nà tiáo yǒu lǎo hǔ huā wén de duǎn kù 。",
+    "interlinear": [
+      {
+        "chinese": "我又看了一眼",
+        "gloss": "I glance again at",
+        "pinyin": "wǒ yòu kàn le yì yǎn"
+      },
+      {
+        "chinese": "那条有老虎花纹的短裤。",
+        "gloss": "those tiger-striped shorts.",
+        "pinyin": "nà tiáo yǒu lǎo hǔ huā wén de duǎn kù 。"
+      }
+    ]
+  },
+  "穿那个东西的人，不会把猫吃的东西拿走了吧？": {
+    "english": "Whoever wears that thing— surely he didn't take the cat's food?",
+    "pinyin": "chuān nà ge dōng xi de rén ， bú huì bǎ māo chī de dōng xi ná zǒu le ba ？",
+    "interlinear": [
+      {
+        "chinese": "穿那个东西的人，",
+        "gloss": "Whoever wears that thing—",
+        "pinyin": "chuān nà ge dōng xi de rén ，"
+      },
+      {
+        "chinese": "不会把猫吃的东西拿走了吧？",
+        "gloss": "surely he didn't take the cat's food?",
+        "pinyin": "bú huì bǎ māo chī de dōng xi ná zǒu le ba ？"
+      }
+    ]
+  },
+  "也许是阿姨拿错了。": {
+    "english": "Maybe my aunt took it by mistake.",
+    "pinyin": "yě xǔ shì ā yí ná cuò le 。",
+    "interlinear": [
+      {
+        "chinese": "也许是阿姨",
+        "gloss": "Maybe my aunt",
+        "pinyin": "yě xǔ shì ā yí"
+      },
+      {
+        "chinese": "拿错了。",
+        "gloss": "took it by mistake.",
+        "pinyin": "ná cuò le 。"
+      }
+    ]
+  },
+  "再看一眼那个东西。": {
+    "english": "Take another look at that thing.",
+    "pinyin": "zài kàn yì yǎn nà ge dōng xi 。",
+    "interlinear": [
+      {
+        "chinese": "再看一眼",
+        "gloss": "Take another look at",
+        "pinyin": "zài kàn yì yǎn"
+      },
+      {
+        "chinese": "那个东西。",
+        "gloss": "that thing.",
+        "pinyin": "nà ge dōng xi 。"
+      }
+    ]
+  },
+  "我不知道她做了什么。现在，只能问她。": {
+    "english": "I don't know what she did. Right now, all I can do is ask her.",
+    "pinyin": "wǒ bù zhī dào tā zuò le shén me 。 xiàn zài ， zhǐ néng wèn tā 。",
+    "interlinear": [
+      {
+        "chinese": "我不知道",
+        "gloss": "I don't know",
+        "pinyin": "wǒ bù zhī dào"
+      },
+      {
+        "chinese": "她做了什么。",
+        "gloss": "what she did.",
+        "pinyin": "tā zuò le shén me 。"
+      },
+      {
+        "chinese": "现在，",
+        "gloss": "Right now,",
+        "pinyin": "xiàn zài ，"
+      },
+      {
+        "chinese": "只能问她。",
+        "gloss": "all I can do is ask her.",
+        "pinyin": "zhǐ néng wèn tā 。"
+      }
+    ]
+  },
+  "我连那个人是谁都不知道。当然，也不知道是不是他拿的。": {
+    "english": "I don't even know who that person is. Of course, I don't know whether he took it either.",
+    "pinyin": "wǒ lián nà ge rén shì shuí dōu bù zhī dào 。 dāng rán ， yě bù zhī dào shì bu shì tā ná de 。",
+    "interlinear": [
+      {
+        "chinese": "我连那个人是谁都不知道。",
+        "gloss": "I don't even know who that person is.",
+        "pinyin": "wǒ lián nà ge rén shì shuí dōu bù zhī dào 。"
+      },
+      {
+        "chinese": "当然，",
+        "gloss": "Of course,",
+        "pinyin": "dāng rán ，"
+      },
+      {
+        "chinese": "也不知道是不是他拿的。",
+        "gloss": "I don't know whether he took it either.",
+        "pinyin": "yě bù zhī dào shì bu shì tā ná de 。"
+      }
+    ]
+  },
+  "我拿出手机，给阿姨写了一条消息：猫粮在哪里？": {
+    "english": "I take out my phone and write my aunt a message: Where's the cat food?",
+    "pinyin": "wǒ ná chū shǒu jī ， gěi ā yí xiě le yì tiáo xiāo xi ： māo liáng zài nǎ lǐ ？",
+    "interlinear": [
+      {
+        "chinese": "我拿出手机，",
+        "gloss": "I take out my phone",
+        "pinyin": "wǒ ná chū shǒu jī ，"
+      },
+      {
+        "chinese": "给阿姨写了一条消息：",
+        "gloss": "and write my aunt a message:",
+        "pinyin": "gěi ā yí xiě le yì tiáo xiāo xi ："
+      },
+      {
+        "chinese": "猫粮在哪里？",
+        "gloss": "Where's the cat food?",
+        "pinyin": "māo liáng zài nǎ lǐ ？"
+      }
+    ]
+  },
+  "她没有马上给我消息。猫还在等。": {
+    "english": "She doesn't message me back right away. The cat is still waiting.",
+    "pinyin": "tā méi yǒu mǎ shàng gěi wǒ xiāo xi 。 māo hái zài děng 。",
+    "interlinear": [
+      {
+        "chinese": "她没有马上给我消息。",
+        "gloss": "She doesn't message me back right away.",
+        "pinyin": "tā méi yǒu mǎ shàng gěi wǒ xiāo xi 。"
+      },
+      {
+        "chinese": "猫还在等。",
+        "gloss": "The cat is still waiting.",
+        "pinyin": "māo hái zài děng 。"
+      }
+    ]
+  },
+  "再看看手机。": {
+    "english": "Check the phone again.",
+    "pinyin": "zài kàn kan shǒu jī 。",
+    "interlinear": [
+      {
+        "chinese": "再看看",
+        "gloss": "Check",
+        "pinyin": "zài kàn kan"
+      },
+      {
+        "chinese": "手机。",
+        "gloss": "the phone again.",
+        "pinyin": "shǒu jī 。"
+      }
+    ]
+  },
+  "先看看还没吃饭的猫。": {
+    "english": "First look at the cat who hasn't eaten.",
+    "pinyin": "xiān kàn kan hái méi chī fàn de māo 。",
+    "interlinear": [
+      {
+        "chinese": "先看看",
+        "gloss": "First look at",
+        "pinyin": "xiān kàn kan"
+      },
+      {
+        "chinese": "还没吃饭的猫。",
+        "gloss": "the cat who hasn't eaten.",
+        "pinyin": "hái méi chī fàn de māo 。"
+      }
+    ]
+  },
+  "现在还没有消息。可我不能让它一直等下去。": {
+    "english": "Still no message. But I can't make him keep waiting forever.",
+    "pinyin": "xiàn zài hái méi yǒu xiāo xi 。 kě wǒ bù néng ràng tā yì zhí děng xià qù 。",
+    "interlinear": [
+      {
+        "chinese": "现在还没有消息。",
+        "gloss": "Still no message.",
+        "pinyin": "xiàn zài hái méi yǒu xiāo xi 。"
+      },
+      {
+        "chinese": "可我不能让它",
+        "gloss": "But I can't make him",
+        "pinyin": "kě wǒ bù néng ràng tā"
+      },
+      {
+        "chinese": "一直等下去。",
+        "gloss": "keep waiting forever.",
+        "pinyin": "yì zhí děng xià qù 。"
+      }
+    ]
+  },
+  "它还没有吃晚饭。这件事，我必须先想个办法。": {
+    "english": "He hasn't had dinner yet. For this, I have to find a solution first.",
+    "pinyin": "tā hái méi yǒu chī wǎn fàn 。 zhè jiàn shì ， wǒ bì xū xiān xiǎng gè bàn fǎ 。",
+    "interlinear": [
+      {
+        "chinese": "它还没有吃晚饭。",
+        "gloss": "He hasn't had dinner yet.",
+        "pinyin": "tā hái méi yǒu chī wǎn fàn 。"
+      },
+      {
+        "chinese": "这件事，",
+        "gloss": "For this,",
+        "pinyin": "zhè jiàn shì ，"
+      },
+      {
+        "chinese": "我必须先想个办法。",
+        "gloss": "I have to find a solution first.",
+        "pinyin": "wǒ bì xū xiān xiǎng gè bàn fǎ 。"
+      }
+    ]
+  },
+  "我给了它一小块午餐肉，先让它有点吃的。": {
+    "english": "I give him a small piece of bologna, so he has something to eat for now.",
+    "pinyin": "wǒ gěi le tā yì xiǎo kuài wǔ cān ròu ， xiān ràng tā yǒu diǎn chī de 。",
+    "interlinear": [
+      {
+        "chinese": "我给了它",
+        "gloss": "I give him",
+        "pinyin": "wǒ gěi le tā"
+      },
+      {
+        "chinese": "一小块午餐肉，",
+        "gloss": "a small piece of bologna,",
+        "pinyin": "yì xiǎo kuài wǔ cān ròu ，"
+      },
+      {
+        "chinese": "先让它有点吃的。",
+        "gloss": "so he has something to eat for now.",
+        "pinyin": "xiān ràng tā yǒu diǎn chī de 。"
+      }
+    ]
+  },
+  "洗澡以后，我又看了一次手机。": {
+    "english": "After my shower, I check my phone again.",
+    "pinyin": "xǐ zǎo yǐ hòu ， wǒ yòu kàn le yí cì shǒu jī 。",
+    "interlinear": [
+      {
+        "chinese": "洗澡以后，",
+        "gloss": "After my shower,",
+        "pinyin": "xǐ zǎo yǐ hòu ，"
+      },
+      {
+        "chinese": "我又看了一次手机。",
+        "gloss": "I check my phone again.",
+        "pinyin": "wǒ yòu kàn le yí cì shǒu jī 。"
+      }
+    ]
+  },
+  "我又写了一条消息：阿姨？猫粮呢？": {
+    "english": "I write another message: Aunt Connie? What about the cat food?",
+    "pinyin": "wǒ yòu xiě le yì tiáo xiāo xi ： ā yí ？ māo liáng ne ？",
+    "interlinear": [
+      {
+        "chinese": "我又写了一条消息：",
+        "gloss": "I write another message:",
+        "pinyin": "wǒ yòu xiě le yì tiáo xiāo xi ："
+      },
+      {
+        "chinese": "阿姨？",
+        "gloss": "Aunt Connie?",
+        "pinyin": "ā yí ？"
+      },
+      {
+        "chinese": "猫粮呢？",
+        "gloss": "What about the cat food?",
+        "pinyin": "māo liáng ne ？"
+      }
+    ]
+  },
+  "还是没有消息。": {
+    "english": "Still no reply.",
+    "pinyin": "hái shì méi yǒu xiāo xi 。",
+    "interlinear": [
+      {
+        "chinese": "还是",
+        "gloss": "Still",
+        "pinyin": "hái shì"
+      },
+      {
+        "chinese": "没有消息。",
+        "gloss": "no reply.",
+        "pinyin": "méi yǒu xiāo xi 。"
+      }
+    ]
+  },
+  "我站在自己的房间里，用毛巾擦头发。": {
+    "english": "I stand in my room, drying my hair with a towel.",
+    "pinyin": "wǒ zhàn zài zì jǐ de fáng jiān lǐ ， yòng máo jīn cā tóu fa 。",
+    "interlinear": [
+      {
+        "chinese": "我站在自己的房间里，",
+        "gloss": "I stand in my room,",
+        "pinyin": "wǒ zhàn zài zì jǐ de fáng jiān lǐ ，"
+      },
+      {
+        "chinese": "用毛巾擦头发。",
+        "gloss": "drying my hair with a towel.",
+        "pinyin": "yòng máo jīn cā tóu fa 。"
+      }
+    ]
+  },
+  "先不要觉得都是她不好。我一边擦，一边努力这样想。": {
+    "english": "Don't assume yet it's all her fault. As I dry my hair, I try hard to think that way.",
+    "pinyin": "xiān bú yào jué de dōu shì tā bù hǎo 。 wǒ yì biān cā ， yì biān nǔ lì zhè yàng xiǎng 。",
+    "interlinear": [
+      {
+        "chinese": "先不要觉得",
+        "gloss": "Don't assume yet",
+        "pinyin": "xiān bú yào jué de"
+      },
+      {
+        "chinese": "都是她不好。",
+        "gloss": "it's all her fault.",
+        "pinyin": "dōu shì tā bù hǎo 。"
+      },
+      {
+        "chinese": "我一边擦，",
+        "gloss": "As I dry my hair,",
+        "pinyin": "wǒ yì biān cā ，"
+      },
+      {
+        "chinese": "一边努力这样想。",
+        "gloss": "I try hard to think that way.",
+        "pinyin": "yì biān nǔ lì zhè yàng xiǎng 。"
+      }
+    ]
+  }
+}

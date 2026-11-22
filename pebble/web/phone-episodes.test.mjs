@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {phoneEpisode,attachPixelDirection} from './phone-episodes.mjs';
 const root=new URL('../../public/stories/animated/',import.meta.url);
-const catalog=JSON.parse(fs.readFileSync(new URL('catalog.json',root))).filter(e=>e.category==='super-supportive');
+const catalog=JSON.parse(fs.readFileSync(new URL('catalog.json',root))).filter(e=>e.category==='super-supportive'&&e.pebble!==false);
 for(const entry of catalog)test(entry.id+' preserves language and every branch',()=>{
  const source=JSON.parse(fs.readFileSync(new URL(entry.path,root))),pack=phoneEpisode(source,entry),visited=new Set();let routes=0;
  function walk(index,ancestors=new Set()){

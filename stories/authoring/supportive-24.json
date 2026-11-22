@@ -1,0 +1,175 @@
+{
+  "id": "supportive-24",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 24 · 猫粮呢？",
+  "description": "Victor comes home hungry. Alden welcomes the company, but a missing dinner and a silent phone test his patience.",
+  "presentation": {
+    "mode": "reading",
+    "animationLabels": [
+      "opening"
+    ]
+  },
+  "audioLanguage": "mandarin-only",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca, Chapter 8",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "Adapted from the user-provided EPUB: Victor arrives through Alden drying his hair. Stops before the difficult phone call."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Chapter 8: Victor at the door through drying hair; no phone call or funeral decision.",
+    "dramaticChange": "He cannot solve the missing food or reach Connie, but finds something to feed Victor.",
+    "essentialNewWords": [
+      "猫粮",
+      "伤疤",
+      "抽屉",
+      "午餐肉"
+    ],
+    "englishNarrationPurpose": "",
+    "choicesAndCallbacks": [
+      {
+        "id": "arrival",
+        "purpose": "notice company or bad weather",
+        "laterPayoff": "none; immediate private response reconverges"
+      },
+      {
+        "id": "missing",
+        "purpose": "recall purchase or possible moved food",
+        "laterPayoff": "none; immediate private response reconverges"
+      },
+      {
+        "id": "suspect",
+        "purpose": "consider aunt or shorts without claiming guilt",
+        "laterPayoff": "none; immediate private response reconverges"
+      },
+      {
+        "id": "waiting",
+        "purpose": "notice silent phone or hungry cat",
+        "laterPayoff": "none; immediate private response reconverges"
+      }
+    ],
+    "sceneActivities": [
+      {
+        "activity": "Let cat in, scratch ears, search cupboards, text, feed cat, dry hair",
+        "purpose": "Practical care interrupted by household unreliability.",
+        "rendering": "18 illustrated comic panels with varied close-ups and wider action."
+      }
+    ],
+    "storytellingVoice": "Intimate character drama: relief at companionship turns into practical care amid unanswered questions.",
+    "desire": "Feed Victor and get a small ordinary task right.",
+    "obstacle": "Cat food has vanished and Connie does not answer.",
+    "earlyCare": "Alden welcomes the cat and scratches behind his ears.",
+    "payoff": "Victor gets a small piece of bologna.",
+    "continuingQuestion": "Why is Connie not answering, and how will Alden face the rest of his evening?",
+    "direction": "Keep imagined causes uncertain; no aunt or thief physically present. Final held close-up contrasts care for Victor with no answer for Alden.",
+    "opening": {
+      "style": "Charcoal and restrained orange pastel",
+      "moment": "Alden promises Victor dinner before discovering missing food",
+      "speaker": "Alden",
+      "dialogue": "来，给你找点吃的。",
+      "sourceBeat": "victor"
+    },
+    "vocabulary": {
+      "reviewedKnown": 804,
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "supplementCount": 259,
+      "effectiveCount": 1063
+    }
+  },
+  "continuation": {
+    "end": "Victor arrives and Alden welcomes the distraction. Cat food is missing despite a search of cupboards, drawers, fridge and trash. He suspects Connie or the unknown owner of the tiger shorts without evidence. Two messages receive no reply; he gives Victor a small piece of bologna. After showering he dries his hair and tries not to judge Connie. No phone call or funeral decision.",
+    "nextStart": "No way am I going to sleep anytime soon.",
+    "nextEndBefore": "A note from Sleyca",
+    "note": "Alden calls Clytem Zhao, reaches voicemail and accepts the funeral invitation. He then prepares to go out and invites Victor to get tuna and meet Gorgon. Stop before the author note and next chapter."
+  },
+  "routes": [
+    {
+      "choices": [
+        "company",
+        "remember",
+        "aunt",
+        "phone"
+      ],
+      "contains": [
+        "我给了它一小块午餐肉，先让它有点吃的。"
+      ],
+      "endsWith": "先不要觉得都是她不好。我一边擦，一边努力这样想。"
+    },
+    {
+      "choices": [
+        "weather",
+        "moved",
+        "shorts",
+        "cat"
+      ],
+      "contains": [
+        "我连那个人是谁都不知道。当然，也不知道是不是他拿的。"
+      ],
+      "endsWith": "先不要觉得都是她不好。我一边擦，一边努力这样想。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-24-v1",
+    "category": "super-supportive",
+    "episode": 24,
+    "pebble": false,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-24.mp4",
+      "poster": "stories/animated/cutscenes/supportive-24.poster.jpg",
+      "title": "来，给你找点吃的。",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "scene": "Alden promises dinner to Victor before finding the cat food missing.",
+    "style": "Charcoal and orange pastel",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "x0e0vbbh2drmt0d20f9tj86cxr",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "language": "Mandarin",
+    "dialogue": "来，给你找点吃的。",
+    "pricingChecked": "2026-11-22",
+    "pricingUrl": "https://replicate.com/prunaai/p-video-2-pro",
+    "settings": {
+      "duration": 6,
+      "resolution": "480p",
+      "mode": "cost",
+      "prompt_upsampler": "off",
+      "audio": "native"
+    },
+    "image": "stories/characters/super-supportive/supportive-24-opening.png",
+    "checks": {
+      "sha256": "40fdb381bcbe41307762719fc0a66ac654c00785ed241c32910370ae8ab00860",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 6,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "来 给你找点吃的"
+    }
+  },
+  "verification": {
+    "packageBytes": 3089008,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 95.2153110047847,
+      "max": 95.3810623556582
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "来，给你找点吃的。",
+      "穿那个东西的人，不会把猫吃的东西拿走了吧？",
+      "先不要觉得都是她不好。我一边擦，一边努力这样想。"
+    ]
+  }
+}

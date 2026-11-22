@@ -1,7 +1,7 @@
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-const entries=JSON.parse(fs.readFileSync(new URL('../../public/stories/animated/catalog.json',import.meta.url))).filter(e=>e.category==='super-supportive').sort((a,b)=>a.episode-b.episode);
+const entries=JSON.parse(fs.readFileSync(new URL('../../public/stories/animated/catalog.json',import.meta.url))).filter(e=>e.category==='super-supportive'&&e.pebble!==false).sort((a,b)=>a.episode-b.episode);
 const latest=entries.at(-1).episode;
 const browser=await chromium.launch();
 const context=await browser.newContext({viewport:{width:390,height:844}});

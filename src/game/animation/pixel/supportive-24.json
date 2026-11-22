@@ -1,0 +1,391 @@
+{
+  "episode": 24,
+  "scriptFingerprint": "37f1c7d2",
+  "shots": [
+    {
+      "anchor": "opening",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-1",
+        "panel": 0,
+        "alt": "Alden hears a sound at the door.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-1",
+        "panel": 2,
+        "alt": "Alden welcomes Victor inside.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-1",
+        "panel": 3,
+        "alt": "Alden smiles and talks to Victor.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-1",
+        "panel": 1,
+        "alt": "Victor waits at the cold doorway.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "company",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-1",
+        "panel": 3,
+        "alt": "Alden smiles and talks to Victor.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "weather",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-1",
+        "panel": 1,
+        "alt": "Victor waits at the cold doorway.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "victor",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-1",
+        "panel": 1,
+        "alt": "Victor waits at the cold doorway.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "victor",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-1",
+        "panel": 3,
+        "alt": "Alden smiles and talks to Victor.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "victor",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-1",
+        "panel": 4,
+        "alt": "Victor winds around Alden\u2019s shoes.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "victor",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-1",
+        "panel": 5,
+        "alt": "Alden scratches behind Victor\u2019s ears.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "victor",
+      "offset": 4,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-1",
+        "panel": 5,
+        "alt": "Alden scratches behind Victor\u2019s ears.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "cupboard",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-2",
+        "panel": 0,
+        "alt": "The cat-food cupboard is empty.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "cupboard",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-2",
+        "panel": 1,
+        "alt": "Alden wonders where the food could be.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "cupboard",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-2",
+        "panel": 1,
+        "alt": "Alden wonders where the food could be.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "remember",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-2",
+        "panel": 1,
+        "alt": "Alden wonders where the food could be.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "moved",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-2",
+        "panel": 0,
+        "alt": "The cat-food cupboard is empty.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "search",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-2",
+        "panel": 2,
+        "alt": "Alden searches the drawers.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "search",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-2",
+        "panel": 3,
+        "alt": "Alden checks the refrigerator.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "search",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-2",
+        "panel": 4,
+        "alt": "Alden searches the trash for empty cans.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "search",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-2",
+        "panel": 4,
+        "alt": "Alden searches the trash for empty cans.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "suspect",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-2",
+        "panel": 1,
+        "alt": "Alden wonders where the food could be.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "suspect",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-2",
+        "panel": 5,
+        "alt": "Tiger-striped shorts lie in a corner.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "suspect",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-2",
+        "panel": 5,
+        "alt": "Tiger-striped shorts lie in a corner.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "aunt",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-2",
+        "panel": 1,
+        "alt": "Alden wonders where the food could be.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "shorts",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-2",
+        "panel": 5,
+        "alt": "Tiger-striped shorts lie in a corner.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "message",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-3",
+        "panel": 1,
+        "alt": "Alden writes a message on his phone.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "message",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-3",
+        "panel": 2,
+        "alt": "No reply comes as Victor waits.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "phone",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-3",
+        "panel": 2,
+        "alt": "No reply comes as Victor waits.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "cat",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-3",
+        "panel": 2,
+        "alt": "No reply comes as Victor waits.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "dinner",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-3",
+        "panel": 3,
+        "alt": "Alden gives Victor a small piece of bologna.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "shower",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-3",
+        "panel": 4,
+        "alt": "After showering Alden checks his phone.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "shower",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-3",
+        "panel": 4,
+        "alt": "After showering Alden checks his phone.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "shower",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-3",
+        "panel": 5,
+        "alt": "Alden dries his hair beside a silent phone.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "ending",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-3",
+        "panel": 5,
+        "alt": "Alden dries his hair beside a silent phone.",
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "ending",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-24-3",
+        "panel": 5,
+        "alt": "Alden dries his hair beside a silent phone.",
+        "aspectRatio": 1.5
+      }
+    }
+  ]
+}

@@ -24,7 +24,7 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
  await page.getByRole('button',{name:'Publish to my library',exact:true}).click()
  const open=async()=>{
   const category=pack.title.startsWith('Super Supportive')?'super-supportive':pack.title.startsWith('The Name of the Wind')?'name-of-the-wind':pack.title.startsWith('The Voices Beneath the Water')?'jedi':/^Moonlight(?: Sculptor)?\s+\d+\b/i.test(pack.title)?'lms':'daily-life'
-  const chooser=page.getByRole('button',{name:'Choose story',exact:true})
+  const chooser=page.getByRole('button',{name:/^Choose story:/}).first()
   if(await chooser.getAttribute('aria-expanded')!=='true')await chooser.click()
   await page.getByLabel('Book',{exact:true}).selectOption(category)
   // A bundled release may have the same title; resume this exact imported package.
@@ -132,7 +132,7 @@ if(fixture.catalog?.intro)test('planned opening plays with sound and transitions
  await page.route('**/public/stories/animated/catalog.json*',route=>route.fulfill({contentType:'application/javascript',body:'export default '+JSON.stringify([...catalog,entry])}))
  await page.route('**/stories/animated/'+path,route=>route.fulfill({json:pack}))
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
- await page.getByRole('button',{name:'Choose story',exact:true}).click()
+ await page.getByRole('button',{name:/^Choose story:/}).first().click()
  await page.getByLabel('Book',{exact:true}).selectOption(entry.category!)
  await expect(page.getByLabel('Episode',{exact:true}).locator(`option[value="${id}"]`)).toHaveCount(1)
  await page.getByLabel('Episode',{exact:true}).selectOption(id)

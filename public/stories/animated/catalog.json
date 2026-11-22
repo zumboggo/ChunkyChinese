@@ -1393,5 +1393,22 @@
       "title": "你知道，你不能这样做。",
       "durationSeconds": 9
     }
+  },
+  {
+    "id": "supportive-24-v1",
+    "category": "super-supportive",
+    "episode": 24,
+    "pebble": false,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-24.mp4",
+      "poster": "stories/animated/cutscenes/supportive-24.poster.jpg",
+      "title": "来，给你找点吃的。",
+      "durationSeconds": 9
+    },
+    "path": "supportive-24.json",
+    "summary": {
+      "title": "Super Supportive · Episode 24 · 猫粮呢？",
+      "description": "Victor comes home hungry. Alden welcomes the company, but a missing dinner and a silent phone test his patience."
+    }
   }
 ]
