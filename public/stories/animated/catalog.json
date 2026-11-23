@@ -1427,5 +1427,22 @@
       "title": "Super Supportive · Episode 25 · 决定做了",
       "description": "One difficult phone call, one decision made—and an unusual invitation for Victor."
     }
+  },
+  {
+    "id": "supportive-26-v1",
+    "category": "super-supportive",
+    "episode": 26,
+    "pebble": false,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-26.mp4",
+      "poster": "stories/animated/cutscenes/supportive-26.poster.jpg",
+      "title": "它是来玩的，不是给你吃的！",
+      "durationSeconds": 9
+    },
+    "path": "supportive-26.json",
+    "summary": {
+      "title": "Super Supportive · Episode 26 · 不是给你吃的",
+      "description": "An unplanned midnight visit, a furious cat, and a very unusual slumber party. Feltboard × American comics × Art Nouveau."
+    }
   }
 ]

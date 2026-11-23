@@ -1,0 +1,666 @@
+{
+  "episode": 26,
+  "scriptFingerprint": "921fd06e",
+  "shots": [
+    {
+      "anchor": "opening",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-1",
+        "panel": 0,
+        "alt": "Alden arrives with cat carrier, groceries and pillow at the closed consulate.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-1",
+        "panel": 1,
+        "alt": "Victor loudly objects to being inside the carrier.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-1",
+        "panel": 0,
+        "alt": "Alden arrives with cat carrier, groceries and pillow at the closed consulate.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-1",
+        "panel": 0,
+        "alt": "Alden arrives with cat carrier, groceries and pillow at the closed consulate.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "plan",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-1",
+        "panel": 0,
+        "alt": "Alden arrives with cat carrier, groceries and pillow at the closed consulate.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "door",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-1",
+        "panel": 0,
+        "alt": "Alden arrives with cat carrier, groceries and pillow at the closed consulate.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "button",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-1",
+        "panel": 2,
+        "alt": "Alden struggles with his bags while pressing the intercom.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "button",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-1",
+        "panel": 2,
+        "alt": "Alden struggles with his bags while pressing the intercom.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "button",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-1",
+        "panel": 4,
+        "alt": "Alden speaks hopefully at the gate.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "answer",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-1",
+        "panel": 3,
+        "alt": "Gorgon sees Alden on the security monitor.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "answer",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-1",
+        "panel": 3,
+        "alt": "Gorgon sees Alden on the security monitor.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "ask",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-1",
+        "panel": 4,
+        "alt": "Alden speaks hopefully at the gate.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "closed",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-1",
+        "panel": 5,
+        "alt": "Gorgon listens with a dry, unimpressed expression.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "plead",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 0,
+        "alt": "Alden proposes spending the evening together.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "plead",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 0,
+        "alt": "Alden proposes spending the evening together.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "plead",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 0,
+        "alt": "Alden proposes spending the evening together.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "family",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-1",
+        "panel": 5,
+        "alt": "Gorgon listens with a dry, unimpressed expression.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "alone",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 1,
+        "alt": "Alden admits nobody will miss him tonight.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "alone",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 1,
+        "alt": "Alden admits nobody will miss him tonight.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "alone",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 1,
+        "alt": "Alden admits nobody will miss him tonight.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "listen",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 1,
+        "alt": "Alden admits nobody will miss him tonight.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "hold",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 0,
+        "alt": "Alden proposes spending the evening together.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "admit",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 2,
+        "alt": "Gorgon sighs and decides to let Alden enter.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "admit",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 2,
+        "alt": "Gorgon sighs and decides to let Alden enter.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "admit",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 2,
+        "alt": "Gorgon sighs and decides to let Alden enter.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "enter",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 3,
+        "alt": "Alden walks through the newly opened gate.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "enter",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 3,
+        "alt": "Alden walks through the newly opened gate.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "enter",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 4,
+        "alt": "Gorgon points at Alden’s shoes at the entrance.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "enter",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 4,
+        "alt": "Gorgon points at Alden’s shoes at the entrance.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "enter",
+      "offset": 4,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 4,
+        "alt": "Gorgon points at Alden’s shoes at the entrance.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "enter",
+      "offset": 5,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 5,
+        "alt": "Alden removes his shoes beside his bags.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "enter",
+      "offset": 6,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-2",
+        "panel": 5,
+        "alt": "Alden removes his shoes beside his bags.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "exciting",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-3",
+        "panel": 0,
+        "alt": "Gorgon explains the consulate has had more exciting visitors.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "exciting",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-3",
+        "panel": 0,
+        "alt": "Gorgon explains the consulate has had more exciting visitors.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "exciting",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-3",
+        "panel": 1,
+        "alt": "Alden offers the food he brought.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "notcat",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-3",
+        "panel": 2,
+        "alt": "Gorgon looks at the cat carrier and politely declines.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "notcat",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-3",
+        "panel": 2,
+        "alt": "Gorgon looks at the cat carrier and politely declines.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "notcat",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-3",
+        "panel": 3,
+        "alt": "Alden insists that Victor is a guest, not food.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "victor",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-3",
+        "panel": 4,
+        "alt": "Victor meows angrily behind the carrier grille.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "gorgon",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-3",
+        "panel": 2,
+        "alt": "Gorgon looks at the cat carrier and politely declines.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "rage",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-3",
+        "panel": 5,
+        "alt": "Gorgon asks about the cat’s apparent enthusiasm.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "rage",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-3",
+        "panel": 5,
+        "alt": "Gorgon asks about the cat’s apparent enthusiasm.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "rage",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-4",
+        "panel": 0,
+        "alt": "Alden opens the carrier door.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "rage",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-4",
+        "panel": 1,
+        "alt": "Victor skids across the freshly cleaned lobby floor.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "rage",
+      "offset": 4,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-4",
+        "panel": 2,
+        "alt": "Gorgon watches Victor shelter under a chair.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "chores",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-4",
+        "panel": 3,
+        "alt": "Alden and Gorgon talk about the evening’s chores.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "chores",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-4",
+        "panel": 3,
+        "alt": "Alden and Gorgon talk about the evening’s chores.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "chores",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-4",
+        "panel": 3,
+        "alt": "Alden and Gorgon talk about the evening’s chores.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "bindings",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-4",
+        "panel": 3,
+        "alt": "Alden and Gorgon talk about the evening’s chores.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "bindings",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-4",
+        "panel": 4,
+        "alt": "Golden bindings stretch back toward the reception desk.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "cords",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-4",
+        "panel": 4,
+        "alt": "Golden bindings stretch back toward the reception desk.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "empty",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-4",
+        "panel": 2,
+        "alt": "Gorgon watches Victor shelter under a chair.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "invitation",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-4",
+        "panel": 5,
+        "alt": "Alden invites Gorgon to ride the elevator and have snacks.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "invitation",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-4",
+        "panel": 5,
+        "alt": "Alden invites Gorgon to ride the elevator and have snacks.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "invitation",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-26-4",
+        "panel": 5,
+        "alt": "Alden invites Gorgon to ride the elevator and have snacks.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    }
+  ]
+}

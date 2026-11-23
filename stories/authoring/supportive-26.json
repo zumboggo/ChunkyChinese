@@ -1,0 +1,250 @@
+{
+  "id": "supportive-26",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 26 · 不是给你吃的",
+  "description": "An unplanned midnight visit, a furious cat, and a very unusual slumber party. Feltboard × American comics × Art Nouveau.",
+  "presentation": {
+    "mode": "reading",
+    "animationLabels": [
+      "opening"
+    ]
+  },
+  "audioLanguage": "mandarin-only",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca, Chapter 9",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-provided EPUB: late-night consulate arrival through the invitation to ride the elevator. Stops before the tour."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Chapter 9 opening through before They wandered the building together,",
+    "dramaticChange": "Gorgon refuses entry, then lets Alden in after hearing his loneliness; their awkward visit opens into shared companionship.",
+    "essentialNewWords": [
+      "束缚",
+      "电梯",
+      "摔倒",
+      "枕头"
+    ],
+    "englishNarrationPurpose": "",
+    "choicesAndCallbacks": [
+      {
+        "id": "arrival",
+        "purpose": "Notice plan or closed gate",
+        "laterPayoff": "Immediate private observation; rejoins canonical events."
+      },
+      {
+        "id": "silence",
+        "purpose": "Hold the loneliness after speaking",
+        "laterPayoff": "Immediate private observation; rejoins canonical events."
+      },
+      {
+        "id": "guest",
+        "purpose": "Cat or alien reaction",
+        "laterPayoff": "Immediate private observation; rejoins canonical events."
+      },
+      {
+        "id": "notice",
+        "purpose": "Understand bindings or empty lobby",
+        "laterPayoff": "Immediate private observation; rejoins canonical events."
+      }
+    ],
+    "sceneActivities": [
+      {
+        "activity": "Carry cat, groceries and pillow; press intercom; remove shoes; release cat; propose shared activity",
+        "purpose": "Practical awkwardness and care carry loneliness into companionship.",
+        "rendering": "24 consistent tactile felt comic panels."
+      }
+    ],
+    "storytellingVoice": "Warm, self-questioning adolescent: source-supported self-mockery and a lonely admission, then playful talk with Gorgon.",
+    "desire": "Find company because he cannot sleep.",
+    "obstacle": "Closed consulate and Gorgon’s initial refusal.",
+    "earlyCare": "He brings food and offers to help with chores.",
+    "payoff": "Gorgon lets him in and Victor is released; they can spend the evening together.",
+    "continuingQuestion": "What will their strange late-night visit become?",
+    "direction": "Hold Alden outside after admitting nobody will miss him; Gorgon’s pause and sigh change the relationship. Use cartoon timing for cat misunderstanding without mocking loneliness.",
+    "opening": {
+      "style": "Feltboard × American comics × Art Nouveau",
+      "moment": "Alden corrects Gorgon’s apparent misunderstanding about Victor",
+      "speaker": "Alden",
+      "dialogue": "它是来玩的，不是给你吃的！",
+      "sourceBeat": "notcat"
+    },
+    "artDirection": {
+      "seed": 2133327315,
+      "medium": "feltboard",
+      "treatment": "American comics",
+      "influence": "Art Nouveau",
+      "weights": {
+        "comicProbability": 0.6666666666666666,
+        "media": {
+          "charcoal": 0.3,
+          "oil painting": 1,
+          "watercolour": 0.3,
+          "woodcut": 1,
+          "ballpoint pen": 1,
+          "acrylic paint": 1,
+          "photography": 1,
+          "clay models": 1,
+          "feltboard": 1,
+          "puppets": 1,
+          "ink": 0.3,
+          "pixel art": 1
+        },
+        "treatments": {
+          "shonen dynamic staging": 0.25,
+          "chibi comic": 1,
+          "American comics": 1,
+          "manhua": 1,
+          "webcomic": 1,
+          "Franco-Belgian clear-line comic": 1
+        },
+        "influences": {
+          "Japanese woodblock print": 1,
+          "Chinese paper-cutting": 0.25,
+          "Mexican relief printmaking": 1,
+          "Art Nouveau": 1,
+          "Bauhaus geometry": 1
+        }
+      },
+      "recentHistory": [
+        {
+          "episode": 21,
+          "opening": "Loose ink and watercolor graphic-novel wash on textured paper in indigo, terracotta and cream"
+        },
+        {
+          "episode": 22,
+          "opening": "Colored-pencil comic illustration on warm textured paper, indigo and amber crosshatching"
+        },
+        {
+          "episode": 23,
+          "opening": "Layered cut-paper collage, indigo kitchen and amber fridge light"
+        },
+        {
+          "episode": 24,
+          "opening": "Charcoal and restrained orange pastel"
+        },
+        {
+          "episode": 25,
+          "opening": "Crayon × shonen × Chinese paper-cutting"
+        }
+      ],
+      "repeatPolicy": "Exclude previous crayon; downweight recent charcoal/watercolour/ink and shonen/paper-cut influence. Prior pre-25 panel styles are not separately recorded.",
+      "palette": [
+        "midnight plum",
+        "moss green",
+        "antique gold",
+        "dusty rose",
+        "cream"
+      ],
+      "texture": "Fuzzy layered wool felt, stitched details, soft physical cast shadows; Art Nouveau curves",
+      "identity": "Alden: brown tousled hair, charcoal hoodie and gray shirt; Gorgon: gray alien, four nasal slits, black eyes, swept head spikes, golden bindings; Victor: scarred orange tomcat",
+      "reference": [
+        "stories/characters/super-supportive/alden-approved-a.png",
+        "stories/characters/super-supportive/gorgon-seated-v1.png"
+      ]
+    },
+    "vocabulary": {
+      "reviewedKnown": 804,
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "supplementCount": 259,
+      "effectiveCount": 1063
+    }
+  },
+  "continuation": {
+    "end": "Near eleven Alden brings groceries, a pillow and angry Victor to the closed consulate. His lonely admission persuades Gorgon to admit him, shoes off. Gorgon’s glance at Victor prompts Alden to insist the cat is a guest, not food. Victor is released; Gorgon explains his bindings’ tripping hazard. Alden proposes riding the elevator and snacking; no tour or injury yet.",
+    "nextStart": "They wandered the building together,",
+    "nextEndBefore": "He cupped his other hand beneath the bitten one",
+    "note": "Tour, windows, chips and salsa, tuna peace offering, Victor’s attack and Gorgon’s first laughter. Stop before Alden heads to wash his hand and has the blood idea."
+  },
+  "routes": [
+    {
+      "choices": [
+        "plan",
+        "listen",
+        "victor",
+        "cords"
+      ],
+      "contains": [
+        "鞋子。",
+        "不是猫！这是维克多！它和我一起住。它是来玩的，不是给你吃的！"
+      ],
+      "endsWith": "为什么不呢？我一定不会摔倒。"
+    },
+    {
+      "choices": [
+        "door",
+        "hold",
+        "gorgon",
+        "empty"
+      ],
+      "contains": [
+        "今天晚上，这个世界上，一个会想我的人都没有。"
+      ],
+      "endsWith": "为什么不呢？我一定不会摔倒。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-26-v1",
+    "category": "super-supportive",
+    "episode": 26,
+    "pebble": false,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-26.mp4",
+      "poster": "stories/animated/cutscenes/supportive-26.poster.jpg",
+      "title": "它是来玩的，不是给你吃的！",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "scene": "Alden insists Victor is a guest, not food.",
+    "style": "Feltboard × American comics × Art Nouveau",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "66gvd92bvnrmr0d20wa9jg3pv0",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "language": "Mandarin",
+    "dialogue": "它是来玩的，不是给你吃的！",
+    "pricingChecked": "2026-11-23",
+    "pricingUrl": "https://replicate.com/prunaai/p-video-2-pro",
+    "settings": {
+      "duration": 6,
+      "resolution": "480p",
+      "mode": "cost",
+      "prompt_upsampler": "off",
+      "audio": "native"
+    },
+    "image": "stories/characters/super-supportive/supportive-26-opening.png",
+    "checks": {
+      "sha256": "b946ab52d44a8a4d2056ef5427f6785d66ae23d053aab1dcad12c633dc9daf97",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 6,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "它是来玩的不是给你吃的"
+    }
+  },
+  "verification": {
+    "packageBytes": 3672057,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 95.141065830721,
+      "max": 95.16380655226209
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "今天晚上，这个世界上，一个会想我的人都没有。",
+      "不是猫！这是维克多！它和我一起住。它是来玩的，不是给你吃的！",
+      "为什么不呢？我一定不会摔倒。"
+    ]
+  }
+}
