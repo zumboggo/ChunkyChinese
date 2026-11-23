@@ -1,0 +1,679 @@
+{
+  "现在，我肯定睡不着。心里有太多事，一直想个不停。": {
+    "english": "Now, I definitely can't sleep. There's too much on my mind, and I can't stop thinking.",
+    "pinyin": "xiàn zài ， wǒ kěn dìng shuì bù zháo 。 xīn lǐ yǒu tài duō shì ， yì zhí xiǎng gè bù tíng 。",
+    "interlinear": [
+      {
+        "chinese": "现在，",
+        "gloss": "Now,",
+        "pinyin": "xiàn zài ，"
+      },
+      {
+        "chinese": "我肯定睡不着。",
+        "gloss": "I definitely can't sleep.",
+        "pinyin": "wǒ kěn dìng shuì bù zháo 。"
+      },
+      {
+        "chinese": "心里有太多事，",
+        "gloss": "There's too much on my mind,",
+        "pinyin": "xīn lǐ yǒu tài duō shì ，"
+      },
+      {
+        "chinese": "一直想个不停。",
+        "gloss": "and I can't stop thinking.",
+        "pinyin": "yì zhí xiǎng gè bù tíng 。"
+      }
+    ]
+  },
+  "今天晚上已经这么不好了。再做一件难做的事，也没什么吧。": {
+    "english": "Tonight has already been this bad. Doing one more difficult thing can't hurt, right?",
+    "pinyin": "jīn tiān wǎn shàng yǐ jīng zhè me bù hǎo le 。 zài zuò yí jiàn nán zuò de shì ， yě méi shén me ba 。",
+    "interlinear": [
+      {
+        "chinese": "今天晚上",
+        "gloss": "Tonight",
+        "pinyin": "jīn tiān wǎn shàng"
+      },
+      {
+        "chinese": "已经这么不好了。",
+        "gloss": "has already been this bad.",
+        "pinyin": "yǐ jīng zhè me bù hǎo le 。"
+      },
+      {
+        "chinese": "再做一件难做的事，",
+        "gloss": "Doing one more difficult thing",
+        "pinyin": "zài zuò yí jiàn nán zuò de shì ，"
+      },
+      {
+        "chinese": "也没什么吧。",
+        "gloss": "can't hurt, right?",
+        "pinyin": "yě méi shén me ba 。"
+      }
+    ]
+  },
+  "就现在打吧。": {
+    "english": "Make the call now.",
+    "pinyin": "jiù xiàn zài dǎ ba 。",
+    "interlinear": [
+      {
+        "chinese": "就现在打吧。",
+        "gloss": "Make the call now.",
+        "pinyin": "jiù xiàn zài dǎ ba 。"
+      }
+    ]
+  },
+  "先让自己慢一点。": {
+    "english": "Slow down first.",
+    "pinyin": "xiān ràng zì jǐ màn yì diǎn 。",
+    "interlinear": [
+      {
+        "chinese": "先让自己慢一点。",
+        "gloss": "Slow down first.",
+        "pinyin": "xiān ràng zì jǐ màn yì diǎn 。"
+      }
+    ]
+  },
+  "一直等下去，这个电话也不会变得容易。": {
+    "english": "If I keep waiting, this call won't get any easier.",
+    "pinyin": "yì zhí děng xià qù ， zhè ge diàn huà yě bú huì biàn de róng yì 。",
+    "interlinear": [
+      {
+        "chinese": "一直等下去，",
+        "gloss": "If I keep waiting,",
+        "pinyin": "yì zhí děng xià qù ，"
+      },
+      {
+        "chinese": "这个电话",
+        "gloss": "this call",
+        "pinyin": "zhè ge diàn huà"
+      },
+      {
+        "chinese": "也不会变得容易。",
+        "gloss": "won't get any easier.",
+        "pinyin": "yě bú huì biàn de róng yì 。"
+      }
+    ]
+  },
+  "我拿着手机，让自己先慢一点。": {
+    "english": "I hold my phone, letting myself slow down first.",
+    "pinyin": "wǒ ná zhe shǒu jī ， ràng zì jǐ xiān màn yì diǎn 。",
+    "interlinear": [
+      {
+        "chinese": "我拿着手机，",
+        "gloss": "I hold my phone,",
+        "pinyin": "wǒ ná zhe shǒu jī ，"
+      },
+      {
+        "chinese": "让自己先慢一点。",
+        "gloss": "letting myself slow down first.",
+        "pinyin": "ràng zì jǐ xiān màn yì diǎn 。"
+      }
+    ]
+  },
+  "我拿出手机，用手点了一下上面的符号。我先让自己慢一点，再说话。": {
+    "english": "I take out my phone, and tap the symbol on it. I slow myself down first, then speak.",
+    "pinyin": "wǒ ná chū shǒu jī ， yòng shǒu diǎn le yí xià shàng miàn de fú hào 。 wǒ xiān ràng zì jǐ màn yì diǎn ， zài shuō huà 。",
+    "interlinear": [
+      {
+        "chinese": "我拿出手机，",
+        "gloss": "I take out my phone,",
+        "pinyin": "wǒ ná chū shǒu jī ，"
+      },
+      {
+        "chinese": "用手点了一下",
+        "gloss": "and tap",
+        "pinyin": "yòng shǒu diǎn le yí xià"
+      },
+      {
+        "chinese": "上面的符号。",
+        "gloss": "the symbol on it.",
+        "pinyin": "shàng miàn de fú hào 。"
+      },
+      {
+        "chinese": "我先让自己慢一点，",
+        "gloss": "I slow myself down first,",
+        "pinyin": "wǒ xiān ràng zì jǐ màn yì diǎn ，"
+      },
+      {
+        "chinese": "再说话。",
+        "gloss": "then speak.",
+        "pinyin": "zài shuō huà 。"
+      }
+    ]
+  },
+  "打给克莱特姆·赵。": {
+    "english": "Call Clytem Zhao.",
+    "pinyin": "dǎ gěi kè lái tè mǔ · zhào 。",
+    "interlinear": [
+      {
+        "chinese": "打给",
+        "gloss": "Call",
+        "pinyin": "dǎ gěi"
+      },
+      {
+        "chinese": "克莱特姆·赵。",
+        "gloss": "Clytem Zhao.",
+        "pinyin": "kè lái tè mǔ · zhào 。"
+      }
+    ]
+  },
+  "系统没有让我直接和她说话，而是让我给她留言。": {
+    "english": "The System doesn't let me speak to her directly, but instead lets me leave her a message.",
+    "pinyin": "xì tǒng méi yǒu ràng wǒ zhí jiē hé tā shuō huà ， ér shì ràng wǒ gěi tā liú yán 。",
+    "interlinear": [
+      {
+        "chinese": "系统没有让我",
+        "gloss": "The System doesn't let me",
+        "pinyin": "xì tǒng méi yǒu ràng wǒ"
+      },
+      {
+        "chinese": "直接和她说话，",
+        "gloss": "speak to her directly,",
+        "pinyin": "zhí jiē hé tā shuō huà ，"
+      },
+      {
+        "chinese": "而是让我",
+        "gloss": "but instead lets me",
+        "pinyin": "ér shì ràng wǒ"
+      },
+      {
+        "chinese": "给她留言。",
+        "gloss": "leave her a message.",
+        "pinyin": "gěi tā liú yán 。"
+      }
+    ]
+  },
+  "还好。我现在真的不想和别人说很久，说心里那些事。": {
+    "english": "That's a relief. I really don't want a long conversation about everything on my mind right now.",
+    "pinyin": "hái hǎo 。 wǒ xiàn zài zhēn de bù xiǎng hé bié rén shuō hěn jiǔ ， shuō xīn lǐ nà xiē shì 。",
+    "interlinear": [
+      {
+        "chinese": "还好。",
+        "gloss": "That's a relief.",
+        "pinyin": "hái hǎo 。"
+      },
+      {
+        "chinese": "我现在真的不想",
+        "gloss": "I really don't want right now",
+        "pinyin": "wǒ xiàn zài zhēn de bù xiǎng"
+      },
+      {
+        "chinese": "和别人说很久，",
+        "gloss": "to talk with someone for a long time,",
+        "pinyin": "hé bié rén shuō hěn jiǔ ，"
+      },
+      {
+        "chinese": "说心里那些事。",
+        "gloss": "about everything on my mind.",
+        "pinyin": "shuō xīn lǐ nà xiē shì 。"
+      }
+    ]
+  },
+  "说简单一点。": {
+    "english": "Keep it simple.",
+    "pinyin": "shuō jiǎn dān yì diǎn 。",
+    "interlinear": [
+      {
+        "chinese": "说简单一点。",
+        "gloss": "Keep it simple.",
+        "pinyin": "shuō jiǎn dān yì diǎn 。"
+      }
+    ]
+  },
+  "只说我为什么打来。": {
+    "english": "Just say why I'm calling.",
+    "pinyin": "zhǐ shuō wǒ wèi shén me dǎ lái 。",
+    "interlinear": [
+      {
+        "chinese": "只说",
+        "gloss": "Just say",
+        "pinyin": "zhǐ shuō"
+      },
+      {
+        "chinese": "我为什么打来。",
+        "gloss": "why I'm calling.",
+        "pinyin": "wǒ wèi shén me dǎ lái 。"
+      }
+    ]
+  },
+  "简单一点，最安全。把要说的话说完就好。": {
+    "english": "Keep it simple. That's safest. Just say what I need to say.",
+    "pinyin": "jiǎn dān yì diǎn ， zuì ān quán 。 bǎ yào shuō de huà shuō wán jiù hǎo 。",
+    "interlinear": [
+      {
+        "chinese": "简单一点，",
+        "gloss": "Keep it simple—",
+        "pinyin": "jiǎn dān yì diǎn ，"
+      },
+      {
+        "chinese": "最安全。",
+        "gloss": "that's safest.",
+        "pinyin": "zuì ān quán 。"
+      },
+      {
+        "chinese": "把要说的话",
+        "gloss": "What I need to say—",
+        "pinyin": "bǎ yào shuō de huà"
+      },
+      {
+        "chinese": "说完就好。",
+        "gloss": "just get it said.",
+        "pinyin": "shuō wán jiù hǎo 。"
+      }
+    ]
+  },
+  "我不是打来说心里的每件事的。说出我的决定就好。": {
+    "english": "I'm not calling to discuss every feeling I have. Just state my decision.",
+    "pinyin": "wǒ bú shì dǎ lái shuō xīn lǐ de měi jiàn shì de 。 shuō chū wǒ de jué dìng jiù hǎo 。",
+    "interlinear": [
+      {
+        "chinese": "我不是打来",
+        "gloss": "I'm not calling",
+        "pinyin": "wǒ bú shì dǎ lái"
+      },
+      {
+        "chinese": "说心里的每件事的。",
+        "gloss": "to discuss every feeling I have.",
+        "pinyin": "shuō xīn lǐ de měi jiàn shì de 。"
+      },
+      {
+        "chinese": "说出我的决定就好。",
+        "gloss": "Just state my decision.",
+        "pinyin": "shuō chū wǒ de jué dìng jiù hǎo 。"
+      }
+    ]
+  },
+  "赵女士，您好。我是奥尔登。": {
+    "english": "Hello, Ms. Zhao. This is Alden.",
+    "pinyin": "zhào nǚ shì ， nín hǎo 。 wǒ shì ào ěr dēng 。",
+    "interlinear": [
+      {
+        "chinese": "赵女士，您好。",
+        "gloss": "Hello, Ms. Zhao.",
+        "pinyin": "zhào nǚ shì ， nín hǎo 。"
+      },
+      {
+        "chinese": "我是奥尔登。",
+        "gloss": "This is Alden.",
+        "pinyin": "wǒ shì ào ěr dēng 。"
+      }
+    ]
+  },
+  "对不起，这么久才给您回电话。": {
+    "english": "I'm sorry it's taken so long to return your call.",
+    "pinyin": "duì bu qǐ ， zhè me jiǔ cái gěi nín huí diàn huà 。",
+    "interlinear": [
+      {
+        "chinese": "对不起，",
+        "gloss": "I'm sorry",
+        "pinyin": "duì bu qǐ ，"
+      },
+      {
+        "chinese": "这么久",
+        "gloss": "it's taken so long",
+        "pinyin": "zhè me jiǔ"
+      },
+      {
+        "chinese": "才给您回电话。",
+        "gloss": "to return your call.",
+        "pinyin": "cái gěi nín huí diàn huà 。"
+      }
+    ]
+  },
+  "我想去葬礼。": {
+    "english": "I'd like to go to the funeral.",
+    "pinyin": "wǒ xiǎng qù zàng lǐ 。",
+    "interlinear": [
+      {
+        "chinese": "我想去葬礼。",
+        "gloss": "I'd like to go to the funeral.",
+        "pinyin": "wǒ xiǎng qù zàng lǐ 。"
+      }
+    ]
+  },
+  "如果带我过去不会让您太麻烦的话。": {
+    "english": "If getting me there wouldn't be too much trouble for you.",
+    "pinyin": "rú guǒ dài wǒ guò qù bú huì ràng nín tài má fan de huà 。",
+    "interlinear": [
+      {
+        "chinese": "如果带我过去",
+        "gloss": "If getting me there",
+        "pinyin": "rú guǒ dài wǒ guò qù"
+      },
+      {
+        "chinese": "不会让您太麻烦的话。",
+        "gloss": "wouldn't be too much trouble for you.",
+        "pinyin": "bú huì ràng nín tài má fan de huà 。"
+      }
+    ]
+  },
+  "谢谢您愿意带我去。": {
+    "english": "Thank you for offering to take me.",
+    "pinyin": "xiè xie nín yuàn yì dài wǒ qù 。",
+    "interlinear": [
+      {
+        "chinese": "谢谢您",
+        "gloss": "Thank you",
+        "pinyin": "xiè xie nín"
+      },
+      {
+        "chinese": "愿意带我去。",
+        "gloss": "for offering to take me.",
+        "pinyin": "yuàn yì dài wǒ qù 。"
+      }
+    ]
+  },
+  "电话打完了。": {
+    "english": "The call is over.",
+    "pinyin": "diàn huà dǎ wán le 。",
+    "interlinear": [
+      {
+        "chinese": "电话打完了。",
+        "gloss": "The call is over.",
+        "pinyin": "diàn huà dǎ wán le 。"
+      }
+    ]
+  },
+  "好了。决定做了。": {
+    "english": "There. Decision made.",
+    "pinyin": "hǎo le 。 jué dìng zuò le 。",
+    "interlinear": [
+      {
+        "chinese": "好了。",
+        "gloss": "There.",
+        "pinyin": "hǎo le 。"
+      },
+      {
+        "chinese": "决定做了。",
+        "gloss": "Decision made.",
+        "pinyin": "jué dìng zuò le 。"
+      }
+    ]
+  },
+  "看看手里的手机。": {
+    "english": "Look at the phone in my hand.",
+    "pinyin": "kàn kàn shǒu lǐ de shǒu jī 。",
+    "interlinear": [
+      {
+        "chinese": "看看",
+        "gloss": "Look at",
+        "pinyin": "kàn kàn"
+      },
+      {
+        "chinese": "手里的手机。",
+        "gloss": "the phone in my hand.",
+        "pinyin": "shǒu lǐ de shǒu jī 。"
+      }
+    ]
+  },
+  "先不说话。": {
+    "english": "Say nothing for now.",
+    "pinyin": "xiān bù shuō huà 。",
+    "interlinear": [
+      {
+        "chinese": "先不说话。",
+        "gloss": "Say nothing for now.",
+        "pinyin": "xiān bù shuō huà 。"
+      }
+    ]
+  },
+  "话已经说出去了。我不用再拿着手机想要不要打了。": {
+    "english": "The words are out now. I don't have to keep holding my phone wondering whether to call.",
+    "pinyin": "huà yǐ jīng shuō chū qù le 。 wǒ bú yòng zài ná zhe shǒu jī xiǎng yào bu yào dǎ le 。",
+    "interlinear": [
+      {
+        "chinese": "话已经说出去了。",
+        "gloss": "The words are out now.",
+        "pinyin": "huà yǐ jīng shuō chū qù le 。"
+      },
+      {
+        "chinese": "我不用再拿着手机",
+        "gloss": "I don't have to keep holding my phone",
+        "pinyin": "wǒ bú yòng zài ná zhe shǒu jī"
+      },
+      {
+        "chinese": "想要不要打了。",
+        "gloss": "wondering whether to call.",
+        "pinyin": "xiǎng yào bu yào dǎ le 。"
+      }
+    ]
+  },
+  "我没再说什么。这个决定，已经不只是心里的想法了。": {
+    "english": "I don't say anything else. This decision is no longer just a thought in my head.",
+    "pinyin": "wǒ méi zài shuō shén me 。 zhè ge jué dìng ， yǐ jīng bù zhǐ shì xīn lǐ de xiǎng fǎ le 。",
+    "interlinear": [
+      {
+        "chinese": "我没再说什么。",
+        "gloss": "I don't say anything else.",
+        "pinyin": "wǒ méi zài shuō shén me 。"
+      },
+      {
+        "chinese": "这个决定，",
+        "gloss": "This decision",
+        "pinyin": "zhè ge jué dìng ，"
+      },
+      {
+        "chinese": "已经不只是",
+        "gloss": "is no longer just",
+        "pinyin": "yǐ jīng bù zhǐ shì"
+      },
+      {
+        "chinese": "心里的想法了。",
+        "gloss": "a thought in my head.",
+        "pinyin": "xīn lǐ de xiǎng fǎ le 。"
+      }
+    ]
+  },
+  "接下来，得找点其他事做。我不想一直想这些事。": {
+    "english": "Next, I need to find something else to do. I don't want to keep thinking about all this.",
+    "pinyin": "jiē xià lái ， děi zhǎo diǎn qí tā shì zuò 。 wǒ bù xiǎng yì zhí xiǎng zhè xiē shì 。",
+    "interlinear": [
+      {
+        "chinese": "接下来，",
+        "gloss": "Next,",
+        "pinyin": "jiē xià lái ，"
+      },
+      {
+        "chinese": "得找点其他事做。",
+        "gloss": "I need to find something else to do.",
+        "pinyin": "děi zhǎo diǎn qí tā shì zuò 。"
+      },
+      {
+        "chinese": "我不想一直想这些事。",
+        "gloss": "I don't want to keep thinking about all this.",
+        "pinyin": "wǒ bù xiǎng yì zhí xiǎng zhè xiē shì 。"
+      }
+    ]
+  },
+  "我穿上一件衣服，又在外面穿上连帽衫。": {
+    "english": "I put on a shirt, then pull my hoodie on over it.",
+    "pinyin": "wǒ chuān shàng yí jiàn yī fu ， yòu zài wài miàn chuān shàng lián mào shān 。",
+    "interlinear": [
+      {
+        "chinese": "我穿上一件衣服，",
+        "gloss": "I put on a shirt,",
+        "pinyin": "wǒ chuān shàng yí jiàn yī fu ，"
+      },
+      {
+        "chinese": "又在外面",
+        "gloss": "then over it",
+        "pinyin": "yòu zài wài miàn"
+      },
+      {
+        "chinese": "穿上连帽衫。",
+        "gloss": "put on my hoodie.",
+        "pinyin": "chuān shàng lián mào shān 。"
+      }
+    ]
+  },
+  "然后，我拿着床上的枕头，走到外面的房间。": {
+    "english": "Then I take the pillow from my bed and walk out into the next room.",
+    "pinyin": "rán hòu ， wǒ ná zhe chuáng shàng de zhěn tou ， zǒu dào wài miàn de fáng jiān 。",
+    "interlinear": [
+      {
+        "chinese": "然后，",
+        "gloss": "Then",
+        "pinyin": "rán hòu ，"
+      },
+      {
+        "chinese": "我拿着床上的枕头，",
+        "gloss": "I take the pillow from my bed",
+        "pinyin": "wǒ ná zhe chuáng shàng de zhěn tou ，"
+      },
+      {
+        "chinese": "走到外面的房间。",
+        "gloss": "and walk out into the next room.",
+        "pinyin": "zǒu dào wài miàn de fáng jiān 。"
+      }
+    ]
+  },
+  "猫还在那里，在闻那条我一点也不想看见的短裤。": {
+    "english": "The cat is still there, sniffing those shorts I don't want to see at all.",
+    "pinyin": "māo hái zài nà lǐ ， zài wén nà tiáo wǒ yì diǎn yě bù xiǎng kàn jiàn de duǎn kù 。",
+    "interlinear": [
+      {
+        "chinese": "猫还在那里，",
+        "gloss": "The cat is still there,",
+        "pinyin": "māo hái zài nà lǐ ，"
+      },
+      {
+        "chinese": "在闻那条",
+        "gloss": "sniffing those shorts",
+        "pinyin": "zài wén nà tiáo"
+      },
+      {
+        "chinese": "我一点也不想看见的短裤。",
+        "gloss": "that I don't want to see at all.",
+        "pinyin": "wǒ yì diǎn yě bù xiǎng kàn jiàn de duǎn kù 。"
+      }
+    ]
+  },
+  "看看维克多。": {
+    "english": "Look at Victor.",
+    "pinyin": "kàn kàn wéi kè duō 。",
+    "interlinear": [
+      {
+        "chinese": "看看维克多。",
+        "gloss": "Look at Victor.",
+        "pinyin": "kàn kàn wéi kè duō 。"
+      }
+    ]
+  },
+  "看看那条短裤。": {
+    "english": "Look at those shorts.",
+    "pinyin": "kàn kàn nà tiáo duǎn kù 。",
+    "interlinear": [
+      {
+        "chinese": "看看那条短裤。",
+        "gloss": "Look at those shorts.",
+        "pinyin": "kàn kàn nà tiáo duǎn kù 。"
+      }
+    ]
+  },
+  "至少，这里还有它，可以听我说话。虽然它是一只猫。": {
+    "english": "At least he's here, and can listen to me. Even if he's a cat.",
+    "pinyin": "zhì shǎo ， zhè lǐ hái yǒu tā ， kě yǐ tīng wǒ shuō huà 。 suī rán tā shì yì zhī māo 。",
+    "interlinear": [
+      {
+        "chinese": "至少，",
+        "gloss": "At least",
+        "pinyin": "zhì shǎo ，"
+      },
+      {
+        "chinese": "这里还有它，",
+        "gloss": "he's here,",
+        "pinyin": "zhè lǐ hái yǒu tā ，"
+      },
+      {
+        "chinese": "可以听我说话。",
+        "gloss": "and can listen to me.",
+        "pinyin": "kě yǐ tīng wǒ shuō huà 。"
+      },
+      {
+        "chinese": "虽然它是一只猫。",
+        "gloss": "Even if he's a cat.",
+        "pinyin": "suī rán tā shì yì zhī māo 。"
+      }
+    ]
+  },
+  "它好像很想知道那个东西是什么。我可不想。": {
+    "english": "He seems very curious about what that thing is. I certainly am not.",
+    "pinyin": "tā hǎo xiàng hěn xiǎng zhī dào nà ge dōng xi shì shén me 。 wǒ kě bù xiǎng 。",
+    "interlinear": [
+      {
+        "chinese": "它好像很想知道",
+        "gloss": "He seems very curious about",
+        "pinyin": "tā hǎo xiàng hěn xiǎng zhī dào"
+      },
+      {
+        "chinese": "那个东西是什么。",
+        "gloss": "what that thing is.",
+        "pinyin": "nà ge dōng xi shì shén me 。"
+      },
+      {
+        "chinese": "我可不想。",
+        "gloss": "I certainly am not.",
+        "pinyin": "wǒ kě bù xiǎng 。"
+      }
+    ]
+  },
+  "你想不想一起去买点金枪鱼，再去见个人？": {
+    "english": "Do you want to go get some tuna together, and meet someone?",
+    "pinyin": "nǐ xiǎng bu xiǎng yì qǐ qù mǎi diǎn jīn qiāng yú ， zài qù jiàn gè rén ？",
+    "interlinear": [
+      {
+        "chinese": "你想不想",
+        "gloss": "Do you want",
+        "pinyin": "nǐ xiǎng bu xiǎng"
+      },
+      {
+        "chinese": "一起去买点金枪鱼，",
+        "gloss": "to go get some tuna together,",
+        "pinyin": "yì qǐ qù mǎi diǎn jīn qiāng yú ，"
+      },
+      {
+        "chinese": "再去见个人？",
+        "gloss": "and meet someone?",
+        "pinyin": "zài qù jiàn gè rén ？"
+      }
+    ]
+  },
+  "维克多叫了一声。": {
+    "english": "Victor meows.",
+    "pinyin": "wéi kè duō jiào le yì shēng 。",
+    "interlinear": [
+      {
+        "chinese": "维克多叫了一声。",
+        "gloss": "Victor meows.",
+        "pinyin": "wéi kè duō jiào le yì shēng 。"
+      }
+    ]
+  },
+  "对，就是这样！": {
+    "english": "That's the spirit!",
+    "pinyin": "duì ， jiù shì zhè yàng ！",
+    "interlinear": [
+      {
+        "chinese": "对，就是这样！",
+        "gloss": "That's the spirit!",
+        "pinyin": "duì ， jiù shì zhè yàng ！"
+      }
+    ]
+  },
+  "那么，你觉得恶魔怎么样？": {
+    "english": "So, how do you feel about demons?",
+    "pinyin": "nà me ， nǐ jué de è mó zěn me yàng ？",
+    "interlinear": [
+      {
+        "chinese": "那么，",
+        "gloss": "So,",
+        "pinyin": "nà me ，"
+      },
+      {
+        "chinese": "你觉得恶魔怎么样？",
+        "gloss": "how do you feel about demons?",
+        "pinyin": "nǐ jué de è mó zěn me yàng ？"
+      }
+    ]
+  }
+}

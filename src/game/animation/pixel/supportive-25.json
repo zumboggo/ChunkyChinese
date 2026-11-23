@@ -1,0 +1,354 @@
+{
+  "episode": 25,
+  "scriptFingerprint": "731c6982",
+  "shots": [
+    {
+      "anchor": "opening",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-1",
+        "panel": 0,
+        "alt": "Alden cannot sleep in his quiet bedroom.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-1",
+        "panel": 1,
+        "alt": "Alden hesitates over the difficult call.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "now",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-1",
+        "panel": 1,
+        "alt": "Alden hesitates over the difficult call.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "breathe",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-1",
+        "panel": 3,
+        "alt": "Alden takes a moment to steady himself.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "call",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-1",
+        "panel": 2,
+        "alt": "Alden touches the symbol on his phone.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "call",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-1",
+        "panel": 4,
+        "alt": "Alden asks the System to call Clytem Zhao.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "call",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-1",
+        "panel": 5,
+        "alt": "Alden is relieved to reach voicemail.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "call",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-1",
+        "panel": 5,
+        "alt": "Alden is relieved to reach voicemail.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "short",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-1",
+        "panel": 3,
+        "alt": "Alden takes a moment to steady himself.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "reason",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-1",
+        "panel": 3,
+        "alt": "Alden takes a moment to steady himself.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "greeting",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-2",
+        "panel": 0,
+        "alt": "Alden begins his voicemail greeting.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "greeting",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-2",
+        "panel": 1,
+        "alt": "Alden apologizes for taking so long to reply.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "decision",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-2",
+        "panel": 2,
+        "alt": "Alden decides to attend the funeral.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "decision",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-2",
+        "panel": 3,
+        "alt": "Alden finishes his message with quiet thanks.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "decision",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-2",
+        "panel": 3,
+        "alt": "Alden finishes his message with quiet thanks.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "after",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-2",
+        "panel": 4,
+        "alt": "Alden lowers his phone after the call.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "after",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-2",
+        "panel": 5,
+        "alt": "Alden sits alone after making his decision.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "hand",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-2",
+        "panel": 4,
+        "alt": "Alden lowers his phone after the call.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "quiet",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-2",
+        "panel": 5,
+        "alt": "Alden sits alone after making his decision.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "distract",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-2",
+        "panel": 5,
+        "alt": "Alden sits alone after making his decision.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "distract",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-3",
+        "panel": 0,
+        "alt": "Alden puts on his familiar charcoal hoodie.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "distract",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-3",
+        "panel": 1,
+        "alt": "Alden takes a pillow from his bed.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "victor",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-3",
+        "panel": 2,
+        "alt": "Victor investigates the unwanted tiger-striped shorts.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "cat",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-3",
+        "panel": 4,
+        "alt": "Alden invites Victor to come along with him.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "shorts",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-3",
+        "panel": 3,
+        "alt": "Victor sniffs the unfamiliar shorts with intense curiosity.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "invite",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-3",
+        "panel": 4,
+        "alt": "Alden invites Victor to come along with him.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "invite",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-3",
+        "panel": 5,
+        "alt": "Victor meows as Alden makes a playful invitation.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "invite",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-3",
+        "panel": 5,
+        "alt": "Victor meows as Alden makes a playful invitation.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "ending",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-25-3",
+        "panel": 5,
+        "alt": "Victor meows as Alden makes a playful invitation.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    }
+  ]
+}

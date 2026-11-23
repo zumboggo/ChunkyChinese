@@ -140,7 +140,9 @@ if(fixture.catalog?.intro)test('planned opening plays with sound and transitions
  if(pack.notice)await page.getByRole('button',{name:'Accept',exact:true}).click()
  const video=page.locator('.episode-intro video')
  await expect(video).toBeVisible()
- await expect.poll(()=>video.evaluate(v=>({duration:(v as HTMLVideoElement).duration,muted:(v as HTMLVideoElement).muted}))).toEqual({duration:entry.intro!.durationSeconds,muted:false})
+ // Browsers round media timestamps; allow sub-millisecond encoding precision.
+ await expect.poll(()=>video.evaluate(v=>(v as HTMLVideoElement).duration)).toBeCloseTo(entry.intro!.durationSeconds!,3)
+ await expect.poll(()=>video.evaluate(v=>(v as HTMLVideoElement).muted)).toBe(false)
  await page.screenshot({path:info.outputPath('opening.png'),fullPage:true})
  const play=page.getByRole('button',{name:'Play intro with sound',exact:true})
  if(await play.isVisible()){await play.focus();await play.press('Enter')}

@@ -1410,5 +1410,22 @@
       "title": "Super Supportive · Episode 24 · 猫粮呢？",
       "description": "Victor comes home hungry. Alden welcomes the company, but a missing dinner and a silent phone test his patience."
     }
+  },
+  {
+    "id": "supportive-25-v1",
+    "category": "super-supportive",
+    "episode": 25,
+    "pebble": false,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-25.mp4",
+      "poster": "stories/animated/cutscenes/supportive-25.poster.jpg",
+      "title": "我想去葬礼。",
+      "durationSeconds": 8.958333333333334
+    },
+    "path": "supportive-25.json",
+    "summary": {
+      "title": "Super Supportive · Episode 25 · 决定做了",
+      "description": "One difficult phone call, one decision made—and an unusual invitation for Victor."
+    }
   }
 ]

@@ -1,0 +1,223 @@
+{
+  "id": "supportive-25",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 25 · 决定做了",
+  "description": "One difficult phone call, one decision made—and an unusual invitation for Victor.",
+  "presentation": {
+    "mode": "reading",
+    "animationLabels": [
+      "opening"
+    ]
+  },
+  "audioLanguage": "mandarin-only",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca, Chapter 8",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "Adapted from the user-provided EPUB: the call to Clytem Zhao through the invitation to Victor. No actual visit to Gorgon yet."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Chapter 8: No way am I going to sleep anytime soon. through before A note from Sleyca.",
+    "dramaticChange": "Alden stops postponing and accepts the funeral invitation through voicemail, then seeks company.",
+    "essentialNewWords": [
+      "葬礼",
+      "枕头",
+      "金枪鱼",
+      "恶魔",
+      "连帽衫"
+    ],
+    "englishNarrationPurpose": "",
+    "choicesAndCallbacks": [
+      {
+        "id": "ready",
+        "purpose": "Approach difficult call",
+        "laterPayoff": "Immediate private response; canonical events reconverge."
+      },
+      {
+        "id": "approach",
+        "purpose": "Keep message simple",
+        "laterPayoff": "Immediate private response; canonical events reconverge."
+      },
+      {
+        "id": "aftermath",
+        "purpose": "Let decision land",
+        "laterPayoff": "Immediate private response; canonical events reconverge."
+      },
+      {
+        "id": "companion",
+        "purpose": "Notice cat or shorts",
+        "laterPayoff": "Immediate private response; canonical events reconverge."
+      }
+    ],
+    "sceneActivities": [
+      {
+        "activity": "Call, leave voicemail, dress, take pillow, invite cat",
+        "purpose": "Move from anxious delay to a small practical decision and companionship.",
+        "rendering": "18 crayon comic panels, held at reader pace."
+      }
+    ],
+    "storytellingVoice": "Intimate character drama: small concrete acts carry grief, ending with source-supported dry humor.",
+    "desire": "Make the difficult call and escape an evening trapped in his feelings.",
+    "obstacle": "Emotional overload and reluctance to discuss grief.",
+    "earlyCare": "He apologizes for delaying his reply and thanks Clytem.",
+    "payoff": "He accepts the invitation; decision made.",
+    "continuingQuestion": "What will happen when he brings Victor to meet Gorgon?",
+    "direction": "Hold Alden after the voicemail. Clytem never answers or appears. Do not depict Hannah dead or invent a funeral scene.",
+    "opening": {
+      "style": "Crayon × shonen × Chinese paper-cutting",
+      "moment": "Alden finally accepts the funeral invitation into voicemail",
+      "speaker": "Alden",
+      "dialogue": "我想去葬礼。",
+      "sourceBeat": "decision"
+    },
+    "artDirection": {
+      "seed": 3208014611,
+      "medium": "crayon",
+      "treatment": "shonen dynamic staging",
+      "influence": "Chinese paper-cutting",
+      "history": [
+        {
+          "episode": 20,
+          "opening": "Comic screenprint with tactile halftone shading in teal, ochre and warm cream",
+          "art": null
+        },
+        {
+          "episode": 21,
+          "opening": "Loose ink and watercolor graphic-novel wash on textured paper in indigo, terracotta and cream",
+          "art": null
+        },
+        {
+          "episode": 22,
+          "opening": "Colored-pencil comic illustration on warm textured paper, indigo and amber crosshatching",
+          "art": null
+        },
+        {
+          "episode": 23,
+          "opening": "Layered cut-paper collage, indigo kitchen and amber fridge light",
+          "art": null
+        },
+        {
+          "episode": 24,
+          "opening": "Charcoal and restrained orange pastel",
+          "art": null
+        }
+      ],
+      "weights": "Comic branch 2/3; other 1/3. Excluded previous charcoal; equal weights otherwise because prior panel directions unrecorded.",
+      "palette": [
+        "vermilion",
+        "indigo",
+        "cream",
+        "muted gold"
+      ],
+      "texture": "Visible waxy crayon with interlocking paper-cut silhouettes",
+      "identity": "Alden: brown tousled hair, brown eyes, pale peach skin, gray T-shirt then charcoal hoodie; Victor: orange scarred tomcat",
+      "reference": "stories/characters/super-supportive/alden-approved-a.png"
+    },
+    "vocabulary": {
+      "reviewedKnown": 804,
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "supplementCount": 259,
+      "effectiveCount": 1063
+    }
+  },
+  "continuation": {
+    "end": "Alden reaches Clytem Zhao’s voicemail, apologizes for his late reply and accepts the funeral invitation if transport is not too much trouble. Decision made, he dresses, takes his pillow and invites Victor to get tuna and meet someone, joking about demons. They have not reached Gorgon yet.",
+    "chapter": "OEBPS/Text/0009_NINE_Gorgon.xhtml",
+    "nextStart": "It was nearly eleven when Alden arrived in front of the consulate building.",
+    "nextEndBefore": "They wandered the building together,",
+    "note": "Late-night arrival, gate conversation, shoes off, Victor released, invitation to ride elevators. Stop before their tour."
+  },
+  "routes": [
+    {
+      "choices": [
+        "now",
+        "short",
+        "hand",
+        "cat"
+      ],
+      "contains": [
+        "我想去葬礼。",
+        "电话打完了。"
+      ],
+      "endsWith": "那么，你觉得恶魔怎么样？"
+    },
+    {
+      "choices": [
+        "breathe",
+        "reason",
+        "quiet",
+        "shorts"
+      ],
+      "contains": [
+        "我想去葬礼。",
+        "好了。决定做了。"
+      ],
+      "endsWith": "那么，你觉得恶魔怎么样？"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-25-v1",
+    "category": "super-supportive",
+    "episode": 25,
+    "pebble": false,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-25.mp4",
+      "poster": "stories/animated/cutscenes/supportive-25.poster.jpg",
+      "title": "我想去葬礼。",
+      "durationSeconds": 8.958333333333334
+    }
+  },
+  "teaser": {
+    "scene": "Alden accepts the funeral invitation in a voicemail.",
+    "style": "Crayon × shonen staging × Chinese paper-cutting",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "h4fd1fx4a1rmw0d20vva2vne84",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "language": "Mandarin",
+    "dialogue": "我想去葬礼。",
+    "pricingChecked": "2026-11-23",
+    "pricingUrl": "https://replicate.com/prunaai/p-video-2-pro",
+    "settings": {
+      "duration": 6,
+      "resolution": "480p",
+      "mode": "cost",
+      "prompt_upsampler": "off",
+      "audio": "native generated; replaced locally with cached Mandarin TTS after failed speech check"
+    },
+    "audioFinish": "Exact existing zh-CN-YunxiNeural Mandarin line, -10%, replaces unclear generated speech; no paid retry.",
+    "image": "stories/characters/super-supportive/supportive-25-opening.png",
+    "checks": {
+      "sha256": "15061c995f42ac2f4070a511a49a288099ab25457c29cd6f7270aa51cfe622c1",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 8.958333333333334,
+      "hold_seconds": 3,
+      "motion_seconds": 5.958333333333333,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "我想去葬礼"
+    }
+  },
+  "verification": {
+    "packageBytes": 2801025,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 95,
+      "max": 95.18900343642612
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "我想去葬礼。",
+      "好了。决定做了。",
+      "那么，你觉得恶魔怎么样？"
+    ]
+  }
+}
