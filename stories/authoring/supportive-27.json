@@ -1,0 +1,188 @@
+{
+  "id": "supportive-27",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 27 · 你在笑我吗",
+  "description": "A midnight tour, a tuna peace offering, and a laugh Alden has never heard. Oil painting × storybook × Mexican relief printmaking.",
+  "presentation": {
+    "mode": "reading",
+    "animationLabels": [
+      "opening"
+    ]
+  },
+  "audioLanguage": "mandarin-only",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca, Chapter 9",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-provided EPUB: the consulate tour through Gorgon’s first laughter and Alden’s intention to wash his injured hand. Stops before his blood idea."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "They wandered the building together, through before He cupped his other hand beneath the bitten one",
+    "dramaticChange": "Alden discovers Gorgon can laugh; pain and the failed peace offering unexpectedly become shared amusement.",
+    "essentialNewWords": [
+      "玉米片",
+      "辣酱",
+      "金枪鱼",
+      "流血"
+    ],
+    "englishNarrationPurpose": "",
+    "choicesAndCallbacks": [
+      {
+        "id": "windows",
+        "purpose": "Notice freedom or cleaning",
+        "laterPayoff": "Immediate private observation, reconverges without changing source events."
+      },
+      {
+        "id": "watching",
+        "purpose": "Notice the unlikely pair",
+        "laterPayoff": "Immediate private observation, reconverges without changing source events."
+      },
+      {
+        "id": "hope",
+        "purpose": "Alden’s optimism before the attack",
+        "laterPayoff": "Immediate private observation, reconverges without changing source events."
+      },
+      {
+        "id": "reaction",
+        "purpose": "Recognize shared amusement",
+        "laterPayoff": "Immediate private observation, reconverges without changing source events."
+      }
+    ],
+    "sceneActivities": [
+      {
+        "activity": "Walk, clean windows, share snacks, open tuna, react to cat scratch",
+        "purpose": "Physical actions bring companionship into view and overturn Alden’s expectations.",
+        "rendering": "24 sequential oil-painted comic panels; no video."
+      }
+    ],
+    "storytellingVoice": "Warm, self-questioning adolescent: source-grounded misplaced confidence in Victor becomes rueful humor and relief.",
+    "desire": "Spend a companionable night with Gorgon and make peace with Victor.",
+    "obstacle": "Gorgon’s confinement and Victor’s anger after the carrier.",
+    "earlyCare": "Alden notices why Gorgon takes care with the windows and brings good tuna for Victor.",
+    "payoff": "Gorgon laughs openly for the first time Alden has seen; Alden hears amusement in his own hurt protest.",
+    "continuingQuestion": "What happens when Alden goes to tend his bleeding hand?",
+    "direction": "Hold the window realization quietly. Stage sudden cat action clearly and briefly; then linger on Gorgon laughing and Alden’s relieved response without advancing automatically.",
+    "artDirection": {
+      "seed": 842266825,
+      "medium": "oil painting",
+      "treatment": "storybook",
+      "influence": "Mexican relief printmaking",
+      "weights": {
+        "comicProbability": 0.6666666666666666,
+        "media": {
+          "charcoal": 0.3,
+          "oil painting": 1,
+          "watercolour": 1,
+          "woodcut": 1,
+          "ballpoint pen": 1,
+          "crayon": 0.3,
+          "acrylic paint": 1,
+          "photography": 1,
+          "clay models": 1,
+          "puppets": 1,
+          "ink": 1,
+          "pixel art": 1
+        },
+        "treatments": {
+          "shonen dynamic staging": 0.25,
+          "chibi comic": 1,
+          "American comics": 0.25,
+          "manhua": 1,
+          "webcomic": 1,
+          "Franco-Belgian clear-line comic": 1
+        },
+        "influences": {
+          "Japanese woodblock print": 1,
+          "Chinese paper-cutting": 0.25,
+          "Mexican relief printmaking": 1,
+          "Art Nouveau": 0.25,
+          "Bauhaus geometry": 1
+        }
+      },
+      "history": [
+        "22 colored pencil",
+        "23 cut-paper collage",
+        "24 charcoal/orange pastel",
+        "25 crayon/shonen/Chinese paper-cutting",
+        "26 feltboard/American comics/Art Nouveau"
+      ],
+      "repeatPolicy": "Excluded feltboard; downweighted recent media, treatments and influences. Older panel styles unrecorded; opening styles used.",
+      "palette": [
+        "petrol teal",
+        "ochre",
+        "burnt orange",
+        "cream",
+        "midnight blue"
+      ],
+      "texture": "Impasto oil on canvas with bold carved relief-print contours and graphic hatch marks; clear figurative storybook staging",
+      "identity": "Alden: brown tousled hair, charcoal hoodie and gray shirt; Gorgon: gray alien, four nasal slits, black eyes, swept head spikes, golden bindings; Victor: scarred orange tomcat",
+      "reference": [
+        "stories/characters/super-supportive/alden-approved-a.png",
+        "stories/characters/super-supportive/gorgon-seated-v1.png"
+      ]
+    },
+    "vocabulary": {
+      "reviewedKnown": 804,
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "version": 3,
+      "supplementCount": 259,
+      "effectiveCount": 1063
+    }
+  },
+  "continuation": {
+    "end": "Alden and Gorgon tour and clean the consulate. Alden realizes the windows are as close as Gorgon can get to outside. Back in the lobby, Victor accepts Gorgon but attacks Alden’s right hand despite a tuna peace offering. Gorgon laughs openly; Alden feels relief and amusement through the pain. He announces he will wash his bleeding hand. No blood offer or eye contact yet.",
+    "nextStart": "He cupped his other hand beneath the bitten one",
+    "nextEndBefore": "Alden had misunderstood something.",
+    "note": "Alden pauses before washing, proposes blood, struggles to interpret Gorgon’s silence, and approaches to offer his hand. End at their first direct eye contact, before its profound effect."
+  },
+  "routes": [
+    {
+      "choices": [
+        "glass",
+        "alien",
+        "food",
+        "face"
+      ],
+      "contains": [
+        "你在笑我吗？",
+        "是啊！"
+      ],
+      "endsWith": "这只猫做事，还真是一点也不客气。"
+    },
+    {
+      "choices": [
+        "cloth",
+        "seat",
+        "step",
+        "voice"
+      ],
+      "contains": [
+        "我的血都到你地上了。这不好笑。"
+      ],
+      "endsWith": "这只猫做事，还真是一点也不客气。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-27-v1",
+    "category": "super-supportive",
+    "episode": 27,
+    "pebble": false
+  },
+  "verification": {
+    "packageBytes": 3531010,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 96.10169491525424,
+      "max": 96.14093959731544
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "我一下子明白了。对他来说，这就是离外面最近的地方。",
+      "你在笑我吗？",
+      "不过，知道他也会觉得好笑，我心里舒服了一点。"
+    ]
+  }
+}

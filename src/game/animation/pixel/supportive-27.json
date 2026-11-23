@@ -1,0 +1,618 @@
+{
+  "episode": 27,
+  "scriptFingerprint": "f1bdf6b0",
+  "shots": [
+    {
+      "anchor": "opening",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-1",
+        "panel": 0,
+        "alt": "Alden and Gorgon explore the empty classrooms together.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-1",
+        "panel": 1,
+        "alt": "Gorgon casually cleans a surface while Alden watches.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-1",
+        "panel": 2,
+        "alt": "Gorgon carefully polishes a window overlooking the city.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-1",
+        "panel": 3,
+        "alt": "Alden realizes the window is as close as Gorgon can get to outside.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "glass",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-1",
+        "panel": 3,
+        "alt": "Alden realizes the window is as close as Gorgon can get to outside.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "cloth",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-1",
+        "panel": 2,
+        "alt": "Gorgon carefully polishes a window overlooking the city.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "snacks",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-1",
+        "panel": 5,
+        "alt": "Alden offers blue corn chips and salsa to Gorgon.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "snacks",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-1",
+        "panel": 5,
+        "alt": "Alden offers blue corn chips and salsa to Gorgon.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "snacks",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-1",
+        "panel": 5,
+        "alt": "Alden offers blue corn chips and salsa to Gorgon.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "snacks",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-1",
+        "panel": 5,
+        "alt": "Alden offers blue corn chips and salsa to Gorgon.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "night",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-1",
+        "panel": 4,
+        "alt": "The pair return to the warmly lit nighttime lobby.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "night",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-2",
+        "panel": 0,
+        "alt": "A cricket rests by the fig tree beneath the lobby lights.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "night",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-2",
+        "panel": 1,
+        "alt": "Gorgon sits in the chair nearest to Victor.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "night",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-2",
+        "panel": 2,
+        "alt": "Gorgon opens the salsa while watching Victor with curiosity.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "alien",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-2",
+        "panel": 2,
+        "alt": "Gorgon opens the salsa while watching Victor with curiosity.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "seat",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-2",
+        "panel": 1,
+        "alt": "Gorgon sits in the chair nearest to Victor.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "sniff",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-2",
+        "panel": 3,
+        "alt": "Victor calmly sniffs beside Gorgon’s ankle.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "sniff",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-2",
+        "panel": 3,
+        "alt": "Victor calmly sniffs beside Gorgon’s ankle.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "sniff",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-2",
+        "panel": 4,
+        "alt": "Victor bristles when Alden crouches toward him.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "sniff",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-2",
+        "panel": 5,
+        "alt": "Gorgon explains that Victor is still angry about the carrier.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "sniff",
+      "offset": 4,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-2",
+        "panel": 5,
+        "alt": "Gorgon explains that Victor is still angry about the carrier.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "sniff",
+      "offset": 5,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-2",
+        "panel": 5,
+        "alt": "Gorgon explains that Victor is still angry about the carrier.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "offering",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-3",
+        "panel": 0,
+        "alt": "Alden reaches into his grocery bag for tuna.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "offering",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-3",
+        "panel": 0,
+        "alt": "Alden reaches into his grocery bag for tuna.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "offering",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-3",
+        "panel": 1,
+        "alt": "Alden opens a can of tuna as a peace offering.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "offering",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-3",
+        "panel": 2,
+        "alt": "Victor approaches the tuna with an intent look.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "food",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-3",
+        "panel": 1,
+        "alt": "Alden opens a can of tuna as a peace offering.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "step",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-3",
+        "panel": 2,
+        "alt": "Victor approaches the tuna with an intent look.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "attack",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-3",
+        "panel": 3,
+        "alt": "Alden confidently starts to say that Victor is forgiving.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "attack",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-3",
+        "panel": 4,
+        "alt": "Victor suddenly bites and scratches Alden’s right hand.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "attack",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-3",
+        "panel": 5,
+        "alt": "Victor escapes under Gorgon’s chair as Alden recoils.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "attack",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 0,
+        "alt": "Alden examines the small scratches on his injured right hand.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "attack",
+      "offset": 4,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 0,
+        "alt": "Alden examines the small scratches on his injured right hand.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "attack",
+      "offset": 5,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 1,
+        "alt": "Alden turns toward an unexpected sound.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "sound",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 1,
+        "alt": "Alden turns toward an unexpected sound.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "sound",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 2,
+        "alt": "Gorgon shakes with laughter, holding the chip bag.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "sound",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 2,
+        "alt": "Gorgon shakes with laughter, holding the chip bag.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "sound",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 2,
+        "alt": "Gorgon shakes with laughter, holding the chip bag.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "laugh",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 3,
+        "alt": "Alden asks whether Gorgon is laughing at him.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "laugh",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 2,
+        "alt": "Gorgon shakes with laughter, holding the chip bag.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "laugh",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 3,
+        "alt": "Alden asks whether Gorgon is laughing at him.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "laugh",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 2,
+        "alt": "Gorgon shakes with laughter, holding the chip bag.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "laugh",
+      "offset": 4,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 4,
+        "alt": "Alden’s hurt protest softens into relieved amusement.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "laugh",
+      "offset": 5,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 4,
+        "alt": "Alden’s hurt protest softens into relieved amusement.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "face",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 2,
+        "alt": "Gorgon shakes with laughter, holding the chip bag.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "voice",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 4,
+        "alt": "Alden’s hurt protest softens into relieved amusement.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "relief",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 4,
+        "alt": "Alden’s hurt protest softens into relieved amusement.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "relief",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 5,
+        "alt": "Gorgon keeps laughing as Alden prepares to wash his hand.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "relief",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 5,
+        "alt": "Gorgon keeps laughing as Alden prepares to wash his hand.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "relief",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 5,
+        "alt": "Gorgon keeps laughing as Alden prepares to wash his hand.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    },
+    {
+      "anchor": "relief",
+      "offset": 4,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-27-4",
+        "panel": 5,
+        "alt": "Gorgon keeps laughing as Alden prepares to wash his hand.",
+        "aspectRatio": 1,
+        "columns": 3
+      }
+    }
+  ]
+}

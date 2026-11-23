@@ -48,8 +48,13 @@ test('downloaded comic edition restores artwork, audio and encounter offline',as
  await page.getByLabel('Book',{exact:true}).selectOption('super-supportive')
  await page.getByLabel('Episode',{exact:true}).selectOption(latest.id)
  await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
- await page.getByRole('button',{name:'Accept',exact:true}).click()
- await page.getByRole('button',{name:'Skip intro →',exact:true}).click()
+ if(pack.notice)await page.getByRole('button',{name:'Accept',exact:true}).click()
+ if(latest.intro)await page.getByRole('button',{name:'Skip intro →',exact:true}).click()
+ else{
+  await expect(page.locator('.comic-panel')).toBeVisible()
+  await expect(page.locator('video')).toHaveCount(0)
+  await expect(page.getByRole('button',{name:'Skip intro →',exact:true})).toHaveCount(0)
+ }
  await page.getByRole('button',{name:'Continue →',exact:true}).click()
  await expect.poll(()=>page.evaluate(()=>new Promise<boolean>(resolve=>{const r=indexedDB.open('ChunkyChineseStory2',1);r.onsuccess=()=>{const db=r.result,q=db.transaction('records').objectStore('records').getAll();q.onsuccess=()=>{resolve(q.result.some(v=>v?.reading?.encounter===2));db.close()}}}))).toBe(true)
  await context.setOffline(true);await page.reload()

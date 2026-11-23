@@ -1444,5 +1444,16 @@
       "title": "Super Supportive · Episode 26 · 不是给你吃的",
       "description": "An unplanned midnight visit, a furious cat, and a very unusual slumber party. Feltboard × American comics × Art Nouveau."
     }
+  },
+  {
+    "id": "supportive-27-v1",
+    "category": "super-supportive",
+    "episode": 27,
+    "pebble": false,
+    "path": "supportive-27.json",
+    "summary": {
+      "title": "Super Supportive · Episode 27 · 你在笑我吗",
+      "description": "A midnight tour, a tuna peace offering, and a laugh Alden has never heard. Oil painting × storybook × Mexican relief printmaking."
+    }
   }
 ]
