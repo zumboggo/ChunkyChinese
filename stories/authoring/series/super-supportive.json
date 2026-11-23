@@ -4,10 +4,10 @@
   "source": {
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
-    "chapter": "OEBPS/Text/0008_EIGHT_Tiger_Shorts.xhtml",
-    "nextStart": "No way am I going to sleep anytime soon.",
-    "nextEndBefore": "A note from Sleyca",
-    "continuationNote": "Alden calls Clytem Zhao, reaches voicemail and accepts the funeral invitation. He then prepares to go out and invites Victor to get tuna and meet Gorgon. Stop before the author note and next chapter."
+    "chapter": "OEBPS/Text/0009_NINE_Gorgon.xhtml",
+    "nextStart": "It was nearly eleven when Alden arrived in front of the consulate building.",
+    "nextEndBefore": "They wandered the building together,",
+    "continuationNote": "Late-night arrival, gate conversation, shoes off, Victor released, invitation to ride elevators. Stop before their tour."
   },
   "completed": [
     {
@@ -105,9 +105,13 @@
     {
       "episode": "supportive-24-v1",
       "end": "Victor arrives and Alden welcomes the distraction. Cat food is missing despite a search of cupboards, drawers, fridge and trash. He suspects Connie or the unknown owner of the tiger shorts without evidence. Two messages receive no reply; he gives Victor a small piece of bologna. After showering he dries his hair and tries not to judge Connie. No phone call or funeral decision."
+    },
+    {
+      "episode": "supportive-25-v1",
+      "end": "Alden reaches Clytem Zhao’s voicemail, apologizes for his late reply and accepts the funeral invitation if transport is not too much trouble. Decision made, he dresses, takes his pillow and invites Victor to get tuna and meet someone, joking about demons. They have not reached Gorgon yet."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-24.json",
+  "assetsFrom": "stories/animated/supportive-25.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -130,9 +134,9 @@
   "castBundle": "public/stories/animated/cast/supportive-13.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-24-v1",
-    "nextStart": "No way am I going to sleep anytime soon.",
-    "nextEndBefore": "A note from Sleyca",
-    "assetsFrom": "stories/animated/supportive-24.json"
+    "note": "Published through supportive-25-v1",
+    "nextStart": "It was nearly eleven when Alden arrived in front of the consulate building.",
+    "nextEndBefore": "They wandered the building together,",
+    "assetsFrom": "stories/animated/supportive-25.json"
   }
 }
