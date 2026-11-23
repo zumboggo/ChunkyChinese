@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0009_NINE_Gorgon.xhtml",
-    "nextStart": "They wandered the building together,",
-    "nextEndBefore": "He cupped his other hand beneath the bitten one",
-    "continuationNote": "Tour, windows, chips and salsa, tuna peace offering, Victor’s attack and Gorgon’s first laughter. Stop before Alden heads to wash his hand and has the blood idea."
+    "nextStart": "He cupped his other hand beneath the bitten one",
+    "nextEndBefore": "Alden had misunderstood something.",
+    "continuationNote": "Alden pauses before washing, proposes blood, struggles to interpret Gorgon’s silence, and approaches to offer his hand. End at their first direct eye contact, before its profound effect."
   },
   "completed": [
     {
@@ -113,9 +113,13 @@
     {
       "episode": "supportive-26-v1",
       "end": "Near eleven Alden brings groceries, a pillow and angry Victor to the closed consulate. His lonely admission persuades Gorgon to admit him, shoes off. Gorgon’s glance at Victor prompts Alden to insist the cat is a guest, not food. Victor is released; Gorgon explains his bindings’ tripping hazard. Alden proposes riding the elevator and snacking; no tour or injury yet."
+    },
+    {
+      "episode": "supportive-27-v1",
+      "end": "Alden and Gorgon tour and clean the consulate. Alden realizes the windows are as close as Gorgon can get to outside. Back in the lobby, Victor accepts Gorgon but attacks Alden’s right hand despite a tuna peace offering. Gorgon laughs openly; Alden feels relief and amusement through the pain. He announces he will wash his bleeding hand. No blood offer or eye contact yet."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-26.json",
+  "assetsFrom": "stories/animated/supportive-27.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -138,9 +142,9 @@
   "castBundle": "public/stories/animated/cast/supportive-13.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-26-v1",
-    "nextStart": "They wandered the building together,",
-    "nextEndBefore": "He cupped his other hand beneath the bitten one",
-    "assetsFrom": "stories/animated/supportive-26.json"
+    "note": "Published through supportive-27-v1",
+    "nextStart": "He cupped his other hand beneath the bitten one",
+    "nextEndBefore": "Alden had misunderstood something.",
+    "assetsFrom": "stories/animated/supportive-27.json"
   }
 }
