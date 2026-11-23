@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0009_NINE_Gorgon.xhtml",
-    "nextStart": "It was nearly eleven when Alden arrived in front of the consulate building.",
-    "nextEndBefore": "They wandered the building together,",
-    "continuationNote": "Late-night arrival, gate conversation, shoes off, Victor released, invitation to ride elevators. Stop before their tour."
+    "nextStart": "They wandered the building together,",
+    "nextEndBefore": "He cupped his other hand beneath the bitten one",
+    "continuationNote": "Tour, windows, chips and salsa, tuna peace offering, Victor’s attack and Gorgon’s first laughter. Stop before Alden heads to wash his hand and has the blood idea."
   },
   "completed": [
     {
@@ -109,9 +109,13 @@
     {
       "episode": "supportive-25-v1",
       "end": "Alden reaches Clytem Zhao’s voicemail, apologizes for his late reply and accepts the funeral invitation if transport is not too much trouble. Decision made, he dresses, takes his pillow and invites Victor to get tuna and meet someone, joking about demons. They have not reached Gorgon yet."
+    },
+    {
+      "episode": "supportive-26-v1",
+      "end": "Near eleven Alden brings groceries, a pillow and angry Victor to the closed consulate. His lonely admission persuades Gorgon to admit him, shoes off. Gorgon’s glance at Victor prompts Alden to insist the cat is a guest, not food. Victor is released; Gorgon explains his bindings’ tripping hazard. Alden proposes riding the elevator and snacking; no tour or injury yet."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-25.json",
+  "assetsFrom": "stories/animated/supportive-26.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -134,9 +138,9 @@
   "castBundle": "public/stories/animated/cast/supportive-13.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-25-v1",
-    "nextStart": "It was nearly eleven when Alden arrived in front of the consulate building.",
-    "nextEndBefore": "They wandered the building together,",
-    "assetsFrom": "stories/animated/supportive-25.json"
+    "note": "Published through supportive-26-v1",
+    "nextStart": "They wandered the building together,",
+    "nextEndBefore": "He cupped his other hand beneath the bitten one",
+    "assetsFrom": "stories/animated/supportive-26.json"
   }
 }
