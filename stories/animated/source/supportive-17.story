@@ -5,11 +5,13 @@ show Alden worried left
 show Jeremy neutral right
 rest Alden seated
 rest Jeremy seated
+look Jeremy front
+look Alden down
 camera two Alden Jeremy cut
 I: 汉娜已经六个月没有消息了。我想成为英雄的心，也越来越强。
 I: 她不在了，我才发现，她说过的话对我有多重要。
 label missing_light
-camera close Alden cut
+camera two Alden Jeremy cut
 look Alden down
 I: 我一直以为，我们只是因为那件可怕的事才认识的。
 I: 可每次收到她的消息，我都很开心。她的世界和我的完全不一样。
@@ -47,13 +49,18 @@ goto nowhere
 label light
 I: 她好像带着一种光。现在，我到处找，却哪里都找不到。
 label nowhere
-I: 我还坐在教室里，心却又跑到她那里去了。
-label check_in
 camera two Alden Jeremy cut
 express Jeremy worried
 look Jeremy Alden
+I: 我还坐在教室里，心却又跑到她那里去了。
+label check_in
+camera listener Alden cut
+express Alden worried
 Jeremy: 你还好吗？
 I: 他还在小声说那些特别的话，一边说，一边问我。
+label eyes_up
+look Alden Jeremy
+express Alden surprised
 I: 大概是我的表情太难看了。我把眼睛打开一点，看向他。
 label seen
 camera listener Alden cut
@@ -64,18 +71,24 @@ choice reply
 option notice "想想他看见了什么。" -> notice
 option protect "先不说心里的事。" -> protect
 label notice
+look Alden Jeremy
+express Alden relieved
+react Alden nod
 I: 我还没说话，他就知道我不太好。
 goto answer
 label protect
+look Alden down
+express Alden worried
 I: 我现在还不想说这些事。
 label answer
 camera two Alden Jeremy cut
-express Alden neutral
+look Jeremy front
 Alden: 嗯，我没事。
 I: 下午三点，博和杰里米回家了。我继续上最后一门课。
 I: 这门课教我们认外星人的字。有些字看起来一样，却差了一点点。
 label more_class
 move Jeremy exit
+look Alden down
 rest Alden seated
 camera close Alden cut
 express Alden worried
@@ -96,9 +109,13 @@ choice study
 option shapes "看看卡片上的字。" -> shapes
 option time "先过好眼前的两个小时。" -> time
 label shapes
+look Alden down
+express Alden curious
 I: 两个字看起来差不多，可老师说，它们的意思完全不一样。
 goto cards
 label time
+look Alden front
+express Alden determined
 I: 先把这些字记住。家里的事，晚一点再想。
 label cards
 I: 我拿出很多很多卡片，一张又一张。

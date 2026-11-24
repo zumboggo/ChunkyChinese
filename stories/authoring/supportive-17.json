@@ -17,7 +17,14 @@
       "staying_busy",
       "learning",
       "still_here",
-      "desk"
+      "desk",
+      "nowhere",
+      "eyes_up",
+      "notice",
+      "protect",
+      "answer",
+      "shapes",
+      "time"
     ]
   },
   "audioLanguage": "mandarin-only",

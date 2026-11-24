@@ -13,13 +13,13 @@ import {armGeometry,legGeometry,FACE_PATHS,heldPropPose} from './character-geome
 import {useEffect,useId,useRef,useState} from 'react';
 import {AUTO_ACTING,POSES} from '../engine/acting-library.js';
 
-type Props={angleDesigns?:Partial<Record<'three-quarter'|'profile',VectorAngleDesign>>;orientation?:CharacterOrientation;actingStyle?:'classic'|'polished';turn?:number;listening?:boolean;idlePaused?:boolean;activity?:StoryActivity;activityPaused?:boolean;gazeX?:number;gazeY?:number;character:any;emotion?:string;talking?:boolean;gesture?:string;rest?:string;prop?:string;response?:string;reduced?:boolean;actorId?:string;performanceKey?:number;experiment?:'current'|'polished'|'hybrid';headImage?:string;portrait?:boolean;rider?:boolean};
+type Props={atDesk?:boolean;angleDesigns?:Partial<Record<'three-quarter'|'profile',VectorAngleDesign>>;orientation?:CharacterOrientation;actingStyle?:'classic'|'polished';turn?:number;listening?:boolean;idlePaused?:boolean;activity?:StoryActivity;activityPaused?:boolean;gazeX?:number;gazeY?:number;character:any;emotion?:string;talking?:boolean;gesture?:string;rest?:string;prop?:string;response?:string;reduced?:boolean;actorId?:string;performanceKey?:number;experiment?:'current'|'polished'|'hybrid';headImage?:string;portrait?:boolean;rider?:boolean};
 export function shade(hex:string,amount:number){const target=amount<0?0:255;return '#'+[1,3,5].map(i=>Math.round(parseInt(hex.slice(i,i+2),16)*(1-Math.abs(amount))+target*Math.abs(amount)).toString(16).padStart(2,'0')).join('');}
 const joints=['bodyDrop','leftFootX','rightFootX','head','torso','leftUpperArm','leftForearm','rightUpperArm','rightForearm','leftHand','rightHand'];
 const smooth=(t:number)=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
 /** One finite gesture: preparation, emphasis, hold, then a quiet return. */
 export function gestureEnvelope(ms:number){if(ms<180)return -.08*smooth(ms/180);if(ms<650)return -.08+1.08*smooth((ms-180)/470);if(ms<1150)return 1;if(ms<1900)return 1-smooth((ms-1150)/750);return 0;}
-export default function CartoonActor({character,angleDesigns,orientation='auto',actingStyle='polished',activity,activityPaused=false,emotion='neutral',talking=false,gesture,rest,prop,response,reduced=false,actorId='Lin',performanceKey=0,turn=0,listening=false,idlePaused=false,gazeX=0,gazeY=0,experiment,headImage,portrait=false,rider=false}:Props){
+export default function CartoonActor({atDesk=false,character,angleDesigns,orientation='auto',actingStyle='polished',activity,activityPaused=false,emotion='neutral',talking=false,gesture,rest,prop,response,reduced=false,actorId='Lin',performanceKey=0,turn=0,listening=false,idlePaused=false,gazeX=0,gazeY=0,experiment,headImage,portrait=false,rider=false}:Props){
  angleDesigns=angleDesigns||((actorId==='Hyun'||/Weed|Lee Hyun|李贤/.test(character.name))?weedAnglesV2:undefined);
  angleDesigns=angleDesigns||(actorId==='Kvothe'?kvotheAnglesV2:undefined);
  const occupied=!!rider||!!activity||!!prop&&prop!=='none'||!!response&&!ACTING_PROFILES[response]||['seated','lying','reclining','kneeling','crouched','sheltered'].includes(rest||'');
@@ -45,7 +45,8 @@ export default function CartoonActor({character,angleDesigns,orientation='auto',
  const expressive=['shock','laugh','rage','excited','scared','facepalm','proud','plead','disappointed'];
  const acting=response||(!activity&&(rest==='arms-crossed'&&!gesture?'cross-arms':talking?(gesture||automatic.talk):!listening&&expressive.includes(automatic.talk)?automatic.talk:''))||'';
  const grip=rider?POSES['mounted-charge']:POSES[heldPropPose(prop)]||{};
- const resting={...(POSES[rest||(listeningState==='attentive'?'attentive':listeningState==='warm'?'relaxed':automatic.rest)]||{}),...grip},action={...resting,...(POSES[acting]||{}),...((prop==='phone'||(prop==='lance'&&!['lance-threat','mounted-charge'].includes(acting)))?grip:{})};
+ const deskPose = atDesk ? {leftForearm: gazeY > 0 ? -65 : -48, rightForearm: gazeY > 0 ? 65 : 48} : {};
+ const resting={...(POSES[rest||(listeningState==='attentive'?'attentive':listeningState==='warm'?'relaxed':automatic.rest)]||{}),...deskPose,...grip},action={...resting,...(POSES[acting]||{}),...((prop==='phone'||(prop==='lance'&&!['lance-threat','mounted-charge'].includes(acting)))?grip:{})};
  const [heldPose,setPose]=useState<Record<string,number>>(resting),[blink,setBlink]=useState(false),[speechMouth,setMouth]=useState(0);
  const current=useRef(heldPose);
  const pausedRef=useRef(idlePaused);pausedRef.current=idlePaused;
@@ -178,7 +179,12 @@ export default function CartoonActor({character,angleDesigns,orientation='auto',
  {finish&&<g strokeWidth=".7" opacity=".55"><path d="M 94 132 Q 102 135 109 132 M 131 132 Q 138 135 146 132" stroke="#b98771"/><path d="M 118 138 Q 120 139 123 137" stroke="#c18b74"/></g>}
  <path style={featureStyle} d="M 119 125 L 117 135 L 121 135" stroke="#bb8d72" strokeWidth="1.5"/>
  <g style={featureStyle} data-mouth={mouth}>{laughing?<path d="M 109 144 Q 120 150 131 144 Q 129 162 120 162 Q 111 162 109 144 Z" fill="#815250"/>:!mouth&&startled?<ellipse cx="120" cy="148" rx="7" ry="9" fill="#815250" strokeWidth="1"/>:mouth===1?<path d="M 112 147 Q 120 145 128 147 Q 120 153 112 147 Z" fill="#815250" strokeWidth="1"/>:mouth===2?<path d="M 114 146 Q 120 144 126 146 L 124 151 Q 120 153 116 151 Z" fill="#815250" strokeWidth="1"/>:<path d={smile?'M 111 146 Q 120 154 129 146':emotion==='embarrassed'?'M 113 149 Q 120 151 127 148':emotion==='disappointed'?'M 111 151 Q 120 147 129 152':worried?'M 113 150 Q 120 146 127 150':emotion==='confused'?'M 114 148 L 126 146':keen&&!firm?'M 110 147 Q 120 151 131 144':gentle&&!firm?'M 111 147 Q 120 151 129 146':narrow&&firm?'M 110 149 Q 120 146 130 149':narrow?'M 110 148 Q 120 146 130 148':'M 113 147 Q 120 149 127 147'} strokeWidth="1.7"/>}</g>
- </g></>}</>}</g></g>{view.amount>0?arm(nearSide):<>{arm('left')}{arm('right')}</>}{meal&&<g data-meal="rice" stroke={ink} strokeWidth="2" strokeLinejoin="round">
+ </g></>}</>}</g></g>{atDesk&&<g data-furniture="student-desk" stroke="#423b40" strokeWidth="2.5" strokeLinejoin="round">
+   <path d="M14 319h12l-3 164H13z M213 319h12l3 164h-10z" fill="#656874"/>
+   <path d="M3 309l13-19h207l15 19v11H3z" fill="#af805e"/>
+   <path d="M3 309h235v11H3z" fill="#795540"/>
+   <path d="M85 304l8-10h45l-6 10z" fill="#f1e5c9"/>
+ </g>}{view.amount>0?arm(nearSide):<>{arm('left')}{arm('right')}</>}{meal&&<g data-meal="rice" stroke={ink} strokeWidth="2" strokeLinejoin="round">
  <g data-bowl="true"><path d="M 75 260 Q 78 285 106 286 Q 134 285 137 260 Z" fill="#b8794e"/><ellipse cx="106" cy="260" rx="31" ry="9" fill="#f4ead2"/>{[85,96,108,120].map((x,i)=><path key={x} d={`M ${x} ${257+i%2*4} l 6 1`} stroke="#d8ccaa" strokeWidth="2"/>)}<path d="M 84 276 Q 106 285 129 276" fill="none" stroke="#e4b17a"/></g>
  <g data-spoon="true"><path d={`M ${meal.wx} ${meal.wy} L ${meal.tipX+5} ${meal.tipY+3}`} stroke="#aa8661" strokeWidth="5" strokeLinecap="round"/><ellipse cx={meal.tipX} cy={meal.tipY} rx="9" ry="4" fill="#d9b889"/>{meal.rice&&<ellipse cx={meal.tipX} cy={meal.tipY-2} rx="6" ry="3" fill="#fff4d6" stroke="none"/>}</g>
  </g>}</g></g></g></g></svg>;
