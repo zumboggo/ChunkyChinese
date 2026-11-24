@@ -1,6 +1,6 @@
 {
   "episode": "supportive-17",
-  "scriptFingerprint": "a4be0b5c",
+  "scriptFingerprint": "f2091d06",
   "shots": [
     {
       "anchor": "opening",
@@ -111,8 +111,8 @@
       "durationMs": 1800
     },
     {
-      "anchor": "check_in",
-      "offset": 2,
+      "anchor": "eyes_up",
+      "offset": 0,
       "reaction": "Alden-exhausted",
       "durationMs": 1800
     },

@@ -45,7 +45,7 @@ export default function CartoonActor({atDesk=false,character,angleDesigns,orient
  const expressive=['shock','laugh','rage','excited','scared','facepalm','proud','plead','disappointed'];
  const acting=response||(!activity&&(rest==='arms-crossed'&&!gesture?'cross-arms':talking?(gesture||automatic.talk):!listening&&expressive.includes(automatic.talk)?automatic.talk:''))||'';
  const grip=rider?POSES['mounted-charge']:POSES[heldPropPose(prop)]||{};
- const deskPose = atDesk ? {leftForearm: gazeY > 0 ? -65 : -48, rightForearm: gazeY > 0 ? 65 : 48} : {};
+ const deskPose: Record<string, number> = atDesk ? {leftForearm: gazeY > 0 ? -65 : -48, rightForearm: gazeY > 0 ? 65 : 48} : {};
  const resting={...(POSES[rest||(listeningState==='attentive'?'attentive':listeningState==='warm'?'relaxed':automatic.rest)]||{}),...deskPose,...grip},action={...resting,...(POSES[acting]||{}),...((prop==='phone'||(prop==='lance'&&!['lance-threat','mounted-charge'].includes(acting)))?grip:{})};
  const [heldPose,setPose]=useState<Record<string,number>>(resting),[blink,setBlink]=useState(false),[speechMouth,setMouth]=useState(0);
  const current=useRef(heldPose);
