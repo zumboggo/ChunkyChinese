@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
+import {execFileSync} from 'node:child_process'
 
 const base = process.env.GITHUB_PAGES === 'true' ? '/ChunkyChinese/' : '/'
 
@@ -7,6 +8,7 @@ const base = process.env.GITHUB_PAGES === 'true' ? '/ChunkyChinese/' : '/'
 export default defineConfig({
   base,
   plugins: [react()],
+  define: {'import.meta.env.VITE_APP_COMMIT':JSON.stringify(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim())},
   build: {
     rolldownOptions: {
       output: {

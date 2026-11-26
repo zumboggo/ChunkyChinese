@@ -10,3 +10,6 @@
 .game-page.game-playing .story-intertitles[data-reading-screen=image] .story-dialogue{justify-content:center}
 .game-page.game-playing .story-intertitles[data-reading-screen=image] .comic-panel{flex:none;width:100%;margin:auto 0;border-radius:0}
 .game-page.game-playing .story-intertitles[data-reading-screen=image] .episode-speaker{visibility:hidden}
+
+.game-page.game-playing .story-intertitles[data-reading-screen=image]>.story-stage{grid-column:1/-1;height:50svh;min-height:250px;margin:16px 0;border-radius:0}
+.game-page.game-playing .story-intertitles[data-reading-screen=image]:has(>.story-stage) .story-dialogue{min-height:0;padding-top:0}

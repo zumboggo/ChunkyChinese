@@ -24,6 +24,6 @@ export default function EpisodePlayback({intro,onRestartEpisode,onBack,inherited
  return <>
   {header}
   {storyProps.pack.continuity&&progress?.continuity&&<details className="episode-continuity"><summary>Carried forward from Episode {Number(storyProps.pack.continuity.sourceId.match(/-(\d+)-/)?.[1])||'previous'}</summary><ContinuitySummary definition={storyProps.pack.continuity} snapshot={progress.continuity}/></details>}
-  {context&&!contextFinished?<EpisodeContextCrawl key={introReplay} context={context} hotkeys={storyProps.hotkeys} onDone={()=>setContextFinished(true)}/>:intro&&!introFinished?<EpisodeIntro key={introReplay} intro={intro} hotkeys={storyProps.hotkeys} onDone={()=>setIntroFinished(true)}/>:<StoryPlayback {...storyProps} pack={boundPack} initial={progress} onProgress={p=>{setProgress(p);storyProps.onProgress?.(p)}} onReplayOpening={intro?replayIntro:undefined}/>}
+  {context&&!contextFinished?<EpisodeContextCrawl key={introReplay} context={context} hotkeys={storyProps.hotkeys} onDone={()=>setContextFinished(true)}/>:intro&&!introFinished?<EpisodeIntro key={introReplay} intro={intro} hotkeys={storyProps.hotkeys} onDone={()=>setIntroFinished(true)}/>:<StoryPlayback {...storyProps} pack={boundPack} directionScript={storyProps.pack.script} initial={progress} onProgress={p=>{setProgress(p);storyProps.onProgress?.(p)}} onReplayOpening={intro?replayIntro:undefined}/>}
  </>
 }

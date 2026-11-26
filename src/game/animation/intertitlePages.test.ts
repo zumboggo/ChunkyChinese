@@ -12,4 +12,5 @@ describe('Episode 18 intertitles',()=>{
   }
  })
  it('only selects the unchanged episode 18 script',()=>{expect(usesIntertitles(pack.script)).toBe(true);expect(usesIntertitles(JSON.parse(readFileSync('public/stories/animated/supportive-19.json','utf8')).script)).toBe(false)})
+ it('supports newly authored scripts through explicit presentation metadata',()=>{expect(usesIntertitles('story 2\nI: 新的故事。\nend',{mode:'reading',layout:'intertitles',animationLabels:[]})).toBe(true)})
 })

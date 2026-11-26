@@ -4552,14 +4552,13 @@ function App() {
                 </section>
                 <section className="panel">
                   <h2>App update</h2>
-                  <p>If the app looks out of date, force a fresh reload — clears all cached files and restarts.</p>
+                  <p>Load the latest app while keeping your saved progress and downloaded episodes.</p>
                   <div className="button-row">
                     <button
                       type="button"
                       onClick={() => {
                         const url = new URL(window.location.href)
-                        url.searchParams.set('resetPwa', '1')
-                        window.location.replace(url.toString())
+                        window.location.assign(new URL('update.html',new URL(import.meta.env.BASE_URL,url.origin)).href)
                       }}
                     >
                       Force update

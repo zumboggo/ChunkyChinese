@@ -1,0 +1,3 @@
+.app-update-notice{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:12px 20px;background:#fff7df;color:#332c20;font:15px/1.5 system-ui,sans-serif;border-bottom:1px solid #d9cdaa}
+.app-update-notice a{display:inline-flex;align-items:center;min-height:44px;padding:6px 16px;color:#fff;background:#35312b;border-radius:24px;text-decoration:none;font-weight:600}
+.app-update-notice a:focus-visible{outline:3px solid #996525;outline-offset:3px}

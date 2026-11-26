@@ -21,10 +21,10 @@ import {readEncounters,type EncounterSettings} from './encounters'
 import {playAudioModeLine,speakAudioMode,waitForAudioMode} from './audioMode'
 import type {HotkeySettings} from '../../types'
 export interface StoryProgress {reading?:{cursor:number;encounter:number;phase:'text'|'pixel';page?:number;image?:boolean};attemptId?:string;partialTiming?:boolean;continuity?:import('./continuity').ContinuitySnapshot;steps:(string|null)[];quizzes:number[][];seed:number}
-export default function StoryPlayback({pack,initial,onProgress,reduced:preferred=false,onComplete,onNextEpisode,preferencesKey='story2:display',releaseCategory,hotkeys,settingsContent,onReplayOpening,nextEpisodePreview}:{pack:ChinesePackage;initial?:StoryProgress;onProgress?:(p:StoryProgress)=>void;reduced?:boolean;debug?:boolean;onComplete?:()=>void;onNextEpisode?:()=>void;preferencesKey?:string;releaseCategory?:string;hotkeys?:HotkeySettings;settingsContent?:ReactNode;onReplayOpening?:()=>void;nextEpisodePreview?:{number?:number;title:string;teaser:string}}) {
+export default function StoryPlayback({pack,directionScript=pack.script,initial,onProgress,reduced:preferred=false,onComplete,onNextEpisode,preferencesKey='story2:display',releaseCategory,hotkeys,settingsContent,onReplayOpening,nextEpisodePreview}:{pack:ChinesePackage;directionScript?:string;initial?:StoryProgress;onProgress?:(p:StoryProgress)=>void;reduced?:boolean;debug?:boolean;onComplete?:()=>void;onNextEpisode?:()=>void;preferencesKey?:string;releaseCategory?:string;hotkeys?:HotkeySettings;settingsContent?:ReactNode;onReplayOpening?:()=>void;nextEpisodePreview?:{number?:number;title:string;teaser:string}}) {
  const compiled=useMemo(()=>compileStory(pack.script,pack.assets),[pack])
- const shots=useMemo(()=>compiled.story?pixelShots(pack.script,compiled.story):null,[pack,compiled])
- const intertitles=usesIntertitles(pack.script)
+ const shots=useMemo(()=>compiled.story?pixelShots(directionScript,compiled.story):null,[directionScript,compiled])
+ const intertitles=usesIntertitles(directionScript,pack.presentation)
  const pixelPilot=!!shots
  const reading=pack.presentation?.mode==='reading'
  const animationBeats=useMemo(()=>compiled.story&&reading?animationCursors(compiled.story,pack.presentation!.animationLabels):new Set<number>(),[compiled,reading,pack.presentation])
@@ -39,7 +39,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
  const reduced=preferred||system||reduceMotion,root=useRef<HTMLDivElement>(null),generation=useRef(0),lock=useRef(false),sound=useRef<HTMLAudioElement|null>(null)
  const motion=useRef<AbortController|null>(null);
  const current=state&&compiled.story?.nodes[state.cursor]
- const savedReading=pixelPilot&&initial?.reading?.cursor===state?.cursor?initial?.reading:undefined
+ const savedReading=(pixelPilot||intertitles)&&initial?.reading?.cursor===state?.cursor?initial?.reading:undefined
  const [pixelActive,setPixelActive]=useState(savedReading?.phase==='pixel'&&!shots?.get(state?.cursor??-1)?.comic)
  const [textPage,setTextPage]=useState(intertitles?Math.max(0,savedReading?.page??0):0)
  const [imageActive,setImageActive]=useState(intertitles&&savedReading?.image===true)
@@ -50,8 +50,8 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   if(pixelShot?.comic)root.current?.closest('.game-playing')?.scrollTo({top:0,behavior:'instant'})
  },[state?.cursor,pixelShot?.comic])
  function saveReading(nextEncounter:number,phase:'text'|'pixel'){
-  if(!pixelPilot||!state)return
-  const p={...progress,reading:{cursor:state.cursor,encounter:nextEncounter,phase}};setProgress(p);onProgress?.(p)
+  if((!pixelPilot&&!intertitles)||!state)return
+  const p={...progress,reading:{cursor:state.cursor,encounter:nextEncounter,phase,...(intertitles?{page:pageIndex,image:false}:{})}};setProgress(p);onProgress?.(p)
  }
 
 
@@ -157,18 +157,25 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   if(!quiz&&v.current?.type==='choice'&&root.current?.querySelector('.episode-choice')){if(i>=0&&v.current.options[i]){e.preventDefault();if(!v.busy)v.advance(v.current.options[i].id)}return}
   if(key==='arrowright'||key==='1'){e.preventDefault();if(!v.busy)root.current?.querySelector<HTMLButtonElement>('[data-next]:not(:disabled)')?.click()}
  };window.addEventListener('keydown',handler);return()=>window.removeEventListener('keydown',handler)},[hotkeys,pocketSession])
- useEffect(()=>{if(pixelPilot||initial?.steps.length||!current||!root.current)return;const controller=new AbortController();motion.current=controller;void playSceneMotion(root.current,state?.cues||[],current,reduced,setResponses,controller.signal);return()=>controller.abort();
+ useEffect(()=>{if(intertitles||pixelPilot||initial?.steps.length||!current||!root.current)return;const controller=new AbortController();motion.current=controller;void playSceneMotion(root.current,state?.cues||[],current,reduced,setResponses,controller.signal);return()=>controller.abort();
  // Resume restores held state without replaying transient motion.
  // eslint-disable-next-line react-hooks/exhaustive-deps
  },[])
 
+ // Start authored SVG motion only once its separate reveal is mounted.
+ useEffect(()=>{
+  if(!intertitles||!imageActive||pixelPilot||!root.current)return
+  const controller=new AbortController();motion.current=controller
+  void playSceneMotion(root.current,state?.cues||[],current,reduced,setResponses,controller.signal)
+  return()=>controller.abort()
+ },[intertitles,imageActive,pixelPilot,state,current,reduced])
  useEffect(()=>{const m=matchMedia('(prefers-reduced-motion: reduce)');const f=()=>setSystem(m.matches);m.addEventListener('change',f);return()=>m.removeEventListener('change',f)},[])
  useEffect(()=>()=>{generation.current++;slideAudioController.current?.abort();motion.current?.abort();sound.current?.pause();root.current?.getAnimations?.({subtree:true}).forEach(a=>a.cancel())},[])
  useEffect(()=>{if(reduced){motion.current?.abort();setResponses({});}},[reduced])
  const animate=async(el:HTMLElement|null,frames:Keyframe[],duration=420)=>{if(reduced||!el?.animate)return;try{await el.animate(frames,{duration,easing:'ease-in-out'}).finished}catch{/* navigation cancellation */}}
  function back(sentence=false){
-  if(intertitles&&!state?.ended&&current?.type!=='choice'){if(imageActive){turnPage(pages.length-1);return}if(pageIndex>0){turnPage(pageIndex-1);return}}
-  if(pixelGate.current){pixelGate.current=false;pixelReady.current=false;setPixelActive(false);setEncounter(3);saveReading(3,'text');return}
+  if(intertitles&&!pixelActive&&!state?.ended&&current?.type!=='choice'){if(imageActive){turnPage(pages.length-1);return}if(pageIndex>0){turnPage(pageIndex-1);return}}
+  if(pixelGate.current){pixelGate.current=false;pixelReady.current=false;setPixelActive(false);setEncounter(audioModeOptions.count);saveReading(audioModeOptions.count,'text');return}
 
   if(!sentence&&encounter>1&&!state?.ended){slideAudioController.current?.abort();audioModeController.current?.abort();setAudioPlaying(false);setSpeaking(false);setEncounter(n=>n-1);saveReading(encounter-1,'text');return}
   if(!compiled.story||!progress.steps.length)return
@@ -176,12 +183,12 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   slideAudioController.current?.abort();audioModeController.current?.abort();generation.current++;motion.current?.abort();sound.current?.pause();sound.current=null
   root.current?.getAnimations?.({subtree:true}).forEach(a=>a.cancel())
   lock.current=false;setBusy(false);setSpeaking(false);setAudioPlaying(false);setResponses({});setError('');setAnswers([-1,-1,-1,-1])
-  const p={...progress,steps:progress.steps.slice(0,-1),...(pixelPilot?{reading:undefined}:{})}
+  const p={...progress,steps:progress.steps.slice(0,-1),...((pixelPilot||intertitles)?{reading:undefined}:{})}
   const previous=replayStory(compiled.story,p.steps,p.seed)
   setEncounter(sentence||compiled.story.nodes[previous.cursor]?.type==='choice'?1:audioModeOptions.count)
   if(intertitles){
    const priorLine=pack.chinese?.lines[compiled.story.nodes[previous.cursor]?.text]
-   const page=intertitlePages(priorLine).length-1,image=!!shots?.get(previous.cursor)?.comic
+   const page=intertitlePages(priorLine).length-1,image=!!shots?.get(previous.cursor)?.comic||(!pixelPilot&&['say','act'].includes(compiled.story.nodes[previous.cursor]?.type)&&(!pack.presentation?.animationLabels.length||animationBeats.has(previous.cursor)))
    setTextPage(page);setImageActive(image);setEncounter(1)
    p.reading={cursor:previous.cursor,encounter:1,phase:'text',page,image}
   }
@@ -191,7 +198,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   if(!state||!compiled.story||state.ended||lock.current)return
   if(intertitles&&current?.type!=='choice'&&!imageActive){
    if(pageIndex<pages.length-1){turnPage(pageIndex+1);return}
-   if(pixelShot?.comic){turnPage(pageIndex,true);return}
+   if(pixelShot?.comic||(!pixelPilot&&(!pack.presentation?.animationLabels.length||animationBeats.has(state.cursor)))){turnPage(pageIndex,true);return}
   }
   if(pixelGate.current&&!pixelReady.current)return
   if(encounter<audioModeOptions.count&&current?.type!=='choice'&&current?.text){
@@ -199,18 +206,18 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
   }
   if(pixelShot&&!pixelShot.comic&&!pixelGate.current){
    slideAudioController.current?.abort();audioModeController.current?.abort();sound.current?.pause();setAudioPlaying(false);setSpeaking(false)
-   pixelGate.current=true;pixelReady.current=false;setPixelActive(true);saveReading(3,'pixel');return
+   pixelGate.current=true;pixelReady.current=false;setPixelActive(true);saveReading(audioModeOptions.count,'pixel');return
   }
   slideAudioController.current?.abort();audioModeController.current?.abort();motion.current?.abort();setResponses({});lock.current=true;setBusy(true);sound.current?.pause();sound.current=null;setAudioPlaying(false);setSpeaking(false);setError('');const token=++generation.current
   try{
    const next=advanceStory(compiled.story,state,option)
    for(const id of Object.keys(state.stage.actors)){if(!next.stage.actors[id])await animate(root.current?.querySelector(`[data-actor="${id}"]`)??null,[{opacity:1,transform:'translateX(0)'},{opacity:0,transform:'translateX(65px)'}]);if(token!==generation.current)return}
-   const p={...progress,steps:[...progress.steps,option],...(pixelPilot?{reading:undefined}:{})};pixelGate.current=false;pixelReady.current=false;setPixelActive(false);setTextPage(0);setImageActive(false);setEncounter(1);setState(next);setProgress(p);onProgress?.(p)
+   const p={...progress,steps:[...progress.steps,option],...((pixelPilot||intertitles)?{reading:undefined}:{})};pixelGate.current=false;pixelReady.current=false;setPixelActive(false);setTextPage(0);setImageActive(false);setEncounter(1);setState(next);setProgress(p);onProgress?.(p)
    await new Promise<void>(r=>requestAnimationFrame(()=>r()))
    if(token!==generation.current)return;
    const controller=new AbortController();motion.current=controller;
    const cues=(next.cues||[]).map(n=>({...n,entering:n.type==='show'&&!state.stage.actors[n.actor]}));
-   if(root.current&&!pixelPilot)void playSceneMotion(root.current,cues,compiled.story.nodes[next.cursor],reduced,setResponses,controller.signal);
+   if(root.current&&!pixelPilot&&!intertitles)void playSceneMotion(root.current,cues,compiled.story.nodes[next.cursor],reduced,setResponses,controller.signal);
 
   }finally{if(token===generation.current){lock.current=false;setBusy(false);root.current?.querySelector<HTMLButtonElement>('[data-next]')?.focus({preventScroll:true})}}
  }
@@ -232,7 +239,7 @@ export default function StoryPlayback({pack,initial,onProgress,reduced:preferred
 
  if(compiled.errors.length||!state)return <div role="alert">{compiled.errors.map(e=><p key={e.line+e.message}>Line {e.line}: {e.message}</p>)}</div>
  if(pocketSession)return <PocketAudioPlayer pack={pack} start={pocketSession.start} options={pocketSession.options} volume={voiceVolume} onSave={p=>onProgress?.(p)} onExit={p=>{setProgress(p);setState(replayStory(compiled.story,p.steps,p.seed));onProgress?.(p);setEncounter(1);pixelGate.current=false;pixelReady.current=false;setPixelActive(false);setTextPage(0);setImageActive(false);setPocketSession(null)}}/>
- const animationScreen=reading&&!pixelPilot&&!state.ended&&animationBeats.has(state.cursor)
+ const animationScreen=reading&&!pixelPilot&&!state.ended&&(intertitles?imageActive:animationBeats.has(state.cursor))
  const navigation=<>{reading&&<button className="reading-previous" aria-label="Previous sentence" onClick={()=>back()} disabled={encounter===1&&!progress.steps.length&&(!intertitles||(!imageActive&&pageIndex===0))}>‹</button>}{(autoPlay||intertitles)&&!imageActive&&<button className="audio-play" aria-label={audioPlaying?"Pause audio":intertitles?"Play passage audio":"Play audio"} title="Play / pause (Space)" onClick={()=>play()}>{audioPlaying?'Pause':<PlayIcon/>}</button>}<button data-next disabled={busy} onClick={()=>void advance(null)}>{busy?'Action playing…':'Continue →'}</button></>
  return <div className={`animated-story story-modern${reading?' story-reading':''}${intertitles?' story-intertitles':''}`} data-reading-screen={reading?(imageActive?'image':pixelActive?'pixel':animationScreen?'animation':'text'):undefined} data-story-step={`${state.cursor}:${encounter}${pixelPilot?pixelActive?':pixel':':text':''}`} ref={root} onClick={event=>{
   if(busy||state.ended||current.type==='choice'||window.getSelection()?.toString())return;

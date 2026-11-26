@@ -17,6 +17,7 @@ export function validateChinese(pack:ChinesePackage){
   const result=validatePackage(pack)
   if(pack.presentation){
    if(pack.presentation.mode!=='reading'||!Array.isArray(pack.presentation.animationLabels)||pack.presentation.animationLabels.some(l=>typeof l!=='string'))throw Error('Invalid reading presentation')
+   if(pack.presentation.layout!==undefined&&pack.presentation.layout!=='intertitles')throw Error('Invalid reading layout')
    if(result.story)animationCursors(result.story,pack.presentation.animationLabels)
   }
   // Classroom quizzes are optional for personal Mandarin adventures.

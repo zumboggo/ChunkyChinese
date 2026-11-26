@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Update Chunky Chinese</title>
+<style>body{font:18px/1.6 system-ui,sans-serif;background:#fff;color:#262a30;max-width:540px;margin:15vh auto;padding:24px}h1{font-size:28px}button{font:inherit;padding:12px 24px;border:0;border-radius:24px;background:#292e36;color:white}a{color:#345a7d}</style></head>
+<body><h1>Updating Chunky Chinese</h1><p id="status" role="status">Getting the latest app. Your reading place, study data, and downloaded episodes will be kept.</p><button id="retry" hidden>Try again</button><p><a href="./">Return to the app</a></p>
+<script>
+(()=>{
+ const status=document.getElementById('status'),retry=document.getElementById('retry'),base=new URL('./',location.href)
+ async function update(){
+  retry.hidden=true
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000)
+  try{
+   // Check connectivity before retiring the old worker. Never clear offline caches or IndexedDB.
+   const response=await fetch(new URL('index.html?update='+Date.now(),base),{cache:'no-store',signal:controller.signal})
+   if(!response.ok)throw Error('The latest app is temporarily unavailable.')
+   if('serviceWorker' in navigator){
+    const registrations=await navigator.serviceWorker.getRegistrations()
+    await Promise.all(registrations.filter(r=>r.scope===base.href).map(r=>r.unregister()))
+   }
+   base.searchParams.set('fresh',String(Date.now()))
+   location.replace(base.href)
+  }catch{
+   status.textContent='The update could not connect. Your saved app and downloads are still available. Try again when you’re online.';retry.hidden=false
+  }finally{clearTimeout(timer)}
+ }
+ retry.addEventListener('click',update);void update()
+})();
+</script></body></html>

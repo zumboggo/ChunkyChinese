@@ -1,5 +1,5 @@
 /** Author-directed shots bind to stable script labels, never translated text. */
-export interface ReadingPresentation {mode:'reading'; animationLabels:string[]}
+export interface ReadingPresentation {mode:'reading'; layout?:'intertitles'; animationLabels:string[]}
 export function animationCursors(story:{labels:Record<string,number>;nodes:{type:string}[]},labels:string[]):Set<number>{
  const cursors=new Set<number>()
  for(const label of labels){
