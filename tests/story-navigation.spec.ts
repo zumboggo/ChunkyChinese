@@ -22,9 +22,10 @@ test('left arrow restores beats, choices and saved position without passing the 
  await expect(page.getByTestId('progress')).toHaveText(JSON.stringify({steps:[null,'right'],quizzes:[],seed:19}));
  await page.reload();
  await expect(line).toContainText('Right path beat.');
- await page.locator('.episode-settings summary').click();
+ await page.locator('.episode-settings > summary').click();
  await page.keyboard.press('ArrowLeft');
  await expect(line).toContainText('Right path beat.');
+ await page.getByText('Sound & motion',{exact:true}).click();
  await page.getByLabel('Voice volume',{exact:true}).focus();
  await page.keyboard.press('ArrowLeft');
  await expect(line).toContainText('Right path beat.');

@@ -18,6 +18,7 @@ ${actor}: Right path beat.
 label finish
 end`;
 pack.quiz=[];
+localStorage.setItem('story2:display:encounters:v1:other',JSON.stringify({count:1,encounters:Array.from({length:3},()=>({chinese:false,english:false,showChinese:true,showPinyin:true,showGloss:true}))}));
 function Fixture(){
  const [progress,setProgress]=useState<StoryProgress>(()=>JSON.parse(localStorage.getItem('navigation-test')||'null')||{steps:[],quizzes:[],seed:19});
  return <><StoryPlayback pack={pack} initial={progress} onProgress={p=>{setProgress(p);localStorage.setItem('navigation-test',JSON.stringify(p))}}/><output data-testid="progress">{JSON.stringify(progress)}</output></>;

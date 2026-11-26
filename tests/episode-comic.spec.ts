@@ -1,7 +1,8 @@
 import {test,expect} from '@playwright/test'
 import {readFileSync} from 'node:fs'
 
-test('comic stays with the text across encounters, Back, saved legacy phase and reload',async({page},info)=>{
+test('episode 18 intertitles page, reveal, back and resume without changing artwork',async({page},info)=>{
+ test.setTimeout(120000)
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message))
  await page.goto(process.env.PLAYWRIGHT_BASE_URL||'/');await page.getByRole('button',{name:'Game',exact:true}).click()
  await page.getByRole('button',{name:'Choose story: Super Supportive',exact:true}).click()
@@ -10,26 +11,35 @@ test('comic stays with the text across encounters, Back, saved legacy phase and 
  await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
  await page.getByRole('button',{name:'Accept',exact:true}).click()
  await page.getByRole('button',{name:'Skip intro →',exact:true}).click()
- const panel=page.locator('.comic-panel'),next=page.getByRole('button',{name:'Continue →',exact:true})
- await expect(panel).toHaveAttribute('data-comic-panel','supportive-18-1:0')
- await expect(page.locator('.episode-line')).toBeVisible()
- await expect(page.locator('.episode-speaker')).toBeVisible()
- expect(await panel.evaluate(e=>new Promise<number>((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(image.naturalWidth);image.onerror=reject;image.src=getComputedStyle(e).backgroundImage.slice(5,-2)}))).toBeGreaterThanOrEqual(1000)
+ const panel=page.locator('.comic-panel'),next=page.getByRole('button',{name:'Continue →',exact:true}),chunks=page.locator('.episode-line .reader-interlinear-chunk')
+ await expect(chunks).toHaveCount(3);await expect(panel).toHaveCount(0)
+ await expect(page.locator('.episode-line .reader-interlinear-pinyin')).toHaveCount(3)
+ await expect(page.locator('.episode-line .reader-interlinear-gloss')).toHaveCount(3)
+ expect(await page.locator('.story-dialogue').evaluate(e=>getComputedStyle(e).backgroundColor)).toBe('rgb(255, 255, 255)')
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
- await page.screenshot({path:info.outputPath('comic-opening.png'),fullPage:true})
- await next.click();await expect(page.locator('.pixel-encounter')).toHaveText('Encounter 2 of 3')
- await next.click();await expect(page.locator('.pixel-encounter')).toHaveText('Encounter 3 of 3')
- await expect(panel).toHaveAttribute('data-comic-panel','supportive-18-1:0')
- await expect(page.locator('.pixel-scene')).toHaveCount(0)
- await expect.poll(()=>page.evaluate(()=>new Promise<boolean>(resolve=>{const r=indexedDB.open('ChunkyChineseStory2',1);r.onsuccess=()=>{const db=r.result,q=db.transaction('records').objectStore('records').getAll();q.onsuccess=()=>{resolve(q.result.some(v=>v?.reading?.encounter===3));db.close()}}}))).toBe(true)
- // A bookmark made by the prior pixel edition must return to the same passage.
- await page.evaluate(()=>new Promise<void>(resolve=>{const r=indexedDB.open('ChunkyChineseStory2',1);r.onsuccess=()=>{const db=r.result,t=db.transaction('records','readwrite'),s=t.objectStore('records'),q=s.openCursor();q.onsuccess=()=>{const c=q.result;if(c){if(c.value?.reading){const v=c.value;v.reading.phase='pixel';c.update(v)}c.continue()}};t.oncomplete=()=>{db.close();resolve()}}}))
+ await page.screenshot({path:info.outputPath('intertitle-text.png'),fullPage:true})
+ await next.click();await expect(panel).toHaveAttribute('data-comic-panel','supportive-18-1:0');await expect(page.locator('.episode-line')).toBeHidden()
+ await page.screenshot({path:info.outputPath('intertitle-image.png'),fullPage:true})
  await page.reload();await page.getByRole('button',{name:'Game',exact:true}).click();await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
- await expect(panel).toHaveAttribute('data-comic-panel','supportive-18-1:0')
- await expect(page.locator('.pixel-encounter')).toHaveText('Encounter 3 of 3')
- await next.click();await expect(panel).toHaveAttribute('data-comic-panel','supportive-18-1:1')
- await expect.poll(()=>page.locator('.game-playing').evaluate(e=>e.scrollTop)).toBe(0)
- await page.keyboard.press('ArrowLeft');await expect(panel).toHaveAttribute('data-comic-panel','supportive-18-1:0')
+ await expect(panel).toHaveAttribute('data-comic-panel','supportive-18-1:0');await expect(page.locator('.episode-line')).toBeHidden()
+ await page.keyboard.press('ArrowLeft');await expect(chunks).toHaveCount(3);await expect(panel).toHaveCount(0)
+ await next.click();await next.click();await expect(chunks).toHaveCount(3)
+ await next.click();await next.click();await expect(chunks).toHaveCount(2)
+ const first=await chunks.allTextContents();await next.click();await expect(chunks).toHaveCount(3);await expect(panel).toHaveCount(0)
+ const second=await chunks.allTextContents();expect(second).not.toEqual(first)
+ await expect.poll(()=>page.evaluate(()=>new Promise<boolean>(resolve=>{const r=indexedDB.open('ChunkyChineseStory2',1);r.onsuccess=()=>{const db=r.result,q=db.transaction('records').objectStore('records').getAll();q.onsuccess=()=>{resolve(q.result.some(v=>v?.reading?.page===1&&!v.reading.image));db.close()}}}))).toBe(true)
+ await page.reload();await page.getByRole('button',{name:'Game',exact:true}).click();await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
+ await expect(chunks).toHaveCount(3);expect(await chunks.allTextContents()).toEqual(second)
+ await page.keyboard.press('ArrowLeft');expect(await chunks.allTextContents()).toEqual(first)
+ await next.click();await next.click();await expect(panel).toHaveAttribute('data-comic-panel','supportive-18-1:1')
+ // Complete opposite choice routes on desktop and phone, checking every displayed page.
+ for(let step=0;step<260;step++){
+  if(await page.getByRole('heading',{name:'Scene complete',exact:true}).count())break
+  const choices=page.locator('.episode-choice')
+  if(await choices.count())await choices.nth(info.project.name==='chromium'?0:1).click()
+  else {if(await page.locator('.episode-line').isVisible())expect(await chunks.count()).toBeLessThanOrEqual(3);await next.click()}
+ }
+ await expect(page.getByRole('heading',{name:'Scene complete',exact:true})).toBeVisible()
  expect(errors).toEqual([])
 })
 

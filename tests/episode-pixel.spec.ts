@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test'
 async function openEpisode(page:import('@playwright/test').Page){
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
- await page.getByRole('button',{name:'Choose story',exact:true}).click()
+ await page.getByRole('button',{name:'Choose story: Super Supportive',exact:true}).click()
  await page.getByLabel('Book',{exact:true}).selectOption('super-supportive')
  await page.getByLabel('Episode',{exact:true}).selectOption(process.env.PIXEL_EPISODE_ID||'supportive-17-v1')
  await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
@@ -18,7 +18,7 @@ test('three encounters, held pixel frame, saved phase and fresh input',async({pa
  await page.getByRole('button',{name:'Continue →',exact:true}).click()
  await expect(page.locator('.pixel-encounter')).toHaveText('Encounter 2 of 3')
  await expect.poll(()=>page.evaluate(()=>new Promise<boolean>(resolve=>{const r=indexedDB.open('ChunkyChineseStory2',1);r.onsuccess=()=>{const db=r.result;const q=db.transaction('records').objectStore('records').getAll();q.onsuccess=()=>{resolve(q.result.some(v=>v?.reading?.encounter===2));db.close()}}}))).toBe(true)
- await page.reload();await page.getByRole('button',{name:'Game',exact:true}).click();await page.locator('.library-resume button').click()
+ await page.reload();await page.getByRole('button',{name:'Game',exact:true}).click();await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
  await expect(page.locator('.pixel-encounter')).toHaveText('Encounter 2 of 3')
  await page.getByRole('button',{name:'Continue →',exact:true}).click()
  await expect(page.locator('.pixel-encounter')).toHaveText('Encounter 3 of 3')
@@ -35,7 +35,7 @@ test('three encounters, held pixel frame, saved phase and fresh input',async({pa
  expect(await page.locator('.pixel-scene canvas').evaluate((el:HTMLCanvasElement)=>el.toDataURL())).toBe(frame)
  await page.screenshot({path:info.outputPath('held-pixel.png'),fullPage:true})
  expect(await page.locator('.pixel-scene').evaluate(e=>e.scrollWidth<=e.clientWidth)).toBe(true)
- await page.reload();await page.getByRole('button',{name:'Game',exact:true}).click();await page.locator('.library-resume button').click()
+ await page.reload();await page.getByRole('button',{name:'Game',exact:true}).click();await page.getByRole('button',{name:'Play / resume episode',exact:true}).click()
  await expect(page.locator('.pixel-scene')).toHaveAttribute('data-pixel-phase','held')
  await page.getByRole('button',{name:'Return to passage',exact:true}).click()
  await expect(page.locator('.pixel-encounter')).toHaveText('Encounter 3 of 3')
