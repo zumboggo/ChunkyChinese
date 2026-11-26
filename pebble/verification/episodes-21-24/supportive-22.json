@@ -1,0 +1,360 @@
+{
+  "id": "supportive-22",
+  "errors": [],
+  "missingArt": [],
+  "missingGlyphs": [],
+  "shots": [
+    {
+      "anchor": "watch_22_opening_2",
+      "scene": "download-supportive-22-opening-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "classroom",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "watch_22_opening_1",
+      "passage": "\u8fd9\u4e9b\u8bdd\uff0c\u6211\u65e9\u5c31\u4f1a\u4e86\u3002\u5988\u5988\u6700\u5148\u6559\u6211\u7684\uff0c\u5c31\u662f\u8fd9\u4e2a\u3002"
+    },
+    {
+      "anchor": "watch_22_loud_1",
+      "scene": "download-supportive-22-loud-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "classroom",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "loud",
+      "passage": "\u8001\u5e08\u6b63\u5728\u5e2e\u4e00\u4e2a\u4eba\u3002\u5979\u8fd8\u662f\u559c\u6b22\u5927\u58f0\u558a\u90a3\u4e9b\u8bdd\u3002"
+    },
+    {
+      "anchor": "watch_22_callback_2",
+      "scene": "download-supportive-22-callback-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "classroom",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "watch_22_callback_1",
+      "passage": "\u4eba\u5bb6\u8fd8\u5728\u7b49\u3002\u6211\u4e0d\u80fd\u4e00\u76f4\u4ec0\u4e48\u90fd\u4e0d\u8bf4\uff0c\u597d\u50cf\u6ca1\u6709\u8fd9\u4ef6\u4e8b\u4e00\u6837\u3002"
+    },
+    {
+      "anchor": "watch_22_whisper_1",
+      "scene": "download-supportive-22-whisper-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "classroom",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "whisper",
+      "passage": "\u6211\u4f4e\u58f0\u8bf4\u5b8c\uff0c\u53c8\u4ece\u5934\u5f00\u59cb\u3002"
+    },
+    {
+      "anchor": "watch_22_task_2",
+      "scene": "download-supportive-22-task-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "classroom",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "watch_22_task_1",
+      "passage": "\u6211\u53ea\u5e0c\u671b\uff0c\u90a3\u662f\u4e00\u4ef6\u771f\u6b63\u91cd\u8981\u7684\u4e8b\u3002\u662f\u5979\u771f\u6b63\u60f3\u505a\u7684\u4e8b\u3002"
+    },
+    {
+      "anchor": "watch_22_ending_1",
+      "scene": "download-supportive-22-ending-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "classroom",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "ending",
+      "passage": "\u6211\u5e0c\u671b\uff0c\u60f3\u5230\u8fd9\u4e00\u70b9\uff0c\u4f1a\u8ba9\u6211\u597d\u53d7\u4e00\u4e9b\u3002"
+    }
+  ],
+  "runtime": {
+    "compatible": true,
+    "changes": []
+  },
+  "wireBytes": 18449,
+  "maxRecordBytes": 913,
+  "portraitStorage": {
+    "usedBytes": 32092,
+    "unusedBytes": 0,
+    "note": "Stored RLE resource bytes, not runtime heap savings."
+  },
+  "sceneIds": [],
+  "totalScenes": 30,
+  "recipeSchema": 1,
+  "recipeActors": [
+    "alden"
+  ],
+  "reviewPlaybackSeconds": 28.8,
+  "fullLibraryPlaybackSeconds": 111,
+  "warnings": [],
+  "presentation": {
+    "routes": 16,
+    "animations": {
+      "min": 6,
+      "max": 6
+    },
+    "reactions": {
+      "min": 23,
+      "max": 23
+    }
+  },
+  "version": "0f9e9eb045d5",
+  "nodeCount": 78,
+  "elapsedMs": 19,
+  "runtimeVersion": "1.12.0",
+  "runtimePackageSha256": "e4ffd4bf2feb6fbec7265ebf370acedb1283e6c831e234b55b1366c5699865f9",
+  "delivery": "Content JSON for Refresh; not published or installed."
+}

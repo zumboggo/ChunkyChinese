@@ -1,0 +1,360 @@
+{
+  "id": "supportive-24",
+  "errors": [],
+  "missingArt": [],
+  "missingGlyphs": [],
+  "shots": [
+    {
+      "anchor": "watch_24_opening_1",
+      "scene": "download-supportive-24-opening-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "opening",
+      "passage": "\u95e8\u5916\u6709\u732b\u53eb\u3002\u6211\u9a6c\u4e0a\u7ad9\u8d77\u6765\uff0c\u53bb\u5f00\u95e8\u3002"
+    },
+    {
+      "anchor": "watch_24_victor_2",
+      "scene": "download-supportive-24-victor-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "watch_24_victor_1",
+      "passage": "\u6211\u7ed9\u5b83\u8d77\u540d\u53eb\u7ef4\u514b\u591a\u3002\u6211\u559c\u6b22\u60f3\uff0c\u5b83\u548c\u5176\u4ed6\u732b\u6253\u8fc7\u5f88\u591a\u6b21\uff0c\u800c\u4e14\u8d62\u4e86\u3002"
+    },
+    {
+      "anchor": "watch_24_cupboard_2",
+      "scene": "download-supportive-24-cupboard-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "watch_24_cupboard_1",
+      "passage": "\u4e0d\u5bf9\u554a\u3002\u6211\u8bb0\u5f97\u5f88\u6e05\u695a\uff0c\u5e94\u8be5\u8fd8\u6709\u597d\u51e0\u7f50\u3002"
+    },
+    {
+      "anchor": "watch_24_search_1",
+      "scene": "download-supportive-24-search-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "search",
+      "passage": "\u6211\u53c8\u5230\u5176\u4ed6\u5730\u65b9\u627e\uff0c\u8fde\u62bd\u5c49\u4e5f\u6253\u5f00\u4e86\u3002"
+    },
+    {
+      "anchor": "watch_24_suspect_2",
+      "scene": "download-supportive-24-suspect-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "watch_24_suspect_1",
+      "passage": "\u6211\u53c8\u770b\u4e86\u4e00\u773c\u90a3\u6761\u6709\u8001\u864e\u82b1\u7eb9\u7684\u77ed\u88e4\u3002"
+    },
+    {
+      "anchor": "watch_24_ending_2",
+      "scene": "download-supportive-24-ending-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "ending",
+      "passage": "\u5148\u4e0d\u8981\u89c9\u5f97\u90fd\u662f\u5979\u4e0d\u597d\u3002\u6211\u4e00\u8fb9\u64e6\uff0c\u4e00\u8fb9\u52aa\u529b\u8fd9\u6837\u60f3\u3002"
+    }
+  ],
+  "runtime": {
+    "compatible": true,
+    "changes": []
+  },
+  "wireBytes": 16955,
+  "maxRecordBytes": 781,
+  "portraitStorage": {
+    "usedBytes": 32092,
+    "unusedBytes": 0,
+    "note": "Stored RLE resource bytes, not runtime heap savings."
+  },
+  "sceneIds": [],
+  "totalScenes": 30,
+  "recipeSchema": 1,
+  "recipeActors": [
+    "alden"
+  ],
+  "reviewPlaybackSeconds": 28.8,
+  "fullLibraryPlaybackSeconds": 111,
+  "warnings": [],
+  "presentation": {
+    "routes": 16,
+    "animations": {
+      "min": 6,
+      "max": 6
+    },
+    "reactions": {
+      "min": 23,
+      "max": 23
+    }
+  },
+  "version": "899566cb1d26",
+  "nodeCount": 77,
+  "elapsedMs": 18,
+  "runtimeVersion": "1.12.0",
+  "runtimePackageSha256": "e4ffd4bf2feb6fbec7265ebf370acedb1283e6c831e234b55b1366c5699865f9",
+  "delivery": "Content JSON for Refresh; not published or installed."
+}

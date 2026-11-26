@@ -1,0 +1,360 @@
+{
+  "id": "supportive-23",
+  "errors": [],
+  "missingArt": [],
+  "missingGlyphs": [],
+  "shots": [
+    {
+      "anchor": "watch_23_opening_2",
+      "scene": "download-supportive-23-opening-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "watch_23_opening_1",
+      "passage": "\u665a\u4e0a\u4e03\u70b9\uff0c\u6211\u56de\u5230\u5bb6\uff0c\u770b\u89c1\u51b0\u7bb1\u4e0a\u963f\u59e8\u5199\u7684\u8bdd\u3002"
+    },
+    {
+      "anchor": "watch_23_reason_1",
+      "scene": "download-supportive-23-reason-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "reason",
+      "passage": "\u5148\u522b\u751f\u6c14\u3002\u6162\u6162\u60f3\u3002\u6700\u4e0d\u597d\u7684\u7ed3\u679c\uff0c\u5230\u5e95\u4f1a\u662f\u4ec0\u4e48\uff1f"
+    },
+    {
+      "anchor": "watch_23_vacation_1",
+      "scene": "download-supportive-23-vacation-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "vacation",
+      "passage": "\u6ca1\u4e8b\u4e86\u3002\u90fd\u8fc7\u53bb\u4e86\u3002\u6211\u53c8\u5728\u5fc3\u91cc\u5bf9\u81ea\u5df1\u8bf4\u4e86\u4e00\u6b21\u3002"
+    },
+    {
+      "anchor": "watch_23_fridge_1",
+      "scene": "download-supportive-23-fridge-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "fridge",
+      "passage": "\u6211\u6253\u5f00\u51b0\u7bb1\u3002\u91cc\u9762\u6709\u4e00\u4e2a\u888b\u5b50\uff0c\u5403\u7684\u4e1c\u897f\u8fd8\u5168\u5728\u91cc\u9762\u3002"
+    },
+    {
+      "anchor": "watch_23_dinner_2",
+      "scene": "download-supportive-23-dinner-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "dinner",
+      "passage": "\u522b\u4e00\u76f4\u60f3\u90a3\u4e9b\u4e0d\u597d\u7684\u5730\u65b9\u3002\u6211\u53c8\u4e0d\u662f\u4eca\u5929\u624d\u77e5\u9053\uff0c\u5bb6\u91cc\u662f\u4ec0\u4e48\u6837\u5b50\u3002"
+    },
+    {
+      "anchor": "watch_23_ending_2",
+      "scene": "download-supportive-23-ending-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "watch_23_ending_1",
+      "passage": "\u4ee5\u524d\uff0c\u963f\u59e8\u7684\u751f\u6d3b\u518d\u4e0d\u597d\uff0c\u6211\u4e5f\u80fd\u4e0d\u53bb\u60f3\u90a3\u4e9b\u4e8b\uff0c\u4e0d\u8ba9\u81ea\u5df1\u96be\u8fc7\u3002"
+    }
+  ],
+  "runtime": {
+    "compatible": true,
+    "changes": []
+  },
+  "wireBytes": 20492,
+  "maxRecordBytes": 742,
+  "portraitStorage": {
+    "usedBytes": 32092,
+    "unusedBytes": 0,
+    "note": "Stored RLE resource bytes, not runtime heap savings."
+  },
+  "sceneIds": [],
+  "totalScenes": 30,
+  "recipeSchema": 1,
+  "recipeActors": [
+    "alden"
+  ],
+  "reviewPlaybackSeconds": 28.8,
+  "fullLibraryPlaybackSeconds": 111,
+  "warnings": [],
+  "presentation": {
+    "routes": 16,
+    "animations": {
+      "min": 6,
+      "max": 6
+    },
+    "reactions": {
+      "min": 25,
+      "max": 25
+    }
+  },
+  "version": "bab87e63e61f",
+  "nodeCount": 85,
+  "elapsedMs": 22,
+  "runtimeVersion": "1.12.0",
+  "runtimePackageSha256": "e4ffd4bf2feb6fbec7265ebf370acedb1283e6c831e234b55b1366c5699865f9",
+  "delivery": "Content JSON for Refresh; not published or installed."
+}

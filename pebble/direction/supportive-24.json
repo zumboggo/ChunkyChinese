@@ -1,0 +1,455 @@
+{
+  "schema": 1,
+  "episode": "supportive-24",
+  "cover": "Alden-thinking-full",
+  "notes": "Stay with Alden’s responses: Victor, petting, feeding and phone messaging remain in the exact text. Do not substitute a generic animated cat or invent phone/food props.",
+  "cues": [
+    {
+      "anchor": "watch_24_opening_1",
+      "scene": "download-supportive-24-opening-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Stay with Alden’s responses: Victor, petting, feeding and phone messaging remain in the exact text. Do not substitute a generic animated cat or invent phone/food props."
+    },
+    {
+      "anchor": "watch_24_victor_2",
+      "scene": "download-supportive-24-victor-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Stay with Alden’s responses: Victor, petting, feeding and phone messaging remain in the exact text. Do not substitute a generic animated cat or invent phone/food props."
+    },
+    {
+      "anchor": "watch_24_cupboard_2",
+      "scene": "download-supportive-24-cupboard-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Stay with Alden’s responses: Victor, petting, feeding and phone messaging remain in the exact text. Do not substitute a generic animated cat or invent phone/food props."
+    },
+    {
+      "anchor": "watch_24_search_1",
+      "scene": "download-supportive-24-search-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Stay with Alden’s responses: Victor, petting, feeding and phone messaging remain in the exact text. Do not substitute a generic animated cat or invent phone/food props."
+    },
+    {
+      "anchor": "watch_24_suspect_2",
+      "scene": "download-supportive-24-suspect-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Stay with Alden’s responses: Victor, petting, feeding and phone messaging remain in the exact text. Do not substitute a generic animated cat or invent phone/food props."
+    },
+    {
+      "anchor": "watch_24_ending_2",
+      "scene": "download-supportive-24-ending-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Stay with Alden’s responses: Victor, petting, feeding and phone messaging remain in the exact text. Do not substitute a generic animated cat or invent phone/food props."
+    }
+  ],
+  "reactions": [
+    {
+      "anchor": "watch_24_opening_2",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_24_opening_3",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_24_opening_4",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_24_company_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_24_weather_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_24_victor_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_24_victor_3",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_24_victor_5",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_24_cupboard_1",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_24_cupboard_2",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_24_cupboard_3",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_24_remember_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_24_moved_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_24_search_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_24_search_3",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_24_search_4",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_24_suspect_1",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_24_suspect_3",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_24_aunt_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_24_shorts_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_24_message_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_24_phone_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_24_cat_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_24_dinner_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_24_shower_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_24_shower_3",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_24_ending_2",
+      "actor": "Alden",
+      "emotion": "thinking"
+    }
+  ],
+  "watchTitle": "Where Is the Cat Food?"
+}

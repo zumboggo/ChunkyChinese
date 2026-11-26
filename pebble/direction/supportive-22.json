@@ -1,0 +1,455 @@
+{
+  "schema": 1,
+  "episode": "supportive-22",
+  "cover": "Alden-thinking-full",
+  "notes": "Present-day Alden in class. Memories remain internal; no invented ritual hand sign, teacher model, or present-day Hannah.",
+  "cues": [
+    {
+      "anchor": "watch_22_opening_2",
+      "scene": "download-supportive-22-opening-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "classroom",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Present-day Alden in class. Memories remain internal; no invented ritual hand sign, teacher model, or present-day Hannah."
+    },
+    {
+      "anchor": "watch_22_loud_1",
+      "scene": "download-supportive-22-loud-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "classroom",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Present-day Alden in class. Memories remain internal; no invented ritual hand sign, teacher model, or present-day Hannah."
+    },
+    {
+      "anchor": "watch_22_callback_2",
+      "scene": "download-supportive-22-callback-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "classroom",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Present-day Alden in class. Memories remain internal; no invented ritual hand sign, teacher model, or present-day Hannah."
+    },
+    {
+      "anchor": "watch_22_whisper_1",
+      "scene": "download-supportive-22-whisper-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "classroom",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Present-day Alden in class. Memories remain internal; no invented ritual hand sign, teacher model, or present-day Hannah."
+    },
+    {
+      "anchor": "watch_22_task_2",
+      "scene": "download-supportive-22-task-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "classroom",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Present-day Alden in class. Memories remain internal; no invented ritual hand sign, teacher model, or present-day Hannah."
+    },
+    {
+      "anchor": "watch_22_ending_1",
+      "scene": "download-supportive-22-ending-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "classroom",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Present-day Alden in class. Memories remain internal; no invented ritual hand sign, teacher model, or present-day Hannah."
+    }
+  ],
+  "reactions": [
+    {
+      "anchor": "watch_22_opening_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_opening_3",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_22_loud_2",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_memory_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_22_words_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_hands_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_gesture_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_22_blame_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_22_blame_2",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_breath_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_voice_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_callback_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_call_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_days_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_22_luck_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_ten_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_22_ten_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_22_search_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_news_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_22_news_2",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_22_task_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_hannah_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_said_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_did_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_work_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_22_work_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_22_ending_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    }
+  ],
+  "watchTitle": "A Little Luck"
+}

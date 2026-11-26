@@ -1,0 +1,355 @@
+{
+  "id": "supportive-21",
+  "errors": [],
+  "missingArt": [],
+  "missingGlyphs": [],
+  "shots": [
+    {
+      "anchor": "watch_21_opening_2",
+      "scene": "download-supportive-21-opening-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "cafe",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "watch_21_opening_1",
+      "passage": "\u6211\u770b\u4e86\u770b\u91cc\u9762\u7684\u4e1c\u897f\u3002\u4eca\u5929\uff0c\u6211\u5e94\u8be5\u5e26\u4ec0\u4e48\u7ed9\u4ed6\u5462\uff1f"
+    },
+    {
+      "anchor": "watch_21_opening_4",
+      "scene": "download-supportive-21-opening-4",
+      "recipe": {
+        "actor": "boe",
+        "setting": "cafe",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "watch_21_opening_3",
+      "passage": "\u4f60\u4e00\u76f4\u5728\u60f3\u4ed6\u7684\u4e8b\uff0c\u4f1a\u4e0d\u4f1a\u662f\u4e0d\u60f3\u53bb\u60f3\u53e6\u4e00\u4ef6\u4e8b\uff1f"
+    },
+    {
+      "anchor": "watch_21_glass_1",
+      "scene": "download-supportive-21-glass-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "cafe",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "glass",
+      "passage": "\u6211\u4e0d\u518d\u770b\u4ed6\u4eec\u3002\u6211\u7684\u8138\u79bb\u73bb\u7483\u5f88\u8fd1\uff0c\u9762\u524d\u5f88\u5feb\u5c31\u767d\u4e86\u4e00\u5c0f\u5757\u3002"
+    },
+    {
+      "anchor": "watch_21_care_2",
+      "scene": "download-supportive-21-care-2",
+      "recipe": {
+        "actor": "jeremy",
+        "setting": "cafe",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "watch_21_care_1",
+      "passage": "\u7b2c\u4e8c\u5929\u65e9\u4e0a\uff0c\u4f60\u4e00\u8d77\u6765\uff0c\u5c31\u4f1a\u53d1\u73b0\u81ea\u5df1\u5df2\u7ecf\u9519\u8fc7\u4e86\u3002"
+    },
+    {
+      "anchor": "watch_21_silence_1",
+      "scene": "download-supportive-21-silence-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "cafe",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "silence",
+      "passage": "\u6211\u4eec\u8c01\u4e5f\u6ca1\u6709\u8bf4\u8bdd\u3002\u90a3\u4e00\u4f1a\u513f\uff0c\u771f\u7684\u5f88\u96be\u53d7\u3002"
+    },
+    {
+      "anchor": "watch_21_tacos_1",
+      "scene": "download-supportive-21-tacos-1",
+      "recipe": {
+        "actor": "boe",
+        "setting": "cafe",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "tacos",
+      "passage": "\u8fd9\u91cc\u7684\u725b\u820c\u5377\u997c\u5f88\u597d\u5403\u3002\u4e70\u90a3\u4e2a\u5427\u3002"
+    }
+  ],
+  "runtime": {
+    "compatible": true,
+    "changes": []
+  },
+  "wireBytes": 17719,
+  "maxRecordBytes": 1005,
+  "portraitStorage": {
+    "usedBytes": 32092,
+    "unusedBytes": 0,
+    "note": "Stored RLE resource bytes, not runtime heap savings."
+  },
+  "sceneIds": [],
+  "totalScenes": 30,
+  "recipeSchema": 1,
+  "recipeActors": [
+    "alden",
+    "boe",
+    "jeremy"
+  ],
+  "reviewPlaybackSeconds": 28.8,
+  "fullLibraryPlaybackSeconds": 111,
+  "warnings": [],
+  "presentation": {
+    "routes": 16,
+    "animations": {
+      "min": 6,
+      "max": 6
+    },
+    "reactions": {
+      "min": 23,
+      "max": 23
+    }
+  },
+  "version": "dd613631e921",
+  "nodeCount": 78,
+  "elapsedMs": 36,
+  "runtimeVersion": "1.12.0",
+  "runtimePackageSha256": "e4ffd4bf2feb6fbec7265ebf370acedb1283e6c831e234b55b1366c5699865f9",
+  "delivery": "Content JSON for Refresh; not published or installed."
+}

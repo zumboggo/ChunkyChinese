@@ -1,0 +1,448 @@
+{
+  "schema": 1,
+  "episode": "supportive-21",
+  "cover": "Alden-thinking-full",
+  "notes": "Shop counter: reuse restrained counter/window architecture, empty hands; no invented food handling.",
+  "cues": [
+    {
+      "anchor": "watch_21_opening_2",
+      "scene": "download-supportive-21-opening-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "cafe",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Shop counter: reuse restrained counter/window architecture, empty hands; no invented food handling."
+    },
+    {
+      "anchor": "watch_21_opening_4",
+      "scene": "download-supportive-21-opening-4",
+      "recipe": {
+        "actor": "boe",
+        "setting": "cafe",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Shop counter: reuse restrained counter/window architecture, empty hands; no invented food handling."
+    },
+    {
+      "anchor": "watch_21_glass_1",
+      "scene": "download-supportive-21-glass-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "cafe",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Shop counter: reuse restrained counter/window architecture, empty hands; no invented food handling."
+    },
+    {
+      "anchor": "watch_21_care_2",
+      "scene": "download-supportive-21-care-2",
+      "recipe": {
+        "actor": "jeremy",
+        "setting": "cafe",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Shop counter: reuse restrained counter/window architecture, empty hands; no invented food handling."
+    },
+    {
+      "anchor": "watch_21_silence_1",
+      "scene": "download-supportive-21-silence-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "cafe",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Shop counter: reuse restrained counter/window architecture, empty hands; no invented food handling."
+    },
+    {
+      "anchor": "watch_21_tacos_1",
+      "scene": "download-supportive-21-tacos-1",
+      "recipe": {
+        "actor": "boe",
+        "setting": "cafe",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Shop counter: reuse restrained counter/window architecture, empty hands; no invented food handling."
+    }
+  ],
+  "reactions": [
+    {
+      "anchor": "watch_21_opening_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_21_opening_3",
+      "actor": "Boe",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_21_opening_5",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_21_opening_6",
+      "actor": "Boe",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_21_face_1",
+      "actor": "Boe",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_21_meaning_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_21_glance_1",
+      "actor": "Jeremy",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_21_glance_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_21_glass_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_21_reasons_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_21_reasons_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_21_others_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_21_place_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_21_urging_1",
+      "actor": "Jeremy",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_21_urging_2",
+      "actor": "Boe",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_21_care_1",
+      "actor": "Jeremy",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_21_care_3",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_21_missed_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_21_matters_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_21_silence_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_21_doom_1",
+      "actor": "Boe",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_21_picture_1",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_21_friend_1",
+      "actor": "Jeremy",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_21_glare_1",
+      "actor": "Jeremy",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_21_glare_2",
+      "actor": "Boe",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_21_tacos_2",
+      "actor": "Boe",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_21_ending_2",
+      "actor": "Alden",
+      "emotion": "thinking"
+    }
+  ],
+  "watchTitle": "You Will Care"
+}

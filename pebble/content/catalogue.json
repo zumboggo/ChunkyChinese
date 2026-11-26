@@ -54,6 +54,30 @@
       "number": 19,
       "title": "The Word Friend",
       "version": "ee7945fdc3ac"
+    },
+    {
+      "id": "supportive-21",
+      "number": 21,
+      "title": "You Will Care",
+      "version": "dd613631e921"
+    },
+    {
+      "id": "supportive-22",
+      "number": 22,
+      "title": "A Little Luck",
+      "version": "0f9e9eb045d5"
+    },
+    {
+      "id": "supportive-23",
+      "number": 23,
+      "title": "Flattened Bread",
+      "version": "bab87e63e61f"
+    },
+    {
+      "id": "supportive-24",
+      "number": 24,
+      "title": "Where Is the Cat Food?",
+      "version": "899566cb1d26"
     }
   ]
 }

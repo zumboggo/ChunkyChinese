@@ -1,0 +1,82 @@
+[
+  {
+    "id": "supportive-21",
+    "version": "dd613631e921",
+    "routes": 16,
+    "positionsChecked": 2168,
+    "presentation": {
+      "routes": 16,
+      "animations": {
+        "min": 6,
+        "max": 6
+      },
+      "reactions": {
+        "min": 23,
+        "max": 23
+      }
+    },
+    "wireBytes": 17741,
+    "currentRuntime": "1.14.3",
+    "nativeRuntimeUnchanged": true
+  },
+  {
+    "id": "supportive-22",
+    "version": "0f9e9eb045d5",
+    "routes": 16,
+    "positionsChecked": 2208,
+    "presentation": {
+      "routes": 16,
+      "animations": {
+        "min": 6,
+        "max": 6
+      },
+      "reactions": {
+        "min": 23,
+        "max": 23
+      }
+    },
+    "wireBytes": 18471,
+    "currentRuntime": "1.14.3",
+    "nativeRuntimeUnchanged": true
+  },
+  {
+    "id": "supportive-23",
+    "version": "bab87e63e61f",
+    "routes": 16,
+    "positionsChecked": 1792,
+    "presentation": {
+      "routes": 16,
+      "animations": {
+        "min": 6,
+        "max": 6
+      },
+      "reactions": {
+        "min": 25,
+        "max": 25
+      }
+    },
+    "wireBytes": 20522,
+    "currentRuntime": "1.14.3",
+    "nativeRuntimeUnchanged": true
+  },
+  {
+    "id": "supportive-24",
+    "version": "899566cb1d26",
+    "routes": 16,
+    "positionsChecked": 1936,
+    "presentation": {
+      "routes": 16,
+      "animations": {
+        "min": 6,
+        "max": 6
+      },
+      "reactions": {
+        "min": 23,
+        "max": 23
+      }
+    },
+    "wireBytes": 16959,
+    "currentRuntime": "1.14.3",
+    "nativeRuntimeUnchanged": true
+  }
+]

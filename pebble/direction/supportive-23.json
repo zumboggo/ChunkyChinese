@@ -1,0 +1,465 @@
+{
+  "schema": 1,
+  "episode": "supportive-23",
+  "cover": "Alden-thinking-full",
+  "notes": "Alden alone at home; memories do not insert absent adults. Empty-hand contemplation between text beats, not fabricated cooking or cleaning.",
+  "cues": [
+    {
+      "anchor": "watch_23_opening_2",
+      "scene": "download-supportive-23-opening-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Alden alone at home; memories do not insert absent adults. Empty-hand contemplation between text beats, not fabricated cooking or cleaning."
+    },
+    {
+      "anchor": "watch_23_reason_1",
+      "scene": "download-supportive-23-reason-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Alden alone at home; memories do not insert absent adults. Empty-hand contemplation between text beats, not fabricated cooking or cleaning."
+    },
+    {
+      "anchor": "watch_23_vacation_1",
+      "scene": "download-supportive-23-vacation-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Alden alone at home; memories do not insert absent adults. Empty-hand contemplation between text beats, not fabricated cooking or cleaning."
+    },
+    {
+      "anchor": "watch_23_fridge_1",
+      "scene": "download-supportive-23-fridge-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Alden alone at home; memories do not insert absent adults. Empty-hand contemplation between text beats, not fabricated cooking or cleaning."
+    },
+    {
+      "anchor": "watch_23_dinner_2",
+      "scene": "download-supportive-23-dinner-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Alden alone at home; memories do not insert absent adults. Empty-hand contemplation between text beats, not fabricated cooking or cleaning."
+    },
+    {
+      "anchor": "watch_23_ending_2",
+      "scene": "download-supportive-23-ending-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Alden alone at home; memories do not insert absent adults. Empty-hand contemplation between text beats, not fabricated cooking or cleaning."
+    }
+  ],
+  "reactions": [
+    {
+      "anchor": "watch_23_opening_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_23_opening_3",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_23_opening_4",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_23_gone_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_23_food_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_23_protest_1",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_23_reason_2",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_23_reason_3",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_23_money_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_23_age_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_23_future_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_23_future_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_23_memory_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_23_memory_4",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_23_memory_5",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_23_vacation_2",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_23_fridge_2",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_23_bread_1",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_23_bread_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_23_flat_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_23_bag_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_23_anger_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_23_dinner_2",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_23_bills_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_23_shorts_1",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_23_funny_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_23_tired_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_23_ending_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_23_ending_3",
+      "actor": "Alden",
+      "emotion": "worried"
+    }
+  ],
+  "watchTitle": "Flattened Bread"
+}
