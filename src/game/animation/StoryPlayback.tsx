@@ -1,7 +1,7 @@
 import {intertitlePages,usesIntertitles} from './intertitlePages'
 import ComicPanel from './comic/ComicPanel'
 import PixelScene from './pixel/PixelScene'
-import {pixelShots} from './pixel/direction'
+import {pixelShots,scriptFingerprint} from './pixel/direction'
 import OutcomeScorecard from './OutcomeScorecard.tsx'
 import EpisodeAtmosphere from './EpisodeAtmosphere'
 import {useEffect,useMemo,useRef,useState,type ReactNode} from 'react'
@@ -25,6 +25,8 @@ export default function StoryPlayback({pack,directionScript=pack.script,initial,
  const compiled=useMemo(()=>compileStory(pack.script,pack.assets),[pack])
  const shots=useMemo(()=>compiled.story?pixelShots(directionScript,compiled.story):null,[directionScript,compiled])
  const intertitles=usesIntertitles(directionScript,pack.presentation)
+ const showProgress=intertitles&&(pack.presentation?.layout==='intertitles'||scriptFingerprint(directionScript)!=='2e115d44')
+ const readingPositions=useMemo<number[]>(()=>compiled.story?.nodes.flatMap((node:{type:string},index:number)=>['say','act','choice'].includes(node.type)?[index]:[])??[],[compiled])
  const pixelPilot=!!shots
  const reading=pack.presentation?.mode==='reading'
  const animationBeats=useMemo(()=>compiled.story&&reading?animationCursors(compiled.story,pack.presentation!.animationLabels):new Set<number>(),[compiled,reading,pack.presentation])
@@ -240,6 +242,10 @@ export default function StoryPlayback({pack,directionScript=pack.script,initial,
  if(compiled.errors.length||!state)return <div role="alert">{compiled.errors.map(e=><p key={e.line+e.message}>Line {e.line}: {e.message}</p>)}</div>
  if(pocketSession)return <PocketAudioPlayer pack={pack} start={pocketSession.start} options={pocketSession.options} volume={voiceVolume} onSave={p=>onProgress?.(p)} onExit={p=>{setProgress(p);setState(replayStory(compiled.story,p.steps,p.seed));onProgress?.(p);setEncounter(1);pixelGate.current=false;pixelReady.current=false;setPixelActive(false);setTextPage(0);setImageActive(false);setPocketSession(null)}}/>
  const animationScreen=reading&&!pixelPilot&&!state.ended&&(intertitles?imageActive:animationBeats.has(state.cursor))
+ const passageIndex=readingPositions.filter(cursor=>cursor<state.cursor).length
+ const hasReveal=!!pixelShot||(!pixelPilot&&(!pack.presentation?.animationLabels.length||animationBeats.has(state.cursor)))
+ const withinPassage=current.type==='choice'?0:(imageActive||pixelActive?pages.length:pageIndex)/(pages.length+(hasReveal?1:0))
+ const completion=state.ended?100:Math.min(99.9,100*(passageIndex+withinPassage)/Math.max(1,readingPositions.length))
  const navigation=<>{reading&&<button className="reading-previous" aria-label="Previous sentence" onClick={()=>back()} disabled={encounter===1&&!progress.steps.length&&(!intertitles||(!imageActive&&pageIndex===0))}>‹</button>}{(autoPlay||intertitles)&&!imageActive&&<button className="audio-play" aria-label={audioPlaying?"Pause audio":intertitles?"Play passage audio":"Play audio"} title="Play / pause (Space)" onClick={()=>play()}>{audioPlaying?'Pause':<PlayIcon/>}</button>}<button data-next disabled={busy} onClick={()=>void advance(null)}>{busy?'Action playing…':'Continue →'}</button></>
  return <div className={`animated-story story-modern${reading?' story-reading':''}${intertitles?' story-intertitles':''}`} data-reading-screen={reading?(imageActive?'image':pixelActive?'pixel':animationScreen?'animation':'text'):undefined} data-story-step={`${state.cursor}:${encounter}${pixelPilot?pixelActive?':pixel':':text':''}`} ref={root} onClick={event=>{
   if(busy||state.ended||current.type==='choice'||window.getSelection()?.toString())return;
@@ -258,6 +264,7 @@ export default function StoryPlayback({pack,directionScript=pack.script,initial,
   }
   void advance(null);
  }}>
+  {showProgress&&<div className="episode-progress" role="progressbar" aria-label="Episode progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(completion)}><span style={{transform:`scaleX(${completion/100})`}}/></div>}
   {pixelPilot&&!intertitles&&!pixelActive&&!state.ended&&current.type!=='choice'&&<div className="pixel-encounter">Encounter {activeEncounter} of 3</div>}
   <div className="audio-mode-toolbar">
    {(!reading||state.ended||current.type==='choice')&&<button type="button" onClick={()=>back()} disabled={encounter===1&&!progress.steps.length&&(!intertitles||(!imageActive&&pageIndex===0))}>Back</button>}

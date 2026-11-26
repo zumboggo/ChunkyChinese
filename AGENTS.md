@@ -35,3 +35,5 @@ For routine next episodes, use a fresh chat with the compact continuation prompt
 # Chinese text-first presentation (2026-11-26)
 
 Default all newly authored Chinese phone episodes to `presentation: {mode: "reading", layout: "intertitles", animationLabels: [...]}`. Center large Chinese on white with pinyin above and English below, two to three reviewed chunks per text page. Several text pages may precede a separate artwork/animation reveal; hold that reveal until a fresh Next action. Preserve Back/resume at page level and Mandarin-only audio. This supersedes simultaneous comic captions and mandatory three encounters for new episodes; do not retrofit other released episodes or change watch/pocket-reader formats without a request.
+
+Future Chinese phone episodes also show a thin black progress line at the top, tracking text pages and visual reveals, restoring on resume and reaching full width at completion. This is built into the intertitles player; released Super Supportive Episodes 19–27 use it too.
