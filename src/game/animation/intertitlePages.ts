@@ -1,7 +1,14 @@
 import type {ChineseLine,ChinesePackage} from './package'
 import {scriptFingerprint} from './pixel/direction'
 /** Runtime-only presentation: immutable packages and story cursors stay intact. */
-export const usesIntertitles=(script:string,presentation?:ChinesePackage['presentation'])=>presentation?.layout==='intertitles'||scriptFingerprint(script)==='2e115d44'
+const releasedIntertitles=new Set([
+ '2e115d44', // Super Supportive 18
+ '840b2116', // Super Supportive 19: preserve the pixel performances.
+ '8e5f3e54', // Super Supportive 20
+ '343b1c67', // Super Supportive 21
+ '89103a15', // Super Supportive 22
+])
+export const usesIntertitles=(script:string,presentation?:ChinesePackage['presentation'])=>presentation?.layout==='intertitles'||releasedIntertitles.has(scriptFingerprint(script))
 export function intertitlePages(line?:ChineseLine):ChineseLine[]{
  const chunks=line?.interlinear
  if(!chunks?.length)return [line??{}]
