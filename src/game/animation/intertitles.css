@@ -1,5 +1,5 @@
 /* Episode 18 intertitles deliberately use white, including in dark appearance. */
-:root .game-page.game-playing:has(.story-intertitles){--page:#fff;--panel:#f5f5f5;--ink:#262a30;--muted:#686d75;--accent:#535963;--line:#e0e2e5;--action:#292e36;--action-ink:#fff;color-scheme:light;background:#fff}
+:root .game-page.game-playing:has(.story-intertitles),:root[data-theme] .game-page.game-playing:has(.story-reading.story-intertitles){--page:#fff;--panel:#f5f5f5;--ink:#262a30;--muted:#686d75;--accent:#535963;--line:#e0e2e5;--action:#292e36;--action-ink:#fff;color-scheme:light;background:#fff}
 .game-page.game-playing .story-intertitles .story-dialogue{background:#fff;min-height:calc(100svh - 240px)}
 .game-page.game-playing .story-intertitles .story-dialogue>.episode-line{justify-content:center;margin:24px 0;min-height:300px}
 .game-page.game-playing .story-intertitles .episode-line[hidden]{display:none}
