@@ -6,7 +6,7 @@
 - Flashcard keyboard ratings follow Choice A through Choice D in order: Again, Hard, Good, Easy.
 - After implementing user-requested code changes, commit and push to GitHub unless the user explicitly asks not to.
 
-- Every new episode opening teaser includes one cool or epic spoken phrase by Jon or another character that foreshadows the highest-tension moment. Generate ImageGen artwork first, then verify exact video pricing within the $0.15 total clip cap. For Chinese episodes, use Mandarin-only speech for both teasers and lessons; retain written English glosses. Never generate English audio unless David explicitly requests it.
+- Every new episode opening teaser includes one cool or epic spoken phrase by Jon or another character that foreshadows the highest-tension moment. Generate ImageGen artwork first, then verify exact video pricing within the $0.15 total clip cap. For future Chinese phone episodes, include an opening video with English narration/spoken dialogue by default (updated 2026-11-26). Keep the episode itself in Mandarin with interlinear text. This supersedes the older opt-in intro policy; do not retrofit released episodes.
 
 # Episode creation and publication
 
