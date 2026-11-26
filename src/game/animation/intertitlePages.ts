@@ -7,6 +7,11 @@ const releasedIntertitles=new Set([
  '8e5f3e54', // Super Supportive 20
  '343b1c67', // Super Supportive 21
  '89103a15', // Super Supportive 22
+ 'a6ee588f', // Super Supportive 23
+ '37f1c7d2', // Super Supportive 24
+ '731c6982', // Super Supportive 25
+ '921fd06e', // Super Supportive 26
+ 'f1bdf6b0', // Super Supportive 27
 ])
 export const usesIntertitles=(script:string,presentation?:ChinesePackage['presentation'])=>presentation?.layout==='intertitles'||releasedIntertitles.has(scriptFingerprint(script))
 export function intertitlePages(line?:ChineseLine):ChineseLine[]{
