@@ -1,0 +1,288 @@
+{
+  "id": "supportive-28",
+  "errors": [],
+  "missingArt": [],
+  "missingGlyphs": [],
+  "shots": [
+    {
+      "anchor": "watch_28_opening_4",
+      "scene": "download-supportive-28-opening-4",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "watch_28_opening_1",
+      "passage": "一个想法跑进我脑子里。"
+    },
+    {
+      "anchor": "watch_28_doorway_4",
+      "scene": "download-supportive-28-doorway-4",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "watch_28_doorway_2",
+      "passage": "你答应过，不会因为我给你东西吃就生气。"
+    },
+    {
+      "anchor": "watch_28_reasoning_4",
+      "scene": "download-supportive-28-reasoning-4",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "watch_28_reasoning_3",
+      "passage": "等等。也许他不是不想说话，而是不能说话。"
+    },
+    {
+      "anchor": "watch_28_approach_6",
+      "scene": "download-supportive-28-approach-6",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "watch_28_approach_3",
+      "passage": "这些肯定都写在脸上了。"
+    },
+    {
+      "anchor": "watch_28_wait_3",
+      "scene": "download-supportive-28-wait-3",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "watch_28_wait_2",
+      "passage": "看了很久，很久。"
+    }
+  ],
+  "runtime": {
+    "compatible": true,
+    "changes": []
+  },
+  "wireBytes": 20137,
+  "maxRecordBytes": 725,
+  "portraitStorage": {
+    "usedBytes": 32092,
+    "unusedBytes": 0,
+    "note": "Stored RLE resource bytes, not runtime heap savings."
+  },
+  "sceneIds": [],
+  "totalScenes": 42,
+  "recipeSchema": 1,
+  "recipeActors": [
+    "alden"
+  ],
+  "reviewPlaybackSeconds": 24,
+  "fullLibraryPlaybackSeconds": 168.6,
+  "warnings": [],
+  "presentation": {
+    "routes": 16,
+    "animations": {
+      "min": 5,
+      "max": 5
+    },
+    "reactions": {
+      "min": 21,
+      "max": 21
+    }
+  },
+  "version": "736850c3ac29",
+  "nodeCount": 94,
+  "runtimeVersion": "1.14.3",
+  "runtimePackageSha256": "023dc2b9449888bcde62240d9e1766da1c6dd711f579c5bb463423a529667476"
+}

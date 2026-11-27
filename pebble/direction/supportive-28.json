@@ -1,0 +1,356 @@
+{
+  "schema": 1,
+  "episode": "supportive-28",
+  "watchTitle": "Why So Quiet?",
+  "cover": "Alden-thinking-full",
+  "notes": "Quiet nighttime consulate. All five animations are restrained Alden head movements with both arms still, preserving his injured right hand. No invented sink, cup, handoff or blood consumption. Gorgon’s exceptional final eye contact is narrated without substituting an ordinary averted-eye portrait; no unsupported direct-gaze watch animation is claimed.",
+  "cues": [
+    {
+      "anchor": "watch_28_opening_4",
+      "scene": "download-supportive-28-opening-4",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Quiet nighttime consulate. All five animations are restrained Alden head movements with both arms still, preserving his injured right hand. No invented sink, cup, handoff or blood consumption. Gorgon’s exceptional final eye contact is narrated without substituting an ordinary averted-eye portrait; no unsupported direct-gaze watch animation is claimed."
+    },
+    {
+      "anchor": "watch_28_doorway_4",
+      "scene": "download-supportive-28-doorway-4",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Quiet nighttime consulate. All five animations are restrained Alden head movements with both arms still, preserving his injured right hand. No invented sink, cup, handoff or blood consumption. Gorgon’s exceptional final eye contact is narrated without substituting an ordinary averted-eye portrait; no unsupported direct-gaze watch animation is claimed."
+    },
+    {
+      "anchor": "watch_28_reasoning_4",
+      "scene": "download-supportive-28-reasoning-4",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Quiet nighttime consulate. All five animations are restrained Alden head movements with both arms still, preserving his injured right hand. No invented sink, cup, handoff or blood consumption. Gorgon’s exceptional final eye contact is narrated without substituting an ordinary averted-eye portrait; no unsupported direct-gaze watch animation is claimed."
+    },
+    {
+      "anchor": "watch_28_approach_6",
+      "scene": "download-supportive-28-approach-6",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Quiet nighttime consulate. All five animations are restrained Alden head movements with both arms still, preserving his injured right hand. No invented sink, cup, handoff or blood consumption. Gorgon’s exceptional final eye contact is narrated without substituting an ordinary averted-eye portrait; no unsupported direct-gaze watch animation is claimed."
+    },
+    {
+      "anchor": "watch_28_wait_3",
+      "scene": "download-supportive-28-wait-3",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Quiet nighttime consulate. All five animations are restrained Alden head movements with both arms still, preserving his injured right hand. No invented sink, cup, handoff or blood consumption. Gorgon’s exceptional final eye contact is narrated without substituting an ordinary averted-eye portrait; no unsupported direct-gaze watch animation is claimed."
+    }
+  ],
+  "reactions": [
+    {
+      "anchor": "watch_28_opening_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_28_opening_4",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_28_doorway_2",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_28_offer_1",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_28_offer_3",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_28_offer_5",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_28_offer_6",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_28_pattern_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_28_pattern_4",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_28_pattern_7",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_28_reasoning_3",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_28_reasoning_4",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_28_decide_2",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_28_approach_1",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_28_approach_3",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_28_approach_6",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_28_approach_7",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_28_wait_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_28_wait_2",
+      "actor": "Gorgon",
+      "emotion": "thoughtful"
+    },
+    {
+      "anchor": "watch_28_still_3",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_28_eyes_1",
+      "actor": "Alden",
+      "emotion": "surprised"
+    }
+  ]
+}
