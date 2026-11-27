@@ -1,0 +1,375 @@
+{
+  "schema": 1,
+  "episode": "supportive-26",
+  "watchTitle": "Not Cat Food",
+  "cover": "Alden-thinking-full",
+  "notes": "Late-night consulate visit. Gorgon listens and considers Alden’s lonely admission and unusual guest. Use empty-hand consulate performances with no passersby. Victor, the bindings, shoe removal and elevator remain in the exact text; no unsupported cat or walking animation.",
+  "cues": [
+    {
+      "anchor": "watch_26_answer_2",
+      "scene": "download-supportive-26-answer-2",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Late-night consulate visit. Gorgon listens and considers Alden’s lonely admission and unusual guest. Use empty-hand consulate performances with no passersby. Victor, the bindings, shoe removal and elevator remain in the exact text; no unsupported cat or walking animation."
+    },
+    {
+      "anchor": "watch_26_admit_2",
+      "scene": "download-supportive-26-admit-2",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Late-night consulate visit. Gorgon listens and considers Alden’s lonely admission and unusual guest. Use empty-hand consulate performances with no passersby. Victor, the bindings, shoe removal and elevator remain in the exact text; no unsupported cat or walking animation."
+    },
+    {
+      "anchor": "watch_26_exciting_1",
+      "scene": "download-supportive-26-exciting-1",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Late-night consulate visit. Gorgon listens and considers Alden’s lonely admission and unusual guest. Use empty-hand consulate performances with no passersby. Victor, the bindings, shoe removal and elevator remain in the exact text; no unsupported cat or walking animation."
+    },
+    {
+      "anchor": "watch_26_rage_5",
+      "scene": "download-supportive-26-rage-5",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Late-night consulate visit. Gorgon listens and considers Alden’s lonely admission and unusual guest. Use empty-hand consulate performances with no passersby. Victor, the bindings, shoe removal and elevator remain in the exact text; no unsupported cat or walking animation."
+    },
+    {
+      "anchor": "watch_26_bindings_2",
+      "scene": "download-supportive-26-bindings-2",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Late-night consulate visit. Gorgon listens and considers Alden’s lonely admission and unusual guest. Use empty-hand consulate performances with no passersby. Victor, the bindings, shoe removal and elevator remain in the exact text; no unsupported cat or walking animation."
+    }
+  ],
+  "reactions": [
+    {
+      "anchor": "watch_26_opening_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_26_opening_4",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_26_answer_2",
+      "actor": "Gorgon",
+      "emotion": "attentive"
+    },
+    {
+      "anchor": "watch_26_closed_1",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_26_plead_1",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_26_family_1",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_26_alone_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_26_admit_2",
+      "actor": "Gorgon",
+      "emotion": "thoughtful"
+    },
+    {
+      "anchor": "watch_26_enter_2",
+      "actor": "Alden",
+      "emotion": "laughing"
+    },
+    {
+      "anchor": "watch_26_enter_4",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_26_exciting_2",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_26_exciting_3",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_26_notcat_2",
+      "actor": "Gorgon",
+      "emotion": "skeptical"
+    },
+    {
+      "anchor": "watch_26_notcat_3",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_26_rage_1",
+      "actor": "Gorgon",
+      "emotion": "attentive"
+    },
+    {
+      "anchor": "watch_26_rage_2",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_26_rage_5",
+      "actor": "Gorgon",
+      "emotion": "amused"
+    },
+    {
+      "anchor": "watch_26_chores_1",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_26_chores_2",
+      "actor": "Gorgon",
+      "emotion": "thoughtful"
+    },
+    {
+      "anchor": "watch_26_bindings_2",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_26_invitation_1",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_26_invitation_3",
+      "actor": "Alden",
+      "emotion": "laughing"
+    }
+  ]
+}

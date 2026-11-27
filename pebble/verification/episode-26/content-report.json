@@ -1,0 +1,302 @@
+{
+  "id": "supportive-26",
+  "errors": [],
+  "missingArt": [],
+  "missingGlyphs": [],
+  "shots": [
+    {
+      "anchor": "watch_26_answer_2",
+      "scene": "download-supportive-26-answer-2",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "answer",
+      "passage": "我在电脑上看见你了。"
+    },
+    {
+      "anchor": "watch_26_admit_2",
+      "scene": "download-supportive-26-admit-2",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "admit",
+      "passage": "这是我这几个月听过最让人伤心的话。好吧，进来。"
+    },
+    {
+      "anchor": "watch_26_exciting_1",
+      "scene": "download-supportive-26-exciting-1",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "exciting",
+      "passage": "先说清楚。你说的这个晚上的活动，不会是这里最好玩的事。"
+    },
+    {
+      "anchor": "watch_26_rage_5",
+      "scene": "download-supportive-26-rage-5",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "watch_26_rage_2",
+      "passage": "他看猫，好像觉得很有意思。"
+    },
+    {
+      "anchor": "watch_26_bindings_2",
+      "scene": "download-supportive-26-bindings-2",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "bindings",
+      "passage": "可是，活的东西不能穿过我的束缚。人多的时候，我走开会让人摔倒。"
+    }
+  ],
+  "runtime": {
+    "compatible": true,
+    "changes": []
+  },
+  "wireBytes": 22489,
+  "maxRecordBytes": 921,
+  "portraitStorage": {
+    "usedBytes": 32092,
+    "unusedBytes": 0,
+    "note": "Stored RLE resource bytes, not runtime heap savings."
+  },
+  "sceneIds": [],
+  "totalScenes": 42,
+  "recipeSchema": 1,
+  "recipeActors": [
+    "gorgon"
+  ],
+  "reviewPlaybackSeconds": 24,
+  "fullLibraryPlaybackSeconds": 168.6,
+  "warnings": [],
+  "presentation": {
+    "routes": 16,
+    "animations": {
+      "min": 5,
+      "max": 5
+    },
+    "reactions": {
+      "min": 22,
+      "max": 22
+    }
+  },
+  "version": "731a29f883c4",
+  "nodeCount": 91,
+  "runtimeVersion": "1.14.3",
+  "runtimePackageSha256": "023dc2b9449888bcde62240d9e1766da1c6dd711f579c5bb463423a529667476"
+}
