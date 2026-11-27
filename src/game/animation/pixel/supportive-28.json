@@ -1,0 +1,714 @@
+{
+  "episode": 28,
+  "scriptFingerprint": "3b227c1f",
+  "shots": [
+    {
+      "anchor": "opening",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-1",
+        "panel": 0,
+        "alt": "Alden enters the bathroom supporting his injured right hand.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-1",
+        "panel": 1,
+        "alt": "His left hand rests beneath the scratched right hand.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-1",
+        "panel": 2,
+        "alt": "Alden stops before turning on the tap.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-1",
+        "panel": 2,
+        "alt": "Alden stops before turning on the tap.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "opening",
+      "offset": 4,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-1",
+        "panel": 3,
+        "alt": "An awkward possibility occurs to Alden.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "now",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-1",
+        "panel": 3,
+        "alt": "An awkward possibility occurs to Alden.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "now",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-1",
+        "panel": 3,
+        "alt": "An awkward possibility occurs to Alden.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "later",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-1",
+        "panel": 4,
+        "alt": "He turns back toward the doorway.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "doorway",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-1",
+        "panel": 5,
+        "alt": "Alden nudges the bathroom door with his elbow.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "doorway",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 0,
+        "alt": "Alden calls hesitantly from the doorway.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "doorway",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 0,
+        "alt": "Alden calls hesitantly from the doorway.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "doorway",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 0,
+        "alt": "Alden calls hesitantly from the doorway.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "offer",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 1,
+        "alt": "He makes an awkward offer and worries how it sounded.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "offer",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 1,
+        "alt": "He makes an awkward offer and worries how it sounded.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "offer",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 1,
+        "alt": "He makes an awkward offer and worries how it sounded.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "offer",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 1,
+        "alt": "He makes an awkward offer and worries how it sounded.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "offer",
+      "offset": 4,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 2,
+        "alt": "Gorgon’s laughter stops; his eyes stay lowered.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "offer",
+      "offset": 5,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 3,
+        "alt": "Alden listens from around the corner.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "words",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 4,
+        "alt": "Alden thinks through the earlier food rules.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "answer",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 5,
+        "alt": "A quiet hallway separates Alden from Gorgon.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "pattern",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 4,
+        "alt": "Alden thinks through the earlier food rules.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "pattern",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 4,
+        "alt": "Alden thinks through the earlier food rules.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "pattern",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 4,
+        "alt": "Alden thinks through the earlier food rules.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "pattern",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 4,
+        "alt": "Alden thinks through the earlier food rules.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "pattern",
+      "offset": 4,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 4,
+        "alt": "Alden thinks through the earlier food rules.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "pattern",
+      "offset": 5,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 4,
+        "alt": "Alden thinks through the earlier food rules.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "pattern",
+      "offset": 6,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 5,
+        "alt": "A quiet hallway separates Alden from Gorgon.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "pattern",
+      "offset": 7,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 3,
+        "alt": "Alden listens from around the corner.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "reasoning",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 4,
+        "alt": "Alden thinks through the earlier food rules.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "reasoning",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 4,
+        "alt": "Alden thinks through the earlier food rules.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "reasoning",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 4,
+        "alt": "Alden thinks through the earlier food rules.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "reasoning",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-2",
+        "panel": 4,
+        "alt": "Alden thinks through the earlier food rules.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "reasoning",
+      "offset": 4,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-3",
+        "panel": 0,
+        "alt": "Alden considers showing the actual injured hand.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "reasoning",
+      "offset": 5,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-3",
+        "panel": 0,
+        "alt": "Alden considers showing the actual injured hand.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "rule",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-3",
+        "panel": 0,
+        "alt": "Alden considers showing the actual injured hand.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "rule",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-3",
+        "panel": 0,
+        "alt": "Alden considers showing the actual injured hand.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "distance",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-3",
+        "panel": 0,
+        "alt": "Alden considers showing the actual injured hand.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "decide",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-3",
+        "panel": 1,
+        "alt": "He leaves the doorway to approach Gorgon.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "decide",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-3",
+        "panel": 1,
+        "alt": "He leaves the doorway to approach Gorgon.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "approach",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-3",
+        "panel": 2,
+        "alt": "Gorgon huddles in his chair around the bag of corn chips.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "approach",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-3",
+        "panel": 3,
+        "alt": "Gorgon’s clawed toes grip the chair cushion.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "approach",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-3",
+        "panel": 3,
+        "alt": "Gorgon’s clawed toes grip the chair cushion.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "approach",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-3",
+        "panel": 4,
+        "alt": "Alden approaches, trying to look casual.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "approach",
+      "offset": 4,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-3",
+        "panel": 4,
+        "alt": "Alden approaches, trying to look casual.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "approach",
+      "offset": 5,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-3",
+        "panel": 4,
+        "alt": "Alden approaches, trying to look casual.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "approach",
+      "offset": 6,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-3",
+        "panel": 5,
+        "alt": "Alden holds out his right hand while Gorgon looks down.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "approach",
+      "offset": 7,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-3",
+        "panel": 5,
+        "alt": "Alden holds out his right hand while Gorgon looks down.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "wait",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-4",
+        "panel": 0,
+        "alt": "The offer hangs between the two of them.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "wait",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-4",
+        "panel": 1,
+        "alt": "Gorgon keeps looking down in unreadable silence.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "wait",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-4",
+        "panel": 1,
+        "alt": "Gorgon keeps looking down in unreadable silence.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "face",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-4",
+        "panel": 1,
+        "alt": "Gorgon keeps looking down in unreadable silence.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "hand",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-4",
+        "panel": 0,
+        "alt": "The offer hangs between the two of them.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "still",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-4",
+        "panel": 2,
+        "alt": "A small drop of blood lands on the plastic chip bag.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "still",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-4",
+        "panel": 2,
+        "alt": "A small drop of blood lands on the plastic chip bag.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "still",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-4",
+        "panel": 3,
+        "alt": "Alden hears his heartbeat as he waits.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "still",
+      "offset": 3,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-4",
+        "panel": 3,
+        "alt": "Alden hears his heartbeat as he waits.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "eyes",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-4",
+        "panel": 4,
+        "alt": "Gorgon begins to raise his head.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "eyes",
+      "offset": 1,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-4",
+        "panel": 4,
+        "alt": "Gorgon begins to raise his head.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "eyes",
+      "offset": 2,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-28-4",
+        "panel": 5,
+        "alt": "For the first time, Gorgon and Alden meet each other’s eyes.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'episode-9c968521720d'
+const CACHE_VERSION = 'episode-cfed8e8763aa'
 const BUILD_ASSETS = []
 const EPISODE_OFFLINE_CACHE = 'chunky-episode-downloads-v1'
 const COURSE_OFFLINE_CACHE = 'chunky-listening-course-v1'

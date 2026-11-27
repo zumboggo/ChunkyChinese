@@ -1,0 +1,220 @@
+{
+  "id": "supportive-28",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 28 · 你为什么不说话",
+  "description": "An awkward offer, an unreadable silence, and the first time Gorgon meets Alden’s eyes. Pixel art × cinematic × Bauhaus geometry.",
+  "presentation": {
+    "mode": "reading",
+    "layout": "intertitles",
+    "animationLabels": [
+      "opening"
+    ]
+  },
+  "audioLanguage": "mandarin-only",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca, Chapter 9",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-provided EPUB: Alden pauses before washing through first direct eye contact. Ends before the experience that follows."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "He cupped his other hand beneath the bitten one → before Alden had misunderstood something.",
+    "dramaticChange": "Alden moves from joking self-consciousness to an earnest offer; Gorgon breaks his habitual avoidance and meets his eyes.",
+    "essentialNewWords": [
+      "流血",
+      "研究",
+      "心跳"
+    ],
+    "englishNarrationPurpose": "",
+    "choicesAndCallbacks": [
+      {
+        "id": "idea",
+        "purpose": "Weigh timing now versus a planned later offer",
+        "laterPayoff": "Distinct immediate private thought only; canonical silence and events unchanged."
+      },
+      {
+        "id": "quiet",
+        "purpose": "Reflect on awkward wording versus listen for an answer",
+        "laterPayoff": "Distinct immediate private thought only; canonical silence and events unchanged."
+      },
+      {
+        "id": "reason",
+        "purpose": "Recall the rules versus notice the doorway",
+        "laterPayoff": "Distinct immediate private thought only; canonical silence and events unchanged."
+      },
+      {
+        "id": "waiting",
+        "purpose": "Watch for speech versus consider the offered hand",
+        "laterPayoff": "Distinct immediate private thought only; canonical silence and events unchanged."
+      }
+    ],
+    "sceneActivities": [
+      {
+        "activity": "Support injured right hand, pause at faucet, elbow door, approach and offer hand",
+        "purpose": "A tentative idea becomes an exposed act of trust.",
+        "rendering": "Sequential comic panels; watch uses head reactions without wounded-hand gesture."
+      }
+    ],
+    "storytellingVoice": "Intimate character drama: care under awkwardness, then silence and an exceptional reciprocal gaze.",
+    "desire": "Find something Gorgon can eat and help his friend.",
+    "obstacle": "The restrictions make his silence impossible for Alden to interpret.",
+    "earlyCare": "Alden interrupts tending his own injured hand to consider his friend.",
+    "payoff": "He makes the concrete offer and receives a response: Gorgon meets his eyes for the first time.",
+    "continuingQuestion": "What does that direct gaze mean?",
+    "direction": "The consequential line is the blood offer; Gorgon’s laughter stops offscreen. Hold the uncertain listener aftermath; first direct gaze is the last comic panel only.",
+    "artDirection": {
+      "seed": 1236889988,
+      "medium": "pixel art",
+      "treatment": "cinematic",
+      "influence": "Bauhaus geometry",
+      "weights": {
+        "comicProbability": 0.6666666666666666,
+        "eligibleMedia": [
+          "watercolour",
+          "woodcut",
+          "ballpoint pen",
+          "acrylic paint",
+          "clay models",
+          "ink",
+          "pixel art"
+        ],
+        "otherAxes": "uniform among eligible; exclude recent exact treatments/influences"
+      },
+      "history": [
+        {
+          "medium": null,
+          "treatment": null,
+          "influence": null
+        },
+        {
+          "medium": null,
+          "treatment": null,
+          "influence": null
+        },
+        {
+          "medium": "crayon",
+          "treatment": "shonen dynamic staging",
+          "influence": "Chinese paper-cutting"
+        },
+        {
+          "medium": "feltboard",
+          "treatment": "American comics",
+          "influence": "Art Nouveau"
+        },
+        {
+          "medium": "oil painting",
+          "treatment": "storybook",
+          "influence": "Mexican relief printmaking"
+        }
+      ],
+      "palette": [
+        "slate blue",
+        "warm cream",
+        "muted amber",
+        "restrained crimson"
+      ],
+      "identity": "Alden tousled brown hair charcoal hoodie gray shirt; Gorgon gray skin swept horn collar four vertical nose slits black averted eyes golden bindings. Right hand injured, left hand supports beneath. Final eye contact is exceptional, only last panel.",
+      "reference": [
+        "stories/characters/super-supportive/alden-approved-a.png",
+        "stories/characters/super-supportive/gorgon-seated-v1.png"
+      ]
+    },
+    "vocabularyAudit": {
+      "reviewedKnown": 804,
+      "supplement": "stories/authoring/moonlight-familiar-words.json",
+      "supplementVersion": 3,
+      "effectiveFamiliar": 1063
+    },
+    "audioPaging": "Every newly recorded passage is exactly one reviewed intertitle page (two or three chunks), avoiding full-passage audio ahead of smaller pages."
+  },
+  "continuation": {
+    "end": "Alden pauses before washing his cat-bitten right hand, proposes his blood and interprets Gorgon’s silence through earlier food rules. He approaches and offers his hand; blood falls on the chip bag. Gorgon finally meets his eyes. No blood consumed, supernatural experience, collapse or new powers yet.",
+    "nextStart": "Alden had misunderstood something.",
+    "nextEndBefore": "“Well, did you taste some of my blood at least?”",
+    "note": "The overwhelming gaze and waking before dawn, then Alden’s tentative question about divinity and Gorgon’s inability to explain. Stop before resuming the blood offer."
+  },
+  "routes": [
+    {
+      "choices": [
+        "now",
+        "words",
+        "rule",
+        "face"
+      ],
+      "contains": [
+        "你……想不想要一点我的血？"
+      ],
+      "endsWith": "第一次，他看我的眼睛。"
+    },
+    {
+      "choices": [
+        "later",
+        "answer",
+        "distance",
+        "hand"
+      ],
+      "contains": [
+        "血落到那只塑料袋上。"
+      ],
+      "endsWith": "第一次，他看我的眼睛。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-28-v1",
+    "category": "super-supportive",
+    "episode": 28,
+    "pebble": false,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-28.mp4",
+      "poster": "stories/animated/cutscenes/supportive-28.poster.jpg",
+      "title": "Why won’t you answer me?",
+      "durationSeconds": 7
+    }
+  },
+  "teaser": {
+    "scene": "Alden calls into Gorgon’s silence before approaching.",
+    "style": "Pixel art, cinematic framing, Bauhaus geometry",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "zz7c7k7v3srmt0d23bh9xtvxk8",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "generatedSeconds": 6,
+    "deliveredSeconds": 7,
+    "finish": "First complete line ends at 2.12 seconds; retain motion to 2.8, audio to 2.7, then hold closed-mouth response. No paid retry.",
+    "image": "stories/characters/super-supportive/supportive-28-opening.png",
+    "checks": {
+      "sha256": "ba45e30fe515b26b5501ec5d9ed138c2cb7de9ad14891af709882a95056381a3",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 7,
+      "hold_seconds": 3,
+      "motion_seconds": 2.7916666666666665,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "Why won't you answer me?"
+    }
+  },
+  "verification": {
+    "packageBytes": 3408908,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 95.56840077071291,
+      "max": 95.85687382297552
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "你……想不想要一点我的血？",
+      "外面的笑声停了。",
+      "第一次，他看我的眼睛。"
+    ],
+    "totalMediaBytes": 4979050,
+    "comicPanels": 24,
+    "pageAlignedRecordings": 67
+  }
+}

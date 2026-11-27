@@ -4,7 +4,7 @@ import {compileStory} from '../shared/engine/story-engine.js'
 import {pixelShots} from '../pixel/direction'
 import sheets from './sheets.json'
 
-it.each([[18,39,18],[20,36,18],[21,36,18],[22,36,18],[23,41,17],[24,35,17],[25,29,18],[26,55,24],[27,51,24]])('covers episode %i passages and branches with reviewed embedded panels',(episode,count,panelCount)=>{
+it.each([[18,39,18],[20,36,18],[21,36,18],[22,36,18],[23,41,17],[24,35,17],[25,29,18],[26,55,24],[27,51,24],[28,59,24]])('covers episode %i passages and branches with reviewed embedded panels',(episode,count,panelCount)=>{
  const pack=JSON.parse(readFileSync(`stories/animated/supportive-${episode}.json`,'utf8'))
  const story=compileStory(pack.script,pack.assets).story
  const shots=pixelShots(pack.script,story)!

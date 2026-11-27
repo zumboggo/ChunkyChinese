@@ -1,3 +1,4 @@
+import {intertitlePages,usesIntertitles} from '../src/game/animation/intertitlePages'
 import {chooseEpisodeOption,continueEpisode,reviewEpisodeLine} from './helpers/episode-controls'
 import {test,expect} from '@playwright/test'
 import {readFileSync} from 'node:fs'
@@ -15,6 +16,7 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
  test.skip(retryTargets.length>0&&!retryTargets.some(t=>t.title===info.title&&t.project===info.project.name),'Outside diagnostic retry')
  const pack=JSON.parse(readFileSync(fixture.packagePath,'utf8')) as ChinesePackage
  const directedShots=pixelShots(pack.script,compileStory(pack.script,pack.assets).story)
+ const intertitles=usesIntertitles(pack.script,pack.presentation)
  const pixelPilot=!!directedShots
  const comicPilot=!!directedShots&&[...directedShots.values()].every(s=>s.comic)
  await page.goto('/');await page.getByRole('button',{name:'Game',exact:true}).click()
@@ -53,7 +55,9 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
    await page.mouse.move(0,0)
    await page.screenshot({path:info.outputPath(`choice-${i}.png`),fullPage:true});if(pack.outcomeScorecard){await expect(page.locator('.outcome-scorecard')).toHaveCount(0);await page.keyboard.press(String(optionIndex+1))}else await chooseEpisodeOption(page,optionIndex)
   }else{
-   await expect.poll(currentText).toBe(beat.text)
+   const pages=intertitlePages(pack.chinese?.lines[beat.text])
+   const firstText=intertitles?pages[0].interlinear?.map(c=>c.chinese).join('')??beat.text:beat.text
+   await expect.poll(currentText).toBe(firstText)
    if(pack.presentation?.mode==='reading'){
     const compiled=compileStory(pack.script,pack.assets).story
     const cursor=replayStory(compiled,route.beats.slice(0,i).map(b=>b.type==='choice'?b.option!:null),1).cursor
@@ -63,14 +67,14 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
     expect(await page.locator('.story-dialogue').evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true)
     expect(await page.locator('.episode-interlinear strong').first().evaluate(e=>parseFloat(getComputedStyle(e).fontSize))).toBeGreaterThanOrEqual(animated?22:26)
    }
-   if(fixture.review?.lines.includes(beat.text))await reviewEpisodeLine(page,beat.text,info.outputPath(`directed-${i}.png`))
+   if(fixture.review?.lines.includes(beat.text))await reviewEpisodeLine(page,firstText,info.outputPath(`directed-${i}.png`))
    if(!heard&&pack.chinese?.lines[beat.text]?.audio){
     await page.locator('.episode-settings > summary').click()
     for(const name of ['Pinyin','English text']){const checkbox=page.getByRole('checkbox',{name,exact:true});await checkbox.uncheck();await expect(page.locator(name==='Pinyin'?'.reader-interlinear-pinyin':'.reader-interlinear-gloss')).toHaveCount(0);await checkbox.check();await expect(checkbox).toBeChecked()}
     await page.locator('.episode-settings > summary').click()
     const src=pack.chinese.lines[beat.text].audio!
     expect(await page.evaluate(async src=>{const ctx=new AudioContext();try{return (await ctx.decodeAudioData(await (await fetch(src)).arrayBuffer())).duration}finally{await ctx.close()}},src)).toBeGreaterThan(0)
-    await reviewEpisodeLine(page,beat.text,info.outputPath('reading.png'));heard=true
+    await reviewEpisodeLine(page,firstText,info.outputPath('reading.png'));heard=true
    }
    if(!resumed&&i>=Math.floor(route.beats.length/2)){
     // Wait for the asynchronous IndexedDB save before simulating a hard reload.
@@ -80,9 +84,28 @@ for(const [index,route] of fixture.routes.entries())test(`authoring route ${inde
      request.onsuccess=()=>{const db=request.result,read=db.transaction('records').objectStore('records').getAll();read.onerror=()=>{db.close();no(read.error)};read.onsuccess=()=>{const saved=read.result.some(v=>Array.isArray(v?.steps)&&v.steps.length===step);db.close();ok(saved)}}
     }),i)).toBe(true)
     await page.reload();await page.getByRole('button',{name:'Game',exact:true}).click();await open()
-    await expect.poll(currentText).toBe(beat.text);resumed=true
+    await expect.poll(currentText).toBe(firstText);resumed=true
    }
    if(i===route.beats.length-1)await page.screenshot({path:info.outputPath('ending.png'),fullPage:true})
+   if(intertitles){
+    for(let p=0;p<pages.length;p++){
+     await expect.poll(currentText).toBe(pages[p].interlinear?.map(c=>c.chinese).join('')??beat.text)
+     const chunks=page.locator('.episode-line .reader-interlinear-chunk')
+     expect(await chunks.count()).toBeLessThanOrEqual(3)
+     await expect(page.locator('.comic-panel,.pixel-scene')).toHaveCount(0)
+     await continueEpisode(page)
+    }
+    await expect(page.locator('.animated-story')).toHaveAttribute('data-reading-screen',comicPilot?'image':'pixel')
+    await expect(page.locator(comicPilot?'.comic-panel':'.pixel-scene')).toBeVisible()
+    await expect(page.locator('.episode-line')).not.toBeVisible()
+    if(fixture.review?.lines.includes(beat.text))await page.screenshot({path:info.outputPath(`reveal-${i}.png`),fullPage:true})
+    await page.keyboard.press('ArrowLeft')
+    await expect.poll(currentText).toBe(pages.at(-1)?.interlinear?.map(c=>c.chinese).join('')??beat.text)
+    await continueEpisode(page)
+    await expect(page.locator('.animated-story')).toHaveAttribute('data-reading-screen',comicPilot?'image':'pixel')
+    await continueEpisode(page)
+    continue
+   }
    if(comicPilot)await expect(page.locator('.comic-panel')).toBeVisible()
    // A changing text height can leave the pointer on the hover-transform edge.
    await continueEpisode(page)

@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test'
 import {readFileSync} from 'node:fs'
 
 test.use({reducedMotion:'reduce'})
-for(const episode of [19,20,21,22,23,24,25,26,27])test(`episode ${episode} short pages, original reveal, saved resume and complete route`,async({page},info)=>{
+for(const episode of [19,20,21,22,23,24,25,26,27,28])test(`episode ${episode} short pages, original reveal, saved resume and complete route`,async({page},info)=>{
  test.setTimeout(120000)
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message))
  const pack=JSON.parse(readFileSync(`public/stories/animated/supportive-${episode}.json`,'utf8'))

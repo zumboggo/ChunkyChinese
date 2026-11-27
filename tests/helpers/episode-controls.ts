@@ -10,13 +10,14 @@ export async function chooseEpisodeOption(page:Page,index:number){
 export const episodeText=(page:Page)=>page.locator('.episode-line strong').allTextContents().then(parts=>parts.join(''))
 /** Wait on observable content, not arbitrary delays after a click. */
 export async function continueEpisode(page:Page){
- const before=await page.locator('.animated-story').getAttribute('data-story-step')
+ const position=()=>page.locator('.animated-story').evaluate(e=>[e.getAttribute('data-story-step'),e.getAttribute('data-reading-screen'),e.querySelector('.episode-line')?.textContent].join('|'))
+ const before=await position()
  await page.mouse.move(0,0)
  const next=page.getByRole('button',{name:'Continue →',exact:true})
  await expect(next).toBeEnabled()
  await next.focus()
  await next.press('Enter')
- await expect.poll(async()=>await page.locator('.animated-story').getAttribute('data-story-step')!==before||await page.getByRole('heading',{name:'Scene complete',exact:true}).isVisible()).toBe(true)
+ await expect.poll(async()=>await position()!==before||await page.getByRole('heading',{name:'Scene complete',exact:true}).isVisible()).toBe(true)
 }
 export async function reviewEpisodeLine(page:Page,text:string,screenshot:string){
  await expect.poll(()=>episodeText(page)).toBe(text)
@@ -24,14 +25,14 @@ export async function reviewEpisodeLine(page:Page,text:string,screenshot:string)
  // Autoplay may begin after the line appears; settle it before starting review.
  await expect(async()=>{
   if(await pause.isVisible()){await pause.focus();await pause.press('Enter')}
-  await expect(page.getByRole('button',{name:'Play audio',exact:true})).toBeVisible({timeout:1000})
+  await expect(page.getByRole('button',{name:/^Play (?:passage )?audio$/})).toBeVisible({timeout:1000})
  }).toPass({timeout:10000})
  // Autoplay is scheduled on the next frame. If it starts between the Play
  // lookup and activation, that activation pauses it; request playback again
  // and still require an observed playing state before capturing the review.
  await expect(async()=>{
   if(await pause.isVisible())return
-  const play=page.getByRole('button',{name:'Play audio',exact:true})
+  const play=page.getByRole('button',{name:/^Play (?:passage )?audio$/})
   await play.focus();await play.press('Enter')
   await expect(pause).toBeVisible({timeout:1500})
  }).toPass({timeout:10000,intervals:[200,500]})
