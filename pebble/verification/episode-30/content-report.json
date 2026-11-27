@@ -1,0 +1,291 @@
+{
+  "id": "supportive-30",
+  "errors": [],
+  "missingArt": [],
+  "missingGlyphs": [],
+  "shots": [
+    {
+      "anchor": "watch_30_8",
+      "scene": "download-supportive-30-8",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "beat_08",
+      "passage": "孩子，你不知道自己在做什么。"
+    },
+    {
+      "anchor": "watch_30_13",
+      "scene": "download-supportive-30-13",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "beat_13",
+      "passage": "我们是朋友。不是吗？"
+    },
+    {
+      "anchor": "watch_30_24",
+      "scene": "download-supportive-30-24",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "beat_24",
+      "passage": "不过，我喜欢你，也希望你好。"
+    },
+    {
+      "anchor": "watch_30_33",
+      "scene": "download-supportive-30-33",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "beat_33",
+      "passage": "我想了想。最后，还是因为我相信他。"
+    },
+    {
+      "anchor": "watch_30_45",
+      "scene": "download-supportive-30-45",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "beat_45",
+      "passage": "他到底是什么，我不知道，可我觉得他是想让人好的。"
+    }
+  ],
+  "runtime": {
+    "compatible": true,
+    "changes": []
+  },
+  "wireBytes": 17321,
+  "maxRecordBytes": 733,
+  "portraitStorage": {
+    "usedBytes": 32092,
+    "unusedBytes": 0,
+    "note": "Stored RLE resource bytes, not runtime heap savings."
+  },
+  "sceneIds": [],
+  "totalScenes": 42,
+  "recipeSchema": 1,
+  "recipeActors": [
+    "gorgon",
+    "alden"
+  ],
+  "reviewPlaybackSeconds": 24,
+  "fullLibraryPlaybackSeconds": 168.6,
+  "warnings": [],
+  "presentation": {
+    "routes": 16,
+    "animations": {
+      "min": 5,
+      "max": 5
+    },
+    "reactions": {
+      "min": 23,
+      "max": 23
+    }
+  },
+  "version": "1dafab6c7fe2",
+  "nodeCount": 85,
+  "elapsedMs": 23,
+  "runtimeVersion": "1.14.3",
+  "runtimePackageSha256": "023dc2b9449888bcde62240d9e1766da1c6dd711f579c5bb463423a529667476",
+  "delivery": "Content JSON for Refresh; not published or installed."
+}

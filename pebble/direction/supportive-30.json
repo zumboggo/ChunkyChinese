@@ -1,0 +1,366 @@
+{
+  "schema": 1,
+  "episode": "supportive-30",
+  "watchTitle": "Aren't We Friends?",
+  "cover": "Alden-thinking-full",
+  "notes": "Five restrained head-only performances during the conversation. Injured right arm stays still; Gorgon keeps his eyes averted. No literal vampire, crime scene, renewed permission or blood consumption. Existing verified v1.14.3 assets only.",
+  "cues": [
+    {
+      "anchor": "watch_30_8",
+      "scene": "download-supportive-30-8",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Five restrained head-only performances during the conversation. Injured right arm stays still; Gorgon keeps his eyes averted. No literal vampire, crime scene, renewed permission or blood consumption. Existing verified v1.14.3 assets only."
+    },
+    {
+      "anchor": "watch_30_13",
+      "scene": "download-supportive-30-13",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Five restrained head-only performances during the conversation. Injured right arm stays still; Gorgon keeps his eyes averted. No literal vampire, crime scene, renewed permission or blood consumption. Existing verified v1.14.3 assets only."
+    },
+    {
+      "anchor": "watch_30_24",
+      "scene": "download-supportive-30-24",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Five restrained head-only performances during the conversation. Injured right arm stays still; Gorgon keeps his eyes averted. No literal vampire, crime scene, renewed permission or blood consumption. Existing verified v1.14.3 assets only."
+    },
+    {
+      "anchor": "watch_30_33",
+      "scene": "download-supportive-30-33",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Five restrained head-only performances during the conversation. Injured right arm stays still; Gorgon keeps his eyes averted. No literal vampire, crime scene, renewed permission or blood consumption. Existing verified v1.14.3 assets only."
+    },
+    {
+      "anchor": "watch_30_45",
+      "scene": "download-supportive-30-45",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Five restrained head-only performances during the conversation. Injured right arm stays still; Gorgon keeps his eyes averted. No literal vampire, crime scene, renewed permission or blood consumption. Existing verified v1.14.3 assets only."
+    }
+  ],
+  "reactions": [
+    {
+      "anchor": "watch_30_0",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_30_3",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_30_4",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_30_7",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_30_8",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_30_10",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_30_13",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_30_15",
+      "actor": "Gorgon",
+      "emotion": "thoughtful"
+    },
+    {
+      "anchor": "watch_30_17",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_30_20",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_30_21",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_30_23",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_30_24",
+      "actor": "Gorgon",
+      "emotion": "reluctant-softening"
+    },
+    {
+      "anchor": "watch_30_25",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_30_26",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_30_29",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_30_31",
+      "actor": "Gorgon",
+      "emotion": "weary-patience"
+    },
+    {
+      "anchor": "watch_30_33",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_30_37",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_30_40",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_30_43",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_30_45",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_30_47",
+      "actor": "Alden",
+      "emotion": "thinking"
+    }
+  ]
+}

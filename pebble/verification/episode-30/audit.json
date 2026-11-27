@@ -1,0 +1,22 @@
+[
+  {
+    "id": "supportive-30",
+    "version": "1dafab6c7fe2",
+    "routes": 16,
+    "positionsChecked": 1904,
+    "presentation": {
+      "routes": 16,
+      "animations": {
+        "min": 5,
+        "max": 5
+      },
+      "reactions": {
+        "min": 23,
+        "max": 23
+      }
+    },
+    "wireBytes": 17321,
+    "currentRuntime": "1.14.3",
+    "nativeRuntimeUnchanged": true
+  }
+]
