@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0009_NINE_Gorgon.xhtml",
-    "nextStart": "He cupped his other hand beneath the bitten one",
-    "nextEndBefore": "Alden had misunderstood something.",
-    "continuationNote": "Alden pauses before washing, proposes blood, struggles to interpret Gorgon’s silence, and approaches to offer his hand. End at their first direct eye contact, before its profound effect."
+    "nextStart": "Alden had misunderstood something.",
+    "nextEndBefore": "“Well, did you taste some of my blood at least?”",
+    "continuationNote": "The overwhelming gaze and waking before dawn, then Alden’s tentative question about divinity and Gorgon’s inability to explain. Stop before resuming the blood offer."
   },
   "completed": [
     {
@@ -117,9 +117,13 @@
     {
       "episode": "supportive-27-v1",
       "end": "Alden and Gorgon tour and clean the consulate. Alden realizes the windows are as close as Gorgon can get to outside. Back in the lobby, Victor accepts Gorgon but attacks Alden’s right hand despite a tuna peace offering. Gorgon laughs openly; Alden feels relief and amusement through the pain. He announces he will wash his bleeding hand. No blood offer or eye contact yet."
+    },
+    {
+      "episode": "supportive-28-v1",
+      "end": "Alden pauses before washing his cat-bitten right hand, proposes his blood and interprets Gorgon’s silence through earlier food rules. He approaches and offers his hand; blood falls on the chip bag. Gorgon finally meets his eyes. No blood consumed, supernatural experience, collapse or new powers yet."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-27.json",
+  "assetsFrom": "stories/animated/supportive-28.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -142,9 +146,9 @@
   "castBundle": "public/stories/animated/cast/supportive-13.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-27-v1",
-    "nextStart": "He cupped his other hand beneath the bitten one",
-    "nextEndBefore": "Alden had misunderstood something.",
-    "assetsFrom": "stories/animated/supportive-27.json"
+    "note": "Published through supportive-28-v1",
+    "nextStart": "Alden had misunderstood something.",
+    "nextEndBefore": "“Well, did you taste some of my blood at least?”",
+    "assetsFrom": "stories/animated/supportive-28.json"
   }
 }
