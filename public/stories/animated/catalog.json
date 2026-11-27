@@ -1489,5 +1489,22 @@
       "title": "Super Supportive · Episode 29 · 你是神吗",
       "description": "Alden wakes on the cold floor, with a bandaged hand and a question he can hardly believe he is asking."
     }
+  },
+  {
+    "id": "supportive-30-v1",
+    "category": "super-supportive",
+    "episode": 30,
+    "pebble": false,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-30.mp4",
+      "poster": "stories/animated/cutscenes/supportive-30.poster.jpg",
+      "title": "We’re friends, aren’t we?",
+      "durationSeconds": 8
+    },
+    "path": "supportive-30.json",
+    "summary": {
+      "title": "Super Supportive · Episode 30 · 我们不是朋友吗",
+      "description": "Alden asks whether they are friends. Gorgon offers a warning he cannot fully explain."
+    }
   }
 ]

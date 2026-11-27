@@ -1,0 +1,582 @@
+{
+  "episode": 30,
+  "scriptFingerprint": "1b49880d",
+  "shots": [
+    {
+      "anchor": "beat_00",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-1",
+        "panel": 0,
+        "alt": "Alden tentatively asks whether Gorgon tasted his blood.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_01",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-1",
+        "panel": 1,
+        "alt": "An attempted joke fails to ease Alden’s uncertainty.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_02",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-1",
+        "panel": 1,
+        "alt": "An attempted joke fails to ease Alden’s uncertainty.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_03",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-1",
+        "panel": 2,
+        "alt": "Gorgon says he has not tasted it.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_04",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-1",
+        "panel": 3,
+        "alt": "Alden looks down at his wrapped right hand.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_05",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-1",
+        "panel": 4,
+        "alt": "The bandaged hand makes his renewed question awkward.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_06",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-1",
+        "panel": 1,
+        "alt": "An attempted joke fails to ease Alden’s uncertainty.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_07",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-1",
+        "panel": 4,
+        "alt": "The bandaged hand makes his renewed question awkward.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_08",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-1",
+        "panel": 5,
+        "alt": "Gorgon cautions that Alden does not understand.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_09",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-2",
+        "panel": 0,
+        "alt": "Alden accepts being called a child this time.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_10",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-2",
+        "panel": 1,
+        "alt": "Alden acknowledges his lack of understanding.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_11",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-2",
+        "panel": 2,
+        "alt": "Gorgon asks whether the offer remains.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_12",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-2",
+        "panel": 3,
+        "alt": "Alden attempts a restrained vampire joke.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_13",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-2",
+        "panel": 4,
+        "alt": "Alden asks whether they are friends.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_14",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-2",
+        "panel": 5,
+        "alt": "Gorgon murmurs and pauses before answering.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_15",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-3",
+        "panel": 0,
+        "alt": "Gorgon cannot reveal his true self.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_16",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-3",
+        "panel": 0,
+        "alt": "Gorgon cannot reveal his true self.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_17",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-3",
+        "panel": 1,
+        "alt": "The question of friendship hangs between them.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_18",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-3",
+        "panel": 0,
+        "alt": "Gorgon cannot reveal his true self.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_19",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-3",
+        "panel": 1,
+        "alt": "The question of friendship hangs between them.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_20",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-3",
+        "panel": 2,
+        "alt": "Alden raises an eyebrow at a possible insult.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_21",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-3",
+        "panel": 2,
+        "alt": "Alden raises an eyebrow at a possible insult.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_22",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-3",
+        "panel": 3,
+        "alt": "Gorgon denies the friendship label.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_23",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-3",
+        "panel": 3,
+        "alt": "Gorgon denies the friendship label.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_24",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-3",
+        "panel": 4,
+        "alt": "Gorgon says he is fond of Alden and wishes him well.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_25",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-3",
+        "panel": 4,
+        "alt": "Gorgon says he is fond of Alden and wishes him well.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_26",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-3",
+        "panel": 5,
+        "alt": "Gorgon warns of consequences he cannot explain.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_27",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-3",
+        "panel": 4,
+        "alt": "Gorgon says he is fond of Alden and wishes him well.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_28",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-3",
+        "panel": 5,
+        "alt": "Gorgon warns of consequences he cannot explain.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_29",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 0,
+        "alt": "Alden asks whether those consequences are good or bad.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_30",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 1,
+        "alt": "A sharp frustrated sound replaces an explanation.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_31",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 1,
+        "alt": "A sharp frustrated sound replaces an explanation.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_32",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 1,
+        "alt": "A sharp frustrated sound replaces an explanation.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_33",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 2,
+        "alt": "Alden considers his growing trust.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_34",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 2,
+        "alt": "Alden considers his growing trust.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_35",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 3,
+        "alt": "Alden remembers the small voice of caution he once had.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_36",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 4,
+        "alt": "He realizes that caution disappeared after the gaze.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_37",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 3,
+        "alt": "Alden remembers the small voice of caution he once had.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_38",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 3,
+        "alt": "Alden remembers the small voice of caution he once had.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_39",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 3,
+        "alt": "Alden remembers the small voice of caution he once had.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_40",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 3,
+        "alt": "Alden remembers the small voice of caution he once had.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_41",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 4,
+        "alt": "He realizes that caution disappeared after the gaze.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_42",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 4,
+        "alt": "He realizes that caution disappeared after the gaze.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_43",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 4,
+        "alt": "He realizes that caution disappeared after the gaze.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_44",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 4,
+        "alt": "He realizes that caution disappeared after the gaze.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_45",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 5,
+        "alt": "Alden feels unexplained safety in Gorgon’s presence.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_46",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 5,
+        "alt": "Alden feels unexplained safety in Gorgon’s presence.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_47",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-30-4",
+        "panel": 5,
+        "alt": "Alden feels unexplained safety in Gorgon’s presence.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    }
+  ]
+}

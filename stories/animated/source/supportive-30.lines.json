@@ -1,0 +1,848 @@
+{
+  "那么，你有没有试过我的血？": {
+    "english": "So, have you tried my blood?",
+    "pinyin": "nà me ， nǐ yǒu méi yǒu shì guò wǒ de xuè ？",
+    "interlinear": [
+      {
+        "chinese": "那么，",
+        "gloss": "So,",
+        "pinyin": "nà me ，"
+      },
+      {
+        "chinese": "你有没有试过我的血？",
+        "gloss": "have you tried my blood?",
+        "pinyin": "nǐ yǒu méi yǒu shì guò wǒ de xuè ？"
+      }
+    ]
+  },
+  "我想让这些话听起来像玩笑，可是没有做到。": {
+    "english": "I tried to make that sound like a joke, but failed.",
+    "pinyin": "wǒ xiǎng ràng zhè xiē huà tīng qǐ lái xiàng wán xiào ， kě shì méi yǒu zuò dào 。",
+    "interlinear": [
+      {
+        "chinese": "我想让这些话",
+        "gloss": "I tried to make that",
+        "pinyin": "wǒ xiǎng ràng zhè xiē huà"
+      },
+      {
+        "chinese": "听起来像玩笑，可是没有做到。",
+        "gloss": "sound like a joke, but failed.",
+        "pinyin": "tīng qǐ lái xiàng wán xiào ， kě shì méi yǒu zuò dào 。"
+      }
+    ]
+  },
+  "我好像不知道一些重要的事。": {
+    "english": "I feel as though I'm missing something important.",
+    "pinyin": "wǒ hǎo xiàng bù zhī dào yì xiē zhòng yào de shì 。",
+    "interlinear": [
+      {
+        "chinese": "我好像不知道",
+        "gloss": "I feel as though I'm missing",
+        "pinyin": "wǒ hǎo xiàng bù zhī dào"
+      },
+      {
+        "chinese": "一些重要的事。",
+        "gloss": "something important.",
+        "pinyin": "yì xiē zhòng yào de shì 。"
+      }
+    ]
+  },
+  "没有。刚才那样做，不对。": {
+    "english": "No. That would not have been right then.",
+    "pinyin": "méi yǒu 。 gāng cái nà yàng zuò ， bú duì 。",
+    "interlinear": [
+      {
+        "chinese": "没有。",
+        "gloss": "No.",
+        "pinyin": "méi yǒu 。"
+      },
+      {
+        "chinese": "刚才那样做，不对。",
+        "gloss": "That would not have been right then.",
+        "pinyin": "gāng cái nà yàng zuò ， bú duì 。"
+      }
+    ]
+  },
+  "我低头看了看包好的手，心里有点怕。": {
+    "english": "I looked down at my wrapped hand, feeling nervous.",
+    "pinyin": "wǒ dī tóu kàn le kàn bāo hǎo de shǒu ， xīn lǐ yǒu diǎn pà 。",
+    "interlinear": [
+      {
+        "chinese": "我低头看了看包好的手，",
+        "gloss": "I looked down at my wrapped hand,",
+        "pinyin": "wǒ dī tóu kàn le kàn bāo hǎo de shǒu ，"
+      },
+      {
+        "chinese": "心里有点怕。",
+        "gloss": "feeling nervous.",
+        "pinyin": "xīn lǐ yǒu diǎn pà 。"
+      }
+    ]
+  },
+  "看看自己的手。": {
+    "english": "Look at your hand.",
+    "pinyin": "kàn kàn zì jǐ de shǒu 。",
+    "interlinear": [
+      {
+        "chinese": "看看自己的手。",
+        "gloss": "Look at your hand.",
+        "pinyin": "kàn kàn zì jǐ de shǒu 。"
+      }
+    ]
+  },
+  "想想刚才的玩笑。": {
+    "english": "Think about the attempted joke.",
+    "pinyin": "xiǎng xiǎng gāng cái de wán xiào 。",
+    "interlinear": [
+      {
+        "chinese": "想想刚才的玩笑。",
+        "gloss": "Think about the attempted joke.",
+        "pinyin": "xiǎng xiǎng gāng cái de wán xiào 。"
+      }
+    ]
+  },
+  "手已经包好了。我却还有问题想问。": {
+    "english": "My hand had been wrapped. But I still had questions.",
+    "pinyin": "shǒu yǐ jīng bāo hǎo le 。 wǒ què hái yǒu wèn tí xiǎng wèn 。",
+    "interlinear": [
+      {
+        "chinese": "手已经包好了。",
+        "gloss": "My hand had been wrapped.",
+        "pinyin": "shǒu yǐ jīng bāo hǎo le 。"
+      },
+      {
+        "chinese": "我却还有问题想问。",
+        "gloss": "But I still had questions.",
+        "pinyin": "wǒ què hái yǒu wèn tí xiǎng wèn 。"
+      }
+    ]
+  },
+  "那个玩笑，一点也没有让我放心下来。": {
+    "english": "That joke had not put me at ease at all.",
+    "pinyin": "nà ge wán xiào ， yì diǎn yě méi yǒu ràng wǒ fàng xīn xià lái 。",
+    "interlinear": [
+      {
+        "chinese": "那个玩笑，",
+        "gloss": "That joke",
+        "pinyin": "nà ge wán xiào ，"
+      },
+      {
+        "chinese": "一点也没有让我放心下来。",
+        "gloss": "had not put me at ease at all.",
+        "pinyin": "yì diǎn yě méi yǒu ràng wǒ fàng xīn xià lái 。"
+      }
+    ]
+  },
+  "那我是不是应该再问你一次？": {
+    "english": "Then should I ask you again?",
+    "pinyin": "nà wǒ shì bu shì yīng gāi zài wèn nǐ yí cì ？",
+    "interlinear": [
+      {
+        "chinese": "那我是不是应该",
+        "gloss": "Then should I",
+        "pinyin": "nà wǒ shì bu shì yīng gāi"
+      },
+      {
+        "chinese": "再问你一次？",
+        "gloss": "ask you again?",
+        "pinyin": "zài wèn nǐ yí cì ？"
+      }
+    ]
+  },
+  "孩子，你不知道自己在做什么。": {
+    "english": "Child, you do not know what you are doing.",
+    "pinyin": "hái zi ， nǐ bù zhī dào zì jǐ zài zuò shén me 。",
+    "interlinear": [
+      {
+        "chinese": "孩子，",
+        "gloss": "Child,",
+        "pinyin": "hái zi ，"
+      },
+      {
+        "chinese": "你不知道自己在做什么。",
+        "gloss": "you do not know what you are doing.",
+        "pinyin": "nǐ bù zhī dào zì jǐ zài zuò shén me 。"
+      }
+    ]
+  },
+  "他叫我孩子，我也没办法说什么。": {
+    "english": "He called me a child, and I could hardly object.",
+    "pinyin": "tā jiào wǒ hái zi ， wǒ yě méi bàn fǎ shuō shén me 。",
+    "interlinear": [
+      {
+        "chinese": "他叫我孩子，",
+        "gloss": "He called me a child,",
+        "pinyin": "tā jiào wǒ hái zi ，"
+      },
+      {
+        "chinese": "我也没办法说什么。",
+        "gloss": "and I could hardly object.",
+        "pinyin": "wǒ yě méi bàn fǎ shuō shén me 。"
+      }
+    ]
+  },
+  "对，我知道自己不明白。我真的知道了。": {
+    "english": "Yes, I know I don't understand. I really do know that now.",
+    "pinyin": "duì ， wǒ zhī dào zì jǐ bù míng bai 。 wǒ zhēn de zhī dào le 。",
+    "interlinear": [
+      {
+        "chinese": "对，我知道自己不明白。",
+        "gloss": "Yes, I know I don't understand.",
+        "pinyin": "duì ， wǒ zhī dào zì jǐ bù míng bai 。"
+      },
+      {
+        "chinese": "我真的知道了。",
+        "gloss": "I really do know that now.",
+        "pinyin": "wǒ zhēn de zhī dào le 。"
+      }
+    ]
+  },
+  "可是，你还是想把你的血给我？": {
+    "english": "But you still want to give me your blood?",
+    "pinyin": "kě shì ， nǐ hái shì xiǎng bǎ nǐ de xuè gěi wǒ ？",
+    "interlinear": [
+      {
+        "chinese": "可是，你还是想",
+        "gloss": "But you still want",
+        "pinyin": "kě shì ， nǐ hái shì xiǎng"
+      },
+      {
+        "chinese": "把你的血给我？",
+        "gloss": "to give me your blood?",
+        "pinyin": "bǎ nǐ de xuè gěi wǒ ？"
+      }
+    ]
+  },
+  "我相信你不会变成电影里的吸血鬼吧。": {
+    "english": "I trust you won't turn into a vampire from a movie.",
+    "pinyin": "wǒ xiāng xìn nǐ bú huì biàn chéng diàn yǐng lǐ de xī xuè guǐ ba 。",
+    "interlinear": [
+      {
+        "chinese": "我相信你不会",
+        "gloss": "I trust you won't",
+        "pinyin": "wǒ xiāng xìn nǐ bú huì"
+      },
+      {
+        "chinese": "变成电影里的吸血鬼吧。",
+        "gloss": "turn into a vampire from a movie.",
+        "pinyin": "biàn chéng diàn yǐng lǐ de xī xuè guǐ ba 。"
+      }
+    ]
+  },
+  "我们是朋友。不是吗？": {
+    "english": "We're friends. Aren't we?",
+    "pinyin": "wǒ men shì péng you 。 bú shì ma ？",
+    "interlinear": [
+      {
+        "chinese": "我们是朋友。",
+        "gloss": "We're friends.",
+        "pinyin": "wǒ men shì péng you 。"
+      },
+      {
+        "chinese": "不是吗？",
+        "gloss": "Aren't we?",
+        "pinyin": "bú shì ma ？"
+      }
+    ]
+  },
+  "他低低地说了什么，然后才大声说话。": {
+    "english": "He said something under his breath, then spoke aloud.",
+    "pinyin": "tā dī dī de shuō le shén me ， rán hòu cái dà shēng shuō huà 。",
+    "interlinear": [
+      {
+        "chinese": "他低低地说了什么，",
+        "gloss": "He said something under his breath,",
+        "pinyin": "tā dī dī de shuō le shén me ，"
+      },
+      {
+        "chinese": "然后才大声说话。",
+        "gloss": "then spoke aloud.",
+        "pinyin": "rán hòu cái dà shēng shuō huà 。"
+      }
+    ]
+  },
+  "一个人，不能让对方看到真正的自己。": {
+    "english": "If one person cannot show the other who they truly are.",
+    "pinyin": "yí gè rén ， bù néng ràng duì fāng kàn dào zhēn zhèng de zì jǐ 。",
+    "interlinear": [
+      {
+        "chinese": "一个人，",
+        "gloss": "If one person",
+        "pinyin": "yí gè rén ，"
+      },
+      {
+        "chinese": "不能让对方看到真正的自己。",
+        "gloss": "cannot show the other who they truly are.",
+        "pinyin": "bù néng ràng duì fāng kàn dào zhēn zhèng de zì jǐ 。"
+      }
+    ]
+  },
+  "另外一个人，又不可能明白。": {
+    "english": "And the other person cannot possibly understand.",
+    "pinyin": "lìng wài yí gè rén ， yòu bù kě néng míng bai 。",
+    "interlinear": [
+      {
+        "chinese": "另外一个人，",
+        "gloss": "And the other person",
+        "pinyin": "lìng wài yí gè rén ，"
+      },
+      {
+        "chinese": "又不可能明白。",
+        "gloss": "cannot possibly understand.",
+        "pinyin": "yòu bù kě néng míng bai 。"
+      }
+    ]
+  },
+  "这样两个人，真的能是朋友吗？": {
+    "english": "Two people like that— can they really be friends?",
+    "pinyin": "zhè yàng liǎng gè rén ， zhēn de néng shì péng you ma ？",
+    "interlinear": [
+      {
+        "chinese": "这样两个人，",
+        "gloss": "Two people like that—",
+        "pinyin": "zhè yàng liǎng gè rén ，"
+      },
+      {
+        "chinese": "真的能是朋友吗？",
+        "gloss": "can they really be friends?",
+        "pinyin": "zhēn de néng shì péng you ma ？"
+      }
+    ]
+  },
+  "想想真正的他。": {
+    "english": "Think about who he really is.",
+    "pinyin": "xiǎng xiǎng zhēn zhèng de tā 。",
+    "interlinear": [
+      {
+        "chinese": "想想真正的他。",
+        "gloss": "Think about who he really is.",
+        "pinyin": "xiǎng xiǎng zhēn zhèng de tā 。"
+      }
+    ]
+  },
+  "想想自己明白多少。": {
+    "english": "Think about how much you understand.",
+    "pinyin": "xiǎng xiǎng zì jǐ míng bai duō shǎo 。",
+    "interlinear": [
+      {
+        "chinese": "想想自己明白多少。",
+        "gloss": "Think about how much you understand.",
+        "pinyin": "xiǎng xiǎng zì jǐ míng bai duō shǎo 。"
+      }
+    ]
+  },
+  "我见过他很多次。可他不能让我看见真正的自己。": {
+    "english": "I had seen him many times. But he could not let me see all of himself.",
+    "pinyin": "wǒ jiàn guò tā hěn duō cì 。 kě tā bù néng ràng wǒ kàn jiàn zhēn zhèng de zì jǐ 。",
+    "interlinear": [
+      {
+        "chinese": "我见过他很多次。",
+        "gloss": "I had seen him many times.",
+        "pinyin": "wǒ jiàn guò tā hěn duō cì 。"
+      },
+      {
+        "chinese": "可他不能让我看见真正的自己。",
+        "gloss": "But he could not let me see all of himself.",
+        "pinyin": "kě tā bù néng ràng wǒ kàn jiàn zhēn zhèng de zì jǐ 。"
+      }
+    ]
+  },
+  "刚才的事让我知道，我明白的真的太少了。": {
+    "english": "What had just happened showed me how little I understood.",
+    "pinyin": "gāng cái de shì ràng wǒ zhī dào ， wǒ míng bai de zhēn de tài shǎo le 。",
+    "interlinear": [
+      {
+        "chinese": "刚才的事让我知道，",
+        "gloss": "What had just happened showed me",
+        "pinyin": "gāng cái de shì ràng wǒ zhī dào ，"
+      },
+      {
+        "chinese": "我明白的真的太少了。",
+        "gloss": "how little I understood.",
+        "pinyin": "wǒ míng bai de zhēn de tài shǎo le 。"
+      }
+    ]
+  },
+  "我把一边眉毛，抬了起来。": {
+    "english": "I raised one eyebrow.",
+    "pinyin": "wǒ bǎ yì biān méi mao ， tái le qǐ lái 。",
+    "interlinear": [
+      {
+        "chinese": "我把一边眉毛，抬了起来。",
+        "gloss": "I raised one eyebrow.",
+        "pinyin": "wǒ bǎ yì biān méi mao ， tái le qǐ lái 。"
+      }
+    ]
+  },
+  "我怎么觉得，你这话里有点在说我不好？": {
+    "english": "Why do I feel there was a little insult in that?",
+    "pinyin": "wǒ zěn me jué de ， nǐ zhè huà lǐ yǒu diǎn zài shuō wǒ bù hǎo ？",
+    "interlinear": [
+      {
+        "chinese": "我怎么觉得，",
+        "gloss": "Why do I feel",
+        "pinyin": "wǒ zěn me jué de ，"
+      },
+      {
+        "chinese": "你这话里有点在说我不好？",
+        "gloss": "there was a little insult in that?",
+        "pinyin": "nǐ zhè huà lǐ yǒu diǎn zài shuō wǒ bù hǎo ？"
+      }
+    ]
+  },
+  "我只是在说真正的事。": {
+    "english": "I am only stating the facts.",
+    "pinyin": "wǒ zhǐ shì zài shuō zhēn zhèng de shì 。",
+    "interlinear": [
+      {
+        "chinese": "我只是在说",
+        "gloss": "I am only stating",
+        "pinyin": "wǒ zhǐ shì zài shuō"
+      },
+      {
+        "chinese": "真正的事。",
+        "gloss": "the facts.",
+        "pinyin": "zhēn zhèng de shì 。"
+      }
+    ]
+  },
+  "我们不是朋友。": {
+    "english": "We are not friends.",
+    "pinyin": "wǒ men bú shì péng you 。",
+    "interlinear": [
+      {
+        "chinese": "我们不是朋友。",
+        "gloss": "We are not friends.",
+        "pinyin": "wǒ men bú shì péng you 。"
+      }
+    ]
+  },
+  "不过，我喜欢你，也希望你好。": {
+    "english": "But I am fond of you, and wish you well.",
+    "pinyin": "bú guò ， wǒ xǐ huan nǐ ， yě xī wàng nǐ hǎo 。",
+    "interlinear": [
+      {
+        "chinese": "不过，我喜欢你，",
+        "gloss": "But I am fond of you,",
+        "pinyin": "bú guò ， wǒ xǐ huan nǐ ，"
+      },
+      {
+        "chinese": "也希望你好。",
+        "gloss": "and wish you well.",
+        "pinyin": "yě xī wàng nǐ hǎo 。"
+      }
+    ]
+  },
+  "不是朋友。可是，他希望我好。": {
+    "english": "Not friends. Yet he wished me well.",
+    "pinyin": "bú shì péng you 。 kě shì ， tā xī wàng wǒ hǎo 。",
+    "interlinear": [
+      {
+        "chinese": "不是朋友。",
+        "gloss": "Not friends.",
+        "pinyin": "bú shì péng you 。"
+      },
+      {
+        "chinese": "可是，他希望我好。",
+        "gloss": "Yet he wished me well.",
+        "pinyin": "kě shì ， tā xī wàng wǒ hǎo 。"
+      }
+    ]
+  },
+  "如果我接受你的血，会有一些其他的后果。": {
+    "english": "If I accept your blood, there will be other consequences.",
+    "pinyin": "rú guǒ wǒ jiē shòu nǐ de xuè ， huì yǒu yì xiē qí tā de hòu guǒ 。",
+    "interlinear": [
+      {
+        "chinese": "如果我接受你的血，",
+        "gloss": "If I accept your blood,",
+        "pinyin": "rú guǒ wǒ jiē shòu nǐ de xuè ，"
+      },
+      {
+        "chinese": "会有一些其他的后果。",
+        "gloss": "there will be other consequences.",
+        "pinyin": "huì yǒu yì xiē qí tā de hòu guǒ 。"
+      }
+    ]
+  },
+  "记住他希望你好。": {
+    "english": "Remember that he wishes you well.",
+    "pinyin": "jì zhù tā xī wàng nǐ hǎo 。",
+    "interlinear": [
+      {
+        "chinese": "记住他希望你好。",
+        "gloss": "Remember that he wishes you well.",
+        "pinyin": "jì zhù tā xī wàng nǐ hǎo 。"
+      }
+    ]
+  },
+  "想想他说的后果。": {
+    "english": "Think about the consequences.",
+    "pinyin": "xiǎng xiǎng tā shuō de hòu guǒ 。",
+    "interlinear": [
+      {
+        "chinese": "想想他说的后果。",
+        "gloss": "Think about the consequences.",
+        "pinyin": "xiǎng xiǎng tā shuō de hòu guǒ 。"
+      }
+    ]
+  },
+  "那些话，我听得很清楚。": {
+    "english": "Those words I heard very clearly.",
+    "pinyin": "nà xiē huà ， wǒ tīng de hěn qīng chu 。",
+    "interlinear": [
+      {
+        "chinese": "那些话，",
+        "gloss": "Those words",
+        "pinyin": "nà xiē huà ，"
+      },
+      {
+        "chinese": "我听得很清楚。",
+        "gloss": "I heard very clearly.",
+        "pinyin": "wǒ tīng de hěn qīng chu 。"
+      }
+    ]
+  },
+  "给他一点血，不只是让他吃点东西。": {
+    "english": "Giving him a little blood would mean more than feeding him.",
+    "pinyin": "gěi tā yì diǎn xuè ， bù zhǐ shì ràng tā chī diǎn dōng xi 。",
+    "interlinear": [
+      {
+        "chinese": "给他一点血，",
+        "gloss": "Giving him a little blood",
+        "pinyin": "gěi tā yì diǎn xuè ，"
+      },
+      {
+        "chinese": "不只是让他吃点东西。",
+        "gloss": "would mean more than feeding him.",
+        "pinyin": "bù zhǐ shì ràng tā chī diǎn dōng xi 。"
+      }
+    ]
+  },
+  "是不好的，还是好的？": {
+    "english": "Bad consequences, or good ones?",
+    "pinyin": "shì bù hǎo de ， hái shì hǎo de ？",
+    "interlinear": [
+      {
+        "chinese": "是不好的，",
+        "gloss": "Bad consequences,",
+        "pinyin": "shì bù hǎo de ，"
+      },
+      {
+        "chinese": "还是好的？",
+        "gloss": "or good ones?",
+        "pinyin": "hái shì hǎo de ？"
+      }
+    ]
+  },
+  "他的喉咙里，发出了一个声音。": {
+    "english": "A sound came from his throat.",
+    "pinyin": "tā de hóu long lǐ ， fā chū le yí gè shēng yīn 。",
+    "interlinear": [
+      {
+        "chinese": "他的喉咙里，",
+        "gloss": "From his throat",
+        "pinyin": "tā de hóu long lǐ ，"
+      },
+      {
+        "chinese": "发出了一个声音。",
+        "gloss": "came a sound.",
+        "pinyin": "fā chū le yí gè shēng yīn 。"
+      }
+    ]
+  },
+  "听起来很尖。他是不是有点不高兴？": {
+    "english": "It sounded sharp. Was he frustrated?",
+    "pinyin": "tīng qǐ lái hěn jiān 。 tā shì bu shì yǒu diǎn bù gāo xìng ？",
+    "interlinear": [
+      {
+        "chinese": "听起来很尖。",
+        "gloss": "It sounded sharp.",
+        "pinyin": "tīng qǐ lái hěn jiān 。"
+      },
+      {
+        "chinese": "他是不是有点不高兴？",
+        "gloss": "Was he frustrated?",
+        "pinyin": "tā shì bu shì yǒu diǎn bù gāo xìng ？"
+      }
+    ]
+  },
+  "他好像不能再多说什么了。": {
+    "english": "It seemed he could not say any more.",
+    "pinyin": "tā hǎo xiàng bù néng zài duō shuō shén me le 。",
+    "interlinear": [
+      {
+        "chinese": "他好像不能",
+        "gloss": "It seemed he could not",
+        "pinyin": "tā hǎo xiàng bù néng"
+      },
+      {
+        "chinese": "再多说什么了。",
+        "gloss": "say any more.",
+        "pinyin": "zài duō shuō shén me le 。"
+      }
+    ]
+  },
+  "我想了想。最后，还是因为我相信他。": {
+    "english": "I thought about it. In the end, I trusted him.",
+    "pinyin": "wǒ xiǎng le xiǎng 。 zuì hòu ， hái shì yīn wèi wǒ xiāng xìn tā 。",
+    "interlinear": [
+      {
+        "chinese": "我想了想。",
+        "gloss": "I thought about it.",
+        "pinyin": "wǒ xiǎng le xiǎng 。"
+      },
+      {
+        "chinese": "最后，还是因为我相信他。",
+        "gloss": "In the end, I trusted him.",
+        "pinyin": "zuì hòu ， hái shì yīn wèi wǒ xiāng xìn tā 。"
+      }
+    ]
+  },
+  "比刚才那件事之前，还要相信。": {
+    "english": "More than before what had happened, I trusted him now.",
+    "pinyin": "bǐ gāng cái nà jiàn shì zhī qián ， hái yào xiāng xìn 。",
+    "interlinear": [
+      {
+        "chinese": "比刚才那件事之前，",
+        "gloss": "More than before what had happened,",
+        "pinyin": "bǐ gāng cái nà jiàn shì zhī qián ，"
+      },
+      {
+        "chinese": "还要相信。",
+        "gloss": "I trusted him now.",
+        "pinyin": "hái yào xiāng xìn 。"
+      }
+    ]
+  },
+  "想想以前为什么小心。": {
+    "english": "Recall your earlier caution.",
+    "pinyin": "xiǎng xiǎng yǐ qián wèi shén me xiǎo xīn 。",
+    "interlinear": [
+      {
+        "chinese": "想想以前为什么小心。",
+        "gloss": "Recall your earlier caution.",
+        "pinyin": "xiǎng xiǎng yǐ qián wèi shén me xiǎo xīn 。"
+      }
+    ]
+  },
+  "看看现在的感觉。": {
+    "english": "Consider how you feel now.",
+    "pinyin": "kàn kàn xiàn zài de gǎn jué 。",
+    "interlinear": [
+      {
+        "chinese": "看看现在的感觉。",
+        "gloss": "Consider how you feel now.",
+        "pinyin": "kàn kàn xiàn zài de gǎn jué 。"
+      }
+    ]
+  },
+  "喜欢和一个人说话，不一定就了解他。": {
+    "english": "Enjoying talking to someone does not necessarily mean understanding them.",
+    "pinyin": "xǐ huan hé yí gè rén shuō huà ， bù yí dìng jiù liǎo jiě tā 。",
+    "interlinear": [
+      {
+        "chinese": "喜欢和一个人说话，",
+        "gloss": "Enjoying talking to someone",
+        "pinyin": "xǐ huan hé yí gè rén shuō huà ，"
+      },
+      {
+        "chinese": "不一定就了解他。",
+        "gloss": "does not necessarily mean understanding them.",
+        "pinyin": "bù yí dìng jiù liǎo jiě tā 。"
+      }
+    ]
+  },
+  "现在这种相信，和以前不一样。": {
+    "english": "This trust I felt now was different from before.",
+    "pinyin": "xiàn zài zhè zhǒng xiāng xìn ， hé yǐ qián bù yí yàng 。",
+    "interlinear": [
+      {
+        "chinese": "现在这种相信，",
+        "gloss": "This trust I felt now",
+        "pinyin": "xiàn zài zhè zhǒng xiāng xìn ，"
+      },
+      {
+        "chinese": "和以前不一样。",
+        "gloss": "was different from before.",
+        "pinyin": "hé yǐ qián bù yí yàng 。"
+      }
+    ]
+  },
+  "以前，我心里一直还有一点怀疑。": {
+    "english": "Before, there had always been a little doubt in my mind.",
+    "pinyin": "yǐ qián ， wǒ xīn lǐ yì zhí hái yǒu yì diǎn huái yí 。",
+    "interlinear": [
+      {
+        "chinese": "以前，我心里一直",
+        "gloss": "Before, there had always been",
+        "pinyin": "yǐ qián ， wǒ xīn lǐ yì zhí"
+      },
+      {
+        "chinese": "还有一点怀疑。",
+        "gloss": "a little doubt in my mind.",
+        "pinyin": "hái yǒu yì diǎn huái yí 。"
+      }
+    ]
+  },
+  "网上说，他想杀人，所以才被关在这里。": {
+    "english": "Online, people said he had tried to kill someone, and that was why he was locked up here.",
+    "pinyin": "wǎng shàng shuō ， tā xiǎng shā rén ， suǒ yǐ cái bèi guān zài zhè lǐ 。",
+    "interlinear": [
+      {
+        "chinese": "网上说，他想杀人，",
+        "gloss": "Online, people said he had tried to kill someone,",
+        "pinyin": "wǎng shàng shuō ， tā xiǎng shā rén ，"
+      },
+      {
+        "chinese": "所以才被关在这里。",
+        "gloss": "and that was why he was locked up here.",
+        "pinyin": "suǒ yǐ cái bèi guān zài zhè lǐ 。"
+      }
+    ]
+  },
+  "我喜欢他，也喜欢来找他。可心里总是有个声音。": {
+    "english": "I liked him and liked visiting him. But there had always been a voice inside.",
+    "pinyin": "wǒ xǐ huan tā ， yě xǐ huan lái zhǎo tā 。 kě xīn lǐ zǒng shì yǒu gè shēng yīn 。",
+    "interlinear": [
+      {
+        "chinese": "我喜欢他，也喜欢来找他。",
+        "gloss": "I liked him and liked visiting him.",
+        "pinyin": "wǒ xǐ huan tā ， yě xǐ huan lái zhǎo tā 。"
+      },
+      {
+        "chinese": "可心里总是有个声音。",
+        "gloss": "But there had always been a voice inside.",
+        "pinyin": "kě xīn lǐ zǒng shì yǒu gè shēng yīn 。"
+      }
+    ]
+  },
+  "那个声音让我小心一点，不要完全放心。": {
+    "english": "That voice told me to be careful, not to let down my guard completely.",
+    "pinyin": "nà ge shēng yīn ràng wǒ xiǎo xīn yì diǎn ， bú yào wán quán fàng xīn 。",
+    "interlinear": [
+      {
+        "chinese": "那个声音让我小心一点，",
+        "gloss": "That voice told me to be careful,",
+        "pinyin": "nà ge shēng yīn ràng wǒ xiǎo xīn yì diǎn ，"
+      },
+      {
+        "chinese": "不要完全放心。",
+        "gloss": "not to let down my guard completely.",
+        "pinyin": "bú yào wán quán fàng xīn 。"
+      }
+    ]
+  },
+  "现在，那个声音没有了。一点也没有了。": {
+    "english": "Now that voice was gone. Completely gone.",
+    "pinyin": "xiàn zài ， nà ge shēng yīn méi yǒu le 。 yì diǎn yě méi yǒu le 。",
+    "interlinear": [
+      {
+        "chinese": "现在，那个声音没有了。",
+        "gloss": "Now that voice was gone.",
+        "pinyin": "xiàn zài ， nà ge shēng yīn méi yǒu le 。"
+      },
+      {
+        "chinese": "一点也没有了。",
+        "gloss": "Completely gone.",
+        "pinyin": "yì diǎn yě méi yǒu le 。"
+      }
+    ]
+  },
+  "就是看过他的眼睛以后，它才不见的。": {
+    "english": "After I had looked into his eyes, it had disappeared.",
+    "pinyin": "jiù shì kàn guò tā de yǎn jing yǐ hòu ， tā cái bú jiàn de 。",
+    "interlinear": [
+      {
+        "chinese": "就是看过他的眼睛以后，",
+        "gloss": "After I had looked into his eyes,",
+        "pinyin": "jiù shì kàn guò tā de yǎn jing yǐ hòu ，"
+      },
+      {
+        "chinese": "它才不见的。",
+        "gloss": "it had disappeared.",
+        "pinyin": "tā cái bú jiàn de 。"
+      }
+    ]
+  },
+  "光是这样，本来就应该让我更小心。": {
+    "english": "That alone should have made me more cautious.",
+    "pinyin": "guāng shì zhè yàng ， běn lái jiù yīng gāi ràng wǒ gèng xiǎo xīn 。",
+    "interlinear": [
+      {
+        "chinese": "光是这样，",
+        "gloss": "That alone",
+        "pinyin": "guāng shì zhè yàng ，"
+      },
+      {
+        "chinese": "本来就应该让我更小心。",
+        "gloss": "should have made me more cautious.",
+        "pinyin": "běn lái jiù yīng gāi ràng wǒ gèng xiǎo xīn 。"
+      }
+    ]
+  },
+  "可是，我没有。我却觉得很安全。": {
+    "english": "But it did not. Instead, I felt safe.",
+    "pinyin": "kě shì ， wǒ méi yǒu 。 wǒ què jué de hěn ān quán 。",
+    "interlinear": [
+      {
+        "chinese": "可是，我没有。",
+        "gloss": "But it did not.",
+        "pinyin": "kě shì ， wǒ méi yǒu 。"
+      },
+      {
+        "chinese": "我却觉得很安全。",
+        "gloss": "Instead, I felt safe.",
+        "pinyin": "wǒ què jué de hěn ān quán 。"
+      }
+    ]
+  },
+  "他到底是什么，我不知道，可我觉得他是想让人好的。": {
+    "english": "I did not know what he really was, but I felt he wished people well.",
+    "pinyin": "tā dào dǐ shì shén me ， wǒ bù zhī dào ， kě wǒ jué de tā shì xiǎng ràng rén hǎo de 。",
+    "interlinear": [
+      {
+        "chinese": "他到底是什么，我不知道，",
+        "gloss": "I did not know what he really was,",
+        "pinyin": "tā dào dǐ shì shén me ， wǒ bù zhī dào ，"
+      },
+      {
+        "chinese": "可我觉得他是想让人好的。",
+        "gloss": "but I felt he wished people well.",
+        "pinyin": "kě wǒ jué de tā shì xiǎng ràng rén hǎo de 。"
+      }
+    ]
+  },
+  "这个感觉，真的很奇怪。": {
+    "english": "That feeling was truly strange.",
+    "pinyin": "zhè ge gǎn jué ， zhēn de hěn qí guài 。",
+    "interlinear": [
+      {
+        "chinese": "这个感觉，",
+        "gloss": "That feeling",
+        "pinyin": "zhè ge gǎn jué ，"
+      },
+      {
+        "chinese": "真的很奇怪。",
+        "gloss": "was truly strange.",
+        "pinyin": "zhēn de hěn qí guài 。"
+      }
+    ]
+  },
+  "我想不起来，还有谁让我这样觉得过。": {
+    "english": "I could not remember anyone else who had ever made me feel that way.",
+    "pinyin": "wǒ xiǎng bù qǐ lái ， hái yǒu shuí ràng wǒ zhè yàng jué de guò 。",
+    "interlinear": [
+      {
+        "chinese": "我想不起来，",
+        "gloss": "I could not remember",
+        "pinyin": "wǒ xiǎng bù qǐ lái ，"
+      },
+      {
+        "chinese": "还有谁让我这样觉得过。",
+        "gloss": "anyone else who had ever made me feel that way.",
+        "pinyin": "hái yǒu shuí ràng wǒ zhè yàng jué de guò 。"
+      }
+    ]
+  }
+}

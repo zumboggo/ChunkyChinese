@@ -1,3 +1,4 @@
+import episode30 from './supportive-30.json' with {type:'json'}
 import episode29 from './supportive-29.json' with {type:'json'}
 import episode28 from './supportive-28.json' with {type:'json'}
 import episode17 from './supportive-17.json' with {type:'json'}
@@ -11,7 +12,7 @@ import episode27 from './supportive-27.json' with {type:'json'}
 import episode26 from './supportive-26.json' with {type:'json'}
 import episode25 from './supportive-25.json' with {type:'json'}
 import episode24 from './supportive-24.json' with {type:'json'}
-const directions=[episode29,episode28,episode17,episode18,episode19,episode20,episode21,episode22,episode23,episode24,episode25,episode26,episode27]
+const directions=[episode30,episode29,episode28,episode17,episode18,episode19,episode20,episode21,episode22,episode23,episode24,episode25,episode26,episode27]
 export interface PixelShot {anchor:string;offset:number;reaction?:string;scene?:string;durationMs:number;comic?:{sheet:string;panel:number;alt:string;aspectRatio?:number;columns?:number}}
 export function scriptFingerprint(script:string){let hash=2166136261;for(let i=0;i<script.length;i++)hash=Math.imul(hash^script.charCodeAt(i),16777619);return (hash>>>0).toString(16).padStart(8,'0')}
 export function pixelShots(script:string,story:{labels:Record<string,number>;nodes:{type:string}[]}):Map<number,PixelShot>|null{

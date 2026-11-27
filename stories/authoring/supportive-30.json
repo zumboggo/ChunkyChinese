@@ -1,0 +1,182 @@
+{
+  "id": "supportive-30",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 30 · 我们不是朋友吗",
+  "description": "Alden asks whether they are friends. Gorgon offers a warning he cannot fully explain.",
+  "presentation": {
+    "mode": "reading",
+    "layout": "intertitles",
+    "animationLabels": []
+  },
+  "audioLanguage": "mandarin-only",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca, Chapter 9",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-provided EPUB: renewed question about blood through Alden’s changed sense of trust, before his explicit permission."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "“Well, did you taste some of my blood at least?” → before “I trust you,” Alden said.",
+    "dramaticChange": "Alden wants reassurance of friendship; Gorgon denies that label but expresses care and warns of unknown consequences. Alden recognizes his former caution is gone.",
+    "essentialNewWords": [
+      "吸血鬼",
+      "后果",
+      "怀疑"
+    ],
+    "englishNarrationPurpose": "",
+    "choicesAndCallbacks": [
+      {
+        "id": "offer",
+        "purpose": "Notice the wrapped hand or failed joke",
+        "laterPayoff": "Immediate distinct thought, then canonical rejoin."
+      },
+      {
+        "id": "friend",
+        "purpose": "Think about knowing someone or being understood",
+        "laterPayoff": "Immediate distinct thought, then canonical rejoin."
+      },
+      {
+        "id": "warning",
+        "purpose": "Attend to care or warning",
+        "laterPayoff": "Immediate distinct thought, then canonical rejoin."
+      },
+      {
+        "id": "trust",
+        "purpose": "Recall prior caution or examine its absence",
+        "laterPayoff": "Immediate distinct thought, then canonical rejoin."
+      }
+    ],
+    "sceneActivities": [
+      {
+        "activity": "Alden looks at his wrapped hand, raises eyebrow, waits; Gorgon speaks with eyes averted and gives a sharp throat click",
+        "purpose": "The small physical reactions carry a difficult conversation.",
+        "rendering": "Varied comic close-ups and quiet watch reactions; no new blood offering action or drinking."
+      }
+    ],
+    "storytellingVoice": "Intimate character drama: uncertain jokes, an awkwardly denied friendship, and trust that should itself raise a question.",
+    "desire": "Understand whether his offer is still welcome and whether they are friends.",
+    "obstacle": "Gorgon cannot reveal himself or explain the consequences.",
+    "earlyCare": "Alden tries a joke through his confusion and watches his wrapped hand.",
+    "payoff": "Gorgon explicitly wishes him well even while denying friendship.",
+    "continuingQuestion": "Is Alden’s new absolute trust safe, and what consequences could an offering bring?",
+    "artDirection": {
+      "seed": 301127,
+      "medium": "ink",
+      "treatment": "webcomics",
+      "influence": "Constructivist geometry",
+      "weights": {
+        "comicProbability": 0.6666666666666666,
+        "otherAxes": "Uniform eligible axes; exclude last medium and recent treatments/influences"
+      },
+      "history": "Recent five: watercolour/chibi/Vienna Secession; pixel art/cinematic/Bauhaus; oil/storybook/Mexican relief; feltboard/American comics/Art Nouveau; crayon/shonen/Chinese paper cutting.",
+      "palette": [
+        "deep teal",
+        "ochre",
+        "ivory",
+        "rust red"
+      ],
+      "identity": "Alden tousled brown hair charcoal hoodie gray shirt, right hand bandaged with paper napkin and clear tape. Gorgon gray skin, four vertical nose slits, black averted eyes, swept horn collar, gold restraints. No drinking or renewed direct eye contact.",
+      "references": [
+        "stories/characters/super-supportive/alden-approved-a.png",
+        "stories/characters/super-supportive/gorgon-seated-v1.png"
+      ]
+    },
+    "vocabularyAudit": {
+      "reviewedKnown": 804,
+      "supplementVersion": 3,
+      "effectiveFamiliar": 1063,
+      "supplement": "stories/authoring/moonlight-familiar-words.json"
+    },
+    "audioPaging": "Each voiced passage is one reviewed intertitle page, maximum three chunks."
+  },
+  "continuation": {
+    "end": "Gorgon says he has not tasted Alden’s blood. He warns Alden does not understand the offer, denies they can properly be friends, but says he is fond of him and wishes him well. He warns of side effects he cannot classify. Alden privately recognizes that the gaze erased his former doubt; he feels Gorgon is fundamentally benevolent. Stop before explicit renewed permission or any drinking.",
+    "nextStart": "“I trust you,” Alden said.",
+    "nextEndBefore": "“So, what do we do now?”",
+    "note": "Explicit permission, blood already placed in salsa, Gorgon drinks with no spectacle, and Alden asks about taste; stop before next plans."
+  },
+  "routes": [
+    {
+      "choices": [
+        "hand",
+        "know",
+        "care",
+        "before"
+      ],
+      "contains": [
+        "我们不是朋友。"
+      ],
+      "endsWith": "我想不起来，还有谁让我这样觉得过。"
+    },
+    {
+      "choices": [
+        "joke",
+        "understand",
+        "effects",
+        "now"
+      ],
+      "contains": [
+        "不过，我喜欢你，也希望你好。"
+      ],
+      "endsWith": "我想不起来，还有谁让我这样觉得过。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-30-v1",
+    "category": "super-supportive",
+    "episode": 30,
+    "pebble": false,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-30.mp4",
+      "poster": "stories/animated/cutscenes/supportive-30.poster.jpg",
+      "title": "We’re friends, aren’t we?",
+      "durationSeconds": 8
+    }
+  },
+  "teaser": {
+    "scene": "Alden asks whether he and Gorgon are friends.",
+    "style": "Ink webcomics with Constructivist geometry",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "nqsgtq6vbsrmy0d23d0vydkga0",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "dialogue": "We’re friends, aren’t we?",
+    "generatedSeconds": 6,
+    "deliveredSeconds": 8,
+    "localEdit": "Retain first complete question through 3.13s; motion ends3.6s, audio3.5s, reaction hold1.4s, initial hold3s.",
+    "image": "stories/characters/super-supportive/supportive-30-opening.png",
+    "checks": {
+      "sha256": "289a7362001b74f08dc5fb48fb7b4e0d914dfde6672ee2a447614e3c19aeec76",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 8,
+      "hold_seconds": 3,
+      "motion_seconds": 3.5833333333333335,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "We're friends, aren't we?"
+    }
+  },
+  "verification": {
+    "packageBytes": 3200557,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 96.95550351288057,
+      "max": 97.01149425287356
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "我们是朋友。不是吗？",
+      "我们不是朋友。",
+      "不过，我喜欢你，也希望你好。",
+      "如果我接受你的血，会有一些其他的后果。",
+      "我想不起来，还有谁让我这样觉得过。"
+    ]
+  }
+}
