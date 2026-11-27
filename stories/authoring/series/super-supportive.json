@@ -5,9 +5,9 @@
     "epub": "/Users/david.hepting/Downloads/Super Supportive -- Sleyca -- 2025 -- 6a716b2fe62a46534769300b0edee01b -- Anna’s Archive.epub",
     "sha256": "846e32b5e0a0df9e8a162feec7a46af456089b1fc7a399baeff0b3d10d24fb63",
     "chapter": "OEBPS/Text/0009_NINE_Gorgon.xhtml",
-    "nextStart": "Alden had misunderstood something.",
-    "nextEndBefore": "“Well, did you taste some of my blood at least?”",
-    "continuationNote": "The overwhelming gaze and waking before dawn, then Alden’s tentative question about divinity and Gorgon’s inability to explain. Stop before resuming the blood offer."
+    "nextStart": "“Well, did you taste some of my blood at least?”",
+    "nextEndBefore": "“I trust you,” Alden said.",
+    "continuationNote": "Alden renews the offer, hears Gorgon’s warning about friendship and side effects, and considers his changed trust. Stop before explicit renewed permission."
   },
   "completed": [
     {
@@ -121,9 +121,13 @@
     {
       "episode": "supportive-28-v1",
       "end": "Alden pauses before washing his cat-bitten right hand, proposes his blood and interprets Gorgon’s silence through earlier food rules. He approaches and offers his hand; blood falls on the chip bag. Gorgon finally meets his eyes. No blood consumed, supernatural experience, collapse or new powers yet."
+    },
+    {
+      "episode": "supportive-29-v1",
+      "end": "Gorgon’s gaze overwhelms Alden with profound memories. Hours later he wakes in recovery position with his hand wrapped, Victor eating tuna nearby. Before dawn he asks whether Gorgon is a god; Gorgon says no, checks his wellbeing, and shows the restraint that prevents an explanation. No renewed blood offer or consumption yet."
     }
   ],
-  "assetsFrom": "stories/animated/supportive-28.json",
+  "assetsFrom": "stories/animated/supportive-29.json",
   "vocabularySupplement": "stories/authoring/moonlight-familiar-words.json",
   "coverage": {
     "min": 95,
@@ -146,9 +150,9 @@
   "castBundle": "public/stories/animated/cast/supportive-13.json",
   "pendingPublication": [],
   "localContinuation": {
-    "note": "Published through supportive-28-v1",
-    "nextStart": "Alden had misunderstood something.",
-    "nextEndBefore": "“Well, did you taste some of my blood at least?”",
-    "assetsFrom": "stories/animated/supportive-28.json"
+    "note": "Published through supportive-29-v1",
+    "nextStart": "“Well, did you taste some of my blood at least?”",
+    "nextEndBefore": "“I trust you,” Alden said.",
+    "assetsFrom": "stories/animated/supportive-29.json"
   }
 }
