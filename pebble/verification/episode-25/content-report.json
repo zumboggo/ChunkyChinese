@@ -1,0 +1,304 @@
+{
+  "id": "supportive-25",
+  "errors": [],
+  "missingArt": [],
+  "missingGlyphs": [],
+  "shots": [
+    {
+      "anchor": "watch_25_opening_1",
+      "scene": "download-supportive-25-opening-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "opening",
+      "passage": "现在，我肯定睡不着。心里有太多事，一直想个不停。"
+    },
+    {
+      "anchor": "watch_25_opening_2",
+      "scene": "download-supportive-25-opening-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "opening",
+      "passage": "今天晚上已经这么不好了。再做一件难做的事，也没什么吧。"
+    },
+    {
+      "anchor": "watch_25_after_2",
+      "scene": "download-supportive-25-after-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "after",
+      "passage": "好了。决定做了。"
+    },
+    {
+      "anchor": "watch_25_distract_1",
+      "scene": "download-supportive-25-distract-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "distract",
+      "passage": "接下来，得找点其他事做。我不想一直想这些事。"
+    },
+    {
+      "anchor": "watch_25_invite_2",
+      "scene": "download-supportive-25-invite-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "watch_25_invite_1",
+      "passage": "维克多叫了一声。"
+    }
+  ],
+  "runtime": {
+    "compatible": true,
+    "changes": []
+  },
+  "wireBytes": 13278,
+  "maxRecordBytes": 614,
+  "portraitStorage": {
+    "usedBytes": 32092,
+    "unusedBytes": 0,
+    "note": "Stored RLE resource bytes, not runtime heap savings."
+  },
+  "sceneIds": [],
+  "totalScenes": 30,
+  "recipeSchema": 1,
+  "recipeActors": [
+    "alden"
+  ],
+  "reviewPlaybackSeconds": 24,
+  "fullLibraryPlaybackSeconds": 111,
+  "warnings": [],
+  "presentation": {
+    "routes": 16,
+    "animations": {
+      "min": 5,
+      "max": 5
+    },
+    "reactions": {
+      "min": 20,
+      "max": 20
+    }
+  },
+  "version": "eca03b1d94ee",
+  "nodeCount": 67,
+  "elapsedMs": 60,
+  "runtimeVersion": "1.12.0",
+  "runtimePackageSha256": "e4ffd4bf2feb6fbec7265ebf370acedb1283e6c831e234b55b1366c5699865f9",
+  "delivery": "Content JSON for Refresh; not published or installed."
+}

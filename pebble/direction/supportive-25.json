@@ -1,0 +1,385 @@
+{
+  "schema": 1,
+  "episode": "supportive-25",
+  "watchTitle": "The Call",
+  "cover": "Alden-thinking-full",
+  "notes": "Alden at home. Reuse quiet listening/thinking around the call and decision; no fabricated phone-call, dressing, pillow-carrying or cat animation. Keep Cly absent: this is voicemail. All specific actions remain in the exact phone text.",
+  "cues": [
+    {
+      "anchor": "watch_25_opening_1",
+      "scene": "download-supportive-25-opening-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Alden at home. Reuse quiet listening/thinking around the call and decision; no fabricated phone-call, dressing, pillow-carrying or cat animation. Keep Cly absent: this is voicemail. All specific actions remain in the exact phone text."
+    },
+    {
+      "anchor": "watch_25_opening_2",
+      "scene": "download-supportive-25-opening-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Alden at home. Reuse quiet listening/thinking around the call and decision; no fabricated phone-call, dressing, pillow-carrying or cat animation. Keep Cly absent: this is voicemail. All specific actions remain in the exact phone text."
+    },
+    {
+      "anchor": "watch_25_after_2",
+      "scene": "download-supportive-25-after-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Alden at home. Reuse quiet listening/thinking around the call and decision; no fabricated phone-call, dressing, pillow-carrying or cat animation. Keep Cly absent: this is voicemail. All specific actions remain in the exact phone text."
+    },
+    {
+      "anchor": "watch_25_distract_1",
+      "scene": "download-supportive-25-distract-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Alden at home. Reuse quiet listening/thinking around the call and decision; no fabricated phone-call, dressing, pillow-carrying or cat animation. Keep Cly absent: this is voicemail. All specific actions remain in the exact phone text."
+    },
+    {
+      "anchor": "watch_25_invite_2",
+      "scene": "download-supportive-25-invite-2",
+      "recipe": {
+        "actor": "alden",
+        "setting": "home",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Alden at home. Reuse quiet listening/thinking around the call and decision; no fabricated phone-call, dressing, pillow-carrying or cat animation. Keep Cly absent: this is voicemail. All specific actions remain in the exact phone text."
+    }
+  ],
+  "reactions": [
+    {
+      "anchor": "watch_25_opening_1",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_25_opening_2",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_25_now_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_25_breathe_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_25_call_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_25_call_2",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_25_call_3",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_25_call_4",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_25_short_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_25_reason_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_25_greeting_1",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_25_greeting_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_25_decision_1",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_25_decision_2",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_25_decision_3",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_25_hand_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_25_quiet_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_25_distract_2",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_25_victor_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_25_cat_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_25_shorts_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_25_invite_1",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_25_invite_3",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_25_ending_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    }
+  ]
+}
