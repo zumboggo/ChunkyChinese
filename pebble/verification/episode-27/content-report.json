@@ -1,0 +1,303 @@
+{
+  "id": "supportive-27",
+  "errors": [],
+  "missingArt": [],
+  "missingGlyphs": [],
+  "shots": [
+    {
+      "anchor": "watch_27_opening_2",
+      "scene": "download-supportive-27-opening-2",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "opening",
+      "passage": "他好像没有想好要洗什么。看到什么，就洗什么。"
+    },
+    {
+      "anchor": "watch_27_opening_4",
+      "scene": "download-supportive-27-opening-4",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "opening",
+      "passage": "我一下子明白了。对他来说，这就是离外面最近的地方。"
+    },
+    {
+      "anchor": "watch_27_night_1",
+      "scene": "download-supportive-27-night-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "night",
+      "passage": "晚上的这里，感觉很不错。头上的灯还亮着。"
+    },
+    {
+      "anchor": "watch_27_sniff_6",
+      "scene": "download-supportive-27-sniff-6",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "section": "watch_27_sniff_4",
+      "passage": "以前，我只把它关进去过一次。那次是带它去看医生。"
+    },
+    {
+      "anchor": "watch_27_relief_1",
+      "scene": "download-supportive-27-relief-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "section": "relief",
+      "passage": "不过，知道他也会觉得好笑，我心里舒服了一点。"
+    }
+  ],
+  "runtime": {
+    "compatible": true,
+    "changes": []
+  },
+  "wireBytes": 20566,
+  "maxRecordBytes": 911,
+  "portraitStorage": {
+    "usedBytes": 32092,
+    "unusedBytes": 0,
+    "note": "Stored RLE resource bytes, not runtime heap savings."
+  },
+  "sceneIds": [],
+  "totalScenes": 42,
+  "recipeSchema": 1,
+  "recipeActors": [
+    "gorgon",
+    "alden"
+  ],
+  "reviewPlaybackSeconds": 24,
+  "fullLibraryPlaybackSeconds": 168.6,
+  "warnings": [],
+  "presentation": {
+    "routes": 16,
+    "animations": {
+      "min": 5,
+      "max": 5
+    },
+    "reactions": {
+      "min": 22,
+      "max": 22
+    }
+  },
+  "version": "efb8b3eb5615",
+  "nodeCount": 87,
+  "runtimeVersion": "1.14.3",
+  "runtimePackageSha256": "023dc2b9449888bcde62240d9e1766da1c6dd711f579c5bb463423a529667476"
+}

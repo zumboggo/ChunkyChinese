@@ -1,0 +1,375 @@
+{
+  "schema": 1,
+  "episode": "supportive-27",
+  "watchTitle": "Are You Laughing?",
+  "cover": "Alden-thinking-full",
+  "notes": "Quiet consulate visit and unexpected laughter. Reuse listening/thinking reactions; do not portray window cleaning, eating, the cat attack or wounded-hand care with unsupported gestures. No cup, public passersby, direct Gorgon gaze or invented cat animation. The final Alden reaction moves only his head, preserving his injured right hand.",
+  "cues": [
+    {
+      "anchor": "watch_27_opening_2",
+      "scene": "download-supportive-27-opening-2",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Quiet consulate visit and unexpected laughter. Reuse listening/thinking reactions; do not portray window cleaning, eating, the cat attack or wounded-hand care with unsupported gestures. No cup, public passersby, direct Gorgon gaze or invented cat animation. The final Alden reaction moves only his head, preserving his injured right hand."
+    },
+    {
+      "anchor": "watch_27_opening_4",
+      "scene": "download-supportive-27-opening-4",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Quiet consulate visit and unexpected laughter. Reuse listening/thinking reactions; do not portray window cleaning, eating, the cat attack or wounded-hand care with unsupported gestures. No cup, public passersby, direct Gorgon gaze or invented cat animation. The final Alden reaction moves only his head, preserving his injured right hand."
+    },
+    {
+      "anchor": "watch_27_night_1",
+      "scene": "download-supportive-27-night-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Quiet consulate visit and unexpected laughter. Reuse listening/thinking reactions; do not portray window cleaning, eating, the cat attack or wounded-hand care with unsupported gestures. No cup, public passersby, direct Gorgon gaze or invented cat animation. The final Alden reaction moves only his head, preserving his injured right hand."
+    },
+    {
+      "anchor": "watch_27_sniff_6",
+      "scene": "download-supportive-27-sniff-6",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1000,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            1500,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3200,
+            -2,
+            -23,
+            -42,
+            -100
+          ],
+          [
+            3800,
+            -1,
+            -14,
+            -32,
+            -70
+          ],
+          [
+            4800,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "note": "Quiet consulate visit and unexpected laughter. Reuse listening/thinking reactions; do not portray window cleaning, eating, the cat attack or wounded-hand care with unsupported gestures. No cup, public passersby, direct Gorgon gaze or invented cat animation. The final Alden reaction moves only his head, preserving his injured right hand."
+    },
+    {
+      "anchor": "watch_27_relief_1",
+      "scene": "download-supportive-27-relief-1",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Quiet consulate visit and unexpected laughter. Reuse listening/thinking reactions; do not portray window cleaning, eating, the cat attack or wounded-hand care with unsupported gestures. No cup, public passersby, direct Gorgon gaze or invented cat animation. The final Alden reaction moves only his head, preserving his injured right hand."
+    }
+  ],
+  "reactions": [
+    {
+      "anchor": "watch_27_opening_2",
+      "actor": "Gorgon",
+      "emotion": "attentive"
+    },
+    {
+      "anchor": "watch_27_opening_4",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_27_snacks_1",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_27_snacks_4",
+      "actor": "Gorgon",
+      "emotion": "attentive"
+    },
+    {
+      "anchor": "watch_27_night_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_27_night_4",
+      "actor": "Gorgon",
+      "emotion": "attentive"
+    },
+    {
+      "anchor": "watch_27_sniff_3",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_27_sniff_4",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_27_sniff_6",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_27_offering_2",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_27_offering_4",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_27_attack_1",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_27_attack_4",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_27_attack_6",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_27_sound_1",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_27_sound_4",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_27_laugh_1",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_27_laugh_2",
+      "actor": "Gorgon",
+      "emotion": "amused"
+    },
+    {
+      "anchor": "watch_27_laugh_5",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_27_laugh_6",
+      "actor": "Alden",
+      "emotion": "laughing"
+    },
+    {
+      "anchor": "watch_27_relief_1",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_27_relief_3",
+      "actor": "Alden",
+      "emotion": "talking"
+    }
+  ]
+}
