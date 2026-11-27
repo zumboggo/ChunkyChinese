@@ -1,0 +1,356 @@
+{
+  "schema": 1,
+  "episode": "supportive-29",
+  "watchTitle": "Are You a God?",
+  "cover": "Alden-thinking-full",
+  "notes": "Subjective memories remain narrated; no unsupported direct gaze or collapse animation. Five quiet head-only performances after Alden sits up. Keep both arms still, preserving his wrapped right hand and avoiding unsupported bandage props. Gorgon’s eyes stay averted. No native runtime changes.",
+  "cues": [
+    {
+      "anchor": "watch_29_24",
+      "scene": "download-supportive-29-24",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Subjective memories remain narrated; no unsupported direct gaze or collapse animation. Five quiet head-only performances after Alden sits up. Keep both arms still, preserving his wrapped right hand and avoiding unsupported bandage props. Gorgon’s eyes stay averted. No native runtime changes."
+    },
+    {
+      "anchor": "watch_29_29",
+      "scene": "download-supportive-29-29",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Subjective memories remain narrated; no unsupported direct gaze or collapse animation. Five quiet head-only performances after Alden sits up. Keep both arms still, preserving his wrapped right hand and avoiding unsupported bandage props. Gorgon’s eyes stay averted. No native runtime changes."
+    },
+    {
+      "anchor": "watch_29_34",
+      "scene": "download-supportive-29-34",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Subjective memories remain narrated; no unsupported direct gaze or collapse animation. Five quiet head-only performances after Alden sits up. Keep both arms still, preserving his wrapped right hand and avoiding unsupported bandage props. Gorgon’s eyes stay averted. No native runtime changes."
+    },
+    {
+      "anchor": "watch_29_42",
+      "scene": "download-supportive-29-42",
+      "recipe": {
+        "actor": "gorgon",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Subjective memories remain narrated; no unsupported direct gaze or collapse animation. Five quiet head-only performances after Alden sits up. Keep both arms still, preserving his wrapped right hand and avoiding unsupported bandage props. Gorgon’s eyes stay averted. No native runtime changes."
+    },
+    {
+      "anchor": "watch_29_49",
+      "scene": "download-supportive-29-49",
+      "recipe": {
+        "actor": "alden",
+        "setting": "consulate",
+        "ambient": "none",
+        "prop": "none",
+        "keys": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1200,
+            3,
+            0,
+            0,
+            100
+          ],
+          [
+            2400,
+            4,
+            0,
+            0,
+            100
+          ],
+          [
+            3600,
+            1,
+            0,
+            0,
+            20
+          ],
+          [
+            4800,
+            1,
+            0,
+            0,
+            20
+          ]
+        ]
+      },
+      "note": "Subjective memories remain narrated; no unsupported direct gaze or collapse animation. Five quiet head-only performances after Alden sits up. Keep both arms still, preserving his wrapped right hand and avoiding unsupported bandage props. Gorgon’s eyes stay averted. No native runtime changes."
+    }
+  ],
+  "reactions": [
+    {
+      "anchor": "watch_29_0",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_29_4",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_29_6",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_29_8",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_29_10",
+      "actor": "Alden",
+      "emotion": "holding-back-sadness"
+    },
+    {
+      "anchor": "watch_29_14",
+      "actor": "Alden",
+      "emotion": "surprised"
+    },
+    {
+      "anchor": "watch_29_16",
+      "actor": "Alden",
+      "emotion": "exhausted"
+    },
+    {
+      "anchor": "watch_29_19",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_29_20",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_29_24",
+      "actor": "Alden",
+      "emotion": "exhausted"
+    },
+    {
+      "anchor": "watch_29_27",
+      "actor": "Alden",
+      "emotion": "thinking"
+    },
+    {
+      "anchor": "watch_29_29",
+      "actor": "Gorgon",
+      "emotion": "thoughtful"
+    },
+    {
+      "anchor": "watch_29_33",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_29_35",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_29_36",
+      "actor": "Gorgon",
+      "emotion": "serious"
+    },
+    {
+      "anchor": "watch_29_40",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_29_41",
+      "actor": "Alden",
+      "emotion": "worried"
+    },
+    {
+      "anchor": "watch_29_42",
+      "actor": "Gorgon",
+      "emotion": "attentive"
+    },
+    {
+      "anchor": "watch_29_46",
+      "actor": "Alden",
+      "emotion": "talking"
+    },
+    {
+      "anchor": "watch_29_47",
+      "actor": "Gorgon",
+      "emotion": "reluctant-softening"
+    },
+    {
+      "anchor": "watch_29_49",
+      "actor": "Alden",
+      "emotion": "thinking"
+    }
+  ]
+}
