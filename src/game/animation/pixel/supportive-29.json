@@ -1,0 +1,606 @@
+{
+  "episode": 29,
+  "scriptFingerprint": "08e9b875",
+  "shots": [
+    {
+      "anchor": "beat_00",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-1",
+        "panel": 0,
+        "alt": "Alden meets Gorgon’s eyes.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_01",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-1",
+        "panel": 1,
+        "alt": "Alden’s old understanding falls apart.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_02",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-1",
+        "panel": 2,
+        "alt": "Gorgon seems far greater than Alden had understood.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_03",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-1",
+        "panel": 2,
+        "alt": "Gorgon seems far greater than Alden had understood.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_04",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-1",
+        "panel": 2,
+        "alt": "Gorgon seems far greater than Alden had understood.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_05",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-1",
+        "panel": 2,
+        "alt": "Gorgon seems far greater than Alden had understood.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_06",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-1",
+        "panel": 1,
+        "alt": "Alden’s old understanding falls apart.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_07",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-2",
+        "panel": 0,
+        "alt": "Profound memories overwhelm Alden all at once.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_08",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-1",
+        "panel": 3,
+        "alt": "A subjective impression of his mother’s heartbeat.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_09",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-1",
+        "panel": 4,
+        "alt": "Young Alden lays a white flower on his father’s closed coffin.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_10",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-1",
+        "panel": 4,
+        "alt": "Young Alden lays a white flower on his father’s closed coffin.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_11",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-1",
+        "panel": 5,
+        "alt": "The first sunrise Alden stopped to watch.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_12",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-1",
+        "panel": 3,
+        "alt": "A subjective impression of his mother’s heartbeat.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_13",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-1",
+        "panel": 5,
+        "alt": "The first sunrise Alden stopped to watch.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_14",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-2",
+        "panel": 0,
+        "alt": "Profound memories overwhelm Alden all at once.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_15",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-2",
+        "panel": 0,
+        "alt": "Profound memories overwhelm Alden all at once.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_16",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-2",
+        "panel": 1,
+        "alt": "Hours pass in the quiet consulate.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_17",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-2",
+        "panel": 2,
+        "alt": "Alden wakes on his side on the cold floor.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_18",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-2",
+        "panel": 2,
+        "alt": "Alden wakes on his side on the cold floor.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_19",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-2",
+        "panel": 3,
+        "alt": "His right hand is wrapped in paper napkin and clear tape.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_20",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-2",
+        "panel": 4,
+        "alt": "Victor eats tuna beside Alden’s face.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_21",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-2",
+        "panel": 3,
+        "alt": "His right hand is wrapped in paper napkin and clear tape.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_22",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-2",
+        "panel": 4,
+        "alt": "Victor eats tuna beside Alden’s face.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_23",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-2",
+        "panel": 5,
+        "alt": "Alden sits up carefully.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_24",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-3",
+        "panel": 0,
+        "alt": "Physically well but mentally overwhelmed, Alden looks around.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_25",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-3",
+        "panel": 0,
+        "alt": "Physically well but mentally overwhelmed, Alden looks around.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_26",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-3",
+        "panel": 1,
+        "alt": "The sky pales before sunrise.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_27",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-3",
+        "panel": 1,
+        "alt": "The sky pales before sunrise.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_28",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-3",
+        "panel": 2,
+        "alt": "Gorgon rests his chin on his hand and watches security screens.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_29",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-3",
+        "panel": 2,
+        "alt": "Gorgon rests his chin on his hand and watches security screens.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_30",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-3",
+        "panel": 2,
+        "alt": "Gorgon rests his chin on his hand and watches security screens.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_31",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-3",
+        "panel": 3,
+        "alt": "Alden approaches with his eyes averted.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_32",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-3",
+        "panel": 3,
+        "alt": "Alden approaches with his eyes averted.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_33",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-3",
+        "panel": 4,
+        "alt": "Alden hesitates over an extraordinary question.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_34",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-3",
+        "panel": 4,
+        "alt": "Alden hesitates over an extraordinary question.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_35",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-3",
+        "panel": 5,
+        "alt": "Alden asks whether Gorgon is a god.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_36",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-4",
+        "panel": 0,
+        "alt": "Gorgon answers no, simply and calmly.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_37",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-4",
+        "panel": 0,
+        "alt": "Gorgon answers no, simply and calmly.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_38",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-4",
+        "panel": 0,
+        "alt": "Gorgon answers no, simply and calmly.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_39",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-4",
+        "panel": 1,
+        "alt": "An ordinary lobby surrounds the extraordinary encounter.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_40",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-4",
+        "panel": 2,
+        "alt": "Alden tries to explain why he asked.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_41",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-4",
+        "panel": 2,
+        "alt": "Alden tries to explain why he asked.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_42",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-4",
+        "panel": 3,
+        "alt": "Gorgon looks toward the salsa jar beside a stapler.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_43",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-4",
+        "panel": 3,
+        "alt": "Gorgon looks toward the salsa jar beside a stapler.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_44",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-4",
+        "panel": 3,
+        "alt": "Gorgon looks toward the salsa jar beside a stapler.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_45",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-4",
+        "panel": 4,
+        "alt": "Alden asks what happened.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_46",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-4",
+        "panel": 4,
+        "alt": "Alden asks what happened.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_47",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-4",
+        "panel": 5,
+        "alt": "Gorgon shows the restraint that prevents an explanation.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_48",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-4",
+        "panel": 5,
+        "alt": "Gorgon shows the restraint that prevents an explanation.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    },
+    {
+      "anchor": "beat_49",
+      "offset": 0,
+      "durationMs": 1800,
+      "comic": {
+        "sheet": "supportive-29-4",
+        "panel": 5,
+        "alt": "Gorgon shows the restraint that prevents an explanation.",
+        "columns": 2,
+        "aspectRatio": 1.5
+      }
+    }
+  ]
+}

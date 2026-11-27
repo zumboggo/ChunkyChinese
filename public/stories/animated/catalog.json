@@ -1472,5 +1472,22 @@
       "title": "Super Supportive · Episode 28 · 你为什么不说话",
       "description": "An awkward offer, an unreadable silence, and the first time Gorgon meets Alden’s eyes. Pixel art × cinematic × Bauhaus geometry."
     }
+  },
+  {
+    "id": "supportive-29-v1",
+    "category": "super-supportive",
+    "episode": 29,
+    "pebble": false,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-29.mp4",
+      "poster": "stories/animated/cutscenes/supportive-29.poster.jpg",
+      "title": "Are you some kind of god?",
+      "durationSeconds": 9
+    },
+    "path": "supportive-29.json",
+    "summary": {
+      "title": "Super Supportive · Episode 29 · 你是神吗",
+      "description": "Alden wakes on the cold floor, with a bandaged hand and a question he can hardly believe he is asking."
+    }
   }
 ]

@@ -1,0 +1,182 @@
+{
+  "id": "supportive-29",
+  "series": "super-supportive",
+  "title": "Super Supportive · Episode 29 · 你是神吗",
+  "description": "Alden wakes on the cold floor, with a bandaged hand and a question he can hardly believe he is asking.",
+  "presentation": {
+    "mode": "reading",
+    "layout": "intertitles",
+    "animationLabels": []
+  },
+  "audioLanguage": "mandarin-only",
+  "sources": [
+    {
+      "title": "Super Supportive — Sleyca, Chapter 9",
+      "url": "https://www.royalroad.com/fiction/63759/super-supportive",
+      "note": "User-provided EPUB: the overwhelming gaze through Gorgon showing his restraint, before the renewed blood offer."
+    }
+  ],
+  "planning": {
+    "sourceBoundary": "Alden had misunderstood something. → before “Well, did you taste some of my blood at least?”",
+    "dramaticChange": "Alden’s familiar idea of Gorgon collapses; waking to practical care, he asks for an explanation Gorgon is forbidden to give.",
+    "essentialNewWords": [
+      "神",
+      "棺材",
+      "胶带",
+      "日出"
+    ],
+    "englishNarrationPurpose": "",
+    "choicesAndCallbacks": [
+      {
+        "id": "remember",
+        "purpose": "Attend to sound or first light",
+        "laterPayoff": "Distinct immediate observation, then canonical rejoin."
+      },
+      {
+        "id": "wake",
+        "purpose": "Notice the bandage or the cat",
+        "laterPayoff": "Distinct immediate observation, then canonical rejoin."
+      },
+      {
+        "id": "approach",
+        "purpose": "Consider the desk or avoid eye contact",
+        "laterPayoff": "Distinct immediate observation, then canonical rejoin."
+      },
+      {
+        "id": "question",
+        "purpose": "Think about the plain answer or the lobby",
+        "laterPayoff": "Distinct immediate observation, then canonical rejoin."
+      }
+    ],
+    "sceneActivities": [
+      {
+        "activity": "Wake on floor, sit up, approach desk with eyes averted; Gorgon studies monitors and lifts restraint",
+        "purpose": "Ordinary practical care grounds an overwhelming experience.",
+        "rendering": "Comics show recovery position and bandage; watch head-only reactions reuse installed assets."
+      }
+    ],
+    "storytellingVoice": "Intimate character drama: overwhelming remembered meaning meets a mundane cat breakfast and tentative conversation.",
+    "desire": "Understand the person he has been trying to feed.",
+    "obstacle": "The gaze overwhelms him, and Gorgon’s restraints prevent explanation.",
+    "earlyCare": "Ordinary memories of family and a sunrise give the experience personal weight.",
+    "payoff": "Alden wakes physically safe and receives a plain answer to his most extraordinary question.",
+    "continuingQuestion": "What is Gorgon, and what can his bindings prevent him from explaining?",
+    "direction": "God question, Gorgon’s plain no, Alden’s held uncertainty, final raised restraint. Extraordinary memory impressions are subjective, not new confirmed powers.",
+    "artDirection": {
+      "seed": 2902711,
+      "medium": "watercolour",
+      "treatment": "chibi comics",
+      "influence": "Vienna Secession",
+      "weights": {
+        "comicProbability": 0.6666666666666666,
+        "otherAxes": "uniform; previous medium and recent treatments/influences excluded"
+      },
+      "palette": [
+        "midnight indigo",
+        "warm ivory",
+        "copper",
+        "pale dawn blue"
+      ],
+      "identity": "Alden brown tousled hair, charcoal hoodie, pale skin; Gorgon gray skin, black eyes, four vertical nose slits, swept horn collar, gold restraints. Exact approved designs. Averted eyes after the opening.",
+      "references": [
+        "stories/characters/super-supportive/alden-approved-a.png",
+        "stories/characters/super-supportive/gorgon-seated-v1.png"
+      ],
+      "history": "Last five inspected: pixel art/cinematic/Bauhaus; oil/storybook/Mexican relief; feltboard/American comics/Art Nouveau; crayon/shonen/Chinese paper cutting; earlier record incomplete."
+    },
+    "audioPaging": "Each voiced entry has two or three reviewed chunks and is one page.",
+    "vocabularyAudit": {
+      "reviewedKnown": 804,
+      "supplementVersion": 3,
+      "effectiveFamiliar": 1063,
+      "supplement": "stories/authoring/moonlight-familiar-words.json"
+    }
+  },
+  "continuation": {
+    "end": "Gorgon’s gaze overwhelms Alden with profound memories. Hours later he wakes in recovery position with his hand wrapped, Victor eating tuna nearby. Before dawn he asks whether Gorgon is a god; Gorgon says no, checks his wellbeing, and shows the restraint that prevents an explanation. No renewed blood offer or consumption yet.",
+    "nextStart": "“Well, did you taste some of my blood at least?”",
+    "nextEndBefore": "“I trust you,” Alden said.",
+    "note": "Alden renews the offer, hears Gorgon’s warning about friendship and side effects, and considers his changed trust. Stop before explicit renewed permission."
+  },
+  "routes": [
+    {
+      "choices": [
+        "sound",
+        "wrapped",
+        "desk",
+        "answer"
+      ],
+      "contains": [
+        "戈尔贡……你是不是一种神？"
+      ],
+      "endsWith": "我的问题还在那里。可是，他不能说明为什么。"
+    },
+    {
+      "choices": [
+        "light",
+        "cat",
+        "eyes",
+        "room"
+      ],
+      "contains": [
+        "不能向你说明，让我很伤心，奥尔登。"
+      ],
+      "endsWith": "我的问题还在那里。可是，他不能说明为什么。"
+    }
+  ],
+  "catalog": {
+    "id": "supportive-29-v1",
+    "category": "super-supportive",
+    "episode": 29,
+    "pebble": false,
+    "intro": {
+      "src": "stories/animated/cutscenes/supportive-29.mp4",
+      "poster": "stories/animated/cutscenes/supportive-29.poster.jpg",
+      "title": "Are you some kind of god?",
+      "durationSeconds": 9
+    }
+  },
+  "teaser": {
+    "scene": "Alden asks Gorgon whether he is a god after waking before dawn.",
+    "style": "Watercolour chibi comics with Vienna Secession geometry",
+    "identityReference": "stories/characters/super-supportive/alden-approved-a.png",
+    "model": "prunaai/p-video-2-pro",
+    "predictionId": "50pa1nf5fnrmt0d23cgvdf3gc4",
+    "verifiedMaximumUsd": 0.06,
+    "paidAttempts": 1,
+    "dialogue": "Are you some kind of god?",
+    "generatedSeconds": 6,
+    "deliveredSeconds": 9,
+    "image": "stories/characters/super-supportive/supportive-29-opening.png",
+    "checks": {
+      "sha256": "6a63636c2b71410c3cb2c1917213c59d3fd718d2d287bebbd780d2cfcb0ffed9",
+      "dimensions": [
+        854,
+        480
+      ],
+      "total_seconds": 9,
+      "hold_seconds": 3,
+      "motion_seconds": 6,
+      "audio_non_silent": true,
+      "speech_check": "pass",
+      "transcription": "Are you some kind of God?"
+    }
+  },
+  "verification": {
+    "packageBytes": 3291629,
+    "reachableRoutes": 16,
+    "browserRoutes": 2,
+    "familiarityPercent": {
+      "min": 95.18072289156626,
+      "max": 96.02385685884691
+    },
+    "pinyinReviewed": true,
+    "browser": "Full selected route suite on phone and desktop; exhaustive engine/replay checks.",
+    "reviewTargets": [
+      "戈尔贡……你是不是一种神？",
+      "不是。",
+      "不能向你说明，让我很伤心，奥尔登。",
+      "我的问题还在那里。可是，他不能说明为什么。"
+    ]
+  }
+}
